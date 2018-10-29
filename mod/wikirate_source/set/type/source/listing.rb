@@ -104,8 +104,8 @@ format :html do
 
   view :source_link do
     wrap_with :div, class: "source-link d-block" do
-      [wrap_with(:div, source_title, class: "source-title text-muted"),
-       wrap_with(:div, website_text, class: "source-website")]
+      [wrap_with(:div, source_title, class: "source-title"),
+       wrap_with(:div, website_text, class: "source-website text-muted")]
     end
   end
 
