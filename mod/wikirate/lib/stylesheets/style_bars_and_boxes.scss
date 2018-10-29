@@ -186,6 +186,9 @@ $colorMap: (
   padding-right: 70px !important;
 }
 
-#research_page-source .source-info-container .bar-nav {
-  display: none;
+#research_page-source,
+.card-editor {
+  .source-info-container .bar-nav {
+    display: none !important;
+  }
 }
