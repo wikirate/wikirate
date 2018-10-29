@@ -1,7 +1,7 @@
 RSpec.describe Card::DependencyTree do
   def formula_tree tree
     tree.each_pair do |source, targets|
-      allow(source).to receive(:directly_dependent_formula_metrics).and_return targets
+      allow(source).to receive(:formula_metrics).and_return targets
     end
   end
 
