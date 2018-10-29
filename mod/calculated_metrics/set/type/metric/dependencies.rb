@@ -6,20 +6,16 @@ def all_dependent_answer_ids
   ids
 end
 
-# # @return all metric cards that score this metric
-# def each_dependent_score_metric
-#   dependent_score_metrics.each do |m|
-#     yield m
-#   end
-# end
-
 def each_dependent_metric
   dependency_tree.each_metric { |m| yield m }
 end
 
+def directly_dependent_metrics
+  score_metrics + formula_metrics
+end
+
 def dependency_tree
-  direct_dependents = score_metrics + formula_metrics
-  DependencyTree.new direct_dependents
+  DependencyTree.new directly_dependent_metrics
 end
 
 def score_metrics
