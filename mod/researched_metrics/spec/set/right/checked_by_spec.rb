@@ -7,8 +7,8 @@ RSpec.describe Card::Set::Right::CheckedBy do
     Card::Env.params["set_flag"] = "checked"
     cb_card = answer_card.checked_by_card
     cb_card.save!
-    cb_card.clear_subcards
-    cb_card.update_attributes! subcards: {}
+    cb_card.clear_subcards # why?
+    cb_card.update_attributes! subcards: {} # why?
     Card::Env.params.delete "set_flag"
   end
 
@@ -146,6 +146,10 @@ RSpec.describe Card::Set::Right::CheckedBy do
       expect(double_checked).to include("[[#{answer_card.name}]]")
     end
 
+    it "updates the answers table" do
+      expect(answer_card.answer.checkers).to eq("Joe User")
+    end
+
     context "value updated" do
       before do
         answer_card.value_card.update_attributes content: "200"
@@ -172,6 +176,10 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
     it "checks the metric value" do
       expect(cb_card.item_names.size).to eq(0)
+    end
+
+    it "updates the answers table" do
+      expect(answer_card.answer.checkers).to eq("Joe User")
     end
   end
 end
