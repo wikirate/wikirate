@@ -19,7 +19,11 @@ add_method_tracer :award_badge_if_earned, "award_badge_if_earned"
 
 # don't award badges during imports or API calls
 def awardable_act?
-  !import_act? && (!Rails.env.production? && Card::Auth.session_user)
+  !(import_act? || token_act?)
+end
+
+def token_act?
+  Rails.env.production? && Card::Env.params[:token] && !Card::Auth.session_user
 end
 
 # @return badge name if count equals its threshold
