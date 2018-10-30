@@ -7,7 +7,7 @@ format :html do
 
   view :bar_right do
     wrap_with :div, class: "align-items-center w-100 text-left d-block" do
-       download_link
+      download_link
     end
   end
 
