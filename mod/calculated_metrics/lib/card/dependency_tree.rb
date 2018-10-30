@@ -37,7 +37,7 @@ class Card
     end
 
     def add_children node
-      node.metric.directly_dependent_formula_metrics.each do |metric|
+      node.metric.directly_dependent_metrics.each do |metric|
         add_child node, metric
       end
     end

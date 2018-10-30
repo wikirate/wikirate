@@ -7,7 +7,7 @@ format :html do
 
   view :bar_right do
     wrap_with :div, class: "align-items-center w-100 text-left d-block" do
-      [download_link, fancy_year_list]
+      download_link
     end
   end
 
@@ -16,9 +16,10 @@ format :html do
   end
 
   view :bar_bottom do
+    add_name_context
     output [render_bar_middle,
-            field_nest(:report_type),
-            render_original_with_icon,
+            fancy_year_list,
+            field_nest(:report_type, view: :labeled, items: { view: :link }),
             field_nest(:description, view: :titled, title: "Description")]
   end
 
@@ -104,7 +105,7 @@ format :html do
   view :source_link do
     wrap_with :div, class: "source-link d-block" do
       [wrap_with(:div, source_title, class: "source-title"),
-       wrap_with(:div, website_text, class: "source-website")]
+       wrap_with(:div, website_text, class: "source-website text-muted")]
     end
   end
 

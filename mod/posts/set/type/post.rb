@@ -28,8 +28,8 @@ format :html do
             field_nest(:discussion, view: :titled, title: "Discussion")]
   end
 
-  def bar_side_cols
-    voo.show?(:bar_middle) ? [4, 4] : [6, 6]
+  def bar_side_cols middle=true
+    middle ? [4, 4] : [6, 6]
   end
 
   def tab_list

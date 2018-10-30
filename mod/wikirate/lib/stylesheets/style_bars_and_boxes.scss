@@ -17,12 +17,6 @@ $box_stripe_color: $gray-700;
 
 /*----------- Bars and Boxes -------------*/
 
-.bar, .box {
-  .missing-view {
-    // TODO: obviate in ruby with better unknown API
-    display: none;
-  }
-}
 
 .bar-left a {
   color: inherit;
@@ -47,35 +41,10 @@ $box_stripe_color: $gray-700;
   }
 }
 
-// box wrapper in collection
-.item-box {
-  display: inline-block;
-  min-width: 260px;
-  width: 15%;
-  padding: 10px 1%;
-  vertical-align: top;
-}
-
-.box-top {
-  display: flex;
-  min-height: 60px;
-  flex-direction: column;
-  justify-content: center;
-  overflow: auto;
-}
-
-.box-middle {
-  min-height: 180px;
-  img {
-    object-fit: contain;
-    height: 130px;
-    width: 190px;
-  }
-}
-
 .box-item {
   transition: all 0.2s ease-out;
 }
+
 //for all box items
 
 a.box-item {
@@ -176,8 +145,7 @@ $colorMap: (
     }
   }
 
-  .bar,
-  .box {
+  .expanded-bar, .bar, .box {
     &:hover .RIGHT-#{$type} {
       &.labeled-badge .badge {
         background-color: $color;
@@ -193,13 +161,13 @@ $colorMap: (
 // for metric items
 
 .TYPE-metric.box {
-  min-height: 360px;
+  height: 360px;
   .box-middle {
     min-height: auto;
   }
   .box-top {
     text-align: left !important;
-
+    min-height: 80px;
     h5 {
       font-size: 110%;
     }
@@ -215,6 +183,13 @@ $colorMap: (
 }
 
 // tweak citable source minibar
-.source_and_preview-view .source-info-container .bar-right {
-  padding-right: 70px;
+.source-info-container .bar-right {
+  padding-right: 70px !important;
+}
+
+#research_page-source,
+.card-editor {
+  .source-info-container .bar-nav {
+    display: none !important;
+  }
 }

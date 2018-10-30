@@ -46,7 +46,7 @@ format :html do
 
   view :metric_question do
     wrap_with :div, class: "question blockquote" do
-      nest card.question_card, view: :content
+      nest card.question_card, view: :content_with_title
     end
   end
 

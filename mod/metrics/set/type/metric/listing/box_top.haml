@@ -2,5 +2,6 @@
 = # voo.show?(:vote_count) ? field_nest(:vote_count) : ""
 .header
   %h5.metric-color
-    = link_to_card card, card.metric_title, class: "inherit-anchor"
+    = link_to_card card, card.metric_title, class: "inherit-anchor",
+                                            title: card.metric_title
   = render :designer_info_without_label

@@ -20,7 +20,12 @@ def update_existing_answer answer, value
   else
     value ? answer.update_value(value) : delete_calculated_answer(answer)
   end
-  answer.card.instance_variable_set("@answer", nil)
+  refresh_answer_card answer.card
+end
+
+def refresh_answer_card answer
+  answer.instance_variable_set "@answer", nil
+  answer.expire
 end
 
 def delete_calculated_answer answer
