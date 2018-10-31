@@ -19,7 +19,7 @@ format :html do
   end
 
   def nest_about
-    return "" if card.about_card.new?
+    # return "" if card.about_card.new?
     nest card.about_card, view: :titled, title: "About"
   end
 
@@ -34,7 +34,7 @@ format :html do
 
   view :project_tab do
     tab_wrap do
-      field_nest :project, view: :titled, title: "Projects", items: { view: :bar }
+      field_nest :project, view: :titled, title: "Projects", items: { view: :mini_bar }
     end
   end
 

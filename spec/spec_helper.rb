@@ -16,20 +16,6 @@ end
 include SourceHelper
 include SharedData::Samples
 
-def create_claim name, subcards={}
-  Card::Auth.as_bot do
-    # url = "http://www.google.com/?q=wikirate"
-    # sourcepage = create_page url
-    Card.create! type_id: Card::ClaimID, name: name,
-                 subcards: {
-                   "+source" => {
-                     content: sample_source.name,
-                     type_id: Card::PointerID
-                   }
-                 }.merge(subcards)
-  end
-end
-
 def create_answer metric: sample_metric, company: sample_company,
                   content: "content", year: "2015", source: sample_source.name
   #content ||= "I'm fine, I'm just not happy."
@@ -72,6 +58,13 @@ def create_metric opts={}, &block
     end
     opts[:name] ||= "TestDesigner+TestMetric"
     Card::Metric.create opts, &block
+  end
+end
+
+def have_badge_count num, klass, label
+  have_tag "span.#{klass}" do
+    with_tag "span.badge", text: /#{num}/
+    with_tag "label", text: /#{label}/
   end
 end
 

@@ -10,7 +10,9 @@ format :html do
   # all metrics have these properties in their editor
   def basic_edit_properties
     { question:       "Question",
-      wikirate_topic: "Topic" }
+      wikirate_topic: "Topic",
+      about:          "About",
+      methodology:    "Methodology" }
   end
 
   def value_type_properties

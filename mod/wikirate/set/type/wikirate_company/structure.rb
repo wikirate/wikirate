@@ -10,13 +10,16 @@ format :html do
     voo.edit_structure = [:headquarters, :image, :wikipedia]
   end
 
-  def active_profile_tab
-    (profile = params[:company_profile]) ? profile.to_sym : default_profile_tab
+  view :wikirate_topic_tab do
+    field_nest :wikirate_topic, items: { view: :mini_bar }
   end
 
-  def default_profile_tab
-    @default_profile_tab ||=
-      show_contributions_profile? ? :contributions : :performance
+  view :source_tab do
+    field_nest :source, items: { view: :mini_bar }
+  end
+
+  view :project_tab do
+    field_nest :project, items: { view: :mini_bar }
   end
 
   def tab_list
@@ -29,12 +32,21 @@ format :html do
     %i[wikirate_topic source post project]
   end
 
+  def active_profile_tab
+    (profile = params[:company_profile]) ? profile.to_sym : default_profile_tab
+  end
+
+  def default_profile_tab
+    @default_profile_tab ||=
+      show_contributions_profile? ? :contributions : :performance
+  end
+
   view :data, cache: :never do
     active_profile_tab == :performance ? performance_data : contribution_data
   end
 
   def performance_data
-    field_nest(:all_metric_values)
+    field_nest :all_metric_values
   end
 
   def header_right
@@ -111,8 +123,9 @@ format :html do
     if contributions_made?
       profile_tab :contributions, label_name
     else
-      disabled_tab = wrap_with :span, label_name, class: "nav-link"
-      wrap_with :li, disabled_tab, class: "disabled"
+      wrap_with :li, class: "disabled" do
+        wrap_with :span, label_name, class: "nav-link"
+      end
     end
   end
 
@@ -154,20 +167,4 @@ format :html do
   def open_corporates_extract
     nest card.open_corporates_card, view: :titled, title: "OpenCorporates"
   end
-
-  view :wikirate_topic_tab do
-    field_nest :wikirate_topic, view: :topic_list_with_metric_counts
-  end
-
-  view :source_tab do
-    field_nest :source, view: :content, items: { view: :bar }
-  end
-
-  view :project_tab do
-    field_nest :project, items: { view: :bar }
-  end
-
-  view :browse_item, template: :haml
-  view :homepage_item, template: :haml
-  view :homepage_item_sm, template: :haml
 end

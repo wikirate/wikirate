@@ -34,10 +34,8 @@ format :html do
   view :title_and_question_compact do
     link = link_to_card card, card.metric_title, class: "inherit-anchor"
     wrap_with :div, class: "bg-white" do
-      [
-        wrap_with(:div, link, class: "metric-color font-weight-bold"),
-        wrap_with(:div, question, class: "question")
-      ]
+      [wrap_with(:div, link, class: "metric-color font-weight-bold"),
+       render_metric_question]
     end
   end
 
@@ -47,11 +45,9 @@ format :html do
   end
 
   view :metric_question do
-    wrap_with :div, question, class: "question blockquote"
-  end
-
-  def question
-    subformat(card.question_card)._render_content
+    wrap_with :div, class: "question blockquote" do
+      nest card.question_card, view: :content_with_title
+    end
   end
 
   view :designer_info do
@@ -75,14 +71,6 @@ format :html do
     HTML
   end
 
-  view :box_top, template: :haml do
-    @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
-  end
-
-  view :box_middle, template: :haml do
-    @question = question
-  end
-
   def company_count
     field_nest :wikirate_company, view: :count
   end
@@ -90,15 +78,4 @@ format :html do
   def metric_count
     field_nest :all_metric_values, view: :count
   end
-
-  view :box_bottom, template: :haml do
-    @company_badge = labeled_badge company_count, "Companies", color: "company"
-    @answer_badge = labeled_badge metric_count, "Answers", color: "dark"
-  end
-
-  view :browse_item, template: :haml do
-    @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
-  end
-  view :homepage_item, template: :haml
-  view :homepage_item_sm, template: :haml
 end

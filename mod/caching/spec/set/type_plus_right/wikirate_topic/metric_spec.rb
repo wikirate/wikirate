@@ -3,7 +3,7 @@
 require_relative "../../../support/cached_count_shared_examples"
 
 RSpec.describe Card::Set::TypePlusRight::WikirateTopic::Metric do
-  it_behaves_like "cached count", "Force+metric", 1 do
+  it_behaves_like "cached count", "Force+metric", 1, 1 do
     let :add_one do
       Card.fetch(["Joe User+researched number 2", :wikirate_topic], new: {})
           .add_item! "Force"

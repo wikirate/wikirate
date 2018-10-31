@@ -77,7 +77,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       end
 
       expect(table).to have_tag "div.formula-with-values",
-                                text: "= Sum[8, 9, 10]/3" do
+                                text: "= Total[8, 9, 10]/3" do
         with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company" },
                      text: "8, 9, 10"
       end
@@ -201,7 +201,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
     it "shows cited source" do
       is_expected.to have_tag "div.cited-sources" do
-        with_tag "span.source-title", "Opera"
+        with_tag "div.source-title", /Opera/
       end
     end
 

@@ -32,13 +32,12 @@ format :html do
   end
 
   view :metric_contributions do
-    field_subformat(:metrics_designed)._render_titled(
-      show: :title_badge, items: { view: :metric_row }
-    )
+    field_nest :metrics_designed, view: :titled, show: :title_badge,
+                                  items: { view: :mini_bar }
   end
 
   view :project_contributions do
     field_nest :projects_organized, view: :titled, show: :title_badge,
-                                    items: { view: :bar }
+                                    items: { view: :mini_bar }
   end
 end

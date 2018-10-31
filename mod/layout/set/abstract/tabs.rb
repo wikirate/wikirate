@@ -52,10 +52,19 @@ format :html do
   def tab_title_top icon, count
     icon_tag = tab_title_icon_tag icon
     if count
-      tab_badge count, icon_tag
+      tab_count_badge count, icon_tag
     else
       icon_tag || "&nbsp;".html_safe
     end
+  end
+
+  def tab_count_badge count, icon_tag
+    klass = nil
+    if count.is_a? Card
+      klass = css_classes count.safe_set_keys
+      count = count.count
+    end
+    tab_badge count, icon_tag, klass: klass
   end
 
   def tab_title_icon_tag icon
@@ -71,7 +80,7 @@ format :html do
 
   def tab_title_count fieldcode
     field_card = card.fetch trait: fieldcode
-    field_card.cached_count if field_card.respond_to? :cached_count
+    field_card if field_card.respond_to? :count
   end
 
   def tab_title_icon fieldcode

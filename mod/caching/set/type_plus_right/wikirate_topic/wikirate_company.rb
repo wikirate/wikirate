@@ -3,7 +3,7 @@
 include_set Abstract::AnswerTableCachedCount, target_type: :company
 
 def search_anchor
-  { metric_id: ids_of_metrics_tagged_with_topic }
+  { metric_id: metrics_tagged_with_topic }
 end
 
 def topic_name
@@ -38,47 +38,24 @@ class << self
   end
 end
 
-def ids_of_metrics_tagged_with_topic
+def metrics_tagged_with_topic return_field=:id
   Card.search type_id: MetricID,
               right_plus: [WikirateTopicID, { refer_to: name.left }],
-              return: :id
+              return: return_field
 end
 
-def company_ids_by_metric_count
-  Answer.group(:company_id)
-        .where(metric_id: ids_of_metrics_tagged_with_topic)
-        .order("count_metric_id desc")
-        .limit(100)
-        .distinct
-        .count(:metric_id)
+def item_cards _args={}
+  search.sort_by(&:name)
 end
 
-format :html do
-  view :company_list_with_metric_counts, cache: :never do
-    wrap do
-      card.company_ids_by_metric_count.map do |company_id, metric_count|
-        company_card = Card.fetch company_id
-        wrap_with :div, class: "company-item contribution-item" do
-          [wrap_with(:div, company_detail(company_card), class: "header"),
-           wrap_with(:div, class: "data") do
-             metric_count_detail(company_card, metric_count)
-           end]
-        end
-      end
-    end
-  end
-
-  def company_detail company_card
-    nest company_card, view: :thumbnail
-  end
-
-  def metric_count_detail company_card, metric_count
-    wrap_with :span, class: "metric-count-link" do
-      link_to_card(
-        company_card,
-        "#{metric_count} #{:metric.cardname.vary :plural}",
-        path: { filter: { wikirate_topic: card.topic_name.s } }
-      )
-    end
-  end
-end
+# # company ids by metric count
+# def item_ids _args={}
+#   Answer.group(:company_id)
+#         .where(metric_id: metrics_tagged_with_topic)
+#         .order("count_metric_id desc")
+#         .limit(100)
+#         .distinct
+#         .count(:metric_id)
+#         .map &:first
+# end
+#

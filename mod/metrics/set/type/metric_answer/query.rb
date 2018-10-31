@@ -27,10 +27,6 @@ format do
     { left_id: card.id, right: { type_id: WikirateCompanyID } }
   end
 
-  def count_with_params
-    Card.search values_query.merge(return: :count)
-  end
-
   def companies
     Card.search values_query
   end
@@ -41,6 +37,10 @@ format do
 
   def search_with_params
     Card.search values_query.merge(limit: limit, offset: offset)
+  end
+
+  def count_with_params
+    Card.search values_query.merge(return: :count)
   end
 
   def limit

@@ -2,7 +2,7 @@ include_set Abstract::Header
 
 format :html do
   def tab_list
-    %i[details metric]
+    %i[details metric metric_answer]
   end
 
   view :source_details, template: :haml
@@ -15,7 +15,13 @@ format :html do
 
   view :metric_tab do
     tab_wrap do
-      field_nest "metric_search", view: :content
+      field_nest :metric, items: { view: :mini_bar }
+    end
+  end
+
+  view :metric_answer_tab do
+    tab_wrap do
+      field_nest :metric_answer, items: { view: :mini_bar }
     end
   end
 
@@ -24,7 +30,7 @@ format :html do
     when :wikirate_link
       tab_link preview_url, "external-link-square", " Visit Original"
     when :file
-      tab_link file_card.attachment.url, :download, " Download"
+      tab_link card.file_card.attachment.url, :download, " Download"
     else
       ""
     end

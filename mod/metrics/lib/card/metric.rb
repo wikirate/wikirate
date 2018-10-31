@@ -1,40 +1,59 @@
 class Card::Metric
   class ValueCreator
-    def initialize metric=nil, random_source=false, &values_block
+    def initialize metric=nil, test_source=false, &values_block
       @metric = metric
-      @random_source = random_source
+      @test_source = test_source
       define_singleton_method(:add_values, values_block)
     end
 
     def create_value company, year, value
-      args = { company: company.to_s, year: year }
-      if @metric.researchable? && @random_source
-        args[:source] ||= Card.search(type_id: Card::SourceID, limit: 1).first
+      variant = @metric.relationship? ? :relationship : :standard
+      send "create_#{variant}_value", value, create_value_args(company, year)
+    end
+
+    def add_values_to metric
+      @metric = metric
+      add_values
+    end
+
+    private
+
+    def create_relationship_value value, args
+      value.each do |company, relationship_value|
+        @metric.create_value args.merge(related_company: company,
+                                        value: relationship_value)
       end
-      if @metric.relationship?
-        value.each do |company, relationship_value|
-          @metric.create_value args.merge(related_company: company,
-                                          value: relationship_value)
-        end
+    end
+
+    def create_standard_value value, args
+      if value.is_a? Hash
+        args.merge! value
       else
-        if value.is_a?(Hash)
-          args.merge! value
-        else
-          args[:value] = value.to_s
-        end
-        @metric.create_value args
+        args[:value] = value.to_s
       end
+      @metric.create_value args
+    end
+
+    def create_value_args company, year
+      args = { company: company.to_s, year: year }
+      prep_source args
+      args
+    end
+
+    def prep_source args
+      return unless @metric.researchable? && @test_source
+      args[:source] ||= test_source_card
+    end
+
+    def test_source_card
+      test_source_mark = @test_source == true ? :opera_source : @test_source
+      Card[test_source_mark]
     end
 
     def method_missing company, *args
       args.first.each_pair do |year, value|
         create_value company, year, value
       end
-    end
-
-    def add_values_to metric
-      @metric = metric
-      add_values
     end
   end
 
@@ -51,7 +70,7 @@ class Card::Metric
     #               value_options: ['yes', 'no'] do
     #   Death_Star 1977 => { value: 'yes', source: 'http://deathstar.com' },
     #              1999 => 'no'
-    #   Jar_Jar_Bings 1977 => 'no', 1999 => 'yes'
+    #   Jar_Jar_Binks 1977 => 'no', 1999 => 'yes'
     # end
     # @params [Hash] opts metric properties
     # @option opts [String] :name the name of the metric. Use the common
@@ -69,14 +88,14 @@ class Card::Metric
     #   (designer or community assessed)
     # @option opts [Array, String] :topic tag with topics
     # @option opts [String] :unit
-    # @option opts [Boolean] :random_source (false) pick a random source for
+    # @option opts [Boolean] :test_source (false) pick a random source for
     #   each value
     def create opts, &block
-      random_source = opts.delete :random_source
+      test_source = opts.delete :test_source
       metric = Card.create! name: opts.delete(:name),
                             type_id: Card::MetricID,
                             subfields: subfields(opts)
-      metric.create_values random_source, &block if block_given?
+      metric.create_values test_source, &block if block_given?
       metric
     end
 

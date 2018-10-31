@@ -81,16 +81,6 @@ describe Card::Set::MetricType::Researched do
     it { is_expected.to be_falsey }
   end
 
-  describe "#analysis_names" do
-    subject { metric.analysis_names.sort }
-
-    it "finds related Analysis" do
-      is_expected.to eq ["SPECTRE+Force", "Monster Inc+Force",
-                         "Slate Rock and Gravel Company+Force",
-                         "Death Star+Force"].sort
-    end
-  end
-
   describe "#companies_with_years_and_values" do
     subject do
       Card["Jedi+cost of planets destroyed"].companies_with_years_and_values
