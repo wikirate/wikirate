@@ -5,6 +5,11 @@ event :unknown_value, :prepare_to_validate, when: :unknown_subfield do
   detach_subfield :unknown
 end
 
+event :no_empty_value, :validate do
+  return if content.present?
+  errors.add :content, "empty answers are not allowed"
+end
+
 event :no_left_name_change, :prepare_to_validate,
       on: :update, changed: :name do
   return if @supercard # as part of other changes (probably) ok
