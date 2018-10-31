@@ -19,7 +19,7 @@ def sort_wql
 end
 
 def filter_keys
-  %i[wikirate_company wikirate_topic]
+  %i[wikirate_company wikirate_topic report_type]
 end
 
 def target_type_id
@@ -31,16 +31,24 @@ def default_sort_option
 end
 
 format :html do
-  view :cited_formgroup, cache: :never do
-    select_filter :cited, "all"
+  # view :cited_formgroup, cache: :never do
+  #   select_filter :cited, "all"
+  # end
+
+  # view :wikirate_company_formgroup, cache: :never do
+  #   autocomplete_filter :wikirate_company, :all_companies
+  # end
+
+  # view :wikirate_topic_formgroup, cache: :never do
+  #   multiselect_filter_type_based :wikirate_topic
+  # end
+
+  view :filter_report_type_formgroup, cache: :never do
+    select_filter :report_type
   end
 
-  view :wikirate_company_formgroup, cache: :never do
-    autocomplete_filter :wikirate_company, :all_companies
-  end
-
-  view :wikirate_topic_formgroup, cache: :never do
-    multiselect_filter_type_based :wikirate_topic
+  def report_type_options
+    type_options :report_type
   end
 
   def cited_options
@@ -60,5 +68,9 @@ class SourceFilterQuery < Card::FilterQuery
 
   def wikirate_topic_wql value
     add_to_wql :right_plus, [{ id: WikirateTopicID }, { refer_to: value }]
+  end
+
+  def report_type_wql value
+    add_to_wql :right_plus, [{ id: ReportTypeID }, { refer_to: value }]
   end
 end
