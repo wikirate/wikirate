@@ -29,12 +29,12 @@ def metric_project_card metric_name
 end
 
 format :html do
-  def default_item_view
-    :mini_bar
-  end
-
   def editor
     :filtered_list
+  end
+
+  def default_item_view
+    :thumbnail
   end
 
   def filter_card
