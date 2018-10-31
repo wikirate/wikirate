@@ -19,8 +19,8 @@ AllCops:
   Exclude:
   - "vendor/**/*"
   - "db/schema.rb"
-  - "mod/wikirate_source/files/**/*"
-  - "mod/wikirate_source/lib/javascript/**/*"
+  - "mod/sources/files/**/*"
+  - "mod/sources/lib/javascript/**/*"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Style/CommentAnnotation:

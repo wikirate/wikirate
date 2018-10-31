@@ -37,7 +37,7 @@ describe Card::Set::Type::Source, "source preview" do
 
     context "file source" do
       before do
-        pdf_file = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type/source/test_pdf.pdf")
+        pdf_file = File.open("#{Rails.root}/mod/sources/spec/set/type/source/test_pdf.pdf")
         @pdf_source = create_source file: pdf_file
         @result = @pdf_source.format._render_preview
       end
@@ -59,7 +59,7 @@ describe Card::Set::Type::Source, "source preview" do
       end
       context "image file" do
         it "uses img tag" do
-          img_file = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type/source/test_logo.png")
+          img_file = File.open("#{Rails.root}/mod/sources/spec/set/type/source/test_logo.png")
           image_source = create_source file: img_file
           result = image_source.format._render_preview
           file_card = image_source.fetch trait: :file
@@ -70,7 +70,7 @@ describe Card::Set::Type::Source, "source preview" do
       end
       context "others format" do
         it "render redirect notice" do
-          word_file = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type/source/test_word.docx")
+          word_file = File.open("#{Rails.root}/mod/sources/spec/set/type/source/test_word.docx")
           word_source = create_source file: word_file
           result = word_source.format._render_preview
           expect(result).to have_tag("div", with: { id: "source-preview-iframe", class: "webpage-preview non-previewable" }) do
