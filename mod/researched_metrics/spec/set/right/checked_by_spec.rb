@@ -147,7 +147,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
     end
 
     it "updates the answers table" do
-      expect(answer_card.answer.checkers).to eq("Joe User")
+       expect(answer_card.answer.checkers).to eq("Joe User")
     end
 
     context "value updated" do
@@ -179,7 +179,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
     end
 
     it "updates the answers table" do
-      expect(answer_card.answer.checkers).to eq("Joe User")
+      expect(answer_card.answer.checkers).to eq(nil)
     end
   end
 end

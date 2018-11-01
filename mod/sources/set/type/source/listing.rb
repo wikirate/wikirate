@@ -6,13 +6,13 @@ format :html do
   end
 
   view :bar_right do
-    wrap_with :div, class: "align-items-center w-100 text-left d-block" do
-      download_link
+    wrap_with :div, class: "text-left d-block w-100" do
+      [small_download_link, fancy_year_list]
     end
   end
 
-  def download_link
-    wrap_with :small, download_tab_link
+  def small_download_link
+    wrap_with :small, download_link
   end
 
   view :bar_bottom do
@@ -29,7 +29,7 @@ format :html do
 
   def fancy_year_list
     years = year_list
-    wrap_with :div, class: "text-align-right" do
+    wrap_with :div, class: "fancy-year-list" do
       years.any? ? years.unshift(year_icon) : []
     end
   end

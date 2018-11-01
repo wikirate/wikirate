@@ -1,10 +1,9 @@
 decko.slotReady (slot) ->
   slot.find(".RIGHT-unknown input[type=checkbox]").on "change", ->
-    toggleAnswerValueField $(this).is(":checked")
-    # if $(this).prop('checked') == true
-    #   $('.RIGHT-value input[type=text]').val('Unknown')
+    if $(this).is(":checked")
+      clearAnswerValue $(this).slot()
 
-  slot.find(".RIGHT-value input").on "keyup", () ->
+  slot.find(".RIGHT-value input").on "change", () ->
     updateUnknownness(slot, $(this))
 
 # autocomplete tag on research (new/Answer) page
@@ -70,26 +69,37 @@ updateUnknownness = (slot, value_input)->
 isUnknown = (value)->
   value.toLowerCase() == 'unknown'
 
-toggleAnswerValueField = (disable) ->
-  editor = $(".card-editor.RIGHT-value .content-editor")
+clearAnswerValue = (slot) ->
+  editor = slot.find ".card-editor.RIGHT-value .content-editor"
   select = editor.find "select"
   if (select[0])
-    toggleValueSelect(select, disable)
   else
     input = editor.find("input:not(.current_revision_id)")
-    toggleValueInput(input, disable)
+    input.prop "checked", false
 
-toggleValueSelect = (select, disable) ->
-  if disable
-    select.prop("disabled", true).val(null).trigger("change")
-  else
-    select.prop("disabled", false)
 
-toggleValueInput = (input, disable) ->
-  if disable
-    input.prop("checked", false).prop("disabled", true).val("")
-  else
-    input.prop("disabled", false)
+# toggleAnswerValueField = (disable) ->
+#   editor = $(".card-editor.RIGHT-value .content-editor")
+#   select = editor.find "select"
+#   if (select[0])
+#     toggleValueSelect(select, disable)
+#   else
+#     input = editor.find("input:not(.current_revision_id)")
+#     toggleValueInput(input, disable)
 
-enableSourceCitationButtons = () ->
-  $("._cite_button, ._cited_button").removeClass "disabled"
+# enableSourceCitationButtons = () ->
+#   $("._cite_button, ._cited_button").removeClass "disabled"
+#
+# toggleValueSelect = (select, disable) ->
+#   if disable
+#     select.prop("disabled", true).val(null).trigger("change")
+#   else
+#     select.prop("disabled", false)
+#
+# toggleValueInput = (input, disable) ->
+#   if disable
+#     input.prop("checked", false).prop("disabled", true).val("")
+#   else
+#     input.prop("disabled", false)
+
+

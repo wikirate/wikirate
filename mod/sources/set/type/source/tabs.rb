@@ -25,20 +25,19 @@ format :html do
     end
   end
 
-  def download_tab_link
+  def download_link
     case card.source_type_codename
     when :wikirate_link
-      tab_link preview_url, "external-link-square", " Visit Original"
+      link_with_icon preview_url, "external-link-square", "Visit Original"
     when :file
-      tab_link card.file_card.attachment.url, :download, " Download"
+      link_with_icon card.file_card.attachment.url, :download, "Download"
     else
       ""
     end
   end
 
-  def tab_link url, icon, title
-    icon = fa_icon icon
-    title = icon + title
-    link_to title, href: url, target: "_blank", class: "nav-link"
+  def link_with_icon url, icon, title
+    text = "#{fa_icon icon} #{title}"
+    link_to text, href: url, target: "_blank", class: "source-color"
   end
 end

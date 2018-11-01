@@ -55,17 +55,21 @@ format :html do
   end
 
   def category_legend_div
-    wrap_with :div, class: "small" do
-      [
-        fa_icon("list"),
-        category_legend(", ")[0..40],
-        " ",
-        popover_link_custom(category_legend)
-      ]
+    wrap_with :div, class: "small", title: "value options" do
+      ([fa_icon("list")] + options_for_legend).compact.join " "
     end
   end
 
-  def popover_link_custom text, title=nil
+  def options_for_legend
+    legend_core = category_legend ", "
+    if legend_core.length > 40
+      [legend_core[0..40], link_to_popover(legend_core)]
+    else
+      [legend_core]
+    end
+  end
+
+  def link_to_popover  text, title=nil
     opts = { class: "pl-1 text-muted-link border text-muted px-1",
              path: "javascript:", "data-toggle": "popover",
              "data-trigger": :focus, "data-content": text, "data-html": "true" }
