@@ -8,13 +8,11 @@ Then(/^Unknown should not be checked$/) do
 end
 
 Then(/^value select field should be empty$/) do
-  select = value_select_field
-  expect(select.value).to be_empty
+  expect(answer_value).to be_empty
 end
 
 Then(/^value input field should be empty$/) do
-  input = value_input_field
-  expect(input.value).to be_empty
+  expect(answer_value).to be_empty
 end
 
 Then(/^value input field should not be disabled$/) do
@@ -23,6 +21,11 @@ end
 
 Then(/^value select field should not be disabled$/) do
   expect(value_select_field).not_to be_disabled
+end
+
+def answer_value
+  page.execute_script "$('.card-form').setContentFieldsFromMap()"
+  find(".RIGHT-value [name='card[subcards][+value][content]']").value
 end
 
 def value_input_field
