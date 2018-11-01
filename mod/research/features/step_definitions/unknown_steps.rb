@@ -25,7 +25,7 @@ end
 
 def answer_value
   page.execute_script "$('.card-form').setContentFieldsFromMap()"
-  find(".RIGHT-value [name='card[subcards][+value][content]']").value
+  page.evaluate_script %Q{$("[name='card[subcards][+value][content]']").val()}
 end
 
 def value_input_field
