@@ -7,15 +7,13 @@ Then(/^Unknown should not be checked$/) do
   expect(unknown_checkbox).not_to be_checked
 end
 
-Then(/^value select field should be disabled and empty$/) do
+Then(/^value select field should be empty$/) do
   select = value_select_field
-  expect(select).to be_disabled
   expect(select.value).to be_empty
 end
 
-Then(/^value input field should be disabled and empty$/) do
+Then(/^value input field should be empty$/) do
   input = value_input_field
-  expect(input).to be_disabled
   expect(input.value).to be_empty
 end
 

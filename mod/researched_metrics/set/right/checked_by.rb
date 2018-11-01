@@ -201,7 +201,6 @@ end
 # as part of the original answer create event.
 event :update_answer_lookup_table_due_to_check_change, :finalize,
       changed: :content, when: :main_action? do
-  puts "update answer called for #{name}"
   update_answer answer_id: left_id
 end
 
