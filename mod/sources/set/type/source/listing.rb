@@ -19,7 +19,7 @@ format :html do
     add_name_context
     output [render_bar_middle,
             fancy_year_list,
-            field_nest(:report_type, view: :labeled, items: { view: :link }),
+            field_nest(:report_type, view: :labeled, items: { view: :name }),
             field_nest(:description, view: :titled, title: "Description")]
   end
 
