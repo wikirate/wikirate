@@ -68,3 +68,5 @@ linkOnClick = (e) ->
 decko.slotReady (slot) ->
   slot.find('.show-link-in-popup').each ->
     $(this).off('click').click linkOnClick
+
+  slot.find('[data-toggle="popover"]').popover()

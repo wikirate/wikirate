@@ -7,16 +7,12 @@ Then(/^Unknown should not be checked$/) do
   expect(unknown_checkbox).not_to be_checked
 end
 
-Then(/^value select field should be disabled and empty$/) do
-  select = value_select_field
-  expect(select).to be_disabled
-  expect(select.value).to be_empty
+Then(/^value select field should be empty$/) do
+  expect(answer_value).to be_empty
 end
 
-Then(/^value input field should be disabled and empty$/) do
-  input = value_input_field
-  expect(input).to be_disabled
-  expect(input.value).to be_empty
+Then(/^value input field should be empty$/) do
+  expect(answer_value).to be_empty
 end
 
 Then(/^value input field should not be disabled$/) do
@@ -25,6 +21,11 @@ end
 
 Then(/^value select field should not be disabled$/) do
   expect(value_select_field).not_to be_disabled
+end
+
+def answer_value
+  page.execute_script "$('.card-form').setContentFieldsFromMap()"
+  page.evaluate_script %Q{$("[name='card[subcards][+value][content]']").val()}
 end
 
 def value_input_field
