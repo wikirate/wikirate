@@ -81,7 +81,7 @@ describe Card::Set::Type::Source, "source preview" do
     end
     context "link source" do
       before do
-        @url = "http://wagn.org"
+        @url = "https://decko.org"
         @company = "Amazon.com, Inc."
         @topic = "Natural Resource Use"
         @existing_source = create_page url: @url, box: false,

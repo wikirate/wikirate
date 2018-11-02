@@ -12,16 +12,19 @@ $tagColorMap: (
 // Topic and company tags
 
 .RIGHT-topic, .RIGHT-company {
-  &.d0-card-content .item-link > a {
-    display: inline-block;
-    text-indent: 0;
-    border-radius: 0px;
-    font-size: 0.9em;
-    color: #fff;
-    text-decoration: none;
-    display: inline-block;
-    padding: 3px 8px !important;
-    margin-bottom: 6px;
+  &.d0-card-content .item-link {
+    display: inline;
+    > a {
+      display: inline-block;
+      text-indent: 0;
+      border-radius: 0px;
+      font-size: 0.9em;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      padding: 3px 8px !important;
+      margin-bottom: 6px;
+    }
   }
 }
 
