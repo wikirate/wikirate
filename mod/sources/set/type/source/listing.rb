@@ -60,11 +60,6 @@ format :html do
     yield
   end
 
-  def edit_slot
-    voo.editor = :inline_nests
-    super
-  end
-
   def website_text
     field_nest :wikirate_website, view: :content, items: { view: :name }
   end
