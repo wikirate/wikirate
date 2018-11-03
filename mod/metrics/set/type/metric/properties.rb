@@ -28,11 +28,13 @@ format :html do
   end
 
   view :metric_properties do
-    table_properties.map do |field, label|
-      if respond_to? "#{field}_property"
-        send "#{field}_property", label
-      else
-        metric_property_nest field, label
+    wrap_with :div, class: "metric-properties" do
+      table_properties.map do |field, label|
+        if respond_to? "#{field}_property"
+          send "#{field}_property", label
+        else
+          metric_property_nest field, label
+        end
       end
     end
   end

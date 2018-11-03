@@ -21,7 +21,7 @@ format :html do
             field_nest(:report_type,
                        view: :labeled, title: "Report Type", items: { view: :name }),
             field_nest(:wikirate_topic,
-                       view: :labeled, title: "Topics", items: { view: :link}),
+                       view: :labeled, title: "Topics", items: { view: :link }),
             field_nest(:description, view: :titled, title: "Description")]
   end
 
