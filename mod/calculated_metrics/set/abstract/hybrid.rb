@@ -14,8 +14,4 @@ format :html do
   def table_properties
     super.merge(value_type_properties).merge researchable_properties
   end
-
-  def hybrid_property
-    metric_property_nest :hybrid
-  end
 end
