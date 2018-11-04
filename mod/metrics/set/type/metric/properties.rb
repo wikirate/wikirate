@@ -55,7 +55,9 @@ format :html do
   # SHARED
 
   def designer_property title
-    haml :designer_property, title: title
+    wrap :div, class: "row designer-property" do
+      labeled title, nest(card.metric_designer_card, view: :thumbnail)
+    end
   end
 
   def wikirate_topic_property title
