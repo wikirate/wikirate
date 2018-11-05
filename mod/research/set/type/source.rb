@@ -31,8 +31,7 @@ format :html do
                          class: "slotter new-view TYPE-source" do
         output [
           new_research_hidden,
-          new_view_type,
-          haml(:source_form)
+          new_view_type
         ]
       end
     end
