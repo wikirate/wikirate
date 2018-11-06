@@ -20,11 +20,12 @@ clearValue = (editor) ->
     clearInputValue editor
 
 clearInputValue = (editor) ->
-  input = editor.find("input:not(.current_revision_id)")
-  if input.prop("type") == "text"
-    input.val null
-  else
-    input.prop "checked", false
+  $.each editor.find("input:not(.current_revision_id)"), ->
+    input = $(this)
+    if input.prop("type") == "text"
+      input.val null
+    else
+      input.prop "checked", false
 
 updateUnknownness = (slot, val)->
   val = val.toString()
