@@ -5,8 +5,8 @@ decko.slotReady (slot) ->
     if $(this).is(":checked")
       clearAnswerValue $(this).slot()
 
-  slot.find(".RIGHT-value").find("input,select").on "change", () ->
-    updateUnknownness(slot, $(this))
+  slot.find(".RIGHT-value").find("input, select").on "change", () ->
+    updateUnknownness(slot, $(this).val())
 
 clearAnswerValue = (slot) ->
   editor = slot.find ".card-editor.RIGHT-value .content-editor"
@@ -20,18 +20,21 @@ clearValue = (editor) ->
     clearInputValue editor
 
 clearInputValue = (editor) ->
-  input = editor.find("input:not(.current_revision_id)")
-  if input.prop("type") == "text"
-    input.val null
-  else
-    input.prop "checked", false
+  $.each editor.find("input:not(.current_revision_id)"), ->
+    input = $(this)
+    if input.prop("type") == "text"
+      input.val null
+    else
+      input.prop "checked", false
 
-updateUnknownness = (slot, value_input)->
+updateUnknownness = (slot, val)->
+  val = val.toString()
+  return if val == ""
   unknown_checkbox = slot.find(".RIGHT-unknown input[type=checkbox]")
-  $(unknown_checkbox).prop 'checked', isUnknown(value_input.val())
+  $(unknown_checkbox).prop 'checked', isUnknown(val)
 
-isUnknown = (value)->
-  value.toLowerCase() == 'unknown'
+isUnknown = (val)->
+  val.toLowerCase() == 'unknown'
 
 # ~~~~~~~~ Other Research Page Handling ~~~~~~~~~~~~~~~~
 
