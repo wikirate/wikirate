@@ -54,7 +54,7 @@ def fetch_http_header
   curl = Curl::Easy.new url
   curl.follow_location = true
   curl.max_redirects = 5
-  curl.htatp_head
+  curl.http_head
   curl.header_str
 rescue Curl::Easy::Error, Curl::Err::CurlError => error
   Rails.logger.info "Fail to extract header from the #{url}, #{error.message}"
