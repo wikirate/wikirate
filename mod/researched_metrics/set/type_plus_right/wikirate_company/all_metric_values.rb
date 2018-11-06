@@ -45,8 +45,4 @@ format :html do
   def importance_sort_link
     table_sort_link "", :importance, "pull-left  margin-left-15"
   end
-
-  view :homepage_table do
-    homepage_table :metric
-  end
 end

@@ -1,0 +1,11 @@
+.col-md-12.column
+  .row.clearfix.d-block
+    = download_link
+    = field_nest "title", view: :titled, title: "Source Title"
+    = _render_creator_credit
+    = field_nest :description, view: :titled, title: "Description"
+    = field_nest :year, view: :titled, title: "Year", items: { view: :name}
+    = field_nest :report_type, view: :titled, title: "Report Type", items: { view: :name}
+    = field_nest :wikirate_company, view: :titled, title: "Companies", items: { view: :link}
+    = field_nest :wikirate_topic, view: :titled, title: "Topics", items: { view: :link}
+    = field_nest :discussion, view: :titled, title: "Discussion", show: :comment_box

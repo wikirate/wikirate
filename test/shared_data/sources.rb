@@ -21,6 +21,7 @@ class SharedData
       Timecop.freeze(Time.now + 2.days) do
         Card.create!(
           type_id: Card::SourceID,
+          codename: :opera_source,
           import: false,
           subcards: {
             "+Link" => { content: "http://www.wikiwand.com/en/Opera" },
@@ -44,6 +45,7 @@ class SharedData
 
       Card.create!(
         type_id: Card::SourceID,
+        codename: :star_wars_source,
         import: false,
         subcards: {
           "+Link" => { content: "http://www.wikiwand.com/en/Star_Wars" },

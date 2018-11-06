@@ -7,39 +7,33 @@ def metric_ids
   search return: :id, limit: 0
 end
 
+# FIXME: this has nothing to do with topics and should be somewhere more general
+def metric_ids_with_answers_by_company_count metric_ids
+  return [] unless metric_ids.present?
+  Answer.group(:metric_id)
+        .where(metric_id: metric_ids)
+        .order("count_distinct_company_id desc")
+        .count("distinct company_id")
+        .map(&:first)
+end
+
+# NOTE: this hard-codes handling so that metrics can _only_ be sorted by company count.
+# A better solution would make a special sort case in #search
+def item_ids _args={}
+  mids = metric_ids
+  metric_ids_with_answers_by_company_count(mids) | mids
+end
+
+def item_cards _args={}
+  item_ids.map { |id| Card[id] }
+end
+
 format :html do
-  view :metric_by_company_count do
-    return if all_metric_ids.empty?
-    wrap do
-      Answer.group(:metric_id)
-            .where(metric_id: all_metric_ids)
-            .order("count_distinct_company_id desc")
-            .count("distinct company_id")
-            .map do |metric_id, _count|
-        nest metric_id, view: :bar
-      end + no_answers
-    end
+  def search_with_params
+    card.item_cards
   end
 
-  def no_answers
-    all_metric_ids.map do |id|
-      next if Answer.exists?(metric_id: id)
-      nest id, view: :bar
-    end.compact
-  end
-
-  def all_metric_ids
-    @all_metric_ids ||= card.metric_ids
-  end
-
-  view :homepage_table do
-    wikirate_table(
-      :metric, card.search(limit: 4),
-      [:thumbnail_minimal, :company_count_with_label],
-      table: { class: "homepage-table" },
-      header: ["Metric", "# Records"],
-      td: { classes: ["header", nil] },
-      tr_link: ->(item) { path mark: item }
-    )
+  def count_with_params
+    card.count
   end
 end

@@ -1,7 +1,9 @@
-.image-box.icon.d-inline-block.mr-1
-  %span.img-helper
-    = subformat(card.field(:image, new: {}))._render_core size: "small"
-%h6.d-inline-block
-  %span.text-muted.font-weight-normal
-    = text
-  = card.name
+.d-flex
+  .image-box.icon.d-inline-block.mr-1
+    %span.img-helper
+      = subformat(card.field(:image, new: {}))._render_core size: "small"
+  %h6.d-inline-block
+    %span.text-muted.font-weight-normal
+      = text
+    %span.text-muted{ title: card.name }
+      = card.name

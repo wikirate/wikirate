@@ -17,6 +17,7 @@ format :html do
 
   # ~~~~~~~~~~~ DETAILS IN PROJECT LISTING
 
+  # TODO: create version of bar to use on homepage and get rid of listing_compact
   view :listing_compact do
     bar_layout do
       text_with_image image: card.field(:image),
@@ -28,13 +29,24 @@ format :html do
     end
   end
 
-  view :bar do
-    bar_layout do
-      text_with_image image: card.field(:image),
-                      size: voo.size,
-                      title: render_link,
-                      text: bar_details
-    end
+  view :bar_left do
+    text_with_image image: card.field(:image),
+                    size: voo.size,
+                    title: render_title_link,
+                    text: bar_left_details
+  end
+
+  view :bar_middle do
+    topics_details
+  end
+
+  view :bar_right do
+    count_stats
+  end
+
+  view :bar_bottom do
+    output [topics_details,
+            field_nest(:description, view: :titled, title: "Description")]
   end
 
   def bar_layout
@@ -45,10 +57,8 @@ format :html do
     end
   end
 
-  def bar_details
-    wrap_with :div, class: "project-details-info" do
-      [organizational_details, render_stats_details, topics_details]
-    end
+  def bar_left_details
+    output [organizational_details, render_stats_details]
   end
 
   def listing_details_compact
@@ -71,32 +81,20 @@ format :html do
 
   view :stats_details, cache: :never do
     wrap_with :div, class: "stat-details default-progress-box" do
-      [
-        count_stats,
-        wrap_with(:div, research_progress_bar, class: "d-inline-flex"),
-        wrap_with(:span, "#{card.percent_researched}%", class: "badge badge-secondary")
-      ].join " "
+      [wrap_with(:div, research_progress_bar, class: "float-left w-75 p-1"),
+       wrap_with(:span, "#{card.percent_researched}%", class: "badge badge-secondary")]
     end
   end
 
   def media_left_progress
     wrap_with :div, class: "media-left-extras" do
-      [
-        wrap_with(:span, "#{card.percent_researched}%", class: "text-muted badge"),
-        research_progress_bar
-      ]
+      [wrap_with(:span, "#{card.percent_researched}%", class: "text-muted badge"),
+       research_progress_bar]
     end
   end
 
   def count_stats
-    wrap_with :span do
-      [
-        wrap_with(:span, card.num_companies, class: "badge badge-company"),
-        wrap_with(:span, "Companies", class: "mr-2"),
-        wrap_with(:span, card.num_metrics, class: "badge badge-metric"),
-        wrap_with(:span, "Metrics", class: "mr-2")
-      ]
-    end
+    count_badges :wikirate_company, :metric
   end
 
   def topics_details

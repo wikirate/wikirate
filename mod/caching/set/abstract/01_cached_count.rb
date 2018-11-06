@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 
+include_set Abstract::BsBadge
+
 def self.included host_class
   host_class.extend ClassMethods
   # host_class.card_writer :cached_count, type: :plain_text
@@ -7,7 +9,7 @@ def self.included host_class
 end
 
 def cached_count
-  Count.fetch_value(self)
+  Count.fetch_value self
 end
 
 def update_cached_count _changed_card=nil
@@ -57,8 +59,8 @@ module ClassMethods
   end
 end
 
-format :html do
-  view :count do
+format do
+  def count
     card.cached_count
   end
 end

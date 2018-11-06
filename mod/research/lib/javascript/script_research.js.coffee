@@ -1,12 +1,44 @@
+# ~~~~~~~~ Handling of Unknown Checkbox ~~~~~~~~~~~~~~~~
+
 decko.slotReady (slot) ->
   slot.find(".RIGHT-unknown input[type=checkbox]").on "change", ->
-    toggleAnswerValueField $(this).is(":checked")
-    # if $(this).prop('checked') == true
-    #   $('.RIGHT-value input[type=text]').val('Unknown')
+    if $(this).is(":checked")
+      clearAnswerValue $(this).slot()
 
-  slot.find(".RIGHT-value input").on "keyup", () ->
-    updateUnknownness(slot, $(this))
+  slot.find(".RIGHT-value").find("input, select").on "change", () ->
+    updateUnknownness(slot, $(this).val())
 
+clearAnswerValue = (slot) ->
+  editor = slot.find ".card-editor.RIGHT-value .content-editor"
+  clearValue editor
+
+clearValue = (editor) ->
+  select = editor.find "select"
+  if (select[0])
+    select.val(null).change()
+  else
+    clearInputValue editor
+
+clearInputValue = (editor) ->
+  $.each editor.find("input:not(.current_revision_id)"), ->
+    input = $(this)
+    if input.prop("type") == "text"
+      input.val null
+    else
+      input.prop "checked", false
+
+updateUnknownness = (slot, val)->
+  val = val.toString()
+  return if val == ""
+  unknown_checkbox = slot.find(".RIGHT-unknown input[type=checkbox]")
+  $(unknown_checkbox).prop 'checked', isUnknown(val)
+
+isUnknown = (val)->
+  val.toLowerCase() == 'unknown'
+
+# ~~~~~~~~ Other Research Page Handling ~~~~~~~~~~~~~~~~
+
+decko.slotReady (slot) ->
 # autocomplete tag on research (new/Answer) page
   $('input._research-select').autocomplete
     select: (e, ui) ->
@@ -53,7 +85,7 @@ $(document).ready ->
 
   # add related company to name
   # otherwise the card can get the wrong type because it
-  # match the ltype_rtype/record/year pattern
+  # matches the ltype_rtype/record/year pattern
   $("body").on "submit", "form.answer-form", (e) ->
     $form = $(e.target)
     related_company = $form.find("#card_subcards__related_company_content")
@@ -62,34 +94,3 @@ $(document).ready ->
       $form.find("#card_name").val(name + "+" + related_company.val())
       unless $form.find("#success_id").val() == ":research_page"
         $form.find("#success_id").val("_left")
-
-updateUnknownness = (slot, value_input)->
-  unknown_checkbox = slot.find(".RIGHT-unknown input[type=checkbox]")
-  $(unknown_checkbox).prop 'checked', isUnknown(value_input.val())
-
-isUnknown = (value)->
-  value.toLowerCase() == 'unknown'
-
-toggleAnswerValueField = (disable) ->
-  editor = $(".card-editor.RIGHT-value .content-editor")
-  select = editor.find "select"
-  if (select[0])
-    toggleValueSelect(select, disable)
-  else
-    input = editor.find("input:not(.current_revision_id)")
-    toggleValueInput(input, disable)
-
-toggleValueSelect = (select, disable) ->
-  if disable
-    select.prop("disabled", true).val(null).trigger("change")
-  else
-    select.prop("disabled", false)
-
-toggleValueInput = (input, disable) ->
-  if disable
-    input.prop("checked", false).prop("disabled", true).val("")
-  else
-    input.prop("disabled", false)
-
-enableSourceCitationButtons = () ->
-  $("._cite_button, ._cited_button").removeClass "disabled"

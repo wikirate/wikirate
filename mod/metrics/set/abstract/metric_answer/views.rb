@@ -46,10 +46,7 @@ format :html do
 
   def citations_count
     wrap_with :h5 do
-      [
-        "Citations",
-        citations_count_badge
-      ]
+      ["Citations", citations_count_badge]
     end
   end
 

@@ -81,7 +81,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
         it "updates existing source attributes" do
           is_expected
             .to have_a_field(:report_type).pointing_to("Monster Report")
-            .and have_a_field(:wikirate_company).pointing_to("Monster Inc")
+            .and have_a_field(:wikirate_company).pointing_to("Monster_Inc")
             .and have_a_field(:year).pointing_to "2014"
         end
       end

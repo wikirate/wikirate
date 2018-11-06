@@ -3,7 +3,7 @@
 require_relative "../../../support/cached_count_shared_examples"
 
 RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
-  it_behaves_like "cached count", ["Death Star", :source], 4 do
+  it_behaves_like "cached count", ["Death Star", :source], 4, 1 do
     let :add_one do
       card = Card.fetch sample_source("Apple"), :wikirate_company, new: {}
       card.add_item! "Death Star"

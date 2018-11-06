@@ -14,7 +14,7 @@ class Answer
     end
 
     def virtual_answer_card name=nil, val=nil
-      name ||= record_name ? [record_name, year.to_s] : [metric_id, company_id, year.to_s]
+      name ||= virtual_answer_name
       val ||= value
 
       Card.fetch(name, new: { type_id: Card::MetricAnswerID }).tap do |card|
@@ -26,6 +26,10 @@ class Answer
                    type_code: value_cardtype_code
         end
       end
+    end
+
+    def virtual_answer_name
+      (record_name ? [record_name] : [metric_id, company_id]) << year.to_s
     end
 
     # true if there is no card for this answer
@@ -42,8 +46,11 @@ class Answer
     end
 
     def update_cached_counts
-      [[metric_id, :value], [metric_id, :wikirate_company],
-       [company_id, :metric], [company_id, :wikirate_topic]].each do |mark|
+      [[metric_id, :metric_answer],
+       [metric_id, :wikirate_company],
+       [company_id, :metric],
+       [company_id, :metric_answer],
+       [company_id, :wikirate_topic]].each do |mark|
         Card.fetch(mark).update_cached_count
       end
       Card::Set::TypePlusRight::WikirateTopic::WikirateCompany

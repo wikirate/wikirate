@@ -27,7 +27,7 @@ class Card
 
     def numeric_sort?
       @sort_args[:sort_by]&.to_sym == :value &&
-        @metric_card.numeric?
+        (@metric_card.numeric? || @metric_card.relationship?)
     end
 
     def project_query value

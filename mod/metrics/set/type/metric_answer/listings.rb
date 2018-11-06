@@ -5,17 +5,24 @@ include_set Abstract::AnswerDetailsToggle
 # views used in answer listings on metric, company, and profile pages
 
 format :html do
-  # ACTUAL "listing" VIEW
-  # not really used in listings?
+  view :bar_left do
+    wrap_with :div, class: "d-block" do
+      [company_thumbnail(hide: :thumbnail_subtitle), render_metric_thumbnail]
+    end
+  end
 
-  # NOTE: answer listings on profile pages need to provide light detail but
-  # full "context": company, metric, year, value, etc
-  # they currently use [:metric_thumbnail, :company_thumbnail, :concise]
-  # but should arguably use a more standard "listing" view
+  view :bar_middle do
+    citations_count
+  end
 
-  # TODO: create standard expandable listing
-  view :bar do
-    _render_titled
+  view :bar_right do
+    wrap_with :div, class: "d-block w-100" do
+      render_concise
+    end
+  end
+
+  view :bar_bottom do
+    output [render_chart, render_expanded_details]
   end
 
   view :titled_content, cache: :never do
@@ -32,6 +39,16 @@ format :html do
           column render_expanded_details
         end
       end
+    end
+  end
+
+  def citations_count_badge
+    wrap_with :span, card.source_card&.item_names&.size, class: "badge badge-light border"
+  end
+
+  def citations_count
+    wrap_with :div, class: "w-100 text-left" do
+      [citations_count_badge, "Citations"]
     end
   end
 
@@ -77,7 +94,7 @@ format :html do
   # SHARED IN VARIOUS LISTINGS
 
   view :metric_thumbnail_with_vote do
-    nest card.metric_card, view: :thumbnail_with_vote
+    nest card.metric_card, view: :thumbnail_with_vote, hide: :thumbnail_link
   end
 
   view :metric_thumbnail do
@@ -85,7 +102,12 @@ format :html do
   end
 
   view :company_thumbnail do
-    nest card.company_card, view: :thumbnail_no_link
+    company_thumbnail hide: :thumbnail_link
+  end
+
+  def company_thumbnail nest_args={}
+    nest_args.reverse_merge! view: :thumbnail
+    wrap_with :div, (nest card.company_card, nest_args), class: "company-link"
   end
 
   view :value_cell do

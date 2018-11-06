@@ -1,4 +1,5 @@
 include_set Abstract::WikirateTable
+include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Media
 include_set Abstract::BsBadge
@@ -8,43 +9,57 @@ card_accessor :upvote_count, type: :number, default: "0"
 card_accessor :downvote_count, type: :number, default: "0"
 
 card_accessor :image, type: :image
+card_accessor :wikirate_company
+card_accessor :metric
 
-# why not use accessors?
-def company_card
-  fetch(trait: :wikirate_company, new: {})
-end
-
-def metric_card
-  fetch(trait: :metric, new: {})
-end
-
-format do
+format :html do
   view :missing do
     _render_link
   end
 
-  view :bar do
-    render :bar_compact
+  view :bar_left do
+    render_thumbnail
   end
 
-  view :bar_compact do
-    topic_image = card.fetch(trait: :image)
-    title = link_to_card card
-    text_with_image title: title, image: topic_image, size: :icon
+  view :bar_middle do
+    count_badges :post, :project
   end
 
-  # def image_card
-  #   card.fetch(trait: :image)
-  # end
+  view :bar_right do
+    count_badges :metric, :wikirate_company
+  end
+
+  view :bar_bottom do
+    output [render_bar_middle, render_details_tab]
+  end
 
   view :box_middle do
-    nest(image_card, view: :core, size: :medium)
+    nest image_card, view: :core, size: :medium
   end
 
-  view :box_bottom, template: :haml do
-    @company_badge = labeled_badge card.company_card.cached_count, "Companies",
-                                   color: "company"
-    @metric_badge = labeled_badge card.metric_card.cached_count, "Metrics",
-                                  color: "metric"
+  view :box_bottom, template: :haml
+
+  before :content_formgroup do
+    voo.edit_structure = %i[image general_overview]
+  end
+
+  def tab_list
+    %i[details wikirate_company post project]
+  end
+
+  view :data, cache: :never do
+    field_nest :metric, title: "Metrics", items: { view: :mini_bar }
+  end
+
+  view :details_tab do
+    field_nest :general_overview, view: :titled
+  end
+
+  view :wikirate_company_tab do
+    field_nest :wikirate_company, title: "Companies", items: { view: :mini_bar }
+  end
+
+  view :project_tab do
+    field_nest :project, items: { view: :mini_bar }
   end
 end

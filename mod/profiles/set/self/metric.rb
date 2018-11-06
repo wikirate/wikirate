@@ -32,3 +32,7 @@ def created_query user_id, variant=nil
             and: created_query(user_id, :designed) } }
   end
 end
+
+format :html do
+  view :core, template: :haml
+end

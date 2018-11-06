@@ -1,29 +1,28 @@
 def all_dependent_answer_ids
   ids = answer_ids
-  each_dependent_formula_metric do |m|
+  each_dependent_metric do |m|
     ids += m.all_answers.pluck(:id)
   end
   ids
 end
 
-# @return all metric cards that score this metric
-def each_dependent_score_metric
-  dependent_score_metrics.each do |m|
-    yield m
-  end
+def each_dependent_metric
+  dependency_tree.each_metric { |m| yield m }
 end
 
-def each_dependent_formula_metric
-  DependencyTree.new(directly_dependent_formula_metrics).each_metric do |m|
-    yield m
-  end
+def directly_dependent_metrics
+  score_metrics + formula_metrics
 end
 
-def dependent_score_metrics
+def dependency_tree
+  DependencyTree.new directly_dependent_metrics
+end
+
+def score_metrics
   Card.search type_id: MetricID, left_id: id
 end
 
-def directly_dependent_formula_metrics
-  @dependents ||=
+def formula_metrics
+  @formula_metrics ||=
     Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
 end
