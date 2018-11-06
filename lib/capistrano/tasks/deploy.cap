@@ -19,7 +19,10 @@ namespace :deploy do
     puts <<-EOF
 
 ************************** WARNING ***************************
-            You are about to deploy to production
+                You are about to deploy the branch
+                #{fetch(:branch)}
+                from #{fetch(:repo_url)}
+                to production
 **************************************************************
 
     EOF
