@@ -13,19 +13,48 @@
 #  end
 #end
 
-namespace :deploy do
-  before :starting, :confirm do
-    next unless fetch(:stage) == :production
-    puts <<-EOF
+require "json"
+require 'net/http'
 
-************************** WARNING ***************************
-                You are about to deploy the branch
-                #{fetch(:branch)}
-                from #{fetch(:repo_url)}
-                to production
-**************************************************************
+namespace :deploy do
+  def latest_commit
+    url = fetch(:repo_url).clone
+    url.sub! "github.com", "api.github.com/repos"
+    url.sub! /\.git$/, "/commits/#{fetch(:branch)}"
+    json = Net::HTTP.get URI(url)
+    commit = JSON.parse json
+  end
+
+  def commit_info
+    commit = latest_commit
+    ["with latest commit #{commit["sha"][0..5]}",
+     "\"#{commit["commit"]["message"].split("\n").first}\"",
+     "by #{commit.dig("commit", "author", "name")}"]
+  rescue StandardError => e
+    ["(failed to fetch info about latest commit from #{url})", e.message]
+  end
+
+  def warning_wrap *lines
+    <<-EOF
+
+    ************************** WARNING ***************************
+#{ lines.flatten.map { |line| " " * 18 + line }.join "\n" }
+    **************************************************************
 
     EOF
+  end
+
+  def deploy_warning
+    warning_wrap "You are about to deploy the branch",
+                 fetch(:branch),
+                 "from #{fetch(:repo_url)}",
+                 latest_commit,
+                 "to production"
+  end
+
+  before :starting, :confirm do
+    next unless fetch(:stage) == :production
+    puts deploy_warning
     ask :answer, "Are you sure the current version is correct, " \
                  "and you want to update wikirate.org? " \
                  'Type "forgive me, Yoda"'
