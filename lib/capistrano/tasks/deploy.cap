@@ -21,8 +21,7 @@ namespace :deploy do
     url = fetch(:repo_url).clone
     url.sub! "github.com", "api.github.com/repos"
     url.sub! /\.git$/, "/commits/#{fetch(:branch)}"
-    json = Net::HTTP.get URI(url)
-    commit = JSON.parse json
+    JSON.parse Net::HTTP.get(URI(url))
   end
 
   def commit_info
@@ -48,7 +47,7 @@ namespace :deploy do
     warning_wrap "You are about to deploy the branch",
                  fetch(:branch),
                  "from #{fetch(:repo_url)}",
-                 latest_commit,
+                 commit_info,
                  "to production"
   end
 
