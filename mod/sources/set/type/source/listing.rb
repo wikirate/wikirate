@@ -119,7 +119,7 @@ format :html do
   end
 
   view :direct_link do
-    return "" unless card.source_type_codename == :wikirate_link
+    return unless card.link?
     link = card.fetch(trait: :wikirate_link).content
     wrap_with :a, href: link, target: "_blank" do
       [fa_icon("external-link-square", class: "cursor"), "Original"]

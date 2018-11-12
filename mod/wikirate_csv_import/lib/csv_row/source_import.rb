@@ -18,7 +18,6 @@ class CSVRow
 
     def source_subcard_args
       args = {
-        "+*source_type" => { content: "[[Link]]" },
         "+Link" => { content: source_args[:source], type_id: Card::PhraseID }
       }
       # args["+title"] = { content: source_args[:title] } if source_args.key?(:title)

@@ -1,7 +1,10 @@
 include_set Abstract::Pdfjs
-include_set Abstract::Tabs
 
 format :html do
+  view :open_content do
+    _render_preview
+  end
+
   view :preview, tags: :unknown_ok do
     wrap do
       [
@@ -35,7 +38,7 @@ format :html do
   end
 
   view :iframe_view, tags: :unknown_ok, cache: :never do
-    send "#{card.source_type_codename}_iframe_view"
+    file_iframe_view
   end
 
   def file_iframe_view
@@ -63,36 +66,26 @@ format :html do
 
   def standard_file_iframe_view
     wrap_with :div, id: "pdf-preview", class: "webpage-preview" do
-      wrap_with :img, "", id: "source-preview-iframe",
-                          src: card.file_card.attachment.url
+      wrap_with :img, "", id: "source-preview-iframe", src: card.file_url
     end
   end
 
   def pdf_iframe_view
     wrap_with :div, id: "pdf-preview", class: "webpage-preview" do
-      pdfjs_iframe pdf_url: card.file_card.attachment.url
+      pdfjs_iframe pdf_url: card.file_url
     end
   end
 
-  def wikirate_link_iframe_view
-    wrap_with :div, id: "webpage-preview", class: "webpage-preview" do
-      wrap_with :iframe, "",
-                id: "source-preview-iframe", src: preview_url,
-                sandbox: "allow-same-origin allow-scripts allow-forms",
-                security: "restricted"
-    end
-  end
-
-  def text_iframe_view
-    wrap_with :div, class: "container-fluid" do
-      wrap_with :div, class: "row-fluid" do
-        wrap_with :div, id: "text_source", class: "webpage-preview" do
-          text_card = card.fetch trait: :text
-          nest text_card, view: "open", hide: "toggle", title: "Text Source"
-        end
-      end
-    end
-  end
+  # def text_iframe_view
+  #   wrap_with :div, class: "container-fluid" do
+  #     wrap_with :div, class: "row-fluid" do
+  #       wrap_with :div, id: "text_source", class: "webpage-preview" do
+  #         text_card = card.fetch trait: :text
+  #         nest text_card, view: "open", hide: "toggle", title: "Text Source"
+  #       end
+  #     end
+  #   end
+  # end
 
   def valid_mime_type? mime_type
     return false unless mime_type
@@ -108,16 +101,16 @@ format :html do
     end
   end
 
-  view :non_previewable, tags: :unknown_ok do
-    url, text = nonpreviewable_url_and_text
-    link_to text, href: url, class: "btn btn-primary", role: "button"
-  end
-
-  def nonpreviewable_url_and_text
-    if (file_card = card.file_card)
-      [file_card.attachment.url, "Download"]
-    else
-      [preview_url, "Visit Original Source"]
-    end
-  end
+  #view :non_previewable, tags: :unknown_ok do
+  #  url, text = nonpreviewable_url_and_text
+  #  link_to text, href: url, class: "btn btn-primary", role: "button"
+  #end
+#
+  #def nonpreviewable_url_and_text
+  #  if (card.file_card)
+  #    [card.file_url, "Download"]
+  #  else
+  #    [preview_url, "Visit Original Source"]
+  #  end
+  #end
 end

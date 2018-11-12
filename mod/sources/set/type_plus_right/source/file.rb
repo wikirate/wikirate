@@ -1,9 +1,10 @@
 #include_set Abstract::UploadOrWeb
 include_set Abstract::Tabs
 
-event :block_file_changing, after: :write_identifier, on: :update, changed: :content,
-                            when: proc { |c| !c.db_content_before_act.empty? } do
-  errors.add :file, "is not allowed to be changed."
+
+
+def file_changed?
+  !db_content_before_act.empty?
 end
 
 format :html do
@@ -13,8 +14,8 @@ format :html do
   end
 
   def web_editor
-    form.text_field :content, class: "d0-card-content form-control",
-                              placeholder: "http://example.com"
+    form.text_field :remote_file_url, class: "d0-card-content form-control",
+                                      placeholder: "http://example.com"
   end
 
   # def tab_hash file_editor

@@ -26,27 +26,12 @@ module SourceHelper
     Card::Env.params[:sourcebox] = "false"
   end
 
-  def source_args args
-    res = {
+  def source_args args={}
+    {
       type_id: Card::SourceID,
       subcards: {
-        "+Link" => {},
         "+File" => { type_id: Card::FileID },
-        "+Text" => { type_id: Card::BasicID, content: "" }
       }
     }
-    add_source_type args, res
-    res
-  end
-
-  def add_source_type args, res
-    source_type_name = Card[:source_type].name
-    [:link, :file, :text].each do |key|
-      next unless args[key]
-      content_key = (key == :file ? :file : :content)
-      res[:subcards]["+#{key.to_s.capitalize}"][content_key] = args[key]
-      res[:subcards]["+#{source_type_name}"] = {}
-      res[:subcards]["+#{source_type_name}"][:content] = "[[#{key}]]"
-    end
   end
 end

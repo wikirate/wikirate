@@ -48,11 +48,11 @@ describe Card::Set::Type::Source, "source preview" do
       end
       context "pdf file" do
         it "shows pdf" do
-          file_card = @pdf_source.fetch trait: :file
+          file_url = @pdf_source.fetch(trait: :file).attachment.url
           expect(@result).to have_tag("div", with: { id: "pdf-preview" }) do
             with_tag "iframe", with: {
               id: "source-preview-iframe",
-              src: "/pdfjs/web/viewer.html?file=#{file_card.attachment.url}"
+              src: "/pdfjs/web/viewer.html?file=#{file_url}"
             }
           end
         end
@@ -62,9 +62,9 @@ describe Card::Set::Type::Source, "source preview" do
           img_file = File.open("#{Rails.root}/mod/sources/spec/set/type/source/test_logo.png")
           image_source = create_source file: img_file
           result = image_source.format._render_preview
-          file_card = image_source.fetch trait: :file
           expect(result).to have_tag("div", with: { id: "pdf-preview" }) do
-            with_tag "img", with: { id: "source-preview-iframe", src: file_card.attachment.url }
+            with_tag "img", with: { id: "source-preview-iframe",
+                                    src: image_source.file_url }
           end
         end
       end

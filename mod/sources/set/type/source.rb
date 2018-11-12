@@ -2,7 +2,6 @@ require "curb"
 
 card_accessor :metric, type: :pointer
 card_accessor :year, type: :pointer
-card_accessor :source_type, type: :pointer, default: "[[Link]]"
 card_accessor :wikirate_topic, type: :pointer
 card_accessor :wikirate_company, type: :pointer
 card_accessor :title
@@ -22,12 +21,16 @@ end
 
 require "link_thumbnailer"
 
-def source_type_codename
-  source_type_card.item_cards[0].codename.to_sym
+def link_card
+  fetch trait: :wikirate_link
 end
 
-def wikirate_link?
-  source_type_codename == :wikirate_link
+def file_url
+  file_card&.attachment&.url
+end
+
+def link?
+  link_card.present?
 end
 
 format :html do
@@ -39,7 +42,6 @@ end
 format :json do
   def essentials
     {
-      type: card.source_type_card.item_names.first,
       title: card.source_title_card.content
     }
   end
