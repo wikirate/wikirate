@@ -9,7 +9,7 @@ RSpec.describe Card::Set::Type::Source::AwardBadges do
     let(:sample_acting_card) { sample_source }
 
     def execute_awarded_action number
-      create_source "http://example.com/#{number}"
+      create_source "http://www.google.com/?q=source-#{number}"
     end
 
     context "when reached bronze threshold" do

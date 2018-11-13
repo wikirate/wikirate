@@ -1,9 +1,9 @@
 describe Card::Set::Right::Activity do
   before do
     with_user "joe_user" do
-      @source_page = create_page url: "https://decko.org"
+      @source_page = create_source "https://decko.org"
       # the below "create" will make a act without card_id due to the abort :success
-      create_page url: "https://decko.org"
+      create_source "https://decko.org"
     end
   end
 

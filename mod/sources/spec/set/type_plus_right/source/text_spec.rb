@@ -4,7 +4,7 @@ describe Card::Set::TypePlusRight::Source::Text do
       login_as "joe_user"
       text = "There are 2 hard problems in computer science: cache "\
              "invalidation, naming things, and off-by-1 errors."
-      @text_source = create_source text: text
+      @text_source = create_source text
       @another_user = Card.create! name: "joe_user_again", type_id: Card::UserID
     end
     context "users is not the author" do

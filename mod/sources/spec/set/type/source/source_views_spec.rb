@@ -9,13 +9,13 @@ RSpec.describe Card::Set::Type::Source, "#views" do
   before do
     login_as "joe_user"
     @url = "http://www.google.com/?q=wikirate"
-    @source_page = create_page url: @url
+    @source_page = create_source @url
   end
 
   describe "original_icon_link" do
     context "with file source" do
       it "renders upload icon" do
-        sourcepage = create_source file: csv_file
+        sourcepage = create_source csv_file
         html = sourcepage.format.render_original_icon_link
         source_file = sourcepage.fetch trait: :file
         expect(html).to have_tag("a", with: { href: source_file.file.url }) do
@@ -35,7 +35,7 @@ RSpec.describe Card::Set::Type::Source, "#views" do
 
     context "with text source" do
       it "renders pencil icon" do
-        new_sourcepage = create_source text: "test text report"
+        new_sourcepage = create_source "test text report"
         html = new_sourcepage.format.render_original_icon_link
         text_source = new_sourcepage.fetch trait: :text
         expected_url = "/#{text_source.name.url_key}"

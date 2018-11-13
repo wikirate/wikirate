@@ -14,18 +14,18 @@ RSpec.describe Card::Set::TypePlusRight::Source::WikirateLink do
   end
 
   it "imports pdf link" do
-    page = create_page url: PDF_URL, import: true
+    page = create_source PDF_URL, import: true
     expect(page).to have_file_trait.of_size(739)
   end
 
   it "imports html link as pdf" do
-    page = create_page url: HTML_URL, import: true
+    page = create_source HTML_URL, import: true
     expect(page).to have_file_trait.of_size(be > 100)
   end
 
   context "import flag set to false" do
     it "doesn't import link" do
-      page = create_page url: HTML_URL, import: false
+      page = create_source HTML_URL, import: false
       expect(page).not_to be_import
       expect(page).not_to have_file_trait
     end

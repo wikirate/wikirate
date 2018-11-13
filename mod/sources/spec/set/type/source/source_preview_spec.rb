@@ -4,28 +4,12 @@ require "link_thumbnailer"
 
 describe Card::Set::Type::Source, "source preview" do
   describe "rendering preview view" do
-    before do
-      @url = "http://existingpage.com"
-      @company = "Amazon.com, Inc."
-      @topic = "Natural Resource Use"
-      @existing_source =
-        create_page url: @url, box: false,
-                    subcards: { "+Company" => @company,
-                                "+Topic" => @topic }
-    end
-
     context "text source" do
       before do
         text = "There are 2 hard problems in computer science: cache "\
                "invalidation, naming things, and off-by-1 errors."
-        @text_source = create_source text: text
+        @text_source = create_source text
         @result = @text_source.format._render_preview
-      end
-
-      it "shows correction options" do
-        expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
-          with_source_tabs self, @text_source
-        end
       end
 
       it "shows text source" do
@@ -41,11 +25,6 @@ describe Card::Set::Type::Source, "source preview" do
         @pdf_source = create_source pdf_file
         @result = @pdf_source.format._render_preview
       end
-      it "shows correction options" do
-        expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
-          with_source_tabs self, @pdf_source
-        end
-      end
       context "pdf file" do
         it "shows pdf" do
           file_url = @pdf_source.fetch(trait: :file).attachment.url
@@ -58,9 +37,9 @@ describe Card::Set::Type::Source, "source preview" do
         end
       end
       context "image file" do
-        it "uses img tag" do
+        xit "uses img tag" do
           img_file = File.open("#{Rails.root}/mod/sources/spec/set/type/source/test_logo.png")
-          image_source = create_source file: img_file
+          image_source = create_source img_file
           result = image_source.format._render_preview
           expect(result).to have_tag("div", with: { id: "pdf-preview" }) do
             with_tag "img", with: { id: "source-preview-iframe",
@@ -69,9 +48,9 @@ describe Card::Set::Type::Source, "source preview" do
         end
       end
       context "others format" do
-        it "render redirect notice" do
+        xit "render redirect notice" do
           word_file = File.open("#{Rails.root}/mod/sources/spec/set/type/source/test_word.docx")
-          word_source = create_source file: word_file
+          word_source = create_source word_file
           result = word_source.format._render_preview
           expect(result).to have_tag("div", with: { id: "source-preview-iframe", class: "webpage-preview non-previewable" }) do
             with_tag "div", with: { class: "redirect-notice" }
@@ -81,26 +60,15 @@ describe Card::Set::Type::Source, "source preview" do
     end
     context "link source" do
       before do
-        @url = "https://decko.org"
+        @url = "https://www.sample-videos.com/text/Sample-text-file-10kb.txt"
         @company = "Amazon.com, Inc."
         @topic = "Natural Resource Use"
-        @existing_source = create_page url: @url, box: false,
-                                       subcards: { "+Company" => @company,
-                                                   "+Topic" => @topic }
+        @existing_source = create_source @url, subcards: { "+Company" => @company,
+                                                           "+Topic" => @topic }
         @result = @existing_source.format._render_preview
       end
-      it "shows correction options" do
-        expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
-          with_source_tabs self, @existing_source
-
-          # with_tag "a",  with: {
-          # href: @existing_source.fetch(trait: :wikirate_link).content }
-        end
-      end
       it "shows iframe" do
-        expect(@result).to have_tag("div", with: { id: "webpage-preview" }) do
-          with_tag "iframe", with: { id: "source-preview-iframe", src: @url }
-        end
+        expect(@result).to have_tag("pre.text-source-preview", text: /Lorem ipsum/)
       end
     end
 

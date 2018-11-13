@@ -1,19 +1,33 @@
 
+event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
+  left.add_subfield :wikirate_link, content: remote_file_url
+end
 
-event :normalize_file, :prepare_to_validate, on: :save do
-  normalize_html_file if html_file?
-  unless accepted_mime_type?
+event :validate_source_file, :validate, on: :create do
+  # note: better to integrate carrierwave error handling.
+  #
+  # The following go
+  # CarrierWave.configure do |config|
+  #   config.ignore_download_errors = false
+  # end
+  if file.blank?
+    errors.add :download, "Could not download file"
+  elsif !accepted_mime_type?
     errors.add :mime, "unaccepted MIME type: #{file.content_type}"
   end
 end
 
-event :store_link, :prepare_to_validate, on: :save, when: :remote_file_url do
-  left.add_subfield :wikirate_link, content: remote_file_url
+event :block_file_changing, after: :write_identifier, on: :update, changed: :content,
+                            when: :file_changed? do
+  errors.add :file, "is not allowed to be changed."
 end
 
-event :block_file_changing, after: :write_identifier, on: :update, changed: :content,
-      when: :file_changed? do
-  errors.add :file, "is not allowed to be changed."
+event :normalize_html_file, :prepare_to_store, on: :save, when: :html_file? do
+  if remote_file_url
+    convert_to_pdf
+  else
+    errors.add :file, "HTML Sources must be downloaded from URLS"
+  end
 end
 
 def unfilled?
@@ -22,14 +36,6 @@ end
 
 def accepted_mime_type?
   file.content_type.in? ACCEPTED_MIME_TYPES
-end
-
-def normalize_html_file
-  if remote_file_url
-    convert_to_pdf
-  else
-    errors.add :file, "HTML Sources must be downloaded from URLS"
-  end
 end
 
 def convert_to_pdf

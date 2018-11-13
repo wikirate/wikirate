@@ -14,8 +14,7 @@ RSpec.describe Card::Set::Type::Source do
 
     it "adds title and description" do
       url = "http://www.google.com/?q=wikiratetest"
-      Card::Env.params[:sourcebox] = "true"
-      sourcepage = create_link_source url
+      sourcepage = create_source url
       preview = LinkThumbnailer.generate(url)
 
       expect(Card.fetch("#{sourcepage.name}+title").content)
@@ -25,17 +24,13 @@ RSpec.describe Card::Set::Type::Source do
     end
 
     it "handles empty source" do
-      url = ""
-      Card::Env.params[:sourcebox] = "true"
-      sourcepage = create_link_source url
-      expect(sourcepage.errors).to have_key :source
-      expect(sourcepage.errors[:source]).to include("Source content required")
+      expect { create_source "" }
+        .to raise_error(ActiveRecord::RecordInvalid, /file required/)
     end
 
     it "creates website card with actions" do
       url = "http://www.google.com/?q=wikirate"
-      Card::Env.params[:sourcebox] = "true"
-      sourcepage = create_link_source url
+      sourcepage = create_source url
       website_card = sourcepage.fetch trait: :wikirate_website
       expect(website_card.last_action).to be
     end
@@ -43,17 +38,16 @@ RSpec.describe Card::Set::Type::Source do
     describe "while creating duplicated source" do
       it "returns exisiting url" do
         url = "http://www.google.com/?q=wikirate"
-        Card::Env.params[:sourcebox] = "true"
-        firstsourcepage = create_link_source url
-        secondsourcepage = create_link_source url
+        firstsourcepage = create_source url
+        secondsourcepage = create_source url
         expect(firstsourcepage.name).to eq(secondsourcepage.name)
       end
     end
 
     example "duplicated source" do
       url = "http://www.google.com/?q=wikirate"
-      source = create_link_source url
-      duplicate = create_link_source url
+      source = create_source url
+      duplicate = create_source url
 
       expect(duplicate.errors)
         .to contain_exactly "Link exists already. <a href='/#{source.name}'>"\
@@ -83,7 +77,7 @@ RSpec.describe Card::Set::Type::Source do
         it "downloads it and saves as a file source" do
           pdf_url = "http://wikirate.s3.amazonaws.com/files/175839/12677809.pdf"
           # "http://wikirate.org/Page-000003962+File.pdf"
-          sourcepage = create_link_source pdf_url
+          sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
           source_file = sourcepage.fetch(trait: :file)
           expect(source_file).not_to be_nil
@@ -96,7 +90,7 @@ RSpec.describe Card::Set::Type::Source do
           pdf_url = "https://www.unglobalcompact.org/system/attachments/9862/"\
                     "original/Sinopec_2010_Sustainable_Development_Report.pdf?"\
                     "1302508855"
-          sourcepage = create_link_source pdf_url
+          sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
           expect(sourcepage.fetch(trait: :file)).not_to be_nil
           # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
@@ -104,7 +98,7 @@ RSpec.describe Card::Set::Type::Source do
         it "handles file behind cloudfront" do
           pdf_url = "http://www.angloamerican.com/~/media/Files/A/Anglo-"\
                     "American-PLC-V2/documents/aa-sdreport-2015.pdf"
-          sourcepage = create_link_source pdf_url
+          sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
           expect(sourcepage.fetch(trait: :file)).to be_nil
           link_card = sourcepage.fetch(trait: :wikirate_link)
@@ -114,7 +108,7 @@ RSpec.describe Card::Set::Type::Source do
           it "won't create file source" do
             pdf_url = "http://cartographicperspectives.org/index.php/journal/"\
                       "article/download/cp49-issue/489"
-            sourcepage = create_link_source pdf_url
+            sourcepage = create_source pdf_url
             expect(sourcepage.errors).to be_empty
             expect(sourcepage.fetch(trait: :wikirate_link)).not_to be_nil
             expect(sourcepage.fetch(trait: :file)).to be_nil
@@ -129,13 +123,13 @@ RSpec.describe Card::Set::Type::Source do
       context "a source link" do
         it "return the source card" do
           url = source_url(sample_source.name.url_key)
-          new_source = create_link_source url
+          new_source = create_source url
           expect(new_source.name).to eq sample_source.name
         end
 
         it "handles extra space in the url" do
           url = "#{source_url(sample_source.name.url_key)} "
-          new_source = create_link_source url
+          new_source = create_source url
           expect(new_source.name).to eq sample_source.name
         end
       end
@@ -165,13 +159,11 @@ RSpec.describe Card::Set::Type::Source do
     describe "in sourcebox" do
       context "while link is a card name" do
         it "returns source card " do
-          source_card = create_page
-          Card::Env.params[:sourcebox] = "true"
-          return_source_card = create_link_source source_card.name
+          source_card = create_source
+          return_source_card = create_source source_card.name
           expect(return_source_card.name).to eq(source_card.name)
         end
         it "returns error" do
-          Card::Env.params[:sourcebox] = "true"
           return_source_card = Card.new source_args(
             link: sample_company.name
           )
@@ -183,7 +175,6 @@ RSpec.describe Card::Set::Type::Source do
       end
       context "while link is a non existing card" do
         it "returns error " do
-          Card::Env.params[:sourcebox] = "true"
           return_source_card = Card.new source_args(
             link: "this is not a exisiting card"
           )

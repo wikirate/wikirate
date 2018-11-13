@@ -1,5 +1,7 @@
 require "timeout"
 
+FIELD_CODENAME = { title: :wikirate_title, description: :description }.freeze
+
 event :normalize_link, :prepare_to_validate, on: :save do
   self.content = content&.strip
 end
@@ -13,7 +15,7 @@ event :populate_website, :prepare_to_store, on: :create, when: :link_present? do
   host = URI.parse(content).host
   left.add_subfield :wikirate_website, content: host, type_id: PointerID
   return if Card.exists?(host) || host.blank?
-  add_subcard host, type_id: Card::WikirateWebsiteID
+  left.add_subcard host, type_id: Card::WikirateWebsiteID
 end
 
 event :populate_title_and_description, :prepare_to_store,
@@ -24,7 +26,7 @@ event :populate_title_and_description, :prepare_to_store,
 end
 
 def thumbnail_needed?
-  !(subfield(:title) && subfield(:description))
+  !(subfield(:wikirate_title) && subfield(:description))
 end
 
 def link_present?
@@ -32,17 +34,19 @@ def link_present?
 end
 
 def generate_thumbnail
-  Timeout::timeout(3) do
+  Timeout::timeout(5) do
     LinkThumbnailer.generate content
   end
-rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions, Timeout::Errors
-  Rails.logger.info "failed to extract information from #{url}"
+rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions, Timeout::Error
+  Rails.logger.info "failed to extract information from #{content}"
+  nil
 end
 
 def handle_field field, thumbnail
-  return if subfield field
+  fieldcode = FIELD_CODENAME[field]
+  return if subfield fieldcode
   value = clean_text thumbnail.send(field)
-  add_subfield field, content: value if value.present?
+  left.add_subfield fieldcode, content: value if value.present?
 end
 
 # temporary fix
@@ -50,5 +54,5 @@ def clean_text text
   return if text.blank?
   # remove all 4-byte unicode characters
   regex = /[\u{10000}-\u{fffff}]/
-  text.gsub! regex, ""
+  text.gsub regex, ""
 end
