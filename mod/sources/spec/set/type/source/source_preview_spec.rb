@@ -38,7 +38,7 @@ describe Card::Set::Type::Source, "source preview" do
     context "file source" do
       before do
         pdf_file = File.open("#{Rails.root}/mod/sources/spec/set/type/source/test_pdf.pdf")
-        @pdf_source = create_source file: pdf_file
+        @pdf_source = create_source pdf_file
         @result = @pdf_source.format._render_preview
       end
       it "shows correction options" do

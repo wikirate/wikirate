@@ -1,37 +1,14 @@
 module SourceHelper
-  def create_page url: "http://www.google.com/?q=wikirate", subcards: {},
-                  box: true, import: false
-
+  def create_source source="http://www.google.com/?q=wikirate",
+                    subcards: {}, import: false
+    subcards.reverse_merge! "+File" => source_file_args(source)
     Card::Auth.as_bot do
-      with_sourcebox box do
-        Card.create! type_id: Card::SourceID,
-                     subcards: { "+Link" => { content: url } }.merge(subcards),
-                     import: import
-      end
+      Card.create! type_id: Card::SourceID, subcards: subcards, import: import
     end
   end
 
-  def create_link_source url
-    create_source link: url
-  end
-
-  def create_source args
-    Card.create source_args(args)
-  end
-
-  def with_sourcebox sourcebox=true
-    Card::Env.params[:sourcebox] = sourcebox.to_s
-    yield
-  ensure
-    Card::Env.params[:sourcebox] = "false"
-  end
-
-  def source_args args={}
-    {
-      type_id: Card::SourceID,
-      subcards: {
-        "+File" => { type_id: Card::FileID },
-      }
-    }
+  def source_file_args source
+    key = source.is_a?(String) ? :remote_file_url : :file
+    { type_id: Card::FileID, key => source }
   end
 end

@@ -1,6 +1,9 @@
 .col-md-12.column
   .row.clearfix.d-block
-    = download_link
+    %span.pr-3.download-source-link
+      = download_link
+    %span.original-source-link
+      = original_link
     = _render_creator_credit
 
     = field_nest :wikirate_title, view: :labeled, title: "Title"

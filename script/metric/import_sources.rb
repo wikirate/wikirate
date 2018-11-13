@@ -28,7 +28,7 @@ def source_args url, report_type, year, company
   {
     type_id: Card::SourceID,
     subcards: {
-      "+Link" => { content: url },
+      "+File" => { type_id: Card::FileID, remote_file_url: url },
       "+report_type" => report_type,
       "+year" => actual_year,
       "+company" => "[[#{company}]]",

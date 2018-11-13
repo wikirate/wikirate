@@ -37,6 +37,11 @@ format :html do
     end
   end
 
+  def original_link
+    return unless card.link?
+    link_with_icon card.link_card.content, "external-link-square", "Original"
+  end
+
   def download_link
     link_with_icon card.file_url, :download, "Download"
   end

@@ -19,7 +19,7 @@ class SourceCSVRow < CSVRow
 
   def source_args
     {
-      "+Link" =>         { content: source, type_id: Card::PhraseID },
+      "+File" =>         { remote_file_url: source, type_id: Card::FileID },
       "+title" =>        { content: title },
       "+report_type" =>  { content: "[[#{report_type}]]" },
       "+company" =>      { content: "[[#{company}]]" },

@@ -1,36 +1,23 @@
-EXCEL_MIME_TYPES = %w[
-  application/vnd.ms-excel
-  application/msexcel
-  application/x-msexcel
-  application/x-ms-excel
-  application/x-excel
-  application/x-dos_ms_excel
-  application/xls
-  application/x-xls
-  application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-].freeze
 
-CSV_MIME_TYPES = %w[
-  text/csv
-  application/csv
-].freeze
-
-ACCEPTED_MIME_TYPES = (%w[
-  text/plain
-  text/html
-  application/pdf
-] + EXCEL_MIME_TYPES + CSV_MIME_TYPES).freeze
 
 event :normalize_file, :prepare_to_validate, on: :save do
   normalize_html_file if html_file?
   unless accepted_mime_type?
-    errors.add "unaccepted MIME type: #{file.content_type}"
+    errors.add :mime, "unaccepted MIME type: #{file.content_type}"
   end
+end
+
+event :store_link, :prepare_to_validate, on: :save, when: :remote_file_url do
+  left.add_subfield :wikirate_link, content: remote_file_url
 end
 
 event :block_file_changing, after: :write_identifier, on: :update, changed: :content,
       when: :file_changed? do
   errors.add :file, "is not allowed to be changed."
+end
+
+def unfilled?
+  !remote_file_url && super
 end
 
 def accepted_mime_type?
@@ -55,7 +42,7 @@ rescue StandardError => e
 end
 
 def pdf_from_url url
-  kit = PDFKit.new url # , "load-error-handling" => "ignore"
+  kit = PDFKit.new url, "load-error-handling" => "ignore"
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
     kit.to_file path
     yield ::File.open path
