@@ -6,12 +6,11 @@ describe Card::Set::Right::WikirateTitle do
   end
 
   it "shows title if title exist" do
-    card = card_subject
-    card.content = "My Title"
-    expect(card.format.render_needed).to eq("My Title")
+    expect_view(:needed).to eq("Opera")
   end
 
   it "shows \"title needed\" if title doesnt exist" do
+    card_subject.content = ""
     expect_view(:needed).to have_tag("span.wanted-card", text: "title needed")
   end
 end

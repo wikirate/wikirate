@@ -36,7 +36,15 @@ RSpec.describe Card::Set::Type::SourceImportFile do
 
   def source_card key
     m = data[key][3].match(%r{en/(.+)$})
-    sample_source m[1]
+    source_card_for m[1]
+  end
+
+  def source_card_for sourcename=nil
+    Card.search(
+      type_id: Card::SourceID,
+      right_plus: [:wikirate_link.cardname, { content: url(sourcename) }],
+      limit: 1
+    ).first
   end
 
   before do
@@ -87,6 +95,9 @@ RSpec.describe Card::Set::Type::SourceImportFile do
       end
 
       context "without title" do
+        before do
+          source_card_for("Darth Vader").wikirate_title_card.delete!
+        end
         it "updates title" do
           Card::Env.params[:conflict_strategy] = :override
           trigger_import existing_without_title: { company_match_type: :exact,
