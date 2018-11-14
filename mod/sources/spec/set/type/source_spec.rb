@@ -45,13 +45,13 @@ RSpec.describe Card::Set::Type::Source do
 
     example "without anything" do
       sourcepage = Card.new type_id: Card::SourceID
-      expect(sourcepage.valid?).to be_falsey
+      expect(sourcepage).not_to be_valid
       expect(sourcepage.errors).to have_key :source
       expect(sourcepage.errors[:source]).to include "file required"
     end
 
     describe "with a file link" do
-      context "pointing to a file" do
+      context "when pointing to a file" do
         it "downloads it and saves as a file source" do
           pdf_url = "http://wikirate.s3.amazonaws.com/files/175839/12677809.pdf"
           # "http://wikirate.org/Page-000003962+File.pdf"
@@ -81,7 +81,7 @@ RSpec.describe Card::Set::Type::Source do
           expect(sourcepage.fetch(trait: :file)).to be_instance_of(Card)
           expect(sourcepage.fetch(trait: :wikirate_link).content).to eq(pdf_url)
         end
-        context "file is bigger than '*upload max'" do
+        context "when file is bigger than '*upload max'" do
           xit "won't create file source" do
             pdf_url = "http://cartographicperspectives.org/index.php/journal/"\
                       "article/download/cp49-issue/489"
@@ -107,9 +107,10 @@ RSpec.describe Card::Set::Type::Source do
   end
 
   def expect_rejected_wikirate_source name
-    expect(new_source source_url(name)).to(
-      (be_invalid.because_of("+File": include("Could not download file")))
+    expect(new_source(source_url(name))).to(
+      be_invalid.because_of("+File": include("Could not download file"))
       .and(be_invalid
-           .because_of("+Link": include("Cannot use wikirate url as source"))))
+           .because_of("+Link": include("Cannot use wikirate url as source")))
+    )
   end
 end

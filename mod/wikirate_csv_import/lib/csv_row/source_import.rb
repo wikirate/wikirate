@@ -87,9 +87,8 @@ class CSVRow
       source_card.director.catch_up_to_stage :prepare_to_store
 
       # the pure source update doesn't finalize, don't know why
-      if !Card.exists?(source_card.name) && source_card.errors.empty?
-        source_card.director.catch_up_to_stage :finalize
-      end
+      return unless Card.exists?(source_card.name) && source_card.errors.empty?
+      source_card.director.catch_up_to_stage :finalize
     end
 
     def update_existing_source source_card

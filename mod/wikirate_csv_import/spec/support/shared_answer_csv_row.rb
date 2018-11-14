@@ -61,7 +61,7 @@ shared_context "answer csv row" do
   end
 
   def existing_source
-    answer_row source: sample_source.file_url
+    answer_row source: sample_source.link_card.content
   end
 
   def answer_name args={}

@@ -8,6 +8,7 @@ class SharedData
     def add_sources
       Timecop.freeze(Time.now + 1.day) do
         create_source "http://www.wikiwand.com/en/Space_opera",
+                      codename: :space_opera_source,
                       subcards: {
                         "+company"     => { content: "Death Star",
                                             type_id: Card::PointerID },
@@ -51,6 +52,7 @@ class SharedData
                     }
 
       create_source "http://www.wikiwand.com/en/Apple",
+                    codename: :apple_source,
                     subcards: {
                       "+company"     => { content: "",
                                           type_id: Card::PointerID },

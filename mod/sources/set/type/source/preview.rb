@@ -22,7 +22,7 @@ format :html do
     if (preview_card = card.preview_card)
       nest preview_card, view: :content
     else
-      nest  card.file_card, view: :preview
+      nest card.file_card, view: :preview
     end
   end
 

@@ -104,7 +104,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
         }
       end
     end
-    
+
     def gsearch term
       "http://google.com/search?q=#{term}"
     end

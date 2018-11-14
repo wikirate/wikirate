@@ -65,7 +65,7 @@ format :html do
   end
 
   def title_text
-    nest(card.source_title_card, view: :needed)
+    field_nest :wikirate_title, view: :needed
   end
 
   view :icon do
@@ -111,7 +111,6 @@ format :html do
     _view_link
   end
 
-
   def with_links?
     @links != false
   end
@@ -128,5 +127,4 @@ format :html do
     return unless (creator_card = Card[card.creator_id])
     field_nest creator_card, view: :link
   end
-
 end

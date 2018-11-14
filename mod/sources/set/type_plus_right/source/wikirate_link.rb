@@ -35,7 +35,7 @@ def duplicates
 end
 
 def populate_from_thumbnail?
-  return if (subfield(:wikirate_title) && subfield(:description))
+  return if subfield(:wikirate_title) && subfield(:description)
   left&.subfield(:file)&.html_file?
 end
 
@@ -44,11 +44,11 @@ def link_present?
 end
 
 def wikirate_link?
-  content.match(/^http\s?\:\/\/(www\.)?wikirate\.org/)
+  content.match(%r{^http\s?\://(www\.)?wikirate\.org})
 end
 
 def generate_thumbnail
-  Timeout::timeout(5) do
+  Timeout.timeout(5) do
     LinkThumbnailer.generate content
   end
 rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions, Timeout::Error
