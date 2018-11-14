@@ -86,8 +86,14 @@ format :html do
 
   # view :website_link do
   #   link_to_card card, website_text, class: "source-preview-link",
-  #                                    target: "_blank"
   # end
+
+  view :source_link do
+    wrap_with :div, class: "source-link d-block" do
+      [wrap_with(:div, source_title, class: "source-title"),
+       wrap_with(:div, website_text, class: "source-website text-muted")]
+    end
+  end
 
   view :title_link do
     link_to_card card, title_text,
