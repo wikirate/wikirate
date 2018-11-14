@@ -13,16 +13,6 @@ format :html do
     @metric_question = nest card.answer.metric, view: :title_and_question_compact
   end
 
-  view :source_link do
-    if (source_card = card.fetch(trait: :source))
-      source_card.item_cards.map do |i_card|
-        subformat(i_card).render_original_icon_link
-      end.join "\n"
-    else
-      ""
-    end
-  end
-
   view :sources do
     source_options = { view: :core, items: { view: :cited } }
     source_options[:items][:hide] = :cited_source_links if voo.hide? :cited_source_links

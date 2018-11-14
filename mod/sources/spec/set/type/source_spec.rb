@@ -36,40 +36,18 @@ RSpec.describe Card::Set::Type::Source do
     end
 
     describe "while creating duplicated source" do
-      it "returns exisiting url" do
+      it "returns existing url" do
         url = "http://www.google.com/?q=wikirate"
-        firstsourcepage = create_source url
-        secondsourcepage = create_source url
-        expect(firstsourcepage.name).to eq(secondsourcepage.name)
+        create_source url
+        expect { create_source url }.to raise_error(/duplicate/)
       end
-    end
-
-    example "duplicated source" do
-      url = "http://www.google.com/?q=wikirate"
-      source = create_source url
-      duplicate = create_source url
-
-      expect(duplicate.errors)
-        .to contain_exactly "Link exists already. <a href='/#{source.name}'>"\
-                          "Visit the source.</a>"
     end
 
     example "without anything" do
       sourcepage = Card.new type_id: Card::SourceID
-      expect { sourcepage.valid? }.to raise_error Card::Error::Abort
+      expect(sourcepage.valid?).to be_falsey
       expect(sourcepage.errors).to have_key :source
-      expect(sourcepage.errors[:source]).to include "Source content required"
-    end
-    context "with more than one source type " do
-      it do
-        url = "http://www.google.com/?q=wikirate"
-
-        sourcepage = Card.new source_args(link: url, text: "Hello boys!")
-        expect(sourcepage).not_to be_valid
-        expect(sourcepage.errors).to have_key :source
-        expect(sourcepage.errors[:source])
-          .to include "Only one type of content is allowed"
-      end
+      expect(sourcepage.errors[:source]).to include "file required"
     end
 
     describe "with a file link" do
@@ -100,12 +78,11 @@ RSpec.describe Card::Set::Type::Source do
                     "American-PLC-V2/documents/aa-sdreport-2015.pdf"
           sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
-          expect(sourcepage.fetch(trait: :file)).to be_nil
-          link_card = sourcepage.fetch(trait: :wikirate_link)
-          expect(link_card).not_to be_nil
+          expect(sourcepage.fetch(trait: :file)).to be_instance_of(Card)
+          expect(sourcepage.fetch(trait: :wikirate_link).content).to eq(pdf_url)
         end
         context "file is bigger than '*upload max'" do
-          it "won't create file source" do
+          xit "won't create file source" do
             pdf_url = "http://cartographicperspectives.org/index.php/journal/"\
                       "article/download/cp49-issue/489"
             sourcepage = create_source pdf_url
@@ -120,71 +97,19 @@ RSpec.describe Card::Set::Type::Source do
       end
     end
     describe "with a wikirate link" do
-      context "a source link" do
-        it "return the source card" do
-          url = source_url(sample_source.name.url_key)
-          new_source = create_source url
-          expect(new_source.name).to eq sample_source.name
-        end
-
-        it "handles extra space in the url" do
-          url = "#{source_url(sample_source.name.url_key)} "
-          new_source = create_source url
-          expect(new_source.name).to eq sample_source.name
-        end
+      it "rejects existent card links" do
+        expect_rejected_wikirate_source sample_company.name.url_key
       end
-
-      def new_source url
-        Card::Env.params[:sourcebox] = "true"
-        Card.new source_args(link: url)
-      end
-
-      context "a non source link" do
-        it "return the source card" do
-          new_sourcepage = new_source source_url(sample_company.name.url_key)
-          expect(new_sourcepage)
-            .to be_invalid
-            .because_of(source: include("must be a valid URL or a WikiRate source"))
-        end
-      end
-      context "a non exisiting card link" do
-        it "return errors" do
-          new_sourcepage = new_source source_url("non_exisiting_card_1")
-          expect(new_sourcepage).not_to be_valid
-          expect(new_sourcepage.errors).to have_key :source
-          expect(new_sourcepage.errors[:source]).to include("does not exist.")
-        end
+      it "rejects non-existent card link" do
+        expect_rejected_wikirate_source "not real wootitoot"
       end
     end
-    describe "in sourcebox" do
-      context "while link is a card name" do
-        it "returns source card " do
-          source_card = create_source
-          return_source_card = create_source source_card.name
-          expect(return_source_card.name).to eq(source_card.name)
-        end
-        it "returns error" do
-          return_source_card = Card.new source_args(
-            link: sample_company.name
-          )
-          expect(return_source_card).not_to be_valid
-          expect(return_source_card.errors).to have_key :source
-          expect(return_source_card.errors[:source])
-            .to include("must be a valid URL or a WikiRate source")
-        end
-      end
-      context "while link is a non existing card" do
-        it "returns error " do
-          return_source_card = Card.new source_args(
-            link: "this is not a exisiting card"
-          )
+  end
 
-          expect(return_source_card).not_to be_valid
-          expect(return_source_card.errors).to have_key :source
-          expect(return_source_card.errors[:source])
-            .to include("does not exist.")
-        end
-      end
-    end
+  def expect_rejected_wikirate_source name
+    expect(new_source source_url(name)).to(
+      (be_invalid.because_of("+File": include("Could not download file")))
+      .and(be_invalid
+           .because_of("+Link": include("Cannot use wikirate url as source"))))
   end
 end

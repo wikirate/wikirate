@@ -6,30 +6,27 @@ RSpec.describe Card::Set::Type::Source, "#views" do
     File.open(path)
   end
 
-  before do
-    login_as "joe_user"
-    @url = "http://www.google.com/?q=wikirate"
-    @source_page = create_source @url
-  end
+  let(:source) { sample_source }
+  let(:source_url) { source.fetch(trait: :file).file.url }
 
-  describe "original_icon_link" do
+  describe "download link" do
     context "with file source" do
       it "renders upload icon" do
-        sourcepage = create_source csv_file
-        html = sourcepage.format.render_original_icon_link
-        source_file = sourcepage.fetch trait: :file
-        expect(html).to have_tag("a", with: { href: source_file.file.url }) do
-          with_tag "i", with: { class: "fa fa-upload" }
-        end
+        expect(source.format.download_link)
+          .to have_tag("a.source-color", with: { href: source_url }, text: /Download/) do
+                with_tag "i.fa-download"
+              end
       end
     end
 
     context "with link source" do
       it "renders globe icon" do
-        html = @source_page.format.render_original_icon_link
-        expect(html).to have_tag("a", with: { href: @url }) do
-          with_tag "i", with: { class: "fa fa-globe" }
-        end
+        original_link = source.fetch(trait: :wikirate_link).content
+        expect(source.format.original_link)
+          .to have_tag("a.source-color", with: { href: original_link },
+                                         text: /Original/) do
+                with_tag "i.fa-external-link-square"
+              end
       end
     end
 

@@ -68,10 +68,6 @@ format :html do
     nest(card.source_title_card, view: :needed)
   end
 
-  view :original_with_icon do
-    fa_icon("external-link-square") + _render_original_link
-  end
-
   view :icon do
     icon = wrap_with(:i, " ", class: "glyphicon glyphicon-link")
     wrap_with(:div, icon, class: "source-icon")
@@ -99,13 +95,6 @@ format :html do
                  class: "source-preview-link preview-page-link"
   end
 
-  view :source_link do
-    wrap_with :div, class: "source-link d-block" do
-      [wrap_with(:div, source_title, class: "source-title"),
-       wrap_with(:div, website_text, class: "source-website text-muted")]
-    end
-  end
-
   def with_links?
     @links != false
   end
@@ -124,11 +113,6 @@ format :html do
     wrap_with :a, href: link, target: "_blank" do
       [fa_icon("external-link-square", class: "cursor"), "Original"]
     end
-  end
-
-  view :original_icon_link do
-    voo.title = fa_icon icon
-    _render_original_link
   end
 
   view :listing_compact, template: :haml
