@@ -7,17 +7,10 @@ card_accessor :wikirate_company, type: :pointer
 card_accessor :title
 card_accessor :file
 
-# add_attributes :import
-# attr_accessor :import
 
 def source_title_card
   Card.fetch [name, :wikirate_title], new: {}
 end
-
-# def import?
-#   # default (=nil) means true
-#   @import != false && Cardio.config.x.import_sources
-# end
 
 require "link_thumbnailer"
 
@@ -26,7 +19,7 @@ def link_card
 end
 
 def file_url
-  file_card&.attachment&.url
+  file_card&.file&.url
 end
 
 def link?

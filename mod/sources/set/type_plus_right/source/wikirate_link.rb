@@ -58,7 +58,7 @@ end
 
 def handle_field field, thumbnail
   fieldcode = FIELD_CODENAME[field]
-  return if subfield fieldcode
+  return if left.subfield fieldcode
   value = clean_text thumbnail.send(field)
   left.add_subfield fieldcode, content: value if value.present?
 end
