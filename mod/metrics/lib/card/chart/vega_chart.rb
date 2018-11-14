@@ -1,11 +1,11 @@
 class Card
   module Chart
     class VegaChart
-      BAR_COLOR = "#eeeeee"
-      HIGHLIGHT_COLOR = "#674ea7"
-      HOVER_COLOR = "#b3a7d3"
-      DARK_AXES = "#333333"
-      LIGHT_AXES = "#cccccc"
+      BAR_COLOR = "#eeeeee".freeze
+      HIGHLIGHT_COLOR = "#F78C1E".freeze
+      HOVER_COLOR = "#D3741C".freeze
+      DARK_AXES = "#333333".freeze
+      LIGHT_AXES = "#cccccc".freeze
 
       DEFAULT_LAYOUT = {
         width: 350,

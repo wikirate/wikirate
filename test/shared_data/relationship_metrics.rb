@@ -14,7 +14,7 @@ class SharedData
     def relationship_metrics
       Card::Metric.create name: "Jedi+more evil",
                           type: :relationship,
-                          random_source: true,
+                          test_source: true,
                           value_type: "Category",
                           value_options: %w(yes no),
                           inverse_title: "less evil" do
@@ -24,7 +24,7 @@ class SharedData
 
       Card::Metric.create name: "Commons+Supplied by",
                           type: :relationship,
-                          random_source: true,
+                          test_source: true,
                           value_type: "Category",
                           value_options: ["Tier 1 Supplier", "Tier 2 Supplier"],
                           inverse_title: "Supplier of" do
@@ -38,7 +38,7 @@ class SharedData
       # Card::Metric.create name: "Clean Clothes Campaign+Address",
       #                     type: :researched,
       #                     value_type: "Free Text",
-      #                     random_source: true do
+      #                     test_source: true do
       #   SPECTRE "1977" => "Baker Street, London"
       #   Monster_Inc "1977" => "Alderaan"
       #   Google_Inc 2000 => "Mountain View"

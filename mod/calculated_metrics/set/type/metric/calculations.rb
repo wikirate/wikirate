@@ -21,7 +21,7 @@ end
 def deep_answer_update initial_update=false
   @initial_update = initial_update
   recalculate_answers
-  each_dependent_formula_metric(&:recalculate_answers)
+  each_dependent_metric(&:recalculate_answers)
 end
 
 def rename_answers

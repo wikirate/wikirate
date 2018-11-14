@@ -61,6 +61,13 @@ def create_metric opts={}, &block
   end
 end
 
+def have_badge_count num, klass, label
+  have_tag "span.#{klass}" do
+    with_tag "span.badge", text: /#{num}/
+    with_tag "label", text: /#{label}/
+  end
+end
+
 def html_trim str
   s = str.dup
   s.delete!("\r\n")

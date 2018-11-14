@@ -35,7 +35,7 @@ format do
 
   alias_method :super_search_results, :search_with_params
 
-  def search_with_params _args={}
+  def search_with_params
     @search_results ||= enrich_result get_search_result
   end
 

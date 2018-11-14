@@ -55,7 +55,7 @@ def confirm_citation expected_msg=nil
   expect(msg).to eq expected_msg
 end
 
-def  add_source wikipedia_article="Darth_Vader"
+def add_source wikipedia_article="Darth_Vader"
   source = sample_source wikipedia_article
   fill_in "URL", with: source.url
   click_button "Add"

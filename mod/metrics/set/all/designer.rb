@@ -47,25 +47,4 @@ format :html do
     author_label = "#{subtext}#{author}"
     wrap_with :h6, author_label, class: "m-1 d-inline-block"
   end
-
-  # def author_text_with_subtext subtext
-  #   wrap_with :div, class: "margin-8" do
-  #     [
-  #       wrap_with(:h5, author, class: "m-0 p-0"),
-  #       %(<span><small class="text-muted">#{subtext}</small></span>)
-  #     ]
-  #   end
-  # end
-  #
-  # def creator_label subtext
-  #   wrap_with :span, subtext, class: "text-muted font-weight-normal"
-  # end
-  #
-  # def author_text
-  #   wrap_with :h6, " #{creator_label}#{author}", class: "m-1 d-inline-block"
-  # end
-  #
-  # def author_text_without_subtext
-  #
-  # end
 end

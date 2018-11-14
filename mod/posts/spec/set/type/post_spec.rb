@@ -16,12 +16,12 @@ RSpec.describe Card::Set::Type::Post do
     check_views_for_errors :open_content, :bar, :edit,
                            :wikirate_company_tab, :wikirate_topic_tab, :project_tab
 
-    let(:badges_matcher) {  %w[1 Company 1 Topic 1 Project].join('\s*') }
+    let(:badges_matcher) {  %w[1 Companies 1 Topics 1 Projects].join('\s*') }
 
     specify "view bar" do
       expect_view(:bar).to have_tag "div.bar" do
         with_tag "div.bar-left", "My Post"
-        without_tag "div.bar-middle"
+        with_tag "div.bar-middle"
         with_tag "div.bar-right", /#{badges_matcher}/
       end
     end
@@ -33,7 +33,7 @@ RSpec.describe Card::Set::Type::Post do
           without_tag "div.bar-middle"
           with_tag "div.bar-right", /#{badges_matcher}/
         end
-        with_tag "div.bar-bottom", "body text"
+        with_tag "div.bar-bottom", /body text/
       end
     end
   end

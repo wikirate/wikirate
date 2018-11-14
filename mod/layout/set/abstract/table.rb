@@ -32,20 +32,6 @@ format :html do
     wikirate_table table_type, item_cards, cell_views, opts
   end
 
-  def homepage_table table_type
-    wikirate_table(
-      table_type,  search_with_params(limit: 4),
-      ["#{table_type}_thumbnail_minimal", :value_cell],
-      table: { class: "homepage-table" },
-      header: [table_type.to_s.capitalize, "Value"],
-      td: { classes: ["header", nil] },
-      tr_link: lambda do |item|
-        path mark: item.metric_card,
-             filter: { wikirate_company: item.company }
-      end
-    )
-  end
-
   def normalize_args row_cards
     if row_cards.is_a? Card::Format
       [row_cards.search_with_params, row_cards]

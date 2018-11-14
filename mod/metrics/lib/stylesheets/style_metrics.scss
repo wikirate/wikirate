@@ -268,7 +268,7 @@
     display: inline-block;
     margin: 25px 10px;
     font-size: 24px;
-    color: $company-header-bg;
+    color: $company-color;
   }
 }
 
@@ -334,6 +334,12 @@
 
 .TYPE-metric.new-view form .form-group.RIGHT-Xvote_count {
   display: none;
+}
+
+.RIGHT-Xvote_count.content-view {
+    overflow: hidden;
+    text-align: center;
+    padding-right: 1rem;
 }
 
 fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {

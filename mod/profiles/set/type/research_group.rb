@@ -100,10 +100,7 @@ format :html do
   end
 
   view :minor_labeled_badges, cache: :never do
-    wrap_with :span do
-      [labeled_badge(card.metric_card.count, "Metrics"),
-       labeled_badge(card.project_card.count, "Projects")]
-    end
+    count_badges :metric, :project
   end
 
   view :closed_content do

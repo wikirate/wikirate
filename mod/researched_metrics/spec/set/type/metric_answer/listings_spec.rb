@@ -59,9 +59,9 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
         with_tag "div.small" do
           with_tag "i.fa.fa-list", text: ""
           with_text /1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11/
-          with_tag "a.pl-1.text-muted-link.border.text-muted.px-1" do
-            with_tag "i.fa.fa-ellipsis-h", text: ""
-          end
+          # with_tag "a.pl-1.text-muted-link.border.text-muted.px-1" do
+          #   with_tag "i.fa.fa-ellipsis-h", text: ""
+          # end
         end
       end
     end

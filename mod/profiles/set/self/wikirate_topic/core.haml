@@ -1,0 +1,6 @@
+= field_nest :description
+.filter-search-form
+  = field_nest :browse_topic_filter, view: :filter_form
+#browse-topics
+  = field_nest :browse_topic_filter, items: { view: :box }
+= render_add_button

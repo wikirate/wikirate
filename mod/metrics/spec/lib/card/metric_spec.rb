@@ -56,7 +56,7 @@ RSpec.describe Card::Metric do
       Card::Auth.as_bot do
         source = create_page url: "http://example.com"
         described_class.create name: "MD+MT", type: :formula,
-                               formula: "1", random_source: true do
+                               formula: "1", test_source: true do
           SPECTRE 2000 => 50, 2001 => 100
           Death_Star 2000 => { value: 50, source: "[[#{source.name}]]" }
         end
@@ -107,7 +107,7 @@ RSpec.describe Card::Metric do
         described_class.create name: "Jedi+owns",
                                type: :relationship,
                                inverse_title: "owned by",
-                               random_source: true do
+                               test_source: true do
           SPECTRE 2000 => { "Los Pollos Hermanos" => "10",
                             "Death_Star" => "5" }
         end

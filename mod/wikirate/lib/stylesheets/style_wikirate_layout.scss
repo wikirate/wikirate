@@ -84,30 +84,6 @@ h2 {
   width:100%;
 }
 
-@mixin yinyang-header($header-color) {
-  >.card> .card-header  {
-    color: #fff;
-    background:$header-color;
-    text-align:center;
-  }
-
-}
-
-
-#main > .TYPE-metric  {
-  @include yinyang-header($metric-color);
-}
-
-#main > {
-  .TYPE-company,[class*='company-overview'], [class*='company-reference'],[class*='company-note']   {
-    @include yinyang-header($company-color);
-  }
-}
-
-#main > .TYPE-topic,[class*='topic-overview'], [class*='topic-reference'],[class*='topic-note'],[class*='topic-company']      {
-  @include yinyang-header($topic-color);
-}
-
 .RIGHT-logo.d0-card-content img {
   max-height: 100%;
 
