@@ -39,7 +39,7 @@ def accepted_mime_type?
 end
 
 def convert_to_pdf
-  puts "generating pdf"
+  # Rails.logger.info "generating pdf"
   pdf_from_url remote_file_url do |pdf_file|
     self.file = pdf_file
   end

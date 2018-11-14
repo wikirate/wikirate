@@ -2,7 +2,7 @@
 
 require "link_thumbnailer"
 
-describe Card::Set::Type::Source, "source preview" do
+describe Card::Set::Type::Source::Preview do
   describe "rendering preview view" do
     context "text source" do
       before do

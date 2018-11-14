@@ -1,11 +1,12 @@
 module SourceHelper
-  def create_source source, subcards: {}, import: false
+  def create_source source, subcards: {}, codename: nil
     Card::Auth.as_bot do
       Card.create! type_id: Card::SourceID,
-                   subcards: source_subcard_args(source, subcards),
-                   import: import
+                   codename: codename,
+                   subcards: source_subcard_args(source, subcards)
     end
   end
+
   def new_source source, subcards: {}
     Card.new type_id: Card::SourceID,
              subcards: source_subcard_args(source, subcards)

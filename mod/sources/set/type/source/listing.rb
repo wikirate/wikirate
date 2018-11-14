@@ -79,15 +79,6 @@ format :html do
     end
   end
 
-  def creator
-    return unless (creator_card = Card[card.creator_id])
-    field_nest creator_card, view: :link
-  end
-
-  # view :website_link do
-  #   link_to_card card, website_text, class: "source-preview-link",
-  # end
-
   view :source_link do
     wrap_with :div, class: "source-link d-block" do
       [wrap_with(:div, source_title, class: "source-title"),
@@ -99,18 +90,6 @@ format :html do
     link_to_card card, title_text,
                  target: "_blank",
                  class: "source-preview-link preview-page-link"
-  end
-
-  def with_links?
-    @links != false
-  end
-
-  def source_website
-    with_links? ? _render_website_link : website_text
-  end
-
-  def source_title
-    with_links? ? _render_title_link : title_text
   end
 
   view :direct_link do
@@ -131,4 +110,23 @@ format :html do
   view :missing do
     _view_link
   end
+
+
+  def with_links?
+    @links != false
+  end
+
+  def source_website
+    with_links? ? _render_website_link : website_text
+  end
+
+  def source_title
+    with_links? ? _render_title_link : title_text
+  end
+
+  def creator
+    return unless (creator_card = Card[card.creator_id])
+    field_nest creator_card, view: :link
+  end
+
 end
