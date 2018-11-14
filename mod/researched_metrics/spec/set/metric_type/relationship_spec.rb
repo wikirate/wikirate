@@ -83,4 +83,8 @@ describe Card::Set::MetricType::Relationship do
       expect(unrelated_answer).to be_instance_of(Card)
     end
   end
+
+  it "is researchable" do
+    expect(Card["Jedi+more evil"].researched?).to be_truthy
+  end
 end

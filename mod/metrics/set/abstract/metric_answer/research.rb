@@ -23,6 +23,9 @@ format :html do
     Env.params[:metric] = card.metric
     Env.params[:company] = card.company
     Env.params[:year] = card.year
+    if card.respond_to?(:related_company)
+      Env.params[:related_company] = card.related_company
+    end
     nest :research_page, view: :edit
   end
 
