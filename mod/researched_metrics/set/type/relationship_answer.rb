@@ -125,12 +125,22 @@ end
 
 format :json do
   view :atom do
-    super().merge year: card.year.to_s,
-                  value: card.value,
-                  import: card.imported?,
-                  comments: field_nest(:discussion, view: :core),
-                  subject_company: card.company,
-                  object_company: card.related_company
+    result = super().merge year: card.year.to_s,
+                           value: card.value,
+                           import: card.imported?,
+                           comments: field_nest(:discussion, view: :core),
+                           subject_company: card.company,
+                           object_company: card.related_company
+    return result unless with_address?
+    result.merge(address: address(card.related_company))
+  end
+
+  def with_address?
+    params[:with_address].present?
+  end
+
+  def address company
+    Card.fetch("Clean Clothes Campaign+Address+#{company}")
   end
 
   view :molecule do
