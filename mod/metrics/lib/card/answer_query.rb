@@ -19,7 +19,7 @@ class Card
     end
 
     def self.default fixed_id, sort={}, paging={}
-      new fixed_id, { latest: true }, sort, paging
+      new fixed_id, {}, sort, paging
     end
 
     # @return array of metric answer card objects

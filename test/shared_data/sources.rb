@@ -29,6 +29,7 @@ class SharedData
       end
 
       create_source "http://www.wikiwand.com/en/Darth_Vader",
+                    codename: :darth_vader_source,
                     subcards: {
                       "+company"     => { content: "Death Star",
                                           type_id: Card::PointerID },
