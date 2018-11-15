@@ -5,23 +5,17 @@ format :html do
     count_badges :wikirate_company, :metric
   end
 
-  view :bar_right do
-    wrap_with :div, class: "text-left d-block w-100" do
-      [small_download_link, fancy_year_list]
-    end
-  end
-
-  def small_download_link
-    wrap_with :small, download_link
-  end
+  view :bar_right, template: :haml
 
   view :bar_bottom do
     add_name_context
     output [render_bar_middle,
-            field_nest(:report_type,
-                       view: :labeled, title: "Report Type", items: { view: :name }),
-            field_nest(:wikirate_topic,
-                       view: :labeled, title: "Topics", items: { view: :link }),
+            field_nest(:report_type, view: :labeled,
+                                     title: "Report Type",
+                                     items: { view: :name }),
+            field_nest(:wikirate_topic, view: :labeled,
+                                        title: "Topics",
+                                        items: { view: :link }),
             field_nest(:description, view: :titled, title: "Description")]
   end
 
@@ -29,13 +23,7 @@ format :html do
     card.year_card.item_names || []
   end
 
-  def fancy_year_list
-    years = year_list
-    wrap_with :div, class: "fancy-year-list" do
-      years.any? ? years.unshift(year_icon) : []
-    end
-  end
-
+  # make view of year?
   def year_icon
     wrap_with :span, fa_icon("calendar"), class: "pr-1"
   end
@@ -90,14 +78,6 @@ format :html do
     link_to_card card, title_text,
                  target: "_blank",
                  class: "source-preview-link preview-page-link"
-  end
-
-  view :direct_link do
-    return unless card.link?
-    link = card.fetch(trait: :wikirate_link).content
-    wrap_with :a, href: link, target: "_blank" do
-      [fa_icon("external-link-square", class: "cursor"), "Original"]
-    end
   end
 
   view :listing_compact, template: :haml
