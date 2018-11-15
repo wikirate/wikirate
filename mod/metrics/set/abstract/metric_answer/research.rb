@@ -119,7 +119,6 @@ format :html do
   end
 
   view :content_formgroup, template: :haml do
-    binding.pry
     card.add_subfield :year, content: card.year
     if card.metric_card.relationship?
       card.add_subfield :related_company, content: card.related_company

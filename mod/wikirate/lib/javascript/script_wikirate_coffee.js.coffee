@@ -13,12 +13,9 @@ decko.editorContentFunctionMap['.source-editor > .pointer-list'] = ->
 
 
 decko.slotReady (slot) ->
-
   return unless slot.hasClass("TYPE-project") && slot.find("form")
   parent = slot.find(".RIGHT-parent .pointer-item-text")
   appendParentToAddItem parent
-
-
 
 appendParentToAddItem = (parent) ->
   return unless parent.val()
@@ -27,9 +24,4 @@ appendParentToAddItem = (parent) ->
     new_href =  anchor.attr("href") + "&" + $.param({ "filter[project]" : parent.val() })
     anchor.attr "href", new_href
 
- #Moving it to newNoteJs
- # To add the source on blur event.
- #$("body").on "blur", "#sourcebox", ->
- #   $(".sourcebox button").trigger "click"
 
-#warn = (stuff) -> console.log stuff if console?
