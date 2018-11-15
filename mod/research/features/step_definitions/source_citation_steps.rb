@@ -57,7 +57,7 @@ end
 
 def add_source wikipedia_article=:darth_vader
   source = sample_source wikipedia_article
-  fill_in "URL", with: source.url
+  fill_in "URL", with: source.link_url
   click_button "Add"
 end
 
