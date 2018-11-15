@@ -1,5 +1,4 @@
 format :html do
-
   view :sourcebox do
     wrap_with :div, class: "sourcebox" do
       [

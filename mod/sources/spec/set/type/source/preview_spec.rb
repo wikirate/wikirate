@@ -5,9 +5,8 @@ require "link_thumbnailer"
 SOURCE_PATHS = {
   pdf: "mod/sources/spec/set/type/source/test_pdf.pdf",
   img: "mod/sources/spec/set/type/source/test_logo.png",
-  docx: "mod/sources/spec/set/type/source/test_word.docx",
-
-}
+  docx: "mod/sources/spec/set/type/source/test_word.docx"
+}.freeze
 
 def source_file key
   File.open "#{Rails.root}/#{SOURCE_PATHS[key]}"
@@ -15,7 +14,7 @@ end
 
 describe Card::Set::Type::Source::Preview do
   describe "rendering preview view" do
-    context "text source" do
+    context "when text source" do
       before do
         text = "There are 2 hard problems in computer science: cache "\
                "invalidation, naming things, and off-by-1 errors."
