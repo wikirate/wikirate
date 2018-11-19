@@ -2,19 +2,14 @@ class RelationshipAnswerLookupTable < ActiveRecord::Migration[5.2]
   def up
     drop_table :relationships if table_exists? :relationships
     create_table :relationships do |t|
-      t.integer :answer_id
       t.integer :relationship_id
+      t.integer :metric_id
+      t.integer :record_id
+      t.integer :answer_id
       t.integer :object_company_id
       t.integer :subject_company_id
-      t.integer :record_id
-      t.integer :policy_id
-      t.integer :year
-      t.string :metric_name
       t.string :object_company_name
       t.string :subject_company_name
-      t.string :designer_name
-      t.string :title_name
-      t.string :record_name
       t.string :value
       t.decimal :numeric_value, precision: 30, scale: 5
       t.datetime :updated_at

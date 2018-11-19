@@ -11,14 +11,11 @@ module Formula
   class Calculator
     INPUT_CAST = ->(val) { val }
 
-    attr_reader :errors
+    attr_reader :errors, :formula_card
 
     def initialize formula_card
       @formula_card = formula_card
-      @input = Input.new @formula_card.input_cards,
-                         @formula_card.input_requirement,
-                         year_options,
-                         &self.class::INPUT_CAST
+      @input = Input.new self, &self.class::INPUT_CAST
       @errors = []
     end
 
@@ -82,6 +79,21 @@ module Formula
       content.gsub(/{{[^}]*}}/, "")
     end
 
+    # Extracts all year options from all input nests in the formula
+    def year_options
+      @year_options ||=
+        @formula_card.input_chunks.map do |chunk|
+          chunk.options[:year]
+        end
+    end
+
+    def company_options
+      @company_options ||=
+        @formula_card.input_chunks.map do |chunk|
+          chunk.options[:company]
+        end
+    end
+
     private
 
     def safe_execution expr
@@ -97,21 +109,6 @@ module Formula
     def compile_formula
       return unless safe_to_convert? formula
       @executed_lambda ||= safe_execution(to_lambda)
-    end
-
-    # Extracts all year options from all input nests in the formula
-    def year_options
-      @year_options ||=
-        @formula_card.input_chunks.map do |chunk|
-          chunk.options[:year]
-        end
-    end
-
-    def company_options
-      @company_options ||=
-        @formula_card.input_chunks.map do |chunk|
-          chunk.options[:company]
-        end
     end
 
     def replace_nests content=nil

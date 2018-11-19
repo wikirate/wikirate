@@ -68,6 +68,7 @@ class Answer < ApplicationRecord
     self.record_name = nil if :record_name.in? fields
     # forces regeneration of name of virtual answer card
     super
+    update_relationship_answers if relationship?
   end
 
   def delete_on_refresh?

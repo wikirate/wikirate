@@ -1,20 +1,25 @@
 # lookup table for metric answers
 
 class Relationship < ApplicationRecord
+  belongs_to :answer
+
   include LookupTable
   extend AnswerClassMethods
 
-  #include Answer::Filter
+  # include Answer::Filter
   include Answer::Validations
-  include Answer::EntryFetch
+  # include Answer::EntryFetch
   include Csv
 
-  validates :relationship_id, numericality: { only_integer: true }, presence: true,
-                        unless: :virtual?
-  validate :must_be_an_answer, :card_must_exist, unless: :virtual?
+  validates :relationship_id, numericality: { only_integer: true }, presence: true
+  validate :must_be_an_answer, :card_must_exist
   validate :metric_must_exit
 
   after_destroy :latest_to_true
+
+  delegate :record_id, :metric_id, :company_id, :designer_id, :year,
+           :metric_name, :company_name, :title_name, :record_name,
+           to: :answer
 
   def self.existing id
     return unless id
@@ -25,24 +30,17 @@ class Relationship < ApplicationRecord
     :relationship_id
   end
 
-  def card
-    return super if answer_id
-    # in the process of creating a hybrid answer we don't want the virtual answer card
-    @card ||= find_answer_card || virtual_answer_card
-  end
-
   def latest_year_in_db
-    self.record_id ||= fetch_record_id
     Answer.where(record_id: record_id).maximum :year
   end
 
   def latest_to_false
-    Answer.where(record_id: record_id, latest: true).update_all(latest: false)
+    Relationship.where(record_id: record_id, latest: true).update_all(latest: false)
   end
 
   def latest_to_true
     return unless (latest_year = latest_year_in_db)
-    Answer.where(record_id: record_id, year: latest_year, latest: false)
+    Relationship.where(record_id: record_id, year: latest_year, latest: false)
           .update_all latest: true
   end
 

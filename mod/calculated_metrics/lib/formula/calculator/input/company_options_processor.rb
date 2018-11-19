@@ -1,5 +1,18 @@
 module Formula
   class Calculator
+    # Formula
+    # # Case 1a: explict company
+    #   Total[{{Jedi+deadliness|company:"Death Star"}}]'
+    # Case 1b: explict company list
+    #   Total[{{Jedi+deadliness|company:"Death Star", "SPECTRE"}}]'
+    # Case 2: related companies
+    #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}]'
+    #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6]}}]'
+    #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6 &&
+    # Commons+Supplied by=Tier 1 Supplier]}}]'
+    #
+    # 1. find all companies that have a relation with the required value
+    # 2.
     class Input
       class CompanyOptionsProcessor < Array
         attr_reader :multi_year, :no_year_options
@@ -42,8 +55,8 @@ module Formula
 
         private
 
-        def normalize_year_expr expr
-          expr.sub("year:", "").tr("?", "0").strip
+        def normalize_company_expr expr
+          expr.sub("company:", "").strip
         end
 
         def year? y
@@ -52,7 +65,7 @@ module Formula
 
         def interpret_company_expr expr
           return 0 if expr.blank?
-          expr = normalize_year_expr expr
+          expr = normalize_company_expr expr
 
           case expr
           when /^[0?]$/ then 0

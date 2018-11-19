@@ -17,8 +17,8 @@ describe Formula::Ruby do
     expect(result[2013][apple_id]).to eq 26.0
   end
 
-  example "networrk aware" do
-    result = calculate 'Total[{{Jedi+deadliness|company:Related[Jedi+more evil="yes"]}}*2'
+  example "network aware" do
+    result = calculate 'Total[{{Jedi+deadliness|company:Related[Jedi+more evil="yes"]}}]*2'
     expect(result[1977][death_star_id]).to eq 60
   end
 

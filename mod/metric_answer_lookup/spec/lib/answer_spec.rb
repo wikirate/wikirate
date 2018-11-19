@@ -1,6 +1,6 @@
-RSpec.describe Answer do
-  def answer
-    described_class.find_by_answer_id answer_id
+ RSpec.describe Answer do
+  def answer id=answer_id
+    described_class.find_by_answer_id id
   end
   let(:metric) { "Joe User+researched" }
   let(:answer_name) { "#{metric}+Apple_Inc+2013" }
@@ -39,6 +39,23 @@ RSpec.describe Answer do
       end
       it "has company_name" do
         expect(answer.company_name).to eq "Apple Inc."
+      end
+    end
+  end
+
+  describe "#relationship?" do
+    context "when metric is a relationship metric" do
+      let(:relationship_answer) do
+        answer Card.fetch_id("Jedi+more evil+Death Star+1977")
+      end
+      it "returns true" do
+        expect(relationship_answer.relationship?).to be_truthy
+      end
+    end
+
+    context "when metric is not a relationship metric" do
+      it "returns false" do
+        expect(answer.relationship?).to be_falsey
       end
     end
   end

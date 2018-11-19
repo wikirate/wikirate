@@ -20,6 +20,11 @@ module Formula
         @value_store = ValueStore.new @input_list
       end
 
+      # Every iteration of the passed block receives an array with values for each
+      # input item in the formula (= each double curly bracket part in the formula)
+      # and a company_id and year which specifies
+      # the answer that can be calculated with these input values.
+      # The iteration can be restricted to a specific company or year or both.
       # @param company_id [Integer]
       # @param year [Integer]
       def each company_id: nil, year: nil, &block

@@ -7,17 +7,21 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class Input
-      attr_reader :input_values, :input_cards, :requirement, :year_options_processor
+      attr_reader :input_values, :input_cards, :requirement,
+                  :year_options_processor, :company_options_processor
 
       # @param [Array<Card>] input_cards all cards that are part of the formula
       # @param [Array<String] year_options for every input card a year option
       # @param [Symbol] requirement either :all or :any
       # @param [Proc] input_cast a block that is called for every input value
-      def initialize input_cards, requirement, year_options, &input_cast
-        @input_cards = input_cards
-        @requirement = requirement
+      def initialize calculator, &input_cast
+        @input_cards = calculator.formula_card.input_cards
+        @requirement = calculator.formula_card.requirement
         @input_cast = input_cast
-        @year_options_processor = YearOptionsProcessor.new year_options
+        @year_options_processor =
+          YearOptionsProcessor.new calculator.year_options
+        @company_options_processor =
+          CompanyOptionsProcessor.new calculator.company_options
         @input_values = initialize_input_values
       end
 
