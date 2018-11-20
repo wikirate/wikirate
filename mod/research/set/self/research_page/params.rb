@@ -167,6 +167,10 @@ format do
     @company ||= research_param(:company) || company_list.first
   end
 
+  def related_company
+    @related_company ||= research_param(:related_company)
+  end
+
   def year?
     year && Card.fetch_type_id(year) == YearID
   end
@@ -181,7 +185,14 @@ format do
   end
 
   def answer_card
-    @sac ||= Card.fetch [metric, company, year.to_s], new: { type_id: MetricAnswerID }
+    @sac ||=
+      if related_company
+        Card.fetch [metric, company, year.to_s, related_company],
+                   new: { type_id: RelationshipAnswerID }
+      else
+        Card.fetch [metric, company, year.to_s], new: { type_id: MetricAnswerID }
+      end
+
   end
 
   def metric_pinned?
