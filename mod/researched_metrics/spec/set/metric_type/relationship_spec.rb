@@ -1,4 +1,10 @@
-describe Card::Set::MetricType::Relationship do
+RSpec.describe Card::Set::MetricType::Relationship do
+  def card_subject
+    Card["Jedi+more evil+SPECTRE+1977+Los_Pollos_Hermanos"]
+  end
+
+  check_views_for_errors :edit
+
   describe "create" do
     before do
       create "Joe User+bigger than",
@@ -82,5 +88,9 @@ describe Card::Set::MetricType::Relationship do
       unrelated_answer = Card["#{metric}+Death Star+1977+Los Pollos Hermanos"]
       expect(unrelated_answer).to be_instance_of(Card)
     end
+  end
+
+  it "is researchable" do
+    expect(Card["Jedi+more evil"].researched?).to be_truthy
   end
 end
