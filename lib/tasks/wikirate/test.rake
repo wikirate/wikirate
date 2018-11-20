@@ -72,10 +72,10 @@ namespace :wikirate do
             # TODO: make export view for setting cards
             #   then we don't need to import all script and style cards
             #   we do it via subitems: true
-            with_subitems = %w(*script *style *layout).include? setting
-            import.items_of setting, subitems: with_subitems
+            depth = %w(*script *style *layout).include?(setting) ? 3 : 1
+            import.items_of setting, depth: depth
           end
-          import.items_of :production_export, subitems: true, depth: 3
+          import.items_of :production_export, depth: 2
 
           # don't import table migrations
           # exclude = %w(20161005120800 20170118180006 20170210153241 20170303130557

@@ -52,7 +52,7 @@ format :html do
                    card.all_metric_project_cards,
                    [:metric_thumbnail, :research_progress_bar],
                    table: { class: "metric-progress" },
-                   header: ["Metric", "Companies Researched"],
+                   header: ["Metric", "#{rate_subjects} Researched"],
                    td: { classes: %w[metric-column progress-column] }
   end
 end

@@ -14,6 +14,7 @@ event :process_sources, :prepare_to_validate, on: :save, when: :source_based? do
 end
 
 def source_based?
+  puts name
   standard? || hybrid?
 end
 

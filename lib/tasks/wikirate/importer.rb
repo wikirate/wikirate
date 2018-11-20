@@ -16,11 +16,11 @@ class Importer
   def items_of cardname, opts={}
     card_data =
       work_on "getting data from #{cardname} card" do
-        if opts[:subitems]
-          json_export cardname, :export_items, opts[:depth]
-        else
-          json_export(cardname)["card"]["value"]
-        end
+        #if opts[:subitems]
+          json_export cardname, :export, opts[:depth] || 1
+        #else
+        #  json_export(cardname)["card"]["value"]
+        #end
       end
     import_card_data card_data
   end
