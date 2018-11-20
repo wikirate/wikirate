@@ -1,6 +1,19 @@
 include_set Abstract::Header
+include_set Abstract::Tabs
 
 format :html do
+  before :content_formgroup do
+    voo.edit_structure = %i[
+      file
+      wikirate_title
+      report_type
+      wikirate_company
+      year
+      wikirate_topic
+      description
+    ]
+  end
+
   def tab_list
     %i[details metric metric_answer]
   end
@@ -25,15 +38,13 @@ format :html do
     end
   end
 
+  def original_link
+    return unless card.link?
+    link_with_icon card.link_url, "external-link-square", "Original"
+  end
+
   def download_link
-    case card.source_type_codename
-    when :wikirate_link
-      link_with_icon preview_url, "external-link-square", "Visit Original"
-    when :file
-      link_with_icon card.file_card.attachment.url, :download, "Download"
-    else
-      ""
-    end
+    link_with_icon card.file_url, :download, "Download"
   end
 
   def link_with_icon url, icon, title

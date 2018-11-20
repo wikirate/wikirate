@@ -16,7 +16,7 @@ class MetaData
     self.website = @url
     return self.error = "invalid url" if @website.blank?
     if duplicates.any?
-      data_from_card duplicates.first.left
+      data_from_card duplicates.first
     else
       data_from_url
     end

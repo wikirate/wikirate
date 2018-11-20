@@ -61,7 +61,7 @@ When(
   /^(?:|I )fill in "([^"]*)" with card path of source with link "([^"]*)"$/
 ) do |field, value|
   duplicates = Card::Set::Self::Source.find_duplicates value
-  duplicated_card = duplicates.first.left if duplicates.any?
+  duplicated_card = duplicates.first if duplicates.any?
 
   url = "#{Card::Env[:protocol]}#{Card::Env[:host]}"\
         "/#{duplicated_card.name.url_key}"
@@ -177,6 +177,13 @@ end
 When(/^I click the drop down button for "(.*)"$/) do |text|
   find("td", text: text).find(:xpath, "..")
                         .find(".fa-caret-right").click
+end
+
+Then(/^I should see a prompt to add "(.+)"$/) do |value|
+  expect(page.body).to have_tag ".missing-link" do
+    with_tag "i.fa-plus-square"
+    with_tag "span.card-title", text: value
+  end
 end
 
 # def select_from_chosen item_text, selector, within

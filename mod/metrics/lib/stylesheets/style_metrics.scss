@@ -1,14 +1,3 @@
-/*Common styles and classes*/
-.no-data-on-missing-view {
-  .missing-view a {
-    display: none;
-  }
-  .missing-view:before {
-    content: "";
-    color: #F5BABA;
-    font-size: 13px;
-  }
-}
 
 .tabbable.company-tabs .tab-content {
   margin-left: -15px;

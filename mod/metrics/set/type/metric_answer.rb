@@ -21,7 +21,7 @@ format :html do
   end
 
   before :title do
-    # HACK: to prevent cancel button on research page from loosing title
+    # HACK: to prevent cancel button on research page from losing title
     voo.title ||= "Answer"
   end
 end

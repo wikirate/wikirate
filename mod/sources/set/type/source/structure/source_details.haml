@@ -1,0 +1,18 @@
+.col-md-12.column
+  .row.clearfix.d-block
+    %span.pr-3.download-source-link
+      = download_link
+    %span.original-source-link
+      = original_link
+    = _render_creator_credit
+
+    = field_nest :wikirate_title, view: :labeled, title: "Title"
+    = field_nest :year, view: :labeled, title: "Year", items: { view: :name}
+    = field_nest :report_type,
+                 view: :labeled, title: "Report Type", items: { view: :name}
+    = field_nest :wikirate_topic,
+                 view: :labeled, title: "Topics", items: { view: :link}
+    = field_nest :wikirate_company,
+                 view: :labeled, title: "Companies", items: { view: :link}
+    = field_nest :description, view: :titled, title: "Description"
+    = field_nest :discussion, view: :titled, title: "Discussion", show: :comment_box

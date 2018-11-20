@@ -10,20 +10,20 @@ When(/^I research answer "([^"]*)" for year "([^"]*)"$/) do |answer, year|
 end
 
 And(/^I cite source for 2008 confirming$/) do |expected_msg|
-  add_source "Star_Wars"
+  add_source :star_wars
   confirm_citation expected_msg.tr("\n", " ")
 end
 
 When(/^I visit cited source$/) do
-  go_to_source "Star_Wars"
+  go_to_source :star_wars
 end
 
 When(/^I visit cited source without year$/) do
-  go_to_source "Darth_Vader"
+  go_to_source :darth_vader
 end
 
 And(/^I cite source "([^"]*)"$/) do |wikipedia_article|
-  add_source wikipedia_article
+  add_source :"#{wikipedia_article.downcase}"
   confirm_citation
 end
 
@@ -55,10 +55,10 @@ def confirm_citation expected_msg=nil
   expect(msg).to eq expected_msg
 end
 
-def add_source wikipedia_article="Darth_Vader"
+def add_source wikipedia_article=:darth_vader
   source = sample_source wikipedia_article
-  fill_in "URL", with: source.url
-  click_button "Add"
+  fill_in "card_subcards__File_remote_file_url", with: source.link_url
+  click_button "Submit"
 end
 
 def go_to_source wikipedia_article

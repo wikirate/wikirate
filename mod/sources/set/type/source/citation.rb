@@ -10,7 +10,7 @@ format :html do
       [
         with_cite_button(cited: inherit(:source_cited),
                          disabled: inherit(:source_disabled)),
-        render_iframe_view.html_safe,
+        render_preview.html_safe,
         hidden_information.html_safe
       ]
     end

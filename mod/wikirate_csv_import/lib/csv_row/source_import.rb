@@ -18,8 +18,7 @@ class CSVRow
 
     def source_subcard_args
       args = {
-        "+*source_type" => { content: "[[Link]]" },
-        "+Link" => { content: source_args[:source], type_id: Card::PhraseID }
+        "+File" => { remote_file_url: source_args[:source], type_id: Card::FileID }
       }
       # args["+title"] = { content: source_args[:title] } if source_args.key?(:title)
       # TODO: test if card get right type
@@ -59,7 +58,7 @@ class CSVRow
         Card[source_args[:source]]
       elsif source_args[:source].url?
         link_duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
-        link_duplicates.present? && link_duplicates.first.left
+        link_duplicates.present? && link_duplicates.first
       else
         error("source #{source_args[:source]} doesn't exist")
       end
@@ -85,14 +84,11 @@ class CSVRow
     end
 
     def finalize_source_card source_card
-      with_sourcebox do
-        source_card.director.catch_up_to_stage :prepare_to_store
+      source_card.director.catch_up_to_stage :prepare_to_store
 
-        # the pure source update doesn't finalize, don't know why
-        if !Card.exists?(source_card.name) && source_card.errors.empty?
-          source_card.director.catch_up_to_stage :finalize
-        end
-      end
+      # the pure source update doesn't finalize, don't know why
+      return unless Card.exists?(source_card.name) && source_card.errors.empty?
+      source_card.director.catch_up_to_stage :finalize
     end
 
     def update_existing_source source_card
@@ -129,13 +125,6 @@ class CSVRow
 
     def hashkey_to_codename key
       key == :company ? :wikirate_company : key
-    end
-
-    def with_sourcebox
-      Card::Env.params[:sourcebox] = "true"
-      yield
-    ensure
-      Card::Env.params[:sourcebox] = "false"
     end
   end
 

@@ -45,10 +45,10 @@ format :html do
   end
 
   def projects_list
-    field_nest :project, view: :content, items: { view:  :bar }, title: "Projects"
+    field_nest :project, view: :content, items: { view:  :mini_bar }, title: "Projects"
   end
 
   view :metric_tab do
-    field_nest :metric, view: :content, items: { view:  :bar }, title: "Metrics"
+    field_nest :metric, view: :content, items: { view:  :mini_bar }, title: "Metrics"
   end
 end

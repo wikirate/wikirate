@@ -1,0 +1,10 @@
+.text-left.d-block.w-100
+  .small
+    %span.pr-2
+      = download_link
+    = original_link
+  - years = year_list
+  - if years.any?
+    .fancy-year-list
+      = year_icon
+      = years.join
