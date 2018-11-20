@@ -1,4 +1,5 @@
 require "curb"
+require "link_thumbnailer"
 
 card_accessor :metric, type: :pointer
 card_accessor :year, type: :pointer
@@ -8,7 +9,6 @@ card_accessor :wikirate_title
 card_accessor :wikirate_link
 card_accessor :file
 
-require "link_thumbnailer"
 
 def file_url
   file_card&.file&.url

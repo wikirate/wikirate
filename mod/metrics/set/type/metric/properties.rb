@@ -1,4 +1,3 @@
-
 format :html do
   # all metrics show these properties in their properties table
   def basic_table_properties

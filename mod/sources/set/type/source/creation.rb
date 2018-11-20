@@ -1,43 +1,40 @@
 format :html do
-  # view :new do
-  #  preview? ? _render_new_preview : super()
-  # end
+  def answer_name
+    params[:answer]
+  end
 
-  # def preview?
-  #   return false if @previewed
-  #   @previewed = true
-  #   Env.params[:preview]
-  # end
+  def answer_card
+    return unless answer_name
+    Card.fetch answer_name, new: { type_id: MetricAnswerID }
+  end
 
-  # view :new_preview, cache: :never, tags: :unknown_ok do
-  #   with_nest_mode :edit do
-  #     voo.structure = "metric value source form"
-  #     voo.type = "source"
-  #     card_form :create, "main-success": "REDIRECT",
-  #                        "data-form-for": "new_metric_answer",
-  #                        class: "card-slot new-view TYPE-source" do
-  #       output [preview_hidden,
-  #               new_view_type,
-  #               _render_content_formgroup,
-  #               _render_preview_buttons]
-  #     end
-  #   end
-  # end
+  before :new do
+    voo.hide! :new_type_formgroup
+    prepopulate_answer_fields if answer_name
+  end
 
-  # def new_view_hidden
-  #   hidden_tags success: {
-  #     id: "_self", soft_redirect: true, view: :source_and_preview
-  #   }
-  # end
+  def new_form_opts
+    return super unless answer_name
+    super.merge "data-slot-selector": ".source_tab-view"
+  end
 
-  # view :preview_buttons do
-  #   button_formgroup do
-  #     wrap_with :button, "Add and preview", class: "btn btn-primary pull-right",
-  #                                           data: { disable_with: "Adding" }
-  #   end
-  # end
+  def prepopulate_answer_fields
+    { year: answer_card.year,
+      wikirate_company: answer_card.company,
+      report_type: answer_card.report_type&.content }.each do |fieldcode, value|
+      params["_#{fieldcode.cardname}"] = value
+    end
+   end
 
-  # def preview_hidden
-  #   hidden_field_tag "card[subcards][+company][content]", Env.params[:company]
-  # end
+  def cancel_button_new_args
+    return super unless answer_name
+    { href: path(mark: answer_name, view: :sourcebox, type_id: MetricAnswerID) }
+  end
+
+  def new_view_hidden
+    return super unless answer_name
+    hidden_tags success: {
+      id: answer_name, soft_redirect: true, view: :source_tab
+    }
+  end
 end

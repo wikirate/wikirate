@@ -15,15 +15,15 @@ And(/^I cite source for 2008 confirming$/) do |expected_msg|
 end
 
 When(/^I visit cited source$/) do
-  go_to_source "Star_Wars"
+  go_to_source :star_wars
 end
 
 When(/^I visit cited source without year$/) do
-  go_to_source "Darth_Vader"
+  go_to_source :darth_vader
 end
 
 And(/^I cite source "([^"]*)"$/) do |wikipedia_article|
-  add_source wikipedia_article
+  add_source :"#{wikipedia_article.downcase}"
   confirm_citation
 end
 
@@ -57,8 +57,8 @@ end
 
 def add_source wikipedia_article=:darth_vader
   source = sample_source wikipedia_article
-  fill_in "URL", with: source.link_url
-  click_button "Add"
+  fill_in "card_subcards__File_remote_file_url", with: source.link_url
+  click_button "Submit"
 end
 
 def go_to_source wikipedia_article

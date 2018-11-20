@@ -58,7 +58,7 @@ class CSVRow
         Card[source_args[:source]]
       elsif source_args[:source].url?
         link_duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
-        link_duplicates.present? && link_duplicates.first.left
+        link_duplicates.present? && link_duplicates.first
       else
         error("source #{source_args[:source]} doesn't exist")
       end

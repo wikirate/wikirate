@@ -7,6 +7,7 @@ format :html do
       file
       wikirate_title
       report_type
+      wikirate_company
       year
       wikirate_topic
       description

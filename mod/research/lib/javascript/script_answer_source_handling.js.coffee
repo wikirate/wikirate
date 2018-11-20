@@ -4,32 +4,43 @@ $.extend wikirate,
     tab.removeClass("d-none").tab('show')
 
   toggleCitation: (ele, action) ->
-    sourceID =  $(ele).closest(".TYPE-source").data("card-id")
-    citations = $("form .cited-sources")
-    if citations.length == 0
+    if citations().length == 0
       alert "Can't change citations. Answer is not in edit mode."
     else
+      updateCitation action, sourceIdFromEl(ele)
 
-      if (action == 'cite')
-        if citeSource(sourceID, citations)
-          toggleCiteButtons(sourceID, action)
-      else if (action == 'uncite')
-        toggleCiteButtons(sourceID, action)
-        unciteSource(sourceID, citations)
+  hideAlreadyCited: () ->
+    citations().each ->
+      sourceId = $(this).find(".bar-view").data "card-id"
+      possibleSource(sourceId).hide()
+
+  citations = () ->
+    $(".left_research_side-view .cited-sources")
+
+  sourceIdFromEl = (el) ->
+    $(el).closest(".TYPE-source").data("card-id")
+
+  updateCitation = (action, sourceID) ->
+    if (action == 'cite')
+      if citeSource sourceID
+        toggleCiteButtons sourceID, action
+    else if (action == 'uncite')
+      toggleCiteButtons sourceID, action
+      unciteSource sourceID
 
   checkYearData = ($source) ->
     researchedYear = $("form.answer-form > input#success_year").val()
     years = $source.data("year") or []
     message =
       "Please confirm that you wish to cite this source for a #{researchedYear} " +
-            "answer (and add #{researchedYear} to the years covered by this source)."
+      "answer (and add #{researchedYear} to the years covered by this source)."
     if years.length > 0
       if years.includes(researchedYear)
         return true
       else
         message =
-          "The source you are citing is currently listed as a source for #{years.toString()}. " +
-          message
+          "The source you are citing is currently listed as a source " +
+          "for #{years.toString()}. " + message
 
     response = window.confirm message
     addYearToSource($source, researchedYear) if response
@@ -55,17 +66,22 @@ $.extend wikirate,
   possibleSource = (sourceID) ->
     $("#research_page-source.tab-pane ._citeable-source[data-card-id='#{sourceID}']:first")
 
-  citeSource = (sourceID, citations) ->
-    $source = possibleSource(sourceID).clone(true)
-
+  citeSource = (sourceID) ->
+    possible = possibleSource(sourceID)
+    $source = possible.clone(true)
     return false unless checkYearData($source)
-    citations.empty() if citations.text().search("None") > -1
-    citations.append($source)
+    possible.hide()
+
+    ctns = citations()
+    ctns.empty() if ctns.text().search("None") > -1
+    ctns.append($source)
     return true
 
-  unciteSource = (sourceID, citations) ->
+  unciteSource = (sourceID) ->
     citedSourceInForm(sourceID).remove()
-    citations.text("None") if citations.is(':empty') || citations.text().trim() == ""
+    ctns = citations()
+    ctns.text("None") if ctns.is(':empty') || ctns.text().trim() == ""
+    possibleSource(sourceID).show()
 
   toggleCiteButtons = (sourceID, action) ->
     citeButtons(sourceID).each ->
@@ -85,6 +101,7 @@ $.extend wikirate,
                         .addClass("_cite_button btn-secondary")
                         .text("Cite!")
       $citedButton.off('mouseenter mouseleave')
+
 
 $(document).ready ->
   $('body').on 'click', '._cite_button', (event) ->
@@ -111,3 +128,6 @@ $(document).ready ->
     $(this).find(".loader-anime").remove() # remove loader
 
 #      wikirate.handleYearData($parentForm, sourceYear)
+decko.slotReady (slot) ->
+  if slot.find(".TYPE-answer.source_tab-view")[0]
+    wikirate.hideAlreadyCited()

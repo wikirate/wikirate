@@ -45,7 +45,8 @@ format :html do
 
   def web_editor
     form.text_field :remote_file_url, class: "d0-card-content form-control",
-                                      placeholder: "http://example.com"
+                                      placeholder: "http://example.com",
+                                      value: params[:source_url]
   end
 
   def preview_type
