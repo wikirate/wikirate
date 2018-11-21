@@ -12,12 +12,12 @@ blocks:
         - name: cache bundle
           commands:
             - checkout
-            - git submodule foreach --recursive 'cache restore $sha1'
+            - git submodule foreach 'cache restore $sha1'
             - git submodule sync
             - git submodule update
             - git submodule sync --recursive
             - git submodule update -f --init --recursive
-            - git submodule foreach --recursive 'cache store $sha1 ~/wikirate/$sm_path'
+            - git submodule foreach 'cache store $sha1 ~/wikirate/$sm_path'
             - sem-service start mysql
             - sudo apt-get install -y -qq mysql-client
             - sudo apt-get install -y -qq libmysqlclient-dev
@@ -43,7 +43,7 @@ blocks:
           - checkout
           - cache restore bundle-gems-$(checksum Gemfile.lock)
           - cache restore bundle-config-$(checksum Gemfile.lock)
-          - git submodule foreach --recursive 'cache store $sha1 $sm_path'
+          - git submodule foreach 'cache restore $sha1'
           - cp .semaphore/application.rb config/application.rb
           - bundle exec rake wikirate:test:seed
       jobs:
