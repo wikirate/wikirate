@@ -12,12 +12,12 @@ blocks:
         - name: cache bundle
           commands:
             - checkout
-            - git submodule foreach 'cache restore submodule-$sha1'
+            - git submodule foreach 'cache restore git-submodule-$sha1'
             - git submodule sync
             - git submodule update
             - git submodule sync --recursive
-            - git submodule update -f --init --recursive
-            - git submodule foreach 'cache store submodule-$sha1 ~/wikirate/$sm_path'
+            - git submodule update --init --recursive
+            - git submodule foreach 'cache store git-submodule-$sha1 ~/wikirate/$sm_path'
             - sem-service start mysql
             - sudo apt-get install -y -qq mysql-client
             - sudo apt-get install -y -qq libmysqlclient-dev
@@ -41,7 +41,7 @@ blocks:
           - checkout
           - cache restore bundle-gems-$(checksum Gemfile.lock)
           - cache restore bundle-config-$(checksum Gemfile.lock)
-          - git submodule foreach 'cache restore submodule-$sha1'
+          - git submodule foreach 'cache restore git-submodule-$sha1'
           - git submodule sync
           - git submodule update
           - git submodule sync --recursive

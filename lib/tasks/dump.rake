@@ -18,7 +18,7 @@ namespace :wikirate do
 
   def mysql_login
     mysql_args = "-u #{user}"
-    mysql_args += " -p #{password}" if pwd
+    mysql_args += " -p #{password}" if password
     mysql_args += " -h #{host}" if host
     mysql_args
   end
