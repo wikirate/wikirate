@@ -70,7 +70,7 @@ module Wikirate
           aws_access_key_id: ENV["STAGING_BUCKET_AWS_ACCESS_KEY_ID"],
           aws_secret_access_key: ENV["STAGING_BUCKET_AWS_SECRET_ACCESS_KEY"],
           region: 'eu-central-1', # optional, defaults to 'us-east-1'
-        }
+        },
         # credentials: YAML.load_file("/home/runner/wikirate/config/staging_bucket_credentials.yml"),
         attributes: { "Cache-Control" => "max-age=#{365.day.to_i}" },
         subdirectory: "files",
