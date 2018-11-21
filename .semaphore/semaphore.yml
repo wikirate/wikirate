@@ -18,6 +18,7 @@ blocks:
             - git submodule update -f --init --recursive
             - sem-service start mysql
             - sudo apt-get install -y -qq mysql-client
+            - sudo apt-get install libmysqlclient-dev
             - sem-service status mysql
             - cache restore bundle-gems-$(checksum Gemfile.lock)
             - bundle install --deployment
@@ -45,7 +46,6 @@ blocks:
           value: mysql://mysql@localhost/test?encoding=utf8
       prologue:
         commands:
-          - checkout
           - cache restore bundle-gems-$(checksum Gemfile.lock)
           - cache restore bundle-config-$(checksum Gemfile.lock)
           - cp .semaphore/application.rb config/application.rb
@@ -66,5 +66,6 @@ blocks:
       - name: Cucumber
         commands:
           - checkout
-          - echo "make cucumber"
+          - wget https://gist.githubusercontent.com/mimimalizam/9aef3aa5ac0884943efb6aca947a8b56/raw/firefox-semaphore.sh && bash firefox-semaphore.sh 62.0
+          - bundle exec decko cucumber 2>&1
 
