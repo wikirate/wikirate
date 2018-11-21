@@ -15,7 +15,7 @@ format :html do
 
   def new_form_opts
     return super unless answer_name
-    super.merge "data-slot-selector": ".source_tab-view"
+    super.merge "data-slot-selector": ".source_selector-view"
   end
 
   def prepopulate_answer_fields

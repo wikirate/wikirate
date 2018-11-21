@@ -29,5 +29,6 @@ event :require_report_type_when_direct, :validate, on: :save, when: :direct? do
 end
 
 def direct?
-  !Env.params.dig(:success, :view) == "source_tab"
+  success = Env.params[:success]
+  !(success.is_a?(Hash) && success[:view] == "source_selector")
 end
