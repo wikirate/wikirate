@@ -28,7 +28,8 @@ format :html do
 
   def cancel_button_new_args
     return super unless answer_name
-    { href: path(mark: answer_name, view: :sourcebox, type_id: MetricAnswerID) }
+    { href: path(mark: answer_name, view: :sourcebox, type_id: MetricAnswerID),
+      "data-slot-selector": ".sourcebox-view" }
   end
 
   def new_view_hidden

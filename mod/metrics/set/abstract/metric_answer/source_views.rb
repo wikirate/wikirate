@@ -40,19 +40,36 @@ format :html do
   end
 
   view :sources do
-    source_options = { view: :core, items: { view: :cited } }
+    source_options = { view: :core, items: { view: :mini_bar } }
     source_options[:items][:hide] = :cited_source_links if voo.hide? :cited_source_links
     output [citations_count, nest(card.source_card, source_options)]
   end
 
-  view :sources_with_cited_button do
+  view :source_editor do
     with_nest_mode :normal do
-      field_nest :source, view: :core, items: { view: :with_cited_button }
+      field_nest :source, view: :core, items: { view: :cite_bar }
     end
   end
 
   view :source_tab, cache: :never, tags: :unknown_ok do
-    wrap { haml :source_tab }
+    if focal? || editing_answer?
+      render_source_selector
+    else
+      source_previews
+    end
+  end
+
+  def source_previews
+    nest card.source_card.item_cards.first, view: :preview
+  end
+
+  def editing_answer?
+    return false unless (opts = root.main_opts)
+    opts[:view].to_sym.in? [:edit, :new]
+  end
+
+  view :source_selector, cache: :never, tags: :unknown_ok do
+    wrap { haml :source_selector }
   end
 
   view :my_sources, cache: :never, tags: :unknown_ok do
@@ -109,18 +126,8 @@ format :html do
 
   def source_list label, sources
     return "" unless sources.any?
-    haml :source_list, label: label, sources: sources
+    haml :source_list, category_label: label, sources: sources
   end
-
-  # def source
-  #   Env.params[:source]
-  # end
-
-  # def sources
-  #   @sources ||= find_suggested_sources - card.source_card.item_cards
-  #   @sources.push(source_card) if source && (source_card = Card[source])
-  #   @sources
-  # end
 
   def citations_count_badge
     wrap_with :span, source_card&.item_names&.size, class: "badge badge-light border"

@@ -71,7 +71,7 @@ format :html do
 
   def unknown_preview
     wrap_with :div, class: "unknown-source-preview" do
-      "No preview currently available for #{file.content_type} sources"
+      "No preview currently available for #{card.file.content_type} sources"
     end
   end
 end

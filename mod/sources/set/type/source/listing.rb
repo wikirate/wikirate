@@ -19,43 +19,6 @@ format :html do
             field_nest(:description, view: :titled, title: "Description")]
   end
 
-  def year_list
-    card.year_card.item_names || []
-  end
-
-  # make view of year?
-  def year_icon
-    wrap_with :span, fa_icon("calendar"), class: "pr-1"
-  end
-
-  def wrap_data slot=true
-    super.merge year: year_list.to_json
-  end
-
-  def wrap_with_info
-    class_up "card-slot", "_citeable-source", true
-    wrap do
-      wrap_with :div, class: "source-info-container" do
-        yield
-      end
-    end
-  end
-
-  def with_toggle
-    # voo.hide! :links   # doesn't work with voo
-    @links = false
-    class_up "card-slot", "source-details-toggle", true
-    yield
-  end
-
-  def website_text
-    field_nest :wikirate_website, view: :content, items: { view: :name }
-  end
-
-  def title_text
-    field_nest :wikirate_title, view: :needed
-  end
-
   view :icon do
     icon = wrap_with(:i, " ", class: "glyphicon glyphicon-link")
     wrap_with(:div, icon, class: "source-icon")
@@ -91,16 +54,26 @@ format :html do
     _view_link
   end
 
-  def with_links?
-    @links != false
+  def year_list
+    card.year_card.item_names || []
   end
 
-  def source_website
-    with_links? ? _render_website_link : website_text
+  # make view of year?
+  def year_icon
+    wrap_with :span, fa_icon("calendar"), class: "pr-1"
+  end
+
+
+  def website_text
+    field_nest :wikirate_website, view: :content, items: { view: :name }
+  end
+
+  def title_text
+    field_nest :wikirate_title, view: :needed
   end
 
   def source_title
-    with_links? ? _render_title_link : title_text
+    voo.show?(:title_link) ? _render_title_link : title_text
   end
 
   def creator

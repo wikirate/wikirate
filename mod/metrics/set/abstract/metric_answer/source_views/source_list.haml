@@ -1,5 +1,5 @@
 %h5.py-3
-  = label
-.relevant-sources
+  = category_label
+.source-list
   - sources.compact.each do |source|
-    = nest source, view: cited?(source) ? :with_cited_button : :relevant
+    = nest source, view: :cite_bar

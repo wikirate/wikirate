@@ -7,4 +7,5 @@
   - if years.any?
     .fancy-year-list
       = year_icon
-      = years.join
+      %span.fancy-years
+        = years.join ", "

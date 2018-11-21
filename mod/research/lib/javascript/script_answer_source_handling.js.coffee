@@ -18,14 +18,12 @@ $.extend wikirate,
     $(".left_research_side-view .cited-sources")
 
   sourceIdFromEl = (el) ->
-    $(el).closest(".TYPE-source").data("card-id")
+    $(el).closest("._cite-bar").data("card-id")
 
   updateCitation = (action, sourceID) ->
     if (action == 'cite')
-      if citeSource sourceID
-        toggleCiteButtons sourceID, action
+      citeSource sourceID
     else if (action == 'uncite')
-      toggleCiteButtons sourceID, action
       unciteSource sourceID
 
   checkYearData = ($source) ->
@@ -48,7 +46,14 @@ $.extend wikirate,
 
   addYearToSource = ($source, year) ->
     $source.append yearHiddenInput($source, year)
+    fancy = $source.find ".fancy-years"
+    if fancy.is(":empty")
+      fancy.html year
+    else
+      fancy.html (fancy.html().trim() + ", " + year)
 
+  # adds a hidden input tag to cite bar so that source year will be added when
+  # answer is submitted.
   yearHiddenInput = ($source, year) ->
     year_list = $source.data("year")
     year_list.push(year)
@@ -57,19 +62,16 @@ $.extend wikirate,
                 .attr("name", "card[subcards][#{$source.data("card-name")}+year][content]")
                 .attr("value", year_list.join("\n"))
 
-  citeButtons = (sourceID) ->
-    $("._citeable-source[data-card-id='#{sourceID}'] .c-btn")
-
   citedSourceInForm = (sourceID) ->
-    $("form ._citeable-source[data-card-id='#{sourceID}']")
+    $("form ._cite-bar[data-card-id='#{sourceID}']")
 
   possibleSource = (sourceID) ->
-    $("#research_page-source.tab-pane ._citeable-source[data-card-id='#{sourceID}']:first")
+    $("#research_page-source.tab-pane ._cite-bar[data-card-id='#{sourceID}']")
 
   citeSource = (sourceID) ->
-    possible = possibleSource(sourceID)
+    possible = possibleSource sourceID
+    return false unless checkYearData(possible)
     $source = possible.clone(true)
-    return false unless checkYearData($source)
     possible.hide()
 
     ctns = citations()
@@ -83,51 +85,30 @@ $.extend wikirate,
     ctns.text("None") if ctns.is(':empty') || ctns.text().trim() == ""
     possibleSource(sourceID).show()
 
-  toggleCiteButtons = (sourceID, action) ->
-    citeButtons(sourceID).each ->
-      toggleCiteButton $(this), action
-
-  toggleCiteButton = (ele, action) ->
-    if (action == 'cite')
-      $citedButton = ele.removeClass("_cite_button")
-        .removeClass("btn-outline-primary")
-        .addClass("_cited_button btn-primary").text("Cited!")
-      $citedButton.hover ( ->
-        $(this).text('Uncite!').addClass('btn-danger').removeClass('btn-primary')
-      ), ->
-        $(this).text('Cited!').removeClass('btn-danger').addClass("btn-primary")
-    else
-      $citedButton = ele.removeClass("_cited_button btn-primary")
-                        .addClass("_cite_button btn-secondary")
-                        .text("Cite!")
-      $citedButton.off('mouseenter mouseleave')
-
 
 $(document).ready ->
-  $('body').on 'click', '._cite_button', (event) ->
+  $('body').on 'click', '._cite-button', (event) ->
     wikirate.toggleCitation(this, 'cite')
-    event.stopPropagation() # don't open preview
 
-  $('body').on 'click', '._cited_button', (event) ->
+  $('body').on 'click', '._uncite-button', (event) ->
     wikirate.toggleCitation(this, 'uncite')
-    event.stopPropagation() # don't open previews
 
 #  $('body').on 'click', '._add_new_source', ->
 #    wikirate.appendSourceForm($(this))
 
-  $("body").on 'click', '.slot_machine-view.SELF-research_page .cited-view.TYPE-source, .source-details-toggle', ->
-    wikirate.showResearchDetailsTab("view_source")
-    sourceID = $(this).data("card-name")
-    load_path = decko.slotPath(sourceID + "?view=source_and_preview")
-    $slot = $("#research_page-view_source > .card-slot")
-    $slot.empty()
-    wikirate.loader($slot).add()
-    $slot.updateSlot(load_path)
+  # $("body").on 'click', '.slot_machine-view.SELF-research_page .cited-view.TYPE-source, .source-details-toggle', ->
+  #   wikirate.showResearchDetailsTab("view_source")
+  #   sourceID = $(this).data("card-name")
+  #   load_path = decko.slotPath(sourceID + "?view=# source_and_preview")
+  #   $slot = $("#research_page-view_source > .card-slot")
+  #   $slot.empty()
+  #   wikirate.loader($slot).add()
+  #   $slot.updateSlot(load_path)
 
   $('body').on 'ajax:error', "#research_page-view_source > .card-slot", (event, xhr) ->
     $(this).find(".loader-anime").remove() # remove loader
 
 #      wikirate.handleYearData($parentForm, sourceYear)
 decko.slotReady (slot) ->
-  if slot.find(".TYPE-answer.source_tab-view")[0]
+  if slot.find(".TYPE-answer.source_selector-view")[0]
     wikirate.hideAlreadyCited()

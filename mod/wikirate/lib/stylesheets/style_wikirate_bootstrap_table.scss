@@ -1,3 +1,43 @@
+.details-toggle {
+  &:hover {
+    background-color: #fafafa;
+    cursor: pointer;
+  }
+}
+
+.details {
+  display: none;
+  background-color: #fff;
+  border-top: 1px solid $bright-text-color;
+  border: 1px solid #EAEAEA;
+  clear: both;
+  // color: $dark-text-color;
+  cursor: auto;
+  display: none;
+  // font-size: 12px;
+  height: 100%;
+  left: 100%;
+  margin-left: 1px;
+  overflow-y: auto;
+  padding-bottom:100px;
+  padding: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
+  &.stick {
+    position: fixed;
+    z-index: 3;
+    top: 65px;
+    left: 50%;
+    max-width: 935px;
+    width:50%;
+    height: 100%;
+    margin-left: 0px;
+    @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
+  }
+}
 
 
 .table-alias {
@@ -110,18 +150,10 @@ table.wikirate-table, .table.wikirate-table {
     }
   }
 
-  .details {
-    display: none;
+  .tr-link:hover {
+    background-color: #fafafa;
+    cursor: pointer;
   }
-
-
-  tr {
-    &.tr-details-toggle:hover, &.tr-link:hover {
-      background-color: #fafafa;
-      cursor: pointer;
-    }
-  }
-
   &.metric {
     @include left-color(rgba(103, 78, 167, 0.14), $metric-color);
   }
@@ -132,38 +164,6 @@ table.wikirate-table, .table.wikirate-table {
     @include left-color(rgba(43, 126, 160, 0.14), $topic-color);
   }
 
-  tbody > tr > td.details {
-      background-color: #fff;
-      border-top: 1px solid $bright-text-color;
-      border: 1px solid #EAEAEA;
-      clear: both;
-      // color: $dark-text-color;
-      cursor: auto;
-      display: none;
-      // font-size: 12px;
-      height: 100%;
-      left: 100%;
-      margin-left: 1px;
-      overflow-y: auto;
-      padding-bottom:100px;
-      padding: 0px;
-      position: absolute;
-      top: 0px;
-      width: 100%;
-      z-index: 1;
-      @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
-      &.stick{
-        position: fixed;
-        z-index: 3;
-        top: 65px;
-        left: 50%;
-        max-width: 935px;
-        width:50%;
-        height: 100%;
-        margin-left: 0px;
-        @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
-      }
-    }
   .thumbnail {
         border: 0;
         margin: 0;

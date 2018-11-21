@@ -164,12 +164,6 @@ body {
   box-shadow: none;
 }
 
-.TYPE-analysis .item-citation_and_content {
-  float: left;
-  text-align: left;
-  width: 100%;
-}
-
 .TYPE-image.d0-card-content img, .TYPE-image .card-body img {
   max-width: 100%;
   max-height: 100%;
@@ -191,12 +185,6 @@ div[data-slot*="float:right"]{
     float:right;
     border: 2px solid $border-color;
     margin-left: 15px;
-}
-
-.SELF-un_sustainable_development_goal-topic_list .item-browse_item {
-    float: left;
-    width: 20%;
-    padding: 10px;
 }
 
 // Commenting this because the following add too much space around the text.
