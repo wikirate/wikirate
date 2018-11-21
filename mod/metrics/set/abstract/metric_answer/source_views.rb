@@ -65,7 +65,7 @@ format :html do
 
   def editing_answer?
     return false unless (opts = root.main_opts)
-    opts[:view].to_sym.in? [:edit, :new]
+    opts[:view]&.to_sym&.in? [:edit, :new]
   end
 
   view :source_selector, cache: :never, tags: :unknown_ok do
