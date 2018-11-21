@@ -34,8 +34,6 @@ blocks:
           value: "test"
         - name: COVERAGE
           value: "false"
-        - name: DATABASE_URL
-          value: mysql://mysql@localhost/test?encoding=utf8
       prologue:
         commands:
           - sem-service start mysql
@@ -52,6 +50,7 @@ blocks:
           - sudo apt-get install -y -qq mysql-client
           - sudo apt-get install -y -qq libmysqlclient-dev
           - bundle install --deployment
+          - mysql --host=0.0.0.0 -uroot -e "create database test"
           - bundle exec rake wikirate:test:seed
       jobs:
       - name: RSpec

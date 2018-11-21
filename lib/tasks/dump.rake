@@ -21,7 +21,12 @@ namespace :wikirate do
     pwd  = ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"]
     mysql_args = "-u #{user}"
     mysql_args += " -p #{pwd}" if pwd
+    mysql_args += " -h #{host}" if host
     mysql_args
+  end
+
+  def host
+    Decko.config.database_configuration.dig(Rails.env, "host")
   end
 
   def base_dump_path
