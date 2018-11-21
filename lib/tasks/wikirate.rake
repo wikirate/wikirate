@@ -1,7 +1,6 @@
 require "colorize"
 
 namespace :wikirate do
-
   task :version do
     puts wikirate_version
   end
@@ -47,10 +46,10 @@ namespace :wikirate do
     Card::Cache.reset_all
     Card::Auth.as_bot do
       Card[:wikirate_company].update_attributes! name: subject, update_referers: true
-      # Card.search(type_id: Card::MetricID) do |card|
-      #   next if card.codename.present?
-      #   card.delete!
-      # end
+      Card.search(type_id: Card::MetricID) do |card|
+        card.update_attributes! codename: nil if card.codename.present?
+        card.delete!
+      end
       Card.search(type_id: Card::WikirateCompanyID) do |card|
         card.delete! unless card.codename.present?
       end

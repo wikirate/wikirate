@@ -64,12 +64,8 @@ blocks:
           - yarn install
           - yarn jest test
 
-  - name: "Integration tests"
-    task:
-      jobs:
       - name: Cucumber
         commands:
-          - checkout
           - wget https://gist.githubusercontent.com/mimimalizam/9aef3aa5ac0884943efb6aca947a8b56/raw/firefox-semaphore.sh && bash firefox-semaphore.sh 62.0
           - bundle exec decko cucumber 2>&1
 
