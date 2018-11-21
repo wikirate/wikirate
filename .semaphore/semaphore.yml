@@ -49,6 +49,9 @@ blocks:
           - git submodule sync --recursive
           - git submodule update -f --init --recursive
           - cp .semaphore/application.rb config/application.rb
+          - sudo apt-get install -y -qq mysql-client
+          - sudo apt-get install -y -qq libmysqlclient-dev
+          - bundle install --deployment
           - bundle exec rake wikirate:test:seed
       jobs:
       - name: RSpec
