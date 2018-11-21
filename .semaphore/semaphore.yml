@@ -45,7 +45,7 @@ blocks:
           - git submodule sync
           - git submodule update
           - git submodule sync --recursive
-          - git submodule update -f --init --recursive
+          - git submodule update --init --recursive
           - cp .semaphore/application.rb config/application.rb
           - cp .semaphore/database.yml config/database.yml
           - sudo apt-get install -y -qq mysql-client

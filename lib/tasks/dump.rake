@@ -18,7 +18,7 @@ namespace :wikirate do
 
   def mysql_login
     mysql_args = "-u #{user}"
-    mysql_args += " -p #{pwd}" if pwd
+    mysql_args += " -p #{password}" if pwd
     mysql_args += " -h #{host}" if host
     mysql_args
   end
@@ -27,7 +27,7 @@ namespace :wikirate do
     ENV["DATABASE_MYSQL_HOST"] || ENV["MYSQL_HOST"] ||database_config("host")
   end
 
-  def pwd
+  def password
     ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"] || database_config("password")
   end
 
