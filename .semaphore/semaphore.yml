@@ -17,7 +17,7 @@ blocks:
             - git submodule update
             - git submodule sync --recursive
             - git submodule update -f --init --recursive
-            - git submodule foreach --recursive 'cache store $sha1 $sm_path'
+            - git submodule foreach --recursive 'cache store $sha1 ~/wikirate/$sm_path'
             - sem-service start mysql
             - sudo apt-get install -y -qq mysql-client
             - sudo apt-get install -y -qq libmysqlclient-dev
@@ -38,6 +38,7 @@ blocks:
           value: mysql://mysql@localhost/test?encoding=utf8
       prologue:
         commands:
+          - sem-service start mysql
           - sem-service status mysql
           - checkout
           - cache restore bundle-gems-$(checksum Gemfile.lock)
