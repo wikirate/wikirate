@@ -16,6 +16,9 @@ blocks:
             - git submodule update
             - git submodule sync --recursive
             - git submodule update -f --init --recursive
+            - sem-service start mysql
+            - sudo apt-get install -y -qq mysql-client
+            - sem-service status mysql
             - cache restore bundle-gems-$(checksum Gemfile.lock)
             - bundle install --deployment
             - cache store bundle-gems-$(checksum Gemfile.lock) vendor/bundle
@@ -29,16 +32,17 @@ blocks:
         - name: DATABASE_URL
           value: mysql://mysql@localhost/test?encoding=utf8
       jobs:
-      - name: Docker build
+      - name: Seed database
         commands:
-          - sem-service start mysql
-          - sudo apt-get install -y -qq mysql-client
-          - sem-service status mysql
-          - checkout
           - bundle exec rake wikirate:test:seed
 
   - name: "Unit tests"
     task:
+      env_vars:
+        - name: RAILS_ENV
+          value: test
+        - name: DATABASE_URL
+          value: mysql://mysql@localhost/test?encoding=utf8
       prologue:
         commands:
           - checkout
@@ -50,15 +54,11 @@ blocks:
         commands:
           - RAILS_ENV=test RAILS_ROOT=. COVERAGE=false bundle exec rspec
 
-      - name: Lint code
+      - name: Jest
         commands:
-          - checkout
-          - echo "make lint"
-
-      - name: Check security
-        commands:
-          - checkout
-          - echo "make security"
+          - nvm use 10.0.0
+          - yarn install
+          - yarn jest test
 
   - name: "Integration tests"
     task:
