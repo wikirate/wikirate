@@ -29,9 +29,9 @@ blocks:
     task:
       env_vars:
         - name: RAILS_ENV
-          value: test
+          value: "test"
         - name: COVERAGE
-          value: false
+          value: "false"
         - name: DATABASE_URL
           value: mysql://mysql@localhost/test?encoding=utf8
       prologue:
