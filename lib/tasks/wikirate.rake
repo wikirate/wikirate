@@ -41,7 +41,7 @@ namespace :wikirate do
     Rake::Task["wikirate:change_subject"].invoke
   end
 
-  task change_subject: :environment do |subject|
+  task change_subject: :environment do
     _task, subject = ARGV
     Card::Cache.reset_all
     Card::Auth.as_bot do

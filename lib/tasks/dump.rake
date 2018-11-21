@@ -17,14 +17,14 @@ namespace :wikirate do
   end
 
   def mysql_login
-    mysql_args = "-u #{user}"
-    mysql_args += " -p #{password}" if password
+    mysql_args = "-u#{user}"
+    mysql_args += " -p#{password}" if password
     mysql_args += " -h #{host}" if host
     mysql_args
   end
 
   def host
-    ENV["DATABASE_MYSQL_HOST"] || ENV["MYSQL_HOST"] ||database_config("host")
+    ENV["DATABASE_MYSQL_HOST"] || ENV["MYSQL_HOST"] || database_config("host")
   end
 
   def password
