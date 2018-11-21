@@ -240,3 +240,10 @@ def select_year year
   # selector = %{a:contains('#{year}')}
   # page.execute_script "document.location = $(\"#{selector}\").attr('href')"
 end
+
+Then(/^I should see add link "([^"]*)"$/) do |arg|
+  expect(page).to have_tag(:a) do
+    with_tag :i, with: { class: "fa-plus-square" }
+    with_text /#{arg}/
+  end
+end
