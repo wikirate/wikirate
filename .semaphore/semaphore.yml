@@ -6,35 +6,42 @@ agent:
     os_image: ubuntu1804
 
 blocks:
+  - name: Install dependencies
+    task:
+      jobs:
+        - name: cache bundle
+          commands:
+            - checkout
+            - cache restore bundle-gems-$(checksum Gemfile.lock)
+            - bundle install --deployment
+            - cache store bundle-gems-$(checksum Gemfile.lock) vendor/bundle
+            - cache store bundle-config-$(checksum Gemfile.lock) .bundle
+
   - name: "Build"
     task:
       env_vars:
-        - name: APP_ENV
-          value: prod
+        - name: RAILS_ENV
+          value: test
+        - name: DATABASE_URL
+          value: mysql://mysql@localhost/test?encoding=utf8
       jobs:
       - name: Docker build
         commands:
+          - sem-service start mysql
           - checkout
-          - ls -1
-          - echo $APP_ENV
-          - echo "Docker build..."
-          - echo "done"
-
-  - name: "Smoke tests"
-    task:
-      jobs:
-      - name: Smoke
-        commands:
-          - checkout
-          - echo "make smoke"
+          - bundle exec rake wikirate:test:seed
 
   - name: "Unit tests"
     task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore bundle-gems-$(checksum Gemfile.lock)
+          - cache restore bundle-config-$(checksum Gemfile.lock)
       jobs:
       - name: RSpec
         commands:
-          - checkout
-          - echo "make rspec"
+          - RAILS_ENV=test RAILS_ROOT=. COVERAGE=false bundle exec rspec
 
       - name: Lint code
         commands:
@@ -54,10 +61,3 @@ blocks:
           - checkout
           - echo "make cucumber"
 
-  - name: "Push Image"
-    task:
-      jobs:
-      - name: Push
-        commands:
-          - checkout
-          - echo "make docker.push"
