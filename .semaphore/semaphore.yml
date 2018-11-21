@@ -18,7 +18,7 @@ blocks:
             - git submodule update -f --init --recursive
             - sem-service start mysql
             - sudo apt-get install -y -qq mysql-client
-            - sudo apt-get install libmysqlclient-dev
+            - sudo apt-get install -y -qq libmysqlclient-dev
             - sem-service status mysql
             - cache restore bundle-gems-$(checksum Gemfile.lock)
             - bundle install --deployment
