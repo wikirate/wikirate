@@ -25,30 +25,22 @@ blocks:
             - cache store bundle-gems-$(checksum Gemfile.lock) vendor/bundle
             - cache store bundle-config-$(checksum Gemfile.lock) .bundle
 
-  - name: "Database"
+  - name: "Tests"
     task:
       env_vars:
         - name: RAILS_ENV
           value: test
-        - name: DATABASE_URL
-          value: mysql://mysql@localhost/test?encoding=utf8
-      jobs:
-      - name: Seed database
-        commands:
-          - bundle exec rake wikirate:test:seed
-
-  - name: "Unit tests"
-    task:
-      env_vars:
-        - name: RAILS_ENV
-          value: test
+        - name: COVERAGE
+          value: false
         - name: DATABASE_URL
           value: mysql://mysql@localhost/test?encoding=utf8
       prologue:
         commands:
+          - checkout
           - cache restore bundle-gems-$(checksum Gemfile.lock)
           - cache restore bundle-config-$(checksum Gemfile.lock)
           - cp .semaphore/application.rb config/application.rb
+          - bundle exec rake wikirate:test:seed
       jobs:
       - name: RSpec
         commands:
