@@ -114,8 +114,6 @@ group :development do
 
   # gem "nospring"
   # gem 'spring-commands-rspec'
-  #
-
 end
 
 group :test, :development do

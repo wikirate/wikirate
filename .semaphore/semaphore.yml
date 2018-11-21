@@ -13,7 +13,6 @@ blocks:
           commands:
             - checkout
             - cache restore bundle-gems-$(checksum Gemfile.lock)
-            - gem install bundler
             - bundle install --deployment
             - cache store bundle-gems-$(checksum Gemfile.lock) vendor/bundle
             - cache store bundle-config-$(checksum Gemfile.lock) .bundle
