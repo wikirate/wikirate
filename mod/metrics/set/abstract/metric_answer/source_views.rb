@@ -64,8 +64,8 @@ format :html do
   end
 
   def editing_answer?
-    return false unless (opts = root.main_opts)
-    opts[:view]&.to_sym&.in? [:edit, :new]
+    return true if card.new?
+    (opts = root.main_opts) && opts[:view]&.to_sym == :edit
   end
 
   view :source_selector, cache: :never, tags: :unknown_ok do
