@@ -21,7 +21,7 @@ blocks:
             - cache store bundle-gems-$(checksum Gemfile.lock) vendor/bundle
             - cache store bundle-config-$(checksum Gemfile.lock) .bundle
 
-  - name: "Build"
+  - name: "Database"
     task:
       env_vars:
         - name: RAILS_ENV
@@ -32,6 +32,8 @@ blocks:
       - name: Docker build
         commands:
           - sem-service start mysql
+          - sudo apt-get install -y -qq mysql-client
+          - sem-service status mysql
           - checkout
           - bundle exec rake wikirate:test:seed
 
@@ -42,6 +44,7 @@ blocks:
           - checkout
           - cache restore bundle-gems-$(checksum Gemfile.lock)
           - cache restore bundle-config-$(checksum Gemfile.lock)
+          - cp .semaphore/application.rb config/application.rb
       jobs:
       - name: RSpec
         commands:
