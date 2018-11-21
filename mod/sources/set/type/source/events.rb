@@ -22,11 +22,13 @@ def field_present? fieldcode
   field.present?
 end
 
-require_fields :file, :wikirate_title, :wikirate_company, :year
+require_fields :file
 
-event :require_report_type_when_direct, :validate, on: :save, when: :direct? do
-  add_error_unless_field :report_type
-end
+# require_fields :file, :wikirate_title, :wikirate_company, :year
+#
+# event :require_report_type_when_direct, :validate, on: :save, when: :direct? do
+#   add_error_unless_field :report_type
+# end
 
 def direct?
   success = Env.params[:success]

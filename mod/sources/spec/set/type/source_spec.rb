@@ -25,7 +25,7 @@ RSpec.describe Card::Set::Type::Source do
 
     it "handles empty source" do
       expect { create_source "" }
-        .to raise_error(ActiveRecord::RecordInvalid, /file required/)
+        .to raise_error(ActiveRecord::RecordInvalid, /File required/)
     end
 
     it "creates website card with actions" do
@@ -46,8 +46,8 @@ RSpec.describe Card::Set::Type::Source do
     example "without anything" do
       sourcepage = Card.new type_id: Card::SourceID
       expect(sourcepage).not_to be_valid
-      expect(sourcepage.errors).to have_key :source
-      expect(sourcepage.errors[:source]).to include "file required"
+      expect(sourcepage.errors).to have_key "File"
+      expect(sourcepage.errors["File"]).to include "required"
     end
 
     describe "with a file link" do
