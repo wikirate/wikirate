@@ -16,16 +16,16 @@ namespace :wikirate do
   desc "generate minimal seed data for a fresh start without any data"
   task :generate_seed do |task, _args|
     ensure_env :init_test, task do
-      execute_command "rake decko:seed_without_reset", Rails.env
-      Rake::Task["wikirate:test:import_from"].invoke
+      execute_command "rake decko:seed_without_reset", "init_test"
+      import_wikirate_essentials
       Delayed::Job.delete_all
+      Card::Cache.reset_all
+      dump base_dump_path
     end
-    Rake::Task["wikirate:migrate_seed"].invoke
   end
 
   task :migrate_seed do |task, _args|
     ensure_env Rails.env, task do
-      dump base_dump_path
       load_dump base_dump_path
       Rake::Task["decko:migrate"].invoke
       Card::Cache.reset_all
@@ -74,6 +74,30 @@ namespace :wikirate do
             .gsub(/\b#{old.capitalize}\b/, new.capitalize)
             .gsub(/\b#{old.downcase}\b/, new.downcase)
       card.update_attributes! db_content: new_content
+    end
+  end
+
+  def import_wikirate_essentials location=:live
+    import_from(location) do |import|
+      # cardtype has to be the first
+      # otherwise codename cards get the wrong type
+      import.cards_of_type "cardtype"
+      import.items_of :codenames
+      import.cards_of_type "year"
+
+      Card.search(type_id: Card::SettingID, return: :name).each do |setting|
+        # TODO: make export view for setting cards
+        #   then we don't need to import all script and style cards
+        #   we do it via subitems: true
+        depth = %w(*script *style *layout).include?(setting) ? 3 : 1
+        import.items_of setting, depth: depth
+      end
+      import.items_of :production_export, depth: 2
+
+      # don't import table migrations
+      # exclude = %w(20161005120800 20170118180006 20170210153241 20170303130557
+      #            20170330102819)
+      import.migration_records # exclude
     end
   end
 
