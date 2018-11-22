@@ -4,8 +4,8 @@
 event :annotate_sources, :prepare_to_validate, on: :save, when: :source_based? do
   if (sources = subfield(:source))
     sources.item_names.each { |source| add_source_traits source }
-  elsif !source_card.items_names.any?
-    errors.add :source, "no source cited"
+#  elsif !source_card.item_names.any?
+#    errors.add :source, "no source cited"
   end
 end
 
