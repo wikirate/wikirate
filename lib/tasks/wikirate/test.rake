@@ -5,9 +5,6 @@ namespace :wikirate do
   namespace :test do
     full_dump_path = File.join Decko.root, "test", "seed.db"
 
-    user = ENV["DATABASE_MYSQL_USERNAME"] || ENV["MYSQL_USER"] || "root"
-    pwd  = ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"]
-
     def testdb
       @testdb ||= ENV["DATABASE_NAME_TEST"] ||
                   ((t = Decko.config.database_configuration["test"]) &&
@@ -72,10 +69,10 @@ namespace :wikirate do
             # TODO: make export view for setting cards
             #   then we don't need to import all script and style cards
             #   we do it via subitems: true
-            with_subitems = %w(*script *style *layout).include? setting
-            import.items_of setting, subitems: with_subitems
+            depth = %w(*script *style *layout).include?(setting) ? 3 : 1
+            import.items_of setting, depth: depth
           end
-          import.items_of :production_export, subitems: true, depth: 3
+          import.items_of :production_export, depth: 2
 
           # don't import table migrations
           # exclude = %w(20161005120800 20170118180006 20170210153241 20170303130557
@@ -106,23 +103,14 @@ namespace :wikirate do
     desc "load db dump into test db"
     task :load_dump, [:path] do |_task, args|
       dump_path = args[:path] || ARGV[1] || full_dump_path
-      mysql_login = "mysql -u #{user}"
-      mysql_login += " -p#{pwd}" if pwd
-      cmd = "echo \"create database if not exists #{testdb} " \
-            "character set utf8mb4 COLLATE utf8mb4_unicode_ci\" "\
-            "| #{mysql_login}; " \
-            "#{mysql_login} --database=#{testdb} < #{dump_path}"
-      # puts "executing #{cmd}"
-      system cmd
+      load_dump dump_path, testdb
     end
 
 
     desc "dump test database"
     task :dump, [:path] do |_task, args|
       dump_path = args[:path] || full_dump_path
-      mysql_args = "-u #{user}"
-      mysql_args += " -p #{pwd}" if pwd
-      execute_command "mysqldump #{mysql_args} #{testdb} > #{dump_path}"
+      dump dump_path, testdb
     end
   end
 end

@@ -116,7 +116,7 @@ format :html do
   def relations_table value_view=:details
     name_view = inverse? ? :inverse_company_name : :company_name
     wikirate_table :company, search_with_params, [name_view, value_view],
-                   header: %w[Company Answer]
+                   header: [rate_subject, "Answer"]
   end
 
   # ~~~~~~~~~ DESCENDANT DETAILS

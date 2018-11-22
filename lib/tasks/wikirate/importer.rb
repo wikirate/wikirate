@@ -13,14 +13,10 @@ class Importer
   end
 
   # @return [Array<Hash>] each hash contains the attributes for a card
-  def items_of cardname, opts={}
+  def items_of cardname, depth: 1
     card_data =
       work_on "getting data from #{cardname} card" do
-        if opts[:subitems]
-          json_export cardname, :export_items, opts[:depth]
-        else
-          json_export(cardname)["card"]["value"]
-        end
+        json_export cardname, :export, depth
       end
     import_card_data card_data
   end
