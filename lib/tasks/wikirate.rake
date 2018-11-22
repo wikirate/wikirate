@@ -89,7 +89,7 @@ namespace :wikirate do
         # TODO: make export view for setting cards
         #   then we don't need to import all script and style cards
         #   we do it via subitems: true
-        depth = %w(*script *style *layout).include?(setting) ? 3 : 1
+        depth = %w[*script *style *layout].include?(setting) ? 3 : 1
         import.items_of setting, depth: depth
       end
       import.items_of :production_export, depth: 2
