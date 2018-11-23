@@ -56,7 +56,7 @@ def fetch_http_header
   curl.max_redirects = 5
   curl.http_head
   curl.header_str
-rescue Curl::Easy::Error => error
+rescue Curl::Easy::Error, Curl::Err::CurlError => error
   Rails.logger.info "Fail to extract header from the #{url}, #{error.message}"
   ""
 end

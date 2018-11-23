@@ -17,16 +17,15 @@ class ImportCard
 
   def update
     return unless @card
-    if @attr[:name] && @attr[:name] != @card.name
-      @card.update_attributes! name: @attr.delete(:name)
-    end
+    name = @attr.delete "name"
+    @card.update_attributes! name: name if name && name != @card.name
     @card.update_attributes!(@attr)
-    "updating card #{@name} (#{@attr.inspect})".light_blue
+    "updated: #{@name}".light_blue
   end
 
   def create
     Card.create! @attr
-    "creating card #{@name} (#{@attr.inspect})".yellow
+    "created: #{@name}".yellow
   end
 
   def fetch_card

@@ -57,28 +57,7 @@ namespace :wikirate do
     task :import_from, [:location] => :environment do |task, args|
       ensure_env(:init_test, task, args) do
         Card::Cache.reset_all
-        location = args[:location] || "production"
-        import_from(location) do |import|
-          # cardtype has to be the first
-          # otherwise codename cards get the wrong type
-          import.cards_of_type "cardtype"
-          import.items_of :codenames
-          import.cards_of_type "year"
-
-          Card.search(type_id: Card::SettingID, return: :name).each do |setting|
-            # TODO: make export view for setting cards
-            #   then we don't need to import all script and style cards
-            #   we do it via subitems: true
-            depth = %w(*script *style *layout).include?(setting) ? 3 : 1
-            import.items_of setting, depth: depth
-          end
-          import.items_of :production_export, depth: 2
-
-          # don't import table migrations
-          # exclude = %w(20161005120800 20170118180006 20170210153241 20170303130557
-          #            20170330102819)
-          import.migration_records # exclude
-        end
+        import_wikirate_essentials(args[:location] || "live")
       end
     end
 

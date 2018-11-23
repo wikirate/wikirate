@@ -32,7 +32,7 @@ namespace :wikirate do
   end
 
   def user
-    ENV["DATABASE_MYSQL_USERNAME"] || ENV["MYSQL_USER"] || "root"
+    ENV["DATABASE_MYSQL_USERNAME"] || ENV["MYSQL_USER"] || database_config("username")
   end
 
   def database_config key, env=Rails.env
