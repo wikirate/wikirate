@@ -39,7 +39,7 @@ format :html do
     {
       "Alphabetical" => "name",
       "Most Metrics" => "metric",
-      "Most Companies" => "company"
+      "Most #{rate_subjects}" => "company"
     }
   end
 end

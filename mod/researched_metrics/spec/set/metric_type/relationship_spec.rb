@@ -1,4 +1,10 @@
-describe Card::Set::MetricType::Relationship do
+RSpec.describe Card::Set::MetricType::Relationship do
+  def card_subject
+    Card["Jedi+more evil+SPECTRE+1977+Los_Pollos_Hermanos"]
+  end
+
+  check_views_for_errors :edit
+
   describe "create" do
     before do
       create "Joe User+bigger than",

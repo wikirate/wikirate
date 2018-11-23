@@ -32,7 +32,7 @@ format :html do
   end
 
   def company_sort_link
-    table_sort_link "Companies", :company_name
+    table_sort_link rate_subjects, :company_name
   end
 
   def value_sort_link
