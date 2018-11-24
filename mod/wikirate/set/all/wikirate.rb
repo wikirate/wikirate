@@ -9,6 +9,14 @@ format do
   view :cgi_escape_name do
     CGI.escape card.name
   end
+
+  def rate_subject
+    @wikirate_subject ||= Card.fetch_name(:wikirate_company)
+  end
+
+  def rate_subjects
+    @wikirate_subjects ||= rate_subject.pluralize
+  end
 end
 
 format :html do

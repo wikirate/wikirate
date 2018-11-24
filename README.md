@@ -18,7 +18,9 @@ The following will help set up a functioning wikirate site with a small subset o
 1. install gems: `bundle install`
 1. set up config: `cp -R sample_config/* config`
 1. populate dev database (with test data): `DATABASE_NAME_TEST=wikirate_dev bundle exec rake wikirate:test:seed`
+   or start fresh with a subject of your choice: `bundle exec rake wikirate:new_with_subject Camels`
 1. add AWS credentials to config/application.rb (Ask wikirate dev team!  Sorry, we'll make this easier soon)
+1. to make assets like icons work: `bundle exec rake decko:update_assets_symlink`
 1. reset machines `rake card:reset_machine_output`
 1. start server: `bundle exec decko s`
 
@@ -84,3 +86,4 @@ quick examples:
   cap production maintenance:disable
 
 ```
+

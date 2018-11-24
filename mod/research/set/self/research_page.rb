@@ -24,7 +24,7 @@ format :html do
   end
 
   def slot_machine opts={}
-    %i[metric company project year active_tab].each do |n|
+    %i[metric company related_company project year active_tab].each do |n|
       instance_variable_set "@#{n}", opts[n] if opts[n]
     end
     wrap do

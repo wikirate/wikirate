@@ -42,10 +42,6 @@ format :html do
     multiselect_filter :importance, %w[upvotes novotes]
   end
 
-  view :filter_industry_formgroup, cache: :never do
-    select_filter :industry
-  end
-
   def default_year_option
     { "Most Recent" => "latest" }
   end
@@ -103,11 +99,6 @@ format :html do
     { "I voted FOR" => :upvotes,
       "I voted AGAINST" => :downvotes,
       "I did NOT vote" => :novotes }
-  end
-
-  def industry_options
-    card_name = CompanyFilterQuery::INDUSTRY_METRIC_NAME
-    Card[card_name].value_options
   end
 
   def designer_options
