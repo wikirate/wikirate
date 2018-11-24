@@ -1,6 +1,6 @@
 
 .sourcebox.p-3
-  %form.slotter{ action: path(view: :sourcebox), "data-remote": true, method: "get" }
+  %form.slotter{ method: "get", action: path(view: :sourcebox), "data-remote": true }
     = text_field_tag :source_search_term, nil, placeholder: "keyword or http://",
                                                class: "p-2 w-50",
                                                value: params[:source_search_term]
