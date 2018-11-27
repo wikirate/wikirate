@@ -1,10 +1,11 @@
 # when an answer cites a source, make sure
 #   1. the source's +company has the answer's company
 #   2. the source's +report_type has the answer's metric's report type
-event :annotate_sources, :prepare_to_validate, on: :save, when: :source_based? do
+event :annotate_sources, :prepare_to_validate, on: :create, when: :source_based? do
   if (sources = subfield(:source))
     sources.item_names.each { |source| add_source_traits source }
-  elsif !source_card&.item_names&.any?
+  else
+  # elsif !source_card&.item_names&.any?
     errors.add :source, "no source cited"
   end
 end
