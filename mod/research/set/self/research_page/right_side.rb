@@ -36,5 +36,4 @@ format :html do
     nest metric, view: :main_details,
                  hide: [:add_value_buttons, :import_button, :about]
   end
-
 end

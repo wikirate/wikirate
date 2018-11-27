@@ -12,7 +12,7 @@ event :validate_link, :validate, on: :save, when: :link_present? do
   elsif wikirate_link?
     errors.add :invalid, "Cannot use wikirate url as source"
   elsif duplicates.any?
-    errors.add :duplicate, "duplicate of #{duplicates.first.name}"
+    errors.add :duplicate, "duplicate of #{duplicates.first.name}: #{content}"
   end
 end
 
@@ -51,7 +51,8 @@ def generate_thumbnail
   Timeout.timeout(5) do
     LinkThumbnailer.generate content
   end
-rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions, Timeout::Error
+rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions,
+       Timeout::Error, URI::InvalidURIError
   Rails.logger.info "failed to extract information from #{content}"
   nil
 end

@@ -44,7 +44,8 @@ class MetaData
     @title = preview.title || ""
     @description = preview.description || ""
     @image_url = preview.images.first.src.to_s unless preview.images.empty?
-  rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions => e
+  rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions,
+         Timeout::Error, URI::InvalidURIError => e
     Rails.logger.debug "failed to fetch meta data with LinkThumbnailer: #{e.message}"
   end
 

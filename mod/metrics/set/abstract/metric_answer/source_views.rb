@@ -81,21 +81,25 @@ format :html do
   end
 
   view :source_results, cache: :never, tags: :unknown_ok do
-    return "" unless params[:button] == "source_search"
-    results = source_results
-    if results.any?
-      source_list "Search Results", results
-    else
-      no_source_results
+    when_searching do |results|
+      if results.any?
+        source_list "Search Results", results
+      else
+        no_source_results
+      end
     end
   end
 
+  def when_searching
+    return "" unless params[:button] == "source_search"
+    yield source_results
+  end
+
   def source_results
-    return [] unless source_search_term.present?
-    if source_search_term.url?
-      sources_found_by_url
+    if source_search_term.present?
+      sources_found_by_url || sources_found_by_keyword
     else
-      sources_found_by_keyword
+      []
     end
   end
 
@@ -104,6 +108,7 @@ format :html do
   end
 
   def sources_found_by_url
+    return unless source_search_term.url?
     Self::Source.find_duplicates source_search_term
   end
 

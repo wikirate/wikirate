@@ -6,7 +6,7 @@ def filter_keys
 end
 
 def advanced_filter_keys
-  %i[wikirate_company industry project]
+  %i[wikirate_company project]
 end
 
 def default_filter_option

@@ -42,10 +42,6 @@ format :html do
     multiselect_filter :importance, %w[upvotes novotes]
   end
 
-  view :filter_industry_formgroup, cache: :never do
-    select_filter :industry
-  end
-
   def default_year_option
     { "Most Recent" => "latest" }
   end
@@ -105,18 +101,13 @@ format :html do
       "I did NOT vote" => :novotes }
   end
 
-  def industry_options
-    card_name = CompanyFilterQuery::INDUSTRY_METRIC_NAME
-    Card[card_name].value_options
-  end
-
   def designer_options
     metrics = Card.search type_id: MetricID, return: :name
     metrics.map do |m|
       names = m.to_name.parts
       # score metric?
       names.length == 3 ? names[2] : names[0]
-    end.uniq!(&:downcase).sort_by!(&:downcase)
+    end.uniq(&:downcase).sort_by(&:downcase)
   end
 
   def metric_value_filter_label

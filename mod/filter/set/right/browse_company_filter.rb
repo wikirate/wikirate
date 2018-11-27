@@ -1,7 +1,7 @@
 include_set Abstract::BrowseFilterForm
 
 def filter_keys
-  %i[name industry]
+  %i[name]
 end
 
 def advanced_filter_keys

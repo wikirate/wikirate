@@ -39,9 +39,9 @@ PATH
 PATH
   remote: vendor/decko
   specs:
-    card (1.96.3)
+    card (1.96.5)
       bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.6.3)
+      cardname (= 0.6.5)
       carrierwave (= 1.2.2)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -59,11 +59,11 @@ PATH
       twitter (~> 6.1)
       uglifier (~> 3.2)
       uuid (~> 2.3)
-    cardname (0.6.3)
+    cardname (0.6.5)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
-    decko (0.6.3)
-      card (= 1.96.3)
+    decko (0.6.5)
+      card (= 1.96.5)
 
 GEM
   remote: http://rubygems.org/
@@ -196,7 +196,7 @@ GEM
       railties (>= 4, < 6)
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
-    curb (0.9.6)
+    curb (0.9.7)
     daemons (1.2.6)
     dalli (2.7.9)
     database_cleaner (1.7.0)
@@ -231,7 +231,7 @@ GEM
     eventmachine (1.2.7)
     excon (0.62.0)
     execjs (2.7.0)
-    faraday (0.15.3)
+    faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     fission (0.5.0)
@@ -381,7 +381,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (2.4.0)
+    fog-vsphere (2.5.0)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (1.0.0)

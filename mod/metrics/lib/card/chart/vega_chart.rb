@@ -223,7 +223,7 @@ class Card
 
       def y_axis
         hash = { orient: "left", scale: "y",
-                 title: "Companies",
+                 title: @format.rate_subjects,
                  encode: axes_encode }
         hash[:tickCount] = y_tick_count if y_tick_count
         hash

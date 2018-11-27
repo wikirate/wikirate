@@ -9,7 +9,6 @@ card_accessor :wikirate_title
 card_accessor :wikirate_link
 card_accessor :file
 
-
 def file_url
   file_card&.file&.url
 end
