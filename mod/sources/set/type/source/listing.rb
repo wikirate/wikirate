@@ -63,7 +63,6 @@ format :html do
     wrap_with :span, fa_icon("calendar"), class: "pr-1"
   end
 
-
   def website_text
     field_nest :wikirate_website, view: :content, items: { view: :name }
   end

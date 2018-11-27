@@ -24,7 +24,7 @@ format :html do
       report_type: answer_card.report_type&.content }.each do |fieldcode, value|
       params["_#{fieldcode.cardname}"] = value
     end
-   end
+  end
 
   def cancel_button_new_args
     return super unless answer_name

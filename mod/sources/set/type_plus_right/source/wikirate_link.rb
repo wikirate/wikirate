@@ -12,7 +12,7 @@ event :validate_link, :validate, on: :save, when: :link_present? do
   elsif wikirate_link?
     errors.add :invalid, "Cannot use wikirate url as source"
   elsif duplicates.any?
-    errors.add :duplicate, "duplicate of #{duplicates.first.name}"
+    errors.add :duplicate, "duplicate of #{duplicates.first.name}: #{content}"
   end
 end
 

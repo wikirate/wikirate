@@ -57,8 +57,8 @@ end
 
 def add_source wikipedia_article=:darth_vader
   source = sample_source wikipedia_article
-  fill_in "card_subcards__File_remote_file_url", with: source.link_url
-  click_button "Submit"
+  fill_in "source_search_term", with: source.link_url
+  click_button "Find or Add Source"
 end
 
 def go_to_source wikipedia_article
