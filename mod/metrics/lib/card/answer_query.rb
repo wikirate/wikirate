@@ -145,7 +145,7 @@ class Card
 
     def prepare_filter_args filter
       @filter_args = filter.deep_symbolize_keys
-      @filter_args[:latest] = true unless filter[:year] || filter[:metric_value]
+      # @filter_args[:latest] = true unless filter[:year] || filter[:metric_value]
     end
 
     def prepare_sort_args args
