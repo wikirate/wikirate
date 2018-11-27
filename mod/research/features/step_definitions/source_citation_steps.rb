@@ -38,6 +38,7 @@ end
 
 And(/^I cite source without year confirming$/) do |expected_msg|
   add_source
+  binding.pry
   confirm_citation expected_msg.tr("\n", " ")
 end
 
