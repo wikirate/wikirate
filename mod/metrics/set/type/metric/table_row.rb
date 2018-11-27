@@ -13,7 +13,7 @@ format :html do
   end
 
   view :company_count_with_label do
-    count_with_label_cell company_count, "Companies"
+    count_with_label_cell company_count, rate_subjects
   end
 
   def designer_image_card

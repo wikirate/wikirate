@@ -1,5 +1,6 @@
 mod "wikirate_utility"
 mod "filter"
+mod "filter_industry"
 mod "layout"
 mod "posts"
 mod "metrics"

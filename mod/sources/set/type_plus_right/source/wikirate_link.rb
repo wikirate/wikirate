@@ -51,7 +51,8 @@ def generate_thumbnail
   Timeout.timeout(5) do
     LinkThumbnailer.generate content
   end
-rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions, Timeout::Error
+rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions,
+       Timeout::Error, URI::InvalidURIError
   Rails.logger.info "failed to extract information from #{content}"
   nil
 end

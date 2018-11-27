@@ -4,6 +4,6 @@ format :html do
     text_field :content,
                class: "wikirate_company_autocomplete form-control",
                "data-options-card": options_card,
-               placeholder: "Company"
+               placeholder: rate_subject
   end
 end
