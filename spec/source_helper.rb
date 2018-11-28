@@ -3,7 +3,8 @@ module SourceHelper
     Card::Auth.as_bot do
       Card.create! type_id: Card::SourceID,
                    codename: codename,
-                   subcards: source_subcard_args(source, subcards)
+                   subcards: source_subcard_args(source, subcards),
+                   skip: :requirements
     end
   end
 
@@ -14,7 +15,11 @@ module SourceHelper
 
   def source_subcard_args source, subcards={}
     source ||= "http://www.google.com/?q=wikirate"
-    subcards.reverse_merge! "+File" => source_file_args(source)
+    subcards.reverse_merge! "+File"        => source_file_args(source) # ,
+                            # "+Title"       => "Sample Source Title",
+                            # "+Year"        => "1999",
+                            # "+Company"     => "Death Star",
+                            # "+Report Type" => "Creature Report"
   end
 
   def source_file_args source

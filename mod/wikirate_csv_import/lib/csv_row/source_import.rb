@@ -77,7 +77,10 @@ class CSVRow
 
     def create_source
       pick_up_card_errors do
-        add_card name: "", type_id: Card::SourceID, subcards: source_subcard_args
+        add_card name: "",
+                 type_id: Card::SourceID,
+                 subcards: source_subcard_args,
+                 skip: :requirements
         # finalize_source_card source_card
         # source_card
       end

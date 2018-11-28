@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require "link_thumbnailer"
 
 RSpec.describe Card::Set::Type::Source do
   def source_url url
@@ -10,17 +9,6 @@ RSpec.describe Card::Set::Type::Source do
   describe "while creating a Source" do
     before do
       login_as "joe_user"
-    end
-
-    it "adds title and description" do
-      url = "http://www.google.com/?q=wikiratetest"
-      sourcepage = create_source url
-      preview = LinkThumbnailer.generate(url)
-
-      expect(Card.fetch("#{sourcepage.name}+title").content)
-        .to eq(preview.title)
-      # expect(Card.fetch("#{sourcepage.name}+description").content)
-      #  .to eq(preview.description)
     end
 
     it "handles empty source" do

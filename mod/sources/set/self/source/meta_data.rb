@@ -40,13 +40,20 @@ class MetaData
   end
 
   def data_from_url
-    preview = LinkThumbnailer.generate @url
+    return unless preview
     @title = preview.title || ""
     @description = preview.description || ""
     @image_url = preview.images.first.src.to_s unless preview.images.empty?
+  end
+
+  def preview
+    @preview ||= Timeout.timeout(5) do
+      LinkThumbnailer.generate @url
+    end
   rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions,
          Timeout::Error, URI::InvalidURIError => e
-    Rails.logger.debug "failed to fetch meta data with LinkThumbnailer: #{e.message}"
+    Rails.logger.info "failed to extract metadata from #{@url}; #{e.message}"
+    nil
   end
 
   def fetch_field_content card, field
