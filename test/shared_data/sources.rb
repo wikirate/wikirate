@@ -63,5 +63,9 @@ class SharedData
                       "+description" => { content: "What is an apple?" }
                     }
     end
+
+    def add_report_types
+      Card.create! type_id: Card::ReportTypeID, name: "Hologram Report"
+    end
   end
 end
