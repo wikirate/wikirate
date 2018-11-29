@@ -10,7 +10,7 @@ Feature: source
    And I fill in "+Title" with "a test link source"
    And I fill in "+Year" with "2000"
    And I fill in "+Company" with "Death Star"
-   And I fill in "+Report type" with "CSR Report"
+   And I fill in "+Report Type" with "CSR Report"
 
  Scenario: Create a link source
    And I fill in "card_subcards__File_remote_file_url" with "http://example.com"
