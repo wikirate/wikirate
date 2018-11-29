@@ -9,9 +9,8 @@ describe Card::Set::Type::Source::Creation do
     end
 
     describe "#new" do
-      # FIXME:
-      # Shouldn't re-render every time. But compound expectations (".and")
-      # weren't working...
+      # FIXME: Shouldn't re-render every time.
+      # ... But compound expectations (".and") weren't working...
       it "prepopulates company from answer" do
         expect_view(:new).to have_field_with_value("Company", "Death_Star")
       end
@@ -43,7 +42,7 @@ describe Card::Set::Type::Source::Creation do
   context "when adding directly (no sourcebox)" do
     describe "#new" do
       it "has no special success tag" do
-        expect_view(:new).not_to have_tag("input", with: { name: "success[view]"})
+        expect_view(:new).not_to have_tag("input", with: { name: "success[view]" })
       end
     end
   end

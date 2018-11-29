@@ -6,7 +6,7 @@ class << self
     end
   end
 
-  def require_field fieldcode, opts = {}
+  def require_field fieldcode, opts={}
     opts = opts.reverse_merge on: :save
     event :"require_#{fieldcode}_field", :validate, opts do
       add_error_unless_field fieldcode

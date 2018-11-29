@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-
 RSpec.describe Card::Set::Type::Source do
   def source_url url
     "#{Card::Env[:protocol]}#{Card::Env[:host]}/#{url}"
