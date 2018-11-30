@@ -3,15 +3,13 @@ event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url 
   left.add_subfield :wikirate_link, content: remote_file_url
 end
 
-event :validate_source_file, :validate, on: :create do
-  # note: better to integrate carrierwave error handling.
-  #
-  # The following go
-  # CarrierWave.configure do |config|
-  #   config.ignore_download_errors = false
-  # end
-  if file.blank?
-    errors.add :download, "Could not download file"
+# CarrierWave.configure do |config|
+#   config.ignore_download_errors = false
+# end
+
+event :validate_source_file, :validate, on: :save, changed: :content do
+  if file_download_error # CarrierWave magic
+    errors.add :download, file_download_error.message
   elsif !accepted_mime_type?
     errors.add :mime, "unaccepted MIME type: #{file.content_type}"
   end
@@ -19,11 +17,11 @@ end
 
 event :block_file_changing, after: :write_identifier, on: :update, changed: :content,
                             when: :file_changed? do
-  errors.add :file, "is not allowed to be changed."
+  errors.add :file, "is not allowed to be changed." unless Card::Auth.always_ok?
 end
 
 event :normalize_html_file, :prepare_to_store, on: :save, when: :html_file? do
-  if remote_file_url
+  if remote_file_url # CarrierWave magic
     convert_to_pdf
   else
     errors.add :file, "HTML Sources must be downloaded from URLS"
@@ -48,7 +46,7 @@ rescue StandardError => e
 end
 
 def pdf_from_url url
-  kit = PDFKit.new url, "load-error-handling" => "ignore"
+  kit = PDFKit.new url
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
     kit.to_file path
     yield ::File.open path
