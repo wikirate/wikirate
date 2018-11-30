@@ -1,3 +1,5 @@
+# FIXME: change name to "toggle details"
+
 $(document).ready ->
 
 # details toggle
@@ -6,14 +8,14 @@ $(document).ready ->
 
   # hack to solve the problem that
   # if you click somewhere in the details area
-  # it is closed because it is a child of .tr-details-toggle
+  # it is closed because it is a child of .details-toggle
   no_toggle = null
-  $('body').on 'click', ".tr-details-toggle  td.details", ->
+  $('body').on 'click', ".details-toggle  .details", ->
     no_toggle = true
 
   $('body').on 'click', ".details-close-icon", ->
     trToggleDetails this
-  $('body').on 'click', ".tr-details-toggle", ->
+  $('body').on 'click', ".details-toggle", ->
     if no_toggle
       no_toggle = null
     else
@@ -22,13 +24,15 @@ $(document).ready ->
   $('body').on 'click', ".tr-link", ->
     window.location.href = $(this).data("link-url")
 
+
+
   trToggleDetails = (toggle) ->
     $toggle = $(toggle)
-    row = $toggle.closest('tr')
+    row = $toggle.closest('.details-toggle')
     if row.hasClass "active"
       deactivateRow row
     else
-      deactivateRow $(".wikirate-table tr.active")
+      deactivateRow $(".details-toggle.active")
       activateRow row, $toggle
 
   deactivateRow = (row) ->

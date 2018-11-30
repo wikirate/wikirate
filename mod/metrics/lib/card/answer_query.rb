@@ -19,7 +19,7 @@ class Card
     end
 
     def self.default fixed_id, sort={}, paging={}
-      new fixed_id, { latest: true }, sort, paging
+      new fixed_id, {}, sort, paging
     end
 
     # @return array of metric answer card objects
@@ -145,6 +145,7 @@ class Card
 
     def prepare_filter_args filter
       @filter_args = filter.deep_symbolize_keys
+      # TODO: remove following (and handle consequences in tests!)
       @filter_args[:latest] = true unless filter[:year] || filter[:metric_value]
     end
 

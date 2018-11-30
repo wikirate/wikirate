@@ -86,12 +86,16 @@ format :html do
     "Score | scored by #{link_to_card card.scorer}"
   end
 
-  def scored_metric_property
-    nest card.left, view: :thumbnail
+  def scored_metric_property title
+    wrap :div, class: "row scored-metric-property" do
+      labeled title, nest(card.left, view: :thumbnail)
+    end
   end
 
-  def scorer_property
-    nest scorer_card, view: :scorer_info_without_label
+  def scorer_property title
+    wrap :div, class: "row scorer-property" do
+      labeled title, nest(scorer_card, view: :scorer_info_without_label)
+    end
   end
 
   def visit_original_metric_link

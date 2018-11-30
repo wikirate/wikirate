@@ -118,13 +118,19 @@ describe Card::Set::MetricType::Researched do
         end
       )
       expect(open_content).to(
-        have_tag("table", with: { class: "metric-properties table" }) do
-          with_tag :td, text: "Designed By"
-          with_tag :div, with: { class: "metric-designer-info" }
-          with_tag :td, text: "Metric Type"
-          with_tag :div, with: { class: "RIGHT-Xmetric_type" }
-          with_tag :td, text: "Topics"
-          with_tag :div, with: { class: "RIGHT-topic" }
+        have_tag("div.metric-properties") do
+          with_tag "div.designer-property" do
+            with_tag "div.label", text: /Designed By/
+            with_tag "div.thumbnail"
+          end
+          with_tag "div.RIGHT-topic" do
+            with_tag "div.label", text: /Topics/
+            with_tag "div.labeled-content", text: /Force/
+          end
+          with_tag "div.RIGHT-Xmetric_type" do
+            with_tag "div.label", text: /Metric Type/
+            with_tag "div.labeled-content", text: /Researched/
+          end
         end
       )
     end

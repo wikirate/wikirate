@@ -56,7 +56,7 @@ class WikirateTable
   end
 
   def details_tr tr, row_card
-    add_class tr, "tr-details-toggle"
+    add_class tr, "details-toggle"
     tr.deep_merge! data: { details_url: details_url(row_card) }
     tr
   end

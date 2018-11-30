@@ -47,11 +47,10 @@ RSpec.describe Card::Set::Self::ResearchPage do
     it "has source tab" do
       params metric: "Joe User+researched", company: "Death Star",
              year: "2014", project: "Evil Project"
-      is_expected.to have_tag "#research_page-source" do
-        with_tag :form do
-          with_hidden_field "card[subcards][+company][content]", "Death Star"
-          with_hidden_field "success[view]", "new_sources"
-          with_hidden_field "success[id]", "Joe User+researched+Death Star+2014"
+      is_expected.to have_tag "div.sourcebox" do
+        with_tag "form.slotter", method: "get", "data-remote": true do
+          with_tag "input", name: "source_search_term"
+          with_tag "button._sourcebox", text: "Find or Add Source"
         end
       end
     end

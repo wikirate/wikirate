@@ -1,5 +1,4 @@
 include_set Abstract::TwoColumnLayout
-# include_set Abstract::Listing
 include_set Abstract::BsBadge
 
 format :html do
@@ -46,7 +45,7 @@ format :html do
 
   view :metric_question do
     wrap_with :div, class: "question blockquote" do
-      nest card.question_card, view: :content_with_title
+      nest card.question_card, view: :content_with_title, title: "Question"
     end
   end
 

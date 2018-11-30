@@ -4,10 +4,7 @@ class StructureFixes < Card::Migration
                   "research page+metric",
                   "metric_value_source_form",
                   "source+*type+*structure",
-                  "cardtype+*metric_type+*type_plus_right+*structure",
-                  "file+*source_type",
-                  "text+*source_type",
-                  "link+*source_type"
+                  "cardtype+*metric_type+*type_plus_right+*structure"
                 ]
   end
 end

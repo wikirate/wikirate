@@ -1,5 +1,5 @@
 
-METRIC_PROPERTIES_TABLE = ".metric-properties.table"
+METRIC_PROPERTIES_TABLE = ".metric-properties"
 RESEARCHABLE_CHECKBOX = ".RIGHT-hybrid input[type=checkbox]"
 VALUE_TYPE_RADIO = ".RIGHT-value_type input[type=radio]"
 
@@ -36,7 +36,7 @@ propertiesForValueType = (value) ->
     when 'Number', 'Money'
       ['unit','range']
     when 'Category', 'Multi-Category'
-      ['Xoption']
+      ['value_option']
     else
       []
 
@@ -46,7 +46,7 @@ vizPropsFor = (scope, value_type) ->
   showPropsFor scope, value_type
 
 hideAllTypeSpecificProperties = (scope) ->
-  ['unit','range','Xoption'].forEach (prop) ->
+  ['unit','range','value_option'].forEach (prop) ->
     rowForProp(scope, prop).hide()
 
 showPropsFor= (scope, value_type) ->
@@ -56,6 +56,6 @@ showPropsFor= (scope, value_type) ->
 rowForProp = (scope, prop) ->
   set = scope.find('.RIGHT-' + prop)
   if set.closest(METRIC_PROPERTIES_TABLE)[0]
-    set.closest('tr')
+    set.closest('.labeled-view')
   else
     set

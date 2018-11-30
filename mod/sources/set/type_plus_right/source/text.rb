@@ -1,14 +1,15 @@
 event :validate_editor, :validate, on: :save do
-  # block not author editing except bot?
-  if real? && (creator.id != Auth.current_id || Auth.current_id == WagnBotID)
-    errors.add :text, " can only be edited by author"
-  end
+  errors.add :text, " can only be edited by author" unless editable?
+end
+
+# only author can edit
+def editable?
+  real? && Auth.current_id.in?([creator.id, WagnBotID])
 end
 
 format :html do
   view :editor do
-    # if not the author, don't show the editor
-    if !card.real? || card.creator.id == Auth.current_id
+    if card.editable?
       super()
     else
       link = link_to_card card.creator

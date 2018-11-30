@@ -38,6 +38,8 @@ format :html do
     end
   end
 
+  # NOTE: score_tab is the only view using tr_link / link-tr.
+  # When refactoring, we can remove that functionality
   view :score_tab do
     tab_wrap do
       output [score_cards_table, add_score_link]

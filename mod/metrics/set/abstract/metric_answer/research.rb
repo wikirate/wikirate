@@ -179,8 +179,4 @@ format :html do
     # FIXME: param keys should be standardized (probably symbols)
     @project ||= inherit(:project) || Env.params[:project] || Env.params["project"]
   end
-
-  view :source_tab, cache: :never, tags: :unknown_ok, template: :haml do
-    # unknown_ok tag doesn't work without this block
-  end
 end

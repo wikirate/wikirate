@@ -162,7 +162,7 @@ RSpec.describe Card::Set::All::Wikirate do
       source_showcast =
         Card.fetch "joe_user+showcast sources",
                    new: { type_id: Card::PointerID }
-      source_card = create_page url: "http://example.com", box: true
+      source_card = create_source "http://example.com"
       source_showcast << source_card
       source_showcast.save!
 
