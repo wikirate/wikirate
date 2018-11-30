@@ -70,8 +70,11 @@ format :html do
   end
 
   def unknown_preview
+    type = card.file.content_type
     wrap_with :div, class: "unknown-source-preview" do
-      "No preview currently available for #{card.file.content_type} sources"
+      msg = "No preview currently available"
+      msg += " for #{type} sources" if type
+      msg
     end
   end
 end

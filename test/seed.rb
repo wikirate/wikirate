@@ -55,7 +55,7 @@ class SharedData
       Card::Env.reset
       Card::Auth.as_bot
       Cardio.config.x.import_sources = false
-      add :companies, :topics, :sources,
+      add :companies, :topics, :sources, :report_types,
           :yearly_variables,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
           :projects, :industry, :researchers, :program,
@@ -168,7 +168,7 @@ class SharedData
       create "relationship answer import test",
              type: :relationship_answer_import_file, empty_ok: true
       create "answer from source import test",
-             type: :source,
+             type: :source, skip: :requirements,
              subfields: {
                "+File" => {
                  remote_file_url: "https://www.google.com/search?q=source",

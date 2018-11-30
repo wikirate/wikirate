@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require "link_thumbnailer"
-
 RSpec.describe Card::Set::Type::Source do
   def source_url url
     "#{Card::Env[:protocol]}#{Card::Env[:host]}/#{url}"
@@ -10,17 +8,6 @@ RSpec.describe Card::Set::Type::Source do
   describe "while creating a Source" do
     before do
       login_as "joe_user"
-    end
-
-    it "adds title and description" do
-      url = "http://www.google.com/?q=wikiratetest"
-      sourcepage = create_source url
-      preview = LinkThumbnailer.generate(url)
-
-      expect(Card.fetch("#{sourcepage.name}+title").content)
-        .to eq(preview.title)
-      # expect(Card.fetch("#{sourcepage.name}+description").content)
-      #  .to eq(preview.description)
     end
 
     it "handles empty source" do
@@ -73,8 +60,10 @@ RSpec.describe Card::Set::Type::Source do
           expect(sourcepage.fetch(trait: :file)).not_to be_nil
           # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
         end
-        it "handles file behind cloudfront" do
-          pdf_url = "http://www.angloamerican.com/~/media/Files/A/Anglo-"\
+        # FIXME: I don't entirely understand what the following is supposed to test,
+        # but the url appears to be broken.  -efm
+        xit "handles file behind cloudfront" do
+          pdf_url = "https://www.angloamerican.com/~/media/Files/A/Anglo-"\
                     "American-PLC-V2/documents/aa-sdreport-2015.pdf"
           sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty

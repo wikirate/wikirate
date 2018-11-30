@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require "link_thumbnailer"
-
 SOURCE_PATHS = {
   pdf: "mod/sources/spec/set/type/source/test_pdf.pdf",
   img: "mod/sources/spec/set/type/source/test_logo.png",
@@ -54,7 +52,7 @@ describe Card::Set::Type::Source::Preview do
       end
     end
 
-    context "when retrieveing from web" do
+    context "when retrieving from web" do
       before do
         @url = "https://www.sample-videos.com/text/Sample-text-file-10kb.txt"
         @company = "Amazon.com, Inc."
