@@ -88,11 +88,13 @@ RSpec.describe Card::Set::Type::Source do
   end
 
   def expect_rejected_wikirate_source name
-    expect(new_source(source_url(name))).to(
+    source = new_source source_url(name)
+    expect(source).to(
       be_invalid.because_of(
         "+File": include("download could not download file: 404 Not Found")
-      ).and(be_invalid.because_of(
-        "+Link": include("Cannot use wikirate url as source"))
-      ))
+      ).and(
+        be_invalid.because_of("+Link": include("Cannot use wikirate url as source"))
+      )
+    )
   end
 end
