@@ -22,14 +22,6 @@ RSpec.describe Card::Set::Type::Source do
       expect(website_card.last_action).to be
     end
 
-    describe "while creating duplicated source" do
-      it "returns existing url" do
-        url = "http://www.google.com/?q=wikirate"
-        create_source url
-        expect { create_source url }.to raise_error(/duplicate/)
-      end
-    end
-
     example "without anything" do
       sourcepage = Card.new type_id: Card::SourceID
       expect(sourcepage).not_to be_valid
@@ -97,9 +89,10 @@ RSpec.describe Card::Set::Type::Source do
 
   def expect_rejected_wikirate_source name
     expect(new_source(source_url(name))).to(
-      be_invalid.because_of("+File": include("Could not download file"))
-      .and(be_invalid
-           .because_of("+Link": include("Cannot use wikirate url as source")))
-    )
+      be_invalid.because_of(
+        "+File": include("download could not download file: 404 Not Found")
+      ).and(be_invalid.because_of(
+        "+Link": include("Cannot use wikirate url as source"))
+      ))
   end
 end
