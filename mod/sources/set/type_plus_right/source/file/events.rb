@@ -56,5 +56,5 @@ end
 # this is cached so that it continues to return true even after the file
 # is converted to a pdf.
 def html_file?
-  @html_file.nil? ? (@html_file = file&.content_type == "text/html") : @html_file
+  file&.content_type == "text/html"
 end
