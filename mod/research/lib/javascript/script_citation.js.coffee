@@ -14,6 +14,20 @@ $.extend wikirate,
       sourceId = $(this).find(".bar-view").data "card-id"
       possibleSource(sourceId).hide()
 
+  previewSource: (sourceID) ->
+    wikirate.showResearchDetailsTab "source"
+    slot = $(".preview-view")
+    slot.empty()
+    wikirate.loader(slot).add()
+    updatePreviewSlot slot, sourceID
+
+  activateSourceBar: (link) ->
+    sourceList = $(".cited-sources")
+    bars = sourceList.find(".bar-view")
+    bars.removeClass "active"
+    activeBar = if link then link.closest(".bar-view") else $(bars[0])
+    activeBar.addClass "active"
+
   citations = () ->
     $(".left_research_side-view .cited-sources")
 
@@ -66,7 +80,7 @@ $.extend wikirate,
     $("form ._cite-bar[data-card-id='#{sourceID}']")
 
   possibleSource = (sourceID) ->
-    $("#research_page-source.tab-pane ._cite-bar[data-card-id='#{sourceID}']")
+    $("#research_page-source.tab-pane .source-list > ._cite-bar[data-card-id='#{sourceID}']")
 
   citeSource = (sourceID) ->
     possible = possibleSource sourceID
@@ -85,6 +99,11 @@ $.extend wikirate,
     ctns.text("None") if ctns.is(':empty') || ctns.text().trim() == ""
     possibleSource(sourceID).show()
 
+  updatePreviewSlot = (slot, sourceID) ->
+    load_path = decko.slotPath(sourceID + "?view=preview")
+    slot.updateSlot load_path
+
+staticPreviewLink = "#Research_Page .TYPE-answer.titled-view .source-preview-link"
 
 $(document).ready ->
   $('body').on 'click', '._cite-button', (event) ->
@@ -93,22 +112,17 @@ $(document).ready ->
   $('body').on 'click', '._uncite-button', (event) ->
     wikirate.toggleCitation(this, 'uncite')
 
-#  $('body').on 'click', '._add_new_source', ->
-#    wikirate.appendSourceForm($(this))
-
-  # $("body").on 'click', '.slot_machine-view.SELF-research_page .cited-view.TYPE-source, .source-details-toggle', ->
-  #   wikirate.showResearchDetailsTab("view_source")
-  #   sourceID = $(this).data("card-name")
-  #   load_path = decko.slotPath(sourceID + "?view=# source_and_preview")
-  #   $slot = $("#research_page-view_source > .card-slot")
-  #   $slot.empty()
-  #   wikirate.loader($slot).add()
-  #   $slot.updateSlot(load_path)
+  $("body").on 'click', staticPreviewLink, (event) ->
+    wikirate.previewSource $(this).slot().data("card-name")
+    wikirate.activateSourceBar $(this)
+    event.preventDefault()
 
   $('body').on 'ajax:error', "#research_page-view_source > .card-slot", (event, xhr) ->
     $(this).find(".loader-anime").remove() # remove loader
 
-#      wikirate.handleYearData($parentForm, sourceYear)
+  if $(staticPreviewLink)
+    wikirate.activateSourceBar null
+
 decko.slotReady (slot) ->
   if slot.find(".TYPE-answer.source_selector-view")[0]
     wikirate.hideAlreadyCited()

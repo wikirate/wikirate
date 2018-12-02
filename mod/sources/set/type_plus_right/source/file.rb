@@ -24,12 +24,12 @@ ACCEPTED_MIME_TYPES = (%w[
   application/pdf
 ] + EXCEL_MIME_TYPES + CSV_MIME_TYPES).freeze
 
-CONVERT_FOR_PREVIEW = (EXCEL_MIME_TYPES + CSV_MIME_TYPES).freeze
+SPREADSHEET_TYPES = (EXCEL_MIME_TYPES + CSV_MIME_TYPES).freeze
 
 def file_changed?
   !db_content_before_act.empty?
 end
 
-def preview_card?
+def spreadsheet_type?
   file.content_type.in? CONVERT_FOR_PREVIEW
 end

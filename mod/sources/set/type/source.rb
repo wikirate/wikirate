@@ -22,6 +22,15 @@ def link?
 end
 
 format :html do
+  view :content do
+    add_name_context
+    super()
+  end
+
+  view :missing do
+    _view_link
+  end
+
   def icon
     "globe"
   end

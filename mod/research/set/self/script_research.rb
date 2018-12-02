@@ -3,5 +3,5 @@ Self::ScriptMods.add_item :script_research
 
 def source_files
   %w[script_research.js.coffee
-     script_answer_source_handling.js.coffee]
+     script_citation.js.coffee]
 end

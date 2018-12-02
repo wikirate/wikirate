@@ -42,7 +42,7 @@ def convert_to_pdf
     self.file = pdf_file
   end
 rescue StandardError => e
-  errors.add :conversion, "failed to convert HTML source to pdf #{e.message}"
+  abort :failure, "failed to convert HTML source to pdf #{e.message}"
 end
 
 def pdf_from_url url

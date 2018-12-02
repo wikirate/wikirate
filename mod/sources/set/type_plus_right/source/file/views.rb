@@ -8,8 +8,18 @@ format :html do
     super() + render_preview
   end
 
-  view :preview do
-    send "#{preview_type}_preview"
+  view :preview, tags: :unknown_ok do
+    wrap do
+      if card.new?
+        no_file_to_preview
+      else
+        send "#{preview_type}_preview"
+      end
+    end
+  end
+
+  def no_file_to_preview
+    "File currently missing for this source."
   end
 
   def web_editor
@@ -20,10 +30,15 @@ format :html do
 
   def preview_type
     case card.file.content_type
-    when "text/plain"      then :text
-    when "application/pdf" then :pdf
-    else                        :unknown
+    when "text/plain"       then :text
+    when "application/pdf"  then :pdf
+    when *SPREADSHEET_TYPES then :spreadsheet
+    else                         :unknown
     end
+  end
+
+  def spreadsheet_preview
+    "Table previews for spreadsheets and CSVs are coming soon."
   end
 
   def pdf_preview

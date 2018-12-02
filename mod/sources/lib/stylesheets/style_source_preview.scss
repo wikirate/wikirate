@@ -4,12 +4,16 @@
     width: 100%;
   }
 }
-
+.bar_and_preview-view {
+  .bar-view {
+    width: 100%;
+  }
+}
 .pdf-source-preview, .webpage-preview {
   border-left: 3px solid rgba($source-color, 0.2);
   border-top: 1px solid $border-color;
 }
-
+.bar-view.active,
 .details-toggle.active {
   .TYPE-source.bar, .pdf-source-preview, .webpage-preview {
     border-left-color: $source-color!important;
@@ -17,15 +21,15 @@
 }
 
 .archive-indicator {
-    background: #0092e7;
-    font-size: 85%;
-    text-align: center;
-    color: white;
-    font-weight: bold;
+  background: #0092e7;
+  font-size: 85%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
 }
 
 #research-details .uncite-button,
-.left_research_side-view .cite-button {
+.left_research_side-view .cite-and-refresh-buttons {
   display: none;
 }
 

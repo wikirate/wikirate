@@ -8,7 +8,6 @@ FILE_NAMES =
      collapse
      general_popup
      activate_readmore
-     suggested_source
      empty_tab_content
      wikirate_coffee].freeze
 
