@@ -63,6 +63,7 @@ namespace :wikirate do
 
     desc "update caches for machine output"
     task update_machine_output: :environment do |task|
+      ENV["STORE_CODED_FILES"] = "true"
       ensure_env :test, task do
         Card::Auth.as_bot do
           [[:all, :script],
