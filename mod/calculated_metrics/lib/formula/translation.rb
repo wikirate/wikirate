@@ -19,11 +19,11 @@ module Formula
       formula =~ /^\{[^{}]*\}$/
     end
 
-    protected
-
     def year_options
       nil
     end
+
+    protected
 
     def exec_lambda expr
       JSON.parse expr

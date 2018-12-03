@@ -15,18 +15,14 @@ module Formula
     # 2.
     class Input
       class CompanyOptionsProcessor < Array
-        attr_reader :multi_year, :no_year_options
+        attr_reader :no_company_options
 
         def initialize company_options
-          @fixed_companies = ::Set.new
           @no_company_options = true
           return if company_options.blank?
           company_options.each do |company_option|
             self << interpret_company_expr(company_option)
-            next if (cur = last) == 0
-            @multi_year = true
             @no_company_options = false
-            @fixed_companies << cur if year?(cur)
           end
         end
 
@@ -59,55 +55,10 @@ module Formula
           expr.sub("company:", "").strip
         end
 
-        def year? y
-          y.is_a?(Integer) && y > 1000
-        end
-
         def interpret_company_expr expr
-          return 0 if expr.blank?
+          return nil if expr.blank?
           expr = normalize_company_expr expr
-
-          case expr
-          when /^[0?]$/ then 0
-          when /^[+-]?\d+$/ then expr.to_i
-          when /,/
-            years = expr.split(",").map(&:to_i)
-            year_list years
-          when /\.\./ then
-            start, stop = expr.split("..").map(&:to_i)
-            year_range(start, stop)
-          end
-        end
-
-        def year_list list
-          return list if list.all? { |y| year? y }
-          proc do |year|
-            list.map do |year_offset|
-              if year? year_offset
-                year_offset
-              else
-                year + year_offset
-              end
-            end
-          end
-        end
-
-        def year_range start, stop
-          if year?(start) && year?(stop)
-            (start..stop).to_a
-          elsif !year?(start) && !year?(stop)
-            proc do |year|
-              (year + start..year + stop).to_a
-            end
-          elsif !year?(start)
-            proc do |year|
-              (start..year + stop).to_a
-            end
-          else # = !year?(stop)
-            proc do |year|
-              (start..year + stop).to_a
-            end
-          end
+          CompanyOptionParser.new expr
         end
       end
     end

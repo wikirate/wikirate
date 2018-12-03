@@ -10,6 +10,9 @@ class Answer < ApplicationRecord
   include EntryFetch
   include Csv
 
+  @card_column = :answer_id
+  #@card_query = { type_id: Card::MetricAnswerID }
+
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
   validate :must_be_an_answer, :card_must_exist, unless: :virtual?
@@ -68,7 +71,6 @@ class Answer < ApplicationRecord
     self.record_name = nil if :record_name.in? fields
     # forces regeneration of name of virtual answer card
     super
-    update_relationship_answers if relationship?
   end
 
   def delete_on_refresh?

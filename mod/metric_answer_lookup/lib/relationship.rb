@@ -1,23 +1,24 @@
 # lookup table for metric answers
 
 class Relationship < ApplicationRecord
-  belongs_to :answer
+  @card_column = :relationship_id
+  @card_query = {  type_id: Card::RelationshipAnswerID }
 
+  belongs_to :answer
   include LookupTable
-  extend AnswerClassMethods
 
   # include Answer::Filter
-  include Answer::Validations
-  # include Answer::EntryFetch
+  # include Answer::Validations
+  include EntryFetch
   include Csv
 
-  validates :relationship_id, numericality: { only_integer: true }, presence: true
-  validate :must_be_an_answer, :card_must_exist
-  validate :metric_must_exit
+  # validates :relationship_id, numericality: { only_integer: true }, presence: true
+  # validate :must_be_an_answer, :card_must_exist
+  # validate :metric_must_exit
 
   after_destroy :latest_to_true
 
-  delegate :record_id, :metric_id, :company_id, :designer_id, :year,
+  delegate :company_id, :designer_id,
            :metric_name, :company_name, :title_name, :record_name,
            to: :answer
 
@@ -26,12 +27,8 @@ class Relationship < ApplicationRecord
     find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
   end
 
-  def card_column
-    :relationship_id
-  end
-
   def latest_year_in_db
-    Answer.where(record_id: record_id).maximum :year
+    Relationship.where(record_id: record_id).maximum :year
   end
 
   def latest_to_false
@@ -106,5 +103,5 @@ class Relationship < ApplicationRecord
   end
 end
 
-require_relative "answer/active_record_extension"
-Answer.const_get("ActiveRecord_Relation").send :include, Answer::ActiveRecordExtension
+#require_relative "answer/active_record_extension"
+#Answer.const_get("ActiveRecord_Relation").send :include, Answer::ActiveRecordExtension

@@ -16,7 +16,7 @@ module Formula
       # @param [Proc] input_cast a block that is called for every input value
       def initialize calculator, &input_cast
         @input_cards = calculator.formula_card.input_cards
-        @requirement = calculator.formula_card.requirement
+        @requirement = calculator.formula_card.input_requirement
         @input_cast = input_cast
         @year_options_processor =
           YearOptionsProcessor.new calculator.year_options
@@ -50,10 +50,14 @@ module Formula
       private
 
       def initialize_input_values
-        klass = if @year_options_processor.no_year_options
-                  InputValues
-                else
+        klass = if year_options? && company_options?
+                  # TODO
+                elsif year_options?
                   InputValuesWithYearOptions
+                elsif company_options?
+                  InputValuesWithCompanyOptions
+                else
+                  InputValues
                 end
         klass.new self
       end
@@ -74,6 +78,16 @@ module Formula
         else
           val.blank? ? nil : @input_cast.call(val)
         end
+      end
+
+      private
+
+      def company_options?
+        !@company_options_processor.no_company_options
+      end
+
+      def year_options?
+        !@year_options_processor.no_year_options
       end
     end
   end

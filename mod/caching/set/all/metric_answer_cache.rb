@@ -10,7 +10,7 @@ def create_answer answer_id:
 end
 
 def delete_answer answer_id:
-  Answer.delete_answer_for_card_id answer_id
+  Answer.delete_for_card_id answer_id
 end
 
 def update_answers_now_or_later ids

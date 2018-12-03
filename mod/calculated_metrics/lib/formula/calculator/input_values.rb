@@ -7,9 +7,9 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class InputValues
-      InputItem = Struct.new(:card_id, :type)
+      InputItem = Struct.new(:card_id, :type, :year_option, :company_option)
 
-      # @param [Array<Card>] input_cards all cards that are part of the formula
+      # @param [Input] an Input object
       # @param [Symbol] requirement either :all or :any
       def initialize input
         @input = input
@@ -18,6 +18,13 @@ module Formula
         @companies_with_values_by_year = Hash.new_nested ::Set
         @input_list = initialize_input_list input.input_cards
         @value_store = ValueStore.new @input_list
+      end
+
+      def initialize_input_list input_cards
+        input_cards.compact.map.with_index do |input_card, i|
+          InputItem.new(input_card.id, input_type(input_card),
+                        year_option(i), company_option(i))
+        end
       end
 
       # Every iteration of the passed block receives an array with values for each
@@ -101,7 +108,7 @@ module Formula
       private
 
       def companies_with_value year
-        fetch_values year: year
+        fetch_ values year: year
         @companies_with_values_by_year[year].to_a
       end
 
@@ -120,12 +127,6 @@ module Formula
         clean_companies_with_value_by_year
       end
 
-      def initialize_input_list input_cards
-        input_cards.compact.map do |input_card|
-          InputItem.new(input_card.id, input_type(input_card))
-        end
-      end
-
       def input_type input_card
         case input_card.type_id
         when Card::MetricID
@@ -133,6 +134,14 @@ module Formula
         when Card::YearlyVariableID
           :yearly_value
         end
+      end
+
+      def year_option index
+        @input.year_options_processor[index]
+      end
+
+      def company_option index
+        @input.company_options.processor[index]
       end
 
       def fetch_value input_item, year
@@ -183,15 +192,19 @@ module Formula
       # Find answer for the given input card and cache the result.
       # If year is given look only for that year
       def answer_fetch input_item, year
-        answers = input_answers input_item.card_id, year
+        answers = input_answers input_item, year
 
         update_company_list answers.map(&:company_id)
         answers.each do |a|
           value = Answer.value_from_lookup a.value, input_item.type
-          @value_store.add input_item.card_id, a.company_id, a.year, value
-          @companies_with_values_by_year[a.year.to_i] ||= ::Set.new
-          @companies_with_values_by_year[a.year.to_i] << a.company_id
+          store_value input_item, a.company_id, a.year, value
         end
+      end
+
+      def store_value input_item, company_id, year, value
+        @value_store.add input_item.card_id, company_id, year, value
+        @companies_with_values_by_year[year.to_i] ||= ::Set.new
+        @companies_with_values_by_year[year.to_i] << company_id
       end
 
       def yearly_value_fetch input_card_id
@@ -216,8 +229,8 @@ module Formula
       # If a year is given then the search will be restricted to that year
       # @param input_card_id
       # @param year
-      def input_answers input_card_id, year
-        Answer.where answer_query(input_card_id, year)
+      def input_answers input_item, year
+        Answer.where answer_query(input_item.card_id, year)
       end
 
       def input_yearly_value_cards yearly_variable_id
