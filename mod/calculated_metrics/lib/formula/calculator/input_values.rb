@@ -108,7 +108,7 @@ module Formula
       private
 
       def companies_with_value year
-        fetch_ values year: year
+        fetch_values year: year
         @companies_with_values_by_year[year].to_a
       end
 
