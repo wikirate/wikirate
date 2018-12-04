@@ -1,3 +1,4 @@
+require "timeout"
 
 event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
   left.add_subfield :wikirate_link, content: remote_file_url
@@ -38,18 +39,23 @@ end
 
 def convert_to_pdf
   # Rails.logger.info "generating pdf"
-  pdf_from_url remote_file_url do |pdf_file|
+  with_tmp_pdf do |pdf_file|
     self.file = pdf_file
   end
 rescue StandardError => e
   abort :failure, "failed to convert HTML source to pdf #{e.message}"
 end
 
-def pdf_from_url url
-  kit = PDFKit.new url
+def with_tmp_pdf
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
-    kit.to_file path
-    yield ::File.open path
+    pdf_from_url path
+    yield ::File.open(path)
+  end
+end
+
+def pdf_from_url path
+  Timeout::timeout(10) do
+    PDFKit.new(remote_file_url).to_file path
   end
 end
 
