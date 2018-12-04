@@ -3,7 +3,7 @@
                              year: year_list } }
   .text-right.cite-and-refresh-buttons
     = render_cite_button
-    = render_freshen_button if card.link_url
+    // = render_freshen_button if card.link_url
   - if voo.show? :preview_link_bar
     = render_preview_link_bar
     = render_uncite_button
