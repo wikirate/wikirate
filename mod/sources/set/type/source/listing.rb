@@ -1,11 +1,11 @@
 format :html do
+  # BAR VIEWS
   view :bar_left, template: :haml
+  view :bar_right, template: :haml
 
   view :bar_middle do
     count_badges :wikirate_company, :metric
   end
-
-  view :bar_right, template: :haml
 
   view :bar_bottom do
     add_name_context
@@ -19,16 +19,19 @@ format :html do
             field_nest(:description, view: :titled, title: "Description")]
   end
 
-  view :icon do
-    icon = wrap_with(:i, " ", class: "glyphicon glyphicon-link")
-    wrap_with(:div, icon, class: "source-icon")
-  end
+  view :cite_bar, template: :haml
+  view :preview_link_bar, template: :haml
 
-  view :creator_credit do
-    wrap_with :div, class: "last-edit" do
-      "added #{_render_created_at} ago by #{creator}"
-    end
-  end
+  # LINK AND BUTTON VIEWS
+
+  # download and original links.  (view makes them hideable)
+  view :links, template: :haml
+
+  view :cite_button, template: :haml
+  view :uncite_button, template: :haml
+  view :freshen_button, template: :haml
+
+  view :close_icon, template: :haml
 
   view :source_link do
     wrap_with :div, class: "source-link d-block" do
@@ -43,16 +46,21 @@ format :html do
                  class: "source-preview-link preview-page-link"
   end
 
+  # OTHER VIEWS
+
+  # view :icon do
+  #   icon = wrap_with(:i, " ", class: "glyphicon glyphicon-link")
+  #   wrap_with(:div, icon, class: "source-icon")
+  # end
+
+  view :creator_credit do
+    wrap_with :div, class: "last-edit" do
+      "added #{_render_created_at} ago by #{creator}"
+    end
+  end
+
   view :listing_compact, template: :haml
-
-  view :content do
-    add_name_context
-    super()
-  end
-
-  view :missing do
-    _view_link
-  end
+  view :wikirate_copy_message, template: :haml
 
   def year_list
     card.year_card.item_names || []
@@ -73,6 +81,10 @@ format :html do
 
   def source_title
     voo.show?(:title_link) ? _render_title_link : title_text
+  end
+
+  def hidden_item_input
+    tag :input, type: "hidden", class: "_pointer-item", value: card.name
   end
 
   def creator

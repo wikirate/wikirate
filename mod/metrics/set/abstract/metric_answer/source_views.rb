@@ -40,9 +40,8 @@ format :html do
   end
 
   view :sources do
-    source_options = { view: :core, items: { view: :mini_bar } }
-    source_options[:items][:hide] = :cited_source_links if voo.hide? :cited_source_links
-    output [citations_count, nest(card.source_card, source_options)]
+    output [citations_count,
+            nest(card.source_card, view: :core, items: { view: :mini_bar })]
   end
 
   view :source_editor do
@@ -88,6 +87,11 @@ format :html do
         no_source_results
       end
     end
+  end
+
+  view :freshen_form, cache: :never, tags: :unknown_ok do
+    return unless params[:freshen_source]
+    new_source_form
   end
 
   def when_searching

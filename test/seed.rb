@@ -167,14 +167,6 @@ class SharedData
       create "source import test", type: :source_import_file, empty_ok: true
       create "relationship answer import test",
              type: :relationship_answer_import_file, empty_ok: true
-      create "answer from source import test",
-             type: :source, skip: :requirements,
-             subfields: {
-               "+File" => {
-                 remote_file_url: "https://www.google.com/search?q=source",
-                 type_id: Card::FileID
-               }
-             }
     end
 
     def csv_file name

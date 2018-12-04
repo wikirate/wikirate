@@ -1,6 +1,6 @@
-def preview_card
-  fetch(trait: :preview) if file_card&.preview_card?
-end
+# def preview_card
+#   fetch(trait: :preview) if file_card&.preview_card?
+# end
 
 format :html do
   view :open_content do
@@ -18,12 +18,17 @@ format :html do
     end
   end
 
-  view :preview do
-    if (preview_card = card.preview_card)
-      nest preview_card, view: :content
-    else
-      nest card.file_card, view: :preview
+  view :bar_and_preview, cache: :never do
+    wrap do
+      [render_close_icon,
+       render_cite_bar(hide: %i[preview_link_bar freshen_button]),
+       render_wikirate_copy_message,
+       render_preview]
     end
+  end
+
+  view :preview do
+    nest card.file_card, view: :preview
   end
 
   def hidden_information

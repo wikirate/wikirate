@@ -42,6 +42,5 @@ end
 # NOT adding a source via import or within research page
 def direct?
   return false if import_act?
-  success = Env.params[:success]
-  !(success.is_a?(Hash) && success[:view] == "source_selector")
+  !(Card::Env.success[:view] == "source_selector")
 end

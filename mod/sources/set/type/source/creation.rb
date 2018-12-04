@@ -78,4 +78,15 @@ format :html do
     return super unless answer_name
     super.merge "data-slot-selector": ".source_selector-view"
   end
+
+  def freshen_path
+    path mark: root.card.name,
+         view: :source_selector,
+         source_search_term: card.link_url,
+         freshen_source: true
+  end
+
+  def freshen_title
+    "Create new source from updated uri: #{card.link_url}."
+  end
 end

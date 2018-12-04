@@ -3,15 +3,13 @@ include_set Abstract::Tabs
 
 format :html do
   before :content_formgroup do
-    voo.edit_structure = %i[
-      file
-      wikirate_title
-      report_type
-      wikirate_company
-      year
-      wikirate_topic
-      description
-    ]
+    voo.edit_structure = form_fields
+  end
+
+  def form_fields
+    flds = %i[wikirate_title report_type wikirate_company year wikirate_topic description]
+    flds = flds.unshift :file if card.new?
+    flds
   end
 
   def tab_list
