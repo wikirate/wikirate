@@ -6,8 +6,8 @@ card_accessor :year, type: :pointer
 card_accessor :wikirate_topic, type: :pointer
 card_accessor :wikirate_company, type: :pointer
 card_accessor :wikirate_title
-card_accessor :wikirate_link
-card_accessor :file
+card_accessor :wikirate_link, type: :phrase
+card_accessor :file, type: :file
 
 def file_url
   file_card&.file&.url

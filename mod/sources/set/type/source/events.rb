@@ -7,7 +7,8 @@ class << self
   end
 
   def require_field fieldcode, opts={}
-    opts = opts.reverse_merge on: :save
+    # without `changed: :content`, this gets confused on renames
+    opts = opts.reverse_merge on: :save, changed: :content
     event :"require_#{fieldcode}_field", :validate, opts do
       add_error_unless_field fieldcode
     end
