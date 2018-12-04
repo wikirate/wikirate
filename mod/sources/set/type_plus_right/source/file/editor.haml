@@ -1,10 +1,12 @@
-.upload-option
-  .help-text.help-block.pt-2
-    <em>Upload</em> from your computer:
-  = file_editor
-.download-option
-  .help-text.help-block.pt-2
-    or <em>Download</em> from the web
-    %span.small.text-muted (HTML pages will be converted to PDF files)
-  = web_editor
+- unless params[:source_search_term]
+  .upload-option
+    .help-text.help-block.pt-2
+      <em>Upload</em> from your computer:
+    = file_editor
+- unless params[:view] == "new_source_form"
+  .download-option
+    .help-text.help-block.pt-2
+      or <em>Download</em> from the web
+      %span.small.text-muted (HTML pages will be converted to PDF files)
+    = web_editor
 

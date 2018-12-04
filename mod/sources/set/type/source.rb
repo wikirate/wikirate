@@ -6,6 +6,7 @@ card_accessor :year, type: :pointer
 card_accessor :wikirate_topic, type: :pointer
 card_accessor :wikirate_company, type: :pointer
 card_accessor :wikirate_title
+card_accessor :wikirate_website
 card_accessor :wikirate_link, type: :phrase
 card_accessor :file, type: :file
 
@@ -15,10 +16,6 @@ end
 
 def link_url
   wikirate_link_card&.content
-end
-
-def link?
-  wikirate_link_card.present?
 end
 
 format :html do
