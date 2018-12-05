@@ -1,8 +1,6 @@
 require_relative "../../../mod/wikirate_csv_import/lib/csv_row.rb"
 require_relative "../../../mod/wikirate_csv_import/lib/csv_file.rb"
 
-require 'pry'
-
 # create a metric described by a row in a csv file
 class MetricCSVRow < CSVRow
   @columns =
@@ -41,10 +39,10 @@ class MetricCSVRow < CSVRow
 
   def format_html html
     html.gsub(/\b(OR|AND)\b/, "<strong>\\1</strong>")
-        .gsub(%r{Note:([^<]+)<br>}, "<em><strong>Note:</strong>\\1</em><br>")
-        .gsub(%r{<p>([^<]+)<br>}, "<p><strong>\\1</strong><br>")
+        .gsub(/Note:([^<]+)<br>/, "<em><strong>Note:</strong>\\1</em><br>")
+        .gsub(/<p>([^<]+)<br>/, "<p><strong>\\1</strong><br>")
         .gsub("Sources:", "<strong>Sources:</strong>")
-        .gsub(%r{(<br><br>|^)([^<]+)(?=<br>)}, ) do |m|
+        .gsub(/(<br><br>|^)([^<]+)(?=<br>)/) do |m|
       m.split(" ").size > 15 ? "#{$1}#{$2}" : "#{$1}<strong>#{$2}</strong>"
     end
   end
@@ -60,7 +58,7 @@ class MetricCSVRow < CSVRow
   end
 
   def normalize_metric_type value
-    return value unless value.match /research/i
+    return value unless value =~ /research/i
     "Researched"
   end
 
