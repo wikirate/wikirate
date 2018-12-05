@@ -27,7 +27,8 @@ end
 def download source
   link = source.wikirate_link_card&.content
   return no_link(source) unless link.present?
-  source.file_card.update_attributes! remote_file_url: link
+  source.file_card.remote_file_url = link
+  source.file_card.save!
   tick :download_success, "downloaded #{source.name}"
 rescue => e
   tag source, "Bad Download"
@@ -92,7 +93,7 @@ Card::Auth.as_bot do
     source.include_set_modules
     tick :sources, "processing #{source.name}"
     standardize_file source
-    update_source_name source
+    # update_source_name source
     puts @counts
   end
 end
