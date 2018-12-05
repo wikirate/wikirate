@@ -122,7 +122,7 @@ format :html do
     path subvariant: key, variant: variant, view: :list
   end
 
-  view :core do
+  view :core, cache: :never do
     # without this, variant is lost with view caching on.
     variant
     super()

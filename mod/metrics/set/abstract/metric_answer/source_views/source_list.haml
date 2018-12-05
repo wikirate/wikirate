@@ -1,0 +1,5 @@
+%h5.py-3
+  = category_label
+.source-list
+  - sources.compact.each do |source|
+    = nest source, view: :cite_bar

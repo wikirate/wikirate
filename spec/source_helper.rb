@@ -1,52 +1,29 @@
 module SourceHelper
-  def create_page url: "http://www.google.com/?q=wikirate", subcards: {},
-                  box: true, import: false
-
+  def create_source source, subcards: {}, codename: nil
     Card::Auth.as_bot do
-      with_sourcebox box do
-        Card.create! type_id: Card::SourceID,
-                     subcards: { "+Link" => { content: url } }.merge(subcards),
-                     import: import
-      end
+      Card.create! type_id: Card::SourceID,
+                   codename: codename,
+                   subcards: source_subcard_args(source, subcards),
+                   skip: :requirements
     end
   end
 
-  def create_link_source url
-    create_source link: url
+  def new_source source, subcards: {}
+    Card.new type_id: Card::SourceID,
+             subcards: source_subcard_args(source, subcards)
   end
 
-  def create_source args
-    Card.create source_args(args)
+  def source_subcard_args source, subcards={}
+    source ||= "http://www.google.com/?q=wikirate"
+    subcards.reverse_merge! "+File"        => source_file_args(source) # ,
+                            # "+Title"       => "Sample Source Title",
+                            # "+Year"        => "1999",
+                            # "+Company"     => "Death Star",
+                            # "+Report Type" => "Creature Report"
   end
 
-  def with_sourcebox sourcebox=true
-    Card::Env.params[:sourcebox] = sourcebox.to_s
-    yield
-  ensure
-    Card::Env.params[:sourcebox] = "false"
-  end
-
-  def source_args args
-    res = {
-      type_id: Card::SourceID,
-      subcards: {
-        "+Link" => {},
-        "+File" => { type_id: Card::FileID },
-        "+Text" => { type_id: Card::BasicID, content: "" }
-      }
-    }
-    add_source_type args, res
-    res
-  end
-
-  def add_source_type args, res
-    source_type_name = Card[:source_type].name
-    [:link, :file, :text].each do |key|
-      next unless args[key]
-      content_key = (key == :file ? :file : :content)
-      res[:subcards]["+#{key.to_s.capitalize}"][content_key] = args[key]
-      res[:subcards]["+#{source_type_name}"] = {}
-      res[:subcards]["+#{source_type_name}"][:content] = "[[#{key}]]"
-    end
+  def source_file_args source
+    key = source.is_a?(String) ? :remote_file_url : :file
+    { type_id: Card::FileID, key => source }
   end
 end

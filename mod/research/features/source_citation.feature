@@ -15,7 +15,7 @@ Scenario: Source has a year, answer form has a different year
     (and add 2009 to the years covered by this source).
     """
   And I press "Submit"
-  Then I should see "Cited"
+  Then I should see "1 Citations"
   When I visit cited source
   Then I should see "2009"
 
@@ -27,7 +27,7 @@ Scenario: Source has no year
     (and add 2009 to the years covered by this source).
     """
   And I press "Submit"
-  Then I should see "Cited"
+  Then I should see "1 Citations"
   When I visit cited source without year
   Then I should see "2009"
 

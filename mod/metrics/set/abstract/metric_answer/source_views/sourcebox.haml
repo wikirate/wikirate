@@ -1,0 +1,18 @@
+
+.sourcebox.p-3
+  %form.slotter{ method: "get", action: path(view: :sourcebox), "data-remote": true }
+    = text_field_tag :source_search_term, nil, placeholder: "keyword or http://",
+                                               class: "p-2 w-50",
+                                               value: params[:source_search_term]
+    = submit_button text: "Find or Add Source",
+                    class: "_sourcebox",
+                    value: "source_search",
+                    situation: "outline-primary"
+
+//  = link_to_view :new, "Upload New Source",
+//                   class: "_upload_new_source slotter btn btn-outline-primary",
+//                   path: { mark: :source, action: :new, answer: card.name }
+= render_flash
+
+= render_source_results
+= render_freshen_form

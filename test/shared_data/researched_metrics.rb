@@ -40,7 +40,7 @@ class SharedData
       end
 
       Timecop.freeze(HAPPY_BIRTHDAY) do
-        source = sample_source("Star_Wars").name
+        source = sample_source(:star_wars).name
         metric.create_values do
           Death_Star "1990" => { value: "yes", source: source }
         end
@@ -67,7 +67,7 @@ class SharedData
     end
 
     def free_text_metrics
-      source = sample_source("Star_Wars").name
+      source = sample_source(:star_wars).name
       Card::Metric.create name: "Jedi+Sith Lord in Charge",
                           value_type: "Free Text",
                           unit: "Imperial military units",

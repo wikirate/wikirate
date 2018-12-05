@@ -54,15 +54,9 @@ class SharedData
     end
 
     # @param source [String] existing examples you can choose from
-    # are "Space_opera", "Opera", "Apple", and "Star_Wars"
-    def sample_source source=nil
-      return Card.search(type_id: Card::SourceID, limit: 1).first unless source
-      Card.search(
-        type_id: Card::SourceID,
-        right_plus: [ {codename: "wikirate_link"},
-                      { content: "http://www.wikiwand.com/en/#{source}" }],
-        limit: 1
-      ).first
+    # are :space_opera, :opera, :apple, and :star_wars
+    def sample_source source=:opera
+      Card[:"#{source}_source"]
     end
 
     def sample_metric_answer value_type=:free_text

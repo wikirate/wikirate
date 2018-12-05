@@ -133,23 +133,15 @@ format :html do
     bs_layout do
       row 12 do
         column do
-          output [country_table, integrations]
+          output [properties, integrations]
         end
       end
     end
   end
 
-  def country_table
-    table country_rows,
-          class: "table-borderless table-condensed mt-3 h5 font-weight-normal"
-  end
-
-  def country_rows
-    [:headquarters].map do |field|
-      [{ content: wrap_with(:strong, Card[field].name),
-         class: "no-stretch padding-right-30 pl-0" },
-       field_nest(field, view: :content, show: :menu, items: { view: :name })]
-    end
+  def properties
+    field_nest :headquarters, title: "Headquarters",
+                              view: :labeled, items: { view: :name }
   end
 
   def integrations

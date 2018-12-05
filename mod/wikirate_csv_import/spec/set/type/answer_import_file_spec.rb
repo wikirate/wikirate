@@ -67,42 +67,46 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       let(:data) do
         {
           exact_match:
-            { company: "Death Star", source: "http://google.com/1", comment: "chch" },
+            { company: "Death Star", source: gsearch(1), comment: "chch" },
           alias_match:
-            { company: "Google", source: "http://google.com/2" },
+            { company: "Google", source: gsearch(2) },
           partial_match:
-            { company: "Sony", source: "http://google.com/3" },
+            { company: "Sony", source: gsearch(3) },
           no_match:
-            { company: "New Company", source: "http://google.com/4" },
+            { company: "New Company", source: gsearch(4) },
           not_a_metric:
             { metric: "Not a metric", company: "Monster Inc",
-              source: "http://google.com/5" },
+              source: gsearch(5) },
           not_a_company:
-            { company: "A", source: "http://google.com/6" },
+            { company: "A", source: gsearch(6) },
           company_missing:
-            { company: "", source: "http://google.com/7" },
+            { company: "", source: gsearch(7) },
           missing_and_invalid:
-            { metric: "Not a metric", company: "", source: "http://google.com/8" },
+            { metric: "Not a metric", company: "", source: gsearch(8) },
           conflict_same_value_same_source:
             { company: "Death Star", year: "2000",
               source: "http://www.wikiwand.com/en/Opera" },
           conflict_same_value_different_source:
-            { company: "Death Star", year: "2000", source: "http://google.com/10" },
+            { company: "Death Star", year: "2000", source: gsearch(10) },
           conflict_different_value:
-            [default_data[:metric], "Death Star", "2000", "no", "http://google.com/11",
+            [default_data[:metric], "Death Star", "2000", "no", gsearch(11),
              "overridden"],
           invalid_value:
-            { company: "Death Star", value: "100", source: "http://google.com/12" },
+            { company: "Death Star", value: "100", source: gsearch(12) },
           monster_badge_1:
-            { company: "Monster Inc.", year: "2000", source: "http://google.com/13" },
+            { company: "Monster Inc.", year: "2000", source: gsearch(13) },
           monster_badge_2:
-            { company: "Monster Inc.", year: "2001", source: "http://google.com/14" },
+            { company: "Monster Inc.", year: "2001", source: gsearch(14) },
           monster_badge_3:
-            { company: "Monster Inc.", year: "2002", source: "http://google.com/15" },
+            { company: "Monster Inc.", year: "2002", source: gsearch(15) },
           wikirate_source:
             { source: sample_source.name }
         }
       end
+    end
+
+    def gsearch term
+      "http://google.com/search?q=#{term}"
     end
 
     let(:metric) { "Jedi+disturbances in the Force" }

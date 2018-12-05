@@ -21,16 +21,6 @@ format :html do
     end
   end
 
-  view :designer_slot do
-    voo.hide :menu
-    wrap do
-      [
-        author_info,
-        _render_menu
-      ]
-    end
-  end
-
   def author_image
     wrap_with :div, class: "image-box icon m-0 d-inline-block" do
       wrap_with :span, class: "img-helper" do

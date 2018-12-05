@@ -14,8 +14,8 @@ Feature: create new import file card
    And I uncheck "all"
 
  Scenario: Import a simple metric value
-   And I should see a row with "1|Jedi+disturbances in the Force|Death Star|Death Star|Death Star|2017|yes|http://google.com/1|chch"
-   And I should see a row with "11|Jedi+disturbances in the Force|Death Star|2000|no|http://google.com/10"
+   And I should see a row with "1|Jedi+disturbances in the Force|Death Star|Death Star|Death Star|2017|yes|http://google.com/search?q=1|chch"
+   And I should see a row with "11|Jedi+disturbances in the Force|Death Star|2000|no|http://google.com/search?q=10"
 
    When I choose "override"
    And I scroll 1000 pixels down
