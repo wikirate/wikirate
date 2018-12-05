@@ -27,9 +27,10 @@ end
 def download source
   link = source.wikirate_link_card&.content
   return no_link(source) unless link.present?
-  source.file_card.remote_file_url = link
-  source.file_card.save!
-  tick :download_success, "downloaded #{source.name}"
+  file_card = source.file_card
+  file_card.remote_file_url = link
+  file_card.save!
+  tick :download_success, "SUCCESS: downloaded #{source.name}"
 rescue => e
   tag source, "Bad Download"
   tick :download_error, "problem downloading #{source.name}", e
