@@ -43,7 +43,7 @@ def convert_to_pdf
     self.file = pdf_file
   end
 rescue StandardError => e
-  abort :failure, "failed to convert HTML source to pdf #{e.message}"
+  abort :failure, "failed to convert HTML source to pdf: #{e.message}"
 end
 
 def with_tmp_pdf
@@ -54,7 +54,7 @@ def with_tmp_pdf
 end
 
 def pdf_from_url path
-  Timeout.timeout(10) do
+  Timeout.timeout(30) do
     kit = PDFKit.new remote_file_url, "load-error-handling" => "ignore",
                                       "load-media-error-handling" => "ignore"
     kit.to_file path
