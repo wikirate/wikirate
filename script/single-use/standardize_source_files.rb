@@ -81,7 +81,8 @@ def tick key, msg, e=nil
 end
 
 def tag source, tag
-  source.fetch(:wikirate_tag, new: { type_id: Card::PointerID }).add_item! tag
+  tag_card = source.fetch trait: :wikirate_tag, new: { type_id: Card::PointerID }
+  tag_card.add_item! tag
 end
 
 # THE CALLS
