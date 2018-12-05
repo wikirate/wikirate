@@ -54,7 +54,7 @@ def with_tmp_pdf
 end
 
 def pdf_from_url path
-  Timeout::timeout(10) do
+  Timeout.timeout(10) do
     PDFKit.new(remote_file_url).to_file path
   end
 end

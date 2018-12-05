@@ -4,7 +4,7 @@ require_relative "../../config/environment"
 
 def standardize_file source
   %i[valid_file text_file download].each do |method|
-    return if send method, source
+    break if send method, source
   end
 end
 
@@ -26,7 +26,7 @@ end
 # try to download file from web
 def download source
   link = source.wikirate_link_card&.content
-  return no_link(source) if !link.present?
+  return no_link(source) unless link.present?
   source.file_card.update_attributes! remote_file_url: link
   tick :download_success, "downloaded #{source.name}"
 rescue => e
@@ -62,7 +62,7 @@ end
 # THE OTHER UPDATE
 
 def update_source_name source
-  return unless source.name =~ /Page/
+  return unless source.name.match?(/Page/)
   source.update_attributes! name: source.name.gsub("Page", "Source"),
                             update_referers: true,
                             skip: :requirements
