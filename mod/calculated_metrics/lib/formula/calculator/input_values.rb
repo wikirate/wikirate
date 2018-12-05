@@ -7,8 +7,7 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class InputValues
-      InputItem = Struct.new(:card_id, :type, :year_option, :company_option)
-
+      attr_reader :input, :value_store
       # @param [Input] an Input object
       # @param [Symbol] requirement either :all or :any
       def initialize input
@@ -16,15 +15,8 @@ module Formula
         @requirement = input.requirement
         @all_fetched = false
         @companies_with_values_by_year = Hash.new_nested ::Set
-        @input_list = initialize_input_list input.input_cards
+        @input_list = InputList.new self
         @value_store = ValueStore.new @input_list
-      end
-
-      def initialize_input_list input_cards
-        input_cards.compact.map.with_index do |input_card, i|
-          InputItem.new(input_card.id, input_type(input_card),
-                        year_option(i), company_option(i))
-        end
       end
 
       # Every iteration of the passed block receives an array with values for each
@@ -105,6 +97,10 @@ module Formula
         @input_list[index].card_id
       end
 
+      def all_input_required?
+        @requirement == :all
+      end
+
       private
 
       def companies_with_value year
@@ -122,57 +118,20 @@ module Formula
         @all_fetched ||= company_id.nil? && year.nil?
 
         while_full_input_set_possible company_id do |input_item|
-          fetch_value input_item, year
+          input_item.fetch_value year
         end
         clean_companies_with_value_by_year
       end
 
-      def input_type input_card
-        case input_card.type_id
-        when Card::MetricID
-          input_card.value_type_code
-        when Card::YearlyVariableID
-          :yearly_value
-        end
-      end
-
-      def year_option index
-        @input.year_options_processor[index]
-      end
-
-      def company_option index
-        @input.company_options.processor[index]
-      end
-
-      def fetch_value input_item, year
-        case input_item.type
-        when :yearly_value
-          yearly_value_fetch input_item.card_id
-        else
-          answer_fetch input_item, year
-        end
-      end
-
       def while_full_input_set_possible company_id=nil
-        initialize_company_lists company_id
+        @company_list = CompanyList.new @requirement, company_id
         @input_list.each do |input_item|
           yield input_item
-          break if no_company_with_required_input_values?
+          # skip remaining input items if there are no candidates left then can have
+          # values for all input items
+          break if @company_list.run_out_of_options?
         end
         @companies_with_values_by_year ||= Hash.new_nested ::Set
-      end
-
-      # return true if we know no company has
-      def no_company_with_required_input_values?
-        return false unless @requirement == :all
-        @companies_with_values&.empty?
-      end
-
-      def initialize_company_lists company_id
-        # nil as initialization is important here
-        # nil means not yet searched for companies with values
-        # empty means no companies with values for all input cards
-        @companies_with_values = company_id ? ::Set.new([company_id]) : nil
       end
 
       # if a company definitely doesn't meet input requirements,
@@ -181,24 +140,8 @@ module Formula
         @companies_with_values_by_year =
           @companies_with_values_by_year
           .to_a.each.with_object({}) do |(year, companies_by_year), h|
-            h[year] = applicable_companies companies_by_year, @companies_with_values
+            h[year] = @company_list.applicable_companies companies_by_year
           end
-      end
-
-      def applicable_companies set1, set2
-        @requirement == :all ? set1 & set2 : set1 | set2
-      end
-
-      # Find answer for the given input card and cache the result.
-      # If year is given look only for that year
-      def answer_fetch input_item, year
-        answers = input_answers input_item, year
-
-        update_company_list answers.map(&:company_id)
-        answers.each do |a|
-          value = Answer.value_from_lookup a.value, input_item.type
-          store_value input_item, a.company_id, a.year, value
-        end
       end
 
       def store_value input_item, company_id, year, value
@@ -207,47 +150,6 @@ module Formula
         @companies_with_values_by_year[year.to_i] << company_id
       end
 
-      def yearly_value_fetch input_card_id
-        input_yearly_value_cards(input_card_id).each do |vc|
-          @value_store.add input_card_id, vc.year, vc.content
-        end
-      end
-
-      def update_company_list company_ids
-        company_ids = company_ids.to_set
-        @companies_with_values =
-          if @companies_with_values
-            # remove all companies that don't have values for all input items
-            applicable_companies @companies_with_values, company_ids
-          else
-            # first input item: add all company ids
-            company_ids
-          end
-      end
-
-      # Searches for all metric answers for the metric given by input_card_id.
-      # If a year is given then the search will be restricted to that year
-      # @param input_card_id
-      # @param year
-      def input_answers input_item, year
-        Answer.where answer_query(input_item.card_id, year)
-      end
-
-      def input_yearly_value_cards yearly_variable_id
-        ::Card.search type_id: Card::YearlyValueID,
-                      left: { left_id: yearly_variable_id }
-      end
-
-      def answer_query input_card_id, year
-        query = { metric_id: input_card_id }
-        # search only for companies that still have a chance to reach a complete set
-        # of input values for at least one year.
-        if @companies_with_values.present? && @requirement == :all
-          query[:company_id] = @companies_with_values.to_a
-        end
-        query[:year] = year.to_i if year
-        query
-      end
     end
   end
 end

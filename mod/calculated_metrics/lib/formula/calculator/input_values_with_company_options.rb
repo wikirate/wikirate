@@ -20,7 +20,7 @@ module Formula
         companies = input_item.company_option.companies_and_years
 
 
-        update_company_list answers.keys
+        @company_list.update answers.keys
         companies.map do |_subject_company_id, year, object_company_ids|
           query = { metric_id: input_item.card_id,
                     company_id: object_company_ids }
