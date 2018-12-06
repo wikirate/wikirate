@@ -1,6 +1,6 @@
 require_relative "../../../config/environment"
 require_relative "metric_csv_row"
-require_relative "../../../mod/wikirate_csv_import/lib/import_manager/script_import_manager.rb"
+require_relative "../../../vendor/card-mods/csv_import/lib/import_manager/script_import_manager.rb"
 
 csv_path = File.expand_path "../data/CHRB_import.csv", __FILE__
 
