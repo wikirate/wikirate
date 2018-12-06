@@ -1,16 +1,14 @@
 require_relative "../../config/environment"
-require 'timeout'
+require "timeout"
 
 @counts = {}
 
 def standardize_file source
-  Timeout.timeout(120) do
+  with_timeout :standardize, 120 do
     %i[valid_file text_file download].each do |method|
       break if send method, source
     end
   end
-rescue => e
-  tick :source_timeout, "standardization timed out for #{source.name}", e
 end
 
 # THE THREE MAIN OUTCOMES
@@ -37,6 +35,15 @@ def download source
 rescue => e
   tag source, "Bad Download"
   tick :download_error, "problem downloading #{source.name}", e
+end
+
+# THE OTHER UPDATE
+
+def rename_source source
+  return unless source.name.match?(/Page/)
+  update_source_name source
+rescue => e
+  tick :name_error, "problem renaming #{source.name}", e
 end
 
 # THE HELP
@@ -79,15 +86,20 @@ def no_link source
   tick :no_link, "skipping #{source.name}: no link"
 end
 
-# THE OTHER UPDATE
-
 def update_source_name source
-  return unless source.name.match?(/Page/)
-  source.update_attributes! name: source.name.gsub("Page", "Source"),
-                            update_referers: true,
-                            skip: :requirements
-#rescue => e
-#  tick :name_error, "problem renaming #{source.name}", e
+  with_timeout :rename, 60 do
+    source.update_attributes! name: source.name.gsub("Page", "Source"),
+                              update_referers: true,
+                              skip: :requirements
+  end
+end
+
+def with_timeout type, time
+  Timeout.timeout(time) do
+    yield
+  end
+rescue => e
+  tick :"#{type}_timeout", "#{type} timed out", e
 end
 
 # THE (AC)COUNTING
@@ -113,7 +125,7 @@ Card::Auth.as_bot do
     source.include_set_modules
     tick :sources, "processing #{source.name}"
     standardize_file source
-    update_source_name source
+    rename_source source
     puts @counts
   end
 end
