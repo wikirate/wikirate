@@ -21,7 +21,7 @@ event :block_file_changing, after: :write_identifier, on: :update, changed: :con
   errors.add :file, "is not allowed to be changed." unless Card::Auth.always_ok?
 end
 
-event :normalize_html_file, before: :write_identifier, on: :save, when: :html_file? do
+event :normalize_html_file, after: :validate_source_file, on: :save, when: :html_file? do
   if remote_file_url # CarrierWave magic
     convert_to_pdf
   else

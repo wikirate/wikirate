@@ -27,9 +27,7 @@ end
 def download source
   link = source.wikirate_link_card&.content
   return no_link(source) unless link.present?
-  file_card = source.file_card
-  file_card.remote_file_url = link
-  file_card.save!
+  update_file_card source, link
   tick :download_success, "SUCCESS: downloaded #{source.name}"
 rescue => e
   tag source, "Bad Download"
@@ -37,6 +35,21 @@ rescue => e
 end
 
 # THE HELP
+
+# follow redirects
+def get_final_url url
+  result = Curl::Easy.perform(url) do |curl|
+    curl.head = true
+    curl.follow_location = true
+  end
+  result.last_effective_url
+end
+
+def update_file_card source, link
+  file_card = source.file_card
+  file_card.remote_file_url = get_final_url(link)
+  file_card.save!
+end
 
 def convert_text_to_file source, text
   with_temp_text_file text do |file|
@@ -94,7 +107,7 @@ Card::Auth.as_bot do
     source.include_set_modules
     tick :sources, "processing #{source.name}"
     standardize_file source
-    # update_source_name source
+    update_source_name source
     puts @counts
   end
 end
