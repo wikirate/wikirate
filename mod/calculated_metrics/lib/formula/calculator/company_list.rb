@@ -36,13 +36,13 @@ module Formula
         @requirement == :all
       end
 
-      def applicable_companies new_ids=nil
+      def applicable_companies new_ids
         new_ids = new_ids.to_set
         return new_ids if @fresh
         if all_input_required?
-          self & new_ids
+          new_ids & self
         else
-          self | new_ids
+          new_ids | self
         end
       end
 

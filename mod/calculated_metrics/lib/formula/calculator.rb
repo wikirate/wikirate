@@ -15,7 +15,7 @@ module Formula
 
     def initialize formula_card
       @formula_card = formula_card
-      @input = Input.new self, &self.class::INPUT_CAST
+      @input = Input.new @formula_card, &self.class::INPUT_CAST
       @errors = []
     end
 
@@ -77,21 +77,6 @@ module Formula
 
     def self.remove_nests content
       content.gsub(/{{[^}]*}}/, "")
-    end
-
-    # Extracts all year options from all input nests in the formula
-    def year_options
-      @year_options ||=
-        @formula_card.input_chunks.map do |chunk|
-          chunk.options[:year]
-        end
-    end
-
-    def company_options
-      @company_options ||=
-        @formula_card.input_chunks.map do |chunk|
-          chunk.options[:company]
-        end
     end
 
     private

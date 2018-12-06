@@ -1,12 +1,9 @@
 module Formula
   class Calculator
-    class Input
+    class InputItem
       module YearOption
-        attr_reader :multi_year, :no_year_options
-
         def initialize_decorator
           @processed_year_expr = interpret_year_option
-          @multi_year = @processed_year_expr != 0
         end
 
         def answer_query _year
@@ -15,31 +12,31 @@ module Formula
           super(nil)
         end
 
-        def fetch_value year
-
+        def value_for company, year
+          values_for_all_years = values_by_year company
+          apply_year_option values_for_all_years, year
         end
 
+        def search_value _year
+          super(nil)
+        end
 
         # @param value_data [Array<Hash] for every input item a hash with values for every
         #   year
         # @param the year we want the input data for
-        def run value_data, year
+        def apply_year_option value_data, year
           year = year.to_i
-          if @no_year_options
-            return value_data.map { |values_by_year| values_by_year[year] }
-          end
 
-          map.with_index do |ip, i|
-            case ip
-            when Integer
-              year?(ip) ? value_data[i][ip] : value_data[i][year + ip]
-            when Array
-              ip.map { |year| value_data[i][year] }
-            when Proc
-              ip.call(year).map { |y| value_data[i][y] }
-            else
-              raise Card::Error, "illegal input processor type: #{ip.class}"
-            end
+          ip = @processed_year_expr
+          case ip
+          when Integer
+            year?(ip) ? value_data[ip] : value_data[year + ip]
+          when Array
+            ip.map { |year| value_data[year] }
+          when Proc
+            ip.call(year).map { |y| value_data[y] }
+          else
+            raise Card::Error, "illegal input processor type: #{ip.class}"
           end
         end
 
@@ -55,7 +52,7 @@ module Formula
 
         def interpret_year_option
           return 0 if year_option.blank?
-          normalize_year_expr
+          normalize_year_option
           case year_option
           when /^[0?]$/     then 0
           when /^[+-]?\d+$/ then year_option.to_i

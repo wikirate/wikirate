@@ -7,14 +7,19 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class InputValues
-      attr_reader :input, :value_store
+      attr_reader :requirement, :input_cards, :company_options, :year_options,
+                  :value_store, :companies_with_values, :company_list
       # @param [Input] an Input object
       # @param [Symbol] requirement either :all or :any
-      def initialize input
-        @input = input
-        @requirement = input.requirement
+      def initialize formula_card
+        @input_cards = formula_card.input_cards
+        @requirement = formula_card.input_requirement
+        @company_options = formula_card.company_options
+        @year_options = formula_card.year_options
+
         @all_fetched = false
-        @companies_with_values_by_year = Hash.new_nested ::Set
+
+        @companies_with_values = CompaniesWithValues.new
         @input_list = InputList.new self
         @value_store = ValueStore.new @input_list
       end
@@ -39,7 +44,7 @@ module Formula
       end
 
       def each_company_and_year_with_value &block
-        fetch_values
+        search_values
         years_with_values.each do |year|
           companies_with_value(year).each do |company_id|
             result company_id, year, &block
@@ -64,10 +69,6 @@ module Formula
         yield values, company_id, year
       end
 
-      def fetch_all
-        fetch_values
-      end
-
       # @return input values to calculate values for the given company
       #   If year is given it returns an array with one value for every input card,
       #   otherwise it returns an array with a hash for every input card. The hashes
@@ -75,16 +76,16 @@ module Formula
       def fetch company:, year:
         company = Card.fetch_id(company) unless company.is_a? Integer
 
-        fetch_values company_id: company, year: year
+        search_values company_id: company, year: year
 
         @input_list.map do |input_item|
-          @value_store.get input_item.card_id, company, year
+          input_item.value_for company, year
         end
       end
 
       def years_with_values
-        fetch_values
-        @companies_with_values_by_year.keys
+        search_values
+        @companies_with_values.years
       end
 
       # type of input
@@ -104,52 +105,30 @@ module Formula
       private
 
       def companies_with_value year
-        fetch_values year: year
-        @companies_with_values_by_year[year].to_a
+        search_values year: year
+        @companies_with_values.for_year year
       end
 
-      # all values by year for one single input card
-      def values_by_year input_item, company
-        value_store.get input_item.card_id, company
-      end
-
-      def fetch_values company_id: nil, year: nil
+      def search_values company_id: nil, year: nil
         return if @all_fetched
         @all_fetched ||= company_id.nil? && year.nil?
 
         while_full_input_set_possible company_id do |input_item|
-          input_item.fetch_value year
+          input_item.search_value year
         end
-        clean_companies_with_value_by_year
+        @companies_with_values.clean @company_list
       end
 
       def while_full_input_set_possible company_id=nil
         @company_list = CompanyList.new @requirement, company_id
         @input_list.each do |input_item|
-          yield input_item
           # skip remaining input items if there are no candidates left then can have
           # values for all input items
           break if @company_list.run_out_of_options?
+          yield input_item
         end
-        @companies_with_values_by_year ||= Hash.new_nested ::Set
+        @companies_with_values ||= CompaniesWithValues.new
       end
-
-      # if a company definitely doesn't meet input requirements,
-      # remove it completely
-      def clean_companies_with_value_by_year
-        @companies_with_values_by_year =
-          @companies_with_values_by_year
-          .to_a.each.with_object({}) do |(year, companies_by_year), h|
-            h[year] = @company_list.applicable_companies companies_by_year
-          end
-      end
-
-      def store_value input_item, company_id, year, value
-        @value_store.add input_item.card_id, company_id, year, value
-        @companies_with_values_by_year[year.to_i] ||= ::Set.new
-        @companies_with_values_by_year[year.to_i] << company_id
-      end
-
     end
   end
 end
