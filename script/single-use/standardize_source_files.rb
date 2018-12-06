@@ -1,11 +1,16 @@
 require_relative "../../config/environment"
+require 'timeout'
 
 @counts = {}
 
 def standardize_file source
-  %i[valid_file text_file download].each do |method|
-    break if send method, source
+  Timeout.timeout(120) do
+    %i[valid_file text_file download].each do |method|
+      break if send method, source
+    end
   end
+rescue => e
+  tick :source_timeout, "standardization timed out for #{source.name}", e
 end
 
 # THE THREE MAIN OUTCOMES
