@@ -72,6 +72,7 @@ format :html do
   end
 
   def website_text
+    return "" unless card.wikirate_website_card.content.present?
     field_nest :wikirate_website, view: :content, items: { view: :name }
   end
 

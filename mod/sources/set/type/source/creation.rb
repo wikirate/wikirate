@@ -87,6 +87,6 @@ format :html do
   end
 
   def freshen_title
-    "Create new source from updated uri: #{card.link_url}."
+    "Create new source from updated webpage: #{card.link_url}."
   end
 end

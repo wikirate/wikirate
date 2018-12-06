@@ -1,5 +1,3 @@
-require "timeout"
-
 FIELD_CODENAME = { title: :wikirate_title, description: :description }.freeze
 
 event :normalize_link, :prepare_to_validate, on: :save do
