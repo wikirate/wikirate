@@ -81,8 +81,8 @@ def update_source_name source
   source.update_attributes! name: source.name.gsub("Page", "Source"),
                             update_referers: true,
                             skip: :requirements
-rescue => e
-  tick :name_error, "problem renaming #{source.name}", e
+#rescue => e
+#  tick :name_error, "problem renaming #{source.name}", e
 end
 
 # THE (AC)COUNTING
@@ -104,6 +104,7 @@ end
 
 Card::Auth.as_bot do
   Card.where(type_id: Card::SourceID).find_each do |source|
+    # Card.where(name: "Page-000000032").find_each do |source|
     source.include_set_modules
     tick :sources, "processing #{source.name}"
     standardize_file source
