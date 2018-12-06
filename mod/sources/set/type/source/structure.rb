@@ -37,7 +37,7 @@ format :html do
   end
 
   def original_link
-    return unless card.link?
+    return unless card.link_url.present?
     link_with_icon card.link_url, "external-link-square", "Original"
   end
 

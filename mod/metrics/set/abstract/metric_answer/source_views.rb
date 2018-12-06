@@ -82,29 +82,31 @@ format :html do
   view :source_results, cache: :never, tags: :unknown_ok do
     when_searching do |results|
       if results.any?
-        source_list "Search Results", results
+        already_added results
       else
-        no_source_results
+        render_new_source_form
       end
     end
   end
 
+  def already_added results
+    output [render_sourcebox,
+            source_list("Sources Already Added", results)]
+  end
+
   view :freshen_form, cache: :never, tags: :unknown_ok do
     return unless params[:freshen_source]
-    new_source_form
+    render_new_source_form
   end
 
   def when_searching
     return "" unless params[:button] == "source_search"
-    yield source_results
+    yield raw_source_results
   end
 
-  def source_results
-    if source_search_term.present?
-      sources_found_by_url || sources_found_by_keyword
-    else
-      []
-    end
+  def raw_source_results
+    return [] unless source_search_term.present?
+    sources_found_by_url
   end
 
   def source_search_term
@@ -122,17 +124,7 @@ format :html do
     [source_card]
   end
 
-  def sources_found_by_keyword
-    Card.search type_id: SourceID,
-                or: [match: source_search_term,
-                     right_plus: [{}, { match: source_search_term }]]
-  end
-
-  def no_source_results
-    "<em>No matching sources found. Add new:</em>" + new_source_form
-  end
-
-  def new_source_form
+  view :new_source_form, tags: :unknown_ok, cache: :never do
     params[:answer] = card.name
     params[:source_url] = source_search_term if source_search_term&.url?
     source_card = Card.new type_id: SourceID

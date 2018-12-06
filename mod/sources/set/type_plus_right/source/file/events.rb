@@ -1,3 +1,4 @@
+require "timeout"
 
 event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
   left.add_subfield :wikirate_link, content: remote_file_url
@@ -20,7 +21,7 @@ event :block_file_changing, after: :write_identifier, on: :update, changed: :con
   errors.add :file, "is not allowed to be changed." unless Card::Auth.always_ok?
 end
 
-event :normalize_html_file, before: :write_identifier, on: :save, when: :html_file? do
+event :normalize_html_file, after: :validate_source_file, on: :save, when: :html_file? do
   if remote_file_url # CarrierWave magic
     convert_to_pdf
   else
@@ -38,18 +39,25 @@ end
 
 def convert_to_pdf
   # Rails.logger.info "generating pdf"
-  pdf_from_url remote_file_url do |pdf_file|
+  with_tmp_pdf do |pdf_file|
     self.file = pdf_file
   end
 rescue StandardError => e
-  abort :failure, "failed to convert HTML source to pdf #{e.message}"
+  abort :failure, "failed to convert HTML source to pdf: #{e.message}"
 end
 
-def pdf_from_url url
-  kit = PDFKit.new url
+def with_tmp_pdf
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
+    pdf_from_url path
+    yield ::File.open(path)
+  end
+end
+
+def pdf_from_url path
+  Timeout.timeout(30) do
+    kit = PDFKit.new remote_file_url, "load-error-handling" => "ignore",
+                                      "load-media-error-handling" => "ignore"
     kit.to_file path
-    yield ::File.open path
   end
 end
 

@@ -55,7 +55,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
     end
   end
 
-  # context "whan changing relationship answer name" do
+  # context "when changing relationship answer name" do
   #   def change_relationship_answer_name
   #     Card["Jedi"]
   #   end
