@@ -2,31 +2,24 @@ module Formula
   class Calculator
     # Manages the two different types of input values: metrics and yearly variables
     class ValueStore
-      def initialize input_list
-        @values = {
-          metric_value: Hash.new_nested(Hash, Hash),
-          yearly_value: Hash.new_nested(Hash)
-        }
-        @type = input_list.each_with_object({}) do |input_item, h|
-          h[input_item.card_id] =
-            input_item.type == :yearly_value ? :yearly_value : :metric_value
-        end
+      def initialize company_dependent
+        @with_companies = company_dependent
+        @values = company_dependent ? Hash.new_nested(Hash, Hash) : Hash.new_nested(Hash)
       end
 
-      def get card_id, company, year=nil
-        dig_args = [card_id, (company if @type[card_id] == :metric_value), year].compact
-        values(card_id).dig(*dig_args)
+      def get company, year=nil
+        dig_args = [(company if @with_companies), year].compact
+        values.dig(*dig_args)
       end
 
-      def add card_id, *args
+      def add *args
         value = args.pop
         year = args.pop
-        values(card_id).dig(card_id, *args).merge!(year.to_i => value)
+        values.dig(*args).merge!(year.to_i => value)
       end
 
-      def values card_id
-        raise "card_id not part of the input list: #{card_id}" unless @type[card_id]
-        @values[@type[card_id]]
+      def values
+        @values
       end
     end
   end

@@ -41,10 +41,6 @@ module Formula
 
         private
 
-        def normalize_company_option
-          @company_option = @company_option.sub("company:", "").strip
-        end
-
         def interpret_company_option
           return nil if company_option.blank?
           normalize_company_option

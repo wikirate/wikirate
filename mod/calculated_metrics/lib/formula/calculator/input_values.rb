@@ -8,7 +8,7 @@ module Formula
     # and provides the input data for the calculation
     class InputValues
       attr_reader :requirement, :input_cards, :company_options, :year_options,
-                  :value_store, :companies_with_values, :company_list
+                  :companies_with_values, :company_list
       # @param [Input] an Input object
       # @param [Symbol] requirement either :all or :any
       def initialize formula_card
@@ -21,7 +21,6 @@ module Formula
 
         @companies_with_values = CompaniesWithValues.new
         @input_list = InputList.new self
-        @value_store = ValueStore.new @input_list
       end
 
       # Every iteration of the passed block receives an array with values for each

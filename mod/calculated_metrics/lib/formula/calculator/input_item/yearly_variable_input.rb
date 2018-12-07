@@ -4,8 +4,12 @@ module Formula
       class YearlyVariable
         def search_value _year
           yearly_variable_value_cards.each do |vc|
-            value_store.add card_id, vc.year, vc.content
+            value_store.add vc.year, vc.content
           end
+        end
+
+        def value_store
+          @value_store ||= ValueStore.new false
         end
 
         def yearly_variable_value_cards
