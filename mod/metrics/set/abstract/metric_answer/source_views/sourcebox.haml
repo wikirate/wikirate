@@ -10,7 +10,8 @@
                     situation: "outline-primary"
 
     = link_to_view :new_source_form, "#{fa_icon :upload} Add File Source",
-                   class: "_upload_new_source slotter btn btn-outline-primary"
+                   class: "_upload_new_source slotter btn btn-outline-primary",
+                   path: { type_id: Card::MetricAnswerID }
 
 = render_flash
 //= render_freshen_form
