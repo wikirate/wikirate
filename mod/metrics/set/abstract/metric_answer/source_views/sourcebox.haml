@@ -1,6 +1,8 @@
 
 .sourcebox.p-3
-  %form.slotter{ method: "get", action: path(view: :source_results), "data-remote": true }
+  %form.slotter{ method: "get", "data-remote": true,
+                 action: path(view: :source_results,
+                              card: { type_id: Card::MetricAnswerID }) }
     = text_field_tag :source_search_term, nil, placeholder: "http://",
                                                class: "p-2 w-50",
                                                value: params[:source_search_term]
@@ -11,7 +13,7 @@
 
     = link_to_view :new_source_form, "#{fa_icon :upload} Add File Source",
                    class: "_upload_new_source slotter btn btn-outline-primary",
-                   path: { type_id: Card::MetricAnswerID }
+                   path: { card: { type_id: Card::MetricAnswerID } }
 
 = render_flash
 //= render_freshen_form
