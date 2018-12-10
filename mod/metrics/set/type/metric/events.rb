@@ -34,7 +34,7 @@ event :ensure_title, :prepare_to_store, on: :save, changed: :name do
     attach_subcard metric_title, type_id: MetricTitleID
   else
     errors.add :metric_title, "#{metric_title} is a #{Card[metric_title].type_name} "\
-                              "card and can be use as metric title"
+                              "card and can't be used as metric title"
   end
 end
 

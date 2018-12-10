@@ -8,7 +8,7 @@ module Formula
     # and provides the input data for the calculation
     class InputValues
       attr_reader :requirement, :input_cards, :company_options, :year_options,
-                  :companies_with_values, :company_list
+                  :companies_with_values, :answer_candidates
       # @param [Input] an Input object
       # @param [Symbol] requirement either :all or :any
       def initialize formula_card
@@ -43,7 +43,7 @@ module Formula
       end
 
       def each_company_and_year_with_value &block
-        search_values
+        full_search
         years_with_values.each do |year|
           companies_with_value(year).each do |company_id|
             result company_id, year, &block
@@ -75,16 +75,11 @@ module Formula
       def fetch company:, year:
         company = Card.fetch_id(company) unless company.is_a? Integer
 
-        search_values company_id: company, year: year
+        search_values_for company_id: company, year: year
 
         @input_list.map do |input_item|
           input_item.value_for company, year
         end
-      end
-
-      def years_with_values
-        search_values
-        @companies_with_values.years
       end
 
       # type of input
@@ -103,28 +98,39 @@ module Formula
 
       private
 
+      def years_with_values
+        search_values
+        @companies_with_values.years
+      end
+
       def companies_with_value year
         search_values year: year
         @companies_with_values.for_year year
       end
 
-      def search_values company_id: nil, year: nil
-        return if @all_fetched
-        @all_fetched ||= company_id.nil? && year.nil?
+      def search_values_for company_id: nil, year: nil
+        full_search if company_id.nil? && year.nil?
 
-        while_full_input_set_possible company_id do |input_item|
-          input_item.search_value year
+        while_full_input_set_possible company_id, year do |input_item|
+          input_item.search_value company_id: company_id, year: year
         end
+      end
+
+      def full_search
+        return if @all_fetched
+        @all_fetched = true
+
+        while_full_input_set_possible(&:search_all_values)
         @companies_with_values.clean @company_list
       end
 
-      def while_full_input_set_possible company_id=nil
-        @company_list = CompanyList.new @requirement, company_id
+      def while_full_input_set_possible company_id=nil, year=nil
+        @answer_candidates = SearchSpace.new company_id, year
         @input_list.each do |input_item|
+          yield input_item
           # skip remaining input items if there are no candidates left then can have
           # values for all input items
-          break if @company_list.run_out_of_options?
-          yield input_item
+          break if @answer_candidates.run_out_of_options?
         end
         @companies_with_values ||= CompaniesWithValues.new
       end

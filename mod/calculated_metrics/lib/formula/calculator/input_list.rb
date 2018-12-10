@@ -11,8 +11,8 @@ module Formula
       end
 
       def add_item i
-        item = item_class(i).new(@input_values, i)
-        # item.extend AllRequired if @input_values.all_input_required?
+        item = item_class(i).new(@input_values, i, @input_values.all_input_required?)
+        # item.extend InputItem::AllRequired if @input_values.all_input_required?
         # item.extend YearOption if
         # item.extend CompanyOption if
         self << item

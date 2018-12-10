@@ -7,10 +7,9 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class Input
-      attr_reader :input_values, :input_cards, :requirement,
+      attr_reader :input_values, :input_cards, :requirement
 
-      # @param [Array<Card>] input_cards all cards that are part of the formula
-      # @param [Symbol] requirement either :all or :any
+      # @param [Card] formula_card has to respond to #input_cards and #input_requirement
       # @param [Proc] input_cast a block that is called for every input value
       def initialize formula_card, &input_cast
         @input_cards = formula_card.input_cards

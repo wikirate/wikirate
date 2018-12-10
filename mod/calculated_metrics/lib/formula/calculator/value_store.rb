@@ -4,6 +4,7 @@ module Formula
     class ValueStore
       def initialize company_dependent
         @with_companies = company_dependent
+        @years = ::Set.new
         @values = company_dependent ? Hash.new_nested(Hash, Hash) : Hash.new_nested(Hash)
       end
 
@@ -12,9 +13,18 @@ module Formula
         values.dig(*dig_args)
       end
 
+      def companies
+        @values.keys
+      end
+
+      def years
+        @years
+      end
+
       def add *args
         value = args.pop
         year = args.pop
+        @years.add year
         values.dig(*args).merge!(year.to_i => value)
       end
 

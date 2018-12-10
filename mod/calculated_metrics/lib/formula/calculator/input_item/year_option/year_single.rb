@@ -4,8 +4,9 @@ module Formula
       module YearOption
         module YearSingle
           def process_year_option
-            y = year_option.to_i
-            @fixed_year = year? y
+            year_option.to_i.tap do |y|
+              @fixed_year = year? y
+            end
           end
 
           def translate_years years

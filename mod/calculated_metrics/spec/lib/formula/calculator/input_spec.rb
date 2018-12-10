@@ -9,6 +9,12 @@ RSpec.describe Formula::Calculator::Input do
   let(:apple_id) { Card.fetch_id "Apple Inc" }
   let(:samsung_id) { Card.fetch_id "Samsung" }
 
+  describe ".new" do
+    it "takes one argument" do
+      expect(described_class.method(:new).arity).to eq 1
+    end
+  end
+
   example "single input" do
     @input = ["Jedi+deadliness"]
     expect { |b| input.each(year: 1977, company: "Death Star", &b) }

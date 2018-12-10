@@ -11,22 +11,13 @@ module Formula
           apply_year_option values_for_all_years, year
         end
 
-        def search_value _year
-          search_company_ids.each do |c_id|
-            years, values = search_years_and_values(c_id).transpose
+        def full_search
+          years_and_values_for_each_company do |c_id, years, values|
             translate_years(years).each do |year|
               final_val = apply_year_option values, year
               store_value c_id, year, final_val
             end
           end
-        end
-
-        def search_company_ids
-          Answer.select(:company_id).where(metric_id: card_id).distinct.pluck(:company_id)
-        end
-
-        def search_years_and_values company_id
-          Answer.where(metric_id: card_id, company_id: company_id).pluck(:year?, :value)
         end
 
         def processed_year_option
@@ -53,6 +44,11 @@ module Formula
         end
 
         private
+
+        def all_years
+          @all_years = Card.search(type_id: Card::YearID, return: :name)
+                           .map(&:to_i).tap { |a| a.delete 0 }
+        end
 
         def year? y
           y.is_a?(Integer) && y > 1000

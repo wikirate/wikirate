@@ -15,7 +15,7 @@ module Formula
 
     def initialize formula_card
       @formula_card = formula_card
-      @input = Input.new @formula_card, &self.class::INPUT_CAST
+      @input = ::Formula::Calculator::Input.new @formula_card, &self.class::INPUT_CAST
       @errors = []
     end
 

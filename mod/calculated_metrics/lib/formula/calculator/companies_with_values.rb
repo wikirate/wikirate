@@ -2,7 +2,7 @@ module Formula
   class Calculator
     # Keeps track of companies that have values for all input metrics which means
     # it's possible to calculate answers for them.
-    # It's a Set of company ids.
+    # It's a Set of company ids for every year
     class CompaniesWithValues < Hash
       def initialize
         super do |h, k|
