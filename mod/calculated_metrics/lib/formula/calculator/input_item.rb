@@ -45,13 +45,16 @@ module Formula
         @search_space ||= answer_candidates
       end
 
-      def restricted_search_space?
-        @restricted_search_space || answer_search_space.present?
+      def companies_with_values
+        value_store.companies
+      end
+
+      def years_with_values
+        value_store.years
       end
 
       def before_full_search
-        #@companies_with_values = ::Set.new
-        #@years_with_values = ::Set.new
+        @value_store = ValueStore.new true
       end
 
       # Find answer for the given input card and cache the result.
@@ -61,7 +64,7 @@ module Formula
       end
 
       def after_full_search
-        answer_candidates.update @companies_with_values, @years_with_values, mandatory?
+        answer_candidates.update companies_with_values, years_with_values, mandatory?
       end
 
       def value_store

@@ -2,7 +2,7 @@ module Formula
   class Calculator
     class InputItem
       module CompanyOption
-        class CompanyRelated
+        module CompanyRelated
           class Expression
             attr_reader :metric_card, :value, :metric_id
 
@@ -29,7 +29,7 @@ module Formula
             end
 
             def querify str
-              str.sub(@original, value_sql)
+              str.sub(@original, "(#{metric_sql} && #{value_sql})")
             end
 
             def metric_sql

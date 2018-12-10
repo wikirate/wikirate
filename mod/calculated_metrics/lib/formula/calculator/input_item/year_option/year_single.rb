@@ -11,9 +11,9 @@ module Formula
 
           def translate_years years
             if @fixed_year
-              years.include? @processed_year_option ? all_years : []
+              years.include?(processed_year_option) ? all_years : []
             else
-              years.map { |y| y - @processed_year_option }
+              years.map { |y| y - processed_year_option }
             end
           end
         end

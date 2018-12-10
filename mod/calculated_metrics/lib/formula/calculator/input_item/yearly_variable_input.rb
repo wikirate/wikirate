@@ -2,8 +2,12 @@ module Formula
   class Calculator
     class InputItem
       class YearlyVariable
-        def after_full_search
+        def before_full_search
+          @value_store = ValueStore.new false
+        end
 
+        def after_full_search
+          answer_candidates.update nil, years_with_values, mandatory?
         end
 
         def each_answer

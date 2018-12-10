@@ -13,15 +13,14 @@ module Formula
             end
           end
 
-          def years_and_values_for_each_company
+          def values_by_year_for_each_company
             hash = {}
             each_answer do |sc_id, y, v|
-              hash[sc_id] ||= [[],[]]
-              hash[sc_id][0] << y
-              hash[sc_id][1] << v
+              hash[sc_id] ||= {}
+              hash[sc_id][y] = v
             end
-            hash.each_pair do |c_id, (values, years)|
-              yield c_id, values, years
+            hash.each_pair do |c_id, v_by_y|
+              yield c_id, v_by_y
             end
           end
 
@@ -32,9 +31,7 @@ module Formula
           #   for these object_companies
           def relations
             @relations ||=
-              ActiveRecord::Base.connection.select_rows(sql).map do |sc_id, year, oc_ids|
-                [sc_id, year, oc_ids.split("##").map(&:to_i)]
-              end
+              CompanyRelatedParser.new(company_option, search_space).relations
           end
 
           def sql

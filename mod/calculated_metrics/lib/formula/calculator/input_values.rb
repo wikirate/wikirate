@@ -43,7 +43,6 @@ module Formula
       end
 
       def each_company_and_year_with_value &block
-        full_search
         years_with_values.each do |year|
           companies_with_value(year).each do |company_id|
             result company_id, year, &block
@@ -52,7 +51,7 @@ module Formula
       end
 
       def each_year_with_value company_id, &block
-        years_with_values.each do |year|
+        years_with_values(company_id).each do |year|
           result company_id, year, &block
         end
       end
@@ -98,13 +97,13 @@ module Formula
 
       private
 
-      def years_with_values
-        search_values
+      def years_with_values company_id
+        search_values_for company_id: company_id
         @companies_with_values.years
       end
 
       def companies_with_value year
-        search_values year: year
+        search_values_for year: year
         @companies_with_values.for_year year
       end
 
@@ -121,10 +120,11 @@ module Formula
         @all_fetched = true
 
         while_full_input_set_possible(&:search_all_values)
-        @companies_with_values.clean @company_list
+        @companies_with_values.clean @answer_candidates
       end
 
       def while_full_input_set_possible company_id=nil, year=nil
+        @companies_with_values ||= CompaniesWithValues.new
         @answer_candidates = SearchSpace.new company_id, year
         @input_list.each do |input_item|
           yield input_item
@@ -132,7 +132,6 @@ module Formula
           # values for all input items
           break if @answer_candidates.run_out_of_options?
         end
-        @companies_with_values ||= CompaniesWithValues.new
       end
     end
   end

@@ -3,18 +3,15 @@ module Formula
     class InputItem
       module YearOption
         def initialize_decorator
-          @processed_year_expr = interpret_year_option
-        end
-
-        def value_for company, year
-          values_for_all_years = values_by_year company
-          apply_year_option values_for_all_years, year
+          interpret_year_option
+          processed_year_option
         end
 
         def full_search
-          years_and_values_for_each_company do |c_id, years, values|
+          values_by_year_for_each_company do |c_id, values_by_year|
+            years = values_by_year.keys
             translate_years(years).each do |year|
-              final_val = apply_year_option values, year
+              final_val = apply_year_option values_by_year, year
               store_value c_id, year, final_val
             end
           end
@@ -46,8 +43,8 @@ module Formula
         private
 
         def all_years
-          @all_years = Card.search(type_id: Card::YearID, return: :name)
-                           .map(&:to_i).tap { |a| a.delete 0 }
+          @all_years ||= Card.search(type_id: Card::YearID, return: :name)
+                             .map(&:to_i).tap { |a| a.delete 0 }
         end
 
         def year? y

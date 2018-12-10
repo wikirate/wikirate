@@ -5,11 +5,9 @@ module Formula
     class SearchSpace
       attr_reader :mandatory_processed
 
-      def initialize company_id, year
-        @company_ids = company_id ? ::Set.new([company_id]) : ::Set.new
-        @years = year ? ::Set.new([year]) : ::Set.new
-
-        @fresh = company_id.nil? && year.nil?
+      def initialize company_id=nil, year=nil
+        @company_ids = company_id ? ::Set.new([company_id]) : nil
+        @years = year ? ::Set.new([year]) : nil
 
         @mandatory_processed = false
       end
@@ -18,8 +16,12 @@ module Formula
         @company_ids.to_a
       end
 
+      def fresh?
+        @company_ids.nil? || @year.nil?
+      end
+
       def present?
-        !@fresh && (years? || company_ids?)
+        !fresh? && (years? || company_ids?)
       end
 
       def years
@@ -35,9 +37,8 @@ module Formula
       end
 
       def reset
-        @fresh = true
-        @company_ids = ::Set.new
-        @years = ::Set.new
+        @company_ids = nil
+        @years = nil
       end
 
       def update company_ids, years, mandatory
@@ -52,20 +53,25 @@ module Formula
       end
 
       def intersect company_ids, years
-        if @fresh
-          @fresh = false
-          @company_ids = ::Set.new company_ids
-          @years = ::Set.new years
-        else
-          @company_ids &= company_ids
-          @years &= years
-        end
+        intersect_companies company_ids
+        intersect_years years
+      end
+
+      def intersect_companies c_ids
+        return unless c_ids
+        @company_ids =
+          @company_ids.nil? ? ::Set.new(c_ids) : @company_ids & c_ids
+      end
+
+      def intersect_years years
+        return unless years
+        @years = @years.nil? ? ::Set.new(years) : @years & years
       end
 
       def join company_ids, years
         @fresh = false
-        @company_ids |= company_ids
-        @years |= years
+        @company_ids |= company_ids if company_ids
+        @years |= years if years
       end
 
       def merge! search_space
@@ -76,16 +82,20 @@ module Formula
 
       def applicable_companies new_ids
         new_ids = new_ids.to_set
-        return new_ids if @fresh
+        return new_ids if @company_ids.nil?
         if @mandatory_processed
           new_ids & @company_ids
         else
-          new_ids | @years
+          new_ids | @company_ids
         end
       end
 
+      def applicable_year? year
+        @years.nil? || !@mandatory_processed || @years.include?(year)
+      end
+
       def run_out_of_options?
-        return false if @fresh || !@mandatory_processed
+        return false if fresh? || !@mandatory_processed
         @company_ids.empty? || @years.empty?
       end
     end

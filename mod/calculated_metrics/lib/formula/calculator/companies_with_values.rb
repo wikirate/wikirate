@@ -25,10 +25,11 @@ module Formula
 
       # if a company definitely doesn't meet input requirements,
       # remove it completely
-      def clean company_list
+      def clean answer_candidates
         new_content =
           to_a.each.with_object({}) do |(year, companies_by_year), h|
-            h[year] = company_list.applicable_companies companies_by_year
+            next unless answer_candidates.applicable_year? year
+            h[year] = answer_candidates.applicable_companies companies_by_year
           end
         replace new_content
       end

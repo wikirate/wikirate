@@ -16,7 +16,7 @@ module Formula
       # 2.
       module CompanyOption
         def initialize_decorator
-          @processed_company_expr = interpret_company_option
+          interpret_company_option
         end
 
 
@@ -31,7 +31,7 @@ module Formula
 
         def interpret_company_option
           case company_option
-          when /^\s*Related\[([^]]+)\]\s*$/
+          when /^\s*Related\[([^\]]+)\]\s*$/
             @company_option = $1
             extend CompanyRelated
           when /^[\w\s+\d]/

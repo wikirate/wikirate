@@ -5,6 +5,7 @@ module Formula
       def initialize company_dependent
         @with_companies = company_dependent
         @years = ::Set.new
+        @companies = ::Set.new
         @values = company_dependent ? Hash.new_nested(Hash, Hash) : Hash.new_nested(Hash)
       end
 
@@ -25,6 +26,7 @@ module Formula
         value = args.pop
         year = args.pop
         @years.add year
+        @companies.add args.first if @with_companies
         values.dig(*args).merge!(year.to_i => value)
       end
 

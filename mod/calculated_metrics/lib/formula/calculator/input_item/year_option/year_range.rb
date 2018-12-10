@@ -28,7 +28,7 @@ module Formula
 
           def fixed_start_fixed_end years
             # 2000..2010
-            (@processed_year_option - years).empty? ? all_years : []
+            (processed_year_option - years).empty? ? all_years : []
           end
 
           def fixed_start_relative_end years
