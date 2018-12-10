@@ -56,4 +56,4 @@ Feature: import metric answers from a csv file
     And I wait 2 seconds
     Then I should see "1 imported"
     When I go to card "Sony Corporation+aliases"
-    Then I should see add link "Sony"
+    Then I should see a prompt to add "Sony"

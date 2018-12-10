@@ -71,7 +71,7 @@ end
 
 def inverse_company_count
   return 0 unless inverse_answer_id
-  answer_ids = Answer.where(metric_id: metric_card.id).pluck :answer_id
+  answer_ids = Answer.where(metric_id: metric_card.id, year: year).pluck :answer_id
   return 0 unless answer_ids.any?
   Card.search left_id: answer_ids.unshift(:in),
               right_id: related_company_card.id,

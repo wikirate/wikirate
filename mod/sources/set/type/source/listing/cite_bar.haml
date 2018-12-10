@@ -1,0 +1,12 @@
+.cite-bar._cite-bar{ data: { "card-id": card.id,
+                             "card-name": h(card.name),
+                             year: year_list } }
+  .text-right.cite-and-refresh-buttons
+    = render_cite_button
+    // = render_freshen_button if card.link_url
+  - if voo.show? :preview_link_bar
+    = render_preview_link_bar
+    = render_uncite_button
+    = hidden_item_input
+  - else
+    = render_mini_bar

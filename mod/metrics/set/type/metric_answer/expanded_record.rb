@@ -13,7 +13,6 @@ format :html do
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
-    voo.hide! :cited_source_links
     details_sidebar :metric do
       <<-HTML
         <div class="row clearfix">

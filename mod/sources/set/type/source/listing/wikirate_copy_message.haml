@@ -1,0 +1,6 @@
+.archive-indicator
+  %i.fa.fa-hdd-o{"aria-hidden" => "true"}
+  WikiRate copy
+  - if card.file_card.real?
+    from
+    = field_nest :file, view: :updated_at, variant: "%B %-d, %Y"

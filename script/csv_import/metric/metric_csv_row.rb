@@ -1,24 +1,14 @@
-require_relative "../csv_row"
+require_relative "../../../vendor/card-mods/csv_import/lib/csv_row.rb"
+require_relative "../../../vendor/card-mods/csv_import/lib/csv_file.rb"
 
 # create a metric described by a row in a csv file
 class MetricCSVRow < CSVRow
   @columns =
     [:metric_designer, :metric_title, :question, :about, :methodology,
-     :topics, :value_type, :research_policy, :metric_type, :report_type]
+     :topic, :value_type, :research_policy, :metric_type, :report_type]
 
   @required = [:metric_designer, :metric_title, :value_type, :metric_type]
-  @normalize = { topics: :comma_list_to_pointer,
-                 about: :to_html,
-                 methodology: :to_html }
-
-  def initialize row
-    @value_details = {}
-    super
-    @designer = @row.delete :metric_designer
-    @title = @row.delete(:metric_title).gsub("/", "&#47;")
-    @name = "#{@designer}+#{@title}"
-    @row[:wikirate_topic] = @row.delete :topics if @row[:topics]
-  end
+  @normalize = { topic: :comma_list_to_pointer }
 
   def normalize_research_policy value
     policy =
@@ -34,11 +24,12 @@ class MetricCSVRow < CSVRow
   end
 
   def normalize_value_type value
+    @value_details ||= {}
     value.match(/(?<type>[^(]+)\((?<options>[^)]+)/) do |match|
       new_value = match[:type].strip
       new_value = "Category" if new_value == "Categorical"
       if new_value.in? %w[Category Multi-Category]
-        @value_details[:value_options] = comma_list_to_pointer match[:options]
+        @value_details[:value_options] = comma_list_to_pointer match[:options], ";"
       else
         @value_details[:unit] = match[:options].strip
       end
@@ -46,7 +37,36 @@ class MetricCSVRow < CSVRow
     end
   end
 
+  def format_html html
+    html.gsub(/\b(OR|AND)\b/, "<strong>\\1</strong>")
+        .gsub(/Note:([^<]+)<br>/, "<em><strong>Note:</strong>\\1</em><br>")
+        .gsub(/<p>([^<]+)<br>/, "<p><strong>\\1</strong><br>")
+        .gsub("Sources:", "<strong>Sources:</strong>")
+        .gsub(/(<br><br>|^)([^<]+)(?=<br>)/) do |m|
+      m.split(" ").size > 15 ? "#{$1}#{$2}" : "#{$1}<strong>#{$2}</strong>"
+    end
+  end
+
+  def normalize_methodology value
+    return value unless value.present?
+    format_html to_html(value)
+  end
+
+  def normalize_about value
+    return value unless value.present?
+    format_html to_html(value)
+  end
+
+  def normalize_metric_type value
+    return value unless value =~ /research/i
+    "Researched"
+  end
+
   def import
+    @designer = @row.delete :metric_designer
+    @title = @row.delete(:metric_title).gsub("/", "&#47;")
+    @name = "#{@designer}+#{@title}"
+    @row[:wikirate_topic] = @row.delete :topic if @row[:topic]
     create_card @designer, type: Card::ResearchGroupID unless Card.exists?(@designer)
     create_card @title, type: Card::MetricTitleID unless Card.exists?(@title)
     ensure_card @name, type: Card::MetricID, subfields: @row.merge(@value_details)

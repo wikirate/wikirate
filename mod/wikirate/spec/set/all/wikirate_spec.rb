@@ -28,11 +28,6 @@ RSpec.describe Card::Set::All::Wikirate do
       expect(html).to include("Can I help you?")
     end
 
-    it "show \"\" when for cite view other than in html format" do
-      html = render_card :cite, { name: "test1" }, format: :json
-      expect(html).to eq("")
-    end
-
     it "return html for an existing card for modal view" do
       card = create "test_basic", type: "html", content: "Hello World"
       Card::Env.params[:show_modal] = card.name
@@ -162,7 +157,7 @@ RSpec.describe Card::Set::All::Wikirate do
       source_showcast =
         Card.fetch "joe_user+showcast sources",
                    new: { type_id: Card::PointerID }
-      source_card = create_page url: "http://example.com", box: true
+      source_card = create_source "http://example.com"
       source_showcast << source_card
       source_showcast.save!
 

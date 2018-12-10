@@ -11,7 +11,7 @@ RSpec.describe Card::Set::Type::MetricAnswer, "json export" do
 
   describe "exported json researched metric answer" do
     let(:metric) { Card["Jedi+Sith_Lord_in_Charge"] }
-    let(:source) { sample_source("Star_Wars") }
+    let(:source) { sample_source(:star_wars) }
 
     let(:metric_fields) do
       {

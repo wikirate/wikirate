@@ -17,7 +17,7 @@ Feature: company feature
     And I should see "3 Companies 2 Metrics"
     Then I click on "Sources"
     And I should see "www.wikiwand.com"
-    And I should see "Visit Original"
+    And I should see "Original"
 
   Scenario: Filter by metric
     When I click on "Add filter"

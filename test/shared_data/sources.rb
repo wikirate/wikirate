@@ -1,74 +1,71 @@
+require File.expand_path("spec/source_helper.rb")
+
 class SharedData
   # test data for sources
   module Sources
+    include SourceHelper
+
     def add_sources
       Timecop.freeze(Time.now + 1.day) do
-        Card.create!(
-          type_id: Card::SourceID,
-          import: false,
-          subcards: {
-            "+Link" => { content: "http://www.wikiwand.com/en/Space_opera" },
-            "+company" => { content: "Death Star",
-                            type_id: Card::PointerID },
-            "+topic" => { content: "Force",
-                          type_id: Card::PointerID },
-            "+title" => { content: "Space Opera" },
-            "+description" => { content: "Space Opera Wikipedia article" }
-          }
-        )
+        create_source "http://www.wikiwand.com/en/Space_opera",
+                      codename: :space_opera_source,
+                      subcards: {
+                        "+company"     => { content: "Death Star",
+                                            type_id: Card::PointerID },
+                        "+topic"       => { content: "Force",
+                                            type_id: Card::PointerID },
+                        "+title"       => { content: "Space Opera" },
+                        "+description" => { content: "Space Opera Wikipedia article" }
+                      }
       end
 
       Timecop.freeze(Time.now + 2.days) do
-        Card.create!(
-          type_id: Card::SourceID,
-          codename: :opera_source,
-          import: false,
-          subcards: {
-            "+Link" => { content: "http://www.wikiwand.com/en/Opera" },
-            "+title" => { content: "Opera" },
-            "+description" => { content: "Opera Wikipedia article" }
-          }
-        )
+        create_source "http://www.wikiwand.com/en/Opera",
+                      codename: :opera_source,
+                      subcards: {
+                        "+title"       => { content: "Opera" },
+                        "+description" => { content: "Opera Wikipedia article" }
+                      }
       end
 
-      Card.create!(
-        type_id: Card::SourceID,
-        import: false,
-        subcards: {
-          "+Link" => { content: "http://www.wikiwand.com/en/Darth_Vader" },
-          "+company" => { content: "Death Star", type_id: Card::PointerID },
-          "+topic" => { content: "Force", type_id: Card::PointerID },
-          "+report type" => { content: "Force Report" },
-          "+description" => { content: "Darth Vader Wikipedia article" }
-        }
-      )
+      create_source "http://www.wikiwand.com/en/Darth_Vader",
+                    codename: :darth_vader_source,
+                    subcards: {
+                      "+company"     => { content: "Death Star",
+                                          type_id: Card::PointerID },
+                      "+topic"       => { content: "Force",
+                                          type_id: Card::PointerID },
+                      "+report type" => { content: "Force Report" },
+                      "+description" => { content: "Darth Vader Wikipedia article" }
+                    }
 
-      Card.create!(
-        type_id: Card::SourceID,
-        codename: :star_wars_source,
-        import: false,
-        subcards: {
-          "+Link" => { content: "http://www.wikiwand.com/en/Star_Wars" },
-          "+company" => { content: "Death Star", type_id: Card::PointerID },
-          "+topic" => { content: "Force", type_id: Card::PointerID },
-          "+report type" => { content: "Force Report" },
-          "+title" => { content: "Star Wars" },
-          "+description" => { content: "Star Wars Wikipedia article" },
-          "+year" => { content: "2008" }
-        }
-      )
+      create_source "http://www.wikiwand.com/en/Star_Wars",
+                    codename: :star_wars_source,
+                    subcards: {
+                      "+company"     => { content: "Death Star",
+                                          type_id: Card::PointerID },
+                      "+topic"       => { content: "Force",
+                                          type_id: Card::PointerID },
+                      "+report type" => { content: "Force Report" },
+                      "+title"       => { content: "Star Wars" },
+                      "+description" => { content: "Star Wars Wikipedia article" },
+                      "+year"        => { content: "2008" }
+                    }
 
-      Card.create!(
-        type_id: Card::SourceID,
-        import: false,
-        subcards: {
-          "+Link" => { content: "http://www.wikiwand.com/en/Apple" },
-          "+company" => { content: "", type_id: Card::PointerID },
-          "+topic" => { content: "", type_id: Card::PointerID },
-          "+title" => { content: "Apple" },
-          "+description" => { content: "What is an apple?" }
-        }
-      )
+      create_source "http://www.wikiwand.com/en/Apple",
+                    codename: :apple_source,
+                    subcards: {
+                      "+company"     => { content: "",
+                                          type_id: Card::PointerID },
+                      "+topic"       => { content: "",
+                                          type_id: Card::PointerID },
+                      "+title"       => { content: "Apple" },
+                      "+description" => { content: "What is an apple?" }
+                    }
+    end
+
+    def add_report_types
+      Card.create! type_id: Card::ReportTypeID, name: "Hologram Report"
     end
   end
 end

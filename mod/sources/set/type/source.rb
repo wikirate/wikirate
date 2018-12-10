@@ -1,46 +1,34 @@
 require "curb"
+require "link_thumbnailer"
 
 card_accessor :metric, type: :pointer
 card_accessor :year, type: :pointer
-card_accessor :source_type, type: :pointer, default: "[[Link]]"
 card_accessor :wikirate_topic, type: :pointer
 card_accessor :wikirate_company, type: :pointer
-card_accessor :title
-card_accessor :file
+card_accessor :wikirate_title
+card_accessor :wikirate_website
+card_accessor :wikirate_link, type: :phrase
+card_accessor :file, type: :file
 
-add_attributes :import
-attr_accessor :import
-
-def source_title_card
-  Card.fetch [name, :wikirate_title], new: {}
+def file_url
+  file_card&.file&.url
 end
 
-def import?
-  # default (=nil) means true
-  @import != false && Cardio.config.x.import_sources
-end
-
-require "link_thumbnailer"
-
-def source_type_codename
-  source_type_card.item_cards[0].codename.to_sym
-end
-
-def wikirate_link?
-  source_type_codename == :wikirate_link
+def link_url
+  wikirate_link_card&.content
 end
 
 format :html do
+  view :content do
+    add_name_context
+    super()
+  end
+
+  view :missing do
+    _view_link
+  end
+
   def icon
     "globe"
-  end
-end
-
-format :json do
-  def essentials
-    {
-      type: card.source_type_card.item_names.first,
-      title: card.source_title_card.content
-    }
   end
 end

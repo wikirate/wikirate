@@ -10,33 +10,41 @@ RSpec.describe Card::Set::Type::SourceImportFile do
     let(:import_card) { Card["source import test"] }
     let(:data) do
       {
-        exact_match: ["Death Star", "2014", "Force Report",
-                      url("Death Star"), "a title"],
-        duplicate_in_file: ["Monter Inc", "2017", "Monster Report",
-                            "http://www.wikiwand.com/en/Death_Star", "know me?"],
-        alias_match: ["Google", "2014", "Monster Report",
-                      url("Google"), "aaaaaah"],
-        partial_match: ["Monster", "2014", "Monster Report",
-                        url("Monster"), "aaaaaah"],
-        existing_url: ["Monster Inc", "2014", "Monster Report",
-                       url("Star_Wars"), "aaaaaah"],
+        exact_match:            ["Death Star", "2014", "Force Report",
+                                 url("Death Star"), "a title"],
+        duplicate_in_file:      ["Monter Inc", "2017", "Monster Report",
+                                 "http://www.wikiwand.com/en/Death_Star", "know me?"],
+        alias_match:            ["Google", "2014", "Monster Report",
+                                 url("Google"), "aaaaaah"],
+        partial_match:          ["Monster", "2014", "Monster Report",
+                                 url("Monster"), "aaaaaah"],
+        existing_url:           ["Monster Inc", "2014", "Monster Report",
+                                 url("Star_Wars"), "aaaaaah"],
         existing_without_title: ["Monster Inc", "2014", "Monster Report",
                                  url("Darth_Vader"), "ch ch"],
-        missing_url: ["Monster Inc", "2014", "Monster Report",
-                      "", "aaaaaah"],
-        missing_company: ["", "2014", "Monster Report",
-                          url("Monsters,_Inc."), "aaaaaah"],
-        missing_report_type: ["Monter Inc", "2014", "",
-                              url("Monsters,_Inc."), "aaaaaah"],
-        missing_year: ["Monter Inc", "", "Monster Report",
-                       url("Monsters,_Inc."), "aaaaaah"]
+        missing_url:            ["Monster Inc", "2014", "Monster Report",
+                                 "", "aaaaaah"],
+        missing_company:        ["", "2014", "Monster Report",
+                                 url("Monsters,_Inc."), "aaaaaah"],
+        missing_report_type:    ["Monter Inc", "2014", "",
+                                 url("Monsters,_Inc."), "aaaaaah"],
+        missing_year:           ["Monter Inc", "", "Monster Report",
+                                 url("Monsters,_Inc."), "aaaaaah"]
       }
     end
   end
 
   def source_card key
     m = data[key][3].match(%r{en/(.+)$})
-    sample_source m[1]
+    source_card_for m[1]
+  end
+
+  def source_card_for sourcename=nil
+    Card.search(
+      type_id: Card::SourceID,
+      right_plus: [:wikirate_link.cardname, { content: url(sourcename) }],
+      limit: 1
+    ).first
   end
 
   before do
@@ -87,6 +95,9 @@ RSpec.describe Card::Set::Type::SourceImportFile do
       end
 
       context "without title" do
+        before do
+          source_card_for("Darth Vader").wikirate_title_card.delete!
+        end
         it "updates title" do
           Card::Env.params[:conflict_strategy] = :override
           trigger_import existing_without_title: { company_match_type: :exact,
