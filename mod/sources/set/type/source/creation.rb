@@ -72,7 +72,10 @@ format :html do
   def new_view_hidden
     return super unless answer_name
     hidden_tags success: {
-      id: answer_name, soft_redirect: true, view: :source_selector
+      id: answer_name,
+      card: { type_id: MetricAnswerID },
+      view: :source_selector,
+      soft_redirect: true
     }
   end
 
