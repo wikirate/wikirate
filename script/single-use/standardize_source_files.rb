@@ -41,7 +41,9 @@ end
 
 def rename_source source
   return unless source.name.match?(/Page/)
-  update_source_name source
+  update_source content: ""
+  update_source name: source.name.gsub("Page", "Source"),
+                update_referers: true
 rescue => e
   tick :name_error, "problem renaming #{source.name}", e
 end
@@ -86,11 +88,9 @@ def no_link source
   tick :no_link, "skipping #{source.name}: no link"
 end
 
-def update_source_name source
+def update_source args
   with_timeout :rename, 60 do
-    source.update_attributes! name: source.name.gsub("Page", "Source"),
-                              update_referers: true,
-                              skip: :requirements
+    source.update! args.merge(skip: :requirements)
   end
 end
 
