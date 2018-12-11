@@ -21,13 +21,19 @@ format :html do
       "<h5 class='mt-3'>New import file</h5>",
       new_import_form(codename),
       "<h5 class='mt-5'>Recent imports</h5>",
-      list_group(recent_imports_list(codename))
+      list_group(recent_imports_list(codename)),
+      "<h5 class='mt-5'>All import files</h5>",
+      list_group(import_file_cards(codename))
     ]
   end
 
   def new_import_form import_type
-    nest(Card.new(type: import_type),
-         view: :new, hide: [:header, :menu, :new_type_formgroup])
+    if ok? :create
+      nest(Card.new(type: import_type),
+           view: :new, hide: [:header, :menu, :new_type_formgroup])
+    else
+      "You have to #{signin_link} to create new import files."
+    end
   end
 
   def recent_imports_list import_type
@@ -40,5 +46,12 @@ format :html do
     type_id = Card.fetch_id import_type
     Card.search left: { type_id: type_id }, right: { codename: "import_status" },
                 limit: limit, sort: "update"
+  end
+
+  def import_file_cards import_type
+    type_id = Card.fetch_id import_type
+    Card.search(type_id: type_id, sort: "create").map do |item|
+      nest item, view: :link
+    end
   end
 end
