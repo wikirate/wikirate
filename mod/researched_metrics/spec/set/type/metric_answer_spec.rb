@@ -67,7 +67,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
   context "when value type is Free Text" do
     let(:source) { sample_source }
     let(:new_answer) do
-      create_answer content: "hoi polloi", year: "2015", source: source.name
+      create_answer content: "1234", year: "2015", source: source.name
     end
 
     include_examples "create answer", :free_text, "yes", nil
@@ -89,7 +89,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
     end
 
     describe "+source" do
-      let(:source_card) { new_answer.fetch trait: :source }
+      let(:source_card) { new_answer.source_card }
 
       it "includes source in +source" do
         expect(source_card.item_names).to include(source.name)

@@ -152,8 +152,8 @@ format :html do
   end
 
   def research_form_success
-    research_params.merge id: ":research_page", soft_redirect: true,
-                          view: :left_research_side, slot: { title: "Answer" }
+    research_params.merge id: ":research_page", project: project, redirect: true,
+                          view: :slot_machine
   end
 
   def new_buttons
