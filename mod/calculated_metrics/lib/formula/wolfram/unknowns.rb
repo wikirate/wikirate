@@ -5,7 +5,7 @@ module Formula
       # what to do if an input value is unknown
       # currently hard-coded.
       # We probably want this sharkable
-      UNKNOWN_STRATEGY = :reject # reject:  calculated value is nil
+      UNKNOWN_STRATEGY = :pass # reject:  calculated value is nil
                                  # unknown: calculated value is unknown
                                  # pass:    pass "Unknown" as String to the formula;
                                  #          the formula has to deal with it
