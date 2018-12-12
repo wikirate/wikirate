@@ -91,7 +91,7 @@ end
 
 def update_source source, args
   with_timeout :rename, 60 do
-    source.update! args.merge(skip: :requirements)
+    source.update_attributes! args.merge(skip: :requirements)
   end
 end
 
