@@ -102,9 +102,9 @@ describe Card::Set::MetricType::Researched do
       Card::Auth.as_bot do
         metric = Card.create!(
           type_id: Card::MetricID,
-          subfields: { title: "MetricTitle", designer: "MetricDesigner" }
+          subfields: { title: "MetricTitle1", designer: "MetricDesigner" }
         )
-        expect(metric.name).to eq "MetricDesigner+MetricTitle"
+        expect(metric.name).to eq "MetricDesigner+MetricTitle1"
       end
     end
   end
