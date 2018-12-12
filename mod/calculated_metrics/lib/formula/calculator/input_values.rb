@@ -9,8 +9,8 @@ module Formula
     class InputValues
       attr_reader :requirement, :input_cards, :company_options, :year_options,
                   :companies_with_values, :answer_candidates
-      # @param [Input] an Input object
-      # @param [Symbol] requirement either :all or :any
+
+      # @param [Card] formula_card
       def initialize formula_card
         @input_cards = formula_card.input_cards
         @requirement = formula_card.input_requirement
@@ -97,7 +97,7 @@ module Formula
 
       private
 
-      def years_with_values company_id
+      def years_with_values company_id=nil
         search_values_for company_id: company_id
         @companies_with_values.years
       end
@@ -111,7 +111,7 @@ module Formula
         full_search if company_id.nil? && year.nil?
 
         while_full_input_set_possible company_id, year do |input_item|
-          input_item.search_value company_id: company_id, year: year
+          input_item.search_value_for company_id: company_id, year: year
         end
       end
 
@@ -119,12 +119,12 @@ module Formula
         return if @all_fetched
         @all_fetched = true
 
+        @companies_with_values = CompaniesWithValues.new
         while_full_input_set_possible(&:search_all_values)
         @companies_with_values.clean @answer_candidates
       end
 
       def while_full_input_set_possible company_id=nil, year=nil
-        @companies_with_values ||= CompaniesWithValues.new
         @answer_candidates = SearchSpace.new company_id, year
         @input_list.each do |input_item|
           yield input_item

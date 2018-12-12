@@ -96,10 +96,37 @@ module Formula
     private
 
     def translate_functions formula
-      formula.gsub(/(?<func>#{FUNC_KEY_MATCHER})\[(?<arg>[^\]]+)\]/) do |_match|
-        arg = translate_functions $LAST_MATCH_INFO[:arg]
-        "[#{arg}].flatten.#{FUNCTIONS[$LAST_MATCH_INFO[:func]]}"
+      return unless formula.present?
+      match = formula.match FUNC_KEY_MATCHER
+      return formula unless match
+      i = match.end(0)
+      if formula[i] != "["
+        @errors << "invalid formula: expected '[' at #{i}"
+        return
       end
+      arg, rest = func_arg(formula, i + 1).map(&method(:translate_functions))
+      [formula[0, match.begin(0)], "[#{arg}].flatten.#{FUNCTIONS[match[0]]}", rest].join
+    end
+
+    # find argument for function in square brackets
+    # @param formula [String]
+    # @param offset [Integer] position after opening '[' where search the begins
+    # @return function argument [String] and the rest of the formula [Integer]
+    #    after the closing ']'
+    def func_arg formula, offset
+      i = offset
+      br_cnt = 1
+      while br_cnt > 0 do
+        i += 1
+        if i == formula.size
+          @errors << "invalid formula: no closing ']' found for '[' at #{match.end(0)}"
+          return
+        end
+        br_cnt += 1 if formula[i] == "["
+        br_cnt -= 1 if formula[i] == "]"
+      end
+      arg_end = i - 1
+      [formula[offset..arg_end], formula[arg_end + 2..-1]]
     end
 
     def lambda_wrap code

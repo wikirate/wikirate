@@ -1,5 +1,7 @@
 module Formula
   class Calculator
+    # {InputList} is an array of {InputItem}s.
+    # It chooses the right InputItem class depending on the cardtype of the input item.
     class InputList < Array
       attr_reader :input_values
       delegate :all_input_required?, :value_store, :companies_with_values,
@@ -12,9 +14,6 @@ module Formula
 
       def add_item i
         item = item_class(i).new(@input_values, i, @input_values.all_input_required?)
-        # item.extend InputItem::AllRequired if @input_values.all_input_required?
-        # item.extend YearOption if
-        # item.extend CompanyOption if
         self << item
       end
 

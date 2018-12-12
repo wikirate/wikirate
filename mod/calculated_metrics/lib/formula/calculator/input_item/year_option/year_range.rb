@@ -2,6 +2,11 @@ module Formula
   class Calculator
     class InputItem
       module YearOption
+        # Handles a year option with a range as value
+        # Examples:
+        #    year: 1999..2020
+        #    year: 1999..-1
+        #    year: -4..0
         module YearRange
           def process_year_option
             @start, @stop = year_option.split("..").map(&:to_i)
@@ -16,7 +21,7 @@ module Formula
             elsif !year?(@start)
               @translate = :relative_start_fixed_end
               proc do |year|
-                (@start..year + @stop).to_a
+                (year + @start..@stop).to_a
               end
             else # = !year?(stop)
               @translate = :fixed_start_relative_end
@@ -38,9 +43,9 @@ module Formula
             return [] unless index
 
             [].tap do |result|
-              (index + 1).upto(years.size - 1) do |i|
-                break if years[i] > years[i - 1] + 1
-                result.push years[i] - @end
+              index.upto(years.size - 1) do |i|
+                break if i > index && years[i] != years[i - 1] + 1
+                result.push years[i] - @stop
               end
             end
           end
@@ -52,8 +57,8 @@ module Formula
             return [] unless index
 
             [].tap do |result|
-              (index - 1).downto(0) do |i|
-                break if years[i] < years[i + 1] - 1
+              index.downto(0) do |i|
+                break if i < index && years[i] != years[i + 1] - 1
                 result.push years[i] - @start
               end
             end

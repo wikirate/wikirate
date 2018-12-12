@@ -1,31 +1,34 @@
 module Formula
   class Calculator
     class InputItem
-      class YearlyVariable
-        def before_full_search
-          @value_store = ValueStore.new false
-        end
-
-        def after_full_search
-          answer_candidates.update nil, years_with_values, mandatory?
-        end
+      # Instances of {YearlyVariable} represent input items that refer to a yearly
+      # variable
+      # It uses the cards table to find values.
+      # TODO: support year and company options
+      class YearlyVariableInput < InputItem
+        include CompanyIndependentInput
 
         def each_answer
           value_cards.each do |value_card|
-            yield nil, value_card.year, value_card.content
+            yield nil, value_card.year.to_i, value_card.content
           end
         end
 
-        def mandatory?
-          false # don't use yearly variables to reduce company search space
+        def values_by_year_for_each_company
+          v_by_y =
+            value_cards.each_with_object({}) { |vc, h| h[vc.year.to_i] = vc.content }
+          yield nil, v_by_y
         end
 
-        def store_value _company_id, year, value
-          value_store.add year, value
+        # used for CompanyOption
+        def values_from_db company_ids, year
+          query = value_cards_query
+          query[:left][:right] = { name: year }
+          Card.search(query).map(&:content) * company_ids.size
         end
 
-        def value_store
-          @value_store ||= ValueStore.new false
+        def years_from_db _company_ids
+          value_cards.map { |vc| vc.year.to_i }
         end
 
         def value_cards
@@ -34,8 +37,9 @@ module Formula
 
         def value_cards_query
           query = { type_id: Card::YearlyValueID, left: { left_id: card_id } }
-          # TODO: restrict query to year search space
-          # query[:left][:right] = search_space.years if search_space.years?
+          if search_space.years?
+            query[:left][:right] = { name: ["in", search_space.years.to_a].flatten }
+          end
           query
         end
       end

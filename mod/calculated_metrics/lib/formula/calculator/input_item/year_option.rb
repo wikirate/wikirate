@@ -1,8 +1,16 @@
 module Formula
   class Calculator
     class InputItem
+      # Handle year options for input items of formula
+      # Examples:
+      #    year: -1
+      #    year: 2000..2004
+      #    year: -4..0
+      #    year: -4, 2
+      #    year: 1999, 2001, -1
       module YearOption
         def initialize_decorator
+          super
           interpret_year_option
           processed_year_option
         end

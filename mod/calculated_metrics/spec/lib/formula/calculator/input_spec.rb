@@ -1,19 +1,17 @@
+require_relative "../../../support/formula_stub"
+
 RSpec.describe Formula::Calculator::Input do
+  include_context "with formula stub"
+
   let :input do
     @requirement ||= :all
-    input_cards = @input.map { |i| Card.fetch i }
-    described_class.new(input_cards, @requirement, @year_options, &:to_f)
+    fc = formula_card_with_input @input, @requirement, @year_options, @company_options
+    described_class.new(fc, &:to_f)
   end
 
   let(:death_star_id) { Card.fetch_id "Death Star" }
   let(:apple_id) { Card.fetch_id "Apple Inc" }
   let(:samsung_id) { Card.fetch_id "Samsung" }
-
-  describe ".new" do
-    it "takes one argument" do
-      expect(described_class.method(:new).arity).to eq 1
-    end
-  end
 
   example "single input" do
     @input = ["Jedi+deadliness"]
@@ -49,7 +47,7 @@ RSpec.describe Formula::Calculator::Input do
                                 [[1007.5, 100.0], apple_id, 2015])
   end
 
-  context "with year references" do
+  context "with year option" do
     it "relative range" do
       @input = ["Joe User+researched"]
       @year_options = ["-1..0"]
@@ -71,4 +69,14 @@ RSpec.describe Formula::Calculator::Input do
         .to yield_with_args([[10.0, 11.0, 12.0, 13.0]], apple_id, 2013)
     end
   end
+
+  context "with company option" do
+    example "related" do
+      @input = ["Jedi+deadliness"]
+      @company_options = ["Related[Jedi+more evil = yes]"]
+      expect { |b| input.each(year: 1977, company: "Death Star", &b) }
+              .to yield_with_args([[50.0, 40.0]], death_star_id, 1977)
+    end
+  end
+
 end

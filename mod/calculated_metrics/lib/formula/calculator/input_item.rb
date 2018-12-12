@@ -1,5 +1,11 @@
 module Formula
   class Calculator
+    # An instance of {InputItem} represents a nest in a formula.
+    # For example "{{Jedi+friedliness|year: -1}}" in the formula
+    # "{{Jedi+friedliness|year: -1}} + 10 / {{Jedi+deadliness}}"
+    # Depending special formula nest options are present like "year" or "company" then
+    # the instance is extended with additional
+    # modules that take care of these nest options
     class InputItem
       attr_reader :card_id, :input_values
       delegate :answer_candidates, to: :input_values
@@ -45,16 +51,12 @@ module Formula
         @search_space ||= answer_candidates
       end
 
-      def companies_with_values
-        value_store.companies
-      end
-
       def years_with_values
         value_store.years
       end
 
       def before_full_search
-        @value_store = ValueStore.new true
+        @value_store = value_store_class.new
       end
 
       # Find answer for the given input card and cache the result.
@@ -63,12 +65,8 @@ module Formula
         each_answer(&method(:store_value))
       end
 
-      def after_full_search
-        answer_candidates.update companies_with_values, years_with_values, mandatory?
-      end
-
       def value_store
-        @value_store ||= ValueStore.new true
+        @value_store ||= value_store_class.new
       end
 
       def value_for company_id, year
@@ -91,11 +89,6 @@ module Formula
       def company_option
         @company_option ||=
           normalize_company_option @input_values.company_options[@input_index]
-      end
-
-      def store_value company_id, year, value
-        value_store.add company_id, year, value
-        @input_values.companies_with_values.add company_id, year
       end
 
       def values_by_year company

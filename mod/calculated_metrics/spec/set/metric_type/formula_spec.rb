@@ -83,6 +83,26 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
   end
 
+  describe "network aware formula" do
+    let(:formula) do
+      "Total[{{ #{@metric_name}|company: Related[#{@related}] }}]"
+    end
+
+    subject(:answer_value) do
+      formula_metric = create_metric name: "rating1", type: :formula, formula: formula
+      Answer.where(metric_name: formula_metric.name, company_id: company_id, year: 1977)
+            .take.value
+    end
+
+    let(:company_id) { Card.fetch_id "Death Star" }
+
+    example "first one" do
+      @metric_name = "Jedi+deadliness"
+      @related = "Jedi+more evil=yes"
+      expect(answer_value).to eq "90"
+    end
+  end
+
   describe "basic properties" do
     before do
       @name = "Jedi+friendliness"

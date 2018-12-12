@@ -27,10 +27,10 @@ module Formula
             def sql
               parse_expressions
               [RELATED_SELECT,
-               join_sql(@exprs.size - 1),
+               join_sql(@conditions.size - 1),
                "WHERE (#{where_sql})",
                RELATED_GROUP_BY].flatten.compact.join " "
-            rescue Expression::Error => _e
+            rescue Condition::Error => _e
               # TODO: error handling
             end
 
@@ -49,25 +49,33 @@ module Formula
             # end
 
             def value_and_metric_wheres
-              @exprs.inject(@str) do |res, expr|
+              @conditions.inject(@str) do |res, expr|
                 expr.querify(res)
               end
             end
 
             def company_search_space_sql
               return unless @search_space.company_ids?
-              "(r0.subject_company_id IN (#{@search_space.company_ids.join ','})"
+              "(r0.subject_company_id #{in_or_eq @search_space.company_ids})"
             end
 
             def year_search_space_sql
               return unless @search_space.years?
-              "(r0.year IN (#{@search_space.years.join ','})"
+              "(r0.year #{in_or_eq @search_space.years})"
+            end
+
+            def in_or_eq vals
+              if vals.size > 1
+                "IN (#{vals.join ','})"
+              else
+                "= #{vals.first}"
+              end
             end
 
             def parse_expressions
-              @exprs =
-                @str.split(Expression::SPLIT_REGEX).map.with_index do |part, i|
-                  Expression.new part.strip.sub(/^\(*/, "").sub(/\)*$/, ""), i
+              @conditions =
+                @str.split(Condition::SPLIT_REGEX).map.with_index do |part, i|
+                  Condition.new part.strip.sub(/^\(*/, "").sub(/\)*$/, ""), i
                 end
             end
 

@@ -2,13 +2,20 @@ module Formula
   class Calculator
     class InputItem
       module YearOption
+        # Handles a year option with a list as value, i.e. more than one years or
+        # relative year separated by comma.
+        #
+        # Example:
+        #    year: 1999, 2020
+        #    year: 1999, 2001, -1
+        #    year: -1, 0, 5
         module YearList
           def process_year_option
             list = year_option.split(",").map(&:to_i)
             @fixed = []
             @offsets = []
             list.each do |y|
-              year? y ? @fixed << y : @offsets << y
+              year?(y) ? @fixed << y : @offsets << y
             end
             return @fixed if @offsets.empty?
 
@@ -38,13 +45,14 @@ module Formula
               first = diffs.shift
               diffs.map! { |n| n - first } # differences compared to the first offset
               # Example:  diffs = [1, 4]
-              @result = []
+              result = []
               0.upto(years.size - diffs.size) do |i|
                 # Example:
                 #      << 2000 - (-3) = 2003 is the only year for which the offsets
                 #                            match to the given years
                 result << years[i] - first if years_suit? years[i], diffs, year_set
               end
+              result
             end
           end
 

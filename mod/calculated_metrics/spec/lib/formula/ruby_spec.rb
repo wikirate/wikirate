@@ -1,6 +1,6 @@
 require_relative "../../support/formula_stub"
 
-describe Formula::Ruby do
+RSpec.describe Formula::Ruby do
   include_context "with formula stub"
 
   def calculate formula
@@ -8,6 +8,7 @@ describe Formula::Ruby do
   end
 
   let(:apple_id) { Card.fetch_id "Apple Inc" }
+  let(:spectre_id) { Card.fetch_id "SPECTRE" }
   let(:death_star_id) { Card.fetch_id "Death Star" }
 
   example "simple formula" do
@@ -18,8 +19,21 @@ describe Formula::Ruby do
   end
 
   example "network aware" do
-    result = calculate 'Total[{{Jedi+deadliness|company:Related[Jedi+more evil="yes"]}}]*2'
-    expect(result[1977][death_star_id]).to eq 60
+    result = calculate 'Total[{{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}]'
+    expect(result[1977][death_star_id]).to eq 90.0
+  end
+
+  example "network aware with exist condition" do
+    result = calculate 'Total[{{Jedi+deadliness|company:Related[Jedi+more evil]}}]'
+    expect(result[1977][death_star_id]).to eq 90.0
+  end
+
+  example "network aware with count" do
+    result = calculate '100*Total[{{always one|company:Related[Commons+Supplied by=Tier 1 Supplier]}}]/{{Commons+Supplied by}}'
+    aggregate_failures do
+      expect(result[2000][spectre_id]).to eq 50.0
+      expect(result[1977][spectre_id]).to eq 100.0
+    end
   end
 
   describe "functions" do

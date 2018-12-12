@@ -25,7 +25,7 @@ module Formula
       end
 
       def years
-        @years.to_a
+        @years ? @years.to_a : []
       end
 
       def years?
@@ -57,6 +57,12 @@ module Formula
         intersect_years years
       end
 
+      def join company_ids, years
+        @fresh = false
+        join_companies company_ids
+        join_years years
+      end
+
       def intersect_companies c_ids
         return unless c_ids
         @company_ids =
@@ -65,13 +71,17 @@ module Formula
 
       def intersect_years years
         return unless years
-        @years = @years.nil? ? ::Set.new(years) : @years & years
+        @years = @years.nil? ? ::Set.new(years) : (@years & years.to_set)
       end
 
-      def join company_ids, years
-        @fresh = false
-        @company_ids |= company_ids if company_ids
-        @years |= years if years
+      def join_companies c_ids
+        return unless c_ids
+        @company_ids = @company_ids.nil? ? ::Set.new(c_ids) : (@company_ids)
+      end
+
+      def join_years years
+        return unless years
+        @years= @years.nil? ? ::Set.new(years) : (@years)
       end
 
       def merge! search_space
@@ -91,7 +101,7 @@ module Formula
       end
 
       def applicable_year? year
-        @years.nil? || !@mandatory_processed || @years.include?(year)
+        @years.nil? || !@mandatory_processed || @years&.include?(year)
       end
 
       def run_out_of_options?
