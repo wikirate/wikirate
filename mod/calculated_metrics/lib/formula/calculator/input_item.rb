@@ -21,8 +21,7 @@ module Formula
         initialize_decorator
       end
 
-      def initialize_decorator
-      end
+      def initialize_decorator; end
 
       # @param [Array<company_id>] company_id when given search only for answers for those
       #    companies
@@ -97,11 +96,13 @@ module Formula
 
       def normalize_year_option option
         return unless option.present?
+
         option.sub("year:", "").tr("?", "0").strip
       end
 
       def normalize_company_option option
         return unless option.present?
+
         option.sub("company:", "").strip
       end
 

@@ -1,5 +1,5 @@
-#require_relative "operator_condition"
-#require_relative "exist_condition"
+# require_relative "operator_condition"
+# require_relative "exist_condition"
 
 module Formula
   class Calculator
@@ -25,7 +25,7 @@ module Formula
             SEPARATORS = %w[&& ||].freeze
 
             SPLIT_REGEX = # splits several expressions
-              Regexp.new(SEPARATORS.map { |sep| /\)*\s#{Regexp.quote sep}\s*\(*/ }.join "|")
+              Regexp.new(SEPARATORS.map { |sep| /\)*\s#{Regexp.quote sep}\s*\(*/ }.join("|"))
 
             SYMBOL_OPERATORS = %w[!= = =~ < > ~]
             WORD_OPERATORS = ["in", "not in"]
@@ -34,7 +34,7 @@ module Formula
 
             class << self
               def new string, id
-                if string.match /#{OPERATOR_MATCHER}/m
+                if /#{OPERATOR_MATCHER}/m.match?(string)
                   OperatorCondition.new string, id
                 else
                   ExistCondition.new string, id

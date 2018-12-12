@@ -52,6 +52,7 @@ module Formula
 
     def validate_input input, index
       return true if  @non_numeric_ok.include?(index)
+
       input = Array.wrap(input)
       if input.all? { |inp| inp.is_a?(Float) }
         true
@@ -116,7 +117,7 @@ module Formula
     def func_arg formula, offset
       i = offset
       br_cnt = 1
-      while br_cnt > 0 do
+      while br_cnt.positive?
         i += 1
         if i == formula.size
           @errors << "invalid formula: no closing ']' found for '[' at #{match.end(0)}"

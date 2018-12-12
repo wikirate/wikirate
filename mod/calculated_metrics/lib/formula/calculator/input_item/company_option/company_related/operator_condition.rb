@@ -22,7 +22,10 @@ module Formula
               super
               match = string.match(/^(.+)\s*(#{Condition::OPERATOR_MATCHER})\s*(.+)$/m)
               raise Condition::Error, "invalid expression \"#{string}\"" unless match
-              @metric, @operator, @value = match[1], match[2], match[3]
+
+              @metric = match[1]
+              @operator = match[2]
+              @value = match[3]
               validate_metric
               validate_value
             end
@@ -32,7 +35,7 @@ module Formula
             end
 
             def value_sql
-              "r#{@table_id}.#{"numeric_" if numeric_operator?}value #{@operator} \"#{@value}\""
+              "r#{@table_id}.#{'numeric_' if numeric_operator?}value #{@operator} \"#{@value}\""
             end
 
             private
@@ -43,6 +46,7 @@ module Formula
 
             def validate_value
               raise Condition::Error, "invalid expression \"#{string}\"" if @value.blank?
+
               value_sql_safe?
             end
 
@@ -50,9 +54,9 @@ module Formula
               @value.sub!(/^["']/, "")
               @value.sub!(/["']$/, "")
 
-              if @value.match INVALID_VALUE_CHARS
+              if @value.match? INVALID_VALUE_CHARS
                 raise Condition::Error, "value is not allowed to contain the "\
-                           "characters #{ INVALID_VALUE_CHARS.to_sentence }"
+                           "characters #{INVALID_VALUE_CHARS.to_sentence}"
               end
             end
           end

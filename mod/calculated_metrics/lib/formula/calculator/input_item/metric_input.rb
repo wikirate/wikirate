@@ -23,7 +23,7 @@ module Formula
         # they work together with year options
         def values_by_year_for_each_company
           search_company_ids.each do |c_id|
-            #years, values = search_years_and_values(c_id).transpose
+            # years, values = search_years_and_values(c_id).transpose
             values_by_year =
               search_years_and_values(c_id).each_with_object({}) do |(y, v), h|
                 h[y] = v
@@ -43,7 +43,7 @@ module Formula
         # used for CompanyOption
         def years_from_db company_ids
           Answer.select(:year).where(metric_id: card_id, company_id: company_ids)
-            .distinct.pluck(:year)
+                .distinct.pluck(:year)
         end
 
         def search_company_ids

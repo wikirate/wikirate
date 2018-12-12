@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 require "timecop"
 require_dependency "shared_data/profile_sections"
 require_dependency "shared_data/researched_metrics"
@@ -88,7 +89,7 @@ class SharedData
       ensure_card ["Google LLC", :headquarters],
                   type: :pointer, content: "California (United States)"
       ensure_card ["Google LLC", :aliases],
-                  type: :pointer, content: ["Google", "Alphabet"]
+                  type: :pointer, content: %w[Google Alphabet]
       ensure_card ["Google LLC", :incorporation],
                   type: :pointer, content: "Delaware (United States)"
       ensure_card ["Google LLC", :open_corporates], content: "201727810678"
@@ -136,8 +137,8 @@ class SharedData
                        "+value" => { type_id: Card::YearlyValueID,
                                      content: "1" } },
           "+2000" => { type_id: Card::YearlyAnswerID,
-                             "+value" => { type_id: Card::YearlyValueID,
-                                           content: "1" } },
+                       "+value" => { type_id: Card::YearlyValueID,
+                                     content: "1" } },
           "+2014" => { type_id: Card::YearlyAnswerID,
                        "+value" => { type_id: Card::YearlyValueID,
                                      content: "1" } }

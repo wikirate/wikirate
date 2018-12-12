@@ -34,7 +34,6 @@ module Formula
               # TODO: error handling
             end
 
-
             def where_sql
               [value_and_metric_wheres,
                company_search_space_sql, year_search_space_sql].compact.join ") && ("
@@ -56,11 +55,13 @@ module Formula
 
             def company_search_space_sql
               return unless @search_space.company_ids?
+
               "(r0.subject_company_id #{in_or_eq @search_space.company_ids})"
             end
 
             def year_search_space_sql
               return unless @search_space.years?
+
               "(r0.year #{in_or_eq @search_space.years})"
             end
 

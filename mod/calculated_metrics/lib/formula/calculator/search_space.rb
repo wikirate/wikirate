@@ -65,34 +65,39 @@ module Formula
 
       def intersect_companies c_ids
         return unless c_ids
+
         @company_ids =
           @company_ids.nil? ? ::Set.new(c_ids) : @company_ids & c_ids
       end
 
       def intersect_years years
         return unless years
+
         @years = @years.nil? ? ::Set.new(years) : (@years & years.to_set)
       end
 
       def join_companies c_ids
         return unless c_ids
-        @company_ids = @company_ids.nil? ? ::Set.new(c_ids) : (@company_ids)
+
+        @company_ids = @company_ids.nil? ? ::Set.new(c_ids) : @company_ids
       end
 
       def join_years years
         return unless years
-        @years= @years.nil? ? ::Set.new(years) : (@years)
+
+        @years = @years.nil? ? ::Set.new(years) : @years
       end
 
       def merge! search_space
-        if search_space.mandatory_processed
-          intersect search_space.company_ids, search_space.years
-        end
+        return unless search_space.mandatory_processed
+
+        intersect search_space.company_ids, search_space.years
       end
 
       def applicable_companies new_ids
         new_ids = new_ids.to_set
         return new_ids if @company_ids.nil?
+
         if @mandatory_processed
           new_ids & @company_ids
         else
@@ -106,6 +111,7 @@ module Formula
 
       def run_out_of_options?
         return false if fresh? || !@mandatory_processed
+
         @company_ids.empty? || @years.empty?
       end
     end
