@@ -144,7 +144,7 @@ module Formula
       if value.is_a? Array
         result = value.map { |v| translate_input_value(v, index) }.join ","
         "{#{result}}"
-      elsif value == "Unknown"
+      elsif ::Answer.unknown?(value)
         unknown_strategy == :pass ? "\"#{value}\"" : throw(:unknown)
       else
         @input.type(index).in?(%i[number yearly_value]) ? value : "\"#{value}\""

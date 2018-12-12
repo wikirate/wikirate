@@ -1,8 +1,10 @@
 include_set Abstract::MetricChild, generation: 1
 
 def all_answers
-  @result ||=
-    Answer.search(record_id: id, sort_by: :year, sort_order: :desc)
+  @result ||= Answer.search(company_id: company_id,
+                            metric_id: metric_id,
+                            sort_by: :year,
+                            sort_order: :desc)
 end
 
 format :html do
