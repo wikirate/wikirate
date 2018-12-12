@@ -39,11 +39,12 @@ end
 
 # THE OTHER UPDATE
 
+# first source with "Source" in name pre-script = Source-000076344 (id=4572531)
 def rename_source source
   return unless source.name.match?(/Page/)
-  update_source content: ""
-  update_source name: source.name.gsub("Page", "Source"),
-                update_referers: true
+  update_source source, content: ""
+  update_source source, name: source.name.gsub("Page", "Source"),
+                        update_referers: true
 rescue => e
   tick :name_error, "problem renaming #{source.name}", e
 end
@@ -88,7 +89,7 @@ def no_link source
   tick :no_link, "skipping #{source.name}: no link"
 end
 
-def update_source args
+def update_source source, args
   with_timeout :rename, 60 do
     source.update! args.merge(skip: :requirements)
   end
