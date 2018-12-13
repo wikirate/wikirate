@@ -2,8 +2,12 @@ module Formula
   class Calculator
     class InputItem
       module CompanyOption
-        # This modules handles a "Related" expressions in formulas like
-        # Related[Jedi+more evil >= 6 && Commons+Supplied by=Tier 1 Supplier]
+        # Used if a "Related" expression is passed as company option
+        # Example:
+        #   {{ M1 | company: Related[M2 >= 6 && M3=Tier 1 Supplier] }}
+        #
+        # It makes the values for this input item independent of the output company
+        # (since the answers for the companies of the company option are always used)
         module CompanyRelated
           include CompanyDependentInput
 

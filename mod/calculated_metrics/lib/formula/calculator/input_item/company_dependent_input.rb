@@ -1,10 +1,8 @@
 module Formula
   class Calculator
     class InputItem
-      # Instances of {YearlyVariable} represent input items that refer to a yearly
-      # variable
-      # It uses the cards table to find values.
-      # TODO: support year and company options
+      # To be included if the values of the input item depend on the output company.
+      # Can be either a metric or a yearly variable with related company option.
       module CompanyDependentInput
         def value_store_class
           ValueStore

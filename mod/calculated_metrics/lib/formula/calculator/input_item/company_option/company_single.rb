@@ -2,6 +2,11 @@ module Formula
   class Calculator
     class InputItem
       module CompanyOption
+        # Used if a single company is passed as company option.
+        # It makes the values for this input item independent of the output company
+        # (since the answer for company of the company option is always used)
+        # Example:
+        #   {{ M1 | company: Death Star }}
         module CompanySingle
           include CompanyIndependentInput
 

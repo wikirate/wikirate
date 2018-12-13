@@ -1,10 +1,9 @@
 module Formula
   class Calculator
     class InputItem
-      # Manages the two different types of input values: metrics and yearly variables
+      # Used to hold onto the values that an input item finds
       class ValueStore
         attr_reader :years, :values
-
         def initialize
           @years = ::Set.new
           @companies = ::Set.new

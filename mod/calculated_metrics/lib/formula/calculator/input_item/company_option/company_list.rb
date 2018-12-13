@@ -2,6 +2,10 @@ module Formula
   class Calculator
     class InputItem
       module CompanyOption
+        # Used if the a comma separated is passed as company option
+        # Example: {{ M1 | company: Death Star, SPECTRE }}
+        # It makes the values for this input item independent of the output company
+        # (since the value for the company of the company option is always used)
         module CompanyList
           include CompanyIndependentInput
 

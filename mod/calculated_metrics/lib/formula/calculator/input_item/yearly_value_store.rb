@@ -1,27 +1,20 @@
 module Formula
   class Calculator
     class InputItem
-      # Manages the two different types of input values: metrics and yearly variables
+      # Provides the same api as ValueStore but ignores the company arguments
       class YearlyValueStore < ValueStore
-
         def initialize
           @years = ::Set.new
           @values = Hash.new_nested(Hash)
         end
 
-        def get company, year=nil
+        def get _company, year=nil
           year ? values[year] : values
         end
 
-        def companies
-          @values.keys
-        end
-
-        def add *args
-          value = args.pop
-          year = args.pop
+        def add _company, year, value
           @years.add year
-          values.merge!(year.to_i => value)
+          values[year.to_i] = value
         end
       end
     end

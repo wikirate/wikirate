@@ -12,7 +12,6 @@ module Formula
       #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6]}}]'
       #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6 &&
       # Commons+Supplied by=Tier 1 Supplier]}}]'
-      #
       module CompanyOption
         def initialize_decorator
           super
