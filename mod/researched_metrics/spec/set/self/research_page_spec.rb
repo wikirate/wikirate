@@ -18,7 +18,7 @@ RSpec.describe Card::Set::Self::ResearchPage do
 
     it "has metric slot" do
       is_expected.to have_tag ".metric" do
-        with_tag ".metric-color", /researched/
+        with_tag ".metric-color", /RM/
       end
     end
 

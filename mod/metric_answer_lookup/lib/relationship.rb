@@ -24,6 +24,7 @@ class Relationship < ApplicationRecord
 
   def self.existing id
     return unless id
+
     find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
   end
 
@@ -38,8 +39,9 @@ class Relationship < ApplicationRecord
 
   def latest_to_true
     return unless (latest_year = latest_year_in_db)
+
     Relationship.where(record_id: record_id, year: latest_year, latest: false)
-          .update_all latest: true
+                .update_all latest: true
   end
 
   def latest= value
@@ -75,6 +77,7 @@ class Relationship < ApplicationRecord
 
   def ensure_record metric_card, company
     return if Card[metric_card, company]
+
     Card.create! name: [metric_card, company], type_id: Card::RecordID
   end
 
@@ -96,6 +99,7 @@ class Relationship < ApplicationRecord
 
   def to_numeric_value val
     return if unknown?(val) || !val.number?
+
     val.to_d
   end
 
@@ -104,5 +108,5 @@ class Relationship < ApplicationRecord
   end
 end
 
-#require_relative "answer/active_record_extension"
-#Answer.const_get("ActiveRecord_Relation").send :include, Answer::ActiveRecordExtension
+# require_relative "answer/active_record_extension"
+# Answer.const_get("ActiveRecord_Relation").send :include, Answer::ActiveRecordExtension

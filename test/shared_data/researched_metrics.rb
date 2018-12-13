@@ -18,7 +18,7 @@ class SharedData
       metric =
         Card::Metric.create name: "Jedi+disturbances in the Force",
                             value_type: "Category",
-                            value_options: %w(yes no),
+                            value_options: %w[yes no],
                             topic: "Force",
                             research_policy: "Community Assessed",
                             test_source: :star_wars_source do
@@ -30,7 +30,7 @@ class SharedData
 
       Card::Metric.create name: "Fred+dinosaurlabor",
                           value_type: "Category",
-                          value_options: %w(yes no),
+                          value_options: %w[yes no],
                           research_policy: "Designer Assessed",
                           topic: "Taming",
                           test_source: true do
@@ -98,8 +98,8 @@ class SharedData
         SPECTRE "1977" => 50
         Los_Pollos_Hermanos "1977" => 40
         Slate_Rock_and_Gravel_Company "1977" => 20,
-                                      "2003" =>  8,
-                                      "2004" =>  9,
+                                      "2003" => 8,
+                                      "2004" => 9,
                                       "2005" => 10
         Samsung "1977" => "Unknown"
       end
@@ -152,7 +152,7 @@ class SharedData
       Card::Metric.create name: "Joe User+small multi",
                           type: :researched,
                           value_type: "Multi-Category",
-                          value_options: %w(1 2 3),
+                          value_options: %w[1 2 3],
                           test_source: true do
         Sony_Corporation "2010" => [1, 2].to_pointer_content
       end
@@ -160,7 +160,7 @@ class SharedData
       Card::Metric.create name: "Joe User+big multi",
                           type: :researched,
                           value_type: "Multi-Category",
-                          value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
+                          value_options: %w[1 2 3 4 5 6 7 8 9 10 11],
                           test_source: true do
         Sony_Corporation "2010" => [1, 2].to_pointer_content
       end
@@ -168,7 +168,7 @@ class SharedData
       Card::Metric.create name: "Joe User+small single",
                           type: :researched,
                           value_type: "Category",
-                          value_options: %w(1 2 3),
+                          value_options: %w[1 2 3],
                           test_source: true do
         Sony_Corporation "2010" => 1
       end
@@ -177,7 +177,7 @@ class SharedData
         Card::Metric.create name: "Joe User+big single",
                             type: :researched,
                             value_type: "Category",
-                            value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
+                            value_options: %w[1 2 3 4 5 6 7 8 9 10 11],
                             test_source: true do
           Sony_Corporation "2010" => 1,
                            "2009" => 9,

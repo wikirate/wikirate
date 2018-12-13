@@ -2,9 +2,7 @@ module Formula
   class Calculator
     # Placeholder for the case that formula contains input items that don't exist
     class InvalidInput
-      def initialize
-
-      end
+      def initialize; end
 
       def each opts={}; end
 

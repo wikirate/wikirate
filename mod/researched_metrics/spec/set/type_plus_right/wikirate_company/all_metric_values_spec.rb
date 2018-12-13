@@ -41,8 +41,8 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "Victims by Employees+1977",
       "descendant 1+1977",
       "descendant hybrid+1977",
-      "RM+1977",
-      "researched number 1+1977"
+      "researched number 1+1977",
+      "RM+1977"
     ]
   end
   let(:latest_metric_keys) do
@@ -304,7 +304,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
              "darkness rating", "deadliness", "deadliness+Joe Camel",
              "deadliness+Joe User", "dinosaurlabor", "friendliness",
              "Sith Lord in Charge", "descendant 1", "descendant hybrid",
-             "researched number 1", "RM", "more evil", "double friendliness"],
+             "RM", "researched number 1", "more evil", "double friendliness"],
             2001
           )
           missing2001.delete "disturbances in the Force+2001"
@@ -432,7 +432,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
            "researched number 1", "Victims by Employees"].map do |t|
             sorted.index(t)
           end
-        expect(indices).to eq [0, 1, 2, 14, 16]
+        expect(indices).to eq [0, 1, 2, 13, 16]
       end
 
       it "sorts by recently updated" do

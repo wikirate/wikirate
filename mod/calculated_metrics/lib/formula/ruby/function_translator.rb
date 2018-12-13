@@ -7,8 +7,8 @@ module Formula
       class SyntaxError < StandardError; end
 
       class << self
-        # @param [String] the formula to translate
-        # @param [Integer] index were we are in the original formula.
+        # @param [String] formula the formula to translate
+        # @param [Integer] offset were we are in the original formula.
         #   only used for error messages
         # @return [String] Wolfram functions calls in formula replaced
         #   with ruby method calls
@@ -21,8 +21,10 @@ module Formula
 
         def with_next_match part
           return unless part.present?
+
           match = part.match FUNC_KEY_MATCHER
           return part unless match
+
           yield FUNCTIONS[match[0]], match.begin(0), match.end(0)
         end
 
@@ -43,7 +45,6 @@ module Formula
           [tr_part(formula, offset, arg_start + 1, arg_end - 1),
            tr_part(formula, offset, arg_end + 1)]
         end
-
 
         def syntax_error type, pos
           pos += 1 # 1-based index in error message

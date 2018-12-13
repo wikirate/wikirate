@@ -14,8 +14,8 @@ module Formula
             # @return array with triples
             #   [subject_company_id, year, Array<object_company_id>]
             #   Each of these relations satifies the "Related" condition in the formula
-            #   At this point we haven't checked if the input metric has actually an answer
-            #   for these object_companies
+            #   At this point we haven't checked if the input metric has actually
+            #   an answer for these object_companies
             def relations
               ActiveRecord::Base.connection.select_rows(sql).map do |sc_id, year, oc_ids|
                 [sc_id, year, oc_ids.split("##").map(&:to_i).uniq]
@@ -40,12 +40,10 @@ module Formula
             end
 
             def join_sql count
-              count.times.map { |no| related_join_sql no + 1 }
-            end
+              return unless count.positive?
 
-            # def metric_wheres
-            #   @exprs.map(&:metric_sql).join " && "
-            # end
+              Array.new(count) { |i| related_join_sql i + 1 }
+            end
 
             def value_and_metric_wheres
               @conditions.inject(@str) do |res, expr|
@@ -80,11 +78,11 @@ module Formula
                 end
             end
 
-            def related_join_sql no
-              "JOIN relationships AS r#{no} "\
-            "ON r0.object_company_id = r#{no}.object_company_id && "\
-            "r0.subject_company_id = r#{no}.subject_company_id && "\
-            "r0.year = r#{no}.year"
+            def related_join_sql join_cnt
+              "JOIN relationships AS r#{join_cnt} "\
+            "ON r0.object_company_id = r#{join_cnt}.object_company_id && "\
+            "r0.subject_company_id = r#{join_cnt}.subject_company_id && "\
+            "r0.year = r#{join_cnt}.year"
             end
 
             RELATED_SELECT = "SELECT r0.subject_company_id, r0.year, "\

@@ -1,8 +1,9 @@
 class Card
   class YearlyVariable
     class Helper
-      extend Card::ActiveRecordHelper
+      extend Card::Model::SaveHelper
     end
+
     class << self
       def create args
         Card.create! attributes_hash(args)
@@ -13,25 +14,29 @@ class Card
       end
 
       def attributes_hash args
-        subcards = {}
-
-        if (values = args[:values])
-          if values.is_a? Array
-            start = args[:first_year]
-            start.upto(start + values.size).with_index do |year, i|
-              subcards.merge! value_subcard(year, values[i])
-            end
-          else
-            values.each do |year, value|
-              subcards.merge! value_subcard(year, value)
-            end
-          end
-        end
         {
           name: args[:name],
           type_id: Card::YearlyVariableID,
-          subcards: subcards
+          subcards: subcards(args[:values])
         }
+      end
+
+      def subcards values
+        return {} unless values
+
+        subcards = {}
+        case values
+        when Array
+          start = args[:first_year]
+          start.upto(start + values.size).with_index do |year, i|
+            subcards.merge! value_subcard(year, values[i])
+          end
+        when Hash
+          values.each_with_object({}) do |(year, content), h|
+            subcards.merge! value_subcard year, content
+          end
+        end
+        subcards
       end
 
       def value_subcard year, value

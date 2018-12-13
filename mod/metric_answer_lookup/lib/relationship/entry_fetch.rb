@@ -43,21 +43,25 @@ class Relationship
 
     def fetch_numeric_value
       return unless metric_card.numeric?
+
       to_numeric_value fetch_value
     end
 
     def fetch_imported
-       return false unless (action = card.value_card.actions.last)
+      return false unless (action = card.value_card.actions.last)
+
        action.comment == "imported"
     end
 
     def fetch_updated_at
       return card.updated_at unless (vc = card.value_card)
+
       [card.updated_at, vc.updated_at].compact.max
     end
 
     def fetch_latest
       return true unless (latest_year = latest_year_in_db)
+
       @new_latest = (latest_year < fetch_year)
       latest_year <= fetch_year
     end

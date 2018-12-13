@@ -1,5 +1,3 @@
-require 'pry'
-
 module Formula
   class Calculator
     # {InputList} is an array of {InputItem}s.
@@ -21,7 +19,6 @@ module Formula
 
       def item_class i
         input_card = @input_values.input_cards[i]
-        binding.pry if input_card.nil?
         if input_card.type_id == Card::YearlyVariableID
           InputItem::YearlyVariableInput
         else

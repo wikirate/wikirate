@@ -13,10 +13,6 @@ module Formula
           answer_candidates.update nil, years_with_values, mandatory?
         end
 
-        def mandatory?
-          false # don't use this input to reduce company search space
-        end
-
         def store_value company_id, year, value
           # We skip the companies_with_values update here.
           # In principle, we have to add all existing companies here for the

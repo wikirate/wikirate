@@ -12,6 +12,12 @@ RSpec.describe Card::Set::MetricType::Formula do
     format formula, @metric_name1, @metric_name2, @metric_name3
   end
 
+  def take_answer_value formula, year
+    formula_metric = create_metric name: "rating1", type: :formula, formula: formula
+    Answer.where(metric_name: formula_metric.name, company_id: company_id, year: year)
+          .take.value
+  end
+
   describe "formula card" do
     let(:formula_card) { Card[:formula] }
 
@@ -25,9 +31,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
   describe "formula with year reference" do
     subject(:answer_value) do
-      formula_metric = create_metric name: "rating1", type: :formula, formula: formula
-      Answer.where(metric_name: formula_metric.name, company_id: company_id, year: 2015)
-            .take.value
+      take_answer_value formula, 2015
     end
 
     let(:company_id) { Card.fetch_id "Apple Inc" }
@@ -84,14 +88,12 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   describe "network aware formula" do
-    let(:formula) do
-      "Total[{{ #{@metric_name}|company: Related[#{@related}] }}]"
+    subject(:answer_value) do
+      take_answer_value formula, 1977
     end
 
-    subject(:answer_value) do
-      formula_metric = create_metric name: "rating1", type: :formula, formula: formula
-      Answer.where(metric_name: formula_metric.name, company_id: company_id, year: 1977)
-            .take.value
+    let(:formula) do
+      "Total[{{ #{@metric_name}|company: Related[#{@related}] }}]"
     end
 
     let(:company_id) { Card.fetch_id "Death Star" }
