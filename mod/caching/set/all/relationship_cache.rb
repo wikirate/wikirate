@@ -4,7 +4,7 @@
 # @param id [integer] id of a relationship in the relationship lookup table
 def update_relationship id: nil, relationship_id: nil, metric_id: nil
   ids = relationship_ids_to_update id, relationship_id, metric_id
-  update_answers_now_or_later ids
+  update_relationships_now_or_later ids
 end
 
 def create_relationship relationship_id:
@@ -15,7 +15,7 @@ def delete_relationship relationship_id:
   Relationship.delete_for_card_id relationship_id
 end
 
-def update_answers_now_or_later ids
+def update_relationships_now_or_later ids
   if act_finished_integrate_stage?
     Relationship.update_by_ids ids
   else
@@ -27,7 +27,7 @@ def relationship_ids_to_update id, relationship_id, metric_id
   if metric_id
     Relationship.where(metric_id: metric_id).pluck :id
   elsif relationship_id
-    Relationship.where(answer_id: relationship_id).pluck :id
+    Relationship.where(relationship_id: relationship_id).pluck :id
   else
     [id]
   end

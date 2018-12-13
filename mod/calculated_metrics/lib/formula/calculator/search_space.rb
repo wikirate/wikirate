@@ -12,6 +12,14 @@ module Formula
         @mandatory_processed = false
       end
 
+      def with_full_year_space
+        years_backup = @years
+        @years = nil
+        yield
+      ensure
+        @years = years_backup
+      end
+
       def company_ids
         @company_ids.to_a
       end
@@ -58,7 +66,6 @@ module Formula
       end
 
       def join company_ids, years
-        @fresh = false
         join_companies company_ids
         join_years years
       end

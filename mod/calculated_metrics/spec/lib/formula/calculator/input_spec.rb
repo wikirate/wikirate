@@ -75,8 +75,7 @@ RSpec.describe Formula::Calculator::Input do
       @input = ["Jedi+deadliness"]
       @company_options = ["Related[Jedi+more evil = yes]"]
       expect { |b| input.each(year: 1977, company: "Death Star", &b) }
-              .to yield_with_args([[50.0, 40.0]], death_star_id, 1977)
+        .to yield_with_args([[50.0, 40.0]], death_star_id, 1977)
     end
   end
-
 end

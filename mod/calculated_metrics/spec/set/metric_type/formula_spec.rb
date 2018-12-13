@@ -99,7 +99,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     example "first one" do
       @metric_name = "Jedi+deadliness"
       @related = "Jedi+more evil=yes"
-      expect(answer_value).to eq "90"
+      expect(answer_value).to eq "90.0"
     end
   end
 

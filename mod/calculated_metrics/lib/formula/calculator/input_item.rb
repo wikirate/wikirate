@@ -1,11 +1,24 @@
 module Formula
   class Calculator
-    # An instance of {InputItem} represents a nest in a formula.
+    # {InputItem} represents a nest in a formula.
     # For example "{{Jedi+friedliness|year: -1}}" in the formula
     # "{{Jedi+friedliness|year: -1}} + 10 / {{Jedi+deadliness}}"
-    # Depending special formula nest options are present like "year" or "company" then
-    # the instance is extended with additional
-    # modules that take care of these nest options
+    # #
+    # It is responsible for finding all relevant values for that input item.
+    # How this is handled depends on two things:
+    # The cardtype of the input item (either a metric or a yearly variable)
+    # and the nest options (year and/or company)
+    # The differences between the cardtypes is handled by the two subclasses
+    # {MetricInput} and {YearlyVariableInput}.
+    # The logic for the nest options is in the modules {}CompanyOption} and {YearOption}
+
+    # Note: The main difference between metrics and yearly variables is that
+    # yearly variables are in general independent of the company of the answer we
+    # want to calculate.
+    # But this can change. A metric with a fixed company option is also company
+    # independent where as a yearly variable with a related company option is company
+    # dependent. That's why the company dependency is separated into the modules
+    # {CompanyDependentInput} and {CompanyIndependentInput}
     class InputItem
       attr_reader :card_id, :input_values
       delegate :answer_candidates, to: :input_values

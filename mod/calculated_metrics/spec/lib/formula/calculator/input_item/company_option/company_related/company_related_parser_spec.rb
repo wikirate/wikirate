@@ -10,11 +10,12 @@ RSpec.describe Formula::Calculator::InputItem::CompanyOption::CompanyRelated::Co
   let(:oc_id_3) { Card.fetch_id "Google LLC" }
 
   specify "sql" do
+    metric_id = Card.fetch_id "Jedi+more evil"
     expect(parser.send(:sql))
       .to eq "SELECT r0.subject_company_id, r0.year, "\
              "GROUP_CONCAT(r0.object_company_id SEPARATOR '##') "\
              "FROM relationships AS r0 "\
-             "WHERE ((r0.metric_id = 7000 && r0.value = \"yes\")) "\
+             "WHERE ((r0.metric_id = #{metric_id} && r0.value = \"yes\")) "\
              "GROUP BY r0.subject_company_id, r0.year"
   end
 

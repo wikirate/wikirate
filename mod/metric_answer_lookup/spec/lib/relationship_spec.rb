@@ -44,7 +44,7 @@
 
     describe "random example" do
       it "exists" do
-        is_expected.to be_instance_of(described_class)
+        expect(subject).to be_instance_of(described_class)
       end
       it "has subject_company_id" do
         expect(relation.subject_company_id).to eq Card.fetch_id("Death Star")
@@ -105,7 +105,8 @@
     end
 
     it "updates metric" do
-      update relation_name, name: "Commons+Supplied by+Google LLC+1977+Los Pollos Hermanos"
+      update relation_name,
+             name: "Commons+Supplied by+Google LLC+1977+Los Pollos Hermanos"
       expect(relation.metric_id).to eq Card.fetch_id("Commons+Supplied by")
     end
 
@@ -120,8 +121,8 @@
     end
 
     it "updates value" do
-      expect { update "#{relation_name}+value", content: "yes" }
-        .to change { relation.value }.from("no").to("yes")
+      expect { update "#{relation_name}+value", content: "no" }
+        .to change { relation.value }.from("yes").to("no")
     end
   end
 end

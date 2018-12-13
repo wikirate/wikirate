@@ -43,7 +43,7 @@ module Formula
 
     def input_data company, year
       @formula_card.input_cards.zip(
-        @input.input_for(company, year), year_options
+        @input.input_for(company, year), formula_card.year_options
       )
     end
 

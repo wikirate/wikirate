@@ -88,7 +88,8 @@ RSpec.describe Formula::Ruby do
       expect(result).not_to include 2012, 2016
     end
     it "double sum" do
-      result = calculate "Total[{{half year|2013..0}}]+Total[{{Joe User+researched|-1..0}}]"
+      result = calculate "Total[{{half year|year: 2013..0}}]+"\
+                         "Total[{{Joe User+researched|year: -1..0}}]"
       expect(result).to include 2013 => { apple_id => 1006.5 + 13 + 12 },
                                 2014 => { apple_id => 1007 + 1006.5 + 14 + 13 }
       expect(result).not_to include 2012, 2016

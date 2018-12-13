@@ -108,8 +108,8 @@ module Formula
       end
 
       def search_values_for company_id: nil, year: nil
+        return if @all_fetched
         full_search if company_id.nil? && year.nil?
-
         while_full_input_set_possible company_id, year do |input_item|
           input_item.search_value_for company_id: company_id, year: year
         end

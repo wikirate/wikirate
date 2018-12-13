@@ -1,5 +1,5 @@
 event :update_relationship_lookup_table_due_to_value_change, :finalize, on: :update do
-  update_relationship id: relationship_id
+  update_relationship relationship_id: relationship_id
 end
 
 event :delete_relationship_lookup_table_entry_due_to_value_change, :finalize, on: :delete do

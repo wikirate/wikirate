@@ -35,8 +35,8 @@ module LookupTable
     # @param ids [Array<Integer>] ids of answers in the answer table (NOT card ids)
     def update_by_ids ids, *fields
       Array(ids).each do |id|
-        next unless (answer = Answer.find_by_id(id))
-        answer.refresh(*fields)
+        next unless (entry = find_by_id(id))
+        entry.refresh(*fields)
       end
     end
 

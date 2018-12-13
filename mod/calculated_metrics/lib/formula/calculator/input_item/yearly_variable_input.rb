@@ -8,6 +8,8 @@ module Formula
       class YearlyVariableInput < InputItem
         include CompanyIndependentInput
 
+        delegate :with_full_year_space, to: :search_space
+
         def each_answer
           value_cards.each do |value_card|
             yield nil, value_card.year.to_i, value_card.content
@@ -16,7 +18,9 @@ module Formula
 
         def values_by_year_for_each_company
           v_by_y =
-            value_cards.each_with_object({}) { |vc, h| h[vc.year.to_i] = vc.content }
+            with_full_year_space do
+              value_cards.each_with_object({}) { |vc, h| h[vc.year.to_i] = vc.content }
+            end
           yield nil, v_by_y
         end
 
@@ -35,9 +39,9 @@ module Formula
           ::Card.search value_cards_query
         end
 
-        def value_cards_query
+        def value_cards_query all_years: false
           query = { type_id: Card::YearlyValueID, left: { left_id: card_id } }
-          if search_space.years?
+          if search_space.years? && !all_years
             query[:left][:right] = { name: ["in", search_space.years.to_a].flatten }
           end
           query
