@@ -38,7 +38,11 @@ def act_based_refresh_of_relationship_lookup_entry ids
   @updated_relationships.merge ids
 end
 
-event :refresh_updated_relationships, :integrate, after: :refresh_updated_answers do
-  return unless @updated_relationships.present?
+event :refresh_updated_relationships, :integrate, after: :refresh_updated_answers,
+                                                  when: :updated_relationships? do
   Relationship.update_by_ids @updated_relationships
+end
+
+def updated_relationships?
+  @updated_relationships.present?
 end

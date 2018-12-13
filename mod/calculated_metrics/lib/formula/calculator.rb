@@ -6,8 +6,11 @@ module Formula
   # Calculator.new(formula_card)
   # The formula_card must respond to:
   #   #clean_formula: a String with just nests and operators
-  #   #input_cards
-  #   #input_chunks
+  #   #input_cards: array of cards
+  #   #company_options: array of the same size as input card with a company option string
+  #                    for each input card
+  #   #year_options: array of the same size as input card with a year option string
+  #   #              for each input card
   class Calculator
     INPUT_CAST = ->(val) { val }
 

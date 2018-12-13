@@ -5,8 +5,8 @@ Feature: Research answer
   Background:
     Given I am signed in as Joe User
     And I research
-      | metric              | company    | year |
-      | Joe User+researched | Apple Inc. | 2009 |
+      | metric      | company    | year |
+      | Joe User+RM | Apple Inc. | 2009 |
 
   Scenario: Create a metric value
     When I cite source
