@@ -11,7 +11,7 @@ RSpec.describe Card::Set::Self::ResearchPage do
 
   describe "#slot_machine" do
     subject do
-      format.slot_machine metric: "Joe User+researched",
+      format.slot_machine metric: "Joe User+RM",
                           company: "Death Star",
                           year: "2014"
     end
@@ -45,7 +45,7 @@ RSpec.describe Card::Set::Self::ResearchPage do
     end
 
     it "has source tab" do
-      params metric: "Joe User+researched", company: "Death Star",
+      params metric: "Joe User+RM", company: "Death Star",
              year: "2014", project: "Evil Project"
       is_expected.to have_tag "div.sourcebox" do
         with_tag "form.slotter", method: "get", "data-remote": true do
@@ -61,7 +61,7 @@ RSpec.describe Card::Set::Self::ResearchPage do
       format.render_left_research_side
     end
 
-    it "has slot", params: { metric: "Joe User+researched",
+    it "has slot", params: { metric: "Joe User+RM",
                              company: "Death Star",
                              year: "2014",
                              project: "Evil Project" } do

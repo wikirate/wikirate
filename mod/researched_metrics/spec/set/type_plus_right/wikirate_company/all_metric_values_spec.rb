@@ -20,7 +20,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "double friendliness+1977",
       "researched number 1+1977",
       "more evil+1977",
-      "researched+1977",
+      "RM+1977",
       "deadliness+1977"
     ]
   end
@@ -41,7 +41,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "Victims by Employees+1977",
       "descendant 1+1977",
       "descendant hybrid+1977",
-      "researched+1977",
+      "RM+1977",
       "researched number 1+1977"
     ]
   end
@@ -68,7 +68,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     ["dinosaurlabor+2010", "cost of planets destroyed+1977",
      "deadliness+1977", "disturbances in the Force+2001",
      "Sith Lord in Charge+1977",
-     "Victims by Employees+1977", "researched+1977",
+     "Victims by Employees+1977", "RM+1977",
      "researched number 1+1977"]
   end
 
@@ -304,7 +304,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
              "darkness rating", "deadliness", "deadliness+Joe Camel",
              "deadliness+Joe User", "dinosaurlabor", "friendliness",
              "Sith Lord in Charge", "descendant 1", "descendant hybrid",
-             "researched number 1", "researched", "more evil", "double friendliness"],
+             "researched number 1", "RM", "more evil", "double friendliness"],
             2001
           )
           missing2001.delete "disturbances in the Force+2001"

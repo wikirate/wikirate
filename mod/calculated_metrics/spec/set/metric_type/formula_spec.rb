@@ -2,7 +2,7 @@
 
 RSpec.describe Card::Set::MetricType::Formula do
   before do
-    @metric_name = "Joe User+researched"
+    @metric_name = "Joe User+RM"
     @metric_name1 = "Joe User+researched number 1"
     @metric_name2 = "Joe User+researched number 2"
     @metric_name3 = "Joe User+researched number 3"

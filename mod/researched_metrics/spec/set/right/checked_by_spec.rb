@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::Right::CheckedBy do
-  let(:answer_card) { Card["joe_user+researched+death_star+1977"] }
+  let(:answer_card) { Card["joe_user+RM+death_star+1977"] }
 
-  let(:checked_by_card) { Card["joe_user+researched+death_star+1977"].checked_by_card }
+  let(:checked_by_card) { Card["joe_user+RM+death_star+1977"].checked_by_card }
 
   def check_value
     Card::Env.params["set_flag"] = "checked"

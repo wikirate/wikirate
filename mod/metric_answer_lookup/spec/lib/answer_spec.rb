@@ -2,7 +2,7 @@
   def answer id=answer_id
     described_class.find_by_answer_id id
   end
-  let(:metric) { "Joe User+researched" }
+  let(:metric) { "Joe User+RM" }
   let(:answer_name) { "#{metric}+Apple_Inc+2013" }
   let(:answer_id) { Card.fetch_id answer_name }
 
@@ -23,7 +23,7 @@
         expect(answer.year).to eq 2013
       end
       it "has metric_id" do
-        expect(answer.metric_id).to eq Card.fetch_id("Joe User+researched")
+        expect(answer.metric_id).to eq Card.fetch_id("Joe User+RM")
       end
       it "has metric_type_id" do
         expect(answer.metric_type_id).to eq Card.fetch_id("researched")
@@ -35,7 +35,7 @@
         expect(answer.value).to eq "13"
       end
       it "has metric_name" do
-        expect(answer.metric_name).to eq "Joe User+researched"
+        expect(answer.metric_name).to eq "Joe User+RM"
       end
       it "has company_name" do
         expect(answer.company_name).to eq "Apple Inc."
@@ -89,7 +89,7 @@
       answer_id
     end
     it "updates company" do
-      update answer_name, name: "Joe User+researched+Samsung+2013"
+      update answer_name, name: "Joe User+RM+Samsung+2013"
       expect(answer.company_id).to eq Card.fetch_id("Samsung")
       expect(answer.company_name).to eq "Samsung"
     end
@@ -106,7 +106,7 @@
     end
 
     it "updates year" do
-      update answer_name, name: "Joe User+researched+Apple_Inc+1999"
+      update answer_name, name: "Joe User+RM+Apple_Inc+1999"
       expect(answer.year).to eq 1999
     end
 

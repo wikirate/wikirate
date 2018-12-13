@@ -129,21 +129,6 @@ class SharedData
                                      content: "1002" } }
         }
       )
-
-      Card.create!(
-        name: "always one", type_id: Card::YearlyVariableID,
-        subcards: {
-          "+1977" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID,
-                                     content: "1" } },
-          "+2000" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID,
-                                     content: "1" } },
-          "+2014" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID,
-                                     content: "1" } }
-        }
-      )
     end
 
     def add_program

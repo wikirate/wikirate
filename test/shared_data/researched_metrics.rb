@@ -138,7 +138,7 @@ class SharedData
         Samsung "2014" => 1, "2015" => 1
       end
 
-      Card::Metric.create name: "Joe User+researched",
+      Card::Metric.create name: "Joe User+RM",
                           type: :researched,
                           test_source: true do
         Apple_Inc "2000" => 0, "2001" => "Unknown", "2002" => "Unknown",
