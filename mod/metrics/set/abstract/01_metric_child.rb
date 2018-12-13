@@ -47,6 +47,10 @@ def metric_name
   metric.to_name
 end
 
+def metric_id
+  Card.fetch_id metric
+end
+
 def metric_was
   name_was && metric_part(name_was)
 end

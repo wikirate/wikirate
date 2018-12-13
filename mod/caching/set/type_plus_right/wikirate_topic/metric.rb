@@ -36,4 +36,8 @@ format :html do
   def count_with_params
     card.count
   end
+
+  def paging_needed?
+    false
+  end
 end

@@ -13,7 +13,7 @@ def needs_name?
   !name.present?
 end
 
-event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
+event :ensure_designer, :validate, on: :save, changed: :name do
   return if valid_designer?
   if (card = Card[metric_designer])
     errors.add :metric_designer, "invalid type #{card.type_name}"
@@ -26,7 +26,7 @@ def valid_designer?
   Card.fetch_type_id(metric_designer).in? VALID_DESIGNER_TYPE_IDS
 end
 
-event :ensure_title, :prepare_to_store, on: :save, changed: :name do
+event :ensure_title, :validate, on: :save, changed: :name do
   case Card.fetch_type_id(metric_title)
   when MetricTitleID
     return
