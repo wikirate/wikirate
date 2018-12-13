@@ -10,7 +10,8 @@ def find_suggested_sources
   return [] unless report_type&.item_ids&.any? && Card::Auth.current_id
   Card.search type_id: Card::SourceID,
               right_plus: [[WikirateCompanyID, { refer_to: company }],
-                           [ReportTypeID, { refer_to: report_type.item_ids }]],
+                           [ReportTypeID, { link_to: { linked_to_by: report_type.id } }]],
+              # TODO: optimize the above sql so that we can use report_type.item_ids
               not: { creator_id: Card::Auth.current_id }
 end
 
