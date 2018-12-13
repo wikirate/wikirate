@@ -1,5 +1,4 @@
-# lookup table for metric answers
-
+# Lookup table for relationship answers to relationship metrics
 class Relationship < ApplicationRecord
   @card_column = :relationship_id
   @card_query = {  type_id: Card::RelationshipAnswerID }
@@ -107,6 +106,3 @@ class Relationship < ApplicationRecord
     self.class.unknown? val
   end
 end
-
-# require_relative "answer/active_record_extension"
-# Answer.const_get("ActiveRecord_Relation").send :include, Answer::ActiveRecordExtension

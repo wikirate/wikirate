@@ -35,13 +35,13 @@ module Formula
             private
 
             def validate_metric
-              if @metric.blank?
-                raise Condition::Error, "invalid expression \"#{string}\""
-              end
+              raise Condition::Error, "invalid expression \"#{string}\"" if @metric.blank?
+
               @metric_card = Card.fetch @metric
               if @metric_card.nil? || @metric_card.type_id != Card::MetricID
                 raise Condition::Error, "not a metric: \"#{@metric}\""
               end
+
               @metric_id = @metric_card.id
             end
           end

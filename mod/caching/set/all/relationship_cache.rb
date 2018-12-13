@@ -10,7 +10,7 @@ end
 def create_relationship relationship_id:
   Relationship.create relationship_id
 end
-#
+
 def delete_relationship relationship_id:
   Relationship.delete_for_card_id relationship_id
 end

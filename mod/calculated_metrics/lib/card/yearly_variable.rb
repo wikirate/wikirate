@@ -32,7 +32,7 @@ class Card
             subcards.merge! value_subcard(year, values[i])
           end
         when Hash
-          values.each_with_object({}) do |(year, content), h|
+          values.each do |year, content|
             subcards.merge! value_subcard year, content
           end
         end

@@ -1,4 +1,4 @@
- RSpec.describe Relationship do
+RSpec.describe Relationship do
   def relation id=relation_id
     described_class.find_by_card_id id
   end
@@ -13,7 +13,7 @@
       end
 
       r_id = Card.fetch_id "Jedi+more evil+Monster_Inc+2000+Los_Pollos_Hermanos"
-      relation = Relationship.find_by_relationship_id r_id
+      relation = described_class.find_by_relationship_id r_id
       expect(relation).to be_instance_of(described_class)
       aggregate_failures "relationship id attributes" do
         { record_id: "Jedi+more evil+Monster Inc",
@@ -92,6 +92,7 @@
       # fetch answer_id before the change
       relation_id
     end
+
     it "updates subject company" do
       update relation_name, name: "#{metric}+Google LLC+1977+Los Pollos Hermanos"
       expect(relation.subject_company_id).to eq Card.fetch_id("Google LLC")
@@ -122,7 +123,7 @@
 
     it "updates value" do
       expect { update "#{relation_name}+value", content: "no" }
-        .to change { relation.value }.from("yes").to("no")
+        .to change(relation, :value).from("yes").to("no")
     end
   end
 end

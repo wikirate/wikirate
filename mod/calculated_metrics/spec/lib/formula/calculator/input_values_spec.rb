@@ -19,7 +19,8 @@ RSpec.describe Formula::Calculator::InputValues do
     [2004, 2013, 2014, 2015].each_with_object({}) do |y, h|
       h[y] = Card["A"].format
                       .number_with_precision(y / 2.0, precision: 5,
-                                                      strip_insignificant_zeros: true).to_s
+                                                      strip_insignificant_zeros: true)
+                      .to_s
     end
   end
 
@@ -140,8 +141,8 @@ RSpec.describe Formula::Calculator::InputValues do
 
     example "yearly variable with company list" do
       ii, = input_items "{{half year|company: Death Star, SPECTRE}}"
-       expect(ii.value_for(death_star, 2014))
-         .to eq %w[1007 1007]
+      expect(ii.value_for(death_star, 2014))
+        .to eq %w[1007 1007]
     end
 
     example "yearly variable with related company options", as_bot: true do

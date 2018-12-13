@@ -88,7 +88,7 @@ module Formula
             RELATED_SELECT = "SELECT r0.subject_company_id, r0.year, "\
                            "GROUP_CONCAT(r0.object_company_id SEPARATOR '##') "\
                            "FROM relationships AS r0".freeze
-            RELATED_GROUP_BY = "GROUP BY r0.subject_company_id, r0.year"
+            RELATED_GROUP_BY = "GROUP BY r0.subject_company_id, r0.year".freeze
           end
         end
       end

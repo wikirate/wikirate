@@ -27,8 +27,8 @@ module Formula
             SPLIT_REGEX = # splits several expressions
               Regexp.new(SEPARATORS.map { |sep| /\)*\s#{Regexp.quote sep}\s*\(*/ }.join("|"))
 
-            SYMBOL_OPERATORS = %w[!= = =~ < > ~]
-            WORD_OPERATORS = ["in", "not in"]
+            SYMBOL_OPERATORS = %w[!= = =~ < > ~].freeze
+            WORD_OPERATORS = ["in", "not in"].freeze
             OPERATOR_MATCHER = (SYMBOL_OPERATORS +
                               WORD_OPERATORS.map { |w| "\\s+#{w}\\s+" }).join("|")
 

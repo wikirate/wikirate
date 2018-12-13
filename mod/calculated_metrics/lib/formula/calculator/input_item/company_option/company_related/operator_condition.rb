@@ -16,7 +16,7 @@ module Formula
             include AbstractCondition
             attr_reader :value
 
-            INVALID_VALUE_CHARS = /["';]/.freeze
+            INVALID_VALUE_CHARS = /["';]/
 
             def initialize string, id
               super
@@ -35,7 +35,8 @@ module Formula
             end
 
             def value_sql
-              "r#{@table_id}.#{'numeric_' if numeric_operator?}value #{@operator} \"#{@value}\""
+              "r#{@table_id}.#{'numeric_' if numeric_operator?}value "\
+              "#{@operator} \"#{@value}\""
             end
 
             private
@@ -53,11 +54,10 @@ module Formula
             def value_sql_safe?
               @value.sub!(/^["']/, "")
               @value.sub!(/["']$/, "")
+              return unless @value.match? INVALID_VALUE_CHARS
 
-              if @value.match? INVALID_VALUE_CHARS
-                raise Condition::Error, "value is not allowed to contain the "\
-                           "characters #{INVALID_VALUE_CHARS.to_sentence}"
-              end
+              raise Condition::Error, "value is not allowed to contain the "\
+                                      "characters #{INVALID_VALUE_CHARS.to_sentence}"
             end
           end
         end

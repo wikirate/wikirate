@@ -22,7 +22,7 @@ RSpec.describe Formula::Calculator::InputItem::CompanyOption::CompanyRelated::Co
   describe "#relations" do
     example "simple expression" do
       expect(parser.relations)
-        .to contain_exactly  [sc_id_1, 1977, contain_exactly(oc_id_1, oc_id_2)],
+        .to contain_exactly [sc_id_1, 1977, contain_exactly(oc_id_1, oc_id_2)],
                             [sc_id_2, 1977, [oc_id_1]]
     end
 

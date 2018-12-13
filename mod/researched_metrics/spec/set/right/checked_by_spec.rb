@@ -19,11 +19,11 @@ RSpec.describe Card::Set::Right::CheckedBy do
   end
 
   describe "view :core" do
-    subject { checked_by_card.format.render_core }
+    subject(:core) { checked_by_card.format.render_core }
 
     context "when nobody checked" do
       example "creator", with_user: "WikiRate Bot" do
-        expect(subject).to have_tag :div do
+        expect(core).to have_tag :div do
           with_badge self, 0
           with_text /Nobody has checked this value since it was created/
           without_text "checked this value"
@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
       end
 
       example "other user" do
-        expect(subject).to have_tag :div do
+        expect(core).to have_tag :div do
           with_badge self, 0
           with_text /Nobody has checked this value since it was created/
           without_text "checked this value"
@@ -49,7 +49,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
         end
 
         example "creator", with_user: "Wikirate Bot" do
-          expect(subject).to have_tag :div do
+          expect(core).to have_tag :div do
             with_badge self, 0
             with_text /Nobody has checked this value since it was last updated/
             without_text "checked this value"
@@ -59,7 +59,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
         end
 
         example "updater", with_user: "John" do
-          expect(subject).to have_tag :div do
+          expect(core).to have_tag :div do
             with_badge self, 0
             with_text /Nobody has checked this value since it was last updated/
             without_text "checked this value"
@@ -77,7 +77,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
       end
 
       example "creator", with_user: "WikiRate Bot" do
-        expect(subject).to have_tag :div do
+        expect(core).to have_tag :div do
           with_badge self, 1
           with_tag :a, "John"
           with_text /checked this value/
@@ -86,7 +86,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
       end
 
       example "checker", with_user: "John" do
-        expect(subject).to have_tag :div do
+        expect(core).to have_tag :div do
           with_badge self, 1
           with_tag :a, "John"
           with_text /checked this value/
@@ -95,7 +95,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
       end
 
       example "other user" do
-        expect(subject).to have_tag :div do
+        expect(core).to have_tag :div do
           with_badge self, 1
           with_tag :a, "John"
           with_text /checked this value/
@@ -115,7 +115,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
       end
 
       example "checker", with_user: "Joe Admin" do
-        expect(subject).to have_tag :div do
+        expect(core).to have_tag :div do
           with_badge self, 4
           with_tag :a, "Joe Admin"
           with_text /John, Joe User, Joe Camel, and Joe Admin/

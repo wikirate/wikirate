@@ -49,13 +49,13 @@
         answer Card.fetch_id("Jedi+more evil+Death Star+1977")
       end
       it "returns true" do
-        expect(relationship_answer.relationship?).to be_truthy
+        expect(relationship_answer).to be_relationship
       end
     end
 
     context "when metric is not a relationship metric" do
       it "returns false" do
-        expect(answer.relationship?).to be_falsey
+        expect(answer).not_to be_relationship
       end
     end
   end
