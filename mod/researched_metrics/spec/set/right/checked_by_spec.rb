@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
     cb_card = answer_card.checked_by_card
     cb_card.save!
     cb_card.clear_subcards # why?
-    cb_card.update_attributes! subcards: {} # why?
+    cb_card.update! subcards: {} # why?
     Card::Env.params.delete "set_flag"
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
       context "when value was updated" do
         before do
           with_user "John" do
-            answer_card.value_card.update_attributes content: "200"
+            answer_card.value_card.update content: "200"
           end
         end
 
@@ -152,7 +152,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
     context "value updated" do
       before do
-        answer_card.value_card.update_attributes content: "200"
+        answer_card.value_card.update content: "200"
       end
       it "clears double checked status" do
         expect(checked_by.content).to eq ""
@@ -170,7 +170,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
                                   new: { content: "[[Joe User]]" }
       cb_card.save!
       cb_card.clear_subcards
-      cb_card.update_attributes! subcards: {}
+      cb_card.update! subcards: {}
       cb_card
     end
 

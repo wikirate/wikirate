@@ -46,7 +46,7 @@ source_cards.each do |source_card|
 
       file_uploaded = ActionDispatch::Http::UploadedFile.new(tempfile: uri,
                                                              filename: filename)
-      result = source_card.update_attributes subcards: {
+      result = source_card.update subcards: {
         "+File" => { file: file_uploaded,
                      content: "CHOSEN",
                      type_id: Card::FileID }

@@ -3,7 +3,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
   let(:metric) do
     m = sample_metric
     Card::Auth.as_bot do
-      m.update_attributes! subcards:
+      m.update! subcards:
             { "+Unit" => { content: "Imperial military units",
                            type_id: Card::PhraseID } }
     end
@@ -63,7 +63,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
 
     it "updates related score" do
       expect(scored_value).to eq "10.0"
-      Card[researched_value_name].update_attributes! content: "no"
+      Card[researched_value_name].update! content: "no"
       expect(scored_value).to eq "0.0"
     end
   end

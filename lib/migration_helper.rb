@@ -7,7 +7,7 @@ module MigrationHelper
     down_old = old_name.downcase
     down_new = new_name.downcase
     Rails.logger.info "Change name from '#{cap_old}' to '#{cap_new}'"
-    Card[cap_old].update_attributes! name: cap_new,
+    Card[cap_old].update! name: cap_new,
                                      update_referers: true,
                                      silent_change: true
 
@@ -20,7 +20,7 @@ module MigrationHelper
       next unless name !~ /\+/   # no junctions
       new_name = name.gsub(cap_old, cap_new).gsub(down_old, down_new)
       count += 1
-      Card.find(id).update_attributes! name: new_name,
+      Card.find(id).update! name: new_name,
                                        update_referers: true,
                                        silent_change: true
       if count > BATCH_SIZE

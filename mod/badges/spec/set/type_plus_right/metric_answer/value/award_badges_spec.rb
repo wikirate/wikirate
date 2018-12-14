@@ -34,7 +34,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
     let(:badge_action) { :update }
 
     def execute_awarded_action count
-      answer_card(count).value_card.update_attributes! content: count
+      answer_card(count).value_card.update! content: count
     end
 
     context "when reached bronze update threshold" do

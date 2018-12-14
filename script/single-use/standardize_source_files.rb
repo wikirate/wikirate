@@ -68,7 +68,7 @@ end
 
 def convert_text_to_file source, text
   with_temp_text_file text do |file|
-    source.file_card.update_attributes! file: file
+    source.file_card.update! file: file
     tick :text_success, "converted #{source.name} to text file"
   end
 rescue => e
@@ -91,7 +91,7 @@ end
 
 def update_source source, args
   with_timeout :rename, 60 do
-    source.update_attributes! args.merge(skip: :requirements)
+    source.update! args.merge(skip: :requirements)
   end
 end
 

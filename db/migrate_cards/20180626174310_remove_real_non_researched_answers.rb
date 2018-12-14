@@ -12,7 +12,7 @@ class RemoveRealNonResearchedAnswers < Card::Migration
       if children&.empty? || only_value_child?(children)
         answer_card.delete!
       else
-        answer.update_attributes! answer_id: answer_card.id
+        answer.update! answer_id: answer_card.id
       end
     end
   end

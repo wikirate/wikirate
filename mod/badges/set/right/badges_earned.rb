@@ -28,7 +28,7 @@ def add_badge_card badge_card
   return if include_item? badge_card
   success.flash badge_card.flash_message
   index = bsearch_index(badge_card)
-  # update_attributes content: item_names.insert(index, badge_card.name).to_pointer_content
+  # update content: item_names.insert(index, badge_card.name).to_pointer_content
   self.content = item_names.insert(index, badge_card.name).to_pointer_content
 end
 

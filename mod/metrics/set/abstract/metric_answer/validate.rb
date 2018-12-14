@@ -26,7 +26,7 @@ event :validate_answer_name, after: :validate_year_change, on: :save, changed: :
 end
 
 event :restore_overridden_value, :validate, on: :delete, when: :calculation_overridden? do
-  overridden_value_card.update_attributes! content: nil
+  overridden_value_card.update! content: nil
   answer.restore_overridden_value
 end
 

@@ -72,7 +72,7 @@ namespace :wikirate do
             Card[*name_parts, :machine_output]&.delete
             Card[*name_parts].update_machine_output
             codename = "#{name_parts.join('_')}_output"
-            Card[*name_parts, :machine_output].update_attributes!(
+            Card[*name_parts, :machine_output].update!(
               codename: codename, storage_type: :coded, mod: :test
             )
           end

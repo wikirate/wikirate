@@ -39,14 +39,14 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
       updates_answer_with_delay from: /^0.01/, to: /^5.01/,
                                 metric_title: "friendliness" do
         Card["Jedi+friendliness+formula"]
-          .update_attributes! content: "1/{{Jedi+deadliness}}+5"
+          .update! content: "1/{{Jedi+deadliness}}+5"
       end
     end
 
     it "shows refresh icon while calculating" do
       with_delayed_jobs do
         Card["Jedi+friendliness+formula"]
-          .update_attributes! content: "1/{{Jedi+deadliness}}+5"
+          .update! content: "1/{{Jedi+deadliness}}+5"
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
       updates_answer_with_delay from: /^0.02/, to: /^10.02/,
                                 metric_title: "double friendliness" do
         Card["Jedi+friendliness+formula"]
-          .update_attributes! content: "1/{{Jedi+deadliness}}+5"
+          .update! content: "1/{{Jedi+deadliness}}+5"
       end
     end
   end

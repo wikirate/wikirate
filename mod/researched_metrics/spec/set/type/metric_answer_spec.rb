@@ -79,12 +79,12 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       newer_answer = new_answer.refresh true
       # FIXME: this refresh prevents a log error (exception in integrate phase: undefined method `metric_card`)
       # that error is happening because the director on new_answer is not getting cleared.
-      newer_answer.update_attributes! name: new_name
+      newer_answer.update! name: new_name
       expect(newer_answer.name).to eq(new_name)
     end
 
     it "updates value correctly" do
-      answer.update_attributes! subfields: { value: "updated value" }
+      answer.update! subfields: { value: "updated value" }
       expect(Card[answer, :value].content).to eq("updated value")
     end
 

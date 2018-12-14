@@ -30,7 +30,7 @@ describe Card::Set::Type::Project do
 
   context "with years" do
     let :project do
-      card_subject.year_card.update_attributes! content: "1999\n2000\n2001"
+      card_subject.year_card.update! content: "1999\n2000\n2001"
       card_subject
     end
 

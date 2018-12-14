@@ -10,7 +10,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
 
     let(:token) do
       Card::Auth.as_bot do
-        Card["Joe Admin", :account, :token].update_attributes! content: "abcd"
+        Card["Joe Admin", :account, :token].update! content: "abcd"
         "abcd"
       end
     end

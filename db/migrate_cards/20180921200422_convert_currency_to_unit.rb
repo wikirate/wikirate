@@ -17,7 +17,7 @@ class ConvertCurrencyToUnit < Card::Migration
   def standardize_money_metric metric
     currency_card = metric.fetch trait: :currency
     metric.fetch(trait: :unit)&.delete!
-    currency_card.update_attributes! name: metric.name.field(:unit)
+    currency_card.update! name: metric.name.field(:unit)
     standardize_units currency_card
   end
 
@@ -25,7 +25,7 @@ class ConvertCurrencyToUnit < Card::Migration
     old_unit = currency_card.content
     UNITS.each do |regexp, new_unit|
       if old_unit.match regexp
-        currency_card.update_attributes! content: new_unit
+        currency_card.update! content: new_unit
         return
       end
     end

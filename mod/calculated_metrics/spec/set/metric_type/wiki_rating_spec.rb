@@ -63,7 +63,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
 
     context "when formula changes" do
       def update_weights weights
-        @metric.formula_card.update_attributes! content: weights.to_json
+        @metric.formula_card.update! content: weights.to_json
       end
       it "updates existing rating value" do
         update_weights "Joe User+researched number 1" => 40,
@@ -88,7 +88,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
     context "when input metric value changes" do
       it "updates rating value" do
         Card["Joe User+researched number 1+Samsung+2014+value"]
-          .update_attributes! content: "1"
+          .update! content: "1"
         expect(rating_value).to eq "2.6"
       end
       it "removes incomplete rating values" do
@@ -138,7 +138,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
     end
     it "creates rating values if formula updated" do
       Card::Auth.as_bot do
-        formula_card.update_attributes!(
+        formula_card.update!(
           type_id: Card::PlainTextID,
           content: '{"Joe User+researched number 1":"60",' \
                     '"Joe User+researched number 2":"40"}'
