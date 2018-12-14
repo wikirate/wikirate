@@ -119,12 +119,12 @@ def tag source, tag
 end
 
 # THE CALLS
-
 Card::Auth.as_bot do
-  Card.where(type_id: Card::SourceID).find_each do |source|
+  last_id = ENV["LAST_ID"] || 0 # last standardized source id
+  Card.where("type_id = ? AND id > ?", Card::SourceID, last_id).find_each do |source|
     # Card.where(name: "Page-000000032").find_each do |source|
     source.include_set_modules
-    tick :sources, "processing #{source.name}"
+    tick :sources, "processing #{source.name}; ID = #{source.id}"
     standardize_file source
     rename_source source
     puts @counts
