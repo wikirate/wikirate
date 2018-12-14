@@ -44,7 +44,7 @@ module Formula
 
       def each_company_and_year_with_value &block
         years_with_values.each do |year|
-          companies_with_value(year).each do |company_id|
+          companies_with_values(year).each do |company_id|
             result company_id, year, &block
           end
         end
@@ -57,7 +57,7 @@ module Formula
       end
 
       def each_company_with_value year, &block
-        companies_with_value(year).each do |company_id|
+        companies_with_values(year).each do |company_id|
           result company_id, year, &block
         end
       end
@@ -67,7 +67,8 @@ module Formula
         yield values, company_id, year
       end
 
-      # @return input values to calculate values for the given company
+      # @return input values to calculate values for the given company and year
+      #   If year is present [
       #   If year is given it returns an array with one value for every input card,
       #   otherwise it returns an array with a hash for every input card. The hashes
       #   contain a value for every year.
@@ -102,7 +103,7 @@ module Formula
         @companies_with_values.years
       end
 
-      def companies_with_value year
+      def companies_with_values year
         search_values_for year: year
         @companies_with_values.for_year year
       end
@@ -119,8 +120,14 @@ module Formula
         return if @all_fetched
         @all_fetched = true
 
+        track_companies_with_values do
+          while_full_input_set_possible(&:search_all_values)
+        end
+      end
+
+      def track_companies_with_values
         @companies_with_values = CompaniesWithValues.new
-        while_full_input_set_possible(&:search_all_values)
+        yield
         @companies_with_values.clean @answer_candidates
       end
 

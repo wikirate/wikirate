@@ -81,6 +81,10 @@ module Formula
         @value_store ||= value_store_class.new
       end
 
+      # @return a hash { year => value } if year is nil otherwise only value.
+      #   Value is usually a string, but it can be an array of strings if the input item
+      #   uses an option that generates multiple values for one year like a
+      #   year option "year: 2000..-1"
       def value_for company_id, year
         value_store.get company_id, year
       end

@@ -23,8 +23,8 @@ module Formula
         self[year.to_i] << company_id
       end
 
-      # if a company definitely doesn't meet input requirements,
-      # remove it completely
+      # remove company and years that don't have a complete set of values for every
+      # input item
       def clean answer_candidates
         new_content =
           to_a.each.with_object({}) do |(year, companies_by_year), h|

@@ -14,7 +14,7 @@ module Formula
         #   with ruby method calls
         def translate formula, offset=0
           with_next_match formula do |replacement, pos, i_arg_start|
-            arg, rest = tr_after_match formula, offset, i_arg_start
+            arg, rest = translate_after_match formula, offset, i_arg_start
             [formula[0, pos], "[#{arg}].flatten.#{replacement}", rest].join
           end
         end
@@ -39,8 +39,7 @@ module Formula
         # @param offset [Integer] where are we in the whole formula
         # @param arg_start [Integer] position of opening '['
         # @return [String, String] the translated argument and the translated rest
-        def tr_after_match formula, offset, arg_start
-          syntax_error :opening_bracket, offset + arg_start if formula[arg_start] != "["
+        def translate_after_match formula, offset, arg_start
           arg_end = arg_end arg_start, formula, offset
           [tr_part(formula, offset, arg_start + 1, arg_end - 1),
            tr_part(formula, offset, arg_end + 1)]
@@ -50,9 +49,9 @@ module Formula
           pos += 1 # 1-based index in error message
           message =
             case type
-            when :closing_bracket
+            when :no_closing_bracket
               "invalid formula: no closing ']' found for '[' at #{pos}"
-            when :opening_bracket
+            when :no_opening_bracket
               "invalid formula: expected '[' at #{pos}"
             else
               "invalid formula: syntax error at #{pos}"
@@ -63,15 +62,23 @@ module Formula
         private
 
         def arg_end arg_start, formula, offset
-          i = arg_start + 1
-          br_cnt = 1 # bracket count
-          while br_cnt.positive?
-            i += 1
-            syntax_error :closing_bracket, offset + arg_start if i == formula.size
-            br_cnt += 1 if formula[i] == "["
-            br_cnt -= 1 if formula[i] == "]"
+          if formula[arg_start] != "["
+            syntax_error :no_opening_bracket, offset + arg_start
           end
-          i
+          closing_bracket_index(arg_start + 1, formula) ||
+            syntax_error(:no_closing_bracket, offset + arg_start)
+        end
+
+        def closing_bracket_index start, formula
+          br_cnt = 1 # bracket count
+          formula[start..-1].each_with_index do |char, j|
+            case char
+            when "[" then br_cnt += 1
+            when "]" then br_cnt -= 1
+            end
+            return j + arg_start if br_cnt.zero?
+          end
+          nil
         end
       end
     end

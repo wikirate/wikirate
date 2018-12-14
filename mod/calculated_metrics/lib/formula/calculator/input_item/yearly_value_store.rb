@@ -5,9 +5,13 @@ module Formula
       class YearlyValueStore < ValueStore
         def initialize
           @years = ::Set.new
+          @companies = ::Set.new  # for compatibility reasons; always empty
           @values = Hash.new_nested(Hash)
         end
 
+        # @return [Hash]
+        #   { year => value } if year is nil or missing
+        #   value             if year is present
         def get _company, year=nil
           year ? values[year] : values
         end

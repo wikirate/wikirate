@@ -81,6 +81,8 @@ module Formula
             end
           end
 
+          # @return an array of years for which values can be calculated out of the given
+          #   list of years
           def translate_years years
             send @translate, years
           end

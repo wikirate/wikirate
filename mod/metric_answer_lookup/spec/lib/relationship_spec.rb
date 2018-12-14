@@ -123,7 +123,7 @@ RSpec.describe Relationship do
 
     it "updates value" do
       expect { update "#{relation_name}+value", content: "no" }
-        .to change(relation, :value).from("yes").to("no")
+        .to change { relation.value }.from("yes").to("no")
     end
   end
 end

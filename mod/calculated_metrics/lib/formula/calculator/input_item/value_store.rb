@@ -3,20 +3,20 @@ module Formula
     class InputItem
       # Used to hold onto the values that an input item finds
       class ValueStore
-        attr_reader :years, :values
+        attr_reader :years, :values, :companies
         def initialize
           @years = ::Set.new
-          @companies = ::Set.new
+          @companies = ::Set.new  # all company
           @values = Hash.new_nested(Hash, Hash)
         end
 
+        # @return [Hash]
+        #   { company_id => { year => value } if company is nil and year is nil or missing
+        #   { year => value }                 if year is nil or missing
+        #   value                             if both are present
         def get company, year=nil
           dig_args = [company, year].compact
           dig_args.present? ? values.dig(*dig_args) : values
-        end
-
-        def companies
-          @values.keys
         end
 
         def add company, year, value
