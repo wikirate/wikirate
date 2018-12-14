@@ -138,7 +138,7 @@ format :html do
   end
 
   def citations_count_badge
-    wrap_with :span, source_card&.item_names&.size, class: "badge badge-light border"
+    wrap_with :span, card.source_card&.item_names&.size, class: "badge badge-light border"
   end
 
   def citations_count
