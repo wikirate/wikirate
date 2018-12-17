@@ -8,7 +8,18 @@ module Formula
         # Example:
         #   {{ M1 | company: Death Star }}
         module CompanySingle
+          extend AddValidationChecks
           include CompanyIndependentInput
+
+          add_validation_checks :check_company_option
+
+          def check_company_option
+            if !object_company_id
+              add_error "unknown card: #{company_option}"
+            elsif Card.fetch_type_id(object_company_id) != Card::WikirateCompanyID
+              add_error "not a company: #{company_option}"
+            end
+          end
 
           def each_answer
             answers.each do |a|

@@ -18,14 +18,16 @@ module Formula
 
     def initialize formula_card
       @formula_card = formula_card
-      @input =
-        if formula_card.input_cards.any?(&:nil?)
-          InvalidInput.new
-        else
-          ::Formula::Calculator::Input.new @formula_card, &self.class::INPUT_CAST
-        end
-
+      @input = initialize_input
       @errors = []
+    end
+
+    def initialize_input
+      if @formula_card.input_cards.any?(&:nil?)
+        InvalidInput.new
+      else
+        Input.new @formula_card, &self.class::INPUT_CAST
+      end
     end
 
     # @param [Hash] opts
@@ -80,12 +82,17 @@ module Formula
     end
 
     def validate_formula
+      @errors = []
       compile_formula
       @errors
     end
 
     def self.remove_nests content
       content.gsub(/{{[^}]*}}/, "")
+    end
+
+    def self.remove_quotes content
+      content.gsub(/"[^"]+"/, "")
     end
 
     private

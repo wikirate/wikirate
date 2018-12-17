@@ -8,6 +8,7 @@ module Formula
           class CompanyRelatedParser
             def initialize str, search_space
               @str = str
+              raise Condition::Error, "empty relation" if @str.blank?
               @search_space = search_space
             end
 
@@ -22,6 +23,11 @@ module Formula
               end
             end
 
+            # raises Condition::Error if something is wrong
+            def validate
+              parse_expressions
+            end
+
             private
 
             def sql
@@ -30,8 +36,6 @@ module Formula
                join_sql(@conditions.size - 1),
                "WHERE (#{where_sql})",
                RELATED_GROUP_BY].flatten.compact.join " "
-            rescue Condition::Error => _e
-              # TODO: error handling
             end
 
             def where_sql

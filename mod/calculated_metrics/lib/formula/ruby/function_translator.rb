@@ -1,5 +1,5 @@
 module Formula
-  class Ruby < Calculator
+  class Ruby < NestFormula
     # Translates Wolfram Language function calls to ruby code
     class FunctionTranslator
       FUNC_KEY_MATCHER = FUNCTIONS.keys.join("|").freeze
@@ -71,12 +71,12 @@ module Formula
 
         def closing_bracket_index start, formula
           br_cnt = 1 # bracket count
-          formula[start..-1].each_with_index do |char, j|
+          formula[start..-1].each_char.with_index do |char, j|
             case char
             when "[" then br_cnt += 1
             when "]" then br_cnt -= 1
             end
-            return j + arg_start if br_cnt.zero?
+            return j + start if br_cnt.zero?
           end
           nil
         end

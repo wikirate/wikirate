@@ -41,7 +41,9 @@ module Formula
               if @metric_card.nil? || @metric_card.type_id != Card::MetricID
                 raise Condition::Error, "not a metric: \"#{@metric}\""
               end
-
+              unless @metric_card.relationship?
+                raise Condition::Error, "expected a relationship metric: \"#{@metric}\""
+              end
               @metric_id = @metric_card.id
             end
           end

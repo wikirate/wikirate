@@ -3,8 +3,9 @@ module Formula
     class InputItem
       # Instances of {MetricInput} represent input items that refer to a metric
       # It uses the answer table to find values.
-      class MetricInput < InputItem
+      class MetricInputItem < InputItem
         include CompanyDependentInput
+
         def type
           @input_type ||= @input_card.value_type_code
         end

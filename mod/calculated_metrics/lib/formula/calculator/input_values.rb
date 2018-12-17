@@ -23,6 +23,11 @@ module Formula
         @input_list = InputList.new self
       end
 
+      # @return [Array] error message if invalid; empty array if valid
+      def validate
+        @input_list.map(&:validate).flatten
+      end
+
       # Every iteration of the passed block receives an array with values for each
       # input item in the formula (= each double curly bracket part in the formula)
       # and a company_id and year which specifies
@@ -44,7 +49,7 @@ module Formula
 
       def each_company_and_year_with_value &block
         years_with_values.each do |year|
-          companies_with_values(year).each do |company_id|
+          companies_with_value(year).each do |company_id|
             result company_id, year, &block
           end
         end
@@ -57,7 +62,7 @@ module Formula
       end
 
       def each_company_with_value year, &block
-        companies_with_values(year).each do |company_id|
+        companies_with_value(year).each do |company_id|
           result company_id, year, &block
         end
       end
@@ -103,7 +108,7 @@ module Formula
         @companies_with_values.years
       end
 
-      def companies_with_values year
+      def companies_with_value year
         search_values_for year: year
         @companies_with_values.for_year year
       end

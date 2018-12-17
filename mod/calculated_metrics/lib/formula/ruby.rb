@@ -7,7 +7,7 @@ module Formula
   # It converts the formula to a ruby lambda function
   # The formula may only consist of numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
-  class Ruby < Calculator
+  class Ruby < NestFormula
     SYMBOLS = %w{+ - ( ) [ ] . * , /}.freeze
     FUNCTIONS = { "Total" => "sum", "Max" => "max", "Min" => "min",
                   "Zeros" => "count(0)", "Flatten" => "flatten",
@@ -20,9 +20,11 @@ module Formula
     # FUNC_VALUE_MATCHER = FUNCTIONS.values.join("|").freeze
 
     class << self
-      def valid_formula? formula
-        without_nests = remove_nests(formula)
-        check_symbols remove_functions(without_nests)
+      # Is this the right class for this formula?
+      def supported_formula? formula
+        %i[remove_nests remove_functions check_symbols].inject(formula) do |arg, method|
+          send method, arg
+        end
       end
 
       def remove_functions formula, translated=false
@@ -91,12 +93,12 @@ module Formula
       ruby_safe? cleaned
     end
 
+    private
+
     def ruby_safe? expr
       without_func = self.class.remove_functions expr, true
       self.class.check_symbols without_func
     end
-
-    private
 
     def lambda_wrap code
       "lambda { |#{LAMBDA_ARGS_NAME}| #{code} }"

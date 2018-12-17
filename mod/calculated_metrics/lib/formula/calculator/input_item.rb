@@ -20,6 +20,8 @@ module Formula
     # dependent. That's why the company dependency is separated into the modules
     # {CompanyDependentInput} and {CompanyIndependentInput}
     class InputItem
+      include ValidationChecks
+
       attr_reader :card_id, :input_values
       delegate :answer_candidates, to: :input_values
 
@@ -29,6 +31,7 @@ module Formula
         @input_card = input_values.input_cards[input_index]
         @card_id = @input_card.id
         @mandatory = mandatory
+        clear_validation_checks
         extend CompanyOption if company_option?
         extend YearOption if year_option?
         initialize_decorator

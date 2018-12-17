@@ -95,20 +95,4 @@ RSpec.describe Formula::Ruby do
       expect(result).not_to include 2012, 2016
     end
   end
-
-  describe ".valid_formula?" do
-    subject { ::Formula::Ruby.valid_formula? content }
-
-    context "for formula with simple symbols" do
-      let(:content) { "1/{{Jedi+deadliness}}" }
-
-      it { is_expected.to be_truthy }
-    end
-
-    context "for formula with several nests and functions" do
-      let(:content) { "2*Total[{{M1|2000..2010}}]+{{M2}} / Min[{{M3|-1..3}}]" }
-
-      it { is_expected.to be_truthy }
-    end
-  end
 end

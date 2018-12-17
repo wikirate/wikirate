@@ -9,10 +9,17 @@ module Formula
       #    year: -4, 2
       #    year: 1999, 2001, -1
       module YearOption
+        extend AddValidationChecks
+        add_validation_checks :check_year_option
+
         def initialize_decorator
           super
           interpret_year_option
           processed_year_option
+        end
+
+        def check_year_option
+          add_error "invalid year option: #{year_option}" unless interpret_year_option
         end
 
         def full_search
@@ -27,6 +34,10 @@ module Formula
 
         def processed_year_option
           @processed_year_option ||= process_year_option
+        end
+
+        def process_year_option
+          year_option
         end
 
         # @param value_data [Array<Hash] for every input item a hash with values for every
@@ -61,9 +72,9 @@ module Formula
 
         def interpret_year_option
           case year_option
-          when /^[+-]?\d+$/ then extend YearSingle
-          when /,/          then extend YearList
-          when /\.\./       then extend YearRange
+          when /^[-+]?\d+$/ then extend YearSingle
+          when /^[-+]?[\d\s]+,[-+\d\s,]+$/ then extend YearList
+          when /[-+]?\d+\.\.[-+]?\d+$/ then extend YearRange
           end
         end
       end

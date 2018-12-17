@@ -1,4 +1,4 @@
-module Formula
+ module Formula
   # Formula that translates one value to another based on a JSON map
   class Translation < Calculator
     def get_value input, _company, _year
@@ -15,7 +15,7 @@ module Formula
       @formula_card.content.downcase
     end
 
-    def self.valid_formula? formula
+    def self.supported_formula? formula
       formula =~ /^\{[^{}]*\}$/
     end
 
@@ -32,7 +32,7 @@ module Formula
     end
 
     def safe_to_convert? expr
-      self.class.valid_formula? expr
+      self.class.supported_formula? expr
     end
 
     def safe_to_exec? _expr

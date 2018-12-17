@@ -10,6 +10,14 @@ module Formula
         # (since the answers for the companies of the company option are always used)
         module CompanyRelated
           include CompanyDependentInput
+          extend AddValidationChecks
+          add_validation_checks :check_related_conditions
+
+          def check_related_conditions
+            CompanyRelatedParser.new(company_option, nil).validate
+          rescue Condition::Error => e
+            add_error e.message
+          end
 
           def each_answer
             relations.each do |subject_company_id, year, object_company_ids|

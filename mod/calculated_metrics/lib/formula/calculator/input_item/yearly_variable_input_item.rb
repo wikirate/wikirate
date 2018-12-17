@@ -5,7 +5,7 @@ module Formula
       # variable
       # It uses the cards table to find values.
       # TODO: support year and company options
-      class YearlyVariableInput < InputItem
+      class YearlyVariableInputItem < InputItem
         include CompanyIndependentInput
 
         delegate :with_full_year_space, to: :search_space
