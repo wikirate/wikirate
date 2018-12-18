@@ -1,21 +1,12 @@
 require_dependency "wolfram/unknowns"
 
 module Formula
-  class Wolfram < Calculator
+  class Wolfram < NestFormula
     include Unknowns
+    include Validation
 
     INTERPRETER =
       "https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686".freeze
-    WHITELIST = ::Set.new(
-      %w[Boole If Switch Map
-         Count Pick Cases FirstCase
-         MaximalBy MinimalBy
-         AllTrue AnyTrue NoneTrue
-         Sort SortBy
-         Take TakeLargest TakeSmallest TakeLargestBy TakeSmallestBy
-         Mean Variance StandardDeviation Median Quantile Covariance] +
-        Formula::Ruby::FUNCTIONS.keys
-    ).freeze
 
     FUNC_DEFS = ["Zeros[x_] := Count[x, 0]",
                  'Unknowns[x_] := Count[x, "Unknown"]'].freeze
@@ -78,23 +69,6 @@ module Formula
       end
     rescue JSON::ParserError => _e
       raise Card::Error, "failed to parse wolfram result: #{expr}"
-    end
-
-    def save_to_convert? expr
-      not_on_whitelist =
-        expr.gsub(/\{\{([^}])+\}\}/, "").gsub(/"[^"]+"/, "")
-            .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
-          WHITELIST.include? word
-        end
-      return true if not_on_whitelist.empty?
-      not_on_whitelist.each do |_bad_word|
-        @errors << "#{not_on_whitelist.first} forbidden keyword"
-      end
-      false
-    end
-
-    def safe_to_exec? _expr
-      true
     end
 
     private

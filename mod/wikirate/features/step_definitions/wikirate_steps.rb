@@ -162,8 +162,7 @@ Then(/^I should see a "(.*)" icon$/) do |icon|
 end
 
 Then(/^I should see a "(.*)" icon with tooltip "(.*)"$/) do |icon, title|
-  expect(page.body)
-    .to have_tag("i", with: { class: "fa-#{ICONS[icon]}", title: title })
+  expect(page.body).to have_tag("i", with: { class: "fa-#{ICONS[icon]}", title: title })
 end
 
 Then(/^I should not see a "(.*)" icon$/) do |icon|

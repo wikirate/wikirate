@@ -3,7 +3,7 @@ include SharedData::Samples
 
 When(/^I research answer "([^"]*)" for year "([^"]*)"$/) do |answer, year|
   visit path_to("new answer")
-  fill_autocomplete("metric", with: "Joe User+researched")
+  fill_autocomplete("metric", with: "Joe User+RM")
   fill_autocomplete("wikirate_company", with: "Apple Inc")
   select_year year
   fill_in "Answer", with: answer

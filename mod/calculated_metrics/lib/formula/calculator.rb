@@ -6,20 +6,28 @@ module Formula
   # Calculator.new(formula_card)
   # The formula_card must respond to:
   #   #clean_formula: a String with just nests and operators
-  #   #input_cards
-  #   #input_chunks
+  #   #input_cards: array of cards
+  #   #company_options: array of the same size as input card with a company option string
+  #                    for each input card
+  #   #year_options: array of the same size as input card with a year option string
+  #   #              for each input card
   class Calculator
     INPUT_CAST = ->(val) { val }
 
-    attr_reader :errors
+    attr_reader :errors, :formula_card
 
     def initialize formula_card
       @formula_card = formula_card
-      @input = Input.new @formula_card.input_cards,
-                         @formula_card.input_requirement,
-                         year_options,
-                         &self.class::INPUT_CAST
+      @input = initialize_input
       @errors = []
+    end
+
+    def initialize_input
+      if @formula_card.input_cards.any?(&:nil?)
+        InvalidInput.new
+      else
+        Input.new @formula_card, &self.class::INPUT_CAST
+      end
     end
 
     # @param [Hash] opts
@@ -46,7 +54,7 @@ module Formula
 
     def input_data company, year
       @formula_card.input_cards.zip(
-        @input.input_for(company, year), year_options
+        @input.input_for(company, year), formula_card.year_options
       )
     end
 
@@ -74,12 +82,17 @@ module Formula
     end
 
     def validate_formula
+      @errors = []
       compile_formula
       @errors
     end
 
     def self.remove_nests content
       content.gsub(/{{[^}]*}}/, "")
+    end
+
+    def self.remove_quotes content
+      content.gsub(/"[^"]+"/, "")
     end
 
     private
@@ -97,14 +110,6 @@ module Formula
     def compile_formula
       return unless safe_to_convert? formula
       @executed_lambda ||= safe_execution(to_lambda)
-    end
-
-    # Extracts all year options from all input nests in the formula
-    def year_options
-      @year_options ||=
-        @formula_card.input_chunks.map do |chunk|
-          chunk.options[:year]
-        end
     end
 
     def replace_nests content=nil

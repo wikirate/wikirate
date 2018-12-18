@@ -10,14 +10,14 @@ RSpec.describe Formula::Wolfram do
   let(:apple_id) { Card.fetch_id "Apple Inc" }
 
   it "simple formula" do
-    result = calculate "{{Joe User+researched}}*2"
+    result = calculate "{{Joe User+RM}}*2"
     expect(result[2011][apple_id]).to eq 22.0
     expect(result[2012][apple_id]).to eq 24.0
     expect(result[2013][apple_id]).to eq 26.0
   end
 
   describe "functions" do
-    let(:nest) { "{{Joe User+researched|year:-2..0}}" }
+    let(:nest) { "{{Joe User+RM|year:-2..0}}" }
 
     # TODO: test this stuff with less wolfram API calls
     #       maybe stub the wolfram api
@@ -55,25 +55,25 @@ RSpec.describe Formula::Wolfram do
 
   # describe "formula with yearly variables" do
   #   it "with fixed year" do
-  #     result = calculate "{{half year|2013}}+{{Joe User+researched}}"
+  #     result = calculate "{{half year|2013}}+{{Joe User+RM}}"
   #     expect(result).to include 2011 => { apple_id => 1006.5 + 11 },
   #                               2012 => { apple_id => 1006.5 + 12 },
   #                               2013 => { apple_id => 1006.5 + 13 }
   #   end
   #   it "with relative year" do
-  #     result = calculate "{{half year}}+{{Joe User+researched}}"
+  #     result = calculate "{{half year}}+{{Joe User+RM}}"
   #     expect(result).to include 2014 => { apple_id => 1007 + 14 },
   #                               2013 => { apple_id => 1006.5 + 13 }
   #   end
   #   it "with sum" do
-  #     result = calculate "Total[{{half year|2013..0}}]+{{Joe User+researched}}"
+  #     result = calculate "Total[{{half year|2013..0}}]+{{Joe User+RM}}"
   #     expect(result).to include 2013 => { apple_id => 1006.5 + 13 },
   #                               2014 => { apple_id => 1007 + 1006.5 + 14 }
   #     expect(result).not_to include 2012, 2016
   #   end
   #   it "double sum" do
   #     result =
-  #       calculate "Total[{{half year|2013..0}}]+Totl[{{Joe User+researched|-1..0}}]"
+  #       calculate "Total[{{half year|2013..0}}]+Totl[{{Joe User+RM|-1..0}}]"
   #     expect(result).to include 2013 => { apple_id => 1006.5 + 13 + 12 },
   #                               2014 => { apple_id => 1007 + 1006.5 + 14 + 13 }
   #     expect(result).not_to include 2012, 2016

@@ -1,8 +1,8 @@
-RSpec.describe Answer do
-  def answer
-    described_class.find_by_answer_id answer_id
+ RSpec.describe Answer do
+  def answer id=answer_id
+    described_class.find_by_answer_id id
   end
-  let(:metric) { "Joe User+researched" }
+  let(:metric) { "Joe User+RM" }
   let(:answer_name) { "#{metric}+Apple_Inc+2013" }
   let(:answer_id) { Card.fetch_id answer_name }
 
@@ -23,7 +23,7 @@ RSpec.describe Answer do
         expect(answer.year).to eq 2013
       end
       it "has metric_id" do
-        expect(answer.metric_id).to eq Card.fetch_id("Joe User+researched")
+        expect(answer.metric_id).to eq Card.fetch_id("Joe User+RM")
       end
       it "has metric_type_id" do
         expect(answer.metric_type_id).to eq Card.fetch_id("researched")
@@ -35,10 +35,27 @@ RSpec.describe Answer do
         expect(answer.value).to eq "13"
       end
       it "has metric_name" do
-        expect(answer.metric_name).to eq "Joe User+researched"
+        expect(answer.metric_name).to eq "Joe User+RM"
       end
       it "has company_name" do
         expect(answer.company_name).to eq "Apple Inc."
+      end
+    end
+  end
+
+  describe "#relationship?" do
+    context "when metric is a relationship metric" do
+      let(:relationship_answer) do
+        answer Card.fetch_id("Jedi+more evil+Death Star+1977")
+      end
+      it "returns true" do
+        expect(relationship_answer).to be_relationship
+      end
+    end
+
+    context "when metric is not a relationship metric" do
+      it "returns false" do
+        expect(answer).not_to be_relationship
       end
     end
   end
@@ -58,8 +75,10 @@ RSpec.describe Answer do
 
     it "updates latest" do
       record = "#{metric}+Apple_Inc"
-      delete "#{record}+2015"
       new_latest = described_class.find_by_answer_id Card.fetch_id("#{record}+2014")
+      expect(new_latest.latest).to be_falsey
+      delete "#{record}+2015"
+      new_latest.refresh
       expect(new_latest.latest).to be_truthy
     end
   end
@@ -70,7 +89,7 @@ RSpec.describe Answer do
       answer_id
     end
     it "updates company" do
-      update answer_name, name: "Joe User+researched+Samsung+2013"
+      update answer_name, name: "Joe User+RM+Samsung+2013"
       expect(answer.company_id).to eq Card.fetch_id("Samsung")
       expect(answer.company_name).to eq "Samsung"
     end
@@ -87,7 +106,7 @@ RSpec.describe Answer do
     end
 
     it "updates year" do
-      update answer_name, name: "Joe User+researched+Apple_Inc+1999"
+      update answer_name, name: "Joe User+RM+Apple_Inc+1999"
       expect(answer.year).to eq 1999
     end
 

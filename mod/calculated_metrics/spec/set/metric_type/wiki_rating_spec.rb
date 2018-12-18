@@ -13,7 +13,7 @@
 #  Joe User+researched number 3
 #   Samsung          2014 => 1, 2015 => 1
 #
-#  Joe User+researched
+#  Joe User+RM
 #    Apple_Inc       2010 => 10, '2013' => 13, '2011' => 11,
 #                    2012 => 12, '2014' => 14
 #    Death_Star      1977 => 77
