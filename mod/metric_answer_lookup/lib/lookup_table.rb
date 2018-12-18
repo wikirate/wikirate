@@ -1,6 +1,22 @@
 module LookupTable
+  def self.included host_class
+    host_class.extend LookupTable::ClassMethods
+  end
+
+  def card_column
+    self.class.card_column
+  end
+
   def card
     @card ||= Card.fetch send(card_column)
+  end
+
+  def card_id
+    send card_column
+  end
+
+  def card_id= id
+    send "#{card_column}=", id
   end
 
   def delete_on_refresh?

@@ -47,6 +47,22 @@ def input_requirement
   metric_card.formula_input_requirement
 end
 
+# Extracts all year options from all input nests in the formula
+def year_options
+  @year_options ||= input_options :year
+end
+
+# Extracts all company options from all input nests in the formula
+def company_options
+  @company_options ||= input_options :company
+end
+
+def input_options option_name
+  input_chunks.map do |chunk|
+    chunk.options[option_name]
+  end
+end
+
 event :validate_formula_input, :validate, on: :save, changed: :content do
   input_chunks.each do |chunk|
     ok_input_name(chunk) && ok_input_card(chunk) && ok_input_cardtype(chunk)

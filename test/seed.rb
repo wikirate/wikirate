@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 require "timecop"
 require_dependency "shared_data/profile_sections"
 require_dependency "shared_data/researched_metrics"
@@ -88,7 +89,7 @@ class SharedData
       ensure_card ["Google LLC", :headquarters],
                   type: :pointer, content: "California (United States)"
       ensure_card ["Google LLC", :aliases],
-                  type: :pointer, content: ["Google", "Alphabet"]
+                  type: :pointer, content: %w[Google Alphabet]
       ensure_card ["Google LLC", :incorporation],
                   type: :pointer, content: "Delaware (United States)"
       ensure_card ["Google LLC", :open_corporates], content: "201727810678"
@@ -111,23 +112,12 @@ class SharedData
     end
 
     def add_yearly_variables
-      Card.create!(
-        name: "half year", type_id: Card::YearlyVariableID,
-        subcards: {
-          "+2015" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID,
-                                     content: "1007.5" } },
-          "+2014" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID,
-                                     content: "1007" } },
-          "+2013" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID,
-                                     content: "1006.5" } },
-          "+2004" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID,
-                                     content: "1002" } }
-        }
+      Card::YearlyVariable.create(
+        name: "half year",
+        values: { 2015 => "1007.5", 2014 => "1007", 2013 => "1006.5", 2004 => "1002" }
       )
+      Card::YearlyVariable.create_or_update name: "always one",
+                                  values: { 1977 => "1", 2000 => "1", 2014 => 1 }
     end
 
     def add_program
@@ -173,5 +163,7 @@ class SharedData
       path = File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
       File.open path
     end
+
+
   end
 end

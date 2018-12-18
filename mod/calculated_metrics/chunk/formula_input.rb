@@ -3,6 +3,7 @@ class Card
     module Chunk
       class FormulaInput < Nest
         Card::View::Options.add_option :year, :ruler
+        Card::View::Options.add_option :company, :ruler
         DEFAULT_OPTION = :year
 
         Card::Content::Chunk.register_class(

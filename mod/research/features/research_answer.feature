@@ -5,8 +5,8 @@ Feature: Research answer
   Background:
     Given I am signed in as Joe User
     And I research
-      | metric              | company    | year |
-      | Joe User+researched | Apple Inc. | 2009 |
+      | metric      | company    | year |
+      | Joe User+RM | Apple Inc. | 2009 |
 
   Scenario: Create a metric value
     When I cite source
@@ -30,6 +30,7 @@ Feature: Research answer
     And I wait for ajax response
     Then I should see "2009"
     And I should see "10"
+    And I wait a sec
     And I should see a "comment" icon with tooltip "Has comments"
     And I should see a "check request" icon with tooltip "check requested"
     Then I should see "www.wikiwand.com"
