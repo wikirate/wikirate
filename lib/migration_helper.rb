@@ -8,8 +8,8 @@ module MigrationHelper
     down_new = new_name.downcase
     Rails.logger.info "Change name from '#{cap_old}' to '#{cap_new}'"
     Card[cap_old].update! name: cap_new,
-                                     update_referers: true,
-                                     silent_change: true
+                          update_referers: true,
+                          silent_change: true
 
     ids = Card.search name: ["match", down_old], return: :id
     Rails.logger.info "Update #{ids.size} cards with '#{cap_old}' in the name"
@@ -21,8 +21,8 @@ module MigrationHelper
       new_name = name.gsub(cap_old, cap_new).gsub(down_old, down_new)
       count += 1
       Card.find(id).update! name: new_name,
-                                       update_referers: true,
-                                       silent_change: true
+                            update_referers: true,
+                            silent_change: true
       if count > BATCH_SIZE
         Card::Cache.reset_all
         count = 0
