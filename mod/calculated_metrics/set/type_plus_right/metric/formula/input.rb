@@ -57,6 +57,11 @@ def company_options
   @company_options ||= input_options :company
 end
 
+# Extracts all unknown options from all input nests in the formula
+def unknown_options
+  @unknown_options ||= input_options :unknown
+end
+
 def input_options option_name
   input_chunks.map do |chunk|
     chunk.options[option_name]

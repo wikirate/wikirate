@@ -12,14 +12,9 @@ module Formula
       #       add_error "always bad"
       #     end
       module AddValidationChecks
-        def extended host_class
-          host_class.validation_checks.concat @additional_checks
-        end
-
-        def self.extended host_class
-          host_class.instance_variable_set("@additional_checks", [])
-          host_class.define_singleton_method :add_validation_checks do |*more_checks|
-            host_class.instance_variable_get("@additional_checks").concat more_checks
+        def add_validation_checks *more_checks
+          define_method :validation_checks do
+            super().concat more_checks
           end
         end
       end

@@ -12,7 +12,7 @@ module Formula
         extend AddValidationChecks
         add_validation_checks :check_year_option
 
-        def initialize_decorator
+        def initialize_option
           super
           interpret_year_option
           processed_year_option

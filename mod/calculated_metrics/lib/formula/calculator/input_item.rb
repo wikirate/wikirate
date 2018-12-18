@@ -21,6 +21,7 @@ module Formula
     # {CompanyDependentInput} and {CompanyIndependentInput}
     class InputItem
       include ValidationChecks
+      include Options
 
       attr_reader :card_id, :input_values
       delegate :answer_candidates, to: :input_values
@@ -31,13 +32,8 @@ module Formula
         @input_card = input_values.input_cards[input_index]
         @card_id = @input_card.id
         @mandatory = mandatory
-        clear_validation_checks
-        extend CompanyOption if company_option?
-        extend YearOption if year_option?
-        initialize_decorator
+        initialize_options
       end
-
-      def initialize_decorator; end
 
       # @param [Array<company_id>] company_id when given search only for answers for those
       #    companies
@@ -92,38 +88,8 @@ module Formula
         value_store.get company_id, year
       end
 
-      def year_option?
-        year_option.present? && year_option != "0"
-      end
-
-      def company_option?
-        company_option.present?
-      end
-
-      def year_option
-        @year_option ||=
-          normalize_year_option @input_values.year_options[@input_index]
-      end
-
-      def company_option
-        @company_option ||=
-          normalize_company_option @input_values.company_options[@input_index]
-      end
-
       def values_by_year company
         value_store.get company
-      end
-
-      def normalize_year_option option
-        return unless option.present?
-
-        option.sub("year:", "").tr("?", "0").strip
-      end
-
-      def normalize_company_option option
-        return unless option.present?
-
-        option.sub("company:", "").strip
       end
 
       # mandatory means

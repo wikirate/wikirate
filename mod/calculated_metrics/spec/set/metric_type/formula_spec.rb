@@ -15,7 +15,7 @@ RSpec.describe Card::Set::MetricType::Formula do
   def take_answer_value formula, year
     formula_metric = create_metric name: "rating1", type: :formula, formula: formula
     Answer.where(metric_name: formula_metric.name, company_id: company_id, year: year)
-          .take.value
+          .take&.value
   end
 
   describe "formula card" do
@@ -87,6 +87,28 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
   end
 
+  describe "unknown option" do
+    subject(:answer_value) do
+      take_answer_value formula, 2001
+    end
+
+    let(:formula) do
+      "Total[{{Joe User+RM|year: 2000..0;unknown: #{@unknown}}}]"
+    end
+    let(:company_id) { Card.fetch_id "Apple Inc" }
+
+    example "unknown cancel" do
+      @unknown = "cancel"
+      expect(answer_value).to eq nil
+    end
+
+    example "unknown return" do
+      @unknown = "return"
+      expect(answer_value).to eq "Unknown"
+    end
+
+  end
+
   describe "network aware formula" do
     subject(:answer_value) do
       take_answer_value formula, 1977
@@ -98,7 +120,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     let(:company_id) { Card.fetch_id "Death Star" }
 
-    example "first one" do
+    it "works" do
       @metric_name = "Jedi+deadliness"
       @related = "Jedi+more evil=yes"
       expect(answer_value).to eq "90.0"

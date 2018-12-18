@@ -7,7 +7,8 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class InputValues
-      attr_reader :requirement, :input_cards, :company_options, :year_options,
+      attr_reader :requirement, :input_cards,
+                  :company_options, :year_options, :unknown_options,
                   :companies_with_values, :answer_candidates
 
       # @param [Card] formula_card
@@ -16,6 +17,7 @@ module Formula
         @requirement = formula_card.input_requirement
         @company_options = formula_card.company_options
         @year_options = formula_card.year_options
+        @unknown_options = formula_card.unknown_options
 
         @all_fetched = false
 
@@ -82,8 +84,10 @@ module Formula
 
         search_values_for company_id: company, year: year
 
-        @input_list.map do |input_item|
-          input_item.value_for company, year
+        catch(:cancel_calculation) do
+          @input_list.map do |input_item|
+            input_item.value_for company, year
+          end
         end
       end
 

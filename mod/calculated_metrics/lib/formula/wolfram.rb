@@ -2,7 +2,7 @@ require_dependency "wolfram/unknowns"
 
 module Formula
   class Wolfram < NestFormula
-    include Unknowns
+    # include Unknowns
     include Validation
 
     INTERPRETER =
