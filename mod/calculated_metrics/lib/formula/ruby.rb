@@ -7,7 +7,7 @@ module Formula
   # It converts the formula to a ruby lambda function
   # The formula may only consist of numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
-  class Ruby < Calculator
+  class Ruby < NestFormula
     SYMBOLS = %w{+ - ( ) [ ] . * , /}.freeze
     FUNCTIONS = { "Total" => "sum", "Max" => "max", "Min" => "min",
                   "Zeros" => "count(0)", "Flatten" => "flatten",
@@ -17,12 +17,14 @@ module Formula
     INPUT_CAST = ->(val) { val.number? ? val.to_f : val }
 
     FUNC_KEY_MATCHER = FUNCTIONS.keys.join("|").freeze
-    FUNC_VALUE_MATCHER = FUNCTIONS.values.join("|").freeze
+    # FUNC_VALUE_MATCHER = FUNCTIONS.values.join("|").freeze
 
     class << self
-      def valid_formula? formula
-        without_nests = remove_nests(formula)
-        check_symbols remove_functions(without_nests)
+      # Is this the right class for this formula?
+      def supported_formula? formula
+        %i[remove_nests remove_functions check_symbols].inject(formula) do |arg, method|
+          send method, arg
+        end
       end
 
       def remove_functions formula, translated=false
@@ -52,6 +54,7 @@ module Formula
 
     def validate_input input, index
       return true if  @non_numeric_ok.include?(index)
+
       input = Array.wrap(input)
       if input.all? { |inp| inp.is_a?(Float) }
         true
@@ -66,11 +69,13 @@ module Formula
 
     def to_lambda
       rb_formula =
-        replace_nests(translate_functions(@formula)) do |index|
+        replace_nests(FunctionTranslator.translate(@formula)) do |index|
           "#{LAMBDA_ARGS_NAME}[#{index}]"
         end
       find_allowed_non_numeric_input rb_formula
       lambda_wrap rb_formula
+    rescue FunctionTranslator::SyntaxError => e
+      @errors << e.message
     end
 
     protected
@@ -88,18 +93,11 @@ module Formula
       ruby_safe? cleaned
     end
 
+    private
+
     def ruby_safe? expr
       without_func = self.class.remove_functions expr, true
       self.class.check_symbols without_func
-    end
-
-    private
-
-    def translate_functions formula
-      formula.gsub(/(?<func>#{FUNC_KEY_MATCHER})\[(?<arg>[^\]]+)\]/) do |_match|
-        arg = translate_functions $LAST_MATCH_INFO[:arg]
-        "[#{arg}].flatten.#{FUNCTIONS[$LAST_MATCH_INFO[:func]]}"
-      end
     end
 
     def lambda_wrap code

@@ -2,7 +2,7 @@
 
 RSpec.describe Card::Set::MetricType::Formula do
   before do
-    @metric_name = "Joe User+researched"
+    @metric_name = "Joe User+RM"
     @metric_name1 = "Joe User+researched number 1"
     @metric_name2 = "Joe User+researched number 2"
     @metric_name3 = "Joe User+researched number 3"
@@ -10,6 +10,12 @@ RSpec.describe Card::Set::MetricType::Formula do
 
   def build_formula formula
     format formula, @metric_name1, @metric_name2, @metric_name3
+  end
+
+  def take_answer_value formula, year
+    formula_metric = create_metric name: "rating1", type: :formula, formula: formula
+    Answer.where(metric_name: formula_metric.name, company_id: company_id, year: year)
+          .take.value
   end
 
   describe "formula card" do
@@ -25,9 +31,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
   describe "formula with year reference" do
     subject(:answer_value) do
-      formula_metric = create_metric name: "rating1", type: :formula, formula: formula
-      Answer.where(metric_name: formula_metric.name, company_id: company_id, year: 2015)
-            .take.value
+      take_answer_value formula, 2015
     end
 
     let(:company_id) { Card.fetch_id "Apple Inc" }
@@ -80,6 +84,24 @@ RSpec.describe Card::Set::MetricType::Formula do
         @year_expr = "2012, 2014"
         expect(answer_value).to eq "126.0"
       end
+    end
+  end
+
+  describe "network aware formula" do
+    subject(:answer_value) do
+      take_answer_value formula, 1977
+    end
+
+    let(:formula) do
+      "Total[{{ #{@metric_name}|company: Related[#{@related}] }}]"
+    end
+
+    let(:company_id) { Card.fetch_id "Death Star" }
+
+    example "first one" do
+      @metric_name = "Jedi+deadliness"
+      @related = "Jedi+more evil=yes"
+      expect(answer_value).to eq "90.0"
     end
   end
 

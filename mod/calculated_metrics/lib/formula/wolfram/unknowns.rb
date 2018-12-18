@@ -1,5 +1,5 @@
 module Formula
-  class Wolfram < Calculator
+  class Wolfram < NestFormula
     # Provide methods to handle "Unknown" input values for Wolfram formulas
     module Unknowns
       # what to do if an input value is unknown

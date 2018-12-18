@@ -81,14 +81,6 @@ class Answer
       def create_calculated_answer metric_card, company, year, value
         Answer.new.calculated_answer metric_card, company, year, value
       end
-
-      # @param ids [Array<Integer>] ids of answers in the answer table (NOT card ids)
-      def update_by_ids ids, *fields
-        Array(ids).each do |id|
-          next unless (answer = Answer.find_by_id(id))
-          answer.refresh(*fields)
-        end
-      end
     end
   end
 end

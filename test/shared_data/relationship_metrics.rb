@@ -16,7 +16,7 @@ class SharedData
                           type: :relationship,
                           test_source: true,
                           value_type: "Category",
-                          value_options: %w(yes no),
+                          value_options: %w[yes no],
                           inverse_title: "less evil" do
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "yes" }
         Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
