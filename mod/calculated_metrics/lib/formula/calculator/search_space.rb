@@ -6,8 +6,8 @@ module Formula
       include AllSearchSpace
 
       def initialize company_id=nil, year=nil
-        @company_ids = company_id ? ::Set.new([company_id]) : nil
-        @years = year ? ::Set.new([year]) : nil
+        @company_ids = setify company_id
+        @years = setify year
       end
 
       def point?
@@ -75,6 +75,15 @@ module Formula
         return unless search_space.mandatory_processed
 
         intersect search_space.company_ids, search_space.years
+      end
+
+      private
+
+      def setify values
+        return if values.nil?
+        return values if values.is_a? ::Set
+
+        Array.wrap(values).to_set
       end
     end
   end

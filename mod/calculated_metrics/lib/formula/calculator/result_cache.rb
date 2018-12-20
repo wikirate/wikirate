@@ -17,6 +17,7 @@ module Formula
         @result_space = ResultSpace.new no_mandatories
         yield @result_space
         merge @result_space
+        @search_log.update @search_space
       end
 
       def years
@@ -30,8 +31,8 @@ module Formula
       private
 
       def merge result_space
-        @search_log.update @search_space
         result_space.each_pair do |year, company_ids|
+          next if company_ids == :all
           self[year] ||= ::Set.new
           self[year] |= company_ids
         end

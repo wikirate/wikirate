@@ -13,7 +13,7 @@ module Formula
       #             "(#{replacement}).(#{arg})"
       #          end
       #
-      #     ft.translate "aaa[aaa[X]]"  # => "(bbb).(bbb.(X))"
+      #     ft.translate "aaa[aaa[X]]"  # => "(bbb).((bbb).(X))"
       def initialize map, &block
         @map = map
         @matcher = @map.keys.join "|"

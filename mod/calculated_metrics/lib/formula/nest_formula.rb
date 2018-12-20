@@ -12,10 +12,6 @@ module Formula
       check_brackets
     end
 
-    class << self
-
-    end
-
     private
 
     def check_brackets

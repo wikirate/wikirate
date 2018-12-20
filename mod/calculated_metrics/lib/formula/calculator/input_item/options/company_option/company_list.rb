@@ -1,4 +1,4 @@
-module Formula
+ module Formula
   class Calculator
     class InputItem
       module Options

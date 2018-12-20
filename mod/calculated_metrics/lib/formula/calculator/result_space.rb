@@ -38,32 +38,10 @@ module Formula
         self[year.to_i] << company_id
       end
 
-      def cleaned
-        if @search_space.unrestricted?
-          unrestricted_clean
-        else
-          restricted_clean
-        end
-      end
-
-      # remove everything that's not an answer candidate
-      def unrestricted_clean
-        to_a.each.with_object({}) do |(year, companies_by_year), h|
-          next unless @answer_candidates.applicable_year? year
-          h[year] = @answer_candidates.applicable_companies companies_by_year
-        end
-      end
-
-      # don't remove entries outside of the search space
-      def restricted_clean
-        to_a.each.with_object({}) do |(year, companies_by_year), h|
-          if !@search_space.applicable_year?(year)
-            h[year] = companies_by_year
-          elsif @answer_candidates.applicable_year?(year)
-            h[year] = (@answer_candidates.applicable_companies(companies_by_year) +
-                      (companies_by_year - @search_space.company_ids))
-          end
-        end
+      def remove company_id, year
+        return unless self[year.to_i].present?
+        self[year.to_i].delete company_id
+        self.delete year.to_i if self[year.to_i].empty?
       end
     end
   end

@@ -14,7 +14,7 @@ module Formula
   class Calculator
     INPUT_CAST = ->(val) { val }
 
-    attr_reader :errors, :formula_card
+    attr_reader :errors
 
     def initialize parser, &value_normalizer
       @value_normalizer = value_normalizer

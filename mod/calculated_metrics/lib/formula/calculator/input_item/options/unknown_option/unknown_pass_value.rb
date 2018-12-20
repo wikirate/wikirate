@@ -7,9 +7,16 @@ module Formula
           # that the calculated value becomes "Unknown".
           module UnknownPassValue
             def value_for company_id, year
-              value = super
-              return value unless input_value_unknown? value
-              throw(:cancel_calculation, :unknown)
+              replace_unknown super
+            end
+
+            def replace_unknown value
+              return value unless input_value_unknown?(value)
+              if value.is_a?(Array)
+                value.map { |v| v.nil? ? unknown_option : v }
+              else
+                unknown_option
+              end
             end
           end
         end

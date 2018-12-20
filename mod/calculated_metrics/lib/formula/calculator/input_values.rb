@@ -21,7 +21,12 @@ module Formula
 
       # @return [Array] error message if invalid; empty array if valid
       def validate
-        @input_list.map(&:validate).flatten
+        ([check_company_dependency] + @input_list.map(&:validate)).compact.flatten
+      end
+
+      def check_company_dependency
+        return unless @input_list.no_company_dependency?
+        "there must be at least one nest that doesn't expliciytl specify companies"
       end
 
       # Every iteration of the passed block receives an array with values for each

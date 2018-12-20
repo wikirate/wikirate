@@ -34,7 +34,7 @@ module Formula
         @input_card = parser.input_cards[input_index]
         @card_id = @input_card.id
         initialize_options
-        @value_store = value_store_class.new
+        # @value_store = value_store_class.new
       end
 
       # @param [Array<company_id>] company_id when given search only for answers for those
@@ -80,6 +80,11 @@ module Formula
 
       def after_search
         result_space.update @result_slice, mandatory?
+      end
+
+      def store_value company_id, year, value
+        value_store.add company_id, year, value
+        update_result_slice company_id, year
       end
 
       def value_store

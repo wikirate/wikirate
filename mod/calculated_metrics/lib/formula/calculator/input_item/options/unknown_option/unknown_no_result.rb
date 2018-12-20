@@ -3,13 +3,10 @@ module Formula
     class InputItem
       module Options
         module UnknownOption
-          # Used if the "unknown" option is set to "result_unknown" which means
-          # that the calculated value becomes "Unknown".
+          # Used if the "unknown" option is set to "no_result"
           module UnknownNoResult
-            def value_for company_id, year
-              value = super
-              return value unless input_value_unknown? value
-              throw(:cancel_calculation, :unknown)
+            def update_result_slice company_id, year
+              @result_slice.remove company_id, year
             end
           end
         end

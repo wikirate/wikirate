@@ -18,7 +18,12 @@ module Formula
 
       def no_mandatories?
         return @no_mandatories unless @no_mandatories.nil?
-        @no_mandatories = all? { |item| !item.mandatory? }
+        @no_mandatories = none?(&:mandatory?)
+      end
+
+      def no_company_dependency?
+        return @no_company_dependency unless @no_company_dependency.nil?
+        @no_company_dependency = none?(&:company_dependent?)
       end
 
       def add_item i

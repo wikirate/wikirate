@@ -8,7 +8,7 @@ module Formula
   # The formula may only consist of numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
   class Ruby < NestFormula
-    SYMBOLS = %w{+ - ( ) [ ] . * , /}.freeze
+    SYMBOLS = %w{+ - ( ) [ ] . * , / || &&}.freeze
     FUNCTIONS = { "Total" => "sum", "Max" => "max", "Min" => "min",
                   "Zeros" => "count(0)", "Flatten" => "flatten",
                   "Unknowns" => "count('Unknown')" }.freeze

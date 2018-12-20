@@ -4,8 +4,8 @@ RSpec.describe Formula::Calculator::Input do
   include_context "with calculator stub"
 
   let :input do
-    @requirement ||= :all
-    fc = parser_with_input @input, @year_options, @company_options
+    fc = parser_with_input @input, @year_options, @company_options, @unknown_option,
+                           @not_researched_options
     described_class.new(fc, &:to_f)
   end
 
@@ -27,14 +27,13 @@ RSpec.describe Formula::Calculator::Input do
 
   example "two metrics with :all values" do
     @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
-    @requirement = :all
     expect { |b| input.each(year: 2015, &b) }
       .to yield_with_args([5.0, 2.0], samsung_id, 2015)
   end
 
   example "two metrics with :any values" do
     @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
-    @requirement = :any
+    @not_researched_option = ["false", "false"]
     expect { |b| input.each(year: 2015, &b) }
       .to yield_successive_args([[5.0, 2.0], samsung_id, 2015],
                                 [[100.0, nil], apple_id, 2015])

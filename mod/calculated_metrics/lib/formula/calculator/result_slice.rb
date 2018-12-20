@@ -28,7 +28,12 @@ module Formula
           self[year.to_i] << company_id
           @company_ids << company_id
         end
+      end
 
+      def remove company_id, year
+        return unless self[year.to_i].present?
+        self[year.to_i].delete company_id
+        self.delete year.to_i if self[year.to_i].empty?
       end
     end
   end

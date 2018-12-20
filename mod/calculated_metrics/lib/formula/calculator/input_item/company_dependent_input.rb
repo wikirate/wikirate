@@ -12,10 +12,12 @@ module Formula
           value_store.companies
         end
 
-        def store_value company_id, year, value
-          value_store.add company_id, year, value
+        def company_dependent?
+          true
+        end
+
+        def update_result_slice company_id, year
           @result_slice.add company_id, year
-          # @input_values.result_space.add company_id, year
         end
       end
     end

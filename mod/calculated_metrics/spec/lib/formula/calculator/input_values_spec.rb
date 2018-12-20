@@ -128,15 +128,19 @@ RSpec.describe Formula::Calculator::InputValues do
     end
 
     example "metric with fixed single company option" do
-      ii, = input_items "{{Jedi+deadliness|company:Death Star}}"
-      expect(ii.value_for(death_star, nil))
-        .to eq(1977 => "100")
+      ii, ii2 = input_items "{{Jedi+deadliness}}  / {{Jedi+deadliness|company:Death Star}}"
+      aggregate_failures do
+        expect(ii.value_for(death_star, nil)).to eq(1977 => "100")
+        expect(ii2.value_for(death_star, nil)).to eq(1977 => "100")
+      end
     end
 
     example "metric with fixed list company option" do
-      ii, = input_items "{{Jedi+deadliness|company:Death Star, SPECTRE}}"
-      expect(ii.value_for(samsung, nil))
-        .to eq(1977 => %w[100 50])
+      ii, ii2 = input_items "{{Jedi+deadliness}} / {{Jedi+deadliness|company:Death Star, SPECTRE}}"
+      aggregate_failures do
+        expect(ii.value_for(samsung, nil)).to eq(1977 => "Unknown")
+        expect(ii2.value_for(samsung, nil)).to eq(1977 => %w[100 50])
+      end
     end
 
     example "yearly variable with company list" do

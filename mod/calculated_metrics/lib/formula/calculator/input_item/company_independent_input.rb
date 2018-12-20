@@ -9,13 +9,12 @@ module Formula
           YearlyValueStore
         end
 
-        def store_value company_id, year, value
-          # We skip the result_space update here.
-          # In principle, we have to add all existing companies here for the
-          # case that the formula has only company independent input items.
-          # That seems too unlikely to justify this horrible slow move.
-          value_store.add company_id, year, value
+        def update_result_slice _company_id, year
           @result_slice.add :all, year
+        end
+
+        def company_dependent?
+          false
         end
 
         def sort_index

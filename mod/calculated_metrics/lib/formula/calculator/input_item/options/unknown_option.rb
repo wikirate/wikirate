@@ -10,10 +10,8 @@ module Formula
         #   (any number):  pass the number to formula
         #   (any other string): pass value as string to formula
         module UnknownOption
-          VALID_UNKNOWN_VALUES = ::Set.new(%i[cancel return pass]).freeze
-
-          extend AddValidationChecks
-          add_validation_checks :check_unknown_option
+          # extend AddValidationChecks
+          # add_validation_checks :check_unknown_option
 
           def initialize_option
             super
@@ -21,13 +19,7 @@ module Formula
           end
 
           def check_unknown_option
-            return if VALID_UNKNOWN_VALUES.include? unknown_option.to_sym
             add_error "invalid unknown option: #{unknown_option}"
-          end
-
-          def store_value company_id, year, value
-            return if unknown_cancel? value
-            super
           end
 
           # input value has the value "Unknown"

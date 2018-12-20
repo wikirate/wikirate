@@ -26,10 +26,6 @@ module Formula
           no_year_restriction? || !@mandatory_processed || @years&.include?(year)
         end
 
-        def merge! search_space
-
-        end
-
         def intersect! search_space
            intersect_companies search_space.company_ids unless search_space.no_company_restriction?
            intersect_years search_space.years unless search_space.no_year_restriction?

@@ -3,14 +3,9 @@ module Formula
     class InputItem
       module Options
         module NotResearchedOption
-          # Used if the "unknown" option is set to "result_unknown" which means
-          # that the calculated value becomes "Unknown".
+          # Used if the "not_researched" option is set to "no_result"
           module NotResearchedNoResult
-            def value_for company_id, year
-              value = super
-              return value unless input_value_unknown? value
-              throw(:cancel_calculation, :unknown)
-            end
+            # nothing to change; that's the default behaviour
           end
         end
       end

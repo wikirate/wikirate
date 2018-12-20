@@ -99,18 +99,18 @@ RSpec.describe Card::Set::MetricType::Formula do
       create_formula_metric method: "Unknowns", year: "2000..0", unknown: unknown
     end
 
-    example "unknown cancel" do
-      formula unknown: "cancel"
+    example "unknown option no_result" do
+      formula unknown: "no_result"
       expect(answer_value).to eq nil
     end
 
-    example "unknown return" do
-      formula unknown: "return"
+    example "unknown option result_unknown" do
+      formula unknown: "result_unknown"
       expect(answer_value).to eq "Unknown"
     end
 
-    example "unknown pass" do
-      formula unknown: "pass"
+    example "pass value" do
+      formula unknown: "1"
       expect(answer_value).to eq "1"
     end
 

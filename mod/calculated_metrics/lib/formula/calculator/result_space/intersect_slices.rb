@@ -28,8 +28,7 @@ module Formula
           @company_ids = ::Set.new
           slice!(*result_slice.years)
           each_key do |year|
-            next if result_slice[year] == :all
-            self[year] &= result_slice[year]
+            self[year] &= result_slice[year] unless result_slice[year] == :all
             @company_ids |= self[year]
           end
           delete_if { |_k, v| v.empty? }

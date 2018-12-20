@@ -26,7 +26,7 @@ RSpec.describe Formula::Calculator do
   end
 
   example "messed up curly brackets" do
-    invalid "2*Total[{{Jedi+deadliness|company: Related[Jedi+deadliness]}}}]+{{Jedi+deadliness}}",
+    invalid "2*Total[{{Jedi+deadliness|company: Related[Jedi+more evil]}}}]+{{Jedi+deadliness}}",
             "syntax error: unexpected '}'"
   end
 
@@ -52,6 +52,11 @@ RSpec.describe Formula::Calculator do
   example "invalid company option list" do
     invalid "{{Jedi+deadliness|company: not_a_card, A}}",
             "unknown card: not_a_card", "not a company:  A"
+  end
+
+  example "no company dependency"do
+    invalid "{{Jedi+deadliness|company: Death Star}}",
+            "there must be at least one nest that doesn't expliciytl specify companies"
   end
 
   example "company option with invalid relation card" do
