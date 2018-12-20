@@ -22,7 +22,8 @@ RSpec.describe Formula::Calculator do
   end
 
   example "invalid method" do
-    invalid "NotAMethod[M3]", "unknown or not supported method: NotAMethod"
+    invalid "NotAMethod[M3]", "unknown or not supported method: NotAMethod",
+            "at least one metric variable nest is required"
   end
 
   example "messed up curly brackets" do
@@ -46,17 +47,18 @@ RSpec.describe Formula::Calculator do
   end
 
   example "invalid company option" do
-    invalid "{{Jedi+deadliness|company: not_a_company}}", "unknown card: not_a_company"
+    invalid "{{Jedi+deadliness|company: not_a_company}}/{{Jedi+deadliness}}",
+            "unknown card: not_a_company"
   end
 
   example "invalid company option list" do
-    invalid "{{Jedi+deadliness|company: not_a_card, A}}",
+    invalid "{{Jedi+deadliness|company: not_a_card, A}}/{{Jedi+deadliness}}",
             "unknown card: not_a_card", "not a company:  A"
   end
 
   example "no company dependency"do
     invalid "{{Jedi+deadliness|company: Death Star}}",
-            "there must be at least one nest that doesn't expliciytl specify companies"
+            "there must be at least one nest that doesn't explicitly specify companies"
   end
 
   example "company option with invalid relation card" do

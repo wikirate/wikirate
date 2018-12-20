@@ -7,13 +7,30 @@ module Formula
         { Card::YearlyVariableID => InputItem::YearlyVariableInputItem,
           Card::MetricID         => InputItem::MetricInputItem }.freeze
 
-      attr_reader :parser
+      attr_reader :parser, :errors
 
       def initialize parser
         @parser = parser
         @input_cards = parser.input_cards
+        @errors = []
         #Array.new input_values.input_cards.size, &method(:add_item)
         @input_cards.size.times(&method(:add_item))
+      end
+
+      # returns empty array if everything is ok
+      def validate
+        @errors = map(&:validate).compact.flatten
+        check_nests
+        @errors
+      end
+
+      def check_nests
+        if empty?
+          @errors << "at least one metric variable nest is required" if empty?
+        elsif no_company_dependency?
+          @errors <<
+            "there must be at least one nest that doesn't explicitly specify companies"
+        end
       end
 
       def no_mandatories?

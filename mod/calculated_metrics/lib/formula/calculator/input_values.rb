@@ -9,7 +9,7 @@ module Formula
     class InputValues
       attr_reader :input_cards,:result_space, :parser, :input_list, :result_cache
 
-      delegate :no_mandatories?, to: :input_list
+      delegate :no_mandatories?, :validate, to: :input_list
 
       # @param [Formula::Parser] parser
       def initialize parser
@@ -17,16 +17,6 @@ module Formula
         @input_cards = parser.input_cards
         @result_cache = ResultCache.new
         @input_list = InputList.new @parser
-      end
-
-      # @return [Array] error message if invalid; empty array if valid
-      def validate
-        ([check_company_dependency] + @input_list.map(&:validate)).compact.flatten
-      end
-
-      def check_company_dependency
-        return unless @input_list.no_company_dependency?
-        "there must be at least one nest that doesn't expliciytl specify companies"
       end
 
       # Every iteration of the passed block receives an array with values for each
