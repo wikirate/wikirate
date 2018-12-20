@@ -5,27 +5,29 @@ module Formula
     class InputList < Array
       INPUT_ITEM_CLASS_MAP =
         { Card::YearlyVariableID => InputItem::YearlyVariableInputItem,
-          Card::MetricID => InputItem::MetricInputItem }.freeze
+          Card::MetricID         => InputItem::MetricInputItem }.freeze
 
-      attr_reader :input_values
-      delegate :all_input_required?, :value_store, :companies_with_values,
-               to: :input_values
+      attr_reader :parser
 
-      def initialize input_values
-        @input_values = input_values
+      def initialize parser
+        @parser = parser
+        @input_cards = parser.input_cards
         #Array.new input_values.input_cards.size, &method(:add_item)
-        @input_values.input_cards.size.times do |i|
-          add_item i
-        end
+        @input_cards.size.times(&method(:add_item))
+      end
+
+      def no_mandatories?
+        return @no_mandatories unless @no_mandatories.nil?
+        @no_mandatories = all? { |item| !item.mandatory? }
       end
 
       def add_item i
-        item = item_class(i).new(@input_values, i, @input_values.all_input_required?)
+        item = item_class(i).new(self, i)
         self << item
       end
 
       def item_class i
-        input_card = @input_values.input_cards[i]
+        input_card = @input_cards[i]
         INPUT_ITEM_CLASS_MAP[input_card.type_id] || InputItem::InvalidInput
       end
     end

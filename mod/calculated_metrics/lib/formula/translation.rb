@@ -6,15 +6,17 @@
         raise Card::Error,
               "translate formula with more than one metric involved"
       end
+      # For multi-category metrics we map every
       Array.wrap(input.first).inject(0.0) do |res, inp|
-        res + @executed_lambda[inp.to_s.downcase].to_f
+        res + (@executed_lambda[inp.to_s.downcase] || @executed_lambda["else"]).to_f
       end
     end
 
     def to_lambda
-      @formula_card.content.downcase
+      @parser.formula.downcase
     end
 
+    # Is this the right class for this formula?
     def self.supported_formula? formula
       formula =~ /^\{[^{}]*\}$/
     end

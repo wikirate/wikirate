@@ -1,36 +1,24 @@
 module Formula
   class Wolfram < NestFormula
-    # Provide methods to handle "Unknown" input values for Wolfram formulas
+    # Provide methods to handle "Unknown" return values for Wolfram formulas
     module Unknowns
-      # what to do if an input value is unknown
-      # currently hard-coded.
-      # We probably want this sharkable
-      UNKNOWN_STRATEGY = :reject # reject:  calculated value is nil
-                                 # unknown: calculated value is unknown
-                                 # pass:    pass "Unknown" as String to the formula;
-                                 #          the formula has to deal with it
-
-      def handle_unknowns company, year
-        @unknown_input ||= Hash.new_nested Array
-        catch(:unknown) do
+      # Deals with the "unknown: result_unknown" option for Wolfram formulas.
+      # If the formula is supposed to return "Unknown" because of an
+      # "Unknown" input value, then we have skip the calculation for that answer and
+      # add the "Unknown" after we got the result from the Wolfram server
+      def handle_unknowns input_values, company, year
+        @unknown_result ||= Hash.new_nested Array
+        if input_values == :unknown
+          @unknown_result[year.to_s] << company
+        else
           yield
-          return
         end
-        @unknown_input[year.to_s] << company
       end
 
-      def unknown_value
-        @unknown_value ||= unknown_strategy == :unknown ? "Unknown" : nil
-      end
+      def insert_unknown_results values_by_year
+        return values_by_year unless @unknown_result.present?
 
-      def unknown_strategy
-        UNKNOWN_STRATEGY
-      end
-
-      def insert_unknowns values_by_year
-        return values_by_year unless @unknown_input.present?
-
-        @unknown_input.each_pair do |year, companies|
+        @unknown_result.each_pair do |year, companies|
           companies.each do |company|
             values_by_year[year] ||= []
             add_company_index company, year, values_by_year[year].size

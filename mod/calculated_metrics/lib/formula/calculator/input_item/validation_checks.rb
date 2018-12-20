@@ -7,7 +7,7 @@ module Formula
       module ValidationChecks
         module ClassMethods
           def validation_checks
-            @validation_checks
+            @validation_checks ||= []
           end
 
           def add_validation_checks *more_checks

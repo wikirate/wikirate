@@ -16,20 +16,23 @@ module Formula
 
     attr_reader :errors, :formula_card
 
-    def initialize formula_card
-      @formula_card = formula_card
+    def initialize parser, &value_normalizer
+      @value_normalizer = value_normalizer
+      @parser = parser
       @input = initialize_input
       @errors = []
     end
 
     def initialize_input
-      if @formula_card.input_cards.any?(&:nil?)
+      if @parser.input_cards.any?(&:nil?)
         InvalidInput.new
       else
-        Input.new @formula_card, &self.class::INPUT_CAST
+        Input.new @parser, &self.class::INPUT_CAST
       end
     end
 
+    # Calculates answers
+    # If a company or a year is given it calculates only answers only for those
     # @param [Hash] opts
     # @option opts [String] :company
     # @option opts [String] :year
@@ -37,9 +40,14 @@ module Formula
     def result opts={}
       result = Hash.new_nested Hash
       return result unless compile_formula
+
       @input.each(opts) do |input, company, year|
-        next unless (value = get_value(input, company, year))
-        result[year][company] = normalize_value value
+        if input == :unknown
+          result[year][company] = "Unknown"
+        else
+          next unless (value = get_value(input, company, year))
+          result[year][company] = normalize_value value
+        end
       end
       result
     end
@@ -53,8 +61,8 @@ module Formula
     end
 
     def input_data company, year
-      @formula_card.input_cards.zip(
-        @input.input_for(company, year), formula_card.year_options
+      @parser.input_cards.zip(
+        @input.input_for(company, year), @parser.year_options
       )
     end
 
@@ -73,12 +81,12 @@ module Formula
     def advanced_formula_for company, year
       input_enum = @input.input_for(company, year).each
       replace_nests do |index|
-        yield(input_enum.next, @formula_card.input_cards[index], index)
+        yield(input_enum.next, @parser.input_cards[index], index)
       end
     end
 
     def formula
-      @formula ||= @formula_card.clean_formula
+      @formula ||= @parser.formula
     end
 
     def validate_formula
@@ -130,7 +138,7 @@ module Formula
     end
 
     def normalize_value value
-      @formula_card.normalize_value value
+      @value_normalizer ? @value_normalizer.call(value) : value
     end
   end
 end

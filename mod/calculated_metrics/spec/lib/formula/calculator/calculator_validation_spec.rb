@@ -1,7 +1,7 @@
-require_relative "../../../support/formula_stub"
+require_relative "../../../support/calculator_stub"
 
 RSpec.describe Formula::Calculator do
-  include_context "with formula stub"
+  include_context "with calculator stub"
 
   def calculator formula
     f_card = Card["Jedi+friendliness+formula"]

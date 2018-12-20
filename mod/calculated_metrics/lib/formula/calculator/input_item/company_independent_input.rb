@@ -9,16 +9,17 @@ module Formula
           YearlyValueStore
         end
 
-        def after_full_search
-          answer_candidates.update nil, years_with_values, mandatory?
-        end
-
         def store_value company_id, year, value
-          # We skip the companies_with_values update here.
+          # We skip the result_space update here.
           # In principle, we have to add all existing companies here for the
           # case that the formula has only company independent input items.
           # That seems too unlikely to justify this horrible slow move.
           value_store.add company_id, year, value
+          @result_slice.add :all, year
+        end
+
+        def sort_index
+          super + parser.input_count
         end
       end
     end

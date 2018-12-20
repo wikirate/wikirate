@@ -229,18 +229,35 @@ RSpec.describe Card::Set::MetricType::Score do
   end
 
   describe "score for multi-categorical formula" do
-    it "sums values" do
+    it "sums values", as_bot: true do
       @metric_title = "small multi"
-      @metric_name = "Joe User+#{@metric_title}"
-      Card::Auth.as_bot do
-        @metric = create_metric(
-          name: "#{@metric_name}+Big Brother",
-          type: :score,
-          formula: '{"1":2, "2":4, "3":6}'
-        )
-      end
+      @metric_name = "Joe User+small multi"
+      @metric = create_metric(
+        name: "#{@metric_name}+Big Brother",
+        type: :score,
+        formula: '{"1":2, "2":4, "3":6}'
+      )
 
       expect(score_value("Sony Corporation", "2010")).to eq "6.0"
+    end
+  end
+
+  example "score with else case", as_bot: true do
+    @metric_title = "small single"
+    @metric_name = "Joe User+small single"
+    @metric = create_metric(name: "#{@metric_name}+Big Brother", type: :score,
+                            formula: '{"2":4, "3":6, "else": 5}')
+    expect(score_value("Sony Corporation", "2010")).to eq "5.0"
+  end
+
+  example "score unknown value", as_bot: true do
+    @metric_title = "RM"
+    @metric_name = "Joe User+RM"
+    @metric = create_metric(name: "#{@metric_name}+Big Brother", type: :score,
+                            formula: '{"Unknown":0, "else": 10}')
+    aggregate_failures do
+      expect(score_value("Apple Inc", "2001")).to eq "0.0"
+      expect(score_value("Apple Inc", "2010")).to eq "10.0"
     end
   end
 end

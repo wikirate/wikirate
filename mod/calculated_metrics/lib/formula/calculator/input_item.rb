@@ -23,57 +23,63 @@ module Formula
       include ValidationChecks
       include Options
 
-      attr_reader :card_id, :input_values
-      delegate :answer_candidates, to: :input_values
+      attr_reader :card_id, :input_list, :result_space
+      delegate :answer_candidates, to: :result_space
+      delegate :parser, to: :input_list
 
-      def initialize input_values, input_index, mandatory
-        @input_values = input_values
+      def initialize input_list, input_index
+        @input_list = input_list
         @input_index = input_index
-        @input_card = input_values.input_cards[input_index]
+
+        @input_card = parser.input_cards[input_index]
         @card_id = @input_card.id
-        @mandatory = mandatory
         initialize_options
+        @value_store = value_store_class.new
       end
 
       # @param [Array<company_id>] company_id when given search only for answers for those
       #    companies
       # @param [Array<year>] year when given search only for answers for those years
-      def search_value_for company_id:, year:
-        with_restricted_search_space company_id, year, &method(:search_all_values)
+      def search_value_for result_space, company_id:, year:
+        return search result_space if company_id.nil? && year.nil?
+
+        @result_space = result_space
+        with_restricted_search_space company_id, year do
+          search result_space
+        end
       end
 
-      def search_all_values
-        before_full_search
+      def search result_space
+        @result_space = result_space
+        @result_slice = ResultSlice.new
         full_search
-        after_full_search
+        after_search
       end
 
       def with_restricted_search_space company_id, year
         @search_space = SearchSpace.new company_id, year
-        @search_space.merge! answer_candidates
-        @restricted_search_space = true
+        @search_space.intersect! result_space.answer_candidates
         yield
       ensure
         @search_space = nil
-        @restricted_search_space = false
       end
 
       def search_space
-        @search_space ||= answer_candidates
+        @search_space ||= result_space.answer_candidates
       end
 
       def years_with_values
         value_store.years
       end
 
-      def before_full_search
-        @value_store = value_store_class.new
-      end
-
       # Find answer for the given input card and cache the result.
       # If year is given look only for that year
       def full_search
         each_answer(&method(:store_value))
+      end
+
+      def after_search
+        result_space.update @result_slice, mandatory?
       end
 
       def value_store
@@ -92,11 +98,20 @@ module Formula
         value_store.get company
       end
 
+      def sort_index
+        @input_index
+      end
+
+      def <=> other
+        sort_index <=> other.sort_index
+      end
+
       # mandatory means
       # if this input item doesn't have a value (for a company and a year)
       # then the calculated value doesn't get a value (for that company and year)
+      # This can be changed with the not_researched nest option
       def mandatory?
-        @mandatory
+        true
       end
     end
   end

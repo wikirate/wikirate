@@ -2,7 +2,7 @@ require_dependency "wolfram/unknowns"
 
 module Formula
   class Wolfram < NestFormula
-    # include Unknowns
+    include Unknowns
     include Validation
 
     INTERPRETER =
@@ -49,14 +49,14 @@ module Formula
     # Sends a Wolfram language expression to the Wolfram cloud. Fetches and
     # validates the result.
     # @param [String] expr an expression in Wolfram language that returns json
-    #   when evalualed in the Wolfram cloud
+    #   when evaluated in the Wolfram cloud
     # @return the parsed response
     def exec_lambda expr
       uri = URI.parse(INTERPRETER)
       # TODO: error handling
       response = Net::HTTP.post_form uri, "expr" => expr
       parsed = parse_wolfram_response response
-      insert_unknowns parsed if parsed
+      insert_unknown_results parsed if parsed
     end
 
     def parse_wolfram_response response
@@ -98,7 +98,7 @@ module Formula
       input_by_year = Hash.new_nested Array
 
       @input.each do |input_values, company, year|
-        handle_unknowns company, year do
+        handle_unknowns input_values, company, year do
           input_by_year[year] << "{#{wl_single_answer_input input_values}}"
           add_company_index company, year, input_by_year[year].size - 1
         end

@@ -12,13 +12,10 @@ module Formula
           value_store.companies
         end
 
-        def after_full_search
-          answer_candidates.update companies_with_values, years_with_values, mandatory?
-        end
-
         def store_value company_id, year, value
           value_store.add company_id, year, value
-          @input_values.companies_with_values.add company_id, year
+          @result_slice.add company_id, year
+          # @input_values.result_space.add company_id, year
         end
       end
     end

@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 
+require_relative "../../../spec/support/formula.rb"
+
 RSpec.describe Card::Set::MetricType::Formula do
+  include_context "formula"
+  #
   before do
     @metric_name = "Joe User+RM"
     @metric_name1 = "Joe User+researched number 1"
@@ -10,12 +14,6 @@ RSpec.describe Card::Set::MetricType::Formula do
 
   def build_formula formula
     format formula, @metric_name1, @metric_name2, @metric_name3
-  end
-
-  def take_answer_value formula, year
-    formula_metric = create_metric name: "rating1", type: :formula, formula: formula
-    Answer.where(metric_name: formula_metric.name, company_id: company_id, year: year)
-          .take&.value
   end
 
   describe "formula card" do
@@ -31,57 +29,62 @@ RSpec.describe Card::Set::MetricType::Formula do
 
   describe "formula with year reference" do
     subject(:answer_value) do
-      take_answer_value formula, 2015
+      take_answer_value "Apple Inc", 2015
     end
 
-    let(:company_id) { Card.fetch_id "Apple Inc" }
-
     context "with single year" do
-      let(:formula) do
-        "{{#{@metric_name}|year:#{@year_expr} }}+{{#{@metric_name1}}}"
+      def formula year:
+        create_formula_metric year: year, add: { metric: @metric_name1 }
       end
+      # let(:formula) do
+      #   "{{#{@metric_name}|year:#{@year_expr} }}+{{#{@metric_name1}}}"
+      # end
 
       it "fixed year" do
-        @year_expr = "2014"
+        formula year: "2014"
         expect(answer_value).to eq "114.0"
       end
       it "relative year" do
-        @year_expr = "-2"
+        formula year: "-2"
         expect(answer_value).to eq "113.0"
       end
       it "current year" do
-        @year_expr = "0"
+        formula year: "0"
         expect(answer_value).to eq "115.0"
       end
     end
 
     context "with total of" do
-      let(:formula) do
-        "Total[{{ #{@metric_name}|year:#{@year_expr} }}]+{{#{@metric_name1}}}"
+      def formula year:
+        create_formula_metric method: "Total", year: year, add: { metric: @metric_name1 }
       end
 
+      # let(:formula) do
+      #   "Total[{{ #{@metric_name}|year:#{@year_expr} }}]+{{#{@metric_name1}}}"
+      # end
+
       it "relative range" do
-        @year_expr = "-3..-1"
+        formula year: "-3..-1"
         expect(answer_value).to eq "139.0"
       end
       it "relative range with 0" do
-        @year_expr = "-3..0"
+        formula year: "-3..0"
         expect(answer_value).to eq "154.0"
       end
       it "relative range with ?" do
-        @year_expr = "-3..?"
+        formula year: "-3..?"
         expect(answer_value).to eq "154.0"
       end
       it "fixed range" do
-        @year_expr = "2012..2013"
+        formula year: "2012..2013"
         expect(answer_value).to eq "125.0"
       end
       it "fixed start" do
-        @year_expr = "2012..0"
+        formula year: "2012..0"
         expect(answer_value).to eq "154.0"
       end
       it "list of years" do
-        @year_expr = "2012, 2014"
+        formula year: "2012, 2014"
         expect(answer_value).to eq "126.0"
       end
     end
@@ -89,116 +92,52 @@ RSpec.describe Card::Set::MetricType::Formula do
 
   describe "unknown option" do
     subject(:answer_value) do
-      take_answer_value formula, 2001
+      take_answer_value "Apple Inc", 2001
     end
 
-    let(:formula) do
-      "Total[{{Joe User+RM|year: 2000..0;unknown: #{@unknown}}}]"
+    def formula unknown:
+      create_formula_metric method: "Unknowns", year: "2000..0", unknown: unknown
     end
-    let(:company_id) { Card.fetch_id "Apple Inc" }
 
     example "unknown cancel" do
-      @unknown = "cancel"
+      formula unknown: "cancel"
       expect(answer_value).to eq nil
     end
 
     example "unknown return" do
-      @unknown = "return"
+      formula unknown: "return"
       expect(answer_value).to eq "Unknown"
     end
 
-  end
-
-  describe "network aware formula" do
-    subject(:answer_value) do
-      take_answer_value formula, 1977
+    example "unknown pass" do
+      formula unknown: "pass"
+      expect(answer_value).to eq "1"
     end
 
-    let(:formula) do
-      "Total[{{ #{@metric_name}|company: Related[#{@related}] }}]"
-    end
-
-    let(:company_id) { Card.fetch_id "Death Star" }
-
-    it "works" do
-      @metric_name = "Jedi+deadliness"
-      @related = "Jedi+more evil=yes"
-      expect(answer_value).to eq "90.0"
+    example "without unknown option" do
+      formula unknown: nil
+      expect(answer_value).to eq "1"
     end
   end
 
-  describe "basic properties" do
-    before do
-      @name = "Jedi+friendliness"
-    end
+  example "count related" do
+    create_formula_metric formula: "CountRelated[Jedi+more evil]"
+    expect(take_answer_value("Death Star", 1977)).to eq "2.0"
+  end
 
-    let(:metric) { Card[@name] }
+  example "count related with condition" do
+    create_formula_metric formula: "CountRelated[Commons+Supplied by = Tier 1 Supplier]"
+    expect(take_answer_value("SPECTRE", 2000)).to eq "1.0"
+  end
 
-    describe "#metric_type" do
-      subject { metric.metric_type }
 
-      it { is_expected.to eq "Formula" }
-    end
 
-    describe "#metric_type_codename" do
-      subject { metric.metric_type_codename }
 
-      it { is_expected.to eq :formula }
-    end
 
-    describe "#metric_designer" do
-      subject { metric.metric_designer }
-
-      it { is_expected.to eq "Jedi" }
-    end
-
-    describe "#metric_designer_card" do
-      subject { metric.metric_designer_card }
-
-      it { is_expected.to eq Card["Jedi"] }
-    end
-
-    describe "#metric_title" do
-      subject { metric.metric_title }
-
-      it { is_expected.to eq "friendliness" }
-    end
-
-    describe "#metric_title_card" do
-      subject { metric.metric_title_card }
-
-      it { is_expected.to eq Card["friendliness"] }
-    end
-
-    describe "#question_card" do
-      subject { metric.question_card.name }
-
-      it { is_expected.to eq "Jedi+friendliness+Question" }
-    end
-
-    describe "#value_type" do
-      subject { metric.value_type }
-
-      it { is_expected.to eq "Number" }
-    end
-
-    describe "#categorical?" do
-      subject { metric.categorical? }
-
-      it { is_expected.to be_falsey }
-    end
-
-    describe "#researched?" do
-      subject { metric.researched? }
-
-      it { is_expected.to be_falsey }
-    end
-
-    describe "#score?" do
-      subject { metric.score? }
-
-      it { is_expected.to be_falsey }
-    end
+  example "network aware formula" do
+    create_formula_metric method: "Total", related: "Jedi+more evil=yes",
+                          metric: "Jedi+deadliness"
+    expect(take_answer_value("Death Star", 1977)).to eq "90.0"
   end
 
   def calc_value company="Samsung", year="2014"

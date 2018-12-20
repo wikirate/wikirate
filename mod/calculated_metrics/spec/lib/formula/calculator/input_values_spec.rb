@@ -2,7 +2,7 @@ RSpec.describe Formula::Calculator::InputValues do
   def input_values formula
     f_card = Card["Jedi+friendliness+formula"]
     f_card.content = formula
-    described_class.new(f_card)
+    described_class.new(f_card.parser)
   end
 
   let(:death_star) { Card.fetch_id "Death Star" }

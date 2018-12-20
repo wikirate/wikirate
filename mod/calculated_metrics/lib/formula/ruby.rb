@@ -22,7 +22,7 @@ module Formula
     class << self
       # Is this the right class for this formula?
       def supported_formula? formula
-        %i[remove_nests remove_functions check_symbols].inject(formula) do |arg, method|
+        %i[remove_functions remove_nests check_symbols].inject(formula) do |arg, method|
           send method, arg
         end
       end
@@ -69,7 +69,7 @@ module Formula
 
     def to_lambda
       rb_formula =
-        replace_nests(FunctionTranslator.translate(@formula)) do |index|
+        replace_nests(translate_functions) do |index|
           "#{LAMBDA_ARGS_NAME}[#{index}]"
         end
       find_allowed_non_numeric_input rb_formula
@@ -94,6 +94,17 @@ module Formula
     end
 
     private
+
+    def translate_functions
+      function_translator.translate formula
+    end
+
+    def function_translator
+      @function_translator ||=
+        Formula::Calculator::FunctionTranslator.new(FUNCTIONS) do |replacement, arg|
+          "[#{arg}].flatten.#{replacement}"
+        end
+    end
 
     def ruby_safe? expr
       without_func = self.class.remove_functions expr, true

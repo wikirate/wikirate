@@ -1,11 +1,11 @@
-require_relative "../../../support/formula_stub"
+require_relative "../../../support/calculator_stub"
 
 RSpec.describe Formula::Calculator::Input do
-  include_context "with formula stub"
+  include_context "with calculator stub"
 
   let :input do
     @requirement ||= :all
-    fc = formula_card_with_input @input, @requirement, @year_options, @company_options
+    fc = parser_with_input @input, @year_options, @company_options
     described_class.new(fc, &:to_f)
   end
 

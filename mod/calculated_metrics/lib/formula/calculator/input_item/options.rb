@@ -6,6 +6,7 @@ module Formula
           extend CompanyOption if company_option?
           extend YearOption if year_option?
           extend UnknownOption if unknown_option?
+          extend NotResearchedOption if not_researched_option?
           initialize_option
         end
 
@@ -23,37 +24,25 @@ module Formula
           unknown_option.present?
         end
 
-        def year_option
-          @year_option ||=
-            normalize_year_option @input_values.year_options[@input_index]
+        def not_researched_option?
+          not_researched_option.present?
         end
 
-        def company_option
-          @company_option ||=
-            normalize_company_option @input_values.company_options[@input_index]
+        Formula::Parser::OPTIONS.each do |opt|
+          define_method "#{opt}_option" do
+            instance_variable_get("@#{opt}_option") ||
+              instance_variable_set("@#{opt}_option", normalized_option_value(opt))
+          end
         end
 
-        def unknown_option
-          @unknown_option ||=
-            normalize_unknown_option @input_values.unknown_options[@input_index]
+        def normalized_option_value opt
+          value = parser.send("#{opt}_option", @input_index)
+          return unless value.present?
+          try("normalize_#{opt}_option", value) || value
         end
 
         def normalize_year_option option
-          return unless option.present?
-
-          option.sub("year:", "").tr("?", "0").strip
-        end
-
-        def normalize_company_option option
-          return unless option.present?
-
-          option.sub("company:", "").strip
-        end
-
-        def normalize_unknown_option option
-          return unless option.present?
-
-          option.sub("unknown:", "").strip.downcase.to_sym
+          option.tr("?", "0")
         end
       end
     end
