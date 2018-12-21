@@ -75,9 +75,7 @@ module Formula
       private
 
       def arg_end arg_start, formula, offset
-        if formula[arg_start] != "["
-          syntax_error :no_opening_bracket, offset + arg_start
-        end
+        syntax_error :no_opening_bracket, offset + arg_start if formula[arg_start] != "["
         closing_bracket_index(arg_start + 1, formula) ||
           syntax_error(:no_closing_bracket, offset + arg_start)
       end

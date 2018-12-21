@@ -10,7 +10,7 @@ module Formula
         end
 
         def intersect! search_space
-           intersect_companies search_space.company_ids unless search_space.no_company_restriction?
+          intersect_companies search_space.company_ids unless search_space.no_company_restriction?
            intersect_years search_space.years unless search_space.no_year_restriction?
         end
 

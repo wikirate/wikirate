@@ -8,7 +8,7 @@ module Formula
           @answer_candidates ||= SearchSpace.new
         end
 
-        def update slice, mandatory
+        def update slice, _mandatory
           @fresh = false
           join slice
         end

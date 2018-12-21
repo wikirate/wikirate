@@ -31,7 +31,7 @@ module Formula
 
             def values_by_year_for_each_company
               y_and_v = Answer.where(metric_id: card_id, company_id: object_company_id)
-                          .pluck(:year, :value)
+                              .pluck(:year, :value)
               yield nil, y_and_v.to_h
             end
 

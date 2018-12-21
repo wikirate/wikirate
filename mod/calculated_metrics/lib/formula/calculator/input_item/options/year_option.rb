@@ -64,7 +64,7 @@ module Formula
 
           def all_years
             @all_years ||= Card.search(type_id: Card::YearID, return: :name)
-                             .map(&:to_i).tap { |a| a.delete 0 }
+                               .map(&:to_i).tap { |a| a.delete 0 }
           end
 
           def year? y

@@ -1,4 +1,4 @@
- module Formula
+module Formula
   # Formula that translates one value to another based on a JSON map
   class Translation < Calculator
     def initialize parser, &value_normalizer

@@ -5,7 +5,7 @@ module Formula
     class InputList < Array
       INPUT_ITEM_CLASS_MAP =
         { Card::YearlyVariableID => InputItem::YearlyVariableInputItem,
-          Card::MetricID         => InputItem::MetricInputItem }.freeze
+          Card::MetricID => InputItem::MetricInputItem }.freeze
 
       attr_reader :parser, :errors
 
@@ -13,7 +13,7 @@ module Formula
         @parser = parser
         @input_cards = parser.input_cards
         @errors = []
-        #Array.new input_values.input_cards.size, &method(:add_item)
+        # Array.new input_values.input_cards.size, &method(:add_item)
         @input_cards.size.times(&method(:add_item))
       end
 
@@ -35,11 +35,13 @@ module Formula
 
       def no_mandatories?
         return @no_mandatories unless @no_mandatories.nil?
+
         @no_mandatories = none?(&:mandatory?)
       end
 
       def no_company_dependency?
         return @no_company_dependency unless @no_company_dependency.nil?
+
         @no_company_dependency = none?(&:company_dependent?)
       end
 

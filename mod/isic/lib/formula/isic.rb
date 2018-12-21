@@ -6,7 +6,7 @@ module Formula
     # or
     # # @param input [Array of Arrays] ...of 4 digit ISIC (class) codes
     # # @return [Array] ... of 3 digit group codes
-    def value_for_validated_input input, company, year
+    def value_for_validated_input input, _company, _year
       input.first.map(&:chop).uniq
     end
   end

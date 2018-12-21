@@ -7,10 +7,11 @@ module Formula
       module IntersectSlices
         def update slice, mandatory
           return unless mandatory
+
           if fresh?
             @fresh = false
             replace slice
-            @answer_candidates = SearchSpace.new slice.company_ids,years
+            @answer_candidates = SearchSpace.new slice.company_ids, years
           else
             intersect slice
           end

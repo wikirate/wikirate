@@ -22,7 +22,7 @@ module Formula
 
           # input value has the value "Unknown"
           def input_value_not_researched? value
-            Array.wrap(value).any? { |val| val.nil? }
+            Array.wrap(value).any?(&:nil?)
           end
 
           private

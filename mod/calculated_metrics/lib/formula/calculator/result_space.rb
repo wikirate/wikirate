@@ -40,8 +40,9 @@ module Formula
 
       def remove company_id, year
         return unless self[year.to_i].present?
+
         self[year.to_i].delete company_id
-        self.delete year.to_i if self[year.to_i].empty?
+        delete year.to_i if self[year.to_i].empty?
       end
     end
   end

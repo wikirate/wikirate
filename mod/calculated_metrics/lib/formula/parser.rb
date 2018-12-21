@@ -9,7 +9,7 @@ module Formula
 
     def initialize formula, input_names=nil, card=nil
       @formula = translate_shortcuts formula
-      @card = Card.new # only needed for the content object
+      @card = card || Card.new # only needed for the content object
       @input_names = input_names || standard_input_names
     end
 

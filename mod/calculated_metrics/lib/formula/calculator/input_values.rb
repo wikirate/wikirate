@@ -7,7 +7,7 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class InputValues
-      attr_reader :input_cards,:result_space, :parser, :input_list, :result_cache
+      attr_reader :input_cards, :result_space, :parser, :input_list, :result_cache
 
       delegate :no_mandatories?, :validate, to: :input_list
 
