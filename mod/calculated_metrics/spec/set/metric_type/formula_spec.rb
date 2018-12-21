@@ -116,7 +116,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     example "without unknown option" do
       formula unknown: nil
-      expect(answer_value).to eq "1"
+      expect(answer_value).to eq nil
     end
   end
 

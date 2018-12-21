@@ -9,7 +9,7 @@ module Formula
 
     # The following three method pass calculation, validation, and normalization
     # responsibilities to the formula card
-    def get_value input, company, year
+    def get_value input, company=nil, year=nil
       return unless validate_input input
       value_for_validated_input input, company, year
     end

@@ -35,12 +35,22 @@ RSpec.describe Formula::Calculator::InputValues do
       rc = result_cache "{{Joe User+researched number 1}} +"\
                                " {{Joe User+researched number 2| not_researched: 5}}"
       expect_result_space rc, 2014 => [samsung, sony], 2015 => [samsung, apple],
-                              1977 => [death_star]
+                          1977 => [death_star]
     end
 
     example "without mandatory input items" do
       rc = result_cache "{{Joe User+researched number 1| not_researched: 0}} +"\
                                "{{Jedi+deadliness| not_researched: 5}}"
+      expect_result_space rc,
+                          2014 => [samsung, sony], 2015 => [samsung, apple],
+                          1977 => [death_star, spectre, los_pollos, slate_rock],
+                          2003 => [slate_rock], 2004 => [slate_rock], 2005 => [slate_rock]
+    end
+
+    example "without mandatory input items and unknown option" do
+      rc = result_cache "{{Joe User+researched number 1|"\
+                               "not_researched: 0}} +"\
+                               "{{Jedi+deadliness| not_researched: 5; unknown: 0}}"
       expect_result_space rc,
                           2014 => [samsung, sony], 2015 => [samsung, apple],
                           1977 => [death_star, spectre, los_pollos, slate_rock, samsung],

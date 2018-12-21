@@ -9,23 +9,6 @@ module Formula
           intersect company_ids, years
         end
 
-        def run_out_of_options?
-          return false if fresh?
-
-          @company_ids.empty? || @years.empty?
-        end
-
-        def applicable_companies new_ids
-          new_ids = new_ids.to_set
-          return new_ids if @company_ids.nil?
-
-          new_ids & @company_ids
-        end
-
-        def applicable_year? year
-          no_year_restriction? || !@mandatory_processed || @years&.include?(year)
-        end
-
         def intersect! search_space
            intersect_companies search_space.company_ids unless search_space.no_company_restriction?
            intersect_years search_space.years unless search_space.no_year_restriction?

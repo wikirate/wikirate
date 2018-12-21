@@ -36,13 +36,13 @@ RSpec.describe Formula::Wolfram do
     #                             2013 => { apple_id => 11.0 }
     #   expect(result[2011]).to eq({})
     # end
-    specify "Zeros" do
-      Formula::Wolfram::Unknowns::UNKNOWN_STRATEGY = :pass
-      result = calculate "Zeros[#{nest}]"
-      expect(result).to include 2002 => { apple_id => 1 },
-                                2012 => { apple_id => 0 }
-      Formula::Wolfram::Unknowns::UNKNOWN_STRATEGY = :reject
-    end
+    # specify "Zeros" do
+    #   Formula::Wolfram::Unknowns::UNKNOWN_STRATEGY = :pass
+    #   result = calculate "Zeros[#{nest}]"
+    #   expect(result).to include 2002 => { apple_id => 1 },
+    #                             2012 => { apple_id => 0 }
+    #   Formula::Wolfram::Unknowns::UNKNOWN_STRATEGY = :reject
+    # end
     # specify "Unknowns" do
     #   result = calculate "Unknowns[#{nest}]"
     #   expect(result).to include 2002 => { apple_id => 2 },
