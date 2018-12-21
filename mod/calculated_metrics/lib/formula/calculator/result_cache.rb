@@ -20,6 +20,10 @@ module Formula
         @search_log.update @search_space
       end
 
+      def has_value? company_id, year
+        self[year.to_i].include? company_id
+      end
+
       def years
         keys
       end

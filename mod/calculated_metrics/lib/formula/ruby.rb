@@ -53,7 +53,7 @@ module Formula
     end
 
     def validate_input input, index
-      return true if  @non_numeric_ok.include?(index)
+      return true if @non_numeric_ok.include?(index)
 
       input = Array.wrap(input)
       if input.all? { |inp| inp.is_a?(Float) }

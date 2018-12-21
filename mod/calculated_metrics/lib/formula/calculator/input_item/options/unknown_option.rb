@@ -15,7 +15,11 @@ module Formula
 
           def initialize_option
             super
-            interpret_unknown_option
+            if unknown_option?
+              interpret_unknown_option
+            else
+              extend UnknownNoResult
+            end
           end
 
           def check_unknown_option

@@ -1,13 +1,13 @@
+require "./spec/support/company_ids"
+
 RSpec.describe Formula::Calculator::InputValues do
+  include_context "company ids"
+
   def input_values formula
     f_card = Card["Jedi+friendliness+formula"]
     f_card.content = formula
     described_class.new(f_card.parser)
   end
-
-  let(:death_star) { Card.fetch_id "Death Star" }
-  let(:samsung) { Card.fetch_id "Samsung" }
-  let(:spectre) { Card.fetch_id "SPECTRE" }
 
   def input_items formula
     iv = input_values formula

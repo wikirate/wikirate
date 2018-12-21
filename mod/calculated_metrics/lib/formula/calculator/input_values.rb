@@ -64,7 +64,6 @@ module Formula
       end
 
       # @return input values to calculate values for the given company and year
-      #   If year is present [
       #   If year is given it returns an array with one value for every input card,
       #   otherwise it returns an array with a hash for every input card. The hashes
       #   contain a value for every year.
@@ -72,6 +71,7 @@ module Formula
         company = Card.fetch_id(company) unless company.is_a? Integer
 
         search_values_for company_id: company, year: year
+        return unless @result_cache.has_value? company, year
 
         catch(:cancel_calculation) do
           @input_list.map do |input_item|

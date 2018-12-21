@@ -1,6 +1,11 @@
 shared_context "with calculator stub" do
-  def calculator formula
-    Formula::Calculator.new(formula_parser(formula))
+  def calculator formula, input_names=nil
+    Formula::Calculator.new(formula_parser(formula, input_names))
+  end
+
+  def calculate formula, input_names=nil
+    input_names &&= Array.wrap input_names
+    described_class.new(parser(formula, input_names)).result
   end
 
   def parser_with_input names, year_options=nil, company_options=nil,
@@ -22,26 +27,10 @@ shared_context "with calculator stub" do
     parser
   end
 
-  def formula_parser formula
-    Formula::Parser.new formula
+  def formula_parser formula, input_names=nil
+    Formula::Parser.new formula, input_names
   end
 
+  alias_method :parser, :formula_parser
   alias_method :formula_card, :formula_parser
-
-  # def chunk_list formula
-  #   content_obj = Card::Content.new(formula, Card.new(name: "test"), chunk_list: :formula)
-  #   content_obj.find_chunks(Card::Content::Chunk::FormulaInput)
-  # end
-  #
-  # def stub_methods card, formula
-  #   chunks = chunk_list formula
-  #   allow(card).to receive(:clean_formula).and_return formula
-  #   allow(card).to receive(:input_cards) { chunks.map(&:referee_card) }
-  #   allow(card).to receive(:input_chunks).and_return chunks
-  #   allow(card).to receive(:normalize_value) { |v| v }
-  #   allow(card).to receive(:input_requirement).and_return :all
-  #   allow(card).to receive(:company_options) { chunks.map { |ch| ch.options[:company] } }
-  #   allow(card).to receive(:year_options) { chunks.map { |ch| ch.options[:year] } }
-  #   allow(card).to receive(:unknown_options) { chunks.map { |ch| ch.options[:unknown] } }
-  # end
 end

@@ -1,17 +1,15 @@
 require_relative "../../../support/calculator_stub"
+require "./spec/support/company_ids"
 
 RSpec.describe Formula::Calculator::Input do
   include_context "with calculator stub"
+  include_context "company ids"
 
   let :input do
     fc = parser_with_input @input, @year_options, @company_options, @unknown_options,
                            @not_researched_options
     described_class.new(fc, &:to_f)
   end
-
-  let(:death_star_id) { Card.fetch_id "Death Star" }
-  let(:apple_id) { Card.fetch_id "Apple Inc" }
-  let(:samsung_id) { Card.fetch_id "Samsung" }
 
   example "single input" do
     @input = ["Jedi+deadliness"]
@@ -31,7 +29,7 @@ RSpec.describe Formula::Calculator::Input do
       .to yield_with_args([5.0, 2.0], samsung_id, 2015)
   end
 
-  example "two metrics with :any values" do
+  example "two metrics with not researched options" do
     @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
     @not_researched_options = ["false", "false"]
     expect { |b| input.each(year: 2015, &b) }

@@ -9,7 +9,7 @@ module Formula
           YearlyValueStore
         end
 
-        def update_result_slice _company_id, year
+        def update_result_slice _company_id, year, _value
           @result_slice.add :all, year
         end
 

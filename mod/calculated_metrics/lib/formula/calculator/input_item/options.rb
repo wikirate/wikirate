@@ -5,7 +5,7 @@ module Formula
         def initialize_options
           extend CompanyOption if company_option?
           extend YearOption if year_option?
-          extend UnknownOption if unknown_option?
+          extend UnknownOption
           extend NotResearchedOption if not_researched_option?
           initialize_option
         end

@@ -84,7 +84,7 @@ module Formula
 
       def store_value company_id, year, value
         value_store.add company_id, year, value
-        update_result_slice company_id, year
+        update_result_slice company_id, year, value
       end
 
       def value_store

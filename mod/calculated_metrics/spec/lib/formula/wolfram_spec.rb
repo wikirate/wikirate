@@ -1,13 +1,10 @@
 require_relative "../../support/calculator_stub"
+require "./spec/support/company_ids"
 
 RSpec.describe Formula::Wolfram do
   include_context "with calculator stub"
+  include_context "company ids"
 
-  def calculate formula
-    described_class.new(formula_card(formula)).result
-  end
-
-  let(:apple_id) { Card.fetch_id "Apple Inc" }
 
   it "simple formula" do
     result = calculate "{{Joe User+RM}}*2"
@@ -53,46 +50,46 @@ RSpec.describe Formula::Wolfram do
     # end
   end
 
-  # describe "formula with yearly variables" do
-  #   it "with fixed year" do
-  #     result = calculate "{{half year|2013}}+{{Joe User+RM}}"
-  #     expect(result).to include 2011 => { apple_id => 1006.5 + 11 },
-  #                               2012 => { apple_id => 1006.5 + 12 },
-  #                               2013 => { apple_id => 1006.5 + 13 }
-  #   end
-  #   it "with relative year" do
-  #     result = calculate "{{half year}}+{{Joe User+RM}}"
-  #     expect(result).to include 2014 => { apple_id => 1007 + 14 },
-  #                               2013 => { apple_id => 1006.5 + 13 }
-  #   end
-  #   it "with sum" do
-  #     result = calculate "Total[{{half year|2013..0}}]+{{Joe User+RM}}"
-  #     expect(result).to include 2013 => { apple_id => 1006.5 + 13 },
-  #                               2014 => { apple_id => 1007 + 1006.5 + 14 }
-  #     expect(result).not_to include 2012, 2016
-  #   end
-  #   it "double sum" do
-  #     result =
-  #       calculate "Total[{{half year|2013..0}}]+Totl[{{Joe User+RM|-1..0}}]"
-  #     expect(result).to include 2013 => { apple_id => 1006.5 + 13 + 12 },
-  #                               2014 => { apple_id => 1007 + 1006.5 + 14 + 13 }
-  #     expect(result).not_to include 2012, 2016
-  #   end
-  # end
-  #
-  # describe ".valid_formula?" do
-  #   subject { ::Formula::Ruby.valid_formula? content }
-  #
-  #   context "with formula with simple symbols" do
-  #     let(:content) { "1/{{Jedi+deadliness}}" }
-  #
-  #     it { is_expected.to be_truthy }
-  #   end
-  #
-  #   context "with formula with several nests and functions" do
-  #     let(:content) { "2*Total[{{M1|2000..2010}}]+{{M2}} / Min[{{M3|-1..3}}]" }
-  #
-  #     it { is_expected.to be_truthy }
-  #   end
-  # end
+  xdescribe "formula with yearly variables" do
+    it "with fixed year" do
+      result = calculate "{{half year|2013}}+{{Joe User+RM}}"
+      expect(result).to include 2011 => { apple_id => 1006.5 + 11 },
+                                2012 => { apple_id => 1006.5 + 12 },
+                                2013 => { apple_id => 1006.5 + 13 }
+    end
+    it "with relative year" do
+      result = calculate "{{half year}}+{{Joe User+RM}}"
+      expect(result).to include 2014 => { apple_id => 1007 + 14 },
+                                2013 => { apple_id => 1006.5 + 13 }
+    end
+    it "with sum" do
+      result = calculate "Total[{{half year|2013..0}}]+{{Joe User+RM}}"
+      expect(result).to include 2013 => { apple_id => 1006.5 + 13 },
+                                2014 => { apple_id => 1007 + 1006.5 + 14 }
+      expect(result).not_to include 2012, 2016
+    end
+    it "double sum" do
+      result =
+        calculate "Total[{{half year|2013..0}}]+Totl[{{Joe User+RM|-1..0}}]"
+      expect(result).to include 2013 => { apple_id => 1006.5 + 13 + 12 },
+                                2014 => { apple_id => 1007 + 1006.5 + 14 + 13 }
+      expect(result).not_to include 2012, 2016
+    end
+  end
+
+  xdescribe ".valid_formula?" do
+    subject { ::Formula::Ruby.valid_formula? content }
+
+    context "with formula with simple symbols" do
+      let(:content) { "1/{{Jedi+deadliness}}" }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context "with formula with several nests and functions" do
+      let(:content) { "2*Total[{{M1|2000..2010}}]+{{M2}} / Min[{{M3|-1..3}}]" }
+
+      it { is_expected.to be_truthy }
+    end
+  end
 end

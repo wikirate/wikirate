@@ -1,18 +1,9 @@
-#require_relative "../../../support/calculator_stub.rb"
+require "./spec/support/company_ids"
 
 RSpec.describe Formula::Calculator::InputValues do
-  #include_context "with calculator stub"
+  include_context "company ids"
 
   describe "result space" do
-    let(:sony) { Card.fetch_id "Sony Corporation" }
-    let(:samsung) { Card.fetch_id "Samsung" }
-    let(:death_star) { Card.fetch_id "Death Star" }
-    let(:apple) { Card.fetch_id "Apple Inc" }
-    let(:slate_rock) { Card.fetch_id "Slate Rock and Gravel Company" }
-    let(:los_pollos) { Card.fetch_id "Los Pollos Hermanos" }
-    let(:spectre) { Card.fetch_id "SPECTRE" }
-
-
     def input_values formula
       f_card = Card["Jedi+friendliness+formula"]
       f_card.content = formula

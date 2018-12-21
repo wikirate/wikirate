@@ -115,11 +115,16 @@ module Formula
     end
 
     def translate_input_value value, index
-      if value.is_a? Array
+      case value
+      when Array
         result = value.map { |v| translate_input_value(v, index) }.join ","
         "{#{result}}"
-      elsif value == "false"
+      when "false"
         "False"
+      when "nil"
+        "null"
+      when "Unknown"
+        "\"Unknown\""
       else
         @input.type(index).in?(%i[number yearly_value]) ? value : "\"#{value}\""
       end

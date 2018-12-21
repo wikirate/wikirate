@@ -16,7 +16,7 @@ module Formula
           true
         end
 
-        def update_result_slice company_id, year
+        def update_result_slice company_id, year, _value
           @result_slice.add company_id, year
         end
       end
