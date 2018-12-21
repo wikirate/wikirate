@@ -35,7 +35,7 @@ RSpec.describe Formula::Calculator::InputValues do
       rc = result_cache "{{Joe User+researched number 1}} +"\
                                " {{Joe User+researched number 2| not_researched: 5}}"
       expect_result_space rc, 2014 => [samsung, sony], 2015 => [samsung, apple],
-                          1977 => [death_star]
+                              1977 => [death_star]
     end
 
     example "without mandatory input items" do
@@ -58,16 +58,11 @@ RSpec.describe Formula::Calculator::InputValues do
     end
   end
 
-
   def input_values formula
     f_card = Card["Jedi+friendliness+formula"]
     f_card.content = formula
     described_class.new(f_card.parser)
   end
-
-  let(:death_star) { Card.fetch_id "Death Star" }
-  let(:samsung) { Card.fetch_id "Samsung" }
-  let(:spectre) { Card.fetch_id "SPECTRE" }
 
   def input_items formula
     iv = input_values formula
@@ -78,9 +73,9 @@ RSpec.describe Formula::Calculator::InputValues do
   def yearly_values
     [2004, 2013, 2014, 2015].each_with_object({}) do |y, h|
       h[y] = Card["A"].format
-               .number_with_precision(y / 2.0, precision: 5,
-                                      strip_insignificant_zeros: true)
-               .to_s
+                      .number_with_precision(y / 2.0, precision: 5,
+                                                      strip_insignificant_zeros: true)
+                      .to_s
     end
   end
 

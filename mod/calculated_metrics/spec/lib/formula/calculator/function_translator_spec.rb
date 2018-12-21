@@ -1,13 +1,13 @@
 RSpec.describe Formula::Calculator::FunctionTranslator do
   def translate str
     ft = described_class.new "aaa" => "bbb" do |replacement, arg|
-           "(#{replacement}).(#{arg})"
-         end
+      "(#{replacement}).(#{arg})"
+    end
     ft.translate str
   end
 
   example "working" do
-    expect(translate "aaa[aaa[X]]").to eq "(bbb).((bbb).(X))"
+    expect(translate("aaa[aaa[X]]")).to eq "(bbb).((bbb).(X))"
   end
 
   example "missing ]" do

@@ -56,7 +56,7 @@ RSpec.describe Formula::Calculator do
             "unknown card: not_a_card", "not a company:  A"
   end
 
-  example "no company dependency"do
+  example "no company dependency" do
     invalid "{{Jedi+deadliness|company: Death Star}}",
             "there must be at least one nest that doesn't explicitly specify companies"
   end
@@ -67,13 +67,13 @@ RSpec.describe Formula::Calculator do
   end
 
   example "company option with invalid metric" do
-      invalid "{{Jedi+deadliness|company: Related[not_a_card]}}",
-              "not a metric: \"not_a_card\""
-    end
+    invalid "{{Jedi+deadliness|company: Related[not_a_card]}}",
+            "not a metric: \"not_a_card\""
+  end
 
   example "empty company relation condition" do
-      invalid "{{Jedi+deadliness|company: Related[Jedi+deadliness]}}",
-              "expected a relationship metric: \"Jedi+deadliness\""
+    invalid "{{Jedi+deadliness|company: Related[Jedi+deadliness]}}",
+            "expected a relationship metric: \"Jedi+deadliness\""
   end
 
   example "company option with invalid relation condition" do
