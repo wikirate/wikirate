@@ -69,16 +69,16 @@ RSpec.describe Formula::Ruby do
   end
 
   describe "formula with unknown option" do
-    xspecify "Zeros with unknown and year option" do
+    specify "Zeros with unknown and year option" do
       result = calculate "Zeros[{{Joe User+RM|year:-2..0; unknown: 0}}]"
            expect(result).to include 2002 => { apple_id => 3 },
                                      2012 => { apple_id => 0 }
     end
 
-    xspecify "Total with unknown and year option" do
+    specify "Total with unknown and year option" do
       result = calculate "Total[{{Joe User+RM|year:-2..0; unknown:1}}]"
-           expect(result).to include 2002 => { apple_id => 3 },
-                                     2012 => { apple_id => 0 }
+           expect(result).to include 2002 => { apple_id => 2.0 },
+                                     2012 => { apple_id => 33.0 }
     end
   end
 
