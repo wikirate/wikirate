@@ -9,102 +9,6 @@ RSpec.describe Card::Set::MetricType::Score do
 
   before { @name = "Jedi+deadliness+Joe User" }
 
-  describe "score card" do
-    let(:score_card) { Card[:score] }
-
-    it { is_expected.to be_truthy }
-    it "has codename" do
-      expect(score_card.codename).to eq :score
-    end
-    it 'has type "metric type"' do
-      expect(score_card.type_id).to eq Card["metric type"].id
-    end
-  end
-
-  describe "#metric_type" do
-    subject { metric.metric_type }
-
-    it { is_expected.to eq "Score" }
-  end
-
-  describe "#metric_type_codename" do
-    subject { metric.metric_type_codename }
-
-    it { is_expected.to eq :score }
-  end
-
-  describe "#metric_designer" do
-    subject { metric.metric_designer }
-
-    it { is_expected.to eq "Jedi" }
-  end
-
-  describe "#metric_designer_card" do
-    subject { metric.metric_designer_card }
-
-    it { is_expected.to eq Card["Jedi"] }
-  end
-
-  describe "#metric_title" do
-    subject { metric.metric_title }
-
-    it { is_expected.to eq "deadliness" }
-  end
-
-  describe "#metric_title_card" do
-    subject { metric.metric_title_card }
-
-    it { is_expected.to eq Card["deadliness"] }
-  end
-
-  describe "#question_card" do
-    subject { metric.question_card.name }
-
-    it { is_expected.to eq "Jedi+deadliness+Joe User+Question" }
-  end
-
-  describe "#value_type" do
-    subject { metric.value_type }
-
-    it { is_expected.to eq "Number" }
-  end
-
-  describe "#categorical?" do
-    subject { metric.categorical? }
-
-    it { is_expected.to be_falsey }
-  end
-
-  describe "#researched?" do
-    subject { metric.researched? }
-
-    it { is_expected.to be_falsey }
-  end
-
-  describe "#score?" do
-    subject { metric.score? }
-
-    it { is_expected.to be_truthy }
-  end
-
-  describe "#scorer" do
-    subject { metric.scorer }
-
-    it { is_expected.to eq "Joe User" }
-  end
-
-  describe "#scorer_card" do
-    subject { metric.scorer_card }
-
-    it { is_expected.to eq Card["Joe User"] }
-  end
-
-  describe "#basic_metric" do
-    subject { metric.basic_metric }
-
-    it { is_expected.to eq "Jedi+deadliness" }
-  end
-
   def score_value company="Samsung", year="2014"
     score_answer(company, year).value
   end
@@ -228,8 +132,19 @@ RSpec.describe Card::Set::MetricType::Score do
     end
   end
 
-  describe "score for multi-categorical formula" do
+  describe "score for multi-categorical formula", as_bot: true do
     it "sums values", as_bot: true do
+      @metric_title = "small multi"
+      @metric_name = "Joe User+small multi"
+      @metric = create_metric(
+        name: "#{@metric_name}+Big Brother",
+        type: :score,
+        formula: '{"1":"2", "2":4, "3":6}'
+      )
+      expect(score_value("Sony Corporation", "2010")).to eq "6.0"
+    end
+
+    it "updates when formula updated", as_bot: true do
       @metric_title = "small multi"
       @metric_name = "Joe User+small multi"
       @metric = create_metric(
@@ -237,8 +152,13 @@ RSpec.describe Card::Set::MetricType::Score do
         type: :score,
         formula: '{"1":2, "2":4, "3":6}'
       )
-
       expect(score_value("Sony Corporation", "2010")).to eq "6.0"
+      @metric.formula_card.update_attributes!(
+        type_id: Card::PlainTextID,
+        content: '{"1":2, "2":9, "3":6}'
+      )
+
+      expect(score_value("Sony Corporation", "2010")).to eq "12.0"
     end
   end
 
