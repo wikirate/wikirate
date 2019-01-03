@@ -1,22 +1,18 @@
-require_relative "../../support/formula_stub"
+require_relative "../../support/calculator_stub"
+require "./spec/support/company_ids"
 
 RSpec.describe Formula::Ruby do
-  include_context "with formula stub"
-
-  def calculate formula
-    described_class.new(formula_card(formula)).result
-  end
-
-  let(:apple_id) { Card.fetch_id "Apple Inc" }
-  let(:spectre_id) { Card.fetch_id "SPECTRE" }
-  let(:death_star_id) { Card.fetch_id "Death Star" }
+  include_context "with calculator stub"
+  include_context "company ids"
 
   example "simple formula" do
     result = calculate "{{Joe User+RM}}*2"
-    expect(result[2011][apple_id]).to eq 22.0
-    expect(result[2012][apple_id]).to eq 24.0
-    expect(result[2013][apple_id]).to eq 26.0
+    expect(result[2011][apple]).to eq 22.0
+    expect(result[2012][apple]).to eq 24.0
+    expect(result[2013][apple]).to eq 26.0
   end
+
+  example
 
   example "network aware" do
     result = calculate "Total[{{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}]"
@@ -39,33 +35,50 @@ RSpec.describe Formula::Ruby do
   describe "functions" do
     let(:nest) { "{{Joe User+RM|year:-2..0}}" }
 
-    specify "total" do
+    specify "Total" do
       result = calculate "Total[#{nest}]"
       expect(result).to include 2012 => { apple_id => 33.0 },
                                 2013 => { apple_id => 36.0 }
       expect(result[2011]).to eq({})
     end
-    specify "max" do
+
+    specify "Max" do
       result = calculate "Max[#{nest}]"
       expect(result).to include 2012 => { apple_id => 12.0 },
                                 2013 => { apple_id => 13.0 }
       expect(result[2011]).to eq({})
     end
-    specify "min" do
+
+    specify "Min" do
       result = calculate "Min[#{nest}]"
       expect(result).to include 2012 => { apple_id => 10.0 },
                                 2013 => { apple_id => 11.0 }
       expect(result[2011]).to eq({})
     end
+
     specify "Zeros" do
       result = calculate "Zeros[#{nest}]"
-      expect(result).to include 2002 => { apple_id => 1 },
-                                2012 => { apple_id => 0 }
+      expect(result).to include 2012 => { apple_id => 0 }
     end
+
     specify "Unknowns" do
-      result = calculate "Unknowns[#{nest}]"
+      result = calculate "Unknowns[{{Joe User+RM|year:-2..0; unknown: Unknown}}]"
       expect(result).to include 2002 => { apple_id => 2 },
                                 2012 => { apple_id => 0 }
+    end
+  end
+
+  describe "formula with unknown option" do
+    specify "Zeros with unknown and year option" do
+      result = calculate "Zeros[{{Joe User+RM|year:-2..0; unknown: 0}}]"
+           expect(result).to include 2002 => { apple_id => 3 },
+                                     2012 => { apple_id => 0 }
+    end
+
+    specify "Total with unknown and year option" do
+      result = calculate "Total[{{Joe User+RM|year:-2..0; unknown:1}}]"
+           expect(result).to include 2002 => { apple_id => 2.0 },
+                                     2012 => { apple_id => 33.0 }
     end
   end
 

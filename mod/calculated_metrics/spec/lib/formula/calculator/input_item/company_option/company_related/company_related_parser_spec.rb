@@ -1,4 +1,4 @@
-RSpec.describe Formula::Calculator::InputItem::CompanyOption::CompanyRelated::CompanyRelatedParser do
+RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanyRelated::CompanyRelatedParser do
   def parser expr="Jedi+more evil = yes"
     described_class.new expr, Formula::Calculator::SearchSpace.new
   end

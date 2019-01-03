@@ -7,25 +7,16 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class InputValues
-      attr_reader :requirement, :input_cards, :company_options, :year_options,
-                  :companies_with_values, :answer_candidates
+      attr_reader :input_cards, :result_space, :parser, :input_list, :result_cache
 
-      # @param [Card] formula_card
-      def initialize formula_card
-        @input_cards = formula_card.input_cards
-        @requirement = formula_card.input_requirement
-        @company_options = formula_card.company_options
-        @year_options = formula_card.year_options
+      delegate :no_mandatories?, :validate, to: :input_list
 
-        @all_fetched = false
-
-        @companies_with_values = CompaniesWithValues.new
-        @input_list = InputList.new self
-      end
-
-      # @return [Array] error message if invalid; empty array if valid
-      def validate
-        @input_list.map(&:validate).flatten
+      # @param [Formula::Parser] parser
+      def initialize parser
+        @parser = parser
+        @input_cards = parser.input_cards
+        @result_cache = ResultCache.new
+        @input_list = InputList.new @parser
       end
 
       # Every iteration of the passed block receives an array with values for each
@@ -73,7 +64,6 @@ module Formula
       end
 
       # @return input values to calculate values for the given company and year
-      #   If year is present [
       #   If year is given it returns an array with one value for every input card,
       #   otherwise it returns an array with a hash for every input card. The hashes
       #   contain a value for every year.
@@ -81,9 +71,12 @@ module Formula
         company = Card.fetch_id(company) unless company.is_a? Integer
 
         search_values_for company_id: company, year: year
+        return unless @result_cache.has_value? company, year
 
-        @input_list.map do |input_item|
-          input_item.value_for company, year
+        catch(:cancel_calculation) do
+          @input_list.map do |input_item|
+            input_item.value_for company, year
+          end
         end
       end
 
@@ -97,52 +90,40 @@ module Formula
         @input_list[index].card_id
       end
 
-      def all_input_required?
-        @requirement == :all
-      end
-
       private
 
       def years_with_values company_id=nil
         search_values_for company_id: company_id
-        @companies_with_values.years
+        @result_cache.years
       end
 
       def companies_with_value year
         search_values_for year: year
-        @companies_with_values.for_year year
+        @result_cache.for_year year
       end
 
       def search_values_for company_id: nil, year: nil
-        return if @all_fetched
-        full_search if company_id.nil? && year.nil?
-        while_full_input_set_possible company_id, year do |input_item|
-          input_item.search_value_for company_id: company_id, year: year
+        while_full_input_set_possible company_id, year do |input_item, result_space|
+          input_item.search_value_for result_space, company_id: company_id, year: year
         end
       end
 
       def full_search
-        return if @all_fetched
-        @all_fetched = true
-
-        track_companies_with_values do
-          while_full_input_set_possible(&:search_all_values)
-        end
-      end
-
-      def track_companies_with_values
-        @companies_with_values = CompaniesWithValues.new
-        yield
-        @companies_with_values.clean @answer_candidates
+        search_values_for
       end
 
       def while_full_input_set_possible company_id=nil, year=nil
-        @answer_candidates = SearchSpace.new company_id, year
-        @input_list.each do |input_item|
-          yield input_item
-          # skip remaining input items if there are no candidates left then can have
-          # values for all input items
-          break if @answer_candidates.run_out_of_options?
+        @result_cache.track_search company_id, year, no_mandatories? do |result_space|
+          # subtle but IMPORTANT:
+          # The "sort" call puts all items without non_researched option in front.
+          # This way the search space becomes restricted before we have to deal with input
+          # items that have a default value for the whole company-year-space.
+          @input_list.sort.each do |input_item|
+            yield input_item, result_space
+            # skip remaining input items if there are no candidates left that can have
+            # values for all input items
+            break if result_space.run_out_of_options?
+          end
         end
       end
     end

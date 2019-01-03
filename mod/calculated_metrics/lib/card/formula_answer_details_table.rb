@@ -5,7 +5,7 @@ class Card
 
     def calculator
       @calculator ||=
-        Formula::Calculator.new @format.card.metric_card.formula_card
+        Formula::Calculator.new @format.card.metric_card.formula_card.parser
     end
 
     def table_rows

@@ -1,9 +1,7 @@
 include_set Abstract::HardCodedFormula
 
-# @param input [Array of Arrays] ...of 3 digit ISIC group codes
-# @return [Array] ... of 2 digit division codes
-def get_value input
-  input.first.map(&:chop).uniq
+def calculator_class
+  Formula::Isic
 end
 
 format :html do

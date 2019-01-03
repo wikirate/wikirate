@@ -25,9 +25,9 @@ event :create_metric_answers, :integrate_with_delay,
 end
 
 def calculator
-  calculator_class.new self
+  calculator_class.new parser, &method(:normalize_value)
 end
 
 def calculator_class
-  metric_card&.calculator_class || ::Formula.calculator_class(clean_formula)
+  metric_card&.calculator_class || ::Formula.calculator_class(parser.formula)
 end
