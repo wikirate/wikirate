@@ -81,3 +81,4 @@ RSpec.describe Formula::Calculator do
             "invalid expression \"Jedi+deadliness =\""
   end
 end
+

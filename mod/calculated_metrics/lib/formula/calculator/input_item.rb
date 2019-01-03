@@ -103,6 +103,11 @@ module Formula
         value_store.get company
       end
 
+      # overwritten in other places to move input items with no restriction on
+      # companies or years
+      # (like yearly variable or fixed year optiosn) to the end.
+      # That way when they are processed the search
+      # space for values is already restricted to some companies and years
       def sort_index
         @input_index
       end

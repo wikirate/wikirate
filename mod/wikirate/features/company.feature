@@ -9,7 +9,7 @@ Feature: company feature
     Then I should see "disturbances in the Force"
     And I should see "Wikipedia"
     And I wait for ajax response
-    Then I should see "a number of fictional mobile space stations"
+    Then I should see "fictional mobile space station"
     Then I click on "Topics"
     And I should see "Force"
     Then I click on "Projects"

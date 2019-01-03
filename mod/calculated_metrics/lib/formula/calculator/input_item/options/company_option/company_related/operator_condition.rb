@@ -17,7 +17,7 @@ module Formula
               include AbstractCondition
               attr_reader :value
 
-              INVALID_VALUE_CHARS = /["';]/
+              INVALID_VALUE_CHARS = /["';]/.freeze
 
               def initialize string, id
                 super
@@ -47,7 +47,9 @@ module Formula
               end
 
               def validate_value
-                raise Condition::Error, "invalid expression \"#{string}\"" if @value.blank?
+                if @value.blank?
+                  raise Condition::Error, "invalid expression \"#{string}\""
+                end
 
                 value_sql_safe?
               end

@@ -155,10 +155,10 @@ RSpec.describe Card::Set::MetricType::Score do
       expect(score_value("Sony Corporation", "2010")).to eq "6.0"
       @metric.formula_card.update_attributes!(
         type_id: Card::PlainTextID,
-        content: '{"1":2, "2":9, "3":6}'
+        content: '{"1":2, "2":5, "3":6}'
       )
 
-      expect(score_value("Sony Corporation", "2010")).to eq "12.0"
+      expect(score_value("Sony Corporation", "2010")).to eq "7.0"
     end
   end
 

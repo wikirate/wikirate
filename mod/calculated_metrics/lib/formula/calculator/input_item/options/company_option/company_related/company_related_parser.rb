@@ -10,6 +10,7 @@ module Formula
               def initialize str, search_space
                 @str = str
                 raise Condition::Error, "empty relation" if @str.blank?
+
                 @search_space = search_space
               end
 
@@ -19,7 +20,8 @@ module Formula
               #   At this point we haven't checked if the input metric has actually
               #   an answer for these object_companies
               def relations
-                ActiveRecord::Base.connection.select_rows(sql).map do |sc_id, year, oc_ids|
+                ActiveRecord::Base.connection.select_rows(sql)
+                                  .map do |sc_id, year, oc_ids|
                   [sc_id, year, oc_ids.split("##").map(&:to_i).uniq]
                 end
               end
