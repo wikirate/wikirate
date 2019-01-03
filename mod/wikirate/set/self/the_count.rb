@@ -39,8 +39,12 @@ format :html do
 
   def designer_rows
     designer_ids.map do |id|
-      ["", Card.fetch_name(id)] + years.map { |year| id_search(id, year) }
+      ["", Card.fetch_name(id)] + years.map { |year| metric_count_by_designer(id, year) }
     end
+  end
+
+  def metric_count_by_designer id, year
+    Card.where("left_id = ? and created_at < ? and type_id = ?", id, DateTime.new(year), MetricID).count
   end
 
   def user_count year
