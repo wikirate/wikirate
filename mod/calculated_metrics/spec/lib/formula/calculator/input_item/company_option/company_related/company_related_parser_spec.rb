@@ -19,6 +19,16 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanyRe
              "GROUP BY r0.subject_company_id, r0.year"
   end
 
+  specify "sql for inverse metric" do
+    metric_id = Card.fetch_id "Jedi+more evil"
+    expect(parser("Jedi+less evil = yes").send(:sql))
+      .to eq "SELECT r0.object_company_id, r0.year, "\
+             "GROUP_CONCAT(r0.subject_company_id SEPARATOR '##') "\
+             "FROM relationships AS r0 "\
+             "WHERE ((r0.metric_id = #{metric_id} && r0.value = \"yes\")) "\
+             "GROUP BY r0.object_company_id, r0.year"
+  end
+
   describe "#relations" do
     example "simple expression" do
       expect(parser.relations)
@@ -39,5 +49,20 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanyRe
                             [sc_id_2, 1977, [oc_id_1]],
                             [sc_id_2, 2000, [oc_id_3]]
     end
+
+    example "simple expression with inverse relationship" do
+      expect(parser("Jedi+less evil").relations)
+        .to contain_exactly [oc_id_1, 1977, contain_exactly(sc_id_1, sc_id_2)],
+                            [oc_id_2, 1977, [sc_id_1]]
+    end
+
+    example "or expression with inverse relationship" do
+      p = parser("Jedi+less evil = yes || Commons+Supplied by = Tier 2 Supplier")
+      expect(p.relations)
+        .to contain_exactly [oc_id_1, 1977, contain_exactly(sc_id_1, sc_id_2)],
+                            [sc_id_2, 1977, [oc_id_1]],
+                            [sc_id_2, 2000, [oc_id_3]]
+    end
+
   end
 end

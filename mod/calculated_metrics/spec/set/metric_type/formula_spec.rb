@@ -130,19 +130,31 @@ RSpec.describe Card::Set::MetricType::Formula do
     expect(take_answer_value("Death Star", 1977)).to eq "2.0"
   end
 
+  example "count related for inverse relationship" do
+    create_formula_metric formula: "CountRelated[Jedi+less evil]"
+    expect(take_answer_value("Los Pollos Hermanos", 1977)).to eq "2.0"
+  end
+
   example "count related with condition" do
     create_formula_metric formula: "CountRelated[Commons+Supplied by = Tier 1 Supplier]"
     expect(take_answer_value("SPECTRE", 2000)).to eq "1.0"
   end
 
-
-
-
+  example "count related with condition for inverse relationship" do
+    create_formula_metric formula: "CountRelated[Commons+Supplied by = Tier 1 Supplier]"
+    expect(take_answer_value("SPECTRE", 2000)).to eq "1.0"
+  end
 
   example "network aware formula" do
     create_formula_metric method: "Total", related: "Jedi+more evil=yes",
                           metric: "Jedi+deadliness"
     expect(take_answer_value("Death Star", 1977)).to eq "90.0"
+  end
+
+  example "network aware formula using inverse relationship" do
+    create_formula_metric method: "Total", related: "Jedi+less evil=yes",
+                          metric: "Jedi+deadliness"
+    expect(take_answer_value("Los Pollos Hermanos", 1977)).to eq "100.0"
   end
 
   def calc_value company="Samsung", year="2014"
