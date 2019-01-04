@@ -56,7 +56,7 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanyRe
                             [oc_id_2, 1977, [sc_id_1]]
     end
 
-    example "or expression with inverse relationship" do
+    xexample "or expression with inverse relationship" do
       p = parser("Jedi+less evil = yes || Commons+Supplied by = Tier 2 Supplier")
       expect(p.relations)
         .to contain_exactly [oc_id_1, 1977, contain_exactly(sc_id_1, sc_id_2)],

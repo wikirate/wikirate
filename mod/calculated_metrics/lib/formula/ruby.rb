@@ -40,6 +40,14 @@ module Formula
         symbols = SYMBOLS.map { |s| "\\#{s}" }.join
         formula =~ /^[\s\d#{symbols}]*$/
       end
+
+      def apply methods, arg
+        methods = Array.wrap methods
+
+        methods.inject(arg) do |ret, method|
+          send method, ret
+        end
+      end
     end
 
     def get_value input, _company, _year
@@ -92,12 +100,6 @@ module Formula
 
     def translate methods, arg
       methods = Array.wrap(methods).map { |m| "translate_#{m}" }
-      apply methods, arg
-    end
-
-    def apply methods, arg
-      methods = Array.wrap methods
-
       methods.inject(arg) do |ret, method|
         send method, ret
       end
