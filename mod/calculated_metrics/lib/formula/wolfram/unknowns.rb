@@ -27,6 +27,10 @@ module Formula
         end
         values_by_year
       end
+
+      def unknown_value
+        "Unknown"
+      end
     end
   end
 end
