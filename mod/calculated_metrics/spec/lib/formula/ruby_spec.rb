@@ -25,7 +25,9 @@ RSpec.describe Formula::Ruby do
   end
 
   example "network aware with count" do
-    result = calculate "100*Total[{{always one|company:Related[Commons+Supplied by=Tier 1 Supplier]}}]/{{Commons+Supplied by}}"
+    result =
+      calculate "100*Total[{{always one|company: "\
+                "Related[Commons+Supplied by=Tier 1 Supplier]}}]/{{Commons+Supplied by}}"
     aggregate_failures do
       expect(result[2000][spectre_id]).to eq 50.0
       expect(result[1977][spectre_id]).to eq 100.0
@@ -65,6 +67,24 @@ RSpec.describe Formula::Ruby do
       result = calculate "Unknowns[{{Joe User+RM|year:-2..0; unknown: Unknown}}]"
       expect(result).to include 2002 => { apple_id => 2 },
                                 2012 => { apple_id => 0 }
+    end
+  end
+
+  describe "lists" do
+    example "simple list" do
+      result = calculate "Max[{ {{Joe User+RM}}, {{Jedi+deadliness}} }]"
+      expect(result).to include 1977 => { death_star => 100.0 }
+    end
+
+    example "simple list without spacing" do
+      result = calculate "Max[{{{Joe User+RM}}, {{Jedi+deadliness}}}]"
+      expect(result).to include 1977 => { death_star => 100.0 }
+    end
+
+    example "list with not_researched option" do
+      result = calculate "Zeros[{ {{Joe User+RM}}, "\
+                         "{{Joe User+researched number 1| not_researched: 0}}}]"
+      expect(result).to include 2000 => { death_star => 2.0 }
     end
   end
 
