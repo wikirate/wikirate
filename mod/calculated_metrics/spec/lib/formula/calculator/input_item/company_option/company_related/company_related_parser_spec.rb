@@ -29,6 +29,22 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanyRe
              "GROUP BY r0.object_company_id, r0.year"
   end
 
+  specify "sql for mixed metrics" do
+    metric_id_1 = Card.fetch_id "Jedi+more evil"
+    metric_id_2 = Card.fetch_id "Commons+Supplied by"
+    expect(parser("Jedi+less evil = yes || Commons+Supplied by = Tier 2 Supplier").send(:sql))
+      .to eq "SELECT r0.object_company_id, r0.year, "\
+             "GROUP_CONCAT(r0.subject_company_id SEPARATOR '##') "\
+             "FROM relationships AS r0 "\
+             "LEFT JOIN relationships AS r1 " \
+             "ON r0.subject_company_id = r1.object_company_id && "\
+             "r0.object_company_id = r1.subject_company_id && r0.year = r1.year "\
+             "WHERE ((r0.metric_id = #{metric_id_1} && r0.value = \"yes\") || "\
+             "(r1.metric_id = #{metric_id_2} && r1.value = \"Tier 2 Supplier\")) "\
+             "GROUP BY r0.object_company_id, r0.year"
+  end
+
+
   describe "#relations" do
     example "simple expression" do
       expect(parser.relations)
@@ -60,6 +76,7 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanyRe
       p = parser("Jedi+less evil = yes || Commons+Supplied by = Tier 2 Supplier")
       expect(p.relations)
         .to contain_exactly [oc_id_1, 1977, contain_exactly(sc_id_1, sc_id_2)],
+                            [oc_id_2, 1977, [sc_id_1]],
                             [sc_id_2, 1977, [oc_id_1]],
                             [sc_id_2, 2000, [oc_id_3]]
     end
