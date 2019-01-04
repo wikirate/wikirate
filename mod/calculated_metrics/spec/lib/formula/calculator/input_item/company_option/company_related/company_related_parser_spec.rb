@@ -63,6 +63,5 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanyRe
                             [sc_id_2, 1977, [oc_id_1]],
                             [sc_id_2, 2000, [oc_id_3]]
     end
-
   end
 end

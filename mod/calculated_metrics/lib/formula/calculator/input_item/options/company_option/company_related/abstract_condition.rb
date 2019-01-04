@@ -7,7 +7,7 @@ module Formula
             # The base class for different types of conditions like {ExistCondition}
             # and {OperatorCondition}
             module AbstractCondition
-              attr_reader :metric_card, :metric_id, :subject_sql, :object_sql
+              attr_reader :metric_card, :metric_id
 
               def initialize string, id
                 @original = string
@@ -71,7 +71,6 @@ module Formula
                 @metric_card = @metric_card.inverse_card
                 @inverse = true
               end
-
             end
           end
         end

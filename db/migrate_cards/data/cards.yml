@@ -786,6 +786,9 @@
 - :name: project status tabs
   :type: Search
   :key: project_status_tab
+- :name: Formula Syntax
+  :type: Basic
+  :key: formula_syntax
 :remotes:
   :live: https://wikirate.org
   :dev: https://dev.wikirate.org
