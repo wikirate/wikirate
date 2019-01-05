@@ -18,7 +18,7 @@ module Formula
             if unknown_option?
               interpret_unknown_option
             else
-              extend UnknownNoResult
+              extend UnknownResultUnknown
             end
           end
 
