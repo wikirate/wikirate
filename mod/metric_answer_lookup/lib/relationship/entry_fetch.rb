@@ -62,7 +62,7 @@ class Relationship
     def fetch_latest
       return true unless (latest_year = latest_year_in_db)
 
-      @new_latest = (latest_year < fetch_year)
+      @new_latest = !latest && (latest_year < fetch_year)
       latest_year <= fetch_year
     end
   end

@@ -29,6 +29,7 @@ class Relationship < ApplicationRecord
 
   def latest_year_in_db
     Relationship.where(record_id: record_id, object_company_id: object_company_id)
+                .where.not(id: id)
                 .maximum :year
   end
 

@@ -37,7 +37,7 @@ class Answer < ApplicationRecord
 
   def latest_year_in_db
     self.record_id ||= fetch_record_id
-    Answer.where(record_id: record_id).maximum :year
+    Answer.where(record_id: record_id).where.not(id: id).maximum :year
   end
 
   def latest_to_false
