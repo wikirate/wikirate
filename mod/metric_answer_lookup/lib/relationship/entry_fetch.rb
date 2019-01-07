@@ -17,6 +17,10 @@ class Relationship
       Card.fetch_id card.name.left_name.left_name.left_name
     end
 
+    def fetch_inverse_metric_id
+      metric_card.inverse_card.id
+    end
+
     def fetch_subject_company_id
       Card.fetch_id card.name.left_name.left_name.right
     end
