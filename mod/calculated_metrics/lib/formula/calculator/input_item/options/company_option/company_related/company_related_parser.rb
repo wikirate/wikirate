@@ -47,7 +47,7 @@ module Formula
               end
 
               def join_sql count
-                return unless count.positive?
+                return unless count.positive? && and_chain?
 
                 Array.new(count) { |i| related_join_sql i + 1 }
               end
@@ -79,10 +79,23 @@ module Formula
               end
 
               def parse_expressions
+                validate_logic
                 @conditions =
                   @str.split(Condition::SPLIT_REGEX).map.with_index do |part, i|
-                    Condition.new part.strip.sub(/^\(*/, "").sub(/\)*$/, ""), i
+                    table_index = and_chain? ? i : 0
+                    Condition.new part.strip.sub(/^\(*/, "").sub(/\)*$/, ""), table_index
                   end
+              end
+
+              # only "&&"s
+              def and_chain?
+                @and_chain = @str.include?("&&") if @and_chain.nil?
+                @and_chain
+              end
+
+              def validate_logic
+                return unless @str.include?("&&") && @str.include?("||")
+                raise Condition::Error, "mix of '&&' and '||' is not supported, yet"
               end
 
               def object_sql i
