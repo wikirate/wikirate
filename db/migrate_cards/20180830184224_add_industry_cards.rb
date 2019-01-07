@@ -3,7 +3,7 @@
 class AddIndustryCards < Card::Migration
   def up
     merge_cards %w[industry common+industry common+industry+*metric_type
-      common+industry+formula common+industry+value_type common+industry+research_policy
+      common+industry+value_type common+industry+research_policy
       common+industry+hybrid common+industry+question  isic industry_section
       isic+industry_section isic+industry_section+*metric_type
       isic+industry_section+value_type isic+industry_section+question
@@ -18,6 +18,6 @@ class AddIndustryCards < Card::Migration
       isic+industry_group+research_policy isic+industry_group+methodology industry_class
       isic+industry_class isic+industry_class+*metric_type isic+industry_class+methodology
       isic+industry_class+value_type isic+industry_class+research_policy
-      isic+industry_class+question]
+      isic+industry_class+question common+industry+formula]
   end
 end

@@ -1,17 +1,15 @@
-require_relative "../../../support/formula_stub"
+require_relative "../../../support/calculator_stub"
+require "./spec/support/company_ids"
 
 RSpec.describe Formula::Calculator::Input do
-  include_context "with formula stub"
+  include_context "with calculator stub"
+  include_context "company ids"
 
   let :input do
-    @requirement ||= :all
-    fc = formula_card_with_input @input, @requirement, @year_options, @company_options
+    fc = parser_with_input @input, @year_options, @company_options, @unknown_options,
+                           @not_researched_options
     described_class.new(fc, &:to_f)
   end
-
-  let(:death_star_id) { Card.fetch_id "Death Star" }
-  let(:apple_id) { Card.fetch_id "Apple Inc" }
-  let(:samsung_id) { Card.fetch_id "Samsung" }
 
   example "single input" do
     @input = ["Jedi+deadliness"]
@@ -27,14 +25,13 @@ RSpec.describe Formula::Calculator::Input do
 
   example "two metrics with :all values" do
     @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
-    @requirement = :all
     expect { |b| input.each(year: 2015, &b) }
       .to yield_with_args([5.0, 2.0], samsung_id, 2015)
   end
 
-  example "two metrics with :any values" do
+  example "two metrics with not researched options" do
     @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
-    @requirement = :any
+    @not_researched_options = %w[false false]
     expect { |b| input.each(year: 2015, &b) }
       .to yield_successive_args([[5.0, 2.0], samsung_id, 2015],
                                 [[100.0, nil], apple_id, 2015])

@@ -4,6 +4,8 @@ class Card
       class FormulaInput < Nest
         Card::View::Options.add_option :year, :ruler
         Card::View::Options.add_option :company, :ruler
+        Card::View::Options.add_option :unknown, :ruler
+        Card::View::Options.add_option :not_researched, :ruler
         DEFAULT_OPTION = :year
 
         Card::Content::Chunk.register_class(
