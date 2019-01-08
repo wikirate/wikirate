@@ -29,18 +29,30 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanyRe
              "GROUP BY r0.object_company_id, r0.year"
   end
 
-  specify "sql for mixed metrics" do
+  specify "sql for &&" do
     metric_id_1 = Card.fetch_id "Jedi+more evil"
     metric_id_2 = Card.fetch_id "Commons+Supplied by"
-    expect(parser("Jedi+less evil = yes || Commons+Supplied by = Tier 2 Supplier").send(:sql))
+    expect(parser("Jedi+less evil = yes && Commons+Supplied by = Tier 2 Supplier").send(:sql))
       .to eq "SELECT r0.object_company_id, r0.year, "\
              "GROUP_CONCAT(r0.subject_company_id SEPARATOR '##') "\
              "FROM relationships AS r0 "\
              "LEFT JOIN relationships AS r1 " \
              "ON r0.subject_company_id = r1.object_company_id && "\
              "r0.object_company_id = r1.subject_company_id && r0.year = r1.year "\
-             "WHERE ((r0.metric_id = #{metric_id_1} && r0.value = \"yes\") || "\
+             "WHERE ((r0.metric_id = #{metric_id_1} && r0.value = \"yes\") && "\
              "(r1.metric_id = #{metric_id_2} && r1.value = \"Tier 2 Supplier\")) "\
+             "GROUP BY r0.object_company_id, r0.year"
+  end
+
+  specify "sql for ||" do
+    metric_id_1 = Card.fetch_id "Jedi+more evil"
+    metric_id_2 = Card.fetch_id "Commons+Supplied by"
+    expect(parser("Jedi+less evil = yes || Commons+Supplied by = Tier 2 Supplier").send(:sql))
+      .to eq "SELECT r0.object_company_id, r0.year, "\
+             "GROUP_CONCAT(r0.subject_company_id SEPARATOR '##') "\
+             "FROM relationships AS r0 "\
+             "WHERE ((r0.metric_id = #{metric_id_1} && r0.value = \"yes\") || "\
+             "(r0.metric_id = #{metric_id_2} && r0.value = \"Tier 2 Supplier\")) "\
              "GROUP BY r0.object_company_id, r0.year"
   end
 

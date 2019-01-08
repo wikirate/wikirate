@@ -80,11 +80,24 @@ module Formula
 
               def parse_expressions
                 validate_logic
+                only_one_related
                 @conditions =
                   @str.split(Condition::SPLIT_REGEX).map.with_index do |part, i|
                     table_index = and_chain? ? i : 0
                     Condition.new part.strip.sub(/^\(*/, "").sub(/\)*$/, ""), table_index
                   end
+              end
+
+              def only_one_related
+                return unless @str.scan("Related\[[^\]]*\]").size > 1
+                raise "only one 'Related' expression allowed"
+              end
+
+
+              def additional_restrictions
+                @str.gsub(/Related\[[^\]]*\]/, "")
+                return unless @str.include? "&&"
+                @str.split("&&")
               end
 
               # only "&&"s
