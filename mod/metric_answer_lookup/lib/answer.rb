@@ -41,7 +41,8 @@ class Answer < ApplicationRecord
   end
 
   def latest_to_false
-    Answer.where(record_id: record_id, latest: true).update_all(latest: false)
+    Answer.where(record_id: record_id, latest: true).where.not(id: id)
+          .update_all(latest: false)
   end
 
   def latest_to_true
