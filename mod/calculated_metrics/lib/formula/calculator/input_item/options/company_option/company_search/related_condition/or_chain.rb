@@ -10,16 +10,16 @@ module Formula
                   return super unless any_inverse?
                   <<-SQL.strip_heredoc
                     (
-                     SELECT rr0.subject_company_id, rr0.object_company_id , rr0.metric_id, 
-                            rr0.year, rr0.value
-                     FROM relationships rr0
-                     WHERE rr0.metric_id #{in_or_eq metric_ids} 
+                     SELECT subject_company_id, object_company_id,
+                            metric_id, inverse_metric_id, year, value
+                     FROM relationships
+                     WHERE metric_id #{in_or_eq metric_ids} 
                      UNION
-                     SELECT rr1.object_company_id as subject_company_id, 
-                            rr1.subject_company_id as object_company_id, 
-                            rr1.metric_id, rr1.year, rr1.value
-                     FROM relationships rr1
-                     WHERE rr1.inverse_metric_id #{in_or_eq inverse_metric_ids}
+                     SELECT object_company_id as subject_company_id,
+                            subject_company_id as object_company_id,
+                            metric_id, inverse_metric_id, year, value
+                     FROM relationships
+                     WHERE inverse_metric_id #{in_or_eq inverse_metric_ids}
                     ) AS r0
                   SQL
                 end

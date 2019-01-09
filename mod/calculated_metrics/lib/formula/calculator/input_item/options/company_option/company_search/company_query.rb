@@ -102,8 +102,8 @@ module Formula
               end
 
               def only_one_related
-                return unless @str.scan("Related\[[^\]]*\]").size > 1
-                raise "only one 'Related' expression allowed"
+                return unless @str.scan(/Related\[[^\]]*\]/).size > 1
+                raise Condition::Error, "only one 'Related' expression allowed"
               end
             end
           end

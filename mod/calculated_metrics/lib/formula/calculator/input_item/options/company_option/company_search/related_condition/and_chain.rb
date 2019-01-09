@@ -14,10 +14,10 @@ module Formula
                   return super unless @conditions.first.inverse?
                   <<-SQL.strip_heredoc
                     (
-                      SELECT rr0.object_company_id as subject_company_id, 
-                             rr0.subject_company_id as object_company_id, 
-                             rr0.metric_id, rr0.year, rr0.value
-                      FROM relationships rr0
+                      SELECT object_company_id as subject_company_id,
+                             subject_company_id as object_company_id,
+                             metric_id, inverse_metric_id, year, value
+                      FROM relationships
                     ) AS r0
                   SQL
                 end

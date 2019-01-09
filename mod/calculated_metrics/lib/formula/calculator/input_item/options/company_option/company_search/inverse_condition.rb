@@ -20,7 +20,8 @@ module Formula
                   (
                    SELECT rr#{@table_id}.object_company_id as subject_company_id, 
                           rr#{@table_id}.subject_company_id as object_company_id, 
-                          rr#{@table_id}.metric_id, rr#{@table_id}.year, rr#{@table_id}.value
+                          rr#{@table_id}.metric_id, rr#{@table_id}.inverse_metric_id, 
+                          rr#{@table_id}.year, rr#{@table_id}.value
                    FROM relationships rr#{@table_id}
                    WHERE rr#{@table_id}.inverse_metric_id = #{metric_id}
                   ) AS #{table}

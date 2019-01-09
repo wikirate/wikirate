@@ -23,11 +23,11 @@ module Formula
               end
 
               def subject_sql
-                @subject_sql ||= tablefy "#{subject}_company_id"
+                @subject_sql ||= tablefy "subject_company_id"
               end
 
               def object_sql
-                @object_sql ||= tablefy "#{object}_company_id"
+                @object_sql ||= tablefy "object_company_id"
               end
 
               def metric_sql
@@ -36,14 +36,6 @@ module Formula
 
               def inverse?
                 false
-              end
-
-              def subject
-                inverse? ? "object" : "subject"
-              end
-
-              def object
-                inverse? ? "subject" : "object"
               end
 
               def join_sql
