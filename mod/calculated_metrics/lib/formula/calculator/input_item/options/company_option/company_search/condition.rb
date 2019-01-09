@@ -34,6 +34,10 @@ module Formula
 
               class << self
                 def new string, id
+                  new_obj(string, id).tap { |con| con.validate }
+                end
+
+                def new_obj string, id
                   if /#{OPERATOR_MATCHER}/m.match?(string)
                     OperatorCondition.new string, id
                   else

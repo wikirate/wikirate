@@ -14,7 +14,7 @@ module Formula
                 validate_metric
               end
 
-              def sql
+              def where_sql
                 "(#{metric_sql})"
               end
             end

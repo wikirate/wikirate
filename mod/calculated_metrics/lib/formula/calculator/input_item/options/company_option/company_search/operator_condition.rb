@@ -20,17 +20,23 @@ module Formula
                 @metric = match[1]
                 @operator = match[2]
                 @value = match[3]
-                validate_metric
+              end
+
+              def validate
+                super
                 validate_value
               end
 
-              def sql
+              def where_sql
                 "(#{metric_sql} && #{value_sql})"
               end
 
               def value_sql
-                "r#{@table_id}.#{'numeric_' if numeric_operator?}value "\
-              "#{@operator} \"#{@value}\""
+                if numeric_operator?
+                  "#{table}.numeric_value #{@operator} #{@value}"
+                else
+                  "#{table}.value #{@operator} \"#{@value}\""
+                end
               end
 
               private

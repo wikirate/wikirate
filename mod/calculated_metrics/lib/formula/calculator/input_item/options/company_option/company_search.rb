@@ -10,12 +10,14 @@ module Formula
           # It makes the values for this input item independent of the output company
           # (since the answers for the companies of the company option are always used)
           module CompanySearch
+            require_dependency "company_query"
+
             include CompanyDependentInput
             extend AddValidationChecks
             add_validation_checks :check_related_conditions
 
             def check_related_conditions
-              CompanyRelatedParser.new(company_option, nil).validate
+              CompanyQuery.new(company_option, nil).validate
             rescue Condition::Error => e
               add_error e.message
             end
@@ -27,7 +29,6 @@ module Formula
                 yield subject_company_id, year, v
               end
             end
-
 
             def values_by_year_for_each_company
               hash = {}
@@ -47,7 +48,7 @@ module Formula
             #   for these object_companies
             def relations
               @relations ||=
-                CompanyRelatedParser.new(company_option, search_space).relations
+                CompanyQuery.new(company_option, search_space).relations
             end
           end
         end
