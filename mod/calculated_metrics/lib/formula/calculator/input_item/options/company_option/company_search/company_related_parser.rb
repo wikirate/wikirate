@@ -3,7 +3,7 @@ module Formula
     class InputItem
       module Options
         module CompanyOption
-          module CompanyRelated
+          module CompanySearch
             # This modules handles a "Related" expressions in formulas like
             # Related[Jedi+more evil >= 6 && Commons+Supplied by=Tier 1 Supplier]
             class CompanyRelatedParser

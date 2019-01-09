@@ -6,7 +6,7 @@ module Formula
     class InputItem
       module Options
         module CompanyOption
-          module CompanyRelated
+          module CompanySearch
             # Selects the right condition class for a condition given as a string.
             # For example:
             #   Related[Jedi+more evil>=6 && Commons+Supplied by=Tier 1 Supplier]}}]

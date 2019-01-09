@@ -25,7 +25,7 @@ module Formula
             case company_option
             when /\s*Related\[([^\]]*)\]\s*/
               @company_option = Regexp.last_match(1)
-              extend CompanyRelated
+              extend CompanySearch
             when /&&/
               extend CompanyQuery
             when /,/

@@ -9,7 +9,7 @@ module Formula
           #
           # It makes the values for this input item independent of the output company
           # (since the answers for the companies of the company option are always used)
-          module CompanyRelated
+          module CompanySearch
             include CompanyDependentInput
             extend AddValidationChecks
             add_validation_checks :check_related_conditions

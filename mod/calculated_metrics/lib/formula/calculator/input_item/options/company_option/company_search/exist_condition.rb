@@ -3,7 +3,7 @@ module Formula
     class InputItem
       module Options
         module CompanyOption
-          module CompanyRelated
+          module CompanySearch
             # A {Condition} that checks only for the existence of a relationship like
             # Related[Jedi+more evil]
             class ExistCondition

@@ -9,16 +9,18 @@ module Formula
           #
           # It makes the values for this input item independent of the output company
           # (since the answers for the companies of the company option are always used)
-          module CompanyQuery
-            def initialize str
+          class CompanyQuery
+            def initialize str, search_space
 
             end
 
             def conditions
-              @str.sub(/Related\[([^\]]*)\]/, "") do |match|
-
+              head, related, tail = @str.partition(/Related\[[^\]]*\]/)
+              related_arg = related[/(?<=^Related\[).+(?=\])/]
+              related_condition = CompanyRelatedParser.new related_arg, search_space
+              (head.strip.split("&&") + tail.strip.split("&&")).each do |cond|
+                Condition.new
               end
-
             end
 
 

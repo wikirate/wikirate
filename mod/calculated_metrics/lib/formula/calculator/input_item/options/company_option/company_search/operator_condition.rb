@@ -3,7 +3,7 @@ module Formula
     class InputItem
       module Options
         module CompanyOption
-          module CompanyRelated
+          module CompanySearch
             # A {Condition} on the relationship value like
             # Related[Jedi+more evil>=6]
             class OperatorCondition

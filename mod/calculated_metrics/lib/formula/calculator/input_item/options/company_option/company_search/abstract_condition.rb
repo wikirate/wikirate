@@ -3,7 +3,7 @@ module Formula
     class InputItem
       module Options
         module CompanyOption
-          module CompanyRelated
+          module CompanySearch
             # The base class for different types of conditions like {ExistCondition}
             # and {OperatorCondition}
             module AbstractCondition
