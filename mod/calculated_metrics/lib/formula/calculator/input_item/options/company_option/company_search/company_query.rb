@@ -40,13 +40,10 @@ module Formula
               #   At this point we haven't checked if the input metric has actually
               #   an answer for these object_companies
               def relations
-                #binding.pry
-                rel_h = ActiveRecord::Base.connection.select_rows(sql)
+                ActiveRecord::Base.connection.select_rows(sql)
                                   .each_with_object(Hash.new_nested(Hash, Array)) do |(sc_id, year, oc_id), h|
-                  # h[sc_id][year] ||= []
                   h[sc_id][year] << oc_id.to_i
                 end
-                rel_h
               end
 
               private
