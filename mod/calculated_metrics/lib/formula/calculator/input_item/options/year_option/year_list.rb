@@ -31,8 +31,8 @@ module Formula
               end
             end
 
-            # @return an array of years for which values can be calculated out of the given
-            #   list of years
+            # @return an array of years for which values can be calculated out of
+            #   the given list of years
             def translate_years years
               if @offsets.empty?
                 (@fixed - years).empty? ? all_years : []

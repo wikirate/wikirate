@@ -5,6 +5,8 @@ module Formula
       # using the API provided by {AddValidationChecks}
       # The #validate method runs all those checks.
       module ValidationChecks
+        # Provides the api method add_validation_checks that can be called in
+        # a class definition to add validation checks.
         module ClassMethods
           def validation_checks
             @validation_checks ||= []

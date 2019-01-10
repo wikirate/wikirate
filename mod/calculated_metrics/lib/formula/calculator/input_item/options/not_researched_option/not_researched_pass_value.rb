@@ -20,6 +20,7 @@ module Formula
 
             def replace_nil value
               return value unless input_value_not_researched?(value)
+
               if value.is_a?(Array)
                 value.map { |v| v.nil? ? not_researched_value : v }
               else

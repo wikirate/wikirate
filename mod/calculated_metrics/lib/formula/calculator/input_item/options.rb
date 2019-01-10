@@ -1,6 +1,8 @@
 module Formula
   class Calculator
     class InputItem
+      # Methods to handle nest option for a metric variable in a formula.
+      # For every supported option there is a module which take cares of that option.
       module Options
         def initialize_options
           extend CompanyOption if company_option?
@@ -38,6 +40,7 @@ module Formula
         def normalized_option_value opt
           value = parser.send("#{opt}_option", @input_index)
           return unless value.present?
+
           try("normalize_#{opt}_option", value) || value
         end
 

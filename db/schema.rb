@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170524163436) do
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "relationship_id"
     t.integer "metric_id"
+    t.integer "inverse_metric_id"
     t.integer "record_id"
     t.integer "answer_id"
     t.integer "object_company_id"
