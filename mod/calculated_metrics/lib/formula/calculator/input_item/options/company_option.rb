@@ -23,8 +23,7 @@ module Formula
 
           def interpret_company_option
             case company_option
-            when /\s*Related\[([^\]]*)\]\s*/
-              @company_option = Regexp.last_match(1)
+            when /Related\[([^\]]*)\]/
               extend CompanySearch
             when /&&/
               extend CompanyQuery

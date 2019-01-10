@@ -9,11 +9,12 @@ module Formula
           module CompanySearch
             # Selects the right condition class for a condition given as a string.
             # For example:
-            #   Related[Jedi+more evil>=6 && Commons+Supplied by=Tier 1 Supplier]}}]
-            #   consists of the two conditions
-            #     "Jedi+more evil>=6" and "Commons+Supplied by=Tier 1 Supplier"
-            # An instance can parse such an expresion and search for all relationship
-            # answers that satisfy that condition.
+            #   Related[Jedi+more evil && Commons+Supplied by=Tier 1 Supplier]}}]
+            #   consists of a {ExistCondition} "Jedi+more evil" and a
+            #   {OperatorCondition} "Commons+Supplied by=Tier 1 Supplier"
+            # An instance can parse such an expresion and build the sql that is needed to
+            # to compose the search for all relationship answers that satisfy that
+            # condition.
             class Condition
               require_dependency "operator_condition"
               require_dependency "exist_condition"

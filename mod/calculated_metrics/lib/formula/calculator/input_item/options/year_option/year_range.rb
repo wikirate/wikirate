@@ -46,6 +46,7 @@ module Formula
               [].tap do |result|
                 index.upto(years.size - 1) do |i|
                   break if i > index && years[i] != years[i - 1] + 1
+
                   result.push years[i] - @stop
                 end
               end
@@ -60,6 +61,7 @@ module Formula
               [].tap do |result|
                 index.downto(0) do |i|
                   break if i < index && years[i] != years[i + 1] - 1
+
                   result.push years[i] - @start
                 end
               end
@@ -82,8 +84,8 @@ module Formula
               end
             end
 
-            # @return an array of years for which values can be calculated out of the given
-            #   list of years
+            # @return an array of years for which values can be calculated out of the
+            #   given list of years
             def translate_years years
               send @translate, years
             end

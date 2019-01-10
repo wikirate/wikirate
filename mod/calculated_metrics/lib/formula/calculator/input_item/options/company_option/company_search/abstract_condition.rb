@@ -62,14 +62,16 @@ module Formula
               end
 
               def validate_metric
-                raise Condition::Error, "invalid expression \"#{@original}\"" if @metric.blank?
+                if @metric.blank?
+                  raise Condition::Error, "invalid expression \"#{@original}\""
+                end
 
                 @metric_card = Card.fetch @metric
                 if @metric_card.nil? || @metric_card.type_id != Card::MetricID
                   raise Condition::Error, "not a metric: \"#{@metric}\""
                 end
-                validate_metric_type
 
+                validate_metric_type
                 @metric_id = @metric_card.id
               end
 
@@ -79,6 +81,7 @@ module Formula
                 unless @metric_card.relationship?
                   raise Condition::Error, "expected a relationship metric: \"#{@metric}\""
                 end
+
                 extend InverseCondition if @metric_card.inverse?
               end
             end

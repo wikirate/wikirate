@@ -56,7 +56,7 @@ module Formula
               def value_sql_safe?
                 @value.sub!(/^["']/, "")
                 @value.sub!(/["']$/, "")
-                return unless @value.match? /[#{Regexp.quote INVALID_VALUE_CHARS.join}]/
+                return unless @value.match?(/[#{Regexp.quote INVALID_VALUE_CHARS.join}]/)
 
                 raise Condition::Error, "value is not allowed to contain the "\
                                       "characters #{INVALID_VALUE_CHARS.to_sentence}"

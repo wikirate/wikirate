@@ -5,6 +5,8 @@ module Formula
         module CompanyOption
           module CompanySearch
             class RelatedCondition
+              # Modifications for {RelatedCondition} to handle "&&" condition compositions
+              # like Related[M1 && M2 = yes && M3 > 4]
               module AndChain
                 def where_sql
                   @conditions.map(&:where_sql).join " AND "
@@ -12,6 +14,7 @@ module Formula
 
                 def select_from_sql
                   return super unless @conditions.first.inverse?
+
                   <<-SQL.strip_heredoc
                     (
                       SELECT object_company_id as subject_company_id,

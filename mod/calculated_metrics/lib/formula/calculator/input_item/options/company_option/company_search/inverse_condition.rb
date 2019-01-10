@@ -4,8 +4,8 @@ module Formula
       module Options
         module CompanyOption
           module CompanySearch
-            # The base class for different types of conditions like {ExistCondition}
-            # and {OperatorCondition}
+            # Modifications for {Condition} for the case that the involved metric
+            # is a inverse relationship metric.
             module InverseCondition
               def metric_sql
                 tablefy "inverse_metric_id = #{@metric_id}"
@@ -22,7 +22,7 @@ module Formula
                           subject_company_id as object_company_id,
                           metric_id, inverse_metric_id,
                           year, value
-                   FROM relationships 
+                   FROM relationships
                    WHERE inverse_metric_id = #{metric_id}
                   ) AS #{table}
                 SQL

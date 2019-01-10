@@ -16,8 +16,8 @@ module Formula
               end
             end
 
-            # @return an array of years for which values can be calculated out of the given
-            #   list of years
+            # @return an array of years for which values can be calculated out of the
+            #   given list of years
             def translate_years years
               if @fixed_year
                 years.include?(processed_year_option) ? all_years : []

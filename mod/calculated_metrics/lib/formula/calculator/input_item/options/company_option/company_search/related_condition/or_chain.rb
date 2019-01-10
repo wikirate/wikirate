@@ -5,6 +5,8 @@ module Formula
         module CompanyOption
           module CompanySearch
             class RelatedCondition
+              # Modifications for {RelatedCondition} to handle "|| condition compositions
+              # like Related[M1 || M2 = yes || M3 > 4]
               module OrChain
                 def select_from_sql
                   return super unless any_inverse?

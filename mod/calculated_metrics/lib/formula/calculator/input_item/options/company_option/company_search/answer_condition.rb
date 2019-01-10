@@ -4,6 +4,9 @@ module Formula
       module Options
         module CompanyOption
           module CompanySearch
+            # Handles conditions outside of the 'Related' conditions that refer
+            # to non-relationship metrics like M2 in the following example:
+            #   Related[M1] && M2 > 4
             class AnswerCondition
               require_dependency "condition"
 
@@ -16,6 +19,14 @@ module Formula
                 end
               end
 
+              # Contains modifications needed to turn a relationship metric condition
+              # into a non-relationship metric condition.
+              # The main difference is that the sql has to query the answer table
+              # instead of the relationship table.
+              #
+              # The first condition of the full sql query is always build by a
+              # relationship condition,
+              # hence we need for this case only a modified join sql.
               module AnswerConditionMethods
                 def table
                   "a#{@table_id}"
@@ -28,11 +39,11 @@ module Formula
                 end
 
                 def validate_metric_type
-                  if @metric_card.relationship?
-                    raise Condition::Error,
-                          "\"#{@metric}\" is a relationship metric. "\
-                          "Use the Related[] method for relationship conditions."
-                  end
+                  return unless @metric_card.relationship?
+
+                  raise Condition::Error,
+                        "\"#{@metric}\" is a relationship metric. "\
+                        "Use the Related[] method for relationship conditions."
                 end
               end
             end

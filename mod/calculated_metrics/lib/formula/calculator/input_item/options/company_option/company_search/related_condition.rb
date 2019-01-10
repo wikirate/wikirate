@@ -4,12 +4,13 @@ module Formula
       module Options
         module CompanyOption
           module CompanySearch
-            # This class handles a "Related" expressions in formulas like
+            # This class handles a "Related" expression for a company option
             # Related[Jedi+more evil >= 6 && Commons+Supplied by=Tier 1 Supplier]
             class RelatedCondition
               def initialize str, search_space
                 @str = str
                 raise Condition::Error, "empty relation" if @str.blank?
+
                 if and_chain?
                   extend AndChain
                 elsif or_chain?
@@ -94,6 +95,7 @@ module Formula
 
               def validate_logic
                 return unless @str.include?("&&") && @str.include?("||")
+
                 raise Condition::Error, "mix of '&&' and '||' is not supported, yet"
               end
 

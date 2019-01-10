@@ -3,12 +3,12 @@ module Formula
     class InputItem
       module Options
         module CompanyOption
-          # Used if a "Related" expression is passed as company option
+          # Used if a "Related" search expression is passed as company option
           # Example:
-          #   {{ M1 | company: Related[M2 >= 6 && M3=Tier 1 Supplier] }}
+          #   {{ M1 | company: Related[M2 >= 6 && M3=Tier 1 Supplier] && M4 > 10 }}
           #
-          # It makes the values for this input item independent of the output company
-          # (since the answers for the companies of the company option are always used)
+          # In contrast to the other company options {CompanyList} and {CompaanySinge},
+          # this case is company dependent.
           module CompanySearch
             require_dependency "company_query"
 
@@ -26,6 +26,7 @@ module Formula
               relations.each do |subject_company_id, year, object_company_ids|
                 v = values_from_db object_company_ids, year
                 next unless v.present?
+
                 yield subject_company_id, year, v
               end
             end
@@ -44,8 +45,8 @@ module Formula
             # @return array with triples
             #   [subject_company_id, year, Array<object_company_id>]
             #   Each of these relations satifies the "Related" condition in the formula
-            #   At this point we haven't checked if the input metric has actually an answer
-            #   for these object_companies
+            #   At this point we haven't checked if the input metric has actually an
+            #   answer for these object_companies
             def relations
               @relations ||=
                 CompanyQuery.new(company_option, search_space).relations
