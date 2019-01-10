@@ -47,6 +47,30 @@ ActiveRecord::Schema.define(version: 20170524163436) do
     t.index ["value"], name: "value_index", length: { value: 100 }
   end
 
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+    t.integer "relationship_id"
+    t.integer "metric_id"
+    t.integer "record_id"
+    t.integer "answer_id"
+    t.integer "object_company_id"
+    t.integer "subject_company_id"
+    t.integer "year"
+    t.string "object_company_name"
+    t.string "subject_company_name"
+    t.string "value"
+    t.decimal "numeric_value", precision: 30, scale: 5
+    t.datetime "updated_at"
+    t.boolean "imported"
+    t.boolean "latest"
+    t.index ["answer_id"], name: "answer_id_index"
+    t.index ["metric_id"], name: "metric_id_index"
+    t.index ["object_company_id"], name: "object_company_id_index"
+    t.index ["record_id"], name: "record_id_index"
+    t.index ["relationship_id"], name: "relationship_id_index", unique: true
+    t.index ["subject_company_id"], name: "subject_company_id_index"
+    t.index ["value"], name: "value_index"
+  end
+
   create_table "card_actions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "card_id"
     t.integer "card_act_id"

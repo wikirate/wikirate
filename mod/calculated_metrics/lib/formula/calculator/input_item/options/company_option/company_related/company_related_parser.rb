@@ -35,10 +35,10 @@ module Formula
 
               def sql
                 parse_expressions
-                [RELATED_SELECT,
+                [related_select,
                  join_sql(@conditions.size - 1),
                  "WHERE (#{where_sql})",
-                 RELATED_GROUP_BY].flatten.compact.join " "
+                 related_group_by].flatten.compact.join " "
               end
 
               def where_sql
@@ -47,7 +47,7 @@ module Formula
               end
 
               def join_sql count
-                return unless count.positive?
+                return unless count.positive? && and_chain?
 
                 Array.new(count) { |i| related_join_sql i + 1 }
               end
@@ -61,7 +61,7 @@ module Formula
               def company_search_space_sql
                 return unless @search_space&.company_ids?
 
-                "(r0.subject_company_id #{in_or_eq @search_space.company_ids})"
+                "(#{subject_sql 0} #{in_or_eq @search_space.company_ids})"
               end
 
               def year_search_space_sql
@@ -79,23 +79,49 @@ module Formula
               end
 
               def parse_expressions
+                validate_logic
                 @conditions =
                   @str.split(Condition::SPLIT_REGEX).map.with_index do |part, i|
-                    Condition.new part.strip.sub(/^\(*/, "").sub(/\)*$/, ""), i
+                    table_index = and_chain? ? i : 0
+                    Condition.new part.strip.sub(/^\(*/, "").sub(/\)*$/, ""), table_index
                   end
               end
 
-              def related_join_sql join_cnt
-                "JOIN relationships AS r#{join_cnt} "\
-            "ON r0.object_company_id = r#{join_cnt}.object_company_id && "\
-            "r0.subject_company_id = r#{join_cnt}.subject_company_id && "\
-            "r0.year = r#{join_cnt}.year"
+              # only "&&"s
+              def and_chain?
+                @and_chain = @str.include?("&&") if @and_chain.nil?
+                @and_chain
               end
 
-              RELATED_SELECT = "SELECT r0.subject_company_id, r0.year, "\
-                           "GROUP_CONCAT(r0.object_company_id SEPARATOR '##') "\
-                           "FROM relationships AS r0".freeze
-              RELATED_GROUP_BY = "GROUP BY r0.subject_company_id, r0.year".freeze
+              def validate_logic
+                return unless @str.include?("&&") && @str.include?("||")
+                raise Condition::Error, "mix of '&&' and '||' is not supported, yet"
+              end
+
+              def object_sql i
+                @conditions[i].object_sql
+              end
+
+              def subject_sql i
+                @conditions[i].subject_sql
+              end
+
+              def related_join_sql join_cnt
+                "LEFT JOIN relationships AS r#{join_cnt} "\
+                "ON #{object_sql 0} = #{object_sql join_cnt} && "\
+                "#{subject_sql 0} = #{subject_sql join_cnt} && "\
+                "r0.year = r#{join_cnt}.year"
+              end
+
+              def related_select
+                "SELECT #{subject_sql 0}, r0.year, "\
+                           "GROUP_CONCAT(#{object_sql 0} SEPARATOR '##') "\
+                           "FROM relationships AS r0"
+              end
+
+              def related_group_by
+                "GROUP BY #{subject_sql 0}, r0.year"
+              end
             end
           end
         end

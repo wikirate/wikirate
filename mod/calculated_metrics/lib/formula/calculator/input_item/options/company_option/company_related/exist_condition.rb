@@ -4,15 +4,8 @@ module Formula
       module Options
         module CompanyOption
           module CompanyRelated
-            # A {Condition} refers to one relationship metric condition in a
-            # Related[] expression for a company option.
-            # For example:
-            #   Related[Jedi+more evil>=6 && Commons+Supplied by=Tier 1 Supplier]}}]
-            #   consists of the two conditions
-            #     "Jedi+more evil>=6" and "Commons+Supplied by=Tier 1 Supplier"
-            #
-            # An instance of {Condition} can parse such an expresion and
-            # search for all relationship answers that satisfy that condition.
+            # A {Condition} that checks only for the existence of a relationship like
+            # Related[Jedi+more evil]
             class ExistCondition
               include AbstractCondition
               def initialize string, id
