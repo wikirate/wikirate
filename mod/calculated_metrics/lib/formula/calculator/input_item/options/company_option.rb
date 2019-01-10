@@ -12,7 +12,7 @@ module Formula
         #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}]'
         #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6]}}]'
         #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6 &&
-        # Commons+Supplied by=Tier 1 Supplier]}}]'
+        #                                   Commons+Supplied by=Tier 1 Supplier]}}]'
         module CompanyOption
           def initialize_option
             super
@@ -23,9 +23,10 @@ module Formula
 
           def interpret_company_option
             case company_option
-            when /^\s*Related\[([^\]]*)\]\s*$/
-              @company_option = Regexp.last_match(1)
-              extend CompanyRelated
+            when /Related\[([^\]]*)\]/
+              extend CompanySearch
+            when /&&/
+              extend CompanyQuery
             when /,/
               extend CompanyList
             else

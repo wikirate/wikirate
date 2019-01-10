@@ -42,7 +42,7 @@ module Formula
             end
 
             def object_company_ids
-              @o_ids ||= object_companies.map { |comp| Card.fetch_id comp }
+              @object_company_ids ||= object_companies.map { |comp| Card.fetch_id comp }
             end
           end
         end

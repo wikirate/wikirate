@@ -43,7 +43,7 @@ RSpec.describe Formula::Calculator::InputValues do
                                "{{Jedi+deadliness| not_researched: 5}}"
       expect_result_space rc,
                           2014 => [samsung, sony], 2015 => [samsung, apple],
-                          1977 => [death_star, spectre, los_pollos, slate_rock],
+                          1977 => [death_star, spectre, los_pollos, slate_rock, samsung],
                           2003 => [slate_rock], 2004 => [slate_rock], 2005 => [slate_rock]
     end
 
