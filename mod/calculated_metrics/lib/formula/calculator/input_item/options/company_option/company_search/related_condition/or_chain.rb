@@ -8,12 +8,13 @@ module Formula
               module OrChain
                 def select_from_sql
                   return super unless any_inverse?
+
                   <<-SQL.strip_heredoc
                     (
                      SELECT subject_company_id, object_company_id,
                             metric_id, inverse_metric_id, year, value
                      FROM relationships
-                     WHERE metric_id #{in_or_eq metric_ids} 
+                     WHERE metric_id #{in_or_eq metric_ids}
                      UNION
                      SELECT object_company_id as subject_company_id,
                             subject_company_id as object_company_id,

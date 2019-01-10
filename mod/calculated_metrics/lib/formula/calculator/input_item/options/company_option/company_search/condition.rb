@@ -34,7 +34,7 @@ module Formula
 
               class << self
                 def new string, id
-                  new_obj(string, id).tap { |con| con.validate }
+                  new_obj(string, id).tap(&:validate)
                 end
 
                 def new_obj string, id

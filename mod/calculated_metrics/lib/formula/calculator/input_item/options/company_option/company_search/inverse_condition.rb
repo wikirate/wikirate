@@ -18,12 +18,12 @@ module Formula
               def join_table_sql
                 <<-SQL.strip_heredoc
                   (
-                   SELECT rr#{@table_id}.object_company_id as subject_company_id, 
-                          rr#{@table_id}.subject_company_id as object_company_id, 
-                          rr#{@table_id}.metric_id, rr#{@table_id}.inverse_metric_id, 
-                          rr#{@table_id}.year, rr#{@table_id}.value
-                   FROM relationships rr#{@table_id}
-                   WHERE rr#{@table_id}.inverse_metric_id = #{metric_id}
+                   SELECT object_company_id as subject_company_id,
+                          subject_company_id as object_company_id,
+                          metric_id, inverse_metric_id,
+                          year, value
+                   FROM relationships 
+                   WHERE inverse_metric_id = #{metric_id}
                   ) AS #{table}
                 SQL
               end

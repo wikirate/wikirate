@@ -40,7 +40,7 @@ module Formula
               #   an answer for these object_companies
               def relations
                 ActiveRecord::Base.connection.select_rows(sql)
-                  .map do |sc_id, year, oc_ids|
+                                  .map do |sc_id, year, oc_ids|
                   [sc_id, year, oc_ids.split("##").map(&:to_i).uniq]
                 end
               end
@@ -49,11 +49,12 @@ module Formula
 
               def join_sql
                 return unless join_sql_parts.present?
+
                 join_sql_parts.join " "
               end
 
               def where_sql
-                "WHERE (#{where_sql_parts.join ') && (' })"
+                "WHERE (#{where_sql_parts.join ') && ('})"
               end
 
               def where_sql_parts
@@ -65,7 +66,7 @@ module Formula
 
               def join_sql_parts
                 [@related_condition.join_sql,
-                @answer_conditions.map(&:join_sql)].flatten.compact
+                 @answer_conditions.map(&:join_sql)].flatten.compact
               end
 
               def company_search_space_sql
@@ -84,7 +85,7 @@ module Formula
                 head, related, tail = @str.partition(/Related\[[^\]]*\]/)
                 @related_condition = related[/(?<=^Related\[).+(?=\])/]
                 @answer_conditions =
-                  "#{head}#{tail}".sub(/^\s*&&/, "").sub(/&&\s*$/,"")
+                  "#{head}#{tail}".sub(/^\s*&&/, "").sub(/&&\s*$/, "")
                                   .split("&&").map(&:strip)
               end
 
@@ -92,8 +93,8 @@ module Formula
                 @related_condition =
                   RelatedCondition.new @related_condition, search_space
                 @answer_conditions.map!.with_index do |con, i|
-                    AnswerCondition.new con, i
-                  end
+                  AnswerCondition.new con, i
+                end
               end
 
               def validate_conditions
@@ -103,6 +104,7 @@ module Formula
 
               def only_one_related
                 return unless @str.scan(/Related\[[^\]]*\]/).size > 1
+
                 raise Condition::Error, "only one 'Related' expression allowed"
               end
             end
