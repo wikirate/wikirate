@@ -68,10 +68,9 @@ Count companies with a relation:
 
             CountRelated[My Group+Supplied by]
 
-Maybe we want?
+Add an additional non-relationship metric condition:
 
             Total[ {{My Group+Total Revenue | company: Related[My Group+Supplied by] && My Group+Total Revenue > 10 ] }} ]
-
 
 
 #### Handle "Unknown" and "Not researched" values
