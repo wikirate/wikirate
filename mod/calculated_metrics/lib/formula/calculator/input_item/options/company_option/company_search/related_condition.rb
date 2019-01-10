@@ -7,7 +7,9 @@ module Formula
             # This class handles a "Related" expression for a company option
             # Related[Jedi+more evil >= 6 && Commons+Supplied by=Tier 1 Supplier]
             class RelatedCondition
-              def initialize str, search_space
+              include SqlHelper
+
+              def initialize str
                 @str = str
                 raise Condition::Error, "empty relation" if @str.blank?
 
@@ -16,7 +18,6 @@ module Formula
                 elsif or_chain?
                   extend OrChain
                 end
-                @search_space = search_space
               end
 
               # raises Condition::Error if something is wrong
@@ -59,15 +60,15 @@ module Formula
 
               def join_sql; end
 
-              private
-
-              def in_or_eq vals
-                if vals.size > 1
-                  "IN (#{vals.join ','})"
-                else
-                  "= #{vals.first}"
-                end
+              def object_sql
+                "r0.object_company_id"
               end
+
+              def subject_sql
+                "r0.subject_company_id"
+              end
+
+              private
 
               # only "&&"s
               def and_chain?
@@ -97,14 +98,6 @@ module Formula
                 return unless @str.include?("&&") && @str.include?("||")
 
                 raise Condition::Error, "mix of '&&' and '||' is not supported, yet"
-              end
-
-              def object_sql
-                "r0.object_company_id"
-              end
-
-              def subject_sql
-                "r0.subject_company_id"
               end
             end
           end

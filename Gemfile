@@ -37,7 +37,7 @@ gem "roo"
 gem "wbench"
 gem "wkhtmltopdf-binary"
 
-gem "rubocop", "0.59.2"
+gem "rubocop", "0.61.1"
 gem "rubocop-decko"
 
 gem "fog"
@@ -96,7 +96,7 @@ end
 
 group :development do
   gem 'html2haml'
-  gem "rubocop-rspec", "1.29.1"
+  gem "rubocop-rspec"
 
   gem "rails-dev-tweaks"
   gem "sprockets" # just so above works

@@ -11,6 +11,8 @@ module Formula
             # It makes the values for this input item independent of the output company
             # (since the answers for the companies of the company option are always used)
             class CompanyQuery
+              include SqlHelper
+
               attr_reader :search_space
 
               def initialize str, search_space
@@ -72,7 +74,7 @@ module Formula
               def company_search_space_sql
                 return unless @search_space&.company_ids?
 
-                "(#{subject_sql 0} #{in_or_eq @search_space.company_ids})"
+                "(#{@related_condition.subject_sql} #{in_or_eq @search_space.company_ids})"
               end
 
               def year_search_space_sql
@@ -90,8 +92,7 @@ module Formula
               end
 
               def init_conditions
-                @related_condition =
-                  RelatedCondition.new @related_condition, search_space
+                @related_condition = RelatedCondition.new @related_condition
                 @answer_conditions.map!.with_index do |con, i|
                   AnswerCondition.new con, i
                 end
