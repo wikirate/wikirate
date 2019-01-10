@@ -11,8 +11,8 @@ module Formula
         # Case 2: related companies
         #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}]'
         #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6]}}]'
-        #   Total[{x{Jedi+deadliness|company:Related[Jedi+more evil>=6 &&
-        # Commons+Supplied by=Tier 1 Supplier]}}]'
+        #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6 &&
+        #                                   Commons+Supplied by=Tier 1 Supplier]}}]'
         module CompanyOption
           def initialize_option
             super
