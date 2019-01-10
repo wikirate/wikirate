@@ -40,18 +40,12 @@ module Formula
 
               def select_sql
                 <<-SQL.strip_heredoc
-                  SELECT #{subject_sql}, r0.year,
-                  GROUP_CONCAT(#{object_sql} SEPARATOR '##')
-                  FROM #{select_from_sql}
+                  SELECT #{subject_sql}, r0.year, #{object_sql} FROM #{select_from_sql}
                 SQL
               end
 
               def select_from_sql
                 "relationships AS r0"
-              end
-
-              def group_by_sql
-                "GROUP BY #{subject_sql}, r0.year"
               end
 
               def where_sql

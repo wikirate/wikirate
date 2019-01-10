@@ -23,11 +23,13 @@ module Formula
             end
 
             def each_answer
-              relations.each do |subject_company_id, year, object_company_ids|
-                v = values_from_db object_company_ids, year
-                next unless v.present?
+              relations.each_pair do |subject_company_id, years|
+                years.each do |year, object_company_ids|
+                  v = values_from_db object_company_ids, year
+                  next unless v.present?
 
-                yield subject_company_id, year, v
+                  yield subject_company_id, year, v
+                end
               end
             end
 
@@ -42,8 +44,8 @@ module Formula
               end
             end
 
-            # @return array with triples
-            #   [subject_company_id, year, Array<object_company_id>]
+            # @return hash with format
+            #   { subject_company_id => { year => Array<object_company_id> } }
             #   Each of these relations satifies the "Related" condition in the formula
             #   At this point we haven't checked if the input metric has actually an
             #   answer for these object_companies

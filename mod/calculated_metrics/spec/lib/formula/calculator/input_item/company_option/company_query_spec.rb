@@ -18,82 +18,69 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanySe
     example "exist condition" do
       expect(sql("Related[Jedi+more evil]"))
         .to eq_sql <<-SQL
-                   SELECT r0.subject_company_id, r0.year,
-                   GROUP_CONCAT(r0.object_company_id SEPARATOR '##')
+                   SELECT r0.subject_company_id, r0.year, r0.object_company_id
                    FROM relationships AS r0
                    WHERE ((r0.metric_id = #{more_evil_id}))
-                   GROUP BY r0.subject_company_id, r0.year
       SQL
     end
 
     example "operator condition" do
       expect(sql("Related[Jedi+more evil = yes]"))
         .to eq_sql <<-SQL
-                   SELECT r0.subject_company_id, r0.year,
-                   GROUP_CONCAT(r0.object_company_id SEPARATOR '##')
+                   SELECT r0.subject_company_id, r0.year, r0.object_company_id
                    FROM relationships AS r0
                    WHERE ((r0.metric_id = #{more_evil_id} && r0.value = "yes"))
-                   GROUP BY r0.subject_company_id, r0.year
       SQL
     end
 
     example "and condition" do
       expect(sql("Related[Jedi+more evil = yes && Commons+supplied_by=Tier 1]"))
         .to eq_sql <<-SQL
-                   SELECT r0.subject_company_id, r0.year,
-                   GROUP_CONCAT(r0.object_company_id SEPARATOR '##')
+                   SELECT r0.subject_company_id, r0.year, r0.object_company_id
                    FROM relationships AS r0
                    LEFT JOIN relationships AS r1 ON
                    r0.subject_company_id = r1.subject_company_id &&
                    r0.object_company_id = r1.object_company_id && r0.year = r1.year
                    WHERE ((r0.metric_id = #{more_evil_id} && r0.value = "yes") AND
                    (r1.metric_id = #{supplied_by_id} && r1.value = "Tier 1"))
-                   GROUP BY r0.subject_company_id, r0.year
       SQL
     end
 
     example "or condition" do
       expect(sql("Related[Jedi+more evil = yes || Commons+supplied_by=Tier 1]"))
         .to eq_sql <<-SQL
-                   SELECT r0.subject_company_id, r0.year,
-                   GROUP_CONCAT(r0.object_company_id SEPARATOR '##')
+                   SELECT r0.subject_company_id, r0.year, r0.object_company_id
                    FROM relationships AS r0
                    WHERE ((r0.metric_id = #{more_evil_id} && r0.value = "yes") OR
                    (r0.metric_id = #{supplied_by_id} && r0.value = "Tier 1"))
-                   GROUP BY r0.subject_company_id, r0.year
       SQL
     end
 
     example "with answer condition" do
       expect(sql("Related[Jedi+more evil = yes] && Jedi+deadliness > 10"))
         .to eq_sql <<-SQL
-                   SELECT r0.subject_company_id, r0.year,
-                   GROUP_CONCAT(r0.object_company_id SEPARATOR '##')
+                   SELECT r0.subject_company_id, r0.year, r0.object_company_id
                    FROM relationships AS r0
                    LEFT JOIN answers AS a0 ON
                    r0.object_company_id = a0.company_id && r0.year = a0.year
                    WHERE ((r0.metric_id = #{more_evil_id} && r0.value = "yes")) &&
                    ((a0.metric_id = #{deadliness_id} && a0.numeric_value > 10))
-                   GROUP BY r0.subject_company_id, r0.year
       SQL
     end
 
     example "inverse metric" do
       expect(sql("Related[Jedi+less evil]"))
         .to eq_sql <<-SQL
-                   SELECT r0.object_company_id, r0.year,
-                   GROUP_CONCAT(r0.subject_company_id SEPARATOR '##')
+                   SELECT r0.object_company_id, r0.year, r0.subject_company_id
                    FROM relationships AS r0
                    WHERE ((r0.inverse_metric_id = #{less_evil_id}))
-                   GROUP BY r0.object_company_id, r0.year
       SQL
     end
 
     example "inverse metric with or condition" do
       expect(sql("Related[Jedi+less evil || Commons+supplied_by=Tier 1]"))
         .to eq_sql <<-SQL
-                   SELECT r0.subject_company_id, r0.year,
-                   GROUP_CONCAT(r0.object_company_id SEPARATOR '##')
+                   SELECT r0.subject_company_id, r0.year, r0.object_company_id
                    FROM (
                      SELECT subject_company_id, object_company_id,
                             metric_id, inverse_metric_id, year, value
@@ -108,15 +95,13 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanySe
                    ) AS r0
                    WHERE ((r0.inverse_metric_id = #{less_evil_id})
                    OR (r0.metric_id = #{supplied_by_id} && r0.value = "Tier 1"))
-                   GROUP BY r0.subject_company_id, r0.year
       SQL
     end
 
     example "inverse metric and metric" do
       expect(sql("Related[Jedi+less evil && Commons+supplied_by=Tier 1]"))
         .to eq_sql <<-SQL
-                   SELECT r0.subject_company_id, r0.year,
-                   GROUP_CONCAT(r0.object_company_id SEPARATOR '##')
+                   SELECT r0.subject_company_id, r0.year, r0.object_company_id
                    FROM
                    ( SELECT object_company_id as subject_company_id,
                             subject_company_id as object_company_id,
@@ -129,15 +114,13 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanySe
                       r0.year = r1.year
                    WHERE ((r0.inverse_metric_id = #{less_evil_id})
                    AND (r1.metric_id = #{supplied_by_id} && r1.value = "Tier 1"))
-                   GROUP BY r0.subject_company_id, r0.year
       SQL
     end
 
     example "metric and inverse metric" do
       expect(sql("Related[Commons+supplied_by=Tier 1 && Jedi+less evil]"))
         .to eq_sql <<-SQL
-                   SELECT r0.subject_company_id, r0.year,
-                   GROUP_CONCAT(r0.object_company_id SEPARATOR '##')
+                   SELECT r0.subject_company_id, r0.year, r0.object_company_id
                    FROM relationships AS r0
                    LEFT JOIN
                    (
@@ -152,7 +135,6 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanySe
                       r0.year = r1.year
                    WHERE ((r0.metric_id = #{supplied_by_id} && r0.value = "Tier 1")
                    AND (r1.inverse_metric_id = #{less_evil_id}))
-                   GROUP BY r0.subject_company_id, r0.year
       SQL
     end
 
@@ -182,7 +164,8 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanySe
     let(:oc_id_3) { Card.fetch_id "Google LLC" }
 
     def relations str
-      described_class.new(str, Formula::Calculator::SearchSpace.new).relations
+      rel = described_class.new(str, Formula::Calculator::SearchSpace.new).relations
+      rel.keys.each_with_object([]) { |a, res| rel[a].each { |c, d| res << [a, c, d] } }
     end
 
     example "exist condition" do

@@ -31,8 +31,7 @@ module Formula
                 validate
                 [@related_condition.select_sql,
                  join_sql,
-                 where_sql,
-                 @related_condition.group_by_sql].flatten.compact.join " "
+                 where_sql].flatten.compact.join " "
               end
 
               # @return array with triples
@@ -41,10 +40,13 @@ module Formula
               #   At this point we haven't checked if the input metric has actually
               #   an answer for these object_companies
               def relations
-                ActiveRecord::Base.connection.select_rows(sql)
-                                  .map do |sc_id, year, oc_ids|
-                  [sc_id, year, oc_ids.split("##").map(&:to_i).uniq]
+                #binding.pry
+                rel_h = ActiveRecord::Base.connection.select_rows(sql)
+                                  .each_with_object(Hash.new_nested(Hash, Array)) do |(sc_id, year, oc_id), h|
+                  # h[sc_id][year] ||= []
+                  h[sc_id][year] << oc_id.to_i
                 end
+                rel_h
               end
 
               private
