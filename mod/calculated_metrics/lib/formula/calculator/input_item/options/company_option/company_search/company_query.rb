@@ -4,12 +4,8 @@ module Formula
       module Options
         module CompanyOption
           module CompanySearch
-            # Used if a "Related" expression is passed as company option
-            # Example:
-            #   {{ M1 | company: Related[M2 >= 6 && M3=Tier 1 Supplier] }}
-            #
-            # It makes the values for this input item independent of the output company
-            # (since the answers for the companies of the company option are always used)
+            # Translates for {CompanySearch} the company option string
+            # to sql and makes the database query for the companies.
             class CompanyQuery
               include SqlHelper
 
