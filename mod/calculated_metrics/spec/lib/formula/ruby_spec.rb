@@ -84,7 +84,7 @@ RSpec.describe Formula::Ruby do
     example "list with not_researched option" do
       result = calculate "Zeros[{ {{Joe User+RM}}, "\
                          "{{Joe User+researched number 1| not_researched: 0}}}]"
-      expect(result).to include 2000 => { death_star => 2.0 }
+      expect(result).to include 2000 => { apple_id => 2 }
     end
   end
 
