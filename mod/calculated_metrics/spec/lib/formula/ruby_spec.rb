@@ -85,7 +85,7 @@ RSpec.describe Formula::Ruby do
       result = calculate "Zeros[{ {{Joe User+RM }}, "\
                          "{{Joe User+researched number 1| not_researched: 0}} }]"
       expect(result).to include 1977 => { death_star => 0 },
-                                2000 => { apple_id => 2.0 }
+                                2000 => { apple_id => 2 }
     end
   end
 
