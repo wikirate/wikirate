@@ -3,7 +3,8 @@
 RSpec.describe Card::Set::Self::IsicSectionFormula do
   describe "get_value" do
     it "finds unique section letter mapping" do
-      expect(card_subject.get_value([%w[64 65 99 50 49 68]])).to eq(%w[K U H L])
+      expect(Card[:isic_section_formula].calculator.get_value([%w[64 65 99 50 49 68]]))
+        .to eq(%w[K U H L])
     end
   end
 

@@ -29,11 +29,13 @@ class Relationship < ApplicationRecord
 
   def latest_year_in_db
     Relationship.where(record_id: record_id, object_company_id: object_company_id)
+                .where.not(id: id)
                 .maximum :year
   end
 
   def latest_to_false
-    Relationship.where(record_id: record_id, latest: true).update_all(latest: false)
+    Relationship.where(record_id: record_id, latest: true).where.not(id: id)
+                .update_all(latest: false)
   end
 
   def latest_to_true

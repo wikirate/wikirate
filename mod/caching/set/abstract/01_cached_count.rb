@@ -9,11 +9,11 @@ def self.included host_class
 end
 
 def cached_count
-  Count.fetch_value self
+  ::Count.fetch_value self
 end
 
 def update_cached_count _changed_card=nil
-  Count.refresh(self)
+  ::Count.refresh(self)
 end
 
 # called to refresh the cached count

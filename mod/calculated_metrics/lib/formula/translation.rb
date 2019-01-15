@@ -1,26 +1,34 @@
- module Formula
+module Formula
   # Formula that translates one value to another based on a JSON map
   class Translation < Calculator
+    def initialize parser, &value_normalizer
+      # TODO: find better solution to make Translation formula to pass Unknown values
+      #    to the calculation
+      parser.define_singleton_method(:unknown_option) do |_i|
+        "Unknown"
+      end
+      super
+    end
+
     def get_value input, _company, _year
       if input.size > 1
         raise Card::Error,
               "translate formula with more than one metric involved"
       end
+      # For multi-category metrics a value can be a list of value.
+      # In that case map every item and take the sum.
       Array.wrap(input.first).inject(0.0) do |res, inp|
-        res + @executed_lambda[inp.to_s.downcase].to_f
+        res + (@executed_lambda[inp.to_s.downcase] || @executed_lambda["else"]).to_f
       end
     end
 
     def to_lambda
-      @formula_card.content.downcase
+      @parser.formula.downcase
     end
 
+    # Is this the right class for this formula?
     def self.supported_formula? formula
       formula =~ /^\{[^{}]*\}$/
-    end
-
-    def year_options
-      nil
     end
 
     protected

@@ -5,15 +5,25 @@ module Formula
       # using the API provided by {AddValidationChecks}
       # The #validate method runs all those checks.
       module ValidationChecks
+        # Provides the api method add_validation_checks that can be called in
+        # a class definition to add validation checks.
+        module ClassMethods
+          def validation_checks
+            @validation_checks ||= []
+          end
+
+          def add_validation_checks *more_checks
+            validation_checks.concat more_checks
+          end
+        end
+
         def self.included host_class
+          host_class.extend ClassMethods
           host_class.instance_variable_set("@validation_checks", [])
-          host_class.define_singleton_method(:validation_checks) do
-            host_class.instance_variable_get("@validation_checks")
-          end
-          host_class.define_method(:validation_checks) { host_class.validation_checks }
-          host_class.define_method(:clear_validation_checks) do
-            host_class.instance_variable_set("@validation_checks", [])
-          end
+        end
+
+        def validation_checks
+          @val_checks ||= self.class.validation_checks.clone
         end
 
         # @return [Array] error messages if invalid; empty array if valid

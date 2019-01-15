@@ -37,7 +37,7 @@ gem "roo"
 gem "wbench"
 gem "wkhtmltopdf-binary"
 
-gem "rubocop"
+gem "rubocop", "0.61.1"
 gem "rubocop-decko"
 
 gem "fog"

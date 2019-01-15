@@ -1,0 +1,169 @@
+Combine metric answers with equations, for example:
+
+
+      {{CDP+Scope 2 emissions}} / {{M2}}
+
+#### Calculated Answers
+
+Formulas are used to calculate answers dynamically. Consider a hypothetical metric named “My Group+increment” with the following formula:
+
+            {{My Group+employees}} + 1
+
+For every answer of the +employees metric, this formula would create a new answer for the +increment metric that was one greater.  So if My Company’s 2015 answer for +employees was 100, then its 2015 answer for +increment would be 101.
+
+#### Metrics as Variables
+
+A metric can be represented within a formula as a metric’s full name within double curly brackets, eg:
+
+            {{CDP+Scope 1 Emissions}}
+
+Because these names can be rather long, the formula interface provides a shortcut: when using the “add metric” button to find metrics, a **temporary short name** is provided, eg **M0, M1….** You can then use those short names in the formula, eg:
+
+            {{M0}}
+
+Upon saving, the name will be converted to the full name. Note that if you already know the full name, you can type it directly in the formula interface and skip the “add metric” step.
+
+#### Specifying Years
+
+If only the metric name is specified, then Formula metric answers for a given year will be based on variable metric answers of the same year. For example, if I create a formula metric called "revenue per employee",
+
+            {{My Group+Total Revenue}} / {{My Group+Number of Employees}}
+
+then each company's answer for 2010 will be based on the 2010 answers for total revenue and number of employees.
+
+However it is also possible to specify an absolute year an answer should be based on.
+
+            {{M0 | year: 2015}}
+
+...or a relative year...
+
+            {{M1 | year: -1}} # one year previous
+
+… or a range of years…
+
+            {{M2 | year: 2011..2013}}
+            {{M3 | year: -2..0}} # from two years ago to present.
+
+... or a list of years...
+
+            {{M1 | year: 2000, -1, 0, 5}}
+
+#### Specifying Companies
+
+Companies are handled the same way as years. By default an answer for a given company will be calculated on the variable metric answers for the same company, but this can be changed. For example, to calculate the "total revenue relative to My Company":
+
+            {{My Group+Total Revenue}} / {{My Group+Total Revenue | company: My Company}}
+
+It's possible to use relationship metrics to specify the companies, for example to calculate the total revenue of all suppliers of a company.
+
+            Total[ {{My Group+Total Revenue | company: Related[My Group+Supplied by] }} ]
+
+`Related[RELATION_CONDITION]` returns a list of all companies that satisfy the `RELATION_CONDITION` for the company, whose answer is calculated. It can be just a relationship metric, which means there has to be a relationship answer with any value. But you can be more specific. For example, the total revenue of all suppliers and shareholders that hold more than 10%.</span>
+
+            Total[ {{My Group+Total Revenue | company: Related[My Group+Supplied by || My Group+Shareholder > 10 ] }} ]
+
+More examples:
+
+Count companies with a relation:
+
+            CountRelated[My Group+Supplied by]
+
+Add an additional non-relationship metric condition:
+
+            Total[ {{My Group+Total Revenue | company: Related[My Group+Supplied by] && My Group+Total Revenue > 10 ] }} ]
+
+
+#### Handle "Unknown" and "Not researched" values
+
+If the value of metric variable is either `Unknown` or `Not researched` (i.e. it doesn't exist), then the result of the calculation is also `Unknown` or `Not researched`, respectively. This behaviour can be changed with either specifying a value that will be used for the calculation or a return value that will be uses as result for the calculation
+
+            Total[{{My Group+Total Revenue | year: -5..0, unknown: no_resultn }}]  # the calculation will be canceled with no result if any
+					                                                                         # of the five involved Total Revenue values is "Unknown"
+            {{M1 | not_researched: no_result; unknown: result_unknown }}  # the default
+            {{M1 | not_researched: -1; unknown: 0 }}                      # count not researched as -1 and unkown as 0
+            Unknowns[{{M1 | year: -5..0, unknown: "Unknown" }}]           # pass "Unknown" to the Unknown function so that it can count the "Unknowns"
+
+#### Processing Formulas
+
+Formula processing happens in two phases:
+
+Phase 1: interpret the variables
+Phase 2: do the math
+
+In Phase 2, the formula is processed as a subset of the Wolfram Language.  For that to be possible, in Phase 1, every nest – the things inside double curly brackets (`{{}}`) – must be translated into something Wolfram Language understands. This means one of these things:
+
+1.  a number, eg 42
+2.  a string, eg "Yes"
+3.  a list, eg {1, 2, 3}
+
+Simple metric nests ({{M1}}) will return either a number or a string.  Metric nests with year ranges will return a list. Also company options can return lists.
+
+#### Simple arithmetic
+
+Most simple mathematical operations use these four operators:
+
+           +  # plus
+           -  # minus
+           *  # multiplied by
+           /  # divided by
+
+For example:
+
+            5 + ({{M1}} * {{M2}}) / {{M3}} - 0.45
+
+
+
+#### Simple logic
+
+            ||  # or
+            &&  # and
+
+For example, take value of the first metric in  a list of metrics, that does have a value.
+
+            {{M1 | not_researched: false}} || {{M2 | not_researched: false }}
+
+
+
+Note, that the "not_researched" option is need for all nests. Otherwise the calculation would be canceled if one of those variable metrics doesn't have a value.
+
+#### Wolfram Functions
+
+Beyond simple mathematical functions, all Wolfram functions take this form:
+
+            Function[argument1, argument2…]
+
+So, for example, to add 3, 4, and 5 together, you might use this function
+
+            Total[{3, 4, 5}]
+
+WikiRate does not yet support all of Wolfram, but it supports the following functions:
+
+* Conditionals: [If](http://reference.wolfram.com/language/ref/If.html), [Switch](http://reference.wolfram.com/language/ref/Switch.html)
+* Basic Operations on Lists:
+[Pick](http://reference.wolfram.com/language/ref/Pick.html), [Cases](http://reference.wolfram.com/language/ref/Cases.html),
+[FirstCase](http://reference.wolfram.com/language/ref/FirstCase.html), [Map](http://reference.wolfram.com/language/ref/Map.html),
+[Sort](http://reference.wolfram.com/language/ref/Sort.html), [SortBy](http://reference.wolfram.com/language/ref/SortBy.html)
+* Math & Counting Operations on Lists: [Total](http://reference.wolfram.com/language/ref/Total.html),
+[Count](http://reference.wolfram.com/language/ref/Count.html),
+[Min](http://reference.wolfram.com/language/ref/Min.html),
+[Max](http://reference.wolfram.com/language/ref/Max.html),
+[MaximalBy](http://reference.wolfram.com/language/ref/MaximalBy.html),
+[MinimalBy](http://reference.wolfram.com/language/ref/MinimalBy.html), [Take](http://reference.wolfram.com/language/ref/Take.html),
+[TakeLargest](http://reference.wolfram.com/language/ref/TakeLargest.html), [TakeSmallest](http://reference.wolfram.com/language/ref/TakeSmallest.html),
+[TakeLargestBy](http://reference.wolfram.com/language/ref/TakeLargestBy.html), [TakeSmallestBy](http://reference.wolfram.com/language/ref/TakeSmallestBy.html)
+* Boolean Computation:
+[Boole](http://reference.wolfram.com/language/ref/Boole.html), [AllTrue](http://reference.wolfram.com/language/ref/AllTrue.html),
+[AnyTrue](http://reference.wolfram.com/language/ref/AnyTrue.html), [NoneTrue](http://reference.wolfram.com/language/ref/NoneTrue.html)
+* Statistical Computations: [Mean](http://reference.wolfram.com/language/ref/Mean.html), [Variance](http://reference.wolfram.com/language/ref/Variance.html),
+[StandardDeviation](http://reference.wolfram.com/language/ref/StandardDeviation.html), [Median](http://reference.wolfram.com/language/ref/Median.html),
+[Quantile](http://reference.wolfram.com/language/ref/Quantile.html), [Covariance](http://reference.wolfram.com/language/ref/Covariance.html)
+
+Additionaly, WikiRate offers these special counting functions:
+
+* `Zeros[list]`: count zeros.
+* `Unknowns[list]`: count unknowns. Note, that you have to use the "unknown: Unknown" option for metric variables, eg.
+
+
+           Unknowns[{{M1 | year: -2..0; unknown: Unknown}}]
+
+* `CountRelated[metric]`: count how many companies are related through the given relationship metric.

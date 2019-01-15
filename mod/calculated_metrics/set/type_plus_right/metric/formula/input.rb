@@ -8,59 +8,30 @@ def standard_formula
   content.gsub(/[\r\n]+/m, "")
 end
 
-def input_chunks
-  @input_chunks ||= find_input_chunks
+def parser
+  ::Formula::Parser.new clean_formula, special_item_names, self
 end
 
-def find_input_chunks
-  content_obj = Card::Content.new(content, self, chunk_list: :formula)
-  content_obj.find_chunks(Content::Chunk::FormulaInput)
+delegate :input_chunks, :input_cards, :input_names, :input_keys,
+         :year_options, :company_options, :unknown_options, to: :parser
+
+
+def item_names _args={}
+  descendant? ? super : parser.input_names
 end
 
-def input_cards
-  @input_cards ||= input_names.map { |name| Card.fetch name }
-end
-
-def input_names
-  @input_names ||= item_names
-end
-
-def item_names args={}
+def special_item_names
   case metric_card.metric_type_codename
   when :score       then [metric_card.basic_metric]
   when :wiki_rating then translation_hash.keys
-  when :descendant  then super
-  else                   standard_input_names
+  when :descendant  then item_names
   end
 end
 
-def standard_input_names
-  input_chunks.map { |chunk| chunk.referee_name.to_s }
-end
-
-def input_keys
-  @input_keys ||= input_names.map { |m| m.to_name.key }
-end
 
 # are values required for ALL inputs or ANY input?
 def input_requirement
   metric_card.formula_input_requirement
-end
-
-# Extracts all year options from all input nests in the formula
-def year_options
-  @year_options ||= input_options :year
-end
-
-# Extracts all company options from all input nests in the formula
-def company_options
-  @company_options ||= input_options :company
-end
-
-def input_options option_name
-  input_chunks.map do |chunk|
-    chunk.options[option_name]
-  end
 end
 
 event :validate_formula_input, :validate, on: :save, changed: :content do
