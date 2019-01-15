@@ -1,6 +1,6 @@
 # # Use this hook to configure LinkThumbnailer bahaviors.
 #
-# LinkThumbnailer.configure do |config|
+LinkThumbnailer.configure do |config|
 #   # Numbers of redirects before raising an exception when trying to parse given url.
 #   #
 #   config.redirect_limit = 100
@@ -67,4 +67,6 @@
 #   # does not have to fetch its size and type.
 #   #
 #   # config.image_stats = true
-# end
+#
+  config.raise_on_invalid_format = true
+end
