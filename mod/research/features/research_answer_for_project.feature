@@ -11,9 +11,10 @@ Feature: Research answer for project
     Then I should see "Evil Project"
     And I should see "disturbances in the Force"
     And I should see "Death Star"
-    And I should see "2017"
 
-    When I cite source
+    When I select year "2017"
+    And I cite source
+
     And I choose "yes"
     And I press "Submit"
     Then I should see "Success! To research another answer select a different metric or year."
