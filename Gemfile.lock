@@ -39,9 +39,9 @@ PATH
 PATH
   remote: vendor/decko
   specs:
-    card (1.96.6)
+    card (1.96.7)
       bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.6.6)
+      cardname (= 0.6.7)
       carrierwave (= 1.2.2)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -59,11 +59,11 @@ PATH
       twitter (~> 6.1)
       uglifier (~> 3.2)
       uuid (~> 2.3)
-    cardname (0.6.6)
+    cardname (0.6.7)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
-    decko (0.6.6)
-      card (= 1.96.6)
+    decko (0.6.7)
+      card (= 1.96.7)
 
 GEM
   remote: http://rubygems.org/
@@ -225,7 +225,7 @@ GEM
     equalizer (0.0.11)
     erubi (1.8.0)
     erubis (2.7.0)
-    ethon (0.11.0)
+    ethon (0.12.0)
       ffi (>= 1.3.0)
     eventmachine (1.2.7)
     excon (0.62.0)

@@ -10,7 +10,9 @@ event :update_lookup_answers, :integrate,
 end
 
 def calculation_in_progress!
-  Answer.where(id: all_dependent_answer_ids).update_all(calculating: true)
+  ids = all_dependent_answer_ids
+  Answer.where(id: ids).update_all(calculating: true)
+  Answer.where(id: ids).each(&:expire)
 end
 
 def initial_calculation_in_progress!
@@ -75,6 +77,7 @@ end
 def update_or_add_answer company, year, value
   if (aw = answer(company, year))
     update_answer aw, company, year, value
+    aw.expire
   else
     add_answer company, year, value
   end
