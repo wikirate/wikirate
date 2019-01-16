@@ -20,9 +20,9 @@ module Formula
             interpret_not_researched_option
           end
 
-          # input value has the value "Unknown"
+          # input value has "not researched" value
           def input_value_not_researched? value
-            Array.wrap(value).any?(&:nil?)
+            value.blank? || Array.wrap(value).any?(&:blank?)
           end
 
           private
