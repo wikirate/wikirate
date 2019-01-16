@@ -912,11 +912,3 @@ a {
     @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
   }
 }
-
-.cite-bar .details {
-/*     width: 141.6666666667%; */
-    width: 58.3333333333%;
-    left: 41.6666666667%;
-    position: fixed !important;
-    top: 65px;
-}
