@@ -176,8 +176,8 @@ format do
   end
 
   def year
-    @year ||= research_param(:year) || (project_year_list? && year_list.first) ||
-              (project? && (Time.now.year - 1).to_s)
+    @year ||= research_param(:year) ||
+              (project_year_list? && year_list.size == 1 && year_list.first)
   end
 
   def record_card
