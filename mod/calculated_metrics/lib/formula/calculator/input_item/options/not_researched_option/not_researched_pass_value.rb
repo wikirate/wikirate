@@ -12,7 +12,8 @@ module Formula
             def not_researched_value
               case not_researched_option
               when "false" then false
-              when /^[+-]?\d+$/ then not_researched_option.to_i
+              # when /^[+-]?\d+$/
+              #   not_researched_option.to_i  casting happens later
               else
                 not_researched_option
               end
@@ -22,7 +23,7 @@ module Formula
               return value unless input_value_not_researched?(value)
 
               if value.is_a?(Array)
-                value.map { |v| v.nil? ? not_researched_value : v }
+                value.map { |v| v.blank? ? not_researched_value : v }
               else
                 not_researched_value
               end

@@ -8,7 +8,7 @@ module Formula
   # The formula may only consist of numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
   class Ruby < NestFormula
-    SYMBOLS = %w{+ - ( ) [ ] . * , / || &&}.freeze
+    SYMBOLS = %w[+ - ( ) \[ \] . * , / || && { } ].freeze
     FUNCTIONS = { "Total" => "sum", "Max" => "max", "Min" => "min",
                   "Zeros" => "count(0)", "Flatten" => "flatten",
                   "Unknowns" => "count('Unknown')" }.freeze
@@ -22,9 +22,7 @@ module Formula
     class << self
       # Is this the right class for this formula?
       def supported_formula? formula
-        %i[remove_functions remove_nests check_symbols].inject(formula) do |arg, method|
-          send method, arg
-        end
+        apply %i[remove_functions remove_nests check_symbols], formula
       end
 
       def remove_functions formula, translated=false
@@ -41,6 +39,14 @@ module Formula
       def check_symbols formula
         symbols = SYMBOLS.map { |s| "\\#{s}" }.join
         formula =~ /^[\s\d#{symbols}]*$/
+      end
+
+      def apply methods, arg
+        methods = Array.wrap methods
+
+        methods.inject(arg) do |ret, method|
+          send method, ret
+        end
       end
     end
 
@@ -68,10 +74,7 @@ module Formula
     end
 
     def to_lambda
-      rb_formula =
-        replace_nests(translate_functions) do |index|
-          "#{LAMBDA_ARGS_NAME}[#{index}]"
-        end
+      rb_formula = translate %i[functions nests list_syntax], formula
       find_allowed_non_numeric_input rb_formula
       lambda_wrap rb_formula
     rescue FunctionTranslator::SyntaxError => e
@@ -89,14 +92,29 @@ module Formula
                   Regexp.last_match(1).gsub(/args\[\d+\]/, "")
                 else
                   expr
-              end
+                end
       ruby_safe? cleaned
     end
 
     private
 
-    def translate_functions
-      function_translator.translate formula
+    def translate methods, arg
+      methods = Array.wrap(methods).map { |m| "translate_#{m}" }
+      methods.inject(arg) do |ret, method|
+        send method, ret
+      end
+    end
+
+    def translate_functions f=formula
+      function_translator.translate f
+    end
+
+    def translate_nests formula
+      replace_nests(formula) { |index| "#{LAMBDA_ARGS_NAME}[#{index}]" }
+    end
+
+    def translate_list_syntax formula
+      formula.tr("{}", "[]")
     end
 
     def function_translator
