@@ -12,6 +12,7 @@ module Formula
 
             def replace_unknown value
               return value unless input_value_unknown?(value)
+
               if value.is_a?(Array)
                 value.map { |v| input_value_unknown?(v) ? unknown_option : v }
               else

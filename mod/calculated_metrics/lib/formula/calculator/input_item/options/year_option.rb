@@ -41,8 +41,8 @@ module Formula
             year_option
           end
 
-          # @param value_data [Array<Hash] for every input item a hash with values for every
-          #   year
+          # @param value_data [Array<Hash] for every input item a hash with values
+          #   for every year
           # @param the year we want the input data for
           def apply_year_option value_data, year
             year = year.to_i
@@ -67,8 +67,8 @@ module Formula
                                .map(&:to_i).tap { |a| a.delete 0 }
           end
 
-          def year? y
-            y.is_a?(Integer) && y > 1000
+          def year? year
+            year.is_a?(Integer) && year > 1000
           end
 
           def interpret_year_option

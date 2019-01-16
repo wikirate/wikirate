@@ -43,10 +43,14 @@ RSpec.describe Card::Set::Type::Source do
           expect(Card.exists?("#{sourcepage.name}+description")).to eq(false)
           expect(File.exist?(source_file.file.path)).to be true
         end
+
         it "handles this special url and saves as a file source" do
-          pdf_url = "https://www.unglobalcompact.org/system/attachments/9862/"\
-                    "original/Sinopec_2010_Sustainable_Development_Report.pdf?"\
-                    "1302508855"
+          pdf_url =
+            "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"
+            # I replaced the following url because it took 18min on semaphore to process
+            # "https://www.unglobalcompact.org/system/attachments/9862/"\
+            #        "original/Sinopec_2010_Sustainable_Development_Report.pdf?"\
+            #        "1302508855"
           sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
           expect(sourcepage.fetch(trait: :file)).not_to be_nil

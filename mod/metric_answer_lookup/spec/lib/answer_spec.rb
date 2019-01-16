@@ -110,6 +110,17 @@
       expect(answer.year).to eq 1999
     end
 
+    context "when year changes" do
+      it "doesn't change latest if still latest" do
+        name = "Joe User+researched number 1+Apple Inc+2015"
+        new_name = "Joe User+researched number 1+Apple Inc+2014"
+        update name, name: new_name
+        answer_id = Card.fetch_id new_name
+        answer = Answer.find_by_answer_id answer_id
+        expect(answer.latest).to eq true
+      end
+    end
+
     it "updates value" do
       expect { update "#{answer_name}+value", content: "85" }
         .to change { answer.value }.from("13").to("85")

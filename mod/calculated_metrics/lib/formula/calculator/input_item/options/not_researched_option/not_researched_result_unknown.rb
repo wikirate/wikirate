@@ -9,6 +9,7 @@ module Formula
             def value_for company_id, year
               value = super
               return value unless input_value_not_researched? value
+
               throw(:cancel_calculation, :unknown)
             end
           end

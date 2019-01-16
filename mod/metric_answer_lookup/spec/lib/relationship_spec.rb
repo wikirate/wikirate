@@ -105,6 +105,18 @@ RSpec.describe Relationship do
       expect(relation.object_company_name).to eq "Google LLC"
     end
 
+    context "when year changes" do
+      example "doesn't change latest if still latest" do
+        expect(relation.latest).to eq true
+        name = "Commons+Supplied by+SPECTRE+2000"
+        new_name = "Commons+Supplied by+SPECTRE+1999"
+        update name, name: new_name
+        relation_id = Card.fetch_id "#{new_name}+Los_Pollos_Hermanos"
+        relation = Relationship.find_by_relationship_id relation_id
+        expect(relation.latest).to eq true
+      end
+    end
+
     it "updates metric" do
       update relation_name,
              name: "Commons+Supplied by+Google LLC+1977+Los Pollos Hermanos"
