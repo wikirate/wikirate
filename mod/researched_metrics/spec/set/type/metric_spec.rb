@@ -44,17 +44,17 @@ RSpec.describe Card::Set::Type::Metric do
       let(:metric) { sample_metric(:number) }
 
       example "to free text" do
-        metric.value_type_card.update_attributes! content: "Free Text"
+        metric.value_type_card.update! content: "Free Text"
         expect(metric.value_type).to eq "Free Text"
       end
 
       example "to category" do
-        expect { metric.value_type_card.update_attributes! content: "Category" }
+        expect { metric.value_type_card.update! content: "Category" }
           .to raise_error ActiveRecord::RecordInvalid
       end
 
       example "to money" do
-        metric.value_type_card.update_attributes! content: "Money"
+        metric.value_type_card.update! content: "Money"
         expect(metric.value_type).to eq "Money"
       end
     end

@@ -64,7 +64,7 @@ RSpec.describe Card::Set::MetricType::Relationship do
 
     def delete_answers
       with_param :company, company do
-        metric_card.update_attributes trigger: :delete_relationship_answers
+        metric_card.update trigger: :delete_relationship_answers
       end
     end
 

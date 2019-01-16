@@ -59,7 +59,7 @@ class Answer
     end
 
     def update_value value
-      update_attributes! value_attributes(value)
+      update! value_attributes(value)
     end
 
     def value_attributes value

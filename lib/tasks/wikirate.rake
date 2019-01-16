@@ -45,9 +45,9 @@ namespace :wikirate do
     _task, subject = ARGV
     Card::Cache.reset_all
     Card::Auth.as_bot do
-      Card[:wikirate_company].update_attributes! name: subject, update_referers: true
+      Card[:wikirate_company].update! name: subject, update_referers: true
       Card.search(type_id: Card::MetricID) do |card|
-        card.update_attributes! codename: nil if card.codename.present?
+        card.update! codename: nil if card.codename.present?
         card.delete!
       end
       Card.search(type_id: Card::WikirateCompanyID) do |card|
@@ -66,14 +66,14 @@ namespace :wikirate do
       next unless card.simple?
       new_name =
         card.name.gsub(old.capitalize, new.capitalize).gsub(old.downcase, new.downcase)
-      card.update_attributes! name: new_name, update_referers: true
+      card.update! name: new_name, update_referers: true
     end
     Card.search(content: ["match", old]) do |card|
       new_content =
         card.db_content
             .gsub(/\b#{old.capitalize}\b/, new.capitalize)
             .gsub(/\b#{old.downcase}\b/, new.downcase)
-      card.update_attributes! db_content: new_content
+      card.update! db_content: new_content
     end
   end
 

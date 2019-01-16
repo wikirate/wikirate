@@ -192,7 +192,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     context "when formula changes" do
       def update_formula new_formula
         Card::Auth.as_bot do
-          @metric.formula_card.update_attributes!(
+          @metric.formula_card.update!(
             content: build_formula(new_formula)
           )
         end
@@ -234,7 +234,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     context "when input metric value changes" do
       it "updates calculated value" do
         card = Card["#{@metric_name1}+Samsung+2014+value"]
-        expect { card.update_attributes! content: "1" }
+        expect { card.update! content: "1" }
           .to change { calc_value }.from("60.0").to("15.0")
       end
       it "removes incomplete calculated values" do

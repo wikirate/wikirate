@@ -46,7 +46,7 @@ describe Card::Set::TypePlusRight::Project::WikirateCompany do
     end
 
     def add_formula_and_company_to project
-      project.update_attributes!(
+      project.update!(
         "+companies": { content: "Death Star" },
         "+metrics": { content: "Jedi+deadliness average" }
       )
