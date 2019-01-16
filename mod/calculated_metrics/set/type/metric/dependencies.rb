@@ -10,16 +10,19 @@ def each_dependent_metric
   dependency_tree.each_metric { |m| yield m }
 end
 
-# def directly_dependent_metrics
-#   score_metrics + formula_metrics
-# end
+# note: #formula_metrics will find score metrics when scored by formula
+# but not when scored by mapping.
+def directly_dependent_metrics
+  (score_metrics + formula_metrics).uniq
+end
 
 def dependency_tree
-  DependencyTree.new formula_metrics
+  DependencyTree.new directly_dependent_metrics
 end
 
 def score_metrics
-  Card.search type_id: MetricID, left_id: id
+  @score_metrics ||=
+    Card.search type_id: MetricID, left_id: id
 end
 
 # note: includes score metrics

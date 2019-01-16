@@ -31,14 +31,15 @@ class Answer
     end
 
     def source_field
-      @source_field ||= Card.fetch [answer_name, :source], new: { type_id: Card::PointerID}
+      @source_field ||=
+        Card.fetch [answer_name, :source], new: { type_id: Card::PointerID }
     end
 
     # class methods for {Answer}
     module ClassMethods
       def csv_title
         CSV.generate_line ["ANSWER ID", "ANSWER_LINK", "METRIC NAME",
-                           "COMPANY NAME", "YEAR", "VALUE", "# SOURCES", "SOURCE LINK" ]
+                           "COMPANY NAME", "YEAR", "VALUE", "# SOURCES", "SOURCE LINK"]
       end
     end
   end
