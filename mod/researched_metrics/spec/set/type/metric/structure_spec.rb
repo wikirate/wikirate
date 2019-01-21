@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Type::Metric::Structure do
   end
 
   check_views_for_errors :open_content, :bar, :box, :edit,
-                         :details_tab, :score_tab, :source_tab, :project_tab
+                         :details_tab, :calculation_tab, :source_tab, :project_tab
 
   describe "view: bar_left" do
     it "has metric title" do

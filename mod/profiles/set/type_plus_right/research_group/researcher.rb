@@ -44,7 +44,7 @@ format :html do
   end
 
   def members_on_page paging_args
-    wql = { referred_to_by: card.name, type_id: UserID, sort: :name }
+    wql = { referred_to_by: card.name, sort: :name, right_plus: :account }
     Card.search wql.merge!(paging_args.extract!(:limit, :offset))
   end
 

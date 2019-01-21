@@ -44,15 +44,6 @@ a {
   color: $anchor_color;
 
 }
-
-/* many sites may want this external link behavior; it's here because it's a nuisance to override when not desired */
-a.external-link,
-.closed-content a.external-link {
-  color: $closed-content-a-color;
-  background: url("/assets/external_link.png") center right no-repeat;
-  padding-right: 13px !important;
-
-}
 img {
   border: 0;
 }
@@ -124,32 +115,10 @@ body {
       color: #999;
       text-decoration: underline;
     }
-  }
-  >.SELF-wikirate_footer a.external-link, body .SELF-wikirate_footer_compact a.external-link{
-    padding-right:0px!important;
-  }
-
-  >.SELF-wikirate_footer, .SELF-wikirate_footer_compact{
-    clear: both;
-    display: block;
-    padding: 0;
-    font-size: 0.9em;
-    a.external-link {
-      background: inherit !important;
-      &:before{
+    a.external-link{
+      padding-right:0px!important;
+      &:after{
         display: none;
-      }
-    }
-    [class*="SELF-logo_"] {
-      display: inline-block;
-    }
-    .navbar {
-      margin-bottom: 0px;
-      .wagn-link a {
-        padding: 6px 20px;
-        &:hover {
-          background: none;
-        }
       }
     }
   }
