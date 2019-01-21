@@ -38,7 +38,7 @@ event :ensure_title, :validate, on: :save, changed: :name do
   end
 end
 
-event :ensure_two_parts, :validate, changed: :name do
+event :ensure_two_parts, :validate, on: :save, changed: :name do
   errors.add :name, "at least two parts are required" if name.parts.size < 2
 end
 
