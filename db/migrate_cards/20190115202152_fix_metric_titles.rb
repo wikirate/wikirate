@@ -6,7 +6,11 @@ class FixMetricTitles < Card::Migration
       next if metric.score?
       title = metric.right
       next if title.type_code.in? %i[metric_title report_type]
-      title.update! type_id: Card::MetricTitleID
+      begin
+        title.update! type_id: Card::MetricTitleID
+      rescue
+        puts "failed to update #{title.name}"
+      end
     end
   end
 end
