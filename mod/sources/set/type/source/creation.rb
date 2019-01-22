@@ -23,13 +23,14 @@ format :html do
   # an answer and/or search term
   def prepopulate_answer_fields
     %i[year wikirate_company report_type wikirate_title description].each do |fieldcode|
-      next unless (value = send "default_#{fieldcode}") && value != "false"
+      next unless (value = send "default_#{fieldcode}")
       params["_#{fieldcode.cardname}"] = value
     end
   end
 
   def default_year
-    answer_card.year
+    year = answer_card.year
+    year unless year == "false"
   end
 
   def default_wikirate_company
