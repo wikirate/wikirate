@@ -312,9 +312,9 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (1.8.1)
+    fog-google (1.8.2)
       fog-core (<= 2.1.0)
-      fog-json (~> 1.2.0)
+      fog-json (~> 1.2)
       fog-xml (~> 0.1.0)
       google-api-client (~> 0.23.0)
     fog-internet-archive (0.0.1)
