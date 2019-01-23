@@ -8,6 +8,6 @@ class CleanUpStylesAndScripts < Card::Migration
     Card[:all, :script].drop_item! "script: old libraries"
 
     return unless (card = Card[:wikirate_skin, :stylesheets])
-    card.update_attributes! content: "[[emergency style hacks]]"
+    card.update! content: "[[emergency style hacks]]"
   end
 end

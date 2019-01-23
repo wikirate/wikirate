@@ -80,11 +80,11 @@ format :html do
   end
 
   view :metric_tab do
-    field_nest :metric, items: { view: :bar }
+    field_nest :metric, items: { view: :mini_bar }
   end
 
   view :project_tab do
-    field_nest :project, items: { view: :bar }
+    field_nest :project, items: { view: :mini_bar }
   end
 
   view :researcher_tab do

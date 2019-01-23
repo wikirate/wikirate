@@ -13,9 +13,9 @@ PATH
 PATH
   remote: vendor/card-mods/markdown
   specs:
-    card-mod-markdown (0.2)
+    card-mod-markdown (0.1)
       card
-      kramdown
+      maruku
 
 PATH
   remote: vendor/card-mods/new_relic
@@ -39,9 +39,9 @@ PATH
 PATH
   remote: vendor/decko
   specs:
-    card (1.96.7)
+    card (1.96.8)
       bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.6.7)
+      cardname (= 0.6.8)
       carrierwave (= 1.2.2)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -59,11 +59,11 @@ PATH
       twitter (~> 6.1)
       uglifier (~> 3.2)
       uuid (~> 2.3)
-    cardname (0.6.7)
+    cardname (0.6.8)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
-    decko (0.6.7)
-      card (= 1.96.7)
+    decko (0.6.8)
+      card (= 1.96.8)
 
 GEM
   remote: http://rubygems.org/
@@ -110,7 +110,7 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.5.2)
+    addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     airbrussh (1.3.1)
       sshkit (>= 1.6.1, != 1.7.0)
@@ -333,7 +333,7 @@ GEM
       fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
-    fog-ovirt (1.1.4)
+    fog-ovirt (1.1.5)
       fog-core
       fog-json
       fog-xml
@@ -392,7 +392,7 @@ GEM
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
     gherkin (5.1.0)
-    globalid (0.4.1)
+    globalid (0.4.2)
       activesupport (>= 4.2.0)
     google-api-client (0.23.9)
       addressable (~> 2.5, >= 2.5.1)
@@ -428,7 +428,7 @@ GEM
     http-form_data (2.1.1)
     http_parser.rb (0.6.0)
     httpclient (2.8.3)
-    i18n (1.5.1)
+    i18n (1.5.2)
       concurrent-ruby (~> 1.0)
     image_info (1.1.2)
       image_size
@@ -452,7 +452,6 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    kramdown (1.17.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.19)
@@ -473,6 +472,7 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
+    maruku (0.7.3)
     memoist (0.16.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -498,9 +498,9 @@ GEM
     net-ssh (5.1.0)
     net_http_timeout_errors (0.3.3)
     netrc (0.11.0)
-    newrelic_rpm (5.6.0.349)
+    newrelic_rpm (5.7.0.350)
     nio4r (2.3.1)
-    nokogiri (1.10.0)
+    nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     nokogiri-happymapper (0.8.0)
       nokogiri (~> 1.5)
@@ -509,10 +509,10 @@ GEM
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
     os (1.0.0)
-    ovirt-engine-sdk (4.2.5)
+    ovirt-engine-sdk (4.3.0)
       json (>= 1, < 3)
-    parallel (1.12.1)
-    parser (2.5.3.0)
+    parallel (1.13.0)
+    parser (2.6.0.0)
       ast (~> 2.4.0)
     pdfkit (0.8.2)
     pivotal-tracker (0.5.13)
@@ -594,9 +594,9 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (3.1.2)
-    roo (2.7.1)
+    roo (2.8.0)
       nokogiri (~> 1)
-      rubyzip (~> 1.1, < 2.0.0)
+      rubyzip (>= 1.2.1, < 2.0.0)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
       rspec-expectations (~> 3.6.0)

@@ -4,7 +4,6 @@
   color: $muted;
 }
 
-
 .titled-view.LTYPE_RTYPE-record-year > .d0-card-header > .d0-card-header-title > .card-title {
   font-size: 1.25rem; // make title look like h5 tag
   margin-bottom: 0.5rem;
@@ -111,4 +110,23 @@ form.answer-form {
     background-color: $gray-200;
     color: inherit;
   }
+}
+
+//prevent multiple scroll bars
+.cite-bar .details {
+    overflow: hidden;
+    width: 58.3333333333% !important;
+    left: 41.6666666667% !important;
+    position: fixed !important;
+    height: calc(100vh - 117px) !important;
+    top: 117px;
+}
+
+.pdf-source-preview iframe {
+    height: calc(100vh - 158px) !important;
+}
+
+#Research_Page .nav-tabs .nav-link {
+    padding-top: 8px;
+    padding-bottom: 10px;
 }

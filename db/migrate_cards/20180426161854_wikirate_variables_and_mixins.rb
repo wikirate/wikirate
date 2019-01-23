@@ -16,7 +16,7 @@ class WikirateVariablesAndMixins < Card::Migration
 
     # for some reasons `update_referers` doesn't work
     if card.content.include? "wikirate stylesheets"
-      card.update_attributes!(
+      card.update!(
         content: card.content.sub("wikirate stylesheets", "coded stylesheets")
       )
     end

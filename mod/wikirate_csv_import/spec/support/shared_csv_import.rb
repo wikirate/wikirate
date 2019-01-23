@@ -19,7 +19,7 @@ shared_context "csv import" do
 
   def trigger_import_with_card card, *data
     Card::Env.params.merge! import_params(*data)
-    card.update_attributes! subcards: {}
+    card.update! subcards: {}
     card
   end
 

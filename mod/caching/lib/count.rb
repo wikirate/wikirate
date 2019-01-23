@@ -4,7 +4,7 @@ class Count < ActiveRecord::Base
   end
 
   def update new_value
-    update_attributes! value: new_value
+    update! value: new_value
     new_value
   end
 

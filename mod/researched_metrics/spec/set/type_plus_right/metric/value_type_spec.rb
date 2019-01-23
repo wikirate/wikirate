@@ -3,7 +3,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
     create_answer metric: metric, company: sample_company, content: value
     card = metric.value_type_card
     Card::Auth.as_bot do
-      card.update_attributes content: value_type
+      card.update content: value_type
     end
     card
   end
@@ -51,7 +51,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
 
       context "some values are not in the options" do
         it "blocks type changing" do
-          subject.update_attributes content:  "Category"
+          subject.update content:  "Category"
           is_expected.to be_invalid.because_of value: include("option")
           expect(subject.errors.first[1])
             .to have_tag :a, text: "100"
@@ -60,13 +60,13 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
 
       context "all values are in the options", with_user: "Joe Admin" do
         before do
-          metric.value_options_card.update_attributes(
+          metric.value_options_card.update(
             content: %w[5 8 9 10 20 40 50 100].to_pointer_content
           )
         end
 
         it "updates the value type successfully" do
-          subject.update_attributes content: "Category"
+          subject.update content: "Category"
           expect(metric.value_type).to eq "Category"
           is_expected.to be_valid
         end

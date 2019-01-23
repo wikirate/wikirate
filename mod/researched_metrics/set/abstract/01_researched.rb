@@ -8,7 +8,7 @@ format :html do
   end
 
   def tab_list
-    %i[details score source project]
+    super << :project
   end
 
   view :main_details do

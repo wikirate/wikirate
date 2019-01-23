@@ -1,7 +1,7 @@
 format :html do
   # default tab list (several metric types override)
   def tab_list
-    %i[details project]
+    %i[details calculation project]
   end
 
   view :details_tab do
@@ -38,28 +38,26 @@ format :html do
     end
   end
 
-  # NOTE: score_tab is the only view using tr_link / link-tr.
-  # When refactoring, we can remove that functionality
-  view :score_tab do
+  view :calculation_tab do
     tab_wrap do
-      output [score_cards_table, add_score_link]
+      output [calculations_list, add_score_link]
     end
   end
 
-  def tab_options
-    opts = super
-    opts[:score] = { count: card.score_card.count } if tab_list.include?(:score)
-    opts
+  def calculations_list
+    card.directly_dependent_metrics.map do |metric|
+      nest metric, view: :mini_bar
+    end.join
   end
 
-  def score_cards_table
-    wikirate_table :plain, card.score_card.item_cards, [:score_thumbnail],
-                   header: ["scored by"], tr_link: ->(item) { path mark: item }
+  def tab_options
+    { calculation: { count: card.directly_dependent_metrics.size } }
   end
 
   def add_score_link
+    return if card.score?
     link_to_card :metric, "Add new score",
                  path: { action: :new, tab: :score, metric: card.name },
-                 class: "btn btn-primary"
+                 class: "btn btn-primary mt-4"
   end
 end

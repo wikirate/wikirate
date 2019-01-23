@@ -7,7 +7,7 @@ RSpec.describe Card::Set::Type::Metric::Events do
       let(:newname) { "Jedi+flakiness" }
       let(:newcard) { Card[newname] }
 
-      before { Card[oldname].update_attributes! name: newname, update_referers: true }
+      before { Card[oldname].update! name: newname, update_referers: true }
 
       it "updates metric names in lookup table" do
         expect(newcard.all_answers.first.metric_name).to eq(newname)

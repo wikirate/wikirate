@@ -24,7 +24,7 @@ class FixPrmeYears < Card::Migration
     if (duplicate = Card[new_name])
       handle_duplicate duplicate, answer, conflicts
     else
-      answer.update_attributes! name: new_name
+      answer.update! name: new_name
     end
   end
   

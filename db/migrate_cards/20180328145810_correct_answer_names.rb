@@ -10,7 +10,7 @@ class CorrectAnswerNames < Card::Migration
         metric =  Card.fetch_name(a.metric_id).to_s
         if company != a.company_name || metric != a.metric_name
           begin
-            a.update_attributes! company_name: company, metric_name: metric
+            a.update! company_name: company, metric_name: metric
           rescue => e
             puts "error updating answer #{a.id}: #{e.message}"
           end

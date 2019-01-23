@@ -18,8 +18,8 @@ class ImportCard
   def update
     return unless @card
     name = @attr.delete "name"
-    @card.update_attributes! name: name if name && name != @card.name
-    @card.update_attributes!(@attr)
+    @card.update! name: name if name && name != @card.name
+    @card.update!(@attr)
     "updated: #{@name}".light_blue
   end
 

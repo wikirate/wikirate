@@ -6,7 +6,7 @@ class TidyMetricQuestions < Card::Migration
                  "Metric+question+*type plus right+*default"]
     Card.search left: { type_id: Card::MetricID }, right_id: Card::QuestionID do |card|
       next if card.type_id == Card::PlainTextID
-      card.update_attributes!(
+      card.update!(
         db_content: ActionView::Base.new.strip_tags(card.db_content),
         type_id: Card::PlainTextID
       )

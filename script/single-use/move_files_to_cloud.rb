@@ -16,8 +16,7 @@ Card::Auth.as_bot do
     next if card.cloud?
     puts card.name
     begin
-      card.update_attributes! storage_type: :cloud, # bucket: aws_bucket,
-                              silent_change: true
+      card.update! storage_type: :cloud, silent_change: true # bucket: aws_bucket,
     rescue ActiveRecord::RecordInvalid => e
       puts e.message
     end

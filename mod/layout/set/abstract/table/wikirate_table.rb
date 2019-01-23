@@ -48,8 +48,6 @@ class WikirateTable
     tr = @tr_opts.clone
     if @opts[:details_view]
       details_tr tr, row_card
-    elsif @opts[:tr_link]
-      link_tr tr, row_card
     else
       tr
     end
@@ -66,12 +64,6 @@ class WikirateTable
       return "false" unless @format.details_url? row_card
     end
     @format.path mark: row_card, view: @opts[:details_view]
-  end
-
-  def link_tr tr, row_card
-    add_class tr, "tr-link"
-    tr.deep_merge! data: { link_url: @opts[:tr_link].call(row_card) }
-    tr
   end
 
   def td_data row_card, view, col_index

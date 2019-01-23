@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Abstract::Value do
   before do
-    Card["Jedi+deadliness+Death Star+1977+value"].update_attributes! content: "50"
+    Card["Jedi+deadliness+Death Star+1977+value"].update! content: "50"
   end
 
   def answer_for metric

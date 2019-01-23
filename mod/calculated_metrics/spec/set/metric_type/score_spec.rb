@@ -43,7 +43,7 @@ RSpec.describe Card::Set::MetricType::Score do
       context "when formula changes" do
         def update_formula formula
           Card::Auth.as_bot do
-            @metric.formula_card.update_attributes! content: formula
+            @metric.formula_card.update! content: formula
           end
         end
         it "updates existing rating value" do
@@ -73,7 +73,7 @@ RSpec.describe Card::Set::MetricType::Score do
 
       context "when input metric value changes" do
         it "updates score value" do
-          Card["#{@metric_name}+Samsung+2014+value"].update_attributes! content: "1"
+          Card["#{@metric_name}+Samsung+2014+value"].update! content: "1"
           expect(score_value).to eq "2.0"
         end
         it "removes score value that lost input metric value" do
@@ -101,7 +101,7 @@ RSpec.describe Card::Set::MetricType::Score do
 
       it "creates score values if formula updated" do
         Card::Auth.as_bot do
-          @metric.formula_card.update_attributes!(
+          @metric.formula_card.update!(
             type_id: Card::PlainTextID,
             content: "{{Joe User+#{@metric_title}}}*2"
           )
@@ -120,7 +120,7 @@ RSpec.describe Card::Set::MetricType::Score do
     end
 
     before do
-      Card["Jedi+deadliness+Death Star+1977+value"].update_attributes! content: 40
+      Card["Jedi+deadliness+Death Star+1977+value"].update! content: 40
     end
 
     it "updates scored valued" do
@@ -153,7 +153,7 @@ RSpec.describe Card::Set::MetricType::Score do
         formula: '{"1":2, "2":4, "3":6}'
       )
       expect(score_value("Sony Corporation", "2010")).to eq "6.0"
-      @metric.formula_card.update_attributes!(
+      @metric.formula_card.update!(
         type_id: Card::PlainTextID,
         content: '{"1":2, "2":5, "3":6}'
       )

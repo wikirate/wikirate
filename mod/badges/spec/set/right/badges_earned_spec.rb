@@ -32,7 +32,7 @@ describe Card::Set::Right::BadgesEarned do
   describe "#ordered_badge_cards" do
     before do
       Card::Auth.as_bot do
-        card.update_attributes!(
+        card.update!(
           content: badges.to_pointer_content
         )
       end
