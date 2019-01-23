@@ -129,4 +129,9 @@ RSpec.describe Formula::Ruby do
       expect(result).not_to include 2012, 2016
     end
   end
+
+  example "function names in metrics names M" do
+    calculator = Formula::Ruby.new formula_parser("{{A+Max}}")
+    expect { calculator.to_lambda }.not_to raise_error
+  end
 end
