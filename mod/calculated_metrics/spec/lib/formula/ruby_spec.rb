@@ -131,7 +131,7 @@ RSpec.describe Formula::Ruby do
   end
 
   example "function names in metrics names M" do
-    calculator = Formula::Ruby.new formula_parser("{{A+Max}}")
+    calculator = described_class.new formula_parser("{{A+Max}}")
     expect { calculator.to_lambda }.not_to raise_error
   end
 end
