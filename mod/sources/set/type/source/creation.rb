@@ -29,7 +29,8 @@ format :html do
   end
 
   def default_year
-    answer_card.year
+    year = answer_card.year
+    year unless year == "false"
   end
 
   def default_wikirate_company

@@ -9,7 +9,7 @@ format :html do
 
   def right_side_tabs
     tabs = {}
-    tabs["Sources"] = sources_tab if answer?
+    tabs["Sources"] = sources_tab if metric? && company?
     tabs["Methodology"] = metric_details_tab if metric?
     tabs["Help"] = nest :how_to_research, view: :content
     static_tabs tabs, active_tab, "tabs", pane: { class: "p-3" }
