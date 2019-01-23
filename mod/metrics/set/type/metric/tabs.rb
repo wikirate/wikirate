@@ -15,7 +15,8 @@ format :html do
 
   # overridden in Researched
   view :main_details do
-    output [nest_formula, nest_about, nest_methodology].compact
+    parts = [nest_formula, nest_about, nest_methodology, render_page_link_button]
+    parts.compact.join "<br/>"
   end
 
   def nest_about

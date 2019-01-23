@@ -55,7 +55,7 @@ decko.slotReady (slot) ->
       #minimumResultsForSearch: 4
       maximumSelectionSize: 1
       dropdownAutoWidth: "true"
-      width: "130%"
+      width: "100%"
       templateResult: formatHtmlOptionItem
       templateSelection: formatHtmlSelectedItem
       escapeMarkup: (markup) ->

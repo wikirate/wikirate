@@ -6,7 +6,7 @@
 - if metric? && company?
   = year_slot
 = render_flash
-- if answer?
+- if metric?
   .border-bottom.background-grey.p-2.pl-4
     %h5
       Question
@@ -14,5 +14,6 @@
         = button_tag "View Methodology", class: "_methodology-tab btn btn-sm btn-outline-secondary"
     .large-text
       = nest [metric, :question], view: :core
+- if answer?
   .p-2.pl-4
     = answer_slot

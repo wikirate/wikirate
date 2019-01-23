@@ -4,7 +4,7 @@ format do
     { company_id_list: :cil, metric_id_list: :mil, year_id_list: :yil }.freeze
 
   def active_tab
-    @active_tab ||= params[:active_tab] || (answer? && "Sources") || "Metric details"
+    @active_tab ||= params[:active_tab] || "Sources"
   end
 
   %i[company metric year].each do |item|
