@@ -1,11 +1,12 @@
-%div
-  %h6.d-flex.flex-no-wrap.text-muted.mb-0
-    %div.mr-5
-      %strong
-        = item
-    -if record_card.answers_by_year[item]
-      %div
-        = nest record_card.answers_by_year[item], view: :conciser, hide: :year_equals
-    -else
-      %i
-        add answer
+- if item
+  %div
+    %h6.d-flex.flex-no-wrap.text-muted.mb-0
+      %div.mr-5
+        %strong
+          = item
+      -if record_card.answers_by_year[item]
+        %div
+          = nest record_card.answers_by_year[item], view: :conciser, hide: :year_equals
+      -else
+        %i
+          add answer

@@ -1,3 +1,4 @@
-= render :sourcebox
-= render :my_sources
-= render :suggested_sources
+.source-selector{ class: ("no-citation" if card.year == "false") }
+  = render :sourcebox
+  = render :my_sources
+  = render :suggested_sources
