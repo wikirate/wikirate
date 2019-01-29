@@ -28,7 +28,17 @@ format :html do
   end
 
   def value_field_card_and_options
-    [card, { title: "Answer", editor: :standard, show: :help }]
+    val_card =
+      if card.relationship?
+        # For adding new relationship answers.
+        # The card is the (existing) metric answer card M+C+Y+values with
+        # the company count.
+        # With this change we get the right editor for creating a new relationship value.
+        Card.new name: card.name, type_id: card.metric_card.value_cardtype_id
+      else
+        card
+      end
+    [val_card, { title: "Answer", editor: :standard, show: :help }]
   end
 
   def unknown_field_card_and_options

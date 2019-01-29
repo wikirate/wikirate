@@ -1,10 +1,14 @@
 format :html do
   def wrap_researched_details
     output [
-      nest(card.value_card, view: :credit),
+      credit_details,
       yield,
       wrap_with(:div, _render_comments, class: "comments-div")
     ]
+  end
+
+  def credit_details
+    nest(card.value_card, view: :credit)
   end
 
   view :expanded_researched_details do

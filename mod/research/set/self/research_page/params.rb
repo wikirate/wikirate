@@ -185,7 +185,7 @@ format do
   end
 
   def answer_card
-    @sac ||=
+    @answer_card ||=
       if related_company
         Card.fetch [metric, company, year.to_s, related_company],
                    new: { type_id: RelationshipAnswerID }
