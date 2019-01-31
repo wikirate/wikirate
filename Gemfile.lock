@@ -13,9 +13,9 @@ PATH
 PATH
   remote: vendor/card-mods/markdown
   specs:
-    card-mod-markdown (0.1)
+    card-mod-markdown (0.2)
       card
-      maruku
+      kramdown
 
 PATH
   remote: vendor/card-mods/new_relic
@@ -39,9 +39,9 @@ PATH
 PATH
   remote: vendor/decko
   specs:
-    card (1.96.8)
+    card (1.97.0)
       bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.6.8)
+      cardname (= 0.7.0)
       carrierwave (= 1.2.2)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -59,11 +59,11 @@ PATH
       twitter (~> 6.1)
       uglifier (~> 3.2)
       uuid (~> 2.3)
-    cardname (0.6.8)
+    cardname (0.7.0)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
-    decko (0.6.8)
-      card (= 1.96.8)
+    decko (0.7.0)
+      card (= 1.97.0)
 
 GEM
   remote: http://rubygems.org/
@@ -452,6 +452,7 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
+    kramdown (2.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.19)
@@ -472,7 +473,6 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
-    maruku (0.7.3)
     memoist (0.16.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
