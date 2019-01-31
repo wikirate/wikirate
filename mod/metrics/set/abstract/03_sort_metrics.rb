@@ -80,8 +80,8 @@ format do
 
   def vote_status metric
     @upvoted_metric ||= card.user_voted_metric "upvotee"
-    @downvoted_metric ||= card.user_voted_metric "downvotee"
     return :upvoted if @upvoted_metric.include?(metric)
+    @downvoted_metric ||= card.user_voted_metric "downvotee"
     return :downvoted if @downvoted_metric.include?(metric)
     :none
   end

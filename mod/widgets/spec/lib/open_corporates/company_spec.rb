@@ -1,6 +1,6 @@
 require_relative "../../../lib/open_corporates/api"
 
-describe OpenCorporates::Company do
+RSpec.describe OpenCorporates::Company do
   context "when company identifier is valid" do
     before(:context) do
       @oc = described_class.new "gb", "00102498"

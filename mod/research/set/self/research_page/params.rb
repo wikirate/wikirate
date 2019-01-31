@@ -4,7 +4,7 @@ format do
     { company_id_list: :cil, metric_id_list: :mil, year_id_list: :yil }.freeze
 
   def active_tab
-    @active_tab ||= params[:active_tab] || (answer? && "Sources") || "Metric details"
+    @active_tab ||= params[:active_tab] || "Sources"
   end
 
   %i[company metric year].each do |item|
@@ -185,7 +185,7 @@ format do
   end
 
   def answer_card
-    @sac ||=
+    @answer_card ||=
       if related_company
         Card.fetch [metric, company, year.to_s, related_company],
                    new: { type_id: RelationshipAnswerID }

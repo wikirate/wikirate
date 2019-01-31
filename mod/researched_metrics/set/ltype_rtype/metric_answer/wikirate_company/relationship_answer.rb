@@ -23,4 +23,14 @@ format :html do
   view :expanded_details do
     _render :expanded_researched_details
   end
+
+  def credit_details
+    wrap_with :div, class: "d-flex" do
+      [
+        nest(card.value_card, view: :credit),
+        link_to_card(card, fa_icon(:edit), path: { view: :edit },
+                                           class: "text-dark ml-auto")
+      ]
+    end
+  end
 end

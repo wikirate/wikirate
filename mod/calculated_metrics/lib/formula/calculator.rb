@@ -106,6 +106,8 @@ module Formula
     private
 
     def safe_execution expr
+      return if @errors.any?
+
       unless safe_to_exec?(expr)
         @errors << "invalid formula"
         return

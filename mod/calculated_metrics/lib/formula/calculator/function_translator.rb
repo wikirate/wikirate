@@ -35,7 +35,7 @@ module Formula
       def with_next_match part
         return unless part.present?
 
-        match = part.match @matcher
+        match = part.match(/(?<!\w)(#{@matcher})(?!\w)/)
         return part unless match
 
         yield @map[match[0]], match.begin(0), match.end(0)

@@ -9,14 +9,16 @@ format :html do
 
   def right_side_tabs
     tabs = {}
-    tabs["Sources"] = sources_tab if answer?
+    tabs["Sources"] = sources_tab if metric? && company?
     tabs["Methodology"] = metric_details_tab if metric?
     tabs["Help"] = nest :how_to_research, view: :content
     static_tabs tabs, active_tab, "tabs", pane: { class: "p-3" }
   end
 
   def cite_mode?
-    answer_card.unknown? || @answer_view == :research_edit_form
+    answer_card.unknown? ||
+      @answer_view.in?(%i[research_edit_form research_form])
+
   end
 
   def hide_view_source_tab?

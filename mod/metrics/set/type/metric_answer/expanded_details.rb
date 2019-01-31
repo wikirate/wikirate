@@ -95,9 +95,17 @@ format :html do
   view :expanded_relationship_details do
     wrap_researched_details do
       [
-        "<br/><h5>Relations</h5>",
+        "<br/>",
+        relations_header,
         render_relations_table_with_details_toggle.html_safe
       ]
+    end
+  end
+
+  def relations_header
+    wrap_with :div, class: "d-flex" do
+      [wrap_with(:h5, "Relations"),
+       wrap_with(:div, add_relation_link, class: "ml-auto")]
     end
   end
 
@@ -111,6 +119,13 @@ format :html do
         relations_table
       end
     end
+  end
+
+  def add_relation_link
+    link_to_card :research_page, "Add relation",
+                 class: "slotter btn btn-sm btn-primary",
+                 path: { view: :add_relation,
+                         metric: card.metric, company: card.company, year: card.year }
   end
 
   def relations_table value_view=:details

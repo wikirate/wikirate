@@ -312,9 +312,9 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (1.8.1)
+    fog-google (1.8.2)
       fog-core (<= 2.1.0)
-      fog-json (~> 1.2.0)
+      fog-json (~> 1.2)
       fog-xml (~> 0.1.0)
       google-api-client (~> 0.23.0)
     fog-internet-archive (0.0.1)
@@ -329,7 +329,7 @@ GEM
       multi_json (~> 1.10)
     fog-local (0.6.0)
       fog-core (>= 1.27, < 3.0)
-    fog-openstack (0.3.9)
+    fog-openstack (0.3.10)
       fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -428,7 +428,7 @@ GEM
     http-form_data (2.1.1)
     http_parser.rb (0.6.0)
     httpclient (2.8.3)
-    i18n (1.5.2)
+    i18n (1.5.3)
       concurrent-ruby (~> 1.0)
     image_info (1.1.2)
       image_size
@@ -594,7 +594,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (3.1.2)
-    roo (2.8.0)
+    roo (2.8.1)
       nokogiri (~> 1)
       rubyzip (>= 1.2.1, < 2.0.0)
     rspec (3.6.0)

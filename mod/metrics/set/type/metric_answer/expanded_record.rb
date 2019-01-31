@@ -13,18 +13,7 @@ format :html do
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
-    details_sidebar :metric do
-      <<-HTML
-        <div class="row clearfix">
-          <div class="data-item text-center">
-            <span class="btn label-metric">
-              #{link_to_card card.metric_card, 'Metric Details'}
-            </span>
-          </div>
-        </div>
-        <hr>
-      HTML
-    end
+    details_sidebar :metric
   end
 
   def company_details_sidebar_header
@@ -64,10 +53,11 @@ format :html do
           <div class="row clearfix padding-top-20">
             #{send "#{type}_details_sidebar_header"}
           </div>
-          <hr>
+          <hr/>
           #{send "#{type}_answers"}
-          <br>
+          <br/>
           #{yield if block_given?}
+          <hr/>
           #{discussion}
         </div>
       HTML

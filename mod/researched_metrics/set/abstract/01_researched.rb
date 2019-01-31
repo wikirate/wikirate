@@ -12,7 +12,7 @@ format :html do
   end
 
   view :main_details do
-    output [nest_about, nest_methodology]
+    [nest_about, nest_methodology, render_page_link_button].join "<br/>"
   end
 
   view :source_tab do

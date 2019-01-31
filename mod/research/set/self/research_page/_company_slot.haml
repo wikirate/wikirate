@@ -12,7 +12,7 @@
           %span.img-helper
           = nest [company, :image], view: :core, size: :small
         %h6.mb-0
-          = company
+          = link_to_card company, nil, class: "inherit-anchor"
     - else
       .dropdown
         %a.company-color.dropdown-toggle.d-flex.flex-nowrap.no-decoration.align-items-center{href:"#", data: { toggle: "dropdown" } }
