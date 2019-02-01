@@ -50,25 +50,26 @@ format :html do
   end
 
   def add_variable_button klass, slot_selector, filters={}
+    opts =
+      modal_link_opts class: "_add-metric-variable #{klass} btn btn-outline-secondary",
+                      path: add_variable_path(slot_selector, filters),
+                      size: :full
+
     wrap_with :span, class: "input-group" do
-      button_tag class: "_add-metric-variable slotter #{klass}",
-                 situation: "outline-secondary",
-                 data: { toggle: "modal", target: "#modal-add-metric-slot" },
-                 href: add_variable_path(slot_selector, filters) do
-        fa_icon(:plus) + " add metric"
-      end
+      link_to "#{fa_icon(:plus)} add metric", opts
     end
   end
 
   def add_variable_path slot_selector, filters
-    path layout: :simple_modal,
-         view: :filter_items,
-         item: implicit_item_view,
-         filter_card: filter_card.name,
-         item_selector: "thumbnail",
-         slot_selector: slot_selector,
-         slot: { hide: :modal_footer },
-         filter: initial_filters(filters)
+    {
+       view: :filter_items_modal,
+       item: implicit_item_view,
+       filter_card: filter_card.name,
+       item_selector: "thumbnail",
+       slot_selector: slot_selector,
+       slot: { hide: :modal_footer },
+       filter: initial_filters(filters)
+    }
   end
 
   # TODO: make sure card.metric_card.id remains in not_id filters
