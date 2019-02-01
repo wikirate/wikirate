@@ -192,7 +192,6 @@ format do
       else
         Card.fetch [metric, company, year.to_s], new: { type_id: MetricAnswerID }
       end
-
   end
 
   def metric_pinned?
