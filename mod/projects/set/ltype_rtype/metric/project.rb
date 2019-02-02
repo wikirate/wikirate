@@ -1,6 +1,10 @@
 include_set Abstract::KnownAnswers
 include_set Abstract::Media
 
+def virtual?
+  true
+end
+
 def metric_card
   @metric_card ||= left
 end
@@ -28,13 +32,22 @@ def where_answer
 end
 
 format :html do
-  view :metric_thumbnail do
+  def units
+    @units ||= "#{rate_subject} #{card.project_card.units}"
+  end
+
+  view :bar do
+    voo.hide! :bar_middle, :bar_nav
+    super()
+  end
+
+  view :bar_left do
     metric_link do
       nest card.metric_card, view: :thumbnail_no_link
     end
   end
 
-  view :research_progress_bar, cache: :never, tags: :unknown_ok do
+  view :bar_right, cache: :never do
     research_progress_bar :metric_link
   end
 

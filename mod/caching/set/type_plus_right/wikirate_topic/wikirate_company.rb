@@ -44,9 +44,6 @@ def metrics_tagged_with_topic return_field=:id
               return: return_field
 end
 
-def item_cards _args={}
-  search.sort_by(&:name)
-end
 
 # # company ids by metric count
 # def item_ids _args={}

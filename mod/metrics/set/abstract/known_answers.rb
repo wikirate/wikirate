@@ -5,6 +5,9 @@
 
 CSS_CLASS = { not_researched: "progress-not-researched" }.freeze
 LINK_VALUE = { not_researched: "none" }.freeze
+HOVER_TEXT = { known: "Known",
+               unknown: "Unknown",
+               not_researched: "Not Researched" }.freeze
 
 # most common pattern is <TYPE>+<Project> (ltype_rtype)
 # overridden elsewhere
@@ -102,7 +105,8 @@ format :html do
     {
       value: card.send("percent_#{value}"),
       body: progress_section_body(value, link_method, num),
-      class: progress_section_css_class(value)
+      class: progress_section_css_class(value),
+      title: "#{HOVER_TEXT[value]} #{units}"
     }
   end
 

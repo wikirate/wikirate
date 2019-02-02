@@ -48,6 +48,8 @@ def units
 end
 
 format :html do
+  delegate :units, to: :card
+
   view :overall_progress_box, cache: :never do
     overall_progress_box false
   end
@@ -100,7 +102,6 @@ format :html do
 
   view :progress_description, template: :haml  do
     @num_possible = card.num_possible
-    @units = card.units
     @formula = formula
     @num_researched = card.num_researched
   end

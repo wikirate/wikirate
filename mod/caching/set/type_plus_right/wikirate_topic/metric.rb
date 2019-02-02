@@ -24,6 +24,7 @@ def item_ids _args={}
   metric_ids_with_answers_by_company_count(mids) | mids
 end
 
+# TODO: paging
 def item_cards _args={}
   item_ids.map { |id| Card[id] }
 end

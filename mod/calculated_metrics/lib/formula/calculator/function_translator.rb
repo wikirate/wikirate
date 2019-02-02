@@ -1,7 +1,7 @@
 module Formula
   class Calculator
     class FunctionTranslator
-      class SyntaxError < StandardError; end
+      class SyntaxError < Card::UserError; end
 
       # @param map [Hash] the translation map, something like { "Total" => "sum" }
       # the given block is called for every match with arguments the

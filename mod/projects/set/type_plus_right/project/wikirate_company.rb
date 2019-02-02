@@ -51,20 +51,18 @@ format :html do
   end
 
   view :core do
-    wrap_with :div, class: "progress-bar-table" do
-      company_progress_table
-    end
+    nest Card.fetch(card.name, :project), view: :content, items: { view: :bar }
   end
 
-  def company_progress_table
-    wikirate_table(
-      :company, card.all_company_project_cards,
-      ok_columns([:company_thumbnail, :research_button, :research_progress_bar]),
-      table: { class: "company-progress" },
-      header: ok_columns(["Company", "", "Metrics Researched"]),
-      td: { classes: ok_columns(%w[company-column button-column progress-column]) }
-    )
-  end
+  # def company_progress_table
+  #   wikirate_table(
+  #     :company, card.all_company_project_cards,
+  #     ok_columns([:company_thumbnail, :research_button, :research_progress_bar]),
+  #     table: { class: "company-progress" },
+  #     header: ok_columns(["Company", "", "Metrics Researched"]),
+  #     td: { classes: ok_columns(%w[company-column button-column progress-column]) }
+  #   )
+  # end
 
   # leave out middle column (research buttons) if no researchable_metrics
   def ok_columns columns
