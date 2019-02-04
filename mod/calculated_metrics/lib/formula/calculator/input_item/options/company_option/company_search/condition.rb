@@ -19,7 +19,7 @@ module Formula
               require_dependency "operator_condition"
               require_dependency "exist_condition"
 
-              class Error < Card::UserError
+              class Error < Card::Error::UserError
               end
 
               SEPARATORS = %w[&& ||].freeze

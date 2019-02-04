@@ -531,11 +531,11 @@
 - :name: Researcher+*right+*default
   :type: Pointer
   :key: researcher+*right+*default
-  :merged: 2019-01-18 19:37:46 UTC
+  :merged: 2019-02-04 21:25:53 UTC
 - :name: conversation+*right+*structure
   :type: Search
   :key: conversation+*right+*structure
-  :merged: 2019-01-18 19:37:46 UTC
+  :merged: 2019-02-04 21:25:53 UTC
 - :name: Conversation+*type+*structure
   :type: Basic
   :key: conversation+*type+*structure
@@ -544,11 +544,11 @@
   :type: Metric type
   :codename: :descendant
   :key: descendant
-  :merged: 2019-01-18 19:37:47 UTC
+  :merged: 2019-02-04 21:25:54 UTC
 - :name: Descendant+description
   :type: Basic
   :key: descendant+description
-  :merged: 2019-01-18 19:37:47 UTC
+  :merged: 2019-02-04 21:25:54 UTC
 - :name: Metric type
   :type: Cardtype
   :codename: metric_type_type
@@ -557,17 +557,17 @@
 - :name: User+Research_Groups+*type plus right+*structure
   :type: Search
   :key: user+research_group+*type_plu_right+*structure
-  :merged: 2019-01-18 19:37:47 UTC
+  :merged: 2019-02-04 21:25:55 UTC
 - :name: Post
   :type: Cardtype
   :codename: post
   :key: post
-  :merged: 2019-01-18 19:37:51 UTC
+  :merged: 2019-02-04 21:25:59 UTC
 - :name: Body
   :type: Basic
   :codename: body
   :key: body
-  :merged: 2019-01-18 19:37:51 UTC
+  :merged: 2019-02-04 21:25:59 UTC
 - :name: Details
   :type: Basic
   :codename: details
@@ -576,7 +576,7 @@
 - :name: post+*right+*structure
   :type: Search
   :key: post+*right+*structure
-  :merged: 2019-01-18 19:37:51 UTC
+  :merged: 2019-02-04 21:25:59 UTC
 - :name: How to research
   :type: HTML
   :key: how_to_research
@@ -588,11 +588,11 @@
 - :name: Metric+Score+*type plus right+*structure
   :type: Search
   :key: metric+score+*type_plu_right+*structure
-  :merged: 2019-01-18 19:38:48 UTC
+  :merged: 2019-02-04 21:26:55 UTC
 - :name: Metric+question+*type plus right+*default
   :type: PlainText
   :key: metric+question+*type_plu_right+*default
-  :merged: 2019-01-18 19:38:48 UTC
+  :merged: 2019-02-04 21:26:55 UTC
 - :name: featured projects
   :type: Pointer
   :codename: :featured_projects
@@ -601,12 +601,12 @@
   :type: Pointer
   :codename: :homepage_adjectives
   :key: homepage_adjective
-  :merged: 2019-01-18 19:38:49 UTC
+  :merged: 2019-02-04 21:26:56 UTC
 - :name: organizations using wikirate
   :type: Pointer
   :codename: :organizations_using_wikirate
   :key: organization_using_wikirate
-  :merged: 2019-01-18 19:38:49 UTC
+  :merged: 2019-02-04 21:26:56 UTC
 - :name: homepage featured companies
   :type: Pointer
   :codename: :homepage_featured_companies
@@ -626,170 +626,170 @@
 - :name: Industry
   :type: Metric Title
   :key: industry
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Commons+Industry
   :type: Metric
   :key: common+industry
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Commons+Industry+Formula
   :type: PlainText
   :key: common+industry+formula
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Commons+Industry+value type
   :type: Pointer
   :key: common+industry+value_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Commons+Industry+Research Policy
   :type: Pointer
   :key: common+industry+research_policy
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Commons+Industry+hybrid
   :type: Toggle
   :key: common+industry+hybrid
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Commons+Industry+question
   :type: PlainText
   :key: common+industry+question
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Commons+Industry+*metric type
   :type: Pointer
   :key: common+industry+*metric_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC
   :type: Research Group
   :key: isic
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Industry Section
   :type: Metric Title
   :key: industry_section
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Section
   :type: Metric
   :key: isic+industry_section
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Section+*metric type
   :type: Pointer
   :key: isic+industry_section+*metric_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Section+value type
   :type: Pointer
   :key: isic+industry_section+value_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Section+question
   :type: PlainText
   :key: isic+industry_section+question
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Section+hybrid
   :type: Toggle
   :key: isic+industry_section+hybrid
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Section+Research Policy
   :type: Pointer
   :key: isic+industry_section+research_policy
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Section+methodology
   :type: Basic
   :key: isic+industry_section+methodology
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Industry Division
   :type: Metric Title
   :key: industry_division
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Division
   :type: Metric
   :key: isic+industry_division
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Division+*metric type
   :type: Pointer
   :key: isic+industry_division+*metric_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Division+value type
   :type: Pointer
   :key: isic+industry_division+value_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Division+question
   :type: PlainText
   :key: isic+industry_division+question
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Division+hybrid
   :type: Toggle
   :key: isic+industry_division+hybrid
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Division+Research Policy
   :type: Pointer
   :key: isic+industry_division+research_policy
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Division+methodology
   :type: Basic
   :key: isic+industry_division+methodology
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Industry Group
   :type: Metric Title
   :key: industry_group
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Group
   :type: Metric
   :key: isic+industry_group
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Group+*metric type
   :type: Pointer
   :key: isic+industry_group+*metric_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Group+value type
   :type: Pointer
   :key: isic+industry_group+value_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Group+question
   :type: PlainText
   :key: isic+industry_group+question
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Group+hybrid
   :type: Toggle
   :key: isic+industry_group+hybrid
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Group+Research Policy
   :type: Pointer
   :key: isic+industry_group+research_policy
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Group+methodology
   :type: Basic
   :key: isic+industry_group+methodology
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: Industry Class
   :type: Metric Title
   :key: industry_class
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Class
   :type: Metric
   :key: isic+industry_class
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Class+*metric type
   :type: Pointer
   :key: isic+industry_class+*metric_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Class+methodology
   :type: Basic
   :key: isic+industry_class+methodology
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Class+value type
   :type: Pointer
   :key: isic+industry_class+value_type
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Class+Research Policy
   :type: Pointer
   :key: isic+industry_class+research_policy
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: ISIC+Industry Class+question
   :type: PlainText
   :key: isic+industry_class+question
-  :merged: 2019-01-18 19:38:56 UTC
+  :merged: 2019-02-04 21:27:08 UTC
 - :name: project status tabs
   :type: Search
   :key: project_status_tab
 - :name: Formula Syntax
   :type: Markdown
   :key: formula_syntax
-  :merged: 2019-01-18 19:39:05 UTC
+  :merged: 2019-02-04 21:27:17 UTC
 :remotes:
   :live: https://wikirate.org
   :dev: https://dev.wikirate.org

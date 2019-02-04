@@ -44,7 +44,6 @@ def metrics_tagged_with_topic return_field=:id
               return: return_field
 end
 
-
 # # company ids by metric count
 # def item_ids _args={}
 #   Answer.group(:company_id)

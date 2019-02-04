@@ -56,6 +56,6 @@ module OpenCorporates
     end
   end
 
-  class APIError < Card::UserError
+  class APIError < Card::Error::UserError
   end
 end
