@@ -6,12 +6,18 @@ format :html do
     year_slot
   end
 
+  def first_missing_field
+    %i[metric company year].find do |field|
+      !(send "#{field}?")
+    end
+  end
+
   def metric_select
     research_select_tag :metric, metric_list, metric
   end
 
   def year_select
-    research_select_tag :year, year_list, year
+    research_select_tag :year, year_list.unshift(nil), year
   end
 
   def year_slot

@@ -59,7 +59,7 @@ format :html do
       [
         (progress_legend if legend),
         bs_layout do
-          row 2, 10 do
+          row 3, 9 do
             column { _render_percent_researched }
             column { main_progress_bar }
           end

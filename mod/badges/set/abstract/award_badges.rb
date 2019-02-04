@@ -12,6 +12,7 @@ include ::NewRelic::Agent::MethodTracer
 
 def award_badge_if_earned badge_type
   return unless awardable_act? && (badge = earns_badge(badge_type))
+
   award_badge fetch_badge_card(badge)
 end
 

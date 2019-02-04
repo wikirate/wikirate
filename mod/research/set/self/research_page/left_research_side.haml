@@ -14,6 +14,13 @@
         = button_tag "View Methodology", class: "_methodology-tab btn btn-sm btn-outline-secondary"
     .large-text
       = nest [metric, :question], view: :core
-- if answer?
-  .p-2.pl-4
+.p-2.pl-4
+  - if answer?
     = answer_slot
+  - else
+    .alert-warning.p-4
+      To research an answer, please select a
+      %strong
+        = first_missing_field
+      above.
+
