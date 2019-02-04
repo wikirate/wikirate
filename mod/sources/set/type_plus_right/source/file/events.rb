@@ -54,7 +54,7 @@ def with_tmp_pdf
 end
 
 def pdf_from_url path
-  Timeout.timeout(60) do
+  Timeout.timeout(30) do
     kit = PDFKit.new remote_file_url, "load-error-handling" => "ignore",
                                       "load-media-error-handling" => "ignore"
     kit.to_file path
