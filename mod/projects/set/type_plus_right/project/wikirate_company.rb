@@ -51,22 +51,8 @@ format :html do
   end
 
   view :core do
-    nest Card.fetch(card.name, :project), view: :content, items: { view: :bar }
-  end
-
-  # def company_progress_table
-  #   wikirate_table(
-  #     :company, card.all_company_project_cards,
-  #     ok_columns([:company_thumbnail, :research_button, :research_progress_bar]),
-  #     table: { class: "company-progress" },
-  #     header: ok_columns(["Company", "", "Metrics Researched"]),
-  #     td: { classes: ok_columns(%w[company-column button-column progress-column]) }
-  #   )
-  # end
-
-  # leave out middle column (research buttons) if no researchable_metrics
-  def ok_columns columns
-    return columns if card.researchable_metrics?
-    [columns[0], columns[2]]
+    items_hash = { view: :bar }
+    items_hash[:hide] = :bar_middle unless card.researchable_metrics?
+    nest Card.fetch(card.name, :project), view: :content, items: items_hash
   end
 end

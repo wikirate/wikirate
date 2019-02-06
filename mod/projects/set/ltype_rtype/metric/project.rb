@@ -47,7 +47,11 @@ format :html do
     end
   end
 
-  view :bar_right, cache: :never do
+  view :bar_right do
+    render :research_progress_bar
+  end
+
+  view :research_progress_bar, cache: :never do
     research_progress_bar :metric_link
   end
 

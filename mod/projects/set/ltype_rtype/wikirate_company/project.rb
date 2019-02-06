@@ -47,7 +47,15 @@ format :html do
     end
   end
 
-  view :bar_middle, tags: :unknown_ok do
+  view :bar_middle do
+    render :research_button
+  end
+
+  view :bar_right do
+    render :research_progress_bar
+  end
+
+  view :research_button, tags: :unknown_ok do
     link_to "Research",
             class: "btn btn-outline-secondary btn-sm research-answer-button",
             path: { mark: :research_page,
@@ -57,7 +65,7 @@ format :html do
                     project: project_name.url_key }
   end
 
-  view :bar_right, cache: :never do
+  view :research_progress_bar, cache: :never do
     research_progress_bar :company_link
   end
 
