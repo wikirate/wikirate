@@ -193,7 +193,7 @@ end
 
 def rename_existing_metric_value_type
   existing_value_type = Card.search right: "value type",
-                                     left: { type_id: Card::MetricID }
+                                    left: { type_id: Card::MetricID }
   existing_value_type.each do |metric_value_type|
     existing_type = metric_value_type.item_names[0]
     unless (new_type_name = new_type_name existing_type)
