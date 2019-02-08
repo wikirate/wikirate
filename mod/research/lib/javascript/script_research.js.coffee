@@ -46,7 +46,7 @@ decko.slotReady (slot) ->
       url = $target.data("url")
       url += (if url.match /\?/ then '&' else '?')
       url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
-      $target.updateSlot(url)
+      $target.reloadSlot(url)
 
   # company, metric, and year dropdowns on research page
   $("._html-select").each ->
