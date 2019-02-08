@@ -91,7 +91,7 @@ class Answer < ApplicationRecord
 
   # companies with +'s in the name were causing invalid metrics...
   def invalid_metric_card?
-    metric_card.type_id != Card::MetricID
+    !(metric_card&.type_id == Card::MetricID)
   end
 
   def invalid_non_hybrid_answer?
