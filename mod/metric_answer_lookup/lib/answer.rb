@@ -11,7 +11,7 @@ class Answer < ApplicationRecord
   include Csv
 
   @card_column = :answer_id
-  #@card_query = { type_id: Card::MetricAnswerID }
+  @card_query = { type_id: Card::MetricAnswerID }
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
