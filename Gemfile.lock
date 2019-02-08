@@ -195,7 +195,7 @@ GEM
       railties (>= 4, < 6)
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
-    curb (0.9.7)
+    curb (0.9.8)
     daemons (1.3.1)
     dalli (2.7.9)
     database_cleaner (1.7.0)
@@ -270,7 +270,7 @@ GEM
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
       json (~> 2.0)
-    fog-aliyun (0.3.2)
+    fog-aliyun (0.3.3)
       fog-core
       fog-json
       ipaddress (~> 0.8)
@@ -452,7 +452,7 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    kramdown (2.0.0)
+    kramdown (2.1.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.19)
@@ -498,7 +498,7 @@ GEM
     net-ssh (5.1.0)
     net_http_timeout_errors (0.3.3)
     netrc (0.11.0)
-    newrelic_rpm (5.7.0.350)
+    newrelic_rpm (6.0.0.351)
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
@@ -594,7 +594,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (3.1.2)
-    roo (2.8.1)
+    roo (2.8.2)
       nokogiri (~> 1)
       rubyzip (>= 1.2.1, < 2.0.0)
     rspec (3.6.0)
@@ -630,7 +630,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.4.0)
     rubocop-decko (0.2)
-    rubocop-rspec (1.31.0)
+    rubocop-rspec (1.32.0)
       rubocop (>= 0.60.0)
     ruby-jmeter (3.1.08)
       nokogiri
@@ -649,9 +649,9 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     savanna-outliers (0.0.1)
-    selenium-webdriver (3.6.0)
+    selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
-      rubyzip (~> 1.0)
+      rubyzip (~> 1.2, >= 1.2.2)
     sexp_processor (4.11.0)
     signet (0.11.0)
       addressable (~> 2.3)
@@ -677,7 +677,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.18.0)
+    sshkit (1.18.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     statistics2 (0.54)
@@ -798,7 +798,7 @@ DEPENDENCIES
   rubocop-rspec
   ruby-jmeter
   savanna-outliers
-  selenium-webdriver (= 3.6.0)
+  selenium-webdriver (= 3.141)
   simplecov
   spork (>= 0.9)
   sprockets

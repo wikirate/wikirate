@@ -83,7 +83,7 @@ group :test do
   gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12
   gem "cucumber-rails", require: false
   # feature-driven-development suite
-  gem "selenium-webdriver", "3.6.0"
+  gem "selenium-webdriver", "3.141"
   #gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
