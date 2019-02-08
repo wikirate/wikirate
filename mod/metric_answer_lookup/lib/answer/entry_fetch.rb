@@ -129,7 +129,7 @@ class Answer
 
     def fetch_comments
       return nil unless (comment_card = Card.fetch [card.name, :discussion])
-      comment_card.format(:text).render_core.gsub(/^--.*$/,"").strip
+      comment_card.format(:text).render_core.gsub(/^\s*--.*$/,"").squish.truncate(1024)
     end
   end
 end
