@@ -1,7 +1,7 @@
 # Lookup table for relationship answers to relationship metrics
 class Relationship < ApplicationRecord
   @card_column = :relationship_id
-  @card_query = { type_id: Card::RelationshipAnswerID }
+  @card_query = {  type_id: Card::RelationshipAnswerID, trash: false }
 
   belongs_to :answer
   include LookupTable

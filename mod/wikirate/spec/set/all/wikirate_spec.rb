@@ -114,7 +114,7 @@ RSpec.describe Card::Set::All::Wikirate do
     end
   end
   describe "og_source view" do
-    context "exisiting card" do
+    context "with existing card" do
       it "renders source view" do
         file_path = "#{Rails.root}/mod/wikirate/spec/set/all/DeathStar.jpg"
         dump_card = Card.create name: "dump is dump",
@@ -122,7 +122,7 @@ RSpec.describe Card::Set::All::Wikirate do
         expect(dump_card.format.render_og_source).to eq(dump_card.format.render_source)
       end
     end
-    context "non-exisiting card" do
+    context "with nonexistent card" do
       it "renders the vertical logo link" do
         new_card = Card.new name: "oragne pen phone"
         vertical_logo_source_view = Card["*vertical_logo"].format.render_source size: "large"

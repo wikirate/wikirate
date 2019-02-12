@@ -1,6 +1,10 @@
 include_set Abstract::KnownAnswers
 include_set Abstract::Media
 
+def virtual?
+  true
+end
+
 def company_card
   @company_card ||= left
 end
@@ -24,10 +28,31 @@ def where_answer
 end
 
 format :html do
-  view :company_thumbnail do
+  def units
+    @units ||= "Metric #{card.project_card.units}"
+  end
+
+  def bar_side_cols middle=true
+    middle ? [6, 2, 4] : [8, 4]
+  end
+
+  view :bar do
+    voo.hide! :bar_nav
+    super()
+  end
+
+  view :bar_left do
     company_link do
       nest card.company_card, view: :thumbnail_no_link
     end
+  end
+
+  view :bar_middle do
+    render :research_button
+  end
+
+  view :bar_right do
+    render :research_progress_bar
   end
 
   view :research_button, tags: :unknown_ok do
@@ -40,7 +65,7 @@ format :html do
                     project: project_name.url_key }
   end
 
-  view :research_progress_bar, cache: :never, tags: :unknown_ok do
+  view :research_progress_bar, cache: :never do
     research_progress_bar :company_link
   end
 

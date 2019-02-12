@@ -70,3 +70,8 @@ end
 def cache_query?
   false
 end
+
+# TODO: paging.  for now returns top 50.
+def item_cards _args={}
+  search.sort_by(&:name)[0, 50]
+end

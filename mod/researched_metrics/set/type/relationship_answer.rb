@@ -131,8 +131,8 @@ format :json do
                   value: card.value,
                   import: card.imported?,
                   comments: field_nest(:discussion, view: :core),
-                  subject_company: card.company,
-                  object_company: card.related_company
+                  subject_company: Card.fetch_name(card.company),
+                  object_company: Card.fetch_name(card.related_company)
   end
 
   view :molecule do

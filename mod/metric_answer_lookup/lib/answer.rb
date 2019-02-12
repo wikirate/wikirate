@@ -11,7 +11,7 @@ class Answer < ApplicationRecord
   include Csv
 
   @card_column = :answer_id
-  #@card_query = { type_id: Card::MetricAnswerID }
+  @card_query = { type_id: Card::MetricAnswerID, trash: false }
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
@@ -75,9 +75,7 @@ class Answer < ApplicationRecord
   end
 
   def delete_on_refresh?
-    super() || (!metric_card&.hybrid? && invalid?)
-    # when we override a hybrid metric the answer is invalid because of the
-    # missing answer_id, so we check `invalid?` only for non-hybrid metrics)
+    super() || invalid_metric_card? || invalid_non_hybrid_answer?
   end
 
   private
@@ -89,6 +87,17 @@ class Answer < ApplicationRecord
 
   def metric_card
     @metric_card ||= Card.fetch(fetch_metric_id || fetch_metric_name)
+  end
+
+  # companies with +'s in the name were causing invalid metrics...
+  def invalid_metric_card?
+    !(metric_card&.type_id == Card::MetricID)
+  end
+
+  def invalid_non_hybrid_answer?
+    # when we override a hybrid metric the answer is invalid because of the
+    # missing answer_id, so we don't delete invalid hybrids..
+    !metric_card.hybrid? && invalid?
   end
 
   def method_missing method_name, *args, &block
