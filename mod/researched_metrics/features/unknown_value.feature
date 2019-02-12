@@ -11,7 +11,7 @@ Feature: Unknown value
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
     And I fill in "" for "Answer"
     And I check "Unknown"
-    And I submit
+    And I press "Save and Close"
     Then I should see "Unknown"
     And I should not see "Yes"
 
@@ -19,6 +19,6 @@ Feature: Unknown value
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
     And I check "Unknown"
     And I fill in "no" for "Answer"
-    And I submit
+    And I press "Save and Close"
     Then I should see "Unknown"
 
