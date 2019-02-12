@@ -34,5 +34,4 @@ end
 
 When(/^I edit answer$/) do
   find(:css, ".titled-view.TYPE-answer i.fa-pencil-square-o", visible: false).click
-  click_link "edit"
 end

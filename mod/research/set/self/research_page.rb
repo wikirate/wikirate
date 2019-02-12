@@ -6,7 +6,7 @@ format :html do
     super()
   end
 
-  view :edit, cache: :never do
+  view :edit, cache: :never, wrap: :none do
     @answer_view = :research_edit_form
     render_slot_machine
   end
@@ -27,16 +27,14 @@ format :html do
     render_slot_machine
   end
 
-  view :slot_machine, cache: :never, perms: :create do
-    slot_machine
+  view :slot_machine, cache: :never, perms: :create, wrap: :slot do
+    haml :slot_machine
   end
 
   def slot_machine opts={}
     %i[metric company related_company project year active_tab].each do |n|
       instance_variable_set "@#{n}", opts[n] if opts[n]
     end
-    wrap do
-      haml :slot_machine
-    end
+    render_slot_machine
   end
 end
