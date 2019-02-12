@@ -31,6 +31,7 @@ gem "delayed_job_web"
 
 gem "company-mapping"
 gem "link_thumbnailer"
+gem 'nokogumbo'
 gem "open_uri_redirections"
 gem "pdfkit"
 gem "roo"
@@ -77,7 +78,7 @@ group :test do
   # gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
-  gem "capybara", "~> 2.14"
+  gem "capybara", "~> 2.18"
   # gem "chromedriver-helper"
   # gem "geckodriver-helper"
   gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12

@@ -504,6 +504,8 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogiri-happymapper (0.8.0)
       nokogiri (~> 1.5)
+    nokogumbo (2.0.1)
+      nokogiri (~> 1.8, >= 1.8.4)
     oga (2.15)
       ast
       ruby-ll (~> 2.1)
@@ -751,7 +753,7 @@ DEPENDENCIES
   capistrano-maintenance
   capistrano-passenger
   capistrano-rvm
-  capybara (~> 2.14)
+  capybara (~> 2.18)
   card!
   card-mod-csv_import!
   card-mod-logger!
@@ -780,6 +782,7 @@ DEPENDENCIES
   minitest
   mysql2 (> 0.4)
   newrelic_rpm
+  nokogumbo
   open_uri_redirections
   pdfkit
   pivotal-tracker
