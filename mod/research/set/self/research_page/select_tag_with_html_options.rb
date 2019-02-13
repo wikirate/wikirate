@@ -63,7 +63,7 @@ class SelectTagWithHtmlOptions
 
   def select_tag
     @format.select_tag(@name, text_options, class: "_html-select _no-select2",
-                                            id: "#{@name}-html-select")
+                                            id: "#{@format.unique_id}-html-select")
   end
 
   def option_id i
