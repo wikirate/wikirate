@@ -16,4 +16,8 @@ format :html do
   def metric_designer_card
     Card.fetch metric_card.metric_designer
   end
+
+  def edit_modal_size
+    :full
+  end
 end
