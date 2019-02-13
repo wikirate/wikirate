@@ -13,7 +13,7 @@
 #   begin
 #     require 'factory_girl_rails'
 #   rescue LoadError => e
-#     puts e.message
+#     puts e.message§
 #   end
 # end
 #
