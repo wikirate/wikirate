@@ -26,5 +26,8 @@
     "jest-preset-coffeescript": "^1.0.0"
   },
   "name": "wikirate",
-  "repository": "https://github.com/wikirate/wikirate"
+  "repository": "https://github.com/wikirate/wikirate",
+  "devDependencies": {
+    "cypress": "^3.1.5"
+  }
 }

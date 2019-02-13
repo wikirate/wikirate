@@ -118,6 +118,7 @@ group :development do
 end
 
 group :test, :development do
+  gem "cypress-on-rails"
   gem "pry"
   gem "pry-byebug"
   gem "pry-rails"
