@@ -27,8 +27,8 @@ describe 'edit metric formulas', ->
     cy.contains("Add Selected")
       .click().should  "not.exist"
 
-    cy.bridge().within ($bridge) ->
-      expect($bridge).to.contain "scored by Joe Camel"
+    cy.get("._modal-slot").within ($modal) ->
+      expect($modal).to.contain "scored by Joe Camel"
       expectTotalWeight "100"
       cy.contains("Save and Close").should "have.attr", "disabled"
 
