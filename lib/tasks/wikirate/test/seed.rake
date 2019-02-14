@@ -42,6 +42,7 @@ namespace :wikirate do
         ensure_env :test, task do
           Rake::Task["wikirate:test:load_dump"].invoke(migrated_dump_path)
           Rake::Task["decko:migrate"].invoke
+          Rake::Task["wikirate:test:dump"].invoke(migrated_dump_path)
           Card::Cache.reset_all
           ActiveRecord::Base.descendants.each(&:reset_column_information)
         end

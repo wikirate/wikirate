@@ -47,12 +47,12 @@ RSpec.describe Card::Set::All::Wikirate do
     end
 
     it "shows correct html for the menu_link view" do
-      html = render_card :menu_link, name: "non-exisiting-card"
+      html = render_card :menu, name: "A"
       expect(html).to include("fa fa-pencil-square-o")
     end
 
     it "shows empty string for not real card for raw_or_blank view" do
-      html = render_card :raw_or_blank, name: "non-exisiting-card"
+      html = render_card :raw_or_blank, name: "non-existing-card"
       expect(html).to eq("")
     end
 
@@ -114,7 +114,7 @@ RSpec.describe Card::Set::All::Wikirate do
     end
   end
   describe "og_source view" do
-    context "exisiting card" do
+    context "with existing card" do
       it "renders source view" do
         file_path = "#{Rails.root}/mod/wikirate/spec/set/all/DeathStar.jpg"
         dump_card = Card.create name: "dump is dump",
@@ -122,7 +122,7 @@ RSpec.describe Card::Set::All::Wikirate do
         expect(dump_card.format.render_og_source).to eq(dump_card.format.render_source)
       end
     end
-    context "non-exisiting card" do
+    context "with nonexistent card" do
       it "renders the vertical logo link" do
         new_card = Card.new name: "oragne pen phone"
         vertical_logo_source_view = Card["*vertical_logo"].format.render_source size: "large"
@@ -165,7 +165,7 @@ RSpec.describe Card::Set::All::Wikirate do
       expect(html).to have_tag("i", with: { class: "fa fa-globe" })
       expect(html).to include("Sources")
       expect(html).to have_tag("div", with: { class: "pointer-list" }) do
-        with_tag "div", with: { id: source_card.name.url_key }
+        with_tag "div", with: { id: "#{source_card.name.safe_key}-closed-view" }
       end
     end
   end

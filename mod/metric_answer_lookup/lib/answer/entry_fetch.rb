@@ -113,5 +113,24 @@ class Answer
     def fetch_calculating
       false
     end
+
+    def fetch_source_count
+      source_field.item_names.size
+    end
+
+    def fetch_source_url
+      return unless (url_card = source_field.item_cards.first&.field(:wikirate_link))
+      url_card.content.truncate(1024, omission: "")
+    end
+
+    def source_field
+      @source_field ||=
+        Card.fetch [card.name, :source], new: { type_id: Card::PointerID }
+    end
+
+    def fetch_comments
+      return nil unless (comment_card = Card.fetch [card.name, :discussion])
+      comment_card.format(:text).render_core.gsub(/^\s*--.*$/,"").squish.truncate(1024)
+    end
   end
 end

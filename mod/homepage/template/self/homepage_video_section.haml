@@ -1,4 +1,3 @@
-= modal_slot "video-slot", "modal-lg"
 .row.m-0.p-0.bg-white.nodblclick.slide-container.border-top
   .p-5.text-center.col-12.col-md-8.mx-auto
     .row
@@ -6,10 +5,9 @@
         %h3.text-muted.font-weight-light
           = nest :homepage_solution_text, view: :core
     .col-12
-      %a#_play-video{class:"video-play-button drop-shadow slotter",
-                     href:"/homepage_video_container?layout=modal",
-                     data: { toggle: "modal", target: "#modal-video-slot"}}
-        %span
+      = modal_link "<span></span>", path: { mark: "homepage video container" },
+                   class: "video-play-button drop-shadow", size: :large,
+                   id: "_play-video"
       = nest :homepage_video_background_image, size: :original
     .col-12.text-center.vide-section-lm
       %a.btn.btn-outline-secondary.m-3{href: "/About_WikiRate"}

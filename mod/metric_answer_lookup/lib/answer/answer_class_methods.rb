@@ -30,6 +30,11 @@ class Answer
                           .return(args[:return])
     end
 
+    def existing id
+      return unless id
+      find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
+    end
+
     def latest_answer_card metric_id, company_id
       a_id = where(metric_id: metric_id, company_id: company_id,
                    latest: true).pluck(:answer_id).first

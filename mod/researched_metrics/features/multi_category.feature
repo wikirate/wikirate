@@ -7,8 +7,8 @@ Feature: Multi-Category
     And I edit "Joe User+small multi+Sony Corporation+2010"
     And I check "3"
     And I uncheck "2"
-    And I submit
-    # And I wait for ajax response
+    And I press "Save and Close"
+    And I wait for ajax response
     Then I should see "1, 3"
 
 #  FIXME: select step not working for multi-select

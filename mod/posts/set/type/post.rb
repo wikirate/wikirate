@@ -29,7 +29,7 @@ format :html do
   end
 
   def bar_side_cols middle=true
-    middle ? [4, 4] : [6, 6]
+    middle ? [4, 4, 4] : [6, 6]
   end
 
   def tab_list

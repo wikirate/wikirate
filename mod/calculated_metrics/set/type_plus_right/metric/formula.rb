@@ -47,19 +47,6 @@ format :html do
                         "data-card-type-code": card.type_code
   end
 
-  view :new do
-    super() + add_metric_modal_slot
-  end
-
-  view :edit do
-    voo.hide :toolbar
-    super() + add_metric_modal_slot
-  end
-
-  def add_metric_modal_slot
-    modal_slot "add-metric-slot", "large"
-  end
-
   view :core do
     render card.metric_card.formula_core
   end

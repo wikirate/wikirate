@@ -11,13 +11,9 @@ describe Card::Set::TypePlusRight::Project::WikirateCompany do
     describe "table (core view)" do
       subject { project_companies.format.render_core }
 
-      it "shows three columns" do
-        is_expected.to have_tag("div.progress-bar-table") do
-          with_tag "table.company-progress" do
-            with_tag "td.company-column"
-            with_tag "td.button-column"
-            with_tag "td.progress-column"
-          end
+      it "shows bar views of <Company>+<Project> cards" do
+        is_expected.to have_tag(".LTYPE_RTYPE-company-project.bar") do
+          with_tag ".bar-middle"
         end
       end
 
@@ -59,17 +55,12 @@ describe Card::Set::TypePlusRight::Project::WikirateCompany do
     describe "table (core view)" do
       subject { project_companies.format.render_core }
 
-      it "shows two columns" do
-        is_expected.to have_tag("div.progress-bar-table") do
-          with_tag "table.company-progress" do
-            with_tag "td.company-column"
-            with_tag "td.progress-column"
-          end
-        end
+      it "shows bar views of <Company>+<Project> cards" do
+        is_expected.to have_tag(".LTYPE_RTYPE-company-project.bar")
       end
 
       it "does not have the middle column" do
-        is_expected.not_to have_tag("td.button-column")
+        is_expected.not_to have_tag(".bar-middle")
       end
 
       it "does not include research buttons" do

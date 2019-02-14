@@ -101,7 +101,7 @@ $.extend wikirate,
 
   updatePreviewSlot = (slot, sourceID) ->
     load_path = decko.slotPath(sourceID + "?view=preview")
-    slot.updateSlot load_path
+    slot.reloadSlot load_path
 
 staticPreviewLink = "#Research_Page .TYPE-answer.titled-view .source-preview-link"
 

@@ -192,9 +192,9 @@ def update_metric_and_value_type new_type_name, metric_value_type, existing_type
 end
 
 def rename_existing_metric_value_type
-  exisiting_value_type = Card.search right: "value type",
-                                     left: { type_id: Card::MetricID }
-  exisiting_value_type.each do |metric_value_type|
+  existing_value_type = Card.search right: "value type",
+                                    left: { type_id: Card::MetricID }
+  existing_value_type.each do |metric_value_type|
     existing_type = metric_value_type.item_names[0]
     unless (new_type_name = new_type_name existing_type)
       puts "unknown type: #{metric_value_type.name}\t"\

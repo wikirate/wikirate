@@ -19,6 +19,10 @@ def num_possible
 end
 
 format :html do
+  def units
+    card.project_card.units
+  end
+
   view :fancy_year do
     "<BLINK>#{card.year}</BLINK>"
   end

@@ -9,9 +9,10 @@ class Answer < ApplicationRecord
   include Validations
   include EntryFetch
   include Csv
+  include Latest
 
   @card_column = :answer_id
-  #@card_query = { type_id: Card::MetricAnswerID }
+  @card_query = { type_id: Card::MetricAnswerID, trash: false }
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
@@ -19,11 +20,6 @@ class Answer < ApplicationRecord
   validate :metric_must_exit
 
   after_destroy :latest_to_true
-
-  def self.existing id
-    return unless id
-    find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
-  end
 
   def card_column
     :answer_id
@@ -33,27 +29,6 @@ class Answer < ApplicationRecord
     return super if answer_id
     # in the process of creating a hybrid answer we don't want the virtual answer card
     @card ||= find_answer_card || virtual_answer_card
-  end
-
-  def latest_year_in_db
-    self.record_id ||= fetch_record_id
-    Answer.where(record_id: record_id).where.not(id: id).maximum :year
-  end
-
-  def latest_to_false
-    Answer.where(record_id: record_id, latest: true).where.not(id: id)
-          .update_all(latest: false)
-  end
-
-  def latest_to_true
-    return unless (latest_year = latest_year_in_db)
-    Answer.where(record_id: record_id, year: latest_year, latest: false)
-          .update_all latest: true
-  end
-
-  def latest= value
-    latest_to_false if @new_latest
-    super
   end
 
   def company_key
@@ -75,9 +50,7 @@ class Answer < ApplicationRecord
   end
 
   def delete_on_refresh?
-    super() || (!metric_card&.hybrid? && invalid?)
-    # when we override a hybrid metric the answer is invalid because of the
-    # missing answer_id, so we check `invalid?` only for non-hybrid metrics)
+    super() || invalid_metric_card? || invalid_non_hybrid_answer?
   end
 
   private
@@ -89,6 +62,17 @@ class Answer < ApplicationRecord
 
   def metric_card
     @metric_card ||= Card.fetch(fetch_metric_id || fetch_metric_name)
+  end
+
+  # companies with +'s in the name were causing invalid metrics...
+  def invalid_metric_card?
+    !(metric_card&.type_id == Card::MetricID)
+  end
+
+  def invalid_non_hybrid_answer?
+    # when we override a hybrid metric the answer is invalid because of the
+    # missing answer_id, so we don't delete invalid hybrids..
+    !metric_card.hybrid? && invalid?
   end
 
   def method_missing method_name, *args, &block

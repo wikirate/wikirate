@@ -11,7 +11,7 @@ Feature: Research answer for hybrid metric
     When I edit answer
     And I fill in "50" for "Answer"
     And I cite source
-    And I press "Submit"
+    And I press "Save and Close"
     Then I should not see "Problem"
     And I should see "50"
     And I should see "updated"

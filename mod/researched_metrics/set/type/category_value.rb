@@ -1,7 +1,7 @@
 include_set Abstract::Pointer
 include_set Abstract::Value
 
-event :validate_valid_categories, :validate do
+event :validate_valid_categories, :validate, on: :save do
   invalid_options = illegal_items
   return true if Answer.unknown?(value) || invalid_options.empty?
   url = "/#{options_card.name.url_key}?view=edit"
