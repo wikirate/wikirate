@@ -253,3 +253,7 @@ Then(/^I should see add link "([^"]*)"$/) do |arg|
     with_text /#{arg}/
   end
 end
+
+Then(/^I should not see "([^"]*)" in modal$/) do |arg|
+  pending
+end
