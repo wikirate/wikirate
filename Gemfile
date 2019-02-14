@@ -124,7 +124,7 @@ group :test, :development do
   gem "pry-rails"
   gem "pry-rescue"
   gem "pry-stack_explorer"
-  gem "thin"
+  gem "puma"
 end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
