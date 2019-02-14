@@ -80,7 +80,7 @@ format :html do
                             sort_by: args[:sort_by]
     link_to_view :table, text,
                  path: path,
-                 class: "metric-list-header slotter #{args[:class]}"
+                 class: "metric-list-header #{args[:class]}"
   end
 
   def toggle_sort_order field
