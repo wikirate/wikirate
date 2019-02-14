@@ -16,8 +16,7 @@ class Answer
                          value,
                          source_count,
                          source_url,
-                         comments
-                        ]
+                         comments]
     end
 
     def answer_link

@@ -18,7 +18,6 @@ format :html do
   def cite_mode?
     answer_card.unknown? ||
       @answer_view.in?(%i[research_edit_form research_form])
-
   end
 
   def hide_view_source_tab?
