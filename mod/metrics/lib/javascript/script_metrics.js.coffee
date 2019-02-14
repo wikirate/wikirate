@@ -15,8 +15,8 @@ decko.slotReady (slot) ->
   $('td.metric-weight input').on 'keyup', (event) ->
     activeEqualize()
 
-  $('#equalizer').on 'click', (event) -> 
-    if $(this).prop('checked') == true 
+  $('#equalizer').on 'click', (event) ->
+    if $(this).prop('checked') == true
       toEqualize( $('.wikiRating-editor') )
 
 decko.editorContentFunctionMap['.pairs-editor'] = ->
@@ -28,19 +28,19 @@ pairsEditorHash = (table) ->
     cols = $(this).find('td')
     if (key = $(cols[0]).data('key'))
       hash[key] = $(cols[1]).find('input').val()
-  hash 
+  hash
 
-getValuesFromTable = (table) -> 
+getValuesFromTable = (table) ->
   values = []
-  variableMetricRows(table).each -> 
-    tr = $(this) 
+  variableMetricRows(table).each ->
+    tr = $(this)
     values.push( tr.find('td.metric-weight').find('input').val() )
   values = values.splice(0, values.length - 1);
   return values
 
  # if all values are equals return "true"
  # exports.
-  variableValuesAreEqual = (values) ->
+variableValuesAreEqual = (values) ->
   values.every( (val, i, arr) => val == arr[0] ) == true
 
 # WikiRatings Formulae
@@ -58,14 +58,14 @@ wikiRatingEditorHash = (table) ->
     tr = $(this)
     if key = tr.find(".metric-label .thumbnail").data "cardName"
       hash[key] = tr.find(".metric-weight input").val()
-  hash 
+  hash
 
 # if all values are equals active the equalize
-activeEqualize = () -> 
+activeEqualize = () ->
   values = getValuesFromTable( $('.wikiRating-editor') )
   $('#equalizer').prop 'checked', variableValuesAreEqual(values)
 
-toEqualize = (table) -> 
+toEqualize = (table) ->
   val = (100 / (variableMetricRows(table).length - 1)).toFixed(2)
   setAllVariableValuesTo(table,val)
   validateWikiRating(table)
@@ -85,7 +85,7 @@ $(window).ready ->
   $('body').on "click", "._remove-weight", () ->
     removeWeightRow $(this).closest("tr")
     toEqualize(  $('.wikiRating-editor') )
-  
+
 
 validateWikiRating = (table) ->
   hash = wikiRatingEditorHash table
@@ -108,10 +108,10 @@ tallyWeights = (tbody, hash) ->
 valuesAreValid = (hash, multiplier) ->
   valid = true
   total = 0
-  $.each hash, (_key, val) -> 
-    num = parseFloat val 
+  $.each hash, (_key, val) ->
+    num = parseFloat val
     total += num * multiplier
-    valid = false if num <= 0 || !isMaxDigit(val) 
+    valid = false if num <= 0 || !isMaxDigit(val)
   {total: total, valid: valid}
 
 publishWeightTotal = (tbody, hash, total) ->
@@ -123,11 +123,11 @@ publishWeightTotal = (tbody, hash, total) ->
     sum.val total
     sum_row.show()
 
-isMaxDigit = (num) -> 
-  aux = true 
+isMaxDigit = (num) ->
+  aux = true
   val = num.split('.')
-  aux = false if val.length > 1 && val[1].length > 2 
-  return aux; 
+  aux = false if val.length > 1 && val[1].length > 2
+  return aux;
 
 # only enable button if weights total 100% and there are no zero weights
 updateWikiRatingSubmitButton =(form, valid) ->

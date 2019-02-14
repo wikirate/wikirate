@@ -35,6 +35,6 @@ format :html do
     %i[metric company related_company project year active_tab].each do |n|
       instance_variable_set "@#{n}", opts[n] if opts[n]
     end
-    render_slot_machine
+    _render_slot_machine
   end
 end

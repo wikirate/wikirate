@@ -19,14 +19,26 @@ format :html do
   end
 
   view :edit do
+    handle_research_params
+    nest :research_page, view: :edit
+  end
+
+  def handle_research_params
     Env.params[:metric] = card.metric
     Env.params[:company] = card.company
     Env.params[:year] = card.year
     if card.respond_to?(:related_company)
       Env.params[:related_company] = card.related_company
     end
-    nest :research_page, view: :edit
   end
+
+  def bridge_parts
+    handle_research_params
+    with_nest_mode :normal do
+      nest :research_page, view: :edit, wrap: :none
+    end
+  end
+
 
   view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
     return not_researchable unless card.metric_card.researchable?

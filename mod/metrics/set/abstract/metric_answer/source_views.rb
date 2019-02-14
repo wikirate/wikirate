@@ -54,6 +54,8 @@ format :html do
   view :source_tab, cache: :never, tags: :unknown_ok do
     if focal? || editing_answer?
       render_source_selector
+    elsif !card.metric_card.researchable?
+      not_researchable
     else
       source_previews
     end
@@ -64,8 +66,8 @@ format :html do
   end
 
   def editing_answer?
-    return true if card.new?
-    (opts = root.main_opts) && opts[:view]&.to_sym == :edit
+    return true if card.unknown?
+    root.voo&.ok_view&.to_sym == :edit
   end
 
   view :source_selector, cache: :never, tags: :unknown_ok do

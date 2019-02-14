@@ -10,7 +10,7 @@ RSpec.describe Card::Set::Self::ResearchPage::SelectTagWithHtmlOptions do
   end
 
   it "has select tag" do
-    is_expected.to have_tag "select._html-select._no-select2#fruit-html-select" do
+    is_expected.to have_tag "select._html-select._no-select2" do
       with_tag :option,
                text: "apple",
                with: { value: 0,
