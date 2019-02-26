@@ -62,13 +62,13 @@ format :html do
 
   def add_variable_path slot_selector, filters
     {
-       view: :filter_items_modal,
-       item: implicit_item_view,
-       filter_card: filter_card.name,
-       item_selector: "thumbnail",
-       slot_selector: slot_selector,
-       slot: { hide: :modal_footer },
-       filter: initial_filters(filters)
+      view: :filter_items_modal,
+      item: implicit_item_view,
+      filter_card: filter_card.name,
+      item_selector: "thumbnail",
+      slot_selector: slot_selector,
+      slot: { hide: :modal_footer },
+      filter: initial_filters(filters)
     }
   end
 

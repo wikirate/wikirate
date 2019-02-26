@@ -67,10 +67,6 @@ format :html do
                  title: "Research answer for another year"
   end
 
-  before :menu do
-    voo.hide :horizontal_menu
-  end
-
   view :image_link do
     # TODO: change the css so that we don't need the extra logo class here
     #   and we can use a logo_link view on the type/company set

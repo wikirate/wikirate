@@ -23,7 +23,8 @@
     "coffeescript": "^2.3.1",
     "jest": "^23.4.1",
     "jest-coffee-preprocessor": "^1.0.0",
-    "jest-preset-coffeescript": "^1.0.0"
+    "jest-preset-coffeescript": "^1.0.0",
+    "wait-on": "^3.2.0"
   },
   "name": "wikirate",
   "repository": "https://github.com/wikirate/wikirate",

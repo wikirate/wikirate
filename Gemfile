@@ -31,7 +31,7 @@ gem "delayed_job_web"
 
 gem "company-mapping"
 gem "link_thumbnailer"
-gem 'nokogumbo'
+gem "nokogumbo"
 gem "open_uri_redirections"
 gem "pdfkit"
 gem "roo"
@@ -104,11 +104,11 @@ group :development do
 
   gem "capistrano"
   gem "capistrano-bundler"
-  gem 'capistrano-git-with-submodules', '~> 2.0'
+  gem "capistrano-git-with-submodules", '~> 2.0'
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
   gem "capistrano-rvm"
-  gem 'pivotal-tracker'
+  gem "pivotal-tracker"
 
   gem "better_errors"
   gem "binding_of_caller"
@@ -124,7 +124,7 @@ group :test, :development do
   gem "pry-rails"
   gem "pry-rescue"
   gem "pry-stack_explorer"
-  gem "thin"
+  gem "puma"
 end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|

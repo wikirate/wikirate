@@ -12,7 +12,7 @@ format :html do
 
   view :menued do
     class_up "d0-card-body", "pt-5", true
-    render_titled hide: :header, show: [:menu, :horizontal_menu]
+    render_titled hide: :header, show: [:menu]
   end
 
   def tab_nest codename, args={}
