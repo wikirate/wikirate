@@ -1,6 +1,6 @@
 # All Answers for a given Company
 
-include_set Abstract::AllMetricValues
+include_set Abstract::AnswerSearch
 
 def query_class
   FixedCompanyAnswerQuery
