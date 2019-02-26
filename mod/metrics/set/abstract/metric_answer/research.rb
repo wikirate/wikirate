@@ -13,8 +13,7 @@ format :html do
   view :year_edit_link do
     link_to_view :edit_year, fa_icon(:edit),
                  path: { RESEARCH_PARAMS_KEY => research_params },
-                 remote: true,
-                 class: "slotter _edit-year-link text-dark",
+                 class: "_edit-year-link text-dark",
                  "data-slot-selector": ".card-slot.left_research_side-view > div > "\
                                        ".card-slot.TYPE-metric_answer"
   end

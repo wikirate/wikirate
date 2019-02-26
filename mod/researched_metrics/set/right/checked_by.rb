@@ -144,21 +144,6 @@ format :html do
     checkers.map { |n| nest n, view: :link }.to_sentence
   end
 
-  # def short_checkers_list checker_view=:link
-  #   mention = checkers[0..2]
-  #   mention[0] = user.name if user_checked? && !mention.include?(user.name)
-  #   mention.map! { |n| nest n, view: checker_view }
-  #   if checker_count > 3
-  #     "#{mention.join ', '} and #{more_link}"
-  #   else
-  #     mention.to_sentence
-  #   end
-  # end
-
-  def more_link
-    link_to_view :full_list, "#{checker_count - 3} more"
-  end
-
   view :full_list, cache: :never do
     with_paging do |paging_args|
       wrap_with :div, pointer_items(paging_args.extract!(:limit, :offset)),
