@@ -109,7 +109,7 @@ format :html do
   end
 
   def report_link_classes nav_link, action
-    klasses = ["slotter"]
+    klasses = []
     klasses << "nav-link" if nav_link
     klasses << "active" if current_tab? action
     css_classes klasses

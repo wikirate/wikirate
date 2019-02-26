@@ -54,7 +54,7 @@ class Relationship
     def fetch_imported
       return false unless (action = card.value_card.actions.last)
 
-       action.comment == "imported"
+      action.comment == "imported"
     end
 
     def fetch_updated_at
