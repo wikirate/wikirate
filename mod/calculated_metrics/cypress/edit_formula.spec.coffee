@@ -47,3 +47,26 @@ describe 'edit metric formulas', ->
     cy.main_slot().should "contain", "WikiRating"
 
 
+  specify "Formula metric formula", =>
+    cy.visit "Jedi+friendliness+formula"
+    cy.slot "jedi+darkness_rating+formula"
+      .find(".card-menu > a").click(force: true)
+
+    cy.contains("a", "add metric", timeout: 15000)
+      .click()
+    cy.contains("Add filter")
+      .click()
+    cy.contains("Keyword")
+      .click()
+    cy.get("[name=filter[name]")
+      .clear()
+      .type("multi{enter}")
+
+    cy.get("._modal-slot").within ($modal) ->
+      expect($modal).to.contain "small multi"
+      expect($modal).to.contain "big multi"
+
+
+
+
+
