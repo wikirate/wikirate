@@ -24,10 +24,8 @@ format :html do
      details_view: :metric_details_sidebar]
   end
 
-  view :filter do
-    # filter_form a: { input_field: "<input class='a'/>", label: "A" },
-    #            b: { input_field: "<formgroup><select class='b'><option value='a'>Alpha</option></select></formgroup>", label: "B" }
-    field_subformat(:company_metric_filter)._render_core
+  def filter_card_fieldcode
+    :company_metric_filter
   end
 
   def name_sort_links

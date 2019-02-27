@@ -9,7 +9,7 @@ def search args={}
     q.run.map(&:name)
   when :count then
     q.count
-  elseq
+  else
     q.run
   end
 end
@@ -24,6 +24,7 @@ end
 
 format :html do
   view :core, cache: :never do
+    filter_defaults
     wrap_with :div, class: "filter-form-and-result nodblclick" do
       class_up "card-slot", "_filter-result-slot"
       output [_render_filter_form, _render_filter_result]
@@ -38,10 +39,19 @@ format :html do
     end
   end
 
+  view :filter do
+    field_subformat(filter_card_fieldcode)._render_core
+  end
+
   view :table, cache: :never do
     wrap do # slot for paging links
       wikirate_table_with_details(*table_args)
     end
+  end
+
+  # this sets the default filter search options to match the default filter UI.
+  def filter_defaults
+    filter_hash.merge! card.field(filter_card_fieldcode).default_filter_option
   end
 
   def details_url? row_card

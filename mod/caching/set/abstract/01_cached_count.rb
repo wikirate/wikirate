@@ -65,8 +65,4 @@ format do
   def count
     card.cached_count
   end
-
-  view :count do
-    count
-  end
 end

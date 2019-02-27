@@ -39,7 +39,7 @@ format :html do
     table_sort_link "Values", :value
   end
 
-  view :filter do
-    field_subformat(:metric_company_filter)._render_core
+  def filter_card_fieldcode
+    :metric_company_filter
   end
 end
