@@ -5,6 +5,10 @@ format :html do
     two_column_layout 5, 7
   end
 
+  before :open do
+    voo.hide! :header
+  end
+
   before :content_formgroup do
     voo.edit_structure = [
       :image,

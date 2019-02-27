@@ -1,4 +1,11 @@
 
+.open-view.TYPE-metric > .card {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+}
+
 .tabbable.company-tabs .tab-content {
   margin-left: -15px;
 }

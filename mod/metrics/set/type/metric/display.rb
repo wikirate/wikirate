@@ -7,7 +7,7 @@ DETAILS_FIELD_MAP = {
 
 format :html do
   view :vote do
-    %(<div class="hidden-xs hidden-md">#{field_nest(:vote_count)}</div>)
+    %(<div class="d-none d-md-block">#{field_nest(:vote_count)}</div>)
   end
 
   # OUTLIERS
