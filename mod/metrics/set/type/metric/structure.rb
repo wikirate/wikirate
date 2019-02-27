@@ -2,6 +2,10 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::BsBadge
 
 format :html do
+  before :open do
+    voo.hide :header
+  end
+
   def left_column_class
     "#{super} metric-info m-0 p-0"
   end
@@ -13,7 +17,9 @@ format :html do
   view :rich_header do
     vote = field_subformat(:vote_count)._render_content
     bs_layout do
-      row 1, 11, class: "metric-header-container border-bottom container p-0 m-0 mt-3" do
+      row 1, 11, class: "metric-header-container header-container container "\
+                        "border-bottom p-0 m-0 pt-3" do
+        html render_menu
         column vote, class: "col-1 pt-1"
         column _render_title_and_question, class: "col-10"
       end
