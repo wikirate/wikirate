@@ -118,7 +118,7 @@ GEM
     arel (9.0.0)
     ast (2.4.0)
     backports (3.11.4)
-    better_errors (2.5.0)
+    better_errors (2.5.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
@@ -517,7 +517,7 @@ GEM
     parallel (1.13.0)
     parser (2.6.0.0)
       ast (~> 2.4.0)
-    pdfkit (0.8.2)
+    pdfkit (0.8.3)
     pivotal-tracker (0.5.13)
       builder
       crack
