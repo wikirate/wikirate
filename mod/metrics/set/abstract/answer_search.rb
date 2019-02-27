@@ -9,7 +9,7 @@ def search args={}
     q.run.map(&:name)
   when :count then
     q.count
-  else
+  elseq
     q.run
   end
 end

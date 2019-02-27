@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
+RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
   describe "view: stats" do
     example "filtered by 'all'" do
       Card.fetch("Jedi+disturbances in the Force").create_values true do
@@ -33,7 +33,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
 
   def stats filter
     Card::Env.params[:filter] = filter
-    Card.fetch("Jedi+disturbances in the Force", :all_metric_values)
+    Card.fetch("Jedi+disturbances in the Force", :metric_answer)
         .format._render_stats
   end
 

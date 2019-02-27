@@ -1,8 +1,8 @@
 require "./test/seed"
 
-RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
+RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
   let(:metric) { @metric || Card["Jedi+disturbances in the Force"] }
-  let(:all_metric_values) { metric.fetch trait: :all_metric_values }
+  let(:metric_answer) { metric.fetch trait: :metric_answer }
   let(:latest_answers) do
     ["Death_Star+2001", "Monster_Inc+2000", "Slate_Rock_and_Gravel_Company+2005",
      "SPECTRE+2000"]
@@ -36,7 +36,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
   describe "#item_cards" do
     subject(:answer_list) do
-      answers all_metric_values.item_cards
+      answers metric_answer.item_cards
     end
 
     it "returns the latest values in default order" do
@@ -44,8 +44,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     end
 
     def filter_by args
-      allow(all_metric_values).to receive(:filter_hash) { args }
-      answers all_metric_values.item_cards
+      allow(metric_answer).to receive(:filter_hash) { args }
+      answers metric_answer.item_cards
     end
 
     context "with single filter condition" do
@@ -208,9 +208,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
     context "with sort conditions" do
       def sort_answers_by key, order="asc"
-        allow(all_metric_values).to receive(:sort_by) { key }
-        allow(all_metric_values).to receive(:sort_order) { order }
-        answers all_metric_values.item_cards
+        allow(metric_answer).to receive(:sort_by) { key }
+        allow(metric_answer).to receive(:sort_order) { order }
+        answers metric_answer.item_cards
       end
 
       it "sorts by company name (asc)" do
@@ -270,7 +270,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
   describe "#count" do
     it "returns correct count" do
-      expect(all_metric_values.count).to eq(4)
+      expect(metric_answer.count).to eq(4)
     end
   end
 
@@ -281,7 +281,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     describe ":table" do
       context "when metric researched" do
         subject do
-          Card.fetch([metric, :all_metric_values]).format(:html)._render_table
+          Card.fetch([metric, :metric_answer]).format(:html)._render_table
         end
 
         it "has a bootstrap table" do
@@ -294,7 +294,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
       context "when metric researched" do
         subject do
-          Card.fetch(["Jedi+friendliness", :all_metric_values])
+          Card.fetch(["Jedi+friendliness", :metric_answer])
               .format(:html)._render_table
         end
 
@@ -310,7 +310,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
     describe ":core" do
       subject do
-        Card.fetch([metric, :all_metric_values]).format(:html)._render_core
+        Card.fetch([metric, :metric_answer]).format(:html)._render_core
       end
 
       it "has filter widget" do
@@ -320,7 +320,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       end
       it "has chart" do
         is_expected.to have_tag ".row" do
-          url = "/Jedi+disturbances_in_the_Force+all_metric_values.json?view=vega"
+          url = "/Jedi+disturbances_in_the_Force+metric_answer.json?view=vega"
           with_tag ".vis", with: { "data-url": url }
         end
       end

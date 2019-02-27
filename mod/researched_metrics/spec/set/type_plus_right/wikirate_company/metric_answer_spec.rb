@@ -1,8 +1,8 @@
 require "./test/seed"
 
-RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
+RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
   let(:company) { @company || Card["Death_Star"] }
-  let(:all_metric_values) { company.fetch trait: :all_metric_values }
+  let(:metric_answer) { company.fetch trait: :metric_answer }
   let(:latest_answers_by_importance) do
     [
       "disturbances in the Force+2001",
@@ -95,7 +95,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
   describe "#item_cards" do
     subject do
-      answers all_metric_values.item_cards
+      answers metric_answer.item_cards
     end
 
     it "returns the latest values" do
@@ -111,9 +111,9 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     end
 
     def filter_by args
-      allow(all_metric_values).to receive(:sort_by).and_return(:metric_name)
-      allow(all_metric_values).to receive(:filter_hash) { args }
-      answers all_metric_values.item_cards
+      allow(metric_answer).to receive(:sort_by).and_return(:metric_name)
+      allow(metric_answer).to receive(:filter_hash) { args }
+      answers metric_answer.item_cards
     end
 
     context "with single filter condition" do
@@ -405,9 +405,9 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
     context "with sort conditions" do
       def sort_by key, order=nil
-        allow(all_metric_values).to receive(:sort_by) { key }
-        allow(all_metric_values).to receive(:sort_order) { order } if order
-        all_metric_values.item_cards.map(&:name)
+        allow(metric_answer).to receive(:sort_by) { key }
+        allow(metric_answer).to receive(:sort_order) { order } if order
+        metric_answer.item_cards.map(&:name)
       end
 
       let(:sorted_designer) { ["Fred", "Jedi", "Joe User"] }
@@ -457,7 +457,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
   describe "#count" do
     it "returns correct count" do
-      expect(all_metric_values.count).to eq(metric_count)
+      expect(metric_answer.count).to eq(metric_count)
     end
   end
 

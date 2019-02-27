@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 
+# Cards in this set cache a count in the counts table
+
 include_set Abstract::BsBadge
 
 def self.included host_class
@@ -62,5 +64,9 @@ end
 format do
   def count
     card.cached_count
+  end
+
+  view :count do
+    count
   end
 end
