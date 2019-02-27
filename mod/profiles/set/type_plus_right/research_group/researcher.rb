@@ -64,7 +64,7 @@ format :html do
   view :manage_button, tags: :unknown_ok do
     link_to_view "edit",
                  "Manage Researcher List",
-                 class: "btn btn-outline-primary btn-sm slotter"
+                 class: "btn btn-outline-primary btn-sm"
   end
 
   def member_contribution_content members
