@@ -61,6 +61,9 @@
     background-color: $metric-color;
   }
 }
+.metric-nav .progress-bar {
+  background-color: $metric-color;
+}
 
 .default-progress-box .progress {
   -webkit-filter: grayscale(100%);
