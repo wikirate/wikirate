@@ -1,13 +1,12 @@
 require "./test/seed"
 
 RSpec.describe Card::FixedMetricAnswerQuery do
-  let(:metric) { Card[@metric_name || "Jedi+disturbances in the Force"] }
-
   LATEST_ANSWERS = %w[Death_Star+2001
                       Monster_Inc+2000
                       Slate_Rock_and_Gravel_Company+2005
                       SPECTRE+2000].freeze
 
+  let(:metric) { Card[@metric_name || "Jedi+disturbances in the Force"] }
   let(:all_companies) { Card.search type_id: Card::WikirateCompanyID, return: :name }
 
   let :missing_companies do
@@ -33,14 +32,14 @@ RSpec.describe Card::FixedMetricAnswerQuery do
   # @return [Array] of company+year strings
   def filter_by filter, latest=true
     filter.reverse_merge! year: :latest if latest
-    answers self.described_class.new(metric.id, filter).run
+    answers described_class.new(metric.id, filter).run
   end
 
   # @return [Array] of company+year strings
   def sort_by key, order="asc"
     filter = { year: :latest }
     sort = { sort_by: key, sort_order: order }
-    answers self.described_class.new(metric.id, filter, sort).run
+    answers described_class.new(metric.id, filter, sort).run
   end
 
   context "with single filter condition" do
@@ -124,7 +123,7 @@ RSpec.describe Card::FixedMetricAnswerQuery do
   end
 
   context "with multiple filter conditions" do
-    context "filter for missing values and ..." do
+    context "with filter for missing values and ..." do
       it "... year" do
         missing2000 = missing_answers(2000)
         missing2000 << "Slate Rock and Gravel Company+2000"
@@ -204,9 +203,9 @@ RSpec.describe Card::FixedMetricAnswerQuery do
   context "with sort conditions" do
     it "sorts by company name (asc)" do
       expect(sort_by(:company_name)).to eq(%w[Death_Star+2001
-                                                      Monster_Inc+2000
-                                                      Slate_Rock_and_Gravel_Company+2005
-                                                      SPECTRE+2000])
+                                              Monster_Inc+2000
+                                              Slate_Rock_and_Gravel_Company+2005
+                                              SPECTRE+2000])
     end
 
     it "sorts by company name (desc)" do

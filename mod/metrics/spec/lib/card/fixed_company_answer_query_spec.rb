@@ -1,6 +1,10 @@
 require "./test/seed"
 
 RSpec.describe Card::FixedCompanyAnswerQuery do
+  RESEARCHED_TITLES = ["Industry Class", "Weapons", "big multi", "big single",
+                       "researched number 2", "researched number 3", "small multi",
+                       "small single"].freeze
+
   let(:company) { Card[@company_name || "Death_Star"] }
   let(:all_metrics) { Card.search type_id: Card::MetricID, return: :name }
   let(:all_metric_titles) { all_metrics.map { |n| n.to_name[1..-1].to_name } }
@@ -53,14 +57,14 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
   def filter_by filter, latest=true
     filter.reverse_merge! year: :latest if latest
     sort = { sort_by: :metric_name }
-    answers self.described_class.new(company.id, filter, sort).run
+    answers described_class.new(company.id, filter, sort).run
   end
 
   # @return [Array] of answer cards
   def sort_by key, order=:asc
     filter = { year: :latest }
     sort = { sort_by: key, sort_order: order }
-    self.described_class.new(company.id, filter, sort).run
+    described_class.new(company.id, filter, sort).run
   end
 
   context "with single filter condition" do
@@ -235,7 +239,7 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
   end
 
   context "with multiple filter conditions" do
-    context "filter for missing values and ..." do
+    context "with filter for missing values and ..." do
       it "... year" do
         missing2001 = missing_answers(2001) + with_year(
           ["Victims by Employees", "cost of planets destroyed",
@@ -263,12 +267,7 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
 
       it "... metric_type" do
         expect(filter_by(metric_value: :none, metric_type: "Researched"))
-          .to contain_exactly(
-                *with_year(["Industry Class", "Weapons",
-                            "big multi", "big single",
-                            "researched number 2", "researched number 3",
-                            "small multi", "small single"])
-              )
+          .to contain_exactly(*with_year(RESEARCHED_TITLES))
       end
 
       it "... policy and year" do
@@ -278,7 +277,7 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
       end
     end
 
-    context "filter for all values and ..." do
+    context "with filter for all values and ..." do
       it "... project" do
         expect(filter_by(metric_value: :all, project: "Evil Project"))
           .to contain_exactly("disturbances in the Force+2001",
@@ -300,10 +299,7 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
       it "... metric_type" do
         expect(filter_by(metric_value: :all, metric_type: "Researched"))
           .to contain_exactly(
-                *(with_year(["Industry Class", "Weapons",
-                             "big multi", "big single",
-                             "researched number 2", "researched number 3",
-                             "small multi", "small single"]) + researched)
+                *(with_year(RESEARCHED_TITLES) + researched)
               )
       end
     end
