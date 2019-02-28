@@ -33,8 +33,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
 
   def stats filter
     Card::Env.params[:filter] = filter
-    Card.fetch("Jedi+disturbances in the Force", :metric_answer)
-        .format._render_stats
+    name = "Jedi+disturbances in the Force+answer"
+    Card.expire name # needed because empty @filter_hash is cached on card
+    Card.fetch(name).format._render_stats
   end
 
   def with_row operand, cat, count, label

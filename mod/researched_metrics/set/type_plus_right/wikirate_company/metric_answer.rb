@@ -1,9 +1,12 @@
-# All Answers for a given Company
-
+# Answer search for a given Company
 include_set Abstract::AnswerSearch
 
 def query_class
   FixedCompanyAnswerQuery
+end
+
+def filter_card_fieldcode
+  :company_metric_filter
 end
 
 def default_sort_option
@@ -11,10 +14,7 @@ def default_sort_option
 end
 
 format :html do
-  view :filter_result, cache: :never do
-    voo.hide! :chart
-    super()
-  end
+  before(:filter_result) { voo.hide! :chart }
 
   def table_args
     [:metric,
@@ -22,10 +22,6 @@ format :html do
      [:metric_thumbnail_with_vote, :value_cell],
      header: [name_sort_links, "Value"],
      details_view: :metric_details_sidebar]
-  end
-
-  def filter_card_fieldcode
-    :company_metric_filter
   end
 
   def name_sort_links

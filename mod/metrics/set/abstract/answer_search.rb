@@ -1,3 +1,7 @@
+# including module must respond to
+# A) `query_class`, returning a valid AnswerQuery class, and
+# B) `filter_card_fieldcode`, returning the codename of the filter field
+
 include_set Abstract::SortAndFilter
 include_set Abstract::Table
 
@@ -15,11 +19,11 @@ def search args={}
 end
 
 def query args={}
-  if filter_hash.present?
-    query_class.new left.id, filter_hash, sort_hash, args
-  else
-    query_class.default left.id, sort_hash, args
-  end
+  query_class.new left.id, filter_hash, sort_hash, args
+end
+
+def filter_card
+  field filter_card_fieldcode
 end
 
 format :html do
@@ -40,7 +44,7 @@ format :html do
   end
 
   view :filter do
-    field_subformat(filter_card_fieldcode)._render_core
+    subformat(card.filter_card)._render_core
   end
 
   view :table, cache: :never do
@@ -49,13 +53,14 @@ format :html do
     end
   end
 
-  # this sets the default filter search options to match the default filter UI.
+  # this sets the default filter search options to match the default filter UI,
+  # which is managed by the
   def merge_filter_defaults
     filter_hash.merge! filter_defaults
   end
 
   def filter_defaults
-    card.field(filter_card_fieldcode).default_filter_option
+    card.filter_card.default_filter_option
   end
 
   def details_url? row_card

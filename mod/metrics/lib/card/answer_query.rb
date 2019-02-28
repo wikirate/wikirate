@@ -18,10 +18,6 @@ class Card
       add_filter @filter_args
     end
 
-    def self.default fixed_id, sort={}, paging={}
-      new fixed_id, {}, sort, paging
-    end
-
     # @return array of metric answer card objects
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database
