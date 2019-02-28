@@ -93,26 +93,43 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
     end
   end
 
-  describe "#item_cards" do
-    subject do
-      answers metric_answer.item_cards
+  def filter_defaults
+    @filter_defaults ||= metric_answer.format.filter_defaults
+  end
+
+  context "when using default filters" do
+    before do
+      allow(metric_answer).to receive(:filter_hash) { filter_defaults }
     end
 
-    it "returns the latest values" do
-      expected = latest_answers_by_importance
+    describe "#item_cards" do
+      it "returns the latest values" do
+        answer_items = answers metric_answer.item_cards
+        expected = latest_answers_by_importance
 
-      upvoted = (0..1)
-      notvoted = (2..-2)
-      downvoted = -1
+        upvoted = (0..1)
+        notvoted = (2..-2)
+        downvoted = -1
 
-      expect(subject[upvoted]).to contain_exactly(*expected[upvoted])
-      expect(subject[notvoted]).to contain_exactly(*expected[notvoted])
-      expect(subject[downvoted]).to eq(expected[downvoted])
+        expect(answer_items[upvoted]).to contain_exactly(*expected[upvoted])
+        expect(answer_items[notvoted]).to contain_exactly(*expected[notvoted])
+        expect(answer_items[downvoted]).to eq(expected[downvoted])
+      end
     end
 
-    def filter_by args
+    describe "#count" do
+      it "returns correct count" do
+        expect(metric_answer.count).to eq(metric_count)
+      end
+    end
+  end
+
+  describe "filtered results" do
+    def filter_by args, merge_defaults=true
       allow(metric_answer).to receive(:sort_by).and_return(:metric_name)
-      allow(metric_answer).to receive(:filter_hash) { args }
+      allow(metric_answer).to receive(:filter_hash) do
+        merge_defaults ? filter_defaults.merge(args) : args
+      end
       answers metric_answer.item_cards
     end
 
@@ -261,18 +278,18 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
           end
 
           it "finds today's edits" do
-            expect(filter_by(metric_value: :today))
+            expect(filter_by({ metric_value: :today }, false))
               .to eq ["disturbances in the Force+1990"]
           end
 
           it "finds this week's edits" do
-            expect(filter_by(metric_value: :week))
+            expect(filter_by({ metric_value: :week }, false))
               .to eq ["disturbances in the Force+1990",
                       "disturbances in the Force+1991"]
           end
 
           it "finds this months's edits" do
-            expect(filter_by(metric_value: :month))
+            expect(filter_by({ metric_value: :month }, false))
               .to eq ["dinosaurlabor+2010",
                       "disturbances in the Force+1990",
                       "disturbances in the Force+1991",
@@ -407,6 +424,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
       def sort_by key, order=nil
         allow(metric_answer).to receive(:sort_by) { key }
         allow(metric_answer).to receive(:sort_order) { order } if order
+        allow(metric_answer).to receive(:filter_hash) { filter_defaults }
         metric_answer.item_cards.map(&:name)
       end
 
@@ -453,14 +471,5 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
         expect(actual[downvoted]).to eq(expected[downvoted])
       end
     end
-  end
-
-  describe "#count" do
-    it "returns correct count" do
-      expect(metric_answer.count).to eq(metric_count)
-    end
-  end
-
-  describe "view" do
   end
 end

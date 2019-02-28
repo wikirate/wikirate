@@ -24,7 +24,7 @@ end
 
 format :html do
   view :core, cache: :never do
-    filter_defaults
+    merge_filter_defaults
     wrap_with :div, class: "filter-form-and-result nodblclick" do
       class_up "card-slot", "_filter-result-slot"
       output [_render_filter_form, _render_filter_result]
@@ -50,8 +50,12 @@ format :html do
   end
 
   # this sets the default filter search options to match the default filter UI.
+  def merge_filter_defaults
+    filter_hash.merge! filter_defaults
+  end
+
   def filter_defaults
-    filter_hash.merge! card.field(filter_card_fieldcode).default_filter_option
+    card.field(filter_card_fieldcode).default_filter_option
   end
 
   def details_url? row_card

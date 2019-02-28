@@ -8,7 +8,7 @@ def answer_ids
   all_answers.pluck(:id)
 end
 
-def answer_for company, year
+def answer company, year
   company = Card.fetch_id(company) unless company.is_a? Integer
   Answer.where(metric_id: id, company_id: company, year: year.to_i).take
 end

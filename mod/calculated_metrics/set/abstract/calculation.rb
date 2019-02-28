@@ -6,7 +6,7 @@ card_accessor :metric_variables
 # @option opts [String] :year
 def update_value_for! opts
   calculate_values_for(opts) do |year, value|
-    if (ans = answer_for opts[:company], year)
+    if (ans = answer opts[:company], year)
       update_existing_answer ans, value
     elsif value
       Answer.create_calculated_answer self, opts[:company], year, value

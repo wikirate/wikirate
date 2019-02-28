@@ -34,17 +34,24 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
     end
   end
 
+  def filter_defaults
+    @filter_defaults ||= metric_answer.format.filter_defaults
+  end
+
   describe "#item_cards" do
     subject(:answer_list) do
       answers metric_answer.item_cards
     end
 
-    it "returns the latest values in default order" do
-      expect(answer_list).to eq(latest_answers)
+    it "returns cards from multiple years and companies" do
+      expect(answer_list)
+        .to include("Death_Star+1977", "Death_Star+2000", "Monster_Inc+2000")
     end
 
-    def filter_by args
-      allow(metric_answer).to receive(:filter_hash) { args }
+    def filter_by args, merge_defaults=true
+      allow(metric_answer).to receive(:filter_hash) do
+        merge_defaults ? filter_defaults.merge(args) : args
+      end
       answers metric_answer.item_cards
     end
 
@@ -104,18 +111,18 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
             Timecop.return
           end
           it "finds today's edits" do
-            expect(filter_by(metric_value: :today))
+            expect(filter_by({ metric_value: :today }, false))
               .to eq %w[Death_Star+1990]
           end
 
           it "finds this week's edits" do
-            expect(filter_by(metric_value: :week))
+            expect(filter_by({ metric_value: :week }, false))
               .to eq %w[Death_Star+1990 Death_Star+1991]
           end
 
           it "finds this months's edits" do
             # wrong only one company
-            expect(filter_by(metric_value: :month))
+            expect(filter_by({ metric_value: :month }, false))
               .to eq %w[Death_Star+1990 Death_Star+1991 Death_Star+1992]
           end
         end
@@ -210,6 +217,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
       def sort_answers_by key, order="asc"
         allow(metric_answer).to receive(:sort_by) { key }
         allow(metric_answer).to receive(:sort_order) { order }
+        allow(metric_answer).to receive(:filter_hash) { filter_defaults }
         answers metric_answer.item_cards
       end
 
@@ -270,7 +278,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
 
   describe "#count" do
     it "returns correct count" do
-      expect(metric_answer.count).to eq(4)
+      expect(metric_answer.count).to eq(Answer.where(metric_id: metric.id).count)
     end
   end
 
@@ -320,8 +328,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
       end
       it "has chart" do
         is_expected.to have_tag ".row" do
-          url = "/Jedi+disturbances_in_the_Force+metric_answer.json?view=vega"
-          with_tag ".vis", with: { "data-url": url }
+          with_tag ".vis"
         end
       end
       it "has counts" do
