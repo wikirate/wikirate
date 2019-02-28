@@ -93,7 +93,9 @@ class Answer
 
     def order_args args
       by = args[:cast] ? "CAST(#{args[:sort_by]} AS #{args[:cast]})" : args[:sort_by]
-      "#{by} #{args[:sort_order]}"
+      # I think it's ok to call Arel.sql here because the arguments coming from params
+      # use Query.safe_sql
+      Arel.sql "#{by} #{args[:sort_order]}"
     end
 
     def valid_sort_args? args
