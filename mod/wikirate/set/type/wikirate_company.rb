@@ -1,6 +1,6 @@
 include_set Abstract::WikirateTable
 include_set Abstract::Media
-include_set Abstract::Export
+# include_set Abstract::Export
 
 card_accessor :contribution_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"

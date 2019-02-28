@@ -79,6 +79,12 @@ def subvariant_count subvariant
   result
 end
 
+format do
+  def extra_paging_path_args
+    { variant: variant, subvariant: subvariant, view: :list }
+  end
+end
+
 format :html do
   delegate :subvariant, to: :card
 
@@ -89,10 +95,6 @@ format :html do
 
   def default_limit
     5
-  end
-
-  def extra_paging_path_args
-    { variant: variant, subvariant: subvariant, view: :list }
   end
 
   # uses structure to hold variant

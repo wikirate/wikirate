@@ -2,6 +2,7 @@
 # A) `query_class`, returning a valid AnswerQuery class, and
 # B) `filter_card_fieldcode`, returning the codename of the filter field
 
+include_set Abstract::Export
 include_set Abstract::SortAndFilter
 include_set Abstract::Table
 
@@ -69,5 +70,9 @@ format :html do
 
   def paging_view
     :table
+  end
+
+  def export_link_path format
+    super.merge filter_and_sort_hash
   end
 end
