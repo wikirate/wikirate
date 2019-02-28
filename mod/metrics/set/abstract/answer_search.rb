@@ -54,7 +54,7 @@ format :html do
   end
 
   # this sets the default filter search options to match the default filter UI,
-  # which is managed by the
+  # which is managed by the filter_card
   def merge_filter_defaults
     filter_hash.merge! filter_defaults
   end

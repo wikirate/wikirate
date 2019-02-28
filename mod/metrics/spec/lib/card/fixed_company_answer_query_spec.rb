@@ -147,8 +147,7 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
 
       it "finds notvoted" do
         expect(filter_by(importance: :novotes))
-          .to eq latest_answers - ["disturbances in the Force+2001",
-                                   "deadliness+1977"]
+          .to eq latest_answers - ["disturbances in the Force+2001", "deadliness+1977"]
       end
 
       it "finds voted" do
@@ -210,16 +209,13 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
 
         it "finds this week's edits" do
           expect(filter_by({ metric_value: :week }, false))
-            .to eq ["disturbances in the Force+1990",
-                    "disturbances in the Force+1991"]
+            .to eq ["disturbances in the Force+1990", "disturbances in the Force+1991"]
         end
 
         it "finds this months's edits" do
           expect(filter_by({ metric_value: :month }, false))
-            .to eq ["dinosaurlabor+2010",
-                    "disturbances in the Force+1990",
-                    "disturbances in the Force+1991",
-                    "disturbances in the Force+1992"]
+            .to eq ["dinosaurlabor+2010", "disturbances in the Force+1990",
+                    "disturbances in the Force+1991", "disturbances in the Force+1992"]
         end
       end
     end
@@ -298,9 +294,7 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
 
       it "... metric_type" do
         expect(filter_by(metric_value: :all, metric_type: "Researched"))
-          .to contain_exactly(
-                *(with_year(RESEARCHED_TITLES) + researched)
-              )
+          .to contain_exactly(*(with_year(RESEARCHED_TITLES) + researched))
       end
     end
 
