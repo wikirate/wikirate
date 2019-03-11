@@ -144,7 +144,9 @@ input.navbox, .select2-navbox-autocomplete input.select2-search__field {
 
 //FOR ALL 2 column layout
 .row.panel-margin-fix {
-    margin-top: -15px;
+  margin-top: -19px;
+  margin-left: -$card-spacer-x;
+  margin-right: -$card-spacer-x;
 }
 
 
@@ -165,4 +167,12 @@ div[data-slot*="float:right"]{
 .wikirate-layout > nav.navbar {
     box-shadow: none;
     border-bottom: 1px solid $border-color;
+}
+
+.header-container > .card-menu._show-on-hover > a {
+  display: none;
+}
+
+.header-container:hover > .card-menu._show-on-hover > a {
+  display: inline-block;
 }
