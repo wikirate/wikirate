@@ -1,1 +1,3 @@
-include_set TypePlusRight::WikirateCompany::AllMetricValues
+include_set TypePlusRight::WikirateCompany::MetricAnswer
+
+# DEPRECATED.  Use "answer" not "record"

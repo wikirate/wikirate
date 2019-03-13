@@ -65,7 +65,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
         create_formula
         answer_card = Card.fetch "Jedi+formula test+Death Star+1977", type: :metric_answer
         expect(answer_card.answer.id).to eq calc_answer.id
-        expect(view(:core, card: "Jedi+formula test+all metric values"))
+        expect(view(:core, card: "Jedi+formula test+answer"))
           .to have_tag :tr do
           with_text /Death Star/
           with_tag "i.fa-refresh"
@@ -75,7 +75,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
 
     it "replaces dummy answers after calculation" do
       with_delayed_jobs { create_formula }
-      expect(view(:core, card: "Jedi+formula test+all metric values")).to have_tag :tr do
+      expect(view(:core, card: "Jedi+formula test+answer")).to have_tag :tr do
         with_text /Death Star/
         without_tag "i.fa-refresh"
         with_text /322/

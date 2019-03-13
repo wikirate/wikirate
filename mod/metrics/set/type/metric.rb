@@ -1,6 +1,6 @@
 require "savanna-outliers"
 
-include_set Abstract::Export
+# include_set Abstract::Export
 include_set Abstract::DesignerAndTitle
 include_set Abstract::MetricThumbnail
 
@@ -16,7 +16,7 @@ card_accessor :value_options
 card_accessor :report_type
 card_accessor :research_policy
 card_accessor :project
-card_accessor :all_metric_values
+card_accessor :metric_answer
 card_accessor :unit
 card_accessor :range
 card_accessor :hybrid, type: :toggle

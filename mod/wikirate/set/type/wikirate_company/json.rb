@@ -18,7 +18,7 @@ format :json do
 
   view :molecule do
     super().merge(add_fields_to_hash({}))
-           .merge records_url: path(mark: card.field(:record), format: :json)
+           .merge answers_url: path(mark: card.field(:metric_answer), format: :json)
   end
 
   def add_fields_to_hash hash, view=:atom

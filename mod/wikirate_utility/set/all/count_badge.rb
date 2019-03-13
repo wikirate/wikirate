@@ -1,3 +1,10 @@
+format do
+  # note: overridden in cached_count
+  def count
+    card.count
+  end
+end
+
 format :html do
   def count_badge field
     field_nest field, view: :count_badge, title: Card::Name[field].vary(:plural)
@@ -5,10 +12,6 @@ format :html do
 
   def count_badges *fields
     output(fields.map { |f| count_badge f })
-  end
-
-  def count
-    card.count
   end
 
   view :count do

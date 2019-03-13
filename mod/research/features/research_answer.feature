@@ -8,7 +8,7 @@ Feature: Research answer
       | metric      | company    | year |
       | Joe User+RM | Apple Inc. | 2009 |
 
-  Scenario: Create a metric value
+  Scenario: Create an answer
     When I cite source
     And I fill in "9" for "Answer"
     And I fill in "Baam!" for " Comment"
@@ -21,7 +21,7 @@ Feature: Research answer
     When I open the year list
     Then I should see "9"
 
-  Scenario: Create a metric value and request check
+  Scenario: Create an answer and request check
     When I cite source
     And I fill in "10" for "Answer"
     And I fill in "Baam!" for " Comment"
@@ -37,7 +37,7 @@ Feature: Research answer
     And I should see "Baam!"
     And I should see "check requested by Joe User"
 
-  Scenario: Create a metric value with duplicated source
+  Scenario: Create an answer with duplicated source
     When I cite source "Star_Wars"
     And I fill in "10" for "Answer"
     And I fill in "Baam!" for " Comment"

@@ -42,15 +42,9 @@ format :html do
   end
 
   view :core do
-    nest Card.fetch(card.name, :project), view: :content, items: { view: :bar }
+    card.all_metric_project_cards.map do |metric_project|
+      nest metric_project, view: :bar
+    end
+    # nest Card.fetch(card.name, :project), view: :content, items: { view: :bar }
   end
-
-  # def metric_progress_table
-  #   wikirate_table :metric,
-  #                  card.all_metric_project_cards,
-  #                  [:metric_thumbnail, :research_progress_bar],
-  #                  table: { class: "metric-progress" },
-  #                  header: ["Metric", "#{rate_subjects} Researched"],
-  #                  td: { classes: %w[metric-column progress-column] }
-  # end
 end

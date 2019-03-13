@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
+RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
   describe "view: stats" do
     example "filtered by 'all'" do
       Card.fetch("Jedi+disturbances in the Force").create_values true do
@@ -33,8 +33,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
 
   def stats filter
     Card::Env.params[:filter] = filter
-    Card.fetch("Jedi+disturbances in the Force", :all_metric_values)
-        .format._render_stats
+    name = "Jedi+disturbances in the Force+answer"
+    Card.expire name # needed because empty @filter_hash is cached on card
+    Card.fetch(name).format._render_stats
   end
 
   def with_row operand, cat, count, label
