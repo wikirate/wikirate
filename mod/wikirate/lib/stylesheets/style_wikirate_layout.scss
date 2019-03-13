@@ -169,10 +169,10 @@ div[data-slot*="float:right"]{
     border-bottom: 1px solid $border-color;
 }
 
-.header-container > .card-menu._show-on-hover > a {
+.rich-header > .card-menu._show-on-hover > a {
   display: none;
 }
 
-.header-container:hover > .card-menu._show-on-hover > a {
+.rich-header:hover > .card-menu._show-on-hover > a {
   display: inline-block;
 }

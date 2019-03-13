@@ -10,6 +10,10 @@ format :html do
     voo.hide :header
   end
 
+  before :rich_header do
+    voo.show! :menu
+  end
+
   before :content_formgroup do
     voo.edit_structure = [:headquarters, :image, :wikipedia]
   end

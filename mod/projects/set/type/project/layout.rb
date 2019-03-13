@@ -23,6 +23,10 @@ format :html do
     ]
   end
 
+  def bar_side_cols middle=true
+    middle ? [5, 4, 3] : [7, 5]
+  end
+
   def project_type_name
     return with_parent unless card.parent.blank?
     card.type.upcase

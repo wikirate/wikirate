@@ -45,9 +45,11 @@ format :html do
   end
 
   view :rich_header do
+    voo.hide :menu
     bs_layout do
       row 12 do
         col class: "p-0 rich-header border-bottom" do
+          html render_menu
           _render_rich_header_body
         end
       end
