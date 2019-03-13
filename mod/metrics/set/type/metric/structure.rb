@@ -27,7 +27,7 @@ format :html do
   end
 
   view :data, cache: :never do
-    field_nest :all_metric_values
+    field_nest :metric_answer
   end
 
   view :title_and_question do
@@ -81,6 +81,6 @@ format :html do
   end
 
   def metric_count
-    field_nest :all_metric_values, view: :count
+    field_nest :metric_answer, view: :count
   end
 end

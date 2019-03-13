@@ -1,5 +1,5 @@
-# Eg MyProject+Metrics+Project
-# Returns Metric+Project cards for MyProject.  Makes listings pageable
+# Eg MyProject+Company+Project
+# Returns <Company>+<Project> cards for MyProject.  Makes listings pageable
 
 include_set Type::SearchType
 
@@ -25,6 +25,6 @@ def wql_hash
     referred_to_by: pointer_name,
     append: project_name,
     sort: :name,
-    limit: 50
+    limit: 100
   }
 end

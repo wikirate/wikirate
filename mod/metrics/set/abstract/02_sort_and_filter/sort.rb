@@ -7,7 +7,7 @@ def default_desc_sort_order
 end
 
 def sort_by
-  @sort_by ||= Env.params["sort_by"] || default_sort_option
+  @sort_by ||= safe_sql_param("sort_by") || default_sort_option
 end
 
 # override
@@ -17,7 +17,7 @@ end
 
 def sort_order
   return unless sort_by
-  @sort_order ||= Env.params["sort_order"]
+  @sort_order ||= safe_sql_param("sort_order")
   @sort_order ||= default_desc_sort_order.include?(sort_by) ? :desc : :asc
 end
 

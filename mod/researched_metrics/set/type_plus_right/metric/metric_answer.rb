@@ -1,4 +1,5 @@
-include_set Abstract::AllMetricValues
+# Answer search for a given Metric
+include_set Abstract::AnswerSearch
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::Chart
 
@@ -6,8 +7,8 @@ def query_class
   FixedMetricAnswerQuery
 end
 
-def default_sort_option
-  :value
+def filter_card_fieldcode
+  :metric_company_filter
 end
 
 format :json do
@@ -37,9 +38,5 @@ format :html do
 
   def value_sort_link
     table_sort_link "Values", :value
-  end
-
-  view :filter do
-    field_subformat(:metric_company_filter)._render_core
   end
 end

@@ -50,7 +50,7 @@ format :html do
   end
 
   def performance_data
-    field_nest :all_metric_values
+    field_nest :metric_answer
   end
 
   def header_right

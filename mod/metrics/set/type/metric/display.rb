@@ -19,7 +19,7 @@ format :html do
 
   def prepare_for_outlier_search
     res = {}
-    card.all_metric_values_card.values_by_name.map do |key, data|
+    card.metric_answer_card.values_by_name.map do |key, data|
       data.each do |row|
         res["#{key}+#{row['year']}"] = row["value"].to_i
       end
