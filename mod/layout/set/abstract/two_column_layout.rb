@@ -9,6 +9,10 @@ format do
 end
 
 format :html do
+  before :open do
+    voo.hide :header
+  end
+
   view :open_content do
     two_column_layout
   end
@@ -46,7 +50,8 @@ format :html do
 
   view :rich_header do
     bs_layout do
-      row 12 do
+      row 12, class: "header-container" do
+        html render_menu
         col class: "p-0 rich-header border-bottom" do
           _render_rich_header_body
         end

@@ -173,6 +173,9 @@ div[data-slot*="float:right"]{
   display: none;
 }
 
-.header-container:hover > .card-menu._show-on-hover > a {
-  display: inline-block;
+.header-container:hover > .card-menu._show-on-hover {
+  z-index: 2;
+  > a {
+    display: inline-block;
+  }
 }

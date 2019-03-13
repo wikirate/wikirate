@@ -2,10 +2,6 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::BsBadge
 
 format :html do
-  before :open do
-    voo.hide :header
-  end
-
   def left_column_class
     "#{super} metric-info m-0 p-0"
   end
