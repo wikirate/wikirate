@@ -22,9 +22,9 @@ end
 format :html do
   NEW_BADGE = '<span class="badge badge-danger">New</span>'.freeze
 
-  def menu_icon
-    fa_icon "pencil-square-o"
-  end
+  # def menu_icon
+  #   fa_icon "pencil-square-o"
+  # end
 
   def header_title_elements
     voo.hide :title_badge
