@@ -13,7 +13,7 @@ format :html do
   view :rich_header do
     vote = field_subformat(:vote_count)._render_content
     bs_layout do
-      row 1, 11, class: "metric-header-container header-container container "\
+      row 1, 11, class: "metric-header-container rich-header container "\
                         "border-bottom p-0 m-0 pt-3" do
         html render_menu
         column vote, class: "col-1 pt-1"

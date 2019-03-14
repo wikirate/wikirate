@@ -49,10 +49,8 @@ format :html do
   end
 
   view :core do
-    menu_wrap do
-      items_hash = { view: :bar }
-      items_hash[:hide] = :bar_middle unless card.researchable_metrics?
-      nest Card.fetch(card.name, :project), view: :content, items: items_hash
-    end
+    items_hash = { view: :bar }
+    items_hash[:hide] = :bar_middle unless card.researchable_metrics?
+    nest Card.fetch(card.name, :project), view: :content, items: items_hash
   end
 end

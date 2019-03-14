@@ -41,5 +41,8 @@ $tagColorMap: (
       background: $bg-hover;
       color: #fff;
     }
+    > a .card-title {
+      color: inherit;
+    }
   }
 }

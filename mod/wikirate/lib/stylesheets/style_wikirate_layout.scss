@@ -169,11 +169,15 @@ div[data-slot*="float:right"]{
     border-bottom: 1px solid $border-color;
 }
 
-.header-container > .card-menu._show-on-hover > a {
+.titled-view .d0-card-header {
+  min-height: 1.5em;
+}
+
+.rich-header > .card-menu._show-on-hover > a {
   display: none;
 }
 
-.header-container:hover > .card-menu._show-on-hover {
+.rich-header:hover > .card-menu._show-on-hover {
   z-index: 2;
   > a {
     display: inline-block;

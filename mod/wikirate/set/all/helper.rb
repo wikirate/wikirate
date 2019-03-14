@@ -11,12 +11,10 @@ format :html do
   end
 
   view :menued do
-    class_up "d0-card-body", "pt-5", true
-    render_titled hide: :header, show: [:menu]
+    render_titled hide: [:title, :toggle], show: :menu
   end
 
   def tab_nest codename, args={}
-    class_up "d0-card-body", "pt-5", true
     field_nest codename,
                args.reverse_merge(view: :menued, items: { view: :link },
                                   hide: :menu_item_discuss)

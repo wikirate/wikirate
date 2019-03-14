@@ -106,10 +106,13 @@ $colorMap: (
       color: #fff;
       background: $color;
       text-align: center;
+      > .card-menu, > .card-title, a {
+        color: #fff;
+      }
     }
 
-    > .menu-slot {
-      color: #fff;
+    .two-column-box {
+      border-top: 5px solid $color;
     }
   }
 
