@@ -19,6 +19,10 @@ format :html do
             field_nest(:description, view: :titled, title: "Description")]
   end
 
+  def bar_side_cols middle=true
+    middle ? [5, 4, 3] : [7, 5]
+  end
+
   view :cite_bar, template: :haml
   view :preview_link_bar, template: :haml
 

@@ -31,4 +31,8 @@ format :html do
   end
 
   view :box_bottom, template: :haml
+
+  def bar_side_cols middle=true
+    middle ? [5, 4, 3] : [7, 5]
+  end
 end

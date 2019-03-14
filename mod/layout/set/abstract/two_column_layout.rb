@@ -10,8 +10,8 @@ end
 
 format :html do
   before :open do
-    voo.hide :header_title
-    voo.hide :menu
+    voo.hide :header
+    voo.show :menu
   end
 
   view :open_content do
