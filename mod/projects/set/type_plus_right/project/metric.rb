@@ -41,6 +41,11 @@ format :html do
     Card.fetch :metric, :browse_metric_filter
   end
 
+  before :menued do
+    voo.edit = :content_inline
+    voo.items.delete :view # reset tab_nest
+  end
+
   view :core do
     card.all_metric_project_cards.map do |metric_project|
       nest metric_project, view: :bar

@@ -88,6 +88,10 @@ class Card
       @paging_args[:limit]
     end
 
+    def answer_lookup
+      Answer.where(where_args).sort(@sort_args).paging(@paging_args)
+    end
+
     private
 
     def all_answers
@@ -136,7 +140,7 @@ class Card
 
     def run_filter_query
       return [] if @empty_result
-      Answer.where(where_args).sort(@sort_args).paging(@paging_args).answer_cards
+      answer_lookup.answer_cards
     end
 
     def prepare_filter_args filter

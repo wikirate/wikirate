@@ -27,6 +27,18 @@ def filter_card
   field filter_card_fieldcode
 end
 
+format do
+  def item_view_from_query
+    nil
+  end
+end
+
+format :csv do
+  view :core do
+    Answer.csv_title + card.query(limit: nil).answer_lookup.map(&:csv_line).join
+  end
+end
+
 format :html do
   view :core, cache: :never do
     merge_filter_defaults

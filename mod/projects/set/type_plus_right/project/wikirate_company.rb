@@ -48,6 +48,11 @@ format :html do
     Card.fetch :wikirate_company, :browse_company_filter
   end
 
+  before :menued do
+    voo.edit = :content_inline
+    voo.items.delete :view # reset tab_nest
+  end
+
   view :core do
     items_hash = { view: :bar }
     items_hash[:hide] = :bar_middle unless card.researchable_metrics?
