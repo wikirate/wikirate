@@ -6,10 +6,6 @@ card_accessor :open_corporates
 card_accessor :post
 
 format :html do
-  before :open do
-    voo.hide :header
-  end
-
   before :content_formgroup do
     voo.edit_structure = [:headquarters, :image, :wikipedia]
   end

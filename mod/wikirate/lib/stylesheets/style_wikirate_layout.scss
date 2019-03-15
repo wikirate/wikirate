@@ -98,7 +98,7 @@ h2 {
 }
 
 body {
-  >#wikirate_footer_compact {
+  >#wikirate_footer_compact-content-view {
     /*position: fixed;*/
     bottom: 0px;
     z-index: 9;
@@ -169,10 +169,17 @@ div[data-slot*="float:right"]{
     border-bottom: 1px solid $border-color;
 }
 
-.header-container > .card-menu._show-on-hover > a {
+.titled-view .d0-card-header {
+  min-height: 1.5em;
+}
+
+.rich-header > .card-menu._show-on-hover > a {
   display: none;
 }
 
-.header-container:hover > .card-menu._show-on-hover > a {
-  display: inline-block;
+.rich-header:hover > .card-menu._show-on-hover {
+  z-index: 2;
+  > a {
+    display: inline-block;
+  }
 }

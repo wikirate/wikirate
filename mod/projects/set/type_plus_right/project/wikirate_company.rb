@@ -1,8 +1,6 @@
 # These Project+Company (type plus right) cards refer to the list of
 # all companies on a given project.
 
-include_set Abstract::Table
-
 # @return [Card::Name]
 def project_name
   name.left_name

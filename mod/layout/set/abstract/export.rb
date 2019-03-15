@@ -3,7 +3,7 @@ format :html do
     [:csv, :json]
   end
 
-  view :export_links do
+  view :export_links, cache: :never do
     wrap_with :p do
       "Export: #{format_links}"
     end

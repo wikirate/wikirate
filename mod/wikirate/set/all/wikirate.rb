@@ -22,9 +22,9 @@ end
 format :html do
   NEW_BADGE = '<span class="badge badge-danger">New</span>'.freeze
 
-  def menu_icon
-    fa_icon "pencil-square-o"
-  end
+  # def menu_icon
+  #   fa_icon "pencil-square-o"
+  # end
 
   def header_title_elements
     voo.hide :title_badge
@@ -53,61 +53,11 @@ format :html do
     ::ActionView::Base.full_sanitizer.sanitize truncated
   end
 
-  view :titled_with_edits do
-    @content_body = true
-    wrap do
-      [
-        _render_header,
-        render_edits_by,
-        wrap_body { _render_core }
-      ]
-    end
-  end
-
   view :titled_row do
     [
       { content: _render_title, class: "title" },
       { content: _render_core, class: "value" }
     ]
-  end
-
-  view :edits_by do
-    editor_card = card.fetch trait: :editors
-    links = subformat(editor_card).render_shorter_search_result(
-      items: { view: :link }
-    )
-    %(<div class="edits-by">
-        #{links}<div class='subtitle-header'>Edits by</div>
-      </div>
-    )
-  end
-
-  view :shorter_pointer_content do
-    nest card, view: :shorter_search_result, hide: :link
-  end
-
-  view :shorter_search_result do
-    render_view = voo.show?(:link) ? :link : :name
-    items = card.item_cards limit: 0
-    total_number = items.size
-    return "" if total_number.zero?
-
-    fetch_number = [total_number, 4].min
-    result = ""
-    if fetch_number > 1
-      result += items[0..(fetch_number - 2)].map do |c|
-        subformat(c).render!(render_view)
-      end.join(" , ")
-      result += " and "
-    end
-
-    result +
-      if total_number > fetch_number
-        %(<a class="known-card" href="#{card.format.render! :url}"> ) \
-          "#{total_number - 3} others</a>"
-      else
-        subformat(items[fetch_number - 1]).render!(render_view)
-      end
   end
 
   view :name_formgroup do
@@ -128,20 +78,6 @@ format :html do
       end
     else
       ""
-    end
-  end
-
-  view :showcase_list, tags: :unknown_ok do
-    item_type_name = card.name.right.split.last
-    icon_card = Card.fetch("#{item_type_name}+icon")
-    hidden_class = card.content.empty? ? "hidden" : ""
-    class_up "card-body", "showcase #{hidden_class}"
-    wrap do
-      [
-        subformat(icon_card)._render_core,
-        item_type_name.capitalize,
-        _render_core
-      ]
     end
   end
 

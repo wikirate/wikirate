@@ -9,13 +9,18 @@ format do
 end
 
 format :html do
+  before :open do
+    voo.hide :header
+    voo.show :menu
+  end
+
   view :open_content do
     two_column_layout
   end
 
   def two_column_layout col1=6, col2=6, row_hash={}
     bs_layout container: false, fluid: true, class: container_class do
-      row_hash[:class] ||= "panel-margin-fix"
+      row_hash[:class] ||= "panel-margin-fix two-column-box"
       row col1, col2, row_hash do
         column _render_left_column, class: left_column_class
         column _render_right_column, class: right_column_class
@@ -46,8 +51,9 @@ format :html do
 
   view :rich_header do
     bs_layout do
-      row 12 do
-        col class: "p-0 rich-header border-bottom" do
+      row 12, class: "rich-header" do
+        html render_menu
+        col class: "p-0 border-bottom" do
           _render_rich_header_body
         end
       end

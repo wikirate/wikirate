@@ -2,6 +2,7 @@ format :html do
   view :bar_left do
     render :thumbnail_with_vote
   end
+  view :bar_expanded_left, :bar_left
 
   view :bar_right do
     count_badges :wikirate_company, :metric_answer
@@ -23,4 +24,8 @@ format :html do
   view :box_middle, template: :haml
 
   view :box_bottom, template: :haml
+
+  def bar_side_cols middle=true
+    middle ? [5, 4, 3] : [7, 5]
+  end
 end

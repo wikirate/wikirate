@@ -35,6 +35,7 @@ format :html do
                     title: render_title_link,
                     text: bar_left_details
   end
+  view :bar_expanded_left, :bar_left
 
   view :bar_middle do
     topics_details

@@ -20,6 +20,7 @@ format :html do
   view :bar_left do
     render_thumbnail
   end
+  view :bar_expanded_left, :bar_left
 
   view :bar_middle do
     count_badges :post, :project
@@ -38,6 +39,10 @@ format :html do
   end
 
   view :box_bottom, template: :haml
+
+  def bar_side_cols middle=true
+    middle ? [5, 4, 3] : [7, 5]
+  end
 
   before :content_formgroup do
     voo.edit_structure = %i[image general_overview]
