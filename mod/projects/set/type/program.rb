@@ -19,6 +19,7 @@ format :html do
   view :bar_left do
     render :thumbnail
   end
+  view :bar_expanded_left, :bar_left
 
   view :bar_right do
     count_badges :project, :metric

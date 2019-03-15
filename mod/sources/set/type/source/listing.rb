@@ -1,6 +1,7 @@
 format :html do
   # BAR VIEWS
   view :bar_left, template: :haml
+  view :bar_expanded_left, :bar_left
   view :bar_right, template: :haml
 
   view :bar_middle do

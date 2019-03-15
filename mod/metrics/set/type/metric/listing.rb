@@ -2,6 +2,7 @@ format :html do
   view :bar_left do
     render :thumbnail_with_vote
   end
+  view :bar_expanded_left, :bar_left
 
   view :bar_right do
     count_badges :wikirate_company, :metric_answer
