@@ -41,7 +41,7 @@ format :html do
   end
 
   def default_item_view
-    :thumbnail
+    :thumbnail_no_link
   end
 
   def filter_card
