@@ -46,6 +46,7 @@ format :html do
       nest card.metric_card, view: :thumbnail_no_link
     end
   end
+  view :bar_expanded_left, :bar_left
 
   view :bar_right do
     render :research_progress_bar

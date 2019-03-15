@@ -1,6 +1,7 @@
 format :html do
   # BAR VIEWS
   view :bar_left, template: :haml
+  view :bar_expanded_left, :bar_left
   view :bar_right, template: :haml
 
   view :bar_middle do
@@ -17,6 +18,10 @@ format :html do
                                         title: "Topics",
                                         items: { view: :link }),
             field_nest(:description, view: :titled, title: "Description")]
+  end
+
+  def bar_side_cols middle=true
+    middle ? [5, 4, 3] : [7, 5]
   end
 
   view :cite_bar, template: :haml

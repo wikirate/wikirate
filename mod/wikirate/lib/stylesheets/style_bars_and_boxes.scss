@@ -106,8 +106,8 @@ $colorMap: (
       color: #fff;
       background: $color;
       text-align: center;
-      > .card-menu, > .card-title, a {
-        color: #fff;
+      a {
+        color: #fff !important;
       }
     }
 

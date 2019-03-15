@@ -19,6 +19,7 @@ format :html do
   view :bar_left do
     render :thumbnail
   end
+  view :bar_expanded_left, :bar_left
 
   view :bar_right do
     count_badges :project, :metric
@@ -26,6 +27,10 @@ format :html do
 
   view :bar_bottom do
     field_nest :general_overview
+  end
+
+  def bar_side_cols middle=true
+    middle ? [5, 4, 3] : [7, 5]
   end
 
   view :data do
