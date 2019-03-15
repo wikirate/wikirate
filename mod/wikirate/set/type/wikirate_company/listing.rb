@@ -13,6 +13,7 @@ format :html do
   view :bar_left do
     render_thumbnail
   end
+  view :bar_expanded_left, :bar_left
 
   view :bar_right do
     count_badges :metric, :metric_answer
