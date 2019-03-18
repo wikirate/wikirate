@@ -11,7 +11,7 @@ format :html do
   end
 
   view :year_edit_link do
-    link_to_view :edit_year, fa_icon(:edit),
+    link_to_view :edit_year, menu_icon,
                  path: { RESEARCH_PARAMS_KEY => research_params },
                  class: "_edit-year-link text-dark",
                  "data-slot-selector": ".card-slot.left_research_side-view > div > "\

@@ -4,8 +4,8 @@ format :html do
   end
 end
 
-format :csv do
-  view :core do
-    Answer.csv_title + Answer.all.map(&:csv_line).join
-  end
-end
+# format :csv do
+#   view :core do
+#     Answer.csv_title + Answer.all.map(&:csv_line).join
+#   end
+# end

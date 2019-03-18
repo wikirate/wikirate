@@ -27,6 +27,7 @@ def all_answers
   Answer.where company_id: id
 end
 
+# DEPRECATED.  +answer csv replaces following:
 format :csv do
   view :core do
     Answer.csv_title + card.all_answers.map(&:csv_line).join

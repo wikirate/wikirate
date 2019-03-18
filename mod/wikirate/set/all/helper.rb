@@ -15,9 +15,7 @@ format :html do
   end
 
   def tab_nest codename, args={}
-    field_nest codename,
-               args.reverse_merge(view: :menued, items: { view: :link },
-                                  hide: :menu_item_discuss)
+    field_nest codename, args.reverse_merge(view: :menued, items: { view: :link })
   end
 
   def original_link url, opts={}
