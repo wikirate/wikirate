@@ -20,7 +20,11 @@ class Answer
     end
 
     def answer_link
-      card_url "~#{answer_id}"
+      card_url answer_id.present? ? "~#{answer_id}" : answer_name.url_key
+    end
+
+    def answer_name
+      "#{record_name}+#{year}".to_name
     end
 
     # class methods for {Answer}

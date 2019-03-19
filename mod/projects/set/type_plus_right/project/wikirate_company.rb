@@ -41,11 +41,16 @@ format :html do
   end
 
   def default_item_view
-    :thumbnail
+    :thumbnail_no_link
   end
 
   def filter_card
     Card.fetch :wikirate_company, :browse_company_filter
+  end
+
+  before :menued do
+    voo.edit = :content_inline
+    voo.items.delete :view # reset tab_nest
   end
 
   view :core do
