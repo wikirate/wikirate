@@ -40,9 +40,8 @@ format :html do
 
   view :box_bottom, template: :haml
 
-  def bar_side_cols middle=true
-    middle ? [5, 4, 3] : [7, 5]
-  end
+  bar_cols 7, 5
+  infobar_cols 5, 4, 3
 
   before :content_formgroup do
     voo.edit_structure = %i[image general_overview]
@@ -53,7 +52,7 @@ format :html do
   end
 
   view :data, cache: :never do
-    field_nest :metric, title: "Metrics", items: { view: :mini_bar }
+    field_nest :metric, title: "Metrics", items: { view: :bar }
   end
 
   view :details_tab do
@@ -61,10 +60,10 @@ format :html do
   end
 
   view :wikirate_company_tab do
-    field_nest :wikirate_company, title: "Companies", items: { view: :mini_bar }
+    field_nest :wikirate_company, title: "Companies", items: { view: :bar }
   end
 
   view :project_tab do
-    field_nest :project, items: { view: :mini_bar }
+    field_nest :project, items: { view: :bar }
   end
 end

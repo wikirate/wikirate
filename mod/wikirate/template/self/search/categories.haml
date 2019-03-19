@@ -2,12 +2,12 @@
   .row
     = nest [:wikirate_company, :search], view: :titled,
                                          title: "Companies",
-                                         items: { view: :bar }
+                                         items: { view: :infobar }
   .row
     = nest [:wikirate_topic, :search], view: :titled,
                                        title: "Topics",
-                                       items: { view: :bar }
+                                       items: { view: :infobar }
   .row
     = nest [:metric, :search], view: :titled,
                                title: "Metrics",
-                               items: { view: :bar }
+                               items: { view: :infobar }

@@ -32,12 +32,12 @@ format :html do
     @units ||= "Metric #{card.project_card.units}"
   end
 
-  def bar_side_cols middle=true
-    middle ? [6, 2, 4] : [8, 4]
-  end
+  bar_cols 8, 4
+  infobar_cols 6, 2, 4
 
   view :bar do
     voo.hide! :bar_nav
+    voo.show! :bar_middle
     super()
   end
 

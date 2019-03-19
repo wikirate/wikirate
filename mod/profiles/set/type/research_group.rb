@@ -80,15 +80,20 @@ format :html do
   end
 
   view :metric_tab do
-    field_nest :metric, items: { view: :mini_bar }
+    field_nest :metric, items: { view: :bar }
   end
 
   view :project_tab do
-    field_nest :project, items: { view: :mini_bar }
+    field_nest :project, items: { view: :bar }
   end
 
   view :researcher_tab do
     field_nest :researcher, view: :overview
+  end
+
+  before :bar do
+    super()
+    voo.show! :middle
   end
 
   view :bar_left, template: :haml
