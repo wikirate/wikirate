@@ -16,12 +16,11 @@ $(document).ready ->
   $('body').on 'click', ".details-close-icon", ->
     trToggleDetails this
 
-  $('body').on 'click', ".details-toggle", (event) ->
+  $('body').on 'click', ".details-toggle", (_event) ->
     if no_toggle
       no_toggle = null
     else
       trToggleDetails this
-    event.stopPropagation()
 
   trToggleDetails = (toggle) ->
     $toggle = $(toggle)
