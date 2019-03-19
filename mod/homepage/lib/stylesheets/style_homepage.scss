@@ -4,7 +4,8 @@
   background: url({{topics collage|source; size:original}});
 }
 
-.SELF-about_wiki_rate p {
+// TODO: move this (not about home page).
+.SELF-about_wiki_rate .d0-card-content p {
   font-size: 1.2em;
 }
 
@@ -166,166 +167,12 @@
     }
   }
 }
-/* Small Devices, Tablets */
-@media only screen and (max-width : 768px) {
-  .vega canvas {
-    width: 100%!important;
-    height: 100%!important;
-  }
-
-  .details {
-    top: 65px!important;
-    position: fixed!important;
-    left: 0%!important;
-    width: 100%!important;
-  }
-
-  table.wikirate-table td.data {
-    min-width: 100%!important;
-  }
-
-  select {
-    width: 100%;
-  }
-}
-/*----------- Media queries- For mobile devices ---------*/
-@media screen and (max-width: 40em) {
-  h4 {
-    font-size: medium;
-  }
-
-  .metric-value {
-    font-size: 12px !important;
-  }
-
-  .yinyang {
-    padding: 0 !important;
-  }
-
-  .drag-item .value-item .header .name,
-  .yinyang-row .value-item .header .name {
-    width: 88% !important;
-  }
-
-  .grid-column,
-  .grid-row {
-    margin-bottom: 24px;
-  }
-
-  #overviews .search-result-item {
-    display: inline-block;
-    margin: 1.4%;
-    width: 97%;
-  }
-
-  #company-n-topic {
-    .company-list,
-    .topic-list {
-      width: 100%;
-    }
-  }
-
-  body#wagn {
-    min-width: 325px;
-  }
-
-  #notes-sources {
-    .d0-card-content.SELF-homepage_note_list,
-    .d0-card-content.SELF-homepage_source_list {
-      margin: 15px 0;
-    }
-  }
-
-  #top-bar {
-    .logo-bar img {
-      margin-top: 0;
-      height: 25px;
-      border: none;
-    }
-
-    .account-info-bar {
-      display: none;
-      float: right;
-      position: absolute;
-      top: 6%;
-      right: 35px;
-      font-size: 0.6em;
-    }
-
-    #logging a {
-      margin-left: 4px;
-    }
-
-    .search-bar-mobile {
-      display: block;
-      float: right;
-    }
-
-    .search-bar {
-      width: 92%;
-      display: none;
-    }
-  }
-
-  a.slicknav_btn {
-    float: left;
-    margin: 6px 0 0 -6px;
-  }
-
-  #page-wrapper {
-    padding: 6px 4px;
-  }
-  // #main {
-  //   padding: 80px 1%;
-  // }
-  #top-bar-wrapper .slicknav_menu .slicknav_nav .account-info-bar .logged-out {
-    display: none;
-  }
-
-  #top-banner-wrapper .column-2 .SELF-wikirate_globe.d0-card-content {
-    display: none;
-  }
-
-  .ui-tabs .ui-tabs-panel {
-    padding: 0;
-  }
-
-  .TYPE_PLUS_RIGHT-user-Xfollowing {
-    display: none;
-  }
-
-  .card-slot > .card-header .card-menu-link {
-    margin: -40px -3px;
-  }
-
-  .header-vote {
-    float: left;
-    border-right: 0;
-    margin-right: 0;
-    padding: 0;
-  }
-
-  .header-citation {
-    float: right;
-    margin-top: -2%;
-    padding: 0;
-    border-left: 0;
-    margin-left: 0;
-  }
-
-  .header-title {
-    padding: 0 10px;
-    text-align: center;
-    width: 100%;
-    float: left;
-  }
-}
 
 .name-diff .label-default {
   background-color: inherit;
 }
 
-.vide-section-lm {
+.video-section-lm {
   margin-top: -10%;
 }
 // Play icon on video section

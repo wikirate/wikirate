@@ -2,7 +2,7 @@
 
 $(document).ready ->
 
-# details toggle
+  # details toggle
   # FIXME: risky global variable
   active_details = null
 
@@ -15,11 +15,13 @@ $(document).ready ->
 
   $('body').on 'click', ".details-close-icon", ->
     trToggleDetails this
-  $('body').on 'click', ".details-toggle", ->
+
+  $('body').on 'click', ".details-toggle", (event) ->
     if no_toggle
       no_toggle = null
     else
       trToggleDetails this
+    event.stopPropagation()
 
   trToggleDetails = (toggle) ->
     $toggle = $(toggle)
@@ -45,7 +47,7 @@ $(document).ready ->
     return unless url
     loadDetails $toggle, url
     active_details.show()
-    stickDetails()
+    #     stickDetails()
 
   loadDetails = ($toggle, url) ->
     return if $.trim(active_details.html()) # already loaded
@@ -62,6 +64,7 @@ $(document).ready ->
     else
       constructDetailsUrl $toggle
 
+
   constructDetailsUrl = ($toggle) ->
     view = $toggle.data('view') || 'content'
     right_name = $toggle.data 'append'
@@ -73,19 +76,20 @@ $(document).ready ->
       active_details.find('.card-slot').trigger 'slotReady'
 
   #stick the details when scrolling
-  stickDetails = () ->
-    if stickableDetails()
-      active_details.addClass 'stick'
-    else
-      active_details.removeClass 'stick'
-
-  # TODO: move each to well-named function
-  stickableDetails = () ->
-    return false if $(window).scrollTop() > ($("#main").height() - $(window).height() + 300)
-    return true if $(document).scrollTop() > 56
-    return true if active_details.closest('.modal-body').exists() # is modal
-    false
-
-  $(window).scroll ->
-    if active_details
-      stickDetails()
+  #   stickDetails = () ->
+  #     if stickableDetails()
+  #       active_details.addClass 'stick'
+  #     else
+  #       active_details.removeClass 'stick'
+  #
+  #   # TODO: move each to well-named function
+  #   stickableDetails = () ->
+  #     return false if $(window).scrollTop() > ($("#main").height() - $(window).height() + 300)
+  #     return true if $(document).scrollTop() > 56
+  #     return true if active_details.closest('.modal-body').exists() # is modal
+  #     false
+  #
+  #   $(window).scroll ->
+  #     if active_details
+  #       stickDetails()
+  #
