@@ -42,7 +42,7 @@ format :html do
   end
 
   before :menued do
-    voo.edit = :content_inline
+    voo.edit = :inline
     voo.items.delete :view # reset tab_nest
   end
 

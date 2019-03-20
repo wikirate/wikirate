@@ -41,7 +41,7 @@
 
 .TYPE_PLUS_RIGHT-metric-answer {
   .details-toggle.active .header {
-    border-left-color: $company-color;
+    border-left-color: $company-color !important;
   }
   .details {
     border-top: 5px solid $company-color !important;
@@ -50,7 +50,7 @@
 
 .TYPE_PLUS_RIGHT-company-answer {
   .details-toggle.active .header {
-    border-left-color: $metric-color;
+    border-left-color: $metric-color !important;
   }
   .details {
     border-top: 5px solid $metric-color !important;
