@@ -37,7 +37,7 @@ format :html do
   end
 
   view :bar do
-    voo.hide! :bar_middle, :bar_nav
+    voo.hide! :bar_nav
     super()
   end
 

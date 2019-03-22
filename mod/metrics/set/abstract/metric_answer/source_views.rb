@@ -42,7 +42,7 @@ format :html do
 
   view :sources do
     output [citations_count,
-            nest(card.source_card, view: :core, items: { view: :mini_bar })]
+            nest(card.source_card, view: :core, items: { view: :bar })]
   end
 
   view :source_editor do

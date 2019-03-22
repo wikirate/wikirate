@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::ResearchGroup do
   check_views_for_errors :open_content, :bar, :edit,
                          :researcher_tab, :metric_tab, :project_tab
 
-  specify "view :bar" do
+  specify "view :info_bar" do
     expect_view(:bar).to have_tag "div.bar" do
       with_tag "div.bar-left" do
         with_tag "div.thumbnail"

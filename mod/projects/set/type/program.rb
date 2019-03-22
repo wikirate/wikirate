@@ -11,11 +11,6 @@ format :html do
     ]
   end
 
-  before :bar do
-    super()
-    voo.hide! :bar_middle
-  end
-
   view :bar_left do
     render :thumbnail
   end
@@ -29,9 +24,8 @@ format :html do
     field_nest :general_overview
   end
 
-  def bar_side_cols middle=true
-    middle ? [5, 4, 3] : [7, 5]
-  end
+  bar_cols 7, 5
+  info_bar_cols 5, 4, 3
 
   view :data do
     wrap_with :div do
@@ -50,10 +44,10 @@ format :html do
   end
 
   def projects_list
-    field_nest :project, view: :content, items: { view:  :mini_bar }, title: "Projects"
+    field_nest :project, view: :content, items: { view:  :bar }, title: "Projects"
   end
 
   view :metric_tab do
-    field_nest :metric, view: :content, items: { view:  :mini_bar }, title: "Metrics"
+    field_nest :metric, view: :content, items: { view:  :bar }, title: "Metrics"
   end
 end

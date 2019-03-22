@@ -35,7 +35,7 @@ format :html do
 
   view :project_tab do
     tab_wrap do
-      field_nest :project, view: :titled, title: "Projects", items: { view: :mini_bar }
+      field_nest :project, view: :titled, title: "Projects", items: { view: :bar }
     end
   end
 
@@ -47,7 +47,7 @@ format :html do
 
   def calculations_list
     card.directly_dependent_metrics.map do |metric|
-      nest metric, view: :mini_bar
+      nest metric, view: :bar
     end.join
   end
 
