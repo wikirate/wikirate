@@ -6,7 +6,7 @@ RSpec.describe Card::Set::Type::ResearchGroup do
                          :researcher_tab, :metric_tab, :project_tab
 
   specify "view :info_bar" do
-    expect_view(:bar).to have_tag "div.bar" do
+    expect_view(:info_bar).to have_tag "div.bar" do
       with_tag "div.bar-left" do
         with_tag "div.thumbnail"
       end
