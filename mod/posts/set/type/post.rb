@@ -28,9 +28,8 @@ format :html do
             field_nest(:discussion, view: :titled, title: "Discussion")]
   end
 
-  def bar_side_cols middle=true
-    middle ? [4, 4, 4] : [6, 6]
-  end
+  bar_cols 6, 6
+  info_bar_cols 4, 4, 4
 
   def tab_list
     %i[wikirate_company wikirate_topic project]
@@ -38,7 +37,7 @@ format :html do
 
   %i[wikirate_company wikirate_topic project].each do |codename|
     view :"#{codename}_tab" do
-      field_nest codename, items: { view: :mini_bar }
+      field_nest codename, items: { view: :bar }
     end
   end
 

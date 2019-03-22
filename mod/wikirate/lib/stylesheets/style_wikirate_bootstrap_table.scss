@@ -10,7 +10,7 @@
     border-left: 3px solid $regular;
   }
   tr {
-    &.tr-details-toggle:hover, &.tr-link:hover {
+    &.details-toggle:hover {
       .header {
         border-left: 3px solid $hover;
       }
@@ -171,11 +171,11 @@ table.wikirate-table, .table.wikirate-table {
 .import-table td {
   text-overflow: ellipsis;
 }
-.yinyang-list.add-formula {
-  min-height: 500px;
-}
+// .yinyang-list.add-formula {
+//   min-height: 500px;
+// }
 
-.add-formula td.details.data.stick {
+.add-formula td.details.data {
   height: 78%!important;
   top: 110px!important;
 }

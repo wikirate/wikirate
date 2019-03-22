@@ -1,25 +1,97 @@
-@media (max-width: 1199px) and (min-width: 991px) {
-  .TYPE-company.open-view .company-page-logo-container {
+/*----------- Media queries- For mobile devices ---------*/
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .vega canvas {
+    width: 100%!important;
+    height: 100%!important;
+  }
+
+  table.wikirate-table td.data {
+    min-width: 100%!important;
+  }
+
+  select {
     width: 100%;
-    margin: 10px 0px;
   }
 }
 
-@media (max-width: 991px) {
-  .drag-item .details, .yinyang-row .details, .drag-item .details.stick, .yinyang-row .details.stick {
-    left: 0;
-    top: 60px;
-    width: 100%;
-    z-index: 9;
-    position: fixed !important;
-    max-width: 100%;
+@media screen and (max-width: 40em) {
+  h4 {
+    font-size: medium;
   }
-}
 
-@media (max-width: 610px) {
-  .TYPE-company.open-view .company-page-logo-container {
-    width: 100%;
-    margin: 10px 0px;
+  .metric-value {
+    font-size: 12px !important;
+  }
+
+  .grid-column,
+  .grid-row {
+    margin-bottom: 24px;
+  }
+
+  body#wagn {
+    min-width: 325px;
+  }
+
+  #top-bar {
+    .logo-bar img {
+      margin-top: 0;
+      height: 25px;
+      border: none;
+    }
+
+    .account-info-bar {
+      display: none;
+      float: right;
+      position: absolute;
+      top: 6%;
+      right: 35px;
+      font-size: 0.6em;
+    }
+
+    #logging a {
+      margin-left: 4px;
+    }
+
+    .search-bar-mobile {
+      display: block;
+      float: right;
+    }
+
+    .search-bar {
+      width: 92%;
+      display: none;
+    }
+  }
+
+  a.slicknav_btn {
+    float: left;
+    margin: 6px 0 0 -6px;
+  }
+
+  #page-wrapper {
+    padding: 6px 4px;
+  }
+
+  #top-bar-wrapper .slicknav_menu .slicknav_nav .account-info-bar .logged-out {
+    display: none;
+  }
+
+  #top-banner-wrapper .column-2 .SELF-wikirate_globe.d0-card-content {
+    display: none;
+  }
+
+  .ui-tabs .ui-tabs-panel {
+    padding: 0;
+  }
+
+  .TYPE_PLUS_RIGHT-user-Xfollowing {
+    display: none;
+  }
+
+  .card-slot > .card-header .card-menu-link {
+    margin: -40px -3px;
   }
 }
 

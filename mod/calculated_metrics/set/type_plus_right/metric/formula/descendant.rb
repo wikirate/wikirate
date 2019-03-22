@@ -7,7 +7,7 @@ end
 
 format :html do
   def default_item_view
-    :mini_bar
+    :bar
   end
 
   def filter_card

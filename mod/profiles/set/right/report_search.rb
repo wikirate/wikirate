@@ -139,7 +139,7 @@ format :html do
   end
 
   view :list do
-    _render_content structure: variant, items: { view: :mini_bar }
+    _render_content structure: variant, items: { view: :bar }
   end
 
   # this is a bit of a hack but a reasonably safe one
