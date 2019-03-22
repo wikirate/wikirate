@@ -35,7 +35,7 @@ format :html do
   end
 
   view :research_group_tab, cache: :never do
-    field_nest :research_group, items: { view: :mini_bar }
+    field_nest :research_group, items: { view: :bar, hide: :bar_middle }
   end
 
   view :contributions_tab, cache: :never do

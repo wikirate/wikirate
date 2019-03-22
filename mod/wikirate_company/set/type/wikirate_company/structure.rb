@@ -11,15 +11,15 @@ format :html do
   end
 
   view :wikirate_topic_tab do
-    field_nest :wikirate_topic, items: { view: :mini_bar }
+    field_nest :wikirate_topic, items: { view: :bar }
   end
 
   view :source_tab do
-    field_nest :source, items: { view: :mini_bar }
+    field_nest :source, items: { view: :bar }
   end
 
   view :project_tab do
-    field_nest :project, items: { view: :mini_bar }
+    field_nest :project, items: { view: :bar }
   end
 
   def tab_list

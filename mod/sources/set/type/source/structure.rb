@@ -26,13 +26,13 @@ format :html do
 
   view :metric_tab do
     tab_wrap do
-      field_nest :metric, items: { view: :mini_bar }
+      field_nest :metric, items: { view: :bar }
     end
   end
 
   view :metric_answer_tab do
     tab_wrap do
-      field_nest :metric_answer, items: { view: :mini_bar }
+      field_nest :metric_answer, items: { view: :bar }
     end
   end
 

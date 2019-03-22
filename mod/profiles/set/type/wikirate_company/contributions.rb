@@ -33,11 +33,11 @@ format :html do
 
   view :metric_contributions do
     field_nest :metrics_designed, view: :titled, show: :title_badge,
-                                  items: { view: :mini_bar }
+                                  items: { view: :bar }
   end
 
   view :project_contributions do
     field_nest :projects_organized, view: :titled, show: :title_badge,
-                                    items: { view: :mini_bar }
+                                    items: { view: :bar }
   end
 end

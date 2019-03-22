@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::TypePlusRight::Project::WikirateCompany do
+RSpec.describe Card::Set::TypePlusRight::Project::WikirateCompany do
   context "when project has research metrics" do
     let(:project_companies) { Card.fetch("Evil Project", :wikirate_company) }
 
