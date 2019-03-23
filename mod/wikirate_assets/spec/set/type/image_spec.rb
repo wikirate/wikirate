@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::Type::Image do
   describe "missing view" do
     before do
-      @file = File.open("#{Rails.root}/mod/wikirate/spec/set/right/image.jpg")
+      @file = File.open("#{Rails.root}/mod/wikirate_assets/spec/set/right/image.jpg")
       @missing_card = Card["missing image"]
     end
 

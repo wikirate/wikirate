@@ -49,7 +49,7 @@ RSpec.describe Card::Set::All::Wikirate do
   describe "og_source view" do
     context "with existing card" do
       it "renders source view" do
-        file_path = "#{Rails.root}/mod/wikirate/spec/set/all/DeathStar.jpg"
+        file_path = "#{Rails.root}/mod/wikirate_assets/spec/set/all/DeathStar.jpg"
         dump_card = Card.create name: "dump is dump",
                                 type_code: "image", image: File.new(file_path)
         expect(dump_card.format.render_og_source).to eq(dump_card.format.render_source)
@@ -57,7 +57,7 @@ RSpec.describe Card::Set::All::Wikirate do
     end
     context "with nonexistent card" do
       it "renders the vertical logo link" do
-        new_card = Card.new name: "oragne pen phone"
+        new_card = Card.new name: "orange pen phone"
         vertical_logo_source_view = Card["*vertical_logo"].format.render_source size: "large"
         expect(new_card.format.render_og_source).to eq(vertical_logo_source_view)
       end
