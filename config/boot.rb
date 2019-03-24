@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 # comment out this line to default to development mode
-#ENV['RAILS_ENV'] ||= 'production'
+ENV['RAILS_ENV'] ||= 'production'
 
 require 'rubygems'
 
