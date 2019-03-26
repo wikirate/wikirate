@@ -83,8 +83,7 @@ h2 {
   overflow: inherit;
 }
 
-
-#main {
+.wikirate-layout #main {
   clear: both;
   padding-top:70px;
   max-width: $max-page-width;
@@ -98,7 +97,7 @@ h2 {
 }
 
 body {
-  >#wikirate_footer_compact-content-view {
+  >#wikirate_footer-content-view {
     /*position: fixed;*/
     bottom: 0px;
     z-index: 9;

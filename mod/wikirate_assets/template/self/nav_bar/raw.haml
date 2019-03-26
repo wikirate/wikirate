@@ -5,10 +5,11 @@
     :type => "button"}
     %span.navbar-toggler-icon
   .navbar-brand
-    [[/|{{*logo|core;size:original}}]]
+    = link_to nest(:logo, view: :core, size: :original), href: "https://wikirate.org"
   #bs-example-navbar-collapse-1.collapse.navbar-collapse.align-items-center
     = nest :nav_menu, view: :core
     = render :nav_bar_middle
     %ul.navbar-nav.ml-auto
       %li
-        .account-info-bar {{*account links|core}}
+        .account-info-bar
+          = nest :account_links, view: :core
