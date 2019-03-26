@@ -1,7 +1,7 @@
 NAV_MENUS = {
   "Explore" => %w[Companies Topics Metrics Projects Groups Sources Changes],
   "Research" => ["Add Data", "Use Data", "Organize Projects", "FAQ", "Report Issue"],
-  "About" => ["About the Project", "Our Team", "Programs", "Publications", "News",
+  "Org" => ["About the Project", "Our Team", "Programs", "Publications", "News",
               "Contact Us", "Donate"]
 }.freeze
 
@@ -23,6 +23,6 @@ format :html do
   end
 
   def url_prefix menu
-    menu == "About" ? "https://project.wikirate.org/" : "/"
+    menu == "Org" ? "https://project.wikirate.org/" : "/"
   end
 end
