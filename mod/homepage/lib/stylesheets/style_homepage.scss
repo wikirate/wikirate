@@ -324,6 +324,11 @@
 .flip-this {
   white-space: nowrap;
 }
+@media (max-width: 576px) {
+  .dynamic-question h3 {
+    font-size: 1em
+  }
+}
 
 @keyframes dots {
   0%,

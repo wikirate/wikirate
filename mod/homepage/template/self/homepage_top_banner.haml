@@ -6,8 +6,8 @@
       %span.wikirate-logo-title
         Wiki
         %strong> Rate
-      %p.lead.mb-0.mb-md-5 Let's make companies better, together.
-      .pt-5.mt-0.mt-md-5
+      %p.lead.mb-0.mb-md-5.text-nowrap Let's make companies better, together.
+      .dynamic-question.pt-5.mt-0.mt-md-5
         %h3.white-text.font-weight-normal
           %span
             How does
@@ -17,11 +17,11 @@
               = companies.join("|")
           %span
             perform on
-          %span.font-weight-bold.dotted-bottom-border.loading-text
-            %span.flip-this-default
-            %span.flip-this
-              = topics.join("|")
-          %span
+          %span.text-nowrap
+            %span.font-weight-bold.dotted-bottom-border.loading-text.text-nowrap
+              %span.flip-this-default
+              %span.flip-this
+                = topics.join("|")
             ?
         %h3.white-text.font-weight-normal
           %span

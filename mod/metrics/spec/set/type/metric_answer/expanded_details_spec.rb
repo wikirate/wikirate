@@ -81,7 +81,6 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company" },
                      text: "8, 9, 10"
       end
-
     end
   end
 

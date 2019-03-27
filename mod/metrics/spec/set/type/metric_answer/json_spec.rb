@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::MetricAnswer, "json export" do
+RSpec.describe Card::Set::Type::MetricAnswer::Json do
   YEAR = "1977".freeze
   COMPANY_NAME = "Death_Star".freeze
 
@@ -29,7 +29,8 @@ RSpec.describe Card::Set::Type::MetricAnswer, "json export" do
         id: source.id,
         name: source.name,
         url: wr_url(source.name),
-        file_url: source.file_url #"http://www.wikiwand.com/en/Star_Wars.json"
+        file_url: source.file_url
+        # "http://www.wikiwand.com/en/Star_Wars.json"
       }
     end
     let(:company_fields) do
@@ -74,7 +75,6 @@ RSpec.describe Card::Set::Type::MetricAnswer, "json export" do
     specify "molecule view" do
       expect(json_view(:molecule)).to include(molecule_fields)
     end
-
   end
 
   describe "exported json relationship metric answer" do
