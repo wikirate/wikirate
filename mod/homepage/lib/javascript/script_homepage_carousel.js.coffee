@@ -87,7 +87,7 @@ $(document).ready ->
       )[0]
 
       # to prevent from displaying raw content before animation
-      spanWidthAdjust *= 1.42 if iOS() || isSafari
+      # spanWidthAdjust *= 1.42 if iOS() || isSafari
       spanWidth = getTextWidth(longest_word, fontUsed) * spanWidthAdjust
       $itemSibling = $item.siblings('.flip-this-default')
       $itemSibling.css('width': spanWidth + 'px').text longest_word
