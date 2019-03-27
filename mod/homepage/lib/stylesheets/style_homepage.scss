@@ -324,9 +324,15 @@
 .flip-this {
   white-space: nowrap;
 }
+.flip-slot {
+  font-weight: 700;
+  padding-bottom: 1px;
+  border-bottom: 1px dotted white;
+}
+
 @media (max-width: 576px) {
   .dynamic-question h3 {
-    font-size: 1em
+    font-size: 1.2em
   }
 }
 
