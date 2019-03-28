@@ -1,0 +1,69 @@
+//floating sidebar
+
+.details-close-icon {
+  margin: 10px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  font-size: 22px;
+  top: -10px;
+}
+
+.details-toggle {
+  &:hover {
+    background-color: #fafafa;
+    cursor: pointer;
+  }
+}
+
+.details {
+  display: none;
+
+  position: fixed;
+  z-index: 3;
+  top: 70px;
+  left: 50%;
+  padding-bottom:100px;
+  padding: 0px;
+
+  width: 50%;
+  max-width: 935px;
+  height: 100%;
+
+  cursor: auto;
+  overflow-y: auto;
+
+  background-color: #fff;
+  border: 1px solid #EAEAEA;
+  @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
+}
+
+.TYPE_PLUS_RIGHT-metric-answer {
+  .details-toggle.active .header {
+    border-left-color: $company-color !important;
+  }
+  .details {
+    border-top: 5px solid $company-color !important;
+  }
+}
+
+.TYPE_PLUS_RIGHT-company-answer {
+  .details-toggle.active .header {
+    border-left-color: $metric-color !important;
+  }
+  .details {
+    border-top: 5px solid $metric-color !important;
+  }
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .details {
+    top: 65px !important;
+    position: fixed !important;
+    left: 0% !important;
+    width: 100% !important;
+  }
+}

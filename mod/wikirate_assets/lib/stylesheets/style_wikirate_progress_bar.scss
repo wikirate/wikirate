@@ -1,0 +1,164 @@
+
+
+.progress {
+  border-radius: 0;
+  //border: 1px solid $border-color;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.progress-bar {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 9px;
+  font-weight: bolder;
+}
+
+.progress {
+  .progress-known, .progress-unknown {
+    a {
+       color: $white;
+    }
+  }
+  .progress-not-researched a {
+     color: $dark-text-color;
+  }
+}
+
+.progress-unknown.progress-bar {
+  opacity: 0.7;
+  // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAK0lEQVQYV2NM91v+nwEK/v79Z8IIEwBxmJmZzoAFYByQQsYU76XGIBmYNgAmqBSdzrwmNgAAAABJRU5ErkJggg==) repeat;
+}
+
+//Base64 background pattern generated here http://www.patternify.com/
+
+.LTYPE_RTYPE-metric-project.bar-view {
+  .bar {
+    border-left-color: $metric-color !important;
+    .bar-left a {
+      color: $metric-color;
+    }
+  }
+  .progress {
+    width: 100%;
+  }
+  .progress-bar {
+    background-color: $company-color;
+  }
+}
+
+.LTYPE_RTYPE-company-project.bar-view {
+  .bar {
+    border-left-color: $company-color !important;
+    .bar-left a {
+      color: $company-color;
+    }
+  }
+  .progress {
+    width: 100%;
+  }
+  .progress-bar {
+    background-color: $metric-color;
+  }
+}
+.metric-nav .progress-bar {
+  background-color: $metric-color;
+}
+
+.default-progress-box .progress {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  .progress-bar {
+    background-color: $body-text-color;
+  }
+  .progress-unknown.progress-bar {
+    opacity: 0.7;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAK0lEQVQYV2Nkntn7nwEK/jIy+DLCBEAc5v8Mm8ECMA5IISPDrF4fkAxMGwBh9RDwwh0lJQAAAABJRU5ErkJggg==) repeat;
+  }
+}
+
+.progress .progress-not-researched.progress-bar {
+  background-color: $gray-200;
+  color: $heading-color;
+}
+
+.default-progress-box .row {
+    padding: 4px 0px;
+}
+
+.progress-legend {
+  float: right;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  display: inline-flex;
+  .progress {
+    width: 15px;
+    height: 15px;
+    float: left;
+    margin: 4px;
+    .progress-bar {
+      color: transparent;
+    }
+  }
+  span {
+    padding: 3px 2px 6px 2px;
+    float: left;
+    font-size: $sub-text-size;
+    color: $heading-color;
+  }
+  span.progress-value{
+    display: none;
+  }
+}
+
+
+.organizational-details {
+  > .RIGHT-status {
+    float: left;
+    padding: 0;
+  }
+  div {
+    padding: 0px;
+  }
+  width: 100%;
+  float: left;
+}
+
+.stat-details {
+  //float: left;
+  span {
+    //margin-right: 4px;
+  }
+  div, span {
+    //float: left;
+    //margin:0;
+  }
+}
+.topic-details{
+  clear:both;
+}
+
+
+//TODO make this generic
+.organized-by {
+  font-size: 85%;
+  margin-bottom: 0.5rem;
+  .pointer-item {
+    &:after {
+      content: ",";
+    }
+    &:last-child:after {
+      content: "";
+    }
+  }
+}
+
+.organized-by.horizontal-list > {
+  div {
+    display: table-cell;
+  }
+  span {
+    display: table-cell;
+    min-width: 80px;
+  }
+}

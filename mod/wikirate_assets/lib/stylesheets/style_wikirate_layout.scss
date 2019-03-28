@@ -1,0 +1,185 @@
+
+
+:root {
+    font-size: 95%;
+}
+
+body {
+  color: $body-text-color;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  // override bootstrap 4 font
+  font-family: "Roboto","Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #fff;
+}
+body#wagn {
+  min-height: 100%;
+  min-width: 350px;
+  background: $white;
+  padding: 0;
+  margin: 0;
+}
+
+body#tinymce {
+  padding: 4px;
+}
+
+.card-menu.btn-group {
+  padding: 0.5rem 0!important;
+}
+
+.card-header .card-header-title {
+  margin-right: 18px;
+}
+
+.homepage-logo-container .TYPE-image {
+  overflow: hidden;
+}
+
+sup {
+  line-height: 0;
+
+}
+a {
+  color: $anchor_color;
+
+}
+img {
+  border: 0;
+}
+h1,
+h2 {
+  color: $heading_color;
+
+}
+
+.more-link {
+  float: right;
+
+}
+
+.d0-card-content {
+  .titled-view, .titled_with_edits-view {
+    > .card-header {
+      line-height: 1.4em;
+      margin-top: 1em;
+    }
+
+  }
+
+}
+
+//Should be moved to Style:Wikirate Metrics once the css are organized
+.yinyang {
+  float:left;
+  width:100%;
+}
+
+.RIGHT-logo.d0-card-content img {
+  max-height: 100%;
+
+}
+#Home {
+  overflow: inherit;
+}
+
+.wikirate-layout #main {
+  clear: both;
+  padding-top:70px;
+  max-width: $max-page-width;
+  margin: 0;
+}
+
+.revision-navigation,
+.current {
+  background: #fff;
+
+}
+
+body {
+  >#wikirate_footer-content-view {
+    /*position: fixed;*/
+    bottom: 0px;
+    z-index: 9;
+    background: #fff;
+    border-top: 1px solid #eaeaea;
+    width: 100%;
+    color: #999;
+    padding: 0.5em;
+    small {
+      width: 100%;
+      display: inherit;
+      text-align: center;
+    }
+    a {
+      color: #999;
+      text-decoration: underline;
+    }
+    a.external-link{
+      padding-right:0px!important;
+      &:after{
+        display: none;
+      }
+    }
+  }
+}
+
+
+#Donate input[type='image'] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.TYPE-image.d0-card-content img, .TYPE-image .card-body img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+input.navbox, .select2-navbox-autocomplete input.select2-search__field {
+  font-family: FontAwesome, sans-serif;
+}
+
+//FOR ALL 2 column layout
+.row.panel-margin-fix {
+  margin-top: -19px;
+  margin-left: -$card-spacer-x;
+  margin-right: -$card-spacer-x;
+}
+
+
+//Default Images
+
+div[data-slot*="float:right"]{
+    float:right;
+    border: 2px solid $border-color;
+    margin-left: 15px;
+}
+
+// Commenting this because the following add too much space around the text.
+
+// .card-slot.content-view.RIGHT-headquarter {
+//   // without this the slot has height 0 and the menu for the headquarters field
+//   // on company pages is not visible
+
+.wikirate-layout > nav.navbar {
+    box-shadow: none;
+    border-bottom: 1px solid $border-color;
+}
+
+.titled-view .d0-card-header {
+  min-height: 1.5em;
+}
+
+.rich-header > .card-menu._show-on-hover > a {
+  display: none;
+}
+
+.rich-header:hover > .card-menu._show-on-hover {
+  z-index: 2;
+  > a {
+    display: inline-block;
+  }
+}

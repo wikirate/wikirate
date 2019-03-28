@@ -1,0 +1,119 @@
+
+.nav-tabs {
+  border-bottom: 4px solid $border-color;
+}
+.nav-tabs .nav-link{
+  &:hover{
+    background:#fafafa;;
+  }
+  &.active {
+    border: 0 solid #e6e6e6;
+    border-bottom: 4px solid $primary;
+    border-radius: 0;
+    &:focus,
+    &:hover {
+      border: 0 solid #e6e6e6;
+      border-bottom: 4px solid $primary;
+      border-radius: 0;
+    }
+  }
+  &.disabled > span {
+    border: 0 solid #e6e6e6;
+    border-bottom: 4px solid $border-color;
+    border-radius: 0;
+    @include opacity(0.3);
+    margin: 3px -1px;
+    padding: 18px 20px;
+    font-size: 15px;
+    color: #8e8e8e;
+    line-height: 1.42857;
+    position: relative;
+    display: block;
+    &:focus,
+    &:hover {
+        cursor: not-allowed;
+    }
+  }
+  background-color: #fff;
+  border-radius: 0;
+  border: 0 solid #e6e6e6;
+  border-bottom: 4px solid $border-color;
+  margin: 3px -1px;
+  padding: 18px 20px;
+  font-size: 15px;
+  color: #8e8e8e;
+  margin-bottom: -3px;
+}
+
+.tabbable {
+  margin: 1px;
+  .nav-tabs {
+    border-bottom: 4px solid $border-color;
+  }
+}
+
+.TYPE-source.preview-view .navbar .nav-tabs > li {
+    margin-bottom: 0;
+}
+
+//Custom Tabs
+
+.company-profile-tab {
+  position: absolute;
+  bottom: 10px;
+  min-width: 60%;
+  text-align: center;
+}
+
+.twin-tab li {
+  width: 50%;
+  float:left;
+}
+
+.contribution-report-header {
+    .nav-tabs{
+      padding-bottom: 3px;
+    }
+    .nav-link{
+      margin: 0px;
+      height: 100%;
+    }
+  .nav-item {
+    width: 16%;
+    margin-bottom: -7px;
+    .count-label {
+      white-space: nowrap;
+    }
+  }
+}
+
+.contribution-report-title {
+  padding: 0 20px;
+  padding-left: 18px;
+  padding-top: 17px;
+  color: inherit;
+}
+
+.contribution-report {
+    margin-bottom: 15px;
+    border: 1px solid $border-color;
+}
+
+li.contribution-report-title-box {
+  float: left !important;
+  width: 30% !important;
+  > a {
+    padding-bottom: 27px;
+    padding-left: 0px;
+    padding-top: 12px;
+    color: inherit;
+  }
+}
+
+.contribution-report-toggle {
+  width: 6%!important;
+  border-left: 1px solid $border-color;
+  i {
+    padding: 14px 0;
+  }
+}
