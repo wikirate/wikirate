@@ -48,7 +48,6 @@ format :html do
   view :bar_left do
     render_title_link
   end
-  view :bar_expanded_left, :bar_left
 
   view :bar_right do
     count_badges(*tab_list)

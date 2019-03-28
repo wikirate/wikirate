@@ -1,7 +1,7 @@
 format do
   # note: overridden in cached_count
   def count
-    card.count
+    card.respond_to?(:count) ? card.count : 0
   end
 end
 
@@ -11,7 +11,7 @@ format :html do
   end
 
   def count_badges *fields
-    wrap_with :div, class: "d-flex flex-wrap" do
+    wrap_with :div, class: "d-flex flex-wrap count-badges justify" do
       output(fields.map { |f| count_badge f })
     end
   end

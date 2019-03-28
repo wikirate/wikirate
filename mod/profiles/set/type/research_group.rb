@@ -92,8 +92,6 @@ format :html do
   end
 
   view :bar_left, template: :haml
-  view :bar_expanded_left, :bar_left
-
   view :bar_bottom, template: :haml
   view :bar_middle, template: :haml
 

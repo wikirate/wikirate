@@ -12,9 +12,14 @@ $box_stripe_color: $gray-700;
 .labeled-badge {
   display: inline-block;
   text-align: center;
-  padding: 0 12px;
+  padding: 0 0.33rem;
 }
 
+@media(max-width: 480px) {
+  .labeled-badge label {
+    font-size: 0.8em;
+  }
+}
 /*----------- Bars and Boxes -------------*/
 
 
@@ -40,6 +45,14 @@ $box_stripe_color: $gray-700;
     }
   }
 }
+.bar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  a {
+    padding: 0 .25rem;
+  }
+}
+
 
 .box-item {
   transition: all 0.2s ease-out;

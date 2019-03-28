@@ -10,7 +10,6 @@ format :html do
       [company_thumbnail(hide: :thumbnail_subtitle), render_metric_thumbnail]
     end
   end
-  view :bar_expanded_left, :bar_left
 
   view :bar_middle do
     citations_count
