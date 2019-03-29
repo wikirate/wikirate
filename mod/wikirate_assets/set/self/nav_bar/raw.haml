@@ -9,7 +9,4 @@
   #bs-example-navbar-collapse-1.collapse.navbar-collapse.align-items-center
     = nest :nav_menu, view: :core
     = render :nav_bar_middle
-    %ul.navbar-nav.ml-auto
-      %li
-        .account-info-bar
-          = nest :account_links, view: :core
+    = render :nav_bar_right
