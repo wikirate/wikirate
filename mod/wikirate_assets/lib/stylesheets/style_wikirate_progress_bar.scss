@@ -133,6 +133,9 @@
     //float: left;
     //margin:0;
   }
+  .badge {
+    max-width: 25%;
+  }
 }
 .topic-details{
   clear:both;
@@ -155,10 +158,6 @@
 
 .organized-by.horizontal-list > {
   div {
-    display: table-cell;
-  }
-  span {
-    display: table-cell;
-    min-width: 80px;
+    display: inline;
   }
 }
