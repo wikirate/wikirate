@@ -52,7 +52,7 @@ PATH
       kaminari (~> 1.0)
       mini_magick (~> 4.2)
       minitest (= 5.11.2)
-      rails (~> 5.2)
+      rails (~> 5.2.2.1)
       rake (<= 12.3.0)
       recaptcha (~> 4.13.1)
       sass (~> 3.4)
@@ -313,7 +313,7 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (1.9.0)
+    fog-google (1.9.1)
       fog-core (<= 2.1.0)
       fog-json (~> 1.2)
       fog-xml (~> 0.1.0)
@@ -515,7 +515,7 @@ GEM
     os (1.0.0)
     ovirt-engine-sdk (4.3.0)
       json (>= 1, < 3)
-    parallel (1.16.0)
+    parallel (1.16.1)
     parser (2.6.2.0)
       ast (~> 2.4.0)
     pdfkit (0.8.4.1)
