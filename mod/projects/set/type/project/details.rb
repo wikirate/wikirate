@@ -29,6 +29,8 @@ format :html do
     end
   end
 
+  bar_cols 8, 4
+
   view :bar_left do
     text_with_image image: card.field(:image),
                     size: voo.size,
