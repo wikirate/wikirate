@@ -123,16 +123,14 @@
   width: 100%;
   float: left;
 }
+@media(max-width: 480px) {
+  .organizational-details {
+    font-size: 0.8em;
+  }
+}
+
 
 .stat-details {
-  //float: left;
-  span {
-    //margin-right: 4px;
-  }
-  div, span {
-    //float: left;
-    //margin:0;
-  }
   .badge {
     max-width: 25%;
   }

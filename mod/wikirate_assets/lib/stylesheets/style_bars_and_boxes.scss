@@ -54,6 +54,11 @@ $box_stripe_color: $gray-700;
   }
 }
 
+@media(max-width: 480px) {
+  .bar-left h5 {
+    font-size: 1.2em;
+  }
+}
 
 .box-item {
   transition: all 0.2s ease-out;
