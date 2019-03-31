@@ -1,6 +1,6 @@
 $.extend wikirate,
-  showResearchDetailsTab: (tab) ->
-    tab = $("#research-details .nav-tabs a[href='#research_page-#{tab}']")
+  showSourceTab: () ->
+    tab = $("#research-details .nav-tabs li:first a")
     tab.removeClass("d-none").tab('show')
 
   toggleCitation: (ele, action) ->
@@ -15,7 +15,7 @@ $.extend wikirate,
       possibleSource(sourceId).hide()
 
   previewSource: (sourceID) ->
-    wikirate.showResearchDetailsTab "source"
+    wikirate.showSourceTab "source"
     slot = $(".preview-view")
     slot.empty()
     wikirate.loader(slot).add()
@@ -80,7 +80,7 @@ $.extend wikirate,
     $("form ._cite-bar[data-card-id='#{sourceID}']")
 
   possibleSource = (sourceID) ->
-    $("#research_page-source.tab-pane .source-list > ._cite-bar[data-card-id='#{sourceID}']")
+    $("#research-details .source-list > ._cite-bar[data-card-id='#{sourceID}']")
 
   citeSource = (sourceID) ->
     possible = possibleSource sourceID
