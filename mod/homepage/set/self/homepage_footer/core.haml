@@ -3,13 +3,7 @@
     .col-12.col-md.text-center
       .navbar-brand.p-0.nav-logo
         = nest :wikirate_grey_logo
-    .col-6.col-md
-      = nest :menu_explore
-    .col-6.col-md
-      = nest :menu_about
-    .col-6.col-md
-      = nest :menu_connect
-    .col-6.col-md
-      = nest :menu_legal
+    - nav_menus.merge(secondary_menus).each do |header, items|
+      = haml_partial :footer_menu, header: header, items: items
     .col-6.col-md.mr-3
       = nest :partner_logos
