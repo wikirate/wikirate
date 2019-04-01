@@ -2,6 +2,10 @@ include_set Abstract::Header
 include_set Abstract::Tabs
 
 format :html do
+  def layout_name_from_rule
+    :wikirate_two_column_layout
+  end
+
   before :content_formgroup do
     voo.edit_structure = form_fields
   end

@@ -20,8 +20,8 @@ format :html do
         #{nest :nav_bar, view: :core}
         #{yield}
         #{nest :wikirate_footer, view: :content}
-        #{nest "ajax loader anime", view: :content}
-        #{nest "_main+google analytics conversion snippet", view: :core}
+        #{nest 'ajax loader anime', view: :content}
+        #{nest '_main+google analytics conversion snippet', view: :core}
       </body>
     HTML
   end
