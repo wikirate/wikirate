@@ -9,6 +9,10 @@ format do
 end
 
 format :html do
+  def layout_name_from_rule
+    :wikirate_two_column_layout
+  end
+
   before :open do
     voo.hide :header
     voo.show :menu

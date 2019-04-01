@@ -20,7 +20,7 @@ MENU_REFS = { "Groups" => "Research Groups",
 
 SECONDARY_MENUS = { "Social" => %w[Facebook Twitter Instagram Telegram],
                     "Legal" => ["Legal", "Privacy Policy", "Licensing", "Disclaimers",
-                                "Terms of Use", "Notice" ] }
+                                "Terms of Use", "Notice"] }.freeze
 
 format do
   def nav_menus

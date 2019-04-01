@@ -1,14 +1,10 @@
 %small
   = nest :wikirate_license, view: :core
+- secondary_menus.each do |header, items|
+  %small
+    = "#{header}:"
+    - links = items.map { |item| link_to item, href: nav_menu_item_url(header, item) }
+    = links.join " | "
 %small
-  = link_to_card "Contact WikiRate"
-  |
-  = link_to_card "Privacy Policy"
-  |
-  = link_to_card "Legal"
-  |
-  = link_to_card "Donate"
-  |
-  = link_to "Twitter", href: "https://twitter.com/wikirate"
-  | Powered by
+  Powered by:
   = link_to "Decko", href: "https://decko.org"

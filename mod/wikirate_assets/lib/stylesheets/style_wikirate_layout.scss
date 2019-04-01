@@ -12,13 +12,13 @@ body {
   font-family: "Roboto","Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #fff;
 }
-body#wagn {
-  min-height: 100%;
-  min-width: 350px;
-  background: $white;
-  padding: 0;
-  margin: 0;
-}
+//body#wagn {
+//  min-height: 100%;
+//  min-width: 350px;
+//  background: $white;
+//  padding: 0;
+//  margin: 0;
+//}
 
 body#tinymce {
   padding: 4px;
@@ -181,5 +181,43 @@ div[data-slot*="float:right"]{
   z-index: 2;
   > a {
     display: inline-block;
+  }
+}
+
+body#tinymce, body.wikirate-one-column-layout {
+  #main > .titled-view>.d0-card-header {
+    border-bottom: 1px solid #03998d;
+    padding-bottom: 0.1em;
+    margin-bottom: 1em;
+    >.d0-card-header-title {
+      font-size: 2.5em;
+      border-bottom: 0;
+      padding-bottom: auto;
+      margin: auto;
+    }
+  }
+  h1, h2, h3, h4, h5, h6, .d0-card-header-title {
+    font-weight: normal;
+    margin-top: 1.5em;
+  }
+  h1, h2, .titled-view >.d0-card-header > .d0-card-header-title {
+    font-weight: normal;
+    font-size: 2em;
+  }
+  h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.1em;
+    margin-bottom: 0.3em;
+  }
+  h3, h4 {
+    font-size: 1.5em;
+  }
+  h5, h6 {
+    font-size: 1.25em;
+  }
+  .bar h5 {
+    border: 0;
+    margin: 2px 0;
+    font-size: 1.5em;
   }
 }
