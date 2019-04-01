@@ -54,6 +54,17 @@ $box_stripe_color: $gray-700;
   }
 }
 
+.box-top {
+  h1, h2, h3, h4, h5, h6 {
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  h6 {
+    font-size: 1em !important;
+  }
+}
+
 @media(max-width: 480px) {
   .bar-left h5 {
     font-size: 1em;
