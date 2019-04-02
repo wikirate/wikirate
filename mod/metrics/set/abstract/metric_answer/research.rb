@@ -1,6 +1,10 @@
 format :html do
   RESEARCH_PARAMS_KEY = :rp
 
+  def layout_name_from_rule
+    :wikirate_two_column_layout
+  end
+
   view :new, cache: :never do
     # @form_root = true
     nest :research_page, view: :slot_machine

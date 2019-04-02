@@ -377,14 +377,19 @@
 
 /* footer */
 
-footer.homepage-footer ul {
-  padding-left: 0;
-  list-style: none;
-  a {
-    color: #797f84;
+footer.homepage-footer {
+  ul {
+    padding-left: 0;
+    list-style: none;
+    a {
+      color: #797f84;
+    }
+    li {
+      padding: 5px 0;
+    }
   }
-  li {
-    padding: 5px 0;
+  i {
+    min-width: 16px;
   }
   img {
     max-width: 100%;
