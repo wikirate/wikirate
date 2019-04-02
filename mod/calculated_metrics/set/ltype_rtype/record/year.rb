@@ -34,6 +34,11 @@ format :html do
   def show_menu_item_edit?
     card.metric_card.hybrid? || super()
   end
+
+  # HACK. without this titled view was showing up with TYPE-basic in the slot
+  before :titled do
+    card.reset_patterns
+  end
 end
 
 private

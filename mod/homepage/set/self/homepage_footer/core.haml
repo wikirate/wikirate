@@ -10,15 +10,13 @@
           - items.each do |item|
             %li
               %a{ href: nav_menu_item_url(header, item) }
-                = item
                 - if header == "Social"
                   = fa_icon item.downcase
-  .flex.justify-content-between
+                = item
+  .d-flex.justify-content-around.p-4
     = link_to nest("partner logos+European Commission", view: :core),
               href: "https://ec.europa.eu/" ,
               target: "wr-partner"
     = link_to nest("partner logos+Decko Commons", view: :core),
               href: "https://decko.org/" ,
               target: "wr-partner"
-
-
