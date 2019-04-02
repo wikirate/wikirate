@@ -16,11 +16,12 @@ MENU_REFS = { "Groups" => "Research Groups",
               "Twitter" => "https://twitter.com/WikiRate",
               "Instagram" => "https://www.instagram.com/wikirate/",
               "Telegram" => "https://t.me/WikiRate",
-              "Notice" => "Notice and Take Down Procedure" }.freeze
+              "Notice" => "Notice and Take Down Procedure",
+              "Legal" => "https://project.wikirate.org/Legal" }.freeze
 
-SECONDARY_MENUS = { "Social" => %w[Facebook Twitter Instagram Telegram],
-                    "Legal" => ["Legal", "Privacy Policy", "Licensing", "Disclaimers",
-                                "Terms of Use", "Notice"] }.freeze
+SECONDARY_MENUS = { "Legal" => ["Legal", "Privacy Policy", "Licensing", "Disclaimers",
+                                "Terms of Use", "Notice"],
+                    "Social" => %w[Facebook Twitter Instagram Telegram] }.freeze
 
 format do
   def nav_menus
