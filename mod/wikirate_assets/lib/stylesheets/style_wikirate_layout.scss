@@ -121,6 +121,9 @@ body {
         display: none;
       }
     }
+    a:hover {
+      color: #222
+    }
   }
 }
 
@@ -197,7 +200,6 @@ body#tinymce, body.wikirate-one-column-layout {
     }
   }
   .RIGHT-introduction.content-view {
-    font-weight: 325;
     font-size: 1.25em;
   }
   h1, h2, h3, h4, h5, h6, .d0-card-header-title {
