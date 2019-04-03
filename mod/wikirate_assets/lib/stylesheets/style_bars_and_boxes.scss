@@ -12,7 +12,13 @@ $box_stripe_color: $gray-700;
 .labeled-badge {
   display: inline-block;
   text-align: center;
-  padding: 0 12px;
+  padding: 0 0.33rem;
+}
+
+@media(max-width: 480px) {
+  .labeled-badge label {
+    font-size: 0.8em;
+  }
 }
 
 /*----------- Bars and Boxes -------------*/
@@ -38,6 +44,30 @@ $box_stripe_color: $gray-700;
     .bar-left .company-link a {
       color: $company-color !important;
     }
+  }
+}
+.bar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  a {
+    padding: 0 .25rem;
+  }
+}
+
+.box-top {
+  h1, h2, h3, h4, h5, h6 {
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  h6 {
+    font-size: 1em !important;
+  }
+}
+
+@media(max-width: 480px) {
+  .bar-left h5 {
+    font-size: 1em;
   }
 }
 

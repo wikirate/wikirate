@@ -29,13 +29,14 @@ format :html do
     end
   end
 
+  bar_cols 8, 4
+
   view :bar_left do
     text_with_image image: card.field(:image),
                     size: voo.size,
                     title: render_title_link,
                     text: bar_left_details
   end
-  view :bar_expanded_left, :bar_left
 
   view :bar_middle do
     topics_details

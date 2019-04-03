@@ -48,7 +48,7 @@ format :html do
 
   view :core do
     card.all_metric_project_cards.map do |metric_project|
-      nest metric_project, view: :info_bar
+      nest metric_project, view: :bar
     end
     # nest Card.fetch(card.name, :project), view: :content, items: { view: :bar }
   end

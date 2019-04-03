@@ -20,7 +20,6 @@ format :html do
   view :bar_left do
     render_thumbnail
   end
-  view :bar_expanded_left, :bar_left
 
   view :bar_middle do
     count_badges :post, :project
