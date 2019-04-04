@@ -40,7 +40,6 @@ PATH
   remote: vendor/decko
   specs:
     card (1.97.0)
-      activerecord-import (~> 1.0)
       bootstrap4-kaminari-views (~> 1.0)
       cardname (= 0.7.0)
       carrierwave (= 1.2.2)
@@ -102,8 +101,6 @@ GEM
       activemodel (= 5.2.2.1)
       activesupport (= 5.2.2.1)
       arel (>= 9.0)
-    activerecord-import (1.0.1)
-      activerecord (>= 3.2)
     activestorage (5.2.2.1)
       actionpack (= 5.2.2.1)
       activerecord (= 5.2.2.1)
@@ -629,7 +626,7 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    rubocop (0.67.0)
+    rubocop (0.67.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
