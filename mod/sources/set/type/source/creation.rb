@@ -70,9 +70,9 @@ format :html do
   end
 
   # when successfully adding in a sourcebox context, refresh the whole source tab
-  def new_view_hidden
+  def new_success
     return super unless answer_name
-    hidden_tags success: {
+    {
       id: answer_name,
       type_id: MetricAnswerID,
       view: :source_selector,
