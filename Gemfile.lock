@@ -56,7 +56,7 @@ PATH
       rails (~> 5.2.2.1)
       rake (<= 12.3.0)
       recaptcha (~> 4.13.1)
-      sass (~> 3.4)
+      sassc (~> 2.0)
       twitter (~> 6.1)
       uglifier (~> 3.2)
       uuid (~> 2.3)
@@ -579,9 +579,6 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
     rake (12.3.0)
-    rb-fsevent (0.10.3)
-    rb-inotify (0.10.0)
-      ffi (~> 1.0)
     rbovirt (0.1.7)
       nokogiri
       rest-client (> 1.7.0)
@@ -651,11 +648,9 @@ GEM
       sexp_processor (~> 4.9)
     rubyzip (1.2.2)
     safe_yaml (1.0.5)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
+    sassc (2.0.1)
+      ffi (~> 1.9)
+      rake
     savanna-outliers (0.0.1)
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
@@ -815,4 +810,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   1.17.2
+   1.16.4
