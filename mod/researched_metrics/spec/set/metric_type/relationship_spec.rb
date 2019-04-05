@@ -54,16 +54,8 @@ RSpec.describe Card::Set::MetricType::Relationship do
     let(:metric_card) { Card[metric] }
     let(:company) { "SPECTRE" }
 
-    # TODO: move to helper
-    def with_param key, value
-      Card::Env.params[key] = value
-      yield
-    ensure
-      Card::Env.params.delete key
-    end
-
     def delete_answers
-      with_param :company, company do
+      with_params company: company do
         metric_card.update trigger: :delete_relationship_answers
       end
     end

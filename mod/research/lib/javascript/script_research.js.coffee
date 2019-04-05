@@ -75,8 +75,6 @@ formatHtmlSelectedItem = (i) ->
   $(selector).html()
 
 $(document).ready ->
-  $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
-
   # add related company to name
   # otherwise the card can get the wrong type because it
   # matches the ltype_rtype/record/year pattern
