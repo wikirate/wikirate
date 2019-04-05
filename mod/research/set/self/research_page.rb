@@ -1,6 +1,10 @@
 include_set Abstract::Media
 
 format :html do
+  def layout_name_from_rule
+    :wikirate_two_column_layout
+  end
+
   view :open, cache: :never do
     voo.hide :menu
     super()
