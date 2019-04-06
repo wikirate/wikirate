@@ -22,7 +22,7 @@ def award_create_badge_if_earned affinity, project_card=nil
 
   # the actions of the current act are not included
   # because we do this search before the answer table update
-  count = action_count(:create, affinity, project_card) # +
+  count = award_action_count(:create, affinity, project_card) # +
   return unless (badge = earns_badge(:create, affinity, count))
 
   badge_card = fetch_badge_card badge, affinity, project_card
@@ -73,7 +73,7 @@ def project_cards
               }
 end
 
-def action_count action, affinity=nil, project_card=nil
+def award_action_count action, affinity=nil, project_card=nil
   method_name = [action, "count", affinity].compact.join "_"
   if project_card
     send method_name, project_card

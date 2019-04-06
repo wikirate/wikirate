@@ -57,6 +57,6 @@ def fetch_badge_card badge_name
   badge_card
 end
 
-def action_count action, user=nil
+def award_action_count action, user=nil
   send "#{action}_count", user
 end

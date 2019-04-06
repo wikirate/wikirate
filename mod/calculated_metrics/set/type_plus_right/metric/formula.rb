@@ -11,8 +11,8 @@ def help_rule_card
 end
 
 format :html do
-  def new_view_hidden
-    hidden_tags success: { id: card.name.left }
+  def new_success
+    { id: card.name.left }
   end
 
   def new_form_opts
@@ -23,8 +23,8 @@ format :html do
     { "data-slot-selector" => ".card-slot.TYPE-metric" }
   end
 
-  def edit_view_hidden
-    new_view_hidden
+  def edit_success
+    new_success
   end
 
   view :editor do
