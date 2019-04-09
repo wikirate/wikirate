@@ -16,7 +16,7 @@
         = card.answer.year
     .thumbnail-text.col
       %span.metric-color.font-weight-bold
-        = card.answer.value
+        = nest card.value_card, view: :pretty
       %span.text-muted
         = Card.fetch(card.metric).unit
   .source-border-left.row.p-2.border-top.border-right.border-bottom

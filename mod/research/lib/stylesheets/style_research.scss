@@ -117,6 +117,7 @@ form.answer-form {
   .details {
     height: calc(100vh - 117px);
     top: 117px;
+    z-index: 10;
   }
   .details {
     overflow: hidden;
