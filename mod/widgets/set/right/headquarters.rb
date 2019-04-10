@@ -40,3 +40,9 @@ def oc_code
   return unless jur&.type_id == JurisdictionID
   jur.oc_code
 end
+
+format :json do
+  view :core do
+    card.item_names.first
+  end
+end
