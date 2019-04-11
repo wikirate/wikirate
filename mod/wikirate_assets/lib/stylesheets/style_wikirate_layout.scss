@@ -12,16 +12,20 @@ body {
   font-family: "Roboto","Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #fff;
 }
-//body#wagn {
-//  min-height: 100%;
-//  min-width: 350px;
-//  background: $white;
-//  padding: 0;
-//  margin: 0;
-//}
+
+body.wikirate-layout #main {
+  min-height: calc(100vh - 85px);
+}
 
 body#tinymce {
   padding: 4px;
+}
+
+body.home-layout.wikirate-layout > nav.navbar {
+  -webkit-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
+  -moz-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 9px 20px rgba(0,0,0,0.06);
+  border: 0
 }
 
 .card-menu.btn-group {
@@ -161,11 +165,10 @@ div[data-slot*="float:right"]{
     margin-left: 15px;
 }
 
-// Commenting this because the following add too much space around the text.
 
-// .card-slot.content-view.RIGHT-headquarter {
-//   // without this the slot has height 0 and the menu for the headquarters field
-//   // on company pages is not visible
+.content-view.RIGHT-headquarter {
+  white-space: inherit;
+}
 
 .wikirate-layout > nav.navbar {
     box-shadow: none;
@@ -226,4 +229,14 @@ body#tinymce, body.wikirate-one-column-layout {
     margin: 2px 0;
     font-size: 1.5em;
   }
+}
+
+div#wikirate-info-video {
+  width: 100%;height: 54vh;
+}
+
+div#wikirate-info-video iframe  {
+  height: 100%;
+  width: 100%;
+  box-shadow: none;
 }

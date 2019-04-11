@@ -12,7 +12,7 @@ RSpec.describe Card::Set::Type::WikirateCompany, "json export" do
                              wikipedia: nil,
                              open_corporates: nil,
                              aliases: [],
-                             headquarters: [])
+                             headquarters: nil)
     end
   end
 
