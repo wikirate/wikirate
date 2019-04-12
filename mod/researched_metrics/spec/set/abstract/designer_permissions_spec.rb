@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Abstract::DesignerPermissions do
-  METRIC_NAME = "Joe User+researched number 2".freeze
+  METRIC_NAME = "Joe User+researched number 3".freeze
   ANSWER_NAME = "#{METRIC_NAME}+Samsung+2014".freeze
 
   RESTRICTED_METRIC_FIELDS = %i[value_type research_policy unit range value_options
