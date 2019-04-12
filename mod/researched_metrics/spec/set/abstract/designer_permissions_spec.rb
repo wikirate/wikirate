@@ -8,18 +8,8 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
                                 report_type question about methodology].freeze
   RESTRICTED_ANSWER_FIELDS = %i[value source].freeze
 
-  def metric
-    @metric ||= Card[METRIC_NAME]
-  end
-
-  # TODO: add research policy to shared data
-  before :all do
-    Card::Auth.as_bot do
-      metric.research_policy_card.update_attributes! content: "Designer Assessed"
-    end
-  end
-
-  let(:answer) { Card[ANSWER_NAME]}
+  let(:metric) { Card[METRIC_NAME] }
+  let(:answer) { Card[ANSWER_NAME] }
 
   def designer_can action, card
     Card::Auth.as "Joe User" do
@@ -29,7 +19,7 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
 
   def nondesigner_cant action, card
     Card::Auth.as "Joe Camel" do
-      expect(card.ok?(:update)).to be_falsey
+      expect(card.ok?(action)).to be_falsey
     end
   end
 

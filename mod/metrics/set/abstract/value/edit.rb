@@ -46,7 +46,7 @@ format :html do
   end
 
   def check_request_field_card_and_options
-    return if card.metric_card.designer_assessed?
+    return if card.metric_card&.designer_assessed?
     [check_request_base.fetch(trait: :checked_by, new: {}), { hide: :title }]
   end
 
