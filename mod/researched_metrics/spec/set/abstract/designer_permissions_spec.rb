@@ -1,15 +1,25 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Abstract::DesignerPermissions do
+  METRIC_NAME = "Joe User+researched number 2".freeze
+  ANSWER_NAME = "#{METRIC_NAME}+Samsung+2014".freeze
+
+  RESTRICTED_METRIC_FIELDS = %i[value_type research_policy unit range value_options
+                                report_type question about methodology].freeze
+  RESTRICTED_ANSWER_FIELDS = %i[value source].freeze
+
   def metric
-    @metric ||= Card["Joe User+researched number 2"]
+    @metric ||= Card[METRIC_NAME]
   end
 
+  # TODO: add research policy to shared data
   before :all do
     Card::Auth.as_bot do
       metric.research_policy_card.update_attributes! content: "Designer Assessed"
     end
   end
+
+  let(:answer) { Card[ANSWER_NAME]}
 
   def designer_can action, card
     Card::Auth.as "Joe User" do
@@ -40,17 +50,45 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
   end
 
   describe "metric fields" do
-    def field_card name
+    def metric_field_card name
       metric.fetch trait: name, new: {}
     end
 
-    %i[value_type].each do |field|
+    RESTRICTED_METRIC_FIELDS.each do |field|
       specify "designer can update metric field: #{field}" do
-        designer_can :update, field_card(field)
+        designer_can :update, metric_field_card(field)
       end
 
       specify "nondesigner can't update metric field: #{field}" do
-        nondesigner_cant :update, field_card(field)
+        nondesigner_cant :update, metric_field_card(field)
+      end
+    end
+  end
+
+  describe "answers" do
+    %i[create update delete].each do |action|
+      specify "designer can #{action} answer" do
+        designer_can action, answer
+      end
+
+      specify "nondesigner cannot #{action} answer" do
+        nondesigner_cant action, answer
+      end
+    end
+  end
+
+  describe "answer fields" do
+    def answer_field_card name
+      answer.fetch trait: name, new: {}
+    end
+
+    RESTRICTED_ANSWER_FIELDS.each do |field|
+      specify "designer can update answer field: #{field}" do
+        designer_can :update, answer_field_card(field)
+      end
+
+      specify "nondesigner can't update answer field: #{field}" do
+        nondesigner_cant :update, answer_field_card(field)
       end
     end
   end

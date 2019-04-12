@@ -1,3 +1,7 @@
+include_set Abstract::MetricChild, generation: 1
+# include_set Abstract::DesignerPermissions
+# Currently governed by *rstar rules
+
 event :reset_metrics_set_pattern_for_metric_type, :finalize,
       on: :save, changed: :content do
   left.reset_patterns
