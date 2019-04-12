@@ -14,7 +14,7 @@ def as_designer?
 end
 
 def check_designer_permissions action
-  return unless @action_ok && metric_card.designer_assessed?
+  return unless @action_ok && metric_card&.designer_assessed?
   return if as_privileged_nondesigner? || as_designer?
 
   deny_because "Only the metric designer can #{action} this on designer-assessed metrics"
