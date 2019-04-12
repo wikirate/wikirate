@@ -24,28 +24,28 @@ def where_record
 end
 
 def company_ids
-  @company_ids ||= wikirate_company_card.valid_company_cards.map(&:id)
+  @company_ids ||= wikirate_company_card.valid_item_ids
 end
 
 def metric_ids
-  @metric_ids ||= metric_card.valid_metric_cards.map(&:id)
+  @metric_ids ||= metric_card.valid_item_ids
 end
 
 def year_ids
-  @year_ids ||= years && year_card.valid_year_cards.map(&:id)
+  @year_ids ||= years && year_card.valid_item_ids
 end
 
 def metrics
-  metric_card.valid_metric_cards.map(&:name)
+  metric_card.valid_item_names
 end
 
 def companies
-  wikirate_company_card.item_names
+  wikirate_company_card.valid_item_names
 end
 
 def years
   return @years unless @years.nil?
-  valids = year_card.valid_year_cards.map(&:name)
+  valids = year_card.valid_item_names
   @years = valids.empty? ? false : valids
 end
 

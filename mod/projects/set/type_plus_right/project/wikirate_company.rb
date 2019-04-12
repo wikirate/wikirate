@@ -1,30 +1,12 @@
 # These Project+Company (type plus right) cards refer to the list of
 # all companies on a given project.
 
-# @return [Card::Name]
-def project_name
-  name.left_name
-end
+include_set Abstract::ProjectScope
 
-# @return [Array] all of this card's items that refer to a valid company
-def valid_company_cards
-  @valid_company_cards ||=
-    item_cards.sort_by(&:key).select do |company|
-      company.type_id == WikirateCompanyID
-    end
-end
+scope_label :company
 
-# @return [Array] a list of Company+Project cards (ltype rtype) that connect
-# each of this card's company items to its project.
-def all_company_project_cards
-  valid_company_cards.map do |company|
-    company_project_card company
-  end
-end
-
-# @return [Card] a single Company+Project card (ltype rtype)
-def company_project_card company_card
-  Card.fetch company_card.name, project_name, new: {}
+def item_cards_for_validation
+  item_cards.sort_by(&:key)
 end
 
 # are any of the metrics associated with this project researchable for this
