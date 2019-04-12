@@ -1,4 +1,5 @@
 include_set Abstract::Researched
+include_set Abstract::DesignerPermissions
 
 # OVERRIDES
 def standard?
