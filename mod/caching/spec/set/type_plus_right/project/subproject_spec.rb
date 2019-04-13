@@ -17,8 +17,10 @@ RSpec.describe Card::Set::TypePlusRight::Project::Subproject do
     end
 
     it "adds its metrics to parent project" do
-      subproject = create_subproject metric: "Joe User+RM"
-      expect(subproject.parent_project_card.metric_card.item_names).to include("Joe User+RM")
+      new_metric = "Joe User+RM"
+      subproject = create_subproject metric: new_metric
+      parent_metrics = subproject.parent_project_card.metric_card.item_names
+      expect(parent_metrics).to include(new_metric)
     end
 
     it "adds its companies to parent project" do
