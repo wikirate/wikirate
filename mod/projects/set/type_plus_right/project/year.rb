@@ -1,6 +1,10 @@
 include_set Abstract::Table
 include_set Abstract::ProjectScope
 
+def add_to_parent?
+  false
+end
+
 def item_cards_for_validation
   item_cards.sort_by(&:name).reverse
 end

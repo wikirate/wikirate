@@ -3,8 +3,6 @@
 
 include_set Abstract::ProjectScope
 
-scope_label :company
-
 def item_cards_for_validation
   item_cards.sort_by(&:key)
 end

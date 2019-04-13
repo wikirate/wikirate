@@ -7,6 +7,14 @@ card_reader :year
 card_reader :parent
 card_reader :subproject
 
+def parent_project_card
+  Card[parent_project]
+end
+
+def parent_project
+  parent_card.item_names.first
+end
+
 def answers
   @answers ||= Answer.where where_answer
 end
