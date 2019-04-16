@@ -18,7 +18,6 @@ include SharedData::Samples
 
 def create_answer metric: sample_metric, company: sample_company, user: "Joe User",
                   content: "content", year: "2015", source: sample_source.name
-  #content ||= "I'm fine, I'm just not happy."
   with_user user do
     Card.create type_id: Card::MetricAnswerID,
                 subcards: answer_subcards(metric: metric, company: company,
