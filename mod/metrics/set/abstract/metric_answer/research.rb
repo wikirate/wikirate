@@ -89,8 +89,13 @@ format :html do
   view :edit_buttons do
     class_up "form-group", "w-100 m-3"
     button_formgroup do
-      [standard_save_button, standard_cancel_button, answer_delete_button]
+      [standard_save_button, cancel_research_button, answer_delete_button]
     end
+  end
+
+  def cancel_research_button
+    link_to "Cancel", path: research_params,
+                      class: "btn btn-sm cancel-button btn-secondary"
   end
 
   def standard_cancel_button args={}
@@ -153,7 +158,7 @@ format :html do
   end
 
   def edit_link view=:edit, opts={}
-    link_to menu_icon, path: { view: :edit }
+    link_to menu_icon, path: research_params.merge(view: :edit)
   end
 
   # def menu_link_path_opts
