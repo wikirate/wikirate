@@ -2,6 +2,7 @@
 
 include_set Abstract::MetricChild, generation: 3
 include_set Abstract::MetricAnswer
+include_set Abstract::DesignerPermissions
 
 def related_company
   name.tag

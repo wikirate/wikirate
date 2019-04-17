@@ -1,4 +1,5 @@
 include_set Abstract::MetricChild, generation: 3
+include_set Abstract::DesignerPermissions
 
 def typed_value?
   true

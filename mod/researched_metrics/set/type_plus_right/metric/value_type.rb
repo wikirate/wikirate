@@ -1,4 +1,5 @@
 include_set Abstract::MetricChild, generation: 1
+include_set Abstract::DesignerPermissions
 
 event :validate_type_of_existing_values, :validate,
       on: :save, changed: :content do

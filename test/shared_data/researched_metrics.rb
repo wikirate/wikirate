@@ -133,6 +133,7 @@ class SharedData
       end
       Card::Metric.create name: "Joe User+researched number 3",
                           type: :researched,
+                          research_policy: "Designer Assessed",
                           topic: "Taming",
                           test_source: true do
         Samsung "2014" => 1, "2015" => 1

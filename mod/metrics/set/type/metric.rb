@@ -23,6 +23,12 @@ card_accessor :hybrid, type: :toggle
 card_accessor :question, type: :plain_text
 card_accessor :score
 
+# METRIC-CHILD-STYLE METHODS
+
+def metric_card
+  self
+end
+
 # METRIC TYPES
 
 def metric_type
@@ -62,5 +68,5 @@ def answer_card company, year
 end
 
 def designer_assessed?
-  research_policy.casecmp("designer assessed").zero?
+  research_policy.tr("[]", "").casecmp("designer assessed").zero?
 end
