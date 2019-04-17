@@ -45,7 +45,7 @@ Feature: Double check
     When I click on "Uncheck"
     Then I should see "Double check requested by Joe User"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
-    Then Within "#modal-container" I should not see "request"
+    Then I should not see "request"
 
     When I am signed in as Joe User
     And I edit "Jedi+disturbances in the Force+Death Star+2000"
