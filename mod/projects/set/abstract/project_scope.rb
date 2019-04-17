@@ -55,14 +55,36 @@ end
 
 # eg, <Parent Project>+metric
 def parent_field
-  @parent_field ||= parent_project.send "#{Card::Codename[right_id]}_card"
+  @parent_field ||= relative_project_field(parent_project)
+end
+
+# same field, different project
+def relative_project_field relative_project
+  relative_project.send "#{Card::Codename[right_id]}_card"
 end
 
 def union_with_parent_field
   parent_field.item_names | item_names
 end
 
+def subproject_item_names
+  subproject.item_cards.map do |subproject|
+    relative_project_field(subproject).item_names
+  end.flatten.uniq
+end
+
 event :add_items_to_parent_project, :integrate, on: :save do
   return unless add_to_parent?
   add_subcard parent_field.name, content: union_with_parent_field.to_pointer_content
 end
+
+event :validate_all_subproject_items_present, :validate, on: :save do
+  missing_names = subproject_item_names.find_all do |name|
+    !card.item_names.include? name
+  end
+  return if missing_names.empty?
+
+  errors.add :content, "The following are still associated with subprojects " \
+                       "and cannot be removed: #{missing_names.join ', '}"
+end
+
