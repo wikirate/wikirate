@@ -209,6 +209,6 @@ format :html do
     # FIXME: param keys should be standardized (probably symbols)
     @project ||= inherit(:project) ||
                  Env.params[:project] || Env.params["project"] ||
-                 prefixed_research_params[:project]
+                 (prefixed_research_params && prefixed_research_params[:project])
   end
 end
