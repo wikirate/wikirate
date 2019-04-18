@@ -22,7 +22,7 @@ format :html do
                                        ".card-slot.TYPE-metric_answer"
   end
 
-  view :edit do
+  view :edit, wrap: :none do
     handle_research_params
     nest :research_page, view: :edit
   end
@@ -39,10 +39,9 @@ format :html do
   def bridge_parts
     handle_research_params
     with_nest_mode :normal do
-      nest :research_page, view: :edit, wrap: :none
+      render_titled
     end
   end
-
 
   view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
     return not_researchable unless card.metric_card.researchable?
@@ -82,7 +81,7 @@ format :html do
     smart_link_to "Delete",
                   type: "button",
                   path: { action: :delete, success: success },
-                  class: "btn btn-outline-danger pull-right",
+                  class: "btn btn-sm btn-outline-danger pull-right",
                   'data-confirm': confirm,
                   "data-disable-with": "Deleting"
   end
@@ -90,8 +89,13 @@ format :html do
   view :edit_buttons do
     class_up "form-group", "w-100 m-3"
     button_formgroup do
-      [standard_submit_button, standard_cancel_button, answer_delete_button]
+      [standard_save_button, cancel_research_button, answer_delete_button]
     end
+  end
+
+  def cancel_research_button
+    link_to "Cancel", path: research_params,
+                      class: "btn btn-sm cancel-button btn-secondary"
   end
 
   def standard_cancel_button args={}
@@ -149,9 +153,17 @@ format :html do
     opts
   end
 
-  def menu_link_path_opts
-    super.merge RESEARCH_PARAMS_KEY => research_params
+  def menu_link
+    bridge_link + super
   end
+
+  def edit_link view=:edit, _opts={}
+    link_to menu_icon, path: research_params.merge(view: view), class: "edit-answer-link"
+  end
+
+  # def menu_link_path_opts
+  #   super.merge RESEARCH_PARAMS_KEY => research_params
+  # end
 
   def research_params
     @research_params ||=
