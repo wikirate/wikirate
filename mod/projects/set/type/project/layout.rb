@@ -29,7 +29,7 @@ format :html do
   end
 
   def with_parent
-    parent = link_to_card(card.superproject_card)
+    parent = link_to_card(card.parent_project)
     "SUB-#{card.type.upcase} (of #{parent})"
   end
 
