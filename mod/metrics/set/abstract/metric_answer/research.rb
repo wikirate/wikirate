@@ -166,10 +166,13 @@ format :html do
   # end
 
   def research_params
-    @research_params ||=
-      inherit(:research_params) ||
-      Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
-      default_research_params
+    @research_params ||= inherit(:research_params) ||
+                         prefixed_research_params ||
+                         default_research_params
+  end
+
+  def prefixed_research_params
+    @prefixed_research_params ||= Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h
   end
 
   def default_research_params
@@ -204,7 +207,8 @@ format :html do
 
   def project
     # FIXME: param keys should be standardized (probably symbols)
-    @project ||= inherit(:project) || Env.params[:project] || Env.params["project"] ||
-      research_params[:project]
+    @project ||= inherit(:project) ||
+                 Env.params[:project] || Env.params["project"] ||
+                 prefixed_research_params[:project]
   end
 end

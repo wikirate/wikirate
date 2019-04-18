@@ -83,7 +83,7 @@ event :add_items_to_parent_project, :integrate, on: :save do
 end
 
 def missing_subproject_item_names
-  subproject_item_names.find_all do |name|
+  subproject_item_names.select do |name|
     !item_names.include? name
   end
 end
