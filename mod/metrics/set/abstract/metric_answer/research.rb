@@ -179,7 +179,7 @@ format :html do
   end
 
   def research_form_success
-    research_params.merge id: ":research_page", project: project, redirect: true,
+    research_params.merge id: ":research_page", redirect: true,
                           view: :slot_machine
   end
 
@@ -204,6 +204,7 @@ format :html do
 
   def project
     # FIXME: param keys should be standardized (probably symbols)
-    @project ||= inherit(:project) || Env.params[:project] || Env.params["project"]
+    @project ||= inherit(:project) || Env.params[:project] || Env.params["project"] ||
+      research_params[:project]
   end
 end

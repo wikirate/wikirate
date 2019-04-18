@@ -91,5 +91,6 @@ $(document).ready ->
     url = $(event.params.data.element).data("url")
     window.location = decko.path(url)
 
+  # the "View Methodology" button
   $("body").on "click", "._methodology-tab", ->
-    $('a[href="#research_page-methodology"]').tab("show")
+    $('a[href="#research_page-3-methodology"]').tab("show")
