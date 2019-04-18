@@ -7,7 +7,7 @@ def project_name
 end
 
 def project_card
-  Card[project_name]
+  left
 end
 
 # only returns items with the correct type
@@ -45,8 +45,12 @@ def all_item_project_cards
   end
 end
 
+def hereditary_field?
+  true
+end
+
 def add_to_parent?
-  !parent_project.nil?
+  hereditary_field? && !parent_project.nil?
 end
 
 def parent_project
@@ -68,7 +72,7 @@ def union_with_parent_field
 end
 
 def subproject_item_names
-  subproject.item_cards.map do |subproject|
+  project_card.subproject_card.item_cards.map do |subproject|
     relative_project_field(subproject).item_names
   end.flatten.uniq
 end
@@ -78,13 +82,24 @@ event :add_items_to_parent_project, :integrate, on: :save do
   add_subcard parent_field.name, content: union_with_parent_field.to_pointer_content
 end
 
-event :validate_all_subproject_items_present, :validate, on: :save do
-  missing_names = subproject_item_names.find_all do |name|
-    !card.item_names.include? name
+def missing_subproject_item_names
+  subproject_item_names.find_all do |name|
+    !item_names.include? name
   end
-  return if missing_names.empty?
+end
+
+event :validate_all_subproject_items_present, :validate, on: :update do
+  return unless hereditary_field?
+  missing_names = missing_subproject_item_names
+  return unless missing_names.present?
 
   errors.add :content, "The following are still associated with subprojects " \
                        "and cannot be removed: #{missing_names.join ', '}"
 end
 
+event :prevent_deletion_if_subproject_items_present, :validate, on: :delete do
+  return unless hereditary_field? && subproject_item_names.present?
+
+  errors.add :content, "This card cannot be deleted, " \
+                       "because there are subprojects with companies"
+end

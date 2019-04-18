@@ -29,5 +29,17 @@ RSpec.describe Card::Set::TypePlusRight::Project::Subproject do
       parent_companies = subproject.parent_project_card.wikirate_company_card.item_names
       expect(parent_companies).to include(*new_companies)
     end
+
+    it "prevents removal of companies from parent" do
+      create_subproject wikirate_company: "Death Star"
+      expect { Card["Evil Project+companies"].update_attributes! content: "SPECTRE" }
+        .to raise_error(/cannot be removed: Death Star/)
+    end
+
+    it "prevents deletion of parent trait card" do
+      create_subproject wikirate_company: "Death Star"
+      expect { Card["Evil Project+companies"].delete! }
+        .to raise_error(/cannot be deleted, because there are subprojects with companies/)
+    end
   end
 end

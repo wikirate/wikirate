@@ -1,7 +1,7 @@
 include_set Abstract::Table
 include_set Abstract::ProjectScope
 
-def add_to_parent?
+def hereditary_field?
   false
 end
 
