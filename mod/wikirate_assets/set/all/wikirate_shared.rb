@@ -17,7 +17,7 @@ MENU_REFS = { "Groups" => "Research Groups",
               "Instagram" => "https://www.instagram.com/wikirate/",
               "Telegram" => "https://t.me/WikiRate",
               "Notice" => "Notice and Take Down Procedure",
-              "Legal" => "https://project.wikirate.org/Legal" }.freeze
+              "Legal" => "https://wikirateproject.org/Legal" }.freeze
 
 SECONDARY_MENUS = { "Legal" => ["Legal", "Privacy Policy", "Licensing", "Disclaimers",
                                 "Terms of Use", "Notice"],
@@ -43,6 +43,6 @@ format do
   end
 
   def shared_url_prefix project=true
-    project ? "https://project.wikirate.org/" : "/"
+    project ? "https://wikirateproject.org/" : "/"
   end
 end
