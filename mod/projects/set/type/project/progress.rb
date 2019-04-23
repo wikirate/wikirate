@@ -20,15 +20,15 @@ def num_possible_records
 end
 
 def num_companies
-  @num_companies ||= wikirate_company_card.valid_company_cards.size
+  @num_companies ||= wikirate_company_card.num
 end
 
 def num_metrics
-  @num_metrics ||= metric_card.valid_metric_cards.size
+  @num_metrics ||= metric_card.num
 end
 
 def num_years
-  @num_years ||= year_card.valid_year_cards.size
+  @num_years ||= year_card.num
 end
 
 def num_users
