@@ -40,7 +40,7 @@ class SelectTagWithHtmlOptions
                  url:,
                  option_view: "#{name}_option",
                  selected_option_view: "#{name}_selected_option",
-                 option_card:
+                 option_card: nil
     @name = name
     @url = url
     @format = format
@@ -88,30 +88,30 @@ class SelectTagWithHtmlOptions
   def html_options
     @format.wrap_with(:div, id: "#{@name}-select-options", class: "d-none") do
       @items.map.with_index do |option, i|
-        option_card = @option_card ? @option_card.call(option) : Card[option]
-        html_option(option_card, i) + selected_html_option(option_card, i)
+        option = @option_card ? @option_card.call(option) : option
+        html_option(option, i) + selected_html_option(option, i)
       end
     end
   end
 
-  def html_option option_card, i
+  def html_option option, i
     @format.wrap_with :div, id: option_id(i) do
-      call_or_render option_card, @option_view
+      call_or_render option, @option_view
     end
   end
 
-  def selected_html_option option_card, i
+  def selected_html_option option, i
     @format.wrap_with :div, id: selected_option_id(i) do
-      call_or_render option_card, @selected_option_view
+      call_or_render option, @selected_option_view
     end
   end
 
-  def call_or_render option_card, view
-    if option_card.respond_to?(:call)
+  def call_or_render option, view
+    if view.respond_to?(:call)
       # "view" here is really a proc. only used in test. obviate?
-      option_card.call view
+      view.call option
     else
-      @format.nest option_card, view: view
+      @format.nest option, view: view
     end
   end
 end

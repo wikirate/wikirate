@@ -3,9 +3,9 @@
 RSpec.describe Card::Set::Self::ResearchPage::SelectTagWithHtmlOptions do
   subject do
     tag = described_class.new(:fruit, Card["A"].format,
-                               url: ->(item) { "/#{item}" },
-                              option_template: ->(item) { "<small>#{item}</small>" },
-                              selected_option_template: ->(item) { "<h1>#{item}</h1>" })
+                              url: ->(item) { "/#{item}" },
+                              option_view: ->(item) { "<small>#{item}</small>" },
+                              selected_option_view: ->(item) { "<h1>#{item}</h1>" })
     tag.render([:apple, :orange], selected: :orange)
   end
 
