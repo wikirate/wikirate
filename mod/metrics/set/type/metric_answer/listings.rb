@@ -168,4 +168,7 @@ format :html do
   view :year_equals do
     "<span class=\"metric-year\">#{card.year} = </span>"
   end
+
+  view :year_option, template: :haml, tags: :unknown_ok
+  view :year_selected_option, template: :haml, tags: :unknown_ok
 end

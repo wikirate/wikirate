@@ -24,6 +24,8 @@ format :html do
 
   view :box_bottom, template: :haml
 
+  view :selected_option, template: :haml
+
   bar_cols 7, 5
   info_bar_cols 5, 4, 3
 end

@@ -85,9 +85,7 @@ format :html do
     root.primary_panels << card.tag
   end
 
-  view :panel_toc, template: :haml, cache: :never do
-    # doesn't work without this empty block if view caching is turned on
-  end
+  view :panel_toc, template: :haml, cache: :never
 
   # deprecated
   # still used in some card

@@ -4,7 +4,7 @@
 - if metric?
   = haml_partial :company_slot
 - if metric? && company?
-  = year_slot
+  = render_year_slot
 = render_flash
 - if metric?
   .border-bottom.background-grey.p-2.pl-4

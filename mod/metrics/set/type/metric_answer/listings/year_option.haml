@@ -1,0 +1,12 @@
+- if card.year.present?
+  %div
+    %h6.d-flex.flex-no-wrap.text-muted.mb-0
+      %div.mr-5
+        %strong
+          = card.year
+      - if card.new?
+        %i
+          add answer
+      - else
+        %div
+          = render :conciser, hide: :year_equals
