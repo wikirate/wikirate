@@ -4,7 +4,7 @@ format :html do
     nest :research_page, view: :edit
   end
 
-  view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
+  view :research_edit_form, cache: :never, perms: :update, unknown: true do
     researchably do
       with_nest_mode :edit do
         wrap do

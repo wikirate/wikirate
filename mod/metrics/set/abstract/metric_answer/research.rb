@@ -39,7 +39,7 @@ format :html do
     "They are calculated from other answers."
   end
 
-  view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
+  view :research_form, cache: :never, perms: :update, unknown: true do
     research_form(:create) { haml :research_form }
   end
 

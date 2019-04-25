@@ -71,7 +71,7 @@ format :html do
     end
   end
 
-  view :new_tab_pane, tags: :unknown_ok do
+  view :new_tab_pane, unknown: true do
     with_nest_mode :edit do
       wrap do
         card_form :create, "main-success" => "REDIRECT",

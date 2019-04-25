@@ -9,7 +9,7 @@ format :html do
   end
 
   # TODO: move "facebook meta" handling from card to code
-  view :facebook_meta_tag, cache: :never, tags: :unknown_ok do
+  view :facebook_meta_tag, cache: :never, unknown: true do
     return unless card.known? && facebook_agent?
     nest Card.fetch(card.name, "facebook meta"), view: :core
   end

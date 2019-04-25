@@ -39,7 +39,7 @@ format :html do
     card.count
   end
 
-  view :og_source, tags: :unknown_ok do
+  view :og_source, unknown: true do
     if card.real?
       card.format.render_source
     else
