@@ -149,5 +149,3 @@ format :html do
                  (prefixed_research_params && prefixed_research_params[:project])
   end
 end
-
-
