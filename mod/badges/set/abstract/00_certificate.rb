@@ -3,7 +3,7 @@ format :html do
     fa_icon :certificate, level
   end
 
-  view :count, tags: :unknown_ok do
+  view :count, unknown: true do
     medal_counts "horizontal"
   end
 

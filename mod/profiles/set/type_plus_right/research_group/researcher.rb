@@ -31,11 +31,11 @@ event :leave_group, :validate, when: :leaving? do
 end
 
 format :html do
-  view :overview, tags: :unknown_ok do
+  view :overview, unknown: true do
     wrap { haml :overview }
   end
 
-  view :contributions, tags: :unknown_ok, cache: :never do
+  view :contributions, unknown: true, cache: :never do
     return "" unless card.count.positive?
     with_paging do |paging_args|
       table_content = member_contribution_content members_on_page(paging_args)
@@ -49,7 +49,7 @@ format :html do
   end
 
   def self.membership_button action, test, btnclass
-    view "#{action}_button".to_sym, tags: :unknown_ok, denial: :blank, cache: :never,
+    view "#{action}_button".to_sym, unknown: true, denial: :blank, cache: :never,
                                     perms: ->(r) { r.card.send test } do
       link_to "#{action.to_s.capitalize} Group",
               path: { action: :update, action => true, success: { view: :overview } },
@@ -61,7 +61,7 @@ format :html do
   membership_button :join, :ok_to_join?, "btn-primary"
   membership_button :leave, :current_user_is_member?, "btn-outline-primary"
 
-  view :manage_button, tags: :unknown_ok do
+  view :manage_button, unknown: true do
     link_to_view "edit",
                  "Manage Researcher List",
                  class: "btn btn-outline-primary btn-sm"

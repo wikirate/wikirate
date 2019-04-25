@@ -99,7 +99,7 @@ format :html do
     "request"
   end
 
-  view :editor, tags: :unknown_ok do
+  view :editor, unknown: true do
     wrap_with :div, class: "d-flex flex-nowrap" do
       super() + popover_link("Not sure? Ask another researcher to double check this.")
     end

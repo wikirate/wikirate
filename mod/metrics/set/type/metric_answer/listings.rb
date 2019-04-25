@@ -169,6 +169,6 @@ format :html do
     "<span class=\"metric-year\">#{card.year} = </span>"
   end
 
-  view :year_option, template: :haml, tags: :unknown_ok
-  view :year_selected_option, template: :haml, tags: :unknown_ok
+  view :year_option, template: :haml, unknown: true
+  view :year_selected_option, template: :haml, unknown: true
 end

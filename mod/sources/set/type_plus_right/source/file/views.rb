@@ -8,7 +8,7 @@ format :html do
     super() + render_preview
   end
 
-  view :preview, tags: :unknown_ok do
+  view :preview, unknown: true do
     wrap do
       if card.new?
         no_file_to_preview

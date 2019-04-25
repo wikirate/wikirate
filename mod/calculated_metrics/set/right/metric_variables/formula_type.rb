@@ -15,7 +15,7 @@ def input_metric_name_by_index index
 end
 
 format :html do
-  view :edit_in_formula, tags: :unknown_ok, cache: :never do
+  view :edit_in_formula, unknown: true, cache: :never do
     as_formula_subcard { variables_table_and_button }
   end
 
