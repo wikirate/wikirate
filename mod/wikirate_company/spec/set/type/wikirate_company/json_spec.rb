@@ -1,9 +1,8 @@
-RSpec.describe Card::Set::Type::WikirateCompany, "json export" do
+RSpec.describe Card::Set::Type::WikirateCompany::Json do
   let(:company) { Card["Samsung"] }
 
   describe "atom view" do
     subject { render_view :atom, { name: company.name }, format: :json }
-
     specify do
       is_expected.to include(name: "Samsung",
                              id: company.id,

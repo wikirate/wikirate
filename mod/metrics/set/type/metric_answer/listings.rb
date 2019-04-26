@@ -110,7 +110,7 @@ format :html do
     wrap_with :div, (nest card.company_card, nest_args), class: "company-link"
   end
 
-  view :value_cell do
+  view :value_cell, unknown: true do
     if card.unknown?
       view = research_ready? ? :research_button : :blank
       render view
