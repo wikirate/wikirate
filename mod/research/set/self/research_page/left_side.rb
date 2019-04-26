@@ -1,5 +1,8 @@
 format :html do
   view :left_research_side, cache: :never, template: :haml, wrap: :slot
+  view :project_slot,       cache: :never, template: :haml
+  view :metric_slot,        cache: :never, template: :haml
+  view :company_slot,       cache: :never, template: :haml
   view :year_slot,          cache: :never, template: :haml, wrap: :slot
 
   def answer_slot

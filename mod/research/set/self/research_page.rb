@@ -31,7 +31,7 @@ format :html do
     render_slot_machine
   end
 
-  view :slot_machine, cache: :never, perms: :create, wrap: :slot do
+  view :slot_machine, perms: :create, wrap: :slot do
     haml :slot_machine
   end
 

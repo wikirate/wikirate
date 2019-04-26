@@ -1,8 +1,8 @@
 - if project?
-  = haml_partial :project_slot
-= haml_partial :metric_slot
+  = render :project_slot
+= render :metric_slot
 - if metric?
-  = haml_partial :company_slot
+  = render :company_slot
 - if metric? && company?
   = render_year_slot
 = render_flash
@@ -11,7 +11,8 @@
     %h5
       Question
       %span.pull-right
-        = button_tag "View Methodology", class: "_methodology-tab btn btn-sm btn-outline-secondary"
+        = button_tag "View Methodology",
+                     class: "_methodology-tab btn btn-sm btn-outline-secondary"
     .large-text
       = nest [metric, :question], view: :core
 .p-2.pl-4
@@ -23,4 +24,3 @@
       %strong
         = first_missing_field
       above.
-
