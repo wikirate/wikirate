@@ -258,7 +258,7 @@ def request_check_flag_update?
 end
 
 format :json do
-  view :atom do
+  def atom
     super().merge checks: card.checkers.count,
                   check_requested: card.check_requested?
   end

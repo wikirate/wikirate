@@ -127,16 +127,16 @@ format :html do
 end
 
 format :json do
-  view :atom do
+ def atom
     super().merge year: card.year.to_s,
-                  value: card.value,
+                  value: nest(card.value_card, view: :core),
                   import: card.imported?,
                   comments: field_nest(:discussion, view: :core),
                   subject_company: Card.fetch_name(card.company),
                   object_company: Card.fetch_name(card.related_company)
   end
 
-  view :molecule do
+  def molecule
     super().merge subject_company: nest(card.company, view: :atom),
                   object_company: nest(card.related_company, view: :atom)
   end

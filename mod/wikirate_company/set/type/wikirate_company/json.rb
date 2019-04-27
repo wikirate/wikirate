@@ -9,14 +9,14 @@ format :json do
     []
   end
 
-  view :atom do
+  def atom
     hash = super()
     hash.delete(:content)
     add_fields_to_hash hash, :core
     hash
   end
 
-  view :molecule do
+  def molecule
     super().merge(add_fields_to_hash({}))
            .merge answers_url: path(mark: card.field(:metric_answer), format: :json)
   end
