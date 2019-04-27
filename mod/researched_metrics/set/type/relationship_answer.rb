@@ -127,9 +127,9 @@ format :html do
 end
 
 format :json do
- def atom
+  def atom
     super().merge year: card.year.to_s,
-                  value: nest(card.value_card, view: :core),
+                  value: card.value,
                   import: card.imported?,
                   comments: field_nest(:discussion, view: :core),
                   subject_company: Card.fetch_name(card.company),

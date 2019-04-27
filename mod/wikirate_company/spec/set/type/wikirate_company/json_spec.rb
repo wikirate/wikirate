@@ -3,6 +3,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Json do
 
   describe "atom view" do
     subject { render_view :atom, { name: company.name }, format: :json }
+
     specify do
       is_expected.to include(name: "Samsung",
                              id: company.id,
