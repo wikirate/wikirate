@@ -126,7 +126,11 @@ format :html do
       card.left&.format&.try(:research_params) || {}
   end
 
-  view :icon, cache: :never do
+  view :flag, unknown: true do
+    return "" unless card.checked?
+  end
+
+  view :icon do
     if checked?
       double_check_icon
     elsif check_requested?
