@@ -34,7 +34,7 @@ format :html do
   # ~~~~~ FORMULA DETAILS
 
   # don't cache; view depends on formula card
-  view :expanded_formula_details, tags: :unknown_ok, cache: :never do
+  view :expanded_formula_details, unknown: true, cache: :never do
     expanded_formula_details
   end
 

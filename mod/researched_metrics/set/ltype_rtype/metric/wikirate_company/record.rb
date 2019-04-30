@@ -15,7 +15,7 @@ format :html do
   # 2) company page -> metric table -> item -> table on right side
   # 3) metric record page
   # 4) add new value page (new_metric_value view for company)
-  view :core, unknown_ok: true do
+  view :core do
     wrap_with :div, id: card.name.url_key, class: "record-row" do
       [
         _render_metric_info,
@@ -79,6 +79,12 @@ format :html do
   view :name_link do
     link_to_card card.company_card, nil, class: "inherit-anchor name",
                                          target: "_blank"
+  end
+
+  view :metric_option, template: :haml, unknown: true
+
+  view :metric_selected_option, unknown: true do
+    nest metric_card, view: :selected_option
   end
 end
 

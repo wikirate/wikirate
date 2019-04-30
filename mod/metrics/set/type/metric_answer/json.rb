@@ -20,18 +20,18 @@ format :json do
     super.merge year: card.year.to_i
   end
 
-  view :atom do
-    atom = super()
+  def atom
+    atom = super
     %i[metric company year].each do |key|
       atom[key] = card.send key
     end
-    atom[:value] = card.value
+    atom[:value] = card.value # nest card.value_card, view: :core
     atom[:record_url] = path mark: card.name.left, format: :json
     atom.delete(:content)
     atom
   end
 
-  view :molecule do
+  def molecule
     super().merge sources: field_nest(:source, view: :items),
                   checked_by: field_nest(:checked_by)
   end

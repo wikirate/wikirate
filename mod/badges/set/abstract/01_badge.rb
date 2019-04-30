@@ -31,7 +31,7 @@ format :html do
     "#{certificate(badge_level)} #{_render_link}"
   end
 
-  view :badge, tags: :unknown_ok do
+  view :badge, unknown: true do
     wrap_with :strong, safe_name
   end
 

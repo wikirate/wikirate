@@ -39,9 +39,9 @@ RSpec.describe Card::Set::Self::ResearchPage do
     end
   end
 
-  describe "#right_side_tabs" do
+  describe "right_side_tabs view" do
     subject do
-      format.right_side_tabs
+      format.render :right_side_tabs
     end
 
     it "has source tab" do

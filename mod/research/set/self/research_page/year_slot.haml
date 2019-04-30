@@ -1,0 +1,17 @@
+.year{class: slot_attr}
+  - if year_pinned?
+    .d-flex.flex-nowrap
+      .image-box.icon.bg-white
+        %span.img-helper
+        = fa_icon :calendar, class: "text-muted"
+      %h5.mb-0
+        = year
+  - else
+    .year-select.w-100
+      = year_select
+  - if existing_answer? && researchable_answer?
+    %div
+      = nest answer_card, view: :year_edit_link
+  -#- if project?
+  -#  .w-25
+  -#    = nest [year.to_s, project], view: :research_progress_bar

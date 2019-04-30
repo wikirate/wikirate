@@ -1,0 +1,19 @@
+%div{class: project_slot_attr}
+  .d-flex.flex-nowrap.justify-content-between.align-items-center
+    .image-box.icon
+      %span.img-helper
+        = nest [project, :image], view: :core, size: :small
+    %h6.mb-0
+      = nest project, view: :link
+      -#.default-progress-box.w-25
+      -#  = nest project, view: :research_progress_bar
+.metric-nav.d-flex.w-100
+  .w-75.my-2.pl-4
+    = nest [company, project], view: :research_progress_bar
+  .d-flex.flex-nowrap.align-items-center.w-25.px-2.justify-content-between.metric-nav
+    = previous_button :metric
+    %small.px-2
+      = index(:metric) + 1
+      = "/"
+      = list_count :metric
+    = next_button :metric

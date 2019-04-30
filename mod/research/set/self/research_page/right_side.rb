@@ -1,13 +1,13 @@
 format :html do
+  # NOCACHE because preview_source is altered by params / instance vars
   view :source_preview_tab, cache: :never do
     wrap do
-      nest preview_source, { view: :source_and_preview },
-           source_cited: cited_preview_source?,
-           source_disabled: existing_answer_with_source?
+      nest preview_source, view: :source_and_preview
     end
   end
 
-  def right_side_tabs
+  # NOCACHE because view is altered by params / instance vars
+  view :right_side_tabs, cache: :never do
     tabs = {}
     tabs["Sources"] = sources_tab if metric? && company?
     tabs["Methodology"] = metric_details_tab if metric?

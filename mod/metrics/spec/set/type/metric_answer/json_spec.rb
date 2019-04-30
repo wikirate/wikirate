@@ -9,8 +9,12 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
     render_view view, { name: answer.name }, format: :json
   end
 
-  def wr_url name
-    "http://wikirate.org/#{name.to_name.url_key}.json"
+  def wr_url path
+    "http://wikirate.org#{path}"
+  end
+
+  def name_url name
+    wr_url "/#{name.to_name.url_key}.json"
   end
 
   describe "exported json researched metric answer" do
@@ -21,15 +25,15 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
       {
         id: metric.id,
         name: metric.name,
-        url: wr_url(metric.name)
+        url: name_url(metric.name)
       }
     end
     let(:source_fields) do
       {
         id: source.id,
         name: source.name,
-        url: wr_url(source.name),
-        file_url: source.file_url
+        url: name_url(source.name),
+        file_url: wr_url(source.file_url)
         # "http://www.wikiwand.com/en/Star_Wars.json"
       }
     end
@@ -37,7 +41,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
       {
         id: company.id,
         name: company.name,
-        url: wr_url(COMPANY_NAME)
+        url: name_url(COMPANY_NAME)
       }
     end
     let(:atom_fields) do
@@ -45,12 +49,12 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
         id: answer.id,
         name: answer.name,
         type: "Answer",
-        url: wr_url(answer.name),
+        url: name_url(answer.name),
         metric: metric.name,
         company: COMPANY_NAME,
         year: YEAR,
         value: "Darth Sidious",
-        record_url: wr_url("#{metric.name}+#{COMPANY_NAME}")
+        record_url: name_url("#{metric.name}+#{COMPANY_NAME}")
       }
     end
     let :molecule_fields do

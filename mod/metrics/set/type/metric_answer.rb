@@ -14,6 +14,7 @@ end
 
 # AS RESEARCH PAGE
 format :html do
+  # NOCACHE because slot machine manipulates instance variables
   view :open, cache: :never do
     wrap do
       subformat(:research_page).slot_machine metric: card.metric,

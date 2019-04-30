@@ -1,0 +1,18 @@
+.metric{class: slot_attr}
+  -if !metric?
+    %div
+      .d-flex.flex-nowrap.metric-color
+        .image-box.icon.bg-white
+          = fa_icon "bar-chart", class: "metric-color"
+        = autocomplete_field :metric
+  -elsif metric_pinned?
+    %div
+      .metric-color.d-flex.flex-nowrap.align-items-center
+        .image-box.icon
+          %span.img-helper
+          = nest metric, view: :designer_image
+        %h6.mb-0
+          = link_to_card metric, Card[metric].metric_title, class: "inherit-anchor"
+  - else
+    .metric-select.w-100
+      = metric_select

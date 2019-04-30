@@ -99,7 +99,7 @@ format :html do
     "request"
   end
 
-  view :editor, tags: :unknown_ok do
+  view :editor, unknown: true do
     wrap_with :div, class: "d-flex flex-nowrap" do
       super() + popover_link("Not sure? Ask another researcher to double check this.")
     end
@@ -258,7 +258,7 @@ def request_check_flag_update?
 end
 
 format :json do
-  view :atom do
+  def atom
     super().merge checks: card.checkers.count,
                   check_requested: card.check_requested?
   end

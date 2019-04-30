@@ -38,7 +38,7 @@ format :html do
     (hidden ? _render_hidden_content_field : "") + yield
   end
 
-  view :standard_formula_editor, tags: :unknown_ok do
+  view :standard_formula_editor, unknown: true do
     output [formula_text_area, _render_variables]
   end
 
