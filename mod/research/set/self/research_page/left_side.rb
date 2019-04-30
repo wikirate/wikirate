@@ -39,10 +39,10 @@ format :html do
     Card.fetch [metric, company, year], new: { type_id: Card::MetricAnswerID }
   end
 
-  def research_select_tag name, items, selected, option_card
+  def research_select_tag name, items, selected, option_get
     tag = SelectTagWithHtmlOptions.new(name, self,
                                        url: ->(item) { research_url(name => item) },
-                                       option_card: option_card)
+                                       option_get: option_get)
     tag.render(items, selected: selected)
   end
 
