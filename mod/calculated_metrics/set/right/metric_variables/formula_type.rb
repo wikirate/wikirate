@@ -47,6 +47,6 @@ format :html do
 
   def example_value variable_card
     return "" unless (value = variable_card.try(:random_value_card))
-    nest(value, view: :concise, hide: :year_equals).html_safe # html_safe necessary?
+    nest(value, view: :year_and_value).html_safe # html_safe necessary?
   end
 end

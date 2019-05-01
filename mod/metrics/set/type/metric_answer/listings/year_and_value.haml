@@ -1,0 +1,6 @@
+%h6.d-flex.flex-no-wrap.year-and-value
+  .mr-4.year
+    = card.year
+  .value-etc
+    = calculated { nest card.value_card, view: :pretty }
+    = render_flags

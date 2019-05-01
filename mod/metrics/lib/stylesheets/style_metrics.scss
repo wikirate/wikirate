@@ -127,11 +127,14 @@
 
 .metric-value {
   a {
-    color: #674ea7;
+    color: $answer-color;
   }
-  color: #674ea7;
+  color: $answer-color;
   font-size: 18px;
   font-weight: bold;
+}
+.year-and-value .metric-value {
+  font-size: inherit;
 }
 
 .no-metric-value {
