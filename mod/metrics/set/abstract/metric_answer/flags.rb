@@ -8,7 +8,7 @@ format :html do
   end
 
   view :small_flags do
-    output flags.map { |flag| "<small>#{flag}</small>" }
+    output(flags.map{ |flag| "<small>#{flag}</small>" })
   end
 
   def flags
@@ -50,7 +50,6 @@ format :html do
   end
 
   def imported_flag
-    return "" unless card.imported?
-    icon_tag "upload", library: :font_awesome, title: "imported"
+    card.imported? ? icon_tag("upload", library: :font_awesome, title: "imported") : ""
   end
 end

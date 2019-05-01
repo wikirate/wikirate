@@ -81,7 +81,16 @@ format :html do
                                          target: "_blank"
   end
 
+  # NOCACHE because item search
   view :metric_option, template: :haml, unknown: true
+
+  view :years_and_values, cache: :never do
+    output do
+      all_answers.map do |a|
+        nest a, view: :year_and_value
+      end
+    end
+  end
 
   view :metric_selected_option, unknown: true do
     nest metric_card, view: :selected_option

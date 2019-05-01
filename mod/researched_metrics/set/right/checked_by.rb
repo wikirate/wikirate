@@ -127,7 +127,7 @@ format :html do
   end
 
   view :flag, unknown: true do
-    return "" unless card.checked?
+    card.checked? ? render_icon : ""
   end
 
   view :icon do

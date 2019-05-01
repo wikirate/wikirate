@@ -2,5 +2,4 @@
   %h6.metric-color
     = card.metric_name
   = nest [card.metric_name, :question], view: :core
-  - all_answers.each do |a|
-    = nest a, view: :year_and_value
+  = render :years_and_values
