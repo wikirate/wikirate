@@ -65,5 +65,5 @@ def field_card_ids
 end
 
 def calculating?
-  answer.calculating
+  calculated? && answer.calculating
 end

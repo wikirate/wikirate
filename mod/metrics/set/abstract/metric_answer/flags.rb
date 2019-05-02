@@ -8,7 +8,7 @@ format :html do
   end
 
   view :small_flags do
-    output(flags.map{ |flag| "<small>#{flag}</small>" })
+    output(flags.map { |flag| "<small>#{flag}</small>" })
   end
 
   def flags
