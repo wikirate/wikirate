@@ -64,7 +64,7 @@ module Formula
       if body["Success"]
         JSON.parse body["Result"]
       else
-        @errors << "wolfram syntax error: #{body['MessagesText'].join("\n")}"
+        @errors << "wolfram syntax error: #{body['MessagesText']&.join("\n")}"
         return false
       end
     rescue JSON::ParserError => _e
