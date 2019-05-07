@@ -62,12 +62,13 @@ format :html do
   end
 
   def source_previews
-    nest card.source_card.item_cards.first, view: :preview
+    return "" unless (first_source = card.source_card.item_cards.first)
+    nest first_source, view: :preview
   end
 
   def editing_answer?
     return true if card.unknown?
-    root.voo&.ok_view&.to_sym == :edit
+    root.voo&.root&.ok_view&.to_sym == :edit
   end
 
   view :source_selector, cache: :never, unknown: true do

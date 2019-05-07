@@ -20,11 +20,6 @@ def link_url
 end
 
 format :html do
-  view :content do
-    add_name_context
-    super()
-  end
-
   view :missing do
     _view_link
   end
