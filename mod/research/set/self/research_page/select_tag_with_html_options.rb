@@ -40,13 +40,13 @@ class SelectTagWithHtmlOptions
                  url:,
                  option_view: "#{name}_option",
                  selected_option_view: "#{name}_selected_option",
-                 option_card: nil
+                 option_get: nil
     @name = name
     @url = url
     @format = format
     @option_view = option_view
     @selected_option_view = selected_option_view
-    @option_card = option_card
+    @option_get = option_get
   end
 
   # Accepts an array of items and returns a string with select tag and additional div tags
@@ -88,7 +88,7 @@ class SelectTagWithHtmlOptions
   def html_options
     @format.wrap_with(:div, id: "#{@name}-select-options", class: "d-none") do
       @items.map.with_index do |option, i|
-        option = @option_card ? @option_card.call(option) : option
+        option = @option_get ? @option_get.call(option) : option
         html_option(option, i) + selected_html_option(option, i)
       end
     end

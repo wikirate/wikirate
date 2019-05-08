@@ -66,7 +66,7 @@ class CSVRow
         end
       end
 
-      def resolve_source_duplicates existing_source_card
+      def resolve_source_duplication existing_source_card
         existing_source_card
       end
     end

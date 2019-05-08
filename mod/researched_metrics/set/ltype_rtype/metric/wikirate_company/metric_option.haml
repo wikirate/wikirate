@@ -1,10 +1,5 @@
-%div
+.metric-option
   %h6.metric-color
     = card.metric_name
   = nest [card.metric_name, :question], view: :core
-  - all_answers.each do |a|
-    %div.d-flex.flex-no-wrap
-      %div.mr-3
-        = a.year
-      %div
-        = nest a, view: :conciser, hide: :year_equals
+  = render :years_and_values

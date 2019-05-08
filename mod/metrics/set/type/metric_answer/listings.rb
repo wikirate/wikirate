@@ -111,12 +111,12 @@ format :html do
   end
 
   view :value_cell, unknown: true do
-    if card.unknown?
-      view = research_ready? ? :research_button : :blank
-      render view
-    else
-      render :concise
-    end
+    view = if card.unknown?
+             research_ready? ? :research_button : :blank
+           else
+             :concise
+           end
+    render view
   end
 
   view :research_button do
@@ -127,18 +127,18 @@ format :html do
                  title: "Research answer"
   end
 
-  # TODO: unify with conciser
-  # year, value, unit and flags
+  # prominent value, less prominent year, legend, and flags
   view :concise, template: :haml
 
-  # year, value, unit and flags
-  view :conciser do
-    return calculating_icon if card.calculating?
-    year_and_value + _render_flags
-  end
+  # prominent year, prominent value, less prominent flags
+  view :year_and_value, template: :haml
 
   view :plain_year do
-    card.name.right
+    card.year
+  end
+
+  def calculated
+    card.calculating? ? calculating_icon : yield
   end
 
   def calculating_icon
@@ -149,6 +149,10 @@ format :html do
     nest card.metric_card, view: :legend
   end
 
+  # TODO: clean up legend handling.
+  # unit is just one legend component.  very confusing for this view to be named "unit"
+  # also, we are wrapping the legend with metric-unit in many places.
+  # there should be one legend view with a metric-legend class.
   view :unit do
     legend
   end
@@ -157,18 +161,10 @@ format :html do
     nest card.metric_card, view: :legend_core
   end
 
-  def year_and_value
-    <<-HTML
-      #{render :year_equals}
-      #{nest card.value_card, view: :pretty}
-      <span class="metric-unit"> #{legend} </span>
-    HTML
+  view :year_option, unknown: true do
+    return unless card.year.present?
+    card.new? ? haml(:new_year_option) : render(:year_and_value)
   end
 
-  view :year_equals do
-    "<span class=\"metric-year\">#{card.year} = </span>"
-  end
-
-  view :year_option, template: :haml, unknown: true
   view :year_selected_option, template: :haml, unknown: true
 end

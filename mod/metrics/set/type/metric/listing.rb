@@ -11,7 +11,8 @@ format :html do
     count_badges :source, :project
   end
 
-  view :bar_bottom do
+  # NOCACHE because alters @context_names
+  view :bar_bottom, cache: :never do
     add_name_context
     output [render_bar_middle,
             field_nest(:wikirate_topic, view: :content, items: { view: :link }),
