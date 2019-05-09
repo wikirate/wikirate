@@ -1,5 +1,5 @@
-def unknown?
-  false
+def known?
+  true
 end
 
 QUERY_ARGS = { format: :json, action: :query, prop: :extracts, redirects: 1,

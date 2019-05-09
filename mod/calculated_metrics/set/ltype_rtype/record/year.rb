@@ -2,8 +2,8 @@
 
 include_set Type::MetricAnswer
 
-def unknown?
-  answer.blank?
+def known?
+  answer.present?
 end
 
 def virtual?

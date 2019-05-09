@@ -1,10 +1,6 @@
 format :html do
   def wrap_researched_details
-    output [
-      credit_details,
-      yield,
-      wrap_with(:div, _render_comments, class: "comments-div")
-    ]
+    output [credit_details, yield, render_comments]
   end
 
   def credit_details

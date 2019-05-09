@@ -23,10 +23,7 @@ format :html do
   end
 
   def wrap_expanded_details
-    output [
-      yield,
-      wrap_with(:div, _render_comments, class: "comments-div")
-    ]
+    output [yield, render_comments]
   end
 
   # Note: RESEARCHED details are handled in Abstract::ExpandedResearchedDetails
