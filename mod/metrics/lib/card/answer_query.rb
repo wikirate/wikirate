@@ -18,6 +18,8 @@ class Card
       add_filter @filter_args
     end
 
+    # TODO: support optionally returning answer objects
+
     # @return array of metric answer card objects
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database

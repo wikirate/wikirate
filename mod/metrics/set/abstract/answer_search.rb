@@ -86,3 +86,24 @@ format :html do
     super.merge filter_and_sort_hash
   end
 end
+
+format :json do
+  view :compact do
+    card.search.each_with_object({ companies: {},
+                                   metrics: {},
+                                   answers: {} }) do |answer, hash|
+      hash[:companies][answer.company_id] ||= answer.company_name
+      hash[:metrics][answer.metric_id] ||= answer.metric_name
+      hash[:answers][answer_id(answer)] ||= {
+        company: answer.company_id,
+        metric: answer.metric_id,
+        year: answer.year,
+        value: answer.value
+      }
+    end
+  end
+
+  def answer_id answer
+    answer.id || "V#{answer.answer.id}"
+  end
+end
