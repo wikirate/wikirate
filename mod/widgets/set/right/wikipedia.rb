@@ -55,8 +55,8 @@ format :html do
     Card.exists?(card.name) ? super() : _render_new
   end
 
-  def unknown_disqualifies_view? _view
-    false
+  def view_for_unknown view
+    view
   end
 
   def show_menu_item_edit?
