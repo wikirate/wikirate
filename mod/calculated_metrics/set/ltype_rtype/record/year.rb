@@ -2,10 +2,6 @@
 
 include_set Type::MetricAnswer
 
-def known?
-  answer.present?
-end
-
 def virtual?
   new_card? && answer.present?
 end
