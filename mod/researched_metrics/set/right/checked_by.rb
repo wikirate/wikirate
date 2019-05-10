@@ -105,7 +105,7 @@ format :html do
     end
   end
 
-  view :core, template: :haml
+  view :core, template: :haml, cache: :never
 
   # FIXME: this view is wrongly cached if it's moved to a haml template
   #   To see how it fails add `template: :haml` and run the double_check.feature
