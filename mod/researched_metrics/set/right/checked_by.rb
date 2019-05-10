@@ -67,7 +67,6 @@ def items
 end
 
 def db_content= content
-  binding.pry
   @items = nil
   super
 end
