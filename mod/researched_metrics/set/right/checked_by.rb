@@ -13,7 +13,7 @@
 # to "request". A double check removes the "request" and adds the checker to
 # +checked_by but the requester stays in +check_requested_by.
 
-def known?
+def virtual?
   !left.nil?
 end
 
@@ -109,14 +109,14 @@ format :html do
 
   # FIXME: this view is wrongly cached if it's moved to a haml template
   #   To see how it fails add `template: :haml` and run the double_check.feature
-  view :check_interaction, cache: :never, unknown: true  do
-   return unless allowed_to_check?
-   "<p>Does the value accurately represent its source?</p>" +
-     if user_checked?
-       check_button "Uncheck", action: :uncheck
-     else
-       check_button("Yes, I checked", action: :check) + fix_link
-     end
+  view :check_interaction, cache: :never do
+    return unless allowed_to_check?
+    "<p>Does the value accurately represent its source?</p>" +
+      if user_checked?
+        check_button "Uncheck", action: :uncheck
+      else
+        check_button("Yes, I checked", action: :check) + fix_link
+      end
   end
 
   def research_params
