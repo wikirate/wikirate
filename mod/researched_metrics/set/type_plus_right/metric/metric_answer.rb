@@ -3,6 +3,10 @@ include_set Abstract::AnswerSearch
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::Chart
 
+def virtual?
+  true
+end
+
 def query_class
   FixedMetricAnswerQuery
 end

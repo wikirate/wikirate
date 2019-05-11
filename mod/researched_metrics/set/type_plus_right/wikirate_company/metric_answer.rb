@@ -1,6 +1,10 @@
 # Answer search for a given Company
 include_set Abstract::AnswerSearch
 
+def virtual?
+  true
+end
+
 def query_class
   FixedCompanyAnswerQuery
 end

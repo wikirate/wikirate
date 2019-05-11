@@ -14,12 +14,12 @@ format :html do
 
   view :filter_metric_formgroup, cache: :never do
     # select_filter_type_based :metric
-    autocomplete_filter :metric
+    text_filter :metric
   end
 
   view :filter_wikirate_company_formgroup, cache: :never do
     # select_filter_type_based :wikirate_company
-    autocomplete_filter :wikirate_company
+    text_filter :wikirate_company
   end
 
   view :filter_research_policy_formgroup, cache: :never do
