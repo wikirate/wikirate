@@ -33,35 +33,6 @@ format :json do
   end
 end
 
-# format :html do
-#   # TODO: following are dummy views for now (see expanded_record.rb)
-#
-#   view :core do
-#     output [
-#       render_metric_listing,
-#       render_company_listing,
-#       render_answer_table
-#     ]
-#   end
-#
-#   view :expanded_from_company do
-#     render :core, hide: :company_listing
-#   end
-#
-#   view :expanded_from_metric do
-#     render :core, hide: :metric_listing
-#   end
-#
-#   view :metric_listing do
-#     nest metric_card, view: :listing
-#   end
-#
-#   view :company_listing do
-#     nest company_card, view: :listing
-#   end
-#
-# end
-
 private
 
 def related_companies_of_relationship_metric

@@ -23,30 +23,30 @@
 #    </select>
 #    <div id="fruit-select-options" class="d-none">
 #       <div id="fruit-option-0">
-#         [the rendered option_template; default: "_fruit_option.haml"]
+#         [the rendered option_view; default: "fruit_option"]
 #      </div>
 #       <div id="fruit-selected-option-0">
-#         [the rendered selected_option_template; default "_fruit_selected_option.haml"]
+#         [the rendered selected_option_view; default "fruit_selected_option"]
 #       </div>
 #    </div>
 class SelectTagWithHtmlOptions
   # @param name [Symbol] a unique identifier for the select tag. Must be a valid css id.
   # @param format [Card::Format] format needed to render html tags
-  # @param url [Block] this block must return for every item an url, that is loaded when
-  #                    the item is selected.
-  # @param option_template [Symbol, Block] the symbol has tohaml partial template o
-  #                                 is rendered with an "item" argument
-  # @param selected_option_template [Symbol, Block] a haml partial template;
-  #                                          is rendered with an "item" argument
+  # @param url [Block] block must return for every option item a url to be loaded when
+  #                    the option is selected.
+  # @param option_view [Symbol, Block] view shown for each option
+  # @param selected_option_view [Symbol, Block] view shown when option is selected
   def initialize name, format,
                  url:,
-                 option_template: "#{name}_option",
-                 selected_option_template: "#{name}_selected_option"
+                 option_view: "#{name}_option",
+                 selected_option_view: "#{name}_selected_option",
+                 option_get: nil
     @name = name
     @url = url
     @format = format
-    @option_template = option_template
-    @selected_option_template = selected_option_template
+    @option_view = option_view
+    @selected_option_view = selected_option_view
+    @option_get = option_get
   end
 
   # Accepts an array of items and returns a string with select tag and additional div tags
@@ -87,29 +87,31 @@ class SelectTagWithHtmlOptions
 
   def html_options
     @format.wrap_with(:div, id: "#{@name}-select-options", class: "d-none") do
-      @items.map.with_index do |item, i|
-        html_option(item, i) + selected_html_option(item, i)
+      @items.map.with_index do |option, i|
+        option = @option_get ? @option_get.call(option) : option
+        html_option(option, i) + selected_html_option(option, i)
       end
     end
   end
 
-  def html_option item, i
+  def html_option option, i
     @format.wrap_with :div, id: option_id(i) do
-      call_or_render @option_template, item
+      call_or_render option, @option_view
     end
   end
 
-  def selected_html_option item, i
+  def selected_html_option option, i
     @format.wrap_with :div, id: selected_option_id(i) do
-      call_or_render @selected_option_template, item
+      call_or_render option, @selected_option_view
     end
   end
 
-  def call_or_render obj, input
-    if obj.respond_to?(:call)
-      obj.call input
+  def call_or_render option, view
+    if view.respond_to?(:call)
+      # "view" here is really a proc. only used in test. obviate?
+      view.call option
     else
-      @format.haml_partial obj, item: input
+      @format.nest option, view: view
     end
   end
 end

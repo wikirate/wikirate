@@ -1,6 +1,6 @@
 # used for the filters on the "browse ..." pages
 
-include_set Type::SearchType
+include_set Abstract::Search
 include_set Abstract::Filter
 include_set Abstract::FilterFormgroups
 

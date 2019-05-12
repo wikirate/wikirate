@@ -32,5 +32,5 @@ def submit_button
 end
 
 When(/^I edit answer$/) do
-  find(:css, ".titled-view.TYPE-answer .card-menu a", visible: false).click
+  find(:css, ".titled-view.TYPE-answer a.edit-answer-link", visible: false).click
 end

@@ -18,6 +18,8 @@ class Card
       add_filter @filter_args
     end
 
+    # TODO: support optionally returning answer objects
+
     # @return array of metric answer card objects
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database
@@ -89,6 +91,7 @@ class Card
     end
 
     def answer_lookup
+      Rails.logger.warn "where_args: #{where_args}"
       Answer.where(where_args).sort(@sort_args).paging(@paging_args)
     end
 
@@ -192,8 +195,8 @@ class Card
         filter key, "%#{value}%", "LIKE"
       elsif card_id_filters.include? key
         filter key, to_card_id(value)
-      elsif respond_to? "#{key}_query"
-        send "#{key}_query", value
+      else
+        try "#{key}_query", value
       end
     end
 

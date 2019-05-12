@@ -5,7 +5,7 @@
 # formula table via JavaScript
 
 format :html do
-  view :edit_in_wikirating, tags: :unknown_ok do
+  view :edit_in_wikirating, unknown: true do
     variable_editor { output [hidden_thumbnails, add_wikirating_variable_button] }
   end
 

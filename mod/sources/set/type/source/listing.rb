@@ -8,7 +8,6 @@ format :html do
   end
 
   view :bar_bottom do
-    add_name_context
     output [render_bar_middle,
             field_nest(:report_type, view: :labeled,
                                      title: "Report Type",

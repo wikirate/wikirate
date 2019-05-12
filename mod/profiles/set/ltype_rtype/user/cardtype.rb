@@ -60,7 +60,7 @@ format :html do
   delegate :report_card, :badges_earned_card, :report_action_applies?, :cardtype_codename,
            to: :card
 
-  view :contribution_report, tags: :unknown_ok, cache: :never, template: :haml do
+  view :contribution_report, unknown: true, cache: :never, template: :haml do
     class_up "card-slot", "contribution-report #{cardtype_codename}-contribution-report"
   end
 

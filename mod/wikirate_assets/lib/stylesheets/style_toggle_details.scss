@@ -24,12 +24,12 @@
   z-index: 3;
   top: 70px;
   left: 50%;
-  padding-bottom:100px;
+  padding-bottom: 100px !important;
   padding: 0px;
 
   width: 50%;
   max-width: 935px;
-  height: 100%;
+  height: calc(100% - 70px);
 
   cursor: auto;
   overflow-y: auto;

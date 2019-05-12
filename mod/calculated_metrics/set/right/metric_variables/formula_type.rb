@@ -15,7 +15,7 @@ def input_metric_name_by_index index
 end
 
 format :html do
-  view :edit_in_formula, tags: :unknown_ok, cache: :never do
+  view :edit_in_formula, unknown: true, cache: :never do
     as_formula_subcard { variables_table_and_button }
   end
 
@@ -47,6 +47,6 @@ format :html do
 
   def example_value variable_card
     return "" unless (value = variable_card.try(:random_value_card))
-    nest(value, view: :concise, hide: :year_equals).html_safe # html_safe necessary?
+    nest(value, view: :year_and_value).html_safe # html_safe necessary?
   end
 end

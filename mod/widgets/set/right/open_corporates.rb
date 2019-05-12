@@ -31,7 +31,7 @@ format :html do
     end
   end
 
-  view :oc_search_link, tags: :unknown_ok do
+  view :oc_search_link, unknown: true do
     link_to_resource oc_search_url.to_s, "OpenCorporates"
   end
 

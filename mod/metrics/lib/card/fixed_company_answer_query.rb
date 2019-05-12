@@ -1,10 +1,10 @@
 class Card
   class FixedCompanyAnswerQuery < AnswerQuery
-    SIMPLE_FILTERS = ::Set.new([:company_id, :latest, :metric]).freeze
-    LIKE_FILTERS = ::Set.new([:name]).freeze
+    SIMPLE_FILTERS = ::Set.new(%i[company_id latest]).freeze
+    LIKE_FILTERS = ::Set.new(%i[name metric]).freeze
 
     # filter values are card names and have to be translated to card ids
-    CARD_ID_FILTERS = ::Set.new([:metric_type, :research_policy]).freeze
+    CARD_ID_FILTERS = ::Set.new(%i[metric_type research_policy]).freeze
 
     DB_COLUMN_MAP = { name: :metric_name,
                       metric: :metric_name,
@@ -30,7 +30,6 @@ class Card
                     return: :id
       restrict_to_ids :metric_id, metric_ids
     end
-
     alias wikirate_topic_query topic_query
 
     def project_query value

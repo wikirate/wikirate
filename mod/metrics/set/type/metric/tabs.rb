@@ -4,8 +4,11 @@ format :html do
     %i[details calculation project]
   end
 
+  view :tabs do
+    super()
+  end
+
   view :details_tab do
-    add_name_context
     tab_wrap do
       [_render_metric_properties,
        wrap_with(:hr, ""),

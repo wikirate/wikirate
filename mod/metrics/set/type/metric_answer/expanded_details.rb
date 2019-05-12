@@ -23,10 +23,7 @@ format :html do
   end
 
   def wrap_expanded_details
-    output [
-      yield,
-      wrap_with(:div, _render_comments, class: "comments-div")
-    ]
+    output [yield, render_comments]
   end
 
   # Note: RESEARCHED details are handled in Abstract::ExpandedResearchedDetails
@@ -34,7 +31,7 @@ format :html do
   # ~~~~~ FORMULA DETAILS
 
   # don't cache; view depends on formula card
-  view :expanded_formula_details, tags: :unknown_ok, cache: :never do
+  view :expanded_formula_details, unknown: true, cache: :never do
     expanded_formula_details
   end
 

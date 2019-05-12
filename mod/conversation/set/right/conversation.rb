@@ -1,5 +1,5 @@
 format :html do
-  view :core, tags: :unknown_ok do
+  view :core do
     voo.items[:view] = :bar
     super() + render_conversation_link
   end

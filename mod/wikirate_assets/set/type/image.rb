@@ -11,8 +11,8 @@ format :html do
   end
 
   view :missing do
-    # wrap missing view in slot unless the denied view is core
-    # (seems shaky!)
-    @denied_view == :core ? super() : wrap(false) { super() }
+    # wrap missing view in slot unless the requested view is core
+    # (seems shaky!)  Also...why??
+    voo.requested_view == :core ? super() : wrap(false) { super() }
   end
 end
