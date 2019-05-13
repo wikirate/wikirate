@@ -5,7 +5,6 @@ format :html do
   end
 
   view :tabs do
-    add_name_context
     super()
   end
 

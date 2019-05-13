@@ -44,7 +44,7 @@ format :html do
     merge_filter_defaults
     wrap_with :div, class: "filter-form-and-result nodblclick" do
       class_up "card-slot", "_filter-result-slot"
-      output [_render_filter_form, _render_filter_result]
+      output [_render_filter_form, _render_filter_result(home_view: :filter_result)]
     end
   end
 
@@ -61,9 +61,7 @@ format :html do
   end
 
   view :table, cache: :never do
-    wrap do # slot for paging links
-      wikirate_table_with_details(*table_args)
-    end
+    wikirate_table_with_details(*table_args)
   end
 
   # this sets the default filter search options to match the default filter UI,

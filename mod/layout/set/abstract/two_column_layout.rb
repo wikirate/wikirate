@@ -34,10 +34,11 @@ format :html do
 
   view :left_column do
     # had slot before
-    output [_render_rich_header, _render_data]
+    output [naming { render_rich_header }, _render_data]
   end
 
   view :right_column do
+    add_name_context
     _render_tabs
   end
 

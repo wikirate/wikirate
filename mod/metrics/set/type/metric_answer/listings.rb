@@ -119,7 +119,7 @@ format :html do
     render view
   end
 
-  view :research_button do
+  view :research_button, unknown: true do
     link_to_card :research_page, "Research answer",
                  target: "_blank",
                  class: "btn btn-primary btn-sm research-answer-button",
@@ -128,7 +128,7 @@ format :html do
   end
 
   # prominent value, less prominent year, legend, and flags
-  view :concise, template: :haml
+  view :concise, template: :haml, unknown: true
 
   # prominent year, prominent value, less prominent flags
   view :year_and_value, template: :haml
