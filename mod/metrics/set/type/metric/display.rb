@@ -30,7 +30,9 @@ format :html do
   # VALUE LEGEND
 
   view :legend do
-    value_legend
+    wrap_with :span, class: "metric-legend" do
+      value_legend
+    end
   end
 
   view :legend_core do

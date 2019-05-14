@@ -10,11 +10,7 @@ end
 format :html do
   delegate :all_answers, to: :card
 
-  # used in three places:
-  # 1) metric page -> company table -> item -> table on right side
-  # 2) company page -> metric table -> item -> table on right side
-  # 3) metric record page
-  view :core, unknown_ok: true do
+  view :core do
     wrap_with :div, id: card.name.url_key, class: "record-row" do
       [
         _render_metric_info,

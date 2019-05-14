@@ -11,12 +11,11 @@ format :html do
   end
 
   view :rich_header do
-    vote = field_subformat(:vote_count)._render_content
     bs_layout do
       row 1, 11, class: "metric-header-container rich-header container "\
                         "border-bottom p-0 m-0 pt-3" do
         html render_menu
-        column vote, class: "col-1 pt-1"
+        column field_nest(:vote_count, view: :content), class: "col-1 pt-1"
         column _render_title_and_question, class: "col-10"
       end
     end
@@ -28,7 +27,9 @@ format :html do
 
   view :title_and_question do
     wrap_with :div do
-      [_render_metric_title, _render_metric_question]
+      [render_metric_title,
+       render_designer_info,
+       render_metric_question]
     end
   end
 
@@ -41,8 +42,9 @@ format :html do
   end
 
   view :metric_title do
-    link = link_to_card card, card.metric_title, class: "inherit-anchor"
-    wrap_with :h3, link, class: "metric-color"
+    wrap_with :h3, class: "metric-color" do
+      link_to_card card, card.metric_title, class: "inherit-anchor"
+    end
   end
 
   view :metric_question do

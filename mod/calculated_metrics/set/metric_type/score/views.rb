@@ -8,9 +8,13 @@ format :html do
                class: "pointer-select  _pointer-select")
   end
 
-  view :scorer_image do
-    nest scorer_card.field(:image, new: {}), view: :core, size: :small
+  view :designer_info do
+    [super(), nest(scorer_card, view: :scorer_info)]
   end
+
+  # view :scorer_image do
+  #   nest scorer_card.field(:image, new: {}), view: :core, size: :small
+  # end
 
   view :score_thumbnail do
     text = "<small class=\"text-muted\">#{time_ago_in_words card.created_at} ago</small>"
@@ -26,7 +30,6 @@ format :html do
     {
       metric_type:    "Metric Type",
       scored_metric:  "Scored Metric",
-      scorer:         "Scored By",
       wikirate_topic: "Topics"
     }
   end
@@ -92,15 +95,15 @@ format :html do
     end
   end
 
-  def scorer_property title
-    wrap :div, class: "row scorer-property" do
-      labeled title, nest(scorer_card, view: :scorer_info_without_label)
-    end
-  end
+  # def scorer_property title
+  #   wrap :div, class: "row scorer-property" do
+  #     labeled title, nest(scorer_card, view: :scorer_info_without_label)
+  #   end
+  # end
 
-  def visit_original_metric_link
-    link_to_card basic_metric_card,
-                 "#{fa_icon 'external-link'} Original Metric",
-                 class: button_classes
-  end
+  # def visit_original_metric_link
+  #   link_to_card basic_metric_card,
+  #                "#{fa_icon 'external-link'} Original Metric",
+  #                class: button_classes
+  # end
 end

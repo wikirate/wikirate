@@ -16,7 +16,7 @@ format :html do
   end
 
   def author_info text=""
-    wrap_with :div, class: "metric-designer-info mb-1" do
+    wrap_with :div, class: "metric-author-info mb-1" do
       link_to_card(card, haml(:author_info, text: text))
     end
   end

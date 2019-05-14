@@ -1,6 +1,5 @@
 include_set Abstract::Media
 include_set Abstract::Table
-include_set Abstract::AnswerDetailsToggle
 
 # views used in answer listings on metric, company, and profile pages
 
@@ -47,7 +46,7 @@ format :html do
   end
 
   def citations_count
-    wrap_with :div, class: "w-100 text-left" do
+    wrap_with :h5, class: "w-100 text-left" do
       [citations_count_badge, "Citations"]
     end
   end
@@ -85,6 +84,7 @@ format :html do
 
   # prominent year, prominent value, less prominent flags
   view :year_and_value, template: :haml
+  view :year_and_value_pretty, template: :haml
 
   view :plain_year do
     card.year
@@ -102,15 +102,11 @@ format :html do
     nest card.metric_card, view: :legend
   end
 
-  # TODO: clean up legend handling.
-  # unit is just one legend component.  very confusing for this view to be named "unit"
-  # also, we are wrapping the legend with metric-unit in many places.
-  # there should be one legend view with a metric-legend class.
-  view :unit do
+  view :legend do
     legend
   end
 
-  view :unit_core do
+  view :legend_core do
     nest card.metric_card, view: :legend_core
   end
 end

@@ -55,7 +55,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
     end
 
     def have_options_in_metric_unit binding
-      binding.have_tag "span.metric-unit" do
+      binding.have_tag "span.metric-legend" do
         with_tag "div.small" do
           with_tag "i.fa.fa-list", text: ""
           with_text /1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11/
