@@ -265,7 +265,7 @@ class Card
 
       def bar_select_link_params filter_opts
         hash = {
-          filter: @format.filter_hash(),
+          filter: @format.filter_hash.merge(filter_opts),
           chart: {
             highlight: highlight_value_from_filter_opts(filter_opts),
             select_filter: filter_opts,
