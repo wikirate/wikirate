@@ -1,7 +1,25 @@
+include_set Abstract::Tabs
+
 format :html do
   # ANSWER DETAILS ON RECORDS
   # company and/or metrics are detailed separately,
   # so details only include value, flags, etc.
+
+  def tab_list
+    %i[details metric wikirate_company]
+  end
+
+  view :details_tab do
+    render_details
+  end
+
+  view :metric_tab do
+    nest card.metric_card, view: :details_tab
+  end
+
+  view :wikirate_company_tab do
+    nest card.company_card, view: :details_tab
+  end
 
   view :details do
     [render_year_and_value_pretty, render_expanded_details]
@@ -10,6 +28,8 @@ format :html do
   view :basic_details do
     render_concise hide: :year_and_icon
   end
+
+  view :details_sidebar, template: :haml
 
   view :company_details_sidebar do
     voo.hide :metric_header

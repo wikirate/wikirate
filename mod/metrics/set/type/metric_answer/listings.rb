@@ -87,7 +87,9 @@ format :html do
   view :year_and_value_pretty, template: :haml
 
   view :year_and_icon do
-    "#{fa_icon :calendar, "answer-year"} #{card.year}"
+    wrap_with :span, class: "answer-year" do
+      "#{fa_icon :calendar} #{card.year}"
+    end
   end
 
   view :plain_year do

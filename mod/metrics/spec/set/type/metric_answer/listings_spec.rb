@@ -33,7 +33,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
         is_expected.to have_tag "span.metric-value", "1, 2"
       end
       it "has correct year" do
-        is_expected.to have_tag "i.answer-year", /2010/
+        is_expected.to have_tag "span.answer-year", /2010/
       end
       it "has options" do
         is_expected.to have_options_in_metric_unit(self)
@@ -47,7 +47,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
         is_expected.to have_tag "span.metric-value", "4"
       end
       it "has correct year" do
-        is_expected.to have_tag "i.answer-year", /2010/
+        is_expected.to have_tag "span.answer-year", /2010/
       end
       it "has options" do
         is_expected.to have_options_in_metric_unit(self)
