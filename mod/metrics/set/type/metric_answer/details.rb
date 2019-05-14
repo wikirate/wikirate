@@ -1,17 +1,6 @@
 include_set Abstract::Tabs
 
 format :html do
-  # ANSWER DETAILS ON RECORDS
-  # company and/or metrics are detailed separately,
-  # so details only include value, flags, etc.
-
-  TAB_OPTIONS = {
-    lines: 1,
-    details:          { label: "Answer"},
-    metric:           { label: "Metric"},
-    wikirate_company: { label: "Company"}
-  }
-
   def tab_list
     list = [:details]
     list << :metric if voo.show? :metric_header
@@ -20,7 +9,12 @@ format :html do
   end
 
   def tab_options
-    TAB_OPTIONS
+    {
+      lines: 1,
+      details:          { label: "Answer" },
+      metric:           { label: "Metric" },
+      wikirate_company: { label: "Company" }
+    }
   end
 
   view :details_tab do

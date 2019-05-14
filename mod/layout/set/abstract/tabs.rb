@@ -98,15 +98,17 @@ format :html do
   end
 
   def wrapped_tab_title label, info=nil
-    info ||= tab_space
-    contents = [wrap_with(:span, label, class: "count-label")]
-    if info
-      opts = { class: "count-number" }
-      add_class opts, "clearfix" if @tab_lines > 1
-      contents.unshift wrap_with(:span, info, opts)
-    end
     wrap_with :div, class: "text-center" do
-      contents.compact
+      [wrapped_tab_title_info(info),
+       wrap_with(:span, label, class: "count-label")].compact
     end
   end
+
+  def wrapped_tab_title_info info
+    return unless (info ||= tab_space)
+
+    klass = css_classes "count-number", ("clearfix" if @tab_lines > 1)
+    wrap_with :span, info, class: klass
+  end
+
 end
