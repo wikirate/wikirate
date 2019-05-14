@@ -1,10 +1,14 @@
 format :html do
   # ANSWER DETAILS ON RECORDS
   # company and/or metrics are detailed separately,
-  # so details only include value, year, etc.
+  # so details only include value, flags, etc.
 
   view :details do
     [render_year_and_value_pretty, render_expanded_details]
+  end
+
+  view :basic_details do
+    render_concise hide: :year_and_icon
   end
 
   view :company_details_sidebar do

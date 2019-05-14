@@ -86,6 +86,10 @@ format :html do
   view :year_and_value, template: :haml
   view :year_and_value_pretty, template: :haml
 
+  view :year_and_icon do
+    "#{fa_icon :calendar, "answer-year"} #{card.year}"
+  end
+
   view :plain_year do
     card.year
   end
