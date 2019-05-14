@@ -5,8 +5,22 @@ format :html do
   # company and/or metrics are detailed separately,
   # so details only include value, flags, etc.
 
+  TAB_OPTIONS = {
+    lines: 1,
+    details:          { label: "Answer"},
+    metric:           { label: "Metric"},
+    wikirate_company: { label: "Company"}
+  }
+
   def tab_list
-    %i[details metric wikirate_company]
+    list = [:details]
+    list << :metric if voo.show? :metric_header
+    list << :wikirate_company if voo.show? :company_header
+    list
+  end
+
+  def tab_options
+    TAB_OPTIONS
   end
 
   view :details_tab do
