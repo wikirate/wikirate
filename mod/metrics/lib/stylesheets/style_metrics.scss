@@ -31,44 +31,6 @@
 
 }
 
-// .center-logo {
-//   // border-right: 1px solid $bright-text-color;
-//   > div {
-//     height: 176px;
-//     width: 100%;
-//     overflow: hidden;
-//     padding: 20px;
-//     text-align: center;
-//   }
-//   .missing-view {
-//     padding: 0;
-//     img {
-//       width: 90%;
-//       // margin-left: -1px;
-//     }
-//   }
-//   img {
-//     position: relative;
-//     top: 50%;
-//     -webkit-transform: translateY(-50%);
-//     -ms-transform: translateY(-50%);
-//     transform: translateY(-50%);
-//   }
-// }
-
-// .input-and-button label, .input-and-button .editor, .input-and-button .btn {
-//   float: left;
-//   margin: 0 5px;
-// }
-//
-// .input-and-button label {
-//   padding: 8px 0px;
-// }
-//
-// .input-and-button .editor {
-//   width: 25%
-// }
-
 .filter.panel {
   background: #F9F9F9;
   border-radius: 0;
@@ -211,35 +173,6 @@
   }
 }
 
-// .data-count {
-//   border-top: 1px solid $bright-text-color;
-//   padding: 0;
-//   text-align: center;
-//   margin: 0 !important;
-//   > div {
-//     padding: 8px 0;
-//   }
-//   > div:first-child {
-//     border-right: 1px solid $bright-text-color;
-//   }
-//   .number-label {
-//     font-size: 12px;
-//     color: $dark-text-color;
-//   }
-//   .number {
-//     font-size: 26px;
-//   }
-//   .number-small {
-//     font-size: 14px;
-//     padding: 7px;
-//   }
-//   .number-large {
-//     font-size: 26px;
-//     height: 100px;
-//     padding: 12%;
-//   }
-// }
-
 .modal-body .LTYPE_RTYPE-metric-company .timeline {
   padding-top: 10px;
   margin-top: 25px;
@@ -349,14 +282,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-// .metric-value-details table {
-//   margin-top: 12px;
-//   > tbody > tr > td {
-//     max-width: 200px;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//   }
-// }
 
 .TYPE-metric.new-view {
   //ul.nav-tabs li {
