@@ -50,7 +50,7 @@ format :html do
 
   def self.membership_button action, test, btnclass
     view "#{action}_button".to_sym, unknown: true, denial: :blank, cache: :never,
-                                    perms: ->(r) { r.card.send test } do
+                                    perms: ->(fmt) { fmt.card.send test } do
       link_to "#{action.to_s.capitalize} Group",
               path: { action: :update, action => true, success: { view: :overview } },
               class: "btn #{btnclass} btn-sm slotter",

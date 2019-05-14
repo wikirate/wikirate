@@ -23,10 +23,11 @@ event :check_length, :validate, on: :save, changed: :content do
   errors.add :value, "too long (not more than 1000 characters)" if content.size >= 1000
 end
 
-event :update_double_check_flag, :validate, on: [:update, :delete], changed: :content do
+event :reset_double_check_flag, :validate, on: [:update, :delete], changed: :content do
   [:checked_by, :check_requested_by].each do |trait|
-    next unless left.fetch trait: trait
-    attach_subcard name.left_name.field_name(trait), content: ""
+    full_trait_name = name.left_name.field_name trait
+    next unless Card.real?(full_trait_name) && !subcard(full_trait_name)
+    attach_subcard full_trait_name, content: ""
   end
 end
 

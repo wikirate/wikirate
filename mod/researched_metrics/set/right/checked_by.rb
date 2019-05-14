@@ -13,8 +13,8 @@
 # to "request". A double check removes the "request" and adds the checker to
 # +checked_by but the requester stays in +check_requested_by.
 
-def unknown?
-  left.nil?
+def virtual?
+  left.present?
 end
 
 def user
@@ -106,21 +106,10 @@ format :html do
   end
 
   view :core, template: :haml
-
-  # FIXME: this view is wrongly cached if it's moved to a haml template
-  #   To see how it fails add `template: :haml` and run the double_check.feature
-  view :check_interaction, cache: :never do
-    return unless allowed_to_check?
-    "<p>Does the value accurately represent its source?</p>" +
-      if user_checked?
-        check_button "Uncheck", action: :uncheck
-      else
-        check_button("Yes, I checked", action: :check) + fix_link
-      end
-  end
+  view :check_interaction, template: :haml, perms: ->(fmt) { fmt.allowed_to_check? }
 
   def research_params
-    @research_params =
+    @research_params ||=
       inherit(:research_params) ||
       parent.try(:research_params) ||
       card.left&.format&.try(:research_params) || {}

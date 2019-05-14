@@ -82,7 +82,7 @@ format :html do
               #{nest [card.record, :discussion],
                      view: :titled,
                      title: 'Discussion',
-                     show: 'commentbox'}
+                     show: 'comment_box'}
             </div>
         </div>
     HTML
