@@ -114,15 +114,16 @@ describe Card::Set::MetricType::Researched do
       open_content = metric.format(:html)._render_open_content
       expect(open_content).to(
         have_tag("div", with: { class: "metric-info" }) do
-          with_tag "div", with: { class: "row metric-header-container" }
+          with_tag "div", with: { class: "row metric-header-container" } do
+            with_tag "div.metric-author-info" do
+              with_tag :span, text: /Designed by/
+              with_tag :span, text: /Jedi/
+            end
+          end
         end
       )
       expect(open_content).to(
         have_tag("div.metric-properties") do
-          with_tag "div.designer-property" do
-            with_tag "div.label", text: /Designed By/
-            with_tag "div.thumbnail"
-          end
           with_tag "div.RIGHT-topic" do
             with_tag "div.label", text: /Topics/
             with_tag "div.labeled-content", text: /Force/

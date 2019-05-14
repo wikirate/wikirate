@@ -6,7 +6,7 @@ event :validate_numeric_value, :validate do
 end
 
 format :html do
-    view :editor do
+  view :editor do
     [text_field(:content, class: "d0-card-content short-input"), " ",
      nest(card.metric_card, view: :legend)]
   end
