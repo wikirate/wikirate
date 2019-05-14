@@ -48,27 +48,26 @@ class Card
       where(additional_filter).select(:value).uniq.count
     end
 
-    # :none and :outliers are handled in #run
-    def metric_value_query value
+    # :researched (known + unknown) is default case;
+    # :all and :none are handled in #run
+    def status_query value
       case value.to_sym
       when :unknown
         filter :value, "Unknown"
       when :known
         filter :value, "Unknown", "<>"
-      else
-        if (period = timeperiod(value))
-          filter :updated_at, Time.now - period, ">"
-        end
       end
     end
 
-    def category_query value
-      filter :value, value
+    def updated_query value
+      if (period = timeperiod value)
+        filter :updated_at, Time.now - period, ">"
+      end
     end
 
     def range_query value
-      filter :numeric_value, value[:from], ">="
-      filter :numeric_value, value[:to], "<"
+      filter :numeric_value, value[:from], ">=" if value[:from].present?
+      filter :numeric_value, value[:to], "<" if value[:to].present?
     end
 
     def year_query value
@@ -79,10 +78,30 @@ class Card
       end
     end
 
+    def check_query value
+      case value
+      when "Completed" then filter :checkers, nil, "IS NOT"
+      when "Requested" then filter :check_requester, nil, "IS NOT"
+      when "Neither"
+        %i[checkers check_requester].each { |fld| filter fld, nil, "IS" }
+      end
+    end
+
+    def value_query value
+      case value
+      when Array then filter :value, value
+      when Hash  then range_query value
+      else            filter_like :value, value
+      end
+    end
+
     def filter key, value, operator=nil
-      operator ||= value.is_a?(Array) ? "IN" : "="
-      db_column = filter_key_to_db_column key
-      @conditions << "answers.#{db_column} #{operator} (?)"
+      @conditions << "answers.#{filter_key_to_db_column key} " +
+                     if value.is_a? Array
+                       "#{operator || 'IN'} (?)"
+                     else
+                       "#{operator || '='} ?"
+                     end
       @values << value
     end
 
@@ -148,8 +167,6 @@ class Card
 
     def prepare_filter_args filter
       @filter_args = filter.deep_symbolize_keys
-      # TODO: remove following (and handle consequences in tests!)
-      # @filter_args[:latest] = true unless filter[:year] || filter[:metric_value]
     end
 
     def prepare_sort_args args
@@ -190,13 +207,23 @@ class Card
 
     def process_filter_option key, value
       if exact_match_filters.include? key
+        return unless value.present?
         filter key, value
       elsif like_filters.include? key
-        filter key, "%#{value}%", "LIKE"
+        filter_like key, value
       elsif card_id_filters.include? key
         filter key, to_card_id(value)
       else
         try "#{key}_query", value
+      end
+    end
+
+    def filter_like key, value
+      return unless value.present?
+      if m = value.match(/^['"]([^'"]+)['"]$/)
+        filter key, m[1]
+      else
+        filter key, "%#{value}%", "LIKE"
       end
     end
 
