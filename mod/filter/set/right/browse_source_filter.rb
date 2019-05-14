@@ -1,5 +1,6 @@
 # filter interface for "Browse Sources"  page
 
+include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
 
 def wql_from_content

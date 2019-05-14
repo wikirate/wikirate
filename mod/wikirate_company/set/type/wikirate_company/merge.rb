@@ -19,6 +19,8 @@ def move_answer old_answer, new_answer_name
   return duplicate_answer!(new_answer_name) if Card.exists? new_answer_name
   puts "renaming #{old_answer.name} to #{new_answer_name}"
   old_answer.update! name: new_answer_name, update_referers: true, silent_change: true
+rescue
+  puts "RENAME FAILURE: #{old_answer.name}"
 end
 
 def duplicate_answer! answer_name
