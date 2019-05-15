@@ -6,7 +6,7 @@ def filter_keys
 end
 
 def advanced_filter_keys
-  %i[wikirate_company value updated check project ]
+  %i[wikirate_company value updated check project]
 end
 
 def default_filter_option
@@ -31,7 +31,6 @@ format :html do
 
   delegate :value_options, to: :metric_card
 end
-
 
 # no sort options because sorting is done by links
 # in the header of the table

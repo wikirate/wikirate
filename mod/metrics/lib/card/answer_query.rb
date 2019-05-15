@@ -60,9 +60,9 @@ class Card
     end
 
     def updated_query value
-      if (period = timeperiod value)
-        filter :updated_at, Time.now - period, ">"
-      end
+      return unless (period = timeperiod value)
+
+      filter :updated_at, Time.now - period, ">"
     end
 
     def range_query value
@@ -145,7 +145,7 @@ class Card
     end
 
     def find_all?
-      @filter_args[:metric_value]&.to_sym == :all
+      @filter_args[:status]&.to_sym == :all
     end
 
     def find_missing? additional_filter=nil
@@ -153,10 +153,10 @@ class Card
     end
 
     def metric_value_filter_value additional_filter
-      if additional_filter&.dig(:metric_value)
-        additional_filter[:metric_value].to_sym
+      if additional_filter&.dig(:status)
+        additional_filter[:status].to_sym
       else
-        @filter_args[:metric_value]&.to_sym
+        @filter_args[:status]&.to_sym
       end
     end
 
@@ -205,26 +205,34 @@ class Card
       [(@conditions + @temp_conditions).join(" AND ")] + @values + @temp_values
     end
 
+    # TODO: optimize with hash lookups for methods
     def process_filter_option key, value
-      if exact_match_filters.include? key
-        return unless value.present?
-        filter key, value
-      elsif like_filters.include? key
-        filter_like key, value
-      elsif card_id_filters.include? key
-        filter key, to_card_id(value)
-      else
-        try "#{key}_query", value
+      %i[exact_match like card_id].each do |ftype|
+        if send("#{ftype}_filters").include? key
+          return send("filter_#{ftype}", key, value)
+        end
       end
+      try "#{key}_query", value
+    end
+
+    def filter_exact_match key, value
+      return unless value.present?
+      filter key, value
     end
 
     def filter_like key, value
       return unless value.present?
-      if m = value.match(/^['"]([^'"]+)['"]$/)
+      if (m = value.match(/^['"]([^'"]+)['"]$/))
         filter key, m[1]
       else
         filter key, "%#{value}%", "LIKE"
       end
+    end
+
+    def filter_card_id key, value
+      return unless (card_id = to_card_id value)
+
+      filter key, card_id
     end
 
     def filter_key_to_db_column key

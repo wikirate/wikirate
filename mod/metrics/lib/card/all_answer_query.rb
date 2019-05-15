@@ -2,7 +2,7 @@ class Card
   class AllAnswerQuery
     def initialize filter, paging
       @filter = filter.clone
-      @filter.delete :metric_value # if we are here this is "all"
+      @filter.delete :status # if we are here this is "all"
       @paging = paging || {}
 
       @base_card = Card[@filter.delete(base_key)]
