@@ -49,7 +49,7 @@ Feature: company feature
     And I should see "disturbances in the Force"
 
   Scenario: Search for not researched values
-    And I select2 "Not Researched" from "filter[metric_value]"
+    And I select2 "Not Researched" from "filter[status]"
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
     And I should see "BSR Member"
