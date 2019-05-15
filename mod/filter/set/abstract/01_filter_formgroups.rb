@@ -80,12 +80,6 @@ format :html do
     }
   end
 
-  def add_range key, _value
-    key # unless selected_value?(value)
-    # range = filter_param :range
-    # "#{range[:from]} <= #{key} < #{range[:to]}"
-  end
-
   def selected_value? value
     (filter_param(:metric_value) && value == filter_param(:metric_value)) ||
       value == "exists"

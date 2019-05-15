@@ -110,7 +110,7 @@ class Card
     end
 
     def answer_lookup
-      Rails.logger.warn "where_args: #{where_args}"
+      # Rails.logger.warn "where_args: #{where_args}"
       Answer.where(where_args).sort(@sort_args).paging(@paging_args)
     end
 
