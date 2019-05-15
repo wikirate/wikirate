@@ -55,12 +55,8 @@ class Card
       restrict_to_ids :id, outlier_ids
     end
 
-    def metric_value_query value
-      if value.to_sym == :outliers
-        outliers_query
-      else
-        super
-      end
+    def value_query value
+      super
     end
 
     private

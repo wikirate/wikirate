@@ -174,11 +174,11 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
       end
 
       it "finds missing values" do
-        expect(filter_by(metric_value: :none)).to contain_exactly(*missing_answers)
+        expect(filter_by(status: :none)).to contain_exactly(*missing_answers)
       end
 
       it "finds all values" do
-        filtered = filter_by(metric_value: :all)
+        filtered = filter_by(status: :all)
         expect(filtered).to include(*all_answers)
         expect(filtered.size)
           .to eq Card.search(type_id: Card::MetricID, return: :count)
@@ -186,13 +186,13 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
 
       it "finds unknown values" do
         @company_name = "Samsung"
-        expect(filter_by(metric_value: :unknown))
+        expect(filter_by(status: :unknown))
           .to eq unknown_answers
       end
 
       it "finds known values" do
         @company_name = "Samsung"
-        all_known = filter_by(metric_value: :known).all? do |a|
+        all_known = filter_by(status: :known).all? do |a|
           a.include?("researched number") || a.include?("descendant")
         end
         expect(all_known).to be_truthy
@@ -203,17 +203,17 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
         after { Timecop.return }
 
         it "finds today's edits" do
-          expect(filter_by({ metric_value: :today }, false))
+          expect(filter_by({ updated: :today }, false))
             .to eq ["disturbances in the Force+1990"]
         end
 
         it "finds this week's edits" do
-          expect(filter_by({ metric_value: :week }, false))
+          expect(filter_by({ updated: :week }, false))
             .to eq ["disturbances in the Force+1990", "disturbances in the Force+1991"]
         end
 
         it "finds this months's edits" do
-          expect(filter_by({ metric_value: :month }, false))
+          expect(filter_by({ updated: :month }, false))
             .to eq ["dinosaurlabor+2010", "disturbances in the Force+1990",
                     "disturbances in the Force+1991", "disturbances in the Force+1992"]
         end
@@ -246,28 +246,28 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
           2001
         )
         missing2001.delete "disturbances in the Force+2001"
-        filtered = filter_by(metric_value: :none, year: "2001")
+        filtered = filter_by(status: :none, year: "2001")
         expect(filtered)
           .to contain_exactly(*missing2001)
       end
 
       it "... keyword" do
-        expect(filter_by(metric_value: :none, name: "number 2"))
+        expect(filter_by(status: :none, name: "number 2"))
           .to contain_exactly(*with_year(["researched number 2"]))
       end
 
       it "... project" do
-        expect(filter_by(metric_value: :none, project: "Evil Project"))
+        expect(filter_by(status: :none, project: "Evil Project"))
           .to contain_exactly(*with_year(["researched number 2"]))
       end
 
       it "... metric_type" do
-        expect(filter_by(metric_value: :none, metric_type: "Researched"))
+        expect(filter_by(status: :none, metric_type: "Researched"))
           .to contain_exactly(*with_year(RESEARCHED_TITLES))
       end
 
       it "... policy and year" do
-        expect(filter_by(metric_value: :none, research_policy: "Designer Assessed",
+        expect(filter_by(status: :none, research_policy: "Designer Assessed",
                          year: "2001"))
           .to eq ["dinosaurlabor+2001", "researched number 3+2001", "Industry Class+2001"]
       end
@@ -275,25 +275,25 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
 
     context "with filter for all values and ..." do
       it "... project" do
-        expect(filter_by(metric_value: :all, project: "Evil Project"))
+        expect(filter_by(status: :all, project: "Evil Project"))
           .to contain_exactly("disturbances in the Force+2001",
                               *with_year("researched number 2"))
       end
 
       it "... year" do
-        expect(filter_by(metric_value: :all, year: "2001"))
+        expect(filter_by(status: :all, year: "2001"))
           .to contain_exactly(*with_year(all_metric_titles, 2001))
       end
 
       it "... policy and year" do
-        expect(filter_by(metric_value: :all,
+        expect(filter_by(status: :all,
                          research_policy: "Designer Assessed",
                          year: "2001"))
           .to eq ["dinosaurlabor+2001", "researched number 3+2001", "Industry Class+2001"]
       end
 
       it "... metric_type" do
-        expect(filter_by(metric_value: :all, metric_type: "Researched"))
+        expect(filter_by(status: :all, metric_type: "Researched"))
           .to contain_exactly(*(with_year(RESEARCHED_TITLES) + researched))
       end
     end
@@ -306,7 +306,7 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
     it "year and industry" do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
         expect(filter_by(year: "1991", topic: "Force",
-                         importance: :upvotes, metric_value: :week))
+                         importance: :upvotes, updated: :week))
           .to eq(with_year("disturbances in the Force", 1991))
       end
     end
@@ -314,7 +314,7 @@ RSpec.describe Card::FixedCompanyAnswerQuery do
     it "all in" do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
         expect(filter_by(year: "1992", topic: "Force", importance: :upvotes,
-                         metric_value: :month, project: "Evil Project",
+                         updated: :month, project: "Evil Project",
                          research_policy: "Community Assessed", name: "in the",
                          metric_type: "Researched"))
           .to eq(with_year("disturbances in the Force", 1992))

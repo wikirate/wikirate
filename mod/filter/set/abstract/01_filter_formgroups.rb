@@ -1,4 +1,12 @@
 format :html do
+  view :filter_check_formgroup, cache: :never do
+    select_filter :check
+  end
+
+  view :filter_value_formgroup, cache: :never do
+    text_filter :value
+  end
+
   view :filter_project_formgroup, cache: :never do
     select_filter_type_based :project
   end
@@ -30,8 +38,12 @@ format :html do
     multiselect_filter :metric_type
   end
 
-  view :filter_metric_value_formgroup, cache: :never do
-    select_filter :metric_value, "exists"
+  view :filter_status_formgroup, cache: :never do
+    select_filter :status, "exists"
+  end
+
+  view :filter_updated_formgroup, cache: :never do
+    select_filter :updated
   end
 
   view :filter_designer_formgroup, cache: :never do
@@ -52,28 +64,20 @@ format :html do
     end
   end
 
-  def metric_value_options
-    opts = {
+  def updated_options
+    { "today" => "today",
+      "this week" => "week",
+      "this month" => "month" }
+  end
+
+  def status_options
+    {
       "All" => "all",
       "Researched" => "exists",
       "Known" => "known",
       "Unknown" => "unknown",
-      "Not Researched" => "none",
-      "Edited today" => "today",
-      "Edited this week" => "week",
-      "Edited this month" => "month",
-      "Outliers" => "outliers"
+      "Not Researched" => "none"
     }
-    return opts unless filter_param(:range)
-    opts.each_with_object({}) do |(k, v), h|
-      h[add_range(k, v)] = v
-    end
-  end
-
-  def add_range key, _value
-    key # unless selected_value?(value)
-    # range = filter_param :range
-    # "#{range[:from]} <= #{key} < #{range[:to]}"
   end
 
   def selected_value? value
@@ -85,6 +89,10 @@ format :html do
     %i[researched relationship formula wiki_rating score descendant].map do |codename|
       Card::Name[codename]
     end
+  end
+
+  def check_options
+    %w[Completed Requested Neither]
   end
 
   def research_policy_options
@@ -110,7 +118,11 @@ format :html do
     end.uniq(&:downcase).sort_by(&:downcase)
   end
 
-  def metric_value_filter_label
-    "Answer"
+  def status_filter_label
+    "Status"
+  end
+
+  def value_filter_label
+    "Value"
   end
 end
