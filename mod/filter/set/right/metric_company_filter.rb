@@ -9,8 +9,6 @@ def default_filter_option
   { year: :latest, status: :exists, wikirate_company: "" }
 end
 
-
-
 format :html do
   def metric_card
     @metric_card ||= card.left.metric_card

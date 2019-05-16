@@ -50,11 +50,9 @@ format :html do
   end
 
   def toggle_sort_order field
-    if field.to_sym == card.sort_by.to_sym
-      card.sort_order == "asc" ? "desc" : "asc"
-    else
-      "asc"
-    end
+    return "asc" unless field.to_sym == card.sort_by.to_sym
+
+    card.sort_order == "asc" ? "desc" : "asc"
   end
 
   def sort_icon field
