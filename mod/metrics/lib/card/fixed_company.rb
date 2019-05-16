@@ -13,7 +13,7 @@ class Card
       MetricID
     end
 
-    def subject_filter_wql
+    def filter_wql
       return {} unless @filter
       MetricFilterQuery.new(@filter).to_wql
     end

@@ -17,7 +17,7 @@ class Card
       wql = subject_wql
       not_ids = subject_ids_of_existing_answers
       wql[:not] = { id: not_ids.unshift("in") } if not_ids.present?
-      wql.merge subject_filter_wql
+      wql.merge(filter_wql).merge(sort_wql)
     end
 
     def subject_ids_of_existing_answers

@@ -13,7 +13,7 @@ class Card
       WikirateCompanyID
     end
 
-    def subject_filter_wql
+    def filter_wql
       return {} unless @filter.present?
       CompanyFilterQuery.new(@filter).to_wql
     end

@@ -2,9 +2,9 @@ class Card
   class AnswerQuery
     DB_COLUMN_MAP = {}.freeze
 
-    def initialize filter, sort={}, paging={}
+    def initialize filter, sorting={}, paging={}
       prepare_filter_args filter
-      prepare_sort_args sort
+      prepare_sort_args sorting
       @paging_args = paging
 
       @conditions = []
@@ -126,12 +126,12 @@ class Card
 
     def all_answer_query
       @all_answer_query ||=
-        all_answer_query_class.new(@filter_args, @paging_args)
+        all_answer_query_class.new @filter_args, @sort_args, @paging_args
     end
 
     def missing_answer_query
       @missing_answer_query ||=
-        missing_answer_query_class.new(@filter_args, @paging_args)
+        missing_answer_query_class.new @filter_args, @sort_args, @paging_args
     end
 
     def restrict_to_ids col, ids
