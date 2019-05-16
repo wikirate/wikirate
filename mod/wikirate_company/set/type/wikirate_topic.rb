@@ -47,7 +47,7 @@ format :html do
   end
 
   def tab_list
-    %i[details wikirate_company post project]
+    %i[details wikirate_company project]
   end
 
   view :data, cache: :never do

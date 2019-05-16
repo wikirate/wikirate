@@ -37,10 +37,10 @@ format :html do
   end
 
   def company_sort_link
-    table_sort_link rate_subjects, :company_name
+    table_sort_link rate_subjects, (card.answer_lookup? ? :company_name : :name)
   end
 
   def value_sort_link
-    table_sort_link "Values", :value
+    table_sort_link "Values", :value, true
   end
 end

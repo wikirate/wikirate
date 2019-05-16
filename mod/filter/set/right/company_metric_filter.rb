@@ -2,12 +2,8 @@ include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[year status check metric wikirate_topic metric_type value updated project
+  %i[status year check metric wikirate_topic metric_type value updated project
      research_policy]
-end
-
-def default_sort_option
-  :importance
 end
 
 def default_filter_option
