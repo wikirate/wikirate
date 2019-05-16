@@ -2,7 +2,7 @@ include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[year status]
+  %i[status year wikirate_company]
 end
 
 def advanced_filter_keys
@@ -10,7 +10,7 @@ def advanced_filter_keys
 end
 
 def default_filter_option
-  { year: :latest, status: :exists }
+  { year: :latest, status: :exists, wikirate_company: "" }
 end
 
 format :html do

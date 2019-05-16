@@ -2,11 +2,8 @@ include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[year status]
-end
-
-def advanced_filter_keys
-  %i[check metric wikirate_topic metric_type value updated project research_policy]
+  %i[year status check metric wikirate_topic metric_type value updated project
+     research_policy]
 end
 
 def default_sort_option
@@ -14,7 +11,7 @@ def default_sort_option
 end
 
 def default_filter_option
-  { year: :latest, status: :exists }
+  { status: :exists, year: :latest, metric: "" }
 end
 
 format :html do

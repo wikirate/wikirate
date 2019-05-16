@@ -20,24 +20,24 @@ Feature: company feature
     And I should see "Original"
 
   Scenario: Filter by metric
-    When I click on "Add filter"
+    When I click on "More Filters"
     And I click on "Metric"
     And I wait for ajax response
     And I fill in "filter[metric]" with "Jedi+deadliness"
     # To change focus
-    And I click on "Add filter"
+    And I click on "More Filters"
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
     And I should see "deadliness"
 
   Scenario: Filter by topic
-    When I click on "Add filter"
+    When I click on "More Filters"
     And I click on "Topic"
     And I wait for ajax response
     And I wait 2 seconds
     And I select2 "Force" from "filter[wikirate_topic][]"
     # To change focus
-    And I click on "Add filter"
+    And I click on "More Filters"
     And I wait for ajax response
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"

@@ -54,7 +54,7 @@ describe 'edit metric formulas', ->
 
     cy.contains("a", "add metric", timeout: 15000)
       .click()
-    cy.contains("button", "Add filter")
+    cy.contains("button", "More Filters")
       .click()
     cy.contains("a", "Keyword")
       .click(force: true)

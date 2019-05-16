@@ -101,7 +101,7 @@ format :html do
   end
 
   def calculating_icon
-    fa_icon :refresh, title: "calculating ..."
+    fa_icon :calculator, title: "calculating ...", class: "fa-spin"
   end
 
   def legend
