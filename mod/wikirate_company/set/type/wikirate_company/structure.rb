@@ -11,8 +11,8 @@ format :html do
   end
 
   def tab_list
-    list = %i[details wikirate_topic source post project]
-    list.insert(1, :contributions) # if contributions_made?
+    list = %i[details wikirate_topic source project]
+    list.insert(1, :contributions) if contributions_made?
     list
   end
 
@@ -41,7 +41,9 @@ format :html do
   end
 
   def header_right
-    wrap_with :h3, render_title, class: "company-color p-2"
+    wrap_with :h3, class: "company-color" do
+      link_to_card card, nil, class: "inherit-anchor"
+    end
   end
 
   view :rich_header_body do
@@ -54,33 +56,6 @@ format :html do
 
   def right_column_class
     "right-col order-1 order-md-2"
-  end
-
-  def contribution_data
-    output [_]
-  end
-
-  def profile_tab key, label, args={}
-    add_class args, :active if active_profile_tab == key
-    wrap_with :li do
-      add_class args, "nav-link"
-      link_to_card card, label, path: { company_profile: key }, class: args[:class]
-    end
-  end
-
-  def performance_tab_button
-    profile_tab :performance, "Performance"
-  end
-
-  def contributions_tab_button
-    label_name = "Contributions"
-    if contributions_made?
-      profile_tab :contributions, label_name
-    else
-      wrap_with :li, class: "disabled" do
-        wrap_with :span, label_name, class: "nav-link"
-      end
-    end
   end
 
   view :details_tab do

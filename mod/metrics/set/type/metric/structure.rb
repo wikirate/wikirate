@@ -13,7 +13,7 @@ format :html do
   view :rich_header do
     bs_layout do
       row 1, 11, class: "metric-header-container rich-header container "\
-                        "border-bottom p-0 m-0 pt-3" do
+                        "border-bottom p-0 m-0" do
         html render_menu
         column field_nest(:vote_count, view: :content), class: "col-1 pt-1"
         column _render_title_and_question, class: "col-10"
