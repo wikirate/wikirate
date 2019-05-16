@@ -1,11 +1,7 @@
 include_set Abstract::BrowseFilterForm
 
 def filter_keys
-  %i[name]
-end
-
-def advanced_filter_keys
-  %i[project wikirate_topic]
+  %i[name project wikirate_topic]
 end
 
 def filter_class

@@ -5,11 +5,8 @@ def default_sort_option
 end
 
 def filter_keys
-  %i[name wikirate_topic wikirate_company]
-end
-
-def advanced_filter_keys
-  %i[designer project metric_type research_policy year]
+  %i[name wikirate_topic wikirate_company designer project metric_type research_policy
+     year]
 end
 
 def target_type_id
@@ -51,7 +48,7 @@ format :html do
     {
       "Highest Voted" => "upvoted",
       "Most Recent" => "recent",
-      # "Most Companies" => "wikirate_company" # "company"
+      "Most Companies" => "wikirate_company" # "company"
     }
   end
 
