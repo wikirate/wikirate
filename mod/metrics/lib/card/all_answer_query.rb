@@ -79,9 +79,13 @@ class Card
       @new_name_year ||= year.to_s == "latest" ? Time.now.year : year
     end
 
+    WQL_SORT_TRANSLATION = { sort_by: :sort, sort_order: :dir }.freeze
+
     def wqlize_sort sort_hash
-      sort_hash ||= {}
-      { sort: sort_hash[:sort_by], dir: sort_hash[:sort_order] }
+      (sort_hash || {}).each_with_object({}) do |key, hash|
+        next unless (wql_key = WQL_SORT_TRANSLATION[key])
+        hash[wql_key] = sort_hash[key] if sort_hash[key]
+      end
     end
 
     private

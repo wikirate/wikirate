@@ -1,3 +1,3 @@
 def filter_keys
-  super.insert -1, :industry
+  super.insert(-1, :industry)
 end
