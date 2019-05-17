@@ -1,7 +1,11 @@
 include_set Abstract::BrowseFilterForm
 
+def default_filter_option
+  { name: "" }
+end
+
 def default_sort_option
-  "upvoted"
+  :upvoted
 end
 
 def filter_keys
@@ -18,21 +22,14 @@ def filter_class
 end
 
 def sort_wql
-  wql = super
-  wql[:sort] =
-    case current_sort
-    when "values"
-      { right: "value", right_plus: "*cached count" }
-    when "recent"
-      wql.delete :sort_as
-      "update"
-    when "company"
-      { right: "company", right_plus: "*cached count" }
-    else
-      # upvoted as default
-      { right: "*vote count" }
-    end
-  wql
+  case current_sort.to_sym
+  when :upvoted
+    { sort: { right: "*vote count" }, dir: "desc" }
+  when :recent
+    { sort: "create", dir: "desc" }
+  else
+    super
+  end
 end
 
 format :html do
@@ -46,9 +43,11 @@ format :html do
 
   def sort_options
     {
-      "Highest Voted" => "upvoted",
-      "Most Recent" => "recent",
-      "Most Companies" => "wikirate_company" # "company"
+      "Highest Voted" => :upvoted,
+      "Alphabetical" => :name,
+      "Most Companies" => "company",
+      "Most Answers" => "answer",
+      "Recently Added" => :recent
     }
   end
 

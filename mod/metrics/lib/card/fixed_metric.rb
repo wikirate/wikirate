@@ -17,6 +17,10 @@ class Card
       return {} unless @filter.present?
       CompanyFilterQuery.new(@filter).to_wql
     end
+    
+    def sort_company_name_wql
+      :name
+    end
 
     def new_name subject
       subject = Card.fetch_name(subject) if subject.is_a? Integer

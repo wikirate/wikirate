@@ -14,7 +14,7 @@ def filter_card_fieldcode
 end
 
 def default_sort_option
-  answer_lookup? ? :importance : :name
+  :importance
 end
 
 format :html do
@@ -33,15 +33,14 @@ format :html do
   end
 
   def title_sort_link
-    table_sort_link "Metrics", :title_name, true, "pull-left margin-left-20"
+    table_sort_link "Metrics", :title_name, true, "pull-left mx-3 px-1"
   end
 
   def designer_sort_link
-    field = card.answer_lookup? ? :designer_name : :name
-    table_sort_link "", field, false, "pull-left margin-left-20"
+    table_sort_link "", :designer_name, false, "pull-left mx-3 px-1"
   end
 
   def importance_sort_link
-    table_sort_link "", :importance, true, "pull-left  margin-left-15"
+    table_sort_link "", :importance, false, "pull-left mx-3 px-1"
   end
 end

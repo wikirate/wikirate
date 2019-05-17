@@ -33,10 +33,10 @@ stringStartsWith = (string, prefix) ->
   string.slice(0, prefix.length) == prefix
 showFakeLoader = ->
   $('#fakeLoader').fakeLoader
-    timeToHide: 1000000 #Time in milliseconds for fakeLoader disappear
+    timeToHide: 10000 #Time in milliseconds for fakeLoader disappear
     zIndex: '999' #Default zIndex
-    spinner: 'spinner1'#Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
-    bgColor: 'rgb(255,255,255,0.80)' #Hex, RGB or RGBA colors
+    spinner: 'spinner4'#Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
+    bgColor: '#03998d' #Hex, RGB or RGBA colors
   #imagePath:"yourPath/customizedImage.gif" //If you want can you insert your custom image
   return
 

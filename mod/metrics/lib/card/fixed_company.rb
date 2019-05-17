@@ -18,6 +18,14 @@ class Card
       MetricFilterQuery.new(@filter).to_wql
     end
 
+    def sort_importance_wql
+      { right: "*vote count" }
+    end
+
+    def sort_designer_name_wql
+      :name
+    end
+
     def new_name subject
       subject = Card.fetch_name(subject) if subject.is_a? Integer
       "#{subject}+#{@base_card.name}+#{new_name_year}"

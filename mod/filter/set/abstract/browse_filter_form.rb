@@ -25,7 +25,7 @@ def target_type_id
 end
 
 def sort_wql
-  if current_sort == "name"
+  if current_sort.to_sym == :name
     { sort: "name" }
   else
     cached_count_sort_wql
