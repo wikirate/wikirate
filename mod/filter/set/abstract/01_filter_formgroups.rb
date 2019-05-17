@@ -8,7 +8,8 @@ format :html do
   end
 
   view :filter_project_formgroup, cache: :never do
-    select_filter_type_based :project
+    autocomplete_filter :project
+    # select_filter_type_based :project
   end
 
   view :filter_year_formgroup, cache: :never do
