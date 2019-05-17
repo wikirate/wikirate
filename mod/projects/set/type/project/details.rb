@@ -1,3 +1,5 @@
+include_set Abstract::Filterable
+
 format :html do
   # ~~~~~~~~~~~~~ DETAILS ON PROJECT PAGE
 
@@ -32,10 +34,12 @@ format :html do
   bar_cols 8, 4
 
   view :bar_left do
-    text_with_image image: card.field(:image),
-                    size: voo.size,
-                    title: render_title_link,
-                    text: bar_left_details
+    filterable :project, card.name, class: "w-100" do
+      text_with_image image: card.field(:image),
+                      size: voo.size,
+                      title: render_title_link,
+                      text: bar_left_details
+    end
   end
 
   view :bar_middle do

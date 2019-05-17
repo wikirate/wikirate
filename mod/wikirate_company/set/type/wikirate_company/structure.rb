@@ -1,5 +1,6 @@
 include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
+include_set Abstract::Filterable
 
 card_accessor :wikipedia
 card_accessor :open_corporates
@@ -21,7 +22,7 @@ format :html do
   end
 
   view :wikirate_topic_tab do
-    field_nest :wikirate_topic, items: { view: :bar }
+    filtering { field_nest :wikirate_topic, items: { view: :bar } }
   end
 
   view :source_tab do
@@ -29,7 +30,7 @@ format :html do
   end
 
   view :project_tab do
-    field_nest :project, items: { view: :bar }
+    filtering { field_nest :project, items: { view: :bar } }
   end
 
   view :contributions_tab do
