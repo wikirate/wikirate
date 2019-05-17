@@ -83,15 +83,6 @@ format :html do
     card.value_options.reject { |o| o == "Unknown" }.join joint
   end
 
-  # view :value do
-  #   return "" unless args[:company]
-  #   %(
-  #     <div class="data-item hide-with-details">
-  #       {{#{safe_name}+#{h args[:company]}+latest value|concise}}
-  #     </div>
-  #   )
-  # end
-
   # Weight methods apply only to WikiRatings
   # TODO: hamlize
   def weight_row weight=0, label=nil
