@@ -17,8 +17,8 @@ class Card
       return {} unless @filter.present?
       CompanyFilterQuery.new(@filter).to_wql
     end
-
-    def sort_designer_name_wql
+    
+    def sort_company_name_wql
       :name
     end
 
