@@ -37,7 +37,7 @@ format :html do
   end
 
   def designer_sort_link
-    table_sort_link "", :designer_name, false, "pull-left mx-3 px-1"
+    table_sort_link "", :metric_name, false, "pull-left mx-3 px-1"
   end
 
   def importance_sort_link
