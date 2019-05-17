@@ -18,6 +18,10 @@ class Card
       CompanyFilterQuery.new(@filter).to_wql
     end
 
+    def sort_designer_name_wql
+      :name
+    end
+
     def new_name subject
       subject = Card.fetch_name(subject) if subject.is_a? Integer
       "#{@base_card.name}+#{subject}+#{new_name_year}"

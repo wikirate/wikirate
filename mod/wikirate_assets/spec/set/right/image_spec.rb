@@ -3,10 +3,12 @@ describe Card::Set::Right::Image do
     context "'`type`+missing_image_card' is set" do
       before do
         file = File.open("#{Rails.root}/mod/wikirate_assets/spec/set/right/image.jpg")
-        @missing_image_card = Card.create! name: "user+missing_image_card",
-                                           type_id: Card::ImageID, image: file
-        @content_card = Card.create! name: "Joe, My Son",
-                                     content: "{{joe user+image}}"
+        Card::Auth.as_bot do
+          @missing_image_card = Card.create! name: "user+missing_image_card",
+                                             type_id: Card::ImageID, image: file
+          @content_card = Card.create! name: "Joe, My Son",
+                                       content: "{{joe user+image}}"
+        end
       end
 
       it "shows '`type`+missing_image_card'" do

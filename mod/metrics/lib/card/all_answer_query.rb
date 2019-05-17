@@ -82,10 +82,13 @@ class Card
     WQL_SORT_TRANSLATION = { sort_by: :sort, sort_order: :dir }.freeze
 
     def wqlize_sort sort_hash
-      (sort_hash || {}).each_with_object({}) do |key, hash|
-        next unless (wql_key = WQL_SORT_TRANSLATION[key])
-        hash[wql_key] = sort_hash[key] if sort_hash[key]
+      (sort_hash || {}).each_with_object({}) do |(key, value), hash|
+        hash[WQL_SORT_TRANSLATION[key]] = sort_wql_for value
       end
+    end
+
+    def sort_wql_for key
+      try("sort_#{key}_wql") || key
     end
 
     private
