@@ -33,7 +33,7 @@ format :html do
     sort_link "#{name} #{sort_icon key}",
               sort_by: key,
               sort_order: toggle_sort_order(key),
-              class: css_class
+              class: "#{css_class} table-sort-link table-sort-by-#{key}"
   end
 
   # @param [String] text link text

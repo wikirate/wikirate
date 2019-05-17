@@ -22,7 +22,7 @@ class Card
       { right: "*vote count" }
     end
 
-    def sort_designer_name_wql
+    def sort_metric_name_wql
       :name
     end
 
