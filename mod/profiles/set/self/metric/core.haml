@@ -2,5 +2,5 @@
 .filter-search-form
   = field_nest :browse_metric_filter, view: :filter_form
 #browse-metrics
-  = field_nest :browse_metric_filter, items: { view: :box }
+  = field_nest :browse_metric_filter, hide: :menu, items: { view: :box }
 = render_add_button
