@@ -30,7 +30,20 @@ format :html do
   end
 
   view :details do
-    [render_year_and_value_pretty, render_expanded_details]
+    [details_top, render_expanded_details]
+  end
+
+  # def tmp_details
+  #   [
+  #     render_full_page_link,
+  #     link_to("record", href: "#", class: "_record-filter",
+  #             data: { filter: { key: "metric", value: "'#{card.metric_name}'"} } )
+  #   ]
+  # end
+
+  def details_top
+    class_up "full-page-link", "metric-color"
+    haml :details_top
   end
 
   view :basic_details do
