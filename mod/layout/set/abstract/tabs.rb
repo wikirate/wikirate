@@ -110,5 +110,4 @@ format :html do
     klass = css_classes "count-number", ("clearfix" if @tab_lines > 1)
     wrap_with :span, info, class: klass
   end
-
 end
