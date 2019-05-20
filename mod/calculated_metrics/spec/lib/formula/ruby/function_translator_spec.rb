@@ -1,4 +1,4 @@
-require_relative "../../../support/calculator_stub.rb"
+arequire_relative "../../../support/calculator_stub.rb"
 
 RSpec.describe Formula::Ruby do
   include_context "with calculator stub"
@@ -20,9 +20,9 @@ RSpec.describe Formula::Ruby do
         .to raise_error Formula::Ruby::FunctionTranslator::SyntaxError, /at 11/
     end
 
-    example "missing [" do
-      expect { translate "Total{{M1|company:Related[M2]}}" }
-        .to raise_error Formula::Ruby::FunctionTranslator::SyntaxError, /at 6/
-    end
+    # example "missing [" do
+    #   expect { translate "Total{{M1|company:Related[M2]}}" }
+    #     .to raise_error Formula::Ruby::FunctionTranslator::SyntaxError, /at 6/
+    # end
   end
 end
