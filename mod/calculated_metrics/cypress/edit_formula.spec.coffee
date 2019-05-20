@@ -56,7 +56,7 @@ describe 'edit metric formulas', ->
       .click()
     cy.contains("button", "More Filters")
       .click()
-    cy.contains("a", "Keyword")
+    cy.contains("a", "Name")
       .click(force: true)
     cy.get("._filter-container [name='filter[name]']")
       .clear()
