@@ -62,14 +62,23 @@ module Formula
     def parse_wolfram_response response
       body = JSON.parse(response.body)
       if body["Success"]
-        JSON.parse body["Result"]
+        parse_wolfram_result body["Result"]
       else
-        @errors << "wolfram syntax error: #{body['MessagesText']&.join("\n")}"
-        return false
+        wolfram_syntax_error body["MessagesText"]
       end
-    rescue JSON::ParserError => _e
-      raise Card::Error, "failed to parse wolfram result: #{expr}"
     end
+
+    def parse_wolfram_result result
+      JSON.parse result
+    rescue JSON::ParserError => _e
+      raise Card::Error, "failed to parse wolfram result: #{result}"
+    end
+
+    def wolfram_syntax_error messages
+      @errors << "wolfram syntax error: #{messages&.join("\n")}"
+      false
+    end
+
 
     private
 
