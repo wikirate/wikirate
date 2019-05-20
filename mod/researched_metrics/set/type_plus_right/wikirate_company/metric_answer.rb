@@ -33,14 +33,14 @@ format :html do
   end
 
   def title_sort_link
-    table_sort_link "Metrics", :title_name, "pull-left margin-left-20"
+    table_sort_link "Metrics", :title_name, true, "pull-left mx-3 px-1"
   end
 
   def designer_sort_link
-    table_sort_link "", :designer_name, "pull-left margin-left-20"
+    table_sort_link "", :metric_name, false, "pull-left mx-3 px-1"
   end
 
   def importance_sort_link
-    table_sort_link "", :importance, "pull-left  margin-left-15"
+    table_sort_link "", :importance, false, "pull-left mx-3 px-1"
   end
 end

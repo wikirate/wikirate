@@ -229,6 +229,10 @@ When(/^I click on the "(.*)" icon$/) do |icon|
   find(:css, "i.fa.fa-#{ICONS[icon]}").click
 end
 
+When(/^I click to sort table by "(.*)"$/) do |sort|
+  find(:css, "a.table-sort-by-#{sort}").click
+end
+
 And(/^I hover over "([^"]*)"$/) do |text|
   find(:link_or_button, text: text).hover
 end

@@ -8,7 +8,8 @@ format :html do
   end
 
   def tab_map
-    options = tab_options
+    options = tab_options.clone
+    @tab_lines = options.delete(:lines) || 2
     tab_list.each_with_object({}) do |codename, hash|
       hash[:"#{codename}_tab"] = tab_title codename, options[codename]
     end
@@ -46,16 +47,21 @@ format :html do
   def tab_title fieldcode, opts={}
     opts ||= {}
     parts = tab_title_parts fieldcode, opts
-    two_line_tab parts[:label], tab_title_top(parts[:icon], parts[:count])
+    info = tab_title_info parts[:icon], parts[:count]
+    wrapped_tab_title parts[:label], info
   end
 
-  def tab_title_top icon, count
+  def tab_title_info icon, count
     icon_tag = tab_title_icon_tag icon
     if count
       tab_count_badge count, icon_tag
     else
-      icon_tag || "&nbsp;".html_safe
+      icon_tag || tab_space
     end
+  end
+
+  def tab_space
+    @tab_lines > 1 ? "&nbsp;" : nil
   end
 
   def tab_count_badge count, icon_tag
@@ -89,5 +95,19 @@ format :html do
 
   def tab_title_label fieldcode
     fieldcode.cardname.vary :plural
+  end
+
+  def wrapped_tab_title label, info=nil
+    wrap_with :div, class: "text-center" do
+      [wrapped_tab_title_info(info),
+       wrap_with(:span, label, class: "count-label")].compact
+    end
+  end
+
+  def wrapped_tab_title_info info
+    return unless (info ||= tab_space)
+
+    klass = css_classes "count-number", ("clearfix" if @tab_lines > 1)
+    wrap_with :span, info, class: klass
   end
 end

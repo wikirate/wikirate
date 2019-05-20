@@ -1,8 +1,7 @@
 format :html do
   # all metrics show these properties in their properties table
   def basic_table_properties
-    { designer:       "Designed By",
-      wikirate_topic: "Topics",
+    { wikirate_topic: "Topics",
       metric_type:    "Metric Type" }
   end
 

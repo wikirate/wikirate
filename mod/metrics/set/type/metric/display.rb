@@ -30,7 +30,9 @@ format :html do
   # VALUE LEGEND
 
   view :legend do
-    value_legend
+    wrap_with :span, class: "metric-legend" do
+      value_legend
+    end
   end
 
   view :legend_core do
@@ -80,15 +82,6 @@ format :html do
   def category_legend joint=", <br>"
     card.value_options.reject { |o| o == "Unknown" }.join joint
   end
-
-  # view :value do
-  #   return "" unless args[:company]
-  #   %(
-  #     <div class="data-item hide-with-details">
-  #       {{#{safe_name}+#{h args[:company]}+latest value|concise}}
-  #     </div>
-  #   )
-  # end
 
   # Weight methods apply only to WikiRatings
   # TODO: hamlize

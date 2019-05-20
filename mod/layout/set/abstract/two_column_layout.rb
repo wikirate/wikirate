@@ -69,12 +69,6 @@ format :html do
     text_with_image title: "", text: header_right, size: :large
   end
 
-  def header_image
-    wrap_with :div, class: "image-box large-rect" do
-      field_nest(:image, size: :large)
-    end
-  end
-
   def header_right
     wrap_with :h3, _render_title, class: "header-right"
   end

@@ -54,11 +54,11 @@ describe 'edit metric formulas', ->
 
     cy.contains("a", "add metric", timeout: 15000)
       .click()
-    cy.contains("button", "Add filter")
+    cy.contains("button", "More Filters")
       .click()
     cy.contains("a", "Keyword")
       .click(force: true)
-    cy.get("[name='filter[name]']")
+    cy.get("._filter-container [name='filter[name]']")
       .clear()
       .type("multi{enter}")
     cy.get("._search-checkbox-list")

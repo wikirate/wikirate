@@ -80,12 +80,12 @@ RSpec.describe Card::FixedMetricAnswerQuery do
       end
 
       it "finds missing values" do
-        expect(filter_by(metric_value: :none))
+        expect(filter_by(status: :none))
           .to contain_exactly(*missing_answers)
       end
 
       it "finds all values" do
-        filtered = filter_by(metric_value: :all)
+        filtered = filter_by(status: :all)
         expect(filtered)
           .to include(*all_answers)
       end
@@ -98,18 +98,18 @@ RSpec.describe Card::FixedMetricAnswerQuery do
           Timecop.return
         end
         it "finds today's edits" do
-          expect(filter_by({ metric_value: :today }, false))
+          expect(filter_by({ updated: :today }, false))
             .to eq %w[Death_Star+1990]
         end
 
         it "finds this week's edits" do
-          expect(filter_by({ metric_value: :week }, false))
+          expect(filter_by({ updated: :week }, false))
             .to eq %w[Death_Star+1990 Death_Star+1991]
         end
 
         it "finds this months's edits" do
           # wrong only one company
-          expect(filter_by({ metric_value: :month }, false))
+          expect(filter_by({ updated: :month }, false))
             .to eq %w[Death_Star+1990 Death_Star+1991 Death_Star+1992]
         end
       end
@@ -127,29 +127,29 @@ RSpec.describe Card::FixedMetricAnswerQuery do
       it "... year" do
         missing2000 = missing_answers(2000)
         missing2000 << "Slate Rock and Gravel Company+2000"
-        expect(filter_by(metric_value: :none, year: "2000").sort)
+        expect(filter_by(status: :none, year: "2000").sort)
           .to eq(missing2000.sort)
       end
 
       it "... keyword" do
-        expect(filter_by(metric_value: :none, name: "Inc").sort)
+        expect(filter_by(status: :none, name: "Inc").sort)
           .to eq(with_year(["AT&T Inc.", "Amazon.com, Inc.",
                             "Apple Inc.", "Google Inc."]))
       end
 
       it "... project" do
-        expect(filter_by(metric_value: :none, project: "Evil Project").sort)
+        expect(filter_by(status: :none, project: "Evil Project").sort)
           .to eq(with_year(["Los Pollos Hermanos"]))
       end
 
       it "... industry" do
-        expect(filter_by(metric_value: :none,
+        expect(filter_by(status: :none,
                          industry: "Technology Hardware"))
           .to eq []
       end
 
       it "... industry and year" do
-        expect(filter_by(metric_value: :none,
+        expect(filter_by(status: :none,
                          industry: "Technology Hardware",
                          year: "2001"))
           .to eq ["SPECTRE+2001"]
@@ -158,7 +158,7 @@ RSpec.describe Card::FixedMetricAnswerQuery do
 
     context "when filtering for all values and ..." do
       it "... project" do
-        expect(filter_by(metric_value: :all, project: "Evil Project"))
+        expect(filter_by(status: :all, project: "Evil Project"))
           .to contain_exactly("Death_Star+2001", "SPECTRE+2000",
                               *with_year("Los Pollos Hermanos"))
       end
@@ -166,12 +166,12 @@ RSpec.describe Card::FixedMetricAnswerQuery do
       it "... year" do
         i = all_companies.index("Death Star")
         all_companies[i] = "Death_Star"
-        expect(filter_by(metric_value: :all, year: "2001"))
+        expect(filter_by(status: :all, year: "2001"))
           .to contain_exactly(*with_year(all_companies, 2001))
       end
 
       it "... industry and year" do
-        expect(filter_by(metric_value: :all,
+        expect(filter_by(status: :all,
                          industry: "Technology Hardware",
                          year: "2001"))
           .to contain_exactly(*with_year(%w[SPECTRE Death_Star], 2001))
@@ -193,7 +193,7 @@ RSpec.describe Card::FixedMetricAnswerQuery do
         expect(filter_by(year: "1990",
                          industry: "Technology Hardware",
                          project: "Evil Project",
-                         metric_value: :today,
+                         updated: :today,
                          name: "star"))
           .to eq(with_year("Death_Star", 1990))
       end

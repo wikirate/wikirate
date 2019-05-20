@@ -3,6 +3,7 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Media
 include_set Abstract::BsBadge
+include_set Abstract::Filterable
 
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
@@ -18,7 +19,9 @@ format :html do
   end
 
   view :bar_left do
-    render_thumbnail
+    filterable :wikirate_topic, card.name, class: "w-100" do
+      render_thumbnail
+    end
   end
 
   view :bar_middle do
@@ -47,7 +50,7 @@ format :html do
   end
 
   def tab_list
-    %i[details wikirate_company post project]
+    %i[details wikirate_company project]
   end
 
   view :data, cache: :never do

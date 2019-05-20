@@ -13,9 +13,13 @@ class Card
       WikirateCompanyID
     end
 
-    def subject_filter_wql
+    def filter_wql
       return {} unless @filter.present?
       CompanyFilterQuery.new(@filter).to_wql
+    end
+
+    def sort_company_name_wql
+      :name
     end
 
     def new_name subject
