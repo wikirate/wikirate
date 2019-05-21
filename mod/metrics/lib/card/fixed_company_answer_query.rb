@@ -72,7 +72,7 @@ class Card
     end
 
     def missing_directions directions
-      [:upvotes, :downvotes, :novotes] - directions
+      %i[upvotes downvotes novotes] - directions
     end
 
     def missing_answer_query_class

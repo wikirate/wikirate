@@ -2,9 +2,9 @@ class Card
   class AnswerQuery
     DB_COLUMN_MAP = {}.freeze
 
-    def initialize filter, sort={}, paging={}
+    def initialize filter, sorting={}, paging={}
       prepare_filter_args filter
-      prepare_sort_args sort
+      prepare_sort_args sorting
       @paging_args = paging
 
       @conditions = []
@@ -48,27 +48,26 @@ class Card
       where(additional_filter).select(:value).uniq.count
     end
 
-    # :none and :outliers are handled in #run
-    def metric_value_query value
+    # :researched (known + unknown) is default case;
+    # :all and :none are handled in #run
+    def status_query value
       case value.to_sym
       when :unknown
         filter :value, "Unknown"
       when :known
         filter :value, "Unknown", "<>"
-      else
-        if (period = timeperiod(value))
-          filter :updated_at, Time.now - period, ">"
-        end
       end
     end
 
-    def category_query value
-      filter :value, value
+    def updated_query value
+      return unless (period = timeperiod value)
+
+      filter :updated_at, Time.now - period, ">"
     end
 
     def range_query value
-      filter :numeric_value, value[:from], ">="
-      filter :numeric_value, value[:to], "<"
+      filter :numeric_value, value[:from], ">=" if value[:from].present?
+      filter :numeric_value, value[:to], "<" if value[:to].present?
     end
 
     def year_query value
@@ -79,10 +78,30 @@ class Card
       end
     end
 
+    def check_query value
+      case value
+      when "Completed" then filter :checkers, nil, "IS NOT"
+      when "Requested" then filter :check_requester, nil, "IS NOT"
+      when "Neither"
+        %i[checkers check_requester].each { |fld| filter fld, nil, "IS" }
+      end
+    end
+
+    def value_query value
+      case value
+      when Array then filter :value, value
+      when Hash  then range_query value
+      else            filter_like :value, value
+      end
+    end
+
     def filter key, value, operator=nil
-      operator ||= value.is_a?(Array) ? "IN" : "="
-      db_column = filter_key_to_db_column key
-      @conditions << "answers.#{db_column} #{operator} (?)"
+      @conditions << "answers.#{filter_key_to_db_column key} " +
+                     if value.is_a? Array
+                       "#{operator || 'IN'} (?)"
+                     else
+                       "#{operator || '='} ?"
+                     end
       @values << value
     end
 
@@ -91,7 +110,7 @@ class Card
     end
 
     def answer_lookup
-      Rails.logger.warn "where_args: #{where_args}"
+      # Rails.logger.warn "where_args: #{where_args}"
       Answer.where(where_args).sort(@sort_args).paging(@paging_args)
     end
 
@@ -107,12 +126,12 @@ class Card
 
     def all_answer_query
       @all_answer_query ||=
-        all_answer_query_class.new(@filter_args, @paging_args)
+        all_answer_query_class.new @filter_args, @sort_args, @paging_args
     end
 
     def missing_answer_query
       @missing_answer_query ||=
-        missing_answer_query_class.new(@filter_args, @paging_args)
+        missing_answer_query_class.new @filter_args, @sort_args, @paging_args
     end
 
     def restrict_to_ids col, ids
@@ -126,7 +145,7 @@ class Card
     end
 
     def find_all?
-      @filter_args[:metric_value]&.to_sym == :all
+      @filter_args[:status]&.to_sym == :all
     end
 
     def find_missing? additional_filter=nil
@@ -134,10 +153,10 @@ class Card
     end
 
     def metric_value_filter_value additional_filter
-      if additional_filter&.dig(:metric_value)
-        additional_filter[:metric_value].to_sym
+      if additional_filter&.dig(:status)
+        additional_filter[:status].to_sym
       else
-        @filter_args[:metric_value]&.to_sym
+        @filter_args[:status]&.to_sym
       end
     end
 
@@ -148,8 +167,6 @@ class Card
 
     def prepare_filter_args filter
       @filter_args = filter.deep_symbolize_keys
-      # TODO: remove following (and handle consequences in tests!)
-      # @filter_args[:latest] = true unless filter[:year] || filter[:metric_value]
     end
 
     def prepare_sort_args args
@@ -188,16 +205,34 @@ class Card
       [(@conditions + @temp_conditions).join(" AND ")] + @values + @temp_values
     end
 
+    # TODO: optimize with hash lookups for methods
     def process_filter_option key, value
-      if exact_match_filters.include? key
-        filter key, value
-      elsif like_filters.include? key
-        filter key, "%#{value}%", "LIKE"
-      elsif card_id_filters.include? key
-        filter key, to_card_id(value)
-      else
-        try "#{key}_query", value
+      %i[exact_match like card_id].each do |ftype|
+        if send("#{ftype}_filters").include? key
+          return send("filter_#{ftype}", key, value)
+        end
       end
+      try "#{key}_query", value
+    end
+
+    def filter_exact_match key, value
+      return unless value.present?
+      filter key, value
+    end
+
+    def filter_like key, value
+      return unless value.present?
+      if (m = value.match(/^['"]([^'"]+)['"]$/))
+        filter key, m[1]
+      else
+        filter key, "%#{value}%", "LIKE"
+      end
+    end
+
+    def filter_card_id key, value
+      return unless (card_id = to_card_id value)
+
+      filter key, card_id
     end
 
     def filter_key_to_db_column key

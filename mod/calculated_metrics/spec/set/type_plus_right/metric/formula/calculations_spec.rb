@@ -68,7 +68,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
         expect(view(:core, card: "Jedi+formula test+answer"))
           .to have_tag :tr do
           with_text /Death Star/
-          with_tag "i.fa-refresh"
+          with_tag "i.fa-calculator.fa-spin"
         end
       end
     end

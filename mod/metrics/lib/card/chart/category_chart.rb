@@ -5,7 +5,7 @@ class Card
     class CategoryChart < VegaChart
       def generate_data
         Card[@metric_id].value_options.each do |category|
-          add_data category: category
+          add_data value: category
         end
       end
 
@@ -23,18 +23,18 @@ class Card
       end
 
       def data_item_hash filter
-        super.merge x: filter[:category]
+        super.merge x: filter[:value]
       end
 
       # @return true if the bar given by its filter
       #   is supposed to be highlighted
       def highlight? filter
         return true unless @highlight_value
-        @highlight_value == filter[:category]
+        @highlight_value == filter[:value]
       end
 
       def highlight_value_from_filter_opts filter_opts
-        filter_opts[:category]
+        filter_opts[:value]
       end
     end
   end

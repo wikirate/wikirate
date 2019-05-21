@@ -15,10 +15,8 @@ RSpec.describe Card::Set::Self::Source do
       is_expected.to have_tag "a.btn", text: "Add Source", with: { href: "/new/Source" }
     end
 
-    it "has 'most recent' selected as sort option" do
-      is_expected.to have_tag "option", with: { selected: "selected" } do
-        with_text "Most Recent"
-      end
+    it "has Title filter open by default" do
+      is_expected.to have_tag "div.input-group[data-category='wikirate_title']"
     end
 
     it "has list of sources" do

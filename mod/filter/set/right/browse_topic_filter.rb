@@ -15,11 +15,7 @@ class TopicFilterQuery < Card::FilterQuery
 end
 
 def filter_keys
-  %i[name]
-end
-
-def advanced_filter_keys
-  %i[metric project wikirate_company]
+  %i[name metric project wikirate_company]
 end
 
 def target_type_id

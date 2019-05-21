@@ -6,7 +6,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
         Monster_Inc "2010" => "Unknown"
       end
 
-      expect(stats(metric_value: :all)).to have_tag :table do
+      expect(stats(status: :all)).to have_tag :table do
         with_tag :tr, count: 4
         with_row "", :known, 11, "Known"
         with_row "+", :unknown, 2, "Unknown"
@@ -19,14 +19,14 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
       Card.fetch("Jedi+disturbances in the Force").create_values true do
         SPECTRE "1977" => "Unknown"
       end
-      html = stats(year: "1977", metric_value: :all)
+      html = stats(year: "1977", status: :all)
       expect(html).to have_tag :tr, count: 4
       expect(html)
         .to have_table known: 3, unknown: 1, none: 16, total: 20
     end
 
     example "filtered by 'researched'" do
-      expect(stats(metric_value: :exists))
+      expect(stats(status: :exists))
         .to have_table known: 11, unknown: 0, total: 11
     end
   end

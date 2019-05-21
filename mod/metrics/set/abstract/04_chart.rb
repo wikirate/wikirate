@@ -7,12 +7,10 @@ def filter_hash with_select_filter=true
 end
 
 def chart_params
-  if Env.params[:chart].is_a?(Hash)
-    Env.params[:chart]
-  elsif Env.params[:chart].is_a?(ActionController::Parameters)
-    Env.params[:chart].to_unsafe_h
-  else
-    {}
+  case (chart = Env.params[:chart])
+  when Hash then chart
+  when ActionController::Parameters then chart.to_unsafe_h
+  else {}
   end
 end
 
@@ -39,8 +37,7 @@ format do
   end
 
   def chart_filter_query
-    FixedMetricAnswerQuery.new chart_metric_id,
-                               chart_filter_hash
+    FixedMetricAnswerQuery.new chart_metric_id, chart_filter_hash
   end
 
   def chart_metric_id
@@ -71,28 +68,8 @@ format :html do
       zoom_out_link,
       wrap_with(:div, "",
                 id: id, class: "#{classy('vis')} _load-vis",
-                data: { url: chart_load_url,
-                        value_filter_text: value_filter_text })
+                data: { url: chart_load_url })
     ]
-  end
-
-  def value_filter_text
-    return "Researched" if filter_hash.empty?
-    value_filter_to_human
-  end
-
-  def value_filter_to_human
-    if filter_hash[:range]
-      value_range_filter_to_human filter_hash[:range]
-    else
-      f = filter_hash
-      f[:numeric_value] || f[:category] ||
-        (f[:metric_value] && metric_value_options.key(f[:metric_value]))
-    end
-  end
-
-  def value_range_filter_to_human range
-    "%s < x < %s " % [number_to_human(range[:from]), number_to_human(range[:to])]
   end
 
   def chart_load_url
@@ -102,9 +79,7 @@ format :html do
   def show_chart?
     return unless card.relationship? || card.numeric? || card.categorical?
 
-    card.filter_hash[:metric_value] != "none" &&
-      card.filter_hash[:metric_value] != "unknown" # &&
-    # chart_item_count > 3
+    !card.filter_hash[:status].in? %w[none unknown]
   end
 
   def zoom_out_link

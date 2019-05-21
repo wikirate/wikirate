@@ -3,7 +3,6 @@
 $(document).ready ->
 
   # details toggle
-  # FIXME: risky global variable
   active_details = null
 
   # hack to solve the problem that
@@ -62,7 +61,6 @@ $(document).ready ->
       configuredUrl
     else
       constructDetailsUrl $toggle
-
 
   constructDetailsUrl = ($toggle) ->
     view = $toggle.data('view') || 'content'

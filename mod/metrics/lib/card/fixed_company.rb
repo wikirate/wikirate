@@ -13,9 +13,17 @@ class Card
       MetricID
     end
 
-    def subject_filter_wql
+    def filter_wql
       return {} unless @filter
       MetricFilterQuery.new(@filter).to_wql
+    end
+
+    def sort_importance_wql
+      { right: "*vote count" }
+    end
+
+    def sort_metric_name_wql
+      :name
     end
 
     def new_name subject
