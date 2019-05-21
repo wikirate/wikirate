@@ -58,7 +58,7 @@ describe 'edit metric formulas', ->
     cy.get("._search-checkbox-list")
       .should("contain", "small multi")
       .should("contain", "big multi")
-    cy.get("input[name='Joe User+small multi']").click()
+    cy.get("input#Joe_User_small_multi").click()
     cy.get("._add-selected").click()
     cy.contains "M0"
     cy.contains "M1"
