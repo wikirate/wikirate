@@ -23,9 +23,11 @@ end
 #   Answer.where record_id: id, year: year.to_i
 # end
 
-format :html do
+format do
   delegate :all_answers, to: :card
+end
 
+format :html do
   view :core do
     [
       nest(card.metric_card, view: :rich_header),
@@ -66,13 +68,13 @@ end
 format :csv do
   view :core do
     all_answers.each_with_object("") do |a, res|
-      res += CSV.generate_line [a.company, a.year, a.value]
+      res << CSV.generate_line([a.company, a.year, a.value])
     end
   end
 end
 
 format :json do
   def item_cards
-    card.all_answers
+    all_answers
   end
 end
