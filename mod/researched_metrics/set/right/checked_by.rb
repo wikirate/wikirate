@@ -116,7 +116,7 @@ format :html do
   end
 
   view :flag, unknown: true do
-    card.checked? ? render_icon : ""
+    card.items.present? ? render_icon : ""
   end
 
   view :icon do

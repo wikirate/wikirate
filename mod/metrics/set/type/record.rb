@@ -41,13 +41,15 @@ format :html do
     return "" unless metric_card.user_can_answer?
     link_to_card :research_page, "Research answer",
                  class: "btn btn-sm btn-primary margin-12",
-                 path: { view: "slot_machine", metric: card.metric, company: card.company },
-                 title: "Research answer for another year"
+                 path: { view: "slot_machine",
+                         metric: card.metric,
+                         company: card.company },
+                 title: "Research answers for this company and metric"
   end
 
-  # NOCACHE because item search
   view :metric_option, template: :haml, unknown: true
 
+  # NOCACHE because item search
   view :years_and_values, cache: :never do
     output do
       all_answers.map do |a|
@@ -63,11 +65,9 @@ end
 
 format :csv do
   view :core do
-    res = ""
-    all_answers.each do |a|
+    all_answers.each_with_object("") do |a, res|
       res += CSV.generate_line [a.company, a.year, a.value]
     end
-    res
   end
 end
 
