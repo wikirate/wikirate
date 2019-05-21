@@ -6,7 +6,7 @@ def virtual?
 end
 
 def query_class
-  FixedCompanyAnswerQuery
+  AnswerQuery::FixedCompany
 end
 
 def filter_card_fieldcode
