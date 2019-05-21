@@ -12,7 +12,7 @@ def answer
 end
 
 def virtual?
-  new? && answer.present?
+  new? && !answer.new_record?
 end
 
 def content
