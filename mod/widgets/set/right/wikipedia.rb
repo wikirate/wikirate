@@ -61,10 +61,6 @@ format :html do
   #   Card.exists?(card.name) ? super() : _render_new
   # end
 
-  def show_menu_item_edit?
-    true
-  end
-
   view :core, async: true do
     extract = wikipedia_extract
     extract += wrap_with(:p, original_link) if extract.present?

@@ -76,7 +76,7 @@ module Formula
 
     def parse_wolfram_json type, json
       JSON.parse json
-    rescue JSON::ParserError => _e
+    rescue JSON::ParserError => e
       log_wolfram_error "invalid JSON in #{type}", "JSON = #{json}\n#{e.message}"
     end
 
