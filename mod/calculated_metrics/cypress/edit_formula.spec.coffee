@@ -50,7 +50,7 @@ describe 'edit metric formulas', ->
   specify.only "Formula metric formula", =>
     cy.visit "Jedi+friendliness+formula"
     cy.slot "jedi+friendliness+formula"
-      .find(".card-menu > a").click(force: true)
+      .find(".card-menu > a.edit_link").click(force: true)
 
     cy.contains("a", "add metric", timeout: 15000)
       .click()
