@@ -68,7 +68,7 @@ module Formula
         return false
       end
     rescue JSON::ParserError => _e
-      raise Card::Error, "failed to parse wolfram result: #{expr}"
+      raise Card::Error, "failed to parse wolfram result: #{body['Result']}"
     end
 
     private
