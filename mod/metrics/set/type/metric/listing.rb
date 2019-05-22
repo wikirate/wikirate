@@ -14,10 +14,12 @@ format :html do
   view :bar_bottom do
     output [render_bar_middle,
             field_nest(:wikirate_topic, view: :content, items: { view: :link }),
-            render_metric_question]
+            render_question]
   end
 
-  view :box_top, template: :haml
+  view :box_top do
+    render :thumbnail
+  end
 
   view :box_middle, template: :haml
 

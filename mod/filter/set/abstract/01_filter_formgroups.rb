@@ -81,11 +81,6 @@ format :html do
     }
   end
 
-  def selected_value? value
-    (filter_param(:metric_value) && value == filter_param(:metric_value)) ||
-      value == "exists"
-  end
-
   def metric_type_options
     %i[researched relationship formula wiki_rating score descendant].map do |codename|
       Card::Name[codename]

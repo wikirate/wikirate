@@ -67,7 +67,7 @@ format :html do
   end
 
   def editing_answer?
-    return true if card.new?
+    return true if card.unknown?
     root.voo&.root&.ok_view&.to_sym == :edit
   end
 

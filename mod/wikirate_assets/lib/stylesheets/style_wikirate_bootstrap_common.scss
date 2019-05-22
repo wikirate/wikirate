@@ -375,8 +375,8 @@
   }
 
   &.large {
-    width: 216px;
-    height: 216px;
+    width: 150px;
+    height: 150px;
   }
   //FIXME remove large-rect
   &.large-rect {
@@ -419,18 +419,24 @@
 
 @media (max-width: 1260px) {
   .image-box.large {
-      width: 120px;
-      height: 120px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .media-body {
+    padding: 6px;
   }
 }
 
 @media (max-width: 575px) {
-  .image-box {
-    &.large {
-      width: 100px;
-      height: 100px;
-    }
+  .image-box.large {
+    width: 100px;
+    height: 100px;
   }
+  .media-body {
+    padding: 4px;
+  }
+
 
   .hide-header-sm .rich-header{
     display: none;
@@ -669,10 +675,7 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 //}
 .vote-count {
   color: #555;
-  width: 24px;
-  height: 25px;
   text-align: center;
-  padding-top: 2px;
   font-weight: bold;
 }
 .vote-details {

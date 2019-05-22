@@ -72,7 +72,7 @@ format :html do
 
   view :value_cell, unknown: true do
     view = if card.unknown?
-             research_ready? ? :research_button : :blank
+             researchable? ? :research_button : :blank
            else
              :concise
            end

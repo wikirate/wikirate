@@ -179,16 +179,67 @@ div[data-slot*="float:right"]{
   min-height: 1.5em;
 }
 
-.rich-header > .card-menu._show-on-hover > a {
-  display: none;
-}
 
-.rich-header:hover > .card-menu._show-on-hover {
-  z-index: 2;
-  > a {
-    display: inline-block;
+.media-body {
+  .media-heading {
+    font-size: 1.5rem !important;
+  }
+  .media-text {
+    clear: both;
+    font-size: 1.3rem;
+  }
+  .RIGHT-Xvote_count {
+    font-size: 1rem;
+    line-height: 1rem;
   }
 }
+
+.icon-and-question > i.fa {
+  color: #bbb;
+  padding: 2px 1em 2px 0
+}
+
+
+.rich-header .media {
+  .media-body {
+    padding: 4px;
+    &.media-body-large {
+      padding: 1em;
+    }
+    .media-heading {
+      font-size: 1.7rem !important;
+    }
+  }
+
+  //> .card-menu._show-on-hover > a {
+  //  display: none;
+  //}
+//
+  //&:hover > .card-menu._show-on-hover {
+  //  z-index: 2;
+  //  > a {
+  //    display: inline-block;
+  //  }
+  //}
+}
+
+
+body.wikirate-two-column-layout {
+  .titled-view .d0-card-header {
+    border: 0
+  }
+
+  h1, h2, .d0-card-header-title .card-title {
+    font-size: 1.6rem !important;
+  }
+  h3, h4 {
+    font-size: 1.4rem !important;
+  }
+  h5, h6 {
+    font-size: 1.2rem !important;
+  }
+}
+
 
 body#tinymce, body.wikirate-one-column-layout {
   #main > .titled-view>.d0-card-header {
@@ -203,31 +254,31 @@ body#tinymce, body.wikirate-one-column-layout {
     }
   }
   .RIGHT-introduction.content-view {
-    font-size: 1.25em;
+    font-size: 1.25rem;
   }
-  h1, h2, h3, h4, h5, h6, .d0-card-header-title {
+  h1, h2, h3, h4, h5, h6, .d0-card-header-title .card-title {
     font-weight: normal;
     margin-top: 1em;
   }
-  h1, h2, .titled-view >.d0-card-header > .d0-card-header-title {
+  h1, h2, .titled-view >.d0-card-header > .d0-card-header-title .card-title {
     font-weight: normal;
-    font-size: 2em;
+    font-size: 2rem;
   }
-  h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title {
+  h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title .card-title {
     border-bottom: 1px solid #ccc;
     padding-bottom: 0.1em;
     margin-bottom: 0.3em;
   }
   h3, h4 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
   h5, h6 {
-    font-size: 1.25em;
+    font-size: 1.25rem;
   }
   .bar h5 {
     border: 0;
     margin: 2px 0;
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
 }
 

@@ -7,15 +7,17 @@ format :html do
   def project_details
     wrap_with :div do
       [
-        field_nest(:organizer, view: :titled,
-                               title: "Organizer",
-                               items: { view: :thumbnail_plain }),
-        standard_nest(:wikirate_topic),
+        subproject_detail,
+        status_detail,
+        organizer_detail,
+        topic_detail,
         field_nest(:description, view: :titled, title: "Description"),
         field_nest(:conversation, view: :titled, title: "Conversation")
       ]
     end
   end
+
+
 
   # ~~~~~~~~~~~ DETAILS IN PROJECT LISTING
 
@@ -80,9 +82,22 @@ format :html do
   end
 
   def status_detail
-    wrap_with :div do
-      field_nest :wikirate_status, items: { view: :name }
-    end
+    field_nest :wikirate_status, view: :labeled, items: { view: :name }, title: "Status"
+  end
+
+  def organizer_detail
+    field_nest :organizer, view: :labeled, title: "Organizer",
+                           items: { view: :thumbnail_plain }
+  end
+
+  def topic_detail
+    field_nest :wikirate_topic, view: :labeled, title: "Topics",
+               items: { view: :link }
+  end
+
+  def subproject_detail
+    return if card.parent.blank?
+    field_nest :parent, view: :labeled, title: "Subproject of", items: { view: :link }
   end
 
   view :stats_details, cache: :never do

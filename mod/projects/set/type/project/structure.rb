@@ -23,42 +23,6 @@ format :html do
     ]
   end
 
-  def project_type_name
-    return with_parent unless card.parent.blank?
-    card.type.upcase
-  end
-
-  def with_parent
-    parent = link_to_card(card.parent_project)
-    "SUB-#{card.type.upcase} (of #{parent})"
-  end
-
-  def header_right
-    wrap_with :div, class: "header-right" do
-      [
-        wrap_with(:h6, project_type_name, class: "text-muted border-bottom pt-2 pb-2"),
-        wrap_with(:h5, _render_title, class: "project-title font-weight-normal")
-      ].compact
-    end
-  end
-
-  view :rich_header_body do
-    output [
-      (text_with_image title: "", text: header_right, size: :medium),
-      status_field,
-      # parent_field
-    ]
-  end
-
-  def status_field
-    field_nest :wikirate_status, view: :labeled, items: { view: :name }
-  end
-
-  def parent_field
-    return if card.parent.blank?
-    field_nest :parent, view: :labeled, items: { view: :link }
-  end
-
   view :data do
     wrap_with :div, class: "project-details" do
       project_details
@@ -72,7 +36,7 @@ format :html do
   end
 
   def tab_list
-    [:wikirate_company, :metric, (:year if card.years), :post, :subproject].compact
+    [:wikirate_company, :metric, (:year if card.years), :subproject].compact
   end
 
   def tab_options

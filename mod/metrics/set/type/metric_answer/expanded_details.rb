@@ -15,7 +15,7 @@ format :html do
   end
 
   def details_type
-    researched_value? ? :researched : card.metric_type
+    card.calculated? && researched_value? ? :researched : card.metric_type
   end
 
   def wrap_expanded_details

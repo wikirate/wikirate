@@ -54,25 +54,6 @@ format :html do
     "right-col"
   end
 
-  view :rich_header do
-    bs_layout do
-      row 12, class: "rich-header" do
-        html render_menu
-        col class: "p-0 border-bottom" do
-          _render_rich_header_body
-        end
-      end
-    end
-  end
-
-  view :rich_header_body do
-    text_with_image title: "", text: header_right, size: :large
-  end
-
-  def header_right
-    wrap_with :h3, _render_title, class: "header-right"
-  end
-
   view :data, cache: :never do
     wrap do
       [_render_filter, _render_table]

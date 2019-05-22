@@ -41,6 +41,11 @@ format :html do
   #   ]
   # end
 
+  # TODO: replace this temporary solution:
+  view :action_from_details do
+    render_research_button if metric_card.researchable?
+  end
+
   def details_top
     class_up "full-page-link", "metric-color"
     haml :details_top
@@ -64,10 +69,10 @@ format :html do
   end
 
   view :company_header do
-    nest card.company_card, view: :rich_header, hide: :menu
+    nest card.company_card, view: :shared_header
   end
 
   view :metric_header do
-    nest card.metric_card, view: :rich_header, hide: :menu
+    nest card.metric_card, view: :shared_header
   end
 end
