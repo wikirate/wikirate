@@ -28,7 +28,6 @@ format :html do
   view :title_and_question do
     wrap_with :div do
       [render_metric_title,
-       render_designer_info,
        render_metric_question]
     end
   end

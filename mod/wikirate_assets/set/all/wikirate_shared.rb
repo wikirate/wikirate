@@ -15,7 +15,6 @@ MENU_REFS = { "Groups" => "Research Groups",
               "Facebook" => "https://www.facebook.com/wikirate/",
               "Twitter" => "https://twitter.com/WikiRate",
               "Instagram" => "https://www.instagram.com/wikirate/",
-              "Telegram" => "https://t.me/WikiRate",
               "Notice" => "Notice and Take Down Procedure",
               "Legal" => "https://wikirateproject.org/Legal" }.freeze
 

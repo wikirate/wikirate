@@ -175,6 +175,5 @@ def self.delegate_to_metric_card_if_available *methods
 end
 
 delegate_to_metric_card_if_available :researched?, :calculated?, :hybrid?,
-                                     :researchable?, :inverse?,
                                      :relationship?, :standard?, :descendant?,
                                      :score?, :ten_scale?, :rating?
