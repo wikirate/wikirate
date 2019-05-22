@@ -337,7 +337,7 @@ GEM
       fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
-    fog-ovirt (1.1.7)
+    fog-ovirt (1.2.0)
       fog-core
       fog-json
       fog-xml
