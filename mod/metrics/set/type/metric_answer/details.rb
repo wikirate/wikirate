@@ -41,6 +41,11 @@ format :html do
   #   ]
   # end
 
+  # TODO: replace this temporary solution:
+  view :action_from_details do
+    render_research_button if researchable?
+  end
+
   def details_top
     class_up "full-page-link", "metric-color"
     haml :details_top
