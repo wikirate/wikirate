@@ -17,8 +17,6 @@ format :html do
     end
   end
 
-
-
   # ~~~~~~~~~~~ DETAILS IN PROJECT LISTING
 
   # TODO: create version of bar to use on homepage and get rid of listing_compact
@@ -86,13 +84,13 @@ format :html do
   end
 
   def organizer_detail
-    field_nest :organizer, view: :labeled, title: "Organizer",
+    field_nest :organizer, view: :labeled, title: "Project Organizer",
                            items: { view: :thumbnail_plain }
   end
 
   def topic_detail
     field_nest :wikirate_topic, view: :labeled, title: "Topics",
-               items: { view: :link }
+                                items: { view: :link }
   end
 
   def subproject_detail

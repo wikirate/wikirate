@@ -25,7 +25,6 @@ body.home-layout.wikirate-layout > nav.navbar {
   -webkit-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
   -moz-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
   box-shadow: 0 9px 20px rgba(0,0,0,0.06);
-  border: 0
 }
 
 .card-menu.btn-group {
@@ -226,14 +225,15 @@ div[data-slot*="float:right"]{
 
 body.wikirate-two-column-layout {
   .titled-view .d0-card-header {
+    margin-top: 1em;
     border: 0
   }
 
   h1, h2, .d0-card-header-title .card-title {
-    font-size: 1.6rem !important;
+    font-size: 1.5rem !important;
   }
   h3, h4 {
-    font-size: 1.4rem !important;
+    font-size: 1.35rem !important;
   }
   h5, h6 {
     font-size: 1.2rem !important;
@@ -256,15 +256,15 @@ body#tinymce, body.wikirate-one-column-layout {
   .RIGHT-introduction.content-view {
     font-size: 1.25rem;
   }
-  h1, h2, h3, h4, h5, h6, .d0-card-header-title .card-title {
+  h1, h2, h3, h4, h5, h6, .d0-card-header-title {
     font-weight: normal;
     margin-top: 1em;
   }
-  h1, h2, .titled-view >.d0-card-header > .d0-card-header-title .card-title {
+  h1, h2, .titled-view >.d0-card-header > .d0-card-header-title {
     font-weight: normal;
     font-size: 2rem;
   }
-  h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title .card-title {
+  h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title {
     border-bottom: 1px solid #ccc;
     padding-bottom: 0.1em;
     margin-bottom: 0.3em;
