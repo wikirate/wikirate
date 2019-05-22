@@ -17,7 +17,6 @@ format :html do
     wrap_with :div, class: "profile-data" do
       [
         field_nest("+about me", view: :titled, title: "About me"),
-        content_tag(:hr),
         field_nest(:discussion, view: :titled, title: "Discussion", show: :comment_box)
       ]
     end
