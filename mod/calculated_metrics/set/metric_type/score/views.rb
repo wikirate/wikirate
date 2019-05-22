@@ -30,6 +30,7 @@ format :html do
     {
       metric_type:    "Metric Type",
       scored_metric:  "Scored Metric",
+      scorer:         "Scored by",
       wikirate_topic: "Topics"
     }
   end
@@ -95,11 +96,11 @@ format :html do
     end
   end
 
-  # def scorer_property title
-  #   wrap :div, class: "row scorer-property" do
-  #     labeled title, nest(scorer_card, view: :scorer_info_without_label)
-  #   end
-  # end
+  def scorer_property title
+    wrap :div, class: "row scorer-property" do
+      labeled title, nest(scorer_card, view: :scorer_info_without_label)
+    end
+  end
 
   # def visit_original_metric_link
   #   link_to_card basic_metric_card,
