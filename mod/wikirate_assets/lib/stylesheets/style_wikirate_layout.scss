@@ -1,7 +1,7 @@
 
 
 :root {
-    font-size: 95%;
+  font-size: 95%;
 }
 
 body {
@@ -25,7 +25,6 @@ body.home-layout.wikirate-layout > nav.navbar {
   -webkit-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
   -moz-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
   box-shadow: 0 9px 20px rgba(0,0,0,0.06);
-  border: 0
 }
 
 .card-menu.btn-group {
@@ -171,8 +170,8 @@ div[data-slot*="float:right"]{
 }
 
 .wikirate-layout > nav.navbar {
-    box-shadow: none;
-    border-bottom: 1px solid $border-color;
+  box-shadow: none;
+  border-bottom: 1px solid $border-color;
 }
 
 .titled-view .d0-card-header {
