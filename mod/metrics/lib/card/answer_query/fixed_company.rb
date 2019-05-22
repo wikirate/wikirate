@@ -27,18 +27,14 @@ class Card
       end
 
       def topic_query value
-        metric_ids =
-          Card.search right_plus: [Card::WikirateTopicID, { refer_to: value }],
-                      return: :id
-        restrict_to_ids :metric_id, metric_ids
+        restrict_by_wql :metric_id,
+                        right_plus: [Card::WikirateTopicID, { refer_to: value }]
       end
       alias wikirate_topic_query topic_query
 
       def project_query value
-        metric_ids =
-          Card.search referred_to_by: "#{value}+#{Card.fetch_name :metric}",
-                      return: :id
-        restrict_to_ids :metric_id, metric_ids
+        restrict_by_wql :metric_id,
+                        referred_to_by: "#{value}+#{:metric.cardname}"
       end
 
       def importance_query value
@@ -46,9 +42,7 @@ class Card
         return if values.size == 3 || values.empty?
         return unless Auth.signed_in? # FIXME: use session votes
 
-        wql = { type_id: MetricID, limit: 0, return: :id }
-        wql.merge! vote_wql(values)
-        restrict_to_ids :metric_id, Card.search(wql)
+        restrict_by_wql :metric_id, { type_id: MetricID }.merge(vote_wql(values))
       end
 
       # @param values [Array<Symbol>] has to contains one or two of the symbols

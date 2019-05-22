@@ -64,16 +64,6 @@ class Card
 
     private
 
-    def restrict_to_ids col, ids
-      ids = Array(ids)
-      @empty_result = ids.empty?
-      if @restrict_to_ids[col]
-        @restrict_to_ids[col] &= ids
-      else
-        @restrict_to_ids[col] = ids
-      end
-    end
-
     def known_answers
       return [] if @empty_result
       answer_lookup.answer_cards.compact

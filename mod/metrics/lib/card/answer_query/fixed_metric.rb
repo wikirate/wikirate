@@ -31,17 +31,12 @@ class Card
       end
 
       def project_query value
-        company_ids = Card.search(
-          referred_to_by: "#{value}+#{Card.fetch_name :wikirate_company}",
-          return: :id
-        )
-        restrict_to_ids :company_id, company_ids
+        restrict_by_wql :company_id,
+                        referred_to_by: "#{value}+#{:wikirate_company.cardname}"
       end
 
       def industry_query value
-        company_ids =
-          Card.search CompanyFilterQuery.industry_wql(value).merge(return: :id)
-        restrict_to_ids :company_id, company_ids
+        restrict_by_wql :company_id, CompanyFilterQuery.industry_wql(value)
       end
 
       def outliers_query

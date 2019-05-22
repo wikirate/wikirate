@@ -12,6 +12,11 @@ class Card
         end
       end
 
+      def restrict_by_wql col, wql
+        wql.reverse_merge! return: :id, limit: 0
+        restrict_to_ids col, Card.search(wql)
+      end
+
       # :researched (known + unknown) is default case;
       # :all and :none are handled in #run
       def status_query value
@@ -27,11 +32,6 @@ class Card
         return unless (period = timeperiod value)
 
         filter :updated_at, Time.now - period, ">"
-      end
-
-      def range_query value
-        filter :numeric_value, value[:from], ">=" if value[:from].present?
-        filter :numeric_value, value[:to], "<" if value[:to].present?
       end
 
       def year_query value
@@ -54,9 +54,20 @@ class Card
       def value_query value
         case value
         when Array then filter :value, value
-        when Hash  then range_query value
+        when Hash  then numeric_range_query value
         else            filter_like :value, value
         end
+      end
+
+      def numeric_range_query value
+        filter :numeric_value, value[:from], ">=" if value[:from].present?
+        filter :numeric_value, value[:to], "<" if value[:to].present?
+      end
+
+      def source_query value
+        restrict_by_wql :answer_id,
+                        type_id: MetricAnswerID,
+                        right_plus: [SourceID, { refer_to: value }]
       end
 
       def timeperiod value
