@@ -1,6 +1,12 @@
+include_set Abstract::Filterable
+
 format :html do
   # BAR VIEWS
-  view :bar_left, template: :haml
+  view :bar_left do
+    filterable :source do
+      haml :bar_left
+    end
+  end
   view :bar_right, template: :haml
 
   view :bar_middle do
