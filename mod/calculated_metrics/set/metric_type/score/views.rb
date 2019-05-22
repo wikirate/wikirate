@@ -88,9 +88,6 @@ format :html do
     end
   end
 
-  labeled title, nest(card.metric_designer_card, view: :thumbnail)
-
-
   def scorer_property title
     wrap :div, class: "row scorer-property" do
       labeled title, nest(scorer_card, view: :thumbnail)

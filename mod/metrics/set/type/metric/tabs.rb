@@ -11,7 +11,6 @@ format :html do
   view :details_tab do
     tab_wrap do
       [_render_metric_properties,
-       wrap_with(:hr, ""),
        render_main_details]
     end
   end

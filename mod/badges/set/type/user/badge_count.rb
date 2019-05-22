@@ -21,10 +21,7 @@ format :html do
 
   def wrap_badge
     wrap_with :div, class: "badges-earned" do
-      [
-        content_tag(:h4, "Badges earned"),
-        content_tag(:h3, medal_counts("vertical"))
-      ]
+      content_tag :h3, medal_counts("horizontal")
     end
   end
 end
