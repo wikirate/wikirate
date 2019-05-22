@@ -41,14 +41,9 @@ format :html do
     field_nest :metric_answer
   end
 
-  def header_right
-    wrap_with :h3, class: "company-color" do
-      link_to_card card, nil, class: "inherit-anchor"
-    end
-  end
-
-  view :rich_header_body do
-    text_with_image title: "", text: header_right, size: :medium
+  def header_body size=:medium
+    class_up "media-heading", "company-color"
+    super
   end
 
   def left_column_class

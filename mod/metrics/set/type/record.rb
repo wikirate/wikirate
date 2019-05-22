@@ -30,8 +30,8 @@ end
 format :html do
   view :core do
     [
-      nest(card.metric_card, view: :rich_header),
-      nest(card.company_card, view: :rich_header),
+      nest(card.metric_card, view: :shared_header),
+      nest(card.company_card, view: :shared_header),
       all_answers.map do |answer|
         nest answer, view: :bar
       end,

@@ -1,4 +1,3 @@
-include_set Abstract::Header
 include_set Abstract::Tabs
 
 format :html do
