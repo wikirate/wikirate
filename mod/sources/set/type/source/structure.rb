@@ -1,8 +1,15 @@
-include_set Abstract::Tabs
+include_set Abstract::TwoColumnLayout
 
 format :html do
-  def layout_name_from_rule
-    :wikirate_two_column_layout
+  # TODO: use more of two_column_layout defaults.  (but configure columns)
+  view :open_content do
+    hidden_information +
+    bs_layout(container: false, fluid: true) do
+      row 7, 5, class: "source-preview-container two-column-box" do
+        column _render_preview, class: "source-preview nodblclick"
+        column _render_right_column
+      end
+    end
   end
 
   before :content_formgroup do

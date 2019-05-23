@@ -29,7 +29,7 @@ format :html do
 
   view :right_column do
     add_name_context
-    [render_tabs, render_type_link]
+    [render_type_link, render_tabs]
   end
 
   view :data, cache: :never do
@@ -37,6 +37,8 @@ format :html do
       [_render_filter, _render_table]
     end
   end
+
+  view :type_link, template: :haml
 
   def two_column_layout col1=6, col2=6, row_hash={}
     bs_layout container: false, fluid: true, class: container_class do
@@ -47,7 +49,6 @@ format :html do
       end
     end
   end
-
 
   # OVERRIDE
 
