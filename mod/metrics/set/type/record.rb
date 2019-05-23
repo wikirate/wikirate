@@ -30,11 +30,9 @@ end
 format :html do
   view :core do
     [
-      nest(card.metric_card, view: :shared_header),
-      nest(card.company_card, view: :shared_header),
-      all_answers.map do |answer|
-        nest answer, view: :bar
-      end,
+      nest(card.metric_card, view: :thumbnail),
+      nest(card.company_card, view: :thumbnail),
+      render_years_and_values,
       add_answer_button
     ]
   end
@@ -53,10 +51,8 @@ format :html do
 
   # NOCACHE because item search
   view :years_and_values, cache: :never do
-    output do
-      all_answers.map do |a|
-        nest a, view: :year_and_value
-      end
+    all_answers.map do |a|
+      nest a, view: :year_and_value_pretty_link
     end
   end
 

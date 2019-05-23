@@ -30,6 +30,10 @@ format :html do
     end
   end
 
+  def type_link_label
+    "Researcher"
+  end
+
   def tab_list
     %i[research_group contributions activity]
   end

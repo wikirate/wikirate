@@ -11,7 +11,7 @@ format :html do
           card_form :update,
                     "main-success" => "REDIRECT",
                     "data-slot-selector": ".card-slot.slot_machine-view",
-                    success: research_form_success.merge(view: :slot_machine) do
+                    success: research_form_success do
             output [edit_view_hidden, _render_content_formgroup]
           end
         end
@@ -45,7 +45,7 @@ format :html do
   def answer_delete_button
     confirm = "Are you sure you want to delete the #{card.metric_name} answer "\
               "for #{card.company_name} for #{card.year}?"
-    success = research_params.merge(view: :slot_machine, id: Card[:research_page].name)
+    success = research_params.merge(mark: :research_page.cardname)
 
     smart_link_to "Delete",
                   type: "button",

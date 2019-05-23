@@ -20,25 +20,6 @@ format do
 end
 
 format :html do
-  NEW_BADGE = '<span class="badge badge-danger">New</span>'.freeze
-
-  # def menu_icon
-  #   fa_icon "pencil-square-o"
-  # end
-
-  def header_title_elements
-    voo.hide :title_badge
-    [super, _render_title_badge]
-  end
-
-  view :title_badge do
-    wrap_with :span, title_badge_count, class: "badge"
-  end
-
-  def title_badge_count
-    card.count
-  end
-
   view :og_source, unknown: true do
     if card.real?
       card.format.render_source
