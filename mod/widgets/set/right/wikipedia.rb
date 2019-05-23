@@ -68,7 +68,7 @@ format :html do
   end
 
   def original_link
-    super wikipedia_url, class: "external-link", text: "<small>Visit Original</small>"
+    super wikipedia_url, class: "external-link", text: "<small>en.wikipedia.org</small>"
   end
 end
 

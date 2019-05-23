@@ -8,7 +8,7 @@ format :html do
   # AS RESEARCH PAGE
 
   # NOCACHE because slot machine manipulates instance variables
-  view :open, cache: :never do
+  view :open do
     wrap do
       subformat(:research_page).slot_machine metric: card.metric,
                                              company: card.company,
@@ -30,6 +30,7 @@ format :html do
   end
 
   view :research_button, unknown: true do
+    return "" unless metric_card.user_can_answer?
     link_to_card :research_page, "Research answer",
                  target: "_blank",
                  class: "btn btn-primary btn-sm research-answer-button",

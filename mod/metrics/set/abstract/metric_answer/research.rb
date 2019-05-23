@@ -121,7 +121,7 @@ format :html do
   end
 
   def research_form_success
-    research_params.merge id: ":research_page", redirect: true, view: :slot_machine
+    research_params.merge id: ":research_page", redirect: true
   end
 
   def new_buttons

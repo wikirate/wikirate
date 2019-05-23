@@ -24,8 +24,27 @@ format :html do
     super
   end
 
+  def header_text
+    return unless contribs_made?
+
+    if contrib_page?
+      switch_to :wikirate_company, "N", title: "Company performance profile"
+    else
+      switch_to :user, "Y", title: "Content contributions to WikiRate.org"
+    end
+  end
+
+  def switch_to icon, val, opts={}
+    opts.merge! class: "company-switch", path: { contrib: val }
+    link_to_card card, mapped_icon_tag(icon), opts
+  end
+
   view :data do
-    field_nest :metric_answer
+    if contrib_page?
+      render_contributions_data
+    else
+      field_nest :metric_answer
+    end
   end
 
   # RIGHT SIDE
@@ -35,13 +54,15 @@ format :html do
   end
 
   def tab_list
-    list = %i[details wikirate_topic source project]
-    list.insert(1, :contributions) if contributions_made?
-    list
+    if contrib_page?
+      %i[projects_organized details]
+    else
+      %i[details wikirate_topic source project]
+    end
   end
 
   def tab_options
-    { contributions: { count: nil, label: "Contributions" } }
+    { projects_organized: { label: "Projects Organized" } }
   end
 
   view :wikirate_topic_tab do
@@ -49,15 +70,11 @@ format :html do
   end
 
   view :source_tab do
-    field_nest :source, items: { view: :bar }
+    filtering { field_nest :source, items: { view: :bar } }
   end
-
+  
   view :project_tab do
     filtering { field_nest :project, items: { view: :bar } }
-  end
-
-  view :contributions_tab do
-    [render_metric_contributions, render_project_contributions]
   end
 
   view :details_tab do

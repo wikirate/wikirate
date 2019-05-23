@@ -37,7 +37,7 @@ format do
   end
 
   def chart_filter_query
-    FixedMetricAnswerQuery.new chart_metric_id, chart_filter_hash
+    AnswerQuery::FixedMetric.new chart_metric_id, chart_filter_hash
   end
 
   def chart_metric_id

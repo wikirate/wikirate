@@ -2,7 +2,7 @@ include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[status year wikirate_company wikirate_company value updated check project]
+  %i[status year wikirate_company wikirate_company value updated check source project]
 end
 
 def default_filter_option

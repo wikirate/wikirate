@@ -27,7 +27,7 @@ format :html do
 
   # def add_value_link
   #   link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
-  #                path: { metric: card.name, view: :slot_machine },
+  #                path: { metric: card.name},
   #                class: "btn btn-primary",
   #                title: "Research answer for another year"
   # end

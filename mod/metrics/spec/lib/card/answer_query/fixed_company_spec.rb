@@ -1,6 +1,6 @@
 require "./test/seed"
 
-RSpec.describe Card::FixedCompanyAnswerQuery do
+RSpec.describe Card::AnswerQuery::FixedCompany do
   RESEARCHED_TITLES = ["Industry Class", "Weapons", "big multi", "big single",
                        "researched number 2", "researched number 3", "small multi",
                        "small single"].freeze

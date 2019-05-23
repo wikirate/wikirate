@@ -22,4 +22,9 @@ format :html do
     val = ICON_MAP[key]
     val.is_a?(Array) ? val.map(&:clone) : val
   end
+
+  def mapped_icon_tag key
+    return unless key.present? && (icon_args = icon_map(key))
+    icon_tag(*Array.wrap(icon_args))
+  end
 end
