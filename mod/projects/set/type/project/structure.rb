@@ -1,14 +1,6 @@
 include_set Abstract::TwoColumnLayout
 
 format :html do
-  view :open_content do
-    two_column_layout 5, 7
-  end
-
-  before :open do
-    voo.hide! :header
-  end
-
   before :content_formgroup do
     voo.edit_structure = [
       :image,
@@ -23,6 +15,14 @@ format :html do
     ]
   end
 
+  before :open do
+    voo.hide! :header
+  end
+
+  view :open_content do
+    two_column_layout 5, 7
+  end
+
   view :data do
     wrap_with :div, class: "project-details" do
       project_details
@@ -31,7 +31,7 @@ format :html do
 
   view :right_column do
     wrap_with :div, class: "progress-column" do
-      [overall_progress_box, _render_tabs, _render_export_links]
+      [render_type_link, overall_progress_box, _render_tabs, _render_export_links]
     end
   end
 

@@ -87,10 +87,10 @@
 }
 
 .progress-legend {
-  float: right;
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
   display: inline-flex;
+  padding-top: 4px;
   .progress {
     width: 15px;
     height: 15px;
