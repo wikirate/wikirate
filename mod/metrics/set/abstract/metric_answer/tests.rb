@@ -23,8 +23,12 @@ def inverse?
   metric_card.inverse?
 end
 
+def researchable?
+  metric_card.researchable?
+end
+
 format do
-  delegate :calculation_overridden?, :researched_value?, :researchable?,
+  delegate :calculation_overridden?, :researched_value?,
            :uncalculated?, :inverse?,
            to: :card
 end
