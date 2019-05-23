@@ -70,9 +70,9 @@ format :html do
   end
 
   view :source_tab do
-    field_nest :source, items: { view: :bar }
+    filtering { field_nest :source, items: { view: :bar } }
   end
-
+  
   view :project_tab do
     filtering { field_nest :project, items: { view: :bar } }
   end

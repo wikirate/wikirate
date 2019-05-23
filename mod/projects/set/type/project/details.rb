@@ -34,7 +34,7 @@ format :html do
   bar_cols 8, 4
 
   view :bar_left do
-    filterable :project, card.name, class: "w-100" do
+    filterable :project, nil, class: "w-100" do
       text_with_image image: card.field(:image),
                       size: voo.size,
                       title: render_title_link,
