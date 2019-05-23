@@ -6,13 +6,10 @@
       = original_link
     = _render_creator_credit
 
-    = field_nest :wikirate_title, view: :labeled, title: "Title"
-    = field_nest :year, view: :labeled, title: "Year", items: { view: :name}
-    = field_nest :report_type,
-                 view: :labeled, title: "Report Type", items: { view: :name}
-    = field_nest :wikirate_topic,
-                 view: :labeled, title: "Topics", items: { view: :link}
-    = field_nest :wikirate_company,
-                 view: :labeled, title: "Companies", items: { view: :link}
-    = field_nest :description, view: :titled, title: "Description"
-    = field_nest :discussion, view: :titled, title: "Discussion", show: :comment_box
+    = labeled_field :wikirate_title
+    = labeled_field :year
+    = labeled_field :report_type
+    = labeled_field :wikirate_topic, :link, title: "Topics"
+    = labeled_field :wikirate_company, :link, title: "Companies"
+    = field_nest :description, view: :titled
+    = field_nest :discussion, view: :titled, show: :comment_box

@@ -8,11 +8,11 @@ format :html do
     wrap_with :div do
       [
         subproject_detail,
-        status_detail,
-        organizer_detail,
-        topic_detail,
-        field_nest(:description, view: :titled, title: "Description"),
-        field_nest(:conversation, view: :titled, title: "Conversation")
+        labeled_field(:wikirate_status),
+        labeled_field(:organizer,:thumbnail_plain),
+        labeled_field(:wikirate_topic, :link, title: "Topics"),
+        field_nest(:description, view: :titled),
+        field_nest(:conversation, view: :titled)
       ]
     end
   end
@@ -51,8 +51,7 @@ format :html do
   end
 
   view :bar_bottom do
-    output [topics_details,
-            field_nest(:description, view: :titled, title: "Description")]
+    project_details
   end
 
   def bar_layout
@@ -79,23 +78,9 @@ format :html do
     end
   end
 
-  def status_detail
-    field_nest :wikirate_status, view: :labeled, items: { view: :name }, title: "Status"
-  end
-
-  def organizer_detail
-    field_nest :organizer, view: :labeled, title: "Project Organizer",
-                           items: { view: :thumbnail_plain }
-  end
-
-  def topic_detail
-    field_nest :wikirate_topic, view: :labeled, title: "Topics",
-                                items: { view: :link }
-  end
-
   def subproject_detail
     return if card.parent.blank?
-    field_nest :parent, view: :labeled, title: "Subproject of", items: { view: :link }
+    labeled_field :parent, :link, title: "Subproject of"
   end
 
   view :stats_details, cache: :never do

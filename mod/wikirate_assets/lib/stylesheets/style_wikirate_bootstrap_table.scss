@@ -130,6 +130,14 @@ table.wikirate-table, .table.wikirate-table {
   }
 }
 
+.RIGHT-answer .wikirate-table {
+  border-width: 0 0 1px 0;
+  th {
+    border: 0;
+  }
+
+}
+
 //---Custom Table Properties---//
 
 //Project Page

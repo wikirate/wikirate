@@ -223,23 +223,22 @@ div[data-slot*="float:right"]{
 }
 
 
-body.wikirate-two-column-layout {
-  .titled-view .d0-card-header {
-    margin-top: 1em;
-    border: 0
-  }
+.titled-view .d0-card-header {
+  margin-top: 0.5em;
+  border: 0
+}
 
-  h1, h2, .d0-card-header-title .card-title {
-    font-size: 1.5rem !important;
+body.wikirate-two-column-layout {
+  h1, h2 {
+    font-size: 1.6rem !important;
   }
-  h3, h4 {
-    font-size: 1.35rem !important;
+  h3, h4, .d0-card-header-title .card-title {
+    font-size: 1.4rem !important;
   }
   h5, h6 {
     font-size: 1.2rem !important;
   }
 }
-
 
 body#tinymce, body.wikirate-one-column-layout {
   #main > .titled-view>.d0-card-header {

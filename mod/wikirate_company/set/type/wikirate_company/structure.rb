@@ -7,8 +7,31 @@ card_accessor :open_corporates
 card_accessor :post
 
 format :html do
+  # EDITING
+
   before :content_formgroup do
     voo.edit_structure = [:headquarters, :image, :wikipedia]
+  end
+
+  # LEFT SIDE
+
+  def left_column_class
+    "left-col order-2 order-md-1 hide-header-sm"
+  end
+
+  def header_body size=:medium
+    class_up "media-heading", "company-color"
+    super
+  end
+
+  view :data do
+    field_nest :metric_answer
+  end
+
+  # RIGHT SIDE
+
+  def right_column_class
+    "right-col order-1 order-md-2"
   end
 
   def tab_list
@@ -37,41 +60,17 @@ format :html do
     [render_metric_contributions, render_project_contributions]
   end
 
-  view :data do
-    field_nest :metric_answer
-  end
-
-  def header_body size=:medium
-    class_up "media-heading", "company-color"
-    super
-  end
-
-  def left_column_class
-    "left-col order-2 order-md-1 hide-header-sm"
-  end
-
-  def right_column_class
-    "right-col order-1 order-md-2"
-  end
-
   view :details_tab do
-    bs_layout do
-      row 12 do
-        column do
-          output [properties, integrations]
-        end
-      end
-    end
+    details
   end
 
-  def properties
-    field_nest :headquarters, title: "Headquarters",
-                              view: :labeled, items: { view: :name }
+  def details
+    output [labeled_field(:headquarters), integrations]
   end
 
   def integrations
     output [
-      content_tag(:h3, "Integrations"),
+      content_tag(:h1, "Integrations"),
       wikipedia_extract,
       open_corporates_extract
     ]

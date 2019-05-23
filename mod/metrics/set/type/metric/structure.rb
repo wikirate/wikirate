@@ -38,7 +38,7 @@ format :html do
 
   view :question do
     wrap_with :div, class: "icon-and-question d-flex" do
-      [fa_icon(:question), field_nest(:question, view: :content, title: "Question")]
+      [fa_icon(:question), field_nest(:question, view: :content)]
     end
   end
 end
