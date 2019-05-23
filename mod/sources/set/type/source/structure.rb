@@ -1,19 +1,16 @@
 include_set Abstract::TwoColumnLayout
 
 format :html do
-  # TODO: use more of two_column_layout defaults.  (but configure columns)
-  view :open_content do
-    hidden_information +
-    bs_layout(container: false, fluid: true) do
-      row 7, 5, class: "source-preview-container two-column-box" do
-        column _render_preview, class: "source-preview nodblclick"
-        column _render_right_column
-      end
-    end
-  end
-
   before :content_formgroup do
     voo.edit_structure = form_fields
+  end
+
+  view :open_content do
+    hidden_information + two_column_layout(7, 5)
+  end
+
+  view :left_column do
+    render_preview
   end
 
   def form_fields

@@ -3,9 +3,6 @@
 # end
 
 format :html do
-  view :source_preview_container do
-  end
-
   view :bar_and_preview, cache: :never do
     wrap do
       [render_close_icon,
@@ -16,7 +13,9 @@ format :html do
   end
 
   view :preview do
-    nest card.file_card, view: :preview
+    wrap_with :div, class: "nodblclick" do
+      nest card.file_card, view: :preview
+    end
   end
 
   def hidden_information

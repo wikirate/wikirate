@@ -394,6 +394,15 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   margin-left: -1px;
 }
 
+.TYPE-source.open-view {
+  .left-col {
+    border: 0;
+  }
+  .right-col {
+    border: 0;
+  }
+}
+
 // metric value details
 #metric-container, #source-preview-main {
   border: 1px solid $gray-100;
