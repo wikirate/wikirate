@@ -182,6 +182,9 @@ div[data-slot*="float:right"]{
 .media-body {
   .media-heading {
     font-size: 1.5rem !important;
+    a {
+      color: inherit;
+    }
   }
   .media-text {
     clear: both;
@@ -207,39 +210,42 @@ div[data-slot*="float:right"]{
     }
     .media-heading {
       font-size: 1.7rem !important;
+      .card-title {
+        color: inherit;
+      }
     }
   }
-
-  //> .card-menu._show-on-hover > a {
-  //  display: none;
-  //}
-//
-  //&:hover > .card-menu._show-on-hover {
-  //  z-index: 2;
-  //  > a {
-  //    display: inline-block;
-  //  }
-  //}
 }
 
 
-body.wikirate-two-column-layout {
-  .titled-view .d0-card-header {
-    margin-top: 1em;
-    border: 0
-  }
+.titled-view .d0-card-header {
+  margin-top: 0.5em;
+  border: 0
+}
 
-  h1, h2, .d0-card-header-title .card-title {
-    font-size: 1.5rem !important;
+body.wikirate-two-column-layout {
+  h1, h2 {
+    font-size: 1.6rem !important;
   }
-  h3, h4 {
-    font-size: 1.35rem !important;
+  h3, h4, .d0-card-header-title .card-title {
+    font-size: 1.4rem !important;
   }
   h5, h6 {
     font-size: 1.2rem !important;
   }
+  .type-link {
+    position: absolute;
+    right: 0;
+    padding: 1px 1em;
+    a {
+      color: inherit;
+    }
+    span {
+      font-size: 1.1em;
+      font-variant: small-caps;
+    }
+  }
 }
-
 
 body#tinymce, body.wikirate-one-column-layout {
   #main > .titled-view>.d0-card-header {

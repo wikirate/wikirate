@@ -21,7 +21,11 @@ format :html do
   end
 
   def header_body size=:medium
-    text_with_image title: header_right, text: "", size: size
+    text_with_image title: header_right, text: header_text, size: size
+  end
+
+  def header_text
+    ""
   end
 
   view :shared_header do
