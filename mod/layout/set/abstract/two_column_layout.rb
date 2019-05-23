@@ -22,6 +22,22 @@ format :html do
     two_column_layout
   end
 
+  view :left_column do
+    # had slot before
+    output [naming { render_rich_header }, _render_data]
+  end
+
+  view :right_column do
+    add_name_context
+    [render_tabs, render_type_link]
+  end
+
+  view :data, cache: :never do
+    wrap do
+      [_render_filter, _render_table]
+    end
+  end
+
   def two_column_layout col1=6, col2=6, row_hash={}
     bs_layout container: false, fluid: true, class: container_class do
       row_hash[:class] ||= "panel-margin-fix two-column-box"
@@ -32,15 +48,8 @@ format :html do
     end
   end
 
-  view :left_column do
-    # had slot before
-    output [naming { render_rich_header }, _render_data]
-  end
 
-  view :right_column do
-    add_name_context
-    _render_tabs
-  end
+  # OVERRIDE
 
   def container_class
     ""
@@ -52,11 +61,5 @@ format :html do
 
   def right_column_class
     "right-col"
-  end
-
-  view :data, cache: :never do
-    wrap do
-      [_render_filter, _render_table]
-    end
   end
 end
