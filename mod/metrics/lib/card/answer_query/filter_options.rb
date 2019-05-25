@@ -7,7 +7,7 @@ class Card
       def filter key, value, operator=nil
         db_col = db_column key
         db_op = db_operator operator, value
-        db_val = d_value value
+        db_val = db_value value
         @conditions << "answers.#{db_col} #{db_op} #{db_val}"
         @values << value
       end
