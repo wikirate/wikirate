@@ -28,6 +28,10 @@
   }
 }
 
+.metric_properties-view {
+  width: 100% !important;
+}
+
 .filter.panel {
   background: #F9F9F9;
   border-radius: 0;
@@ -388,6 +392,15 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .right-col {
   border-left: 1px solid $border-color;
   margin-left: -1px;
+}
+
+.TYPE-source.open-view {
+  .left-col {
+    border: 0;
+  }
+  .right-col {
+    border: 0;
+  }
 }
 
 // metric value details

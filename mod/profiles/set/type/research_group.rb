@@ -41,28 +41,19 @@ format :html do
     two_column_layout 5, 7
   end
 
-  def header_right
-    wrap_with :div, class: "header-right" do
-      [
-        wrap_with(:h6, card.type.upcase, class: "text-muted border-bottom pt-2 pb-2"),
-        wrap_with(:h5, _render_title, class: "project-title font-weight-normal")
-      ].compact
-    end
-  end
-
-  view :rich_header_body do
-    text_with_image title: "", text: header_right, size: :medium
-  end
-
   view :data do
-    output [
-      field_nest(:organizer, view: :titled,
-                             title: "Organizer",
-                             items: { view: :thumbnail_plain }),
-      standard_nest(:wikirate_topic),
-      field_nest(:description, view: :titled, title: "Description"),
-      standard_nest(:conversation)
-    ]
+    [organizer_detail,
+     topic_detail,
+     field_nest(:description, view: :titled),
+     standard_nest(:conversation)]
+  end
+
+  def organizer_detail
+    labeled_field :organizer, :thumbnail_plain, title: "Group Organizer"
+  end
+
+  def topic_detail
+    labeled_field :wikirate_topic, :link, { title: "Topics" }
   end
 
   view :thumbnail_subtitle do

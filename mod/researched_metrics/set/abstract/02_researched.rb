@@ -14,7 +14,7 @@ format :html do
   end
 
   view :main_details do
-    [nest_about, nest_methodology, render_page_link_button].join "<br/>"
+    [nest_about, nest_methodology].join "<br/>"
   end
 
   view :source_tab do
@@ -27,7 +27,7 @@ format :html do
 
   # def add_value_link
   #   link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
-  #                path: { metric: card.name, view: :slot_machine },
+  #                path: { metric: card.name},
   #                class: "btn btn-primary",
   #                title: "Research answer for another year"
   # end

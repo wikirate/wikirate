@@ -72,7 +72,7 @@ format :html do
 
   view :value_cell, unknown: true do
     view = if card.unknown?
-             research_ready? ? :research_button : :blank
+             card.researchable? ? :research_button : :blank
            else
              :concise
            end
@@ -85,6 +85,10 @@ format :html do
   # prominent year, prominent value, less prominent flags
   view :year_and_value, template: :haml
   view :year_and_value_pretty, template: :haml
+
+  view :year_and_value_pretty_link do
+    link_to_card card, render_year_and_value_pretty
+  end
 
   view :year_and_icon do
     wrap_with :span, class: "answer-year" do

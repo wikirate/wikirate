@@ -5,6 +5,7 @@ format :html do
     end
   end
 
+  # FIXME: Can do this with way less custom code
   view :homepage_answer_example, template: :haml do
     @company_image = nest company_card.image_card, size: :small
     @company_link =

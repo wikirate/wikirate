@@ -52,11 +52,10 @@ format :html do
   end
 
   def tab_title_info icon, count
-    icon_tag = tab_title_icon_tag icon
     if count
-      tab_count_badge count, icon_tag
+      tab_count_badge count, icon
     else
-      icon_tag || tab_space
+      icon || tab_space
     end
   end
 
@@ -68,14 +67,9 @@ format :html do
     klass = nil
     if count.is_a? Card
       klass = css_classes count.safe_set_keys
-      count = count.count
+      count = count.try(:cached_count) || count.count
     end
     tab_badge count, icon_tag, klass: klass
-  end
-
-  def tab_title_icon_tag icon
-    return unless icon.present?
-    icon_tag(*Array.wrap(icon))
   end
 
   def tab_title_parts fieldcode, opts
@@ -90,7 +84,7 @@ format :html do
   end
 
   def tab_title_icon fieldcode
-    icon_map fieldcode
+    mapped_icon_tag fieldcode
   end
 
   def tab_title_label fieldcode

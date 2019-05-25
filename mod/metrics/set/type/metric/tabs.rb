@@ -11,15 +11,13 @@ format :html do
   view :details_tab do
     tab_wrap do
       [_render_metric_properties,
-       wrap_with(:hr, ""),
        render_main_details]
     end
   end
 
   # overridden in Researched
   view :main_details do
-    parts = [nest_formula, nest_about, nest_methodology, render_page_link_button]
-    parts.compact.join "<br/>"
+    [nest_formula, nest_about, nest_methodology].compact.join "<br/>"
   end
 
   def nest_about

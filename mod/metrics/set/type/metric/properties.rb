@@ -1,7 +1,8 @@
 format :html do
   # all metrics show these properties in their properties table
   def basic_table_properties
-    { wikirate_topic: "Topics",
+    { designer:       "Designed by",
+      wikirate_topic: "Topics",
       metric_type:    "Metric Type" }
   end
 
@@ -31,7 +32,7 @@ format :html do
         if respond_to? "#{field}_property"
           send "#{field}_property", label
         else
-          metric_property_nest field, label
+          labeled_field field, :name, title: label
         end
       end
     end
@@ -59,12 +60,6 @@ format :html do
   end
 
   def wikirate_topic_property title
-    metric_property_nest :wikirate_topic, title, item_view: :link
-  end
-
-  private
-
-  def metric_property_nest field, title, item_view: :name
-    field_nest field, view: :labeled, title: title, items: { view: item_view }
+    labeled_field :wikirate_topic, :link, title: title
   end
 end

@@ -22,6 +22,34 @@ format :html do
     two_column_layout
   end
 
+  view :left_column do
+    # had slot before
+    output [naming { render_rich_header }, _render_data]
+  end
+
+  view :right_column do
+    add_name_context
+    [render_type_link, render_tabs]
+  end
+
+  view :data, cache: :never do
+    wrap do
+      [_render_filter, _render_table]
+    end
+  end
+
+  view :type_link, template: :haml do
+    @type_card = card.type_card
+  end
+
+  def type_link_label
+    @type_card.name
+  end
+
+  def type_link_icon
+    mapped_icon_tag @type_card.codename
+  end
+
   def two_column_layout col1=6, col2=6, row_hash={}
     bs_layout container: false, fluid: true, class: container_class do
       row_hash[:class] ||= "panel-margin-fix two-column-box"
@@ -32,15 +60,7 @@ format :html do
     end
   end
 
-  view :left_column do
-    # had slot before
-    output [naming { render_rich_header }, _render_data]
-  end
-
-  view :right_column do
-    add_name_context
-    _render_tabs
-  end
+  # OVERRIDE
 
   def container_class
     ""
@@ -52,30 +72,5 @@ format :html do
 
   def right_column_class
     "right-col"
-  end
-
-  view :rich_header do
-    bs_layout do
-      row 12, class: "rich-header" do
-        html render_menu
-        col class: "p-0 border-bottom" do
-          _render_rich_header_body
-        end
-      end
-    end
-  end
-
-  view :rich_header_body do
-    text_with_image title: "", text: header_right, size: :large
-  end
-
-  def header_right
-    wrap_with :h3, _render_title, class: "header-right"
-  end
-
-  view :data, cache: :never do
-    wrap do
-      [_render_filter, _render_table]
-    end
   end
 end

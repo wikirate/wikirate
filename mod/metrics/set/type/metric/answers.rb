@@ -53,7 +53,7 @@ end
 
 # note: can return True for anonymous user if answer is generally researchable
 def user_can_answer?
-  return unless researchable?
+  return false unless researchable?
 
   # TODO: add metric designer respresentative logic here
   is_admin = Auth.always_ok?

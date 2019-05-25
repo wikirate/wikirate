@@ -14,12 +14,16 @@ card_accessor :wikirate_company
 card_accessor :metric
 
 format :html do
+  def header_body size=:medium
+    class_up "media-heading", "topic-color"
+    super
+  end
   view :missing do
     _render_link
   end
 
   view :bar_left do
-    filterable :wikirate_topic, card.name, class: "w-100" do
+    filterable :wikirate_topic, nil, class: "w-100" do
       render_thumbnail
     end
   end
