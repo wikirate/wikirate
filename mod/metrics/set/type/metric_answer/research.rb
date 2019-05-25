@@ -32,7 +32,6 @@ format :html do
   view :research_button, unknown: true do
     return "" unless metric_card.user_can_answer?
     link_to_card :research_page, "Research answer",
-                 target: "_blank",
                  class: "btn btn-primary btn-sm research-answer-button",
                  path: { metric: card.metric, company: card.company },
                  title: "Research answer"
