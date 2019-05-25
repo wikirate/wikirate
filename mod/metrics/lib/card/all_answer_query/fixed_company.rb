@@ -1,6 +1,6 @@
 class Card
   class AllAnswerQuery
-    # Use WQL to find answers for a given metric
+    # Query researched and not-researched answers for a given company
     class FixedCompany < AllAnswerQuery
       def base_key
         :company_id

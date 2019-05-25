@@ -53,7 +53,7 @@ format :html do
   end
 
   def topic_detail
-    labeled_field :wikirate_topic, :link, { title: "Topics" }
+    labeled_field :wikirate_topic, :link, title: "Topics"
   end
 
   view :thumbnail_subtitle do

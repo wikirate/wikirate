@@ -1,5 +1,6 @@
 class Card
   class AnswerQuery
+    # Handle the where clause in answer queries
     module Where
       def where additional_filter={}
         Answer.where where_args(additional_filter)
@@ -7,6 +8,8 @@ class Card
 
       private
 
+      # TODO: this needs an explanation
+      # (by someone who understands it)
       def set_temp_filter opts
         return unless opts.present?
 

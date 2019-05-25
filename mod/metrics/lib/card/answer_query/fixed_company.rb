@@ -1,6 +1,6 @@
 class Card
   class AnswerQuery
-    # fix a company to search for metrics with/without answers
+    # Query answers for a given company
     class FixedCompany < AnswerQuery
       SIMPLE_FILTERS = ::Set.new(%i[company_id latest]).freeze
       LIKE_FILTERS = ::Set.new(%i[name metric]).freeze
@@ -18,7 +18,7 @@ class Card
       def initialize company_id, *args
         @company_id = company_id
         @company_card = Card.fetch company_id
-        super *args
+        super(*args)
       end
 
       def prepare_filter_args filter
@@ -38,9 +38,9 @@ class Card
       end
 
       def importance_query value
-        values = Array(value).map &:to_sym
-        return if values.size == 3 || values.empty?
-        return unless Auth.signed_in? # FIXME: use session votes
+        values = Array(value).map(&:to_sym)
+        return if values.size == 3 || values.empty? || !Auth.signed_in?
+        # FIXME: use session votes
 
         restrict_by_wql :metric_id, { type_id: MetricID }.merge(vote_wql(values))
       end

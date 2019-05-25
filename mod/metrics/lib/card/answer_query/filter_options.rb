@@ -1,16 +1,27 @@
 class Card
   class AnswerQuery
+    # filter field handling
     module FilterOptions
       protected
 
       def filter key, value, operator=nil
-        @conditions << "answers.#{filter_key_to_db_column key} " +
-          if value.is_a? Array
-            "#{operator || 'IN'} (?)"
-          else
-            "#{operator || '='} ?"
-          end
+        db_col = db_column key
+        db_op = db_operator operator, value
+        db_val = d_value value
+        @conditions << "answers.#{db_col} #{db_op} #{db_val}"
         @values << value
+      end
+
+      def db_column key
+        self.class::DB_COLUMN_MAP[key] || key
+      end
+
+      def db_operator operator, value
+        operator || (value.is_a? Array ? "IN" : "=")
+      end
+
+      def db_value value
+        value.is_a? Array ? "(?)" : "?"
       end
 
       # TODO: optimize with hash lookups for methods
@@ -49,10 +60,6 @@ class Card
         else
           Card.fetch_id(value)
         end
-      end
-
-      def filter_key_to_db_column key
-        self.class::DB_COLUMN_MAP[key] || key
       end
 
       def exact_match_filters

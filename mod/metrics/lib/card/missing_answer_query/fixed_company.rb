@@ -1,6 +1,6 @@
 class Card
-  # find for a fixed company all metrics without metric answers
   module MissingAnswerQuery
+    # query not-researched answers for a given company
     class FixedCompany < AllAnswerQuery::FixedCompany
       include MissingAnswerQuery::Shared
     end

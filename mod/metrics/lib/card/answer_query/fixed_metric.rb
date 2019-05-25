@@ -1,5 +1,6 @@
 class Card
   class AnswerQuery
+    # Query answers for a given metric
     class FixedMetric < AnswerQuery
       SIMPLE_FILTERS = ::Set.new(%i[metric_id latest numeric_value]).freeze
       LIKE_FILTERS = ::Set.new(%i[name wikirate_company]).freeze

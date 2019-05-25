@@ -1,5 +1,7 @@
 class Card
   module MissingAnswerQuery
+    # methods shared by fixed company and fixed metric classes
+    # (to be continued...)
     module Shared
       def run
         subjects_without_answers.map do |subject_name|

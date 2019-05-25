@@ -1,4 +1,5 @@
 class Card
+  # Query for "all" (researched and not researched) answers in a given scope
   class AllAnswerQuery
     def initialize filter, sorting, paging
       @filter = filter.clone
@@ -10,13 +11,9 @@ class Card
       @year = @filter.delete :year
     end
 
-    # @return array of metric answer card objects
-    #   if filtered by missing values then the card objects
-    #   are newly instantiated and not in the database
+    # @return array of answer card objects
     def run
-      all_subject_ids.map do |id|
-        fetch_answer id
-      end
+      all_subject_ids.map { |id| fetch_answer id }
     end
 
     def search_wql

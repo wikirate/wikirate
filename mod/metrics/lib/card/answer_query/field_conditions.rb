@@ -1,7 +1,7 @@
 class Card
   class AnswerQuery
+    # conditions and condition support methods for non-standard fields.
     module FieldConditions
-
       def restrict_to_ids col, ids
         ids = Array(ids)
         @empty_result = ids.empty?
@@ -35,7 +35,7 @@ class Card
       end
 
       def year_query value
-        if value == :latest || value == "latest"
+        if value.to_sym == :latest
           filter :latest, true
         else
           filter :year, value.to_i
