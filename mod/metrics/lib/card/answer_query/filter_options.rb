@@ -17,11 +17,11 @@ class Card
       end
 
       def db_operator operator, value
-        operator || (value.is_a? Array ? "IN" : "=")
+        operator || (value.is_a?(Array) ? "IN" : "=")
       end
 
       def db_value value
-        value.is_a? Array ? "(?)" : "?"
+        value.is_a?(Array) ? "(?)" : "?"
       end
 
       # TODO: optimize with hash lookups for methods
