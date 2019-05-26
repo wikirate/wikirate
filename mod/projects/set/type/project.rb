@@ -65,7 +65,7 @@ alias_method :year_list, :years
 # @param values [Symbol] researched, known, not_researched
 # (need better term for this param)
 def filter_path_args values
-  filter = { project: name, metric_value: values  }
+  filter = { project: name, status: values  }
   # show latest project year.  could consider updating answer tables
   # to handle latest value among a group of years, but that's not yet
   # an option

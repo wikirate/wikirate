@@ -95,10 +95,6 @@ format :html do
                                        ".card-slot.TYPE-metric_answer"
   end
 
-  def menu_link
-    bridge_link + super
-  end
-
   def edit_link view=:edit, _opts={}
     link_to menu_icon, path: research_params.merge(view: view), class: "edit-answer-link"
   end
@@ -120,7 +116,7 @@ format :html do
   end
 
   def research_form_success
-    research_params.merge id: ":research_page", redirect: true, view: :slot_machine
+    research_params.merge id: ":research_page", redirect: true
   end
 
   def new_buttons

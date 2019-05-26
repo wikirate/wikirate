@@ -1,11 +1,7 @@
 include_set Abstract::BrowseFilterForm
 
 def filter_keys
-  %i[name]
-end
-
-def advanced_filter_keys
-  %i[project wikirate_topic]
+  %i[name project wikirate_topic]
 end
 
 def filter_class
@@ -13,15 +9,20 @@ def filter_class
 end
 
 def default_sort_option
-  "metric"
+  "answer"
+end
+
+def default_filter_option
+  { name: "" }
 end
 
 format :html do
   def sort_options
     {
-      "Alphabetical" => "name",
+      "Most Answers" => "answer",
       "Most Metrics" => "metric",
-      "Most Topics" => "topic"
+      "Most Topics" => "topic",
+      "Alphabetical" => "name"
     }
   end
 end

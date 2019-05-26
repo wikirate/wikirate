@@ -16,7 +16,7 @@ format :html do
 
   view :original_link do
     original_link oc.opencorporates_url, class: "external-link",
-                                         text: "<small>Visit Original</small>"
+                                         text: "<small>opencorporates.com</small>"
   end
 
   view :oc_error do

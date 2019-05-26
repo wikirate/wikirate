@@ -5,6 +5,8 @@ CONTRIBUTION_TYPES = %i[metric_answer metric wikirate_company project
                         source wikirate_topic research_group].freeze
 
 format :html do
+  delegate :badge_count, to: :card
+
   before :content_formgroup do
     voo.edit_structure = [:image, "+about me", :discussion]
   end
@@ -13,14 +15,23 @@ format :html do
     two_column_layout 5, 7
   end
 
+  def header_text
+    wrap_with :div, class: "badges-earned" do
+      content_tag :h3, medal_counts("horizontal")
+    end
+  end
+
   view :data do
     wrap_with :div, class: "profile-data" do
       [
         field_nest("+about me", view: :titled, title: "About me"),
-        content_tag(:hr),
-        field_nest(:discussion, view: :titled, title: "Discussion", show: :comment_box)
+        field_nest(:discussion, view: :titled, show: :comment_box)
       ]
     end
+  end
+
+  def type_link_label
+    "Researcher"
   end
 
   def tab_list

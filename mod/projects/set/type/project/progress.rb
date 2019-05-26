@@ -59,9 +59,9 @@ format :html do
       [
         (progress_legend if legend),
         bs_layout do
-          row 3, 9 do
-            column { _render_percent_researched }
+          row 9, 3 do
             column { main_progress_bar }
+            column { render_percent_researched }
           end
         end
       ]
@@ -114,14 +114,6 @@ format :html do
   end
 
   def progress_legend
-    bs_layout do
-      row 12 do
-        column { wrap_legend_items }
-      end
-    end
-  end
-
-  def wrap_legend_items
     wrap_with :div, class: "progress-legend" do
       ["known", "unknown", "not-researched"].map { |i| legend_item i }
     end

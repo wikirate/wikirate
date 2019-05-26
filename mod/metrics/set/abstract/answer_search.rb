@@ -2,9 +2,15 @@
 # A) `query_class`, returning a valid AnswerQuery class, and
 # B) `filter_card_fieldcode`, returning the codename of the filter field
 
-include_set Abstract::Export
-include_set Abstract::SortAndFilter
 include_set Abstract::Table
+include_set Abstract::Search
+include_set Abstract::Utility
+include_set Abstract::Filter
+include_set Abstract::FilterFormgroups
+
+def virtual?
+  true
+end
 
 def search args={}
   return_type = args.delete :return
@@ -27,12 +33,6 @@ def filter_card
   field filter_card_fieldcode
 end
 
-format do
-  def item_view_from_query
-    nil
-  end
-end
-
 format :csv do
   view :core do
     Answer.csv_title + card.query(limit: nil).answer_lookup.map(&:csv_line).join
@@ -51,7 +51,7 @@ format :html do
   view :filter_result, template: :haml, cache: :never
 
   view :filter_form do
-    wrap_with :div, class: "row table-filter-container" do
+    wrap_with :div, class: "table-filter-container" do
       _render_filter
     end
   end
@@ -76,33 +76,5 @@ format :html do
 
   def details_url? row_card
     !row_card.unknown?
-  end
-
-  def paging_view
-    :table
-  end
-
-  def export_link_path format
-    super.merge filter_and_sort_hash
-  end
-end
-
-format :json do
-  view :compact do
-    card.search.each_with_object(companies: {}, metrics: {}, answers: {}) do |ans, h|
-      h[:companies][ans.company_id] ||= ans.company_name
-      h[:metrics][ans.metric_id] ||= ans.metric_name
-      h[:answers][answer_id(ans)] ||= {
-        company: ans.company_id,
-        metric: ans.metric_id,
-        year: ans.year,
-        value: ans.value
-      }
-    end
-  end
-
-  # prefix id with V (for virtual) if using id from answers table
-  def answer_id answer
-    answer.id || "V#{answer.answer.id}"
   end
 end

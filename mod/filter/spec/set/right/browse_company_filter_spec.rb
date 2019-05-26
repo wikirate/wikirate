@@ -41,7 +41,7 @@ describe Card::Set::Right::BrowseCompanyFilter do
       before { filter_args project: "myProject" }
       it do
         is_expected.to eq wql(
-          referred_to_by: { left: { name: "myProject" } }
+          referred_to_by: { left: "myProject", right: :wikirate_company }
         )
       end
     end
@@ -62,7 +62,7 @@ describe Card::Set::Right::BrowseCompanyFilter do
               right_plus: ["2015", { right_plus: ["value", { eq: "myIndustry" }] }]
             }
           ],
-          referred_to_by: { left: { name: "myProject" } }
+          referred_to_by: { left: "myProject", right: :wikirate_company }
         )
       end
     end

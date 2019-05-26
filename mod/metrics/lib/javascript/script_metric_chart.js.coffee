@@ -15,10 +15,10 @@ setFilterText = ($vis) ->
   return unless text
   showMetricValueFilter()
   $vis.closest(".filter-form-and-result")
-      .find("#select2-filter_metric_value-container").text(text)
+      .find("#select2-filter_value-container").text(text)
 
 showMetricValueFilter = ->
-  decko.filterCategorySelected($('a[data-category="metric_value"]'))
+  decko.filterCategorySelected($('a[data-category="value"]'))
 
 metric_chart = (spec, id) ->
   runtime = vega.parse spec

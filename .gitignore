@@ -20,3 +20,4 @@ spec/examples.txt
 !/**/.gitkeep
 /**/*.iml
 aws-secret.yml
+cypress/videos

@@ -8,9 +8,9 @@ require(JQUERY_DIR + "jquery_ujs.js");
 
 const filenames = [
     "mod", "editor", "name_editor", "autosave", "doubleclick", "layout", "navbox",
-    "upload", "filter", "slot", "modal", "overlay", "recaptcha", "slotter", "bridge",
+    "upload", "slot", "modal", "overlay", "recaptcha", "slotter", "bridge",
     "nest_editor", "nest_editor_rules", "nest_editor_options", "nest_editor_name",
-    "components", "decko", "follow", "card_menu", "slot_ready"
+    "components", "decko", "follow", "card_menu", "slot_ready", "filter", "filter_items"
 ];
 
 filenames.forEach(filename => {

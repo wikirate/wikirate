@@ -1,6 +1,6 @@
 format :html do
   view :stats, cache: :never do
-    table stat_rows(filter_hash[:metric_value] || :exists),
+    table stat_rows(filter_hash[:status] || :exists),
           class: "filtered-answer-counts table-sm table-borderless text-muted"
   end
 
@@ -38,7 +38,7 @@ format :html do
   def category_count cat
     return @total if cat == :total
     @total ||= 0
-    count = card.query.count metric_value: cat
+    count = card.query.count status: cat
     @total += count
     count
   end

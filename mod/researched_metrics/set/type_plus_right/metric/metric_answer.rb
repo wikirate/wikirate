@@ -8,7 +8,7 @@ def virtual?
 end
 
 def query_class
-  FixedMetricAnswerQuery
+  AnswerQuery::FixedMetric
 end
 
 def filter_card_fieldcode
@@ -41,6 +41,6 @@ format :html do
   end
 
   def value_sort_link
-    table_sort_link "Values", :value
+    table_sort_link "Values", :value, true
   end
 end

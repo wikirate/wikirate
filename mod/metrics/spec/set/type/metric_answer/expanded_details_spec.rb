@@ -118,12 +118,12 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         end
         with_tag("td") { with_tag "a", text: "deadliness" }
         with_tag("td") { with_tag "a.metric-value", text: "100" }
-        with_tag "td", text: "10.0"
+        with_tag "td", text: "10"
         with_tag "td", text: "x 60%"
         with_tag "td", text: "= 6.0"
         with_tag("td") { with_tag "a", text: "disturbances in the Force" }
         with_tag("td") { with_tag "a.metric-value", text: "yes" }
-        with_tag "td", text: "10.0"
+        with_tag "td", text: "10"
         with_tag "td", text: "x 40%"
         with_tag "td", text: "= 4.0"
       end

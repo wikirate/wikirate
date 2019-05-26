@@ -150,7 +150,7 @@ $colorMap: (
     @include barbox($color);
   }
 
-  .#{$type}-color {
+  .#{$type}-color, .#{$type}-color a {
     color: $color;
   }
 

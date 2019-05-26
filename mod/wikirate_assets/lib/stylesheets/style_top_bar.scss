@@ -226,10 +226,17 @@ a.slicknav_btn {
   }
 }
 
-#logging.logged-in a {
-  font-size: .8em;
-}
-#logging a#my-card-link {
-  display: block;
-  font-size: 1.2em;
+#logging {
+  &.logged-in a {
+    font-size: .8em;
+  }
+
+  a#my-card-link {
+    display: block;
+    font-size: 1.2em;
+  }
+
+  ul.dropdown-menu a {
+    font-size: 1rem;
+  }
 }
