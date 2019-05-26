@@ -28,15 +28,15 @@ format :html do
     return unless contribs_made?
 
     if contrib_page?
-      switch_to :wikirate_company, "N", title: "Company performance profile"
+      switch_to :wikirate_company, "N", "Company performance profile"
     else
-      switch_to :user, "Y", title: "Content contributions to WikiRate.org"
+      switch_to :user, "Y", "Content contributions to WikiRate.org"
     end
   end
 
-  def switch_to icon, val, opts={}
-    opts.merge! class: "company-switch", path: { contrib: val }
-    link_to_card card, mapped_icon_tag(icon), opts
+  def switch_to icon, val, title
+    link_to_card card, mapped_icon_tag(icon), class: "company-switch", title: title,
+                                              path: { contrib: val }
   end
 
   view :data do
@@ -72,7 +72,7 @@ format :html do
   view :source_tab do
     filtering { field_nest :source, items: { view: :bar } }
   end
-  
+
   view :project_tab do
     filtering { field_nest :project, items: { view: :bar } }
   end

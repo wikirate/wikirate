@@ -41,8 +41,7 @@ format :html do
     return "" unless metric_card.user_can_answer?
     link_to_card :research_page, "Research answer",
                  class: "btn btn-sm btn-primary margin-12",
-                 path: { view: "slot_machine",
-                         metric: card.metric,
+                 path: { metric: card.metric,
                          company: card.company },
                  title: "Research answers for this company and metric"
   end
