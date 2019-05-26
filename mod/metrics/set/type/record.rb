@@ -1,4 +1,5 @@
 include_set Abstract::MetricChild, generation: 1
+include_set Abstract::TwoColumnLayout
 
 def all_answers
   @result ||= Answer.search(company_id: company_id,
@@ -28,13 +29,25 @@ format do
 end
 
 format :html do
-  view :core do
-    [
-      nest(card.metric_card, view: :thumbnail),
-      nest(card.company_card, view: :thumbnail),
-      render_years_and_values,
-      add_answer_button
-    ]
+  def tab_list
+    %i[metric wikirate_company]
+  end
+
+  def tab_options
+    tab_list.each_with_object({}) do |tab, hash|
+      hash[tab] = { count: nil, label: tab.cardname }
+    end
+  end
+
+  view :rich_header do
+    [nest(card.metric_card, view: :shared_header),
+     nest(card.company_card, view: :shared_header)]
+  end
+
+  view :data do
+    wrap_with :div, class: "p-3" do
+      [render_years_and_values, add_answer_button]
+    end
   end
 
   def add_answer_button
@@ -57,6 +70,14 @@ format :html do
 
   view :metric_selected_option, unknown: true do
     nest metric_card, view: :selected_option
+  end
+
+  view :metric_tab do
+    nest card.metric_card, view: :details_tab
+  end
+
+  view :wikirate_company_tab do
+    nest card.company_card, view: :details_tab
   end
 end
 

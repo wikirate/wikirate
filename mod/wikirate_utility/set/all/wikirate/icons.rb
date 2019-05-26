@@ -4,6 +4,7 @@ ICON_MAP = {
   project: [:flask, { library: :font_awesome }],
   subproject: [:flask, { library: :font_awesome }],
   metric: ["bar-chart", { library: :font_awesome }],
+  record: ["bar-chart", { library: :font_awesome }],
   researcher: [:user, { library: :font_awesome }],
   user: [:user, { library: :font_awesome }],
   post: :insert_comment,
