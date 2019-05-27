@@ -9,7 +9,6 @@ format :html do
 
   view :filter_project_formgroup, cache: :never do
     autocomplete_filter :project
-    # select_filter_type_based :project
   end
 
   view :filter_year_formgroup, cache: :never do
@@ -18,7 +17,6 @@ format :html do
 
   view :filter_wikirate_topic_formgroup, cache: :never do
     multiselect_filter :wikirate_topic
-    # autocomplete_filter :wikirate_topic
   end
 
   view :filter_metric_formgroup, cache: :never do
@@ -55,6 +53,10 @@ format :html do
     multiselect_filter :importance, %w[upvotes novotes]
   end
 
+  view :filter_source_formgroup, cache: :never do
+    autocomplete_filter :source
+  end
+
   def default_year_option
     { "Most Recent" => "latest" }
   end
@@ -79,11 +81,6 @@ format :html do
       "Unknown" => "unknown",
       "Not Researched" => "none"
     }
-  end
-
-  def selected_value? value
-    (filter_param(:metric_value) && value == filter_param(:metric_value)) ||
-      value == "exists"
   end
 
   def metric_type_options

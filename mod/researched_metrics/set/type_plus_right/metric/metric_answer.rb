@@ -8,7 +8,7 @@ def virtual?
 end
 
 def query_class
-  FixedMetricAnswerQuery
+  AnswerQuery::FixedMetric
 end
 
 def filter_card_fieldcode

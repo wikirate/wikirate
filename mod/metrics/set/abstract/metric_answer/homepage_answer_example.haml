@@ -10,15 +10,8 @@
     .col
       = metric_question
   .metric-border-left.thumbnail.row.align-items-center.p-2.border-top.border-right
-    .image-box.small.mt-1.year-icon-cal
-      = fa_icon("calendar-o")
-      %span.icon-cal-text
-        = card.answer.year
-    .thumbnail-text.col
-      %span.metric-color.font-weight-bold
-        = nest card.value_card, view: :pretty
-      %span.text-muted
-        = Card.fetch(card.metric).unit
+    .container
+      = render_year_and_value_pretty
   .source-border-left.row.p-2.border-top.border-right.border-bottom
     .mt-1.text-center.col-2.px-0.pt-3
       %h5

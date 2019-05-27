@@ -76,8 +76,8 @@ module Formula
 
     def parse_wolfram_json type, json
       JSON.parse json
-    rescue JSON::ParserError => _e
-      log_wolfram_error "bad JSON in #{type}", "JSON = #{json}\n#{e.message}"
+    rescue JSON::ParserError => e
+      log_wolfram_error "invalid JSON in #{type}", "JSON = #{json}\n#{e.message}"
     end
 
     def log_wolfram_error main, extra
@@ -88,7 +88,7 @@ module Formula
     end
 
     def wolfram_syntax_error messages
-      @errors << "Wolfram Error:\n  #{messages&.join("\n  ")}"
+      @errors << "Formula Syntax Error: bad wolfram syntax\n  #{messages&.join("\n  ")}"
       false
     end
 

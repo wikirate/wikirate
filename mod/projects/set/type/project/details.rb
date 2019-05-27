@@ -7,12 +7,12 @@ format :html do
   def project_details
     wrap_with :div do
       [
-        field_nest(:organizer, view: :titled,
-                               title: "Organizer",
-                               items: { view: :thumbnail_plain }),
-        standard_nest(:wikirate_topic),
-        field_nest(:description, view: :titled, title: "Description"),
-        field_nest(:conversation, view: :titled, title: "Conversation")
+        subproject_detail,
+        labeled_field(:wikirate_status),
+        labeled_field(:organizer, :thumbnail_plain),
+        labeled_field(:wikirate_topic, :link, title: "Topics"),
+        field_nest(:description, view: :titled),
+        field_nest(:conversation, view: :titled)
       ]
     end
   end
@@ -34,7 +34,7 @@ format :html do
   bar_cols 8, 4
 
   view :bar_left do
-    filterable :project, card.name, class: "w-100" do
+    filterable :project, nil, class: "w-100" do
       text_with_image image: card.field(:image),
                       size: voo.size,
                       title: render_title_link,
@@ -51,8 +51,7 @@ format :html do
   end
 
   view :bar_bottom do
-    output [topics_details,
-            field_nest(:description, view: :titled, title: "Description")]
+    project_details
   end
 
   def bar_layout
@@ -79,10 +78,9 @@ format :html do
     end
   end
 
-  def status_detail
-    wrap_with :div do
-      field_nest :wikirate_status, items: { view: :name }
-    end
+  def subproject_detail
+    return if card.parent.blank?
+    labeled_field :parent, :link, title: "Subproject of"
   end
 
   view :stats_details, cache: :never do

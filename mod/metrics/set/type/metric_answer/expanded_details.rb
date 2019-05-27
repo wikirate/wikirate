@@ -11,15 +11,11 @@ include_set Abstract::Paging
 
 format :html do
   view :expanded_details do
-    render("expanded_#{details_type}_details").html_safe
+    render :"expanded_#{details_type}_details"
   end
 
   def details_type
-    if card.calculated? && researched_value?
-      :researched
-    else
-      card.metric_type
-    end
+    card.calculated? && researched_value? ? :researched : card.metric_type
   end
 
   def wrap_expanded_details

@@ -14,11 +14,6 @@ def calculation_overridden?
   overridden? && answer.overridden_value.present?
 end
 
-# Metric is researchable and this answer not yet researched
-def research_ready?
-  (researched? || hybrid?) && unknown?
-end
-
 # Metric is calculated but this answer can't yet be calculated
 def uncalculated?
   !researched? && answer.new_record?
@@ -28,8 +23,12 @@ def inverse?
   metric_card.inverse?
 end
 
+def researchable?
+  metric_card.researchable?
+end
+
 format do
   delegate :calculation_overridden?, :researched_value?,
-           :research_ready?, :uncalculated?, :inverse?,
+           :uncalculated?, :inverse?,
            to: :card
 end

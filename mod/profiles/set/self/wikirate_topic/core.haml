@@ -2,5 +2,5 @@
 .filter-search-form
   = field_nest :browse_topic_filter, view: :filter_form
 #browse-topics
-  = field_nest :browse_topic_filter, items: { view: :box }
+  = field_nest :browse_topic_filter, hide: :menu, items: { view: :box }
 = render_add_button

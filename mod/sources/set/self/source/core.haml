@@ -3,5 +3,5 @@
 .filter-search-form
   = field_nest :browse_source_filter, view: :filter_form
 #browse-sources
-  = field_nest :browse_source_filter, items: { view: :info_bar }
+  = field_nest :browse_source_filter, hide: :menu, items: { view: :info_bar }
 = render_add_button
