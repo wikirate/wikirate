@@ -3,9 +3,9 @@ card_reader :metrics_designed, type: :search_type
 
 format :html do
   def contrib_page?
-    return @contrib_page if !@contrib_page.nil?
+    return @contrib_page unless @contrib_page.nil?
     param = Env.params[:contrib]
-    @contrib_page = contribs_made? ? param != 'N' : param == 'Y'
+    @contrib_page = contribs_made? ? param != "N" : param == "Y"
   end
 
   view :contributions_data do

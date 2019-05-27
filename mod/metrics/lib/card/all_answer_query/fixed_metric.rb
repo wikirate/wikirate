@@ -1,6 +1,6 @@
 class Card
   class AllAnswerQuery
-    # Use WQL to find answers for a given metric
+    # Query researched and not-researched answers for a given metric
     class FixedMetric < AllAnswerQuery
       def base_key
         :metric_id
