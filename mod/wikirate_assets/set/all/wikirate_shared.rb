@@ -15,13 +15,12 @@ MENU_REFS = { "Groups" => "Research Groups",
               "Facebook" => "https://www.facebook.com/wikirate/",
               "Twitter" => "https://twitter.com/WikiRate",
               "Instagram" => "https://www.instagram.com/wikirate/",
-              "Telegram" => "https://t.me/WikiRate",
               "Notice" => "Notice and Take Down Procedure",
               "Legal" => "https://wikirateproject.org/Legal" }.freeze
 
 SECONDARY_MENUS = { "Legal" => ["Legal", "Privacy Policy", "Licensing", "Disclaimers",
                                 "Terms of Use", "Notice"],
-                    "Social" => %w[Facebook Twitter Instagram Telegram] }.freeze
+                    "Social" => %w[Facebook Twitter Instagram] }.freeze
 
 format do
   def nav_menus
@@ -44,5 +43,12 @@ format do
 
   def shared_url_prefix project=true
     project ? "https://wikirateproject.org/" : "/"
+  end
+
+  # this is just to add the unknown setting, which was (perhaps unintentionally?)
+  # set globally in wikirate before.  removing the setting has some surprising
+  # consequences
+  view :core, unknown: true do
+    super()
   end
 end

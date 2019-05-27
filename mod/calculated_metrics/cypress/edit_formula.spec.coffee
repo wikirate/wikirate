@@ -50,26 +50,15 @@ describe 'edit metric formulas', ->
   specify.only "Formula metric formula", =>
     cy.visit "Jedi+friendliness+formula"
     cy.slot "jedi+friendliness+formula"
-      .find(".card-menu > a").click(force: true)
-
+      .find(".card-menu > a.edit-link").click(force: true)
     cy.contains("a", "add metric", timeout: 15000)
       .click()
-    cy.contains("button", "Add filter")
-      .click()
-    cy.contains("a", "Keyword")
-      .click(force: true)
-    cy.get("[name='filter[name]']")
-      .clear()
+    cy.get("._filter-container [name='filter[name]']")
       .type("multi{enter}")
     cy.get("._search-checkbox-list")
       .should("contain", "small multi")
       .should("contain", "big multi")
-    cy.get("input[name='Joe User+small multi']").click()
+    cy.get("input#Joe_User_small_multi").click()
     cy.get("._add-selected").click()
     cy.contains "M0"
     cy.contains "M1"
-
-
-
-
-

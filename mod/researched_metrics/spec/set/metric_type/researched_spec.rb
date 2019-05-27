@@ -111,25 +111,25 @@ describe Card::Set::MetricType::Researched do
 
   describe "structure" do
     it "has necessary components" do
-      open_content = metric.format(:html)._render_open_content
-      expect(open_content).to(
-        have_tag("div", with: { class: "metric-info" }) do
-          with_tag "div", with: { class: "row metric-header-container" }
-        end
-      )
-      expect(open_content).to(
-        have_tag("div.metric-properties") do
-          with_tag "div.designer-property" do
-            with_tag "div.label", text: /Designed By/
-            with_tag "div.thumbnail"
+      expect(metric.format(:html)._render_open).to(
+        have_tag("div.open-view") do
+          with_tag "div.left-col" do
+            with_tag "div.rich-header"
+            with_tag "div.RIGHT-answer.content-view" do
+              with_tag "div.filter-form-and-result"
+            end
           end
-          with_tag "div.RIGHT-topic" do
-            with_tag "div.label", text: /Topics/
-            with_tag "div.labeled-content", text: /Force/
-          end
-          with_tag "div.RIGHT-Xmetric_type" do
-            with_tag "div.label", text: /Metric Type/
-            with_tag "div.labeled-content", text: /Researched/
+          with_tag "div.right-col" do
+            with_tag("div.metric-properties") do
+              with_tag "div.RIGHT-topic" do
+                with_tag "div.label", text: /Topics/
+                with_tag "div.labeled-content", text: /Force/
+              end
+              with_tag "div.RIGHT-Xmetric_type" do
+                with_tag "div.label", text: /Metric Type/
+                with_tag "div.labeled-content", text: /Researched/
+              end
+            end
           end
         end
       )

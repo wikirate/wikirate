@@ -1,10 +1,11 @@
 format :html do
   view :comments do
-    disc_card = card.fetch trait: :discussion, new: {}
-    subformat(disc_card)._render_titled title: "Comments", show: "commentbox",
-                                        home_view: :titled
+    wrap_with :div, class: "comments-div" do
+      field_nest :discussion, view: :titled, title: "Comments", show: "comment_box"
+    end
   end
 
+  # FIXME: Can do this with way less custom code
   view :homepage_answer_example, template: :haml do
     @company_image = nest company_card.image_card, size: :small
     @company_link =

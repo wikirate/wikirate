@@ -1,6 +1,5 @@
 include_set Abstract::Media
 include_set Abstract::Table
-include_set Abstract::AnswerDetailsToggle
 
 # views used in answer listings on metric, company, and profile pages
 
@@ -47,48 +46,9 @@ format :html do
   end
 
   def citations_count
-    wrap_with :div, class: "w-100 text-left" do
+    wrap_with :h5, class: "w-100 text-left" do
       [citations_count_badge, "Citations"]
     end
-  end
-
-  # ANSWER LISTINGS ON RECORDS
-  # company and/or profile are detailed separately,
-  # so details only include value, year, etc.
-
-  # TODO: move to haml
-  view :basic_details do
-    wrap_with :div, class: "value text-align-left" do
-      [
-        nest(card.value_card, view: :pretty_link),
-        wrap_with(:span, legend, class: "metric-unit"),
-        _render_flags,
-        _render_chart
-      ]
-    end
-  end
-
-  view :details do
-    if card.relationship?
-      voo.hide! :answer_details_toggle
-      voo.show! :expanded_details
-    else
-      class_up "vis", "pull-right"
-    end
-    super()
-  end
-
-  # ANSWER LISTINGS ON HOME PAGE
-  # perhaps not long for this world
-
-  view :metric_thumbnail_minimal do
-    nest card.metric_card, view: :thumbnail_minimal,
-                           hide: [:thumbnail_subtitle, :vote]
-  end
-
-  view :company_thumbnail_minimal do
-    nest card.company_card, view: :thumbnail_minimal,
-                            hide: [:thumbnail_subtitle, :vote]
   end
 
   # SHARED IN VARIOUS LISTINGS
@@ -110,62 +70,53 @@ format :html do
     wrap_with :div, (nest card.company_card, nest_args), class: "company-link"
   end
 
-  view :value_cell do
-    if card.unknown?
-      view = research_ready? ? :research_button : :blank
-      render view
-    else
-      render :concise
+  view :value_cell, unknown: true do
+    view = if card.unknown?
+             card.researchable? ? :research_button : :blank
+           else
+             :concise
+           end
+    render view
+  end
+
+  # prominent value, less prominent year, legend, and flags
+  view :concise, template: :haml, unknown: true
+
+  # prominent year, prominent value, less prominent flags
+  view :year_and_value, template: :haml
+  view :year_and_value_pretty, template: :haml
+
+  view :year_and_value_pretty_link do
+    link_to_card card, render_year_and_value_pretty
+  end
+
+  view :year_and_icon do
+    wrap_with :span, class: "answer-year" do
+      "#{fa_icon :calendar} #{card.year}"
     end
   end
 
-  view :research_button do
-    link_to_card :research_page, "Research answer",
-                 target: "_blank",
-                 class: "btn btn-primary btn-sm research-answer-button",
-                 path: { metric: card.metric, company: card.company },
-                 title: "Research answer"
-  end
-
-  # TODO: unify with conciser
-  # year, value, unit and flags
-  view :concise, template: :haml
-
-  # year, value, unit and flags
-  view :conciser do
-    return calculating_icon if card.calculating?
-    year_and_value + _render_flags
-  end
-
   view :plain_year do
-    card.name.right
+    card.year
+  end
+
+  def calculated
+    card.calculating? ? calculating_icon : yield
   end
 
   def calculating_icon
-    fa_icon :refresh, title: "calculating ..."
+    fa_icon :calculator, title: "calculating ...", class: "fa-spin"
   end
 
   def legend
     nest card.metric_card, view: :legend
   end
 
-  view :unit do
+  view :legend do
     legend
   end
 
-  view :unit_core do
+  view :legend_core do
     nest card.metric_card, view: :legend_core
-  end
-
-  def year_and_value
-    <<-HTML
-      #{render :year_equals}
-      #{nest card.value_card, view: :pretty}
-      <span class="metric-unit"> #{legend} </span>
-    HTML
-  end
-
-  view :year_equals do
-    "<span class=\"metric-year\">#{card.year} = </span>"
   end
 end

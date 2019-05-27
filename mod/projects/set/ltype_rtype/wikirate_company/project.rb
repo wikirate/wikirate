@@ -54,11 +54,10 @@ format :html do
     render :research_progress_bar
   end
 
-  view :research_button, tags: :unknown_ok do
+  view :research_button, unknown: true do
     link_to "Research",
             class: "btn btn-outline-secondary btn-sm research-answer-button",
             path: { mark: :research_page,
-                    view: :slot_machine,
                     company: card.company_card.name,
                     pinned: :company,
                     project: project_name.url_key }

@@ -1,5 +1,5 @@
 format :json do
-  view :atom do
-    super().merge file_url: card.file_url
+  def atom
+    super().merge file_url: nest(card.file_card, view: :core)
   end
 end

@@ -10,7 +10,7 @@ format :html do
     end
   end
 
-  view :pretty, tags: :unknown_ok do
+  view :pretty, unknown: true do
     wrap_with :span, pretty_span_args do
       beautify(pretty_value).html_safe
     end
@@ -22,7 +22,7 @@ format :html do
     voo.hide! :link if card.relationship_count_value?
   end
 
-  view :pretty_link, tags: :unknown_ok do
+  view :pretty_link, unknown: true do
     voo.show :link
     wrap_with :span, class: "metric-value", title: card.content do
       pretty_link beautify(pretty_value)

@@ -1,6 +1,12 @@
+include_set Abstract::Filterable
+
 format :html do
   # BAR VIEWS
-  view :bar_left, template: :haml
+  view :bar_left do
+    filterable :source do
+      haml :bar_left
+    end
+  end
   view :bar_right, template: :haml
 
   view :bar_middle do
@@ -8,15 +14,10 @@ format :html do
   end
 
   view :bar_bottom do
-    add_name_context
     output [render_bar_middle,
-            field_nest(:report_type, view: :labeled,
-                                     title: "Report Type",
-                                     items: { view: :name }),
-            field_nest(:wikirate_topic, view: :labeled,
-                                        title: "Topics",
-                                        items: { view: :link }),
-            field_nest(:description, view: :titled, title: "Description")]
+            labeled_field(:report_type),
+            labeled_field(:wikirate_topic, :link, title: "Topics"),
+            field_nest(:description, view: :titled)]
   end
 
   bar_cols 7, 5

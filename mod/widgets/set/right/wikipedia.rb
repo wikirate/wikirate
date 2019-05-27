@@ -1,5 +1,5 @@
-def unknown?
-  false
+def virtual?
+  true
 end
 
 QUERY_ARGS = { format: :json, action: :query, prop: :extracts, redirects: 1,
@@ -29,18 +29,23 @@ rescue Exception => _e
   ""
 end
 
-event :update_oc_mapping_due_to_wikipedia_entry, :integrate, on: :save, when: :needs_oc_mapping? do
+event :update_oc_mapping_due_to_wikipedia_entry, :integrate,
+      on: :save, when: :needs_oc_mapping? do
+
   oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number wikipedia_url: content
   return unless oc.company_number.present?
 
-  add_subcard name.left_name.field(:open_corporates),
-              content: oc.company_number, type: :phrase
-  add_subcard name.left_name.field(:incorporation),
-              content: jurisdiction_name(oc.incorporation_jurisdiction_code),
-              type: :pointer
-  add_subcard name.left_name.field(:headquarters),
-              content: jurisdiction_name(oc.jurisdiction_code),
-              type: :pointer
+  add_left_subcard :open_corporates, oc.company_number, :phrase
+  add_left_subcard :incorporation, jurisdiction_name(oc.incorporation_jurisdiction_code)
+  add_left_subcard :headquarters, jurisdiction_name(oc.jurisdiction_code)
+end
+
+def add_left_subcard fieldname, content, type=:pointer
+  add_subcard name.left_name.field(fieldname), content: content, type: type
+end
+
+def needs_oc_mapping?
+  (l = left) && l.open_corporates.blank?
 end
 
 # TODO: reduce duplicated code
@@ -51,17 +56,10 @@ end
 
 format :html do
   delegate :wikipedia_extract, :wikipedia_url, to: :card
-  view :edit do
-    Card.exists?(card.name) ? super() : _render_new
-  end
 
-  def unknown_disqualifies_view? _view
-    false
-  end
-
-  def show_menu_item_edit?
-    true
-  end
+  # view :edit do
+  #   Card.exists?(card.name) ? super() : _render_new
+  # end
 
   view :core, async: true do
     extract = wikipedia_extract
@@ -70,10 +68,12 @@ format :html do
   end
 
   def original_link
-    super wikipedia_url, class: "external-link", text: "<small>Visit Original</small>"
+    super wikipedia_url, class: "external-link", text: "<small>en.wikipedia.org</small>"
   end
 end
 
-def needs_oc_mapping?
-  (l = left) && l.open_corporates.blank?
+format :json do
+  view :core do
+    card.content.empty? ? nil : card.content
+  end
 end

@@ -20,26 +20,7 @@ format do
 end
 
 format :html do
-  NEW_BADGE = '<span class="badge badge-danger">New</span>'.freeze
-
-  # def menu_icon
-  #   fa_icon "pencil-square-o"
-  # end
-
-  def header_title_elements
-    voo.hide :title_badge
-    [super, _render_title_badge]
-  end
-
-  view :title_badge do
-    wrap_with :span, title_badge_count, class: "badge"
-  end
-
-  def title_badge_count
-    card.count
-  end
-
-  view :og_source, tags: :unknown_ok do
+  view :og_source, unknown: true do
     if card.real?
       card.format.render_source
     else
@@ -85,9 +66,7 @@ format :html do
     root.primary_panels << card.tag
   end
 
-  view :panel_toc, template: :haml, cache: :never do
-    # doesn't work without this empty block if view caching is turned on
-  end
+  view :panel_toc, template: :haml, cache: :never
 
   # deprecated
   # still used in some card

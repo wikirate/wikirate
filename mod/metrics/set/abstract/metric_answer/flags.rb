@@ -2,61 +2,54 @@ def imported?
   answer.imported || false
 end
 
-def checked?
-  answer.checkers.present? || answer.check_requester.present?
-end
-
-def commented?
-  disc = fetch trait: :discussion
-  disc&.content.present?
-end
-
 format :html do
-  view :flags, cache: :never do
-    output [checked_value_flag, comment_flag, imported_flag, calculated_flag]
+  view :flags do
+    flags
   end
 
-  view :small_flags, cache: :never do
-    output do
-      [:checked_value, :comment, :imported].map do |flag_name|
-        flag = send "#{flag_name}_flag"
-        "<small>#{flag}</small>"
-      end
+  view :small_flags do
+    flags.map { |flag| "<small>#{flag}</small>" }
+  end
+
+  def flags
+    %i[checked_value comment imported calculated].map do |flag_name|
+      send "#{flag_name}_flag"
     end
   end
 
   def calculated_flag
-    return "" unless card.calculated?
-    calculated_flag_icon
+    if !card.calculated?
+      ""
+    elsif card.researched_value?
+      overridden_flag_icon
+    else
+      calculated_flag_icon
+    end
   end
 
   def calculated_flag_icon
-    return overridden_flag_icon if card.researched_value?
     fa_icon :calculator, title: "Calculated answer", class: "text-success"
   end
 
   def overridden_flag_icon
-    title = "Overridden calculated answer"
-    wrap_with :span, class: "overridden-icon", title: title do
-      [
-        fa_icon(:user),
-        fa_icon(:calculator, class: "text-danger")
-      ]
+    wrap_with :span, class: "overridden-icon", title: "Overridden calculated answer" do
+      [fa_icon(:user), fa_icon(:calculator, class: "text-danger")]
     end
   end
 
   def checked_value_flag
-    return "" unless card.checked?
-    nest card.field(:checked_by), view: :icon
+    flag_nest :checked_by
   end
 
   def comment_flag
-    return "" unless card.commented?
-    fa_icon :commenting, title: "Has comments"
+    flag_nest :discussion
+  end
+
+  def flag_nest field
+    field_nest field, view: :flag
   end
 
   def imported_flag
-    return "" unless card.imported?
-    icon_tag "upload", library: :font_awesome, title: "imported"
+    card.imported? ? icon_tag("upload", library: :font_awesome, title: "imported") : ""
   end
 end

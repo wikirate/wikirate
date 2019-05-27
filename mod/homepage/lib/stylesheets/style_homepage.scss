@@ -1,6 +1,6 @@
 
 
-#Home {
+.home-layout {
   background: url({{topics collage|source; size:original}});
 }
 
@@ -84,11 +84,11 @@
 .banner-background {
   //background: rgba(0, 74, 68, 0.95);
   //Proposed colour
-  background: #674ea7; /* Old browsers */
-  background: -moz-linear-gradient(-45deg,  #674ea7 0%, #2b7ea0 68%, #03998d 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg,  #674ea7 0%,#2b7ea0 68%,#03998d 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg,  #674ea7 0%,#2b7ea0 68%,#03998d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#674ea7', endColorstr='#03998d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background: $metric-color; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  $metric-color 0%, #2b7ea0 68%, #03998d 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  $metric-color 0%,#2b7ea0 68%,#03998d 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  $metric-color 0%,#2b7ea0 68%,#03998d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$metric-color', endColorstr='#03998d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   opacity: 0.97
 }
 .transparent-background-white {

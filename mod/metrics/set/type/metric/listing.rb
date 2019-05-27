@@ -12,17 +12,20 @@ format :html do
   end
 
   view :bar_bottom do
-    add_name_context
     output [render_bar_middle,
             field_nest(:wikirate_topic, view: :content, items: { view: :link }),
-            render_metric_question]
+            render_question]
   end
 
-  view :box_top, template: :haml
+  view :box_top do
+    render :thumbnail
+  end
 
   view :box_middle, template: :haml
 
   view :box_bottom, template: :haml
+
+  view :selected_option, template: :haml
 
   bar_cols 7, 5
   info_bar_cols 5, 4, 3

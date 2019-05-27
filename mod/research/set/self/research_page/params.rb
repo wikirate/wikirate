@@ -56,7 +56,7 @@ format do
   end
 
   def research_url opts={}
-    path_opts = { view: :slot_machine, rp: {} }
+    path_opts = { rp: {} }
     research_param_keys.each do |key|
       val = opts[key] || send(key)
       path_opts[:rp][param_name(key)] = val if val

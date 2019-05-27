@@ -29,7 +29,7 @@ format :json do
     card.answers
   end
 
-  view :molecule do
+  def molecule
     super().merge metrics: field_nest(:metric),
                   companies: field_nest(:wikirate_company)
   end

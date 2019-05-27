@@ -5,9 +5,8 @@ format :html do
     :wikirate_two_column_layout
   end
 
-  view :open, cache: :never do
-    voo.hide :menu
-    super()
+  view :open do
+    render_slot_machine
   end
 
   view :edit, cache: :never, wrap: :none do
@@ -27,11 +26,11 @@ format :html do
     slot_machine
   end
 
-  view :core, cache: :never do
+  view :core do
     render_slot_machine
   end
 
-  view :slot_machine, cache: :never, perms: :create, wrap: :slot do
+  view :slot_machine, perms: :create, wrap: :slot do
     haml :slot_machine
   end
 

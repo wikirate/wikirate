@@ -2,9 +2,15 @@
 # A) `query_class`, returning a valid AnswerQuery class, and
 # B) `filter_card_fieldcode`, returning the codename of the filter field
 
-include_set Abstract::Export
-include_set Abstract::SortAndFilter
 include_set Abstract::Table
+include_set Abstract::Search
+include_set Abstract::Utility
+include_set Abstract::Filter
+include_set Abstract::FilterFormgroups
+
+def virtual?
+  true
+end
 
 def search args={}
   return_type = args.delete :return
@@ -27,12 +33,6 @@ def filter_card
   field filter_card_fieldcode
 end
 
-format do
-  def item_view_from_query
-    nil
-  end
-end
-
 format :csv do
   view :core do
     Answer.csv_title + card.query(limit: nil).answer_lookup.map(&:csv_line).join
@@ -44,14 +44,14 @@ format :html do
     merge_filter_defaults
     wrap_with :div, class: "filter-form-and-result nodblclick" do
       class_up "card-slot", "_filter-result-slot"
-      output [_render_filter_form, _render_filter_result]
+      output [_render_filter_form, _render_filter_result(home_view: :filter_result)]
     end
   end
 
   view :filter_result, template: :haml, cache: :never
 
   view :filter_form do
-    wrap_with :div, class: "row table-filter-container" do
+    wrap_with :div, class: "table-filter-container" do
       _render_filter
     end
   end
@@ -61,9 +61,7 @@ format :html do
   end
 
   view :table, cache: :never do
-    wrap do # slot for paging links
-      wikirate_table_with_details(*table_args)
-    end
+    wikirate_table_with_details(*table_args)
   end
 
   # this sets the default filter search options to match the default filter UI,
@@ -78,13 +76,5 @@ format :html do
 
   def details_url? row_card
     !row_card.unknown?
-  end
-
-  def paging_view
-    :table
-  end
-
-  def export_link_path format
-    super.merge filter_and_sort_hash
   end
 end

@@ -11,7 +11,7 @@ end
 format :html do
   delegate :affinity, :affinity_card, :affinity_type, :badge, to: :card
 
-  view :badge, tags: :unknown_ok do
+  view :badge, unknown: true do
     nest(affinity_card, view: :thumbnail) + affinity_subtitle
   end
 

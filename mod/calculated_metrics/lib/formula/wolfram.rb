@@ -52,23 +52,44 @@ module Formula
     #   when evaluated in the Wolfram cloud
     # @return the parsed response
     def exec_lambda expr
-      uri = URI.parse(INTERPRETER)
-      # TODO: error handling
-      response = Net::HTTP.post_form uri, "expr" => expr
-      parsed = parse_wolfram_response response
-      insert_unknown_results parsed if parsed
+      return unless (parsed = parse_wolfram_response post_wolfram_request(expr))
+
+      insert_unknown_results parsed
+    end
+
+    def post_wolfram_request expr
+      uri = URI.parse INTERPRETER
+      Net::HTTP.post_form uri, "expr" => expr
+    rescue StandardError => e
+      log_wolfram_error "request failed", e.message
     end
 
     def parse_wolfram_response response
-      body = JSON.parse(response.body)
+      return unless response.present? && (body = parse_wolfram_json :body, response.body)
+
       if body["Success"]
-        JSON.parse body["Result"]
+        parse_wolfram_json :result, body["Result"]
       else
-        @errors << "wolfram syntax error: #{body['MessagesText'].join("\n")}"
-        return false
+        wolfram_syntax_error body["MessagesText"]
       end
-    rescue JSON::ParserError => _e
-      raise Card::Error, "failed to parse wolfram result: #{expr}"
+    end
+
+    def parse_wolfram_json type, json
+      JSON.parse json
+    rescue JSON::ParserError => e
+      log_wolfram_error "invalid JSON in #{type}", "JSON = #{json}\n#{e.message}"
+    end
+
+    def log_wolfram_error main, extra
+      main = "Wolfram Error: #{main}"
+      @errors << main
+      Rails.logger.debug "#{main}: #{extra}"
+      false
+    end
+
+    def wolfram_syntax_error messages
+      @errors << "Formula Syntax Error: bad wolfram syntax\n  #{messages&.join("\n  ")}"
+      false
     end
 
     private

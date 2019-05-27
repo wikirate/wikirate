@@ -36,7 +36,7 @@ end
 format :html do
   delegate :suggested_sources, :my_sources, :cited?, to: :card
 
-  view :sourcebox, tags: :unknown_ok, cache: :never do
+  view :sourcebox, unknown: true, cache: :never do
     wrap { haml :sourcebox }
   end
 
@@ -51,7 +51,7 @@ format :html do
     end
   end
 
-  view :source_tab, cache: :never, tags: :unknown_ok do
+  view :source_tab, cache: :never, unknown: true do
     if focal? || editing_answer?
       render_source_selector
     elsif !card.metric_card.researchable?
@@ -62,27 +62,28 @@ format :html do
   end
 
   def source_previews
-    nest card.source_card.item_cards.first, view: :preview
+    return "" unless (first_source = card.source_card.item_cards.first)
+    nest first_source, view: :preview
   end
 
   def editing_answer?
     return true if card.unknown?
-    root.voo&.ok_view&.to_sym == :edit
+    root.voo&.root&.ok_view&.to_sym == :edit
   end
 
-  view :source_selector, cache: :never, tags: :unknown_ok do
+  view :source_selector, cache: :never, unknown: true do
     wrap { haml :source_selector }
   end
 
-  view :my_sources, cache: :never, tags: :unknown_ok do
+  view :my_sources, cache: :never, unknown: true do
     source_list "Sources I added", my_sources
   end
 
-  view :suggested_sources, cache: :never, tags: :unknown_ok do
+  view :suggested_sources, cache: :never, unknown: true do
     source_list "Suggested Sources", suggested_sources
   end
 
-  view :source_results, cache: :never, tags: :unknown_ok do
+  view :source_results, cache: :never, unknown: true do
     when_searching do |results|
       if results.any?
         already_added results
@@ -97,7 +98,7 @@ format :html do
             source_list("Sources Already Added", results)]
   end
 
-  view :freshen_form, cache: :never, tags: :unknown_ok do
+  view :freshen_form, cache: :never, unknown: true do
     return unless params[:freshen_source]
     render_new_source_form
   end
@@ -127,7 +128,7 @@ format :html do
     [source_card]
   end
 
-  view :new_source_form, tags: :unknown_ok, cache: :never do
+  view :new_source_form, unknown: true, cache: :never do
     params[:answer] = card.name
     params[:source_url] = source_search_term if source_search_term&.url?
     source_card = Card.new type_id: SourceID

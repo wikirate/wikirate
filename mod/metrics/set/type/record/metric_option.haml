@@ -1,0 +1,5 @@
+.metric-option
+  %h6.metric-color
+    = card.metric_name
+  = nest [card.metric_name, :question], view: :core
+  = render :years_and_values

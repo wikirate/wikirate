@@ -1,10 +1,6 @@
 format :html do
   def wrap_researched_details
-    output [
-      credit_details,
-      yield,
-      wrap_with(:div, _render_comments, class: "comments-div")
-    ]
+    output [credit_details, yield, render_comments]
   end
 
   def credit_details
@@ -25,7 +21,7 @@ format :html do
   end
 
   def source_details
-    wrap_with :div, _render_sources, class: "cited-sources mt-3"
+    wrap_with :div, render_sources, class: "cited-sources mt-3"
   end
 
   def override_details

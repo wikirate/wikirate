@@ -3,8 +3,12 @@ include_set Abstract::AnswerSearch
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::Chart
 
+def virtual?
+  true
+end
+
 def query_class
-  FixedMetricAnswerQuery
+  AnswerQuery::FixedMetric
 end
 
 def filter_card_fieldcode
@@ -37,6 +41,6 @@ format :html do
   end
 
   def value_sort_link
-    table_sort_link "Values", :value
+    table_sort_link "Values", :value, true
   end
 end

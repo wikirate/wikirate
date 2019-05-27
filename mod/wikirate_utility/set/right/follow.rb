@@ -7,7 +7,7 @@ format :html do
     link_to_card card, "more..."
   end
 
-  #  view :profile, tags: :unknown_ok do
+  #  view :profile, unknown: true do
   #    voo.show :more_link
   #    return "" unless card.left.present? && card.left.account
   #    frame { _render_following_list }

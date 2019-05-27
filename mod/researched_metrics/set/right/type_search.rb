@@ -46,13 +46,4 @@ end
 
 format :html do
   include Right::DownvoteeSearch::HtmlFormat
-
-  before :filter_and_sort do
-    @default_sort ||=
-      if main_type_id == WikirateTopicID && searched_type_id == WikirateCompanyID
-        :contributions
-      else
-        :importance
-      end
-  end
 end

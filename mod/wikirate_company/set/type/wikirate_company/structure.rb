@@ -1,152 +1,93 @@
 include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
+include_set Abstract::Filterable
 
 card_accessor :wikipedia
 card_accessor :open_corporates
 card_accessor :post
 
 format :html do
+  # EDITING
+
   before :content_formgroup do
     voo.edit_structure = [:headquarters, :image, :wikipedia]
   end
 
-  view :wikirate_topic_tab do
-    field_nest :wikirate_topic, items: { view: :bar }
-  end
-
-  view :source_tab do
-    field_nest :source, items: { view: :bar }
-  end
-
-  view :project_tab do
-    field_nest :project, items: { view: :bar }
-  end
-
-  def tab_list
-    list = [:details]
-    list += performance_tabs if active_profile_tab == :performance
-    list
-  end
-
-  def performance_tabs
-    %i[wikirate_topic source post project]
-  end
-
-  def active_profile_tab
-    (profile = params[:company_profile]) ? profile.to_sym : default_profile_tab
-  end
-
-  def default_profile_tab
-    @default_profile_tab ||=
-      show_contributions_profile? ? :contributions : :performance
-  end
-
-  view :data, cache: :never do
-    active_profile_tab == :performance ? performance_data : contribution_data
-  end
-
-  def performance_data
-    field_nest :metric_answer
-  end
-
-  def header_right
-    output [header_title, _render_header_tabs]
-  end
-
-  def header_title
-    wrap_with :h3, _render_title, class: "company-color p-2"
-  end
-
-  view :header_tabs, cache: :never do
-    wrap_header_tabs
-  end
-
-  view :header_tabs_mobile, cache: :never do
-    wrap_header_tabs(:mobile)
-  end
-
-  view :rich_header_mobile do
-    wrap_with :div, _render_rich_header, class: "d-block d-md-none"
-  end
-
-  view :content_right_col do
-    wrap_with :div do
-      [
-        _render_header_tabs_mobile,
-        _render_rich_header_mobile,
-        _render_tabs
-      ]
-    end
-  end
+  # LEFT SIDE
 
   def left_column_class
     "left-col order-2 order-md-1 hide-header-sm"
   end
 
+  def header_body size=:medium
+    class_up "media-heading", "company-color"
+    super
+  end
+
+  def header_text
+    return unless contribs_made?
+
+    if contrib_page?
+      switch_to :wikirate_company, "N", "Company performance profile"
+    else
+      switch_to :user, "Y", "Content contributions to WikiRate.org"
+    end
+  end
+
+  def switch_to icon, val, title
+    link_to_card card, mapped_icon_tag(icon), class: "company-switch", title: title,
+                                              path: { contrib: val }
+  end
+
+  view :data do
+    if contrib_page?
+      render_contributions_data
+    else
+      field_nest :metric_answer
+    end
+  end
+
+  # RIGHT SIDE
+
   def right_column_class
     "right-col order-1 order-md-2"
   end
 
-  def wrap_header_tabs device=""
-    css_class = "nav nav-tabs twin-tab nodblclick " + header_tab_classes(device)
-    wrap_with :ul, class: css_class do
-      [performance_tab_button, contributions_tab_button]
-    end
-  end
-
-  def header_tab_classes device
-    if device.to_sym == :mobile
-      "d-flex d-md-none"
+  def tab_list
+    if contrib_page?
+      %i[projects_organized details]
     else
-      "d-none d-md-inline company-profile-tab"
+      %i[details wikirate_topic source project]
     end
   end
 
-  def contribution_data
-    output [_render_metric_contributions, _render_project_contributions]
+  def tab_options
+    { projects_organized: { label: "Projects Organized" } }
   end
 
-  def profile_tab key, label, args={}
-    add_class args, :active if active_profile_tab == key
-    wrap_with :li do
-      add_class args, "nav-link"
-      link_to_card card, label, path: { company_profile: key }, class: args[:class]
-    end
+  view :wikirate_topic_tab do
+    filtering { field_nest :wikirate_topic, items: { view: :bar } }
   end
 
-  def performance_tab_button
-    profile_tab :performance, "Performance"
+  view :source_tab do
+    filtering { field_nest :source, items: { view: :bar } }
   end
 
-  def contributions_tab_button
-    label_name = "Contributions"
-    if contributions_made?
-      profile_tab :contributions, label_name
-    else
-      wrap_with :li, class: "disabled" do
-        wrap_with :span, label_name, class: "nav-link"
-      end
-    end
+  view :project_tab do
+    filtering { field_nest :project, items: { view: :bar } }
   end
 
   view :details_tab do
-    bs_layout do
-      row 12 do
-        column do
-          output [properties, integrations]
-        end
-      end
-    end
+    details
   end
 
-  def properties
-    field_nest :headquarters, title: "Headquarters",
-                              view: :labeled, items: { view: :name }
+  def details
+    output [labeled_field(:headquarters), integrations]
   end
 
   def integrations
     output [
-      content_tag(:h5, "INTEGRATIONS", class: "border-bottom pb-2"),
+      content_tag(:h1, "Integrations"),
       wikipedia_extract,
       open_corporates_extract
     ]

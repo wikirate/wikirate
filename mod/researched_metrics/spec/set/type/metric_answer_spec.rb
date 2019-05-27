@@ -27,9 +27,9 @@ RSpec.describe Card::Set::Type::MetricAnswer do
   describe "views" do
     specify "concise" do
       html = answer.format.render_concise
-      expect(html).to have_tag("span.metric-year", text: /1977/)
+      expect(html).to have_tag("span.answer-year", text: /1977/)
       expect(html).to have_tag("span.metric-value")
-      expect(html).to have_tag("span.metric-unit",
+      expect(html).to have_tag("span.metric-legend",
                                text: /Imperial military units/)
     end
   end
@@ -41,13 +41,13 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       subject { sample_answer(:money).format.render_concise }
 
       it "shows currency sign" do
-        is_expected.to have_tag "span.metric-unit" do
+        is_expected.to have_tag "span.metric-legend" do
           with_text /USD/
         end
       end
 
       it "shows year" do
-        is_expected.to have_tag "span.metric-year" do
+        is_expected.to have_tag "span.answer-year" do
           with_text /1977/
         end
       end

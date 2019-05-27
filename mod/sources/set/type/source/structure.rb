@@ -1,13 +1,16 @@
-include_set Abstract::Header
-include_set Abstract::Tabs
+include_set Abstract::TwoColumnLayout
 
 format :html do
-  def layout_name_from_rule
-    :wikirate_two_column_layout
-  end
-
   before :content_formgroup do
     voo.edit_structure = form_fields
+  end
+
+  view :open_content do
+    hidden_information + two_column_layout(7, 5)
+  end
+
+  view :left_column do
+    render_preview
   end
 
   def form_fields
