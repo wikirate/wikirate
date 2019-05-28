@@ -28,6 +28,14 @@
   }
 }
 
+.details-body .nav-tabs label {
+  margin-bottom: 0;
+}
+
+.details_sidebar-view .year-and-value {
+  cursor: pointer;
+}
+
 .metric_properties-view {
   width: 100% !important;
 }

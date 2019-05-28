@@ -5,6 +5,6 @@
       = card.year
   .thumbnail-text.col
     %span.metric-color.font-weight-bold
-      = calculated { nest card.value_card, view: :pretty }
+      = handle_unknowns { calculated { nest card.value_card, view: :pretty } }
     %span.text-muted
       = render_legend

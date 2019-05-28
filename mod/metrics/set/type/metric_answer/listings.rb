@@ -70,30 +70,37 @@ format :html do
     wrap_with :div, (nest card.company_card, nest_args), class: "company-link"
   end
 
-  view :value_cell, unknown: true do
-    view = if card.unknown?
-             card.researchable? ? :research_button : :blank
-           else
-             :concise
-           end
-    render view
+  def handle_unknowns
+    return yield if card.known?
+
+    render(card.researchable? ? :research_button : :not_researched)
   end
 
   # prominent value, less prominent year, legend, and flags
-  view :concise, template: :haml, unknown: true
+  view :concise, unknown: true do
+    handle_unknowns { haml :concise }
+  end
 
   # prominent year, prominent value, less prominent flags
-  view :year_and_value, template: :haml
-  view :year_and_value_pretty, template: :haml
+  view :year_and_value, unknown: true, template: :haml
+  view :year_and_value_pretty, unknown: true, template: :haml
 
-  view :year_and_value_pretty_link do
-    link_to_card card, render_year_and_value_pretty
+  view :value_and_flags, unknown: true do
+    wrap_with :div, class: "value-and-flags" do
+      handle_unknowns do
+        [calculated { nest card.value_card, view: :pretty }, render_flags]
+      end
+    end
   end
 
   view :year_and_icon do
     wrap_with :span, class: "answer-year" do
       "#{fa_icon :calendar} #{card.year}"
     end
+  end
+
+  view :not_researched, perms: :none, wrap: :em do
+    "Not Researched"
   end
 
   view :plain_year do

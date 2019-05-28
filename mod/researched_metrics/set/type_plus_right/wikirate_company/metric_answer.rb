@@ -23,7 +23,7 @@ format :html do
   def table_args
     [:metric,
      self, # call search_with_params on self to get items
-     [:metric_thumbnail_with_vote, :value_cell],
+     [:metric_thumbnail_with_vote, :concise],
      header: [name_sort_links, "Value"],
      details_view: :metric_details_sidebar]
   end

@@ -75,7 +75,7 @@ RSpec.describe Card::AnswerQuery::FixedMetric do
     end
 
     context "with value filter" do
-      let(:all_answers) do
+      let(:researched_answers) do
         LATEST_ANSWERS + missing_answers
       end
 
@@ -87,7 +87,7 @@ RSpec.describe Card::AnswerQuery::FixedMetric do
       it "finds all values" do
         filtered = filter_by(status: :all)
         expect(filtered)
-          .to include(*all_answers)
+          .to include(*researched_answers)
       end
 
       context "with update date filter" do

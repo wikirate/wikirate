@@ -162,7 +162,7 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
     end
 
     context "with value" do
-      let :all_answers do
+      let :researched_answers do
         latest_answers + with_year(["researched number 2", "researched number 3",
                                     "small multi", "small single"])
       end
@@ -179,7 +179,7 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
 
       it "finds all values" do
         filtered = filter_by(status: :all)
-        expect(filtered).to include(*all_answers)
+        expect(filtered).to include(*researched_answers)
         expect(filtered.size)
           .to eq Card.search(type_id: Card::MetricID, return: :count)
       end

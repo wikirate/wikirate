@@ -31,7 +31,7 @@ format :html do
   def table_args
     [:company,
      self,
-     [:company_thumbnail, :value_cell],
+     [:company_thumbnail, :concise],
      header: [company_sort_link, value_sort_link],
      details_view: :company_details_sidebar]
   end

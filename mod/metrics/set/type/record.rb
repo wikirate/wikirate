@@ -1,31 +1,37 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::TwoColumnLayout
 
+def answer_query
+  @answer_query ||= { company_id: company_id, metric_id: metric_id }
+end
+
+def researched_answers
+  @researched_answers ||= Answer.search answer_query.merge(sort_by: :year,
+                                                           sort_order: :desc)
+end
+
+def count
+  Answer.where(answer_query).count
+end
+
+# TODO: find better place for this
+def all_years
+  @all_years ||= Card.search type_id: YearID, return: :name, sort: :name, dir: :desc
+end
+
 def all_answers
-  @result ||= Answer.search(company_id: company_id,
-                            metric_id: metric_id,
-                            sort_by: :year,
-                            sort_order: :desc)
+  @researched_answers ||= all_years.map do |year|
+    Card.fetch name.field(year), new: { type_id: Card::MetricAnswerID }
+  end
 end
 
 def virtual?
   !real?
 end
 
-# def value year
-#   answer_where(year).pluck(:value).first
-# end
-#
-# def answer year
-#   answer_where(year).first
-# end
-#
-# def answer_where year
-#   Answer.where record_id: id, year: year.to_i
-# end
 
 format do
-  delegate :all_answers, to: :card
+  delegate :researched_answers, :all_answers, to: :card
 end
 
 format :html do
@@ -63,8 +69,8 @@ format :html do
 
   # NOCACHE because item search
   view :years_and_values, cache: :never do
-    all_answers.map do |a|
-      nest a, view: :year_and_value_pretty_link
+    researched_answers.map do |a|
+      nest a, view: :year_and_value
     end
   end
 
@@ -83,7 +89,7 @@ end
 
 format :csv do
   view :core do
-    all_answers.each_with_object("") do |a, res|
+    researched_answers.each_with_object("") do |a, res|
       res << CSV.generate_line([a.company, a.year, a.value])
     end
   end
@@ -91,6 +97,6 @@ end
 
 format :json do
   def item_cards
-    all_answers
+    researched_answers
   end
 end
