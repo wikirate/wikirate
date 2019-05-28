@@ -25,18 +25,7 @@ format :html do
   end
 
   def header_text
-    return unless contribs_made?
-
-    if contrib_page?
-      switch_to :wikirate_company, "N", "Company performance profile"
-    else
-      switch_to :user, "Y", "Content contributions to WikiRate.org"
-    end
-  end
-
-  def switch_to icon, val, title
-    link_to_card card, mapped_icon_tag(icon), class: "company-switch", title: title,
-                                              path: { contrib: val }
+    contribs_made? ? render_contrib_switch : ""
   end
 
   view :data do

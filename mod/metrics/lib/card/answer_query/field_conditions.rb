@@ -17,7 +17,7 @@ class Card
         restrict_to_ids col, Card.search(wql)
       end
 
-      # :researched (known + unknown) is default case;
+      # :exists/researched (known + unknown) is default case;
       # :all and :none are handled in #run
       def status_query value
         case value.to_sym

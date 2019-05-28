@@ -12,6 +12,29 @@ format :html do
     field_nest :metrics_designed, view: :titled
   end
 
+  # NOCACHE because of special contributor handling
+  view :type_link, cache: :never do
+    super()
+  end
+
+  view :contrib_switch, cache: :never do
+    contrib_page? ? switch_to_performance : switch_to_contrib
+  end
+
+  def switch_to_performance
+    switch_to "Performance", :wikirate_company, "N", "Company performance profile"
+
+  end
+
+  def switch_to_contrib
+    switch_to "Contributions", :user, "Y", "Content contributions to WikiRate.org"
+  end
+
+  def switch_to text, icon, val, title
+    link_to_card card, "#{text} #{mapped_icon_tag icon}",
+                 class: "company-switch", title: title, path: { contrib: val }
+  end
+
   def type_link_label
     contrib_page? ? "Organizational Contributor" : super
   end

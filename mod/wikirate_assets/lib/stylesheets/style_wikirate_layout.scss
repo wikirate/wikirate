@@ -203,10 +203,16 @@ div[data-slot*="float:right"]{
 
 
 .rich-header .media {
+  .card-menu {
+    z-index: 3;
+  }
   .media-body {
     padding: 4px;
     &.media-body-large {
       padding: 1em;
+      .media-heading {
+        margin-right: 2em;
+      }
     }
     .media-heading {
       font-size: 1.7rem !important;

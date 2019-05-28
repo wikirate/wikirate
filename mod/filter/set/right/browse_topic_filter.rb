@@ -18,6 +18,10 @@ def filter_keys
   %i[name metric project wikirate_company]
 end
 
+def default_filter_option
+  { name: "" }
+end
+
 def target_type_id
   WikirateTopicID
 end

@@ -8,13 +8,11 @@ end
 
 # override
 def default_sort_option
-  answer_lookup? ? :value : :name
+  lookup? ? :value : :name
 end
 
-def answer_lookup?
-  return @answer_lookup unless @answer_lookup.nil?
-
-  @answer_lookup = !filter_hash[:status].in?(%w[none all])
+def lookup?
+  !filter_hash[:status].to_sym.in?(%i[none all])
 end
 
 def sort_order
@@ -28,8 +26,8 @@ def default_desc_sort_order
 end
 
 format :html do
-  def table_sort_link name, key, lookup_only=false, css_class=""
-    return name if lookup_only && !card.answer_lookup?
+  def table_sort_link name, key, test=nil, css_class=""
+    return name if test && !card.send(test)
     sort_link "#{name} #{sort_icon key}",
               sort_by: key,
               sort_order: toggle_sort_order(key),

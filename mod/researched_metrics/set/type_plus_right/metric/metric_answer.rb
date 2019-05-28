@@ -41,6 +41,6 @@ format :html do
   end
 
   def value_sort_link
-    table_sort_link "Values", :value, true
+    table_sort_link "Answer", :value, :lookup?
   end
 end
