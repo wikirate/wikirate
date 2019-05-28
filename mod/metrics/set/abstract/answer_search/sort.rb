@@ -12,7 +12,7 @@ def default_sort_option
 end
 
 def lookup?
-  !filter_hash[:status].to_sym.in?(%i[none all])
+  !filter_hash[:status]&.to_sym.in? %i[none all]
 end
 
 def sort_order
