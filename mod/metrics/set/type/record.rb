@@ -29,7 +29,6 @@ def virtual?
   !real?
 end
 
-
 format do
   delegate :researched_answers, :all_answers, to: :card
 end

@@ -23,7 +23,6 @@ format :html do
 
   def switch_to_performance
     switch_to "Performance", :wikirate_company, "N", "Company performance profile"
-
   end
 
   def switch_to_contrib

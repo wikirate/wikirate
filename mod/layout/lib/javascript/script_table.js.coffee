@@ -24,7 +24,6 @@ $(document).ready ->
   $('body').on 'click', '.details_sidebar-view .update-details', ->
     $(this).closest('.details_sidebar-view').reloadSlot $(this).attr('href')
 
-
   trToggleDetails = (toggle) ->
     $toggle = $(toggle)
     row = $toggle.closest('.details-toggle')
