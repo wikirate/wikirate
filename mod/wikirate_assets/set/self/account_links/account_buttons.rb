@@ -12,8 +12,4 @@ format :html do
   before :sign_out do
     voo.title = "Log out"
   end
-
-  def nav_link_class type
-    classy(type)
-  end
 end

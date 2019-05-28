@@ -216,6 +216,7 @@ a.slicknav_btn {
 
   #logging {
     display: block;
+
     a {
       margin-left: 10px;
     }
@@ -231,12 +232,23 @@ a.slicknav_btn {
     font-size: .8em;
   }
 
+  a.nav-link {
+    color: $anchor_color;
+    display: inline;
+  }
+
   a#my-card-link {
     display: block;
     font-size: 1.2em;
   }
 
-  ul.dropdown-menu a {
+  ul.dropdown-menu a, a.dropdown-toggle {
     font-size: 1rem;
+    padding-top: 0.7rem;
+  }
+
+  .dropdown-header {
+    font-size: 0.875rem !important;
+    margin-top: 0;
   }
 }
