@@ -3,20 +3,27 @@
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
 
-def wql_from_content
-  super.merge limit: 15, sort: default_sort_option
-end
-
 def filter_class
   SourceFilterQuery
 end
 
 def sort_wql
-  { sort: "create", dir: "desc" }
+  case current_sort.to_sym
+  when :create
+    { sort: "create", dir: "desc" }
+  when :title
+    { sort: { right: "title" } }
+  else
+    super
+  end
+end
+
+def default_sort_option
+  "create"
 end
 
 def filter_keys
-  %i[wikirate_title wikirate_company wikirate_topic report_type]
+  %i[wikirate_title wikirate_company wikirate_topic report_type year]
 end
 
 def default_filter_option
@@ -27,13 +34,13 @@ def target_type_id
   SourceID
 end
 
-def default_sort_option
-  "create"
-end
-
 format :html do
-  view :sort_formgroup do
-    ""
+  def sort_options
+    {
+      "Recently Added" => "create",
+      "Title"          => "title",
+      "Most Answers"   => "answer"
+    }
   end
 
   view :filter_wikirate_title_formgroup, cache: :never do
@@ -48,11 +55,12 @@ format :html do
     type_options :report_type
   end
 
-  # name is hard (because actual names are source-123412)
-  # update is misleading (because field updates don't change card update date)
-  # ... seems best not to offer bad options.
-  def sort_options
-    {}
+  view :filter_year_formgroup, cache: :never do
+    select_filter :year
+  end
+
+  def year_options
+    type_options :year, "desc"
   end
 end
 
@@ -74,5 +82,9 @@ class SourceFilterQuery < Card::FilterQuery
 
   def report_type_wql value
     add_to_wql :right_plus, [ReportTypeID, { refer_to: value }]
+  end
+
+  def year_wql value
+    add_to_wql :right_plus, [YearID, { refer_to: value }]
   end
 end

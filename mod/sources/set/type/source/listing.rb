@@ -10,7 +10,7 @@ format :html do
   view :bar_right, template: :haml
 
   view :bar_middle do
-    count_badges :wikirate_company, :metric
+    count_badges :metric_answer, :metric, :wikirate_company
   end
 
   view :bar_bottom do
