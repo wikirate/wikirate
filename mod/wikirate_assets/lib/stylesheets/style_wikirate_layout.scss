@@ -202,27 +202,41 @@ div[data-slot*="float:right"]{
 }
 
 
-.rich-header .media {
+.rich-header {
   .card-menu {
     z-index: 3;
   }
-  .media-body {
-    padding: 4px;
-    &.media-body-large {
-      padding: 1em;
-      .media-heading {
-        margin-right: 2em;
+  .media {
+    .media-body {
+      padding: 4px;
+      &.media-body-large {
+        padding: 1em;
+        .media-heading {
+          margin-right: 2em;
+        }
       }
-    }
-    .media-heading {
-      font-size: 1.7rem !important;
-      .card-title {
-        color: inherit;
+      .media-heading {
+        font-size: 1.7rem !important;
+        .card-title {
+          color: inherit;
+        }
       }
     }
   }
 }
 
+@include media-breakpoint-up(xs) {
+  .rich-header {
+    > .card-menu._show-on-hover > a {
+      display: none;
+    }
+  }
+  .rich-header:hover {
+    > .card-menu._show-on-hover > a {
+      display: inline-block;
+    }
+  }
+}
 
 .titled-view .d0-card-header {
   margin-top: 0.5em;

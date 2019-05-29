@@ -38,14 +38,16 @@ $box_stripe_color: $gray-700;
 
 .bar {
   border-left: 3px solid $border-color;
-  &:hover {
-    border-left-color: $dark-text-color;
-    // Following needed on answer bars
-    .bar-left .company-link a {
-      color: $company-color !important;
-    }
+}
+
+.bar:hover, .expanded-bar:hover .bar {
+  border-left-color: $dark-text-color;
+  // Following needed on answer bars
+  .bar-left .company-link a {
+    color: $company-color !important;
   }
 }
+
 .bar-nav {
   display: flex;
   flex-wrap: wrap;
@@ -93,12 +95,14 @@ a.box-item {
 
 // set consistent colors for a group of bars/boxes
 @mixin barbox($color) {
-  &.bar,
-  &.bar-bottom {
+  &.bar {
     border-left-color: rgba($color, 0.2) !important;
+  }
 
-    &:hover {
-      border-left-color: $color !important;
+  &.expanded_bar-view:hover .bar, &.bar:hover {
+    border-left-color: $color !important;
+    .bar-left a {
+      color: $color;
     }
   }
 
@@ -106,12 +110,6 @@ a.box-item {
     border-top-color: $color !important;
 
     .box-top a {
-      color: $color;
-    }
-  }
-
-  &.bar:hover {
-    .bar-left a {
       color: $color;
     }
   }
