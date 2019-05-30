@@ -82,12 +82,16 @@ format :html do
     field_nest :researcher, view: :overview
   end
 
-  view :bar_left, template: :haml
-  view :bar_bottom, template: :haml
-  view :bar_middle, template: :haml
+  view :bar_left do
+    render_thumbnail
+  end
+
+  view :bar_middle do
+    field_nest :wikirate_topic, items: { view: :link }
+  end
 
   view :bar_right, cache: :never do
-    labeled_badge card.researcher_card.count, "Researchers", color: "dark"
+    count_badges :researcher, :metric, :project
   end
 
   view :minor_labeled_badges, cache: :never do
