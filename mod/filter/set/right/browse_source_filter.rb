@@ -61,7 +61,7 @@ format :html do
   end
 end
 
-# cardql query to filter sources
+# cql query to filter sources
 class SourceFilterQuery < Card::FilterQuery
   def wikirate_title_wql value
     return unless value.present?

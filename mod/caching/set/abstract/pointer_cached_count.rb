@@ -5,4 +5,3 @@ def self.included host_class
     self
   end
 end
-

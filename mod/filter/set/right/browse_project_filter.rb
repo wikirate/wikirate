@@ -35,11 +35,11 @@ format :html do
   end
 
   def wikirate_status_options
-    ["Active", "Inactive"]
+    %w[Active Inactive]
   end
 end
 
-# cardql query to filter sources
+# cql query to filter sources
 class ProjectFilterQuery < Card::FilterQuery
   def wikirate_status_wql value
     return unless value.present?
