@@ -45,7 +45,9 @@ format :html do
     nest image_card, view: :core, size: :medium
   end
 
-  view :box_bottom, template: :haml
+  view :box_bottom do
+    count_badges :wikirate_company, :metric
+  end
 
   bar_cols 7, 5
   info_bar_cols 5, 4, 3
@@ -59,7 +61,8 @@ format :html do
   end
 
   view :data, cache: :never do
-    field_nest :metric, title: "Metrics", items: { view: :bar }
+    field_nest :metric, title: "Metrics",
+                        view: :filtered_content, items: { view: :bar }
   end
 
   view :details_tab do

@@ -30,7 +30,9 @@ format :html do
     field_nest :image, view: :core, size: :medium
   end
 
-  view :box_bottom, template: :haml
+  view :box_bottom do
+    count_badges :metric, :wikirate_topic
+  end
 
   bar_cols 7, 5
   info_bar_cols 5, 4, 3

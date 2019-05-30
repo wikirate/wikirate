@@ -3,10 +3,6 @@
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
 
-def filter_class
-  ResearchGroupFilterQuery
-end
-
 def default_sort_option
   "researcher"
 end
@@ -25,10 +21,6 @@ end
 
 format :html do
   def sort_options
-    { "Most Researchers": "researcher" }.merge super
+    { "Most Researchers": :researcher, "Most Projects": :project }.merge super
   end
-end
-
-# cql query to filter research groups
-class ResearchGroupFilterQuery < Card::FilterQuery
 end

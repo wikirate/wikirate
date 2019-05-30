@@ -5,11 +5,11 @@ include_set Abstract::Filter
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[metric designer wikirate_topic project year]
+  []
 end
 
 def default_sort_option
-  "metric"
+  "name"
 end
 
 def filter_class
@@ -21,7 +21,7 @@ def wql_from_content
 end
 
 def target_type_id
-  WikirateCompanyID
+  raise "need target_type_id"
 end
 
 def sort_wql
@@ -44,7 +44,7 @@ def cached_count_sort_wql
 end
 
 def virtual?
-  true
+  !real?
 end
 
 format :html do

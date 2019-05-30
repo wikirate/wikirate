@@ -64,11 +64,11 @@ format :html do
     %i[researcher metric project]
   end
 
-  def tab_options
-    tab_list.each_with_object({}) do |codename, hash|
-      hash[codename] = { count: card.send("#{codename}_card").count }
-    end
-  end
+  # def tab_options#
+  #   tab_list.each_with_object({}) do |codename, hash|
+  #     hash[codename] = { count: card.send("#{codename}_card").count }
+  #   end
+  # end
 
   view :metric_tab do
     field_nest :metric, items: { view: :bar }
