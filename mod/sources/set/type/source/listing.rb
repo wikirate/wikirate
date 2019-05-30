@@ -2,11 +2,17 @@ include_set Abstract::Filterable
 
 format :html do
   # BAR VIEWS
+  before :bar do
+    class_up "bar-left", "filterable"
+    super()
+  end
+
   view :bar_left do
     filterable :source do
       haml :bar_left
     end
   end
+
   view :bar_right, template: :haml
 
   view :bar_middle do

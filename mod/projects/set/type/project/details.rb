@@ -1,4 +1,4 @@
-include_set Abstract::Filterable
+include_set Abstract::FilterableBar
 
 format :html do
   # ~~~~~~~~~~~~~ DETAILS ON PROJECT PAGE
@@ -34,7 +34,7 @@ format :html do
   bar_cols 8, 4
 
   view :bar_left do
-    filterable :project, nil, class: "w-100" do
+    filterable :project do
       text_with_image image: card.field(:image),
                       size: voo.size,
                       title: render_title_link,

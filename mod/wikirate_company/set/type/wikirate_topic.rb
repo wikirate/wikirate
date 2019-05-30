@@ -3,7 +3,7 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Media
 include_set Abstract::BsBadge
-include_set Abstract::Filterable
+include_set Abstract::FilterableBar
 
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
@@ -18,12 +18,13 @@ format :html do
     class_up "media-heading", "topic-color"
     super
   end
+
   view :missing do
     _render_link
   end
 
   view :bar_left do
-    filterable :wikirate_topic, nil, class: "w-100" do
+    filterable :wikirate_topic do
       render_thumbnail
     end
   end

@@ -55,15 +55,17 @@ format :html do
   end
 
   view :wikirate_topic_tab do
-    filtering { field_nest :wikirate_topic, items: { view: :bar } }
+    filtering do
+      field_nest :wikirate_topic, items: { view: :bar, show: :full_page_link }
+    end
   end
 
   view :source_tab do
-    filtering { field_nest :source, items: { view: :bar } }
+    filtering { field_nest :source, items: { view: :bar, show: :full_page_link } }
   end
 
   view :project_tab do
-    filtering { field_nest :project, items: { view: :bar } }
+    filtering { field_nest :project, items: { view: :bar, show: :full_page_link } }
   end
 
   view :details_tab do
