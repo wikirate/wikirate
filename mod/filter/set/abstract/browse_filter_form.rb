@@ -25,8 +25,11 @@ def target_type_id
 end
 
 def sort_wql
-  if current_sort.to_sym == :name
+  case current_sort.to_sym
+  when :name
     { sort: "name" }
+  when :create
+    { sort: "create", dir: "desc" }
   else
     cached_count_sort_wql
   end

@@ -24,8 +24,8 @@ format :html do
 
   def sort_options
     {
-      "Importance to Community (up-voted by community)" => "upvoted",
-      "Most Company" => "company_number",
+      "Highest Voted": :upvoted,
+      "Most Companies": :company,
       "Metric Designer (Alphabetical)" => "metric_designer",
       "Metric Title (Alphabetical)" => "metric_title"
     }

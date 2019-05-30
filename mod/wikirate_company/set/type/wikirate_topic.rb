@@ -30,11 +30,11 @@ format :html do
   end
 
   view :bar_middle do
-    count_badges :post, :project
+    count_badges :wikirate_company, :project
   end
 
   view :bar_right do
-    count_badges :metric, :wikirate_company
+    count_badge :metric
   end
 
   view :bar_bottom do

@@ -28,7 +28,7 @@ RSpec.describe Card::Set::Type::Post do
 
     specify "expanded bar" do
       expect_view(:expanded_bar).to have_tag ".expanded-bar" do
-        with_tag ".bar-top" do
+        with_tag ".bar" do
           with_tag ".bar-left", "My Post"
           without_tag "div.bar-middle"
           with_tag "div.bar-right", /#{badges_matcher}/

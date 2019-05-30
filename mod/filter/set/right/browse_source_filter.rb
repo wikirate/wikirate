@@ -1,4 +1,4 @@
-# filter interface for "Browse Sources"  page
+# filter interface for "Browse Sources" page
 
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
@@ -8,10 +8,7 @@ def filter_class
 end
 
 def sort_wql
-  case current_sort.to_sym
-  when :create
-    { sort: "create", dir: "desc" }
-  when :title
+  if current_sort.to_sym == :title
     { sort: { right: "title" } }
   else
     super

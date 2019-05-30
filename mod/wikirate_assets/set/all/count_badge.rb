@@ -11,9 +11,7 @@ format :html do
   end
 
   def count_badges *fields
-    wrap_with :div, class: "d-flex flex-wrap count-badges w-100 justify-content-center" do
-      output(fields.map { |f| count_badge f })
-    end
+    fields.map { |f| count_badge f }
   end
 
   view :count do

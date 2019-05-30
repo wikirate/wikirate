@@ -17,7 +17,12 @@ def created_query user_id, variant=nil
 end
 
 format :html do
-  view :core do
-    core_with_listing
+  view :titled_content do
+    [field_nest(:description), render_add_button, research_groups]
+  end
+
+  def research_groups
+    field_nest :browse_research_group_filter,
+               view: :filtered_content, items: { view: :info_bar }
   end
 end
