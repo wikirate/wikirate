@@ -13,7 +13,7 @@ format :html do
   view :bar_middle, template: :haml
 
   view :bar_right do
-    [count_badges(:wikirate_company, :metric),
+    [count_badges(:metric, :wikirate_company),
      labeled_badge(card.percent_researched, "% Researched")]
   end
 

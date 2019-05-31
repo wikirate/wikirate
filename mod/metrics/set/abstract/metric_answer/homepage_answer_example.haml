@@ -18,4 +18,4 @@
         = citations_count_badge
       .small citations
     .col
-      = nest card.source_card, items: { view: :bar }
+      = nest card.source_card, items: { view: :bar, hide: %i[creator_credit bar_nav] }

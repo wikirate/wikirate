@@ -37,6 +37,8 @@ format :html do
     ]
   end
 
+  info_bar_cols 5, 5, 2
+
   view :open_content do
     two_column_layout 5, 7
   end
@@ -91,7 +93,11 @@ format :html do
   end
 
   view :bar_right, cache: :never do
-    count_badges :researcher, :metric, :project
+    count_badges :researcher, :project, :metric
+  end
+
+  view :bar_bottom do
+    render_data
   end
 
   view :minor_labeled_badges, cache: :never do

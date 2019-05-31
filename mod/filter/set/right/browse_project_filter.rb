@@ -16,7 +16,7 @@ def filter_keys
 end
 
 def default_filter_option
-  { name: "", wikirate_status: "active" }
+  { name: "", wikirate_status: "Active" }
 end
 
 def target_type_id
@@ -31,7 +31,7 @@ format :html do
   end
 
   view :filter_wikirate_status_formgroup, cache: :never do
-    select_filter :wikirate_status
+    select_filter :wikirate_status, "Active"
   end
 
   def wikirate_status_options

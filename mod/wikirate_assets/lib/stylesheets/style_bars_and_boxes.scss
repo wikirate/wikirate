@@ -48,14 +48,6 @@ $box_stripe_color: $gray-700;
   }
 }
 
-.bar-nav {
-  display: flex;
-  flex-wrap: wrap;
-  a {
-    padding: 0 .25rem;
-  }
-}
-
 .box-top {
   h1, h2, h3, h4, h5, h6 {
     border: 0 !important;
@@ -185,12 +177,27 @@ $colorMap: (
     }
   }
 }
+
+.TYPE-project, .TYPE-research_group {
+  &.bar {
+    .bar-left:hover .media-heading a {
+      color: $teal;
+    }
+    .bar-right {
+      flex-direction: column;
+      justify-content: left;
+      align-items: flex-end !important;
+      text-align: right;
+    }
+  }
+}
+
 // project link color
 
-.TYPE-project .bar-left:hover .media-heading a {
-  color: $teal;
-}
+.TYPE-project
 // for metric items
+
+
 
 .TYPE-metric.box {
   height: 360px;
