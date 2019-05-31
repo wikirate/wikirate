@@ -1,6 +1,6 @@
 class Card
-  # extends decko class
-  class FilterQuery
+  # shared methods
+  module WikirateFilterQuery
     def topic_wql topic
       add_to_wql :right_plus, [WikirateTopicID, { refer_to: { name: topic } }]
     end

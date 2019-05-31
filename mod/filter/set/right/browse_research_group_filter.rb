@@ -19,8 +19,16 @@ def target_type_id
   ResearchGroupID
 end
 
+def filter_class
+  ResearchGroupFilterQuery
+end
+
 format :html do
   def sort_options
     { "Most Researchers": :researcher, "Most Projects": :project }.merge super
   end
+end
+
+class ResearchGroupFilterQuery < FilterQuery
+  include WikirateFilterQuery
 end

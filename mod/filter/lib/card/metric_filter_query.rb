@@ -1,6 +1,8 @@
 class Card
   # Filter metrics (e.g. on company pages)
-  class MetricFilterQuery < Card::FilterQuery
+  class MetricFilterQuery < FilterQuery
+    include WikirateFilterQuery
+
     def metric_wql metric
       name_wql metric
     end

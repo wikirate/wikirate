@@ -56,7 +56,8 @@ format :html do
 
   view :wikirate_topic_tab do
     filtering do
-      field_nest :wikirate_topic, items: { view: :bar, show: :full_page_link }
+      nest [:wikirate_topic, :browse_topic_filter],
+           items: { view: :bar, show: :full_page_link }
     end
   end
 

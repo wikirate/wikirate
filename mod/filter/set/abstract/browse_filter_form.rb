@@ -17,7 +17,7 @@ def filter_class
 end
 
 def wql_from_content
-  { type_id: target_type_id, limit: 20 }.merge sort_wql
+  { type_id: target_type_id, limit: 20 }
 end
 
 def target_type_id

@@ -62,7 +62,9 @@ format :html do
 end
 
 # cql query to filter sources
-class SourceFilterQuery < Card::FilterQuery
+class SourceFilterQuery < FilterQuery
+  include WikirateFilterQuery
+
   def wikirate_title_wql value
     return unless value.present?
     add_to_wql :right_plus, [WikirateTitleID, { content: [:match, value] }]
