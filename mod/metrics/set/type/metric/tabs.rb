@@ -1,3 +1,5 @@
+include_set Abstract::Filterable
+
 format :html do
   # default tab list (several metric types override)
   def tab_list
@@ -35,8 +37,10 @@ format :html do
   end
 
   view :project_tab do
-    tab_wrap do
-      field_nest :project, view: :titled, title: "Projects", items: { view: :bar }
+    filtering do
+      tab_wrap do
+        field_nest :project, view: :titled, title: "Projects", items: { view: :bar }
+      end
     end
   end
 

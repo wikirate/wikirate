@@ -3,7 +3,7 @@ include_set Abstract::Filterable
 format :html do
   # BAR VIEWS
   before :bar do
-    class_up "bar-left", "filterable"
+    class_up "bar-left", "_filterable"
     super()
   end
 

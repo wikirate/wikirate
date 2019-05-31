@@ -54,19 +54,23 @@ format :html do
     { projects_organized: { label: "Projects Organized" } }
   end
 
+  def answer_filtering
+    filtering(".RIGHT-answer ._filter-widget") { yield }
+  end
+
   view :wikirate_topic_tab do
-    filtering do
+    answer_filtering do
       nest [:wikirate_topic, :browse_topic_filter],
-           items: { view: :bar, show: :full_page_link }
+           view: :filtered_content, items: { view: :bar, show: :full_page_link }
     end
   end
 
   view :source_tab do
-    filtering { field_nest :source, items: { view: :bar, show: :full_page_link } }
+    answer_filtering { field_nest :source, items: { view: :bar, show: :full_page_link } }
   end
 
   view :project_tab do
-    filtering { field_nest :project, items: { view: :bar, show: :full_page_link } }
+    answer_filtering { field_nest :project, items: { view: :bar, show: :full_page_link } }
   end
 
   view :details_tab do
