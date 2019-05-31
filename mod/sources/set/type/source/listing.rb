@@ -58,17 +58,13 @@ format :html do
 
   # OTHER VIEWS
 
-  # view :icon do
-  #   icon = wrap_with(:i, " ", class: "glyphicon glyphicon-link")
-  #   wrap_with(:div, icon, class: "source-icon")
-  # end
-
   view :creator_credit do
     wrap_with :div, class: "last-edit" do
       "added #{_render_created_at} ago by #{creator}"
     end
   end
 
+  # TODO: unify with bar-left
   view :listing_compact, template: :haml
   view :wikirate_copy_message, template: :haml
 
