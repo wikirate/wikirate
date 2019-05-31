@@ -6,7 +6,7 @@ RSpec.describe Card::Set::Self::Project do
 
     it "has a featured projects section" do
       expect_view(:core).to have_tag("div.SELF-homepage_featured_project") do
-        with_tag "div.item-bar"
+        with_tag "div.item-info_bar"
       end
     end
 
