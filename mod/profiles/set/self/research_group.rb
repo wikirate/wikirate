@@ -22,7 +22,6 @@ format :html do
   end
 
   def research_groups
-    field_nest :browse_research_group_filter,
-               view: :filtered_content, items: { view: :info_bar }
+    field_nest :browse_research_group_filter, view: :filtered_content
   end
 end

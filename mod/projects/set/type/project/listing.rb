@@ -3,15 +3,14 @@ include_set Abstract::FilterableBar
 format :html do
   info_bar_cols 5, 5, 2
 
-  view :bar_left do
-    render_thumbnail
+  view :bar_left, template: :haml
+
+  view :bar_middle do
+    field_nest :wikirate_topic
   end
 
-  view :bar_middle, template: :haml
-
   view :bar_right do
-    [count_badges(:metric, :wikirate_company),
-     labeled_badge(card.percent_researched, "% Researched")]
+    count_badges :metric, :wikirate_company, :subproject
   end
 
   view :bar_bottom do
