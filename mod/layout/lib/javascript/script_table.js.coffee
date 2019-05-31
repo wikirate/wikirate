@@ -22,7 +22,8 @@ $(document).ready ->
       trToggleDetails this
 
   $('body').on 'click', '.details_sidebar-view .update-details', ->
-    $(this).closest('.details_sidebar-view').reloadSlot $(this).attr('href')
+    url = $(this).attr('href') + '?view=details_sidebar'
+    $(this).closest('.details_sidebar-view').reloadSlot url
 
   trToggleDetails = (toggle) ->
     $toggle = $(toggle)

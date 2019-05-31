@@ -73,10 +73,6 @@ class SourceFilterQuery < Card::FilterQuery
     add_to_wql :right_plus, [WikirateCompanyID, { refer_to: { match: value } }]
   end
 
-  def wikirate_topic_wql value
-    add_to_wql :right_plus, [WikirateTopicID, { refer_to: value }]
-  end
-
   def report_type_wql value
     add_to_wql :right_plus, [ReportTypeID, { refer_to: value }]
   end

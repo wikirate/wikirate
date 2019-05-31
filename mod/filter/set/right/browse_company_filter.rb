@@ -16,6 +16,10 @@ def default_filter_option
   { name: "" }
 end
 
+def target_type_id
+  WikirateCompanyID
+end
+
 format :html do
   def sort_options
     { "Most Answers": :answer,

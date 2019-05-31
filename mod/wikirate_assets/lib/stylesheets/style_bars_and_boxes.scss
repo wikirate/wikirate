@@ -183,7 +183,7 @@ $colorMap: (
 
 .TYPE-project, .TYPE-research_group {
   &.bar {
-    .bar-left:hover .media-heading a {
+    &:hover .bar-left a {
       color: $teal;
     }
     .bar-right {
@@ -195,6 +195,9 @@ $colorMap: (
   }
 }
 
+.bar-middle .RIGHT-topic .pointer-list {
+  text-align: center;
+}
 // project link color
 
 .TYPE-project

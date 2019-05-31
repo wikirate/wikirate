@@ -8,7 +8,7 @@ def default_sort_option
 end
 
 def filter_keys
-  %i[name]
+  %i[name wikirate_topic]
 end
 
 def default_filter_option
