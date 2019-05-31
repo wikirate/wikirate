@@ -40,7 +40,11 @@ format :html do
   end
 
   def tab_options
-    { year: { count: card.num_years } }
+    {
+      wikirate_company: { count: card.num_companies },
+      metric: { count: card.num_metrics },
+      year: { count: card.num_years }
+    }
   end
 
   view :metric_tab do

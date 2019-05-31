@@ -107,8 +107,7 @@ format :html do
   end
 
   def formula
-    options = tab_options
-    [:wikirate_company, :metric, (:year if card.years)].compact.map do |codename|
+      [:wikirate_company, :metric, (:year if card.years)].compact.map do |codename|
       "#{options[codename][:count]} #{codename.cardname.vary :plural}"
     end.join " x "
   end
