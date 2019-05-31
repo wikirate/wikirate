@@ -1,13 +1,10 @@
 include_set Abstract::FilterableBar
 
 format :html do
-  bar_cols 8, 4
+  info_bar_cols 5, 5, 2
 
   view :bar_left do
-    text_with_image image: card.field(:image),
-                    size: :small,
-                    title: filterable(:project) { render_title_link },
-                    text: organizational_details
+    render_thumbnail
   end
 
   view :bar_middle, template: :haml
@@ -21,10 +18,8 @@ format :html do
     [main_progress_bar, project_details]
   end
 
-  def organizational_details
-    wrap_with :div, class: "organizational-details" do
-      [field_nest(:organizer, view: :credit)]
-    end
+  def thumbnail_subtitle_text
+    field_nest :organizer, view: :credit
   end
 
   def subproject_detail
