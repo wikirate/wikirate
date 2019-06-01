@@ -15,10 +15,6 @@ format :html do
 
   # LEFT SIDE
 
-  def left_column_class
-    "left-col order-2 order-md-1 hide-header-sm"
-  end
-
   def header_body size=:medium
     class_up "media-heading", "company-color"
     super
@@ -37,10 +33,6 @@ format :html do
   end
 
   # RIGHT SIDE
-
-  def right_column_class
-    "right-col order-1 order-md-2"
-  end
 
   def tab_list
     if contrib_page?
