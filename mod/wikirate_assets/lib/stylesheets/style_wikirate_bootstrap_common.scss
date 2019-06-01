@@ -811,7 +811,7 @@ a.no-decoration {
 // The reason is that dropdownAutoWidth in script_load_select2.js.coffee sets a fixed
 // width so that the longest entry fits in
 .filter-in-filter-form {
-  width: 100%;
+  max-width: 100%;
   // overflow-x: hidden;
 
   .input-group._filter-input {
