@@ -55,30 +55,29 @@ format :html do
   end
 
   def answer_filtering
-    filtering(".RIGHT-answer ._filter-widget") { yield }
+    filtering(".RIGHT-answer ._filter-widget") do
+      yield view: :bar, show: :full_page_link
+    end
   end
 
   view :wikirate_topic_tab do
-    answer_filtering do
-      nest [:wikirate_topic, :browse_topic_filter],
-           view: :filtered_content, items: { view: :bar, show: :full_page_link }
+    answer_filtering do |items|
+      nest [:wikirate_topic, :browse_topic_filter], view: :filtered_content, items: items
     end
   end
 
   view :source_tab do
-    answer_filtering { field_nest :source, items: { view: :bar, show: :full_page_link } }
+    answer_filtering do |items|
+      field_nest :source, view: :filtered_content, items: items
+    end
   end
 
   view :project_tab do
-    answer_filtering { field_nest :project, items: { view: :bar, show: :full_page_link } }
+    answer_filtering { |items| field_nest :project, items: items }
   end
 
   view :details_tab do
-    details
-  end
-
-  def details
-    output [labeled_field(:headquarters), integrations]
+    [labeled_field(:headquarters), integrations]
   end
 
   def integrations

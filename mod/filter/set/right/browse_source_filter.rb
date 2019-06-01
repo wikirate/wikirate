@@ -33,11 +33,7 @@ end
 
 format :html do
   def sort_options
-    {
-      "Recently Added" => "create",
-      "Title"          => "title",
-      "Most Answers"   => "answer"
-    }
+    { "Recently Added": :create, "Title": :title, "Most Answers": :answer }
   end
 
   view :filter_wikirate_title_formgroup, cache: :never do

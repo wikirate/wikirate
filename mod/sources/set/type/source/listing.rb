@@ -20,10 +20,16 @@ format :html do
   end
 
   view :bar_bottom do
-    output [render_bar_middle,
-            labeled_field(:report_type),
-            labeled_field(:wikirate_topic, :link, title: "Topics"),
-            field_nest(:description, view: :titled)]
+    [badge_header,
+     labeled_field(:report_type),
+     labeled_field(:wikirate_topic, :link, title: "Topics"),
+     field_nest(:description, view: :titled)]
+  end
+
+  def badge_header
+    wrap_with :div, class: "d-flex justify-content-center pb-3" do
+      render_bar_middle
+    end
   end
 
   bar_cols 7, 5

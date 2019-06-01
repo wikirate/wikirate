@@ -828,13 +828,11 @@ a.no-decoration {
   max-width: 50px;
 }
 
-// filter above tables
-
-.table-filter-container {
+.filter-form {
   >.card {
-    border:0;
+    border: 0;
     > .card-body {
-      padding: 10px 0px;
+      padding: 1.5rem 0 0.5rem 0;
     }
   }
 }
