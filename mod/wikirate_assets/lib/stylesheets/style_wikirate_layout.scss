@@ -41,7 +41,6 @@ body.home-layout.wikirate-layout > nav.navbar {
 
 sup {
   line-height: 0;
-
 }
 a {
   color: $anchor_color;
@@ -50,11 +49,14 @@ a {
 img {
   border: 0;
 }
-h1,
-h2 {
+h1, h2 {
   color: $heading_color;
-
 }
+canvas {
+  max-width: 100%;
+}
+
+
 
 .more-link {
   float: right;
@@ -261,6 +263,31 @@ body.wikirate-two-column-layout {
     span {
       font-size: 1.1em;
       font-variant: small-caps;
+    }
+  }
+  .right-col {
+    border-top: 2px solid $border-color;
+    border-color: inherit;
+    margin-top: 15px;
+    > .tabbable {
+      padding-top: 15px;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    //Div alignments
+    .left-col {
+      border-right: 1px solid $border-color;
+    }
+
+    .right-col {
+      border-left: 1px solid $border-color;
+      border-top: 0;
+      margin-left: -1px;
+      margin-top: 0;
+      > .tabbable {
+        padding-top: 0;
+      }
     }
   }
 }

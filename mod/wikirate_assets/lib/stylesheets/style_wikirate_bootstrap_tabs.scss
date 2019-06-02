@@ -39,10 +39,13 @@
   border: 0 solid #e6e6e6;
   border-bottom: 4px solid $border-color;
   margin: 3px -1px;
-  padding: 18px 20px;
   font-size: 15px;
   color: #8e8e8e;
   margin-bottom: -3px;
+  padding: 12px 9px;
+  @include media-breakpoint-up(sm) {
+    padding: 18px 20px;
+  }
 }
 
 .tabbable {

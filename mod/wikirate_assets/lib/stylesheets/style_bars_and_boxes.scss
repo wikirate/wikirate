@@ -15,12 +15,24 @@ $box_stripe_color: $gray-700;
   padding: 0 0.33rem;
   label {
     margin: 0;
+    .count-badge-label-icon {
+      width: 22px;
+    }
+    .count-badge-label-text {
+      display: none;
+    }
   }
 }
 
-@media(max-width: 480px) {
+@include media-breakpoint-up(sm) {
   .labeled-badge label {
     font-size: 0.8em;
+    .count-badge-label-icon {
+      display: none;
+    }
+    .count-badge-label-text {
+      display: inline;
+    }
   }
 }
 
@@ -203,8 +215,6 @@ $colorMap: (
 .TYPE-project
 // for metric items
 
-
-
 .TYPE-metric.box {
   height: 360px;
   .box-middle {
@@ -224,17 +234,5 @@ $colorMap: (
 
   .box-bottom .labeled-badge {
     padding: 0!important;
-  }
-}
-
-// tweak citable source minibar
-.source-info-container .bar-right {
-  padding-right: 70px !important;
-}
-
-#research_page-source,
-.card-editor {
-  .source-info-container .bar-nav {
-    display: none !important;
   }
 }

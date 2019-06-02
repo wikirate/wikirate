@@ -8,7 +8,7 @@ format :html do
                  exists: [:known, :unknown, :total] }.freeze
 
   LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
-             total: "Total results" }.freeze
+             total: "Researched" }.freeze
 
   def stat_rows category
     @total = 0
