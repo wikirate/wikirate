@@ -74,9 +74,14 @@ $box_stripe_color: $gray-700;
   }
 }
 
-@media(max-width: 480px) {
+@include media-breakpoint-down(sm) {
   .bar-left h5 {
     font-size: 1em;
+  }
+  .bar {
+    .RIGHT-vote_count.content-view {
+      display: none;
+    }
   }
 }
 
