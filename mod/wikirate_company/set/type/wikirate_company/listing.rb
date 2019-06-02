@@ -35,5 +35,4 @@ format :html do
   end
 
   bar_cols 7, 5
-  info_bar_cols 5, 4, 3
 end

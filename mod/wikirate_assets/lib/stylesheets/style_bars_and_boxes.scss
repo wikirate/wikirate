@@ -18,22 +18,18 @@ $box_stripe_color: $gray-700;
     .count-badge-label-icon {
       display: none;
     }
-    .count-badge-label-text {
-      display: inline;
-    }
   }
 }
 
 @include media-breakpoint-down(sm) {
-  .labeled-badge label {
+  .bar .labeled-badge label {
     padding: 0;
-    .bar {
-      .count-badge-label-icon {
-        width: 22px;
-      }
-      .count-badge-label-text {
-        display: none;
-      }
+    .count-badge-label-icon {
+      display: block;
+      width: 22px;
+    }
+    .count-badge-label-text {
+      display: none;
     }
   }
 }
