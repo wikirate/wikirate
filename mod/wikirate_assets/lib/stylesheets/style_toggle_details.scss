@@ -65,5 +65,8 @@
     position: fixed !important;
     left: 0% !important;
     width: 100% !important;
+    .RIGHT-vote_count.content-view {
+      display: none;
+    }
   }
 }

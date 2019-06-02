@@ -86,16 +86,12 @@ format :html do
     field_nest :wikirate_topic, items: { view: :link }
   end
 
-  view :bar_right, cache: :never do
+  view :bar_right do
     count_badges :researcher, :project, :metric
   end
 
   view :bar_bottom do
     render_data
-  end
-
-  view :minor_labeled_badges, cache: :never do
-    count_badges :metric, :project
   end
 
   view :closed_content do

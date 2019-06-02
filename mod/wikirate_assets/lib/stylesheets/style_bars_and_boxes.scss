@@ -12,7 +12,6 @@ $box_stripe_color: $gray-700;
 .labeled-badge {
   display: inline-block;
   text-align: center;
-  padding: 0 0.33rem;
   label {
     margin: 0;
     .count-badge-label-icon {
@@ -26,6 +25,7 @@ $box_stripe_color: $gray-700;
 
 @include media-breakpoint-up(sm) {
   .labeled-badge label {
+    padding: 0 0.33rem;
     font-size: 0.8em;
     .count-badge-label-icon {
       display: none;

@@ -640,13 +640,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   max-height: 206px !important;
 }
 
-@media (max-width: 1200px) {
-  .filtered-answer-counts {
-    tr {
-      display: table-cell;
-    }
-  }
-}
+// @media (max-width: 1200px) {
+//   .filtered-answer-counts tr {
+//     display: table-cell;
+//   }
+// }
 
 .filtered-answer-counts {
   tr.known {

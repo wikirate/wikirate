@@ -10,6 +10,7 @@ class RemoveContentOfCodedCards < Card::Migration
      style_wikirate_bootstrap_navbar
      style_wikirate_bootstrap_form
      style_wikirate_bootstrap_common
+     style_images
      style_profile_page
      style_company_header
      style_source_preview
