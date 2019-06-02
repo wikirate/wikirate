@@ -216,7 +216,9 @@ div[data-slot*="float:right"]{
         }
       }
       .media-heading {
-        font-size: 1.7rem !important;
+        @include media-breakpoint-up(sm) {
+          font-size: 1.7rem !important;
+        }
         .card-title {
           color: inherit;
         }

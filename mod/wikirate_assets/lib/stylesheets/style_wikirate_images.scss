@@ -52,19 +52,17 @@
 }
 
 @media (max-width: 1260px) {
-  .image-box.large {
-    width: 120px;
-    height: 120px;
+  .image-box {
+    @include image-box-size(large, 120px);
   }
   .media-body {
     padding: 6px;
   }
 }
 
-@media (max-width: 575px) {
-  .image-box.large {
-    width: 100px;
-    height: 100px;
+@include media-breakpoint-down(sm) {
+  .image-box {
+    @include image-box-size(large, 100px);
   }
   .media-body {
     padding: 4px;

@@ -26,7 +26,6 @@ $box_stripe_color: $gray-700;
 
 @include media-breakpoint-down(sm) {
   .labeled-badge label {
-    font-size: 0.8em;
     padding: 0;
     .bar {
       .count-badge-label-icon {
