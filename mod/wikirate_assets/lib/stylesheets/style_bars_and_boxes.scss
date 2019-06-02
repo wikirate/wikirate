@@ -14,24 +14,27 @@ $box_stripe_color: $gray-700;
   text-align: center;
   label {
     margin: 0;
-    .count-badge-label-icon {
-      width: 22px;
-    }
-    .count-badge-label-text {
-      display: none;
-    }
-  }
-}
-
-@include media-breakpoint-up(sm) {
-  .labeled-badge label {
     padding: 0 0.33rem;
-    font-size: 0.8em;
     .count-badge-label-icon {
       display: none;
     }
     .count-badge-label-text {
       display: inline;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .labeled-badge label {
+    font-size: 0.8em;
+    padding: 0;
+    .bar {
+      .count-badge-label-icon {
+        width: 22px;
+      }
+      .count-badge-label-text {
+        display: none;
+      }
     }
   }
 }
