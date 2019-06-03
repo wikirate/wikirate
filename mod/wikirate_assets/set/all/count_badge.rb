@@ -6,12 +6,22 @@ format do
 end
 
 format :html do
-  def count_badge field
-    field_nest field, view: :count_badge
+  view :count, cache: :never do
+    count
   end
 
-  def count_badge_label
+  view :count_badge_label do
+    responsive_count_badge_label || simple_count_badge_label
+  end
 
+  # TODO: override and turn off caching in cacheable sets (eg pointers)
+  view :count_badge, cache: :never, unknown: true do
+    label = nest card.right, view: :count_badge_label
+    labeled_badge count, label, klass: card.safe_set_keys
+  end
+
+  def count_badge field
+    field_nest field, view: :count_badge
   end
 
   def responsive_count_badge_label
@@ -32,19 +42,5 @@ format :html do
 
   def count_badges *fields
     fields.map { |f| count_badge f }
-  end
-
-  view :count do
-    count
-  end
-
-  view :count_badge_label do
-    responsive_count_badge_label || simple_count_badge_label
-  end
-
-  # TODO: override and turn off caching in cacheable sets (eg pointers)
-  view :count_badge, cache: :never, unknown: true do
-    label = nest card.right, view: :count_badge_label
-    labeled_badge count, label, klass: card.safe_set_keys
   end
 end
