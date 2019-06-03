@@ -41,7 +41,6 @@ body.home-layout.wikirate-layout > nav.navbar {
 
 sup {
   line-height: 0;
-
 }
 a {
   color: $anchor_color;
@@ -50,11 +49,14 @@ a {
 img {
   border: 0;
 }
-h1,
-h2 {
+h1, h2 {
   color: $heading_color;
-
 }
+canvas {
+  max-width: 100%;
+}
+
+
 
 .more-link {
   float: right;
@@ -181,14 +183,12 @@ div[data-slot*="float:right"]{
 
 .media-body {
   .media-heading {
-    font-size: 1.5rem !important;
     a {
       color: inherit;
     }
   }
   .media-text {
     clear: both;
-    font-size: 1.3rem;
   }
   .RIGHT-Xvote_count {
     font-size: 1rem;
@@ -202,21 +202,43 @@ div[data-slot*="float:right"]{
 }
 
 
-.rich-header .media {
-  .media-body {
-    padding: 4px;
-    &.media-body-large {
-      padding: 1em;
-    }
-    .media-heading {
-      font-size: 1.7rem !important;
-      .card-title {
-        color: inherit;
+.rich-header {
+  .card-menu {
+    z-index: 3;
+  }
+  .media {
+    .media-body {
+      padding: 4px;
+      &.media-body-large {
+        padding: 1em;
+        .media-heading {
+          margin-right: 2em;
+        }
+      }
+      .media-heading {
+        @include media-breakpoint-up(sm) {
+          font-size: 1.7rem !important;
+        }
+        .card-title {
+          color: inherit;
+        }
       }
     }
   }
 }
 
+@include media-breakpoint-up(xs) {
+  .rich-header {
+    > .card-menu._show-on-hover > a {
+      display: none;
+    }
+  }
+  .rich-header:hover {
+    > .card-menu._show-on-hover > a {
+      display: inline-block;
+    }
+  }
+}
 
 .titled-view .d0-card-header {
   margin-top: 0.5em;
@@ -243,6 +265,31 @@ body.wikirate-two-column-layout {
     span {
       font-size: 1.1em;
       font-variant: small-caps;
+    }
+  }
+  .right-col {
+    border-top: 2px solid $border-color;
+    border-color: inherit;
+    margin-top: 15px;
+    > .tabbable {
+      padding-top: 15px;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    //Div alignments
+    .left-col {
+      border-right: 1px solid $border-color;
+    }
+
+    .right-col {
+      border-left: 1px solid $border-color;
+      border-top: 0;
+      margin-left: -1px;
+      margin-top: 0;
+      > .tabbable {
+        padding-top: 0;
+      }
     }
   }
 }

@@ -2,6 +2,9 @@
 
 .home-layout {
   background: url({{topics collage|source; size:original}});
+  .bar {
+    background: #ffffff
+  }
 }
 
 // TODO: move this (not about home page).

@@ -21,7 +21,8 @@ format :html do
   end
 
   view :thumbnail_with_vote do
-    # voo.hide! :thumbnail_link
-    output [_render_vote, thumbnail]
+    wrap_with :div, class: "thumbnail-with-vote d-flex align-items-start" do
+      [render_vote, thumbnail]
+    end
   end
 end

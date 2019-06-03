@@ -68,17 +68,6 @@ format :html do
     end
   end
 
-  # view :percent_researched do
-  #   wrap_with :div, class: "percent-researched text-center border rounded" do
-  #     [
-  #       wrap_with(:h4, class: "border-bottom p-2 m-0 bg-light") do
-  #         "<strong>#{card.percent_researched}%</strong>"
-  #       end,
-  #       wrap_with(:span, "Researched", class: "text-muted")
-  #     ]
-  #   end
-  # end
-
   def main_progress_bar
     wrap_with :div, class: "main-progress-bar mt-1" do
       [_render_research_progress_bar, _render_progress_description]
@@ -88,13 +77,6 @@ format :html do
   view :research_progress_bar, cache: :never do
     research_progress_bar
   end
-
-  # view :progress_description do
-  #   %(<div class="text-muted">
-  #       Of <strong>#{card.num_possible} potential #{card.units}</strong>
-  #       (#{formula}), <strong>#{card.num_researched}</strong> have been added so far.
-  #     </div>)
-  # end
 
   view :percent_researched, template: :haml do
     @percent = card.percent_researched
@@ -107,8 +89,10 @@ format :html do
   end
 
   def formula
+    vars = %i[wikirate_company metric]
+    vars << :year if card.years
     options = tab_options
-    [:wikirate_company, :metric, (:year if card.years)].compact.map do |codename|
+    vars.compact.map do |codename|
       "#{options[codename][:count]} #{codename.cardname.vary :plural}"
     end.join " x "
   end

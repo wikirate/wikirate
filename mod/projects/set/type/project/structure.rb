@@ -61,6 +61,20 @@ format :html do
 
   view :subproject_tab, template: :haml
 
+  # left column content
+  def project_details
+    wrap_with :div do
+      [
+        subproject_detail,
+        labeled_field(:wikirate_status),
+        labeled_field(:organizer, :thumbnail_plain),
+        labeled_field(:wikirate_topic, :link, title: "Topics"),
+        field_nest(:description, view: :titled),
+        field_nest(:conversation, view: :titled)
+      ]
+    end
+  end
+
   def copied_project_fields
     %i[wikirate_topic description].each_with_object({}) do |fld, hash|
       hash["_#{fld.cardname}"] = card.fetch(trait: fld, new: {}).content

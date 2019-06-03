@@ -44,8 +44,10 @@ format :html do
   end
 
   def members_on_page paging_args
-    wql = { referred_to_by: card.name, sort: :name, right_plus: :account }
-    Card.search wql.merge!(paging_args.extract!(:limit, :offset))
+    Card::Auth.as_bot do
+      wql = { referred_to_by: card.name, sort: :name, right_plus: :account }
+      Card.search wql.merge!(paging_args.extract!(:limit, :offset))
+    end
   end
 
   def self.membership_button action, test, btnclass

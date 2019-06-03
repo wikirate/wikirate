@@ -23,13 +23,13 @@ def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
 end
 
-def all_answers
+def researched_answers
   Answer.where company_id: id
 end
 
 # DEPRECATED.  +answer csv replaces following:
 format :csv do
   view :core do
-    Answer.csv_title + card.all_answers.map(&:csv_line).join
+    Answer.csv_title + card.researched_answers.map(&:csv_line).join
   end
 end

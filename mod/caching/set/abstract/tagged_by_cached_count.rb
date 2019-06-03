@@ -21,7 +21,7 @@ def self.included host_class
       end
     end
 
-    define_method :wql_hash do
+    define_method :wql_from_content do
       { type_id: Card::Codename.id(host_class.type_to_count),
         right_plus: [Card::Codename.id(host_class.tag_pointer), { refer_to: left.id }] }
     end

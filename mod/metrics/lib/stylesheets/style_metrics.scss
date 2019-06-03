@@ -3,20 +3,11 @@
   margin-left: -15px;
 }
 
-.value-type-button {
-  margin-right: 10px;
-  float: left;
-}
-
 /*Common styles and classes ENDS*/
 .SELF-homepage_company {
   .pointer-item {
     float: left;
   }
-}
-
-.custom-child-column-2 > .col-md-2 {
-  width: 20.0001%;
 }
 
 .details-top {
@@ -26,6 +17,14 @@
   .full-page-link i {
     font-size: 1.5em;
   }
+}
+
+.details-body .nav-tabs label {
+  margin-bottom: 0;
+}
+
+.details_sidebar-view .year-and-value {
+  cursor: pointer;
 }
 
 .metric_properties-view {
@@ -120,30 +119,7 @@
   .row {
     margin-left: 5px;
     margin-right: 5px;
-//    .left-col {
-//      text-align: right;
-//      width: 35px;
-//      float: left;
-//    }
-//    .row-text {
-//      text-align: right;
-//      float: left;
-//      color: $bright-text-color;
-//    }
-//    .row-icon {
-//      text-align: center;
-//      font-size: 20px;
-//      float: left;
-//      color: $bright-text-color;
-//      // border: 1px solid $bright-text-color;
-//      border-radius: 50%;
-//      width: 35px;
-//      height: 35px;
-//      padding-top: 3px;
-//    }
-//    .record-row {
-//      width: 100%;
-//    }
+
     .glyphicon-question-mark {
       font-weight: bold;
     }
@@ -384,15 +360,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
  width: 60%;
 }
 
-//Div alignments
-.left-col {
-  border-right: 1px solid $border-color;
-}
-
-.right-col {
-  border-left: 1px solid $border-color;
-  margin-left: -1px;
-}
 
 .TYPE-source.open-view {
   .left-col {
@@ -641,13 +608,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   max-height: 206px !important;
 }
 
-@media (max-width: 1200px) {
-  .filtered-answer-counts {
-    tr {
-      display: table-cell;
-    }
-  }
-}
+// @media (max-width: 1200px) {
+//   .filtered-answer-counts tr {
+//     display: table-cell;
+//   }
+// }
 
 .filtered-answer-counts {
   tr.known {

@@ -21,12 +21,13 @@ format :html do
     render :thumbnail
   end
 
-  view :box_middle, template: :haml
+  view :box_middle do
+    render :question
+  end
 
-  view :box_bottom, template: :haml
+  view :box_bottom do
+    count_badges :metric_answer, :wikirate_company
+  end
 
   view :selected_option, template: :haml
-
-  bar_cols 7, 5
-  info_bar_cols 5, 4, 3
 end

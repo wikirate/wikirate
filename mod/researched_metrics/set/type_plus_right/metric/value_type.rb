@@ -16,7 +16,7 @@ def validate_categorical_values
 end
 
 def validate_numeric_values
-  metric_card.all_answers.find do |answer|
+  metric_card.researched_answers.find do |answer|
     next if valid_numeric_value? answer.value
     add_numeric_error answer
   end

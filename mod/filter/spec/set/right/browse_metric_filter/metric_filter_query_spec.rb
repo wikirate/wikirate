@@ -2,7 +2,7 @@
 
 require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 
-describe Card::Set::Right::BrowseMetricFilter do
+RSpec.describe Card::Set::Right::BrowseMetricFilter do
   let(:card) do
     card = Card.new name: "test card"
     card.singleton_class.send :include, described_class

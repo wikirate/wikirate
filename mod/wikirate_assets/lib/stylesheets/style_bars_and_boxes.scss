@@ -12,12 +12,25 @@ $box_stripe_color: $gray-700;
 .labeled-badge {
   display: inline-block;
   text-align: center;
-  padding: 0 0.33rem;
+  label {
+    margin: 0;
+    padding: 0 0.33rem;
+    .count-badge-label-icon {
+      display: none;
+    }
+  }
 }
 
-@media(max-width: 480px) {
-  .labeled-badge label {
-    font-size: 0.8em;
+@include media-breakpoint-down(sm) {
+  .bar .labeled-badge label {
+    padding: 0;
+    .count-badge-label-icon {
+      display: block;
+      width: 22px;
+    }
+    .count-badge-label-text {
+      display: none;
+    }
   }
 }
 
@@ -38,19 +51,13 @@ $box_stripe_color: $gray-700;
 
 .bar {
   border-left: 3px solid $border-color;
-  &:hover {
-    border-left-color: $dark-text-color;
-    // Following needed on answer bars
-    .bar-left .company-link a {
-      color: $company-color !important;
-    }
-  }
 }
-.bar-nav {
-  display: flex;
-  flex-wrap: wrap;
-  a {
-    padding: 0 .25rem;
+
+.bar:hover, .expanded-bar:hover .bar {
+  border-left-color: $dark-text-color;
+  // Following needed on answer bars
+  .bar-left .company-link a {
+    color: $company-color !important;
   }
 }
 
@@ -65,9 +72,14 @@ $box_stripe_color: $gray-700;
   }
 }
 
-@media(max-width: 480px) {
+@include media-breakpoint-down(sm) {
   .bar-left h5 {
     font-size: 1em;
+  }
+  .bar {
+    .RIGHT-Xvote_count.content-view {
+      display: none;
+    }
   }
 }
 
@@ -93,12 +105,14 @@ a.box-item {
 
 // set consistent colors for a group of bars/boxes
 @mixin barbox($color) {
-  &.bar,
-  &.bar-bottom {
+  &.bar {
     border-left-color: rgba($color, 0.2) !important;
+  }
 
-    &:hover {
-      border-left-color: $color !important;
+  &.expanded_bar-view:hover .bar, &.bar:hover {
+    border-left-color: $color !important;
+    .bar-left a {
+      color: $color;
     }
   }
 
@@ -109,18 +123,13 @@ a.box-item {
       color: $color;
     }
   }
-
-  &.bar:hover {
-    .bar-left a {
-      color: $color;
-    }
-  }
 }
 
 
 // type specific colors
 $colorMap: (
   metric: $metric-color,
+  record: $record-color,
   company: $company-color,
   topic: $topic-color,
   source: $source-color,
@@ -186,11 +195,27 @@ $colorMap: (
     }
   }
 }
+
+.TYPE-project, .TYPE-research_group {
+  &.bar {
+    &:hover .bar-left a {
+      color: $teal;
+    }
+    .bar-right {
+      flex-direction: column;
+      justify-content: left;
+      align-items: flex-end !important;
+      text-align: right;
+    }
+  }
+}
+
+.bar-middle .RIGHT-topic .pointer-list {
+  text-align: center;
+}
 // project link color
 
-.TYPE-project .bar-left:hover .media-heading a {
-  color: $teal;
-}
+.TYPE-project
 // for metric items
 
 .TYPE-metric.box {
@@ -212,17 +237,5 @@ $colorMap: (
 
   .box-bottom .labeled-badge {
     padding: 0!important;
-  }
-}
-
-// tweak citable source minibar
-.source-info-container .bar-right {
-  padding-right: 70px !important;
-}
-
-#research_page-source,
-.card-editor {
-  .source-info-container .bar-nav {
-    display: none !important;
   }
 }

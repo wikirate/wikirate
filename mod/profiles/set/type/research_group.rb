@@ -37,6 +37,8 @@ format :html do
     ]
   end
 
+  info_bar_cols 5, 5, 2
+
   view :open_content do
     two_column_layout 5, 7
   end
@@ -56,18 +58,12 @@ format :html do
     labeled_field :wikirate_topic, :link, title: "Topics"
   end
 
-  view :thumbnail_subtitle do
+  def thumbnail_subtitle_text
     field_nest :organizer, view: :credit
   end
 
   def tab_list
-    %i[researcher metric project]
-  end
-
-  def tab_options
-    tab_list.each_with_object({}) do |codename, hash|
-      hash[codename] = { count: card.send("#{codename}_card").count }
-    end
+    %i[researcher project metric]
   end
 
   view :metric_tab do
@@ -82,16 +78,20 @@ format :html do
     field_nest :researcher, view: :overview
   end
 
-  view :bar_left, template: :haml
-  view :bar_bottom, template: :haml
-  view :bar_middle, template: :haml
-
-  view :bar_right, cache: :never do
-    labeled_badge card.researcher_card.count, "Researchers", color: "dark"
+  view :bar_left do
+    render_thumbnail
   end
 
-  view :minor_labeled_badges, cache: :never do
-    count_badges :metric, :project
+  view :bar_middle do
+    field_nest :wikirate_topic, items: { view: :link }
+  end
+
+  view :bar_right do
+    count_badges :researcher, :project, :metric
+  end
+
+  view :bar_bottom do
+    render_data
   end
 
   view :closed_content do

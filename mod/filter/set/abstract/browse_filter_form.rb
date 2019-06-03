@@ -5,11 +5,11 @@ include_set Abstract::Filter
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[metric designer wikirate_topic project year]
+  []
 end
 
 def default_sort_option
-  "metric"
+  "name"
 end
 
 def filter_class
@@ -17,16 +17,19 @@ def filter_class
 end
 
 def wql_from_content
-  { type_id: target_type_id, limit: 20 }.merge sort_wql
+  { type_id: target_type_id, limit: 20 }
 end
 
 def target_type_id
-  WikirateCompanyID
+  raise "need target_type_id"
 end
 
 def sort_wql
-  if current_sort.to_sym == :name
+  case current_sort.to_sym
+  when :name
     { sort: "name" }
+  when :create
+    { sort: "create", dir: "desc" }
   else
     cached_count_sort_wql
   end
@@ -41,13 +44,17 @@ def cached_count_sort_wql
 end
 
 def virtual?
-  true
+  !real?
 end
 
 format :html do
   # view :no_search_results do
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
+
+  def default_item_view
+    :info_bar
+  end
 
   before :content do
     class_up "card-slot", "_filter-result-slot"

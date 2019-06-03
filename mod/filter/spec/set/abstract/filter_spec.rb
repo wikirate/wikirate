@@ -1,4 +1,4 @@
-describe Card::Set::Abstract::FilterFormHelper do
+RSpec.describe Card::Set::Abstract::Filter do
   let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
 
   describe "#select_filter_tag" do

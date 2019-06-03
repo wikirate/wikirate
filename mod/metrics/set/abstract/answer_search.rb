@@ -51,7 +51,7 @@ format :html do
   view :filter_result, template: :haml, cache: :never
 
   view :filter_form do
-    wrap_with :div, class: "table-filter-container" do
+    wrap_with :div, class: "filter-form" do
       _render_filter
     end
   end
@@ -67,7 +67,7 @@ format :html do
   # this sets the default filter search options to match the default filter UI,
   # which is managed by the filter_card
   def merge_filter_defaults
-    filter_hash.merge! filter_defaults
+    filter_hash.reverse_merge! filter_defaults
   end
 
   def filter_defaults

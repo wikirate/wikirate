@@ -30,7 +30,7 @@ class Card
     #   are newly instantiated and not in the database
     def run
       if find_all?
-        all_answers # does not actually find calculated!
+        all_answers
       elsif find_missing?
         missing_answers # not researched
       else

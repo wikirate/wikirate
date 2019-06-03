@@ -66,4 +66,9 @@
     left: 0% !important;
     width: 100% !important;
   }
+  .details-toggle {
+    .RIGHT-Xvote_count.content-view {
+      display: none;
+    }
+  }
 }

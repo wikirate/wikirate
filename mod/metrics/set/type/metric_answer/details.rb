@@ -5,7 +5,7 @@ format :html do
     list = [:details]
     list << :metric if voo.show? :metric_header
     list << :wikirate_company if voo.show? :company_header
-    list
+    list << :year
   end
 
   def tab_options
@@ -13,7 +13,8 @@ format :html do
       lines: 1,
       details:          { label: "Answer" },
       metric:           { label: "Metric" },
-      wikirate_company: { label: "Company" }
+      wikirate_company: { label: "Company" },
+      year:             { label: labeled_badge(card.record_card.count, "Years") }
     }
   end
 
@@ -29,6 +30,10 @@ format :html do
     nest card.company_card, view: :details_tab
   end
 
+  view :year_tab do
+    nest card.record_card, view: :data
+  end
+
   view :details do
     [details_top, render_expanded_details]
   end
@@ -41,11 +46,6 @@ format :html do
   #   ]
   # end
 
-  # TODO: replace this temporary solution:
-  view :action_from_details do
-    render_research_button if metric_card.researchable?
-  end
-
   def details_top
     class_up "full-page-link", "metric-color"
     haml :details_top
@@ -55,17 +55,17 @@ format :html do
     render_concise hide: :year_and_icon
   end
 
-  view :details_sidebar, template: :haml
+  view :details_sidebar do
+    wrap { haml :details_sidebar }
+  end
 
   view :company_details_sidebar do
-    voo.hide :metric_header
-    haml :details_sidebar
+    render_details_sidebar hide: :metric_header
   end
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
-    voo.hide :company_header
-    haml :details_sidebar
+    render_details_sidebar hide: :company_header
   end
 
   view :company_header do

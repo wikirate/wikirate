@@ -18,6 +18,10 @@ def filter_keys
   %i[name metric project wikirate_company]
 end
 
+def default_filter_option
+  { name: "" }
+end
+
 def target_type_id
   WikirateTopicID
 end
@@ -32,10 +36,6 @@ end
 
 format :html do
   def sort_options
-    {
-      "Alphabetical" => "name",
-      "Most Metrics" => "metric",
-      "Most #{rate_subjects}" => "company"
-    }
+    { "Most Metrics": :metric, "Most #{rate_subjects}": :company }.merge super
   end
 end

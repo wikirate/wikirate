@@ -4,7 +4,7 @@ include_set Abstract::MetricChild, generation: 1
 include_set Abstract::Chart
 
 def virtual?
-  true
+  !real?
 end
 
 def query_class
@@ -31,7 +31,7 @@ format :html do
   def table_args
     [:company,
      self,
-     [:company_thumbnail, :value_cell],
+     [:company_thumbnail, :concise],
      header: [company_sort_link, value_sort_link],
      details_view: :company_details_sidebar]
   end
@@ -41,6 +41,6 @@ format :html do
   end
 
   def value_sort_link
-    table_sort_link "Values", :value, true
+    table_sort_link "Answer", :value, :lookup?
   end
 end

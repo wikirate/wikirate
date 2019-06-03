@@ -17,10 +17,10 @@ format :html do
 
   def sort_options
     {
-      "Importance to Community (net votes)" => :importance,
-      "Metric Designer (Alphabetical)" => :metric_name,
-      "Metric Title (Alphabetical)" => :title_name,
-      "Recently Updated" => :updated_at
+      "Metric Votes": :importance,
+      "Metric Designer (Alphabetical)": :metric_name,
+      "Metric Title (Alphabetical)": :title_name,
+      "Recently Updated": :updated_at
     }
   end
 end
