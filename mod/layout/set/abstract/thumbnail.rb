@@ -27,7 +27,7 @@ format :html do
     haml :thumbnail
   end
 
-  def thumbnail_image
+  view :thumbnail_image do
     field_nest :image, view: thumbnail_image_view, size: :small
   end
 

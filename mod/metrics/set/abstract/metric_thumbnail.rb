@@ -5,7 +5,7 @@ format :html do
     class_up "thumbnail", "metric-thumbnail"
   end
 
-  def thumbnail_image
+  view :thumbnail_image do
     nest card.designer_image_card, view: thumbnail_image_view,
                                    size: :small,
                                    title: "Designed by #{card.metric_designer}"
