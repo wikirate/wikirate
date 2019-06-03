@@ -14,69 +14,34 @@ format :html do
     thumbnail
   end
 
-  def flex_css
-    "d-flex align-items-center"
-  end
-
-  def thumbnail
-    wrap_with :div, thumbnail_content, class: "thumbnail #{flex_css}",
-                                       data: wrap_data(false)
-  end
-
   view :thumbnail_no_link do
     voo.hide :thumbnail_link
     thumbnail
   end
 
-  def thumbnail_content
-    output [
-      thumbnail_image_wrap,
-      thumbnail_text_wrap
-    ]
+  def flex_css
+    "d-flex align-items-center"
   end
 
-  def thumbnail_image_wrap
-    wrap_with :div, class: "image-box icon mt-1 align-self-start" do
-      thumbnail_image
-    end
-  end
-
-  def thumbnail_text_wrap
-    wrap_with :div, class: "thumbnail-text" do
-      [
-        thumbnail_title,
-        _render_thumbnail_subtitle
-      ]
-    end
+  def thumbnail
+    haml :thumbnail
   end
 
   def thumbnail_image
-    if voo.show?(:thumbnail_link)
-      thumbnail_image_with_link
-    else
-      thumbnail_image_without_link
-    end
+    field_nest :image, view: thumbnail_image_view, size: :small
   end
 
-  def thumbnail_image_without_link
-    field_nest :image, view: :core, size: :small
-  end
-
-  def thumbnail_image_with_link
-    link_to_card card, thumbnail_image_without_link
+  def thumbnail_image_view
+    voo.show?(:thumbnail_link) ? :boxed_link : :boxed
   end
 
   def thumbnail_title
-    title = _render_name
-    wrap_with :div, title: title do
-      voo.show?(:thumbnail_link) ? _render_link : _render_name
-    end
+    voo.show :title_link if voo.show? :thumbnail_link
+    render_title
   end
 
-  view :thumbnail_subtitle, template: :haml
-
   # for override
-  def thumbnail_subtitle_text
+  def thumbnail_subtitle
     ""
   end
 end

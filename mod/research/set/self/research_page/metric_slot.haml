@@ -1,3 +1,4 @@
+// FIXME: most of this should be metric views!
 .metric{class: slot_attr}
   -if !metric?
     %div
@@ -9,7 +10,7 @@
     %div
       .metric-color.d-flex.flex-nowrap.align-items-center
         .image-box.icon
-          = nest metric, view: :designer_image
+          = Card[metric].thumbnail_image
         %h6.mb-0
           = link_to_card metric, Card[metric].metric_title, class: "inherit-anchor"
   - else

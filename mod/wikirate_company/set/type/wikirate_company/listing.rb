@@ -1,7 +1,7 @@
 include_set Abstract::Thumbnail
 
 format :html do
-  def thumbnail_subtitle_text
+  def thumbnail_subtitle
     field_nest :headquarters, view: :core, items: { view: :name }
   end
 
