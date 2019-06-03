@@ -37,10 +37,7 @@ format :html do
 
   def thumbnail_image_wrap
     wrap_with :div, class: "image-box icon mt-1 align-self-start" do
-      [
-        wrap_with(:span, "", class: "img-helper"),
-        thumbnail_image
-      ]
+      thumbnail_image
     end
   end
 

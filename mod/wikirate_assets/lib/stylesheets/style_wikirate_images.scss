@@ -37,6 +37,9 @@
   @include image-box-size(medium, 94px);
   @include image-box-size(large, 150px);
 
+  a {
+    width: 100%;
+  }
   img {
     max-width: 100%;
     max-height: 100%;
