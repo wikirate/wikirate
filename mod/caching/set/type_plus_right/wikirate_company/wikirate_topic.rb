@@ -35,6 +35,7 @@ def cache_query?
 end
 
 def metric_ids
-  ::Answer.select(:metric_id).where(company_id: left.id).distinct.pluck(:metric_id)
-  # pluck seems dumb here, but .all isn't working (returns *all card)
+  @metric_ids ||=
+    ::Answer.select(:metric_id).where(company_id: left.id).distinct.pluck(:metric_id)
+    # pluck seems dumb here, but .all isn't working (returns *all card)
 end

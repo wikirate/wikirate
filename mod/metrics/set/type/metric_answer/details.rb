@@ -10,12 +10,15 @@ format :html do
 
   def tab_options
     {
-      lines: 1,
       details:          { label: "Answer" },
       metric:           { label: "Metric" },
       wikirate_company: { label: "Company" },
       year:             { label: labeled_badge(card.record_card.count, "Years") }
     }
+  end
+
+  def two_line_tab?
+    false
   end
 
   view :details_tab do

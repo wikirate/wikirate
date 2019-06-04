@@ -30,7 +30,7 @@ format :html do
   end
 
   def switch_to text, icon, val, title
-    link_to_card card, "#{text} #{mapped_icon_tag icon}",
+    link_to_card card, "#{mapped_icon_tag icon} See #{text}",
                  class: "company-switch", title: title, path: { contrib: val }
   end
 

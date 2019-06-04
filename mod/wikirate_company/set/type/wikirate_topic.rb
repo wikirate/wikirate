@@ -56,20 +56,23 @@ format :html do
   end
 
   def tab_list
-    %i[details wikirate_company project]
+    %i[metric wikirate_company research_group project]
   end
 
-  view :data, cache: :never do
-    field_nest :metric, title: "Metrics",
-                        view: :filtered_content, items: { view: :bar }
-  end
-
-  view :details_tab do
+  view :data do
     field_nest :general_overview, view: :titled
   end
 
+  view :metric_tab do
+    field_nest :metric, view: :filtered_content, items: { view: :bar }
+  end
+
+  view :research_group_tab do
+    field_nest :research_group, items: { view: :bar }
+  end
+
   view :wikirate_company_tab do
-    field_nest :wikirate_company, title: "Companies", items: { view: :bar }
+    field_nest :wikirate_company, view: :filtered_content, items: { view: :bar }
   end
 
   view :project_tab do

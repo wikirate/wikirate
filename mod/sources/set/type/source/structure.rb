@@ -14,7 +14,7 @@ format :html do
   end
 
   def form_fields
-    flds = %i[wikirate_title report_type wikirate_company year wikirate_topic description]
+    flds = %i[wikirate_title report_type wikirate_company year description]
     flds = flds.unshift :file if card.new?
     flds
   end

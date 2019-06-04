@@ -7,11 +7,6 @@ class Card
       name_wql metric
     end
 
-    def company_wql company
-      add_to_wql :right_plus, company
-    end
-    alias wikirate_company_wql company_wql
-
     def project_wql project
       add_to_wql :referred_to_by, left: project, right_id: MetricID
     end
