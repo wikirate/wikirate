@@ -51,7 +51,7 @@ format :html do
   end
 
   def organizer_detail
-    labeled_field :organizer, :thumbnail_plain, title: "Group Organizer"
+    labeled_field :organizer, :thumbnail, title: "Group Organizer"
   end
 
   def topic_detail

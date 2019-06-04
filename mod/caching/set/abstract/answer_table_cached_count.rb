@@ -44,7 +44,7 @@ def skip_search?
 end
 
 def target_ids
-  @target_ids ||= Answer.search(answer_query target_id_field)
+  @target_ids ||= Answer.search(answer_query(target_id_field))
 end
 
 # turn query caching off because wql_from_content can change

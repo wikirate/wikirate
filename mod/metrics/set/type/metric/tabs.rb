@@ -31,7 +31,7 @@ format :html do
 
   def nest_methodology
     return unless card.researchable?
-    filed_nest :methodology, view: :titled
+    field_nest :methodology, view: :titled
   end
 
   view :project_tab do

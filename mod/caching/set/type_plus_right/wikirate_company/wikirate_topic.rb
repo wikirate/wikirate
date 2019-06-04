@@ -22,7 +22,8 @@ end
 
 def wql_hash
   { type_id: WikirateTopicID, sort: :name,
-    referred_to_by: { left_id: [:in] + metric_ids, right_id: WikirateTopicID } }
+    referred_to_by: { left_id: [:in] + metric_ids,
+                      right_id: WikirateTopicID } }
 end
 
 def skip_search?
@@ -37,5 +38,5 @@ end
 def metric_ids
   @metric_ids ||=
     ::Answer.select(:metric_id).where(company_id: left.id).distinct.pluck(:metric_id)
-    # pluck seems dumb here, but .all isn't working (returns *all card)
+  # pluck seems dumb here, but .all isn't working (returns *all card)
 end

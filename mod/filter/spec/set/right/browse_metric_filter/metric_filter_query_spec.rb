@@ -17,11 +17,6 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
       it { is_expected.to eq(name: %w[match CDP]) }
     end
 
-    context "company argument" do
-      before { filter_args wikirate_company: "Apple Inc" }
-      it { is_expected.to eq(right_plus: "Apple Inc") }
-    end
-
     context "topic argument" do
       before { filter_args wikirate_topic: "myTopic" }
       it { is_expected.to eq(topic_wql) }
@@ -77,7 +72,6 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
     context "multiple filter conditions" do
       before do
         filter_args name: "CDP",
-                    wikirate_company: "Apple Inc",
                     wikirate_topic: "myTopic",
                     designer: "myDesigner",
                     metric_type: "researched",
@@ -91,7 +85,7 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
           name: %w[match CDP],
           and: policy_wql.merge(
             and: metric_type_wql.merge(
-              and: topic_wql.merge(and: { right_plus: "Apple Inc" })
+              and: topic_wql
             )
           ),
           right_plus: { type_id: Card::WikirateCompanyID, right_plus: "2015" },

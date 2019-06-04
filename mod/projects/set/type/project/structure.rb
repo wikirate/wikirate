@@ -67,7 +67,7 @@ format :html do
       [
         subproject_detail,
         labeled_field(:wikirate_status),
-        labeled_field(:organizer, :thumbnail_plain),
+        labeled_field(:organizer, :thumbnail),
         labeled_field(:wikirate_topic, :link, title: "Topics"),
         field_nest(:description, view: :titled),
         field_nest(:conversation, view: :titled)
