@@ -5,8 +5,7 @@ def wql_from_content
 end
 
 def answer_ids
-  @answer_ids ||=
-    Answer.where("check_requester <> '' AND checkers IS NULL").pluck(:answer_id)
+  ::Answer.where("check_requester <> '' AND checkers IS NULL").pluck(:answer_id)
 end
 
 def skip_search?
