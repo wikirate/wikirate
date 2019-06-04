@@ -20,7 +20,7 @@ recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   end
 end
 
-def wql_hash
+def wql_from_content
   { type_id: WikirateTopicID, sort: :name,
     referred_to_by: { left_id: [:in] + metric_ids,
                       right_id: WikirateTopicID } }

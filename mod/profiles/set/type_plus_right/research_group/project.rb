@@ -1,7 +1,7 @@
 def virtual?
-  true
+  new?
 end
 
-def wql_hash
+def wql_from_content
   { type_id: ProjectID, right_plus: [OrganizerID, refer_to: "_left"] }
 end

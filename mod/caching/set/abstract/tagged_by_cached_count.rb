@@ -9,9 +9,11 @@
 #   include_set Abstract::TaggedByCachedCount type_to_count: :metric,
 #                                             tag_pointer: :wikirate_topic
 
+include_set Abstract::SearchCachedCount
+
 def self.included host_class
   host_class.class_eval do
-    include_set Abstract::SearchCachedCount
+    include_set Abstract::CachedCount
     recount_trigger :type_plus_right,
                     host_class.type_to_count,
                     host_class.tag_pointer do |changed_card|

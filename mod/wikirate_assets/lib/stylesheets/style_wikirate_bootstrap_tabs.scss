@@ -55,6 +55,11 @@
   }
 }
 
+.one-line-tab > * {
+  white-space: nowrap;
+  display: inline-block;
+}
+
 .tab-content {
   padding-top: 10px;
 }

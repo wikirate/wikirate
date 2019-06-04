@@ -22,8 +22,8 @@ format :html do
     {}
   end
 
-  def two_line_tab?
-    true
+  def one_line_tab?
+    false
   end
 
   def default_tab
@@ -63,7 +63,7 @@ format :html do
   end
 
   def tab_space
-    two_line_tab? ? "&nbsp;" : nil
+    one_line_tab? ? :nil : "&nbsp;"
   end
 
   def tab_count_badge count, icon_tag
@@ -95,7 +95,7 @@ format :html do
   end
 
   def wrapped_tab_title label, info=nil
-    wrap_with :div, class: "text-center" do
+    wrap_with :div, class: "tab-title text-center #{'one-line-tab' if one_line_tab?}" do
       [wrapped_tab_title_info(info),
        wrap_with(:span, label, class: "count-label")].compact
     end
@@ -104,7 +104,7 @@ format :html do
   def wrapped_tab_title_info info
     return unless (info ||= tab_space)
 
-    klass = css_classes "count-number", ("clearfix" if two_line_tab?)
+    klass = css_classes "count-number", "clearfix"
     wrap_with :span, info, class: klass
   end
 end
