@@ -384,7 +384,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (3.0.0)
+    fog-vsphere (3.1.0)
       fog-core
       rbvmomi (>= 1.9, < 3)
     fog-xenserver (1.0.0)
@@ -653,7 +653,7 @@ GEM
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
-    sexp_processor (4.12.0)
+    sexp_processor (4.12.1)
     signet (0.11.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
