@@ -13,14 +13,10 @@ class Importer
   end
 
   # @return [Array<Hash>] each hash contains the attributes for a card
-  def items_of cardname, opts={}
+  def items_of cardname, depth: 1
     card_data =
       work_on "getting data from #{cardname} card" do
-        if opts[:subitems]
-          json_export cardname, :export_items, opts[:depth]
-        else
-          json_export(cardname)["card"]["value"]
-        end
+        json_export cardname, :export, depth
       end
     import_card_data card_data
   end
@@ -75,12 +71,10 @@ class Importer
   def import_migration_data data, exclude
     exclude = Array(exclude).flatten.map(&:to_s)
     data.each do |table, values|
-      begin
-        truncate table
-        insert_into table, (values - exclude)
-      rescue => e
-        puts "Error in #{table},#{values} #{e}".red
-      end
+      truncate table
+      insert_into table, (values - exclude)
+    rescue => e
+      puts "Error in #{table},#{values} #{e}".red
     end
   end
 

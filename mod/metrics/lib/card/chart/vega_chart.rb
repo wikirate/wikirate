@@ -1,11 +1,11 @@
 class Card
   module Chart
     class VegaChart
-      BAR_COLOR = "#eeeeee"
-      HIGHLIGHT_COLOR = "#674ea7"
-      HOVER_COLOR = "#b3a7d3"
-      DARK_AXES = "#333333"
-      LIGHT_AXES = "#cccccc"
+      BAR_COLOR = "#eeeeee".freeze
+      HIGHLIGHT_COLOR = "#F78C1E".freeze
+      HOVER_COLOR = "#D3741C".freeze
+      DARK_AXES = "#333333".freeze
+      LIGHT_AXES = "#cccccc".freeze
 
       DEFAULT_LAYOUT = {
         width: 350,
@@ -223,7 +223,7 @@ class Card
 
       def y_axis
         hash = { orient: "left", scale: "y",
-                 title: "Companies",
+                 title: @format.rate_subjects,
                  encode: axes_encode }
         hash[:tickCount] = y_tick_count if y_tick_count
         hash
@@ -265,7 +265,7 @@ class Card
 
       def bar_select_link_params filter_opts
         hash = {
-          filter: @format.filter_hash(false),
+          filter: @format.filter_hash.merge(filter_opts),
           chart: {
             highlight: highlight_value_from_filter_opts(filter_opts),
             select_filter: filter_opts,

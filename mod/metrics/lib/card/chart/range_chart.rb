@@ -15,7 +15,7 @@ class Card
         calculate_buckets
         add_label min
         each_bucket do |lower, upper|
-          add_data range: { from: lower, to: upper }
+          add_data value: { from: lower, to: upper }
           add_label upper
         end
       end
@@ -31,7 +31,7 @@ class Card
       end
 
       def data_item_hash filter
-        super(filter).merge x: filter[:range][:to]
+        super(filter).merge x: filter[:value][:to]
       end
 
       def x_axis
@@ -51,8 +51,8 @@ class Card
 
       def highlight? filter
         return true unless @highlight_value
-        from = filter[:range][:from]
-        to = filter[:range][:to]
+        from = filter[:value][:from]
+        to = filter[:value][:to]
         @highlight_value >= from && @highlight_value < to
       end
 

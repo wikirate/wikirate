@@ -19,15 +19,13 @@ Card.search(type: "Metric") do |metric|
   )
 
   value_groups.each do |group_card|
-    begin
-      puts "deleting #{group_card.name}"
-      group_card.descendants.each do |desc|
-        desc.update_column :trash, true
-      end
-      group_card.update_column :trash, true
-    rescue
-      puts "FAILED TO DELETE: #{group_card.name}"
+    puts "deleting #{group_card.name}"
+    group_card.descendants.each do |desc|
+      desc.update_column :trash, true
     end
+    group_card.update_column :trash, true
+  rescue
+    puts "FAILED TO DELETE: #{group_card.name}"
   end
   puts "empty trash"
   Card.empty_trash

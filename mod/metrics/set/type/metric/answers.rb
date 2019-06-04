@@ -1,7 +1,11 @@
 # ANSWERS
 
-def all_answers
+def researched_answers
   Answer.where(metric_id: id)
+end
+
+def answer_ids
+  researched_answers.pluck(:id)
 end
 
 def answer company, year
@@ -10,7 +14,7 @@ def answer company, year
 end
 
 def distinct_values
-  all_answers.select(:value).distinct.pluck(:value)
+  researched_answers.select(:value).distinct.pluck(:value)
 end
 
 def companies_with_years_and_values
@@ -49,7 +53,8 @@ end
 
 # note: can return True for anonymous user if answer is generally researchable
 def user_can_answer?
-  return unless researchable?
+  return false unless researchable?
+
   # TODO: add metric designer respresentative logic here
   is_admin = Auth.always_ok?
   is_owner = Auth.current.id == creator&.id
@@ -58,20 +63,48 @@ end
 
 # VALUE TYPES
 
+# Currently we have a slightly redundant value type system.
+#
+# For any given type, there is a card (with a codename) for both
+# (a) short name: the value type as it appears to users, eg Number(:number), and
+# (b) long name: the cardtype card, eg NumberValue(:number_value)
+#
+# These could and should clearly be unified.
+
+# Value Type, short name:
+# ~~~~
+
+# @return String
 def value_type
-  value_type_card.item_names.first || default_value_type
+  type_from_card = value_type_card.item_names.first
+  type_from_card.present? ? type_from_card : default_value_type
 end
 
-def default_value_type
-  default_value_type_code.cardname
-end
-
+# @return Symbol
 def value_type_code
   value_type_card.item_cards.first&.codename || default_value_type_code
 end
 
+# @return String
+def default_value_type
+  default_value_type_code.cardname
+end
+
+# @return Symbol
 def default_value_type_code
-  :free_text
+  calculated? ? :number : :free_text
+end
+
+# Value Type, long name:
+# ~~~~
+# @return Symbol
+def value_cardtype_code
+  :"#{value_type_code}_value"
+end
+
+# @return Integer
+def value_cardtype_id
+  Card::Codename.id value_cardtype_code
 end
 
 def value_options
@@ -79,7 +112,6 @@ def value_options
 end
 
 def numeric?
-  # FIXME: value type options should have a codename
   calculated? || value_type_code.in?(%i[number money])
 end
 

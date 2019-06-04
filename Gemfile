@@ -30,14 +30,15 @@ gem "delayed_job_active_record"
 gem "delayed_job_web"
 
 gem "company-mapping"
-gem "link_thumbnailer", "2.5.2"
+gem "link_thumbnailer"
+gem "nokogumbo"
 gem "open_uri_redirections"
 gem "pdfkit"
 gem "roo"
 gem "wbench"
 gem "wkhtmltopdf-binary"
 
-gem "rubocop"
+gem "rubocop", ">= 0.63"
 gem "rubocop-decko"
 
 gem "fog"
@@ -52,6 +53,7 @@ gem "airbrussh", require: false
 gem "ruby-jmeter"
 
 # gem "card-mod-airbrake", path: "./vendor/card-mods/airbrake"
+gem "card-mod-csv_import", path: "./vendor/card-mods/csv_import"
 gem "card-mod-voting", path: "./vendor/card-mods/voting"
 gem "card-mod-logger", path: "./vendor/card-mods/logger"
 gem "card-mod-markdown", path: "./vendor/card-mods/markdown"
@@ -76,19 +78,19 @@ group :test do
   # gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
-  gem "capybara", "2.17.0"
+  gem "capybara", "~> 2.18"
   # gem "chromedriver-helper"
   # gem "geckodriver-helper"
   gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12
   gem "cucumber-rails", require: false
   # feature-driven-development suite
-  gem "selenium-webdriver", "3.8.0"
+  gem "selenium-webdriver", "3.141.0"
   #gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
   gem "email_spec"
   # used by cucumber for db transactions
-  gem "database_cleaner", "~> 1.4.1"
+  gem "database_cleaner", "~> 1.5"
 
   gem "minitest"
 end
@@ -102,28 +104,27 @@ group :development do
 
   gem "capistrano"
   gem "capistrano-bundler"
-  gem 'capistrano-git-with-submodules', '~> 2.0'
+  gem "capistrano-git-with-submodules", '~> 2.0'
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
   gem "capistrano-rvm"
-  gem 'pivotal-tracker'
+  gem "pivotal-tracker"
 
   gem "better_errors"
   gem "binding_of_caller"
 
   # gem "nospring"
   # gem 'spring-commands-rspec'
-  #
-
 end
 
 group :test, :development do
+  gem "cypress-on-rails"
   gem "pry"
   gem "pry-byebug"
   gem "pry-rails"
   gem "pry-rescue"
   gem "pry-stack_explorer"
-  gem "thin"
+  gem "puma"
 end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|

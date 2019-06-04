@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://localhost:5002",
+  "defaultCommandTimeout": 10000,
+  "integrationFolder": "mod",
+  "testFiles": "*/cypress/**/*spec.coffee",
+  "supportFile": "vendor/decko/decko/spec/cypress/support/index.js",
+  "watchForFileChanges": false,
+  "projectId": "aauu9f"
+}

@@ -25,20 +25,12 @@ format :csv do
 end
 
 format :json do
-  view :core do
-    _render_essentials.merge(answers: answers)
+  def item_cards
+    card.answers
   end
 
-  def answers
-    card.answers.map do |answer|
-      subformat(answer)._render_core
-    end
-  end
-
-  def essentials
-    {
-      metrics: nest(card.metric_card, view: :essentials, hide: :marks),
-      companies: nest(card.wikirate_company_card, view: :essentials, hide: :marks)
-    }
+  def molecule
+    super().merge metrics: field_nest(:metric),
+                  companies: field_nest(:wikirate_company)
   end
 end

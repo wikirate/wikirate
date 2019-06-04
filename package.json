@@ -1,0 +1,34 @@
+{
+  "jest": {
+    "transform": {
+      "^.+\\.coffee$": "<rootDir>/node_modules/jest-coffee-preprocessor/index.js"
+    },
+    "preset": "jest-preset-coffeescript",
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "fixtures",
+      "public",
+      "files",
+      "vendor"
+    ],
+    "testRegex": "spec/.*\\.(coffee|litcoffee|coffee.md)$",
+    "setupFiles": [
+      "./test/setup_jest.js"
+    ],
+    "roots": [
+      "<rootDir>/mod/"
+    ]
+  },
+  "dependencies": {
+    "coffeescript": "^2.3.1",
+    "jest": "^23.4.1",
+    "jest-coffee-preprocessor": "^1.0.0",
+    "jest-preset-coffeescript": "^1.0.0",
+    "wait-on": "^3.2.0"
+  },
+  "name": "wikirate",
+  "repository": "https://github.com/wikirate/wikirate",
+  "devDependencies": {
+    "cypress": "^3.1.5"
+  }
+}

@@ -2,25 +2,51 @@ card_reader :projects_organized, type: :search_type
 card_reader :metrics_designed, type: :search_type
 
 format :html do
-  def show_contributions_profile?
-    main? && !Env.ajax? && !Env.params["about_company"] &&
-      !contributions_about? && contributions_made?
+  def contrib_page?
+    return @contrib_page unless @contrib_page.nil?
+    param = Env.params[:contrib]
+    @contrib_page = contribs_made? ? param != "N" : param == "Y"
   end
 
-  def contributions_about?
-    return false unless (count_card = card.fetch trait: :metric)
-    count_card.cached_count.nonzero?
+  view :contributions_data do
+    field_nest :metrics_designed, view: :titled
   end
 
-  view :contribution_link do
-    return "" unless contributions_made?
-    link_to_card card.name.trait(:contribution), "View Contributions",
-                 class: "btn btn-primary company-contribution-link"
+  # NOCACHE because of special contributor handling
+  view :type_link, cache: :never do
+    super()
   end
 
-  def contributions_made?
-    metrics_designed? || projects_organized?
-    # FIXME: need way to figure this out without a search!
+  view :contrib_switch, cache: :never do
+    contrib_page? ? switch_to_performance : switch_to_contrib
+  end
+
+  def switch_to_performance
+    switch_to "Performance", :wikirate_company, "N", "Company performance profile"
+  end
+
+  def switch_to_contrib
+    switch_to "Contributions", :user, "Y", "Content contributions to WikiRate.org"
+  end
+
+  def switch_to text, icon, val, title
+    link_to_card card, "#{mapped_icon_tag icon} See #{text}",
+                 class: "company-switch", title: title, path: { contrib: val }
+  end
+
+  def type_link_label
+    contrib_page? ? "Organizational Contributor" : super
+  end
+
+  def type_link_icon
+    mapped_icon_tag(contrib_page? ? :user : :wikirate_company)
+  end
+
+  def contribs_made?
+    Card.cache.fetch "#{card.id}-CONTRIB" do
+      metrics_designed? || projects_organized?
+      # only updates with cache clearing.  fine for now...
+    end
   end
 
   def metrics_designed?
@@ -31,14 +57,7 @@ format :html do
     card.projects_organized_card.count.positive?
   end
 
-  view :metric_contributions do
-    field_subformat(:metrics_designed)._render_titled(
-      show: :title_badge, items: { view: :metric_row }
-    )
-  end
-
-  view :project_contributions do
-    field_nest :projects_organized, view: :titled, show: :title_badge,
-                                    items: { view: :listing }
+  view :projects_organized_tab do
+    field_nest :projects_organized, view: :content
   end
 end

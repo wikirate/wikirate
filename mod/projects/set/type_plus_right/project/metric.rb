@@ -1,58 +1,29 @@
 # These Project+Metric (type plus right) cards refer to the list of
 # all companies on a given project.
 
-include_set Abstract::Table
-
-def project_name
-  name.left
-end
-
-# @return [Array] all of this card's items that refer to a valid metric
-def valid_metric_cards
-  @valid_metric_cards ||=
-    item_cards.select do |metric|
-      metric.type_id == MetricID
-    end
-end
-
-# @return [Array] a list of Metric+Project cards (ltype rtype) that connect
-# each of this card's metric items to its project.
-def all_metric_project_cards
-  valid_metric_cards.map do |metric|
-    metric_project_card metric.name
-  end
-end
-
-# @return [Card] a single Metric+Project card (ltype rtype)
-def metric_project_card metric_name
-  Card.fetch metric_name, project_name, new: {}
-end
+include_set Abstract::ProjectScope
 
 format :html do
-  def default_item_view
-    :listing
-  end
-
   def editor
     :filtered_list
+  end
+
+  def default_item_view
+    :thumbnail_no_link
   end
 
   def filter_card
     Card.fetch :metric, :browse_metric_filter
   end
 
-  view :core do
-    wrap_with :div, class: "progress-bar-table" do
-      metric_progress_table
-    end
+  before :menued do
+    voo.edit = :inline
+    voo.items.delete :view # reset tab_nest
   end
 
-  def metric_progress_table
-    wikirate_table :metric,
-                   card.all_metric_project_cards,
-                   [:metric_thumbnail, :research_progress_bar],
-                   table: { class: "metric-progress" },
-                   header: ["Metric", "Companies Researched"],
-                   td: { classes: %w[metric-column progress-column] }
+  view :core do
+    card.all_item_project_cards.map do |metric_project|
+      nest metric_project, view: :bar
+    end
   end
 end

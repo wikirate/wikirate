@@ -1,0 +1,12 @@
+
+.subproject-description
+  = nest Card.fetch [:subproject, :description], new: {}
+.subproject-link
+  - path_args = { mark: :project.cardname, _Parent: card.name, action: :new }
+  = link_to "Add Subproject", path: path_args.merge(copied_project_fields),
+                              class: "btn btn-primary"
+.subproject-list
+  = field_nest :subproject, view: :titled,
+                            title: :subproject.cardname,
+                            variant: "plural capitalized",
+                            items: { view: :bar }

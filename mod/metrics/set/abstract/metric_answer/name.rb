@@ -2,8 +2,7 @@ def name_parts
   %w[metric company year]
 end
 
-event :set_answer_name,
-      before: :set_autoname, when: :invalid_value_name? do
+event :set_answer_name, before: :set_autoname, when: :invalid_answer_name? do
   new_name = compose_and_validate_name
   abort :failure if errors.any?
   self.name = new_name

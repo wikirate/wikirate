@@ -2,6 +2,7 @@
 /.byebug_history
 /.ruby-version
 /config/*.yml
+/node_modules
 /config/*.tgz
 /config/deploy**
 /config/application.rb
@@ -18,3 +19,5 @@ spec/examples.txt
 /**/.DS_Store
 !/**/.gitkeep
 /**/*.iml
+aws-secret.yml
+cypress/videos

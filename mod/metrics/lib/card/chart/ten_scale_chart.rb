@@ -15,7 +15,7 @@ class Card
       def generate_data
         calculate_buckets
         each_bucket do |lower, upper|
-          add_data range: { from: lower, to: upper }
+          add_data value: { from: lower, to: upper }
           add_label lower
         end
       end

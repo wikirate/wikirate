@@ -1,0 +1,22 @@
+.row.m-0.p-0.transparent-background-white.nodblclick.slide-container.border-top
+  .col-12.text-center.p-3
+    %h1.font-weight-light.m-4 WikiRate in Numbers
+  .mx-auto.mt-4
+    .row
+      .col-12.col-md-6
+        - categories.each_with_index do |cat,i|
+          .d-flex.mb-5.mr-4.justify-content-end
+            .text-right.mx-3
+              %h1.font-weight-normal._count-ele{id: "count-ele-#{i}"}
+                = cat.count
+              %h5.font-weight-normal.text-muted
+                = link_to_card cat.color.to_s, cat.title, class: "#{cat.color}-color"
+            .drop-shadow.rounded-circle.bg-white.image-box.small.m-2{class: "#{cat.color}-color"}
+              = icon_tag(cat.icon, class: "md-24 p-3")
+      .d-none.d-md-inline.col-5.mt-5.pt-3
+        .carousel.carousel-fade.slide.drop-shadow.carousal-slide-width{"data-ride" => "carousel"}
+          .carousel-inner
+            - featured_answers.each_with_index do |mv, i|
+              .carousel-item{class: i == 0 && "active"}
+                = nest mv, view: :homepage_answer_example
+                

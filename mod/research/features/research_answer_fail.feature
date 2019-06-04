@@ -5,17 +5,16 @@ Feature: Research answer fail
 
   Background:
     Given I am signed in as Joe User
-    And I go to  "/new answer"
-    And I fill in autocomplete "metric" with "Joe User+researched"
-    And I fill in autocomplete "wikirate_company" with "Apple Inc."
-    And I select year "2009"
+    And I research
+      | metric      | company    | year |
+      | Joe User+RM | Apple Inc. | 2009 |
 
   Scenario: Missing value
     And I cite source
     And I fill in "Baam!" for " Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "VALUE: Only numeric content is valid for this metric."
+    And I should see "+VALUES: Only numeric content is valid for this metric."
 
   Scenario: Missing source
     And I fill in "10" for "Answer"

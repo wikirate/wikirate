@@ -20,46 +20,23 @@ format :json do
     super.merge year: card.year.to_i
   end
 
-  view :core do
-    essentials_for %i[metric company source checked_by relationships], _render_essentials
-  end
-
-  def essentials
-    { year: card.year.to_s,
-      value: card.value,
-      import: card.imported?,
-      comments: field_nest(:discussion, view: :core) }
-  end
-
-  def essentials_for symbols, hash
-    symbols.each do |field|
-      value = send "essentials_for_#{field}"
-      hash[field] = value if value
+  def atom
+    atom = super
+    %i[metric company year].each do |key|
+      atom[key] = card.send key
     end
-    hash
+    atom[:value] = card.value # nest card.value_card, view: :core
+    atom[:record_url] = path mark: card.name.left, format: :json
+    atom.delete(:content)
+    atom
   end
 
-  def essentials_for_metric
-    nest card.metric, view: :essentials
+  def molecule
+    super().merge sources: field_nest(:source, view: :items),
+                  checked_by: field_nest(:checked_by)
   end
 
-  def essentials_for_company
-    nest card.company, view: :marks
-  end
-
-  def essentials_for_source
-    return unless card.source.present?
-    nest card.source, view: :essentials
-  end
-
-  def essentials_for_checked_by
-    nest card.checked_by_card, view: :essentials, hide: :marks
-  end
-
-  def essentials_for_relationships
-    return unless card.metric_card.relationship?
-    companies.map do |relationship|
-      nest relationship, view: :from_answer
-    end
+  def item_cards
+    card.metric_card.relationship? ? companies : []
   end
 end

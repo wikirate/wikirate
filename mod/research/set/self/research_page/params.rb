@@ -1,12 +1,10 @@
 
-format :html do
+format do
   PARAM_LIST_NAME =
     { company_id_list: :cil, metric_id_list: :mil, year_id_list: :yil }.freeze
 
   def active_tab
-    @active_tab ||= params[:active_tab] ||
-                    (existing_answer_with_source? && "View Source") ||
-                    (cite_mode? && "Source") || "Metric details"
+    @active_tab ||= params[:active_tab] || "Sources"
   end
 
   %i[company metric year].each do |item|
@@ -58,7 +56,7 @@ format :html do
   end
 
   def research_url opts={}
-    path_opts = { view: :slot_machine, rp: {} }
+    path_opts = { rp: {} }
     research_param_keys.each do |key|
       val = opts[key] || send(key)
       path_opts[:rp][param_name(key)] = val if val
@@ -169,13 +167,17 @@ format :html do
     @company ||= research_param(:company) || company_list.first
   end
 
+  def related_company
+    @related_company ||= research_param(:related_company)
+  end
+
   def year?
     year && Card.fetch_type_id(year) == YearID
   end
 
   def year
-    @year ||= research_param(:year) || (project_year_list? && year_list.first) ||
-              (project? && (Time.now.year - 1).to_s)
+    @year ||= research_param(:year) ||
+              (project_year_list? && year_list.size == 1 && year_list.first)
   end
 
   def record_card
@@ -183,7 +185,13 @@ format :html do
   end
 
   def answer_card
-    @sac ||= Card.fetch [metric, company, year.to_s], new: { type_id: MetricAnswerID }
+    @answer_card ||=
+      if related_company
+        Card.fetch [metric, company, year.to_s, related_company],
+                   new: { type_id: RelationshipAnswerID }
+      else
+        Card.fetch [metric, company, year.to_s], new: { type_id: MetricAnswerID }
+      end
   end
 
   def metric_pinned?

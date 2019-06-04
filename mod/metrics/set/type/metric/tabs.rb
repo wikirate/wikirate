@@ -1,36 +1,67 @@
+include_set Abstract::Filterable
+
 format :html do
+  # default tab list (several metric types override)
   def tab_list
-    %i[details project]
+    %i[details calculation project]
   end
 
-  # tabs for metrics of type formula, score and WikiRating
-  # overridden for researched
+  view :tabs do
+    super()
+  end
+
   view :details_tab do
     tab_wrap do
-      [_render_metric_properties,
-       wrap_with(:hr, ""),
-       render_main_details]
+      [render_metric_properties, render_main_details]
     end
   end
 
+  # overridden in Researched
   view :main_details do
-    output [nest(card.formula_card, view: :titled, title: "Formula"),
-            nest(card.about_card, view: :titled, title: "About")]
+    [nest_formula, nest_about, nest_methodology]
   end
 
-  # view :discussion_tab do
-  #   tab_wrap do
-  #     field_nest :discussion, view: :titled,
-  #                             hide: [:header, :title],
-  #                             show: "comment_box"
-  #   end
-  # end
+  def nest_about
+    field_nest :about, view: :titled
+  end
+
+  def nest_formula
+    field_nest :formula, view: :titled
+  end
+
+  def nest_methodology
+    return unless card.researchable?
+    field_nest :methodology, view: :titled
+  end
 
   view :project_tab do
-    tab_wrap do
-      field_nest :project, view: :titled,
-                           title: "Projects",
-                           items: { view: :listing }
+    filtering do
+      tab_wrap do
+        field_nest :project, view: :titled, title: "Projects", items: { view: :bar }
+      end
     end
+  end
+
+  view :calculation_tab do
+    tab_wrap do
+      output [calculations_list, add_score_link]
+    end
+  end
+
+  def calculations_list
+    card.directly_dependent_metrics.map do |metric|
+      nest metric, view: :bar
+    end.join
+  end
+
+  def tab_options
+    { calculation: { count: card.directly_dependent_metrics.size } }
+  end
+
+  def add_score_link
+    return if card.score?
+    link_to_card :metric, "Add new score",
+                 path: { action: :new, tab: :score, metric: card.name },
+                 class: "btn btn-primary mt-4"
   end
 end

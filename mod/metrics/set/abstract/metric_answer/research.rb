@@ -1,43 +1,36 @@
 format :html do
   RESEARCH_PARAMS_KEY = :rp
 
+  def layout_name_from_rule
+    :wikirate_two_column_layout
+  end
+
   view :new, cache: :never do
     # @form_root = true
     nest :research_page, view: :slot_machine
   end
 
-  def menu_item_edit opts
-    super opts.merge(path: { RESEARCH_PARAMS_KEY => research_params }, remote: false)
-  end
-
-  view :year_edit_link do
-    link_to_view :edit_year, fa_icon(:edit),
-                 path: { RESEARCH_PARAMS_KEY => research_params },
-                 remote: true,
-                 class: "slotter _edit-year-link",
-                 "data-slot-selector": ".card-slot.left_research_side-view > div > "\
-                                       ".card-slot.TYPE-metric_answer"
-  end
-
-  view :edit do
+  def handle_research_params
     Env.params[:metric] = card.metric
     Env.params[:company] = card.company
     Env.params[:year] = card.year
-    nest :research_page, view: :edit
+    if card.respond_to?(:related_company)
+      Env.params[:related_company] = card.related_company
+    end
   end
 
-  view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
-    return not_researchable unless card.metric_card.researchable?
-    # voo.editor = :inline_nests
-    with_nest_mode :edit do
-      wrap do
-        card_form :update,
-                  "main-success" => "REDIRECT",
-                  "data-slot-selector": ".card-slot.slot_machine-view",
-                  success: research_form_success.merge(view: :slot_machine) do
-          output [edit_view_hidden, _render_content_formgroup]
-        end
-      end
+  def bridge_parts
+    handle_research_params
+    with_nest_mode :normal do
+      render_titled
+    end
+  end
+
+  def researchably
+    if card.metric_card.researchable?
+      yield
+    else
+      not_researchable
     end
   end
 
@@ -46,34 +39,37 @@ format :html do
     "They are calculated from other answers."
   end
 
-  view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
+  view :research_form, cache: :never, perms: :update, unknown: true do
     research_form(:create) { haml :research_form }
   end
 
-  view :edit_year, cache: :never, perms: :update do
-    wrap { [edit_year_form, render_titled(hide: :menu)] }
+  def cancel_research_button
+    link_to "Cancel", path: research_params,
+                      class: "btn btn-sm cancel-button btn-secondary"
   end
 
   def standard_cancel_button args={}
-    args[:href] = path view: :titled if @slot_view == :edit_year
+    args[:href] =
+      if @slot_view == :edit_year
+        edit_year_cancel_button_path
+      else
+        path view: :titled
+      end
+
     super args
   end
 
-  def edit_year_form
-    return not_researchable unless card.metric_card.researchable?
-    research_form(:update) { haml :edit_year_form  }
-  end
-
   def research_form action
-    return not_researchable unless card.metric_card.researchable?
-    voo.editor = :inline_nests
-    with_nest_mode :edit do
-      card_form action,
-                class: "new-value-form",
-                "main-success": "REDIRECT",
-                "data-slot-selector": ".card-slot.left_research_side-view",
-                success: research_form_success do
-        yield
+    researchably do
+      voo.editor = :inline_nests
+      with_nest_mode :edit do
+        card_form action,
+                  class: "new-value-form",
+                  "main-success": "REDIRECT",
+                  "data-slot-selector": ".card-slot.left_research_side-view",
+                  success: research_form_success do
+          yield
+        end
       end
     end
   end
@@ -91,15 +87,26 @@ format :html do
     opts
   end
 
-  def menu_link_path_opts
-    super.merge RESEARCH_PARAMS_KEY => research_params
+  view :year_edit_link do
+    link_to_view :edit_year, menu_icon,
+                 path: { RESEARCH_PARAMS_KEY => research_params },
+                 class: "_edit-year-link text-dark",
+                 "data-slot-selector": ".card-slot.left_research_side-view > div > "\
+                                       ".card-slot.TYPE-metric_answer"
+  end
+
+  def edit_link view=:edit, _opts={}
+    link_to menu_icon, path: research_params.merge(view: view), class: "edit-answer-link"
   end
 
   def research_params
-    @research_params ||=
-      inherit(:research_params) ||
-      Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
-      default_research_params
+    @research_params ||= inherit(:research_params) ||
+                         prefixed_research_params ||
+                         default_research_params
+  end
+
+  def prefixed_research_params
+    @prefixed_research_params ||= Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h
   end
 
   def default_research_params
@@ -109,8 +116,7 @@ format :html do
   end
 
   def research_form_success
-    research_params.merge id: ":research_page", soft_redirect: true,
-                          view: :left_research_side, slot: { title: "Answer" }
+    research_params.merge id: ":research_page", redirect: true
   end
 
   def new_buttons
@@ -134,10 +140,8 @@ format :html do
 
   def project
     # FIXME: param keys should be standardized (probably symbols)
-    @project ||= inherit(:project) || Env.params[:project] || Env.params["project"]
-  end
-
-  view :source_tab, cache: :never, tags: :unknown_ok, template: :haml do
-    # unknown_ok tag doesn't work without this block
+    @project ||= inherit(:project) ||
+                 Env.params[:project] || Env.params["project"] ||
+                 (prefixed_research_params && prefixed_research_params[:project])
   end
 end

@@ -11,22 +11,33 @@ class SharedData
       formula_metrics
       score_metrics
       wikirating_metrics
+      descendant_metrics
     end
 
     def formula_metrics
       Card::Metric.create name: "Jedi+friendliness",
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}",
-                          hybrid: 1
+                          hybrid: "1",
+                          test_source: true do
+        Slate_Rock_and_Gravel_Company 2003 => "100"
+      end
+
+      Card::Metric.create name: "Jedi+double friendliness",
+                                type: :formula,
+                                formula: "{{Jedi+friendliness}}*2"
+
       Card::Metric.create name: "Jedi+deadliness average",
                           type: :formula,
-                          formula: "Sum[{{Jedi+deadliness|year:-2..0}}]/3"
+                          formula: "Total[{{Jedi+deadliness|year:-2..0}}]/3"
       Card::Metric.create name: "Jedi+deadlier",
                           type: :formula,
                           hybrid: "1",
                           formula: "{{Jedi+deadliness}}-{{Jedi+deadliness|year:-1}}" \
                                    "+{{half year}}"
+
       # calculated value: "Slate Rock and Gravel Company+2004"
+
 
     end
 
@@ -52,6 +63,24 @@ class SharedData
         formula: { "Jedi+deadliness+Joe User" => 60,
                    "Jedi+disturbances in the Force+Joe User" => 40 }
       )
+    end
+
+    def descendant_metrics
+      Card::Metric.create(
+        name: "Joe User+descendant 1",
+        type: :descendant,
+        formula: "[[Joe User+researched number 2]]\n" \
+                 "[[Joe User+researched number 1]]"
+      )
+
+      Card::Metric.create name: "Joe User+descendant hybrid",
+                          type: :descendant,
+                          formula: "[[Joe User+researched number 2]]\n" \
+                                   "[[Joe User+researched number 1]]",
+                          hybrid: "1",
+                          test_source: true do
+        Death_Star 1977 => 1000
+      end
     end
   end
 end

@@ -1,0 +1,16 @@
+.col-md-12.column
+  .row.clearfix.d-block
+    %span.pr-3.download-source-link
+      = download_link
+    %span.original-source-link
+      = original_link
+    = _render_creator_credit
+    .row.w-100
+      = labeled "ID", card.name
+    = labeled_field :wikirate_title
+    = labeled_field :year
+    = labeled_field :report_type
+    // = labeled_field :wikirate_topic, :link, title: "Topics"
+    = labeled_field :wikirate_company, :link, title: "Companies"
+    = field_nest :description, view: :titled
+    = field_nest :discussion, view: :titled, show: :comment_box

@@ -84,7 +84,7 @@ class Answer
     end
 
     def order_by_importance args
-      args = order_args sort_by: Arel.sql("COALESCE(c.db_content, 0)"), cast: "signed",
+      args = order_args sort_by: "COALESCE(c.db_content, 0)", cast: "signed",
                         sort_order: args[:sort_order]
       joins("LEFT JOIN cards AS c " \
             "ON answers.metric_id = c.left_id AND c.right_id = #{Card::VoteCountID}")
@@ -93,7 +93,9 @@ class Answer
 
     def order_args args
       by = args[:cast] ? "CAST(#{args[:sort_by]} AS #{args[:cast]})" : args[:sort_by]
-      "#{by} #{args[:sort_order]}"
+      # I think it's ok to call Arel.sql here because the arguments coming from params
+      # use Query.safe_sql
+      Arel.sql "#{by} #{args[:sort_order]}"
     end
 
     def valid_sort_args? args

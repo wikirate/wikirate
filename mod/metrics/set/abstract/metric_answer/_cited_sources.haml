@@ -1,0 +1,9 @@
+.card-editor.form-group
+  - with_nest_mode :normal do
+    = field_nest :source, view: :hidden_content_field
+  .cited-sources._pointer-list.pointer-list-ul
+    - if card.source_card.item_names.empty?
+      %small
+        None
+    - else
+      = _render_source_editor

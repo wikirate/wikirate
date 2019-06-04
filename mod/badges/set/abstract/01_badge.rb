@@ -31,7 +31,7 @@ format :html do
     "#{certificate(badge_level)} #{_render_link}"
   end
 
-  view :badge, tags: :unknown_ok do
+  view :badge, unknown: true do
     wrap_with :strong, safe_name
   end
 
@@ -59,7 +59,7 @@ format :html do
 
   def awarded_to_list
     voo.show! :thumbnail_link
-    user_list = awarded_to.map { |ca| nest(ca, view: :thumbnail_plain) }
+    user_list = awarded_to.map { |ca| nest(ca, view: :thumbnail) }
     list_group user_list
   end
 end

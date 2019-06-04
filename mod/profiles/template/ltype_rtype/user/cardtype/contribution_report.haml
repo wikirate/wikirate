@@ -9,7 +9,7 @@
             = report_title
 
         - valid_actions.each do |action|
-          %li.contribution-report-box.nav-item{class: [current_tab?(action) && "active"]}
+          %li.contribution-report-box.nav-item
             -if action
               = report_link report_tab(action), action, true
             -else

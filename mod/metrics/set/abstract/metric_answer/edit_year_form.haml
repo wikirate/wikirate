@@ -1,0 +1,12 @@
+.year{class: slot_attr}
+  .d-flex.flex-nowrap
+    .image-box.icon.bg-white
+      = fa_icon :calendar, class: "text-muted"
+    = hidden_tags research_form_success
+    = answer_form_hidden_tags
+    .editor
+      .year
+        = field_nest :year, title: "Year"
+      = _render_edit_buttons!
+      .card-notice
+

@@ -1,0 +1,325 @@
+// FIXME: ugly. The root is no place for relativity.
+:root {
+  font-size: 95%;
+}
+
+body {
+  color: $body-text-color;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  // override bootstrap 4 font
+  font-family: "Roboto","Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #fff;
+}
+
+body.wikirate-layout #main {
+  min-height: calc(100vh - 85px);
+}
+
+body#tinymce {
+  padding: 4px;
+}
+
+body.home-layout.wikirate-layout > nav.navbar {
+  -webkit-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
+  -moz-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 9px 20px rgba(0,0,0,0.06);
+}
+
+.card-menu.btn-group {
+  padding: 0.5rem 0!important;
+}
+
+sup {
+  line-height: 0;
+}
+a {
+  color: $anchor_color;
+
+}
+img {
+  border: 0;
+}
+h1, h2 {
+  color: $heading_color;
+}
+canvas {
+  max-width: 100%;
+}
+
+
+.d0-card-content {
+  .titled-view, .titled_with_edits-view {
+    > .card-header {
+      line-height: 1.4em;
+      margin-top: 1em;
+    }
+
+  }
+
+}
+
+.RIGHT-logo.d0-card-content img {
+  max-height: 100%;
+
+}
+#Home {
+  overflow: inherit;
+}
+
+.wikirate-layout #main {
+  clear: both;
+  padding-top:70px;
+  max-width: $max-page-width;
+  margin: 0;
+}
+
+.revision-navigation,
+.current {
+  background: #fff;
+
+}
+
+body {
+  >#wikirate_footer-content-view {
+    /*position: fixed;*/
+    bottom: 0px;
+    z-index: 9;
+    background: #fff;
+    border-top: 1px solid #eaeaea;
+    width: 100%;
+    color: #999;
+    padding: 0.5em;
+    small {
+      width: 100%;
+      display: inherit;
+      text-align: center;
+    }
+    a {
+      color: #999;
+      text-decoration: underline;
+    }
+    a.external-link{
+      padding-right:0px!important;
+      &:after{
+        display: none;
+      }
+    }
+    a:hover {
+      color: #222
+    }
+  }
+}
+
+
+#Donate input[type='image'] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.TYPE-image.d0-card-content img, .TYPE-image .card-body img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+input.navbox, .select2-navbox-autocomplete input.select2-search__field {
+  font-family: FontAwesome, sans-serif;
+}
+
+//FOR ALL 2 column layout
+.row.panel-margin-fix {
+  margin-top: -19px;
+  margin-left: -$card-spacer-x;
+  margin-right: -$card-spacer-x;
+}
+
+
+//Default Images
+
+div[data-slot*="float:right"]{
+    float:right;
+    border: 2px solid $border-color;
+    margin-left: 15px;
+}
+
+
+.content-view.RIGHT-headquarter {
+  white-space: inherit;
+}
+
+.wikirate-layout > nav.navbar {
+    box-shadow: none;
+    border-bottom: 1px solid $border-color;
+}
+
+.titled-view .d0-card-header {
+  min-height: 1.5em;
+}
+
+
+.media-body {
+  .media-heading {
+    a {
+      color: inherit;
+    }
+  }
+  .media-text {
+    clear: both;
+  }
+  .RIGHT-Xvote_count {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+}
+
+.icon-and-question > i.fa {
+  color: #bbb;
+  padding: 2px 1em 2px 0
+}
+
+
+.rich-header {
+  .card-menu {
+    z-index: 3;
+  }
+  .media {
+    .media-body {
+      padding: 4px;
+      &.media-body-large {
+        padding: 1em;
+        .media-heading {
+          margin-right: 2em;
+        }
+      }
+      .media-heading {
+        @include media-breakpoint-up(sm) {
+          font-size: 1.7rem !important;
+        }
+        .card-title {
+          color: inherit;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  .rich-header {
+    > .card-menu._show-on-hover > a {
+      display: none;
+    }
+  }
+  .rich-header:hover {
+    > .card-menu._show-on-hover > a {
+      display: inline-block;
+    }
+  }
+}
+
+.titled-view .d0-card-header {
+  margin-top: 0.5em;
+  border: 0
+}
+
+body.wikirate-two-column-layout {
+  h1, h2 {
+    font-size: 1.6rem !important;
+  }
+  h3, h4, .d0-card-header-title .card-title {
+    font-size: 1.4rem !important;
+  }
+  h5, h6 {
+    font-size: 1.2rem !important;
+  }
+  .type-link {
+    position: absolute;
+    right: 0;
+    padding: 1px 1em;
+    a {
+      color: inherit;
+    }
+    span {
+      font-size: 1.1em;
+      font-variant: small-caps;
+    }
+  }
+  .right-col {
+    border-top: 2px solid $border-color;
+    border-color: inherit;
+    margin-top: 15px;
+    > .tabbable {
+      padding-top: 15px;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    //Div alignments
+    .left-col {
+      border-right: 1px solid $border-color;
+    }
+
+    .right-col {
+      border-left: 1px solid $border-color;
+      border-top: 0;
+      margin-left: -1px;
+      margin-top: 0;
+      > .tabbable {
+        padding-top: 0;
+      }
+    }
+  }
+}
+
+body#tinymce, body.wikirate-one-column-layout {
+  #main > .titled-view>.d0-card-header {
+    border-bottom: 1px solid #03998d;
+    padding-bottom: 0.1em;
+    margin-bottom: 1em;
+    >.d0-card-header-title {
+      font-size: 2.5em;
+      border-bottom: 0;
+      padding-bottom: auto;
+      margin: auto;
+    }
+  }
+  .RIGHT-introduction.content-view {
+    font-size: 1.25rem;
+  }
+  h1, h2, h3, h4, h5, h6, .d0-card-header-title {
+    font-weight: normal;
+    margin-top: 1em;
+  }
+  h1, h2, .titled-view >.d0-card-header > .d0-card-header-title {
+    font-weight: normal;
+    font-size: 2rem;
+  }
+  h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.1em;
+    margin-bottom: 0.3em;
+  }
+  h3, h4 {
+    font-size: 1.5rem;
+  }
+  h5, h6 {
+    font-size: 1.25rem;
+  }
+  .bar h5 {
+    border: 0;
+    margin: 2px 0;
+    font-size: 1.5rem;
+  }
+}
+
+div#wikirate-info-video {
+  width: 100%;height: 54vh;
+}
+
+div#wikirate-info-video iframe  {
+  height: 100%;
+  width: 100%;
+  box-shadow: none;
+}

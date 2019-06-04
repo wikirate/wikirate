@@ -39,13 +39,13 @@ describe Card::Set::Abstract::Table do
                                                   details_view: :details
 
       expect(table).to have_tag :table, with: { class: "top_class" } do
-        with_tag :tr, with: { class: "tr tr-details-toggle",
+        with_tag :tr, with: { class: "tr details-toggle",
                               "data-details-url" => "/A?view=details" } do
           with_tag :td, with: { class: "td header" }, text: "A"
           with_tag :td, with: { class: "td data" }, text: "Basic"
           with_tag :td, with: { class: "td details" }
         end
-        with_tag :tr, with: { class: "tr tr-details-toggle",
+        with_tag :tr, with: { class: "tr details-toggle",
                               "data-details-url" => "/r1?view=details" } do
           with_tag :td, with: { class: "td header" }, text: "r1"
           with_tag :td, with: { class: "td data" }, text: "Role"

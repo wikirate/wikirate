@@ -2,6 +2,9 @@ module OpenCorporates
   class MappingAPI
     HOST = "easie.iti.gr".freeze
     PATH = "/oc_company_mapping".freeze
+    REQUIRED_RESPONSE_FIELDS =
+      %w[company_number jurisdiction_code incorporation_jurisdiction_code].freeze
+
     class << self
       # @return [Hash]
       # @param opts wikipedia_url or
@@ -19,15 +22,21 @@ module OpenCorporates
 
       def pick_nested_item
         response = yield
-        unless response.is_a?(Hash) &&
-               response["oc_company_number"].is_a?(Array) &&
-               response["oc_jurisdiction_code_of_incorporation"].is_a?(Array)
-          raise APIError, "unexpected format"
+        check_response_format response
+        OpenStruct.new company_number: response["company_number"],
+                       incorporation_jurisdiction_code: response["incorporation_jurisdiction_code"],
+                       jurisdiction_code: response["jurisdiction_code"]
+      end
+
+      def check_response_format response
+        unless response.is_a?(Hash)
+          raise APIError, "unexpected format, expected a hash but got #{response}"
         end
-        jur_code = response["oc_jurisdiction_code"]&.first
-        OpenStruct.new company_number: response["oc_company_number"].first,
-                       jurisdiction_code_of_incorporation: response["oc_jurisdiction_code_of_incorporation"].first,
-                       jurisdiction_code: jur_code
+        REQUIRED_RESPONSE_FIELDS.each do |key|
+          unless response.key? key
+            raise APIError, "unexpected format, expected key '#{key}' in #{response}"
+          end
+        end
       end
 
       def json_response *query_args
@@ -47,6 +56,6 @@ module OpenCorporates
     end
   end
 
-  class APIError < StandardError
+  class APIError < Card::Error::UserError
   end
 end

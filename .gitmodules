@@ -5,12 +5,18 @@
 [submodule "vendor/card-mods"]
 	path = vendor/card-mods
 	url = https://github.com/decko-commons/card-mods
-[submodule "mod/wikirate/vendor/readmore"]
-	path = mod/wikirate/vendor/readmore
+[submodule "mod/wikirate_assets/vendor/readmore"]
+	path = mod/wikirate_assets/vendor/readmore
 	url = https://github.com/jedfoster/Readmore.js
+[submodule "mod/wikirate_assets/vendor/fakeloader"]
+	path = mod/wikirate_assets/vendor/fakeloader
+	url = https://github.com/louisnelza/fakeLoader.js
 [submodule "mod/homepage/vendor/slick"]
 	path = mod/homepage/vendor/slick
 	url = https://github.com/kenwheeler/slick
-[submodule "mod/wikirate/vendor/fakeloader"]
-	path = mod/wikirate/vendor/fakeloader
-	url = https://github.com/louisnelza/fakeLoader.js
+[submodule "mod/homepage/vendor/wodry"]
+	path = mod/homepage/vendor/wodry
+	url = https://github.com/srivig/wodry.git
+[submodule "mod/homepage/vendor/countUp"]
+	path = mod/homepage/vendor/countUp
+	url = https://github.com/inorganik/countUp.js.git

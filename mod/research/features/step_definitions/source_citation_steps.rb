@@ -3,27 +3,27 @@ include SharedData::Samples
 
 When(/^I research answer "([^"]*)" for year "([^"]*)"$/) do |answer, year|
   visit path_to("new answer")
-  fill_autocomplete("metric", with: "Joe User+researched")
+  fill_autocomplete("metric", with: "Joe User+RM")
   fill_autocomplete("wikirate_company", with: "Apple Inc")
   select_year year
   fill_in "Answer", with: answer
 end
 
 And(/^I cite source for 2008 confirming$/) do |expected_msg|
-  add_source "Star_Wars"
+  add_source :star_wars
   confirm_citation expected_msg.tr("\n", " ")
 end
 
 When(/^I visit cited source$/) do
-  go_to_source "Star_Wars"
+  go_to_source :star_wars
 end
 
 When(/^I visit cited source without year$/) do
-  go_to_source "Darth_Vader"
+  go_to_source :darth_vader
 end
 
 And(/^I cite source "([^"]*)"$/) do |wikipedia_article|
-  add_source wikipedia_article
+  add_source :"#{wikipedia_article.downcase}"
   confirm_citation
 end
 
@@ -55,10 +55,10 @@ def confirm_citation expected_msg=nil
   expect(msg).to eq expected_msg
 end
 
-def add_source wikipedia_article="Darth_Vader"
+def add_source wikipedia_article=:darth_vader
   source = sample_source wikipedia_article
-  fill_in "URL", with: source.url
-  click_button "Add"
+  fill_in "source_search_term", with: source.link_url
+  click_button "Add URL Source"
 end
 
 def go_to_source wikipedia_article

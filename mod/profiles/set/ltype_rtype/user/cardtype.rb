@@ -5,6 +5,8 @@
 # contributions.
 #
 include_set Abstract::Header
+include_set Abstract::Tabs
+include_set Abstract::BsBadge
 
 card_reader :badges_earned, default: { type_id: Card::PointerID }
 
@@ -34,8 +36,7 @@ def report_card variant
   return if variant.blank?
   @report_cards ||= {}
   @report_cards[variant] ||= begin
-    rcard = Card.new name: name.trait(:report_search),
-                     type_id: SearchTypeID
+    rcard = Card.new name: name.trait(:report_search), type_id: SearchTypeID
     # note: #new is important here, because we want different cards
     # for different variants
     rcard.variant = variant
@@ -61,7 +62,7 @@ format :html do
   delegate :report_card, :badges_earned_card, :report_action_applies?, :cardtype_codename,
            to: :card
 
-  view :contribution_report, tags: :unknown_ok, cache: :never, template: :haml do
+  view :contribution_report, unknown: true, cache: :never, template: :haml do
     class_up "card-slot", "contribution-report #{cardtype_codename}-contribution-report"
   end
 
@@ -92,21 +93,29 @@ format :html do
   end
 
   def current_tab
-    @current_tab ||= Env.params[:report_tab]
+    @current_tab ||= Env.params[:report_tab]&.to_sym
   end
 
   def current_tab? action
-    action.to_s == current_tab
+    action == current_tab
   end
 
   def report_tab action
-    two_line_tab ACTION_LABELS[action], report_count(action)
+    @tab_lines = 2
+    wrapped_tab_title ACTION_LABELS[action], report_count(action)
   end
 
   def report_link text, action, nav_link=false
-    link_args = { class: "slotter#{' nav-link' if nav_link}" }
+    link_args = { class: report_link_classes(nav_link, action) }
     link_args[:path] = { report_tab: action } if action
     link_to_view :contribution_report, text, link_args
+  end
+
+  def report_link_classes nav_link, action
+    klasses = []
+    klasses << "nav-link" if nav_link
+    klasses << "active" if current_tab? action
+    css_classes klasses
   end
 
   def report_count action
@@ -127,11 +136,7 @@ format :html do
     if current_tab? :badges
       nest badges_earned_card, view: :content
     elsif (rcard = report_card(current_tab))
-      nest rcard, view: contribution_list_view, structure: rcard.variant, skip_perms: true
+      nest rcard, view: :list_with_subtabs, structure: rcard.variant, skip_perms: true
     end
-  end
-
-  def contribution_list_view
-    "#{cardtype_codename}_list"
   end
 end

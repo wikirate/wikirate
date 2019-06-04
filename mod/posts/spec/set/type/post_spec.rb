@@ -1,21 +1,39 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::Type::Post do
-  extend Card::SpecHelper::ViewHelper::ViewDescriber
-
+RSpec.describe Card::Set::Type::Post do
   context "with company, topic, and subject" do
     # TODO: move this post to seed data
-    let(:post) do
+    def card_subject
       Card.create! type: "Post", name: "My Post",
                    subcards: { "+company" => "Death Star",
                                "+topic" => "Force",
-                               "+project" => "Evil Project" }
+                               "+project" => "Evil Project",
+                               "+body" => "body text" }
     end
 
-    describe_views :open_content, :listing, :edit,
-                   :wikirate_company_tab, :wikirate_topic_tab, :project_tab do
-      it "has no errors" do
-        expect(post.format.render(view)).to lack_errors
+    # let(:card_subject) { post }
+
+    check_views_for_errors :open_content, :bar, :edit,
+                           :wikirate_company_tab, :wikirate_topic_tab, :project_tab
+
+    let(:badges_matcher) {  %w[1 Companies 1 Topics 1 Projects].join(".*") }
+
+    specify "view bar" do
+      expect_view(:bar).to have_tag "div.bar" do
+        with_tag "div.bar-left", "My Post"
+        without_tag "div.bar-middle"
+        with_tag "div.bar-right", /#{badges_matcher}/m
+      end
+    end
+
+    specify "expanded bar" do
+      expect_view(:expanded_bar).to have_tag ".expanded-bar" do
+        with_tag ".bar" do
+          with_tag ".bar-left", "My Post"
+          without_tag "div.bar-middle"
+          with_tag "div.bar-right", /#{badges_matcher}/m
+        end
+        with_tag "div.bar-bottom", /body text/
       end
     end
   end

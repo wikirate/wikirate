@@ -1,0 +1,10 @@
+{
+  "type": "metric",
+  "right_plus": ["_left", {"right_plus":"*cached count"}],
+  "sort": {
+    "right": "*vote count"
+  },
+  "sort_as": "integer",
+  "dir": "desc",
+  "limit": 4
+}

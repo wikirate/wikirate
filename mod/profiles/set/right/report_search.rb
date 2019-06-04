@@ -1,5 +1,3 @@
-include_set Abstract::Table
-
 # "+report search" cards are virtual cards used to manage searches for
 # contribution reports
 
@@ -36,6 +34,10 @@ def research_group?
   end
 end
 
+def cache_query?
+  false
+end
+
 # part 3 of U+C+R
 def research_group_name
   name.left_name.right_name
@@ -45,12 +47,12 @@ def research_group_card
   @research_group_card ||= Card.fetch research_group_name if research_group?
 end
 
-def wql_hash
+def wql_from_content
   research_group? ? research_group_report_query : standard_report_query
 end
 
 def standard_report_query
-  cardtype_card.report_query variant, user_card.id, selected_subvariant
+  cardtype_card.report_query variant, user_card.id, subvariant
 end
 
 def research_group_report_query
@@ -59,14 +61,14 @@ def research_group_report_query
   standard_report_query.merge id: [:in, type_ids]
 end
 
-def selected_subvariant
-  @subvariant ||=
-    (Env.params["subvariant"]&.to_sym) || :all
+# created, updated, voted on, etc.
+def variant
+  @variant ||= (Env.params["variant"]&.to_sym) || :created
 end
 
-def variant
-  @variant ||=
-    (Env.params["variant"]&.to_sym) || :created
+# eg voted for/voted against
+def subvariant
+  @subvariant ||= (Env.params["subvariant"]&.to_sym) || :all
 end
 
 def subvariant_count subvariant
@@ -77,21 +79,29 @@ def subvariant_count subvariant
   result
 end
 
-format :html do
+format do
   def extra_paging_path_args
-    {
-      variant: variant,
-      subvariant: card.selected_subvariant,
-      view: sublist_view
-    }
+    { variant: variant, subvariant: subvariant, view: :list }
+  end
+end
+
+format :html do
+  delegate :subvariant, to: :card
+
+  # FIXME: shouldn't have to specify limit so many times!
+  def limit
+    5
+  end
+
+  def default_limit
+    5
   end
 
   # uses structure to hold variant
   # (so that it can be passed around via slot options)
 
-  delegate :selected_subvariant, to: :card
-
   def variant
+    card.variant = voo.structure if voo.structure
     card.variant&.to_sym
   end
 
@@ -102,8 +112,7 @@ format :html do
 
   def subvariant_tabs
     subvariants.unshift(:all).each_with_object({}) do |key, h|
-      h[key] = { title: subvariant_tab_title(key),
-                 path: subvariant_tab_path(key) }
+      h[key] = { title: subvariant_tab_title(key), path: subvariant_tab_path(key) }
     end
   end
 
@@ -112,91 +121,25 @@ format :html do
   end
 
   def subvariant_tab_path key
-    path subvariant: key, variant: variant,
-         view: sublist_view
+    path subvariant: key, variant: variant, view: :list
   end
 
-  def sublist_view
-    "#{card.cardtype_card.codename}_sublist"
-  end
-
-  view :core do
-    card.variant = voo.structure if voo.structure
+  view :core, cache: :never do
+    # without this, variant is lost with view caching on.
+    variant
     super()
   end
 
-  view :wikirate_company_sublist do
-    card.variant = voo.structure if voo.structure
-    wrap do
-      with_paging do
-        wikirate_table :company,
-                       search_with_params,
-                       [:listing_compact],
-                       header: %w[Company]
-      end
+  view :list_with_subtabs do
+    if subvariants
+      lazy_loading_tabs subvariant_tabs, subvariant, render_list, type: "pills"
+    else
+      render_list
     end
   end
 
-  view :wikirate_topic_sublist do
-    card.variant = voo.structure if voo.structure
-    wrap do
-      with_paging do
-        wikirate_table :company,
-                       search_with_params,
-                       [:listing_compact],
-                       header: %w[Topic]
-      end
-    end
-  end
-
-  view :metric_answer_sublist do
-    card.variant = voo.structure if voo.structure
-    wrap do
-      with_paging do
-        wikirate_table :metric,
-                       search_with_params,
-                       [:metric_thumbnail, :company_thumbnail, :concise],
-                       header: %w[Metric Company Answer]
-      end
-    end
-  end
-
-  def tab_listing content
-    card.variant = voo.structure if voo.structure
-    lazy_loading_tabs subvariant_tabs, selected_subvariant, content,
-                      type: "pills"
-  end
-
-  def self.define_tab_listing_where_applicable cardtype
-    return if cardtype.in? [:metric_answer, :wikirate_company, :wikirate_topic]
-    view "#{cardtype}_sublist" do
-      card.variant = voo.structure if voo.structure
-      default_listing
-    end
-  end
-
-  [
-    :metric,
-    :project,
-    :research_group,
-    :source,
-    :wikirate_company,
-    :wikirate_topic,
-    :metric_answer
-  ].each do |cardtype|
-    view "#{cardtype}_list" do
-      listing = render!("#{cardtype}_sublist".to_sym)
-      return listing if card.research_group? || !subvariants
-      tab_listing listing
-    end
-
-    define_tab_listing_where_applicable cardtype
-  end
-
-  def default_listing item_view=:listing
-    _render_content structure: card.variant,
-                    skip_perms: true,
-                    items: { view: item_view, hide: :listing_middle }
+  view :list do
+    _render_content structure: variant, items: { view: :bar }
   end
 
   # this is a bit of a hack but a reasonably safe one

@@ -1,0 +1,110 @@
+.cite-bar {
+  display: flex;
+  .details-toggle {
+    width: 100%;
+  }
+}
+.bar_and_preview-view {
+  .bar-view {
+    width: 100%;
+  }
+}
+.pdf-source-preview, .webpage-preview {
+  border-left: 3px solid rgba($source-color, 0.2);
+  border-top: 1px solid $border-color;
+}
+.bar-view.active,
+.details-toggle.active {
+  .TYPE-source.bar, .pdf-source-preview, .webpage-preview {
+    border-left-color: $source-color!important;
+  }
+}
+
+.archive-indicator {
+  background: #0092e7;
+  font-size: 85%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+#research-details .uncite-button,
+.no-citation .cite-and-refresh-buttons,
+.left_research_side-view .cite-and-refresh-buttons {
+  display: none;
+}
+
+.preview-view.TYPE-source {
+  overflow: hidden;
+  border: 1px solid $border-color;
+}
+
+.pdf-source-preview {
+  float: left;
+  background: white;
+  width: 100%;
+  border-right: 1px solid $border-color;
+  height: 100vh;
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    outline: 0;
+  }
+  .TYPE_PLUS_RIGHT-source-text {
+    margin-top: 55px;
+  }
+}
+
+.source-item,
+.source-extra {
+  width: 80%;
+}
+
+.source-item {
+  display: inline-block;
+  background: $white;
+  width: 100%;
+  border: 1px solid $border-color;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  .source-icon {
+    width: 1%;
+    margin: 0 10px;
+    float: left;
+    visibility: hidden; //until we find a good icon
+  }
+  .source-content {
+    float: left;
+    width: 70%;
+  }
+  .source-link {
+    color: $source-color;
+    div {
+      display: inline;
+    }
+    a {
+      color: inherit; //#BA8A3C;
+    }
+  }
+  .source-website {
+    .item-name {
+      padding: 0;
+    }
+  }
+}
+
+
+.grey-nav-tab {
+  background: #f5f5f5;
+  border-bottom: 1px solid $border-color;
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: $secondary;
+    border-radius: 0;
+  }
+}
+.open-view > .d0-card-frame > .d0-card-body.TYPE-source{
+  padding-left: 0;
+}

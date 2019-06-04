@@ -1,83 +1,101 @@
-def value year
-  Answer.where(record_id: id, year: year.to_i).pluck(:value).first
+include_set Abstract::MetricChild, generation: 1
+include_set Abstract::TwoColumnLayout
+
+def answer_query
+  @answer_query ||= { company_id: company_id, metric_id: metric_id }
 end
 
-def answer year
-  Answer.where(record_id: id, year: year.to_i).first
+def researched_answers
+  @researched_answers ||= Answer.search answer_query.merge(sort_by: :year,
+                                                           sort_order: :desc)
 end
 
-def answers_by_year
-  @aby ||=
-    Answer.where(record_id: id).each_with_object({}) do |a, h|
-      h[a.year] = a
-      h[a.year.to_s] = a
+def count
+  Answer.where(answer_query).count
+end
+
+# TODO: find better place for this
+def all_years
+  @all_years ||= Card.search type_id: YearID, return: :name, sort: :name, dir: :desc
+end
+
+def all_answers
+  @researched_answers ||= all_years.map do |year|
+    Card.fetch name.field(year), new: { type_id: Card::MetricAnswerID }
+  end
+end
+
+def virtual?
+  !real?
+end
+
+format do
+  delegate :researched_answers, :all_answers, to: :card
+end
+
+format :html do
+  def tab_list
+    %i[metric wikirate_company]
+  end
+
+  def tab_options
+    tab_list.each_with_object({}) do |tab, hash|
+      hash[tab] = { count: nil, label: tab.cardname }
     end
+  end
+
+  view :rich_header do
+    [nest(card.metric_card, view: :shared_header),
+     nest(card.company_card, view: :shared_header)]
+  end
+
+  view :data do
+    wrap_with :div, class: "p-3" do
+      [render_years_and_values, add_answer_button]
+    end
+  end
+
+  def add_answer_button
+    return "" unless metric_card.user_can_answer?
+    link_to_card :research_page, "Research answer",
+                 class: "btn btn-sm btn-primary margin-12",
+                 path: { metric: card.metric,
+                         company: card.company },
+                 title: "Research answers for this company and metric"
+  end
+
+  view :metric_option, template: :haml, unknown: true
+
+  # NOCACHE because item search
+  view :years_and_values, cache: :never do
+    researched_answers.map do |a|
+      nest a, view: :year_and_value
+    end
+  end
+
+  view :metric_selected_option, unknown: true do
+    nest metric_card, view: :selected_option
+  end
+
+  view :metric_tab do
+    nest card.metric_card, view: :details_tab
+  end
+
+  view :wikirate_company_tab do
+    nest card.company_card, view: :details_tab
+  end
 end
 
-def related_companies_with_year
-  return {} unless metric_card.relationship?
-  if metric_card.inverse?
-    related_companies_of_inverse_metric
-  else
-    related_companies_of_relationship_metric
+format :csv do
+  view :core do
+    researched_answers.each_with_object("") do |a, res|
+      res << CSV.generate_line([a.company, a.year, a.value])
+    end
   end
 end
 
 format :json do
-  view :related_companies_with_year do
-    card.related_companies_with_year.to_json
-  end
-end
-
-# format :html do
-#   # TODO: following are dummy views for now (see expanded_record.rb)
-#
-#   view :core do
-#     output [
-#       render_metric_listing,
-#       render_company_listing,
-#       render_answer_table
-#     ]
-#   end
-#
-#   view :expanded_from_company do
-#     render :core, hide: :company_listing
-#   end
-#
-#   view :expanded_from_metric do
-#     render :core, hide: :metric_listing
-#   end
-#
-#   view :metric_listing do
-#     nest metric_card, view: :listing
-#   end
-#
-#   view :company_listing do
-#     nest company_card, view: :listing
-#   end
-#
-# end
-
-private
-
-def related_companies_of_relationship_metric
-  search_companies left_left: { left_id: metric_card.id, right_id: right_id },
-                   right: { type_id: WikirateCompanyID },
-                   key: ->(card) { card.name.right_name }
-end
-
-def related_companies_of_inverse_metric
-  search_companies left_left: { left_id: metric_card.inverse_card.id },
-                   right: { id: right_id },
-                   key: ->(card) { card.name.left_name.left_name.right_name }
-end
-
-def search_companies left_left:, right:, key:
-  wql = { left: { type_id: MetricAnswerID, left: left_left },
-          right: right }
-  hwa = Hash.new { |h, k| h[k] = [] }
-  Card.search(wql).each_with_object(hwa) do |card, h|
-    hkey = key.call(card)
-    h[hkey] = (h[hkey] << card.name.left_name.right_name).sort.reverse
+  def item_cards
+    researched_answers
   end
 end

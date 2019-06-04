@@ -1,12 +1,18 @@
 
 class SharedData
   module Samples
+    METRIC_COUNT = 17
+
     METRIC_NAMES = {
       free_text: "Jedi+Sith Lord in Charge",
       number: "Jedi+deadliness",
       category: "Jedi+disturbances in the Force",
       money: "Jedi+cost of planets destroyed"
     }.freeze
+
+    def metric_count
+      SharedData::Samples::METRIC_COUNT
+    end
 
     # cards only exist in testing db
     def sample_note num=1
@@ -34,10 +40,6 @@ class SharedData
       search_samples Card::MetricID, num, args
     end
 
-    def sample_analysis
-      Card["Death Star+Force"]
-    end
-
     def sample_metric value_type=:free_text
       Card[METRIC_NAMES[value_type]]
     end
@@ -52,15 +54,9 @@ class SharedData
     end
 
     # @param source [String] existing examples you can choose from
-    # are "Space_opera", "Opera", "Apple", and "Star_Wars"
-    def sample_source source=nil
-      return Card.search(type_id: Card::SourceID, limit: 1).first unless source
-      Card.search(
-        type_id: Card::SourceID,
-        right_plus: [ {codename: "wikirate_link"},
-                      { content: "http://www.wikiwand.com/en/#{source}" }],
-        limit: 1
-      ).first
+    # are :space_opera, :opera, :apple, and :star_wars
+    def sample_source source=:opera
+      Card[:"#{source}_source"]
     end
 
     def sample_metric_answer value_type=:free_text

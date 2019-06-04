@@ -1,0 +1,14 @@
+%small
+  = nest :wikirate_license, view: :core
+%small
+  - legals = secondary_menus["Legal"]
+  - links = legals.map { |item| link_to item, href: nav_menu_item_url("Legal", item) }
+  = links.join " | "
+%small
+  - socials = secondary_menus["Social"]
+  - socials.each do |social|
+    %span.px-1
+      = link_to fa_icon(social.downcase), href: nav_menu_item_url("Social", social)
+  %span.pl-2
+    Powered by
+    = link_to "Decko", href: "https://decko.org"

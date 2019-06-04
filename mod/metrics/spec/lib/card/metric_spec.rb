@@ -1,4 +1,4 @@
-describe Card::Metric do
+RSpec.describe Card::Metric do
   let :formula_metric do
     researched_metrics
     described_class.create name: "Jedi+friendliness",
@@ -22,16 +22,14 @@ describe Card::Metric do
   let :researched_metrics do
     Card::Env[:protocol] = "http://"
     Card::Env[:host] = "wikirate.org"
-    source = create_page url: "http://wikiwand.com/en/Death_Star"
     described_class.create name: "Jedi+strength in the Force",
                            value_type: "Category",
                            value_options: %w[yes no] do
       Death_Star "1977" => { value: "yes",
-                             source: "[[#{source.name}]]" }
+                             source: sample_source.name }
     end
-    source = create_page url: "http://wikiwand.com/en/Return_of_the_Jedi"
     described_class.create name: "Jedi+darksidiness" do
-      Death_Star "1977" => { value: 100, source: "[[#{source.name}]]" }
+      Death_Star "1977" => { value: 100, source: sample_source.name }
     end
   end
 
@@ -54,8 +52,9 @@ describe Card::Metric do
 
     def create_metric
       Card::Auth.as_bot do
-        source = create_page url: "http://example.com"
-        described_class.create name: "MD+MT", formula: "1", random_source: true do
+        source = create_source "http://example.com"
+        described_class.create name: "MD+MT", type: :formula,
+                               formula: "1", test_source: true do
           SPECTRE 2000 => 50, 2001 => 100
           Death_Star 2000 => { value: 50, source: "[[#{source.name}]]" }
         end
@@ -68,7 +67,7 @@ describe Card::Metric do
       expect(metric).to be_truthy
       expect(metric.type_id).to eq Card::MetricID
       expect(metric.field(:formula).content).to eq "1"
-      expect(metric.metric_type).to eq "Researched"
+      expect(metric.metric_type).to eq "Formula"
 
       expect(value).to be_truthy
       expect(value.type_id).to eq Card::MetricAnswerID
@@ -106,7 +105,7 @@ describe Card::Metric do
         described_class.create name: "Jedi+owns",
                                type: :relationship,
                                inverse_title: "owned by",
-                               random_source: true do
+                               test_source: true do
           SPECTRE 2000 => { "Los Pollos Hermanos" => "10",
                             "Death_Star" => "5" }
         end

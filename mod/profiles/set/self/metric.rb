@@ -15,7 +15,7 @@ def updated_query user_id, _variant=nil
     right_plus: [
       { name: ["in", "methodology", "about", "topics", "*metric type",
                "research policy", "report type",
-               "value type", "value options", "unit", "range", "currency"] },
+               "value type", "value options", "unit", "range"] },
       { updated_by: user_id }
     ]
   } }
@@ -31,4 +31,8 @@ def created_query user_id, variant=nil
     { or: { created_by: user_id,
             and: created_query(user_id, :designed) } }
   end
+end
+
+format :html do
+  view :core, template: :haml
 end

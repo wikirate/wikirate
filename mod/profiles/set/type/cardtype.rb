@@ -18,6 +18,6 @@ format :html do
   end
 
   def items_in_rows
-    nest card.item_search_card, items: { view: :listing }
+    nest card.item_search_card, items: { view: :info_bar }
   end
 end

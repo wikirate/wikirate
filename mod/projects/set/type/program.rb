@@ -1,5 +1,4 @@
 include_set Abstract::TwoColumnLayout
-include_set Abstract::Listing
 include_set Abstract::Thumbnail
 
 card_accessor :project, type: :pointer
@@ -12,21 +11,19 @@ format :html do
     ]
   end
 
-  view :listing_left do
+  view :bar_left do
     render :thumbnail
   end
 
-  view :listing_right do
-    ""
+  view :bar_right do
+    count_badges :project, :metric
   end
 
-  view :listing_bottom do
+  view :bar_bottom do
     field_nest :general_overview
   end
 
-  view :listing_middle do
-    ""
-  end
+  bar_cols 7, 5
 
   view :data do
     wrap_with :div do
@@ -45,10 +42,10 @@ format :html do
   end
 
   def projects_list
-    field_nest :project, view: :content, items: { view:  :listing }, title: "Projects"
+    field_nest :project, view: :content, items: { view:  :bar }, title: "Projects"
   end
 
   view :metric_tab do
-    field_nest :metric, view: :content, items: { view:  :listing }, title: "Metrics"
+    field_nest :metric, view: :content, items: { view:  :bar }, title: "Metrics"
   end
 end

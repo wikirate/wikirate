@@ -1,5 +1,0 @@
-
-<div class="tab-pane active" id="company-references">
-	<p></p>
-	{{_left+source||content;source list item }}
-</div>

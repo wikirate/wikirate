@@ -3,7 +3,7 @@
 include_set Abstract::AnswerTableCachedCount, target_type: :company
 
 def search_anchor
-  { metric_id: ids_of_metrics_tagged_with_topic }
+  { metric_id: metrics_tagged_with_topic }
 end
 
 def topic_name
@@ -22,57 +22,24 @@ recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   topic_company_type_plus_right_cards_for_metric metric_card
 end
 
-def self.topic_company_type_plus_right_cards_for_metric metric_card
-  topic_pointer = metric_card.fetch trait: :wikirate_topic
-  return [] unless topic_pointer
-  topic_names =
-    Abstract::CachedCount.pointer_card_changed_card_names(topic_pointer)
-  topic_names.map do |topic_name|
-    Card.fetch topic_name, :wikirate_company
+class << self
+  def topic_company_type_plus_right_cards_for_metric metric_card
+    topic_names_for_metric(metric_card).map do |topic_name|
+      # FIXME: validate topics so this is not a problem (?)
+      next unless Card.fetch_type_id(topic_name) == Card::WikirateTopicID
+      Card.fetch topic_name, :wikirate_company
+    end.compact
+  end
+
+  def topic_names_for_metric metric_card
+    topic_pointer = metric_card.fetch trait: :wikirate_topic
+    return [] unless topic_pointer
+    Abstract::CachedCount.pointer_card_changed_card_names topic_pointer
   end
 end
 
-def ids_of_metrics_tagged_with_topic
+def metrics_tagged_with_topic return_field=:id
   Card.search type_id: MetricID,
               right_plus: [WikirateTopicID, { refer_to: name.left }],
-              return: :id
-end
-
-def company_ids_by_metric_count
-  Answer.group(:company_id)
-        .where(metric_id: ids_of_metrics_tagged_with_topic)
-        .order("count_metric_id desc")
-        .limit(100)
-        .distinct
-        .count(:metric_id)
-end
-
-format :html do
-  view :company_list_with_metric_counts, cache: :never do
-    wrap do
-      card.company_ids_by_metric_count.map do |company_id, metric_count|
-        company_card = Card.fetch company_id
-        wrap_with :div, class: "company-item contribution-item" do
-          [wrap_with(:div, company_detail(company_card), class: "header"),
-           wrap_with(:div, class: "data") do
-             metric_count_detail(company_card, metric_count)
-           end]
-        end
-      end
-    end
-  end
-
-  def company_detail company_card
-    nest company_card, view: :thumbnail
-  end
-
-  def metric_count_detail company_card, metric_count
-    wrap_with :span, class: "metric-count-link" do
-      link_to_card(
-        company_card,
-        "#{metric_count} #{:metric.cardname.vary :plural}",
-        path: { filter: { wikirate_topic: card.topic_name.s } }
-      )
-    end
-  end
+              return: return_field
 end

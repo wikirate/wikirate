@@ -1,6 +1,6 @@
 require "savanna-outliers"
 
-include_set Abstract::Export
+# include_set Abstract::Export
 include_set Abstract::DesignerAndTitle
 include_set Abstract::MetricThumbnail
 
@@ -16,12 +16,18 @@ card_accessor :value_options
 card_accessor :report_type
 card_accessor :research_policy
 card_accessor :project
-card_accessor :all_metric_values
+card_accessor :metric_answer
 card_accessor :unit
 card_accessor :range
-card_accessor :currency
 card_accessor :hybrid, type: :toggle
-card_accessor :question
+card_accessor :question, type: :plain_text
+card_accessor :score
+
+# METRIC-CHILD-STYLE METHODS
+
+def metric_card
+  self
+end
 
 # METRIC TYPES
 
@@ -62,9 +68,5 @@ def answer_card company, year
 end
 
 def designer_assessed?
-  research_policy.casecmp("designer assessed").zero?
-end
-
-event :silence_metric_deletions, :initialize, on: :delete do
-  @silent_change = true
+  research_policy.tr("[]", "").casecmp("designer assessed").zero?
 end

@@ -1,15 +1,22 @@
 # cache # of sources on which answers for this metric (=left) are based on
 include_set Abstract::SearchCachedCount
 
-def wql_hash
-  { referred_to_by: {
-    right: "source",
-    left: {           # answer
-      left: {         # record
-        left: "_left" # metric
-      }
-    }
-  } }
+def wql_from_content
+  { referred_to_by: { right_id: Card::SourceID, left_id: [:in] + answer_ids } }
+end
+
+def skip_search?
+  answer_ids.blank?
+end
+
+# turn query caching off because wql_hash varies
+def cache_query?
+  false
+end
+
+def answer_ids
+  @answer_ids ||=
+    Answer.where(metric_id: left.id).where.not(answer_id: :nil).pluck :answer_id
 end
 
 # recount no. of sources on metric

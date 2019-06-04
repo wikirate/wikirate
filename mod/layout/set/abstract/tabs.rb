@@ -22,6 +22,10 @@ format :html do
     {}
   end
 
+  def one_line_tab?
+    false
+  end
+
   def default_tab
     tab_from_params || tab_map.keys.first
   end
@@ -46,21 +50,29 @@ format :html do
   def tab_title fieldcode, opts={}
     opts ||= {}
     parts = tab_title_parts fieldcode, opts
-    two_line_tab parts[:label], tab_title_top(parts[:icon], parts[:count])
+    info = tab_title_info parts[:icon], parts[:count]
+    wrapped_tab_title parts[:label], info
   end
 
-  def tab_title_top icon, count
-    icon_tag = tab_title_icon_tag icon
+  def tab_title_info icon, count
     if count
-      tab_badge count, icon_tag
+      tab_count_badge count, icon
     else
-      icon_tag || "&nbsp;".html_safe
+      icon || tab_space
     end
   end
 
-  def tab_title_icon_tag icon
-    return unless icon.present?
-    icon_tag(*Array.wrap(icon))
+  def tab_space
+    one_line_tab? ? :nil : "&nbsp;"
+  end
+
+  def tab_count_badge count, icon_tag
+    klass = nil
+    if count.is_a? Card
+      klass = css_classes count.safe_set_keys
+      count = count.try(:cached_count) || count.count
+    end
+    tab_badge count, icon_tag, klass: klass
   end
 
   def tab_title_parts fieldcode, opts
@@ -71,14 +83,28 @@ format :html do
 
   def tab_title_count fieldcode
     field_card = card.fetch trait: fieldcode
-    field_card.cached_count if field_card.respond_to? :cached_count
+    field_card if field_card.respond_to? :count
   end
 
   def tab_title_icon fieldcode
-    icon_map fieldcode
+    mapped_icon_tag fieldcode
   end
 
   def tab_title_label fieldcode
     fieldcode.cardname.vary :plural
+  end
+
+  def wrapped_tab_title label, info=nil
+    wrap_with :div, class: "tab-title text-center #{'one-line-tab' if one_line_tab?}" do
+      [wrapped_tab_title_info(info),
+       wrap_with(:span, label, class: "count-label")].compact
+    end
+  end
+
+  def wrapped_tab_title_info info
+    return unless (info ||= tab_space)
+
+    klass = css_classes "count-number", "clearfix"
+    wrap_with :span, info, class: klass
   end
 end

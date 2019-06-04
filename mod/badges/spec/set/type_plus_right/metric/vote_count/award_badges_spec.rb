@@ -2,7 +2,7 @@
 
 require_relative "../../../../support/award_badges_shared_examples"
 
-describe Card::Set::TypePlusRight::Metric::VoteCount::AwardBadges do
+RSpec.describe Card::Set::TypePlusRight::Metric::VoteCount::AwardBadges do
   describe "vote badges" do
     let(:badge_action) { :vote }
     let(:badge_type) { :metric }

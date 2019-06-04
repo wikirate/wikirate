@@ -1,0 +1,47 @@
+<div class="metric-details-close-icon pull-right	"><i class="fa fa-times-circle fa-2x"></i></div>
+<br>
+<div class="metric-details-header">
+
+    <div class="row clearfix ">
+              <div class="col-md-1">
+                {{_l+*vote count}}
+              </div>
+              <div class="col-md-11">
+                <div class="name row">
+                  <a class="inherit-anchor" href="{{_l|url}}">
+                  {{_2|name}}
+                  </a>
+                </div>
+                <div class="row">
+                  <div class="metric-designer-info">
+                    <a href="/{{_1|name}}">
+                      <div><small class="text-muted">Designed by</small></div>
+                      <div>{{_1+image|core;size:small}}</div>
+                      <div><h3>{{_1|name}}</h3></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+    </div>
+    <hr>
+    <div class="row clearfix wiki">{{_1+_l+_1+metric details|content}}</div>
+    <br>
+
+     <div class="row clearfix metric-details-company-list">
+       <h4>Companies</h4>
+      {{_l+limited companies| hide:title, paging;|content;structure:metric company item}}
+       <div class="data-item text-center">
+        <span class="btn label-metric">[[_l|View More Details]]</span>
+      </div>
+     </div>
+     <hr>
+    <div class="row discussion-container">
+        <div class="row-icon">
+          <i class="fa fa-comment"></i>
+        </div>
+        <div class="row-data">
+            {{_l+discussion|titled;title:Discussion; show:commentbox}}
+        </div>
+    </div>
+
+</div>

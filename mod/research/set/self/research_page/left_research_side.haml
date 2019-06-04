@@ -1,16 +1,26 @@
 - if project?
-  = haml_partial :project_slot
-= haml_partial :metric_slot
+  = render :project_slot
+= render :metric_slot
 - if metric?
-  = haml_partial :company_slot
+  = render :company_slot
 - if metric? && company?
-  = haml_partial :year_slot
+  = render_year_slot
 = render_flash
-- if answer?
+- if metric?
   .border-bottom.background-grey.p-2.pl-4
     %h5
       Question
+      %span.pull-right
+        = button_tag "View Methodology",
+                     class: "_methodology-tab btn btn-sm btn-outline-secondary"
     .large-text
       = nest [metric, :question], view: :core
-  .p-2.pl-4
+.p-2.pl-4
+  - if answer?
     = answer_slot
+  - else
+    .alert-warning.p-4
+      To research an answer, please select a
+      %strong
+        = first_missing_field
+      above.

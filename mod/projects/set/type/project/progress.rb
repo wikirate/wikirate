@@ -20,15 +20,15 @@ def num_possible_records
 end
 
 def num_companies
-  @num_companies ||= wikirate_company_card.valid_company_cards.size
+  @num_companies ||= wikirate_company_card.num
 end
 
 def num_metrics
-  @num_metrics ||= metric_card.valid_metric_cards.size
+  @num_metrics ||= metric_card.num
 end
 
 def num_years
-  @num_years ||= year_card.valid_year_cards.size
+  @num_years ||= year_card.num
 end
 
 def num_users
@@ -48,6 +48,8 @@ def units
 end
 
 format :html do
+  delegate :units, to: :card
+
   view :overall_progress_box, cache: :never do
     overall_progress_box false
   end
@@ -57,25 +59,14 @@ format :html do
       [
         (progress_legend if legend),
         bs_layout do
-          row 2, 10 do
-            column { _render_percent_researched }
+          row 9, 3 do
             column { main_progress_bar }
+            column { render_percent_researched }
           end
         end
       ]
     end
   end
-
-  # view :percent_researched do
-  #   wrap_with :div, class: "percent-researched text-center border rounded" do
-  #     [
-  #       wrap_with(:h4, class: "border-bottom p-2 m-0 bg-light") do
-  #         "<strong>#{card.percent_researched}%</strong>"
-  #       end,
-  #       wrap_with(:span, "Researched", class: "text-muted")
-  #     ]
-  #   end
-  # end
 
   def main_progress_bar
     wrap_with :div, class: "main-progress-bar mt-1" do
@@ -87,40 +78,26 @@ format :html do
     research_progress_bar
   end
 
-  # view :progress_description do
-  #   %(<div class="text-muted">
-  #       Of <strong>#{card.num_possible} potential #{card.units}</strong>
-  #       (#{formula}), <strong>#{card.num_researched}</strong> have been added so far.
-  #     </div>)
-  # end
-
   view :percent_researched, template: :haml do
     @percent = card.percent_researched
   end
 
   view :progress_description, template: :haml  do
     @num_possible = card.num_possible
-    @units = card.units
     @formula = formula
     @num_researched = card.num_researched
   end
 
   def formula
+    vars = %i[wikirate_company metric]
+    vars << :year if card.years
     options = tab_options
-    [:wikirate_company, :metric, (:year if card.years)].compact.map do |codename|
+    vars.compact.map do |codename|
       "#{options[codename][:count]} #{codename.cardname.vary :plural}"
     end.join " x "
   end
 
   def progress_legend
-    bs_layout do
-      row 12 do
-        column { wrap_legend_items }
-      end
-    end
-  end
-
-  def wrap_legend_items
     wrap_with :div, class: "progress-legend" do
       ["known", "unknown", "not-researched"].map { |i| legend_item i }
     end

@@ -1,15 +1,15 @@
 include_set Abstract::BrowseFilterForm
 
+def default_filter_option
+  { name: "" }
+end
+
 def default_sort_option
-  "upvoted"
+  :upvoted
 end
 
 def filter_keys
-  %i[name wikirate_topic wikirate_company]
-end
-
-def advanced_filter_keys
-  %i[designer project metric_type research_policy year]
+  %i[name wikirate_topic designer project metric_type research_policy year]
 end
 
 def target_type_id
@@ -21,21 +21,11 @@ def filter_class
 end
 
 def sort_wql
-  wql = super
-  wql[:sort] =
-    case current_sort
-    when "values"
-      { right: "value", right_plus: "*cached count" }
-    when "recent"
-      wql.delete :sort_as
-      "update"
-    when "company"
-      { right: "company", right_plus: "*cached count" }
-    else
-      # upvoted as default
-      { right: "*vote count" }
-    end
-  wql
+  if current_sort.to_sym == :upvoted
+    { sort: { right: "*vote count" }, dir: "desc" }
+  else
+    super
+  end
 end
 
 format :html do
@@ -48,11 +38,9 @@ format :html do
   end
 
   def sort_options
-    {
-      "Highest Voted" => "upvoted",
-      "Most Recent" => "recent",
-      # "Most Companies" => "wikirate_company" # "company"
-    }
+    { "Highest Voted": :upvoted,
+      "Most Companies": :company,
+      "Most Answers": :answer }.merge super
   end
 
   def type_options type_codename, order="asc", max_length=nil

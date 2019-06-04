@@ -1,0 +1,22 @@
+%footer.container-fluid.bg-light.border-top.py-5.homepage-footer
+  .row
+    .col-6.col-md-2.text-center
+      = nest :wikirate_grey_logo, view: :core
+    - nav_menus.merge(secondary_menus).each do |header, items|
+      .footer-menu.col-6.col-md-2
+        %h4
+          = header
+        %ul
+          - items.each do |item|
+            %li
+              %a{ href: nav_menu_item_url(header, item) }
+                - if header == "Social"
+                  = fa_icon item.downcase
+                = item
+  .d-flex.justify-content-around.p-4
+    = link_to nest("partner logos+European Commission", view: :core),
+              href: "https://ec.europa.eu/" ,
+              target: "wr-partner"
+    = link_to nest("partner logos+Decko Commons", view: :core),
+              href: "https://decko.org/" ,
+              target: "wr-partner"

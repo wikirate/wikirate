@@ -1,0 +1,14 @@
+a.company-switch {
+  color: inherit;
+}
+
+.recent-editors-container {
+  &.list-group-item {
+    margin: 6px 0px;
+    background: #fafafa;
+    &:hover {
+      background: #EDEDED;
+
+    }
+  }
+}

@@ -11,7 +11,15 @@ include_set Abstract::Paging
 
 format :html do
   view :expanded_details do
-    render("expanded_#{card.metric_type}_details").html_safe
+    render :"expanded_#{details_type}_details"
+  end
+
+  def details_type
+    card.calculated? && researched_value? ? :researched : card.metric_type
+  end
+
+  def wrap_expanded_details
+    output [yield, render_comments]
   end
 
   # Note: RESEARCHED details are handled in Abstract::ExpandedResearchedDetails
@@ -19,8 +27,7 @@ format :html do
   # ~~~~~ FORMULA DETAILS
 
   # don't cache; view depends on formula card
-  view :expanded_formula_details, tags: :unknown_ok, cache: :never do
-    return render_expanded_researched_details if researched_value?
+  view :expanded_formula_details, unknown: true, cache: :never do
     expanded_formula_details
   end
 
@@ -40,10 +47,14 @@ format :html do
 
   # TODO: make item-wrapping format-specific
   def formula_details
-    calculator = Formula::Calculator.new(card.metric_card.formula_card)
-    calculator.formula_for card.company, card.year.to_i do |input|
-      input = input.join ", " if input.is_a?(Array)
-      "<span class='metric-value'>#{input}</span>"
+    calculator = Formula::Calculator.new(card.metric_card.formula_card.parser)
+    calculator.advanced_formula_for card.company, card.year.to_i do |input, input_card|
+      link_target = [input_card, card.company]
+      link_target << card.year unless input.is_a?(Array)
+      if input.is_a?(Array)
+        input = input.join ", "
+      end
+      link_to_card link_target, input, class: "metric-value"
     end
   end
 
@@ -75,11 +86,19 @@ format :html do
   # ~~~~~~~ RELATIONSHIP AND INVERSE RELATIONSHIP DETAILS
 
   view :expanded_relationship_details do
-    wrap_expanded_details do
+    wrap_researched_details do
       [
-        "<br/><h5>Relations</h5>",
+        "<br/>",
+        relations_header,
         render_relations_table_with_details_toggle.html_safe
       ]
+    end
+  end
+
+  def relations_header
+    wrap_with :div, class: "d-flex" do
+      [wrap_with(:h5, "Relations"),
+       wrap_with(:div, add_relation_link, class: "ml-auto")]
     end
   end
 
@@ -95,15 +114,24 @@ format :html do
     end
   end
 
+  def add_relation_link
+    link_to_card :research_page, "Add relation",
+                 class: "slotter btn btn-sm btn-primary",
+                 path: { view: :add_relation,
+                         metric: card.metric, company: card.company, year: card.year }
+  end
+
   def relations_table value_view=:details
     name_view = inverse? ? :inverse_company_name : :company_name
     wikirate_table :company, search_with_params, [name_view, value_view],
-                   header: %w[Company Answer]
+                   header: [rate_subject, "Answer"]
   end
 
   # ~~~~~~~~~ DESCENDANT DETAILS
 
   view :expanded_descendant_details do
-    "(descendant answer details coming soon)"
+    wrap_expanded_details do
+      answer_details_table
+    end
   end
 end

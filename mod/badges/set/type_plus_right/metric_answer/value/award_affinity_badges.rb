@@ -18,11 +18,13 @@ def metric_awards_answer_badges?
 end
 
 def award_create_badge_if_earned affinity, project_card=nil
+  return unless awardable_act?
+
   # the actions of the current act are not included
   # because we do this search before the answer table update
-
-  count = action_count(:create, affinity, project_card) # +
+  count = award_action_count(:create, affinity, project_card) # +
   return unless (badge = earns_badge(:create, affinity, count))
+
   badge_card = fetch_badge_card badge, affinity, project_card
   award_badge badge_card
 end
@@ -41,7 +43,8 @@ def affinity_name affinity, project_card=nil
 end
 
 def create_count restriction={}
-  Answer.where(restriction.merge(creator_id: Auth.current_id)).count
+  Answer.where(restriction.merge(creator_id: Auth.current_id))
+        .where.not(answer_id: nil).count
 end
 
 def create_count_general
@@ -70,7 +73,7 @@ def project_cards
               }
 end
 
-def action_count action, affinity=nil, project_card=nil
+def award_action_count action, affinity=nil, project_card=nil
   method_name = [action, "count", affinity].compact.join "_"
   if project_card
     send method_name, project_card

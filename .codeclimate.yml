@@ -19,7 +19,8 @@ exclude_paths:
 - spec/**/*
 - vendor/**/*
 - card-mods/pdfjs/files/**/*
-- mod/wikirate_source/files/**/*
+- mod/sources/files/**/*
 - mod/**/lib/javascript/**/*.js
 - test/**/*
 - db/**/*
+- script/single-use/old/**/*

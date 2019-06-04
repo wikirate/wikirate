@@ -19,11 +19,15 @@ def num_possible
 end
 
 format :html do
+  def units
+    card.project_card.units
+  end
+
   view :fancy_year do
     "<BLINK>#{card.year}</BLINK>"
   end
 
-  view :research_progress_bar, cache: :never, tags: :unknown_ok do
+  view :research_progress_bar, cache: :never, unknown: true do
     research_progress_bar
   end
 end

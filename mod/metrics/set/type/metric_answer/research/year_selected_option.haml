@@ -1,0 +1,10 @@
+.d-flex.flex-nowrap.align-items-center
+  .image-box.icon.bg-white
+    = fa_icon :calendar, class: "text-muted"
+  %h6.mb-0
+    - if card.year.present?
+      %strong
+        = card.year
+    - else
+      %span.text-muted
+        Select Year

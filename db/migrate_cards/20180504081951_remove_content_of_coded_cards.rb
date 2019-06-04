@@ -10,6 +10,7 @@ class RemoveContentOfCodedCards < Card::Migration
      style_wikirate_bootstrap_navbar
      style_wikirate_bootstrap_form
      style_wikirate_bootstrap_common
+     style_images
      style_profile_page
      style_company_header
      style_source_preview
@@ -24,11 +25,9 @@ class RemoveContentOfCodedCards < Card::Migration
      style_browse_items
      chosen_style
      coded_stylesheets
-     style_drag_and_drop
      script_answer_source_handling
      script_metric_value
      script_value_type
-     script_drag_and_drop
      script_metric_chart
     ]
 
@@ -68,10 +67,14 @@ class RemoveContentOfCodedCards < Card::Migration
 
   def ensure_code_cards names, type_id, prefix
     names.each do |name|
-      ensure_card "#{prefix}: #{name}",
-                  codename: "#{prefix}_#{name}",
-                  type_id: type_id
+      ensure_code_card name, type_id, prefix
     end
+  end
+
+  def ensure_code_card name, type_id, prefix
+    ensure_card "#{prefix}: #{name}",
+                codename: "#{prefix}_#{name}",
+                type_id: type_id
   end
 
   def remove_js_libraries

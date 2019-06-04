@@ -7,7 +7,7 @@ class CreatedAtForAnswers < Card::Migration
     #   if a.card.type_id == Card::MetricAnswerID
     #     begin
     #       if a.card.researched?
-    #         a.update_attributes! created_at: a.card.created_at
+    #         a.update! created_at: a.card.created_at
     #       else
     #         a.created_at = a.card.created_at
     #         a.answer_id = nil

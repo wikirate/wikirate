@@ -8,7 +8,7 @@ describe Card::Set::Abstract::BrowseFilterForm do
     it "has filter widget" do
       is_expected.to have_tag("._filter-widget") do
         with_tag "._add-filter-dropdown" do
-          with_tag "a.dropdown-item", text: /Keyword/,
+          with_tag "a.dropdown-item", text: /Name/,
                                       with: { "data-category": "name" }
           with_tag "a.dropdown-item", text: /Metric/,
                                       with: { "data-category": "metric" }

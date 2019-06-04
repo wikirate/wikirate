@@ -13,41 +13,12 @@ format :html do
   end
 
   view :company_count_with_label do
-    count_with_label_cell company_count, "Companies"
-  end
-
-  def designer_image_card
-    card.metric_designer_card.field(:image)
+    count_with_label_cell company_count, rate_subjects
   end
 
   view :thumbnail_with_vote do
-    voo.hide! :thumbnail_subtitle
-    title = card.right.name
-    output [
-      _render_vote,
-      text_with_image(title: title,
-                      image: designer_image_card, size: :icon)
-    ]
-  end
-
-  view :latest_value do
-    field_subformat(:latest_value)._render_concise
-  end
-
-  view :details do
-    <<-HTML
-        <div class="data-item show-with-details text-center">
-          <span class="label label-metric">[[_l|Metric Details]]
-          </span>
-        </div>
-    HTML
-  end
-
-  view :metric_details_link do
-    <<-HTML
-      <div class="contribution metric-details show-with-details text-center">
-        <span class="label label-metric">[[_|Metric Details]]</span>
-      </div>
-    HTML
+    wrap_with :div, class: "thumbnail-with-vote d-flex align-items-start" do
+      [render_vote, thumbnail]
+    end
   end
 end

@@ -1,13 +1,37 @@
-
 RSpec.describe Card::Set::Type::ResearchGroup do
-  extend Card::SpecHelper::ViewHelper::ViewDescriber
+  def card_subject
+    Card["Jedi"]
+  end
+  check_views_for_errors :open_content, :bar, :edit,
+                         :researcher_tab, :metric_tab, :project_tab
 
-  let(:research_group) { Card["Jedi"] }
+  specify "view :info_bar" do
+    expect_view(:info_bar).to have_tag "div.bar" do
+      with_tag "div.bar-left" do
+        with_tag "div.thumbnail"
+      end
+      with_tag "div.bar-middle" do
+        with_tag "div.RIGHT-topic"
+      end
+      with_tag "div.bar-right" do
+        with_tag "span.badge"
+      end
+    end
+  end
 
-  describe_views :open_content, :listing, :edit,
-                 :researcher_tab, :metric_tab, :project_tab do
-    it "has no errors" do
-      expect(research_group.format.render(view)).to lack_errors
+  specify "view :expanded_bar" do
+    expect_view(:expanded_bar).to have_tag "div.expanded-bar" do
+      with_tag "div.bar" do
+        with_tag "div.bar-left" do
+          with_tag "div.thumbnail"
+        end
+        with_tag "div.bar-right" do
+          with_tag "span.badge"
+        end
+      end
+      with_tag "div.bar-bottom" do
+        with_tag "div.RIGHT-topic"
+      end
     end
   end
 end

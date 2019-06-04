@@ -2,38 +2,9 @@ event :validate_answer_field, before: :set_answer_name, when: :standard? do
   missing_part :answer unless subfield_present?(:value)
 end
 
-event :validate_value_type, :validate, on: :save, when: :standard? do
-  return unless (value, value_type = validatable_value_and_type)
-  # check if the value fit the value type of metric
-  return if Answer.unknown? value
-  case value_type
-  when "Number", "Money" then validate_numeric_value value
-  when "Category"        then validate_category_value value
-  end
-end
-
-def validatable_value_and_type
-  return unless metric_card&.researched? &&
-                (value_type = metric_card.fetch trait: :value_type) &&
-                (value_card = subfield :value)
-  [value_card.value, value_type.item_names.first]
-end
-
-def validate_numeric_value value
-  return true if number? value
-  errors.add :value, "Only numeric content is valid for this metric."
-end
-
-# check if the value exist in options
-def validate_category_value value
-  option_card = Card["#{metric_card.name}+value options"]
-  return true if option_card&.item_names&.include? value
-
-  url = "/#{option_card.name.url_key}?view=edit"
-  anchor = %(<a href='#{url}' target="_blank">add that option</a>)
-  errors.add :value, "#{value} is not a valid option. " \
-                     "Please #{anchor} before adding this metric value."
-end
+# TODO: build this or (better yet) standard mechanism for this
+# event :validate_presence_of_value, :validate, on: :save do
+# end
 
 event :validate_year_change, :validate, on: :update, when: :year_updated? do
   new_year = subfield(:year).item_names.first
@@ -55,16 +26,16 @@ event :validate_answer_name, after: :validate_year_change, on: :save, changed: :
 end
 
 event :restore_overridden_value, :validate, on: :delete, when: :calculation_overridden? do
-  overridden_value_card.update_attributes! content: nil
+  overridden_value_card.update! content: nil
   answer.restore_overridden_value
 end
 
-def valid_value_name?
+def valid_answer_name?
   name.parts.size >= (name_parts.size + 1) && valid_name_parts?
 end
 
-def invalid_value_name?
-  !valid_value_name?
+def invalid_answer_name?
+  !valid_answer_name?
 end
 
 def valid_name_parts?

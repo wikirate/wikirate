@@ -7,14 +7,14 @@ class AddWidgetCodenames < Card::Migration
 
     # rename CCC metric if it exists
     if (supplier_card = Card["Clean Clothes Campaign+Supplier Of"])
-      supplier_card.update_attributes! name: widget_cards[:commons_supplier_of],
+      supplier_card.update! name: widget_cards[:commons_supplier_of],
                                        update_referers: true,
                                        silent_change: true
     end
 
     # add codenames to cards
     widget_cards.each do |codename, cardname|
-      Card[cardname]&.update_attributes! codename: codename
+      ensure_card cardname, codename: codename, type_id: Card::MetricID
     end
     Card::Codename.reset_cache
   end

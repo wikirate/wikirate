@@ -1,6 +1,7 @@
 format :html do
   def colorify value, mono=false
     return "" if value.blank?
+    value = "10" if value == "10.0"
     wrap_with :div, class: "range-value" do
       [
         wrap_with(:span, value),

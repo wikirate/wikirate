@@ -37,20 +37,14 @@ source_cards.each do |source_card|
     content_type = uri.meta["content-type"]
      if (!content_type.start_with?"text/html") && (!content_type.start_with?"image/")
        puts "\t#{url},#{content_type},#{uri.meta['content-disposition']},#{uri.path}"
-      filename = if (cd = uri.meta["content-disposition"]) &&
-                    (matched = cd.match(/filename=(\"?)(.+)\1/))
-                   matched[2]
-                 else
-                   File.basename(URI.parse(url).path)
-      end
+       matched = uri.meta["content-disposition"]&.match(/filename=(\"?)(.+)\1/)
+       filename = matched ? matched[2] : File.basename(URI.parse(url).path)
 
       file_uploaded = ActionDispatch::Http::UploadedFile.new(tempfile: uri,
                                                              filename: filename)
-      result = source_card.update_attributes subcards: {
-        "+File" => { file: file_uploaded,
-                     content: "CHOSEN",
-                     type_id: Card::FileID }
-      }
+      result = source_card.update subcards: { "+File" => { file: file_uploaded,
+                                                           content: "CHOSEN",
+                                                           type_id: Card::FileID } }
       if !result
         puts "Fail : #{source_card.errors.messages}\t#{file_uploaded.size / 1024}"
       else

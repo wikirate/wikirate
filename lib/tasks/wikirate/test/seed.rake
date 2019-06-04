@@ -25,14 +25,26 @@ namespace :wikirate do
         end
       end
 
-      desc "migrate test data"
-      task :migrate do |task|
+      desc "migrate test data starting from base"
+      task :remigrate do |task|
         ensure_env :test, task do
           Rake::Task["wikirate:test:load_dump"].invoke(base_dump_path)
           Rake::Task["decko:migrate"].invoke
           Rake::Task["wikirate:test:dump"].invoke(migrated_dump_path)
           Card::Cache.reset_all
-          ActiveRecord::Base.descendants.each{ |c| c.reset_column_information }
+          ActiveRecord::Base.descendants.each(&:reset_column_information)
+        end
+        ensure_env :test, "wikirate:test:seed:update"
+      end
+
+      desc "migrate test data starting from last migration run"
+      task :migrate do |task|
+        ensure_env :test, task do
+          Rake::Task["wikirate:test:load_dump"].invoke(migrated_dump_path)
+          Rake::Task["decko:migrate"].invoke
+          Rake::Task["wikirate:test:dump"].invoke(migrated_dump_path)
+          Card::Cache.reset_all
+          ActiveRecord::Base.descendants.each(&:reset_column_information)
         end
         ensure_env :test, "wikirate:test:seed:update"
       end

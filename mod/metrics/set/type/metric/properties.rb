@@ -1,65 +1,65 @@
-
 format :html do
-  def properties
-    {
-      designer:    "Designed By",
-      scorer:      "Scored By",
-      topic:       "Topics",
-      metric_type: "Metric Type"
-    }
+  # all metrics show these properties in their properties table
+  def basic_table_properties
+    { designer:       "Designed by",
+      wikirate_topic: "Topics",
+      metric_type:    "Metric Type" }
+  end
+
+  # all metrics have these properties in their editor
+  def basic_edit_properties
+    { question:       "Question",
+      wikirate_topic: "Topic",
+      about:          "About",
+      methodology:    "Methodology" }
+  end
+
+  def value_type_properties
+    { value_type:    "Value Type",
+      unit:          "Unit",
+      range:         "Range",
+      value_options: "Options" }
   end
 
   def research_properties
-    {
-      research_policy: "Research Policy",
-      report_type:     "Report Type",
-      value_type:      "Value Type"
-    }
+    { research_policy: "Research Policy",
+      report_type:     "Report Type" }
   end
 
   view :metric_properties do
-    table table_properties, class: "metric-properties"
-  end
-
-  def table_properties
-    properties.each_with_object({}) do |(p_name, p_label), p_hash|
-      next unless (row_value = send "#{p_name}_property")
-      p_hash[p_label] = row_value
-      p_hash
+    wrap_with :div, class: "metric-properties" do
+      table_properties.map do |field, label|
+        if respond_to? "#{field}_property"
+          send "#{field}_property", label
+        else
+          labeled_field field, :name, title: label
+        end
+      end
     end
   end
 
-  def designer_property
-    nest card.metric_designer_card, view: :designer_slot,
-                                    hide: :horizontal_menu
+  before :content_formgroup do
+    voo.edit_structure = edit_properties.to_a
   end
 
-  def scorer_property
-    return unless card.metric_type_codename == :score
-    nest scorer_card, view: :scorer_info_without_label
+  # for override
+  def table_properties
+    basic_table_properties
   end
 
-  def metric_property_nest field, item_view: :name
-    field_nest field,  view: :content, show: :menu, items: { view: item_view }
+  def edit_properties
+    basic_edit_properties
   end
 
-  def topic_property
-    metric_property_nest :wikirate_topic, item_view: :link
+  # SHARED
+
+  def designer_property title
+    wrap :div, class: "row designer-property" do
+      labeled title, nest(card.metric_designer_card, view: :thumbnail)
+    end
   end
 
-  def metric_type_property
-    field_nest :metric_type, view: :content, items: { view: :name }
-  end
-
-  def value_type_property
-    wrap_with :div, _render_value_type_detail(show: :menu, hide: :horizontal_menu)
-  end
-
-  def research_policy_property
-    metric_property_nest :research_policy
-  end
-
-  def report_type_property
-    metric_property_nest :report_type
+  def wikirate_topic_property title
+    labeled_field :wikirate_topic, :link, title: title
   end
 end

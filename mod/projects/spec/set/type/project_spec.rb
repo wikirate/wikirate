@@ -1,20 +1,18 @@
 # -*- encoding : utf-8 -*-
 
 describe Card::Set::Type::Project do
-  extend Card::SpecHelper::ViewHelper::ViewDescriber
+  def card_subject
+    Card["Evil Project"]
+  end
+
+  let(:project) { card_subject }
 
   context "with no year" do
-    let(:project) { Card["Evil Project"] }
-
-    describe_views :open_content, :listing, :edit, :wikirate_company_tab,
-                   :metric_tab, :post_tab, :subproject_tab do
-      it "has no errors" do
-        expect(project.format.render(view)).to lack_errors
-      end
-    end
+    check_views_for_errors :open_content, :bar, :edit, :wikirate_company_tab,
+                           :metric_tab, :post_tab, :subproject_tab
 
     it "has no year" do
-      expect(project.years).to eq(false)
+      expect(card_subject.years).to eq(false)
     end
 
     it "connects metrics and companies" do
@@ -32,9 +30,8 @@ describe Card::Set::Type::Project do
 
   context "with years" do
     let :project do
-      project = Card["Evil Project"]
-      project.year_card.update_attributes! content: "1999\n2000\n2001"
-      project
+      card_subject.year_card.update! content: "1999\n2000\n2001"
+      card_subject
     end
 
     it "lists years in order of recency" do

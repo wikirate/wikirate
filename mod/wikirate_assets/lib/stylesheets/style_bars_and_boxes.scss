@@ -1,0 +1,241 @@
+// defaults
+
+$bar_stripe_color: $gray-700;
+$box_stripe_color: $gray-700;
+
+/*------ Badges ---------*/
+
+.badge {
+  vertical-align: text-top !important;
+}
+
+.labeled-badge {
+  display: inline-block;
+  text-align: center;
+  label {
+    margin: 0;
+    padding: 0 0.33rem;
+    .count-badge-label-icon {
+      display: none;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .bar .labeled-badge label {
+    padding: 0;
+    .count-badge-label-icon {
+      display: block;
+      width: 22px;
+    }
+    .count-badge-label-text {
+      display: none;
+    }
+  }
+}
+
+/*----------- Bars and Boxes -------------*/
+
+
+.bar-left a {
+  color: inherit;
+}
+
+.bar > div {
+  overflow: hidden;
+}
+
+.box {
+  border-top: 3px solid $border-color;
+}
+
+.bar {
+  border-left: 3px solid $border-color;
+}
+
+.bar:hover, .expanded-bar:hover .bar {
+  border-left-color: $dark-text-color;
+  // Following needed on answer bars
+  .bar-left .company-link a {
+    color: $company-color !important;
+  }
+}
+
+.box-top {
+  h1, h2, h3, h4, h5, h6 {
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  h6 {
+    font-size: 1em !important;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .bar-left h5 {
+    font-size: 1em;
+  }
+  .bar {
+    .RIGHT-Xvote_count.content-view {
+      display: none;
+    }
+  }
+}
+
+.box-item {
+  transition: all 0.2s ease-out;
+}
+
+//for all box items
+
+a.box-item {
+  text-decoration: none;
+}
+
+.box-item:hover {
+  -webkit-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+}
+
+.box:hover {
+  @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
+}
+
+// set consistent colors for a group of bars/boxes
+@mixin barbox($color) {
+  &.bar {
+    border-left-color: rgba($color, 0.2) !important;
+  }
+
+  &.expanded_bar-view:hover .bar, &.bar:hover {
+    border-left-color: $color !important;
+    .bar-left a {
+      color: $color;
+    }
+  }
+
+  &.box {
+    border-top-color: $color !important;
+
+    .box-top a {
+      color: $color;
+    }
+  }
+}
+
+
+// type specific colors
+$colorMap: (
+  metric: $metric-color,
+  record: $record-color,
+  company: $company-color,
+  topic: $topic-color,
+  source: $source-color,
+  project: $project-color,
+  answer: $answer-color,
+  research_group: $default-cardtype-color,
+  post: $default-cardtype-color
+); // border color for bars and boxes
+
+@each $type, $color in $colorMap {
+  #main > .TYPE-#{$type} > .card {
+    > .card-header {
+      color: #fff;
+      background: $color;
+      text-align: center;
+      a {
+        color: #fff !important;
+      }
+    }
+
+    .two-column-box {
+      border-top: 5px solid $color;
+    }
+  }
+
+  .TYPE-#{$type} {
+    @include barbox($color);
+  }
+
+  .#{$type}-color, .#{$type}-color a {
+    color: $color;
+  }
+
+  .badge-#{$type} {
+    background-color: $color;
+  }
+
+  .top-border-#{$type} {
+    border-top: 3px solid $color;
+  }
+
+  .#{$type}-border-left {
+    border-left: 3px solid $color !important;
+  }
+
+  .RIGHT-#{$type} {
+    .contribution-report-header {
+      border-left: 4px solid $color;
+    }
+  }
+
+  .nav-item:hover .RIGHT-#{$type} {
+    &.tab-badge .badge {
+      background-color: $color;
+    }
+  }
+
+  .expanded-bar, .bar, .box {
+    &:hover .RIGHT-#{$type} {
+      &.labeled-badge .badge {
+        background-color: $color;
+      }
+    }
+  }
+}
+
+.TYPE-project, .TYPE-research_group {
+  &.bar {
+    &:hover .bar-left a {
+      color: $teal;
+    }
+    .bar-right {
+      flex-direction: column;
+      justify-content: left;
+      align-items: flex-end !important;
+      text-align: right;
+    }
+  }
+}
+
+.bar-middle .RIGHT-topic .pointer-list {
+  text-align: center;
+}
+// project link color
+
+.TYPE-project
+// for metric items
+
+.TYPE-metric.box {
+  height: 360px;
+  .box-middle {
+    min-height: auto;
+  }
+  .box-top {
+    text-align: left !important;
+    min-height: 80px;
+    h5 {
+      font-size: 110%;
+    }
+  }
+
+  .box-middle .question {
+    font-size: 105%;
+  }
+
+  .box-bottom .labeled-badge {
+    padding: 0!important;
+  }
+}

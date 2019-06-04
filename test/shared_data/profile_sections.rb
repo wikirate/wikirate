@@ -2,7 +2,7 @@ class SharedData
   module ProfileSections
     def add_profile_sections
       metric_section
-      metric_value_section
+      answer_section
       topic_section
       project_section
       research_group_section
@@ -13,12 +13,12 @@ class SharedData
       "Joe User+big single+Sony Corporation+#{year}+#{field}"
     end
 
-    def metric_value_section
+    def answer_section
       with_user "Joe User" do
         update_card answer_field(2010, :value),
                     content: "4"
         update_card answer_field(2008, :value),
-                    content: "4.1"
+                    content: "5"
 
         ensure_card answer_field(2007, :discussion),
                     content: "comment"
@@ -34,7 +34,7 @@ class SharedData
         update_card answer_field(2009, :value),
                     content: "5"
         update_card answer_field(2008, :value),
-                    content: "4.2"
+                    content: "6"
 
         ensure_card answer_field(2006, :discussion),
                     content: "comment"

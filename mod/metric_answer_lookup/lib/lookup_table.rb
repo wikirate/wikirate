@@ -1,12 +1,30 @@
 module LookupTable
+  def self.included host_class
+    host_class.extend LookupTable::ClassMethods
+  end
+
+  def card_column
+    self.class.card_column
+  end
+
   def card
     @card ||= Card.fetch send(card_column)
   end
 
+  def card_id
+    send card_column
+  end
+
+  def card_id= id
+    send "#{card_column}=", id
+  end
+
+  def delete_on_refresh?
+    !card || card.trash
+  end
+
   def refresh *fields
-    # when we override a hybrid metric the answer is invalid because of the
-    # missing answer_id, so we check `invalid?` only for non-hybrid metrics)
-    return delete if !card || card.trash || (!metric_card.hybrid? && invalid?)
+    return delete if delete_on_refresh?
     keys = fields.present? ? fields : attributes.keys
     keys.delete("id")
     keys.each do |method_name|

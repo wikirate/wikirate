@@ -1,0 +1,15 @@
+.row.m-0.p-0.bg-white.nodblclick.slide-container.border-top
+  .p-5.text-center.col-12.col-md-8.mx-auto
+    .row
+      .col-12.col-md-8.mx-auto
+        %h3.text-muted.font-weight-light
+          = nest :homepage_solution_text, view: :core
+    .col-12
+      = modal_link "<span></span>", path: { mark: "homepage video container" },
+                   class: "video-play-button drop-shadow", size: :large,
+                   id: "_play-video"
+      = nest :homepage_video_background_image, size: :original
+    .col-12.text-center.video-section-lm
+      %a.btn.btn-outline-secondary.m-3{href: "https://wikirateproject.org/"}
+        Learn more
+        .fa.fa-arrow-circle-right.ml-1.fa-lg

@@ -1,6 +1,7 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
   Include:
+  - '**/*.rb'
   - "**/*.gemspec"
   - "**/*.podspec"
   - "**/*.jbuilder"
@@ -19,8 +20,8 @@ AllCops:
   Exclude:
   - "vendor/**/*"
   - "db/schema.rb"
-  - "mod/wikirate_source/files/**/*"
-  - "mod/wikirate_source/lib/javascript/**/*"
+  - "mod/sources/files/**/*"
+  - "mod/sources/lib/javascript/**/*"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Style/CommentAnnotation:
@@ -80,7 +81,7 @@ Metrics/BlockLength:
     - '**/*_spec.rb'
 RSpec/ExampleLength:
   Description: Checks for long examples.
-  Enabled: true
+  Enabled: false
   Max: 15
 RSpec/FilePath:
   Description: Checks that spec file paths are consistent with the test subject.

@@ -28,7 +28,7 @@ class CSVRow
       end
 
       def ensure_source
-        create_link_source @row[:source]
+        create_source @row[:source]
       end
 
       def add_relationship_answer source

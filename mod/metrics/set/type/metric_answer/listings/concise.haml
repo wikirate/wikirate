@@ -1,0 +1,9 @@
+.metric-value.text-left.ellipsis
+  = calculated { nest card.value_card, view: :pretty }
+.small.pt-1.w-100
+  %span.text-muted.ellipsis.d-inline-block{title: render_legend_core }
+    = render_legend
+  %span.pull-right
+    = render_flags
+    %span.text-muted.pl-2
+      = render_year_and_icon

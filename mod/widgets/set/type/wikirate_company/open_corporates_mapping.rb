@@ -10,7 +10,7 @@
 #
 #   add_subfield :open_corporates, content: oc.company_number, type: :phrase
 #   add_subfield :incorporation,
-#                content: jurisdiction_name(oc.jurisdiction_code_of_incorporation),
+#                content: jurisdiction_name(oc.incorporation_jurisdiction_code),
 #                type: :pointer
 # end
 #
