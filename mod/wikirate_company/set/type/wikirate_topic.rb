@@ -38,7 +38,7 @@ format :html do
   end
 
   view :bar_bottom do
-    output [render_bar_middle, render_details_tab]
+    [render_bar_middle, render_data]
   end
 
   view :box_middle do

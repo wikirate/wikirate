@@ -3,8 +3,9 @@ describe Card::Set::Type::WikirateTopic do
     Card["Force"]
   end
 
-  check_views_for_errors :open_content, :bar, :box, :edit,
-                         :details_tab, :wikirate_company_tab, :post_tab, :project_tab
+  check_views_for_errors :open_content, :bar, :expanded_bar, :box, :edit,
+                         :metric_tab, :wikirate_company_tab, :research_group_tab,
+                         :project_tab
 
   describe "view: bar_left" do
     it "has topic title" do
