@@ -14,7 +14,7 @@ card_accessor :wikirate_company
 card_accessor :metric
 
 format :html do
-  def header_body size=:medium
+  def header_body
     class_up "media-heading", "topic-color"
     super
   end
@@ -42,7 +42,7 @@ format :html do
   end
 
   view :box_middle do
-    nest image_card, view: :core, size: :medium
+    field_nest :image, view: :core, size: :medium
   end
 
   view :box_bottom do

@@ -43,6 +43,6 @@ end
 class ProjectFilterQuery < Card::FilterQuery
   def wikirate_status_wql value
     return unless value.present?
-    add_to_wql :right_plus, [WikirateStatusID, { content: [:match, value] }]
+    add_to_wql :right_plus, [WikirateStatusID, { refer_to: value }]
   end
 end

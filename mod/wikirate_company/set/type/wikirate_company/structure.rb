@@ -15,7 +15,7 @@ format :html do
 
   # LEFT SIDE
 
-  def header_body size=:medium
+  def header_body
     class_up "media-heading", "company-color"
     super
   end

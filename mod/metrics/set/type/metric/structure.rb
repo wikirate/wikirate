@@ -8,13 +8,21 @@ format :html do
     super
   end
 
-  def header_body size=:medium
+  def header_body
     class_up "media-heading", "metric-color"
-    @image_card = card.metric_designer_card.fetch trait: :image
-    text_with_image title: render_vote_and_title,
-                    text: render_question,
-                    # alt: "Designed by: #{card.metric_designer}",
-                    size: size
+    super
+  end
+
+  def header_right
+    render_vote_and_title
+  end
+
+  def header_text
+    render_question
+  end
+
+  def image_card
+    card.metric_designer_card.fetch trait: :image, new: {}
   end
 
   view :data, cache: :never do

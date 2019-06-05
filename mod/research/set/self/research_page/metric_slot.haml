@@ -3,13 +3,13 @@
   -if !metric?
     %div
       .d-flex.flex-nowrap.metric-color
-        .image-box.icon.bg-white
+        .image-box.small.bg-white
           = fa_icon "bar-chart", class: "metric-color"
         = autocomplete_field :metric
   -elsif metric_pinned?
     %div
       .metric-color.d-flex.flex-nowrap.align-items-center
-        .image-box.icon
+        .image-box.small
           = nest metric, view: :thumbnail_image
         %h6.mb-0
           = link_to_card metric, Card[metric].metric_title, class: "inherit-anchor"

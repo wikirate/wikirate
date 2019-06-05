@@ -6,6 +6,9 @@
     height: $sidelength;
     min-width: $sidelength;
     min-height: $sidelength;
+    i {
+      font-size: $sidelength / 2;
+    }
   }
 }
 
@@ -27,32 +30,28 @@
   border-radius: 0;
 
   background-color: #f8f9fa;
-  // line-height: 80px;
-  //vertical-align: middle;
-  margin-right: 10px;
+
+  margin-right: 0.5rem;
   overflow: hidden;
 
   //text-align: center;
-  @include image-box-size(icon, 40px);
-  @include image-box-size(small, 64px);
-  @include image-box-size(medium, 94px);
-  @include image-box-size(large, 150px);
+  @include image-box-size(icon, 16px);
+  @include image-box-size(small, 40px);
+  @include image-box-size(medium, 64px);
+  @include image-box-size(large, 94px);
+  @include image-box-size(xlarge, 150px);
 
   a, i {
     width: 100%;
     text-align: center;
   }
+  i {
+    color: $text-muted;
+  }
   img {
     max-width: 100%;
     max-height: 100%;
     height: auto;
-    // margin-left: auto;
-    // margin-right: auto;
-  }
-  > div {
-    margin-top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
   }
 }
 
