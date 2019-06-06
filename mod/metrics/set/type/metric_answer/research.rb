@@ -8,7 +8,7 @@ format :html do
   # AS RESEARCH PAGE
 
   # NOCACHE because slot machine manipulates instance variables
-  view :open do
+  view :open, cache: :never do
     wrap do
       subformat(:research_page).slot_machine metric: card.metric,
                                              company: card.company,
