@@ -12,6 +12,13 @@
   font-size: 1.2em;
 }
 
+/*----------- Example answer ---------*/
+
+.answer-example > div {
+  border: 1px solid $border-color;
+  align-items: center;
+  padding: 0.5rem
+}
 /*----------- metric value ---------*/
 
 .year-icon-cal.image-box  {
