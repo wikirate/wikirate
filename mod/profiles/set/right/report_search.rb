@@ -47,7 +47,7 @@ def research_group_card
   @research_group_card ||= Card.fetch research_group_name if research_group?
 end
 
-def wql_hash
+def wql_from_content
   research_group? ? research_group_report_query : standard_report_query
 end
 

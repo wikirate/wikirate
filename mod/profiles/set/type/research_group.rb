@@ -51,14 +51,14 @@ format :html do
   end
 
   def organizer_detail
-    labeled_field :organizer, :thumbnail_plain, title: "Group Organizer"
+    labeled_field :organizer, :thumbnail, title: "Group Organizer"
   end
 
   def topic_detail
     labeled_field :wikirate_topic, :link, title: "Topics"
   end
 
-  def thumbnail_subtitle_text
+  def thumbnail_subtitle
     field_nest :organizer, view: :credit
   end
 

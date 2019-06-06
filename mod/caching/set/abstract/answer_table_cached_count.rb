@@ -6,72 +6,48 @@
 # :metric, :company, :record, or :designer. :answer works too although it has
 # no name column.
 
-include_set Abstract::WqlSearch
+include_set Abstract::SearchCachedCount
 
 def self.included host_class
   host_class.include_set Abstract::CachedCount
   host_class
 end
 
-def virtual?
-  true
-end
-
-def type_id
-  SearchTypeID
-end
-
-# override this to restrict the search result
+# override this to restrict the Answer search result
 def search_anchor
-  {}
+  raise "need search anchor method"
 end
 
-def search args={}
-  return [] unless (query = search_anchor)
-  return_field = args[:return]
-  uniquify query, return_field
-  ::Answer.search query.merge(return: return_arg(return_field))
+def recount
+  Answer.search answer_query(:count)
 end
 
-def uniquify query, return_field
-  return if target_type == :answer
-  query.merge! uniq: (return_field == :name ? target_name : target_id)
+def answer_query return_field
+  query = search_anchor
+  query[:uniq] = target_id_field unless target_type == :answer
+  query[:return] = return_field
+  query
 end
 
-def target_id
+def target_id_field
   "#{target_type}_id".to_sym
-end
-
-def target_name
-  "#{target_type}_name".to_sym
-end
-
-def return_arg val
-  case val
-  when :id, target_id     then target_id
-  when :count             then :count
-  when :name, target_name then target_name
-  else                         "#{target_type}_card"
-  end
 end
 
 # needed for "found_by" wql searches that refer to search results
 # of these cards
 def wql_from_content
-  ids = search return: :id
-  if ids.any?
-    { id: [:in] + ids }
-  else
-    { id: -1 } # HACK: ensure no results
-  end
+  { id: [:in] + target_ids }
+end
+
+def skip_search?
+  target_ids.empty?
+end
+
+def target_ids
+  ::Answer.search(answer_query(target_id_field))
 end
 
 # turn query caching off because wql_from_content can change
 def cache_query?
   false
-end
-
-# TODO: paging.  for now returns top 50.
-def item_cards _args={}
-  search.sort_by(&:name)[0, 50]
 end

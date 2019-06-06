@@ -10,4 +10,4 @@
         .fa.fa-arrow-circle-right.ml-1.fa-lg
   .col-sm-6
     = nest :homepage_featured_projects,
-           items: { view: :bar }, wql: { limit: 4 }, hide: :paging
+           items: { view: :bar }, wql: { limit: 4 }, hide: %i[paging bar_nav]

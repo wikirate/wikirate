@@ -1,7 +1,7 @@
 include_set Abstract::Thumbnail
 
 format :html do
-  def thumbnail_subtitle_text
+  def thumbnail_subtitle
     field_nest :headquarters, view: :core, items: { view: :name }
   end
 
@@ -15,7 +15,7 @@ format :html do
   end
 
   view :bar_right do
-    count_badges :metric, :metric_answer
+    count_badges :metric_answer, :metric
   end
 
   view :bar_middle do
@@ -31,7 +31,7 @@ format :html do
   end
 
   view :box_bottom do
-    count_badges :metric, :wikirate_topic
+    count_badges :metric_answer, :metric
   end
 
   bar_cols 7, 5

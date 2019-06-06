@@ -1,7 +1,7 @@
 # cache # of sources on which answers for this metric (=left) are based on
 include_set Abstract::SearchCachedCount
 
-def wql_hash
+def wql_from_content
   { referred_to_by: { right_id: Card::SourceID, left_id: [:in] + answer_ids } }
 end
 

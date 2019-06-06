@@ -17,7 +17,7 @@ format :html do
     [main_progress_bar, project_details]
   end
 
-  def thumbnail_subtitle_text
+  def thumbnail_subtitle
     field_nest :organizer, view: :credit
   end
 

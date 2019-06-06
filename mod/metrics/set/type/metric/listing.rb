@@ -12,9 +12,7 @@ format :html do
   end
 
   view :bar_bottom do
-    output [render_bar_middle,
-            field_nest(:wikirate_topic, view: :content, items: { view: :link }),
-            render_question]
+    render_details_tab
   end
 
   view :box_top do

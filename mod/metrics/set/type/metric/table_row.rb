@@ -16,10 +16,6 @@ format :html do
     count_with_label_cell company_count, rate_subjects
   end
 
-  def designer_image_card
-    card.metric_designer_card.field(:image)
-  end
-
   view :thumbnail_with_vote do
     wrap_with :div, class: "thumbnail-with-vote d-flex align-items-start" do
       [render_vote, thumbnail]

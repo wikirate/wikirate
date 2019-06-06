@@ -4,7 +4,7 @@
 include_set Type::SearchType
 
 def virtual?
-  true
+  new?
 end
 
 def item_type
@@ -19,7 +19,7 @@ def pointer_name
   name.left_name
 end
 
-def wql_hash
+def wql_from_content
   {
     type: item_type,
     referred_to_by: pointer_name,

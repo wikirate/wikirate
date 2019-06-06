@@ -9,7 +9,6 @@
     - elsif company_pinned?
       .company-color.d-flex.flex-nowrap.align-items-center
         .image-box.icon
-          %span.img-helper
           = nest [company, :image], view: :core, size: :small
         %h6.mb-0
           = link_to_card company, nil, class: "inherit-anchor"

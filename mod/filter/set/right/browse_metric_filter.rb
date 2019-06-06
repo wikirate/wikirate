@@ -9,8 +9,7 @@ def default_sort_option
 end
 
 def filter_keys
-  %i[name wikirate_topic wikirate_company designer project metric_type research_policy
-     year]
+  %i[name wikirate_topic designer project metric_type research_policy year]
 end
 
 def target_type_id
