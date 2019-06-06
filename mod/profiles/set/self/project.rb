@@ -1,7 +1,5 @@
 def subvariants
-  {
-    created: [:submitted, :organized]
-  }
+  { created: [:submitted, :organized] }
 end
 
 def created_query user_id, variant=nil

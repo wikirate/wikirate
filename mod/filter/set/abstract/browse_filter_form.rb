@@ -53,7 +53,7 @@ format :html do
   # end
 
   def default_item_view
-    :info_bar
+    :bar
   end
 
   before :content do

@@ -23,6 +23,15 @@ def target_type_id
   ProjectID
 end
 
+def default_wql
+  filter_class.new(wikirate_status: "Active").to_wql
+end
+
+def filter_wql
+  filter_hash.present? ? super : default_wql
+end
+
+
 format :html do
   def sort_options
     { "Most Subprojects": :subprojects,

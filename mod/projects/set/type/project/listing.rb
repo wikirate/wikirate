@@ -9,7 +9,7 @@ format :html do
   end
 
   view :bar_middle do
-    field_nest :wikirate_topic, items: { view: :thumbnail_image }
+    field_nest :wikirate_topic
   end
 
   view :bar_right do
