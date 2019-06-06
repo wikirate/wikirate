@@ -22,7 +22,7 @@ format :html do
   end
 
   def image_card
-    card.metric_designer_card.fetch trait: :image, new: {}
+    @image_card ||= card.metric_designer_card.fetch trait: :image, new: {}
   end
 
   view :data, cache: :never do
