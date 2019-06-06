@@ -184,14 +184,13 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   display: inline-block;
   width: 100%;
   .thumbnail {
-    width: 40%;
-    float: left;
+    background: #fafafa;
+    border: 1px solid #eee;
+    padding: 0.25rem;
   }
   > span {
     font-size: 1.5em;
     font-weight: bold;
-    float: left;
-    padding: 10px;
   }
 }
 

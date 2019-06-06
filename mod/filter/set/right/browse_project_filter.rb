@@ -31,7 +31,6 @@ def filter_wql
   filter_hash.present? ? super : default_wql
 end
 
-
 format :html do
   def sort_options
     { "Most Subprojects": :subprojects,
