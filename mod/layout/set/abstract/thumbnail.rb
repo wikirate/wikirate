@@ -16,7 +16,7 @@ format :html do
   end
 
   view :thumbnail_image do
-    field_nest :image, view: thumbnail_image_view, size: :small
+    field_nest :image, view: thumbnail_image_view, size: (voo.size || :small)
   end
 
   def thumbnail

@@ -197,6 +197,9 @@ $colorMap: (
 }
 
 .TYPE-project, .TYPE-research_group {
+  .bar-left .thumbnail-text {
+    width: 100%;
+  }
   &.bar {
     &:hover .bar-left a {
       color: $teal;

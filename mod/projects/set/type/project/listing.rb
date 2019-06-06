@@ -3,10 +3,13 @@ include_set Abstract::FilterableBar
 format :html do
   info_bar_cols 5, 5, 2
 
-  view :bar_left, template: :haml
+  view :bar_left do
+    voo.size = :medium
+    filterable(:project, nil, class: "w-100") { render_thumbnail }
+  end
 
   view :bar_middle do
-    field_nest :wikirate_topic
+    field_nest :wikirate_topic, items: { view: :thumbnail_image }
   end
 
   view :bar_right do
@@ -18,7 +21,7 @@ format :html do
   end
 
   def thumbnail_subtitle
-    field_nest :organizer, view: :credit
+    output [field_nest(:organizer, view: :credit), default_research_progress_bar]
   end
 
   def subproject_detail

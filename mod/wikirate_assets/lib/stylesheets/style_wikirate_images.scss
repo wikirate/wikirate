@@ -48,6 +48,10 @@
   i {
     color: $text-muted;
   }
+  &.icon a {
+    line-height: 0;
+    height: 8px;
+  }
   img {
     max-width: 100%;
     max-height: 100%;
