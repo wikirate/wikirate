@@ -1,7 +1,7 @@
 format :html do
   view :rich_header do
     bs_layout do
-      row 12, class: "rich-header" do
+      row 12, class: "rich-header #{card.safe_set_keys}" do
         html render_menu
         col class: "p-0 border-bottom" do
           _render_rich_header_body

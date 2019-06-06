@@ -111,15 +111,16 @@ a.box-item {
 
   &.expanded_bar-view:hover .bar, &.bar:hover {
     border-left-color: $color !important;
-    .bar-left a {
-      color: $color;
+    .bar-left {
+      a, .image-box i {
+        color: $color;
+      }
     }
   }
 
   &.box {
     border-top-color: $color !important;
-
-    .box-top a {
+    .box-top a, &:hover .box-middle i {
       color: $color;
     }
   }
@@ -157,6 +158,10 @@ $colorMap: (
 
   .TYPE-#{$type} {
     @include barbox($color);
+
+    // &.rich-header .image-box i {
+    //   color: $color
+    // }
   }
 
   .#{$type}-color, .#{$type}-color a {
@@ -197,12 +202,9 @@ $colorMap: (
 }
 
 .TYPE-project, .TYPE-research_group {
-  .bar-left .thumbnail-text {
-    width: 100%;
-  }
   &.bar {
     &:hover .bar-left a {
-      color: $teal;
+      color: $brand-primary;
     }
     .bar-right {
       flex-direction: column;
@@ -212,6 +214,23 @@ $colorMap: (
     }
   }
 }
+
+.TYPE-project.bar {
+  .bar-left .thumbnail-text {
+    width: 100%;
+  }
+  &:hover .default-progress-box .progress {
+    -webkit-filter: none;
+    filter: none;
+    .progress-bar {
+      background-color: $brand-primary;
+      &.progress-not-researched {
+        background-color: $gray-200;
+      }
+    }
+  }
+}
+
 
 .bar-middle .RIGHT-topic .pointer-list {
   text-align: center;
