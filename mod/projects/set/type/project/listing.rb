@@ -1,7 +1,7 @@
 include_set Abstract::FilterableBar
 
 format :html do
-  info_bar_cols 5, 5, 2
+  info_bar_cols 6, 4, 2
 
   view :bar_left do
     voo.size = :medium

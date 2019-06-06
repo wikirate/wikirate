@@ -76,7 +76,13 @@
     padding: 4px;
   }
 }
-
-.thumbnail-text {
-  text-align: left;
+.thumbnail {
+  display: flex;
+  align-items: start;
+  .image-box {
+    margin-top: 0.25rem;
+  }
+  .thumbnail-text {
+    text-align: left;
+  }
 }
