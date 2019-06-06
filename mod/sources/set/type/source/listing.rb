@@ -101,6 +101,6 @@ format :html do
 
   def creator
     return unless (creator_card = Card[card.creator_id])
-    field_nest creator_card, view: :link
+    nest creator_card, view: :link
   end
 end
