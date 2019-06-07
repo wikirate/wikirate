@@ -22,7 +22,7 @@ format :html do
       field_nest :source, view: :filtered_content, items: items
     end
   end
-  
+
   # def add_value_link
   #   link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
   #                path: { metric: card.name},
