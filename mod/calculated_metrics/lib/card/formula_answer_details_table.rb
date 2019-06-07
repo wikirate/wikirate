@@ -16,15 +16,15 @@ class Card
 
     def value_column_content input_card, input, year_option
       if (year = simple_year(year_option))
-        link_to_answer_card input_card, input, year
+        link_to_answer input_card, input, year
       else
         value_span input
       end
     end
 
-    def link_to_answer_card input_card, input, year
+    def link_to_answer input_card, input, year
       answer = [input_card.name, company, year].to_name
-      @format.link_to_card answer, raw_value(input), class: "metric-value"
+      @format.link_to_card answer, raw_value(input), class: "metric-value _update-details"
     end
 
     def value_span input

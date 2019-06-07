@@ -54,7 +54,7 @@ format :html do
       if input.is_a?(Array)
         input = input.join ", "
       end
-      link_to_card link_target, input, class: "metric-value"
+      link_to_card link_target, input, class: "metric-value _update-details"
     end
   end
 
