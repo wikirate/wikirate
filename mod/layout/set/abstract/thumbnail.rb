@@ -7,7 +7,7 @@ format :html do
   view :thumbnail_minimal do
     voo.hide! :thumbnail_subtitle
     voo.hide! :thumbnail_link
-    _render_thumbnail_plain
+    thumbnail
   end
 
   view :thumbnail_no_link do
@@ -17,6 +17,12 @@ format :html do
 
   view :thumbnail_image do
     field_nest :image, view: thumbnail_image_view, size: (voo.size || :small)
+  end
+
+  view :thumbnail_subtitle do
+    wrap_with :div, class: "thumbnail-subtitle" do
+      thumbnail_subtitle
+    end
   end
 
   def thumbnail

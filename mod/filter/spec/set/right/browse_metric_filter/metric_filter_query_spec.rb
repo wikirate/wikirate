@@ -3,14 +3,8 @@
 require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 
 RSpec.describe Card::Set::Right::BrowseMetricFilter do
-  let(:card) do
-    card = Card.new name: "test card"
-    card.singleton_class.send :include, described_class
-    card
-  end
-
   describe "filter_wql" do
-    subject { card.filter_wql_from_params }
+    subject { card_subject.filter_wql_from_params }
 
     context "name argument" do
       before { filter_args name: "CDP" }
@@ -27,7 +21,7 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
     end
 
     def simple_field_filter field_id, value
-      { right_plus: [field_id, { refer_to: { name: value } }] }
+      { right_plus: [field_id, { refer_to: value }] }
     end
 
     context "designer argument" do
