@@ -24,7 +24,7 @@ format :html do
   end
 
   view :bar_left do
-    filterable :wikirate_topic do
+    filterable status: :all, year: :latest, wikirate_topic: card.name do
       render_thumbnail
     end
   end

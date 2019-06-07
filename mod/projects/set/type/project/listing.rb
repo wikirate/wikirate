@@ -5,7 +5,7 @@ format :html do
 
   view :bar_left do
     voo.size = :medium
-    filterable(:project, nil, class: "w-100") { render_thumbnail }
+    filterable({ project: card.name }, class: "w-100") { render_thumbnail }
   end
 
   view :bar_middle do

@@ -1,5 +1,5 @@
 class Card
-  # shared methods
+  # method shared in many queries.
   module WikirateFilterQuery
     def topic_wql topic
       add_to_wql :right_plus, [WikirateTopicID, { refer_to: { name: topic } }]

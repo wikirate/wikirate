@@ -8,7 +8,7 @@ format :html do
   end
 
   view :bar_left do
-    filterable :source do
+    filterable source: card.name do
       haml :bar_left
     end
   end
