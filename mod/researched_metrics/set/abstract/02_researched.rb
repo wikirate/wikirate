@@ -10,7 +10,7 @@ format :html do
   end
 
   def tab_list
-    super << :project
+    super.insert 2, :source
   end
 
   view :main_details do
@@ -18,13 +18,11 @@ format :html do
   end
 
   view :source_tab do
-    tab_wrap do
-      field_nest :source, view: :titled,
-                          title: "#{fa_icon 'globe'} Sources",
-                          items: { view: :bar }
+    answer_filtering do |items|
+      field_nest :source, view: :filtered_content, items: items
     end
   end
-
+  
   # def add_value_link
   #   link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
   #                path: { metric: card.name},
