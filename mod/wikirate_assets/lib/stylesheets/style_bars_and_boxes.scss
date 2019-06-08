@@ -231,19 +231,19 @@ $colorMap: (
   }
 }
 
-
 .bar-middle .RIGHT-topic .pointer-list {
   text-align: center;
 }
-// project link color
 
-.TYPE-project
 // for metric items
 
 .TYPE-metric.box {
   height: 360px;
   .box-middle {
     min-height: auto;
+    i {
+      font-size: 20px;
+    }
   }
   .box-top {
     text-align: left !important;

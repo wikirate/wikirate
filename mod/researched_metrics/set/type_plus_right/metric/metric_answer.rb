@@ -29,11 +29,10 @@ format :html do
   end
 
   def table_args
-    [:company,
-     self,
-     [:company_thumbnail, :concise],
-     header: [company_sort_link, value_sort_link],
-     details_view: :company_details_sidebar]
+    [:company, self, [:company_thumbnail, :concise],
+     { header: [company_sort_link, value_sort_link],
+       details_view: :company_details_sidebar,
+       td: td_args }]
   end
 
   def company_sort_link

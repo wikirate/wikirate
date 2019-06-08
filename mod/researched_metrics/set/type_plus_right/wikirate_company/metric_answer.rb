@@ -21,11 +21,10 @@ format :html do
   before(:filter_result) { voo.hide! :chart }
 
   def table_args
-    [:metric,
-     self, # call search_with_params on self to get items
-     [:metric_thumbnail_with_vote, :concise],
-     header: [name_sort_links, "Answer"],
-     details_view: :metric_details_sidebar]
+    [:metric, self, [:metric_thumbnail_with_vote, :concise],
+     { header: [name_sort_links, "Answer"],
+       details_view: :metric_details_sidebar,
+       td: td_args }]
   end
 
   def name_sort_links

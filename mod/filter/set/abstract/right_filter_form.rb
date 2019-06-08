@@ -1,5 +1,9 @@
 format :html do
-  view :core, cache: :never do
-    filter_fields slot_selector: ".RIGHT-answer.filter_result-view"
+  def filter_view
+    :content
+  end
+
+  def filter_selector
+    ".RIGHT-answer.content-view"
   end
 end

@@ -28,7 +28,7 @@ format :html do
     if contrib_page?
       render_contributions_data
     else
-      field_nest :metric_answer
+      field_nest :metric_answer, view: :filtered_content
     end
   end
 

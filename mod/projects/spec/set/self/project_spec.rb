@@ -11,7 +11,7 @@ RSpec.describe Card::Set::Self::Project do
     end
 
     it "filters projects" do
-      expect_view(:core).to have_tag("div.filtered-content") do
+      expect_view(:core).to have_tag("div._filtered-content") do
         with_tag "div.filter-form"
         with_tag "div.filtered-results" do
           with_tag "div.bar-view", with: { "data-card-name": "Evil Project" }

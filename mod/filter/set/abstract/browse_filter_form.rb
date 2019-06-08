@@ -44,7 +44,7 @@ def cached_count_sort_wql
 end
 
 def virtual?
-  !real?
+  new?
 end
 
 format :html do

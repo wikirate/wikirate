@@ -25,8 +25,8 @@ format :html do
     @image_card ||= card.metric_designer_card.fetch trait: :image, new: {}
   end
 
-  view :data, cache: :never do
-    field_nest :metric_answer
+  view :data do
+    field_nest :metric_answer, view: :filtered_content
   end
 
   view :vote_and_title do
