@@ -45,7 +45,10 @@ class WikirateTable
   end
 
   def tr_opts row_card
-    @tr_opts.clone
+    tr = @tr_opts.clone
+    tr["data-row-card"] = { url_key: row_card.name.url_key,
+                            known: row_card.known? }.to_json
+    tr
   end
 
   def td_data row_card, view, col_index

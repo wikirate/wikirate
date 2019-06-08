@@ -1,10 +1,6 @@
 # Answer search for a given Company
 include_set Abstract::AnswerSearch
 
-def virtual?
-  !real?
-end
-
 def query_class
   AnswerQuery::FixedCompany
 end
@@ -22,9 +18,11 @@ format :html do
 
   def table_args
     [:metric, self, [:metric_thumbnail_with_vote, :concise],
-     { header: [name_sort_links, "Answer"],
-       details_view: :metric_details_sidebar,
-       td: td_args }]
+     { header: [name_sort_links, "Answer"] }]
+  end
+
+  def details_view
+    :metric_details_sidebar
   end
 
   def name_sort_links

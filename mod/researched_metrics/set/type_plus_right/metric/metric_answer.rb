@@ -3,10 +3,6 @@ include_set Abstract::AnswerSearch
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::Chart
 
-def virtual?
-  !real?
-end
-
 def query_class
   AnswerQuery::FixedMetric
 end
@@ -30,9 +26,11 @@ format :html do
 
   def table_args
     [:company, self, [:company_thumbnail, :concise],
-     { header: [company_sort_link, value_sort_link],
-       details_view: :company_details_sidebar,
-       td: td_args }]
+     { header: [company_sort_link, value_sort_link], td: td_args }]
+  end
+
+  def details_view
+    :company_details_sidebar
   end
 
   def company_sort_link

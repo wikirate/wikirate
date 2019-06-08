@@ -8,8 +8,6 @@ format :html do
   #   for every row card
   # @param [Hash] opts add additional classes and other attributes to your table
   # @option opts [Array<String>] :header an array with a header for every column
-  # @option opts [Symbol] :details_view define a view that gets rendered for the
-  #   row cards if a row is clicked
   # @option opts [Hash] :td html options for the td tags. You can pass an array
   #   to :classes to assign to every column a html class.
   # @option opts [Hash] :tr html options for tr tags

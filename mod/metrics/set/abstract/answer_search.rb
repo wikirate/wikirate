@@ -6,6 +6,10 @@ include_set Abstract::Table
 include_set Abstract::Utility
 include_set Abstract::BrowseFilterForm
 
+def virtual?
+  new?
+end
+
 def search args={}
   return_type = args.delete :return
   q = query(args)
@@ -34,10 +38,11 @@ format :csv do
 end
 
 format :html do
-  before :filtered_content do
+  view :filtered_content do
     # this sets the default filter search options to match the default filter UI,
     # which is managed by the filter_card
     filter_hash.reverse_merge! card.filter_card.default_filter_option
+    super() + raw('<div class="details-slot"></div>')
   end
 
   view :core, cache: :never, template: :haml
@@ -47,14 +52,12 @@ format :html do
   end
 
   view :table, cache: :never do
-    wikirate_table(*table_args)
+    wrap true, "data-details-view": details_view do
+      wikirate_table(*table_args)
+    end
   end
 
   def td_args
     { classes: %w[header data] }
-  end
-
-  def details_url? row_card
-    !row_card.unknown?
   end
 end
