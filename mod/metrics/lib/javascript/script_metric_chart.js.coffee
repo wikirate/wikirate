@@ -14,7 +14,7 @@ setFilterText = ($vis) ->
   text = $vis.data("value-filter-text")
   return unless text
 #  showMetricValueFilter()
-  $vis.closest(".filtered-content").find("#select2-filter_value-container").text(text)
+  $vis.closest("._filtered-content").find("#select2-filter_value-container").text(text)
 
 # showMetricValueFilter = ->
 #   decko.filterCategorySelected($('a[data-category="value"]'))

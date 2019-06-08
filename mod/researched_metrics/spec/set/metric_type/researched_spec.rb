@@ -115,7 +115,7 @@ describe Card::Set::MetricType::Researched do
         have_tag("div.open-view") do
           with_tag "div.left-col" do
             with_tag "div.rich-header"
-            with_tag "div.RIGHT-answer.content-view" do
+            with_tag "div.RIGHT-answer.filtered_content-view" do
               with_tag "div._filtered-content"
             end
           end

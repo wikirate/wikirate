@@ -47,30 +47,33 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
 
       it "has a bootstrap table" do
         is_expected.to have_tag "table" do
-          answer = "Jedi+disturbances_in_the_Force+Death_Star+2001"
-          details_url = "/#{answer}?view=company_details_sidebar"
-          with_tag :tr, with: { "data-details-url" => details_url }
+          with_tag :tr, with: {
+            "data-row-card": {
+              url_key: "Jedi+disturbances_in_the_Force+Death_Star+2001",
+              known: true
+            }.to_json
+          }
         end
       end
     end
 
-    context "when metric researched" do
+    context "when metric calculated" do
       subject do
         @metric_name = "Jedi+friendliness"
         metric_answer.format._render_table
       end
 
       example "formula metric" do
-        answer = "Jedi+friendliness+Death_Star+1977"
         is_expected.to have_tag "table" do
-          details_url = "/#{answer}?view=company_details_sidebar"
-          with_tag :tr, with: { "data-details-url" => details_url }
+          with_tag :tr, with: {
+            "data-row-card" => { url_key: "Jedi+friendliness+Death_Star+1977",
+                                 known: true }.to_json }
         end
       end
     end
 
     describe ":core view" do
-      subject { metric_answer.format._render_core }
+      subject { metric_answer.format._render_filtered_content }
 
       it "has filter widget" do
         is_expected.to have_tag ".card" do

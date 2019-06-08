@@ -14,7 +14,7 @@ def default_sort_option
 end
 
 format :html do
-  before(:filter_result) { voo.hide! :chart }
+  before(:core) { voo.hide! :chart }
 
   def table_args
     [:metric, self, [:metric_thumbnail_with_vote, :concise],
