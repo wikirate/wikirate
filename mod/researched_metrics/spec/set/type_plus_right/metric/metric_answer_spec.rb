@@ -67,7 +67,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
         is_expected.to have_tag "table" do
           with_tag :tr, with: {
             "data-row-card" => { url_key: "Jedi+friendliness+Death_Star+1977",
-                                 known: true }.to_json }
+                                 known: true }.to_json
+          }
         end
       end
     end

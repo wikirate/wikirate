@@ -53,11 +53,9 @@ format :html do
 
   view :table, cache: :never do
     wrap true, "data-details-view": details_view do
-      wikirate_table(*table_args)
+      args = table_args
+      args.last[:td] = { classes: %w[header data] }
+      wikirate_table(*args)
     end
-  end
-
-  def td_args
-    { classes: %w[header data] }
   end
 end

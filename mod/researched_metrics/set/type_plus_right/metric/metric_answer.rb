@@ -26,7 +26,7 @@ format :html do
 
   def table_args
     [:company, self, [:company_thumbnail, :concise],
-     { header: [company_sort_link, value_sort_link], td: td_args }]
+     { header: [company_sort_link, value_sort_link] }]
   end
 
   def details_view
