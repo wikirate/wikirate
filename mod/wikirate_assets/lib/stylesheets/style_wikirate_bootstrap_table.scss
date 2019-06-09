@@ -9,12 +9,8 @@
     vertical-align: middle!important;
     border-left: 3px solid $regular;
   }
-  tr {
-    &.details-toggle:hover {
-      .header {
-        border-left: 3px solid $hover;
-      }
-    }
+  tr:hover .header {
+    border-left: 3px solid $hover;
   }
 }
 
@@ -30,9 +26,6 @@
     }
    td {
      max-width: 400px;
-   }
-   td.details {
-     max-width: 1000px!important;
    }
   }
 

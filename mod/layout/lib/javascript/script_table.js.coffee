@@ -1,25 +1,28 @@
 # FIXME: change name to "toggle_details"
 
 $(document).ready ->
-  viewSelector = ".RIGHT-answer.table-view"
-  rowSelector = viewSelector + " tr"
-
-  $('body').on 'click', rowSelector, ->
-    answer = $(this).data "row-card"
-    if answer["known"]
-      details_view = $(this).closest(viewSelector).data("details-view")
-      url = decko.path answer["url_key"] + "?view=" + details_view
-      details_slot = $(".details-slot")
-      details_slot.load url
-      details_slot.find(".card-slot").trigger "slotReady"
+  $('body').on 'click', "[data-details-mark]", ->
+    loadDetails $(".details"), detailsUrl($(this))
 
   $('body').on 'click', ".details-close-icon", ->
-    $(".details-slot").html('')
+    $(".details").hide()
 
   $('body').on 'click', '.details_sidebar-view ._update-details', (e) ->
     url = $(this).attr('href') + '?view=details_sidebar'
     $(this).closest('.details_sidebar-view').reloadSlot url
     e.preventDefault()
+
+  detailsUrl = (el) ->
+    mark = el.data "details-mark"
+    view = el.closest("[data-details-view]").data "details-view"
+    decko.path mark + "?view=" + view
+
+  loadDetails = (detailsSlot, url) ->
+    detailsSlot.load url
+    detailsSlot.find(".card-slot").trigger "slotReady"
+    detailsSlot.show()
+
+
 
 #   $('body').on 'click', ".details-toggle", (_event) ->
 #     if no_toggle

@@ -42,7 +42,7 @@ format :html do
     # this sets the default filter search options to match the default filter UI,
     # which is managed by the filter_card
     filter_hash.reverse_merge! card.filter_card.default_filter_option
-    super() + raw('<div class="details-slot"></div>')
+    super() + raw('<div class="details"></div>')
   end
 
   view :core, cache: :never, template: :haml
@@ -54,8 +54,13 @@ format :html do
   view :table, cache: :never do
     wrap true, "data-details-view": details_view do
       args = table_args
-      args.last[:td] = { classes: %w[header data] }
+      args.last.merge! td: { classes: %w[header data] },
+                       tr: { method: :add_details_mark }
       wikirate_table(*args)
     end
+  end
+
+  def add_details_mark row_card
+    { "data-details-mark": row_card.name.url_key } if row_card.known?
   end
 end
