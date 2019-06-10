@@ -6,11 +6,14 @@ $box_stripe_color: $gray-700;
 /*------ Badges ---------*/
 
 .badge {
-  vertical-align: text-top !important;
+  display: inline-block;
+  align-items: center;
+  padding: 0.1rem 0.4rem;
+  line-height: inherit;
 }
 
 .labeled-badge {
-  display: inline-block;
+  display: flex;
   text-align: center;
   label {
     margin: 0;
@@ -18,6 +21,15 @@ $box_stripe_color: $gray-700;
     .count-badge-label-icon {
       display: none;
     }
+  }
+}
+
+.bar .labeled-badge {
+  span {
+    font-size: 0.6em;
+  }
+  label {
+    font-size: 0.8em;
   }
 }
 
@@ -75,11 +87,6 @@ $box_stripe_color: $gray-700;
 @include media-breakpoint-down(sm) {
   .bar-left h5 {
     font-size: 1em;
-  }
-  .bar {
-    .RIGHT-Xvote_count.content-view {
-      display: none;
-    }
   }
 }
 

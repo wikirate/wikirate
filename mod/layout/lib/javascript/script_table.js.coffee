@@ -2,26 +2,35 @@
 
 $(document).ready ->
   $('body').on 'click', "[data-details-mark]", ->
-    loadDetails $(".details"), detailsUrl($(this))
+    new(decko.details).loadFor this
 
   $('body').on 'click', ".details-close-icon", ->
-    $(".details").hide()
+    new(decko.details).close()
 
   $('body').on 'click', '.details_sidebar-view ._update-details', (e) ->
     url = $(this).attr('href') + '?view=details_sidebar'
     $(this).closest('.details_sidebar-view').reloadSlot url
     e.preventDefault()
 
-  detailsUrl = (el) ->
+
+decko.details = (dSlot) ->
+  @dSlot = if dSlot then $(dSlot) else $(".details")
+
+  @close = ()->
+    @dSlot.hide()
+
+  @loadFor = (el) ->
+    @loadDetails urlFor(el)
+
+  @urlFor = (el) ->
     mark = el.data "details-mark"
     view = el.closest("[data-details-view]").data "details-view"
     decko.path mark + "?view=" + view
 
-  loadDetails = (detailsSlot, url) ->
-    detailsSlot.load url
-    detailsSlot.find(".card-slot").trigger "slotReady"
-    detailsSlot.show()
-
+  @loadDetails = (url) ->
+    @dSlot.load url
+    @dSlot.find(".card-slot").trigger "slotReady"
+    @dSlot.show()
 
 
 #   $('body').on 'click', ".details-toggle", (_event) ->
