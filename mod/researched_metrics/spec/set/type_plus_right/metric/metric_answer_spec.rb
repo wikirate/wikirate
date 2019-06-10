@@ -42,17 +42,20 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
   end
 
   describe ":table view" do
+    def with_answer_row
+      with_tag :tr, with: { "data-details-mark": answer_name } do
+        with_tag :td, class: "header"
+        with_tag :td, class: "data"
+      end
+    end
+
     context "when metric researched" do
       subject { metric_answer.format._render_table }
+      let(:answer_name) { "#{metric.name.url_key}+Death_Star+2001" }
 
-      it "has a bootstrap table" do
+      example "research_metric table" do
         is_expected.to have_tag "table" do
-          with_tag :tr, with: {
-            "data-row-card": {
-              url_key: "Jedi+disturbances_in_the_Force+Death_Star+2001",
-              known: true
-            }.to_json
-          }
+          with_answer_row
         end
       end
     end
@@ -62,13 +65,11 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
         @metric_name = "Jedi+friendliness"
         metric_answer.format._render_table
       end
+      let(:answer_name) { "#{metric.name.url_key}+Death_Star+1977" }
 
-      example "formula metric" do
+      example "formula metric table" do
         is_expected.to have_tag "table" do
-          with_tag :tr, with: {
-            "data-row-card" => { url_key: "Jedi+friendliness+Death_Star+1977",
-                                 known: true }.to_json
-          }
+          with_answer_row
         end
       end
     end

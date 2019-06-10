@@ -61,6 +61,6 @@ format :html do
   end
 
   def add_details_mark row_card
-    { "data-details-mark": row_card.name.url_key } if row_card.known?
+    row_card.known? ? { "data-details-mark": row_card.name.url_key } : {}
   end
 end
