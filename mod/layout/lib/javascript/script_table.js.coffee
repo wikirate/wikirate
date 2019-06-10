@@ -2,35 +2,77 @@
 
 $(document).ready ->
   $('body').on 'click', "[data-details-mark]", ->
-    new(decko.details).loadFor this
+    (new decko.details).toggle $(this)
 
   $('body').on 'click', ".details-close-icon", ->
-    new(decko.details).close()
+    (new decko.details).closeLast()
 
-  $('body').on 'click', '.details_sidebar-view ._update-details', (e) ->
+  $('body').on 'click', '.details ._update-details', (e) ->
     url = $(this).attr('href') + '?view=details_sidebar'
-    $(this).closest('.details_sidebar-view').reloadSlot url
+    (new decko.details).showDetails url
     e.preventDefault()
-
 
 decko.details = (dSlot) ->
   @dSlot = if dSlot then $(dSlot) else $(".details")
 
-  @close = ()->
+  @closeLast = ()->
+    if @dSlot.children().length == 1
+      @turnOff()
+    else
+      @lastDetails().remove()
+      @showLastDetails()
+
+  @closeAll = ()->
+    @dSlot.children().not(":first").remove()
+    @turnOff()
+
+  @turnOff = () ->
+    $(".details-toggle").removeClass "active"
     @dSlot.hide()
 
-  @loadFor = (el) ->
-    @loadDetails urlFor(el)
+  @toggle = (el) ->
+    if el.hasClass "active"
+      el.removeClass "active"
+      @closeAll()
+    else
+      @turnOff()
+      el.addClass "active"
+      @showDetails @urlFor(el), true
 
   @urlFor = (el) ->
     mark = el.data "details-mark"
     view = el.closest("[data-details-view]").data "details-view"
     decko.path mark + "?view=" + view
 
-  @loadDetails = (url) ->
-    @dSlot.load url
-    @dSlot.find(".card-slot").trigger "slotReady"
+  @showDetails = (url, root) ->
+    unless @currentURL() == url
+      @dSlot.html("") if root
+      page = @loadPage(url)
+      @dSlot.append page
+      @setCurrentURL url
+    @showLastDetails()
+
+  @showLastDetails = () ->
+    @dSlot.children().hide()
+    @lastDetails().show()
     @dSlot.show()
+
+  @currentURL = () ->
+    @lastDetails().data "currentUrl"
+
+  @setCurrentURL = (url) ->
+    @lastDetails().data "currentUrl", url
+
+  @lastDetails = () ->
+    @dSlot.children().last()
+
+  @loadPage =(url) ->
+    page = $('<div></div>')
+    page.load url
+    page.find(".card-slot").trigger "slotReady"
+    page
+
+  this
 
 
 #   $('body').on 'click', ".details-toggle", (_event) ->

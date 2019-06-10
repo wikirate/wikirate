@@ -9,8 +9,7 @@
   -elsif metric_pinned?
     %div
       .metric-color.d-flex.flex-nowrap.align-items-center
-        .image-box.small
-          = nest metric, view: :thumbnail_image
+        = nest metric, view: :thumbnail_image
         %h6.mb-0
           = link_to_card metric, Card[metric].metric_title, class: "inherit-anchor"
   - else

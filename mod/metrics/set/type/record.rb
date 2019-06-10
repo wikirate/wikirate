@@ -74,7 +74,7 @@ format :html do
   end
 
   view :metric_selected_option, unknown: true do
-    nest metric_card, view: :thumbnail_minimal
+    nest metric_card, view: :selected_option
   end
 
   view :metric_tab do

@@ -15,6 +15,11 @@
   cursor: pointer;
 }
 
+.details-header > .media {
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 0;
+}
+
 .details {
   display: none;
   position: fixed;
@@ -33,6 +38,10 @@
 
   background-color: #fff;
   border: 1px solid #EAEAEA;
+  @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
+}
+
+.details-toggle.active {
   @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
 }
 
