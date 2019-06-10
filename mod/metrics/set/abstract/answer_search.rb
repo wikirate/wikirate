@@ -55,12 +55,16 @@ format :html do
     wrap true, "data-details-view": details_view do
       args = table_args
       args.last.merge! td: { classes: %w[header data] },
-                       tr: { method: :add_details_mark }
+                       tr: { method: :tr_attribs }
       wikirate_table(*args)
     end
   end
 
-  def add_details_mark row_card
-    row_card.known? ? { "data-details-mark": row_card.name.url_key } : {}
+  def tr_attribs row_card
+    if row_card.known?
+      { class: "details-toggle", "data-details-mark": row_card.name.url_key }
+    else
+      {}
+    end
   end
 end

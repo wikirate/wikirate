@@ -10,11 +10,9 @@
   top: -10px;
 }
 
-[data-details-mark] {
-  &:hover {
-    background-color: #fafafa;
-    cursor: pointer;
-  }
+.details-toggle:hover {
+  background-color: #fafafa;
+  cursor: pointer;
 }
 
 .details {

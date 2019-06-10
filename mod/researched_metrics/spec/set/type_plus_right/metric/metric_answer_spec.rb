@@ -51,6 +51,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
 
     context "when metric researched" do
       subject { metric_answer.format._render_table }
+
       let(:answer_name) { "#{metric.name.url_key}+Death_Star+2001" }
 
       example "research_metric table" do
@@ -65,6 +66,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
         @metric_name = "Jedi+friendliness"
         metric_answer.format._render_table
       end
+
       let(:answer_name) { "#{metric.name.url_key}+Death_Star+1977" }
 
       example "formula metric table" do
