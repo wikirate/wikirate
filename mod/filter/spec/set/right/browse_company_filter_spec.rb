@@ -2,15 +2,9 @@
 
 require File.expand_path("../filter_spec_helper.rb", __FILE__)
 
-describe Card::Set::Right::BrowseCompanyFilter do
-  let(:card) do
-    card = Card.new name: "test card"
-    card.singleton_class.send :include, described_class
-    card
-  end
-
+RSpec.describe Card::Set::Right::BrowseCompanyFilter do
   describe "filter_wql" do
-    subject { card.filter_wql_from_params }
+    subject { card_subject.filter_wql_from_params }
 
     def wql args
       args # .merge type_id: Card::WikirateCompanyID
