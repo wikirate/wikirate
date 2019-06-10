@@ -11,7 +11,17 @@ include_set Abstract::Paging
 
 format :html do
   view :expanded_details do
-    render :"expanded_#{details_type}_details"
+    wrap_with :div, "data-details-view": expanded_data_details_view do
+      render :"expanded_#{details_type}_details"
+    end
+  end
+
+  def expanded_data_details_view
+    if voo.root.ok_view == :metric_details_sidebar
+      :metric_details_sidebar
+    else
+      :details_sidebar
+    end
   end
 
   def details_type

@@ -8,8 +8,7 @@ $(document).ready ->
     (new decko.details).closeLast()
 
   $('body').on 'click', '.details ._update-details', (e) ->
-    url = $(this).attr('href') + '?view=details_sidebar'
-    (new decko.details).showDetails url
+    (new decko.details).add $(this)
     e.preventDefault()
 
 decko.details = (dSlot) ->
@@ -37,10 +36,13 @@ decko.details = (dSlot) ->
     else
       @turnOff()
       el.addClass "active"
-      @showDetails @urlFor(el), true
+      @add el, true
+
+  @add = (el, root) ->
+    @showDetails @urlFor(el, root)
 
   @urlFor = (el) ->
-    mark = el.data "details-mark"
+    mark = el.attr("href") || el.data "details-mark"
     view = el.closest("[data-details-view]").data "details-view"
     decko.path mark + "?view=" + view
 
