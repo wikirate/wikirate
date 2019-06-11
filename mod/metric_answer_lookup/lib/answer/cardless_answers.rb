@@ -42,7 +42,6 @@ class Answer
       @card = virtual_answer_card metric_card.metric_answer_name(company, year), value
       refresh
       @card.expire
-      Card.expire [@card.name, :value].to_name
       update_cached_counts
       self
     end

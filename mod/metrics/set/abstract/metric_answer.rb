@@ -67,3 +67,8 @@ end
 def calculating?
   calculated? && answer.calculating
 end
+
+def expire
+  super
+  Card.expire [name, :value].to_name
+end
