@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Listing do
     Card["Death Star"]
   end
 
-  check_views_for_errors :bar, :box
+  check_views_for_errors :bar, :expanded_bar, :box
 
   describe "view: bar_left" do
     it "has company title" do

@@ -13,8 +13,9 @@ $box_stripe_color: $gray-700;
 }
 
 .labeled-badge {
-  display: flex;
+  display: inline-flex;
   text-align: center;
+  padding: 1px;
   label {
     margin: 0;
     padding: 0 0.33rem;
