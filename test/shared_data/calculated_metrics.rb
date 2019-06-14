@@ -24,8 +24,8 @@ class SharedData
       end
 
       Card::Metric.create name: "Jedi+double friendliness",
-                                type: :formula,
-                                formula: "{{Jedi+friendliness}}*2"
+                          type: :formula,
+                          formula: "{{Jedi+friendliness}}*2"
 
       Card::Metric.create name: "Jedi+deadliness average",
                           type: :formula,

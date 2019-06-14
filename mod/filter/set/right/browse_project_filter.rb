@@ -23,6 +23,14 @@ def target_type_id
   ProjectID
 end
 
+def default_wql
+  filter_class.new(wikirate_status: "Active").to_wql
+end
+
+def filter_wql
+  filter_hash.present? ? super : default_wql
+end
+
 format :html do
   def sort_options
     { "Most Subprojects": :subprojects,
@@ -43,6 +51,6 @@ end
 class ProjectFilterQuery < Card::FilterQuery
   def wikirate_status_wql value
     return unless value.present?
-    add_to_wql :right_plus, [WikirateStatusID, { content: [:match, value] }]
+    add_to_wql :right_plus, [WikirateStatusID, { refer_to: value }]
   end
 end

@@ -29,7 +29,7 @@ class Card
 
     def score_cell score_card, score
       return "" unless score_card.present?
-      @format.link_to_card score_card, @format.colorify(score)
+      @format.link_to_card score_card, @format.colorify(score), class: "_update-details"
     end
   end
 end

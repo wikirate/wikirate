@@ -9,12 +9,8 @@
     vertical-align: middle!important;
     border-left: 3px solid $regular;
   }
-  tr {
-    &.details-toggle:hover {
-      .header {
-        border-left: 3px solid $hover;
-      }
-    }
+  tr:hover .header {
+    border-left: 3px solid $hover;
   }
 }
 
@@ -30,9 +26,6 @@
     }
    td {
      max-width: 400px;
-   }
-   td.details {
-     max-width: 1000px!important;
    }
   }
 
@@ -81,15 +74,6 @@ table.wikirate-table, .table.wikirate-table {
     &.header {
       .media {
         margin-top: 8px;
-      }
-      .RIGHT-Xvote_count > div {
-        line-height: 1em;
-        font-size: 11px;
-        margin-right: 5px;
-        text-align: center;
-      }
-      .RIGHT-Xvote_count.content-view {
-        margin-left: 5px;
       }
       button.vote-button {
         font-size: 11px;

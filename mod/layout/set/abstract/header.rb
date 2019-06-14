@@ -1,7 +1,7 @@
 format :html do
   view :rich_header do
     bs_layout do
-      row 12, class: "rich-header" do
+      row 12, class: "rich-header #{card.safe_set_keys}" do
         html render_menu
         col class: "p-0 border-bottom" do
           _render_rich_header_body
@@ -11,7 +11,8 @@ format :html do
   end
 
   view :rich_header_body do
-    header_body :large
+    voo.size ||= :xlarge
+    header_body
   end
 
   # TODO: this should be header_title, but that's taken by what should be
@@ -20,8 +21,9 @@ format :html do
     render_title_link
   end
 
-  def header_body size=:medium
-    text_with_image title: header_right, text: header_text, size: size
+  def header_body
+    voo.size ||= :large
+    text_with_image title: header_right, text: header_text
   end
 
   def header_text

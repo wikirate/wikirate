@@ -1,10 +1,6 @@
 # Answer search for a given Company
 include_set Abstract::AnswerSearch
 
-def virtual?
-  !real?
-end
-
 def query_class
   AnswerQuery::FixedCompany
 end
@@ -18,14 +14,15 @@ def default_sort_option
 end
 
 format :html do
-  before(:filter_result) { voo.hide! :chart }
+  before(:core) { voo.hide! :chart }
 
   def table_args
-    [:metric,
-     self, # call search_with_params on self to get items
-     [:metric_thumbnail_with_vote, :concise],
-     header: [name_sort_links, "Answer"],
-     details_view: :metric_details_sidebar]
+    [:metric, self, [:metric_thumbnail_with_vote, :concise],
+     { header: [name_sort_links, "Answer"] }]
+  end
+
+  def details_view
+    :metric_details_sidebar
   end
 
   def name_sort_links

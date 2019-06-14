@@ -40,11 +40,13 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    path = paging_path_args sort_order: args[:sort_order],
-                            sort_by: args[:sort_by]
-    link_to_view :filter_result, text,
-                 path: path,
-                 class: "metric-list-header #{args[:class]}"
+    link_to_view :table, text, path: sort_path(args),
+                               class: "metric-list-header #{args[:class]}"
+  end
+
+  def sort_path args
+    paging_path_args sort_order: args[:sort_order],
+                     sort_by: args[:sort_by]
   end
 
   def toggle_sort_order field

@@ -21,11 +21,11 @@ class Card
     end
 
     def metric_type_wql metric_type
-      add_to_wql :right_plus, [MetricTypeID, { refer_to: { name: metric_type } }]
+      add_to_wql :right_plus, [MetricTypeID, { refer_to: metric_type }]
     end
 
     def research_policy_wql policy
-      add_to_wql :right_plus, [ResearchPolicyID, { refer_to: { name: policy } }]
+      add_to_wql :right_plus, [ResearchPolicyID, { refer_to: policy }]
     end
 
     def importance_wql value

@@ -63,16 +63,24 @@ format :html do
   end
 
   view :company_details_sidebar do
-    render_details_sidebar hide: :metric_header
+    detail_variant do
+      render_details_sidebar hide: :metric_header
+    end
   end
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
-    render_details_sidebar hide: :company_header
+    detail_variant do
+      render_details_sidebar hide: :company_header
+    end
   end
 
   view :company_header do
     nest card.company_card, view: :shared_header
+  end
+
+  def detail_variant
+    wrap_with(:div, "data-details-view": @current_view) { yield }
   end
 
   view :metric_header do

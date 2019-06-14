@@ -1,6 +1,7 @@
 .cite-bar._cite-bar{ data: { "card-id": card.id,
                              "card-name": h(card.name),
-                             year: year_list } }
+                             year: year_list,
+                             "details-view": "bar_and_preview" } }
   .text-right.cite-and-refresh-buttons
     = render_cite_button
     // = render_freshen_button if card.link_url

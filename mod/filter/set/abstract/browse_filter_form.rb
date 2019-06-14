@@ -44,7 +44,7 @@ def cached_count_sort_wql
 end
 
 def virtual?
-  !real?
+  new?
 end
 
 format :html do
@@ -53,7 +53,7 @@ format :html do
   # end
 
   def default_item_view
-    :info_bar
+    :bar
   end
 
   before :content do

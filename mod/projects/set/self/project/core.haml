@@ -1,6 +1,6 @@
 = field_nest :description
 = nest :homepage_featured_projects, view: "titled",
                                     title: "Featured Projects",
-                                    items: { view: :info_bar }
+                                    items: { view: :bar }
 %h2.font-weight-normal All Projects
-= field_nest :browse_project_filter, view: :filtered_content, items: { view: :info_bar }
+= field_nest :browse_project_filter, view: :filtered_content

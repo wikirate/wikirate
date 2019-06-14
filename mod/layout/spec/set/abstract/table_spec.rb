@@ -28,30 +28,4 @@ describe Card::Set::Abstract::Table do
       end
     end
   end
-
-  describe "#wikirate_table_with_details" do
-    it "renders details link" do
-      table = subject.wikirate_table_with_details :top_class,
-                                                  [Card["A"], Card["r1"]],
-                                                  [:name, :type],
-                                                  tr: { class: "tr" },
-                                                  td: { class: "td" },
-                                                  details_view: :details
-
-      expect(table).to have_tag :table, with: { class: "top_class" } do
-        with_tag :tr, with: { class: "tr details-toggle",
-                              "data-details-url" => "/A?view=details" } do
-          with_tag :td, with: { class: "td header" }, text: "A"
-          with_tag :td, with: { class: "td data" }, text: "Basic"
-          with_tag :td, with: { class: "td details" }
-        end
-        with_tag :tr, with: { class: "tr details-toggle",
-                              "data-details-url" => "/r1?view=details" } do
-          with_tag :td, with: { class: "td header" }, text: "r1"
-          with_tag :td, with: { class: "td data" }, text: "Role"
-          with_tag :td, with: { class: "td details" }
-        end
-      end
-    end
-  end
 end

@@ -3,13 +3,11 @@
 # B) `filter_card_fieldcode`, returning the codename of the filter field
 
 include_set Abstract::Table
-include_set Abstract::Search
 include_set Abstract::Utility
-include_set Abstract::Filter
-include_set Abstract::FilterFormgroups
+include_set Abstract::BrowseFilterForm
 
 def virtual?
-  true
+  new?
 end
 
 def search args={}
@@ -40,41 +38,33 @@ format :csv do
 end
 
 format :html do
-  view :core, cache: :never do
-    merge_filter_defaults
-    wrap_with :div, class: "filter-form-and-result nodblclick" do
-      class_up "card-slot", "_filter-result-slot"
-      output [_render_filter_form, _render_filter_result(home_view: :filter_result)]
-    end
+  view :filtered_content do
+    # this sets the default filter search options to match the default filter UI,
+    # which is managed by the filter_card
+    filter_hash.reverse_merge! card.filter_card.default_filter_option
+    super() + raw('<div class="details"></div>')
   end
 
-  view :filter_result, template: :haml, cache: :never
+  view :core, cache: :never, template: :haml
 
   view :filter_form do
-    wrap_with :div, class: "filter-form" do
-      _render_filter
-    end
-  end
-
-  view :filter do
-    subformat(card.filter_card)._render_core
+    nest card.filter_card, view: :core
   end
 
   view :table, cache: :never do
-    wikirate_table_with_details(*table_args)
+    wrap true, "data-details-view": details_view do
+      args = table_args
+      args.last.merge! td: { classes: %w[header data] },
+                       tr: { method: :tr_attribs }
+      wikirate_table(*args)
+    end
   end
 
-  # this sets the default filter search options to match the default filter UI,
-  # which is managed by the filter_card
-  def merge_filter_defaults
-    filter_hash.reverse_merge! filter_defaults
-  end
-
-  def filter_defaults
-    card.filter_card.default_filter_option
-  end
-
-  def details_url? row_card
-    !row_card.unknown?
+  def tr_attribs row_card
+    if row_card.known?
+      { class: "details-toggle", "data-details-mark": row_card.name.url_key }
+    else
+      {}
+    end
   end
 end

@@ -36,7 +36,7 @@ end
 # needed for "found_by" wql searches that refer to search results
 # of these cards
 def wql_from_content
-  { id: [:in] + target_ids }
+  { id: [:in] + target_ids.compact }
 end
 
 def skip_search?

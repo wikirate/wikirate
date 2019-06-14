@@ -13,12 +13,11 @@ decko.slotReady (slot) ->
 setFilterText = ($vis) ->
   text = $vis.data("value-filter-text")
   return unless text
-  showMetricValueFilter()
-  $vis.closest(".filter-form-and-result")
-      .find("#select2-filter_value-container").text(text)
+#  showMetricValueFilter()
+  $vis.closest("._filtered-content").find("#select2-filter_value-container").text(text)
 
-showMetricValueFilter = ->
-  decko.filterCategorySelected($('a[data-category="value"]'))
+# showMetricValueFilter = ->
+#   decko.filterCategorySelected($('a[data-category="value"]'))
 
 metric_chart = (spec, id) ->
   runtime = vega.parse spec

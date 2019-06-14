@@ -11,7 +11,7 @@ format :html do
   view :score_thumbnail do
     text = "<small class=\"text-muted\">#{time_ago_in_words card.created_at} ago</small>"
     text_with_image title: card.scorer, text: text,
-                    size: :icon, image: card.scorer_card.fetch(trait: :image, new: {})
+                    size: :small, image: card.scorer_card.fetch(trait: :image, new: {})
   end
 
   view :legend do

@@ -34,10 +34,16 @@ format :html do
     field_nest :methodology, view: :titled
   end
 
+  def answer_filtering
+    filtering(".RIGHT-answer ._filter-widget") do
+      yield view: :bar, show: :full_page_link
+    end
+  end
+
   view :project_tab do
-    filtering do
+    answer_filtering do |items|
       tab_wrap do
-        field_nest :project, view: :titled, title: "Projects", items: { view: :bar }
+        field_nest :project, view: :content, items: items
       end
     end
   end
