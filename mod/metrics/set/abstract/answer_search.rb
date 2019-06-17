@@ -39,9 +39,6 @@ end
 
 format :html do
   view :filtered_content do
-    # this sets the default filter search options to match the default filter UI,
-    # which is managed by the filter_card
-    filter_hash.reverse_merge! card.filter_card.default_filter_option
     super() + raw('<div class="details"></div>')
   end
 
