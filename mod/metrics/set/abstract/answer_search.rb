@@ -38,6 +38,15 @@ format :csv do
 end
 
 format :html do
+  before :filtered_content do
+    return if Env.params[:filter].present?
+    # this sets the default filter search options to match the default filter UI,
+    # which is managed by the filter_card
+    #
+    # TODO: create more standard solution!
+    filter_hash.merge! card.filter_card.default_filter_option
+  end
+
   view :filtered_content do
     super() + raw('<div class="details"></div>')
   end
