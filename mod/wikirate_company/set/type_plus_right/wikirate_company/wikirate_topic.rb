@@ -5,7 +5,7 @@ def filter_keys
   super - [:wikirate_company]
 end
 
-def wql_from_content
+def wql_content
   { type_id: WikirateTopicID,
     referred_to_by: { left_id: [:in] + metric_ids,
                       right_id: WikirateTopicID },

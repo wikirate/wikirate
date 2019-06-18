@@ -1,5 +1,9 @@
 include_set Abstract::SearchCachedCount
 
+# NOTE: wql_content is defined in wikirate_company mod.
+# It has to, because his set in that mod includes BrowseTopicFilter, which itself
+# defines wql_content
+
 def company_name
   name.left_name
 end

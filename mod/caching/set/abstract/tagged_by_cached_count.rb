@@ -23,7 +23,7 @@ def self.included host_class
       end
     end
 
-    define_method :wql_from_content do
+    define_method :wql_content do
       { type_id: Card::Codename.id(host_class.type_to_count), right_plus: right_plus_val }
     end
 
