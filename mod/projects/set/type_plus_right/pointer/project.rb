@@ -19,7 +19,7 @@ def pointer_name
   name.left_name
 end
 
-def wql_from_content
+def wql_content
   {
     type: item_type,
     referred_to_by: pointer_name,

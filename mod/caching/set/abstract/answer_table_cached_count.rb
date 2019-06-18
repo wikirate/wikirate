@@ -35,7 +35,7 @@ end
 
 # needed for "found_by" wql searches that refer to search results
 # of these cards
-def wql_from_content
+def wql_content
   { id: [:in] + target_ids.compact }
 end
 
@@ -47,7 +47,7 @@ def target_ids
   ::Answer.search(answer_query(target_id_field))
 end
 
-# turn query caching off because wql_from_content can change
+# turn query caching off because wql_content can change
 def cache_query?
   false
 end
