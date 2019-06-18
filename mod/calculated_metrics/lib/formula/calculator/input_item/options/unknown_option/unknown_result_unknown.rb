@@ -3,7 +3,8 @@ module Formula
     class InputItem
       module Options
         module UnknownOption
-          # Used if the "unknown" option is set to "result_unknown" which means that the calculated value becomes "Unknown".
+          # Used if the "unknown" option is set to "result_unknown"
+          # which means that the calculated value becomes "Unknown".
           module UnknownResultUnknown
             def value_for company_id, year
               value = super

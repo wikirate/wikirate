@@ -1,5 +1,13 @@
 module Formula
   class Parser
+    # look up all input values and don't apply input options
+    # like {{ | unknown: 4 }}
+    module RawInput
+      def unknown_options
+        ["Unknown"] * input_count
+      end
+    end
+
     OPTIONS = %i[year company unknown not_researched].freeze
     COUNT_RELATED_FUNC =
       { "CountRelated" => "Total[ {{always one|company: Related" }.freeze
@@ -42,6 +50,11 @@ module Formula
       define_method "#{opt}_option" do |index|
         pick_option_value opt, index
       end
+    end
+
+    def raw_input!
+      singleton_class.include RawInput
+      self
     end
 
     private

@@ -144,7 +144,7 @@ class SharedData
                           test_source: true do
         Apple_Inc "2000" => 0, "2001" => "Unknown", "2002" => "Unknown",
                   "2010" => 10, "2011" => 11, "2012" => 12,
-                  "2013" => 13, "2014" => 14, "2015" => 15
+                  "2013" => 13, "2014" => 14, "2015" => "Unknown"
         Death_Star "1977" => 77
       end
     end
