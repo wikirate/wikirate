@@ -1,3 +1,5 @@
+include_set Abstract::FilterableBar
+
 format :html do
   def topic
     card.left
@@ -16,7 +18,9 @@ format :html do
   end
 
   view :bar_left do
-    nest topic, view: :bar_left
+    filterable status: :exists, wikirate_topic: card.name.left do
+      nest topic, view: :bar_left
+    end
   end
 
   view :bar_right do
