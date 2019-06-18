@@ -209,6 +209,10 @@ $colorMap: (
   }
 }
 
+.LTYPE_RTYPE-topic-company {
+  @include barbox($topic-color)
+}
+
 .TYPE-project, .TYPE-research_group {
   &.bar {
     &:hover .bar-left a {

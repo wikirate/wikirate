@@ -54,7 +54,7 @@ format :html do
 
   view :wikirate_topic_tab do
     answer_filtering do |items|
-      nest [:wikirate_topic, :browse_topic_filter], view: :filtered_content, items: items
+      field_nest :wikirate_topic, view: :filtered_content, items: items
     end
   end
 
