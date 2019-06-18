@@ -48,7 +48,7 @@ format :html do
 
   def answer_filtering
     filtering(".RIGHT-answer ._filter-widget") do
-      yield view: :bar, show: :full_page_link
+      yield view: :bar, show: :full_page_link, hide: :company_header
     end
   end
 

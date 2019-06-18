@@ -26,7 +26,7 @@ def all_answers
 end
 
 def virtual?
-  !real?
+  new?
 end
 
 format do

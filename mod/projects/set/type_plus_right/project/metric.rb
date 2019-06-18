@@ -23,7 +23,7 @@ format :html do
 
   view :core do
     card.all_item_project_cards.map do |metric_project|
-      nest metric_project, view: :bar
+      nest metric_project, view: :bar, hide: %i[project_header bar_nav]
     end
   end
 end

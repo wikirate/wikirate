@@ -34,7 +34,7 @@ format :html do
   end
 
   view :core do
-    items_hash = { view: :bar }
+    items_hash = { view: :bar, hide: %i[project_header bar_nav] }
     items_hash[:show] = :bar_middle if card.researchable_metrics?
     nest Card.fetch(card.name, :project), view: :content, items: items_hash
   end

@@ -1,8 +1,9 @@
 include_set Abstract::KnownAnswers
 include_set Abstract::Media
+include_set Abstract::FilterableBar
 
 def virtual?
-  true
+  new?
 end
 
 def metric_card
@@ -36,23 +37,30 @@ format :html do
     @units ||= "#{rate_subject} #{card.project_card.units}"
   end
 
-  view :bar do
-    voo.hide! :bar_nav
-    super()
-  end
-
-  view :bar_left do
+  view :metric_header do
     metric_link do
       nest card.metric_card, view: :thumbnail_no_link
     end
+  end
+
+  view :bar_left do
+    [render_metric_header, render_project_header]
   end
 
   view :bar_right do
     render :research_progress_bar
   end
 
+  view :bar_bottom do
+    nest card.project_card, view: :bar_bottom
+  end
+
   view :research_progress_bar, cache: :never do
     research_progress_bar :metric_link
+  end
+
+  view :project_header do
+    nest card.project_card, view: :bar_left, hide: :default_research_progress_bar
   end
 
   def project_name

@@ -24,9 +24,7 @@ format :html do
   end
 
   view :bar_left do
-    filterable status: :exists, wikirate_topic: card.name do
-      render_thumbnail
-    end
+    render_thumbnail
   end
 
   view :bar_middle do

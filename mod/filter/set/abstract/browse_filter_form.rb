@@ -25,7 +25,6 @@ def target_type_id
 end
 
 def sort_wql
-  return {}
   case current_sort.to_sym
   when :name
     { sort: "name" }
