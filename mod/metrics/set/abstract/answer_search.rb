@@ -43,10 +43,12 @@ format :html do
   end
 
   # can't just set default_filter_hash, because +answer doesn't default to most
-  # recent year in csv or json format
-  before :core do
+  # recent year in csv or json format (or for answer counts)
+  before :content do
+    binding.pry
     return if Env.params[:filter]
 
+    binding.pry
     filter_hash.merge! card.filter_card.default_filter_hash
   end
 
