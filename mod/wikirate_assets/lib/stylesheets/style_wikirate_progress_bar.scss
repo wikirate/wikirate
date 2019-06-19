@@ -32,7 +32,7 @@
 //Base64 background pattern generated here http://www.patternify.com/
 
 @mixin projectbar($name, $color) {
-  .LTYPE_RTYPE-#{$name}-project.bar-view {
+  .LTYPE_RTYPE-#{$name}-project.bar {
     .progress {
       width: 100%;
     }

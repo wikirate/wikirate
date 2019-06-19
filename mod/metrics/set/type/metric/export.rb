@@ -2,7 +2,7 @@
 format :json do
   NESTED_FIELD_CODENAMES =
     %i[metric_type about methodology value_type value_options
-       report_type research_policy project unit
+       report_type research_policy unit
        range hybrid question score].freeze
 
   view :links do
