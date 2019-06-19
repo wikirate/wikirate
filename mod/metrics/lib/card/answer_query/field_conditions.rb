@@ -5,11 +5,25 @@ class Card
       def restrict_to_ids col, ids
         ids = Array(ids)
         @empty_result = ids.empty?
-        if @restrict_to_ids[col]
-          @restrict_to_ids[col] &= ids
+        if restrict_cards? col
+          restrict_card_ids ids
         else
-          @restrict_to_ids[col] = ids
+          restrict_answer_ids col, ids
         end
+      end
+
+      def restrict_cards? col
+        return false unless @join
+        col == "#{@subject}_id".to_sym
+      end
+
+      def restrict_card_ids ids
+        @card_ids += ids
+      end
+
+      def restrict_answer_ids col, ids
+        @restrict_to_ids[col] ||= []
+        @restrict_to_ids[col] += ids
       end
 
       def restrict_by_wql col, wql
@@ -68,6 +82,10 @@ class Card
         restrict_by_wql :answer_id,
                         type_id: MetricAnswerID,
                         right_plus: [SourceID, { refer_to: value }]
+      end
+
+      def industry_query value
+        restrict_by_wql :company_id, CompanyFilterQuery.industry_wql(value)
       end
 
       def timeperiod value

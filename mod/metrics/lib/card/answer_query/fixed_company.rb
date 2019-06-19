@@ -2,28 +2,27 @@ class Card
   class AnswerQuery
     # Query answers for a given company
     class FixedCompany < AnswerQuery
-      SIMPLE_FILTERS = ::Set.new(%i[company_id latest]).freeze
-      LIKE_FILTERS = ::Set.new(%i[name metric]).freeze
+      FILTER_TRANSLATIONS =  { name: :metric_name,
+                               metric: :metric_name,
+                               research_policy: :policy_id,
+                               metric_type: :metric_type_id }.freeze
 
-      # filter values are card names and have to be translated to card ids
-      CARD_ID_FILTERS = ::Set.new(%i[metric_type research_policy]).freeze
-
-      DB_COLUMN_MAP = { name: :metric_name,
-                        metric: :metric_name,
-                        research_policy: :policy_id,
-                        metric_type: :metric_type_id,
-                        wikirate_topic: :topic }.freeze
-      # translate filter key to db column
-
-      def initialize company_id, *args
-        @company_id = company_id
-        @company_card = Card.fetch company_id
-        super(*args)
+      def initialize company_id, filter, sorting={}, paging={}
+        @company = Card[company_id]
+        filter[:company_id] = company_id
+        super filter, sorting, paging
       end
 
-      def prepare_filter_args filter
-        super
-        @filter_args[:company_id] = @company_card.id
+      def subject
+        :metric
+      end
+
+      def subject_type_id
+        Card::MetricID
+      end
+
+      def new_name company
+        "#{@metric.name}+#{company}+#{new_name_year}"
       end
 
       def topic_query value
