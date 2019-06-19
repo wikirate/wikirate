@@ -12,7 +12,10 @@ RSpec.describe Formula::Ruby do
     expect(result[2013][apple]).to eq 26.0
   end
 
-  example
+  example "formula with score metric as input" do
+    result = calculate "{{Jedi+disturbances in the Force+Joe User}}*2"
+    expect(result[2000][death_star_id]).to eq 20.0
+  end
 
   example "network aware" do
     result = calculate "Total[{{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}]"

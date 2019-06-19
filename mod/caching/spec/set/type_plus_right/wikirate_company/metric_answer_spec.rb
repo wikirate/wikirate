@@ -3,7 +3,7 @@
 require_relative "../../../support/cached_count_shared_examples"
 
 RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
-  it_behaves_like "cached count", "Death Star+answer", 29, 2 do
+  it_behaves_like "cached count", "Death Star+answer", 30, 2 do
     # increment = 2, because one researched answer + one calculated answer
     let :add_one do
       Card["Jedi+disturbances in the force"].create_values true do

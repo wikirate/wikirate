@@ -123,7 +123,7 @@ class SharedData
         Samsung "2014" => 10, "2015" => 5
         Sony_Corporation "2014" => 1
         Death_Star "1977" => 5
-        Apple_Inc "2015" => 100
+        Apple_Inc "2015" => 100, "2002" => 100
       end
       Card::Metric.create name: "Joe User+researched number 2",
                           type: :researched,
@@ -144,7 +144,7 @@ class SharedData
                           test_source: true do
         Apple_Inc "2000" => 0, "2001" => "Unknown", "2002" => "Unknown",
                   "2010" => 10, "2011" => 11, "2012" => 12,
-                  "2013" => 13, "2014" => 14, "2015" => "Unknown"
+                  "2013" => 13, "2014" => 14, "2015" => 15
         Death_Star "1977" => 77
       end
     end
