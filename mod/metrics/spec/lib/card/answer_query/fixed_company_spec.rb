@@ -242,7 +242,7 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
           ["Victims by Employees", "cost of planets destroyed",
            "darkness rating", "deadliness", "deadliness+Joe Camel",
            "deadliness+Joe User", "dinosaurlabor", "friendliness",
-           "Sith Lord in Charge", "descendant 1", "descendant 2+2001",
+           "Sith Lord in Charge", "descendant 1", "descendant 2",
            "descendant hybrid",
            "RM", "researched number 1", "more evil", "double friendliness"],
           2001
