@@ -63,6 +63,10 @@ format :html do
     nest card.project_card, view: :bar_left, hide: :default_research_progress_bar
   end
 
+  def full_page_card
+    card.project_card
+  end
+
   def project_name
     card.project_card.name
   end

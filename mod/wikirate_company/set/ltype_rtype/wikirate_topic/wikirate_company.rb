@@ -38,4 +38,8 @@ format :html do
   view :bar_bottom do
     nest topic, view: :data
   end
+
+  def full_page_card
+    topic
+  end
 end
