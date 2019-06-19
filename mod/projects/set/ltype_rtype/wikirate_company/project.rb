@@ -1,8 +1,11 @@
+# <Company>+<Project> handles company listings on projects' company tabs
+
 include_set Abstract::KnownAnswers
 include_set Abstract::Media
+include_set Abstract::FilterableBar
 
 def virtual?
-  true
+  new?
 end
 
 def company_card
@@ -35,12 +38,11 @@ format :html do
   bar_cols 8, 4
   info_bar_cols 6, 2, 4
 
-  view :bar do
-    voo.hide! :bar_nav
-    super()
+  view :bar_left do
+    [render_company_header, render_project_header]
   end
 
-  view :bar_left do
+  view :company_header do
     company_link do
       nest card.company_card, view: :thumbnail_no_link
     end
@@ -54,6 +56,10 @@ format :html do
     render :research_progress_bar
   end
 
+  view :bar_bottom do
+    nest card.project_card, view: :bar_bottom
+  end
+
   view :research_button, unknown: true do
     link_to "Research",
             class: "btn btn-outline-secondary btn-sm research-answer-button",
@@ -65,6 +71,14 @@ format :html do
 
   view :research_progress_bar, cache: :never do
     research_progress_bar :company_link
+  end
+
+  view :project_header do
+    nest card.project_card, view: :bar_left, hide: :default_research_progress_bar
+  end
+
+  def full_page_card
+    card.project_card
   end
 
   def project_name

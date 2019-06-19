@@ -5,7 +5,7 @@ def filter_keys
   %i[status year wikirate_company wikirate_company value updated check source project]
 end
 
-def default_filter_option
+def default_filter_hash
   { year: :latest, status: :exists, wikirate_company: "" }
 end
 

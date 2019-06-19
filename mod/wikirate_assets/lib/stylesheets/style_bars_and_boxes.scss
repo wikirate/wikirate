@@ -209,6 +209,18 @@ $colorMap: (
   }
 }
 
+.LTYPE_RTYPE-topic-company {
+  @include barbox($topic-color)
+}
+
+.TYPE_PLUS_RIGHT-project-metric.titled-view .LTYPE_RTYPE-metric-project {
+  @include barbox($metric-color);
+}
+
+.TYPE_PLUS_RIGHT-project-company.titled-view .LTYPE_RTYPE-company-project {
+  @include barbox($company-color);
+}
+
 .TYPE-project, .TYPE-research_group {
   &.bar {
     &:hover .bar-left a {

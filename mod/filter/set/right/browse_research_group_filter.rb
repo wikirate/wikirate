@@ -11,7 +11,7 @@ def filter_keys
   %i[name wikirate_topic]
 end
 
-def default_filter_option
+def default_filter_hash
   { name: "" }
 end
 

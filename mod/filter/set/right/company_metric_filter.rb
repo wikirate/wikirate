@@ -6,7 +6,7 @@ def filter_keys
      research_policy]
 end
 
-def default_filter_option
+def default_filter_hash
   { status: :exists, year: :latest, metric: "" }
 end
 

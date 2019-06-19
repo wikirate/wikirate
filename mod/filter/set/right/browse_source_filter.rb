@@ -23,7 +23,7 @@ def filter_keys
   %i[wikirate_title wikirate_company wikirate_topic report_type year]
 end
 
-def default_filter_option
+def default_filter_hash
   { wikirate_title: "" }
 end
 

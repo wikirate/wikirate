@@ -74,7 +74,7 @@ format :html do
     end
   end
 
-  def default_research_progress_bar
+  view :default_research_progress_bar do
     wrap_with :div, class: "default-progress-box w-100 py-1" do
       research_progress_bar
     end

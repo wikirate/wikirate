@@ -18,7 +18,7 @@ def filter_keys
   %i[name metric project wikirate_company]
 end
 
-def default_filter_option
+def default_filter_hash
   { name: "" }
 end
 

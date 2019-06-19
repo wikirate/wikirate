@@ -1,6 +1,6 @@
 include_set Abstract::BrowseFilterForm
 
-def default_filter_option
+def default_filter_hash
   { name: "" }
 end
 

@@ -11,7 +11,6 @@ RSpec.describe Card::Set::Type::Metric::Export do
                              type: "Metric",
                              designer: "Joe User",
                              title: "researched number 2",
-                             project: ["Evil Project"],
                              question: nil,
                              value_type: ["Number"])
     end
