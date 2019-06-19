@@ -19,7 +19,8 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
      "Sith Lord in Charge+1977", "dinosaurlabor+2010", "cost of planets destroyed+1977",
      "friendliness+1977", "deadliness+Joe User+1977", "deadliness+Joe Camel+1977",
      "disturbances in the Force+Joe User+2001", "darkness rating+1977",
-     "descendant 1+1977", "descendant 2+1977", "descendant hybrid+1977", "double friendliness+1977",
+     "descendant 1+1977", "descendant 2+1977", "descendant hybrid+1977",
+     "double friendliness+1977",
      "researched number 1+1977", "more evil+1977", "RM+1977", "deadliness+1977"]
   end
 
@@ -241,7 +242,8 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
           ["Victims by Employees", "cost of planets destroyed",
            "darkness rating", "deadliness", "deadliness+Joe Camel",
            "deadliness+Joe User", "dinosaurlabor", "friendliness",
-           "Sith Lord in Charge", "descendant 1", "descendant hybrid",
+           "Sith Lord in Charge", "descendant 1", "descendant 2+2001",
+           "descendant hybrid",
            "RM", "researched number 1", "more evil", "double friendliness"],
           2001
         )
