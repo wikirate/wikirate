@@ -23,7 +23,7 @@ format :html do
   end
 
   def thumbnail_subtitle
-    output [field_nest(:organizer, view: :credit), default_research_progress_bar]
+    output [field_nest(:organizer, view: :credit), render_default_research_progress_bar]
   end
 
   def subproject_detail

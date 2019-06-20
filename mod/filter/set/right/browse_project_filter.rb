@@ -15,20 +15,12 @@ def filter_keys
   %i[name wikirate_status wikirate_topic]
 end
 
-def default_filter_option
+def default_filter_hash
   { name: "", wikirate_status: "Active" }
 end
 
 def target_type_id
   ProjectID
-end
-
-def default_wql
-  filter_class.new(wikirate_status: "Active").to_wql
-end
-
-def filter_wql
-  filter_hash.present? ? super : default_wql
 end
 
 format :html do

@@ -5,7 +5,7 @@
 include_set Abstract::AnswerCreateBadge
 
 def virtual?
-  true
+  new?
 end
 
 format :html do

@@ -1,7 +1,7 @@
 include_set Abstract::WqlSearch
 
 def virtual?
-  true
+  new?
 end
 
 def content
