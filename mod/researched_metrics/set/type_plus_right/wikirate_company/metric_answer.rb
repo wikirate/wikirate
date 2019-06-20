@@ -1,8 +1,8 @@
 # Answer search for a given Company
 include_set Abstract::AnswerSearch
 
-def query_class
-  AnswerQuery::FixedCompany
+def fixed_field
+  :company_id
 end
 
 def filter_card_fieldcode

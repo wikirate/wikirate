@@ -1,6 +1,7 @@
 class Card
   class AnswerQuery
-    # conditions and condition support methods for non-standard fields.
+    # filters based on year and children of the answer card
+    # (as opposed to metric and company)
     module AnswerFilters
 
       # :exists/researched (known + unknown) is default case;
@@ -54,10 +55,6 @@ class Card
         restrict_by_wql :answer_id,
                         type_id: MetricAnswerID,
                         right_plus: [SourceID, { refer_to: value }]
-      end
-
-      def industry_query value
-        restrict_by_wql :company_id, CompanyFilterQuery.industry_wql(value)
       end
 
       private

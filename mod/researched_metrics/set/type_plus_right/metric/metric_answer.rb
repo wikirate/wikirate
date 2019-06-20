@@ -3,8 +3,8 @@ include_set Abstract::AnswerSearch
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::Chart
 
-def query_class
-  AnswerQuery::FixedMetric
+def fixed_field
+  :metric_id
 end
 
 def filter_card_fieldcode

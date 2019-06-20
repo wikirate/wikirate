@@ -1,5 +1,5 @@
 # including module must respond to
-# A) `query_class`, returning a valid AnswerQuery class, and
+# A) `fixed_field`, returning a Symbol representing an AnswerQuery id filter, and
 # B) `filter_card_fieldcode`, returning the codename of the filter field
 
 include_set Abstract::Table
@@ -23,8 +23,9 @@ def search args={}
   end
 end
 
-def query args={}
-  query_class.new left.id, filter_hash, sort_hash, args
+def query paging={}
+  filter = filter_hash.merge fixed_field => left.id
+  AnswerQuery.new filter, sort_hash, paging
 end
 
 def filter_card

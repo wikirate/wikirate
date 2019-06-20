@@ -1,13 +1,21 @@
 class Card
   class AnswerQuery
-    include FilterOptions
-    include FieldConditions
+    include Filtering
+    include AnswerFilters
+    include MetricAndCompanyFilters
     include Where
 
-    FILTER_TRANSLATIONS = {}.freeze
+    def self.new filter, sorting={}, paging={}
+      filter.deep_symbolize_keys!
+      if filter[:status]&.to_sym.in?(%i[all none]) && self != AllQuery
+        AllQuery.new filter, sorting, paging
+      else
+        super
+      end
+    end
 
     def initialize filter, sorting={}, paging={}
-      @filter_args = filter.deep_symbolize_keys
+      @filter_args = filter
       @sort_args = sorting
       @paging_args = paging
 
@@ -15,12 +23,7 @@ class Card
       @values = []
       @restrict_to_ids = {}
 
-      @card_conditions = []
-      @card_values = []
-      @card_ids = []
-
-      translate_filter_args
-      @join = prepare_join @filter_args[:status]
+      process_sort
       process_filters
     end
 
@@ -30,66 +33,19 @@ class Card
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database
     def run
-      return [] if @empty_result
-      @join ? card_run : answer_run
+      result_array { sort_and_page { answer_query }.answer_cards }
     end
 
-    def answer_run
-      sort_and_page { answer_query }.answer_cards
+    def result_array
+      @empty_result ? [] : yield
     end
 
     def answer_query
       Answer.where answer_conditions
     end
 
-    def card_run
-      card_query.map do |record|
-        if record.id
-          Answer.find(record.id).card
-        else
-          Card.new name: new_name(record.name), type_id: MetricAnswerID
-        end
-      end
-    end
-
-    def new_name_year
-      @new_name_year ||= determine_new_name_year
-    end
-
-    def determine_new_name_year
-      year = @filter_args[:year]
-      year.blank? || year.to_s == "latest" ? Time.now.year : year
-    end
-
-    def card_query
-      sql =
-        "SELECT answers.id, #{@subject}.name " \
-        "FROM cards AS #{@subject} " \
-        "LEFT JOIN answers ON #{@subject}.id = #{@subject}_id AND #{answer_conditions} " \
-        "WHERE #{card_conditions} "
-      puts "SQL = #{sql}"
-      Card.find_by_sql(sql)
-    end
-
     def sort_and_page
       yield.sort(@sort_args).paging(@paging_args)
-    end
-
-    def prepare_join status
-      return false unless status.in? %i[all none]
-
-      @subject = subject
-      raise "must have #subject_codename for status: all or none" unless @subject
-
-      @card_conditions << " #{@subject}.type_id = ? "
-      @card_values << subject_type_id
-
-      not_researched if status == :none
-      true
-    end
-
-    def not_researched
-      @card_conditions << " answers.id is null "
     end
 
     def process_filters
@@ -109,13 +65,10 @@ class Card
       @paging_args[:limit]
     end
 
-    private
-
-    def translate_filter_args
-      self.class::FILTER_TRANSLATIONS.each do |key, standard_key|
-        next unless (value = @filter_args.delete(key))
-
-        @filter_args[standard_key] = value
+    def process_sort
+      return unless single_metric? && @sort_args[:sort_by]&.to_sym == :value
+      if metric_card.numeric? || metric_card.relationship?
+        @sort_args[:sort_by] = :numeric_value
       end
     end
   end

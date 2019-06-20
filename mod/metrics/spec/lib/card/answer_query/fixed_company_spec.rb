@@ -1,6 +1,6 @@
 require "./test/seed"
 
-RSpec.describe Card::AnswerQuery::FixedCompany do
+RSpec.describe Card::AnswerQuery do
   RESEARCHED_TITLES = ["Industry Class", "Weapons", "big multi", "big single",
                        "researched number 2", "researched number 3", "small multi",
                        "small single"].freeze
@@ -55,33 +55,34 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
 
   # @return [Array] of metric_title(+scorer)+year strings
   def filter_by filter, latest=true
+    filter.merge! company_id: company.id
     filter.reverse_merge! year: :latest if latest
     sort = { sort_by: :metric_name }
-    answers described_class.new(company.id, filter, sort).run
+    answers described_class.new(filter, sort).run
   end
 
   # @return [Array] of answer cards
   def sort_by key, order=:asc
-    filter = { year: :latest }
+    filter = { company_id: company.id, year: :latest }
     sort = { sort_by: key, sort_order: order }
-    described_class.new(company.id, filter, sort).run
+    described_class.new(filter, sort).run
   end
 
   context "with single filter condition" do
     context "with keyword" do
       it "finds exact match" do
-        expect(filter_by(name: "Jedi+disturbances in the Force+Joe User"))
+        expect(filter_by(metric_name: "Jedi+disturbances in the Force+Joe User"))
           .to eq ["disturbances in the Force+Joe User+2001"]
       end
 
       it "finds partial match" do
-        expect(filter_by(name: "dead"))
+        expect(filter_by(metric_name: "dead"))
           .to eq with_year(["deadliness", "deadliness+Joe Camel",
                             "deadliness+Joe User"], 1977)
       end
 
       it "ignores case" do
-        expect(filter_by(name: "DeAd"))
+        expect(filter_by(metric_name: "DeAd"))
           .to eq with_year(["deadliness", "deadliness+Joe Camel",
                             "deadliness+Joe User"], 1977)
       end
@@ -252,7 +253,7 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
       end
 
       it "... keyword" do
-        expect(filter_by(status: :none, name: "number 2"))
+        expect(filter_by(status: :none, metric_name: "number 2"))
           .to contain_exactly(*with_year(["researched number 2"]))
       end
 

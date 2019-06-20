@@ -2,52 +2,13 @@ class Card
   class AnswerQuery
     # filter field handling
     module Filtering
+      CARD_ID_MAP = { research_policy: :policy_id, metric_type: :metric_type_id}
+
       SIMPLE_FILTERS = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
       LIKE_FILTERS = ::Set.new(%i[company_name metric_name]).freeze
-      CARD_ID_FILTERS = ::Set.new(%i[metric_type_id policy_id]).freeze
+      CARD_ID_FILTERS = ::Set.new(CARD_ID_MAP.keys).freeze
 
       protected
-
-      def filter key, value, operator=nil
-        db_col = db_column key
-        db_op = db_operator operator, value
-        db_val = db_value value
-        method = subject_column_map[key] ? :add_card_condition : :add_condition
-        send method, "#{db_col} #{db_op} #{db_val}", value
-      end
-
-      def add_condition condition, value
-        @conditions << condition
-        @values << value
-      end
-
-      def add_card_condition condition, value
-        @card_conditions << condition
-        @card_values << value
-      end
-
-      def subject_column_map
-        return {} unless @join
-        @subject_map ||= %i[id name].each_with_object({}) do |fld, hash|
-          hash["#{@subject}_#{fld}".to_sym] = fld
-        end
-      end
-
-      def db_column key
-        if (subject_column = subject_column_map[key])
-          "#{@subject}.#{subject_column}"
-        else
-          "answers.#{key}"
-        end
-      end
-
-      def db_operator operator, value
-        operator || (value.is_a?(Array) ? "IN" : "=")
-      end
-
-      def db_value value
-        value.is_a?(Array) ? "(?)" : "?"
-      end
 
       # TODO: optimize with hash lookups for methods
       def process_filter_option key, value
@@ -76,7 +37,7 @@ class Card
       def filter_card_id key, value
         return unless (card_id = to_card_id value)
 
-        filter key, card_id
+        filter CARD_ID_MAP[key], card_id
       end
 
       def to_card_id value
@@ -90,20 +51,7 @@ class Card
       def restrict_to_ids col, ids
         ids = Array(ids)
         @empty_result = ids.empty?
-        if restrict_cards? col
-          restrict_card_ids ids
-        else
-          restrict_answer_ids col, ids
-        end
-      end
-
-      def restrict_cards? col
-        return false unless @join
-        col == "#{@subject}_id".to_sym
-      end
-
-      def restrict_card_ids ids
-        @card_ids += ids
+        restrict_answer_ids col, ids
       end
 
       def restrict_answer_ids col, ids
@@ -126,6 +74,28 @@ class Card
 
       def card_id_filters
         CARD_ID_FILTERS
+      end
+
+      def filter key, value, operator=nil
+        condition = "answers.#{key} #{op_and_val operator, value}"
+        add_condition condition, value
+      end
+
+      def op_and_val op, val
+        "#{db_operator op, val} #{db_value val}"
+      end
+
+      def add_condition condition, value
+        @conditions << condition
+        @values << value
+      end
+
+      def db_operator operator, value
+        operator || (value.is_a?(Array) ? "IN" : "=")
+      end
+
+      def db_value value
+        value.is_a?(Array) ? "(?)" : "?"
       end
     end
   end

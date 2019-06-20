@@ -4,11 +4,6 @@ def inverse_metric_id
   metric_card.inverse_card.id
 end
 
-# def filtered_item_query filter={}, sort={}, paging={}
-#   filter[:year] = year.to_i
-#   FixedMetricAnswerQuery.new metric_card.id, filter, sort, paging
-# end
-
 format do
   delegate :inverse_metric_id, to: :card
 
