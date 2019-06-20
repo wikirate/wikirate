@@ -4,7 +4,7 @@ class Card
     module FilterOptions
       SIMPLE_FILTERS = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
       LIKE_FILTERS = ::Set.new(%i[company_name metric_name]).freeze
-      CARD_ID_FILTERS = ::Set.new(%i[metric_type research_policy]).freeze
+      CARD_ID_FILTERS = ::Set.new(%i[metric_type_id policy_id]).freeze
 
       protected
 
@@ -71,11 +71,6 @@ class Card
         else
           filter key, "%#{value}%", "LIKE"
         end
-      end
-
-      def like_key key
-
-
       end
 
       def filter_card_id key, value

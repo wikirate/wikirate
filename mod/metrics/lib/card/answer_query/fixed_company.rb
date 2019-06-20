@@ -21,8 +21,8 @@ class Card
         Card::MetricID
       end
 
-      def new_name company
-        "#{@metric.name}+#{company}+#{new_name_year}"
+      def new_name metric
+        "#{metric}+#{@company.name}+#{new_name_year}"
       end
 
       def topic_query value

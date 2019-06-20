@@ -26,7 +26,7 @@ shared_context "formula" do
                             add: nil
     formula ||= formula_str(options: options, method: method, year: year, unknown: unknown,
                           company: company, metric: metric, add: add, related: related)
-    puts formula
+    # puts formula
     create_metric name: "Jedi+formula1", type: :formula, formula: formula
   end
 

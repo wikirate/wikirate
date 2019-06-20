@@ -2,7 +2,6 @@ class Card
   class AnswerQuery
     include FilterOptions
     include FieldConditions
-    include AllAndMissing
     include Where
 
     FILTER_TRANSLATIONS = {}.freeze
@@ -99,12 +98,11 @@ class Card
     end
 
     def count
-      return missing_answer_query.count if find_missing?(additional_filter)
-      where(additional_filter).count
+
     end
 
-    def value_count additional_filter={}
-      where(additional_filter).select(:value).uniq.count
+    def value_count
+
     end
 
     def limit
