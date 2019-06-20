@@ -68,6 +68,10 @@ class Card
       counts
     end
 
+    def limit
+      @paging_args[:limit]
+    end
+
     private
 
     def status_groups
@@ -97,10 +101,6 @@ class Card
     def process_filters
       @filter_args.each { |k, v| process_filter_option k, v if v.present? }
       @restrict_to_ids.each { |k, v| filter k, v }
-    end
-
-    def limit
-      @paging_args[:limit]
     end
 
     def process_sort
