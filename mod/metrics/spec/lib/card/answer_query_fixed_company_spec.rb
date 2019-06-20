@@ -1,6 +1,6 @@
 require "./test/seed"
 
-RSpec.describe Card::AnswerQuery do
+RSpec.describe Card::AnswerQuery, "fixed company" do
   RESEARCHED_TITLES = ["Industry Class", "Weapons", "big multi", "big single",
                        "researched number 2", "researched number 3", "small multi",
                        "small single"].freeze
@@ -56,7 +56,7 @@ RSpec.describe Card::AnswerQuery do
   # @return [Array] of metric_title(+scorer)+year strings
   def filter_by filter, latest=true
     filter.reverse_merge! year: :latest if latest
-    run_query filter, sort_by: :metric_name
+    answers run_query filter, sort_by: :metric_name
   end
 
   # @return [Array] of answer cards

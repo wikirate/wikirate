@@ -1,14 +1,19 @@
 class Card
+  # Query lookup table for researched answers
+  # (See #new for handling of not-researched)
   class AnswerQuery
     include Filtering
     include AnswerFilters
     include MetricAndCompanyFilters
     include Where
 
+    # instantiates AllAnswerQuery object for searches that can return
+    # not-researched answers (status = :all or :none) and AnswerQuery
+    # objects for all other searches
     def self.new filter, sorting={}, paging={}
       filter.deep_symbolize_keys!
-      if filter[:status]&.to_sym.in?(%i[all none]) && self != AllQuery
-        AllQuery.new filter, sorting, paging
+      if filter[:status]&.to_sym.in?(%i[all none]) && self != AllAnswerQuery
+        AllAnswerQuery.new filter, sorting, paging
       else
         super
       end
@@ -63,6 +68,8 @@ class Card
       counts
     end
 
+    private
+
     def status_groups
       { unknown: 0, known: 1 }
     end
@@ -97,10 +104,15 @@ class Card
     end
 
     def process_sort
-      return unless single_metric? && @sort_args[:sort_by]&.to_sym == :value &&
-                    (metric_card.numeric? || metric_card.relationship?)
+      return unless numeric_sort?
 
       @sort_args[:sort_by] = :numeric_value
+    end
+
+    def numeric_sort?
+      single_metric? &&
+        @sort_args[:sort_by]&.to_sym == :value &&
+        (metric_card.numeric? || metric_card.relationship?)
     end
   end
 end
