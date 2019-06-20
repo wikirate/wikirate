@@ -2,11 +2,13 @@ class Card
   class AnswerQuery
     class AllQuery < AnswerQuery
       PARTNER_TYPE_ID = { company: WikirateCompanyID, metric: MetricID }.freeze
-      PARTNER_FILTER_QUERY = { company: CompanyFilterQuery, metric: MetricFilterQuery }
+      PARTNER_FILTER_QUERY = {
+        company: CompanyFilterQuery, metric: MetricFilterQuery
+      }.freeze
       PARTNER_CQL_FILTERS = {
         company: ::Set.new([:project]),
         metric: ::Set.new(%i[project designer metric_type research_policy importance])
-      }
+      }.freeze
 
       def initialize filter, sorting={}, paging={}
         @filter_args = filter # duplicated, but must happen before require_partner!
@@ -24,11 +26,28 @@ class Card
       end
 
       def run
-        result_array do
+        run_result do
           card_query.map do |rec|
             rec.id ? lookup_answer_card(rec.id) : new_answer_card(rec.name)
           end
         end
+      end
+
+      def count
+        count_result { select_all(card_select_sql("count(*) as count")).first["count"] }
+      end
+
+      def count_by_group group
+        sql = %(#{card_select_sql "count(*) as count, #{group} as groop"} GROUP BY groop)
+        select_all(sql).each_with_object({}) do |row, hash|
+          hash[row["groop"]] = row["count"]
+        end
+      end
+
+      private
+
+      def status_groups
+        @status_groups ||= super.merge(none: nil)
       end
 
       def lookup_answer_card id
@@ -57,13 +76,18 @@ class Card
       end
 
       def card_query
-        sql =
-          "SELECT answers.id, #{@partner}.name " \
+        Card.find_by_sql(card_select_sql("answers.id, #{@partner}.name"))
+      end
+
+      def card_select_sql fields
+        "SELECT #{fields} " \
         "FROM cards AS #{@partner} " \
         "LEFT JOIN answers ON #{@partner}.id = #{@partner}_id AND #{answer_conditions} " \
         "WHERE #{@partner}.trash is false AND #{card_conditions} "
-        puts "SQL = #{sql}"
-        Card.find_by_sql(sql)
+      end
+
+      def select_all sql
+        ActiveRecord::Base.connection.select_all sql
       end
 
       def restrict_answer_ids col, ids
@@ -84,7 +108,7 @@ class Card
       end
 
       def handle_not_researched
-        @card_conditions << "answers.id is null" if @filter_args[:status] == :none
+        @card_conditions << "answers.id is null" if status_filter == :none
       end
 
       # map answer fields to partner card fields

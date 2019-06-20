@@ -2,7 +2,7 @@ class Card
   class AnswerQuery
     # filter field handling
     module Filtering
-      CARD_ID_MAP = { research_policy: :policy_id, metric_type: :metric_type_id}
+      CARD_ID_MAP = { research_policy: :policy_id, metric_type: :metric_type_id }.freeze
 
       SIMPLE_FILTERS = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
       LIKE_FILTERS = ::Set.new(%i[company_name metric_name]).freeze

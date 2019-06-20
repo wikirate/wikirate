@@ -33,11 +33,50 @@ class Card
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database
     def run
-      result_array { sort_and_page { answer_query }.answer_cards }
+      run_result { sort_and_page { answer_query }.answer_cards }
     end
 
-    def result_array
+    def count
+      count_result { answer_query.count }
+    end
+
+    def count_by_group group
+      answer_query.group(group).count
+    end
+
+    def count_by_status
+      if status_filter.in? %i[all exists]
+        count_by_status_groups
+      else
+        { status_filter => count }
+      end
+    end
+
+    def count_by_status_groups
+      raw_counts = count_by_group "value <> 'Unknown'"
+      counts = { total: 0 }
+      status_groups.each do |k, v|
+        num = raw_counts[v].to_i
+        counts[k] = num
+        counts[:total] += num
+      end
+      counts
+    end
+
+    def status_groups
+      { unknown: 0, known: 1 }
+    end
+
+    def status_filter
+      @filter_args[:status]&.to_sym || :exists
+    end
+
+    def run_result
       @empty_result ? [] : yield
+    end
+
+    def count_result
+      @empty_result ? 0 : yield
     end
 
     def answer_query
@@ -53,23 +92,15 @@ class Card
       @restrict_to_ids.each { |k, v| filter k, v }
     end
 
-    def count
-
-    end
-
-    def value_count
-
-    end
-
     def limit
       @paging_args[:limit]
     end
 
     def process_sort
-      return unless single_metric? && @sort_args[:sort_by]&.to_sym == :value
-      if metric_card.numeric? || metric_card.relationship?
-        @sort_args[:sort_by] = :numeric_value
-      end
+      return unless single_metric? && @sort_args[:sort_by]&.to_sym == :value &&
+                    (metric_card.numeric? || metric_card.relationship?)
+
+      @sort_args[:sort_by] = :numeric_value
     end
   end
 end

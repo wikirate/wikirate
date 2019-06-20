@@ -1,27 +1,23 @@
 format :html do
   view :stats, cache: :never do
-    table stat_rows(filter_hash[:status] || :exists),
-          class: "filtered-answer-counts table-sm table-borderless text-muted"
+    table stat_rows, class: "filtered-answer-counts table-sm table-borderless text-muted"
   end
-
-  CATEGORIES = { all: [:known, :unknown, :none, :total],
-                 exists: [:known, :unknown, :total] }.freeze
 
   LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
              total: "Total" }.freeze
 
-  def stat_rows category
-    @total = 0
-    category = category.to_sym
-    rows = CATEGORIES[category] || [category]
-
-    rows.map { |cat| row_cells(cat, rows.size > 2) }
+  def stat_rows
+    rows = card.query.count_by_status
+    more_than_one = rows.keys.size > 1
+    rows.keys.map do |status|
+      stat_row status, rows[status], more_than_one
+    end
   end
 
-  def row_cells cat, more_than_one
+  def stat_row cat, count, more_than_one
     cat = cat.to_sym
     cells = more_than_one ? [{ content: operand(cat), class: "text-right" }] : []
-    cells << { content: badge_tag(category_count(cat), class: cat),
+    cells << { content: badge_tag(count, class: cat),
                class: "text-right" }
     cells << LABELS[cat]
     { content: cells, class: cat }
@@ -33,13 +29,5 @@ format :html do
     when :total then "="
     else             "+"
     end
-  end
-
-  def category_count cat
-    return @total if cat == :total
-    @total ||= 0
-    count = card.query.count status: cat
-    @total += count
-    count
   end
 end

@@ -55,17 +55,17 @@ RSpec.describe Card::AnswerQuery do
 
   # @return [Array] of metric_title(+scorer)+year strings
   def filter_by filter, latest=true
-    filter.merge! company_id: company.id
     filter.reverse_merge! year: :latest if latest
-    sort = { sort_by: :metric_name }
-    answers described_class.new(filter, sort).run
+    run_query filter, sort_by: :metric_name
   end
 
   # @return [Array] of answer cards
   def sort_by key, order=:asc
-    filter = { company_id: company.id, year: :latest }
-    sort = { sort_by: key, sort_order: order }
-    described_class.new(filter, sort).run
+    run_query({ year: :latest }, sort_by: key, sort_order: order)
+  end
+
+  def run_query filter, sort
+    described_class.new(filter.merge(company_id: company.id), sort).run
   end
 
   context "with single filter condition" do

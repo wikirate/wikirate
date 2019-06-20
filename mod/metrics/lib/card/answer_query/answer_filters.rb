@@ -3,9 +3,8 @@ class Card
     # filters based on year and children of the answer card
     # (as opposed to metric and company)
     module AnswerFilters
-
       # :exists/researched (known + unknown) is default case;
-      # :all and :none are handled in #run
+      # :all and :none are handled in AllQuery
       def status_query value
         case value.to_sym
         when :unknown
