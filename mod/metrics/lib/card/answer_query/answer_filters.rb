@@ -1,35 +1,7 @@
 class Card
   class AnswerQuery
     # conditions and condition support methods for non-standard fields.
-    module FieldConditions
-      def restrict_to_ids col, ids
-        ids = Array(ids)
-        @empty_result = ids.empty?
-        if restrict_cards? col
-          restrict_card_ids ids
-        else
-          restrict_answer_ids col, ids
-        end
-      end
-
-      def restrict_cards? col
-        return false unless @join
-        col == "#{@subject}_id".to_sym
-      end
-
-      def restrict_card_ids ids
-        @card_ids += ids
-      end
-
-      def restrict_answer_ids col, ids
-        @restrict_to_ids[col] ||= []
-        @restrict_to_ids[col] += ids
-      end
-
-      def restrict_by_wql col, wql
-        wql.reverse_merge! return: :id, limit: 0
-        restrict_to_ids col, Card.search(wql)
-      end
+    module AnswerFilters
 
       # :exists/researched (known + unknown) is default case;
       # :all and :none are handled in #run
@@ -87,6 +59,8 @@ class Card
       def industry_query value
         restrict_by_wql :company_id, CompanyFilterQuery.industry_wql(value)
       end
+
+      private
 
       def timeperiod value
         case value.to_sym

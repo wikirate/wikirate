@@ -1,7 +1,7 @@
 class Card
   class AnswerQuery
     # filter field handling
-    module FilterOptions
+    module Filtering
       SIMPLE_FILTERS = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
       LIKE_FILTERS = ::Set.new(%i[company_name metric_name]).freeze
       CARD_ID_FILTERS = ::Set.new(%i[metric_type_id policy_id]).freeze
@@ -85,6 +85,35 @@ class Card
         else
           Card.fetch_id(value)
         end
+      end
+
+      def restrict_to_ids col, ids
+        ids = Array(ids)
+        @empty_result = ids.empty?
+        if restrict_cards? col
+          restrict_card_ids ids
+        else
+          restrict_answer_ids col, ids
+        end
+      end
+
+      def restrict_cards? col
+        return false unless @join
+        col == "#{@subject}_id".to_sym
+      end
+
+      def restrict_card_ids ids
+        @card_ids += ids
+      end
+
+      def restrict_answer_ids col, ids
+        @restrict_to_ids[col] ||= []
+        @restrict_to_ids[col] += ids
+      end
+
+      def restrict_by_wql col, wql
+        wql.reverse_merge! return: :id, limit: 0
+        restrict_to_ids col, Card.search(wql)
       end
 
       def exact_match_filters
