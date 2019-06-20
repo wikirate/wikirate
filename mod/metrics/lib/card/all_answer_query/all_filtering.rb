@@ -68,9 +68,9 @@ class Card
         @card_conditions << "answers.id is null" if status_filter == :none
       end
 
-      #def sort_importance_wql
-      #  { right: "*vote count" }
-      #end
+      # def sort_importance_wql
+      #   { right: "*vote count" }
+      # end
     end
   end
 end

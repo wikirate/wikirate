@@ -1,6 +1,6 @@
 require "./test/seed"
 
-RSpec.describe Card::AnswerQuery, "fixed metric" do
+RSpec.describe Card::AnswerQuery do
   LATEST_ANSWERS = %w[Death_Star+2001
                       Monster_Inc+2000
                       Slate_Rock_and_Gravel_Company+2005
