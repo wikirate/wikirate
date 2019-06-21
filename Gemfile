@@ -117,7 +117,7 @@ group :development do
   # gem 'spring-commands-rspec'
 end
 
-group :test, :development do
+group :test, :development, :cypress do
   gem "cypress-on-rails"
   gem "pry"
   gem "pry-byebug"
