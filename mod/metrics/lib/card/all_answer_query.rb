@@ -2,6 +2,7 @@ class Card
   # Query for both researched AND NOT RESEARCHED answers
   class AllAnswerQuery < AnswerQuery
     include AllFiltering
+    include AllSorting
     include NotResearched
 
     PARTNER_TYPE_ID = { company: WikirateCompanyID, metric: MetricID }.freeze

@@ -5,12 +5,16 @@ class Card
     class CategoryChart < VegaChart
       def generate_data
         Card[@metric_id].value_options.each do |category|
-          add_data value: category
+          add_data({ value: category }, raw_data[category])
         end
       end
 
       def click_action
         :select
+      end
+
+      def raw_data
+        @raw_data ||= @filter_query.count_by_group(:value)
       end
 
       private
@@ -22,7 +26,7 @@ class Card
                                                        align: { value: "left" } } } }
       end
 
-      def data_item_hash filter
+      def data_item_hash filter, _count
         super.merge x: filter[:value]
       end
 

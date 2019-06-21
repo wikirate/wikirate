@@ -14,20 +14,20 @@ class Card
 
       def generate_data
         calculate_buckets
+        group_data
         each_bucket do |lower, upper|
-          add_data value: { from: lower, to: upper }
+          add_data({ numeric_value: { from: lower, to: upper } }, @counts[lower])
           add_label lower
         end
       end
 
-      # def generate_data
-      #    # @filter_query.where.order(:value).each do |ma|
-      #    #   add_data numeric_value: ma.numeric_value.to_i if ma.numeric_value
-      #    # end
-      #    0.upto(10).each do |i|
-      #      add_data numeric_value: i
-      #    end
-      #  end
+      def group_data
+        @counts = {}
+        @filter_query.count_by_group(:numeric_value).each do |num, count|
+          key = num.to_i
+          @counts[key] = @counts[key].to_i + count
+        end
+      end
 
       def x_axis
         super.merge title: "Scores"

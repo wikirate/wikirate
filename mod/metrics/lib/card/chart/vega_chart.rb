@@ -111,23 +111,18 @@ class Card
 
       private
 
-      def count filter
-        count = @filter_query.count filter
-        count
-      end
-
       def layout
         DEFAULT_LAYOUT.merge @layout
       end
 
-      def add_data filter
-        @data << data_item_hash(filter)
+      def add_data filter, count
+        @data << data_item_hash(filter, count)
         @y_range.add @data.last[:y]
         @data
       end
 
-      def data_item_hash filter
-        hash = { y: count(filter),
+      def data_item_hash filter, count
+        hash = { y: count,
                  highlight: highlight?(filter) }
         hash[:link] = bar_link(filter) if link?
         hash

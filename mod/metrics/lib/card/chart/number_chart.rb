@@ -5,14 +5,15 @@ class Card
     # generates chart with one bar per (numeric) value
     class NumberChart < VegaChart
       def generate_data
-        @filter_query.where.order(:numeric_value).each do |ma|
-          add_data numeric_value: ma.numeric_value if ma.numeric_value
+        @filter_query.count_by_group(:numeric_value).each do |num, count|
+          next unless num
+          add_data({ numeric_value: num }, count)
         end
       end
 
       private
 
-      def data_item_hash filter
+      def data_item_hash filter, _count
         super.merge x: @format.humanized_number(filter[:numeric_value])
       end
 
