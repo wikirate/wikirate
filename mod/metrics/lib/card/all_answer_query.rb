@@ -21,28 +21,6 @@ class Card
       super
     end
 
-    # @return [Array]
-    def run
-      run_result do
-        card_query.map do |rec|
-          rec.id ? researched_card(rec.id) : not_researched_card(rec.name)
-        end
-      end
-    end
-
-    # @return [Integer]
-    def count
-      count_result { select_all(card_select_sql("count(*) as count")).first["count"] }
-    end
-
-    # @return [Hash] with a key for each group and a count as the value
-    def count_by_group group
-      sql = %(#{card_select_sql "count(*) as count, #{group} as groop"} GROUP BY groop)
-      select_all(sql).each_with_object({}) do |row, hash|
-        hash[row["groop"]] = row["count"]
-      end
-    end
-
     private
 
     def process_sort
@@ -60,31 +38,38 @@ class Card
       Answer.find(id).card
     end
 
-    def card_query
-      sql = card_select_sql "answers.id, #{@partner}.name"
-      sql << sort_clause if @sort_args.present?
-      sql << paging_clause if @paging_args.present?
-      Card.find_by_sql sql
+    def main_results
+      Card.find_by_sql(main_results_sql).map do |rec|
+        rec.id ? researched_card(rec.id) : not_researched_card(rec.name)
+      end
     end
 
-    def sort_clause
-      Arel.sql "ORDER BY #{@sort_args[:sort_by]} #{@sort_args[:sort_order]}"
+    def main_results_sql
+      sort_and_page { main_query.select "answers.id, #{@partner}.name" }.to_sql
     end
 
-    def paging_clause
-      Arel.sql "LIMIT #{@paging_args[:limit]} OFFSET #{@paging_args[:offset]} "
+    def sort_and_page
+      rel = yield
+      if @sort_args.present?
+        rel = rel.order("#{@sort_args[:sort_by]} #{@sort_args[:sort_order]}")
+      end
+      rel = rel.limit @paging_args[:limit] if @paging_args[:limit]
+      rel = rel.offset @paging_args[:offset] if @paging_args[:offset]
+      rel
+    end
+
+    def main_query
+      Card.joins(partner_join).where(partner_where)
     end
 
     # This left join is the essence of the search strategy.
-    def card_select_sql fields
-      "SELECT #{fields} " \
-      "FROM cards AS #{@partner} " \
-      "LEFT JOIN answers ON #{@partner}.id = #{@partner}_id AND #{answer_conditions} " \
-      "WHERE #{@partner}.trash is false AND #{card_conditions} "
+    def partner_join
+      "AS #{@partner} LEFT JOIN answers " \
+      "ON #{@partner}.id = #{@partner}_id AND #{answer_conditions}"
     end
 
-    def select_all sql
-      ActiveRecord::Base.connection.select_all sql
+    def partner_where
+      "#{@partner}.trash is false AND #{card_conditions} "
     end
 
     # Currently these queries only work with a fixed company or metric

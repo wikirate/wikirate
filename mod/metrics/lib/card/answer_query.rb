@@ -5,7 +5,6 @@ class Card
     include Filtering
     include AnswerFilters
     include MetricAndCompanyFilters
-    include Where
 
     # instantiates AllAnswerQuery object for searches that can return
     # not-researched answers (status = :all or :none) and AnswerQuery
@@ -38,17 +37,20 @@ class Card
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database
     def run
-      run_result { sort_and_page { answer_query }.answer_cards }
+      @empty_result ? [] : main_results
     end
 
+    # @return [Array]
     def count
-      count_result { answer_query.count }
+      @empty_result ? 0 : main_query.count
     end
 
+    # @return [Hash] with a key for each group and a count as the value
     def count_by_group group
-      answer_query.group(group).count
+      main_query.group(group).count
     end
 
+    # @return [Hash] with a key for each status and a count as the value
     def count_by_status
       if status_filter.in? %i[all exists]
         count_by_status_groups
@@ -82,25 +84,25 @@ class Card
       @filter_args[:status]&.to_sym || :exists
     end
 
-    def run_result
-      @empty_result ? [] : yield
+    def main_results
+      sort_and_page { main_query }.answer_cards
     end
 
-    def count_result
-      @empty_result ? 0 : yield
-    end
-
-    def answer_query
+    def main_query
       Answer.where answer_conditions
+    end
+
+    # @return args for AR's where method
+    def answer_conditions
+      condition_sql([@conditions.join(" AND ")] + @values)
+    end
+
+    def condition_sql conditions
+      ::Answer.sanitize_sql_for_conditions conditions
     end
 
     def sort_and_page
       yield.sort(@sort_args).paging(@paging_args)
-    end
-
-    def process_filters
-      @filter_args.each { |k, v| process_filter_option k, v if v.present? }
-      @restrict_to_ids.each { |k, v| filter k, v }
     end
 
     def process_sort

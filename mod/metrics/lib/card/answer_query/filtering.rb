@@ -10,6 +10,11 @@ class Card
 
       protected
 
+      def process_filters
+        @filter_args.each { |k, v| process_filter_option k, v if v.present? }
+        @restrict_to_ids.each { |k, v| filter k, v }
+      end
+
       # TODO: optimize with hash lookups for methods
       def process_filter_option key, value
         %i[exact_match like card_id].each do |ftype|
