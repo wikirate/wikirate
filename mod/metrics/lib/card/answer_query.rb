@@ -11,7 +11,7 @@ class Card
     # not-researched answers (status = :all or :none) and AnswerQuery
     # objects for all other searches
     def self.new filter, sorting={}, paging={}
-      filter.deep_symbolize_keys!
+      filter = filter.deep_symbolize_keys
       if filter[:status]&.to_sym.in?(%i[all none]) && self != AllAnswerQuery
         AllAnswerQuery.new filter, sorting, paging
       else

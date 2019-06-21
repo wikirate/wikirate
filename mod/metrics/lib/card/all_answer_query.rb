@@ -45,6 +45,13 @@ class Card
 
     private
 
+    def process_sort
+      super
+      if (partner_field = partner_field_map[@sort_args[:sort_by]])
+        @sort_args[:sort_by] = partner_field
+      end
+    end
+
     def status_groups
       @status_groups ||= super.merge(none: nil)
     end
@@ -54,7 +61,18 @@ class Card
     end
 
     def card_query
-      Card.find_by_sql(card_select_sql("answers.id, #{@partner}.name"))
+      sql = card_select_sql "answers.id, #{@partner}.name"
+      sql << sort_clause if @sort_args.present?
+      sql << paging_clause if @paging_args.present?
+      Card.find_by_sql sql
+    end
+
+    def sort_clause
+      Arel.sql "ORDER BY #{@sort_args[:sort_by]} #{@sort_args[:sort_order]}"
+    end
+
+    def paging_clause
+      Arel.sql "LIMIT #{@paging_args[:limit]} OFFSET #{@paging_args[:offset]} "
     end
 
     # This left join is the essence of the search strategy.
