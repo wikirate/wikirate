@@ -36,7 +36,7 @@ class Card
 
       def sort_by_metric_title rel
         rel.joins(sort_join("right_id = sort.id"))
-          .order("sort.name #{@sort_args[:sort_order]}")
+           .order("sort.name #{@sort_args[:sort_order]}")
       end
 
       def standard_sort rel

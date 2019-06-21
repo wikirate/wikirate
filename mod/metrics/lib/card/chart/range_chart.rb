@@ -22,7 +22,7 @@ class Card
       end
 
       def count_in_range lower, upper
-        raw_counts.keys.each_with_object(0) do |val, tally|
+        raw_counts.keys.inject do |tally, val|
           next unless val >= lower && val < upper
 
           tally += raw_counts.delete(val)
@@ -30,8 +30,7 @@ class Card
       end
 
       def raw_counts
-        @raw_counts ||=
-          @filter_query.count_by_group(:numeric_value).reject { |k| k.nil? }
+        @raw_counts ||= @filter_query.count_by_group(:numeric_value).reject(&:nil?)
       end
 
       private
