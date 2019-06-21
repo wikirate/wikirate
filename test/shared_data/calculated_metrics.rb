@@ -81,6 +81,12 @@ class SharedData
                           test_source: true do
         Death_Star 1977 => 1000
       end
+
+      Card::Metric.create(name: "Joe User+descendant 2",
+                          type: :descendant,
+                          formula: "[[Joe User+RM]]\n" \
+                                   "[[Joe User+researched number 1]]"
+                         )
     end
   end
 end

@@ -17,7 +17,7 @@ module Formula
         def get company, year=nil
           dig_args = [company, year].compact
           ret = dig_args.present? ? values.dig(*dig_args) : values
-          ret unless ret.empty?
+          ret unless ret&.empty?
         end
 
         def add company, year, value

@@ -62,7 +62,7 @@ module Formula
 
     def input_data company, year
       @parser.input_cards.zip(
-        @input.input_for(company, year), @parser.year_options
+        Array.wrap(@input.input_for(company, year)), @parser.year_options
       )
     end
 

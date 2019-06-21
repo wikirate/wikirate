@@ -37,7 +37,7 @@ RSpec.describe Answer, "Answer.search" do
   end
 
   it "can count" do
-    expect(search(year: "2000", return: :count)).to eq 14
+    expect(search(year: "2000", return: :count)).to eq 15
   end
 
   it "can uniquify and return count" do
