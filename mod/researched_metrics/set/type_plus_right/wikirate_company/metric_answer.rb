@@ -30,14 +30,14 @@ format :html do
   end
 
   def title_sort_link
-    table_sort_link "Metric", :title_name, :lookup?, "pull-left mx-3 px-1"
+    table_sort_link "Metric", :title_name, "pull-left mx-3 px-1"
   end
 
   def designer_sort_link
-    table_sort_link "", :metric_name, nil, "pull-left mx-3 px-1"
+    table_sort_link "", :metric_name, "pull-left mx-3 px-1"
   end
 
   def importance_sort_link
-    table_sort_link "", :importance, nil, "pull-left mx-3 px-1"
+    table_sort_link "", :importance, "pull-left mx-3 px-1"
   end
 end

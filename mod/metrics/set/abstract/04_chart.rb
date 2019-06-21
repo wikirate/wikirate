@@ -37,7 +37,7 @@ format do
   end
 
   def chart_filter_query
-    AnswerQuery::FixedMetric.new chart_metric_id, chart_filter_hash
+    AnswerQuery.new chart_filter_hash.merge(metric_id: chart_metric_id)
   end
 
   def chart_metric_id

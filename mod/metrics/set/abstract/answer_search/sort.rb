@@ -26,8 +26,7 @@ def default_desc_sort_order
 end
 
 format :html do
-  def table_sort_link name, key, test=nil, css_class=""
-    return name if test && !card.send(test)
+  def table_sort_link name, key, css_class=""
     sort_link "#{name} #{sort_icon key}",
               sort_by: key,
               sort_order: toggle_sort_order(key),
