@@ -47,9 +47,9 @@ class Card
 
     def process_sort
       super
-      if (partner_field = partner_field_map[@sort_args[:sort_by]])
-        @sort_args[:sort_by] = partner_field
-      end
+      return unless (partner_field = partner_field_map[@sort_args[:sort_by]])
+
+      @sort_args[:sort_by] = partner_field
     end
 
     def status_groups
