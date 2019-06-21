@@ -2,11 +2,11 @@ include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[status year wikirate_company wikirate_company value updated check source project]
+  %i[status year company_name value updated check source project]
 end
 
 def default_filter_hash
-  { year: :latest, status: :exists, wikirate_company: "" }
+  { year: :latest, status: :exists, company_name: "" }
 end
 
 format :html do

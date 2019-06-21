@@ -3,7 +3,7 @@ describe "expanding details on company pages", ->
     cy.visit "Death Star"
 
     # use filter to find darkness rating
-    cy.get("._filter-container [name='filter[metric]']")
+    cy.get("._filter-container [name='filter[metric_name]']")
       .type("darkness{enter}")
 
     # filter works

@@ -43,7 +43,6 @@ format :html do
 
   # def tmp_details
   #   [
-  #     render_full_page_link,
   #     link_to("record", href: "#", class: "_record-filter",
   #             data: { filter: { key: "metric", value: "'#{card.metric_name}'"} } )
   #   ]

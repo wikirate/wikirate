@@ -23,7 +23,7 @@ Feature: company feature
     When I click on "More Filters"
     And I click on "Metric"
     And I wait for ajax response
-    And I fill in "filter[metric]" with "Jedi+deadliness"
+    And I fill in "filter[metric_name]" with "Jedi+deadliness"
     # To change focus
     And I click on "More Filters"
     And I wait for ajax response
