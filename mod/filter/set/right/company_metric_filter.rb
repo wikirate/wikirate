@@ -7,7 +7,7 @@ def filter_keys
 end
 
 def default_filter_hash
-  { status: :exists, year: :latest, metric: "" }
+  { status: :exists, year: :latest, metric_name: "" }
 end
 
 format :html do

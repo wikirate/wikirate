@@ -10,12 +10,6 @@ describe Card::Set::Abstract::BrowseFilterForm do
         with_tag "._add-filter-dropdown" do
           with_tag "a.dropdown-item", text: /Name/,
                                       with: { "data-category": "name" }
-          with_tag "a.dropdown-item", text: /Metric/,
-                                      with: { "data-category": "metric" }
-          with_tag "a.dropdown-item", text: /Project/,
-                                      with: { "data-category": "project" }
-          with_tag "a.dropdown-item", text: /Company/,
-                                      with: { "data-category": "wikirate_company" }
         end
       end
     end
