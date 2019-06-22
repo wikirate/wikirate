@@ -58,8 +58,6 @@ format :html do
     paging_path_args sort_order: args[:sort_order], sort_by: args[:sort_by]
   end
 
-
-
   def sort_icon field
     icon = "sort"
     icon += "-#{card.sort_order}" if field.to_sym == card.sort_by.to_sym
