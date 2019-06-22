@@ -24,9 +24,16 @@ format :html do
     super()
   end
 
-  def table_args
-    [:company, self, [:company_thumbnail, :concise],
-     { header: [company_sort_link, value_sort_link] }]
+  def partner
+    :company
+  end
+
+  def cell_views
+    [:company_thumbnail, :concise]
+  end
+
+  def header_cells
+    [company_sort_link, render_answer_header]
   end
 
   def details_view
@@ -35,9 +42,5 @@ format :html do
 
   def company_sort_link
     table_sort_link rate_subjects, :company_name
-  end
-
-  def value_sort_link
-    table_sort_link "Answer", :value
   end
 end

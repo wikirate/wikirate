@@ -16,9 +16,16 @@ end
 format :html do
   before(:core) { voo.hide! :chart }
 
-  def table_args
-    [:metric, self, [:metric_thumbnail_with_vote, :concise],
-     { header: [name_sort_links, "Answer"] }]
+  def partner
+    :metric
+  end
+
+  def cell_views
+    [:metric_thumbnail_with_vote, :concise]
+  end
+
+  def header_cells
+    [name_sort_links, render_answer_header]
   end
 
   def details_view

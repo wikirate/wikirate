@@ -14,12 +14,9 @@ def search args={}
   return_type = args.delete :return
   q = query(args)
   case return_type
-  when :name then
-    q.run.map(&:name)
-  when :count then
-    q.count
-  else
-    q.run
+  when :name  then q.run.map(&:name)
+  when :count then q.count
+  else             q.run
   end
 end
 
@@ -58,19 +55,21 @@ format :html do
   end
 
   view :table, cache: :never do
-    wrap true, "data-details-view": details_view do
-      args = table_args
-      args.last.merge! td: { classes: %w[header data] },
-                       tr: { method: :tr_attribs }
-      wikirate_table(*args)
+    wrap true, "data-details-view": details_view, home_view: "table" do
+      wikirate_table partner, self, cell_views, { header: header_cells,
+                                                  td: { classes: %w[header data] },
+                                                  tr: { method: :tr_attribs } }
     end
   end
 
+  view :answer_header do
+    [table_sort_link("Answer", :value, "pull-left mx-3 px-1"),
+     table_sort_link("Year", :year, "pull-right mx-3 px-1")]
+  end
+
   def tr_attribs row_card
-    if row_card.known?
-      { class: "details-toggle", "data-details-mark": row_card.name.url_key }
-    else
-      {}
-    end
+    return {} unless row_card.known?
+
+    { class: "details-toggle", "data-details-mark": row_card.name.url_key }
   end
 end
