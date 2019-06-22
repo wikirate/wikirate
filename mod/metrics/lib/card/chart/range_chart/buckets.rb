@@ -51,11 +51,11 @@ class Card
         end
 
         def max
-          @max ||= @filter_query.where.maximum(:numeric_value).to_f
+          @max ||= @filter_query.main_query.maximum(:numeric_value).to_f
         end
 
         def min
-          @min ||= @filter_query.where.minimum(:numeric_value).to_f
+          @min ||= @filter_query.main_query.minimum(:numeric_value).to_f
         end
       end
     end

@@ -24,7 +24,6 @@ class Card
       def count_in_range lower, upper
         raw_counts.keys.inject do |tally, val|
           next unless val >= lower && val < upper
-
           tally += raw_counts.delete(val)
         end
       end
@@ -56,10 +55,7 @@ class Card
       end
 
       def x_label_scale
-        { name: "x_label",
-          type: "point",
-          range: "width",
-          domain: @labels }
+        { name: "x_label", type: "point", range: "width", domain: @labels }
       end
 
       def highlight? filter

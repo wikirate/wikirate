@@ -122,8 +122,7 @@ class Card
       end
 
       def data_item_hash filter, count
-        hash = { y: count,
-                 highlight: highlight?(filter) }
+        hash = { y: count, highlight: highlight?(filter) }
         hash[:link] = bar_link(filter) if link?
         hash
       end

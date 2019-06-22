@@ -10,21 +10,18 @@ class Card
 
       def topic_query value
         multi_metric do
-          restrict_by_wql :metric_id,
-                          right_plus: [Card::WikirateTopicID, { refer_to: value }]
+          restrict_by_wql :metric_id, right_plus: [WikirateTopicID, { refer_to: value }]
         end
       end
       alias wikirate_topic_query topic_query
 
       def project_query value
-        multi_metric do
-          restrict_by_wql :metric_id,
-                          referred_to_by: "#{value}+#{:metric.cardname}"
-        end
-        multi_company do
-          restrict_by_wql :company_id,
-                          referred_to_by: "#{value}+#{:wikirate_company.cardname}"
-        end
+        multi_metric { project_restriction :metric_id, :metric, value }
+        multi_company { project_restriction :company_id, :wikirate_company, value }
+      end
+
+      def project_restriction field, codename, value
+        restrict_by_wql field, referred_to_by: "#{value}+#{codename.cardname}"
       end
 
       def importance_query value
@@ -47,27 +44,19 @@ class Card
       end
 
       def multi_metric
-        return if single_metric?
-
-        yield
+        single_metric? ? return : yield
       end
 
       def multi_company
-        return if single_company?
-
-        yield
+        single_company? ? return : yield
       end
 
       def company_card
-        return unless single_company?
-
-        @company_card ||= Card[@filter_args[:company_id]]
+        single_company? ? (@company_card ||= Card[@filter_args[:company_id]]) : return
       end
 
       def metric_card
-        return unless single_metric?
-
-        @metric_card ||= Card[@filter_args[:metric_id]]
+        single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
       # @param values [Array<Symbol>] has to contains one or two of the symbols
@@ -76,16 +65,14 @@ class Card
       # TODO: move this to voting mod
       def vote_wql values
         if values.include? :novotes
-          not_directions = missing_directions(values)
-          { not: linked_to_by_vote_wql(not_directions) }
+          { not: linked_to_by_vote_wql(missing_directions(values)) }
         else
           linked_to_by_vote_wql values
         end
       end
 
       def linked_to_by_vote_wql array
-        vote_pointers = array.map { |v| vote_pointer_name(v) }
-        { linked_to_by: [:in] + vote_pointers }
+        { linked_to_by: [:in] + array.map { |v| vote_pointer_name(v) } }
       end
 
       def vote_pointer_name direction
