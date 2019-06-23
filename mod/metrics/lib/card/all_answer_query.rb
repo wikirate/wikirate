@@ -22,6 +22,10 @@ class Card
       super
     end
 
+    def main_query
+      Card.joins(partner_join).where(partner_where)
+    end
+
     private
 
     # Currently these queries only work with a fixed company or metric
@@ -34,10 +38,6 @@ class Card
         @partner = :metric
       end
       raise "must have partner for status: all or none" unless @partner
-    end
-
-    def main_query
-      Card.joins(partner_join).where(partner_where)
     end
 
     # This left join is the essence of the search strategy.

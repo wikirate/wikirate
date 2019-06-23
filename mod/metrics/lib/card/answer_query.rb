@@ -74,6 +74,10 @@ class Card
       @paging_args[:limit]
     end
 
+    def main_query
+      Answer.where answer_conditions
+    end
+
     private
 
     def status_groups
@@ -86,10 +90,6 @@ class Card
 
     def main_results
       sort_and_page { main_query }.answer_cards
-    end
-
-    def main_query
-      Answer.where answer_conditions
     end
 
     # @return args for AR's where method

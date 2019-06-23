@@ -33,7 +33,7 @@ format do
   end
 
   def chart_value_count
-    @chart_value_count ||= chart_filter_query.value_count
+    @chart_value_count ||= chart_filter_query.main_query.distinct.count(:value)
   end
 
   def chart_filter_query
