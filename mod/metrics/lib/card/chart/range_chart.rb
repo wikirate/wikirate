@@ -22,10 +22,12 @@ class Card
       end
 
       def count_in_range lower, upper
-        raw_counts.keys.inject do |tally, val|
+        tally = 0
+        raw_counts.keys.each do |val|
           next unless val >= lower && val < upper
-          tally += raw_counts.delete(val)
+          tally += raw_counts.delete(val).to_i
         end
+        tally
       end
 
       def raw_counts
