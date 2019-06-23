@@ -29,7 +29,7 @@ class Card
       end
 
       def raw_counts
-        @raw_counts ||= @filter_query.count_by_group(:numeric_value).reject(&:nil?)
+        @raw_counts ||= @filter_query.count_by_group(:numeric_value).reject { |k| k.nil? }
       end
 
       private
