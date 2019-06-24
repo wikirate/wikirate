@@ -18,7 +18,7 @@ format :html do
   end
 
   view :bar_left do
-    filterable status: :exists, wikirate_topic: card.name.left do
+    filterable status: :exists, year: :latest, wikirate_topic: card.name.left do
       nest topic, view: :bar_left
     end
   end

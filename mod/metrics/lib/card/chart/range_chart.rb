@@ -23,7 +23,7 @@ class Card
 
       def count_in_range lower, upper
         tally = 0
-        raw_counts.keys.each do |val|
+        raw_counts.each_key do |val|
           next unless val >= lower && val < upper
           tally += raw_counts.delete(val).to_i
         end
