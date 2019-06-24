@@ -20,10 +20,7 @@ class Card
       private
 
       def x_axis
-        super.deep_merge title: "Categories",
-                         encode: { labels: { update: { angle: { value: 30 },
-                                                       limit: { value: 70 },
-                                                       align: { value: "left" } } } }
+        super.deep_merge title: "Categories"
       end
 
       def data_item_hash filter, _count

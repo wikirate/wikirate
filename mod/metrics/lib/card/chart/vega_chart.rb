@@ -212,7 +212,11 @@ class Card
 
       def x_axis
         { orient: "bottom", scale: "x", title: "Values",
-          encode: axes_encode }
+          encode: axes_encode.deep_merge(
+            labels: { update: { angle: { value: 30 },
+                                limit: { value: 70 },
+                                align: { value: "left" } } }
+          ) }
       end
 
       def y_axis
@@ -225,20 +229,10 @@ class Card
 
       def axes_encode
         color = @opts[:axes] == :light ? LIGHT_AXES : DARK_AXES
-        {
-          title: {
-            fill: { value: color }
-          },
-          domain: {
-            stroke: { value: color }
-          },
-          ticks: {
-            stroke: { value: color }
-          },
-          labels: {
-            fill: { value: color }
-          }
-        }
+        { title:  { fill:   { value: color } },
+          domain: { stroke: { value: color } },
+          ticks:  { stroke: { value: color } },
+          labels: { fill:   { value: color } } }
       end
 
       # return the url to the link target of a bar in the chart
