@@ -55,10 +55,10 @@ format :html do
   end
 
   view :table, cache: :never do
-    wrap true, "data-details-view": details_view, home_view: "table" do
-      wikirate_table partner, self, cell_views, header: header_cells,
-                                                td: { classes: %w[header data] },
-                                                tr: { method: :tr_attribs }
+    wrap true, "data-details-view": details_view do
+      wikirate_table partner, self, cell_views, { header: header_cells,
+                                                  td: { classes: %w[header data] },
+                                                  tr: { method: :tr_attribs } }
     end
   end
 

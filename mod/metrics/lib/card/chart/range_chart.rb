@@ -22,14 +22,16 @@ class Card
       end
 
       def count_in_range lower, upper
-        raw_counts.keys.inject do |tally, val|
+        tally = 0
+        raw_counts.keys.each do |val|
           next unless val >= lower && val < upper
-          tally += raw_counts.delete(val)
+          tally += raw_counts.delete(val).to_i
         end
+        tally
       end
 
       def raw_counts
-        @raw_counts ||= @filter_query.count_by_group(:numeric_value).reject(&:nil?)
+        @raw_counts ||= @filter_query.count_by_group(:numeric_value).reject { |k| k.nil? }
       end
 
       private
@@ -39,7 +41,7 @@ class Card
       end
 
       def add_label number
-        @labels << @format.number_to_human(number.to_f)
+        @labels << number
       end
 
       def data_item_hash filter, _count
@@ -55,13 +57,28 @@ class Card
       end
 
       def x_label_scale
-        { name: "x_label", type: "point", range: "width", domain: @labels }
+        { name: "x_label", type: "point", range: "width", domain: x_labels }
+      end
+
+      def x_labels
+        precision = 3
+        while precision < 10 do
+          human = @labels.map do |num|
+            @format.number_to_human num.to_f, precision: precision
+          end
+
+          if human.uniq.size == human.size
+            return human
+          else
+            precision += 1
+          end
+        end
       end
 
       def highlight? filter
         return true unless @highlight_value
-        from = filter[:value][:from]
-        to = filter[:value][:to]
+        from = filter[:numeric_value][:from]
+        to = filter[:numeric_value][:to]
         @highlight_value >= from && @highlight_value < to
       end
 
