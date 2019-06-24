@@ -62,16 +62,13 @@ class Card
 
       def x_labels
         precision = 3
-        while precision < 10 do
+        while precision < 10
           human = @labels.map do |num|
             @format.number_to_human num.to_f, precision: precision
           end
 
-          if human.uniq.size == human.size
-            return human
-          else
-            precision += 1
-          end
+          return human if human.uniq.size == human.size
+          precision += 1
         end
       end
 

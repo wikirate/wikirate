@@ -111,7 +111,7 @@ format :json do
           .group("CAST(value AS decimal)").count.chart_json
   end
 
-  def vega_chartNum_config highlight=nil
+  def vega_chart_config highlight=nil
     @data ||= chart_class.new self, link: true, highlight: highlight
   end
 
