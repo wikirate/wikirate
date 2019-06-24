@@ -21,7 +21,7 @@ format :html do
   end
 
   view :bar_bottom do
-    output [render_chart, render_expanded_details]
+    [render_chart, render_expanded_details]
   end
 
   view :titled_content, cache: :never do

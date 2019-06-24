@@ -21,7 +21,7 @@ class Card
       end
 
       def year_query value
-        if value.to_sym == :latest
+        if value.try(:to_sym) == :latest
           filter :latest, true
         else
           filter :year, value.to_i
