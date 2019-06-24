@@ -121,6 +121,10 @@ class Card
         @data
       end
 
+      def add_label label
+        @labels << label
+      end
+
       def data_item_hash filter, count
         hash = { y: count, highlight: highlight?(filter) }
         hash[:link] = bar_link(filter) if link?
@@ -210,13 +214,21 @@ class Card
         [x_axis, y_axis]
       end
 
+      def diagonal_x_labels?
+        true
+      end
+
+      def diagonalize encode
+        return unless diagonal_x_labels?
+
+        encode.deep_merge! labels: { update: { angle: { value: 30 },
+                                               limit: { value: 70 },
+                                               align: { value: "left" } } }
+      end
+
       def x_axis
         { orient: "bottom", scale: "x", title: "Values",
-          encode: axes_encode.deep_merge(
-            labels: { update: { angle: { value: 30 },
-                                limit: { value: 70 },
-                                align: { value: "left" } } }
-          ) }
+          encode: diagonalize(axes_encode) }
       end
 
       def y_axis

@@ -40,10 +40,6 @@ class Card
         :zoom
       end
 
-      def add_label number
-        @labels << number
-      end
-
       def data_item_hash filter, _count
         super.merge x: filter[:numeric_value][:to]
       end

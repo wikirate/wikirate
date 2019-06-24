@@ -31,13 +31,14 @@ class Card
         end
 
         def log_bucket?
-          return @use_log_scale unless @use_log_scale.nil?
-          @use_log_scale =
-            if min >= 1
-              max / min > 100
-            else
-              max > 200
-            end
+          false # TODO: restore functionality with toggle
+          # return @use_log_scale unless @use_log_scale.nil?
+          # @use_log_scale =
+          #   if min >= 1
+          #     max / min > 100
+          #   else
+          #     max > 200
+          #   end
         end
 
         def round_bucket_size
