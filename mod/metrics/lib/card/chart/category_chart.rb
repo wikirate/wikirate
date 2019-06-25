@@ -7,7 +7,7 @@ class Card
 
       def generate_data
         display_categories.each do |category, count|
-          add_label (options_hash[category] || category) if special_labels?
+          add_label(options_hash[category] || category) if special_labels?
           add_data({ value: category }, count)
         end
       end
@@ -53,12 +53,8 @@ class Card
       end
 
       def handle_multi_category category_hash
-        category_hash.each_with_object({}) do |(cat, count), h|
-          if cat =~ /,/
-            cat.split(/,\s+/).each do |new_cat|
-              h[new_cat] = h[new_cat].to_i + count
-            end
-          else
+        category_hash.each_with_object({}) do |(key, count), h|
+          key.split(/,\s+/).each do |cat|
             h[cat] = h[cat].to_i + count
           end
         end
@@ -68,7 +64,7 @@ class Card
 
       def x_axis
         axis = super.deep_merge title: "Categories"
-        axis.merge! scale: "x_label" if special_labels?
+        axis[:scale] = "x_label" if special_labels?
         axis
       end
 

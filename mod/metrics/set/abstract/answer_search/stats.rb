@@ -9,16 +9,16 @@ format :html do
   def stat_rows
     rows = card.query.count_by_status
     more_than_one = rows.keys.size > 1
-    rows.keys.map do |status|
-      stat_row status, rows[status], more_than_one
-    end
+    LABELS.keys.map do |status|
+      next unless count = rows[status]
+      stat_row status, count, more_than_one
+    end.compact
   end
 
   def stat_row cat, count, more_than_one
     cat = cat.to_sym
     cells = more_than_one ? [{ content: operand(cat), class: "text-right" }] : []
-    cells << { content: badge_tag(count, class: cat),
-               class: "text-right" }
+    cells << { content: badge_tag(count, class: cat), class: "text-right" }
     cells << LABELS[cat]
     { content: cells, class: cat }
   end

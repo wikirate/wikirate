@@ -1,10 +1,13 @@
+%h1 Filtered answers
 - if voo.show? :chart
   .row
     .vega.col-12.col-xl-9.p-0.text-center
       = _render_chart
-    .col-12.col-xl-3.pt-xl-4
-      %h6 Filtered answers
-      = _render_stats
+    .col-12.col-xl-3.pt-xl-4.answer-stats
+      = render_stats
+- else
+  .answer-stats
+    = render_stats
 .details-table
   = render_table home_view: :table
 = render_export_links
