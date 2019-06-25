@@ -2,16 +2,28 @@ shared_context "formula" do
   def formula_str options: nil, method: nil, year: nil, unknown: nil, company: nil,
               metric: "Joe User+RM", related: nil, add: nil
     res = "{{#{metric}"
-    year = "year:#{year}" if year
-    unknown = "unknown: #{unknown}" if unknown
-    company = "company: #{company}" if company
-    company = "company: Related[#{related}]" if related
-    options = [year, unknown, company].compact.join("; ") unless options
+    options ||= nest_options(year, unknown, company, related)
     res += "| #{options}" if options.present?
     res += "}}"
     res = "#{method}[#{res}]" if method
     res = "#{res}+#{formula_str(add)}" if add
     res
+  end
+
+  def nest_options year, unknown, company, related
+    options = []
+    { "year: %s" => year,
+      "unknown: %s" => unknown,
+      "company: %s" => company,
+      "company: Related[%s]" => related }.each do |clause, option|
+      add_option_if_exists options, clause, option
+    end
+    options.compact.join "; "
+  end
+
+  def add_option_if_exists array, clause, option
+    return unless option
+    array << (clause % option.to_s)
   end
 
   # Create a formula metric with formula
@@ -35,5 +47,4 @@ shared_context "formula" do
     Answer.where(metric_name: "Jedi+formula1", company_id: company_id, year: year)
           .take&.value
   end
-
 end

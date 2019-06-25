@@ -1,0 +1,12 @@
+{
+  "type": "rect",
+  "from": { "data": "table" },
+  "encode": {
+    "enter": {
+      "x": { "scale": "x", "field": "x" },
+      "width": { "scale": "x", "band": true, "offset": -1 },
+      "y": { "scale": "y", "field": "y" },
+      "y2": { "scale": "y", "value": 0 }
+    }
+  }
+}

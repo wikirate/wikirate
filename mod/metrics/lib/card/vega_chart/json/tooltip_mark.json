@@ -1,0 +1,19 @@
+{
+  "type": "text",
+  "encode": {
+    "enter": {
+      "align": { "value": "center" },
+      "baseline": { "value": "bottom" },
+      "fill": { "value": "#333" }
+    },
+    "update": {
+      "x": { "scale": "x", "signal": "tooltip.x", "band": 0.5 },
+      "y": { "scale": "y", "signal": "tooltip.y", "offset": -2 },
+      "text": { "signal": "tooltip.y" },
+      "fillOpacity": [
+        { "test": "datum === tooltip", "value": 0 },
+        { "value": 1 }
+      ]
+    }
+  }
+}
