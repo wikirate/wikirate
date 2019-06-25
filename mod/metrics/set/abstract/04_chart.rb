@@ -116,12 +116,6 @@ format :json do
   end
 
   def chart_class
-    if card.ten_scale?
-      Card::VegaChart::TenScaleChart
-    elsif card.numeric? || card.relationship?
-      Card::VegaChart::NumericChart
-    else
-      Card::VegaChart::CategoryChart
-    end
+    Vega.chart_class self
   end
 end

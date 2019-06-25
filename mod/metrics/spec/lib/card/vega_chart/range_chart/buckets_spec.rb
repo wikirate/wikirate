@@ -1,4 +1,4 @@
-RSpec.describe Card::VegaChart::RangeChart::Buckets, "bucket calculation" do
+RSpec.describe Card::VegaChart::RangeChart::Buckets do
   MIN = 582_603
   MAX = 5_613_573
 
@@ -14,13 +14,15 @@ RSpec.describe Card::VegaChart::RangeChart::Buckets, "bucket calculation" do
 
   def bucket_ranges min, max
     mid = be_between min, max
-    [[eq(min), mid]] + ([[mid, mid]] * 8) +
-     [[mid, be_between(max, max + 100_000).inclusive]]
+    [[eq(min), mid]] +
+      ([[mid, mid]] * 8) +
+      [[mid, be_between(max, max + 100_000).inclusive]]
   end
 
   describe "#each_bucket" do
     it "creates 10 buckets" do
-      expect { |probe| buckets(MIN, MAX).each_bucket(&probe) }.to yield_control.exactly(10).times
+      expect { |probe| buckets(MIN, MAX).each_bucket(&probe) }
+        .to yield_control.exactly(10).times
     end
 
     it "calculates correctly" do
@@ -28,7 +30,7 @@ RSpec.describe Card::VegaChart::RangeChart::Buckets, "bucket calculation" do
         .to yield_successive_args(*bucket_ranges(MIN, MAX))
     end
 
-    context "negative values" do
+    context "with negative values" do
       MIN = -500_000
       MAX = 50_600_000
 

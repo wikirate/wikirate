@@ -1,7 +1,7 @@
 class Card
   class VegaChart
     # chart for categorical metrics
-    # shows companies   per category
+    # shows companies per category
     class CategoryChart < VerticalBars
       MAX_CATEGORIES = 10
 
@@ -10,10 +10,6 @@ class Card
           add_label(options_hash[category] || category) if special_labels?
           add_data({ value: category }, count)
         end
-      end
-
-      def click_action
-        :select
       end
 
       def options_hash
@@ -83,10 +79,6 @@ class Card
       def highlight? filter
         return true unless @highlight_value
         @highlight_value == filter[:value]
-      end
-
-      def highlight_value_from_filter_opts filter_opts
-        filter_opts[:value]
       end
     end
   end

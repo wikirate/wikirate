@@ -1,5 +1,6 @@
 class Card
   module VegaChart
+    # Company count histograms.  Each vertical bar represents a range of values
     class RangeChart < VerticalBars
       include Buckets
 
@@ -36,10 +37,6 @@ class Card
 
       private
 
-      def click_action
-        :zoom
-      end
-
       def data_item_hash filter, _count
         super.merge x: filter[:numeric_value][:to]
       end
@@ -69,15 +66,8 @@ class Card
       end
 
       def highlight? filter
-        return true unless @highlight_value
-        from = filter[:numeric_value][:from]
-        to = filter[:numeric_value][:to]
-        @highlight_value >= from && @highlight_value < to
-      end
-
-      def highlight_value_from_filter_opts _filter_opts
-        nil # zoom instead of higlight
-        # filter_opts[:range][:from]
+        return true unless @highlight_value && (value = filter[:numeric_value])
+        @highlight_value >= value[:from] && @highlight_value < value[:to]
       end
     end
   end

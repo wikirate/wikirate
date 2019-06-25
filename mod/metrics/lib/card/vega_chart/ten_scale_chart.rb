@@ -1,6 +1,7 @@
 class Card
   module VegaChart
-    # chart for score metrics with one bucket for each integer between 0 and 10
+    # chart for scores and wikiratings with one bucket for each integer between 0 and 10
+    # (eg 0-0.999 is one bucket.  10 has its own bucket)
     class TenScaleChart < RangeChart
       DEFAULT_BAR_CNT = 11
 
@@ -8,7 +9,7 @@ class Card
         @min = 0
         @max = 11
         @bucket_size = 1
-        # @buckets = 11
+        @buckets = 11
         @use_log_scale = false
       end
 
@@ -34,7 +35,7 @@ class Card
       end
 
       def x_label_scale
-        super.merge(type: "band")
+        super.merge type: "band"
       end
 
       def diagonal_x_labels?
