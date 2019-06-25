@@ -8,12 +8,12 @@ class Card
 
       def chart_class format
         card = format.card
-        if card.ten_scale?
+        if card.categorical?
+          VegaChart::CategoryChart
+        elsif card.ten_scale?
           VegaChart::TenScaleChart
         elsif card.numeric? || card.relationship?
           numeric_chart_class format
-        elsif card.categorical?
-          VegaChart::CategoryChart
         else
           raise Card::Error, "VegaChart not supported for #{card.name}"
         end
@@ -21,7 +21,7 @@ class Card
 
       def numeric_chart_class format
         if format.chart_item_count <= BUCKETS
-          VegaChart::NumberChart # VegaChart::HorizontalNumberChart
+          VegaChart::HorizontalNumberChart
         elsif format.chart_value_count <= BUCKETS
           VegaChart::NumberChart
         else
@@ -89,18 +89,8 @@ class Card
       builtin(:default_layout).merge @layout
     end
 
-    def add_data filter, count
-      @data << data_item_hash(filter, count)
-      @y_range.add @data.last[:y]
-      @data
-    end
-
     def add_label label
       @labels << label
-    end
-
-    def data_item_hash filter, count
-      { y: count, filter: filter, highlight: highlight?(filter) }
     end
 
     def data
@@ -108,7 +98,7 @@ class Card
     end
 
     def marks
-      hash = builtin(:default_marks).clone
+      hash = main_mark.clone
       hash[:encode].merge! update: { fill: fill_color },
                            hover: { fill: { value: ChartColors::HOVER_COLOR },
                                     cursor: { value: hover_cursor } }
@@ -118,6 +108,10 @@ class Card
     def hover_cursor
       "pointer"
       # click_action == :zoom ? "zoom-in" : "pointer"
+    end
+
+    def scales
+      [x_scale, y_scale, color_scale]
     end
 
     def axes

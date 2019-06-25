@@ -1,5 +1,6 @@
 class Card
   class VegaChart
+    # color configuration for vega bar charts
     module ChartColors
       BAR_COLOR = "#eeeeee".freeze
       HIGHLIGHT_COLOR = "#F78C1E".freeze

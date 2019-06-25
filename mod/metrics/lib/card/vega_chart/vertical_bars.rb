@@ -3,19 +3,29 @@ class Card
     # Vertical bar charts where the x axis is answer values and the
     # y axis is company counts
     class VerticalBars < VegaChart
-      def scales
-        [x_scale, y_scale, color_scale]
+      def add_data filter, count
+        @data << data_item_hash(filter, count)
+        @y_range.add @data.last[:y]
+        @data
+      end
+
+      def data_item_hash filter, count
+        { y: count, filter: filter, highlight: highlight?(filter) }
+      end
+
+      def main_mark
+        builtin :vertical_mark
       end
 
       def x_scale
-        { name: "x",
+        { name: "xscale",
           type: "band",
           range: "width",
           domain: { data: "table", field: "x" } }
       end
 
       def y_scale
-        { name: "y",
+        { name: "yscale",
           type: y_type,
           range: "height",
           domain: { data: "table", field: "y" },
@@ -27,12 +37,12 @@ class Card
       end
 
       def x_axis
-        { orient: "bottom", scale: "x", title: "Values",
+        { orient: "bottom", scale: "xscale", title: "Values",
           encode: diagonalize(axes_colors) }
       end
 
       def y_axis
-        hash = { orient: "left", scale: "y",
+        hash = { orient: "left", scale: "yscale",
                  title: @format.rate_subjects,
                  encode: axes_colors }
         hash[:tickCount] = y_tick_count if y_tick_count
