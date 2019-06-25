@@ -1,5 +1,5 @@
 class Card
-  module VegaChart
+  class VegaChart
     # Company count histograms.  Each vertical bar represents a range of values
     class RangeChart < VerticalBars
       include Buckets
