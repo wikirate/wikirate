@@ -1,5 +1,5 @@
 class Card
-  module Chart
+  module VegaChart
     # chart for score metrics with one bucket for each integer between 0 and 10
     class TenScaleChart < RangeChart
       DEFAULT_BAR_CNT = 11
@@ -8,7 +8,7 @@ class Card
         @min = 0
         @max = 11
         @bucket_size = 1
-        @buckets = 11
+        # @buckets = 11
         @use_log_scale = false
       end
 

@@ -10,7 +10,7 @@ format :html do
     rows = card.query.count_by_status
     more_than_one = rows.keys.size > 1
     LABELS.keys.map do |status|
-      next unless count = rows[status]
+      next unless (count = rows[status])
       stat_row status, count, more_than_one
     end.compact
   end

@@ -1,8 +1,8 @@
 class Card
-  module Chart
+  class VegaChart
     # chart for categorical metrics
     # shows companies   per category
-    class CategoryChart < VegaChart
+    class CategoryChart < VerticalBars
       MAX_CATEGORIES = 10
 
       def generate_data

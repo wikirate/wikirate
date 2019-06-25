@@ -1,6 +1,6 @@
 class Card
-  module Chart
-    class RangeChart < VegaChart
+  module VegaChart
+    class RangeChart < VerticalBars
       include Buckets
 
       DEFAULT_BAR_CNT = 10

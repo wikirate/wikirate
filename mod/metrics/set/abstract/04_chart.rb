@@ -117,11 +117,11 @@ format :json do
 
   def chart_class
     if card.ten_scale?
-      Card::Chart::TenScaleChart
+      Card::VegaChart::TenScaleChart
     elsif card.numeric? || card.relationship?
-      Card::Chart::NumericChart
+      Card::VegaChart::NumericChart
     else
-      Card::Chart::CategoryChart
+      Card::VegaChart::CategoryChart
     end
   end
 end

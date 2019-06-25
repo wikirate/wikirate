@@ -1,9 +1,9 @@
 class Card
   # chart for numeric metrics
   # one bar per value
-  module Chart
+  class VegaChart
     # generates chart with one bar per (numeric) value
-    class NumberChart < VegaChart
+    class NumberChart < VerticalBars
       def generate_data
         @filter_query.count_by_group(:numeric_value).each do |num, count|
           next unless num

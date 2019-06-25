@@ -1,5 +1,5 @@
 class Card
-  module Chart
+  class VegaChart
     class NumericChart < VegaChart
       BUCKETS = 10
 
