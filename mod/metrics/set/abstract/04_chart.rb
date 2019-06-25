@@ -116,6 +116,6 @@ format :json do
   end
 
   def chart_class
-    Vega.chart_class self
+    VegaChart.chart_class self
   end
 end

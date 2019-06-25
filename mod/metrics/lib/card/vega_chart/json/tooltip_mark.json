@@ -1,3 +1,6 @@
+/* show the value on top of the bar on mouse over
+   (needs the "signal" section in DEFAULT_LAYOUT) */
+
 {
   "type": "text",
   "encode": {

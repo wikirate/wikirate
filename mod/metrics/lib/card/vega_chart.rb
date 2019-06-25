@@ -9,11 +9,11 @@ class Card
       def chart_class format
         card = format.card
         if card.ten_scale?
-          TenScaleChart
+          VegaChart::TenScaleChart
         elsif card.numeric? || card.relationship?
           numeric_chart_class format
         elsif card.categorical?
-          CategoryChart
+          VegaChart::CategoryChart
         else
           raise Card::Error, "VegaChart not supported for #{card.name}"
         end
@@ -21,25 +21,24 @@ class Card
 
       def numeric_chart_class format
         if format.chart_item_count <= BUCKETS
-          NumberChart # HorizontalNumberChart
+          VegaChart::NumberChart # VegaChart::HorizontalNumberChart
         elsif format.chart_value_count <= BUCKETS
-          NumberChart
+          VegaChart::NumberChart
         else
-          RangeChart
+          VegaChart::RangeChart
         end
       end
 
-      def hash_from_json filename
-        json = File.read(File.expand_path("../vega_chart/json/#{filename}.json", __FILE__))
-        JSON.parse(json).deep_symbolize_keys.freeze
+      def json_from_file filename
+        File.read File.expand_path("../vega_chart/json/#{filename}.json", __FILE__)
+      end
+
+      def builtin filename
+        JSON.parse(json_from_file(filename)).deep_symbolize_keys.freeze
       end
     end
 
-    DEFAULT_LAYOUT = hash_from_json "default_layout"
-    DEFAULT_MARKS = hash_from_json "default_marks"
-    TOOLTIP_MARK = hash_from_json "tooltip_mark"
-    # show the value on top of the bar on mouse over
-    # (needs the "signal" section in DEFAULT_LAYOUT)
+    delegate :builtin, to: :class
 
     Range = Struct.new(:min, :max) do
       def add value
@@ -87,7 +86,7 @@ class Card
     private
 
     def layout
-      DEFAULT_LAYOUT.merge @layout
+      builtin(:default_layout).merge @layout
     end
 
     def add_data filter, count
@@ -109,11 +108,11 @@ class Card
     end
 
     def marks
-      hash = DEFAULT_MARKS.clone
+      hash = builtin(:default_marks).clone
       hash[:encode].merge! update: { fill: fill_color },
                            hover: { fill: { value: ChartColors::HOVER_COLOR },
                                     cursor: { value: hover_cursor } }
-      [hash, TOOLTIP_MARK]
+      [hash, builtin(:tooltip_mark)]
     end
 
     def hover_cursor
