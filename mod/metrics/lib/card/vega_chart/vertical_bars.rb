@@ -15,14 +15,13 @@ class Card
         end
       end
 
-      def add_data filter, count
-        @data << data_item_hash(filter, count)
-        y_range.add @data.last[:yfield]
+      def add_data xval, yval, filter=nil
+        @data << { xfield: xval,
+                   yfield: yval,
+                   filter: { value: (filter || xval) },
+                   highlight: highlight?(filter || xval) }
+        y_range.add yval
         @data
-      end
-
-      def data_item_hash filter, count
-        { yfield: count, filter: filter, highlight: highlight?(filter) }
       end
 
       def main_mark

@@ -17,7 +17,7 @@ class Card
         calculate_buckets
         group_data
         each_bucket do |lower, upper|
-          add_data({ numeric_value: { from: lower, to: upper } }, @counts[lower])
+          add_data lower, @counts[lower], from: lower, to: upper
           add_label lower
         end
       end
@@ -36,6 +36,10 @@ class Card
 
       def x_label_scale
         super.merge type: "band"
+      end
+
+      def x_labels
+        @labels
       end
 
       def diagonal_x_labels?

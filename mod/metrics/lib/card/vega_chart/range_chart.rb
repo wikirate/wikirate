@@ -16,8 +16,7 @@ class Card
         calculate_buckets
         add_label min
         each_bucket do |lower, upper|
-          add_data({ numeric_value: { from: lower, to: upper } },
-                   count_in_range(lower, upper))
+          add_data lower, count_in_range(lower, upper), from: lower, to: upper
           add_label upper
         end
       end
@@ -65,8 +64,8 @@ class Card
         end
       end
 
-      def highlight? filter
-        return true unless @highlight_value && (value = filter[:numeric_value])
+      def highlight? value
+        return true unless @highlight_value
         @highlight_value >= value[:from] && @highlight_value < value[:to]
       end
     end

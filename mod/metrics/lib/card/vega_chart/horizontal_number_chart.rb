@@ -4,17 +4,18 @@ class Card
     # value
     class HorizontalNumberChart < VegaChart
       def generate_data
-        @filter_query.run.each do |answer|
-          return unless (value = answer.value) && @format.card.number?(value)
+        results = @filter_query.run
+        results.each do |answer|
+          next unless (value = answer.value) && @format.card.number?(value)
           add_data answer, value
         end
       end
 
       def add_data answer, value
-        @data << { yfield: answer_label(answer), xfield: value }
+        @data << { yfield: ylabel(answer), xfield: value, details: answer.name.url_key }
       end
 
-      def answer_label answer
+      def ylabel answer
         company = Card.fetch_name(answer.company).to_s
         if @filter_query.filter_args[:year]
           company.truncate 20

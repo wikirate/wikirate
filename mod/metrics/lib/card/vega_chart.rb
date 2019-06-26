@@ -10,8 +10,6 @@ class Card
         card = format.card
         if card.categorical?
           VegaChart::CategoryChart
-        elsif card.ten_scale?
-          VegaChart::TenScaleChart
         elsif card.numeric? || card.relationship?
           numeric_chart_class format
         else
@@ -22,6 +20,8 @@ class Card
       def numeric_chart_class format
         if format.chart_item_count <= BUCKETS
           VegaChart::HorizontalNumberChart
+        elsif card.ten_scale?
+          VegaChart::TenScaleChart
         # elsif format.chart_value_count <= BUCKETS
         #  VegaChart::NumberChart
         else

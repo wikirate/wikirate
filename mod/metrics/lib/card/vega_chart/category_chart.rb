@@ -8,7 +8,7 @@ class Card
       def generate_data
         display_categories.each do |category, count|
           add_label(options_hash[category] || category) if special_labels?
-          add_data({ value: category }, count)
+          add_data category, count
         end
       end
 
@@ -66,15 +66,11 @@ class Card
         super << { name: "x_label", type: "point", range: "width", domain: @labels }
       end
 
-      def data_item_hash filter, _count
-        super.merge xfield: filter[:value]
-      end
-
       # @return true if the bar given by its filter
       #   is supposed to be highlighted
-      def highlight? filter
+      def highlight? value
         return true unless @highlight_value
-        @highlight_value == filter[:value]
+        @highlight_value == value
       end
     end
   end
