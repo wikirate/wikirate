@@ -43,6 +43,10 @@ format :html do
     select_filter :updated
   end
 
+  view :filter_outliers_formgroup, cache: :never do
+    select_filter :outliers, "only"
+  end
+
   view :filter_designer_formgroup, cache: :never do
     select_filter :designer
   end
@@ -72,13 +76,15 @@ format :html do
   end
 
   def status_options
-    {
-      "All" => "all",
+    { "All" => "all",
       "Researched" => "exists",
       "Known" => "known",
       "Unknown" => "unknown",
-      "Not Researched" => "none"
-    }
+      "Not Researched" => "none" }
+  end
+
+  def outliers_options
+    { "Only" => "only", "Exclude" => "exclude" }
   end
 
   def metric_type_options

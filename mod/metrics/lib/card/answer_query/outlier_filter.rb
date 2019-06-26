@@ -1,22 +1,26 @@
 class Card
   class AnswerQuery
     # filter for outliers
-    module OutlierQuery
-      def outliers_query
-        restrict_to_ids :id, outlier_ids
+    module OutlierFilter
+      def outliers_query value
+        case value
+        when "only"
+          restrict_to_ids :id, outlier_ids
+        when "exclude"
+          filter :id, outlier_ids, "NOT IN" if outlier_ids.present?
+        end
       end
 
       private
 
       def id_value_map
-        all_related_answers.each_with_object({}) do |answer, h|
-          next unless answer.numeric_value
+        @id_value_map ||= all_related_answers.each_with_object({}) do |answer, h|
           h[answer.id] = answer.numeric_value
         end
       end
 
       def all_related_answers
-        Answer.where(metric_id: @metric_id)
+        Answer.where(metric_id: @metric_id).where.not(numeric_value: nil)
       end
 
       # alternative method to determine outliers; not finished
@@ -35,8 +39,7 @@ class Card
       end
 
       def outlier_ids
-        return [] unless (value_map = id_value_map).present?
-        savanna_outliers(value_map).keys
+        @outlier_ids ||= id_value_map.present? ? savanna_outliers(id_value_map).keys : []
       end
 
       def savanna_outliers id_value_map

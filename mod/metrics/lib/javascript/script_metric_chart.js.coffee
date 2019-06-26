@@ -13,7 +13,11 @@ loadVis = (vis) ->
 
 initChart = (spec, id) ->
   el = $("##{id}")
-  initVega(spec, el).addEventListener 'click', (event, item) ->
+  vega = initVega spec, el
+  handleChartClicks vega, el
+
+handleChartClicks = (vega, el) ->
+  vega.addEventListener 'click', (event, item) ->
     d = item.datum
     if d.filter
       updateFilter el, d.filter

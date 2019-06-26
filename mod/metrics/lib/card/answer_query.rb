@@ -5,6 +5,7 @@ class Card
     include Filtering
     include AnswerFilters
     include MetricAndCompanyFilters
+    include OutlierFilter
 
     # instantiates AllAnswerQuery object for searches that can return
     # not-researched answers (status = :all or :none) and AnswerQuery
