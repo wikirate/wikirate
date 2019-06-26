@@ -4,7 +4,7 @@ class Card
     class NumberChart < VerticalBars
       def generate_data
         @filter_query.count_by_group(:numeric_value).each do |num, count|
-          next unless num
+          next unless num # exclude nil group
           add_data({ numeric_value: num }, count)
         end
       end
@@ -12,11 +12,7 @@ class Card
       private
 
       def data_item_hash filter, _count
-        super.merge x: @format.humanized_number(filter[:numeric_value])
-      end
-
-      def x_axis
-        super.merge title: "Values"
+        super.merge xfield: @format.humanized_number(filter[:numeric_value])
       end
 
       # @return true if the bar given by its filter

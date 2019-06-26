@@ -10,9 +10,9 @@
       "fill": { "value": "#333" }
     },
     "update": {
-      "x": { "scale": "xscale", "signal": "tooltip.x", "band": 0.5 },
-      "y": { "scale": "yscale", "signal": "tooltip.y", "offset": -2 },
-      "text": { "signal": "tooltip.y" },
+      "x": { "scale": "xscale", "signal": "tooltip.xfield", "band": 0.5 },
+      "y": { "scale": "yscale", "signal": "tooltip.yfield", "offset": -2 },
+      "text": { "signal": "tooltip.yfield" },
       "fillOpacity": [
         { "test": "datum === tooltip", "value": 0 },
         { "value": 1 }

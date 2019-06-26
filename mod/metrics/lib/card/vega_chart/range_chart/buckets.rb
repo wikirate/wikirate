@@ -1,5 +1,5 @@
 class Card
-  module Chart
+  class VegaChart
     class RangeChart
       # calculate the grouping for a range chart
       module Buckets

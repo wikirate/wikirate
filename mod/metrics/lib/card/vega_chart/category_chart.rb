@@ -16,10 +16,6 @@ class Card
         @options_hash ||= metric_card.value_options_card&.parse_content&.invert || {}
       end
 
-      def metric_card
-        @metric_card ||= Card[@metric_id]
-      end
-
       def special_labels?
         return @special_labels unless @special_labels.nil?
 
@@ -71,7 +67,7 @@ class Card
       end
 
       def data_item_hash filter, _count
-        super.merge x: filter[:value]
+        super.merge xfield: filter[:value]
       end
 
       # @return true if the bar given by its filter

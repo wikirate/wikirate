@@ -38,11 +38,11 @@ class Card
       private
 
       def data_item_hash filter, _count
-        super.merge x: filter[:numeric_value][:to]
+        super.merge xfield: filter[:numeric_value][:to]
       end
 
       def x_axis
-        super.merge scale: "x_label", title: "Ranges"
+        super.merge scale: "x_label", title: title_with_unit("Ranges")
       end
 
       def scales

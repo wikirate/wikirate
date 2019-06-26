@@ -3,9 +3,9 @@
   "from": { "data": "table" },
   "encode": {
     "enter": {
-      "x": { "scale": "xscale", "field": "x" },
+      "x": { "scale": "xscale", "field": "xfield" },
       "width": { "scale": "xscale", "band": true, "offset": -1 },
-      "y": { "scale": "yscale", "field": "y" },
+      "y": { "scale": "yscale", "field": "yfield" },
       "y2": { "scale": "yscale", "value": 0 }
     }
   }

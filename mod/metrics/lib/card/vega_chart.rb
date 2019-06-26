@@ -22,8 +22,8 @@ class Card
       def numeric_chart_class format
         if format.chart_item_count <= BUCKETS
           VegaChart::HorizontalNumberChart
-        elsif format.chart_value_count <= BUCKETS
-          VegaChart::NumberChart
+        # elsif format.chart_value_count <= BUCKETS
+        #  VegaChart::NumberChart
         else
           VegaChart::RangeChart
         end
@@ -34,23 +34,13 @@ class Card
       end
 
       def builtin filename
-        JSON.parse(json_from_file(filename)).deep_symbolize_keys.freeze
+        @builtin ||= {}
+        @builtin[filename] ||=
+          JSON.parse(json_from_file(filename)).deep_symbolize_keys.freeze
       end
     end
 
     delegate :builtin, to: :class
-
-    Range = Struct.new(:min, :max) do
-      def add value
-        self.min = [min, value].compact.min
-        self.max = [max, value].compact.max
-      end
-
-      def span
-        return 0 unless max && min
-        max - min
-      end
-    end
 
     # @param opts [Hash] config options
     # @option opts [Boolean] :link make bars clickable
@@ -65,9 +55,7 @@ class Card
       @data = []
       @labels = []
 
-      @y_range = Range.new
       @layout = opts.delete(:layout) || {}
-      @max_ticks = @layout.delete(:max_ticks)
       @opts = opts
       generate_data
     end
@@ -77,10 +65,7 @@ class Card
     end
 
     def to_hash
-      layout.merge(data: data,
-                   scales: scales,
-                   marks: marks,
-                   axes: axes)
+      layout.merge(data: data, scales: scales, marks: marks, axes: [x_axis, y_axis])
     end
 
     private
@@ -102,7 +87,7 @@ class Card
       hash[:encode].merge! update: { fill: fill_color },
                            hover: { fill: { value: ChartColors::HOVER_COLOR },
                                     cursor: { value: hover_cursor } }
-      [hash, builtin(:tooltip_mark)]
+      [hash]
     end
 
     def hover_cursor
@@ -114,8 +99,30 @@ class Card
       [x_scale, y_scale, color_scale]
     end
 
-    def axes
-      [x_axis, y_axis]
+    def x_axis
+      { orient: "bottom", scale: "xscale" }
+    end
+
+    def y_axis
+      { orient: "left", scale: "yscale" }
+    end
+
+    def x_scale
+      { name: "xscale", range: "width", domain: { data: "table", field: "xfield" } }
+    end
+
+    def y_scale
+      { name: "yscale", range: "height", domain: { data: "table", field: "yfield" } }
+    end
+
+    def title_with_unit title
+      return title unless (unit = metric_card.unit) && unit.present?
+
+      "#{title} (#{unit})"
+    end
+
+    def metric_card
+      @metric_card ||= Card[@metric_id]
     end
   end
 end

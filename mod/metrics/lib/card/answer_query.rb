@@ -18,6 +18,8 @@ class Card
       end
     end
 
+    attr_accessor :filter_args, :sort_args, :paging_args
+
     def initialize filter, sorting={}, paging={}
       @filter_args = filter
       @sort_args = sorting

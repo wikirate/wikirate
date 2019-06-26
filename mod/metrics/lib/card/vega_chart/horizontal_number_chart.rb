@@ -4,38 +4,31 @@ class Card
     # value
     class HorizontalNumberChart < VegaChart
       def generate_data
-        @filter_query.run.each do |answer_card|
-          add_data answer_card.company, answer_card.value
+        @filter_query.run.each do |answer|
+          return unless (value = answer.value) && @format.card.number?(value)
+          add_data answer, value
         end
       end
 
-      def add_data company, value
-        @data << { company: Card.fetch_name(company), answer_val: value }
+      def add_data answer, value
+        @data << { yfield: answer_label(answer), xfield: value }
+      end
+
+      def answer_label answer
+        company = Card.fetch_name(answer.company).to_s
+        if @filter_query.filter_args[:year]
+          company.truncate 20
+        else
+          "#{company.truncate 15} (#{answer.year})"
+        end
       end
 
       def x_scale
-        { name: "xscale",
-          type: "linear",
-          domain: { data: "table", field: "answer_val" },
-          nice: true,
-          range: "width" }
+        super.merge type: "linear", nice: true
       end
 
       def y_scale
-        { name: "yscale",
-          type: "band",
-          domain: { data: "table", field: "company" },
-          range: "height",
-          padding: 0.05,
-          round: true }
-      end
-
-      def x_axis
-        { orient: "bottom", scale: "xscale" }
-      end
-
-      def y_axis
-        { orient: "left", scale: "yscale" }
+        super.merge type: "band", padding: 0.05
       end
 
       def main_mark
