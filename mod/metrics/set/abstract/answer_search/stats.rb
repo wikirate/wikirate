@@ -10,12 +10,16 @@ format :html do
     @count_by_status ||= card.query.count_by_status
   end
 
+  def stati_with_counts skip_total=false
+    LABELS.keys.reject do |status|
+      (skip_total && status == :total) || !count_by_status.key?(status)
+    end
+  end
+
   def map_status skip_total=false
-    LABELS.keys.map do |status|
-      next unless (count = count_by_status[status])
-      next if skip_total && status == :total
-      yield status, count
-    end.compact
+    stati_with_counts(skip_total).map do |status|
+      yield status, count_by_status[status]
+    end
   end
 
   def stat_rows
@@ -53,6 +57,6 @@ format :html do
         title: "#{count} #{LABELS[status]} Answers",
         class: "progress-#{status}" }
     end
-    progress_bar *sections
+    progress_bar(*sections)
   end
 end
