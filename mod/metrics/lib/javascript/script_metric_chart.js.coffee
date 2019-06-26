@@ -16,7 +16,7 @@ initChart = (spec, id) ->
   initVega(spec, el).addEventListener 'click', (event, item) ->
     d = item.datum
     if d.filter
-      updateFilter el, c.filter
+      updateFilter el, d.filter
     else if d.details
       updateDetails d.details
 
@@ -30,4 +30,4 @@ updateFilter = (el, filterVals) ->
     filter.addRestriction key, filterVals[key]
 
 updateDetails = (detailsAnswer) ->
-  $('[data-details-mark="' + detailsAnswer + '"]').trigger "click"
+  $("[data-details-mark=\"#{detailsAnswer}\"]").trigger "click"
