@@ -20,7 +20,7 @@ class Card
       def numeric_chart_class format
         if format.chart_item_count <= BUCKETS
           VegaChart::HorizontalNumberChart
-        elsif card.ten_scale?
+        elsif format.card.ten_scale?
           VegaChart::TenScaleChart
         # elsif format.chart_value_count <= BUCKETS
         #  VegaChart::NumberChart
