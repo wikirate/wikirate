@@ -69,15 +69,11 @@ format :html do
   end
 
   view :details_tab do
-    [labeled_field(:headquarters), integrations]
+    [labeled_field(:headquarters)] + integrations
   end
 
   def integrations
-    output [
-      content_tag(:h1, "Integrations"),
-      wikipedia_extract,
-      open_corporates_extract
-    ]
+    [content_tag(:h1, "Integrations"), wikipedia_extract] # , open_corporates_extract
   end
 
   def wikipedia_extract
