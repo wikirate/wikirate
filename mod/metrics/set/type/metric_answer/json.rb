@@ -8,6 +8,10 @@ format :json do
     )
   end
 
+  def horizontal_ok?
+    false
+  end
+
   def chart_metric_id
     card.metric_card.id
   end

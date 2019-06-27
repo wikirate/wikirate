@@ -71,18 +71,6 @@ class Card
       def max_ticks
         @max_ticks ||= @layout.delete(:max_ticks)
       end
-
-      def diagonal_x_labels?
-        true
-      end
-
-      def diagonalize encode
-        return unless diagonal_x_labels?
-
-        encode.deep_merge! labels: { update: { angle: { value: 30 },
-                                               limit: { value: 70 },
-                                               align: { value: "left" } } }
-      end
     end
   end
 end

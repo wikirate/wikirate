@@ -1,8 +1,6 @@
-.details-top.mb-3.row
-  .col-6
+.details-top.mb-3.d-flex.justify-content-between
+  .detail-year-and-value.w-50
     = render_year_and_value_pretty
-
-  .col-5
+  .details-chart
     = render_chart
-  .col-1
-    = render_full_page_link
+  = render_full_page_link

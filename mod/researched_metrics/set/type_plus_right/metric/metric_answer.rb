@@ -17,13 +17,7 @@ format :json do
   end
 end
 
-# tables used on a metric page
 format :html do
-  view :core do
-    voo.show! :chart
-    super()
-  end
-
   def partner
     :company
   end

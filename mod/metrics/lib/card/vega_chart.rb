@@ -6,19 +6,19 @@ class Card
     class << self
       BUCKETS = 10
 
-      def chart_class format
+      def chart_class format, horizontal_ok=true
         card = format.card
         if card.categorical?
           VegaChart::CategoryChart
         elsif card.numeric? || card.relationship?
-          numeric_chart_class format
+          numeric_chart_class format, horizontal_ok
         else
           raise Card::Error, "VegaChart not supported for #{card.name}"
         end
       end
 
-      def numeric_chart_class format
-        if format.chart_item_count <= BUCKETS
+      def numeric_chart_class format, horizontal_ok
+        if horizontal_ok && format.chart_item_count <= BUCKETS
           VegaChart::HorizontalNumberChart
         elsif format.card.ten_scale?
           VegaChart::TenScaleChart
@@ -43,7 +43,6 @@ class Card
     delegate :builtin, to: :class
 
     # @param opts [Hash] config options
-    # @option opts [Boolean] :link make bars clickable
     # @option opts [String] :highlight highlight the bar for the given value
     # @option opts [Hash] :layout override DEFAULT_LAYOUT
     # @option opts [:light/:dark] :axes color of axes, labels and titles
@@ -99,20 +98,32 @@ class Card
       [x_scale, y_scale, color_scale]
     end
 
-    def x_axis
-      { orient: "bottom", scale: "xscale" }
-    end
-
-    def y_axis
-      { orient: "left", scale: "yscale" }
-    end
-
     def x_scale
       { name: "xscale", range: "width", domain: { data: "table", field: "xfield" } }
     end
 
     def y_scale
       { name: "yscale", range: "height", domain: { data: "table", field: "yfield" } }
+    end
+
+    def x_axis
+      diagonalize orient: "bottom", scale: "xscale"
+    end
+
+    def y_axis
+      { orient: "left", scale: "yscale" }
+    end
+
+    def diagonal_x_labels?
+      true
+    end
+
+    def diagonalize x_axis
+      return unless diagonal_x_labels?
+
+      x_axis.deep_merge! encode: { labels: { update: { angle: { value: 30 },
+                                                       limit: { value: 70 },
+                                                       align: { value: "left" } } } }
     end
 
     def title_with_unit title

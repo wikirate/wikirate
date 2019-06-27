@@ -1,4 +1,5 @@
 include_set Abstract::Tabs
+include_set Abstract::Filterable
 
 format :html do
   def tab_list
@@ -13,7 +14,6 @@ format :html do
       details:          { label: "Answer" },
       metric:           { label: "Metric" },
       wikirate_company: { label: "Company" },
-      year:             { label: "Years", count: record_card.count }
     }
   end
 
@@ -41,12 +41,28 @@ format :html do
     [details_top, render_expanded_details]
   end
 
-  # def tmp_details
-  #   [
-  #     link_to("record", href: "#", class: "_record-filter",
-  #             data: { filter: { key: "metric", value: "'#{card.metric_name}'"} } )
-  #   ]
-  # end
+  view :record_button do
+    filter_for_record do
+      button_tag "#{card.record_card.count}-Year Record",
+                 class: "btn-sm mt-3 mb-1", situation: "secondary"
+    end
+  end
+
+  def filter_for_record
+    filterable record_filter_hash, class: "d-inline" do
+      yield
+    end
+  end
+
+  def record_filter_hash
+    { status: :exists,
+      metric_name: exactly(card.metric_name),
+      company_name: exactly(card.company_name) }
+  end
+
+  def exactly name
+    %("#{Card.fetch_name name}")
+  end
 
   def details_top
     class_up "full-page-link", "metric-color"
@@ -58,7 +74,7 @@ format :html do
   end
 
   view :details_sidebar do
-    wrap { haml :details_sidebar }
+    wrap { filtering(".RIGHT-answer ._filter-widget") { haml :details_sidebar } }
   end
 
   view :company_details_sidebar do
