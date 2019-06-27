@@ -2,14 +2,10 @@ include_set Abstract::Chart
 
 format :json do
   def vega_chart_config _highlight=nil
-    @data ||= chart_class.new(self,
-                              highlight: card.value,
-                              layout: { height: 70, width: 300,
-                                        padding: { top: 10, left: 50,
-                                                   bottom: 20, right: 30 },
-                                        max_ticks: 5 },
-                              link: false,
-                              axes: :light)
+    @data ||= chart_class.new(
+      self, highlight: card.value, axes: :light,
+            layout: { height: 75, width: 225, max_ticks: 5, padding: 2 }
+    )
   end
 
   def chart_metric_id

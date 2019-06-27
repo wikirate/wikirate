@@ -18,6 +18,8 @@ initChart = (spec, id) ->
 
 handleChartClicks = (vega, el) ->
   vega.addEventListener 'click', (event, item) ->
+    return unless el.closest("._filtered-content").exists()
+
     d = item.datum
     if d.filter
       updateFilter el, d.filter

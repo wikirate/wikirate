@@ -17,18 +17,6 @@ RSpec.describe Card::AnswerQuery do
     all_metric_titles.reject { |n| researched_metric_keys.include? n.key }
   end
 
-  # let(:all_metrics_by_importance) do
-  #   Card.search type_id: Card::MetricID,
-  #               return: :name,
-  #               sort: { right: "*vote count" }
-  # end
-  #
-  # let :unresearched_metric_keys_by_importance do
-  #   titles_of(all_metrics_by_importance).reject do |n|
-  #     researched_metric_keys.include? n.key
-  #   end
-  # end
-
   let :latest_answers_by_importance do
     ["disturbances in the Force+2001", "Victims by Employees+1977",
      "Sith Lord in Charge+1977", "dinosaurlabor+2010", "cost of planets destroyed+1977",

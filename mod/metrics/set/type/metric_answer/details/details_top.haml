@@ -1,4 +1,8 @@
-.details-top.mb-3
-  .float-right
+.details-top.mb-3.row
+  .col-6
+    = render_year_and_value_pretty
+
+  .col-5
+    = render_chart
+  .col-1
     = render_full_page_link
-  = render_year_and_value_pretty

@@ -70,6 +70,7 @@ class Card
       #   is supposed to be highlighted
       def highlight? value
         return true unless @highlight_value
+
         @highlight_value == value
       end
     end

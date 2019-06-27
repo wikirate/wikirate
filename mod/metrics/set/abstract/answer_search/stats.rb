@@ -50,7 +50,7 @@ format :html do
     end
   end
 
-  view :progress_bar do
+  view :progress_bar, cache: :never do
     sections = map_status(true) do |status, count|
       { value: (count / total_results.to_f * 100),
         body: count,

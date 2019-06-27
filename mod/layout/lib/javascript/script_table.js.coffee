@@ -70,8 +70,8 @@ decko.details = (dSlot) ->
 
   @loadPage =(url) ->
     page = $('<div></div>')
-    page.load url
-    page.find(".card-slot").trigger "slotReady"
+    page.load url, ()->
+      page.find(".card-slot").trigger "slotReady"
     page
 
   this

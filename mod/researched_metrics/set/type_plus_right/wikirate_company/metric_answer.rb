@@ -14,7 +14,10 @@ def default_sort_option
 end
 
 format :html do
-  before(:core) { voo.hide! :chart }
+  before :core do
+    voo.hide! :chart
+    super()
+  end
 
   def partner
     :metric
