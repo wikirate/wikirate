@@ -73,7 +73,7 @@ format :html do
   end
 
   def integrations
-    [content_tag(:h1, "Integrations"), wikipedia_extract] # , open_corporates_extract
+    [content_tag(:h1, "Integrations"), wikipedia_extract, open_corporates_extract]
   end
 
   def wikipedia_extract

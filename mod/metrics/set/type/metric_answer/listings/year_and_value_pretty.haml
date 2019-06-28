@@ -1,8 +1,5 @@
 .year-and-value-pretty.d-flex
-  .image-box.medium.mt-1.year-icon-cal
-    = fa_icon("calendar-o")
-    %span.icon-cal-text
-      = card.year
+  = nest card.year, view: :in_calendar
   .thumbnail-text
     %span.metric-color.font-weight-bold
       = handle_unknowns { calculated { nest card.value_card, view: :pretty } }

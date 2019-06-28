@@ -4,7 +4,7 @@ format :json do
   def vega_chart_config _highlight=nil
     @data ||= chart_class.new(
       self, highlight: card.value, axes: :light,
-            layout: { height: 85, width: 255, max_ticks: 5, padding: 2 }
+            layout: { height: 80, width: 200, max_ticks: 5, padding: 2 }
     )
   end
 

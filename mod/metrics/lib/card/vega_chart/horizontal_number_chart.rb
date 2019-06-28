@@ -4,8 +4,7 @@ class Card
     # value
     class HorizontalNumberChart < VegaChart
       def generate_data
-        results = @filter_query.run
-        results.each do |answer|
+        @filter_query.run.each do |answer|
           next unless (value = answer.value) && @format.card.number?(value)
           add_data answer, value
         end

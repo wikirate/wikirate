@@ -2,6 +2,7 @@ class Card
   # generate JSON for Vega visualizations
   class VegaChart
     include ChartColors
+    include Axes
 
     class << self
       BUCKETS = 10
@@ -104,32 +105,6 @@ class Card
 
     def y_scale
       { name: "yscale", range: "height", domain: { data: "table", field: "yfield" } }
-    end
-
-    def x_axis
-      diagonalize orient: "bottom", scale: "xscale"
-    end
-
-    def y_axis
-      { orient: "left", scale: "yscale" }
-    end
-
-    def diagonal_x_labels?
-      true
-    end
-
-    def diagonalize x_axis
-      return unless diagonal_x_labels?
-
-      x_axis.deep_merge! encode: { labels: { update: { angle: { value: 30 },
-                                                       limit: { value: 70 },
-                                                       align: { value: "left" } } } }
-    end
-
-    def title_with_unit title
-      return title unless (unit = metric_card.unit) && unit.present?
-
-      "#{title} (#{unit})"
     end
 
     def metric_card

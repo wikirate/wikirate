@@ -13,7 +13,7 @@ format :html do
     {
       details:          { label: "Answer" },
       metric:           { label: "Metric" },
-      wikirate_company: { label: "Company" },
+      wikirate_company: { label: "Company" }
     }
   end
 
@@ -41,33 +41,25 @@ format :html do
     [details_top, render_expanded_details]
   end
 
-  view :record_links, cache: :never do
+  view :other_year_links do
     return unless record_count > 1
-    wrap_with :div, class: "record-links text-muted" do
-      [render_record_filter_link, other_year_links]
-    end
+    other_record_answers.map do |answer|
+      link_to "#{answer.year}", href: answer.name.url_key, class: "_update-details"
+    end.join ", "
   end
 
   def other_record_answers
     card.record_card.researched_answers.reject { |a| a.year == card.year }
   end
 
-  def other_year_links
-    wrap_with :div, class: "other-year-links" do
-      other_record_answers.map do |answer|
-        link_to "#{mapped_icon_tag :year} #{answer.year}",
-                href: answer.name.url_key, class: "_update-details year-detail"
-      end.join "<span>, </span>"
-    end
-  end
-
   def record_count
     @record_count ||= card.record_card.count
   end
 
-  view :record_filter_link, cache: :never do
+  view :record_filter_button, cache: :never do
     filter_for_record do
-      "#{icon_tag :album} #{record_count}-Year Record"
+      link_to "#{record_count}-Year Record", href: "#",
+              class: "btn btn-sm btn-outline-secondary"
     end
   end
 

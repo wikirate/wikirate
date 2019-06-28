@@ -1,8 +1,18 @@
 .details-top.mb-3.d-flex.justify-content-between
   .detail-year-and-value.w-50
-    = render_year_and_value_pretty
-    .record-years
-      = render_record_links
+    .year-details.d-flex
+      = filterable(year: card.year, status: :exists) { nest card.year, view: :in_calendar }
+      .record-details
+        .record-buttons
+          = render_record_filter_button
+          = nest record_card, view: :research_answer_button
+        .other-year-links
+          = render_other_year_links
+    .value-details
+      .metric-color.font-weight-bold
+        = handle_unknowns { calculated { nest card.value_card, view: :pretty } }
+      .text-muted
+        = render_legend
   .details-chart
     = render_chart
   = render_full_page_link

@@ -22,8 +22,8 @@ class Card
 
       def all_numeric_values
         Answer.where(metric_id: @filter_args[:metric_id])
-          .where.not(numeric_value: nil)
-          .pluck :id, :numeric_value
+              .where.not(numeric_value: nil)
+              .pluck :id, :numeric_value
       end
 
       def outlier_ids

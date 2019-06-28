@@ -73,19 +73,28 @@
   }
 }
 
-.record-filter {
-  font-style: italic;
-}
-
-.record-links {
-  padding: 0.6em 0;
-  > div {
-    padding: 0.4em 0;
+.details-top {
+  .record-details {
+    width: 100%;
+    padding: 0 3% 0.5em 3%;
   }
-  span {
-    padding-right: 0.5em;
+  .record-buttons {
+    > * {
+      display: inline-block;
+    }
+    a {
+      margin: 0 0.5em 0.5em 0;
+    }
   }
-  a {
+  .other-year-links a {
     color: $text-muted;
   }
+  .value-details {
+    padding: 0.5em 0;
+  }
+  .full-page-link i {
+    font-size: 1.5em;
+  }
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 1em;
 }
