@@ -45,14 +45,17 @@ class Card
       end
 
       def x_axis
-        super.merge title: title_with_unit("Values"),
-                    encode: diagonalize(axes_colors)
+        super.deep_merge title: title_with_unit("Values"), encode: axes_colors
       end
 
       def y_axis
-        hash = super.merge title: @format.rate_subjects, encode: axes_colors
+        hash = super.merge title: y_title, encode: axes_colors
         hash[:tickCount] = y_tick_count if y_tick_count
         hash
+      end
+
+      def y_title
+        @filter_query.filter_args[:year] ? @format.rate_subjects : "Answers"
       end
 
       def marks

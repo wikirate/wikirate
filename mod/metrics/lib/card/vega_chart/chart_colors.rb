@@ -23,7 +23,7 @@ class Card
       end
 
       def fill_color
-        if @highlight_value
+        if @highlight_value && @data.size > 1
           { scale: "color", field: "highlight" }
         else
           { value: HIGHLIGHT_COLOR }

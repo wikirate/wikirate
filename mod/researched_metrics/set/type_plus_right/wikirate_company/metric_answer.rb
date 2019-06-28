@@ -10,17 +10,17 @@ def filter_card_fieldcode
 end
 
 def default_sort_option
-  :importance
+  record? ? :year : :importance
+end
+
+def partner
+  :metric
 end
 
 format :html do
   before :core do
     voo.hide! :chart
     super()
-  end
-
-  def partner
-    :metric
   end
 
   def cell_views

@@ -8,7 +8,10 @@ end
 
 # override
 def default_sort_option
-  lookup? ? :value : :name
+  if    record? then :year
+  elsif lookup? then :value
+  else               :name
+  end
 end
 
 def toggle_sort_order field
@@ -17,6 +20,10 @@ def toggle_sort_order field
   else
     default_sort_order field
   end
+end
+
+def record?
+  filter_hash[:"#{partner}_name"]&.match(/^\"/)
 end
 
 def lookup?

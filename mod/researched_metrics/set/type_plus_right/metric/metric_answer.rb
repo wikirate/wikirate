@@ -11,6 +11,10 @@ def filter_card_fieldcode
   :metric_company_filter
 end
 
+def partner
+  :company
+end
+
 format :json do
   def chart_metric_id
     card.left.id
@@ -18,10 +22,6 @@ format :json do
 end
 
 format :html do
-  def partner
-    :company
-  end
-
   def cell_views
     [:company_thumbnail, :concise]
   end
@@ -36,5 +36,9 @@ format :html do
 
   def company_sort_link
     table_sort_link rate_subjects, :company_name
+  end
+
+  def show_chart?
+    super && count_by_status[:known].positive?
   end
 end

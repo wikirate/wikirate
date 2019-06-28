@@ -6,7 +6,7 @@ format :html do
     list = [:details]
     list << :metric if voo.show? :metric_header
     list << :wikirate_company if voo.show? :company_header
-    list << :year
+    list
   end
 
   def tab_options
@@ -33,23 +33,46 @@ format :html do
     nest card.company_card, view: :details_tab
   end
 
-  view :year_tab do
-    nest card.record_card, view: :data
-  end
+  # view :year_tab do
+  #   nest card.record_card, view: :data
+  # end
 
   view :details do
     [details_top, render_expanded_details]
   end
 
-  view :record_button do
+  view :record_links, cache: :never do
+    return unless record_count > 1
+    wrap_with :div, class: "record-links text-muted" do
+      [render_record_filter_link, other_year_links]
+    end
+  end
+
+  def other_record_answers
+    card.record_card.researched_answers.reject { |a| a.year == card.year }
+  end
+
+  def other_year_links
+    wrap_with :div, class: "other-year-links" do
+      other_record_answers.map do |answer|
+        link_to "#{mapped_icon_tag :year} #{answer.year}",
+                href: answer.name.url_key, class: "_update-details year-detail"
+      end.join "<span>, </span>"
+    end
+  end
+
+  def record_count
+    @record_count ||= card.record_card.count
+  end
+
+  view :record_filter_link, cache: :never do
     filter_for_record do
-      button_tag "#{card.record_card.count}-Year Record",
-                 class: "btn-sm mt-3 mb-1", situation: "secondary"
+      "#{icon_tag :album} #{record_count}-Year Record"
     end
   end
 
   def filter_for_record
-    filterable record_filter_hash, class: "d-inline" do
+    filterable record_filter_hash, class: "record-filter" do
       yield
     end
   end

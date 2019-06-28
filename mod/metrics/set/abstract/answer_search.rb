@@ -36,6 +36,8 @@ format :csv do
 end
 
 format :html do
+  delegate :partner, to: :card
+
   view :filtered_content do
     super() + raw('<div class="details"></div>')
   end
