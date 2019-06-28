@@ -15,21 +15,18 @@ class Card
       end
 
       def ylabel answer
-        if record?
-          answer.year
-        elsif multiyear?
-          "#{company_name.truncate 15} (#{answer.year})"
+        return answer.year if record?
+
+        company = Card.fetch_name(answer.company).to_s
+        if multiyear?
+          "#{company.truncate 15} (#{answer.year})"
         else
-          company_name.truncate 20
+          company.truncate 20
         end
       end
 
       def multiyear?
         !@filter_query.filter_args[:year]
-      end
-
-      def company_name
-        Card.fetch_name answer.company.to_s
       end
 
       def record?
