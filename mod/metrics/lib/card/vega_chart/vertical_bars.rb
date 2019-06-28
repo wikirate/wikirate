@@ -29,7 +29,7 @@ class Card
       end
 
       def x_scale
-        super.merge type: "band"
+        super.merge type: "band", padding: 0.1
       end
 
       def y_scale
@@ -44,12 +44,8 @@ class Card
         y_range.span > 100 ? "sqrt" : "linear"
       end
 
-      def x_axis
-        super.deep_merge title: title_with_unit("Values"), encode: axes_colors
-      end
-
       def y_axis
-        hash = super.merge title: y_title, encode: axes_colors
+        hash = super.merge title: y_title
         hash[:tickCount] = y_tick_count if y_tick_count
         hash
       end

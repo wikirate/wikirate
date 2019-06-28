@@ -3,11 +3,12 @@ class Card
     # default axis configuration for vega charts
     module Axes
       def x_axis
-        diagonalize orient: "bottom", scale: "xscale"
+        diagonalize orient: "bottom", scale: "xscale", encode: axes_colors,
+                    title: title_with_unit("Values")
       end
 
       def y_axis
-        { orient: "left", scale: "yscale" }
+        { orient: "left", scale: "yscale", encode: axes_colors }
       end
 
       def diagonal_x_labels?

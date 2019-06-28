@@ -30,11 +30,21 @@ class Card
       end
 
       def record?
-        @format.try :record?
+        return @record if @record.present?
+
+        @record = @format.card.try(:record?) || false
       end
 
       def x_axis
         super.merge format: "~s" # number formatting
+      end
+
+      def y_axis
+        record? ? super.merge(title: record_company) : super
+      end
+
+      def record_company
+        Card.fetch_name @filter_query.filter_args[:company_name]
       end
 
       def x_scale
@@ -42,7 +52,7 @@ class Card
       end
 
       def y_scale
-        super.merge type: "band", padding: 0.05
+        super.merge type: "band", padding: 0.1
       end
 
       def main_mark

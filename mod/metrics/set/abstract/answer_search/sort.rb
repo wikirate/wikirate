@@ -23,7 +23,7 @@ def toggle_sort_order field
 end
 
 def record?
-  filter_hash[:"#{partner}_name"]&.match(/^\"/)
+  filter_hash[:"#{partner}_name"]&.match?(/^\"/)
 end
 
 def lookup?
