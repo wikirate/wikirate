@@ -37,7 +37,7 @@ format do
   end
 
   def chart_filter_query
-    AnswerQuery.new chart_filter_hash.merge(metric_id: chart_metric_id)
+    AnswerQuery.new chart_filter_hash.merge(metric_id: chart_metric_id), card.sort_hash
   end
 
   def chart_metric_id

@@ -29,7 +29,7 @@ class Card
       end
 
       def x_scale
-        super.merge type: "band", padding: 0.1
+        super.merge type: "band", padding: 0.15
       end
 
       def y_scale

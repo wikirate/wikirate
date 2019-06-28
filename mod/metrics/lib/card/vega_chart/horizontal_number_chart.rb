@@ -52,7 +52,7 @@ class Card
       end
 
       def y_scale
-        super.merge type: "band", padding: 0.1
+        super.merge type: "band", padding: 0.15
       end
 
       def main_mark
