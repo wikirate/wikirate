@@ -25,7 +25,10 @@ format :html do
     end
   end
 
-  delegate :value_options, to: :metric_card
+  def value_options
+    binding.pry
+    metric_card.value_options_card&.options_hash
+  end
 end
 
 # no sort options because sorting is done by links

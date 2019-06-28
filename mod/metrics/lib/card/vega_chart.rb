@@ -92,7 +92,6 @@ class Card
 
     def hover_cursor
       "pointer"
-      # click_action == :zoom ? "zoom-in" : "pointer"
     end
 
     def scales

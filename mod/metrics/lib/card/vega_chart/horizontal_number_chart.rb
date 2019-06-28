@@ -15,12 +15,29 @@ class Card
       end
 
       def ylabel answer
-        company = Card.fetch_name(answer.company).to_s
-        if @filter_query.filter_args[:year]
-          company.truncate 20
+        if record?
+          answer.year
+        elsif multiyear?
+          "#{company_name.truncate 15} (#{answer.year})"
         else
-          "#{company.truncate 15} (#{answer.year})"
+          company_name.truncate 20
         end
+      end
+
+      def multiyear?
+        !@filter_query.filter_args[:year]
+      end
+
+      def company_name
+        Card.fetch_name answer.company.to_s
+      end
+
+      def record?
+        @format.try :record?
+      end
+
+      def x_axis
+        super.merge format: "~s" # number formatting
       end
 
       def x_scale

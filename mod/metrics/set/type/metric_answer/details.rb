@@ -44,7 +44,7 @@ format :html do
   view :other_year_links do
     return unless record_count > 1
     other_record_answers.map do |answer|
-      link_to "#{answer.year}", href: answer.name.url_key, class: "_update-details"
+      link_to answer.year.to_s, href: answer.name.url_key, class: "_update-details"
     end.join ", "
   end
 
@@ -58,8 +58,8 @@ format :html do
 
   view :record_filter_button, cache: :never do
     filter_for_record do
-      link_to "#{record_count}-Year Record", href: "#",
-              class: "btn btn-sm btn-outline-secondary"
+      link_to "#{record_count}-Year Record",
+              href: "#", class: "btn btn-sm btn-outline-secondary"
     end
   end
 

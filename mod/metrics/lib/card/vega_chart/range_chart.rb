@@ -41,28 +41,29 @@ class Card
       end
 
       def x_axis
-        super.merge scale: "x_label", title: title_with_unit("Ranges")
+        # super.merge scale: "x_label", title: title_with_unit("Ranges")
+        super.merge format: "~s", title: title_with_unit("Ranges")
       end
 
-      def scales
-        super << x_label_scale
-      end
-
-      def x_label_scale
-        { name: "x_label", type: "point", range: "width", domain: x_labels }
-      end
-
-      def x_labels
-        precision = 3
-        while precision < 10
-          human = @labels.map do |num|
-            @format.number_to_human num.to_f, precision: precision
-          end
-
-          return human if human.uniq.size == human.size
-          precision += 1
-        end
-      end
+      # def scales
+      #   super << x_label_scale
+      # end
+      #
+      # def x_label_scale
+      #   { name: "x_label", type: "point", range: "width", domain: x_labels }
+      # end
+      #
+      # def x_labels
+      #   precision = 3
+      #   while precision < 10
+      #     human = @labels.map do |num|
+      #       @format.number_to_human num.to_f, precision: precision
+      #     end
+      #
+      #     return human if human.uniq.size == human.size
+      #     precision += 1
+      #   end
+      # end
 
       def highlight? value
         return true unless @highlight_value
