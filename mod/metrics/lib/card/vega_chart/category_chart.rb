@@ -63,7 +63,7 @@ class Card
       def scales
         return super unless special_labels?
 
-        super << { name: "x_label", type: "point", range: "width", domain: @labels }
+        super << { name: "x_label", type: "band", range: "width", domain: @labels }
       end
 
       # @return true if the bar given by its filter

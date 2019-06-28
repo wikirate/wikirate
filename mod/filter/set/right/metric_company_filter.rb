@@ -26,7 +26,6 @@ format :html do
   end
 
   def value_options
-    binding.pry
     metric_card.value_options_card&.options_hash
   end
 end

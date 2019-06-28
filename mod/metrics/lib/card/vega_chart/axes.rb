@@ -3,7 +3,7 @@ class Card
     # default axis configuration for vega charts
     module Axes
       def x_axis
-        diagonalize orient: "bottom", scale: "x_label"
+        diagonalize orient: "bottom", scale: "xscale"
       end
 
       def y_axis
