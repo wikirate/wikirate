@@ -81,6 +81,10 @@ class Card
       Answer.where answer_conditions
     end
 
+    def answer_lookup
+      sort_and_page { main_query }
+    end
+
     private
 
     def status_groups
@@ -92,7 +96,7 @@ class Card
     end
 
     def main_results
-      sort_and_page { main_query }.answer_cards
+      answer_lookup.answer_cards
     end
 
     # @return args for AR's where method
