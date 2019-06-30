@@ -33,11 +33,11 @@ format do
   end
 
   def chart_value_count
-    @chart_value_count ||= chart_filter_query.value_count
+    @chart_value_count ||= chart_filter_query.main_query.distinct.count(:value)
   end
 
   def chart_filter_query
-    AnswerQuery::FixedMetric.new chart_metric_id, chart_filter_hash
+    AnswerQuery.new chart_filter_hash.merge(metric_id: chart_metric_id), card.sort_hash
   end
 
   def chart_metric_id
@@ -55,21 +55,17 @@ end
 
 format :html do
   view :chart, cache: :never do
-    vega_chart if show_chart?
+    return unless show_chart?
+
+    wrap_with :div, "", id: chart_id, class: chart_class, data: { url: chart_load_url }
   end
 
-  def chartkick_chart
-    line_chart path(view: :chartkick, format: :json)
+  def chart_id
+    unique_id.tr "+", "-"
   end
 
-  def vega_chart
-    id = unique_id.tr "+", "-"
-    output [
-      zoom_out_link,
-      wrap_with(:div, "",
-                id: id, class: "#{classy('vis')} _load-vis",
-                data: { url: chart_load_url })
-    ]
+  def chart_class
+    "#{classy('vis')} _load-vis"
   end
 
   def chart_load_url
@@ -77,23 +73,15 @@ format :html do
   end
 
   def show_chart?
-    return unless card.relationship? || card.numeric? || card.categorical?
+    voo.show?(:chart) && chartable_type? && chartable_filter?
+  end
 
+  def chartable_type?
+    card.relationship? || card.numeric? || card.categorical?
+  end
+
+  def chartable_filter?
     !card.filter_hash[:status].in? %w[none unknown]
-  end
-
-  def zoom_out_link
-    return unless zoomed_in?
-    link_to_view :filter_result, fa_icon(:zoom_out),
-                 path: zoom_out_path_opts, class: "chart-zoom-out"
-  end
-
-  def zoom_out_path_opts
-    chart_params[:zoom_out]
-  end
-
-  def zoomed_in?
-    chart_params.present? && chart_params[:zoom_level].to_i.positive?
   end
 end
 
@@ -105,23 +93,15 @@ format :json do
     vega_chart_config(value_to_highlight).to_json
   end
 
-  # alternative library to vega
-  view :chartkick, cache: :never do
-    Answer.where(metric_id: card.id, latest: true)
-          .group("CAST(value AS decimal)").count.chart_json
-  end
-
   def vega_chart_config highlight=nil
-    @data ||= chart_class.new self, link: true, highlight: highlight
+    @data ||= chart_class.new self, highlight: highlight
   end
 
   def chart_class
-    if card.ten_scale?
-      Card::Chart::TenScaleChart
-    elsif card.numeric? || card.relationship?
-      Card::Chart::NumericChart
-    else
-      Card::Chart::CategoryChart
-    end
+    VegaChart.chart_class self, horizontal_ok?
+  end
+
+  def horizontal_ok?
+    true
   end
 end

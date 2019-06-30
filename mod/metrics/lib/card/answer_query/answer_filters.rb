@@ -1,24 +1,10 @@
 class Card
   class AnswerQuery
-    # conditions and condition support methods for non-standard fields.
-    module FieldConditions
-      def restrict_to_ids col, ids
-        ids = Array(ids)
-        @empty_result = ids.empty?
-        if @restrict_to_ids[col]
-          @restrict_to_ids[col] &= ids
-        else
-          @restrict_to_ids[col] = ids
-        end
-      end
-
-      def restrict_by_wql col, wql
-        wql.reverse_merge! return: :id, limit: 0
-        restrict_to_ids col, Card.search(wql)
-      end
-
+    # filters based on year and children of the answer card
+    # (as opposed to metric and company)
+    module AnswerFilters
       # :exists/researched (known + unknown) is default case;
-      # :all and :none are handled in #run
+      # :all and :none are handled in AllQuery
       def status_query value
         case value.to_sym
         when :unknown
@@ -35,7 +21,7 @@ class Card
       end
 
       def year_query value
-        if value.to_sym == :latest
+        if value.try(:to_sym) == :latest
           filter :latest, true
         else
           filter :year, value.to_i
@@ -69,6 +55,8 @@ class Card
                         type_id: MetricAnswerID,
                         right_plus: [SourceID, { refer_to: value }]
       end
+
+      private
 
       def timeperiod value
         case value.to_sym

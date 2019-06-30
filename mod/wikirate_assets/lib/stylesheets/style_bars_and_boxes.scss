@@ -34,8 +34,8 @@ $box_stripe_color: $gray-700;
   }
 }
 
-@include media-breakpoint-down(sm) {
-  .bar .labeled-badge label {
+@mixin badge-icons() {
+  .labeled-badge label {
     padding: 0;
     .count-badge-label-icon {
       display: block;
@@ -44,6 +44,17 @@ $box_stripe_color: $gray-700;
     .count-badge-label-text {
       display: none;
     }
+  }
+}
+
+.box-bottom {
+  @include badge-icons();
+  justify-content: space-around;
+}
+
+@include media-breakpoint-down(sm) {
+  .bar {
+    @include badge-icons();
   }
 }
 
@@ -244,9 +255,6 @@ $colorMap: (
     filter: none;
     .progress-bar {
       background-color: $brand-primary;
-      &.progress-not-researched {
-        background-color: $gray-200;
-      }
     }
   }
 }

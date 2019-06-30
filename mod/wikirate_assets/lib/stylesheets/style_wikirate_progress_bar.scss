@@ -14,23 +14,6 @@
   font-weight: bolder;
 }
 
-.progress {
-  .progress-known, .progress-unknown {
-    a {
-       color: $white;
-    }
-  }
-  .progress-not-researched a {
-     color: $dark-text-color;
-  }
-}
-
-.progress-unknown.progress-bar {
-  opacity: 0.7;
-  // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAK0lEQVQYV2NM91v+nwEK/v79Z8IIEwBxmJmZzoAFYByQQsYU76XGIBmYNgAmqBSdzrwmNgAAAABJRU5ErkJggg==) repeat;
-}
-//Base64 background pattern generated here http://www.patternify.com/
-
 @mixin projectbar($name, $color) {
   .LTYPE_RTYPE-#{$name}-project.bar {
     .progress {
@@ -44,6 +27,27 @@
 
 @include projectbar(metric, $company-color);
 @include projectbar(company, $metric-color);
+
+.progress {
+  .progress-known, .progress-unknown {
+    a {
+      color: $white;
+    }
+  }
+  .progress-not-researched, .progress-none {
+    background-color: $gray-200 !important;
+    color: $heading-color;
+    a {
+      color: $dark-text-color;
+    }
+  }
+}
+
+.progress-unknown.progress-bar {
+  opacity: 0.7;
+  // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAK0lEQVQYV2NM91v+nwEK/v79Z8IIEwBxmJmZzoAFYByQQsYU76XGIBmYNgAmqBSdzrwmNgAAAABJRU5ErkJggg==) repeat;
+}
+//Base64 background pattern generated here http://www.patternify.com/
 
 .metric-nav .progress-bar {
   background-color: $metric-color;
@@ -59,11 +63,6 @@
     opacity: 0.7;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAK0lEQVQYV2Nkntn7nwEK/jIy+DLCBEAc5v8Mm8ECMA5IISPDrF4fkAxMGwBh9RDwwh0lJQAAAABJRU5ErkJggg==) repeat;
   }
-}
-
-.progress .progress-not-researched.progress-bar {
-  background-color: $gray-200;
-  color: $heading-color;
 }
 
 .default-progress-box .row {

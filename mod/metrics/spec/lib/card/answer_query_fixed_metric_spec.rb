@@ -1,6 +1,6 @@
 require "./test/seed"
 
-RSpec.describe Card::AnswerQuery::FixedMetric do
+RSpec.describe Card::AnswerQuery do
   LATEST_ANSWERS = %w[Death_Star+2001
                       Monster_Inc+2000
                       Slate_Rock_and_Gravel_Company+2005
@@ -32,29 +32,31 @@ RSpec.describe Card::AnswerQuery::FixedMetric do
   # @return [Array] of company+year strings
   def filter_by filter, latest=true
     filter.reverse_merge! year: :latest if latest
-    answers described_class.new(metric.id, filter).run
+    run_query filter
   end
 
   # @return [Array] of company+year strings
   def sort_by key, order="asc"
-    filter = { year: :latest }
-    sort = { sort_by: key, sort_order: order }
-    answers described_class.new(metric.id, filter, sort).run
+    run_query({ year: :latest }, sort_by: key, sort_order: order)
+  end
+
+  def run_query filter, sort={}
+    answers described_class.new(filter.merge(metric_id: metric.id), sort).run
   end
 
   context "with single filter condition" do
     context "with keyword" do
       it "finds exact match" do
-        expect(filter_by(name: "Death")).to eq ["Death_Star+2001"]
+        expect(filter_by(company_name: "Death")).to eq ["Death_Star+2001"]
       end
 
       it "finds partial match" do
-        expect(filter_by(name: "at"))
+        expect(filter_by(company_name: "at"))
           .to eq %w[Death_Star+2001 Slate_Rock_and_Gravel_Company+2005]
       end
 
       it "ignores case" do
-        expect(filter_by(name: "death"))
+        expect(filter_by(company_name: "death"))
           .to eq ["Death_Star+2001"]
       end
     end
@@ -132,7 +134,7 @@ RSpec.describe Card::AnswerQuery::FixedMetric do
       end
 
       it "... keyword" do
-        expect(filter_by(status: :none, name: "Inc").sort)
+        expect(filter_by(status: :none, company_name: "Inc").sort)
           .to eq(with_year(["AT&T Inc.", "Amazon.com, Inc.",
                             "Apple Inc.", "Google Inc."]))
       end

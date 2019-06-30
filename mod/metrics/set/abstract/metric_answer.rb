@@ -68,7 +68,7 @@ def calculating?
   calculated? && answer.calculating
 end
 
-def expire
+def expire cache_type=nil
   super
   Card.expire [name, :value].to_name
 end

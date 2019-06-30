@@ -23,7 +23,7 @@ Feature: company feature
     When I click on "More Filters"
     And I click on "Metric"
     And I wait for ajax response
-    And I fill in "filter[metric]" with "Jedi+deadliness"
+    And I fill in "filter[metric_name]" with "Jedi+deadliness"
     # To change focus
     And I click on "More Filters"
     And I wait for ajax response
@@ -50,8 +50,10 @@ Feature: company feature
 
   Scenario: Search for not researched values
     And I select2 "Not Researched" from "filter[status]"
+    And I wait 3 seconds
     And I wait for ajax response
     And I click to sort table by "metric_name"
+    And I wait a sec
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
     And I should see "BSR Member"

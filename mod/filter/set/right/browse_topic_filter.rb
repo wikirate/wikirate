@@ -15,7 +15,7 @@ class TopicFilterQuery < Card::FilterQuery
 end
 
 def filter_keys
-  %i[name metric project wikirate_company]
+  %i[name]
 end
 
 def default_filter_hash

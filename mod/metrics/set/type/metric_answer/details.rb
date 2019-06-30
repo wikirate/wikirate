@@ -1,19 +1,19 @@
 include_set Abstract::Tabs
+include_set Abstract::Filterable
 
 format :html do
   def tab_list
     list = [:details]
     list << :metric if voo.show? :metric_header
     list << :wikirate_company if voo.show? :company_header
-    list << :year
+    list
   end
 
   def tab_options
     {
       details:          { label: "Answer" },
       metric:           { label: "Metric" },
-      wikirate_company: { label: "Company" },
-      year:             { label: "Years", count: record_card.count }
+      wikirate_company: { label: "Company" }
     }
   end
 
@@ -33,21 +33,51 @@ format :html do
     nest card.company_card, view: :details_tab
   end
 
-  view :year_tab do
-    nest card.record_card, view: :data
-  end
+  # view :year_tab do
+  #   nest card.record_card, view: :data
+  # end
 
   view :details do
     [details_top, render_expanded_details]
   end
 
-  # def tmp_details
-  #   [
-  #     render_full_page_link,
-  #     link_to("record", href: "#", class: "_record-filter",
-  #             data: { filter: { key: "metric", value: "'#{card.metric_name}'"} } )
-  #   ]
-  # end
+  view :other_year_links do
+    return unless record_count > 1
+    other_record_answers.map do |answer|
+      link_to answer.year.to_s, href: answer.name.url_key, class: "_update-details"
+    end.join ", "
+  end
+
+  def other_record_answers
+    card.record_card.researched_answers.reject { |a| a.year == card.year }
+  end
+
+  def record_count
+    @record_count ||= card.record_card.count
+  end
+
+  view :record_filter_button, cache: :never do
+    filter_for_record do
+      link_to "#{record_count}-Year Record",
+              href: "#", class: "btn btn-sm btn-outline-secondary"
+    end
+  end
+
+  def filter_for_record
+    filterable record_filter_hash, class: "record-filter" do
+      yield
+    end
+  end
+
+  def record_filter_hash
+    { status: :exists,
+      metric_name: exactly(card.metric_name),
+      company_name: exactly(card.company_name) }
+  end
+
+  def exactly name
+    %("#{Card.fetch_name name}")
+  end
 
   def details_top
     class_up "full-page-link", "metric-color"
@@ -59,7 +89,7 @@ format :html do
   end
 
   view :details_sidebar do
-    wrap { haml :details_sidebar }
+    wrap { filtering(".RIGHT-answer ._filter-widget") { haml :details_sidebar } }
   end
 
   view :company_details_sidebar do

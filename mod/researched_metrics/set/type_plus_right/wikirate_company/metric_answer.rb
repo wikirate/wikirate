@@ -1,8 +1,8 @@
 # Answer search for a given Company
 include_set Abstract::AnswerSearch
 
-def query_class
-  AnswerQuery::FixedCompany
+def fixed_field
+  :company_id
 end
 
 def filter_card_fieldcode
@@ -10,15 +10,25 @@ def filter_card_fieldcode
 end
 
 def default_sort_option
-  :importance
+  record? ? :year : :importance
+end
+
+def partner
+  :metric
 end
 
 format :html do
-  before(:core) { voo.hide! :chart }
+  before :core do
+    voo.hide! :chart
+    super()
+  end
 
-  def table_args
-    [:metric, self, [:metric_thumbnail_with_vote, :concise],
-     { header: [name_sort_links, "Answer"] }]
+  def cell_views
+    [:metric_thumbnail_with_vote, :concise]
+  end
+
+  def header_cells
+    [name_sort_links, render_answer_header]
   end
 
   def details_view
@@ -30,14 +40,14 @@ format :html do
   end
 
   def title_sort_link
-    table_sort_link "Metric", :title_name, :lookup?, "pull-left mx-3 px-1"
+    table_sort_link "Metric", :title_name, "pull-left mx-3 px-1"
   end
 
   def designer_sort_link
-    table_sort_link "", :metric_name, nil, "pull-left mx-3 px-1"
+    table_sort_link "", :metric_name, "pull-left mx-3 px-1"
   end
 
   def importance_sort_link
-    table_sort_link "", :importance, nil, "pull-left mx-3 px-1"
+    table_sort_link "", :importance, "pull-left mx-3 px-1"
   end
 end

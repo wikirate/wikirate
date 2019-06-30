@@ -3,12 +3,16 @@ include_set Abstract::AnswerSearch
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::Chart
 
-def query_class
-  AnswerQuery::FixedMetric
+def fixed_field
+  :metric_id
 end
 
 def filter_card_fieldcode
   :metric_company_filter
+end
+
+def partner
+  :company
 end
 
 format :json do
@@ -17,16 +21,13 @@ format :json do
   end
 end
 
-# tables used on a metric page
 format :html do
-  view :core do
-    voo.show! :chart
-    super()
+  def cell_views
+    [:company_thumbnail, :concise]
   end
 
-  def table_args
-    [:company, self, [:company_thumbnail, :concise],
-     { header: [company_sort_link, value_sort_link] }]
+  def header_cells
+    [company_sort_link, render_answer_header]
   end
 
   def details_view
@@ -37,7 +38,7 @@ format :html do
     table_sort_link rate_subjects, :company_name
   end
 
-  def value_sort_link
-    table_sort_link "Answer", :value, :lookup?
+  def show_chart?
+    super && count_by_status[:known].positive?
   end
 end

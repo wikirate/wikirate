@@ -2,11 +2,11 @@ include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[status year wikirate_company wikirate_company value updated check source project]
+  %i[status year company_name value updated check source project outliers]
 end
 
 def default_filter_hash
-  { year: :latest, status: :exists, wikirate_company: "" }
+  { year: :latest, status: :exists, company_name: "" }
 end
 
 format :html do
@@ -25,7 +25,9 @@ format :html do
     end
   end
 
-  delegate :value_options, to: :metric_card
+  def value_options
+    metric_card.value_options_card&.options_hash
+  end
 end
 
 # no sort options because sorting is done by links

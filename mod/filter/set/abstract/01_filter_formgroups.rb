@@ -19,14 +19,12 @@ format :html do
     multiselect_filter :wikirate_topic
   end
 
-  view :filter_metric_formgroup, cache: :never do
-    # select_filter_type_based :metric
-    text_filter :metric
+  view :filter_metric_name_formgroup, cache: :never do
+    text_filter :metric_name
   end
 
-  view :filter_wikirate_company_formgroup, cache: :never do
-    # select_filter_type_based :wikirate_company
-    text_filter :wikirate_company
+  view :filter_company_name_formgroup, cache: :never do
+    text_filter :company_name
   end
 
   view :filter_research_policy_formgroup, cache: :never do
@@ -43,6 +41,10 @@ format :html do
 
   view :filter_updated_formgroup, cache: :never do
     select_filter :updated
+  end
+
+  view :filter_outliers_formgroup, cache: :never do
+    select_filter :outliers, "only"
   end
 
   view :filter_designer_formgroup, cache: :never do
@@ -74,13 +76,15 @@ format :html do
   end
 
   def status_options
-    {
-      "All" => "all",
+    { "All" => "all",
       "Researched" => "exists",
       "Known" => "known",
       "Unknown" => "unknown",
-      "Not Researched" => "none"
-    }
+      "Not Researched" => "none" }
+  end
+
+  def outliers_options
+    { "Only" => "only", "Exclude" => "exclude" }
   end
 
   def metric_type_options

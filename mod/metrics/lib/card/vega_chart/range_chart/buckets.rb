@@ -1,5 +1,5 @@
 class Card
-  module Chart
+  class VegaChart
     class RangeChart
       # calculate the grouping for a range chart
       module Buckets
@@ -31,13 +31,14 @@ class Card
         end
 
         def log_bucket?
-          return @use_log_scale unless @use_log_scale.nil?
-          @use_log_scale =
-            if min >= 1
-              max / min > 100
-            else
-              max > 200
-            end
+          false # TODO: restore functionality with toggle
+          # return @use_log_scale unless @use_log_scale.nil?
+          # @use_log_scale =
+          #   if min >= 1
+          #     max / min > 100
+          #   else
+          #     max > 200
+          #   end
         end
 
         def round_bucket_size
@@ -51,11 +52,11 @@ class Card
         end
 
         def max
-          @max ||= @filter_query.where.maximum(:numeric_value).to_f
+          @max ||= @filter_query.main_query.maximum(:numeric_value).to_f
         end
 
         def min
-          @min ||= @filter_query.where.minimum(:numeric_value).to_f
+          @min ||= @filter_query.main_query.minimum(:numeric_value).to_f
         end
       end
     end

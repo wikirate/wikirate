@@ -2,12 +2,12 @@ include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[status year check metric wikirate_topic metric_type value updated project source
-     research_policy]
+  %i[status year check metric_name wikirate_topic metric_type value updated project
+     source research_policy]
 end
 
 def default_filter_hash
-  { status: :exists, year: :latest, metric: "" }
+  { status: :exists, year: :latest, metric_name: "" }
 end
 
 format :html do

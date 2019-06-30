@@ -72,3 +72,29 @@
     width: 100% !important;
   }
 }
+
+.details-top {
+  .record-details {
+    width: 100%;
+    padding: 0 3% 0.5em 3%;
+  }
+  .record-buttons {
+    > * {
+      display: inline-block;
+    }
+    a {
+      margin: 0 0.5em 0.5em 0;
+    }
+  }
+  .other-year-links a {
+    color: $text-muted;
+  }
+  .value-details {
+    padding: 0.5em 0;
+  }
+  .full-page-link i {
+    font-size: 1.5em;
+  }
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 1em;
+}

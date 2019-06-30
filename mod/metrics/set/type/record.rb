@@ -51,16 +51,15 @@ format :html do
 
   view :data do
     wrap_with :div, class: "p-3" do
-      [render_years_and_values, add_answer_button]
+      [render_years_and_values, render_research_answer_button]
     end
   end
 
-  def add_answer_button
+  view :research_answer_button, cache: :never do
     return "" unless metric_card.user_can_answer?
-    link_to_card :research_page, "Research answer",
-                 class: "btn btn-sm btn-primary margin-12",
-                 path: { metric: card.metric,
-                         company: card.company },
+    link_to_card :research_page, "Research",
+                 class: "btn btn-sm btn-outline-secondary",
+                 path: { metric: card.metric, company: card.company },
                  title: "Research answers for this company and metric"
   end
 

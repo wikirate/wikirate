@@ -1,17 +1,20 @@
 require "./test/seed"
 
-RSpec.describe Card::AnswerQuery::FixedCompany do
+RSpec.describe Card::AnswerQuery do
   RESEARCHED_TITLES = ["Industry Class", "Weapons", "big multi", "big single",
                        "researched number 2", "researched number 3", "small multi",
                        "small single"].freeze
 
   let(:company) { Card[@company_name || "Death_Star"] }
   let(:all_metrics) { Card.search type_id: Card::MetricID, return: :name }
-  let(:all_metric_titles) { all_metrics.map { |n| n.to_name[1..-1].to_name } }
+  let(:all_metric_titles) { titles_of all_metrics }
 
-  let :missing_metrics do
-    latest_metric_keys = ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
-    all_metric_titles.reject { |n| latest_metric_keys.include? n.key }
+  let(:researched_metric_keys) do
+    ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
+  end
+
+  let :unresearched_metric_keys do
+    all_metric_titles.reject { |n| researched_metric_keys.include? n.key }
   end
 
   let :latest_answers_by_importance do
@@ -39,8 +42,8 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
      "Victims by Employees+1977", "RM+1977", "researched number 1+1977"]
   end
 
-  def missing_answers year=Time.now.year
-    with_year missing_metrics, year
+  def unresearched_answers year=Time.now.year
+    with_year unresearched_metric_keys, year
   end
 
   def with_year list, year=Time.now.year
@@ -54,35 +57,40 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
     end
   end
 
+  def titles_of metric_names
+    metric_names.map { |n| n.to_name[1..-1].to_name }
+  end
+
   # @return [Array] of metric_title(+scorer)+year strings
   def filter_by filter, latest=true
     filter.reverse_merge! year: :latest if latest
-    sort = { sort_by: :metric_name }
-    answers described_class.new(company.id, filter, sort).run
+    answers run_query filter, sort_by: :metric_name
   end
 
   # @return [Array] of answer cards
   def sort_by key, order=:asc
-    filter = { year: :latest }
-    sort = { sort_by: key, sort_order: order }
-    described_class.new(company.id, filter, sort).run
+    run_query({ year: :latest }, sort_by: key, sort_order: order)
+  end
+
+  def run_query filter, sort
+    described_class.new(filter.merge(company_id: company.id), sort).run
   end
 
   context "with single filter condition" do
     context "with keyword" do
       it "finds exact match" do
-        expect(filter_by(name: "Jedi+disturbances in the Force+Joe User"))
+        expect(filter_by(metric_name: "Jedi+disturbances in the Force+Joe User"))
           .to eq ["disturbances in the Force+Joe User+2001"]
       end
 
       it "finds partial match" do
-        expect(filter_by(name: "dead"))
+        expect(filter_by(metric_name: "dead"))
           .to eq with_year(["deadliness", "deadliness+Joe Camel",
                             "deadliness+Joe User"], 1977)
       end
 
       it "ignores case" do
-        expect(filter_by(name: "DeAd"))
+        expect(filter_by(metric_name: "DeAd"))
           .to eq with_year(["deadliness", "deadliness+Joe Camel",
                             "deadliness+Joe User"], 1977)
       end
@@ -162,7 +170,7 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
       end
     end
 
-    context "with value" do
+    context "with status" do
       let :researched_answers do
         latest_answers + with_year(["researched number 2", "researched number 3",
                                     "small multi", "small single"])
@@ -174,8 +182,10 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
         )
       end
 
-      it "finds missing values" do
-        expect(filter_by(status: :none)).to contain_exactly(*missing_answers)
+      context "when :none" do
+        it "finds not researched" do
+          expect(filter_by(status: :none)).to contain_exactly(*unresearched_answers)
+        end
       end
 
       it "finds all values" do
@@ -198,26 +208,26 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
         end
         expect(all_known).to be_truthy
       end
+    end
 
-      describe "filter by update date" do
-        before { Timecop.freeze SharedData::HAPPY_BIRTHDAY }
-        after { Timecop.return }
+    describe "filter by update date" do
+      before { Timecop.freeze SharedData::HAPPY_BIRTHDAY }
+      after { Timecop.return }
 
-        it "finds today's edits" do
-          expect(filter_by({ updated: :today }, false))
-            .to eq ["disturbances in the Force+1990"]
-        end
+      it "finds today's edits" do
+        expect(filter_by({ updated: :today }, false))
+          .to eq ["disturbances in the Force+1990"]
+      end
 
-        it "finds this week's edits" do
-          expect(filter_by({ updated: :week }, false))
-            .to eq ["disturbances in the Force+1990", "disturbances in the Force+1991"]
-        end
+      it "finds this week's edits" do
+        expect(filter_by({ updated: :week }, false))
+          .to eq ["disturbances in the Force+1990", "disturbances in the Force+1991"]
+      end
 
-        it "finds this months's edits" do
-          expect(filter_by({ updated: :month }, false))
-            .to eq ["dinosaurlabor+2010", "disturbances in the Force+1990",
-                    "disturbances in the Force+1991", "disturbances in the Force+1992"]
-        end
+      it "finds this months's edits" do
+        expect(filter_by({ updated: :month }, false))
+          .to eq ["dinosaurlabor+2010", "disturbances in the Force+1990",
+                  "disturbances in the Force+1991", "disturbances in the Force+1992"]
       end
     end
 
@@ -238,7 +248,7 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
   context "with multiple filter conditions" do
     context "with filter for missing values and ..." do
       it "... year" do
-        missing2001 = missing_answers(2001) + with_year(
+        nr2001 = unresearched_answers(2001) + with_year(
           ["Victims by Employees", "cost of planets destroyed",
            "darkness rating", "deadliness", "deadliness+Joe Camel",
            "deadliness+Joe User", "dinosaurlabor", "friendliness",
@@ -247,14 +257,14 @@ RSpec.describe Card::AnswerQuery::FixedCompany do
            "RM", "researched number 1", "more evil", "double friendliness"],
           2001
         )
-        missing2001.delete "disturbances in the Force+2001"
+        nr2001.delete "disturbances in the Force+2001"
         filtered = filter_by(status: :none, year: "2001")
         expect(filtered)
-          .to contain_exactly(*missing2001)
+          .to contain_exactly(*nr2001)
       end
 
       it "... keyword" do
-        expect(filter_by(status: :none, name: "number 2"))
+        expect(filter_by(status: :none, metric_name: "number 2"))
           .to contain_exactly(*with_year(["researched number 2"]))
       end
 

@@ -112,7 +112,7 @@ def value_options
 end
 
 def numeric?
-  calculated? || value_type_code.in?(%i[number money])
+  ten_scale? || value_type_code.in?(%i[number money])
 end
 
 # TODO: adapt to Henry's value type API
