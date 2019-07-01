@@ -43,6 +43,7 @@ gem "rubocop-decko"
 
 gem "fog"
 gem "fog-aws"
+gem "rack-cors"
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
