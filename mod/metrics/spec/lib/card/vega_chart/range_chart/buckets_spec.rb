@@ -8,7 +8,6 @@ RSpec.describe Card::VegaChart::RangeChart::Buckets do
     buck.instance_eval { @buckets = 10 }
     buck.define_singleton_method(:max) { upper }
     buck.define_singleton_method(:min) { lower }
-    buck.calculate_buckets
     buck
   end
 

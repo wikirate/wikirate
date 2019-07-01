@@ -5,16 +5,16 @@ class Card
     class TenScaleChart < RangeChart
       DEFAULT_BAR_CNT = 11
 
-      def calculate_buckets
+      def initialize
+        super
         @min = 0
         @max = 11
         @bucket_size = 1
         @buckets = 11
-        @use_log_scale = false
+        # @use_log_scale = false
       end
 
       def generate_data
-        calculate_buckets
         group_data
         each_bucket do |lower, upper|
           add_data lower, @counts[lower], from: lower, to: upper
