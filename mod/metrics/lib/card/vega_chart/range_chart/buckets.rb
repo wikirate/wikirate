@@ -5,8 +5,8 @@ class Card
       module Buckets
         def each_bucket
           lower = min
-          #lower = log_bucket? ? 0 : min
-          #real_lower = min
+          # lower = log_bucket? ? 0 : min
+          # real_lower = min
           @buckets.times do
             upper = lower + bucket_size
             yield lower, upper

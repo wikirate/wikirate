@@ -50,10 +50,10 @@ Feature: company feature
 
   Scenario: Search for not researched values
     And I select2 "Not Researched" from "filter[status]"
-    And I wait 3 seconds
+    And I wait 2 seconds
     And I wait for ajax response
     And I click to sort table by "metric_name"
-    And I wait a sec
+    And I wait 2 seconds
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
     And I should see "BSR Member"
