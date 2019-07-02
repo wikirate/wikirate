@@ -1,7 +1,7 @@
 # ANSWERS
 
 def researched_answers
-  Answer.where(metric_id: id)
+  Answer.where metric_id: id
 end
 
 def answer_ids

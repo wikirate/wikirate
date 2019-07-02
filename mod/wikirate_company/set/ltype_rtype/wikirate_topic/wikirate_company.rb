@@ -28,11 +28,13 @@ format :html do
   end
 
   def answer_count_badge
-    labeled_badge answer_count, "Answers", klass: "RIGHT-answer"
+    labeled_badge answer_count, mapped_icon_tag(:metric_answer),
+                  klass: "RIGHT-answer", title: "Answers"
   end
 
   def metric_count_badge
-    labeled_badge topic_metric.count, "Metrics", klass: "RIGHT-metric"
+    labeled_badge topic_metric.count, mapped_icon_tag(:metric),
+                  klass: "RIGHT-metric", title: "Metrics"
   end
 
   view :bar_bottom do

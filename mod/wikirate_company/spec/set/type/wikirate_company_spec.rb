@@ -30,4 +30,18 @@ RSpec.describe Card::Set::Type::WikirateCompany do
         .and have_a_field(:headquarters).with_content("[[California (United States)]]")
     end
   end
+
+  describe "renaming company" do
+    let(:company_card) { Card["Death Star"] }
+
+    def rename_company!
+      company_card.update! name: "Life Star"
+    end
+
+    it "refreshes all answers" do
+      rename_company!
+      expect(Answer.where(company_name: "Death Star").count).to eq(0)
+    end
+
+  end
 end

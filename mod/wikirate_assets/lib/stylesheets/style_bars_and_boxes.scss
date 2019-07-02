@@ -36,7 +36,6 @@ $box_stripe_color: $gray-700;
 
 @mixin badge-icons() {
   .labeled-badge label {
-    padding: 0;
     .count-badge-label-icon {
       display: block;
       width: 22px;
@@ -45,16 +44,8 @@ $box_stripe_color: $gray-700;
       display: none;
     }
   }
-}
-
-.box-bottom {
-  @include badge-icons();
-  justify-content: space-around;
-}
-
-@include media-breakpoint-down(sm) {
-  .bar {
-    @include badge-icons();
+  @include media-breakpoint-down(sm) {
+    padding: 0;
   }
 }
 
@@ -74,6 +65,7 @@ $box_stripe_color: $gray-700;
 }
 
 .bar {
+  @include badge-icons();
   border-left: 3px solid $border-color;
 }
 
@@ -120,6 +112,11 @@ a.box-item {
 
 .box:hover {
   @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
+}
+
+.box-bottom {
+  @include badge-icons();
+  justify-content: space-around;
 }
 
 // set consistent colors for a group of bars/boxes

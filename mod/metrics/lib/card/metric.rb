@@ -148,11 +148,10 @@ class Card::Metric
     def normalize_subfields opts
       if opts[:formula].is_a? Hash
         opts[:formula] = opts[:formula].to_json
-        opts[:value_type] ||= "Category"
       end
 
       opts[:metric_type] ||= :researched
-      opts[:value_type] ||= "Number" if opts[:metric_type] == :researched
+      opts[:value_type] ||= "Number"
       opts[:metric_type] = Card.fetch_name opts[:metric_type]
     end
   end

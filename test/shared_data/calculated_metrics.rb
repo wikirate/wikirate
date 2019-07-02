@@ -19,6 +19,7 @@ class SharedData
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}",
                           hybrid: "1",
+                          value_type: "Number",
                           test_source: true do
         Slate_Rock_and_Gravel_Company 2003 => "100"
       end
@@ -52,6 +53,7 @@ class SharedData
       with_joe_user do
         Card::Metric.create name: "Jedi+disturbances in the Force+Joe User",
                             type: :score,
+                            value_type: "Category",
                             formula: { yes: 10, no: 0 }
       end
     end
