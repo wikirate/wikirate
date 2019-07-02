@@ -1,5 +1,5 @@
 RSpec.describe Card::VegaChart::TenScaleChart do
-  let(:metric) { Card["Jedi+darkness rating"]}
+  let(:metric) { Card["Jedi+darkness rating"] }
   let(:format) { metric.metric_answer_card.format :json }
   let(:chart_class) { format.chart_class }
   let(:chart_hash) { format.vega_chart_config.to_hash }
@@ -16,15 +16,15 @@ RSpec.describe Card::VegaChart::TenScaleChart do
     specify "chart hash" do
       expect(chart_hash)
         .to include(
-              data: a_collection_including(
-                a_hash_including(
-                  values: a_collection_including(
-                    a_hash_including(filter: { value: { from: 0, to: 1 } }),
-                    a_hash_including(filter: { value: { from: 10, to: 11 } }),
-                  )
-                )
+          data: a_collection_including(
+            a_hash_including(
+              values: a_collection_including(
+                a_hash_including(filter: { value: { from: 0, to: 1 } }),
+                a_hash_including(filter: { value: { from: 10, to: 11 } })
               )
             )
+          )
+        )
     end
   end
 end
