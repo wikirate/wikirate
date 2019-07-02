@@ -18,8 +18,9 @@ class Card
         group_data
         each_bucket do |lower, upper|
           add_data lower, @counts[lower], from: lower, to: upper
-          add_label lower
+          add_label lower # == 10 ? 10 : "#{lower}+"
         end
+        add_label ""
       end
 
       def group_data
@@ -31,16 +32,15 @@ class Card
       end
 
       def x_axis
-        super.merge title: "Scores"
+        axis = super
+        axis[:title] = "Scores"
+        axis.delete :format
+        axis
       end
 
-      def x_label_scale
-        super.merge type: "band"
-      end
-
-      def x_labels
-        @labels
-      end
+      # def x_label_scale
+      #   super.merge type: "band"
+      # end
 
       def diagonal_x_labels?
         false
