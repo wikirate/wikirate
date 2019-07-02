@@ -42,6 +42,5 @@ RSpec.describe Card::Set::Type::WikirateCompany do
       rename_company!
       expect(Answer.where(company_name: "Death Star").count).to eq(0)
     end
-
   end
 end
