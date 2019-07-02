@@ -5,12 +5,12 @@ class Card
     class TenScaleChart < RangeChart
       DEFAULT_BAR_CNT = 11
 
-      def initialize
-        super
+      def initialize *args
         @min = 0
         @max = 11
         @bucket_size = 1
         @buckets = 11
+        super
         # @use_log_scale = false
       end
 

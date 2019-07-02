@@ -8,7 +8,7 @@ class Card
 
       def initialize format, opts
         opts[:highlight] &&= opts[:highlight].to_f
-        @buckets = opts.delete(:buckets) || DEFAULT_BAR_CNT
+        @buckets ||= opts.delete(:buckets) || DEFAULT_BAR_CNT
         super format, opts
       end
 
