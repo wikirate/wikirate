@@ -115,6 +115,8 @@ table.wikirate-table, .table.wikirate-table {
 }
 
 .RIGHT-answer .wikirate-table {
+  table-layout: fixed;
+  max-width: 100%;
   border-width: 0 0 1px 0;
   th {
     border: 0;
