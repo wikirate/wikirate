@@ -2,11 +2,7 @@ module Formula
   # Formula that translates one value to another based on a JSON map
   class Translation < Calculator
     def initialize parser, &value_normalizer
-      # TODO: find better solution to make Translation formula to pass Unknown values
-      #    to the calculation
-      parser.define_singleton_method(:unknown_option) do |_i|
-        "Unknown"
-      end
+      parser.raw_input!
       super
     end
 

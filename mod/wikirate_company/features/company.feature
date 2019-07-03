@@ -14,7 +14,7 @@ Feature: company feature
     And I should see "Force"
     Then I click on "Projects"
     And I should see "Evil Project"
-    And I should see "2 Metrics 3 Companies"
+    And I should see "2 1"
     Then I click on "Sources"
     And I should see "www.wikiwand.com"
     And I should see "Original"
@@ -23,7 +23,7 @@ Feature: company feature
     When I click on "More Filters"
     And I click on "Metric"
     And I wait for ajax response
-    And I fill in "filter[metric]" with "Jedi+deadliness"
+    And I fill in "filter[metric_name]" with "Jedi+deadliness"
     # To change focus
     And I click on "More Filters"
     And I wait for ajax response
@@ -50,8 +50,10 @@ Feature: company feature
 
   Scenario: Search for not researched values
     And I select2 "Not Researched" from "filter[status]"
+    And I wait 2 seconds
     And I wait for ajax response
     And I click to sort table by "metric_name"
+    And I wait 2 seconds
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
     And I should see "BSR Member"

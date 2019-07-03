@@ -41,6 +41,7 @@ class Answer
       ensure_record metric_card, company
       @card = virtual_answer_card metric_card.metric_answer_name(company, year), value
       refresh
+      @card.expire
       update_cached_counts
       self
     end

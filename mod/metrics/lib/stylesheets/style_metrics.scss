@@ -10,15 +10,6 @@
   }
 }
 
-.details-top {
-  padding: 20px;
-  border-bottom: 1px solid $border-color;
-  margin-bottom: 1em;
-  .full-page-link i {
-    font-size: 1.5em;
-  }
-}
-
 .details-body .nav-tabs label {
   margin-bottom: 0;
 }
@@ -166,6 +157,22 @@
   text-align: center;
   padding-right: 1rem;
   float: left;
+  margin-left: 5px;
+  div, button, i {
+    line-height: 1em;
+    font-size: 11px;
+    text-align: center;
+    color: inherit !important;
+  }
+  > div {
+    margin-right: 5px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .RIGHT-Xvote_count.content-view {
+    display: none;
+  }
 }
 
 fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
@@ -184,14 +191,13 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   display: inline-block;
   width: 100%;
   .thumbnail {
-    width: 40%;
-    float: left;
+    background: #fafafa;
+    border: 1px solid #eee;
+    padding: 0.25rem;
   }
   > span {
     font-size: 1.5em;
     font-weight: bold;
-    float: left;
-    padding: 10px;
   }
 }
 
@@ -311,14 +317,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   left: 55px;
   top: 4px;
   color: #ccc;
-}
-
-.metric-details-content {
-  .RIGHT-category_detail,
-  .card-body,
-  .contributing-details {
-    margin: 0 20px;
-  }
 }
 
 .range-value {

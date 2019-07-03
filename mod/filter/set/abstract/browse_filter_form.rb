@@ -16,7 +16,7 @@ def filter_class
   Card::FilterQuery
 end
 
-def wql_from_content
+def wql_content
   { type_id: target_type_id, limit: 20 }
 end
 
@@ -44,7 +44,7 @@ def cached_count_sort_wql
 end
 
 def virtual?
-  !real?
+  new?
 end
 
 format :html do
@@ -53,7 +53,7 @@ format :html do
   # end
 
   def default_item_view
-    :info_bar
+    :bar
   end
 
   before :content do

@@ -21,7 +21,7 @@ format :html do
   end
 
   view :bar_bottom do
-    output [render_chart, render_expanded_details]
+    [render_chart, render_expanded_details]
   end
 
   view :titled_content, cache: :never do
@@ -112,7 +112,7 @@ format :html do
   end
 
   def calculating_icon
-    fa_icon :calculator, title: "calculating ...", class: "fa-spin"
+    fa_icon :calculator, title: "calculating ...", class: "fa-spin px-1"
   end
 
   def legend

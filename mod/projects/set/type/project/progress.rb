@@ -74,6 +74,12 @@ format :html do
     end
   end
 
+  view :default_research_progress_bar do
+    wrap_with :div, class: "default-progress-box w-100 py-1" do
+      research_progress_bar
+    end
+  end
+
   view :research_progress_bar, cache: :never do
     research_progress_bar
   end

@@ -2,20 +2,20 @@
   %div
     - if !company?
       .d-flex.flex-nowrap.company-color
-        .image-box.icon.bg-white
+        .image-box.small.bg-white
           = fa_icon :industry, class: "company-color"
         %h6.mb-0
         = autocomplete_field :company
     - elsif company_pinned?
       .company-color.d-flex.flex-nowrap.align-items-center
-        .image-box.icon
+        .image-box.small
           = nest [company, :image], view: :core, size: :small
         %h6.mb-0
           = link_to_card company, nil, class: "inherit-anchor"
     - else
       .dropdown
         %a.company-color.dropdown-toggle.d-flex.flex-nowrap.no-decoration.align-items-center{href:"#", data: { toggle: "dropdown" } }
-          .image-box.icon
+          .image-box.small
             %span.img-helper
             = nest [company, :image], view: :core, size: :small
           %h6.mb-0

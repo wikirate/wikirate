@@ -1,0 +1,22 @@
+/* show the value on top of the bar on mouse over
+   (needs the "signal" section in DEFAULT_LAYOUT) */
+
+{
+  "type": "text",
+  "encode": {
+    "enter": {
+      "align": { "value": "center" },
+      "baseline": { "value": "bottom" },
+      "fill": { "value": "#333" }
+    },
+    "update": {
+      "x": { "scale": "xscale", "signal": "tooltip.xfield", "band": 0.5 },
+      "y": { "scale": "yscale", "signal": "tooltip.yfield", "offset": -2 },
+      "text": { "signal": "tooltip.yfield" },
+      "fillOpacity": [
+        { "test": "datum === tooltip", "value": 0 },
+        { "value": 1 }
+      ]
+    }
+  }
+}

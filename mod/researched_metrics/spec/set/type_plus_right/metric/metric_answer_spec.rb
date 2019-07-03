@@ -42,35 +42,42 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
   end
 
   describe ":table view" do
-    context "when metric researched" do
-      subject { metric_answer.format._render_table }
-
-      it "has a bootstrap table" do
-        is_expected.to have_tag "table" do
-          answer = "Jedi+disturbances_in_the_Force+Death_Star+2001"
-          details_url = "/#{answer}?view=company_details_sidebar"
-          with_tag :tr, with: { "data-details-url" => details_url }
-        end
+    def with_answer_row
+      with_tag :tr, with: { "data-details-mark": answer_name } do
+        with_tag :td, class: "header"
+        with_tag :td, class: "data"
       end
     end
 
     context "when metric researched" do
+      subject { metric_answer.format._render_table }
+
+      let(:answer_name) { "#{metric.name.url_key}+Death_Star+2001" }
+
+      example "research_metric table" do
+        is_expected.to have_tag "table" do
+          with_answer_row
+        end
+      end
+    end
+
+    context "when metric calculated" do
       subject do
         @metric_name = "Jedi+friendliness"
         metric_answer.format._render_table
       end
 
-      example "formula metric" do
-        answer = "Jedi+friendliness+Death_Star+1977"
+      let(:answer_name) { "#{metric.name.url_key}+Death_Star+1977" }
+
+      example "formula metric table" do
         is_expected.to have_tag "table" do
-          details_url = "/#{answer}?view=company_details_sidebar"
-          with_tag :tr, with: { "data-details-url" => details_url }
+          with_answer_row
         end
       end
     end
 
     describe ":core view" do
-      subject { metric_answer.format._render_core }
+      subject { metric_answer.format._render_filtered_content }
 
       it "has filter widget" do
         is_expected.to have_tag ".card" do

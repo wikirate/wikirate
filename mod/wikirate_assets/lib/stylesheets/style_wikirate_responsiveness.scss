@@ -21,8 +21,10 @@
     font-size: medium;
   }
 
-  .metric-value {
-    font-size: 12px !important;
+  .bar, td {
+    .metric-value {
+      font-size: 12px !important;
+    }
   }
 
   .grid-column,

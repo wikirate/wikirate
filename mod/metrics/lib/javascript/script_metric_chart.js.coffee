@@ -1,31 +1,42 @@
 decko.slotReady (slot) ->
   for vis in slot.find('.vis._load-vis')
-    $(vis).removeClass("_load-vis")
-    $.ajax
-      url: $(vis).data "url"
-      visID: $(vis).attr('id')
-      dataType: "json"
-      type: "GET"
-      success: (data) -> metric_chart(data, this.visID)
+    loadVis $(vis)
 
-    setFilterText($(vis))
+loadVis = (vis) ->
+  vis.removeClass("_load-vis")
+  $.ajax
+    url: vis.data "url"
+    visID: vis.attr('id')
+    dataType: "json"
+    type: "GET"
+    success: (data) -> initChart(data, this.visID)
 
-setFilterText = ($vis) ->
-  text = $vis.data("value-filter-text")
-  return unless text
-  showMetricValueFilter()
-  $vis.closest(".filter-form-and-result")
-      .find("#select2-filter_value-container").text(text)
+initChart = (spec, id) ->
+  el = $("##{id}")
+  vega = initVega spec, el
+  handleChartClicks vega, el
 
-showMetricValueFilter = ->
-  decko.filterCategorySelected($('a[data-category="value"]'))
+handleChartClicks = (vega, el) ->
+  vega.addEventListener 'click', (event, item) ->
+    return unless el.closest("._filtered-content").exists()
 
-metric_chart = (spec, id) ->
+    d = item.datum
+    if d.filter
+      updateFilter el, d.filter
+    else if d.details
+      updateDetails d.details
+
+initVega = (spec, el) ->
   runtime = vega.parse spec
-  view = new vega.View(runtime).initialize($("##{id}")[0]).hover().run()
-  view.addEventListener('click', (event, item) ->
-    if item.datum.link
-      $.ajax item.datum.link,
-        success: (data) -> $(event.target).setSlotContent(data)
-  )
+  new vega.View(runtime).initialize(el[0]).hover().run()
 
+updateFilter = (el, filterVals) ->
+  if filterVals["value"] == "Other"
+    alert 'Filtering for "Other" values is not yet supported.'
+  else
+    filter = new decko.filter el.closest("._filtered-content").find("._filter-widget")
+    for key of filterVals
+      filter.addRestriction key, filterVals[key]
+
+updateDetails = (detailsAnswer) ->
+  $("[data-details-mark=\"#{detailsAnswer}\"]").trigger "click"

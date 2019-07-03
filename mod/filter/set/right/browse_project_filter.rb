@@ -15,7 +15,7 @@ def filter_keys
   %i[name wikirate_status wikirate_topic]
 end
 
-def default_filter_option
+def default_filter_hash
   { name: "", wikirate_status: "Active" }
 end
 
@@ -43,6 +43,6 @@ end
 class ProjectFilterQuery < Card::FilterQuery
   def wikirate_status_wql value
     return unless value.present?
-    add_to_wql :right_plus, [WikirateStatusID, { content: [:match, value] }]
+    add_to_wql :right_plus, [WikirateStatusID, { refer_to: value }]
   end
 end

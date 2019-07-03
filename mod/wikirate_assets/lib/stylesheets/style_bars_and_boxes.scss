@@ -6,12 +6,16 @@ $box_stripe_color: $gray-700;
 /*------ Badges ---------*/
 
 .badge {
-  vertical-align: text-top !important;
+  display: inline-block;
+  align-items: center;
+  padding: 0.1rem 0.4rem;
+  line-height: inherit;
 }
 
 .labeled-badge {
-  display: inline-block;
+  display: inline-flex;
   text-align: center;
+  padding: 1px;
   label {
     margin: 0;
     padding: 0 0.33rem;
@@ -21,9 +25,17 @@ $box_stripe_color: $gray-700;
   }
 }
 
-@include media-breakpoint-down(sm) {
-  .bar .labeled-badge label {
-    padding: 0;
+.bar .labeled-badge {
+  span {
+    font-size: 0.6em;
+  }
+  label {
+    font-size: 0.8em;
+  }
+}
+
+@mixin badge-icons() {
+  .labeled-badge label {
     .count-badge-label-icon {
       display: block;
       width: 22px;
@@ -31,6 +43,9 @@ $box_stripe_color: $gray-700;
     .count-badge-label-text {
       display: none;
     }
+  }
+  @include media-breakpoint-down(sm) {
+    padding: 0;
   }
 }
 
@@ -50,6 +65,7 @@ $box_stripe_color: $gray-700;
 }
 
 .bar {
+  @include badge-icons();
   border-left: 3px solid $border-color;
 }
 
@@ -76,11 +92,6 @@ $box_stripe_color: $gray-700;
   .bar-left h5 {
     font-size: 1em;
   }
-  .bar {
-    .RIGHT-Xvote_count.content-view {
-      display: none;
-    }
-  }
 }
 
 .box-item {
@@ -103,6 +114,11 @@ a.box-item {
   @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
 }
 
+.box-bottom {
+  @include badge-icons();
+  justify-content: space-around;
+}
+
 // set consistent colors for a group of bars/boxes
 @mixin barbox($color) {
   &.bar {
@@ -111,15 +127,16 @@ a.box-item {
 
   &.expanded_bar-view:hover .bar, &.bar:hover {
     border-left-color: $color !important;
-    .bar-left a {
-      color: $color;
+    .bar-left {
+      a, .image-box i {
+        color: $color;
+      }
     }
   }
 
   &.box {
     border-top-color: $color !important;
-
-    .box-top a {
+    .box-top a, &:hover .box-middle i {
       color: $color;
     }
   }
@@ -157,6 +174,10 @@ $colorMap: (
 
   .TYPE-#{$type} {
     @include barbox($color);
+
+    // &.rich-header .image-box i {
+    //   color: $color
+    // }
   }
 
   .#{$type}-color, .#{$type}-color a {
@@ -196,10 +217,22 @@ $colorMap: (
   }
 }
 
+.LTYPE_RTYPE-topic-company {
+  @include barbox($topic-color)
+}
+
+.TYPE_PLUS_RIGHT-project-metric.titled-view .LTYPE_RTYPE-metric-project {
+  @include barbox($metric-color);
+}
+
+.TYPE_PLUS_RIGHT-project-company.titled-view .LTYPE_RTYPE-company-project {
+  @include barbox($company-color);
+}
+
 .TYPE-project, .TYPE-research_group {
   &.bar {
     &:hover .bar-left a {
-      color: $teal;
+      color: $brand-primary;
     }
     .bar-right {
       flex-direction: column;
@@ -210,18 +243,32 @@ $colorMap: (
   }
 }
 
+.TYPE-project.bar {
+  .bar-left .thumbnail-text {
+    width: 100%;
+  }
+  &:hover .default-progress-box .progress {
+    -webkit-filter: none;
+    filter: none;
+    .progress-bar {
+      background-color: $brand-primary;
+    }
+  }
+}
+
 .bar-middle .RIGHT-topic .pointer-list {
   text-align: center;
 }
-// project link color
 
-.TYPE-project
 // for metric items
 
 .TYPE-metric.box {
   height: 360px;
   .box-middle {
     min-height: auto;
+    i {
+      font-size: 20px;
+    }
   }
   .box-top {
     text-align: left !important;

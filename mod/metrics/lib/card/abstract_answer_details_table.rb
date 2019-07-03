@@ -50,7 +50,8 @@ class Card
     end
 
     def raw_value value_card
-      @format.link_to_card value_card, value_card.raw_value, class: "metric-value"
+      @format.link_to_card value_card, value_card.raw_value,
+                           class: "metric-value _update-details"
     end
 
     def base_metric_card

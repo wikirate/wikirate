@@ -23,14 +23,22 @@ def self.included host_class
       end
     end
 
-    define_method :wql_from_content do
-      { type_id: Card::Codename.id(host_class.type_to_count), right_plus: right_plus_val }
+    define_method :type_id_to_count do
+      Card::Codename.id host_class.type_to_count
     end
 
-    define_method :right_plus_val do
-      [Card::Codename.id(host_class.tag_pointer), { refer_to: left.id }]
+    define_method :tag_pointer_id do
+      Card::Codename.id host_class.tag_pointer
     end
   end
+end
+
+def wql_content
+  { type_id: type_id_to_count, right_plus: right_plus_val }
+end
+
+def right_plus_val
+  [tag_pointer_id, { refer_to: left.id }]
 end
 
 # FIXME: hack. otherwise filter wql can overwrite right_plus

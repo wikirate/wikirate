@@ -15,7 +15,7 @@ format :html do
 
   # LEFT SIDE
 
-  def header_body size=:medium
+  def header_body
     class_up "media-heading", "company-color"
     super
   end
@@ -28,7 +28,7 @@ format :html do
     if contrib_page?
       render_contributions_data
     else
-      field_nest :metric_answer
+      field_nest :metric_answer, view: :filtered_content
     end
   end
 
@@ -48,13 +48,13 @@ format :html do
 
   def answer_filtering
     filtering(".RIGHT-answer ._filter-widget") do
-      yield view: :bar, show: :full_page_link
+      yield view: :bar, show: :full_page_link, hide: %i[company_header edit_link]
     end
   end
 
   view :wikirate_topic_tab do
     answer_filtering do |items|
-      nest [:wikirate_topic, :browse_topic_filter], view: :filtered_content, items: items
+      field_nest :wikirate_topic, view: :filtered_content, items: items
     end
   end
 
@@ -69,15 +69,11 @@ format :html do
   end
 
   view :details_tab do
-    [labeled_field(:headquarters), integrations]
+    [labeled_field(:headquarters)] + integrations
   end
 
   def integrations
-    output [
-      content_tag(:h1, "Integrations"),
-      wikipedia_extract,
-      open_corporates_extract
-    ]
+    [content_tag(:h1, "Integrations"), wikipedia_extract, open_corporates_extract]
   end
 
   def wikipedia_extract

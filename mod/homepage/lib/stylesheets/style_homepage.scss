@@ -12,19 +12,24 @@
   font-size: 1.2em;
 }
 
+/*----------- Example answer ---------*/
+
+.answer-example > div {
+  border: 1px solid $border-color;
+  align-items: center;
+  padding: 0.5rem
+}
 /*----------- metric value ---------*/
 
-.year-icon-cal  {
+.year-icon-cal.image-box  {
   position: relative;
    i {
      font-size: 55px;
-     color: $border-color;
    }
   .icon-cal-text {
     position: absolute;
     top: 45%;
-    left: 25%;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     }
   }
@@ -138,6 +143,10 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
+}
+
+.year-and-value-pretty .image-box {
+  margin-right: 20px;
 }
 
 /*----------- wikirate in numbers ---------*/

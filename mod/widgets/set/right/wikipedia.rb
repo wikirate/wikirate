@@ -1,5 +1,5 @@
 def virtual?
-  true
+  new?
 end
 
 QUERY_ARGS = { format: :json, action: :query, prop: :extracts, redirects: 1,

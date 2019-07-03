@@ -8,7 +8,7 @@ class Card
     end
 
     def value
-      @format.wrap_with(:span, base_metric_answer.value, class: "metric-value")
+      raw_value
     end
 
     def base_metric_card

@@ -46,24 +46,11 @@ class WikirateTable
 
   def tr_opts row_card
     tr = @tr_opts.clone
-    if @opts[:details_view]
-      details_tr tr, row_card
+    if (tr_method = tr.delete(:method))
+      tr.merge format.send(tr_method, row_card)
     else
       tr
     end
-  end
-
-  def details_tr tr, row_card
-    add_class tr, "details-toggle"
-    tr.deep_merge! data: { details_url: details_url(row_card) }
-    tr
-  end
-
-  def details_url row_card
-    if @format.respond_to? :details_url?
-      return "false" unless @format.details_url? row_card
-    end
-    @format.path mark: row_card, view: @opts[:details_view]
   end
 
   def td_data row_card, view, col_index

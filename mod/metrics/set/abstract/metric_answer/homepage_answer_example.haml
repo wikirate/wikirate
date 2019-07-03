@@ -1,18 +1,12 @@
-.container.drop-shadow.bg-white
-  .company-border-left.bg-white.thumbnail.row.align-items-center.p-2.border-top.border-right
-    .image-box.small.mt-1
-      = company_image
-    .col.company-color.font-weight-bold
-      = company_link
-  .metric-border-left.thumbnail.row.p-2.border-top.border-right
-    .image-box.small.mt-1
-      = metric_image
-    .col
-      = metric_question
-  .metric-border-left.thumbnail.row.align-items-center.p-2.border-top.border-right
+.answer-example.container.drop-shadow.bg-white
+  .company-border-left.row
+    = nest card.company, view: :shared_header, size: :medium
+  .metric-border-left.row
+    = nest card.metric, view: :shared_header, size: :medium, hide: :vote
+  .metric-border-left.row
     .container
       = render_year_and_value_pretty
-  .source-border-left.row.p-2.border-top.border-right.border-bottom
+  .source-border-left.row.border-bottom
     .mt-1.text-center.col-2.px-0.pt-3
       %h5
         = citations_count_badge

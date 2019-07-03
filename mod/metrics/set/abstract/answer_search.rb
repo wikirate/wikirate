@@ -1,32 +1,28 @@
 # including module must respond to
-# A) `query_class`, returning a valid AnswerQuery class, and
+# A) `fixed_field`, returning a Symbol representing an AnswerQuery id filter, and
 # B) `filter_card_fieldcode`, returning the codename of the filter field
 
 include_set Abstract::Table
-include_set Abstract::Search
 include_set Abstract::Utility
-include_set Abstract::Filter
-include_set Abstract::FilterFormgroups
+include_set Abstract::BrowseFilterForm
 
 def virtual?
-  true
+  new?
 end
 
 def search args={}
   return_type = args.delete :return
   q = query(args)
   case return_type
-  when :name then
-    q.run.map(&:name)
-  when :count then
-    q.count
-  else
-    q.run
+  when :name  then q.run.map(&:name)
+  when :count then q.count
+  else             q.run
   end
 end
 
-def query args={}
-  query_class.new left.id, filter_hash, sort_hash, args
+def query paging={}
+  filter = filter_hash.merge fixed_field => left.id
+  AnswerQuery.new filter, sort_hash, paging
 end
 
 def filter_card
@@ -40,41 +36,42 @@ format :csv do
 end
 
 format :html do
-  view :core, cache: :never do
-    merge_filter_defaults
-    wrap_with :div, class: "filter-form-and-result nodblclick" do
-      class_up "card-slot", "_filter-result-slot"
-      output [_render_filter_form, _render_filter_result(home_view: :filter_result)]
-    end
+  delegate :partner, to: :card
+
+  view :filtered_content do
+    super() + raw('<div class="details"></div>')
   end
 
-  view :filter_result, template: :haml, cache: :never
+  # can't just set default_filter_hash, because +answer doesn't default to most
+  # recent year in csv or json format (or for answer counts)
+  before :core do
+    return if Env.params[:filter]
+
+    filter_hash.merge! card.filter_card.default_filter_hash
+  end
+
+  view :core, cache: :never, template: :haml
 
   view :filter_form do
-    wrap_with :div, class: "filter-form" do
-      _render_filter
-    end
-  end
-
-  view :filter do
-    subformat(card.filter_card)._render_core
+    nest card.filter_card, view: :core
   end
 
   view :table, cache: :never do
-    wikirate_table_with_details(*table_args)
+    wrap true, "data-details-view": details_view do
+      wikirate_table partner, self, cell_views, header: header_cells,
+                                                td: { classes: %w[header data] },
+                                                tr: { method: :tr_attribs }
+    end
   end
 
-  # this sets the default filter search options to match the default filter UI,
-  # which is managed by the filter_card
-  def merge_filter_defaults
-    filter_hash.reverse_merge! filter_defaults
+  view :answer_header, cache: :never do
+    [table_sort_link("Answer", :value, "pull-left mx-3 px-1"),
+     table_sort_link("Year", :year, "pull-right mx-3 px-1")]
   end
 
-  def filter_defaults
-    card.filter_card.default_filter_option
-  end
+  def tr_attribs row_card
+    return {} unless row_card.known?
 
-  def details_url? row_card
-    !row_card.unknown?
+    { class: "details-toggle", "data-details-mark": row_card.name.url_key }
   end
 end

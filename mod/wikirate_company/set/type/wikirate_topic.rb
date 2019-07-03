@@ -14,7 +14,7 @@ card_accessor :wikirate_company
 card_accessor :metric
 
 format :html do
-  def header_body size=:medium
+  def header_body
     class_up "media-heading", "topic-color"
     super
   end
@@ -24,9 +24,7 @@ format :html do
   end
 
   view :bar_left do
-    filterable :wikirate_topic do
-      render_thumbnail
-    end
+    render_thumbnail
   end
 
   view :bar_middle do
@@ -42,7 +40,7 @@ format :html do
   end
 
   view :box_middle do
-    nest image_card, view: :core, size: :medium
+    field_nest :image, view: :core, size: :medium
   end
 
   view :box_bottom do
@@ -57,6 +55,10 @@ format :html do
 
   def tab_list
     %i[metric wikirate_company research_group project]
+  end
+
+  def tab_options
+    { research_group: { label: "Groups" } }
   end
 
   view :data do

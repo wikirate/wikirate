@@ -8,7 +8,22 @@ end
 
 # override
 def default_sort_option
-  lookup? ? :value : :name
+  if    record? then :year
+  elsif lookup? then :value
+  else               :name
+  end
+end
+
+def toggle_sort_order field
+  if field.to_sym == sort_by.to_sym
+    sort_order == "asc" ? "desc" : "asc"
+  else
+    default_sort_order field
+  end
+end
+
+def record?
+  filter_hash[:"#{partner}_name"]&.match?(/^\"/)
 end
 
 def lookup?
@@ -17,20 +32,22 @@ end
 
 def sort_order
   return unless sort_by
-  @sort_order ||= safe_sql_param("sort_order")
-  @sort_order ||= default_desc_sort_order.include?(sort_by) ? :desc : :asc
+  @sort_order ||= safe_sql_param("sort_order") || default_sort_order(sort_by)
+end
+
+def default_sort_order sort_by
+  default_desc_sort_order.include?(sort_by.to_sym) ? :desc : :asc
 end
 
 def default_desc_sort_order
-  ::Set.new [:updated_at, :importance, :value]
+  ::Set.new %i[updated_at importance value year]
 end
 
 format :html do
-  def table_sort_link name, key, test=nil, css_class=""
-    return name if test && !card.send(test)
+  def table_sort_link name, key, css_class=""
     sort_link "#{name} #{sort_icon key}",
               sort_by: key,
-              sort_order: toggle_sort_order(key),
+              sort_order: card.toggle_sort_order(key),
               class: "#{css_class} table-sort-link table-sort-by-#{key}"
   end
 
@@ -40,17 +57,12 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    path = paging_path_args sort_order: args[:sort_order],
-                            sort_by: args[:sort_by]
-    link_to_view :filter_result, text,
-                 path: path,
-                 class: "metric-list-header #{args[:class]}"
+    link_to_view :table, text, path: sort_path(args),
+                               class: "metric-list-header #{args[:class]}"
   end
 
-  def toggle_sort_order field
-    return "asc" unless field.to_sym == card.sort_by.to_sym
-
-    card.sort_order == "asc" ? "desc" : "asc"
+  def sort_path args
+    paging_path_args sort_order: args[:sort_order], sort_by: args[:sort_by]
   end
 
   def sort_icon field
