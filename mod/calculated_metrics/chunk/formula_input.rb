@@ -10,7 +10,7 @@ class Card
 
         Card::Content::Chunk.register_class(
           self, prefix_re: '\\{\\{',
-                full_re:    /^\{\{([^\}]*)\}\}/,
+                full_re:    /\A\{\{([^\}]*)\}\}/,
                 idx_char:  "{"
         )
       end
