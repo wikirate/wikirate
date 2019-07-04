@@ -6,6 +6,10 @@ module Formula
       def unknown_options
         ["Unknown"] * input_count
       end
+
+      def not_researched
+        [""] * input_count
+      end
     end
 
     OPTIONS = %i[year company unknown not_researched].freeze

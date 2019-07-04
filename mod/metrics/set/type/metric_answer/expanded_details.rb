@@ -57,7 +57,7 @@ format :html do
 
   # TODO: make item-wrapping format-specific
   def formula_details
-    calculator = Formula::Calculator.new(card.metric_card.formula_card.parser)
+    calculator = Formula::Calculator.new(card.metric_card.formula_card.parser.raw_input!)
     calculator.advanced_formula_for card.company, card.year.to_i do |input, input_card|
       link_target = [input_card, card.company]
       link_target << card.year unless input.is_a?(Array)
