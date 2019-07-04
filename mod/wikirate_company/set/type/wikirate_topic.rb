@@ -57,6 +57,10 @@ format :html do
     %i[metric wikirate_company research_group project]
   end
 
+  def tab_options
+    { research_group: { label: "Groups" } }
+  end
+
   view :data do
     field_nest :general_overview, view: :titled
   end

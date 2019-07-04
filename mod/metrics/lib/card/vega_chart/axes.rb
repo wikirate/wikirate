@@ -16,7 +16,7 @@ class Card
       end
 
       def diagonalize x_axis
-        return unless diagonal_x_labels?
+        return x_axis unless diagonal_x_labels?
 
         x_axis.deep_merge! encode: { labels: { update: { angle: { value: 30 },
                                                          limit: { value: 70 },

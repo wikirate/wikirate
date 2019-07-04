@@ -13,8 +13,7 @@ PATH
 PATH
   remote: vendor/card-mods/markdown
   specs:
-    card-mod-markdown (0.2)
-      card
+    card-mod-markdown (0.3)
       kramdown
 
 PATH
@@ -144,7 +143,7 @@ GEM
       capistrano (~> 3.1)
     capistrano-git-with-submodules (2.0.3)
       capistrano (~> 3.7)
-    capistrano-maintenance (1.2.0)
+    capistrano-maintenance (1.2.1)
       capistrano (>= 3.0)
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
@@ -199,7 +198,7 @@ GEM
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
     curb (0.9.10)
-    cypress-on-rails (1.3.0)
+    cypress-on-rails (1.4.0)
       rack
     daemons (1.3.1)
     dalli (2.7.10)
@@ -207,7 +206,7 @@ GEM
     debug_inspector (0.0.3)
     declarative (0.0.10)
     declarative-option (0.1.0)
-    delayed_job (4.1.5)
+    delayed_job (4.1.7)
       activesupport (>= 3.0, < 5.3)
     delayed_job_active_record (4.1.3)
       activerecord (>= 3.0, < 5.3)
@@ -504,7 +503,7 @@ GEM
     net-ssh (5.2.0)
     net_http_timeout_errors (0.3.5)
     netrc (0.11.0)
-    newrelic_rpm (6.4.0.356)
+    newrelic_rpm (6.5.0.357)
     nio4r (2.3.1)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
@@ -544,9 +543,11 @@ GEM
     pry-stack_explorer (0.4.9.3)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    public_suffix (3.1.0)
-    puma (3.12.1)
+    public_suffix (3.1.1)
+    puma (4.0.0)
+      nio4r (~> 2.0)
     rack (2.0.7)
+    rack-cors (1.0.3)
     rack-protection (2.0.5)
       rack
     rack-test (1.1.0)
@@ -627,7 +628,7 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    rubocop (0.71.0)
+    rubocop (0.72.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -680,7 +681,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.18.2)
+    sshkit (1.19.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     statistics2 (0.54)
@@ -789,6 +790,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   puma
+  rack-cors
   rails-dev-tweaks
   roo
   rspec
