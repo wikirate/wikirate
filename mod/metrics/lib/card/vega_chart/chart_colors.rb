@@ -3,8 +3,8 @@ class Card
     # color configuration for vega bar charts
     module ChartColors
       BAR_COLOR = "#eeeeee".freeze
-      HIGHLIGHT_COLOR = "#F78C1E".freeze
-      HOVER_COLOR = "#D3741C".freeze
+      HIGHLIGHT_COLOR = "#2E58b3".freeze
+      HOVER_COLOR = "#4966A4".freeze
       DARK_AXES = "#333333".freeze
       LIGHT_AXES = "#cccccc".freeze
 

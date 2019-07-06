@@ -61,6 +61,26 @@
   }
 }
 
+.quick-filter {
+  padding-bottom: 0.4em;
+  a {
+    border-radius: 0.2rem;
+    background: #666;
+    color: #fff;
+    padding: 0.3em 0.6em;
+  }
+  .quick-filter-by-wikirate_topic {
+    border: 1px solid rgba($topic-color, 0.55);
+    background: rgba($topic-color, 0.02);
+    color: $topic-color;
+    &.active {
+      background: $topic-color;
+      color: #fff;
+    }
+  }
+}
+
+
 .metric-source .tab-content {
   background: #fffefa;
   padding: 30px;
@@ -612,7 +632,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .badge {
   &.known {
     color: $white;
-    background-color: $metric-color;
+    background-color: $answer-color;
   }
   &.total {
     color: $white;

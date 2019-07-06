@@ -17,7 +17,8 @@ end
 # note: for answers with cards, this happens via answer events,
 # but calculated answers don't have cards, so this has to happen via a company
 event :refresh_renamed_company_answers, :integrate,
-      on: :update, changed: :name, after_subcards: true do
+      on: :update, after_subcards: true do
+  binding.pry
   researched_answers.where.not(company_name: name).each do |answer|
     answer.refresh :record_name, :company_name
   end
