@@ -17,7 +17,7 @@ describe Card::Set::Type::Source::Creation do
 
       it "prepopulates title from search term" do
         Card::Env.params[:source_search_term] = "https://xkcd.com/4/"
-        expect_view(:new).to have_field_with_value("Title", "xkcd: Landscape (sketch)")
+        expect_view(:new).to have_field_with_value("Title", "Landscape (sketch)")
       end
 
       it "has special hidden success tag" do
