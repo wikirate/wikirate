@@ -175,6 +175,10 @@ $colorMap: (
   .TYPE-#{$type} {
     @include barbox($color);
 
+    &.thumbnail .thumbnail-title .card-title {
+      color: $color
+    }
+
     // &.rich-header .image-box i {
     //   color: $color
     // }
