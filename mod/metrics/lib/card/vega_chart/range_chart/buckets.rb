@@ -35,7 +35,7 @@ class Card
         # end
 
         def bucket_size
-          @bucket_size ||= nice(raw_bucket_size { |b| b * 1.05 })
+          @bucket_size ||= nice(raw_bucket_size) { |b| b * 1.05 }
         end
 
         def raw_bucket_size
