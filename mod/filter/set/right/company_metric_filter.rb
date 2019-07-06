@@ -15,8 +15,10 @@ format :html do
     field.to_sym == :metric_type ? "Metric type" : super
   end
 
-  def quick_filter_hash
-    { wikirate_topic: "Taming" }
+  def quick_filter_list
+    Card[:homepage_featured_topics].item_names.map do |topic|
+      { wikirate_topic: topic }
+    end
   end
 
   def sort_options
