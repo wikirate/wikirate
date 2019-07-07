@@ -1,3 +1,5 @@
+include_set Abstract::Filterable
+
 format :html do
   view :stats, cache: :never do
     table stat_rows, class: "filtered-answer-counts table-sm table-borderless text-muted"
@@ -53,9 +55,11 @@ format :html do
   view :progress_bar, cache: :never do
     sections = map_status(true) do |status, count|
       { value: (count / total_results.to_f * 100),
-        body: count,
+        body: "#{count} #{LABELS[status]}",
         title: "#{count} #{LABELS[status]} Answers",
-        class: "progress-#{status}" }
+        class: "_filter-link progress-#{status}",
+        data: { filter: { status: status } }
+      }
     end
     progress_bar(*sections)
   end
