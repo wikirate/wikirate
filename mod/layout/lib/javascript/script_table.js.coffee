@@ -2,19 +2,20 @@
 
 $(document).ready ->
   $('body').on 'click', "[data-details-mark]", ->
-    (new decko.details).toggle $(this)
+    (new decko.details(this)).toggle $(this)
 
   $('body').on 'click', ".details-close-icon", (e)->
-    (new decko.details).closeLast()
+    (new decko.details(this)).closeLast()
     e.stopPropagation()
     e.preventDefault()
 
   $('body').on 'click', '.details ._update-details', (e) ->
-    (new decko.details).add $(this)
+    (new decko.details(this)).add $(this)
     e.preventDefault()
 
-decko.details = (dSlot) ->
-  @dSlot = if dSlot then $(dSlot) else $(".details")
+decko.details = (el) ->
+  dInnerSlot = $(el).find ".details"
+  @dSlot = if dInnerSlot.exists() then dInnerSlot else $(".details")
 
   @closeLast = ()->
     if @dSlot.children().length == 1
