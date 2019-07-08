@@ -4,8 +4,10 @@ $(document).ready ->
   $('body').on 'click', "[data-details-mark]", ->
     (new decko.details).toggle $(this)
 
-  $('body').on 'click', ".details-close-icon", ->
+  $('body').on 'click', ".details-close-icon", (e)->
     (new decko.details).closeLast()
+    e.stopPropagation()
+    e.preventDefault()
 
   $('body').on 'click', '.details ._update-details', (e) ->
     (new decko.details).add $(this)
