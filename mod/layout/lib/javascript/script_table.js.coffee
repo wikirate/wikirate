@@ -5,7 +5,7 @@ $(document).ready ->
     (new decko.details(this)).toggle $(this)
 
   $('body').on 'click', ".details-close-icon", (e)->
-    (new decko.details(this)).closeLast()
+    (new decko.details($(this).closest(".details-toggle"))).closeLast()
     e.stopPropagation()
     e.preventDefault()
 
@@ -14,11 +14,8 @@ $(document).ready ->
     e.preventDefault()
 
 decko.details = (el) ->
-  @dSlot = detailsSlot el
-
-  @detailsSlot = (el) ->
-    dInnerSlot = $(el).find ".details"
-    if dInnerSlot.exists() then dInnerSlot else $(".details")
+  @dInnerSlot = $(el).find ".details"
+  @dSlot = if @dInnerSlot.exists() then @dInnerSlot else $(".details")
 
   @closeLast = ()->
     if @dSlot.children().length == 1
