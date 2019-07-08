@@ -78,8 +78,7 @@ format :html do
         body: "#{count} #{LABELS[status]}",
         title: "#{count} #{LABELS[status]} Answers",
         class: "_filter-link progress-#{status}",
-        data: { filter: { status: status } }
-      }
+        data: { filter: { status: status } } }
     end
     progress_bar(*sections)
   end
