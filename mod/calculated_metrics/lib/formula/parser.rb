@@ -7,8 +7,8 @@ module Formula
         ["Unknown"] * input_count
       end
 
-      def not_researched
-        [""] * input_count
+      def not_researched_options
+        ["No value"] * input_count
       end
     end
 
