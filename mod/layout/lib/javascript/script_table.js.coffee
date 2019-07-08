@@ -14,8 +14,11 @@ $(document).ready ->
     e.preventDefault()
 
 decko.details = (el) ->
-  dInnerSlot = $(el).find ".details"
-  @dSlot = if dInnerSlot.exists() then dInnerSlot else $(".details")
+  @dSlot = detailsSlot el
+
+  @detailsSlot = (el) ->
+    dInnerSlot = $(el).find ".details"
+    if dInnerSlot.exists() then dInnerSlot else $(".details")
 
   @closeLast = ()->
     if @dSlot.children().length == 1
