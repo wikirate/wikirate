@@ -503,8 +503,8 @@
 }
 
 .navbar-inverse {
-  background-color: #03998d;
-  border-color: #03998d;
+  background-color: $brand-primary;
+  border-color: $brand-primary;
 
   .navbar-nav > li > a,
   .navbar-text {
