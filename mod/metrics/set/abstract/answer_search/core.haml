@@ -1,14 +1,13 @@
 %h5
   = labeled_badge total_results, "Filtered Answers", color: "answer badge-secondary"
 - if voo.show? :chart
-  .row
-    .vega.col-12.col-xl-9.p-0.text-center
-      = _render_chart
-    .col-12.col-xl-3.pt-xl-4.answer-stats
-      = render_stats
-- else
+  .text-center
+    = _render_chart
+    // .col-12.col-xl-3.pt-xl-4.answer-stats
+    //   = render_stats
+- if total_results.positive?
   .answer-search-progress.py-2.mb-3
     = render_progress_bar
-.details-table
-  = render_table home_view: :table
-= render_export_links
+  .details-table
+    = render_table home_view: :table
+  = render_export_links

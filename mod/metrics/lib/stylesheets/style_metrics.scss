@@ -61,6 +61,7 @@
   }
 }
 
+// TODO: merge with topic and company hoverTag
 .quick-filter {
   padding-bottom: 0.5rem;
   a {
@@ -70,14 +71,21 @@
     color: #fff;
     padding: 0.1em 0.4em;
     margin: 0 0.5rem 0.5rem 0;
+    &.active {
+      opacity: 0.6;
+      color: #fff;
+    }
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+    }
   }
   .quick-filter-by-wikirate_topic {
-    border: 1px solid rgba($topic-color, 0.55);
-    background: rgba($topic-color, 0.02);
+    border: 1px solid rgba($topic-color, 0.6);
+    background: rgba($topic-color, 0.1);
     color: $topic-color;
     &.active {
       background: $topic-color;
-      color: #fff;
     }
   }
 }

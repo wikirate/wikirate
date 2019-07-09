@@ -723,6 +723,10 @@ a.no-decoration {
   max-width: 100%;
   // overflow-x: hidden;
 
+  > i {
+    width: 25px;
+  }
+
   .input-group._filter-input {
     max-width: 100% !important;
 
