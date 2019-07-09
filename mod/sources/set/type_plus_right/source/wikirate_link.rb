@@ -10,8 +10,8 @@ end
 event :validate_content, :validate, on: :save do
   @host = nil
   @host = URI(content).host
-rescue
-  errors.add :link, "invalid uri #{content}" unless @host
+rescue URI::Error => e
+  errors.add :link, "invalid URI: #{content}, #{e.message}" unless @host
 end
 
 FIELD_CODENAME = { title: :wikirate_title, description: :description }.freeze
