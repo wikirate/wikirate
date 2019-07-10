@@ -21,7 +21,11 @@ format :html do
   end
 
   def thumbnail_subtitle
-    [card.metric_type, formula_options].flatten.compact.join(" | ")
+    [fixed_thumbnail_subtitle, formula_options].flatten.compact.join(" | ")
+  end
+
+  def fixed_thumbnail_subtitle
+    card.metric_type
   end
 
   def formula_options

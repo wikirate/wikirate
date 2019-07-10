@@ -78,7 +78,7 @@ format :html do
     HTML
   end
 
-  def thumbnail_subtitle
+  def fixed_thumbnail_subtitle
     "Score | scored by #{link_to_card card.scorer}"
   end
 
