@@ -69,10 +69,10 @@
     border-radius: 0.2rem;
     background: #666;
     color: #fff;
-    padding: 0.1em 0.4em;
+    padding: 0 0.4em;
     margin: 0 0.5rem 0.5rem 0;
     &.active {
-      opacity: 0.6;
+      opacity: 0.75;
       color: #fff;
     }
     &:hover {
@@ -284,11 +284,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 
 .TYPE-metric.new-view {
-  //ul.nav-tabs li {
-  //    padding: 28px;
-  //    background: #eee;
-  //    margin: 5px;
-  //}
   .help-text p:last-child {
     margin-bottom: 5px;
   }
@@ -622,12 +617,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   max-width: 300px !important;
   max-height: 206px !important;
 }
-
-// @media (max-width: 1200px) {
-//   .filtered-answer-counts tr {
-//     display: table-cell;
-//   }
-// }
 
 .filtered-answer-counts {
   tr.known {
