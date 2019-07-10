@@ -85,13 +85,13 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
         end
       end
       it "has chart" do
-        is_expected.to have_tag ".row" do
+        is_expected.to have_tag ".answer-search-chart" do
           with_tag ".vis"
         end
       end
-      it "has counts" do
-        is_expected.to have_tag "table.filtered-answer-counts" do
-          with_tag "span.known.badge", "4"
+      it "has progress_bar" do
+        is_expected.to have_tag "div.answer-search-progress" do
+          with_tag "div.progress-known", "4 Known"
         end
       end
       it "has table" do

@@ -1,9 +1,10 @@
 include_set Abstract::Filterable
 
 format :html do
-  view :stats, cache: :never do
-    table stat_rows, class: "filtered-answer-counts table-sm table-borderless text-muted"
-  end
+  # view :stats, cache: :never do
+  #   table stat_rows,
+  #         class: "filtered-answer-counts table-sm table-borderless text-muted"
+  # end
 
   LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
              total: "Total" }.freeze
@@ -24,37 +25,37 @@ format :html do
     end
   end
 
-  def stat_rows
-    map_status { |status, count| stat_row status.to_sym, count }
-  end
-
-  def stat_row status, count
-    stat_row_with_filter status do
-      { content: [operand_cell(status),
-                  count_cell(count, status),
-                  LABELS[status]].compact }
-    end
-  end
-
-  def stat_row_with_filter status
-    yield.merge(
-      if status == :total
-        { class: status }
-      else
-        { class: "#{status} _filter-link", data: { filter: { status: status } } }
-      end
-    )
-  end
-
-  def operand_cell status
-    return unless total_row?
-
-    { content: operand(status), class: "text-right" }
-  end
-
-  def count_cell count, status
-    { content: badge_tag(count, class: status), class: "text-right" }
-  end
+  # def stat_rows
+  #   map_status { |status, count| stat_row status.to_sym, count }
+  # end
+  #
+  # def stat_row status, count
+  #   stat_row_with_filter status do
+  #     { content: [operand_cell(status),
+  #                 count_cell(count, status),
+  #                 LABELS[status]].compact }
+  #   end
+  # end
+  #
+  # def stat_row_with_filter status
+  #   yield.merge(
+  #     if status == :total
+  #       { class: status }
+  #     else
+  #       { class: "#{status} _filter-link", data: { filter: { status: status } } }
+  #     end
+  #   )
+  # end
+  #
+  # def operand_cell status
+  #   return unless total_row?
+  #
+  #   { content: operand(status), class: "text-right" }
+  # end
+  #
+  # def count_cell count, status
+  #   { content: badge_tag(count, class: status), class: "text-right" }
+  # end
 
   def total_results
     @total_results = count_by_status[:total] || count_by_status.values.first

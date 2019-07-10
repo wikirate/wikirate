@@ -39,6 +39,6 @@ format :html do
   end
 
   def show_chart?
-    super && count_by_status[:known].positive?
+    super && count_by_status[:known].to_i.positive?
   end
 end
