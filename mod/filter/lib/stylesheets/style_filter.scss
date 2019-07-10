@@ -4,6 +4,7 @@
   width: 25px;
   color: $text-muted;
   float: left;
+  padding: 0.5rem;
 }
 .filter-input-prepend {
   .input-group-text {
@@ -21,17 +22,16 @@
 .filter-in-filter-form {
   max-width: 100%;
   // overflow-x: hidden;
+}
 
-  .filter-input-group {
-    max-width: 100% !important;
-    margin: 0 0.5rem 0.5rem 0;
-    display: flex;
-    flex-wrap: nowrap;
-    btn, .input-group-text, input, .select2-selection {
-      border-color: $gray-200;
-    }
+.filter-input-group, .sort-input-group {
+  max-width: 100% !important;
+  margin: 0 0.5rem 0.5rem 0;
+  display: flex;
+  flex-wrap: nowrap;
+  btn, .input-group-text, input, .select2-selection, .input-group-prepend {
+    border-color: $gray-200;
   }
-
 }
 
 .range-filter-subfield {
@@ -42,7 +42,7 @@
   >.card {
     border: 0;
     > .card-body {
-      padding: 1.5rem 0 0.5rem 0;
+      padding: 1rem 0 0.5rem 0;
     }
   }
 }
