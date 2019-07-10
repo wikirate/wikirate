@@ -121,7 +121,11 @@ table.wikirate-table, .table.wikirate-table {
   th {
     border: 0;
   }
-
+  @include media-breakpoint-down(sm) {
+    .metric-list-header {
+      margin-left: 0 !important;
+    }
+  }
 }
 
 //---Custom Table Properties---//

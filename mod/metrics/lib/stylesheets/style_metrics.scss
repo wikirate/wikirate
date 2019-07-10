@@ -72,13 +72,18 @@
     padding: 0 0.4em;
     margin: 0 0.5rem 0.25rem 0;
     font-size: 0.9rem;
+    cursor: default;
     &.active {
       opacity: 0.75;
       color: #fff;
+      cursor: pointer;
     }
     &:hover {
       opacity: 1;
       text-decoration: none;
+    }
+    @include media-breakpoint-down(sm) {
+      font-size: 0.8rem;
     }
   }
   .quick-filter-by-wikirate_topic {

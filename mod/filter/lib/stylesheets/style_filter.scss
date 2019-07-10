@@ -1,9 +1,48 @@
+// TODO: move to decko
+
 .filter-section-icon {
   width: 25px;
   color: $text-muted;
   float: left;
 }
-.chart-zoom-out {
-  position: relative;
-  z-index: 100;
+.filter-input-prepend {
+  .input-group-text {
+    padding-left: 0.25em !important;
+  }
+  .btn {
+    border-right: 0;
+  }
+}
+
+// Fix to prevent that the dropdown becomes bigger than the area it is inside.
+// happens for example for project filter
+// The reason is that dropdownAutoWidth in script_load_select2.js.coffee sets a fixed
+// width so that the longest entry fits in
+.filter-in-filter-form {
+  max-width: 100%;
+  // overflow-x: hidden;
+
+  .filter-input-group {
+    max-width: 100% !important;
+    margin: 0 0.5rem 0.5rem 0;
+    display: flex;
+    flex-wrap: nowrap;
+    btn, .input-group-text, input, .select2-selection {
+      border-color: $gray-200;
+    }
+  }
+
+}
+
+.range-filter-subfield {
+  max-width: 50px;
+}
+
+.filter-form {
+  >.card {
+    border: 0;
+    > .card-body {
+      padding: 1.5rem 0 0.5rem 0;
+    }
+  }
 }
