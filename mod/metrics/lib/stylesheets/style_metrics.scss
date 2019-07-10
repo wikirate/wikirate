@@ -51,52 +51,6 @@
   }
 }
 
-.filter-buttons {
-  text-align: right;
-  margin: 10px;
-  //border-top: 1px solid #eee;
-  .form-group {
-    margin: 0 0 -15px;
-    padding: 0;
-  }
-}
-
-// TODO: merge with topic and company hoverTag
-.quick-filter {
-  padding-bottom: 0.5rem;
-  a {
-    display: inline-block;
-    border-radius: 0.2rem;
-    background: #666;
-    color: #fff;
-    padding: 0 0.4em;
-    margin: 0 0.5rem 0.25rem 0;
-    font-size: 0.9rem;
-    cursor: default;
-    &.active {
-      opacity: 0.75;
-      color: #fff;
-      cursor: pointer;
-    }
-    &:hover {
-      opacity: 1;
-      text-decoration: none;
-    }
-    @include media-breakpoint-down(sm) {
-      font-size: 0.8rem;
-    }
-  }
-  .quick-filter-by-wikirate_topic {
-    border: 1px solid rgba($topic-color, 0.6);
-    background: rgba($topic-color, 0.1);
-    color: $topic-color;
-    &.active {
-      background: $topic-color;
-    }
-  }
-}
-
-
 .metric-source .tab-content {
   background: #fffefa;
   padding: 30px;
