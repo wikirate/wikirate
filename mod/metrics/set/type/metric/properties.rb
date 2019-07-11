@@ -32,7 +32,7 @@ format :html do
         if respond_to? "#{field}_property"
           send "#{field}_property", label
         else
-          labeled_field field, :name, title: label
+          labeled_field field, :name, title: label, separator: ", "
         end
       end
     end

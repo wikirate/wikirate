@@ -1,3 +1,19 @@
+require "link_thumbnailer"
+
+format :html do
+  view :editor do
+    form.text_field :content, class: "d0-card-content form-control",
+                              placeholder: "http://example.com"
+  end
+end
+
+event :validate_content, :validate, on: :save do
+  @host = nil
+  @host = URI(content).host
+rescue URI::Error => e
+  errors.add :link, "invalid URI: #{content}, #{e.message}" unless @host
+end
+
 FIELD_CODENAME = { title: :wikirate_title, description: :description }.freeze
 
 event :add_source_file, :initialize, on: :create, when: :no_file? do

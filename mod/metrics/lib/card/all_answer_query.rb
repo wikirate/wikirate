@@ -63,9 +63,5 @@ class Card
     def main_results_sql
       sort_and_page { main_query.select "answers.id, #{@partner}.name" }.to_sql
     end
-
-    def status_groups
-      @status_groups ||= super.merge(none: nil)
-    end
   end
 end

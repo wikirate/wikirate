@@ -35,8 +35,7 @@ updateFilter = (el, filterVals) ->
     alert 'Filtering for "Other" values is not yet supported.'
   else
     filter = new decko.filter el.closest("._filtered-content").find("._filter-widget")
-    for key of filterVals
-      filter.addRestriction key, filterVals[key]
+    filter.addRestrictions filterVals
 
 updateDetails = (detailsAnswer) ->
   $("[data-details-mark=\"#{detailsAnswer}\"]").trigger "click"

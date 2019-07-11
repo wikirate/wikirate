@@ -70,7 +70,8 @@
 
 @include media-breakpoint-down(sm) {
   .image-box {
-    @include image-box-size(large, 100px);
+    @include image-box-size(xlarge, 100px);
+    @include image-box-size(large, 80px);
   }
   .media-body {
     padding: 4px;
