@@ -17,7 +17,5 @@ module Formula
         res + (@executed_lambda[inp.to_s.downcase] || @executed_lambda["else"]).to_f
       end
     end
-
-    protected
   end
 end

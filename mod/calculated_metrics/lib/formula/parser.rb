@@ -1,13 +1,16 @@
 module Formula
   class Parser
-    # look up all input values and don't apply input options
-    # like {{ | unknown: 4 }}
+
+    # Pass "unknown" input values always as "Unknown" to the calculation
+    # (and ignore "unknown" nest options in the formula)
     module PassThroughUnknown
       def unknown_options
         ["Unknown"] * input_count
       end
     end
 
+    # Pass "not researched" input values always as "No Value" to the calculation
+    # (and ignore "not_researched" nest options in the formula)
     module PassThroughNotResearched
       def not_researched_options
         ["No value"] * input_count
@@ -58,6 +61,8 @@ module Formula
       end
     end
 
+    # look up all input values and don't apply input options
+    # like {{ | unknown: 4 }}
     def raw_input!
       pass_through_unknown!
       singleton_class.include PassThroughNotResearched
