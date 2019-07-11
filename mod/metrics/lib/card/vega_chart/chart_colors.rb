@@ -3,8 +3,8 @@ class Card
     # color configuration for vega bar charts
     module ChartColors
       BAR_COLOR = "#eeeeee".freeze
-      HIGHLIGHT_COLOR = "#F78C1E".freeze
-      HOVER_COLOR = "#D3741C".freeze
+      HOVER_COLOR = "#03998d".freeze      # $brand-primary in SCSS
+      HIGHLIGHT_COLOR = "#8ECDC7".freeze  # $brand-primary at 50% opacity
       DARK_AXES = "#333333".freeze
       LIGHT_AXES = "#cccccc".freeze
 

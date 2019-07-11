@@ -90,7 +90,9 @@
     color: $text-muted;
   }
   .value-details {
-    padding: 0.5em 0;
+    padding: 0.5em;
+    background-color: rgba($brand-primary, 0.1);
+    margin-top: 0.5em;
   }
   .full-page-link i {
     font-size: 1.5em;

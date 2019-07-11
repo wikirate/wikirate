@@ -60,7 +60,7 @@ format :html do
   end
 
   def default_year_option
-    { "Most Recent" => "latest" }
+    { "Latest" => "latest" }
   end
 
   def year_options

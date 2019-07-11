@@ -1,5 +1,92 @@
+// TODO: move to decko
 
-.chart-zoom-out {
-  position: relative;
-  z-index: 100;
+.filter-section-icon {
+  width: 25px;
+  color: $text-muted;
+  float: left;
+  padding: 0.5rem;
+}
+.filter-input-prepend {
+  .input-group-text {
+    padding-left: 0.25em !important;
+  }
+  .btn {
+    border-right: 0;
+  }
+}
+
+// Fix to prevent that the dropdown becomes bigger than the area it is inside.
+// happens for example for project filter
+// The reason is that dropdownAutoWidth in script_load_select2.js.coffee sets a fixed
+// width so that the longest entry fits in
+.filter-in-filter-form {
+  max-width: 100%;
+  // overflow-x: hidden;
+}
+
+.filter-input-group, .sort-input-group {
+  max-width: 100% !important;
+  margin: 0 0.5rem 0.5rem 0;
+  display: flex;
+  flex-wrap: nowrap;
+  btn, .input-group-text, input, .select2-selection, .input-group-prepend {
+    border-color: $gray-200;
+  }
+}
+
+.range-filter-subfield {
+  max-width: 50px;
+}
+
+.filter-form {
+  >.card {
+    border: 0;
+    > .card-body {
+      padding: 1rem 0 0.5rem 0;
+    }
+  }
+}
+
+.filter-buttons {
+  text-align: right;
+  margin: 10px;
+  //border-top: 1px solid #eee;
+  .form-group {
+    margin: 0 0 -15px;
+    padding: 0;
+  }
+}
+
+// TODO: merge with topic and company hoverTag
+.quick-filter {
+  padding-bottom: 0.5rem;
+  a {
+    display: inline-block;
+    border-radius: 0.2rem;
+    background: #666;
+    color: #fff;
+    padding: 0 0.4em;
+    margin: 0 0.5rem 0.25rem 0;
+    font-size: 0.9rem;
+    opacity: 0.75;
+    cursor: default;
+    &.active {
+      color: #fff;
+      cursor: pointer;
+    }
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+    }
+    @include media-breakpoint-down(sm) {
+      font-size: 0.8rem;
+    }
+  }
+  .quick-filter-by-wikirate_topic {
+    background: rgba($topic-color, 0.2);
+    color: $topic-color;
+    &.active {
+      background: $topic-color;
+    }
+  }
 }

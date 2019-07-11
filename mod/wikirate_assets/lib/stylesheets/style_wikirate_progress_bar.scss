@@ -12,6 +12,7 @@
   box-shadow: none;
   font-size: 9px;
   font-weight: bolder;
+  background-color: $answer-color;
 }
 
 @mixin projectbar($name, $color) {
@@ -66,7 +67,7 @@
 }
 
 .default-progress-box .row {
-    padding: 4px 0px;
+  padding: 4px 0px;
 }
 
 .progress-legend {

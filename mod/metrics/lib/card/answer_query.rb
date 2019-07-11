@@ -7,6 +7,8 @@ class Card
     include MetricAndCompanyFilters
     include OutlierFilter
 
+    STATUS_GROUPS = { 0 => :unknown, 1 => :known, nil => :none }.freeze
+
     # instantiates AllAnswerQuery object for searches that can return
     # not-researched answers (status = :all or :none) and AnswerQuery
     # objects for all other searches
@@ -63,11 +65,10 @@ class Card
     end
 
     def count_by_status_groups
-      raw_counts = count_by_group "value <> 'Unknown'"
       counts = { total: 0 }
-      status_groups.each do |k, v|
-        num = raw_counts[v].to_i
-        counts[k] = num
+      count_by_group("value <> 'Unknown'").each do |val, count|
+        num = count.to_i
+        counts[STATUS_GROUPS[val]] = num
         counts[:total] += num
       end
       counts
@@ -86,10 +87,6 @@ class Card
     end
 
     private
-
-    def status_groups
-      { unknown: 0, known: 1 }
-    end
 
     def status_filter
       @filter_args[:status]&.to_sym || :exists

@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
+RSpec.xdescribe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
   describe "view: stats" do
     example "filtered by 'all'" do
       Card.fetch("Jedi+disturbances in the Force").create_values true do

@@ -51,16 +51,6 @@
   }
 }
 
-.filter-buttons {
-  text-align: right;
-  margin: 10px;
-  //border-top: 1px solid #eee;
-  .form-group {
-    margin: 0 0 -15px;
-    padding: 0;
-  }
-}
-
 .metric-source .tab-content {
   background: #fffefa;
   padding: 30px;
@@ -100,7 +90,7 @@
 }
 
 .RIGHT-company.d0-card-content .company-item .item-link > a {
-  background: #03998d;
+  background: $brand-primary;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -254,11 +244,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 
 .TYPE-metric.new-view {
-  //ul.nav-tabs li {
-  //    padding: 28px;
-  //    background: #eee;
-  //    margin: 5px;
-  //}
   .help-text p:last-child {
     margin-bottom: 5px;
   }
@@ -593,12 +578,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   max-height: 206px !important;
 }
 
-// @media (max-width: 1200px) {
-//   .filtered-answer-counts tr {
-//     display: table-cell;
-//   }
-// }
-
 .filtered-answer-counts {
   tr.known {
     font-weight: bold;
@@ -612,7 +591,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .badge {
   &.known {
     color: $white;
-    background-color: $metric-color;
+    background-color: $answer-color;
   }
   &.total {
     color: $white;
