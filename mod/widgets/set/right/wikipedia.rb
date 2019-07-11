@@ -21,6 +21,10 @@ def wikipedia_url
 end
 
 def wikipedia_extract
+  @wikipedia_extract ||= extract_wikipedia_content
+end
+
+def extract_wikipedia_content
   response = JSON.parse wikipedia_query_uri(sentences: 5).read
   return "" unless response["query"] && response["query"]["pages"]
   first_page = response["query"]["pages"].to_a.first
@@ -57,13 +61,9 @@ end
 format :html do
   delegate :wikipedia_extract, :wikipedia_url, to: :card
 
-  # view :edit do
-  #   Card.exists?(card.name) ? super() : _render_new
-  # end
-
   view :core, async: true do
     extract = wikipedia_extract
-    extract += wrap_with(:p, original_link) if extract.present?
+    extract += wrap_with(:p, original_link, class: "origin-link") if extract.present?
     extract
   end
 

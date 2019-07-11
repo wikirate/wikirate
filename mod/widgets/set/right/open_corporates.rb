@@ -60,7 +60,7 @@ format :html do
 
   def format_table_row label, value
     return unless value.present?
-    [wrap_with(:strong, label), value]
+    [label, wrap_with(:strong, value)]
   end
 
   def jurisdiction

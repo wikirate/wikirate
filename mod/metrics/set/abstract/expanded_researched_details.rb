@@ -16,7 +16,7 @@ format :html do
   def checked_by_details
     return if metric_card.designer_assessed?
     wrap_with :div, class: "double-check mt-3" do
-      nest card.fetch(trait: :checked_by, new: {}), view: :core
+      nest card.fetch(trait: :checked_by, new: {}), view: :content
     end
   end
 
