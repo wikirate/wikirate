@@ -1,8 +1,8 @@
 module Formula
   # Formula that translates one value to another based on a JSON map
-  class Translation < Calculator
+  class Translation < JsonFormula
     def initialize parser, &value_normalizer
-      parser.raw_input!
+      parser.pass_through_unknown!
       super
     end
 
@@ -18,29 +18,6 @@ module Formula
       end
     end
 
-    def to_lambda
-      @parser.formula.downcase
-    end
-
-    # Is this the right class for this formula?
-    def self.supported_formula? formula
-      formula =~ /^\{[^{}]*\}$/
-    end
-
     protected
-
-    def exec_lambda expr
-      JSON.parse expr
-    rescue JSON::ParserError => _e
-      @errors << "invalid translation formula #{expr}"
-    end
-
-    def safe_to_convert? expr
-      self.class.supported_formula? expr
-    end
-
-    def safe_to_exec? _expr
-      true
-    end
   end
 end
