@@ -21,10 +21,6 @@ def wikipedia_url
 end
 
 def wikipedia_extract
-  @wikipedia_extract ||= extract_wikipedia_content
-end
-
-def extract_wikipedia_content
   response = JSON.parse wikipedia_query_uri(sentences: 5).read
   return "" unless response["query"] && response["query"]["pages"]
   first_page = response["query"]["pages"].to_a.first
