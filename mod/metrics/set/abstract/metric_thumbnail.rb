@@ -21,6 +21,17 @@ format :html do
   end
 
   def thumbnail_subtitle
+    [fixed_thumbnail_subtitle, formula_options].flatten.compact.join(" | ")
+  end
+
+  def fixed_thumbnail_subtitle
     card.metric_type
+  end
+
+  def formula_options
+    %i[year company unknown not_researched].map do |key|
+      next unless (value = voo.heritage_options(key))
+      "#{key}: #{value}"
+    end.compact
   end
 end

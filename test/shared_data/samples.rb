@@ -1,7 +1,7 @@
 
 class SharedData
   module Samples
-    METRIC_COUNT = 18
+    METRIC_COUNT = 19
 
     METRIC_NAMES = {
       free_text: "Jedi+Sith Lord in Charge",

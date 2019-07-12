@@ -10,7 +10,7 @@ def researched?
 end
 
 format :html do
-  def thumbnail_subtitle
+  def fixed_thumbnail_subtitle
     "Research | #{research_policy}"
   end
 
