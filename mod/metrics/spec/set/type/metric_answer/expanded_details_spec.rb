@@ -35,6 +35,23 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       end
     end
 
+    example "not_researched and unknown options" do
+      answer = "Jedi+know_the_unknowns+Apple Inc+2001"
+      table = expanded_details answer, :formula
+      expect(table).to have_tag "table" do
+        with_tag("td") { with_tag "a", text: "RM" }
+        with_tag("td") { with_tag "a.metric-value", text: "Unknown" }
+        with_tag "td", text: "2001"
+        with_tag("td") { with_tag "a", text: "small multi" }
+        with_tag("td") { with_tag "a.metric-value", text: "No value" }
+        with_tag "td", text: "2001"
+      end
+
+      expect(table).to have_tag "div.formula-with-values", text: "= 10 + 20" do
+        with_tag :a, with: { href: "/Joe_User+RM+Apple_Inc+2001" }, text: 10
+      end
+    end
+
     example "year argument" do
       answer = "Jedi+deadlier+Slate Rock and Gravel Company+2004"
       table = expanded_details answer, :formula
@@ -50,8 +67,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "2004"
       end
 
-      expect(table).to have_tag "div.formula-with-values",
-                                text: "= 9-8+1002" do
+      expect(table).to have_tag "div.formula-with-values", text: "= 9-8+1002" do
         with_tag :a,
                  with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004" },
                  text: "9"

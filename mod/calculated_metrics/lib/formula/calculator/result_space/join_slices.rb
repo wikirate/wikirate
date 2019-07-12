@@ -21,6 +21,8 @@ module Formula
 
         def join slice
           slice.each_pair do |year, company_ids|
+            next if company_ids == :all
+
             self[year.to_i] ||= ::Set.new
             self[year.to_i] |= company_ids
             @company_ids |= company_ids
