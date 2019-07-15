@@ -30,7 +30,7 @@ format :html do
 
   def formula_options
     %i[year company unknown not_researched].map do |key|
-      next unless (value = voo.heritage_options(key))
+      next unless (value = voo.live_options[key])
       "#{key}: #{value}"
     end.compact
   end
