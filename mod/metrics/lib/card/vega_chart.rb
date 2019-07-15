@@ -9,10 +9,10 @@ class Card
 
       def chart_class format, horizontal_ok=true
         card = format.card
-        if card.categorical?
-          VegaChart::CategoryChart
-        elsif card.numeric? || card.relationship?
+        if card.numeric? || card.relationship?
           numeric_chart_class format, horizontal_ok
+        elsif card.categorical?
+          VegaChart::CategoryChart
         else
           raise Card::Error, "VegaChart not supported for #{card.name}"
         end

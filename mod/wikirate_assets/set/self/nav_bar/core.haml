@@ -6,6 +6,7 @@
     %span.navbar-toggler-icon
   .navbar-brand
     = render :nav_bar_left
+  #navbar-body.collapse.navbar-collapse
     = nest :nav_menu, view: :core
     = render :nav_bar_middle
     = render :nav_bar_right

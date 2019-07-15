@@ -14,7 +14,7 @@ format :html do
                     size: :small, image: card.scorer_card.fetch(trait: :image, new: {})
   end
 
-  view :legend do
+  def value_legend _html=true
     "0-10"
   end
 
