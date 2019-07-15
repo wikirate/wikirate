@@ -2,10 +2,10 @@ class Card
   class Content
     module Chunk
       class FormulaInput < Nest
-        Card::View::Options.add_option :year, :shark
-        Card::View::Options.add_option :company, :shark
-        Card::View::Options.add_option :unknown, :shark
-        Card::View::Options.add_option :not_researched, :shark
+        Card::View::Options.add_option :year, :heir
+        Card::View::Options.add_option :company, :heir
+        Card::View::Options.add_option :unknown, :heir
+        Card::View::Options.add_option :not_researched, :heir
         DEFAULT_OPTION = :year
 
         Card::Content::Chunk.register_class(
