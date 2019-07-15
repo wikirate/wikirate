@@ -2,7 +2,7 @@ NAV_MENUS = {
   "Explore" => %w[Companies Topics Metrics Projects Groups Sources Changes],
   "How To" => ["Add Data", "Use Data", "Organize Projects", "FAQ", "Glossary",
                "Report Issue"],
-  "About" => ["About Us", "Our Team", "Programs", "Publications", "News",
+  "About" => ["About Us", "Our Team", "Programs", "Publications", "News", "Legal",
               "Contact Us", "Donate"]
 }.freeze
 
@@ -16,10 +16,9 @@ MENU_REFS = { "Groups" => "Research Groups",
               "Facebook" => "https://www.facebook.com/wikirate/",
               "Twitter" => "https://twitter.com/WikiRate",
               "Instagram" => "https://www.instagram.com/wikirate/",
-              "Notice" => "Notice and Take Down Procedure",
-              "Legal" => "https://wikirateproject.org/Legal" }.freeze
+              "Notice" => "Notice and Take Down Procedure" }.freeze
 
-SECONDARY_MENUS = { "Legal" => ["Legal", "Privacy Policy", "Licensing", "Disclaimers",
+SECONDARY_MENUS = { "Legal" => ["Privacy Policy", "Licensing", "Disclaimers",
                                 "Terms of Use", "Notice"],
                     "Social" => %w[Facebook Twitter Instagram] }.freeze
 
