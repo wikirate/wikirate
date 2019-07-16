@@ -24,7 +24,8 @@ class Card
       end
 
       def title_with_unit title
-        return title unless (unit = metric_card.format(:html).value_legend) && unit.present?
+        unit = metric_card.format(:html).value_legend
+        return title unless unit.present?
 
         "#{title} (#{unit})"
       end
