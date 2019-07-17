@@ -247,7 +247,6 @@ end
 
 format :json do
   def atom
-    super().merge checks: card.checkers.count,
-                  check_requested: card.check_requested?
+    super().merge checks: card.checkers.count, check_requested: card.check_requested?
   end
 end
