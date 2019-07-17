@@ -79,6 +79,10 @@ class Card
     end
 
     def main_query
+      answer_query
+    end
+
+    def answer_query
       Answer.where answer_conditions
     end
 

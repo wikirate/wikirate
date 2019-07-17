@@ -27,7 +27,7 @@ event :create_formula, :initialize, on: :create do
 end
 
 format :html do
-  view :legend do
+  def value_legend _html=true
     "0-10"
   end
 end
