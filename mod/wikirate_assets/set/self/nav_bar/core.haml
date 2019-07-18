@@ -5,7 +5,7 @@
     :type => "button"}
     %span.navbar-toggler-icon
   .navbar-brand
-    = link_to nest(:logo, view: :core, size: :original), href: "https://wikirate.org"
+    = render :nav_bar_left
   #navbar-body.collapse.navbar-collapse
     = nest :nav_menu, view: :core
     = render :nav_bar_middle

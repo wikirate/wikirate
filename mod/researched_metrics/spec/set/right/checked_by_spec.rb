@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
   let(:checked_by_card) { Card["joe_user+RM+death_star+1977"].checked_by_card }
 
   def check_value
-    Card::Env.params["set_flag"] = "checked"
+    Card::Env.params["set_flag"] = "check"
     cb_card = answer_card.checked_by_card
     cb_card.save!
     cb_card.clear_subcards # why?
@@ -22,12 +22,12 @@ RSpec.describe Card::Set::Right::CheckedBy do
     subject(:core) { checked_by_card.format.render_core }
 
     context "when nobody checked" do
-      example "creator", with_user: "WikiRate Bot" do
+      example "creator", with_user: "Decko Bot" do
         expect(core).to have_tag :div do
           with_badge self, 0
           with_text /Nobody has checked this value since it was created/
           without_text "checked this value"
-          without_tag :button
+          without_tag "a.btn"
         end
       end
 
@@ -36,7 +36,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
           with_badge self, 0
           with_text /Nobody has checked this value since it was created/
           without_text "checked this value"
-          with_tag :button, "Yes, I checked"
+          with_tag :a, "Yes, I checked"
           with_tag :a, "No, I'll fix it"
         end
       end
@@ -53,7 +53,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
             with_badge self, 0
             with_text /Nobody has checked this value since it was last updated/
             without_text "checked this value"
-            with_tag :button, "Yes, I checked"
+            with_tag :a, "Yes, I checked"
             with_tag :a, "No, I'll fix it"
           end
         end
@@ -63,7 +63,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
             with_badge self, 0
             with_text /Nobody has checked this value since it was last updated/
             without_text "checked this value"
-            without_tag :button
+            without_tag :a
           end
         end
       end
@@ -76,12 +76,12 @@ RSpec.describe Card::Set::Right::CheckedBy do
         end
       end
 
-      example "creator", with_user: "WikiRate Bot" do
+      example "creator", with_user: "Decko Bot" do
         expect(core).to have_tag :div do
           with_badge self, 1
           with_tag :a, "John"
           with_text /checked this value/
-          without_tag :button
+          without_tag "a.btn"
         end
       end
 
@@ -90,7 +90,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
           with_badge self, 1
           with_tag :a, "John"
           with_text /checked this value/
-          with_tag :button, "Uncheck"
+          with_tag :a, "Uncheck"
         end
       end
 
@@ -99,7 +99,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
           with_badge self, 1
           with_tag :a, "John"
           with_text /checked this value/
-          with_tag :button, "Yes, I checked"
+          with_tag :a, "Yes, I checked"
           with_tag :a, "No, I'll fix it"
         end
       end
@@ -119,7 +119,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
           with_badge self, 4
           with_tag :a, "Joe Admin"
           with_text /John, Joe User, Joe Camel, and Joe Admin/
-          with_tag :button, "Uncheck"
+          with_tag :a, "Uncheck"
         end
       end
     end
@@ -172,7 +172,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
     end
 
     before do
-      Card::Env.params["set_flag"] = "not-checked"
+      Card::Env.params["set_flag"] = "uncheck"
     end
 
     it "checks the metric value" do

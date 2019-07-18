@@ -5,7 +5,6 @@ FILE_NAMES =
   %w[
     metrics
     metric_properties
-    metric_value
     metric_chart
   ].freeze
 

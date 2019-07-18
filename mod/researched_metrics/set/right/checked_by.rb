@@ -106,7 +106,8 @@ format :html do
   end
 
   view :core, template: :haml
-  view :check_interaction, template: :haml, perms: ->(fmt) { fmt.allowed_to_check? }
+  view :check_interaction, cache: :never, template: :haml,
+                           perms: ->(fmt) { fmt.allowed_to_check? }
 
   def research_params
     @research_params ||=
@@ -152,19 +153,14 @@ format :html do
     fa_icon :check_circle_o, class: "request-red", title: "check requested"
   end
 
-  def data_path
-    card.name.url_key
-  end
-
   BTN_CLASSES = "btn btn-outline-secondary btn-sm".freeze
 
   # @param text [String] linktext
-  # @param action [Symbol] :check or :uncheck
-  def check_button text, action: :check
-    wrap_with :button, class: "#{BTN_CLASSES} _value_#{action}_button",
-                       data: { path: data_path } do
-      text
-    end
+  # @param flag [Symbol] :check or :uncheck
+  def check_button text, flag: :check
+    link_to text, class: "#{BTN_CLASSES} slotter",
+                  remote: true, rel: "nofollow",
+                  href: path(action: :update, set_flag: flag)
   end
 
   def fix_link
@@ -199,16 +195,15 @@ end
 
 event :user_requests_check, :prepare_to_store,
       when: :request_check_flag_update?, changed: :content do
-  requested_by_content =
-    if content == "[[#{request_tag}]]"
-      return if check_requester.present?
-      "[[#{user.name}]]"
-    else
-      ""
-    end
-  attach_subcard check_requested_by_card.name,
-                 content: requested_by_content,
-                 type_id: PointerID
+  if content == "[[#{request_tag}]]"
+    attach_request "[[#{user.name}]]" unless check_requester.present?
+  else
+    attach_request ""
+  end
+end
+
+def attach_request requester
+  attach_subcard check_requested_by_card.name, content: requester, type_id: PointerID
 end
 
 def request_tag
@@ -239,11 +234,11 @@ def drop_checker
 end
 
 def add_checked_flag?
-  Env.params["set_flag"] == "checked"
+  Env.params["set_flag"] == "check"
 end
 
 def remove_checked_flag?
-  Env.params["set_flag"] == "not-checked"
+  Env.params["set_flag"] == "uncheck"
 end
 
 def request_check_flag_update?
@@ -252,7 +247,6 @@ end
 
 format :json do
   def atom
-    super().merge checks: card.checkers.count,
-                  check_requested: card.check_requested?
+    super().merge checks: card.checkers.count, check_requested: card.check_requested?
   end
 end

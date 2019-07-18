@@ -209,3 +209,14 @@ td .pointer-list {
   // needed to align on company pages the jurisdictions table
   padding: 0;
 }
+
+.RIGHT-open_corporate .table-borderless td:first-child {
+  text-align: right;
+  padding-right: 25px;
+  width: 33%;
+}
+
+.origin-link {
+  padding: 0.5em 0;
+  text-align: right;
+}
