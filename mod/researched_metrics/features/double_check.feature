@@ -6,7 +6,7 @@ Feature: Double check
     When I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Yes, I checked"
     And I wait for ajax response
-    Then I should see "please sign in"
+    Then I should see "Please sign in"
 
   Scenario: Check and undo
     When I am signed in as Joe User

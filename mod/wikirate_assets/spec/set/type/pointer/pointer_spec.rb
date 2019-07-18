@@ -49,11 +49,11 @@ RSpec.describe Card::Set::Type::Pointer::Export do
               content: "[[Elbert Hubbard]]\n[[Elbert Hubbard+punchline]]"
             ),
             a_hash_including(
-              name: "Elbert Hubbard", type: "Basic",
+              name: "Elbert Hubbard", type: "RichText",
               content: "Do not take life too seriously."
             ),
             a_hash_including(
-              name: "Elbert Hubbard+punchline", type: "Basic",
+              name: "Elbert Hubbard+punchline", type: "RichText",
               content: "You will never get out of it alive."
             )
           )
@@ -73,10 +73,10 @@ RSpec.describe Card::Set::Type::Pointer::Export do
               type: "Pointer",
               content: "[[Elbert Hubbard]]"),
             a_hash_including(name: "Elbert Hubbard",
-              type: "Basic",
+              type: "RichText",
               content: "Do not take life too seriously."),
             a_hash_including(name: "Elbert Hubbard+punchline",
-            type: "Basic",
+            type: "RichText",
             content: "You will never get out of it alive.")
           )
       end
@@ -99,7 +99,7 @@ RSpec.describe Card::Set::Type::Pointer::Export do
               content: "[[Elbert Hubbard]]"
             ),
             a_hash_including(
-              name: "Elbert Hubbard", type: "Basic",
+              name: "Elbert Hubbard", type: "RichText",
               content: "Do not take life too seriously."
             )
           )
@@ -121,10 +121,10 @@ RSpec.describe Card::Set::Type::Pointer::Export do
               name: "search card", type: "Search",
               content: %({"left":"Elbert Hubbard"})),
             a_hash_including(
-              name: "Elbert Hubbard+punchline", type: "Basic",
+              name: "Elbert Hubbard+punchline", type: "RichText",
               content: "You will never get out of it alive."),
             a_hash_including(
-              name: "Elbert Hubbard+quote", type: "Basic",
+              name: "Elbert Hubbard+quote", type: "RichText",
               content: "Procrastination is the art of keeping up with yesterday."
             )
           )

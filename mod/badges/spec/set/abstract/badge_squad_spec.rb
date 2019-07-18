@@ -27,12 +27,12 @@ describe Card::Set::Abstract::BadgeSquad do
   describe "#all_earned_badges" do
     it "returns all earned badges for simple squad" do
       expect(squad.all_earned_badges(:create, nil, 25))
-        .to contain_exactly "Basic", "Pointer"
+        .to contain_exactly "RichText", "Pointer"
     end
 
     it "returns all earned badges for affinity squad" do
       expect(squad.all_earned_badges(:update, :designer, 20))
-        .to contain_exactly "Basic", "Pointer"
+        .to contain_exactly "RichText", "Pointer"
     end
   end
 
