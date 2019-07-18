@@ -56,9 +56,12 @@ module Formula
     def not_researched_options
       @not_researched =
         case @not_researched_handling
-        when :no_value_string then ["No value"] * input_count
-        when :process then input_options(:not_researched).map { |i| i || "No value"}
-        else input_options(:unknown)
+        when :no_value_string
+          ["No value"] * input_count
+        when :process
+          input_options(:not_researched).map { |i| i || "No value"}
+        else
+          input_options(:not_researched)
         end
     end
 
