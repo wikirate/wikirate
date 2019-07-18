@@ -35,6 +35,22 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       end
     end
 
+    example "formula details with unknown values", as_bot: true do
+      metric = Card["Joe User+small multi"]
+      metric.create_values true do
+        Apple_Inc 2001 => "Unknown"
+      end
+
+      answer = Card.fetch("Jedi+know the unknowns", "Apple Inc", "2001")
+      expect(answer.format.formula_details)
+        .to have_tag "a.metric-value", with: { href: "/Joe_User+RM+Apple_Inc+2001" },
+                                       text: "10"
+      expect(answer.format.formula_details)
+        .to have_tag "a.metric-value",
+                     with: { href: "/Joe_User+small_multi+Apple_Inc+2001" },
+                     text: "Unknown"
+    end
+
     example "not_researched and unknown options" do
       answer = "Jedi+know_the_unknowns+Apple Inc+2001"
       table = expanded_details answer, :formula

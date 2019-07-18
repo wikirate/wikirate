@@ -1,22 +1,5 @@
 module Formula
   class Parser
-
-    # Pass "unknown" input values always as "Unknown" to the calculation
-    # (and ignore "unknown" nest options in the formula)
-    module PassThroughUnknown
-      def unknown_options
-        ["Unknown"] * input_count
-      end
-    end
-
-    # Pass "not researched" input values always as "No Value" to the calculation
-    # (and ignore "not_researched" nest options in the formula)
-    module PassThroughNotResearched
-      def not_researched_options
-        ["No value"] * input_count
-      end
-    end
-
     OPTIONS = %i[year company unknown not_researched].freeze
     COUNT_RELATED_FUNC =
       { "CountRelated" => "Total[ {{always one|company: Related" }.freeze
@@ -61,17 +44,63 @@ module Formula
       end
     end
 
-    # look up all input values and don't apply input options
-    # like {{ | unknown: 4 }}
+    def unknown_options
+      @unknown =
+        case @unknown_handling
+        when :unknown_string then ["Unknown"] * input_count
+        when :process then input_options(:unknown).map { |i| i || "Unknown"}
+        else input_options(:unknown)
+        end
+    end
+
+    def not_researched_options
+      @not_researched =
+        case @not_researched_handling
+        when :no_value_string then ["No value"] * input_count
+        when :process then input_options(:not_researched).map { |i| i || "No value"}
+        else input_options(:unknown)
+        end
+    end
+
+    # Look up all input values and don't apply input options like {{ | unknown: 4 }}
     def raw_input!
-      pass_through_unknown!
-      singleton_class.include PassThroughNotResearched
+      unknown_handling :unknown_string
+      not_researched_handling :no_value_string
       self
     end
 
-    def pass_through_unknown!
-      singleton_class.include PassThroughUnknown
+    # Look up all input values. Apply input options if present otherwise
+    # pass raw value
+    def processed_input!
+      unknown_handling :process
+      not_researched_handling :process
       self
+    end
+
+    # Define how to handle input values that are unknown
+    # @param option [:process, :abort, :unknown_string]
+    #    abort: (default) return :unknown as calculation result
+    #    unknown_string: pass it as "Unknown" to the formula ignoring unknown options
+    #    process: if formula specifies unknown handling use it otherwise pass as "Unknown"
+    def unknown_handling option
+      unless option.in? [:process, :abort, :unknown_string]
+        raise  "unknown option for unknown handling"
+      end
+      @unknown_handling = option
+    end
+
+    # Define how to handle input values that are not researched
+    # @param option [:process, :abort, :no_value_string]
+    #    abort: (default) return nil as calculation result
+    #    no_value_string: pass it as "No value" to the formula ignoring not researched
+    #                     options
+    #    process: if formula specifies not researched handling use it otherwise pass as
+    #             "No value"
+    def not_researched_handling option
+      unless option.in? [:process, :abort, :no_value_string]
+        raise  "unknown option for not researched handling"
+      end
+      @not_researched_handling = option
     end
 
     private

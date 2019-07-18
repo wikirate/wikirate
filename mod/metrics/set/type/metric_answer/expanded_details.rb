@@ -57,15 +57,19 @@ format :html do
 
   # TODO: make item-wrapping format-specific
   def formula_details
-    calculator = Formula::Calculator.new(card.metric_card.formula_card.parser)
-    calculator.advanced_formula_for card.company, card.year.to_i do |input, input_card|
-      link_target = [input_card, card.company]
-      link_target << card.year unless input.is_a?(Array)
-      if input.is_a?(Array)
-        input = input.join ", "
-      end
-      link_to_card link_target, input, class: "metric-value _update-details"
+    parser = card.metric_card.formula_card.parser.processed_input!
+    calculator = Formula::Calculator.new(parser)
+    calculator.advanced_formula_for card.company,
+                                    card.year.to_i do |input, input_card, index|
+      input_value_link input, input_card, parser.year_options[index]
     end
+  end
+
+  def input_value_link input, input_card, year_option
+    link_target = [input_card, card.company]
+    link_target << card.year unless input.is_a?(Array) && year_option
+    input = input.join ", " if input.is_a?(Array)
+    link_to_card link_target, input, class: "metric-value _update-details"
   end
 
   # ~~~~~ SCORE AND WIKIRATING DETAILS
