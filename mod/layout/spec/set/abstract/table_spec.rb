@@ -19,7 +19,7 @@ describe Card::Set::Abstract::Table do
                                 with: { class: "top_class table_class" } do
         with_tag :tr, with: { class: "tr_class" } do
           with_tag :td, with: { class: "td_all td_1" }, text: "A"
-          with_tag :td, with: { class: "td_all td_2" }, text: "Basic"
+          with_tag :td, with: { class: "td_all td_2" }, text: "RichText"
         end
         with_tag :tr, with: { class: "tr_class" } do
           with_tag :td, with: { class: "td_all td_1" }, text: "r1"
