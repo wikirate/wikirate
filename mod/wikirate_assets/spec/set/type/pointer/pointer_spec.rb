@@ -3,21 +3,17 @@
 RSpec.describe Card::Set::Type::Pointer::Export do
   describe "rendering json in export mode" do
     let(:elbert) do
-      create "Elbert Hubbard",
-             content: "Do not take life too seriously."
+      create "Elbert Hubbard", content: "Do not take life too seriously."
     end
     let(:elbert_punchline) do
-      create "Elbert Hubbard+punchline",
-             content: "You will never get out of it alive."
+      create "Elbert Hubbard+punchline", content: "You will never get out of it alive."
     end
     let(:elbert_quote) do
       create "Elbert Hubbard+quote",
              content: "Procrastination is the art of keeping up with yesterday."
     end
     let(:elbert_container) do
-      create "elbert container",
-             type_id: Card::PointerID,
-             content: "[[#{elbert.name}]]"
+      create "elbert container", type_id: Card::PointerID, content: "[[#{elbert.name}]]"
     end
 
     def json_export args={}
@@ -44,18 +40,15 @@ RSpec.describe Card::Set::Type::Pointer::Export do
 
         expect(json_export)
           .to include(
-            a_hash_including(
-              name: "normal pointer", type: "Pointer",
-              content: "[[Elbert Hubbard]]\n[[Elbert Hubbard+punchline]]"
-            ),
-            a_hash_including(
-              name: "Elbert Hubbard", type: "RichText",
-              content: "Do not take life too seriously."
-            ),
-            a_hash_including(
-              name: "Elbert Hubbard+punchline", type: "RichText",
-              content: "You will never get out of it alive."
-            )
+            a_hash_including(name: "normal pointer",
+                             type: "Pointer",
+                             content: "[[Elbert Hubbard]]\n[[Elbert Hubbard+punchline]]"),
+            a_hash_including(name: "Elbert Hubbard",
+                             type: "RichText",
+                             content: "Do not take life too seriously."),
+            a_hash_including(name: "Elbert Hubbard+punchline",
+                             type: "RichText",
+                             content: "You will never get out of it alive.")
           )
       end
 
@@ -67,17 +60,18 @@ RSpec.describe Card::Set::Type::Pointer::Export do
         expect(json_export)
           .to include(
             a_hash_including(name: "normal pointer",
-              type: "Pointer",
-              content: "[[elbert container]]\n[[Elbert Hubbard+punchline]]"),
+                             type: "Pointer",
+                             content: "[[elbert container]]\n" \
+                                      "[[Elbert Hubbard+punchline]]"),
             a_hash_including(name: "elbert container",
-              type: "Pointer",
-              content: "[[Elbert Hubbard]]"),
+                             type: "Pointer",
+                             content: "[[Elbert Hubbard]]"),
             a_hash_including(name: "Elbert Hubbard",
-              type: "RichText",
-              content: "Do not take life too seriously."),
+                             type: "RichText",
+                             content: "Do not take life too seriously."),
             a_hash_including(name: "Elbert Hubbard+punchline",
-            type: "RichText",
-            content: "You will never get out of it alive.")
+                             type: "RichText",
+                             content: "You will never get out of it alive.")
           )
       end
 
@@ -94,14 +88,12 @@ RSpec.describe Card::Set::Type::Pointer::Export do
         Card::Env.params[:max_export_depth] = 4
         expect(json_export(type: :skin, content: [elbert.name]))
           .to include(
-            a_hash_including(
-              name: "normal pointer", type: "Skin",
-              content: "[[Elbert Hubbard]]"
-            ),
-            a_hash_including(
-              name: "Elbert Hubbard", type: "RichText",
-              content: "Do not take life too seriously."
-            )
+            a_hash_including(name: "normal pointer",
+                             type: "Skin",
+                             content: "[[Elbert Hubbard]]"),
+            a_hash_including(name: "Elbert Hubbard",
+                             type: "RichText",
+                             content: "Do not take life too seriously.")
           )
       end
     end
@@ -117,16 +109,16 @@ RSpec.describe Card::Set::Type::Pointer::Export do
                     content: %({"left":"Elbert Hubbard"}))
         expect(json_export)
           .to include(
-            a_hash_including(
-              name: "search card", type: "Search",
-              content: %({"left":"Elbert Hubbard"})),
-            a_hash_including(
-              name: "Elbert Hubbard+punchline", type: "RichText",
-              content: "You will never get out of it alive."),
-            a_hash_including(
-              name: "Elbert Hubbard+quote", type: "RichText",
-              content: "Procrastination is the art of keeping up with yesterday."
-            )
+            a_hash_including(name: "search card",
+                             type: "Search",
+                             content: %({"left":"Elbert Hubbard"})),
+            a_hash_including(name: "Elbert Hubbard+punchline",
+                             type: "RichText",
+                             content: "You will never get out of it alive."),
+            a_hash_including(name: "Elbert Hubbard+quote",
+                             type: "RichText",
+                             content: "Procrastination is " \
+                                      "the art of keeping up with yesterday.")
           )
       end
     end
