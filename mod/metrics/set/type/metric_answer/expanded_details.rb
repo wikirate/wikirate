@@ -49,31 +49,34 @@ format :html do
 
   # TODO: move to haml
   def calculation_details
-    [
-      wrap_with(:h5, "Formula"),
-      wrap_with(:div, "= #{formula_details}", class: "formula-with-values")
-    ]
+    [wrap_with(:h5, "Formula"),
+     wrap_with(:div, "= #{formula_details}", class: "formula-with-values")]
   end
 
   # TODO: make item-wrapping format-specific
   def formula_details
-    calculator = Formula::Calculator.new(card.metric_card.formula_card.parser)
-    calculator.advanced_formula_for card.company, card.year.to_i do |input, input_card|
-      link_target = [input_card, card.company]
-      link_target << card.year unless input.is_a?(Array)
-      if input.is_a?(Array)
-        input = input.join ", "
-      end
-      link_to_card link_target, input, class: "metric-value _update-details"
+    parser = card.metric_card.formula_card.parser.processed_input!
+    calculator = Formula::Calculator.new(parser)
+    calculator.advanced_formula_for card.company,
+                                    card.year.to_i do |input, input_card, index|
+      input_value_link input, input_card, parser.year_options[index]
     end
+  end
+
+  def input_value_link input, input_card, year_option
+    target = [input_card, card.company, input_value_link_year(input, year_option)]
+    input = input.join ", " if input.is_a?(Array)
+    link_to_card target.compact, input, class: "metric-value _update-details"
+  end
+
+  def input_value_link_year input, year_option
+    input.is_a?(Array) && year_option ? nil : card.year
   end
 
   # ~~~~~ SCORE AND WIKIRATING DETAILS
 
   view :expanded_score_details, cache: :never do
-    wrap_expanded_details do
-      answer_details_table
-    end
+    wrap_expanded_details { answer_details_table }
   end
 
   view :expanded_wiki_rating_details, cache: :never do
@@ -117,11 +120,7 @@ format :html do
   end
 
   view :relations_table_with_details_toggle, cache: :never do
-    wrap do
-      with_paging view: :relations_table_with_details_toggle do
-        relations_table
-      end
-    end
+    wrap { with_paging(view: :relations_table_with_details_toggle) { relations_table } }
   end
 
   def add_relation_link
@@ -140,8 +139,6 @@ format :html do
   # ~~~~~~~~~ DESCENDANT DETAILS
 
   view :expanded_descendant_details do
-    wrap_expanded_details do
-      answer_details_table
-    end
+    wrap_expanded_details { answer_details_table }
   end
 end
