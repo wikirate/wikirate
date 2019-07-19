@@ -70,7 +70,7 @@ format :html do
   end
 
   def input_value_link_year input, year_option
-    (input.is_a?(Array) && year_option) ? nil : card.year
+    input.is_a?(Array) && year_option ? nil : card.year
   end
 
   # ~~~~~ SCORE AND WIKIRATING DETAILS
