@@ -45,24 +45,23 @@ module Formula
     end
 
     def unknown_options
-      @unknown =
-        case @unknown_handling
-        when :unknown_string then ["Unknown"] * input_count
-        when :process then input_options(:unknown).map { |i| i || "Unknown"}
-        else input_options(:unknown)
-        end
+      @unknown = special_options @unknown_handling, :unknown_string, :unknown, "Unknown"
     end
 
     def not_researched_options
-      @not_researched =
-        case @not_researched_handling
-        when :no_value_string
-          ["No value"] * input_count
-        when :process
-          input_options(:not_researched).map { |i| i || "No value"}
-        else
-          input_options(:not_researched)
-        end
+      @not_researched = special_options @not_researched_handling, :no_value_string,
+                                        :not_researched, "No value"
+    end
+
+    def special_options handling, string_handling, options_key, string_value
+      case handling
+      when string_handling
+        [string_value] * input_count
+      when :process
+        input_options(options_key).map { |i| i || string_value }
+      else
+        input_options options_key
+      end
     end
 
     # Look up all input values and don't apply input options like {{ | unknown: 4 }}
