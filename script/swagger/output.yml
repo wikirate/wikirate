@@ -7,7 +7,7 @@ info:
       WikiRate is built with Decko, and is thus constructed from _cards_. Everything in Decko is a card, including images, accounts, searches, fields, etc. So every request for a webpage on WikiRate.org or via its REST API is for a _card_.
 
       The documentation below is divided into generic Decko card documentation (under `Decko`) and more WikiRate-specific cardtypes (under `WikiRate`).
-  version: '0.20'
+  version: '0.20.1'
   title: WikiRate API
   contact:
     email: info@decko.org
@@ -50,7 +50,7 @@ paths:
       summary: update a card
       description: |-
         Update a card's name, type, and/or content. It's also possible to use
-        a GET request with /update/{mark}.
+        a GET request with /update/{mark}
       parameters:
       - "$ref": "#/components/parameters/cardmark"
       - "$ref": "#/components/parameters/card"
@@ -79,7 +79,7 @@ paths:
       summary: create a card
       description: |-
         Create a card, setting its name, type, and/or content. It's also possible to use
-        a GET request with /card/create.
+        a GET request with /card/create
       parameters:
       - "$ref": "#/components/parameters/cardmark"
       - "$ref": "#/components/parameters/card"
@@ -87,8 +87,6 @@ paths:
       responses:
         200:
           "$ref": "#/components/responses/200"
-        404:
-          "$ref": "#/components/responses/404"
   "/Company":
     get:
       tags:
@@ -339,6 +337,20 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/relationship_answer"
+  "/?card[type]=Company":
+    post:
+      tags:
+      - WikiRate
+      summary: create a company card
+      description: 'Create a new company card. Alternative: a GET request with /card/create'
+      parameters:
+      - "$ref": "#/components/parameters/company_card"
+      - "$ref": "#/components/parameters/success"
+      responses:
+        200:
+          "$ref": "#/components/responses/200"
+        404:
+          "$ref": "#/components/responses/404"
 externalDocs:
   description: Find out more about Decko
   url: http://decko.org
@@ -451,6 +463,30 @@ components:
       description: offset for the items list
       schema:
         type: integer
+    company_card:
+      name: card
+      in: header
+      required: true
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+          type:
+            type: string
+          content:
+            type: string
+      description: |-
+        The card parameter contains card field data, subcard field data.
+        It follows RubyOnRails hash parameter pattern; for example,
+        the company's name is represented as `card[name]=MyCompanyName`.
+
+        `card[name]` and `card[type]=Company` are required to create a company
+
+        You can also include subcards such as the wikipedia or opencorporates mapping. For example:
+
+        - `card[subcards][+wikipedia]=MyCompanyWikipediaName`
+        - `card[subcards][+open_corporates]=MyCompanyOpenCorporatesEntityID`
     answer_filter:
       name: filter
       in: query
