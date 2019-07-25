@@ -7,7 +7,7 @@ format :html do
 end
 
 format :json do
-  view :compact do
+  view :compact, cache: :never do
     card.search.each_with_object(companies: {}, metrics: {}, answers: {}) do |ans, h|
       h[:companies][ans.company_id] ||= ans.company_name
       h[:metrics][ans.metric_id] ||= ans.metric_name
