@@ -9,6 +9,9 @@ event :ensure_correct_value_type, :initialize, on: :save, when: :typed_value? do
   return unless (correct_type_code = type_code_from_metric)
   return true if type_code == correct_type_code
   self.type_id = Card.id correct_type_code
+  skip_event! :validate_renaming # prevents error from changing type on renaming
+                                 # however, this should eventually be removable
+                                 # if/when all +value cards have the right value type
   reset_patterns
 end
 
