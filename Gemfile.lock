@@ -38,11 +38,11 @@ PATH
 PATH
   remote: vendor/decko
   specs:
-    card (1.98.0)
+    card (1.98.1)
       activerecord-import (~> 1.0)
       bootstrap4-kaminari-views (~> 1.0)
       card-mod-markdown (~> 0.3)
-      cardname (= 0.8.0)
+      cardname (= 0.8.1)
       carrierwave (= 1.2.2)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -61,11 +61,11 @@ PATH
       twitter (~> 6.1)
       uglifier (~> 3.2)
       uuid (~> 2.3)
-    cardname (0.8.0)
+    cardname (0.8.1)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
-    decko (0.8.0)
-      card (= 1.98.0)
+    decko (0.8.1)
+      card (= 1.98.1)
 
 GEM
   remote: http://rubygems.org/
@@ -200,7 +200,7 @@ GEM
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
     curb (0.9.10)
-    cypress-on-rails (1.4.0)
+    cypress-on-rails (1.4.1)
       rack
     daemons (1.3.1)
     dalli (2.7.10)
@@ -233,7 +233,7 @@ GEM
     erubis (2.7.0)
     ethon (0.12.0)
       ffi (>= 1.3.0)
-    excon (0.64.0)
+    excon (0.65.0)
     execjs (2.7.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
@@ -385,7 +385,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (3.1.1)
+    fog-vsphere (3.2.0)
       fog-core
       rbvmomi (>= 1.9, < 3)
     fog-xenserver (1.0.0)
@@ -438,7 +438,7 @@ GEM
     image_info (1.1.2)
       image_size
       typhoeus
-    image_size (2.0.1)
+    image_size (2.0.2)
     interception (0.5)
     ipaddress (0.8.3)
     iso8601 (0.9.1)
@@ -486,7 +486,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.0331)
     mimemagic (0.3.3)
-    mini_magick (4.9.3)
+    mini_magick (4.9.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.2)
@@ -496,7 +496,7 @@ GEM
     mustermann (1.0.3)
     mysql2 (0.5.2)
     naught (1.1.0)
-    net-http-persistent (3.0.1)
+    net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     net-scp (2.0.0)
       net-ssh (>= 2.6.5, < 6.0.0)
@@ -628,7 +628,7 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    rubocop (0.72.0)
+    rubocop (0.74.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -636,7 +636,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     rubocop-decko (0.2)
-    rubocop-rspec (1.33.0)
+    rubocop-rspec (1.34.1)
       rubocop (>= 0.60.0)
     ruby-jmeter (3.1.08)
       nokogiri

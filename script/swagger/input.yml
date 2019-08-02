@@ -247,7 +247,7 @@ paths:
   /{metric}+{company}+{year}+{company}:
     get:
       tags:
-      - "WikiRate"
+      - WikiRate
       summary: "company-to-company relationship answer"
       description: "Relationship metrics ask questions about relationships between companies. Each answer to these metrics is comprised of one or more relationship answers, each describing the relationship of two specific companies"
       operationId: read15
@@ -262,6 +262,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/relationship_answer'
+  /?card[type]=Company:
+    post:
+      tags:
+      - WikiRate
+      summary: "create a company card"
+      description: |-
+        Create a new company card. Alternative: a GET request with /card/create
+      parameters:
+      - $ref: '#/components/parameters/company_card'
+      - $ref: '#/components/parameters/success'
+      responses:
+        200:
+          $ref: '#/components/responses/200'
+        404:
+          $ref: '#/components/responses/404'
+
 
 servers:
 # Added by API Auto Mocking Plugin
@@ -312,6 +328,30 @@ components:
       description: offset for the items list
       schema:
         type: integer
+    company_card:
+      name: card
+      in: header
+      required: true
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+          type:
+            type: string
+          content:
+            type: string
+      description: |-
+        The card parameter contains card field data, subcard field data.
+        It follows RubyOnRails hash parameter pattern; for example,
+        the company's name is represented as `card[name]=MyCompanyName`.
+
+        `card[name]` and `card[type]=Company` are required to create a company
+
+        You can also include subcards such as the wikipedia or opencorporates mapping. For example:
+
+        - `card[subcards][+wikipedia]=MyCompanyWikipediaName`
+        - `card[subcards][+open_corporates]=MyCompanyOpenCorporatesEntityID`
     answer_filter:
       name: filter
       in: query

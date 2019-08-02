@@ -108,7 +108,7 @@ private
 def dummy_answers_attribs
   calculator.answers_to_be_calculated.map do |company_id, year|
     unless Card[self, company_id]
-      Card.create! name: [self, company_id], type_id: Card::RecordID
+      attach_subcard Card.new(name: [self, company_id], type_id: Card::RecordID)
     end
     { metric_id: id, company_id: company_id, year: year, calculating: true,
       metric_name: name, latest: true }
