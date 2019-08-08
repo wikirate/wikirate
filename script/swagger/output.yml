@@ -7,7 +7,7 @@ info:
       WikiRate is built with Decko, and is thus constructed from _cards_. Everything in Decko is a card, including images, accounts, searches, fields, etc. So every request for a webpage on WikiRate.org or via its REST API is for a _card_.
 
       The documentation below is divided into generic Decko card documentation (under `Decko`) and more WikiRate-specific cardtypes (under `WikiRate`).
-  version: '0.20.1'
+  version: 0.20.2
   title: WikiRate API
   contact:
     email: info@decko.org
@@ -56,8 +56,8 @@ paths:
       - "$ref": "#/components/parameters/card"
       - "$ref": "#/components/parameters/success"
       responses:
-        200:
-          "$ref": "#/components/responses/200"
+        302:
+          "$ref": "#/components/responses/302"
         404:
           "$ref": "#/components/responses/404"
     delete:
@@ -68,8 +68,8 @@ paths:
       - "$ref": "#/components/parameters/cardmark"
       - "$ref": "#/components/parameters/success"
       responses:
-        200:
-          "$ref": "#/components/responses/200"
+        302:
+          "$ref": "#/components/responses/302"
         404:
           "$ref": "#/components/responses/404"
   "/":
@@ -85,8 +85,8 @@ paths:
       - "$ref": "#/components/parameters/card"
       - "$ref": "#/components/parameters/success"
       responses:
-        200:
-          "$ref": "#/components/responses/200"
+        302:
+          "$ref": "#/components/responses/302"
   "/Company":
     get:
       tags:
@@ -298,6 +298,21 @@ paths:
               schema:
                 "$ref": "#/components/schemas/record"
   "/{metric}+{company}+{year}":
+    put:
+      tags:
+      - WikiRate
+      summary: update an answer card
+      description: Update the answer for a specific metric company and year.
+      parameters:
+      - "$ref": "#/components/parameters/metric"
+      - "$ref": "#/components/parameters/company"
+      - "$ref": "#/components/parameters/year"
+      - "$ref": "#/components/parameters/answer_subcards"
+      responses:
+        302:
+          "$ref": "#/components/responses/302"
+        404:
+          "$ref": "#/components/responses/404"
     get:
       tags:
       - WikiRate
@@ -337,7 +352,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/relationship_answer"
-  "/?card[type]=Company":
+  "/ #card[type]=Company":
     post:
       tags:
       - WikiRate
@@ -347,10 +362,20 @@ paths:
       - "$ref": "#/components/parameters/company_card"
       - "$ref": "#/components/parameters/success"
       responses:
-        200:
-          "$ref": "#/components/responses/200"
-        404:
-          "$ref": "#/components/responses/404"
+        302:
+          "$ref": "#/components/responses/302"
+  "/ #card[type]=Answer":
+    post:
+      tags:
+      - WikiRate
+      summary: create an answer card
+      description: Create a new answer to a specified metric, company, and year.
+      parameters:
+      - "$ref": "#/components/parameters/answer_name"
+      - "$ref": "#/components/parameters/answer_subcards"
+      responses:
+        302:
+          "$ref": "#/components/responses/302"
 externalDocs:
   description: Find out more about Decko
   url: http://decko.org
@@ -523,6 +548,30 @@ components:
         type: array
         items:
           type: string
+    answer_name:
+      name: card[name]
+      in: query
+      required: true
+      description: |-
+        The name of an answer follows the pattern Metric+Company+Year.  (Note, the name of a company follows the pattern Designer+Title).
+        Any piece of the name (or the entire name ) can be substituted with its numerical id in the form of `~INTEGER`.  Eg, if your metric's id is 867 and your company's id is 5309, then you can address the answer as ~867+~5309+1981
+      schema:
+        type: string
+        example: PayScale+CEO to Worker pay+Apple Inc+2010
+    answer_subcards:
+      name: card[subcards]
+      in: query
+      description: |-
+        An answer can have several subcards, including:
+
+        - **+:checked_by**: value can be a list of names separated by line breaks or
+          `[[request]]` to indicate that a check is requested.
+        - **+:discussion**: initial comment for discussion
+        - **+:source**: list of source card names separated by line breaks.  All answers
+          must have valid sources.
+      schema:
+        type: object
+        example: card[subcards][+:checked_by]=[[request]]
   schemas:
     nucleus view:
       name: nucleus view
@@ -789,7 +838,7 @@ components:
           "$ref": "#/components/schemas/company_atom"
   responses:
     200:
-      description: card data
+      description: Card data. Defaults to molecule view.
       content:
         application/json:
           schema:
@@ -800,3 +849,7 @@ components:
         application/json:
           schema:
             "$ref": "#/components/schemas/errors%20view"
+    302:
+      description: |-
+        Successful non-idempotent requests redirect to idempotent GET
+        requests.
