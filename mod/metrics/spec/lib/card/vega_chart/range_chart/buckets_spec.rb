@@ -13,9 +13,9 @@ RSpec.describe Card::VegaChart::RangeChart::Buckets do
 
   def bucket_ranges min, max
     mid = be_between min, max
-    [[eq(min), mid]] +
-      ([[mid, mid]] * 8) +
-      [[mid, be_between(max, max + 100_000).inclusive]]
+    [[eq(min), mid, be_false]] +
+      ([[mid, mid, be_false]] * 8) +
+      [[mid, be_between(max, max + 100_000).inclusive, be_true]]
   end
 
   describe "#each_bucket" do

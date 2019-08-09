@@ -7,9 +7,10 @@ class Card
           lower = min
           # lower = log_bucket? ? 0 : min
           # real_lower = min
+          last_bucket = @buckets - 1
           @buckets.times do |i|
             upper = lower + bucket_size
-            yield lower, upper, (i == @buckets)
+            yield lower, upper, (i == last_bucket)
             lower = upper
             # real_upper = real_bucket_size(upper)
             # yield real_lower, real_upper

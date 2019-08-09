@@ -22,8 +22,9 @@ class Card
 
       def count_in_range lower, upper, last
         tally = 0
+        op = last ? "<=" : "<"
         raw_counts.each_key do |val|
-          next unless val >= lower && (last ? val <= super : val < upper)
+          next unless val >= lower && val.send(op, upper)
           tally += raw_counts.delete(val).to_i
         end
         tally
