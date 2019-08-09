@@ -16,7 +16,7 @@ class Card
 
       def generate_data
         group_data
-        each_bucket do |lower, upper|
+        each_bucket do |lower, upper, _last|
           add_data lower, @counts[lower], from: lower, to: upper
           add_label lower # == 10 ? 10 : "#{lower}+"
         end

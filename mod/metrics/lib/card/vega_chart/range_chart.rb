@@ -14,16 +14,16 @@ class Card
 
       def generate_data
         add_label min
-        each_bucket do |lower, upper|
-          add_data lower, count_in_range(lower, upper), from: lower, to: upper
+        each_bucket do |lower, upper, last|
+          add_data lower, count_in_range(lower, upper, last), from: lower, to: upper
           add_label upper
         end
       end
 
-      def count_in_range lower, upper
+      def count_in_range lower, upper, last
         tally = 0
         raw_counts.each_key do |val|
-          next unless val >= lower && val < upper
+          next unless val >= lower && (last ? val <= super : val < upper)
           tally += raw_counts.delete(val).to_i
         end
         tally

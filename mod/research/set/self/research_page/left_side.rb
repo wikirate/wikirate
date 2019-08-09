@@ -8,7 +8,7 @@ format :html do
   def answer_slot
     opts = { view: answer_view,
              title: "Answer",
-             hide: [:cited_source_links, :hover_link] }
+             hide: :hover_link }
     opts[:hide] << :menu if answer_card.metric_type == :relationship
     nest answer_card, opts
   end

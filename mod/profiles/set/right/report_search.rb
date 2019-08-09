@@ -130,7 +130,7 @@ format :html do
     super()
   end
 
-  view :list_with_subtabs do
+  view :list_with_subtabs, cache: :never do
     if subvariants
       lazy_loading_tabs subvariant_tabs, subvariant, render_list, type: "pills"
     else
