@@ -39,7 +39,7 @@ class Card
         raw_counts.delete(val).to_i
       end
 
-      def val_between? val, lower, upper, op
+      def val_between? lower, upper, val, op
         val >= lower && val.send(op, upper)
       end
 
