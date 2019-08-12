@@ -24,8 +24,7 @@ class Card
         tally = 0
         op = last ? "<=" : "<"
         raw_counts.each_key do |val|
-          next unless val >= lower && val.send(op, upper)
-          tally += raw_counts.delete(val).to_i
+          tally += tally_increment(val) if val_between? lower, upper, val, op
         end
         tally
       end
@@ -35,6 +34,14 @@ class Card
       end
 
       private
+
+      def tally_increment val
+        raw_counts.delete(val).to_i
+      end
+
+      def val_between? val, lower, upper, op
+        val >= lower && val.send(op, upper)
+      end
 
       def data_item_hash filter, _count
         super.merge xfield: filter[:numeric_value][:to]
