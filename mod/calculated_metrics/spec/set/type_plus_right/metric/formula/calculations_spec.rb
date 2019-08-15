@@ -141,8 +141,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     it "updates calculated values" do
       expect(answer_value("friendliness")).to eq "0.01"
       change_research_input
-      overridden_value = answer_value "friendliness"
-      expect(overridden_value).to eq "0.1"
+      expect(answer_value("friendliness")).to eq "0.1"
     end
 
     it "updates second level formula" do

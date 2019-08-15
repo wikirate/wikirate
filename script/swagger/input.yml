@@ -1,5 +1,5 @@
 info:
-  version: "0.20.2"
+  version: "0.20.3"
   title: 'WikiRate API'
   description: >-
     API to access WikiRate's data. To get the JSON responses as described below, you can (1) set the http access header to `application/json` in your request, (2) append `.json` to the request urls, or (3) add `format=json` to the query params.
@@ -282,7 +282,7 @@ paths:
     post:
       tags:
       - WikiRate
-      summary: "create a company card"
+      summary: "create a Company card"
       description: |-
         Create a new company card. Alternative: a GET request with /card/create
       parameters:
@@ -295,12 +295,24 @@ paths:
     post:
       tags:
       - WikiRate
-      summary: "create an answer card"
+      summary: "create an Answer card"
       description: |-
         Create a new answer to a specified metric, company, and year.
       parameters:
       - $ref: '#/components/parameters/answer_name'
       - $ref: '#/components/parameters/answer_subcards'
+      responses:
+        302:
+          $ref: '#/components/responses/302'
+  "/ #card[type]=Source":
+    post:
+      tags:
+      - WikiRate
+      summary: "create a Source card"
+      description: |-
+        Create a source record that can be cited by answers.
+      parameters:
+      - $ref: '#/components/parameters/source_subcards'
       responses:
         302:
           $ref: '#/components/responses/302'
@@ -437,14 +449,48 @@ components:
       description: |-
         An answer can have several subcards, including:
 
+        - **+:value**: the answer value
+        - **+:source**: (required) list of source card names separated by line breaks.  All answers
+          must have valid sources.
         - **+:checked_by**: value can be a list of names separated by line breaks or
           `[[request]]` to indicate that a check is requested.
         - **+:discussion**: initial comment for discussion
-        - **+:source**: list of source card names separated by line breaks.  All answers
-          must have valid sources.
       schema:
         type: object
         example: card[subcards][+:checked_by]=[[request]]
+    source_subcards:
+      name: card[subcards]
+      in: query
+      description: |-
+        An source can have several subcards.
+
+        First, the source must refer to an actual document. The most standard way to
+        do that is with a url.
+
+        - **+link**: url string
+
+        It is also possible to upload a file source. (Documentation coming soon).
+
+
+        In general the following subcards are also required:
+
+        - **+title**: a short readable title for the source
+        - **+company**: a newline-separated list of companies to which the source applies
+        - **+year**: a newline-separated list of years to which the the source applies
+        - **+report type**: a newline-separate list of report types to which the source
+          applies.  (See http://wikirate.org/Report_Type
+
+        The above requirements are extremely helpful in making the sources usable via
+        WikiRate's research pages.  However, if you plan to use the sources immediately
+        in a citation (eg via uploads or API calls), you may avoid the requirements using
+        `card[skip]=requirements`.
+
+        Another optional subcard field:
+
+        - **+description**: a paragraph or two about the contents of the source
+      schema:
+        type: object
+        example: card[subcards][+link]=http://mysource.com/mysourcepage.html
   schemas:
     "company_atom":
       type: object

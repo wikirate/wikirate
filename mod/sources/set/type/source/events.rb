@@ -33,7 +33,7 @@ def check_required?
 end
 
 def skip_requirements?
-  skip == :requirements
+  skip&.to_sym == :requirements
 end
 
 def report_type_check_required?
