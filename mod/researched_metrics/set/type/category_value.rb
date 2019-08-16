@@ -42,6 +42,12 @@ def options_card
   Card.fetch metric, :value_options, new: {}
 end
 
+# override. do not add current value if it's not a metric option.
+# (note: if we decide to include current value, we will still want to exclude "Unknown")
+def option_names
+  standard_option_names
+end
+
 format :html do
   def editor
     options_count > 10 ? :select : :radio
