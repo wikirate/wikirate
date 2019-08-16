@@ -41,13 +41,22 @@ class Card
       end
 
       def clean_categories
-        handle_multi_category @filter_query.count_by_group(:value)
+        category_hash = @filter_query.count_by_group :value
+        if metric_card.multi_categorical?
+          handle_multi_category category_hash
+        else
+          category_hash
+        end
       end
 
       def handle_multi_category category_hash
         category_hash.each_with_object({}) do |(key, count), h|
-          key.split(/,\s+/).each do |cat|
-            h[cat] = h[cat].to_i + count
+          if key.nil?
+            h[key] = count
+          else
+            key.split(/,\s+/).each do |cat|
+              h[cat] = h[cat].to_i + count
+            end
           end
         end
       end

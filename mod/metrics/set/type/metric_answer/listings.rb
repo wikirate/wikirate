@@ -25,14 +25,10 @@ format :html do
   end
 
   view :titled_content, cache: :never do
-    voo.hide! :chart # hide it in value_field
     bs do
       layout do
         row 12 do
           column render_basic_details
-        end
-        row 12 do
-          column render_chart
         end
         row 12 do
           column render_expanded_details

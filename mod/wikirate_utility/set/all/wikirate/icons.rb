@@ -12,6 +12,7 @@ ICON_MAP = {
   details: :info,
   source: :public,
   score: :adjust,
+  calculation: [:calculator, { library: :font_awesome }],
   year: [:calendar, { library: :font_awesome }],
   research_group: [:users, { library: :font_awesome }],
   contributions: [:plug, { library: :font_awesome }],

@@ -75,15 +75,18 @@ def calculate_values_for opts={}
 end
 
 def update_or_add_answer company, year, value
+  expire_answer company, year
   if (aw = answer(company, year))
     update_answer aw, company, year, value
-    aw.expire
   else
     add_answer company, year, value
   end
-rescue StandardError => e
-  errors.add :answer, "Error storing calculated value: #{e.message}"
-  raise e
+end
+
+def expire_answer company, year
+  answer_name = Card::Name[metric_card.name, company, year.to_s]
+  ActManager.expirees << answer_name
+  ActManager.expirees << Card::Name[answer_name, :value]
 end
 
 def update_answer answer, company, year, value
