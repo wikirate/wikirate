@@ -23,8 +23,9 @@ class Card
     end
 
     def link_to_answer input_card, input, year
-      answer = [input_card.name, company, year].to_name
-      @format.link_to_card answer, input_value(input), class: "metric-value _update-details"
+      @format.link_to_card [input_card.name, company, year].to_name,
+                           input_value(input),
+                           class: "metric-value _update-details"
     end
 
     def value_span input

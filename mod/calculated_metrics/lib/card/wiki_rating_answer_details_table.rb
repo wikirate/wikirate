@@ -1,7 +1,7 @@
 class Card
   # Renders the table with details for an answer of a WikiRating metric
   class WikiRatingAnswerDetailsTable < AbstractAnswerDetailsTable
-    @columns = ["Metric", "Input", "Score", "Weight", "Points"]
+    @columns = %w[Metric Input Score Weight Points]
 
     def table_rows
       @format.card.metric_card.formula_card.translation_table.map do |card_name, weight|
