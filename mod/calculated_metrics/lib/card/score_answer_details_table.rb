@@ -8,7 +8,7 @@ class Card
     end
 
     def value
-      raw_value
+      input_value
     end
 
     def base_metric_card
