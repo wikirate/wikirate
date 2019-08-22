@@ -11,24 +11,23 @@ class Card
 
     def metric_row input_card, weight
       score_card = answer_card input_card
-      score = score_card.value
-      super(input_card).push score_cell(score_card, score),
+      super(input_card).push score_cell(score_card),
                              weight_cell(weight),
-                             points_cell(score, weight)
+                             points_cell(score_card, weight)
     end
 
-    def score_cell score_card, score
+    def score_cell score_card
       return "" unless score_card.present?
-      @format.link_to_card score_card, @format.colorify(score), class: "_update-details"
+      @format.link_to_card score_card, score_card.format.render_pretty_value,
+                           class: "_update-details"
     end
 
     def weight_cell weight
       "x #{weight}%"
     end
 
-    def points_cell score, weight
-      points = (score.to_f * (weight.to_f / 100)).round(1)
-      "= #{points}"
+    def points_cell score_card, weight
+      "= #{(score_card.value.to_f * (weight.to_f / 100)).round(1)}"
     end
   end
 end
