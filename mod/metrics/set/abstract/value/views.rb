@@ -16,6 +16,14 @@ format :html do
     end
   end
 
+  # needed for ten-scale display of values of non-ten-scale metrics
+  # (eg Formulae used in WikiRating)
+  view :ten_scale, unknown: true do
+    wrap_with :span, class: "metric-value" do
+      beautify_ten_scale(pretty_value).html_safe
+    end
+  end
+
   # do not link to the relationship answer counts that comprise the "value" of
   # relationship metric answers.
   before :pretty_link do
@@ -39,7 +47,6 @@ format :html do
 
   def pretty_span_args
     span_args = { class: "metric-value" }
-    add_class span_args, grade if ten_scale?
     add_class span_args, :small if pretty_value.length > 5
     span_args
   end
@@ -59,15 +66,6 @@ format :html do
   def shorten_ten_scale value
     return value if value.number?
     Answer.unknown?(value) ? "?" : "!"
-  end
-
-  def grade
-    return unless (value = card.value&.to_i)
-    case value
-    when 0, 1, 2, 3 then :low
-    when 4, 5, 6, 7 then :middle
-    when 8, 9, 10 then :high
-    end
   end
 
   # link to full action history (includes value history)

@@ -5,7 +5,7 @@ class Card
 
     def table_rows
       @format.card.metric_card.formula_card.translation_table.map do |card_name, weight|
-        metric_row(Card.fetch(card_name), weight)
+        metric_row(Card.fetch(card_name), weight.to_f)
       end
     end
 
@@ -23,15 +23,15 @@ class Card
     end
 
     def weight_cell weight
-      "x #{weight}%"
+      "x #{weight.round 1}%"
     end
 
     def points_cell score_card, weight
-      "= #{(score_card.value.to_f * (weight.to_f / 100)).round(1)}"
+      "= #{(score_card.value.to_f * (weight / 100)).round(1)}"
     end
 
     def pretty_score score_card
-      score_card.value_card.format.render_pretty
+      score_card.value_card.format.render_ten_scale
     end
   end
 end
