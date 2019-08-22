@@ -18,8 +18,8 @@ class Card
 
     def score_cell score_card
       return "" unless score_card.present?
-      @format.link_to_card score_card, score_card.format.render_pretty_value,
-                           class: "_update-details"
+
+      @format.link_to_card score_card, pretty_score(score_card), class: "_update-details"
     end
 
     def weight_cell weight
@@ -28,6 +28,10 @@ class Card
 
     def points_cell score_card, weight
       "= #{(score_card.value.to_f * (weight.to_f / 100)).round(1)}"
+    end
+
+    def pretty_score score_card
+      score_card.value_card.format.render_pretty
     end
   end
 end
