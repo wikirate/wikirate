@@ -85,7 +85,9 @@ format :html do
         [
           answer_details_table,
           wrap_with(:div, class: "col-md-12") do
-            wrap_with(:div, class: "pull-right") { "= #{colorify card.value}" }
+            wrap_with(:div, class: "pull-right") do
+              "= #{nest card.value_card, view: :pretty}"
+            end
           end
         ]
       end
