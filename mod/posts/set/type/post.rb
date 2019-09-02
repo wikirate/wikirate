@@ -8,7 +8,7 @@ card_accessor :body
 card_accessor :discussion
 
 format :html do
-  before :content_formgroup do
+  before :content_formgroups do
     voo.edit_structure = [
       :wikirate_company,
       :wikirate_topic,

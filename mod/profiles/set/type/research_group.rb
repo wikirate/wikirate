@@ -28,7 +28,7 @@ def projects
 end
 
 format :html do
-  before :content_formgroup do
+  before :content_formgroups do
     voo.edit_structure = [
       :image,
       :organizer,

@@ -12,7 +12,8 @@ RSpec.describe Card::Set::Self::Source do
     end
 
     it "has 'add source' button" do
-      is_expected.to have_tag "a.btn", text: "Add Source", with: { href: "/new/Source" }
+      is_expected.to have_tag "a.btn", text: "Add Source",
+                                       with: { href: "/type/Source?view=new_in_modal" }
     end
 
     it "has Title filter open by default" do
@@ -174,8 +175,8 @@ RSpec.describe Card::Set::Self::Source do
     end
   end
 
-  describe "view :missing" do
-    subject { render_card :missing, name: source_card.name }
+  describe "view :unknown" do
+    subject { render_card :unknown, name: source_card.name }
 
     let(:source_card) { sample_source }
 

@@ -7,7 +7,7 @@ CONTRIBUTION_TYPES = %i[metric_answer metric wikirate_company project
 format :html do
   delegate :badge_count, to: :card
 
-  before :content_formgroup do
+  before :content_formgroups do
     voo.edit_structure = [:image, "+about me", :discussion]
   end
 

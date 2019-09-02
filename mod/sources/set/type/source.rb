@@ -20,7 +20,7 @@ def link_url
 end
 
 format :html do
-  view :missing do
+  view :unknown do
     _view_link
   end
 
