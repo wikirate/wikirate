@@ -9,5 +9,5 @@
         Explore Projects
         .fa.fa-arrow-circle-right.ml-1.fa-lg
   .col-sm-6
-    = nest :homepage_featured_projects, items: { view: :listing_compact }, wql: { limit: 3 },
-                               hide: :paging
+    = nest :homepage_featured_projects,
+           hide: :paging, wql: { limit: 4 }, items: { view: :bar, hide: :bar_nav }

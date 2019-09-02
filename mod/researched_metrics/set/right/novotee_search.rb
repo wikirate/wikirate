@@ -1,5 +1,5 @@
 def virtual?
-  true
+  new?
 end
 
 def content

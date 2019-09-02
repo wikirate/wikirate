@@ -1,11 +1,11 @@
 # ANSWERS
 
-def all_answers
-  Answer.where(metric_id: id)
+def researched_answers
+  Answer.where metric_id: id
 end
 
 def answer_ids
-  all_answers.pluck(:id)
+  researched_answers.pluck(:id)
 end
 
 def answer company, year
@@ -14,7 +14,7 @@ def answer company, year
 end
 
 def distinct_values
-  all_answers.select(:value).distinct.pluck(:value)
+  researched_answers.select(:value).distinct.pluck(:value)
 end
 
 def companies_with_years_and_values
@@ -112,7 +112,7 @@ def value_options
 end
 
 def numeric?
-  calculated? || value_type_code.in?(%i[number money])
+  ten_scale? || value_type_code.in?(%i[number money])
 end
 
 # TODO: adapt to Henry's value type API

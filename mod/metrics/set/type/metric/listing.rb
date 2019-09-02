@@ -1,4 +1,10 @@
 format :html do
+  view :thumbnail_with_vote do
+    wrap_with :div, class: "thumbnail-with-vote d-flex align-items-start" do
+      [render_vote, thumbnail]
+    end
+  end
+
   view :bar_left do
     render :thumbnail_with_vote
   end
@@ -12,21 +18,20 @@ format :html do
   end
 
   view :bar_bottom do
-    output [render_bar_middle,
-            field_nest(:wikirate_topic, view: :content, items: { view: :link }),
-            render_question]
+    render_details_tab
   end
 
   view :box_top do
     render :thumbnail
   end
 
-  view :box_middle, template: :haml
+  view :box_middle do
+    render :question
+  end
 
-  view :box_bottom, template: :haml
+  view :box_bottom do
+    count_badges :metric_answer, :wikirate_company
+  end
 
   view :selected_option, template: :haml
-
-  bar_cols 7, 5
-  info_bar_cols 5, 4, 3
 end

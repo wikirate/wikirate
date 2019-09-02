@@ -62,7 +62,7 @@ module Formula
 
     def input_data company, year
       @parser.input_cards.zip(
-        @input.input_for(company, year), @parser.year_options
+        Array.wrap(@input.input_for(company, year)), @parser.year_options
       )
     end
 
@@ -79,7 +79,13 @@ module Formula
     # and not only the input value for formatting the formula
     # @return [String] the formula with nests replaced by the result of the given block
     def advanced_formula_for company, year
-      input_enum = @input.input_for(company, year).each
+      input = @input.input_for(company, year)
+      case input
+      when :unknown then return "Unknown"
+      when nil then return "No value"
+      end
+
+      input_enum = input.each
       replace_nests do |index|
         yield(input_enum.next, @parser.input_cards[index], index)
       end

@@ -61,7 +61,7 @@ Feature: Research answer from metric page
   Scenario: Adding a answer from record details on metric page
    # When I go to card "Jedi+disturbances in the Force"
     And I click on item "Death Star"
-    And I click on "Research answer"
+    And I click on "Research"
     And I wait for ajax response
     And I select year "2015"
     And I choose "yes"

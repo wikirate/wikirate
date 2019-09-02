@@ -15,43 +15,24 @@ format :html do
 
   # LEFT SIDE
 
-  def left_column_class
-    "left-col order-2 order-md-1 hide-header-sm"
-  end
-
-  def header_body size=:medium
+  def header_body
     class_up "media-heading", "company-color"
     super
   end
 
   def header_text
-    return unless contribs_made?
-
-    if contrib_page?
-      switch_to :wikirate_company, "N", "Company performance profile"
-    else
-      switch_to :user, "Y", "Content contributions to WikiRate.org"
-    end
-  end
-
-  def switch_to icon, val, title
-    link_to_card card, mapped_icon_tag(icon), class: "company-switch", title: title,
-                                              path: { contrib: val }
+    contribs_made? ? render_contrib_switch : ""
   end
 
   view :data do
     if contrib_page?
       render_contributions_data
     else
-      field_nest :metric_answer
+      field_nest :metric_answer, view: :filtered_content
     end
   end
 
   # RIGHT SIDE
-
-  def right_column_class
-    "right-col order-1 order-md-2"
-  end
 
   def tab_list
     if contrib_page?
@@ -65,32 +46,34 @@ format :html do
     { projects_organized: { label: "Projects Organized" } }
   end
 
+  def answer_filtering
+    filtering(".RIGHT-answer ._filter-widget") do
+      yield view: :bar, show: :full_page_link, hide: %i[company_header edit_link]
+    end
+  end
+
   view :wikirate_topic_tab do
-    filtering { field_nest :wikirate_topic, items: { view: :bar } }
+    answer_filtering do |items|
+      field_nest :wikirate_topic, view: :filtered_content, items: items
+    end
   end
 
   view :source_tab do
-    filtering { field_nest :source, items: { view: :bar } }
+    answer_filtering do |items|
+      field_nest :source, view: :filtered_content, items: items
+    end
   end
 
   view :project_tab do
-    filtering { field_nest :project, items: { view: :bar } }
+    answer_filtering { |items| field_nest :project, items: items }
   end
 
   view :details_tab do
-    details
-  end
-
-  def details
-    output [labeled_field(:headquarters), integrations]
+    [labeled_field(:headquarters)] + integrations
   end
 
   def integrations
-    output [
-      content_tag(:h1, "Integrations"),
-      wikipedia_extract,
-      open_corporates_extract
-    ]
+    [content_tag(:h1, "Integrations"), wikipedia_extract, open_corporates_extract]
   end
 
   def wikipedia_extract

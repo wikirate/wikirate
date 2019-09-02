@@ -47,7 +47,7 @@ def research_group_card
   @research_group_card ||= Card.fetch research_group_name if research_group?
 end
 
-def wql_hash
+def wql_content
   research_group? ? research_group_report_query : standard_report_query
 end
 
@@ -130,7 +130,7 @@ format :html do
     super()
   end
 
-  view :list_with_subtabs do
+  view :list_with_subtabs, cache: :never do
     if subvariants
       lazy_loading_tabs subvariant_tabs, subvariant, render_list, type: "pills"
     else

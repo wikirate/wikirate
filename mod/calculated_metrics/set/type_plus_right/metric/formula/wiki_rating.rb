@@ -1,7 +1,7 @@
 format :html do
   view :rating_core do
     table_content = card.translation_table.map do |metric, weight|
-      [nest(metric, view: :thumbnail_plain), "#{weight}%"]
+      [nest(metric, view: :thumbnail), "#{weight}%"]
     end
     table table_content, header: %w[Metric Weight]
   end

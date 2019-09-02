@@ -2,6 +2,9 @@
 
 .home-layout {
   background: url({{topics collage|source; size:original}});
+  .bar {
+    background: #ffffff
+  }
 }
 
 // TODO: move this (not about home page).
@@ -9,19 +12,24 @@
   font-size: 1.2em;
 }
 
+/*----------- Example answer ---------*/
+
+.answer-example > div {
+  border: 1px solid $border-color;
+  align-items: center;
+  padding: 0.5rem
+}
 /*----------- metric value ---------*/
 
-.year-icon-cal  {
+.year-icon-cal.image-box  {
   position: relative;
    i {
      font-size: 55px;
-     color: $border-color;
    }
   .icon-cal-text {
     position: absolute;
-    top: 25%;
-    left: 25%;
-    font-size: 14px;
+    top: 45%;
+    font-size: 16px;
     font-weight: bold;
     }
   }
@@ -85,9 +93,9 @@
   //background: rgba(0, 74, 68, 0.95);
   //Proposed colour
   background: $metric-color; /* Old browsers */
-  background: -moz-linear-gradient(-45deg,  $metric-color 0%, #2b7ea0 68%, #03998d 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg,  $metric-color 0%,#2b7ea0 68%,#03998d 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg,  $metric-color 0%,#2b7ea0 68%,#03998d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -moz-linear-gradient(-45deg, $metric-color 0%, $company-color 68%, $brand-primary 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, $metric-color 0%,$company-color 68%, $brand-primary 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, $metric-color 0%, $company-color 68%, $brand-primary 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$metric-color', endColorstr='#03998d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   opacity: 0.97
 }
@@ -135,6 +143,10 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
+}
+
+.year-and-value-pretty .image-box {
+  margin-right: 20px;
 }
 
 /*----------- wikirate in numbers ---------*/

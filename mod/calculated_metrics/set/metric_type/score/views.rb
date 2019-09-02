@@ -11,10 +11,10 @@ format :html do
   view :score_thumbnail do
     text = "<small class=\"text-muted\">#{time_ago_in_words card.created_at} ago</small>"
     text_with_image title: card.scorer, text: text,
-                    size: :icon, image: card.scorer_card.fetch(trait: :image, new: {})
+                    size: :small, image: card.scorer_card.fetch(trait: :image, new: {})
   end
 
-  view :legend do
+  def value_legend _html=true
     "0-10"
   end
 
@@ -78,7 +78,7 @@ format :html do
     HTML
   end
 
-  def thumbnail_subtitle_text
+  def fixed_thumbnail_subtitle
     "Score | scored by #{link_to_card card.scorer}"
   end
 

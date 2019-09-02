@@ -1,6 +1,4 @@
-%h6.d-flex.flex-no-wrap.year-and-value
+%h6.d-flex.flex-no-wrap._update-details.year-and-value{ href: path }
   .mr-4.year
     = card.year
-  .value-etc
-    = calculated { nest card.value_card, view: :pretty }
-    = render_flags
+  = render_value_and_flags

@@ -17,7 +17,7 @@ def relationship?
 end
 
 format :html do
-  view :legend do
-    "companies"
+  def value_legend _html=true
+    "related companies"
   end
 end

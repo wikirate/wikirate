@@ -17,18 +17,3 @@ end
 def metric_title_card
   junction? ? self[1] : self
 end
-
-format :html do
-  def designer_image
-    nest card.metric_designer_card.field(:image, new: {}),
-         view: :core, size: :small
-  end
-
-  view :designer_image do
-    designer_image
-  end
-
-  def designer_image_link
-    link_to_card card.metric_designer_card, designer_image
-  end
-end

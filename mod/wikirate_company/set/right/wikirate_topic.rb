@@ -5,3 +5,9 @@ event :create_missing_topics, :integrate, on: :save do
     add_subcard topic, type_id: Card::WikirateTopicID
   end
 end
+
+format :html do
+  def default_item_view
+    :link
+  end
+end

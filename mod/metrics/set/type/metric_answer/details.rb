@@ -1,4 +1,5 @@
 include_set Abstract::Tabs
+include_set Abstract::Filterable
 
 format :html do
   def tab_list
@@ -10,11 +11,14 @@ format :html do
 
   def tab_options
     {
-      lines: 1,
       details:          { label: "Answer" },
       metric:           { label: "Metric" },
       wikirate_company: { label: "Company" }
     }
+  end
+
+  def one_line_tab?
+    true
   end
 
   view :details_tab do
@@ -29,21 +33,50 @@ format :html do
     nest card.company_card, view: :details_tab
   end
 
+  # view :year_tab do
+  #   nest card.record_card, view: :data
+  # end
+
   view :details do
     [details_top, render_expanded_details]
   end
 
-  # def tmp_details
-  #   [
-  #     render_full_page_link,
-  #     link_to("record", href: "#", class: "_record-filter",
-  #             data: { filter: { key: "metric", value: "'#{card.metric_name}'"} } )
-  #   ]
-  # end
+  view :other_year_links do
+    return unless record_count > 1
+    other_record_answers.map do |answer|
+      link_to answer.year.to_s, href: answer.name.url_key, class: "_update-details"
+    end.join ", "
+  end
 
-  # TODO: replace this temporary solution:
-  view :action_from_details do
-    render_research_button if metric_card.researchable?
+  def other_record_answers
+    card.record_card.researched_answers.reject { |a| a.year == card.year }
+  end
+
+  def record_count
+    @record_count ||= card.record_card.count
+  end
+
+  view :record_filter_button, cache: :never do
+    filter_for_record do
+      link_to "#{record_count}-Year Record",
+              href: "#", class: "btn btn-sm btn-outline-secondary"
+    end
+  end
+
+  def filter_for_record
+    filterable record_filter_hash, class: "record-filter" do
+      yield
+    end
+  end
+
+  def record_filter_hash
+    { status: :exists,
+      metric_name: exactly(card.metric_name),
+      company_name: exactly(card.company_name) }
+  end
+
+  def exactly name
+    %("#{Card.fetch_name name}")
   end
 
   def details_top
@@ -55,21 +88,29 @@ format :html do
     render_concise hide: :year_and_icon
   end
 
-  view :details_sidebar, template: :haml
+  view :details_sidebar do
+    wrap { filtering(".RIGHT-answer ._filter-widget") { haml :details_sidebar } }
+  end
 
   view :company_details_sidebar do
-    voo.hide :metric_header
-    haml :details_sidebar
+    detail_variant do
+      render_details_sidebar hide: :metric_header
+    end
   end
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
-    voo.hide :company_header
-    haml :details_sidebar
+    detail_variant do
+      render_details_sidebar hide: :company_header
+    end
   end
 
   view :company_header do
     nest card.company_card, view: :shared_header
+  end
+
+  def detail_variant
+    wrap_with(:div, "data-details-view": @current_view) { yield }
   end
 
   view :metric_header do

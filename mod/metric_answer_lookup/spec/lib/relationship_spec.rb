@@ -117,10 +117,11 @@ RSpec.describe Relationship do
       end
     end
 
-    it "updates metric" do
-      update relation_name,
-             name: "Commons+Supplied by+Google LLC+1977+Los Pollos Hermanos"
-      expect(relation.metric_id).to eq Card.fetch_id("Commons+Supplied by")
+    it "cannot updates metric for which value is invalid" do
+      expect do
+        update relation_name,
+               name: "Commons+Supplied by+Google LLC+1977+Los Pollos Hermanos"
+      end.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "updates subject company when company name changes" do

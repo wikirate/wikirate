@@ -1,26 +1,39 @@
 class Card
+  # Query lookup table for researched answers
+  # (See #new for handling of not-researched)
   class AnswerQuery
-    include FilterOptions
-    include FieldConditions
-    include AllAndMissing
-    include Where
+    include Filtering
+    include AnswerFilters
+    include MetricAndCompanyFilters
+    include OutlierFilter
 
-    DB_COLUMN_MAP = {}.freeze
+    STATUS_GROUPS = { 0 => :unknown, 1 => :known, nil => :none }.freeze
+
+    # instantiates AllAnswerQuery object for searches that can return
+    # not-researched answers (status = :all or :none) and AnswerQuery
+    # objects for all other searches
+    def self.new filter, sorting={}, paging={}
+      filter = filter.deep_symbolize_keys
+      if filter[:status]&.to_sym.in?(%i[all none]) && self != AllAnswerQuery
+        AllAnswerQuery.new filter, sorting, paging
+      else
+        super
+      end
+    end
+
+    attr_accessor :filter_args, :sort_args, :paging_args
 
     def initialize filter, sorting={}, paging={}
-      prepare_filter_args filter
-      prepare_sort_args sorting
+      @filter_args = filter
+      @sort_args = sorting
       @paging_args = paging
 
       @conditions = []
       @values = []
       @restrict_to_ids = {}
 
-      @temp_conditions = []
-      @temp_values = []
-      @temp_restrict_to_ids = {}
-
-      add_filter @filter_args
+      process_sort
+      process_filters
     end
 
     # TODO: support optionally returning answer objects
@@ -29,52 +42,87 @@ class Card
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database
     def run
-      if find_all?
-        all_answers # does not actually find calculated!
-      elsif find_missing?
-        missing_answers # not researched
+      @empty_result ? [] : main_results
+    end
+
+    # @return [Array]
+    def count
+      @empty_result ? 0 : main_query.count
+    end
+
+    # @return [Hash] with a key for each group and a count as the value
+    def count_by_group group
+      main_query.group(group).count
+    end
+
+    # @return [Hash] with a key for each status and a count as the value
+    def count_by_status
+      if status_filter.in? %i[all exists]
+        count_by_status_groups
       else
-        known_answers
+        { status_filter => count }
       end
     end
 
-    def add_filter opts={}
-      opts.each do |k, v|
-        process_filter_option k, v if v.present?
+    def count_by_status_groups
+      counts = { total: 0 }
+      count_by_group("value <> 'Unknown'").each do |val, count|
+        num = count.to_i
+        counts[STATUS_GROUPS[val]] = num
+        counts[:total] += num
       end
-    end
-
-    def count additional_filter={}
-      return missing_answer_query.count if find_missing?(additional_filter)
-      where(additional_filter).count
-    end
-
-    def value_count additional_filter={}
-      where(additional_filter).select(:value).uniq.count
+      counts
     end
 
     def limit
       @paging_args[:limit]
     end
 
+    def main_query
+      answer_query
+    end
+
+    def answer_query
+      Answer.where answer_conditions
+    end
+
     def answer_lookup
-      # Rails.logger.warn "where_args: #{where_args}"
-      where.sort(@sort_args).paging(@paging_args)
+      sort_and_page { main_query }
     end
 
     private
 
-    def known_answers
-      return [] if @empty_result
-      answer_lookup.answer_cards.compact
+    def status_filter
+      @filter_args[:status]&.to_sym || :exists
     end
 
-    def prepare_filter_args filter
-      @filter_args = filter.deep_symbolize_keys
+    def main_results
+      answer_lookup.answer_cards
     end
 
-    def prepare_sort_args args
-      @sort_args = args
+    # @return args for AR's where method
+    def answer_conditions
+      condition_sql([@conditions.join(" AND ")] + @values)
+    end
+
+    def condition_sql conditions
+      ::Answer.sanitize_sql_for_conditions conditions
+    end
+
+    def sort_and_page
+      yield.sort(@sort_args).paging(@paging_args)
+    end
+
+    def process_sort
+      return unless numeric_sort?
+
+      @sort_args[:sort_by] = :numeric_value
+    end
+
+    def numeric_sort?
+      single_metric? &&
+        @sort_args[:sort_by]&.to_sym == :value &&
+        (metric_card.numeric? || metric_card.relationship?)
     end
   end
 end

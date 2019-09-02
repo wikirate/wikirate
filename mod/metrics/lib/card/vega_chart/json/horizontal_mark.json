@@ -1,0 +1,12 @@
+{
+  "type": "rect",
+  "from": {"data":"table"},
+  "encode": {
+    "enter": {
+      "y": {"scale": "yscale", "field": "yfield"},
+      "height": {"scale": "yscale", "band": 1},
+      "x2": {"scale": "xscale", "field": "xfield"},
+      "x": {"scale": "xscale", "value": 0}
+    }
+  }
+}

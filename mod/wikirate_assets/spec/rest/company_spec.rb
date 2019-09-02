@@ -15,7 +15,7 @@ Decko::RestSpecHelper.describe_api do
                                success: { format: "json" },
                                token: token }
       end
-      assert_response 302
+      assert_response 303
       # The following test success when tested alone, but it contains a badge
       # flash when run with other specs.  Commenting for now.
       # expect(response).to redirect_to(company_json_url)

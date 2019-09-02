@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Listing do
     Card["Death Star"]
   end
 
-  check_views_for_errors :bar, :box
+  check_views_for_errors :bar, :expanded_bar, :box
 
   describe "view: bar_left" do
     it "has company title" do
@@ -16,7 +16,8 @@ RSpec.describe Card::Set::Type::WikirateCompany::Listing do
 
   describe "view: bar_right" do
     it "has counts" do
-      expect_view(:bar_right).to have_badge_count(metric_count, "RIGHT-metric", "Metrics")
+      expect_view(:bar_right)
+        .to have_badge_count(metric_count, "RIGHT-metric", "Metrics")
     end
   end
 end

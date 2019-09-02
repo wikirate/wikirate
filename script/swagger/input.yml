@@ -1,0 +1,692 @@
+info:
+  version: "0.20.3"
+  title: 'WikiRate API'
+  description: >-
+    API to access WikiRate's data. To get the JSON responses as described below, you can (1) set the http access header to `application/json` in your request, (2) append `.json` to the request urls, or (3) add `format=json` to the query params.
+
+      WikiRate is built with Decko, and is thus constructed from _cards_. Everything in Decko is a card, including images, accounts, searches, fields, etc. So every request for a webpage on WikiRate.org or via its REST API is for a _card_.
+
+      The documentation below is divided into generic Decko card documentation (under `Decko`) and more WikiRate-specific cardtypes (under `WikiRate`).
+tags:
+- name: Decko
+  description: |-
+    "Cards" are the building blocks of Decko (and thus WikiRate). All requests
+    are CRUD operations on cards.
+- name: WikiRate
+  description: |-
+    RESTful Decko api calls can be made with any card on WikiRate. The
+    following examples feature some customized JSON views.
+paths:
+  /Company:
+    get:
+      tags:
+      - WikiRate
+      summary: company index (cardtype) card
+      description: |-
+        The card 'Company' is a Cardtype card; all companies have this type.
+        Includes a paged list of all companies under `items`."
+      operationId: read7
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        200:
+          description: default JSON view of the card 'Company'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                    example: Company
+                  url:
+                    type: string
+                    example: https://wikirate.org/Company.json
+                  type:
+                    $ref: '#/components/schemas/nucleus%20view'
+                  codename:
+                    type: string
+                    example: company
+                  html_url:
+                    type: string
+                    example: https://wikirate.org/Company
+                  links:
+                    type: array
+                    items:
+                      type: string
+                  items:
+                    type: array
+                    description: companies
+                    items:
+                      $ref: '#/components/schemas/company_atom'
+        404:
+          $ref: '#/components/responses/404'
+  /{company}:
+    get:
+      tags:
+      - WikiRate
+      summary: a company
+      description: |-
+        Basic company details. Answers for this company can be found via its
+        `answers_url`."
+      operationId: read8
+      parameters:
+      - $ref: '#/components/parameters/company'
+      responses:
+        200:
+          description: molecule view of company
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1578
+                  name:
+                    type: string
+                    example: Apple Inc
+                  url:
+                    type: string
+                    example: https://wikirate.org/Apple_Inc.json
+                  type:
+                    $ref: '#/components/schemas/nucleus%20view'
+                  wikipedia:
+                    type: string
+                    example: Apple_Inc
+                  open_corporates:
+                    type: string
+                    example: C080659
+                  aliases:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - Apple
+                      - Apple Computer
+                  headquarters:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - California (United States)
+                  answers_url:
+                    type: string
+                    example: https://wikirate.org/Apple_Inc+answers.json
+        404:
+          $ref: '#/components/responses/404'
+  /{company}+Answer:
+    get:
+      tags:
+      - WikiRate
+      summary: Answers for company
+      description: |-
+        Answer names follow the pattern `{Metric}+{Company}+{Year}`.
+
+        Note that request URLS can be generated on company pages on WikiRate.org.
+      operationId: read9
+      parameters:
+      - $ref: '#/components/parameters/company'
+      - $ref: '#/components/parameters/answer_filter'
+      responses:
+        200:
+          $ref: '#/components/responses/200'
+        404:
+          $ref: '#/components/responses/404'
+  /Metric:
+    get:
+      tags:
+      - WikiRate
+      summary: metric index (cardtype) card
+      description: |-
+        All metrics have this type. Includes a paged list of all metrics
+        under `items`.
+      operationId: read10
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                    example: Metric
+                  url:
+                    type: string
+                    example: https://wikirate.org/Metric.json
+                  html_url:
+                    type: string
+                    example: https://wikirate.org/Metric
+                  type:
+                    $ref: '#/components/schemas/nucleus%20view'
+                  codename:
+                    type: string
+                    example: metric
+                  items:
+                    type: array
+                    description: metrics
+                    items:
+                      $ref: '#/components/schemas/metric_atom'
+
+  /{metric}:
+    get:
+      tags:
+      - WikiRate
+      summary: "a metric"
+      description: "Basic metric details. Answers for this metric can be found via its `answers_url`."
+      operationId: read11
+      parameters:
+      - $ref: '#/components/parameters/metric'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/metric_atom'
+  /{metric}+Answer:
+    get:
+      tags:
+      - WikiRate
+      summary: "Answers for metric"
+      description: |-
+        Answer names follow the pattern `{Metric}+{Company}+{Year}`.
+
+        Note that request URLS can be generated on metric pages on WikiRate.org.
+      operationId: read12
+      parameters:
+      - $ref: '#/components/parameters/metric'
+      - $ref: '#/components/parameters/answer_filter'
+      responses:
+        200:
+          $ref: '#/components/responses/200'
+        404:
+          $ref: '#/components/responses/404'
+  /{metric}+{company}:
+    get:
+      tags:
+      - WikiRate
+      summary: "A record for a metric/company"
+      description: "A record contains all of a company's answers to a given metric (for all years). Answers are included under `items`."
+      operationId: read13
+      parameters:
+      - $ref: '#/components/parameters/metric'
+      - $ref: '#/components/parameters/company'
+      responses:
+        '200':
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/record'
+  /{metric}+{company}+{year}:
+    put:
+      tags:
+      - WikiRate
+      summary: "update an answer card"
+      description: |-
+        Update the answer for a specific metric company and year.
+      parameters:
+      - $ref: '#/components/parameters/metric'
+      - $ref: '#/components/parameters/company'
+      - $ref: '#/components/parameters/year'
+      - $ref: '#/components/parameters/answer_subcards'
+      responses:
+        302:
+          $ref: '#/components/responses/302'
+        404:
+          $ref: '#/components/responses/404'
+    get:
+      tags:
+      - "WikiRate"
+      summary: "An answer for a metric/company/year"
+      description: "An answer includes a value and various bits of metadata, including sources, discussions, and verification. For relationship metrics, it also includes details about related companies under `items`"
+      operationId: read14
+      parameters:
+      - $ref: '#/components/parameters/metric'
+      - $ref: '#/components/parameters/company'
+      - $ref: '#/components/parameters/year'
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/answer'
+  /{metric}+{company}+{year}+{company}:
+    get:
+      tags:
+      - WikiRate
+      summary: "company-to-company relationship answer"
+      description: "Relationship metrics ask questions about relationships between companies. Each answer to these metrics is comprised of one or more relationship answers, each describing the relationship of two specific companies"
+      operationId: read15
+      parameters:
+      - $ref: '#/components/parameters/metric'
+      - $ref: '#/components/parameters/company'
+      - $ref: '#/components/parameters/year'
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/relationship_answer'
+  "/ #card[type]=Company":
+    post:
+      tags:
+      - WikiRate
+      summary: "create a Company card"
+      description: |-
+        Create a new company card. Alternative: a GET request with /card/create
+      parameters:
+      - $ref: '#/components/parameters/company_card'
+      - $ref: '#/components/parameters/success'
+      responses:
+        302:
+          $ref: '#/components/responses/302'
+  "/ #card[type]=Answer":
+    post:
+      tags:
+      - WikiRate
+      summary: "create an Answer card"
+      description: |-
+        Create a new answer to a specified metric, company, and year.
+      parameters:
+      - $ref: '#/components/parameters/answer_name'
+      - $ref: '#/components/parameters/answer_subcards'
+      responses:
+        302:
+          $ref: '#/components/responses/302'
+  "/ #card[type]=Source":
+    post:
+      tags:
+      - WikiRate
+      summary: "create a Source card"
+      description: |-
+        Create a source record that can be cited by answers.
+      parameters:
+      - $ref: '#/components/parameters/source_subcards'
+      responses:
+        302:
+          $ref: '#/components/responses/302'
+servers:
+# Added by API Auto Mocking Plugin
+- description: SwaggerHub API Auto Mocking
+  url: https://virtserver.swaggerhub.com/Decko/WikiRate/0.6
+- description: live server
+  url: 'https://wikirate.org'
+- description: staging server
+  url: 'https://staging.wikirate.org'
+
+components:
+  parameters:
+    company:
+      name: company
+      in: path
+      required: true
+      description: name of a company
+      schema:
+        type: string
+        example: Apple Inc
+    metric:
+      name: metric
+      in: path
+      required: true
+      description: name of a metric
+      schema:
+        type: string
+        example: PayScale+CEO to Worker pay
+    year:
+      name: year
+      in: path
+      required: true
+      description: 4-digit year
+      schema:
+        type: string
+        example: 2010
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: limit for the items list
+      schema:
+        type: integer
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: offset for the items list
+      schema:
+        type: integer
+    company_card:
+      name: card
+      in: header
+      required: true
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+          type:
+            type: string
+          content:
+            type: string
+      description: |-
+        The card parameter contains card field data, subcard field data.
+        It follows RubyOnRails hash parameter pattern; for example,
+        the company's name is represented as `card[name]=MyCompanyName`.
+
+        `card[name]` and `card[type]=Company` are required to create a company
+
+        You can also include subcards such as the wikipedia or opencorporates mapping. For example:
+
+        - `card[subcards][+wikipedia]=MyCompanyWikipediaName`
+        - `card[subcards][+open_corporates]=MyCompanyOpenCorporatesEntityID`
+    answer_filter:
+      name: filter
+      in: query
+      required: false
+      description: |-
+        Same filter options as GUI in RubyOnRails hash parameter style,
+        eg `filter[status]=known`.
+
+        - **status:** all, exists (researched), known, unknown, or none (not researched)
+        - **year:** answer year
+        - **value:** answer value to match, OR a hash with `to` and/or `from` keys to
+          represent a range (eg `filter[value][from]=5`
+        - **updated:** today, week, or month (returns answers updated in that time range)
+        - **source:** source card name(s). restrict to answers citing source
+        - **project:** project card name(s). restrict to answers connected to project
+        - **check:** Completed, Requested, or Neither
+
+        {company}+Answer only:
+        - **metric_name:** string to match (or exact name in quotes)
+        - **metric_id:** numerical_id
+        - **metric_type:** name of "metric type" card (Researched, Relationship, Formula,
+          WikiRating, Score, or Descendant)
+        - **topic:** topic card name(s). restrict to metrics with topic
+        - **research policy:** name of research policy card
+
+        {metric}+Answer only:
+        - **company_name:** string to match (or exact name in quotes)
+        - **company_id:** numerical id
+        - **outliers:** only, exclude
+
+        Note: arrays can be represented in RubyOnRails array parameter style, eg:
+        `filter[topic][]=human+rights&filter[topic][]=climate+change`
+
+      schema:
+        type: array
+        items:
+          type: string
+
+    answer_name:
+      name: card[name]
+      in: query
+      required: true
+      description:
+        The name of an answer follows the pattern Metric+Company+Year.  (Note,
+        the name of a company follows the pattern Designer+Title).
+
+        Any piece of the name (or the entire name ) can be substituted with its numerical
+        id in the form of `~INTEGER`.  Eg, if your metric's id is 867 and your company's
+        id is 5309, then you can address the answer as ~867+~5309+1981
+      schema:
+        type: string
+        example:
+          PayScale+CEO to Worker pay+Apple Inc+2010
+
+    answer_subcards:
+      name: card[subcards]
+      in: query
+      description: |-
+        An answer can have several subcards, including:
+
+        - **+:value**: the answer value
+        - **+:source**: (required) list of source card names separated by line breaks.  All answers
+          must have valid sources.
+        - **+:checked_by**: value can be a list of names separated by line breaks or
+          `[[request]]` to indicate that a check is requested.
+        - **+:discussion**: initial comment for discussion
+      schema:
+        type: object
+        example: card[subcards][+:checked_by]=[[request]]
+    source_subcards:
+      name: card[subcards]
+      in: query
+      description: |-
+        An source can have several subcards.
+
+        First, the source must refer to an actual document. The most standard way to
+        do that is with a url.
+
+        - **+link**: url string
+
+        It is also possible to upload a file source. (Documentation coming soon).
+
+
+        In general the following subcards are also required:
+
+        - **+title**: a short readable title for the source
+        - **+company**: a newline-separated list of companies to which the source applies
+        - **+year**: a newline-separated list of years to which the the source applies
+        - **+report type**: a newline-separate list of report types to which the source
+          applies.  (See http://wikirate.org/Report_Type
+
+        The above requirements are extremely helpful in making the sources usable via
+        WikiRate's research pages.  However, if you plan to use the sources immediately
+        in a citation (eg via uploads or API calls), you may avoid the requirements using
+        `card[skip]=requirements`.
+
+        Another optional subcard field:
+
+        - **+description**: a paragraph or two about the contents of the source
+      schema:
+        type: object
+        example: card[subcards][+link]=http://mysource.com/mysourcepage.html
+  schemas:
+    "company_atom":
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1578
+        name:
+          type: string
+          example: Apple Inc
+        url:
+          type: string
+          example: https://wikirate.org/Apple_Inc.json
+        type:
+          type: string
+          example: Company
+        wikipedia:
+          type: string
+          example: "Apple_Inc"
+        open_corporates:
+          type: string
+          example: C0806592
+        aliases:
+          type: array
+          items:
+            type: string
+          example:
+          - Apple
+          - Apple Computer
+        headquarters:
+          type: array
+          items:
+            type: string
+          example:
+          - California (United States)
+
+    "metric_atom":
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 565926,
+        name:
+          type: string
+          example: PayScale+CEO to Worker pay
+        url:
+          type: string
+          example: "https://wikirate.org/PayScale+CEO_to_Worker_pay.json"
+        type:
+          type: string
+          example: Metric
+        designer:
+          type: string
+          example: PayScale
+        title:
+          type: string
+          example: CEO to Worker pay
+        answers_url:
+          type: string
+          example: "https://wikirate.org/PayScale+CEO_to_Worker_pay+answer.json"
+        ancestors:
+          type: array
+          items:
+            $ref: '#/components/schemas/atom%20view'
+        metric_type:
+          type: string
+          example: Researched
+        about:
+          type: string
+        value_type:
+          type: string
+          example: Number
+        value_options:
+          type: array
+          items:
+            type: string
+        report_type:
+          type: string
+        research_policy:
+          type: string
+        unit:
+          type: string
+        range:
+          type: string
+        hybrid:
+          type: string
+        question:
+          type: string
+
+    "record":
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 566034
+        name:
+          type: string
+          example: PayScale+CEO to Worker pay+Apple Inc.
+        url:
+          type: string
+          example: "https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json"
+        html_url:
+          type: string
+          example: "https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc"
+        type:
+          type: string
+          example: Record
+        items:
+          description: answers
+          type: array
+          items:
+            $ref: '#/components/schemas/answer'
+        ancestors:
+          type: array
+          items:
+            $ref: '#/components/schemas/atom%20view'
+    "answer":
+      type: object
+      properties:
+        id:
+          type: integer
+          example:  566035
+        name:
+          type: string
+          example: "PayScale+CEO to Worker pay+Apple Inc.+2013"
+        url:
+          type: string
+          example: "https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc+2013.json"
+        html_url:
+          type: string
+          example: "https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc+2013"
+        type:
+          type: string
+          example: "Answer"
+        metric:
+          type: string
+          example:  "PayScale+CEO to Worker pay"
+        company:
+          type: string
+          example:  "Apple Inc."
+        year:
+          type: string
+          example:  "2013"
+        value:
+          type: string
+          example:  "43"
+        record_url:
+          type: string
+          example:  "https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json"
+        items:
+          description: "If the metric is a relationship metric then all relationships to other companies for the given company are listed here."
+          type: array
+          items:
+            $ref: '#/components/schemas/relationship_answer'
+        ancestors:
+          type: array
+          items:
+            $ref: '#/components/schemas/atom%20view'
+
+    "relationship_answer":
+      type: object
+      properties:
+        id:
+          type: string
+          example: 3316841
+        name:
+          type: string
+          example: "Commons+Supplied By+The Walt Disney Company+2016+Fastmaker LLC"
+        url:
+          type: string
+          example: "https://wikirate.org/Commons+Supplied_By+The_Walt_Disney_Company+2016+Fastmaker_LLC.json"
+        html_url:
+          type: string
+          example: "https://wikirate.org/Commons+Supplied_By+The_Walt_Disney_Company+2016+Fastmaker_LLC"
+        type:
+          type: string
+          example: "Relationship Answer"
+        content:
+          type: string
+          example: ""
+        year:
+          type: string
+          example: "2016"
+        value:
+          type: string
+          example: "Tier 1 Supplier"
+        import:
+          type: string
+          example: false
+        comments:
+          type: string
+          example: ""
+        subject_company:
+          $ref: '#/components/schemas/company_atom'
+        object_company:
+          $ref: '#/components/schemas/company_atom'
+
+
+

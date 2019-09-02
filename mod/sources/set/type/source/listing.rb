@@ -2,26 +2,37 @@ include_set Abstract::Filterable
 
 format :html do
   # BAR VIEWS
+  before :bar do
+    class_up "bar-left", "_filterable"
+    super()
+  end
+
   view :bar_left do
-    filterable :source do
+    filterable source: card.name do
       haml :bar_left
     end
   end
+
   view :bar_right, template: :haml
 
   view :bar_middle do
-    count_badges :wikirate_company, :metric
+    count_badges :metric_answer, :metric, :wikirate_company
   end
 
   view :bar_bottom do
-    output [render_bar_middle,
-            labeled_field(:report_type),
-            labeled_field(:wikirate_topic, :link, title: "Topics"),
-            field_nest(:description, view: :titled)]
+    [badge_header,
+     labeled_field(:report_type),
+     labeled_field(:wikirate_topic, :link, title: "Topics"),
+     field_nest(:description, view: :titled)]
+  end
+
+  def badge_header
+    wrap_with :div, class: "d-flex justify-content-center pb-3" do
+      render_bar_middle
+    end
   end
 
   bar_cols 7, 5
-  info_bar_cols 5, 4, 3
 
   view :cite_bar, template: :haml
   view :preview_link_bar, template: :haml
@@ -52,17 +63,13 @@ format :html do
 
   # OTHER VIEWS
 
-  # view :icon do
-  #   icon = wrap_with(:i, " ", class: "glyphicon glyphicon-link")
-  #   wrap_with(:div, icon, class: "source-icon")
-  # end
-
   view :creator_credit do
     wrap_with :div, class: "last-edit" do
       "added #{_render_created_at} ago by #{creator}"
     end
   end
 
+  # TODO: unify with bar-left
   view :listing_compact, template: :haml
   view :wikirate_copy_message, template: :haml
 
@@ -94,6 +101,6 @@ format :html do
 
   def creator
     return unless (creator_card = Card[card.creator_id])
-    field_nest creator_card, view: :link
+    nest creator_card, view: :link
   end
 end

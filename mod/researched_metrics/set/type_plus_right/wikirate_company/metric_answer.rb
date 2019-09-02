@@ -1,12 +1,8 @@
 # Answer search for a given Company
 include_set Abstract::AnswerSearch
 
-def virtual?
-  !real?
-end
-
-def query_class
-  AnswerQuery::FixedCompany
+def fixed_field
+  :company_id
 end
 
 def filter_card_fieldcode
@@ -14,18 +10,29 @@ def filter_card_fieldcode
 end
 
 def default_sort_option
-  :importance
+  record? ? :year : :importance
+end
+
+def partner
+  :metric
 end
 
 format :html do
-  before(:filter_result) { voo.hide! :chart }
+  before :core do
+    voo.hide! :chart
+    super()
+  end
 
-  def table_args
-    [:metric,
-     self, # call search_with_params on self to get items
-     [:metric_thumbnail_with_vote, :value_cell],
-     header: [name_sort_links, "Value"],
-     details_view: :metric_details_sidebar]
+  def cell_views
+    [:metric_thumbnail_with_vote, :concise]
+  end
+
+  def header_cells
+    [name_sort_links, render_answer_header]
+  end
+
+  def details_view
+    :metric_details_sidebar
   end
 
   def name_sort_links
@@ -33,14 +40,14 @@ format :html do
   end
 
   def title_sort_link
-    table_sort_link "Metrics", :title_name, true, "pull-left mx-3 px-1"
+    table_sort_link "Metric", :title_name, "pull-left mx-3 px-1"
   end
 
   def designer_sort_link
-    table_sort_link "", :metric_name, false, "pull-left mx-3 px-1"
+    table_sort_link "", :metric_name, "pull-left mx-3 px-1"
   end
 
   def importance_sort_link
-    table_sort_link "", :importance, false, "pull-left mx-3 px-1"
+    table_sort_link "", :importance, "pull-left mx-3 px-1"
   end
 end

@@ -22,7 +22,7 @@ Feature: Research answer for hybrid metric
     And I should see "1,003"
     And I should not see "Research answer"
     When I click on item "Slate Rock and Gravel Company"
-    And I click on "Research answer"
+    And I click on "Research"
     And I select year "2014"
     And I cite source
     And I fill in "25" for "Answer"

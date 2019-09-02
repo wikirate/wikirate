@@ -43,6 +43,7 @@ gem "rubocop-decko"
 
 gem "fog"
 gem "fog-aws"
+gem "rack-cors"
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
@@ -117,7 +118,7 @@ group :development do
   # gem 'spring-commands-rspec'
 end
 
-group :test, :development do
+group :test, :development, :cypress do
   gem "cypress-on-rails"
   gem "pry"
   gem "pry-byebug"

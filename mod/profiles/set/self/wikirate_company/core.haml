@@ -1,6 +1,3 @@
 = field_nest :description
-.filter-search-form
-  = field_nest :browse_company_filter, view: :filter_form
-#browse-companies
-  = field_nest :browse_company_filter, hide: :menu, items: { view: :box }
+= field_nest :browse_company_filter, view: :filtered_content, items: { view: :box }
 = render_add_button

@@ -7,7 +7,7 @@ def merge_into target_company
 end
 
 def move_all_answers_to target_company
-  all_answers.each do |answer|
+  researched_answers.each do |answer|
     next unless answer.real?
     target_company = Card.cardish(target_company).name
     target_name = Card::Name[answer.metric.to_s, target_company, answer.year.to_s]

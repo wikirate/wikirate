@@ -9,12 +9,8 @@
     vertical-align: middle!important;
     border-left: 3px solid $regular;
   }
-  tr {
-    &.details-toggle:hover {
-      .header {
-        border-left: 3px solid $hover;
-      }
-    }
+  tr:hover .header {
+    border-left: 3px solid $hover;
   }
 }
 
@@ -30,9 +26,6 @@
     }
    td {
      max-width: 400px;
-   }
-   td.details {
-     max-width: 1000px!important;
    }
   }
 
@@ -82,15 +75,6 @@ table.wikirate-table, .table.wikirate-table {
       .media {
         margin-top: 8px;
       }
-      .RIGHT-Xvote_count > div {
-        line-height: 1em;
-        font-size: 11px;
-        margin-right: 5px;
-        text-align: center;
-      }
-      .RIGHT-Xvote_count.content-view {
-        margin-left: 5px;
-      }
       button.vote-button {
         font-size: 11px;
         width: 15px;
@@ -131,11 +115,17 @@ table.wikirate-table, .table.wikirate-table {
 }
 
 .RIGHT-answer .wikirate-table {
+  table-layout: fixed;
+  max-width: 100%;
   border-width: 0 0 1px 0;
   th {
     border: 0;
   }
-
+  @include media-breakpoint-down(sm) {
+    .metric-list-header {
+      margin-left: 0 !important;
+    }
+  }
 }
 
 //---Custom Table Properties---//
@@ -218,4 +208,15 @@ table.import-table td {
 td .pointer-list {
   // needed to align on company pages the jurisdictions table
   padding: 0;
+}
+
+.RIGHT-open_corporate .table-borderless td:first-child {
+  text-align: right;
+  padding-right: 25px;
+  width: 33%;
+}
+
+.origin-link {
+  padding: 0.5em 0;
+  text-align: right;
 }

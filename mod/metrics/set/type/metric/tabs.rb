@@ -1,3 +1,5 @@
+include_set Abstract::Filterable
+
 format :html do
   # default tab list (several metric types override)
   def tab_list
@@ -10,33 +12,39 @@ format :html do
 
   view :details_tab do
     tab_wrap do
-      [_render_metric_properties,
-       render_main_details]
+      [render_metric_properties, render_main_details]
     end
   end
 
   # overridden in Researched
   view :main_details do
-    [nest_formula, nest_about, nest_methodology].compact.join "<br/>"
+    [nest_formula, nest_about, nest_methodology]
   end
 
   def nest_about
-    # return "" if card.about_card.new?
-    nest card.about_card, view: :titled, title: "About"
+    field_nest :about, view: :titled
   end
 
   def nest_formula
-    nest card.formula_card, view: :titled, title: "Formula"
+    field_nest :formula, view: :titled
   end
 
   def nest_methodology
     return unless card.researchable?
-    nest card.methodology_card, view: :titled, title: "Methodology"
+    field_nest :methodology, view: :titled
+  end
+
+  def answer_filtering
+    filtering(".RIGHT-answer ._filter-widget") do
+      yield view: :bar, show: :full_page_link, hide: %i[metric_header edit_link]
+    end
   end
 
   view :project_tab do
-    tab_wrap do
-      field_nest :project, view: :titled, title: "Projects", items: { view: :bar }
+    answer_filtering do |items|
+      tab_wrap do
+        field_nest :project, view: :content, items: items
+      end
     end
   end
 

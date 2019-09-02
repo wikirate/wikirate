@@ -31,7 +31,7 @@ def rename_answers
                                          designer_name: name.parts.first,
                                          title_name: name.parts.second
 
-  all_answers.each do |answer|
+  researched_answers.each do |answer|
     answer.refresh :record_name
   end
 end
@@ -75,15 +75,18 @@ def calculate_values_for opts={}
 end
 
 def update_or_add_answer company, year, value
+  expire_answer company, year
   if (aw = answer(company, year))
     update_answer aw, company, year, value
-    aw.expire
   else
     add_answer company, year, value
   end
-rescue StandardError => e
-  errors.add :answer, "Error storing calculated value: #{e.message}"
-  raise e
+end
+
+def expire_answer company, year
+  answer_name = Card::Name[metric_card.name, company, year.to_s]
+  ActManager.expirees << answer_name
+  ActManager.expirees << Card::Name[answer_name, :value]
 end
 
 def update_answer answer, company, year, value
@@ -108,7 +111,7 @@ private
 def dummy_answers_attribs
   calculator.answers_to_be_calculated.map do |company_id, year|
     unless Card[self, company_id]
-      Card.create! name: [self, company_id], type_id: Card::RecordID
+      attach_subcard Card.new(name: [self, company_id], type_id: Card::RecordID)
     end
     { metric_id: id, company_id: company_id, year: year, calculating: true,
       metric_name: name, latest: true }

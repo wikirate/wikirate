@@ -33,7 +33,8 @@ format :html do
 
   def pretty_link text
     return text if voo.hide? :link
-    link_to text, path: "/#{card.name.left_name.url_key}", target: "_blank"
+    link_to text, path: "/#{card.name.left_name.url_key}", target: "_blank",
+                  class: "_update-details"
   end
 
   def pretty_span_args

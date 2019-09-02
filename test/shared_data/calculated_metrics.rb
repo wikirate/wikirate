@@ -19,13 +19,14 @@ class SharedData
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}",
                           hybrid: "1",
+                          value_type: "Number",
                           test_source: true do
         Slate_Rock_and_Gravel_Company 2003 => "100"
       end
 
       Card::Metric.create name: "Jedi+double friendliness",
-                                type: :formula,
-                                formula: "{{Jedi+friendliness}}*2"
+                          type: :formula,
+                          formula: "{{Jedi+friendliness}}*2"
 
       Card::Metric.create name: "Jedi+deadliness average",
                           type: :formula,
@@ -35,6 +36,10 @@ class SharedData
                           hybrid: "1",
                           formula: "{{Jedi+deadliness}}-{{Jedi+deadliness|year:-1}}" \
                                    "+{{half year}}"
+
+      Card::Metric.create name: "Jedi+know the unknowns",
+                          type: :formula,
+                          formula: "{{Joe User+RM|unknown: 10}} + {{Joe User+small multi|not_researched: 20}}"
 
       # calculated value: "Slate Rock and Gravel Company+2004"
 
@@ -52,6 +57,7 @@ class SharedData
       with_joe_user do
         Card::Metric.create name: "Jedi+disturbances in the Force+Joe User",
                             type: :score,
+                            value_type: "Category",
                             formula: { yes: 10, no: 0 }
       end
     end
@@ -81,6 +87,12 @@ class SharedData
                           test_source: true do
         Death_Star 1977 => 1000
       end
+
+      Card::Metric.create(name: "Joe User+descendant 2",
+                          type: :descendant,
+                          formula: "[[Joe User+RM]]\n" \
+                                   "[[Joe User+researched number 1]]"
+                         )
     end
   end
 end

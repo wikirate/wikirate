@@ -2,12 +2,12 @@ include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 
 def filter_keys
-  %i[status year check metric wikirate_topic metric_type value updated project source
-     research_policy]
+  %i[status year check metric_name wikirate_topic metric_type value updated project
+     source research_policy]
 end
 
-def default_filter_option
-  { status: :exists, year: :latest, metric: "" }
+def default_filter_hash
+  { status: :exists, year: :latest, metric_name: "" }
 end
 
 format :html do
@@ -15,12 +15,18 @@ format :html do
     field.to_sym == :metric_type ? "Metric type" : super
   end
 
+  def quick_filter_list
+    Card[:homepage_featured_topics].item_names.map do |topic|
+      { wikirate_topic: topic }
+    end
+  end
+
   def sort_options
     {
-      "Importance to Community (net votes)" => :importance,
-      "Metric Designer (Alphabetical)" => :metric_name,
-      "Metric Title (Alphabetical)" => :title_name,
-      "Recently Updated" => :updated_at
+      "Metric Votes": :importance,
+      "Metric Designer (Alphabetical)": :metric_name,
+      "Metric Title (Alphabetical)": :title_name,
+      "Recently Updated": :updated_at
     }
   end
 end

@@ -22,11 +22,4 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::WikirateTopic do
       Card["Jedi+disturbances in the Force+SPECTRE+2000"].delete
     end
   end
-
-  # describe "#topics_by_metric_count" do
-  #   it "builds an array of arrays of topics/counts" do
-  #     result = Card.fetch("Samsung+topics").topics_by_metric_count
-  #     expect(result).to eq([[Card["taming"], 1]])
-  #   end
-  # end
 end

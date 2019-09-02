@@ -12,17 +12,18 @@ def default_sort_option
   "answer"
 end
 
-def default_filter_option
+def default_filter_hash
   { name: "" }
+end
+
+def target_type_id
+  WikirateCompanyID
 end
 
 format :html do
   def sort_options
-    {
-      "Most Answers" => "answer",
-      "Most Metrics" => "metric",
-      "Most Topics" => "topic",
-      "Alphabetical" => "name"
-    }
+    { "Most Answers": :answer,
+      "Most Metrics": :metric,
+      "Most Topics": :topic }.merge super
   end
 end

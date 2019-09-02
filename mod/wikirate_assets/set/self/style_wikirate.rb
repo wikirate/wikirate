@@ -9,6 +9,7 @@ FILE_NAMES =
      wikirate_bootstrap_navbar
      wikirate_bootstrap_form
      wikirate_bootstrap_common
+     wikirate_images
      toggle_details
      company_header
      wikirate_layout

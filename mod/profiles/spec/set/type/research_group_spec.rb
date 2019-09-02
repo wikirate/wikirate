@@ -2,7 +2,7 @@ RSpec.describe Card::Set::Type::ResearchGroup do
   def card_subject
     Card["Jedi"]
   end
-  check_views_for_errors :open_content, :bar, :edit,
+  check_views_for_errors :open_content, :bar, :expanded_bar, :edit,
                          :researcher_tab, :metric_tab, :project_tab
 
   specify "view :info_bar" do
@@ -11,7 +11,7 @@ RSpec.describe Card::Set::Type::ResearchGroup do
         with_tag "div.thumbnail"
       end
       with_tag "div.bar-middle" do
-        with_tag "span.badge"
+        with_tag "div.RIGHT-topic"
       end
       with_tag "div.bar-right" do
         with_tag "span.badge"
@@ -21,7 +21,7 @@ RSpec.describe Card::Set::Type::ResearchGroup do
 
   specify "view :expanded_bar" do
     expect_view(:expanded_bar).to have_tag "div.expanded-bar" do
-      with_tag "div.bar-top" do
+      with_tag "div.bar" do
         with_tag "div.bar-left" do
           with_tag "div.thumbnail"
         end
@@ -30,7 +30,7 @@ RSpec.describe Card::Set::Type::ResearchGroup do
         end
       end
       with_tag "div.bar-bottom" do
-        with_tag "span.badge"
+        with_tag "div.RIGHT-topic"
       end
     end
   end

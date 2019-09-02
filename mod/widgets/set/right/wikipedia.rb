@@ -1,5 +1,5 @@
 def virtual?
-  true
+  new?
 end
 
 QUERY_ARGS = { format: :json, action: :query, prop: :extracts, redirects: 1,
@@ -57,13 +57,9 @@ end
 format :html do
   delegate :wikipedia_extract, :wikipedia_url, to: :card
 
-  # view :edit do
-  #   Card.exists?(card.name) ? super() : _render_new
-  # end
-
   view :core, async: true do
     extract = wikipedia_extract
-    extract += wrap_with(:p, original_link) if extract.present?
+    extract += wrap_with(:p, original_link, class: "origin-link") if extract.present?
     extract
   end
 

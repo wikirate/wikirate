@@ -1,7 +1,11 @@
 include_set Abstract::CodeFile
 
 format :html do
-  view :raw, template: :haml
+  view :core, template: :haml
+
+  view :nav_bar_left do
+    link_to nest(:logo, view: :core, size: :original), href: "/"
+  end
 
   # overridden in projects site.
   view :nav_bar_middle do

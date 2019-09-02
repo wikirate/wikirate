@@ -15,7 +15,11 @@ class TopicFilterQuery < Card::FilterQuery
 end
 
 def filter_keys
-  %i[name metric project wikirate_company]
+  %i[name]
+end
+
+def default_filter_hash
+  { name: "" }
 end
 
 def target_type_id
@@ -32,10 +36,6 @@ end
 
 format :html do
   def sort_options
-    {
-      "Alphabetical" => "name",
-      "Most Metrics" => "metric",
-      "Most #{rate_subjects}" => "company"
-    }
+    { "Most Metrics": :metric, "Most #{rate_subjects}": :company }.merge super
   end
 end

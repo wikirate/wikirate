@@ -103,7 +103,7 @@ $.extend wikirate,
     load_path = decko.slotPath(sourceID + "?view=preview")
     slot.reloadSlot load_path
 
-staticPreviewLink = "#Research_Page .TYPE-answer.titled-view .source-preview-link"
+staticPreviewLink = ".slot_machine-view .TYPE-answer.titled-view .source-preview-link"
 
 $(document).ready ->
   $('body').on 'click', '._cite-button', (event) ->
@@ -120,7 +120,7 @@ $(document).ready ->
   $('body').on 'ajax:error', "#research_page-view_source > .card-slot", (event, xhr) ->
     $(this).find(".loader-anime").remove() # remove loader
 
-  if $(staticPreviewLink)
+  if $(staticPreviewLink).exists()
     wikirate.activateSourceBar null
 
 decko.slotReady (slot) ->

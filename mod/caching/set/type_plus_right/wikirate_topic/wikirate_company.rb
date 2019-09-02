@@ -3,11 +3,19 @@
 include_set Abstract::AnswerTableCachedCount, target_type: :company
 
 def search_anchor
-  { metric_id: metrics_tagged_with_topic }
+  { metric_id: metric_ids }
 end
 
 def topic_name
   name.left_name
+end
+
+def metric_ids
+  left.fetch(trait: :metric, new: {}).item_ids
+end
+
+def skip_search?
+  metric_ids.empty?
 end
 
 # when metric value is edited
@@ -37,21 +45,3 @@ class << self
     Abstract::CachedCount.pointer_card_changed_card_names topic_pointer
   end
 end
-
-def metrics_tagged_with_topic return_field=:id
-  Card.search type_id: MetricID,
-              right_plus: [WikirateTopicID, { refer_to: name.left }],
-              return: return_field
-end
-
-# # company ids by metric count
-# def item_ids _args={}
-#   Answer.group(:company_id)
-#         .where(metric_id: metrics_tagged_with_topic)
-#         .order("count_metric_id desc")
-#         .limit(100)
-#         .distinct
-#         .count(:metric_id)
-#         .map &:first
-# end
-#

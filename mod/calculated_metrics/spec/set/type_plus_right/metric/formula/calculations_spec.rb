@@ -1,14 +1,15 @@
 # encoding: UTF-8
 
 RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
-  def calc_answer metric_title="formula test"
+  def calc_answer metric_title="formula test", company_name=nil, year=1977
+    company_id ||= Card.fetch_id(company_name || "Death Star")
     Answer.where(metric_name: "Jedi+#{metric_title}",
-                 company_id: Card.fetch_id("Death Star"),
-                 year: 1977).take
+                 company_id: company_id,
+                 year: year).take
   end
 
-  def answer_value metric_title="formula test"
-    calc_answer(metric_title).value
+  def answer_value metric_title="formula test", company_name=nil, year=1977
+    calc_answer(metric_title, company_name, year)&.value
   end
 
   # values for the input answers are 100 and 0.31
@@ -55,6 +56,38 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
                                 metric_title: "double friendliness" do
         Card["Jedi+friendliness+formula"]
           .update! content: "1/{{Jedi+deadliness}}+5"
+      end
+    end
+
+    context "with different variables" do
+      before do
+        with_delayed_jobs do
+          Card["Jedi+friendliness+formula"].update!(
+            content: "7*{{Joe User+researched number 1}}"
+          )
+        end
+      end
+
+      it "creates answer for company/year not previously covered" do
+        expect(answer_value("friendliness", "Apple Inc", 2015)).to eq("700.0")
+      end
+
+      it "removes answer for company no longer covered" do
+        expect(answer_value("friendliness", "SPECTRE")).to eq(nil)
+      end
+    end
+
+    context "with scores as variables" do
+      before do
+        with_delayed_jobs do
+          Card["Jedi+friendliness+formula"].update!(
+            content: "3*{{Jedi+disturbances in the Force+Joe User}}"
+          )
+        end
+      end
+
+      it "creates answer for company/year not previously covered" do
+        expect(answer_value("friendliness", "Monster Inc", 2000)).to eq("30.0")
       end
     end
   end
@@ -108,8 +141,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     it "updates calculated values" do
       expect(answer_value("friendliness")).to eq "0.01"
       change_research_input
-      overridden_value = answer_value "friendliness"
-      expect(overridden_value).to eq "0.1"
+      expect(answer_value("friendliness")).to eq "0.1"
     end
 
     it "updates second level formula" do

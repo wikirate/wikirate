@@ -2,24 +2,13 @@
 
 require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 
-describe Card::Set::Right::BrowseMetricFilter do
-  let(:card) do
-    card = Card.new name: "test card"
-    card.singleton_class.send :include, described_class
-    card
-  end
-
+RSpec.describe Card::Set::Right::BrowseMetricFilter do
   describe "filter_wql" do
-    subject { card.filter_wql_from_params }
+    subject { card_subject.filter_wql_from_params }
 
     context "name argument" do
       before { filter_args name: "CDP" }
       it { is_expected.to eq(name: %w[match CDP]) }
-    end
-
-    context "company argument" do
-      before { filter_args wikirate_company: "Apple Inc" }
-      it { is_expected.to eq(right_plus: "Apple Inc") }
     end
 
     context "topic argument" do
@@ -32,7 +21,7 @@ describe Card::Set::Right::BrowseMetricFilter do
     end
 
     def simple_field_filter field_id, value
-      { right_plus: [field_id, { refer_to: { name: value } }] }
+      { right_plus: [field_id, { refer_to: value }] }
     end
 
     context "designer argument" do
@@ -77,7 +66,6 @@ describe Card::Set::Right::BrowseMetricFilter do
     context "multiple filter conditions" do
       before do
         filter_args name: "CDP",
-                    wikirate_company: "Apple Inc",
                     wikirate_topic: "myTopic",
                     designer: "myDesigner",
                     metric_type: "researched",
@@ -91,7 +79,7 @@ describe Card::Set::Right::BrowseMetricFilter do
           name: %w[match CDP],
           and: policy_wql.merge(
             and: metric_type_wql.merge(
-              and: topic_wql.merge(and: { right_plus: "Apple Inc" })
+              and: topic_wql
             )
           ),
           right_plus: { type_id: Card::WikirateCompanyID, right_plus: "2015" },

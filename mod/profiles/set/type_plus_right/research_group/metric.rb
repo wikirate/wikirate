@@ -1,7 +1,7 @@
 def virtual?
-  true
+  new?
 end
 
-def wql_hash
+def wql_content
   { type_id: MetricID, left: "_left" }
 end

@@ -1,25 +1,29 @@
-# filter interface for "Browse Sources"  page
+# filter interface for "Browse Sources" page
 
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
-
-def wql_from_content
-  super.merge limit: 15, sort: default_sort_option
-end
 
 def filter_class
   SourceFilterQuery
 end
 
 def sort_wql
-  { sort: "create", dir: "desc" }
+  if current_sort.to_sym == :title
+    { sort: { right: "title" } }
+  else
+    super
+  end
+end
+
+def default_sort_option
+  "create"
 end
 
 def filter_keys
-  %i[wikirate_title wikirate_company wikirate_topic report_type]
+  %i[wikirate_title wikirate_topic report_type year]
 end
 
-def default_filter_option
+def default_filter_hash
   { wikirate_title: "" }
 end
 
@@ -27,13 +31,9 @@ def target_type_id
   SourceID
 end
 
-def default_sort_option
-  "create"
-end
-
 format :html do
-  view :sort_formgroup do
-    ""
+  def sort_options
+    { "Recently Added": :create, "Title": :title, "Most Answers": :answer }
   end
 
   view :filter_wikirate_title_formgroup, cache: :never do
@@ -48,16 +48,19 @@ format :html do
     type_options :report_type
   end
 
-  # name is hard (because actual names are source-123412)
-  # update is misleading (because field updates don't change card update date)
-  # ... seems best not to offer bad options.
-  def sort_options
-    {}
+  view :filter_year_formgroup, cache: :never do
+    select_filter :year
+  end
+
+  def year_options
+    type_options :year, "desc"
   end
 end
 
-# cardql query to filter sources
-class SourceFilterQuery < Card::FilterQuery
+# cql query to filter sources
+class SourceFilterQuery < FilterQuery
+  include WikirateFilterQuery
+
   def wikirate_title_wql value
     return unless value.present?
     add_to_wql :right_plus, [WikirateTitleID, { content: [:match, value] }]
@@ -68,11 +71,11 @@ class SourceFilterQuery < Card::FilterQuery
     add_to_wql :right_plus, [WikirateCompanyID, { refer_to: { match: value } }]
   end
 
-  def wikirate_topic_wql value
-    add_to_wql :right_plus, [WikirateTopicID, { refer_to: value }]
-  end
-
   def report_type_wql value
     add_to_wql :right_plus, [ReportTypeID, { refer_to: value }]
+  end
+
+  def year_wql value
+    add_to_wql :right_plus, [YearID, { refer_to: value }]
   end
 end

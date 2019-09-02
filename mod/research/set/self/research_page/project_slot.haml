@@ -1,8 +1,7 @@
 %div{class: project_slot_attr}
   .d-flex.flex-nowrap.justify-content-between.align-items-center
-    .image-box.icon
-      %span.img-helper
-        = nest [project, :image], view: :core, size: :small
+    .image-box.small
+      = nest [project, :image], view: :core, size: :small
     %h6.mb-0
       = nest project, view: :link
       -#.default-progress-box.w-25

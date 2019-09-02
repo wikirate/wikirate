@@ -9,7 +9,7 @@ event :replace_variables, :prepare_to_validate, on: :save, changed: :content do
   nest_chunks.each do |chunk|
     next unless variable_name?(chunk.referee_name)
     metric_name = variables_card.input_metric_name chunk.referee_name
-    content.gsub! chunk.referee_name.to_s, metric_name if metric_name
+    content.gsub!(/#{chunk.referee_name.to_s}\b/, metric_name) if metric_name
   end
 end
 
