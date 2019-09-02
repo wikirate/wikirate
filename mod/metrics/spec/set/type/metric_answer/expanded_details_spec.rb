@@ -145,7 +145,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
     specify do
       is_expected.to have_tag "table" do
-        ["Metric", "Raw Value", "Score", "Weight", "Points"].each do |text|
+        %w[Metric Input Score Weight Points].each do |text|
           with_tag "th", text: text
         end
         with_tag("td") { with_tag "a", text: "deadliness" }

@@ -23,12 +23,13 @@ class Card
     end
 
     def link_to_answer input_card, input, year
-      answer = [input_card.name, company, year].to_name
-      @format.link_to_card answer, raw_value(input), class: "metric-value _update-details"
+      @format.link_to_card [input_card.name, company, year].to_name,
+                           input_value(input),
+                           class: "metric-value _update-details"
     end
 
     def value_span input
-      @format.wrap_with(:span, class: "metric-value") { raw_value(input) }
+      @format.wrap_with(:span, class: "metric-value") { input_value(input) }
     end
 
     def simple_year year_option
@@ -36,7 +37,7 @@ class Card
       year.match?(/^\d{4}$/) ? year : nil
     end
 
-    def raw_value input
+    def input_value input
       Array.wrap(input).join(", ")
     end
 

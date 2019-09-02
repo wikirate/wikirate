@@ -42,12 +42,10 @@ def value_cardtype_code
   metric_card.value_cardtype_code
 end
 
-def raw_value
-  if metric_type == :score
-    metric_card&.basic_metric_card&.field(company)&.field(year)&.value
-  else
-    value
-  end
+def raw_answer_card
+  return self unless metric_type == :score
+
+  metric_card&.basic_metric_card&.field(company)&.field(year)
 end
 
 # MISCELLANEOUS METHODS
