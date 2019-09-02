@@ -23,7 +23,7 @@ class Card
     end
 
     def weight_cell weight
-      "x #{sprintf "%.2g", weight}%"
+      "x #{format '%.2g', weight}%"
     end
 
     def points_cell score_card, weight
