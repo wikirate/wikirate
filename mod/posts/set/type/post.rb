@@ -53,7 +53,7 @@ format :html do
     count_badges(*tab_list)
   end
 
-  view :closed_content do
+  view :one_line_content do
     ""
   end
 end

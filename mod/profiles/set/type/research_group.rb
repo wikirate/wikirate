@@ -94,7 +94,7 @@ format :html do
     render_data
   end
 
-  view :closed_content do
+  view :one_line_content do
     ""
   end
 end
