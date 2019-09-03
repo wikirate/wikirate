@@ -12,10 +12,10 @@ format :html do
     wrap_with :div, formgroup_div_args(opts[:class]).css_merge(class: "row") do
       [
         wrap_with(:div, class: "col-md-3") do
-          form.label(opts[:editor] || :content, title)
+          form.label(opts[:input] || :content, title)
         end,
         wrap_with(:div, class: "col-md-9") do
-          [editor_wrap(opts[:editor]) { yield },
+          [editor_wrap(opts[:input]) { yield },
            formgroup_help_text(opts[:help])]
         end
       ]

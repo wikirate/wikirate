@@ -61,7 +61,7 @@ format :html do
 
   def research_form action
     researchably do
-      voo.editor = :inline_nests
+      voo.input_type = :inline_nests
       with_nest_mode :edit do
         card_form action,
                   class: "new-value-form",
