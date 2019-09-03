@@ -179,7 +179,7 @@ When(/^I click the drop down button for "(.*)"$/) do |text|
 end
 
 Then(/^I should see a prompt to add "(.+)"$/) do |value|
-  expect(page.body).to have_tag ".missing-link" do
+  expect(page.body).to have_tag ".unknown-link" do
     with_tag "i.fa-plus-square"
     with_tag "span.card-title", text: value
   end
