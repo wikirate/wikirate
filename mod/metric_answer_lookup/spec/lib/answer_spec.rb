@@ -128,6 +128,7 @@
 
     it "updates designer" do
       update "Joe User", name: "Jimmy User"
+      expect(answer.metric_card.metric_designer).to eq("Jimmy User")
     end
 
     it "updates metric type" do
@@ -140,7 +141,7 @@
       expect(answer.policy_id).to eq Card.fetch_id("Community Assessed")
     end
 
-    it "updates updated_at" do
+    xit "updates updated_at" do
     end
   end
 

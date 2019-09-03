@@ -11,7 +11,7 @@ def raw_value
 end
 
 format :html do
-  def editor
+  def input_type
     :text_field
   end
 end

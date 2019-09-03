@@ -10,7 +10,7 @@ def item_cards_for_validation
 end
 
 format :html do
-  def editor
+  def input_type
     :multiselect
   end
 

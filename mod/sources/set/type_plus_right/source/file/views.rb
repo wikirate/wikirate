@@ -1,6 +1,6 @@
 
 format :html do
-  view :editor do
+  view :input do
     haml :editor, file_editor: super()
   end
 

@@ -3,7 +3,7 @@ def calculator_class
 end
 
 format :html do
-  view :editor do
+  view :input do
     "Formula is hard-coded and cannot be edited"
   end
 

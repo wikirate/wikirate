@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::Abstract::Value::Edit do
   describe "editor" do
     def editor metric
-      render_view :editor, name: "Joe User+#{metric}+Sony_Corporation+2010+value"
+      render_view :input, name: "Joe User+#{metric}+Sony_Corporation+2010+value"
     end
 
     context "with multi-category having not more than 10 options" do

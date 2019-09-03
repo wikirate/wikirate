@@ -97,7 +97,7 @@ format :html do
   end
 
   view :new_name_formgroup do
-    formgroup "Metric Name", editor: "name", help: false do
+    formgroup "Metric Name", input: "name", help: false do
       new_name_field
     end
   end

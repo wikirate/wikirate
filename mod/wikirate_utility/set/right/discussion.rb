@@ -1,5 +1,5 @@
 format :html do
-  view :editor do
+  view :input do
     if card.new?
       text_area :comment, rows: 3
     else

@@ -49,7 +49,7 @@ def option_names
 end
 
 format :html do
-  def editor
+  def input_type
     options_count > 10 ? :select : :radio
   end
 

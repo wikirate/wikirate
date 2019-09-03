@@ -8,7 +8,7 @@ def editable?
 end
 
 format :html do
-  view :editor do
+  view :input do
     if card.editable?
       super()
     else

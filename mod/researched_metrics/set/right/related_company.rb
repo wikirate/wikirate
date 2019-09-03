@@ -1,5 +1,5 @@
 format :html do
-  view :editor do
+  view :input do
     options_card ||= Card::Name[:wikirate_company, :type, :by_name]
     text_field :content,
                class: "wikirate_company_autocomplete form-control",
