@@ -80,7 +80,7 @@ format :html do
             new_tab_pane_hidden,
             _render!(:help_text),
             _render_new_name_formgroup,
-            _render_content_formgroup,
+            _render_content_formgroups,
             _render_new_buttons
           ]
         end
