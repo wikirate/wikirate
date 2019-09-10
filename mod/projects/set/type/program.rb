@@ -5,7 +5,7 @@ card_accessor :project, type: :pointer
 card_accessor :metric
 
 format :html do
-  before :content_formgroup do
+  before :content_formgroups do
     voo.edit_structure = %i[
       image general_overview description project contact_us
     ]

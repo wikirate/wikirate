@@ -9,7 +9,7 @@ card_accessor :post
 format :html do
   # EDITING
 
-  before :content_formgroup do
+  before :content_formgroups do
     voo.edit_structure = [:headquarters, :image, :wikipedia]
   end
 

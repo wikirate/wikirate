@@ -19,7 +19,7 @@ format :html do
     super
   end
 
-  view :missing do
+  view :unknown do
     _render_link
   end
 
@@ -49,7 +49,7 @@ format :html do
 
   bar_cols 7, 5
 
-  before :content_formgroup do
+  before :content_formgroups do
     voo.edit_structure = %i[image general_overview]
   end
 

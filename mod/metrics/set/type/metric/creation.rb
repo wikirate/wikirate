@@ -80,7 +80,7 @@ format :html do
             new_tab_pane_hidden,
             _render!(:help_text),
             _render_new_name_formgroup,
-            _render_content_formgroup,
+            _render_content_formgroups,
             _render_new_buttons
           ]
         end
@@ -97,7 +97,7 @@ format :html do
   end
 
   view :new_name_formgroup do
-    formgroup "Metric Name", editor: "name", help: false do
+    formgroup "Metric Name", input: "name", help: false do
       new_name_field
     end
   end

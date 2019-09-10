@@ -1,7 +1,7 @@
 include_set Abstract::TwoColumnLayout
 
 format :html do
-  before :content_formgroup do
+  before :content_formgroups do
     voo.edit_structure = form_fields
   end
 

@@ -1,7 +1,7 @@
 
 format :html do
-  view :editor do
-    haml :editor, file_editor: super()
+  view :input do
+    haml :input, file_editor: super()
   end
 
   view :core do

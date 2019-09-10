@@ -16,7 +16,7 @@ def researchable_metrics?
 end
 
 format :html do
-  def editor
+  def input_type
     :filtered_list
   end
 

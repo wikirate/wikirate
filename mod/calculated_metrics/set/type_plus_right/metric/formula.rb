@@ -27,7 +27,7 @@ format :html do
     new_success
   end
 
-  view :editor do
+  view :input do
     with_hidden_content do
       _render card.metric_card.formula_editor
     end

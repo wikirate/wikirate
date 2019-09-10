@@ -24,7 +24,7 @@ format :html do
 
   # prevents multi-edit recursion on value field
   def edit_fields?
-    voo.editor != :standard
+    voo.input_type != :standard
   end
 
   def value_field_card_and_options
@@ -38,7 +38,7 @@ format :html do
       else
         card
       end
-    [val_card, { title: "Answer", editor: :standard, show: :help }]
+    [val_card, { title: "Answer", input_type: :standard, show: :help }]
   end
 
   def unknown_field_card_and_options

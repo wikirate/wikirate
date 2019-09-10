@@ -6,7 +6,7 @@ format :html do
   end
 
   # TODO: explain?
-  view :missing do
+  view :unknown do
     _render_link
   end
 

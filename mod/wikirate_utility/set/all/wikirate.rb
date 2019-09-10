@@ -2,7 +2,7 @@ require "net/https"
 require "uri"
 
 format do
-  view :raw_or_blank, perms: :none, closed: true do
+  view :raw_or_blank, perms: :none, compact: true do
     _render_raw || ""
   end
 

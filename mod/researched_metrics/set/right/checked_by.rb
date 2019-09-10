@@ -91,7 +91,7 @@ format :html do
     wrap_with(:h5, "#{fa_icon('check-circle-o', class: 'text-muted')} Checks") + super()
   end
 
-  def editor
+  def input_type
     :checkbox
   end
 
@@ -99,7 +99,7 @@ format :html do
     "request"
   end
 
-  view :editor, unknown: true do
+  view :input, unknown: true do
     wrap_with :div, class: "d-flex flex-nowrap" do
       super() + popover_link("Not sure? Ask another researcher to double check this.")
     end

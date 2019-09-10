@@ -4,7 +4,7 @@
 include_set Abstract::ProjectScope
 
 format :html do
-  def editor
+  def input_type
     :filtered_list
   end
 
