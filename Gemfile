@@ -45,6 +45,9 @@ gem "fog"
 gem "fog-aws"
 gem "rack-cors"
 
+gem "ed25519"
+gem "bcrypt_pbkdf"
+
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
 gem "newrelic_rpm"

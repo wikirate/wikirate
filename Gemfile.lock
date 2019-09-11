@@ -122,6 +122,7 @@ GEM
     arel (9.0.0)
     ast (2.4.0)
     backports (3.15.0)
+    bcrypt_pbkdf (1.0.1)
     better_errors (2.5.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -224,6 +225,7 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dry-inflector (0.1.2)
+    ed25519 (1.2.4)
     email_spec (2.2.0)
       htmlentities (~> 4.3.3)
       launchy (~> 2.1)
@@ -338,7 +340,7 @@ GEM
       fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
-    fog-ovirt (1.2.0)
+    fog-ovirt (1.2.1)
       fog-core
       fog-json
       fog-xml
@@ -742,6 +744,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrussh
+  bcrypt_pbkdf
   better_errors
   binding_of_caller
   bulk_insert
@@ -772,6 +775,7 @@ DEPENDENCIES
   delayed_job_active_record
   delayed_job_web
   descriptive_statistics
+  ed25519
   email_spec
   fog
   fog-aws

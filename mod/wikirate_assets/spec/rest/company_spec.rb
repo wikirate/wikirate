@@ -7,13 +7,13 @@ Decko::RestSpecHelper.describe_api do
 
   describe "create Company" do
     it "redirects to company json url" do
-      with_token_for "Joe User" do |token|
+      with_api_key_for "Joe User" do |api_key|
         get :create, params: { card: { name: "My Company",
                                        type: "Company",
                                        subcards: { "+:open_corporates" => "1234567",
                                                    "+:headquarters" => "oc_qa" } },
                                success: { format: "json" },
-                               token: token }
+                               api_key: api_key }
       end
       assert_response 303
       # The following test success when tested alone, but it contains a badge
