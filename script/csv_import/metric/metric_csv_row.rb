@@ -4,8 +4,19 @@ require_relative "../../../vendor/card-mods/csv_import/lib/csv_file.rb"
 # create a metric described by a row in a csv file
 class MetricCSVRow < CSVRow
   @columns =
-    [:metric_designer, :metric_title, :question, :about, :methodology,
-     :topic, :value_type, :research_policy, :metric_type, :report_type]
+    [:metric_designer, :metric_title, # parts of metric name
+     :question,
+     :about, :methodology, # special html is added for certain content, eg
+     #                       "Note:" and "Sources:" are made bold
+     :topic,               # comma separated
+     :value_type,          # examples:
+     #                         Free Text
+     #                         Number (tons)
+     #                         Category (option1;option2)
+     :research_policy,     # supports "community", "designer", or full name,
+     #                       eg "Community Assessed"
+     :metric_type,
+     :report_type]
 
   @required = [:metric_designer, :metric_title, :value_type, :metric_type]
   @normalize = { topic: :comma_list_to_pointer }

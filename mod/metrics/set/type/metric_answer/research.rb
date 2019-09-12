@@ -39,7 +39,8 @@ format :html do
 
   view :year_option, unknown: true do
     return unless card.year.present?
-    card.new? ? haml(:new_year_option) : render(:year_and_value)
+    card.known? ? render(:year_and_value) : haml(:new_year_option)
+    # merry christmas and a haml new year.
   end
 
   view :year_selected_option, template: :haml, unknown: true
