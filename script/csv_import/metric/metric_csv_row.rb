@@ -36,10 +36,10 @@ class MetricCSVRow < CSVRow
 
   def normalize_value_type value
     @value_details ||= {}
-    value.match(/(?<type>[^(]+)\((?<options>[^)]+)/) do |match|
+    value.match(/(?<type>[^(]+)\((?<options>.+)\)$/) do |match|
       new_value = match[:type].strip
       new_value = "Category" if new_value == "Categorical"
-      if new_value.in? %w[Category Multi-Category]
+      if new_value.downcase.in? %w[category multi-category]
         @value_details[:value_options] = comma_list_to_pointer match[:options], ";"
       else
         @value_details[:unit] = match[:options].strip
