@@ -25,8 +25,10 @@ format :csv do
 end
 
 format :json do
+  # note: if this returned answer objects, it would put answer ids (not card ids) in the
+  # json results
   def item_cards
-    card.answers
+    card.answers.map(&:card)
   end
 
   def molecule
