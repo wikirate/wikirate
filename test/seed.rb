@@ -59,7 +59,7 @@ class SharedData
       add :companies, :topics, :sources, :report_types,
           :yearly_variables,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :projects, :industry, :researchers, :program,
+          :projects, :industry, :researchers, :program, :company_group,
           :profile_sections, :badges, :import_files
 
       Card::Cache.reset_all
@@ -139,6 +139,11 @@ class SharedData
       end
     end
 
+    def add_company_group
+      constraint = "[[Jedi+deadliness]],1977,\"{\"\"from\"\":30}\""
+      create "Deadliest", type: :company_group, subfields: { specification: constraint }
+    end
+
     def add_import_files
       create "answer import test", type: :answer_import_file, empty_ok: true
       create "feature answer import test",
@@ -163,7 +168,5 @@ class SharedData
       path = File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
       File.open path
     end
-
-
   end
 end

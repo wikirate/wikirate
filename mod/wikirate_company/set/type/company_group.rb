@@ -21,7 +21,7 @@ format :html do
   end
 
   view :bar_right do
-    count_badge :company
+    count_badge :wikirate_company
   end
 
   view :bar_bottom do

@@ -39,9 +39,12 @@ class Card
 
       def value_query value
         case value
-        when Array then filter :value, value
-        when Hash  then numeric_range_query value
-        else            filter_like :value, value
+        when Array # category filters. eg ["option1", "option2"]
+          filter :value, value
+        when Hash  # numeric range filters. eg { from: 20, to: 30 }
+          numeric_range_query value
+        else       # keyword matching filter. eg "carbon"
+          filter_like :value, value
         end
       end
 
