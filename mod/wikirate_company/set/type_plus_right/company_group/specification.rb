@@ -16,7 +16,7 @@ class Constraint
   attr_accessor :metric, :year, :value
 
   def self.new_from_raw raw_constraint
-    new *CSV.parse_line(raw_constraint)
+    new(*CSV.parse_line(raw_constraint))
   end
 
   def initialize metric, year, value=nil
@@ -26,7 +26,7 @@ class Constraint
   end
 
   def to_s row_sep=nil
-    ["[[#{metric.name}]]", "#{year}", value.to_json].to_csv(row_sep: row_sep)
+    ["[[#{metric.name}]]", year, value.to_json].to_csv(row_sep: row_sep)
   end
 
   def validate!
@@ -49,7 +49,7 @@ event :validate_constraints, :validate, on: :save do
 end
 
 def constraint_error
-  constraints.each { |constraint| constraint.validate! }
+  constraints.each &:validate!
   false
 rescue StandardError => e
   e.message

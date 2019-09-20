@@ -54,7 +54,7 @@ format :html do
     [
       field_nest(:specification, view: :titled),
       field_nest(:about, view: :titled),
-      field_nest(:discussion, view: :titled),
+      field_nest(:discussion, view: :titled)
     ]
   end
 
