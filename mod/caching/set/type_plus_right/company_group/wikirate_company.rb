@@ -22,7 +22,8 @@ def recount
 end
 
 def relation
-  Card.where(constraint_clauses.map { |cc| "exists (#{cc})" }.join (" and "))
+  exist_clauses = constraint_clauses.map { |cc| "exists (#{cc})" }
+  Card.where exist_clauses.join(" and ")
 end
 
 def constraint_clauses

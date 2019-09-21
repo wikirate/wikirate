@@ -16,10 +16,6 @@ format :html do
     render_thumbnail
   end
 
-  view :bar_middle do
-    count_badges :wikirate_company, :project
-  end
-
   view :bar_right do
     count_badge :wikirate_company
   end
@@ -33,7 +29,7 @@ format :html do
   end
 
   view :box_bottom do
-    count_badges :wikirate_company, :metric
+    count_badges :wikirate_company
   end
 
   bar_cols 7, 5
@@ -46,10 +42,6 @@ format :html do
     %i[wikirate_company]
   end
 
-  def tab_options
-    { research_group: { label: "Groups" } }
-  end
-
   view :data do
     [
       field_nest(:specification, view: :titled),
@@ -60,9 +52,5 @@ format :html do
 
   view :wikirate_company_tab do
     field_nest :wikirate_company, view: :filtered_content, items: { view: :bar }
-  end
-
-  view :project_tab do
-    field_nest :project, items: { view: :bar }
   end
 end

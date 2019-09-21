@@ -49,7 +49,7 @@ event :validate_constraints, :validate, on: :save do
 end
 
 def constraint_error
-  constraints.each &:validate!
+  constraints.each(&:validate!)
   false
 rescue StandardError => e
   e.message

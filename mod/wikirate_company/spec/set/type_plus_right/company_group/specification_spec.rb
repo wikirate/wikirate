@@ -21,7 +21,7 @@ RSpec.describe Card::Set::TypePlusRight::CompanyGroup::Specification do
     end
 
     it "validates years" do
-      expect { constraint_class.new("[[Fred+dinosaurlabor]]", 20166).validate! }
+      expect { constraint_class.new("[[Fred+dinosaurlabor]]", 20_166).validate! }
         .to raise_error(/invalid year/)
     end
 
