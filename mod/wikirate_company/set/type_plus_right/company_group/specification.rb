@@ -11,7 +11,8 @@
 # Specification content is generated directly in JavaScript
 # and is used in CompanyGroup+Company searches.
 
-#
+include_set Right::MetricCompanyFilter
+
 class Constraint
   attr_accessor :metric, :year, :value
 
@@ -22,7 +23,16 @@ class Constraint
   def initialize metric, year, value=nil
     @metric = Card.cardish metric
     @year = year.to_s
-    @value = value.is_a?(String) ? JSON.parse(value) : value
+    @value = interpret_value value
+  end
+
+  def interpret_value value
+    if value.is_a? String
+      parsed = JSON.parse value
+      parsed.is_a?(Hash) ? parsed.symbolize_keys : parse
+    else
+      value
+    end
   end
 
   def to_s row_sep=nil
@@ -41,6 +51,10 @@ class Constraint
   def valid_year?
     year.match(/^\d{4}$/) || year == "latest"
   end
+end
+
+def default_filter_hash
+  {}
 end
 
 event :validate_constraints, :validate, on: :save do
@@ -67,8 +81,29 @@ end
 
 format :html do
   def input_type
-    :text_area
+    :constraint_list
+  end
+
+  def constraint_list_input
+    haml :constraint_list_input, ul_classes: "constraint-list-editor"
   end
 
   view :core, template: :haml
+
+  # TODO: merge with #autocomplete_field on research page
+  def metric_dropdown selected=nil
+    text_field_tag "constraint_metric", selected,
+                   class: "_constraint-metric metric_autocomplete form-control",
+                   "data-options-card": Card::Name[:metric, :type, :by_name],
+                   # "data-slot-selector": ".card-slot.slot_machine-view",
+                   "data-remote": true,
+                   placeholder: "Select Metric"
+  end
+
+  def normalize_select_filter_tag_html_options _field, _html_options
+    # NOOP
+  end
+
+
+
 end

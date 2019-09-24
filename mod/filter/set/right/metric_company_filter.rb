@@ -15,13 +15,21 @@ format :html do
   end
 
   view :filter_value_formgroup do
-    case metric_card.value_type_code
+    filter_value_formgroup metric_card.value_type_code
+  end
+
+  def filter_value_formgroup metric_type, default=nil
+    send "#{value_filter_type metric_type}_filter", :value, default
+  end
+
+  def value_filter_type metric_type
+    case metric_type
     when :category, :multi_category
-      multiselect_filter :value
+      :multiselect
     when :number, :money
-      range_filter :value
+      :range
     else
-      super()
+      :text
     end
   end
 
