@@ -92,7 +92,7 @@ class Constraint
   def interpret_value value
     if value.is_a? String
       parsed = JSON.parse value
-      parsed.is_a?(Hash) ? parsed.symbolize_keys : parse
+      parsed.is_a?(Hash) ? parsed.symbolize_keys : parsed
     else
       value
     end

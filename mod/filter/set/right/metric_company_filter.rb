@@ -23,7 +23,6 @@ format :html do
   end
 
   def value_filter_type value_type
-    binding.pry
     case value_type
     when :category, :multi_category
       :multiselect

@@ -2,7 +2,12 @@
 
 # when saving, convert
 decko.editorContentFunctionMap['.constraint-list-editor'] = ->
+  ignoreConstraintElements()
   constraintCsv $(this)
+
+# sets form of elements to non-existent form so they won't be submitted
+ignoreConstraintElements = ()->
+  $(".constraint-editor input, .constraint-editor select").attr "form","ignore"
 
 constraintCsv = (constraintListEditor) ->
   rows = constraintListEditor.find(".constraint-editor").map ()->
@@ -19,7 +24,7 @@ yearValue = (con) ->
   con.find(".constraint-year select").val()
 
 valueValue = (con) ->
-  con.find(".constraint-value input").serialize()
+  con.find(".constraint-value input, .constraint-value select").serialize()
 
 $(window).ready ->
   # when metric changes, update value field according to metric's value type
