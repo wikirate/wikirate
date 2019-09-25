@@ -22,8 +22,9 @@ format :html do
     send "#{value_filter_type metric_type}_filter", :value, default
   end
 
-  def value_filter_type metric_type
-    case metric_type
+  def value_filter_type value_type
+    binding.pry
+    case value_type
     when :category, :multi_category
       :multiselect
     when :number, :money

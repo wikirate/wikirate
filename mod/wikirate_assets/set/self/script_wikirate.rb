@@ -5,6 +5,7 @@ FILE_NAMES =
   %w[import_page
      showcase
      company_page
+     company_group
      collapse
      general_popup
      activate_readmore

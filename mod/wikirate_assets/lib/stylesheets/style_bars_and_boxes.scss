@@ -153,7 +153,8 @@ $colorMap: (
   project: $project-color,
   answer: $answer-color,
   research_group: $default-cardtype-color,
-  post: $default-cardtype-color
+  post: $default-cardtype-color,
+  company_group: $company-group-color
 ); // border color for bars and boxes
 
 @each $type, $color in $colorMap {

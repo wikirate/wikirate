@@ -13,6 +13,69 @@
 
 include_set Right::MetricCompanyFilter
 
+# ignore filter params
+def filter_hash
+  {}
+end
+
+def default_filter_hash
+  {}
+end
+
+def constraints
+  raw_constraints.map do |raw_constraint|
+    Constraint.new_from_raw raw_constraint
+  end
+end
+
+event :validate_constraints, :validate, on: :save do
+  standardize_constraint_csv
+  err = constraint_error
+  errors.add :content, "Invalid specifications: #{err}" if err
+end
+
+def standardize_constraint_csv
+  return unless content.match? ";|;"
+
+  self.content = js_generated_csv_to_array.map(&:to_csv).join
+end
+
+# The JavaScript generates a kind of half-way csv.
+# The values are separated by ";|;" instead of ",".  This means that we don't
+# have to deal with escaping commas, etc.
+def js_generated_csv_to_array
+  content.split("\n").map do |row|
+    row_array = row.split ";|;"
+    row_array[2] = serialized_value_to_json row_array[2]
+    row_array
+  end
+end
+
+# The JavaScript handles doesn't get into interpreting the answer value constraints
+# Instead, it serializes them into a string like
+# "filter%5Bvalue%5D%5Bfrom%5D=30&filter%5Bvalue%5D%5Bto%5D="
+#
+# This method interprets that string, plucks out the value we want, and generates
+# json for it.
+def serialized_value_to_json raw_value
+  return unless raw_value.present?
+
+  hash = Rack::Utils.parse_nested_query CGI.unescape(raw_value)
+  hash.dig("filter", "value")&.to_json
+end
+
+def constraint_error
+  constraints.each(&:validate!)
+  false
+rescue StandardError => e
+  e.message
+end
+
+def raw_constraints
+  content.strip.split "\n"
+end
+
+# converts each "row" of a specification into a Constraint object
 class Constraint
   attr_accessor :metric, :year, :value
 
@@ -51,59 +114,4 @@ class Constraint
   def valid_year?
     year.match(/^\d{4}$/) || year == "latest"
   end
-end
-
-def default_filter_hash
-  {}
-end
-
-event :validate_constraints, :validate, on: :save do
-  err = constraint_error
-  errors.add :content, "Invalid specifications: #{err}" if err
-end
-
-def constraint_error
-  constraints.each(&:validate!)
-  false
-rescue StandardError => e
-  e.message
-end
-
-def constraints
-  raw_constraints.map do |raw_constraint|
-    Constraint.new_from_raw raw_constraint
-  end
-end
-
-def raw_constraints
-  content.strip.split "\n"
-end
-
-format :html do
-  def input_type
-    :constraint_list
-  end
-
-  def constraint_list_input
-    haml :constraint_list_input, ul_classes: "constraint-list-editor"
-  end
-
-  view :core, template: :haml
-
-  # TODO: merge with #autocomplete_field on research page
-  def metric_dropdown selected=nil
-    text_field_tag "constraint_metric", selected,
-                   class: "_constraint-metric metric_autocomplete form-control",
-                   "data-options-card": Card::Name[:metric, :type, :by_name],
-                   # "data-slot-selector": ".card-slot.slot_machine-view",
-                   "data-remote": true,
-                   placeholder: "Select Metric"
-  end
-
-  def normalize_select_filter_tag_html_options _field, _html_options
-    # NOOP
-  end
-
-
-
 end
