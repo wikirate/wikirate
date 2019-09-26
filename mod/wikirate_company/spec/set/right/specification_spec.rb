@@ -1,5 +1,5 @@
 
-RSpec.describe Card::Set::TypePlusRight::CompanyGroup::Specification do
+RSpec.describe Card::Set::Right::Specification do
   def card_subject
     Card["Deadliest+specification"]
   end
@@ -51,6 +51,23 @@ RSpec.describe Card::Set::TypePlusRight::CompanyGroup::Specification do
             end
           end
         end)
+      end
+    end
+
+    describe "input view" do
+      specify do
+        expect_view("input")
+          .to(have_tag(".constraint-list-editor") do
+            with_tag ".input-group.constraint-metric" do
+              with_tag "input"
+            end
+            with_tag ".input-group.constraint-year" do
+              with_tag "select"
+            end
+            with_tag ".input-group.constraint-value" do
+              with_tag "input"
+            end
+          end)
       end
     end
   end

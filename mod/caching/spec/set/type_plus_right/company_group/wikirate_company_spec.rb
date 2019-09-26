@@ -25,7 +25,7 @@ RSpec.describe Card::Set::TypePlusRight::CompanyGroup::WikirateCompany do
     end
 
     def constraint_class
-      Card::Set::TypePlusRight::CompanyGroup::Specification::Constraint
+      Card::Set::Right::Specification::Constraint
     end
 
     it "finds companies when there is more than one constraint" do
