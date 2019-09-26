@@ -4,7 +4,9 @@ format :html do
   end
 
   def constraint_list_input
-    haml :constraint_list_input
+    constraints = card.constraints
+    constraints = [nil] if constraints.empty?
+    haml :constraint_list_input, constraints: constraints
   end
 
   view :core, template: :haml
@@ -13,19 +15,24 @@ format :html do
     value_formgroup Card[params[:metric]]
   end
 
-  def value_formgroup metric_card, value=nil
+  def value_formgroup metric, value=nil
     wrap do
-      if metric_card
-        @metric_card = metric_card
-        filter_value_formgroup metric_card.value_type_code, value
+      if (@metric_card = metric)
+        filter_value_formgroup metric.value_type_code, value
       else
         ""
       end
     end
   end
 
+  def year_dropdown constraint
+    selected = constraint&.year || "latest"
+    select_filter :year, selected
+  end
+
   # TODO: merge with #autocomplete_field on research page
-  def metric_dropdown selected=nil
+  def metric_dropdown constraint
+    selected = constraint&.metric&.name || ""
     text_field_tag "constraint_metric", selected,
                    class: "_constraint-metric metric_autocomplete " \
                           "pointer-item-text form-control",

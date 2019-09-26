@@ -1,6 +1,6 @@
 .constraint-list-editor
   %ul.pointer-list-editor
-    - card.constraints.each do |constraint|
+    - constraints.each do |constraint|
       %li.pointer-li.mb-1
         .input-group
           .constraint-editor.col-11
@@ -8,17 +8,17 @@
               .input-group-prepend
                 .input-group-text
                   Metric
-              = metric_dropdown constraint.metric.name
+              = metric_dropdown constraint
             .input-group.constraint-year
               .input-group-prepend
                 .input-group-text
                   Year
-              = select_filter :year, constraint.year
+              = year_dropdown constraint
             .input-group.constraint-value
               .input-group-prepend
                 .input-group-text
                   Value
-              = value_formgroup constraint.metric, constraint.value
+              = value_formgroup constraint&.metric, constraint&.value
           .input-group-append.col-1
             %button.pointer-item-delete.btn.btn-secondary{ type: "button"}
               = icon_tag :remove
