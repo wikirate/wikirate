@@ -37,6 +37,3 @@ $(window).ready ->
   #    $("##{state.slot_id}").reloadSlot(state.url)
   # else
   #  window.location.reload(true)
-
-
-
