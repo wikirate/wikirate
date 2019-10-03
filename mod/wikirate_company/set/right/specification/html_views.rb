@@ -17,7 +17,8 @@ format :html do
 
   def value_formgroup metric, value=nil
     wrap do
-      if (@metric_card = metric)
+      if metric&.type_id == Card::MetricID
+        @metric_card = metric
         filter_value_formgroup metric.value_type_code, value
       else
         ""
