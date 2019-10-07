@@ -1,0 +1,29 @@
+.constraint-list-editor
+  %ul.pointer-list-editor
+    - constraints.each do |constraint|
+      %li.pointer-li.mb-1
+        .input-group
+          .constraint-editor.col-11
+            .input-group.constraint-metric
+              .input-group-prepend
+                .input-group-text
+                  Metric
+              = metric_dropdown constraint
+            .input-group.constraint-year
+              .input-group-prepend
+                .input-group-text
+                  Year
+              = year_dropdown constraint
+            .input-group.constraint-value
+              .input-group-prepend
+                .input-group-text
+                  Value
+              = value_formgroup constraint&.metric, constraint&.value
+          .input-group-append.col-1
+            %button.pointer-item-delete.btn.btn-secondary{ type: "button"}
+              = icon_tag :remove
+  %span.input-group
+    %button._pointer-item-add.btn.btn-secondary{ type: "submit" }
+      = icon_tag "add"
+      add another
+  = _render_hidden_content_field

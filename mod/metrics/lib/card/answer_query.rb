@@ -90,6 +90,11 @@ class Card
       sort_and_page { main_query }
     end
 
+    # @return args for AR's where method
+    def answer_conditions
+      condition_sql([@conditions.join(" AND ")] + @values)
+    end
+
     private
 
     def status_filter
@@ -98,11 +103,6 @@ class Card
 
     def main_results
       answer_lookup.answer_cards
-    end
-
-    # @return args for AR's where method
-    def answer_conditions
-      condition_sql([@conditions.join(" AND ")] + @values)
     end
 
     def condition_sql conditions

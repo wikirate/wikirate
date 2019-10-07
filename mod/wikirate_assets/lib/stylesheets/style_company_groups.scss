@@ -1,0 +1,42 @@
+.constraint-list-editor {
+  li > .input-group {
+    margin: 2rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid $gray-500;
+  }
+  .constraint-editor {
+    padding: 0;
+    input, select {
+      border-radius: 0;
+    }
+    .select2-selection {
+      width: 100%;
+      border-radius: 0;
+    }
+    .input-group-prepend {
+      flex: 0 0 20%;
+    }
+    .input-group-text {
+      width: 100%;
+      border-radius: 0 !important;
+    }
+    .card-slot { // value row, right column
+      display: flex;
+      width: 80%;
+      .select2 {
+        width: 100% !important;
+      }
+      input {
+        min-width: 20%;
+      }
+    }
+  }
+  .input-group-append {
+    padding: 0;
+    margin: 0;
+    button {
+      width: 100%;
+    }
+  }
+}

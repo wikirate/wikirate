@@ -1,4 +1,4 @@
-include_set Self::Search
+include_set Set::Self::Search
 
 format :html do
   def keyword_search_title keyword

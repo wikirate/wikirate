@@ -24,7 +24,6 @@ appendParentToAddItem = (parent) ->
     new_href =  anchor.attr("href") + "&" + $.param({ "filter[project]" : parent.val() })
     anchor.attr "href", new_href
 
-
 $(window).ready ->
   $("body").on "click", "a.card-paging-link", ->
     id = $(this).slot().attr("id")

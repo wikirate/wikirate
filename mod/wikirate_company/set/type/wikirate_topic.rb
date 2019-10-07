@@ -1,8 +1,8 @@
-include_set Abstract::WikirateTable
+# include_set Abstract::WikirateTable
+# include_set Abstract::Media
+# include_set Abstract::BsBadge
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
-include_set Abstract::Media
-include_set Abstract::BsBadge
 include_set Abstract::FilterableBar
 
 card_accessor :vote_count, type: :number, default: "0"
@@ -10,7 +10,7 @@ card_accessor :upvote_count, type: :number, default: "0"
 card_accessor :downvote_count, type: :number, default: "0"
 
 card_accessor :image, type: :image
-card_accessor :wikirate_company
+# card_accessor :wikirate_company
 card_accessor :metric
 
 format :html do
@@ -28,7 +28,7 @@ format :html do
   end
 
   view :bar_middle do
-    count_badges :wikirate_company, :project
+    count_badges :research_group, :project
   end
 
   view :bar_right do
@@ -44,7 +44,7 @@ format :html do
   end
 
   view :box_bottom do
-    count_badges :wikirate_company, :metric
+    count_badges :metric, :project
   end
 
   bar_cols 7, 5
@@ -54,7 +54,7 @@ format :html do
   end
 
   def tab_list
-    %i[metric wikirate_company research_group project]
+    %i[metric research_group project]
   end
 
   def tab_options
@@ -73,9 +73,9 @@ format :html do
     field_nest :research_group, items: { view: :bar }
   end
 
-  view :wikirate_company_tab do
-    field_nest :wikirate_company, view: :filtered_content, items: { view: :bar }
-  end
+  # view :wikirate_company_tab do
+  #   field_nest :wikirate_company, view: :filtered_content, items: { view: :bar }
+  # end
 
   view :project_tab do
     field_nest :project, items: { view: :bar }

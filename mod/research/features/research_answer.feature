@@ -24,7 +24,7 @@ Feature: Research answer
   Scenario: Create an answer and request check
     When I cite source
     And I fill in "10" for "Answer"
-    And I fill in "Baam!" for " Comment"
+    And I fill in "  Baam!" for " Comment"
     And I check "request"
     And I press "Submit"
     And I wait for ajax response

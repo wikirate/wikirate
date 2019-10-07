@@ -59,9 +59,16 @@ class Answer
       hash = {}
       SEARCH_OPTS.each { |cat, keys| hash[cat] = args.extract!(*keys) }
       hash[:uniq].merge! hash[:return] if hash[:uniq] && hash[:return]
-      hash[:where] = args unless hash[:where].present?
-      hash[:where] = Array.wrap(hash[:where])
+      hash[:where] = Array.wrap where_condition(hash[:where], args)
       hash
+    end
+
+    def where_condition explicit, implicit
+      if explicit.blank?
+        implicit
+      else
+        explicit[:where]
+      end
     end
   end
 end

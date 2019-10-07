@@ -4,8 +4,7 @@ describe Card::Set::Type::WikirateTopic do
   end
 
   check_views_for_errors :open_content, :bar, :expanded_bar, :box, :edit,
-                         :metric_tab, :wikirate_company_tab, :research_group_tab,
-                         :project_tab
+                         :metric_tab, :research_group_tab, :project_tab
 
   describe "view: bar_left" do
     it "has topic title" do
