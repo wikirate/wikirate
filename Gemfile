@@ -48,6 +48,8 @@ gem "rack-cors"
 gem "bcrypt_pbkdf"
 gem "ed25519"
 
+gem "sprockets", "~>3.0" # remove after upgrading to rails 6
+
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
 gem "newrelic_rpm"
@@ -104,7 +106,7 @@ group :development do
   gem "rubocop-rspec"
 
   gem "rails-dev-tweaks"
-  gem "sprockets" # just so above works
+#   gem "sprockets" # just so above works
 
   gem "capistrano"
   gem "capistrano-bundler"
