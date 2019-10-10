@@ -106,14 +106,14 @@ group :development do
   gem "rubocop-rspec"
 
   gem "rails-dev-tweaks"
-#   gem "sprockets" # just so above works
+  # gem "sprockets" # just so above works
 
   gem "capistrano"
   gem "capistrano-bundler"
   gem "capistrano-git-with-submodules", '~> 2.0'
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
-#   gem "capistrano-rvm"
+  # gem "capistrano-rvm"
   gem "pivotal-tracker"
 
   gem "better_errors"
