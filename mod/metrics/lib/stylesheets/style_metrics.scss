@@ -602,3 +602,10 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     background-color: $gray-600;
   }
 }
+
+// don't treat relationship values like links
+.relations_table_with_details_toggle-view a._update-details:hover {
+  text-decoration: none;
+  cursor: inherit;
+}
+
