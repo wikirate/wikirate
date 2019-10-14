@@ -122,6 +122,7 @@ format :html do
   end
 
   view :relations_table_with_details_toggle, cache: :never do
+    class_up "card-slot", "nodblclick"
     wrap { with_paging(view: :relations_table_with_details_toggle) { relations_table } }
   end
 

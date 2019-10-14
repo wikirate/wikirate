@@ -93,4 +93,4 @@ $(document).ready ->
 
   # the "View Methodology" button
   $("body").on "click", "._methodology-tab", ->
-    $('a[href="#research_page-3-methodology"]').tab("show")
+    $('li.tab-li-methodology a').tab("show")
