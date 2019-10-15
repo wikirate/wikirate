@@ -51,7 +51,6 @@ format :html do
   end
 
   view :wikirate_company_tab do
-    field_nest :wikirate_company, view: :core, items: { view: :bar }
-    # filtered_content
+    field_nest :wikirate_company, view: :filtered_content
   end
 end

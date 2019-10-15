@@ -1,24 +1,37 @@
 
 // Topic and company tags
 
-.RIGHT-topic, .RIGHT-company {
+@mixin coloredTag {
+  display: inline-block;
+  text-indent: 0;
+  border-radius: 0.2rem;
+  font-size: 0.9em;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 0.4em;
+  margin: 0 0.5rem 0.25rem 0;
+  opacity: 0.75;
+  border: 0;
+  &:hover {
+    opacity: 1;
+    color: #fff;
+  }
+}
+
+.RIGHT-topic, .RIGHT-company, .RIGHT-company_group {
   &.d0-card-content .item-link {
     display: inline;
     > a {
-      display: inline-block;
-      text-indent: 0;
-      border-radius: 0.2rem;
-      font-size: 0.9em;
-      color: #fff;
-      text-decoration: none;
-      padding: 0 0.4em;
-      margin: 0 0.5rem 0.25rem 0;
-      opacity: 0.75;
-      &:hover {
-        opacity: 1;
-        color: #fff;
-      }
+      @include coloredTag;
     }
+  }
+}
+
+.wikirate_topic.select2-selection--multiple .select2-selection__choice {
+  @include coloredTag;
+  background: $topic-color;
+  .select2-selection__choice__remove {
+    color: #fff;
   }
 }
 
@@ -32,3 +45,4 @@
 
 @include hoverTag(topic, $topic-color);
 @include hoverTag(company, $company-color);
+@include hoverTag(company_group, $company-group-color);

@@ -18,9 +18,10 @@ RSpec.describe Card::Set::TypePlusRight::CompanyGroup::WikirateCompany do
     end
   end
 
-  describe "#search" do
+  describe "#update_content_from_spec" do
     it "finds companies when there is one constraint" do
-      expect(card_subject.search(limit: 10, return: :name, sort: :name))
+      # this is really testing whether the method is called correctly at seed time
+      expect(card_subject.item_names)
         .to eq(["Death Star", "Los Pollos Hermanos", "SPECTRE"])
     end
 
@@ -31,9 +32,8 @@ RSpec.describe Card::Set::TypePlusRight::CompanyGroup::WikirateCompany do
     it "finds companies when there is more than one constraint" do
       spec = Card["Deadliest+specification"]
       new_constraint = constraint_class.new("Fred+dinosaurlabor", 2000, "\"yes\"")
-      spec.content = "#{spec.content}\n#{new_constraint}"
-      expect(card_subject.search(limit: 10, return: :name, sort: :name))
-        .to eq(["Death Star"])
+      spec.update! content: "#{spec.content}\n#{new_constraint}"
+      expect(card_subject.item_names).to eq(["Death Star"])
     end
   end
 end
