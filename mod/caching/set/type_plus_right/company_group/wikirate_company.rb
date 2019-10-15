@@ -1,24 +1,14 @@
-include_set Right::BrowseCompanyFilter
+# include_set Right::BrowseCompanyFilter
 # currently needs to come before cached count handling, because
 # both override #wql_content
 
 # cache # of companies in this group
-include_set Abstract::AnswerTableCachedCount, target_type: :company
+include_set Abstract::PointerCachedCount
 
 delegate :specification_card, to: :left
 
 def constraints
   specification_card.constraints
-end
-
-def target_ids
-  return [] if constraints.empty?
-  relation.pluck :id
-end
-
-def recount
-  return 0 if constraints.empty?
-  relation.count
 end
 
 def relation
@@ -41,17 +31,28 @@ def constraint_conditions constraint
   answer_query.answer_conditions
 end
 
-# when specification is edited
-recount_trigger :type_plus_right, :company_group, :specification do |changed_card|
-  changed_card.left.wikirate_company_card
+def item_names_from_spec
+  relation.pluck :name
 end
 
-# FIXME: this won't work if answer is calculated
-# (that applies to several similar triggers)
-# when metric value is edited
-recount_trigger :type, :metric_answer do |changed_card|
-  next unless (metric_card = changed_card.metric_card)
-  company_groups_for_metric(metric_card.id).map(&:wikirate_company_card)
+def update_content_from_spec
+  return if specification_card.explicit?
+
+  self.content = item_names_from_spec
+end
+
+format :html do
+  def input_type
+    :filtered_list
+  end
+
+  def default_item_view
+    :thumbnail_no_link
+  end
+
+  def filter_card
+    Card.fetch :wikirate_company, :browse_company_filter
+  end
 end
 
 class << self

@@ -1,6 +1,14 @@
 format :html do
+  def help_text
+    "Specify which companies are in the group implicitly or explicitly."
+  end
+
   def input_type
-    :constraint_list
+    :specification
+  end
+
+  def specification_input
+    haml :specification_input
   end
 
   def constraint_list_input

@@ -1,13 +1,16 @@
-%table.table.company-group-specification-table
-  %tr
-    %th Metric
-    %th Year
-    %th Value
-  - card.constraints.each do |constraint|
-    %tr.specification-constraint-row
-      %td
-        = nest constraint.metric, view: :thumbnail
-      %td
-        = constraint.year
-      %td
-        = constraint.value.to_s
+- if card.explicit?
+  %em Companies explicitly specified by direct selection.
+- else
+  %table.table.company-group-specification-table
+    %tr
+      %th Metric
+      %th Year
+      %th Value
+    - card.constraints.each do |constraint|
+      %tr.specification-constraint-row
+        %td
+          = nest constraint.metric, view: :thumbnail
+        %td
+          = constraint.year
+        %td
+          = constraint.value.to_s
