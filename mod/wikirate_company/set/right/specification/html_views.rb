@@ -30,8 +30,16 @@ format :html do
     when Array
       value.join ", "
     when Hash
-      value.map { |k, v| "#{k}: #{v}" }.join ", "
+      pretty_hash_constraint value
     end
+  end
+
+  def pretty_hash_constraint hash
+    hash = hash.symbolize_keys
+    array = []
+    array << ">#{hash[:from]}" if hash[:from].present?
+    array << "<#{hash[:to]}" if hash[:to].present?
+    pretty_constraint array
   end
 
   def value_formgroup metric, value=nil

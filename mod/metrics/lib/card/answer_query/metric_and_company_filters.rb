@@ -8,6 +8,13 @@ class Card
         end
       end
 
+      def company_group_query value
+        multi_company do
+          restrict_by_wql :company_id,
+                          referred_to_by: "#{value}+#{:wikirate_company.cardname}"
+        end
+      end
+
       def topic_query value
         multi_metric do
           restrict_by_wql :metric_id, right_plus: [WikirateTopicID, { refer_to: value }]
