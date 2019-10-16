@@ -5,7 +5,6 @@ event :validate_constraints, :validate, on: :save do
   errors.add :content, "Invalid specifications: #{err}" if err
 end
 
-
 event :update_company_list, :prepare_to_store, on: :save do
   return if explicit?
 
@@ -17,7 +16,6 @@ private
 def company_list
   left&.subfield(:wikirate_company) || left&.add_subfield(:wikirate_company)
 end
-
 
 def standardize_constraint_csv
   return unless content.match? ";|;"

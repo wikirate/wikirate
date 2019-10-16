@@ -30,7 +30,7 @@ format :html do
     when Array
       value.join ", "
     when Hash
-      value.map { |k, v| "#{k}: #{v}"}.join ", "
+      value.map { |k, v| "#{k}: #{v}" }.join ", "
     end
   end
 
