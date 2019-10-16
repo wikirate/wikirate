@@ -10,17 +10,17 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
       args # .merge type_id: Card::WikirateCompanyID
     end
 
-    context "name argument" do
+    context "with name argument" do
       before { filter_args name: "Apple" }
       it { is_expected.to eq wql(name: %w[match Apple]) }
     end
 
-    context "company group argument" do
+    context "with company group argument" do
       before { filter_args company_group: "Deadliest" }
       it { is_expected.to eq wql(referred_to_by: "Deadliest+Company") }
     end
 
-    context "industry argument" do
+    context "with industry argument" do
       before { filter_args industry: "myIndustry" }
       it do
         is_expected.to eq wql(
@@ -31,14 +31,14 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
       end
     end
 
-    context "project argument" do
+    context "with project argument" do
       before { filter_args project: "myProject" }
       it do
         is_expected.to eq wql(referred_to_by: "myProject+Company")
       end
     end
 
-    context "multiple filter conditions" do
+    context "with multiple filter conditions" do
       before do
         filter_args name: "Apple",
                     industry: "myIndustry",
