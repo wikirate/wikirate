@@ -11,13 +11,16 @@ class Card
     # alias wikirate_topic_wql topic_wql
 
     def company_group_wql group
-      return unless group.present?
-      add_to_wql :referred_to_by, left: group, right: :wikirate_company
+      referred_to_by_company_list group
     end
 
     def project_wql project
-      return unless project.present?
-      add_to_sql :referred_to_by, left: project, right: :wikirate_company
+      referred_to_by_company_list project
+    end
+
+    def referred_to_by_company_list trunk
+      return unless trunk.present?
+      add_to_wql :referred_to_by, Card::Name[trunk, :wikirate_company]
     end
   end
 end
