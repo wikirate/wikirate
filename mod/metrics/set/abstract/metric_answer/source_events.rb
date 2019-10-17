@@ -7,6 +7,7 @@ event :annotate_sources, :prepare_to_validate, on: :create, when: :source_based?
   else
     # elsif !source_card&.item_names&.any?
     errors.add :source, "no source cited"
+    binding.pry
   end
 end
 
@@ -36,5 +37,14 @@ def add_trait_to_source source, trait, values
 end
 
 def source_based?
+  return false if force_not_source_based?
+
   standard? || hybrid?
+end
+
+# hidden functionality:
+# if you add a +tag card to the metric and make the first item "no source",
+# then
+def force_not_source_based?
+  metric_card.fetch(trait: :wikirate_tag)&.item_names&.first&.key == "no_source"
 end
