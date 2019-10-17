@@ -7,7 +7,6 @@ event :annotate_sources, :prepare_to_validate, on: :create, when: :source_based?
   else
     # elsif !source_card&.item_names&.any?
     errors.add :source, "no source cited"
-    binding.pry
   end
 end
 
