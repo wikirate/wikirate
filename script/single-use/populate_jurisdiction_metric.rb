@@ -4,10 +4,10 @@ require_relative "../../config/environment"
 require "pry"
 
 # METRIC_NAME = "Core+Headquarters Location".freeze
-METRIC_NAME = "Joe User+RM".freeze
+METRIC_NAME = "Jedi+Sith Lord in Charge".freeze
 ANSWER_YEAR = "2019".freeze
 
-fail "metric not found" unless Card[METRIC_NAME]&.type_id == Card::MetricID
+raise "metric not found" unless Card[METRIC_NAME]&.type_id == Card::MetricID
 
 def create_hq_answer company, value
   Card.create! name: Card::Name[METRIC_NAME, company, ANSWER_YEAR],
