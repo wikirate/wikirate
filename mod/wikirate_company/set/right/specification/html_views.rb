@@ -1,6 +1,20 @@
 format :html do
+  view :core, template: :haml
+
+  view :value_formgroup, cache: :never, unknown: true do
+    value_formgroup Card[params[:metric]]
+  end
+
+  def help_text
+    "Specify which companies are in the group implicitly or explicitly."
+  end
+
   def input_type
-    :constraint_list
+    :specification
+  end
+
+  def specification_input
+    haml :specification_input
   end
 
   def constraint_list_input
@@ -9,10 +23,23 @@ format :html do
     haml :constraint_list_input, constraints: constraints
   end
 
-  view :core, template: :haml
+  def pretty_constraint value
+    case value
+    when String
+      value
+    when Array
+      value.join ", "
+    when Hash
+      pretty_hash_constraint value
+    end
+  end
 
-  view :value_formgroup, cache: :never, unknown: true do
-    value_formgroup Card[params[:metric]]
+  def pretty_hash_constraint hash
+    hash = hash.symbolize_keys
+    array = []
+    array << ">#{hash[:from]}" if hash[:from].present?
+    array << "<#{hash[:to]}" if hash[:to].present?
+    pretty_constraint array
   end
 
   def value_formgroup metric, value=nil

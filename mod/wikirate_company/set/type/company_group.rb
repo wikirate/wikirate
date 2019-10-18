@@ -35,7 +35,7 @@ format :html do
   bar_cols 7, 5
 
   before :content_formgroups do
-    voo.edit_structure = %i[image specification about discussion]
+    voo.edit_structure = %i[image specification wikirate_company about discussion]
   end
 
   def tab_list
@@ -51,6 +51,6 @@ format :html do
   end
 
   view :wikirate_company_tab do
-    field_nest :wikirate_company, view: :filtered_content, items: { view: :bar }
+    field_nest :wikirate_company, view: :filtered_content
   end
 end

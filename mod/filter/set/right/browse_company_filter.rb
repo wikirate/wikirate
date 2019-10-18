@@ -1,7 +1,7 @@
 include_set Abstract::BrowseFilterForm
 
 def filter_keys
-  %i[name project wikirate_topic]
+  %i[name project company_group]
 end
 
 def filter_class
@@ -23,7 +23,6 @@ end
 format :html do
   def sort_options
     { "Most Answers": :answer,
-      "Most Metrics": :metric,
-      "Most Topics": :topic }.merge super
+      "Most Metrics": :metric }.merge super
   end
 end

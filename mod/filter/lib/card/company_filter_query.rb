@@ -5,14 +5,17 @@ class Card
     end
     alias wikirate_company_wql company_wql
 
-    def topic_wql value
-      add_to_wql :found_by, value.to_name.trait_name(:wikirate_company).trait(:refers_to)
+    def company_group_wql group
+      referred_to_by_company_list group
     end
-    alias wikirate_topic_wql topic_wql
 
     def project_wql project
-      return unless project.present?
-      @filter_wql[:referred_to_by] << { left: project, right: :wikirate_company }
+      referred_to_by_company_list project
+    end
+
+    def referred_to_by_company_list trunk
+      return unless trunk.present?
+      add_to_wql :referred_to_by, Card::Name[trunk, :wikirate_company]
     end
   end
 end
