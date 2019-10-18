@@ -31,7 +31,7 @@ event :restore_overridden_value, :validate, on: :delete, when: :calculation_over
 end
 
 def valid_answer_name?
-  name.parts.size >= (name_parts.size + 1) && valid_name_parts?
+  name.parts.size >= (name_part_types.size + 1) && valid_name_parts?
 end
 
 def invalid_answer_name?
@@ -39,26 +39,26 @@ def invalid_answer_name?
 end
 
 def valid_name_parts?
-  name_parts.all? { |part| send "valid_#{part}?" }
+  name_part_types.all? { |type| send "valid_#{type}?" }
 end
 
 def validate_name_parts
-  name_parts.each do |part|
-    next if send "valid_#{part}?"
-    errors.add part, "#{send part} is not a valid #{part}"
+  name_part_types.each do |type|
+    next if send "valid_#{type}?"
+    errors.add part, "#{send type} is not a valid #{type}"
   end
 end
 
-def check_name_part part, name
+def check_name_part type, name
   unless name
-    missing_part part
+    missing_part type
     return
   end
   name
 end
 
-def missing_part part
-  errors.add part, "no #{part} given."
+def missing_part type
+  errors.add type, "no #{type} given."
 end
 
 def valid_metric?
