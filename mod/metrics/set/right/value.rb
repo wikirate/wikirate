@@ -1,5 +1,5 @@
 # note: most code shared across all +value cards is in Abstract::Value.
-# However, that module is included in each Cardtype (eg CategoryValue), because
+# However, that module is included in each value Cardtype (eg CategoryValue), because
 # if it were in the right sets, it would override the type-specific code.
 
 # The following code, by contrast, must be here to ensure that the +value cards get

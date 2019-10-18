@@ -33,9 +33,13 @@ format :html do
     voo.items.delete :view # reset tab_nest
   end
 
+  def search_card
+    Card.fetch card.project_name, :company_search
+  end
+
   view :core do
     items_hash = { view: :bar, hide: %i[project_header bar_nav] }
     items_hash[:show] = :bar_middle if card.researchable_metrics?
-    nest Card.fetch(card.name, :project), view: :content, items: items_hash
+    nest search_card, view: :filtered_content, items: items_hash
   end
 end
