@@ -1,4 +1,4 @@
-describe Card::Set::TypePlusRight::Source::File do
+RSpec.describe Card::Set::TypePlusRight::Source::File do
   describe "while editing a file source" do
     before do
       login_as "joe_user"
