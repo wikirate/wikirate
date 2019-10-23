@@ -1,34 +1,71 @@
 
 // Topic and company tags
 
-.RIGHT-topic, .RIGHT-company {
+@mixin coloredTag {
+  display: inline-block;
+  text-indent: 0;
+  border-radius: 0.2rem;
+  font-size: 0.9em;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 0.4em;
+  margin: 0 0.5rem 0.25rem 0;
+  opacity: 0.75;
+  border: 0;
+  &:hover {
+    opacity: 1;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 0.8rem;
+  }
+}
+
+.RIGHT-topic, .RIGHT-company, .RIGHT-company_group {
   &.d0-card-content .item-link {
     display: inline;
     > a {
-      display: inline-block;
-      text-indent: 0;
-      border-radius: 0.2rem;
-      font-size: 0.9em;
-      color: #fff;
-      text-decoration: none;
-      padding: 0 0.4em;
-      margin: 0 0.5rem 0.25rem 0;
-      opacity: 0.75;
-      &:hover {
-        opacity: 1;
-        color: #fff;
-      }
+      @include coloredTag;
     }
   }
 }
 
-@mixin hoverTag($type, $color) {
+.quick-filter {
+  padding-bottom: 0.5rem;
+  a {
+    @include coloredTag
+    background: #666;
+    cursor: default;
+    &.active {
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}
+
+@mixin hoverTag($type, $codename, $color) {
   .RIGHT-#{$type}.d0-card-content .item-link {
     > a {
       background: $color;
     }
   }
+  .#{$codename}.select2-selection--multiple .select2-selection__choice {
+    @include coloredTag;
+    background: $color;
+    .select2-selection__choice__remove {
+      color: #fff;
+    }
+  }
+  .quick-filter .quick-filter-by-#{$codename} {
+    background: rgba($color, 0.2);
+    color: $color;
+    &.active {
+      background: $color;
+    }
+  }
 }
 
-@include hoverTag(topic, $topic-color);
-@include hoverTag(company, $company-color);
+@include hoverTag(topic, wikirate_topic, $topic-color);
+@include hoverTag(company, wikirate_company, $company-color);
+@include hoverTag(company_group, company_group, $company-group-color);
+
+

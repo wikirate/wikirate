@@ -19,6 +19,10 @@ format :html do
     multiselect_filter :wikirate_topic
   end
 
+  view :filter_company_group_formgroup, cache: :never do
+    multiselect_filter :company_group
+  end
+
   view :filter_metric_name_formgroup, cache: :never do
     text_filter :metric_name
   end
@@ -103,6 +107,10 @@ format :html do
 
   def wikirate_topic_options
     type_options :wikirate_topic
+  end
+
+  def company_group_options
+    type_options :company_group
   end
 
   def importance_options

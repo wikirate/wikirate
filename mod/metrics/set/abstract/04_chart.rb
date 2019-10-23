@@ -45,7 +45,18 @@ format do
   end
 
   def chart_filter_hash
-    card.chart_filter_params.present? ? card.chart_filter_params : card.filter_hash(false)
+    if card.chart_filter_params.present?
+      card.chart_filter_params
+    else
+      default_chart_filter_hash
+    end
+  end
+
+  # vega chart does not show not-researched answers.
+  def default_chart_filter_hash
+    hash = card.filter_hash(false).clone
+    hash.delete(:status) if hash[:status]&.to_sym == :all
+    hash
   end
 
   def zoom_in?
