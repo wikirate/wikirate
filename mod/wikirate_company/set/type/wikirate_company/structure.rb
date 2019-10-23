@@ -69,7 +69,10 @@ format :html do
   end
 
   view :details_tab do
-    [labeled_field(:headquarters)] + integrations
+    [
+      labeled_field(:headquarters),
+      labeled_field(:company_group, :link, hide: :menu)
+    ] + integrations
   end
 
   def integrations
