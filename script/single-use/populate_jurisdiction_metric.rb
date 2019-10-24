@@ -3,8 +3,8 @@
 require_relative "../../config/environment"
 require "pry"
 
-# METRIC_NAME = "Core+Headquarters Location".freeze
-METRIC_NAME = "Jedi+Sith Lord in Charge".freeze
+METRIC_NAME = "Core+Headquarters Location".freeze
+# METRIC_NAME = "Jedi+Sith Lord in Charge".freeze
 ANSWER_YEAR = "2019".freeze
 
 raise "metric not found" unless Card[METRIC_NAME]&.type_id == Card::MetricID
