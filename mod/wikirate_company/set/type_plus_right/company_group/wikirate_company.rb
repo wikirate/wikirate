@@ -38,7 +38,15 @@ def update_content_from_spec
 end
 
 format :html do
-  view :filtered_content do
+  view :filtered_content, cache: :never do
+    if card.specification_card.explicit?
+      wrap { [%{<div class="py-3">#{render_menu}</div>}, nest_search_card] }
+    else
+      nest_search_card
+    end
+  end
+
+  def nest_search_card
     field_nest :company_search, view: :filtered_content, items: { view: :bar }
   end
 

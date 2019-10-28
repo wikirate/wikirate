@@ -10,9 +10,13 @@ ANSWER_YEAR = "2019".freeze
 raise "metric not found" unless Card[METRIC_NAME]&.type_id == Card::MetricID
 
 def create_hq_answer company, value
+  value.gsub!(/[\[\]]/, "")
   Card.create! name: Card::Name[METRIC_NAME, company, ANSWER_YEAR],
                type_id: Card::MetricAnswerID,
                subfields: { value: { content: value } }
+  puts "success: #{company} -> #{value}"
+rescue
+  puts "FAILURE: #{company} -> #{value}"
 end
 
 Card::Auth.as_bot do
