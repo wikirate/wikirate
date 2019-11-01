@@ -15,8 +15,8 @@ def create_hq_answer company, value
                type_id: Card::MetricAnswerID,
                subfields: { value: { content: value } }
   puts "success: #{company} -> #{value}"
-rescue
-  puts "FAILURE: #{company} -> #{value}"
+rescue => e
+  puts "FAILURE: #{company} -> #{value}; #{e.message}"
 end
 
 Card::Auth.as_bot do
