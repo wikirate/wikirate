@@ -39,7 +39,7 @@ end
 
 # Each constraint is a CSV row
 def raw_constraints
-  content.strip.split "\n"
+  explicit? ? [] : content.strip.split("\n")
 end
 
 # converts each "row" of a specification into a Constraint object

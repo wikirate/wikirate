@@ -71,7 +71,7 @@ format :html do
   view :details_tab do
     [
       labeled_field(:headquarters),
-      labeled_field(:company_group, :link)
+      labeled_field(:company_group, :link, hide: :menu)
     ] + integrations
   end
 
