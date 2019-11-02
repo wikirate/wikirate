@@ -41,7 +41,6 @@ gem "wkhtmltopdf-binary"
 gem "rubocop", ">= 0.63"
 gem "rubocop-decko"
 
-gem "fog"
 gem "fog-aws"
 gem "rack-cors"
 

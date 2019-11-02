@@ -1,5 +1,6 @@
 card_reader :projects_organized, type: :search_type
 card_reader :metrics_designed, type: :search_type
+card_reader :research_group, type: :search_type
 
 format :html do
   def contrib_page?
@@ -44,9 +45,13 @@ format :html do
 
   def contribs_made?
     Card.cache.fetch "#{card.id}-CONTRIB" do
-      metrics_designed? || projects_organized?
+      metrics_designed? || research_groups_organized? || projects_organized?
       # only updates with cache clearing.  fine for now...
     end
+  end
+
+  def research_groups_organized?
+    card.research_group_card.count.positive?
   end
 
   def metrics_designed?
@@ -55,6 +60,10 @@ format :html do
 
   def projects_organized?
     card.projects_organized_card.count.positive?
+  end
+
+  view :research_group_tab do
+    field_nest :research_group, view: :content
   end
 
   view :projects_organized_tab do
