@@ -1,8 +1,5 @@
 # NOTE: name validations are in name.rb
 
-require_field :value
-require_field :source, when: :source_required?
-
 def source_required?
   force_source_not_required? ? false : (standard? || hybrid?)
 end
