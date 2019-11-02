@@ -7,20 +7,20 @@ RSpec.describe Card::Set::Abstract::MetricAnswer::Validate do
 
   describe "#source_required?" do
     it "is true for a normal researched metric" do
-      expect(answer_for("Joe User+RM").source_required?).to be_truthy
+      expect(answer_for("Joe User+RM")).to be_source_required
     end
 
     it "is false if metric is tagged with 'no source'" do
       Card.create! name: "Joe User+RM+tag", content: "no source"
-      expect(answer_for("Joe User+RM").source_required?).to be_falsy
+      expect(answer_for("Joe User+RM")).not_to be_source_required
     end
 
     it "is false for non-hybrid calculated metrics" do
-      expect(answer_for("Jedi+darkness rating").source_required?).to be_falsey
+      expect(answer_for("Jedi+darkness rating")).not_to be_source_required
     end
 
     it "is true for hybrid metrics" do
-      expect(answer_for("Jedi+friendliness").source_required?).to be_truthy
+      expect(answer_for("Jedi+friendliness")).to be_source_required
     end
   end
 
