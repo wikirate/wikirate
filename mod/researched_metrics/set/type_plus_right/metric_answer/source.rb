@@ -34,7 +34,7 @@ end
 
 def add_report_type source_card
   report_types = left&.report_type&.item_names
-  add_trait_to_source source_card, :report_type, report_types if report_type.present?
+  add_trait_to_source source_card, :report_type, report_types if report_types.present?
 end
 
 def add_company source_card
