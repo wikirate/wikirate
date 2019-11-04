@@ -3,7 +3,7 @@ include_set Abstract::DesignerPermissions
 
 event :validate_and_normalize_sources, :prepare_to_validate,
       on: :save, changed: :content do
-  errors.add "sources required" if item_names.blank? && required_field?
+  errors.add :content, "sources required" if item_names.blank? && required_field?
   annotate_sources
 end
 
@@ -34,7 +34,7 @@ end
 
 def add_report_type source_card
   report_types = left&.report_type&.item_names
-  add_trait_to_source source_card, :report_type, report_types if report_type.present?
+  add_trait_to_source source_card, :report_type, report_types if report_types.present?
 end
 
 def add_company source_card
