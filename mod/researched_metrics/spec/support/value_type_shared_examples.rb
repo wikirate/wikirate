@@ -21,7 +21,7 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
 
       it "fails" do
         expect(metric_answer(invalid_content))
-          .to be_invalid.because_of("+value" => include(error_msg))
+          .to be_invalid.because_of("+values" => include(error_msg))
       end
     end
 

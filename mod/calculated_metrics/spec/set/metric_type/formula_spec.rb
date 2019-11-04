@@ -239,7 +239,7 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
       it "removes incomplete calculated values" do
         Card::Auth.as_bot do
-          Card["#{@metric_name1}+Samsung+2014+value"].delete
+          Card["#{@metric_name1}+Samsung+2014"].delete
         end
         expect(calc_answer).to be_falsey
       end

@@ -36,14 +36,15 @@ format :html do
 
   def tab_list
     if contrib_page?
-      %i[projects_organized details]
+      %i[research_group projects_organized details]
     else
       %i[details wikirate_topic source project]
     end
   end
 
   def tab_options
-    { projects_organized: { label: "Projects Organized" } }
+    { research_group: { label: "Research Groups" },
+      projects_organized: { label: "Projects Organized" } }
   end
 
   def answer_filtering

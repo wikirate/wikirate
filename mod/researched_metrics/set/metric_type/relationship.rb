@@ -1,5 +1,10 @@
 include_set Abstract::Relationship
 
+# value is calculated later...
+def value_required?
+  false
+end
+
 def researched?
   true
 end

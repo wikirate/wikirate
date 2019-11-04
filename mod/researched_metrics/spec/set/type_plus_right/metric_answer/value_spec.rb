@@ -21,9 +21,8 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
                       type_id: Card::FreeTextValueID },
       "+year"    => { content: "2015",
                       type_id: Card::PointerID },
-      "+source"  => { subcards: { "new source" => { "+Link" =>
-                      { content: "http://www.google.com/?q=everybodylies",
-                        type_id: Card::PhraseID } } } }
+      "+source"  => { content: :star_wars_source.cardname,
+                      type_id: Card::PointerID }
     }
     Card::Auth.as_bot do
       Card.create! type_id: Card::MetricAnswerID, subcards: subcards
