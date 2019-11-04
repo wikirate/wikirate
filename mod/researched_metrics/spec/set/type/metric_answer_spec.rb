@@ -110,12 +110,12 @@ RSpec.describe Card::Set::Type::MetricAnswer do
 
       it "fails with a non-existing source" do
         expect(build_answer(source: "Page-1"))
-          .to be_invalid.because_of("+source item": include("No such source exists"))
+          .to be_invalid.because_of("+source": include("No such source exists"))
       end
 
       it "fails if source card cannot be created" do
         expect(build_answer(source: nil))
-          .to be_invalid.because_of("+source item": include("No such source exists"))
+          .to be_invalid.because_of("+source": include("No such source exists"))
       end
     end
   end

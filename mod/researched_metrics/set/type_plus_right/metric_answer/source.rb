@@ -3,7 +3,7 @@ include_set Abstract::DesignerPermissions
 
 event :validate_and_normalize_sources, :prepare_to_validate,
       on: :save, changed: :content do
-  errors.add "sources required" if item_names.blank? && required_field?
+  errors.add :content, "sources required" if item_names.blank? && required_field?
   annotate_sources
 end
 
