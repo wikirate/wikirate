@@ -21,4 +21,4 @@ Feature: Research answer fail
     And I fill in "Baam!" for " Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "SOURCE: no source cited"
+    And I should see "SOURCE: required"

@@ -93,7 +93,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
       end
       it "removes incomplete rating values" do
         Card::Auth.as_bot do
-          Card["Joe User+researched number 1+Samsung+2014+value"].delete
+          Card["Joe User+researched number 1+Samsung+2014"].delete
         end
         expect(rating_answer).to be_falsey
       end
