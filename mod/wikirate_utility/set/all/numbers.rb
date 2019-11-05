@@ -1,6 +1,6 @@
 def number? str
   true if Float(str)
-rescue
+rescue StandardError
   false
 end
 
