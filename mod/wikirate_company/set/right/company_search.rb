@@ -1,7 +1,7 @@
 include_set Right::BrowseCompanyFilter
 
 def default_sort_option
-  "answer"
+  "name"
 end
 
 def pointer_mark
