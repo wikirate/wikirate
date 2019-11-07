@@ -1,37 +1,28 @@
+def delayed_job command
+  env = "env RAILS_ENV=production"
+  num_jobs = fetch :num_delayed_job_processes
+  "cd #{release_path}; #{env} ./bin/delayed_job -n #{num_jobs} #{command}"
+end
+
 namespace :delayed_job do
   desc "stop delayed job processes"
   task :stop do
     on roles(:app) do
-      within release_path do
-        execute "pwd"
-        env = "env RAILS_ENV=production"
-        num_jobs = fetch :num_delayed_job_processes
-        execute env, "./bin/delayed_job -n", num_jobs, "stop"
-      end
+      execute delayed_job(:stop)
     end
   end
 
   desc "restart delayed job processes"
   task :restart do
     on roles(:app) do
-      within release_path do
-        execute "pwd"
-        env = "env RAILS_ENV=production"
-        num_jobs = fetch :num_delayed_job_processes
-        execute env, "./bin/delayed_job -n", num_jobs, "restart"
-      end
+      execute delayed_job(:restart)
     end
   end
 
   desc "start delayed job processes"
   task :start do
     on roles(:app) do
-      within release_path do
-        execute "pwd"
-        env = "env RAILS_ENV=production"
-        num_jobs = fetch :num_delayed_job_processes
-        execute "#{env} ./bin/delayed_job -n #{num_jobs} start"
-      end
+      execute delayed_job(:start)
     end
   end
 

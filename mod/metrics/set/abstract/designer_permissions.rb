@@ -32,6 +32,6 @@ end
 
 # delete logic is different, because most users don't have permission by default
 def ok_to_delete
-  return true if metric_card.designer_assessed? && as_designer?
+  return true if metric_card&.try(:designer_assessed?) && as_designer?
   super
 end
