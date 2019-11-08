@@ -16,7 +16,7 @@ class Card
     def referred_to_by_company_list trunk
       return unless trunk.present?
       # this "and" is a hack to prevent collision between the referred_to_by's
-      add_to_wql :and, { referred_to_by: Card::Name[trunk, :wikirate_company] }
+      add_to_wql :and, referred_to_by: Card::Name[trunk, :wikirate_company]
     end
   end
 end
