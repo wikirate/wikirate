@@ -76,18 +76,12 @@ end
 
 # @return String
 def value_type
-  type_from_card = value_type_card.item_names.first
-  type_from_card.present? ? type_from_card : default_value_type
+  value_type_card&.value_type || default_value_type_code.cardname
 end
 
 # @return Symbol
 def value_type_code
-  value_type_card.item_cards.first&.codename || default_value_type_code
-end
-
-# @return String
-def default_value_type
-  default_value_type_code.cardname
+  value_type_card&.value_type_code || default_value_type_code
 end
 
 # @return Symbol

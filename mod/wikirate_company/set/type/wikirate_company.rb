@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 include_set Abstract::WikirateTable
 include_set Abstract::Media
 # include_set Abstract::Export
@@ -9,6 +11,10 @@ card_accessor :metric_answer
 card_accessor :image
 card_accessor :incorporation
 card_accessor :headquarters
+
+event :validate_company_name, :validate, changed: :name do
+  errors.add "Use ＋ instead of + in company name" if name.junction?
+end
 
 event :update_company_matcher, :integrate_with_delay, on: :create do
   CompanyMatcher.add_to_mapper id, name

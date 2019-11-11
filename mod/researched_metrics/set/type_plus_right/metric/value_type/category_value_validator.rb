@@ -1,7 +1,7 @@
 #! no set module
 
 # This class is used for changing the value type of a metric to "category".
-# It Checks if all existing answers have valid options for the catogorical metric.
+# It Checks if all existing answers have valid options for the categorical metric.
 class CategoryValueValidator
   attr_reader :keys
 
