@@ -63,7 +63,6 @@ namespace :wikirate do
 
     desc "update caches for machine output"
     task update_machine_output: :environment do |task|
-      Card::Cache.reset_all # should not be needed, but currently failing without.
       ENV["STORE_CODED_FILES"] = "true"
       ensure_env :test, task do
         Card::Auth.as_bot do
@@ -79,6 +78,7 @@ namespace :wikirate do
           end
         end
       end
+      Card::Cache.reset_all # should not be needed, but currently failing without.
     end
 
     desc "load db dump into test db"

@@ -13,7 +13,7 @@ card_accessor :incorporation
 card_accessor :headquarters
 
 event :validate_company_name, :validate, changed: :name do
-  errors.add "Use ＋ instead of + in company name" if name.junction?
+  errors.add :name, "Use ＋ instead of + in company name" if name.junction?
 end
 
 event :update_company_matcher, :integrate_with_delay, on: :create do
