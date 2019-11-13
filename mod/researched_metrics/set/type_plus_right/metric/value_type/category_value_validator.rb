@@ -7,9 +7,16 @@ class CategoryValueValidator
 
   def initialize metric_card
     @metric_card = metric_card
-    @values = Answer.where(metric_id: @metric_card.id).select(:value).distinct
     @value_options = @metric_card.value_options
+    initialize_values
     initialize_keys
+  end
+
+  def initialize_values
+    @values = Answer.where(metric_id: @metric_card.id).select(:value).distinct
+    if @metric_card.multi_categorical?
+      @values = @values.map { |v| v.split ", " }.flatten.uniq
+    end
   end
 
   def initialize_keys
@@ -52,23 +59,17 @@ class CategoryValueValidator
     msg =
       if invalid_count == 1
         "#{invalid_values.to_sentence} is not a valid option for this metric. "\
-        "Please add those options"
+        "Please add this option."
       else
         "#{invalid_values.to_sentence} are not valid options for this metric. "\
-        "Please add those option"
+        "Please add those options."
       end
     msg + " #{link_to_edit_options} first."
   end
 
   def link_to_answer value
-    search = <<-JSON.strip_heredoc.delete("\n")
-      {"left":{"left_id":"#{@metric_card.id}"},
-      "right_plus":["value",{"content":"#{value}"}]}
-    JSON
-    title = "Answers with invalid option \"#{value}\""
-    @metric_card.format.link_to_card(:search, value,
-                                     path: { query: { keyword: search },
-                                             slot: { title: title } })
+    @metric_card.format.link_to_card(@metric_card, value,
+                                     path: { filter: { value: [value] } })
   end
 
   def link_to_edit_options
