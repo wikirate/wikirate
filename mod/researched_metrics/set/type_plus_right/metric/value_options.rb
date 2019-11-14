@@ -2,6 +2,12 @@ include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DesignerPermissions
 include_set Abstract::Filterable
 
+event :validate_value_options_match_values, :validate, on: :save, changed: :content do
+  return unless (error_message = metric_card.validate_all_values)
+
+  errors.add :answers, "Change makes current answers invalid: #{error_message}"
+end
+
 def item_names args={}
   super args.merge(context: :raw)
 end

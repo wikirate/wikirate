@@ -6,9 +6,10 @@ event :validate_value_type_type_and_content do
   errors.add :content, "must be valid value type" unless valid_content?
 end
 
-event :validate_type_of_existing_values, :validate,
-      on: :save, changed: :content do
-  metric_card.validate_all_values self
+event :validate_value_type_matches_values, :validate, on: :save, changed: :content do
+  return unless (error_message = metric_card.validate_all_values)
+
+  errors.add :answers, "Cannot change to #{content}: #{error_message}"
 end
 
 def valid_content?

@@ -56,15 +56,12 @@ class CategoryValueValidator
   end
 
   def error_msg
-    msg =
-      if invalid_count == 1
-        "#{invalid_values.to_sentence} is not a valid option for this metric. "\
-        "Please add this option."
-      else
-        "#{invalid_values.to_sentence} are not valid options for this metric. "\
-        "Please add those options."
-      end
-    msg + " #{link_to_edit_options} first."
+    [
+      "The following values appear in answers but are not ",
+      link_to_edit_options("listed as valid options"),
+      ": ",
+      invalid_values.to_sentence
+    ].join
   end
 
   def link_to_answer value
@@ -72,9 +69,8 @@ class CategoryValueValidator
                                      path: { filter: { value: [value] } })
   end
 
-  def link_to_edit_options
-    @metric_card.format.link_to_card @metric_card.value_options_card,
-                                     "to the options card",
+  def link_to_edit_options text
+    @metric_card.format.link_to_card @metric_card.value_options_card, text,
                                      path: { view: :edit }, target: "_blank"
   end
 end
