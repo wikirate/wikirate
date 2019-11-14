@@ -1,4 +1,4 @@
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path("../config/environment", __FILE__)
 
 def number? str
   true if Float(str)

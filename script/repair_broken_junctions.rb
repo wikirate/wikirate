@@ -1,4 +1,4 @@
-require_relative "../../config/environment"
+require_relative "../config/environment"
 
 # script for fixing junction cards where name doesn't match parts.
 # (eg, left_id is A, right_id is B, but name is C+B)
@@ -23,7 +23,7 @@ rescue StandardError => e
   puts %(failed to update #{bcard.name}; #{e.name}\n #{e.backtrace.join "\n"})
 end
 
-broken_ids = Card.connection.exec_query(query).rows
+broken_ids = Card.connection.exec_query(BROKEN_QUERY).rows
 
 broken_ids.each do |id|
   bcard = Card[id.first]

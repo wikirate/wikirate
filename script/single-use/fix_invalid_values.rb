@@ -130,7 +130,7 @@ Card[MSA_METRIC].researched_answers.each do |answer|
   val = acard.value_card
   next if val.valid? || val.content.blank?
 
-  v = fixes[cont] ||= standardize_msa_content(val.content)
+  v = fixes[val.content] ||= standardize_msa_content(val.content)
   updates = { "+value":  v }
   updates[:"+checked_by"] = "[[request]]" if v.match? "Yes"
 
