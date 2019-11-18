@@ -5,7 +5,7 @@ include Card::Model::SaveHelper
 def delete_cards_of_type type_id
   return unless type_id
 
-  Card.search(type_id: type_id, limit: 0).each &:delete!
+  Card.search(type_id: type_id, limit: 0).each(&:delete!)
 end
 
 Card::Auth.as_bot
@@ -31,7 +31,8 @@ end
 end
 
 # delete code cards no longer in use.
-%i[add_value
+%i[
+   add_value
    analyses_with_articles
    analysis_contributions
    cached_content

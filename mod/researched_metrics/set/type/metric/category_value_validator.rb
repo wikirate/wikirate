@@ -14,9 +14,9 @@ class CategoryValueValidator
 
   def initialize_values
     @values = Answer.where(metric_id: @metric_card.id).select(:value).distinct
-    if @metric_card.multi_categorical?
-      @values = @values.map { |v| v.split ", " }.flatten.uniq
-    end
+    return unless @metric_card.multi_categorical?
+
+    @values = @values.map { |v| v.split ", " }.flatten.uniq
   end
 
   def initialize_keys

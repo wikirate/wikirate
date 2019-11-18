@@ -111,7 +111,7 @@ WEIRD_METRIC_ANSWERS.each do |answer_name|
   weird_metrics << metric_card
 end
 
-weird_metrics.uniq.each &:delete!
+weird_metrics.uniq.each(&:delete!)
 
 MSA_METRIC = "Business_Human_Rights_Resource_Centre+Modern_Slavery_statement"
 fixes = {}
@@ -126,15 +126,29 @@ def standardize_msa_content val
 end
 
 Card[MSA_METRIC].researched_answers.each do |answer|
-  acard = answer.card
+  next unless (acard = answer.card)
   val = acard.value_card
-  next if val.valid? || val.content.blank?
+  next unless val&.content&.present? && !val.valid?
 
   v = fixes[val.content] ||= standardize_msa_content(val.content)
-  updates = { "+value":  v }
-  updates[:"+checked_by"] = "[[request]]" if v.match? "Yes"
+  updates = { "+value" =>  v }
+  updates["+checked_by"] = "[[request]]" if v.match? "Yes"
 
   acard.update! updates
+  acard.answer.refresh # sigh; shouldn't be necessary
+end
+
+Card.where(
+  "type_id = #{Card::MetricAnswerID} and trash is false " \
+  "and not exists (select * from answers where answer_id = cards.id)"
+).each do |nolookup|
+  nolookup.include_set_modules
+  answer = nolookup.answer
+  if answer.send :invalid_metric_card?
+    nolookup.delete!
+  else
+    nolookup.answer.refresh
+  end
 end
 
 Answer.where(answer_id: nil, metric_type_id: Card::Codename.id(:researched)).delete_all

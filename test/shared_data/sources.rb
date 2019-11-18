@@ -7,7 +7,7 @@ class SharedData
 
     def add_sources
       Timecop.freeze(Time.now + 1.day) do
-        create_source "http://www.wikiwand.com/en/Space_opera",
+        create_source "https://www.wikiwand.com/en/Space_opera",
                       codename: :space_opera_source,
                       subcards: {
                         "+company"     => { content: "Death Star",
@@ -20,7 +20,7 @@ class SharedData
       end
 
       Timecop.freeze(Time.now + 2.days) do
-        create_source "http://www.wikiwand.com/en/Opera",
+        create_source "https://www.wikiwand.com/en/Opera",
                       codename: :opera_source,
                       subcards: {
                         "+title"       => { content: "Opera" },
@@ -28,7 +28,7 @@ class SharedData
                       }
       end
 
-      create_source "http://www.wikiwand.com/en/Darth_Vader",
+      create_source "https://www.wikiwand.com/en/Darth_Vader",
                     codename: :darth_vader_source,
                     subcards: {
                       "+company"     => { content: "Death Star",
@@ -39,7 +39,7 @@ class SharedData
                       "+description" => { content: "Darth Vader Wikipedia article" }
                     }
 
-      create_source "http://www.wikiwand.com/en/Star_Wars",
+      create_source "https://www.wikiwand.com/en/Star_Wars",
                     codename: :star_wars_source,
                     subcards: {
                       "+company"     => { content: "Death Star",
@@ -52,7 +52,7 @@ class SharedData
                       "+year"        => { content: "2008" }
                     }
 
-      create_source "http://www.wikiwand.com/en/Apple",
+      create_source "https://www.wikiwand.com/en/Apple",
                     codename: :apple_source,
                     subcards: {
                       "+company"     => { content: "",
