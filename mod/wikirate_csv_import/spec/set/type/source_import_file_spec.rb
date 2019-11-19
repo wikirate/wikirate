@@ -13,7 +13,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
         exact_match:            ["Death Star", "2014", "Force Report",
                                  url("Death Star"), "a title"],
         duplicate_in_file:      ["Monter Inc", "2017", "Monster Report",
-                                 "http://www.wikiwand.com/en/Death_Star", "know me?"],
+                                 "https://www.wikiwand.com/en/Death_Star", "know me?"],
         alias_match:            ["Google", "2014", "Monster Report",
                                  url("Google"), "aaaaaah"],
         partial_match:          ["Monster", "2014", "Monster Report",

@@ -91,7 +91,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswerImportFile, type: :controller 
             { metric: "Not a metric", company: "", source: gsearch(8) },
           conflict_same_value_same_source:
             { company: "Death Star", year: "2000",
-              source: "http://www.wikiwand.com/en/Opera" },
+              source: "https://www.wikiwand.com/en/Opera" },
           conflict_same_value_different_source:
             { company: "Death Star", year: "2000", source: gsearch(10) },
           conflict_different_value:
