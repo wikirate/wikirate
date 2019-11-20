@@ -37,7 +37,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
     example "formula details with unknown values", as_bot: true do
       metric = Card["Joe User+small multi"]
-      metric.create_values true do
+      metric.create_answers true do
         Apple_Inc 2001 => "Unknown"
       end
 

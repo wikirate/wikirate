@@ -1,10 +1,10 @@
 
-def researched_answers
+def all_answers
   Answer.where metric_id: id
 end
 
 def answer_ids
-  researched_answers.pluck(:id)
+  all_answers.pluck(:id)
 end
 
 def random_answer_card

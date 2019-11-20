@@ -1,7 +1,7 @@
 RSpec.xdescribe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
   describe "view: stats" do
     example "filtered by 'all'" do
-      Card.fetch("Jedi+disturbances in the Force").create_values true do
+      Card.fetch("Jedi+disturbances in the Force").create_answers true do
         SPECTRE "2010" => "Unknown"
         Monster_Inc "2010" => "Unknown"
       end
@@ -16,7 +16,7 @@ RSpec.xdescribe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
     end
 
     example "restricted to a year" do
-      Card.fetch("Jedi+disturbances in the Force").create_values true do
+      Card.fetch("Jedi+disturbances in the Force").create_answers true do
         SPECTRE "1977" => "Unknown"
       end
       html = stats(year: "1977", status: :all)

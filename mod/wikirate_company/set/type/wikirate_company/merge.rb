@@ -7,7 +7,7 @@ def merge_into target_company
 end
 
 def move_all_answers_to target_company
-  researched_answers.each do |answer|
+  all_answers.each do |answer|
     next unless answer.real?
     answer.move company: target_company
   end

@@ -45,7 +45,7 @@ class SharedData
       # end
 
       # the Clean Clothes Campaign+Address metric
-      Card[:company_address].create_values(true) do
+      Card[:company_address].create_answers(true) do
         SPECTRE "1977" => "Baker Street, London"
         Monster_Inc "1977" => "Alderaan"
         Google_LLC 2000 => "Mountain View"

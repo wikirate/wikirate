@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Type::Metric::Answers do
       Card["Joe User+researched number 1"]
         .update! name: "Joe User+invented number", update_referers: true
 
-      answer = Card["Joe User+invented number"].researched_answers.first
+      answer = Card["Joe User+invented number"].all_answers.first
       expect(answer.title_name).to eq "invented number"
     end
   end

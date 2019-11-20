@@ -22,7 +22,7 @@ end
 # but calculated answers don't have cards, so this has to happen via a company
 event :refresh_renamed_company_answers, :integrate,
       on: :update, changed: :name, after_subcards: true do
-  researched_answers.where.not(company_name: name).each do |answer|
+  all_answers.where.not(company_name: name).each do |answer|
     answer.refresh :record_name, :company_name
   end
 end
@@ -37,13 +37,13 @@ def add_alias alias_name
 end
 
 # "researched" as in the status, not the metric type(s)
-def researched_answers
+def all_answers
   Answer.where company_id: id
 end
 
 # DEPRECATED.  +answer csv replaces following:
 format :csv do
   view :core do
-    Answer.csv_title + card.researched_answers.map(&:csv_line).join
+    Answer.csv_title + card.all_answers.map(&:csv_line).join
   end
 end

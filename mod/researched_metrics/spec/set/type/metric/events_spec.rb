@@ -10,24 +10,24 @@ RSpec.describe Card::Set::Type::Metric::Events do
       before { Card[oldname].update! name: newname, update_referers: true }
 
       it "updates metric names in lookup table" do
-        expect(newcard.researched_answers.first.metric_name).to eq(newname)
+        expect(newcard.all_answers.first.metric_name).to eq(newname)
       end
 
       it "updates metric titles in lookup table" do
-        expect(newcard.researched_answers.first.title_name).to eq(newname.to_name.right)
+        expect(newcard.all_answers.first.title_name).to eq(newname.to_name.right)
       end
 
       it "updates metric designer in lookup table" do
-        expect(newcard.researched_answers.first.designer_name).to eq(newname.to_name.left)
+        expect(newcard.all_answers.first.designer_name).to eq(newname.to_name.left)
       end
 
       it "updates record names in lookup table" do
-        expect(newcard.researched_answers.first.record_name)
+        expect(newcard.all_answers.first.record_name)
           .to match(Regexp.new(Regexp.quote(newname)))
       end
 
       it "doesn't add or lose answers" do
-        expect(newcard.researched_answers.size).to eq(8)
+        expect(newcard.all_answers.size).to eq(8)
       end
     end
   end

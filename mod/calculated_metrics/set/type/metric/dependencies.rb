@@ -1,7 +1,7 @@
 def all_dependent_answer_ids
   ids = answer_ids
   each_dependent_metric do |m|
-    ids += m.researched_answers.pluck(:id)
+    ids += m.all_answers.pluck(:id)
   end
   ids
 end

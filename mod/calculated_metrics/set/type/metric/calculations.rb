@@ -31,7 +31,7 @@ def rename_answers
                                          designer_name: name.parts.first,
                                          title_name: name.parts.second
 
-  researched_answers.each do |answer|
+  all_answers.each do |answer|
     answer.refresh :record_name
   end
 end

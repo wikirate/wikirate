@@ -62,7 +62,7 @@ BAD_SEPARATORS = {
 }
 
 def fix_separators metric_name, separator
-  Card[metric_name].researched_answers.each do |answer|
+  Card[metric_name].all_answers.each do |answer|
     val = answer.card.value_card
     val.content = val.content.gsub separator, "\n"
     val.save!
@@ -125,7 +125,7 @@ def standardize_msa_content val
   end
 end
 
-Card[MSA_METRIC].researched_answers.each do |answer|
+Card[MSA_METRIC].all_answers.each do |answer|
   next unless (acard = answer.card)
   val = acard.value_card
   next unless val&.content&.present? && !val.valid?

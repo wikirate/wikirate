@@ -8,7 +8,7 @@ RSpec.describe Relationship do
 
   describe "create" do
     it "creates relationship entry" do
-      Card["Jedi+more evil"].create_values true do
+      Card["Jedi+more evil"].create_answers true do
         Monster_Inc "2000" => { "Los_Pollos_Hermanos" => "no" }
       end
 

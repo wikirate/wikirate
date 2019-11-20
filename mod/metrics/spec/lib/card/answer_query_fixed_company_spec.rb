@@ -44,7 +44,7 @@ RSpec.describe Card::AnswerQuery do
      "Victims by Employees+1977", "RM+1977", "researched number 1+1977"]
   end
 
-  def unresearched_answers year=Time.now.year
+  def unall_answers year=Time.now.year
     with_year unresearched_metric_keys, year
   end
 
@@ -174,7 +174,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     context "with status" do
-      let :researched_answers do
+      let :all_answers do
         latest_answers + with_year(["researched number 2", "researched number 3",
                                     "small multi", "small single"])
       end
@@ -187,13 +187,13 @@ RSpec.describe Card::AnswerQuery do
 
       context "when :none" do
         it "finds not researched" do
-          expect(filter_by(status: :none)).to contain_exactly(*unresearched_answers)
+          expect(filter_by(status: :none)).to contain_exactly(*unall_answers)
         end
       end
 
       it "finds all values" do
         filtered = filter_by(status: :all)
-        expect(filtered).to include(*researched_answers)
+        expect(filtered).to include(*all_answers)
         expect(filtered.size)
           .to eq Card.search(type_id: Card::MetricID, return: :count)
       end
@@ -251,7 +251,7 @@ RSpec.describe Card::AnswerQuery do
   context "with multiple filter conditions" do
     context "with filter for missing values and ..." do
       it "... year" do
-        nr2001 = unresearched_answers(2001) + with_year(
+        nr2001 = unall_answers(2001) + with_year(
           ["Victims by Employees", "cost of planets destroyed",
            "darkness rating", "deadliness", "deadliness+Joe Camel",
            "deadliness+Joe User", "dinosaurlabor", "friendliness",

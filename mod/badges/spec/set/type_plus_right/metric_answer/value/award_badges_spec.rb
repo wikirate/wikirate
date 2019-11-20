@@ -12,7 +12,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
 
     def execute_awarded_action count
       year = start_year + count
-      metric_card.create_values true do
+      metric_card.create_answers true do
         Death_Star year => count
       end
     end
