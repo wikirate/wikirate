@@ -24,7 +24,6 @@ end
 #   field(company)&.field(year.to_s)
 # end
 #
-#
 # def value_cards _opts={}
 #   Answer.search metric_id: id, return: :value_card
 # end

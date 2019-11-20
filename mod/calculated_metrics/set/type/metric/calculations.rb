@@ -76,7 +76,7 @@ end
 
 def update_or_add_answer company, year, value
   expire_answer company, year
-  if (aw = answer(company, year))
+  if (aw = answer_for(company, year))
     update_answer aw, company, year, value
   else
     add_answer company, year, value
