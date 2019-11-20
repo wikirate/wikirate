@@ -78,7 +78,7 @@ RSpec.describe Card::Set::MetricType::Score do
         end
         it "removes score value that lost input metric value" do
           Card::Auth.as_bot do
-            Card["#{@metric_name}+Samsung+2014+value"].delete
+            Card["#{@metric_name}+Samsung+2014"].delete
           end
           expect(score_answer).to be_falsey
         end
