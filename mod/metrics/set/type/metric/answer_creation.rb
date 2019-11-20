@@ -1,5 +1,3 @@
-# TODO: Many of these methods should be "answer", not "value"
-
 # @example
 # create_answers do
 #   Siemens 2015 => 4, 2014 => 3
