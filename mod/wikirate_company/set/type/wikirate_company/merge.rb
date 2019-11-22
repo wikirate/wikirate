@@ -2,9 +2,9 @@
 # It is not ready for primetime.
 
 format :html do
-  view :merge, template: :haml, perms: ->(f) { f.card.as_moderator? }
+  view :merge, cache: :never, template: :haml, perms: ->(f) { f.card.as_moderator? }
 
-  view :merge_form, perms: ->(f) { f.card.as_moderator? } do
+  view :merge_form, cache: :never, perms: ->(f) { f.card.as_moderator? } do
     wrap do
       card_form :update, success: { view: :merge_success } do
         [
@@ -46,7 +46,6 @@ event :merge_companies, :validate, trigger: :required do
   return unless ok_to_merge?
   if (target = Env.params[:target_company])&.present?
     merge_into target
-    abort :success
   else
     errors.add :content, "target company required"
   end
