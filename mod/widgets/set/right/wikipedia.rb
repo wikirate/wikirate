@@ -45,7 +45,7 @@ event :validate_and_normalize_wikipedia_title, :validate, changed: :content, on:
   if content.present?
     validate_title_from_content
   elsif new?
-    validate_title_from_name
+    validate_new_and_blank
   else
     errors.add :content, "cannot be blank"
   end
@@ -58,8 +58,15 @@ def validate_title_from_content
   errors.add :content, "invalid Wikipedia Title" unless title.present?
 end
 
-def validate_title_from_name
+def validate_new_and_blank
   valid_wikipedia_title name.left
+  return if content.present?
+
+  if supercard
+    supercard.detach_subcard name
+  else
+    errors.add :content, "cannot be blank"
+  end
 end
 
 def valid_wikipedia_title title

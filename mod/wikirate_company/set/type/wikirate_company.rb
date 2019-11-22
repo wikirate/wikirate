@@ -14,6 +14,10 @@ event :validate_company_name, :validate, changed: :name do
   errors.add :name, "Use ＋ instead of + in company name" if name.junction?
 end
 
+event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
+  ensure_subfield :wikipedia
+end
+
 event :update_company_matcher, :integrate_with_delay, on: :create do
   CompanyMatcher.add_to_mapper id, name
 end
