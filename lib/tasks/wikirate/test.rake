@@ -78,6 +78,7 @@ namespace :wikirate do
           end
         end
       end
+      Card::Cache.reset_all # should not be needed, but currently failing without.
     end
 
     desc "load db dump into test db"

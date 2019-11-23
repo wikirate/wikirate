@@ -29,7 +29,7 @@ format :html do
 
   def value_field_card_and_options
     val_card =
-      if card.relationship?
+      if card.relationship? && card.new?
         # For adding new relationship answers.
         # The card is the (existing) metric answer card M+C+Y+values with
         # the company count.

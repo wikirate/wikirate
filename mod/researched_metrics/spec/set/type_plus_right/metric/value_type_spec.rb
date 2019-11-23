@@ -14,9 +14,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
 
     context "some values do not fit the numeric type" do
       it "blocks type changing" do
-        key = "#{metric.name}+#{sample_company.name}+2015".to_sym
+        # key = "#{metric.name}+#{sample_company.name}+2015".to_sym
         expect(type_change_for_value("wow", new_type, metric))
-          .to be_invalid.because_of(key => include("'wow' is not a numeric value."))
+          .to be_invalid.because_of(answers: include("Non-numeric value: 'wow'"))
       end
     end
 
@@ -52,7 +52,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
       context "some values are not in the options" do
         it "blocks type changing" do
           subject.update content:  "Category"
-          is_expected.to be_invalid.because_of value: include("option")
+          is_expected.to be_invalid.because_of answers: include("valid options")
           expect(subject.errors.first[1])
             .to have_tag :a, text: "100"
         end

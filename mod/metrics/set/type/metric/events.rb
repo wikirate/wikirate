@@ -48,7 +48,7 @@ end
 
 event :delete_all_answers, :prepare_to_validate, on: :update, trigger: :required do
   if Card::Auth.always_ok? # TODO: come up with better permissions scheme for this!
-    metric_answer_cards.each { |answer_card| delete_as_subcard answer_card }
+    all_answers.each { |answer_card| delete_as_subcard answer_card }
   else
     errors.add :answers, "only admins can delete all answers"
   end

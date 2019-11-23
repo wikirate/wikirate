@@ -41,20 +41,20 @@ class SharedData
 
       Timecop.freeze(HAPPY_BIRTHDAY) do
         source = sample_source(:star_wars).name
-        metric.create_values do
+        metric.create_answers do
           Death_Star "1990" => { value: "yes", source: source }
         end
       end
       Timecop.freeze(HAPPY_BIRTHDAY - 1.day) do
-        metric.create_values true do
+        metric.create_answers true do
           Death_Star "1991" => "yes"
         end
       end
       Timecop.freeze(HAPPY_BIRTHDAY - 2.weeks) do
-        metric.create_values true do
+        metric.create_answers true do
           Death_Star "1992" => "yes"
         end
-        Card["Fred+dinosaurlabor"].create_values true do
+        Card["Fred+dinosaurlabor"].create_answers true do
           Death_Star "2010" => "yes"
         end
       end

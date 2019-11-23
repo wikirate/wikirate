@@ -17,7 +17,7 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
 
     context "with company group argument" do
       before { filter_args company_group: "Deadliest" }
-      it { is_expected.to eq wql(referred_to_by: "Deadliest+Company") }
+      it { is_expected.to eq wql(and: { referred_to_by: "Deadliest+Company" }) }
     end
 
     context "with industry argument" do
@@ -34,7 +34,7 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
     context "with project argument" do
       before { filter_args project: "myProject" }
       it do
-        is_expected.to eq wql(referred_to_by: "myProject+Company")
+        is_expected.to eq wql(and: { referred_to_by: "myProject+Company" })
       end
     end
 
@@ -52,7 +52,7 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
               right_plus: ["2015", { right_plus: ["value", { eq: "myIndustry" }] }]
             }
           ],
-          referred_to_by: "myProject+Company"
+          and: { referred_to_by: "myProject+Company" }
         )
       end
     end

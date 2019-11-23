@@ -49,7 +49,7 @@ format :html do
   end
 
   def other_record_answers
-    card.record_card.researched_answers.reject { |a| a.year == card.year }
+    card.record_card.all_answers.reject { |a| a.year == card.year }
   end
 
   def record_count

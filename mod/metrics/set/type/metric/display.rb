@@ -1,10 +1,3 @@
-DETAILS_FIELD_MAP = {
-  number: :numeric_details,
-  money: :monetary_details,
-  category: :category_details,
-  multi_category: :category_details
-}.freeze
-
 format :html do
   view :vote do
     field_nest :vote_count

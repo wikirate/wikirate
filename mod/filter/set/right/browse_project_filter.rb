@@ -8,7 +8,7 @@ def filter_class
 end
 
 def default_sort_option
-  "subproject"
+  "create"
 end
 
 def filter_keys
@@ -25,9 +25,11 @@ end
 
 format :html do
   def sort_options
-    { "Most Subprojects": :subprojects,
+    { "Recently Added": :create,
+      "Alphabetical": :name,
+      "Most Subprojects": :subprojects,
       "Most Metrics": :metric,
-      "Most Companies": :company }.merge super
+      "Most Companies": :company }
   end
 
   view :filter_wikirate_status_formgroup, cache: :never do

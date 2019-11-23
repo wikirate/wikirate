@@ -31,7 +31,7 @@ def rename_answers
                                          designer_name: name.parts.first,
                                          title_name: name.parts.second
 
-  researched_answers.each do |answer|
+  all_answers.each do |answer|
     answer.refresh :record_name
   end
 end
@@ -76,7 +76,7 @@ end
 
 def update_or_add_answer company, year, value
   expire_answer company, year
-  if (aw = answer(company, year))
+  if (aw = answer_for(company, year))
     update_answer aw, company, year, value
   else
     add_answer company, year, value

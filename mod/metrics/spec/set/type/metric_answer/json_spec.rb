@@ -34,7 +34,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
         name: source.name,
         url: name_url(source.name),
         file_url: wr_url(source.file_url)
-        # "http://www.wikiwand.com/en/Star_Wars.json"
+        # "https://www.wikiwand.com/en/Star_Wars.json"
       }
     end
     let(:company_fields) do

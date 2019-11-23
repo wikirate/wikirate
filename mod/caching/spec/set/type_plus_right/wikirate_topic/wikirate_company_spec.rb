@@ -14,7 +14,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateTopic::WikirateCompany do
 
   it_behaves_like "cached count", ["Force", :wikirate_company], 4, 1 do
     let :add_one do
-      Card["Jedi+disturbances in the Force"].create_values true do
+      Card["Jedi+disturbances in the Force"].create_answers true do
         Samsung "1977" => "no"
       end
     end

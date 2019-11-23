@@ -46,7 +46,7 @@ format :html do
   end
 
   def example_value variable_card
-    return "" unless (value = variable_card.try(:random_value_card))
-    nest(value, view: :year_and_value).html_safe # html_safe necessary?
+    return "" unless (answer = variable_card.try(:random_answer_card))
+    nest(answer, view: :year_and_value).html_safe # html_safe necessary?
   end
 end

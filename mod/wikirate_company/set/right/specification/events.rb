@@ -27,7 +27,7 @@ end
 # The values are separated by ";|;" instead of ",".  This means that we don't
 # have to deal with escaping commas, etc.
 def js_generated_csv_to_array
-  content.split("\n").map do |row|
+  content.split(/\r?\n/).map do |row|
     row_array = row.split ";|;"
     row_array[2] = serialized_value_to_json row_array[2]
     row_array

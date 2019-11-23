@@ -4,7 +4,7 @@ module CoreExtensions
   module String
     def number?
       true if Float(self)
-    rescue
+    rescue StandardError
       false
     end
 

@@ -1,0 +1,43 @@
+.jumbotron
+  %h1 Merge Companies
+  %p.lead
+    This page, visible only to moderators, supports the first step
+    in merging duplicate companies.
+
+  %h5 From Company (source)
+  .bg-white
+    = render_bar
+
+  .alert-warning.my-4.p-3
+    NOTE: Starting here means you plan to
+    %em get rid of
+    the above company
+    %em
+      = "(#{render_link})"
+    after moving all or most of its information to another
+    company on WikiRate.org. If that is not your intent,
+    %em run.
+    Or, I guess, navigate to a company you do want to get rid of.
+
+  %h5 To Company (target)
+  = render_merge_form
+
+  %hr.my-4
+  %h5 Process
+  %ol
+    %li
+      Submit the above form. This will move all of the following to the target company:
+      %ol
+        %li non-conflicting answers
+        %li project listings
+        %li explicit company group listings
+        %li company tags on sources
+    %li
+      Resolve answer conflicts. Delete each answer from the source company when it's
+      resolved.
+    %li
+      Confirm that no additional details need to be moved to the target company.
+      For example, ensure correct integration mapping (Wikipedia and OpenCorporates)
+      on the target company.
+    %li
+      Delete the source company.

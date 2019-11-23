@@ -81,21 +81,21 @@ describe Card::Set::MetricType::Researched do
     it { is_expected.to be_falsey }
   end
 
-  describe "#companies_with_years_and_values" do
-    subject do
-      Card["Jedi+cost of planets destroyed"].companies_with_years_and_values
-    end
-
-    it do
-      is_expected.to eq [["Death Star", "1977", "200"]]
-    end
-  end
-
-  describe "#random_valued_company_card" do
-    subject { metric.random_valued_company_card }
-
-    it { is_expected.to eq Card["Death_Star"] }
-  end
+  # describe "#companies_with_years_and_values" do
+  #   subject do
+  #     Card["Jedi+cost of planets destroyed"].companies_with_years_and_values
+  #   end
+  #
+  #   it do
+  #     is_expected.to eq [["Death Star", "1977", "200"]]
+  #   end
+  # end
+  #
+  # describe "#random_valued_company_card" do
+  #   subject { metric.random_valued_company_card }
+  #
+  #   it { is_expected.to eq Card["Death_Star"] }
+  # end
 
   describe ".create" do
     it "composes the name using the title and designer subfields" do

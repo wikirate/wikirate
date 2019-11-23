@@ -1,6 +1,10 @@
 include_set Abstract::MetricChild, generation: 3
 include_set Abstract::DesignerPermissions
 
+def history?
+  !metric_card&.relationship?
+end
+
 def typed_value?
   true
 end
