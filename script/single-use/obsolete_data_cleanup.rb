@@ -55,10 +55,25 @@ end
    the_count
    wikirate_claim_count
    yinyang_drag_item
+   overview
   ].each do |codename|
   next unless Card::Codename[codename]
   delete_code_card codename
 end
+
+[
+  "Write a new Summary",
+  "company overview",
+  "topic_overview",
+  "featured topic analysis",
+  "featured company analysis",
+  "Featured Company Overviews",
+  "Featured Topic Overviews",
+  "How to Participate"
+].each do |name|
+  delete_card name
+end
+
 
 # get rid of histories of relationship/inverse relationship value cards
 # (they're just counts)
