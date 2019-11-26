@@ -87,6 +87,15 @@ RELATIONSHIP_VALUE_ACTION_SQL = %{
      AND metric_type_id in (#{Card::RelationshipID}, #{Card::InverseRelationshipID})
   )
 }
+
+Card.where(
+  "type_id = #{Card::SourceID} and year(created_at) < 2017 " \
+  "and not exists (select * from card_references where referee_id = cards.id)"
+).find_each do |source_card|
+  source_card.include_set_modules
+  source_card.delete!
+end
+
 Card.connection.execute RELATIONSHIP_VALUE_ACTION_SQL
 
 Card.empty_trash
