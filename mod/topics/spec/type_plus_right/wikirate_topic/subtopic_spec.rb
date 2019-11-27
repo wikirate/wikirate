@@ -1,4 +1,4 @@
-describe Card::Set::TypePlusRight::WikirateTopic::Subtopic do
+RSpec.describe Card::Set::TypePlusRight::WikirateTopic::Subtopic do
   describe "creation" do
     let(:topic) { Card["Force"] }
     let(:subtopic_pointer) { topic.subtopic_card }

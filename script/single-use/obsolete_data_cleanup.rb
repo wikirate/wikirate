@@ -74,7 +74,6 @@ end
   delete_card name
 end
 
-
 # get rid of histories of relationship/inverse relationship value cards
 # (they're just counts)
 RELATIONSHIP_VALUE_ACTION_SQL = %{

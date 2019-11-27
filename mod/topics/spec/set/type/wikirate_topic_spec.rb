@@ -1,4 +1,4 @@
-Rspec.describe Card::Set::Type::WikirateTopic do
+RSpec.describe Card::Set::Type::WikirateTopic do
   def card_subject
     Card["Force"]
   end
