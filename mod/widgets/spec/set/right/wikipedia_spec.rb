@@ -17,7 +17,7 @@ RSpec.describe Card::Set::Right::Wikipedia do
       end
 
       it "leaves content blank when company does not exist on wikipedia" do
-        expect(validated_wikipedia_field("voted for company").content).to be_blank
+        expect(validated_wikipedia_field("bookmarked company").content).to be_blank
       end
     end
 

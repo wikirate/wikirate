@@ -103,11 +103,9 @@ class SharedData
       end
     end
 
-    def vote name, direction
+    def bookmark name
       Card::Auth.as_bot do
-        vcc = Card[name].vote_count_card
-        vcc.send "vote_#{direction}"
-        vcc.save!
+        Card::Auth.current.bookmarks_card.add_item! name
       end
     end
 

@@ -1,1 +1,1 @@
-include_set Abstract::MetricVoteBadge
+include_set Abstract::MetricBookmarkerBadge

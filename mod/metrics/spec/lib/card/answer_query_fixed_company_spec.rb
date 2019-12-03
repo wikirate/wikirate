@@ -148,28 +148,14 @@ RSpec.describe Card::AnswerQuery do
       end
     end
 
-    context "with vote" do
-      it "finds upvoted" do
-        expect(filter_by(importance: :upvotes)).to eq ["disturbances in the Force+2001"]
+    context "with bookmark" do
+      it "finds bookmarked" do
+        expect(filter_by(bookmark: :bookmarked)).to eq ["disturbances in the Force+2001"]
       end
 
-      it "finds downvoted" do
-        expect(filter_by(importance: :downvotes)).to eq ["deadliness+1977"]
-      end
-
-      it "finds notvoted" do
-        expect(filter_by(importance: :novotes))
+      it "finds not bookmarked" do
+        expect(filter_by(bookmark: :not_bookmarked))
           .to eq latest_answers - ["disturbances in the Force+2001", "deadliness+1977"]
-      end
-
-      it "finds voted" do
-        expect(filter_by(importance: [:upvotes, :downvotes]))
-          .to eq ["deadliness+1977", "disturbances in the Force+2001"]
-      end
-
-      it "finds upvoted and notvoted" do
-        expect(filter_by(importance: [:upvotes, :novotes]))
-          .to eq latest_answers - ["deadliness+1977"]
       end
     end
 
@@ -315,21 +301,21 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "policy and importance" do
-      expect(filter_by(policy: "Evil Project", importance: :upvotes))
+      expect(filter_by(policy: "Evil Project", bookmark: :bookmarked))
         .to eq(["disturbances in the Force+2001"])
     end
 
     it "year and industry" do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
         expect(filter_by(year: "1991", topic: "Force",
-                         importance: :upvotes, updated: :week))
+                         bookmark: :bookmarked, updated: :week))
           .to eq(with_year("disturbances in the Force", 1991))
       end
     end
 
     it "all in" do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
-        expect(filter_by(year: "1992", topic: "Force", importance: :upvotes,
+        expect(filter_by(year: "1992", topic: "Force", bookmark: :bookmarked,
                          updated: :month, project: "Evil Project",
                          research_policy: "Community Assessed", name: "in the",
                          metric_type: "Researched"))
@@ -366,17 +352,15 @@ RSpec.describe Card::AnswerQuery do
         .to eq "Fred+dinosaurlabor+Death_Star+2010"
     end
 
-    it "sorts by importance" do
-      actual = answers sort_by(:importance, :desc)
+    it "sorts by bookmarked" do
+      actual = answers sort_by(:bookmarked, :desc)
       expected = latest_answers_by_importance
 
-      upvoted = (0..1)
-      notvoted = (2..-2)
-      downvoted = -1
+      bookmarked = (0..1)
+      not_bookmarked = (2..-1)
 
-      expect(actual[upvoted]).to contain_exactly(*expected[upvoted])
-      expect(actual[notvoted]).to contain_exactly(*expected[notvoted])
-      expect(actual[downvoted]).to eq(expected[downvoted])
+      expect(actual[bookmarked]).to contain_exactly(*expected[bookmarked])
+      expect(actual[not_bookmarked]).to contain_exactly(*expected[not_bookmarked])
     end
   end
 end

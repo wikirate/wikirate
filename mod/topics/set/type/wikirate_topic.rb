@@ -4,10 +4,7 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::FilterableBar
-
-card_accessor :vote_count, type: :number, default: "0"
-card_accessor :upvote_count, type: :number, default: "0"
-card_accessor :downvote_count, type: :number, default: "0"
+include_set Abstract::Bookmarkable
 
 card_accessor :image, type: :image
 card_accessor :subtopic, type: :pointer

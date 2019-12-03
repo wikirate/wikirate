@@ -5,7 +5,7 @@ def default_filter_hash
 end
 
 def default_sort_option
-  :upvoted
+  :bookmarked
 end
 
 def filter_keys
@@ -20,14 +20,6 @@ def filter_class
   MetricFilterQuery
 end
 
-def sort_wql
-  if current_sort.to_sym == :upvoted
-    { sort: { right: "*vote count" }, dir: "desc" }
-  else
-    super
-  end
-end
-
 format :html do
   def filter_label key
     key == :metric_type ? "Metric type" : super
@@ -38,7 +30,7 @@ format :html do
   end
 
   def sort_options
-    { "Highest Voted": :upvoted,
+    { "Most Bookmarked": :bookmarked,
       "Most Companies": :company,
       "Most Answers": :answer }.merge super
   end

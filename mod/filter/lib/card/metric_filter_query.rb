@@ -28,39 +28,11 @@ class Card
       add_to_wql :right_plus, [ResearchPolicyID, { refer_to: policy }]
     end
 
-    def importance_wql value
-      values = Array(value).map &:to_sym
-      return {} if values.size == 3 || values.empty?
-      return {} unless Auth.signed_in? # FIXME: use session votes
+    def bookmark_wql value
+      return {} unless Auth.signed_in? # FIXME: use session bookmarks
 
-      wql = { type_id: MetricID, limit: 0, return: :id }
-      wql.merge vote_wql(values)
-    end
-
-    # @param values [Array<Symbol>] has to contains one or two of the symbols
-    #   :upvotes, :downvotes, :novotes
-    # @return wql to find cards that the signed in user has (not) voted on
-    # TODO: move this to voting mod
-    def vote_wql values
-      if values.include? :novotes
-        not_directions = missing_directions(values)
-        { not: linked_to_by_vote_wql(not_directions) }
-      else
-        linked_to_by_vote_wql values
-      end
-    end
-
-    def linked_to_by_vote_wql array
-      vote_pointers = array.map { |v| vote_pointer_name(v) }
-      { linked_to_by: [:in] + vote_pointers }
-    end
-
-    def vote_pointer_name direction
-      "#{Auth.current.name}+#{Card.fetch_name direction}"
-    end
-
-    def missing_directions directions
-      [:upvotes, :downvotes, :novotes] - directions
+      bookmarked = { linked_to_by: Card::Name[Auth.current.name, :bookmark] }
+      value == :nobookmark ? { not: bookmarked } : bookmarked
     end
   end
 end

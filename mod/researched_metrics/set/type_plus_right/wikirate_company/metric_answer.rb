@@ -24,7 +24,7 @@ format :html do
   end
 
   def cell_views
-    [:metric_thumbnail_with_vote, :concise]
+    [:metric_thumbnail_with_bookmark, :concise]
   end
 
   def header_cells

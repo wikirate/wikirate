@@ -1,6 +1,6 @@
 format :html do
-  view :vote do
-    field_nest :vote_count
+  view :bookmark do
+    field_nest :bookmarked
   end
 
   # OUTLIERS

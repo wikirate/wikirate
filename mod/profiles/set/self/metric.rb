@@ -4,8 +4,7 @@ end
 
 def subvariants
   {
-    created: [:submitted, :designed],
-    voted_on: [:voted_for, :voted_against]
+    created: [:submitted, :designed]
   }
 end
 

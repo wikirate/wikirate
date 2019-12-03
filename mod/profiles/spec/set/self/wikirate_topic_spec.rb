@@ -12,11 +12,9 @@ RSpec.describe Card::Set::Self::WikirateTopic, "topic report queries" do
     variants all: ["updated topic"]
   end
 
-  describe "voted on query" do
-    include_context "report query", :wikirate_topic, :voted_on
-    variants voted_for: ["voted for topic"],
-             voted_against: ["voted against topic"],
-             all: 2
+  describe "bookmarked query" do
+    include_context "report query", :wikirate_topic, :bookmarked
+    variants all: ["bookmarked topic"]
   end
 
   describe "discussed query" do

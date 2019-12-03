@@ -31,13 +31,12 @@ class Card
         restrict_by_wql field, referred_to_by: "#{value}+#{codename.cardname}"
       end
 
-      def importance_query value
+      def bookmark_query value
         multi_metric do
-          values = Array(value).map(&:to_sym)
-          return if values.size == 3 || values.empty? || !Auth.signed_in?
-          # FIXME: use session votes
+          return if !Auth.signed_in?
+          # FIXME: use session bookmarks
 
-          restrict_by_wql :metric_id, { type_id: MetricID }.merge(vote_wql(values))
+          restrict_by_wql :metric_id, { type_id: MetricID }.merge(bookmark_wql(value))
         end
       end
 
@@ -66,28 +65,11 @@ class Card
         single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
-      # @param values [Array<Symbol>] has to contains one or two of the symbols
-      #   :upvotes, :downvotes, :novotes
-      # @return wql to find cards that the signed in user has (not) voted on
-      # TODO: move this to voting mod
-      def vote_wql values
-        if values.include? :novotes
-          { not: linked_to_by_vote_wql(missing_directions(values)) }
-        else
-          linked_to_by_vote_wql values
-        end
-      end
-
-      def linked_to_by_vote_wql array
-        { linked_to_by: [:in] + array.map { |v| vote_pointer_name(v) } }
-      end
-
-      def vote_pointer_name direction
-        "#{Auth.current.name}+#{Card.fetch_name direction}"
-      end
-
-      def missing_directions directions
-        %i[upvotes downvotes novotes] - directions
+      # @param value [Symbol] :bookmarked or :not_bookmarked
+      # @return wql to find cards that the signed in user has (or has not) bookmarked
+      def bookmark_wql value
+        bookmarked = { linked_to_by: Card::Name[Auth.current.name, :bookmark] }
+        value == :nobookmark ? { not: bookmarked } : bookmarked
       end
     end
   end

@@ -84,11 +84,9 @@ class Answer
     end
 
     def order_by_importance args
-      args = order_args sort_by: "COALESCE(c.db_content, 0)", cast: "signed",
-                        sort_order: args[:sort_order]
-      joins("LEFT JOIN cards AS c " \
-            "ON answers.metric_id = c.left_id AND c.right_id = #{Card::VoteCountID}")
-        .order(args)
+      joins("LEFT JOIN counts cts" \
+            "ON answers.metric_id = cts.left_id AND cts.right_id = #{Card::BookmarkID}")
+        .order("cts.value #{args[:sort_order]}")
     end
 
     def order_args args

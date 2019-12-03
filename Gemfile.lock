@@ -1,4 +1,10 @@
 PATH
+  remote: vendor/card-mods/bookmarks
+  specs:
+    card-mod-bookmarks (1.0)
+      card
+
+PATH
   remote: vendor/card-mods/csv_import
   specs:
     card-mod-csv_import (0.8)
@@ -27,12 +33,6 @@ PATH
   remote: vendor/card-mods/pdfjs
   specs:
     card-mod-pdfjs (1.0)
-      card
-
-PATH
-  remote: vendor/card-mods/voting
-  specs:
-    card-mod-voting (1.0)
       card
 
 PATH
@@ -351,7 +351,7 @@ GEM
     multi_test (0.1.2)
     multipart-post (2.1.1)
     mustermann (1.0.3)
-    mysql2 (0.5.2)
+    mysql2 (0.5.3)
     naught (1.1.0)
     net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
@@ -368,7 +368,7 @@ GEM
       nokogiri (~> 1.5)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
-    oga (2.15)
+    oga (2.16)
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
@@ -472,7 +472,7 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    rubocop (0.76.0)
+    rubocop (0.77.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -572,7 +572,7 @@ GEM
     wkhtmltopdf-binary (0.12.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.2.1)
+    zeitwerk (2.2.2)
 
 PLATFORMS
   ruby
@@ -590,12 +590,12 @@ DEPENDENCIES
   capistrano-passenger
   capybara (~> 2.18)
   card!
+  card-mod-bookmarks!
   card-mod-csv_import!
   card-mod-logger!
   card-mod-markdown!
   card-mod-new_relic!
   card-mod-pdfjs!
-  card-mod-voting!
   cardname!
   company-mapping
   cucumber-expressions (= 5.0.7)

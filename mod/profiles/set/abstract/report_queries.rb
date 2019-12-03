@@ -23,24 +23,12 @@ def discussed_query user_id, _variant=nil
                  { edited_by: user_id }] }
 end
 
-def voted_on_query user_id, variant=nil
-  { linked_to_by: { left_id: user_id,
-                    right_id: vote_type_matcher(variant) } }
+def bookmarked_query user_id, _variant=nil
+  { linked_to_by: { left_id: user_id, right_id: Card::BookmarkID } }
 end
 
 def double_checked_query user_id, _variant=nil
   { right_plus: [CheckedByID, { refer_to: { id: user_id } }] }
-end
-
-def vote_type_matcher variant
-  case variant
-  when :voted_for
-    UpvotesID
-  when :voted_against
-    DownvotesID
-  else
-    [:in, UpvotesID, DownvotesID]
-  end
 end
 
 def subvariants

@@ -23,7 +23,7 @@ format :html do
 
   def sort_options
     {
-      "Metric Votes": :importance,
+      "Metric Bookmarks": :bookmarked,
       "Metric Designer (Alphabetical)": :metric_name,
       "Metric Title (Alphabetical)": :title_name,
       "Recently Updated": :updated_at

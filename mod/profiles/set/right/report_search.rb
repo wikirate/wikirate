@@ -61,12 +61,12 @@ def research_group_report_query
   standard_report_query.merge id: [:in, type_ids]
 end
 
-# created, updated, voted on, etc.
+# created, updated, bookmarked, etc.
 def variant
   @variant ||= (Env.params["variant"]&.to_sym) || :created
 end
 
-# eg voted for/voted against
+# eg submitted vs designed
 def subvariant
   @subvariant ||= (Env.params["subvariant"]&.to_sym) || :all
 end
