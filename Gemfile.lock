@@ -368,7 +368,7 @@ GEM
       nokogiri (~> 1.5)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
-    oga (2.16)
+    oga (2.15)
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
