@@ -18,8 +18,9 @@ def self.included host_class
                     host_class.type_to_count,
                     host_class.tag_pointer do |changed_card|
       names = Abstract::CachedCount.pointer_card_changed_card_names(changed_card)
+      trait_name = host_class.try(:count_trait) || host_class.type_to_count
       names.map do |item_name|
-        Card.fetch item_name.to_name.trait(host_class.type_to_count)
+        Card.fetch item_name.to_name.trait(trait_name)
       end
     end
 

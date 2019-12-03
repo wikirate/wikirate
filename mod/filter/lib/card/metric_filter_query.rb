@@ -31,7 +31,7 @@ class Card
     def bookmark_wql value
       return {} unless Auth.signed_in? # FIXME: use session bookmarks
 
-      bookmarked = { linked_to_by: Card::Name[Auth.current.name, :bookmark] }
+      bookmarked = { linked_to_by: Card::Name[Auth.current.name, :bookmarks] }
       value == :nobookmark ? { not: bookmarked } : bookmarked
     end
   end

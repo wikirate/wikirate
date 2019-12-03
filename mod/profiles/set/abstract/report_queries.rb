@@ -24,7 +24,7 @@ def discussed_query user_id, _variant=nil
 end
 
 def bookmarked_query user_id, _variant=nil
-  { linked_to_by: { left_id: user_id, right_id: Card::BookmarkID } }
+  { linked_to_by: { left_id: user_id, right_id: Card::BookmarksID } }
 end
 
 def double_checked_query user_id, _variant=nil

@@ -2,7 +2,7 @@
 
 require_relative "../../../../support/award_badges_shared_examples"
 
-RSpec.describe Card::Set::TypePlusRight::User::Bookmark::AwardBadges do
+RSpec.describe Card::Set::TypePlusRight::User::Bookmarks::AwardBadges do
   describe "bookmark badges" do
     let(:badge_action) { :bookmark }
     let(:badge_type) { :metric }

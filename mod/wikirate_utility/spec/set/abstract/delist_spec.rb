@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Abstract::Delist do
   let(:company) { Card["SPECTRE"] }
-  let(:project) { Card["Evil Project"]}
+  let(:project) { Card["Evil Project"] }
 
   it "deletes company from project when company is deleted", as_bot: true do
     company.delete!

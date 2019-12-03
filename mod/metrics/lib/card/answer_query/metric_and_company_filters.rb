@@ -68,7 +68,7 @@ class Card
       # @param value [Symbol] :bookmark or :nobookmark
       # @return wql to find cards that the signed in user has (or has not) bookmarked
       def bookmark_wql value
-        bookmarked = { linked_to_by: Card::Name[Auth.current.name, :bookmark] }
+        bookmarked = { linked_to_by: Card::Name[Auth.current.name, :bookmarks] }
         value == :nobookmark ? { not: bookmarked } : bookmarked
       end
     end
