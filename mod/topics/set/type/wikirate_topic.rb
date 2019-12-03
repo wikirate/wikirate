@@ -5,6 +5,7 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::FilterableBar
 include_set Abstract::Bookmarkable
+include_set Abstract::Delist
 
 card_accessor :image, type: :image
 card_accessor :subtopic, type: :pointer

@@ -2,6 +2,7 @@
 
 include_set Abstract::WikirateTable
 include_set Abstract::Media
+include_set Abstract::Delist
 # include_set Abstract::Export
 
 card_accessor :aliases, type: :pointer

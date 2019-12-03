@@ -4,6 +4,7 @@ require "savanna-outliers"
 include_set Abstract::DesignerAndTitle
 include_set Abstract::MetricThumbnail
 include_set Abstract::Bookmarkable
+include_set Abstract::Delist
 
 card_accessor :metric_type, type: :pointer, default: "[[Researched]]"
 card_accessor :about
