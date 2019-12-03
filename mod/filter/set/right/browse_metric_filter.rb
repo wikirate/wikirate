@@ -5,7 +5,7 @@ def default_filter_hash
 end
 
 def default_sort_option
-  :bookmarked
+  :bookmarkers
 end
 
 def filter_keys
@@ -30,7 +30,7 @@ format :html do
   end
 
   def sort_options
-    { "Most Bookmarked": :bookmarked,
+    { "Most Bookmarked": :bookmarkers,
       "Most Companies": :company,
       "Most Answers": :answer }.merge super
   end

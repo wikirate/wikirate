@@ -10,7 +10,7 @@ def filter_card_fieldcode
 end
 
 def default_sort_option
-  record? ? :year : :importance
+  record? ? :year : :bookmarkers
 end
 
 def partner
@@ -36,7 +36,7 @@ format :html do
   end
 
   def name_sort_links
-    "#{importance_sort_link}#{designer_sort_link}#{title_sort_link}"
+    "#{bookmarkers_sort_link}#{designer_sort_link}#{title_sort_link}"
   end
 
   def title_sort_link
@@ -47,7 +47,7 @@ format :html do
     table_sort_link "", :metric_name, "pull-left mx-3 px-1"
   end
 
-  def importance_sort_link
-    table_sort_link "", :importance, "pull-left mx-3 px-1"
+  def bookmarkers_sort_link
+    table_sort_link "", :bookmarkers, "pull-left mx-3 px-1"
   end
 end

@@ -114,8 +114,8 @@ format :html do
   end
 
   def bookmark_options
-    { "I bookmarked" => :bookmarked,
-      "I did NOT bookmark" => :not_bookmarked }
+    { "I bookmarked" => :bookmark,
+      "I did NOT bookmark" => :nobookmark }
   end
 
   def designer_options

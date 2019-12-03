@@ -17,7 +17,7 @@ RSpec.describe Card::AnswerQuery do
     all_metric_titles.reject { |n| researched_metric_keys.include? n.key }
   end
 
-  let :latest_answers_by_importance do
+  let :latest_answers_by_bookmarks do
     ["disturbances in the Force+2001", "Victims by Employees+1977",
      "Sith Lord in Charge+1977", "dinosaurlabor+2010", "cost of planets destroyed+1977",
      "friendliness+1977", "deadliness+Joe User+1977", "deadliness+Joe Camel+1977",
@@ -154,7 +154,7 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "finds not bookmarked" do
-        expect(filter_by(bookmark: :not_bookmarked))
+        expect(filter_by(bookmark: :nobookmark))
           .to eq latest_answers - ["disturbances in the Force+2001", "deadliness+1977"]
       end
     end
@@ -300,7 +300,7 @@ RSpec.describe Card::AnswerQuery do
       end
     end
 
-    it "policy and importance" do
+    it "policy and bookmark" do
       expect(filter_by(policy: "Evil Project", bookmark: :bookmarked))
         .to eq(["disturbances in the Force+2001"])
     end
@@ -353,8 +353,8 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "sorts by bookmarked" do
-      actual = answers sort_by(:bookmarked, :desc)
-      expected = latest_answers_by_importance
+      actual = answers sort_by(:bookmarkers, :desc)
+      expected = latest_answers_by_bookmarks
 
       bookmarked = (0..1)
       not_bookmarked = (2..-1)

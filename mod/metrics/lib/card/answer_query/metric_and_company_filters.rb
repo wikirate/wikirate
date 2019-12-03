@@ -65,7 +65,7 @@ class Card
         single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
-      # @param value [Symbol] :bookmarked or :not_bookmarked
+      # @param value [Symbol] :bookmark or :nobookmark
       # @return wql to find cards that the signed in user has (or has not) bookmarked
       def bookmark_wql value
         bookmarked = { linked_to_by: Card::Name[Auth.current.name, :bookmark] }

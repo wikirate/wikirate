@@ -40,7 +40,7 @@ def default_sort_order sort_by
 end
 
 def default_desc_sort_order
-  ::Set.new %i[updated_at importance value year]
+  ::Set.new %i[updated_at bookmarkers value year]
 end
 
 format :html do

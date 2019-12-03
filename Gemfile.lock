@@ -1,7 +1,7 @@
 PATH
   remote: vendor/card-mods/bookmarks
   specs:
-    card-mod-bookmarks (1.0)
+    card-mod-bookmarks (0.1)
       card
 
 PATH
