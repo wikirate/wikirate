@@ -87,6 +87,8 @@ RELATIONSHIP_VALUE_ACTION_SQL = %{
   )
 }
 
+Card.search(left: { type: :wikirate_topic }, right: :subtopic).each(&:delete!)
+
 Card.where(
   "type_id = #{Card::SourceID} and year(created_at) < 2017 " \
   "and not exists (select * from card_references where referee_id = cards.id)"
