@@ -33,7 +33,7 @@ class Card
 
       def bookmark_query value
         multi_metric do
-          return if !Auth.signed_in?
+          return unless Auth.signed_in?
           # FIXME: use session bookmarks
 
           restrict_by_wql :metric_id, { type_id: MetricID }.merge(bookmark_wql(value))

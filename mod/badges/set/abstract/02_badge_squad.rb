@@ -51,7 +51,7 @@ module BadgeSquad
   def bookmark_count type_id
     lambda do |user_id|
       user = user_id ? Card[user_id] : Auth.current
-      next nil unless bookmarks_card_id = user.try(:bookmarks_card)&.id
+      next nil unless (bookmarks_card_id = user.try(:bookmarks_card)&.id)
       {
         type_id: type_id,
         referred_to_by: bookmarks_card_id
