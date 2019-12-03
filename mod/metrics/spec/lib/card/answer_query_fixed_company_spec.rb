@@ -155,7 +155,7 @@ RSpec.describe Card::AnswerQuery do
 
       it "finds not bookmarked" do
         expect(filter_by(bookmark: :nobookmark))
-          .to eq latest_answers - ["disturbances in the Force+2001", "deadliness+1977"]
+          .to eq latest_answers - ["disturbances in the Force+2001"]
       end
     end
 

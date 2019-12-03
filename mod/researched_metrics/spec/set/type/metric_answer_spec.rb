@@ -115,7 +115,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
 
       it "fails if source card cannot be created" do
         expect(build_answer(source: nil))
-          .to be_invalid.because_of("+source": include("No such source exists"))
+          .to be_invalid.because_of("+source": include(/sources required/))
       end
     end
   end

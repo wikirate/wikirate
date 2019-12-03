@@ -65,8 +65,6 @@ Feature: company feature
 
   Scenario: Paging
     Then I should see "Victims by Employees"
-    And I should not see "deadliness Research | community assessed"
     Then I click on "2"
-    Then I should see "deadliness Research | community assessed"
     And I should not see "Victims by Employees"
 

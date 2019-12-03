@@ -21,7 +21,6 @@ RSpec.describe Answer, "Answer.search" do
     result = search(designer_name: "Jedi", return: :title,
                     sort_by: :bookmarkers, sort_order: :desc)
     expect(result.first).to eq "disturbances in the Force"
-    expect(result.last).to eq "deadliness"
   end
 
   it "can return multiple columns" do
