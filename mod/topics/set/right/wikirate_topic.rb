@@ -2,7 +2,7 @@ event :validate_topic_items, :validate, on: :save do
   return unless type_id == PointerID
   added_item_cards.each do |item_card|
     next if item_card.real? && item_card.type_id == WikirateTopicID
-    errors.add "invalid topic: #{item_card.name}"
+    errors.add :content, "invalid topic: #{item_card.name}"
   end
 end
 
