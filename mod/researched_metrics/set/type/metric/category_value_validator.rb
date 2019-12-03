@@ -21,9 +21,9 @@ class CategoryValueValidator
 
   def initialize_keys
     @key_to_name ||= {}
-    @keys = @values.map do |n|
-      key = n.value.to_name.key
-      @key_to_name[key] = n.value
+    @keys = @values.map do |v|
+      key = v.to_name.key
+      @key_to_name[key] = v
       key
     end
   end
