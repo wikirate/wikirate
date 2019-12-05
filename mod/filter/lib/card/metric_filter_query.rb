@@ -27,12 +27,5 @@ class Card
     def research_policy_wql policy
       add_to_wql :right_plus, [ResearchPolicyID, { refer_to: policy }]
     end
-
-    def bookmark_wql value
-      return {} unless Auth.signed_in? # FIXME: use session bookmarks
-
-      bookmarked = { linked_to_by: Card::Name[Auth.current.name, :bookmarks] }
-      value == :nobookmark ? { not: bookmarked } : bookmarked
-    end
   end
 end

@@ -56,7 +56,7 @@ format :html do
   end
 
   view :filter_bookmark_formgroup, cache: :never do
-    multiselect_filter :bookmark
+    select_filter :bookmark
   end
 
   view :filter_source_formgroup, cache: :never do

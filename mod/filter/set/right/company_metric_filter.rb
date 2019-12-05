@@ -3,7 +3,7 @@ include_set Abstract::FilterFormgroups
 
 def filter_keys
   %i[status year check metric_name wikirate_topic metric_type value updated project
-     source research_policy]
+     source research_policy bookmark]
 end
 
 def default_filter_hash
@@ -18,7 +18,9 @@ format :html do
   def quick_filter_list
     Card[:homepage_featured_topics].item_names.map do |topic|
       { wikirate_topic: topic }
-    end
+    end << { bookmark: :bookmark,
+             text: "My Bookmarks",
+             class: "quick-filter-by-metric" }
   end
 
   def sort_options

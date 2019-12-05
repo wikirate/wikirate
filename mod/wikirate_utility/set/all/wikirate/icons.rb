@@ -10,6 +10,7 @@ ICON_MAP = {
   researcher: [:user, { library: :font_awesome }],
   user: [:user, { library: :font_awesome }],
   post: :insert_comment,
+  bookmark: [:bookmark, { library: :font_awesome }],
   details: :info,
   source: :public,
   score: :adjust,

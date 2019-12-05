@@ -2,6 +2,8 @@ class Card
   class AnswerQuery
     # conditions and condition support methods for non-standard fields.
     module MetricAndCompanyFilters
+      include WikirateFilterQuery
+
       def industry_query value
         multi_company do
           restrict_by_wql :company_id, CompanyFilterQuery.industry_wql(value)
@@ -33,10 +35,7 @@ class Card
 
       def bookmark_query value
         multi_metric do
-          return unless Auth.signed_in?
-          # FIXME: use session bookmarks
-
-          restrict_by_wql :metric_id, { type_id: MetricID }.merge(bookmark_wql(value))
+          bookmark_wql value
         end
       end
 
@@ -65,11 +64,16 @@ class Card
         single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
-      # @param value [Symbol] :bookmark or :nobookmark
-      # @return wql to find cards that the signed in user has (or has not) bookmarked
-      def bookmark_wql value
-        bookmarked = { linked_to_by: Card::Name[Auth.current.name, :bookmarks] }
-        value == :nobookmark ? { not: bookmarked } : bookmarked
+      def nonbookmarker_bookmark_wql value
+        return unless value == :bookmark
+
+        restrict_to_ids [] # no bookmark results for nonbookmarker
+      end
+
+      def bookmarker_bookmark_wql value
+        bookmarked = { linked_to_by: bookmark_list_id }
+        restrict_by_wql :metric_id,
+                        (value == :bookmark ? bookmarked : { not: bookmarked })
       end
     end
   end

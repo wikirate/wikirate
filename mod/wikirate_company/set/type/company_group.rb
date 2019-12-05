@@ -1,6 +1,7 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::FilterableBar
+include_set Abstract::Bookmarkable
 
 card_accessor :image, type: :image
 card_accessor :wikirate_company
@@ -13,7 +14,7 @@ format :html do
   end
 
   view :bar_left do
-    render_thumbnail
+    render_thumbnail_with_bookmark
   end
 
   view :bar_right do

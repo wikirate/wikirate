@@ -9,7 +9,7 @@ def default_sort_option
 end
 
 def filter_keys
-  %i[name wikirate_topic designer project metric_type research_policy year]
+  %i[name wikirate_topic designer project metric_type research_policy year bookmark]
 end
 
 def target_type_id
@@ -21,6 +21,12 @@ def filter_class
 end
 
 format :html do
+  def quick_filter_list
+    [{ bookmark: :bookmark,
+       text: "My Bookmarks",
+       class: "quick-filter-by-metric" }]
+  end
+
   def filter_label key
     key == :metric_type ? "Metric type" : super
   end

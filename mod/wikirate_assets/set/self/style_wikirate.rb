@@ -4,6 +4,7 @@ Self::StyleMods.add_item :style_wikirate
 
 FILE_NAMES =
   %i[top_bar
+     wikirate_colors
      company_and_topic_item
      company_groups
      user_following_list
