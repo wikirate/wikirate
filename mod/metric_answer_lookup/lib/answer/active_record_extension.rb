@@ -98,9 +98,13 @@ class Answer
     end
 
     def valid_sort_args? args
-      return unless args.present? && args[:sort_by]
-      return true if args[:sort_by].to_sym == :bookmarkers
-      Answer.column_names.include? args[:sort_by].to_s
+      return false unless args.present? && (sort_value = args[:sort_by]&.to_s)
+
+      valid_sort_value_list.include? sort_value
+    end
+
+    def valid_sort_value_list
+      @valid_sort_value_list ||= Answer.column_names << "bookmarkers"
     end
 
     def valid_page_args? args

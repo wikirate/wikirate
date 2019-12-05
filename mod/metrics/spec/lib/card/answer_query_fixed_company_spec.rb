@@ -352,7 +352,7 @@ RSpec.describe Card::AnswerQuery do
         .to eq "Fred+dinosaurlabor+Death_Star+2010"
     end
 
-    it "sorts by bookmarked" do
+    it "sorts by bookmarkers" do
       actual = answers sort_by(:bookmarkers, :desc)
       expected = latest_answers_by_bookmarks
 

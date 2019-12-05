@@ -1,4 +1,5 @@
 include_set Abstract::Thumbnail
+include_set Abstract::Bookmarkable
 
 card_reader :wikirate_company
 card_reader :metric
