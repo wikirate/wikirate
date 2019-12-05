@@ -1,6 +1,6 @@
 format :html do
   view :bar_left do
-    render_thumbnail
+    render_thumbnail_with_bookmark
   end
 
   view :bar_middle do

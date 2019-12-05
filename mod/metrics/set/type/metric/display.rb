@@ -1,8 +1,4 @@
 format :html do
-  view :bookmark do
-    field_nest :bookmarkers, view: :count
-  end
-
   # OUTLIERS
 
   view :outliers do
