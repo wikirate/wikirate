@@ -55,9 +55,23 @@ end
    the_count
    wikirate_claim_count
    yinyang_drag_item
+   overview
   ].each do |codename|
   next unless Card::Codename[codename]
   delete_code_card codename
+end
+
+[
+  "Write a new Summary",
+  "company overview",
+  "topic_overview",
+  "featured topic analysis",
+  "featured company analysis",
+  "Featured Company Overviews",
+  "Featured Topic Overviews",
+  "How to Participate"
+].each do |name|
+  delete_card name
 end
 
 # get rid of histories of relationship/inverse relationship value cards
@@ -72,6 +86,17 @@ RELATIONSHIP_VALUE_ACTION_SQL = %{
      AND metric_type_id in (#{Card::RelationshipID}, #{Card::InverseRelationshipID})
   )
 }
+
+Card.search(left: { type: :wikirate_topic }, right: :subtopic).each(&:delete!)
+
+Card.where(
+  "type_id = #{Card::SourceID} and year(created_at) < 2017 " \
+  "and not exists (select * from card_references where referee_id = cards.id)"
+).find_each do |source_card|
+  source_card.include_set_modules
+  source_card.delete!
+end
+
 Card.connection.execute RELATIONSHIP_VALUE_ACTION_SQL
 
 Card.empty_trash

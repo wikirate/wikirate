@@ -13,7 +13,7 @@ class CategoryValueValidator
   end
 
   def initialize_values
-    @values = Answer.where(metric_id: @metric_card.id).select(:value).distinct
+    @values = Answer.where(metric_id: @metric_card.id).distinct.pluck(:value)
     return unless @metric_card.multi_categorical?
 
     @values = @values.map { |v| v.split ", " }.flatten.uniq
@@ -21,9 +21,9 @@ class CategoryValueValidator
 
   def initialize_keys
     @key_to_name ||= {}
-    @keys = @values.map do |n|
-      key = n.value.to_name.key
-      @key_to_name[key] = n.value
+    @keys = @values.map do |v|
+      key = v.to_name.key
+      @key_to_name[key] = v
       key
     end
   end

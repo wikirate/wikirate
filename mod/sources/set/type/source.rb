@@ -1,6 +1,8 @@
 require "curb"
 require "link_thumbnailer"
 
+include_set Abstract::Delist
+
 card_accessor :metric, type: :pointer
 card_accessor :year, type: :pointer
 card_accessor :wikirate_topic, type: :pointer
