@@ -176,3 +176,9 @@ a.box-item {
     padding: 0!important;
   }
 }
+
+.TYPE-topic > .box-top {
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}

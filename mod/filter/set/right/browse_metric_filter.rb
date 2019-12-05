@@ -1,4 +1,5 @@
 include_set Abstract::BrowseFilterForm
+include_set Abstract::BookmarkFiltering
 
 def default_filter_hash
   { name: "" }
@@ -21,12 +22,6 @@ def filter_class
 end
 
 format :html do
-  def quick_filter_list
-    [{ bookmark: :bookmark,
-       text: "My Bookmarks",
-       class: "quick-filter-by-metric" }]
-  end
-
   def filter_label key
     key == :metric_type ? "Metric type" : super
   end
@@ -36,9 +31,7 @@ format :html do
   end
 
   def sort_options
-    { "Most Bookmarked": :bookmarkers,
-      "Most Companies": :company,
-      "Most Answers": :answer }.merge super
+    { "Most Companies": :company, "Most Answers": :answer }.merge super
   end
 
   def type_options type_codename, order="asc", max_length=nil

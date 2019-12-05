@@ -104,7 +104,7 @@ class Answer
     end
 
     def valid_sort_value_list
-      @valid_sort_value_list ||= Answer.column_names << "bookmarkers"
+      @valid_sort_value_list ||= Answer.column_names + ["bookmarkers"]
     end
 
     def valid_page_args? args

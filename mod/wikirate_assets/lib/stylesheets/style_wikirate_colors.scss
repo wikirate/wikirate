@@ -34,11 +34,13 @@
       color: #fff;
     }
   }
-  .quick-filter .quick-filter-by-#{$codename} {
-    background: rgba($color, 0.2);
-    color: $color;
-    &.active {
-      background: $color;
+  .quick-filter {
+    .quick-filter-by-#{$codename}, .quick-filter-by-#{$type} {
+      background: rgba($color, 0.2);
+      color: $color;
+      &.active {
+        background: $color;
+      }
     }
   }
 }

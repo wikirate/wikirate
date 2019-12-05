@@ -1,5 +1,6 @@
 include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
+include_set Abstract::BookmarkFiltering
 
 def filter_keys
   %i[status year check metric_name wikirate_topic metric_type value updated project
@@ -16,11 +17,13 @@ format :html do
   end
 
   def quick_filter_list
-    Card[:homepage_featured_topics].item_names.map do |topic|
+    super + Card[:homepage_featured_topics].item_names.map do |topic|
       { wikirate_topic: topic }
-    end << { bookmark: :bookmark,
-             text: "My Bookmarks",
-             class: "quick-filter-by-metric" }
+    end
+  end
+
+  def bookmark_type
+    :metric
   end
 
   def sort_options

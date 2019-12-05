@@ -150,7 +150,7 @@ RSpec.describe Card::AnswerQuery do
 
     context "with bookmark" do
       it "finds bookmarked" do
-        expect(filter_by(bookmark: :bookmarked)).to eq ["disturbances in the Force+2001"]
+        expect(filter_by(bookmark: :bookmark)).to eq ["disturbances in the Force+2001"]
       end
 
       it "finds not bookmarked" do
@@ -301,7 +301,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "policy and bookmark" do
-      expect(filter_by(policy: "Evil Project", bookmark: :bookmarked))
+      expect(filter_by(policy: "Evil Project", bookmark: :bookmark))
         .to eq(["disturbances in the Force+2001"])
     end
 

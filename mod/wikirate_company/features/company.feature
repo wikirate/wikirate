@@ -65,6 +65,6 @@ Feature: company feature
 
   Scenario: Paging
     Then I should see "Victims by Employees"
-    Then I click on "2"
+    Then I click "2" within ".paging"
     And I should not see "Victims by Employees"
 
