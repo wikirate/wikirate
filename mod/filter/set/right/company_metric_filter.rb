@@ -17,9 +17,7 @@ format :html do
   end
 
   def quick_filter_list
-    super + Card[:homepage_featured_topics].item_names.map do |topic|
-      { wikirate_topic: topic }
-    end
+    @quick_filter_list ||= Card[:metric, :browse_metric_filter].format.quick_filter_list
   end
 
   def bookmark_type

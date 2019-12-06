@@ -26,8 +26,8 @@ format :html do
     key == :metric_type ? "Metric type" : super
   end
 
-  def topic_quick_filters
-
+  def quick_filter_list
+    bookmark_quick_filter + topic_quick_filters
   end
 
   def default_year_option

@@ -34,6 +34,10 @@ format :html do
       "Most Companies": :company }
   end
 
+  def quick_filter_list
+    bookmark_quick_filter + topic_quick_filters
+  end
+
   view :filter_wikirate_status_formgroup, cache: :never do
     select_filter :wikirate_status, "Active"
   end

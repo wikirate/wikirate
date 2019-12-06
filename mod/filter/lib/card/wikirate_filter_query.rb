@@ -6,11 +6,10 @@ class Card
     end
     alias wikirate_topic_wql topic_wql
 
-
     # @param value [Symbol] :bookmark or :nobookmark
     # @return wql to find cards that the signed in user has (or has not) bookmarked
     def bookmark_wql value
-    # FIXME: support session bookmarks
+      # FIXME: support session bookmarks
       method = "#{bookmark_list_id ? '' : 'non'}bookmarker_bookmark_wql"
       send method, value.to_sym
     end
