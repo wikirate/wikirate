@@ -6,3 +6,9 @@ def wql_content
                       right_id: WikirateTopicID },
     append: company_name }
 end
+
+format :html do
+  def bookmark_type
+    :wikirate_topic
+  end
+end
