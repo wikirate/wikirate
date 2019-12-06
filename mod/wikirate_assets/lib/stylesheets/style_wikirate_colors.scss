@@ -179,4 +179,4 @@ $colorMap: (
 @include hoverTag(company, wikirate_company, $company-color);
 @include hoverTag(company_group, company_group, $company-group-color);
 @include hoverTag(metric, metric, $metric-color);
-
+@include hoverTag(project, project, $project-color);

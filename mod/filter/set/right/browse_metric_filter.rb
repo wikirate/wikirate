@@ -26,6 +26,10 @@ format :html do
     key == :metric_type ? "Metric type" : super
   end
 
+  def topic_quick_filters
+
+  end
+
   def default_year_option
     { "Any Year" => "" }
   end

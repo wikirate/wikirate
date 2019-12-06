@@ -30,7 +30,8 @@ class Card
     end
 
     def bookmark_list_id
-      @bookmark_list_id ||= Auth.signed_in? && Auth.current.try(:bookmarks_card)&.id
+      return unless Auth.can_bookmark?
+      @bookmark_list_id ||= Auth.current.bookmarks_card&.id
     end
   end
 end

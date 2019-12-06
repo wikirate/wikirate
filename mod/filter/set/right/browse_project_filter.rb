@@ -2,6 +2,7 @@
 
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
+include_set Abstract::BookmarkFiltering
 
 def filter_class
   ProjectFilterQuery
@@ -12,7 +13,7 @@ def default_sort_option
 end
 
 def filter_keys
-  %i[name wikirate_status wikirate_topic]
+  %i[name wikirate_status wikirate_topic bookmark]
 end
 
 def default_filter_hash
@@ -25,7 +26,8 @@ end
 
 format :html do
   def sort_options
-    { "Recently Added": :create,
+    { "Most Bookmarked": :bookmark,
+      "Recently Added": :create,
       "Alphabetical": :name,
       "Most Subprojects": :subprojects,
       "Most Metrics": :metric,
@@ -43,6 +45,8 @@ end
 
 # cql query to filter sources
 class ProjectFilterQuery < Card::FilterQuery
+  include WikirateFilterQuery
+
   def wikirate_status_wql value
     return unless value.present?
     add_to_wql :right_plus, [WikirateStatusID, { refer_to: value }]

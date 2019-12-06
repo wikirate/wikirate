@@ -12,6 +12,8 @@ format :html do
   end
 
   def quick_filter_list
+    return super unless Auth.can_bookmark?
+
     [{ bookmark: :bookmark,
        text: "My Bookmarks",
        class: "quick-filter-by-#{bookmark_type}" }] + super
