@@ -11,11 +11,15 @@ def self.included host_class
 end
 
 def cached_count
-  ::Count.fetch_value self
+  @cached_count || hard_cache_count(::Count.fetch_value(self))
 end
 
 def update_cached_count _changed_card=nil
-  ::Count.refresh(self)
+  hard_cache_count ::Count.refresh(self)
+end
+
+def hard_cache_count value
+  @cached_count = Card.cache.hard.write_attribute key, :cached_count, value
 end
 
 # called to refresh the cached count

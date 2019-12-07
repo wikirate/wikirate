@@ -559,6 +559,11 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 
 // Bookmarking
 
+.bookmark-view {
+  min-width: 3em;
+  text-align: left;
+}
+
 .bookmark-toggle {
   padding: 0.5em 0.8em 0.5em 0.2em;
   color: $gray-600;

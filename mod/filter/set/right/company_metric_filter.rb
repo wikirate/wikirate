@@ -11,6 +11,10 @@ def default_filter_hash
   { status: :exists, year: :latest, metric_name: "" }
 end
 
+def bookmark_type
+  :metric
+end
+
 format :html do
   def filter_label field
     field.to_sym == :metric_type ? "Metric type" : super
@@ -19,10 +23,6 @@ format :html do
   def quick_filter_list
     @quick_filter_list ||=
       Card.fetch(:metric, :browse_metric_filter).format.quick_filter_list
-  end
-
-  def bookmark_type
-    :metric
   end
 
   def sort_options

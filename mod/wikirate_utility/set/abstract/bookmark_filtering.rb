@@ -6,6 +6,19 @@ def default_sort_option
   :bookmarkers
 end
 
+def bookmark_type
+  name.left.downcase
+end
+
+def my_bookmarks?
+  current_bookmarks[Card.fetch_id(bookmark_type)].present?
+end
+
+
+format do
+  delegate :bookmark_type, :current_bookmarks, :my_bookmarks?, to: :card
+end
+
 format :html do
   def sort_options
     { "Most Bookmarked": :bookmarkers }.merge super
@@ -16,7 +29,7 @@ format :html do
   end
 
   def bookmark_quick_filter
-    return [] unless current_bookmarks_of_type(bookmark_type).present?
+    return [] unless my_bookmarks?
 
     [{ bookmark: :bookmark,
        text: "My Bookmarks",
@@ -24,16 +37,19 @@ format :html do
   end
 
   def topic_quick_filters
-    topic_names = current_bookmark_names_of_type :wikirate_topic
-    topic_names = featured_topic_names unless topic_names.present?
-    topic_names.map { |topic| { wikirate_topic: topic } }
+    topic_filter_names.map { |topic| { wikirate_topic: topic } }
+  end
+
+  def topic_filter_names
+    topic_ids = current_bookmarks[WikirateTopicID]
+    if topic_ids.present?
+      topic_ids.map(&:cardname).compact
+    else
+      featured_topic_names
+    end
   end
 
   def featured_topic_names
     Card[:homepage_featured_topics].item_names
-  end
-
-  def bookmark_type
-    card.name.left.downcase
   end
 end

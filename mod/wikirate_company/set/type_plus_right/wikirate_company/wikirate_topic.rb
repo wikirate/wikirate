@@ -7,8 +7,6 @@ def wql_content
     append: company_name }
 end
 
-format :html do
-  def bookmark_type
-    :wikirate_topic
-  end
+def bookmark_type
+  :wikirate_topic
 end
