@@ -15,11 +15,12 @@ def cached_count
 end
 
 def update_cached_count _changed_card=nil
-  hard_cache_count ::Count.refresh(self)
+  cache_cached_count ::Count.refresh(self)
 end
 
-def hard_cache_count value
-  @cached_count = Card.cache.hard.write_attribute key, :cached_count, value
+def cache_cached_count value
+  Card.cache.hard.write_attribute key, :cached_count, value if Card.cache.hard
+  @cached_count = value
 end
 
 # called to refresh the cached count
