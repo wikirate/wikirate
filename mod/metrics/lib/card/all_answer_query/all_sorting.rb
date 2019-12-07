@@ -22,9 +22,17 @@ class Card
       def sort rel
         return rel unless @sort_args.present?
         case @sort_args[:sort_by].to_sym
+        when :bookmarkers then sort_by_bookmarkers rel
         when :title_name then sort_by_metric_title rel
         else standard_sort rel
         end
+      end
+
+      def sort_by_bookmarkers rel
+        rel.joins(
+          "LEFT JOIN counts cts " \
+          "ON #{@partner}.id = cts.left_id AND cts.right_id = #{Card::BookmarkersID}"
+        ).order Arel.sql("cts.value #{@sort_args[:sort_order]}")
       end
 
       def sort_by_metric_title rel

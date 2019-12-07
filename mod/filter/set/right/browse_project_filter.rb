@@ -26,7 +26,7 @@ end
 
 format :html do
   def sort_options
-    { "Most Bookmarked": :bookmark,
+    { "Most Bookmarked": :bookmarkers,
       "Recently Added": :create,
       "Alphabetical": :name,
       "Most Subprojects": :subprojects,
