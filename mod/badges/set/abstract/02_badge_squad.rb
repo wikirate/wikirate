@@ -48,15 +48,13 @@ module BadgeSquad
     type_plus_right_count(type_id, right_id, :edited_by)
   end
 
-  def vote_count type_id
+  def bookmark_count type_id
     lambda do |user_id|
       user = user_id ? Card[user_id] : Auth.current
-      next nil unless user.respond_to?(:upvotes_card)
-      vote_card_ids = [user.upvotes_card.id, user.downvotes_card.id].compact
-      next nil unless vote_card_ids.present?
+      next nil unless (bookmarks_card_id = user.try(:bookmarks_card)&.id)
       {
         type_id: type_id,
-        referred_to_by: { id: ["in"] + vote_card_ids }
+        referred_to_by: bookmarks_card_id
       }
     end
   end

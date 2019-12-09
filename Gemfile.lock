@@ -1,4 +1,10 @@
 PATH
+  remote: vendor/card-mods/bookmarks
+  specs:
+    card-mod-bookmarks (0.1)
+      card
+
+PATH
   remote: vendor/card-mods/csv_import
   specs:
     card-mod-csv_import (0.8)
@@ -27,12 +33,6 @@ PATH
   remote: vendor/card-mods/pdfjs
   specs:
     card-mod-pdfjs (1.0)
-      card
-
-PATH
-  remote: vendor/card-mods/voting
-  specs:
-    card-mod-voting (1.0)
       card
 
 PATH
@@ -590,12 +590,12 @@ DEPENDENCIES
   capistrano-passenger
   capybara (~> 2.18)
   card!
+  card-mod-bookmarks!
   card-mod-csv_import!
   card-mod-logger!
   card-mod-markdown!
   card-mod-new_relic!
   card-mod-pdfjs!
-  card-mod-voting!
   cardname!
   company-mapping
   cucumber-expressions (= 5.0.7)

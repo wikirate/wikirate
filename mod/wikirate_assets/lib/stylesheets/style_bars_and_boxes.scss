@@ -119,117 +119,6 @@ a.box-item {
   justify-content: space-around;
 }
 
-// set consistent colors for a group of bars/boxes
-@mixin barbox($color) {
-  &.bar {
-    border-left-color: rgba($color, 0.2) !important;
-  }
-
-  &.expanded_bar-view:hover .bar, &.bar:hover {
-    border-left-color: $color !important;
-    .bar-left {
-      a, .image-box i {
-        color: $color;
-      }
-    }
-  }
-
-  &.box {
-    border-top-color: $color !important;
-    .box-top a, &:hover .box-middle i {
-      color: $color;
-    }
-  }
-}
-
-
-// type specific colors
-$colorMap: (
-  metric: $metric-color,
-  record: $record-color,
-  company: $company-color,
-  topic: $topic-color,
-  source: $source-color,
-  project: $project-color,
-  answer: $answer-color,
-  research_group: $default-cardtype-color,
-  post: $default-cardtype-color,
-  company_group: $company-group-color
-); // border color for bars and boxes
-
-@each $type, $color in $colorMap {
-  #main > .TYPE-#{$type} > .card {
-    > .card-header {
-      color: #fff;
-      background: $color;
-      text-align: center;
-      a {
-        color: #fff !important;
-      }
-    }
-
-    .two-column-box {
-      border-top: 5px solid $color;
-    }
-  }
-
-  .TYPE-#{$type} {
-    @include barbox($color);
-
-    &.thumbnail .thumbnail-title .card-title {
-      color: $color
-    }
-  }
-
-  .#{$type}-color, .#{$type}-color a {
-    color: $color;
-  }
-
-  .badge-#{$type} {
-    background-color: $color;
-  }
-
-  .top-border-#{$type} {
-    border-top: 3px solid $color;
-  }
-
-  .#{$type}-border-left {
-    border-left: 3px solid $color !important;
-  }
-
-  .RIGHT-#{$type} {
-    .contribution-report-header {
-      border-left: 4px solid $color;
-    }
-  }
-
-  .nav-item:hover .RIGHT-#{$type} {
-    &.tab-badge .badge {
-      background-color: $color;
-    }
-  }
-
-  .expanded-bar, .bar, .box {
-    &:hover .RIGHT-#{$type} {
-      &.labeled-badge .badge {
-        background-color: $color;
-      }
-    }
-  }
-}
-
-.LTYPE_RTYPE-topic-company {
-  @include barbox($topic-color)
-}
-
-.TYPE_PLUS_RIGHT-project-metric.titled-view .LTYPE_RTYPE-metric-project {
-  @include barbox($metric-color);
-}
-
-.TYPE_PLUS_RIGHT-project-company.titled-view .LTYPE_RTYPE-company-project {
-  @include barbox($company-color);
-}
-
 .TYPE-project, .TYPE-research_group {
   &.bar {
     &:hover .bar-left a {
@@ -286,4 +175,10 @@ $colorMap: (
   .box-bottom .labeled-badge {
     padding: 0!important;
   }
+}
+
+.TYPE-topic > .box-top {
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
 }

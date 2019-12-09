@@ -25,7 +25,7 @@ format :html do
 
   view :data do
     [
-      labeled_field(:subtopic, :thumbnail, title: "Subtopics"),
+      field_nest(:subtopic, title: "Subtopics", items: { view: :bar }),
       field_nest(:general_overview, view: :titled)
     ]
   end

@@ -1,8 +1,4 @@
 format :html do
-  view :vote do
-    field_nest :vote_count
-  end
-
   # OUTLIERS
 
   view :outliers do

@@ -90,7 +90,7 @@ RELATIONSHIP_VALUE_ACTION_SQL = %{
 Card.search(left: { type: :wikirate_topic }, right: :subtopic).each(&:delete!)
 
 Card.where(
-  "type_id = #{Card::SourceID} and year(created_at) < 2017 " \
+  "type_id = #{Card::SourceID} and year(created_at) < 2017 and trash is false " \
   "and not exists (select * from card_references where referee_id = cards.id)"
 ).find_each do |source_card|
   source_card.include_set_modules
@@ -98,5 +98,43 @@ Card.where(
 end
 
 Card.connection.execute RELATIONSHIP_VALUE_ACTION_SQL
+
+def import_delete_actions
+  Card::Action.where(%{
+      action_type = 2
+      AND EXISTS (select * from card_actions ca1
+                  where comment = 'imported'
+                  and ca1.card_id = card_actions.card_id
+                  and ca1.id <> card_actions.id)
+    })
+end
+
+def delete_overwritten_import_actions action_query
+  action_query.find_each do |action|
+    Card.connection.execute(
+      "DELETE from card_actions " \
+      "WHERE card_id = #{action.card_id} and id <= #{action.id}"
+    )
+  end
+end
+
+def old_admin_actions
+  Card::Action.where(%{
+      action_type = 2
+      AND EXISTS (select * from card_acts
+                  where card_acts.id = card_actions.card_act_id
+                  and year(acted_at) < 2018
+                  and actor_id in (#{admin_ids * ', '}))
+    })
+end
+
+def admin_ids
+  ["Vasiliki Gkatziaki", "Richard Mills", "Laureen van Breen"].map do |name|
+    Card.fetch_id name
+  end
+end
+
+delete_overwritten_import_actions import_delete_actions
+delete_overwritten_import_actions old_admin_actions
 
 Card.empty_trash

@@ -10,9 +10,9 @@ class BadgeSquad
                  research_agenda_setter: 16,
                  &create_type_count(MetricID)
 
-  add_badge_line :vote,
-                 metric_voter: 1,
+  add_badge_line :bookmark,
+                 metric_bookmarker: 1,
                  metric_critic: 5,
                  metric_connoisseur: 25,
-                 &vote_count(MetricID)
+                 &bookmark_count(MetricID)
 end

@@ -1,5 +1,7 @@
 class Card
   class CompanyFilterQuery < FilterQuery
+    include WikirateFilterQuery
+
     def company_wql company
       name_wql company
     end

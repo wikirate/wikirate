@@ -17,7 +17,7 @@ RSpec.describe Card::Set::Right::Wikipedia do
       end
 
       it "leaves content blank when company does not exist on wikipedia" do
-        expect(validated_wikipedia_field("voted for company").content).to be_blank
+        expect(validated_wikipedia_field("bookmarked company").content).to be_blank
       end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe Card::Set::Right::Wikipedia do
   describe "#wikipedia_extract" do
     it "should pull extract from wikipedia" do
       field = wikipedia_field "Death Star", content: "Death Star"
-      expect(field.wikipedia_extract).to match(/fictional mobile space platform/)
+      expect(field.wikipedia_extract).to match(/fictional mobile space/)
     end
   end
 end

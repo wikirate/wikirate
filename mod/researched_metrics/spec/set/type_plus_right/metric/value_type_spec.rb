@@ -54,7 +54,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
           subject.update content:  "Category"
           is_expected.to be_invalid.because_of answers: include("valid options")
           expect(subject.errors.first[1])
-            .to have_tag :a, text: "100"
+            .to match("100")
         end
       end
 

@@ -2,10 +2,10 @@ include_set Abstract::MetricBadge
 
 format :html do
   def valued_action
-    "voting"
+    "bookmarking"
   end
 end
 
 def badge_action
-  :vote
+  :bookmark
 end

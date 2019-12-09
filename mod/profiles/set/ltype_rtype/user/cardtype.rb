@@ -12,7 +12,7 @@ card_reader :badges_earned, default: { type_id: Card::PointerID }
 
 ACTION_LABELS = {
   created: "Created", updated: "Updated", discussed: "Discussed",
-  voted_on: "Voted On", double_checked: "Checked"
+  bookmarked: "Bookmarked", double_checked: "Checked"
 }.freeze
 
 ACTIONS = ACTION_LABELS.keys.freeze
@@ -45,13 +45,13 @@ def report_card variant
 end
 
 def report_action_applies? action
-  return true unless action.to_sym.in? %i[voted_on double_checked]
+  return true unless action.to_sym.in? %i[bookmarked double_checked]
   # TODO: optimize by adding a test method on the cardtype card itself
   send "#{action}_applies?"
 end
 
-def voted_on_applies?
-  Card.new(type_id: cardtype_card.id).respond_to? :vote_count
+def bookmarked_applies?
+  Card.new(type_id: cardtype_card.id).respond_to? :bookmarked
 end
 
 def double_checked_applies?
@@ -72,7 +72,7 @@ format :html do
 
   def valid_actions
     vars =  %i[created updated discussed]
-    vars << (%i[voted_on double_checked].find { |a| report_action_applies? a })
+    vars << (%i[bookmarked double_checked].find { |a| report_action_applies? a })
     vars
   end
 

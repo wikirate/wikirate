@@ -1,6 +1,9 @@
 include_set Abstract::BrowseFilterForm
+include_set Abstract::BookmarkFiltering
 
 class TopicFilterQuery < Card::FilterQuery
+  include WikirateFilterQuery
+
   def metric_wql metric
     add_to_wql :referred_to_by, left: { name: metric }, right: "topic"
   end
@@ -15,7 +18,7 @@ class TopicFilterQuery < Card::FilterQuery
 end
 
 def filter_keys
-  %i[name]
+  %i[name bookmark]
 end
 
 def default_filter_hash

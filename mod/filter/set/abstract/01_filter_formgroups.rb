@@ -55,8 +55,8 @@ format :html do
     select_filter :designer
   end
 
-  view :filter_importance_formgroup, cache: :never do
-    multiselect_filter :importance, %w[upvotes novotes]
+  view :filter_bookmark_formgroup, cache: :never do
+    select_filter :bookmark
   end
 
   view :filter_source_formgroup, cache: :never do
@@ -113,10 +113,9 @@ format :html do
     type_options :company_group
   end
 
-  def importance_options
-    { "I voted FOR" => :upvotes,
-      "I voted AGAINST" => :downvotes,
-      "I did NOT vote" => :novotes }
+  def bookmark_options
+    { "I bookmarked" => :bookmark,
+      "I did NOT bookmark" => :nobookmark }
   end
 
   def designer_options

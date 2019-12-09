@@ -14,7 +14,7 @@ format :html do
   end
 
   def header_right
-    render_vote_and_title
+    render_bookmark_and_title
   end
 
   def header_text
@@ -29,9 +29,9 @@ format :html do
     field_nest :metric_answer, view: :filtered_content
   end
 
-  view :vote_and_title do
+  view :bookmark_and_title do
     wrap_with :div, class: "d-flex" do
-      [render_vote, render_title_link]
+      [render_bookmark, render_title_link]
     end
   end
 

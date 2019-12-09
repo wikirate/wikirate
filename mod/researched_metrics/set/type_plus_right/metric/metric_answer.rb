@@ -23,19 +23,20 @@ end
 
 format :html do
   def cell_views
-    [:company_thumbnail, :concise]
+    [:company_thumbnail_with_bookmark, :concise]
   end
 
   def header_cells
-    [company_sort_link, render_answer_header]
+    [company_sort_links, render_answer_header]
   end
 
   def details_view
     :company_details_sidebar
   end
 
-  def company_sort_link
-    table_sort_link rate_subjects, :company_name
+  def company_sort_links
+    output [table_sort_link(rate_subjects, :company_name),
+            table_sort_link("", :bookmarkers, "pull-left mx-3 px-1")]
   end
 
   def show_chart?

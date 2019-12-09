@@ -556,55 +556,28 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   /* symbol for "collapsed" panels */
   content: "\f0d7";
 }
-// Voting
 
-.vote-button {
-  padding: 0 !important;
-  //override bootstrap .btn padding.
-}
-//.vote-link {
-//  color: #888;
-//  background-color: #eee;
-//}
-//.disabled-vote-link,
-//.disabled-vote-link:hover {
-//  color: #fff;
-//  background-color: #bbb;
-//
-//}
-.vote-count {
-  color: #555;
-  text-align: center;
-  font-weight: bold;
-}
-.vote-details {
-  color: #bbb;
-  font-size: 14px;
-  padding-top: 7px;
-}
-.vote-number {
-  font-weight: bold;
+// Bookmarking
+
+.bookmark-view {
+  min-width: 3.2em;
+  text-align: left;
 }
 
-.header-vote {
-  border-right: solid 1px #eee;
-  float: left;
-  margin-right: 10px;
-  padding: 10px;
-}
-
-//disabling for not to override bootstrap's button styles
-
-//.vote-button {
-//  color: #999;
-//}
-
-.current-user-up, .current-user-down {
-  color: $primary !important;
-  &.vote-button {
-    // background: rgba(61, 152, 140, 0.5);
-    background: none;
-    border: 0;
+.bookmark-toggle {
+  padding: 0.5em 0.2em 0.5em 0;
+  color: $gray-600;
+  .fa {
+    font-size: 1.8em;
+    cursor: pointer;
+  }
+  .bookmark-count {
+    vertical-align: top;
+    padding-top: 0.1em;
+    display: inline-block;
+  }
+  &.inactive-bookmark .bookmark-count {
+    color: $gray-600 !important;
   }
 }
 

@@ -11,14 +11,14 @@ RSpec.describe Count do
   end
 
   describe ".fetch_value" do
-    context "existing entry" do
+    context "when existing entry" do
       it "returns 10" do
         create_count
         expect(described_class.fetch_value(card)).to eq 10
       end
     end
 
-    context "new entry" do
+    context "when new entry" do
       it "returns 10" do
         expect(described_class.fetch_value(card)).to eq 10
       end
@@ -35,14 +35,14 @@ RSpec.describe Count do
   end
 
   describe ".step" do
-    context "existing entry" do
+    context "when existing entry" do
       it "returns 11" do
         create_count
         expect(described_class.step(card)).to eq 11
       end
     end
 
-    context "new entry" do
+    context "when new entry" do
       it "returns 10" do
         expect(described_class.step(card)).to eq 10
       end
