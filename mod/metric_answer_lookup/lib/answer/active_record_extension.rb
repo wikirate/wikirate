@@ -84,7 +84,7 @@ class Answer
     end
 
     def order_by_bookmarkers sort_order
-      Card::Bookmarks.sort self, "answers.metric_id", sort_order
+      Card::Bookmark.sort self, "answers.metric_id", sort_order
     end
 
     def order_args args
