@@ -32,8 +32,8 @@ class Card
       end
 
       def bookmark_query value
-        multi_metric { bookmark_wql :metric_id, value }
-        multi_company { bookmark_wql :company_id, value }
+        multi_metric { bookmark_restriction :metric_id, value }
+        multi_company { bookmark_restriction :company_id, value }
       end
 
       # SUPPORT METHODS
@@ -61,10 +61,11 @@ class Card
         single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
-      def bookmark_wql field, value
+      def bookmark_restriction field, value
         return unless (restriction = Bookmark.id_restriction(value == :bookmark))
 
-        restrict_to_ids field, restriction
+        operator = restriction.shift # restriction looks like wql, eg ["in", 1, 2]
+        filter field, restriction, operator
       end
     end
   end

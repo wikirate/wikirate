@@ -19,7 +19,7 @@ def update_cached_count _changed_card=nil
 end
 
 def hard_cached_count value
-  Card.cache.hard.write_attribute key, :cached_count, value if Card.cache.hard
+  Card.cache.hard&.write_attribute key, :cached_count, value
   @cached_count = value
 end
 

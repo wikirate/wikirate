@@ -11,7 +11,6 @@ Card.where(type_id: Card::MetricAnswerID).find_each do |answer|
   end
 end
 
-
 # get rid of structured content in structured cards (because most of it is old or
 # nonsense, and it includes a lot of errors)
 structured_ids = %i[

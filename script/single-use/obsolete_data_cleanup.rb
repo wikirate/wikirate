@@ -124,7 +124,7 @@ def old_admin_actions
       AND EXISTS (select * from card_acts
                   where card_acts.id = card_actions.card_act_id
                   and year(acted_at) < 2018
-                  and actor_id in (#{admin_ids * ', ' }))
+                  and actor_id in (#{admin_ids * ', '}))
     })
 end
 
@@ -138,4 +138,3 @@ delete_overwritten_import_actions import_delete_actions
 delete_overwritten_import_actions old_admin_actions
 
 Card.empty_trash
-

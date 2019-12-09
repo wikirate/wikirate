@@ -51,7 +51,7 @@ RSpec.describe Card::Set::Right::Wikipedia do
   describe "#wikipedia_extract" do
     it "should pull extract from wikipedia" do
       field = wikipedia_field "Death Star", content: "Death Star"
-      expect(field.wikipedia_extract).to match(/fictional mobile space platform/)
+      expect(field.wikipedia_extract).to match(/fictional mobile space/)
     end
   end
 end
