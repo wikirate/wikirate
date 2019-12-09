@@ -35,7 +35,8 @@ format :html do
   end
 
   def sort_options
-    { "Most Companies": :company, "Most Answers": :answer }.merge super
+    { "Most Companies": :company,
+      "Most Answers": :answer }.merge super
   end
 
   def type_options type_codename, order="asc", max_length=nil

@@ -1,7 +1,8 @@
 include_set Abstract::BrowseFilterForm
+include_set Abstract::BookmarkFiltering
 
 def filter_keys
-  %i[name project company_group]
+  %i[name project company_group bookmark]
 end
 
 def filter_class
@@ -21,6 +22,10 @@ def target_type_id
 end
 
 format :html do
+  def quick_filter_list
+    bookmark_quick_filter + company_group_quick_filters
+  end
+
   def sort_options
     { "Most Answers": :answer,
       "Most Metrics": :metric }.merge super

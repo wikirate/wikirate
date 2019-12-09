@@ -61,6 +61,10 @@ format :html do
     company_thumbnail hide: :thumbnail_link
   end
 
+  view :company_thumbnail_with_bookmark do
+    nest card.company_card, view: :thumbnail_with_bookmark, hide: :thumbnail_link
+  end
+
   def company_thumbnail nest_args={}
     nest_args.reverse_merge! view: :thumbnail
     wrap_with :div, (nest card.company_card, nest_args), class: "company-link"

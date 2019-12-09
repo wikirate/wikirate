@@ -2,8 +2,6 @@ class Card
   class AnswerQuery
     # conditions and condition support methods for non-standard fields.
     module MetricAndCompanyFilters
-      include WikirateFilterQuery
-
       def industry_query value
         multi_company do
           restrict_by_wql :company_id, CompanyFilterQuery.industry_wql(value)
@@ -34,9 +32,8 @@ class Card
       end
 
       def bookmark_query value
-        multi_metric do
-          bookmark_wql value
-        end
+        multi_metric { bookmark_wql :metric_id, value }
+        multi_company { bookmark_wql :company_id, value }
       end
 
       # SUPPORT METHODS
@@ -64,16 +61,10 @@ class Card
         single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
-      def nonbookmarker_bookmark_wql value
-        return unless value == :bookmark
+      def bookmark_wql field, value
+        return unless (restriction = Bookmark.id_restriction(value == :bookmark))
 
-        restrict_to_ids [] # no bookmark results for nonbookmarker
-      end
-
-      def bookmarker_bookmark_wql value
-        bookmarked = { linked_to_by: bookmark_list_id }
-        restrict_by_wql :metric_id,
-                        (value == :bookmark ? bookmarked : { not: bookmarked })
+        restrict_to_ids field, restriction
       end
     end
   end

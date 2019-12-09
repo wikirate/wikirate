@@ -11,12 +11,11 @@ def bookmark_type
 end
 
 def my_bookmarks?
-  current_bookmarks[Card.fetch_id(bookmark_type)].present?
+  Bookmark.current_bookmarks[Card.fetch_id(bookmark_type)].present?
 end
 
-
 format do
-  delegate :bookmark_type, :current_bookmarks, :my_bookmarks?, to: :card
+  delegate :bookmark_type, :my_bookmarks?, to: :card
 end
 
 format :html do
@@ -37,19 +36,25 @@ format :html do
   end
 
   def topic_quick_filters
-    topic_filter_names.map { |topic| { wikirate_topic: topic } }
+    quick_filters_for :wikirate_topic, :homepage_featured_topics
   end
 
-  def topic_filter_names
-    topic_ids = current_bookmarks[WikirateTopicID]
-    if topic_ids.present?
-      topic_ids.map(&:cardname).compact
-    else
-      featured_topic_names
+  def company_group_quick_filters
+    quick_filters_for :company_group, %i[company_group featured]
+  end
+
+  def quick_filters_for type_code, featured
+    filter_names_for(type_code, featured).map do |name|
+      { type_code => name }
     end
   end
 
-  def featured_topic_names
-    Card[:homepage_featured_topics].item_names
+  def filter_names_for type_code, featured
+    ids = Bookmark.current_bookmarks[Card::Codename.id(type_code)]
+    if ids.present?
+      ids.map(&:cardname).compact
+    else
+      Card[featured].item_names
+    end
   end
 end

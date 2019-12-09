@@ -1,12 +1,18 @@
 include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
+include_set Abstract::BookmarkFiltering
 
 def filter_keys
-  %i[status year company_name value updated company_group check source project outliers]
+  %i[status year company_name value updated company_group check source project outliers
+     bookmark]
 end
 
 def default_filter_hash
   { year: :latest, status: :exists, company_name: "" }
+end
+
+def bookmark_type
+  :wikirate_company
 end
 
 format :html do
@@ -14,14 +20,13 @@ format :html do
     @metric_card ||= card.left.metric_card
   end
 
-  view :filter_value_formgroup do
-    filter_value_formgroup metric_card.value_type_code
+  def quick_filter_list
+    @quick_filter_list ||=
+      Card.fetch(:wikirate_company, :browse_company_filter).format.quick_filter_list
   end
 
-  def quick_filter_list
-    Card[:company_group, :featured].item_names.map do |group|
-      { company_group: group }
-    end
+  view :filter_value_formgroup do
+    filter_value_formgroup metric_card.value_type_code
   end
 
   def filter_value_formgroup metric_type, default=nil

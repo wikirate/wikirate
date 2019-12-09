@@ -25,12 +25,12 @@ format :html do
       Card.fetch(:metric, :browse_metric_filter).format.quick_filter_list
   end
 
-  def sort_options
-    {
-      "Metric Bookmarks": :bookmarked,
-      "Metric Designer (Alphabetical)": :metric_name,
-      "Metric Title (Alphabetical)": :title_name,
-      "Recently Updated": :updated_at
-    }
-  end
+  #  def sort_options
+  #    {
+  #      "Metric Bookmarks": :bookmarked,
+  #      "Metric Designer (Alphabetical)": :metric_name,
+  #      "Metric Title (Alphabetical)": :title_name,
+  #      "Recently Updated": :updated_at
+  #    }
+  #  end
 end

@@ -7,6 +7,6 @@ include_set Abstract::TaggedByCachedCount, type_to_count: :user,
 
 format :html do
   def bookmark_status_class
-    card.active? ? "#{card.left.type_name.downcase}-color" : "inactive-bookmark"
+    card.active? ? "#{card.left.type_name.key}-color" : "inactive-bookmark"
   end
 end
