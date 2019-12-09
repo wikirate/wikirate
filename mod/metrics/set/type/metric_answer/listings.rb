@@ -54,7 +54,7 @@ format :html do
   end
 
   view :metric_thumbnail do
-    nest card.metric_card, view: :thumbnail, hide: %i[bookmark thumbnail_subtitle]
+    nest card.metric_card, view: :thumbnail, hide: :thumbnail_subtitle
   end
 
   view :company_thumbnail do

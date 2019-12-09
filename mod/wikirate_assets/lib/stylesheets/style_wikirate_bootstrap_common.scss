@@ -575,9 +575,7 @@ button.pointer-item-delete.btn.btn-outline-secondary {
     vertical-align: top;
     padding-top: 0.1em;
     display: inline-block;
-  }
-  &.inactive-bookmark .bookmark-count {
-    color: $gray-600 !important;
+    color: inherit !important
   }
 }
 
