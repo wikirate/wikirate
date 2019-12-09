@@ -29,10 +29,7 @@ class Card
       end
 
       def sort_by_bookmarkers rel
-        rel.joins(
-          "LEFT JOIN counts cts " \
-          "ON #{@partner}.id = cts.left_id AND cts.right_id = #{Card::BookmarkersID}"
-        ).order Arel.sql("cts.value #{@sort_args[:sort_order]}")
+        Bookmark.sort rel, "#{@partner}.id", @sort_args[:sort_order]
       end
 
       def sort_by_metric_title rel

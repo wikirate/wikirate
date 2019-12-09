@@ -2,13 +2,14 @@
 
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
+include_set Abstract::BookmarkFiltering
 
 def default_sort_option
   "researcher"
 end
 
 def filter_keys
-  %i[name wikirate_topic]
+  %i[name wikirate_topic bookmark]
 end
 
 def default_filter_hash

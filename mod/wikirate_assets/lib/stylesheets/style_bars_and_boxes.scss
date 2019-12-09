@@ -120,22 +120,20 @@ a.box-item {
 }
 
 .TYPE-project, .TYPE-research_group {
-  &.bar {
-    &:hover .bar-left a {
-      color: $brand-primary;
-    }
-    .bar-right {
-      flex-direction: column;
-      justify-content: left;
-      align-items: flex-end !important;
-      text-align: right;
-    }
+  &.bar:hover .bar-left a {
+    color: $brand-primary;
   }
 }
 
 .TYPE-project.bar {
   .bar-left .thumbnail-text {
     width: 100%;
+  }
+  .bar-right {
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-end !important;
+    text-align: right;
   }
   &:hover .default-progress-box .progress {
     -webkit-filter: none;

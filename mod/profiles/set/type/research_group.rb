@@ -2,6 +2,7 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Table
 include_set Abstract::BsBadge
+include_set Abstract::Bookmarkable
 
 card_accessor :organizer
 card_accessor :researcher
@@ -79,7 +80,7 @@ format :html do
   end
 
   view :bar_left do
-    render_thumbnail
+    render_thumbnail_with_bookmark
   end
 
   view :bar_middle do

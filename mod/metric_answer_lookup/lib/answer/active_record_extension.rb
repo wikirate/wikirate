@@ -23,7 +23,7 @@ class Answer
     def sort args
       return self unless valid_sort_args? args
       if args[:sort_by].to_sym == :bookmarkers
-        order_by_bookmarkers args
+        order_by_bookmarkers args[:sort_order]
       else
         order_by args
       end
@@ -83,11 +83,8 @@ class Answer
       order order_args(args)
     end
 
-    def order_by_bookmarkers args
-      joins("LEFT JOIN counts cts " \
-            "ON answers.metric_id = cts.left_id " \
-            "AND cts.right_id = #{Card::BookmarkersID}")
-        .order("cts.value #{args[:sort_order]}")
+    def order_by_bookmarkers sort_order
+      Card::Bookmarks.sort self, "answers.metric_id", sort_order
     end
 
     def order_args args
