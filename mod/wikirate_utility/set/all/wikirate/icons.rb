@@ -1,7 +1,7 @@
 ICON_MAP = {
   wikirate_company: :business,
   wikirate_topic: :widgets,
-  company_group: [:city, { library: :font_awesome }],
+  company_group: ["th-large", { library: :font_awesome }], # city not available in 4.7
   project: [:flask, { library: :font_awesome }],
   subproject: [:flask, { library: :font_awesome }],
   metric: ["bar-chart", { library: :font_awesome }],

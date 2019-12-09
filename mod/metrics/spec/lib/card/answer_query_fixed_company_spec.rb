@@ -308,14 +308,14 @@ RSpec.describe Card::AnswerQuery do
     it "year and industry" do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
         expect(filter_by(year: "1991", topic: "Force",
-                         bookmark: :bookmarked, updated: :week))
+                         bookmark: :bookmark, updated: :week))
           .to eq(with_year("disturbances in the Force", 1991))
       end
     end
 
     it "all in" do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
-        expect(filter_by(year: "1992", topic: "Force", bookmark: :bookmarked,
+        expect(filter_by(year: "1992", topic: "Force", bookmark: :bookmark,
                          updated: :month, project: "Evil Project",
                          research_policy: "Community Assessed", name: "in the",
                          metric_type: "Researched"))
