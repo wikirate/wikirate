@@ -40,8 +40,7 @@ class << self
   end
 
   def topic_names_for_metric metric_card
-    topic_pointer = metric_card.fetch trait: :wikirate_topic
-    return [] unless topic_pointer
-    Abstract::CachedCount.pointer_card_changed_card_names topic_pointer
+    return unless (topic_pointer = metric_card.fetch trait: :wikirate_topic)
+    topic_pointer.changed_item_names
   end
 end
