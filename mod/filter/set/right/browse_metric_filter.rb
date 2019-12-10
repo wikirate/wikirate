@@ -21,6 +21,10 @@ def filter_class
   MetricFilterQuery
 end
 
+def bookmark_type
+  :metric
+end
+
 format :html do
   def filter_label key
     key == :metric_type ? "Metric type" : super

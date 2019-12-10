@@ -39,14 +39,6 @@ format :html do
     [:wikirate_company, :metric, (:year if card.years), :subproject].compact
   end
 
-  def tab_options
-    {
-      wikirate_company: { count: card.num_companies },
-      metric: { count: card.num_metrics },
-      year: { count: card.num_years }
-    }
-  end
-
   view :metric_tab do
     tab_nest :metric
   end

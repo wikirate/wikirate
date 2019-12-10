@@ -22,9 +22,11 @@
 }
 
 @mixin hoverTag($type, $codename, $color) {
-  .RIGHT-#{$type}.d0-card-content .item-link {
-    > a {
-      background: $color;
+  .RIGHT-#{$type}.d0-card-content {
+    > .pointer-list, > .search-result-list {
+      .item-link > a {
+        background: $color;
+      }
     }
   }
   .#{$codename}.select2-selection--multiple .select2-selection__choice {

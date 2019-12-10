@@ -17,6 +17,10 @@ def default_filter_hash
   { name: "" }
 end
 
+def bookmark_type
+  :wikirate_company
+end
+
 def target_type_id
   WikirateCompanyID
 end
