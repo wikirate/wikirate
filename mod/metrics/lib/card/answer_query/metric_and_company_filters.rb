@@ -62,7 +62,7 @@ class Card
       end
 
       def bookmark_restriction field, value
-        return unless (restriction = Bookmark.id_restriction(value == :bookmark))
+        return unless (restriction = Bookmark.id_restriction(value.to_sym == :bookmark))
 
         operator = restriction.shift # restriction looks like wql, eg ["in", 1, 2]
         filter field, restriction, operator

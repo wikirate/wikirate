@@ -38,13 +38,14 @@ format :html do
     if contrib_page?
       %i[research_group projects_organized details]
     else
-      %i[details wikirate_topic source project]
+      %i[details wikirate_topic company_group source project]
     end
   end
 
   def tab_options
     { research_group: { label: "Research Groups" },
-      projects_organized: { label: "Projects Organized" } }
+      projects_organized: { label: "Projects Organized" },
+      company_group: { label: "Groups"} }
   end
 
   def answer_filtering
@@ -69,11 +70,12 @@ format :html do
     answer_filtering { |items| field_nest :project, items: items }
   end
 
+  view :company_group_tab do
+    field_nest :company_group, items: { view: :bar, show: :full_page_link } 
+  end
+
   view :details_tab do
-    [
-      labeled_field(:headquarters),
-      labeled_field(:company_group, :link, hide: :menu)
-    ] + integrations
+    [labeled_field(:headquarters)] + integrations
   end
 
   def integrations
