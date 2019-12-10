@@ -93,4 +93,4 @@ $(document).ready ->
 
   # the "View Methodology" button
   $("body").on "click", "._methodology-tab", ->
-    $('li.tab-li-methodology a').tab("show")
+    $("#research-details .nav-tabs > li:nth-child(2) a").tab("show")
