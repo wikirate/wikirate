@@ -36,6 +36,9 @@
   .#{$codename}.select2-selection--multiple .select2-selection__choice {
     @include coloredTag;
     background: $color;
+    max-width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
     .select2-selection__choice__remove {
       color: #fff;
     }

@@ -25,7 +25,7 @@ format :html do
 
   view :data do
     [
-      field_nest(:subtopic, title: "Subtopics", items: { view: :bar }),
+      field_nest(:subtopic, view: :titled, title: "Subtopics", items: { view: :bar }),
       field_nest(:general_overview, view: :titled)
     ]
   end

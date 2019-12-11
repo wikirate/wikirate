@@ -13,10 +13,6 @@ format :html do
     super
   end
 
-  def header_right
-    render_bookmark_and_title
-  end
-
   def header_text
     render_question
   end
@@ -27,12 +23,6 @@ format :html do
 
   view :data do
     field_nest :metric_answer, view: :filtered_content
-  end
-
-  view :bookmark_and_title do
-    wrap_with :div, class: "d-flex" do
-      [render_bookmark, render_title_link]
-    end
   end
 
   # TODO: fix homepage and get rid of this!

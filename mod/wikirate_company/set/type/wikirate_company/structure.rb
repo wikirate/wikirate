@@ -45,7 +45,7 @@ format :html do
   def tab_options
     { research_group: { label: "Research Groups" },
       projects_organized: { label: "Projects Organized" },
-      company_group: { label: "Groups"} }
+      company_group: { label: "Groups" } }
   end
 
   def answer_filtering
@@ -71,7 +71,7 @@ format :html do
   end
 
   view :company_group_tab do
-    field_nest :company_group, items: { view: :bar, show: :full_page_link } 
+    field_nest :company_group, items: { view: :bar, show: :full_page_link }
   end
 
   view :details_tab do
