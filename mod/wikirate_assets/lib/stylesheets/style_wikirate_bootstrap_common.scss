@@ -560,21 +560,30 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 // Bookmarking
 
 .bookmark-view {
-  min-width: 3.2em;
   text-align: left;
+  min-width: 3.2em
 }
 
 .bookmark-toggle {
+  display: flex;
+  align-items: center;
   white-space: nowrap;
   color: $gray-600;
   .fa {
     cursor: pointer;
+    font-size: x-large;
   }
   .bookmark-count {
     display: inline-block;
     color: inherit !important;
-    min-width: 1.7em
+    padding: 0 0.3em;
   }
+}
+.title-with-bookmark {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
 }
 
 .ellipsis,

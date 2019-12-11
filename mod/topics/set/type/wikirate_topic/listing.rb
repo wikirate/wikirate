@@ -15,10 +15,6 @@ format :html do
     [render_bar_middle, render_data]
   end
 
-  view :box_top do
-    [render_bookmark, super()]
-  end
-
   view :box_middle do
     field_nest :image, view: :core, size: :medium
   end
