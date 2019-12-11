@@ -19,7 +19,9 @@ ICON_MAP = {
   research_group: [:users, { library: :font_awesome }],
   contributions: [:plug, { library: :font_awesome }],
   activity: :directions_run,
-  program: :extension
+  program: :extension,
+  community_assessed: [:unlock, { library: :font_awesome }],
+  designer_assessed: [:lock, { library: :font_awesome }]
 }.freeze
 
 format :html do

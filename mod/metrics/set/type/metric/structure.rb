@@ -1,6 +1,3 @@
-include_set Abstract::TwoColumnLayout
-include_set Abstract::BsBadge
-
 format :html do
   def standard_title
     voo.title = card.metric_title
@@ -35,8 +32,6 @@ format :html do
   end
 
   view :question do
-    wrap_with :div, class: "icon-and-question d-flex" do
-      [fa_icon(:question), field_nest(:question, view: :content)]
-    end
+    field_nest :question, view: :content
   end
 end

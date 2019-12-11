@@ -8,10 +8,14 @@ format :html do
                class: "pointer-select  _pointer-select")
   end
 
-  view :score_thumbnail do
-    text = "<small class=\"text-muted\">#{time_ago_in_words card.created_at} ago</small>"
-    text_with_image title: card.scorer, text: text,
-                    size: :small, image: card.scorer_card.fetch(trait: :image, new: {})
+  view :scorer_image do
+    nest scorer_image_card, view: thumbnail_image_view,
+                            title: card.scorer,
+                            size: thumbnail_image_size
+  end
+
+  def scorer_image_card
+    card.scorer_card.fetch trait: :image, new: { type_id: ImageID }
   end
 
   def value_legend _html=true
@@ -79,17 +83,19 @@ format :html do
   end
 
   def fixed_thumbnail_subtitle
-    "Score | scored by #{link_to_card card.scorer}"
+    wrap_with :div, class: "scored-by-subtitle d-flex" do
+      "Score by #{render :scorer_image, size: :icon}"
+    end
   end
 
   def scored_metric_property title
-    wrap :div, class: "row scored-metric-property" do
+    wrap_with :div, class: "row scored-metric-property" do
       labeled title, nest(card.left, view: :thumbnail)
     end
   end
 
   def scorer_property title
-    wrap :div, class: "row scorer-property" do
+    wrap_with :div, class: "row scorer-property" do
       labeled title, nest(scorer_card, view: :thumbnail)
     end
   end

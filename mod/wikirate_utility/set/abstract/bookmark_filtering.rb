@@ -11,7 +11,8 @@ def bookmark_type
 end
 
 def my_bookmarks?
-  Bookmark.current_bookmarks[Card.fetch_id(bookmark_type)].present?
+  Bookmark.ok?
+  # Bookmark.current_bookmarks[Card.fetch_id(bookmark_type)].present?
 end
 
 format do
