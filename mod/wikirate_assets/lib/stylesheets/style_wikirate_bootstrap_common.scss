@@ -565,17 +565,15 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 }
 
 .bookmark-toggle {
-  padding: 0.5em 0.2em 0.5em 0;
+  white-space: nowrap;
   color: $gray-600;
   .fa {
-    font-size: 1.8em;
     cursor: pointer;
   }
   .bookmark-count {
-    vertical-align: top;
-    padding-top: 0.1em;
     display: inline-block;
-    color: inherit !important
+    color: inherit !important;
+    min-width: 1.7em
   }
 }
 

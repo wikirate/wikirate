@@ -43,6 +43,10 @@ format :html do
     quick_filters_for :company_group, %i[company_group featured]
   end
 
+  def project_quick_filters
+    quick_filters_for :project, :homepage_featured_projects
+  end
+
   def quick_filters_for type_code, featured
     filter_names_for(type_code, featured).map do |name|
       { type_code => name }

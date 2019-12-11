@@ -27,7 +27,7 @@ end
 
 format :html do
   def quick_filter_list
-    bookmark_quick_filter + company_group_quick_filters
+    bookmark_quick_filter + company_group_quick_filters + project_quick_filters
   end
 
   def sort_options

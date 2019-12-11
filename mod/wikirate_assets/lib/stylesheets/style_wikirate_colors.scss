@@ -26,6 +26,10 @@
     > .pointer-list, > .search-result-list {
       .item-link > a {
         background: $color;
+        max-width: 15em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }
@@ -167,7 +171,11 @@ $colorMap: (
 .quick-filter {
   padding-bottom: 0.5rem;
   a {
-    @include coloredTag
+    @include coloredTag;
+    max-width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     background: #666;
     cursor: default;
     &.active {

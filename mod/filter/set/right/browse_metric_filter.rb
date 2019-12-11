@@ -31,7 +31,7 @@ format :html do
   end
 
   def quick_filter_list
-    bookmark_quick_filter + topic_quick_filters
+    bookmark_quick_filter + topic_quick_filters + project_quick_filters
   end
 
   def default_year_option

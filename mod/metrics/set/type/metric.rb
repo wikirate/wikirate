@@ -20,6 +20,7 @@ card_accessor :range
 card_accessor :hybrid, type: :toggle
 card_accessor :question, type: :plain_text
 card_accessor :score
+card_accessor :wikirate_topic, type: :pointer
 
 # METRIC-CHILD-STYLE METHODS
 

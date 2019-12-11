@@ -14,7 +14,7 @@ format :html do
   end
 
   # LEFT SIDE
-
+  #
   def header_body
     class_up "media-heading", "company-color"
     super
