@@ -583,9 +583,12 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   display: flex;
   flex-direction: row;
   justify-content: left;
+  align-items: start;
+}
+.thumbnail-with-bookmark {
+  display: flex;
   align-items: center;
 }
-
 .media-body-xlarge {
   .bookmark-view {
     min-width: 2.8em;
