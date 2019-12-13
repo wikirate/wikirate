@@ -60,6 +60,8 @@ format :html do
       ids.map(&:cardname).compact
     elsif featured
       Card[featured].item_names
+    else
+      []
     end
   end
 end
