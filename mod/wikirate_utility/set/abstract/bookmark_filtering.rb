@@ -45,20 +45,20 @@ format :html do
   end
 
   def project_quick_filters
-    quick_filters_for :project, :homepage_featured_projects
+    quick_filters_for :project # , :homepage_featured_projects
   end
 
-  def quick_filters_for type_code, featured
+  def quick_filters_for type_code, featured=nil
     filter_names_for(type_code, featured).map do |name|
       { type_code => name }
     end
   end
 
-  def filter_names_for type_code, featured
+  def filter_names_for type_code, featured=nil
     ids = Bookmark.current_bookmarks[Card::Codename.id(type_code)]
     if ids.present?
       ids.map(&:cardname).compact
-    else
+    elsif featured
       Card[featured].item_names
     end
   end
