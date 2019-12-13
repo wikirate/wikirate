@@ -560,24 +560,45 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 // Bookmarking
 
 .bookmark-view {
-  min-width: 3.2em;
   text-align: left;
+  min-width: 3.2em
 }
 
 .bookmark-toggle {
-  padding: 0.5em 0.2em 0.5em 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
   color: $gray-600;
   .fa {
-    font-size: 1.8em;
     cursor: pointer;
+    font-size: x-large;
   }
   .bookmark-count {
-    vertical-align: top;
-    padding-top: 0.1em;
     display: inline-block;
-    color: inherit !important
+    color: inherit !important;
+    padding: 0 0.3em;
   }
 }
+.title-with-bookmark {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: start;
+}
+.thumbnail-with-bookmark {
+  display: flex;
+  align-items: center;
+}
+.media-body-xlarge {
+  .bookmark-view {
+    min-width: 2.8em;
+    .bookmark-toggle > .fa {
+      font-size: 1.1em;
+    }
+  }
+}
+
+
 
 .ellipsis,
 .ellipsis .known-card {

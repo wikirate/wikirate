@@ -37,6 +37,10 @@ def update_content_from_spec
   self.content = item_names_from_spec.to_pointer_content
 end
 
+def bookmark_type
+  :wikirate_company
+end
+
 format :html do
   view :filtered_content, cache: :never do
     if card.specification_card.explicit?

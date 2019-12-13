@@ -44,7 +44,7 @@ format :html do
 
   view :company_header do
     company_link do
-      nest card.company_card, view: :thumbnail_no_link
+      nest card.company_card, view: :thumbnail_with_bookmark, hide: :thumbnail_link
     end
   end
 

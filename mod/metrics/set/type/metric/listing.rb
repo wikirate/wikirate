@@ -15,9 +15,7 @@ format :html do
     render_details_tab
   end
 
-  view :box_top do
-    render :thumbnail
-  end
+  view :box_top, template: :haml
 
   view :box_middle do
     render :question

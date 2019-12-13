@@ -22,14 +22,23 @@
 }
 
 @mixin hoverTag($type, $codename, $color) {
-  .RIGHT-#{$type}.d0-card-content .item-link {
-    > a {
-      background: $color;
+  .RIGHT-#{$type}.d0-card-content {
+    > .pointer-list, > .search-result-list {
+      .item-link > a {
+        background: $color;
+        max-width: 15em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
   }
   .#{$codename}.select2-selection--multiple .select2-selection__choice {
     @include coloredTag;
     background: $color;
+    max-width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
     .select2-selection__choice__remove {
       color: #fff;
     }
@@ -165,7 +174,11 @@ $colorMap: (
 .quick-filter {
   padding-bottom: 0.5rem;
   a {
-    @include coloredTag
+    @include coloredTag;
+    max-width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     background: #666;
     cursor: default;
     &.active {

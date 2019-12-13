@@ -21,13 +21,17 @@ def filter_class
   MetricFilterQuery
 end
 
+def bookmark_type
+  :metric
+end
+
 format :html do
   def filter_label key
     key == :metric_type ? "Metric type" : super
   end
 
   def quick_filter_list
-    bookmark_quick_filter + topic_quick_filters
+    bookmark_quick_filter + topic_quick_filters + project_quick_filters
   end
 
   def default_year_option

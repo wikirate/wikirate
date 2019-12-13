@@ -19,16 +19,21 @@ def num_possible_records
   @num_possible_records ||= num_companies * num_metrics
 end
 
+def type_count type
+  @type_count ||= {}
+  @type_count[type] ||= send("#{type}_card").cached_count
+end
+
 def num_companies
-  @num_companies ||= wikirate_company_card.num
+  type_count :wikirate_company
 end
 
 def num_metrics
-  @num_metrics ||= metric_card.num
+  type_count :metric
 end
 
 def num_years
-  @num_years ||= year_card.num
+  type_count :year
 end
 
 def num_users
@@ -40,7 +45,7 @@ def num_answers
 end
 
 def num_subprojects
-  @num_subprojects ||= subproject_card.count
+  type_count :subproject
 end
 
 def units
@@ -48,7 +53,7 @@ def units
 end
 
 format :html do
-  delegate :units, to: :card
+  delegate :units, :type_count, to: :card
 
   view :overall_progress_box, cache: :never do
     overall_progress_box false
@@ -97,9 +102,8 @@ format :html do
   def formula
     vars = %i[wikirate_company metric]
     vars << :year if card.years
-    options = tab_options
     vars.compact.map do |codename|
-      "#{options[codename][:count]} #{codename.cardname.vary :plural}"
+      "#{type_count codename} #{codename.cardname.vary :plural}"
     end.join " x "
   end
 

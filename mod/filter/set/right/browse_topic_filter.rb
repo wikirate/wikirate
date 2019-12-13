@@ -34,7 +34,7 @@ def filter_class
 end
 
 def default_sort_option
-  "metric"
+  "bookmarkers"
 end
 
 format :html do

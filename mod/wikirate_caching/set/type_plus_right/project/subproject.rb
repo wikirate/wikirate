@@ -5,7 +5,7 @@ include_set Abstract::SearchCachedCount
 # count is on project+subproject, not project+project
 
 recount_trigger :type_plus_right, :project, :parent do |changed_card|
-  Abstract::CachedCount.pointer_card_changed_card_names(changed_card).map do |item_name|
+  changed_card.changed_item_names.map do |item_name|
     Card.fetch item_name.to_name.trait :subproject
   end
 end

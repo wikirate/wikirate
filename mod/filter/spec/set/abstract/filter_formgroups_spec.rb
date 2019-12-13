@@ -6,7 +6,8 @@ describe Card::Set::Abstract::FilterFormgroups do
 
     it "renders select form" do
       is_expected.to have_tag :select, with: { name: "sort" } do
-        with_option "Most Metrics", "metric", selected: "selected"
+        with_option "Most Bookmarked", "bookmarkers", selected: "selected"
+        with_option "Most Metrics", "metric"
         with_option "Most Companies", "company"
       end
     end

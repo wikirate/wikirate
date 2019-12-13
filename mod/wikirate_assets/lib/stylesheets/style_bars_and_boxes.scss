@@ -151,7 +151,7 @@ a.box-item {
 // for metric items
 
 .TYPE-metric.box {
-  height: 360px;
+  height: 320px;
   .box-middle {
     min-height: auto;
     i {
@@ -159,24 +159,49 @@ a.box-item {
     }
   }
   .box-top {
-    text-align: left !important;
     min-height: 80px;
-    h5 {
-      font-size: 110%;
+    .thumbnail-title {
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #eee;
+    }
+    .box-top-subtitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .image-box.small {
+        min-width: 25px;
+        min-height: 25px;
+        width: 25px;
+        height: 25px;
+      }
+      .thumbnail-subtitle {
+        font-size: 0.8em;
+        color: $text-muted;
+      }
+      .bookmark-view {
+        min-width: auto;
+        .bookmark-count {
+          padding-right: 0;
+        }
+      }
     }
   }
-
-  .box-middle .question {
-    font-size: 105%;
+  .box-middle {
+    position: relative;
+    text-align: center;
+    &:before {
+      position: absolute;
+      font-family: 'FontAwesome';
+      top: 0.3em;
+      left: 0.85em;
+      color: #eee;
+      content: "\f059";
+      text-align: center;
+      font-size: 6em;
+    }
   }
-
   .box-bottom .labeled-badge {
     padding: 0!important;
   }
-}
-
-.TYPE-topic > .box-top {
-  flex-direction: row;
-  justify-content: left;
-  align-items: center;
 }

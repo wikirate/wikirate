@@ -1,5 +1,3 @@
-include_set Abstract::TwoColumnLayout
-
 format :html do
   before :content_formgroups do
     voo.edit_structure = [
@@ -37,14 +35,6 @@ format :html do
 
   def tab_list
     [:wikirate_company, :metric, (:year if card.years), :subproject].compact
-  end
-
-  def tab_options
-    {
-      wikirate_company: { count: card.num_companies },
-      metric: { count: card.num_metrics },
-      year: { count: card.num_years }
-    }
   end
 
   view :metric_tab do

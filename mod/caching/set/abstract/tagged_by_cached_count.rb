@@ -17,9 +17,8 @@ def self.included host_class
     recount_trigger :type_plus_right,
                     host_class.type_to_count,
                     host_class.tag_pointer do |changed_card|
-      names = Abstract::CachedCount.pointer_card_changed_card_names(changed_card)
       trait_name = host_class.try(:count_trait) || host_class.type_to_count
-      names.map do |item_name|
+      changed_card.changed_item_names.map do |item_name|
         Card.fetch item_name.to_name.trait(trait_name)
       end
     end

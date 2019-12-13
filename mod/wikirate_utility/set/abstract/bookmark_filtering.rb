@@ -11,7 +11,8 @@ def bookmark_type
 end
 
 def my_bookmarks?
-  Bookmark.current_bookmarks[Card.fetch_id(bookmark_type)].present?
+  Bookmark.ok?
+  # Bookmark.current_bookmarks[Card.fetch_id(bookmark_type)].present?
 end
 
 format do
@@ -41,6 +42,10 @@ format :html do
 
   def company_group_quick_filters
     quick_filters_for :company_group, %i[company_group featured]
+  end
+
+  def project_quick_filters
+    quick_filters_for :project, :homepage_featured_projects
   end
 
   def quick_filters_for type_code, featured

@@ -1,6 +1,3 @@
-include_set Abstract::TwoColumnLayout
-include_set Abstract::BsBadge
-
 format :html do
   def standard_title
     voo.title = card.metric_title
@@ -11,10 +8,6 @@ format :html do
   def header_body
     class_up "media-heading", "metric-color"
     super
-  end
-
-  def header_right
-    render_bookmark_and_title
   end
 
   def header_text
@@ -29,12 +22,6 @@ format :html do
     field_nest :metric_answer, view: :filtered_content
   end
 
-  view :bookmark_and_title do
-    wrap_with :div, class: "d-flex" do
-      [render_bookmark, render_title_link]
-    end
-  end
-
   # TODO: fix homepage and get rid of this!
   view :title_and_question_compact do
     link = link_to_card card, card.metric_title, class: "inherit-anchor"
@@ -45,8 +32,6 @@ format :html do
   end
 
   view :question do
-    wrap_with :div, class: "icon-and-question d-flex" do
-      [fa_icon(:question), field_nest(:question, view: :content)]
-    end
+    field_nest :question, view: :content
   end
 end

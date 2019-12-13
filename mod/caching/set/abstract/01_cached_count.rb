@@ -31,23 +31,15 @@ def recount
   count
 end
 
-def self.pointer_card_changed_card_names card
-  return card.item_names if card.trash
-  old_changed_card_content = card.last_action.previous_value(:content)
-  old_card = Card.new type_id: PointerID, content: old_changed_card_content
-  (old_card.item_names - card.item_names) +
-    (card.item_names - old_card.item_names)
-end
-
 module ClassMethods
   def recount_trigger *set_parts_of_changed_card
     args =
       set_parts_of_changed_card.last.is_a?(Hash) ? set_parts_of_changed_card.pop : {}
     set_of_changed_card = ensure_set { set_parts_of_changed_card }
-    args[:on] ||= [:create, :update, :delete]
+    # args[:on] ||= [:create, :update, :delete]
     name = event_name set_of_changed_card, args
     set_of_changed_card.class_eval do
-      event name, :after_integrate do
+      event name, :after_integrate, args do
         # , args.merge(after_all: :refresh_updated_answers) do
         Array.wrap(yield(self)).compact.each do |expired_count_card|
           next unless expired_count_card.respond_to?(:recount)

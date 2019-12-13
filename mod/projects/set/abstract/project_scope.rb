@@ -1,3 +1,5 @@
+include_set Abstract::PointerCachedCount
+
 # module for project-scope-definining cards
 # (+company, +metric, and +year on projects)
 

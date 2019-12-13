@@ -3,6 +3,8 @@ require "savanna-outliers"
 # include_set Abstract::Export
 include_set Abstract::DesignerAndTitle
 include_set Abstract::MetricThumbnail
+include_set Abstract::TwoColumnLayout
+include_set Abstract::BsBadge
 include_set Abstract::Bookmarkable
 include_set Abstract::Delist
 
@@ -20,6 +22,7 @@ card_accessor :range
 card_accessor :hybrid, type: :toggle
 card_accessor :question, type: :plain_text
 card_accessor :score
+card_accessor :wikirate_topic, type: :pointer
 
 # METRIC-CHILD-STYLE METHODS
 
