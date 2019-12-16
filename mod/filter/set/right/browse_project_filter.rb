@@ -3,6 +3,7 @@
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
+include_set Abstract::SdgFiltering
 
 def filter_class
   ProjectFilterQuery

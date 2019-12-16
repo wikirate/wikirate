@@ -21,7 +21,19 @@
   }
 }
 
-@mixin hoverTag($type, $codename, $color) {
+@mixin quickFilterTag($by, $color) {
+  .quick-filter {
+    .quick-filter-by-#{$by} {
+      background: rgba($color, 0.2);
+      color: $color;
+      &.active {
+        background: $color;
+      }
+    }
+  }
+}
+
+@mixin hoverTag($type, $color) {
   .RIGHT-#{$type}.d0-card-content {
     > .pointer-list, > .search-result-list {
       .item-link > a {
@@ -33,7 +45,7 @@
       }
     }
   }
-  .#{$codename}.select2-selection--multiple .select2-selection__choice {
+  .#{$type}.select2-selection--multiple .select2-selection__choice {
     @include coloredTag;
     background: $color;
     max-width: 15em;
@@ -43,15 +55,7 @@
       color: #fff;
     }
   }
-  .quick-filter {
-    .quick-filter-by-#{$codename}, .quick-filter-by-#{$type} {
-      background: rgba($color, 0.2);
-      color: $color;
-      &.active {
-        background: $color;
-      }
-    }
-  }
+  @include quickFilterTag($type, $color)
 }
 
 @mixin coloredTag {
@@ -188,8 +192,47 @@ $colorMap: (
   }
 }
 
-@include hoverTag(topic, wikirate_topic, $topic-color);
-@include hoverTag(company, wikirate_company, $company-color);
-@include hoverTag(company_group, company_group, $company-group-color);
-@include hoverTag(metric, metric, $metric-color);
-@include hoverTag(project, project, $project-color);
+@include hoverTag(topic, $topic-color);
+@include hoverTag(company, $company-color);
+@include hoverTag(wikirate_topic, $topic-color);
+@include hoverTag(wikirate_company, $company-color);
+@include hoverTag(company_group, $company-group-color);
+@include hoverTag(metric, $metric-color);
+@include hoverTag(project, $project-color);
+
+@include quickFilterTag(sdg1, #E5243B)
+@include quickFilterTag(sdg2, #DDA63A)
+@include quickFilterTag(sdg3, #4C9F38)
+@include quickFilterTag(sdg4, #C5192D)
+@include quickFilterTag(sdg5, #FF3A21)
+@include quickFilterTag(sdg6, #26BDE2)
+@include quickFilterTag(sdg7, #FCC30B)
+@include quickFilterTag(sdg8, #A21942)
+@include quickFilterTag(sdg9, #FD6925)
+@include quickFilterTag(sdg10, #DD1367)
+@include quickFilterTag(sdg11, #FD9D24)
+@include quickFilterTag(sdg12, #BF8B2E)
+@include quickFilterTag(sdg13, #3F7E44)
+@include quickFilterTag(sdg14, #0A97D9)
+@include quickFilterTag(sdg15, #56C02B)
+@include quickFilterTag(sdg16, #00689D)
+@include quickFilterTag(sdg17, #19486A)
+
+.sdg-quick-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  > a {
+    margin: 0;
+    font-size: xx-small;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 0;
+    padding-top: 3px;
+    &.help-link {
+      color: #666 !important;
+      background: transparent;
+      margin-right: 0.4em;
+    }
+  }
+}

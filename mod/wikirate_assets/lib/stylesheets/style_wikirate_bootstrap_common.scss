@@ -568,7 +568,7 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  color: $gray-600;
+  color: $gray-500;
   .fa {
     cursor: pointer;
     font-size: x-large;
@@ -597,8 +597,6 @@ button.pointer-item-delete.btn.btn-outline-secondary {
     }
   }
 }
-
-
 
 .ellipsis,
 .ellipsis .known-card {

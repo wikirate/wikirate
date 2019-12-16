@@ -1,5 +1,6 @@
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
+include_set Abstract::SdgFiltering
 
 def default_filter_hash
   { name: "" }

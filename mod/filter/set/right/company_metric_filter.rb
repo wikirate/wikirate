@@ -1,6 +1,7 @@
 include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 include_set Abstract::BookmarkFiltering
+include_set Abstract::SdgFiltering
 
 def filter_keys
   %i[status year check metric_name wikirate_topic metric_type value updated project
@@ -24,13 +25,4 @@ format :html do
     @quick_filter_list ||=
       Card.fetch(:metric, :browse_metric_filter).format.quick_filter_list
   end
-
-  #  def sort_options
-  #    {
-  #      "Metric Bookmarks": :bookmarked,
-  #      "Metric Designer (Alphabetical)": :metric_name,
-  #      "Metric Title (Alphabetical)": :title_name,
-  #      "Recently Updated": :updated_at
-  #    }
-  #  end
 end
