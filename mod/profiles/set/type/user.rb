@@ -36,7 +36,7 @@ format :html do
   end
 
   def tab_list
-    %i[research_group contributions activity]
+    %i[research_group bookmarks contributions activity]
   end
 
   def tab_options
@@ -46,7 +46,7 @@ format :html do
     }
   end
 
-  view :research_group_tab, cache: :never do
+  view :research_group_tab do
     field_nest :research_group, items: { view: :bar, hide: :bar_middle }
   end
 
@@ -55,6 +55,10 @@ format :html do
       user_and_type = card.fetch trait: codename, new: {}
       nest user_and_type, view: :contribution_report
     end.join
+  end
+
+  view :bookmarks_tab do
+    field_nest :bookmarks
   end
 
   view :activity_tab, cache: :never do
