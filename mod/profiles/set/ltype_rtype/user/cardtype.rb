@@ -51,7 +51,7 @@ def report_action_applies? action
 end
 
 def bookmarked_applies?
-  Card.new(type_id: cardtype_card.id).respond_to? :bookmarked
+  Card.new(type_id: cardtype_card.id).respond_to? :bookmarkers
 end
 
 def double_checked_applies?
