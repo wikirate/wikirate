@@ -219,6 +219,12 @@ $colorMap: (
 @include quickFilterTag(sdg17, #19486A)
 
 .sdg-quick-filters {
+  .sdg-label > a {
+    color: $text-muted !important;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+  }
   display: flex;
   flex-wrap: nowrap;
   > a {
