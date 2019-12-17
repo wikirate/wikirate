@@ -12,7 +12,7 @@ format :html do
   end
 
   def sdg_label_link
-    link_to_card 1094739, "SDGs:", target: "_blank"
+    link_to_card SDG_OVERVIEW_ID, "SDGs:", target: "_blank"
   end
 
   def sdg_help_text

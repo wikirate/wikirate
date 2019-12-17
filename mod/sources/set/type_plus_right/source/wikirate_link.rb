@@ -27,7 +27,7 @@ end
 event :validate_link, :validate, on: :save, when: :link_present? do
   if !content.start_with? "http://", "https://"
     errors.add :url, "must begin with http:// or https://"
-  elsif wikirate_link?w
+  elsif wikirate_link?
     errors.add :invalid, "Cannot use wikirate url as source"
   end
 end
