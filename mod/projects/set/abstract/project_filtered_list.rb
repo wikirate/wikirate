@@ -1,10 +1,10 @@
 format :html do
   def input_type
-    :filtered_list
+    card.num > 100 ? : : :filtered_list
   end
 
   def default_item_view
-    card.num > 100 ? :name : :thumbnail_no_link
+    :thumbnail_no_link
   end
 
   # card for searching/filtering through all companies/metrics when adding new items
