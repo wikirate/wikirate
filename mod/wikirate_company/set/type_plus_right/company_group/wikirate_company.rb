@@ -56,7 +56,7 @@ format :html do
   end
 
   def input_type
-    :filtered_list
+    card.count > 200 ? :list : :filtered_list
   end
 
   def default_item_view
