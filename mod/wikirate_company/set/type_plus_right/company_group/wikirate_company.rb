@@ -1,5 +1,6 @@
 # cache # of companies in this group
 include_set Abstract::PointerCachedCount
+include_set Abstract::IdPointer
 
 delegate :specification_card, to: :left
 
