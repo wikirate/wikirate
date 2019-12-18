@@ -2,6 +2,7 @@
 # all companies on a given project.
 
 include_set Abstract::ProjectScope
+include_set Abstract::IdPointer
 
 format :html do
   def input_type

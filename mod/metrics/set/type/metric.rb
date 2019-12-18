@@ -46,11 +46,7 @@ end
 
 def value_options
   voc = value_options_card
-  if voc.type_id == Card::JsonID
-    voc.standard_option_names
-  else
-    value_options_card.item_names
-  end
+  voc.send "item_#{voc.type_id == Card::JsonID ? :values : :names}"
 end
 
 # these methods are overridden in at least one metric type
