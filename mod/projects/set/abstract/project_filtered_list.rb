@@ -1,6 +1,6 @@
 format :html do
   def input_type
-    card.num > 100 ? : : :filtered_list
+    card.num > 200 ? :list : :filtered_list
   end
 
   def default_item_view
