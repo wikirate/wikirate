@@ -4,7 +4,7 @@ format :html do
   end
 
   def default_item_view
-    num > 100 ? :name : :thumbnail_no_link
+    card.num > 100 ? :name : :thumbnail_no_link
   end
 
   # card for searching/filtering through all companies/metrics when adding new items
