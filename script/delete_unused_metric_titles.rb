@@ -11,5 +11,4 @@ Card.search type: "Metric Title", not: { left_plus: [{}, {type: "Metric"} ]} do 
   else
     title_card.delete!
   end
-
 end
