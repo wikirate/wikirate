@@ -29,4 +29,9 @@ format :html do
   view :core do
     nest search_card, view: :filtered_content, items: core_items_hash
   end
+
+  # don't add quick filters for other projects
+  def project_quick_filters
+    []
+  end
 end
