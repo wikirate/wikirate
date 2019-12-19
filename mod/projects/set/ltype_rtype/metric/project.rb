@@ -39,7 +39,7 @@ format :html do
 
   view :metric_header do
     metric_link do
-      nest card.metric_card, view: :thumbnail_with_bookmark, hide: :bookmark_link
+      nest card.metric_card, view: :thumbnail_with_bookmark, hide: :thumbnail_link
     end
   end
 

@@ -45,7 +45,8 @@ def metric_type_id
 end
 
 def value_options
-  value_options_card.item_names
+  voc = value_options_card
+  voc.send "item_#{voc.type_id == Card::JsonID ? :values : :names}"
 end
 
 # these methods are overridden in at least one metric type
