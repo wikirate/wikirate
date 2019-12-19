@@ -1,5 +1,6 @@
 # cache # of companies in this group
 include_set Abstract::PointerCachedCount
+include_set Abstract::IdPointer
 
 delegate :specification_card, to: :left
 
@@ -55,7 +56,7 @@ format :html do
   end
 
   def input_type
-    :filtered_list
+    card.count > 200 ? :list : :filtered_list
   end
 
   def default_item_view

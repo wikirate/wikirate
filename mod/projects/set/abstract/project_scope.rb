@@ -64,9 +64,17 @@ def parent_field
   @parent_field ||= relative_project_field(parent_project)
 end
 
+def scope_code
+  Card::Codename[right_id]
+end
+
+def short_scope_code
+  scope_code
+end
+
 # same field, different project
 def relative_project_field relative_project
-  relative_project.send "#{Card::Codename[right_id]}_card"
+  relative_project.send "#{scope_code}_card"
 end
 
 def union_with_parent_field
@@ -102,6 +110,6 @@ end
 event :prevent_deletion_if_subproject_items_present, :validate, on: :delete do
   return unless hereditary_field? && subproject_item_names.present?
 
-  errors.add :content, "This card cannot be deleted, " \
-                       "because there are subprojects with companies"
+  errors.add :content, "This card cannot be deleted, because there are subprojects " \
+                       "with at least one #{scope_code.cardname}"
 end

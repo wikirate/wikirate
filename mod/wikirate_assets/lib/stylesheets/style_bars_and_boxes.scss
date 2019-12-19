@@ -52,21 +52,15 @@ $box_stripe_color: $gray-700;
 /*----------- Bars and Boxes -------------*/
 
 
-.bar-left a {
-  color: inherit;
-}
-
-.bar > div {
-  overflow: hidden;
-}
-
-.box {
-  border-top: 3px solid $border-color;
-}
-
 .bar {
   @include badge-icons();
   border-left: 3px solid $border-color;
+  > div {
+    overflow: hidden;
+  }
+  .thumbnail {
+    align-items: center;
+  }
 }
 
 .bar:hover, .expanded-bar:hover .bar {
@@ -74,6 +68,23 @@ $box_stripe_color: $gray-700;
   // Following needed on answer bars
   .bar-left .company-link a {
     color: $company-color !important;
+  }
+}
+
+.bar-left a {
+  color: inherit;
+}
+
+@include media-breakpoint-down(sm) {
+  .bar-left h5 {
+    font-size: 1em;
+  }
+}
+
+.box {
+  border-top: 3px solid $border-color;
+  &:hover {
+    @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
   }
 }
 
@@ -88,36 +99,31 @@ $box_stripe_color: $gray-700;
   }
 }
 
-@include media-breakpoint-down(sm) {
-  .bar-left h5 {
-    font-size: 1em;
-  }
-}
-
 .box-item {
   transition: all 0.2s ease-out;
+  &:hover {
+    -webkit-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+  }
 }
-
-//for all box items
-
 a.box-item {
   text-decoration: none;
-}
-
-.box-item:hover {
-  -webkit-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
-}
-
-.box:hover {
-  @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
 }
 
 .box-bottom {
   @include badge-icons();
   justify-content: space-around;
 }
+
+// MOVE rules below to type-specific sheets?
+
+.bar-middle .RIGHT-topic .pointer-list {
+  text-align: center;
+}
+
+
+// PROJECT BARS
 
 .TYPE-project, .TYPE-research_group {
   &.bar:hover .bar-left a {
@@ -144,11 +150,7 @@ a.box-item {
   }
 }
 
-.bar-middle .RIGHT-topic .pointer-list {
-  text-align: center;
-}
-
-// for metric items
+// METRIC BOXES
 
 .TYPE-metric.box {
   height: 320px;

@@ -39,7 +39,9 @@ RSpec.describe Card::Set::TypePlusRight::Project::Subproject do
     it "prevents deletion of parent trait card" do
       create_subproject wikirate_company: "Death Star"
       expect { Card["Evil Project+companies"].delete! }
-        .to raise_error(/cannot be deleted, because there are subprojects with companies/)
+        .to raise_error(
+              /cannot be deleted, because there are subprojects with at least one Company/
+            )
     end
   end
 end

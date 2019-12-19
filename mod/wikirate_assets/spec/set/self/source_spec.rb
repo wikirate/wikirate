@@ -13,7 +13,7 @@ RSpec.describe Card::Set::Self::Source do
 
     it "has 'add source' button" do
       is_expected.to have_tag "a.btn", text: "Add Source",
-                                       with: { href: "/type/Source?view=new_in_modal" }
+                                       with: { href: "/new/Source" }
     end
 
     it "has Title filter open by default" do

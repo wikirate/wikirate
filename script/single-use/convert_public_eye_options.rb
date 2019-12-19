@@ -13,7 +13,7 @@ METRICS =
 OPTIONS = '
 { "yes": "ccc-pe-19.yes",
   "partial": "ccc-pe-19.partial",
-  "not found": "ccc-pe-19.notFound"
+  "nothing found": "ccc-pe-19.notFound"
 }'
 
 METRICS.each do |metric_name|
