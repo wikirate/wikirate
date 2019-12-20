@@ -2,8 +2,7 @@ require File.expand_path "../../../config/environment", __FILE__
 
 Card::Auth.current_id = Card.fetch_id "Ethan McCutchen"
 
-
-Card.search type: "Metric Title", not: { left_plus: [{}, {type: "Metric"} ]} do |title|
+Card.search type: "Metric Title", not: { left_plus: [{}, { type: "Metric" }] } do |title|
   title_card = Card[title]
 
   if title_card.children.present?
@@ -11,5 +10,4 @@ Card.search type: "Metric Title", not: { left_plus: [{}, {type: "Metric"} ]} do 
   else
     title_card.delete!
   end
-
 end

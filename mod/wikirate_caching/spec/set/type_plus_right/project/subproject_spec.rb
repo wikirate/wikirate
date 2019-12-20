@@ -40,8 +40,8 @@ RSpec.describe Card::Set::TypePlusRight::Project::Subproject do
       create_subproject wikirate_company: "Death Star"
       expect { Card["Evil Project+companies"].delete! }
         .to raise_error(
-              /cannot be deleted, because there are subprojects with at least one Company/
-            )
+          /cannot be deleted, because there are subprojects with at least one Company/
+        )
     end
   end
 end
