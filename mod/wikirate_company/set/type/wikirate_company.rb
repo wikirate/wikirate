@@ -3,6 +3,7 @@
 include_set Abstract::WikirateTable
 include_set Abstract::Media
 include_set Abstract::Delist
+include_set Abstract::Accountable
 include_set Abstract::Bookmarkable
 # include_set Abstract::Export
 
@@ -34,8 +35,7 @@ event :refresh_renamed_company_answers, :integrate,
 end
 
 def headquarters_jurisdiction_code
-  (hc = headquarters_card) && (jc_card = hc.item_cards.first) &&
-    jc_card.oc_code
+  headquarters_card&.item_cards.first&.oc_code
 end
 
 def add_alias alias_name
