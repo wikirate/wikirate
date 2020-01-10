@@ -35,7 +35,7 @@ event :refresh_renamed_company_answers, :integrate,
 end
 
 def headquarters_jurisdiction_code
-  headquarters_card&.item_cards.first&.oc_code
+  headquarters_card&.item_cards&.first&.oc_code
 end
 
 def add_alias alias_name
