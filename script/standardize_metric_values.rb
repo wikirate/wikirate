@@ -264,7 +264,7 @@ end
 # ======== end of functions =======
 
 Card::Auth.as_bot
-Card::Auth.current_id = Card.fetch_id "Richard Mills"
+Card::Auth.signin "Richard Mills"
 Card::Mailer.perform_deliveries = false
 
 rename_existing_metric_value_type

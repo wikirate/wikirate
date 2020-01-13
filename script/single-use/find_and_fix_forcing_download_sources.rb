@@ -9,7 +9,7 @@ OpenURI::Buffer.send :remove_const, "StringMax" if OpenURI::Buffer.const_defined
 OpenURI::Buffer.const_set "StringMax", 0
 source_cards = Card.search type_id: Card::SourceID, right_plus: ["link", { content: ["ne", ""] }]
 source_cards.each do |source_card|
-  Card::Auth.current_id = Card.fetch_id source_card.creator_id
+  Card::Auth.signin source_card.creator_id
   Card::Auth.as_bot do
     source_link_card = source_card.fetch trait: :wikirate_link
     url = source_link_card.content

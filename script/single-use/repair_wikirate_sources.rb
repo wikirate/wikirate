@@ -1,6 +1,6 @@
 require File.expand_path "../../../config/environment", __FILE__
 
-Card::Auth.current_id = Card.fetch_id "Ethan McCutchen"
+Card::Auth.signin "Ethan McCutchen"
 
 SOURCE_HASH = {
   "Source_000090797" => "Source_000090794",
