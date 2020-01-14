@@ -39,7 +39,7 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
 
   describe "metric fields" do
     def metric_field_card name
-      metric.fetch trait: name, new: {}
+      metric.fetch name, new: {}
     end
 
     RESTRICTED_METRIC_FIELDS.each do |field|
@@ -67,7 +67,7 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
 
   describe "answer fields" do
     def answer_field_card name
-      answer.fetch trait: name, new: {}
+      answer.fetch name, new: {}
     end
 
     RESTRICTED_ANSWER_FIELDS.each do |field|

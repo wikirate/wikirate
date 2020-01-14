@@ -1,5 +1,5 @@
 # def preview_card
-#   fetch(trait: :preview) if file_card&.preview_card?
+#   fetch(:preview) if file_card&.preview_card?
 # end
 
 format :html do

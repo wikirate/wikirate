@@ -12,6 +12,6 @@ end
 
 recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
   changed_card.item_cards.map do |source_card|
-    source_card.fetch trait: :metric_answer
+    source_card.fetch :metric_answer
   end.compact
 end

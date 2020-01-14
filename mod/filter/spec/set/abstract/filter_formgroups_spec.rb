@@ -1,5 +1,5 @@
 describe Card::Set::Abstract::FilterFormgroups do
-  let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
+  let(:card) { Card["Company"].fetch :browse_topic_filter }
 
   describe "sort formgroup" do
     subject { card.format.render_sort_formgroup }

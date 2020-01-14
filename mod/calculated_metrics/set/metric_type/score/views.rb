@@ -15,7 +15,7 @@ format :html do
   end
 
   def scorer_image_card
-    card.scorer_card.fetch trait: :image, new: { type_id: ImageID }
+    card.scorer_card.fetch :image, new: { type_id: ImageID }
   end
 
   def value_legend _html=true

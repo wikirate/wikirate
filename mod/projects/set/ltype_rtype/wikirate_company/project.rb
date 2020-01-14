@@ -13,7 +13,7 @@ def company_card
 end
 
 def company_image
-  company_card.fetch trait: :image, new: {}
+  company_card.fetch :image, new: {}
 end
 
 def metric_ids

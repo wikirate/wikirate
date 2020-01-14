@@ -21,7 +21,7 @@ end
 
 # have a +Text card.  convert it to a file
 def text_file source
-  text_card = source.fetch trait: :text
+  text_card = source.fetch :text
   return unless text_card&.content.present?
   convert_text_to_file source, text_card.content
 end
@@ -114,7 +114,7 @@ def tick key, msg, e=nil
 end
 
 def tag source, tag
-  tag_card = source.fetch trait: :wikirate_tag, new: { type_id: Card::PointerID }
+  tag_card = source.fetch :wikirate_tag, new: { type_id: Card::PointerID }
   tag_card.add_item! tag
 end
 

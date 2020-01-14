@@ -88,7 +88,7 @@ def move_source_listings_to target_company
 end
 
 def replace_company_listings trait, target_company
-  fetch(trait: trait).item_names.each do |trait|
+  fetch(trait).item_names.each do |trait|
     next unless base = yield(trait)
 
     replace_company_in_list base, target_company
@@ -96,7 +96,7 @@ def replace_company_listings trait, target_company
 end
 
 def replace_company_in_list base, target_company
-  list = base.fetch trait: :wikirate_company
+  list = base.fetch :wikirate_company
   list.drop_item name
   list.add_item target_company
   list.save

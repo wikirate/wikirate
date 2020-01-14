@@ -1,7 +1,7 @@
 include_set Abstract::ReportQueries
 
 def item_search_card
-  fetch trait: [:type, :by_name]
+  fetch [:type, :by_name]
 end
 
 format do

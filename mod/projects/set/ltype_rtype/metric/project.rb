@@ -23,7 +23,7 @@ def metric_designer_card
 end
 
 def metric_designer_image
-  metric_designer_card.fetch(trait: :image, new: {})
+  metric_designer_card.fetch(:image, new: {})
 end
 
 def where_answer

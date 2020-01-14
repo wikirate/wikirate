@@ -30,7 +30,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
   end
 
   def value_card
-    metric_answer.fetch(trait: :value)
+    metric_answer.fetch(:value)
   end
 
   specify "#metric" do
