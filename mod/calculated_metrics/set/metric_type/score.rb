@@ -65,7 +65,7 @@ end
 event :set_scored_metric_name, :initialize,
       on: :create do
   return if name.parts.size >= 3
-  metric = (mcard = remove_subfield(:metric)) && mcard.item_names.first
+  metric = (mcard = remove_subfield(:metric)) && mcard.first_name
   self.name = "#{metric}+#{Auth.current.name}"
 end
 

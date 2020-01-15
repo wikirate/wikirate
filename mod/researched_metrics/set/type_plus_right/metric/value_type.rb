@@ -17,7 +17,7 @@ def valid_content?
 end
 
 def value_type
-  item_names.first
+  first_name
 end
 
 def value_type_code

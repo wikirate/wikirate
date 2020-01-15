@@ -33,7 +33,7 @@ end
 # METRIC TYPES
 
 def metric_type
-  metric_type_card.item_names.first
+  metric_type_card.first_name
 end
 
 def metric_type_codename

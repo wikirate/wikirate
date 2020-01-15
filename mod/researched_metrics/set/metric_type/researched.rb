@@ -15,7 +15,7 @@ format :html do
   end
 
   def research_policy
-    @research_policy ||= card.research_policy_card.item_names.first.downcase
+    @research_policy ||= card.research_policy_card.first_name.downcase
   end
 
   def research_policy_icon

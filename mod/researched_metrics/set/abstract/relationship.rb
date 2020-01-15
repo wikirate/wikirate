@@ -5,11 +5,11 @@ def inverse_card
 end
 
 def inverse
-  fetch(:inverse).item_names.first
+  fetch(:inverse).first_name
 end
 
 def inverse_title
-  (card = fetch([metric_title, :inverse])) && card.item_names.first
+  Card.fetch([metric_title, :inverse])&.first_name
 end
 
 def relationship?
