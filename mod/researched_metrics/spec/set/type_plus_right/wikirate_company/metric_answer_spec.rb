@@ -2,7 +2,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
   let(:company) { Card["Death_Star"] }
 
   def card_subject
-    company.fetch trait: :metric_answer
+    company.fetch :metric_answer
   end
 
   check_views_for_errors :core

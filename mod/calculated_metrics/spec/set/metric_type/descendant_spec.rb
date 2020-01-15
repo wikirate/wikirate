@@ -41,7 +41,7 @@ RSpec.describe Card::Set::MetricType::Descendant do
     end
 
     context "with views" do
-      let(:formula_format) { metric.fetch(trait: :formula).format }
+      let(:formula_format) { metric.fetch(:formula).format }
 
       it "renders pointer edit view" do
         expect(formula_format.render(:edit)).to have_tag("ul._pointer-filtered-list")

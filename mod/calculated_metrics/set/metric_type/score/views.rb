@@ -4,7 +4,7 @@ format :html do
   view :select do
     options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
     select_tag("pointer_select",
-               options_for_select(options, card.item_names.first),
+               options_for_select(options, card.first_name),
                class: "pointer-select  _pointer-select")
   end
 
@@ -15,7 +15,7 @@ format :html do
   end
 
   def scorer_image_card
-    card.scorer_card.fetch trait: :image, new: { type_id: ImageID }
+    card.scorer_card.fetch :image, new: { type_id: ImageID }
   end
 
   def value_legend _html=true

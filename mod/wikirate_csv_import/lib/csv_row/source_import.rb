@@ -102,7 +102,7 @@ class CSVRow
 
     def update_title_card source_card
       return if (field = source_card.field(:wikirate_title)) && field.content.present?
-      # title_card = source_card.fetch trait: :wikirate_title,
+      # title_card = source_card.fetch :wikirate_title,
       #                                new: { content: @row[:title] }
       # return unless title_card.new?
       # add_subcard title_card
@@ -111,7 +111,7 @@ class CSVRow
 
     def create_or_update_pointer_subcard source_card, trait, content
       trait = hashkey_to_codename trait
-      trait_card = source_card.fetch trait: trait,
+      trait_card = source_card.fetch trait,
                                      new: { content: "[[#{content}]]" }
       if trait_card.new?
         add_card name: trait_card.name, content: trait_card.content

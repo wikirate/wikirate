@@ -3,7 +3,7 @@ require File.expand_path "../../../config/environment", __FILE__
 Card::Auth.signin "Ethan McCutchen"
 
 def validated_wpfield company
-  wpfield = company.fetch(trait: :wikipedia, new: {})
+  wpfield = company.fetch(:wikipedia, new: {})
   wpfield.validate_and_normalize_wikipedia_title
   wpfield
 end

@@ -1,7 +1,7 @@
 
 event :transform_jurisdiction_codes, :prepare_to_validate do
   return if oc_code
-  oc_code_from_content = item_names.first.sub(/^:/, "")
+  oc_code_from_content = first_name.sub(/^:/, "")
   return unless (j_name = jurisdiction_name(oc_code_from_content))
   self.content = "[[#{j_name}]]"
 end
@@ -43,6 +43,6 @@ end
 
 format :json do
   view :core do
-    card.item_names.first
+    card.first_name
   end
 end

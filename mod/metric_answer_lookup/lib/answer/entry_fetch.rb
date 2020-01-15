@@ -59,7 +59,7 @@ class Answer
     end
 
     def fetch_policy_id
-      policy_name = metric_card.fetch(trait: :research_policy)&.item_names&.first
+      policy_name = metric_card.fetch(:research_policy)&.first_name
       Card.fetch_id policy_name if policy_name
     end
 

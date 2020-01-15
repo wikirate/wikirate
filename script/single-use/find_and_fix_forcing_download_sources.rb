@@ -11,7 +11,7 @@ source_cards = Card.search type_id: Card::SourceID, right_plus: ["link", { conte
 source_cards.each do |source_card|
   Card::Auth.signin source_card.creator_id
   Card::Auth.as_bot do
-    source_link_card = source_card.fetch trait: :wikirate_link
+    source_link_card = source_card.fetch :wikirate_link
     url = source_link_card.content
     original_url = url
     url.gsub!(/ /, "%20")

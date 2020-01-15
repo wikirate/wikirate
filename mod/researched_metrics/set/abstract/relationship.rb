@@ -1,15 +1,15 @@
 include_set Abstract::Researched
 
 def inverse_card
-  fetch(trait: :inverse).item_cards.first
+  fetch(:inverse).item_cards.first
 end
 
 def inverse
-  fetch(trait: :inverse).item_names.first
+  fetch(:inverse).first_name
 end
 
 def inverse_title
-  (card = fetch([metric_title, :inverse])) && card.item_names.first
+  Card.fetch([metric_title, :inverse])&.first_name
 end
 
 def relationship?

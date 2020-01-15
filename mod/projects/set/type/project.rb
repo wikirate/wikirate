@@ -14,7 +14,7 @@ def parent_project_card
 end
 
 def parent_project
-  parent_card.item_names.first
+  parent_card.first_name
 end
 
 def answers

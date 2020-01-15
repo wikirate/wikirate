@@ -12,7 +12,7 @@ format :html do
   view :radio do
     input_name = "pointer_radio_button-#{card.key}"
     options = card.option_names.map do |option_name|
-      checked = (option_name == card.item_names.first)
+      checked = (option_name == card.first_name)
       id = "pointer-radio-#{option_name.to_name.key}"
       <<-HTML
         <li class="pointer-radio radio">

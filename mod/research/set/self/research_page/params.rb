@@ -90,7 +90,7 @@ format do
 
   def preview_source
     research_param(:preview_source) ||
-      (answer? && answer_card.source_card.item_names.first)
+      (answer? && answer_card.source_card.first_name)
   end
 
   def cited_preview_source?
@@ -98,7 +98,7 @@ format do
   end
 
   def source
-    params[:source] || (answer? && answer_card.source_card.item_names.first)
+    params[:source] || (answer? && answer_card.source_card.first_name)
   end
 
   def years

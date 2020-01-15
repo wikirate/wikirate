@@ -21,7 +21,7 @@ def move_source_listings_to target_metric
 end
 
 def replace_metric_listings trait, target_metric
-  fetch(trait: trait).item_names.each do |trait|
+  fetch(trait).item_names.each do |trait|
     next unless base = yield(trait)
 
     replace_metric_in_list base, target_metric
@@ -29,7 +29,7 @@ def replace_metric_listings trait, target_metric
 end
 
 def replace_metric_in_list base, target_metric
-  list = base.fetch trait: :metric
+  list = base.fetch :metric
   list.drop_item name
   list.add_item target_metric
   list.save
