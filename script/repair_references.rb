@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require File.dirname(__FILE__) + "/../config/environment"
-Card::Auth.current_id = Card::WagnBotID
+Card::Auth.signin Card::WagnBotID
 
 Card::Reference.repair_all

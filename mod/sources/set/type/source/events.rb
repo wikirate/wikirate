@@ -20,7 +20,7 @@ def add_error_unless_field fieldcode
 end
 
 def field_present? fieldcode
-  field = subfield(fieldcode) || (real? && fetch(trait: fieldcode))
+  field = subfield(fieldcode) || (real? && fetch(fieldcode))
   field.present?
 end
 

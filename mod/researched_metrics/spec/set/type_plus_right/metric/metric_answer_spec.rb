@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
   let(:metric) { Card[@metric_name || "Jedi+disturbances in the Force"] }
-  let(:metric_answer) { metric.fetch trait: :metric_answer }
+  let(:metric_answer) { metric.fetch :metric_answer }
 
   # @return [Array] of company+year strings
   let :answer_items do

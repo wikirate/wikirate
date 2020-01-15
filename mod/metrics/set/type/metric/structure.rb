@@ -15,7 +15,7 @@ format :html do
   end
 
   def image_card
-    @image_card ||= card.metric_designer_card.fetch trait: :image, new: {}
+    @image_card ||= card.metric_designer_card.fetch :image, new: {}
   end
 
   view :data do

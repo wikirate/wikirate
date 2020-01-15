@@ -134,7 +134,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
       Card.fetch("Joe User", :double_checked).content
     end
     let(:checked_by) do
-      answer_card.fetch trait: :checked_by
+      answer_card.fetch :checked_by
     end
 
     it "checks the metric value" do
@@ -163,7 +163,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
   describe "uncheck value" do
     subject(:cb_card) do
-      cb_card = answer_card.fetch trait: :checked_by,
+      cb_card = answer_card.fetch :checked_by,
                                   new: { content: "[[Joe User]]" }
       cb_card.save!
       cb_card.clear_subcards

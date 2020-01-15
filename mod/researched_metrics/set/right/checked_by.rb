@@ -46,7 +46,7 @@ def checker_count
 end
 
 def check_requester
-  check_requested_by_card&.item_names&.first
+  check_requested_by_card&.first_name
 end
 
 def check_requested_by_card

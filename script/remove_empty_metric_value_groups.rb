@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + "/../config/environment"
 # Card::Auth.as_bot
-Card::Auth.current_id = Card::WagnBotID
+Card::Auth.signin Card::WagnBotID
 
 Card.search(type: "Metric") do |metric|
   puts "~~~\n\nworking on METRIC: #{metric.name}"

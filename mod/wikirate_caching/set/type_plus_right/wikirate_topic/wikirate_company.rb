@@ -11,7 +11,7 @@ def topic_name
 end
 
 def metric_ids
-  left.fetch(trait: :metric, new: {}).item_ids
+  left.fetch(:metric, new: {}).item_ids
 end
 
 def skip_search?

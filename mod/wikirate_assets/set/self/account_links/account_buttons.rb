@@ -1,7 +1,11 @@
 format :html do
-  before :sign_up do
-    class_up "signup-link", "btn btn-highlight"
+  def bookmark_count
+    @bookmark_count ||= Card::Bookmark.current_ids.size
+  end
+
+  view :sign_up do
     voo.title = "Join"
+    haml :sign_up_with_bookmarks, join_link: super()
   end
 
   before :sign_in do

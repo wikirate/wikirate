@@ -1,6 +1,6 @@
 require File.expand_path "../../../config/environment", __FILE__
 
-Card::Auth.current_id = Card.fetch_id "Ethan McCutchen"
+Card::Auth.signin "Ethan McCutchen"
 
 VALUE_IDS_WRONG = %w[
   Clean_Clothes_Campaign+Address+J_Thomson_Colour_Printers_Ltd+2016

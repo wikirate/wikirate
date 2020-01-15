@@ -1,6 +1,6 @@
 require File.expand_path "../../../config/environment", __FILE__
 
-Card::Auth.current_id = Card.fetch_id "Ethan McCutchen"
+Card::Auth.signin "Ethan McCutchen"
 
 # correct answer names (eg by removing underscores)
 Card.where(type_id: Card::MetricAnswerID).find_each do |answer|

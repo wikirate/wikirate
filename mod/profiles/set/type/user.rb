@@ -52,7 +52,7 @@ format :html do
 
   view :contributions_tab, cache: :never do
     CONTRIBUTION_TYPES.map do |codename|
-      user_and_type = card.fetch trait: codename, new: {}
+      user_and_type = card.fetch codename, new: {}
       nest user_and_type, view: :contribution_report
     end.join
   end

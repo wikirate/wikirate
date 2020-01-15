@@ -18,7 +18,7 @@ event :abort_storage, :validate, on: :save do
 end
 
 def formula_card
-  metric_card.fetch trait: :formula
+  metric_card.fetch :formula
 end
 
 # db_content should only be present when it has been set by a `card[content]` parameter.

@@ -15,8 +15,8 @@ class ConvertCurrencyToUnit < Card::Migration
   end
 
   def standardize_money_metric metric
-    currency_card = metric.fetch trait: :currency
-    metric.fetch(trait: :unit)&.delete!
+    currency_card = metric.fetch :currency
+    metric.fetch(:unit)&.delete!
     currency_card.update! name: metric.name.field(:unit)
     standardize_units currency_card
   end

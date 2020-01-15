@@ -13,16 +13,16 @@ card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
 card_accessor :value_options
-card_accessor :report_type
-card_accessor :research_policy
 card_accessor :project
 card_accessor :metric_answer
 card_accessor :unit
 card_accessor :range
 card_accessor :hybrid, type: :toggle
 card_accessor :question, type: :plain_text
-card_accessor :score
+card_accessor :report_type, type: :pointer
+card_accessor :score, type: :pointer
 card_accessor :wikirate_topic, type: :pointer
+card_accessor :research_policy, type: :pointer
 
 # METRIC-CHILD-STYLE METHODS
 
@@ -33,7 +33,7 @@ end
 # METRIC TYPES
 
 def metric_type
-  metric_type_card.item_names.first
+  metric_type_card.first_name
 end
 
 def metric_type_codename

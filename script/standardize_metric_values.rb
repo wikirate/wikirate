@@ -90,7 +90,7 @@ end
 
 def normalize_metric metric, i_value_type_card=nil
   metric_values = metric_values metric.name
-  value_type_card = i_value_type_card || m.fetch(trait: :value_type, new: {})
+  value_type_card = i_value_type_card || m.fetch(:value_type, new: {})
   value_type = value_type_card.item_names[0]
   if value_type == "Category"
     update_options [metric]
@@ -133,7 +133,7 @@ def normalize_number content, mv
 end
 
 def update_unit metric, unit
-  unit_card = metric.fetch trait: :unit, new: {}
+  unit_card = metric.fetch :unit, new: {}
   return if unit_card.content.include?(unit)
   puts "Updating #{unit_card.name} from #{unit_card.content} to #{unit}".green
   unit_card.content = unit
@@ -251,7 +251,7 @@ def update_options metrics
   metrics.each do |m|
     metric_values = metric_values m.name
     options = extract_options metric_values
-    option_card = m.fetch trait: :value_options, new: {}
+    option_card = m.fetch :value_options, new: {}
     next if options.empty?
     metrics_with_options.push m
     option_card.content = options.join("")
@@ -264,7 +264,7 @@ end
 # ======== end of functions =======
 
 Card::Auth.as_bot
-Card::Auth.current_id = Card.fetch_id "Richard Mills"
+Card::Auth.signin "Richard Mills"
 Card::Mailer.perform_deliveries = false
 
 rename_existing_metric_value_type

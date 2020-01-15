@@ -33,7 +33,7 @@ RSpec.describe Card::Set::Type::Source::Preview do
         @result = @pdf_source.format._render_preview
       end
       it "handles pdf" do
-        file_url = @pdf_source.fetch(trait: :file).attachment.url
+        file_url = @pdf_source.fetch(:file).attachment.url
         expect(@result).to have_tag("div", with: { id: "pdf-preview" }) do
           with_tag "iframe", with: {
             id: "source-preview-iframe",

@@ -5,7 +5,7 @@ require_relative "../config/environment"
 
 # NOTE: there is nothing wikirate-specific here.
 
-Card::Auth.current_id = Card.fetch_id "Ethan McCutchen"
+Card::Auth.signin "Ethan McCutchen"
 
 CHILD_MISMATCH_QUERY = "SELECT main.id FROM cards main
                         JOIN cards as cleft ON main.left_id = cleft.id
