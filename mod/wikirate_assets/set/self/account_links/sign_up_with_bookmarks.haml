@@ -1,8 +1,8 @@
 %span.text-nowrap
   - if bookmark_count.positive?
-    %span{ data: { toggle: "popover",
-                   title: "Bookmarks",
-                   content: "Join to save #{bookmark_count} bookmark(s)." } }
+    %span.join-bookmark{ data: { toggle: "popover",
+                                 title: "Bookmarks",
+                                 content: join_bookmark_text } }
       = fa_icon "bookmark"
       = bookmark_count
   .d-inline-block
