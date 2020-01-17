@@ -3,7 +3,7 @@ format :html do
     @bookmark_count ||= Card::Bookmark.current_ids.size
   end
 
-  def bookmark_text
+  def join_bookmark_text
     bookmarks = "bookmark".pluralize bookmark_count
     "Join to save #{bookmark_count} #{bookmarks}."
   end
