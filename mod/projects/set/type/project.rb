@@ -1,4 +1,6 @@
 include_set Abstract::Thumbnail
+include_set Abstract::TwoColumnLayout
+include_set Abstract::Bookmarkable
 
 card_reader :wikirate_company
 card_reader :metric
@@ -12,7 +14,7 @@ def parent_project_card
 end
 
 def parent_project
-  parent_card.item_names.first
+  parent_card.first_name
 end
 
 def answers

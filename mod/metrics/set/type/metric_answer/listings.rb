@@ -49,16 +49,20 @@ format :html do
 
   # SHARED IN VARIOUS LISTINGS
 
-  view :metric_thumbnail_with_vote do
-    nest card.metric_card, view: :thumbnail_with_vote, hide: :thumbnail_link
+  view :metric_thumbnail_with_bookmark do
+    nest card.metric_card, view: :thumbnail_with_bookmark, hide: :thumbnail_link
   end
 
   view :metric_thumbnail do
-    nest card.metric_card, view: :thumbnail, hide: [:vote, :thumbnail_subtitle]
+    nest card.metric_card, view: :thumbnail, hide: :thumbnail_subtitle
   end
 
   view :company_thumbnail do
     company_thumbnail hide: :thumbnail_link
+  end
+
+  view :company_thumbnail_with_bookmark do
+    nest card.company_card, view: :thumbnail_with_bookmark, hide: :thumbnail_link
   end
 
   def company_thumbnail nest_args={}

@@ -17,11 +17,10 @@ RSpec.describe Answer, "Answer.search" do
     expect(result.first).to eq "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
-  it "can sort by importance" do
+  it "can sort by bookmarks" do
     result = search(designer_name: "Jedi", return: :title,
-                    sort_by: :importance, sort_order: :desc)
+                    sort_by: :bookmarkers, sort_order: :desc)
     expect(result.first).to eq "disturbances in the Force"
-    expect(result.last).to eq "deadliness"
   end
 
   it "can return multiple columns" do

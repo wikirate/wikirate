@@ -9,7 +9,7 @@ Feature: company feature
     Then I should see "disturbances in the Force"
     And I should see "Wikipedia"
     And I wait for ajax response
-    Then I should see "fictional mobile space platform"
+    Then I should see "fictional mobile space"
     Then I click on "Topics"
     And I should see "Force"
     Then I click on "Projects"
@@ -65,8 +65,6 @@ Feature: company feature
 
   Scenario: Paging
     Then I should see "Victims by Employees"
-    And I should not see "deadliness Research | community assessed"
-    Then I click on "2"
-    Then I should see "deadliness Research | community assessed"
+    Then I click "2" within ".paging"
     And I should not see "Victims by Employees"
 

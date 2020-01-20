@@ -10,7 +10,7 @@ format :html do
   end
 
   def topic_metric
-    topic.fetch(trait: :metric, new: {})
+    topic.fetch(:metric, new: {})
   end
 
   def answer_count

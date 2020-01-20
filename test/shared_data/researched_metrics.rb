@@ -10,8 +10,7 @@ class SharedData
       Card::Env[:host] = "wikirate.org"
       create_or_update "1977", type_id: Card::YearID
       create_metrics
-      vote_on_metrics
-      update_vote_counts
+      bookmark_metrics
     end
 
     def create_metrics
@@ -41,20 +40,20 @@ class SharedData
 
       Timecop.freeze(HAPPY_BIRTHDAY) do
         source = sample_source(:star_wars).name
-        metric.create_values do
+        metric.create_answers do
           Death_Star "1990" => { value: "yes", source: source }
         end
       end
       Timecop.freeze(HAPPY_BIRTHDAY - 1.day) do
-        metric.create_values true do
+        metric.create_answers true do
           Death_Star "1991" => "yes"
         end
       end
       Timecop.freeze(HAPPY_BIRTHDAY - 2.weeks) do
-        metric.create_values true do
+        metric.create_answers true do
           Death_Star "1992" => "yes"
         end
-        Card["Fred+dinosaurlabor"].create_values true do
+        Card["Fred+dinosaurlabor"].create_answers true do
           Death_Star "2010" => "yes"
         end
       end
@@ -192,24 +191,13 @@ class SharedData
       end
     end
 
-    def vote_on_metrics
+    def bookmark_metrics
       with_user "Joe Admin" do
-        vote "Jedi+disturbances in the Force", :up
-        vote "Jedi+Victims by Employees", :up
+        bookmark "Jedi+disturbances in the Force"
+        bookmark "Jedi+Victims by Employees"
       end
       with_user "Joe User" do
-        vote "Jedi+disturbances in the Force", :up
-        vote "Jedi+deadliness", :down
-      end
-    end
-
-    def update_vote_counts
-      Card::Auth.as_bot do
-        Card.search(type_id: Card::MetricID).each do |card|
-          vc = card.vote_count_card
-          vc.update_votecount
-          vc.save!
-        end
+        bookmark "Jedi+disturbances in the Force"
       end
     end
   end

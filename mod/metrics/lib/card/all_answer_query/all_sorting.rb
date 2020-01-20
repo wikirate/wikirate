@@ -22,16 +22,14 @@ class Card
       def sort rel
         return rel unless @sort_args.present?
         case @sort_args[:sort_by].to_sym
-        when :importance then sort_by_importance rel
+        when :bookmarkers then sort_by_bookmarkers rel
         when :title_name then sort_by_metric_title rel
         else standard_sort rel
         end
       end
 
-      def sort_by_importance rel
-        join = sort_join "id = sort.left_id AND sort.right_id = #{Card::VoteCountID}"
-        order = "CAST(COALESCE(sort.db_content, 0) AS signed) #{@sort_args[:sort_order]}"
-        rel.joins(join).order Arel.sql(order)
+      def sort_by_bookmarkers rel
+        Bookmark.sort rel, "#{@partner}.id", @sort_args[:sort_order]
       end
 
       def sort_by_metric_title rel

@@ -1,12 +1,13 @@
 describe Card::Set::Abstract::FilterFormgroups do
-  let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
+  let(:card) { Card["Company"].fetch :browse_topic_filter }
 
   describe "sort formgroup" do
     subject { card.format.render_sort_formgroup }
 
     it "renders select form" do
       is_expected.to have_tag :select, with: { name: "sort" } do
-        with_option "Most Metrics", "metric", selected: "selected"
+        with_option "Most Bookmarked", "bookmarkers", selected: "selected"
+        with_option "Most Metrics", "metric"
         with_option "Most Companies", "company"
       end
     end

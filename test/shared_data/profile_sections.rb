@@ -79,20 +79,18 @@ class SharedData
       add_section :wikirate_company
     end
 
-    def add_section type_code, vote=false
+    def add_section type_code, bookmark=false
       type = Card.fetch_name(type_code).downcase
       with_user "Joe Admin" do
         create_card "updated #{type}", type: type_code
         create_card "discussed #{type}", type: type_code
-        create_card "voted for #{type}", type: type_code
-        create_card "voted against #{type}", type: type_code
+        create_card "bookmarked #{type}", type: type_code
       end
       with_user "Joe User" do
         create_card "created #{type}", type: type_code
         update_card "updated #{type}", content: "updated"
         create_card ["discussed #{type}", :discussion], content: "comment"
-        vote "voted for #{type}", :up if vote
-        vote "voted against #{type}", :down if vote
+        bookmark "bookmarked #{type}" if bookmark
       end
     end
 

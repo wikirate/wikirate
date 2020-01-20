@@ -37,7 +37,7 @@ class CSVRow
 
     def construct_answer_create_args
       create_args =
-        Card[metric].create_value_args @row.merge(ok_to_exist: true)
+        Card[metric].create_answer_args @row.merge(ok_to_exist: true)
       pick_up_card_errors Card[metric]
       create_args
     end

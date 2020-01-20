@@ -1,3 +1,9 @@
+# In theory the following shouldn't be necessary, because there is an event on the
+# value card.
+
+# event :update_answer_lookup_table_due_to_answer_deletion, :finalize, on: :delete do
+#   delete_answer answer_id: id
+# end
 
 event :update_answer_lookup_table_due_to_answer_change, :finalize, on: :update do
   if hybrid?

@@ -1,0 +1,246 @@
+// set consistent colors for a group of bars/boxes
+@mixin barbox($color) {
+  &.bar {
+    border-left-color: rgba($color, 0.2) !important;
+  }
+
+  &.expanded_bar-view:hover .bar, &.bar:hover {
+    border-left-color: $color !important;
+    .bar-left {
+      a, .image-box i {
+        color: $color;
+      }
+    }
+  }
+
+  &.box {
+    border-top-color: $color !important;
+    .box-top a, &:hover .box-middle i {
+      color: $color;
+    }
+  }
+}
+
+@mixin quickFilterTag($by, $color) {
+  .quick-filter {
+    .quick-filter-by-#{$by} {
+      background: rgba($color, 0.2);
+      color: $color;
+      &.active {
+        background: $color;
+      }
+    }
+  }
+}
+
+@mixin hoverTag($type, $color) {
+  .RIGHT-#{$type}.d0-card-content {
+    > .pointer-list, > .search-result-list {
+      > .item-link > a {
+        background: $color;
+        max-width: 15em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  .#{$type}.select2-selection--multiple .select2-selection__choice {
+    @include coloredTag;
+    background: $color;
+    max-width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .select2-selection__choice__remove {
+      color: #fff;
+    }
+  }
+  @include quickFilterTag($type, $color)
+}
+
+@mixin coloredTag {
+  display: inline-block;
+  text-indent: 0;
+  border-radius: 0.2rem;
+  font-size: 0.9em;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 0.4em;
+  margin: 0 0.5rem 0.25rem 0;
+  opacity: 0.75;
+  border: 0;
+  &:hover {
+    opacity: 1;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 0.8rem;
+  }
+}
+
+// type specific colors
+$colorMap: (
+        metric: $metric-color,
+        record: $record-color,
+        company: $company-color,
+        topic: $topic-color,
+        source: $source-color,
+        project: $project-color,
+        answer: $answer-color,
+        research_group: $default-cardtype-color,
+        post: $default-cardtype-color,
+        company_group: $company-group-color
+); // border color for bars and boxes
+
+@each $type, $color in $colorMap {
+  #main > .TYPE-#{$type} > .card {
+    > .card-header {
+      color: #fff;
+      background: $color;
+      text-align: center;
+      a {
+        color: #fff !important;
+      }
+    }
+
+    .two-column-box {
+      border-top: 5px solid $color;
+    }
+  }
+
+  .TYPE-#{$type} {
+    @include barbox($color);
+
+    &.thumbnail .thumbnail-title .card-title {
+      color: $color
+    }
+  }
+
+  .#{$type}-color, .#{$type}-color a {
+    color: $color;
+  }
+
+  .badge-#{$type} {
+    background-color: $color;
+  }
+
+  .top-border-#{$type} {
+    border-top: 3px solid $color;
+  }
+
+  .#{$type}-border-left {
+    border-left: 3px solid $color !important;
+  }
+
+  .RIGHT-#{$type} {
+    .contribution-report-header {
+      border-left: 4px solid $color;
+    }
+  }
+
+  .nav-item:hover .RIGHT-#{$type} {
+    &.tab-badge .badge {
+      background-color: $color;
+    }
+  }
+
+  .expanded-bar, .bar, .box {
+    &:hover .RIGHT-#{$type} {
+      &.labeled-badge .badge {
+        background-color: $color;
+      }
+    }
+  }
+}
+
+.LTYPE_RTYPE-topic-company {
+  @include barbox($topic-color)
+}
+
+.TYPE_PLUS_RIGHT-project-metric.titled-view .LTYPE_RTYPE-metric-project {
+  @include barbox($metric-color);
+}
+
+.TYPE_PLUS_RIGHT-project-company.titled-view .LTYPE_RTYPE-company-project {
+  @include barbox($company-color);
+}
+
+// Topic and company tags
+
+.RIGHT-topic, .RIGHT-company, .RIGHT-company_group {
+  &.d0-card-content .item-link {
+    display: inline;
+    > a {
+      @include coloredTag;
+    }
+  }
+}
+
+.quick-filter {
+  padding-bottom: 0.5rem;
+  a {
+    @include coloredTag;
+    max-width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: #666;
+    cursor: default;
+    &.active {
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}
+
+@include hoverTag(topic, $topic-color);
+@include hoverTag(company, $company-color);
+@include hoverTag(wikirate_topic, $topic-color);
+@include hoverTag(wikirate_company, $company-color);
+@include hoverTag(company_group, $company-group-color);
+@include hoverTag(metric, $metric-color);
+@include hoverTag(project, $project-color);
+
+@include quickFilterTag(sdg1, #E5243B)
+@include quickFilterTag(sdg2, #DDA63A)
+@include quickFilterTag(sdg3, #4C9F38)
+@include quickFilterTag(sdg4, #C5192D)
+@include quickFilterTag(sdg5, #FF3A21)
+@include quickFilterTag(sdg6, #26BDE2)
+@include quickFilterTag(sdg7, #FCC30B)
+@include quickFilterTag(sdg8, #A21942)
+@include quickFilterTag(sdg9, #FD6925)
+@include quickFilterTag(sdg10, #DD1367)
+@include quickFilterTag(sdg11, #FD9D24)
+@include quickFilterTag(sdg12, #BF8B2E)
+@include quickFilterTag(sdg13, #3F7E44)
+@include quickFilterTag(sdg14, #0A97D9)
+@include quickFilterTag(sdg15, #56C02B)
+@include quickFilterTag(sdg16, #00689D)
+@include quickFilterTag(sdg17, #19486A)
+
+.sdg-quick-filters {
+  .sdg-label > a {
+    color: $text-muted !important;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  display: flex;
+  flex-wrap: nowrap;
+  > a {
+    margin: 0;
+    font-size: xx-small;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 0;
+    padding-top: 3px;
+    &.help-link {
+      color: #666 !important;
+      background: transparent;
+      margin-right: 0.4em;
+      cursor: pointer;
+    }
+  }
+}

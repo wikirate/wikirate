@@ -1,12 +1,6 @@
 format :html do
-  view :thumbnail_with_vote do
-    wrap_with :div, class: "thumbnail-with-vote d-flex align-items-start" do
-      [render_vote, thumbnail]
-    end
-  end
-
   view :bar_left do
-    render :thumbnail_with_vote
+    render :thumbnail_with_bookmark
   end
 
   view :bar_right do
@@ -21,9 +15,7 @@ format :html do
     render_details_tab
   end
 
-  view :box_top do
-    render :thumbnail
-  end
+  view :box_top, template: :haml
 
   view :box_middle do
     render :question

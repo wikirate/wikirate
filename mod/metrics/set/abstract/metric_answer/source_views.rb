@@ -1,5 +1,5 @@
 def report_type
-  @report_type ||= metric_card.fetch trait: :report_type
+  @report_type ||= metric_card.fetch :report_type
 end
 
 def suggested_sources

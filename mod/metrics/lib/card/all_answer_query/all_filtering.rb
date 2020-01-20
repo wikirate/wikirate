@@ -9,7 +9,7 @@ class Card
       }.freeze
       PARTNER_CQL_FILTERS = {
         company: ::Set.new([:project]),
-        metric: ::Set.new(%i[project designer metric_type research_policy importance])
+        metric: ::Set.new(%i[project designer metric_type research_policy bookmark])
       }.freeze
 
       private

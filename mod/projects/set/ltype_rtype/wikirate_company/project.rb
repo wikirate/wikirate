@@ -13,7 +13,7 @@ def company_card
 end
 
 def company_image
-  company_card.fetch trait: :image, new: {}
+  company_card.fetch :image, new: {}
 end
 
 def metric_ids
@@ -44,7 +44,7 @@ format :html do
 
   view :company_header do
     company_link do
-      nest card.company_card, view: :thumbnail_no_link
+      nest card.company_card, view: :thumbnail_with_bookmark, hide: :thumbnail_link
     end
   end
 

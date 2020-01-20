@@ -1,6 +1,6 @@
 describe Card::Set::Abstract::BrowseFilterForm do
   # define the sample card to use that includes the BrowseFilterForm
-  let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
+  let(:card) { Card["Company"].fetch :browse_topic_filter }
 
   describe "view :filter_form" do
     subject { card.format.render_filter_form }

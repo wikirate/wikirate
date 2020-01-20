@@ -58,8 +58,8 @@ gem "airbrussh", require: false
 gem "ruby-jmeter"
 
 # gem "card-mod-airbrake", path: "./vendor/card-mods/airbrake"
+gem "card-mod-bookmarks", path: "./vendor/card-mods/bookmarks"
 gem "card-mod-csv_import", path: "./vendor/card-mods/csv_import"
-gem "card-mod-voting", path: "./vendor/card-mods/voting"
 gem "card-mod-logger", path: "./vendor/card-mods/logger"
 gem "card-mod-markdown", path: "./vendor/card-mods/markdown"
 gem "card-mod-new_relic", path: "./vendor/card-mods/new_relic"

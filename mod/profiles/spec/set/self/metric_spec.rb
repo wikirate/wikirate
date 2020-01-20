@@ -14,11 +14,9 @@ RSpec.describe Card::Set::Self::Metric, "metric report queries" do
     variants all: ["Joe User+small single"]
   end
 
-  describe "voted on query" do
-    include_context "report query", :metric, :voted_on
-    variants voted_for: ["Jedi+disturbances in the Force"],
-             voted_against: ["Jedi+deadliness"],
-             all: 2
+  describe "bookmark query" do
+    include_context "report query", :metric, :bookmarked
+    variants all: ["Jedi+disturbances in the Force"]
   end
 
   describe "discussed query" do

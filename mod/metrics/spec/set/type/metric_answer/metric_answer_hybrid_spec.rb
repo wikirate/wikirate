@@ -11,13 +11,13 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
   end
 
   def research_value value, year=1977
-    metric.create_values true do
+    metric.create_answers true do
       Death_Star year.to_s => value.to_s
     end
   end
 
   def input_for_calculation value, year=2010
-    input_metric.create_values true do
+    input_metric.create_answers true do
       Death_Star year.to_s => value.to_s
     end
   end

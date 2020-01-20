@@ -13,7 +13,7 @@ class NewBrowseFilters < Card::Migration
   def update_counts type, *fields
     Card.search(type: type) do |base|
       fields.each do |trait|
-        base.fetch(trait: trait, new: {}).update_cached_count
+        base.fetch(trait, new: {}).update_cached_count
       end
     end
   end

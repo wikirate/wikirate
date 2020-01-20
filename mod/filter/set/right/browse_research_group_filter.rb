@@ -2,13 +2,15 @@
 
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
+include_set Abstract::BookmarkFiltering
+include_set Abstract::SdgFiltering
 
 def default_sort_option
   "researcher"
 end
 
 def filter_keys
-  %i[name wikirate_topic]
+  %i[name wikirate_topic bookmark]
 end
 
 def default_filter_hash
@@ -26,6 +28,10 @@ end
 format :html do
   def sort_options
     { "Most Researchers": :researcher, "Most Projects": :project }.merge super
+  end
+
+  def quick_filter_list
+    bookmark_quick_filter + topic_quick_filters
   end
 end
 

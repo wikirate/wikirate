@@ -8,7 +8,7 @@ end
 # if you add a +tag card to the metric and make the first item "no source",
 # then source is not required.
 def force_source_not_required?
-  metric_card.fetch(trait: :wikirate_tag)&.item_names&.first&.key == "no_source"
+  metric_card&.fetch(:wikirate_tag)&.first_name&.key == "no_source"
 end
 
 event :restore_overridden_value, :validate, on: :delete, when: :calculation_overridden? do

@@ -14,7 +14,7 @@ def put_things_in_tag_to_correct_position cards, skip_year
 end
 
 def fill_subcards card, company, topic, year, skip_year
-  card.fetch(trait: :wikirate_tag).item_cards.each do |tag|
+  card.fetch(:wikirate_tag).item_cards.each do |tag|
     case tag.type_id
     when Card::WikirateCompanyID then company << tag
     when Card::WikirateTopicID then topic << tag
@@ -24,9 +24,9 @@ def fill_subcards card, company, topic, year, skip_year
 end
 
 def get_subcards card
-  company = card.fetch trait: :wikirate_company, new: {}
-  topic = card.fetch trait: :wikirate_topic, new: {}
-  year = card.fetch trait: :year, new: {}
+  company = card.fetch :wikirate_company, new: {}
+  topic = card.fetch :wikirate_topic, new: {}
+  year = card.fetch :year, new: {}
   [company, topic, year]
 end
 

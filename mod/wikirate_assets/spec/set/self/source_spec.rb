@@ -13,7 +13,7 @@ RSpec.describe Card::Set::Self::Source do
 
     it "has 'add source' button" do
       is_expected.to have_tag "a.btn", text: "Add Source",
-                                       with: { href: "/type/Source?view=new_in_modal" }
+                                       with: { href: "/new/Source" }
     end
 
     it "has Title filter open by default" do
@@ -142,7 +142,7 @@ RSpec.describe Card::Set::Self::Source do
         Card.fetch("#{source_card.name}+description").content
       end
       let(:url) do
-        source_card.fetch(trait: :wikirate_link).content
+        source_card.fetch(:wikirate_link).content
       end
 
       it "has correct title" do

@@ -6,7 +6,7 @@ format :html do
   view :bar_left do
     voo.size = :medium
     filterable({ project: card.name, status: :all }, class: "w-100") do
-      render_thumbnail
+      render_thumbnail_with_bookmark
     end
   end
 

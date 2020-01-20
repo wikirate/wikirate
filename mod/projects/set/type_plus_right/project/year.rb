@@ -1,4 +1,5 @@
 include_set Abstract::Table
+include_set Abstract::PointerCachedCount
 include_set Abstract::ProjectScope
 
 def hereditary_field?

@@ -169,10 +169,6 @@ div[data-slot*="float:right"]{
   .media-text {
     clear: both;
   }
-  // .RIGHT-Xvote_count {
-  //   font-size: 1rem;
-  //   line-height: 1rem;
-  // }
 }
 
 .icon-and-question > i.fa {
@@ -184,6 +180,7 @@ div[data-slot*="float:right"]{
 .rich-header {
   .card-menu {
     z-index: 3;
+    background-color: #fff;
   }
   .media {
     .media-body {

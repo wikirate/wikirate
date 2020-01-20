@@ -42,7 +42,7 @@ def add_company source_card
 end
 
 def add_trait_to_source source_card, trait, values
-  trait_card = source_card.fetch trait: trait, new: {}
+  trait_card = source_card.fetch trait, new: {}
   Array.wrap(values).each { |val| trait_card.add_item val }
   add_subcard trait_card
 end

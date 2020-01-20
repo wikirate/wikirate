@@ -1,40 +1,40 @@
 class Card::Metric
-  class ValueCreator
-    def initialize metric=nil, test_source=false, &values_block
+  class AnswerCreator
+    def initialize metric=nil, test_source=false, &answers_block
       @metric = metric
       @test_source = test_source
-      define_singleton_method(:add_values, values_block)
+      define_singleton_method(:add_answers, answers_block)
     end
 
-    def create_value company, year, value
+    def create_answer company, year, value
       variant = @metric.relationship? ? :relationship : :standard
-      send "create_#{variant}_value", value, create_value_args(company, year)
+      send "create_#{variant}_answer", value, create_answer_args(company, year)
     end
 
-    def add_values_to metric
+    def add_answers_to metric
       @metric = metric
-      add_values
+      add_answers
     end
 
     private
 
-    def create_relationship_value value, args
+    def create_relationship_answer value, args
       value.each do |company, relationship_value|
-        @metric.create_value args.merge(related_company: company,
+        @metric.create_answer args.merge(related_company: company,
                                         value: relationship_value)
       end
     end
 
-    def create_standard_value value, args
+    def create_standard_answer value, args
       if value.is_a? Hash
         args.merge! value
       else
         args[:value] = value.to_s
       end
-      @metric.create_value args
+      @metric.create_answer args
     end
 
-    def create_value_args company, year
+    def create_answer_args company, year
       args = { company: company.to_s, year: year }
       prep_source args
       args
@@ -52,17 +52,17 @@ class Card::Metric
 
     def method_missing company, *args
       args.first.each_pair do |year, value|
-        create_value company, year, value
+        create_answer company, year, value
       end
     end
   end
 
   class << self
     # Creates a metric card.
-    # A block can be used to create metric value cards for the metric using
+    # A block can be used to create metric answer cards for the metric using
     # the syntax
     # `company year => value, year => value`
-    # If you want to define more properties of a metric value than just the
+    # If you want to define more properties of a metric answer than just the
     # value (like a source for example) you can assign a hash to the year
     # @example
     # Metric.create name: 'Jedi+disturbances in the Force',
@@ -89,13 +89,13 @@ class Card::Metric
     # @option opts [Array, String] :topic tag with topics
     # @option opts [String] :unit
     # @option opts [Boolean] :test_source (false) pick a random source for
-    #   each value
+    #   each answer
     def create opts, &block
       test_source = opts.delete :test_source
       metric = Card.create! name: opts.delete(:name),
                             type_id: Card::MetricID,
                             subfields: subfields(opts)
-      metric.create_values test_source, &block if block_given?
+      metric.create_answers test_source, &block if block_given?
       metric
     end
 

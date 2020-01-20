@@ -16,8 +16,7 @@ format :html do
   end
 
   view :thumbnail_image do
-    field_nest :image, view: thumbnail_image_view,
-                       size: (voo.size.present? ? voo.size : :small)
+    field_nest :image, view: thumbnail_image_view, size: thumbnail_image_size
   end
 
   view :thumbnail_subtitle do
@@ -32,6 +31,10 @@ format :html do
 
   def thumbnail_image_view
     voo.show?(:thumbnail_link) ? :boxed_link : :boxed
+  end
+
+  def thumbnail_image_size
+    voo.size.present? ? voo.size : :small
   end
 
   def thumbnail_title

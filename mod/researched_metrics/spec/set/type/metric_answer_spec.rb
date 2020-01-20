@@ -97,13 +97,13 @@ RSpec.describe Card::Set::Type::MetricAnswer do
 
       it "updates source's company" do
         new_answer
-        source_company = source.fetch trait: :wikirate_company
+        source_company = source.fetch :wikirate_company
         expect(source_company.item_cards).to include(company)
       end
 
       it "updates source's report type" do
         new_answer
-        source_report_type = source.fetch trait: :report_type
+        source_report_type = source.fetch :report_type
         expect(source_report_type.item_names)
           .to include("Conflict Mineral Report")
       end
@@ -115,7 +115,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
 
       it "fails if source card cannot be created" do
         expect(build_answer(source: nil))
-          .to be_invalid.because_of("+source": include("No such source exists"))
+          .to be_invalid.because_of("+source": include("sources required"))
       end
     end
   end

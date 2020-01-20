@@ -29,6 +29,10 @@ def filter_card
   field filter_card_fieldcode
 end
 
+def item_type
+  "Answer" # :metric_answer.cardname
+end
+
 format :csv do
   view :core do
     Answer.csv_title + card.query.answer_query.map(&:csv_line).join

@@ -18,7 +18,7 @@ RSpec.describe Card::Set::Type::Source do
     it "creates website card with actions" do
       url = "http://www.google.com/?q=wikirate"
       sourcepage = create_source url
-      website_card = sourcepage.fetch trait: :wikirate_website
+      website_card = sourcepage.fetch :wikirate_website
       expect(website_card.last_action).to be
     end
 
@@ -36,9 +36,9 @@ RSpec.describe Card::Set::Type::Source do
           # "http://wikirate.org/Page-000003962+File.pdf"
           sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
-          source_file = sourcepage.fetch(trait: :file)
+          source_file = sourcepage.fetch(:file)
           expect(source_file).not_to be_nil
-          # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
+          # expect(sourcepage.fetch(:wikirate_link)).to be_nil
           expect(Card.exists?("#{sourcepage.name}+title")).to eq(false)
           expect(Card.exists?("#{sourcepage.name}+description")).to eq(false)
           expect(File.exist?(source_file.file.path)).to be true
@@ -53,8 +53,8 @@ RSpec.describe Card::Set::Type::Source do
             #        "1302508855"
           sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
-          expect(sourcepage.fetch(trait: :file)).not_to be_nil
-          # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
+          expect(sourcepage.fetch(:file)).not_to be_nil
+          # expect(sourcepage.fetch(:wikirate_link)).to be_nil
         end
         # FIXME: I don't entirely understand what the following is supposed to test,
         # but the url appears to be broken.  -efm
@@ -63,8 +63,8 @@ RSpec.describe Card::Set::Type::Source do
                     "American-PLC-V2/documents/aa-sdreport-2015.pdf"
           sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
-          expect(sourcepage.fetch(trait: :file)).to be_instance_of(Card)
-          expect(sourcepage.fetch(trait: :wikirate_link).content).to eq(pdf_url)
+          expect(sourcepage.fetch(:file)).to be_instance_of(Card)
+          expect(sourcepage.fetch(:wikirate_link).content).to eq(pdf_url)
         end
         context "when file is bigger than '*upload max'" do
           xit "won't create file source" do
@@ -72,8 +72,8 @@ RSpec.describe Card::Set::Type::Source do
                       "article/download/cp49-issue/489"
             sourcepage = create_source pdf_url
             expect(sourcepage.errors).to be_empty
-            expect(sourcepage.fetch(trait: :wikirate_link)).not_to be_nil
-            expect(sourcepage.fetch(trait: :file)).to be_nil
+            expect(sourcepage.fetch(:wikirate_link)).not_to be_nil
+            expect(sourcepage.fetch(:file)).to be_nil
             expect(Card["#{sourcepage.name}+title"]).to be_nil
             # FIXME: fails only on semaphore, don't know why -pk
             # expect(Card["#{sourcepage.name}+description"]).to be_nil

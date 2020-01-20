@@ -39,7 +39,7 @@ class Answer
 
     def calculated_answer metric_card, company, year, value
       ensure_record metric_card, company
-      @card = virtual_answer_card metric_card.metric_answer_name(company, year), value
+      @card = virtual_answer_card metric_card.answer_name_for(company, year), value
       refresh
       @card.expire
       update_cached_counts
@@ -47,16 +47,22 @@ class Answer
     end
 
     def update_cached_counts
+      (simple_cache_count_cards + topic_cache_count_cards).each(&:update_cached_count)
+    end
+
+    def simple_cache_count_cards
       [[metric_id, :metric_answer],
        [metric_id, :wikirate_company],
        [company_id, :metric],
        [company_id, :metric_answer],
-       [company_id, :wikirate_topic]].each do |mark|
-        Card.fetch(mark).update_cached_count
+       [company_id, :wikirate_topic]].map do |mark|
+        Card.fetch(mark)
       end
+    end
+
+    def topic_cache_count_cards
       Card::Set::TypePlusRight::WikirateTopic::WikirateCompany
-        .topic_company_type_plus_right_cards_for_metric(Card[metric_id])
-        .each(&:update_cached_count)
+        .company_cache_cards_for_topics Card[metric_id]&.wikirate_topic_card&.item_names
     end
 
     def update_value value

@@ -9,7 +9,6 @@
     float: left;
   }
 }
-
 .details-body .nav-tabs label {
   margin-bottom: 0;
 }
@@ -115,6 +114,18 @@
   }
 }
 
+.scored-by-subtitle .image-box {
+  margin-left: 0.3em;
+}
+.TYPE-metric {
+  &.thumbnail, &.box .box-top {
+    .thumbnail-subtitle a {
+      color: inherit !important;
+      margin-left: 0.2em;
+    }
+  }
+}
+
 .TYPE-metric_value {
   // &.LTYPE_RTYPE-html-year > .card-frame > .card-body {
   //   padding: 0px;
@@ -138,32 +149,12 @@
   width: 100%;
 }
 
-.TYPE-metric.new-view form .form-group.RIGHT-Xvote_count {
-  display: none;
-}
 
-.RIGHT-Xvote_count.content-view {
-  overflow: hidden;
-  text-align: center;
-  padding-right: 1rem;
-  float: left;
-  margin-left: 5px;
-  div, button, i {
-    line-height: 1em;
-    font-size: 11px;
-    text-align: center;
-    color: inherit !important;
-  }
-  > div {
-    margin-right: 5px;
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .RIGHT-Xvote_count.content-view {
-    display: none;
-  }
-}
+// @include media-breakpoint-down(sm) {
+//   .RIGHT-Xvote_count.content-view {
+//     display: none;
+//   }
+// }
 
 fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   display: inline-block;

@@ -52,5 +52,5 @@ def link_present?
 end
 
 def wikirate_link?
-  content.match(%r{^http\s?\://(www\.)?wikirate\.org})
+  content.match(%r{^https?\:\/\/(www\.)?wikirate\.org})
 end

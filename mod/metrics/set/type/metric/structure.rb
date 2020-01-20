@@ -1,6 +1,3 @@
-include_set Abstract::TwoColumnLayout
-include_set Abstract::BsBadge
-
 format :html do
   def standard_title
     voo.title = card.metric_title
@@ -13,26 +10,16 @@ format :html do
     super
   end
 
-  def header_right
-    render_vote_and_title
-  end
-
   def header_text
     render_question
   end
 
   def image_card
-    @image_card ||= card.metric_designer_card.fetch trait: :image, new: {}
+    @image_card ||= card.metric_designer_card.fetch :image, new: {}
   end
 
   view :data do
     field_nest :metric_answer, view: :filtered_content
-  end
-
-  view :vote_and_title do
-    wrap_with :div, class: "d-flex" do
-      [render_vote, render_title_link]
-    end
   end
 
   # TODO: fix homepage and get rid of this!
@@ -45,8 +32,6 @@ format :html do
   end
 
   view :question do
-    wrap_with :div, class: "icon-and-question d-flex" do
-      [fa_icon(:question), field_nest(:question, view: :content)]
-    end
+    field_nest :question, view: :content
   end
 end

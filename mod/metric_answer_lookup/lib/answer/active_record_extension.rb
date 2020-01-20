@@ -22,8 +22,8 @@ class Answer
 
     def sort args
       return self unless valid_sort_args? args
-      if args[:sort_by].to_sym == :importance
-        order_by_importance args
+      if args[:sort_by].to_sym == :bookmarkers
+        order_by_bookmarkers args[:sort_order]
       else
         order_by args
       end
@@ -83,12 +83,8 @@ class Answer
       order order_args(args)
     end
 
-    def order_by_importance args
-      args = order_args sort_by: "COALESCE(c.db_content, 0)", cast: "signed",
-                        sort_order: args[:sort_order]
-      joins("LEFT JOIN cards AS c " \
-            "ON answers.metric_id = c.left_id AND c.right_id = #{Card::VoteCountID}")
-        .order(args)
+    def order_by_bookmarkers sort_order
+      Card::Bookmark.sort self, "answers.metric_id", sort_order
     end
 
     def order_args args
@@ -99,9 +95,13 @@ class Answer
     end
 
     def valid_sort_args? args
-      return unless args.present? && args[:sort_by]
-      return true if args[:sort_by].to_sym == :importance
-      Answer.column_names.include? args[:sort_by].to_s
+      return false unless args.present? && (sort_value = args[:sort_by]&.to_s)
+
+      valid_sort_value_list.include? sort_value
+    end
+
+    def valid_sort_value_list
+      @valid_sort_value_list ||= Answer.column_names + ["bookmarkers"]
     end
 
     def valid_page_args? args

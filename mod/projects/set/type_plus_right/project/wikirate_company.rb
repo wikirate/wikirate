@@ -2,6 +2,8 @@
 # all companies on a given project.
 
 include_set Abstract::ProjectScope
+include_set Abstract::ProjectFilteredList
+include_set Abstract::IdPointer
 
 def item_cards_for_validation
   item_cards.sort_by(&:key)
@@ -15,31 +17,12 @@ def researchable_metrics?
   metric_card.item_cards.find(&:user_can_answer?)
 end
 
+def short_scope_code
+  :company
+end
+
 format :html do
-  def input_type
-    :filtered_list
-  end
-
-  def default_item_view
-    :thumbnail_no_link
-  end
-
-  def filter_card
-    Card.fetch :wikirate_company, :browse_company_filter
-  end
-
-  before :menued do
-    voo.edit = :inline
-    voo.items.delete :view # reset tab_nest
-  end
-
-  def search_card
-    Card.fetch card.project_name, :company_search
-  end
-
-  view :core do
-    items_hash = { view: :bar, hide: %i[project_header bar_nav] }
-    items_hash[:show] = :bar_middle if card.researchable_metrics?
-    nest search_card, view: :filtered_content, items: items_hash
+  def core_items_hash
+    card.researchable_metrics? ? super.merge(show: :bar_middle) : super
   end
 end

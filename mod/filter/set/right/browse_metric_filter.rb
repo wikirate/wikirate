@@ -1,15 +1,17 @@
 include_set Abstract::BrowseFilterForm
+include_set Abstract::BookmarkFiltering
+include_set Abstract::SdgFiltering
 
 def default_filter_hash
   { name: "" }
 end
 
 def default_sort_option
-  :upvoted
+  :bookmarkers
 end
 
 def filter_keys
-  %i[name wikirate_topic designer project metric_type research_policy year]
+  %i[name wikirate_topic designer project metric_type research_policy year bookmark]
 end
 
 def target_type_id
@@ -20,12 +22,8 @@ def filter_class
   MetricFilterQuery
 end
 
-def sort_wql
-  if current_sort.to_sym == :upvoted
-    { sort: { right: "*vote count" }, dir: "desc" }
-  else
-    super
-  end
+def bookmark_type
+  :metric
 end
 
 format :html do
@@ -33,13 +31,16 @@ format :html do
     key == :metric_type ? "Metric type" : super
   end
 
+  def quick_filter_list
+    bookmark_quick_filter + topic_quick_filters + project_quick_filters
+  end
+
   def default_year_option
     { "Any Year" => "" }
   end
 
   def sort_options
-    { "Highest Voted": :upvoted,
-      "Most Companies": :company,
+    { "Most Companies": :company,
       "Most Answers": :answer }.merge super
   end
 

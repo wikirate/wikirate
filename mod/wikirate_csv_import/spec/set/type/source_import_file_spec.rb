@@ -2,7 +2,7 @@ require_relative "../../support/shared_csv_import"
 
 RSpec.describe Card::Set::Type::SourceImportFile do
   def url name
-    "http://www.wikiwand.com/en/#{name.tr(' ', '_')}"
+    "https://www.wikiwand.com/en/#{name.tr(' ', '_')}"
   end
 
   include_context "csv import" do
@@ -13,7 +13,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
         exact_match:            ["Death Star", "2014", "Force Report",
                                  url("Death Star"), "a title"],
         duplicate_in_file:      ["Monter Inc", "2017", "Monster Report",
-                                 "http://www.wikiwand.com/en/Death_Star", "know me?"],
+                                 "https://www.wikiwand.com/en/Death_Star", "know me?"],
         alias_match:            ["Google", "2014", "Monster Report",
                                  url("Google"), "aaaaaah"],
         partial_match:          ["Monster", "2014", "Monster Report",
@@ -121,7 +121,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
           .and have_a_field(:wikirate_company).pointing_to("Death Star")
           .and have_a_field(:year).pointing_to "2014"
         expect(status[:reports][1])
-          .to contain_exactly "http://www.wikiwand.com/en/Death_Star duplicate in this file"
+          .to contain_exactly "https://www.wikiwand.com/en/Death_Star duplicate in this file"
         expect(status[:counts][:skipped]).to eq 1
       end
     end

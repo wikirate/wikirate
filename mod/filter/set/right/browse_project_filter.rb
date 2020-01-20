@@ -2,17 +2,19 @@
 
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
+include_set Abstract::BookmarkFiltering
+include_set Abstract::SdgFiltering
 
 def filter_class
   ProjectFilterQuery
 end
 
 def default_sort_option
-  "subproject"
+  "create"
 end
 
 def filter_keys
-  %i[name wikirate_status wikirate_topic]
+  %i[name wikirate_status wikirate_topic bookmark]
 end
 
 def default_filter_hash
@@ -25,9 +27,16 @@ end
 
 format :html do
   def sort_options
-    { "Most Subprojects": :subprojects,
+    { "Most Bookmarked": :bookmarkers,
+      "Recently Added": :create,
+      "Alphabetical": :name,
+      "Most Subprojects": :subprojects,
       "Most Metrics": :metric,
-      "Most Companies": :company }.merge super
+      "Most Companies": :company }
+  end
+
+  def quick_filter_list
+    bookmark_quick_filter + topic_quick_filters
   end
 
   view :filter_wikirate_status_formgroup, cache: :never do
@@ -41,6 +50,8 @@ end
 
 # cql query to filter sources
 class ProjectFilterQuery < Card::FilterQuery
+  include WikirateFilterQuery
+
   def wikirate_status_wql value
     return unless value.present?
     add_to_wql :right_plus, [WikirateStatusID, { refer_to: value }]

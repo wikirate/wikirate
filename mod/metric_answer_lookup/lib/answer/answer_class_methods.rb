@@ -17,7 +17,7 @@ class Answer
     # method. Otherwise all remaining values that are not sort or page options are
     # passed as hash to `where`.
     # @option opts [Array] :where
-    # @option opts [Symbol] :sort_by column name or :importance
+    # @option opts [Symbol] :sort_by column name or :bookmarkers
     # @option opts [Symbol] :sort_order :asc or :desc
     # @option opts [Integer] :limit
     # @option opts [Integer] :offset
