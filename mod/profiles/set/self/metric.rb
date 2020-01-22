@@ -25,7 +25,7 @@ def created_query user_id, variant=nil
   when :submitted
     { created_by: user_id }
   when :designed
-    { left_id: user_id, type_id: MetricID }
+    { left_id: user_id, type_id: Card::MetricID }
   else
     { or: { created_by: user_id,
             and: created_query(user_id, :designed) } }

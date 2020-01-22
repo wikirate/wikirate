@@ -14,5 +14,5 @@ def pointer_mark
 end
 
 def wql_content
-  { type_id: MetricID, referred_to_by: pointer_mark }
+  { type_id: Card::MetricID, referred_to_by: pointer_mark }
 end

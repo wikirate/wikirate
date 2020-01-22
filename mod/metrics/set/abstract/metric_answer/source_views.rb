@@ -9,8 +9,8 @@ end
 def find_suggested_sources
   return [] unless report_type&.item_ids&.any? && Card::Auth.current_id
   Card.search type_id: Card::SourceID,
-              right_plus: [[WikirateCompanyID, { refer_to: company }],
-                           [ReportTypeID, { link_to: { linked_to_by: report_type.id } }]],
+              right_plus: [[Card::WikirateCompanyID, { refer_to: company }],
+                           [Card::ReportTypeID, { link_to: { linked_to_by: report_type.id } }]],
               # TODO: optimize the above sql so that we can use report_type.item_ids
               not: { creator_id: Card::Auth.current_id }
 end
@@ -19,7 +19,7 @@ def my_sources
   return [] unless Card::Auth.current_id
   @my_sources ||=
     Card.search type_id: Card::SourceID,
-                right_plus: [WikirateCompanyID, { refer_to: company }],
+                right_plus: [Card::WikirateCompanyID, { refer_to: company }],
                 creator_id: Card::Auth.current_id,
                 sort: :create, dir: :desc
 end
@@ -131,7 +131,7 @@ format :html do
   view :new_source_form, unknown: true, cache: :never do
     params[:answer] = card.name
     params[:source_url] = source_search_term if source_search_term&.url?
-    source_card = Card.new type_id: SourceID
+    source_card = Card.new type_id: Card::SourceID
     nest source_card, view: :new
   end
 

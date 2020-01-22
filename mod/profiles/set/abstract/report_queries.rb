@@ -28,7 +28,7 @@ def bookmarked_query user_id, _variant=nil
 end
 
 def double_checked_query user_id, _variant=nil
-  { right_plus: [CheckedByID, { refer_to: { id: user_id } }] }
+  { right_plus: [Card::CheckedByID, { refer_to: { id: user_id } }] }
 end
 
 def subvariants

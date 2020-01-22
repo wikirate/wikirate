@@ -7,7 +7,7 @@ def created_query user_id, variant=nil
   when :submitted
     { created_by: user_id }
   when :organized
-    { right_plus: [OrganizerID, { refer_to: user_id }] }
+    { right_plus: [Card::OrganizerID, { refer_to: user_id }] }
   else
     { or:
         created_query(user_id, :submitted).merge(
@@ -19,10 +19,10 @@ end
 def discussed_query user_id, _variant=nil
   {
     or: super(user_id).merge(
-      referred_to_by: { right_id: ProjectID,
+      referred_to_by: { right_id: Card::ProjectID,
                         left: {
-                          type_id: ConversationID,
-                          right_plus: [DiscussionID, { edited_by: user_id }]
+                          type_id: Card::ConversationID,
+                          right_plus: [Card::DiscussionID, { edited_by: user_id }]
                         } }
     )
   }

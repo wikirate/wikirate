@@ -14,12 +14,12 @@ format do
   def inverse_relation_values_query
     { left: { left: { left_id: inverse_metric_id },
               right_id: Card.fetch_id(card.year.to_s),
-              type_id: MetricAnswerID },
+              type_id: Card::MetricAnswerID },
       right_id: card.company_card.id }
   end
 
   def relation_values_query
-    { left_id: card.id, right: { type_id: WikirateCompanyID } }
+    { left_id: card.id, right: { type_id: Card::WikirateCompanyID } }
   end
 
   def companies

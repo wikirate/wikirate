@@ -129,7 +129,7 @@ class BadgeLine
     @badge_names_map ||= cache.fetch("badge_names_map") do
       Card.select(:name, :codename).where.not(codename: nil)
           .each_with_object({}) do |v, h|
-        # I was using `type_id: BadgeID` instead of `codename:nil`,
+        # I was using `type_id: Card::BadgeID` instead of `codename:nil`,
         # but that broke some (weird?) tests
         h[v.codename.to_sym] = v.name
       end

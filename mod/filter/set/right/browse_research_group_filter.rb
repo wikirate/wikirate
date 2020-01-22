@@ -18,7 +18,7 @@ def default_filter_hash
 end
 
 def target_type_id
-  ResearchGroupID
+  Card::ResearchGroupID
 end
 
 def filter_class

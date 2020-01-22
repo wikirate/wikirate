@@ -17,7 +17,7 @@ class Card
 
       def topic_query value
         multi_metric do
-          restrict_by_wql :metric_id, right_plus: [WikirateTopicID, { refer_to: value }]
+          restrict_by_wql :metric_id, right_plus: [Card::WikirateTopicID, { refer_to: value }]
         end
       end
       alias wikirate_topic_query topic_query

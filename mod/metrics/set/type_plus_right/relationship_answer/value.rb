@@ -25,6 +25,6 @@ format :html do
   end
 
   def check_request_base
-    card.left(new: { type_id: RelationshipAnswerID })
+    card.left(new: { type_id: Card::RelationshipAnswerID })
   end
 end

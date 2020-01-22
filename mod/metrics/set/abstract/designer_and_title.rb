@@ -7,7 +7,7 @@ def metric_designer_card
 end
 
 def designer_image_card
-  metric_designer_card.fetch(:image, new: { type_id: ImageID })
+  metric_designer_card.fetch(:image, new: { type_id: Card::ImageID })
 end
 
 def metric_title

@@ -34,7 +34,7 @@ end
 
 event :populate_website, :prepare_to_store, on: :create, when: :link_present? do
   host = URI.parse(content).host
-  left.add_subfield :wikirate_website, content: host, type_id: PointerID
+  left.add_subfield :wikirate_website, content: host, type_id: Card::PointerID
   return if Card.exists?(host) || host.blank?
   left.add_subcard host, type_id: Card::WikirateWebsiteID
 end

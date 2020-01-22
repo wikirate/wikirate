@@ -9,5 +9,5 @@ def pointer_mark
 end
 
 def wql_content
-  { type_id: WikirateCompanyID, referred_to_by: pointer_mark }
+  { type_id: Card::WikirateCompanyID, referred_to_by: pointer_mark }
 end

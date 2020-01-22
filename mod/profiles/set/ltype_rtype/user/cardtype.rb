@@ -36,7 +36,7 @@ def report_card variant
   return if variant.blank?
   @report_cards ||= {}
   @report_cards[variant] ||= begin
-    rcard = Card.new name: name.trait(:report_search), type_id: SearchTypeID
+    rcard = Card.new name: name.trait(:report_search), type_id: Card::SearchTypeID
     # note: #new is important here, because we want different cards
     # for different variants
     rcard.variant = variant
@@ -55,7 +55,7 @@ def bookmarked_applies?
 end
 
 def double_checked_applies?
-  cardtype_card.id == MetricAnswerID
+  cardtype_card.id == Card::MetricAnswerID
 end
 
 format :html do

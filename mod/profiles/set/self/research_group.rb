@@ -7,7 +7,7 @@ def created_query user_id, variant=nil
   when :submitted
     { created_by: user_id }
   when :organized
-    { right_plus: [OrganizerID, { refer_to: user_id }] }
+    { right_plus: [Card::OrganizerID, { refer_to: user_id }] }
   else
     { or:
         created_query(user_id, :submitted).merge(

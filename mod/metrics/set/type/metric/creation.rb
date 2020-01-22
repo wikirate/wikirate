@@ -53,7 +53,7 @@ format :html do
   end
 
   def new_metric_of_type metric_type
-    new_metric = Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
+    new_metric = Card.new type: Card::MetricID, "+*metric type" => "[[#{metric_type}]]"
     new_metric.reset_patterns
     new_metric.include_set_modules
     new_metric
@@ -91,7 +91,7 @@ format :html do
   def new_tab_pane_hidden
     hidden_tags(
       "card[subcards][+*metric type][content]" => "[[#{card.metric_type}]]",
-      "card[type_id]" => MetricID,
+      "card[type_id]" => Card::MetricID,
       success: "_self"
     )
   end
@@ -133,14 +133,14 @@ format :html do
     #     }.merge(options))
     # else
     designer = card.add_subfield_and_reset :designer, content: Auth.current.name,
-                                                      type_id: PhraseID
+                                                      type_id: Card::PhraseID
     subformat(designer)
       ._render_edit_in_form(options.merge(title: "Metric Designer"))
     # end
   end
 
   def metric_title_field options={}
-    title = card.add_subfield_and_reset :title, content: card.name.tag, type_id: PhraseID
+    title = card.add_subfield_and_reset :title, content: card.name.tag, type_id: Card::PhraseID
     subformat(title)._render_edit_in_form(options.merge(title: "Metric Title"))
   end
 end

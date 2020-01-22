@@ -51,7 +51,7 @@ end
 
 def check_requested_by_card
   @check_requested_by_card ||=
-    left(new: { type_id: MetricAnswerID }).check_requested_by_card
+    left(new: { type_id: Card::MetricAnswerID }).check_requested_by_card
 end
 
 def allowed_to_check?
@@ -203,7 +203,7 @@ event :user_requests_check, :prepare_to_store,
 end
 
 def attach_request requester
-  attach_subcard check_requested_by_card.name, content: requester, type_id: PointerID
+  attach_subcard check_requested_by_card.name, content: requester, type_id: Card::PointerID
 end
 
 def request_tag
@@ -216,7 +216,7 @@ end
 
 def update_user_check_log
   add_subcard Auth.current.name.field_name(:double_checked),
-              type_id: PointerID
+              type_id: Card::PointerID
 end
 
 def add_checker

@@ -11,7 +11,7 @@ format :html do
 
   def answer_card
     return unless answer_name
-    Card.fetch answer_name, new: { type_id: MetricAnswerID }
+    Card.fetch answer_name, new: { type_id: Card::MetricAnswerID }
   end
 
   before :new do
@@ -65,7 +65,7 @@ format :html do
     return super unless answer_name
     { href: path(mark: answer_name,
                  view: :sourcebox,
-                 card: { type_id: MetricAnswerID }),
+                 card: { type_id: Card::MetricAnswerID }),
       "data-slot-selector": ".sourcebox-view" }
   end
 
@@ -74,7 +74,7 @@ format :html do
     return super unless answer_name
     {
       id: answer_name,
-      type_id: MetricAnswerID,
+      type_id: Card::MetricAnswerID,
       view: :source_selector,
       soft_redirect: true
     }
