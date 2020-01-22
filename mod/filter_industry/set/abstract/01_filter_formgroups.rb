@@ -8,4 +8,3 @@ format :html do
     Card[card_name].value_options
   end
 end
-
