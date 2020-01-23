@@ -16,9 +16,6 @@ module Formula
             # to compose the search for all relationship answers that satisfy that
             # condition.
             class Condition
-              require_dependency "operator_condition"
-              require_dependency "exist_condition"
-
               class Error < Card::Error::UserError
               end
 

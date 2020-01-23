@@ -9,7 +9,7 @@ class Card
     # @param value [Symbol] :bookmark or :nobookmark
     # @return wql to find cards that the signed in user has (or has not) bookmarked
     def bookmark_wql value
-      return unless (restriction = Bookmark.id_restriction(value.to_sym == :bookmark))
+      return unless (restriction = Card::Bookmark.id_restriction(value.to_sym == :bookmark))
 
       restriction = -1 if restriction.blank? # empty array
       # need a way to force wql to return empty result without query

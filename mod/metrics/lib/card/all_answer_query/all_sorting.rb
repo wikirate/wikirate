@@ -29,7 +29,7 @@ class Card
       end
 
       def sort_by_bookmarkers rel
-        Bookmark.sort rel, "#{@partner}.id", @sort_args[:sort_order]
+        Card::Bookmark.sort rel, "#{@partner}.id", @sort_args[:sort_order]
       end
 
       def sort_by_metric_title rel

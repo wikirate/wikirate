@@ -8,8 +8,6 @@ module Formula
             # to non-relationship metrics like M2 in the following example:
             #   Related[M1] && M2 > 4
             class AnswerCondition
-              require_dependency "condition"
-
               class << self
                 def new string, id
                   Condition.new_obj(string, id).tap do |con|

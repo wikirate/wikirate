@@ -73,7 +73,7 @@ end
 group :test do
   gem "rspec"
   gem "rspec-html-matchers" # 0.7.0 broke stuff!
-  gem "rspec-rails", "~> 3.6.1" # 3.7.0 broke stuff!
+  gem "rspec-rails" # , "~> 3.6.1" # 3.7.0 broke stuff!
   # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
 
   gem "simplecov", require: false
