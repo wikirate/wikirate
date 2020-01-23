@@ -1,6 +1,6 @@
 require_relative "../../../support/shared_answer_csv_row"
 
-RSpec.describe CSVRow::Structure::AnswerCSV do
+RSpec.describe CsvRow::Structure::AnswerCsv do
   include_context "answer csv row"
 
   specify "answer doesn't exist" do

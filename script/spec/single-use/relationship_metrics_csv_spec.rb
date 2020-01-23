@@ -6,7 +6,7 @@ RSpec.describe "relationship metric import" do
   end
 
   before do
-    RelationshipMetricsCSVFile.new(path).import
+    RelationshipMetricsCsvFile.new(path).import
   end
 
   it "creates designer" do

@@ -6,7 +6,7 @@ shared_context "table_row" do |type_id|
   def validated_table_row data={}
     row_args = csv_data.merge data
     io = StringIO.new row_args.values.join(",")
-    file = CSVFile.new io, CSVRow::Structure::AnswerCSV
+    file = CsvFile.new io, CsvRow::Structure::AnswerCsv
     vm = ValidationManager.new file, :skip
     vm.validate do |csv_row|
       yield described_class.new(csv_row, format).render
@@ -27,7 +27,7 @@ shared_context "table_row" do |type_id|
   def with_row data
     row_args = csv_data.merge data
     io = StringIO.new row_args.values.join(",")
-    file = CSVFile.new io, CSVRow::Structure::AnswerCSV
+    file = CsvFile.new io, CsvRow::Structure::AnswerCsv
     vm = ValidationManager.new file, :skip
     vm.validate do |csv_row|
       @row = described_class.new(csv_row, format).render

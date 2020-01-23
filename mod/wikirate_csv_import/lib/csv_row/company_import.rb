@@ -1,5 +1,5 @@
-class CSVRow
-  # To be used by CSVRow classes to handle company imports.
+class CsvRow
+  # To be used by CsvRow classes to handle company imports.
   # Expects
   #  - a company name in row[:company],
   #  - a suggestion (of the company mapper gem) for the corresponding company in the

@@ -2,9 +2,9 @@
 # require_relative "../../../spec/source_helper"
 
 # This class provides an interface to import relationship answers
-class CSVRow
+class CsvRow
   module Structure
-    class RelationshipAnswerCSV < AnswerCSV
+    class RelationshipAnswerCsv < AnswerCsv
       @columns = [:designer, :title, :company, :related_company, :year, :value, :source]
       @required = :all
 

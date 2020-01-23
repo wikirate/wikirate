@@ -11,8 +11,8 @@ RSpec.describe "relationship answer import" do
   end
 
   before do
-    RelationshipMetricsCSVFile.new(metric_path).import
-    RelationshipAnswersCSVFile.new(answer_path).import
+    RelationshipMetricsCsvFile.new(metric_path).import
+    RelationshipAnswersCsvFile.new(answer_path).import
   end
 
   it "creates count" do

@@ -5,7 +5,7 @@ RSpec.describe "metric import" do
   before do
     path = File.expand_path "../metrics.csv", __FILE__
     Card::Auth.as_bot do
-      MetricsCSVFile.new(path).import
+      MetricsCsvFile.new(path).import
     end
   end
   context "import money metric" do
