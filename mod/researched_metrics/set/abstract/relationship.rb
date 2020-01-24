@@ -1,7 +1,7 @@
 include_set Abstract::Researched
 
 def inverse_card
-  fetch(:inverse).item_cards.first
+  fetch(:inverse).first_card
 end
 
 def inverse
@@ -14,6 +14,10 @@ end
 
 def relationship?
   true
+end
+
+def simple_value_type_code
+  :number
 end
 
 format :html do

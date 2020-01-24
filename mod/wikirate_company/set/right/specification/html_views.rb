@@ -46,7 +46,7 @@ format :html do
     wrap do
       if metric&.type_id == Card::MetricID
         @metric_card = metric
-        filter_value_formgroup metric.value_type_code, value
+        filter_value_formgroup metric.simple_value_type_code, value
       else
         ""
       end

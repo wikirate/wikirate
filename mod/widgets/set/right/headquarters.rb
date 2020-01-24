@@ -36,7 +36,7 @@ def jurisdiction_name oc_code
 end
 
 def oc_code
-  jur = known_item_cards.first
+  jur = known_first_card
   return unless jur&.type_id == JurisdictionID
   jur.oc_code
 end

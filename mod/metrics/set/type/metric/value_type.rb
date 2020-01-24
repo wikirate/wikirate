@@ -13,12 +13,12 @@
 
 # @return String
 def value_type
-  value_type_card&.value_type || default_value_type_code.cardname
+  value_type_card&.first_name || default_value_type_code.cardname
 end
 
 # @return Symbol
 def value_type_code
-  value_type_card&.value_type_code || default_value_type_code
+  value_type_card&.first_code || default_value_type_code
 end
 
 # @return Symbol
@@ -26,11 +26,25 @@ def default_value_type_code
   calculated? ? :number : :free_text
 end
 
+# Overwritten in Abstract::Relationship
+# In relationship metrics, the value_type setting configures the value type of
+# relationship answer value (M+C+Y+C+v), *not* the value type of the simple answer
+# (M+C+Y+v). This method is specifically for simple answers.
+# @return Symbol
+def simple_value_type_code
+  value_type_code
+end
+
 # Value Type, long name:
 # ~~~~
 # @return Symbol
 def value_cardtype_code
   :"#{value_type_code}_value"
+end
+
+# @return Symbol
+def simple_value_cardtype_code
+  :"#{simple_value_type_code}_value"
 end
 
 # @return Integer
