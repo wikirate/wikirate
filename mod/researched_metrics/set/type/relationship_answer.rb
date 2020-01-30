@@ -28,6 +28,14 @@ def valid_answer_name?
   super && valid_related_company?
 end
 
+def value_type_code
+  metric_card.value_type_code
+end
+
+def value_cardtype_code
+  metric_card.value_cardtype_code
+end
+
 # has to happen after :set_answer_name,
 # but always, also if :set_answer_name is not executed
 event :add_count_answer, :prepare_to_store, changed: :content do

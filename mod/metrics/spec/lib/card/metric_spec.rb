@@ -47,7 +47,7 @@ RSpec.describe Card::Metric do
     let(:metric) { Card["MD+MT"] }
     let(:value) { metric.field("SPECTRE").field("2000") }
     let(:source_link) do
-      Card["MD+MT+Death Star+2000+source"].item_cards.first.field("link")
+      Card["MD+MT+Death Star+2000+source"].first_card.field("link")
     end
 
     def create_metric

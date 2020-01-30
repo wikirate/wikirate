@@ -119,7 +119,7 @@ class Answer
     end
 
     def fetch_source_url
-      return unless (url_card = source_field.item_cards.first&.field(:wikirate_link))
+      return unless (url_card = source_field.first_card&.field(:wikirate_link))
       url_card.content.truncate(1024, omission: "")
     end
 

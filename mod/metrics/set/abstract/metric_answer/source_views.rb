@@ -62,7 +62,7 @@ format :html do
   end
 
   def source_previews
-    return "" unless (first_source = card.source_card.item_cards.first)
+    return "" unless (first_source = card.source_card.first_card)
     nest first_source, view: :preview
   end
 

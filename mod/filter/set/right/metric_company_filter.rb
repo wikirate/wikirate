@@ -26,7 +26,7 @@ format :html do
   end
 
   view :filter_value_formgroup do
-    filter_value_formgroup metric_card.value_type_code
+    filter_value_formgroup metric_card.simple_value_type_code
   end
 
   def filter_value_formgroup metric_type, default=nil

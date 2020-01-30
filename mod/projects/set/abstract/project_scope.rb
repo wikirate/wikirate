@@ -66,7 +66,7 @@ end
 
 # eg return :wikirate_company on +Company cards
 def scope_code
-  right_name.codename
+  name.right_name&.codename
 end
 
 # eg return :company on +Company cards
