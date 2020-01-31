@@ -6,7 +6,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
   end
 
   include_context "csv import" do
-    let(:csv_row_class) { CsvRow::Structure::SourceCSV }
+    let(:csv_row_class) { CsvRow::Structure::SourceCsv }
     let(:import_card) { Card["source import test"] }
     let(:data) do
       {

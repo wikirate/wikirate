@@ -104,7 +104,7 @@ group :development do
   gem 'html2haml'
   gem "rubocop-rspec"
 
-  gem "rails-dev-tweaks"
+  # gem "rails-dev-tweaks"
   # gem "sprockets" # just so above works
 
   gem "capistrano"

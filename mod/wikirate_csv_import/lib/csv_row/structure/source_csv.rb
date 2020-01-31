@@ -1,7 +1,7 @@
 class CsvRow
   module Structure
     # Specifies the structure of a csv row for a source import.
-    class SourceCSV < CsvRow
+    class SourceCsv < CsvRow
       require "csv_row"
       require "csv_row/source_import"
 
