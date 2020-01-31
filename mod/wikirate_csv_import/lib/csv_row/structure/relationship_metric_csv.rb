@@ -2,7 +2,7 @@ class CsvRow
   module Structure
     # This class provides an interface to import relationship metrics
     class RelationshipMetricCSV < CsvRow
-      require_dependency "csv_row"
+      require "csv_row"
 
       @columns = [:designer, :title, :inverse, :value_type, :value_options, :unit]
       @required = [:designer, :title, :value_type, :inverse]

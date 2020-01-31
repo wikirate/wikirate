@@ -3,8 +3,8 @@
 require "timecop"
 
 class SharedData
-  require_dependency "card"
-  require_dependency "card/model/save_helper"
+  require "card"
+  require "card/model/save_helper"
 
   HAPPY_BIRTHDAY = Time.utc(2035, 2, 5, 12, 0, 0).freeze
   # gift to Ethan's 60th birthday:
