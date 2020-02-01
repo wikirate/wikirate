@@ -33,8 +33,8 @@ shared_context "csv import" do
   end
 
   let(:import_card_with_data) do
-    # Since the import happens in the intergrate_with_delay stage
-    # the import card was refetched. The only way to get the fake csv file
+    # Since the import happens in the integrate_with_delay stage
+    # the import card was re-fetched. The only way to get the fake csv file
     # in was stubbing the CsvFile.new
     allow(CsvFile).to receive(:new).and_return csv_file
     # Card.any_instance.stub(:csv_file).and_return csv_file

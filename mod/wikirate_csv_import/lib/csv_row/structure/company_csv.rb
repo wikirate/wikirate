@@ -7,7 +7,7 @@ class CsvRow
     #    database in extra_data[:suggestion] and possibly a user correction of the mapping
     #    in extra_data[:corrections][:company].
     #    The user correction overrides the suggestion.
-    class CompanyCSV < CsvRow
+    class CompanyCsv < CsvRow
       def initialize row, index, import_manager=nil, company_key=:company
         @company_key = company_key
         super(row, index, import_manager)
