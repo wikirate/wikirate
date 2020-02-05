@@ -18,7 +18,7 @@ def target_type_id
 end
 
 def filter_class
-  CompanyGroupQuery
+  CompanyGroupFilterQuery
 end
 
 def default_sort_option
