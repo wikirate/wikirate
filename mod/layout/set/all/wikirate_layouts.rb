@@ -24,5 +24,7 @@ format :html do
         #{nest '_main+google analytics conversion snippet', view: :core}
       </body>
     HTML
+  rescue
+    binding.pry
   end
 end

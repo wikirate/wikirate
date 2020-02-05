@@ -1,10 +1,11 @@
 # -*- encoding : utf-8 -*-
 
 require "timecop"
+#require "cardio"
+#Cardio.load_card!
+require "card/model/save_helper"
 
 class SharedData
-  require "card"
-  require "card/model/save_helper"
 
   HAPPY_BIRTHDAY = Time.utc(2035, 2, 5, 12, 0, 0).freeze
   # gift to Ethan's 60th birthday:
@@ -156,8 +157,8 @@ class SharedData
     end
 
     def csv_file name
-      path = File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
-      File.open path
+      path = ::File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
+      ::File.open path
     end
   end
 end
