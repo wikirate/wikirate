@@ -639,7 +639,7 @@ DEPENDENCIES
   selenium-webdriver (= 3.141.0)
   simplecov
   spork (>= 0.9)
-  sprockets (~> 3.0)
+  sprockets
   statistics2
   therubyracer
   timecop

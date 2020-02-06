@@ -73,8 +73,8 @@ class Importer
     data.each do |table, values|
       truncate table
       insert_into table, (values - exclude)
-    rescue => e
-      puts "Error in #{table},#{values} #{e}".red
+      # rescue => e
+      # puts "Error in #{table},#{values} #{e}".red
     end
   end
 

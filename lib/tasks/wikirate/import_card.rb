@@ -9,8 +9,8 @@ class ImportCard
 
   def update_or_create
     puts(update || create)
-  rescue => e
-    puts "Error in #{@name}\n#{e}".red
+    #  rescue => e
+    # puts "Error in #{@name}\n#{e}".red
   end
 
   private
