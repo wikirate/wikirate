@@ -3,5 +3,5 @@ def virtual?
 end
 
 def wql_content
-  { type_id: MetricID, left: "_left" }
+  { type_id: Card::MetricID, left: "_left" }
 end

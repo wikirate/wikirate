@@ -3,7 +3,7 @@
 # to define a option list for a select field.
 class CountryGroups < Array
   def initialize cards=nil
-    cards ||= Card.search(type_id: JurisdictionID)
+    cards ||= Card.search(type_id: Card::JurisdictionID)
     @groups = Hash.new { |hash, key| hash[key] = {} }
     process_cards cards
     sanitize_and_sort
@@ -68,7 +68,7 @@ format :json do
 
   def select2_option_list
     if name_query
-      wql = { type_id: JurisdictionID, name: ["match", name_query] }
+      wql = { type_id: Card::JurisdictionID, name: ["match", name_query] }
       Card.search(wql).each_with_object([]) do |i, ar|
         ar << { id: i.codename, text: i.name }
       end

@@ -1,13 +1,13 @@
-class CSVRow
+class CsvRow
   module Structure
-    # To be used by CSVRow classes to handle company imports.
+    # To be used by CsvRow classes to handle company imports.
     # Expects
     #  - a company name in row[:company],
     #  - a suggestion (of the company mapper gem) for the corresponding company in the
     #    database in extra_data[:suggestion] and possibly a user correction of the mapping
     #    in extra_data[:corrections][:company].
     #    The user correction overrides the suggestion.
-    class CompanyCSV < CSVRow
+    class CompanyCsv < CsvRow
       def initialize row, index, import_manager=nil, company_key=:company
         @company_key = company_key
         super(row, index, import_manager)

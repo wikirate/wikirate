@@ -7,7 +7,7 @@ module Formula
         include CompanyDependentInput
 
         def type
-          @type ||= @input_card.value_type_code
+          @type ||= @input_card.simple_value_type_code
         end
 
         private

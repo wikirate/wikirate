@@ -46,8 +46,7 @@ module Wikirate
     # config.override_protocol = nil
     # don't autodetect protocol (http/https) from web requests
 
-    config.autoload_paths += Dir["#{root}/test/*.rb"]
-    config.autoload_paths += Dir["#{root}/test/**/"]
+    config.autoload_paths += Dir["#{root}/test"]
     config.file_buckets = {
       s3_live_bucket: {
         read_only: true,

@@ -1,5 +1,5 @@
 module Formula
-  # The common ground of Translatiosn and WikiRatings formula
+  # The common ground of Translations and WikiRatings formula
   class JsonFormula < Calculator
     def to_lambda
       @parser.formula.downcase

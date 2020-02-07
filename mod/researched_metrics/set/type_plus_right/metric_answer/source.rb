@@ -25,7 +25,7 @@ end
 
 def with_valid_source source_name
   source_card = Card[source_name]
-  if source_card&.type_id == SourceID
+  if source_card&.type_id == Card::SourceID
     yield source_card
   else
     errors.add :item, "No such source exists: #{source_name}"

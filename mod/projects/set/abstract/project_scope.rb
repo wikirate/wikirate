@@ -64,10 +64,12 @@ def parent_field
   @parent_field ||= relative_project_field(parent_project)
 end
 
+# eg return :wikirate_company on +Company cards
 def scope_code
-  Card::Codename[right_id]
+  name.right_name&.codename
 end
 
+# eg return :company on +Company cards
 def short_scope_code
   scope_code
 end

@@ -1,4 +1,4 @@
-require "./test/seed"
+# require "./test/seed"
 
 RSpec.describe Card::AnswerQuery do
   RESEARCHED_TITLES = ["Industry Class", "Weapons", "big multi", "big single",

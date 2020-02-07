@@ -3,5 +3,5 @@ def virtual?
 end
 
 def wql_content
-  { type_id: ProjectID, right_plus: [OrganizerID, refer_to: "_left"] }
+  { type_id: Card::ProjectID, right_plus: [Card::OrganizerID, refer_to: "_left"] }
 end

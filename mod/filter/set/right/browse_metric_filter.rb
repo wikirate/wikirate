@@ -15,7 +15,7 @@ def filter_keys
 end
 
 def target_type_id
-  MetricID
+  Card::MetricID
 end
 
 def filter_class

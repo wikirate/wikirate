@@ -15,7 +15,7 @@ format :html do
   end
 
   def scorer_image_card
-    card.scorer_card.fetch :image, new: { type_id: ImageID }
+    card.scorer_card.fetch :image, new: { type_id: Card::ImageID }
   end
 
   def value_legend _html=true
@@ -39,7 +39,7 @@ format :html do
   end
 
   def scorable_metrics
-    Card.search type_id: MetricID,
+    Card.search type_id: Card::MetricID,
                 right_plus: ["*metric type",
                              content: scorable_metric_type_content.unshift("in")],
                 sort: "name",

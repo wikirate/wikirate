@@ -2,7 +2,7 @@ require_relative "../../../vendor/card-mods/csv_import/lib/csv_row.rb"
 require_relative "../../../vendor/card-mods/csv_import/lib/csv_file.rb"
 
 # create a metric described by a row in a csv file
-class MetricCSVRow < CSVRow
+class MetricCsvRow < CsvRow
   @columns =
     [:metric_designer, :metric_title, # parts of metric name
      :question,

@@ -102,11 +102,11 @@ format do
   end
 
   def years
-    Card.search(type_id: YearID, return: :name, sort: :name, dir: :desc).map(&:to_i)
+    Card.search(type_id: Card::YearID, return: :name, sort: :name, dir: :desc).map(&:to_i)
   end
 
   def year_ids
-    Card.search type_id: YearID, return: :id, sort: :name, dir: :desc
+    Card.search type_id: Card::YearID, return: :id, sort: :name, dir: :desc
   end
 
   def project?
@@ -127,7 +127,7 @@ format do
   end
 
   def metric?
-    metric && Card.fetch_type_id(metric) == MetricID
+    metric && Card.fetch_type_id(metric) == Card::MetricID
   end
 
   def project_year_list?
@@ -143,7 +143,7 @@ format do
   end
 
   def company?
-    company && Card.fetch_type_id(company) == WikirateCompanyID
+    company && Card.fetch_type_id(company) == Card::WikirateCompanyID
   end
 
   def answer?
@@ -172,7 +172,7 @@ format do
   end
 
   def year?
-    year && Card.fetch_type_id(year) == YearID
+    year && Card.fetch_type_id(year) == Card::YearID
   end
 
   def year
@@ -181,16 +181,16 @@ format do
   end
 
   def record_card
-    @src ||= Card.fetch [metric, company], new: { type_id: RecordID }
+    @src ||= Card.fetch [metric, company], new: { type_id: Card::RecordID }
   end
 
   def answer_card
     @answer_card ||=
       if related_company
         Card.fetch [metric, company, year.to_s, related_company],
-                   new: { type_id: RelationshipAnswerID }
+                   new: { type_id: Card::RelationshipAnswerID }
       else
-        Card.fetch [metric, company, year.to_s], new: { type_id: MetricAnswerID }
+        Card.fetch [metric, company, year.to_s], new: { type_id: Card::MetricAnswerID }
       end
   end
 

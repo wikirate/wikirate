@@ -7,7 +7,7 @@ def categorical?
 end
 
 def help_rule_card
-  metric_card.metric_type_card.item_cards.first&.fetch :help
+  metric_card.metric_type_card.first_card&.fetch :help
 end
 
 format :html do

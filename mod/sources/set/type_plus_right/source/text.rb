@@ -4,7 +4,7 @@ end
 
 # only author can edit
 def editable?
-  real? && Auth.current_id.in?([creator.id, WagnBotID])
+  real? && Auth.current_id.in?([creator.id, Card::WagnBotID])
 end
 
 format :html do

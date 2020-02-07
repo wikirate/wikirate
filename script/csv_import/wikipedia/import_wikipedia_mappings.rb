@@ -4,5 +4,5 @@ require_relative "../csv_file"
 
 #csv_path = File.expand_path "../data/error.csv", __FILE__
 csv_path = File.expand_path "../data/wikirate_to_wikipedia.csv", __FILE__
-CSVFile.new(csv_path, WikipediaCSVRow)
+CsvFile.new(csv_path, WikipediaCsvRow)
        .import user: "Vasiliki Gkatziaki", error_policy: :report

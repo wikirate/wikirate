@@ -34,14 +34,6 @@ def content_from_value value
   Array.wrap(::Answer.value_from_lookup(value, value_type_code)).join "\n"
 end
 
-def value_type_code
-  metric_card.value_type_code
-end
-
-def value_cardtype_code
-  metric_card.value_cardtype_code
-end
-
 def raw_answer_card
   return self unless metric_type == :score
 

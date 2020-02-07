@@ -18,7 +18,7 @@ def subvariants
 end
 
 def updated_query user_id, _variant=nil
-  { right_plus: [ValueID, { updated_by: user_id }] }
+  { right_plus: [Card::ValueID, { updated_by: user_id }] }
 end
 
 def created_query user_id, variant=nil
@@ -28,12 +28,12 @@ end
 def created_query_variant user_id, variant=nil
   case variant
   when :checked_by_others
-    { right_plus: [CheckedByID,
-                   { refer_to: { not: { id: ["in", RequestID, user_id] } } }] }
+    { right_plus: [Card::CheckedByID,
+                   { refer_to: { not: { id: ["in", Card::RequestID, user_id] } } }] }
   when :updated_by_others
-    { right_plus: [ValueID, { updated_by: { not: { id: user_id } } }] }
+    { right_plus: [Card::ValueID, { updated_by: { not: { id: user_id } } }] }
   when :discussed_by_others
-    { right_plus: [DiscussionID, { edited_by: { not: { id: user_id } } }] }
+    { right_plus: [Card::DiscussionID, { edited_by: { not: { id: user_id } } }] }
   else
     {}
   end

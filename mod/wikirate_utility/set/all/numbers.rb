@@ -11,7 +11,7 @@ end
 
 format do
   def humanized_number value
-    number = BigDecimal.new(value)
+    number = BigDecimal(value)
     size = number.abs > 1_000_000 ? :big : :small
     send "humanized_#{size}_number", number
   rescue

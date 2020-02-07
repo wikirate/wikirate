@@ -5,7 +5,7 @@ class Card
     include AllSorting
     include NotResearched
 
-    PARTNER_TYPE_ID = { company: WikirateCompanyID, metric: MetricID }.freeze
+    PARTNER_TYPE_ID = { company: Card::WikirateCompanyID, metric: Card::MetricID }.freeze
 
     def initialize filter, sorting={}, paging={}
       @filter_args = filter # duplicated, but must happen before require_partner!

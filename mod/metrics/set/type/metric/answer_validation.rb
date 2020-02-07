@@ -1,5 +1,5 @@
 def validate_all_values
-  test = case value_type_code
+  test = case simple_value_type_code
          when :number, :money            then :numeric
          when :category, :multi_category then :categorical
          else                            return

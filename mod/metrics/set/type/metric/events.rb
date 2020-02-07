@@ -1,4 +1,5 @@
-VALID_DESIGNER_TYPE_IDS = [ResearchGroupID, UserID, WikirateCompanyID].freeze
+VALID_DESIGNER_TYPE_IDS =
+  [Card::ResearchGroupID, Card::UserID, Card::WikirateCompanyID].freeze
 
 # The new metric form has a title and a designer field instead of a name field
 # We compose the card's name here
@@ -18,7 +19,7 @@ event :ensure_designer, :validate, on: :save, changed: :name do
   if (card = Card[metric_designer])
     errors.add :metric_designer, "invalid type #{card.type_name}"
   else
-    attach_subcard metric_designer, type_id: ResearchGroupID
+    attach_subcard metric_designer, type_id: Card::ResearchGroupID
   end
 end
 
@@ -28,10 +29,10 @@ end
 
 event :ensure_title, :validate, on: :save, changed: :name do
   case Card.fetch_type_id(metric_title)
-  when MetricTitleID, ReportTypeID
+  when Card::MetricTitleID, Card::ReportTypeID
     return
   when nil
-    attach_subcard metric_title, type_id: MetricTitleID
+    attach_subcard metric_title, type_id: Card::MetricTitleID
   else
     errors.add :metric_title, "#{metric_title} is a #{Card[metric_title].type_name} "\
                               "card and can't be used as metric title"

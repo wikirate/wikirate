@@ -1,4 +1,4 @@
-require_dependency "wolfram/unknowns"
+require "formula/wolfram/unknowns"
 
 module Formula
   class Wolfram < NestFormula

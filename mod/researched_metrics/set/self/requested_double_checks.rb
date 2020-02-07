@@ -1,7 +1,7 @@
 include_set Abstract::WqlSearch
 
 def wql_content
-  { type_id: MetricAnswerID, id: answer_ids.unshift("in") }
+  { type_id: Card::MetricAnswerID, id: answer_ids.unshift("in") }
 end
 
 def answer_ids

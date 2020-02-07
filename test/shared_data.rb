@@ -1,18 +1,11 @@
 # -*- encoding : utf-8 -*-
 
 require "timecop"
-require_dependency "shared_data/profile_sections"
-require_dependency "shared_data/researched_metrics"
-require_dependency "shared_data/calculated_metrics"
-require_dependency "shared_data/relationship_metrics"
-require_dependency "shared_data/badges"
-require_dependency "shared_data/sources"
-require_dependency "shared_data/samples"
-require_dependency "shared_data/projects"
+#require "cardio"
+#Cardio.load_card!
+require "card/model/save_helper"
 
 class SharedData
-  require_dependency "card"
-  require_dependency "card/model/save_helper"
 
   HAPPY_BIRTHDAY = Time.utc(2035, 2, 5, 12, 0, 0).freeze
   # gift to Ethan's 60th birthday:
@@ -38,17 +31,18 @@ class SharedData
     # Natural Resource Use, Community, Human Rights, Climate Change, Animal Welfare
   }.freeze
 
+  extend Samples
+  extend ProfileSections
+  extend ResearchedMetrics
+  extend CalculatedMetrics
+  extend RelationshipMetrics
+  extend Badges
+  extend Sources
+  extend Projects
+
   class << self
     include Card::Model::SaveHelper
-    include Samples
 
-    include ProfileSections
-    include ResearchedMetrics
-    include CalculatedMetrics
-    include RelationshipMetrics
-    include Badges
-    include Sources
-    include Projects
 
     def add_wikirate_data
       puts "add wikirate data"
@@ -115,7 +109,7 @@ class SharedData
         values: { 2015 => "1007.5", 2014 => "1007", 2013 => "1006.5", 2004 => "1002" }
       )
       Card::YearlyVariable.create_or_update name: "always one",
-                                  values: { 1977 => "1", 2000 => "1", 2014 => 1 }
+                                            values: { 1977 => "1", 2000 => "1", 2014 => 1 }
     end
 
     def add_program
@@ -163,8 +157,8 @@ class SharedData
     end
 
     def csv_file name
-      path = File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
-      File.open path
+      path = ::File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
+      ::File.open path
     end
   end
 end

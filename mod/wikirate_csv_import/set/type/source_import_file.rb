@@ -19,7 +19,7 @@ SUCCESS_MESSAGES = {
 }.freeze
 
 def csv_row_class
-  CSVRow::Structure::SourceCSV
+  CsvRow::Structure::SourceCsv
 end
 
 def item_label

@@ -1,6 +1,6 @@
 require_relative "wikipedia_csv_row"
 
-class LogoCSVRow < WikipediaCSVRow
+class LogoCsvRow < WikipediaCsvRow
   @columns = [:wikirate_id, :wikirate_name, :wikipedia_url, :logo]
   @required = :all
 

@@ -133,7 +133,7 @@ format :html do
     tags["card[name]"] = card.name
     # tags["card[subcards][+metric][content]"] = card.metric
     tags["card[type_id]"] =
-      card.metric_card.relationship? ? RelationshipAnswerID : MetricAnswerID
+      card.metric_card.relationship? ? Card::RelationshipAnswerID : Card::MetricAnswerID
     # tags["card[subcards][+source][content]"] = source if source.present?
     hidden_tags tags
   end
