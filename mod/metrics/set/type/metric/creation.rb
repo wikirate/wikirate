@@ -140,7 +140,8 @@ format :html do
   end
 
   def metric_title_field options={}
-    title = card.add_subfield_and_reset :title, content: card.name.tag, type_id: Card::PhraseID
+    title =
+      card.add_subfield_and_reset :title, content: card.name.tag, type_id: Card::PhraseID
     subformat(title)._render_edit_in_form(options.merge(title: "Metric Title"))
   end
 end

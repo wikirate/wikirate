@@ -203,7 +203,8 @@ event :user_requests_check, :prepare_to_store,
 end
 
 def attach_request requester
-  attach_subcard check_requested_by_card.name, content: requester, type_id: Card::PointerID
+  attach_subcard check_requested_by_card.name,
+                 content: requester, type_id: Card::PointerID
 end
 
 def request_tag

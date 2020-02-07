@@ -1,6 +1,7 @@
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
 
+# FilterQuery class for company groups
 class CompanyGroupFilterQuery < Card::FilterQuery
   include WikirateFilterQuery
 end

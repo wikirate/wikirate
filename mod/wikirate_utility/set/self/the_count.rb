@@ -70,7 +70,8 @@ format :html do
   end
 
   def designer_ids
-    Card.search(right_plus: [{}, { type_id: Card::MetricID }], not: { type_id: Card::MetricID },
+    Card.search(right_plus: [{}, { type_id: Card::MetricID }],
+                not: { type_id: Card::MetricID },
                 return: "id")
   end
 

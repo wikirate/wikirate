@@ -1,4 +1,5 @@
-VALID_DESIGNER_TYPE_IDS = [Card::ResearchGroupID, Card::UserID, Card::WikirateCompanyID].freeze
+VALID_DESIGNER_TYPE_IDS =
+  [Card::ResearchGroupID, Card::UserID, Card::WikirateCompanyID].freeze
 
 # The new metric form has a title and a designer field instead of a name field
 # We compose the card's name here
