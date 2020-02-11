@@ -11,7 +11,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
       expect(humanize("1_000_001")).to eq "1M"
     end
     specify do
-      expect(humanize("0.00000123345")).to eq "0.00000123"
+      expect(humanize("0.00000123345")).to eq "0.0000012"
     end
     specify do
       expect(humanize("0.001200")).to eq "0.0012"
