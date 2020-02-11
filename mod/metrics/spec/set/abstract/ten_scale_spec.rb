@@ -27,7 +27,7 @@ RSpec.describe Card::Set::Abstract::TenScale do
       expect(ten_scale(0.234)).to eq "0.2"
     end
 
-    it "handles numbers between 0 and 1" do
+    it "returns 0.0 for 0" do
       expect(ten_scale(0)).to eq "0.0"
     end
   end
