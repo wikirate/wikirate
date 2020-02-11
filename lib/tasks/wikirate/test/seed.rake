@@ -63,7 +63,7 @@ namespace :wikirate do
       desc "add wikirate test data to test database"
       task add_wikirate_test_data: :environment do |task|
         ensure_env :test, task do
-          require "#{Decko.root}/test/seed.rb"
+          require "#{Decko.root}/test/shared_data.rb"
           SharedData.add_wikirate_data
         end
       end

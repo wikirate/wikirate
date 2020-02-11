@@ -11,7 +11,7 @@ def bookmark_type
 end
 
 def my_bookmarks?
-  Bookmark.ok?
+  Card::Bookmark.ok?
   # Bookmark.current_bookmarks[Card.fetch_id(bookmark_type)].present?
 end
 
@@ -55,7 +55,7 @@ format :html do
   end
 
   def filter_names_for type_code, featured=nil
-    ids = Bookmark.current_bookmarks[Card::Codename.id(type_code)]
+    ids = Card::Bookmark.current_bookmarks[Card::Codename.id(type_code)]
     if ids.present?
       ids.map(&:cardname).compact
     elsif featured

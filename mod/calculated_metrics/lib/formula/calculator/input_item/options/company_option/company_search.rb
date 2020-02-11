@@ -10,8 +10,6 @@ module Formula
           # In contrast to the other company options {CompanyList} and {CompaanySinge},
           # this case is company dependent.
           module CompanySearch
-            require_dependency "company_query"
-
             include CompanyDependentInput
             extend AddValidationChecks
             add_validation_checks :check_related_conditions

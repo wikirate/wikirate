@@ -13,13 +13,9 @@ event :validate_value_type_matches_values, :validate, on: :save, changed: :conte
 end
 
 def valid_content?
-  value_type_code.in? %i[number category multi_category money free_text]
+  first_code.in? %i[number category multi_category money free_text]
 end
 
 def value_type
   first_name
-end
-
-def value_type_code
-  item_cards.first&.codename
 end

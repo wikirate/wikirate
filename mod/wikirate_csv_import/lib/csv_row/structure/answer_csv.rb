@@ -1,13 +1,13 @@
-class CSVRow
+class CsvRow
   module Structure
     # Specifies the structure of a csv row a metric answer import.
-    class AnswerCSV < CSVRow
-      require_dependency "csv_row"
-      require_dependency "csv_row/source_import"
+    class AnswerCsv < CsvRow
+      # require "csv_row"
+      # require "csv_row/source_import"
 
-      include CSVRow::SourceImport
-      include CSVRow::CompanyImport
-      include CSVRow::AnswerImport
+      include CsvRow::SourceImport
+      include CsvRow::CompanyImport
+      include CsvRow::AnswerImport
 
       @columns = [:metric, :company, :year, :value, :source, :comment]
       @required = [:metric, :company, :year, :value, :source]

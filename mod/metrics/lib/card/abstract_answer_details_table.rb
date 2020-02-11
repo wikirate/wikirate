@@ -42,7 +42,7 @@ class Card
       # wql[:right] = year
       # return unless (value_card = Card.search(wql).first)
       # value_card
-      if input_card.type_id == YearlyVariableID
+      if input_card.type_id == Card::YearlyVariableID
         Card.fetch input_card, year
       else
         Card.fetch input_card, company, year

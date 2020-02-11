@@ -40,7 +40,7 @@ end
 
 def current_badge_pointer badge_card
   name_parts = [Auth.current, badge_card.badge_type, :badges_earned]
-  badge_pointer = Card.fetch(name_parts, new: { type_id: PointerID })
+  badge_pointer = Card.fetch(name_parts, new: { type_id: Card::PointerID })
   active_badge_pointer(badge_pointer) || badge_pointer
 end
 

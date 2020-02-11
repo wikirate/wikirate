@@ -11,6 +11,7 @@ ICON_MAP = {
   user: [:user, { library: :font_awesome }],
   post: :insert_comment,
   bookmark: [:bookmark, { library: :font_awesome }],
+  bookmarks: [:bookmark, { library: :font_awesome }],
   details: :info,
   source: :public,
   score: :adjust,

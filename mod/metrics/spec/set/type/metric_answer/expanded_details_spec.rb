@@ -213,7 +213,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
     it "shows overridden value" do
       is_expected.to have_tag "div" do
         with_tag :h5, "Overridden answer"
-        with_tag "span.metric-value", /0\.125/
+        with_tag "span.metric-value", /0\.13/
       end
     end
 

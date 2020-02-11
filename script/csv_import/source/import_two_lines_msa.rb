@@ -4,4 +4,4 @@ require_relative "../csv_file"
 
 csv_path = File.expand_path "../data/msa.csv", __FILE__
 
-CSVFile.new(csv_path, SourceCSVRow).import user: "Philipp Kuehl"
+CsvFile.new(csv_path, SourceCsvRow).import user: "Philipp Kuehl"

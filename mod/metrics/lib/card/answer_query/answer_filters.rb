@@ -55,8 +55,8 @@ class Card
 
       def source_query value
         restrict_by_wql :answer_id,
-                        type_id: MetricAnswerID,
-                        right_plus: [SourceID, { refer_to: value }]
+                        type_id: Card::MetricAnswerID,
+                        right_plus: [Card::SourceID, { refer_to: value }]
       end
 
       private

@@ -70,4 +70,3 @@ class SharedData
     end
   end
 end
-

@@ -65,10 +65,10 @@ def create_count_project project_card
 end
 
 def project_cards
-  Card.search type_id: ProjectID,
-              right_plus: [MetricID, { refer_to: { id: metric_card.id } }],
+  Card.search type_id: Card::ProjectID,
+              right_plus: [Card::MetricID, { refer_to: { id: metric_card.id } }],
               and: {
-                right_plus: [WikirateCompanyID,
+                right_plus: [Card::WikirateCompanyID,
                              { refer_to: { id: company_card.id } }]
               }
 end

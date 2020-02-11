@@ -27,7 +27,7 @@ format :json do
 
   def search_by_company_name
     return [] unless factory_ids.present?
-    Card.search type_id: WikirateCompanyID,
+    Card.search type_id: Card::WikirateCompanyID,
                 name: ["match", keyword],
                 id: ["in"].concat(factory_ids),
                 return: :id

@@ -17,7 +17,8 @@ class Card
 
       def topic_query value
         multi_metric do
-          restrict_by_wql :metric_id, right_plus: [WikirateTopicID, { refer_to: value }]
+          restrict_by_wql :metric_id,
+                          right_plus: [Card::WikirateTopicID, { refer_to: value }]
         end
       end
       alias wikirate_topic_query topic_query
@@ -62,10 +63,10 @@ class Card
       end
 
       def bookmark_restriction field, value
-        return unless (restriction = Bookmark.id_restriction(value.to_sym == :bookmark))
-
-        operator = restriction.shift # restriction looks like wql, eg ["in", 1, 2]
-        filter field, restriction, operator
+        Card::Bookmark.id_restriction(value.to_sym == :bookmark) do |restriction|
+          operator = restriction.shift # restriction looks like wql, eg ["in", 1, 2]
+          filter field, restriction, operator
+        end
       end
     end
   end

@@ -1,4 +1,4 @@
-require "./test/seed"
+# require "./test/seed"
 
 RSpec.describe Card::AnswerQuery do
   LATEST_ANSWERS = %w[Death_Star+2001

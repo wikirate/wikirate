@@ -1,5 +1,5 @@
-class CSVRow
-  # To be used by CSVRow classes to handle source imports.
+class CsvRow
+  # To be used by CsvRow classes to handle source imports.
   # Expects an url in row[:source].
   # A hash in extra_data[:all][:source_map] is used to handle duplicates sources in
   # the same import act.

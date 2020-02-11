@@ -5,7 +5,7 @@ class Card
       private
 
       def not_researched_card name
-        Card.new name: new_name(name), type_id: MetricAnswerID
+        Card.new name: new_name(name), type_id: Card::MetricAnswerID
       end
 
       def new_name partner_name

@@ -6,7 +6,7 @@ def search_anchor
 end
 
 def wql_content
-  { type_id: MetricAnswerID,
+  { type_id: Card::MetricAnswerID,
     right_plus: [Card::SourceID, { link_to: name.left }] }
 end
 

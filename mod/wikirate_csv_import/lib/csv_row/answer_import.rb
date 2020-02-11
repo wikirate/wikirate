@@ -1,5 +1,5 @@
-class CSVRow
-  # To be used by CSVRow classes to handle answer imports
+class CsvRow
+  # To be used by CsvRow classes to handle answer imports
   module AnswerImport
     def import_answer
       build_answer_create_args

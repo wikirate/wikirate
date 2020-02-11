@@ -52,15 +52,15 @@ end
 def valid_metric?
   # TODO: need better way to check if metric is part of the same act
   #       this doesn't check the type
-  (metric_card&.type_id == MetricID) || ActManager.include?(metric)
+  (metric_card&.type_id == Card::MetricID) || ActManager.include?(metric)
 end
 
 def valid_company?
-  (company_card&.type_id == WikirateCompanyID) || ActManager.include?(company)
+  (company_card&.type_id == Card::WikirateCompanyID) || ActManager.include?(company)
 end
 
 def valid_year?
-  year_card&.type_id == YearID
+  year_card&.type_id == Card::YearID
 end
 
 def compose_name

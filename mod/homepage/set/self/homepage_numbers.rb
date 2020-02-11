@@ -1,7 +1,7 @@
 include_set Abstract::HamlFile
 
 format :html do
-  Category = Struct.new "Category", :codename, :title, :count, :color, :icon
+  Category = Struct.new :codename, :title, :count, :color, :icon
 
   def categories
     [

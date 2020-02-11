@@ -75,7 +75,7 @@ class Constraint
   end
 
   def valid_metric?
-    metric&.type_id == MetricID
+    metric&.type_id == Card::MetricID
   end
 
   def valid_year?

@@ -26,7 +26,7 @@ def default_filter_hash
 end
 
 def target_type_id
-  WikirateTopicID
+  Card::WikirateTopicID
 end
 
 def filter_class

@@ -16,6 +16,6 @@ format :html do
   end
 
   def matches_companies?
-    card.csv_row_class.ancestors.include? CSVRow::CompanyImport
+    card.csv_row_class.ancestors.include? CsvRow::CompanyImport
   end
 end

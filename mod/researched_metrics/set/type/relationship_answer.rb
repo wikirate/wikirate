@@ -20,12 +20,20 @@ def name_parts
 end
 
 def valid_related_company?
-  (related_company_card&.type_id == WikirateCompanyID) ||
+  (related_company_card&.type_id == Card::WikirateCompanyID) ||
     ActManager.include?(related_company)
 end
 
 def valid_answer_name?
   super && valid_related_company?
+end
+
+def value_type_code
+  metric_card.value_type_code
+end
+
+def value_cardtype_code
+  metric_card.value_cardtype_code
 end
 
 # has to happen after :set_answer_name,
@@ -43,8 +51,8 @@ event :add_inverse_count_answer, :prepare_to_store, changed: :content do
 end
 
 def add_count name, count
-  add_subcard name, type_id: MetricAnswerID,
-                    subfields: { value: { content: count, type_id: NumberValueID } }
+  add_subcard name, type_id: Card::MetricAnswerID,
+                    subfields: { value: { content: count, type_id: Card::NumberValueID } }
 end
 
 def update_counts!
@@ -60,7 +68,7 @@ def update_count! answer_name, count
                                                         numeric_value: count.to_i
     end
   else
-    Card.create! name: answer_name, type_id: MetricAnswerID,
+    Card.create! name: answer_name, type_id: Card::MetricAnswerID,
                  subfields: { value: { content: count } }
   end
 end
@@ -69,7 +77,7 @@ end
 def company_count
   return 0 unless answer_id
   Card.search left_id: answer_id,
-              right: { type_id: WikirateCompanyID },
+              right: { type_id: Card::WikirateCompanyID },
               return: :count
 end
 

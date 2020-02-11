@@ -59,8 +59,7 @@ module Wikirate
     # config.request_logger = false
     # config.paths['request_log'] = 'shared/log'
 
-    config.autoload_paths += Dir["#{root}/test/*.rb"]
-    config.autoload_paths += Dir["#{root}/test/**/"]
+    config.autoload_paths += Dir["#{root}/test"]
 
     # config.file_buckets = {
     #     s3_live_bucket: {

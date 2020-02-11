@@ -1,6 +1,5 @@
 require "decko/mods_spec_helper"
 require_relative "source_helper"
-require_dependency "seed"
 
 Spork.prefork do
   RSpec.configure do |config|

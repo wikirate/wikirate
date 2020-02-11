@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_dependency "card/cache"
-
 module Company
   # Company::Alias caches alias names for companies.
   # The alias names are taken from the "+aliases" cards on the company cards.

@@ -47,7 +47,7 @@ gem "rack-cors"
 gem "bcrypt_pbkdf"
 gem "ed25519"
 
-gem "sprockets", "~>3.0" # remove after upgrading to rails 6
+gem "sprockets"
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
@@ -73,7 +73,7 @@ end
 group :test do
   gem "rspec"
   gem "rspec-html-matchers" # 0.7.0 broke stuff!
-  gem "rspec-rails", "~> 3.6.1" # 3.7.0 broke stuff!
+  gem "rspec-rails" # , "~> 3.6.1" # 3.7.0 broke stuff!
   # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
 
   gem "simplecov", require: false
@@ -104,7 +104,7 @@ group :development do
   gem 'html2haml'
   gem "rubocop-rspec"
 
-  gem "rails-dev-tweaks"
+  # gem "rails-dev-tweaks"
   # gem "sprockets" # just so above works
 
   gem "capistrano"

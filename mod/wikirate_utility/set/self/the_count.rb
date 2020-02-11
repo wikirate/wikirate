@@ -29,10 +29,10 @@ format :html do
   end
 
   def project_rows
-    Card.search(referred_to_by: { left: { type_id: ProjectID },
+    Card.search(referred_to_by: { left: { type_id: Card::ProjectID },
                                   right: { codename: "organizer" } },
                 return: "name").map do |organizer|
-      ids = Card.search(type_id: ProjectID,
+      ids = Card.search(type_id: Card::ProjectID,
                         right_plus: ["organizer", refer_to: organizer], return: "id")
       ["", organizer] + years.map { |year| id_search(ids, year) }
     end
@@ -46,7 +46,7 @@ format :html do
 
   def metric_count_by_designer id, year
     Card.where("left_id = ? and created_at < ? and type_id = ?",
-               id, Time.new(year), MetricID).count
+               id, Time.new(year), Card::MetricID).count
   end
 
   def user_count year
@@ -70,7 +70,8 @@ format :html do
   end
 
   def designer_ids
-    Card.search(right_plus: [{}, { type_id: Card::MetricID }], not: { type_id: MetricID },
+    Card.search(right_plus: [{}, { type_id: Card::MetricID }],
+                not: { type_id: Card::MetricID },
                 return: "id")
   end
 

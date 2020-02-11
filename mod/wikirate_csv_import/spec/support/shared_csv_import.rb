@@ -29,14 +29,14 @@ shared_context "csv import" do
   end
 
   let(:csv_file) do
-    CSVFile.new csv_io, csv_row_class
+    CsvFile.new csv_io, csv_row_class
   end
 
   let(:import_card_with_data) do
-    # Since the import happens in the intergrate_with_delay stage
-    # the import card was refetched. The only way to get the fake csv file
-    # in was stubbing the CSVFile.new
-    allow(CSVFile).to receive(:new).and_return csv_file
+    # Since the import happens in the integrate_with_delay stage
+    # the import card was re-fetched. The only way to get the fake csv file
+    # in was stubbing the CsvFile.new
+    allow(CsvFile).to receive(:new).and_return csv_file
     # Card.any_instance.stub(:csv_file).and_return csv_file
     # allow(import_card).to receive(:file).and_return true
     Card.any_instance.stub(:file).and_return true
@@ -53,7 +53,7 @@ shared_context "csv import" do
 
   def import_card_with_rows *row_keys
     return import_card_with_data unless row_keys.present?
-    the_file = CSVFile.new csv_io(row_keys), csv_row_class
+    the_file = CsvFile.new csv_io(row_keys), csv_row_class
     allow(import_card).to receive(:file).and_return csv_io(row_keys)
     allow(import_card).to receive(:csv_file).and_return the_file
     import_card

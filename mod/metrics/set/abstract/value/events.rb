@@ -14,7 +14,7 @@ event :no_left_name_change, :prepare_to_validate,
       on: :update, changed: :name do
   return if @supercard # as part of other changes (probably) ok
   return unless name.right == "value" # ok if not a value anymore
-  return if (metric_answer = Card[name.left]) && metric_answer.type_id == MetricAnswerID
+  return if Card[name.left]&.type_id == Card::MetricAnswerID
   errors.add :name, "not allowed to change. " \
                     "Change #{name_was.to_name.left} instead"
 end

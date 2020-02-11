@@ -119,7 +119,7 @@ format :html do
   end
 
   def designer_options
-    metrics = Card.search type_id: MetricID, return: :name
+    metrics = Card.search type_id: Card::MetricID, return: :name
     metrics.map do |m|
       names = m.to_name.parts
       # score metric?

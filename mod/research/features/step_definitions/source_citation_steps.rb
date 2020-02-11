@@ -1,4 +1,4 @@
-require_relative "../../../../test/shared_data/samples"
+require_relative "../../../../test/shared_data"
 include SharedData::Samples
 
 When(/^I research answer "([^"]*)" for year "([^"]*)"$/) do |answer, year|
