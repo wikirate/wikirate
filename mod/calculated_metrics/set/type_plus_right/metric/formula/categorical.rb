@@ -1,3 +1,5 @@
+# include_set Abstract::TenScale
+
 format :html do
   view :categorical_core do
     table categorical_content, header: %w[Value Score]

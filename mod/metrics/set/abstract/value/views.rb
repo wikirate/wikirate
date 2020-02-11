@@ -1,3 +1,5 @@
+include_set Abstract::TenScale
+
 format :html do
   view :core do
     card.item_names.join(",")
@@ -13,14 +15,6 @@ format :html do
   view :pretty, unknown: true do
     wrap_with :span, pretty_span_args do
       beautify(pretty_value).html_safe
-    end
-  end
-
-  # needed for ten-scale display of values of non-ten-scale metrics
-  # (eg Formulae used in WikiRating)
-  view :ten_scale, unknown: true do
-    wrap_with :span, class: "metric-value" do
-      beautify_ten_scale(pretty_value).html_safe
     end
   end
 
@@ -57,15 +51,6 @@ format :html do
 
   def beautify value
     ten_scale? ? beautify_ten_scale(value) : value
-  end
-
-  def beautify_ten_scale value
-    colorify shorten_ten_scale(value)
-  end
-
-  def shorten_ten_scale value
-    return value if value.number?
-    Answer.unknown?(value) ? "?" : "!"
   end
 
   # link to full action history (includes value history)
