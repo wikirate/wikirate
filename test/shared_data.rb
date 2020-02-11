@@ -1,9 +1,6 @@
 # -*- encoding : utf-8 -*-
 
 require "timecop"
-#require "cardio"
-#Cardio.load_card!
-require "card/model/save_helper"
 
 class SharedData
 
@@ -42,7 +39,6 @@ class SharedData
 
   class << self
     include Card::Model::SaveHelper
-
 
     def add_wikirate_data
       puts "add wikirate data"

@@ -5,8 +5,7 @@
 class BadgeLine
   LEVELS = [:bronze, :silver, :gold].freeze
 
-  # Struct.const_remove_if_defined :Badge
-  Badge = Struct.new("Badge", :name, :codename, :threshold, :level, :level_index)
+  Badge = Struct.new :name, :codename, :threshold, :level, :level_index
 
   attr_reader :badge_names
 
