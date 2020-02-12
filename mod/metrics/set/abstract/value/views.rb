@@ -51,8 +51,6 @@ format :html do
     end
   end
 
-
-
   private
 
   def pretty_link text
