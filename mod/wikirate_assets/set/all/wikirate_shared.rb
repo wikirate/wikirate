@@ -1,6 +1,7 @@
 NAV_MENUS = {
-  "Explore" => %w[Companies Topics Metrics Projects Groups Sources Changes],
-  "How To" => ["Add Data", "Use Data", "Organize Projects", "FAQ", "Glossary",
+  "Explore" => ["Companies", "Topics", "Metrics",
+                "Projects", "Research Groups", "Company Groups", "Sources", "Changes"],
+  "How To"  => ["Add Data", "Use Data", "Organize Projects", "FAQ", "Glossary",
                "Report Issue"],
   "About" => ["About Us", "Our Team", "Programs", "Publications", "News", "Legal",
               "Contact Us", "Donate"]

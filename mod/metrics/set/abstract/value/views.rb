@@ -1,6 +1,10 @@
 include_set Abstract::TenScale
 
 format :html do
+  view :updated_at, compact: true do
+    date_view content_updated_at
+  end
+
   view :core do
     card.item_names.join(",")
   end
@@ -29,6 +33,18 @@ format :html do
     wrap_with :span, class: "metric-value", title: card.content do
       pretty_link beautify(pretty_value)
     end
+  end
+
+  def last_content_act
+    @last_content_act ||= card.last_content_action.act
+  end
+
+  def content_updated_at
+    last_content_act.acted_at
+  end
+
+  def content_updater
+    last_content_act.actor_id
   end
 
   private
@@ -63,6 +79,6 @@ format :html do
   end
 
   def credit_whom
-    "by #{link_to_card card.updater}"
+    "by #{link_to_card content_updater}"
   end
 end
