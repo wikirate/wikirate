@@ -18,7 +18,7 @@ MENU_REFS = { "Groups" => "Research Groups",
               "Instagram" => "https://www.instagram.com/wikirate/",
               "Notice" => "Notice and Take Down Procedure" }.freeze
 
-SECONDARY_MENUS = { "Legal" => ["Legal", "Privacy Policy", "Licensing", "Disclaimers",
+SECONDARY_MENUS = { "Legal" => ["Privacy Policy", "Licensing", "Disclaimers",
                                 "Terms of Use", "Notice"],
                     "Social" => %w[Facebook Twitter Instagram] }.freeze
 
