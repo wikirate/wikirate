@@ -1,8 +1,24 @@
 include_set Abstract::TenScale
 
+def last_content_act
+  @last_content_act ||= last_content_action&.act
+end
+
+def content_updated_at
+  last_content_act&.acted_at || updated_at
+end
+
+def content_updater_id
+  last_content_act&.actor_id || updater_id
+end
+
+def content_updater
+  Card[content_updater_id]
+end
+
 format :html do
   view :updated_at, compact: true do
-    date_view content_updated_at
+    date_view card.content_updated_at
   end
 
   view :core do
@@ -35,17 +51,7 @@ format :html do
     end
   end
 
-  def last_content_act
-    @last_content_act ||= card.last_content_action.act
-  end
 
-  def content_updated_at
-    last_content_act.acted_at
-  end
-
-  def content_updater
-    last_content_act.actor_id
-  end
 
   private
 
@@ -79,6 +85,6 @@ format :html do
   end
 
   def credit_whom
-    "by #{link_to_card content_updater}"
+    "by #{link_to_card card.content_updater}"
   end
 end
