@@ -33,13 +33,14 @@ format :html do
   private
 
   def color_class value, mono
-    return "light-color-0" unless value.number?
+    value.number? ? numeric_color_class(value, mono) : "light-color-0"
+  end
 
-    "#{mono ? :mono : :multi}-color-#{color_integer value}"
+  def numeric_color_class value, mono
+    "#{mono ? :mono : :multi}-color-#{color_integer value.to_i}"
   end
 
   def color_integer value
-    value = value.to_i
     if value.negative?
       0
     elsif value > 9
