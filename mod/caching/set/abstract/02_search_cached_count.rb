@@ -10,5 +10,5 @@ def virtual?
 end
 
 def type_id
-  Card::SearchTypeID
+  SearchTypeID
 end

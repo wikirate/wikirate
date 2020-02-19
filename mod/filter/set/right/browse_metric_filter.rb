@@ -15,7 +15,7 @@ def filter_keys
 end
 
 def target_type_id
-  Card::MetricID
+  MetricID
 end
 
 def filter_class
@@ -53,9 +53,9 @@ format :html do
   end
 
   def wikirate_topic_type_options order
-    Card.search referred_to_by: { left: { type_id: Card::MetricID },
+    Card.search referred_to_by: { left: { type_id: MetricID },
                                   right: "topic" },
-                type_id: Card::WikirateTopicID,
+                type_id: WikirateTopicID,
                 return: :name,
                 sort: "name",
                 dir: order

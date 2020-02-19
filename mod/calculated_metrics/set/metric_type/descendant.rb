@@ -1,7 +1,7 @@
 include_set Abstract::Calculation
 include_set Abstract::Hybrid
 
-card_accessor :formula, type_id: Card::PointerID
+card_accessor :formula, type_id: PointerID
 
 # OVERRIDES
 def descendant?

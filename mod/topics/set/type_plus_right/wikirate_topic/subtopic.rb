@@ -2,7 +2,7 @@ include_set Type::Pointer
 
 event :validate_subtopics, :validate, on: :save do
   added_item_names.each do |subtopic|
-    next if Card[subtopic]&.type_id == Card::WikirateTopicID
+    next if Card[subtopic]&.type_id == WikirateTopicID
 
     errors.add :content, "invalid subtopic: #{subtopic}"
   end
@@ -22,7 +22,7 @@ def add_topic_to_subtopic_referers subtopic
 end
 
 def subtopic_referers subtopic, query={}
-  query.merge! right: :wikirate_topic, type_id: Card::PointerID, refer_to: subtopic
+  query.merge! right: :wikirate_topic, type_id: PointerID, refer_to: subtopic
   Card.search query
 end
 
