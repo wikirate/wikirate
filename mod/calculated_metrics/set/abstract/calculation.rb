@@ -1,4 +1,4 @@
-card_accessor :formula, type_id: Card::PhraseID
+card_accessor :formula, type_id: PhraseID
 card_accessor :metric_variables
 
 # @param [Hash] opts

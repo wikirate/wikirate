@@ -58,7 +58,7 @@ def value_options
 end
 
 event :validate_score_name, :validate, changed: :name, on: :save do
-  return if basic_metric_card&.type_id == Card::MetricID
+  return if basic_metric_card&.type_id == MetricID
   errors.add :name, "#{basic_metric} is not a metric"
 end
 
@@ -73,7 +73,7 @@ event :default_formula, :prepare_to_store,
       on: :create,
       when:  proc { |c| !c.subfield_formula_present?  } do
   add_subfield :formula, content: "{{#{basic_metric}}}",
-                         type_id: Card::PlainTextID
+                         type_id: PlainTextID
 end
 
 def subfield_formula_present?

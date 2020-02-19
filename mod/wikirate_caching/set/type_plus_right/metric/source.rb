@@ -2,7 +2,7 @@
 include_set Abstract::SearchCachedCount
 
 def wql_content
-  { referred_to_by: { right_id: Card::SourceID, left_id: [:in] + answer_ids } }
+  { referred_to_by: { right_id: SourceID, left_id: [:in] + answer_ids } }
 end
 
 def skip_search?

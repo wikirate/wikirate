@@ -22,11 +22,11 @@ end
 
 def score_metrics
   @score_metrics ||=
-    Card.search type_id: Card::MetricID, left_id: id
+    Card.search type_id: MetricID, left_id: id
 end
 
 # note: includes score metrics
 def formula_metrics
   @formula_metrics ||=
-    Card.search type_id: Card::MetricID, right_plus: ["formula", { refer_to: id }]
+    Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
 end

@@ -6,8 +6,8 @@ def search_anchor
 end
 
 def wql_content
-  { type_id: Card::MetricAnswerID,
-    right_plus: [Card::SourceID, { link_to: name.left }] }
+  { type_id: MetricAnswerID,
+    right_plus: [SourceID, { link_to: name.left }] }
 end
 
 recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|

@@ -65,12 +65,12 @@ format :html do
 end
 
 def awarded_to
-  Card.search right_plus: [{ id: Card::BadgesEarnedID }, { refer_to: id }],
+  Card.search right_plus: [{ id: BadgesEarnedID }, { refer_to: id }],
               return: "_left", sort: :name
 end
 
 def awarded_count
-  Card.search right_id: Card::BadgesEarnedID, refer_to: id, return: :count
+  Card.search right_id: BadgesEarnedID, refer_to: id, return: :count
 end
 
 def flash_message

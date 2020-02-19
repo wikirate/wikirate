@@ -34,7 +34,7 @@ class << self
     topic_names.map do |topic_name|
       # TODO: confirm all +topic items are valid topics so this check isn't necessary
       # (validation is in place)
-      next unless Card.fetch_type_id(topic_name) == Card::WikirateTopicID
+      next unless Card.fetch_type_id(topic_name) == WikirateTopicID
       Card.fetch topic_name, :wikirate_company
     end.compact
   end
