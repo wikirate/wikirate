@@ -43,7 +43,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
 
   def source_card_for sourcename=nil
     Card.search(
-      type_id: SourceID,
+      type_id: Card::SourceID,
       right_plus: [:wikirate_link.cardname, { content: url(sourcename) }],
       limit: 1
     ).first
