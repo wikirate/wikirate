@@ -1,10 +1,16 @@
+STANDARD_FILTER_KEYS = %i[status year company_name value updated company_group
+                          check source project outliers bookmark].freeze
+
 include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
 include_set Abstract::BookmarkFiltering
 
 def filter_keys
-  %i[status year company_name value updated company_group check source project outliers
-     bookmark]
+  STANDARD_FILTER_KEYS + special_filter_keys
+end
+
+def special_filter_keys
+  metric_card.relationship? ? [:related_company_group] : []
 end
 
 def default_filter_hash
@@ -15,10 +21,12 @@ def bookmark_type
   :wikirate_company
 end
 
+def metric_card
+  @metric_card ||= left.metric_card
+end
+
 format :html do
-  def metric_card
-    @metric_card ||= card.left.metric_card
-  end
+  delegate :metric_card, to: :card
 
   def quick_filter_list
     @quick_filter_list ||=

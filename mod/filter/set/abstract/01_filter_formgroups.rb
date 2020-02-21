@@ -23,6 +23,10 @@ format :html do
     multiselect_filter :company_group
   end
 
+  view :filter_related_company_group_formgroup, cache: :never do
+    multiselect_filter :company_group
+  end
+
   view :filter_metric_name_formgroup, cache: :never do
     text_filter :metric_name
   end
@@ -110,6 +114,10 @@ format :html do
   end
 
   def company_group_options
+    type_options :company_group
+  end
+
+  def related_company_group_options
     type_options :company_group
   end
 

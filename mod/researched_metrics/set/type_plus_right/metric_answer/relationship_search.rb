@@ -88,4 +88,3 @@ format :html do
                    header: [rate_subject, "Answer"]
   end
 end
-

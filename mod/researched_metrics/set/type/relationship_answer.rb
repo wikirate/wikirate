@@ -84,7 +84,7 @@ def inverse_company_count
   Relationship.where(
     metric_id: metric_id,
     year: year,
-    object_company_id: related_company_id
+    object_company_id: related_company_card.id
   ).count
 end
 
