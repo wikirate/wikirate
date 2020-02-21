@@ -3,8 +3,8 @@ class Card
     # filters based on year and children of the answer card
     # (as opposed to metric and company)
     module AnswerFilters
-      CALCULATED_TYPE_IDS = [FormulaID, WikiRatingID, DescendantID, ScoreID]
-      CALCULATED_TYPE_ID_STRING = "(#{CALCULATED_TYPE_IDS.join ', '})"
+      CALCULATED_TYPE_IDS = [FormulaID, WikiRatingID, DescendantID, ScoreID].freeze
+      CALCULATED_TYPE_ID_STRING = "(#{CALCULATED_TYPE_IDS.join ', '})".freeze
 
       # :exists/researched (known + unknown) is default case;
       # :all and :none are handled in AllQuery
@@ -69,7 +69,7 @@ class Card
 
       def related_company_group_query value
         related_field = metric_card&.inverse? ? :subject_company_id : :object_company_id
-        company_pointer_id = Card[value]&.wikirate_company_card.id
+        company_pointer_id = Card[value]&.wikirate_company_card&.id
 
         restrict_to_ids :answer_id,
                         answer_ids_from_relationships(related_field, company_pointer_id)

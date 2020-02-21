@@ -20,7 +20,7 @@ format :html do
   end
 
   view :filter_calculated_formgroup, cache: :never do
-    select_filter :calculated
+    select_filter :calculated, :calculated
   end
 
   view :filter_company_group_formgroup, cache: :never do
@@ -131,7 +131,7 @@ format :html do
   end
 
   def calculated_options
-    { "Calculated" => :calculated, "Not Calculated" => :not_calculated }
+    { "Yes" => :calculated, "No" => :not_calculated }
   end
 
   def designer_options
