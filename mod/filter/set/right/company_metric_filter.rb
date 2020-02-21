@@ -4,8 +4,8 @@ include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 
 def filter_keys
-  %i[status year check metric_name wikirate_topic metric_type value updated project
-     source research_policy bookmark]
+  %i[status year metric_name wikirate_topic check value updated calculated
+     metric_type project source research_policy bookmark]
 end
 
 def default_filter_hash

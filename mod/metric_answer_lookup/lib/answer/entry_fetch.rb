@@ -107,7 +107,7 @@ class Answer
     end
 
     def fetch_overridden_value
-      card.try :overridden_value
+      ov = card.try :overridden_value
       ov.present? ? ov : nil
     end
 

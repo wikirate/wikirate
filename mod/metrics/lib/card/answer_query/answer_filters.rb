@@ -53,7 +53,7 @@ class Card
 
       def calculated_query value
         @conditions <<
-          (value == "Calculated" ? calculated_condition : not_calculated_condition)
+          (value.to_sym == :calculated ? calculated_condition : not_calculated_condition)
       end
 
       def numeric_range_query value

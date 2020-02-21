@@ -1,5 +1,5 @@
-STANDARD_FILTER_KEYS = %i[status year company_name value updated company_group
-                          check source project outliers bookmark].freeze
+STANDARD_FILTER_KEYS = %i[status year company_name value updated check calculated
+                          company_group source project outliers bookmark].freeze
 
 include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups

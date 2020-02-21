@@ -19,12 +19,16 @@ format :html do
     multiselect_filter :wikirate_topic
   end
 
+  view :filter_calculated_formgroup, cache: :never do
+    select_filter :calculated
+  end
+
   view :filter_company_group_formgroup, cache: :never do
-    multiselect_filter :company_group
+    select_filter :company_group
   end
 
   view :filter_related_company_group_formgroup, cache: :never do
-    multiselect_filter :company_group
+    select_filter :company_group
   end
 
   view :filter_metric_name_formgroup, cache: :never do
@@ -124,6 +128,10 @@ format :html do
   def bookmark_options
     { "I bookmarked" => :bookmark,
       "I did NOT bookmark" => :nobookmark }
+  end
+
+  def calculated_options
+    { "Calculated" => :calculated, "Not Calculated" => :not_calculated }
   end
 
   def designer_options
