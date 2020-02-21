@@ -6,10 +6,6 @@ include_set Abstract::Table
 include_set Abstract::Utility
 include_set Abstract::BrowseFilterForm
 
-def virtual?
-  new?
-end
-
 def search args={}
   return_type = args.delete :return
   q = query(args)

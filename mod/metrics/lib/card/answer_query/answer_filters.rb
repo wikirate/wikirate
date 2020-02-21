@@ -59,6 +59,11 @@ class Card
                         right_plus: [Card::SourceID, { refer_to: value }]
       end
 
+
+      def related_company_group_query value
+
+      end
+
       private
 
       def timeperiod value
