@@ -5,7 +5,7 @@ RSpec.describe Formula::Wolfram do
   include_context "with calculator stub"
   include_context "company ids"
 
-  it "simple formula" do
+  xit "simple formula" do
     result = calculate "{{Joe User+RM}}*2"
     expect(result[2011][apple_id]).to eq 22.0
     expect(result[2012][apple_id]).to eq 24.0
