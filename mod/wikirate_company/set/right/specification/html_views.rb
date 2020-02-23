@@ -1,4 +1,6 @@
 format :html do
+  delegate :metric_card, to: :card
+
   view :core, template: :haml
 
   view :value_formgroup, cache: :never, unknown: true do
@@ -42,11 +44,11 @@ format :html do
     pretty_constraint array
   end
 
-  def value_formgroup metric, value=nil
+  def value_formgroup metric, value=nil, group=nil
     wrap do
       if metric&.type_id == Card::MetricID
-        @metric_card = metric
-        filter_value_formgroup metric.simple_value_type_code, value
+        card.metric_card = metric
+        haml :value_formgroup, metric: metric, value: value, group: group
       else
         ""
       end

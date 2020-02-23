@@ -1,0 +1,6 @@
+.constraint-value-fields
+  = filter_value_formgroup metric.simple_value_type_code, value
+- if metric.relationship?
+  .constraint-group
+    Related Company Group:
+    = render_filter_company_group_formgroup

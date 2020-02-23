@@ -14,6 +14,8 @@
 # we reuse metric and value interface from this set in the constraint editor:
 include_set Right::MetricCompanyFilter
 
+attr_accessor :metric_card
+
 # OVERRIDES of MetricCompanyFilter
 # ignore filter params
 def filter_hash
@@ -44,16 +46,17 @@ end
 
 # converts each "row" of a specification into a Constraint object
 class Constraint
-  attr_accessor :metric, :year, :value
+  attr_accessor :metric, :year, :value, :group
 
   def self.new_from_raw raw_constraint
     new(*CSV.parse_line(raw_constraint))
   end
 
-  def initialize metric, year, value=nil
+  def initialize metric, year, value=nil, group=nil
     @metric = Card.cardish metric
     @year = year.to_s
     @value = interpret_value value
+    @group = Card.cardish(group) if group.present?
   end
 
   def interpret_value value
