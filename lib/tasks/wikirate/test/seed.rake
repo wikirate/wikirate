@@ -50,10 +50,12 @@ namespace :wikirate do
       end
 
       desc "add updated seed data"
-      task :update do |task|
+      task update: :environment do |task|
         ensure_env :test, task do
           Rake::Task["wikirate:test:load_dump"].invoke(migrated_dump_path)
-          Card
+          Card # I don't fully understand why this is necessary, but without it there
+          # is an autoloading problem.
+
           Rake::Task["wikirate:test:seed:add_wikirate_test_data"].invoke
           Card::Cache.reset_all
           Rake::Task["wikirate:test:update_machine_output"].invoke

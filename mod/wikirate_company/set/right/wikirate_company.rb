@@ -5,7 +5,3 @@
 #     add_subcard company, type_id: Card::WikirateCompanyID unless Card.exists? company
 #   end
 # end
-
-
-
-
