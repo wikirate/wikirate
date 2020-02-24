@@ -46,7 +46,7 @@ format :html do
   end
 
   def filter_related_company_group_formgroup default=nil
-    select_filter :company_group, default
+    select_filter :related_company_group, default
   end
 
   def related_company_group_options

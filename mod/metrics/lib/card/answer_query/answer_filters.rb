@@ -75,6 +75,8 @@ class Card
                         answer_ids_from_relationships(related_field, company_pointer_id)
       end
 
+      private
+
       def answer_ids_from_relationships id_field, referer_id
         Relationship.joins(
           "join card_references cr on cr.referee_id = relationships.#{id_field}"
@@ -82,8 +84,6 @@ class Card
           "cr.referer_id = #{referer_id} and metric_id = #{metric_card.id}"
         ).distinct.pluck(:answer_id)
       end
-
-      private
 
       def calculated_condition
         "(metric_type_id IN #{CALCULATED_TYPE_ID_STRING} AND overridden_value IS NULL)"

@@ -11,6 +11,7 @@ class Card
       protected
 
       def process_filters
+        return if @empty_result
         @filter_args.each { |k, v| process_filter_option k, v if v.present? }
         @restrict_to_ids.each { |k, v| filter k, v }
       end
@@ -55,7 +56,7 @@ class Card
 
       def restrict_to_ids col, ids
         ids = Array(ids)
-        @empty_result = ids.empty?
+        @empty_result ||= ids.empty?
         restrict_answer_ids col, ids
       end
 

@@ -17,8 +17,6 @@ class Card
 
       require_partner!
       add_card_condition "#{@partner}.type_id = ?", PARTNER_TYPE_ID[@partner]
-      handle_not_researched
-
       super
     end
 

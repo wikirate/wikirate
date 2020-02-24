@@ -1,11 +1,12 @@
 include_set Abstract::RightFilterForm
 include_set Abstract::FilterFormgroups
+include_set Abstract::MetricFilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 
 def filter_keys
   %i[status year metric_name wikirate_topic check value updated calculated
-     metric_type project source research_policy bookmark]
+     metric_type value_type project source research_policy bookmark]
 end
 
 def default_filter_hash

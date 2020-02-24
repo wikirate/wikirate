@@ -38,6 +38,15 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
       simple_field_filter Card::MetricTypeID, "researched"
     end
 
+    context "value type" do
+      before { filter_args value_type: "Category" }
+      it { is_expected.to eq(value_type_wql) }
+    end
+
+    def value_type_wql
+      simple_field_filter Card::ValueTypeID, "Category"
+    end
+
     context "research policy" do
       before { filter_args research_policy: "community assessed" }
       it { is_expected.to eq(policy_wql) }
