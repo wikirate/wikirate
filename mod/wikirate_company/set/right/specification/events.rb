@@ -1,8 +1,6 @@
 event :validate_constraints, :validate, on: :save, changed: :content do
   return if explicit?
-  binding.pry
   standardize_constraint_csv
-  binding.pry
   err = constraint_error
   errors.add :content, "Invalid specifications: #{err}" if err
 end

@@ -53,6 +53,7 @@ namespace :wikirate do
       task :update do |task|
         ensure_env :test, task do
           Rake::Task["wikirate:test:load_dump"].invoke(migrated_dump_path)
+          Card
           Rake::Task["wikirate:test:seed:add_wikirate_test_data"].invoke
           Card::Cache.reset_all
           Rake::Task["wikirate:test:update_machine_output"].invoke

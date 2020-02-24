@@ -69,7 +69,7 @@ class Constraint
   end
 
   def to_s row_sep=nil
-    ["[[#{metric.name}]]", year, value.to_json].to_csv(row_sep: row_sep)
+    ["[[#{metric.name}]]", year, value.to_json, group].to_csv(row_sep: row_sep)
   end
 
   def validate!

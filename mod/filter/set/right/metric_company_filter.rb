@@ -22,7 +22,6 @@ def bookmark_type
 end
 
 def metric_card
-  binding.pry
   @metric_card ||= left&.metric_card
 end
 
@@ -40,6 +39,18 @@ format :html do
 
   def filter_value_formgroup metric_type, default=nil
     send "#{value_filter_type metric_type}_filter", :value, default
+  end
+
+  view :filter_related_company_group_formgroup, cache: :never do
+    filter_related_company_group_formgroup
+  end
+
+  def filter_related_company_group_formgroup default=nil
+    select_filter :company_group, default
+  end
+
+  def related_company_group_options
+    type_options :company_group
   end
 
   def value_filter_type value_type

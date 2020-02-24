@@ -31,7 +31,7 @@ valueValue = (con) ->
   con.find(".constraint-value input, .constraint-value .constraint-value-fields > select").serialize()
 
 groupValue = (con) ->
-  con.find(".constraint-group select").val()
+  con.find(".constraint-related-group select").val()
 
 specificationType = (el) ->
   el.find("[name=spec-type]:checked").val()

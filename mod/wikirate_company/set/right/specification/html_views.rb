@@ -25,23 +25,23 @@ format :html do
     haml :constraint_list_input, constraints: constraints
   end
 
-  def pretty_constraint value
+  def pretty_value_constraint value
     case value
     when String
       value
     when Array
       value.join ", "
     when Hash
-      pretty_hash_constraint value
+      pretty_hash_value_constraint value
     end
   end
 
-  def pretty_hash_constraint hash
+  def pretty_hash_value_constraint hash
     hash = hash.symbolize_keys
     array = []
     array << ">#{hash[:from]}" if hash[:from].present?
     array << "<#{hash[:to]}" if hash[:to].present?
-    pretty_constraint array
+    pretty_value_constraint array
   end
 
   def value_formgroup metric, value=nil, group=nil
