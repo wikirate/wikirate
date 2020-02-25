@@ -102,41 +102,12 @@ format :html do
 
   view :expanded_relationship_details do
     wrap_researched_details do
-      [
-        "<br/>",
-        relations_header,
-        render_relations_table_with_details_toggle.html_safe
-      ]
-    end
-  end
-
-  def relations_header
-    wrap_with :div, class: "d-flex" do
-      [wrap_with(:h5, "Relations"),
-       wrap_with(:div, add_relation_link, class: "ml-auto")]
+      field_nest :relationship_search, view: :filtered_content
     end
   end
 
   view :expanded_inverse_relationship_details do
     render :expanded_relationship_details
-  end
-
-  view :relations_table_with_details_toggle, cache: :never do
-    class_up "card-slot", "nodblclick"
-    wrap { with_paging(view: :relations_table_with_details_toggle) { relations_table } }
-  end
-
-  def add_relation_link
-    link_to_card :research_page, "Add relation",
-                 class: "slotter btn btn-sm btn-primary",
-                 path: { view: :add_relation,
-                         metric: card.metric, company: card.company, year: card.year }
-  end
-
-  def relations_table value_view=:details
-    name_view = inverse? ? :inverse_company_name : :company_name
-    wikirate_table :company, search_with_params, [name_view, value_view],
-                   header: [rate_subject, "Answer"]
   end
 
   # ~~~~~~~~~ DESCENDANT DETAILS

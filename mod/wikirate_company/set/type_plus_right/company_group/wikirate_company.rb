@@ -22,10 +22,12 @@ def constraint_clauses
 end
 
 def constraint_conditions constraint
-  answer_query = AnswerQuery.new metric_id: constraint.metric.id,
-                                 year: constraint.year,
-                                 value: constraint.value
-  answer_query.answer_conditions
+  AnswerQuery.new(
+    metric_id: constraint.metric.id,
+    year: constraint.year,
+    value: constraint.value,
+    related_company_group: constraint.group
+  ).answer_conditions
 end
 
 def item_names_from_spec

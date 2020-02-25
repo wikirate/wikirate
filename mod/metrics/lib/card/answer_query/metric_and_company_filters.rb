@@ -37,6 +37,13 @@ class Card
         multi_company { bookmark_restriction :company_id, value }
       end
 
+      def value_type_query value
+        multi_metric do
+          restrict_by_wql :metric_id,
+                          right_plus: [Card::ValueTypeID, { refer_to: value }]
+        end
+      end
+
       # SUPPORT METHODS
       def single_metric?
         @filter_args[:metric_id].is_a? Integer

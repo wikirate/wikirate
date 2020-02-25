@@ -24,6 +24,10 @@ class Card
       add_to_wql :right_plus, [Card::MetricTypeID, { refer_to: metric_type }]
     end
 
+    def value_type_wql value_type
+      add_to_wql :right_plus, [Card::ValueTypeID, { refer_to: value_type }]
+    end
+
     def research_policy_wql policy
       add_to_wql :right_plus, [Card::ResearchPolicyID, { refer_to: policy }]
     end

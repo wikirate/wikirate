@@ -13,4 +13,9 @@
         %td
           = constraint.year
         %td
-          = pretty_constraint constraint.value
+          = pretty_value_constraint constraint.value
+          - if constraint.group
+            .related-group-constraint
+              %label
+                Related:
+              = link_to_card constraint.group

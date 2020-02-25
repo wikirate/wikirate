@@ -21,14 +21,21 @@
       width: 100%;
       border-radius: 0 !important;
     }
-    .card-slot { // value row, right column
-      display: flex;
-      width: 80%;
-      .select2 {
-        width: 100% !important;
+    .constraint-value {
+      > .input-view {
+        width: 80%;
       }
-      input {
-        min-width: 20%;
+      .constraint-value-fields { // value row, right column
+        display: flex;
+        .select2 {
+          width: 100% !important;
+        }
+        input {
+          min-width: 30%;
+        }
+      }
+      .constraint-related-group {
+        display: flex;
       }
     }
   }

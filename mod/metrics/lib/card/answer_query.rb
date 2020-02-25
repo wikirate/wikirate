@@ -9,15 +9,31 @@ class Card
 
     STATUS_GROUPS = { 0 => :unknown, 1 => :known, nil => :none }.freeze
 
-    # instantiates AllAnswerQuery object for searches that can return
-    # not-researched answers (status = :all or :none) and AnswerQuery
-    # objects for all other searches
-    def self.new filter, sorting={}, paging={}
-      filter = filter.deep_symbolize_keys
-      if filter[:status]&.to_sym.in?(%i[all none]) && self != AllAnswerQuery
-        AllAnswerQuery.new filter, sorting, paging
-      else
-        super
+    RESEARCHED_ANSWERS_ONLY =
+      %i[value numeric_value related_company_group source updated calculated check].freeze
+
+    class << self
+      # instantiates AllAnswerQuery object for searches that can return
+      # not-researched answers and AnswerQuery
+      # objects for all other searches
+      def new filter, sorting={}, paging={}
+        filter = filter.deep_symbolize_keys
+        if new_all_answer_query? filter
+          AllAnswerQuery.new filter, sorting, paging
+        else
+          super
+        end
+      end
+
+      def new_all_answer_query? filter
+        # already AllAnswer; don't re-init
+        return false if self == AllAnswerQuery
+
+        # eg, if filtering by value, don't bother looking for not-yet-researched answers
+        RESEARCHED_ANSWERS_ONLY.each { |key| return false if filter[key].present? }
+
+        # status is "all" or "none"
+        filter[:status]&.to_sym.in?(%i[all none])
       end
     end
 
@@ -32,6 +48,7 @@ class Card
       @values = []
       @restrict_to_ids = {}
 
+      not_researched! if status_filter == :none
       process_sort
       process_filters
     end
@@ -123,6 +140,14 @@ class Card
       single_metric? &&
         @sort_args[:sort_by]&.to_sym == :value &&
         (metric_card.numeric? || metric_card.relationship?)
+    end
+
+    # overridden in AllAnswerQuery.
+    # this method is only reached in AnswerQuery instances if there is a
+    # RESEARCHED_ANSWERS_ONLY filter and the status filter is none.
+    # That combination guarantees there are no results.
+    def not_researched!
+      @empty_result = true
     end
   end
 end

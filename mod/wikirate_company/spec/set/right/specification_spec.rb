@@ -28,7 +28,7 @@ RSpec.describe Card::Set::Right::Specification do
     describe "#to_s" do
       specify do
         expect(constraint_class.new("FRED+dinosaurlabor?", 2016, from: 20).to_s)
-          .to eq("[[Fred+dinosaurlabor]],2016,\"{\"\"from\"\":20}\"")
+          .to eq("[[Fred+dinosaurlabor]],2016,\"{\"\"from\"\":20}\",")
       end
     end
   end

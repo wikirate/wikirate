@@ -37,6 +37,8 @@ format :json do
   end
 
   def item_cards
-    card.metric_card.relationship? ? companies : []
+    return [] unless card.metric_card.relationship?
+
+    card.fetch(:relationship_search).relationship_answers
   end
 end

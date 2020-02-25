@@ -19,24 +19,16 @@ format :html do
     multiselect_filter :wikirate_topic
   end
 
-  view :filter_company_group_formgroup, cache: :never do
-    multiselect_filter :company_group
+  view :filter_calculated_formgroup, cache: :never do
+    select_filter :calculated
   end
 
-  view :filter_metric_name_formgroup, cache: :never do
-    text_filter :metric_name
+  view :filter_company_group_formgroup, cache: :never do
+    select_filter :company_group
   end
 
   view :filter_company_name_formgroup, cache: :never do
     text_filter :company_name
-  end
-
-  view :filter_research_policy_formgroup, cache: :never do
-    multiselect_filter :research_policy
-  end
-
-  view :filter_metric_type_formgroup, cache: :never do
-    multiselect_filter :metric_type
   end
 
   view :filter_status_formgroup, cache: :never do
@@ -49,10 +41,6 @@ format :html do
 
   view :filter_outliers_formgroup, cache: :never do
     select_filter :outliers, "only"
-  end
-
-  view :filter_designer_formgroup, cache: :never do
-    select_filter :designer
   end
 
   view :filter_bookmark_formgroup, cache: :never do
@@ -91,18 +79,8 @@ format :html do
     { "Only" => "only", "Exclude" => "exclude" }
   end
 
-  def metric_type_options
-    %i[researched relationship formula wiki_rating score descendant].map do |codename|
-      Card::Name[codename]
-    end
-  end
-
   def check_options
     %w[Completed Requested Neither]
-  end
-
-  def research_policy_options
-    type_options :research_policy
   end
 
   def wikirate_topic_options
@@ -118,13 +96,8 @@ format :html do
       "I did NOT bookmark" => :nobookmark }
   end
 
-  def designer_options
-    metrics = Card.search type_id: MetricID, return: :name
-    metrics.map do |m|
-      names = m.to_name.parts
-      # score metric?
-      names.length == 3 ? names[2] : names[0]
-    end.uniq(&:downcase).sort_by(&:downcase)
+  def calculated_options
+    { "Yes" => :calculated, "No" => :not_calculated }
   end
 
   def status_filter_label

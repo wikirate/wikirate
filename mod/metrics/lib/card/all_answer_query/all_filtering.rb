@@ -64,8 +64,8 @@ class Card
       end
 
       # we left join cards to answers. if answers.id is nil, then answer is not researched
-      def handle_not_researched
-        @card_conditions << "answers.id is null" if status_filter == :none
+      def not_researched!
+        @card_conditions << "answers.id is null"
       end
     end
   end
