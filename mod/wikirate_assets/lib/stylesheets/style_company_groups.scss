@@ -22,7 +22,7 @@
       border-radius: 0 !important;
     }
     .constraint-value {
-      > .input-view {
+      > .input-view, .value_formgroup-view {
         width: 80%;
       }
       .constraint-value-fields { // value row, right column
