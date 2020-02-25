@@ -81,8 +81,12 @@ class Card
         Relationship.joins(
           "join card_references cr on cr.referee_id = relationships.#{id_field}"
         ).where(
-          "cr.referer_id = #{referer_id} and metric_id = #{metric_card.id}"
+          "cr.referer_id = #{referer_id} and metric_id = #{relationship_metric_id}"
         ).distinct.pluck(:answer_id)
+      end
+
+      def relationship_metric_id
+        metric_card&.inverse? ? metric_card.inverse_card.id : metric_card.id
       end
 
       def calculated_condition
