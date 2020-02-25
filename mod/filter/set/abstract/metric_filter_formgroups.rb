@@ -39,7 +39,7 @@ format :html do
   end
 
   def value_type_options
-    Card[:metric,:value_type, :type_plus_right, :content_options].item_names
+    Card[:metric, :value_type, :type_plus_right, :content_options].item_names
   end
 
   def value_type_filter_label
