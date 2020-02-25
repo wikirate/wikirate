@@ -34,7 +34,7 @@ class Count < ActiveRecord::Base
 
     def refresh card
       count = find_by_card(card)
-      return create(card) unless count
+      return create(card).value unless count
       count.update card.recount
     end
 
