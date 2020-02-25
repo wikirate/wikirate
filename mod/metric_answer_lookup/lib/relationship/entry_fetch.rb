@@ -21,6 +21,12 @@ class Relationship
       metric_card.inverse_card.id
     end
 
+    def fetch_inverse_answer_id
+      Card.fetch_id (inverse_metric_id || fetch_inverse_metric_id),
+                    (object_company_id || fetch_object_company_id),
+                    (year || year).to_s
+    end
+
     def fetch_subject_company_id
       Card.fetch_id card.name.left_name.left_name.right
     end

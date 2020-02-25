@@ -78,15 +78,22 @@ class Card
       private
 
       def answer_ids_from_relationships id_field, referer_id
+        relationship_relation(id_field, referer_id).distinct
+          .pluck(:"#{relationship_prefix}answer_id")
+      end
+
+      # "relationship" in the wikirate sense. "relation" in the rails sense
+      def relationship_relation id_field, referer_id
         Relationship.joins(
           "join card_references cr on cr.referee_id = relationships.#{id_field}"
         ).where(
-          "cr.referer_id = #{referer_id} and metric_id = #{relationship_metric_id}"
-        ).distinct.pluck(:answer_id)
+          "cr.referer_id = #{referer_id} " \
+          "and #{relationship_prefix}metric_id = #{metric_card.id}"
+        )
       end
 
-      def relationship_metric_id
-        metric_card&.inverse? ? metric_card.inverse_card.id : metric_card.id
+      def relationship_prefix
+        @relationship_prefix ||= metric_card&.inverse? ? "inverse_" : ""
       end
 
       def calculated_condition
