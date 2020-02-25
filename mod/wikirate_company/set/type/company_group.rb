@@ -6,6 +6,7 @@ include_set Abstract::Bookmarkable
 card_accessor :image, type: :image
 card_accessor :wikirate_company
 card_accessor :specification
+card_accessor :wikirate_topic
 
 format :html do
   def header_body
@@ -45,6 +46,7 @@ format :html do
 
   view :data do
     [
+      labeled_field(:wikirate_topic, :link, title: "Topics"),
       field_nest(:specification, view: :titled),
       field_nest(:about, view: :titled),
       field_nest(:discussion, view: :titled)

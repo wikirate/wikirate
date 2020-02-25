@@ -22,7 +22,7 @@ def default_filter_hash
 end
 
 def target_type_id
-  Card::ProjectID
+  ProjectID
 end
 
 format :html do
@@ -54,6 +54,6 @@ class ProjectFilterQuery < Card::FilterQuery
 
   def wikirate_status_wql value
     return unless value.present?
-    add_to_wql :right_plus, [Card::WikirateStatusID, { refer_to: value }]
+    add_to_wql :right_plus, [WikirateStatusID, { refer_to: value }]
   end
 end

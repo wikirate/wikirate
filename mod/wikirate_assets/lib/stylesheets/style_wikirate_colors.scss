@@ -24,10 +24,10 @@
 @mixin quickFilterTag($by, $color) {
   .quick-filter {
     .quick-filter-by-#{$by} {
-      background: rgba($color, 0.2);
-      color: $color;
+      background: $color;
       &.active {
-        background: $color;
+        background: rgba($color, 0.2);
+        color: $color;
       }
     }
   }

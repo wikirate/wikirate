@@ -22,7 +22,7 @@ def bookmark_type
 end
 
 def target_type_id
-  Card::WikirateCompanyID
+  WikirateCompanyID
 end
 
 format :html do

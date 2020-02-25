@@ -28,7 +28,7 @@ def default_filter_hash
 end
 
 def target_type_id
-  Card::SourceID
+  SourceID
 end
 
 format :html do
@@ -63,19 +63,19 @@ class SourceFilterQuery < FilterQuery
 
   def wikirate_title_wql value
     return unless value.present?
-    add_to_wql :right_plus, [Card::WikirateTitleID, { content: [:match, value] }]
+    add_to_wql :right_plus, [WikirateTitleID, { content: [:match, value] }]
   end
 
   def wikirate_company_wql value
     return unless value.present?
-    add_to_wql :right_plus, [Card::WikirateCompanyID, { refer_to: { match: value } }]
+    add_to_wql :right_plus, [WikirateCompanyID, { refer_to: { match: value } }]
   end
 
   def report_type_wql value
-    add_to_wql :right_plus, [Card::ReportTypeID, { refer_to: value }]
+    add_to_wql :right_plus, [ReportTypeID, { refer_to: value }]
   end
 
   def year_wql value
-    add_to_wql :right_plus, [Card::YearID, { refer_to: value }]
+    add_to_wql :right_plus, [YearID, { refer_to: value }]
   end
 end

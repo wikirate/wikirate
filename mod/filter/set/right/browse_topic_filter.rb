@@ -26,7 +26,7 @@ def default_filter_hash
 end
 
 def target_type_id
-  Card::WikirateTopicID
+  WikirateTopicID
 end
 
 def filter_class
@@ -34,7 +34,7 @@ def filter_class
 end
 
 def default_sort_option
-  "bookmarkers"
+  "metric"
 end
 
 format :html do

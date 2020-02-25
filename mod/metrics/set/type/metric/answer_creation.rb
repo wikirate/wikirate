@@ -26,7 +26,7 @@ def add_answer_source_args args, source
                 when Card   then { content: "[[#{source.name}]]" }
                 end
   return unless source_hash
-  source_hash[:type_id] ||= Card::PointerID
+  source_hash[:type_id] ||= PointerID
   args["+source"] = source_hash
 end
 
@@ -65,7 +65,7 @@ def answer_name_from_args args
 end
 
 def answer_type_id related_company
-  related_company ? Card::RelationshipAnswerID : Card::MetricAnswerID
+  related_company ? RelationshipAnswerID : MetricAnswerID
 end
 
 def add_answer_discussion_args hash, comment

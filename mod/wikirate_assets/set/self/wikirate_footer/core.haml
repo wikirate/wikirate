@@ -1,6 +1,7 @@
 %small
   = nest :wikirate_license, view: :core
 %small
+  = link_to("Legal", href: "https://wikirateproject.org/Legal") + ": "
   - legals = secondary_menus["Legal"]
   - links = legals.map { |item| link_to item, href: nav_menu_item_url("Legal", item) }
   = links.join " | "

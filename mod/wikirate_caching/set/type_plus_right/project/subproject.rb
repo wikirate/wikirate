@@ -11,5 +11,5 @@ recount_trigger :type_plus_right, :project, :parent do |changed_card|
 end
 
 define_method :wql_hash do
-  { type_id: Card::ProjectID, right_plus: [Card::ParentID, { refer_to: left.id }] }
+  { type_id: ProjectID, right_plus: [ParentID, { refer_to: left.id }] }
 end

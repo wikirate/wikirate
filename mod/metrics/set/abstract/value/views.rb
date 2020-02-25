@@ -1,4 +1,26 @@
+include_set Abstract::TenScale
+
+def last_content_act
+  @last_content_act ||= last_content_action&.act
+end
+
+def content_updated_at
+  last_content_act&.acted_at || updated_at
+end
+
+def content_updater_id
+  last_content_act&.actor_id || updater_id
+end
+
+def content_updater
+  Card[content_updater_id]
+end
+
 format :html do
+  view :updated_at, compact: true do
+    date_view card.content_updated_at
+  end
+
   view :core do
     card.item_names.join(",")
   end
@@ -13,14 +35,6 @@ format :html do
   view :pretty, unknown: true do
     wrap_with :span, pretty_span_args do
       beautify(pretty_value).html_safe
-    end
-  end
-
-  # needed for ten-scale display of values of non-ten-scale metrics
-  # (eg Formulae used in WikiRating)
-  view :ten_scale, unknown: true do
-    wrap_with :span, class: "metric-value" do
-      beautify_ten_scale(pretty_value).html_safe
     end
   end
 
@@ -59,15 +73,6 @@ format :html do
     ten_scale? ? beautify_ten_scale(value) : value
   end
 
-  def beautify_ten_scale value
-    colorify shorten_ten_scale(value)
-  end
-
-  def shorten_ten_scale value
-    return value if value.number?
-    Answer.unknown?(value) ? "?" : "!"
-  end
-
   # link to full action history (includes value history)
   def credit_verb
     link_to_card card.left, "updated", path: { view: :history }, rel: "nofollow"
@@ -78,6 +83,6 @@ format :html do
   end
 
   def credit_whom
-    "by #{link_to_card card.updater}"
+    "by #{link_to_card card.content_updater}"
   end
 end
