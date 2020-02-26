@@ -92,13 +92,11 @@ format :html do
 
   view :relations_table, cache: :never do
     name_view = inverse? ? :inverse_company_name : :company_name
-    wrap do
-      with_paging do |paging_args|
-        wikirate_table :company,
-                       card.relationship_answers(paging_args),
-                       [name_view, :details],
-                       header: [rate_subject, "Answer"]
-      end
+    with_paging do |paging_args|
+      wikirate_table :company,
+                     card.relationship_answers(paging_args),
+                     [name_view, :details],
+                     header: [rate_subject, "Answer"]
     end
   end
 
