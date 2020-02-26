@@ -15,7 +15,7 @@ class CategoryValueValidator
     @values = Answer.where(metric_id: @metric_card.id).distinct.pluck(:value)
     return unless @metric_card.multi_categorical?
 
-    @values = @values.map { |v| v.split ", " }.flatten.uniq.map(&:name)
+    @values = @values.map { |v| v.split ", " }.flatten.uniq.map(&:to_name)
   end
 
   def invalid_values?

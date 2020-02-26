@@ -84,6 +84,14 @@ RSpec.describe Card::AnswerQuery do
       end
     end
 
+    context "with inverse relationship metric" do
+      it "finds companies by related company group" do
+        @metric_name = "Commons+Supplier of"
+        expect(filter_by(related_company_group: "Deadliest"))
+          .to eq(["Los_Pollos_Hermanos+2000", "Google LLC+2000"])
+      end
+    end
+
     context "with value filter" do
       let(:all_answers) do
         LATEST_ANSWERS + missing_answers

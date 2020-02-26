@@ -36,11 +36,12 @@ end
 
 def relationship_ids
   return [] if Env.params[:filter] && other_company_ids.empty?
-  Relationship.where(relationship_query).pluck(:relationship_id)
+  # FIXME: add paging
+  Relationship.where(relationship_query).limit(15).pluck(:relationship_id)
 end
 
 def other_company_ids
-  @other_company_ids ||= Env.params[:filter] ? search(return: :id) : []
+  @other_company_ids ||= Env.params[:filter] ? search(return: :id, limit: 0) : []
 end
 
 def relationship_query
