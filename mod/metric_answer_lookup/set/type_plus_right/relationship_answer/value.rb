@@ -6,7 +6,9 @@ event :delete_relationship_lookup_table_entry_due_to_value_change, :finalize, on
   delete_relationship relationship_id: relationship_id
 end
 
-event :create_relationship_lookup_entry_due_to_value_change, :finalize, on: :create do
+# it's preferable to do this in finalize rather than integrate, but we don't always have
+# the inverse_answer_id at this point.
+event :create_relationship_lookup_entry_due_to_value_change, :integrate, on: :create do
   create_relationship relationship_id: relationship_id
 end
 
