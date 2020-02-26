@@ -38,8 +38,8 @@ def relationship_ids paging_args={}
   return [] if Env.params[:filter] && other_company_ids.empty?
 
   rel = Relationship.where relationship_query
-  rel.limit paging_args[:limit] || 20
-  rel.offset paging_args[:offset] || 0
+  rel = rel.limit paging_args[:limit] || 20
+  rel = rel.offset paging_args[:offset] || 0
   rel.pluck :relationship_id
 end
 
@@ -98,5 +98,9 @@ format :html do
                      [name_view, value_view],
                      header: [rate_subject, "Answer"]
     end
+  end
+
+  def count_with_params
+    Relationship.where(card.relationship_query).count
   end
 end
