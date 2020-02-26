@@ -37,8 +37,10 @@ end
 def relationship_ids paging_args={}
   return [] if Env.params[:filter] && other_company_ids.empty?
 
-  paging_args.extract! :limit, :offset
-  Relationship.where(relationship_query).where(paging_args).pluck :relationship_id
+  rel = Relationship.where relationship_query
+  rel.limit paging_args[:limit] || 20
+  rel.offset paging_args[:offset] || 0
+  rel.pluck :relationship_id
 end
 
 def other_company_ids
