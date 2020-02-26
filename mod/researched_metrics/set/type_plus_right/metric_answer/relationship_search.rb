@@ -81,7 +81,7 @@ format :html do
       "Most Metrics": :metric }.merge super
   end
 
-  view :core, cache: :never, template: :haml
+  view :core, template: :haml
 
   def add_relation_link
     link_to_card :research_page, "Add relation",
@@ -90,13 +90,15 @@ format :html do
                          metric: metric, company: company, year: year }
   end
 
-  def relations_table value_view=:details
+  view :relations_table, cache: :never do
     name_view = inverse? ? :inverse_company_name : :company_name
-    with_paging do |paging_args|
-      wikirate_table :company,
-                     card.relationship_answers(paging_args),
-                     [name_view, value_view],
-                     header: [rate_subject, "Answer"]
+    wrap do
+      with_paging do |paging_args|
+        wikirate_table :company,
+                       card.relationship_answers(paging_args),
+                       [name_view, :details],
+                       header: [rate_subject, "Answer"]
+      end
     end
   end
 
