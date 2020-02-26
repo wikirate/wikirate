@@ -82,7 +82,7 @@ format :html do
   end
 
   def tab_title_count fieldcode
-    field_card = card.fetch fieldcode
+    field_card = card.fetch fieldcode, new: {}
     field_card if field_card.respond_to? :count
   end
 

@@ -19,7 +19,7 @@ constraintCsv = (constraintListEditor) ->
   rows.get().join "\n"
 
 constraintToCsvRow = (con)->
-  [metricValue(con), yearValue(con), valueValue(con)].join ";|;"
+  [metricValue(con), yearValue(con), valueValue(con), groupValue(con)].join ";|;"
 
 metricValue = (con) ->
   con.find(".constraint-metric input").val()
@@ -28,7 +28,10 @@ yearValue = (con) ->
   con.find(".constraint-year select").val()
 
 valueValue = (con) ->
-  con.find(".constraint-value input, .constraint-value select").serialize()
+  con.find(".constraint-value input, .constraint-value .constraint-value-fields > select").serialize()
+
+groupValue = (con) ->
+  con.find(".constraint-related-group select").val()
 
 specificationType = (el) ->
   el.find("[name=spec-type]:checked").val()

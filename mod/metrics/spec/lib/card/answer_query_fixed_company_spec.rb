@@ -142,6 +142,25 @@ RSpec.describe Card::AnswerQuery do
       end
     end
 
+    context "with value type" do
+      it "finds category metrics" do
+        expect(filter_by(value_type: "Category"))
+          .to eq(["dinosaurlabor+2010", "disturbances in the Force+2001",
+                  "disturbances in the Force+Joe User+2001", "more evil+1977"])
+      end
+    end
+
+    context "with calculated" do
+      it "finds calculated answers" do
+        expect(filter_by(calculated: :calculated))
+          .to eq(["darkness rating+1977", "deadliness+Joe Camel+1977",
+                  "deadliness+Joe User+1977", "disturbances in the Force+Joe User+2001",
+                  "double friendliness+1977",
+                  "friendliness+1977", "know the unknowns+1977",
+                  "descendant 1+1977", "descendant 2+1977"])
+      end
+    end
+
     context "with topic" do
       it "finds exact match" do
         expect(filter_by(topic: "Force")).to eq ["disturbances in the Force+2001"]

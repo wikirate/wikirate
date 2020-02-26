@@ -128,8 +128,17 @@ class SharedData
     end
 
     def add_company_group
-      constraint = "[[Jedi+deadliness]],1977,\"{\"\"from\"\":30}\""
-      create "Deadliest", type: :company_group, subfields: { specification: constraint }
+      create "Deadliest",
+             type: :company_group,
+             subfields: {
+               specification: "[[Jedi+deadliness]],1977,\"{\"\"from\"\":30}\""
+             }
+      create "Googliest",
+             type: :company_group,
+             subfields: {
+               specification: "explicit",
+               wikirate_company: "Google LLC"
+             }
     end
 
     def add_import_files

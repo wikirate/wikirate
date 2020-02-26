@@ -1,4 +1,5 @@
 include_set Abstract::BrowseFilterForm
+include_set Abstract::MetricFilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 
@@ -11,7 +12,8 @@ def default_sort_option
 end
 
 def filter_keys
-  %i[name wikirate_topic designer project metric_type research_policy year bookmark]
+  %i[name wikirate_topic designer project metric_type value_type
+     research_policy year bookmark]
 end
 
 def target_type_id
