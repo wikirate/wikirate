@@ -18,6 +18,7 @@ class Answer
       val ||= value
 
       Card.fetch(name, new: { type_id: Card::MetricAnswerID }).tap do |card|
+        card.define_singleton_method(:virtual?) { true }
         card.define_singleton_method(:value) { val }
         # card.define_singleton_method(:updated_at) { updated_at }
         card.define_singleton_method(:value_card) do
@@ -34,7 +35,7 @@ class Answer
 
     # true if there is no card for this answer
     def virtual?
-      card&.new_card?
+      card&.virtual?
     end
 
     def calculated_answer metric_card, company, year, value

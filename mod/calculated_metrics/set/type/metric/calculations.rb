@@ -45,7 +45,7 @@ end
 def remove_unchanged_answers
   @existing = ::Set.new answer_ids
   yield if block_given?
-  Answer.where(id: @existing.to_a).delete_all
+  Answer.where(id: @existing.to_a, answer_id: nil).delete_all
 ensure
   @existing = nil
 end
