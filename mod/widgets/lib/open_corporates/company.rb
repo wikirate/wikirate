@@ -60,7 +60,7 @@ module OpenCorporates
     def fetch_properties
       api_response
       @properties = OpenStruct.new api_response
-    rescue APIError => e
+    rescue OpenCorporates::ApiError => e
       msg = if e.message == "unexpected format"
               "open corporates returned unexpected format for "\
               "#{@jurisdiction_code}/#{@company_number}"
@@ -76,7 +76,7 @@ module OpenCorporates
       opts = {}
       opts[:sparse] = true if @sparse
       @api_response ||=
-        ::OpenCorporates::API.fetch_companies @jurisdiction_code, @company_number, opts
+        ::OpenCorporates::Api.fetch_companies @jurisdiction_code, @company_number, opts
     end
   end
 end
