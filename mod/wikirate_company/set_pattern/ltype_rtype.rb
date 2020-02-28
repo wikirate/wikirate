@@ -15,7 +15,6 @@ end
 
 def anchor_name card
   left = card.superleft || Card.quick_fetch(card.name.left)
-  # left = Card.quick_fetch(card.name.left)
   right = Card.quick_fetch card.name.right
   ltype_name = left ? left.type_name : "Basic" # hardcode for speed
   rtype_name = right ? right.type_name : "Basic"

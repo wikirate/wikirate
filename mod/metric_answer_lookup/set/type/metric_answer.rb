@@ -4,6 +4,7 @@
 # event :update_answer_lookup_table_due_to_answer_deletion, :finalize, on: :delete do
 #   delete_answer answer_id: id
 # end
+attr_writer :answer
 
 event :update_answer_lookup_table_due_to_answer_change, :finalize, on: :update do
   if hybrid?
@@ -15,10 +16,6 @@ end
 
 def answer
   @answer ||= Answer.existing(id) || virtual_answer || Answer.new
-end
-
-def answer= answer
-  @answer = answer
 end
 
 def virtual?

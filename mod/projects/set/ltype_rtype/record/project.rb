@@ -11,8 +11,8 @@ def project_years
 end
 
 def answers
-  return [] unless record_id = record.id
-  rel = Answer.where(record_id: record_id).order(:year)
+  return [] unless (record_id = record.id)
+  rel = Answer.where(record_id: record_id).order(year: :desc)
   if (years = project_years) && years.present?
     rel = rel.where year: years
   end
