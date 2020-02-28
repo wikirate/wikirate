@@ -11,7 +11,7 @@ end
 
 def calculation_in_progress!
   ids = all_dependent_answer_ids
-  Answer.where(id: ids).update_all(calculating: true)
+  Answer.where(id: ids, overridden_value: nil).update_all(calculating: true)
   Answer.where(id: ids).each(&:expire)
 end
 
@@ -45,7 +45,7 @@ end
 def remove_unchanged_answers
   @existing = ::Set.new answer_ids
   yield if block_given?
-  Answer.where(id: @existing.to_a).delete_all
+  Answer.where(id: @existing.to_a, answer_id: nil).delete_all
 ensure
   @existing = nil
 end

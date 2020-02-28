@@ -96,12 +96,12 @@ class Card
       end
 
       def calculated_condition
-        "(metric_type_id IN #{CALCULATED_TYPE_ID_STRING} AND overridden_value IS NULL)"
+        "(metric_type_id IN #{CALCULATED_TYPE_ID_STRING} AND answer_id IS NULL)"
       end
 
       def not_calculated_condition
         "(metric_type_id NOT IN #{CALCULATED_TYPE_ID_STRING} " \
-        "OR overridden_value IS NOT NULL)"
+        "OR answer_id IS NOT NULL)"
       end
 
       def timeperiod value

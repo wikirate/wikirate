@@ -30,14 +30,17 @@ def target_type_id
   WikirateCompanyID
 end
 
-def relationship_answers
-  relationship_ids.map(&:card)
+def relationship_answers paging_args={}
+  relationship_ids(paging_args).map(&:card)
 end
 
-def relationship_ids
+def relationship_ids paging_args={}
   return [] if Env.params[:filter] && other_company_ids.empty?
-  # FIXME: add paging
-  Relationship.where(relationship_query).limit(15).pluck(:relationship_id)
+
+  rel = Relationship.where relationship_query
+  rel = rel.limit paging_args[:limit] || 20
+  rel = rel.offset paging_args[:offset] || 0
+  rel.pluck :relationship_id
 end
 
 def other_company_ids
@@ -55,11 +58,15 @@ def inverse?
 end
 
 def answer_company_id_field
-  inverse? ? :object_company_id : :subject_company_id
+  company_id_field(inverse? ? :object : :subject)
 end
 
 def other_company_id_field
-  inverse? ? :subject_company_id : :object_company_id
+  company_id_field(inverse? ? :subject : :object)
+end
+
+def company_id_field prefix
+  :"#{prefix}_company_id"
 end
 
 format :html do
@@ -74,7 +81,7 @@ format :html do
       "Most Metrics": :metric }.merge super
   end
 
-  view :core, cache: :never, template: :haml
+  view :core, template: :haml
 
   def add_relation_link
     link_to_card :research_page, "Add relation",
@@ -83,9 +90,17 @@ format :html do
                          metric: metric, company: company, year: year }
   end
 
-  def relations_table value_view=:details
+  view :relations_table, cache: :never do
     name_view = inverse? ? :inverse_company_name : :company_name
-    wikirate_table :company, card.relationship_answers, [name_view, value_view],
-                   header: [rate_subject, "Answer"]
+    with_paging do |paging_args|
+      wikirate_table :company,
+                     card.relationship_answers(paging_args),
+                     [name_view, :details],
+                     header: [rate_subject, "Answer"]
+    end
+  end
+
+  def count_with_params
+    Relationship.where(card.relationship_query).count
   end
 end
