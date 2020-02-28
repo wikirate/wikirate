@@ -14,7 +14,7 @@ def answers
   return [] unless record_id = record.id
   rel = Answer.where(record_id: record_id).order(:year)
   if (years = project_years) && years.present?
-    rel = rel.where years: years
+    rel = rel.where year: years
   end
   rel.map(&:card)
 end
