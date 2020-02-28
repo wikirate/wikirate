@@ -86,7 +86,17 @@ form.answer-form {
     border: none;
     width: 100%!important;
   }
+  .select2-selection__arrow {
+    background: #fff;
+    width: 25px !important;
+    right: 0 !important;
+    text-align: center;
+    b {
+      left: auto !important;
+    }
+  }
 }
+
 
 .html-select2.select2-dropdown.select2-dropdown--below .select2-results__options {
   max-height: calc(100vh - 400px);
