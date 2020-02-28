@@ -1,5 +1,4 @@
-event :update_lookup_answers, :integrate,
-      on: :update, changed: :name do
+event :update_lookup_answers, :integrate, on: :update, changed: :name do
   # FIXME: when renaming, the metric type gets confused at some point, and
   # calculated? does not correctly return true for calculated metrics
   # (which have MetricType::Researched among their singleton class's ancestors)

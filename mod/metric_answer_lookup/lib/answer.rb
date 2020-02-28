@@ -26,9 +26,15 @@ class Answer < ApplicationRecord
   end
 
   def card
-    return super if answer_id
-    # in the process of creating a hybrid answer we don't want the virtual answer card
-    @card ||= find_answer_card || virtual_answer_card
+    return @card if @card
+    if answer_id
+      super
+    else
+      # in the process of creating a hybrid answer we don't want the virtual answer card
+      @card = find_answer_card || virtual_answer_card
+    end
+    @card.answer = self
+    @card
   end
 
   def company_key

@@ -17,6 +17,10 @@ def answer
   @answer ||= Answer.existing(id) || virtual_answer || Answer.new
 end
 
+def answer= answer
+  @answer = answer
+end
+
 def virtual?
   new? && !answer.new_record?
 end

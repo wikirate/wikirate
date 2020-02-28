@@ -25,5 +25,7 @@ format :html do
     count_badges :metric_answer, :wikirate_company
   end
 
-  view :selected_option, template: :haml
+  view :research_option_header, template: :haml
+
+  view :research_option, template: :haml
 end
