@@ -6,13 +6,25 @@ SDG_TOPIC_IDS =
 
 SDG_OVERVIEW_ID = 1094739
 
+def self.sdg_topic_names
+  @sdg_topic_names ||= SDG_TOPIC_IDS.map(&:cardname).freeze
+end
+
+def self.sdg_overview_name
+  @sdg_overview_name ||= SDG_OVERVIEW_ID.cardname || "sdg placeholder"
+end
+
 format :html do
   def custom_quick_filters
     haml :sdg_quick_filters, topic_ids: SDG_TOPIC_IDS
   end
 
+  def sdg_topic_names
+    SdgFiltering.sdg_topic_names
+  end
+
   def sdg_label_link
-    link_to_card SDG_OVERVIEW_ID, "SDGs:", target: "_blank"
+    link_to_card SdgFiltering.sdg_overview_name, "SDGs:", target: "_blank"
   end
 
   def sdg_help_text

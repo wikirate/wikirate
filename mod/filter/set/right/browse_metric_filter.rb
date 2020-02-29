@@ -45,21 +45,4 @@ format :html do
     { "Most Companies": :company,
       "Most Answers": :answer }.merge super
   end
-
-  def type_options type_codename, order="asc", max_length=nil
-    if type_codename == :wikirate_topic
-      wikirate_topic_type_options order
-    else
-      super
-    end
-  end
-
-  def wikirate_topic_type_options order
-    Card.search referred_to_by: { left: { type_id: MetricID },
-                                  right: "topic" },
-                type_id: WikirateTopicID,
-                return: :name,
-                sort: "name",
-                dir: order
-  end
 end
