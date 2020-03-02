@@ -41,6 +41,7 @@ class Card
       end
 
       def filter_card_id key, value
+        binding.pry
         return unless (card_id = to_card_id value)
 
         filter CARD_ID_MAP[key], card_id

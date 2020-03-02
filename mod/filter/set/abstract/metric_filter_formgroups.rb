@@ -14,7 +14,7 @@ format :html do
   end
 
   view :filter_metric_type_formgroup, cache: :never do
-    select_filter :metric_type
+    multiselect_filter :metric_type
   end
 
   view :filter_designer_formgroup, cache: :never do
@@ -22,7 +22,7 @@ format :html do
   end
 
   view :filter_value_type_formgroup, cache: :never do
-    select_filter :value_type
+    multiselect_filter :value_type
   end
 
   def designer_options

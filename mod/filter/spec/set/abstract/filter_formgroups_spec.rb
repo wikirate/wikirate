@@ -48,7 +48,7 @@ describe Card::Set::Abstract::FilterFormgroups do
 
         it "renders select list" do
           is_expected.to have_tag(
-            :select, with: { name: "filter[research_policy][]" }
+            :select, with: { name: "filter[research_policy]" }
           )
         end
       end
@@ -56,7 +56,7 @@ describe Card::Set::Abstract::FilterFormgroups do
         subject { filter_card.format.render_filter_research_policy_formgroup }
 
         it "render multiselect list" do
-          is_expected.to have_tag :select, with: { multiple: "multiple" } do
+          is_expected.to have_tag :select do
             with_option "Community Assessed", "Community Assessed"
             with_option "Designer Assessed", "Designer Assessed"
           end
