@@ -52,6 +52,13 @@ format :html do
                  title: "Research answers for this company and metric"
   end
 
+  # NOCACHE because item search
+  view :years_and_values, cache: :never, unknown: true do
+    card.all_answers.map do |a|
+      nest a, view: :year_and_value
+    end
+  end
+
   view :metric_tab do
     nest card.metric_card, view: :details_tab
   end
