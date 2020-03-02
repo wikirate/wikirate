@@ -4,7 +4,7 @@
 
 RSpec.describe Card::Set::TypePlusRight::Source::WikirateLink do
   PDF_URL = "https://brendanzagaeski.appspot.com/minimal.pdf".freeze
-  HTML_URL = "https://www.lipsum.com".freeze
+  HTML_URL = "https://www.york.ac.uk/teaching/cws/wws/webpage1.html".freeze
   before do
     Cardio.config.x.import_sources = true
   end
