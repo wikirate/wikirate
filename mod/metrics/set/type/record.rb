@@ -52,17 +52,11 @@ format :html do
                  title: "Research answers for this company and metric"
   end
 
-  view :metric_option, template: :haml, unknown: true
-
   # NOCACHE because item search
-  view :years_and_values, cache: :never do
-    all_answers.map do |a|
+  view :years_and_values, cache: :never, unknown: true do
+    card.all_answers.map do |a|
       nest a, view: :year_and_value
     end
-  end
-
-  view :metric_selected_option, unknown: true do
-    nest metric_card, view: :selected_option
   end
 
   view :metric_tab do

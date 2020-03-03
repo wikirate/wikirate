@@ -23,11 +23,12 @@ format :html do
 
   # option view is on record
   def metric_select
-    research_select_tag :metric, metric_list, metric, ->(m) { record_for_metric m }
+    research_select_tag :metric, metric_list, metric, ->(m) { record_plus_project m }
   end
 
-  def record_for_metric metric
-    Card.fetch [metric, company], new: { type_id: Card::RecordID }
+  def record_plus_project metric
+    record = Card.fetch [metric, company], new: { type_id: Card::RecordID }
+    Card.fetch [record, project], new: { supercard: record }
   end
 
   # option view is on answer

@@ -13,7 +13,7 @@ describe "filtering on company pages", ->
       # "Taming" topic present before filtering
       cy.contains("Taming")
       cy.get("._filter-container [name='filter[name]']")
-        .type("forc{enter}")
+        .type("forc")
 
       # Topic is now filtered out
       cy.should "not.contain", "Taming"

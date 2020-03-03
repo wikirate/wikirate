@@ -2,9 +2,8 @@
   %span.sdg-label
     = sdg_label_link
   = help_link sdg_help_text
-  - topic_ids.each_with_index do |topic_id, index|
+  - sdg_topic_names.each_with_index do |topic_name, index|
     - sdg_num = index + 1
-    - topic_name = topic_id.cardname
     %a{ "data-filter": JSON(wikirate_topic: topic_name),
         href: "#",
         class: "_filter-link quick-filter-by-sdg#{sdg_num}",
