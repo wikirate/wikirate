@@ -1,9 +1,15 @@
- event :set_search_content, after: :set_content do
+event :set_search_content, after: :set_content do
   self.search_content = generate_search_content
 end
 
 def generate_search_content
-  [name_for_search, content_for_search].compact.join "\n"
+  tagless do
+    [name_for_search, content_for_search].compact.join "\n"
+  end
+end
+
+def tagless
+  ::ActionView::Base.full_sanitizer.sanitize yield
 end
 
 def name_for_search
