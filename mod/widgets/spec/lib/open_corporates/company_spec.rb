@@ -45,12 +45,12 @@ RSpec.describe OpenCorporates::Company do
     let(:oc)  { described_class.new "gb", "00102498" }
 
     it "is invalid" do
-      stub_const("OpenCorporates::API::HOST", "open-corporates-is-down.org")
+      stub_const("OpenCorporates::Api::HOST", "open-corporates-is-down.org")
       expect(oc.valid?).to eq false
     end
 
     it "has error" do
-      stub_const("OpenCorporates::API::HOST", "open-corporates-is-down.org")
+      stub_const("OpenCorporates::Api::HOST", "open-corporates-is-down.org")
       expect(oc.error)
         .to eq "couldn't receive open corporates entry: service temporarily not available"
     end

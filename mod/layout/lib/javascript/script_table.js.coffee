@@ -10,11 +10,11 @@ $(document).ready ->
     e.preventDefault()
 
   $('body').on 'click', '.details ._update-details', (e) ->
-    unless $(this).closest(".relations_table_with_details_toggle-view").length > 0
+    unless $(this).closest(".relations_table-view").length > 0
     # update details unless we're looking at relationship details
     # (we don't yet have a relationship details view)
       (new decko.details(this)).add $(this)
-    e.preventDefault()
+      e.preventDefault()
 
 decko.details = (el) ->
   @dInnerSlot = $(el).find ".details"

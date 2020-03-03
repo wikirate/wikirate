@@ -30,11 +30,11 @@ module OpenCorporates
 
       def check_response_format response
         unless response.is_a?(Hash)
-          raise APIError, "unexpected format, expected a hash but got #{response}"
+          raise ApiError, "unexpected format, expected a hash but got #{response}"
         end
         REQUIRED_RESPONSE_FIELDS.each do |key|
           unless response.key? key
-            raise APIError, "unexpected format, expected key '#{key}' in #{response}"
+            raise ApiError, "unexpected format, expected key '#{key}' in #{response}"
           end
         end
       end
@@ -44,7 +44,7 @@ module OpenCorporates
       rescue OpenURI::HTTPError => e
         e.io.try(:string) || e.io.try(:read) || raise(e)
       rescue SocketError => _e
-        raise APIError, "service temporarily not available"
+        raise ApiError, "service temporarily not available"
       end
 
       def query_uri *query_args
@@ -56,6 +56,6 @@ module OpenCorporates
     end
   end
 
-  class APIError < Card::Error::UserError
+  class ApiError < Card::Error::UserError
   end
 end

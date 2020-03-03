@@ -1,6 +1,6 @@
 module OpenCorporates
   #
-  class API
+  class Api
     HOST = "api.opencorporates.com".freeze
     OC_API_VERSION = "0.4".freeze
 
@@ -75,10 +75,10 @@ module OpenCorporates
 
       def pick_nested_item *structure
         response = yield
-        raise APIError, response["error"]["message"] if response.key?("error")
+        raise ApiError, response["error"]["message"] if response.key?("error")
         structure.each do |key|
           unless response.is_a?(Hash) && response.key?(key)
-            raise APIError, "unexpected format"
+            raise ApiError, "unexpected format"
           end
           response = response[key]
         end
@@ -90,7 +90,7 @@ module OpenCorporates
       rescue OpenURI::HTTPError => e
         e.io.try(:string) || e.io.try(:read) || raise(e)
       rescue SocketError => _e
-        raise APIError, "service temporarily not available"
+        raise ApiError, "service temporarily not available"
       end
 
       def query_uri *query_args
@@ -105,8 +105,5 @@ module OpenCorporates
         Card.config.try :opencorporates_key
       end
     end
-  end
-
-  class APIError < Card::Error::UserError
   end
 end

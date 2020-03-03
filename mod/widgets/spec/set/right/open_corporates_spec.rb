@@ -10,9 +10,9 @@ RSpec.describe Card::Set::Right::OpenCorporates do
   end
 
   def stub_oc_api changes={}
-    oc_api = class_double("OpenCorporates::API")
+    oc_api = class_double("OpenCorporates::Api")
     allow(oc_api).to receive(:fetch_companies).and_return(api_response.merge(changes))
-    stub_const("OpenCorporates::API", oc_api)
+    stub_const("OpenCorporates::Api", oc_api)
   end
 
   describe "view: oc_search_link" do
@@ -58,7 +58,7 @@ RSpec.describe Card::Set::Right::OpenCorporates do
 
     context "api not available" do
       it "shows error message" do
-        stub_const("OpenCorporates::API::HOST", "open-corporates-is-down.org")
+        stub_const("OpenCorporates::Api::HOST", "open-corporates-is-down.org")
         is_expected.to have_tag "div.alert", text: /service temporarily not available/
       end
     end

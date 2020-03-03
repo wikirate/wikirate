@@ -2,7 +2,7 @@ class Answer
   # Methods to fetch the data needed to initialize a new answer lookup table entry.
   module EntryFetch
     def fetch_answer_id
-      card.id
+      card.id if card.id && card.value_card.id
     end
 
     def fetch_company_id
