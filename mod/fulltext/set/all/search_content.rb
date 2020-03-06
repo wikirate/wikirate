@@ -1,5 +1,5 @@
 event :set_search_content, after: :set_content do
-  self.search_content = generate_search_content
+  self.search_content = tagless { content_for_search.to_s }
 end
 
 event :trigger_left_search_content_update, after: :set_search_content do
@@ -10,12 +10,6 @@ event :trigger_left_search_content_update, after: :set_search_content do
 
   l.set_search_content
   l.save if l.search_content_changed?
-end
-
-def generate_search_content
-  tagless do
-    [name_for_search, content_for_search].compact.join "\n"
-  end
 end
 
 def tagless
@@ -33,7 +27,7 @@ end
 def search_content_cards
   return [] unless structure && nest_chunks
 
-  nest_chunks.map { |chunk| chunk.referee_card }.compact
+  nest_chunks.map(&:referee_card).compact
 end
 
 def search_content_field_names

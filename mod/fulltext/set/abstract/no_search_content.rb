@@ -1,3 +1,3 @@
-def generate_search_content
+def content_for_search
   nil
 end

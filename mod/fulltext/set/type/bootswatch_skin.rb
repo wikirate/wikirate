@@ -1,1 +1,1 @@
-include Abstract::NoSearchContent
+include_set Abstract::NoSearchContent
