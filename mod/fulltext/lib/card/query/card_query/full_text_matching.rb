@@ -24,8 +24,9 @@ class Card
           super
         end
 
-        # Note: the alternative route
-
+        # Note: the more explicit route (which will be necessary if we want to support
+        # relevance as one of multiple sort options), is to do something like
+        # select MATCH (x) AGAINST (y) as relevance... order by relevance desc
       end
       include FullTextOrdering
     end
