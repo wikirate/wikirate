@@ -7,6 +7,7 @@ class Card
       # handle `fulltext_match` condition in card queries
       module FullTextMatching
         def fulltext_match value
+          return nil if value.strip.empty?
           add_condition "MATCH (#{table_alias}.search_content, #{table_alias}.name) " \
                         "AGAINST (#{quote value})"
         end
