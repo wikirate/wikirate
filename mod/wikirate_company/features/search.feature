@@ -4,7 +4,7 @@ Feature: search feature
 
   Scenario: quick search
     Given I go to the homepage
-    And I search for "Jedi" using the navbox
+    And I search for "Jedi rating" using the navbox
     Then I should see "darkness rating"
-    When I click on "2"
-    Then I should see "deadliness"
+    #    When I click on "2"
+    #    Then I should see "deadliness"
