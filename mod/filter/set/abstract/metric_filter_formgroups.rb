@@ -46,8 +46,9 @@ format :html do
 
   def value_type_options
     Card.cache.fetch "VALUE-TYPE-OPTIONS" do
-      Card[:metric, :value_type, :type_plus_right, :content_options].item_names
-    end
+      options = Card[:metric, :value_type, :type_plus_right, :content_options].item_names
+      options.map(&:to_s)
+    end.map(&:to_name)
   end
 
   def value_type_filter_label

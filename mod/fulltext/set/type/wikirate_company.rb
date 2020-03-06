@@ -1,3 +1,5 @@
-def content_for_search
-  fetch(:aliases)&.item_names&.join " "
+include_set Abstract::SearchContentFields
+
+def search_content_field_codes
+  [:aliases]
 end
