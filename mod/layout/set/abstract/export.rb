@@ -5,14 +5,16 @@ format :html do
 
   view :export_links, cache: :never do
     wrap_with :p do
-      "Export: #{format_links}"
+      "Export: #{export_format_links}"
     end
   end
 
-  def format_links
-    export_formats.map do |format|
-      link_to_card card, format, path: export_link_path(format)
-    end.join " / "
+  def export_format_links
+    export_formats.map { |format| export_format_link format }.join " / "
+  end
+
+  def export_format_link format
+    link_to_card card, format, path: export_link_path(format)
   end
 
   def export_link_path format

@@ -37,3 +37,9 @@ end
 def content_for_search_from_fields
   search_content_cards.map(&:content).compact.join "\n"
 end
+
+format do
+  view :search_content do
+    card.search_content
+  end
+end

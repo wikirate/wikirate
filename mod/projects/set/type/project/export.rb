@@ -42,7 +42,6 @@ format :csv do
   def import_answer_line metric, company, year
     CSV.generate_line [metric, company, year, "", "", ""]
   end
-
 end
 
 format :json do
@@ -56,4 +55,8 @@ format :json do
     super().merge metrics: field_nest(:metric),
                   companies: field_nest(:wikirate_company)
   end
+end
+
+format :html do
+  view :import_links, cache: :never, template: :haml
 end

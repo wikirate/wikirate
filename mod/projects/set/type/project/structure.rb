@@ -29,7 +29,11 @@ format :html do
 
   view :right_column do
     wrap_with :div, class: "progress-column" do
-      [render_type_link, overall_progress_box, _render_tabs, _render_export_links]
+      [render_type_link,
+       overall_progress_box,
+       render_tabs,
+       render_import_links,
+       render_export_links]
     end
   end
 
