@@ -25,7 +25,7 @@ install_plugin Capistrano::SCM::Git::WithSubmodules
 # require 'capistrano/rails/assets'
 # require 'capistrano/rails/migrations'
 
-# require "capistrano/rvm"
+require "capistrano/rvm"
 require "capistrano/bundler"
 require "capistrano/maintenance"
 require "airbrussh/capistrano"
