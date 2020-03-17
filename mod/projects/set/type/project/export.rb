@@ -22,6 +22,26 @@ format :csv do
   view :core do
     Answer.csv_title + card.answers.map(&:csv_line).flatten.join
   end
+
+  view :import_template do
+    card.companies.map do |company|
+      card.metrics.map do |metric|
+        import_record_lines metric, company
+      end
+    end.flatten.join
+  end
+
+  def import_record_lines metric, company
+    if card.years
+      card.years.map { |year| import_answer_line metric, company, year }
+    else
+      import_answer_line metric, company, ""
+    end
+  end
+
+  def import_answer_line metric, company, year
+    CSV.generate_line [metric, company, year, "", "", ""]
+  end
 end
 
 format :json do
@@ -35,4 +55,8 @@ format :json do
     super().merge metrics: field_nest(:metric),
                   companies: field_nest(:wikirate_company)
   end
+end
+
+format :html do
+  view :import_links, cache: :never, template: :haml
 end
