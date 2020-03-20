@@ -1,3 +1,5 @@
+# default is material
+
 ICON_MAP = {
   wikirate_company: :business,
   wikirate_topic: :widgets,
@@ -15,6 +17,7 @@ ICON_MAP = {
   details: :info,
   source: :public,
   score: :adjust,
+  answer_import_file: :input,
   calculation: [:calculator, { library: :font_awesome }],
   year: [:calendar, { library: :font_awesome }],
   research_group: [:users, { library: :font_awesome }],
