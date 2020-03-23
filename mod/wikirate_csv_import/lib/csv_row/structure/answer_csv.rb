@@ -11,6 +11,9 @@ class CsvRow
 
       @columns = [:metric, :company, :year, :value, :source, :comment]
       @required = [:metric, :company, :year, :value, :source]
+      @map_columns = %i[metric company year source]
+
+
 
       def initialize row, index, import_manager=nil
         super

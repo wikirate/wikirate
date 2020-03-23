@@ -32,6 +32,11 @@ shared_examples "answer import examples" do
     expect_answer_created(:exact_match)
   end
 
+  it "generates map" do
+    import_card = create_import_card import_file_name
+    expect(import_card.import_map_card.map[:company]).to be_a(Hash)
+  end
+
   it "marks value in action as imported" do
     trigger_import :exact_match
     action_comment = value_card(:exact_match).actions.last.comment

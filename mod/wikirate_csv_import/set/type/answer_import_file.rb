@@ -1,5 +1,5 @@
 include_set Type::File
-include_set Abstract::ImportWithCompanies
+include_set Abstract::ImportWithMapping
 
 attachment :answer_import_file, uploader: CarrierWave::FileCardUploader
 
