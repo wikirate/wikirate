@@ -3,33 +3,22 @@ include_set Abstract::ImportWithMapping
 
 attachment :answer_import_file, uploader: CarrierWave::FileCardUploader
 
-COLUMNS = { checkbox: "Select",
-            row_index: "Row",
-            metric: "Metric",
-            company_correction: "Company",
-            company: "<small>in file</small>",
-            wikirate_company: "<small>on WikiRate</small>",
-            year: "Year",
-            value: "Value",
-            source: "Source",
-            comment: "Comment" }.freeze
-
-SUCCESS_MESSAGES =
+def csv_columns
   {
-    identical_answer: "Metric answer exist and was not modified.",
-    duplicated_answer: "Metric answer exist with different source and was not modified."
+    metric: { map: true, require: true },
+    wikirate_company: { map: true, require: true },
+    year: { map: true, require: true},
+    value: { require: true },
+    source: { map: true, require: true},
+    comment: {}
   }
+end
 
 def csv_row_class
   CsvRow::Structure::AnswerCsv
 end
 
-def item_label
-  "metric answer"
-end
-
-format :html do
-  def import_table_row_class
-    TableRowWithCompanyMapping
-  end
+def import_map_source_val val
+  result = Self::Source.search val
+  result.first.name if result.size == 1
 end

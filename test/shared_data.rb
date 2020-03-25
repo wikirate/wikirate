@@ -142,8 +142,8 @@ class SharedData
     end
 
     def add_import_files
-      create "answer import test", type: :answer_import_file, empty_ok: true
-      create "feature answer import test",
+      # create "answer import test", type: :answer_import_file, empty_ok: true
+      create "answer import test",
              type: :answer_import_file,
              codename: "answer_import_test_with_file",
              answer_import_file: csv_file("answer_import"),

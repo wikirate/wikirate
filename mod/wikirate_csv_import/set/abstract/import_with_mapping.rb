@@ -34,7 +34,7 @@ format :html do
   end
 
   view :data do
-    "Mappings..."
+    field_nest :import_map
   end
 
   view :bar_right do

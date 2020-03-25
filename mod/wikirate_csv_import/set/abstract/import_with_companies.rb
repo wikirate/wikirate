@@ -15,7 +15,4 @@ format :html do
     key == :valid ? table_row.match_type : key
   end
 
-  def matches_companies?
-    card.csv_row_class.ancestors.include? CsvRow::CompanyImport
-  end
 end

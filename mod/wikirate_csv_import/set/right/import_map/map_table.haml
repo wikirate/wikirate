@@ -1,0 +1,24 @@
+// %h5
+//  = Card[map_type.to_sym].name
+
+%table.wikirate-table.import-table
+  %thead
+    %tr
+      %th
+        in File
+      %th
+        on WikiRate
+  %tbody
+    - card.map_for_type(map_type).each do |key, val|
+      %tr
+        %td.in-file
+          = key
+        %td
+          - if val
+            = nest val, view: item_view(map_type)
+          - else
+            = map_ui map_type
+.d-flex.justify-content-end.py-3
+  %span
+    Export:
+    = export_link map_type

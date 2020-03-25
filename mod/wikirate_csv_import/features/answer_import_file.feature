@@ -4,7 +4,7 @@ Feature: import metric answers from a csv file
 
   Background:
     Given I am signed in as Joe Admin
-    And I go to card "feature answer import test"
+    And I go to card "answer import test"
     And I follow "Import ..."
 #    And I maximize the browser
 
