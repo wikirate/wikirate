@@ -118,8 +118,10 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 
+  gem "spring"
+
   # gem "nospring"
-  # gem 'spring-commands-rspec'
+   gem 'spring-commands-rspec'
 end
 
 group :test, :development, :cypress do

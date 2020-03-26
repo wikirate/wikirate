@@ -10,7 +10,7 @@ include_set Abstract::Tabs
 #
 #
 
-delegate :csv_file, :csv_columns, to: :left
+delegate :csv_file, :csv_row_class, to: :left
 
 def followable?
   false
@@ -41,7 +41,7 @@ def mapping_param
   param[:mapping]
 end
 
-def generate_exact!
+def generate!
   self.content = exact_match_map.to_json
 end
 
@@ -53,6 +53,10 @@ def exact_match_map
       map_item row_hash[column], type_map, map_type
     end
   end
+end
+
+def csv_columns
+  csv_row_class.columns
 end
 
 def map_type column
@@ -144,9 +148,11 @@ format :html do
 
   def tab_title type
     map = card.content_hash[type]
-    mapped = map.values.compact.count
-    wrapped_tab_title "(#{mapped}) #{type.cardname.vary :plural}",
-                      total_badge(type, map.keys.count)
+    total = map.keys.count
+    unmapped = total - map.values.compact.count
+    title = type.cardname.vary :plural
+    title = "(#{unmapped}) #{title}" if unmapped.positive?
+    wrapped_tab_title title, total_badge(type, total)
   end
 
   def total_badge type, count

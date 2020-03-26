@@ -13,7 +13,7 @@ card_accessor :import_map, type: :json
 
 event :generate_import_map, :validate, on: :create do
   map = import_map_card
-  map.generate_exact!
+  map.generate!
   add_subcard map
 end
 

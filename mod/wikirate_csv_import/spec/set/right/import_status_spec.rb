@@ -3,6 +3,18 @@ RSpec.describe Card::Set::Right::ImportStatus do
     { counts: { imported: 5, failed: 6, total: 17 } }
   end
 
+
+  describe "#generate" do
+    it "generates a status hash" do
+      ais = Card["answer_import_test"].import_status_card
+      ais.generate!
+      puts ais.status
+      expect(ais.status)
+        .to include(counts: a_hash_including(total: 15),
+                    items: a_collection_including([:ready, nil]))
+    end
+  end
+
   specify "#state" do
     card = Card.new name: "test+import status", content: status.to_json
     expect(card.import_counts).to eq imported: 5, failed: 6, total: 17
