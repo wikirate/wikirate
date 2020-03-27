@@ -9,5 +9,5 @@ end
 
 def import_map_source_val val
   result = Self::Source.search val
-  result.first.name if result.size == 1
+  result.first.id if result.size == 1
 end

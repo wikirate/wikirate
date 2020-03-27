@@ -94,9 +94,7 @@ def content_hash
 end
 
 def mapped_columns
-  csv_columns.keys.select do |key|
-    csv_columns[key][:map]
-  end
+  csv_row_class.mapped
 end
 
 format :csv do

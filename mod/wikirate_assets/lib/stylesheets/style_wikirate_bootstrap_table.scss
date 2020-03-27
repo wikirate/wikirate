@@ -46,6 +46,7 @@
   }
 }
 
+
 table.wikirate-table, .table.wikirate-table {
   background: #fff;
   width: 100%;
@@ -172,8 +173,16 @@ table.wikirate-table, .table.wikirate-table {
   top: 110px!important;
 }
 
-table.import-table td {
-  overflow: hidden;
+table.import-table {
+  .mapped-import-cell a {
+    color: $info;
+  }
+  .unmapped-import-cell {
+    background-color: rgba($warning, 0.3);
+  }
+  td {
+    overflow: hidden;
+  }
 }
 
 .table-borderless,
@@ -198,6 +207,19 @@ table.import-table td {
 .table.table-condensed {
   margin-bottom: 10px;
 }
+
+table.import-status-table {
+  max-width: 100%;
+  overflow: hidden;
+  td {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 20px;
+    text-overflow: ellipsis;
+    padding: 0.5em;
+  }
+}
+
 
 td .pointer-list {
   // needed to align on company pages the jurisdictions table

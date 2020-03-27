@@ -10,8 +10,15 @@ RSpec.describe Card::Set::Right::ImportStatus do
       ais.generate!
       puts ais.status
       expect(ais.status)
-        .to include(counts: a_hash_including(total: 15),
-                    items: a_collection_including([:ready, nil]))
+        .to include(
+              counts: a_hash_including(
+                total: 15,
+                failed: 2,
+                not_ready: 12,
+                ready: 1
+              ),
+              items: a_collection_including([:not_ready, nil])
+            )
     end
   end
 
