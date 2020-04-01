@@ -55,7 +55,7 @@ def check_requested_by_card
 end
 
 def allowed_to_check?
-  Auth.signed_in? && (Auth.current_id != answer&.value_card&.content_updater_id)
+  Auth.current_id != answer&.value_card&.content_updater_id
 end
 
 def check_was_requested_before_double_check?
