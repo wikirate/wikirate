@@ -1,5 +1,10 @@
 event :update_relationship_count, :integrate, when: :update_relationship_count? do
-  update_relationship_answer_count
+  count = relationship_answer_count
+  if count.positive?
+    update_relationship_answer_count count
+  else
+    delete
+  end
 end
 
 def update_relationship_count?
@@ -7,8 +12,9 @@ def update_relationship_count?
   new? || @update_relationship_count
 end
 
-def update_relationship_answer_count
-  value_card.update content: relationship_answer_count
+def update_relationship_answer_count count=nil
+  count ||= relationship_answer_count
+  value_card.update content: count
 end
 
 def schedule_answer_count
