@@ -67,7 +67,7 @@ def inverse_answer_id
 end
 
 def answer
-  @answer ||= Answer.new editor_id: nil
+  @answer ||= Card.fetch(answer_name).answer
 end
 
 format :html do
