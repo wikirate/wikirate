@@ -1,5 +1,7 @@
 include_set Abstract::Researched
 
+
+
 def inverse_card
   fetch(:inverse).first_card
 end
