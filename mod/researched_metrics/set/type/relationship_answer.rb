@@ -7,6 +7,10 @@ include_set Abstract::DesignerPermissions
 require_field :value
 require_field :source, when: :source_required?
 
+def lookup
+  ::Relationship.where(relationship_id: id).take
+end
+
 def related_company
   name.tag
 end
@@ -67,7 +71,7 @@ def inverse_answer_id
 end
 
 def answer
-  @answer ||= Card.fetch(answer_name).answer
+  @answer ||= Card.fetch(answer_name)&.answer
 end
 
 format :html do

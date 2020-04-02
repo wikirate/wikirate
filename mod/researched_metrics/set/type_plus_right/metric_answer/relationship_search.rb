@@ -48,7 +48,7 @@ def other_company_ids
 end
 
 def relationship_query
-  base = { answer_company_id_field => company_id, year: year }
+  base = { metric_card.answer_lookup_field => left.id }
   return base unless other_company_ids.present?
   base.merge other_company_id_field => other_company_ids.unshift("in")
 end
@@ -57,16 +57,8 @@ def inverse?
   metric_card.inverse?
 end
 
-def answer_company_id_field
-  company_id_field(inverse? ? :object : :subject)
-end
-
 def other_company_id_field
-  company_id_field(inverse? ? :subject : :object)
-end
-
-def company_id_field prefix
-  :"#{prefix}_company_id"
+  inverse? ? :subject_company_id : :object_company_id
 end
 
 format :html do
