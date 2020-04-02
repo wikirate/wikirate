@@ -91,7 +91,7 @@ module Formula
       elsif (messages = body["MessagesText"]) # is this always syntax error??
         wolfram_syntax_error messages
       else
-        wolfram_response_error "#{body["errorCode"]}: #{body["errorDetails"]}"
+        wolfram_response_error "#{body['errorCode']}: #{body['errorDetails']}"
       end
     end
 
