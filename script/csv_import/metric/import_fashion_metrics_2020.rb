@@ -7,4 +7,5 @@ csv_path = File.expand_path "../data/fti_2020_import.csv", __FILE__
 
 file = CsvFile.new(csv_path, MetricCsvRow, col_sep: ",", headers: true)
 
-ScriptImportManager.new(file, user: "Fashion Revolution", error_policy: :report).import
+# ScriptImportManager.new(file, user: "Fashion Revolution", error_policy: :report).import
+ScriptImportManager.new(file, user: "Ethan McCutchen", error_policy: :report).import

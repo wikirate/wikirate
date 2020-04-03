@@ -19,7 +19,7 @@ class MetricCsvRow < CsvRow
      :report_type]
 
   @required = [:metric_designer, :metric_title, :value_type, :metric_type]
-  @normalize = { topic: :comma_list_to_pointer }
+  # @normalize = { topic: :comma_list_to_pointer }
 
   def normalize_research_policy value
     policy =
@@ -32,6 +32,12 @@ class MetricCsvRow < CsvRow
         value
       end
     @row[:research_policy] = { content: policy, type_id: Card::PointerID }
+  end
+
+  def normalize_topic value
+    topics = value.split(",").map(&:strip)
+    topics = topics.select { |t| Card[t]&.type_id == WikirateTopicID }
+    topics.to_pointer_content
   end
 
   def normalize_value_type value
