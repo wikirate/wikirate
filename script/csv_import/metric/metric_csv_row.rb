@@ -36,7 +36,7 @@ class MetricCsvRow < CsvRow
 
   def normalize_topic value
     topics = value.split(",").map(&:strip)
-    topics = topics.select { |t| Card[t]&.type_id == WikirateTopicID }
+    topics = topics.select { |t| Card[t]&.type_id == Card::WikirateTopicID }
     topics.to_pointer_content
   end
 
