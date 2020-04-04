@@ -16,7 +16,7 @@ namespace :wikirate do
   desc "generate minimal seed data for a fresh start without any data"
   task :generate_seed do |task, _args|
     ensure_env :init_test, task do
-      execute_command "rake decko:seed_without_reset", "init_test"
+      execute_command "rake decko:seed_without_reset", "init_test SCHEMA=db/schema.rb"
       import_wikirate_essentials
       Delayed::Job.delete_all
       Card::Cache.reset_all
@@ -82,8 +82,6 @@ namespace :wikirate do
       # cardtype has to be the first
       # otherwise codename cards get the wrong type
       import.cards_of_type "cardtype"
-      require 'pry'
-      binding.pry
       import.items_of :codenames
       # Card::Mod::Loader.reload_sets
       import.cards_of_type "year"
@@ -93,6 +91,7 @@ namespace :wikirate do
         #   then we don't need to import all script and style cards
         #   we do it via subitems: true
         depth = %w[*script *style *layout].include?(setting) ? 3 : 1
+
         import.items_of setting, depth: depth
       end
       import.items_of :production_export, depth: 2

@@ -121,7 +121,16 @@ ActiveRecord::Schema.define(version: 20170524163436) do
     t.index ["creator_id"], name: "revisions_created_by_index"
   end
 
-  create_table "cards", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "card_virtuals", id: :integer, force: :cascade do |t|
+    t.integer "left_id"
+    t.integer "right_id"
+    t.string "left_key"
+    t.text "content", limit: 16777215
+    t.index ["left_id"], name: "right_id_index"
+    t.index ["right_id"], name: "left_id_index"
+  end
+
+  create_table "cards", id: :integer, force: :cascade do |t|
     t.string "name", null: false
     t.string "key", null: false
     t.string "codename"
@@ -138,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170524163436) do
     t.boolean "trash", null: false
     t.integer "type_id", null: false
     t.text "db_content", limit: 16777215
+    t.index ["codename"], name: "cards_codename_index"
     t.index ["created_at"], name: "cards_created_at_index"
     t.index ["key"], name: "cards_key_index", unique: true
     t.index ["left_id"], name: "cards_left_id_index"
