@@ -69,7 +69,7 @@ namespace :wikirate do
           [[:all, :script],
            [:all, :style],
            [:script_html5shiv_printshiv]].each do |name_parts|
-            :x            Card[*name_parts].reset_machine_output
+            Card[*name_parts].reset_machine_output
             Card[*name_parts].regenerate_machine_output
             codename = "#{name_parts.join('_')}_output"
             Card[*name_parts, :machine_output].update!(
