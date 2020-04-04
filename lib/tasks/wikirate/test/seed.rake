@@ -4,6 +4,7 @@ namespace :wikirate do
       base_dump_path = File.join Decko.root, "test", "base_seed.db"
       migrated_dump_path = File.join Decko.root, "test", "migrated_seed.db"
 
+      # run it with rake "wikirate:test:seed:generate[local]" to fetch data from local server
       desc "update seed data using the production database"
       task :generate, [:location] do |_task, args|
         ensure_test_db

@@ -82,7 +82,10 @@ namespace :wikirate do
       # cardtype has to be the first
       # otherwise codename cards get the wrong type
       import.cards_of_type "cardtype"
+      require 'pry'
+      binding.pry
       import.items_of :codenames
+      # Card::Mod::Loader.reload_sets
       import.cards_of_type "year"
 
       Card.search(type_id: Card::SettingID, return: :name).each do |setting|

@@ -57,6 +57,7 @@ namespace :wikirate do
     task :import_from, [:location] => :environment do |task, args|
       ensure_env(:init_test, task, args) do
         Card::Cache.reset_all
+        # Card::Mod::Loader.load_mods
         import_wikirate_essentials(args[:location] || "live")
       end
     end
