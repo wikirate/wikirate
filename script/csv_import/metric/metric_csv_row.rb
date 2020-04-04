@@ -14,6 +14,7 @@ class MetricCsvRow < CsvRow
      #                         Free Text
      #                         Number (tons)
      #                         Category (option1;option2)
+     :value_options,
      :research_policy,     # supports "community", "designer", or full name,
      #                       eg "Community Assessed"
      :metric_type,
