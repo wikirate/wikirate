@@ -1,6 +1,6 @@
 require_relative "../../../lib/open_corporates/mapping_api"
 
-RSpec.describe OpenCorporates::MappingAPI do
+RSpec.describe OpenCorporates::MappingApi do
   xit "new company with wikipedia entry" do
     company = create "test company", type: :wikirate_company,
                                      subfields: { wikipedia: "Apple_Inc" }

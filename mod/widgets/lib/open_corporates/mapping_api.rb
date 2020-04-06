@@ -1,5 +1,5 @@
 module OpenCorporates
-  class MappingAPI
+  class MappingApi
     HOST = "easie.iti.gr".freeze
     PATH = "/oc_company_mapping".freeze
     REQUIRED_RESPONSE_FIELDS =
