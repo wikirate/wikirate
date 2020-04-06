@@ -9,6 +9,10 @@ def researched?
   true
 end
 
+def answer_lookup_field
+  :answer_id
+end
+
 event :ensure_inverse, :validate, on: :create do
   return if new_inverse_title.present? || inverse_title.present?
   errors.add :name, "no inverse title given"

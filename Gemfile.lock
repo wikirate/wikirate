@@ -221,7 +221,7 @@ GEM
       rack
     daemons (1.3.1)
     dalli (2.7.10)
-    database_cleaner (1.8.3)
+    database_cleaner (1.8.4)
     debug_inspector (0.0.3)
     delayed_job (4.1.8)
       activesupport (>= 3.0, < 6.1)
@@ -329,7 +329,7 @@ GEM
       nokogiri (>= 1.6)
       rake (>= 0.9)
       video_info (>= 2.6)
-    loofah (2.4.0)
+    loofah (2.5.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     macaddr (1.7.2)
@@ -377,9 +377,9 @@ GEM
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
     parallel (1.19.1)
-    parser (2.7.0.5)
+    parser (2.7.1.0)
       ast (~> 2.4.0)
-    pdfkit (0.8.4.1)
+    pdfkit (0.8.4.2)
     pivotal-tracker (0.5.13)
       builder
       crack
@@ -400,7 +400,7 @@ GEM
     pry-stack_explorer (0.4.9.3)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    public_suffix (4.0.3)
+    public_suffix (4.0.4)
     puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
@@ -474,14 +474,14 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.2)
-    rubocop (0.80.1)
+    rubocop (0.81.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
       rexml
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-decko (0.2)
     rubocop-rspec (1.38.1)
       rubocop (>= 0.68.1)
@@ -553,14 +553,14 @@ GEM
       simple_oauth (~> 0.3.0)
     typhoeus (1.3.1)
       ethon (>= 0.9.0)
-    tzinfo (1.2.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.6)
-    unicode-display_width (1.6.1)
+    unf_ext (0.0.7.7)
+    unicode-display_width (1.7.0)
     uuid (2.3.9)
       macaddr (~> 1.0)
     video_info (2.7.1)
@@ -658,4 +658,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   1.17.3
+   2.1.4
