@@ -1,3 +1,5 @@
+# answer histograms
+
 decko.slotReady (slot) ->
   for vis in slot.find('.vis._load-vis')
     loadVis $(vis)
