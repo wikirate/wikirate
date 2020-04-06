@@ -14,7 +14,7 @@ class MetricCsvRow < CsvRow
      #                         Free Text
      #                         Number (tons)
      #                         Category (option1;option2)
-     :value_options,
+     #     :value_options,
      :research_policy,     # supports "community", "designer", or full name,
      #                       eg "Community Assessed"
      :metric_type,
@@ -42,19 +42,19 @@ class MetricCsvRow < CsvRow
     topics.to_pointer_content
   end
 
-  # def normalize_value_type value
-  #   @value_details ||= {}
-  #   value.match(/(?<type>[^(]+)\((?<options>.+)\)$/) do |match|
-  #     new_value = match[:type].strip
-  #     new_value = "Category" if new_value == "Categorical"
-  #     if new_value.downcase.in? %w[category multi-category]
-  #       @value_details[:value_options] = comma_list_to_pointer match[:options], ";"
-  #     else
-  #       @value_details[:unit] = match[:options].strip
-  #     end
-  #     new_value
-  #   end
-  # end
+  def normalize_value_type value
+    @value_details ||= {}
+    value.match(/(?<type>[^(]+)\((?<options>.+)\)$/) do |match|
+      new_value = match[:type].strip
+      new_value = "Category" if new_value == "Categorical"
+      if new_value.downcase.in? %w[category multi-category]
+        @value_details[:value_options] = comma_list_to_pointer match[:options], ";"
+      else
+        @value_details[:unit] = match[:options].strip
+      end
+      new_value
+    end
+  end
 
   def format_html html
     html.gsub(/\b(OR|AND)\b/, "<strong>\\1</strong>")
