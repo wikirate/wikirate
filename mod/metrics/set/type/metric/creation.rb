@@ -96,7 +96,7 @@ format :html do
     )
   end
 
-  view :new_name_formgroup do
+  view :new_name_formgroup, cache: :never do
     formgroup "Metric Name", input: "name", help: false do
       new_name_field
     end
