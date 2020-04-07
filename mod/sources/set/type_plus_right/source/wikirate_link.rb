@@ -44,7 +44,7 @@ def no_file?
 end
 
 def duplicates
-  @duplicates ||= Self::Source.find_duplicates content
+  @duplicates ||= Self::Source.search_by_url content
 end
 
 def link_present?

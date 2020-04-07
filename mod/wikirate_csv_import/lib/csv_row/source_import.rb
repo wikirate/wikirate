@@ -57,7 +57,7 @@ class CsvRow
       if refers_to_existing_source_name?
         Card[source_args[:source]]
       elsif source_args[:source].url?
-        link_duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
+        link_duplicates = Card::Set::Self::Source.search_by_url source_args[:source]
         link_duplicates.present? && link_duplicates.first
       else
         error("source #{source_args[:source]} doesn't exist")
