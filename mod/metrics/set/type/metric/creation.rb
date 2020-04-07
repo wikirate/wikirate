@@ -63,7 +63,7 @@ format :html do
     { href: path_to_previous, redirect: true }
   end
 
-  view :help_text do
+  view :help_text, cache: :never do
     return "" unless (help_text_card = Card[card.metric_type + "+description"])
     class_up "help-text", "help-block"
     with_nest_mode :normal do
@@ -71,7 +71,7 @@ format :html do
     end
   end
 
-  view :new_tab_pane, unknown: true do
+  view :new_tab_pane, unknown: true, cache: :never do
     with_nest_mode :edit do
       wrap do
         card_form :create, "main-success" => "REDIRECT",
