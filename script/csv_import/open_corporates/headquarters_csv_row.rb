@@ -1,7 +1,7 @@
 require_relative "../../../mod/csv_import/lib/csv_row.rb"
 require_relative "../../../mod/csv_import/lib/csv_file.rb"
 
-class HeadquartersCsvRow < CsvRow
+class HeadquartersImportItem < ImportItem
   @columns = [:wikirate_number, :oc_jurisdiction_code]
   @required = [:oc_jurisdiction_code, :wikirate_number]
 

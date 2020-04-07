@@ -4,7 +4,7 @@ require_relative "../../../mod/csv_import/lib/import_manager/script_import_manag
 
 csv_path = File.expand_path "../data/oc_mappings_vol2.csv", __FILE__
 
-file = CsvFile.new(csv_path, OpenCorporatesCsvRowOnlyHeadquarters,
+file = CsvFile.new(csv_path, OpenCorporatesImportItemOnlyHeadquarters,
                    col_sep: ";", headers: true)
 
 ScriptImportManager.new(file, user: "Philipp Kuehl", error_policy: :report).import

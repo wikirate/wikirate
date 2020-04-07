@@ -1,11 +1,11 @@
-class CsvRow
+class ImportItem
   module Structure
     # Specifies the structure of a csv row for a source import.
-    class SourceCsv < CsvRow
+    class SourceCsv < ImportItem
       # require "csv_row/source_import"
 
-      include CsvRow::SourceImport
-      include CsvRow::CompanyImport
+      include ImportItem::SourceImport
+      include ImportItem::CompanyImport
 
       @columns = [:company, :year, :report_type, :source, :title]
       @required = [:company, :year, :report_type, :source]

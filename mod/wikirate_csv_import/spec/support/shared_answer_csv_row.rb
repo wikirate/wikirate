@@ -2,10 +2,10 @@ shared_context "answer csv row" do
   ROW_HASH =
     {
       metric: "Jedi+disturbances in the Force",
-      company: "Google Inc",
+      wikirate_company: "Google Inc",
       year: "2017",
       value: "yes",
-      source: "http://google.com",
+      source: :opera_source.cardname,
       comment: ""
     }.freeze
 
@@ -15,7 +15,7 @@ shared_context "answer csv row" do
 
   def answer_csv_file data=ROW_HASH
     io = StringIO.new data.values.join ","
-    CsvFile.new io, CsvRow::Structure::AnswerCsv
+    CsvFile.new io, ImportItem::Structure::AnswerCsv
   end
 
   def answer_card args={}
@@ -23,7 +23,7 @@ shared_context "answer csv row" do
   end
 
   def csv_row args={}, index=1
-    CsvRow::Structure::AnswerCsv.new answer_row(args), index
+    ImportItem::Structure::AnswerCsv.new answer_row(args), index
   end
 
   ROW_HASH.keys.each do |key|
@@ -33,7 +33,7 @@ shared_context "answer csv row" do
   end
 
   def existing_answer
-    answer_row company: "Death Star", year: "2000"
+    answer_row wikirate_company: "Death Star", year: "2000"
   end
 
   def not_a_metric
@@ -53,7 +53,7 @@ shared_context "answer csv row" do
   end
 
   def new_company
-    answer_row company: "new company"
+    answer_row wikirate_company: "new company"
   end
 
   def invalid_value
@@ -71,6 +71,6 @@ shared_context "answer csv row" do
       args.reverse_merge! answer_row
     end
 
-    [args[:metric], args[:company], args[:year]].join "+"
+    [args[:metric], args[:wikirate_company], args[:year]].join "+"
   end
 end

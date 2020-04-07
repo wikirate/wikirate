@@ -5,7 +5,7 @@ require_relative "#{import_manager_dir}/script_import_manager.rb"
 
 csv_path = File.expand_path "../data/ccc_brand_survey.csv", __FILE__
 
-file = CsvFile.new(csv_path, MetricCsvRow, col_sep: ",", headers: true)
+file = CsvFile.new(csv_path, MetricImportItem, col_sep: ",", headers: true)
 
 ScriptImportManager.new(
   file,

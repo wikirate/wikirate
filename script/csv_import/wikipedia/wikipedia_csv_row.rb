@@ -1,6 +1,6 @@
 require_relative "../../../mod/csv_import/lib/csv_row"
 
-class WikipediaCsvRow < CsvRow
+class WikipediaImportItem < ImportItem
   @columns = [:wikirate_id, :wikirate_name, :wikipedia_url]
   @required = :all
 

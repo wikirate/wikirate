@@ -4,7 +4,7 @@ include_set Abstract::ImportWithMapping
 attachment :answer_import_file, uploader: CarrierWave::FileCardUploader
 
 def csv_row_class
-  CsvRow::Structure::AnswerCsv
+  ImportItem::Structure::AnswerCsv
 end
 
 def import_map_source_val val

@@ -17,7 +17,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
 
   describe "view: import_table" do
     include_context "csv import" do
-      let(:csv_row_class) { CsvRow::Structure::AnswerCsv }
+      let(:csv_row_class) { ImportItem::Structure::AnswerCsv }
       let(:import_card) { Card["answer import test"] }
 
       let(:data) do
@@ -62,7 +62,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
 
   describe "import csv file" do
     include_context "csv import" do
-      let(:csv_row_class) { CsvRow::Structure::AnswerCsv }
+      let(:csv_row_class) { ImportItem::Structure::AnswerCsv }
       let(:import_card) { Card["answer import test"] }
       let(:data) do
         {

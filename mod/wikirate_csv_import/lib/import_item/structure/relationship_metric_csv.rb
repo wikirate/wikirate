@@ -1,7 +1,7 @@
-class CsvRow
+class ImportItem
   module Structure
     # This class provides an interface to import relationship metrics
-    class RelationshipMetricCsv < CsvRow
+    class RelationshipMetricCsv < ImportItem
       # require "csv_row"
 
       @columns = [:designer, :title, :inverse, :value_type, :value_options, :unit]

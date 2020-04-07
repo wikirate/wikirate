@@ -1,11 +1,7 @@
-class CsvRow
+class ImportItem
   module Structure
     # Specifies the structure of a csv row a metric answer import.
-    class AnswerCsv < CsvRow
-      # include CsvRow::SourceImport
-      # include CsvRow::CompanyImport
-      # include CsvRow::AnswerImport
-
+    class AnswerCsv < ImportItem
       @columns = { metric: { map: true },
                    wikirate_company: { map: true },
                    year: { map: true },

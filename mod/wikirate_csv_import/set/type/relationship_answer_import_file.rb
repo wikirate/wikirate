@@ -20,7 +20,7 @@ COLUMNS = {
 }
 
 def csv_row_class
-  CsvRow::Structure::RelationshipAnswerCsv
+  ImportItem::Structure::RelationshipAnswerCsv
 end
 
 def item_label

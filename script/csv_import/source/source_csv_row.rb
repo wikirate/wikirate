@@ -1,7 +1,7 @@
 require_relative "../csv_row"
 
 # create a source described by a row in a csv file
-class SourceCsvRow < CsvRow
+class SourceImportItem < ImportItem
   @columns = [:company, :year, :report_type, :source, :title]
   @required = [:company, :year, :report_type, :source]
 
