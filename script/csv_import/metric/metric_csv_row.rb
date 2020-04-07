@@ -44,7 +44,7 @@ class MetricCsvRow < CsvRow
 
   def normalize_value_type value
     @value_details ||= {}
-    value.match(/(?<type>[^(]+)(\((?<options>.+)\))?$/) do |match|
+    value.match(/^(?<type>[^(]+)(\(?<options>.+\))?$/) do |match|
       new_value = match[:type].strip
       new_value = "Category" if new_value == "Categorical"
       if new_value.downcase.in? %w[category multi-category]
@@ -96,6 +96,7 @@ class MetricCsvRow < CsvRow
   end
 
   def subfields
+    # @row.merge.select { |_k, v| v.present? }
     @row.merge(@value_details).select { |_k, v| v.present? }
   end
 end

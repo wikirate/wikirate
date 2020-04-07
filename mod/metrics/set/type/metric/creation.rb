@@ -49,7 +49,7 @@ format :html do
     metric_type = name == "Standard" ? "Researched" : name
     new_metric = new_metric_of_type metric_type
     tab_form = nest new_metric, { view: :new_tab_pane }, nest_mode: :normal
-    tab_pane tab_pane_id(name), tab_form, selected_subtab_pane?(name)
+    tab_pane tab_pane_id(name), name, tab_form, selected_subtab_pane?(name)
   end
 
   def new_metric_of_type metric_type
