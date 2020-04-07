@@ -6,7 +6,7 @@ format :html do
     end
   end
 
-  view :new_form, template: :haml do
+  view :new_form, template: :haml, cache: :never do
     @tabs =
       {
         researched: {
