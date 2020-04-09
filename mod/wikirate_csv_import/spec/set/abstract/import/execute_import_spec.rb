@@ -1,5 +1,3 @@
-require_relative "../../../support/shared_answer_csv_row"
-
 RSpec.describe Card::Set::Abstract::Import::ExecuteImport do
   let(:card) { Card["A"].with_set(described_class) }
 
