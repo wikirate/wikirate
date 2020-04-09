@@ -18,7 +18,7 @@ SUCCESS_MESSAGES = {
   duplicated_sources: "Duplicated sources in import file. Only the first one is used."
 }.freeze
 
-def csv_row_class
+def import_item_class
   ImportItem::Structure::SourceCsv
 end
 

@@ -10,7 +10,7 @@ include_set Abstract::Tabs
 #
 #
 
-delegate :csv_file, :csv_row_class, to: :left
+delegate :csv_file, :import_item_class, to: :left
 
 def followable?
   false
@@ -56,7 +56,7 @@ def exact_match_map
 end
 
 def csv_columns
-  csv_row_class.columns
+  import_item_class.columns
 end
 
 def map_type column
@@ -94,7 +94,7 @@ def content_hash
 end
 
 def mapped_columns
-  csv_row_class.mapped
+  import_item_class.mapped
 end
 
 format :csv do

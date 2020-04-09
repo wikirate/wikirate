@@ -1,10 +1,10 @@
-include_set Type::File
-include_set Abstract::ImportWithMapping
+include_set Abstract::WikirateImport
 
+# following shouldn't be necessary.  handle in Abstract::Import
 attachment :answer_import_file, uploader: CarrierWave::FileCardUploader
 
-def csv_row_class
-  ImportItem::Structure::AnswerCsv
+def import_item_class
+  AnswerImportItem
 end
 
 def import_map_source_val val

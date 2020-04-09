@@ -19,7 +19,7 @@ COLUMNS = {
   comment: "Comment"
 }
 
-def csv_row_class
+def import_item_class
   ImportItem::Structure::RelationshipAnswerCsv
 end
 

@@ -29,7 +29,7 @@ shared_context "csv import" do
   end
 
   let(:csv_file) do
-    CsvFile.new csv_io, csv_row_class
+    CsvFile.new csv_io, import_item_class
   end
 
   let(:import_card_with_data) do
@@ -53,7 +53,7 @@ shared_context "csv import" do
 
   def import_card_with_rows *row_keys
     return import_card_with_data unless row_keys.present?
-    the_file = CsvFile.new csv_io(row_keys), csv_row_class
+    the_file = CsvFile.new csv_io(row_keys), import_item_class
     allow(import_card).to receive(:file).and_return csv_io(row_keys)
     allow(import_card).to receive(:csv_file).and_return the_file
     import_card

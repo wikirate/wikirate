@@ -1,12 +1,11 @@
-# ImportWithMapping extends import functionality to support a mapping stage.
+# some of this may eventually be mergeable into Abstract::Import (though the
+# two column layout stuff is not yet available outside of WikiRate)
 #
-# This is for imports where:
-#   1. at least one of the CSV columns contains content that must refer to
-#      and existing card, AND
-#   2. the import needs to deal with inexact matches in the CSV content
-
+# Could also just extend Abstract::Import once extending abstract set mods works.
+#
 
 include_set Abstract::Import
+include_set Type::File
 include_set Abstract::TwoColumnLayout
 
 format :html do
