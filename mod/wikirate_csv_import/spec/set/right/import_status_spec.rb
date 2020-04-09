@@ -1,8 +1,7 @@
 RSpec.describe Card::Set::Right::ImportStatus do
   let(:status) do
-    { counts: { imported: 5, failed: 6, total: 17 } }
+    { counts: { total: 15, failed: 2, not_ready: 12, ready: 1 } }
   end
-
 
   describe "#generate" do
     it "generates a status hash" do
@@ -11,20 +10,15 @@ RSpec.describe Card::Set::Right::ImportStatus do
       puts ais.status
       expect(ais.status)
         .to include(
-              counts: a_hash_including(
-                total: 15,
-                failed: 2,
-                not_ready: 12,
-                ready: 1
-              ),
+              counts: a_hash_including(status[:counts]),
               items: a_collection_including([:not_ready, nil])
             )
     end
   end
 
   specify "#state" do
-    card = Card.new name: "test+import status", content: status.to_json
-    expect(card.import_counts).to eq imported: 5, failed: 6, total: 17
+    card = Card.new name: "test+import status", content: { counts: { total: 3 }}.to_json
+    expect(card.status[:counts]).to eq total: 3
   end
 
   describe "view :content" do
