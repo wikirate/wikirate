@@ -1,108 +1,68 @@
 RSpec.describe Card::Set::Right::ImportStatus do
-  let(:status) do
-    { counts: { total: 15, failed: 2, not_ready: 12, ready: 1 } }
+  let :status_counts do
+    {
+      not_ready: 12,
+      ready: 1,
+      failed: 2,
+      overridden: 0,
+      imported: 0,
+      success: 0, # overridden + imported
+      total: 15
+    }
   end
 
-  let (:status_card) { Card["answer_import_test"].import_status_card }
+  def card_subject
+    Card["answer_import_test"].import_status_card
+  end
 
   describe "#content_hash" do
-    it "should parse json content" do
-      status_card.content = '{ "foo": "bar" }'
-      expect(status_card.content_hash["foo").to eq("bar")
+    it "parses json content" do
+      card_subject.content = '{ "foo": "bar" }'
+      expect(card_subject.content_hash["foo"]).to eq("bar")
+    end
+  end
+
+  describe "#status" do
+    it "contains counts for each column" do
+      expect(card_subject.status[:counts]).to eq(status_counts)
+    end
+
+    it "contains an items for each csv row" do
+      expect(card_subject.status[:items])
+        .to include([:not_ready, nil])
+    end
+
+    it "handles manually set statuses" do
+      card = Card.new name: "test+import status", content: { counts: { total: 3 }}.to_json
+      expect(card.status[:counts]).to eq total: 3
     end
   end
 
   describe "#generate!" do
     it "generates a fresh status hash based on mappings/validations alone" do
-      status_card.generate!
-      expect(status_card).to include(counts: a_hash_including(status[:counts]),
-                                     items: a_collection_including([:not_ready, nil]))
+      initial_content_hash = card_subject.content_hash
+      card_subject.generate!
+      expect(card_subject.content_hash).to eq(initial_content_hash)
     end
   end
 
-  specify "#state" do
-    card = Card.new name: "test+import status", content: { counts: { total: 3 }}.to_json
-    expect(card.status[:counts]).to eq total: 3
-  end
 
-  describe "view :content" do
-    def content_view content
-      content = content.to_json if content.is_a? Hash
-      card = Card.new name: "test+import status", content: content
-      card.format(:html)._render_content
-    end
-
-    describe "progress bars" do
-      let(:status) do
-        { counts: { imported: 5, failed: 6, skipped: 4, total: 17 } }
-      end
-
-      it "renders progress bar if counts in the content" do
-        expect(content_view(status))
-          .to have_tag "div.card-slot._refresh-timer",
-                       with: { "data-refresh-url" => "/test+import_status?view=content" } do
-          with_tag "div.progress" do
-            with_tag "div.progress-bar.bg-success.progress-bar-striped",
-                     with: { style: "width: 29.41%" }
-            with_tag "div.progress-bar.bg-danger.progress-bar-striped",
-                     with: { style: "width: 35.29%" }
-            with_tag "div.progress-bar.bg-info.progress-bar-striped",
-                     with: { style: "width: 23.52%" }
-          end
-        end
-      end
-
-      it "renders progress bar if counts in the content" do
-        expect(content_view(status))
-          .to have_tag "div.card-slot._refresh-timer",
-                       with: { "data-refresh-url" => "/test+import_status?view=content" } do
-          with_tag "div.progress" do
-            with_tag "div.progress-bar.bg-success.progress-bar-striped",
-                     with: { style: "width: 29.41%" }
-            with_tag "div.progress-bar.bg-danger.progress-bar-striped",
-                     with: { style: "width: 35.29%" }
-            with_tag "div.progress-bar.bg-info.progress-bar-striped",
-                     with: { style: "width: 23.52%" }
-          end
-        end
-      end
-
-      it "hides empty parts in progress bar if no content" do
-        expect(content_view(""))
-          .to have_tag "div.card-slot",
-                       with: { "data-refresh-url" => "/test+import_status?view=content" } do
-          with_tag "div.progress" do
-            without_tag "div.progress-bar.bg-success"
-            without_tag "div.progress-bar.bg-danger"
-          end
+  describe "view: progress_bar" do
+    def progress_section binding, bg, status_key, label
+      binding.with_tag("div.progress-bar.bg-#{bg}") do
+        with_tag "span.progress-value" do
+          "#{status_counts[status_key]} #{label}"
         end
       end
     end
-    describe "progress reports" do
-      let(:status) do
-        { counts: { imported: 5, failed: 6, skipped: 4, total: 17 },
-          imported: { 0 => "no 1", 2 => "no 3" },
-          failed: { 1 => "no 2" },
-          errors: { 1 => ["invalid name", "invalid value"] } }
-      end
 
-      it "renders list of imported entries" do
-        expect(content_view(status))
-          .to have_tag "div.alert.alert-success" do
-          with_tag :ul do
-            with_tag :li, text: "#1: no 1"
-            with_tag :li, text: "#3: no 3"
-          end
+    it "renders progress bar if counts in the content" do
+      expect(format_subject.render_progress_bar)
+        .to have_tag("div.progress") do
+          progress_section self, "warning", :not_ready, "Not Ready"
+          progress_section self, "info", :ready, "Ready"
+          progress_section self, "danger", :failed, "Failure"
         end
-      end
-
-      it "renders list of errors" do
-        expect(content_view(status)).to have_tag "div.alert.alert-danger" do
-          with_tag :ul do
-            with_tag :li, text: "#2: no 2 - invalid name; invalid value"
-          end
-        end
-      end
     end
   end
 end
