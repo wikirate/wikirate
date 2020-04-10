@@ -1,5 +1,4 @@
-include_set Type::File
-include_set Abstract::ImportWithCompanies
+include_set Abstract::WikirateImport
 
 attachment :relationship_answer_import_file, uploader: CarrierWave::FileCardUploader
 
@@ -20,7 +19,7 @@ COLUMNS = {
 }
 
 def import_item_class
-  ImportItem::Structure::RelationshipAnswerCsv
+  RelationshipAnswerImportItem
 end
 
 def item_label

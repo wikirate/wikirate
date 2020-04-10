@@ -8,7 +8,6 @@ class ImportItem
       include SourceHelper
 
       @columns = [:designer, :title, :company_1, :company_2, :year, :value, :source]
-      @required = :all
 
       def initialize row, index
         super

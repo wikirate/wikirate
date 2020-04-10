@@ -2,7 +2,6 @@ require_relative "../../../mod/csv_import/lib/csv_row"
 
 class WikipediaImportItem < ImportItem
   @columns = [:wikirate_id, :wikirate_name, :wikipedia_url]
-  @required = :all
 
   def normalize_wikirate_id val
     val.to_i

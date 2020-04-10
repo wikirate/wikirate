@@ -42,10 +42,7 @@ class SharedData
 
     def add_wikirate_data
       puts "add wikirate data"
-      Card::Cache.reset_all
-      Card::Env.reset
-      Card::Auth.as_bot
-      Cardio.config.x.import_sources = false
+      setup
       add :companies, :topics, :sources, :report_types,
           :yearly_variables,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
@@ -54,6 +51,13 @@ class SharedData
 
       Card::Cache.reset_all
       Answer.refresh
+    end
+
+    def setup
+      Card::Cache.reset_all
+      Card::Env.reset
+      Card::Auth.signin "Decko Bot"
+      Cardio.config.x.import_sources = false
     end
 
     def add *categories
@@ -142,23 +146,25 @@ class SharedData
     end
 
     def add_import_files
-      # create "answer import test", type: :answer_import_file, empty_ok: true
       create "answer import test",
              type: :answer_import_file,
              codename: "answer_import_test_with_file",
              answer_import_file: csv_file("answer_import"),
              storage_type: :coded,
              mod: :test
-      create "feature relationship import test",
+      create "relationship import test",
              type: :relationship_answer_import_file,
              codename: "relationship_import_test_with_file",
              relationship_answer_import_file: csv_file("relationship_import"),
              storage_type: :coded,
              mod: :test
 
-      create "source import test", type: :source_import_file, empty_ok: true
-      create "relationship answer import test",
-             type: :relationship_answer_import_file, empty_ok: true
+      create "source import test",
+             type: :source_import_file,
+             codename: "source_import_test_with_file",
+             source_import_file: csv_file("source_import"),
+             storage_type: :coded,
+             mod: :test
     end
 
     def csv_file name

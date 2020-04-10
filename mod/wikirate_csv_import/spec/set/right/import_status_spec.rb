@@ -3,18 +3,28 @@ RSpec.describe Card::Set::Right::ImportStatus do
     { counts: { total: 15, failed: 2, not_ready: 12, ready: 1 } }
   end
 
-  describe "#generate" do
-    it "generates a status hash" do
-      ais = Card["answer_import_test"].import_status_card
-      ais.generate!
-      puts ais.status
-      expect(ais.status)
+  let (:status_card) { Card["answer_import_test"].import_status_card }
+
+  describe "#content_hash" do
+    it "should parse json content" do
+      status_card.content = '{ "foo": "bar" }'
+      expect(status_card.content_hash[:foo]).to eq("bar")
+    end
+  end
+
+
+  describe "#generate!" do
+    it "generates a fresh status hash based on mappings/validations alone" do
+      status_card.generate!
+      expect(status_card)
         .to include(
               counts: a_hash_including(status[:counts]),
               items: a_collection_including([:not_ready, nil])
             )
     end
   end
+
+
 
   specify "#state" do
     card = Card.new name: "test+import status", content: { counts: { total: 3 }}.to_json

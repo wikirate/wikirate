@@ -9,7 +9,7 @@
       %th
         on WikiRate
   %tbody
-    - card.map_for_type(map_type).each do |key, val|
+    - card.map[map_type].each do |key, val|
       %tr{ class: (val ? "" : "unmapped-import-cell") }
         %td.in-file
           = key

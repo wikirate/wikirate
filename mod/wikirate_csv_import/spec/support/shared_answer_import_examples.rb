@@ -34,7 +34,7 @@ shared_examples "answer import examples" do
 
   it "generates map" do
     import_card = create_import_card import_file_name
-    expect(import_card.import_map_card.content_hash[:company]).to be_a(Hash)
+    expect(import_card.import_map_card.map[:company]).to be_a(Hash)
   end
 
   it "marks value in action as imported" do

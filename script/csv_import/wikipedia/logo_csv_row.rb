@@ -2,7 +2,6 @@ require_relative "wikipedia_csv_row"
 
 class LogoImportItem < WikipediaImportItem
   @columns = [:wikirate_id, :wikirate_name, :wikipedia_url, :logo]
-  @required = :all
 
   def normalize_logo val
     "https:" + val

@@ -13,4 +13,9 @@ class AnswerImportItem < ImportItem
     r[:company] = r.delete :wikirate_company
     metric_card.create_answer_args r.merge(ok_to_exist: true)
   end
+
+  def map_source val
+    result = Self::Source.search val
+    result.first.id if result.size == 1
+  end
 end

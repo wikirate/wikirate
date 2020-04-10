@@ -58,8 +58,12 @@ def value_options
 end
 
 event :validate_score_name, :validate, changed: :name, on: :save do
-  return if basic_metric_card&.type_id == MetricID
-  errors.add :name, "#{basic_metric} is not a metric"
+  unless basic_metric_card&.type_id == MetricID
+    errors.add :name, "#{basic_metric} is not a metric"
+  end
+  unless Card[scorer]&.type_id.in? [UserID, ResearchGroupID]
+    errors.add :name, "Invalid Scorer: #{scorer}; must be a User or Research Group"
+  end
 end
 
 event :set_scored_metric_name, :initialize,

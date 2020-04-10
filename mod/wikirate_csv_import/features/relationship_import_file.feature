@@ -4,7 +4,7 @@ Feature: import metric answers from a csv file
 
   Background:
     Given I am signed in as Joe Admin
-    And I go to card "feature relationship import test"
+    And I go to card "relationship import test"
     And I follow "Import ..."
 
 #  Scenario: Show import table correctly
