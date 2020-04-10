@@ -1,7 +1,7 @@
 include_set Abstract::Tabs
 
 delegate :csv_file, to: :left
-delegate :column_hash, :mapped_column_keys, :map_type, to: :import_item_class
+delegate :column_hash, :mapped_column_keys, :map_type, :map_types, to: :import_item_class
 attr_writer :import_item_class
 
 def followable?
@@ -20,7 +20,11 @@ end
 # }
 #
 def map
-  @map ||= content.present? ? JSON.parse(content).symbolize_keys : {}
+  @map ||= content.present? ? parse_map(content) : {}
+end
+
+def parse_map map
+  JSON.parse(map).symbolize_keys
 end
 
 def import_item_class
@@ -32,35 +36,10 @@ event :update_import_mapping, :validate, on: :update, when: :mapping_param do
   self.content = map.to_json
 end
 
-def generate!
-  self.content = exact_match_map.to_json
-end
-
-def exact_match_map
-  csv_file.each_row do |import_item|
-    mapped_column_keys.each do |column|
-      map_item import_item, column
-    end
-  end
-end
-
-def map_item import_item, column
-  val = import_item[column]
-  submap = map[map_type(column)] ||= {}
-  return if val.strip.blank? || submap.key?(val)
-
-  submap[val] = import_item.map_field column
-end
-
-def map_default_item val, type
-  card = Card[val]
-  return unless card&.type_code == type
-
-  card.id
-end
-
-def map_types
-  @map_types = mapped_column_keys.map { |column| map_type column }.uniq
+def auto_map!
+  @map ||= {}
+  auto_map_items
+  self.content = @map.to_json
 end
 
 format :csv do
@@ -81,18 +60,50 @@ end
 
 private
 
+def auto_map_items
+  csv_file.each_row do |import_item|
+    mapped_column_keys.each do |column|
+      auto_map_item import_item, column
+    end
+  end
+end
+
+def auto_map_item import_item, column
+  val = import_item[column]
+  submap = @map[map_type(column)] ||= {}
+  return if val.strip.blank? || submap.key?(val)
+
+  submap[val] = import_item.map_field column
+end
+
 def merge_mapping mapping
-  mapping.each do |type, map_hash|
-    map[type].merge! map_hash
+  mapping.each do |column, submap|
+    column = column.to_sym
+    normalize_submap column, submap
+    map[column].merge! submap
+  end
+end
+
+def normalize_submap column, submap
+  submap.each do |name_in_file, cardname|
+    submap[name_in_file] = normalize_submap_item column, cardname
+  end
+end
+
+def normalize_submap_item column, cardname
+  return nil if cardname.blank?
+  ii = import_item_class.new column => cardname
+  if (card_id = ii.map_field column)
+    card_id
+  else
+    errors.add :content, "invalid mapping: #{cardname}"
   end
 end
 
 def mapping_from_param
-  return unless mp = mapping_param
-
-  JSON.parse(mp).symbolize_keys
+  mapping_param&.symbolize_keys
 end
 
 def mapping_param
-  param[:mapping]
+  Env.params[:mapping]
 end

@@ -15,7 +15,7 @@ class AnswerImportItem < ImportItem
   end
 
   def map_source val
-    result = Self::Source.search val
+    result = Card::Set::Self::Source.search val
     result.first.id if result.size == 1
   end
 end
