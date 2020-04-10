@@ -3,6 +3,8 @@ RSpec.describe Card::Set::Right::ImportMap do
     @card_subject ||= Card["answer import test"].import_map_card
   end
 
+  check_views_for_errors :core, :bar
+
   describe "#map" do
     it "contains a key for each mapped column" do
       expect(card_subject.map.keys).to eq(AnswerImportItem.mapped_column_keys)
@@ -45,6 +47,25 @@ RSpec.describe Card::Set::Right::ImportMap do
         expect(card_subject.map[:wikirate_company]["Google"])
           .to eq("Google LLC".to_name.card_id)
       end
+    end
+  end
+
+  describe "format#tab_title" do
+    it "gives counts for total and unmapped values" do
+      expect(format_subject.tab_title(:metric))
+        .to have_tag("div.tab-title") do
+          with_tag "span.count-number" do
+            with_tag "div.tab-badge" do
+              with_tag("span.badge") { 2 }
+              with_tag "span.badge-label" do
+                with_tag "i.fa-bar-chart"
+              end
+            end
+          end
+          with_tag "span.count-label" do
+            "(1) Metrics"
+          end
+        end
     end
   end
 end

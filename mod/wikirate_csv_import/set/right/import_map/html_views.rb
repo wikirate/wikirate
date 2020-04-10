@@ -7,11 +7,7 @@ format :html do
   end
 
   def item_view type
-    item_view_hash[type] ||= begin
-                               method = "import_map_#{type}_view"
-                               fmt = card.left.format
-                               fmt.respond_to?(method) ? fmt.send(method) : :bar
-                             end
+    item_view_hash[type] ||= card.left.try("import_map_#{type}_view") || :bar
   end
 
   def item_view_hash
@@ -30,7 +26,7 @@ format :html do
   end
 
   def tab_title type
-    map = card.content_hash[type]
+    map = card.map[type]
     total = map.keys.count
     unmapped = total - map.values.compact.count
     title = type.cardname.vary :plural

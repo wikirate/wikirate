@@ -151,38 +151,4 @@ RSpec.describe Card::Set::Type::SourceImportFile do
       end
     end
   end
-
-  describe "view :import_table" do
-    include_context "table row matcher"
-
-    example "shows correctly import table" do
-      table = import_card_with_rows(:exact_match, :partial_match, :alias_match)
-              .format._render_import_table
-      expect(table).to have_tag("table", with: { class: "_import-table" }) do
-        with_row index: 0,
-                 context: :success,
-                 checked: true,
-                 match: :exact,
-                 suggestion: "Death Star",
-                 fields: ["Death Star", "2014", "Force Report",
-                          url("Death_Star")]
-
-        with_row index: 1,
-                 context: :info,
-                 checked: true,
-                 match: :partial,
-                 suggestion: "Monster Inc",
-                 fields: ["Monster Inc", "Monster", "2014", "Monster Report",
-                          url("Monster")]
-
-        with_row index: 2,
-                 context: :success,
-                 checked: true,
-                 match: :alias,
-                 suggestion: "Google LLC",
-                 fields: ["Google LLC", "Google", "2014", "Monster Report",
-                          url("Google")]
-      end
-    end
-  end
 end

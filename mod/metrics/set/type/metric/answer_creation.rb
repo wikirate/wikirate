@@ -61,7 +61,9 @@ def valid_answer_args? args
 end
 
 def answer_name_from_args args
-  [name, args[:company], args[:year], args[:related_company]].compact.join "+"
+  parts = [name, args[:company], args[:year]]
+  parts < args[:related_company] if args[:related_company]
+  Card::Name[*parts]
 end
 
 def answer_type_id related_company
