@@ -62,7 +62,7 @@ end
 
 def answer_name_from_args args
   parts = [name, args[:company], args[:year]]
-  parts < args[:related_company] if args[:related_company]
+  parts << args[:related_company] if args[:related_company]
   Card::Name[*parts]
 end
 
