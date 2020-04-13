@@ -6,6 +6,13 @@ format :html do
     static_tabs tab_map
   end
 
+  view :map_form do
+    card_form :update do
+      [submit_button(text: "Update Mappings"),
+        render_tabs]
+    end
+  end
+
   def item_view type
     item_view_hash[type] ||= card.left.try("import_map_#{type}_view") || :bar
   end
@@ -42,7 +49,7 @@ format :html do
     link_to_card card, "csv", path: { format: :csv, view: :export, map_type: type }
   end
 
-  def map_ui type
-    haml :map_ui, type: type
+  def map_ui type, name_in_file
+    haml :map_ui, type: type, name_in_file: name_in_file
   end
 end

@@ -1,5 +1,5 @@
 require_relative "../../../config/environment"
-require_relative "logo_csv_row"
+require_relative "logo_import_item"
 require_relative "../csv_file"
 
 csv_path = File.expand_path "../data/company_logos.csv", __FILE__

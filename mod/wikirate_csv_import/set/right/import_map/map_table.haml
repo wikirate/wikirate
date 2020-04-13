@@ -9,15 +9,15 @@
       %th
         on WikiRate
   %tbody
-    - card.map[map_type].each do |key, val|
-      %tr{ class: (val ? "" : "unmapped-import-cell") }
+    - card.map[map_type].each do |name_in_file, cardname|
+      %tr{ class: (cardname ? "" : "unmapped-import-cell") }
         %td.in-file
-          = key
+          = name_in_file
         %td
-          - if val
-            = nest val, view: item_view(map_type)
+          - if cardname.present?
+            = nest cardname, view: item_view(map_type)
           - else
-            = map_ui map_type
+            = map_ui map_type, name_in_file
 .d-flex.justify-content-end.py-3
   %span
     Export:

@@ -1,5 +1,5 @@
 require_relative "../../../config/environment"
-require_relative "wikipedia_csv_row"
+require_relative "wikipedia_import_item"
 require_relative "../csv_file"
 
 #csv_path = File.expand_path "../data/error.csv", __FILE__

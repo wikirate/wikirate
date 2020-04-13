@@ -1,4 +1,4 @@
-require_relative "../../single-use/metric_import/metric_csv_row"
+require_relative "../../single-use/metric_import/metric_import_item"
 require_relative "../../single-use/metric_import/metrics_csv_file"
 
 RSpec.describe "metric import" do

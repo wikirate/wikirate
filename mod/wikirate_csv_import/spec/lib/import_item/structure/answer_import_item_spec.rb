@@ -70,7 +70,7 @@ RSpec.describe AnswerImportItem do
     Card[answer_name(args)]
   end
 
-  def csv_row args={}, index=1
+  def import_item args={}, index=1
     AnswerImportItem.new answer_row(args), index
   end
 

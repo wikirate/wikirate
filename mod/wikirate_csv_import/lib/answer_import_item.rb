@@ -1,4 +1,4 @@
-# Specifies the structure of a csv row for an answer import.
+# Specifies the structure of a import item for an answer import.
 class AnswerImportItem < ImportItem
   @columns = { metric: { map: true },
                wikirate_company: { map: true },
@@ -21,7 +21,7 @@ class AnswerImportItem < ImportItem
   def translate_row_hash_to_create_answer_hash
     r = @row.clone
     r[:company] = r.delete :wikirate_company
-    r[:year] = r[:year]&.cardname
+    r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
     r[:ok_to_exist] = true
     r
   end

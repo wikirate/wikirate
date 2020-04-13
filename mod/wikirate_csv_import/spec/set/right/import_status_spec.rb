@@ -27,7 +27,7 @@ RSpec.describe Card::Set::Right::ImportStatus do
       expect(card_subject.status[:counts]).to eq(status_counts)
     end
 
-    it "contains an items for each csv row" do
+    it "contains an items for each import item" do
       expect(card_subject.status[:items])
         .to include([:not_ready, nil])
     end

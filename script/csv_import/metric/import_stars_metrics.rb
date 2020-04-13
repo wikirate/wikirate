@@ -1,5 +1,5 @@
 require_relative "../../../config/environment"
-require_relative "metrics_csv_row"
+require_relative "metrics_import_item"
 require_relative "../../csv_file"
 
 csv_path = File.expand_path "../data/stars_import.csv", __FILE__

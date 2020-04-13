@@ -1,5 +1,5 @@
 require_relative "../../../config/environment"
-require_relative "metric_csv_row"
+require_relative "metric_import_item"
 import_manager_dir = "../../../vendor/card-mods/csv_import/lib/import_manager"
 require_relative "#{import_manager_dir}/script_import_manager.rb"
 
