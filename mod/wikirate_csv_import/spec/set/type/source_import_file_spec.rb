@@ -1,5 +1,3 @@
-require_relative "../../support/shared_csv_import"
-
 RSpec.describe Card::Set::Type::SourceImportFile do
   # require_relative "../../support/shared_csv_import"
   #
