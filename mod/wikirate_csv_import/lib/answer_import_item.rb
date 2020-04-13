@@ -9,13 +9,20 @@ class AnswerImportItem < ImportItem
 
   def import_hash
     return {} unless (metric_card = Card[metric])
-    r = @row.clone
-    r[:company] = r.delete :wikirate_company
-    metric_card.create_answer_args r.merge(ok_to_exist: true)
+
+    metric_card.create_answer_args translate_row_hash_to_create_answer_hash
   end
 
   def map_source val
     result = Card::Set::Self::Source.search val
     result.first.id if result.size == 1
+  end
+
+  def translate_row_hash_to_create_answer_hash
+    r = @row.clone
+    r[:company] = r.delete :wikirate_company
+    r[:year] = r[:year]&.cardname
+    r[:ok_to_exist] = true
+    r
   end
 end

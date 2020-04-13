@@ -42,7 +42,7 @@ RSpec.describe Card::Set::Right::ImportMap do
     end
 
     it "updates map based on 'mapping' parameter" do
-      with_mapping_param wikirate_company: { "Google" => "Google LLC"} do
+      with_mapping_param wikirate_company: { "Google" => "Google LLC" } do
         card_subject.update!({})
         expect(card_subject.map[:wikirate_company]["Google"])
           .to eq("Google LLC".to_name.card_id)

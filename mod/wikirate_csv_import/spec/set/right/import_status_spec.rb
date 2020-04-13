@@ -33,7 +33,8 @@ RSpec.describe Card::Set::Right::ImportStatus do
     end
 
     it "handles manually set statuses" do
-      card = Card.new name: "test+import status", content: { counts: { total: 3 }}.to_json
+      card = Card.new name: "test+import status",
+                      content: { counts: { total: 3 } }.to_json
       expect(card.status[:counts]).to eq total: 3
     end
   end
@@ -45,8 +46,7 @@ RSpec.describe Card::Set::Right::ImportStatus do
       expect(card_subject.content_hash).to eq(initial_content_hash)
     end
   end
-
-
+  
   describe "view: progress_bar" do
     def progress_section binding, bg, status_key, label
       binding.with_tag("div.progress-bar.bg-#{bg}") do

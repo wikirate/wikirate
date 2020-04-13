@@ -1,6 +1,3 @@
-require_relative "../../support/shared_csv_import"
-require_relative "../../support/shared_answer_import_examples"
-
 RSpec.describe Card::Set::Type::AnswerImportFile do
   describe "import!" do
     let(:import_item_class) { AnswerImportItem }
@@ -28,11 +25,5 @@ RSpec.describe Card::Set::Type::AnswerImportFile do
       answer = Answer.find_by_answer_id(answer_id)
       expect(answer.imported).to eq true
     end
-
-    # it "imports comment" do
-    #   trigger_import :exact_match
-    #   expect(Card[answer_name(:exact_match), :discussion]).to have_db_content(/chch/)
-    # end
-
   end
 end

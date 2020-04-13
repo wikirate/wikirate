@@ -47,11 +47,10 @@ RSpec.describe AnswerImportItem do
     end
 
     it "aggregates errors" do
-      expect(import(answer_row year: "Google Inc", metric: "2007").errors)
+      expect(import(answer_row(year: "Google Inc", metric: "2007")).errors)
         .to contain_exactly "invalid metric: 2007", "invalid year: Google Inc"
     end
   end
-
 
   ROW_HASH =
     {
@@ -75,7 +74,7 @@ RSpec.describe AnswerImportItem do
     AnswerImportItem.new answer_row(args), index
   end
 
-  ROW_HASH.keys.each do |key|
+  ROW_HASH.each_key do |key|
     define_method "no_#{key}" do
       answer_row key => nil
     end

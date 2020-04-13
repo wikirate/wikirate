@@ -19,7 +19,7 @@ class << self
   end
 
   def cardname_from_wikirate_url term
-    m = term.match(%r(//wikirate\.org/([^\?]+)/))
+    m = term.match(%r{//wikirate\.org/([^\?]+)/})
     m && m[1]
   end
 
