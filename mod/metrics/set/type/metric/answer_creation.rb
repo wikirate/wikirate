@@ -61,7 +61,7 @@ def valid_answer_args? args
 end
 
 def answer_name_from_args args
-  parts = [name, args[:company], args[:year]]
+  parts = [name, args[:company], args[:year].to_s]
   parts << args[:related_company] if args[:related_company]
   Card::Name[*parts]
 end
