@@ -1,5 +1,6 @@
 require_relative "../../../mod/csv_import/lib/import_item"
 
+# import company wikipedia mappings
 class WikipediaImportItem < ImportItem
   @columns = [:wikirate_id, :wikirate_name, :wikipedia_url]
 

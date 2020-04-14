@@ -1,5 +1,6 @@
 require_relative "wikipedia_import_item"
 
+# import logos
 class LogoImportItem < WikipediaImportItem
   @columns = [:wikirate_id, :wikirate_name, :wikipedia_url, :logo]
 

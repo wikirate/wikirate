@@ -1,6 +1,7 @@
 require_relative "../../../mod/csv_import/lib/import_item.rb"
 require_relative "../../../mod/csv_import/lib/csv_file.rb"
 
+# Import list of company headquarters
 class HeadquartersImportItem < ImportItem
   @columns = [:wikirate_number, :oc_jurisdiction_code]
   @required = [:oc_jurisdiction_code, :wikirate_number]

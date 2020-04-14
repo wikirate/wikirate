@@ -1,6 +1,7 @@
 require_relative "../../../mod/csv_import/lib/import_item.rb"
 require_relative "../../../mod/csv_import/lib/csv_file.rb"
 
+# import OC mappings
 class OpenCorporatesImportItem < ImportItem
   @columns =
     [:oc_jurisdiction_code, :oc_company_number, :wikirate_number, :company_name,
