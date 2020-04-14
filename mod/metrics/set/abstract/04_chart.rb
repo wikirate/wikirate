@@ -7,7 +7,7 @@ def filter_hash with_select_filter=true
 end
 
 def chart_params
-  @chart_params ||= Env.hash params[:chart]
+  @chart_params ||= Env.hash Env.params[:chart]
 end
 
 def chart_filter_params
