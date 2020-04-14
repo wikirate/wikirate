@@ -106,7 +106,7 @@ format :html do
   end
 
   def prefixed_research_params
-    @prefixed_research_params ||= Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h
+    @prefixed_research_params ||= Env.hash params[RESEARCH_PARAMS_KEY]
   end
 
   def default_research_params
