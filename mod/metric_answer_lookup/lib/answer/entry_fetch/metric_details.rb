@@ -30,7 +30,6 @@ class Answer
       def fetch_metric_type_id
         metric_card&.metric_type_id
       end
-
     end
   end
 end

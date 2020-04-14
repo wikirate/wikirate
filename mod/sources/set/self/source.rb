@@ -2,7 +2,7 @@
 class << self
   def search term
     if url? term
-      name = cardname_from_wikirate_url term
+      name = Card::Env::Location.cardname_from_url term
       name ? search_by_name(name) : search_by_url(term)
     else
       search_by_name term
@@ -16,11 +16,6 @@ class << self
   def search_by_name term
     card = Card[term]
     card&.type_id == SourceID ? [card] : []
-  end
-
-  def cardname_from_wikirate_url term
-    m = term.match(%r{//wikirate\.org/([^\?]+)/})
-    m && m[1]
   end
 
   def search_by_url url

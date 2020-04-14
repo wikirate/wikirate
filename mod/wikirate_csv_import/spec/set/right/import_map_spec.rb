@@ -69,3 +69,7 @@ RSpec.describe Card::Set::Right::ImportMap do
     end
   end
 end
+
+# TODO: test error detection in import_mapping
+# TODO: cypress tests for update mapping
+# TODO: test that import_status update event works
