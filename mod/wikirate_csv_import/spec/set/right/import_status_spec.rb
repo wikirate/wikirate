@@ -5,6 +5,7 @@ RSpec.describe Card::Set::Right::ImportStatus do
       ready: 1,
       failed: 2,
       overridden: 0,
+      importing: 0,
       imported: 0,
       success: 0, # overridden + imported
       total: 15

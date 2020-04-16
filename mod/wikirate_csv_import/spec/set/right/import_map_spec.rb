@@ -36,21 +36,43 @@ RSpec.describe Card::Set::Right::ImportMap do
   end
 
   describe "event: update_import_mapping" do
-    def with_mapping_param value
-      Card::Env.params[:mapping] = value
-      yield
+    it "updates map based on 'mapping' parameter" do
+      update_with_mapping_param wikirate_company: { "Google" => "Google LLC" } do |card|
+        expect(card.map[:wikirate_company]["Google"])
+          .to eq("Google LLC".to_name.card_id)
+      end
     end
 
-    it "updates map based on 'mapping' parameter" do
-      with_mapping_param wikirate_company: { "Google" => "Google LLC" } do
-        card_subject.update!({})
-        expect(card_subject.map[:wikirate_company]["Google"])
-          .to eq("Google LLC".to_name.card_id)
+    it "raises error if mapping is not a card" do
+      update_with_mapping_param metric: { "Not a metric" => "Not a card" } do |card|
+        expect(card.errors[:content]).to include(/invalid metric mapping/)
+      end
+    end
+
+    it "raises error if mapping has the wrong type" do
+      update_with_mapping_param metric: { "Not a metric" => "Google LLC" } do |card|
+        expect(card.errors[:content]).to include(/invalid metric mapping/)
       end
     end
   end
 
-  describe "format#tab_title" do
+  describe "event: update_import_status" do
+    it "moves newly valid items to 'ready'" do
+      update_with_mapping_param source_mapping(1) do |card|
+        status_card = card.left.import_status_card
+        expect(status_card.status.item_hash(0)[:status]).to eq(:ready)
+      end
+    end
+
+    it "keeps badly mapped items in 'not ready'" do
+      update_with_mapping_param(source_mapping(1, "not a source")) do |card|
+        status_card = card.left.import_status_card
+        expect(status_card.status.item_hash(4)[:status]).to eq(:not_ready)
+      end
+    end
+  end
+
+  describe "HtmlFormat#tab_title" do
     it "gives counts for total and unmapped values" do
       expect(format_subject.tab_title(:metric))
         .to have_tag("div.tab-title") do
@@ -68,8 +90,33 @@ RSpec.describe Card::Set::Right::ImportMap do
         end
     end
   end
+
+  describe "CsvFormat view: export" do
+    it "should export mappings for a given type" do
+      Card::Env.params[:map_type] = "metric"
+      jd = "Jedi+disturbances in the Force".to_name
+      csv = "Name in File,Name in WikiRate,WikiRate ID\n" \
+            "#{jd},#{jd},#{jd.card_id}\n" \
+            "Not a metric,,\n"
+      expect(card_subject.format(:csv).render_export).to eq(csv)
+    end
+  end
 end
 
-# TODO: test error detection in import_mapping
+def update_with_mapping_param value
+  with_mapping_param value do
+    card_subject.update({})
+    yield card_subject
+  end
+end
+
+def with_mapping_param value
+  Card::Env.params[:mapping] = value
+  yield
+end
+
+def source_mapping q, target = ":darth_vader_source"
+  { source: { "http://google.com/search?q=#{q}" => target } }
+end
+
 # TODO: cypress tests for update mapping
-# TODO: test that import_status update event works

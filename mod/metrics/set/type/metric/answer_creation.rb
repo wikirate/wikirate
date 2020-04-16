@@ -20,12 +20,8 @@ def create_answer args
 end
 
 def add_answer_source_args args, source
-  source_hash = case source
-                when Hash   then source
-                when String then { content: "[[#{source}]]" }
-                when Card   then { content: "[[#{source.name}]]" }
-                end
-  return unless source_hash
+  return unless source.present?
+  source_hash = source.is_a?(Hash) ? source : { content: "[[#{Card::Name[source]}]]" }
   source_hash[:type_id] ||= PointerID
   args["+source"] = source_hash
 end

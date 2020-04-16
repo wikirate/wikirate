@@ -5,7 +5,6 @@
 #
 
 include_set Abstract::Import
-include_set Type::File
 include_set Abstract::TwoColumnLayout
 
 format :html do
@@ -20,7 +19,7 @@ format :html do
   end
 
   view :data do
-    field_nest :import_map, view: :core
+    field_nest :import_map, view: :content
   end
 
   view :bar_right do
