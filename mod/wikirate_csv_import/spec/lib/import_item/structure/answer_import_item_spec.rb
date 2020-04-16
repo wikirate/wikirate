@@ -5,7 +5,7 @@ RSpec.describe AnswerImportItem do
 
   def import row_hash
     row = described_class.new row_hash
-    row.execute_import
+    row.import
     row
   end
 

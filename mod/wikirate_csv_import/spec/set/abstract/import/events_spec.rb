@@ -44,7 +44,7 @@ RSpec.describe Card::Set::Abstract::Import do
     it "imports valid rows" do
       importing_items 8 do
         old_file_card.update({})
-        expect(refreshed_status.item_hash(8)[:status]).to eq(:imported)
+        expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
       end
     end
   end
@@ -62,7 +62,7 @@ RSpec.describe Card::Set::Abstract::Import do
     it "imports valid rows even after a failure" do
       importing_items 1, 8 do # 1 is not ready, 8 is valid (see above)
         old_file_card.update({})
-        expect(refreshed_status.item_hash(8)[:status]).to eq(:imported)
+        expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
       end
     end
   end
