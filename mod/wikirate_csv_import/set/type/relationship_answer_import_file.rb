@@ -1,6 +1,6 @@
 include_set Abstract::WikirateImport
 
-attachment :relationship_answer_import_file, uploader: CarrierWave::FileCardUploader
+attachment :relationship_import, uploader: CarrierWave::FileCardUploader
 
 COLUMNS = {
   checkbox: "Select",

@@ -83,6 +83,6 @@ RSpec.describe Card::Set::Abstract::Import do
   def create_import_file
     Card.create name: new_file_card_name,
                 type: :answer_import,
-                answer_import_file: SharedData.csv_file("answer_import")
+                answer_import: SharedData.csv_file("answer_import")
   end
 end

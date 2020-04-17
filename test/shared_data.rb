@@ -149,20 +149,19 @@ class SharedData
       create "answer import test",
              type: :answer_import,
              codename: "answer_import_test_with_file",
-             answer_import_file: csv_file("answer_import"),
+             answer_import: csv_file("answer_import"),
              storage_type: :coded,
              mod: :test
       create "relationship import test",
              type: :relationship_import,
              codename: "relationship_import_test_with_file",
-             relationship_answer_import_file: csv_file("relationship_import"),
+             relationship_import: csv_file("relationship_import"),
              storage_type: :coded,
              mod: :test
-
       create "source import test",
              type: :source_import,
              codename: "source_import_test_with_file",
-             source_import_file: csv_file("source_import"),
+             source_file: csv_file("source_import"),
              storage_type: :coded,
              mod: :test
     end

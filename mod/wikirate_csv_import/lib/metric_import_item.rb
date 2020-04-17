@@ -5,7 +5,7 @@ require_relative "../../../vendor/card-mods/csv_import/lib/csv_file.rb"
 class MetricImportItem < ImportItem
   @columns = {
     question: { optional: true },
-    metric_type: { map: true },
+    metric_type: {}, #{ map: true, type: :metric_type_type },
 
     # Metric Name Parts
     metric_designer: {}, # TODO: map when we support multi-type mapping
