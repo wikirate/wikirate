@@ -20,7 +20,7 @@ COLUMNS = {
 }
 
 def import_item_class
-  RelationshipAnswerImportItem
+  RelationshipImportItem
 end
 
 # to get rid of the render errors that appear on relationship answer listings

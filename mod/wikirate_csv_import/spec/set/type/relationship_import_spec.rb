@@ -1,3 +1,3 @@
-RSpec.describe Card::Set::Type::RelationshipAnswerImport do
+RSpec.describe Card::Set::Type::RelationshipImport do
   #
 end

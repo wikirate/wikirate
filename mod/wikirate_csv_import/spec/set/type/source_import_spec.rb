@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::SourceImportFile do
+RSpec.describe Card::Set::Type::SourceImport do
   # require_relative "../../support/shared_csv_import"
   #
   # def url name

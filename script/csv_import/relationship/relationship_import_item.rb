@@ -2,7 +2,7 @@ require_relative "../../../spec/source_helper"
 require_relative "../import_item"
 
 # This class provides an interface to import relationship answers
-class RelationshipAnswerImportItem
+class RelationshipImportItem
   include SourceHelper
 
   @columns = [:designer, :title, :company_1, :company_2, :year, :value, :source]
