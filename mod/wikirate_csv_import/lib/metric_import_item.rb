@@ -65,6 +65,10 @@ class MetricImportItem < ImportItem
     end
   end
 
+  def validate_metric_type value
+    Card.fetch_type_id(value) == Card::MetricTypeTypeID
+  end
+
   def validate_value_type value
     value_type_codes.include? value&.to_name&.code
   end

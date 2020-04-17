@@ -28,7 +28,7 @@ RSpec.describe AnswerImportItem do
 
     example "not a metric" do
       expect(import(metric_not_existent).errors)
-        .to contain_exactly("invalid metric: Never Met Rick")
+        .to contain_exactly("invalid Metric: Never Met Rick")
     end
 
     example "invalid metric", as_bot: true do
