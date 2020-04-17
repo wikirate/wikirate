@@ -1,6 +1,8 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DesignerPermissions
 
+VALUE_TYPE_CODES = %i[number category multi_category money free_text]
+
 event :validate_value_type_type_and_content do
   errors.add :type, "must be Pointer" unless type_id == Card::PointerID
   errors.add :content, "must be valid value type" unless valid_content?
@@ -13,7 +15,7 @@ event :validate_value_type_matches_values, :validate, on: :save, changed: :conte
 end
 
 def valid_content?
-  first_code.in? %i[number category multi_category money free_text]
+  first_code.in? VALUE_TYPE_CODES
 end
 
 def value_type

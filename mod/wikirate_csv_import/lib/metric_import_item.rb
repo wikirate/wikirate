@@ -3,25 +3,36 @@ require_relative "../../../vendor/card-mods/csv_import/lib/csv_file.rb"
 
 # create a metric described by a row in a csv file
 class MetricImportItem < ImportItem
-  @columns =
-    [:metric_designer, :metric_title, # parts of metric name
-     :question,
-     :about, :methodology, # special html is added for certain content, eg
-     #                       "Note:" and "Sources:" are made bold
-     :topic,               # comma separated
+  @columns = {
+    question: { optional: true },
+    metric_type: { map: true },
 
-     :value_type,          # examples:
-     #                         Free Text
-     #                         Number (tons)
-     #                         Category (option1;option2)
-     :value_options,
-     :research_policy,     # supports "community", "designer", or full name,
-     #                       eg "Community Assessed"
-     :metric_type,
-     :report_type]
+    # Metric Name Parts
+    metric_designer: {}, # TODO: map when we support multi-type mapping
+    metric_title: {},
 
-  @required = [:metric_designer, :metric_title, :value_type, :metric_type]
-  # @normalize = { topic: :comma_list_to_pointer }
+    topic: { optional: true},
+    # TODO: map when we support (optional) multi-value mapping
+
+    # Rich-Text fields
+    about: { optional: true },
+    methodology: { optional: true },
+    # Note: special html is added for certain content, eg
+    #       "Note:" and "Sources:" are made bold
+
+    value_type: {},
+
+    value_options: { optional: true },
+    research_policy: { optional: true },
+    # supports "community", "designer", or full name, eg "Community Assessed"
+    report_type: { optional: true }
+
+    # TODO: map research policy, report_type when we support mapping optional fields
+  }
+
+  VALUE_TYPE_CORRECTIONS = { "categorical" => :category.cardname }
+
+  #@normalize = { topic: :comma_list_to_pointer }
 
   def normalize_research_policy value
     policy =
@@ -36,25 +47,31 @@ class MetricImportItem < ImportItem
     @row[:research_policy] = { content: policy, type_id: Card::PointerID }
   end
 
+  # FIXME: this currently drops unknown topics.
   def normalize_topic value
-    topics = value.split(",").map(&:strip)
+    topics = value.split(";").map(&:strip)
     topics = topics.select { |t| Card[t]&.type_id == Card::WikirateTopicID }
     topics.to_pointer_content
   end
 
-  # def normalize_value_type value
-  #   @value_details ||= {}
-  #   value.match(/^(?<type>[^(]+)(\(?<options>.+\))?$/) do |match|
-  #     new_value = match[:type].strip
-  #     new_value = "Category" if new_value == "Categorical"
-  #     if new_value.downcase.in? %w[category multi-category]
-  #       @value_details[:value_options] = comma_list_to_pointer match[:options], ";"
-  #     else
-  #       @value_details[:unit] = match[:options].strip
-  #     end
-  #     new_value
-  #   end
-  # end
+  def normalize_value_type value
+    value = value.to_name
+    if validate_value_type value
+      Card.fetch_name value
+    elsif correction = VALUE_TYPE_CORRECTIONS[value.key]
+      correction
+    else
+      value
+    end
+  end
+
+  def value_type_codes
+    Card::Set::TypePlusRight::Metric::ValueType::VALUE_TYPE_CODES
+  end
+
+  def validate_value_type value
+    value_type_codes.include? value&.to_name&.code
+  end
 
   def format_html html
     html.gsub(/\b(OR|AND)\b/, "<strong>\\1</strong>")
@@ -74,11 +91,6 @@ class MetricImportItem < ImportItem
   def normalize_about value
     return value unless value.present?
     format_html to_html(value)
-  end
-
-  def normalize_metric_type value
-    return value unless value.match?(/research/i)
-    "Researched"
   end
 
   def normalize_value_options value
