@@ -161,7 +161,7 @@ class SharedData
       create "source import test",
              type: :source_import,
              codename: "source_import_test_with_file",
-             source_file: csv_file("source_import"),
+             source_import: csv_file("source_import"),
              storage_type: :coded,
              mod: :test
     end
