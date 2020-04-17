@@ -14,12 +14,12 @@ format :html do
 
   view :right_column do
     wrap_with :div, class: "progress-column" do
-      [render_type_link, field_nest(:import_status, view: :core)]
+      [render_type_link, field_nest(:import_status, view: :content)]
     end
   end
 
   view :data do
-    field_nest :import_map, view: :content
+    field_nest :import_map, view: :core
   end
 
   view :bar_right do

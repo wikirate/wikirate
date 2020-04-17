@@ -28,7 +28,7 @@ RSpec.describe Card::Set::Right::ImportStatus do
 
     it "contains an items for each import item" do
       expect(card_subject.status[:items])
-        .to include([:not_ready,nil, { errors: ["unmapped source"] }])
+        .to include([:not_ready, nil, { errors: ["unmapped source"] }])
     end
 
     it "handles manually set statuses" do

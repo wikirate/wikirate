@@ -119,6 +119,6 @@ RSpec.describe AnswerImportItem do
       args.reverse_merge! answer_row
     end
 
-    [args[:metric], args[:wikirate_company], args[:year]].join "+"
+    Card::Name[args[:metric], args[:wikirate_company], args[:year]]
   end
 end

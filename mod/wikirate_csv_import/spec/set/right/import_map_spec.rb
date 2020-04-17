@@ -92,7 +92,7 @@ RSpec.describe Card::Set::Right::ImportMap do
   end
 
   describe "CsvFormat view: export" do
-    it "should export mappings for a given type" do
+    it "exports mappings for a given type" do
       Card::Env.params[:map_type] = "metric"
       jd = "Jedi+disturbances in the Force".to_name
       csv = "Name in File,Name in WikiRate,WikiRate ID\n" \
@@ -115,7 +115,7 @@ def with_mapping_param value
   yield
 end
 
-def source_mapping q, target = ":darth_vader_source"
+def source_mapping q, target=":darth_vader_source"
   { source: { "http://google.com/search?q=#{q}" => target } }
 end
 
