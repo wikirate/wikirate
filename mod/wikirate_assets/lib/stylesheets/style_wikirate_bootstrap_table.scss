@@ -46,8 +46,10 @@
   }
 }
 
+
 table.wikirate-table, .table.wikirate-table {
   background: #fff;
+  width: 100%;
   thead > tr > th {
     background: #fff;
     padding: 2px;
@@ -59,24 +61,32 @@ table.wikirate-table, .table.wikirate-table {
       color: $dark-text-color;
     }
   }
-  td {
-    &.data {
-      min-width: 180px;
-      padding-top: 0.4rem;
-    }
 
-    &:first-child .media-body {
-      h4, h5 {
-        font-weight: normal;
-        font-size: 100%;
-      }
+  td {
+    padding: 1em;
+    &.in-file {
+      width: 33%;
     }
-    &.header {
-      .media {
-        margin-top: 8px;
-      }
-    }
+    border-bottom: 1px dotted #eee;
   }
+  // td {
+  //   &.data {
+  //     min-width: 180px;
+  //     padding-top: 0.4rem;
+  //   }
+//
+  //   &:first-child .media-body {
+  //     h4, h5 {
+  //       font-weight: normal;
+  //       font-size: 100%;
+  //     }
+  //   }
+  //   &.header {
+  //     .media {
+  //       margin-top: 8px;
+  //     }
+  //   }
+  // }
 
   .tr-link:hover {
     background-color: #fafafa;
@@ -163,8 +173,16 @@ table.wikirate-table, .table.wikirate-table {
   top: 110px!important;
 }
 
-table.import-table td {
-  overflow: hidden;
+table.import-table {
+  .mapped-import-cell a {
+    color: $info;
+  }
+  .unmapped-import-cell {
+    background-color: rgba($warning, 0.3);
+  }
+  td {
+    overflow: hidden;
+  }
 }
 
 .table-borderless,
@@ -189,6 +207,18 @@ table.import-table td {
 .table.table-condensed {
   margin-bottom: 10px;
 }
+
+table.import-status-table {
+  max-width: 100%;
+  overflow: hidden;
+  td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0.5em;
+  }
+}
+
 
 td .pointer-list {
   // needed to align on company pages the jurisdictions table

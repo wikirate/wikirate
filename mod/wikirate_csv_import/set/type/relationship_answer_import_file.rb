@@ -1,5 +1,4 @@
-include_set Type::File
-include_set Abstract::ImportWithCompanies
+include_set Abstract::WikirateImport
 
 attachment :relationship_answer_import_file, uploader: CarrierWave::FileCardUploader
 
@@ -19,19 +18,15 @@ COLUMNS = {
   comment: "Comment"
 }
 
-def csv_row_class
-  CsvRow::Structure::RelationshipAnswerCsv
-end
-
-def item_label
-  "relationship answer"
+def import_item_class
+  RelationshipAnswerImportItem
 end
 
 # to get rid of the render errors that appear on relationship answer listings
 # on relationship metric pages on the first page load after an import
-event :clear_cache_after_relationship_import, after: :import_csv do
-  Card::Cache.reset_all
-end
+# event :clear_cache_after_relationship_import, after: :import_csv do
+#   Card::Cache.reset_all
+# end
 
 format :html do
   def import_table_row_class

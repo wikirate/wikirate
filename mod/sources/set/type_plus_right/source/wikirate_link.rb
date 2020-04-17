@@ -1,7 +1,7 @@
 require "link_thumbnailer"
 
 format :html do
-  view :input do
+  view :input, cache: :never do
     form.text_field :content, class: "d0-card-content form-control",
                               placeholder: "http://example.com"
   end
@@ -44,7 +44,7 @@ def no_file?
 end
 
 def duplicates
-  @duplicates ||= Self::Source.find_duplicates content
+  @duplicates ||= Self::Source.search_by_url content
 end
 
 def link_present?

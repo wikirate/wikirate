@@ -15,10 +15,10 @@ ignoreConstraintElements = ()->
 
 constraintCsv = (constraintListEditor) ->
   rows = constraintListEditor.find(".constraint-editor").map ()->
-    constraintToCsvRow $(this)
+    constraintToImportItem $(this)
   rows.get().join "\n"
 
-constraintToCsvRow = (con)->
+constraintToImportItem = (con)->
   [metricValue(con), yearValue(con), valueValue(con), groupValue(con)].join ";|;"
 
 metricValue = (con) ->

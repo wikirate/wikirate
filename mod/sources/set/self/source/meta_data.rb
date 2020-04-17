@@ -23,7 +23,7 @@ class MetaData
   end
 
   def duplicates
-    @duplicates ||= Source.find_duplicates @url
+    @duplicates ||= Source.search_by_url @url
   end
 
   def website= url

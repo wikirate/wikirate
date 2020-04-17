@@ -27,11 +27,11 @@ Then(/^I check checkbox in row (\d+)$/) do |row|
   end
 end
 
-Then(/^I check checkbox for csv row (\d+)$/) do |row|
-  check_csv_row row
+Then(/^I check checkbox for import item (\d+)$/) do |row|
+  check_import_item row
 end
 
-def check_csv_row row
+def check_import_item row
   within("table", visible: false) do
     within("tr[data-csv-row-index='#{row.to_i - 1}'", visible: false) do
       checkbox = find("input[type=checkbox]", visible: false)
@@ -59,7 +59,7 @@ def start_import rows
   check "all"
   uncheck "all"
   rows.each do |row|
-    check_csv_row row
+    check_import_item row
   end
   button = find(:button, "Import", visible: false)
   button.click
@@ -82,7 +82,7 @@ Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
   end
 end
 
-Then(/^I fill in "(.*)" for csv row (\d+)$/) do |text, row|
+Then(/^I fill in "(.*)" for import item (\d+)$/) do |text, row|
   table = find("table")
   within(table) do
     row = find("tr[data-csv-row-index='#{row}'")

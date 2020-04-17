@@ -137,6 +137,12 @@ $colorMap: (
     }
   }
 
+  .nav-item .RIGHT-#{$type} {
+    &.tab-badge .badge {
+      background-color: rgba($color, 0.75);
+    }
+  }
+
   .nav-item:hover .RIGHT-#{$type} {
     &.tab-badge .badge {
       background-color: $color;

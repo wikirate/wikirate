@@ -20,12 +20,8 @@ def create_answer args
 end
 
 def add_answer_source_args args, source
-  source_hash = case source
-                when Hash   then source
-                when String then { content: "[[#{source}]]" }
-                when Card   then { content: "[[#{source.name}]]" }
-                end
-  return unless source_hash
+  return unless source.present?
+  source_hash = source.is_a?(Hash) ? source : { content: "[[#{Card::Name[source]}]]" }
   source_hash[:type_id] ||= PointerID
   args["+source"] = source_hash
 end
@@ -61,7 +57,9 @@ def valid_answer_args? args
 end
 
 def answer_name_from_args args
-  [name, args[:company], args[:year], args[:related_company]].compact.join "+"
+  parts = [name, args[:company], args[:year].to_s]
+  parts << args[:related_company] if args[:related_company]
+  Card::Name[*parts]
 end
 
 def answer_type_id related_company

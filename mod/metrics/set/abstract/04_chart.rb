@@ -7,11 +7,7 @@ def filter_hash with_select_filter=true
 end
 
 def chart_params
-  case (chart = Env.params[:chart])
-  when Hash then chart
-  when ActionController::Parameters then chart.to_unsafe_h
-  else {}
-  end
+  @chart_params ||= Env.hash Env.params[:chart]
 end
 
 def chart_filter_params

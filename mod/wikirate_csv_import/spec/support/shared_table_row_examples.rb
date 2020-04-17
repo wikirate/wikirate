@@ -1,15 +1,15 @@
 shared_context "table_row" do |type_id|
-  def csv_row data
+  def import_item data
     csv_data.merge data
   end
 
   def validated_table_row data={}
     row_args = csv_data.merge data
     io = StringIO.new row_args.values.join(",")
-    file = CsvFile.new io, CsvRow::Structure::AnswerCsv
+    file = CsvFile.new io, AnswerImportItem
     vm = ValidationManager.new file, :skip
-    vm.validate do |csv_row|
-      yield described_class.new(csv_row, format).render
+    vm.validate do |import_item|
+      yield described_class.new(import_item, format).render
     end
   end
 
@@ -27,10 +27,10 @@ shared_context "table_row" do |type_id|
   def with_row data
     row_args = csv_data.merge data
     io = StringIO.new row_args.values.join(",")
-    file = CsvFile.new io, CsvRow::Structure::AnswerCsv
+    file = CsvFile.new io, AnswerImportItem
     vm = ValidationManager.new file, :skip
-    vm.validate do |csv_row|
-      @row = described_class.new(csv_row, format).render
+    vm.validate do |import_item|
+      @row = described_class.new(import_item, format).render
       yield
     end
   end
