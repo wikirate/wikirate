@@ -3,7 +3,7 @@
 
 # This class provides an interface to import relationship answers
 class RelationshipImportItem < ImportItem
-  @columns = [:designer, :title, :company, :related_company, :year, :value, :source]
+  @columns = %i[designer title company related_company year value source]
 
   def initialize row, index, import_manager=nil
     super
