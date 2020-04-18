@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
-#
+
+# This takes answer csv imports as inputs,
+# cleans up the urls in the source field,
+# and outputs a source import csv file.
+
 require "csv"
 
 project_dir = "/Users/ethan/Dropbox/FTI imports"
