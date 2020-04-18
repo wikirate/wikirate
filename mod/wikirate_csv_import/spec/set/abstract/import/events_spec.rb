@@ -24,7 +24,7 @@ RSpec.describe Card::Set::Abstract::Import do
 
   describe "event: disallow_content_update" do
     it "raises an error if you try to update content" do
-      expect { old_file_card.update! content: "whatever" }
+      expect { old_file_card.update! co ntent: "whatever" }
         .to raise_error(/updates to import files are not allowed/)
     end
   end

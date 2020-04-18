@@ -1,20 +1,19 @@
 
 # create a source described by a row in a csv file
 class SourceImportItem < ImportItem
-  @columns = { wikirate_company: {},
-               year: {},
-               report_type: {},
+  @columns = { wikirate_company: { map: true },
+               year: { map: true },
+               report_type: { optional: true }, # FIXME: map after FTI imports finished
                source: {},
-               title: { optional: true } }
+               wikirate_title: { optional: true } }
 
   def import_hash
+    r = @row.clone
+    url = r.delete :source
     {
       type_id: Card::SourceID,
-      "+File" =>         { remote_file_url: source, type_id: Card::FileID },
-      "+title" =>        { content: title },
-      "+report_type" =>  { content: "[[#{report_type}]]" },
-      "+company" =>      { content: "[[#{wikirate_company}]]" },
-      "+year" =>         { content: "[[#{year}]]" }
+      file: { remote_file_url: url, type_id: Card::FileID },
+      subfields: select_present(r)
     }
   end
 end

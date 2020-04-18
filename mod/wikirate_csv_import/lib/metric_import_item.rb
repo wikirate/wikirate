@@ -11,7 +11,7 @@ class MetricImportItem < ImportItem
     metric_designer: {}, # TODO: map when we support multi-type mapping
     metric_title: {},
 
-    topic: { optional: true},
+    wikirate_topic: { optional: true},
     # TODO: map when we support (optional) multi-value mapping
 
     # Rich-Text fields
@@ -94,7 +94,7 @@ class MetricImportItem < ImportItem
       name: Card::Name[r.delete(:metric_designer),
                        r.delete(:metric_title).gsub("/", "&#47;")],
       type_id: Card::MetricID,
-      subfields: r.select { |_k, v| v.present? }
+      subfields: select_present(r)
     }
   end
 
