@@ -9,7 +9,7 @@ require "csv"
 project_dir = "/Users/ethan/Dropbox/FTI imports"
 input_dir = "#{project_dir}/4ethan"
 OUTPUT_DIR = "#{project_dir}/4laureen"
-input_suffix =  "Test"
+input_suffix = "" # "Test"
 
 @source_hash = {}
 
@@ -53,6 +53,5 @@ Dir.glob("#{input_dir}/*#{input_suffix}.csv").each do |filename|
   end
   # puts  @source_export.uniq.map(&:to_csv).join
   output_csv name, "clean", csv.to_csv
-  puts source_csv
   output_csv name, "source", source_csv
 end
