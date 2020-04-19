@@ -11,8 +11,7 @@ class MetricImportItem < ImportItem
     metric_designer: {}, # TODO: map when we support multi-type mapping
     metric_title: {},
 
-    wikirate_topic: { optional: true},
-    # TODO: map when we support (optional) multi-value mapping
+    wikirate_topic: { optional: true, map: true, separator: ";" },
 
     # Rich-Text fields
     about: { optional: true },
@@ -22,37 +21,36 @@ class MetricImportItem < ImportItem
 
     value_type: {},
 
-    value_options: { optional: true },
-    research_policy: { optional: true },
+    value_options: { map: true, optional: true, separator: ";" },
+    research_policy: { map: true, optional: true, separator: ";"},
     # supports "community", "designer", or full name, eg "Community Assessed"
-    report_type: { optional: true }
+    report_type: { optional: true, separator: ";" }
 
-    # TODO: map research policy, report_type when we support mapping optional fields
   }
 
   VALUE_TYPE_CORRECTIONS = { "categorical" => :category.cardname }
 
   #@normalize = { topic: :comma_list_to_pointer }
 
-  def normalize_research_policy value
-    policy =
-      case value
-      when /community/i
-        "Community Assessed"
-      when /designer/i
-        "Designer Assessed"
-      else
-        value
-      end
-    @row[:research_policy] = { content: policy, type_id: Card::PointerID }
-  end
+  # def normalize_research_policy value
+  #   policy =
+  #     case value
+  #     when /community/i
+  #       "Community Assessed"
+  #     when /designer/i
+  #       "Designer Assessed"
+  #     else
+  #       value
+  #     end
+  #   @row[:research_policy] = { content: policy, type_id: Card::PointerID }
+  # end
 
   # FIXME: this currently drops unknown topics.
-  def normalize_topic value
-    topics = value.split(";").map(&:strip)
-    topics = topics.select { |t| Card[t]&.type_id == Card::WikirateTopicID }
-    topics.to_pointer_content
-  end
+  # def normalize_topic value
+  #   topics = value.split(";").map(&:strip)
+  #   topics = topics.select { |t| Card[t]&.type_id == Card::WikirateTopicID }
+  #   topics.to_pointer_content
+  # end
 
   def normalize_value_type value
     value = value.to_name
@@ -89,12 +87,11 @@ class MetricImportItem < ImportItem
 
   def import_hash
     r = @row.clone
-    r[:wikirate_topic] = r.delete(:topic)
     {
       name: Card::Name[r.delete(:metric_designer),
                        r.delete(:metric_title).gsub("/", "&#47;")],
       type_id: Card::MetricID,
-      subfields: select_present(r)
+      subfields: prep_subfields(r)
     }
   end
 

@@ -1,4 +1,8 @@
+require_relative "import_item_spec_helper"
+
 RSpec.describe MetricImportItem do
+  include ImportItemSpecHelper
+
   ITEM_HASH = {
     question: "What are the company’s policies?",
     metric_type: "Researched", #{ map: true, type: :metric_type_type },
@@ -7,7 +11,7 @@ RSpec.describe MetricImportItem do
     metric_designer: "Joe User", # TODO: map when we support multi-type mapping
     metric_title: "Policities",
 
-    topic: "Force; Taming",
+    wikirate_topic: "Force; Taming",
       # TODO: map when we support (optional) multi-value mapping
 
       # Rich-Text fields
@@ -40,7 +44,7 @@ RSpec.describe MetricImportItem do
     end
   end
 
-  describe "#normalize_research_policy"
+  # describe "#normalize_research_policy"
 
   describe "#import_hash" do
     it "generates arguments for card creation" do
@@ -52,32 +56,16 @@ RSpec.describe MetricImportItem do
                     subfields: a_hash_including(
                       question: "What are the company’s policies?",
                       value_type: "Category",
-                      value_options: "[[A]]\n[[B]]\n[[C]]",
+                      value_options: %w[A B C]
                       #research_policy: { content: "Community Assessed",
                       #                   type_id: Card::PointerID },
 #wikirate_topic: "[[Force]]\n[[Taming]]"
                     ))
     end
-  end
 
-  def item_hash args={}
-    ITEM_HASH.merge args
-  end
-
-  def item_object hash=nil
-    hash ||= item_hash
-    described_class.new hash
-  end
-
-  def validate item_hash=nil
-    item = item_object item_hash
-    item.validate!
-    item
-  end
-
-  def import item_hash=nil
-    item = item_object item_hash
-    item.import
-    item
+    it "handles multi-value fields" do
+      item = validate
+      expect(item.import_hash[:subfields][:wikirate_topic]).to eq(["Force", "Taming"])
+    end
   end
 end

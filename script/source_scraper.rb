@@ -9,20 +9,40 @@ require "csv"
 project_dir = "/Users/ethan/Dropbox/FTI imports"
 input_dir = "#{project_dir}/4ethan"
 OUTPUT_DIR = "#{project_dir}/4laureen"
-input_suffix = "" # "Test"
+input_suffix =  "Test"
 
-@source_export = []
+@source_hash = {}
 
 def process_csv_row row
   urls = row["Source"].scan(/http\S+/)
   row["Source"] = urls.join " ; "
   urls.each do |url|
-    @source_export << [row["Company"], row["Year"], nil, url, nil]
+    add_source url, row["Company"], row["Year"]
   end
+end
+
+def add_source url, company, year
+  hash = @source_hash[url] ||= {}
+  hash[:company] ||= []
+  hash[:company] << company
+  hash[:year] ||= []
+  hash[:year] << year
 end
 
 def output_csv name, suffix, csv_content
   File.write "#{OUTPUT_DIR}/#{name}-#{suffix}.csv", csv_content
+end
+
+def source_csv
+  csv = ""
+  @source_hash.each do |url, hash|
+    csv << [semicolons(hash[:company]), semicolons(hash[:year]), nil, url, nil].to_csv
+  end
+  csv
+end
+
+def semicolons array
+  array.uniq.join "; "
 end
 
 Dir.glob("#{input_dir}/*#{input_suffix}.csv").each do |filename|
@@ -33,6 +53,6 @@ Dir.glob("#{input_dir}/*#{input_suffix}.csv").each do |filename|
   end
   # puts  @source_export.uniq.map(&:to_csv).join
   output_csv name, "clean", csv.to_csv
-  output_csv name, "source", @source_export.uniq.map(&:to_csv).join
+  puts source_csv
+  output_csv name, "source", source_csv
 end
-
