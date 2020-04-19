@@ -16,4 +16,10 @@ class SourceImportItem < ImportItem
       subfields: prep_subfields(r)
     }
   end
+
+  def detect_existing
+    results = Card::Set::Self::Source.search_by_url source
+    return nil unless results.size == 1
+    results.first.id
+  end
 end
