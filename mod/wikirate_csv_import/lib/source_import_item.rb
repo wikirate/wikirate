@@ -13,7 +13,7 @@ class SourceImportItem < ImportItem
     {
       type_id: Card::SourceID,
       file: { remote_file_url: url, type_id: Card::FileID },
-      subfields: select_present(r)
+      subfields: standard_subfields(r)
     }
   end
 end
