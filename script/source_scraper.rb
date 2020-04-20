@@ -8,7 +8,7 @@ require "csv"
 
 project_dir = "/Users/ethan/Dropbox/FTI imports"
 input_dir = "#{project_dir}/4ethan"
-OUTPUT_DIR = "#{project_dir}/4laureen"
+OUTPUT_DIR = "#{project_dir}/4laureen".freeze
 input_suffix = "" # "Test"
 
 @source_hash = {}

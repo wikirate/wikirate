@@ -5,16 +5,16 @@ RSpec.describe MetricImportItem do
 
   ITEM_HASH = {
     question: "What are the company’s policies?",
-    metric_type: "Researched", #{ map: true, type: :metric_type_type },
+    metric_type: "Researched", # { map: true, type: :metric_type_type },
 
-      # Metric Name Parts
+    # Metric Name Parts
     metric_designer: "Joe User", # TODO: map when we support multi-type mapping
     metric_title: "Policities",
 
     wikirate_topic: "Force; Taming",
-      # TODO: map when we support (optional) multi-value mapping
+    # TODO: map when we support (optional) multi-value mapping
 
-      # Rich-Text fields
+    # Rich-Text fields
     about: "about policies",
     methodology: "policy methodology",
     # Note: special html is added for certain content, eg
@@ -23,7 +23,7 @@ RSpec.describe MetricImportItem do
     value_type: "Category",
 
     value_options: "A;B;C",
-    research_policy: "community",
+    research_policy: "Community Assessed",
     # supports "community", "designer", or full name, eg "Community Assessed"
     report_type: nil
   }
@@ -55,17 +55,20 @@ RSpec.describe MetricImportItem do
                     type_id: Card::MetricID,
                     subfields: a_hash_including(
                       question: "What are the company’s policies?",
-                      value_type: "Category",
-                      value_options: %w[A B C]
-                      #research_policy: { content: "Community Assessed",
-                      #                   type_id: Card::PointerID },
-#wikirate_topic: "[[Force]]\n[[Taming]]"
+                      value_type: "Category"
                     ))
+    end
+
+    it "handles unmapped multi-value fields" do
+      item = validate
+      expect(item.import_hash[:subfields][:value_options])
+        .to eq(content: %w[A B C])
     end
 
     it "handles multi-value fields" do
       item = validate
-      expect(item.import_hash[:subfields][:wikirate_topic]).to eq(["Force", "Taming"])
+      expect(item.import_hash[:subfields][:wikirate_topic])
+        .to eq(content: ["Force", "Taming"])
     end
   end
 end

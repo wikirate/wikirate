@@ -3,9 +3,14 @@ module ImportItemSpecHelper
     ITEM_HASH.merge args
   end
 
-  def item_object hash=nil
+  def item_object hash=nil, mapping
     hash ||= item_hash
     described_class.new hash
+  end
+
+  # override
+  def default_mapping
+    {}
   end
 
   def validate item_hash=nil

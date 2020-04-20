@@ -1,7 +1,7 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DesignerPermissions
 
-VALUE_TYPE_CODES = %i[number category multi_category money free_text]
+VALUE_TYPE_CODES = %i[number category multi_category money free_text].freeze
 
 event :validate_value_type_type_and_content do
   errors.add :type, "must be Pointer" unless type_id == Card::PointerID

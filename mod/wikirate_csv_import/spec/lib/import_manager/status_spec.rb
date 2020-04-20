@@ -18,7 +18,6 @@ RSpec.describe ImportManager::Status do
       expect(status.item_hash(0)[:error]).to be_nil
       expect(status.item_hash(0)[:id]).to eq(1234)
     end
-
   end
 
   describe "#item_hash" do

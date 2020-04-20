@@ -5,7 +5,7 @@ require_relative "../../../vendor/card-mods/csv_import/lib/csv_file.rb"
 class MetricImportItem < ImportItem
   @columns = {
     question: { optional: true },
-    metric_type: {}, #{ map: true, type: :metric_type_type },
+    metric_type: {}, # { map: true, type: :metric_type_type },
 
     # Metric Name Parts
     metric_designer: {}, # TODO: map when we support multi-type mapping
@@ -21,16 +21,16 @@ class MetricImportItem < ImportItem
 
     value_type: {},
 
-    value_options: { map: true, optional: true, separator: ";" },
-    research_policy: { map: true, optional: true, separator: ";"},
+    value_options: { optional: true, separator: ";" },
+    research_policy: { map: true, optional: true, separator: ";" },
     # supports "community", "designer", or full name, eg "Community Assessed"
-    report_type: { optional: true, separator: ";" }
+    report_type: { map: true, optional: true, separator: ";" }
 
   }
 
-  VALUE_TYPE_CORRECTIONS = { "categorical" => :category.cardname }
+  VALUE_TYPE_CORRECTIONS = { "categorical" => :category.cardname }.freeze
 
-  #@normalize = { topic: :comma_list_to_pointer }
+  # @normalize = { topic: :comma_list_to_pointer }
 
   # def normalize_research_policy value
   #   policy =
@@ -56,7 +56,7 @@ class MetricImportItem < ImportItem
     value = value.to_name
     if validate_value_type value
       Card.fetch_name value
-    elsif correction = VALUE_TYPE_CORRECTIONS[value.key]
+    elsif (correction = VALUE_TYPE_CORRECTIONS[value.key])
       correction
     else
       value
@@ -80,10 +80,6 @@ class MetricImportItem < ImportItem
   #   return value unless value.present?
   #   format_html to_html(value)
   # end
-
-  def normalize_value_options value
-    comma_list_to_pointer value, ";"
-  end
 
   def import_hash
     r = @row.clone
