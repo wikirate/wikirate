@@ -29,9 +29,9 @@ event :normalize_html_file, after: :validate_source_file, on: :save, when: :html
   end
 end
 
-#def unfilled?
-#  !remote_file_url && super
-#end
+# def unfilled?
+#   !remote_file_url && super
+# end
 
 def accepted_mime_type?
   file.content_type.in? ACCEPTED_MIME_TYPES
@@ -42,7 +42,7 @@ def convert_to_pdf
   with_tmp_pdf do |pdf_file|
     self.file = pdf_file
   end
-rescue StandardError => e
+rescue StandardError # => e
   abort :failure, "failed to convert HTML to pdf" # ": #{e.message}"
 end
 

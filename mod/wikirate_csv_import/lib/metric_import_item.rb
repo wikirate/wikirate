@@ -99,10 +99,10 @@ class MetricImportItem < ImportItem
 
   def format_html html
     html.gsub(/\b(OR|AND)\b/, "<strong>\\1</strong>")
-      .gsub(/Note:([^<]+)<br>/, "<em><strong>Note:</strong>\\1</em><br>")
-      .gsub(/<p>([^<]+)<br>/, "<p><strong>\\1</strong><br>")
-      .gsub("Sources:", "<strong>Sources:</strong>")
-      .gsub(/(<br><br>|^)([^<]+)(?=<br>)/) do |m|
+        .gsub(/Note:([^<]+)<br>/, "<em><strong>Note:</strong>\\1</em><br>")
+        .gsub(/<p>([^<]+)<br>/, "<p><strong>\\1</strong><br>")
+        .gsub("Sources:", "<strong>Sources:</strong>")
+        .gsub(/(<br><br>|^)([^<]+)(?=<br>)/) do |m|
       m.split(" ").size > 15 ? "#{m[1]}#{m[2]}" : "#{m[1]}<strong>#{m[2]}</strong>"
     end
   end
