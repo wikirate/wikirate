@@ -9,5 +9,5 @@ answers_path = File.expand_path "../data/HnM_relationship_answers.csv", __FILE__
 
 CsvFile.new(metrics_path, RelationshipMetricImportItem)
        .import user: "Philipp Kuehl"
-CsvFile.new(answers_path, RelationshipAnswerImportItem)
+CsvFile.new(answers_path, RelationshipImportItem)
        .import user: "Philipp Kuehl"

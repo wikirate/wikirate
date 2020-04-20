@@ -44,14 +44,11 @@ class ImportFlagUpdate
     end
 
     def import_card_ids
-      @import_card_ids ||=
-        Card.search type_id: Card::AnswerImportFileID,
-                    return: :id
+      @import_card_ids ||= Card.search type_id: Card::AnswerImportID, return: :id
     end
 
     def import_act_ids
-      Card::Act.where("card_id IN (?)", import_card_ids)
-               .pluck(:id)
+      Card::Act.where("card_id IN (?)", import_card_ids).pluck(:id)
     end
 
     def action_relation

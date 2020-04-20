@@ -43551,32 +43551,18 @@ var TempusDominusBootstrap4 = function ($) {
 (function() {
   var QueryString, appendParentToAddItem, constraintCsv, constraintEditor, constraintToImportItem, findCollapseTarget, gettingSourceListHtmlFail, groupValue, ignoreConstraintElements, linkOnClick, loadCollapseTarget, metricValue, query_string, registerIconToggle, registerTextToggle, showFakeLoader, sourceListHtmlReturned, specificationType, stringStartsWith, updateSpecVisibility, valueValue, yearValue;
 
-  decko.slotReady(function(slot) {
+  decko.slotReady(function(slot) {});
+
+  $(document).ready(function() {
     var selectImportRows;
-    selectImportRows = function(checked, match_type) {
-      var selector;
-      selector = "._import-table";
-      if (match_type != null) {
-        selector += " tr._" + match_type + "-match";
-      }
-      selector += " input:checkbox[disabled!=\"disabled\"]";
-      return slot.find(selector).prop('checked', checked);
-    };
-    slot.find('input:checkbox#_check-all').change(function(eventObject) {
+    $('body').on('click', '._import-status-form ._check-all', function(_e) {
       var checked;
       checked = $(this).is(':checked');
-      $('input:checkbox._group-check').prop('checked', checked);
-      return selectImportRows(checked);
+      return selectImportRows($(this).closest('._import-status-form'), checked);
     });
-    return slot.find('input:checkbox._group-check').change(function(eventObject) {
-      var checked, match_type;
-      checked = $(this).is(':checked');
-      match_type = $(this).data("group");
-      if (!checked) {
-        $('input:checkbox#_check-all').prop('checked', false);
-      }
-      return selectImportRows(checked, match_type);
-    });
+    return selectImportRows = function(status_form, checked) {
+      return status_form.find("._import-row-checkbox").prop('checked', checked);
+    };
   });
 
   query_string = null;

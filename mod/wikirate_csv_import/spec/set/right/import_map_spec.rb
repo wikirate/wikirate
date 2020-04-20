@@ -29,9 +29,13 @@ RSpec.describe Card::Set::Right::ImportMap do
   describe "#auto_map!" do
     it "creates a map based on auto matching" do
       initial_content = card_subject.content
-      puts initial_content
-      puts card_subject.auto_map!
       expect(card_subject.auto_map!).to eq(initial_content)
+    end
+
+    it "handles values with separators" do
+      card_subject.auto_map!
+      expect(card_subject.map[:source].keys)
+        .to include("https://www.wikiwand.com/en/Space_opera")
     end
   end
 

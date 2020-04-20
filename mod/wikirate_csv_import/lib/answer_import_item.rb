@@ -4,7 +4,7 @@ class AnswerImportItem < ImportItem
                wikirate_company: { map: true },
                year: { map: true },
                value: {},
-               source: { map: true },
+               source: { map: true, separator: ";" },
                comment: { optional: true } }
 
   def import_hash
