@@ -24,7 +24,7 @@ def field_present? fieldcode
   field.present?
 end
 
-require_field :file
+# require_field :file
 require_field :report_type, when: :report_type_check_required?
 require_fields %i[wikirate_title wikirate_company year], when: :check_required?
 

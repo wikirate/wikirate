@@ -10,7 +10,7 @@ RSpec.describe SourceImportItem do
       wikirate_company: "Death Star",
       year: "1977",
       report_type: "Dark Report",
-      source: TEST_URL,
+      wikirate_link: TEST_URL,
       wikirate_title: "Death Star Source"
     }
   end
@@ -23,7 +23,7 @@ RSpec.describe SourceImportItem do
           type_id: Card::SourceID,
           subfields: a_hash_including(
             wikirate_company: { content: ["Death Star"] },
-            file:  { remote_file_url: TEST_URL, type_id: Card::FileID }
+            wikirate_link: TEST_URL
           )
         )
     end
@@ -33,7 +33,9 @@ RSpec.describe SourceImportItem do
     it "works with valid item_hash", as_bot: true do
       status = import.status_hash
       expect(status[:errors]).to be_blank
-      expect(Card.fetch_type_id(status[:id])).to eq(Card::SourceID)
+      imported_card = Card[status[:id]]
+      expect(imported_card.type_id).to eq(Card::SourceID)
+      expect(imported_card.fetch(:file).id).to be_present
     end
   end
 end

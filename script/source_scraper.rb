@@ -11,8 +11,6 @@ input_dir = "#{project_dir}/4ethan"
 OUTPUT_DIR = "#{project_dir}/4laureen".freeze
 input_suffix = "" # "Test"
 
-@source_hash = {}
-
 def process_csv_row row
   urls = row["Source"].scan(/http\S+/)
   row["Source"] = urls.join " ; "
@@ -46,6 +44,8 @@ def semicolons array
 end
 
 Dir.glob("#{input_dir}/*#{input_suffix}.csv").each do |filename|
+  @source_hash = {}
+
   name = filename.match(/\/([^\/.]*)\.csv$/)[1]
   csv = CSV.read filename, headers: true
   csv.each do |row|
