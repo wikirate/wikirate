@@ -5,13 +5,15 @@ RSpec.describe SourceImportItem do
 
   TEST_URL = "https://decko.org/Home.txt".freeze
 
-  ITEM_HASH = {
-    wikirate_company: "Death Star",
-    year: "1977",
-    report_type: "Dark Report",
-    source: TEST_URL,
-    wikirate_title: "Death Star Source"
-  }.freeze
+  let :default_item_hash do
+    {
+      wikirate_company: "Death Star",
+      year: "1977",
+      report_type: "Dark Report",
+      source: TEST_URL,
+      wikirate_title: "Death Star Source"
+    }
+  end
 
   describe "#import_hash" do
     it "generates a valid import_hash" do

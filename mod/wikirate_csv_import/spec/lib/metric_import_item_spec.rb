@@ -3,30 +3,32 @@ require_relative "import_item_spec_helper"
 RSpec.describe MetricImportItem do
   include ImportItemSpecHelper
 
-  ITEM_HASH = {
-    question: "What are the company’s policies?",
-    metric_type: "Researched", # { map: true, type: :metric_type_type },
+  let :default_item_hash do
+    {
+      question: "What are the company’s policies?",
+      metric_type: "Researched", # { map: true, type: :metric_type_type },
 
-    # Metric Name Parts
-    metric_designer: "Joe User", # TODO: map when we support multi-type mapping
-    metric_title: "Policities",
+      # Metric Name Parts
+      metric_designer: "Joe User", # TODO: map when we support multi-type mapping
+      metric_title: "Policities",
 
-    wikirate_topic: "Force; Taming",
-    # TODO: map when we support (optional) multi-value mapping
+      wikirate_topic: "Force; Taming",
+      # TODO: map when we support (optional) multi-value mapping
 
-    # Rich-Text fields
-    about: "about policies",
-    methodology: "policy methodology",
-    # Note: special html is added for certain content, eg
-    #       "Note:" and "Sources:" are made bold
+      # Rich-Text fields
+      about: "about policies",
+      methodology: "policy methodology",
+      # Note: special html is added for certain content, eg
+      #       "Note:" and "Sources:" are made bold
 
-    value_type: "Category",
+      value_type: "Category",
 
-    value_options: "A;B;C",
-    research_policy: "Community Assessed",
-    # supports "community", "designer", or full name, eg "Community Assessed"
-    report_type: nil
-  }
+      value_options: "A;B;C",
+      research_policy: "Community Assessed",
+      # supports "community", "designer", or full name, eg "Community Assessed"
+      report_type: nil
+    }
+  end
 
   describe "#validate" do
     it "confirms valid item is 'ready'" do

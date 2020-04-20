@@ -1,7 +1,7 @@
 # helper module for specs for classes that inherit from ImportItem
 module ImportItemSpecHelper
   def item_hash args={}
-    ITEM_HASH.merge args
+    default_item_hash.merge args
   end
 
   def item_object hash=nil
