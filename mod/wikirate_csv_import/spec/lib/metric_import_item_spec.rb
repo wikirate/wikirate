@@ -68,7 +68,7 @@ RSpec.describe MetricImportItem do
     it "handles multi-value fields" do
       item = validate
       expect(item.import_hash[:subfields][:wikirate_topic])
-        .to eq(content: ["Force", "Taming"])
+        .to eq(content: %w[Force Taming])
     end
   end
 end

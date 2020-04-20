@@ -1,16 +1,12 @@
+# helper module for specs for classes that inherit from ImportItem
 module ImportItemSpecHelper
   def item_hash args={}
     ITEM_HASH.merge args
   end
 
-  def item_object hash=nil, mapping
+  def item_object hash=nil
     hash ||= item_hash
     described_class.new hash
-  end
-
-  # override
-  def default_mapping
-    {}
   end
 
   def validate item_hash=nil
