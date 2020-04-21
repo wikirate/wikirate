@@ -47,6 +47,7 @@ format :csv do
     wikirate_topic: :semicolon_separated_values,
     report_type: :semicolon_separated_values,
     research_policy: :semicolon_separated_values,
+    value_options: :semicolon_separated_values
   }
 
   view :csv_header do
