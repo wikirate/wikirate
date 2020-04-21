@@ -75,7 +75,7 @@ RSpec.describe MetricImportItem do
     it "makes 'Note' bold" do
       item = validate
       expect(subfield(item, :about))
-        .to eq("<em><strong>Note:</strong> about policies</em><br>")
+        .to eq("<em><strong>Note:</strong> about policies</em><br>\n")
     end
   end
 

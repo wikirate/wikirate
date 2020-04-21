@@ -15,7 +15,11 @@ class AnswerImportItem < ImportItem
 
   def map_source val
     result = Card::Set::Self::Source.search val
-    result.first.id if result.size == 1
+    # result.first.id if result.size == 1
+    #
+    # FIXME: below is temporary solution to speed along FTI duplicates.
+    # above is preferable once we have matching.
+    result.first&.id
   end
 
   def translate_row_hash_to_create_answer_hash
