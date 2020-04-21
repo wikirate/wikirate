@@ -27,6 +27,6 @@ class AnswerImportItem < ImportItem
     r[:company] = r.delete :wikirate_company
     r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
     r[:ok_to_exist] = true
-    r
+    prep_subfields r
   end
 end
