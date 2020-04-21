@@ -24,26 +24,12 @@ class MetricImportItem < ImportItem
     value_options: { optional: true, separator: ";" },
     report_type: { map: true, optional: true, separator: ";" },
     research_policy: { map: true, separator: ";" },
-    # supports "community", "designer", or full name, eg "Community Assessed"
-
   }
 
   VALUE_TYPE_CORRECTIONS = { "categorical" => :category.cardname }.freeze
 
   # @normalize = { topic: :comma_list_to_pointer }
 
-  # def normalize_research_policy value
-  #   policy =
-  #     case value
-  #     when /community/i
-  #       "Community Assessed"
-  #     when /designer/i
-  #       "Designer Assessed"
-  #     else
-  #       value
-  #     end
-  #   @row[:research_policy] = { content: policy, type_id: Card::PointerID }
-  # end
 
   # FIXME: this currently drops unknown topics.
   # def normalize_topic value

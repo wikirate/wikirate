@@ -33,4 +33,41 @@ format :csv do
   view :core do
     Answer.csv_title + Answer.where(metric_id: card.id).map(&:csv_line).join
   end
+
+  CSV_COLUMNS = %i[
+    question metric_type metric_designer metric_title wikirate_topic about
+    methodology value_type value_options report_type research_policy
+  ]
+
+  CSV_COLUMN_TITLES = {
+    metric_designer: "Metric Designer"
+  }
+
+  CSV_COLUMN_METHODS = {
+    wikirate_topic: :semicolon_separated_values,
+    report_type: :semicolon_separated_values,
+    research_policy: :semicolon_separated_values,
+  }
+
+  view :csv_header do
+    CSV_COLUMNS.map do |column|
+      CSV_COLUMN_TITLES[column] || column.cardname
+    end
+  end
+
+  view :csv_line do
+    CSV_COLUMNS.map do |column|
+      if (method = CSV_COLUMN_METHODS[column])
+        send method, column
+      else
+        card.send column
+      end
+    end
+  end
+
+  private
+
+  def semicolon_separated_values column
+    card.send("#{column}_card").item_names.join ";"
+  end
 end

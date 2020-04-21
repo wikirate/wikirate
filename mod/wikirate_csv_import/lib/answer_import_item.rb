@@ -13,6 +13,12 @@ class AnswerImportItem < ImportItem
     metric_card.create_answer_args translate_row_hash_to_create_answer_hash
   end
 
+  def normalize_value val
+    return val unless (metric = Card[metric]) && metric.categorical?
+
+    val.gsub(";", ",")
+  end
+
   def map_source val
     result = Card::Set::Self::Source.search val
     # result.first.id if result.size == 1

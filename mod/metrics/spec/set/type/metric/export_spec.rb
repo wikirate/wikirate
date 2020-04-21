@@ -34,4 +34,19 @@ RSpec.describe Card::Set::Type::Metric::Export do
         )
     end
   end
+
+  describe "CsvFormat" do
+    specify "view: csv_header" do
+      expect_view(:csv_header, format: :csv)
+        .to eq(["Questions", "*metric type", "Metric Designer", "Metric Title", "Topic",
+                "About", "methodology", "value type", "value options", "Report Type",
+                "Research Policy"])
+    end
+
+    specify "view: csv_line" do
+      expect_view(:csv_line, format: :csv, card: metric)
+        .to eq(["", "Researched", "Joe User", "researched number 2", "", "", "",
+                "Number", "", "", "Community Assessed"])
+    end
+  end
 end
