@@ -16,7 +16,6 @@ class SourceImportItem < ImportItem
 
   def detect_existing
     results = Card::Set::Self::Source.search_by_url wikirate_link
-    return nil unless results.size == 1
-    results.first.id
+    results.first&.id
   end
 end
