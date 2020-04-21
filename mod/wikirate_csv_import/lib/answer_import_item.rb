@@ -14,9 +14,11 @@ class AnswerImportItem < ImportItem
   end
 
   def normalize_value val
-    return val unless (metric = Card[metric]) && metric.categorical?
-
-    val.split(";").compact.map(&:strip)
+    if Card[metric]&.categorical?
+      val.split(";").compact.map(&:strip)
+    else
+      val
+    end
   end
 
   def map_source val
