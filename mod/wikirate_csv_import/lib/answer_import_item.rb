@@ -14,7 +14,7 @@ class AnswerImportItem < ImportItem
   end
 
   def normalize_value val
-    if Card[metric]&.categorical?
+    if Card[metric]&.categorical? # really only needed for multicategory...
       val.split(";").compact.map(&:strip)
     else
       val
