@@ -39,6 +39,8 @@
 }
 
 .table.import-table {
+  table-layout: fixed;
+
   thead,tbody,tfoot {
     > tr > th, td {
       border-right-style: none

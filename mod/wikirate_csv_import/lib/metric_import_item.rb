@@ -10,6 +10,8 @@ class MetricImportItem < ImportItem
     # Metric Name Parts
     metric_designer: {}, # TODO: map when we support multi-type mapping
     metric_title: {},
+    scorer: { optional: true },
+    formula: { optional: true },
 
     wikirate_topic: { optional: true, map: true, separator: ";" },
 
@@ -20,6 +22,9 @@ class MetricImportItem < ImportItem
     #       "Note:" and "Sources:" are made bold
 
     value_type: {},
+    unit: { optional: true },
+    range: { optional: true },
+    hybrid: { optional: true },
 
     value_options: { optional: true, separator: ";" },
     report_type: { map: true, optional: true, separator: ";" },
