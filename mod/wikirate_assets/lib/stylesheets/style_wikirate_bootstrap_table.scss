@@ -39,8 +39,6 @@
 }
 
 .table.import-table {
-  table-layout: fixed;
-
   thead,tbody,tfoot {
     > tr > th, td {
       border-right-style: none
@@ -176,6 +174,7 @@ table.wikirate-table, .table.wikirate-table {
 }
 
 table.import-table {
+  table-layout: fixed;
   .mapped-import-cell a {
     color: $info;
   }

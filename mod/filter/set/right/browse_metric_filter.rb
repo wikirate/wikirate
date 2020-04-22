@@ -49,7 +49,7 @@ end
 
 format :csv do
   view :core do
-    rows = card.item_cards.map { |ic| nest ic, view: :line }
+    rows = search_with_params.map { |ic| nest ic, view: :line }
     rows.unshift(header).join
   end
 
