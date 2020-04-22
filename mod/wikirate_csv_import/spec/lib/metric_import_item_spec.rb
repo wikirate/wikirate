@@ -44,6 +44,14 @@ RSpec.describe MetricImportItem do
       expect(item.status_hash[:errors]).to be_blank
       expect(Card.fetch_type_id("Joe User+Policities")).to eq(Card::MetricID)
     end
+
+    it "works for score" do
+      item = import(metric_type: "Score",
+                    scorer: "Joe Admin",
+                    metric_title: "RM",
+                    value_type: "Number")
+      expect(item.status_hash[:errors]).to be_blank
+    end
   end
 
   # describe "#normalize_research_policy"

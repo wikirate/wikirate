@@ -5,8 +5,7 @@ module ImportItemSpecHelper
   end
 
   def item_object hash=nil
-    hash ||= item_hash
-    described_class.new hash
+    described_class.new item_hash(hash)
   end
 
   def validate item_hash=nil
