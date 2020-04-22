@@ -20,7 +20,7 @@ event :no_left_name_change, :prepare_to_validate,
 end
 
 event :check_length, :validate, on: :save, changed: :content do
-  errors.add :value, "too long (not more than 1000 characters)" if content.size >= 1000
+  errors.add :value, "too long (not more than 1000 characters)" if value.size >= 1000
 end
 
 event :reset_double_check_flag, :validate, on: [:update, :delete], changed: :content do
