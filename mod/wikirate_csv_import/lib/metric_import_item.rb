@@ -75,14 +75,20 @@ class MetricImportItem < ImportItem
   def import_hash
     r = @row.clone
     {
-      name: Card::Name[r.delete(:metric_designer),
-                       r.delete(:metric_title).gsub("/", "&#47;")],
+      name: metric_name(r),
       type_id: Card::MetricID,
       subfields: prep_subfields(r)
     }
   end
 
   private
+
+  def metric_name r
+    name_parts = [r.delete(:metric_designer), r.delete(:metric_title)]
+    scorer = r.delete(:scorer)
+    name_parts << scorer if scorer.present?
+    Card::Name[name_parts]
+  end
 
   def value_type_codes
     Card::Set::TypePlusRight::Metric::ValueType::VALUE_TYPE_CODES
