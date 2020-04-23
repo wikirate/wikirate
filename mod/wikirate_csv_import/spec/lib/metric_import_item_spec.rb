@@ -54,8 +54,6 @@ RSpec.describe MetricImportItem do
     end
   end
 
-  # describe "#normalize_research_policy"
-
   describe "#import_hash" do
     it "generates arguments for card creation" do
       item = validate

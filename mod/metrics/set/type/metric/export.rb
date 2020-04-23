@@ -56,7 +56,7 @@ format :csv do
   end
 
   view :line do
-    CSV.generate_line line_values
+    CSV.generate_line(line_values.map { |v| v.blank? ? nil : v })
     # , write_empty_value: nil (not supported until recently)
   end
 

@@ -16,10 +16,13 @@ RSpec.describe Card::Set::Abstract::Value::Edit do
       end
     end
 
-    context "with multi-category having more than 10 options" do
+    context "with multi-category having more than 40 options" do
       subject { editor "big multi" }
 
       it "has multi select input" do
+        # TODO: move the larger value option set into test data
+        Card["Joe User+big multi+:value_options"].content =
+          (1..50).map(&:to_s).to_pointer_content
         is_expected.to have_tag :select, with: { multiple: "multiple" } do
           with_tag :option, with: { value: "1", selected: "selected" }
           with_tag :option, with: { value: "2", selected: "selected" }
