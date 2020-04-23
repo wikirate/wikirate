@@ -13,9 +13,6 @@ module LookupTable
 
   def card_id
     send card_column
-  end
-
-  def card_id= id
     send "#{card_column}=", id
   end
 

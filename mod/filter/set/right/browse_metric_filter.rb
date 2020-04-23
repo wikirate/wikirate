@@ -57,5 +57,4 @@ format :csv do
     CSV.generate_line MetricImportItem.headers
     # Card.new(type: :metric).render_header
   end
-
 end

@@ -28,13 +28,12 @@ class MetricImportItem < ImportItem
 
     value_options: { optional: true, separator: ";" },
     report_type: { map: true, optional: true, separator: ";" },
-    research_policy: { map: true, separator: ";" },
+    research_policy: { map: true, separator: ";" }
   }
 
   VALUE_TYPE_CORRECTIONS = { "categorical" => :category.cardname }.freeze
 
   # @normalize = { topic: :comma_list_to_pointer }
-
 
   # FIXME: this currently drops unknown topics.
   # def normalize_topic value
@@ -100,8 +99,8 @@ class MetricImportItem < ImportItem
         .gsub(/<p>([^<]+)<br>/, "<p><strong>\\1</strong><br>")
         .gsub("Sources:", "<strong>Sources:</strong>")
 
-#        .gsub(/(<br><br>|^)([^<]+)(?=<br>)/) do |m|
-#      m.split(" ").size > 15 ? "#{m[1]}#{m[2]}" : "#{m[1]}<strong>#{m[2]}</strong>"
-#    end
+    #        .gsub(/(<br><br>|^)([^<]+)(?=<br>)/) do |m|
+    #      m.split(" ").size > 15 ? "#{m[1]}#{m[2]}" : "#{m[1]}<strong>#{m[2]}</strong>"
+    #    end
   end
 end
