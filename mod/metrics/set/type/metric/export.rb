@@ -29,8 +29,7 @@ format :json do
 end
 
 format :csv do
-# DEPRECATED.  +answer csv replaces following:
-  view :core do
+  view :core do # DEPRECATED.  +answer csv replaces this
     Answer.csv_title + Answer.where(metric_id: card.id).map(&:csv_line).join
   end
 
