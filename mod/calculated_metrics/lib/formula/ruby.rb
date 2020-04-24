@@ -29,7 +29,7 @@ module Formula
         allowed = translated ? FUNCTIONS.values : FUNCTIONS.keys
         cleaned = formula.clone
         allowed.each do |word|
-          cleaned = cleaned.gsub(word, "")
+          cleaned = cleaned&.gsub word, ""
         end
         cleaned
         # matcher = translated ? FUNC_VALUE_MATCHER : FUNC_KEY_MATCHER

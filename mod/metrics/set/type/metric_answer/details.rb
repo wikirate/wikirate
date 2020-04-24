@@ -12,8 +12,8 @@ format :html do
   def tab_options
     {
       details:          { label: "Answer" },
-      metric:           { label: "Metric" },
-      wikirate_company: { label: "Company" }
+      metric:           { label: "Metric", count: nil },
+      wikirate_company: { label: "Company", count: nil }
     }
   end
 

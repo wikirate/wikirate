@@ -34,4 +34,19 @@ RSpec.describe Card::Set::Type::Metric::Export do
         )
     end
   end
+
+  describe "CsvFormat" do
+    specify "view: header" do
+      expect_view(:header, format: :csv)
+        .to eq("Questions,Metric Type,Metric Designer,Metric Title,Scorer,Formula," \
+               "Topic,About,Methodology,Value Type,Unit,Range,Hybrid,Value Options," \
+               "Report Type,Research Policy\n")
+    end
+
+    specify "view: line" do
+      expect_view(:line, format: :csv, card: metric)
+        .to eq(",Researched,Joe User,researched number 2,,,,,,Number," \
+               ",,,,,Community Assessed\n")
+    end
+  end
 end

@@ -46,3 +46,15 @@ format :html do
       "Most Answers": :answer }.merge super
   end
 end
+
+format :csv do
+  view :core do
+    rows = search_with_params.map { |ic| nest ic, view: :line }
+    rows.unshift(header).join
+  end
+
+  def header
+    CSV.generate_line MetricImportItem.headers
+    # Card.new(type: :metric).render_header
+  end
+end

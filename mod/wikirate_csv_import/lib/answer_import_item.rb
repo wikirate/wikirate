@@ -13,9 +13,21 @@ class AnswerImportItem < ImportItem
     metric_card.create_answer_args translate_row_hash_to_create_answer_hash
   end
 
+  def normalize_value val
+    if Card[metric]&.try :categorical? # really only needed for multicategory...
+      val.split(";").compact.map(&:strip)
+    else
+      val
+    end
+  end
+
   def map_source val
     result = Card::Set::Self::Source.search val
-    result.first.id if result.size == 1
+    # result.first.id if result.size == 1
+    #
+    # FIXME: below is temporary solution to speed along FTI duplicates.
+    # above is preferable once we have matching.
+    result.first&.id
   end
 
   def translate_row_hash_to_create_answer_hash
@@ -23,6 +35,6 @@ class AnswerImportItem < ImportItem
     r[:company] = r.delete :wikirate_company
     r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
     r[:ok_to_exist] = true
-    r
+    prep_subfields r
   end
 end

@@ -2,7 +2,7 @@ include_set CategoryValue
 
 format :html do
   def input_type
-    options_count > 10 ? :multiselect : :checkbox
+    options_count > 40 ? :multiselect : :checkbox
   end
 end
 

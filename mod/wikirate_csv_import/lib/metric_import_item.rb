@@ -10,6 +10,8 @@ class MetricImportItem < ImportItem
     # Metric Name Parts
     metric_designer: {}, # TODO: map when we support multi-type mapping
     metric_title: {},
+    scorer: { optional: true },
+    formula: { optional: true },
 
     wikirate_topic: { optional: true, map: true, separator: ";" },
 
@@ -20,30 +22,18 @@ class MetricImportItem < ImportItem
     #       "Note:" and "Sources:" are made bold
 
     value_type: {},
+    unit: { optional: true },
+    range: { optional: true },
+    hybrid: { optional: true },
 
     value_options: { optional: true, separator: ";" },
-    research_policy: { map: true, optional: true, separator: ";" },
-    # supports "community", "designer", or full name, eg "Community Assessed"
-    report_type: { map: true, optional: true, separator: ";" }
-
+    report_type: { map: true, optional: true, separator: ";" },
+    research_policy: { map: true, separator: ";" }
   }
 
   VALUE_TYPE_CORRECTIONS = { "categorical" => :category.cardname }.freeze
 
   # @normalize = { topic: :comma_list_to_pointer }
-
-  # def normalize_research_policy value
-  #   policy =
-  #     case value
-  #     when /community/i
-  #       "Community Assessed"
-  #     when /designer/i
-  #       "Designer Assessed"
-  #     else
-  #       value
-  #     end
-  #   @row[:research_policy] = { content: policy, type_id: Card::PointerID }
-  # end
 
   # FIXME: this currently drops unknown topics.
   # def normalize_topic value
@@ -71,21 +61,20 @@ class MetricImportItem < ImportItem
     value_type_codes.include? value&.to_name&.code
   end
 
-  # def normalize_methodology value
-  #   return value unless value.present?
-  #   format_html to_html(value)
-  # end
+  def normalize_methodology value
+    return value unless value.present?
+    format_html to_html(value)
+  end
 
-  # def normalize_about value
-  #   return value unless value.present?
-  #   format_html to_html(value)
-  # end
+  def normalize_about value
+    return value unless value.present?
+    format_html to_html(value)
+  end
 
   def import_hash
     r = @row.clone
     {
-      name: Card::Name[r.delete(:metric_designer),
-                       r.delete(:metric_title).gsub("/", "&#47;")],
+      name: metric_name(r),
       type_id: Card::MetricID,
       subfields: prep_subfields(r)
     }
@@ -93,17 +82,25 @@ class MetricImportItem < ImportItem
 
   private
 
+  def metric_name r
+    name_parts = [r.delete(:metric_designer), r.delete(:metric_title)]
+    scorer = r.delete(:scorer)
+    name_parts << scorer if scorer.present?
+    Card::Name[name_parts]
+  end
+
   def value_type_codes
     Card::Set::TypePlusRight::Metric::ValueType::VALUE_TYPE_CODES
   end
 
-  # def format_html html
-  #   html.gsub(/\b(OR|AND)\b/, "<strong>\\1</strong>")
-  #     .gsub(/Note:([^<]+)<br>/, "<em><strong>Note:</strong>\\1</em><br>")
-  #     .gsub(/<p>([^<]+)<br>/, "<p><strong>\\1</strong><br>")
-  #     .gsub("Sources:", "<strong>Sources:</strong>")
-  #     .gsub(/(<br><br>|^)([^<]+)(?=<br>)/) do |m|
-  #     m.split(" ").size > 15 ? "#{m[1]}#{m[2]}" : "#{m[1]}<strong>#{m[2]}</strong>"
-  #   end
-  # end
+  def format_html html
+    html.gsub(/\b(OR|AND)\b/, "<strong>\\1</strong>")
+        .gsub(/Note:([^<]+)<br>/, "<em><strong>Note:</strong>\\1</em><br>")
+        .gsub(/<p>([^<]+)<br>/, "<p><strong>\\1</strong><br>")
+        .gsub("Sources:", "<strong>Sources:</strong>")
+
+    #        .gsub(/(<br><br>|^)([^<]+)(?=<br>)/) do |m|
+    #      m.split(" ").size > 15 ? "#{m[1]}#{m[2]}" : "#{m[1]}<strong>#{m[2]}</strong>"
+    #    end
+  end
 end

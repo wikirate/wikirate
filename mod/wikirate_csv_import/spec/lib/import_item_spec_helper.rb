@@ -4,18 +4,17 @@ module ImportItemSpecHelper
     default_item_hash.merge args
   end
 
-  def item_object hash=nil
-    hash ||= item_hash
-    described_class.new hash
+  def item_object hash={}
+    described_class.new item_hash(hash)
   end
 
-  def validate item_hash=nil
+  def validate item_hash={}
     item = item_object item_hash
     item.validate!
     item
   end
 
-  def import item_hash=nil
+  def import item_hash={}
     item = item_object item_hash
     item.import
     item

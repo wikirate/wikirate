@@ -103,9 +103,9 @@ table.wikirate-table, .table.wikirate-table {
   }
 
   .thumbnail {
-        border: 0;
-        margin: 0;
-        padding: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -119,6 +119,9 @@ table.wikirate-table, .table.wikirate-table {
   @include media-breakpoint-down(sm) {
     .metric-list-header {
       margin-left: 0 !important;
+    }
+    .thumbnail-with-bookmark .bookmark-view {
+      display: none;
     }
   }
 }
@@ -174,6 +177,7 @@ table.wikirate-table, .table.wikirate-table {
 }
 
 table.import-table {
+  table-layout: fixed;
   .mapped-import-cell a {
     color: $info;
   }
@@ -219,7 +223,6 @@ table.import-status-table {
     max-width: 200px;
   }
 }
-
 
 td .pointer-list {
   // needed to align on company pages the jurisdictions table

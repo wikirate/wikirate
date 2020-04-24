@@ -16,7 +16,7 @@ RSpec.describe MetricImportItem do
       # TODO: map when we support (optional) multi-value mapping
 
       # Rich-Text fields
-      about: "about policies",
+      about: "Note: about policies\n",
       methodology: "policy methodology",
       # Note: special html is added for certain content, eg
       #       "Note:" and "Sources:" are made bold
@@ -44,14 +44,19 @@ RSpec.describe MetricImportItem do
       expect(item.status_hash[:errors]).to be_blank
       expect(Card.fetch_type_id("Joe User+Policities")).to eq(Card::MetricID)
     end
-  end
 
-  # describe "#normalize_research_policy"
+    it "works for score" do
+      item = import(metric_type: "Score",
+                    scorer: "Joe Admin",
+                    metric_title: "RM",
+                    value_type: "Number")
+      expect(item.status_hash[:errors]).to be_blank
+    end
+  end
 
   describe "#import_hash" do
     it "generates arguments for card creation" do
       item = validate
-      puts item.import_hash
       expect(item.import_hash)
         .to include(name: "Joe User+Policities",
                     type_id: Card::MetricID,
@@ -63,14 +68,24 @@ RSpec.describe MetricImportItem do
 
     it "handles unmapped multi-value fields" do
       item = validate
-      expect(item.import_hash[:subfields][:value_options])
-        .to eq(content: %w[A B C])
+      expect(subfield(item, :value_options)).to eq(content: %w[A B C])
     end
 
     it "handles multi-value fields" do
       item = validate
-      expect(item.import_hash[:subfields][:wikirate_topic])
-        .to eq(content: %w[Force Taming])
+      expect(subfield(item, :wikirate_topic)).to eq(content: %w[Force Taming])
     end
+  end
+
+  describe "#format_html" do
+    it "makes 'Note' bold" do
+      item = validate
+      expect(subfield(item, :about))
+        .to eq("<em><strong>Note:</strong> about policies</em><br>\n")
+    end
+  end
+
+  def subfield item, column
+    item.import_hash[:subfields][column]
   end
 end

@@ -29,6 +29,10 @@
 @include projectbar(metric, $company-color);
 @include projectbar(company, $metric-color);
 
+.bar-right > .progress {
+  width: 100%;
+}
+
 .progress {
   .progress-known, .progress-unknown {
     a {

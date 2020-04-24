@@ -19,13 +19,10 @@ rescue JSON::ParserError => _e
 end
 
 def complete_translation_table
-  translation = translation_table
-  all_options = metric_card.value_options
-  if all_options
-    missing_options = all_options - translation_hash.keys
-    translation += missing_options.map { |opt| [opt, ""] }
+  current_mapping = translation_hash
+  metric_card.value_options.map do |option|
+    [option, current_mapping[option]]
   end
-  translation
 end
 
 format :html do
