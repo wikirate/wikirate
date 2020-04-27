@@ -124,7 +124,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
     specify do
       is_expected.to have_tag "table" do
-        with_tag "th", text: "Original Metric"
+        with_tag "th", text: "Scored Metric"
         with_tag "th", text: "Value"
 
         with_tag "td" do

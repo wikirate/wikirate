@@ -36,6 +36,12 @@ end
 
 # MISCELLANEOUS METHODS
 
+def scored_answer_card
+  return self unless metric_type == :score
+
+  metric_card&.basic_metric_card&.field(company)&.field(year)
+end
+
 # so that all fields show up in history
 # (not needed when they can be identified via a more conventional form)
 def history_card_ids

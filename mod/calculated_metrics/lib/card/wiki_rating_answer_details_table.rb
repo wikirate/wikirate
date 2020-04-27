@@ -33,5 +33,10 @@ class Card
     def pretty_score score_card
       score_card.value_card.format.render_ten_scale
     end
+
+    def link_to_answer answer
+      answer = answer.scored_answer_card if answer.metric_card.score?
+      super answer
+    end
   end
 end

@@ -25,6 +25,8 @@ class Card
                            class: "metric-value _update-details"
     end
 
+    # category scores have a row for each of the metric's value options.
+    # Option objects help track their state.
     class Option
       attr_reader :table_builder
 
@@ -33,13 +35,13 @@ class Card
         @option = option
         @value = value
       end
-      
+
       delegate :checked_options, :link_to_answer, :icon_tag, to: :table_builder
-      
+
       def table_row_hash
         { content: table_row_content, class: table_row_class }
       end
-      
+
       def table_row_content
         ["#{icon_tag checked?} #{option_content}", @value]
       end
@@ -51,7 +53,7 @@ class Card
       def checked?
         checked_options.include? @option
       end
-      
+
       def table_row_class
         "score-option score-option-#{checked? ? :checked : :unchecked}"
       end
