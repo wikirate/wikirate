@@ -34,12 +34,6 @@ def content_from_value value
   Array.wrap(::Answer.value_from_lookup(value, value_type_code)).join "\n"
 end
 
-def raw_answer_card
-  return self unless metric_type == :score
-
-  metric_card&.basic_metric_card&.field(company)&.field(year)
-end
-
 # MISCELLANEOUS METHODS
 
 # so that all fields show up in history

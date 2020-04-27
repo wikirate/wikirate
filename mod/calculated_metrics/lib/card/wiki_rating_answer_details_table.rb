@@ -4,7 +4,7 @@ class Card
     @columns = %w[Metric Input Score Weight Points]
 
     def table_rows
-      @format.card.metric_card.formula_card.translation_table.map do |card_name, weight|
+      metric_card.formula_card.translation_table.map do |card_name, weight|
         metric_row(Card.fetch(card_name), weight.to_f)
       end
     end
