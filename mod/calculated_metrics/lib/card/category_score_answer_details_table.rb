@@ -3,7 +3,7 @@ class Card
   class CategoryScoreAnswerDetailsTable < AbstractAnswerDetailsTable
     @columns = ["Scored Option", "Value"]
 
-    ICON_MAP = { true => "check-circle", false => "circle" }.freeze
+    ICON_MAP = { true => "check-circle", false => "circle-o" }.freeze
 
     def table_rows
       metric_card.formula_card.translation_table.map do |option, value|
