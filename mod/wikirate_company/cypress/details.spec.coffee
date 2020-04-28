@@ -55,5 +55,3 @@ describe "expanding details on company pages", ->
 
     # details tab visible again
     cy.contains("Integrations")
-
-
