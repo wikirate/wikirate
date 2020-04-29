@@ -5,9 +5,28 @@ class Card
     # @param format [Card::Format] the format of a card of
     #    cardtype "metric value" (=answer)
     def initialize format
-      metric_type = format.card.metric_card.metric_type_codename.to_s.camelize
-      table_class = Card.const_get "#{metric_type}AnswerDetailsTable"
+      @format = format
       @table = table_class.new format
+    end
+
+    def metric_card
+      @metric_card ||= @format.card.metric_card
+    end
+
+    def metric_type
+      @metric_type ||= metric_card.metric_type_codename
+    end
+
+    def table_class
+      Card.const_get "#{table_class_base}AnswerDetailsTable"
+    end
+
+    def table_class_base
+      metric_type == :score ? score_table_class_base : metric_type.to_s.camelize
+    end
+
+    def score_table_class_base
+      metric_card.categorical? ? "CategoryScore" : "FormulaScore"
     end
 
     def render

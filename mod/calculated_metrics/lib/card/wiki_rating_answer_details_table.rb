@@ -4,7 +4,7 @@ class Card
     @columns = %w[Metric Input Score Weight Points]
 
     def table_rows
-      @format.card.metric_card.formula_card.translation_table.map do |card_name, weight|
+      metric_card.formula_card.translation_table.map do |card_name, weight|
         metric_row(Card.fetch(card_name), weight.to_f)
       end
     end
@@ -32,6 +32,11 @@ class Card
 
     def pretty_score score_card
       score_card.value_card.format.render_ten_scale
+    end
+
+    def link_to_answer answer
+      answer = answer.scored_answer_card if answer.metric_card.score?
+      super answer
     end
   end
 end

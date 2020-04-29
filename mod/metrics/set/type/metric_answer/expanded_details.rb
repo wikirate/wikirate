@@ -76,7 +76,13 @@ format :html do
   # ~~~~~ SCORE AND WIKIRATING DETAILS
 
   view :expanded_score_details, cache: :never do
-    wrap_expanded_details { answer_details_table }
+    wrap_expanded_details do
+      if metric_card.categorical?
+        answer_details_table
+      else
+        [answer_details_table, calculation_details]
+      end
+    end
   end
 
   view :expanded_wiki_rating_details, cache: :never do

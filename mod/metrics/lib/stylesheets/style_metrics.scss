@@ -600,3 +600,15 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   cursor: inherit;
 }
 
+.score-option {
+  &.score-option-checked {
+    font-weight: bold;
+  }
+  &.score-option-unchecked {
+    color: $gray-500;
+  }
+  i {
+    margin-right: 0.5em;
+    font-size: 1.2em;
+  }
+}
