@@ -42,9 +42,60 @@ def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
 end
 
-# "researched" as in the status, not the metric type(s)
 def all_answers
-  Answer.where company_id: id
+  # DEPRECATED
+  answers
+end
+
+# @return [Answer]
+def latest_answer metric
+  answers(metric: metric, latest: true).first
+end
+
+# @return [Answer::ActiveRecord_Relation]
+def answers args={}
+  args[:company_id] = id
+  normalize_metric_arg args
+  Answer.where args
+end
+
+# @return [Relationship::ActiveRecord_Relation]
+def relationships args={}
+  args[:subject_company_id] = id
+  normalize_metric_arg args
+  Relationship.where args
+end
+
+# @return [Relationship::ActiveRecord_Relation]
+def inverse_relationships args={}
+  args[:object_company_id] = id
+  normalize_metric_arg args
+  Relationship.where args
+end
+
+# @return [Array] of Cards
+def related_companies args={}
+  prefix =  args.delete(:inverse) ? "inverse_" : ""
+  method = "#{prefix}related_company_ids"
+  send(method, args).map { |company_id| Card[company_id] }
+end
+
+# @return [Array] of Integers
+def related_company_ids args={}
+  relationships(args).distinct.pluck :object_company_id
+end
+
+# @return [Array] of Integers
+def inverse_related_company_ids args={}
+  relationships(args).distinct.pluck :subject_company_id
+end
+
+private
+
+def normalize_metric_arg args={}
+  return unless (metric = args.delete :metric)
+
+  args[:metric_id] = Card.fetch_id metric
 end
 
 # DEPRECATED.  +answer csv replaces following:
