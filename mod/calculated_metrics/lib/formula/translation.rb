@@ -6,6 +6,10 @@ module Formula
       super
     end
 
+    def to_lambda
+      super.downcase
+    end
+
     def get_value input, _company, _year
       if input.size > 1
         raise Card::Error, "translate formula with more than one metric involved"
