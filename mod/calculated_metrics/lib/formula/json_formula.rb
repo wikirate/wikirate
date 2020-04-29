@@ -2,7 +2,10 @@ module Formula
   # The common ground of Translations and WikiRatings formula
   class JsonFormula < Calculator
     def to_lambda
-      @parser.formula.downcase
+      @parser.formula # .downcase
+
+      # NOTE: downcasing broke wikiratings where the json key is a card name and
+      # downcasing changes the card's key.  Eg 4A -> 4_A, but 4a -> 4a
     end
 
     # Is this the right class for this formula?

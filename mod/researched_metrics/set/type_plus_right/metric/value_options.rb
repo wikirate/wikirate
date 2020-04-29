@@ -29,6 +29,10 @@ format :html do
     :name
   end
 
+  def default_limit
+    50
+  end
+
   view :core do
     filtering(".RIGHT-answer ._filter-widget") do
       super()
