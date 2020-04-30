@@ -1,5 +1,5 @@
 def new_relic_label
-
+  codename ? "browse_#{codename}" : super
 end
 
 format :html do
