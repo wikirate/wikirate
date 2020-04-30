@@ -36,27 +36,31 @@ module Formula
             def translate_years years
               if @offsets.empty?
                 (@fixed - years).empty? ? all_years : []
+              elsif @fixed.present? && (@fixed - years).present?
+                []
               else
-                return [] if @fixed.present? && (@fixed - years).present?
-
-                year_set = ::Set.new years
-                years = years.sort
-
-                # Example: offsets = [-3, -2, 1]
-                #          years   = [2000, 2001, 2004]
-                diffs = @offsets.sort
-                first = diffs.shift
-                diffs.map! { |n| n - first } # differences compared to the first offset
-                # Example:  diffs = [1, 4]
-                result = []
-                0.upto(years.size - diffs.size) do |i|
-                  # Example:
-                  #      << 2000 - (-3) = 2003 is the only year for which the offsets
-                  #                            match to the given years
-                  result << years[i] - first if years_suit? years[i], diffs, year_set
-                end
-                result
+                translate_nonstandard_years years
               end
+            end
+
+            def translate_nonstandard_years years
+              year_set = ::Set.new years
+              years = years.sort
+
+              # Example: offsets = [-3, -2, 1]
+              #          years   = [2000, 2001, 2004]
+              diffs = @offsets.sort
+              first = diffs.shift
+              diffs.map! { |n| n - first } # differences compared to the first offset
+              # Example:  diffs = [1, 4]
+              result = []
+              0.upto(years.size - diffs.size) do |i|
+                # Example:
+                #      << 2000 - (-3) = 2003 is the only year for which the offsets
+                #                            match to the given years
+                result << years[i] - first if years_suit? years[i], diffs, year_set
+              end
+              result
             end
 
             def years_suit? start_year, diffs, years
