@@ -16,6 +16,10 @@ event :add_supertopics, :prepare_to_store do
 end
 
 format :html do
+  def default_limit
+    50
+  end
+
   def default_item_view
     :link
   end
