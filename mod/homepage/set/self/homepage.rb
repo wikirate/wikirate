@@ -1,5 +1,9 @@
 include_set Abstract::SolidCache, cached_format: :html
 
+def new_relic_label
+  "home"
+end
+
 cache_expire_trigger Card::Set::All::ActiveCard do |_changed_card|
   Card[:homepage]
 end

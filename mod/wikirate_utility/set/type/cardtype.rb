@@ -1,3 +1,7 @@
+def new_relic_label
+
+end
+
 format :html do
   view :add_link do
     add_link modal: false
