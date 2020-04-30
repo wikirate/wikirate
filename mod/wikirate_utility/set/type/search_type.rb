@@ -1,3 +1,3 @@
 def new_relic_label
-  codename || (junction? ? name.right_name : name)
+  codename || (junction? ? "R_#{name.right_name.key}" : name.key)
 end

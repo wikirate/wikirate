@@ -1,5 +1,9 @@
 include_set Abstract::Media
 
+def new_relic_label
+  codename
+end
+
 format :html do
   def layout_name_from_rule
     :wikirate_two_column_layout
