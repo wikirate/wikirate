@@ -75,7 +75,7 @@ end
 
 # @return [Array] of Cards
 def related_companies args={}
-  prefix =  args.delete(:inverse) ? "inverse_" : ""
+  prefix = args.delete(:inverse) ? "inverse_" : ""
   method = "#{prefix}related_company_ids"
   send(method, args).map { |company_id| Card[company_id] }
 end

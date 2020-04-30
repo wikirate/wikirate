@@ -51,7 +51,6 @@ def normalize_company_arg key, args={}
   args[key] = Card.fetch_id company
 end
 
-
 # def answer_card company, year
 #   field(company)&.field(year.to_s)
 # end
