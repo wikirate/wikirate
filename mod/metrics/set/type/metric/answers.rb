@@ -1,18 +1,13 @@
-# DEPRECATED
-def all_answers
-  answers
-end
-
-# @return [Answer]
-def latest_answer company
-  answers(company: company, latest: true).first
-end
-
 # @return [Answer::ActiveRecord_Relation]
 def answers args={}
   args[:metric_id] = id
   normalize_company_arg :company_id, args
   Answer.where args
+end
+
+# @return [Answer]
+def latest_answer company
+  answers(company: company, latest: true).take
 end
 
 # @return [Array] of Integers
@@ -31,7 +26,7 @@ def answer_ids args={}
 end
 
 def random_answer_card
-  Answer.search(metric_id: id, limit: 1).first
+  answers.take
 end
 
 def answer_for company, year

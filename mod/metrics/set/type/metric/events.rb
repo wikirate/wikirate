@@ -47,9 +47,9 @@ event :silence_metric_deletions, :initialize, on: :delete do
   @silent_change = true
 end
 
-event :delete_all_answers, :prepare_to_validate, on: :update, trigger: :required do
+event :delete_answers, :prepare_to_validate, on: :update, trigger: :required do
   if Card::Auth.always_ok? # TODO: come up with better permissions scheme for this!
-    all_answers.each { |answer_card| delete_as_subcard answer_card }
+    answers.each { |answer_card| delete_as_subcard answer_card }
   else
     errors.add :answers, "only admins can delete all answers"
   end

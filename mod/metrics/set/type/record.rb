@@ -5,8 +5,8 @@ def answer_query
   @answer_query ||= { company_id: company_id, metric_id: metric_id }
 end
 
-def all_answers
-  @all_answers ||= Answer.search answer_query.merge(sort_by: :year,
+def answers
+  @answers ||= Answer.search answer_query.merge(sort_by: :year,
                                                            sort_order: :desc)
 end
 
@@ -19,7 +19,7 @@ def virtual?
 end
 
 format do
-  delegate :all_answers, to: :card
+  delegate :answers, to: :card
 end
 
 format :html do
@@ -54,7 +54,7 @@ format :html do
 
   # NOCACHE because item search
   view :years_and_values, cache: :never, unknown: true do
-    card.all_answers.map do |a|
+    card.answers.map do |a|
       nest a, view: :year_and_value
     end
   end
@@ -70,7 +70,7 @@ end
 
 format :csv do
   view :core do
-    all_answers.each_with_object("") do |a, res|
+    answers.each_with_object("") do |a, res|
       res << CSV.generate_line([a.company, a.year, a.value])
     end
   end
@@ -78,6 +78,6 @@ end
 
 format :json do
   def item_cards
-    all_answers
+    answers
   end
 end

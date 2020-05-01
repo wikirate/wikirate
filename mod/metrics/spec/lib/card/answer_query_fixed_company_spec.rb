@@ -44,7 +44,7 @@ RSpec.describe Card::AnswerQuery do
      "Victims by Employees+1977", "RM+1977", "researched number 1+1977"]
   end
 
-  def unall_answers year=Time.now.year
+  def unanswers year=Time.now.year
     with_year unresearched_metric_keys, year
   end
 
@@ -53,7 +53,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   # @return [Array] of metric_title(+scorer)+year strings
-  def answers list
+  def short_answers list
     list.map do |a|
       [a.name.parts[1..-3], a.name.parts.last].flatten.join "+"
     end
@@ -66,7 +66,7 @@ RSpec.describe Card::AnswerQuery do
   # @return [Array] of metric_title(+scorer)+year strings
   def filter_by filter, latest=true
     filter.reverse_merge! year: :latest if latest
-    answers run_query filter, sort_by: :metric_name
+    short_answers run_query filter, sort_by: :metric_name
   end
 
   # @return [Array] of answer cards
@@ -179,7 +179,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     context "with status" do
-      let :all_answers do
+      let :answers do
         latest_answers + with_year(["researched number 2", "researched number 3",
                                     "small multi", "small single"])
       end
@@ -192,13 +192,13 @@ RSpec.describe Card::AnswerQuery do
 
       context "when :none" do
         it "finds not researched" do
-          expect(filter_by(status: :none)).to contain_exactly(*unall_answers)
+          expect(filter_by(status: :none)).to contain_exactly(*unanswers)
         end
       end
 
       it "finds all values" do
         filtered = filter_by(status: :all)
-        expect(filtered).to include(*all_answers)
+        expect(filtered).to include(*answers)
         expect(filtered.size)
           .to eq Card.search(type_id: Card::MetricID, return: :count)
       end
@@ -256,7 +256,7 @@ RSpec.describe Card::AnswerQuery do
   context "with multiple filter conditions" do
     context "with filter for missing values and ..." do
       it "... year" do
-        nr2001 = unall_answers(2001) + with_year(
+        nr2001 = unanswers(2001) + with_year(
           ["Victims by Employees", "cost of planets destroyed",
            "darkness rating", "deadliness", "deadliness+Joe Camel",
            "deadliness+Joe User", "dinosaurlabor", "friendliness",
@@ -372,7 +372,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "sorts by bookmarkers" do
-      actual = answers sort_by(:bookmarkers, :desc)
+      actual = short_answers sort_by(:bookmarkers, :desc)
       expected = latest_answers_by_bookmarks
 
       bookmarked = (0..1)

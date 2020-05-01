@@ -9,6 +9,8 @@ module Formula
            AllTrue AnyTrue NoneTrue
            Sort SortBy
            Take TakeLargest TakeSmallest TakeLargestBy TakeSmallestBy
+           AllTrue AnyTrue NoneTrue
+           ContainsAll ContainsNone ContainsAny ContainsOnly ContainsExactly
            Mean Variance StandardDeviation Median Quantile Covariance] +
           Formula::Ruby::FUNCTIONS.keys
       ).freeze
