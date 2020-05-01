@@ -13,6 +13,10 @@ def answer_lookup_field
   :answer_id
 end
 
+def inverse_company_id_field
+  :object_company_id
+end
+
 event :ensure_inverse, :validate, on: :create do
   return if new_inverse_title.present? || inverse_title.present?
   errors.add :name, "no inverse title given"

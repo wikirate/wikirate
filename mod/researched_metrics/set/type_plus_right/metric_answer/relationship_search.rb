@@ -58,7 +58,7 @@ def inverse?
 end
 
 def other_company_id_field
-  inverse? ? :subject_company_id : :object_company_id
+  metric_card.inverse_company_id_field
 end
 
 format :html do
