@@ -53,7 +53,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   # @return [Array] of metric_title(+scorer)+year strings
-  def answers list
+  def short_answers list
     list.map do |a|
       [a.name.parts[1..-3], a.name.parts.last].flatten.join "+"
     end
@@ -66,7 +66,7 @@ RSpec.describe Card::AnswerQuery do
   # @return [Array] of metric_title(+scorer)+year strings
   def filter_by filter, latest=true
     filter.reverse_merge! year: :latest if latest
-    answers run_query filter, sort_by: :metric_name
+    short_answers run_query filter, sort_by: :metric_name
   end
 
   # @return [Array] of answer cards
@@ -372,7 +372,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "sorts by bookmarkers" do
-      actual = answers sort_by(:bookmarkers, :desc)
+      actual = short_answers sort_by(:bookmarkers, :desc)
       expected = latest_answers_by_bookmarks
 
       bookmarked = (0..1)

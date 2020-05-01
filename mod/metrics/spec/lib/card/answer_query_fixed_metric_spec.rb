@@ -20,7 +20,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   # @return [Array] of company+year strings
-  def answers list
+  def short_answers list
     list.map { |a| "#{a.company_name}+#{a.year}" }
   end
 
@@ -41,7 +41,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   def run_query filter, sort={}
-    answers described_class.new(filter.merge(metric_id: metric.id), sort).run
+    short_answers described_class.new(filter.merge(metric_id: metric.id), sort).run
   end
 
   context "with single filter condition" do

@@ -1,7 +1,7 @@
 def all_dependent_answer_ids
   ids = answer_ids
   each_dependent_metric do |m|
-    ids += m.answers_ids
+    ids += m.answer_ids
   end
   ids
 end

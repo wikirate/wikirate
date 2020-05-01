@@ -26,7 +26,7 @@ def answer_ids args={}
 end
 
 def random_answer_card
-  Answer.search(metric_id: id, limit: 1).first
+  answers.take
 end
 
 def answer_for company, year
