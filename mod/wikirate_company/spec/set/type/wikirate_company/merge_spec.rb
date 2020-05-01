@@ -13,17 +13,17 @@ RSpec.describe Card::Set::Type::WikirateCompany::Json do
   end
 
   def expect_answers_to_move
-    expect(company.all_answers.count).to eq(2)
-    expect(target.all_answers.count).to eq(9)
+    expect(company.answers.count).to eq(2)
+    expect(target.answers.count).to eq(9)
     yield
-    expect(company.all_answers.count).to eq(1) # there is one conflicting answer
-    expect(target.all_answers.count).to eq(10)
+    expect(company.answers.count).to eq(1) # there is one conflicting answer
+    expect(target.answers.count).to eq(10)
   end
 
-  describe "#move_all_answers_to" do
+  describe "#move_answers_to" do
     it "should move non-conflicting answers from source to target company" do
       expect_answers_to_move do
-        company.move_all_answers_to target.name
+        company.move_answers_to target.name
       end
     end
 

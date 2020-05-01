@@ -29,7 +29,7 @@ end
 # but calculated answers don't have cards, so this has to happen via a company
 event :refresh_renamed_company_answers, :integrate,
       on: :update, changed: :name, after_subcards: true do
-  all_answers.where.not(company_name: name).each do |answer|
+  answers.where.not(company_name: name).each do |answer|
     answer.refresh :record_name, :company_name
   end
 end
@@ -40,11 +40,6 @@ end
 
 def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
-end
-
-def all_answers
-  # DEPRECATED
-  answers
 end
 
 # @return [Answer]
@@ -101,6 +96,6 @@ end
 # DEPRECATED.  +answer csv replaces following:
 format :csv do
   view :core do
-    Answer.csv_title + card.all_answers.map(&:csv_line).join
+    Answer.csv_title + card.answers.map(&:csv_line).join
   end
 end
