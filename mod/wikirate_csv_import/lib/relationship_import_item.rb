@@ -2,25 +2,12 @@
 # require_relative "../../../spec/source_helper"
 
 # This class provides an interface to import relationship answers
-class RelationshipImportItem < ImportItem
-  @columns = %i[designer title company related_company year value source]
-
-  def initialize row, index, import_manager=nil
-    super
-    @row[:metric] = metric
-  end
-
-  def import_company _company_key=:company
-    ImportLog.debug "  importing company:"
-    @row[:company] = super(:company)
-    ImportLog.debug "  #{@row[:company]}"
-    ImportLog.debug "  importing related company:"
-    @row[:related_company] = super(:related_company).tap do |ret|
-      ImportLog.debug "  #{ret}"
-    end
-  end
-
-  def metric
-    @metric ||= "#{designer}+#{title}"
-  end
+class RelationshipImportItem < AnswerImportItem
+  @columns = { metric: { map: true },
+               subject_company: { map: true, type: :wikirate_company },
+               object_company: { map: true, type: :wikirate_company },
+               year: { map: true },
+               value: {},
+               source: { map: true, separator: ";" },
+               comment: { optional: true } }
 end

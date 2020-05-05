@@ -25,6 +25,11 @@ event :update_company_matcher, :integrate_with_delay, on: :create do
   CompanyMatcher.add_to_mapper id, name
 end
 
+event :delete_all_company_answers, :integrate, on: :delete do
+  # answers.delete_all
+  # TODO: skip answer deletion events on +value cards...
+end
+
 # note: for answers with cards, this happens via answer events,
 # but calculated answers don't have cards, so this has to happen via a company
 event :refresh_renamed_company_answers, :integrate,

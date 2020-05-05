@@ -9,7 +9,7 @@ class Card
     end
 
     def table_rows
-      calculator.input_data(company, year).map do |input_card, input, year_option|
+      calculator.input_data(company, year).uniq.map do |input_card, input, year_option|
         metric_row input_card, input, year_option
       end
     end
