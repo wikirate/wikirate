@@ -32,9 +32,13 @@ class AnswerImportItem < ImportItem
 
   def translate_row_hash_to_create_answer_hash
     r = @row.clone
-    r[:company] = r.delete :wikirate_company
+    translate_company_args r
     r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
     r[:ok_to_exist] = true
     prep_subfields r
+  end
+
+  def translate_company_args item
+    item[:company] = item.delete :wikirate_company
   end
 end

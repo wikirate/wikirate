@@ -14,30 +14,27 @@ RSpec.describe AnswerImportItem do
     }
   end
 
-  def answer_name args={}
-    args = args.is_a?(Symbol) ? send(args) : item_hash(args)
-    Card::Name[args[:metric], args[:wikirate_company], args[:year]]
-  end
+  let(:item_name_parts) { %i[metric wikirate_company year] }
 
   specify "answer doesn't exist" do
-    expect(Card[answer_name]).not_to be_a Card
+    expect(Card[item_name]).not_to be_a Card
   end
 
   describe "#execute_import" do
     example "creates answer card with valid data", as_bot: true do
       import
-      expect_card(answer_name).to exist
+      expect_card(item_name).to exist
     end
 
-    example "updates answer with" do
-      args = { wikirate_company: "Death Star", year: "2000" } #existing answer
+    example "updates existing answer" do
+      args = { wikirate_company: "Death Star", year: "2000" } # existing answer
       import args
-      expect(Card[answer_name(args)]).to be_real
+      expect(Card[item_name(args)]).to be_real
     end
 
     # example "existing source" do
     #   import existing_source do
-    #     expect(Card[answer_name].source_card.first]).to be_real
+    #     expect(Card[item_name].source_card.first]).to be_real
     #   end
     # end
 

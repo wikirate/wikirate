@@ -25,6 +25,7 @@ class MetricImportItem < ImportItem
     unit: { optional: true },
     range: { optional: true },
     hybrid: { optional: true },
+    inverse_title: { optional: true },
 
     value_options: { optional: true, separator: ";" },
     report_type: { map: true, optional: true, separator: ";" },

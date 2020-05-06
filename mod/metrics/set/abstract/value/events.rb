@@ -32,7 +32,7 @@ event :reset_double_check_flag, :validate, on: [:update, :delete], changed: :con
 end
 
 event :save_overridden_calculated_value, :prepare_to_store,
-      on: :create, changed: :content, when: :overridden_value? do
+      on: :create, when: :overridden_value? do
   add_subcard [name.left, :overridden_value], content: left.answer.value, type: :phrase
 end
 
@@ -41,6 +41,12 @@ event :mark_as_imported, before: :finalize_action, when: :import_act? do
 end
 
 private
+
+# FIXME: this test would return true for a calculated value card.
+# (but is so far only used on new cards, I think)
+def overridden_value?
+  metric_card.calculated? && left&.answer&.virtual?
+end
 
 # in some cases, deleting a metric can lead to its scores getting deleted
 # and losing their metric modules before a save is finalized.

@@ -12,10 +12,6 @@ def unknown_value?
   Answer.unknown? content
 end
 
-def overridden_value?
-  left&.answer&.virtual?
-end
-
 def metric_key
   metric.to_name.key
 end

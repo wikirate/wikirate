@@ -10,4 +10,10 @@ class RelationshipImportItem < AnswerImportItem
                value: {},
                source: { map: true, separator: ";" },
                comment: { optional: true } }
+
+  def translate_company_args item
+    item[:company] = item.delete :subject_company
+    item[:related_company] = item.delete :object_company
+  end
 end
+
