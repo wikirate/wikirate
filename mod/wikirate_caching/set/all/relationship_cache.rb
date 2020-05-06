@@ -19,7 +19,7 @@ def update_relationships_now_or_later ids
   if act_finished_integrate_stage?
     Relationship.update_by_ids ids
   else
-    ActManager.act_card.act_based_refresh_of_relationship_lookup_entry ids
+    act_card.act_based_refresh_of_relationship_lookup_entry ids
   end
 end
 

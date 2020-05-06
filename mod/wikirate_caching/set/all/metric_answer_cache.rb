@@ -17,7 +17,7 @@ def update_answers_now_or_later ids
   if act_finished_integrate_stage?
     Answer.update_by_ids ids
   else
-    ActManager.act_card.act_based_refresh_of_answer_lookup_entry ids
+    act_card.act_based_refresh_of_answer_lookup_entry ids
   end
 end
 
@@ -32,8 +32,8 @@ def answer_ids_to_update id, answer_id, metric_id
 end
 
 def act_finished_integrate_stage?
-  !ActManager.act_card.director.stage ||
-    ActManager.act_card.director.finished_stage?(:integrate)
+  dir = act_card.director
+  !dir.stage || dir.finished_stage?(:integrate)
 end
 
 def act_based_refresh_of_answer_lookup_entry ids
