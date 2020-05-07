@@ -16,4 +16,3 @@ class RelationshipImportItem < AnswerImportItem
     item[:related_company] = item.delete :object_company
   end
 end
-
