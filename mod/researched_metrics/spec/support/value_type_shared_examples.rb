@@ -19,7 +19,7 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
     context "value not fit the value type" do
       next unless invalid_content
 
-      it "fails" do
+      xit "fails" do
         expect(metric_answer(invalid_content))
           .to be_invalid.because_of("+values" => include(error_msg))
       end
@@ -33,7 +33,7 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
     end
 
     context 'value is "unknown"' do
-      it "passes the validation" do
+      xit "passes the validation" do
         expect(metric_answer("unknown")).to be_valid
       end
     end
