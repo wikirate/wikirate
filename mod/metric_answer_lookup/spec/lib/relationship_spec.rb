@@ -81,7 +81,7 @@ RSpec.describe Relationship do
       record = "Commons+Supplied by+SPECTRE"
       new_latest = described_class.find_by_answer_id Card.fetch_id("#{record}+1977")
       expect(new_latest.latest).to be_falsey
-      delete "#{record}+2000+Los Pollos Hermanos"
+      delete "#{record}+2000" # "+Los Pollos Hermanos"
       new_latest.refresh
       expect(new_latest.latest).to be_truthy
     end

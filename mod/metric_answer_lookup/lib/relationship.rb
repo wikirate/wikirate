@@ -26,22 +26,26 @@ class Relationship < ApplicationRecord
     find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
   end
 
+  # other relationships in same record
+  def record_relationships
+    Relationship
+      .where(subject_company_id: subject_company_id, metric_id: metric_id)
+      .where.not(id: id)
+  end
+
   def latest_year_in_db
-    Relationship.where(record_id: record_id, object_company_id: object_company_id)
-                .where.not(id: id)
-                .maximum :year
+    # (object_company_id: object_company_id)
+    record_relationships.maximum :year
   end
 
   def latest_to_false
-    Relationship.where(record_id: record_id, latest: true).where.not(id: id)
-                .update_all(latest: false)
+    record_relationships.where(latest: true).update_all latest: false
   end
 
   def latest_to_true
     return unless (latest_year = latest_year_in_db)
 
-    Relationship.where(record_id: record_id, year: latest_year, latest: false)
-                .update_all latest: true
+    record_relationships.where(year: latest_year, latest: false).update_all latest: true
   end
 
   def latest= value

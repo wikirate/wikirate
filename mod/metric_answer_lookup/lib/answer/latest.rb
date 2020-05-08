@@ -2,19 +2,23 @@ class Answer
   # Methods for "latest" flag
   module Latest
     def latest_year_in_db
-      self.record_id ||= fetch_record_id
-      Answer.where(record_id: record_id).where.not(id: id).maximum :year
+      record_answers.maximum :year
+    end
+
+    # other answers in same record
+    def record_answers
+      self.company_id ||= fetch_company_id
+      self.metric_id ||= fetch_metric_id
+      Answer.where(company_id: company_id, metric_id: metric_id).where.not(id: id)
     end
 
     def latest_to_false
-      Answer.where(record_id: record_id, latest: true).where.not(id: id)
-            .update_all(latest: false)
+      record_answers.where(latest: true).update_all latest: false
     end
 
     def latest_to_true
       return unless (latest_year = latest_year_in_db)
-      Answer.where(record_id: record_id, year: latest_year, latest: false)
-            .update_all latest: true
+      record_answers.where(year: latest_year, latest: false).update_all latest: true
     end
 
     def latest= value
