@@ -54,3 +54,24 @@ event :delete_answers, :prepare_to_validate, on: :update, trigger: :required do
     errors.add :answers, "only admins can delete all answers"
   end
 end
+
+event :delete_all_metric_answers, :store, on: :delete do
+  answers.delete_all
+  skip_event! :reset_double_check_flag,
+              :delete_answer_lookup_table_entry_due_to_value_change,
+              :delete_relationship_lookup_table_entry_due_to_value_change
+end
+
+event :skip_answer_updates_on_metric_rename, :validate,
+      on: :update, changed: :name do
+  skip_event! :update_answer_lookup_table_due_to_answer_change
+end
+
+event :refresh_renamed_company_answers, :finalize,
+      on: :update, changed: :name, after_subcards: true do
+  refresh_name_in_lookup_table
+end
+
+def refresh_name_in_lookup_table
+  answers.where.not(metric_name: name).update_all metric_name: name
+end

@@ -25,18 +25,26 @@ event :update_company_matcher, :integrate_with_delay, on: :create do
   CompanyMatcher.add_to_mapper id, name
 end
 
-event :delete_all_company_answers, :integrate, on: :delete do
-  # answers.delete_all
-  # TODO: skip answer deletion events on +value cards...
+event :delete_all_company_answers, :store, on: :delete do
+  answers.delete_all
+  skip_event! :reset_double_check_flag,
+              :delete_answer_lookup_table_entry_due_to_value_change,
+              :delete_relationship_lookup_table_entry_due_to_value_change
 end
 
-# note: for answers with cards, this happens via answer events,
-# but calculated answers don't have cards, so this has to happen via a company
-event :refresh_renamed_company_answers, :integrate,
-      on: :update, changed: :name, after_subcards: true do
-  answers.where.not(company_name: name).each do |answer|
-    answer.refresh :record_name, :company_name
-  end
+# happens in optimized event below
+event :skip_answer_updates_on_company_rename, :validate,
+      on: :update, changed: :name do
+  skip_event! :update_answer_lookup_table_due_to_answer_change
+end
+
+event :refresh_renamed_company_answers, :finalize,
+      on: :update, changed: :name do
+  refresh_name_in_lookup_table
+end
+
+def refresh_name_in_lookup_table
+  answers.where.not(company_name: name).update_all company_name: name
 end
 
 def headquarters_jurisdiction_code
