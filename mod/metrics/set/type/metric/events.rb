@@ -59,7 +59,8 @@ event :delete_all_metric_answers, :store, on: :delete do
   answers.delete_all
   skip_event! :reset_double_check_flag,
               :delete_answer_lookup_table_entry_due_to_value_change,
-              :delete_relationship_lookup_table_entry_due_to_value_change
+              :delete_relationship_lookup_table_entry_due_to_value_change,
+              :update_related_calculations
 end
 
 event :skip_answer_updates_on_metric_rename, :validate,
@@ -67,11 +68,15 @@ event :skip_answer_updates_on_metric_rename, :validate,
   skip_event! :update_answer_lookup_table_due_to_answer_change
 end
 
-event :refresh_renamed_company_answers, :finalize,
+event :refresh_renamed_metric_answers, :finalize,
       on: :update, changed: :name, after_subcards: true do
-  refresh_name_in_lookup_table
+  refresh_names_in_lookup_table
 end
 
-def refresh_name_in_lookup_table
-  answers.where.not(metric_name: name).update_all metric_name: name
+def refresh_names_in_lookup_table
+  answers.update_all metric_name: name,
+                     designer_name: name.parts.first,
+                     title_name: name.parts.second
+  answers.each { |a| a.refresh :record_name }
+  # FIXME: the above is one argument for getting rid of record_name.  Too slow!
 end

@@ -29,7 +29,8 @@ event :delete_all_company_answers, :store, on: :delete do
   answers.delete_all
   skip_event! :reset_double_check_flag,
               :delete_answer_lookup_table_entry_due_to_value_change,
-              :delete_relationship_lookup_table_entry_due_to_value_change
+              :delete_relationship_lookup_table_entry_due_to_value_change,
+              :update_related_calculations
 end
 
 # happens in optimized event below
@@ -45,6 +46,8 @@ end
 
 def refresh_name_in_lookup_table
   answers.where.not(company_name: name).update_all company_name: name
+  answers.each { |a| a.refresh :record_name }
+  # FIXME: the above is one argument for getting rid of record_name.  Too slow!
 end
 
 def headquarters_jurisdiction_code

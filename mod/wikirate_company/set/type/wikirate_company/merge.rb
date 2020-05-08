@@ -65,8 +65,11 @@ end
 
 def move_answers_to target_company
   answers.each do |answer|
-    next unless answer.real?
-    answer.move company: target_company
+    if answer.real?
+      answer.move company: target_company
+    else
+      answer.delete
+    end
   end
 end
 

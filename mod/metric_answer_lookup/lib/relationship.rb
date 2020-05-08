@@ -16,8 +16,8 @@ class Relationship < ApplicationRecord
 
   after_destroy :latest_to_true
 
-  delegate :company_id, :designer_id,
-           :metric_name, :company_name, :title_name, :record_name,
+  delegate :company_id, :company_name, :record_name,
+           :designer_id, :title_name, :metric_name,
            to: :answer
 
   def self.existing id

@@ -9,11 +9,12 @@ class MoreAnswerFieldsRequired < ActiveRecord::Migration[6.0]
 
   def change
     add_index :answers, %i[metric_id company_id year], unique: true
+    add_index :answers, %i[metric_id company_id]
     REQUIRED_ANSWER_COLUMNS.each do |column|
       change_column_null :answers, column, false
     end
 
-    add_index :relationships, %i[metric_id object_company_id subject_company_id year],
+    add_index :relationships, %i[metric_id subject_company_id object_company_id year],
               unique: true, name: "relationship_component_cards_index"
     REQUIRED_RELATIONSHIP_COLUMNS.each do |column|
       change_column_null :relationships, column, false

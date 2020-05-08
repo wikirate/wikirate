@@ -1,13 +1,3 @@
-event :update_lookup_answers, :integrate, on: :update, changed: :name do
-  # FIXME: when renaming, the metric type gets confused at some point, and
-  # calculated? does not correctly return true for calculated metrics
-  # (which have MetricType::Researched among their singleton class's ancestors)
-  # if this were working properly it could be in the when: arg.
-  #
-  expire
-  rename_answers if refresh(true).calculated?
-end
-
 def calculation_in_progress!
   ids = all_dependent_answer_ids
   Answer.where(id: ids, overridden_value: nil).update_all(calculating: true)
@@ -23,16 +13,6 @@ def deep_answer_update initial_update=false
   @initial_update = initial_update
   recalculate_answers
   each_dependent_metric(&:recalculate_answers)
-end
-
-def rename_answers
-  Answer.where(metric_id: id).update_all metric_name: name,
-                                         designer_name: name.parts.first,
-                                         title_name: name.parts.second
-
-  answers.each do |answer|
-    answer.refresh :record_name
-  end
 end
 
 def recalculate_answers
@@ -108,12 +88,21 @@ delegate :calculator, to: :formula_card
 private
 
 def dummy_answers_attribs
+  # FIXME: setting latest to true here seems dangerous...
   calculator.answers_to_be_calculated.map do |company_id, year|
-    unless Card[self, company_id]
-      attach_subcard Card.new(name: [self, company_id], type_id: RecordID)
-    end
-    { metric_id: id, company_id: company_id, year: year, calculating: true,
-      metric_name: name, latest: true }
+    company_name = company_id.cardname
+    { metric_id: id,
+      metric_name: name,
+      designer_id: left_id,
+      metric_type_id: metric_type_id,
+      company_id: company_id,
+      company_name: company_name,
+      record_name: Card::Name[name, company_name],
+      creator_id: Card::Auth.current_id,
+      year: year,
+      calculating: true,
+      latest: true
+    }
   end
 end
 
