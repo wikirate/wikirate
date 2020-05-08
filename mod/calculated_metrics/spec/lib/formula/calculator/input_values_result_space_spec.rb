@@ -216,6 +216,6 @@ RSpec.describe Formula::Calculator::InputValues do
   example "metric with company and year options" do
     ii, = input_items "{{Jedi+deadliness|company:Related[Jedi+more evil=yes]; year: -1}}"
     expect(ii.value_for(death_star, nil))
-      .to eq(1978 => %w[50 40])
+      .to eq(1978 => %w[40 50])
   end
 end
