@@ -39,14 +39,15 @@ end
 
 def convert_to_pdf
   # Rails.logger.info "generating pdf"
-  with_tmp_pdf do |pdf_file|
+  converting_to_tmp_pdf do |pdf_file|
     self.file = pdf_file
   end
 rescue StandardError # => e
-  abort :failure, "failed to convert HTML to pdf" # ": #{e.message}"
+  # binding.pry
+  abort :failure, "failed to convert HTML to pdf: #{e.message}"
 end
 
-def with_tmp_pdf
+def converting_to_tmp_pdf
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
     pdf_from_url path
     yield ::File.open(path)

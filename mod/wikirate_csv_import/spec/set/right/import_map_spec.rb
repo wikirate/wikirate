@@ -35,7 +35,7 @@ RSpec.describe Card::Set::Right::ImportMap do
     it "handles values with separators" do
       card_subject.auto_map!
       expect(card_subject.map[:source].keys)
-        .to include("https://www.wikiwand.com/en/Space_opera")
+        .to include("https://thereaderwiki.com/en/Space_opera")
     end
   end
 
