@@ -161,6 +161,7 @@
           value: "50", numeric_value: 50,
           creator_id: Card.fetch_id("Joe User"), editor_id: nil,
           updated_at: be_within(2).of(Time.now),
+          # TODO: after reseeding, record_id will probably be nil (and that's fine)
           record_id: be_a_integer, designer_id: be_a_integer, metric_id: be_a_integer,
           answer_id: nil, checkers: nil, check_requester: nil, policy_id: nil,
           latest: true, imported: false

@@ -79,12 +79,6 @@ class Relationship < ApplicationRecord
 
   private
 
-  def ensure_record metric_card, company
-    return if Card[metric_card, company]
-
-    Card.create! name: [metric_card, company], type_id: Card::RecordID
-  end
-
   def metric_card
     @metric_card ||= Card.fetch(fetch_metric_id || fetch_metric_name)
   end
