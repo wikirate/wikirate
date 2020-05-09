@@ -2,11 +2,13 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
   YEAR = "1977".freeze
   COMPANY_NAME = "Death_Star".freeze
 
-  let(:answer) { Card.fetch(metric.name, COMPANY_NAME, YEAR) }
   let(:company) { Card[COMPANY_NAME] }
+  let :answer do
+    Card.fetch metric.name, COMPANY_NAME, YEAR, new: { type: :metric_answer }
+  end
 
   def json_view view
-    render_view view, { name: answer.name }, format: :json
+    render_view view, answer, format: :json
   end
 
   def wr_url path
