@@ -3,9 +3,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
   COMPANY_NAME = "Death_Star".freeze
 
   let(:company) { Card[COMPANY_NAME] }
-  let :answer do
-    Card.fetch metric.name, COMPANY_NAME, YEAR, new: { type: :metric_answer }
-  end
+  let(:answer) { Card.fetch metric.name, COMPANY_NAME, YEAR }
 
   def json_view view
     render_view view, answer, format: :json
