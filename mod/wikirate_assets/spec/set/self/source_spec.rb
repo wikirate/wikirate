@@ -23,11 +23,11 @@ RSpec.describe Card::Set::Self::Source do
     it "has list of sources" do
       is_expected.to have_tag "div.search-result-list" do
         with_tag "div.search-result-item" do
-          with_text /wikiwand\.com/
+          with_text /thereaderwiki\.com/
           with_text /Star Wars/
         end
         with_tag "div.search-result-item" do
-          with_text /wikiwand\.com/
+          with_text /thereaderwiki\.com/
           with_text /Space Opera/
         end
       end

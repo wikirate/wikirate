@@ -91,7 +91,8 @@ def dummy_answers_attribs
   # FIXME: setting latest to true here seems dangerous...
   calculator.answers_to_be_calculated.map do |company_id, year|
     company_name = company_id.cardname
-    { metric_id: id,
+    {
+      metric_id: id,
       metric_name: name,
       designer_id: left_id,
       metric_type_id: metric_type_id,

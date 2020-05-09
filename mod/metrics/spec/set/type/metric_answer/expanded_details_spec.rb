@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   def fetch_answer *name_parts
-    Card.fetch(Card::Name[name_parts], new: { type: :metric_answer })
+    Card.fetch(Card::Name[name_parts])
   end
 
   def expanded_details answer_name, metric_type
@@ -144,7 +144,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   describe "view: expanded_wiki_rating_details" do
     subject do
       fetch_answer("Jedi+darkness rating+Death Star+1977")
-          .format.render :expanded_wiki_rating_details
+        .format.render :expanded_wiki_rating_details
     end
 
     specify do
@@ -186,7 +186,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   describe "view: expanded_descendant_details" do
     subject do
       fetch_answer("Joe User+descendant 1+Sony Corporation+2014")
-          .format.render :expanded_descendant_details
+        .format.render :expanded_descendant_details
     end
 
     def ancestor_row binding, num, rank

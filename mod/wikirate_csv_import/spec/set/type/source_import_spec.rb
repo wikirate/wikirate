@@ -77,7 +77,8 @@ RSpec.describe Card::Set::Type::SourceImport do
   #       .and have_a_field(:wikirate_company).pointing_to("Death Star")
   #       .and have_a_field(:year).pointing_to "2014"
   #     expect(status[:reports][1])
-  #       .to contain_exactly "https://thereaderwiki.com/en/Death_Star duplicate in this file"
+  #       .to contain_exactly
+  #          "https://thereaderwiki.com/en/Death_Star duplicate in this file"
   #
   #     expect(status[:counts][:skipped]).to eq 1
   #   end
