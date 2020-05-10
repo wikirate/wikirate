@@ -10,6 +10,7 @@ class SharedData
       Card::Env[:host] = "wikirate.org"
       create_or_update "1977", type_id: Card::YearID
       create_metrics
+      update_problematic_metrics
       bookmark_metrics
     end
 
@@ -199,6 +200,11 @@ class SharedData
       with_user "Joe User" do
         bookmark "Jedi+disturbances in the Force"
       end
+    end
+
+    # this is in seed data with no metric type
+    def update_problematic_metrics
+      Card["Global Reporting Initiative+Sector Industry"].metric_type_card.save!
     end
   end
 end

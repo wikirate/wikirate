@@ -88,23 +88,27 @@ delegate :calculator, to: :formula_card
 private
 
 def dummy_answers_attribs
-  # FIXME: setting latest to true here seems dangerous...
+  shared_attribs = shared_dummy_answer_attribs
   calculator.answers_to_be_calculated.map do |company_id, year|
     company_name = company_id.cardname
-    {
-      metric_id: id,
-      metric_name: name,
-      designer_id: left_id,
-      metric_type_id: metric_type_id,
-      company_id: company_id,
-      company_name: company_name,
-      record_name: Card::Name[name, company_name],
-      creator_id: Card::Auth.current_id,
-      year: year,
-      calculating: true,
-      latest: true
-    }
+    shared_attribs.merge company_id: company_id,
+                         company_name: company_name,
+                         record_name: Card::Name[name, company_name],
+                         year: year
   end
+end
+
+# FIXME: setting latest to true here is wrong
+def shared_dummy_answer_attribs
+  {
+    metric_id: id,
+    metric_name: name,
+    designer_id: left_id,
+    metric_type_id: metric_type_id,
+    calculating: true,
+    creator_id: Card::Auth.current_id,
+    latest: true
+  }
 end
 
 def to_company_id company
