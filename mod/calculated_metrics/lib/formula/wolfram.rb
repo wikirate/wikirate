@@ -5,9 +5,6 @@ module Formula
     include Unknowns
     include Validation
 
-    INTERPRETER =
-      "https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686".freeze
-
     FUNC_DEFS = ["Zeros[x_] := Count[x, 0]",
                  'Unknowns[x_] := Count[x, "Unknown"]'].freeze
 
@@ -78,8 +75,17 @@ module Formula
       wolfram_result expr
     end
 
+    def interpreter
+      @interpreter ||=
+        if (api_key = Card.config.try :wolfram_api_key)
+          "https://www.wolframcloud.com/objects/#{api_key}"
+        else
+          raise Card::Error::ServerError, "no Wolfram interpreter configured"
+        end
+    end
+
     def post_wolfram_request expr
-      uri = URI.parse INTERPRETER
+      uri = URI.parse interpreter
       Net::HTTP.post_form uri, "expr" => expr
     rescue StandardError => e
       log_wolfram_error "request failed", e.message
