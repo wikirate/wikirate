@@ -10,8 +10,7 @@ event :no_empty_value, :validate do
   errors.add :content, "empty answers are not allowed"
 end
 
-event :no_left_name_change, :prepare_to_validate,
-      on: :update, changed: :name do
+event :no_left_name_change, :prepare_to_validate, on: :update, changed: :name do
   return if @supercard # as part of other changes (probably) ok
   return unless name.right == "value" # ok if not a value anymore
   return if Card[name.left]&.type_id == Card::MetricAnswerID

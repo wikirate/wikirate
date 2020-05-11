@@ -17,6 +17,7 @@ def prototype_args anchor
                         "+*metric_type" => "[[#{anchor.trunk}]]") }
 end
 
+# FIXME: this anchor name doesn't have the metric_type in it. that's not right, is it?
 def anchor_name card
   type_name = card.left(new: {})&.type_name || Card.default_type_id.cardname
   "#{type_name}+#{card.name.tag}"

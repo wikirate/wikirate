@@ -5,7 +5,7 @@ end
 
 def move_answers_to target_metric
   answers.each do |answer|
-    next unless answer.real?
+    next unless answer.real? # needed? we only merge researched metrics, right?
     answer.move metric: target_metric
   end
 end

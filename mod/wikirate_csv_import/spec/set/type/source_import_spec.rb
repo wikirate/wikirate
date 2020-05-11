@@ -2,7 +2,7 @@ RSpec.describe Card::Set::Type::SourceImport do
   # require_relative "../../support/shared_csv_import"
   #
   # def url name
-  #   "https://www.wikiwand.com/en/#{name.tr(' ', '_')}"
+  #   "https://thereaderwiki.com/en/#{name.tr(' ', '_')}"
   # end
   #
   # def source_card key
@@ -77,7 +77,8 @@ RSpec.describe Card::Set::Type::SourceImport do
   #       .and have_a_field(:wikirate_company).pointing_to("Death Star")
   #       .and have_a_field(:year).pointing_to "2014"
   #     expect(status[:reports][1])
-  #       .to contain_exactly "https://www.wikiwand.com/en/Death_Star duplicate in this file"
+  #       .to contain_exactly
+  #          "https://thereaderwiki.com/en/Death_Star duplicate in this file"
   #
   #     expect(status[:counts][:skipped]).to eq 1
   #   end

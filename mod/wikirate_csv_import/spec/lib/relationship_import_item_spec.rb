@@ -27,4 +27,13 @@ RSpec.describe RelationshipImportItem do
       expect_card(item_name).to exist
     end
   end
+
+  context "with unknown company" do
+    it "gets 'failed' status" do
+      # because ImportManager doesn't have corrections. otherwise would be not ready
+      # needs better testing!
+      item = validate object_company: "Mos Eisley"
+      expect(item.status.item_hash(0)[:status]).to eq(:failed)
+    end
+  end
 end

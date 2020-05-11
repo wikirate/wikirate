@@ -33,15 +33,15 @@ RSpec.describe Formula::Calculator::Input do
     @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
     @not_researched_options = %w[false false]
     expect { |b| input.each(year: 2015, &b) }
-      .to yield_successive_args([[5.0, 2.0], samsung_id, 2015],
-                                [[100.0, nil], apple_id, 2015])
+      .to yield_successive_args([[100.0, nil], apple_id, 2015],
+                                [[5.0, 2.0], samsung_id, 2015])
   end
 
   example "yearly variable" do
     @input = ["half year", "Joe User+researched number 1"]
     expect { |b| input.each(year: 2015, &b) }
-      .to yield_successive_args([[1007.5, 5.0], samsung_id, 2015],
-                                [[1007.5, 100.0], apple_id, 2015])
+      .to yield_successive_args([[1007.5, 100.0], apple_id, 2015],
+                                [[1007.5, 5.0], samsung_id, 2015])
   end
 
   context "with year option" do
@@ -72,7 +72,7 @@ RSpec.describe Formula::Calculator::Input do
       @input = ["Jedi+deadliness"]
       @company_options = ["Related[Jedi+more evil = yes]"]
       expect { |b| input.each(year: 1977, company: "Death Star", &b) }
-        .to yield_with_args([[50.0, 40.0]], death_star_id, 1977)
+        .to yield_with_args([[40.0, 50.0]], death_star_id, 1977)
     end
   end
 end

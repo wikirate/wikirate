@@ -39,14 +39,9 @@ private
 def virtual_answer
   return nil unless calculated?
 
-  find_answer_by_record || find_answer_by_metric_and_company
+  answer_by_metric_company_year
 end
 
-def find_answer_by_record
-  Answer.where(record_id: left.id, year: name.right.to_i).take
-end
-
-def find_answer_by_metric_and_company
-  Answer.where(metric_id: left.left.id, company_id: left.right.id,
-               year: name.right.to_i).take
+def answer_by_metric_company_year
+  Answer.where(metric_id: metric_id, company_id: company_id, year: year.to_i).take
 end

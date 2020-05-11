@@ -69,6 +69,8 @@ class Relationship
       [card.updated_at, vc.updated_at].compact.max
     end
 
+    # note: latest flag indicates that relationship is part of latest answer,
+    # NOT that relationship is the latest response for a given subject/object pair
     def fetch_latest
       return true unless (latest_year = latest_year_in_db)
 

@@ -30,4 +30,4 @@ Feature: Research answer for hybrid metric
     Then I should see "2014"
     And I should see "25"
     And I should see "updated less than a minute ago by Joe User"
-    And I should see "www.wikiwand.com"
+    And I should see "thereaderwiki.com"

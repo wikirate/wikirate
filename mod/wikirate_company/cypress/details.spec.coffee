@@ -28,7 +28,7 @@ describe "expanding details on company pages", ->
       cy.get("> div:visible").contains("100").click()
       cy.root().should "not.contain", "Death Star"
       cy.contains "Citations"
-      cy.contains "www.wikiwand.com"
+      cy.contains "thereaderwiki.com"
 
       # closes raw value
       cy.get("> div:visible .details-close-icon").click()

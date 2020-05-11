@@ -47,6 +47,10 @@ event :schedule_answer_counts, :finalize do
   schedule_answer_count inverse_answer_name
 end
 
+event :ensure_left_type_is_answer, after: :set_left_and_right do
+  Card.fetch(name.left, local_only: true)&.type_id = Card::MetricAnswerID
+end
+
 def schedule_answer_count name
   answer_card = Card.fetch name, new: { type_id: Card::MetricAnswerID,
                                         "+value" => "1" }

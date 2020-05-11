@@ -39,7 +39,6 @@ class Answer
     end
 
     def calculated_answer metric_card, company, year, value
-      ensure_record metric_card, company
       @card = virtual_answer_card metric_card.answer_name_for(company, year), value
       refresh
       @card.expire

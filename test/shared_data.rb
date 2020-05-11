@@ -15,7 +15,8 @@ class SharedData
     "Slate Rock and Gravel Company" => "Yabba Dabba Doo!",
     "Los Pollos Hermanos" => "I'm the one who knocks",
     "SPECTRE" => "shaken not stirred",
-    "Google LLC" => "don't be evil"
+    "Google LLC" => "don't be evil" # ,
+    # "Global Reporting Initiative" => "I'm just here for the industry hack."
 
     # in addition pulled from production:
     # Google Inc, Apple Inc, Samsung, Siemens AG, Sony Corporation, Amazon.com
@@ -125,9 +126,9 @@ class SharedData
 
     def add_industry
       ["Death Star", "SPECTRE"].each do |name|
-        create "Global_Reporting_Initiative+Sector_Industry+#{name}+2015+value",
-               type: :phrase,
-               content: "Technology Hardware"
+        create "Global_Reporting_Initiative+Sector_Industry+#{name}+2015",
+               "+value" => { type: :phrase, content: "Technology Hardware" },
+               "+source" => :opera_source.cardname
       end
     end
 

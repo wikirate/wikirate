@@ -1,6 +1,10 @@
 RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
+  def fetch_answer *name_parts
+    Card.fetch(Card::Name[name_parts])
+  end
+
   def expanded_details answer_name, metric_type
-    Card.fetch(answer_name).format.render "expanded_#{metric_type}_details".to_sym
+    fetch_answer(answer_name).format.render "expanded_#{metric_type}_details".to_sym
   end
 
   describe "view: expanded_formula_details" do
@@ -41,7 +45,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         Apple_Inc 2001 => "Unknown"
       end
 
-      answer = Card.fetch("Jedi+know the unknowns", "Apple Inc", "2001")
+      answer = fetch_answer("Jedi+know the unknowns", "Apple Inc", "2001")
       expect(answer.format.formula_details)
         .to have_tag "a.metric-value", with: { href: "/Joe_User+RM+Apple_Inc+2001" },
                                        text: "10"
@@ -118,8 +122,8 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
   describe "view: expanded_score_details" do
     subject do
-      Card.fetch("Jedi+deadliness+Joe User+Death Star+1977")
-          .format.render :expanded_wiki_rating_details
+      fetch_answer("Jedi+deadliness+Joe User+Death Star+1977")
+        .format.render :expanded_wiki_rating_details
     end
 
     specify do
@@ -139,8 +143,8 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
   describe "view: expanded_wiki_rating_details" do
     subject do
-      Card.fetch("Jedi+darkness rating+Death Star+1977")
-          .format.render :expanded_wiki_rating_details
+      fetch_answer("Jedi+darkness rating+Death Star+1977")
+        .format.render :expanded_wiki_rating_details
     end
 
     specify do
@@ -181,8 +185,8 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
   describe "view: expanded_descendant_details" do
     subject do
-      Card.fetch("Joe User+descendant 1+Sony Corporation+2014")
-          .format.render :expanded_descendant_details
+      fetch_answer("Joe User+descendant 1+Sony Corporation+2014")
+        .format.render :expanded_descendant_details
     end
 
     def ancestor_row binding, num, rank

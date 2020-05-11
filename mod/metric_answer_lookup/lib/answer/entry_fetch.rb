@@ -17,6 +17,7 @@ class Answer
     end
 
     def fetch_record_id
+      # TODO: optimize. skip if calculated and not overridden
       card.left_id || Card.fetch_id(fetch_record_name)
     end
 
