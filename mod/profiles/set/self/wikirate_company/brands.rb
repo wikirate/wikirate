@@ -1,4 +1,19 @@
 format :json do
+  view :brands_select2, cache: :never do
+    { results: brands_select2_option_list }.to_json
+  end
+
+  def brands_select2_option_list
+    [Card["Google Inc"], Card["Apple Inc"]].each_with_object([]) do |i, ar|
+      ar << { id: i.key, text: i.name }
+    end
+  end
+
+
+  def name_query
+    Env.params[:q] if Env.params[:q].present?
+  end
+
   view :search_brands, cache: :never do
     keyword ? search_with_keyword : "{}"
   end
@@ -38,10 +53,7 @@ format :json do
   end
 
   def search_brand_ids
-    wql = { type_id: Card::WikirateCompanyID,
-            left_plus: Card::Codename.id(:oc_is_brand_of),
-            return: :id }
-    Card.search wql
+    [Card.fetch_id("Google Inc")]
   end
 
   def keyword

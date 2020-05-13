@@ -21,13 +21,17 @@ class SharedData
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "yes" }
         Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
       end
-
-      Card::Metric.create name: "Commons+Supplied by",
-                          type: :relationship,
-                          test_source: true,
-                          value_type: "Category",
-                          value_options: ["Tier 1 Supplier", "Tier 2 Supplier"],
-                          inverse_title: "Supplier of" do
+      
+      # Card::Metric.create name: "Commons+Supplied by",
+      #                     type: :relationship,
+      #                     test_source: true,
+      #                     value_type: "Category",
+      #                     value_options: ["Tier 1 Supplier", "Tier 2 Supplier"],
+      #                     inverse_title: "Supplier of" do
+      Card.create name: "Commons+Supplied by+*metric type", content: "Relationship"
+      Card.create name: "Commons+Supplied by+inverse", content: "Supplier of"
+      Card.create name: "Commons+Supplier of+*metric type", content: "Inverse Relationship"
+      Card["Commons+Supplied by"].create_answers(true) do
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" },
                 "2000" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier",
                             "Google LLC" => "Tier 2 Supplier" }
@@ -49,6 +53,12 @@ class SharedData
         SPECTRE "1977" => "Baker Street, London"
         Monster_Inc "1977" => "Alderaan"
         Google_LLC 2000 => "Mountain View"
+      end
+
+      Card.create name: [:has_brands, :metric_type], content: "Relationship"
+      #Card[:has_brands, :metric_type].update content: "Relationship"
+      Card[:has_brands].create_answers(true) do
+        SPECTRE "1977" => { "Los_Pollos_Hermanos" => "1" }
       end
     end
   end

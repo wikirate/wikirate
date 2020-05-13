@@ -82,7 +82,7 @@ namespace :wikirate do
       # cardtype has to be the first
       # otherwise codename cards get the wrong type
       import.cards_of_type "cardtype"
-      import.items_of :codenames
+      import.items_of :codenames, depth: 2
       # Card::Mod::Loader.reload_sets
       import.cards_of_type "year"
 
