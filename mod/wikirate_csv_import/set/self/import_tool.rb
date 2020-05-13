@@ -6,9 +6,9 @@ format :html do
   end
 
   def tabpanel
-    tabs = [[:answer, "Metric Answer"],
+    tabs = [[:answer, "Answer"],
             [:source, "Sources"],
-            [:relationship_answer, "Relationship Answers"]]
+            [:relationship, "Relationship"]]
     tab_args = tabs.each_with_object({}) do |(key, title), h|
       h[title] = tab_content key
     end

@@ -60,7 +60,7 @@ end
 When(
   /^(?:|I )fill in "([^"]*)" with card path of source with link "([^"]*)"$/
 ) do |field, value|
-  duplicates = Card::Set::Self::Source.find_duplicates value
+  duplicates = Card::Set::Self::Source.search_by_url value
   duplicated_card = duplicates.first if duplicates.any?
 
   url = "#{Card::Env[:protocol]}#{Card::Env[:host]}"\

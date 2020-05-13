@@ -57,16 +57,19 @@ end
 
 def merge_into target_company
   target_company = Card.fetch_name target_company
-  move_all_answers_to target_company
+  move_answers_to target_company
   move_project_listings_to target_company
   move_group_listings_to target_company
   move_source_listings_to target_company
 end
 
-def move_all_answers_to target_company
-  all_answers.each do |answer|
-    next unless answer.real?
-    answer.move company: target_company
+def move_answers_to target_company
+  answers.each do |answer|
+    if answer.real?
+      answer.move company: target_company
+    else
+      answer.delete
+    end
   end
 end
 

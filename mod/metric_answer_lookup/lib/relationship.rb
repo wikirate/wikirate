@@ -16,8 +16,8 @@ class Relationship < ApplicationRecord
 
   after_destroy :latest_to_true
 
-  delegate :company_id, :designer_id,
-           :metric_name, :company_name, :title_name, :record_name,
+  delegate :company_id, :company_name, :record_name,
+           :designer_id, :title_name, :metric_name,
            to: :answer
 
   def self.existing id
@@ -26,22 +26,26 @@ class Relationship < ApplicationRecord
     find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
   end
 
+  # other relationships in same record
+  def record_relationships
+    Relationship
+      .where(subject_company_id: subject_company_id, metric_id: metric_id)
+      .where.not(id: id)
+  end
+
   def latest_year_in_db
-    Relationship.where(record_id: record_id, object_company_id: object_company_id)
-                .where.not(id: id)
-                .maximum :year
+    # (object_company_id: object_company_id)
+    record_relationships.maximum :year
   end
 
   def latest_to_false
-    Relationship.where(record_id: record_id, latest: true).where.not(id: id)
-                .update_all(latest: false)
+    record_relationships.where(latest: true).update_all latest: false
   end
 
   def latest_to_true
     return unless (latest_year = latest_year_in_db)
 
-    Relationship.where(record_id: record_id, year: latest_year, latest: false)
-                .update_all latest: true
+    record_relationships.where(year: latest_year, latest: false).update_all latest: true
   end
 
   def latest= value
@@ -74,12 +78,6 @@ class Relationship < ApplicationRecord
   end
 
   private
-
-  def ensure_record metric_card, company
-    return if Card[metric_card, company]
-
-    Card.create! name: [metric_card, company], type_id: Card::RecordID
-  end
 
   def metric_card
     @metric_card ||= Card.fetch(fetch_metric_id || fetch_metric_name)

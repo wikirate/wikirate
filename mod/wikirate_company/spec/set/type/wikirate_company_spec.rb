@@ -43,4 +43,18 @@ RSpec.describe Card::Set::Type::WikirateCompany do
       expect(Answer.where(company_name: "Death Star").count).to eq(0)
     end
   end
+
+  describe "deleting company" do
+    let(:company_card) { Card["Death Star"] }
+
+    def delete_company!
+      company_card.delete!
+    end
+
+    it "deletes all answers", as_bot: true do
+      company_id = company_card.id
+      delete_company!
+      expect(Answer.where(company_id: company_id).count).to eq(0)
+    end
+  end
 end

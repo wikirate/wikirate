@@ -5,7 +5,7 @@
 #            { company_name: name,
 #              jurisdiction_code: headquarters_jurisdiction_code }
 #          end
-#   oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number opts
+#   oc = ::OpenCorporates::MappingApi.fetch_oc_company_number opts
 #   return unless oc.company_number.present?
 #
 #   add_subfield :open_corporates, content: oc.company_number, type: :phrase

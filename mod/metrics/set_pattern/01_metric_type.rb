@@ -7,14 +7,38 @@ DEFAULT_METRIC_TYPE = "Researched".freeze
 }
 
 def metric_type card_or_name
-  metric_name = card_or_name.is_a?(Card) ? card_or_name.name : card_or_name
-  mt_name = "#{metric_name}+*metric type"
-  mt_card = Card.fetch(mt_name, skip_modules: true, skip_type_lookup: true)
-  mt_card ||= card_or_name.is_a?(Card) && card_or_name.subfield(:metric_type) ||
-              Card::ActManager.card(mt_name)
-  mt_type =
-    mt_card&.standard_content&.scan(/^(?:\[\[)?([^\]]+)(?:\]\])?$/)&.flatten&.first
-  mt_type || DEFAULT_METRIC_TYPE
+  current_card, metric_name = current_card_and_name card_or_name
+  metric_type_name = "#{metric_name}+*metric type"
+  metric_type_card =
+    metric_type_card_from_fetch(metric_type_name) ||
+    metric_type_card_from_subfield(current_card) ||
+    metric_type_card_from_act(metric_type_name)
+
+  type_from_card_content(metric_type_card) || DEFAULT_METRIC_TYPE
+end
+
+def current_card_and_name card_or_name
+  if card_or_name.is_a? Card
+    [card_or_name, card_or_name.name]
+  else
+    [nil, card_or_name]
+  end
+end
+
+def metric_type_card_from_act metric_type_name
+  Card::ActManager.card metric_type_name
+end
+
+def metric_type_card_from_fetch metric_type_name
+  Card.fetch metric_type_name, skip_modules: true, skip_type_lookup: true
+end
+
+def metric_type_card_from_subfield card
+  card.subfield :metric_type
+end
+
+def type_from_card_content metric_type_card
+  metric_type_card&.standard_content&.scan(/^(?:\[\[)?([^\]]+)(?:\]\])?$/)&.flatten&.first
 end
 
 def label _name

@@ -1,7 +1,7 @@
 require "link_thumbnailer"
 
 format :html do
-  view :input do
+  view :input, cache: :never do
     form.text_field :content, class: "d0-card-content form-control",
                               placeholder: "http://example.com"
   end
@@ -16,8 +16,10 @@ end
 
 FIELD_CODENAME = { title: :wikirate_title, description: :description }.freeze
 
-event :add_source_file, :initialize, on: :create, when: :no_file? do
-  left.add_subfield :file, type: Card::FileID, remote_file_url: content
+event :add_source_file, :integrate_with_delay, on: :create, when: :no_file? do
+  Card.create name: name.left_name.field(:file),
+              type: Card::FileID,
+              remote_file_url: content
 end
 
 event :normalize_link, :prepare_to_validate, on: :save do
@@ -40,11 +42,11 @@ event :populate_website, :prepare_to_store, on: :create, when: :link_present? do
 end
 
 def no_file?
-  !left.subcards[:file.cardname]
+  left.fetch(:file).blank?
 end
 
 def duplicates
-  @duplicates ||= Self::Source.find_duplicates content
+  @duplicates ||= Self::Source.search_by_url content
 end
 
 def link_present?

@@ -28,9 +28,37 @@ format :json do
   end
 end
 
-# DEPRECATED.  +answer csv replaces following:
 format :csv do
-  view :core do
+  view :core do # DEPRECATED.  +answer csv replaces this
     Answer.csv_title + Answer.where(metric_id: card.id).map(&:csv_line).join
+  end
+
+  COLUMN_METHODS = {
+    wikirate_topic: :semicolon_separated_values,
+    report_type: :semicolon_separated_values,
+    research_policy: :semicolon_separated_values,
+    value_options: :semicolon_separated_values
+  }.freeze
+
+  view :header do
+    CSV.generate_line MetricImportItem.headers
+  end
+
+  view :line do
+    CSV.generate_line(line_values.map { |v| v.blank? ? nil : v })
+    # , write_empty_value: nil (not supported until recently)
+  end
+
+  private
+
+  def line_values
+    MetricImportItem.column_keys.map do |column|
+      method = COLUMN_METHODS[column]
+      method ? send(method, column) : card.try(column)
+    end
+  end
+
+  def semicolon_separated_values column
+    card.send("#{column}_card").item_names.join ";"
   end
 end

@@ -20,7 +20,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   # @return [Array] of company+year strings
-  def answers list
+  def short_answers list
     list.map { |a| "#{a.company_name}+#{a.year}" }
   end
 
@@ -41,7 +41,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   def run_query filter, sort={}
-    answers described_class.new(filter.merge(metric_id: metric.id), sort).run
+    short_answers described_class.new(filter.merge(metric_id: metric.id), sort).run
   end
 
   context "with single filter condition" do
@@ -93,7 +93,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     context "with value filter" do
-      let(:all_answers) do
+      let(:answers) do
         LATEST_ANSWERS + missing_answers
       end
 
@@ -105,7 +105,7 @@ RSpec.describe Card::AnswerQuery do
       it "finds all values" do
         filtered = filter_by(status: :all)
         expect(filtered)
-          .to include(*all_answers)
+          .to include(*answers)
       end
 
       context "with update date filter" do

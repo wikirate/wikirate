@@ -12,8 +12,8 @@ format :html do
   def tab_options
     {
       details:          { label: "Answer" },
-      metric:           { label: "Metric" },
-      wikirate_company: { label: "Company" }
+      metric:           { label: "Metric", count: nil },
+      wikirate_company: { label: "Company", count: nil }
     }
   end
 
@@ -49,7 +49,7 @@ format :html do
   end
 
   def other_record_answers
-    card.record_card.all_answers.reject { |a| a.year == card.year }
+    card.record_card.answers.reject { |a| a.year == card.year }
   end
 
   def record_count

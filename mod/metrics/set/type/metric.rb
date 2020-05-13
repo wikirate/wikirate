@@ -21,7 +21,7 @@ card_accessor :hybrid, type: :toggle
 card_accessor :question, type: :plain_text
 card_accessor :report_type, type: :pointer
 card_accessor :score, type: :pointer
-card_accessor :wikirate_topic, type: :pointer
+card_accessor :wikirate_topic, type: :list
 card_accessor :research_policy, type: :pointer
 
 # METRIC-CHILD-STYLE METHODS

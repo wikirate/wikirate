@@ -23,28 +23,30 @@ RSpec.describe Card::AnswerQuery do
      "friendliness+1977", "deadliness+Joe User+1977", "deadliness+Joe Camel+1977",
      "disturbances in the Force+Joe User+2001", "darkness rating+1977",
      "descendant 1+1977", "descendant 2+1977", "descendant hybrid+1977",
-     "double friendliness+1977",
+     "double friendliness+1977", "Sector_Industry+2015",
      "researched number 1+1977", "know the unknowns+1977", "more evil+1977", "RM+1977",
      "deadliness+1977"]
   end
 
   let :latest_answers do # by metric name
-    ["dinosaurlabor+2010", "cost of planets destroyed+1977", "darkness rating+1977",
+    ["dinosaurlabor+2010", "Sector_Industry+2015", "cost of planets destroyed+1977",
+     "darkness rating+1977",
      "deadliness+1977", "deadliness+Joe Camel+1977", "deadliness+Joe User+1977",
      "disturbances in the Force+2001", "disturbances in the Force+Joe User+2001",
      "double friendliness+1977", "friendliness+1977", "know the unknowns+1977",
      "more evil+1977",
      "Sith Lord in Charge+1977", "Victims by Employees+1977", "descendant 1+1977",
-     "descendant 2+1977", "descendant hybrid+1977", "researched number 1+1977", "RM+1977"]
+     "descendant 2+1977", "descendant hybrid+1977", "researched number 1+1977",
+     "RM+1977"]
   end
 
   let :researched do
     ["dinosaurlabor+2010", "cost of planets destroyed+1977", "deadliness+1977",
-     "disturbances in the Force+2001", "Sith Lord in Charge+1977",
+     "disturbances in the Force+2001", "Sith Lord in Charge+1977", "Sector_Industry+2015",
      "Victims by Employees+1977", "RM+1977", "researched number 1+1977"]
   end
 
-  def unall_answers year=Time.now.year
+  def unanswers year=Time.now.year
     with_year unresearched_metric_keys, year
   end
 
@@ -53,7 +55,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   # @return [Array] of metric_title(+scorer)+year strings
-  def answers list
+  def short_answers list
     list.map do |a|
       [a.name.parts[1..-3], a.name.parts.last].flatten.join "+"
     end
@@ -66,7 +68,7 @@ RSpec.describe Card::AnswerQuery do
   # @return [Array] of metric_title(+scorer)+year strings
   def filter_by filter, latest=true
     filter.reverse_merge! year: :latest if latest
-    answers run_query filter, sort_by: :metric_name
+    short_answers run_query filter, sort_by: :metric_name
   end
 
   # @return [Array] of answer cards
@@ -179,7 +181,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     context "with status" do
-      let :all_answers do
+      let :answers do
         latest_answers + with_year(["researched number 2", "researched number 3",
                                     "small multi", "small single"])
       end
@@ -192,13 +194,13 @@ RSpec.describe Card::AnswerQuery do
 
       context "when :none" do
         it "finds not researched" do
-          expect(filter_by(status: :none)).to contain_exactly(*unall_answers)
+          expect(filter_by(status: :none)).to contain_exactly(*unanswers)
         end
       end
 
       it "finds all values" do
         filtered = filter_by(status: :all)
-        expect(filtered).to include(*all_answers)
+        expect(filtered).to include(*answers)
         expect(filtered.size)
           .to eq Card.search(type_id: Card::MetricID, return: :count)
       end
@@ -256,12 +258,12 @@ RSpec.describe Card::AnswerQuery do
   context "with multiple filter conditions" do
     context "with filter for missing values and ..." do
       it "... year" do
-        nr2001 = unall_answers(2001) + with_year(
+        nr2001 = unanswers(2001) + with_year(
           ["Victims by Employees", "cost of planets destroyed",
            "darkness rating", "deadliness", "deadliness+Joe Camel",
            "deadliness+Joe User", "dinosaurlabor", "friendliness",
            "Sith Lord in Charge", "descendant 1", "descendant 2",
-           "descendant hybrid",
+           "descendant hybrid", "Sector Industry",
            "RM", "researched number 1", "know the unknowns",
            "more evil", "double friendliness"],
           2001
@@ -344,7 +346,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   context "with sort conditions" do
-    let(:sorted_designer) { ["Fred", "Jedi", "Joe User"] }
+    let(:sorted_designer) { ["Fred", "Global_Reporting_Initiative", "Jedi", "Joe User"] }
 
     it "sorts by designer name (asc)" do
       sorted = sort_by(:metric_name, :asc).map { |a| a.name.parts.first }.uniq
@@ -363,7 +365,7 @@ RSpec.describe Card::AnswerQuery do
          "researched number 1", "Victims by Employees"].map do |t|
           sorted.index(t)
         end
-      expect(indices).to eq [0, 1, 2, 15, 18]
+      expect(indices).to eq [0, 1, 2, 15, 19]
     end
 
     it "sorts by recently updated" do
@@ -372,7 +374,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "sorts by bookmarkers" do
-      actual = answers sort_by(:bookmarkers, :desc)
+      actual = short_answers sort_by(:bookmarkers, :desc)
       expected = latest_answers_by_bookmarks
 
       bookmarked = (0..1)

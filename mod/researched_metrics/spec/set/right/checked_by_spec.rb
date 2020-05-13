@@ -48,7 +48,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
           end
         end
 
-        example "creator", with_user: "Wikirate Bot" do
+        example "creator", with_user: "Decko Bot" do
           expect(core).to have_tag :div do
             with_badge self, 0
             with_text /Nobody has checked this value since it was last updated/

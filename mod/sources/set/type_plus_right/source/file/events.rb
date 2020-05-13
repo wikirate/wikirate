@@ -29,9 +29,9 @@ event :normalize_html_file, after: :validate_source_file, on: :save, when: :html
   end
 end
 
-def unfilled?
-  !remote_file_url && super
-end
+# def unfilled?
+#   !remote_file_url && super
+# end
 
 def accepted_mime_type?
   file.content_type.in? ACCEPTED_MIME_TYPES
@@ -39,14 +39,15 @@ end
 
 def convert_to_pdf
   # Rails.logger.info "generating pdf"
-  with_tmp_pdf do |pdf_file|
+  converting_to_tmp_pdf do |pdf_file|
     self.file = pdf_file
   end
-rescue StandardError => e
-  abort :failure, "failed to convert HTML source to pdf: #{e.message}"
+rescue StandardError # => e
+  # binding.pry
+  abort :failure, "failed to convert HTML to pdf: #{e.message}"
 end
 
-def with_tmp_pdf
+def converting_to_tmp_pdf
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
     pdf_from_url path
     yield ::File.open(path)

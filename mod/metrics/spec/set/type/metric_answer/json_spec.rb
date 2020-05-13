@@ -2,11 +2,11 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
   YEAR = "1977".freeze
   COMPANY_NAME = "Death_Star".freeze
 
-  let(:answer) { Card.fetch(metric.name, COMPANY_NAME, YEAR) }
   let(:company) { Card[COMPANY_NAME] }
+  let(:answer) { Card.fetch metric.name, COMPANY_NAME, YEAR }
 
   def json_view view
-    render_view view, { name: answer.name }, format: :json
+    render_view view, answer, format: :json
   end
 
   def wr_url path
@@ -34,7 +34,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
         name: source.name,
         url: name_url(source.name),
         file_url: wr_url(source.file_url)
-        # "https://www.wikiwand.com/en/Star_Wars.json"
+        # "https://thereaderwiki.com/en/Star_Wars.json"
       }
     end
     let(:company_fields) do

@@ -16,7 +16,7 @@ Feature: Research answer
     Then I should see "2009"
     And I should see "9"
     And I should see "updated less than a minute ago by Joe User"
-    And I should see "www.wikiwand.com"
+    And I should see "thereaderwiki.com"
     And I should see "Baam!"
     When I open the year list
     Then I should see "9"
@@ -33,7 +33,7 @@ Feature: Research answer
     And I wait a sec
     And I should see a "comment" icon with tooltip "Has comments"
     And I should see a "check request" icon with tooltip "check requested"
-    Then I should see "www.wikiwand.com"
+    Then I should see "thereaderwiki.com"
     And I should see "Baam!"
     And I should see "check requested by Joe User"
 
@@ -44,7 +44,7 @@ Feature: Research answer
     And I press "Submit"
     Then I should see "2009"
     And I should see "10"
-    Then I should see "www.wikiwand.com"
+    Then I should see "thereaderwiki.com"
     And I should see "Baam!"
 
 

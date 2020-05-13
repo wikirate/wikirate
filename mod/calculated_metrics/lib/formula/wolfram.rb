@@ -5,9 +5,6 @@ module Formula
     include Unknowns
     include Validation
 
-    INTERPRETER =
-      "https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686".freeze
-
     FUNC_DEFS = ["Zeros[x_] := Count[x, 0]",
                  'Unknowns[x_] := Count[x, "Unknown"]'].freeze
 
@@ -36,8 +33,31 @@ module Formula
     # The result is a Wolfram hash with an array for every year that contains
     # the values for all companies
     # <|2014 -> {32.28, 34.28}, 2015 -> {32.30, 34.30}|>
+
     def to_lambda
+      wolfram_expression
+    end
+
+    def wolfram_expression
       with_function_defs "Apply[(#{wl_formula})&,<| #{wl_input} |>,{2}]"
+    end
+
+    # @return Hash (parsed JSON from body of request response)
+    def wolfram_response_body expr
+      expr ||= wolfram_expression
+      response = post_wolfram_request expr
+      return unless response.present?
+
+      parse_wolfram_json :body, response.body
+    end
+
+    # @return Hash (parsed JSON from "Result" of body section)
+    #   if there is an error, returns False and errors are added to @errors array
+    def wolfram_result expr
+      return unless (body = wolfram_response_body expr)
+
+      parsed = parse_wolfram_response_body body
+      insert_unknown_results parsed
     end
 
     protected
@@ -52,25 +72,32 @@ module Formula
     #   when evaluated in the Wolfram cloud
     # @return the parsed response
     def exec_lambda expr
-      return unless (parsed = parse_wolfram_response post_wolfram_request(expr))
+      wolfram_result expr
+    end
 
-      insert_unknown_results parsed
+    def interpreter
+      @interpreter ||=
+        if (api_key = Card.config.try :wolfram_api_key)
+          "https://www.wolframcloud.com/objects/#{api_key}"
+        else
+          raise Card::Error::ServerError, "no Wolfram interpreter configured"
+        end
     end
 
     def post_wolfram_request expr
-      uri = URI.parse INTERPRETER
+      uri = URI.parse interpreter
       Net::HTTP.post_form uri, "expr" => expr
     rescue StandardError => e
       log_wolfram_error "request failed", e.message
     end
 
-    def parse_wolfram_response response
-      return unless response.present? && (body = parse_wolfram_json :body, response.body)
-
+    def parse_wolfram_response_body body
       if body["Success"]
         parse_wolfram_json :result, body["Result"]
+      elsif (messages = body["MessagesText"]) # is this always syntax error??
+        wolfram_syntax_error messages
       else
-        wolfram_syntax_error body["MessagesText"]
+        wolfram_response_error "#{body['errorCode']}: #{body['errorDetails']}"
       end
     end
 
@@ -88,7 +115,12 @@ module Formula
     end
 
     def wolfram_syntax_error messages
-      @errors << "Formula Syntax Error: bad wolfram syntax\n  #{messages&.join("\n  ")}"
+      messages.unshift "Formula Syntax Error: bad wolfram syntax"
+      wolfram_response_error messages
+    end
+
+    def wolfram_response_error messages
+      @errors << Array.wrap(messages).join("\n  ")
       false
     end
 

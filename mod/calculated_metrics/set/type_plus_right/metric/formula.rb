@@ -60,7 +60,7 @@ format :html do
   end
 end
 
-event :validate_formula, :validate, when: :wolfram_formula? do
+event :validate_formula, :validate, when: :wolfram_formula?, changed: :content do
   formula_errors = calculator.validate_formula
   return if formula_errors.empty?
   formula_errors.each do |msg|

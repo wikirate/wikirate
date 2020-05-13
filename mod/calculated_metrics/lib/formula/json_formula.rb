@@ -2,7 +2,7 @@ module Formula
   # The common ground of Translations and WikiRatings formula
   class JsonFormula < Calculator
     def to_lambda
-      @parser.formula.downcase
+      @parser.formula
     end
 
     # Is this the right class for this formula?

@@ -120,7 +120,7 @@ format :html do
 
   def sources_found_by_url
     return unless source_search_term.url?
-    wikirate_source_from_url || Self::Source.find_duplicates(source_search_term)
+    wikirate_source_from_url || Self::Source.search_by_url(source_search_term)
   end
 
   def wikirate_source_from_url

@@ -25,7 +25,7 @@ class Card
     def metric_row input_card
       return unless (a_card = answer_card input_card)
 
-      [metric_thumbnail(input_card), input_value(a_card)]
+      [metric_thumbnail(input_card), link_to_answer(a_card)]
     end
 
     def company
@@ -49,22 +49,27 @@ class Card
       end
     end
 
-    def input_value answer_card
-      a_card = answer_card.raw_answer_card
-      @format.link_to_card a_card, a_card.value_card.format.pretty_value,
+    def link_to_answer answer_card
+      @format.link_to_card answer_card, answer_card.value_card.format.pretty_value,
                            class: "metric-value _update-details"
     end
 
-    def base_metric_card
-      @format.card.metric_card.left
-    end
-
-    def base_metric_answer
-      base_metric_card.field(company).field(year)
+    def metric_card
+      @format.card.metric_card
     end
 
     def metric_thumbnail input_card
       @format.nest input_card, view: :thumbnail
+    end
+
+    # FOLLOWING ONLY APPLY TO SCORES
+
+    def base_metric_card
+      metric_card.left
+    end
+
+    def base_metric_answer
+      base_metric_card.field(company).field(year)
     end
   end
 end
