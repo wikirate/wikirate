@@ -87,6 +87,5 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       answer.update! subfields: { value: "updated value" }
       expect(Card[answer, :value].content).to eq("updated value")
     end
-
   end
 end

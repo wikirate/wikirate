@@ -1,10 +1,10 @@
-RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
+RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Source do
   let(:source) { sample_source }
   let(:source_card) { new_answer.source_card }
   let(:metric) { sample_metric }
   let(:company) { sample_company }
   let :new_answer do
-    create_answer content: "1234", year: "2015", source: source.name
+    create_answer value: "1234", year: "2015", source: source.name
   end
 
   describe "answer creation" do
@@ -32,18 +32,11 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
 
     it "fails if source card cannot be created" do
       expect(build_answer(source: nil))
-        .to be_invalid.because_of("+source": include("sources required"))
+        .to be_invalid.because_of(source: include("required"))
     end
 
     context "when triggering auto-create sources" do
-      def create_answer_with_source url
-        with_user user do
-          Card.create type_id: Card::MetricAnswerID,
-                      subcards: answer_subcards(metric: metric, company: company,
-                                                content: "content", year: "2015",
-                                                source: url)
-        end
-      end
+
     end
   end
 end

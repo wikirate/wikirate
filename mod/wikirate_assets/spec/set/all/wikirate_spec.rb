@@ -45,14 +45,17 @@ RSpec.describe Card::Set::All::Wikirate do
         expect(dump_card.format.render_og_source).to eq(dump_card.format.render_source)
       end
     end
+
     context "with nonexistent card" do
       it "renders the vertical logo link" do
         new_card = Card.new name: "orange pen phone"
-        vertical_logo_source_view = Card["*vertical_logo"].format.render_source size: "large"
+        vertical_logo_source_view =
+          Card["*vertical_logo"].format.render_source size: "large"
         expect(new_card.format.render_og_source).to eq(vertical_logo_source_view)
       end
     end
   end
+
   # describe "progress bar view" do
   #   context "card content is numeric" do
   #     it "render progress bar" do
@@ -68,9 +71,14 @@ RSpec.describe Card::Set::All::Wikirate do
   #   end
   #   context "card content is not numeric" do
   #     it "returns error message" do
-  #       non_numeric_card = Card.create! name: "I am not a number", content: "There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors."
+  #       non_numeric_card =
+  #         Card.create! name: "I am not a number",
+  #                      content: "There are 2 hard problems in computer science: " \
+  #                               "cache invalidation, naming things, " \
+  #                               "and off-by-1 errors."
   #       html = non_numeric_card.format.render_progress_bar
-  #       expect(html).to eq("Only card with numeric content can be shown as progress bar.")
+  #       expect(html)
+  #         .to eq("Only card with numeric content can be shown as progress bar.")
   #     end
   #   end
   # end

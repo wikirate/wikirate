@@ -42,9 +42,9 @@ def convert_to_pdf
   converting_to_tmp_pdf do |pdf_file|
     self.file = pdf_file
   end
-rescue StandardError # => e
+rescue StandardError => e
   # binding.pry
-  abort :failure, "failed to convert HTML to pdf: #{e.message}"
+  abort :failure, "failed to convert HTML to pdf" # ": #{e.message}"
 end
 
 def converting_to_tmp_pdf
