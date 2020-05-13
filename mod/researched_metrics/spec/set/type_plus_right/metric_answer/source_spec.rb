@@ -3,8 +3,9 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Source do
   let(:source_card) { new_answer.source_card }
   let(:metric) { sample_metric }
   let(:company) { sample_company }
-  let :new_answer do
-    create_answer value: "1234", year: "2015", source: source.name
+  def new_answer args={}
+    args.reverse_merge! value: "1234", year: "2015", source: source.name
+    create_answer args
   end
 
   describe "answer creation" do
@@ -27,7 +28,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Source do
 
     it "fails with a non-existing source" do
       expect(build_answer(source: "Page-1"))
-        .to be_invalid.because_of("+source": include("No such source exists"))
+        .to be_invalid.because_of("+Source": include("No such source exists"))
     end
 
     it "fails if source card cannot be created" do
@@ -35,8 +36,19 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Source do
         .to be_invalid.because_of(source: include("required"))
     end
 
-    context "when triggering auto-create sources" do
+    context "when source is url" do
+      let(:url) { "http://decko.org" }
 
+      it "adds source when explicitly triggered to do so" do
+        a = new_answer(source: { content: url, trigger_in_action: :auto_add_source })
+        expect(a.source_card.first_name)
+          .to eq(Card::Set::Self::Source.search_by_url(url).first.name)
+      end
+
+      it "fails when not triggered to auto-add" do
+        expect(build_answer(source: url))
+          .to be_invalid.because_of("+Source": include("requires event configuration"))
+      end
     end
   end
 end
