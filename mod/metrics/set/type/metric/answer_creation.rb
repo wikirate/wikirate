@@ -13,9 +13,7 @@ end
 # @option args [String] :value
 # @option args [String] :source source url
 def create_answer args
-  unless (valid_args = create_answer_args args)
-    raise "invalid answer args: #{args}"
-  end
+  raise "invalid answer args: #{args}" unless (valid_args = create_answer_args args)
   Card.create! valid_args
 end
 
@@ -74,8 +72,7 @@ def create_answer_args args
   return unless valid_answer_args? args
   create_args = { name: answer_name_from_args(args),
                   type_id: answer_type_id(args[:related_company]),
-                  "+value" => { content: args[:value],
-                                type_code: value_cardtype_code } }
+                  "+value" => args[:value] }
   add_answer_discussion_args create_args, args[:comment]
   add_answer_source_args create_args, args[:source]
   create_args

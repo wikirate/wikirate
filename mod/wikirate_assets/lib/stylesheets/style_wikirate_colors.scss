@@ -249,4 +249,10 @@ $colorMap: (
       cursor: pointer;
     }
   }
+  @include media-breakpoint-down(sm) {
+    display: inline-block;
+    > a {
+      margin-left: -4px;
+    }
+  }
 }

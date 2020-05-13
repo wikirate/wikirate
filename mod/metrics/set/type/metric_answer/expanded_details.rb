@@ -1,4 +1,3 @@
-include_set Abstract::WikirateTable
 include_set Abstract::ExpandedResearchedDetails
 include_set Abstract::Table
 include_set Abstract::Paging
@@ -78,9 +77,9 @@ format :html do
   view :expanded_score_details, cache: :never do
     wrap_expanded_details do
       if metric_card.categorical?
-        answer_details_table
+        [answer_details_table("CategoryScore"), category_score_details]
       else
-        [answer_details_table, calculation_details]
+        [answer_details_table("FormulaScore"), calculation_details]
       end
     end
   end
@@ -100,8 +99,12 @@ format :html do
     end
   end
 
-  def answer_details_table
-    AnswerDetailsTable.new(self).render
+  def category_score_details
+
+  end
+
+  def answer_details_table class_base=nil
+    AnswerDetailsTable.new(self, class_base).render
   end
 
   # ~~~~~~~ RELATIONSHIP AND INVERSE RELATIONSHIP DETAILS

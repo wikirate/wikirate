@@ -15,32 +15,27 @@ end
 include SourceHelper
 include SharedData::Samples
 
-def create_answer metric: sample_metric, company: sample_company, user: "Joe User",
-                  content: "content", year: "2015", source: sample_source.name
-  with_user user do
-    Card.create type_id: Card::MetricAnswerID,
-                subcards: answer_subcards(metric: metric, company: company,
-                                          content: content, year: year,
-                                          source: source)
+def create_answer args
+  with_user(args[:user] || "Joe User") do
+    Card.create answer_args(args)
   end
 end
 
-def build_answer metric: sample_metric, company: sample_company,
-               content: "content", year: "2015", source: sample_source.name
-  Card.new type_id: Card::MetricAnswerID,
-           subcards: answer_subcards(metric: metric, company: company,
-                                     content: content, year: year,
-                                     source: source)
+def build_answer args
+  Card.new answer_args(args)
 end
 
-def answer_subcards metric: sample_metric, company: sample_company,
-                content: "content", year: "2015", source: sample_source.name
-  {
-    "+metric" => { content: metric.name },
-    "+company" => { content: company.name, :type_id => Card::PointerID },
-    "+value" => { content: content, :type_id => metric.value_cardtype_id },
-    "+year" => { content: year, :type_id => Card::PointerID },
-    "+source" => { content: "[[#{source}]]\n", :type_id => Card::PointerID }
+def answer_args(metric: sample_metric.name,
+                company: sample_company.name,
+                year: "2015",
+                value: "sample value",
+                source: sample_source.name)
+  { type_id: Card::MetricAnswerID,
+    "+metric" => metric,
+    "+company" => company,
+    "+value" => value,
+    "+year" => year,
+    "+source" => source
   }
 end
 

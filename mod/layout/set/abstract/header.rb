@@ -1,3 +1,5 @@
+include_set Abstract::Media
+
 format :html do
   view :rich_header do
     bs_layout do
