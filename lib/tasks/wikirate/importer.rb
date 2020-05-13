@@ -62,7 +62,12 @@ class Importer
     work_on "importing data (#{cards.size} cards)" do
       Card::Auth.as_bot do
         cards.flatten.each do |card|
-          ImportCard.new(card).update_or_create
+          next if card["name"].empty?
+
+          require 'pry'
+          binding.pry if card["name"] == "script: decko"
+          import = ImportCard.new(card)
+          import.update_or_create
         end
       end
     end

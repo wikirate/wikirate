@@ -1,4 +1,6 @@
-VALID_INPUT_TYPE_IDS = [Card::MetricID, Card::YearlyVariableID].freeze
+if defined?(Card::MetricID)
+  VALID_INPUT_TYPE_IDS = [Card::MetricID, Card::YearlyVariableID].freeze
+end
 
 def clean_formula
   descendant? ? inheritance_formula : standard_formula

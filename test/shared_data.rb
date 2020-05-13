@@ -1,9 +1,16 @@
 # -*- encoding : utf-8 -*-
 
 require "timecop"
+require_relative "shared_data/samples"
+require_relative "shared_data/profile_sections"
+require_relative "shared_data/researched_metrics"
+require_relative "shared_data/calculated_metrics"
+require_relative "shared_data/relationship_metrics"
+require_relative "shared_data/badges"
+require_relative "shared_data/sources"
+require_relative "shared_data/projects"
 
 class SharedData
-
   HAPPY_BIRTHDAY = Time.utc(2035, 2, 5, 12, 0, 0).freeze
   # gift to Ethan's 60th birthday:
   # on the date above 3 tests will fail

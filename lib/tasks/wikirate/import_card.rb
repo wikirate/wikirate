@@ -33,7 +33,7 @@ class ImportCard
   end
 
   def adjust_file_attributes
-    return unless @attr["type"].in? %w(Image File)
+    return unless @attr["type"].in? ["Image", "File", "Source Import File", "Metric Answer Import File"]
     if bucket_file?
       # TODO: check if the bucket is configured and only then keep it as a cloud file?
       @attr["storage_type"] = :cloud

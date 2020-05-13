@@ -29,6 +29,8 @@ end
 
 # @return badge name if count equals its threshold
 def earns_badge action
+  return unless badge_squad.respond_to? :earns_badge
+
   badge_squad.earns_badge action
 end
 

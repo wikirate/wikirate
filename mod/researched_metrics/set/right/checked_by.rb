@@ -243,8 +243,16 @@ def remove_checked_flag?
 end
 
 def request_check_flag_update?
-  !add_checked_flag? && !remove_checked_flag?
+  !add_checked_flag? && !remove_checked_flag? && proper_checked_by_card?
 end
+
+def proper_checked_by_card?
+  # Generating seed data fails because there is a Answer+checked_by card.
+  # If left doesn't exist it gets the right type in check_requested_by_card method.
+  # We have to skip the case where we have a left with the wrong type
+  !left || !left.known? || left.respond_to?(:check_requested_by_card)
+end
+
 
 format :json do
   def atom
