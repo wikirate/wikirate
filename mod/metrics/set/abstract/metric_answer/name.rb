@@ -5,8 +5,15 @@ end
 # on creation, we attempt to compose a valid name
 event :set_answer_name, before: :set_autoname, when: :invalid_answer_name? do
   self.name = compose_name
-  validate_name_parts
-  abort :failure if errors.any?
+end
+
+event :auto_add_company, after: :set_answer_name, on: :create, trigger: :required do
+  return if valid_company?
+  if company_card&.exists?
+    errors.add "#{company} is not a Company; it's a #{company_card.type_name}"
+  else
+    Card.create type: WikirateCompanyID, name: company
+  end
 end
 
 event :validate_year_change, :validate, on: :update, when: :year_updated? do
@@ -25,7 +32,7 @@ def year_updated?
   (year_card = subfield(:year)) && !year_card.item_names.size.zero?
 end
 
-event :validate_answer_name, after: :validate_year_change, on: :save, changed: :name do
+event :validate_answer_name, :validate, on: :save, changed: :name do
   validate_name_parts
 end
 
@@ -56,6 +63,8 @@ def valid_metric?
 end
 
 def valid_company?
+  return false unless company
+
   (company_card&.type_id == Card::WikirateCompanyID) || ActManager.include?(company)
 end
 

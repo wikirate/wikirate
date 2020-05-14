@@ -43,8 +43,9 @@ def convert_to_pdf
     self.file = pdf_file
   end
 rescue StandardError => e
-  # binding.pry
-  abort :failure, "failed to convert HTML to pdf" # ": #{e.message}"
+  msg = "failed to convert HTML to pdf"
+  abort :failure, msg
+  Rails.logger.info "#{msg}: #{e.message}"
 end
 
 def converting_to_tmp_pdf

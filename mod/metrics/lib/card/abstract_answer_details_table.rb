@@ -66,8 +66,6 @@ class Card
                            class: "metric-value _update-details"
     end
 
-
-
     def metric_thumbnail input_card
       @format.nest input_card, view: :thumbnail
     end

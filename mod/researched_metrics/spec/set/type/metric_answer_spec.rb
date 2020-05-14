@@ -88,4 +88,19 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       expect(Card[answer, :value].content).to eq("updated value")
     end
   end
+
+  describe "event: auto_add_company" do
+    let(:new_company) { "Kuhl Co" }
+
+    it "adds company when triggered" do
+      Card.create answer_args.merge("+company" => new_company,
+                                    trigger: :auto_add_company)
+      expect(Card[new_company].type_id).to eq(Card::WikirateCompanyID)
+    end
+
+    it "fails when not triggered with unknown company" do
+      expect(create_answer(company: new_company).errors[:company])
+        .to include(/valid company required/)
+    end
+  end
 end

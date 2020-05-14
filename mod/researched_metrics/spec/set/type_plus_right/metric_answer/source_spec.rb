@@ -3,6 +3,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Source do
   let(:source_card) { new_answer.source_card }
   let(:metric) { sample_metric }
   let(:company) { sample_company }
+
   def new_answer args={}
     args.reverse_merge! value: "1234", year: "2015", source: source.name
     create_answer args
