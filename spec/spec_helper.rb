@@ -16,7 +16,7 @@ include SourceHelper
 include SharedData::Samples
 
 def create_answer args
-  with_user(args[:user] || "Joe User") do
+  with_user(args.delete(:user) || "Joe User") do
     Card.create answer_args(args)
   end
 end

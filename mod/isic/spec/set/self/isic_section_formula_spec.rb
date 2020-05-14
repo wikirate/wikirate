@@ -10,7 +10,7 @@ RSpec.describe Card::Set::Self::IsicSectionFormula do
 
   describe "integration" do
     it "makes all the calculations between class and section" do
-      create_answer metric: Card["OpenCorporates+Industry Class"],
+      create_answer metric: "OpenCorporates+Industry Class",
                     value: %w[0111 9609],
                     user: "Joe Admin"
       section_answer = Answer.where(company_id: sample_company.id,
