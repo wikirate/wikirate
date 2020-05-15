@@ -56,7 +56,6 @@ event :auto_add_object_company,
   add_company related_company unless valid_related_company?
 end
 
-
 def schedule_answer_count name
   answer_card = Card.fetch name, new: { type_id: Card::MetricAnswerID,
                                         "+value" => "1" }

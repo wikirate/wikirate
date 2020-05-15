@@ -37,7 +37,6 @@ def add_company company
     errors.add "#{company} is not a Company; it's a #{company_card.type_name}"
   else
     Card.create type: WikirateCompanyID, name: company
-    add_subfield :wikirate_company, ()
   end
 end
 
