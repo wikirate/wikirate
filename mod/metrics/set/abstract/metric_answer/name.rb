@@ -8,12 +8,7 @@ event :set_answer_name, before: :set_autoname, when: :invalid_answer_name? do
 end
 
 event :auto_add_company, after: :set_answer_name, on: :create, trigger: :required do
-  return if valid_company?
-  if company_card&.exists?
-    errors.add "#{company} is not a Company; it's a #{company_card.type_name}"
-  else
-    Card.create type: WikirateCompanyID, name: company
-  end
+  add_company name_part("company") unless valid_company?
 end
 
 event :validate_year_change, :validate, on: :update, when: :year_updated? do
@@ -34,6 +29,16 @@ end
 
 event :validate_answer_name, :validate, on: :save, changed: :name do
   validate_name_parts
+end
+
+def add_company company
+  company_card = Card[company]
+  if company_card&.exists?
+    errors.add "#{company} is not a Company; it's a #{company_card.type_name}"
+  else
+    Card.create type: WikirateCompanyID, name: company
+    add_subfield :wikirate_company, ()
+  end
 end
 
 def invalid_answer_name?
@@ -73,13 +78,14 @@ def valid_year?
 end
 
 def compose_name
-  name_part_types.map do |type|
-    name_part_from_field(type) || name_part_from_name(type)
-  end.join "+"
+  Card::Name[name_part_types.map { |type| name_part type }]
+end
+
+def name_part type
+  name_part_from_field(type) || name_part_from_name(type)
 end
 
 def name_part_from_name type
-  return unless send("valid_#{type}?")
   send type
 end
 

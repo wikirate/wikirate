@@ -72,7 +72,8 @@ def create_answer_args args
   return unless valid_answer_args? args
   create_args = { name: answer_name_from_args(args),
                   type_id: answer_type_id(args[:related_company]),
-                  "+value" => args[:value] }
+                  "+value" => args[:value],
+                  trigger: args[:trigger] }
   add_answer_discussion_args create_args, args[:comment]
   add_answer_source_args create_args, args[:source]
   create_args

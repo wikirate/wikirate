@@ -20,6 +20,26 @@ RSpec.describe AnswerImportItem do
     expect(Card[item_name]).not_to be_a Card
   end
 
+  describe "corrections" do
+    def default_map
+      default_item_hash.each_with_object({}) do |(column, val), hash|
+        next if column.in? %i[value comment]
+        hash[column] = { val => Card.fetch_id(val) }
+      end
+    end
+
+    it "handles auto adding company" do
+      co = "Kuhl Co"
+      item = item_object wikirate_company: co
+      item.corrections = default_map.merge(wikirate_company: { co => "AutoAdd" })
+      item.import
+
+      expect(Card[co].type_id).to eq(Card::WikirateCompanyID)
+    end
+
+    it "handles auto ad"
+  end
+
   describe "#execute_import" do
     example "creates answer card with valid data", as_bot: true do
       import
