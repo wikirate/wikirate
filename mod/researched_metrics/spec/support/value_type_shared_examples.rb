@@ -12,8 +12,8 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
   end
 
   describe "create a new answer" do
-    def metric_answer content
-      create_answer metric: metric, company: company, content: content
+    def metric_answer value
+      create_answer metric: metric.name, company: company.name, value: value
     end
 
     context "value not fit the value type" do

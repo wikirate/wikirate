@@ -38,18 +38,6 @@ format :html do
     end
   end
 
-  view :type_link, template: :haml do
-    @type_card = card.type_card
-  end
-
-  def type_link_label
-    @type_card.name
-  end
-
-  def type_link_icon
-    mapped_icon_tag @type_card.codename
-  end
-
   def two_column_layout col1=6, col2=6, row_hash={}
     bs_layout container: false, fluid: true, class: container_class do
       row_hash[:class] ||= "panel-margin-fix two-column-box"

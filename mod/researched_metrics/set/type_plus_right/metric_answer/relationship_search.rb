@@ -1,5 +1,4 @@
 include_set Type::SearchType
-include_set Abstract::WikirateTable
 include_set Abstract::Table
 
 include_set Abstract::MetricChild, generation: 3

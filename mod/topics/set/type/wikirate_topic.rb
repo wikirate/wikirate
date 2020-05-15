@@ -1,6 +1,3 @@
-# include_set Abstract::WikirateTable
-# include_set Abstract::Media
-# include_set Abstract::BsBadge
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::FilterableBar

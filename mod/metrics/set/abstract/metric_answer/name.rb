@@ -5,8 +5,10 @@ end
 # on creation, we attempt to compose a valid name
 event :set_answer_name, before: :set_autoname, when: :invalid_answer_name? do
   self.name = compose_name
-  validate_name_parts
-  abort :failure if errors.any?
+end
+
+event :auto_add_company, after: :set_answer_name, on: :create, trigger: :required do
+  add_company name_part("company") unless valid_company?
 end
 
 event :validate_year_change, :validate, on: :update, when: :year_updated? do
@@ -25,8 +27,18 @@ def year_updated?
   (year_card = subfield(:year)) && !year_card.item_names.size.zero?
 end
 
-event :validate_answer_name, after: :validate_year_change, on: :save, changed: :name do
+event :validate_answer_name, :validate, on: :save, changed: :name do
   validate_name_parts
+end
+
+def add_company company
+  company_card = Card[company]
+  if company_card&.exists?
+    errors.add "#{company} is not a Company; it's a #{company_card.type_name}"
+  else
+    Card.create type: WikirateCompanyID, name: company
+    add_subfield :wikirate_company, ()
+  end
 end
 
 def invalid_answer_name?
@@ -56,6 +68,8 @@ def valid_metric?
 end
 
 def valid_company?
+  return false unless company
+
   (company_card&.type_id == Card::WikirateCompanyID) || ActManager.include?(company)
 end
 
@@ -64,13 +78,14 @@ def valid_year?
 end
 
 def compose_name
-  name_part_types.map do |type|
-    name_part_from_field(type) || name_part_from_name(type)
-  end.join "+"
+  Card::Name[name_part_types.map { |type| name_part type }]
+end
+
+def name_part type
+  name_part_from_field(type) || name_part_from_name(type)
 end
 
 def name_part_from_name type
-  return unless send("valid_#{type}?")
   send type
 end
 
