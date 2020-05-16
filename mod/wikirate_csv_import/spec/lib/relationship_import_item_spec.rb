@@ -25,6 +25,7 @@ RSpec.describe RelationshipImportItem do
     example "creates relationship answer card with valid data", as_bot: true do
       import
       expect_card(item_name).to exist
+      expect(Card.fetch_type_id(item_name.left)).to eq(Card::MetricAnswerID)
     end
   end
 

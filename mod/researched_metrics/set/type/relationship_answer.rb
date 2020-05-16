@@ -16,8 +16,11 @@ event :schedule_answer_counts, :finalize do
   schedule_answer_count inverse_answer_name
 end
 
+# TODO: this shouldn't be necessary if default type_id were based on ltype rtype set
 event :ensure_left_type_is_answer, after: :set_left_and_right do
-  Card.fetch(name.left, local_only: true)&.type_id = Card::MetricAnswerID
+  answer = Card.fetch name.left, new: { type_id: MetricAnswerID }
+  answer.type_id = MetricAnswerID
+  add_subcard answer if answer.type_id_changed?
 end
 
 event :auto_add_object_company,
