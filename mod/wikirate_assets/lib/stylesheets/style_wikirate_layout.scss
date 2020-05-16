@@ -231,18 +231,6 @@ body.wikirate-two-column-layout {
   h5, h6 {
     font-size: 1.2rem !important;
   }
-  .type-link {
-    position: absolute;
-    right: 0;
-    padding: 1px 1em;
-    a {
-      color: inherit;
-    }
-    span {
-      font-size: 1.1em;
-      font-variant: small-caps;
-    }
-  }
   .right-col {
     border-top: 2px solid $border-color;
     border-color: inherit;
@@ -267,6 +255,19 @@ body.wikirate-two-column-layout {
         padding-top: 0;
       }
     }
+  }
+}
+
+.type-link {
+  position: absolute;
+  right: 0;
+  padding: 1px 1em;
+  a {
+    color: inherit;
+  }
+  span {
+    font-size: 1.1em;
+    font-variant: small-caps;
   }
 }
 

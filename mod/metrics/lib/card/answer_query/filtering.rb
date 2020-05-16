@@ -36,7 +36,7 @@ class Card
         if (m = value.match(/^['"]([^'"]+)['"]$/))
           filter key, m[1]
         else
-          filter key, "%#{value}%", "LIKE"
+          filter key, "%#{value.strip}%", "LIKE"
         end
       end
 
