@@ -98,9 +98,13 @@ def related_company_ids args={}
   relationships(args).distinct.pluck :object_company_id
 end
 
+def related_company_names args={}
+  relationships(args).distinct.pluck :object_company_name
+end
+
 # @return [Array] of Integers
 def inverse_related_company_ids args={}
-  relationships(args).distinct.pluck :subject_company_id
+  inverse_relationships(args).distinct.pluck :subject_company_id
 end
 
 private

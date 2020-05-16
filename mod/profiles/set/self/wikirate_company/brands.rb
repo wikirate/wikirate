@@ -4,11 +4,17 @@ format :json do
   end
 
   def brands_select2_option_list
-    [Card["Google Inc"], Card["Apple Inc"]].each_with_object([]) do |i, ar|
-      ar << { id: i.key, text: i.name }
+    Card[:commons_has_brands].companies.each_with_object([]) do |company, ar|
+      ar << { id: company.id, text: company.name }
+      ar.concat(owned_brands_select2_options_list(company))
     end
   end
 
+  def owned_brands_select2_options_list company
+    company.related_companies(metric: :commons_has_brands).map do |brand|
+      { id: brand.id, text: "#{brand.name} (#{company.name})" }
+    end
+  end
 
   def name_query
     Env.params[:q] if Env.params[:q].present?

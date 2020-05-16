@@ -1,22 +1,32 @@
 format :json do
   view :supplier_info do
-    { name: card.name,
-      workers_by_gender: workers_by_gender,
-      workers_by_contract: workers_by_contract,
-      average_net_wage: average_net_wage,
-      wage_gap: wage_gap,
-      workers_have_cba: workers_have_cba,
-      workers_know_brand: workers_know_brand,
-      workers_get_pregnancy_leave: workers_get_pregnancy_leave
-    }
+    supplier_info.to_json
   end
+end
+
+def supplier_info
+  { name: name,
+    workers_by_gender: workers_by_gender,
+    workers_by_contract: workers_by_contract,
+    average_net_wage: average_net_wage,
+    wage_gap: wage_gap,
+    workers_have_cba: workers_have_cba,
+    workers_know_brand: workers_know_brand,
+    workers_get_pregnancy_leave: workers_get_pregnancy_leave
+  }
+end
+
 
   def workers_by_gender
     {
-        female: 5,
-        male: 10,
+        female: latest_value(:ccc_female_workers),
+        male: latest_value(:ccc_male_workers),
         other: 100
     }
+  end
+  
+  def latest_value metric_code
+    latest_answer(metric: metric_code)&.value
   end
 
   def workers_by_contract
@@ -45,4 +55,3 @@ format :json do
   def workers_get_pregnancy_leave
     "sometimes"
   end
-end

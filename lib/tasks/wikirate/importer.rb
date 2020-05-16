@@ -64,8 +64,6 @@ class Importer
         cards.flatten.each do |card|
           next if card["name"].empty?
 
-          require 'pry'
-          binding.pry if card["name"] == "script: decko"
           import = ImportCard.new(card)
           import.update_or_create
         end
