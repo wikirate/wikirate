@@ -51,6 +51,11 @@ event :ensure_left_type_is_answer, after: :set_left_and_right do
   Card.fetch(name.left, local_only: true)&.type_id = Card::MetricAnswerID
 end
 
+event :auto_add_object_company,
+      after: :set_answer_name, on: :create, trigger: :required do
+  add_company related_company unless valid_related_company?
+end
+
 def schedule_answer_count name
   answer_card = Card.fetch name, new: { type_id: Card::MetricAnswerID,
                                         "+value" => "1" }

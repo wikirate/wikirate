@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-include_set Abstract::WikirateTable
 include_set Abstract::Media
 include_set Abstract::Delist
 include_set Abstract::Accountable

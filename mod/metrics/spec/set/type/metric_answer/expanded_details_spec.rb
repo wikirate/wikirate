@@ -123,7 +123,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   describe "view: expanded_score_details" do
     subject do
       fetch_answer("Jedi+deadliness+Joe User+Death Star+1977")
-        .format.render :expanded_wiki_rating_details
+        .format.render :expanded_score_details
     end
 
     specify do

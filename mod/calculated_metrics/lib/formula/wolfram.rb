@@ -110,7 +110,7 @@ module Formula
     def log_wolfram_error main, extra
       main = "Wolfram Error: #{main}"
       @errors << main
-      Rails.logger.debug "#{main}: #{extra}"
+      Rails.logger.info "#{main}: #{extra}"
       false
     end
 

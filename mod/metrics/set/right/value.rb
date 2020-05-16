@@ -5,7 +5,7 @@
 # The following code, by contrast, must be here to ensure that the +value cards get
 # the correct cardtype in the first place.
 
-event :ensure_correct_value_type, :initialize, on: :save, when: :typed_value? do
+event :ensure_correct_value_type, :prepare_to_validate, on: :save, when: :typed_value? do
   return unless (correct_type_code = type_code_from_metric)
   return true if type_code == correct_type_code
   self.type_id = Card.id correct_type_code

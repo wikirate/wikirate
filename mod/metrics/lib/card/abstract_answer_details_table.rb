@@ -28,12 +28,24 @@ class Card
       [metric_thumbnail(input_card), link_to_answer(a_card)]
     end
 
+    def card
+      @card ||= @format.card
+    end
+
+    def metric_card
+      card.metric_card
+    end
+
     def company
-      @format.card.company_name
+      card.company_name
     end
 
     def year
-      @format.card.year
+      card.year
+    end
+
+    def value_card
+      card.value_card
     end
 
     def answer_card input_card
@@ -52,10 +64,6 @@ class Card
     def link_to_answer answer_card
       @format.link_to_card answer_card, answer_card.value_card.format.pretty_value,
                            class: "metric-value _update-details"
-    end
-
-    def metric_card
-      @format.card.metric_card
     end
 
     def metric_thumbnail input_card
