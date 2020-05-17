@@ -6,7 +6,9 @@ end
 
 def transparency_info
   {
+      id: id,
       holding: name,
+      headquarter: headquarter,
       location: location,
       number_of_workers: number_of_workers,
       brands: all_brands,
@@ -15,6 +17,7 @@ def transparency_info
       suppliers: supplier_infos,
   }
 end
+
 
 def holding_company?
   true
@@ -32,8 +35,12 @@ def number_of_workers
   latest_answer(metric: :ccc_number_of_workers)
 end
 
+def address
+  latest_value(:ccc_address)
+end
+
 def location
-  latest_answer(metric: :core_headquarters_location)&.value
+  latest_value(metric: :core_headquarters_location)
 end
 
 def all_brands
@@ -49,11 +56,11 @@ def scores
 end
 
 def transparency_score
-  4
+  latest_value :ccc_supply_chain_transparency_score
 end
 
 def commitment_score
-  { total: 4,
+  { total: latest_value(:ccc_policy_promise_score),
     public_commitment: "yes",
     action_plan: "partial",
     fing_fencing_labour_cost: "no"
@@ -61,7 +68,7 @@ def commitment_score
 end
 
 def living_wage_score
-  2
+  latest_value :ccc_living_wages_paid_score
 end
 
 def contact_url

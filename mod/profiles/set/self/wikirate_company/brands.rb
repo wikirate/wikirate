@@ -4,6 +4,15 @@ format :json do
   end
 
   def brands_select2_option_list
+    if name_query.present?
+      # TODO filter in database query
+      full_brands_list.select { |ha| ha.company.name.include?(name_query) }
+    else
+      full_brands_list
+    end
+  end
+
+  def full_brands_list
     Card[:commons_has_brands].companies.each_with_object([]) do |company, ar|
       ar << { id: company.id, text: company.name }
       ar.concat(owned_brands_select2_options_list(company))
