@@ -45,13 +45,13 @@ end
   end
 
   def workers_have_cba
-    "yes"
+    latest_value :ccc_collective_bargaining_agreement
   end
 
   def workers_know_brand
-    "no"
+    latest_value :ccc_surveyed_workers_who_know_which_brands_they_produce_for
   end
 
   def workers_get_pregnancy_leave
-    "sometimes"
+    latest_value :ccc_workers_who_had_pregnancy_leave
   end
