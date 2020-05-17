@@ -26,7 +26,7 @@ end
   end
   
   def latest_value metric_code
-    latest_answer(metric: metric_code)&.value
+    latest_answer(metric_code)&.value
   end
 
   def workers_by_contract

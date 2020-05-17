@@ -8,7 +8,7 @@ def transparency_info
   {
       id: id,
       holding: name,
-      headquarter: headquarter,
+      address: address,
       location: location,
       number_of_workers: number_of_workers,
       brands: all_brands,
@@ -32,7 +32,7 @@ def holding_company
 end
 
 def number_of_workers
-  latest_answer(metric: :ccc_number_of_workers)
+  latest_answer :ccc_number_of_workers
 end
 
 def address
@@ -40,7 +40,7 @@ def address
 end
 
 def location
-  latest_value(metric: :core_headquarters_location)
+  latest_value :core_headquarters_location
 end
 
 def all_brands
