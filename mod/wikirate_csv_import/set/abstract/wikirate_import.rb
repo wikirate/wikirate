@@ -4,16 +4,18 @@ include_set Abstract::Tabs
 
 format :html do
   def header_text
-    download_link
+    [download_link, render_type_link]
   end
 
-  view :header do
-    main? ? render_main_header : super()
-  end
+  # view :header do
+  #   "woot"
+  #     # [render_type_link] #, render_rich_header]
+# #     main? ? main_header : super()
+  # end
 
-  view :main_header do
-    [render_type_link, render_rich_header]
-  end
+  # def main_header
+#
+  # end
 
   def tab_list
     %i[import_map import_status]
@@ -26,7 +28,7 @@ format :html do
 
   view :core do
     wrap_with :div, class: "nodblclick" do
-      render_tabs
+      [render_type_link, download_link, render_tabs]
     end
   end
 
