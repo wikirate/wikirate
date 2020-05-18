@@ -20,8 +20,8 @@ format :html do
   end
 
   def tab_options
-    { import_map: { label: "Step 1: Map Data" },
-      import_status: { label: "Step 2: Import Items" } }
+    { import_map: { label: "Step 1: Mapping" },
+      import_status: { label: "Step 2: Importing" } }
   end
 
   view :core do
