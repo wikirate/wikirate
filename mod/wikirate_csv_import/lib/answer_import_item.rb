@@ -33,19 +33,29 @@ class AnswerImportItem < ImportItem
   def translate_row_hash_to_create_answer_hash
     r = @row.clone
     translate_company_args r
-    add_trigger r, :auto_add_source if @auto_add[:source]
+    handle_source_auto_add r
     r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
     r[:ok_to_exist] = true
     prep_subfields r
   end
 
+  # overridden in relationship import item
   def translate_company_args hash
+    handle_company_auto_add hash, :wikirate_company, :auto_add_company
+
     hash[:company] = hash.delete :wikirate_company
-    add_trigger hash, :auto_add_company if @auto_add[:wikirate_company]
   end
 
-  def add_trigger hash, trigger_name
-    hash[:trigger] ||= []
-    hash[:trigger] << trigger_name
+  def handle_source_auto_add hash
+    return unless @auto_add[:source]
+
+    hash[:source] = { content: hash[:source], trigger_in_action: :auto_add_source }
+  end
+
+  def handle_company_auto_add hash, field, event
+    return unless @auto_add[field]
+
+    hash[:trigger_in_action] ||= []
+    hash[:trigger_in_action] << event
   end
 end
