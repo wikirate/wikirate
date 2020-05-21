@@ -40,17 +40,13 @@ def related_company_card
   Card[related_company]
 end
 
-def name_parts
+def name_part_types
   %w[metric company year related_company]
 end
 
 def valid_related_company?
   (related_company_card&.type_id == Card::WikirateCompanyID) ||
     ActManager.include?(related_company)
-end
-
-def valid_answer_name?
-  super && valid_related_company?
 end
 
 def value_type_code

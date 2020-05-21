@@ -21,13 +21,6 @@ RSpec.describe AnswerImportItem do
   end
 
   describe "corrections" do
-    def default_map
-      default_item_hash.each_with_object({}) do |(column, val), hash|
-        next if column.in? %i[value comment]
-        hash[column] = { val => Card.fetch_id(val) }
-      end
-    end
-
     it "handles auto adding company" do
       co = "Kuhl Co"
       item = item_object wikirate_company: co
