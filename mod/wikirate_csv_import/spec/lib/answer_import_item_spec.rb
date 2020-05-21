@@ -37,7 +37,15 @@ RSpec.describe AnswerImportItem do
       expect(Card[co].type_id).to eq(Card::WikirateCompanyID)
     end
 
-    it "handles auto ad"
+    it "handles auto adding source" do
+      src = "http://url.com"
+      item = item_object source: src
+      item.corrections = default_map.merge(source: { src => "AutoAdd" })
+      item.validate
+
+      expect(item.import_hash["+source"])
+        .to include(content: [src], trigger_in_action: :auto_add_source)
+    end
   end
 
   describe "#execute_import" do

@@ -60,9 +60,6 @@ def answer_name_from_args args
   Card::Name[*parts]
 end
 
-
-
-
 def answer_type_id related_company
   related_company ? RelationshipAnswerID : MetricAnswerID
 end

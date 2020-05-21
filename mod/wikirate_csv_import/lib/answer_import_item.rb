@@ -33,10 +33,11 @@ class AnswerImportItem < ImportItem
   def translate_row_hash_to_create_answer_hash
     r = @row.clone
     translate_company_args r
-    handle_source_auto_add r
     r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
     r[:ok_to_exist] = true
-    prep_subfields r
+    r = prep_subfields r
+    handle_source_auto_add r
+    r
   end
 
   # overridden in relationship import item
@@ -49,7 +50,7 @@ class AnswerImportItem < ImportItem
   def handle_source_auto_add hash
     return unless @auto_add[:source]
 
-    hash[:source] = { content: hash[:source], trigger_in_action: :auto_add_source }
+    hash[:source][:trigger_in_action] = :auto_add_source
   end
 
   def handle_company_auto_add hash, field, event
