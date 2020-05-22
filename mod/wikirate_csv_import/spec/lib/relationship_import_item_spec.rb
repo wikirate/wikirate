@@ -48,7 +48,7 @@ RSpec.describe RelationshipImportItem do
       co = "Kuhl Co"
       item = item_object object_company: co
       map = default_map
-      map[:wikirate_company].merge! co => "AutoAdd"
+      map[:wikirate_company][co] = "AutoAdd"
       item.corrections = map
       item.import
 

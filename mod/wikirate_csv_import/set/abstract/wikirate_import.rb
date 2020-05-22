@@ -7,16 +7,6 @@ format :html do
     [download_link, render_type_link]
   end
 
-  # view :header do
-  #   "woot"
-  #     # [render_type_link] #, render_rich_header]
-# #     main? ? main_header : super()
-  # end
-
-  # def main_header
-#
-  # end
-
   def tab_list
     %i[import_map import_status]
   end
