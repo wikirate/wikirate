@@ -59,4 +59,19 @@ class AnswerImportItem < ImportItem
     hash[:trigger_in_action] ||= []
     hash[:trigger_in_action] << event
   end
+
+  class << self
+    def wikirate_company_suggestion_filter_mark
+      "Company+browse_company_filter"
+    end
+
+    def metric_suggestion_filter_mark
+      "Metric+browse_metric_filter"
+    end
+
+    # will need to be able to filter by url for this to work well
+    # def source_suggestion_filter_mark
+    #   "Source+browse_source_filter"
+    # end
+  end
 end
