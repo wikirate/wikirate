@@ -19,28 +19,28 @@ Scenario: Source has a year, answer form has a different year
   When I visit cited source
   Then I should see "2009"
 
-# Scenario: Source has no year
-#   When I research answer "9" for year "2009"
-#   And I cite source without year confirming
-#     """
-#     Please confirm that you wish to cite this source for a 2009 answer
-#     (and add 2009 to the years covered by this source).
-#     """
-#   And I press "Submit"
-#   Then I should see "1 Citations"
-#   When I visit cited source without year
-#   Then I should see "2009"
-#
-# Scenario: Cancel citation
-#   When I research answer "9" for year "2009"
-#   And I cite source without year dismissing
-#     """
-#     Please confirm that you wish to cite this source for a 2009 answer
-#     (and add 2009 to the years covered by this source).
-#     """
-#   And I press "Submit"
-#   Then I should see "Cite!"
-#   And I should not see "Cited"
+Scenario: Source has no year
+  When I research answer "9" for year "2009"
+  And I cite source without year confirming
+    """
+    Please confirm that you wish to cite this source for a 2009 answer
+    (and add 2009 to the years covered by this source).
+    """
+  And I press "Submit"
+  Then I should see "1 Citations"
+  When I visit cited source without year
+  Then I should see "2009"
+
+Scenario: Cancel citation
+  When I research answer "9" for year "2009"
+  And I cite source without year dismissing
+    """
+    Please confirm that you wish to cite this source for a 2009 answer
+    (and add 2009 to the years covered by this source).
+    """
+  And I press "Submit"
+  Then I should see "Cite!"
+  And I should not see "Cited"
 
 
 
