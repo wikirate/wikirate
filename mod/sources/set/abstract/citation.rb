@@ -28,6 +28,7 @@ def annotate_sources
     with_valid_source source_name do |source_card|
       tag_with_report_type source_card
       tag_with_company source_card
+      tag_with_year source_card
     end
   end
 end

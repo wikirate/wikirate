@@ -21,13 +21,6 @@ RSpec.describe AnswerImportItem do
   end
 
   describe "corrections" do
-    def default_map
-      default_item_hash.each_with_object({}) do |(column, val), hash|
-        next if column.in? %i[value comment]
-        hash[column] = { val => Card.fetch_id(val) }
-      end
-    end
-
     it "handles auto adding company" do
       co = "Kuhl Co"
       item = item_object wikirate_company: co
@@ -37,7 +30,15 @@ RSpec.describe AnswerImportItem do
       expect(Card[co].type_id).to eq(Card::WikirateCompanyID)
     end
 
-    it "handles auto ad"
+    it "handles auto adding source" do
+      src = "http://url.com"
+      item = item_object source: src
+      item.corrections = default_map.merge(source: { src => "AutoAdd" })
+      item.validate
+
+      expect(item.import_hash["+source"])
+        .to include(content: [src], trigger_in_action: :auto_add_source)
+    end
   end
 
   describe "#execute_import" do

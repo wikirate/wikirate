@@ -63,7 +63,7 @@ def metric_card
 end
 
 def metric_type
-  metric_card.metric_type_codename
+  metric_card&.metric_type_codename
 end
 
 def value_type

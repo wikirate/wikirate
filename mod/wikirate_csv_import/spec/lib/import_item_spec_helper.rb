@@ -27,4 +27,12 @@ module ImportItemSpecHelper
     item.import
     item
   end
+
+  # TODO: generalize for use in imports that aren't answer imports
+  def default_map
+    default_item_hash.each_with_object({}) do |(column, val), hash|
+      next if column.in? %i[value comment]
+      hash[column] = { val => Card.fetch_id(val) }
+    end
+  end
 end

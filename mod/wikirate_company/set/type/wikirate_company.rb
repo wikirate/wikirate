@@ -3,6 +3,8 @@
 include_set Abstract::Media
 include_set Abstract::Delist
 include_set Abstract::Accountable
+include_set Abstract::TwoColumnLayout
+
 include_set Abstract::Bookmarkable
 # include_set Abstract::Export
 

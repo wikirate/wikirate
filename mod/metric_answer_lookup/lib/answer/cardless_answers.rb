@@ -17,14 +17,15 @@ class Answer
       name ||= virtual_answer_name
       val ||= value
 
+      # TODO: obviate the type setting here
+      # (this would be more efficient, because it gets renewed this way, but
+      # for that to work we need to be able to set default type_ids via code)
       Card.fetch(name, new: { type_id: Card::MetricAnswerID }).tap do |card|
         card.define_singleton_method(:virtual?) { true }
         card.define_singleton_method(:value) { val }
         # card.define_singleton_method(:updated_at) { updated_at }
         card.define_singleton_method(:value_card) do
-          Card.new name: [name, :value],
-                   content: ::Answer.value_from_lookup(val, value_type_code),
-                   type_code: value_cardtype_code
+          ::Answer.virtual_value name, val, value_type_code, value_cardtype_code
         end
       end
     end
@@ -85,6 +86,12 @@ class Answer
 
     # class methods for {Answer} to support creating and updating calculated answers
     module ClassMethods
+      def virtual_value name, val, value_type_code, value_cardtype_code
+        Card.new name: [name, :value],
+                 content: ::Answer.value_from_lookup(val, value_type_code),
+                 type_code: value_cardtype_code
+      end
+
       def create_calculated_answer metric_card, company, year, value
         Answer.new.calculated_answer metric_card, company, year, value
       end
