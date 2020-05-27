@@ -69,9 +69,12 @@ class AnswerImportItem < ImportItem
       "Metric+browse_metric_filter"
     end
 
-    # will need to be able to filter by url for this to work well
-    # def source_suggestion_filter_mark
-    #   "Source+browse_source_filter"
-    # end
+    def source_suggestion_filter_mark
+      "Source+browse_source_filter"
+    end
+
+    def source_suggestion_filter_key
+      :wikirate_link
+    end
   end
 end

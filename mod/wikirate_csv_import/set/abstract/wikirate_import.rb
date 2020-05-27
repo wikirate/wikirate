@@ -21,7 +21,7 @@ format :html do
   end
 
   view :core do
-    wrap_with :div, class: "nodblclick _import-core" do
+    wrap_with :div, class: "nodblclick import-core _import-core" do
       [render_type_link, download_link, render_tabs]
     end
   end

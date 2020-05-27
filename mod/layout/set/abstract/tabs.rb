@@ -3,14 +3,21 @@ include_set Abstract::BsBadge
 format :html do
   view :tabs, cache: :never do
     tabs tab_map, default_tab, load: :lazy do
-      _render! default_tab
+      _render! "#{default_tab}_tab"
     end
   end
 
   def tab_map
+    @tab_map ||= generate_tab_map
+  end
+
+  def generate_tab_map
     options = tab_options
     tab_list.each_with_object({}) do |codename, hash|
-      hash[:"#{codename}_tab"] = tab_title(codename, options[codename])
+      hash[codename] = {
+        view: "#{codename}_tab",
+        title: tab_title(codename, options[codename])
+      }
     end
   end
 
@@ -32,7 +39,7 @@ format :html do
 
   def tab_from_params
     return unless Env.params[:tab]
-    "#{Env.params[:tab]}_tab".to_sym
+    Env.params[:tab].to_sym
   end
 
   def tab_wrap

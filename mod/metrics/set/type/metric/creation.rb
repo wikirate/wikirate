@@ -36,7 +36,7 @@ format :html do
   def subtabs category
     tab_keys = TAB_CONFIG[category][:subtabs]
     tab_hash = tab_keys.each_with_object({}) do |subcat, hash|
-      hash[subcat] = { path: new_metric_subform_path(subcat), title: subcat }
+      hash[subcat] = { path: new_metric_subform_path(subcat) }
     end
     tabs tab_hash, nil, tab_type: :pills, load: :lazy do
       new_metric_subform tab_keys.first
