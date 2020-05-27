@@ -10,7 +10,7 @@ format :html do
   def tab_map
     options = tab_options
     tab_list.each_with_object({}) do |codename, hash|
-      hash[:"#{codename}_tab"] = tab_title codename, options[codename]
+      hash[:"#{codename}_tab"] = tab_title(codename, options[codename])
     end
   end
 

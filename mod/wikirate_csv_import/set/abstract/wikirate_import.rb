@@ -3,6 +3,10 @@ include_set Abstract::Header
 include_set Abstract::Tabs
 
 format :html do
+  def layout_name_from_rule
+    :wikirate_one_full_column_layout
+  end
+
   def header_text
     [download_link, render_type_link]
   end

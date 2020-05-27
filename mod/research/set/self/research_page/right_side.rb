@@ -12,7 +12,7 @@ format :html do
     tabs["Sources"] = sources_tab if metric? && company?
     tabs["Methodology"] = metric_details_tab if metric?
     tabs["Help"] = nest :how_to_research, view: :content
-    static_tabs tabs, active_tab, "tabs", pane: { class: "p-3" }
+    static_tabs tabs, active_tab, pane_args: { class: "p-3" }
   end
 
   def cite_mode?

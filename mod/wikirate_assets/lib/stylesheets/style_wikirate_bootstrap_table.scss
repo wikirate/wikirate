@@ -182,7 +182,7 @@ table.import-table {
     color: $info;
   }
   .unmapped-import-attrib {
-    background-color: rgba($warning, 0.3);
+    background-color: rgba($secondary, 0.3);
     border: 3px solid white;
   }
   td {
@@ -224,6 +224,16 @@ table.import-status-table {
     max-width: 200px;
   }
 }
+
+.import-core > .tabbable > .nav a {
+  font-size: 1.5em;
+}
+
+.tab-li-not_ready_tab .tab-title .badge { background-color: $secondary; }
+.tab-li-ready_tab     .tab-title .badge { background-color: $info; }
+.tab-li-importing_tab .tab-title .badge { background-color: $warning; }
+.tab-li-failed_tab    .tab-title .badge { background-color: $danger; }
+.tab-li-success_tab   .tab-title .badge { background-color: $success; }
 
 td .pointer-list {
   // needed to align on company pages the jurisdictions table
