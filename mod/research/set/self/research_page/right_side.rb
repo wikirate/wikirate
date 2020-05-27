@@ -8,11 +8,15 @@ format :html do
 
   # NOCACHE because view is altered by params / instance vars
   view :right_side_tabs, cache: :never do
-    tabs = {}
-    tabs["Sources"] = sources_tab if metric? && company?
-    tabs["Methodology"] = metric_details_tab if metric?
-    tabs["Help"] = nest :how_to_research, view: :content
-    static_tabs tabs, active_tab, pane_args: { class: "p-3" }
+    tab_hash = {}
+    tab_hash["Sources"] = sources_tab if sources_tab?
+    tab_hash["Methodology"] = metric_details_tab if metric?
+    tab_hash["Help"] = nest :how_to_research, view: :content
+    tabs tab_hash, active_tab, pane_args: { class: "p-3" }
+  end
+
+  def sources_tab?
+    metric? && company? && Card[metric]&.researched?
   end
 
   def cite_mode?

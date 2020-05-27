@@ -2,7 +2,7 @@ include_set Abstract::BsBadge
 
 format :html do
   view :tabs, cache: :never do
-    lazy_loading_tabs tab_map, default_tab do
+    tabs tab_map, default_tab, load: :lazy do
       _render! default_tab
     end
   end
