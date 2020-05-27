@@ -12,7 +12,7 @@ format :html do
     tab_hash["Sources"] = sources_tab if sources_tab?
     tab_hash["Methodology"] = metric_details_tab if metric?
     tab_hash["Help"] = nest :how_to_research, view: :content
-    tabs tab_hash, active_tab, pane_args: { class: "p-3" }
+    tabs tab_hash, active_tab, pane_attr: { class: "p-3" }
   end
 
   def sources_tab?
