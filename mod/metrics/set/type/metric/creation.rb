@@ -52,6 +52,14 @@ format :html do
     tab_pane tab_pane_id(name), name, tab_form, selected_subtab_pane?(name)
   end
 
+  def tab_pane id, name, content, active=false, args=nil
+    pane_args = { role: :tabpanel, id: id }
+    pane_args.merge! args if args.present?
+    add_class pane_args, "tab-pane tab-pane-#{name}"
+    add_class pane_args, "active" if active
+    wrap_with :div, content, pane_args
+  end
+
   def new_metric_of_type metric_type
     new_metric = Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
     new_metric.reset_patterns

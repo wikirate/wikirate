@@ -16,7 +16,7 @@ format :html do
   end
 
   def sources_tab?
-    metric? && company? && Card[metric]&.researched?
+    metric? && company? && Card[metric]&.researchable?
   end
 
   def cite_mode?
