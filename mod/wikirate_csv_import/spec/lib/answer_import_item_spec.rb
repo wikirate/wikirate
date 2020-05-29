@@ -41,7 +41,7 @@ RSpec.describe AnswerImportItem do
     end
   end
 
-  describe "#execute_import" do
+  describe "#import" do
     example "creates answer card with valid data", as_bot: true do
       import
       expect_card(item_name).to exist
@@ -80,6 +80,30 @@ RSpec.describe AnswerImportItem do
     it "aggregates errors" do
       expect(import(year: "Google Inc", metric: "2007").errors)
         .to contain_exactly "invalid metric: 2007", "invalid year: Google Inc"
+    end
+
+    context "with conflicts" do
+      it "leaves existing values when skipping" do
+        item = item_object(wikirate_company: "Monster Inc", year: "1977")
+        expect(item.conflict_strategy).to eq(:skip)
+        item.import
+        answer = Card["Jedi+disturbances in the Force+Monster Inc+1977"]
+        expect(answer.value).to eq("no") # existing value is "no"
+      end
+
+      it "overrides existing values when overriding" do
+        overriding do
+          import wikirate_company: "Monster Inc", year: "1977"
+          answer = Card["Jedi+disturbances in the Force+Monster Inc+1977"]
+          expect(answer.value).to eq("yes") # existing value is "no"
+        end
+      end
+
+      it "appends comments when overriding" do
+        import comment: "Firstly"
+        overriding { import comment: "Secondly" }
+        expect(Card[item_name, :discussion].content).to match(/Firstly.*Secondly/m)
+      end
     end
   end
 end
