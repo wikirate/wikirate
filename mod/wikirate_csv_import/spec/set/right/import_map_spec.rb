@@ -7,7 +7,7 @@ RSpec.describe Card::Set::Right::ImportMap do
 
   describe "#map" do
     it "contains a key for each mapped column" do
-      expect(card_subject.map.keys).to eq(AnswerImportItem.mapped_column_keys)
+      expect(card_subject.map.keys).to eq(Card::AnswerImportItem.mapped_column_keys)
     end
 
     it "maps existing names to ids" do
