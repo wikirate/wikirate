@@ -21,7 +21,7 @@ RSpec.describe Card::RelationshipImportItem do
     expect(Card[item_name]).to be_nil
   end
 
-  describe "#execute_import" do
+  describe "#import" do
     example "creates relationship answer card with valid data", as_bot: true do
       import
       expect_card(item_name).to exist
