@@ -5,6 +5,30 @@ RSpec.describe Card::Set::Right::ImportMap do
 
   check_views_for_errors :core, :bar
 
+  describe "HtmlFormat" do
+    describe "#map_ui" do
+      it "escapes square brackets" do
+        expect(format_subject.map_ui(:wikirate_company, "Goo[gle]"))
+          .to have_tag("input._import-mapping", with: {
+            name: "mapping[wikirate_company][Goo%5Bgle%5D]",
+            form: "mappingForm"
+          })
+      end
+    end
+
+    describe "#suggest_link" do
+      it "produces links for supported types" do
+        expect(format_subject.suggest_link(:wikirate_company, "Goog", "abc123"))
+          .to match(Regexp.new(Regexp.escape "/Company+browse_company_filter"))
+      end
+
+      it "supports custom filter keys" do
+        expect(format_subject.suggest_link(:source, "http://woot.com", "abc123"))
+          .to match(Regexp.new(Regexp.escape(CGI.escape("filter[wikirate_link]"))))
+      end
+    end
+  end
+
   describe "#map" do
     it "contains a key for each mapped column" do
       expect(card_subject.map.keys).to eq(Card::AnswerImportItem.mapped_column_keys)
@@ -49,14 +73,20 @@ RSpec.describe Card::Set::Right::ImportMap do
       end
     end
 
-    it "raises error if mapping is not a card" do
+    it "catches error if mapping is not a card" do
       update_with_mapping_param metric: { "Not a metric" => "Not a card" } do |card|
         expect(card.errors[:content]).to include(/invalid metric mapping/)
       end
     end
 
-    it "raises error if mapping has the wrong type" do
+    it "catches error if mapping has the wrong type" do
       update_with_mapping_param metric: { "Not a metric" => "Google LLC" } do |card|
+        expect(card.errors[:content]).to include(/invalid metric mapping/)
+      end
+    end
+
+    it "catches error if data types are wonky" do
+      update_with_mapping_param metric: { "Not a metric" => { wtf: "really!?" } } do |card|
         expect(card.errors[:content]).to include(/invalid metric mapping/)
       end
     end

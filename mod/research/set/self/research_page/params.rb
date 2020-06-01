@@ -154,10 +154,10 @@ format do
     answer_card&.metric_card&.researchable?
   end
 
-  def existing_answer_with_source?
-    existing_answer? && researchable_answer? &&
-      (answer_card.researched? || answer_card.researched_value?)
-  end
+  # def existing_answer_with_source?
+  #   existing_answer? && researchable_answer? &&
+  #     (answer_card.researched? || answer_card.researched_value?)
+  # end
 
   def company
     @company ||= research_param(:company) || company_list.first

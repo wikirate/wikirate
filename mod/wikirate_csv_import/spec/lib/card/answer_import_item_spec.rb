@@ -45,8 +45,7 @@ RSpec.describe Card::AnswerImportItem do
 
     it "allows optional columns to be missing" do
       array = %w[Value Company Source Year Metric]
-      map = header_map
-      map[:comment] = nil
+      map = header_map.merge comment: nil, metric: 4
       expect(described_class.map_headers(array)).to eq(map)
     end
 
