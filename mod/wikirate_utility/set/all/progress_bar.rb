@@ -1,3 +1,5 @@
+# TODO: move to abstract
+
 format :html do
   view :progress_bar do
     value = card.content

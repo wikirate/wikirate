@@ -1,7 +1,7 @@
 require_relative "import_item_spec_helper"
 
-RSpec.describe RelationshipImportItem do
-  include ImportItemSpecHelper
+RSpec.describe Card::RelationshipImportItem do
+  include Card::ImportItemSpecHelper
 
   let :default_item_hash do
     {
@@ -21,7 +21,7 @@ RSpec.describe RelationshipImportItem do
     expect(Card[item_name]).to be_nil
   end
 
-  describe "#execute_import" do
+  describe "#import" do
     example "creates relationship answer card with valid data", as_bot: true do
       import
       expect_card(item_name).to exist

@@ -8,20 +8,21 @@ format :html do
 
   # NOCACHE because view is altered by params / instance vars
   view :right_side_tabs, cache: :never do
-    tabs = {}
-    tabs["Sources"] = sources_tab if metric? && company?
-    tabs["Methodology"] = metric_details_tab if metric?
-    tabs["Help"] = nest :how_to_research, view: :content
-    static_tabs tabs, active_tab, "tabs", pane: { class: "p-3" }
+    tab_hash = {}
+    tab_hash["Sources"] = sources_tab if citable?
+    tab_hash["Methodology"] = metric_details_tab if metric?
+    tab_hash["Help"] = nest(:how_to_research, view: :content) if citable?
+    tabs tab_hash, params[:active_tab], pane_attr: { class: "p-3" }
+  end
+
+  def citable?
+    return @citable unless @citable.nil?
+    @citable = (metric? && company? && Card[metric]&.researchable?)
   end
 
   def cite_mode?
     answer_card.unknown? ||
       @answer_view.in?(%i[research_edit_form research_form])
-  end
-
-  def hide_view_source_tab?
-    cite_mode? || !existing_answer_with_source?
   end
 
   def sources_tab

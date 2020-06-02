@@ -1,4 +1,6 @@
 format :html do
+  # TODO: make relationship answer pages look more like answer pages and use two
+  # column layout
   view :open_content do
     bs do
       layout do
@@ -12,6 +14,18 @@ format :html do
         end
       end
     end
+  end
+
+  view :bar_left do
+    wrap_with :div, class: "d-block" do
+      [company_thumbnail(card.company, hide: :thumbnail_subtitle),
+       company_thumbnail(card.related_company, hide: :thumbnail_subtitle),
+       render_metric_thumbnail]
+    end
+  end
+
+  view :core do
+    render_expanded_details
   end
 
   view :content_formgroup do
@@ -40,9 +54,9 @@ format :html do
     _render :expanded_researched_details
   end
 
-  def legend
-    subformat(card.metric_card).value_legend
-  end
+  # def legend
+  #   subformat(card.metric_card).value_legend
+  # end
 
   def credit_details
     wrap_with :div, class: "d-flex" do

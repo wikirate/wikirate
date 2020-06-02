@@ -22,10 +22,6 @@ event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
   ensure_subfield :wikipedia
 end
 
-event :update_company_matcher, :integrate_with_delay, on: :create do
-  CompanyMatcher.add_to_mapper id, name
-end
-
 event :delete_all_company_answers, :store, on: :delete do
   answers.delete_all
   skip_event! :reset_double_check_flag,

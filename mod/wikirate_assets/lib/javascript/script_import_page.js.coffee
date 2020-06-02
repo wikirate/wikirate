@@ -27,6 +27,11 @@ $(document).ready ->
     select.val ""
     select.trigger "change"
 
+  $('body').on 'click', '._import-status-refresh', (e) ->
+    s = $(this).slot()
+    current_tab = s.find(".nav-link.active").data("tab-name")
+    s.reloadSlot(s.slotUrl() + "&tab=" + current_tab)
+
   # show/hide mapped items
   $('body').on 'click', "._toggle-mapping-vis", (e) ->
     link = $(this)

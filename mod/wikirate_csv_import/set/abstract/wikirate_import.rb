@@ -3,6 +3,10 @@ include_set Abstract::Header
 include_set Abstract::Tabs
 
 format :html do
+  def layout_name_from_rule
+    :wikirate_one_full_column_layout
+  end
+
   def header_text
     [download_link, render_type_link]
   end
@@ -17,7 +21,7 @@ format :html do
   end
 
   view :core do
-    wrap_with :div, class: "nodblclick _import-core" do
+    wrap_with :div, class: "nodblclick import-core _import-core" do
       [render_type_link, download_link, render_tabs]
     end
   end

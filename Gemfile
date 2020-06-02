@@ -130,7 +130,7 @@ group :test, :development, :cypress do
   gem "pry-byebug"
   gem "pry-rails"
   gem "pry-rescue"
-  gem "pry-stack_explorer"
+  gem "pry-stack_explorer", "~> 0.4.9"
   gem "puma"
 end
 

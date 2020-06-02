@@ -1,3 +1,17 @@
+TAB_CONFIG =
+  {
+    researched: {
+      help: "Answer values for <strong>Researched</strong> metrics are "\
+                "directly entered or imported.",
+      subtabs: %w[Standard Relationship]
+    },
+    calculated: {
+      help: "Answer values for <strong>Calculated</strong> "\
+                "metrics are dynamically calculated.",
+      subtabs: %w[Formula Descendant Score WikiRating]
+    }
+  }.freeze
+
 format :html do
   view :new do
     voo.title = "New Metric"
@@ -6,57 +20,45 @@ format :html do
     end
   end
 
-  view :new_form, template: :haml, cache: :never do
-    @tabs =
-      {
-        researched: {
-          help: "Answer values for <strong>Researched</strong> metrics are "\
-                "directly entered or imported.",
-          subtabs: %w[Standard Relationship]
-        },
-        calculated: {
-          help: "Answer values for <strong>Calculated</strong> "\
-                "metrics are dynamically calculated.",
-          subtabs: %w[Formula Descendant Score WikiRating]
-        }
-      }
+  view :new_form, template: :haml
+
+  def main_tabs
+    tab_hash = TAB_CONFIG.keys.each_with_object({}) do |cat, hash|
+      hash[cat] = { title: cat.capitalize, content: main_tab_content(cat) }
+    end
+    tabs tab_hash
   end
 
-  def tab_pane_id name
-    "#{name.downcase}Pane"
+  def main_tab_content category
+    haml :main_tab_content, category: category, help: TAB_CONFIG[category][:help]
   end
 
-  def selected_tab_pane? tab
-    tab == current_tab
-  end
-
-  def current_tab
-    @current_tab ||= begin
-      subtab = params[:tab]&.underscore&.to_sym
-      subtab && Card[subtab].calculated? ? :calculated : :researched
+  def subtabs category
+    tab_keys = TAB_CONFIG[category][:subtabs]
+    tab_hash = tab_keys.each_with_object({}) do |subcat, hash|
+      hash[subcat] = { path: new_metric_subform_path(subcat) }
+    end
+    tabs tab_hash, nil, tab_type: :pills, load: :lazy do
+      new_metric_subform tab_keys.first
     end
   end
 
-  def selected_subtab_pane? name
-    if params[:tab]
-      params[:tab].casecmp(name).zero?
-    else
-      name == "Standard" || name == "Formula"
-    end
+  view :new_metric_subform, cache: :never, unknown: true do
+    new_metric_subform params[:metric_type]
   end
 
-  def new_metric_tab_pane name
-    metric_type = name == "Standard" ? "Researched" : name
+  def new_metric_subform_path metric_type
+    path view: :new_metric_subform, type: :metric, metric_type: metric_type
+  end
+
+  def new_metric_subform metric_type
     new_metric = new_metric_of_type metric_type
-    tab_form = nest new_metric, { view: :new_tab_pane }, nest_mode: :normal
-    tab_pane tab_pane_id(name), name, tab_form, selected_subtab_pane?(name)
+    nest new_metric, { view: :new_tab_pane }, nest_mode: :normal
   end
 
   def new_metric_of_type metric_type
-    new_metric = Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
-    new_metric.reset_patterns
-    new_metric.include_set_modules
-    new_metric
+    metric_type = "Researched" if metric_type == "Standard"
+    Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
   end
 
   def cancel_button_new_args

@@ -3,10 +3,6 @@ format do
   PARAM_LIST_NAME =
     { company_id_list: :cil, metric_id_list: :mil, year_id_list: :yil }.freeze
 
-  def active_tab
-    @active_tab ||= params[:active_tab] || "Sources"
-  end
-
   %i[company metric year].each do |item|
     define_method "#{item}_id_list" do
       lazy_instance_variable("#{item}_id_list") { fetch_list(item) }
@@ -158,10 +154,10 @@ format do
     answer_card&.metric_card&.researchable?
   end
 
-  def existing_answer_with_source?
-    existing_answer? && researchable_answer? &&
-      (answer_card.researched? || answer_card.researched_value?)
-  end
+  # def existing_answer_with_source?
+  #   existing_answer? && researchable_answer? &&
+  #     (answer_card.researched? || answer_card.researched_value?)
+  # end
 
   def company
     @company ||= research_param(:company) || company_list.first

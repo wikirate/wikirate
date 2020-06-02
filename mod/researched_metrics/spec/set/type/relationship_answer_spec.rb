@@ -1,4 +1,10 @@
 RSpec.describe Card::Set::Type::RelationshipAnswer do
+  def card_subject
+    Card["Commons+Supplied by+Monster_Inc+1977+Los_Pollos_Hermanos"]
+  end
+
+  check_views_for_errors :edit, :bar, :expanded_bar, :box
+
   let(:metric) { "Jedi+more evil" }
   let(:inverse_metric) { "Jedi+less evil" }
   let(:year) { "1977" }

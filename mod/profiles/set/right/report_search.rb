@@ -132,7 +132,7 @@ format :html do
 
   view :list_with_subtabs, cache: :never do
     if subvariants
-      lazy_loading_tabs subvariant_tabs, subvariant, render_list, type: "pills"
+      tabs(subvariant_tabs, subvariant, tab_type: "pills", load: :lazy) { render_list }
     else
       render_list
     end
