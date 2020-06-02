@@ -8,6 +8,9 @@ class Card
                  source: { map: true, separator: ";", auto_add: true },
                  comment: { optional: true } }
 
+    CSV_KEYS = %i[answer_id answer_link metric wikirate_company year value
+                  source source_count comment]
+
     def import_hash
       return {} unless (metric_card = Card[metric])
 
@@ -62,7 +65,23 @@ class Card
       hash[:trigger_in_action] << event
     end
 
+    def export_csv_line status
+      if status.to_sym == :success && (card = Card[cardid])
+        csv_line_for_card card
+      else
+        CSV.generate_line(CSV_KEYS.map { |field| try field })
+      end
+    end
+
+    def csv_line_for_card card
+      card.answer.csv_line
+    end
+
     class << self
+      def export_csv_header
+        Answer.csv_title
+      end
+
       def wikirate_company_suggestion_filter_mark
         "Company+browse_company_filter"
       end

@@ -19,9 +19,8 @@ class Relationship
     # class methods for {Answer}
     module ClassMethods
       def csv_title
-        CSV.generate_line ["RELATIONSHIP ID", "RELATIONSHIP_LINK", "ANSWER ID",
-                           "METRIC NAME", "SUBJECT COMPANY NAME", "OBJECT_COMPANY NAME",
-                           "YEAR", "VALUE"]
+        CSV.generate_line ["Relationship ID", "Relationship Link", "Answer ID", "Metric",
+                           "Subject Company", "Object Company", "Year", "Value"]
       end
     end
   end
