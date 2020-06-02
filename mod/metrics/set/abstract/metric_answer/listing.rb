@@ -73,8 +73,6 @@ format :html do
     nest card.metric_card, view: :legend_core
   end
 
-  private
-
   def citations_count_badge
     wrap_with :span, card.source_card&.item_names&.size, class: "badge badge-light border"
   end
