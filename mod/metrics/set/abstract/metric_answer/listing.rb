@@ -73,16 +73,6 @@ format :html do
     nest card.metric_card, view: :legend_core
   end
 
-  def citations_count_badge
-    wrap_with :span, card.source_card&.item_names&.size, class: "badge badge-light border"
-  end
-
-  def citations_count
-    wrap_with :h5, class: "w-100 text-left" do
-      [citations_count_badge, "Citations"]
-    end
-  end
-
   def calculated
     card.calculating? ? calculating_icon : yield
   end

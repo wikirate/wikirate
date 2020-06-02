@@ -9,7 +9,7 @@ class Card
                  comment: { optional: true } }
 
     CSV_KEYS = %i[answer_id answer_link metric wikirate_company year value
-                  source source_count comment]
+                  source source_count comment].freeze
 
     def import_hash
       return {} unless (metric_card = Card[metric])

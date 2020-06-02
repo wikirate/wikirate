@@ -1,5 +1,5 @@
 class Card
-   # helper module for specs for classes that inherit from ImportItem
+  # helper module for specs for classes that inherit from ImportItem
   module ImportItemSpecHelper
     def item_name args={}
       item_name_from_args item_hash(args), item_name_parts

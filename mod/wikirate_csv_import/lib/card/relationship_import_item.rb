@@ -11,7 +11,7 @@ class Card
 
     # NOTE: lookup table does not contain source / comment
     CSV_KEYS = %i[relationship_id relationship_link metric answer_id
-                  metric subject_company metric_company year value]
+                  metric subject_company metric_company year value].freeze
 
     def translate_company_args item
       handle_company_auto_add item, :subject_company, :auto_add_company

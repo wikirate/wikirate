@@ -10,16 +10,16 @@ RSpec.describe Card::Set::Right::ImportMap do
       it "escapes square brackets" do
         expect(format_subject.map_ui(:wikirate_company, "Goo[gle]"))
           .to have_tag("input._import-mapping", with: {
-            name: "mapping[wikirate_company][Goo%5Bgle%5D]",
-            form: "mappingForm"
-          })
+                         name: "mapping[wikirate_company][Goo%5Bgle%5D]",
+                         form: "mappingForm"
+                       })
       end
     end
 
     describe "#suggest_link" do
       it "produces links for supported types" do
         expect(format_subject.suggest_link(:wikirate_company, "Goog", "abc123"))
-          .to match(Regexp.new(Regexp.escape "/Company+browse_company_filter"))
+          .to match(Regexp.new(Regexp.escape("/Company+browse_company_filter")))
       end
 
       it "supports custom filter keys" do
@@ -86,7 +86,9 @@ RSpec.describe Card::Set::Right::ImportMap do
     end
 
     it "catches error if data types are wonky" do
-      update_with_mapping_param metric: { "Not a metric" => { wtf: "really!?" } } do |card|
+      update_with_mapping_param(
+        metric: { "Not a metric" => { wtf: "really!?" } }
+      ) do |card|
         expect(card.errors[:content]).to include(/invalid metric mapping/)
       end
     end
