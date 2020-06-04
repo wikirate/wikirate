@@ -20,7 +20,7 @@ format :html do
     end
   end
 
-  view :new_form, template: :haml
+  view :new_form, template: :haml, cache: :never
 
   def main_tabs
     tab_hash = TAB_CONFIG.keys.each_with_object({}) do |cat, hash|
@@ -58,10 +58,7 @@ format :html do
 
   def new_metric_of_type metric_type
     metric_type = "Researched" if metric_type == "Standard"
-    new_metric = Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
-    new_metric.reset_patterns
-    new_metric.include_set_modules
-    new_metric
+    Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
   end
 
   def cancel_button_new_args
