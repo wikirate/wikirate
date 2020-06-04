@@ -19,7 +19,7 @@ RSpec.describe Card::Set::Right::ImportMap do
         expect(format_subject.map_ui(:wikirate_company, "A B C"))
           .to have_tag("input._import-mapping", with: {
                          name: "mapping[wikirate_company][A+B+C]"
-          })
+                       })
       end
     end
 
