@@ -58,7 +58,10 @@ format :html do
 
   def new_metric_of_type metric_type
     metric_type = "Researched" if metric_type == "Standard"
-    Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
+    new_metric = Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
+    new_metric.reset_patterns
+    new_metric.include_set_modules
+    new_metric
   end
 
   def cancel_button_new_args
