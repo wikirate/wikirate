@@ -65,7 +65,7 @@ format :html do
   end
 
   def value_options
-    metric_card.value_options_card&.options_hash
+    metric_card.value_options_card&.options_hash.reverse_merge("Unknown" => "Unknown")
   end
 end
 
