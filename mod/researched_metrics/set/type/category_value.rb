@@ -24,9 +24,7 @@ def raw_value
 end
 
 def inverted_options_hash
-  options_hash.each_with_object({}) do |(k, v), h|
-    h[v] = k
-  end
+  options_hash.invert
 end
 
 def pretty_values

@@ -20,7 +20,7 @@ format :html do
     end
   end
 
-  view :new_form, template: :haml
+  view :new_form, template: :haml, cache: :never
 
   def main_tabs
     tab_hash = TAB_CONFIG.keys.each_with_object({}) do |cat, hash|

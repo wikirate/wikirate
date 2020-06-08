@@ -14,6 +14,13 @@ RSpec.describe Card::Set::Right::ImportMap do
                          form: "mappingForm"
                        })
       end
+
+      it "escapes spaces correctly" do
+        expect(format_subject.map_ui(:wikirate_company, "A B C"))
+          .to have_tag("input._import-mapping", with: {
+                         name: "mapping[wikirate_company][A+B+C]"
+                       })
+      end
     end
 
     describe "#suggest_link" do
@@ -137,6 +144,14 @@ RSpec.describe Card::Set::Right::ImportMap do
             "#{jd},#{jd},#{jd.card_id}\n" \
             "Not a metric,,\n"
       expect(card_subject.format(:csv).render_export).to eq(csv)
+    end
+  end
+
+  describe "#mapping_from_param" do
+    it "unescapes escaped keys" do
+      with_mapping_param metric: { "A+B" => "C" } do
+        expect((card_subject.send :mapping_from_param)[:metric]["A B"]).to eq("C")
+      end
     end
   end
 end
