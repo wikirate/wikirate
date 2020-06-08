@@ -8,7 +8,7 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Bookmarkable
 # include_set Abstract::Export
 
-card_accessor :aliases, type: :pointer
+card_accessor :aliases, type_id: PointerID
 card_accessor :metric_answer
 card_accessor :image
 card_accessor :incorporation

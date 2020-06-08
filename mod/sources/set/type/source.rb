@@ -3,15 +3,15 @@ require "link_thumbnailer"
 
 include_set Abstract::Delist
 
-card_accessor :metric, type: :pointer
-card_accessor :year, type: :pointer
-card_accessor :wikirate_topic, type: :pointer
-card_accessor :wikirate_company, type: :pointer
+card_accessor :metric, type_id: PointerID
+card_accessor :year, type_id: PointerID
+card_accessor :wikirate_topic, type_id: PointerID
+card_accessor :wikirate_company, type_id: PointerID
 card_accessor :wikirate_title
 card_accessor :wikirate_website
-card_accessor :wikirate_link, type: :phrase
-card_accessor :file, type: :file
-card_accessor :report_type, type: :pointer
+card_accessor :wikirate_link, type_id: PhraseID
+card_accessor :file, type_id: FileID
+card_accessor :report_type, type_id: PointerID
 
 def file_url
   file_card&.file&.url
