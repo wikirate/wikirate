@@ -3,7 +3,7 @@ include_set Abstract::Thumbnail
 include_set Abstract::FilterableBar
 include_set Abstract::Bookmarkable
 
-card_accessor :image, type_id: ImageID
+card_accessor :image, type: ImageID
 card_accessor :wikirate_company
 card_accessor :specification
 card_accessor :wikirate_topic

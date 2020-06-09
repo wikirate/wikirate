@@ -8,7 +8,7 @@ include_set Abstract::BsBadge
 include_set Abstract::Bookmarkable
 include_set Abstract::Delist
 
-card_accessor :metric_type, type_id: PointerID, default: "[[Researched]]"
+card_accessor :metric_type, type: PointerID, default: "[[Researched]]"
 card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
@@ -17,12 +17,12 @@ card_accessor :project
 card_accessor :metric_answer
 card_accessor :unit
 card_accessor :range
-card_accessor :hybrid, type_id: ToggleID
-card_accessor :question, type_id: PlainTextID
-card_accessor :report_type, type_id: PointerID
-card_accessor :score, type_id: PointerID
-card_accessor :wikirate_topic, type_id: ListID
-card_accessor :research_policy, type_id: PointerID
+card_accessor :hybrid, type: ToggleID
+card_accessor :question, type: PlainTextID
+card_accessor :report_type, type: PointerID
+card_accessor :score, type: PointerID
+card_accessor :wikirate_topic, type: ListID
+card_accessor :research_policy, type: PointerID
 
 # METRIC-CHILD-STYLE METHODS
 
