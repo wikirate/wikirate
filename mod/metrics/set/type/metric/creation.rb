@@ -151,5 +151,6 @@ end
 def add_subfield_and_reset *args
   subfield = add_subfield(*args)
   subfield.reset_patterns
+  Rails.logger.info " - reset_patterns in #add_subfield_and_reset"
   subfield.include_set_modules
 end

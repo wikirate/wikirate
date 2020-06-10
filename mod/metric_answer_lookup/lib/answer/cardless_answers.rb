@@ -6,21 +6,29 @@ class Answer
       host_class.extend ClassMethods
     end
 
-    def find_answer_card
-      # for unknown reasons there are cases where `Card[record_name, year.to_s]` exists
-      # for virtual answers. Fetching `Card[record_name, year.to_s, :value]` first,
-      # ensures that we don't get a card when we don't want one.
-      Card[record_name, year.to_s, :value]&.left
+    def card_without_answer_id name=nil, val=nil
+      fetch_answer_card(name).tap do |card|
+        if card.id
+          update! answer_id: card.id
+        else
+          virtualize card, val
+        end
+      end
     end
 
-    def virtual_answer_card name=nil, val=nil
-      name ||= virtual_answer_name
-      val ||= value
+    def fetch_answer_card name=nil
+      name ||= answer_name_from_parts
+      Card.fetch name, eager_cache: true,
+                       new: { type_id: Card::MetricAnswerID }
+    end
 
-      # TODO: obviate the type setting here
-      # (this would be more efficient, because it gets renewed this way, but
-      # for that to work we need to be able to set default type_ids via code)
-      Card.fetch(name, new: { type_id: Card::MetricAnswerID }).tap do |card|
+    def answer_name_from_parts
+      (record_name ? [record_name] : [metric_id, company_id]) << year.to_s
+    end
+
+    def virtualize card, val=nil
+      val ||= value
+      card.tap do |card|
         card.define_singleton_method(:virtual?) { true }
         card.define_singleton_method(:value) { val }
         # card.define_singleton_method(:updated_at) { updated_at }
@@ -30,17 +38,13 @@ class Answer
       end
     end
 
-    def virtual_answer_name
-      (record_name ? [record_name] : [metric_id, company_id]) << year.to_s
-    end
-
     # true if there is no card for this answer
     def virtual?
       card&.virtual?
     end
 
     def calculated_answer metric_card, company, year, value
-      @card = virtual_answer_card metric_card.answer_name_for(company, year), value
+      @card = card_without_answer_id metric_card.answer_name_for(company, year), value
       refresh
       @card.expire
       update_cached_counts
@@ -87,9 +91,10 @@ class Answer
     # class methods for {Answer} to support creating and updating calculated answers
     module ClassMethods
       def virtual_value name, val, value_type_code, value_cardtype_code
-        Card.new name: [name, :value],
-                 content: ::Answer.value_from_lookup(val, value_type_code),
-                 type_code: value_cardtype_code
+        Card.fetch [name, :value],
+                   eager_cache: true,
+                   new: { content: ::Answer.value_from_lookup(val, value_type_code),
+                          type_code: value_cardtype_code }
       end
 
       def create_calculated_answer metric_card, company, year, value

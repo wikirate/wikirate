@@ -77,6 +77,7 @@ format :html do
     title = card.add_subfield :inverse_title, content: card.name.tag,
                                               type_id: Card::PhraseID
     title.reset_patterns
+    Rails.logger.info " - reset_patterns in #inverse_title_field"
     title.include_set_modules
     subformat(title)._render_edit_in_form(options.merge(title: "Inverse Title"))
   end
