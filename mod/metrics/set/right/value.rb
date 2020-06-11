@@ -13,7 +13,6 @@ event :ensure_correct_value_type, :prepare_to_validate, on: :save, when: :typed_
                                  # however, this should eventually be removable
                                  # if/when all +value cards have the right value type
   reset_patterns
-  Rails.logger.info " - reset_patterns in #ensure_correct_value_type"
 end
 
 event :validate_answer_value_type, :validate, on: :save, when: :typed_value? do
