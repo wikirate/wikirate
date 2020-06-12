@@ -33,11 +33,21 @@ class Card
 
       def check_query value
         case value
-        when "Completed" then filter :checkers, nil, "IS NOT"
-        when "Requested" then filter :check_requester, nil, "IS NOT"
-        when "Neither"
+        when "completed" then filter :checkers, nil, "IS NOT"
+        when "requested" then filter :check_requester, nil, "IS NOT"
+        when "neither"
           %i[checkers check_requester].each { |fld| filter fld, nil, "IS" }
+        when "current_user"
+          checked_by Card::Auth.current_id
+        when "wikirate_team"
+          checked_by id: Self::WikirateTeam.member_ids.unshift(:in)
         end
+      end
+
+      def checked_by whom
+        restrict_by_wql(:answer_id,
+                        type_id: MetricAnswerID,
+                        right_plus: [CheckedByID, { refer_to: whom }])
       end
 
       def value_query value
