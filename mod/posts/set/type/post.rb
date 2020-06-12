@@ -1,9 +1,9 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::BsBadge
 
-card_accessor :wikirate_company, type: :pointer
-card_accessor :wikirate_topic, type: :pointer
-card_accessor :project, type: :pointer
+card_accessor :wikirate_company, type: PointerID
+card_accessor :wikirate_topic, type: PointerID
+card_accessor :project, type: PointerID
 card_accessor :body
 card_accessor :discussion
 

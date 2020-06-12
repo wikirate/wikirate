@@ -1,5 +1,9 @@
 # TODO: obviate all the following with a single rule setting
 
+def default_type_id
+  RecordID
+end
+
 include_set Type::Record
 
 def type_name

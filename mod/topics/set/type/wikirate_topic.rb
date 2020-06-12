@@ -4,8 +4,8 @@ include_set Abstract::FilterableBar
 include_set Abstract::Bookmarkable
 include_set Abstract::Delist
 
-card_accessor :image, type: :image
-card_accessor :subtopic, type: :pointer
-card_accessor :supertopic, type: :search_type
+card_accessor :image, type: ImageID
+card_accessor :subtopic, type: PointerID
+card_accessor :supertopic, type: SearchTypeID
 # card_accessor :wikirate_company
 card_accessor :metric
