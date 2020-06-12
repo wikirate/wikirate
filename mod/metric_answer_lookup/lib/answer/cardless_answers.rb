@@ -26,9 +26,9 @@ class Answer
       (record_name ? [record_name] : [metric_id, company_id]) << year.to_s
     end
 
-    def virtualize card, val=nil
+    def virtualize vcard, val=nil
       val ||= value
-      card.tap do |card|
+      vcard.tap do |card|
         card.define_singleton_method(:virtual?) { true }
         card.define_singleton_method(:value) { val }
         # card.define_singleton_method(:updated_at) { updated_at }
