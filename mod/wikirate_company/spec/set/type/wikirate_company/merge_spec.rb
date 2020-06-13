@@ -57,7 +57,6 @@ RSpec.describe Card::Set::Type::WikirateCompany::Json do
   end
 
   describe "#move_source_listings_to" do
-
     "woot"
   end
 end
