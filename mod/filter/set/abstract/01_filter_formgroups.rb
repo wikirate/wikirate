@@ -1,3 +1,7 @@
+STANDARD_CHECK_OPTIONS = { "Completed" => "completed",
+                           "Requested" => "requested",
+                           "Neither" => "neither" }.freeze
+
 format :html do
   view :filter_check_formgroup, cache: :never do
     select_filter :check
@@ -80,9 +84,7 @@ format :html do
   end
 
   def check_options
-    { "Completed" => "completed",
-      "Requested" => "requested",
-      "Neither" => "neither" }.tap do |opts|
+    STANDARD_CHECK_OPTIONS.clone.tap do |opts|
       opts["Completed by Me"] = "current_user" if Card::Auth.signed_in?
       opts["Completed by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
     end

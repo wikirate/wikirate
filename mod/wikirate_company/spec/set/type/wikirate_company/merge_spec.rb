@@ -39,7 +39,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Json do
   describe "#move_relationships_to" do
     let(:company) { Card["SPECTRE"] }
     let(:target) { Card["Monster Inc"] }
-    let(:metric) { Card["Jedi+more evil"]}
+    let(:metric) { Card["Jedi+more evil"] }
 
     it "should move non-conflicting answers from source to target company" do
       old_answer = [metric.name, company.name, "1977"]

@@ -17,12 +17,7 @@ def search args={}
 end
 
 def query paging={}
-  filter = filter_hash.merge fixed_field => left.id
-  AnswerQuery.new filter, sort_hash, paging
-end
-
-def filter_card
-  field filter_card_fieldcode
+  AnswerQuery.new filter_hash, sort_hash, paging
 end
 
 def item_type
@@ -42,26 +37,18 @@ format :html do
     super() + raw('<div class="details"></div>')
   end
 
-  # can't just set default_filter_hash, because +answer doesn't default to most
-  # recent year in csv or json format (or for answer counts)
-  before :core do
-    return if Env.params[:filter]
-
-    filter_hash.merge! card.filter_card.default_filter_hash
-  end
-
   view :core, cache: :never, template: :haml
-
-  view :filter_form do
-    nest card.filter_card, view: :core
-  end
 
   view :table, cache: :never do
     wrap true, "data-details-view": details_view do
-      wikirate_table partner, self, cell_views, header: header_cells,
-                                                td: { classes: %w[header data] },
-                                                tr: { method: :tr_attribs }
+      wikirate_table table_type, self, cell_views, header: header_cells,
+                                                   td: { classes: %w[header data] },
+                                                   tr: { method: :tr_attribs }
     end
+  end
+
+  def table_type
+    :metric_answer
   end
 
   view :answer_header, cache: :never do
