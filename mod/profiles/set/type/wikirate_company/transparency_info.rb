@@ -12,6 +12,7 @@ def transparency_info(company_name)
       address: address,
       location: location,
       number_of_workers: number_of_workers,
+      top_production_countries: latest_value(:ccc_top_production_countries),
       revenue: latest_value(:ccc_revenue),
       profit: latest_value(:ccc_profit),
       brands: all_brands,
