@@ -11,10 +11,6 @@ def filter_keys
      metric_type value_type project source research_policy bookmark]
 end
 
-def default_filter_hash
-  { status: :exists, year: :latest, metric_name: "", company_name: "" }
-end
-
 def bookmark_type
   :metric
 end
@@ -26,7 +22,10 @@ end
 format :html do
   before :core do
     voo.hide! :chart
-    # super()
+  end
+
+  def default_filter_hash
+    { status: :exists, year: :latest, metric_name: "", company_name: "" }
   end
 
   def details_view

@@ -20,6 +20,14 @@ def query paging={}
   AnswerQuery.new filter_hash, sort_hash, paging
 end
 
+def override_filter_hash hash
+  @default_filter_hash = hash
+end
+
+def default_filter_hash
+  @default_filter_hash ||= {}
+end
+
 def item_type
   "Answer" # :metric_answer.cardname
 end
@@ -34,6 +42,7 @@ format :html do
   delegate :partner, to: :card
 
   view :filtered_content do
+    card.override_filter_hash default_filter_hash
     super() + raw('<div class="details"></div>')
   end
 
