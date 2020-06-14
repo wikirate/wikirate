@@ -80,7 +80,12 @@ format :html do
   end
 
   def check_options
-    %w[Completed Requested Neither]
+    opts = { "Completed" => "completed",
+             "Requested" => "requested",
+             "Neither" => "neither" }
+    opts["Completed by Me"] = "current_user" if Card::Auth.signed_in?
+    opts["Completed by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
+    opts
   end
 
   def wikirate_topic_options

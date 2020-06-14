@@ -52,7 +52,7 @@ $.extend wikirate,
       else
         message =
           "The source you are citing is currently listed as a source " +
-          "for #{years.toString()}. " + message
+          "for #{years.sort().toString()}. " + message
 
     response = window.confirm message
     # addYearToSource($source, researchedYear) if response

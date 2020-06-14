@@ -22,10 +22,6 @@ def toggle_sort_order field
   end
 end
 
-def record?
-  filter_hash[:"#{partner}_name"]&.match?(/^\"/)
-end
-
 def lookup?
   !filter_hash[:status]&.to_sym.in? %i[none all]
 end
