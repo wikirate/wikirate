@@ -2,13 +2,27 @@ format :json do
   view :transparency_info do
     card.holding_company.transparency_info(card.name).to_json
   end
+
+  view :transparency_info_short do
+    card.holding_company.transparency_info_short(card.name).to_json
+  end
+end
+
+def transparency_info_short(company_name)
+  {
+      id: id,
+      owned_by: name,
+      name: company_name,
+      scores: scores,
+      contact_url: contact_url
+  }
 end
 
 def transparency_info(company_name)
   {
       id: id,
+      name: company_name,
       owned_by: name,
-      holding: company_name,
       address: address,
       location: location,
       number_of_workers: number_of_workers,
