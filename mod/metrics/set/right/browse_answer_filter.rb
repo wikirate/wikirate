@@ -26,7 +26,7 @@ end
 format :html do
   before :core do
     voo.hide! :chart
-      # super()
+    # super()
   end
 
   def details_view
@@ -34,7 +34,7 @@ format :html do
   end
 
   def header_cells
-    ["Metric","Company", "Answer"]
+    %w[Metric Company Answer]
   end
 
   def cell_views
