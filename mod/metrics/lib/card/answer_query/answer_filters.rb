@@ -38,9 +38,9 @@ class Card
         when "neither"
           %i[checkers check_requester].each { |fld| filter fld, nil, "IS" }
         when "current_user"
-          checked_by Card::Auth.current_id
+          checked_by Auth.current_id
         when "wikirate_team"
-          checked_by id: Self::WikirateTeam.member_ids.unshift(:in)
+          checked_by id: Set::Self::WikirateTeam.member_ids.unshift(:in)
         end
       end
 
