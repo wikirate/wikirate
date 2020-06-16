@@ -52,29 +52,29 @@ $.extend wikirate,
       else
         message =
           "The source you are citing is currently listed as a source " +
-          "for #{years.toString()}. " + message
+          "for #{years.sort().toString()}. " + message
 
     response = window.confirm message
-    addYearToSource($source, researchedYear) if response
+    # addYearToSource($source, researchedYear) if response
     return response
 
-  addYearToSource = ($source, year) ->
-    $source.append yearHiddenInput($source, year)
-    fancy = $source.find ".fancy-years"
-    if fancy.is(":empty")
-      fancy.html year
-    else
-      fancy.html (fancy.html().trim() + ", " + year)
+  # addYearToSource = ($source, year) ->
+  #   $source.append yearHiddenInput($source, year)
+  #   fancy = $source.find ".fancy-years"
+  #   if fancy.is(":empty")
+  #     fancy.html year
+  #   else
+  #     fancy.html (fancy.html().trim() + ", " + year)
 
   # adds a hidden input tag to cite bar so that source year will be added when
   # answer is submitted.
-  yearHiddenInput = ($source, year) ->
-    year_list = $source.data("year")
-    year_list.push(year)
-    year_list = year_list.map (year) -> "[[#{year}]]"
-    $("<input>").attr("type", "hidden")
-                .attr("name", "card[subcards][#{$source.data("card-name")}+year][content]")
-                .attr("value", year_list.join("\n"))
+  # yearHiddenInput = ($source, year) ->
+  #   year_list = $source.data("year")
+  #   year_list.push(year)
+  #   year_list = year_list.map (year) -> "[[#{year}]]"
+  #   $("<input>").attr("type", "hidden")
+  #               .attr("name", "card[subcards][#{$source.data("card-name")}+year][content]")
+  #               .attr("value", year_list.join("\n"))
 
   citedSourceInForm = (sourceID) ->
     $("form ._cite-bar[data-card-id='#{sourceID}']")

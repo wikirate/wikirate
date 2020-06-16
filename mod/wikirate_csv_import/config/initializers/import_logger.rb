@@ -1,2 +1,2 @@
-ImportLog.logger = Logger.new(ImportLog::LogFile)
-ImportLog.logger.level = "debug"
+Card::ImportLog.logger = Logger.new(Card::ImportLog::LogFile)
+Card::ImportLog.logger.level = "debug"

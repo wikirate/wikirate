@@ -1,4 +1,3 @@
-include_set Abstract::WikirateTable
 include_set Abstract::ExpandedResearchedDetails
 include_set Abstract::Table
 include_set Abstract::Paging
@@ -47,10 +46,14 @@ format :html do
     end
   end
 
-  # TODO: move to haml
   def calculation_details
+    formula_wrapper { formula_details }
+  end
+
+  # TODO: move to haml
+  def formula_wrapper
     [wrap_with(:h5, "Formula"),
-     wrap_with(:div, "= #{formula_details}", class: "formula-with-values")]
+     wrap_with(:div, "= #{yield}", class: "formula-with-values")]
   end
 
   # TODO: make item-wrapping format-specific
@@ -78,9 +81,9 @@ format :html do
   view :expanded_score_details, cache: :never do
     wrap_expanded_details do
       if metric_card.categorical?
-        answer_details_table
+        category_score_table_and_formula
       else
-        [answer_details_table, calculation_details]
+        [answer_details_table("FormulaScore"), calculation_details]
       end
     end
   end
@@ -100,15 +103,26 @@ format :html do
     end
   end
 
-  def answer_details_table
-    AnswerDetailsTable.new(self).render
+  def category_score_table_and_formula
+    details_object = AnswerDetailsTable.new self, "CategoryScore"
+    [details_object.render, score_formula(details_object.table)]
+  end
+
+  def score_formula table
+    return unless table.checked_options.size > 1
+    formula_wrapper { table.score_links.join " + " }
+  end
+
+  def answer_details_table class_base=nil
+    AnswerDetailsTable.new(self, class_base).render
   end
 
   # ~~~~~~~ RELATIONSHIP AND INVERSE RELATIONSHIP DETAILS
 
   view :expanded_relationship_details do
     wrap_researched_details do
-      field_nest :relationship_search, view: :filtered_content
+      [field_nest(:relationship_search, view: :filtered_content),
+       field_nest(:relationship_search, view: :export_links)]
     end
   end
 

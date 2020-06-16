@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Type::MetricAnswer::Listings do
+RSpec.describe Card::Set::Type::MetricAnswer::Listing do
   # TODO: move this to where humanized_number is actually defined.
   describe "#humanized_number" do
     def humanize number

@@ -7,7 +7,7 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
   let(:calculated_answer) { answer 1977 }
 
   def answer year=1977
-    Card.fetch(metric.name, company,  year.to_s)
+    Card.fetch(metric.name, company, year.to_s)
   end
 
   def research_value value, year=1977

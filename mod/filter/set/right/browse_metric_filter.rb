@@ -13,7 +13,7 @@ end
 
 def filter_keys
   %i[name wikirate_topic designer project metric_type value_type
-     research_policy year bookmark]
+     research_policy bookmark]
 end
 
 def target_type_id

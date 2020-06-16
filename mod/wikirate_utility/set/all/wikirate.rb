@@ -2,10 +2,6 @@ require "net/https"
 require "uri"
 
 format do
-  view :raw_or_blank, perms: :none, compact: true do
-    _render_raw || ""
-  end
-
   view :cgi_escape_name do
     CGI.escape card.name
   end
@@ -85,13 +81,13 @@ format :html do
     @main_name ||= left_name
   end
 
-  def main_type_id
-    @main_type_id ||= Card.fetch(main_name).type_id
-  end
+  # def main_type_id
+  #   @main_type_id ||= Card.fetch(main_name).type_id
+  # end
 
-  def searched_type_id
-    @searched_type_id ||= Card.fetch_id card.name.left_name.right
-  end
+  # def searched_type_id
+  #   @searched_type_id ||= Card.fetch_id card.name.left_name.right
+  # end
 
   def button_classes
     "btn btn-sm btn-outline-secondary"

@@ -12,7 +12,7 @@
 # and is used in CompanyGroup+Company searches.
 
 # we reuse metric and value interface from this set in the constraint editor:
-include_set Right::MetricCompanyFilter
+include_set Card::Set::TypePlusRight::Metric::MetricAnswer
 
 attr_accessor :metric_card
 

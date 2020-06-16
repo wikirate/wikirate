@@ -1,5 +1,3 @@
-include_set Abstract::WikirateTable
-include_set Abstract::TwoColumnLayout
 include_set Abstract::Filterable
 
 card_accessor :wikipedia

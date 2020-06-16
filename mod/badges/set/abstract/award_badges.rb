@@ -8,14 +8,13 @@ def self.included host_class
   end
 end
 
-include ::NewRelic::Agent::MethodTracer
-
 def award_badge_if_earned badge_type
   return unless awardable_act? && (badge = earns_badge(badge_type))
 
   award_badge fetch_badge_card(badge)
 end
 
+include ::NewRelic::Agent::MethodTracer
 add_method_tracer :award_badge_if_earned, "award_badge_if_earned"
 
 # don't award badges during imports or API calls

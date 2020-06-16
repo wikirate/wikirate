@@ -32,6 +32,10 @@ def record_card
   Card.fetch record
 end
 
+def view_cache_clean?
+  true
+end
+
 format :html do
   def default_item_view
     :name

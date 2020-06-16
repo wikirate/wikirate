@@ -27,17 +27,15 @@ def subtopic_referers subtopic, query={}
 end
 
 def ok_to_create
-  super
-  check_subtopic_permissions
+  super && check_subtopic_permissions
 end
 
 def ok_to_update
-  super
-  check_subtopic_permissions
+  super && check_subtopic_permissions
 end
 
 def check_subtopic_permissions
-  return if as_moderator?
+  return true if as_moderator?
 
   deny_because "subtopic editing is currently restricted (beta testing)"
 end

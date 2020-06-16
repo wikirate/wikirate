@@ -13,6 +13,12 @@ format :html do
     end
   end
 
+  layout :wikirate_one_full_column_layout, view: :titled do
+    wikirate_layout "wikirate-one-full-column-layout px-2" do
+      layout_nest
+    end
+  end
+
   def wikirate_layout body_class
     <<-HTML.strip_heredoc
       <body class="wikirate-layout #{body_class}">

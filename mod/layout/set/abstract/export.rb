@@ -4,7 +4,7 @@ format :html do
   end
 
   view :export_links, cache: :never do
-    wrap_with :p do
+    wrap_with :p, class: "py-3" do
       "Export: #{export_format_links}"
     end
   end

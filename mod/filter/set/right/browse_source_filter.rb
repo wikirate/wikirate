@@ -20,7 +20,7 @@ def default_sort_option
 end
 
 def filter_keys
-  %i[wikirate_title wikirate_topic report_type year]
+  %i[wikirate_title wikirate_topic report_type year wikirate_link]
 end
 
 def default_filter_hash
@@ -38,6 +38,10 @@ format :html do
 
   view :filter_wikirate_title_formgroup, cache: :never do
     text_filter :wikirate_title
+  end
+
+  view :filter_wikirate_link_formgroup, cache: :never do
+    text_filter :wikirate_link
   end
 
   view :filter_report_type_formgroup, cache: :never do
@@ -60,6 +64,11 @@ end
 # cql query to filter sources
 class SourceFilterQuery < FilterQuery
   include WikirateFilterQuery
+
+  def wikirate_link_wql value
+    return unless value.present?
+    add_to_wql :right_plus, [WikirateLinkID, { content: [:match, value] }]
+  end
 
   def wikirate_title_wql value
     return unless value.present?

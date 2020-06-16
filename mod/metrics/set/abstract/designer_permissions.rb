@@ -10,20 +10,16 @@ def as_designer?
 end
 
 def check_designer_permissions action
-  return unless @action_ok && metric_card&.designer_assessed?
-  return if as_moderator? || as_designer?
-
+  return true if !metric_card&.designer_assessed? || as_moderator? || as_designer?
   deny_because "Only the metric designer can #{action} this on designer-assessed metrics"
 end
 
 def ok_to_create
-  super
-  check_designer_permissions :create
+  super && check_designer_permissions(:create)
 end
 
 def ok_to_update
-  super
-  check_designer_permissions :update
+  super && check_designer_permissions(:update)
 end
 
 # delete logic is different, because most users don't have permission by default

@@ -57,10 +57,20 @@ end
 
 def merge_into target_company
   target_company = Card.fetch_name target_company
+  move_relationships_to target_company
   move_answers_to target_company
   move_project_listings_to target_company
   move_group_listings_to target_company
   move_source_listings_to target_company
+end
+
+def move_relationships_to target_company
+  relationships.each do |relationship|
+    relationship.move company: target_company
+  end
+  inverse_relationships.each do |inverse_relationship|
+    inverse_relationship.move related_company: target_company
+  end
 end
 
 def move_answers_to target_company

@@ -31,7 +31,7 @@ class Answer < ApplicationRecord
       super
     else
       # in the process of creating a hybrid answer we don't want the virtual answer card
-      @card = find_answer_card || virtual_answer_card
+      @card = card_without_answer_id
     end
     @card.answer = self
     @card

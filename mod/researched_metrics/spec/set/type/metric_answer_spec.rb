@@ -67,7 +67,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
   context "when value type is Free Text" do
     let(:source) { sample_source }
     let(:new_answer) do
-      create_answer content: "1234", year: "2015", source: source.name
+      create_answer value: "1234", year: "2015", source: source.name
     end
 
     include_examples "create answer", :free_text, "yes", nil
@@ -87,36 +87,20 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       answer.update! subfields: { value: "updated value" }
       expect(Card[answer, :value].content).to eq("updated value")
     end
+  end
 
-    describe "+source" do
-      let(:source_card) { new_answer.source_card }
+  describe "event: auto_add_company" do
+    let(:new_company) { "Kuhl Co" }
 
-      it "includes source in +source" do
-        expect(source_card.item_names).to include(source.name)
-      end
+    it "adds company when triggered" do
+      Card.create answer_args.merge("+company" => new_company,
+                                    trigger: :auto_add_company)
+      expect(Card[new_company].type_id).to eq(Card::WikirateCompanyID)
+    end
 
-      it "updates source's company" do
-        new_answer
-        source_company = source.fetch :wikirate_company
-        expect(source_company.item_cards).to include(company)
-      end
-
-      it "updates source's report type" do
-        new_answer
-        source_report_type = source.fetch :report_type
-        expect(source_report_type.item_names)
-          .to include("Conflict Mineral Report")
-      end
-
-      it "fails with a non-existing source" do
-        expect(build_answer(source: "Page-1"))
-          .to be_invalid.because_of("+source": include("No such source exists"))
-      end
-
-      it "fails if source card cannot be created" do
-        expect(build_answer(source: nil))
-          .to be_invalid.because_of("+source": include("sources required"))
-      end
+    it "fails when not triggered with unknown company" do
+      expect(create_answer(company: new_company).errors[:company])
+        .to include(/valid company required/)
     end
   end
 end
