@@ -19,9 +19,7 @@ event :validate_company_name, :validate, changed: :name do
 end
 
 event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
-  if Card::Codename.exist? :wikipedia
-    ensure_subfield :wikipedia
-  end
+  ensure_subfield :wikipedia if Card::Codename.exist? :wikipedia
 end
 
 event :delete_all_company_answers, :store, on: :delete do
