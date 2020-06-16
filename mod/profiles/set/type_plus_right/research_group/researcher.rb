@@ -1,11 +1,9 @@
-if defined? Card::Set::LtypeRtype::User
-  CONTRIBUTION_CATEGORIES = %i[created updated discussed double_checked].freeze
-  CONTRIBUTION_CATEGORY_HEADER = ["Answers"].concat(
-    CONTRIBUTION_CATEGORIES.map do |category|
-      Card::Set::LtypeRtype::User::Cardtype::ACTION_LABELS[category]
-    end
-  )
-end
+CONTRIBUTION_CATEGORIES = %i[created updated discussed double_checked].freeze
+CONTRIBUTION_CATEGORY_HEADER = ["Answers"].concat(
+  CONTRIBUTION_CATEGORIES.map do |category|
+    Card::Set::LtypeRtype::User::Cardtype::ACTION_LABELS[category]
+  end
+)
 
 def ok_to_join?
   Auth.signed_in? && !current_user_is_member?
