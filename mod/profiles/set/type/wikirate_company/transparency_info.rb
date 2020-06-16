@@ -9,12 +9,12 @@ format :json do
 
   def transparency_info
     {
-        holding: card.name,
-        location: location,
-        brands: all_brands,
-        scores: scores,
-        contact_url: contact_url,
-        suppliers: supplier_infos,
+      holding: card.name,
+      location: location,
+      brands: all_brands,
+      scores: scores,
+      contact_url: contact_url,
+      suppliers: supplier_infos
     }.to_json
   end
 
@@ -36,9 +36,9 @@ format :json do
 
   def scores
     {
-        transparency: transparency_score,
-        commitment: commitment_score,
-        living_wage: living_wage_score
+      transparency: transparency_score,
+      commitment: commitment_score,
+      living_wage: living_wage_score
     }
   end
 
@@ -47,7 +47,8 @@ format :json do
   end
 
   def commitment_score
-    { total: 4,
+    {
+      total: 4,
       public_commitment: "yes",
       action_plan: "partial",
       fing_fencing_labour_cost: "no"
@@ -64,12 +65,12 @@ format :json do
 
   def suppliers
     [
-        Card["Apple Inc"],
-        Card["Google Inc"]
+      Card["Apple Inc"],
+      Card["Google Inc"]
     ]
   end
 
   def supplier_infos
-    suppliers.map { |supplier| subformat(supplier).render(:supplier_info)}
+    suppliers.map { |supplier| subformat(supplier).render(:supplier_info) }
   end
 end

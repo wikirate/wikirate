@@ -3,8 +3,6 @@ include_set Abstract::DesignerPermissions
 
 def history?
   !metric_card&.relationship?
-rescue
-  binding.pry
 end
 
 def typed_value?

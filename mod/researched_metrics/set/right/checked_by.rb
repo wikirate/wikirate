@@ -253,7 +253,6 @@ def proper_checked_by_card?
   !left || !left.known? || left.respond_to?(:check_requested_by_card)
 end
 
-
 format :json do
   def atom
     super().merge checks: card.checkers.count, check_requested: card.check_requested?

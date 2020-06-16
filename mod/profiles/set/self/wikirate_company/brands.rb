@@ -9,7 +9,6 @@ format :json do
     end
   end
 
-
   def name_query
     Env.params[:q] if Env.params[:q].present?
   end

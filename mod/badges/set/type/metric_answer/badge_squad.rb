@@ -11,7 +11,6 @@ class BadgeSquad
         research_master: gold }
     end
 
-
     add_badge_line :check,
                    checker: 1,
                    check_pro: 50,

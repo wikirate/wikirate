@@ -64,7 +64,7 @@ class Importer
         cards.flatten.each do |card|
           next if card["name"].empty?
 
-          require 'pry'
+          require "pry"
           import = ImportCard.new(card)
           import.update_or_create
         end

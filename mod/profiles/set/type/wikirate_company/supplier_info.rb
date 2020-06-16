@@ -1,6 +1,7 @@
 format :json do
   view :supplier_info do
-    { name: card.name,
+    {
+      name: card.name,
       workers_by_gender: workers_by_gender,
       workers_by_contract: workers_by_contract,
       average_net_wage: average_net_wage,
@@ -13,16 +14,16 @@ format :json do
 
   def workers_by_gender
     {
-        female: 5,
-        male: 10,
-        other: 100
+      female: 5,
+      male: 10,
+      other: 100
     }
   end
 
   def workers_by_contract
     {
-        permanent: 5,
-        temporary: 2
+      permanent: 5,
+      temporary: 2
     }
   end
 
