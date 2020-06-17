@@ -36,7 +36,7 @@ gem "open_uri_redirections"
 gem "pdfkit"
 gem "roo"
 gem "wbench"
-gem "wkhtmltopdf-binary"
+gem "wkhtmltopdf-binary", "0.12.5.4"
 
 gem "rubocop", ">= 0.63"
 gem "rubocop-decko"
