@@ -2,16 +2,15 @@ if defined?(Card::ResearchGroupID)
   VALID_DESIGNER_TYPE_IDS =
       [Card::ResearchGroupID, Card::UserID, Card::WikirateCompanyID].freeze
 
-
-# The new metric form has a title and a designer field instead of a name field
-# We compose the card's name here
+  # The new metric form has a title and a designer field instead of a name field
+  # We compose the card's name here
   event :set_metric_name, :initialize, on: :create, when: :needs_name? do
     title = (tcard = remove_subfield(:title)) && tcard.content
     designer = (dcard = remove_subfield(:designer)) && dcard.content
     self.name = "#{designer}+#{title}"
   end
 
-# for override
+  # for override
   def needs_name?
     !name.present?
   end

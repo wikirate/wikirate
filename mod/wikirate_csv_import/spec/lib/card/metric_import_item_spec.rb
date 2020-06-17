@@ -1,7 +1,7 @@
 require_relative "import_item_spec_helper"
 
-RSpec.describe MetricImportItem do
-  include ImportItemSpecHelper
+RSpec.describe Card::MetricImportItem do
+  include Card::ImportItemSpecHelper
 
   let :default_item_hash do
     {

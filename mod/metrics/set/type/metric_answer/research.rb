@@ -12,7 +12,7 @@ format :html do
     wrap do
       subformat(:research_page).slot_machine metric: card.metric,
                                              company: card.company,
-                                             year: card.year # active_tab: "View Source"
+                                             year: card.year
     end
   end
 

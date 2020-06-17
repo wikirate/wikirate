@@ -14,8 +14,8 @@ class Answer
                          company_name,
                          year,
                          value,
-                         source_count,
                          source_url,
+                         source_count,
                          comments]
     end
 
@@ -30,8 +30,8 @@ class Answer
     # class methods for {Answer}
     module ClassMethods
       def csv_title
-        CSV.generate_line ["ANSWER ID", "ANSWER_LINK", "METRIC NAME", "COMPANY NAME",
-                           "YEAR", "VALUE", "# SOURCES", "SOURCE URL", "COMMENTS"]
+        CSV.generate_line ["Answer ID", "Answer Link", "Metric", "Company",
+                           "Year", "Value", "Source", "Source Count", "Comments"]
       end
     end
   end

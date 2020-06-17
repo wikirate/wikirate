@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Type::AnswerImport do
   describe "import!" do
-    let(:import_item_class) { AnswerImportItem }
+    let(:import_item_class) { Card::AnswerImportItem }
     let(:import_card) { Card["answer import test"] }
     let(:status) { import_card.import_status_card.status }
 

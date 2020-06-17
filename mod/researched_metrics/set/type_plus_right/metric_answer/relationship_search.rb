@@ -1,6 +1,6 @@
 include_set Type::SearchType
 include_set Abstract::Table
-
+include_set Abstract::Export
 include_set Abstract::MetricChild, generation: 3
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
@@ -35,15 +35,19 @@ end
 
 def relationship_ids paging_args={}
   return [] if Env.params[:filter] && other_company_ids.empty?
-
-  rel = Relationship.where relationship_query
-  rel = rel.limit paging_args[:limit] || 20
-  rel = rel.offset paging_args[:offset] || 0
-  rel.pluck :relationship_id
+  relationship_relation(paging_args).pluck :relationship_id
 end
 
 def other_company_ids
   @other_company_ids ||= Env.params[:filter] ? search(return: :id, limit: 0) : []
+end
+
+# TODO: move paging handling to format.
+def relationship_relation paging_args={}
+  Relationship.where(relationship_query).tap do |rel|
+    rel.limit paging_args[:limit] || 20
+    rel.offset paging_args[:offset] || 0
+  end
 end
 
 def relationship_query
@@ -93,5 +97,12 @@ format :html do
 
   def count_with_params
     Relationship.where(card.relationship_query).count
+  end
+end
+
+format :csv do
+  view :core do
+    Relationship.csv_title +
+      card.relationship_relation(limit: 0).map(&:csv_line).join
   end
 end

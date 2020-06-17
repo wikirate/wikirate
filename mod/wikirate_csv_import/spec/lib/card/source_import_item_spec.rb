@@ -1,7 +1,7 @@
 require_relative "import_item_spec_helper"
 
-RSpec.describe SourceImportItem do
-  include ImportItemSpecHelper
+RSpec.describe Card::SourceImportItem do
+  include Card::ImportItemSpecHelper
 
   TEST_URL = "https://decko.org/Home.txt".freeze
 

@@ -20,8 +20,8 @@ def without_move_conflict name_parts
 end
 
 def move_name name_parts
-  cleaned_parts = %i[metric company year].map do |key|
-    Card.fetch_name(name_parts[key] || send(key).to_s)
+  cleaned_parts = name_part_types.map do |key|
+    Card.fetch_name(name_parts[key.to_sym] || send(key).to_s)
   end
   Card::Name[*cleaned_parts]
 end

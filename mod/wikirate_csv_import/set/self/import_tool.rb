@@ -12,7 +12,7 @@ format :html do
     tab_args = tabs.each_with_object({}) do |(key, title), h|
       h[title] = tab_content key
     end
-    static_tabs tab_args, "Metric Answer", :pills
+    tabs tab_args, "Metric Answer", tab_type: :pills
   end
 
   def tab_content key

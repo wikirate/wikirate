@@ -1,7 +1,7 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 
-card_accessor :project, type: :pointer
+card_accessor :project, type: PointerID
 card_accessor :metric
 
 format :html do

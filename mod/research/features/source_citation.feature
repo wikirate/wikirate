@@ -10,7 +10,8 @@ Scenario: Source has a year, answer form has a different year
   When I research answer "9" for year "2009"
   And I cite source for 2008 confirming
     """
-    The source you are citing is currently listed as a source for 2008.
+    The source you are citing is currently listed as a source for
+    1977,1990,2000,2001,2003,2004,2005,2008.
     Please confirm that you wish to cite this source for a 2009 answer
     (and add 2009 to the years covered by this source).
     """

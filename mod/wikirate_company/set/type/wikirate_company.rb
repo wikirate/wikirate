@@ -3,10 +3,12 @@
 include_set Abstract::Media
 include_set Abstract::Delist
 include_set Abstract::Accountable
+include_set Abstract::TwoColumnLayout
+
 include_set Abstract::Bookmarkable
 # include_set Abstract::Export
 
-card_accessor :aliases, type: :pointer
+card_accessor :aliases, type: PointerID
 card_accessor :metric_answer
 card_accessor :image
 card_accessor :incorporation
@@ -17,13 +19,7 @@ event :validate_company_name, :validate, changed: :name do
 end
 
 event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
-  if Card::Codename.exist? :wikipedia
-    ensure_subfield :wikipedia
-  end
-end
-
-event :update_company_matcher, :integrate_with_delay, on: :create do
-  CompanyMatcher.add_to_mapper id, name
+  ensure_subfield :wikipedia
 end
 
 event :delete_all_company_answers, :store, on: :delete do

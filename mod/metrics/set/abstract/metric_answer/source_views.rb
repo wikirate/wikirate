@@ -146,8 +146,8 @@ format :html do
   end
 
   def citations_count
-    wrap_with :h5 do
-      ["Citations", citations_count_badge]
+    wrap_with :h5, class: "w-100 text-left" do
+      [citations_count_badge, "Citations"]
     end
   end
 end

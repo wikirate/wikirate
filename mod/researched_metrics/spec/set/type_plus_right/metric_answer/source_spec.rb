@@ -38,7 +38,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Source do
     end
 
     context "when source is url" do
-      let(:url) { "http://decko.org" }
+      let(:url) { "https://xkcd.com/1735/" }
 
       it "adds source when explicitly triggered to do so" do
         a = new_answer(source: { content: url, trigger_in_action: :auto_add_source })

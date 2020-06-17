@@ -16,8 +16,6 @@ RSpec.describe Card::Set::Abstract::Import do
       create_import_file
       is = Card[new_file_card_name].import_status_card
       expect(is.id).to be_positive
-      puts old_file_card.import_status_card.content
-      puts is.content
       expect(is.content).to eq(old_file_card.import_status_card.content)
     end
   end

@@ -58,7 +58,7 @@ RSpec.describe Card::Set::Right::ImportStatus do
     it "renders progress bar if counts in the content" do
       expect(format_subject.render_progress_bar)
         .to have_tag("div.progress") do
-          progress_section self, "warning", :not_ready, "Not Ready"
+          progress_section self, "secondary", :not_ready, "Not Ready"
           progress_section self, "info", :ready, "Ready"
           progress_section self, "danger", :failed, "Failure"
         end

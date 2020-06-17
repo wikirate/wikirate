@@ -33,11 +33,10 @@ end
 
 def add_company company
   company_card = Card[company]
-  if company_card&.exists?
+  if company_card&.real?
     errors.add "#{company} is not a Company; it's a #{company_card.type_name}"
   else
     Card.create type: WikirateCompanyID, name: company
-    add_subfield :wikirate_company, ()
   end
 end
 

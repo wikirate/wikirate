@@ -1,6 +1,6 @@
 # TODO: move to card-mods
 
-RSpec.describe ImportManager::Status do
+RSpec.describe Card::ImportManager::Status do
   let(:status) { described_class.new }
 
   describe "#update_item" do

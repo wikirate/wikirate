@@ -3,16 +3,12 @@ include_set Abstract::Header
 include_set Abstract::Tabs
 
 format :html do
+  def layout_name_from_rule
+    :wikirate_one_full_column_layout
+  end
+
   def header_text
-    download_link
-  end
-
-  view :header do
-    main? ? render_main_header : super()
-  end
-
-  view :main_header do
-    [render_type_link, render_rich_header]
+    [download_link, render_type_link]
   end
 
   def tab_list
@@ -20,13 +16,13 @@ format :html do
   end
 
   def tab_options
-    { import_map: { label: "Step 1: Map Data" },
-      import_status: { label: "Step 2: Import Items" } }
+    { import_map: { label: "Step 1: Mapping" },
+      import_status: { label: "Step 2: Importing" } }
   end
 
   view :core do
-    wrap_with :div, class: "nodblclick" do
-      render_tabs
+    wrap_with :div, class: "nodblclick import-core _import-core" do
+      [render_type_link, download_link, render_tabs]
     end
   end
 
