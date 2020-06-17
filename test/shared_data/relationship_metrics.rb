@@ -59,11 +59,13 @@ class SharedData
         Google_LLC 2000 => "Mountain View"
       end
 
-      Card::Metric.create name: "Commons+Has Brands",
-                          type: :relationship,
-                          test_source: true,
-                          value_type: "Number",
-                          inverse_title: "Is Brand Of" do
+      Card.create name: %i[commons_has_brands metric_type],
+                  content: :relationship.cardname
+      Card.create name: %i[commons_has_brands inverse],
+                  content: :commons_is_brand_of.cardname
+      Card.create name: %i[commons_is_brand_of metric_type],
+                  content: :inverse_relationship.cardname
+      Card[:commons_has_brands].create_answers(true) do
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "1" }
       end
     end
