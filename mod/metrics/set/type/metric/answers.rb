@@ -15,8 +15,6 @@ def company_ids args={}
   answers(args).distinct.pluck :company_id
 end
 
-
-
 # @return [Array] of Cards
 def companies args={}
   company_ids(args).map { |id| Card[id] }

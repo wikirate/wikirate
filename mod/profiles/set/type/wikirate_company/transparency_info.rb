@@ -8,34 +8,33 @@ format :json do
   end
 end
 
-def transparency_info_short(company_name)
+def transparency_info_short company_name
   {
-      id: id,
-      owned_by: name,
-      name: company_name,
-      scores: scores,
-      contact_url: contact_url
+    id: id,
+    owned_by: name,
+    name: company_name,
+    scores: scores,
+    contact_url: contact_url
   }
 end
 
-def transparency_info(company_name)
+def transparency_info company_name
   {
-      id: id,
-      name: company_name,
-      owned_by: name,
-      address: address,
-      location: location,
-      number_of_workers: number_of_workers,
-      top_production_countries: latest_value(:ccc_top_production_countries),
-      revenue: latest_value(:ccc_revenue),
-      profit: latest_value(:ccc_profit),
-      brands: all_brands,
-      scores: scores,
-      contact_url: contact_url,
-      suppliers: supplier_infos,
+    id: id,
+    name: company_name,
+    owned_by: name,
+    address: address,
+    location: location,
+    number_of_workers: number_of_workers,
+    top_production_countries: latest_value(:ccc_top_production_countries),
+    revenue: latest_value(:ccc_revenue),
+    profit: latest_value(:ccc_profit),
+    brands: all_brands,
+    scores: scores,
+    contact_url: contact_url,
+    suppliers: supplier_infos
   }
 end
-
 
 def holding_company?
   true
@@ -54,7 +53,7 @@ def number_of_workers
 end
 
 def address
-  latest_value(:ccc_address)
+  latest_value :ccc_address
 end
 
 def location
@@ -62,7 +61,7 @@ def location
 end
 
 def all_brands
-  related_company_names(metric: :commons_has_brands)
+  related_company_names metric: :commons_has_brands
 end
 
 def scores
@@ -79,10 +78,10 @@ end
 
 def commitment_score
   {
-      total: latest_value(:ccc_policy_promise_score),
-      public_commitment: latest_value(:ccc_public_commitment),
-      action_plan: latest_value(:ccc_action_plan),
-      isolating_labour_cost: latest_value(:ccc_isolating_labour_cost)
+    total: latest_value(:ccc_policy_promise_score),
+    public_commitment: latest_value(:ccc_public_commitment),
+    action_plan: latest_value(:ccc_action_plan),
+    isolating_labour_cost: latest_value(:ccc_isolating_labour_cost)
   }
 end
 

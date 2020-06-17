@@ -22,7 +22,7 @@ format :json do
     end
   end
 
-  def owned_brands_select2_options_list company, match=nil
+  def owned_brands_select2_options_list company
     company.related_companies(metric: :commons_has_brands).map do |brand|
       { id: brand.id, text: "#{brand.name} (#{company.name})" }
     end
@@ -30,16 +30,20 @@ format :json do
 
   def matching_brand_owners query
     Relationship
-        .where(metric_id: Card.fetch_id(:commons_has_brands))
-        .where("subject_company_name LIKE ?", "%#{query}%").distinct.pluck(:subject_company_id, :subject_company_name)
-        .map { |id, name| { id: id, text: name } }
+      .where(metric_id: Card.fetch_id(:commons_has_brands))
+      .where("subject_company_name LIKE ?", "%#{query}%").distinct
+      .pluck(:subject_company_id, :subject_company_name)
+      .map { |id, name| { id: id, text: name } }
   end
 
   def matching_brands query
     Relationship
-        .where(metric_id: Card.fetch_id(:commons_has_brands))
-        .where("object_company_name LIKE ?", "%#{query}%").distinct.pluck(:subject_company_name, :object_company_id, :object_company_name)
-        .map { |holding_name, brand_id, brand_name| { id: brand_id, text: "#{brand_name} (#{holding_name})" } }
+      .where(metric_id: Card.fetch_id(:commons_has_brands))
+      .where("object_company_name LIKE ?", "%#{query}%").distinct
+      .pluck(:subject_company_name, :object_company_id, :object_company_name)
+      .map do |holding_name, brand_id, brand_name|
+      { id: brand_id, text: "#{brand_name} (#{holding_name})" }
+    end
   end
 
   def name_query
