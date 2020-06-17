@@ -1,16 +1,34 @@
 format :json do
   view :transparency_info do
-    card.holding_company.transparency_info.to_json
+    card.holding_company.transparency_info(card.name).to_json
+  end
+
+  view :transparency_info_short do
+    card.holding_company.transparency_info_short(card.name).to_json
   end
 end
 
-def transparency_info
+def transparency_info_short(company_name)
   {
       id: id,
-      holding: name,
+      owned_by: name,
+      name: company_name,
+      scores: scores,
+      contact_url: contact_url
+  }
+end
+
+def transparency_info(company_name)
+  {
+      id: id,
+      name: company_name,
+      owned_by: name,
       address: address,
       location: location,
       number_of_workers: number_of_workers,
+      top_production_countries: latest_value(:ccc_top_production_countries),
+      revenue: latest_value(:ccc_revenue),
+      profit: latest_value(:ccc_profit),
       brands: all_brands,
       scores: scores,
       contact_url: contact_url,
@@ -60,10 +78,11 @@ def transparency_score
 end
 
 def commitment_score
-  { total: latest_value(:ccc_policy_promise_score),
-    public_commitment: "yes",
-    action_plan: "partial",
-    fing_fencing_labour_cost: "no"
+  {
+      total: latest_value(:ccc_policy_promise_score),
+      public_commitment: latest_value(:ccc_public_commitment),
+      action_plan: latest_value(:ccc_action_plan),
+      isolating_labour_cost: latest_value(:ccc_isolating_labour_cost)
   }
 end
 

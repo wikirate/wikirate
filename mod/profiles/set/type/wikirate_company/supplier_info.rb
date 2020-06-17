@@ -21,7 +21,7 @@ end
     {
         female: latest_value(:ccc_female_workers),
         male: latest_value(:ccc_male_workers),
-        other: 100
+        other: latest_value(:ccc_neither_male_or_female)
     }
   end
   
@@ -31,8 +31,8 @@ end
 
   def workers_by_contract
     {
-        permanent: 5,
-        temporary: 2
+        permanent: latest_value(:ccc_permanent_workers),
+        temporary: latest_value(:ccc_temporary_workers)
     }
   end
 
@@ -41,7 +41,7 @@ end
   end
 
   def wage_gap
-    123
+    latest_value :ccc_living_wages_paid_score
   end
 
   def workers_have_cba
