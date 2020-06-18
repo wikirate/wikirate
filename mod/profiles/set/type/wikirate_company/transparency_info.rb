@@ -66,9 +66,9 @@ end
 
 def scores
   {
-      transparency: transparency_score,
-      commitment: commitment_score,
-      living_wage: living_wage_score
+    transparency: transparency_score,
+    commitment: commitment_score,
+    living_wage: living_wage_score
   }
 end
 
