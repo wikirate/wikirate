@@ -14,10 +14,10 @@ RSpec.describe Card::Set::Type::WikirateCompany::Json do
 
   def expect_answers_to_move
     expect(company.answers.count).to eq(2)
-    expect(target.answers.count).to eq(9)
+    expect(target.answers.count).to eq(10)
     yield
     expect(company.answers.count).to eq(1) # there is one conflicting answer
-    expect(target.answers.count).to eq(10)
+    expect(target.answers.count).to eq(11)
   end
 
   describe "#move_answers_to" do
