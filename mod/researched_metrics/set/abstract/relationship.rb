@@ -22,8 +22,8 @@ end
 
 # @return [Relationship::ActiveRecord_Relation]
 def relationships args={}
-  args[:metric_id] = id
-  Relationship.where args
+  args[:metric_id] = relationship_lookup_id
+  ::Relationship.where args
 end
 
 # @return [Array] of Integers

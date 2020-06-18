@@ -2,13 +2,13 @@ def virtual?
   true
 end
 
-def relationship_relation
-  Relationship.where(metric_id: Card.fetch_id(name.left))
+def relationships
+  Card.fetch(name.left).relationships
 end
 
 format :csv do
   view :core do
-    Relationship.csv_title +
-      card.relationship_relation.map(&:csv_line).join
+    ::Relationship.csv_title +
+      card.relationships.map(&:csv_line).join
   end
 end
