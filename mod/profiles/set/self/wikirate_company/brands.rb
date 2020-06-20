@@ -59,7 +59,7 @@ format :json do
   #     .pluck(:subject_company_id, :subject_company_name)
   #     .map { |id, name| { id: id, text: name } }
   # end
-#
+
   # def matching_brands query
   #   Relationship
   #     .where(metric_id: Card.fetch_id(:commons_has_brands))
