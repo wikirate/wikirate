@@ -17,5 +17,5 @@ def inverse_company_id_field
 end
 
 def relationship_lookup_id
-  inverse_card.id
+  inverse_card&.id
 end

@@ -12,39 +12,63 @@ format :json do
   end
 
   def filtered_brands_list query
-    matching_brand_owners(query) + matching_brands(query)
+    Card.search(fulltext_match: query, return: :id,
+                type_id: Card::WikirateCompanyID, limit: 0).map do |company_id|
+      full_brands_lookup_hash[company_id]
+    end.compact
+  end
+
+  def brand_companies_list
+    @brand_companies_list ||= Card[:filling_the_gap_group, :wikirate_company]
   end
 
   def full_brands_list
-    Card[:commons_has_brands].companies.each_with_object([]) do |company, ar|
-      ar << { id: company.id, text: company.name }
-      ar.concat(owned_brands_select2_options_list(company))
+    @full_brands_list ||=
+      brands_list brand_companies_list.item_cards
+  end
+
+  def full_brands_lookup_hash
+    @full_brands_lookup_hash ||=
+      full_brands_list.each_with_object({}) do |item, lookup|
+        lookup[item[:lookup_id]] = item
+      end
+  end
+
+  def brands_list company_list
+    base_list = company_list.map do |company|
+      { id: company.id, lookup_id: company.id, text: company.name }
+    end
+    base_list + brand_owners(company_list.map(&:id))
+  end
+
+  def brand_owners company_ids
+    return [] unless company_ids.present?
+    Relationship.where(metric_id: Card.fetch_id(:commons_has_brands))
+                .where("object_company_id IN (#{company_ids.join ', '})").distinct
+                .pluck(:subject_company_id, :subject_company_name,
+                       :object_company_id, :object_company_name)
+                .map do |holding_id, holding_name, brand_id, brand_name|
+      { id: brand_id, lookup_id: holding_id, text: "#{brand_name} (#{holding_name})" }
     end
   end
 
-  def owned_brands_select2_options_list company
-    company.related_companies(metric: :commons_has_brands).map do |brand|
-      { id: brand.id, text: "#{brand.name} (#{company.name})" }
-    end
-  end
-
-  def matching_brand_owners query
-    Relationship
-      .where(metric_id: Card.fetch_id(:commons_has_brands))
-      .where("subject_company_name LIKE ?", "%#{query}%").distinct
-      .pluck(:subject_company_id, :subject_company_name)
-      .map { |id, name| { id: id, text: name } }
-  end
-
-  def matching_brands query
-    Relationship
-      .where(metric_id: Card.fetch_id(:commons_has_brands))
-      .where("object_company_name LIKE ?", "%#{query}%").distinct
-      .pluck(:subject_company_name, :object_company_id, :object_company_name)
-      .map do |holding_name, brand_id, brand_name|
-      { id: brand_id, text: "#{brand_name} (#{holding_name})" }
-    end
-  end
+  # def matching_brand_owners query
+  #   Relationship
+  #     .where(metric_id: Card.fetch_id(:commons_has_brands))
+  #     .where("subject_company_name LIKE ?", "%#{query}%").distinct
+  #     .pluck(:subject_company_id, :subject_company_name)
+  #     .map { |id, name| { id: id, text: name } }
+  # end
+#
+  # def matching_brands query
+  #   Relationship
+  #     .where(metric_id: Card.fetch_id(:commons_has_brands))
+  #     .where("object_company_name LIKE ?", "%#{query}%").distinct
+  #     .pluck(:subject_company_name, :object_company_id, :object_company_name)
+  #     .map do |holding_name, brand_id, brand_name|
+  #     { id: brand_id, text: "#{brand_name} (#{holding_name})" }
+  #   end
+  # end
 
   def name_query
     Env.params[:q] if Env.params[:q].present?

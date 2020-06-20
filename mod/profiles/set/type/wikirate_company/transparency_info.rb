@@ -32,7 +32,8 @@ def transparency_info company_name
     brands: all_brands,
     scores: scores,
     contact_url: contact_url,
-    suppliers: supplier_infos
+    suppliers: supplier_infos,
+    twitter_handle: twitter_handle
   }
 end
 
@@ -54,6 +55,10 @@ end
 
 def address
   latest_value :ccc_address
+end
+
+def twitter_handle
+  latest_value :ccc_twitter_handle
 end
 
 def location
