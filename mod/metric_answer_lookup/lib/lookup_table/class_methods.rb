@@ -21,7 +21,7 @@ module LookupTable
       ma.refresh
     end
 
-    def create_or_update cardish, *fieldsw
+    def create_or_update cardish, *fields
       ma_card_id = Card.id cardish
       ma = find_by_card_id(ma_card_id) || new_for_card(ma_card_id)
       fields = nil if ma.new_record? # update all fields if record is new
