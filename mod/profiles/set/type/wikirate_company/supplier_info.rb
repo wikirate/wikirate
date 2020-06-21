@@ -7,7 +7,7 @@ end
 def supplier_info
   data = supplier_info_data
   hash = { name: name, country_name: country_name }.merge data
-  hash[:present] = data.values.compact.blank?
+  hash[:present] = supplier_data_present? hash
   hash
 end
 
