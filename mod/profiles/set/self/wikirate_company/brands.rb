@@ -12,7 +12,7 @@ format :json do
   end
 
   def filtered_brands_list query
-    Card.search(fulltext_match: query, return: :id,
+    Card.search(match: query, return: :id,
                 type_id: Card::WikirateCompanyID, limit: 0).map do |company_id|
       full_brands_lookup_hash[company_id]
     end.compact
@@ -30,7 +30,7 @@ format :json do
   def full_brands_lookup_hash
     @full_brands_lookup_hash ||=
       full_brands_list.each_with_object({}) do |item, lookup|
-        lookup[item[:lookup_id]] = item
+        lookup[item[:lookup_id]] ||= item
       end
   end
 
