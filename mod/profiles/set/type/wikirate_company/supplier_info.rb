@@ -5,9 +5,14 @@ format :json do
 end
 
 def supplier_info
+  data = supplier_info_data
+  hash = { name: name, country_name: country_name }.merge data
+  hash[:empty] = data.values.compact.blank?
+  hash
+end
+
+def supplier_info_data
   {
-    name: name,
-    country_name: country_name,
     workers_by_gender: workers_by_gender,
     workers_by_contract: workers_by_contract,
     average_net_wage: average_net_wage,

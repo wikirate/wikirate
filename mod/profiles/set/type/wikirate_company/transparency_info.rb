@@ -109,5 +109,6 @@ def suppliers
 end
 
 def supplier_infos
-  suppliers.map(&:supplier_info)
+  list = suppliers.map(&:supplier_info)
+  list.select() { |h| !h[:empty] } + list.select() { |h| h[:empty] }
 end
