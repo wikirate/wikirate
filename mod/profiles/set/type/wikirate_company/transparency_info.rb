@@ -27,14 +27,20 @@ def transparency_info company_name
     location: location,
     number_of_workers: number_of_workers,
     top_production_countries: latest_value(:ccc_top_production_countries),
-    revenue: latest_value(:ccc_revenue),
-    profit: latest_value(:ccc_profit),
+    revenue: latest_number(:ccc_revenue),
+    profit: latest_number(:ccc_profit),
     brands: all_brands,
     scores: scores,
     contact_url: contact_url,
     suppliers: supplier_infos,
     twitter_handle: twitter_handle
   }
+end
+
+def latest_number key
+  if (num = latest_value key)
+    format.number_with_delimiter num
+  end
 end
 
 def holding_company?

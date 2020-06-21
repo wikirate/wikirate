@@ -7,6 +7,7 @@ end
 def supplier_info
   {
     name: name,
+    country_name: country_name,
     workers_by_gender: workers_by_gender,
     workers_by_contract: workers_by_contract,
     average_net_wage: average_net_wage,
@@ -15,6 +16,10 @@ def supplier_info
     workers_know_brand: workers_know_brand,
     workers_get_pregnancy_leave: workers_get_pregnancy_leave
   }
+end
+
+def country_name
+  latest_value :core_country
 end
 
 def workers_by_gender
@@ -37,11 +42,11 @@ def workers_by_contract
 end
 
 def average_net_wage
-  1000
+  latest_value :ccc_avg_net_worker_salary
 end
 
 def wage_gap
-  latest_value :ccc_living_wages_paid_score
+  latest_value :ccc_avg_wage_gap
 end
 
 def workers_have_cba
