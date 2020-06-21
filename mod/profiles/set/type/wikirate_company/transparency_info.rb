@@ -1,10 +1,10 @@
 format :json do
   view :transparency_info do
-    card.holding_company.transparency_info(card.name).to_json
+    card.transparency_info(card.name).to_json
   end
 
   view :transparency_info_short do
-    card.holding_company.transparency_info_short(card.name).to_json
+    card.transparency_info_short(card.name).to_json
   end
 end
 
@@ -43,17 +43,13 @@ def latest_number key
   end
 end
 
-def holding_company?
-  true
-end
-
-def holding_company
-  if (holding = related_companies(metric: :commons_has_brands, inverse: true)).present?
-    holding.first
-  else
-    self
-  end
-end
+# def holding_company
+#   if (holding = related_companies(metric: :commons_has_brands, inverse: true)).present?
+#     holding.first
+#   else
+#     self
+#   end
+# end
 
 def number_of_workers
   latest_answer :ccc_number_of_workers
