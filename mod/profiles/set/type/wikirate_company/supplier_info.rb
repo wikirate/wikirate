@@ -7,8 +7,19 @@ end
 def supplier_info
   data = supplier_info_data
   hash = { name: name, country_name: country_name }.merge data
-  hash[:empty] = data.values.compact.blank?
+  hash[:present] = data.values.compact.blank?
   hash
+end
+
+def supplier_data_present? hash
+  hash.values.each do |v|
+    if v.is_a? Hash
+      return true if supplier_data_present? v
+    else
+      return true if v
+    end
+  end
+  false
 end
 
 def supplier_info_data
