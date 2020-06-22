@@ -85,7 +85,7 @@ def transparency_score
   latest_value :ccc_supply_chain_transparency_score
 end
 
-def transparency_score
+def transparency_score_text
   latest_value :ccc_supply_chain_transparency_score_text
 end
 
