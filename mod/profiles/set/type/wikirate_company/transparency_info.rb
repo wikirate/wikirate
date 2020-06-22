@@ -75,12 +75,18 @@ def scores
   {
     transparency: transparency_score,
     commitment: commitment_score,
-    living_wage: living_wage_score
+    living_wage: living_wage_score,
+    transparency_text: transparency_score_text,
+    living_wage_text: living_wage_score_text
   }
 end
 
 def transparency_score
   latest_value :ccc_supply_chain_transparency_score
+end
+
+def transparency_score
+  latest_value :ccc_supply_chain_transparency_score_text
 end
 
 def commitment_score
@@ -94,6 +100,10 @@ end
 
 def living_wage_score
   latest_value :ccc_living_wages_paid_score
+end
+
+def living_wage_score_text
+  latest_value :ccc_living_wages_paid_score_text
 end
 
 def contact_url

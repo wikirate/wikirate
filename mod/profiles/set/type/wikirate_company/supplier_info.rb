@@ -6,7 +6,9 @@ end
 
 def supplier_info
   data = supplier_info_data
-  hash = { name: name, country_name: country_name }.merge data
+  hash = { name: name,
+           link_name: name.url_key,
+           country_name: country_name }.merge data
   hash[:present] = supplier_data_present? data
   hash
 end
