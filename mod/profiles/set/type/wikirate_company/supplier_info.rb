@@ -76,7 +76,7 @@ end
 def latest_euros metric_code
   return unless (amount = latest_value metric_code)
 
-  "€#{format.number_to_currency amount}"
+  format.number_to_currency amount, unit: "€"
 end
 
 def workers_have_cba
