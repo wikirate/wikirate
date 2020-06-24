@@ -53,9 +53,9 @@ def latest_value metric_code
 end
 
 def latest_percent metric_code
-  return unless (num = latest_value(metric_code)&.to_f.round)
+  return unless (num = latest_value metric_code)
 
-  "#{num}%"
+  "#{num.to_f.round}%"
 end
 
 def workers_by_contract
