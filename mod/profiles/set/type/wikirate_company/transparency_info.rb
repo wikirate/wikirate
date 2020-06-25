@@ -19,10 +19,8 @@ def transparency_info_short company_name
 end
 
 def transparency_info company_name
-  {
-    id: id,
-    name: company_name,
-    owned_by: name,
+  transparency_info_short(company_name).merge(
+    logo: logo_url,
     address: address,
     location: location,
     number_of_workers: number_of_workers,
@@ -30,11 +28,13 @@ def transparency_info company_name
     revenue: latest_number(:ccc_revenue),
     profit: latest_number(:ccc_profit),
     brands: all_brands,
-    scores: scores,
-    contact_url: contact_url,
     suppliers: supplier_infos,
     twitter_handle: twitter_handle
-  }
+  )
+end
+
+def logo_url
+  image_card&.image&.url
 end
 
 def latest_number key
@@ -77,7 +77,9 @@ def scores
     commitment: commitment_score,
     living_wage: living_wage_score,
     transparency_text: transparency_score_text,
-    living_wage_text: living_wage_score_text
+    living_wage_text: living_wage_score_text,
+    transparency_key: transparency_score_key,
+    living_wage_key: living_wage_score_key
   }
 end
 
@@ -87,6 +89,10 @@ end
 
 def transparency_score_text
   latest_value :ccc_supply_chain_transparency_score_text
+end
+
+def transparency_score_key
+  latest_value :ccc_supply_chain_transparency_score_key
 end
 
 def commitment_score
@@ -104,6 +110,10 @@ end
 
 def living_wage_score_text
   latest_value :ccc_living_wages_paid_score_text
+end
+
+def living_wage_score_key
+  latest_value :ccc_living_wages_paid_score_key
 end
 
 def contact_url
