@@ -14,12 +14,8 @@ def supplier_info
 end
 
 def supplier_data_present? hash
-  hash.values.each do |v|
-    if v.is_a? Hash
-      return true if supplier_data_present? v
-    else
-      return true if v
-    end
+  hash.each_value do |v|
+    return true if (v.is_a?(Hash) && supplier_data_present?(v)) || v
   end
   false
 end

@@ -38,9 +38,9 @@ def transparency_info company_name
 end
 
 def latest_number key
-  if (num = latest_value key)
-    format.number_with_delimiter num
-  end
+  return unless (num = latest_value key)
+
+  format.number_with_delimiter num
 end
 
 # def holding_company
@@ -116,5 +116,5 @@ end
 
 def supplier_infos
   list = suppliers.map(&:supplier_info)
-  list.select() { |h| h[:present] } + list.select() { |h| !h[:present] }
+  list.select { |h| h[:present] } + list.select { |h| !h[:present] }
 end
