@@ -5,8 +5,23 @@ format :json do
 end
 
 def supplier_info
+  data = supplier_info_data
+  hash = { name: name,
+           link_name: name.url_key,
+           country_name: country_name }.merge data
+  hash[:present] = supplier_data_present? data
+  hash
+end
+
+def supplier_data_present? hash
+  hash.each_value do |v|
+    return true if (v.is_a?(Hash) && supplier_data_present?(v)) || v
+  end
+  false
+end
+
+def supplier_info_data
   {
-    name: name,
     workers_by_gender: workers_by_gender,
     workers_by_contract: workers_by_contract,
     average_net_wage: average_net_wage,
@@ -17,11 +32,15 @@ def supplier_info
   }
 end
 
+def country_name
+  latest_value :core_country
+end
+
 def workers_by_gender
   {
-    female: latest_value(:ccc_female_workers),
-    male: latest_value(:ccc_male_workers),
-    other: latest_value(:ccc_neither_male_or_female)
+    female: latest_percent(:ccc_female_workers),
+    male: latest_percent(:ccc_male_workers),
+    other: latest_percent(:ccc_neither_male_or_female)
   }
 end
 
@@ -29,29 +48,41 @@ def latest_value metric_code
   latest_answer(metric_code)&.value
 end
 
+def latest_percent metric_code
+  return unless (num = latest_value metric_code)
+
+  "#{num.to_f.round}%"
+end
+
 def workers_by_contract
   {
-    permanent: latest_value(:ccc_permanent_workers),
-    temporary: latest_value(:ccc_temporary_workers)
+    permanent: latest_percent(:ccc_permanent_workers),
+    temporary: latest_percent(:ccc_temporary_workers)
   }
 end
 
 def average_net_wage
-  1000
+  latest_euros :ccc_avg_net_worker_salary
 end
 
 def wage_gap
-  latest_value :ccc_living_wages_paid_score
+  latest_euros :ccc_avg_wage_gap
+end
+
+def latest_euros metric_code
+  return unless (amount = latest_value metric_code)
+
+  format.number_to_currency amount, unit: "€"
 end
 
 def workers_have_cba
-  latest_value :ccc_collective_bargaining_agreement
+  latest_percent :ccc_collective_bargaining_agreement
 end
 
 def workers_know_brand
-  latest_value :ccc_surveyed_workers_who_know_which_brands_they_produce_for
+  latest_percent :ccc_surveyed_workers_who_know_which_brands_they_produce_for
 end
 
 def workers_get_pregnancy_leave
-  latest_value :ccc_workers_who_had_pregnancy_leave
+  latest_percent :ccc_workers_who_had_pregnancy_leave
 end
