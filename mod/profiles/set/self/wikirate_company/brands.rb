@@ -52,24 +52,6 @@ format :json do
     end
   end
 
-  # def matching_brand_owners query
-  #   Relationship
-  #     .where(metric_id: Card.fetch_id(:commons_has_brands))
-  #     .where("subject_company_name LIKE ?", "%#{query}%").distinct
-  #     .pluck(:subject_company_id, :subject_company_name)
-  #     .map { |id, name| { id: id, text: name } }
-  # end
-
-  # def matching_brands query
-  #   Relationship
-  #     .where(metric_id: Card.fetch_id(:commons_has_brands))
-  #     .where("object_company_name LIKE ?", "%#{query}%").distinct
-  #     .pluck(:subject_company_name, :object_company_id, :object_company_name)
-  #     .map do |holding_name, brand_id, brand_name|
-  #     { id: brand_id, text: "#{brand_name} (#{holding_name})" }
-  #   end
-  # end
-
   def name_query
     Env.params[:q] if Env.params[:q].present?
   end

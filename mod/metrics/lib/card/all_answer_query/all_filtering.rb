@@ -56,7 +56,8 @@ class Card
       end
 
       def restrict_answer_ids col, ids
-        col == partner_id_col ? (@card_ids += ids) : super
+        return super unless col == partner_id_col
+        @card_ids = @card_ids ? (@card_ids & ids) : ids
       end
 
       def partner_id_col
