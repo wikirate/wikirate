@@ -61,8 +61,8 @@ class Card
       end
 
       def restrict_answer_ids col, ids
-        @restrict_to_ids[col] ||= []
-        @restrict_to_ids[col] += ids
+        existing = @restrict_to_ids[col]
+        @restrict_to_ids[col] = existing ? (existing & ids) : ids
       end
 
       def restrict_by_wql col, wql
