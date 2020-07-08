@@ -3,6 +3,7 @@ include_set Abstract::Thumbnail
 include_set Abstract::FilterableBar
 include_set Abstract::Bookmarkable
 include_set Abstract::Delist
+include_set Abstract::CachedTypeOptions
 
 card_accessor :image, type: ImageID
 card_accessor :subtopic, type: PointerID

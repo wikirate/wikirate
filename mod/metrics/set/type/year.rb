@@ -1,3 +1,5 @@
+include_set Abstract::CachedTypeOptions
+
 YEAR_REGEXP = /^\d{4}$/
 
 event :validate_year_name, :validate, on: :save do
