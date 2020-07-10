@@ -5,7 +5,6 @@ class Card
       CARD_ID_MAP = { research_policy: :policy_id, metric_type: :metric_type_id }.freeze
 
       SIMPLE_FILTERS = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
-      LIKE_FILTERS = ::Set.new(%i[company_name metric_name]).freeze
       CARD_ID_FILTERS = ::Set.new(CARD_ID_MAP.keys).freeze
 
       protected
@@ -18,7 +17,7 @@ class Card
 
       # TODO: optimize with hash lookups for methods
       def process_filter_option key, value
-        %i[exact_match like card_id].each do |ftype|
+        %i[exact_match card_id].each do |ftype|
           if send("#{ftype}_filters").include? key
             return send("filter_#{ftype}", key, value)
           end
@@ -29,15 +28,6 @@ class Card
       def filter_exact_match key, value
         return unless value.present?
         filter key, value
-      end
-
-      def filter_like key, value
-        return unless value.present?
-        if (m = value.match(/^['"]([^'"]+)['"]$/))
-          filter key, m[1]
-        else
-          filter key, "%#{value.strip}%", "LIKE"
-        end
       end
 
       def filter_card_id key, value
@@ -74,8 +64,8 @@ class Card
         SIMPLE_FILTERS
       end
 
-      def like_filters
-        LIKE_FILTERS
+      def name_filters
+        name_FILTERS
       end
 
       def card_id_filters

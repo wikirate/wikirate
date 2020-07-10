@@ -8,6 +8,16 @@ RSpec.describe Card::Query::CardQuery::FullTextMatching do
       @query = { fulltext_match: "Alphabet", type: "Company" }
       is_expected.to eq(["Google LLC"])
     end
+
+    it "doesn't allow word fragments" do
+      @query = { fulltext_match: "gle i", type: "Company" }
+      is_expected.to eq([])
+    end
+
+    it "switches to sql regexp if preceeded by a ~" do
+      @query = { fulltext_match: "~ gle i", type: "Company" }
+      is_expected.to eq(["Google Inc."])
+    end
   end
 
   describe "sort: relevance" do

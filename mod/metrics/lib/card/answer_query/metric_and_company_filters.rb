@@ -44,6 +44,14 @@ class Card
         end
       end
 
+      def company_name_query value
+        restrict_by_wql :company_id, name: [:match, value], type_id: WikirateCompanyID
+      end
+
+      def metric_name_query value
+        restrict_by_wql :metric_id, name: [:match, value], type_id: MetricID
+      end
+
       # SUPPORT METHODS
       def single_metric?
         @filter_args[:metric_id].is_a? Integer
