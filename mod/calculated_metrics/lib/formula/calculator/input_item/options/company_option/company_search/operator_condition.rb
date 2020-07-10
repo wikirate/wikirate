@@ -59,7 +59,7 @@ module Formula
                 return unless @value.match?(/[#{Regexp.quote INVALID_VALUE_CHARS.join}]/)
 
                 raise Condition::Error, "value is not allowed to contain the "\
-                                      "characters #{INVALID_VALUE_CHARS.to_sentence}"
+                                        "characters #{INVALID_VALUE_CHARS.to_sentence}"
               end
             end
           end
