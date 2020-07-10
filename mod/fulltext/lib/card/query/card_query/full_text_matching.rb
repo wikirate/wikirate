@@ -7,9 +7,28 @@ class Card
       # handle `fulltext_match` condition in card queries
       module FullTextMatching
         def fulltext_match value
-          return nil if value.strip.empty?
+          if value.strip.empty?
+            nil
+          elsif regexp_match? value
+            match value
+          else
+            fulltext_match_condition value
+          end
+        end
+
+        def fulltext_match_condition value
           add_condition "MATCH (#{table_alias}.search_content, #{table_alias}.name) " \
-                        "AGAINST (#{quote value})"
+                        "AGAINST (#{quote value} #{fulltext_mode value})"
+        end
+
+        def fulltext_mode value
+          return "IN BOOLEAN MODE" if value.gsub!(/^\:\:/, "")
+          value.gsub!(/^\:\:/, "")
+          ""
+        end
+
+        def regexp_match? value
+          value.match?(/^\~/)
         end
       end
     end
