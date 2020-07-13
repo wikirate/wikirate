@@ -57,7 +57,7 @@ class Card
         when Hash  # numeric range filters. eg { from: 20, to: 30 }
           numeric_range_query value
         else       # keyword matching filter. eg "carbon"
-          filter_like :value, value
+          filter :value, "%#{value.strip}%", "LIKE"
         end
       end
 
