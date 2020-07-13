@@ -31,7 +31,6 @@ format :html do
   end
 
   def sort_options
-    { "Most Answers": :answer,
-      "Most Metrics": :metric }.merge super
+    { "Most Answers": :answer, "Most Metrics": :metric }.merge super
   end
 end
