@@ -372,62 +372,59 @@
 
 // Organization section
 
-.org-images img {
-    margin-top: 50%;
-    padding: 10%;
-    transform: translateY(-50%);;
-    -webkit-transform: translateY(-50%);;
-    -moz-transform: translateY(-50%);;
-    -o-transform: translateY(-50%);;
-    -ms-transform: translateY(-50%);;
-}
-
-.newsletter-input {
-  font-family: FontAwesome, sans-serif;
-  width: 20rem;
-}
-
-/* footer */
-
-footer.homepage-footer {
-  ul {
-    padding-left: 0;
-    list-style: none;
-    a {
-      color: #797f84;
-    }
-    li {
-      padding: 5px 0;
-    }
-  }
-  i {
-    min-width: 16px;
-  }
+.org-images {
+  padding-bottom: 100px;
   img {
-    max-width: 100%;
-  }
-}
-
-// responsiveness
-
-
-@include media-breakpoint-down(xs) {
-  #Home {
-    .wikirate-logo-title {
-      font-size: 2.5rem;
-    }
-    h1,.h1 {
-      font-size: 22pt;
-    }
-    h3, .h3{
-      font-size: 1.5rem;
-    }
-    .image-box {
-      overflow: inherit;
-    }
-    .newsletter-input {
-      width: 12rem;
-    }
+    padding: 10%;
   }
 
+  .newsletter-input {
+    font-family: FontAwesome, sans-serif;
+    width: 20rem;
+  }
+
+  /* footer */
+
+  footer.homepage-footer {
+    ul {
+      padding-left: 0;
+      list-style: none;
+      a {
+        color: #797f84;
+      }
+      li {
+        padding: 5px 0;
+      }
+    }
+    i {
+      min-width: 16px;
+    }
+    img {
+      max-width: 100%;
+    }
+  }
+
+  // responsiveness
+
+
+  @include media-breakpoint-down(xs) {
+    #Home {
+      .wikirate-logo-title {
+        font-size: 2.5rem;
+      }
+      h1,.h1 {
+        font-size: 22pt;
+      }
+      h3, .h3{
+        font-size: 1.5rem;
+      }
+      .image-box {
+        overflow: inherit;
+      }
+      .newsletter-input {
+        width: 12rem;
+      }
+    }
+
+  }
 }
