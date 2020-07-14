@@ -8,8 +8,7 @@ format :json do
   NESTED_FIELD_LABELS = {
     wikirate_topic: :topics,
     score: :scores
-  }
-  #metric_answer].freeze
+  }.freeze
 
   view :links do
     []
