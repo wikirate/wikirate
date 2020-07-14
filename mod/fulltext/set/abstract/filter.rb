@@ -11,9 +11,9 @@ format :html do
   # make sense.
   def handling_fulltext
     options = yield
-    if params.dig(:filter, :name)&.match?(/^\:/) && !params[:sort]
+    if params.dig(:filter, :name)&.match?(/^\:/)
       options["Relevance"] = :relevance
-      params[:sort] ||= "relevance"
+      @sort_param = :relevance unless sort_param
     end
     options
   end
