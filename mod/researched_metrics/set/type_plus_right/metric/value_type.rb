@@ -1,5 +1,6 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DesignerPermissions
+include_set Abstract::SingleItem
 
 VALUE_TYPE_CODES = %i[number category multi_category money free_text].freeze
 

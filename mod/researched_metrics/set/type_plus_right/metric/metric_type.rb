@@ -1,4 +1,5 @@
 include_set Abstract::MetricChild, generation: 1
+include_set Abstract::SingleItem
 # include_set Abstract::DesignerPermissions
 # Currently governed by *rstar rules
 

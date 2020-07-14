@@ -8,5 +8,6 @@ include_set Abstract::CachedTypeOptions
 card_accessor :image, type: ImageID
 card_accessor :subtopic, type: PointerID
 card_accessor :supertopic, type: SearchTypeID
+card_accessor :project
 # card_accessor :wikirate_company
 card_accessor :metric

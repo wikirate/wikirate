@@ -1,9 +1,15 @@
 
 format :json do
   NESTED_FIELD_CODENAMES =
-    %i[metric_type about methodology value_type value_options
-       report_type research_policy unit
-       range hybrid question score].freeze
+    %i[question metric_type about methodology value_type value_options
+       report_type research_policy unit range hybrid
+       wikirate_topic score].freeze
+
+  NESTED_FIELD_LABELS = {
+    wikirate_topic: :topics,
+    score: :scores
+  }
+  #metric_answer].freeze
 
   view :links do
     []
@@ -16,15 +22,24 @@ format :json do
   end
 
   def molecule
-    super().merge(add_fields_to_hash({}))
-           .merge answers_url: path(mark: card.field(:metric_answer), format: :json)
+    super.merge add_fields_to_hash({})
   end
 
+  private
+
   def add_fields_to_hash hash, view=:atom
-    NESTED_FIELD_CODENAMES.each do |fieldcode|
-      hash[fieldcode] = field_nest fieldcode, view: view
-    end
+    add_standard_nested_fields_to_hash hash, view
+    answer = card.metric_answer_card
+    hash[:answers] = answer.cached_count
+    hash[:answers_url] = path mark: answer, format: :json
     hash
+  end
+
+  def add_standard_nested_fields_to_hash hash, view=:atom
+    NESTED_FIELD_CODENAMES.each do |fieldcode|
+      label = NESTED_FIELD_LABELS[fieldcode] || fieldcode
+      hash[label] = field_nest fieldcode, view: view
+    end
   end
 end
 
