@@ -15,3 +15,7 @@ end
 def inverse_company_id_field
   :subject_company_id
 end
+
+def relationship_lookup_id
+  inverse_card&.id
+end

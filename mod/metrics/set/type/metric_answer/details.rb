@@ -76,7 +76,7 @@ format :html do
   end
 
   def exactly name
-    %("#{Card.fetch_name name}")
+    "=#{Card.fetch_name name}"
   end
 
   def details_top
