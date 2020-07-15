@@ -60,7 +60,7 @@ blocks:
 
       - name: Jest
         commands:
-          - nvm use 10.0.0
+          - nvm use 10.21.0
           - yarn install
           - yarn jest test
 
