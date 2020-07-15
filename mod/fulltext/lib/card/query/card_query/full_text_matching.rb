@@ -9,7 +9,7 @@ class Card
         def fulltext_match value
           return if value.strip.empty?
           if prefixed_match? value
-            match value
+            name_match value
           else
             add_condition Value.new([:match, ":#{value}"], self).to_sql(:name)
           end

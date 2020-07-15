@@ -12,7 +12,7 @@ RSpec.describe Card::Set::Type::Metric::Export do
                              designer: "Joe User",
                              title: "researched number 2",
                              question: nil,
-                             value_type: ["Number"])
+                             value_type: "Number")
     end
   end
 

@@ -11,10 +11,16 @@ format :html do
   # make sense.
   def handling_fulltext
     options = yield
-    if params.dig(:filter, :name)&.match?(/^\:/) && !params[:sort]
-      options["Relevance"] = :relevance
-      params[:sort] ||= "relevance"
-    end
+    add_sort_by_relevance options if fulltext_name_filtering?
     options
+  end
+
+  def add_sort_by_relevance options
+    options["Relevance"] = :relevance
+    @sort_param = :relevance unless sort_param
+  end
+
+  def fulltext_name_filtering?
+    params.dig(:filter, :name)&.match?(/^\:/)
   end
 end

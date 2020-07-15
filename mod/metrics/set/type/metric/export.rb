@@ -1,9 +1,15 @@
 
 format :json do
-  NESTED_FIELD_CODENAMES =
-    %i[metric_type about methodology value_type value_options
-       report_type research_policy unit
-       range hybrid question score].freeze
+  NESTED_FIELD_CODENAMES = %i[
+    question metric_type about methodology value_type value_options report_type
+    research_policy unit range hybrid wikirate_topic score
+  ].freeze
+
+  COUNT_FIELD_CODENAMES = %i[metric_answer bookmarkers project].freeze
+
+  FIELD_LABELS = {
+    wikirate_topic: :topics, score: :scores, metric_answer: :answers, project: :projects
+  }.freeze
 
   view :links do
     []
@@ -16,15 +22,35 @@ format :json do
   end
 
   def molecule
-    super().merge(add_fields_to_hash({}))
-           .merge answers_url: path(mark: card.field(:metric_answer), format: :json)
+    super.merge add_fields_to_hash({})
   end
 
+  private
+
   def add_fields_to_hash hash, view=:atom
-    NESTED_FIELD_CODENAMES.each do |fieldcode|
-      hash[fieldcode] = field_nest fieldcode, view: view
-    end
+    add_nested_fields_to_hash hash, view
+    add_count_fields_to_hash hash
+    hash[:answers_url] = path mark: card.metric_answer_card, format: :json
     hash
+  end
+
+  def add_count_fields_to_hash hash
+    assign_each_field hash, COUNT_FIELD_CODENAMES do |fieldcode|
+      card.field(fieldcode)&.cached_count
+    end
+  end
+
+  def add_nested_fields_to_hash hash, view=:atom
+    assign_each_field hash, NESTED_FIELD_CODENAMES do |fieldcode|
+      field_nest fieldcode, view: view
+    end
+  end
+
+  def assign_each_field hash, list
+    list.each do |fieldcode|
+      label = FIELD_LABELS[fieldcode] || fieldcode
+      hash[label] = yield fieldcode
+    end
   end
 end
 
@@ -46,7 +72,7 @@ format :csv do
 
   view :line do
     CSV.generate_line(line_values.map { |v| v.blank? ? nil : v })
-    # , write_empty_value: nil (not supported until recently)
+    # , write_empty_value: nil (only supported in recent versions)
   end
 
   private

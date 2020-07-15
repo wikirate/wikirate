@@ -38,7 +38,8 @@ format :html do
   end
 
   def spreadsheet_preview
-    "Table previews for spreadsheets and CSVs are coming soon."
+    "Previews for spreadsheets and CSVs are coming soon. " \
+    "Click \"Download\" to access the source file."
   end
 
   def pdf_preview

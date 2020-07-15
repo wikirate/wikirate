@@ -31,7 +31,7 @@ def sort_wql
   when :create
     { sort: "create", dir: "desc" }
   when :relevance
-    {}
+    { sort: "relevance" }
   else
     cached_count_sort_wql
   end
