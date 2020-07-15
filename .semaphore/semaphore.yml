@@ -23,6 +23,7 @@ blocks:
             - sudo apt-get install -y -qq libmysqlclient-dev
             - sem-service status mysql
             - cache restore bundle-gems-$(checksum Gemfile.lock)
+            - gem install bundler:1.17.3
             - bundle install --deployment
             - cache store bundle-gems-$(checksum Gemfile.lock) vendor/bundle
             - cache store bundle-config-$(checksum Gemfile.lock) .bundle
@@ -50,6 +51,7 @@ blocks:
           - cp .semaphore/database.yml config/database.yml
           - sudo apt-get install -y -qq mysql-client
           - sudo apt-get install -y -qq libmysqlclient-dev
+          - gem install bundler:1.17.3
           - bundle install --deployment
           - mysql --host=0.0.0.0 -uroot -e "create database test"
           - bundle exec rake wikirate:test:seed
