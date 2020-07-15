@@ -174,8 +174,7 @@ GEM
       image_processing (~> 1.1)
       mimemagic (>= 0.3.0)
       mini_mime (>= 0.1.3)
-    childprocess (0.9.0)
-      ffi (~> 1.0, >= 1.0.11)
+    childprocess (3.0.0)
     coderay (1.1.3)
     coffee-script (2.4.1)
       coffee-script-source
@@ -188,20 +187,20 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
-    cucumber (3.1.0)
+    cucumber (3.2.0)
       builder (>= 2.1.2)
-      cucumber-core (~> 3.1.0)
-      cucumber-expressions (~> 5.0.4)
+      cucumber-core (~> 3.2.0)
+      cucumber-expressions (~> 6.0.1)
       cucumber-wire (~> 0.0.1)
       diff-lcs (~> 1.3)
-      gherkin (~> 5.0)
+      gherkin (~> 5.1.0)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.2)
-    cucumber-core (3.1.0)
+    cucumber-core (3.2.1)
       backports (>= 3.8.0)
       cucumber-tag_expressions (~> 1.1.0)
-      gherkin (>= 5.0.0)
-    cucumber-expressions (5.0.7)
+      gherkin (~> 5.0)
+    cucumber-expressions (6.0.1)
     cucumber-rails (2.1.0)
       capybara (>= 2.12, < 4)
       cucumber (>= 3.0.2, < 5)
@@ -495,14 +494,14 @@ GEM
     ruby2_keywords (0.0.2)
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
-    rubyzip (1.3.0)
+    rubyzip (2.3.0)
     safe_yaml (1.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
     savanna-outliers (0.0.1)
-    selenium-webdriver (3.141.0)
-      childprocess (~> 0.5)
-      rubyzip (~> 1.2, >= 1.2.2)
+    selenium-webdriver (3.142.7)
+      childprocess (>= 0.5, < 4.0)
+      rubyzip (>= 1.2.2)
     sexp_processor (4.15.0)
     simple_oauth (0.3.1)
     simplecov (0.18.5)
@@ -603,7 +602,7 @@ DEPENDENCIES
   cardname!
   company-mapping
   cucumber (~> 3.1)
-  cucumber-expressions (= 5.0.7)
+  cucumber-expressions
   cucumber-rails (~> 2.0)
   curb
   cypress-on-rails
@@ -643,7 +642,7 @@ DEPENDENCIES
   rubocop-rspec
   ruby-jmeter
   savanna-outliers
-  selenium-webdriver (= 3.141.0)
+  selenium-webdriver
   simplecov
   spork
   spring

@@ -86,11 +86,11 @@ group :test do
   gem "capybara", "~> 2.18"
   # gem "chromedriver-helper"
   # gem "geckodriver-helper"
-  gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12
-  gem "cucumber-rails", "~> 2.0", require: false
   gem "cucumber", "~> 3.1"
-  # feature-driven-development suite
-  gem "selenium-webdriver", "3.141.0"
+  # feature-driven-development suite (cucumber 4 not working)
+  gem "cucumber-expressions" # , "5.0.7" # this breaks at 5.0.12
+  gem "cucumber-rails", "~> 2.0", require: false
+  gem "selenium-webdriver" # , "3.141.0"
   #gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
