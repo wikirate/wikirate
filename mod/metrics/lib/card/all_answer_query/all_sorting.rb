@@ -38,7 +38,7 @@ class Card
       end
 
       def standard_sort rel
-        rel.order "#{@sort_args[:sort_by]} #{@sort_args[:sort_order]}"
+        rel.order Arel.sql("#{@sort_args[:sort_by]} #{@sort_args[:sort_order]}")
       end
 
       def sort_join sql
