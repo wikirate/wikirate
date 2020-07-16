@@ -20,9 +20,9 @@ end
 gem "mysql2", "> 0.4"
 
 gem "bulk_insert"
-gem "descriptive_statistics" #, "2.5.1"
+gem "descriptive_statistics"
 gem "savanna-outliers"
-gem "statistics2" #, "0.54"
+gem "statistics2"
 
 gem "curb"
 gem "daemons"
@@ -72,12 +72,12 @@ end
 
 group :test do
   gem "rspec"
-  gem "rspec-html-matchers" # 0.7.0 broke stuff!
-  gem "rspec-rails" # , "~> 3.6.1" # 3.7.0 broke stuff!
+  gem "rspec-html-matchers"
+  gem "rspec-rails"
   # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
 
   gem "simplecov", require: false
-  gem "spork", ">=0.9"
+  gem "spork"
 
   gem "timecop"
   # gem 'codeclimate-test-reporter', require: nil
@@ -86,10 +86,11 @@ group :test do
   gem "capybara", "~> 2.18"
   # gem "chromedriver-helper"
   # gem "geckodriver-helper"
-  gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12
-  gem "cucumber-rails", require: false
-  # feature-driven-development suite
-  gem "selenium-webdriver", "3.141.0"
+  gem "cucumber", "~> 3.1"
+  # feature-driven-development suite (cucumber 4 not working)
+  gem "cucumber-expressions" # , "5.0.7" # this breaks at 5.0.12
+  gem "cucumber-rails", "~> 2.0", require: false
+  gem "selenium-webdriver" # , "3.141.0"
   #gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
