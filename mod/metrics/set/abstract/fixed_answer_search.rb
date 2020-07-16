@@ -4,7 +4,7 @@ def table_type
 end
 
 def record?
-  filter_hash[:"#{partner}_name"]&.match?(/^\"/)
+  filter_hash[:"#{partner}_name"]&.match?(/^\=/)
 end
 
 def query paging={}

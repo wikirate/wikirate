@@ -60,11 +60,11 @@ blocks:
         commands:
           - RAILS_ENV=test RAILS_ROOT=. COVERAGE=false bundle exec rspec
 
-      - name: Jest
-        commands:
-          - nvm use 10.21.0
-          - yarn install
-          - yarn jest test
+      # - name: Jest
+      #   commands:
+      #     - nvm use 10.21.0
+      #    - yarn install
+      #     - yarn jest test
 
       - name: Cucumber
         commands:
