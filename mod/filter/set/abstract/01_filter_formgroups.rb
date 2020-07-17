@@ -3,6 +3,10 @@ format :html do
     select_filter :check
   end
 
+  view :filter_updater_formgroup, cache: :never do
+    select_filter :updater
+  end
+
   view :filter_value_formgroup, cache: :never do
     text_filter :value
   end
@@ -86,6 +90,13 @@ format :html do
     opts["Completed by Me"] = "current_user" if Card::Auth.signed_in?
     opts["Completed by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
     opts
+  end
+
+  def updater_options
+    o = {}
+    o["by Me"] = "current_user" if Card::Auth.signed_in?
+    o["by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
+    o
   end
 
   def wikirate_topic_options
