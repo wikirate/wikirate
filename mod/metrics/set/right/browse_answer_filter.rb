@@ -7,7 +7,7 @@ include_set Abstract::AnswerSearch
 
 def filter_keys
   %i[status year metric_name company_name company_group
-     wikirate_topic check value updated calculated
+     wikirate_topic value updated updater check calculated
      metric_type value_type project source research_policy bookmark]
 end
 
