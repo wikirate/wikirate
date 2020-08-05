@@ -3,7 +3,7 @@
 RSpec.describe Card::AnswerQuery do
   LATEST_ANSWERS = ["Death Star+2001",
                     "Monster Inc+2000",
-                    "Slate Rock and Gravel_Company+2005",
+                    "Slate Rock and Gravel Company+2005",
                     "SPECTRE+2000"].freeze
 
   let(:metric) { Card[@metric_name || "Jedi+disturbances in the Force"] }
