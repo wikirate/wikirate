@@ -117,16 +117,11 @@ RSpec.describe Relationship do
       end
     end
 
-    it "cannot updates metric for which value is invalid" do
+    it "cannot update to metric for which value is invalid" do
       expect do
         update relation_name,
                name: "Commons+Supplied by+Google LLC+1977+Los Pollos Hermanos"
       end.to raise_error(ActiveRecord::RecordInvalid)
-    end
-
-    it "updates subject company when company name changes" do
-      update "Death Star", name: "Life Star"
-      expect(relation.subject_company_name).to eq "Life Star"
     end
 
     it "updates year" do
