@@ -23,7 +23,7 @@ class Answer
     end
 
     def answer_name_from_parts
-      (record_name ? [record_name] : [metric_id, company_id]) << year.to_s
+      [metric_id, company_id, year.to_s]
     end
 
     def virtualize vcard, val=nil
