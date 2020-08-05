@@ -23,7 +23,7 @@ event :schedule_old_answer_counts, :finalize, changed: :name, on: :update do
 end
 
 # TODO: this shouldn't be necessary if default type_id were based on ltype rtype set
-event :ensure_left_type_is_answer, after: :set_left_and_right do
+event :ensure_left_type_is_answer, after: :prepare_left_and_right do
   answer = Card.fetch name.left, new: { type_id: MetricAnswerID }
   answer.type_id = MetricAnswerID
   add_subcard answer if answer.type_id_changed?

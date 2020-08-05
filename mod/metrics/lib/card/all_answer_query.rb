@@ -59,7 +59,10 @@ class Card
     end
 
     def main_results_sql
-      sort_and_page { main_query.select "answers.id, #{@partner}.name" }.to_sql
+      p = @partner
+      sort_and_page do
+        main_query.select "answers.id, #{p}.name, #{p}.left_id, #{p}.right_id"
+      end.to_sql
     end
   end
 end
