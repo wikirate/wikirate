@@ -49,7 +49,9 @@ class Card
       end
 
       def metric_name_query value
-        restrict_by_wql :metric_id, name: [:match, value], type_id: MetricID
+        restrict_by_wql :metric_id, type_id: MetricID,
+                        or: [{ left:  { name: [:match, value] } },
+                             { right: { name: [:match, value] } }]
       end
 
       # SUPPORT METHODS

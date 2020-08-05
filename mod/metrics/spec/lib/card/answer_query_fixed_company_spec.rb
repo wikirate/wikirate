@@ -23,13 +23,13 @@ RSpec.describe Card::AnswerQuery do
      "friendliness+1977", "deadliness+Joe User+1977", "deadliness+Joe Camel+1977",
      "disturbances in the Force+Joe User+2001", "darkness rating+1977",
      "descendant 1+1977", "descendant 2+1977", "descendant hybrid+1977",
-     "double friendliness+1977", "Sector_Industry+2015",
+     "double friendliness+1977", "Sector Industry+2015",
      "researched number 1+1977", "know the unknowns+1977", "more evil+1977", "RM+1977",
      "deadliness+1977"]
   end
 
   let :latest_answers do # by metric name
-    ["dinosaurlabor+2010", "Sector_Industry+2015", "cost of planets destroyed+1977",
+    ["dinosaurlabor+2010", "Sector Industry+2015", "cost of planets destroyed+1977",
      "darkness rating+1977",
      "deadliness+1977", "deadliness+Joe Camel+1977", "deadliness+Joe User+1977",
      "disturbances in the Force+2001", "disturbances in the Force+Joe User+2001",
@@ -42,7 +42,7 @@ RSpec.describe Card::AnswerQuery do
 
   let :researched do
     ["dinosaurlabor+2010", "cost of planets destroyed+1977", "deadliness+1977",
-     "disturbances in the Force+2001", "Sith Lord in Charge+1977", "Sector_Industry+2015",
+     "disturbances in the Force+2001", "Sith Lord in Charge+1977", "Sector Industry+2015",
      "Victims by Employees+1977", "RM+1977", "researched number 1+1977"]
   end
 
@@ -346,7 +346,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   context "with sort conditions" do
-    let(:sorted_designer) { ["Fred", "Global_Reporting_Initiative", "Jedi", "Joe User"] }
+    let(:sorted_designer) { ["Fred", "Global Reporting Initiative", "Jedi", "Joe User"] }
 
     it "sorts by designer name (asc)" do
       sorted = sort_by(:metric_name, :asc).map { |a| a.name.parts.first }.uniq
