@@ -469,7 +469,7 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
-    rubocop (0.89.0)
+    rubocop (0.88.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -638,7 +638,7 @@ DEPENDENCIES
   rspec
   rspec-html-matchers
   rspec-rails
-  rubocop (>= 0.63)
+  rubocop (= 0.88)
   rubocop-decko
   rubocop-rspec
   ruby-jmeter
