@@ -97,7 +97,11 @@ class Answer
     def valid_sort_args? args
       return false unless args.present? && (sort_value = args[:sort_by]&.to_s)
 
-      valid_sort_value_list.include? sort_value
+      valid_sort_value_list.include?(sort_value) || sort_join_field?(sort_value)
+    end
+
+    def sort_join_field? sort_value
+      sort_value.match?(/\w+\.\w+/)
     end
 
     def valid_sort_value_list

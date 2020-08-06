@@ -3,6 +3,7 @@ class Card
   # (See #new for handling of not-researched)
   class AnswerQuery
     include Filtering
+    include Sorting
     include AnswerFilters
     include MetricAndCompanyFilters
     include OutlierFilter
@@ -119,28 +120,12 @@ class Card
     end
 
     def main_results
-      # puts "SQL: #{answer_lookup.to_sql}"
+      puts "SQL: #{answer_lookup.to_sql}"
       answer_lookup.answer_cards
     end
 
     def condition_sql conditions
       ::Answer.sanitize_sql_for_conditions conditions
-    end
-
-    def sort_and_page
-      yield.sort(@sort_args).paging(@paging_args)
-    end
-
-    def process_sort
-      return unless numeric_sort?
-
-      @sort_args[:sort_by] = :numeric_value
-    end
-
-    def numeric_sort?
-      single_metric? &&
-        @sort_args[:sort_by]&.to_sym == :value &&
-        (metric_card.numeric? || metric_card.relationship?)
     end
 
     # overridden in AllAnswerQuery.

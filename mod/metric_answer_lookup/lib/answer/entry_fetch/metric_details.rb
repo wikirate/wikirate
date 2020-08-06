@@ -7,13 +7,11 @@ class Answer
       end
 
       def fetch_designer_id
-        # FIXME: wrong for scores
-        metric_card.left_id
+        metric_card.metric_designer_id
       end
 
       def fetch_title_id
-        # FIXME: wrong for scores
-        metric_card.right_id
+        metric_card.metric_title_id
       end
 
       def fetch_policy_id
