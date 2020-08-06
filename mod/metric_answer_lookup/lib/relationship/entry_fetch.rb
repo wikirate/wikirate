@@ -35,14 +35,6 @@ class Relationship
       card.right_id
     end
 
-    def fetch_subject_company_name
-      Card.fetch_name(subject_company_id || fetch_subject_company_id)
-    end
-
-    def fetch_object_company_name
-      Card.fetch_name(object_company_id || fetch_object_company_id)
-    end
-
     def fetch_year
       card.name.left_name.right.to_i
     end

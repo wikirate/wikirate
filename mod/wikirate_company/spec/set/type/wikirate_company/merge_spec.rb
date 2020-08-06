@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::WikirateCompany::Json do
+RSpec.describe Card::Set::Type::WikirateCompany::Merge do
   let(:company) { Card["Google LLC"] }
   let(:target) { Card["Los Pollos Hermanos"] }
 

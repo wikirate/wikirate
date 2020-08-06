@@ -49,12 +49,6 @@ class Answer < ApplicationRecord
     editor_id || creator_id
   end
 
-  def refresh *fields
-    self.record_name = nil if :record_name.in? fields
-    # forces regeneration of name of virtual answer card
-    super
-  end
-
   def delete_on_refresh?
     super() || invalid_metric_card? || invalid_non_hybrid_answer?
   end

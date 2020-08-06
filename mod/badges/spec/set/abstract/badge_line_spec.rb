@@ -28,7 +28,7 @@ describe Card::Set::Abstract::BadgeLine do
 
     context "same threshold used twice" do
       def init_with_same_threshold
-        described_class.new researcher: 1, research_engine: 1
+        described_class.new researcher: 1, research_pro: 1
       end
 
       it "fails" do

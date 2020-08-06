@@ -90,11 +90,7 @@ private
 def dummy_answers_attribs
   shared_attribs = shared_dummy_answer_attribs
   calculator.answers_to_be_calculated.map do |company_id, year|
-    company_name = company_id.cardname
-    shared_attribs.merge company_id: company_id,
-                         company_name: company_name,
-                         record_name: Card::Name[name, company_name],
-                         year: year
+    shared_attribs.merge company_id: company_id, year: year
   end
 end
 
@@ -102,7 +98,6 @@ end
 def shared_dummy_answer_attribs
   {
     metric_id: id,
-    metric_name: name,
     designer_id: left_id,
     metric_type_id: metric_type_id,
     calculating: true,

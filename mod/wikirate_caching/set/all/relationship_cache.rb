@@ -1,3 +1,6 @@
+# FIXME: Most of these methods should not be in an all set.
+# Move to non-set module
+
 # has to be called in finalize events so that in integrate stage all changes
 # are collected in @updated_metric_answers and can be executed
 # @param relationship_id [Integer] id of a relationship answer card in the cards table

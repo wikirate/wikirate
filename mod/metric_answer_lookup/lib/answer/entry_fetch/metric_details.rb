@@ -6,20 +6,14 @@ class Answer
         Card.fetch_id fetch_record_name.left
       end
 
-      def fetch_metric_name
-        Card.fetch_name(metric_id || fetch_metric_id)
-      end
-
       def fetch_designer_id
+        # FIXME: wrong for scores
         metric_card.left_id
       end
 
-      def fetch_designer_name
-        card.name.parts.first
-      end
-
-      def fetch_title_name
-        card.name.parts.second
+      def fetch_title_id
+        # FIXME: wrong for scores
+        metric_card.right_id
       end
 
       def fetch_policy_id

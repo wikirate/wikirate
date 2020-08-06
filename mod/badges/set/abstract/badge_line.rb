@@ -117,7 +117,7 @@ class BadgeLine
   end
 
   def name_from_codename codename
-    badge_names_map[codename]
+    badge_names_map[codename] || codename.cardname
   end
 
   def cache

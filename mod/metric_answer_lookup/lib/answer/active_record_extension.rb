@@ -47,7 +47,7 @@ class Answer
       when "count"
         count
       when "name", "answer_name"
-        pluck(:record_name, :year).map { |parts| parts.join "+" }
+        pluck(:metric_id, :company_id, :year).map { |m, c, y| Card::Name[m, c, y.to_s] }
       when "id"
         pluck(:answer_id)
       when *Answer.column_names

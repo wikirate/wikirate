@@ -45,10 +45,11 @@ format :json do
     return [] unless company_ids.present?
     Relationship.where(metric_id: Card.fetch_id(:commons_has_brands))
                 .where("subject_company_id IN (#{company_ids.join ', '})").distinct
-                .pluck(:subject_company_id, :subject_company_name,
-                       :object_company_id, :object_company_name)
-                .map do |holding_id, holding_name, brand_id, brand_name|
-      { id: holding_id, lookup_id: brand_id, text: "#{brand_name} (#{holding_name})" }
+                .pluck(:subject_company_id, :object_company_id)
+                .map do |holding_id, brand_id|
+      { id: holding_id,
+        lookup_id: brand_id,
+        text: "#{brand_id.cardname} (#{holding_id.cardname})" }
     end
   end
 

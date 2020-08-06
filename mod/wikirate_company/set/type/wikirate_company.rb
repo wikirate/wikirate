@@ -36,17 +36,6 @@ event :skip_answer_updates_on_company_rename, :validate,
   skip_event! :update_answer_lookup_table_due_to_answer_change
 end
 
-event :refresh_renamed_company_answers, :finalize,
-      on: :update, changed: :name do
-  refresh_name_in_lookup_table
-end
-
-def refresh_name_in_lookup_table
-  answers.where.not(company_name: name).update_all company_name: name
-  answers.each { |a| a.refresh :record_name }
-  # FIXME: the above is one argument for getting rid of record_name.  Too slow!
-end
-
 def headquarters_jurisdiction_code
   headquarters_card&.item_cards&.first&.oc_code
 end
@@ -94,7 +83,7 @@ def related_company_ids args={}
 end
 
 def related_company_names args={}
-  relationships(args).distinct.pluck :object_company_name
+  related_company_ids(args).map(&:cardname)
 end
 
 # @return [Array] of Integers
