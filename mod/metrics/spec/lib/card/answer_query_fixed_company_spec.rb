@@ -235,14 +235,14 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "finds this week's edits" do
-        expect(filter_by({ updated: :week }, latest: false))
-          .to eq ["disturbances in the Force+1990", "disturbances in the Force+1991"]
+        expect(filter_by({ updated: :week }, latest: false, parts: 1))
+          .to eq ["disturbances in the Force", "disturbances in the Force"]
       end
 
       it "finds this months's edits" do
-        expect(filter_by({ updated: :month }, latest: false))
-          .to eq ["dinosaurlabor+2010", "disturbances in the Force+1990",
-                  "disturbances in the Force+1991", "disturbances in the Force+1992"]
+        expect(filter_by({ updated: :month }, latest: false, parts: 1))
+          .to eq ["dinosaurlabor", "disturbances in the Force",
+                  "disturbances in the Force", "disturbances in the Force"]
       end
     end
 
