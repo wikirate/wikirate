@@ -16,8 +16,7 @@ class Relationship < ApplicationRecord
 
   after_destroy :latest_to_true
 
-  delegate :company_id, :company_name, :record_name,
-           :designer_id, :title_name, :metric_name,
+  delegate :company_id, :designer_id, :title_id,
            to: :answer
 
   def self.existing id
@@ -65,12 +64,6 @@ class Relationship < ApplicationRecord
     editor_id || creator_id
   end
 
-  def refresh *fields
-    self.record_name = nil if :record_name.in? fields
-    # forces regeneration of name of virtual answer card
-    super
-  end
-
   def delete_on_refresh?
     super() || (!metric_card&.hybrid? && invalid?)
     # when we override a hybrid metric the answer is invalid because of the
@@ -80,7 +73,19 @@ class Relationship < ApplicationRecord
   private
 
   def metric_card
-    @metric_card ||= Card.fetch(fetch_metric_id || fetch_metric_name)
+    @metric_card ||= Card[metric_id]
+  end
+
+  def metric_name
+    metric_id.cardname
+  end
+
+  def subject_company_name
+    subject_company_id.name
+  end
+
+  def object_company_name
+    object_company_id.name
   end
 
   def method_missing method_name, *args, &block

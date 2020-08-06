@@ -4,35 +4,35 @@ RSpec.describe Answer, "Answer.search" do
   end
 
   it "searches by title" do
-    expect(search(title_name: "darkness rating", return: :record))
+    expect(search(title_id: "darkness rating".card_id, return: :record))
       .to contain_exactly "Jedi+darkness rating+Death Star",
                           "Jedi+darkness rating+Slate Rock and Gravel Company",
                           "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
   it "can sort by year" do
-    result = search(title_name: "darkness rating", return: :record,
+    result = search(title_id: "darkness rating".card_id, return: :record,
                     sort_by: :year, sort_order: :desc)
     expect(result.size).to eq 3
     expect(result.first).to eq "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
   it "can sort by bookmarks" do
-    result = search(designer_name: "Jedi", return: :title,
+    result = search(designer_id: "Jedi".card_id, return: :metric_id,
                     sort_by: :bookmarkers, sort_order: :desc)
-    expect(result.first).to eq "disturbances in the Force"
+    expect(result.first.card.metric_title).to eq "disturbances in the Force"
   end
 
   it "can return multiple columns" do
     result = search metric_id: sample_metric(:number).id,
-                    return: [:company, :year, :value]
+                    return: [:company_id, :year, :value]
     expect(result)
-      .to include ["Death Star", 1977, "100"],
-                  ["SPECTRE", 1977, "50"],
-                  ["Los Pollos Hermanos", 1977, "40"],
-                  ["Slate Rock and Gravel Company", 1977, "20"],
-                  ["Slate Rock and Gravel Company", 2005, "10"],
-                  ["Samsung", 1977, "Unknown"]
+      .to include ["Death Star".card_id, 1977, "100"],
+                  ["SPECTRE".card_id, 1977, "50"],
+                  ["Los Pollos Hermanos".card_id, 1977, "40"],
+                  ["Slate Rock and Gravel Company".card_id, 1977, "20"],
+                  ["Slate Rock and Gravel Company".card_id, 2005, "10"],
+                  ["Samsung".card_id, 1977, "Unknown"]
   end
 
   it "can count" do

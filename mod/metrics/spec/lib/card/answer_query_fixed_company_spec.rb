@@ -290,8 +290,9 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "... policy and year" do
-        expect(filter_by(status: :none, research_policy: "Designer Assessed",
-                         year: "2001"))
+        expect(filter_by(status: :none,
+                         research_policy: "Designer Assessed",
+                         year: "2001").sort)
           .to eq ["dinosaurlabor+2001", "researched number 3+2001", "Industry Class+2001"]
       end
     end
@@ -311,7 +312,7 @@ RSpec.describe Card::AnswerQuery do
       it "... policy and year" do
         expect(filter_by(status: :all,
                          research_policy: "Designer Assessed",
-                         year: "2001"))
+                         year: "2001").sort)
           .to eq ["dinosaurlabor+2001", "researched number 3+2001", "Industry Class+2001"]
       end
 

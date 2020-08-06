@@ -67,15 +67,3 @@ event :skip_answer_updates_on_metric_rename, :validate,
   skip_event! :update_answer_lookup_table_due_to_answer_change
 end
 
-event :refresh_renamed_metric_answers, :finalize,
-      on: :update, changed: :name, after_subcards: true do
-  refresh_names_in_lookup_table
-end
-
-def refresh_names_in_lookup_table
-  answers.update_all metric_name: name,
-                     designer_name: name.parts.first,
-                     title_name: name.parts.second
-  answers.each { |a| a.refresh :record_name }
-  # FIXME: the above is one argument for getting rid of record_name.  Too slow!
-end

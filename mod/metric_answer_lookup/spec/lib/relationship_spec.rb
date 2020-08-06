@@ -30,8 +30,8 @@ RSpec.describe Relationship do
         expect(relation.value).to eq "no"
         expect(relation.imported).to eq false
         expect(relation.latest).to eq true
-        expect(relation.subject_company_name).to eq("Monster Inc")
-        expect(relation.object_company_name).to eq("Los Pollos Hermanos")
+        expect(relation.subject_company_id.cardname).to eq("Monster Inc")
+        expect(relation.object_company_id.cardname).to eq("Los Pollos Hermanos")
       end
     end
   end
@@ -60,12 +60,6 @@ RSpec.describe Relationship do
       end
       it "has value" do
         expect(relation.value).to eq "yes"
-      end
-      it "has subject_company_name" do
-        expect(relation.subject_company_name).to eq "Death Star"
-      end
-      it "has object_company_name" do
-        expect(relation.object_company_name).to eq "Los Pollos Hermanos"
       end
     end
   end
@@ -96,13 +90,11 @@ RSpec.describe Relationship do
     it "updates subject company" do
       update relation_name, name: "#{metric}+Google LLC+1977+Los Pollos Hermanos"
       expect(relation.subject_company_id).to eq Card.fetch_id("Google LLC")
-      expect(relation.subject_company_name).to eq "Google LLC"
     end
 
     it "updates object company" do
       update relation_name, name: "#{metric}+Death Star+1977+Google LLC"
       expect(relation.object_company_id).to eq Card.fetch_id("Google LLC")
-      expect(relation.object_company_name).to eq "Google LLC"
     end
 
     context "when year changes" do

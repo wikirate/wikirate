@@ -47,7 +47,9 @@ ActiveRecord::Schema.define(version: 20170524163436) do
     t.index ["value"], name: "value_index", length: { value: 100 }
   end
 
-  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "relationships",
+               options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci",
+               force: :cascade do |t|
     t.integer "relationship_id"
     t.integer "metric_id"
     t.integer "inverse_metric_id"

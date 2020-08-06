@@ -15,7 +15,7 @@ end
 
 def constraint_clauses
   constraints.map do |constraint|
-    "select company_name from answers " \
+    "select company_id from answers " \
     "where #{constraint_conditions constraint} " \
     "and answers.company_id = cards.id"
   end

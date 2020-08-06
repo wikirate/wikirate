@@ -3,7 +3,7 @@
 RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
   def calc_answer metric_title="formula test", company_name=nil, year=1977
     company_id ||= Card.fetch_id(company_name || "Death Star")
-    Answer.where(metric_name: "Jedi+#{metric_title}",
+    Answer.where(metric_id: "Jedi+#{metric_title}".card_id,
                  company_id: company_id,
                  year: year).take
   end

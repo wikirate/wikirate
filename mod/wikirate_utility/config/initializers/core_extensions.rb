@@ -11,6 +11,10 @@ module CoreExtensions
     def url?
       start_with?("http://", "https://")
     end
+
+    def card_id
+      Card::Name.id self
+    end
   end
 end
 

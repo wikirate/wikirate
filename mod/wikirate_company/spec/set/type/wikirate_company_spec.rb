@@ -40,7 +40,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
 
     it "refreshes all answers" do
       rename_company!
-      expect(Answer.where(company_name: "Death Star").count).to eq(0)
+      expect(Answer.where(company_id: "Death Star".card_id).count).to eq(0)
     end
   end
 

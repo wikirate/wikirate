@@ -4,7 +4,9 @@ RSpec.describe Card::Set::Abstract::Value do
   end
 
   def answer_for metric
-    Answer.where(company_name: "Death Star", metric_name: metric, year: 1977).take
+    Answer.where(company_id: "Death Star".card_id,
+                 metric_id: metric.card_id,
+                 year: 1977).take
   end
 
   # score of Jedi+deadliness answer
