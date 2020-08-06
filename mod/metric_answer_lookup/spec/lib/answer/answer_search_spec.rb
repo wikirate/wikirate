@@ -3,16 +3,22 @@ RSpec.describe Answer, "Answer.search" do
     described_class.search args
   end
 
+  def record_names args
+    search(args.merge(return: %i[metric_id company_id])).map do |array|
+      Card::Name[*array]
+    end
+  end
+
   it "searches by title" do
-    expect(search(title_id: "darkness rating".card_id, return: :record))
+    expect(record_names(title_id: "darkness rating".card_id))
       .to contain_exactly "Jedi+darkness rating+Death Star",
                           "Jedi+darkness rating+Slate Rock and Gravel Company",
                           "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
   it "can sort by year" do
-    result = search(title_id: "darkness rating".card_id, return: :record,
-                    sort_by: :year, sort_order: :desc)
+    result = record_names(title_id: "darkness rating".card_id,
+                          sort_by: :year, sort_order: :desc)
     expect(result.size).to eq 3
     expect(result.first).to eq "Jedi+darkness rating+Slate Rock and Gravel Company"
   end

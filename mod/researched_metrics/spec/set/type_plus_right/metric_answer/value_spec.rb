@@ -55,7 +55,8 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
     let(:scored_value_name) { "#{metric}+#{scorer}+#{company}+#{year}+value" }
 
     def scored_value
-      Answer.where(metric_name: "#{metric}+#{scorer}", company_name: company,
+      Answer.where(metric_id: "#{metric}+#{scorer}".card_id,
+                   company_id: company.card_id,
                    year: year.to_i)
             .take.value
     end
