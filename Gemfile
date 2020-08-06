@@ -90,7 +90,7 @@ group :test do
   # feature-driven-development suite (cucumber 4 not working)
   gem "cucumber-expressions" # , "5.0.7" # this breaks at 5.0.12
   gem "cucumber-rails", "~> 2.0", require: false
-  gem "selenium-webdriver" # , "3.141.0"
+  gem "selenium-webdriver", "3.141.0"
   #gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
