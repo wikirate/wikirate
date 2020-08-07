@@ -38,7 +38,7 @@ gem "roo"
 gem "wbench"
 gem "wkhtmltopdf-binary", "0.12.5.4"
 
-gem "rubocop", "0.88" # 0.89 introduced errors. may get resolved in  rubocop-decko update?
+gem "rubocop", "0.88" # 0.89 introduced bugs. may get resolved in rubocop-decko update?
 gem "rubocop-decko"
 
 gem "fog-aws"
