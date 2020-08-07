@@ -127,7 +127,7 @@ class BadgeLine
   def badge_names_map
     @badge_names_map ||= cache.fetch("badge_names_map") do
       Card.where(type_id: Card::BadgeID).pluck(:name, :codename)
-        .each_with_object({}) do |(name, codename), h|
+          .each_with_object({}) do |(name, codename), h|
         # I was using `type_id: Card::BadgeID` instead of `codename:nil`,
         # but that broke some (weird?) tests
         h[codename.to_sym] = name

@@ -2,6 +2,7 @@
   def answer id=answer_id
     described_class.find_by_answer_id id
   end
+
   let(:metric) { "Joe User+RM" }
   let(:answer_name) { "#{metric}+Apple_Inc+2013" }
   let(:answer_id) { Card.fetch_id answer_name }
@@ -156,18 +157,13 @@
       a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
       expect(a.attributes.symbolize_keys)
         .to include(
-          metric_id: "Jedi+friendliness".card_id,
-          company_id: "Death Star".card_id,
-          year: 2001,
-          metric_type_id: Card::FormulaID,
-          value: "50",
-          numeric_value: 50,
-          creator_id: "Joe User".card_id,
-          editor_id: nil,
-          updated_at: be_within(2).of(Time.now),
-          record_id: be_nil, designer_id: be_a_integer, metric_id: be_a_integer,
-          answer_id: nil, checkers: nil, check_requester: nil, policy_id: nil,
-          latest: true, imported: false
+          metric_id: "Jedi+friendliness".card_id, designer_id: "Jedi".card_id,
+          title_id: "friendliness".card_id, company_id: "Death Star".card_id,
+          year: 2001, metric_type_id: Card::FormulaID, value: "50",
+          numeric_value: 50, creator_id: "Joe User".card_id, editor_id: nil,
+          updated_at: be_within(2).of(Time.now), record_id: be_nil,
+          answer_id: nil, checkers: nil, check_requester: nil,
+          policy_id: nil, latest: true, imported: false
         )
     end
 

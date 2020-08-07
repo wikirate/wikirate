@@ -5,7 +5,7 @@ class Card
       SORT_JOIN_FIELD = {
         metric_designer: :designer_id,
         metric_title: :title_id,
-        company_name: :company_id,
+        company_name: :company_id
       }.freeze
 
       def sort_and_page
@@ -16,15 +16,17 @@ class Card
 
       def process_sort
         @sort_joins = []
-        sort_by =  @sort_args[:sort_by]&.to_sym
-        @sort_args[:sort_by] =
-          if sort_by == :value
-            numeric_sort? ? :numeric_value : :value
-          elsif (id_field = SORT_JOIN_FIELD[sort_by])
-            sort_by_join sort_by, id_field
-          else
-            sort_by
-          end
+        @sort_args[:sort_by] = process_sort_by @sort_args[:sort_by]&.to_sym
+      end
+
+      def process_sort_by sort_by
+        if sort_by == :value
+          numeric_sort? ? :numeric_value : :value
+        elsif (id_field = SORT_JOIN_FIELD[sort_by])
+          sort_by_join sort_by, id_field
+        else
+          sort_by
+        end
       end
 
       def sort_by_join sort_by, id_field

@@ -18,30 +18,34 @@ RSpec.describe Card::AnswerQuery do
   end
 
   let :latest_answers_by_bookmarks do
-    ["disturbances in the Force+2001", "Victims by Employees+1977",
-     "Sith Lord in Charge+1977", "dinosaurlabor+2010", "cost of planets destroyed+1977",
-     "friendliness+1977", "deadliness+1977", "deadliness+1977",
-     "disturbances in the Force+2001", "darkness rating+1977", "descendant 1+1977",
-     "descendant 2+1977", "descendant hybrid+1977", "double friendliness+1977",
-     "Sector Industry+2015", "researched number 1+1977", "know the unknowns+1977",
-     "more evil+1977", "RM+1977", "deadliness+1977"
+    [
+      "disturbances in the Force+2001", "Victims by Employees+1977",
+      "Sith Lord in Charge+1977", "dinosaurlabor+2010", "cost of planets destroyed+1977",
+      "friendliness+1977", "deadliness+1977", "deadliness+1977",
+      "disturbances in the Force+2001", "darkness rating+1977", "descendant 1+1977",
+      "descendant 2+1977", "descendant hybrid+1977", "double friendliness+1977",
+      "Sector Industry+2015", "researched number 1+1977", "know the unknowns+1977",
+      "more evil+1977", "RM+1977", "deadliness+1977"
     ]
   end
 
   let :latest_answers do # by metric title
-    ["cost of planets destroyed+1977", "darkness rating+1977", "deadliness+1977",
-     "deadliness+1977", "deadliness+1977", "descendant 1+1977", "descendant 2+1977",
-     "descendant hybrid+1977", "dinosaurlabor+2010", "disturbances in the Force+2001",
-     "disturbances in the Force+2001", "double friendliness+1977", "friendliness+1977",
-     "know the unknowns+1977", "more evil+1977", "researched number 1+1977", "RM+1977",
-     "Sector Industry+2015", "Sith Lord in Charge+1977", "Victims by Employees+1977"
+    [
+      "cost of planets destroyed+1977", "darkness rating+1977", "deadliness+1977",
+      "deadliness+1977", "deadliness+1977", "descendant 1+1977", "descendant 2+1977",
+      "descendant hybrid+1977", "dinosaurlabor+2010", "disturbances in the Force+2001",
+      "disturbances in the Force+2001", "double friendliness+1977", "friendliness+1977",
+      "know the unknowns+1977", "more evil+1977", "researched number 1+1977", "RM+1977",
+      "Sector Industry+2015", "Sith Lord in Charge+1977", "Victims by Employees+1977"
     ]
   end
 
   let :researched do
-    ["cost of planets destroyed+1977", "deadliness+1977", "dinosaurlabor+2010",
-     "disturbances in the Force+2001", "researched number 1+1977", "RM+1977",
-     "Sector Industry+2015", "Sith Lord in Charge+1977", "Victims by Employees+1977"]
+    [
+      "cost of planets destroyed+1977", "deadliness+1977", "dinosaurlabor+2010",
+      "disturbances in the Force+2001", "researched number 1+1977", "RM+1977",
+      "Sector Industry+2015", "Sith Lord in Charge+1977", "Victims by Employees+1977"
+    ]
   end
 
   def unanswers year=Time.now.year
@@ -66,7 +70,7 @@ RSpec.describe Card::AnswerQuery do
   def short_answers list, parts: nil
     parts ||= [1, -1]
     list.map do |a|
-      Card::Name[Array.wrap(parts).map { |p| a.name.parts[p]}]
+      Card::Name[Array.wrap(parts).map { |p| a.name.parts[p] }]
     end
   end
 
@@ -161,8 +165,7 @@ RSpec.describe Card::AnswerQuery do
                   "disturbances in the Force+2001",
                   "double friendliness+1977",
                   "friendliness+1977",
-                  "know the unknowns+1977",
-                 ])
+                  "know the unknowns+1977"])
       end
     end
 
@@ -318,7 +321,7 @@ RSpec.describe Card::AnswerQuery do
         expect(filter_by(status: :all,
                          research_policy: "Designer Assessed",
                          year: "2001"))
-          .to eq ["dinosaurlabor+2001", "Industry Class+2001","researched number 3+2001"]
+          .to eq ["dinosaurlabor+2001", "Industry Class+2001", "researched number 3+2001"]
       end
 
       it "... metric_type" do

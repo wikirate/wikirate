@@ -41,7 +41,8 @@ def right_plus_val
   [tag_pointer_id, { refer_to: left.id }]
 end
 
-# FIXME: hack. otherwise filter wql can overwrite right_plus
+# TODO: make less hacky.
+# Without this filter wql can overwrite right_plus
 def filter_wql
   wql = super
   wql[:right_plus] = [wql[:right_plus], right_plus_val].compact
