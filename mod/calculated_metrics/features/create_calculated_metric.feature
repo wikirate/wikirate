@@ -1,5 +1,5 @@
 @javascript
-Feature: create metrics
+Feature: create calculated metrics
   A user can create new calculated metrics
 
   Background:
