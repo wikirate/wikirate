@@ -3,9 +3,8 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
   let(:metric) do
     m = sample_metric
     Card::Auth.as_bot do
-      m.update! subcards:
-            { "+Unit" => { content: "Imperial military units",
-                           type_id: Card::PhraseID } }
+      m.update! subcards: { "+Unit" => { content: "Imperial military units",
+                                         type_id: Card::PhraseID } }
     end
     m
   end
