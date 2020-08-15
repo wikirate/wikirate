@@ -86,20 +86,19 @@ RSpec.describe Card::AnswerQuery do
   context "with single filter condition" do
     context "with keyword" do
       it "finds exact match" do
-        expect(filter_by(metric_name: "Jedi+disturbances in the Force+Joe User"))
-          .to eq ["disturbances in the Force+Joe User+2001"]
+        expect(filter_by(metric_name: "disturbances in the Force"))
+          .to eq with_year(["disturbances in the Force",
+                            "disturbances in the Force"], 2001)
       end
 
       it "finds partial match" do
         expect(filter_by(metric_name: "dead"))
-          .to eq with_year(["deadliness", "deadliness+Joe Camel",
-                            "deadliness+Joe User"], 1977)
+          .to eq with_year(["deadliness", "deadliness", "deadliness"], 1977)
       end
 
       it "ignores case" do
         expect(filter_by(metric_name: "DeAd"))
-          .to eq with_year(["deadliness", "deadliness+Joe Camel",
-                            "deadliness+Joe User"], 1977)
+          .to eq with_year(["deadliness", "deadliness", "deadliness"], 1977)
       end
     end
 
@@ -282,7 +281,7 @@ RSpec.describe Card::AnswerQuery do
           .to contain_exactly(*nr2001)
       end
 
-      it "... keyword" do
+      xit "... keyword" do
         expect(filter_by(status: :none, metric_name: "number 2"))
           .to contain_exactly(*with_year(["researched number 2"]))
       end

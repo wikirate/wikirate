@@ -77,5 +77,5 @@ event :default_formula, :prepare_to_store, on: :create, when: :formula_unspecifi
 end
 
 def formula_unspecified?
-  !(f = subfield(:formula)) && f.content.present?
+  !subfield(:formula)&.content&.present?
 end
