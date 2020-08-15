@@ -39,6 +39,13 @@ class Card
         end
       end
 
+      # TEMPORARY HACK.  replace with metric lookup
+      def metric_name_query value
+        @card_ids = Card.search(type_id: Card::MetricID,
+                                right: { name: [:match, value] },
+                                return: :id)
+      end
+
       def card_conditions
         add_card_condition "#{@partner}.id IN (?)", @card_ids if @card_ids.present?
         @card_conditions << " #{@partner}.id IN (#{cql_subquery})" if @cql_filter.present?
