@@ -38,12 +38,13 @@ format :html do
     new_name_editor_wrap(options, option_names)
   end
 
+  # TODO: use metric lookup
   def scorable_metrics
-    Card.search type_id: Card::MetricID,
+    Card.search(type_id: Card::MetricID,
                 right_plus: ["*metric type",
                              content: scorable_metric_type_content.unshift("in")],
                 sort: "name",
-                return: :name
+                return: :name).sort
   end
 
   def selected_metric option_names

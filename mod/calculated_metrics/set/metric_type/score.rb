@@ -66,20 +66,16 @@ event :validate_score_name, :validate, changed: :name, on: :save do
   end
 end
 
-event :set_scored_metric_name, :initialize,
-      on: :create do
+event :set_scored_metric_name, :initialize, on: :create do
   return if name.parts.size >= 3
-  metric = (mcard = remove_subfield(:metric)) && mcard.first_name
+  metric = remove_subfield(:metric)&.first_name
   self.name = "#{metric}+#{Auth.current.name}"
 end
 
-event :default_formula, :prepare_to_store,
-      on: :create,
-      when:  proc { |c| !c.subfield_formula_present?  } do
-  add_subfield :formula, content: "{{#{basic_metric}}}",
-                         type_id: PlainTextID
+event :default_formula, :prepare_to_store, on: :create, when: :formula_unspecified? do
+  add_subfield :formula, content: "{{#{basic_metric}}}", type_id: PlainTextID
 end
 
-def subfield_formula_present?
-  (f = subfield(:formula)) && f.content.present?
+def formula_unspecified?
+  !(f = subfield(:formula)) && f.content.present?
 end

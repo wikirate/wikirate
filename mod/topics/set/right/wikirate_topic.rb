@@ -1,4 +1,8 @@
-event :validate_topic_items, :validate, on: :save do
+
+# FIXME: should be on save, but this was breaking
+# renames of +topic cards.  Should be fixed when references are
+# represented with ids.
+event :validate_topic_items, :validate, on: :create do
   return unless type_id == PointerID
   added_item_cards.each do |item_card|
     next if item_card.real? && item_card.type_id == WikirateTopicID
