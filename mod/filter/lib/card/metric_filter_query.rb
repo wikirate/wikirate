@@ -4,7 +4,7 @@ class Card
     include WikirateFilterQuery
 
     def name_wql title
-      add_to_wql :right, { name: [:match, title] }
+      add_to_wql :right, name: [:match, title]
     end
 
     def metric_wql metric

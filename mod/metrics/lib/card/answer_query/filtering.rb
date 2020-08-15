@@ -22,8 +22,7 @@ class Card
             return send("filter_#{ftype}", key, value)
           end
         end
-        try :send, "#{key}_query", value
-        # was failing to find metric_name_query in all_filtering.rb with only "try"
+        try "#{key}_query", value
       end
 
       def filter_exact_match key, value
