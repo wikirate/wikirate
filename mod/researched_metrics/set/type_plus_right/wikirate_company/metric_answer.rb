@@ -7,7 +7,7 @@ include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
 def filter_keys
-  %i[status year metric_name wikirate_topic check value updated calculated
+  %i[status year metric_name wikirate_topic value updated updater check calculated
      metric_type value_type project source research_policy bookmark]
 end
 
@@ -57,11 +57,11 @@ format :html do
   end
 
   def title_sort_link
-    table_sort_link "Metric", :title_name, "pull-left mx-3 px-1"
+    table_sort_link "Metric", :metric_title, "pull-left mx-3 px-1"
   end
 
   def designer_sort_link
-    table_sort_link "", :metric_name, "pull-left mx-3 px-1"
+    table_sort_link "", :metric_designer, "pull-left mx-3 px-1"
   end
 
   def bookmarkers_sort_link

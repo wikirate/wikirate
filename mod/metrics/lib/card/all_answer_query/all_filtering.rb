@@ -12,6 +12,13 @@ class Card
         metric: ::Set.new(%i[project designer metric_type research_policy bookmark])
       }.freeze
 
+      # TEMPORARY HACK.  replace with metric lookup
+      def metric_name_query value
+        @card_ids = Card.search(type_id: Card::MetricID,
+                                right: { name: [:match, value] },
+                                return: :id)
+      end
+
       private
 
       def process_filter_option key, value

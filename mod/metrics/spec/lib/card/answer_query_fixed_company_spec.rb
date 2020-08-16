@@ -14,36 +14,38 @@ RSpec.describe Card::AnswerQuery do
   end
 
   let :unresearched_metric_keys do
-    all_metric_titles.reject { |n| researched_metric_keys.include? n.key }
+    all_metric_titles.reject { |n| researched_metric_keys.include? n.key }.sort
   end
 
   let :latest_answers_by_bookmarks do
-    ["disturbances in the Force+2001", "Victims by Employees+1977",
-     "Sith Lord in Charge+1977", "dinosaurlabor+2010", "cost of planets destroyed+1977",
-     "friendliness+1977", "deadliness+Joe User+1977", "deadliness+Joe Camel+1977",
-     "disturbances in the Force+Joe User+2001", "darkness rating+1977",
-     "descendant 1+1977", "descendant 2+1977", "descendant hybrid+1977",
-     "double friendliness+1977", "Sector_Industry+2015",
-     "researched number 1+1977", "know the unknowns+1977", "more evil+1977", "RM+1977",
-     "deadliness+1977"]
+    [
+      "disturbances in the Force+2001", "Victims by Employees+1977",
+      "Sith Lord in Charge+1977", "dinosaurlabor+2010", "cost of planets destroyed+1977",
+      "friendliness+1977", "deadliness+1977", "deadliness+1977",
+      "disturbances in the Force+2001", "darkness rating+1977", "descendant 1+1977",
+      "descendant 2+1977", "descendant hybrid+1977", "double friendliness+1977",
+      "Sector Industry+2015", "researched number 1+1977", "know the unknowns+1977",
+      "more evil+1977", "RM+1977", "deadliness+1977"
+    ]
   end
 
-  let :latest_answers do # by metric name
-    ["dinosaurlabor+2010", "Sector_Industry+2015", "cost of planets destroyed+1977",
-     "darkness rating+1977",
-     "deadliness+1977", "deadliness+Joe Camel+1977", "deadliness+Joe User+1977",
-     "disturbances in the Force+2001", "disturbances in the Force+Joe User+2001",
-     "double friendliness+1977", "friendliness+1977", "know the unknowns+1977",
-     "more evil+1977",
-     "Sith Lord in Charge+1977", "Victims by Employees+1977", "descendant 1+1977",
-     "descendant 2+1977", "descendant hybrid+1977", "researched number 1+1977",
-     "RM+1977"]
+  let :latest_answers do # by metric title
+    [
+      "cost of planets destroyed+1977", "darkness rating+1977", "deadliness+1977",
+      "deadliness+1977", "deadliness+1977", "descendant 1+1977", "descendant 2+1977",
+      "descendant hybrid+1977", "dinosaurlabor+2010", "disturbances in the Force+2001",
+      "disturbances in the Force+2001", "double friendliness+1977", "friendliness+1977",
+      "know the unknowns+1977", "more evil+1977", "researched number 1+1977", "RM+1977",
+      "Sector Industry+2015", "Sith Lord in Charge+1977", "Victims by Employees+1977"
+    ]
   end
 
   let :researched do
-    ["dinosaurlabor+2010", "cost of planets destroyed+1977", "deadliness+1977",
-     "disturbances in the Force+2001", "Sith Lord in Charge+1977", "Sector_Industry+2015",
-     "Victims by Employees+1977", "RM+1977", "researched number 1+1977"]
+    [
+      "cost of planets destroyed+1977", "deadliness+1977", "dinosaurlabor+2010",
+      "disturbances in the Force+2001", "researched number 1+1977", "RM+1977",
+      "Sector Industry+2015", "Sith Lord in Charge+1977", "Victims by Employees+1977"
+    ]
   end
 
   def unanswers year=Time.now.year
@@ -54,21 +56,22 @@ RSpec.describe Card::AnswerQuery do
     Array(list).map { |name| "#{name}+#{year}" }
   end
 
-  # @return [Array] of metric_title(+scorer)+year strings
-  def short_answers list
-    list.map do |a|
-      [a.name.parts[1..-3], a.name.parts.last].flatten.join "+"
-    end
-  end
-
   def titles_of metric_names
-    metric_names.map { |n| n.to_name[1..-1].to_name }
+    metric_names.map { |n| n.to_name[1].to_name }
   end
 
   # @return [Array] of metric_title(+scorer)+year strings
-  def filter_by filter, latest=true
+  def filter_by filter, latest: true, parts: nil
     filter.reverse_merge! year: :latest if latest
-    short_answers run_query filter, sort_by: :metric_name
+    short_answers run_query(filter, sort_by: :metric_title), parts: parts
+  end
+
+  # @return [Array] of strings, by default: metric_title+year
+  def short_answers list, parts: nil
+    parts ||= [1, -1]
+    list.map do |a|
+      Card::Name[Array.wrap(parts).map { |p| a.name.parts[p] }]
+    end
   end
 
   # @return [Array] of answer cards
@@ -83,20 +86,19 @@ RSpec.describe Card::AnswerQuery do
   context "with single filter condition" do
     context "with keyword" do
       it "finds exact match" do
-        expect(filter_by(metric_name: "Jedi+disturbances in the Force+Joe User"))
-          .to eq ["disturbances in the Force+Joe User+2001"]
+        expect(filter_by(metric_name: "disturbances in the Force"))
+          .to eq with_year(["disturbances in the Force",
+                            "disturbances in the Force"], 2001)
       end
 
       it "finds partial match" do
         expect(filter_by(metric_name: "dead"))
-          .to eq with_year(["deadliness", "deadliness+Joe Camel",
-                            "deadliness+Joe User"], 1977)
+          .to eq with_year(%w[deadliness deadliness deadliness], 1977)
       end
 
       it "ignores case" do
         expect(filter_by(metric_name: "DeAd"))
-          .to eq with_year(["deadliness", "deadliness+Joe Camel",
-                            "deadliness+Joe User"], 1977)
+          .to eq with_year(%w[deadliness deadliness deadliness], 1977)
       end
     end
 
@@ -104,7 +106,7 @@ RSpec.describe Card::AnswerQuery do
       it "finds exact match" do
         expect(filter_by(year: "2000"))
           .to eq with_year(["dinosaurlabor", "disturbances in the Force",
-                            "disturbances in the Force+Joe User"], 2000)
+                            "disturbances in the Force"], 2000)
       end
     end
 
@@ -123,9 +125,8 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "finds scores" do
-        expect(filter_by(metric_type: "Score"))
-          .to eq ["deadliness+Joe Camel+1977", "deadliness+Joe User+1977",
-                  "disturbances in the Force+Joe User+2001"]
+        expect(filter_by({ metric_type: "Score" }, parts: 1))
+          .to eq ["deadliness", "deadliness", "disturbances in the Force"]
       end
 
       it "finds wikiratings" do
@@ -138,8 +139,8 @@ RSpec.describe Card::AnswerQuery do
 
       it "finds combinations" do
         expect(filter_by(metric_type: %w[Score Formula]))
-          .to eq ["deadliness+Joe Camel+1977", "deadliness+Joe User+1977",
-                  "disturbances in the Force+Joe User+2001", "double friendliness+1977",
+          .to eq ["deadliness+1977", "deadliness+1977",
+                  "disturbances in the Force+2001", "double friendliness+1977",
                   "friendliness+1977", "know the unknowns+1977"]
       end
     end
@@ -148,18 +149,22 @@ RSpec.describe Card::AnswerQuery do
       it "finds category metrics" do
         expect(filter_by(value_type: "Category"))
           .to eq(["dinosaurlabor+2010", "disturbances in the Force+2001",
-                  "disturbances in the Force+Joe User+2001", "more evil+1977"])
+                  "disturbances in the Force+2001", "more evil+1977"])
       end
     end
 
     context "with calculated" do
       it "finds calculated answers" do
         expect(filter_by(calculated: :calculated))
-          .to eq(["darkness rating+1977", "deadliness+Joe Camel+1977",
-                  "deadliness+Joe User+1977", "disturbances in the Force+Joe User+2001",
+          .to eq(["darkness rating+1977",
+                  "deadliness+1977",
+                  "deadliness+1977",
+                  "descendant 1+1977",
+                  "descendant 2+1977",
+                  "disturbances in the Force+2001",
                   "double friendliness+1977",
-                  "friendliness+1977", "know the unknowns+1977",
-                  "descendant 1+1977", "descendant 2+1977"])
+                  "friendliness+1977",
+                  "know the unknowns+1977"])
       end
     end
 
@@ -175,8 +180,10 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "finds not bookmarked" do
-        expect(filter_by(bookmark: :nobookmark))
-          .to eq latest_answers - ["disturbances in the Force+2001"]
+        latest = latest_answers
+        marked = "disturbances in the Force+2001"
+        latest.slice! latest.index(marked)
+        expect(filter_by(bookmark: :nobookmark)).to eq(latest)
       end
     end
 
@@ -187,7 +194,7 @@ RSpec.describe Card::AnswerQuery do
       end
       let :unknown_answers do
         with_year(
-          ["deadliness", "deadliness+Joe Camel", "deadliness+Joe User",
+          ["deadliness", "deadliness", "deadliness",
            "double friendliness", "friendliness", "Victims by Employees"], 1977
         )
       end
@@ -214,7 +221,7 @@ RSpec.describe Card::AnswerQuery do
       it "finds known values" do
         @company_name = "Samsung"
         all_known = filter_by(status: :known).all? do |a|
-          a.include?("researched number") || a.include?("descendant")
+          a.s.include?("researched number") || a.s.include?("descendant")
         end
         expect(all_known).to be_truthy
       end
@@ -225,19 +232,19 @@ RSpec.describe Card::AnswerQuery do
       after { Timecop.return }
 
       it "finds today's edits" do
-        expect(filter_by({ updated: :today }, false))
+        expect(filter_by({ updated: :today }, latest: false))
           .to eq ["disturbances in the Force+1990"]
       end
 
       it "finds this week's edits" do
-        expect(filter_by({ updated: :week }, false))
-          .to eq ["disturbances in the Force+1990", "disturbances in the Force+1991"]
+        expect(filter_by({ updated: :week }, latest: false, parts: 1))
+          .to eq ["disturbances in the Force", "disturbances in the Force"]
       end
 
       it "finds this months's edits" do
-        expect(filter_by({ updated: :month }, false))
-          .to eq ["dinosaurlabor+2010", "disturbances in the Force+1990",
-                  "disturbances in the Force+1991", "disturbances in the Force+1992"]
+        expect(filter_by({ updated: :month }, latest: false, parts: 1))
+          .to eq ["dinosaurlabor", "disturbances in the Force",
+                  "disturbances in the Force", "disturbances in the Force"]
       end
     end
 
@@ -260,8 +267,8 @@ RSpec.describe Card::AnswerQuery do
       it "... year" do
         nr2001 = unanswers(2001) + with_year(
           ["Victims by Employees", "cost of planets destroyed",
-           "darkness rating", "deadliness", "deadliness+Joe Camel",
-           "deadliness+Joe User", "dinosaurlabor", "friendliness",
+           "darkness rating", "deadliness", "deadliness",
+           "deadliness", "dinosaurlabor", "friendliness",
            "Sith Lord in Charge", "descendant 1", "descendant 2",
            "descendant hybrid", "Sector Industry",
            "RM", "researched number 1", "know the unknowns",
@@ -290,9 +297,10 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "... policy and year" do
-        expect(filter_by(status: :none, research_policy: "Designer Assessed",
+        expect(filter_by(status: :none,
+                         research_policy: "Designer Assessed",
                          year: "2001"))
-          .to eq ["dinosaurlabor+2001", "researched number 3+2001", "Industry Class+2001"]
+          .to eq ["dinosaurlabor+2001", "Industry Class+2001", "researched number 3+2001"]
       end
     end
 
@@ -312,7 +320,7 @@ RSpec.describe Card::AnswerQuery do
         expect(filter_by(status: :all,
                          research_policy: "Designer Assessed",
                          year: "2001"))
-          .to eq ["dinosaurlabor+2001", "researched number 3+2001", "Industry Class+2001"]
+          .to eq ["dinosaurlabor+2001", "Industry Class+2001", "researched number 3+2001"]
       end
 
       it "... metric_type" do
@@ -346,20 +354,20 @@ RSpec.describe Card::AnswerQuery do
   end
 
   context "with sort conditions" do
-    let(:sorted_designer) { ["Fred", "Global_Reporting_Initiative", "Jedi", "Joe User"] }
+    let(:sorted_designer) { ["Fred", "Global Reporting Initiative", "Jedi", "Joe User"] }
 
     it "sorts by designer name (asc)" do
-      sorted = sort_by(:metric_name, :asc).map { |a| a.name.parts.first }.uniq
+      sorted = sort_by(:metric_designer, :asc).map { |a| a.name.parts.first }.uniq
       expect(sorted).to eq(sorted_designer)
     end
 
     it "sorts by designer name (desc)" do
-      sorted = sort_by(:metric_name, :desc).map { |a| a.name.parts.first }.uniq
+      sorted = sort_by(:metric_designer, :desc).map { |a| a.name.parts.first }.uniq
       expect(sorted).to eq(sorted_designer.reverse)
     end
 
     it "sorts by title" do
-      sorted = sort_by(:title_name).map { |a| a.name.parts.second }
+      sorted = sort_by(:metric_title).map { |a| a.name.parts.second }
       indices =
         ["cost of planets destroyed", "darkness rating", "deadliness",
          "researched number 1", "Victims by Employees"].map do |t|

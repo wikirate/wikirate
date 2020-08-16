@@ -14,7 +14,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
   context "when no filter in params" do
     specify "#item_cards returns answers from multiple years and companies" do
       expect(answer_items)
-        .to include("Death_Star+1977", "Death_Star+2000", "Monster_Inc+2000")
+        .to include("Death Star+1977", "Death Star+2000", "Monster Inc+2000")
     end
 
     specify "#count counts all" do
@@ -26,10 +26,10 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
     # This is current behavior, but I'd prefer that params only affect queries in formats.
     specify "#item_cards returns only latest answers" do
       with_latest_filter_params do
-        expect(answer_items).to eq(%w[Death_Star+2001
-                                      Monster_Inc+2000
-                                      Slate_Rock_and_Gravel_Company+2005
-                                      SPECTRE+2000])
+        expect(answer_items).to eq(["Death Star+2001",
+                                    "Monster Inc+2000",
+                                    "Slate Rock and Gravel Company+2005",
+                                    "SPECTRE+2000"])
       end
     end
 

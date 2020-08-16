@@ -2,6 +2,10 @@ def metric_designer
   junction? ? name.parts[0] : creator.name
 end
 
+def metric_designer_id
+  metric_designer.card_id
+end
+
 def metric_designer_card
   junction? ? self[0] : creator
 end
@@ -12,6 +16,10 @@ end
 
 def metric_title
   junction? ? name.parts[1] : name
+end
+
+def metric_title_id
+  metric_title.card_id
 end
 
 def metric_title_card

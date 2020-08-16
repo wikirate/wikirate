@@ -10,7 +10,7 @@ class Relationship
     end
 
     def fetch_record_id
-      Card.fetch_id(card.name.left_name.left_name)
+      Card.fetch_id card.name.left_name.left_name
     end
 
     def fetch_metric_id
@@ -33,14 +33,6 @@ class Relationship
 
     def fetch_object_company_id
       card.right_id
-    end
-
-    def fetch_subject_company_name
-      Card.fetch_name(subject_company_id || fetch_subject_company_id)
-    end
-
-    def fetch_object_company_name
-      Card.fetch_name(object_company_id || fetch_object_company_id)
     end
 
     def fetch_year

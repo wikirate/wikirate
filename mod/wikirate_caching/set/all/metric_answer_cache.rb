@@ -44,4 +44,5 @@ end
 event :refresh_updated_answers, :integrate, after_subcards: true do
   return unless @updated_answers.present?
   Answer.update_by_ids @updated_answers
+  @updated_answers = nil
 end

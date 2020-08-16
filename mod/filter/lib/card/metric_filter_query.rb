@@ -3,6 +3,10 @@ class Card
   class MetricFilterQuery < FilterQuery
     include WikirateFilterQuery
 
+    def name_wql title
+      add_to_wql :right, name: [:match, title]
+    end
+
     def metric_wql metric
       name_wql metric
     end

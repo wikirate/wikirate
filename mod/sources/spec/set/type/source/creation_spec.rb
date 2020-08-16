@@ -12,7 +12,7 @@ describe Card::Set::Type::Source::Creation do
       # FIXME: Shouldn't re-render every time.
       # ... But compound expectations (".and") weren't working...
       it "prepopulates company from answer" do
-        expect_view(:new).to have_field_with_value("Company", "Death_Star")
+        expect_view(:new).to have_field_with_value("Company", "Death Star")
       end
 
       it "prepopulates title from search term" do

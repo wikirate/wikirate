@@ -1,6 +1,7 @@
 # Answer search for a given Metric
-STANDARD_FILTER_KEYS = %i[status year company_name value updated check calculated
-                          company_group source project outliers bookmark].freeze
+STANDARD_FILTER_KEYS =
+  %i[status year company_name company_group value updated updater check calculated
+     source project outliers bookmark].freeze
 
 include_set Abstract::FilterFormgroups
 include_set Abstract::BookmarkFiltering

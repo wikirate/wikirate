@@ -6,20 +6,12 @@ class Answer
         Card.fetch_id fetch_record_name.left
       end
 
-      def fetch_metric_name
-        Card.fetch_name(metric_id || fetch_metric_id)
-      end
-
       def fetch_designer_id
-        metric_card.left_id
+        metric_card.metric_designer_id
       end
 
-      def fetch_designer_name
-        card.name.parts.first
-      end
-
-      def fetch_title_name
-        card.name.parts.second
+      def fetch_title_id
+        metric_card.metric_title_id
       end
 
       def fetch_policy_id

@@ -30,8 +30,8 @@ RSpec.describe Relationship do
         expect(relation.value).to eq "no"
         expect(relation.imported).to eq false
         expect(relation.latest).to eq true
-        expect(relation.subject_company_name).to eq("Monster Inc")
-        expect(relation.object_company_name).to eq("Los Pollos Hermanos")
+        expect(relation.subject_company_id.cardname).to eq("Monster Inc")
+        expect(relation.object_company_id.cardname).to eq("Los Pollos Hermanos")
       end
     end
   end
@@ -60,12 +60,6 @@ RSpec.describe Relationship do
       end
       it "has value" do
         expect(relation.value).to eq "yes"
-      end
-      it "has subject_company_name" do
-        expect(relation.subject_company_name).to eq "Death Star"
-      end
-      it "has object_company_name" do
-        expect(relation.object_company_name).to eq "Los Pollos Hermanos"
       end
     end
   end
@@ -96,13 +90,11 @@ RSpec.describe Relationship do
     it "updates subject company" do
       update relation_name, name: "#{metric}+Google LLC+1977+Los Pollos Hermanos"
       expect(relation.subject_company_id).to eq Card.fetch_id("Google LLC")
-      expect(relation.subject_company_name).to eq "Google LLC"
     end
 
     it "updates object company" do
       update relation_name, name: "#{metric}+Death Star+1977+Google LLC"
       expect(relation.object_company_id).to eq Card.fetch_id("Google LLC")
-      expect(relation.object_company_name).to eq "Google LLC"
     end
 
     context "when year changes" do
@@ -117,16 +109,11 @@ RSpec.describe Relationship do
       end
     end
 
-    it "cannot updates metric for which value is invalid" do
+    it "cannot update to metric for which value is invalid" do
       expect do
         update relation_name,
                name: "Commons+Supplied by+Google LLC+1977+Los Pollos Hermanos"
       end.to raise_error(ActiveRecord::RecordInvalid)
-    end
-
-    it "updates subject company when company name changes" do
-      update "Death Star", name: "Life Star"
-      expect(relation.subject_company_name).to eq "Life Star"
     end
 
     it "updates year" do

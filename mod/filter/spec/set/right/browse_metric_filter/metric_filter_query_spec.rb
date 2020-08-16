@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
 
     context "with name argument" do
       before { filter_args name: "CDP" }
-      it { is_expected.to eq(name: %w[match CDP]) }
+      it { is_expected.to eq(right: { name: [:match, "CDP"] }) }
     end
 
     context "with topic argument" do
@@ -84,17 +84,12 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
       end
 
       it "joins filter conditions correctly" do
-        is_expected.to eq(
-          name: %w[match CDP],
-          and: policy_wql.merge(
-            and: metric_type_wql.merge(
-              and: topic_wql
-            )
-          ),
-          right_plus: { type_id: Card::WikirateCompanyID, right_plus: "2015" },
-          part: "myDesigner",
-          referred_to_by: { left: "myProject", right_id: Card::MetricID }
-        )
+        is_expected
+          .to eq(right: { name: [:match, "CDP"] },
+                 and: policy_wql.merge(and: metric_type_wql.merge(and: topic_wql)),
+                 right_plus: { type_id: Card::WikirateCompanyID, right_plus: "2015" },
+                 part: "myDesigner",
+                 referred_to_by: { left: "myProject", right_id: Card::MetricID })
       end
     end
   end

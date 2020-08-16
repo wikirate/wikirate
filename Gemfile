@@ -38,7 +38,7 @@ gem "roo"
 gem "wbench"
 gem "wkhtmltopdf-binary", "0.12.5.4"
 
-gem "rubocop", ">= 0.63"
+gem "rubocop", "0.88" # 0.89 introduced bugs. may get resolved in rubocop-decko update?
 gem "rubocop-decko"
 
 gem "fog-aws"
@@ -90,7 +90,7 @@ group :test do
   # feature-driven-development suite (cucumber 4 not working)
   gem "cucumber-expressions" # , "5.0.7" # this breaks at 5.0.12
   gem "cucumber-rails", "~> 2.0", require: false
-  gem "selenium-webdriver" # , "3.141.0"
+  gem "selenium-webdriver", "3.141.0"
   #gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 

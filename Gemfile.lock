@@ -109,7 +109,7 @@ GEM
     activerecord (6.0.3.2)
       activemodel (= 6.0.3.2)
       activesupport (= 6.0.3.2)
-    activerecord-import (1.0.5)
+    activerecord-import (1.0.6)
       activerecord (>= 3.2)
     activestorage (6.0.3.2)
       actionpack (= 6.0.3.2)
@@ -174,7 +174,8 @@ GEM
       image_processing (~> 1.1)
       mimemagic (>= 0.3.0)
       mini_mime (>= 0.1.3)
-    childprocess (3.0.0)
+    childprocess (0.9.0)
+      ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.3)
     coffee-script (2.4.1)
       coffee-script-source
@@ -210,7 +211,7 @@ GEM
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
     curb (0.9.10)
-    cypress-on-rails (1.7.0)
+    cypress-on-rails (1.8.0)
       rack
     daemons (1.3.1)
     dalli (2.7.10)
@@ -241,7 +242,7 @@ GEM
     erubis (2.7.0)
     ethon (0.12.0)
       ffi (>= 1.3.0)
-    excon (0.75.0)
+    excon (0.76.0)
     execjs (2.7.0)
     ffi (1.13.1)
     fog-aws (3.6.6)
@@ -283,11 +284,11 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     http_parser.rb (0.6.0)
-    i18n (1.8.3)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    image_info (1.1.2)
-      image_size
-      typhoeus
+    image_info (1.2.0)
+      image_size (~> 2.0)
+      typhoeus (~> 1.0)
     image_processing (1.11.0)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
@@ -314,9 +315,9 @@ GEM
     launchy (2.5.0)
       addressable (~> 2.7)
     libv8 (3.16.14.19)
-    link_thumbnailer (3.3.2)
+    link_thumbnailer (3.4.0)
       activesupport (>= 3.0)
-      image_info (>= 1.0)
+      image_info (~> 1.0, >= 1.2.0)
       json (>= 1.7.7)
       net-http-persistent (>= 2.9)
       nokogiri (>= 1.6)
@@ -357,7 +358,7 @@ GEM
     net-ssh (6.1.0)
     net_http_timeout_errors (0.3.5)
     netrc (0.11.0)
-    newrelic_rpm (6.11.0.365)
+    newrelic_rpm (6.12.0.367)
     nio4r (2.5.2)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
@@ -365,7 +366,7 @@ GEM
       nokogiri (~> 1.5)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
-    oga (3.2)
+    oga (3.3)
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
@@ -477,8 +478,8 @@ GEM
       rubocop-ast (>= 0.1.0, < 1.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.1.0)
-      parser (>= 2.7.0.1)
+    rubocop-ast (0.3.0)
+      parser (>= 2.7.1.4)
     rubocop-decko (0.2)
     rubocop-rspec (1.42.0)
       rubocop (>= 0.87.0)
@@ -494,14 +495,14 @@ GEM
     ruby2_keywords (0.0.2)
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
-    rubyzip (2.3.0)
+    rubyzip (1.3.0)
     safe_yaml (1.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
     savanna-outliers (0.0.1)
-    selenium-webdriver (3.142.7)
-      childprocess (>= 0.5, < 4.0)
-      rubyzip (>= 1.2.2)
+    selenium-webdriver (3.141.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.2, >= 1.2.2)
     sexp_processor (4.15.0)
     simple_oauth (0.3.1)
     simplecov (0.18.5)
@@ -637,12 +638,12 @@ DEPENDENCIES
   rspec
   rspec-html-matchers
   rspec-rails
-  rubocop (>= 0.63)
+  rubocop (= 0.88)
   rubocop-decko
   rubocop-rspec
   ruby-jmeter
   savanna-outliers
-  selenium-webdriver
+  selenium-webdriver (= 3.141.0)
   simplecov
   spork
   spring

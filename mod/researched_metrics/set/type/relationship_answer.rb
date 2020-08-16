@@ -23,7 +23,7 @@ event :schedule_old_answer_counts, :finalize, changed: :name, on: :update do
 end
 
 # TODO: this shouldn't be necessary if default type_id were based on ltype rtype set
-event :ensure_left_type_is_answer, after: :set_left_and_right do
+event :ensure_left_type_is_answer, after: :prepare_left_and_right do
   answer = Card.fetch name.left, new: { type_id: MetricAnswerID }
   answer.type_id = MetricAnswerID
   add_subcard answer if answer.type_id_changed?
@@ -32,6 +32,19 @@ end
 event :auto_add_object_company,
       after: :set_answer_name, on: :create, trigger: :required do
   add_company related_company unless valid_related_company?
+end
+
+event :run_value_events_on_name_change, :validate, changed: :name, on: :update do
+  value_card = Card[name_before_act, :value]
+  value_card.instance_variable_set "@name", Card::Name[name, :value]
+  value_card.valid?
+  value_card.errors.each do |_fld, message|
+    errors.add :value, message
+  end
+  update_relationship relationship_id: id
+  # this is a bit of a hack.
+  # NSince we don't add renamed children to the act any more, we
+  # have to trigger the value validation manually
 end
 
 def lookup

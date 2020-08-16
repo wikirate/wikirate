@@ -11,6 +11,11 @@ module CoreExtensions
     def url?
       start_with?("http://", "https://")
     end
+
+    # TODO: move to decko
+    def card_id
+      Card::Lexicon.id self
+    end
   end
 end
 

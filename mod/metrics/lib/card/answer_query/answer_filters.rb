@@ -41,6 +41,8 @@ class Card
           checked_by Auth.current_id
         when "wikirate_team"
           checked_by id: Set::Self::WikirateTeam.member_ids.unshift(:in)
+        else
+          checked_by Card.fetch_id(value)
         end
       end
 
@@ -48,6 +50,35 @@ class Card
         restrict_by_wql(:answer_id,
                         type_id: MetricAnswerID,
                         right_plus: [CheckedByID, { refer_to: whom }])
+      end
+
+      def updater_query value
+        # I attempted to do this with AR syntax and got close, but it wouldn't do all the
+        # string substitutions, so the SQL had ?'s in it.
+        #
+        # Card.joins(actions: :act).where(
+        #   "card_acts.actor_id" => Card.fetch_id(whom),
+        #   left_id: "answers.id",
+        #   right_id: Card::ValueID
+        # ).arel.exists.to_sql
+        add_condition "EXISTS (select * from cards c " \
+                        "JOIN card_actions an on an.card_id = c.id " \
+                        "JOIN card_acts a on an.card_act_id = a.id " \
+                        "WHERE a.actor_id in (?) " \
+                        "AND c.right_id = #{Card::ValueID} " \
+                        "AND c.left_id = answers.answer_id) ",
+                      updater_ids(value)
+      end
+
+      def updater_ids value
+        case value
+        when "current_user"
+          Auth.current_id
+        when "wikirate_team"
+          Set::Self::WikirateTeam.member_ids.join ", "
+        else
+          Card.fetch_id value
+        end
       end
 
       def value_query value

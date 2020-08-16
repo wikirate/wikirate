@@ -42,8 +42,7 @@ format :html do
   end
 
   def sort_options
-    { "Most Companies": :company,
-      "Most Answers": :answer }.merge super
+    { "Most Companies": :company, "Most Answers": :answer }.merge super
   end
 end
 
@@ -55,6 +54,5 @@ format :csv do
 
   def header
     CSV.generate_line MetricImportItem.headers
-    # Card.new(type: :metric).render_header
   end
 end

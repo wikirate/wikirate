@@ -17,7 +17,7 @@ format :html do
 
   def add_sort_by_relevance options
     options["Relevance"] = :relevance
-    @sort_param = :relevance unless sort_param
+    params[:sort] = :relevance unless sort_param
   end
 
   def fulltext_name_filtering?

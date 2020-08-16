@@ -42,8 +42,6 @@ class SharedData
                           formula: "{{Joe User+RM|unknown: 10}} + {{Joe User+small multi|not_researched: 20}}"
 
       # calculated value: "Slate Rock and Gravel Company+2004"
-
-
     end
 
     def score_metrics

@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Type::MetricAnswer::Json do
   YEAR = "1977".freeze
-  COMPANY_NAME = "Death_Star".freeze
+  COMPANY_NAME = "Death Star".freeze
 
   let(:company) { Card[COMPANY_NAME] }
   let(:answer) { Card.fetch metric.name, COMPANY_NAME, YEAR }
@@ -18,7 +18,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
   end
 
   describe "exported json researched metric answer" do
-    let(:metric) { Card["Jedi+Sith_Lord_in_Charge"] }
+    let(:metric) { Card["Jedi+Sith Lord in Charge"] }
     let(:source) { sample_source(:star_wars) }
 
     let(:metric_fields) do
