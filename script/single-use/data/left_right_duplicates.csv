@@ -231,10 +231,3 @@ id1,name1,id2,name2,left_id,right_id,url1,,Comments
 6299913,Global Reporting Initiative+Total Waste Generated (G4-EN23-a)+Range,3399951,"Global Reporting Initiative+Total Waste Generated, GRI 306-2 (formerly G4-EN23-a)+Range",848767,43688,https://wikirate.org/~6299913,https://wikirate.org/~3399951,Name change (column B old)
 6299914,Global Reporting Initiative+Total Waste Generated (G4-EN23-a)+Research Policy,848772,"Global Reporting Initiative+Total Waste Generated, GRI 306-2 (formerly G4-EN23-a)+research policy",848767,536264,https://wikirate.org/~6299914,https://wikirate.org/~848772,Name change (column B old)
 6299915,Global Reporting Initiative+Total Waste Generated (G4-EN23-a)+report_type,848773,"Global Reporting Initiative+Total Waste Generated, GRI 306-2 (formerly G4-EN23-a)+report_type",848767,840042,https://wikirate.org/~6299915,https://wikirate.org/~848773,Name change (column B old)
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-"select c1.id, c1.name, c2.id, c2.name, c1.left_id, c1.right_id from cards c1 join cards c2 on c1.left_id = c2.left_id and c1.right_id = c2.right_id and c1.id > c2.id;",,,,,,,,
-232 rows in set (27 min 4.33 sec),,,,,,,,
-(dev.wikirate.org),,,,,,,,
-https://wikirate.org/~,,,,,,,,
