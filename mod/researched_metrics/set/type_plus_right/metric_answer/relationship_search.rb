@@ -43,10 +43,9 @@ def other_company_ids
 end
 
 # TODO: move paging handling to format.
-def relationship_relation paging_args={}
+def relationship_relation paging={}
   Relationship.where(relationship_query).tap do |rel|
-    rel.limit paging_args[:limit] || 20
-    rel.offset paging_args[:offset] || 0
+    rel.limit(paging[:limit] || 20).offset(paging[:offset] || 0)
   end
 end
 

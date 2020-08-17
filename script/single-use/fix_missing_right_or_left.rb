@@ -6,7 +6,7 @@ LEFTS = File.expand_path "data/bad_lefts.csv"
 RIGHTS = File.expand_path "data/bad_rights.csv"
 
 def csv filename
-  CSV.new raw(filename), headers: :true
+  CSV.new raw(filename), headers: true
 end
 
 def raw filename

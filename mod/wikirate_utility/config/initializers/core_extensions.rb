@@ -1,3 +1,5 @@
+fail "what?"
+
 # extend core Ruby object classes
 module CoreExtensions
   # extend core String class
