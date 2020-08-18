@@ -13,6 +13,25 @@ def bad_referers klass, field
                "(select * from cards where cards.id = #{field} and trash is false)"
 end
 
+def missing_lookups type_id, table, field
+  Card.where(
+    "type_id = #{type_id} and trash is false and not exists " \
+    "(select * from #{table} where #{field} = cards.id)"
+  ).pluck(:id).each do |id|
+    yield Card[id]
+  end
+end
+
+def each_answer_card_without_value
+  Card.where(
+    "type_id = #{Card::MetricAnswerID} and trash is false and not exists " \
+    "(select * from cards c2 where c2.left_id = cards.id " \
+    "and c2.trash is false and c2.right_id = #{Card::ValueID})"
+  ).pluck(:id).each do |id|
+    yield Card[id]
+  end
+end
+
 # DELETE lookups with bad foreign keys (references to cards that don't exist)
 REF_MAP.each do |klass, field_list|
   field_list.each do |field|
@@ -26,14 +45,8 @@ REF_MAP.each do |klass, field_list|
   end
 end
 
-
 # DELETE answer cards without values
-Card.where(
-  "type_id = #{Card::MetricAnswerID} and trash is false and not exists " \
-  "(select * from cards c2 where c2.left_id = cards.id " \
-  "and c2.trash is false and c2.right_id = #{Card::ValueID})"
-).pluck(:id).each do |id|
-  unvalued = Card[id]
+each_answer_card_without_value do |unvalued|
   puts "No value card: #{unvalued.name}"
   if unvalued.relationship?
     unvalued.update_relationship_count
@@ -43,19 +56,13 @@ Card.where(
 end
 
 # REFRESH answers missing lookups
-Card.where("type_id = #{Card::MetricAnswerID} and trash is false and not exists " \
-           "(select * from answers where answer_id = cards.id)").pluck(:id).each do |id|
-  c = Card[id]
+missing_lookups Card::MetricAnswerID, :answers, :answer_id do |c|
   puts "#{c.name} does not have an answer"
   c.answer.refresh
 end
 
 # REFRESH relationships missing lookups
-Card.where(
-  "type_id = #{Card::RelationshipID} and trash is false and not exists " \
-   "(select * from relationships where relationship_id = cards.id)"
-).pluck(:id).each do |id|
-  c = Card[id]
+missing_lookups Card::RelationshipID, :relationships, :relationship_id do |c|
   puts "#{c.name} does not have a relationship"
   c.relationship.refresh
 end

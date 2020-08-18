@@ -81,11 +81,11 @@ class Relationship < ApplicationRecord
   end
 
   def subject_company_name
-    subject_company_id.name
+    subject_company_id.cardname
   end
 
   def object_company_name
-    object_company_id.name
+    object_company_id.cardname
   end
 
   def method_missing method_name, *args, &block

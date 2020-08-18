@@ -10,8 +10,6 @@ class Relationship
     def csv_line
       CSV.generate_line [relationship_id, relationship_link, answer_id, metric_name,
                          subject_company_name, object_company_name, year, value]
-    rescue StandardError
-      ""
     end
 
     def relationship_link
