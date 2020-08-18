@@ -44,9 +44,9 @@ end
 
 # TODO: move paging handling to format.
 def relationship_relation paging={}
-  Relationship.where(relationship_query).tap do |rel|
-    rel.limit(paging[:limit] || 20).offset(paging[:offset] || 0)
-  end
+  Relationship.where(relationship_query)
+    .limit(paging[:limit] || 20)
+    .offset(paging[:offset] || 0)
 end
 
 def relationship_query
