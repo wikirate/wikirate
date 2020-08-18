@@ -45,8 +45,8 @@ end
 # TODO: move paging handling to format.
 def relationship_relation paging={}
   Relationship.where(relationship_query)
-    .limit(paging[:limit] || 20)
-    .offset(paging[:offset] || 0)
+              .limit(paging.key?(:limit) ? paging[:limit] : 20)
+              .offset(paging.key?(:offset) ? paging[:offset] : 0)
 end
 
 def relationship_query
@@ -102,6 +102,6 @@ end
 format :csv do
   view :core do
     Relationship.csv_title +
-      card.relationship_relation(limit: 0).map(&:csv_line).join
+      card.relationship_relation(limit: nil).map(&:csv_line).join
   end
 end
