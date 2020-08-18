@@ -8,13 +8,13 @@ class Relationship
     end
 
     def csv_line
-      CSV.generate_line [relationship_id, answer_link, answer_id, metric_name,
+      CSV.generate_line [relationship_id, relationship_link, answer_id, metric_name,
                          subject_company_name, object_company_name, year, value]
     rescue StandardError
       ""
     end
 
-    def answer_link
+    def relationship_link
       card_url "~#{relationship_id}"
     end
 
