@@ -21,7 +21,7 @@ end
 
 csv.each do |r|
   next unless (c1 = fetch r["id1"]) && (fetch r["id2"]) # skip if one is in trash
-
+  puts "trashing #{c1.name}"
   c1.update_column :trash, true
 end
 
