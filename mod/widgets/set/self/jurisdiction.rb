@@ -4,6 +4,7 @@
 class CountryGroups < Array
   def initialize cards=nil
     cards ||= Card.search(type_id: Card::JurisdictionID)
+    cards.reject! { |c| c.codename.nil? }
     @groups = Hash.new { |hash, key| hash[key] = {} }
     process_cards cards
     sanitize_and_sort
@@ -70,6 +71,7 @@ format :json do
     if name_query
       wql = { type_id: Card::JurisdictionID, name: ["match", name_query] }
       Card.search(wql).each_with_object([]) do |i, ar|
+        next unless i.codename
         ar << { id: i.codename, text: i.name }
       end
     else

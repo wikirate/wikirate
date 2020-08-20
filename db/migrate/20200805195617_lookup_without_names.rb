@@ -10,5 +10,11 @@ class LookupWithoutNames < ActiveRecord::Migration[6.0]
     #
     # remove_column :relationships, :subject_company_name
     # remove_column :relationships, :object_company_name
+    #
+    #
+
+    # TODO: move following to separate migration (and uncomment)
+    # remove_index :counts, name: "left_id_right_id_index"
+    # add_index :counts, %i[left_id right_id], unique: true
   end
 end

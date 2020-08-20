@@ -1,5 +1,5 @@
 def metric_designer
-  junction? ? name.parts[0] : creator.name
+  junction? ? name.parts.first.to_name : creator.name
 end
 
 def metric_designer_id

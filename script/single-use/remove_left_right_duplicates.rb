@@ -16,21 +16,13 @@ def raw
 end
 
 def fetch id
-  Card.fetch id.to_i, look_in_trash: true
-end
-
-def trash_test card
-  puts "#{card.name} is in trash" if card.trash
-
+  Card.fetch id.to_i
 end
 
 csv.each do |r|
-  c1 = fetch r["id1"]
-  c2 = fetch r["id2"]
-
-  trash_test c1
-  trash_test c2
+  next unless (c1 = fetch r["id1"]) && (fetch r["id2"]) # skip if one is in trash
+  puts "trashing #{c1.name}"
+  c1.update_column :trash, true
 end
-
 
 puts "done."
