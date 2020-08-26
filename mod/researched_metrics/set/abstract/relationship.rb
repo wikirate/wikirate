@@ -41,4 +41,14 @@ format :html do
   def value_legend _html=true
     "related companies"
   end
+
+  def table_properties
+    super.merge inverse: "Inverse Metric"
+  end
+
+  def inverse_property title
+    wrap :div, class: "row inverse-property" do
+      labeled title, nest(card.inverse_card, view: :thumbnail)
+    end
+  end
 end

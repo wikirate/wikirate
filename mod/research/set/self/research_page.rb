@@ -24,9 +24,6 @@ format :html do
 
   view :add_relation, cache: :never do
     @answer_view = :research_form
-    @answer_card = Card.new name: [metric, company, year.to_s],
-                            type_id: RelationshipAnswerID
-    @answer_card.define_singleton_method(:unknown?) { true }
     slot_machine
   end
 

@@ -1,3 +1,7 @@
+event :do_not_save_related_company, :validate do
+  abort :success
+end
+
 format :html do
   view :input do
     options_card ||= Card::Name[:wikirate_company, :type, :by_name]
