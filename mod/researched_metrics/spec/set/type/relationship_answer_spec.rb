@@ -61,6 +61,21 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
     end
   end
 
+  # THIS mimics how relationship answers are created via the research page
+  context "with 'related_company' subcard" do
+    it "handles missing object company" do
+      card = Card.create! type_id: Card::RelationshipAnswerID,
+                          name: Card::Name[metric, "SPECTRE", "2001", ""],
+                          subcards: {
+                            "+related_company" => "Death Star",
+                            "+value" => "no",
+                            "+source" => :star_wars_source.cardname
+                          }
+      expect(card.name.tag).to eq("Death Star")
+      expect(card.fetch(:related_company)).to be_nil
+    end
+  end
+
   # context "when changing relationship answer name" do
   #   def change_relationship_answer_name
   #     Card["Jedi"]
