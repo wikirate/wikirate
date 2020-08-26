@@ -16,12 +16,6 @@ event :schedule_answer_counts, :finalize do
   schedule_answer_count inverse_answer_name
 end
 
-event :ensure_left_type_is_answer, :validate, changed: :name, on: :save do
-  answer = left
-  errors.add :left, "must be answer" unless answer.type_id == MetricAnswerID
-  add_subcard answer if answer.new?
-end
-
 event :schedule_old_answer_counts, :finalize, changed: :name, on: :update do
   lu = lookup
   schedule_answer_count lu.answer_id.cardname
