@@ -16,6 +16,13 @@ event :schedule_answer_counts, :finalize do
   schedule_answer_count inverse_answer_name
 end
 
+# TODO: this shouldn't be necessary if default type_id were based on ltype rtype set
+event :ensure_left_type_is_answer, after: :prepare_left_and_right do
+  answer = Card.fetch name.left, new: { type_id: MetricAnswerID }
+  answer.type_id = MetricAnswerID
+  add_subcard answer if answer.type_id_changed?
+end
+
 event :schedule_old_answer_counts, :finalize, changed: :name, on: :update do
   lu = lookup
   schedule_answer_count lu.answer_id.cardname
