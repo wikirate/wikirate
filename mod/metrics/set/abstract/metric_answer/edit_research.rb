@@ -53,7 +53,7 @@ format :html do
   end
 
   def answer_label
-    companies = [card.company, card.related_company].compact.join " / "
+    companies = [card.company, card.try(:related_company)].compact.join " / "
     "#{card.year} #{card.metric_name.upcase} answer for #{companies.upcase}"
   end
 end

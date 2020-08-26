@@ -23,7 +23,7 @@ puts "deleting obsolete fields"
 
 ["all metrics", "all companies", "*vote count", "*upvote count",
  "*downvote count", "right sidebar", "metric count"].each do |tag|
-  Card.search(left: { right: tag }) &:delete!
+  Card.search(left: { right: tag }).each &:delete!
   Card.where(right_id: tag.to_name.card_id).in_batches.update_all trash: true
 end
 
