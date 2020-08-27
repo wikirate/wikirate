@@ -1,4 +1,57 @@
+
+format do
+  view :legend do
+    value_legend
+  end
+
+  def wrap_legend
+    yield
+  end
+
+  def value_legend
+    if card.unit.present?
+      card.unit
+    elsif card.range.present?
+      card.range.to_s
+    elsif card.categorical?
+      category_legend
+    else
+      ""
+    end
+  end
+
+  def category_legend
+    category_legend_options.join ", "
+  end
+
+  def category_legend_options
+    card.value_options.reject { |o| Answer.unknown? o }
+  end
+end
+
 format :html do
+  def wrap_legend
+    return "" unless (legend_core = yield)&.present?
+
+    wrap_with(:span, class: "metric-legend") { legend_core }
+  end
+
+  def category_legend
+    wrap_with :div, class: "small", title: "value options" do
+      [fa_icon("list"), limited_category_legend_options].flatten.compact.join " "
+    end
+  end
+
+  def limited_category_legend_options
+    commaed = category_legend_options.join ", "
+    return commaed unless commaed.length > 40
+
+    [comma[0..40],
+     popover_link(options.join("<br>"), nil, fa_icon("ellipsis-h"),
+                  "data-html": "true", path: "javascript:",
+                  class: "border text-muted px-1")]
+  end
+
   # OUTLIERS
 
   view :outliers do
@@ -14,78 +67,5 @@ format :html do
       end
     end
     res
-  end
-
-  # VALUE LEGEND
-
-  view :legend do
-    wrap_with :span, class: "metric-legend" do
-      value_legend
-    end
-  end
-
-  view :legend_core do
-    value_legend false
-  end
-
-  def value_legend html=true
-    # depends on the type
-    if card.unit.present?
-      card.unit
-    elsif card.range.present?
-      card.range.to_s
-    elsif card.categorical?
-      category_legend_display html
-    else
-      ""
-    end
-  end
-
-  def category_legend_display html
-    html ? category_legend_div : category_legend(", ")
-  end
-
-  def category_legend_div
-    wrap_with :div, class: "small", title: "value options" do
-      ([fa_icon("list")] + options_for_legend).compact.join " "
-    end
-  end
-
-  def options_for_legend
-    legend_core = category_legend ", "
-    if legend_core.length > 40
-      [legend_core[0..40], link_to_popover(legend_core)]
-    else
-      [legend_core]
-    end
-  end
-
-  def link_to_popover  text, title=nil
-    opts = { class: "pl-1 text-muted-link border text-muted px-1",
-             path: "javascript:", "data-toggle": "popover",
-             "data-trigger": :focus, "data-content": text, "data-html": "true" }
-    opts["data-title"] = title if title
-    link_to fa_icon("ellipsis-h"), opts
-  end
-
-  def category_legend joint=", <br>"
-    card.value_options.reject { |o| o == "Unknown" }.join joint
-  end
-
-  # Weight methods apply only to WikiRatings
-  # TODO: hamlize
-  def weight_row weight=0, label=nil
-    label ||= _render_thumbnail_no_link
-    weight = weight_content weight
-    output([wrap_with(:td, label, class: "metric-label"),
-            wrap_with(:td, weight, class: "metric-weight")]).html_safe
-  end
-
-  def weight_content weight
-    icon_class = "pull-right _remove-weight btn btn-outline-secondary btn-sm"
-    wrap_with :div do
-      [text_field_tag("pair_value", weight) + "%",
-       content_tag(:span, fa_icon(:close).html_safe, class: icon_class)]
-    end
   end
 end

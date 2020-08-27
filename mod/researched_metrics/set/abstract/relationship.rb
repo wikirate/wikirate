@@ -37,11 +37,13 @@ def inverse_companies args={}
   inverse_company_ids(args).map { |id| Card[id] }
 end
 
-format :html do
-  def value_legend _html=true
-    "related companies"
+format do
+  view :legend do
+    wrap_legend { "related companies" }
   end
+end
 
+format :html do
   def table_properties
     super.merge inverse: "Inverse Metric"
   end

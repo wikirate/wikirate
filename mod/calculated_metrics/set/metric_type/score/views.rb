@@ -1,3 +1,9 @@
+format do
+  def value_legend
+    "0-10"
+  end
+end
+
 format :html do
   delegate :scorer_card, :basic_metric_card, to: :card
 
@@ -16,10 +22,6 @@ format :html do
 
   def scorer_image_card
     card.scorer_card.fetch :image, new: { type_id: Card::ImageID }
-  end
-
-  def value_legend _html=true
-    "0-10"
   end
 
   def table_properties

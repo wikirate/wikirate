@@ -1,3 +1,10 @@
+format do
+  view :legend do
+    subf = subformat card.metric_card
+    subf.wrap_legend { subf.value_legend }
+  end
+end
+
 format :html do
   # TODO: make relationship answer pages look more like answer pages and use two
   # column layout
@@ -53,10 +60,6 @@ format :html do
   view :expanded_details do
     _render :expanded_researched_details
   end
-
-  # def legend
-  #   subformat(card.metric_card).value_legend
-  # end
 
   def credit_details
     wrap_with :div, class: "d-flex" do
