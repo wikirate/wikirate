@@ -20,12 +20,13 @@ format do
     end
   end
 
+  # maybe following should be view of :value_options card?
   def category_legend
     category_legend_options.join ", "
   end
 
   def category_legend_options
-    card.value_options.reject { |o| Answer.unknown? o }
+    @category_legend_options ||= card.value_options.reject { |o| Answer.unknown? o }
   end
 end
 
@@ -46,10 +47,13 @@ format :html do
     commaed = category_legend_options.join ", "
     return commaed unless commaed.length > 40
 
-    [comma[0..40],
-     popover_link(options.join("</br>"), nil, fa_icon("ellipsis-h"),
-                  "data-html": "true", path: "javascript:",
-                  class: "border text-muted px-1")]
+    [commaed[0..40], category_popover_link]
+
+  end
+
+  def category_popover_link
+    popover_link category_legend_options.join("</br>"), nil, fa_icon("ellipsis-h"),
+                 "data-html": "true", path: "javascript:", class: "border text-muted px-1"
   end
 
   # OUTLIERS
