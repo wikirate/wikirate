@@ -1,3 +1,5 @@
+# The answer "legend" is the qualifying detail that typically follows the value
+# Can involve unit, range, categories, etc.
 
 format do
   view :legend do
@@ -48,28 +50,10 @@ format :html do
     return commaed unless commaed.length > 40
 
     [commaed[0..40], category_popover_link]
-
   end
 
   def category_popover_link
     popover_link category_legend_options.join("</br>"), nil, fa_icon("ellipsis-h"),
                  "data-html": "true", path: "javascript:", class: "border text-muted px-1"
-  end
-
-  # OUTLIERS
-
-  view :outliers do
-    outs = Savanna::Outliers.get_outliers prepare_for_outlier_search, :all
-    outs.inspect
-  end
-
-  def prepare_for_outlier_search
-    res = {}
-    card.metric_answer_card.values_by_name.map do |key, data|
-      data.each do |row|
-        res["#{key}+#{row['year']}"] = row["value"].to_i
-      end
-    end
-    res
   end
 end
