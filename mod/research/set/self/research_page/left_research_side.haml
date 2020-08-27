@@ -3,8 +3,8 @@
 = render :metric_slot
 - if metric?
   = render :company_slot
-- if metric? && company?
-  = render_year_slot
+  - if company?
+    = render_year_slot
 = render_flash
 - if metric?
   .border-bottom.background-grey.p-2.pl-4

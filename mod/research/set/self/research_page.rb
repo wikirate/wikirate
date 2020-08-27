@@ -22,7 +22,7 @@ format :html do
     _render_core
   end
 
-  view :add_relation, cache: :never do
+  view :add_relation, cache: :never, unknown: true do
     @answer_view = :research_form
     slot_machine
   end

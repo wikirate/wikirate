@@ -123,7 +123,7 @@ format do
   end
 
   def metric?
-    metric && Card.fetch_type_id(metric) == Card::MetricID
+    metric_card&.type_id == Card::MetricID
   end
 
   def project_year_list?
@@ -132,6 +132,10 @@ format do
 
   def pinned
     @pinned ||= Array(research_param(:pinned)).compact.map(&:to_sym)
+  end
+
+  def metric_card
+    metric && Card[metric]
   end
 
   def metric

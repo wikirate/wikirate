@@ -4,7 +4,7 @@ format :html do
   end
 
   def credit_details
-    nest(card.value_card, view: :credit)
+    nest(card.value_card, view: :credit) unless card.new?
   end
 
   view :expanded_researched_details do
