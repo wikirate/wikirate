@@ -30,7 +30,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswer::Views do
 
   describe "HtmlFormat" do
     describe "view: legend" do
-      context "no unit" do
+      context "without unit" do
         it "is blank" do
           expect_view(:legend).to be_blank
         end

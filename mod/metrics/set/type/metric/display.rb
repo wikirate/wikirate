@@ -1,7 +1,7 @@
 
 format do
   view :legend do
-    value_legend
+    wrap_legend { value_legend }
   end
 
   def wrap_legend
@@ -47,7 +47,7 @@ format :html do
     return commaed unless commaed.length > 40
 
     [comma[0..40],
-     popover_link(options.join("<br>"), nil, fa_icon("ellipsis-h"),
+     popover_link(options.join("</br>"), nil, fa_icon("ellipsis-h"),
                   "data-html": "true", path: "javascript:",
                   class: "border text-muted px-1")]
   end
