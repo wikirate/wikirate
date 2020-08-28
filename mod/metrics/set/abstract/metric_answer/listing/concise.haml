@@ -1,7 +1,7 @@
 .metric-value.text-left.ellipsis
   = calculated { nest card.value_card, view: :pretty }
 .small.pt-1.w-100
-  %span.text-muted.ellipsis.d-inline-block{title: render_legend_core }
+  %span.text-muted.ellipsis.d-inline-block{ title: card.format(:text).render_legend }
     = render_legend
   %span.pull-right
     = render_flags

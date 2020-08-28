@@ -6,9 +6,7 @@ format :html do
   view :year_slot,          cache: :never, template: :haml, wrap: :slot
 
   def answer_slot
-    opts = { view: answer_view,
-             title: "Answer",
-             hide: [:hover_link] }
+    opts = { view: answer_view, title: "Answer", hide: [:hover_link] }
     opts[:hide] << :menu if answer_card.metric_type == :relationship
     nest answer_card, opts
   end

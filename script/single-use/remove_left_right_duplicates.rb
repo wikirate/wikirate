@@ -8,7 +8,7 @@ FILENAME = File.expand_path "data/left_right_duplicates.csv"
 # include Card::Model::SaveHelper
 
 def csv
-  CSV.new raw, headers: :true
+  CSV.new raw, headers: true
 end
 
 def raw

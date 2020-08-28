@@ -10,6 +10,7 @@ Feature: Research relationship answer from record page
   Scenario: Adding a metric value with a link source
     When In the main card content I click "Research answer"
     And I select year "2015"
+    And I click on "Add relation"
     And I fill in autocomplete "card_subcards__related_company_content" with "Monster Inc"
     And I choose "yes"
     And I cite source

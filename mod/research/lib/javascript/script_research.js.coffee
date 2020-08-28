@@ -82,8 +82,8 @@ $(document).ready ->
     $form = $(e.target)
     related_company = $form.find("#card_subcards__related_company_content")
     if related_company.length == 1
-      name = $form.find("#card_name").val()
-      $form.find("#card_name").val(name + "+" + related_company.val())
+      # name = $form.find("#card_name").val()
+      # $form.find("#card_name").val(name + "+" + related_company.val())
       unless $form.find("#success_id").val() == ":research_page"
         $form.find("#success_id").val("_left")
 

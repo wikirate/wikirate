@@ -24,7 +24,7 @@ class Card
       end
 
       def title_with_unit title
-        unit = metric_card.format(:html).value_legend
+        unit = metric_card.format(:text).render_legend
         return title unless unit.present?
 
         "#{title} (#{unit})"

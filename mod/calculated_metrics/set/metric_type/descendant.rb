@@ -28,9 +28,9 @@ def formula_input_requirement
   :any
 end
 
-format :html do
-  def value_legend html=true
+format do
+  view :legend do
     return unless (ancestor = card.formula_card.input_names.first)
-    Card[ancestor]&.format&.value_legend html
+    nest ancestor, view: :legend
   end
 end
