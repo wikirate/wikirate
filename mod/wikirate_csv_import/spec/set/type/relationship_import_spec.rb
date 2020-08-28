@@ -8,10 +8,13 @@ RSpec.describe Card::Set::Type::RelationshipImport do
   end
 
   example "it correctly updates counts for answers with multiple relationships" do
-    card_subject.import! [9, 10]
+    with_params import_rows: { 9 => true, 10 => true } do
+      card_subject.update!({})
+    end
     expect(Card[answer_name, "Google Inc"]).to be_present
     expect(Card[answer_name, "SPECTRE"]).to be_present
     expect(Card[answer_name].value).to eq("2")
     expect(Card["Jedi+less evil+SPECTRE+2000"].value).to eq("1")
+
   end
 end

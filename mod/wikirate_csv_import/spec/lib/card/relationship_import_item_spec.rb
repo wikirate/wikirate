@@ -28,7 +28,7 @@ RSpec.describe Card::RelationshipImportItem do
       answer = Card[item_name.left]
       expect(answer.type_id).to eq(Card::MetricAnswerID)
       expect(answer.value).to eq("1")
-      expect(answer.inverse_answer_id.card.value).to eq("1")
+      expect(Card[item_name].inverse_answer_id.card.value).to eq("1")
     end
 
     example "increments relationship counts", as_bot: true do

@@ -99,7 +99,8 @@ end
 def schedule_answer_count name
   answer_card = Card.fetch name, new: { type_id: MetricAnswerID, "+value" => "1" }
   answer_card.schedule_answer_count
-  ActManager.act_card&.add_subcard answer_card
+  # ActManager.act_card&.
+  add_subcard answer_card
 end
 
 def update_subcard_name subcard, new_name, name_to_replace
