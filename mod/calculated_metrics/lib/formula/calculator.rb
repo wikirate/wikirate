@@ -46,12 +46,6 @@ module Formula
       end
     end
 
-    def result_hash
-      result = Hash.new_nested Hash
-      yield result if compile_formula
-      result
-    end
-
     def answers_to_be_calculated opts={}
       res = []
       @input.each(opts) do |_input, company_id, year|
@@ -149,6 +143,12 @@ module Formula
       return "Unknown" if input == :unknown
       value = get_value input, company, year
       normalize_value value if value
+    end
+
+    def result_hash
+      result = Hash.new_nested Hash
+      yield result if compile_formula
+      result
     end
 
     def normalize_value value
