@@ -53,10 +53,6 @@ format :html do
     value
   end
 
-  view :basic_details do
-    nest card.value_card, view: :pretty_link
-  end
-
   view :expanded_details do
     _render :expanded_researched_details
   end

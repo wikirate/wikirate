@@ -45,6 +45,10 @@ format :html do
     handle_unknowns { haml :concise }
   end
 
+  view :basic_details do
+    render_concise hide: :year_and_icon
+  end
+
   # prominent year, prominent value, less prominent flags
   view :year_and_value, unknown: true, template: :haml
   view :year_and_value_pretty, unknown: true, template: :haml
