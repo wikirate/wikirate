@@ -29,7 +29,8 @@ event :schedule_old_answer_counts, :finalize, changed: :name, on: :update do
   schedule_answer_count lu.inverse_answer_id.cardname
 end
 
-event :auto_add_object_company, after: :set_answer_name, on: :create, trigger: :required do
+event :auto_add_object_company,
+      after: :set_answer_name, on: :create, trigger: :required do
   add_company related_company unless valid_related_company?
 end
 
