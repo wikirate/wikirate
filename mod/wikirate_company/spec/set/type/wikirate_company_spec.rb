@@ -1,4 +1,6 @@
 RSpec.describe Card::Set::Type::WikirateCompany do
+  let(:company_card) { Card["Death Star"] }
+
   it "shows the link for view \"missing\"" do
     html = render_card :unknown, type_id: Card::WikirateCompanyID,
                                  name: "non-existing-card"
@@ -32,8 +34,6 @@ RSpec.describe Card::Set::Type::WikirateCompany do
   end
 
   describe "renaming company" do
-    let(:company_card) { Card["Death Star"] }
-
     def rename_company!
       company_card.update! name: "Life Star"
     end
@@ -45,16 +45,12 @@ RSpec.describe Card::Set::Type::WikirateCompany do
   end
 
   describe "deleting company" do
-    let(:company_card) { Card["Death Star"] }
-
-    def delete_company!
-      company_card.delete!
-    end
-
     it "deletes all answers", as_bot: true do
       company_id = company_card.id
-      delete_company!
+      company_card.delete!
       expect(Answer.where(company_id: company_id).count).to eq(0)
+      expect(Relationship.where(subject_company_id: company_id).count).to eq(0)
+      expect(Relationship.where(object_company_id: company_id).count).to eq(0)
     end
   end
 end

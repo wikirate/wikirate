@@ -69,6 +69,10 @@ format :html do
       ]
     end
   end
+
+  def default_research_params
+    super.merge related_company: card.related_company
+  end
 end
 
 format :json do

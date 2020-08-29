@@ -76,6 +76,27 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
     end
   end
 
+  context "when deleting" do
+    it "deletes relationship lookup" do
+      Card::Auth.as "joe admin"
+      rel = card_subject
+      value_card_id = rel.value_card.id
+      expect(rel.lookup).to be_present
+      expect(value_card_id).to be_present
+      rel.delete!
+      expect(rel.lookup).to be_nil
+      expect(Card[value_card_id]).to be_nil
+    end
+  end
+
+  specify "#default_research_params" do
+    expect(format_subject.default_research_params)
+      .to eq(company: "Monster Inc",
+             metric: "Commons+Supplied by",
+             year: "1977",
+             related_company: "Los Pollos Hermanos")
+  end
+
   # context "when changing relationship answer name" do
   #   def change_relationship_answer_name
   #     Card["Jedi"]
