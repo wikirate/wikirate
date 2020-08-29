@@ -25,7 +25,17 @@ RSpec.describe Card::RelationshipImportItem do
     example "creates relationship answer card with valid data", as_bot: true do
       import
       expect_card(item_name).to exist
-      expect(Card.fetch_type_id(item_name.left)).to eq(Card::MetricAnswerID)
+      answer = Card[item_name.left]
+      expect(answer.type_id).to eq(Card::MetricAnswerID)
+      expect(answer.value).to eq("1")
+      expect(Card[item_name].inverse_answer_id.card.value).to eq("1")
+    end
+
+    example "increments relationship counts", as_bot: true do
+      answer_card = Card[item_name(year: "1977").left]
+      expect(answer_card.answer.numeric_value).to eq(2)
+      import year: "1977"
+      expect(answer_card.answer.numeric_value).to eq(3)
     end
   end
 

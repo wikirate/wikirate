@@ -54,7 +54,7 @@ RSpec.describe Card::Set::MetricType::Relationship do
     let(:company) { "SPECTRE" }
 
     def delete_answers
-      with_params company: company do
+      Card::Env.with_params company: company do
         metric_card.update trigger: :delete_relationship_answers
       end
     end

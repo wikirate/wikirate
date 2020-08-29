@@ -117,7 +117,9 @@ format :html do
   end
 
   def research_form_success
-    research_params.merge id: ":research_page", redirect: true
+    success_params = research_params.merge id: ":research_page", redirect: true
+    success_params.delete :related_company
+    success_params
   end
 
   def new_buttons

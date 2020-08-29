@@ -38,18 +38,12 @@ module Formula
     # @option opts [String] :year
     # @return [Hash] { year => { company => value } }
     def result opts={}
-      result = Hash.new_nested Hash
-      return result unless compile_formula
-
-      @input.each(opts) do |input, company, year|
-        if input == :unknown
-          result[year][company] = "Unknown"
-        else
-          next unless (value = get_value(input, company, year))
-          result[year][company] = normalize_value value
+      result_hash do |result|
+        @input.each(opts) do |input, company, year|
+          next unless (value = value_for_input input, company, year)
+          result[year][company] = value
         end
       end
-      result
     end
 
     def answers_to_be_calculated opts={}
@@ -143,6 +137,18 @@ module Formula
 
     def safe_to_exec? _expr
       false
+    end
+
+    def value_for_input input, company, year
+      return "Unknown" if input == :unknown
+      value = get_value input, company, year
+      normalize_value value if value
+    end
+
+    def result_hash
+      result = Hash.new_nested Hash
+      yield result if compile_formula
+      result
     end
 
     def normalize_value value

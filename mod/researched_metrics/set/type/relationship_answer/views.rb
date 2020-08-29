@@ -53,10 +53,6 @@ format :html do
     value
   end
 
-  view :basic_details do
-    nest card.value_card, view: :pretty_link
-  end
-
   view :expanded_details do
     _render :expanded_researched_details
   end
@@ -68,6 +64,10 @@ format :html do
         link_to_card(card, menu_icon, path: { view: :edit }, class: "text-dark ml-auto")
       ]
     end
+  end
+
+  def default_research_params
+    super.merge related_company: card.related_company
   end
 end
 
