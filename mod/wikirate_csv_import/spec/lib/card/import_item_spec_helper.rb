@@ -11,7 +11,7 @@ class Card
 
     def item_object hash={}
       obj = described_class.new item_hash(hash)
-      obj.conflict_strategy = :override if @overriding
+      obj.import_manager.conflict_strategy = :override if @overriding
       obj
     end
 

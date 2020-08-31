@@ -36,7 +36,7 @@ class Card
     end
 
     def translate_row_hash_to_create_answer_hash
-      r = @row.clone
+      r = input.clone
       translate_company_args r
       r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
       r[:ok_to_exist] = true
