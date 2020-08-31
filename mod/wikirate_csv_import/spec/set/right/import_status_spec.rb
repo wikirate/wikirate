@@ -41,7 +41,7 @@ RSpec.describe Card::Set::Right::ImportStatus do
   describe "#generate!" do
     it "generates a fresh status hash based on mappings/validations alone" do
       initial_content_hash = card_subject.content_hash
-      card_subject.generate!
+      card_subject.update_items
       expect(card_subject.content_hash).to eq(initial_content_hash)
     end
   end

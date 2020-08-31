@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Abstract::Import do
+RSpec.describe Card::Set::Abstract::Import::Events do
   let(:new_file_card_name) { "live import" }
   let(:old_file_card) { Card["answer import test"] }
 

@@ -31,9 +31,9 @@ RSpec.describe Card::SourceImportItem do
 
   describe "#import" do
     it "works with valid item_hash", as_bot: true do
-      status = import.status_hash
-      expect(status[:errors]).to be_blank
-      imported_card = Card[status[:id]]
+      item = import
+      expect(item.errors).to be_blank
+      imported_card = Card[item.status[:id]]
       expect(imported_card.type_id).to eq(Card::SourceID)
       expect(imported_card.fetch(:file).id).to be_present
     end
