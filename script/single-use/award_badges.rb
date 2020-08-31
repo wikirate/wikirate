@@ -30,7 +30,8 @@ class AwardBadges
     def award_create_badges type_code, opts={}
       puts "create badges for #{type_code}"
 
-      query(count_statement(type_code, opts[:where], opts[:from])).each do |user_id, count|
+      statement = count_statement type_code, opts[:where], opts[:from]
+      query(statement).each do |user_id, count|
         next unless user_id
         award_badges_if_earned! count, user_id, type_code, opts[:affinity]
       end

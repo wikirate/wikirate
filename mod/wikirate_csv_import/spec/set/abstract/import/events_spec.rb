@@ -63,7 +63,6 @@ RSpec.describe Card::Set::Abstract::Import::Events do
     end
   end
 
-
   private
 
   def refreshed_status
