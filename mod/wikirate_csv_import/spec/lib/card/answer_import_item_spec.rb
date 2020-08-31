@@ -16,10 +16,6 @@ RSpec.describe Card::AnswerImportItem do
 
   let(:item_name_parts) { %i[metric wikirate_company year] }
 
-  def add_corrections item, corrections
-    item.import_manager.corrections = default_map.merge corrections
-  end
-
   specify "answer doesn't exist" do
     expect(Card[item_name]).not_to be_a Card
   end
