@@ -51,15 +51,13 @@ RSpec.describe Card::RelationshipImportItem do
       # because ImportManager doesn't have corrections. otherwise would be "not ready"
       # needs better testing!
       item = validate object_company: "Mos Eisley"
-      expect(item.status.item_hash(0)[:status]).to eq(:failed)
+      expect(item.status[:status]).to eq(:failed)
     end
 
     it "succeeds with auto add" do
       co = "Kuhl Co"
       item = item_object object_company: co
-      map = default_map
-      map[:wikirate_company][co] = "AutoAdd"
-      item.corrections = map
+      add_corrections item, wikirate_company: { co => "AutoAdd" }
       item.import
 
       expect(Card[co].type_id).to eq(Card::WikirateCompanyID)

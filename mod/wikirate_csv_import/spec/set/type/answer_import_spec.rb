@@ -14,6 +14,7 @@ RSpec.describe Card::Set::Type::AnswerImport do
 
       import_ready_items
 
+      status = import_card.import_status_card.refresh(true).status
       expect(status.count(:ready)).to be_zero
       expect(status.count(:success)).to be_positive
     end

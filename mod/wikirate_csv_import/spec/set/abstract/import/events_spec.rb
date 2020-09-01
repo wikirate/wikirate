@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Abstract::Import do
+RSpec.describe Card::Set::Abstract::Import::Events do
   let(:new_file_card_name) { "live import" }
   let(:old_file_card) { Card["answer import test"] }
 
@@ -45,22 +45,20 @@ RSpec.describe Card::Set::Abstract::Import do
         expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
       end
     end
-  end
 
-  describe "event: initiate import" do
     it "fails on invalid rows" do
       importing_items 1 do
         old_file_card.update({})
         expect(refreshed_status.item_hash(1)[:status]).to eq(:not_ready)
       end
     end
-  end
 
-  describe "event: initiate import" do
-    it "imports valid rows even after a failure" do
-      importing_items 1, 8 do # 1 is not ready, 8 is valid (see above)
-        old_file_card.update({})
-        expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
+    context "when item has failed previously" do
+      it "imports valid rows even after a failure" do
+        importing_items 1, 8 do # 1 is not ready, 8 is valid (see above)
+          old_file_card.update({})
+          expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
+        end
       end
     end
   end

@@ -14,6 +14,8 @@ RSpec.describe Card::Set::Right::ImportStatus do
     Card["answer_import_test"].import_status_card
   end
 
+  check_views_for_errors :core
+
   describe "#content_hash" do
     it "parses json content" do
       card_subject.content = '{ "foo": "bar" }'
@@ -41,7 +43,7 @@ RSpec.describe Card::Set::Right::ImportStatus do
   describe "#generate!" do
     it "generates a fresh status hash based on mappings/validations alone" do
       initial_content_hash = card_subject.content_hash
-      card_subject.generate!
+      card_subject.update_items
       expect(card_subject.content_hash).to eq(initial_content_hash)
     end
   end

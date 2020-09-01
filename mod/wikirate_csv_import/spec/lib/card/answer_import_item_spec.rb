@@ -67,7 +67,7 @@ RSpec.describe Card::AnswerImportItem do
     it "handles auto adding company" do
       co = "Kuhl Co"
       item = item_object wikirate_company: co
-      item.corrections = default_map.merge(wikirate_company: { co => "AutoAdd" })
+      add_corrections item, wikirate_company: { co => "AutoAdd" }
       item.import
 
       expect(Card[co].type_id).to eq(Card::WikirateCompanyID)
@@ -76,7 +76,7 @@ RSpec.describe Card::AnswerImportItem do
     it "handles auto adding source" do
       src = "http://url.com"
       item = item_object source: src
-      item.corrections = default_map.merge(source: { src => "AutoAdd" })
+      add_corrections item, source: { src => "AutoAdd" }
       item.validate
 
       expect(item.import_hash["+source"])

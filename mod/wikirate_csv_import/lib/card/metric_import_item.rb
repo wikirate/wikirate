@@ -71,11 +71,11 @@ class Card
     end
 
     def import_hash
-      r = @row.clone
+      i = input.clone
       {
-        name: metric_name(r),
+        name: metric_name(i),
         type_id: Card::MetricID,
-        subfields: prep_subfields(r)
+        subfields: prep_subfields(i)
       }
     end
 
