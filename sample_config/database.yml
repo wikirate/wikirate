@@ -8,14 +8,19 @@
 #
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-development:
+
+shared:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: wikirate_dev
   pool: 5
   username: root
   password:
+  socket: /var/run/mysqld/mysqld.sock
+  host: 172.17.0.2
+
+development:
+  database: wikirate_dev
 #  socket: /tmp/mysql.sock
 
 # development: *remote_dev
@@ -25,25 +30,13 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test: &test
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
   database: wikirate_test
-  pool: 5
-  username: root
-  password:
 #  socket: /tmp/mysql.sock
 
 cucumber: *test
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: wikirate_test
-  pool: 5
-  username: root
-  password:
+  database: wikirate_dev
 #  socket: /tmp/mysql.sock
 
 init_test: *test

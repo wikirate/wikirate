@@ -2,9 +2,6 @@
 	path = vendor/decko
 	url = https://github.com/decko-commons/decko
 	branch = master
-[submodule "vendor/card-mods"]
-	path = vendor/card-mods
-	url = https://github.com/decko-commons/card-mods
 [submodule "mod/wikirate_assets/vendor/readmore"]
 	path = mod/wikirate_assets/vendor/readmore
 	url = https://github.com/jedfoster/Readmore.js
@@ -20,3 +17,7 @@
 [submodule "mod/homepage/vendor/countUp"]
 	path = mod/homepage/vendor/countUp
 	url = https://github.com/inorganik/countUp.js.git
+[submodule "vendor/card-mods"]
+	path = vendor/card-mods
+	url = git@github.com:GerryG/card-mods
+	branch = layout

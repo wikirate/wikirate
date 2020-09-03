@@ -1,4 +1,4 @@
-mod "layout"
+gem_mod "layout"
 gem_mod "bookmarks"
 gem_mod "pdfjs"
 gem_mod "csv_import"
