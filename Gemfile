@@ -64,6 +64,7 @@ gem "card-mod-csv_import", path: "./vendor/card-mods/csv_import"
 gem "card-mod-markdown", path: "./vendor/card-mods/markdown"
 gem "card-mod-new_relic", path: "./vendor/card-mods/new_relic"
 gem "card-mod-pdfjs", path: "./vendor/card-mods/pdfjs"
+gem "card-mod-layout", path: "./vendor/card-mods/layout"
 
 group :live do
   gem "dalli"
