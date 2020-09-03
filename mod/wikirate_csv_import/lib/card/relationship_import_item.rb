@@ -15,11 +15,9 @@ class Card
     CSV_KEYS = %i[relationship_id relationship_link metric answer_id
                   metric subject_company metric_company year value].freeze
 
-    def translate_company_args item
-      handle_company_auto_add item, :subject_company, :auto_add_company
-      handle_company_auto_add item, :object_company, :auto_add_object_company
-      item[:company] = item.delete :subject_company
-      item[:related_company] = item.delete :object_company
+    def translate_company_args hash
+      hash[:company] = hash.delete :subject_company
+      hash[:related_company] = hash.delete :object_company
     end
 
     def csv_line_for_card card

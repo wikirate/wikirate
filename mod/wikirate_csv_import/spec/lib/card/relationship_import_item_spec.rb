@@ -40,27 +40,18 @@ RSpec.describe Card::RelationshipImportItem do
   end
 
   context "with unknown company" do
-    def default_map
-      map = super
-      map[:wikirate_company] =
-        map.delete(:subject_company).merge(map.delete(:object_company))
-      map
-    end
+    let(:unknown_co) { "Kuhl Co" }
 
     it "gets 'failed' status" do
-      # because ImportManager doesn't have corrections. otherwise would be "not ready"
+      # because ImportManager doesn't have mapping. otherwise would be "not ready"
       # needs better testing!
-      item = validate object_company: "Mos Eisley"
+      item = validate object_company: unknown_co
       expect(item.status[:status]).to eq(:failed)
     end
 
-    it "succeeds with auto add" do
-      co = "Kuhl Co"
-      item = item_object object_company: co
-      add_corrections item, wikirate_company: { co => "AutoAdd" }
-      item.import
-
-      expect(Card[co].type_id).to eq(Card::WikirateCompanyID)
+    it "handles auto adding company" do
+      described_class.auto_add :wikirate_company, unknown_co
+      expect(Card[unknown_co].type_id).to eq(Card::WikirateCompanyID)
     end
   end
 end

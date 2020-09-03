@@ -40,10 +40,10 @@ class Card
       end
     end
 
-    def add_corrections item, corrections
+    def add_mapping item, mapping
       map = default_map.clone
-      corrections.each { |k, v| map[k] = map[k].merge v }
-      item.import_manager.corrections = map
+      mapping.each { |k, v| map[k] = map[k].merge v }
+      item.import_manager.mapping = map
     end
 
     private
