@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::RelationshipImport do
   INDECES = {
     known: [9, 10], # company known, other fields mapped
     unknown: [4, 13, 14] # company unknown, other fields mapped
-  }
+  }.freeze
 
   def card_subject
     Card["relationship import test"]
@@ -51,7 +51,7 @@ RSpec.describe Card::Set::Type::RelationshipImport do
     end
 
     def mapping map_type, mappings, &block
-      Card::Env.with_params mapping: { map_type => mappings }, &block;
+      Card::Env.with_params mapping: { map_type => mappings }, &block
     end
 
     example "it correctly updates counts for answers with multiple relationships" do
@@ -65,5 +65,4 @@ RSpec.describe Card::Set::Type::RelationshipImport do
       expect(Card["Jedi+less evil+SPECTRE+2017"].value).to eq("1")
     end
   end
-
 end
