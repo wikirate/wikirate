@@ -1,10 +1,11 @@
-event :update_relationship_count, :after_integrate, when: :update_relationship_count? do
+event :update_relationship_count, :after_integrate,
+      on: :save, when: :update_relationship_count? do
   count = relationship_answer_count
   if count.positive?
     update_relationship_answer_count! count
-  else
-    # refresh needed in tests; maybe not in live when delay is real?
-    delete || refresh(true)&.delete unless trash
+  elsif !trash
+    director.restart
+    delete
   end
 end
 
