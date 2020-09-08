@@ -41,7 +41,9 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
     let(:target) { Card["Monster Inc"] }
     let(:metric) { Card["Jedi+more evil"] }
 
-    it "should move non-conflicting answers from source to target company" do
+    # currently performed as bot because requires permission to delete
+    # simple answers where the count is now 0.
+    it "should move non-conflicting answers to target company", as_bot: true do
       old_answer = [metric.name, company.name, "1977"]
       new_answer = [metric.name, target.name, "1977"]
       new_relationship = [metric.name, target.name, "1977", "Los_Pollos_Hermanos"]
@@ -57,6 +59,6 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
   end
 
   describe "#move_source_listings_to" do
-    "woot"
+    "TODO"
   end
 end
