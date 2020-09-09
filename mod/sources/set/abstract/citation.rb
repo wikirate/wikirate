@@ -1,7 +1,10 @@
 # add source card if needed
 event :auto_add_source, :prepare_to_validate,
       on: :save, changed: :content, trigger: :required do
-  auto_add_url_items
+  Self::Source.each_url_source item_names do |url, source|
+    drop_item url
+    add_item source.name
+  end
 end
 
 # make sure sources exists, are valid, and are properly annotated
@@ -75,22 +78,4 @@ def invalid_source_item_error_message source_name
   else
     "No such source exists: #{source_name}"
   end
-end
-
-# AUTO ADD SOURCES
-
-def auto_add_url_items
-  item_names.each do |item|
-    next unless Self::Source.url? item
-    source_card = find_or_add_source_card item
-    drop_item item
-    add_item source_card.name
-  end
-end
-
-def find_or_add_source_card url
-  found = Self::Source.search_by_url url
-  return found.first if found.present?
-
-  Card.create type: SourceID, "+:wikirate_link" => url
 end

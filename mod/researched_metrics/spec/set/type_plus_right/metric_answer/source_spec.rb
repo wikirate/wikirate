@@ -41,7 +41,12 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Source do
       let(:url) { "https://xkcd.com/1735/" }
 
       it "adds source when explicitly triggered to do so" do
-        a = new_answer(source: { content: url, trigger_in_action: :auto_add_source })
+        a = new_answer source: { content: url, trigger_in_action: :auto_add_source },
+                       user: "Joe Admin"
+        # shouldn't have to be Joe Admin.
+        # It avoids permissions issue having to do with User+Source+Badges Earned
+        # Goes away if we get rid of unwanted structure rule
+        # that makes User+Source an HTML card
         expect(a.source_card.first_name)
           .to eq(Card::Set::Self::Source.search_by_url(url).first.name)
       end

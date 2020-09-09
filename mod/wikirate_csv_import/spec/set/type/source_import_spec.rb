@@ -31,7 +31,7 @@ RSpec.describe Card::Set::Type::SourceImport do
   #       Card::Env.params[:conflict_strategy] = :override
   #       trigger_import existing_url: {
   #         match_type: :exact,
-  #         corrections: { title: "Obi Wan" }
+  #         mapping: { title: "Obi Wan" }
   #       }
   #       Card::Env.params[:conflict_strategy] = nil
   #     end
@@ -57,7 +57,7 @@ RSpec.describe Card::Set::Type::SourceImport do
   #     it "updates title" do
   #       Card::Env.params[:conflict_strategy] = :override
   #       trigger_import existing_without_title: { company_match_type: :exact,
-  #                                                corrections: { title: "Anakin" } }
+  #                                                mapping: { title: "Anakin" } }
   #       Card::Env.params[:conflict_strategy] = nil
   #       expect(source_card(:existing_without_title))
   #         .to have_a_field(:wikirate_title).with_content "Anakin"
@@ -67,8 +67,8 @@ RSpec.describe Card::Set::Type::SourceImport do
   #
   # context "duplicated source in file" do
   #   it "only adds the first source" do
-  #     trigger_import exact_match: { corrections: { title: "A" } },
-  #                    duplicate_in_file: { corrections: { title: "B" } }
+  #     trigger_import exact_match: { mapping: { title: "A" } },
+  #                    duplicate_in_file: { mapping: { title: "B" } }
   #
   #     expect(source_card(:exact_match))
   #       .to be_a(Card)

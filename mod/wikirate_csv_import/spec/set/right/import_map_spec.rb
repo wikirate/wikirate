@@ -68,6 +68,12 @@ RSpec.describe Card::Set::Right::ImportMap do
       expect(card_subject.map[:source].keys)
         .to include("https://thereaderwiki.com/en/Space_opera")
     end
+
+    it "catches non unique keys in auto add" do
+      update_with_mapping_param wikirate_company: { "A" => "AutoAdd" } do |card|
+        expect(card.errors[:content]).to include(/unique/)
+      end
+    end
   end
 
   describe "event: update_import_mapping" do

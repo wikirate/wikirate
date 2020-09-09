@@ -63,24 +63,18 @@ RSpec.describe Card::AnswerImportItem do
     end
   end
 
-  describe "corrections" do
-    it "handles auto adding company" do
-      co = "Kuhl Co"
-      item = item_object wikirate_company: co
-      add_corrections item, wikirate_company: { co => "AutoAdd" }
-      item.import
+  describe "mapping" do
+    let(:unknown_co) { "Kuhl Co" }
+    let(:unknown_url) { "http://url.com" }
 
-      expect(Card[co].type_id).to eq(Card::WikirateCompanyID)
+    it "handles auto adding company" do
+      described_class.auto_add :wikirate_company, unknown_co
+      expect(Card[unknown_co].type_id).to eq(Card::WikirateCompanyID)
     end
 
-    it "handles auto adding source" do
-      src = "http://url.com"
-      item = item_object source: src
-      add_corrections item, source: { src => "AutoAdd" }
-      item.validate
-
-      expect(item.import_hash["+source"])
-        .to include(content: [src], trigger_in_action: :auto_add_source)
+    it "handles auto adding source", as_bot: true do
+      val = described_class.auto_add :source, unknown_url
+      expect(Card.fetch_type_id(val)).to eq(Card::SourceID)
     end
   end
 

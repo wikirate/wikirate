@@ -98,7 +98,7 @@ event :update_oc_mapping_due_to_wikipedia_entry, :integrate,
       on: :save, when: :needs_oc_mapping? do
 
   oc = ::OpenCorporates::MappingApi.fetch_oc_company_number wikipedia_url: content
-  return unless oc.company_number.present?
+  return unless oc&.company_number&.present?
 
   add_left_subcard :open_corporates, oc.company_number, :phrase
   add_left_subcard :incorporation, jurisdiction_name(oc.incorporation_jurisdiction_code)
