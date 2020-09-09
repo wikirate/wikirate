@@ -43,7 +43,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
 
     # currently performed as bot because requires permission to delete
     # simple answers where the count is now 0.
-    it "should move non-conflicting answers to target company", as_bot: true do
+    it "moves non-conflicting answers to target company", as_bot: true do
       old_answer = [metric.name, company.name, "1977"]
       new_answer = [metric.name, target.name, "1977"]
       new_relationship = [metric.name, target.name, "1977", "Los_Pollos_Hermanos"]
