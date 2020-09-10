@@ -26,7 +26,7 @@ def current_card_and_name card_or_name
 end
 
 def metric_type_card_from_act metric_type_name
-  Card::ActManager.card metric_type_name
+  Card::Director.card metric_type_name
 end
 
 def metric_type_card_from_fetch metric_type_name

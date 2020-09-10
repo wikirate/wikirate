@@ -64,8 +64,8 @@ end
 
 def expire_answer company, year
   answer_name = Card::Name[metric_card.name, company, year.to_s]
-  ActManager.expirees << answer_name
-  ActManager.expirees << Card::Name[answer_name, :value]
+  Director.expirees << answer_name
+  Director.expirees << Card::Name[answer_name, :value]
 end
 
 def update_answer answer, company, year, value
