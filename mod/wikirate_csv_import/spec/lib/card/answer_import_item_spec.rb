@@ -65,7 +65,7 @@ RSpec.describe Card::AnswerImportItem do
 
   describe "mapping" do
     let(:unknown_co) { "Kuhl Co" }
-    let(:unknown_url) { "http://url.com" }
+    let(:unknown_url) { "http://xkcd.com" }
 
     it "handles auto adding company" do
       described_class.auto_add :wikirate_company, unknown_co
