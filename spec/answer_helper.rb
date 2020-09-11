@@ -32,7 +32,7 @@ module AnswerHelper
   # end
   def create_metric opts={}, &block
     Card::Auth.as_bot do
-      if opts[:name]&.to_name.parts.size == 1
+      if opts[:name]&.to_name&.simple?
         opts[:name] = "#{Card::Auth.current.name}+#{opts[:name]}"
       end
       opts[:name] ||= "TestDesigner+TestMetric"
