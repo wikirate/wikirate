@@ -16,7 +16,6 @@ ratings:
    - mod/**
    - "**.rb"
 exclude_paths:
-- spec/**/*
 - vendor/**/*
 - card-mods/pdfjs/files/**/*
 - mod/sources/files/**/*

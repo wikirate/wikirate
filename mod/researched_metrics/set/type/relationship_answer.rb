@@ -65,7 +65,7 @@ end
 
 def valid_related_company?
   (related_company_card&.type_id == Card::WikirateCompanyID) ||
-    ActManager.include?(related_company)
+    Director.include?(related_company)
 end
 
 def value_type_code
@@ -99,7 +99,7 @@ end
 def schedule_answer_count name
   answer_card = Card.fetch name, new: { type_id: MetricAnswerID, "+value" => "1" }
   answer_card.schedule_answer_count
-  # ActManager.act_card&.
+  # Director.act_card&.
   add_subcard answer_card
 end
 

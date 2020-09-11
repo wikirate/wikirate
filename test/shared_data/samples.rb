@@ -10,8 +10,14 @@ class SharedData
       money: "Jedi+cost of planets destroyed"
     }.freeze
 
+    module ClassMethods
+      def metric_count
+        METRIC_COUNT
+      end
+    end
+
     def metric_count
-      SharedData::Samples::METRIC_COUNT
+      METRIC_COUNT
     end
 
     # cards only exist in testing db
