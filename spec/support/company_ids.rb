@@ -1,4 +1,4 @@
-RSpec.shared_context "company ids" do
+RSpec.shared_context "with company ids" do
   let(:apple_id) { Card.fetch_id "Apple Inc" }
   let(:spectre_id) { Card.fetch_id "SPECTRE" }
   let(:death_star_id) { Card.fetch_id "Death Star" }

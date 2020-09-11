@@ -1,7 +1,7 @@
 require "./spec/support/company_ids"
 
 RSpec.describe Formula::Calculator::InputValues do
-  include_context "company ids"
+  include_context "with company ids"
 
   def input_values formula
     f_card = Card["Jedi+friendliness+formula"]

@@ -3,7 +3,7 @@ require "./spec/support/company_ids"
 
 RSpec.describe Formula::Calculator::Input do
   include_context "with calculator stub"
-  include_context "company ids"
+  include_context "with company ids"
 
   let :input do
     fc = parser_with_input @input, @year_options, @company_options, @unknown_options,

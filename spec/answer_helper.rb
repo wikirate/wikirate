@@ -1,3 +1,4 @@
+# Answer-related helper methods for specs
 module AnswerHelper
   def create_answer args
     with_user(args.delete(:user) || "Joe User") do
@@ -31,7 +32,7 @@ module AnswerHelper
   # end
   def create_metric opts={}, &block
     Card::Auth.as_bot do
-      if opts[:name] && opts[:name].to_name.parts.size == 1
+      if opts[:name]&.to_name.parts.size == 1
         opts[:name] = "#{Card::Auth.current.name}+#{opts[:name]}"
       end
       opts[:name] ||= "TestDesigner+TestMetric"
