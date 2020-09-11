@@ -68,40 +68,40 @@ RSpec.describe Card::Set::Right::ImportMap do
       expect(card_subject.map[:source].keys)
         .to include("https://thereaderwiki.com/en/Space_opera")
     end
-
-    it "catches non unique keys in auto add" do
-      update_with_mapping_param wikirate_company: { "A" => "AutoAdd" } do |card|
-        expect(card.errors[:content]).to include(/unique/)
-      end
-    end
   end
 
   describe "event: update_import_mapping" do
     it "updates map based on 'mapping' parameter" do
-      update_with_mapping_param wikirate_company: { "Google" => "Google LLC" } do |card|
-        expect(card.map[:wikirate_company]["Google"])
-          .to eq("Google LLC".to_name.card_id)
-      end
+      card = update_with_mapping_param wikirate_company: { "Google" => "Google LLC" }
+      expect(card.map[:wikirate_company]["Google"]).to eq("Google LLC".to_name.card_id)
     end
 
     it "catches error if mapping is not a card" do
-      update_with_mapping_param metric: { "Not a metric" => "Not a card" } do |card|
-        expect(card.errors[:content]).to include(/invalid metric mapping/)
-      end
+      card = update_with_mapping_param metric: { "Not a metric" => "Not a card" }
+      expect(card.errors[:content]).to include(/invalid metric mapping/)
     end
 
     it "catches error if mapping has the wrong type" do
-      update_with_mapping_param metric: { "Not a metric" => "Google LLC" } do |card|
-        expect(card.errors[:content]).to include(/invalid metric mapping/)
-      end
+      card = update_with_mapping_param metric: { "Not a metric" => "Google LLC" }
+      expect(card.errors[:content]).to include(/invalid metric mapping/)
     end
 
     it "catches error if data types are wonky" do
-      update_with_mapping_param(
-        metric: { "Not a metric" => { wtf: "really!?" } }
-      ) do |card|
-        expect(card.errors[:content]).to include(/invalid metric mapping/)
-      end
+      card = update_with_mapping_param metric: { "Not a metric" => { wtf: "really!?" } }
+      expect(card.errors[:content]).to include(/invalid metric mapping/)
+    end
+
+    it "catches non unique keys in auto add" do
+      card = update_with_mapping_param wikirate_company: { "A" => "AutoAdd" }
+      expect(card.errors[:content]).to include(/unique/)
+    end
+
+    it "auto adds", as_bot: true do
+      card = update_with_mapping_param(
+        wikirate_company: { "New Company" => "AutoAdd" },
+        source: { "http://google.com/search?q=4" => "AutoAdd"}
+      )
+      expect(card.import_status_card.status.item_hash(3)[:status]).to eq(:ready)
     end
   end
 
@@ -160,16 +160,13 @@ RSpec.describe Card::Set::Right::ImportMap do
   end
 end
 
-def update_with_mapping_param value
-  with_mapping_param value do
-    card_subject.update({})
-    yield card_subject
-  end
+def with_mapping_param value
+  Card::Env.with_params(mapping: value ) { yield }
 end
 
-def with_mapping_param value
-  Card::Env.params[:mapping] = value
-  yield
+def update_with_mapping_param value
+  with_mapping_param(value) { card_subject.update({}) }
+  card_subject
 end
 
 def source_mapping q, target=":darth_vader_source"
