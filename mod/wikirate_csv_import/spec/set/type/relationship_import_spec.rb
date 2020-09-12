@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Type::RelationshipImport do
       ["Google Inc", "SPECTRE"]
     end
 
-    example "it correctly updates counts for answers with multiple relationships" do
+    it "correctly updates counts for answers with multiple relationships" do
       import_indeces :known
 
       check_relationship_answer_cards
