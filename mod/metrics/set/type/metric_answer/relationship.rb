@@ -1,5 +1,6 @@
 event :update_relationship_count, :after_integrate,
       on: :save, when: :update_relationship_count? do
+  puts "Updating relationship count".green
   count = relationship_answer_count
   if count.positive?
     update_relationship_answer_count! count
