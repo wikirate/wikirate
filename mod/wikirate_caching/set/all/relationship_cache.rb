@@ -11,7 +11,7 @@ def update_relationship id: nil, relationship_id: nil, metric_id: nil
 end
 
 def create_relationship relationship_id:
-  puts "create relationship".blue
+  # puts "create relationship".blue
   Relationship.create relationship_id
 end
 
@@ -20,7 +20,7 @@ def delete_relationship relationship_id:
 end
 
 def update_relationships_now_or_later ids
-  puts "update relationship now or later".blue
+  # puts "update relationship now or later".blue
   if act_finished_integrate_stage?
     Relationship.update_by_ids ids
   else

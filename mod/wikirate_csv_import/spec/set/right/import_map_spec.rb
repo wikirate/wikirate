@@ -99,7 +99,7 @@ RSpec.describe Card::Set::Right::ImportMap do
     it "auto adds", as_bot: true do
       card = update_with_mapping_param(
         wikirate_company: { "New Company" => "AutoAdd" },
-        source: { "http://google.com/search?q=4" => "AutoAdd"}
+        source: { "http://google.com/search?q=4" => "AutoAdd" }
       )
       expect(card.import_status_card.status.item_hash(3)[:status]).to eq(:ready)
     end
@@ -161,7 +161,7 @@ RSpec.describe Card::Set::Right::ImportMap do
 end
 
 def with_mapping_param value
-  Card::Env.with_params(mapping: value ) { yield }
+  Card::Env.with_params(mapping: value) { yield }
 end
 
 def update_with_mapping_param value
