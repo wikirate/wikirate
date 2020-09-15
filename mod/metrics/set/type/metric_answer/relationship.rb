@@ -17,7 +17,7 @@ end
 
 def update_relationship_answer_count! count=nil
   count ||= relationship_answer_count
-  # value_card.director.restart
+  value_card.director.restart
   value_card.update content: count
 end
 

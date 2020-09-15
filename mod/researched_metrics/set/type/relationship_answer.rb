@@ -11,7 +11,7 @@ require_field :source, when: :source_required?
 
 # has to happen after :set_answer_name,
 # but always, also if :set_answer_name is not executed
-event :schedule_answer_counts, :finalize do
+event :schedule_answer_counts, :prepare_to_store do
   schedule_answer_count answer_name
   schedule_answer_count inverse_answer_name
 end

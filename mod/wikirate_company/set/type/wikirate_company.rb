@@ -14,7 +14,7 @@ card_accessor :image
 card_accessor :incorporation
 card_accessor :headquarters
 
-event :validate_company_name, :validate, changed: :name do
+event :validate_company_name, :validate, changed: :name, on: :save do
   errors.add :name, "Use ＋ instead of + in company name" if name.junction?
 end
 
@@ -22,18 +22,10 @@ event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
   ensure_subfield :wikipedia
 end
 
-event :delete_all_company_answers, :store, on: :delete do
-  answers.delete_all
-  skip_event! :reset_double_check_flag,
-              :delete_answer_lookup_table_entry_due_to_value_change,
-              :delete_relationship_lookup_table_entry_due_to_value_change,
-              :update_related_calculations
-end
-
-# happens in optimized event below
-event :skip_answer_updates_on_company_rename, :validate,
-      on: :update, changed: :name do
-  skip_event! :update_answer_lookup_table_due_to_answer_change
+event :delete_all_company_answers, :validate, on: :delete do
+  # answers.delete_all
+  # skip_event! :update_related_calculations
+  skip_event! :schedule_answer_counts
 end
 
 def headquarters_jurisdiction_code
