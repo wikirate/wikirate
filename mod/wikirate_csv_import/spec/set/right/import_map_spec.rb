@@ -93,7 +93,7 @@ RSpec.describe Card::Set::Right::ImportMap do
 
     it "catches non unique keys in auto add" do
       card = update_with_mapping_param wikirate_company: { "A" => "AutoAdd" }
-      expect(card.errors[:content]).to include(/unique/)
+      expect(card.refresh(true).map[:wikirate_company]["A"]).to eq("AutoAddFailure")
     end
 
     it "auto adds", as_bot: true do
@@ -165,7 +165,9 @@ def with_mapping_param value
 end
 
 def update_with_mapping_param value
-  with_mapping_param(value) { card_subject.update({}) }
+  with_mapping_param(value) do
+    card_subject.update({})
+  end
   card_subject
 end
 
