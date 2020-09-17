@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Type::RelationshipImport do
       ["Google Inc", "SPECTRE"]
     end
 
-    example "it correctly updates counts for answers with multiple relationships" do
+    it "correctly updates counts for answers with multiple relationships" do
       import_indeces :known
 
       check_relationship_answer_cards
@@ -52,6 +52,13 @@ RSpec.describe Card::Set::Type::RelationshipImport do
 
     def mapping map_type, mappings, &block
       Card::Env.with_params mapping: { map_type => mappings }, &block
+    end
+
+    it "autoadds" do
+      mapping :wikirate_company, "New Company" => "AutoAdd", "Sony" => "AutoAdd" do
+        card_subject.import_map_card.update!({})
+      end
+      expect(card_subject.status.count(:ready)).to eq(3)
     end
 
     example "it correctly updates counts for answers with multiple relationships" do

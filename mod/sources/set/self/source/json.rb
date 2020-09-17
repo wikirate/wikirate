@@ -53,8 +53,8 @@ format :json do
     curl.max_redirects = 5
     curl.http_head
     header_str = curl.header_str
-    [header_str[/.*X-Frame-Options: (.*)\r\n/, 1],
-     header_str[/.*Content-Type: (.*)\r\n/, 1]]
+    [header_str[/.*X-Frame-Options: (.*)\r\n/i, 1],
+     header_str[/.*Content-Type: (.*)\r\n/i, 1]]
   end
 
   def firefox? user_agent

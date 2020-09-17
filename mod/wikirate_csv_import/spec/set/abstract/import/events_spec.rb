@@ -31,34 +31,27 @@ RSpec.describe Card::Set::Abstract::Import::Events do
     it "immediately marks items in progress as 'importing'" do
       Delayed::Worker.delay_jobs = true
       # status should remain "importing" until delayed job is processed
-      importing_items 8 do
-        old_file_card.update({})
-        expect(refreshed_status.item_hash(8)[:status]).to eq(:importing)
-      end
+      importing_items(8) { old_file_card.update({}) }
+      expect(refreshed_status.item_hash(8)[:status]).to eq(:importing)
     end
   end
 
   describe "event: initiate import" do
     it "imports valid rows" do
-      importing_items 8 do
-        old_file_card.update({})
-        expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
-      end
+      importing_items(8) { old_file_card.update({}) }
+      expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
     end
 
     it "fails on invalid rows" do
-      importing_items 1 do
-        old_file_card.update({})
-        expect(refreshed_status.item_hash(1)[:status]).to eq(:not_ready)
-      end
+      importing_items(1) { old_file_card.update({}) }
+      expect(refreshed_status.item_hash(1)[:status]).to eq(:not_ready)
     end
 
     context "when item has failed previously" do
       it "imports valid rows even after a failure" do
-        importing_items 1, 8 do # 1 is not ready, 8 is valid (see above)
-          old_file_card.update({})
-          expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
-        end
+        # 1 is not ready, 8 is valid (see above)
+        importing_items(1, 8) { old_file_card.update({}) }
+        expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
       end
     end
   end
@@ -69,11 +62,9 @@ RSpec.describe Card::Set::Abstract::Import::Events do
     old_file_card.import_status_card.refresh(true).status
   end
 
-  def importing_items *indeces
-    Card::Env.params[:import_rows] = indeces.each_with_object({}) do |i, h|
-      h[i] = true
-    end
-    yield
+  def importing_items *indeces, &block
+    row_hash = indeces.each_with_object({}) { |i, h| h[i] = true }
+    Card::Env.with_params import_rows: row_hash, &block
   end
 
   def create_import_file

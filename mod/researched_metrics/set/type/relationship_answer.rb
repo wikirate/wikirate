@@ -11,7 +11,7 @@ require_field :source, when: :source_required?
 
 # has to happen after :set_answer_name,
 # but always, also if :set_answer_name is not executed
-event :schedule_answer_counts, :finalize do
+event :schedule_answer_counts, :prepare_to_store do
   schedule_answer_count answer_name
   schedule_answer_count inverse_answer_name
 end
@@ -65,7 +65,7 @@ end
 
 def valid_related_company?
   (related_company_card&.type_id == Card::WikirateCompanyID) ||
-    ActManager.include?(related_company)
+    Director.include?(related_company)
 end
 
 def value_type_code
@@ -99,7 +99,7 @@ end
 def schedule_answer_count name
   answer_card = Card.fetch name, new: { type_id: MetricAnswerID, "+value" => "1" }
   answer_card.schedule_answer_count
-  # ActManager.act_card&.
+  # answer_card.director.restart
   add_subcard answer_card
 end
 

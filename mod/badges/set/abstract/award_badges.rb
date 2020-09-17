@@ -44,8 +44,8 @@ def current_badge_pointer badge_card
 end
 
 def active_badge_pointer badge_pointer
-  return unless ActManager.include? badge_pointer.name
-  director = ActManager.fetch(badge_pointer)
+  return unless Director.include? badge_pointer.name
+  director = Director.fetch(badge_pointer)
   director.reset_stage
   director.card
 end
