@@ -1,5 +1,5 @@
 format do
-  view :legend do
+  view :legend, unknown: true do
     nest card.metric_card, view: :legend
   end
 end
