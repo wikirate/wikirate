@@ -3,27 +3,27 @@
 require File.expand_path("../filter_spec_helper.rb", __FILE__)
 
 RSpec.describe Card::Set::Right::BrowseTopicFilter do
-  describe "filter_wql" do
-    subject { card_subject.filter_wql_from_params }
+  describe "filter_cql" do
+    subject { card_subject.filter_cql_from_params }
 
-    def wql args
+    def cql args
       args # merge type_id: Card::WikirateTopicID
     end
 
     context "name argument" do
       before { filter_args name: "Animal Rights" }
-      it { is_expected.to eq wql(name: ["match", "Animal Rights"]) }
+      it { is_expected.to eq cql(name: ["match", "Animal Rights"]) }
     end
 
     context "company argument" do
       before { filter_args wikirate_company: "Apple Inc" }
-      it { is_expected.to eq wql(found_by: "Apple Inc+topic") }
+      it { is_expected.to eq cql(found_by: "Apple Inc+topic") }
     end
 
     context "metric argument" do
       before { filter_args metric: "myMetric" }
       it do
-        is_expected.to eq wql(
+        is_expected.to eq cql(
           referred_to_by: { left: { name: "myMetric" }, right: "topic" }
         )
       end
@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Right::BrowseTopicFilter do
     context "project argument" do
       before { filter_args project: "myProject" }
       it do
-        is_expected.to eq wql(
+        is_expected.to eq cql(
           referred_to_by: { left: { name: "myProject" }, right: "topic" }
         )
       end
@@ -46,7 +46,7 @@ RSpec.describe Card::Set::Right::BrowseTopicFilter do
                     project: "myProject"
       end
       it "joins filter conditions correctly" do
-        is_expected.to eq wql(
+        is_expected.to eq cql(
           name: ["match", "Animal Rights"],
           found_by: "Apple Inc+topic",
           referred_to_by: [

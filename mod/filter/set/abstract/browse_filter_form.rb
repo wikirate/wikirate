@@ -16,7 +16,7 @@ def filter_class
   Card::FilterQuery
 end
 
-def wql_content
+def cql_content
   { type_id: target_type_id, limit: 20 }
 end
 
@@ -24,7 +24,7 @@ def target_type_id
   raise "need target_type_id"
 end
 
-def sort_wql
+def sort_cql
   case current_sort.to_sym
   when :name
     { sort: "name" }
@@ -33,11 +33,11 @@ def sort_wql
   when :relevance
     { sort: "relevance" }
   else
-    cached_count_sort_wql
+    cached_count_sort_cql
   end
 end
 
-def cached_count_sort_wql
+def cached_count_sort_cql
   { sort: { right: current_sort,
             item: "cached_count",
             return: "count" },

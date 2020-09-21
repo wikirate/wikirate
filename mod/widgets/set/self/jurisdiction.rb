@@ -69,8 +69,8 @@ format :json do
 
   def select2_option_list
     if name_query
-      wql = { type_id: Card::JurisdictionID, name: ["match", name_query] }
-      Card.search(wql).each_with_object([]) do |i, ar|
+      cql = { type_id: Card::JurisdictionID, name: ["match", name_query] }
+      Card.search(cql).each_with_object([]) do |i, ar|
         next unless i.codename
         ar << { id: i.codename, text: i.name }
       end

@@ -1,4 +1,4 @@
-def wql_content
+def cql_content
   { type:
       %i[in wikirate_company wikirate_topic metric metric_title project research_group],
     fulltext_match: "$keyword",

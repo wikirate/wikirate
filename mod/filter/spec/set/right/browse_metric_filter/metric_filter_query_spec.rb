@@ -3,8 +3,8 @@
 require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 
 RSpec.describe Card::Set::Right::BrowseMetricFilter do
-  describe "filter_wql" do
-    subject { card_subject.filter_wql_from_params }
+  describe "filter_cql" do
+    subject { card_subject.filter_cql_from_params }
 
     context "with name argument" do
       before { filter_args name: "CDP" }
@@ -13,10 +13,10 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
 
     context "with topic argument" do
       before { filter_args wikirate_topic: "myTopic" }
-      it { is_expected.to eq(topic_wql) }
+      it { is_expected.to eq(topic_cql) }
     end
 
-    def topic_wql
+    def topic_cql
       simple_field_filter Card::WikirateTopicID, "myTopic"
     end
 
@@ -31,28 +31,28 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
 
     context "with metric type argument" do
       before { filter_args metric_type: "researched" }
-      it { is_expected.to eq(metric_type_wql) }
+      it { is_expected.to eq(metric_type_cql) }
     end
 
-    def metric_type_wql
+    def metric_type_cql
       simple_field_filter Card::MetricTypeID, "researched"
     end
 
     context "with value type argument" do
       before { filter_args value_type: "Category" }
-      it { is_expected.to eq(value_type_wql) }
+      it { is_expected.to eq(value_type_cql) }
     end
 
-    def value_type_wql
+    def value_type_cql
       simple_field_filter Card::ValueTypeID, "Category"
     end
 
     context "with research policy argument" do
       before { filter_args research_policy: "community assessed" }
-      it { is_expected.to eq(policy_wql) }
+      it { is_expected.to eq(policy_cql) }
     end
 
-    def policy_wql
+    def policy_cql
       simple_field_filter Card::ResearchPolicyID, "community assessed"
     end
 
@@ -86,7 +86,7 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
       it "joins filter conditions correctly" do
         is_expected
           .to eq(right: { name: [:match, "CDP"] },
-                 and: policy_wql.merge(and: metric_type_wql.merge(and: topic_wql)),
+                 and: policy_cql.merge(and: metric_type_cql.merge(and: topic_cql)),
                  right_plus: { type_id: Card::WikirateCompanyID, right_plus: "2015" },
                  part: "myDesigner",
                  referred_to_by: { left: "myProject", right_id: Card::MetricID })

@@ -72,14 +72,14 @@ class ImportValueTypeCardtypes < Card::Migration
                                 type_id: Card::RelationshipAnswerID
   end
 
-  def value_ids_for_answers_where wql
-    answer_ids = id_search wql
+  def value_ids_for_answers_where cql
+    answer_ids = id_search cql
     return if answer_ids.blank?
     id_search right_id: Card::ValueID, left_id: answer_ids
   end
 
-  def id_search wql
-    Card.search wql.merge(limit: 0, return: :id)
+  def id_search cql
+    Card.search cql.merge(limit: 0, return: :id)
   end
 
   def bulk_update_types ids, type_id

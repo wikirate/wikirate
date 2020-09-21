@@ -1,4 +1,4 @@
-def wql_content
+def cql_content
   {
     type_id: Card::ProjectID,                                # find projects
     right_plus: [
