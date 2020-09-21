@@ -12,9 +12,10 @@ if ENV["RM_INFO"] && ARGV[0] == 'check'
 else
   path decko_gem_path do
     gem "card", require: false
-    gem "cardname", require: false
+    gem "cardname"
     gem "decko"
   end
+  gem "card-mod-date", path: "#{decko_gem_path}/card/gem_mod"
 end
 
 gem "mysql2", "> 0.4"

@@ -54,14 +54,14 @@ format :json do
   end
 
   def search_factory_ids
-    wql = { type_id: Card::WikirateCompanyID,
+    cql = { type_id: Card::WikirateCompanyID,
             left_plus: Card::Codename.id(:commons_supplier_of),
             return: :id }
     if country_code
-      wql[:right_plus] = [{ codename: "headquarters" },
+      cql[:right_plus] = [{ codename: "headquarters" },
                           { refer_to: { codename: country_code.to_s } }]
     end
-    Card.search wql
+    Card.search cql
   end
 
   def country_code

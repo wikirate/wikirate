@@ -12,9 +12,9 @@ module BadgeSquad
 
   attr_reader :badge_level, :levels, :levels_descending, :badge_action
 
-  def add_badge_line action, badge_line, &count_wql
+  def add_badge_line action, badge_line, &count_cql
     @map ||= {}
-    @map[action] = Abstract::BadgeLine.new badge_line, &count_wql
+    @map[action] = Abstract::BadgeLine.new badge_line, &count_cql
   end
 
   def add_affinity_badge_line action, map

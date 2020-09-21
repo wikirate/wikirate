@@ -3,37 +3,37 @@ class Card
   class MetricFilterQuery < FilterQuery
     include WikirateFilterQuery
 
-    def name_wql title
-      add_to_wql :right, name: [:match, title]
+    def name_cql title
+      add_to_cql :right, name: [:match, title]
     end
 
-    def metric_wql metric
-      name_wql metric
+    def metric_cql metric
+      name_cql metric
     end
 
-    def project_wql project
-      add_to_wql :referred_to_by, left: project, right_id: MetricID
+    def project_cql project
+      add_to_cql :referred_to_by, left: project, right_id: MetricID
     end
 
-    def year_wql year
+    def year_cql year
       return if year == "latest"
-      add_to_wql :right_plus, type_id: WikirateCompanyID, right_plus: year
+      add_to_cql :right_plus, type_id: WikirateCompanyID, right_plus: year
     end
 
-    def designer_wql designer
-      add_to_wql :part, designer
+    def designer_cql designer
+      add_to_cql :part, designer
     end
 
-    def metric_type_wql metric_type
-      add_to_wql :right_plus, refer_to(:metric_type, metric_type)
+    def metric_type_cql metric_type
+      add_to_cql :right_plus, refer_to(:metric_type, metric_type)
     end
 
-    def value_type_wql value_type
-      add_to_wql :right_plus, refer_to(:value_type, value_type)
+    def value_type_cql value_type
+      add_to_cql :right_plus, refer_to(:value_type, value_type)
     end
 
-    def research_policy_wql policy
-      add_to_wql :right_plus, refer_to(:research_policy, policy)
+    def research_policy_cql policy
+      add_to_cql :right_plus, refer_to(:research_policy, policy)
     end
 
     def refer_to codename, value

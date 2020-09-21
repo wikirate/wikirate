@@ -1,8 +1,8 @@
 include_set Abstract::SearchCachedCount
 
-# NOTE: wql_content is defined in wikirate_company mod.
+# NOTE: cql_content is defined in wikirate_company mod.
 # It has to, because his set in that mod includes BrowseTopicFilter, which itself
-# defines wql_content
+# defines cql_content
 
 def company_name
   name.left_name
@@ -28,7 +28,7 @@ def skip_search?
   metric_ids.empty?
 end
 
-# turn query caching off because wql_hash varies
+# turn query caching off because cql_hash varies
 def cache_query?
   false
 end

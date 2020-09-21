@@ -47,7 +47,7 @@ def research_group_card
   @research_group_card ||= Card.fetch research_group_name if research_group?
 end
 
-def wql_content
+def cql_content
   research_group? ? research_group_report_query : standard_report_query
 end
 
@@ -74,7 +74,7 @@ end
 def subvariant_count subvariant
   selected = @subvariant
   @subvariant = subvariant
-  result = Card.search wql_hash.merge(return: :count)
+  result = Card.search cql_hash.merge(return: :count)
   @subvariant = selected
   result
 end

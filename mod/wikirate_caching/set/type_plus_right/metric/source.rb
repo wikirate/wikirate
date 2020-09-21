@@ -1,7 +1,7 @@
 # cache # of sources on which answers for this metric (=left) are based on
 include_set Abstract::SearchCachedCount
 
-def wql_content
+def cql_content
   { referred_to_by: { right_id: SourceID, left_id: [:in] + answer_ids } }
 end
 
@@ -9,7 +9,7 @@ def skip_search?
   answer_ids.blank?
 end
 
-# turn query caching off because wql_hash varies
+# turn query caching off because cql_hash varies
 def cache_query?
   false
 end

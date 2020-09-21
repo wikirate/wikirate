@@ -5,7 +5,7 @@ def search_anchor
   { answer_id: answer_ids }
 end
 
-def wql_content
+def cql_content
   { type_id: MetricAnswerID,
     right_plus: [SourceID, { link_to: name.left }] }
 end

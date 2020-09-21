@@ -52,9 +52,9 @@ class Card
         condition_sql([@card_conditions.join(" AND ")] + @card_values)
       end
 
-      # most metric and company constraints are handled in a cql/wql subquery
+      # most metric and company constraints are handled in a cql/cql subquery
       def cql_subquery
-        statement = PARTNER_FILTER_QUERY[@partner].new(@cql_filter).to_wql
+        statement = PARTNER_FILTER_QUERY[@partner].new(@cql_filter).to_cql
         Card::Auth.as_bot do
           cq = Card::Query.new statement.merge(return: :id), ""
           cq.define_singleton_method(:full?) { false }

@@ -4,20 +4,20 @@ class Card
     module MetricAndCompanyFilters
       def industry_query value
         multi_company do
-          restrict_by_wql :company_id, CompanyFilterQuery.industry_wql(value)
+          restrict_by_cql :company_id, CompanyFilterQuery.industry_cql(value)
         end
       end
 
       def company_group_query value
         multi_company do
-          restrict_by_wql :company_id,
+          restrict_by_cql :company_id,
                           referred_to_by: "#{value}+#{:wikirate_company.cardname}"
         end
       end
 
       def topic_query value
         multi_metric do
-          restrict_by_wql :metric_id,
+          restrict_by_cql :metric_id,
                           right_plus: [Card::WikirateTopicID, { refer_to: value }]
         end
       end
@@ -29,7 +29,7 @@ class Card
       end
 
       def project_restriction field, codename, value
-        restrict_by_wql field, referred_to_by: "#{value}+#{codename.cardname}"
+        restrict_by_cql field, referred_to_by: "#{value}+#{codename.cardname}"
       end
 
       def bookmark_query value
@@ -39,17 +39,17 @@ class Card
 
       def value_type_query value
         multi_metric do
-          restrict_by_wql :metric_id,
+          restrict_by_cql :metric_id,
                           right_plus: [Card::ValueTypeID, { refer_to: value }]
         end
       end
 
       def company_name_query value
-        restrict_by_wql :company_id, name: [:match, value], type_id: WikirateCompanyID
+        restrict_by_cql :company_id, name: [:match, value], type_id: WikirateCompanyID
       end
 
       def metric_name_query value
-        restrict_by_wql :title_id, name: [:match, value]
+        restrict_by_cql :title_id, name: [:match, value]
       end
 
       # SUPPORT METHODS
@@ -79,7 +79,7 @@ class Card
 
       def bookmark_restriction field, value
         Card::Bookmark.id_restriction(value.to_sym == :bookmark) do |restriction|
-          operator = restriction.shift # restriction looks like wql, eg ["in", 1, 2]
+          operator = restriction.shift # restriction looks like cql, eg ["in", 1, 2]
           filter field, restriction, operator
         end
       end

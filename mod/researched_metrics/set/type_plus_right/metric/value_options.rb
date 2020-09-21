@@ -2,10 +2,17 @@ include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DesignerPermissions
 include_set Abstract::Filterable
 
+event :validate_no_commas_in_value_options, :validate, on: :save, changed: :content do
+  return unless metric_card&.multi_categorical? &&
+                item_names.find { |item| item.match? "," }
+
+  errors.add :content, "Multi-category options cannot have commas"
+end
+
 event :validate_value_options_match_values, :validate, on: :save, changed: :content do
   return unless (error_message = metric_card.validate_all_values)
 
-  errors.add :answers, "Change makes current answers invalid: #{error_message}"
+  errors.add :content, "Change makes current answers invalid: #{error_message}"
 end
 
 def item_names args={}
