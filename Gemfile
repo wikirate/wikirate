@@ -10,7 +10,12 @@ if ENV["RM_INFO"] && ARGV[0] == 'check'
   # than gems or libraries.
   # That way the files are included as normal project sources in Find and Open.
 else
-  gem "decko", path: decko_gem_path
+  path decko_gem_path do
+    gem "decko"
+    gem "card", require: false
+    gem "cardname"
+  end
+
   gem "card-mod-date", path: "#{decko_gem_path}/card/gem_mod"
 end
 
@@ -33,7 +38,7 @@ gem "open_uri_redirections"
 gem "pdfkit"
 gem "roo"
 gem "wbench"
-gem "wkhtmltopdf-binary" # , "0.12.5.4"
+gem "wkhtmltopdf-binary", "0.12.5.4"
 
 gem "rubocop", "0.88" # 0.89 introduced bugs. may get resolved in rubocop-decko update?
 gem "rubocop-decko"

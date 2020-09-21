@@ -590,7 +590,7 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    wkhtmltopdf-binary (0.12.6.4)
+    wkhtmltopdf-binary (0.12.5.4)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.0)
@@ -611,12 +611,14 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rvm
   capybara (~> 2.18)
+  card!
   card-mod-bookmarks!
   card-mod-csv_import!
   card-mod-date!
   card-mod-markdown!
   card-mod-new_relic!
   card-mod-pdfjs!
+  cardname!
   company-mapping
   cucumber (~> 3.1)
   cucumber-expressions
@@ -669,7 +671,7 @@ DEPENDENCIES
   therubyracer
   timecop
   wbench
-  wkhtmltopdf-binary
+  wkhtmltopdf-binary (= 0.12.5.4)
 
 BUNDLED WITH
    1.17.3

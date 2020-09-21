@@ -4,7 +4,7 @@ include_set Abstract::Filterable
 
 event :validate_no_commas_in_value_options, :validate, on: :save, changed: :content do
   return unless metric_card&.multi_categorical? &&
-                item_names_names.find { |item| item.match? ","}
+                item_names_names.find { |item| item.match? "," }
 
   errors.add :content, "Multi-category options cannot have commas"
 end
