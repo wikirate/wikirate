@@ -55,9 +55,9 @@ class Card
         @restrict_to_ids[col] = existing ? (existing & ids) : ids
       end
 
-      def restrict_by_wql col, wql
-        wql.reverse_merge! return: :id, limit: 0
-        restrict_to_ids col, Card.search(wql)
+      def restrict_by_cql col, cql
+        cql.reverse_merge! return: :id, limit: 0
+        restrict_to_ids col, Card.search(cql)
       end
 
       def exact_match_filters

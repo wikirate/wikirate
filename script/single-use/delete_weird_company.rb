@@ -1,6 +1,6 @@
 require File.expand_path("../../config/environment", __FILE__)
 
-weird_company_wql = {
+weird_company_cql = {
   "not" => { "type" => "Company" },
   "left_plus" => [
     { "type" => "Metric" },
@@ -8,11 +8,11 @@ weird_company_wql = {
   ]
 }
 Card::Auth.as_bot
-weird_companies = Card.search weird_company_wql
+weird_companies = Card.search weird_company_cql
 weird_companies.each do |company|
-  related_cards_wql = { left: { left: { type_id: Card::MetricID },
+  related_cards_cql = { left: { left: { type_id: Card::MetricID },
                                 right: company.name } }
-  related_cards = Card.search related_cards_wql
+  related_cards = Card.search related_cards_cql
   related_cards.each do |related_card|
     if (value_card = Card[related_card.name + "+value"])
       puts "deleting #{value_card.name}".yellow

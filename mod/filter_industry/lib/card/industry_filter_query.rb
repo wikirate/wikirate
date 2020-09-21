@@ -3,14 +3,14 @@ class Card
     INDUSTRY_METRIC_NAME = "Global Reporting Initiative+Sector Industry"
     INDUSTRY_VALUE_YEAR = "2015"
 
-    def industry_wql industry
+    def industry_cql industry
       return unless industry.present?
-      @filter_wql[:left_plus] <<
-        self.class.industry_wql(industry)[:left_plus]
+      @filter_cql[:left_plus] <<
+        self.class.industry_cql(industry)[:left_plus]
     end
 
     module ClassMethods
-      def industry_wql industry
+      def industry_cql industry
       {
         left_plus:
           [

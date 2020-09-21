@@ -6,7 +6,7 @@ rescue
   false
 end
 
-def potential_numeric_metrics_wql
+def potential_numeric_metrics_cql
   { type_id: Card::MetricID,
     right_plus: [
       { type_id: Card::WikirateCompanyID },
@@ -21,7 +21,7 @@ def potential_numeric_metrics_wql
 end
 
 def find_potential_numeric_metrics
-  Card.search potential_numeric_metrics_wql
+  Card.search potential_numeric_metrics_cql
 end
 
 def update_metric_value_type mv_type, type
