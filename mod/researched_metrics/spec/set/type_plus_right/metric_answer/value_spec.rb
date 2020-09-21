@@ -65,5 +65,11 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
       Card[researched_value_name].update! content: "no"
       expect(scored_value).to eq "0.0"
     end
+
+    it "standardizes unknown" do
+      answer = sample_answer
+      answer.value_card.update! content: "uNkNoWn"
+      expect(answer.value).to eq("Unknown")
+    end
   end
 end

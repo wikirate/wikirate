@@ -2,7 +2,7 @@
 
 require_relative "../../../support/award_badges_shared_examples"
 
-RSpec.describe Card::Set::Type::Source::AwardBadges do
+RwSpec.describe Card::Set::Type::Source::AwardBadges do
   describe "discuss badges" do
     let(:badge_action) { :create }
     let(:badge_type) { :source }

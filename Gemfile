@@ -11,11 +11,10 @@ if ENV["RM_INFO"] && ARGV[0] == 'check'
   # That way the files are included as normal project sources in Find and Open.
 else
   path decko_gem_path do
-    gem "decko"
     gem "card", require: false
     gem "cardname"
+    gem "decko"
   end
-
   gem "card-mod-date", path: "#{decko_gem_path}/card/gem_mod"
 end
 
