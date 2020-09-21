@@ -1,3 +1,4 @@
+# Source-related helper methods for specs
 module SourceHelper
   def create_source source, subcards: {}, codename: nil
     Card::Auth.as_bot do
@@ -16,11 +17,11 @@ module SourceHelper
 
   def source_subcard_args source, subcards={}
     source ||= "http://www.google.com/?q=wikirate"
-    subcards.reverse_merge! "+File"        => source_file_args(source) # ,
-                            # "+Title"       => "Sample Source Title",
-                            # "+Year"        => "1999",
-                            # "+Company"     => "Death Star",
-                            # "+Report Type" => "Creature Report"
+    subcards.reverse_merge! "+File" => source_file_args(source)
+    # "+Title"       => "Sample Source Title",
+    # "+Year"        => "1999",
+    # "+Company"     => "Death Star",
+    # "+Report Type" => "Creature Report"
   end
 
   def source_file_args source

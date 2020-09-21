@@ -33,15 +33,15 @@ RSpec.describe Card::MetricImportItem do
   describe "#validate" do
     it "confirms valid item is 'ready'" do
       item = validate
-      expect(item.status_hash[:errors]).to be_blank
-      expect(item.status_hash[:status]).to eq(:ready)
+      expect(item.errors).to be_blank
+      expect(item.status[:status]).to eq(:ready)
     end
   end
 
   describe "#import" do
     it "imports new metric card" do
       item = import
-      expect(item.status_hash[:errors]).to be_blank
+      expect(item.errors).to be_blank
       expect(Card.fetch_type_id("Joe User+Policities")).to eq(Card::MetricID)
     end
 
@@ -50,7 +50,7 @@ RSpec.describe Card::MetricImportItem do
                     scorer: "Joe Admin",
                     metric_title: "RM",
                     value_type: "Number")
-      expect(item.status_hash[:errors]).to be_blank
+      expect(item.errors).to be_blank
     end
   end
 

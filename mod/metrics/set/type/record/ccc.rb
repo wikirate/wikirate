@@ -32,10 +32,10 @@ def related_companies_of_inverse_metric
 end
 
 def search_companies left_left:, right:, key:
-  wql = { left: { type_id: MetricAnswerID, left: left_left },
+  cql = { left: { type_id: MetricAnswerID, left: left_left },
           right: right }
   hwa = Hash.new { |h, k| h[k] = [] }
-  Card.search(wql).each_with_object(hwa) do |card, h|
+  Card.search(cql).each_with_object(hwa) do |card, h|
     hkey = key.call(card)
     h[hkey] = (h[hkey] << card.name.left_name.right_name).sort.reverse
   end

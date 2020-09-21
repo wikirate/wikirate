@@ -1,3 +1,9 @@
+format do
+  view :legend, unknown: true do
+    nest card.metric_card, view: :legend
+  end
+end
+
 format :html do
   view :core do
     [render_chart, render_expanded_details]
@@ -39,6 +45,10 @@ format :html do
     handle_unknowns { haml :concise }
   end
 
+  view :basic_details do
+    render_concise hide: :year_and_icon
+  end
+
   # prominent year, prominent value, less prominent flags
   view :year_and_value, unknown: true, template: :haml
   view :year_and_value_pretty, unknown: true, template: :haml
@@ -65,24 +75,12 @@ format :html do
     card.year
   end
 
-  view :legend do
-    legend
-  end
-
-  view :legend_core do
-    nest card.metric_card, view: :legend_core
-  end
-
   def calculated
     card.calculating? ? calculating_icon : yield
   end
 
   def calculating_icon
     fa_icon :calculator, title: "calculating ...", class: "fa-spin px-1"
-  end
-
-  def legend
-    nest card.metric_card, view: :legend
   end
 
   def handle_unknowns

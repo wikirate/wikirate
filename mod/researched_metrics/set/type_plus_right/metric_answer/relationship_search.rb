@@ -81,7 +81,10 @@ format :html do
     link_to_card :research_page, "Add relation",
                  class: "slotter btn btn-sm btn-primary",
                  path: { view: :add_relation,
-                         metric: metric, company: company, year: year }
+                         metric: metric,
+                         company: company,
+                         year: year,
+                         related_company: "" }
   end
 
   view :relations_table, cache: :never do

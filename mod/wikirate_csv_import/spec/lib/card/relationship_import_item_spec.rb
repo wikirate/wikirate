@@ -25,34 +25,33 @@ RSpec.describe Card::RelationshipImportItem do
     example "creates relationship answer card with valid data", as_bot: true do
       import
       expect_card(item_name).to exist
-      expect(Card.fetch_type_id(item_name.left)).to eq(Card::MetricAnswerID)
+      answer = Card[item_name.left]
+      expect(answer.type_id).to eq(Card::MetricAnswerID)
+      expect(answer.value).to eq("1")
+      expect(Card[item_name].inverse_answer_id.card.value).to eq("1")
+    end
+
+    example "increments relationship counts", as_bot: true do
+      answer_card = Card[item_name(year: "1977").left]
+      expect(answer_card.answer.numeric_value).to eq(2)
+      import year: "1977"
+      expect(answer_card.answer.numeric_value).to eq(3)
     end
   end
 
   context "with unknown company" do
-    def default_map
-      map = super
-      map[:wikirate_company] =
-        map.delete(:subject_company).merge(map.delete(:object_company))
-      map
-    end
+    let(:unknown_co) { "Kuhl Co" }
 
     it "gets 'failed' status" do
-      # because ImportManager doesn't have corrections. otherwise would be "not ready"
+      # because ImportManager doesn't have mapping. otherwise would be "not ready"
       # needs better testing!
-      item = validate object_company: "Mos Eisley"
-      expect(item.status.item_hash(0)[:status]).to eq(:failed)
+      item = validate object_company: unknown_co
+      expect(item.status[:status]).to eq(:failed)
     end
 
-    it "succeeds with auto add" do
-      co = "Kuhl Co"
-      item = item_object object_company: co
-      map = default_map
-      map[:wikirate_company][co] = "AutoAdd"
-      item.corrections = map
-      item.import
-
-      expect(Card[co].type_id).to eq(Card::WikirateCompanyID)
+    it "handles auto adding company" do
+      described_class.auto_add :wikirate_company, unknown_co
+      expect(Card[unknown_co].type_id).to eq(Card::WikirateCompanyID)
     end
   end
 end

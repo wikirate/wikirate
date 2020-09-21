@@ -43,15 +43,17 @@ format :html do
   end
 
   def answer_delete_button
-    confirm = "Are you sure you want to delete the #{card.metric_name} answer "\
-              "for #{card.company_name} for #{card.year}?"
-    success = research_params.merge(mark: :research_page.cardname)
-
     smart_link_to "Delete",
                   type: "button",
-                  path: { action: :delete, success: success },
+                  path: { action: :delete,
+                          success: research_params.merge(mark: :research_page.cardname) },
                   class: "btn btn-sm btn-outline-danger pull-right",
-                  'data-confirm': confirm,
+                  'data-confirm': "Are you sure you want to delete the #{answer_label}?",
                   "data-disable-with": "Deleting"
+  end
+
+  def answer_label
+    companies = [card.company, card.try(:related_company)].compact.join " / "
+    "#{card.year} #{card.metric_name.upcase} answer for #{companies.upcase}"
   end
 end

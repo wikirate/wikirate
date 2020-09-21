@@ -179,7 +179,7 @@ event :update_answer_lookup_table_due_to_check_change, :finalize,
 end
 
 def main_action?
-  ActManager.act&.card == self
+  Director.act&.card == self
 end
 
 event :user_checked_value, :prepare_to_store, on: :save, when: :add_checked_flag? do

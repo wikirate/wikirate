@@ -3,7 +3,7 @@ module LookupTable
     VALUE_JOINT = Card::Set::Abstract::Value::JOINT
 
     attr_reader :card_column,
-                :card_query # wql that finds all items in the cards table
+                :card_query # cql that finds all items in the cards table
 
     def new_for_card cardish
       ma = new # to document: why can't answer_id be assigned in new?

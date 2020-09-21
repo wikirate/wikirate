@@ -3,7 +3,7 @@ require "./spec/support/company_ids"
 
 RSpec.describe Formula::Translation do
   include_context "with calculator stub"
-  include_context "company ids"
+  include_context "with company ids"
 
   example "single category mapping" do
     result = calculate '{"11": "1", "12": "2", "13": "3"}', "Joe User+RM"

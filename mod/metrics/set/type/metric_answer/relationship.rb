@@ -1,10 +1,12 @@
-event :update_relationship_count, :after_integrate, when: :update_relationship_count? do
+event :update_relationship_count, :after_integrate,
+      on: :save, when: :update_relationship_count? do
+  puts "Updating relationship count".green
   count = relationship_answer_count
   if count.positive?
     update_relationship_answer_count! count
-  else
-    # refresh needed in tests; maybe not in live when delay is real?
-    delete || refresh(true)&.delete unless trash
+  elsif !trash
+    director.restart
+    delete
   end
 end
 
@@ -15,6 +17,7 @@ end
 
 def update_relationship_answer_count! count=nil
   count ||= relationship_answer_count
+  value_card.director.restart
   value_card.update content: count
 end
 
@@ -24,7 +27,5 @@ end
 
 # number of companies that have a relationship answer for this answer
 def relationship_answer_count
-  return 0 unless id #
-
-  ::Relationship.where(metric_card.answer_lookup_field => id).count
+  id ? ::Relationship.where(metric_card.answer_lookup_field => id).count : 0
 end

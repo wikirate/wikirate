@@ -1,3 +1,10 @@
+format do
+  view :legend do
+    subf = subformat card.metric_card
+    subf.wrap_legend { subf.value_legend }
+  end
+end
+
 format :html do
   # TODO: make relationship answer pages look more like answer pages and use two
   # column layout
@@ -46,17 +53,9 @@ format :html do
     value
   end
 
-  view :basic_details do
-    nest card.value_card, view: :pretty_link
-  end
-
   view :expanded_details do
     _render :expanded_researched_details
   end
-
-  # def legend
-  #   subformat(card.metric_card).value_legend
-  # end
 
   def credit_details
     wrap_with :div, class: "d-flex" do
@@ -65,6 +64,10 @@ format :html do
         link_to_card(card, menu_icon, path: { view: :edit }, class: "text-dark ml-auto")
       ]
     end
+  end
+
+  def default_research_params
+    super.merge related_company: card.related_company
   end
 end
 

@@ -16,12 +16,14 @@ module OpenCorporates
 
       def fetch *query_args
         JSON.parse json_response(*query_args)
+      rescue StandardError
+        nil
       end
 
       private
 
       def pick_nested_item
-        response = yield
+        return unless (response = yield)
         check_response_format response
         OpenStruct.new company_number: response["company_number"],
                        incorporation_jurisdiction_code: response["incorporation_jurisdiction_code"],
@@ -45,6 +47,8 @@ module OpenCorporates
         e.io.try(:string) || e.io.try(:read) || raise(e)
       rescue SocketError => _e
         raise ApiError, "service temporarily not available"
+      rescue StandardError => e
+        raise ApiError, "OC JSON response error: #{e.message}"
       end
 
       def query_uri *query_args

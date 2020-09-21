@@ -3,7 +3,7 @@ require "./spec/support/company_ids"
 
 RSpec.describe Formula::Wolfram do
   include_context "with calculator stub"
-  include_context "company ids"
+  include_context "with company ids"
 
   xit "simple formula" do
     result = calculate "{{Joe User+RM}}*2"

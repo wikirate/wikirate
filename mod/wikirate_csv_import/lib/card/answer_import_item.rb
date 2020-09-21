@@ -36,33 +36,16 @@ class Card
     end
 
     def translate_row_hash_to_create_answer_hash
-      r = @row.clone
+      r = input.clone
       translate_company_args r
       r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
       r[:ok_to_exist] = true
       r = prep_subfields r
-      handle_source_auto_add r
       r
     end
 
-    # overridden in relationship import item
-    def translate_company_args hash
-      handle_company_auto_add hash, :wikirate_company, :auto_add_company
-
-      hash[:company] = hash.delete :wikirate_company
-    end
-
-    def handle_source_auto_add hash
-      return unless @auto_add[:source]
-
-      hash[:source][:trigger_in_action] = :auto_add_source
-    end
-
-    def handle_company_auto_add hash, field, event
-      return unless @auto_add[field]
-
-      hash[:trigger_in_action] ||= []
-      hash[:trigger_in_action] << event
+    def translate_company_args r
+      r[:company] = r[:wikirate_company]
     end
 
     def export_csv_line status
@@ -78,6 +61,20 @@ class Card
     end
 
     class << self
+      def auto_add_source val
+        separate_vals(:source, val).map do |string|
+          source_from_url(string) || string
+        end.join separator(:source)
+      end
+
+      def source_from_url url
+        src.find_or_add_source_card(url)&.name if src.url? url
+      end
+
+      def src
+        Card::Set::Self::Source
+      end
+
       def export_csv_header
         Answer.csv_title
       end

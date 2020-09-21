@@ -11,7 +11,7 @@ class Card
 
     def item_object hash={}
       obj = described_class.new item_hash(hash)
-      obj.conflict_strategy = :override if @overriding
+      obj.import_manager.conflict_strategy = :override if @overriding
       obj
     end
 
@@ -38,6 +38,12 @@ class Card
         next if column.in? %i[value comment]
         hash[column] = { val => Card.fetch_id(val) }
       end
+    end
+
+    def add_mapping item, mapping
+      map = default_map.clone
+      mapping.each { |k, v| map[k] = map[k].merge v }
+      item.import_manager.mapping = map
     end
 
     private

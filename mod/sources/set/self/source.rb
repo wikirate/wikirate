@@ -21,6 +21,19 @@ class << self
   def search_by_url url
     Card.search type_id: SourceID, right_plus: [WikirateLinkID, { content: url }]
   end
+
+  def each_url_source urls
+    urls.each do |url|
+      yield url, find_or_add_source_card(url) if url? url
+    end
+  end
+
+  def find_or_add_source_card url
+    found = search_by_url url
+    return found.first if found.present?
+
+    Card.create! type: SourceID, "+:wikirate_link": url, skip: :requirements
+  end
 end
 
 format :html do

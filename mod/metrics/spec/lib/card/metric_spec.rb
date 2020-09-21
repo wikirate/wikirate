@@ -22,14 +22,15 @@ RSpec.describe Card::Metric do
   let :researched_metrics do
     Card::Env[:protocol] = "http://"
     Card::Env[:host] = "wikirate.org"
+    sample_source_name = sample_source.name
     described_class.create name: "Jedi+strength in the Force",
                            value_type: "Category",
                            value_options: %w[yes no] do
       Death_Star "1977" => { value: "yes",
-                             source: sample_source.name }
+                             source: sample_source_name }
     end
     described_class.create name: "Jedi+darksidiness" do
-      Death_Star "1977" => { value: 100, source: sample_source.name }
+      Death_Star "1977" => { value: 100, source: sample_source_name }
     end
   end
 

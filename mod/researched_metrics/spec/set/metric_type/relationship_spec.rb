@@ -1,8 +1,7 @@
 RSpec.describe Card::Set::MetricType::Relationship do
   def card_subject
-    Card["Jedi+more evil+SPECTRE+1977+Los_Pollos_Hermanos"]
+    Card["Jedi+more evil"]
   end
-
   check_views_for_errors :edit
 
   describe "create" do
@@ -55,7 +54,7 @@ RSpec.describe Card::Set::MetricType::Relationship do
     let(:company) { "SPECTRE" }
 
     def delete_answers
-      with_params company: company do
+      Card::Env.with_params company: company do
         metric_card.update trigger: :delete_relationship_answers
       end
     end
@@ -80,6 +79,12 @@ RSpec.describe Card::Set::MetricType::Relationship do
       unrelated_answer = Card["#{metric}+Death Star+1977+Los Pollos Hermanos"]
       expect(unrelated_answer).to be_instance_of(Card)
     end
+  end
+
+  specify "legend view" do
+    expect_view(:legend, format: :base).to eq("related companies")
+    expect_view(:legend, format: :html)
+      .to have_tag("span.metric-legend", text: "related companies")
   end
 
   it "is researchable" do

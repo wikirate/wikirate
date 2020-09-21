@@ -15,7 +15,7 @@ def designer_image_card
 end
 
 def metric_title
-  junction? ? name.parts[1] : name
+  junction? ? name.parts[1].to_name : name
 end
 
 def metric_title_id

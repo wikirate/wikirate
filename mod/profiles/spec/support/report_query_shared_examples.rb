@@ -3,16 +3,16 @@ RSpec.shared_context "report query" do |type, action|
   let(:type_card) { Card[type] }
   let(:action) { action }
 
-  def wql variant
+  def cql variant
     type_card.report_query(action, user_id, variant)
   end
 
   def count variant
-    Card.search(wql(variant).merge(return: :count))
+    Card.search(cql(variant).merge(return: :count))
   end
 
   def names variant
-    Card.search(wql(variant).merge(return: :name))
+    Card.search(cql(variant).merge(return: :name))
   end
 end
 

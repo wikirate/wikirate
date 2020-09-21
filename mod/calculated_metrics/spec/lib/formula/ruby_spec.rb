@@ -3,7 +3,7 @@ require "./spec/support/company_ids"
 
 RSpec.describe Formula::Ruby do
   include_context "with calculator stub"
-  include_context "company ids"
+  include_context "with company ids"
 
   example "simple formula" do
     result = calculate "{{Joe User+RM}}*2"

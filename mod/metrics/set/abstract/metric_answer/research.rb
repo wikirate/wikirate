@@ -44,8 +44,9 @@ format :html do
   end
 
   def cancel_research_button
-    link_to "Cancel", path: research_params,
-                      class: "btn btn-sm cancel-button btn-secondary"
+    path = research_params.clone
+    path[:mark] = card.name.left if card.relationship?
+    link_to "Cancel", path: path, class: "btn btn-sm cancel-button btn-secondary"
   end
 
   def standard_cancel_button args={}
@@ -116,7 +117,9 @@ format :html do
   end
 
   def research_form_success
-    research_params.merge id: ":research_page", redirect: true
+    success_params = research_params.merge id: ":research_page", redirect: true
+    success_params.delete :related_company
+    success_params
   end
 
   def new_buttons
