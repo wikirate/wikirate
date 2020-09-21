@@ -15,7 +15,6 @@ else
     gem "card", require: false
     gem "cardname"
   end
-
   gem "card-mod-date", path: "#{decko_gem_path}/card/gem_mod"
 end
 

@@ -7,7 +7,7 @@ def filter_class
   SourceFilterQuery
 end
 
-def sort_wql
+def sort_cql
   if current_sort.to_sym == :title
     { sort: { right: "title" } }
   else
@@ -65,26 +65,26 @@ end
 class SourceFilterQuery < FilterQuery
   include WikirateFilterQuery
 
-  def wikirate_link_wql value
+  def wikirate_link_cql value
     return unless value.present?
-    add_to_wql :right_plus, [WikirateLinkID, { content: [:match, value] }]
+    add_to_cql :right_plus, [WikirateLinkID, { content: [:match, value] }]
   end
 
-  def wikirate_title_wql value
+  def wikirate_title_cql value
     return unless value.present?
-    add_to_wql :right_plus, [WikirateTitleID, { content: [:match, value] }]
+    add_to_cql :right_plus, [WikirateTitleID, { content: [:match, value] }]
   end
 
-  def wikirate_company_wql value
+  def wikirate_company_cql value
     return unless value.present?
-    add_to_wql :right_plus, [WikirateCompanyID, { refer_to: { match: value } }]
+    add_to_cql :right_plus, [WikirateCompanyID, { refer_to: { match: value } }]
   end
 
-  def report_type_wql value
-    add_to_wql :right_plus, [ReportTypeID, { refer_to: value }]
+  def report_type_cql value
+    add_to_cql :right_plus, [ReportTypeID, { refer_to: value }]
   end
 
-  def year_wql value
-    add_to_wql :right_plus, [YearID, { refer_to: value }]
+  def year_cql value
+    add_to_cql :right_plus, [YearID, { refer_to: value }]
   end
 end

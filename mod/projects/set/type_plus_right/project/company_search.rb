@@ -6,7 +6,7 @@ def pointer_mark
   project_name.field :wikirate_company
 end
 
-def wql_content
+def cql_content
   super.merge append: project_name
 end
 

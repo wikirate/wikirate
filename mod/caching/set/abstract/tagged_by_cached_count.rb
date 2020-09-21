@@ -33,7 +33,7 @@ def self.included host_class
   end
 end
 
-def wql_content
+def cql_content
   { type_id: type_id_to_count, right_plus: right_plus_val }
 end
 
@@ -42,9 +42,9 @@ def right_plus_val
 end
 
 # TODO: make less hacky.
-# Without this filter wql can overwrite right_plus
-def filter_wql
-  wql = super
-  wql[:right_plus] = [wql[:right_plus], right_plus_val].compact
-  wql
+# Without this filter cql can overwrite right_plus
+def filter_cql
+  cql = super
+  cql[:right_plus] = [cql[:right_plus], right_plus_val].compact
+  cql
 end

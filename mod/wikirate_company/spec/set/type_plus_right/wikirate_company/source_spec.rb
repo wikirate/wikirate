@@ -1,12 +1,12 @@
 RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
-  describe "#wql_hash" do
+  describe "#cql_hash" do
     # note: this is primarily testing that the potential right_plus conflict
     # is handled correctly.
     def card_subject
       Card.fetch "Death Star+source", new: {}
     end
 
-    subject { card_subject.wql_hash }
+    subject { card_subject.cql_hash }
 
     let :right_plus_val do
       [Card::WikirateCompanyID, { refer_to: Card.fetch_id("Death Star") }]

@@ -1,6 +1,6 @@
 include_set Abstract::WqlSearch
 
-def wql_content
+def cql_content
   { type_id: Card::MetricAnswerID, id: answer_ids.unshift("in") }
 end
 

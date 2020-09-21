@@ -47,7 +47,7 @@ class Card
       end
 
       def checked_by whom
-        restrict_by_wql(:answer_id,
+        restrict_by_cql(:answer_id,
                         type_id: MetricAnswerID,
                         right_plus: [CheckedByID, { refer_to: whom }])
       end
@@ -103,7 +103,7 @@ class Card
       end
 
       def source_query value
-        restrict_by_wql :answer_id,
+        restrict_by_cql :answer_id,
                         type_id: Card::MetricAnswerID,
                         right_plus: [Card::SourceID, { refer_to: value }]
       end

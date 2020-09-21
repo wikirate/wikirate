@@ -15,7 +15,7 @@ class BadgeLine
     map.each.with_index do |(codename, threshold), i|
       initialize_badge codename, threshold, i
     end
-    @count_wql = block
+    @count_cql = block
   end
 
   def initialize_badge codename, threshold, index
@@ -54,14 +54,14 @@ class BadgeLine
 
   def count_valued_actions user_id=nil
     user_id ||= Card::Auth.current_id
-    return 0 unless user_id != Card::WagnBotID && (wql = count_wql user_id)
-    Card.search wql
+    return 0 unless user_id != Card::WagnBotID && (cql = count_cql user_id)
+    Card.search cql
   end
 
-  def count_wql user_id
-    wql = @count_wql.call(user_id)
-    return unless wql.present? && wql.is_a?(Hash)
-    wql.merge return: :count
+  def count_cql user_id
+    cql = @count_cql.call(user_id)
+    return unless cql.present? && cql.is_a?(Hash)
+    cql.merge return: :count
   end
 
   def all_earned_badges count=nil, user_id=nil

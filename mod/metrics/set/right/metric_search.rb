@@ -13,6 +13,6 @@ def pointer_mark
   name.left
 end
 
-def wql_content
+def cql_content
   { type_id: Card::MetricID, referred_to_by: pointer_mark }
 end
