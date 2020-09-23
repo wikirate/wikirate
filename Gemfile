@@ -15,7 +15,7 @@ else
     gem "cardname"
     gem "decko"
   end
-  gem "card-mod-date", path: "#{decko_gem_path}/card/gem_mod"
+  gem "card-mod-defaults", path: "#{decko_gem_path}/card/gem_mod"
 end
 
 gem "mysql2", "> 0.4"
@@ -62,7 +62,6 @@ gem "ruby-jmeter"
 gem "card-mod-bookmarks", path: "./vendor/card-mods/bookmarks"
 gem "card-mod-csv_import", path: "./vendor/card-mods/csv_import"
 # gem "card-mod-logger", path: "./vendor/card-mods/logger"
-gem "card-mod-markdown", path: "./vendor/card-mods/markdown"
 gem "card-mod-new_relic", path: "./vendor/card-mods/new_relic"
 gem "card-mod-pdfjs", path: "./vendor/card-mods/pdfjs"
 

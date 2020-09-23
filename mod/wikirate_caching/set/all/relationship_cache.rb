@@ -45,7 +45,6 @@ end
 
 event :refresh_updated_relationships, :integrate,
       after: :refresh_updated_answers, when: :updated_relationships? do
-  puts "refresh updated relationships".blue
   Relationship.update_by_ids @updated_relationships
 end
 
