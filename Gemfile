@@ -12,8 +12,8 @@ if ENV["RM_INFO"] && ARGV[0] == 'check'
 else
   path decko_gem_path do
     gem "card", require: false
-    gem "decko"
     gem "card-mod-defaults"
+    gem "decko"
   end
 end
 
