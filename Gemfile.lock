@@ -2,7 +2,7 @@ PATH
   remote: vendor/card-mods/bookmarks
   specs:
     card-mod-bookmarks (0.1)
-      card-mod-follow
+      card
 
 PATH
   remote: vendor/card-mods/csv_import
@@ -84,40 +84,12 @@ PATH
     card-mod-markdown (0.10.1)
       card (= 1.100.1)
       kramdown
-    card-mod-monkey (0.10.1)
-      better_errors
-      binding_of_caller
-      card (= 1.100.1)
-      colorize
-      delayed_job_active_record (~> 4.1)
-      html2haml
-      phantomjs (= 1.9.7.1)
-      pry-byebug
-      pry-rails
-      pry-rescue
-      pry-stack_explorer
-      sprockets
     card-mod-prosemirror_editor (0.10.1)
       card (= 1.100.1)
       card-mod-edit (= 0.10.1)
     card-mod-recaptcha (0.10.1)
       card (= 1.100.1)
       recaptcha (~> 4.13.1)
-    card-mod-spring (0.10.1)
-      card (= 1.100.1)
-      listen (= 3.0.6)
-      spring
-      spring-commands-cucumber
-      spring-commands-rspec
-    card-mod-test (0.10.1)
-      capybara-puma
-      card (= 1.100.1)
-      card-mod-monkey
-      nokogumbo
-      rspec
-      rspec-rails (~> 4.0.0.beta2)
-      rubocop (= 0.88)
-      spork (>= 0.9)
     card-mod-tinymce_editor (0.10.1)
       card (= 1.100.1)
       card-mod-edit (= 0.10.1)
@@ -231,9 +203,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
-    capybara-puma (1.0.1)
-      capybara
-      puma
     carrierwave (2.0.2)
       activemodel (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -382,9 +351,6 @@ GEM
       nokogiri (>= 1.6)
       rake (>= 0.9)
       video_info (>= 2.6)
-    listen (3.0.6)
-      rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9.7)
     loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -431,7 +397,6 @@ GEM
     parser (2.7.1.5)
       ast (~> 2.4.1)
     pdfkit (0.8.4.3.2)
-    phantomjs (1.9.7.1)
     pivotal-tracker (0.5.13)
       builder
       crack
@@ -449,7 +414,7 @@ GEM
     pry-rescue (1.5.2)
       interception (>= 0.5)
       pry (>= 0.12.0)
-    pry-stack_explorer (0.5.1)
+    pry-stack_explorer (0.4.12)
       binding_of_caller (~> 0.7)
       pry (~> 0.13)
     public_suffix (4.0.6)
@@ -490,9 +455,6 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     rake (12.3.0)
-    rb-fsevent (0.10.4)
-    rb-inotify (0.10.1)
-      ffi (~> 1.0)
     recaptcha (4.13.2)
       json
     ref (2.0.0)
@@ -539,7 +501,7 @@ GEM
       rubocop-ast (>= 0.1.0, < 1.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.7.1)
+    rubocop-ast (0.5.1)
       parser (>= 2.7.1.5)
     rubocop-decko (0.2)
     rubocop-rspec (1.43.2)
@@ -575,8 +537,6 @@ GEM
       tilt (~> 2.0)
     spork (0.9.2)
     spring (2.1.1)
-    spring-commands-cucumber (1.0.1)
-      spring (>= 0.9.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (3.7.2)
@@ -634,6 +594,8 @@ PLATFORMS
 DEPENDENCIES
   airbrussh
   bcrypt_pbkdf
+  better_errors
+  binding_of_caller
   bulk_insert
   capistrano
   capistrano-bundler
@@ -642,15 +604,13 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rvm
   capybara (~> 2.18)
+  card!
   card-mod-bookmarks!
   card-mod-csv_import!
-  card-mod-defaults
-  card-mod-monkey
+  card-mod-defaults!
   card-mod-new_relic!
   card-mod-pdfjs!
   card-mod-solid_cache!
-  card-mod-spring
-  card-mod-test
   company-mapping
   cucumber (~> 3.1)
   cucumber-expressions
@@ -667,6 +627,7 @@ DEPENDENCIES
   ed25519
   email_spec
   fog-aws
+  html2haml
   launchy
   link_thumbnailer
   minitest
@@ -676,11 +637,19 @@ DEPENDENCIES
   open_uri_redirections
   pdfkit
   pivotal-tracker
+  pry
+  pry-byebug
+  pry-rails
+  pry-rescue
+  pry-stack_explorer (~> 0.4.9)
   puma
   rack-cors
   roo
+  rspec
   rspec-html-matchers
+  rspec-rails
   rubocop (= 0.88)
+  rubocop-ast (~> 0.5.0)
   rubocop-decko
   rubocop-rspec
   ruby-jmeter
@@ -698,4 +667,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (= 0.12.5.4)
 
 BUNDLED WITH
-   2.1.4
+   1.17.3

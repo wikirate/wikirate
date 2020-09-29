@@ -1,14 +1,20 @@
 # -*- encoding : utf-8 -*-
 source "http://rubygems.org"
 
+# decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
+decko_gem_path = "./vendor/decko"
+
 if ENV["RM_INFO"] && ARGV[0] == 'check'
   puts "Execution in RubyMine detected in Gemfile. Ignoring decko gem path"
   # This causes Rubymine and IntelliJ to handle these paths as normal sources rather
   # than gems or libraries.
   # That way the files are included as normal project sources in Find and Open.
 else
-  gem "decko", path: "./vendor/decko"
-  gem "card-mod-defaults"
+  path decko_gem_path do
+    gem "card", require: false
+    gem "card-mod-defaults"
+    gem "decko"
+  end
 end
 
 gem "card-mod-bookmarks", path: "./vendor/card-mods/bookmarks"
@@ -40,6 +46,7 @@ gem "wbench"
 gem "wkhtmltopdf-binary", "0.12.5.4"
 
 gem "rubocop", "0.88" # 0.89 introduced bugs. may get resolved in rubocop-decko update?
+gem "rubocop-ast", "~>0.5.0"
 gem "rubocop-decko"
 
 gem "fog-aws"
@@ -64,8 +71,10 @@ group :live do
 end
 
 group :test do
-  gem "card-mod-test"
+  gem "rspec"
   gem "rspec-html-matchers"
+  gem "rspec-rails"
+  # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
 
   gem "simplecov", require: false
   gem "spork"
@@ -93,8 +102,11 @@ group :test do
 end
 
 group :development do
-  gem "card-mod-monkey"
+  gem 'html2haml'
   gem "rubocop-rspec"
+
+  # gem "rails-dev-tweaks"
+  # gem "sprockets" # just so above works
 
   gem "capistrano"
   gem "capistrano-bundler"
@@ -104,13 +116,22 @@ group :development do
   gem "capistrano-rvm"
   gem "pivotal-tracker"
 
+  gem "better_errors"
+  gem "binding_of_caller"
+
   gem "spring"
+
+  # gem "nospring"
   gem "spring-commands-rspec"
 end
 
 group :test, :development, :cypress do
-  gem "card-mod-spring"
   gem "cypress-on-rails"
+  gem "pry"
+  gem "pry-byebug"
+  gem "pry-rails"
+  gem "pry-rescue"
+  gem "pry-stack_explorer", "~> 0.4.9"
   gem "puma"
 end
 
