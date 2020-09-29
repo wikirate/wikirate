@@ -8,59 +8,48 @@ if ENV["RM_INFO"] && ARGV[0] == 'check'
   # That way the files are included as normal project sources in Find and Open.
 else
   gem "decko", path: "./vendor/decko"
-  gem "card-mod-defaults"
-end
 
+  gem "card-mod-defaults"
+
+  gem "card-mod-bookmarks", path: "./vendor/card-mods"
+  gem "card-mod-csv_import"
+  # gem "card-mod-logger"
+  gem "card-mod-pdfjs"
+  gem "card-mod-new_relic"
+  gem "card-mod-solid_cache"
+end
 
 # DATABASE
 gem "mysql2", "> 0.4"
 
-
-# ALL-ENVIRONMENT MODS
-gem "card-mod-bookmarks", path: "./vendor/card-mods"
-gem "card-mod-csv_import"
-gem "card-mod-new_relic"
-
-# gem "card-mod-logger"
-gem "card-mod-pdfjs", path: "./vendor/card-mods/pdfjs"
-gem "card-mod-solid_cache", path: "./vendor/card-mods/solid_cache"
-
-
-# SOURCE HANDLING
+# FILE / SOURCE HANDLING
+gem "curb"                           # libcurl bindings for ruby
+gem "fog-aws"                        # supports AWS file storage
 gem "link_thumbnailer"               # parses some sources
 gem "open_uri_redirections"          # redirections from http to https or vice versa
 gem "roo"                            # Spreadsheet-related tasks
+
 gem "pdfkit"                         # PDF-related tasks
 gem "wkhtmltopdf-binary", "0.12.5.4" # converting HTML to PDF
 
 # MATH
-gem "descriptive_statistics" # adds stats methods to enumerables
-gem "savanna-outliers"       # calculates outliers
-gem "statistics2"            # required by savanna-outliers
+gem "descriptive_statistics"         # adds stats methods to enumerables
+gem "savanna-outliers"               # calculates outliers
+gem "statistics2"                    # required by savanna-outliers
 
 # MISCELLANEOUS
-gem "company-mapping" # Vasso's gem, written for WikiRate
-gem "fog-aws"
-gem "rack-cors"
-gem "bulk_insert"
-
-
-
-gem "bcrypt_pbkdf"
-gem "ed25519"
-gem "sprockets"
-gem "airbrussh", require: false
-gem "ruby-jmeter"
+gem "bulk_insert"                    # adds #bulk_insert method used for answer
+gem "company-mapping"                # Vasso's gem, written for WikiRate
+gem "rack-cors"                      # support for Cross-Origin Resource Sharing (CORS)
 
 # BACKGROUNDING
-gem "curb"
 gem "daemons"
 gem "delayed_job_active_record"
-gem "delayed_job_web"
+gem "delayed_job_web"                # web interface to jobs
 
 group :live do
-  gem "dalli"
-  gem "therubyracer"
+  gem "dalli"                        # Memcache
+  gem "therubyracer"                 # JS runtime
 end
 
 group :test do
@@ -83,6 +72,10 @@ group :development do
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
   gem "capistrano-rvm"
+  gem "airbrussh", require: false
+  gem "bcrypt_pbkdf"
+  gem "ed25519"
+
   gem "pivotal-tracker"
 end
 
@@ -94,7 +87,8 @@ end
 
 group :profile do
   gem "decko-profile"
-  gem "wbench" # Benchmarking web requests
+  gem "wbench"                         # Benchmarking web requests
+  gem "ruby-jmeter"                    # connected to Flood.io, used in load testing
 end
 
 Dir.glob("mod/**/Gemfile").each { |gemfile| instance_eval(File.read(gemfile)) }
