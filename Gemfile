@@ -1,20 +1,14 @@
 # -*- encoding : utf-8 -*-
 source "http://rubygems.org"
 
-# decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
-decko_gem_path = "./vendor/decko"
-
 if ENV["RM_INFO"] && ARGV[0] == 'check'
   puts "Execution in RubyMine detected in Gemfile. Ignoring decko gem path"
   # This causes Rubymine and IntelliJ to handle these paths as normal sources rather
   # than gems or libraries.
   # That way the files are included as normal project sources in Find and Open.
 else
-  path decko_gem_path do
-    gem "card", require: false
-    gem "card-mod-defaults"
-    gem "decko"
-  end
+  gem "decko", path: "./vendor/decko"
+  gem "card-mod-defaults"
 end
 
 gem "card-mod-bookmarks", path: "./vendor/card-mods/bookmarks"
@@ -45,9 +39,7 @@ gem "roo"
 gem "wbench"
 gem "wkhtmltopdf-binary", "0.12.5.4"
 
-gem "rubocop", "0.88" # 0.89 introduced bugs. may get resolved in rubocop-decko update?
-gem "rubocop-ast", "~>0.5.0"
-gem "rubocop-decko"
+
 
 gem "fog-aws"
 gem "rack-cors"
@@ -71,42 +63,18 @@ group :live do
 end
 
 group :test do
-  gem "rspec"
-  gem "rspec-html-matchers"
-  gem "rspec-rails"
-  # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
-
-  gem "simplecov", require: false
-  gem "spork"
+  gem "decko-rspec"
+  gem "decko-cucumber"
 
   gem "timecop"
-  # gem 'codeclimate-test-reporter', require: nil
-
-  # CUKES see features dir
-  gem "capybara", "~> 2.18"
-  # gem "chromedriver-helper"
-  # gem "geckodriver-helper"
-  gem "cucumber", "~> 3.1"
-  # feature-driven-development suite (cucumber 4 not working)
-  gem "cucumber-expressions" # , "5.0.7" # this breaks at 5.0.12
-  gem "cucumber-rails", "~> 2.0", require: false
-  gem "selenium-webdriver", "3.141.0"
-  #gem 'capybara-webkit' # lets cucumber launch browser windows
-  gem "launchy"
-
-  gem "email_spec"
-  # used by cucumber for db transactions
-  gem "database_cleaner", "~> 1.5"
-
-  gem "minitest"
 end
 
 group :development do
-  gem 'html2haml'
-  gem "rubocop-rspec"
+  gem "card-mod-monkey"
 
-  # gem "rails-dev-tweaks"
-  # gem "sprockets" # just so above works
+  gem "rubocop", "0.88" # 0.89 introduced bugs. may get resolved in rubocop-decko update?
+  gem "rubocop-ast", "~>0.5.0"
+  gem "rubocop-decko"
 
   gem "capistrano"
   gem "capistrano-bundler"
@@ -115,26 +83,12 @@ group :development do
   gem "capistrano-passenger"
   gem "capistrano-rvm"
   gem "pivotal-tracker"
-
-  gem "better_errors"
-  gem "binding_of_caller"
-
-  gem "spring"
-
-  # gem "nospring"
-  gem "spring-commands-rspec"
 end
 
 group :test, :development, :cypress do
-  gem "cypress-on-rails"
-  gem "pry"
-  gem "pry-byebug"
-  gem "pry-rails"
-  gem "pry-rescue"
-  gem "pry-stack_explorer", "~> 0.4.9"
+  gem "decko-spring"
+  gem "decko-cypress"
   gem "puma"
 end
 
-Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
-  instance_eval(File.read(gemfile))
-end
+Dir.glob("mod/**/Gemfile").each do |gemfile| instance_eval(File.read(gemfile)) end
