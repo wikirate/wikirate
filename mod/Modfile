@@ -1,3 +1,5 @@
+gem_mod "card-mod-defaults"
+gem_mod "solid_cache"
 mod "layout"
 gem_mod "bookmarks"
 gem_mod "pdfjs"

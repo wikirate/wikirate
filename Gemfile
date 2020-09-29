@@ -12,11 +12,17 @@ if ENV["RM_INFO"] && ARGV[0] == 'check'
 else
   path decko_gem_path do
     gem "card", require: false
-    gem "cardname"
+    gem "card-mod-defaults"
     gem "decko"
   end
-  gem "card-mod-defaults", path: "#{decko_gem_path}/card/gem_mod"
 end
+
+gem "card-mod-bookmarks", path: "./vendor/card-mods/bookmarks"
+gem "card-mod-csv_import", path: "./vendor/card-mods/csv_import"
+# gem "card-mod-logger", path: "./vendor/card-mods/logger"
+gem "card-mod-new_relic", path: "./vendor/card-mods/new_relic"
+gem "card-mod-pdfjs", path: "./vendor/card-mods/pdfjs"
+gem "card-mod-solid_cache", path: "./vendor/card-mods/solid_cache"
 
 gem "mysql2", "> 0.4"
 
@@ -57,13 +63,6 @@ gem "newrelic_rpm"
 gem "airbrussh", require: false
 
 gem "ruby-jmeter"
-
-# gem "card-mod-airbrake", path: "./vendor/card-mods/airbrake"
-gem "card-mod-bookmarks", path: "./vendor/card-mods/bookmarks"
-gem "card-mod-csv_import", path: "./vendor/card-mods/csv_import"
-# gem "card-mod-logger", path: "./vendor/card-mods/logger"
-gem "card-mod-new_relic", path: "./vendor/card-mods/new_relic"
-gem "card-mod-pdfjs", path: "./vendor/card-mods/pdfjs"
 
 group :live do
   gem "dalli"
