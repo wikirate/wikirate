@@ -15,6 +15,6 @@ Feature: Research relationship answer from record page
     And I choose "yes"
     And I cite source
     And I click on "Submit"
-    Then I should see "1 related companies"
+    Then I should see "1\nrelated companies"
     # When I click the drop down button for "2015"
     Then I should see "Monster Inc"
