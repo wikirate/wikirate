@@ -1,31 +1,16 @@
 PATH
-  remote: vendor/card-mods/bookmarks
+  remote: vendor/card-mods
   specs:
-    card-mod-bookmarks (0.1)
+    card-mod-bookmarks (1.1)
       card
-
-PATH
-  remote: vendor/card-mods/csv_import
-  specs:
-    card-mod-csv_import (0.8)
+    card-mod-csv_import (0.9)
       card
-
-PATH
-  remote: vendor/card-mods/new_relic
-  specs:
-    card-mod-new_relic (1.0)
+    card-mod-new_relic (1.1)
+      card
       decko
       newrelic_rpm
-
-PATH
-  remote: vendor/card-mods/pdfjs
-  specs:
-    card-mod-pdfjs (1.0)
+    card-mod-pdfjs (1.1)
       card
-
-PATH
-  remote: vendor/card-mods/solid_cache
-  specs:
     card-mod-solid_cache (0.1)
       card
 
@@ -84,6 +69,20 @@ PATH
     card-mod-markdown (0.10.1)
       card (= 1.100.1)
       kramdown
+    card-mod-monkey (0.10.1)
+      better_errors
+      binding_of_caller
+      card (= 1.100.1)
+      colorize
+      delayed_job_active_record (~> 4.1)
+      html2haml
+      phantomjs (= 1.9.7.1)
+      pry-byebug
+      pry-rails
+      pry-rescue
+      pry-stack_explorer
+      rubocop (= 0.88)
+      sprockets
     card-mod-prosemirror_editor (0.10.1)
       card (= 1.100.1)
       card-mod-edit (= 0.10.1)
@@ -98,6 +97,40 @@ PATH
       htmlentities (~> 4.3)
     decko (0.10.1)
       card (= 1.100.1)
+    decko-cucumber (0.10.1)
+      capybara (~> 2.18)
+      capybara-puma
+      card-mod-monkey
+      chromedriver-helper (~> 2.1.0)
+      cucumber (~> 3.1)
+      cucumber-expressions
+      cucumber-rails
+      database_cleaner (~> 1.5)
+      launchy
+      selenium-webdriver (= 3.141.0)
+      simplecov
+    decko-cypress (0.10.1)
+      cypress-on-rails (~> 1.4)
+    decko-profile (0.10.1)
+      ruby-prof
+    decko-rspec (0.10.1)
+      card-mod-monkey
+      email_spec
+      i18n-tasks (~> 0.9.5)
+      minitest
+      nokogumbo
+      rails-controller-testing
+      rr
+      rspec
+      rspec-html-matchers (= 0.9.1)
+      rspec-rails (~> 4.0.0.beta2)
+      rubocop-rspec
+      spork (>= 0.9)
+    decko-spring (0.10.1)
+      listen (= 3.0.6)
+      spring
+      spring-commands-cucumber
+      spring-commands-rspec
 
 GEM
   remote: http://rubygems.org/
@@ -164,6 +197,8 @@ GEM
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     ansi (1.5.0)
+    archive-zip (0.12.0)
+      io-like (~> 0.3.0)
     ast (2.4.1)
     backports (3.18.2)
     bcrypt_pbkdf (1.0.1)
@@ -203,6 +238,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
+    capybara-puma (1.0.1)
+      capybara
+      puma
     carrierwave (2.0.2)
       activemodel (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -212,6 +250,9 @@ GEM
       mini_mime (>= 0.1.3)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (2.1.1)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
     coderay (1.1.3)
     coffee-script (2.4.1)
       coffee-script-source
@@ -249,7 +290,7 @@ GEM
     cypress-on-rails (1.8.0)
       rack
     daemons (1.3.1)
-    dalli (2.7.10)
+    dalli (2.7.11)
     database_cleaner (1.8.5)
     debug_inspector (0.0.3)
     delayed_job (4.1.8)
@@ -299,9 +340,10 @@ GEM
     gherkin (5.1.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    haml (5.1.2)
+    haml (5.2.0)
       temple (>= 0.8.0)
       tilt
+    highline (2.0.3)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -313,7 +355,18 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    image_info (1.2.0)
+    i18n-tasks (0.9.31)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      erubi
+      highline (>= 2.0.0)
+      i18n
+      parser (>= 2.2.3.0)
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      terminal-table (>= 1.5.1)
+    image_info (1.2.1)
+      addressable (~> 2.0)
       image_size (~> 2.0)
       typhoeus (~> 1.0)
     image_processing (1.12.0)
@@ -321,6 +374,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     image_size (2.1.0)
     interception (0.5)
+    io-like (0.3.1)
     ipaddress (0.8.3)
     iso8601 (0.9.1)
     json (2.3.1)
@@ -350,6 +404,9 @@ GEM
       nokogiri (>= 1.6)
       rake (>= 0.9)
       video_info (>= 2.6)
+    listen (3.0.6)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9.7)
     loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -380,7 +437,7 @@ GEM
     net-ssh (6.1.0)
     net_http_timeout_errors (0.3.5)
     netrc (0.11.0)
-    newrelic_rpm (6.13.0)
+    newrelic_rpm (6.13.1)
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
@@ -396,6 +453,7 @@ GEM
     parser (2.7.1.5)
       ast (~> 2.4.1)
     pdfkit (0.8.4.3.2)
+    phantomjs (1.9.7.1)
     pivotal-tracker (0.5.13)
       builder
       crack
@@ -413,11 +471,11 @@ GEM
     pry-rescue (1.5.2)
       interception (>= 0.5)
       pry (>= 0.12.0)
-    pry-stack_explorer (0.4.12)
+    pry-stack_explorer (0.5.1)
       binding_of_caller (~> 0.7)
       pry (~> 0.13)
     public_suffix (4.0.6)
-    puma (5.0.0)
+    puma (5.0.2)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-cors (1.1.1)
@@ -441,11 +499,18 @@ GEM
       bundler (>= 1.3.0)
       railties (= 6.0.3.3)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails-i18n (6.0.0)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 7)
     railties (6.0.3.3)
       actionpack (= 6.0.3.3)
       activesupport (= 6.0.3.3)
@@ -454,10 +519,13 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     rake (12.3.0)
+    rb-fsevent (0.10.4)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
     recaptcha (4.13.2)
       json
     ref (2.0.0)
-    regexp_parser (1.8.0)
+    regexp_parser (1.8.1)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -467,6 +535,7 @@ GEM
     roo (2.8.3)
       nokogiri (~> 1)
       rubyzip (>= 1.3.0, < 3.0.0)
+    rr (1.2.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -476,7 +545,7 @@ GEM
     rspec-expectations (3.9.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
-    rspec-html-matchers (0.9.3)
+    rspec-html-matchers (0.9.1)
       nokogiri (~> 1)
       rspec (>= 3.0.0.a, < 4)
     rspec-mocks (3.9.1)
@@ -500,7 +569,7 @@ GEM
       rubocop-ast (>= 0.1.0, < 1.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.5.0)
+    rubocop-ast (0.5.1)
       parser (>= 2.7.1.5)
     rubocop-decko (0.2)
     rubocop-rspec (1.43.2)
@@ -511,6 +580,7 @@ GEM
     ruby-ll (2.1.2)
       ansi
       ast
+    ruby-prof (1.4.1)
     ruby-progressbar (1.10.1)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
@@ -536,6 +606,8 @@ GEM
       tilt (~> 2.0)
     spork (0.9.2)
     spring (2.1.1)
+    spring-commands-cucumber (1.0.1)
+      spring (>= 0.9.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (3.7.2)
@@ -551,6 +623,8 @@ GEM
     statistics2 (0.54)
     systemu (2.6.5)
     temple (0.8.2)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -593,8 +667,6 @@ PLATFORMS
 DEPENDENCIES
   airbrussh
   bcrypt_pbkdf
-  better_errors
-  binding_of_caller
   bulk_insert
   capistrano
   capistrano-bundler
@@ -602,62 +674,40 @@ DEPENDENCIES
   capistrano-maintenance
   capistrano-passenger
   capistrano-rvm
-  capybara (~> 2.18)
-  card!
   card-mod-bookmarks!
-  card-mod-csv_import!
-  card-mod-defaults!
-  card-mod-new_relic!
-  card-mod-pdfjs!
-  card-mod-solid_cache!
+  card-mod-csv_import
+  card-mod-defaults
+  card-mod-monkey
+  card-mod-new_relic
+  card-mod-pdfjs
+  card-mod-solid_cache
   company-mapping
-  cucumber (~> 3.1)
-  cucumber-expressions
-  cucumber-rails (~> 2.0)
   curb
-  cypress-on-rails
   daemons
   dalli
-  database_cleaner (~> 1.5)
   decko!
-  delayed_job_active_record
+  decko-cucumber
+  decko-cypress
+  decko-profile
+  decko-rspec
+  decko-spring
   delayed_job_web
   descriptive_statistics
   ed25519
-  email_spec
   fog-aws
-  html2haml
-  launchy
   link_thumbnailer
-  minitest
   mysql2 (> 0.4)
-  newrelic_rpm
-  nokogumbo
   open_uri_redirections
   pdfkit
   pivotal-tracker
-  pry
-  pry-byebug
-  pry-rails
-  pry-rescue
-  pry-stack_explorer (~> 0.4.9)
   puma
   rack-cors
   roo
-  rspec
-  rspec-html-matchers
-  rspec-rails
   rubocop (= 0.88)
+  rubocop-ast (~> 0.5.0)
   rubocop-decko
-  rubocop-rspec
   ruby-jmeter
   savanna-outliers
-  selenium-webdriver (= 3.141.0)
-  simplecov
-  spork
-  spring
-  spring-commands-rspec
-  sprockets
   statistics2
   therubyracer
   timecop
