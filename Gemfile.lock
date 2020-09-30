@@ -691,7 +691,6 @@ DEPENDENCIES
   decko-profile
   decko-rspec
   decko-spring
-  delayed_job_active_record
   delayed_job_web
   descriptive_statistics
   ed25519
