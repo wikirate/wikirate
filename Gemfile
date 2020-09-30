@@ -14,8 +14,8 @@ else
   gem "card-mod-bookmarks", path: "./vendor/card-mods"
   gem "card-mod-csv_import"
   # gem "card-mod-logger"
-  gem "card-mod-pdfjs"
   gem "card-mod-new_relic"
+  gem "card-mod-pdfjs"
   gem "card-mod-solid_cache"
 end
 
@@ -44,7 +44,6 @@ gem "rack-cors"                      # support for Cross-Origin Resource Sharing
 
 # BACKGROUNDING
 gem "daemons"
-gem "delayed_job_active_record"
 gem "delayed_job_web"                # web interface to jobs
 
 group :live do
@@ -53,10 +52,9 @@ group :live do
 end
 
 group :test do
-  gem "decko-rspec"
   gem "decko-cucumber"
-
-  gem "timecop"
+  gem "decko-rspec"
+  gem "timecop"                      # time manipulation in tests
 end
 
 group :development do
@@ -72,6 +70,7 @@ group :development do
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
   gem "capistrano-rvm"
+
   gem "airbrussh", require: false
   gem "bcrypt_pbkdf"
   gem "ed25519"
@@ -80,15 +79,15 @@ group :development do
 end
 
 group :test, :development, :cypress do
-  gem "decko-spring"
   gem "decko-cypress"
-  gem "puma"
+  gem "decko-spring"
+  gem "puma"                           # local webserver
 end
 
 group :profile do
   gem "decko-profile"
-  gem "wbench"                         # Benchmarking web requests
   gem "ruby-jmeter"                    # connected to Flood.io, used in load testing
+  gem "wbench"                         # Benchmarking web requests
 end
 
 Dir.glob("mod/**/Gemfile").each { |gemfile| instance_eval(File.read(gemfile)) }
