@@ -24,7 +24,7 @@ Feature: create researched metrics
     And I press "Submit"
 
     Then I should see "owner of"
-    And I should see "Designed by Joe Camel"
+    And I should see "Designed by Joe Camel" with line breaks
     And I should see "Metric Type Relationship"
     And I should see "Value Type Number"
     # And I should see "Metric Creator"
