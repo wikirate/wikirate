@@ -1,14 +1,17 @@
-# MySQL.  Versions 4.1 and 5.0 are recommended.
-# Be sure to use new-style password hashing:
-#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-test: &test
+version: v1.0
+name: ''
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+test: &ref_0
   adapter: mysql2
   encoding: utf8
   reconnect: false
   database: test
   pool: 5
   username: root
-  password:
+  password: null
   host: 0.0.0.0
-
-cucumber: *test
+cucumber: *ref_0
+blocks: []
