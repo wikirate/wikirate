@@ -18,9 +18,13 @@ global_job_config:
       - sem-version ruby 2.6.3
       - alias be='bundle exec'
       - git submodule update --init --recursive
+
+      - cache restore bundle-gems-baseline
       - cache restore bundle-gems-$(checksum Gemfile.lock)
-      - bundle install --deployment
+      - bundle install
       - cache store bundle-gems-$(checksum Gemfile.lock) ~/bundle
+      - cache store bundle-gems-baseline ~/bundle
+
       - sem-service start mysql
       - cp .semaphore/* config/
       - be rake db:create
