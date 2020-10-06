@@ -81,7 +81,6 @@ PATH
       kramdown
     card-mod-monkey (0.10.1)
       better_errors (!= 2.8.2)
-      binding_of_caller
       card (= 1.100.1)
       colorize
       html2haml
@@ -109,7 +108,6 @@ PATH
     decko-cucumber (0.10.1)
       capybara (~> 2.18)
       capybara-puma
-      card-mod-monkey
       chromedriver-helper (~> 2.1.0)
       cucumber (~> 3.1)
       cucumber-expressions
@@ -117,6 +115,7 @@ PATH
       database_cleaner (~> 1.5)
       email_spec
       launchy
+      rspec
       selenium-webdriver (= 3.141.0)
       simplecov
     decko-cypress (0.10.1)
@@ -124,7 +123,6 @@ PATH
     decko-profile (0.10.1)
       ruby-prof
     decko-rspec (0.10.1)
-      card-mod-monkey
       i18n-tasks (~> 0.9.5)
       minitest
       nokogumbo
