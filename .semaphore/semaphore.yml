@@ -17,7 +17,7 @@ global_job_config:
       - checkout # semaphore does git checkout and cds into decko
       - sem-version ruby 2.6.3 # because pry-stack_explorer doesn't work in 2.5
       - alias be='bundle exec'
-      - git submodule init --recursive
+      - git submodule init
       - cache restore bundle-gems-$(checksum Gemfile.lock) # restore gems from sem cache
       - bundle install --deployment
       - cache store bundle-gems-$(checksum Gemfile.lock) ~/bundle
