@@ -19,7 +19,7 @@ global_job_config:
       - alias be='bundle exec'
       - git submodule init
       - cache restore bundle-gems-$(checksum Gemfile.lock)
-      - bundle install --deployment
+      - bundle install # --deployment
       - cache store bundle-gems-$(checksum Gemfile.lock) ~/bundle
       - sem-service start mysql
       - git submodule update --init --recursive
