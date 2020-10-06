@@ -49,7 +49,6 @@ blocks:
         - name: Cucumber
           commands:
             - RAILS_ENV=cucumber bundle exec decko cucumber
-      jobs:
         - name: Cypress
           commands:
             - RAILS_ENV=test CYPRESS_DEV=true bundle exec decko server -p 5002 -d
