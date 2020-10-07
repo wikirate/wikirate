@@ -7,7 +7,7 @@ agent:
 global_job_config:
   env_vars:
     - name: BUNDLE_PATH
-      value: ~/vendor/bundle/
+      value: vendor/bundle/
     - name: COVERAGE
       value: 'false'
     - name: DECKO_REPO_PATH
@@ -31,8 +31,8 @@ blocks:
           - cache restore gems-baseline
           - cache restore gems-$(checksum Gemfile.lock)
           - bundle install --deployment
-          - cache store gems-$(checksum Gemfile.lock) ~/vendor/bundle
-          - cache store gems-baseline ~/vendor/bundle
+          - cache store gems-$(checksum Gemfile.lock) vendor/bundle
+          - cache store gems-baseline vendor/bundle
 
           - be rake db:create
           - be rake wikirate:test:seed
