@@ -51,10 +51,11 @@ group :live do
 end
 
 group :test do
-  gem "decko-cucumber"
   gem "decko-rspec"
   gem "timecop"                      # time manipulation in tests
 end
+
+gem "decko-cucumber", group: :cucumber
 
 group :development do
   gem "card-mod-monkey"

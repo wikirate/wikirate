@@ -50,6 +50,6 @@ blocks:
         - name: Cypress
           commands:
             - CYPRESS_DEV=true bundle exec decko server -p 5002 -d
-            - nvm use 10.10.0
+            - nvm use 12.18.2
             - yarn install
             - yarn run cypress run --record --key ffd8ff95-9033-4fd3-bcee-fc13cd67b3b7
