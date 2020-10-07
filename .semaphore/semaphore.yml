@@ -22,8 +22,6 @@ global_job_config:
       - git submodule update --init --recursive
       - sem-service start mysql
       - cp .semaphore/* config/
-      - be rake db:create
-      - bundle exec rake wikirate:test:seed
 
 blocks:
   - name: Unit Tests
@@ -35,6 +33,10 @@ blocks:
           - bundle install
           - cache store bundle-gems-$(checksum Gemfile.lock) ~/bundle
           - cache store bundle-gems-baseline ~/bundle
+
+          - be rake db:create
+          - be rake wikirate:test:seed
+
       env_vars:
         - name: RAILS_ROOT
           value: .
@@ -47,6 +49,9 @@ blocks:
       prologue:
         commands:
           - cache restore bundle-gems-$(checksum Gemfile.lock)
+          - be rake db:create
+          - be rake wikirate:test:seed
+
       jobs:
         - name: Cucumber
           commands:
