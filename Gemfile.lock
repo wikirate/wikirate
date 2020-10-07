@@ -718,6 +718,7 @@ DEPENDENCIES
   savanna-outliers
   statistics2
   therubyracer
+  timecop
   wbench
   wkhtmltopdf-binary (= 0.12.5.4)
 
