@@ -20,13 +20,6 @@ global_job_config:
       - sem-version ruby 2.6.3
       - alias be='bundle exec'
       - git submodule update --init --recursive
-
-      - cache restore bundle-gems-baseline
-      - cache restore bundle-gems-$(checksum Gemfile.lock)
-      - bundle install
-      - cache store bundle-gems-$(checksum Gemfile.lock) ~/bundle
-      - cache store bundle-gems-baseline ~/bundle
-
       - sem-service start mysql
       - cp .semaphore/* config/
       - be rake db:create
@@ -34,6 +27,12 @@ global_job_config:
 blocks:
   - name: Unit Tests
     task:
+      prologue:
+        - cache restore bundle-gems-baseline
+        - cache restore bundle-gems-$(checksum Gemfile.lock)
+        - bundle install
+        - cache store bundle-gems-$(checksum Gemfile.lock) ~/bundle
+        - cache store bundle-gems-baseline ~/bundle
       env_vars:
         - name: RAILS_ROOT
           value: .
@@ -43,6 +42,8 @@ blocks:
             - be rspec
   - name: Integration Tests
     task:
+      prologue:
+        - cache restore bundle-gems-$(checksum Gemfile.lock)
       jobs:
         - name: Cucumber
           commands:
