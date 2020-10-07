@@ -29,11 +29,12 @@ blocks:
   - name: Unit Tests
     task:
       prologue:
-        - cache restore bundle-gems-baseline
-        - cache restore bundle-gems-$(checksum Gemfile.lock)
-        - bundle install
-        - cache store bundle-gems-$(checksum Gemfile.lock) ~/bundle
-        - cache store bundle-gems-baseline ~/bundle
+        commands:
+          - cache restore bundle-gems-baseline
+          - cache restore bundle-gems-$(checksum Gemfile.lock)
+          - bundle install
+          - cache store bundle-gems-$(checksum Gemfile.lock) ~/bundle
+          - cache store bundle-gems-baseline ~/bundle
       env_vars:
         - name: RAILS_ROOT
           value: .
@@ -44,7 +45,8 @@ blocks:
   - name: Integration Tests
     task:
       prologue:
-        - cache restore bundle-gems-$(checksum Gemfile.lock)
+        commands:
+          - cache restore bundle-gems-$(checksum Gemfile.lock)
       jobs:
         - name: Cucumber
           commands:
