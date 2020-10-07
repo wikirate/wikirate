@@ -45,6 +45,7 @@ module Wikirate
 
     # config.override_protocol = nil
     # don't autodetect protocol (http/https) from web requests
+    config.active_job.queue_adapter = :delayed_job
 
     config.autoload_paths += Dir["#{root}/test"]
     config.file_buckets = {
