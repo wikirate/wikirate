@@ -7,7 +7,7 @@ agent:
 global_job_config:
   env_vars:
     - name: BUNDLE_PATH
-      value: ~/bundle/
+      value: ~/vendor/bundle/
     - name: COVERAGE
       value: 'false'
     - name: DECKO_REPO_PATH
@@ -28,11 +28,11 @@ blocks:
     task:
       prologue:
         commands:
-          - cache restore bundle-gems-baseline
-          - cache restore bundle-gems-$(checksum Gemfile.lock)
+          - cache restore gems-baseline
+          - cache restore gems-$(checksum Gemfile.lock)
           - bundle install --deployment
-          - cache store bundle-gems-$(checksum Gemfile.lock) ~/bundle
-          - cache store bundle-gems-baseline ~/bundle
+          - cache store gems-$(checksum Gemfile.lock) ~/vendor/bundle
+          - cache store gems-baseline ~/vendor/bundle
 
           - be rake db:create
           - be rake wikirate:test:seed
@@ -48,7 +48,7 @@ blocks:
     task:
       prologue:
         commands:
-          - cache restore bundle-gems-$(checksum Gemfile.lock)
+          - cache restore gems-$(checksum Gemfile.lock)
           - be rake db:create
           - be rake wikirate:test:seed
 
@@ -58,7 +58,7 @@ blocks:
             - RAILS_ENV=cucumber bundle exec decko cucumber
         - name: Cypress
           commands:
-            - CYPRESS_DEV=true bundle exec decko server -p 5002 -d
+            - CYPRESS_DEV=true bundle exec decko server -p 5002 &
             - nvm use 12.18.2
             - yarn install
             - yarn run cypress run --record --key ffd8ff95-9033-4fd3-bcee-fc13cd67b3b7
