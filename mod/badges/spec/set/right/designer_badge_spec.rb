@@ -2,7 +2,7 @@
 
 require_relative "../../support/badges_shared_examples"
 
-describe Card::Set::Right::DesignerBadge do
+RSpec.describe Card::Set::Right::DesignerBadge do
   it_behaves_like "badge card",
                   "Jedi+Researcher+designer badge", :bronze, 10
   it_behaves_like "badge card",
