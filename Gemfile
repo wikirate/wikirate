@@ -19,8 +19,8 @@ else
   gem "card-mod-pdfjs"
   gem "card-mod-solid_cache"
 
-  gem "decko-rspec", group: :test
   gem "decko-cucumber", group: :cucumber
+  gem "decko-rspec", group: :test
 end
 
 # DATABASE

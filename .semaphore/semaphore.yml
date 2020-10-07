@@ -7,7 +7,7 @@ agent:
 global_job_config:
   env_vars:
     - name: BUNDLE_PATH
-      value: vendor/bundle/
+      value: ~/wikirate/vendor/bundle/
     - name: COVERAGE
       value: 'false'
     - name: DECKO_REPO_PATH
