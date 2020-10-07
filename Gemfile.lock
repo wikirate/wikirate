@@ -82,6 +82,7 @@ PATH
       card (= 1.100.1)
       kramdown
     card-mod-monkey (0.10.1)
+      better_errors
       card (= 1.100.1)
       colorize
       html2haml
@@ -209,6 +210,10 @@ GEM
     ast (2.4.1)
     backports (3.18.2)
     bcrypt_pbkdf (1.0.1)
+    better_errors (2.8.3)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bootstrap4-kaminari-views (1.0.1)
