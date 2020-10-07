@@ -1,3 +1,14 @@
+[![Build Status][1]][2]
+[![Maintainability][5]][6]
+[![License: GPL v3][3]][4]
+
+[1]: https://decko.semaphoreci.com/badges/wikirate/branches/master.svg?style=shields
+[2]: https://decko.semaphoreci.com/projects/wikirate
+[3]: https://img.shields.io/badge/License-GPLv3-blue.svg
+[4]: https://www.gnu.org/licenses/gpl-3.0
+[5]: https://api.codeclimate.com/v1/badges/876f4ff79be503fe8171/maintainability
+[6]: https://codeclimate.com/github/wikirate/wikirate/maintainability
+
 Decko application code used at Wikirate.org
 
 Code Organization
