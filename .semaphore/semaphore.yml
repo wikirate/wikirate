@@ -24,6 +24,7 @@ global_job_config:
       - cp .semaphore/* config/
       - be rake db:create
       - bundle exec rake wikirate:test:seed
+
 blocks:
   - name: Unit Tests
     task:
