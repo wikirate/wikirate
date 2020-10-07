@@ -43,8 +43,7 @@ gem "company-mapping"                # Vasso's gem, written for WikiRate
 gem "rack-cors"                      # support for Cross-Origin Resource Sharing (CORS)
 
 # BACKGROUNDING
-gem "daemons"
-gem "delayed_job_web"                # web interface to jobs
+gem "card-mod-delayed_job"           # web interface to jobs
 
 group :live do
   gem "dalli"                        # Memcache
@@ -52,15 +51,15 @@ group :live do
 end
 
 group :test do
-  gem "decko-cucumber"
   gem "decko-rspec"
   gem "timecop"                      # time manipulation in tests
 end
 
+gem "decko-cucumber", group: :cucumber
+
 group :development do
   gem "card-mod-monkey"
 
-  gem "rubocop", "0.88" # 0.89 introduced bugs. may get resolved in rubocop-decko update?
   gem "rubocop-ast", "~> 0.5.0" # version jump to 0.7 produced lots of errors
   gem "rubocop-decko"
 
