@@ -20,11 +20,13 @@ RSpec.describe Card::VegaChart::RangeChart::Buckets do
 
   describe "#each_bucket" do
     it "creates 10 buckets" do
+      puts MIN
       expect { |probe| buckets(MIN, MAX).each_bucket(&probe) }
         .to yield_control.exactly(10).times
     end
 
     it "calculates correctly" do
+      puts MIN
       expect { |probe| buckets(MIN, MAX).each_bucket(&probe) }
         .to yield_successive_args(*bucket_ranges(MIN, MAX))
     end
@@ -34,6 +36,7 @@ RSpec.describe Card::VegaChart::RangeChart::Buckets do
       MAX = 50_600_000
 
       it "calculates correctly" do
+        puts MIN
         expect { |probe| buckets(MIN, MAX).each_bucket(&probe) }
           .to yield_successive_args(*bucket_ranges(MIN, MAX))
       end

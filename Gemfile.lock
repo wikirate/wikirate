@@ -24,7 +24,6 @@ PATH
       coderay (~> 1.1)
       coffee-script (~> 2.4)
       colorize (~> 0.8)
-      delayed_job_active_record (~> 4.1)
       diff-lcs (~> 1.3)
       haml (~> 5.0)
       jwt (~> 2.2)
@@ -35,6 +34,8 @@ PATH
       sprockets (~> 3.7)
       uglifier (~> 3.2)
       uuid (~> 2.3)
+    card-mod-account (0.10.1)
+      card (= 1.100.1)
     card-mod-ace_editor (0.10.1)
       card (= 1.100.1)
       card-mod-edit (= 0.10.1)
@@ -43,22 +44,31 @@ PATH
       card-mod-edit (= 0.10.1)
     card-mod-carrierwave (0.10.1)
       card (= 1.100.1)
+      card-mod-history (= 0.10.1)
       carrierwave (= 2.0.2)
       mini_magick (~> 4.2)
     card-mod-date (0.10.1)
       card (= 1.100.1)
     card-mod-defaults (0.10.1)
       card (= 1.100.1)
+      card-mod-account (= 0.10.1)
       card-mod-ace_editor (= 0.10.1)
       card-mod-bootstrap (= 0.10.1)
       card-mod-carrierwave (= 0.10.1)
       card-mod-date (= 0.10.1)
+      card-mod-delayed_job (= 0.10.1)
       card-mod-follow (= 0.10.1)
       card-mod-google_analytics (= 0.10.1)
+      card-mod-history (= 0.10.1)
       card-mod-markdown (= 0.10.1)
       card-mod-prosemirror_editor (= 0.10.1)
       card-mod-recaptcha (= 0.10.1)
       card-mod-tinymce_editor (= 0.10.1)
+    card-mod-delayed_job (0.10.1)
+      card (= 1.100.1)
+      daemons
+      delayed_job_active_record (>= 4.1)
+      delayed_job_web
     card-mod-edit (0.10.1)
       card (= 1.100.1)
     card-mod-follow (0.10.1)
@@ -66,23 +76,21 @@ PATH
       card-mod-carrierwave (= 0.10.1)
     card-mod-google_analytics (0.10.1)
       card (= 1.100.1)
+    card-mod-history (0.10.1)
+      card (= 1.100.1)
     card-mod-markdown (0.10.1)
       card (= 1.100.1)
       kramdown
     card-mod-monkey (0.10.1)
       better_errors
-      binding_of_caller
       card (= 1.100.1)
       colorize
-      delayed_job_active_record (~> 4.1)
       html2haml
-      phantomjs (= 1.9.7.1)
       pry-byebug
       pry-rails
       pry-rescue
       pry-stack_explorer
       rubocop (= 0.88)
-      sprockets
     card-mod-prosemirror_editor (0.10.1)
       card (= 1.100.1)
       card-mod-edit (= 0.10.1)
@@ -100,13 +108,14 @@ PATH
     decko-cucumber (0.10.1)
       capybara (~> 2.18)
       capybara-puma
-      card-mod-monkey
       chromedriver-helper (~> 2.1.0)
       cucumber (~> 3.1)
       cucumber-expressions
       cucumber-rails
       database_cleaner (~> 1.5)
+      email_spec
       launchy
+      rspec
       selenium-webdriver (= 3.141.0)
       simplecov
     decko-cypress (0.10.1)
@@ -114,8 +123,6 @@ PATH
     decko-profile (0.10.1)
       ruby-prof
     decko-rspec (0.10.1)
-      card-mod-monkey
-      email_spec
       i18n-tasks (~> 0.9.5)
       minitest
       nokogumbo
@@ -126,6 +133,7 @@ PATH
       rspec-rails (~> 4.0.0.beta2)
       rubocop-rspec
       spork (>= 0.9)
+      timecop
     decko-spring (0.10.1)
       listen (= 3.0.6)
       spring
@@ -135,58 +143,58 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    actioncable (6.0.3.3)
-      actionpack (= 6.0.3.3)
+    actioncable (6.0.3.4)
+      actionpack (= 6.0.3.4)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
-    actionmailbox (6.0.3.3)
-      actionpack (= 6.0.3.3)
-      activejob (= 6.0.3.3)
-      activerecord (= 6.0.3.3)
-      activestorage (= 6.0.3.3)
-      activesupport (= 6.0.3.3)
+    actionmailbox (6.0.3.4)
+      actionpack (= 6.0.3.4)
+      activejob (= 6.0.3.4)
+      activerecord (= 6.0.3.4)
+      activestorage (= 6.0.3.4)
+      activesupport (= 6.0.3.4)
       mail (>= 2.7.1)
-    actionmailer (6.0.3.3)
-      actionpack (= 6.0.3.3)
-      actionview (= 6.0.3.3)
-      activejob (= 6.0.3.3)
+    actionmailer (6.0.3.4)
+      actionpack (= 6.0.3.4)
+      actionview (= 6.0.3.4)
+      activejob (= 6.0.3.4)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 2.0)
-    actionpack (6.0.3.3)
-      actionview (= 6.0.3.3)
-      activesupport (= 6.0.3.3)
+    actionpack (6.0.3.4)
+      actionview (= 6.0.3.4)
+      activesupport (= 6.0.3.4)
       rack (~> 2.0, >= 2.0.8)
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.2.0)
-    actiontext (6.0.3.3)
-      actionpack (= 6.0.3.3)
-      activerecord (= 6.0.3.3)
-      activestorage (= 6.0.3.3)
-      activesupport (= 6.0.3.3)
+    actiontext (6.0.3.4)
+      actionpack (= 6.0.3.4)
+      activerecord (= 6.0.3.4)
+      activestorage (= 6.0.3.4)
+      activesupport (= 6.0.3.4)
       nokogiri (>= 1.8.5)
-    actionview (6.0.3.3)
-      activesupport (= 6.0.3.3)
+    actionview (6.0.3.4)
+      activesupport (= 6.0.3.4)
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    activejob (6.0.3.3)
-      activesupport (= 6.0.3.3)
+    activejob (6.0.3.4)
+      activesupport (= 6.0.3.4)
       globalid (>= 0.3.6)
-    activemodel (6.0.3.3)
-      activesupport (= 6.0.3.3)
-    activerecord (6.0.3.3)
-      activemodel (= 6.0.3.3)
-      activesupport (= 6.0.3.3)
+    activemodel (6.0.3.4)
+      activesupport (= 6.0.3.4)
+    activerecord (6.0.3.4)
+      activemodel (= 6.0.3.4)
+      activesupport (= 6.0.3.4)
     activerecord-import (1.0.6)
       activerecord (>= 3.2)
-    activestorage (6.0.3.3)
-      actionpack (= 6.0.3.3)
-      activejob (= 6.0.3.3)
-      activerecord (= 6.0.3.3)
+    activestorage (6.0.3.4)
+      actionpack (= 6.0.3.4)
+      activejob (= 6.0.3.4)
+      activerecord (= 6.0.3.4)
       marcel (~> 0.3.1)
-    activesupport (6.0.3.3)
+    activesupport (6.0.3.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -202,7 +210,7 @@ GEM
     ast (2.4.1)
     backports (3.18.2)
     bcrypt_pbkdf (1.0.1)
-    better_errors (2.8.1)
+    better_errors (2.8.3)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
@@ -365,7 +373,7 @@ GEM
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
-    image_info (1.2.1)
+    image_info (1.2.2)
       addressable (~> 2.0)
       image_size (~> 2.0)
       typhoeus (~> 1.0)
@@ -450,10 +458,9 @@ GEM
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
     parallel (1.19.2)
-    parser (2.7.1.5)
+    parser (2.7.2.0)
       ast (~> 2.4.1)
     pdfkit (0.8.4.3.2)
-    phantomjs (1.9.7.1)
     pivotal-tracker (0.5.13)
       builder
       crack
@@ -484,20 +491,20 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rails (6.0.3.3)
-      actioncable (= 6.0.3.3)
-      actionmailbox (= 6.0.3.3)
-      actionmailer (= 6.0.3.3)
-      actionpack (= 6.0.3.3)
-      actiontext (= 6.0.3.3)
-      actionview (= 6.0.3.3)
-      activejob (= 6.0.3.3)
-      activemodel (= 6.0.3.3)
-      activerecord (= 6.0.3.3)
-      activestorage (= 6.0.3.3)
-      activesupport (= 6.0.3.3)
+    rails (6.0.3.4)
+      actioncable (= 6.0.3.4)
+      actionmailbox (= 6.0.3.4)
+      actionmailer (= 6.0.3.4)
+      actionpack (= 6.0.3.4)
+      actiontext (= 6.0.3.4)
+      actionview (= 6.0.3.4)
+      activejob (= 6.0.3.4)
+      activemodel (= 6.0.3.4)
+      activerecord (= 6.0.3.4)
+      activestorage (= 6.0.3.4)
+      activesupport (= 6.0.3.4)
       bundler (>= 1.3.0)
-      railties (= 6.0.3.3)
+      railties (= 6.0.3.4)
       sprockets-rails (>= 2.0.0)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
@@ -511,9 +518,9 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
-    railties (6.0.3.3)
-      actionpack (= 6.0.3.3)
-      activesupport (= 6.0.3.3)
+    railties (6.0.3.4)
+      actionpack (= 6.0.3.4)
+      activesupport (= 6.0.3.4)
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
@@ -677,13 +684,13 @@ DEPENDENCIES
   card-mod-bookmarks!
   card-mod-csv_import
   card-mod-defaults
+  card-mod-delayed_job
   card-mod-monkey
   card-mod-new_relic
   card-mod-pdfjs
   card-mod-solid_cache
   company-mapping
   curb
-  daemons
   dalli
   decko!
   decko-cucumber
@@ -691,7 +698,6 @@ DEPENDENCIES
   decko-profile
   decko-rspec
   decko-spring
-  delayed_job_web
   descriptive_statistics
   ed25519
   fog-aws
@@ -703,7 +709,6 @@ DEPENDENCIES
   puma
   rack-cors
   roo
-  rubocop (= 0.88)
   rubocop-ast (~> 0.5.0)
   rubocop-decko
   ruby-jmeter
@@ -715,4 +720,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (= 0.12.5.4)
 
 BUNDLED WITH
-   1.17.3
+   2.1.4
