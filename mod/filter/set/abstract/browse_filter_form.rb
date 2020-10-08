@@ -3,6 +3,7 @@
 include_set Abstract::Search
 include_set Abstract::Filter
 include_set Abstract::FilterFormgroups
+include_set Abstract::Export
 
 def filter_keys
   []
@@ -53,6 +54,10 @@ format :html do
   # view :no_search_results do
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
+
+  def export_formats
+    [:json]
+  end
 
   def default_item_view
     :bar
