@@ -4,9 +4,13 @@ format :html do
   end
 
   view :export_links, cache: :never do
-    wrap_with :p, class: "py-3" do
+    wrap_with :div, class: "export-links py-3" do
       "Export: #{export_format_links}"
     end
+  end
+
+  view :filtered_content do
+    super() + render_export_links
   end
 
   def export_format_links
