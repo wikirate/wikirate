@@ -62,4 +62,9 @@ format :html do
   def wikirate_topic_property title
     labeled_field :wikirate_topic, :link, title: title
   end
+
+  def value_options_property title
+    # not comma separated.
+    labeled_field :value_options, :name, title: title
+  end
 end
