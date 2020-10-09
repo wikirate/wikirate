@@ -5,7 +5,7 @@ format :html do
 
   view :export_links, cache: :never do
     return "" if export_formats.blank?
-    
+
     wrap_with :div, class: "export-links py-3" do
       "Export: #{export_format_links}"
     end
