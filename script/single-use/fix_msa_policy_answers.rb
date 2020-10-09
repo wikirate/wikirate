@@ -1,15 +1,15 @@
-ENV["RAILS_ENV"] = "staging"
+# ENV["RAILS_ENV"] = "staging"
 
-ENV['BUNDLE_GEMFILE'] ||= File.expand_path("../../../Gemfile")
+# ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../../Gemfile")
 require File.expand_path "../../../config/environment", __FILE__
 
+SUPPLIERS_RESPECT = "Suppliers respect labour rights".freeze
 RENAMED = {
-  "Suppliers respect labour rights (wages, freedom of association etc) (direct / tier 1)" =>
-    "Suppliers respect labour rights (wages / freedom of association etc) (direct / tier 1)",
-  "Suppliers respect labour rights (wages, freedom of association etc) (beyond tier 1)" =>
-    "Suppliers respect labour rights (wages / freedom of association etc) (beyond tier 1)"
-}
-
+  "#{SUPPLIERS_RESPECT} (wages, freedom of association etc) (direct / tier 1)" =>
+    "#{SUPPLIERS_RESPECT} (wages / freedom of association etc) (direct / tier 1)",
+  "#{SUPPLIERS_RESPECT} (wages, freedom of association etc) (beyond tier 1)" =>
+    "#{SUPPLIERS_RESPECT} (wages / freedom of association etc) (beyond tier 1)"
+}.freeze
 
 MAPPED = {
   "Suppliers comply with laws and company’s policies" =>
@@ -18,13 +18,11 @@ MAPPED = {
     "Prohibit use of forced labour (direct / tier 1)",
   "Contracts include clauses on forced labour" =>
     "Contracts include clauses on forced labour (direct / tier 1)"
-}
+}.freeze
 
 def metric
   Card["Walk_Free_Foundation+MSA_policy_revised"]
 end
-
-RENAME_SQL =
 
 def rename_options
   options_card = metric.value_options_card
@@ -32,7 +30,7 @@ def rename_options
   RENAMED.each do |from, to|
     puts "from: #{from}, to: #{to}"
     options_card.drop_item from
-    options_card.add_item to, allow_duplicates=true
+    options_card.add_item to, true
     options_card.skip = %i[validate_no_commas_in_value_options
                            validate_value_options_match_values]
     options_card.update!({})
@@ -41,12 +39,11 @@ def rename_options
 end
 
 def update_answers_with_rename from, to
-  where = "metric_id = #{metric.id} and value like '%Suppliers respect%'"
+  where = "metric_id = #{metric.id} and value like '%#{SUPPLIERS_RESPECT}%'"
   Answer.where(where).each do |answer|
     update_renamed_value answer, from, to
   end
 end
-
 
 def update_renamed_value answer, from, to
   valcard = answer.card.value_card
@@ -65,5 +62,5 @@ def update_mapped_options
 end
 
 Card::Auth.signin "Ethan McCutchen"
-# rename_options
+rename_options
 update_mapped_options
