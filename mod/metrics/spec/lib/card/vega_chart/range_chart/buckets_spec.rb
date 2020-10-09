@@ -1,6 +1,6 @@
 RSpec.describe Card::VegaChart::RangeChart::Buckets do
-  MIN = 582_603
-  MAX = 5_613_573
+  let(:bottom) { 582_603 }
+  let(:top) { 5_613_573 }
 
   def buckets lower, upper
     buck = Class.new
@@ -15,30 +15,27 @@ RSpec.describe Card::VegaChart::RangeChart::Buckets do
     mid = be_between min, max
     [[eq(min), mid, be_falsey]] +
       ([[mid, mid, be_falsey]] * 8) +
-      [[mid, be_between(max, max + 100_000).inclusive, be_truthy]]
+      [[mid, be_between(max, max + 200_000).inclusive, be_truthy]]
   end
 
   describe "#each_bucket" do
     it "creates 10 buckets" do
-      puts MIN
-      expect { |probe| buckets(MIN, MAX).each_bucket(&probe) }
+      expect { |probe| buckets(bottom, top).each_bucket(&probe) }
         .to yield_control.exactly(10).times
     end
 
     it "calculates correctly" do
-      puts MIN
-      expect { |probe| buckets(MIN, MAX).each_bucket(&probe) }
-        .to yield_successive_args(*bucket_ranges(MIN, MAX))
+      expect { |probe| buckets(bottom, top).each_bucket(&probe) }
+        .to yield_successive_args(*bucket_ranges(bottom, top))
     end
 
     context "with negative values" do
-      MIN = -500_000
-      MAX = 50_600_000
+      let(:bottom) { -500_000 }
+      let(:top) { 50_600_000 }
 
       it "calculates correctly" do
-        puts MIN
-        expect { |probe| buckets(MIN, MAX).each_bucket(&probe) }
-          .to yield_successive_args(*bucket_ranges(MIN, MAX))
+        expect { |probe| buckets(bottom, top).each_bucket(&probe) }
+          .to yield_successive_args(*bucket_ranges(bottom, top))
       end
     end
   end
