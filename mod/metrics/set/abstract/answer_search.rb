@@ -41,6 +41,10 @@ end
 format :html do
   delegate :partner, to: :card
 
+  def export_formats
+    %i[csv json]
+  end
+
   view :filtered_content do
     card.override_filter_hash default_filter_hash
     super() + raw('<div class="details"></div>')
