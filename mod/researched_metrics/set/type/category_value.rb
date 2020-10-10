@@ -7,7 +7,7 @@ event :validate_valid_categories, :validate, on: :save do
   url = "/#{options_card.name.url_key}?view=edit"
   anchor = %(<a href='#{url}' target="_blank">add that option</a>)
   errors.add :content, "invalid option(s): #{invalid_options.join ', '}. " \
-                     "Please #{anchor} before adding this metric value."
+                       "Please #{anchor} before adding this metric value."
 end
 
 def illegal_items
