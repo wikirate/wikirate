@@ -24,7 +24,7 @@ def item_names args={}
 end
 
 def item_cards
-  item_names.map &:card
+  item_names.map(&:card)
 end
 
 def options_hash
