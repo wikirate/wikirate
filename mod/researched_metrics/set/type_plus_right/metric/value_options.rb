@@ -2,14 +2,19 @@ include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DesignerPermissions
 include_set Abstract::Filterable
 
-event :validate_no_commas_in_value_options, :validate, on: :save, changed: :content do
+event :validate_no_commas_in_value_options, :validate,
+      skip: :allowed, # until we fix all the bad ones
+      on: :save, changed: :content do
+  puts "validate no commas"
   return unless metric_card&.multi_categorical? &&
                 item_names.find { |item| item.match? "," }
 
   errors.add :content, "Multi-category options cannot have commas"
 end
 
-event :validate_value_options_match_values, :validate, on: :save, changed: :content do
+event :validate_value_options_match_values, :validate,
+      skip: :allowed,  # should only be skipped when fixing bad data.
+      on: :save, changed: :content do
   return unless (error_message = metric_card.validate_all_values)
 
   errors.add :content, "Change makes current answers invalid: #{error_message}"
@@ -17,6 +22,10 @@ end
 
 def item_names args={}
   super args.merge(context: :raw)
+end
+
+def item_cards
+  item_names.map &:card
 end
 
 def options_hash
@@ -42,7 +51,9 @@ format :html do
 
   view :core do
     filtering(".RIGHT-answer ._filter-widget") do
-      super()
+      wrap_with :div, class: "pointer-list" do
+        listing card.item_cards
+      end
     end
   end
 
@@ -51,6 +62,8 @@ format :html do
 
     wrap_with :div, rendered,
               class: "pointer-item item-#{item_view} _filterable",
-              data: { filter: { status: :exists, year: :latest, value: rendered } }
+              data: { filter: { status: :exists,
+                                year: :latest,
+                                value: card.item_value(rendered) } }
   end
 end
