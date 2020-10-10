@@ -24,6 +24,10 @@ def item_names args={}
   super args.merge(context: :raw)
 end
 
+def item_cards
+  item_names.map &:card
+end
+
 def options_hash
   json_options? ? parse_content : option_hash_from_names
 end
@@ -47,7 +51,9 @@ format :html do
 
   view :core do
     filtering(".RIGHT-answer ._filter-widget") do
-      standard_pointer_core
+      wrap_with :div, class: "pointer-list" do
+        listing card.item_cards
+      end
     end
   end
 
