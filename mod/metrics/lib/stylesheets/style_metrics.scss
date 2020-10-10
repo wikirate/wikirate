@@ -431,6 +431,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       white-space: inherit;
     }
   }
+  .labeled-content .RIGHT-value_option .pointer-item {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+  }
 }
 
 .core-view.SELF-research_page, .research_page-view {
