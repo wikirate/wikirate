@@ -5,7 +5,6 @@ include_set Abstract::Filterable
 event :validate_no_commas_in_value_options, :validate,
       skip: :allowed, # until we fix all the bad ones
       on: :save, changed: :content do
-  puts "validate no commas"
   return unless metric_card&.multi_categorical? &&
                 item_names.find { |item| item.match? "," }
 
