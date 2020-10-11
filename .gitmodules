@@ -20,3 +20,6 @@
 [submodule "mod/homepage/vendor/countUp"]
 	path = mod/homepage/vendor/countUp
 	url = https://github.com/inorganik/countUp.js.git
+[submodule "vendor/decko-cap"]
+	path = vendor/decko-cap
+	url = git@github.com:decko-commons/decko-cap.git
