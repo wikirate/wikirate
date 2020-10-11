@@ -1,35 +1,5 @@
-# Load DSL and Setup Up Stages
-require "capistrano/setup"
+require "decko/cap"
+include Decko::Cap
 
-# Includes default deployment tasks
-require "capistrano/deploy"
-
-require "capistrano/scm/git"
-install_plugin Capistrano::SCM::Git
-require "capistrano/scm/git-with-submodules"
-install_plugin Capistrano::SCM::Git::WithSubmodules
-
-# Includes tasks from other gems included in your Gemfile
-#
-# For documentation on these, see for example:
-#
-#   https://github.com/capistrano/rvm
-#   https://github.com/capistrano/rbenv
-#   https://github.com/capistrano/chruby
-#   https://github.com/capistrano/bundler
-#   https://github.com/capistrano/rails/tree/master/assets
-#   https://github.com/capistrano/rails/tree/master/migrations
-
-# require 'capistrano/rbenv'
-# require 'capistrano/chruby'
-# require 'capistrano/rails/assets'
-# require 'capistrano/rails/migrations'
-
-require "capistrano/rvm"
-require "capistrano/bundler"
-require "capistrano/maintenance"
-require "airbrussh/capistrano"
-require "capistrano/passenger"
-
-# Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
+Decko::Cap.each_cap_file { |file| import file }
 Dir.glob("lib/capistrano/tasks/*.cap").each { |r| import r }

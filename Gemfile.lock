@@ -15,6 +15,20 @@ PATH
       card
 
 PATH
+  remote: vendor/decko-cap
+  specs:
+    decko-cap (0.1)
+      airbrussh
+      bcrypt_pbkdf
+      capistrano
+      capistrano-bundler
+      capistrano-git-with-submodules (~> 2.0)
+      capistrano-maintenance
+      capistrano-passenger
+      capistrano-rvm
+      ed25519
+
+PATH
   remote: vendor/decko
   specs:
     card (1.100.1)
@@ -672,15 +686,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrussh
-  bcrypt_pbkdf
   bulk_insert
-  capistrano
-  capistrano-bundler
-  capistrano-git-with-submodules (~> 2.0)
-  capistrano-maintenance
-  capistrano-passenger
-  capistrano-rvm
   card-mod-bookmarks!
   card-mod-csv_import
   card-mod-defaults
@@ -693,13 +699,13 @@ DEPENDENCIES
   curb
   dalli
   decko!
+  decko-cap!
   decko-cucumber
   decko-cypress
   decko-profile
   decko-rspec
   decko-spring
   descriptive_statistics
-  ed25519
   fog-aws
   link_thumbnailer
   mysql2 (> 0.4)

@@ -21,6 +21,8 @@ else
 
   gem "decko-cucumber", group: :cucumber
   gem "decko-rspec", group: :test
+
+  gem "decko-cap", path: "./vendor/decko-cap", group: :development
 end
 
 # DATABASE
@@ -57,17 +59,6 @@ group :development do
   gem "rubocop-ast", "~> 0.5.0" # version jump to 0.7 produced lots of errors
   gem "rubocop-decko"
 
-  gem "capistrano"
-  gem "capistrano-bundler"
-  gem "capistrano-git-with-submodules", '~> 2.0'
-  gem "capistrano-maintenance", require: false
-  gem "capistrano-passenger"
-  gem "capistrano-rvm"
-
-  gem "airbrussh", require: false
-  gem "bcrypt_pbkdf"
-  gem "ed25519"
-
   gem "pivotal-tracker"
 end
 
@@ -76,13 +67,13 @@ gem "timecop", group: %i[test cucumber] # date/time manipulation in tests
 group :test, :development, :cypress do
   gem "decko-cypress"
   gem "decko-spring"
-  gem "puma"                           # local webserver
+  gem "puma"                         # local webserver
 end
 
 group :profile do
   gem "decko-profile"
-  gem "ruby-jmeter"                    # connected to Flood.io, used in load testing
-  gem "wbench"                         # Benchmarking web requests
+  gem "ruby-jmeter"                  # connected to Flood.io, used in load testing
+  gem "wbench"                       # Benchmarking web requests
 end
 
 Dir.glob("mod/**/Gemfile").each { |gemfile| instance_eval(File.read(gemfile)) }
