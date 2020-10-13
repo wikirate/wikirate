@@ -63,7 +63,7 @@ RSpec.describe Card::AnswerImportItem do
     end
   end
 
-  describe "mapping" do
+  describe "#auto_add" do
     let(:unknown_co) { "Kuhl Co" }
     let(:unknown_url) { "http://xkcd.com" }
 
@@ -74,7 +74,12 @@ RSpec.describe Card::AnswerImportItem do
 
     it "handles auto adding source", as_bot: true do
       val = described_class.auto_add :source, unknown_url
+      expect(val).to be_a(Integer)
       expect(Card.fetch_type_id(val)).to eq(Card::SourceID)
+    end
+
+    it "returns nil for invalid auto_add url" do
+      expect(described_class.auto_add(:source, "joobawooba")).to be_nil
     end
   end
 
