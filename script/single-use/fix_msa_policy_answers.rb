@@ -42,7 +42,7 @@ def update_answers_with_rename from, to
   where = "metric_id = #{metric.id} and value like '%#{SUPPLIERS_RESPECT}%'"
   Answer.where(where).each do |answer|
     update_renamed_value answer, from, to
-  endC
+  end
 end
 
 def update_renamed_value answer, from, to
