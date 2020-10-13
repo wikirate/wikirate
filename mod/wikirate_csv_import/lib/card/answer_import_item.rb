@@ -61,18 +61,9 @@ class Card
     end
 
     class << self
-      def auto_add_source val
-        separate_vals(:source, val).map do |string|
-          source_from_url(string) || string
-        end.join separator(:source)
-      end
-
-      def source_from_url url
-        src.find_or_add_source_card(url)&.name if src.url? url
-      end
-
-      def src
-        Card::Set::Self::Source
+      def auto_add_source url
+        src = Card::Set::Self::Source
+        src.find_or_add_source_card(url)&.id if src.url? url
       end
 
       def export_csv_header
