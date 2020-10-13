@@ -49,6 +49,10 @@ def value_options
   voc.send "item_#{voc.type_id == JsonID ? :values : :names}"
 end
 
+def value_option_names
+  value_options_card.item_names
+end
+
 # these methods are overridden in at least one metric type
 def self.default_false method_name
   define_method(method_name) { false }
