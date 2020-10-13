@@ -42,7 +42,7 @@ def update_answers_with_rename from, to
   where = "metric_id = #{metric.id} and value like '%#{SUPPLIERS_RESPECT}%'"
   Answer.where(where).each do |answer|
     update_renamed_value answer, from, to
-  end
+  endC
 end
 
 def update_renamed_value answer, from, to
@@ -54,7 +54,7 @@ def update_renamed_value answer, from, to
 end
 
 def update_mapped_options
-  Answers.where(metric_id: metric.id).each do |answer|
+  Answer.where(metric_id: metric.id).each do |answer|
     valcard = answer.card.value_card
     MAPPED.each { |old, new| valcard.replace_item old, new }
     valcard.save! if valcard.db_content_changed?
