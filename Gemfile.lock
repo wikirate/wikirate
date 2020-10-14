@@ -5,6 +5,8 @@ PATH
       card
     card-mod-csv_import (0.9)
       card
+    card-mod-fulltext (0.1)
+      card
     card-mod-new_relic (1.1)
       card
       decko
@@ -546,7 +548,7 @@ GEM
     recaptcha (4.13.2)
       json
     ref (2.0.0)
-    regexp_parser (1.8.1)
+    regexp_parser (1.8.2)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -691,6 +693,7 @@ DEPENDENCIES
   card-mod-csv_import
   card-mod-defaults
   card-mod-delayed_job
+  card-mod-fulltext
   card-mod-monkey
   card-mod-new_relic
   card-mod-pdfjs
