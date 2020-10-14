@@ -1,5 +1,6 @@
 include Set::Abstract::Calculation
 
+delegate :categorical?, :value_options, :value_option_names, to: :basic_metric_card
 # <OVERRIDES>
 def score?
   true
@@ -38,10 +39,6 @@ def basic_metric_card
   left
 end
 
-def categorical?
-  basic_metric_card.categorical?
-end
-
 def normalize_value value
   return value if value.is_a? String
   return "0" if value.negative?
@@ -51,10 +48,6 @@ end
 
 def value_type
   "Number"
-end
-
-def value_options
-  basic_metric_card.value_options
 end
 
 event :validate_score_name, :validate, changed: :name, on: :save do

@@ -51,18 +51,16 @@ format :html do
   view :core do
     filtering(".RIGHT-answer ._filter-widget") do
       wrap_with :div, class: "pointer-list" do
-        listing card.item_cards
+        card.item_names.map { |name| filterable_div name }
       end
     end
   end
 
-  def wrap_item rendered, item_view
-    return super unless item_view == :name
-
-    wrap_with :div, rendered,
-              class: "pointer-item item-#{item_view} _filterable",
+  def filterable_div item_name
+    wrap_with :div, item_name,
+              class: "pointer-item item-name _filterable",
               data: { filter: { status: :exists,
                                 year: :latest,
-                                value: card.item_value(rendered) } }
+                                value: card.item_value(item_name) } }
   end
 end
