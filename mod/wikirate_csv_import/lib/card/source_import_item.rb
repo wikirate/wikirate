@@ -18,5 +18,9 @@ class Card
       results = Card::Set::Self::Source.search_by_url wikirate_link
       results.first&.id
     end
+
+    def wikirate_company_suggestion_filter_mark
+      "Company+browse_company_filter"
+    end
   end
 end
