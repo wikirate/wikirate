@@ -1,4 +1,4 @@
-include_set Abstract::WqlSearch
+include_set Abstract::CqlSearch
 
 def cql_content
   { type_id: Card::MetricAnswerID, id: answer_ids.unshift("in") }
@@ -13,9 +13,7 @@ def skip_search?
 end
 
 format do
-  view :core do
-    view :core, cache: :never do
-      _render! :card_list
-    end
+  view :core, cache: :never do
+    _render! :card_list
   end
 end

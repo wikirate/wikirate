@@ -25,11 +25,11 @@ module Wikirate
 
     # config.cache_store = :file_store, 'tmp/cache'
     # determines caching mechanism.
-    # options include: file_store, memory_store, mem_cache_store, dalli_store...
+    # options include: file_store, memory_store, mem_cache_store, mem_cache_store...
     #
     # for production, we highly recommend memcache
     # here's a sample configuration for use with the dalli gem
-    # config.cache_store = :dalli_store, []
+    # config.cache_store = :mem_cache_store, []
 
     # config.paths['files'] = 'files'
     # where uploaded files are actually stored. (eg Image and File cards)
