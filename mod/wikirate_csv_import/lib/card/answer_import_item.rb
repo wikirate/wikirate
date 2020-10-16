@@ -5,7 +5,7 @@ class Card
                  wikirate_company: { map: true, auto_add: true },
                  year: { map: true },
                  value: {},
-                 source: { map: true, separator: ";", auto_add: true },
+                 source: { map: true, separator: "; ", auto_add: true },
                  comment: { optional: true } }
 
     CSV_KEYS = %i[answer_id answer_link metric wikirate_company year value
