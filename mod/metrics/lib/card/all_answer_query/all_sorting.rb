@@ -40,7 +40,7 @@ class Card
       # FIXME: right_id is not the title for Score metrics!
       def sort_by_metric_title rel
         rel.joins(sort_join("right_id = sort.id"))
-           .order("sort.key #{@sort_args[:sort_order]}")
+           .order(Arel.sql("sort.key #{@sort_args[:sort_order]}"))
       end
 
       def standard_sort rel
