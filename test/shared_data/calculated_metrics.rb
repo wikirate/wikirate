@@ -61,21 +61,17 @@ class SharedData
     end
 
     def wikirating_metrics
-      Card::Metric.create(
-        name: "Jedi+darkness rating",
-        type: :wiki_rating,
-        formula: { "Jedi+deadliness+Joe User" => 60,
-                   "Jedi+disturbances in the Force+Joe User" => 40 }
-      )
+      Card::Metric.create name: "Jedi+darkness rating",
+                          type: :wiki_rating,
+                          formula: { "Jedi+deadliness+Joe User" => 60,
+                                     "Jedi+disturbances in the Force+Joe User" => 40 }
     end
 
     def descendant_metrics
-      Card::Metric.create(
-        name: "Joe User+descendant 1",
-        type: :descendant,
-        formula: "[[Joe User+researched number 2]]\n" \
-                 "[[Joe User+researched number 1]]"
-      )
+      Card::Metric.create name: "Joe User+descendant 1",
+                          type: :descendant,
+                          formula: "[[Joe User+researched number 2]]\n" \
+                                   "[[Joe User+researched number 1]]"
 
       Card::Metric.create name: "Joe User+descendant hybrid",
                           type: :descendant,
@@ -86,11 +82,10 @@ class SharedData
         Death_Star 1977 => 1000
       end
 
-      Card::Metric.create(name: "Joe User+descendant 2",
+      Card::Metric.create name: "Joe User+descendant 2",
                           type: :descendant,
                           formula: "[[Joe User+RM]]\n" \
                                    "[[Joe User+researched number 1]]"
-                         )
     end
   end
 end
