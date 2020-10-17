@@ -8,8 +8,7 @@ event :update_metric_answers, :integrate_with_delay, on: :update, changed: :cont
   metric_card.deep_answer_update
 end
 
-event :create_dummy_answers, :finalize,
-      on: :create, changed: :content, when: :content? do
+event :create_dummy_answers, :finalize, on: :create, changed: :content, when: :content? do
   metric_card.initial_calculation_in_progress!
 end
 
