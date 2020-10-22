@@ -31,9 +31,7 @@ format :html do
     render_slot_machine
   end
 
-  view :slot_machine, perms: :create, wrap: :slot do
-    haml :slot_machine
-  end
+  view :slot_machine, template: :haml, wrap: :slot, perms: -> (_f) { Auth.signed_in? }
 
   def slot_machine opts={}
     %i[metric company related_company project year].each do |n|
