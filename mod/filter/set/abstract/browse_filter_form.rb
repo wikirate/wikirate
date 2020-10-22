@@ -5,16 +5,8 @@ include_set Abstract::Filter
 include_set Abstract::FilterFormgroups
 include_set Abstract::Export
 
-def filter_keys
-  []
-end
-
-def default_sort_option
-  "name"
-end
-
-def filter_class
-  Card::FilterQuery
+def virtual?
+  new?
 end
 
 def cql_content
@@ -25,29 +17,39 @@ def target_type_id
   raise "need target_type_id"
 end
 
-def sort_cql
-  case current_sort.to_sym
-  when :name
-    { sort: "name" }
-  when :create
-    { sort: "create", dir: "desc" }
-  when :relevance
-    { sort: "relevance" }
-  else
-    cached_count_sort_cql
+format do
+  def filter_class
+    Card::FilterQuery
   end
-end
 
-def cached_count_sort_cql
-  { sort: { right: current_sort,
-            item: "cached_count",
-            return: "count" },
-    sort_as: "integer",
-    dir: "desc" }
-end
+  def filter_keys
+    []
+  end
 
-def virtual?
-  new?
+  def default_sort_option
+    "name"
+  end
+
+  def sort_cql
+    case current_sort.to_sym
+    when :name
+      { sort: "name" }
+    when :create
+      { sort: "create", dir: "desc" }
+    when :relevance
+      { sort: "relevance" }
+    else
+      cached_count_sort_cql
+    end
+  end
+
+  def cached_count_sort_cql
+    { sort: { right: current_sort,
+              item: "cached_count",
+              return: "count" },
+      sort_as: "integer",
+      dir: "desc" }
+  end
 end
 
 format :html do

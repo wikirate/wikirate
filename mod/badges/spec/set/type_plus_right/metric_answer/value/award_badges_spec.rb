@@ -1,8 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../../support/award_answer_create_badges_shared_examples"
-require_relative "../../../../support/award_answer_badges_shared_examples"
-
 RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
   let(:sample_acting_card) { sample_metric_answer.value_card }
 

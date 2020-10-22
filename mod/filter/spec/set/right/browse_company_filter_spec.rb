@@ -3,8 +3,10 @@
 require File.expand_path("../filter_spec_helper.rb", __FILE__)
 
 RSpec.describe Card::Set::Right::BrowseCompanyFilter do
+  let(:format) { format_subject :base }
+
   describe "filter_cql" do
-    subject { card_subject.filter_cql_from_params }
+    subject { format.filter_cql_from_params }
 
     def cql args
       args # .merge type_id: Card::WikirateCompanyID

@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../support/cached_count_shared_examples"
-
 RSpec.describe Card::Set::TypePlusRight::Metric::WikirateCompany do
   it_behaves_like "cached count", "Jedi+disturbances in the force+companies", 4, 1 do
     let :add_one do
