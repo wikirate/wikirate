@@ -10,6 +10,7 @@ def item_type
   "Answer" # :metric_answer.cardname
 end
 
+# shared search method for card and format
 module SearchAnswers
   def search args={}
     return_type = args.delete :return
@@ -21,7 +22,6 @@ module SearchAnswers
     end
   end
 end
-
 include SearchAnswers
 
 format do
