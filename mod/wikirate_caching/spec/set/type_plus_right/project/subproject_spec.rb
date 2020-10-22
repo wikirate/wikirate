@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../support/cached_count_shared_examples"
-
 RSpec.describe Card::Set::TypePlusRight::Project::Subproject do
   describe "subprojects" do
     def create_subproject subfields={}
