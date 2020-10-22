@@ -1,5 +1,3 @@
-require_relative "../../support/report_query_shared_examples"
-
 RSpec.describe Card::Set::Self::WikirateCompany, "company report queries" do
   def answer year, title="big single"
     ["Joe User+#{title}+Sony Corporation+#{year}"]

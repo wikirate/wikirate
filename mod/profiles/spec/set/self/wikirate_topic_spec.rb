@@ -1,6 +1,3 @@
-require_relative "../../support/report_query_shared_examples"
-# require_relative "../../../../../test/seed"
-
 RSpec.describe Card::Set::Self::WikirateTopic, "topic report queries" do
   describe "created query" do
     include_context "report query", :wikirate_topic, :created

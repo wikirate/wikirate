@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../../support/award_answer_badges_shared_examples"
-
 describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
   describe "discuss badges" do
     let(:badge_action) { :discuss }
