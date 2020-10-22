@@ -5,24 +5,26 @@ include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 
-def filter_class
-  ProjectFilterQuery
-end
-
-def default_sort_option
-  "create"
-end
-
-def filter_keys
-  %i[name wikirate_status wikirate_topic bookmark]
-end
-
-def default_filter_hash
-  { name: "", wikirate_status: "Active" }
-end
-
 def target_type_id
   ProjectID
+end
+
+format do
+  def filter_class
+    ProjectFilterQuery
+  end
+
+  def default_sort_option
+    "create"
+  end
+
+  def filter_keys
+    %i[name wikirate_status wikirate_topic bookmark]
+  end
+
+  def default_filter_hash
+    { name: "", wikirate_status: "Active" }
+  end
 end
 
 format :html do

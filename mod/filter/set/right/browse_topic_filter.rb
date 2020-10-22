@@ -17,27 +17,27 @@ class TopicFilterQuery < Card::FilterQuery
   end
 end
 
-def filter_keys
-  %i[name bookmark]
-end
-
-def default_filter_hash
-  { name: "" }
-end
-
 def target_type_id
   WikirateTopicID
 end
 
-def filter_class
-  TopicFilterQuery
-end
+format do
+  def filter_class
+    TopicFilterQuery
+  end
 
-def default_sort_option
-  "metric"
-end
+  def default_sort_option
+    "metric"
+  end
 
-format :html do
+  def filter_keys
+    %i[name bookmark]
+  end
+
+  def default_filter_hash
+    { name: "" }
+  end
+
   def sort_options
     { "Most Metrics": :metric, "Most #{rate_subjects}": :company }.merge super
   end
