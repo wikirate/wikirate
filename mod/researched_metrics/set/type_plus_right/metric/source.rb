@@ -1,3 +1,5 @@
+include_set Right::BrowseSourceFilter
+
 # cache # of sources on which answers for this metric (=left) are based on
 include_set Abstract::SearchCachedCount
 
@@ -21,4 +23,12 @@ end
 # recount no. of sources on metric
 recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
   changed_card.left.metric_card.fetch :source
+end
+
+format do
+  # don't show answer sort option, because that means "total answers"
+  # users are likely to interpret answers as meaning answers for current metric
+  def sort_options
+    super.reject { |_k, v| v == :answer }
+  end
 end
