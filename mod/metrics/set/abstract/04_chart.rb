@@ -23,9 +23,7 @@ format do
   def chart_filter_params
     chart_params[:filter] || {}
   end
-end
 
-format do
   def chart_item_count
     @chart_item_count ||= chart_filter_query.count
   end

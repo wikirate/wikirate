@@ -8,6 +8,10 @@ format :json do
     )
   end
 
+  def sort_hash
+    { sort_by: :year }
+  end
+
   def horizontal_ok?
     false
   end
