@@ -1,6 +1,3 @@
-
-require_relative "../../support/value_type_shared_examples"
-
 RSpec.describe Card::Set::Type::MetricAnswer do
   let(:answer) { sample_metric_answer }
   let(:metric) { sample_metric }
@@ -29,8 +26,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       html = answer.format.render_concise
       expect(html).to have_tag("span.answer-year", text: /1977/)
       expect(html).to have_tag("span.metric-value")
-      expect(html).to have_tag("span.metric-legend",
-                               text: /Imperial military units/)
+      expect(html).to have_tag("span.metric-legend", text: /Imperial military units/)
     end
   end
 
