@@ -6,38 +6,36 @@ include_set Abstract::SdgFiltering
 include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
-def filter_keys
-  %i[status year metric_name wikirate_topic value updated updater check calculated
-     metric_type value_type project source research_policy bookmark]
-end
-
-def bookmark_type
-  :metric
-end
-
 def fixed_field
   :company_id
-end
-
-def filter_card_fieldcode
-  :company_metric_filter
-end
-
-def default_sort_option
-  record? ? :year : :bookmarkers
 end
 
 def partner
   :metric
 end
 
-format :html do
-  before :core do
-    voo.hide! :chart
+def bookmark_type
+  :metric
+end
+
+format do
+  def filter_keys
+    %i[status year metric_name wikirate_topic value updated updater check calculated
+     metric_type value_type project source research_policy bookmark]
+  end
+
+  def default_sort_option
+    record? ? :year : :bookmarkers
   end
 
   def default_filter_hash
     { status: :exists, year: :latest, metric_name: "" }
+  end
+end
+
+format :html do
+  before :core do
+    voo.hide! :chart
   end
 
   def cell_views

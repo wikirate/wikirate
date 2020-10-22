@@ -16,18 +16,6 @@ include_set Card::Set::TypePlusRight::Metric::MetricAnswer
 
 attr_accessor :metric_card
 
-# OVERRIDES of MetricCompanyFilter
-# ignore filter params
-def filter_hash
-  {}
-end
-
-def default_filter_hash
-  {}
-end
-
-# </OVERRIDES>
-
 # store explicit list in `<Company Group>+company`
 def explicit?
   content == "explicit"
@@ -83,5 +71,17 @@ class Constraint
 
   def valid_year?
     year.match(/^\d{4}$/) || year == "latest"
+  end
+end
+
+format do
+  # OVERRIDES of MetricCompanyFilter
+  # ignore filter params
+  def filter_hash
+    {}
+  end
+
+  def default_filter_hash
+    {}
   end
 end

@@ -1,6 +1,10 @@
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
 
+def target_type_id
+  WikirateTopicID
+end
+
 class TopicFilterQuery < Card::FilterQuery
   include WikirateFilterQuery
 
@@ -17,27 +21,23 @@ class TopicFilterQuery < Card::FilterQuery
   end
 end
 
-def filter_keys
-  %i[name bookmark]
-end
+format do
+  def filter_class
+    TopicFilterQuery
+  end
 
-def default_filter_hash
-  { name: "" }
-end
+  def default_sort_option
+    "metric"
+  end
 
-def target_type_id
-  WikirateTopicID
-end
+  def filter_keys
+    %i[name bookmark]
+  end
 
-def filter_class
-  TopicFilterQuery
-end
+  def default_filter_hash
+    { name: "" }
+  end
 
-def default_sort_option
-  "metric"
-end
-
-format :html do
   def sort_options
     { "Most Metrics": :metric, "Most #{rate_subjects}": :company }.merge super
   end

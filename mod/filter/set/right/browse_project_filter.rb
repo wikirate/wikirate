@@ -5,27 +5,27 @@ include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 
-def filter_class
-  ProjectFilterQuery
-end
-
-def default_sort_option
-  "create"
-end
-
-def filter_keys
-  %i[name wikirate_status wikirate_topic bookmark]
-end
-
-def default_filter_hash
-  { name: "", wikirate_status: "Active" }
-end
-
 def target_type_id
   ProjectID
 end
 
-format :html do
+format do
+  def filter_class
+    ProjectFilterQuery
+  end
+
+  def default_sort_option
+    "create"
+  end
+
+  def filter_keys
+    %i[name wikirate_status wikirate_topic bookmark]
+  end
+
+  def default_filter_hash
+    { name: "", wikirate_status: "Active" }
+  end
+
   def sort_options
     { "Most Bookmarked": :bookmarkers,
       "Recently Added": :create,
@@ -34,7 +34,9 @@ format :html do
       "Most Metrics": :metric,
       "Most Companies": :company }
   end
+end
 
+format :html do
   def quick_filter_list
     bookmark_quick_filter + topic_quick_filters
   end
