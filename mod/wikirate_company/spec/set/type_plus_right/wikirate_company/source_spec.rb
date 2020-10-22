@@ -17,7 +17,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
       Card.fetch "Death Star+source", new: {}
     end
 
-    subject { card_subject.format(:base).cql_hash }
+    subject { card_subject.cql_hash }
 
     let :right_plus_val do
       [Card::WikirateCompanyID, { refer_to: Card.fetch_id("Death Star") }]
