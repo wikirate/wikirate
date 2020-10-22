@@ -23,6 +23,10 @@ format do
      wikirate_topic value updated updater check calculated
      metric_type value_type project source research_policy bookmark]
   end
+
+  def filter_label field
+    field.to_sym == :metric_type ? "Metric type" : super
+  end
 end
 
 format :html do
@@ -40,10 +44,6 @@ format :html do
 
   def cell_views
     [:metric_thumbnail_with_bookmark, :company_thumbnail_with_bookmark, :concise]
-  end
-
-  def filter_label field
-    field.to_sym == :metric_type ? "Metric type" : super
   end
 
   def quick_filter_list

@@ -26,11 +26,13 @@ format do
     { name: "" }
   end
 
-  def quick_filter_list
-    bookmark_quick_filter + company_group_quick_filters + project_quick_filters
-  end
-
   def sort_options
     { "Most Answers": :answer, "Most Metrics": :metric }.merge super
+  end
+end
+
+format :html do
+  def quick_filter_list
+    bookmark_quick_filter + company_group_quick_filters + project_quick_filters
   end
 end

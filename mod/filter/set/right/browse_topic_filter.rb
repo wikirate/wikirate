@@ -1,6 +1,10 @@
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
 
+def target_type_id
+  WikirateTopicID
+end
+
 class TopicFilterQuery < Card::FilterQuery
   include WikirateFilterQuery
 
@@ -15,10 +19,6 @@ class TopicFilterQuery < Card::FilterQuery
   def wikirate_company_cql company
     add_to_cql :found_by, "#{company}+topic"
   end
-end
-
-def target_type_id
-  WikirateTopicID
 end
 
 format do

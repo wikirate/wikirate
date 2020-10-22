@@ -1,3 +1,6 @@
+# including module must respond to
+# `fixed_field`, returning a Symbol representing an AnswerQuery id filter, and
+# `partner`, returning a Symbol
 
 def table_type
   partner
@@ -12,6 +15,8 @@ def query paging={}
 end
 
 format do
+  delegate :partner, to: :card
+
   def record?
     filter_hash[:"#{partner}_name"]&.match?(/^\=/)
   end

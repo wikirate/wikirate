@@ -64,10 +64,6 @@ format do
     { name: "" }
   end
 
-  def quick_filter_list
-    bookmark_quick_filter + company_group_quick_filters + project_quick_filters
-  end
-
   def sort_options
     { "Most Answers": :answer,
       "Most Metrics": :metric }.merge super
@@ -80,7 +76,12 @@ end
 
 format :html do
   delegate :metric, :company, :year, :inverse?, to: :card
+
   view :core, template: :haml
+
+  def quick_filter_list
+    bookmark_quick_filter + company_group_quick_filters + project_quick_filters
+  end
 
   def add_relation_link
     link_to_card :research_page, "Add relation",

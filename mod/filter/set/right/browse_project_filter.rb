@@ -25,9 +25,7 @@ format do
   def default_filter_hash
     { name: "", wikirate_status: "Active" }
   end
-end
 
-format :html do
   def sort_options
     { "Most Bookmarked": :bookmarkers,
       "Recently Added": :create,
@@ -36,7 +34,9 @@ format :html do
       "Most Metrics": :metric,
       "Most Companies": :company }
   end
+end
 
+format :html do
   def quick_filter_list
     bookmark_quick_filter + topic_quick_filters
   end
