@@ -7,24 +7,28 @@ def item_type
 end
 
 # shared search method for card and format
-module SearchAnswers
-  def search args={}
-    return_type = args.delete :return
-    q = query(args)
-    case return_type
-    when :name  then q.run.map(&:name)
-    when :count then q.count
-    else             q.run
-    end
+
+def search args={}
+  return_type = args.delete :return
+  query = args.delete(:query) || query(args)
+  run_query_returning query, return_type
+end
+
+def run_query_returning query, return_type
+  case return_type
+  when :name  then query.run.map(&:name)
+  when :count then query.count
+  else             query.run
   end
 end
-include SearchAnswers
 
 format do
-  include SearchAnswers
+  def search_with_params
+    card.search query: query
+  end
 
-  def query paging={}
-    AnswerQuery.new filter_hash, sort_hash, paging
+  def query
+    AnswerQuery.new filter_hash, sort_hash, search_params
   end
 
   def card_content_limit
