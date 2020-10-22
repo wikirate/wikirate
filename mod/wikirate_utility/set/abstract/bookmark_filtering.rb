@@ -17,13 +17,13 @@ end
 
 format do
   delegate :bookmark_type, :my_bookmarks?, to: :card
-end
 
-format :html do
   def sort_options
     { "Most Bookmarked": :bookmarkers }.merge super
   end
+end
 
+format :html do
   def quick_filter_list
     bookmark_quick_filter
   end
