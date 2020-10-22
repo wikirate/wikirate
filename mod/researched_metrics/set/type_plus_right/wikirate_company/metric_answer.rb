@@ -6,19 +6,15 @@ include_set Abstract::SdgFiltering
 include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
-def bookmark_type
-  :metric
-end
-
 def fixed_field
   :company_id
 end
 
-def filter_card_fieldcode
-  :company_metric_filter
+def partner
+  :metric
 end
 
-def partner
+def bookmark_type
   :metric
 end
 
