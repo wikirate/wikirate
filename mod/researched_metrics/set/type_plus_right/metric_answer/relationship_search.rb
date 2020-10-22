@@ -5,22 +5,6 @@ include_set Abstract::MetricChild, generation: 3
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
 
-def filter_keys
-  %i[name company_group bookmark project]
-end
-
-def filter_class
-  CompanyFilterQuery
-end
-
-def default_sort_option
-  "answer"
-end
-
-def default_filter_hash
-  { name: "" }
-end
-
 def bookmark_type
   :wikirate_company
 end
@@ -63,11 +47,21 @@ def other_company_id_field
   metric_card.inverse_company_id_field
 end
 
-format :html do
-  delegate :metric, :company, :year, :inverse?, to: :card
+format do
+  def filter_class
+    CompanyFilterQuery
+  end
 
-  def quick_filter_list
-    bookmark_quick_filter + company_group_quick_filters + project_quick_filters
+  def filter_keys
+    %i[name company_group bookmark project]
+  end
+
+  def default_sort_option
+    "answer"
+  end
+
+  def default_filter_hash
+    { name: "" }
   end
 
   def sort_options
@@ -75,7 +69,19 @@ format :html do
       "Most Metrics": :metric }.merge super
   end
 
+  def count_with_params
+    Relationship.where(card.relationship_query).count
+  end
+end
+
+format :html do
+  delegate :metric, :company, :year, :inverse?, to: :card
+
   view :core, template: :haml
+
+  def quick_filter_list
+    bookmark_quick_filter + company_group_quick_filters + project_quick_filters
+  end
 
   def add_relation_link
     link_to_card :research_page, "Add relation",
@@ -95,10 +101,6 @@ format :html do
                      [name_view, :details],
                      header: [rate_subject, "Answer"]
     end
-  end
-
-  def count_with_params
-    Relationship.where(card.relationship_query).count
   end
 end
 

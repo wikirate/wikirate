@@ -27,20 +27,26 @@ def partner
   :company
 end
 
-def filter_keys
-  STANDARD_FILTER_KEYS + special_filter_keys
-end
-
-def special_filter_keys
-  metric_card.relationship? ? [:related_company_group] : []
-end
-
 def bookmark_type
   :wikirate_company
 end
 
 def metric_card
   @metric_card ||= left&.metric_card
+end
+
+format do
+  def filter_keys
+    STANDARD_FILTER_KEYS + special_filter_keys
+  end
+
+  def special_filter_keys
+    metric_card.relationship? ? [:related_company_group] : []
+  end
+
+  def default_filter_hash
+    { year: :latest, status: :exists, company_name: "" }
+  end
 end
 
 format :json do
@@ -55,10 +61,6 @@ format :html do
   def quick_filter_list
     @quick_filter_list ||=
       Card.fetch(:wikirate_company, :browse_company_filter).format.quick_filter_list
-  end
-
-  def default_filter_hash
-    { year: :latest, status: :exists, company_name: "" }
   end
 
   view :filter_value_formgroup do
