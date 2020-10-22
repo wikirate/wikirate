@@ -1,17 +1,7 @@
 include_set Abstract::FilterHelper
 
-def filter_hash with_select_filter=true
-  filter = super()
-  return filter unless with_select_filter && chart_params[:select_filter]
-  filter.merge chart_params[:select_filter]
-end
-
-def chart_params
-  @chart_params ||= Env.hash Env.params[:chart]
-end
-
-def chart_filter_params
-  chart_params[:filter] || {}
+def chartable_type?
+  relationship? || numeric? || categorical?
 end
 
 format do
@@ -20,7 +10,19 @@ format do
     chart_params[:highlight]
   end
 
-  delegate :chart_params, to: :card
+  def filter_hash with_select_filter=true
+    filter = super()
+    return filter unless with_select_filter && chart_params[:select_filter]
+    filter.merge chart_params[:select_filter]
+  end
+
+  def chart_params
+    @chart_params ||= Env.hash Env.params[:chart]
+  end
+
+  def chart_filter_params
+    chart_params[:filter] || {}
+  end
 end
 
 format do
@@ -33,7 +35,7 @@ format do
   end
 
   def chart_filter_query
-    AnswerQuery.new chart_filter_hash.merge(metric_id: chart_metric_id), card.sort_hash
+    AnswerQuery.new chart_filter_hash.merge(metric_id: chart_metric_id), sort_hash
   end
 
   def chart_metric_id
@@ -41,8 +43,8 @@ format do
   end
 
   def chart_filter_hash
-    if card.chart_filter_params.present?
-      card.chart_filter_params
+    if chart_filter_params.present?
+      chart_filter_params
     else
       default_chart_filter_hash
     end
@@ -50,7 +52,7 @@ format do
 
   # vega chart does not show not-researched answers.
   def default_chart_filter_hash
-    hash = card.filter_hash(false).clone
+    hash = filter_hash(false).clone
     hash.delete(:status) if hash[:status]&.to_sym == :all
     hash
   end
@@ -80,15 +82,11 @@ format :html do
   end
 
   def show_chart?
-    voo.show?(:chart) && chartable_type? && chartable_filter?
-  end
-
-  def chartable_type?
-    card.relationship? || card.numeric? || card.categorical?
+    voo.show?(:chart) && card.chartable_type? && chartable_filter?
   end
 
   def chartable_filter?
-    !card.filter_hash[:status].in? %w[none unknown]
+    !filter_hash[:status].in? %w[none unknown]
   end
 end
 

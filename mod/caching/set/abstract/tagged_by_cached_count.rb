@@ -41,10 +41,12 @@ def right_plus_val
   [tag_pointer_id, { refer_to: left.id }]
 end
 
-# TODO: make less hacky.
-# Without this filter cql can overwrite right_plus
-def filter_cql
-  cql = super
-  cql[:right_plus] = [cql[:right_plus], right_plus_val].compact
-  cql
+format do
+  # TODO: make less hacky.
+  # Without this filter cql can overwrite right_plus
+  def filter_cql
+    cql = super
+    cql[:right_plus] = [cql[:right_plus], card.right_plus_val].compact
+    cql
+  end
 end
