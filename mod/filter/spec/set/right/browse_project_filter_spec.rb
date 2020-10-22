@@ -4,7 +4,7 @@
 
 RSpec.describe Card::Set::Right::BrowseProjectFilter do
   describe "#filter_cql" do
-    subject { card_subject.filter_cql }
+    subject { card_subject.format.filter_cql }
 
     it "filters for active projects by default" do
       is_expected.to eq(right_plus: [Card::WikirateStatusID, { refer_to: "Active" }])

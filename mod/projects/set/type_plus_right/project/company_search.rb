@@ -15,4 +15,8 @@ format :html do
   def project_quick_filters
     []
   end
+
+  def export_formats
+    []
+  end
 end

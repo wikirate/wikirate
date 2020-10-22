@@ -3,39 +3,41 @@
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
 
-def filter_class
-  SourceFilterQuery
-end
-
-def sort_cql
-  if current_sort.to_sym == :title
-    { sort: { right: "title" } }
-  else
-    super
-  end
-end
-
-def default_sort_option
-  "create"
-end
-
-def filter_keys
-  %i[wikirate_title wikirate_topic report_type year wikirate_link]
-end
-
-def default_filter_hash
-  { wikirate_title: "" }
-end
-
 def target_type_id
   SourceID
 end
 
-format :html do
+format do
+  def filter_class
+    SourceFilterQuery
+  end
+
+  def sort_cql
+    if current_sort.to_sym == :title
+      { sort: { right: "title" } }
+    else
+      super
+    end
+  end
+
   def sort_options
     { "Recently Added": :create, "Title": :title, "Most Answers": :answer }
   end
 
+  def default_sort_option
+    "create"
+  end
+
+  def filter_keys
+    %i[wikirate_title wikirate_topic report_type year wikirate_link]
+  end
+
+  def default_filter_hash
+    { wikirate_title: "" }
+  end
+end
+
+format :html do
   view :filter_wikirate_title_formgroup, cache: :never do
     text_filter :wikirate_title
   end

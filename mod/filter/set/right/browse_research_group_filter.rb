@@ -5,29 +5,29 @@ include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 
-def default_sort_option
-  "researcher"
-end
-
-def filter_keys
-  %i[name wikirate_topic bookmark]
-end
-
-def default_filter_hash
-  { name: "" }
-end
-
 def target_type_id
   ResearchGroupID
 end
 
-def filter_class
-  ResearchGroupFilterQuery
-end
+format do
+  def filter_class
+    ResearchGroupFilterQuery
+  end
 
-format :html do
   def sort_options
     { "Most Researchers": :researcher, "Most Projects": :project }.merge super
+  end
+
+  def default_sort_option
+    "researcher"
+  end
+
+  def filter_keys
+    %i[name wikirate_topic bookmark]
+  end
+
+  def default_filter_hash
+    { name: "" }
   end
 
   def quick_filter_list
