@@ -27,6 +27,10 @@ format do
     card.search query: query
   end
 
+  def count_with_params
+    card.search query: query, return: :count
+  end
+
   def query
     AnswerQuery.new filter_hash, sort_hash, paging_params
   end
