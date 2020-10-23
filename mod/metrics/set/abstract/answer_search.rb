@@ -28,7 +28,7 @@ format do
   end
 
   def query
-    AnswerQuery.new filter_hash, sort_hash, search_params
+    AnswerQuery.new filter_hash, sort_hash, paging_params
   end
 
   def card_content_limit

@@ -24,10 +24,12 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
     end
 
     it "finds sources with +company cards that refer to Death Star by default" do
-      is_expected.to include(type_id: Card::SourceID, right_plus: [right_plus_val])
+      is_expected.to include(type_id: Card::SourceID, right_plus: right_plus_val)
     end
 
     context "with additional right_plus filters" do
+      subject { card_subject.format(:base).search_params }
+
       before do
         Card::Env.params[:filter] = { wikirate_topic: "Force" }
       end
