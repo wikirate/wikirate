@@ -21,8 +21,7 @@ format do
     filter_hash[:"#{partner}_name"]&.match?(/^\=/)
   end
 
-  def query paging={}
-    filter = filter_hash.merge card.fixed_filter
-    AnswerQuery.new filter, sort_hash, paging
+  def filter_query_hash
+    super.merge card.fixed_filter
   end
 end
