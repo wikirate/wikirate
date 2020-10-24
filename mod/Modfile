@@ -1,6 +1,6 @@
 gem_mod "card-mod-defaults"
 gem_mod "solid_cache"
-mod "layout"
+mod "layout_components"
 gem_mod "bookmarks"
 gem_mod "pdfjs"
 gem_mod "csv_import"
