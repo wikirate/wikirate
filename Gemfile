@@ -13,6 +13,7 @@ else
   gem "card-mod-delayed_job"
 
   gem "card-mod-bookmarks", path: "./vendor/card-mods"
+  gem "card-mod-counts"
   gem "card-mod-csv_import"
   gem "card-mod-fulltext"
   # gem "card-mod-logger"
