@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../../support/award_badges_shared_examples"
-
 RSpec.describe Card::Set::TypePlusRight::User::Bookmarks::AwardBadges do
   describe "bookmark badges" do
     let(:badge_action) { :bookmark }

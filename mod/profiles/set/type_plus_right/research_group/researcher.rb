@@ -1,3 +1,5 @@
+include_set Abstract::PointerCachedCount
+
 CONTRIBUTION_CATEGORIES = %i[created updated discussed double_checked].freeze
 CONTRIBUTION_CATEGORY_HEADER = ["Answers"].concat(
   CONTRIBUTION_CATEGORIES.map do |category|

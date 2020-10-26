@@ -3,6 +3,8 @@ PATH
   specs:
     card-mod-bookmarks (1.1)
       card
+    card-mod-counts (0.1)
+      card
     card-mod-csv_import (0.9)
       card
     card-mod-fulltext (0.1)
@@ -590,7 +592,7 @@ GEM
       rspec-mocks (~> 3.9.0)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
-    rspec-expectations (3.9.2)
+    rspec-expectations (3.9.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-html-matchers (0.9.1)
@@ -607,7 +609,7 @@ GEM
       rspec-expectations (~> 3.9)
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
-    rspec-support (3.9.3)
+    rspec-support (3.9.4)
     rubocop (0.88.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
@@ -717,6 +719,7 @@ PLATFORMS
 DEPENDENCIES
   bulk_insert
   card-mod-bookmarks!
+  card-mod-counts
   card-mod-csv_import
   card-mod-defaults
   card-mod-delayed_job
