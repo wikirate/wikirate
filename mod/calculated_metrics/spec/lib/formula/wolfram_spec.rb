@@ -76,19 +76,19 @@ RSpec.describe Formula::Wolfram do
   #   end
   # end
 
-  describe ".valid_formula?" do
-    subject { ::Formula::Ruby.valid_formula? content }
-
-    context "with formula with simple symbols" do
-      let(:content) { "1/{{Jedi+deadliness}}" }
-
-      it { is_expected.to be_truthy }
-    end
-
-    context "with formula with several nests and functions" do
-      let(:content) { "2*Total[{{M1|2000..2010}}]+{{M2}} / Min[{{M3|-1..3}}]" }
-
-      it { is_expected.to be_truthy }
-    end
-  end
+  # describe ".valid_formula?" do
+  #   subject { ::Formula::Ruby.valid_formula? content }
+  #
+  #   context "with formula with simple symbols" do
+  #     let(:content) { "1/{{Jedi+deadliness}}" }
+  #
+  #     it { is_expected.to be_truthy }
+  #   end
+  #
+  #   context "with formula with several nests and functions" do
+  #     let(:content) { "2*Total[{{M1|2000..2010}}]+{{M2}} / Min[{{M3|-1..3}}]" }
+  #
+  #     it { is_expected.to be_truthy }
+  #   end
+  # end
 end
