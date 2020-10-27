@@ -45,7 +45,6 @@ module Formula
     # @return Hash (parsed JSON from "Result" of body section)
     #   if there is an error, returns False and errors are added to @errors array
 
-
     protected
 
     def with_function_defs wl_input

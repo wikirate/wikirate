@@ -10,16 +10,12 @@ module Formula
       end
 
       def interpreter
-        @interpreter ||=
-          if api_key
-            "#{OBJECTS_URL_BASE}#{api_key}"
-          else
-            raise Card::Error::ServerError, "no Wolfram interpreter configured"
-          end
+        raise Card::Error::ServerError, "no Wolfram interpreter configured" unless api_key
+
+        "#{OBJECTS_URL_BASE}#{api_key}"
       end
 
       def api_key
-        return "92f1e212-7875-49f9-888f-b5b4560b7686"
         @api_key ||= Card.config.try :wolfram_api_key
       end
 
