@@ -42,23 +42,8 @@ module Formula
       with_function_defs "Apply[(#{wl_formula})&,<| #{wl_input} |>,{2}]"
     end
 
-    # @return Hash (parsed JSON from body of request response)
-    def wolfram_response_body expr
-      expr ||= wolfram_expression
-      response = post_wolfram_request expr
-      return unless response.present?
-
-      parse_wolfram_json :body, response.body
-    end
-
     # @return Hash (parsed JSON from "Result" of body section)
     #   if there is an error, returns False and errors are added to @errors array
-    def wolfram_result expr
-      return unless (body = wolfram_response_body expr)
-
-      parsed = parse_wolfram_response_body body
-      insert_unknown_results parsed
-    end
 
     protected
 
@@ -72,56 +57,14 @@ module Formula
     #   when evaluated in the Wolfram cloud
     # @return the parsed response
     def exec_lambda expr
-      wolfram_result expr
-    end
-
-    def interpreter
-      @interpreter ||=
-        if (api_key = Card.config.try :wolfram_api_key)
-          "https://www.wolframcloud.com/objects/#{api_key}"
-        else
-          raise Card::Error::ServerError, "no Wolfram interpreter configured"
-        end
-    end
-
-    def post_wolfram_request expr
-      uri = URI.parse interpreter
-      Net::HTTP.post_form uri, "expr" => expr
-    rescue StandardError => e
-      log_wolfram_error "request failed", e.message
-    end
-
-    def parse_wolfram_response_body body
-      if body["Success"]
-        parse_wolfram_json :result, body["Result"]
-      elsif (messages = body["MessagesText"]) # is this always syntax error??
-        wolfram_syntax_error messages
+      caller = Caller.new expr
+      caller.run
+      if caller.errors.present?
+        @errors += caller.errors
+        nil
       else
-        wolfram_response_error "#{body['errorCode']}: #{body['errorDetails']}"
+        insert_unknown_results caller.results
       end
-    end
-
-    def parse_wolfram_json type, json
-      JSON.parse json
-    rescue JSON::ParserError => e
-      log_wolfram_error "invalid JSON in #{type}", "JSON = #{json}\n#{e.message}"
-    end
-
-    def log_wolfram_error main, extra
-      main = "Wolfram Error: #{main}"
-      @errors << main
-      Rails.logger.info "#{main}: #{extra}"
-      false
-    end
-
-    def wolfram_syntax_error messages
-      messages.unshift "Formula Syntax Error: bad wolfram syntax"
-      wolfram_response_error messages
-    end
-
-    def wolfram_response_error messages
-      @errors << Array.wrap(messages).join("\n  ")
-      false
     end
 
     private
