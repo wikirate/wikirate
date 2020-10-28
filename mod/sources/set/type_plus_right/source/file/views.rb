@@ -1,4 +1,3 @@
-
 format :html do
   view :input, cache: :never do
     haml :input, file_editor: super()

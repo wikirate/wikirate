@@ -107,3 +107,10 @@
 .open-view > .d0-card-frame > .d0-card-body.TYPE-source{
   padding-left: 0;
 }
+.upload-option {
+  display: none;
+}
+a.toggle-source-option {
+  font-weight: bold;
+  color: $source-color !important;
+}
