@@ -1,10 +1,7 @@
 class Card
+  # special class for PDF conversion failures
   class SourceConversionError < Error
     class << self
-      def status_code
-        500
-      end
-
       def view
         :conversion_error
       end

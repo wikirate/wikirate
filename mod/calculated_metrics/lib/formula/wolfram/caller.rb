@@ -1,5 +1,6 @@
 module Formula
   class Wolfram
+    # handler for Wolfram api calls
     class Caller
       attr_reader :expression, :errors, :results
       OBJECTS_URL_BASE = "https://www.wolframcloud.com/objects/".freeze
