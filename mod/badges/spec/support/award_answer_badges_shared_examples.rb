@@ -1,5 +1,3 @@
-require_relative "award_badges_shared_examples"
-
 shared_context "answer badges" do |threshold, badge_name|
   let(:badge_type) { :metric_answer }
   let(:start_year) { 2003 }

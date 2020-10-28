@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../support/award_badges_shared_examples"
-
 describe Card::Set::Type::WikirateCompany::AwardBadges do
   let(:badge_action) { :create }
   let(:badge_type) { :wikirate_company }

@@ -7,17 +7,16 @@ include_set Abstract::FilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::Chart
+include_set Abstract::CachedCount
 include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
-
-# cache # of answers for metric
-include_set Abstract::CachedCount
 
 # recount number of answers for a given metric when a Metric Value card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: [:create, :delete] do |changed_card|
   changed_card.metric_card.fetch :metric_answer
 end
+# TODO: trigger recount from virtual answer batches
 
 def fixed_field
   :metric_id
@@ -27,20 +26,26 @@ def partner
   :company
 end
 
-def filter_keys
-  STANDARD_FILTER_KEYS + special_filter_keys
-end
-
-def special_filter_keys
-  metric_card.relationship? ? [:related_company_group] : []
-end
-
 def bookmark_type
   :wikirate_company
 end
 
 def metric_card
   @metric_card ||= left&.metric_card
+end
+
+format do
+  def filter_keys
+    STANDARD_FILTER_KEYS + special_filter_keys
+  end
+
+  def special_filter_keys
+    metric_card.relationship? ? [:related_company_group] : []
+  end
+
+  def default_filter_hash
+    { year: :latest, status: :exists, company_name: "" }
+  end
 end
 
 format :json do
@@ -55,10 +60,6 @@ format :html do
   def quick_filter_list
     @quick_filter_list ||=
       Card.fetch(:wikirate_company, :browse_company_filter).format.quick_filter_list
-  end
-
-  def default_filter_hash
-    { year: :latest, status: :exists, company_name: "" }
   end
 
   view :filter_value_formgroup do

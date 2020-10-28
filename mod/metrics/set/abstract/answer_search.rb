@@ -1,38 +1,45 @@
-# including module must respond to
-# A) `fixed_field`, returning a Symbol representing an AnswerQuery id filter, and
-# B) `filter_card_fieldcode`, returning the codename of the filter field
-
 include_set Abstract::Table
 include_set Abstract::Utility
 include_set Abstract::BrowseFilterForm
-
-def search args={}
-  return_type = args.delete :return
-  q = query(args)
-  case return_type
-  when :name  then q.run.map(&:name)
-  when :count then q.count
-  else             q.run
-  end
-end
-
-def query paging={}
-  AnswerQuery.new filter_hash, sort_hash, paging
-end
-
-def override_filter_hash hash
-  @default_filter_hash = hash
-end
-
-def default_filter_hash
-  @default_filter_hash ||= {}
-end
 
 def item_type
   "Answer" # :metric_answer.cardname
 end
 
+# shared search method for card and format
+
+def search args={}
+  return_type = args.delete :return
+  query = args.delete(:query) || query(args)
+  run_query_returning query, return_type
+end
+
+def run_query_returning query, return_type
+  case return_type
+  when :name  then query.run.map(&:name)
+  when :count then query.count
+  else             query.run
+  end
+end
+
 format do
+  def search_with_params
+    card.search query: query
+  end
+
+  def count_with_params
+    card.search query: query, return: :count
+  end
+
+  def query
+    AnswerQuery.new filter_query_hash, sort_hash, paging_params
+  end
+
+  # note: overridden in fixed
+  def filter_query_hash
+    filter_hash || {}
+  end
+
   def card_content_limit
     nil
   end
@@ -52,7 +59,6 @@ format :html do
   end
 
   view :filtered_content do
-    card.override_filter_hash default_filter_hash
     super() + raw('<div class="details"></div>')
   end
 

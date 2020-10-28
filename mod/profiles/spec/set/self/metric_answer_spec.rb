@@ -1,6 +1,3 @@
-require "rspec"
-require_relative "../../support/report_query_shared_examples"
-
 def answer year
   "Joe User+big single+Sony_Corporation+#{year}"
 end
