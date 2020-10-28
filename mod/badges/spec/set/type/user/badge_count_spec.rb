@@ -1,5 +1,3 @@
-require_relative "../../../support/badge_count_shared_examples.rb"
-
 RSpec.describe Card::Set::Type::User::BadgeCount do
   subject { Card["Big Brother"].badge_count }
 

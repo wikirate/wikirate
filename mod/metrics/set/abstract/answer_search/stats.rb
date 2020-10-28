@@ -10,7 +10,7 @@ format :html do
              total: "Total" }.freeze
 
   def count_by_status
-    @count_by_status ||= card.query.count_by_status
+    @count_by_status ||= query.count_by_status
   end
 
   def stati_with_counts skip_total=false

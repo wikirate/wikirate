@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../support/badges_shared_examples"
-
 RSpec.describe Card::Set::Right::DesignerBadge do
   it_behaves_like "badge card",
                   "Jedi+Researcher+designer badge", :bronze, 10

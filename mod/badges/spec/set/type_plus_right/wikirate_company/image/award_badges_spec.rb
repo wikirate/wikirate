@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../../support/award_badges_shared_examples"
-
 describe Card::Set::TypePlusRight::WikirateCompany::Image::AwardBadges do
   describe "logo badges" do
     let(:badge_action) { :logo }

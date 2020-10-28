@@ -3,6 +3,8 @@ PATH
   specs:
     card-mod-bookmarks (1.1)
       card
+    card-mod-counts (0.1)
+      card
     card-mod-csv_import (0.9)
       card
     card-mod-fulltext (0.1)
@@ -81,6 +83,8 @@ PATH
       card-mod-follow (= 0.10.1)
       card-mod-google_analytics (= 0.10.1)
       card-mod-history (= 0.10.1)
+      card-mod-layout (= 0.10.1)
+      card-mod-machines (= 0.10.1)
       card-mod-markdown (= 0.10.1)
       card-mod-prosemirror_editor (= 0.10.1)
       card-mod-recaptcha (= 0.10.1)
@@ -99,11 +103,20 @@ PATH
     card-mod-follow (0.10.1)
       card (= 1.100.1)
       card-mod-carrierwave (= 0.10.1)
+    card-mod-format (0.10.1)
+      card (= 1.100.1)
     card-mod-google_analytics (0.10.1)
       card (= 1.100.1)
       staccato
     card-mod-history (0.10.1)
       card (= 1.100.1)
+    card-mod-layout (0.10.1)
+      card (= 1.100.1)
+      card-mod-account (= 0.10.1)
+    card-mod-machines (0.10.1)
+      card (= 1.100.1)
+      card-mod-format (= 0.10.1)
+      card-mod-virtual (= 0.10.1)
     card-mod-markdown (0.10.1)
       card (= 1.100.1)
       kramdown
@@ -125,11 +138,14 @@ PATH
       recaptcha (~> 4.13.1)
     card-mod-rules (0.10.1)
       card (= 1.100.1)
+      card-mod-format (= 0.10.1)
     card-mod-search (0.10.1)
       card (= 1.100.1)
     card-mod-tinymce_editor (0.10.1)
       card (= 1.100.1)
       card-mod-edit (= 0.10.1)
+    card-mod-virtual (0.10.1)
+      card (= 1.100.1)
     cardname (0.10.1)
       activesupport (~> 6)
       htmlentities (~> 4.3)
@@ -147,7 +163,7 @@ PATH
       launchy
       rspec
       selenium-webdriver (= 3.141.0)
-      simplecov
+      simplecov (~> 0.17.1)
     decko-cypress (0.10.1)
       cypress-on-rails (~> 1.4)
     decko-profile (0.10.1)
@@ -162,6 +178,7 @@ PATH
       rspec-html-matchers (= 0.9.1)
       rspec-rails (~> 4.0.0.beta2)
       rubocop-rspec
+      simplecov (~> 0.17.1)
       spork (>= 0.9)
       timecop
     decko-spring (0.10.1)
@@ -512,7 +529,7 @@ GEM
       binding_of_caller (~> 0.7)
       pry (~> 0.13)
     public_suffix (4.0.6)
-    puma (5.0.2)
+    puma (5.0.4)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-cors (1.1.1)
@@ -579,7 +596,7 @@ GEM
       rspec-mocks (~> 3.9.0)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
-    rspec-expectations (3.9.2)
+    rspec-expectations (3.9.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-html-matchers (0.9.1)
@@ -596,7 +613,7 @@ GEM
       rspec-expectations (~> 3.9)
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
-    rspec-support (3.9.3)
+    rspec-support (3.9.4)
     rubocop (0.88.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
@@ -632,10 +649,11 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
     sexp_processor (4.15.1)
-    simplecov (0.19.0)
+    simplecov (0.17.1)
       docile (~> 1.1)
-      simplecov-html (~> 0.11)
-    simplecov-html (0.12.3)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     sinatra (2.1.0)
       mustermann (~> 1.0)
       rack (~> 2.2)
@@ -705,6 +723,7 @@ PLATFORMS
 DEPENDENCIES
   bulk_insert
   card-mod-bookmarks!
+  card-mod-counts
   card-mod-csv_import
   card-mod-defaults
   card-mod-delayed_job

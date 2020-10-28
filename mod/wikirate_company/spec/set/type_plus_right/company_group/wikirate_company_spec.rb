@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../support/cached_count_shared_examples"
-
 RSpec.describe Card::Set::TypePlusRight::CompanyGroup::WikirateCompany do
   def card_subject
     Card.fetch "Deadliest+companies", new: {}

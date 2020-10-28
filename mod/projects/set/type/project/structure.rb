@@ -32,8 +32,8 @@ format :html do
       [render_type_link,
        overall_progress_box,
        render_tabs,
-       render_import_links,
-       render_export_links]
+       render_export_links,
+       render_import_links]
     end
   end
 
