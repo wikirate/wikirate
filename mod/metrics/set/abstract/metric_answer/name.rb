@@ -3,7 +3,7 @@ def name_part_types
 end
 
 # on creation, we attempt to compose a valid name
-event :set_answer_name, before: :set_autoname, when: :invalid_answer_name? do
+event :set_answer_name, :prepare_to_validate, on: :create, when: :invalid_answer_name? do
   self.name = compose_name
 end
 

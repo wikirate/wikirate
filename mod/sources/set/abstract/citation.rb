@@ -60,7 +60,7 @@ end
 # VALIDATION
 
 def with_valid_source source_name
-  source_card = Card[source_name]
+  source_card = Card[source_name] || Director.card(source_name)
   if source_card&.type_id == SourceID
     yield source_card
   else
