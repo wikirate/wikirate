@@ -44,8 +44,8 @@ def convert_to_pdf
   end
 rescue StandardError => e
   msg = "failed to convert HTML to pdf"
-  abort :failure, msg
   Rails.logger.info "#{msg}: #{e.message}"
+  raise SourceConversionError, msg
 end
 
 def converting_to_tmp_pdf
@@ -56,7 +56,8 @@ def converting_to_tmp_pdf
 end
 
 def pdf_from_url path
-  Timeout.timeout(30) do
+  Timeout.timeout(5) do
+    # Timeout.timeout(30) do
     kit = PDFKit.new remote_file_url, "load-error-handling" => "ignore",
                                       "load-media-error-handling" => "ignore"
     kit.to_file path
