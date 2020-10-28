@@ -1,10 +1,9 @@
 class Card
-  class SourceConversionError < Error
+  # special error class for problems converting source to PDF
+  #
+  # we want "user error" here, because that gives us
+  class SourceConversionError < Error::UserError
     class << self
-      def status_code
-        500
-      end
-
       def view
         :conversion_error
       end

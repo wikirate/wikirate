@@ -4,7 +4,19 @@
 # - answer -> the name of an answer card
 # - source_search_term -> a search term, eg from the "sourcebox" ui
 
+format do
+  view :conversion_error, perms: :none do
+    "PDF conversion failed"
+  end
+end
+
 format :html do
+  view :conversion_error do
+    voo.title = "Unable to generate PDF"
+    class_up "d0-card-header", "bg-danger"
+    frame { haml :conversion_error }
+  end
+
   def answer_name
     params[:answer]
   end
