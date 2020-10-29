@@ -49,7 +49,9 @@ class Card
       end
 
       def metric_name_query value
-        restrict_by_cql :title_id, name: [:match, value]
+        restrict_by_cql :title_id,
+                        name: [:match, value],
+                        left_plus: [{}, { type_id: Card::MetricID }]
       end
 
       # SUPPORT METHODS
