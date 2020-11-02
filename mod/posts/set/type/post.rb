@@ -1,5 +1,4 @@
 include_set Abstract::TwoColumnLayout
-include_set Abstract::BsBadge
 
 card_accessor :wikirate_company, type: PointerID
 card_accessor :wikirate_topic, type: PointerID
