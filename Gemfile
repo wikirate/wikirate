@@ -36,6 +36,7 @@ gem "fog-aws"                        # supports AWS file storage
 gem "link_thumbnailer"               # parses some sources
 gem "open_uri_redirections"          # redirections from http to https or vice versa
 gem "roo"                            # Spreadsheet-related tasks
+gem "addressable"                    # URI encoding
 
 gem "pdfkit"                         # PDF-related tasks
 gem "wkhtmltopdf-binary", "0.12.5.4" # converting HTML to PDF
