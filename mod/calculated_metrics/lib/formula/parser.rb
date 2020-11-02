@@ -1,5 +1,7 @@
 module Formula
   class Parser
+    Card::Content::Chunk.register_list :formula, [:FormulaInput]
+
     OPTIONS = %i[year company unknown not_researched].freeze
     COUNT_RELATED_FUNC =
       { "CountRelated" => "Total[ {{always one|company: Related" }.freeze
