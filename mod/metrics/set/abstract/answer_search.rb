@@ -1,5 +1,4 @@
 include_set Abstract::Table
-include_set Abstract::Utility
 include_set Abstract::BrowseFilterForm
 
 def item_type
