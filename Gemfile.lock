@@ -763,6 +763,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   bulk_insert
   card-mod-bookmarks!
   card-mod-counts
