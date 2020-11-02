@@ -1,3 +1,5 @@
+include_set Abstract::BsBadge
+
 format do
   # note: overridden in cached_count
   def count
