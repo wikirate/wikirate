@@ -1,6 +1,8 @@
 card_accessor :formula, type: PhraseID
 card_accessor :metric_variables
 
+Card::Content::Chunk::FormulaInput # trigger load.  might be better place?
+
 # @param [Hash] opts
 # @option opts [card key] :company
 # @option opts [String] :year

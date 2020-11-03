@@ -6,7 +6,6 @@
 #
 include_set Abstract::Header
 include_set Abstract::Tabs
-include_set Abstract::BsBadge
 
 card_reader :badges_earned, default: { type_id: Card::PointerID }
 
