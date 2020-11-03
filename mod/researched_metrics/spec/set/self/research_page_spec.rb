@@ -50,7 +50,7 @@ RSpec.describe Card::Set::Self::ResearchPage do
       is_expected.to have_tag "div.sourcebox" do
         with_tag "form.slotter", method: "get", "data-remote": true do
           with_tag "input", name: "source_search_term"
-          with_tag "button._sourcebox", text: /Add URL Source/
+          with_tag "button._sourcebox", text: /Add New Source/
         end
       end
     end
