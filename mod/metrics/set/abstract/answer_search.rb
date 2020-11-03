@@ -61,10 +61,6 @@ format :html do
     super() + raw('<div class="details"></div>')
   end
 
-  def default_filter? field
-    default_filter_hash.key? field
-  end
-
   view :core, cache: :never, template: :haml
 
   view :table, cache: :never do
