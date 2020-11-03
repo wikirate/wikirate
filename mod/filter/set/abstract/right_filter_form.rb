@@ -1,13 +1,15 @@
+include_set Abstract::WikirateFilter
+
 def filter_hash
   backwards_compatibility_filtering { super }
 end
 
 def backwards_compatibility_filtering
-  hash = yield
-  if (status = hash.delete :metric_value)
-    hash[:status] = status
+  yield.tap do |hash|
+    if (status = hash.delete :metric_value)
+      hash[:status] = status
+    end
   end
-  hash
 end
 
 format :html do
