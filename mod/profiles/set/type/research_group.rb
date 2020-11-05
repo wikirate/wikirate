@@ -1,7 +1,6 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Table
-include_set Abstract::BsBadge
 include_set Abstract::Bookmarkable
 
 card_accessor :organizer
