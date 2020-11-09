@@ -14,8 +14,6 @@ class Card
                 idx_char:  "{"
         )
       end
-
-      register_list :formula, [:FormulaInput]
     end
   end
 end
