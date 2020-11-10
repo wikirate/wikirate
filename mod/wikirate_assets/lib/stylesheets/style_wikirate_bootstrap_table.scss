@@ -222,6 +222,9 @@ table.import-status-table {
     text-overflow: ellipsis;
     padding: 0.5em;
     max-width: 200px;
+    &:first-child {
+      text-overflow: clip;
+    }
   }
 }
 a.import-status-refresh {

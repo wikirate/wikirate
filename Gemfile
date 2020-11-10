@@ -31,6 +31,7 @@ end
 gem "mysql2", "> 0.4"
 
 # FILE / SOURCE HANDLING
+gem "addressable"                    # URI encoding
 gem "curb"                           # libcurl bindings for ruby
 gem "fog-aws"                        # supports AWS file storage
 gem "link_thumbnailer"               # parses some sources
