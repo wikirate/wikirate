@@ -12,6 +12,8 @@ format :html do
   end
 
   view :filtered_results do
+    class_up "card-slot", "_filter-result-slot"
+
     wrap { [render_core, render_export_links] }
   end
 
