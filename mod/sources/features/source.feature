@@ -19,6 +19,7 @@ Feature: source
    And I should see "a test source"
 
  Scenario: create a file source
+   And I click on "add by upload instead"
    And I upload the file "file.txt"
    Then I should see "file.txt 9 Bytes"
    And I press "Submit"
