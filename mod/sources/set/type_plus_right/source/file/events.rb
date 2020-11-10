@@ -45,8 +45,7 @@ def convert_to_pdf
 rescue StandardError => e
   msg = "failed to convert HTML to pdf"
   Rails.logger.info "#{msg}: #{e.message}"
-  # raise SourceConversionError, msg
-  abort :failure, msg
+  raise SourceConversionError, msg
 end
 
 def converting_to_tmp_pdf

@@ -84,9 +84,10 @@ format :html do
     source_list "Suggested Sources", suggested_sources
   end
 
+  # I think this view always returns blank?
   view :source_results, cache: :never, unknown: true do
     when_searching do |results|
-      if results.any?
+      if results.present?
         already_added results
       else
         render_new_source_form
@@ -99,10 +100,10 @@ format :html do
             source_list("Sources Already Added", results)]
   end
 
-  view :freshen_form, cache: :never, unknown: true do
-    return unless params[:freshen_source]
-    render_new_source_form
-  end
+  # view :freshen_form, cache: :never, unknown: true do
+  #   return unless params[:freshen_source]
+  #   render_new_source_form
+  # end
 
   def when_searching
     return "" unless params[:button] == "source_search"

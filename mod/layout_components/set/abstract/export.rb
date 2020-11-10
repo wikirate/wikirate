@@ -11,8 +11,10 @@ format :html do
     end
   end
 
-  view :filtered_content do
-    super() + render_export_links
+  view :filtered_results do
+    class_up "card-slot", "_filter-result-slot"
+
+    wrap { [render_core, render_export_links] }
   end
 
   def export_format_links
