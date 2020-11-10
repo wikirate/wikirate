@@ -33,4 +33,13 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
   def a_hash
     an_instance_of ::Hash
   end
+
+  describe "csv export" do
+    it "filters" do
+      Card::Env.with_params filter: { metric_name: "dark" } do
+        csv = format_subject(:csv).render_core
+        expect(csv).to include("darkness").and not_include("deadliness")
+      end
+    end
+  end
 end

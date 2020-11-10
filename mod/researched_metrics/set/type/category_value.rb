@@ -28,6 +28,8 @@ def inverted_options_hash
 end
 
 def pretty_values
+  return ["Unknown"] if Answer.unknown? value
+
   json_options? ? raw_values_from_hash : raw_value
 end
 

@@ -46,7 +46,7 @@ end
 
 format :csv do
   view :core do
-    Answer.csv_title + card.query.answer_query.map(&:csv_line).join
+    Answer.csv_title + query.answer_lookup.map(&:csv_line).join
   end
 end
 
