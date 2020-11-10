@@ -8,10 +8,9 @@ format :html do
 end
 
 event :validate_content, :validate, on: :save do
-  @host = nil
-  @host = URI(content).host
+  URI.parse Addressable::URI.encode(content)
 rescue URI::Error => e
-  errors.add :link, "invalid URI: #{content}, #{e.message}" unless @host
+  errors.add :link, "invalid URI: #{content}, #{e.message}"
 end
 
 FIELD_CODENAME = { title: :wikirate_title, description: :description }.freeze
@@ -35,7 +34,6 @@ event :validate_link, :validate, on: :save, when: :link_present? do
 end
 
 event :populate_website, :prepare_to_store, on: :create, when: :link_present? do
-  host = URI.parse(content).host
   left.add_subfield :wikirate_website, content: host, type_id: Card::PointerID
   return if Card.exists?(host) || host.blank?
   left.add_subcard host, type_id: Card::WikirateWebsiteID
@@ -43,6 +41,14 @@ end
 
 def no_file?
   left.fetch(:file).blank?
+end
+
+def parsed_uri
+  Addressable::URI.parse content
+end
+
+def host
+  @host ||= parsed_uri&.host
 end
 
 def duplicates
