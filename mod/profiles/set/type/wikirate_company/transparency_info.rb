@@ -125,5 +125,5 @@ def suppliers
 end
 
 def supplier_infos
-  suppliers.map(&:supplier_info).sort_by { |a, b| a[:sort_key] <=> b[:sort_key] }
+  suppliers.map(&:supplier_info).sort_by { |info| info[:sort_key] }
 end
