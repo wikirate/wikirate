@@ -9,15 +9,16 @@ def supplier_info
   hash = { name: name,
            link_name: name.url_key,
            country_name: country_name }.merge data
-  hash[:present] = supplier_data_present? data
+  hash[:sort_key] = "#{100 - num_values_present(data)}-#{name}"
   hash
 end
 
-def supplier_data_present? hash
+def num_values_present hash
+  n = 0
   hash.each_value do |v|
-    return true if v.is_a?(Hash) ? supplier_data_present?(v) : v
+    n += 1 if v.is_a?(Hash) ? num_values_present(v) : v
   end
-  false
+  n
 end
 
 def supplier_info_data
