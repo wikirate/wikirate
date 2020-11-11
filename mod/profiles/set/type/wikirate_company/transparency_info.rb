@@ -125,6 +125,8 @@ def suppliers
 end
 
 def supplier_infos
-  list = suppliers.map(&:supplier_info)
-  list.select { |h| h[:present] } + list.select { |h| !h[:present] }
+  suppliers.map(&:supplier_info).sort_by do |info|
+    info[:sort_key]
+    "#{99 - info[:num_values]}-#{info[:name]}"
+  end
 end
