@@ -16,9 +16,17 @@ end
 def num_values_present hash
   n = 0
   hash.each_value do |v|
-    n += 1 if v.is_a?(Hash) ? num_values_present(v) : v
+    n += value_tally v
   end
   n
+end
+
+def value_tally v
+  if v.is_a? Hash
+    num_values_present v
+  else
+    v.present? ? 1 : 0
+  end
 end
 
 def supplier_info_data
