@@ -125,5 +125,8 @@ def suppliers
 end
 
 def supplier_infos
-  suppliers.map(&:supplier_info).sort_by { |info| info[:sort_key] }
+  suppliers.map(&:supplier_info).sort_by do |info|
+    info[:sort_key]
+    "#{99 - info[:num_values]}-#{info[:name]}"
+  end
 end

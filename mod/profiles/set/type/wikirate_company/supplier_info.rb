@@ -9,7 +9,7 @@ def supplier_info
   hash = { name: name,
            link_name: name.url_key,
            country_name: country_name }.merge data
-  hash[:sort_key] = "#{99 - num_values_present(data)}-#{name}"
+  hash[:num_values] = num_values_present(data)
   hash
 end
 
