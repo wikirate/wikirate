@@ -9,15 +9,26 @@ def supplier_info
   hash = { name: name,
            link_name: name.url_key,
            country_name: country_name }.merge data
-  hash[:present] = supplier_data_present? data
+  hash[:num_values] = num_values_present(data)
+  # can remove the following once latest fashionchecker code is deployed
+  hash[:present] = hash[:num_values] > 0
   hash
 end
 
-def supplier_data_present? hash
+def num_values_present hash
+  n = 0
   hash.each_value do |v|
-    return true if v.is_a?(Hash) ? supplier_data_present?(v) : v
+    n += value_tally v
   end
-  false
+  n
+end
+
+def value_tally v
+  if v.is_a? Hash
+    num_values_present v
+  else
+    v.present? ? 1 : 0
+  end
 end
 
 def supplier_info_data

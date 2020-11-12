@@ -9,13 +9,15 @@ def researched?
   true
 end
 
+def research_policy
+  @research_policy ||= research_policy_card&.first_name&.downcase
+end
+
 format :html do
+  delegate :research_policy, to: :card
+
   def fixed_thumbnail_subtitle
     "Research #{research_policy_icon_link}"
-  end
-
-  def research_policy
-    @research_policy ||= card.research_policy_card&.first_name&.downcase
   end
 
   def research_policy_icon
