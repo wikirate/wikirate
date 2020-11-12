@@ -11,7 +11,7 @@ def supplier_info
            country_name: country_name }.merge data
   hash[:num_values] = num_values_present(data)
   # can remove the following once latest fashionchecker code is deployed
-  hash[:present] = hash[:num_values] > 0
+  hash[:present] = hash[:num_values].positive?
   hash
 end
 
