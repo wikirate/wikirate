@@ -11,6 +11,7 @@ end
 
 def check_designer_permissions action
   return true if !metric_card&.designer_assessed? || as_moderator? || as_designer?
+
   deny_because "Only the metric designer can #{action} this on designer-assessed metrics"
 end
 

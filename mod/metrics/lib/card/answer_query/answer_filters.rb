@@ -84,12 +84,29 @@ class Card
       def value_query value
         case value
         when Array # category filters. eg ["option1", "option2"]
-          filter :value, value
+          category_query value
         when Hash  # numeric range filters. eg { from: 20, to: 30 }
           numeric_range_query value
         else       # keyword matching filter. eg "carbon"
           filter :value, "%#{value.strip}%", "LIKE"
         end
+      end
+
+      def category_query array
+        if metric_card&.multi_categorical?
+          multi_category_query array
+        else
+          filter :value, array
+        end
+      end
+
+      def multi_category_query array
+        # FIND_IN_SET only works with comma separation (no spaces).
+        # So we have to use REPLACE to transform the category into what is expected
+        constraints = array.map do |val|
+          condition_sql ["FIND_IN_SET(?, REPLACE(answers.value, ', ', ','))", val]
+        end
+        @conditions << "(#{constraints.join ' OR '})"
       end
 
       def calculated_query value
