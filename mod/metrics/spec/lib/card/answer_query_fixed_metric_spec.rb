@@ -255,4 +255,12 @@ RSpec.describe Card::AnswerQuery do
                           "SPECTRE"], 1977))
     end
   end
+
+  context "with multi-category metric" do
+    let(:metric) { Card["Joe_User+big_multi"] }
+
+    it "handles value arrays" do
+      expect(run_query(value: ["1"])).to eq(["Sony Corporation+2010"])
+    end
+  end
 end
