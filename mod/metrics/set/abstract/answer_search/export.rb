@@ -47,8 +47,8 @@ format :json do
   end
 
   def id_and_name hash, key
-    hash[key] = hash[key].each_with_object([]) do |(key, val), array|
-      array << { id: key, name: val }
+    hash[key] = hash[key].each_with_object([]) do |(id, name), array|
+      array << { id: id, name: name }
     end
   end
 

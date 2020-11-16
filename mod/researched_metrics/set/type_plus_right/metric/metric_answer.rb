@@ -47,7 +47,6 @@ format do
   end
 end
 
-
 format :html do
   delegate :metric_card, to: :card
 
