@@ -12,7 +12,7 @@ class Card
         if card.numeric? || card.relationship?
           numeric_chart_class format, horizontal_ok
         elsif card.categorical?
-          VegaChart::CategoryChart
+          CategoryChart
         else
           raise Card::Error, "VegaChart not supported for #{card.name}"
         end
@@ -20,13 +20,13 @@ class Card
 
       def numeric_chart_class format, horizontal_ok
         if horizontal_ok && format.chart_item_count <= BUCKETS
-          VegaChart::HorizontalNumberChart
+          HorizontalNumberChart
         elsif format.card.ten_scale?
-          VegaChart::TenScaleChart
+          TenScaleChart
         # elsif format.chart_value_count <= BUCKETS
         #  VegaChart::NumberChart
         else
-          VegaChart::RangeChart
+          RangeChart
         end
       end
 
