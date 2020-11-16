@@ -6,7 +6,6 @@ STANDARD_FILTER_KEYS =
 include_set Abstract::FilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::MetricChild, generation: 1
-include_set Abstract::Chart
 include_set Abstract::CachedCount
 include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
@@ -48,11 +47,6 @@ format do
   end
 end
 
-format :json do
-  def chart_metric_id
-    card.left.id
-  end
-end
 
 format :html do
   delegate :metric_card, to: :card
@@ -112,10 +106,6 @@ format :html do
   def company_sort_links
     output [table_sort_link(rate_subjects, :company_name),
             table_sort_link("", :bookmarkers, "pull-left mx-3 px-1")]
-  end
-
-  def show_chart?
-    super && count_by_status[:known].to_i.positive?
   end
 end
 
