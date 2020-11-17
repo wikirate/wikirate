@@ -1,4 +1,4 @@
-RSpec.describe Card::VegaChart::TenScaleChart do
+RSpec.describe Card::VegaChart::SingleMetric::TenScaleHistogram do
   let(:metric) { Card["Jedi+darkness rating"] }
   let(:format) { metric.metric_answer_card.format :json }
   let(:chart_class) { format.chart_class }
