@@ -1,8 +1,15 @@
 include_set Abstract::Chart
 
 format :json do
-  def chart_metric_id
-    card.left.id
+  def vega_chart_config highlight=nil
+    VegaChart::SingleMetric.new self, chart_metric,
+                                horizontal: chart_item_count < 10,
+                                highlight: highlight
+
+  end
+
+  def chart_metric
+    card.left
   end
 end
 

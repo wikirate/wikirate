@@ -1,6 +1,6 @@
 class Card
   class VegaChart
-    class RangeChart
+    class SingleMetric
       # calculate the grouping for a range chart
       module Buckets
         def each_bucket

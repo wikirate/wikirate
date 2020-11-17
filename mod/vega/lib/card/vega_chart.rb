@@ -5,29 +5,8 @@ class Card
     include Axes
 
     class << self
-      BUCKETS = 10
-
       def chart_class format, horizontal_ok=true
-        card = format.card
-        if card.numeric? || card.relationship?
-          numeric_chart_class format, horizontal_ok
-        elsif card.categorical?
-          CategoryChart
-        else
-          raise Card::Error, "VegaChart not supported for #{card.name}"
-        end
-      end
-
-      def numeric_chart_class format, horizontal_ok
-        if horizontal_ok && format.chart_item_count <= BUCKETS
-          HorizontalNumberChart
-        elsif format.card.ten_scale?
-          TenScaleChart
-        # elsif format.chart_value_count <= BUCKETS
-        #  VegaChart::NumberChart
-        else
-          RangeChart
-        end
+        SingleMetric.chart_class format, horizontal_ok
       end
 
       def json_from_file filename
@@ -42,23 +21,6 @@ class Card
     end
 
     delegate :builtin, to: :class
-
-    # @param opts [Hash] config options
-    # @option opts [String] :highlight highlight the bar for the given value
-    # @option opts [Hash] :layout override DEFAULT_LAYOUT
-    # @option opts [:light/:dark] :axes color of axes, labels and titles
-    def initialize format, opts={}
-      @format = format
-      @metric_id = format.chart_metric_id
-      @filter_query = format.chart_filter_query
-      @highlight_value = opts[:highlight]
-      @data = []
-      @labels = []
-
-      @layout = opts.delete(:layout) || {}
-      @opts = opts
-      generate_data
-    end
 
     def to_json
       to_hash.to_json
@@ -76,38 +38,6 @@ class Card
 
     def add_label label
       @labels << label
-    end
-
-    def data
-      [{ name: "table", values: @data }]
-    end
-
-    def marks
-      hash = main_mark.clone
-      hash[:encode].merge! update: { fill: fill_color },
-                           hover: { fill: { value: ChartColors::HOVER_COLOR },
-                                    cursor: { value: hover_cursor } }
-      [hash]
-    end
-
-    def hover_cursor
-      "pointer"
-    end
-
-    def scales
-      [x_scale, y_scale, color_scale]
-    end
-
-    def x_scale
-      { name: "xscale", range: "width", domain: { data: "table", field: "xfield" } }
-    end
-
-    def y_scale
-      { name: "yscale", range: "height", domain: { data: "table", field: "yfield" } }
-    end
-
-    def metric_card
-      @metric_card ||= Card[@metric_id]
     end
   end
 end

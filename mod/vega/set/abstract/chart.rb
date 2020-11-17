@@ -33,11 +33,7 @@ format do
   end
 
   def chart_filter_query
-    AnswerQuery.new chart_filter_hash.merge(metric_id: chart_metric_id), sort_hash
-  end
-
-  def chart_metric_id
-    card.id
+    AnswerQuery.new chart_filter_hash.merge(metric_id: chart_metric), sort_hash
   end
 
   def chart_filter_hash
@@ -96,9 +92,6 @@ format :json do
     vega_chart_config(value_to_highlight).to_json
   end
 
-  def vega_chart_config highlight=nil
-    @data ||= chart_class.new self, highlight: highlight
-  end
 
   def chart_class
     VegaChart.chart_class self, horizontal_ok?
