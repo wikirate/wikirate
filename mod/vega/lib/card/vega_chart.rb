@@ -5,10 +5,6 @@ class Card
     include Axes
 
     class << self
-      def chart_class format, horizontal_ok=true
-        SingleMetric.chart_class format, horizontal_ok
-      end
-
       def json_from_file filename
         File.read File.expand_path("../vega_chart/json/#{filename}.json", __FILE__)
       end

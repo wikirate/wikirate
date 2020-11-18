@@ -91,13 +91,4 @@ format :json do
     # puts ve
     vega_chart_config(value_to_highlight).to_json
   end
-
-
-  def chart_class
-    VegaChart.chart_class self, horizontal_ok?
-  end
-
-  def horizontal_ok?
-    true
-  end
 end
