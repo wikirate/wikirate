@@ -1,13 +1,13 @@
-RSpec.describe Card::VegaChart::HorizontalNumberChart do
+RSpec.describe Card::VegaChart::SingleMetric::HorizontalBar do
   let(:format) { metric.metric_answer_card.format :json }
-  let(:chart_class) { format.chart_class }
+  let(:chart_class) { metric.chart_class true }
   let(:chart_hash) { format.vega_chart_config.to_hash }
 
   context "with WikiRating (10 or fewer answers)" do
     let(:metric) { Card["Jedi+darkness rating"] }
 
     specify "chart_class" do
-      expect(chart_class).to eq(described_class)
+      expect(chart_class).to eq(:horizontal_bar)
     end
 
     specify "chart hash" do
