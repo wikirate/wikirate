@@ -8,8 +8,8 @@ event :delete_answer_lookup_table_entry_due_to_value_change, :finalize, on: :del
 end
 
 event :create_answer_lookup_entry_due_to_value_change, :finalize, on: :create do
-  if hybrid? && (ans = left&.answer)
-    update_answer id: ans.id
+  if hybrid? && (lookup_id = left&.answer&.id)
+    update_answer id: lookup_id
   else
     create_answer answer_id: answer_id
   end
