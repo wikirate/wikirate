@@ -1,10 +1,10 @@
-RSpec.describe Card::VegaChart::RangeChart::Buckets do
+RSpec.describe Card::VegaChart::SingleMetric::Buckets do
   let(:bottom) { 582_603 }
   let(:top) { 5_613_573 }
 
   def buckets lower, upper
     buck = Class.new
-    buck.extend Card::VegaChart::RangeChart::Buckets
+    buck.extend described_class
     buck.instance_eval { @buckets = 10 }
     buck.define_singleton_method(:max) { upper }
     buck.define_singleton_method(:min) { lower }
