@@ -1,7 +1,7 @@
-RSpec.describe Card::VegaChart::TenScaleChart do
+RSpec.describe Card::VegaChart::SingleMetric::TenScaleHistogram do
   let(:metric) { Card["Jedi+darkness rating"] }
   let(:format) { metric.metric_answer_card.format :json }
-  let(:chart_class) { format.chart_class }
+  let(:chart_class) { metric.chart_class }
   let(:chart_hash) { format.vega_chart_config.to_hash }
 
   context "with WikiRating (more than 10 answers)" do
@@ -10,7 +10,7 @@ RSpec.describe Card::VegaChart::TenScaleChart do
     end
 
     specify "chart_class" do
-      expect(chart_class).to eq(described_class)
+      expect(chart_class).to eq(:ten_scale_histogram)
     end
 
     specify "chart hash" do
