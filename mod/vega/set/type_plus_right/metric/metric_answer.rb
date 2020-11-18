@@ -5,7 +5,6 @@ format :json do
     VegaChart::SingleMetric.new self, chart_metric,
                                 horizontal: chart_item_count < 10,
                                 highlight: highlight
-
   end
 
   def chart_metric

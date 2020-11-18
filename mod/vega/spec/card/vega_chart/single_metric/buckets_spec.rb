@@ -4,7 +4,7 @@ RSpec.describe Card::VegaChart::SingleMetric::Buckets do
 
   def buckets lower, upper
     buck = Class.new
-    buck.extend self.described_class
+    buck.extend described_class
     buck.instance_eval { @buckets = 10 }
     buck.define_singleton_method(:max) { upper }
     buck.define_singleton_method(:min) { lower }

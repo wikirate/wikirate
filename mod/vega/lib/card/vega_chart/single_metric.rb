@@ -1,6 +1,6 @@
 class Card
-  # generate JSON for Vega visualizations
   class VegaChart
+    # Vega visualizations for single metrics
     class SingleMetric < VegaChart
       BUCKETS = 10
 
