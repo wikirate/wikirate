@@ -70,6 +70,10 @@ class Card
           axis
         end
 
+        def x_scale
+          super.merge padding: 0.15
+        end
+
         def scales
           return super unless special_labels?
 

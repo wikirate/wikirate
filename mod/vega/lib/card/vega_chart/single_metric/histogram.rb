@@ -3,51 +3,13 @@ class Card
     class SingleMetric
       # Company count histograms.  Each vertical bar represents a range of values
       class Histogram < VerticalBars
-        include Buckets
-
         DEFAULT_BAR_CNT = 10
 
-        def initialize format, metric_card, opts
-          opts[:highlight] &&= opts[:highlight].to_f
-          @buckets ||= opts.delete(:buckets) || DEFAULT_BAR_CNT
-          super
-        end
-
-        def generate_data
-          add_label min
-          each_bucket do |lower, upper, last|
-            add_data lower, count_in_range(lower, upper, last), from: lower, to: upper
-            add_label upper
-          end
-        end
-
-        def count_in_range lower, upper, last
-          tally = 0
-          op = last ? "<=" : "<"
-          raw_counts.each_key do |val|
-            tally += tally_increment(val) if val_between? lower, upper, val, op
-          end
-          tally
-        end
-
-        def raw_counts
-          @raw_counts ||=
-            @filter_query.count_by_group(:numeric_value).reject { |k, _v| k.nil? }
+        def data_map
+          { answers: :compact_answers }
         end
 
         private
-
-        def tally_increment val
-          raw_counts.delete(val).to_i
-        end
-
-        def val_between? lower, upper, val, op
-          val >= lower && val.send(op, upper)
-        end
-
-        def data_item_hash filter, _count
-          super.merge xfield: filter[:numeric_value][:to]
-        end
 
         def x_axis
           super.merge scale: "x_label", format: "~s", title: title_with_unit("Ranges")

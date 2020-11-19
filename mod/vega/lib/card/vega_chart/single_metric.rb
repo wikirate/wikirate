@@ -13,7 +13,7 @@ class Card
         end
       end
 
-      attr_reader :metric_card
+      attr_reader :metric_card, :format
 
       # @param opts [Hash] config options
       # @option opts [String] :highlight highlight the bar for the given value
@@ -22,19 +22,20 @@ class Card
       def initialize format, metric_card, opts={}
         @format = format
         @metric_card = metric_card
-        @filter_query = format.chart_filter_query
+        # @filter_query = format.chart_filter_query
         @highlight_value = opts[:highlight]
         @layout = opts.delete(:layout) || {}
-        @data = []
         @labels = []
         @opts = opts
-        generate_data
+        #  generate_data
       end
 
       private
 
       def data
-        [{ name: "table", values: @data }]
+        data_map.each_with_object([]) do |(name, view), array|
+          array << { name: name, values: format.render(view) }
+        end
       end
 
       def marks

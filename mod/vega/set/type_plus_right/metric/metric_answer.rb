@@ -1,10 +1,9 @@
 include_set Abstract::Chart
 
 format :json do
-  def vega_chart_config highlight=nil
+  def vega
     VegaChart::SingleMetric.new self, chart_metric,
-                                horizontal: chart_item_count < 10,
-                                highlight: highlight
+                                horizontal: false # chart_item_count < 10
   end
 
   def chart_metric

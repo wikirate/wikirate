@@ -30,7 +30,7 @@ class Card
         end
 
         def x_scale
-          super.merge type: "band", padding: 0.15
+          super.merge type: "band"
         end
 
         def y_scale
@@ -52,7 +52,8 @@ class Card
         end
 
         def y_title
-          @filter_query.filter_args[:year] ? @format.rate_subjects : "Answers"
+          # @filter_query.filter_args[:year] ? @format.rate_subjects :
+          "Answers"
         end
 
         def marks

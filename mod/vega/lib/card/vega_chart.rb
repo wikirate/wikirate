@@ -18,7 +18,7 @@ class Card
 
     delegate :builtin, to: :class
 
-    def to_json
+    def render
       to_hash.to_json
     end
 
