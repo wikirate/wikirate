@@ -33,14 +33,14 @@
           "company":6683,
           "metric":6841,
           "year":1977,
-          "value":"100",
+          "value":45,
           "id":19
         },
         {
           "company":6693,
           "metric":6841,
           "year":1977,
-          "value":"50",
+          "value":50,
           "id":20
         },
         {
@@ -61,8 +61,16 @@
           "company":5959,
           "metric":6841,
           "year":1977,
-          "value":"Unknown",
+          "value":"40",
           "id":26
+        }
+      ],
+      "transform" : [
+        {"type": "bin", "field": "value", "extent": [0, 100] },
+        {
+          "type": "aggregate",
+          "key": "bin0", "groupby": ["bin0", "bin1"],
+          "fields": ["bin0"], "ops": ["count"], "as": ["count"]
         }
       ]
     }
@@ -71,27 +79,25 @@
     {
       "name":"xscale",
       "range":"width",
-      "domain":{
-        "data":"table",
-        "field":"xfield"
-      },
-      "type":"band"
+      "domain": [0,100],
+      "type":"linear"
     },
     {
       "name":"yscale",
       "range":"height",
       "domain":{
-        "data":"table",
-        "field":"yfield"
+        "data":"answers",
+        "field":"count"
       },
       "type":"linear",
-      "round":true
+      "round":true,
+      "zero": true
     },
     {
       "name":"color",
       "type":"ordinal",
       "domain":{
-        "data":"table",
+        "data":"answers",
         "field":"highlight",
         "sort":true
       },
@@ -103,32 +109,29 @@
     {
       "name":"x_label",
       "type":"point",
-      "range":"width",
-      "domain":[
-
-      ]
+      "range":"width"
     }
   ],
   "marks":[
     {
       "type":"rect",
       "from":{
-        "data":"table"
+        "data":"answers"
       },
       "encode":{
         "enter":{
           "x":{
             "scale":"xscale",
-            "field":"xfield"
+            "field":"bin0"
           },
-          "width":{
+          "x2":{
             "scale":"xscale",
-            "band":true,
-            "offset":-1
+            "field":"bin1",
+            "offset": 0
           },
           "y":{
             "scale":"yscale",
-            "field":"yfield"
+            "field":"count"
           },
           "y2":{
             "scale":"yscale",
@@ -149,52 +152,12 @@
           }
         }
       }
-    },
-    {
-      "type":"text",
-      "encode":{
-        "enter":{
-          "align":{
-            "value":"center"
-          },
-          "baseline":{
-            "value":"bottom"
-          },
-          "fill":{
-            "value":"#333"
-          }
-        },
-        "update":{
-          "x":{
-            "scale":"xscale",
-            "signal":"tooltip.xfield",
-            "band":0.5
-          },
-          "y":{
-            "scale":"yscale",
-            "signal":"tooltip.yfield",
-            "offset":-2
-          },
-          "text":{
-            "signal":"tooltip.yfield"
-          },
-          "fillOpacity":[
-            {
-              "test":"datum === tooltip",
-              "value":0
-            },
-            {
-              "value":1
-            }
-          ]
-        }
-      }
     }
   ],
   "axes":[
     {
       "orient":"bottom",
-      "scale":"x_label",
+      "scale":"xscale",
       "encode":{
         "title":{
           "fill":{
