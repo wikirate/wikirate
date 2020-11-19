@@ -2,25 +2,35 @@ class Card
   class VegaChart
     class SingleMetric
       # Company count histograms.  Each vertical bar represents a range of values
-      class Histogram < VerticalBars
+      class Histogram < SingleMetric
         DEFAULT_BAR_CNT = 10
 
         def data_map
           { answers: :compact_answers }
         end
 
+        def to_hash
+          layout.clone.merge(data: data).tap do |hash|
+            hash[:signals] = hash[:signals].clone << extent_signal
+          end
+        end
+
         private
 
-        def x_axis
-          super.merge scale: "x_label", format: "~s", title: title_with_unit("Ranges")
+        def extent_signal
+          { name: "extent",
+            init: "[data('extremes')[0].min_value, data('extremes')[0].max_value]" }
         end
 
-        def scales
-          super << x_label_scale
+        def data
+          (super + builtin(:histogram_transforms)[:data]).tap do |array|
+            array.first["transform"] =
+              [{ type: "formula", as:"value", expr: "toNumber(datum.value)" }]
+          end
         end
 
-        def x_label_scale
-          { name: "x_label", type: "point", range: "width", domain: @labels }
+        def layout
+          super.merge builtin(:histogram)
         end
 
         def highlight? value

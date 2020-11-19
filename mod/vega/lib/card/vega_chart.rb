@@ -19,7 +19,7 @@ class Card
     delegate :builtin, to: :class
 
     def render
-      to_hash.to_json
+      JSON.pretty_generate to_hash
     end
 
     def to_hash

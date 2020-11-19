@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "name": "extremes",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "aggregate",
+          "fields": [
+            "value",
+            "value"
+          ],
+          "ops": [
+            "min",
+            "max"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "counts",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "bin",
+          "field": "value",
+          "extent": {
+            "signal": "extent"
+          }
+        },
+        {
+          "type": "aggregate",
+          "key": "bin0",
+          "groupby": [
+            "bin0",
+            "bin1"
+          ],
+          "fields": [
+            "bin0"
+          ],
+          "ops": [
+            "count"
+          ],
+          "as": [
+            "count"
+          ]
+        }
+      ]
+    }
+  ]
+}

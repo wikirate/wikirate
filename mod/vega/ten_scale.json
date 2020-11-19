@@ -1,0 +1,277 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 350,
+  "height": 180,
+  "padding": 10,
+  "config": {
+    "axis": {
+      "labelColor": "#888",
+      "titleColor": "#666"
+    }
+  },
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {
+      },
+      "on": [
+        {
+          "events": "rect:mouseover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:mouseout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "range": "width",
+      "domain": [0, 10],
+      "type": "linear"
+    },
+    {
+      "name": "yscale",
+      "range": "height",
+      "domain": {
+        "data": "counts",
+        "field": "count"
+      },
+      "type": "linear",
+      "round": true,
+      "zero": true,
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "answers",
+        "field": "highlight",
+        "sort": true
+      },
+      "range": [
+        "#eeeeee",
+        "#8ECDC7"
+      ]
+    },
+    {
+      "name": "scoreColor",
+      "type": "quantile",
+      "domain": {
+        "data": "counts",
+        "field": "floor"
+      },
+      "range": [
+        "#ff0000",
+        "#ff5700",
+        "#ff7e00",
+        "#fc9b00",
+        "#f1b000",
+        "#debd00",
+        "#c2c000",
+        "#9ab700",
+        "#65a300",
+        "#008000"
+      ]
+    },
+    {
+      "name": "x_label",
+      "type": "point",
+      "range": "width"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "counts"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": "bin0",
+            "offset": 0.5
+          },
+          "x2": {
+            "scale": "xscale",
+            "field": "bin1",
+            "offset": -0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "count"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "scale": "scoreColor",
+            "field": "floor"
+          },
+          "opacity": {
+            "value": 0.5
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 1
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "#333"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "(tooltip.bin0 + tooltip.bin1) / 2",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.count",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.count"
+          }
+        }
+      }
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "encode": {
+        "labels": {
+          "update": {
+            "angle": {
+              "value": 30
+            },
+            "limit": {
+              "value": 70
+            },
+            "align": {
+              "value": "left"
+            }
+          }
+        }
+      },
+      "title": "Value",
+      "format": "~s"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "tickMinStep": 1,
+      "title": "# Answers"
+    }
+  ],
+  "data": [
+    {
+      "name": "answers",
+      "values": [
+        {
+          "company": 6683,
+          "metric": 7125,
+          "year": 1977,
+          "value": 10,
+          "id": 122
+        },        {
+          "company": 6683,
+          "metric": 7125,
+          "year": 1977,
+          "value": 8,
+          "id": 122
+        },        {
+          "company": 6683,
+          "metric": 7125,
+          "year": 1977,
+          "value": 2,
+          "id": 122
+        },        {
+          "company": 6683,
+          "metric": 7125,
+          "year": 1977,
+          "value": "10.0",
+          "id": 122
+        },        {
+          "company": 6683,
+          "metric": 7125,
+          "year": 1977,
+          "value": "10.0",
+          "id": 122
+        },
+        {
+          "company": 6688,
+          "metric": 7125,
+          "year": 2005,
+          "value": "0.6",
+          "id": 124
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "toNumber(datum.value)"
+        }
+      ]
+    },
+    {
+      "name": "counts",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "bin",
+          "field": "value",
+          "extent": [0, 10]
+        },
+        {
+          "type": "aggregate",
+          "key": "bin0",
+          "groupby": [
+            "bin0",
+            "bin1"
+          ],
+          "fields": [
+            "bin0"
+          ],
+          "ops": [
+            "count"
+          ],
+          "as": [
+            "count"
+          ]
+        },
+        {
+          "type": "formula", "expr": "floor(datum.bin0)", "as": "floor"
+        }
+      ]
+    }
+  ]
+}
