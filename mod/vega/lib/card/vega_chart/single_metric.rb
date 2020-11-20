@@ -2,8 +2,6 @@ class Card
   class VegaChart
     # Vega visualizations for single metrics
     class SingleMetric < VegaChart
-      BUCKETS = 10
-
       class << self
         def new format, metric_card, opts={}
           return super unless self == SingleMetric
@@ -36,30 +34,6 @@ class Card
         data_map.each_with_object([]) do |(name, view), array|
           array << { name: name, values: format.render(view) }
         end
-      end
-
-      def marks
-        hash = main_mark.clone
-        hash[:encode].merge! update: { fill: fill_color },
-                             hover: { fill: { value: ChartColors::HOVER_COLOR },
-                                      cursor: { value: hover_cursor } }
-        [hash]
-      end
-
-      def hover_cursor
-        "pointer"
-      end
-
-      def scales
-        [x_scale, y_scale, color_scale]
-      end
-
-      def x_scale
-        { name: "xscale", range: "width", domain: { data: "table", field: "xfield" } }
-      end
-
-      def y_scale
-        { name: "yscale", range: "height", domain: { data: "table", field: "yfield" } }
       end
     end
   end

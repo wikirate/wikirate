@@ -1,13 +1,65 @@
 {
+  "width":350,
+  "height":180,
+  "padding":{
+    "top":15,
+    "left":5,
+    "bottom":15,
+    "right":5
+  },
+  "signals":[
+    {
+      "name":"tooltip",
+      "value":{
+
+      },
+      "on":[
+        {
+          "events":"rect:mouseover",
+          "update":"datum"
+        },
+        {
+          "events":"rect:mouseout",
+          "update":"{}"
+        }
+      ]
+    }
+  ],
+  "data":[
+    {
+      "name":"answers",
+      "url": "http://localhost:3000/Fred+dinosaurlabor+Answer/compact_answers.json"
+    },
+    {
+      "name": "counts",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby" : ["value"],
+          "fields": [
+            "value"
+          ],
+          "ops": [
+            "count"
+          ],
+          "as": [
+            "count"
+          ]
+        }
+      ]
+    }
+  ],
   "scales":[
     {
       "name":"xscale",
       "range":"width",
-      "domain": {
-        "data": "counts",
-        "fields": ["bin0", "bin1"]
+      "domain":{
+        "data":"counts",
+        "field":"value"
       },
-      "type":"linear"
+      "type":"band",
+      "padding":0.15
     },
     {
       "name":"yscale",
@@ -16,13 +68,11 @@
         "data":"counts",
         "field":"count"
       },
-      "type":"linear",
-      "round":true,
-      "zero": true,
-      "nice": true
+      "type":"sqrt",
+      "round":true
     },
     {
-      "name":"highlightColor",
+      "name":"color",
       "type":"ordinal",
       "domain":{
         "data":"answers",
@@ -33,31 +83,6 @@
         "#eeeeee",
         "#8ECDC7"
       ]
-    },
-    {
-      "name": "scoreColor",
-      "type": "quantile",
-      "domain": {
-        "data": "counts",
-        "field": "floor"
-      },
-      "range": [
-        "#ff0000",
-        "#ff5700",
-        "#ff7e00",
-        "#fc9b00",
-        "#f1b000",
-        "#debd00",
-        "#c2c000",
-        "#9ab700",
-        "#65a300",
-        "#008000"
-      ]
-    },
-    {
-      "name":"x_label",
-      "type":"point",
-      "range":"width"
     }
   ],
   "marks":[
@@ -70,13 +95,12 @@
         "enter":{
           "x":{
             "scale":"xscale",
-            "field":"bin0",
-            "offset": 0.5
+            "field":"value"
           },
-          "x2":{
+          "width":{
             "scale":"xscale",
-            "field":"bin1",
-            "offset": -0.5
+            "band":true,
+            "offset":-1
           },
           "y":{
             "scale":"yscale",
@@ -87,20 +111,17 @@
             "value":0
           }
         },
-        "update": {
-          "fill": {
-            "value": "#03998d"
-          },
-          "opacity": {
-            "value": 0.5
+        "update":{
+          "fill":{
+            "value":"#8ECDC7"
           }
         },
-        "hover": {
-          "opacity": {
-            "value": 1
+        "hover":{
+          "fill":{
+            "value":"#03998d"
           },
-          "cursor": {
-            "value": "pointer"
+          "cursor":{
+            "value":"pointer"
           }
         }
       }
@@ -114,12 +135,15 @@
           },
           "baseline":{
             "value":"bottom"
+          },
+          "fill":{
+            "value":"#333"
           }
         },
         "update":{
           "x":{
             "scale":"xscale",
-            "signal":"(tooltip.bin0 + tooltip.bin1) / 2",
+            "signal":"tooltip.value",
             "band":0.5
           },
           "y":{
@@ -129,7 +153,16 @@
           },
           "text":{
             "signal":"tooltip.count"
-          }
+          },
+          "fillOpacity":[
+            {
+              "test":"datum === tooltip",
+              "value":0
+            },
+            {
+              "value":1
+            }
+          ]
         }
       }
     }
@@ -140,6 +173,9 @@
       "scale":"xscale",
       "encode":{
         "labels":{
+          "fill":{
+            "value":"#333333"
+          },
           "update":{
             "angle":{
               "value":30
@@ -153,14 +189,12 @@
           }
         }
       },
-      "title":"Value",
-      "format":"~s"
+      "title":"Categories"
     },
     {
       "orient":"left",
       "scale":"yscale",
-      "tickMinStep": 1,
-      "title":"# Answers"
+      "title":"Companies"
     }
   ]
 }

@@ -10,27 +10,26 @@ class Card
         end
 
         def to_hash
-          layout.clone.merge(data: data).tap do |hash|
-            hash[:signals] = hash[:signals].clone << extent_signal
+          layout.merge(data: data).tap do |hash|
+            hash[:signals] << { name: "extent", init: extent }
           end
         end
 
         private
 
-        def extent_signal
-          { name: "extent",
-            init: "[data('extremes')[0].min_value, data('extremes')[0].max_value]" }
+        def extent
+          "[data('extremes')[0].min_value, data('extremes')[0].max_value]"
         end
 
         def data
-          (super + builtin(:histogram_transforms)[:data]).tap do |array|
+          (super + builtin(:histogram_transforms)[:data].deep_dup).tap do |array|
             array.first["transform"] =
               [{ type: "formula", as:"value", expr: "toNumber(datum.value)" }]
           end
         end
 
         def layout
-          super.merge builtin(:histogram)
+          super.merge(builtin(:histogram)).deep_dup
         end
 
         def highlight? value
