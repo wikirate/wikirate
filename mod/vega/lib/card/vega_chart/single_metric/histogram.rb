@@ -3,14 +3,11 @@ class Card
     class SingleMetric
       # Company count histograms.  Each vertical bar represents a range of values
       class Histogram < SingleMetric
-        DEFAULT_BAR_CNT = 10
-
-        def data_map
-          { answers: :compact_answers }
-        end
+        include Axes
+        include AnswerValues
 
         def to_hash
-          layout.merge(data: data).tap do |hash|
+          layout.merge(data).tap do |hash|
             hash[:signals] << { name: "extent", init: extent }
           end
         end
@@ -22,14 +19,23 @@ class Card
         end
 
         def data
-          (super + builtin(:histogram_transforms)[:data].deep_dup).tap do |array|
-            array.first["transform"] =
-              [{ type: "formula", as:"value", expr: "toNumber(datum.value)" }]
-          end
+          with_answer_values { builtin :histogram_data }
         end
 
         def layout
-          super.merge(builtin(:histogram)).deep_dup
+          super.merge builtin(:histogram)
+        end
+
+        def x_axis
+          super.merge title: x_title, format: "~s" # number formatting
+        end
+
+        def x_title
+          title_with_unit "Value"
+        end
+
+        def y_axis
+          super.merge count_axis
         end
 
         def highlight? value

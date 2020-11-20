@@ -1,6 +1,16 @@
 {
   "data": [
     {
+      "name": "answers",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "toNumber(datum.value)"
+        }
+      ]
+    },
+    {
       "name": "extremes",
       "source": "answers",
       "transform": [
@@ -44,6 +54,11 @@
           "as": [
             "count"
           ]
+        },
+        {
+          "type" : "formula",
+          "expr" : "{ value: { from: datum.bin0, to: datum.bin1 } }",
+          "as" : "filter"
         }
       ]
     }

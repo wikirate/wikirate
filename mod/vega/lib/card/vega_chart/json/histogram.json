@@ -37,10 +37,7 @@
     {
       "name": "scoreColor",
       "type": "quantile",
-      "domain": {
-        "data": "counts",
-        "field": "floor"
-      },
+      "domain": [0, 10],
       "range": [
         "#ff0000",
         "#ff5700",
@@ -51,6 +48,7 @@
         "#c2c000",
         "#9ab700",
         "#65a300",
+        "#008000",
         "#008000"
       ]
     },
@@ -132,35 +130,6 @@
           }
         }
       }
-    }
-  ],
-  "axes":[
-    {
-      "orient":"bottom",
-      "scale":"xscale",
-      "encode":{
-        "labels":{
-          "update":{
-            "angle":{
-              "value":30
-            },
-            "limit":{
-              "value":70
-            },
-            "align":{
-              "value":"left"
-            }
-          }
-        }
-      },
-      "title":"Value",
-      "format":"~s"
-    },
-    {
-      "orient":"left",
-      "scale":"yscale",
-      "tickMinStep": 1,
-      "title":"# Answers"
     }
   ]
 }

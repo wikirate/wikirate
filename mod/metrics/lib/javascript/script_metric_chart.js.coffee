@@ -19,7 +19,7 @@ initChart = (spec, id) ->
   handleChartClicks vega, el
 
 handleChartClicks = (vega, el) ->
-  vega.addEventListener 'click', (event, item) ->
+  vega.addEventListener 'click', (_event, item) ->
     return unless el.closest("._filtered-content").exists()
 
     d = item.datum

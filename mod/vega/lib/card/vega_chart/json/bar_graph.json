@@ -1,55 +1,4 @@
 {
-  "width":350,
-  "height":180,
-  "padding":{
-    "top":15,
-    "left":5,
-    "bottom":15,
-    "right":5
-  },
-  "signals":[
-    {
-      "name":"tooltip",
-      "value":{
-
-      },
-      "on":[
-        {
-          "events":"rect:mouseover",
-          "update":"datum"
-        },
-        {
-          "events":"rect:mouseout",
-          "update":"{}"
-        }
-      ]
-    }
-  ],
-  "data":[
-    {
-      "name":"answers",
-      "url": "http://localhost:3000/Fred+dinosaurlabor+Answer/compact_answers.json"
-    },
-    {
-      "name": "counts",
-      "source": "answers",
-      "transform": [
-        {
-          "type": "aggregate",
-          "groupby" : ["value"],
-          "fields": [
-            "value"
-          ],
-          "ops": [
-            "count"
-          ],
-          "as": [
-            "count"
-          ]
-        }
-      ]
-    }
-  ],
   "scales":[
     {
       "name":"xscale",
@@ -72,7 +21,7 @@
       "round":true
     },
     {
-      "name":"color",
+      "name":"highlightColor",
       "type":"ordinal",
       "domain":{
         "data":"answers",
@@ -111,17 +60,20 @@
             "value":0
           }
         },
-        "update":{
-          "fill":{
-            "value":"#8ECDC7"
+        "update": {
+          "fill": {
+            "value": "#03998d"
+          },
+          "opacity": {
+            "value": 0.5
           }
         },
-        "hover":{
-          "fill":{
-            "value":"#03998d"
+        "hover": {
+          "opacity": {
+            "value": 1
           },
-          "cursor":{
-            "value":"pointer"
+          "cursor": {
+            "value": "pointer"
           }
         }
       }
@@ -135,9 +87,6 @@
           },
           "baseline":{
             "value":"bottom"
-          },
-          "fill":{
-            "value":"#333"
           }
         },
         "update":{
@@ -153,48 +102,9 @@
           },
           "text":{
             "signal":"tooltip.count"
-          },
-          "fillOpacity":[
-            {
-              "test":"datum === tooltip",
-              "value":0
-            },
-            {
-              "value":1
-            }
-          ]
-        }
-      }
-    }
-  ],
-  "axes":[
-    {
-      "orient":"bottom",
-      "scale":"xscale",
-      "encode":{
-        "labels":{
-          "fill":{
-            "value":"#333333"
-          },
-          "update":{
-            "angle":{
-              "value":30
-            },
-            "limit":{
-              "value":70
-            },
-            "align":{
-              "value":"left"
-            }
           }
         }
-      },
-      "title":"Categories"
-    },
-    {
-      "orient":"left",
-      "scale":"yscale",
-      "title":"Companies"
+      }
     }
   ]
 }

@@ -13,14 +13,18 @@ class Card
         end
 
         def data
-          super.tap do |array|
-            array.last[:transform] <<
+          super.tap do |hash|
+            hash[:data].last[:transform] <<
               { type: "formula", expr: "floor(datum.bin0)", as: "floor" }
           end
         end
 
         def extent
           [0, 10]
+        end
+
+        def x_title
+          "Score"
         end
       end
     end

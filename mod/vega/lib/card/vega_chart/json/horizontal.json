@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 350,
+  "height": 180,
+  "padding": 10,
+  "config": {
+    "axis": {
+      "labelColor": "#888",
+      "titleColor": "#666"
+    }
+  },
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {
+      },
+      "on": [
+        {
+          "events": "rect:mouseover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:mouseout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+
+
+
+  "data": [
+    {
+      "name": "companies",
+      "url" : "http://localhost:3000/Jedi+Victims_by_Employees+Answer/compact_companies.json"
+
+    },
+    {
+      "name": "answers",
+      "url" : "http://localhost:3000/Jedi+Victims_by_Employees+Answer/compact_answers.json",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "toNumber(datum.value)"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum.value)"
+        },
+        { "type": "lookup",
+          "from": "companies",
+          "key": "id", "fields":["company"], "as": ["company"]
+        }, {
+          "type": "formula",
+          "expr": "datum.company.name + ' (' + datum.year + ')'", "as" :"label"
+        }
+
+      ]
+    }
+
+  ],
+  "scales":[
+    {
+      "name":"xscale",
+      "range":"width",
+      "domain":{
+        "data":"answers",
+        "field":"value"
+      },
+      "type":"linear",
+      "nice":true
+    },
+    {
+      "name":"yscale",
+      "range":"height",
+      "domain":{
+        "data":"answers",
+        "field": "label"
+      },
+      "type":"band",
+      "padding":0.15
+    },
+    {
+      "name":"color",
+      "type":"ordinal",
+      "domain":{
+        "data":"answers",
+        "field":"highlight",
+        "sort":true
+      },
+      "range":[
+        "#eeeeee",
+        "#8ECDC7"
+      ]
+    }
+  ],
+  "marks":[
+    {
+      "type":"rect",
+      "from":{
+        "data":"answers"
+      },
+      "encode":{
+        "enter":{
+          "y":{
+            "scale":"yscale",
+            "field": "label"
+          },
+          "height":{
+            "scale":"yscale",
+            "band":1
+          },
+          "x2":{
+            "scale":"xscale",
+            "field":"value"
+          },
+          "x":{
+            "scale":"xscale",
+            "value":0
+          }
+        },
+        "update":{
+          "fill":{
+            "value":"#8ECDC7"
+          }
+        },
+        "hover":{
+          "fill":{
+            "value":"#03998d"
+          },
+          "cursor":{
+            "value":"pointer"
+          }
+        }
+      }
+    }
+  ],
+  "axes":[
+    {
+      "orient":"bottom",
+      "scale":"xscale",
+      "encode":{
+        "labels":{
+          "update":{
+            "angle":{
+              "value":30
+            },
+            "limit":{
+              "value":70
+            },
+            "align":{
+              "value":"left"
+            }
+          }
+        }
+      },
+      "title":"Values (:1)",
+      "format":"~s"
+    },
+    {
+      "orient":"left",
+      "scale":"yscale",
+      "labelColor": "#666",
+      "labelFontWeight": 600
+    }
+  ]
+}

@@ -8,7 +8,9 @@ format :html do
   view :chart, cache: :never do
     return unless show_chart?
 
-    wrap_with :div, "", id: chart_id, class: chart_class, data: { url: chart_load_url }
+    wrap do
+      wrap_with :div, "", id: chart_id, class: chart_class, data: { url: chart_load_url }
+    end
   end
 
   def chart_id
