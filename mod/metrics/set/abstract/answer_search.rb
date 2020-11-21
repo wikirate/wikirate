@@ -36,11 +36,11 @@ format do
   end
 
   def query
-    AnswerQuery.new filter_query_hash, sort_hash, paging_params
+    AnswerQuery.new query_hash, sort_hash, paging_params
   end
 
   # note: overridden in fixed
-  def filter_query_hash
+  def query_hash
     filter_hash || {}
   end
 

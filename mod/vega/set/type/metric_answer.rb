@@ -1,7 +1,7 @@
 include_set Abstract::Chart
 
 format :json do
-  def vega_chart_config _highlight=nil
+  def vega
     VegaChart::SingleMetric.new self, chart_metric,
                                 highlight: card.value,
                                 axes: :light,

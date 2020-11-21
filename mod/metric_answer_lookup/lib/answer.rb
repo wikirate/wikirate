@@ -8,7 +8,7 @@ class Answer < ApplicationRecord
   include Filter
   include Validations
   include EntryFetch
-  include Csv
+  include Export
   include Latest
 
   @card_column = :answer_id
