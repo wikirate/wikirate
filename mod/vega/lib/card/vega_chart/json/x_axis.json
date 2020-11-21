@@ -1,0 +1,19 @@
+{
+  "orient":"bottom",
+  "scale":"xscale",
+  "encode":{
+    "labels":{
+      "update":{
+        "angle":{
+          "value":30
+        },
+        "limit":{
+          "value":70
+        },
+        "align":{
+          "value":"left"
+        }
+      }
+    }
+  }
+}

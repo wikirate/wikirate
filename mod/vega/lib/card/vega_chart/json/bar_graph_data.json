@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "name": "answers"
+    },
+    {
+      "name": "counts",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "value"
+          ],
+          "fields": [
+            "value"
+          ],
+          "ops": [
+            "count"
+          ],
+          "as": [
+            "count"
+          ]
+        },
+        {
+          "type" : "formula",
+          "expr" : "{ value: datum.value }",
+          "as" : "filter"
+        }
+      ]
+    }
+  ]
+}
