@@ -22,10 +22,10 @@ class Card
     delegate :builtin, to: :class
 
     def render
-      JSON.pretty_generate to_hash
+      JSON.pretty_generate hash
     end
 
-    def to_hash
+    def hash
       layout.merge(data: data, scales: scales, marks: marks)
     end
 

@@ -28,8 +28,11 @@ class Card
         #  generate_data
       end
 
-      private
+      def hash
+        layout
+      end
 
+      private
 
       # def data
       #   data_map.each_with_object([]) do |(name, view), array|

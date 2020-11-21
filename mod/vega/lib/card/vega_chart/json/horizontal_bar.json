@@ -1,14 +1,10 @@
 {
-
   "data": [
     {
-      "name": "companies",
-      "url" : "http://localhost:3000/Jedi+Victims_by_Employees+Answer/compact_companies.json"
-
+      "name": "companies"
     },
     {
       "name": "answers",
-      "url" : "http://localhost:3000/Jedi+Victims_by_Employees+Answer/compact_answers.json",
       "transform": [
         {
           "type": "formula",
@@ -19,17 +15,25 @@
           "type": "filter",
           "expr": "isValid(datum.value)"
         },
-        { "type": "lookup",
+        {
+          "type": "lookup",
           "from": "companies",
-          "key": "id", "fields":["company"], "as": ["company"]
-        }, {
+          "key": "id",
+          "fields":["company"],
+          "as": ["company"]
+        },
+        {
           "type": "formula",
-          "expr": "datum.company.name + ' (' + datum.year + ')'", "as" :"label"
+          "expr": "datum.company.name + ' (' + datum.year + ')'",
+          "as" :"label"
+        },
+        {
+          "type": "formula",
+          "expr": "'~' + datum.metric + '+~' + datum.company.id + '+' + datum.year",
+          "as": "details"
         }
-
       ]
     }
-
   ],
   "scales":[
     {

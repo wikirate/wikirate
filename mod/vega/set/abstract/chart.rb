@@ -18,7 +18,7 @@ format :html do
   end
 
   def chart_class
-    "#{classy('vis')} _load-vis"
+    "#{classy 'vis'} _load-vis"
   end
 
   def chart_load_url
@@ -27,7 +27,7 @@ format :html do
 
   # json does not show not-researched answers.
   def chart_filter_hash
-    filter_hash.clone.tap do |hash|
+    filter_hash.dup.tap do |hash|
       hash.delete(:status) if hash[:status]&.to_sym == :all
     end
   end
@@ -47,5 +47,16 @@ format :json do
     # ve = JSON.pretty_generate vega_chart_config.to_hash
     # puts ve
     vega.render
+  end
+
+  view :compact_answers do
+    chart_query.answer_lookup.map do |answer|
+      answer.compact_json.merge id: answer_id(answer)
+    end
+  end
+
+  # prefix id with V (for virtual) if using id from answers table
+  def answer_id answer
+    answer.id || "V#{answer.answer.id}"
   end
 end

@@ -7,15 +7,11 @@ class Card
         include Axes
         include AnswerValues
 
-        def to_hash
-          layout.merge data
+        def hash
+          with_answer_values { layout.merge }
         end
 
         private
-
-        def data
-          with_answer_values { builtin :bar_graph_data }
-        end
 
         def layout
           super.merge builtin(:bar_graph)

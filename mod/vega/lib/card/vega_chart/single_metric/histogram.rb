@@ -5,9 +5,10 @@ class Card
       class Histogram < SingleMetric
         include Axes
         include AnswerValues
+        include Highlight
 
-        def to_hash
-          layout.merge(data).tap do |hash|
+        def hash
+          super.tap do |hash|
             hash[:signals] << { name: "extent", init: extent }
           end
         end
@@ -18,12 +19,8 @@ class Card
           "[data('extremes')[0].min_value, data('extremes')[0].max_value]"
         end
 
-        def data
-          with_answer_values { builtin :histogram_data }
-        end
-
         def layout
-          super.merge builtin(:histogram)
+          with_answer_values { super.merge builtin(:histogram) }
         end
 
         def x_axis
@@ -34,9 +31,16 @@ class Card
           super.merge count_axis
         end
 
-        def highlight? value
-          return true unless @highlight_value
-          @highlight_value >= value[:from] && @highlight_value < value[:to]
+        def highlight_scale
+          super.tap do |s|
+            s[:domain][:data] = "counts"
+          end
+        end
+
+        def highlight_transform
+          super.tap do |t|
+            t["expr"] = "datum.bin0 < highlight < datum.bin1"
+          end
         end
       end
     end

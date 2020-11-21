@@ -19,7 +19,7 @@ format :json do
     { sort_by: :year }
   end
 
-  def chart_filter_hash
-    super.merge year: card.year.to_i
+  def chart_query
+    AnswerQuery.new metric_id: card.metric_id, year: card.year
   end
 end

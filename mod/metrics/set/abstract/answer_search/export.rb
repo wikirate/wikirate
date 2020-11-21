@@ -57,9 +57,4 @@ format :json do
       array << { id: id, name: name }
     end
   end
-
-  # prefix id with V (for virtual) if using id from answers table
-  def answer_id answer
-    answer.id || "V#{answer.answer.id}"
-  end
 end

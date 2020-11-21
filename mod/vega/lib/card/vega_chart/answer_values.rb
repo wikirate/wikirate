@@ -5,9 +5,9 @@ class Card
         { values: format.render(:compact_answers) }
       end
 
-      def with_answer_values
+      def with_answer_values index=0
         yield.tap do |data_hash|
-          data_hash[:data].first.merge! answer_values
+          data_hash[:data][index].merge! answer_values
         end
       end
 
