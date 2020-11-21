@@ -7,7 +7,17 @@ class Card
         include Axes
         include AnswerValues
 
+        def layout
+          super.merge builtin(:horizontal_bar)
+        end
 
+        def x_axis
+          super.merge title: value_title, format: "~s" # number formatting
+        end
+
+        def y_axis
+          super.merge labelColor: "#666", labelFontWeight: 600
+        end
       end
     end
   end

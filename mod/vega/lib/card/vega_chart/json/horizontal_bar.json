@@ -1,33 +1,4 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "width": 350,
-  "height": 180,
-  "padding": 10,
-  "config": {
-    "axis": {
-      "labelColor": "#888",
-      "titleColor": "#666"
-    }
-  },
-  "signals": [
-    {
-      "name": "tooltip",
-      "value": {
-      },
-      "on": [
-        {
-          "events": "rect:mouseover",
-          "update": "datum"
-        },
-        {
-          "events": "rect:mouseout",
-          "update": "{}"
-        }
-      ]
-    }
-  ],
-
-
 
   "data": [
     {
@@ -134,35 +105,6 @@
           }
         }
       }
-    }
-  ],
-  "axes":[
-    {
-      "orient":"bottom",
-      "scale":"xscale",
-      "encode":{
-        "labels":{
-          "update":{
-            "angle":{
-              "value":30
-            },
-            "limit":{
-              "value":70
-            },
-            "align":{
-              "value":"left"
-            }
-          }
-        }
-      },
-      "title":"Values (:1)",
-      "format":"~s"
-    },
-    {
-      "orient":"left",
-      "scale":"yscale",
-      "labelColor": "#666",
-      "labelFontWeight": 600
     }
   ]
 }

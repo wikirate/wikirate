@@ -18,7 +18,7 @@ class Card
         builtin :y_axis
       end
 
-      def title_with_unit title
+      def value_title title="Value"
         unit = metric_card.format(:text).render_legend
         return title unless unit.present?
 

@@ -27,11 +27,7 @@ class Card
         end
 
         def x_axis
-          super.merge title: x_title, format: "~s" # number formatting
-        end
-
-        def x_title
-          title_with_unit "Value"
+          super.merge title: value_title, format: "~s" # number formatting
         end
 
         def y_axis
