@@ -15,12 +15,18 @@ format :json do
     each_answer_with_hash do |answer, hash|
       hash[:companies][answer.company_id] ||= answer.company_name
       hash[:metrics][answer.metric_id] ||= answer.metric_name
-      hash[:answers][answer_id(answer)] ||= {
-        company: answer.company_id,
-        metric: answer.metric_id,
-        year: answer.year,
-        value: answer.value
-      }
+      hash[:answers][answer_id(answer)] ||= answer.answer.compact_json
+    end
+  end
+
+  # FIXME optimize
+  view :compact_companies do
+    render_typed[:companies]
+  end
+
+  view :compact_answers do
+    query.answer_lookup.map do |answer|
+      answer.compact_json.merge id: answer_id(answer)
     end
   end
 
@@ -50,10 +56,5 @@ format :json do
     hash[key] = hash[key].each_with_object([]) do |(id, name), array|
       array << { id: id, name: name }
     end
-  end
-
-  # prefix id with V (for virtual) if using id from answers table
-  def answer_id answer
-    answer.id || "V#{answer.answer.id}"
   end
 end

@@ -1,0 +1,141 @@
+{
+  "data": [
+    {
+      "name": "answers"
+    },
+    {
+      "name": "counts",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "value"
+          ],
+          "fields": [
+            "value"
+          ],
+          "ops": [
+            "count"
+          ],
+          "as": [
+            "count"
+          ]
+        },
+        {
+          "type" : "formula",
+          "expr" : "{ value: datum.value }",
+          "as" : "filter"
+        }
+      ]
+    }
+  ],
+  "scales":[
+    {
+      "name":"xscale",
+      "range":"width",
+      "domain":{
+        "data":"counts",
+        "field":"value"
+      },
+      "type":"band",
+      "padding":0.15
+    },
+    {
+      "name":"yscale",
+      "range":"height",
+      "domain":{
+        "data":"counts",
+        "field":"count"
+      },
+      "type":"sqrt",
+      "round":true
+    },
+    {
+      "name":"highlightColor",
+      "type":"ordinal",
+      "domain":{
+        "data":"answers",
+        "field":"highlight",
+        "sort":true
+      },
+      "range":[
+        "#eeeeee",
+        "#8ECDC7"
+      ]
+    }
+  ],
+  "marks":[
+    {
+      "type":"rect",
+      "from":{
+        "data":"counts"
+      },
+      "encode":{
+        "enter":{
+          "x":{
+            "scale":"xscale",
+            "field":"value"
+          },
+          "width":{
+            "scale":"xscale",
+            "band":true,
+            "offset":-1
+          },
+          "y":{
+            "scale":"yscale",
+            "field":"count"
+          },
+          "y2":{
+            "scale":"yscale",
+            "value":0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "#03998d"
+          },
+          "opacity": {
+            "value": 0.5
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 1
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type":"text",
+      "encode":{
+        "enter":{
+          "align":{
+            "value":"center"
+          },
+          "baseline":{
+            "value":"bottom"
+          }
+        },
+        "update":{
+          "x":{
+            "scale":"xscale",
+            "signal":"tooltip.value",
+            "band":0.5
+          },
+          "y":{
+            "scale":"yscale",
+            "signal":"tooltip.count",
+            "offset":-2
+          },
+          "text":{
+            "signal":"tooltip.count"
+          }
+        }
+      }
+    }
+  ]
+}

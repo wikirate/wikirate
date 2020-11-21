@@ -1,0 +1,13 @@
+{
+  "name":"highlightColor",
+  "type":"ordinal",
+  "domain":{
+    "data":"answers",
+    "field":"highlight",
+    "sort":true
+  },
+  "range":[
+    "#ccc",
+    "#03998d"
+  ]
+}

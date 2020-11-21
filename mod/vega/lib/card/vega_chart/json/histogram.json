@@ -1,0 +1,181 @@
+{
+  "data": [
+    {
+      "name": "answers",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "toNumber(datum.value)"
+        }
+      ]
+    },
+    {
+      "name": "extremes",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "aggregate",
+          "fields": [
+            "value",
+            "value"
+          ],
+          "ops": [
+            "min",
+            "max"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "counts",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "bin",
+          "field": "value",
+          "extent": {
+            "signal": "extent"
+          }
+        },
+        {
+          "type": "aggregate",
+          "key": "bin0",
+          "groupby": [
+            "bin0",
+            "bin1"
+          ],
+          "fields": [
+            "bin0"
+          ],
+          "ops": [
+            "count"
+          ],
+          "as": [
+            "count"
+          ]
+        },
+        {
+          "type" : "formula",
+          "expr" : "{ value: { from: datum.bin0, to: datum.bin1 } }",
+          "as" : "filter"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name":"xscale",
+      "range":"width",
+      "domain": {
+        "data": "counts",
+        "fields": ["bin0", "bin1"]
+      },
+      "type":"linear"
+    },
+    {
+      "name":"yscale",
+      "range":"height",
+      "domain":{
+        "data":"counts",
+        "field":"count"
+      },
+      "type":"linear",
+      "round":true,
+      "zero": true,
+      "nice": true
+    },
+    {
+      "name": "scoreColor",
+      "type": "quantile",
+      "domain": [0, 10],
+      "range": [
+        "#ff0000",
+        "#ff5700",
+        "#ff7e00",
+        "#fc9b00",
+        "#f1b000",
+        "#debd00",
+        "#c2c000",
+        "#9ab700",
+        "#65a300",
+        "#008000",
+        "#008000"
+      ]
+    }
+  ],
+  "marks":[
+    {
+      "type":"rect",
+      "from":{
+        "data":"counts"
+      },
+      "encode":{
+        "enter":{
+          "x":{
+            "scale":"xscale",
+            "field":"bin0",
+            "offset": 0.5
+          },
+          "x2":{
+            "scale":"xscale",
+            "field":"bin1",
+            "offset": -0.5
+          },
+          "y":{
+            "scale":"yscale",
+            "field":"count"
+          },
+          "y2":{
+            "scale":"yscale",
+            "value":0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "#03998d"
+          },
+          "opacity": {
+            "value": 0.5
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 1
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type":"text",
+      "encode":{
+        "enter":{
+          "align":{
+            "value":"center"
+          },
+          "baseline":{
+            "value":"bottom"
+          }
+        },
+        "update":{
+          "x":{
+            "scale":"xscale",
+            "signal":"(tooltip.bin0 + tooltip.bin1) / 2",
+            "band":0.5
+          },
+          "y":{
+            "scale":"yscale",
+            "signal":"tooltip.count",
+            "offset":-2
+          },
+          "text":{
+            "signal":"tooltip.count"
+          }
+        }
+      }
+    }
+  ]
+}
