@@ -1,17 +1,30 @@
 class Card
   class VegaChart
     class SingleMetric
-      # chart for categorical metrics
-      # shows companies per category
+      # chart for categorical metrics shows companies per category
       class BarGraph < SingleMetric
         include Axes
         include AnswerValues
+        include Highlight
 
         def hash
-          with_answer_values { layout.merge }
+          with_answer_values do
+            super.tap do |h|
+              transform_multi_values h[:data]
+            end
+          end
         end
 
         private
+
+        def transform_multi_values data
+          return unless metric_card.multi_categorical?
+
+          data.first[:transform] = [
+            { type: "formula", expr: "split(datum.value, ', ')", as: "value" },
+            { type: "flatten", fields: ["value"] }
+          ]
+        end
 
         def layout
           super.merge builtin(:bar_graph)
@@ -23,15 +36,6 @@ class Card
 
         def y_axis
           super.merge count_axis
-        end
-
-
-        # @return true if the bar given by its filter
-        #   is supposed to be highlighted
-        def highlight? value
-          return true unless @highlight_value
-
-          @highlight_value == value
         end
       end
     end

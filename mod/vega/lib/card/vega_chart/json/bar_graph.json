@@ -50,19 +50,6 @@
       },
       "type":"sqrt",
       "round":true
-    },
-    {
-      "name":"highlightColor",
-      "type":"ordinal",
-      "domain":{
-        "data":"answers",
-        "field":"highlight",
-        "sort":true
-      },
-      "range":[
-        "#eeeeee",
-        "#8ECDC7"
-      ]
     }
   ],
   "marks":[

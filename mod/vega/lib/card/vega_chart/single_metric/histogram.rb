@@ -31,15 +31,9 @@ class Card
           super.merge count_axis
         end
 
-        def highlight_scale
-          super.tap do |s|
-            s[:domain][:data] = "counts"
-          end
-        end
-
         def highlight_transform
           super.tap do |t|
-            t["expr"] = "datum.bin0 < highlight < datum.bin1"
+            t["expr"] = "highlight >= datum.bin0 && highlight < datum.bin1"
           end
         end
       end

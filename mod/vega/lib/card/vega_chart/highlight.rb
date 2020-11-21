@@ -25,7 +25,7 @@ class Card
       end
 
       def highlight_transform
-        { type: "formula", as: "highlight" }
+        { type: "formula", as: "highlight", expr: "datum.value == highlight" }
       end
 
       def highlight_fill

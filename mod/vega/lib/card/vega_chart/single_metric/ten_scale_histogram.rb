@@ -13,11 +13,13 @@ class Card
         end
 
         def tenscale_scales scales
+          scales << builtin(:ten_scale_color)
           scales.first[:domain] = [0, 10]
         end
 
         def tenscale_marks marks
           return if highlight?
+
           marks.first[:encode][:update][:fill] = { scale: "scoreColor", field: "floor" }
         end
 
@@ -26,11 +28,17 @@ class Card
             { type: "formula", expr: "floor(datum.bin0)", as: "floor" }
         end
 
+        def highlight_fill
+          super.tap do |f|
+            f[:scale] = { signal: "datum.highlight ? 'scoreColor' : 'highlightColor'" }
+          end
+        end
+
         def extent
           "[0, 10]"
         end
 
-        def x_title
+        def value_title
           "Score"
         end
       end

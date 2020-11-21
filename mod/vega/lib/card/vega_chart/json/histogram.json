@@ -84,24 +84,6 @@
       "round":true,
       "zero": true,
       "nice": true
-    },
-    {
-      "name": "scoreColor",
-      "type": "quantile",
-      "domain": [0, 10],
-      "range": [
-        "#ff0000",
-        "#ff5700",
-        "#ff7e00",
-        "#fc9b00",
-        "#f1b000",
-        "#debd00",
-        "#c2c000",
-        "#9ab700",
-        "#65a300",
-        "#008000",
-        "#008000"
-      ]
     }
   ],
   "marks":[

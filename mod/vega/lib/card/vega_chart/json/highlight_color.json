@@ -1,11 +1,7 @@
 {
   "name":"highlightColor",
   "type":"ordinal",
-  "domain":{
-    "data":"answers",
-    "field":"highlight",
-    "sort":true
-  },
+  "domain": [false, true],
   "range":[
     "#ccc",
     "#03998d"
