@@ -1,5 +1,6 @@
 class Card
   class VegaChart
+    # support for adding answer data to vega charts
     module AnswerValues
       def answer_values
         { values: format.render(:compact_answers) }

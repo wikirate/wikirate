@@ -19,7 +19,6 @@ format :json do
     end
   end
 
-  # FIXME optimize
   view :compact_companies do
     answer_lookup.uniq.pluck(:company_id).map do |id|
       { id: id, name: id.cardname }

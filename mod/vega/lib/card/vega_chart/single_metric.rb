@@ -31,14 +31,6 @@ class Card
       def hash
         layout
       end
-
-      private
-
-      # def data
-      #   data_map.each_with_object([]) do |(name, view), array|
-      #     array << { name: name, values: format.render(view) }
-      #   end
-      # end
     end
   end
 end

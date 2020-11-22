@@ -3,6 +3,7 @@ class Answer
   module Export
     include Card::Env::Location
 
+    # Export methods for Answer class
     module ClassMethods
       def csv_title
         CSV.generate_line ["Answer ID", "Answer Link", "Metric", "Company",

@@ -17,7 +17,7 @@ class Card
       end
 
       def highlight_signal
-         { name: "highlight", value: @highlight_value }
+        { name: "highlight", value: @highlight_value }
       end
 
       def highlight_scale

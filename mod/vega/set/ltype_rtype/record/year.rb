@@ -15,7 +15,6 @@
 # 2. there neds to be a simple coded way to set a default type. (probably new api for
 #    Card::Rule)
 
-
 def default_type_id
   MetricAnswerID
 end

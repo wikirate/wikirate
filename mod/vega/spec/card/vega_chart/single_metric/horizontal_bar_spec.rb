@@ -15,7 +15,7 @@ RSpec.describe Card::VegaChart::SingleMetric::HorizontalBar do
         .to include(
           data: a_collection_including(
             a_hash_including(name: "companies"),
-            a_hash_including(name: "answers"),
+            a_hash_including(name: "answers")
           )
         )
     end
