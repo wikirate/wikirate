@@ -21,13 +21,19 @@ format :json do
 
   # FIXME optimize
   view :compact_companies do
-    render_typed[:companies]
+    answer_lookup.distinct.pluck(:company_id).map do |id|
+      { id: id, name: id.cardname }
+    end
   end
 
   view :compact_answers do
-    query.answer_lookup.map do |answer|
+    answer_lookup.map do |answer|
       answer.compact_json.merge id: answer_id(answer)
     end
+  end
+
+  def answer_lookup
+    query.answer_lookup
   end
 
   view :typed, cache: :never do
