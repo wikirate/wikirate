@@ -40,5 +40,9 @@ class Answer
     end
     # class methods for {Answer}
 
+    def flex_id
+      # prefix id with V (for virtual) if using id from answers table
+      answer_id || "V#{id}"
+    end
   end
 end

@@ -1,6 +1,6 @@
 class Answer
   module AnswerClassMethods
-    include Export
+    include Export::ClassMethods
 
     SEARCH_OPTS = { sort: [:sort_by, :sort_order, :cast],
                     page: [:limit, :offset],

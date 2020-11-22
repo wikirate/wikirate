@@ -51,12 +51,7 @@ format :json do
 
   view :compact_answers do
     chart_query.answer_lookup.map do |answer|
-      answer.compact_json.merge id: answer_id(answer)
+      answer.compact_json.merge id: answer.flex_id
     end
-  end
-
-  # prefix id with V (for virtual) if using id from answers table
-  def answer_id answer
-    answer.id || "V#{answer.answer.id}"
   end
 end

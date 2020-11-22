@@ -15,13 +15,13 @@ format :json do
     each_answer_with_hash do |answer, hash|
       hash[:companies][answer.company_id] ||= answer.company_name
       hash[:metrics][answer.metric_id] ||= answer.metric_name
-      hash[:answers][answer_id(answer)] ||= answer.answer.compact_json
+      hash[:answers][answer.answer.flex_id] ||= answer.answer.compact_json
     end
   end
 
   # FIXME optimize
   view :compact_companies do
-    answer_lookup.distinct.pluck(:company_id).map do |id|
+    answer_lookup.uniq.pluck(:company_id).map do |id|
       { id: id, name: id.cardname }
     end
   end
