@@ -21,7 +21,7 @@ format do
     filter_hash[:"#{partner}_name"]&.match?(/^\=/)
   end
 
-  def filter_query_hash
+  def query_hash
     super.merge card.fixed_filter
   end
 end

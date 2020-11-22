@@ -1,0 +1,9 @@
+{
+  "name":"highlightColor",
+  "type":"ordinal",
+  "domain": [false, true],
+  "range":[
+    "#ccc",
+    "#03998d"
+  ]
+}
