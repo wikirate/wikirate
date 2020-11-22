@@ -1,8 +1,8 @@
-def answer year
-  "Joe User+big single+Sony_Corporation+#{year}"
-end
-
 RSpec.describe Card::Set::Self::MetricAnswer, "metric answer report queries" do
+  def self.answer year
+    "Joe User+big single+Sony_Corporation+#{year}"
+  end
+
   describe "created query" do
     include_context "report query", :metric_answer, :created
     variants checked_by_others: answer(2004),
