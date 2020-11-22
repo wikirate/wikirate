@@ -8,7 +8,7 @@ class Card
         include AnswerValues
 
         def hash
-          with_answer_values 1 do
+          with_answer_values index: 1, view: :answers_with_keys do
             with_company_values { super }
           end
         end

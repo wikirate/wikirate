@@ -33,13 +33,12 @@ class Answer
 
     def compact_json
       {
-        company: answer.company_id,
-        metric: answer.metric_id,
-        year: answer.year,
-        value: answer.value
+        company: company_id,
+        metric: metric_id,
+        year: year,
+        value: value
       }
     end
-    # class methods for {Answer}
 
     def flex_id
       # prefix id with V (for virtual) if using id from answers table

@@ -33,7 +33,8 @@ class Card
 
         def highlight_transform
           super.tap do |t|
-            t["expr"] = "highlight >= datum.bin0 && highlight < datum.bin1"
+            t[:expr] = "(highlight >= datum.bin0 && highlight < datum.bin1) " \
+                       "|| datum.bin1 == toNumber(highlight)"
           end
         end
       end

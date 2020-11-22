@@ -25,11 +25,11 @@
         {
           "type": "formula",
           "expr": "datum.company.name + ' (' + datum.year + ')'",
-          "as" :"label"
+          "as": "label"
         },
         {
           "type": "formula",
-          "expr": "'~' + datum.metric + '+~' + datum.company.id + '+' + datum.year",
+          "expr": "datum.key",
           "as": "details"
         }
       ]
