@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 350,
+  "height": 180,
+  "padding": 10,
+  "config": {
+    "axis": {
+      "labelColor": "#888",
+      "titleColor": "#666"
+    }
+  },
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:mouseover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:mouseout",
+          "update": "{}"
+        }
+      ]
+    }
+  ]
+}

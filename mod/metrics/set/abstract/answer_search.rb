@@ -21,6 +21,11 @@ def run_query_returning query, return_type
   end
 end
 
+# override
+def query paging={}
+  AnswerQuery.new({}, {}, paging)
+end
+
 format do
   def search_with_params
     card.search query: query
@@ -31,11 +36,11 @@ format do
   end
 
   def query
-    AnswerQuery.new filter_query_hash, sort_hash, paging_params
+    AnswerQuery.new query_hash, sort_hash, paging_params
   end
 
   # note: overridden in fixed
-  def filter_query_hash
+  def query_hash
     filter_hash || {}
   end
 

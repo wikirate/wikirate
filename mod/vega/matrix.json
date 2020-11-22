@@ -1,0 +1,941 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "company-metric fiddling",
+  "padding": 2,
+
+  "signals": [
+    { "name": "cellSize", "value": 20 },
+    { "name" : "vizHeight", "value": "400" }
+  ],
+
+  "data": [
+    {
+      "name": "companies",
+      "values": [
+        {
+          "id": 6683,
+          "name": "Death Star"
+        },
+        {
+          "id": 6686,
+          "name": "Monster Inc"
+        },
+        {
+          "id": 6688,
+          "name": "Slate Rock and Gravel Company"
+        },
+        {
+          "id": 5959,
+          "name": "Samsung"
+        },
+        {
+          "id": 6693,
+          "name": "SPECTRE"
+        },
+        {
+          "id": 6696,
+          "name": "Google LLC"
+        },
+        {
+          "id": 6690,
+          "name": "Los Pollos Hermanos"
+        },
+        {
+          "id": 5962,
+          "name": "Sony Corporation"
+        },
+        {
+          "id": 5956,
+          "name": "Apple Inc."
+        }
+      ],
+      "transform": [
+        { "type": "window", "ops": ["row_number"], "as": ["seq"]},
+        { "type": "formula", "expr": "'company'", "as": "type"}
+      ]
+    },
+    {
+      "name": "metrics",
+      "values":  [
+        {
+          "id": 6761,
+          "name": "Jedi+disturbances in the Force"
+        },
+        {
+          "id": 6799,
+          "name": "Fred+dinosaurlabor"
+        },
+        {
+          "id": 7116,
+          "name": "Jedi+deadliness+Joe Camel"
+        },
+        {
+          "id": 7112,
+          "name": "Jedi+deadliness+Joe User"
+        },
+        {
+          "id": 7092,
+          "name": "Jedi+double friendliness"
+        },
+        {
+          "id": 7081,
+          "name": "Jedi+friendliness"
+        },
+        {
+          "id": 6874,
+          "name": "Jedi+Victims by Employees"
+        },
+        {
+          "id": 6841,
+          "name": "Jedi+deadliness"
+        },
+        {
+          "id": 6170,
+          "name": "Global Reporting Initiative+Sector Industry"
+        },
+        {
+          "id": 6269,
+          "name": "Clean_Clothes_Campaign+Address"
+        },
+        {
+          "id": 6911,
+          "name": "Jedi+Sith Lord in Charge"
+        },
+        {
+          "id": 7108,
+          "name": "Jedi+know the unknowns"
+        },
+        {
+          "id": 7097,
+          "name": "Jedi+deadliness average"
+        },
+        {
+          "id": 7146,
+          "name": "Joe User+descendant 2"
+        },
+        {
+          "id": 6979,
+          "name": "Joe User+RM"
+        },
+        {
+          "id": 6925,
+          "name": "Joe User+researched number 1"
+        },
+        {
+          "id": 7135,
+          "name": "Joe User+descendant hybrid"
+        },
+        {
+          "id": 7130,
+          "name": "Joe User+descendant 1"
+        },
+        {
+          "id": 7042,
+          "name": "Joe User+big single"
+        },
+        {
+          "id": 6902,
+          "name": "Jedi+cost of planets destroyed"
+        },
+        {
+          "id": 6648,
+          "name": "Commons+Supplied by"
+        },
+        {
+          "id": 7151,
+          "name": "Jedi+more evil"
+        },
+        {
+          "id": 7157,
+          "name": "Jedi+less evil"
+        },
+        {
+          "id": 6951,
+          "name": "Joe User+researched number 2"
+        },
+        {
+          "id": 7102,
+          "name": "Jedi+deadlier"
+        },
+        {
+          "id": 7125,
+          "name": "Jedi+darkness rating"
+        },
+        {
+          "id": 7120,
+          "name": "Jedi+disturbances in the Force+Joe User"
+        },
+        {
+          "id": 7015,
+          "name": "Joe User+small multi"
+        },
+        {
+          "id": 7024,
+          "name": "Joe User+big multi"
+        },
+        {
+          "id": 6966,
+          "name": "Joe User+researched number 3"
+        },
+        {
+          "id": 7033,
+          "name": "Joe User+small single"
+        },
+        {
+          "id": 6266,
+          "name": "Commons+Supplier of"
+        },
+        {
+          "id": 6649,
+          "name": "Commons+Has Brands"
+        },
+        {
+          "id": 6650,
+          "name": "Commons+Is Brand Of"
+        }
+      ],
+      "transform": [
+        { "type": "window", "ops": ["row_number"], "as": ["seq"]},
+        { "type": "formula", "expr": "'metric'", "as": "type"}
+      ]
+    },
+    {
+      "name": "answers",
+      "values": [
+        {
+          "company": 6683,
+          "metric": 6761,
+          "year": "2001",
+          "value": "yes",
+          "id": 6776
+        },
+        {
+          "company": 6686,
+          "metric": 6761,
+          "year": "2000",
+          "value": "yes",
+          "id": 6783
+        },
+        {
+          "company": 6688,
+          "metric": 6799,
+          "year": "2000",
+          "value": "yes",
+          "id": 6811
+        },
+        {
+          "company": 6683,
+          "metric": 6799,
+          "year": "2010",
+          "value": "yes",
+          "id": 6837
+        },
+        {
+          "company": 5959,
+          "metric": 7116,
+          "year": "1977",
+          "value": "Unknown",
+          "id": "V103"
+        },
+        {
+          "company": 5959,
+          "metric": 7112,
+          "year": "1977",
+          "value": "Unknown",
+          "id": "V95"
+        },
+        {
+          "company": 5959,
+          "metric": 7092,
+          "year": "1977",
+          "value": "Unknown",
+          "id": "V75"
+        },
+        {
+          "company": 5959,
+          "metric": 7081,
+          "year": "1977",
+          "value": "Unknown",
+          "id": "V67"
+        },
+        {
+          "company": 5959,
+          "metric": 6874,
+          "year": "1977",
+          "value": "Unknown",
+          "id": 6898
+        },
+        {
+          "company": 5959,
+          "metric": 6841,
+          "year": "1977",
+          "value": "Unknown",
+          "id": 6870
+        },
+        {
+          "company": 6693,
+          "metric": 6170,
+          "year": "2015",
+          "value": "Technology Hardware",
+          "id": 7259
+        },
+        {
+          "company": 6683,
+          "metric": 6170,
+          "year": "2015",
+          "value": "Technology Hardware",
+          "id": 7255
+        },
+        {
+          "company": 6688,
+          "metric": 6761,
+          "year": "2005",
+          "value": "no",
+          "id": 6790
+        },
+        {
+          "company": 6693,
+          "metric": 6761,
+          "year": "2000",
+          "value": "no",
+          "id": 6794
+        },
+        {
+          "company": 6686,
+          "metric": 6799,
+          "year": "2000",
+          "value": "no",
+          "id": 6818
+        },
+        {
+          "company": 6696,
+          "metric": 6269,
+          "year": "2000",
+          "value": "Mountain View",
+          "id": 7229
+        },
+        {
+          "company": 6683,
+          "metric": 6911,
+          "year": "1977",
+          "value": "Darth Sidious",
+          "id": 6917
+        },
+        {
+          "company": 6693,
+          "metric": 6269,
+          "year": "1977",
+          "value": "Baker Street, London",
+          "id": 7221
+        },
+        {
+          "company": 6686,
+          "metric": 6269,
+          "year": "1977",
+          "value": "Alderaan",
+          "id": 7225
+        },
+        {
+          "company": 6683,
+          "metric": 7108,
+          "year": "1977",
+          "value": "97.0",
+          "id": "V94"
+        },
+        {
+          "company": 6688,
+          "metric": 7097,
+          "year": "2005",
+          "value": "9.0",
+          "id": "V83"
+        },
+        {
+          "company": 6683,
+          "metric": 7146,
+          "year": "1977",
+          "value": "77",
+          "id": "V149"
+        },
+        {
+          "company": 6683,
+          "metric": 6979,
+          "year": "1977",
+          "value": "77",
+          "id": 7011
+        },
+        {
+          "company": 6693,
+          "metric": 6841,
+          "year": "1977",
+          "value": "50",
+          "id": 6849
+        },
+        {
+          "company": 6693,
+          "metric": 6874,
+          "year": "1977",
+          "value": "5.3",
+          "id": 6878
+        },
+        {
+          "company": 6693,
+          "metric": 7112,
+          "year": "1977",
+          "value": "5.0",
+          "id": "V99"
+        },
+        {
+          "company": 6683,
+          "metric": 7116,
+          "year": "1977",
+          "value": "5.0",
+          "id": "V104"
+        },
+        {
+          "company": 5959,
+          "metric": 6925,
+          "year": "2015",
+          "value": "5",
+          "id": 6932
+        },
+        {
+          "company": 5959,
+          "metric": 7146,
+          "year": "2015",
+          "value": "5",
+          "id": "V148"
+        },
+        {
+          "company": 6683,
+          "metric": 6925,
+          "year": "1977",
+          "value": "5",
+          "id": 6940
+        },
+        {
+          "company": 6683,
+          "metric": 7135,
+          "year": "1977",
+          "value": "1000",
+          "id": 7141
+        },
+        {
+          "company": 6683,
+          "metric": 7130,
+          "year": "1977",
+          "value": "5",
+          "id": "V130"
+        },
+        {
+          "company": 6690,
+          "metric": 6841,
+          "year": "1977",
+          "value": "40",
+          "id": 6853
+        },
+        {
+          "company": 6690,
+          "metric": 7112,
+          "year": "1977",
+          "value": "4.0",
+          "id": "V98"
+        },
+        {
+          "company": 5962,
+          "metric": 7042,
+          "year": "2010",
+          "value": "4",
+          "id": 7049
+        },
+        {
+          "company": 5956,
+          "metric": 7108,
+          "year": "2015",
+          "value": "35.0",
+          "id": "V93"
+        },
+        {
+          "company": 6683,
+          "metric": 6902,
+          "year": "1977",
+          "value": "200",
+          "id": 6907
+        },
+        {
+          "company": 6693,
+          "metric": 7116,
+          "year": "1977",
+          "value": "2.5",
+          "id": "V107"
+        },
+        {
+          "company": 6690,
+          "metric": 7116,
+          "year": "1977",
+          "value": "2.0",
+          "id": "V106"
+        },
+        {
+          "company": 6693,
+          "metric": 6648,
+          "year": "2000",
+          "value": "2",
+          "id": 7199
+        },
+        {
+          "company": 6683,
+          "metric": 7151,
+          "year": "1977",
+          "value": "2",
+          "id": 7174
+        },
+        {
+          "company": 6690,
+          "metric": 7157,
+          "year": "1977",
+          "value": "2",
+          "id": 7170
+        },
+        {
+          "company": 5959,
+          "metric": 7135,
+          "year": "2015",
+          "value": "2",
+          "id": "V133"
+        },
+        {
+          "company": 5962,
+          "metric": 7135,
+          "year": "2014",
+          "value": "2",
+          "id": "V132"
+        },
+        {
+          "company": 5959,
+          "metric": 6951,
+          "year": "2015",
+          "value": "2",
+          "id": 6958
+        },
+        {
+          "company": 5959,
+          "metric": 7130,
+          "year": "2015",
+          "value": "2",
+          "id": "V127"
+        },
+        {
+          "company": 5962,
+          "metric": 7130,
+          "year": "2014",
+          "value": "2",
+          "id": "V126"
+        },
+        {
+          "company": 5962,
+          "metric": 6951,
+          "year": "2014",
+          "value": "2",
+          "id": 6962
+        },
+        {
+          "company": 5956,
+          "metric": 7146,
+          "year": "2015",
+          "value": "15",
+          "id": "V147"
+        },
+        {
+          "company": 5956,
+          "metric": 6979,
+          "year": "2015",
+          "value": "15",
+          "id": 7007
+        },
+        {
+          "company": 6688,
+          "metric": 7102,
+          "year": "2004",
+          "value": "1003.0",
+          "id": "V84"
+        },
+        {
+          "company": 6683,
+          "metric": 6841,
+          "year": "1977",
+          "value": "100",
+          "id": 6845
+        },
+        {
+          "company": 5956,
+          "metric": 6925,
+          "year": "2015",
+          "value": "100",
+          "id": 6944
+        },
+        {
+          "company": 5956,
+          "metric": 7135,
+          "year": "2015",
+          "value": "100",
+          "id": "V134"
+        },
+        {
+          "company": 5956,
+          "metric": 7130,
+          "year": "2015",
+          "value": "100",
+          "id": "V128"
+        },
+        {
+          "company": 6683,
+          "metric": 7125,
+          "year": "1977",
+          "value": "10.0",
+          "id": "V122"
+        },
+        {
+          "company": 6683,
+          "metric": 7112,
+          "year": "1977",
+          "value": "10.0",
+          "id": "V96"
+        },
+        {
+          "company": 6686,
+          "metric": 7120,
+          "year": "2000",
+          "value": "10.0",
+          "id": "V118"
+        },
+        {
+          "company": 6683,
+          "metric": 7120,
+          "year": "2001",
+          "value": "10.0",
+          "id": "V120"
+        },
+        {
+          "company": 6688,
+          "metric": 6841,
+          "year": "2005",
+          "value": "10",
+          "id": 6866
+        },
+        {
+          "company": 6688,
+          "metric": 7112,
+          "year": "2005",
+          "value": "1.0",
+          "id": "V102"
+        },
+        {
+          "company": 5962,
+          "metric": 7015,
+          "year": "2010",
+          "value": "1, 2",
+          "id": 7020
+        },
+        {
+          "company": 5962,
+          "metric": 7024,
+          "year": "2010",
+          "value": "1, 2",
+          "id": 7029
+        },
+        {
+          "company": 5959,
+          "metric": 6966,
+          "year": "2015",
+          "value": "1",
+          "id": 6975
+        },
+        {
+          "company": 5962,
+          "metric": 7033,
+          "year": "2010",
+          "value": "1",
+          "id": 7038
+        },
+        {
+          "company": 5962,
+          "metric": 6925,
+          "year": "2014",
+          "value": "1",
+          "id": 6936
+        },
+        {
+          "company": 6693,
+          "metric": 7151,
+          "year": "1977",
+          "value": "1",
+          "id": 7164
+        },
+        {
+          "company": 6693,
+          "metric": 7157,
+          "year": "1977",
+          "value": "1",
+          "id": 7183
+        },
+        {
+          "company": 6690,
+          "metric": 6266,
+          "year": "2000",
+          "value": "1",
+          "id": 7204
+        },
+        {
+          "company": 6696,
+          "metric": 6266,
+          "year": "2000",
+          "value": "1",
+          "id": 7211
+        },
+        {
+          "company": 6686,
+          "metric": 6648,
+          "year": "1977",
+          "value": "1",
+          "id": 7215
+        },
+        {
+          "company": 6693,
+          "metric": 6649,
+          "year": "1977",
+          "value": "1",
+          "id": 7236
+        },
+        {
+          "company": 6690,
+          "metric": 6650,
+          "year": "1977",
+          "value": "1",
+          "id": 7242
+        },
+        {
+          "company": 5962,
+          "metric": 7146,
+          "year": "2014",
+          "value": "1",
+          "id": "V146"
+        },
+        {
+          "company": 6688,
+          "metric": 7125,
+          "year": "2005",
+          "value": "0.6",
+          "id": "V124"
+        },
+        {
+          "company": 6688,
+          "metric": 7116,
+          "year": "2005",
+          "value": "0.5",
+          "id": "V110"
+        },
+        {
+          "company": 6683,
+          "metric": 6874,
+          "year": "1977",
+          "value": "0.31",
+          "id": 6882
+        },
+        {
+          "company": 6688,
+          "metric": 7092,
+          "year": "2005",
+          "value": "0.2",
+          "id": "V82"
+        },
+        {
+          "company": 6688,
+          "metric": 7081,
+          "year": "2005",
+          "value": "0.1",
+          "id": "V74"
+        },
+        {
+          "company": 6690,
+          "metric": 7092,
+          "year": "1977",
+          "value": "0.05",
+          "id": "V78"
+        },
+        {
+          "company": 6693,
+          "metric": 7092,
+          "year": "1977",
+          "value": "0.04",
+          "id": "V79"
+        },
+        {
+          "company": 6690,
+          "metric": 7081,
+          "year": "1977",
+          "value": "0.025",
+          "id": "V70"
+        },
+        {
+          "company": 6683,
+          "metric": 7092,
+          "year": "1977",
+          "value": "0.02",
+          "id": "V76"
+        },
+        {
+          "company": 6693,
+          "metric": 7081,
+          "year": "1977",
+          "value": "0.02",
+          "id": "V71"
+        },
+        {
+          "company": 6683,
+          "metric": 7081,
+          "year": "1977",
+          "value": "0.01",
+          "id": "V68"
+        },
+        {
+          "company": 6690,
+          "metric": 6874,
+          "year": "1977",
+          "value": "0.002",
+          "id": 6886
+        },
+        {
+          "company": 6686,
+          "metric": 6874,
+          "year": "1977",
+          "value": "0.001",
+          "id": 6890
+        },
+        {
+          "company": 6688,
+          "metric": 7120,
+          "year": "2005",
+          "value": "0.0",
+          "id": "V121"
+        },
+        {
+          "company": 6693,
+          "metric": 7120,
+          "year": "2000",
+          "value": "0.0",
+          "id": "V119"
+        },
+        {
+          "company": 6688,
+          "metric": 6874,
+          "year": "1977",
+          "value": "-0.01",
+          "id": 6894
+        }
+      ],
+      "transform": [
+        { "type": "lookup", "from" : "metrics", "key" : "id",
+          "fields": [ "metric"], "as" : ["metric"]},
+        { "type": "lookup", "from" : "companies", "key" : "id",
+          "fields": [ "company"], "as" : ["company"]},
+        { "type": "formula", "as": "status",  "expr": "datum.value == 'Unknown' ? 0 : 1"},
+        { "type": "window", "ops": ["row_number"], "as": ["seq"]}
+      ]
+    },
+    {
+      "name": "cross",
+      "source": ["companies", "metrics"],
+      "transform": [
+        { "type": "cross", "filter": "datum.a.type == 'company' && datum.b.type == 'metric'" }
+      ]
+    }
+  ],
+  "scales": [
+
+    {
+      "name": "position",
+      "type": "band",
+      "domain": {"data": "answers", "field": "seq", "sort": true},
+      "range": {"step": { "signal": "cellSize" } }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": { "scheme": "purples"},
+      "domain": {
+        "fields": [
+          {"data": "answers", "field": "status"}
+        ],
+        "sort": true
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "cross"},
+      "encode": {
+        "update": {
+          "x": {"scale": "position", "field": "b.seq"},
+          "y": {"scale": "position", "field": "a.seq"},
+          "width": {"scale": "position", "band": 1, "offset": -1},
+          "height": {"scale": "position", "band": 1, "offset": -1},
+          "fill": [
+            {"value": "#f5f5f5"}
+          ]
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {"data": "answers"},
+      "encode": {
+        "update": {
+          "x": {"scale": "position", "field": "metric.seq"},
+          "y": {"scale": "position", "field": "company.seq"},
+          "width": {"scale": "position", "band": 1, "offset": -1},
+          "height": {"scale": "position", "band": 1, "offset": -1},
+          "fill": {"scale": "color", "field": "status"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "columns",
+      "from": {"data": "metrics"},
+      "encode": {
+        "update": {
+          "x": {"scale": "position", "field": "seq", "band": 0.5},
+          "y": {"offset": -4},
+          "text": {"field": "name"},
+          "fontSize": {"value": 10},
+          "angle": {"value": -60},
+          "align": {"value": "left"},
+          "baseline": {"value": "middle"},
+          "fill": [
+            {"value": "black"}
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "rows",
+      "from": {"data": "companies"},
+      "encode": {
+        "update": {
+          "x": {"offset": -2},
+          "y": {"scale": "position", "field": "seq", "band": 0.5},
+          "text": {"field": "name"},
+          "fontSize": {"value": 10},
+          "align": {"value": "right"},
+          "baseline": {"value": "middle"},
+          "fill": [
+            {"value": "black"}
+          ]
+        }
+      }
+    }
+  ]
+}
