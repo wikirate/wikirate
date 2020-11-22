@@ -2,68 +2,39 @@ class Card
   class VegaChart
     class SingleMetric
       # Company count histograms.  Each vertical bar represents a range of values
-      class Histogram < VerticalBars
-        include Buckets
+      class Histogram < SingleMetric
+        include Axes
+        include AnswerValues
+        include Highlight
 
-        DEFAULT_BAR_CNT = 10
-
-        def initialize format, metric_card, opts
-          opts[:highlight] &&= opts[:highlight].to_f
-          @buckets ||= opts.delete(:buckets) || DEFAULT_BAR_CNT
-          super
-        end
-
-        def generate_data
-          add_label min
-          each_bucket do |lower, upper, last|
-            add_data lower, count_in_range(lower, upper, last), from: lower, to: upper
-            add_label upper
+        def hash
+          super.tap do |hash|
+            hash[:signals] << { name: "extent", init: extent }
           end
-        end
-
-        def count_in_range lower, upper, last
-          tally = 0
-          op = last ? "<=" : "<"
-          raw_counts.each_key do |val|
-            tally += tally_increment(val) if val_between? lower, upper, val, op
-          end
-          tally
-        end
-
-        def raw_counts
-          @raw_counts ||=
-            @filter_query.count_by_group(:numeric_value).reject { |k, _v| k.nil? }
         end
 
         private
 
-        def tally_increment val
-          raw_counts.delete(val).to_i
+        def extent
+          "[data('extremes')[0].min_value, data('extremes')[0].max_value]"
         end
 
-        def val_between? lower, upper, val, op
-          val >= lower && val.send(op, upper)
-        end
-
-        def data_item_hash filter, _count
-          super.merge xfield: filter[:numeric_value][:to]
+        def layout
+          with_answer_values { super.merge builtin(:histogram) }
         end
 
         def x_axis
-          super.merge scale: "x_label", format: "~s", title: title_with_unit("Ranges")
+          super.merge title: value_title, format: "~s" # number formatting
         end
 
-        def scales
-          super << x_label_scale
+        def y_axis
+          super.merge count_axis
         end
 
-        def x_label_scale
-          { name: "x_label", type: "point", range: "width", domain: @labels }
-        end
-
-        def highlight? value
-          return true unless @highlight_value
-          @highlight_value >= value[:from] && @highlight_value < value[:to]
+        def highlight_transform
+          super.tap do |t|
+            t["expr"] = "highlight >= datum.bin0 && highlight < datum.bin1"
+          end
         end
       end
     end

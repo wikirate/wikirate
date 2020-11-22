@@ -1,12 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "company-metric fiddling",
-  "width": 770,
-  "height": 770,
   "padding": 2,
 
   "signals": [
-    { "name": "cellSize", "value": 50 }
+    { "name": "cellSize", "value": 20 },
+    { "name" : "vizHeight", "value": "400" }
   ],
 
   "data": [
@@ -857,12 +856,12 @@
       "name": "position",
       "type": "band",
       "domain": {"data": "answers", "field": "seq", "sort": true},
-      "range": {"step": 20 }
+      "range": {"step": { "signal": "cellSize" } }
     },
     {
       "name": "color",
       "type": "ordinal",
-      "range": "category",
+      "range": { "scheme": "purples"},
       "domain": {
         "fields": [
           {"data": "answers", "field": "status"}
@@ -896,7 +895,8 @@
           "y": {"scale": "position", "field": "company.seq"},
           "width": {"scale": "position", "band": 1, "offset": -1},
           "height": {"scale": "position", "band": 1, "offset": -1},
-          "fill": {"scale": "color", "field": "status"}
+          "fill": {"scale": "color", "field": "status"
+          }
         }
       }
     },
@@ -907,7 +907,7 @@
       "encode": {
         "update": {
           "x": {"scale": "position", "field": "seq", "band": 0.5},
-          "y": {"offset": -2},
+          "y": {"offset": -4},
           "text": {"field": "name"},
           "fontSize": {"value": 10},
           "angle": {"value": -60},

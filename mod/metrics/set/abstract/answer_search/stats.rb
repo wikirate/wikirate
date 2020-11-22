@@ -1,14 +1,9 @@
 include_set Abstract::Filterable
 
-format :html do
-  # view :stats, cache: :never do
-  #   table stat_rows,
-  #         class: "filtered-answer-counts table-sm table-borderless text-muted"
-  # end
+LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
+           total: "Total" }.freeze
 
-  LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
-             total: "Total" }.freeze
-
+format do
   def count_by_status
     @count_by_status ||= query.count_by_status
   end
@@ -40,7 +35,9 @@ format :html do
     else             "+"
     end
   end
+end
 
+format :html do
   view :progress_bar, cache: :never do
     sections = map_status(true) do |status, count|
       { value: (count / total_results.to_f * 100),

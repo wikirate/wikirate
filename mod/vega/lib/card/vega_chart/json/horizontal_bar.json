@@ -1,0 +1,114 @@
+{
+  "data": [
+    {
+      "name": "companies"
+    },
+    {
+      "name": "answers",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "toNumber(datum.value)"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum.value)"
+        },
+        {
+          "type": "lookup",
+          "from": "companies",
+          "key": "id",
+          "fields":["company"],
+          "as": ["company"]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.company.name + ' (' + datum.year + ')'",
+          "as" :"label"
+        },
+        {
+          "type": "formula",
+          "expr": "'~' + datum.metric + '+~' + datum.company.id + '+' + datum.year",
+          "as": "details"
+        }
+      ]
+    }
+  ],
+  "scales":[
+    {
+      "name":"xscale",
+      "range":"width",
+      "domain":{
+        "data":"answers",
+        "field":"value"
+      },
+      "type":"linear",
+      "nice":true
+    },
+    {
+      "name":"yscale",
+      "range":"height",
+      "domain":{
+        "data":"answers",
+        "field": "label"
+      },
+      "type":"band",
+      "padding":0.15
+    },
+    {
+      "name":"color",
+      "type":"ordinal",
+      "domain":{
+        "data":"answers",
+        "field":"highlight",
+        "sort":true
+      },
+      "range":[
+        "#eeeeee",
+        "#8ECDC7"
+      ]
+    }
+  ],
+  "marks":[
+    {
+      "type":"rect",
+      "from":{
+        "data":"answers"
+      },
+      "encode":{
+        "enter":{
+          "y":{
+            "scale":"yscale",
+            "field": "label"
+          },
+          "height":{
+            "scale":"yscale",
+            "band":1
+          },
+          "x2":{
+            "scale":"xscale",
+            "field":"value"
+          },
+          "x":{
+            "scale":"xscale",
+            "value":0
+          }
+        },
+        "update":{
+          "fill":{
+            "value":"#8ECDC7"
+          }
+        },
+        "hover":{
+          "fill":{
+            "value":"#03998d"
+          },
+          "cursor":{
+            "value":"pointer"
+          }
+        }
+      }
+    }
+  ]
+}
