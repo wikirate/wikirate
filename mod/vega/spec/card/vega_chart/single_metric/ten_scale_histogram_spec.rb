@@ -2,11 +2,11 @@ RSpec.describe Card::VegaChart::SingleMetric::TenScaleHistogram do
   let(:metric) { Card["Jedi+darkness rating"] }
   let(:format) { metric.metric_answer_card.format :json }
   let(:chart_class) { metric.chart_class }
-  let(:chart_hash) { format.vega_chart_config.to_hash }
+  let(:chart_hash) { format.vega.hash }
 
   context "with WikiRating (more than 10 answers)" do
     before do
-      format.define_singleton_method(:chart_item_count) { 11 }
+      format.define_singleton_method(:horizontal?) { false }
     end
 
     specify "chart_class" do
@@ -18,11 +18,11 @@ RSpec.describe Card::VegaChart::SingleMetric::TenScaleHistogram do
         .to include(
           data: a_collection_including(
             a_hash_including(
-              values: a_collection_including(
-                a_hash_including(filter: { value: { from: 0, to: 1 } }),
-                a_hash_including(filter: { value: { from: 10, to: 11 } })
-              )
+              transform: a_collection_including(a_hash_including(as: "floor"))
             )
+          ),
+          scales: a_collection_including(
+            a_hash_including(name: "scoreColor")
           )
         )
     end

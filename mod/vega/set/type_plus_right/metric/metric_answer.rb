@@ -1,14 +1,22 @@
 include_set Abstract::Chart
 
+HORIZONTAL_MAX = 10
+
 format :json do
-  def vega_chart_config highlight=nil
-    VegaChart::SingleMetric.new self, chart_metric,
-                                horizontal: chart_item_count < 10,
-                                highlight: highlight
+  def vega
+    VegaChart::SingleMetric.new self, chart_metric, horizontal: horizontal?
+  end
+
+  def horizontal?
+    count_by_status[:known] <= HORIZONTAL_MAX
   end
 
   def chart_metric
     card.left
+  end
+
+  def chart_query
+    query
   end
 end
 

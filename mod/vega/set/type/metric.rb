@@ -2,7 +2,7 @@ def chart_class horizontal=false
   if numeric? || relationship?
     numeric_chart_class horizontal
   elsif categorical?
-    :category_chart
+    :bar_graph
   else
     raise Card::Error, "VegaChart not supported for #{name}"
   end
