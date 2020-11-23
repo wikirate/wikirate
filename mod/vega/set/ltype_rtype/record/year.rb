@@ -8,6 +8,12 @@
 # If you call `include_set Type::MetricAnswer` in a mod that is loaded earlier, you
 # will not get the vega alterations.  sigh.
 #
+# So this is actually TWO todos:
+#
+# 1. review set load order.  Definitely need to load all abstract sets before loading
+#   any anchored ones
+# 2. there neds to be a simple coded way to set a default type. (probably new api for
+#    Card::Rule)
 
 def default_type_id
   MetricAnswerID
