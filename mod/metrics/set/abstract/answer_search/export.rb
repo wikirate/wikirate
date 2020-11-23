@@ -16,11 +16,15 @@ format :json do
   end
 
   view :company_list, cache: :never do
-    unique_id_and_name :company_id
+    map_unique :company_id do |id|
+      { id: id, name: id.cardname }
+    end.sort_by { |h| h[:name] }
   end
 
   view :metric_list, cache: :never do
-    unique_id_and_name :metric_id
+    map_unique :metric_id, :metric_type_id do |id, type_id|
+      { id: id, name: id.cardname, metric_type: type_id.cardname }
+    end.sort_by { |h| h[:name] }
   end
 
   view :answer_list, cache: :never do
@@ -57,9 +61,9 @@ format :json do
     end
   end
 
-  def unique_id_and_name field
-    answer_lookup.distinct.reorder(nil).pluck(field).map do |id|
-      { id: id, name: id.cardname }
+  def map_unique *fields
+    answer_lookup.distinct.reorder(nil).pluck(*fields).map do |result|
+      yield result
     end
   end
 end
