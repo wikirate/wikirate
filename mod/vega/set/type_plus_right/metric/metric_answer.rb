@@ -4,7 +4,7 @@ HORIZONTAL_MAX = 10
 
 format :json do
   def vega
-    VegaChart::SingleMetric.new self, chart_metric, horizontal: horizontal?
+    VegaChart::SingleMetric.new self, chart_metric #, horizontal: horizontal?
   end
 
   def horizontal?
