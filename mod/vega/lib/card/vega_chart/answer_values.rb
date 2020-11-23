@@ -17,7 +17,7 @@ class Card
       end
 
       def count_unit
-        multiyear? ? "Companies" : "Answers"
+        multiyear? ? "Answers" : "Companies"
       end
     end
   end

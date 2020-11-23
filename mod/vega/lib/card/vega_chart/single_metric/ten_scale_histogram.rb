@@ -31,6 +31,7 @@ class Card
         def highlight_fill
           super.tap do |f|
             f[:scale] = { signal: "datum.highlight ? 'scoreColor' : 'highlightColor'" }
+            f[:field] = { signal: "datum.highlight ? 'floor' : 'highlight'" }
           end
         end
 

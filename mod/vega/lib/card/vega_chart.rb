@@ -36,7 +36,7 @@ class Card
     end
 
     def multiyear?
-      !format.filter_hash[:year].present?
+      !format.filter_hash["year"].present?
     end
   end
 end
