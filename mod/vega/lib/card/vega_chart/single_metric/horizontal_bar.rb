@@ -4,60 +4,35 @@ class Card
       # horizontal bar chart.  y axis is individual companies, x axis is numeric answer
       # value
       class HorizontalBar < SingleMetric
-        def generate_data
-          @filter_query.run.each do |answer|
-            next unless (value = answer.value) && @format.card.number?(value)
-            add_data answer, value
+        include Axes
+        include AnswerValues
+
+        def hash
+          with_answer_values index: 1, view: :answers_with_keys do
+            with_company_values { super }
           end
         end
 
-        def add_data answer, value
-          @data << { yfield: ylabel(answer), xfield: value, details: answer.name.url_key }
-        end
-
-        def ylabel answer
-          return answer.year if record?
-
-          company = Card.fetch_name(answer.company).to_s
-          if multiyear?
-            "#{company.truncate 15} (#{answer.year})"
-          else
-            company.truncate 20
+        def with_company_values index=0
+          yield.tap do |data_hash|
+            data_hash[:data][index].merge! company_values
           end
         end
 
-        def multiyear?
-          !@filter_query.filter_args[:year]
+        def company_values
+          { values: format.render(:compact_companies) }
         end
 
-        def record?
-          return @record if @record.present?
-
-          @record = @format.card.try(:record?) || false
+        def layout
+          super.merge builtin(:horizontal_bar)
         end
 
         def x_axis
-          super.merge format: "~s" # number formatting
+          super.merge title: value_title, format: "~s" # number formatting
         end
 
         def y_axis
-          record? ? super.merge(title: record_company) : super
-        end
-
-        def record_company
-          Card.fetch_name @filter_query.filter_args[:company_name]
-        end
-
-        def x_scale
-          super.merge type: "linear", nice: true
-        end
-
-        def y_scale
-          super.merge type: "band", padding: 0.15
-        end
-
-        def main_mark
-          builtin :horizontal_mark
+          super.merge labelColor: "#666", labelFontWeight: 600
         end
       end
     end

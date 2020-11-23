@@ -2,28 +2,23 @@ class Card
   class VegaChart
     # default axis configuration for vega charts
     module Axes
+      def layout
+        super.merge axes: axes
+      end
+
+      def axes
+        [x_axis, y_axis]
+      end
+
       def x_axis
-        diagonalize orient: "bottom", scale: "xscale", encode: axes_colors,
-                    title: title_with_unit("Values")
+        builtin :x_axis
       end
 
       def y_axis
-        { orient: "left", scale: "yscale", encode: axes_colors }
+        builtin :y_axis
       end
 
-      def diagonal_x_labels?
-        true
-      end
-
-      def diagonalize x_axis
-        return x_axis unless diagonal_x_labels?
-
-        x_axis.deep_merge! encode: { labels: { update: { angle: { value: 30 },
-                                                         limit: { value: 70 },
-                                                         align: { value: "left" } } } }
-      end
-
-      def title_with_unit title
+      def value_title title="Value"
         unit = metric_card.format(:text).render_legend
         return title unless unit.present?
 

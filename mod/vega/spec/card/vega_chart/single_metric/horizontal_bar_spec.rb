@@ -1,7 +1,7 @@
 RSpec.describe Card::VegaChart::SingleMetric::HorizontalBar do
   let(:format) { metric.metric_answer_card.format :json }
   let(:chart_class) { metric.chart_class true }
-  let(:chart_hash) { format.vega_chart_config.to_hash }
+  let(:chart_hash) { format.vega.hash }
 
   context "with WikiRating (10 or fewer answers)" do
     let(:metric) { Card["Jedi+darkness rating"] }
@@ -14,9 +14,8 @@ RSpec.describe Card::VegaChart::SingleMetric::HorizontalBar do
       expect(chart_hash)
         .to include(
           data: a_collection_including(
-            a_hash_including(values: a_collection_including(
-              a_hash_including(details: "Jedi+darkness_rating+Death_Star+1977")
-            ))
+            a_hash_including(name: "companies"),
+            a_hash_including(name: "answers")
           )
         )
     end

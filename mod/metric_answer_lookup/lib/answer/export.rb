@@ -1,10 +1,14 @@
 class Answer
   # Methods to format answer for csv output
-  module Csv
+  module Export
     include Card::Env::Location
 
-    def self.included host_class
-      host_class.extend ClassMethods
+    # Export methods for Answer class
+    module ClassMethods
+      def csv_title
+        CSV.generate_line ["Answer ID", "Answer Link", "Metric", "Company",
+                           "Year", "Value", "Source", "Source Count", "Comments"]
+      end
     end
 
     def csv_line
@@ -27,12 +31,18 @@ class Answer
       "#{record_name}+#{year}".to_name
     end
 
-    # class methods for {Answer}
-    module ClassMethods
-      def csv_title
-        CSV.generate_line ["Answer ID", "Answer Link", "Metric", "Company",
-                           "Year", "Value", "Source", "Source Count", "Comments"]
-      end
+    def compact_json
+      {
+        company: company_id,
+        metric: metric_id,
+        year: year,
+        value: value
+      }
+    end
+
+    def flex_id
+      # prefix id with V (for virtual) if using id from answers table
+      answer_id || "V#{id}"
     end
   end
 end
