@@ -49,7 +49,7 @@ format :json do
     vega.render
   end
 
-  view :compact_answers do
+  view :compact_answers, cache: :never do
     chart_query.answer_lookup.map do |answer|
       answer.compact_json.merge id: answer.flex_id
     end
