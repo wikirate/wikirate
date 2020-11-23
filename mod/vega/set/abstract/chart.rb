@@ -22,7 +22,7 @@ format :html do
   end
 
   def chart_load_url
-    path view: :vega, format: :json, filter: chart_filter_hash
+    path view: :vega, format: :json, filter: chart_filter_hash, limit: 0
   end
 
   # json does not show not-researched answers.
