@@ -8,19 +8,7 @@ class Card
       include Helper::AnswerValues
 
       def hash
-        with_answer_values index: 1, view: :answers_with_keys do
-          with_company_values { super }
-        end
-      end
-
-      def with_company_values index=0
-        yield.tap do |data_hash|
-          data_hash[:data][index].merge! company_values
-        end
-      end
-
-      def company_values
-        { values: format.render(:compact_companies) }
+        with_values(company_list: 0, keyed_answer_list: 1) { super }
       end
 
       def layout

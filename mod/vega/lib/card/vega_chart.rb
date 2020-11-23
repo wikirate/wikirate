@@ -57,5 +57,17 @@ class Card
     def multiyear?
       !format.filter_hash["year"].present?
     end
+
+    def data_values view
+      { values: format.render(view) }
+    end
+
+    def with_values map
+      yield.tap do |hash|
+        map.each do |view, index|
+          hash[:data][index].merge! data_values(view)
+        end
+      end
+    end
   end
 end

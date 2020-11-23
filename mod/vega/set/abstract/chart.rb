@@ -1,9 +1,5 @@
 include_set Abstract::FilterHelper
 
-def chartable_type?
-  relationship? || numeric? || categorical?
-end
-
 format :html do
   view :chart, cache: :never do
     return unless show_chart?
@@ -33,7 +29,7 @@ format :html do
   end
 
   def show_chart?
-    voo.show?(:chart) && card.chartable_type? && chartable_filter?
+    voo.show?(:chart) && chartable_filter?
   end
 
   def chartable_filter?
@@ -47,11 +43,5 @@ format :json do
     # ve = JSON.pretty_generate vega_chart_config.to_hash
     # puts ve
     vega.render
-  end
-
-  view :compact_answers, cache: :never do
-    chart_query.answer_lookup.map do |answer|
-      answer.compact_json.merge id: answer.flex_id
-    end
   end
 end

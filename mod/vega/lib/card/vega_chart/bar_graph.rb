@@ -8,7 +8,7 @@ class Card
       include Helper::Highlight
 
       def hash
-        with_answer_values do
+        with_values(answer_list: 0) do
           super.tap do |h|
             transform_multi_values h[:data]
           end

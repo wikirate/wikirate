@@ -1,4 +1,4 @@
-include_set Abstract::Chart
+include_set Abstract::FixedMetricChart
 
 HORIZONTAL_MAX = 10
 
@@ -14,10 +14,6 @@ format :json do
 
   def metric_card
     @metric_card ||= card.left
-  end
-
-  def chart_query
-    query
   end
 end
 

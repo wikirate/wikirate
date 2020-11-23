@@ -4,11 +4,10 @@ class Card
     class Histogram < VegaChart
       include Helper::SingleMetric
       include Helper::Axes
-      include Helper::AnswerValues
       include Helper::Highlight
 
       def hash
-        super.tap do |hash|
+        with_values(answer_list: 0) { super }.tap do |hash|
           hash[:signals] << { name: "extent", init: extent }
         end
       end
@@ -20,7 +19,7 @@ class Card
       end
 
       def layout
-        with_answer_values { super.merge builtin(:histogram) }
+        super.merge builtin(:histogram)
       end
 
       def x_axis
