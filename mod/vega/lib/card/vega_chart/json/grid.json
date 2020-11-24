@@ -40,6 +40,32 @@
       "transform": [
         { "type": "cross", "filter": "datum.a.type == 'company' && datum.b.type == 'metric'" }
       ]
+    },
+    {
+      "name": "researchedAnswers",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(['WikiRating', 'Score'],datum.metric.metric_type) == -1"
+        }
+      ]
+    },
+    {
+      "name": "calculatedAnswers",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(['WikiRating', 'Score'],datum.metric.metric_type) > -1"
+        },
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "toNumber(datum.value)"
+        },
+        { "type": "formula", "expr": "floor(datum.value)", "as": "floor" }
+      ]
     }
   ],
   "scales": [
@@ -53,7 +79,7 @@
     {
       "name": "color",
       "type": "ordinal",
-      "range": { "scheme": "purples"},
+      "range": { "scheme": "greys"},
       "domain": {
         "fields": [
           {"data": "answers", "field": "status"}
@@ -80,14 +106,87 @@
     },
     {
       "type": "rect",
-      "from": {"data": "answers"},
+      "from": {
+        "data": "researchedAnswers"
+      },
       "encode": {
         "update": {
-          "x": {"scale": "position", "field": "metric.seq"},
-          "y": {"scale": "position", "field": "company.seq"},
-          "width": {"scale": "position", "band": 1, "offset": -1},
-          "height": {"scale": "position", "band": 1, "offset": -1},
-          "fill": {"scale": "color", "field": "status"
+          "x": {
+            "scale": "position",
+            "field": "metric.seq"
+          },
+          "y": {
+            "scale": "position",
+            "field": "company.seq"
+          },
+          "width": {
+            "scale": "position",
+            "band": 1,
+            "offset": -1
+          },
+          "height": {
+            "scale": "position",
+            "band": 1,
+            "offset": -1
+          },
+          "fill": {
+            "scale": "color",
+            "field": "status"
+          },
+          "opacity": {
+            "value": 0.75
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 1
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "name" :"coloredScores",
+      "from": {
+        "data": "calculatedAnswers"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "position",
+            "field": "metric.seq"
+          },
+          "y": {
+            "scale": "position",
+            "field": "company.seq"
+          },
+          "width": {
+            "scale": "position",
+            "band": 1,
+            "offset": -1
+          },
+          "height": {
+            "scale": "position",
+            "band": 1,
+            "offset": -1
+          },
+          "fill": {
+            "scale": "scoreColor",
+            "field": "floor"
+          },
+          "opacity": {
+            "value": 0.75
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 1
+          },
+          "cursor": {
+            "value": "pointer"
           }
         }
       }

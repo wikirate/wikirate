@@ -4,7 +4,6 @@ class Card
     class BarGraph < VegaChart
       include Helper::SingleMetric
       include Helper::Axes
-      include Helper::AnswerValues
       include Helper::Highlight
 
       def hash

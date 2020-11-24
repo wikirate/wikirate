@@ -5,7 +5,6 @@ class Card
     class HorizontalBar < VegaChart
       include Helper::SingleMetric
       include Helper::Axes
-      include Helper::AnswerValues
 
       def hash
         with_values(company_list: 0, keyed_answer_list: 1) { super }

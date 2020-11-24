@@ -23,7 +23,7 @@ format :json do
 
   view :metric_list, cache: :never do
     map_unique :metric_id, :metric_type_id do |id, type_id|
-      { id: id, name: id.cardname, metric_type: type_id.cardname }
+      { id: id, name: id.card.metric_title, metric_type: type_id.cardname }
     end.sort_by { |h| h[:name] }
   end
 
