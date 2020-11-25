@@ -94,7 +94,7 @@
           "x": {"scale": "x", "field": "year"},
           "y": {"scale": "y", "field": "answers"},
           "y2": {"scale": "y", "value": 0},
-          "fill": {"value": "#ddd"}
+          "fill": {"value": "#ccc"}
         },
         "update": {
           "interpolate": {"signal": "interpolate"},
@@ -106,32 +106,38 @@
       }
     },
     {
-      "type": "line",
-      "from": {"data": "counts"},
-      "encode": {
-        "enter": {
-          "x": {"scale": "x", "field": "year"},
-          "y": {"scale": "y", "field": "companies"},
-          "stroke": { "value": "#2B7EA0" },
-          "strokeWidth": { "value": 3 }
-        },
-        "update": {
-          "interpolate": {"signal": "interpolate"}
-        }
-      }
-    },
-    {
-      "type": "line",
+      "type": "area",
       "from": {"data": "counts"},
       "encode": {
         "enter": {
           "x": {"scale": "x", "field": "year"},
           "y": {"scale": "y", "field": "metrics"},
-          "stroke": { "value": "#674EA7" },
+          "y2": {"scale": "y", "value": 0},
+
+          "fill": { "value": "#674EA7" },
           "strokeWidth": { "value": 3 }
         },
         "update": {
-          "interpolate": {"signal": "interpolate"}
+          "interpolate": {"signal": "interpolate"},
+          "fillOpacity": {"value": 1}
+        }
+      }
+    },
+    {
+      "type": "area",
+      "from": {"data": "counts"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "x", "field": "year"},
+          "y": {"scale": "y", "field": "companies"},
+          "y2": {"scale": "y", "value": 0},
+
+          "fill": { "value": "#2B7EA0" },
+          "strokeWidth": { "value": 3 }
+        },
+        "update": {
+          "interpolate": {"signal": "interpolate"},
+          "fillOpacity": {"value": 1}
         }
       }
     }
