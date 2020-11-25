@@ -2,6 +2,14 @@ class Card
   # generate JSON for Vega visualizations
   class VegaChart
     class << self
+      # VegaChart.new :chart_class, format, opts
+      def new *args
+        return super unless self == VegaChart
+
+        chart_class = args.shift
+        const_get(chart_class.to_s.camelize).new *args
+      end
+
       def builtin filename
         @builtin ||= {}
         @builtin[filename] ||= prepare_builtin filename
@@ -19,14 +27,25 @@ class Card
       end
     end
 
+    attr_reader :format
     delegate :builtin, to: :class
 
     def render
-      JSON.pretty_generate hash
+      method = Card.config.compress_javascript ? :generate : :pretty_generate
+      JSON.send method, hash
     end
 
     def hash
-      layout.merge(data: data, scales: scales, marks: marks)
+      layout
+    end
+
+    # @param opts [Hash] config options
+    # @option opts [String] :highlight highlight the bar for the given value
+    # @option opts [Hash] :layout override DEFAULT_LAYOUT
+    def initialize format, opts={}
+      @format = format
+      @highlight_value = opts[:highlight]
+      @layout = opts[:layout] || {}
     end
 
     private
@@ -36,7 +55,19 @@ class Card
     end
 
     def multiyear?
-      !format.filter_hash[:year].present?
+      !format.filter_hash["year"].present?
+    end
+
+    def data_values view
+      { values: format.render(view) }
+    end
+
+    def with_values map
+      yield.tap do |hash|
+        map.each do |view, index|
+          hash[:data][index].merge! data_values(view)
+        end
+      end
     end
   end
 end

@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Abstract::TenScale do
       expect(format_subject.colorify("3.49")).to(
         have_tag(".range-value") do
           with_tag "span", text: "3.5"
-          with_tag "i.fa-square.multi-color-3"
+          with_tag "i.fa-square.score-color.score-color-3"
         end
       )
     end

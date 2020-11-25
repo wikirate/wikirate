@@ -1,22 +1,19 @@
-include_set Abstract::Chart
+include_set Abstract::FixedMetricChart
 
 HORIZONTAL_MAX = 10
 
 format :json do
   def vega
-    VegaChart::SingleMetric.new self, chart_metric, horizontal: horizontal?
+    chart_class = metric_card.chart_class horizontal?
+    VegaChart.new chart_class, self
   end
 
   def horizontal?
     count_by_status[:known] <= HORIZONTAL_MAX
   end
 
-  def chart_metric
-    card.left
-  end
-
-  def chart_query
-    query
+  def metric_card
+    @metric_card ||= card.left
   end
 end
 

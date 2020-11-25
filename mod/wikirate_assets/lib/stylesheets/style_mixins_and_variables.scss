@@ -32,12 +32,31 @@ $wanted-card-color: #b6060a;
 
 $card-header-color: #fff;
 
+// Gradient generated from this url
+// https://gka.github.io/palettes
+// /#colors=,red,orange,yellow,green|steps=10|bez=1|coL=0
+// 0 <= x < 1
+$score-colors: (
+  "0": #ff0000,
+  "1": #ff5700,
+  "2": #ff7e00,
+  "3": #fc9b00,
+  "4": #f1b000,
+  "5": #debd00,
+  "6": #c2c000,
+  "7": #9ab700,
+  "8": #65a300,
+  "9": #008000
+);
+
 //----------- General Variables ---------
 
 $max-page-width: 100%; //1660px;
 $min-page-height: 1000px;
 
 $sub-text-size: 0.8em;
+
+
 
 @mixin ellipsis() {
   white-space: nowrap;
