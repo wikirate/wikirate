@@ -5,10 +5,23 @@
   "height": 200,
   "padding": 5,
 
+  "config": {
+    "line": {
+
+      "encode": {
+        "enter": {
+          "strokeWidth": {"value": 6}
+        }
+
+
+      }
+    }
+  },
+
   "signals": [
     {
       "name": "interpolate",
-      "value": "catmull-rom",
+      "value": "linear",
       "bind": {
         "input": "select",
         "options": [
@@ -63,15 +76,7 @@
       "range": "height",
       "nice": true,
       "zero": true,
-      "domain": {"data": "counts", "field": "companies"}
-    },
-    {
-      "name": "y2",
-      "type": "linear",
-      "range": "height",
-      "nice": true,
-      "zero": true,
-      "domain": {"data": "counts", "field": "metrics"}
+      "domain": {"data": "counts", "fields": ["companies", "metrics", "answers"] }
     }
   ],
 
@@ -82,21 +87,51 @@
 
   "marks": [
     {
+      "type": "area",
+      "from": {"data": "counts"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "x", "field": "year"},
+          "y": {"scale": "y", "field": "answers"},
+          "y2": {"scale": "y", "value": 0},
+          "fill": {"value": "#ddd"}
+        },
+        "update": {
+          "interpolate": {"signal": "interpolate"},
+          "fillOpacity": {"value": 1}
+        },
+        "hover": {
+          "fillOpacity": {"value": 0.5}
+        }
+      }
+    },
+    {
       "type": "line",
       "from": {"data": "counts"},
       "encode": {
         "enter": {
           "x": {"scale": "x", "field": "year"},
           "y": {"scale": "y", "field": "companies"},
-          "stroke": {"value": "blue"},
-          "strokeWidth": {"value": 3}
+          "stroke": { "value": "#2B7EA0" },
+          "strokeWidth": { "value": 3 }
         },
         "update": {
-          "interpolate": {"signal": "interpolate"},
-          "strokeOpacity": {"value": 1}
+          "interpolate": {"signal": "interpolate"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "counts"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "x", "field": "year"},
+          "y": {"scale": "y", "field": "metrics"},
+          "stroke": { "value": "#674EA7" },
+          "strokeWidth": { "value": 3 }
         },
-        "hover": {
-          "strokeOpacity": {"value": 0.5}
+        "update": {
+          "interpolate": {"signal": "interpolate"}
         }
       }
     }
