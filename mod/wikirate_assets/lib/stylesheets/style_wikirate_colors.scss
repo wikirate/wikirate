@@ -256,3 +256,56 @@ $colorMap: (
     }
   }
 }
+
+// Score / WikiRating colors
+
+@each $score, $color in $score-colors {
+  .score-color-#{$score} {
+    color: $color;
+  }
+  .details-toggle {
+    .score-color-#{$score} {
+      color: rgba($color, 0.75);
+    }
+    &:hover .score-color-#{$score} {
+      color: $color;
+    }
+  }
+}
+
+// light colors
+.light-color-0{
+  color: #ccc;
+}
+.light-color-1{
+  color: #e4e9f1;
+}
+
+.main-color {
+  color: $primary;
+}
+
+.white-text {
+  color: #fff;
+}
+
+.dark-grey-color {
+  color: #333;
+}
+
+.light-grey-color {
+  color: #ccc;
+}
+
+.light-grey-color-2 {
+  color: #999;
+}
+
+.verify-blue {
+  color: $blue;
+}
+
+.request-red {
+  color: $red;
+}
+

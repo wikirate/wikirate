@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A basic line chart example.",
+  "width": 500,
+  "height": 200,
+  "padding": 5,
+
+  "config": {
+    "line": {
+
+      "encode": {
+        "enter": {
+          "strokeWidth": {"value": 6}
+        }
+
+
+      }
+    }
+  },
+
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "linear",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+
+  "data": [
+    {
+      "name": "answers",
+      "url": "http://localhost:3000/Answer+browse_answer_filter/answer_list.json?limit=0"
+    },
+    {
+      "name": "existingCounts",
+      "source": "answers",
+
+      "transform": [
+        { "type": "aggregate", "ops": ["distinct", "distinct","count"], "fields": ["company", "metric", "id"], "groupby": ["year"], "as": ["companies", "metrics", "answers"] },
+        {"type": "formula", "expr": "datum.year == 1977 ? 2013 : (datum.year == 2000 ? 2012 : (datum.year == 2001 ? 2011 : datum.year))", "as": "year"}
+      ]
+    },
+    {
+      "name": "counts",
+      "transform": [
+        {"type": "sequence", "start": 2003, "stop": 2016, "as": "year" },
+        {"type": "lookup", "from": "existingCounts", "key": "year", "fields": ["year"], "values":["companies", "metrics", "answers"]}
+
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {"data": "counts", "field": "year", "sort": true}
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {"data": "counts", "fields": ["companies", "metrics", "answers"] }
+    }
+  ],
+
+  "axes": [
+    {"orient": "bottom", "scale": "x", "offset": 10},
+    {"orient": "left", "scale": "y", "tickMinStep": 1}
+  ],
+
+  "marks": [
+    {
+      "type": "area",
+      "from": {"data": "counts"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "x", "field": "year"},
+          "y": {"scale": "y", "field": "answers"},
+          "y2": {"scale": "y", "value": 0},
+          "fill": {"value": "#ddd"}
+        },
+        "update": {
+          "interpolate": {"signal": "interpolate"},
+          "fillOpacity": {"value": 1}
+        },
+        "hover": {
+          "fillOpacity": {"value": 0.5}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "counts"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "x", "field": "year"},
+          "y": {"scale": "y", "field": "companies"},
+          "stroke": { "value": "#2B7EA0" },
+          "strokeWidth": { "value": 3 }
+        },
+        "update": {
+          "interpolate": {"signal": "interpolate"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "counts"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "x", "field": "year"},
+          "y": {"scale": "y", "field": "metrics"},
+          "stroke": { "value": "#674EA7" },
+          "strokeWidth": { "value": 3 }
+        },
+        "update": {
+          "interpolate": {"signal": "interpolate"}
+        }
+      }
+    }
+  ]
+}
