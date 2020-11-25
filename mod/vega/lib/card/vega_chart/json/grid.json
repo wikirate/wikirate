@@ -47,7 +47,7 @@
       "transform": [
         {
           "type": "filter",
-          "expr": "indexof(['WikiRating', 'Score'],datum.metric.metric_type) == -1"
+          "expr": "indexof(['WikiRating', 'Score'], datum.metric.metric_type) == -1"
         }
       ]
     },
@@ -57,19 +57,22 @@
       "transform": [
         {
           "type": "filter",
-          "expr": "indexof(['WikiRating', 'Score'],datum.metric.metric_type) > -1"
+          "expr": "indexof(['WikiRating', 'Score'], datum.metric.metric_type) > -1"
         },
         {
           "type": "formula",
           "as": "value",
           "expr": "toNumber(datum.value)"
         },
-        { "type": "formula", "expr": "floor(datum.value)", "as": "floor" }
+        {
+          "type": "formula",
+          "expr": "floor(datum.value)",
+          "as": "floor"
+        }
       ]
     }
   ],
   "scales": [
-
     {
       "name": "position",
       "type": "band",
@@ -86,6 +89,24 @@
         ],
         "sort": true
       }
+    },
+    {
+      "name": "scoreColor",
+      "type": "quantile",
+      "domain": [0, 10],
+      "range": [
+        "#ff0000",
+        "#ff5700",
+        "#ff7e00",
+        "#fc9b00",
+        "#f1b000",
+        "#debd00",
+        "#c2c000",
+        "#9ab700",
+        "#65a300",
+        "#008000",
+        "#008000"
+      ]
     }
   ],
   "marks": [
@@ -213,17 +234,17 @@
     {
       "type": "text",
       "name": "rows",
-      "from": {"data": "companies"},
+      "from": { "data": "companies" },
       "encode": {
         "update": {
-          "x": {"offset": -2},
-          "y": {"scale": "position", "field": "seq", "band": 0.5},
-          "text": {"field": "name"},
-          "fontSize": {"value": 10},
-          "align": {"value": "right"},
-          "baseline": {"value": "middle"},
+          "x": { "offset": -2 },
+          "y": { "scale": "position", "field": "seq", "band": 0.5 },
+          "text": { "field": "name" },
+          "fontSize": { "value": 10 },
+          "align": { "value": "right" },
+          "baseline": { "value": "middle" },
           "fill": [
-            {"value": "black"}
+            { "value": "black" }
           ]
         }
       }
