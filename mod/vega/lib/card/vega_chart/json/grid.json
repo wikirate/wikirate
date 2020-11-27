@@ -1,0 +1,235 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "company-metric fiddling",
+  "padding": 2,
+
+  "signals": [
+    { "name": "cellSize", "value": 20 },
+    { "name" : "vizHeight", "value": "400" }
+  ],
+
+  "data": [
+    {
+      "name": "companies",
+      "transform": [
+        { "type": "window", "ops": ["row_number"], "as": ["seq"]},
+        { "type": "formula", "expr": "'company'", "as": "type"}
+      ]
+    },
+    {
+      "name": "metrics",
+      "transform": [
+        { "type": "window", "ops": ["row_number"], "as": ["seq"]},
+        { "type": "formula", "expr": "'metric'", "as": "type"}
+      ]
+    },
+    {
+      "name": "answers",
+      "transform": [
+        { "type": "lookup", "from" : "metrics", "key" : "id",
+          "fields": [ "metric"], "as" : ["metric"]},
+        { "type": "lookup", "from" : "companies", "key" : "id",
+          "fields": [ "company"], "as" : ["company"]},
+        { "type": "formula", "as": "status",  "expr": "datum.value == 'Unknown' ? 0 : 1"},
+        { "type": "window", "ops": ["row_number"], "as": ["seq"]}
+      ]
+    },
+    {
+      "name": "cross",
+      "source": ["companies", "metrics"],
+      "transform": [
+        { "type": "cross", "filter": "datum.a.type == 'company' && datum.b.type == 'metric'" }
+      ]
+    },
+    {
+      "name": "researchedAnswers",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(['WikiRating', 'Score'], datum.metric.metric_type) == -1"
+        }
+      ]
+    },
+    {
+      "name": "calculatedAnswers",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(['WikiRating', 'Score'], datum.metric.metric_type) > -1"
+        },
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "toNumber(datum.value)"
+        },
+        {
+          "type": "formula",
+          "expr": "floor(datum.value)",
+          "as": "floor"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "position",
+      "type": "band",
+      "domain": {"data": "answers", "field": "seq", "sort": true},
+      "range": {"step": { "signal": "cellSize" } }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": { "scheme": "greys"},
+      "domain": {
+        "fields": [
+          {"data": "answers", "field": "status"}
+        ],
+        "sort": true
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "cross"},
+      "encode": {
+        "update": {
+          "x": {"scale": "position", "field": "b.seq"},
+          "y": {"scale": "position", "field": "a.seq"},
+          "width": {"scale": "position", "band": 1, "offset": -1},
+          "height": {"scale": "position", "band": 1, "offset": -1},
+          "fill": [
+            {"value": "#f5f5f5"}
+          ]
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "researchedAnswers"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "position",
+            "field": "metric.seq"
+          },
+          "y": {
+            "scale": "position",
+            "field": "company.seq"
+          },
+          "width": {
+            "scale": "position",
+            "band": 1,
+            "offset": -1
+          },
+          "height": {
+            "scale": "position",
+            "band": 1,
+            "offset": -1
+          },
+          "fill": {
+            "scale": "color",
+            "field": "status"
+          },
+          "opacity": {
+            "value": 0.75
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 1
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "name" :"coloredScores",
+      "from": {
+        "data": "calculatedAnswers"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "position",
+            "field": "metric.seq"
+          },
+          "y": {
+            "scale": "position",
+            "field": "company.seq"
+          },
+          "width": {
+            "scale": "position",
+            "band": 1,
+            "offset": -1
+          },
+          "height": {
+            "scale": "position",
+            "band": 1,
+            "offset": -1
+          },
+          "fill": {
+            "scale": "scoreColor",
+            "field": "floor"
+          },
+          "opacity": {
+            "value": 0.75
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 1
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "columns",
+      "from": {"data": "metrics"},
+      "encode": {
+        "update": {
+          "x": {"scale": "position", "field": "seq", "band": 0.5},
+          "y": {"offset": -4},
+          "text": {"field": "name"},
+          "fontSize": {"value": 10},
+          "angle": {"value": -60},
+          "align": {"value": "left"},
+          "baseline": {"value": "middle"},
+          "fill": [
+            {"value": "black"}
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "rows",
+      "from": { "data": "companies" },
+      "encode": {
+        "update": {
+          "x": { "offset": -2 },
+          "y": { "scale": "position", "field": "seq", "band": 0.5 },
+          "text": { "field": "name" },
+          "fontSize": { "value": 10 },
+          "align": { "value": "right" },
+          "baseline": { "value": "middle" },
+          "fill": [
+            { "value": "black" }
+          ]
+        }
+      }
+    }
+  ]
+}

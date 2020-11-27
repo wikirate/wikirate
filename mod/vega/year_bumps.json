@@ -1,0 +1,193 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A basic line chart example.",
+  "width": 500,
+  "height": 200,
+  "padding": 5,
+
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    },
+    {
+      "name": "yearEnds",
+      "init": "data('yearEnds')[0]"
+    },    {
+      "name": "startYear",
+      "init": "yearEnds['min_year'] - 1 "
+    },
+    {
+      "name": "endYear",
+      "init": "yearEnds['max_year']"
+    }
+  ],
+
+  "data": [
+    {
+      "name": "years",
+      "url": "http://localhost:3000/Answer+browse_answer_filter/year_list.json",
+      "transform": [
+
+        {
+          "type": "formula",
+          "expr": "datum.calculated == 1 ? 2 : (1 - datum.verified)",
+          "as": "groupNum"
+        }
+      ]
+    },
+    {
+      "name" : "yearEnds",
+      "source": "years",
+      "transform": [
+        {
+          "type": "aggregate",
+          "ops":["min", "max"],
+          "fields":["year", "year"]}
+      ]
+    },
+    {
+      "name": "counts",
+      "source": "years",
+      "transform" : [
+        {
+          "type": "impute",
+          "groupby": ["groupNum"],
+          "key": "year",
+          "keyvals": {"signal": "sequence(startYear, endYear)"},
+          "field": "count",
+          "method": "value",
+          "value": 0
+
+        },
+        {
+          "type": "collect",
+          "sort": { "field": ["year", "groupNum"] }
+        },
+
+        {
+          "type": "stack",
+          "groupby": ["year"],
+          "sort": {"field": ["year", "groupNum"]},
+          "field": "count"
+        },
+        {
+          "type": "formula",
+          "expr": "{ 0 : 'Verified', 1: 'Researched', 2: 'Calculated' }[datum.groupNum]",
+          "as": "group"
+        }
+
+      ]
+    },
+    {
+      "name": "totals",
+      "source": "counts",
+      "transform": [
+        { "type": "filter", "expr": "datum.groupNum==2"}
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "xpoint",
+      "type": "point",
+      "range": "width",
+      "domain": {"data": "counts", "field": "year", "sort": true}
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {"data": "counts", "fields": ["y1"] }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": { "scheme": "teals" },
+      "domain": ["Calculated", "Researched", "Verified"]
+    }
+  ],
+
+  "axes": [
+    {"orient": "bottom", "scale": "xpoint", "offset": 10},
+    {"orient": "left", "scale": "y", "tickMinStep": 1}
+  ],
+
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "counts",
+          "groupby": ["group"]
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {"data": "series"},
+          "encode": {
+            "enter": {
+              "x": {"scale": "xpoint", "field": "year"},
+              "y": {"scale": "y", "field": "y0"},
+              "y2": {"scale": "y", "field": "y1"},
+              "fill": {"scale": "color", "field": "group"}
+            },
+            "update": {
+              "interpolate": {"signal": "interpolate"},
+              "fillOpacity": {"value": 1}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "rect",
+      "from": {"data": "totals"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xpoint", "field": "year", "offset": 20},
+          "x2": {"scale": "xpoint", "field": "year", "offset": -20},
+
+          "y": {"scale": "y", "field": "y1"},
+          "y2": {"scale": "y", "value": 0},
+          "fill": {"scale": "color", "value": "Verified"},
+          "stroke": { "value": "#fff"},
+          "strokeWidth": { "value": 2 }
+
+        },
+        "update": {
+          "interpolate": {"signal": "interpolate"},
+          "opacity": {"value": 0}
+        },
+        "hover": {
+          "opacity": { "value": 1 }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "type": "symbol"
+    }
+  ]
+}

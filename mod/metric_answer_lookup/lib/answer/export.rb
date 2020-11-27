@@ -36,7 +36,8 @@ class Answer
         company: company_id,
         metric: metric_id,
         year: year,
-        value: value
+        value: value,
+        id: flex_id
       }
     end
 

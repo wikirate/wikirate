@@ -25,19 +25,19 @@ format :html do
     number_with_precision value, precision: (value >= 10 ? 0 : 1)
   end
 
-  def colorify value, mono=false
+  def colorify value
     return "" if value.blank?
-    haml :colorify, value: value, mono: mono
+    haml :colorify, value: value
   end
 
   private
 
-  def color_class value, mono
-    value.number? ? numeric_color_class(value, mono) : "light-color-0"
+  def color_class value
+    value.number? ? numeric_color_class(value) : "light-color-0"
   end
 
-  def numeric_color_class value, mono
-    "#{mono ? :mono : :multi}-color-#{color_integer value.to_i}"
+  def numeric_color_class value
+    "score-color score-color-#{color_integer value.to_i}"
   end
 
   def color_integer value

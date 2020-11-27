@@ -1,22 +1,21 @@
-include_set Abstract::Chart
+include_set Abstract::FixedMetricChart
 
 format :json do
-  def vega
-    VegaChart::SingleMetric.new self, chart_metric,
-                                highlight: card.value,
-                                axes: :light,
-                                layout: { height: 80,
-                                          width: 200,
-                                          max_ticks: 5,
-                                          padding: 2 }
-  end
+  delegate :metric_card, to: :card
 
-  def chart_metric
-    card.metric_card
+  def vega
+    VegaChart.new metric_card.chart_class, self,
+                  highlight: card.value,
+                  axes: :light,
+                  layout: { height: 80, width: 200, max_ticks: 5, padding: 2 }
   end
 
   def sort_hash
     { sort_by: :year }
+  end
+
+  view :answer_list, cache: :never do
+    chart_query.answer_lookup.map { |a| a.compact_json }
   end
 
   def chart_query
