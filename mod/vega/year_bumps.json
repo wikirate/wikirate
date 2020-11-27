@@ -23,27 +23,52 @@
           "step-before"
         ]
       }
+    },
+    {
+      "name": "yearEnds",
+      "init": "data('yearEnds')[0]"
+    },    {
+      "name": "startYear",
+      "init": "yearEnds['min_year'] - 1 "
+    },
+    {
+      "name": "endYear",
+      "init": "yearEnds['max_year']"
     }
   ],
 
   "data": [
     {
-      "name": "counts",
+      "name": "years",
       "url": "http://localhost:3000/Answer+browse_answer_filter/year_list.json",
       "transform": [
-        {
-          "type": "filter",
-          "expr": "datum.year > 2000"
-        },
+
         {
           "type": "formula",
           "expr": "datum.calculated == 1 ? 2 : (1 - datum.verified)",
-          "as": "group"
-        },
+          "as": "groupNum"
+        }
+      ]
+    },
+    {
+      "name" : "yearEnds",
+      "source": "years",
+      "transform": [
+        {
+          "type": "aggregate",
+          "ops":["min", "max"],
+          "fields":["year", "year"]}
+      ]
+    },
+    {
+      "name": "counts",
+      "source": "years",
+      "transform" : [
         {
           "type": "impute",
-          "groupby": ["group"],
+          "groupby": ["groupNum"],
           "key": "year",
+          "keyvals": {"signal": "sequence(startYear, endYear)"},
           "field": "count",
           "method": "value",
           "value": 0
@@ -51,15 +76,28 @@
         },
         {
           "type": "collect",
-          "sort": { "field": ["year", "group"] }
+          "sort": { "field": ["year", "groupNum"] }
         },
+
         {
           "type": "stack",
           "groupby": ["year"],
-          "sort": {"field": ["year", "group"]},
+          "sort": {"field": ["year", "groupNum"]},
           "field": "count"
+        },
+        {
+          "type": "formula",
+          "expr": "{ 0 : 'Verified', 1: 'Researched', 2: 'Calculated' }[datum.groupNum]",
+          "as": "group"
         }
 
+      ]
+    },
+    {
+      "name": "totals",
+      "source": "counts",
+      "transform": [
+        { "type": "filter", "expr": "datum.groupNum==2"}
       ]
     }
   ],
@@ -82,8 +120,8 @@
     {
       "name": "color",
       "type": "ordinal",
-      "range": "category",
-      "domain": {"data": "counts", "field": "group"}
+      "range": { "scheme": "teals" },
+      "domain": ["Calculated", "Researched", "Verified"]
     }
   ],
 
@@ -120,6 +158,36 @@
           }
         }
       ]
+    },
+    {
+      "type": "rect",
+      "from": {"data": "totals"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xpoint", "field": "year", "offset": 20},
+          "x2": {"scale": "xpoint", "field": "year", "offset": -20},
+
+          "y": {"scale": "y", "field": "y1"},
+          "y2": {"scale": "y", "value": 0},
+          "fill": {"scale": "color", "value": "Verified"},
+          "stroke": { "value": "#fff"},
+          "strokeWidth": { "value": 2 }
+
+        },
+        "update": {
+          "interpolate": {"signal": "interpolate"},
+          "opacity": {"value": 0}
+        },
+        "hover": {
+          "opacity": { "value": 1 }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "type": "symbol"
     }
   ]
 }

@@ -72,7 +72,7 @@
     },
     {
       "name": "y",
-      "type": "linear",
+      "type": "sqrt",
       "range": "height",
       "nice": true,
       "zero": true,
