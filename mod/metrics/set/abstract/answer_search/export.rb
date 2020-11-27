@@ -43,6 +43,10 @@ format :json do
     }
   end
 
+  view :year_list, cache: :never do
+    AnswerQuery.new(filter_hash).year_counts
+  end
+
   def answer_lookup
     query.answer_lookup
   end

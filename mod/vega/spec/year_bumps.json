@@ -1,0 +1,125 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A basic line chart example.",
+  "width": 500,
+  "height": 200,
+  "padding": 5,
+
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+
+  "data": [
+    {
+      "name": "counts",
+      "url": "http://localhost:3000/Answer+browse_answer_filter/year_list.json",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.year > 2000"
+        },
+        {
+          "type": "formula",
+          "expr": "datum.calculated == 1 ? 2 : (1 - datum.verified)",
+          "as": "group"
+        },
+        {
+          "type": "impute",
+          "groupby": ["group"],
+          "key": "year",
+          "field": "count",
+          "method": "value",
+          "value": 0
+
+        },
+        {
+          "type": "collect",
+          "sort": { "field": ["year", "group"] }
+        },
+        {
+          "type": "stack",
+          "groupby": ["year"],
+          "sort": {"field": ["year", "group"]},
+          "field": "count"
+        }
+
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "xpoint",
+      "type": "point",
+      "range": "width",
+      "domain": {"data": "counts", "field": "year", "sort": true}
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {"data": "counts", "fields": ["y1"] }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {"data": "counts", "field": "group"}
+    }
+  ],
+
+  "axes": [
+    {"orient": "bottom", "scale": "xpoint", "offset": 10},
+    {"orient": "left", "scale": "y", "tickMinStep": 1}
+  ],
+
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "counts",
+          "groupby": ["group"]
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {"data": "series"},
+          "encode": {
+            "enter": {
+              "x": {"scale": "xpoint", "field": "year"},
+              "y": {"scale": "y", "field": "y0"},
+              "y2": {"scale": "y", "field": "y1"},
+              "fill": {"scale": "color", "field": "group"}
+            },
+            "update": {
+              "interpolate": {"signal": "interpolate"},
+              "fillOpacity": {"value": 1}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
