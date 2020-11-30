@@ -126,7 +126,7 @@ class Card
         "FROM answers"
       where = "WHERE #{where}" if where.present?
       where = ""
-      "#{select} #{where} GROUP BY year, calculated, checkers"
+      "#{select} #{where} GROUP BY year, calculated, verified"
     end
 
     def status_filter
