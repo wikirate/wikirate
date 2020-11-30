@@ -7,7 +7,7 @@ class Card
         return super unless self == VegaChart
 
         chart_class = args.shift
-        const_get(chart_class.to_s.camelize).new *args
+        const_get(chart_class.to_s.camelize).new(*args)
       end
 
       def builtin filename

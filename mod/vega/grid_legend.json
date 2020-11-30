@@ -1,63 +1,118 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "width": 350,
+  "description": "company-metric fiddling",
+
   "height": 180,
   "padding": 2,
   "config": {
     "axis": {
       "labelColor": "#888",
       "titleColor": "#666"
+    },
+    "legend" : {
+      "layout": {
+        "margin": 30,
+        "anchor": "end"
+      }
     }
   },
   "signals": [
     {
+      "name": "xType",
+      "value": "company"
+    },
+    {
+      "name": "companyColor",
+      "value": "#2B7EA0"
+    },
+    {
+      "name": "metricColor",
+      "value": "#674EA7"
+    },
+    {
       "name": "cellSize",
-      "value": 20
+      "value" : 20,
+      "init": "round(200 / colCount)"
     },
     {
       "name": "rowCount",
-      "update": "length(data('companies'))"
+      "update": "length(data('yData'))"
+    },
+    {
+      "name": "colCount",
+      "update": "length(data('xData'))"
     },
     {
       "name": "width",
-      "update": "span(range('metricPosition'))"
+      "update": "span(range('xPosition'))"
     },
     {
       "name": "height",
-      "update": "span(range('companyPosition'))"
+      "update": "span(range('yPosition'))"
     },
     {
-      "name": "srcRow", "value": {},
+      "name": "src", "value": {},
       "on": [
         {"events": "text:mousedown", "update": "datum"},
         {"events": "window:mouseup", "update": "{}"}
       ]
     },
     {
-      "name": "dest", "value": -1,
+      "name": "destRow", "value": -1,
       "on": [
         {
           "events": "[@rows:mousedown, window:mouseup] > window:mousemove",
-          "update": "srcRow.name && datum !== srcRow ? (0.5 + rowCount * clamp(y(), 0, height) / height) : dest"
+          "update": "src.name && datum !== src ? (0.5 + rowCount * clamp(y(), 0, height) / height) : destRow"
+        },
+        {"events": "window:mouseup", "update": "-1"}
+      ]
+    },
+    {
+      "name": "destCol", "value": -1,
+      "on": [
+        {
+          "events": "[@columns:mousedown, window:mouseup] > window:mousemove",
+          "update": "src.name && datum !== src ? (0.5 + colCount * clamp(x(), 0, width) / width) : destCol"
         },
         {"events": "window:mouseup", "update": "-1"}
       ]
     }
 
   ],
-  "description": "company-metric fiddling",
   "data": [
     {
       "name": "companies",
+      "url": "http://localhost:3000/Answer+browse_answer_filter/company_list.json?limit=0",
       "transform": [
         {
           "type": "collect",
           "sort": { "field": "name" }
-        },
+        }
+      ]
+    },
+    {
+      "name": "metrics",
+      "url": "http://localhost:3000/Answer+browse_answer_filter/metric_list.json?limit=0",
+      "transform": [
         {
           "type": "formula",
-          "expr": "'company'",
-          "as": "type"
+          "expr": "lower(datum.name)",
+          "as": "lowername"
+        },
+        {
+          "type": "collect",
+          "sort": { "field": "lowername" }
+        }
+      ]
+    },
+    {
+      "name": "xData",
+      "source": "companies",
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "'x'",
+          "as": "axis"
         },
         {
           "type": "window",
@@ -70,7 +125,7 @@
         },
         {
           "type": "formula", "as": "score",
-          "expr": "dest >= 0 && datum === srcRow ? dest : datum.seq"
+          "expr": "destCol >= 0 && datum === src ? destCol : datum.seq"
         },
         {
           "type": "window",
@@ -80,20 +135,16 @@
           "ops": ["row_number"],
           "as": ["seq"]
         }
-      ],
-      "url": "http://localhost:3000/Answer+browse_answer_filter/company_list.json?limit=0"
+      ]
     },
     {
-      "name": "metrics",
+      "name": "yData",
+      "source": "metrics",
       "transform": [
         {
           "type": "formula",
-          "expr": "lower(datum.name)",
-          "as": "lowername"
-        },
-        {
-          "type": "collect",
-          "sort": { "field": "lowername" }
+          "expr": "'y'",
+          "as": "axis"
         },
         {
           "type": "window",
@@ -105,15 +156,26 @@
           ]
         },
         {
-          "type": "formula",
-          "expr": "'metric'",
-          "as": "type"
+          "type": "formula", "as": "score",
+          "expr": "destRow >= 0 && datum === src ? destRow : datum.seq"
+        },
+        {
+          "type": "window",
+          "sort": {
+            "field": "score"
+          },
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "seq"
+          ]
         }
-      ],
-      "url": "http://localhost:3000/Answer+browse_answer_filter/metric_list.json?limit=0"
+      ]
     },
     {
       "name": "answers",
+      "url": "http://localhost:3000/Answer+browse_answer_filter/answer_list.json?limit=0",
       "transform": [
         {
           "type": "lookup",
@@ -123,43 +185,48 @@
             "metric"
           ],
           "as": [
-            "metric"
+            "metricObj"
           ]
         },
         {
           "type": "lookup",
-          "from": "companies",
+          "from": "xData",
           "key": "id",
           "fields": [
-            "company"
+            { "signal": "xType == 'metric' ? 'metric' : 'company'"}
           ],
           "as": [
-            "company"
+            "xObj"
+          ]
+        },
+        {
+          "type": "lookup",
+          "from": "yData",
+          "key": "id",
+          "fields": [
+            { "signal": "xType == 'metric' ? 'company' : 'metric'"}
+          ],
+          "as": [
+            "yObj"
           ]
         },
         {
           "type": "formula",
           "as": "status",
           "expr": "datum.value == 'Unknown' ? 'Unknown' : 'Known'"
-        },
-        {
-          "type": "window",
-          "ops": ["row_number"],
-          "as": ["seq"]
         }
-      ],
-      "url": "http://localhost:3000/Answer+browse_answer_filter/answer_list.json?limit=0"
+      ]
     },
     {
       "name": "cross",
       "source": [
-        "companies",
-        "metrics"
+        "xData",
+        "yData"
       ],
       "transform": [
         {
           "type": "cross",
-          "filter": "datum.a.type == 'company' && datum.b.type == 'metric'"
+          "filter": "datum.a.axis == 'x' && datum.b.axis == 'y'"
         }
       ]
     },
@@ -169,7 +236,7 @@
       "transform": [
         {
           "type": "filter",
-          "expr": "indexof(['WikiRating', 'Score'], datum.metric.metric_type) == -1"
+          "expr": "indexof(['WikiRating', 'Score'], datum.metricObj.metric_type) == -1"
         }
       ]
     },
@@ -179,7 +246,7 @@
       "transform": [
         {
           "type": "filter",
-          "expr": "indexof(['WikiRating', 'Score'], datum.metric.metric_type) > -1"
+          "expr": "indexof(['WikiRating', 'Score'], datum.metricObj.metric_type) > -1"
         },
         {
           "type": "formula",
@@ -196,10 +263,10 @@
   ],
   "scales": [
     {
-      "name": "companyPosition",
+      "name": "yPosition",
       "type": "band",
       "domain": {
-        "data": "companies",
+        "data": "yData",
         "field": "seq",
         "sort": true
       },
@@ -210,10 +277,10 @@
       }
     },
     {
-      "name": "metricPosition",
+      "name": "xPosition",
       "type": "band",
       "domain": {
-        "data": "metrics",
+        "data": "xData",
         "field": "seq",
         "sort": true
       },
@@ -270,25 +337,25 @@
       "encode": {
         "update": {
           "x": {
-            "scale": "metricPosition",
-            "field": "b.seq"
-          },
-          "y": {
-            "scale": "companyPosition",
+            "scale": "xPosition",
             "field": "a.seq"
           },
+          "y": {
+            "scale": "yPosition",
+            "field": "b.seq"
+          },
           "width": {
-            "scale": "metricPosition",
+            "scale": "xPosition",
             "band": 1,
             "offset": -1
           },
           "height": {
-            "scale": "companyPosition",
+            "scale": "yPosition",
             "band": 1,
             "offset": -1
           },
           "fill": [
-            {"test": "datum.a === srcRow", "value": "#ddd"},
+            {"test": "datum.a === src || datum.b === src", "value": "#ddd"},
             {"value": "#f5f5f5"}
           ]
         }
@@ -302,20 +369,20 @@
       "encode": {
         "update": {
           "x": {
-            "scale": "metricPosition",
-            "field": "metric.seq"
+            "scale": "xPosition",
+            "field": "xObj.seq"
           },
           "y": {
-            "scale": "companyPosition",
-            "field": "company.seq"
+            "scale": "yPosition",
+            "field": "yObj.seq"
           },
           "width": {
-            "scale": "metricPosition",
+            "scale": "xPosition",
             "band": 1,
             "offset": -1
           },
           "height": {
-            "scale": "companyPosition",
+            "scale": "xPosition",
             "band": 1,
             "offset": -1
           },
@@ -328,6 +395,9 @@
           },
           "strokeWidth": {
             "value": 0
+          },
+          "tooltip": {
+            "field": "value"
           }
         },
         "hover": {
@@ -349,20 +419,20 @@
       "encode": {
         "update": {
           "x": {
-            "scale": "metricPosition",
-            "field": "metric.seq"
+            "scale": "xPosition",
+            "field": "xObj.seq"
           },
           "y": {
-            "scale": "companyPosition",
-            "field": "company.seq"
+            "scale": "yPosition",
+            "field": "yObj.seq"
           },
           "width": {
-            "scale": "metricPosition",
+            "scale": "xPosition",
             "band": 1,
             "offset": -1
           },
           "height": {
-            "scale": "companyPosition",
+            "scale": "yPosition",
             "band": 1,
             "offset": -1
           },
@@ -375,6 +445,9 @@
           },
           "strokeWidth": {
             "value": 0
+          },
+          "tooltip": {
+            "field": "value"
           }
         },
         "hover": {
@@ -391,17 +464,17 @@
       "type": "text",
       "name": "columns",
       "from": {
-        "data": "metrics"
+        "data": "xData"
       },
       "encode": {
         "update": {
           "x": {
-            "scale": "metricPosition",
+            "scale": "xPosition",
             "field": "seq",
             "band": 0.5
           },
           "y": {
-            "offset": -4
+            "offset": -6
           },
           "text": {
             "field": "name"
@@ -420,8 +493,12 @@
           },
           "fill": [
             {
-              "value": "black"
+              "signal": "xType == 'metric' ? metricColor : companyColor"
             }
+          ],
+          "fontWeight": [
+            { "test": "datum === src", "value": 800 },
+            { "value": 400 }
           ]
         }
       }
@@ -430,15 +507,15 @@
       "type": "text",
       "name": "rows",
       "from": {
-        "data": "companies"
+        "data": "yData"
       },
       "encode": {
         "update": {
           "x": {
-            "offset": -2
+            "offset": -5
           },
           "y": {
-            "scale": "companyPosition",
+            "scale": "yPosition",
             "field": "seq",
             "band": 0.5
           },
@@ -454,9 +531,12 @@
           "baseline": {
             "value": "middle"
           },
-          "fill": [
-            {"test": "datum === srcRow", "value": "steelblue"},
-            { "value": "black" }
+          "fill": {
+            "signal": "xType == 'metric' ? companyColor : metricColor"
+          },
+          "fontWeight": [
+            { "test": "datum === src", "value": 800 },
+            { "value": 400 }
           ]
         }
       }
@@ -468,13 +548,18 @@
       "orient": "bottom",
       "direction": "horizontal",
       "symbolType": "square",
-      "symbolSize": 250
+      "symbolSize": 250,
+      "columnPadding": 20
     },
     {
+      "title": "Scores:",
+      "titleFontWeight": "400",
+      "titleOrient": "left",
       "fill": "scoreColor",
       "orient": "bottom",
       "direction": "horizontal",
-      "format": "~s"
+      "format": "~s",
+      "padding": 1
     }
   ]
 }

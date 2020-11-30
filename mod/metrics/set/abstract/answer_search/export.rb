@@ -28,7 +28,7 @@ format :json do
   end
 
   view :answer_list, cache: :never do
-    answer_lookup.map { |a| a.compact_json }
+    answer_lookup.map(&:compact_json)
   end
 
   view :keyed_answer_list, cache: :never do

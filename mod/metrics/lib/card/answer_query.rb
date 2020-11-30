@@ -125,7 +125,6 @@ class Card
         "answer_id is null as calculated, checkers is not null as verified " \
         "FROM answers"
       where = "WHERE #{where}" if where.present?
-      where = ""
       "#{select} #{where} GROUP BY year, calculated, verified"
     end
 
