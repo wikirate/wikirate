@@ -1,0 +1,480 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 350,
+  "height": 180,
+  "padding": 2,
+  "config": {
+    "axis": {
+      "labelColor": "#888",
+      "titleColor": "#666"
+    }
+  },
+  "signals": [
+    {
+      "name": "cellSize",
+      "value": 20
+    },
+    {
+      "name": "rowCount",
+      "update": "length(data('companies'))"
+    },
+    {
+      "name": "width",
+      "update": "span(range('metricPosition'))"
+    },
+    {
+      "name": "height",
+      "update": "span(range('companyPosition'))"
+    },
+    {
+      "name": "srcRow", "value": {},
+      "on": [
+        {"events": "text:mousedown", "update": "datum"},
+        {"events": "window:mouseup", "update": "{}"}
+      ]
+    },
+    {
+      "name": "dest", "value": -1,
+      "on": [
+        {
+          "events": "[@rows:mousedown, window:mouseup] > window:mousemove",
+          "update": "srcRow.name && datum !== srcRow ? (0.5 + rowCount * clamp(y(), 0, height) / height) : dest"
+        },
+        {"events": "window:mouseup", "update": "-1"}
+      ]
+    }
+
+  ],
+  "description": "company-metric fiddling",
+  "data": [
+    {
+      "name": "companies",
+      "transform": [
+        {
+          "type": "collect",
+          "sort": { "field": "name" }
+        },
+        {
+          "type": "formula",
+          "expr": "'company'",
+          "as": "type"
+        },
+        {
+          "type": "window",
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "seq"
+          ]
+        },
+        {
+          "type": "formula", "as": "score",
+          "expr": "dest >= 0 && datum === srcRow ? dest : datum.seq"
+        },
+        {
+          "type": "window",
+          "sort": {
+            "field": "score"
+          },
+          "ops": ["row_number"],
+          "as": ["seq"]
+        }
+      ],
+      "url": "http://localhost:3000/Answer+browse_answer_filter/company_list.json?limit=0"
+    },
+    {
+      "name": "metrics",
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "lower(datum.name)",
+          "as": "lowername"
+        },
+        {
+          "type": "collect",
+          "sort": { "field": "lowername" }
+        },
+        {
+          "type": "window",
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "seq"
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "'metric'",
+          "as": "type"
+        }
+      ],
+      "url": "http://localhost:3000/Answer+browse_answer_filter/metric_list.json?limit=0"
+    },
+    {
+      "name": "answers",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "metrics",
+          "key": "id",
+          "fields": [
+            "metric"
+          ],
+          "as": [
+            "metric"
+          ]
+        },
+        {
+          "type": "lookup",
+          "from": "companies",
+          "key": "id",
+          "fields": [
+            "company"
+          ],
+          "as": [
+            "company"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "status",
+          "expr": "datum.value == 'Unknown' ? 'Unknown' : 'Known'"
+        },
+        {
+          "type": "window",
+          "ops": ["row_number"],
+          "as": ["seq"]
+        }
+      ],
+      "url": "http://localhost:3000/Answer+browse_answer_filter/answer_list.json?limit=0"
+    },
+    {
+      "name": "cross",
+      "source": [
+        "companies",
+        "metrics"
+      ],
+      "transform": [
+        {
+          "type": "cross",
+          "filter": "datum.a.type == 'company' && datum.b.type == 'metric'"
+        }
+      ]
+    },
+    {
+      "name": "researchedAnswers",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(['WikiRating', 'Score'], datum.metric.metric_type) == -1"
+        }
+      ]
+    },
+    {
+      "name": "calculatedAnswers",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(['WikiRating', 'Score'], datum.metric.metric_type) > -1"
+        },
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "toNumber(datum.value)"
+        },
+        {
+          "type": "formula",
+          "expr": "floor(datum.value)",
+          "as": "floor"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "companyPosition",
+      "type": "band",
+      "domain": {
+        "data": "companies",
+        "field": "seq",
+        "sort": true
+      },
+      "range": {
+        "step": {
+          "signal": "cellSize"
+        }
+      }
+    },
+    {
+      "name": "metricPosition",
+      "type": "band",
+      "domain": {
+        "data": "metrics",
+        "field": "seq",
+        "sort": true
+      },
+      "range": {
+        "step": {
+          "signal": "cellSize"
+        }
+      }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": {
+        "scheme": "greys"
+      },
+      "domain": {
+        "fields": [
+          {
+            "data": "answers",
+            "field": "status"
+          }
+        ],
+        "sort": true
+      },
+      "reverse": true
+    },
+    {
+      "name": "scoreColor",
+      "type": "quantile",
+      "domain": [
+        0,
+        10
+      ],
+      "range": [
+        "#ff0000",
+        "#ff5700",
+        "#ff7e00",
+        "#fc9b00",
+        "#f1b000",
+        "#debd00",
+        "#c2c000",
+        "#9ab700",
+        "#65a300",
+        "#008000"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "cross"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "metricPosition",
+            "field": "b.seq"
+          },
+          "y": {
+            "scale": "companyPosition",
+            "field": "a.seq"
+          },
+          "width": {
+            "scale": "metricPosition",
+            "band": 1,
+            "offset": -1
+          },
+          "height": {
+            "scale": "companyPosition",
+            "band": 1,
+            "offset": -1
+          },
+          "fill": [
+            {"test": "datum.a === srcRow", "value": "#ddd"},
+            {"value": "#f5f5f5"}
+          ]
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "researchedAnswers"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "metricPosition",
+            "field": "metric.seq"
+          },
+          "y": {
+            "scale": "companyPosition",
+            "field": "company.seq"
+          },
+          "width": {
+            "scale": "metricPosition",
+            "band": 1,
+            "offset": -1
+          },
+          "height": {
+            "scale": "companyPosition",
+            "band": 1,
+            "offset": -1
+          },
+          "fill": {
+            "scale": "color",
+            "field": "status"
+          },
+          "stroke": {
+            "value": "#fff"
+          },
+          "strokeWidth": {
+            "value": 0
+          }
+        },
+        "hover": {
+          "strokeWidth": {
+            "value": 2
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "name": "coloredScores",
+      "from": {
+        "data": "calculatedAnswers"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "metricPosition",
+            "field": "metric.seq"
+          },
+          "y": {
+            "scale": "companyPosition",
+            "field": "company.seq"
+          },
+          "width": {
+            "scale": "metricPosition",
+            "band": 1,
+            "offset": -1
+          },
+          "height": {
+            "scale": "companyPosition",
+            "band": 1,
+            "offset": -1
+          },
+          "fill": {
+            "scale": "scoreColor",
+            "field": "floor"
+          },
+          "stroke": {
+            "value": "#fff"
+          },
+          "strokeWidth": {
+            "value": 0
+          }
+        },
+        "hover": {
+          "strokeWidth": {
+            "value": 2
+          },
+          "cursor": {
+            "value": "pointer"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "columns",
+      "from": {
+        "data": "metrics"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "metricPosition",
+            "field": "seq",
+            "band": 0.5
+          },
+          "y": {
+            "offset": -4
+          },
+          "text": {
+            "field": "name"
+          },
+          "fontSize": {
+            "value": 10
+          },
+          "angle": {
+            "value": -60
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": [
+            {
+              "value": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "rows",
+      "from": {
+        "data": "companies"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "offset": -2
+          },
+          "y": {
+            "scale": "companyPosition",
+            "field": "seq",
+            "band": 0.5
+          },
+          "text": {
+            "field": "name"
+          },
+          "fontSize": {
+            "value": 10
+          },
+          "align": {
+            "value": "right"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fill": [
+            {"test": "datum === srcRow", "value": "steelblue"},
+            { "value": "black" }
+          ]
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "symbolType": "square",
+      "symbolSize": 250
+    },
+    {
+      "fill": "scoreColor",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "format": "~s"
+    }
+  ]
+}
