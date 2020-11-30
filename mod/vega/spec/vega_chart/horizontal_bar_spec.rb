@@ -1,4 +1,4 @@
-RSpec.describe Card::VegaChart::SingleMetric::HorizontalBar do
+RSpec.describe Card::VegaChart::HorizontalBar do
   let(:format) { metric.metric_answer_card.format :json }
   let(:chart_class) { metric.chart_class true }
   let(:chart_hash) { format.vega.hash }
