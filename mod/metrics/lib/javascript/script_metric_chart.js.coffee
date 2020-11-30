@@ -1,5 +1,9 @@
 # answer histograms
 
+# vega.scheme "wikiratescores", ["#ff0000", "#ff5700", "#ff7e00", "#fc9b00", "#f1b000",
+#   "#debd00", "#c2c000", "#9ab700", "#65a300", "#008000",
+#   "008800"]
+
 decko.slotReady (slot) ->
   for vis in slot.find('.vis._load-vis')
     loadVis $(vis)

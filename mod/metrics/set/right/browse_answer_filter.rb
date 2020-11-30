@@ -30,10 +30,6 @@ format do
 end
 
 format :html do
-  before :core do
-    voo.hide! :chart
-  end
-
   def details_view
     :metric_details_sidebar
   end
@@ -49,5 +45,11 @@ format :html do
   def quick_filter_list
     @quick_filter_list ||=
       Card.fetch(:metric, :browse_metric_filter).format.quick_filter_list
+  end
+end
+
+format :json do
+  def vega
+    VegaChart.new :grid, self
   end
 end
