@@ -14,6 +14,20 @@
     {
       "name": "endYear",
       "init": "yearEnds['max_year']"
+    },
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {
+          "events": "rect:mouseover",
+          "update": "datum"
+        },
+        {
+          "events": "rect:mouseout",
+          "update": "{}"
+        }
+      ]
     }
   ],
   "data": [
@@ -196,12 +210,12 @@
           "x": {
             "scale": "xscale",
             "field": "year",
-            "offset": 10
+            "offset": 8
           },
           "x2": {
             "scale": "xscale",
             "field": "year",
-            "offset": -10
+            "offset": -8
           },
           "y": {
             "scale": "yscale",
@@ -232,6 +246,34 @@
         "hover": {
           "opacity": {
             "value": 0.4
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "bottom"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "signal": "tooltip.year",
+            "band": 0.5
+          },
+          "y": {
+            "scale": "yscale",
+            "signal": "tooltip.sum_count",
+            "offset": -2
+          },
+          "text": {
+            "signal": "tooltip.sum_count"
           }
         }
       }
