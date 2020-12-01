@@ -78,7 +78,7 @@
         },
         {
           "type": "formula",
-          "expr": "{ metric_type_id: datum.metric_type_id }",
+          "expr": "{ metric_type: datum.metricType }",
           "as": "filter"
         }
       ]

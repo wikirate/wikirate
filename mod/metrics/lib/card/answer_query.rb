@@ -128,7 +128,7 @@ class Card
         group_fields << (as || field)
       end
       where = "WHERE #{where}" if where.present?
-      "SELECT #{select_fields.join ', '} FROM ANSWERS " \
+      "SELECT #{select_fields.join ', '} FROM answers " \
         "#{where} GROUP BY #{group_fields.join ', '}"
     end
 

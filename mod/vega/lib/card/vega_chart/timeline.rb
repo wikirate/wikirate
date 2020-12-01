@@ -13,7 +13,7 @@ class Card
       end
 
       def x_axis
-        super.merge offset: 8
+        super.merge offset: 9
       end
 
       def y_axis
