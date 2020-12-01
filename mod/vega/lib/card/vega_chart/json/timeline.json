@@ -1,0 +1,176 @@
+{
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "monotone",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    },
+    {
+      "name": "yearEnds",
+      "init": "data('yearEnds')[0]"
+    },    {
+      "name": "startYear",
+      "init": "yearEnds['min_year'] - 1 "
+    },
+    {
+      "name": "endYear",
+      "init": "yearEnds['max_year']"
+    }
+  ],
+  "data": [
+    {
+      "name": "years",
+      "transform": [
+
+        {
+          "type": "formula",
+          "expr": "datum.calculated == 1 ? 2 : (1 - datum.verified)",
+          "as": "groupNum"
+        }
+      ]
+    },
+    {
+      "name" : "yearEnds",
+      "source": "years",
+      "transform": [
+        {
+          "type": "aggregate",
+          "ops":["min", "max"],
+          "fields":["year", "year"]}
+      ]
+    },
+    {
+      "name": "counts",
+      "source": "years",
+      "transform" : [
+        {
+          "type": "impute",
+          "groupby": ["groupNum"],
+          "key": "year",
+          "keyvals": {"signal": "sequence(startYear, endYear)"},
+          "field": "count",
+          "method": "value",
+          "value": 0
+        },
+        {
+          "type": "collect",
+          "sort": { "field": ["year", "groupNum"] }
+        },
+        {
+          "type": "stack",
+          "groupby": ["year"],
+          "sort": {"field": ["year", "groupNum"]},
+          "field": "count"
+        },
+        {
+          "type": "formula",
+          "expr": "{ 0 : 'Verified', 1: 'Researched', 2: 'Calculated' }[datum.groupNum]",
+          "as": "group"
+        }
+      ]
+    },
+    {
+      "name": "totals",
+      "source": "counts",
+      "transform": [
+        { "type": "filter", "expr": "datum.groupNum==2"},
+        { "type": "formula", "expr": "{ year: datum.year }", "as": "filter"}
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "point",
+      "range": "width",
+      "domain": {"data": "counts", "field": "year", "sort": true}
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {"data": "counts", "fields": ["y1"] }
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": { "scheme": "teals" },
+      "domain": ["Calculated", "Researched", "Verified"]
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "counts",
+          "groupby": ["group"]
+        }
+      },
+      "marks": [
+        {
+          "type": "area",
+          "from": {"data": "series"},
+          "encode": {
+            "enter": {
+              "x": {"scale": "xscale", "field": "year"},
+              "y": {"scale": "yscale", "field": "y0"},
+              "y2": {"scale": "yscale", "field": "y1"},
+              "fill": {"scale": "color", "field": "group"}
+            },
+            "update": {
+              "interpolate": {"signal": "interpolate"},
+              "fillOpacity": {"value": 1}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "rect",
+      "from": {"data": "totals"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale", "field": "year", "offset": 20},
+          "x2": {"scale": "xscale", "field": "year", "offset": -20},
+
+          "y": {"scale": "yscale", "field": "y1"},
+          "y2": {"scale": "yscale", "value": 0},
+          "fill": {"scale": "color", "value": "Verified"},
+          "stroke": { "value": "#fff"},
+          "strokeWidth": { "value": 2 }
+
+        },
+        "update": {
+          "interpolate": {"signal": "interpolate"},
+          "opacity": {"value": 0}
+        },
+        "hover": {
+          "opacity": { "value": 1 }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "type": "symbol"
+    }
+  ]
+}
