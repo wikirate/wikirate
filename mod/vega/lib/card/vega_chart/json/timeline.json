@@ -2,21 +2,7 @@
   "signals": [
     {
       "name": "interpolate",
-      "value": "monotone",
-      "bind": {
-        "input": "select",
-        "options": [
-          "basis",
-          "cardinal",
-          "catmull-rom",
-          "linear",
-          "monotone",
-          "natural",
-          "step",
-          "step-after",
-          "step-before"
-        ]
-      }
+      "value": "monotone"
     },
     {
       "name": "yearEnds",
@@ -32,15 +18,12 @@
   ],
   "data": [
     {
-      "name": "years",
-      "transform": [
-
-        {
-          "type": "formula",
-          "expr": "datum.calculated == 1 ? 2 : (1 - datum.verified)",
-          "as": "groupNum"
-        }
-      ]
+      "name": "years"
+    },
+    {
+      "name": "metricTypes",
+      "url": "/Metric_Type+*type.json",
+      "format": { "property": "items" }
     },
     {
       "name" : "yearEnds",
@@ -58,27 +41,45 @@
       "transform" : [
         {
           "type": "impute",
-          "groupby": ["groupNum"],
+          "groupby": [
+            "metric_type_id"
+          ],
           "key": "year",
-          "keyvals": {"signal": "sequence(startYear, endYear)"},
+          "keyvals": {
+            "signal": "sequence(startYear, endYear)"
+          },
           "field": "count",
           "method": "value",
           "value": 0
         },
         {
           "type": "collect",
-          "sort": { "field": ["year", "groupNum"] }
+          "sort": {
+            "field": [
+              "year",
+              "metric_type_id"
+            ]
+          }
         },
         {
           "type": "stack",
-          "groupby": ["year"],
-          "sort": {"field": ["year", "groupNum"]},
+          "groupby": [
+            "year"
+          ],
           "field": "count"
         },
         {
+          "type": "lookup",
+          "from": "metricTypes",
+          "key": "id",
+          "fields": ["metric_type_id"],
+          "as": ["metricType"],
+          "values": ["name"]
+        },
+        {
           "type": "formula",
-          "expr": "{ 0 : 'Verified', 1: 'Researched', 2: 'Calculated' }[datum.groupNum]",
-          "as": "group"
+          "expr": "{ metric_type_id: datum.metric_type_id }",
+          "as": "filter"
         }
       ]
     },
@@ -86,8 +87,17 @@
       "name": "totals",
       "source": "counts",
       "transform": [
-        { "type": "filter", "expr": "datum.groupNum==2"},
-        { "type": "formula", "expr": "{ year: datum.year }", "as": "filter"}
+        {
+          "type": "aggregate",
+          "groupby": ["year"],
+          "fields": ["count"],
+          "ops": ["sum"]
+        },
+        {
+          "type": "formula",
+          "expr": "{ year: datum.year }",
+          "as": "filter"
+        }
       ]
     }
   ],
@@ -96,7 +106,11 @@
       "name": "xscale",
       "type": "point",
       "range": "width",
-      "domain": {"data": "counts", "field": "year", "sort": true}
+      "domain": {
+        "data": "counts",
+        "field": "year",
+        "sort": true
+      }
     },
     {
       "name": "yscale",
@@ -104,13 +118,23 @@
       "range": "height",
       "nice": true,
       "zero": true,
-      "domain": {"data": "counts", "fields": ["y1"] }
+      "domain": {
+        "data": "counts",
+        "fields": [
+          "y1"
+        ]
+      }
     },
     {
       "name": "color",
       "type": "ordinal",
-      "range": { "scheme": "teals" },
-      "domain": ["Calculated", "Researched", "Verified"]
+      "range": {
+        "scheme": "dark2"
+      },
+      "domain": {
+        "data": "counts",
+        "field": "metricType"
+      }
     }
   ],
   "marks": [
@@ -120,23 +144,43 @@
         "facet": {
           "name": "series",
           "data": "counts",
-          "groupby": ["group"]
+          "groupby": [
+            "metricType"
+          ]
         }
       },
       "marks": [
         {
           "type": "area",
-          "from": {"data": "series"},
+          "from": {
+            "data": "series"
+          },
           "encode": {
             "enter": {
-              "x": {"scale": "xscale", "field": "year"},
-              "y": {"scale": "yscale", "field": "y0"},
-              "y2": {"scale": "yscale", "field": "y1"},
-              "fill": {"scale": "color", "field": "group"}
+              "x": {
+                "scale": "xscale",
+                "field": "year"
+              },
+              "y": {
+                "scale": "yscale",
+                "field": "y0"
+              },
+              "y2": {
+                "scale": "yscale",
+                "field": "y1"
+              },
+              "fill": {
+                "scale": "color",
+                "field": "metricType"
+              }
             },
             "update": {
-              "interpolate": {"signal": "interpolate"},
-              "fillOpacity": {"value": 1}
+              "interpolate": {
+                "signal": "interpolate"
+              },
+              "fillOpacity": {
+                "value": 1
+              }
             }
           }
         }
@@ -144,25 +188,51 @@
     },
     {
       "type": "rect",
-      "from": {"data": "totals"},
+      "from": {
+        "data": "totals"
+      },
       "encode": {
         "enter": {
-          "x": {"scale": "xscale", "field": "year", "offset": 20},
-          "x2": {"scale": "xscale", "field": "year", "offset": -20},
-
-          "y": {"scale": "yscale", "field": "y1"},
-          "y2": {"scale": "yscale", "value": 0},
-          "fill": {"scale": "color", "value": "Verified"},
-          "stroke": { "value": "#fff"},
-          "strokeWidth": { "value": 2 }
-
+          "x": {
+            "scale": "xscale",
+            "field": "year",
+            "offset": 10
+          },
+          "x2": {
+            "scale": "xscale",
+            "field": "year",
+            "offset": -10
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "sum_count"
+          },
+          "y2": {
+            "scale": "yscale",
+            "value": 0
+          },
+          "fill": {
+            "value": "#666"
+          },
+          "stroke": {
+            "value": "#333"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
         },
         "update": {
-          "interpolate": {"signal": "interpolate"},
-          "opacity": {"value": 0}
+          "interpolate": {
+            "signal": "interpolate"
+          },
+          "opacity": {
+            "value": 0
+          }
         },
         "hover": {
-          "opacity": { "value": 1 }
+          "opacity": {
+            "value": 0.4
+          }
         }
       }
     }

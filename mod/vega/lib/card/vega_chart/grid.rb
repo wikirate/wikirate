@@ -4,7 +4,7 @@ class Card
     class Grid < VegaChart
 
       def initialize format, opts
-        @invert = opts[:invert] = true
+        @invert = opts[:invert]
         super
       end
 
@@ -23,6 +23,7 @@ class Card
 
       private
 
+      # switch x and y axes
       def invert hash
         return unless @invert
         hash[:signals].first[:value] = "companies"
