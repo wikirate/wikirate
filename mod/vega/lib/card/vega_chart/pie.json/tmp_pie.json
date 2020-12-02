@@ -1,35 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A basic pie chart example.",
-  "width": 700,
+  "width": 500,
   "height": 200,
   "autosize": "none",
 
   "signals": [
-    {
-      "name": "startAngle", "value": 0,
-      "bind": {"input": "range", "min": 0, "max": 6.29, "step": 0.01}
-    },
-    {
-      "name": "endAngle", "value": 6.29,
-      "bind": {"input": "range", "min": 0, "max": 6.29, "step": 0.01}
-    },
-    {
-      "name": "padAngle", "value": 0,
-      "bind": {"input": "range", "min": 0, "max": 0.1}
-    },
-    {
-      "name": "innerRadius", "value": 0,
-      "bind": {"input": "range", "min": 0, "max": 90, "step": 1}
-    },
-    {
-      "name": "cornerRadius", "value": 0,
-      "bind": {"input": "range", "min": 0, "max": 10, "step": 0.5}
-    },
-    {
-      "name": "sort", "value": false,
-      "bind": {"input": "checkbox"}
-    },
     {
       "name": "tooltip",
       "value": {
@@ -79,10 +55,7 @@
         },
         {
           "type": "pie",
-          "field": "count",
-          "startAngle": {"signal": "startAngle"},
-          "endAngle": {"signal": "endAngle"},
-          "sort": {"signal": "sort"}
+          "field": "count"
         }
 
       ]
@@ -105,17 +78,17 @@
       "encode": {
         "enter": {
           "fill": {"scale": "color", "field": "metricType"},
-          "x": {"signal": "100" },
-          "y": {"signal": "100" },
+          "x": {"value": 100 },
+          "y": {"value": 100 },
           "tooltip": {"field": "count" }
         },
         "update": {
           "startAngle": {"field": "startAngle"},
           "endAngle": {"field": "endAngle"},
-          "padAngle": {"signal": "padAngle"},
-          "innerRadius": {"signal": "innerRadius"},
-          "outerRadius": {"signal": "100"},
-          "cornerRadius": {"signal": "cornerRadius"}
+          "padAngle": {"value": 0.02 },
+          "innerRadius": {"value": 3 },
+          "outerRadius": {"value": 100 },
+          "cornerRadius": {"value": 3 }
         }
       }
     }
