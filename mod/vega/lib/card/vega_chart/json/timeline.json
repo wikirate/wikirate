@@ -28,6 +28,21 @@
           "update": "{}"
         }
       ]
+    },
+    {
+      "name": "areatip",
+      "value": {
+      },
+      "on": [
+        {
+          "events": "area:mouseover",
+          "update": "datum"
+        },
+        {
+          "events": "area:mouseout",
+          "update": "{}"
+        }
+      ]
     }
   ],
   "data": [
@@ -282,7 +297,25 @@
   "legends": [
     {
       "fill": "color",
-      "type": "symbol"
+      "type": "symbol",
+      "encode": {
+        "labels": {
+          "update": {
+            "fontWeight": [
+              { "test": "areatip.metricType == datum.label", "value": 900 },
+              { "value": 400 }
+            ]
+          }
+        },
+        "symbols": {
+          "update": {
+            "fillOpacity": [
+              { "test": "areatip.metricType == datum.label", "value": 0.9 },
+              { "value": 1 }
+            ]
+          }
+        }
+      }
     }
   ]
 }

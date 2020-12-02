@@ -13,7 +13,15 @@ class Card
       end
 
       def x_axis
-        super.merge offset: 10
+        super.tap do |h|
+          h[:offset] = 10
+          h[:encode][:labels][:update].merge!(
+            fontWeight: [{ test: "datum.value == tooltip.year", value: 900 },
+                         { "value": 400 }],
+            fill: [{ test: "datum.value == tooltip.year", value:"#000" },
+                   { value: "#888" }]
+          )
+        end
       end
 
       def y_axis
