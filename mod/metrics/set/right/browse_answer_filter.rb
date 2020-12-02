@@ -11,7 +11,7 @@ end
 
 format do
   def default_filter_hash
-    { status: :exists, year: :latest, metric_name: "", company_name: "" }
+    { status: :exists, metric_name: "", company_name: "" }
   end
 
   def record?
@@ -50,6 +50,16 @@ end
 
 format :json do
   def vega
-    VegaChart.new :grid, self
+    VegaChart.new chart_type, self, layout: { width: 700 }
+  end
+
+  def chart_type
+    if (type = params[:chart])
+      type.to_sym
+    elsif filter_hash[:year]
+      :pie
+    else
+      :timeline
+    end
   end
 end

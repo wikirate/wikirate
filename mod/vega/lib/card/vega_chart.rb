@@ -55,11 +55,12 @@ class Card
     end
 
     def multiyear?
-      !format.filter_hash["year"].present?
+      !format.filter_hash[:year].present?
     end
 
     def data_values view
-      { values: format.render(view) }
+      # { values: format.render(view) }
+      { url: format.vega_path(view) }
     end
 
     def with_values map

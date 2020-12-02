@@ -8,6 +8,10 @@ format do
     @count_by_status ||= query.count_by_status
   end
 
+  def answer_lookup
+    query.answer_lookup
+  end
+
   def stati_with_counts skip_total=false
     LABELS.keys.reject do |status|
       (skip_total && status == :total) || !count_by_status.key?(status)
@@ -28,12 +32,12 @@ format do
     count_by_status.key? :total
   end
 
-  def operand cat
-    case cat
-    when :known then ""
-    when :total then "="
-    else             "+"
-    end
+  def company_count
+    @company_count ||= answer_lookup.distinct.reorder(nil).select(:company_id).count
+  end
+
+  def metric_count
+    @metric_count ||= answer_lookup.distinct.reorder(nil).select(:metric_id).count
   end
 end
 
@@ -47,5 +51,12 @@ format :html do
         data: { filter: { status: status } } }
     end
     progress_bar(*sections)
+  end
+
+  def answer_count_badge count, codename
+    simple_label = codename.cardname.vary :plural
+    label = responsive_count_badge_label icon_tag: mapped_icon_tag(codename),
+                                         simple_label: simple_label
+    labeled_badge count, label, color: "#{codename.cardname.downcase} badge-secondary"
   end
 end
