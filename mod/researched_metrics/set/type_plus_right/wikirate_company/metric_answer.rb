@@ -37,7 +37,7 @@ format do
   end
 
   def default_filter_hash
-    { status: :exists, year: :latest, metric_name: "" }
+    { status: :exists, metric_name: "" }
   end
 end
 
