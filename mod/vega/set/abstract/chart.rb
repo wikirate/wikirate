@@ -44,4 +44,8 @@ format :json do
     # puts ve
     vega.render
   end
+
+  def vega_path view
+    path view: view, format: :json, limit: 0, filter: filter_hash
+  end
 end
