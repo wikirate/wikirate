@@ -47,10 +47,6 @@ format :json do
     AnswerQuery.new(filter_hash).year_counts metric_type_id: false
   end
 
-  def answer_lookup
-    query.answer_lookup
-  end
-
   def answer_array hash
     hash[:answers] = hash[:answers].each_with_object([]) do |(key, val), array|
       array << val.merge(id: key)

@@ -30,7 +30,10 @@
       "transform": [
         {
           "type":"aggregate",
-          "groupby": ["metric_type_id"]
+          "groupby": ["metric_type_id"],
+          "ops": ["sum"],
+          "fields": ["count"],
+          "as": ["count"]
         },
         {
           "type": "lookup",
@@ -49,8 +52,12 @@
         {
           "type": "pie",
           "field": "count"
+        },
+        {
+          "type": "formula",
+          "expr": "{ metric_type: datum.metricType }",
+          "as": "filter"
         }
-
       ]
     }
   ],
@@ -81,7 +88,15 @@
           "padAngle": {"value": 0.02 },
           "innerRadius": {"value": 3 },
           "outerRadius": {"value": 100 },
-          "cornerRadius": {"value": 3 }
+          "cornerRadius": {"value": 3 },
+          "opacity": {
+            "value": 1
+          }
+        },
+        "hover" : {
+          "opacity": {
+            "value": 0.8
+          }
         }
       }
     }
@@ -103,7 +118,7 @@
         "symbols": {
           "update": {
             "fillOpacity": [
-              { "test": "tooltip.metricType == datum.label", "value": 0.9 },
+              { "test": "tooltip.metricType == datum.label", "value": 0.8 },
               { "value": 1 }
             ]
           }
