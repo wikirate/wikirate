@@ -50,7 +50,11 @@ end
 
 format :json do
   def vega
-    chart = filter_hash[:year] ? :grid : :timeline
+    chart = filter_hash[:year] ? :pie : :timeline
     VegaChart.new chart, self, layout: { width: 700 }
+  end
+
+  def chart_type
+    if
   end
 end

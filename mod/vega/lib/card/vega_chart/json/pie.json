@@ -1,10 +1,4 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "A basic pie chart example.",
-  "width": 500,
-  "height": 200,
-  "autosize": "none",
-
   "signals": [
     {
       "name": "tooltip",
@@ -26,14 +20,13 @@
   "data": [
     {
       "name": "metricTypes",
-      "url": "http://localhost:3000/Metric_Type+*type.json",
+      "url": "/Metric_Type+*type.json",
       "format": {
         "property": "items"
       }
     },
     {
       "name": "counts",
-      "url": "http://localhost:3000/Answer+browse_answer_filter.json?view=year_list&year=1977",
       "transform": [
         {
           "type":"aggregate",
