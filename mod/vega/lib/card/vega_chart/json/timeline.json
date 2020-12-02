@@ -158,7 +158,7 @@
       "name": "color",
       "type": "ordinal",
       "range": {
-        "scheme": "dark2"
+        "scheme": "rainbow"
       },
       "domain": {
         "data": "counts",
@@ -209,6 +209,11 @@
               },
               "fillOpacity": {
                 "value": 1
+              }
+            },
+            "hover": {
+              "fillOpacity": {
+                "value": 0.9
               }
             }
           }
