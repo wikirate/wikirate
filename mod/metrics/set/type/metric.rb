@@ -77,7 +77,7 @@ def researchable?
 end
 
 def designer_assessed?
-  research_policy.casecmp("designer assessed").zero?
+  research_policy&.casecmp("designer assessed")&.zero?
 end
 
 # note: can return True for anonymous user if answer is generally researchable

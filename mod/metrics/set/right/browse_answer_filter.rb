@@ -11,7 +11,7 @@ end
 
 format do
   def default_filter_hash
-    { status: :exists, year: :latest, metric_name: "", company_name: "" }
+    { status: :exists, metric_name: "", company_name: "" }
   end
 
   def record?
@@ -50,6 +50,11 @@ end
 
 format :json do
   def vega
-    VegaChart.new :grid, self
+    chart = filter_hash[:year] ? :pie : :timeline
+    VegaChart.new chart, self, layout: { width: 700 }
+  end
+
+  def chart_type
+    if
   end
 end
