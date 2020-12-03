@@ -62,7 +62,7 @@ format :json do
   end
 
   def map_unique *fields
-    answer_lookup.distinct.reorder(nil).pluck(*fields).map do |result|
+    answer_query.distinct.pluck(*fields).map do |result|
       yield result
     end
   end

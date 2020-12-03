@@ -4,12 +4,10 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
            total: "Total" }.freeze
 
 format do
+  delegate :answer_query, :answer_lookup, to: :query
+
   def count_by_status
     @count_by_status ||= query.count_by_status
-  end
-
-  def answer_lookup
-    query.answer_lookup
   end
 
   def stati_with_counts skip_total=false
@@ -45,7 +43,7 @@ format do
   end
 
   def count_distinct field
-    answer_lookup.distinct.reorder(nil).select(field).count
+    answer_query.distinct.select(field).count
   end
 
   def record?
