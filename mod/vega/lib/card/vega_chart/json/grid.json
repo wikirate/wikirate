@@ -285,7 +285,7 @@
       "name": "color",
       "type": "ordinal",
       "range": {
-        "scheme": "greys"
+        "scheme": "teals"
       },
       "domain": {
         "fields": [

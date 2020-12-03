@@ -14,10 +14,6 @@ format do
     { status: :exists, metric_name: "", company_name: "" }
   end
 
-  def record?
-    false # TODO: detect records
-  end
-
   def filter_keys
     %i[status year metric_name company_name company_group
        wikirate_topic value updated updater check calculated
@@ -50,16 +46,27 @@ end
 
 format :json do
   def vega
-    VegaChart.new chart_type, self, layout: { width: 700 }
+    type = chart_type
+    options = try("#{type}_options") || {}
+    options[:layout] ||= { width: 700 }
+    VegaChart.new chart_type, self, options
   end
 
   def chart_type
     if (type = params[:chart])
       type.to_sym
     elsif filter_hash[:year]
-      :pie
+      single_year_chart_type
     else
       :timeline
     end
+  end
+
+  def grid_options
+    (40 - metric_count).abs > (40 - company_count).abs ? { invert: true } : {}
+  end
+
+  def single_year_chart_type
+    metric_count > 70 || company_count > 70 ? :pie : :grid
   end
 end

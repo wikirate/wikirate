@@ -1,10 +1,16 @@
 - if total_results.positive?
   .answer-search-progress.py-2
     = render_progress_bar
-  .filter-result-badges
-    = answer_count_badge total_results, :metric_answer
-    = answer_count_badge company_count, :wikirate_company
-    = answer_count_badge metric_count, :metric
+  .filter-result-header.d-flex.justify-content-between
+    .filter-result-badges
+      = answer_count_badge total_results, :metric_answer
+      = answer_count_badge metric_count, :metric
+      = answer_count_badge company_count, :wikirate_company
+      = answer_count_badge year_count, :year
+    .filter-result-menu
+      %a._filter-tune
+        = icon_tag :tune
+
 - if voo.show? :chart
   .answer-search-chart.my-2.text-center
     = _render_chart

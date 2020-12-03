@@ -33,11 +33,23 @@ format do
   end
 
   def company_count
-    @company_count ||= answer_lookup.distinct.reorder(nil).select(:company_id).count
+    @company_count ||= count_distinct :company_id
   end
 
   def metric_count
-    @metric_count ||= answer_lookup.distinct.reorder(nil).select(:metric_id).count
+    @metric_count ||= count_distinct :metric_id
+  end
+
+  def year_count
+    @year_count ||= count_distinct :year
+  end
+
+  def count_distinct field
+    answer_lookup.distinct.reorder(nil).select(field).count
+  end
+
+  def record?
+    false # TODO: detect records (single metric single company)
   end
 end
 
