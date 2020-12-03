@@ -42,10 +42,6 @@ format do
 end
 
 format :html do
-  before :core do
-    voo.hide! :chart
-  end
-
   def cell_views
     [:metric_thumbnail_with_bookmark, :concise]
   end

@@ -8,14 +8,12 @@
       = answer_count_badge company_count, :wikirate_company
       = answer_count_badge year_count, :year
     .filter-result-menu
-      %a._filter-tune
+      %a._filter-bindings.filter-bindings
         = icon_tag :tune
 
 - if voo.show? :chart
   .answer-search-chart.my-2.text-center
     = _render_chart
-    // .col-12.col-xl-3.pt-xl-4.answer-stats
-    //   = render_stats
 - if total_results.positive?
   .card-notice
   .details-table
