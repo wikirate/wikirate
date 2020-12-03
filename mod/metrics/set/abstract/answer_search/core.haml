@@ -1,13 +1,22 @@
-%h5
-  = labeled_badge total_results, "Filtered Answers", color: "answer badge-secondary"
+- if total_results.positive?
+  .answer-search-progress.py-2
+    = render_progress_bar
+  .filter-result-header.d-flex.justify-content-between
+    .filter-result-badges
+      = answer_count_badge total_results, :metric_answer
+      = answer_count_badge metric_count, :metric
+      = answer_count_badge company_count, :wikirate_company
+      = answer_count_badge year_count, :year
+    .filter-result-menu
+      %a._filter-tune
+        = icon_tag :tune
+
 - if voo.show? :chart
-  .answer-search-chart.text-center
+  .answer-search-chart.my-2.text-center
     = _render_chart
     // .col-12.col-xl-3.pt-xl-4.answer-stats
     //   = render_stats
 - if total_results.positive?
-  .answer-search-progress.py-2.mb-3
-    = render_progress_bar
   .card-notice
   .details-table
     = render_table home_view: :table

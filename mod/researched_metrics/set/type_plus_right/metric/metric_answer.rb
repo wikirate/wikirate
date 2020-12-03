@@ -43,7 +43,7 @@ format do
   end
 
   def default_filter_hash
-    { year: :latest, status: :exists, company_name: "" }
+    { status: :exists, company_name: "" }
   end
 end
 

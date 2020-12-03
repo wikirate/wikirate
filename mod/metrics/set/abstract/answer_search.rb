@@ -21,7 +21,6 @@ def run_query_returning query, return_type
   end
 end
 
-# override
 def query paging={}
   AnswerQuery.new({}, {}, paging)
 end
