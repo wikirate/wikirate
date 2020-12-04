@@ -35,7 +35,7 @@ format do
   end
 
   def metric_count
-    @metric_count ||= count_distinct :metric_id
+    @metric_count ||= single_metric? ? 1 : count_distinct(:metric_id)
   end
 
   def year_count

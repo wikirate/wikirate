@@ -18,14 +18,6 @@
         ]
       }
     },
-    { "name": "exponent",
-      "value": 1,
-      "bind": {
-        "input": "range",
-        "min": 0.1,
-        "max": 1
-      }
-    },
     {
       "name": "yearEnds",
       "init": "data('yearEnds')[0]"
@@ -36,20 +28,6 @@
     {
       "name": "endYear",
       "init": "yearEnds['max_year']"
-    },
-    {
-      "name": "tooltip",
-      "value": {},
-      "on": [
-        {
-          "events": "rect:mouseover",
-          "update": "datum"
-        },
-        {
-          "events": "rect:mouseout",
-          "update": "{}"
-        }
-      ]
     },
     {
       "name": "areatip",

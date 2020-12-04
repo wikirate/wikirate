@@ -3,6 +3,8 @@ class Card
     # Timeline of answer values
     class Timeline < VegaChart
       include Helper::Axes
+      include Helper::CountTips
+      include Helper::Exponent
 
       def hash
         with_values(year_list: 0) { super }
@@ -30,3 +32,4 @@ class Card
     end
   end
 end
+

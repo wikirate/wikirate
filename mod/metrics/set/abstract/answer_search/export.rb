@@ -47,31 +47,6 @@ format :json do
     AnswerQuery.new(filter_hash).year_counts metric_type_id: false
   end
 
-  def vega
-    type = chart_type
-    options = try("#{type}_options") || {}
-    options[:layout] ||= { width: 700 }
-    VegaChart.new chart_type, self, options
-  end
-
-  def chart_type
-    if (type = params[:chart])
-      type.to_sym
-    elsif filter_hash[:year]
-      single_year_chart_type
-    else
-      :timeline
-    end
-  end
-
-  def grid_options
-    (40 - metric_count).abs > (40 - company_count).abs ? { invert: true } : {}
-  end
-
-  def single_year_chart_type
-    metric_count > 75 || company_count > 75 ? :pie : :grid
-  end
-
   def answer_array hash
     hash[:answers] = hash[:answers].each_with_object([]) do |(key, val), array|
       array << val.merge(id: key)
