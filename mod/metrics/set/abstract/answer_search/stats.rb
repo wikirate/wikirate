@@ -4,6 +4,8 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
            total: "Total" }.freeze
 
 format do
+  delegate :answer_query, :answer_lookup, to: :query
+
   def count_by_status
     @count_by_status ||= query.count_by_status
   end
@@ -28,12 +30,24 @@ format do
     count_by_status.key? :total
   end
 
-  def operand cat
-    case cat
-    when :known then ""
-    when :total then "="
-    else             "+"
-    end
+  def company_count
+    @company_count ||= count_distinct :company_id
+  end
+
+  def metric_count
+    @metric_count ||= single_metric? ? 1 : count_distinct(:metric_id)
+  end
+
+  def year_count
+    @year_count ||= count_distinct :year
+  end
+
+  def count_distinct field
+    answer_query.distinct.select(field).count
+  end
+
+  def record?
+    false # TODO: detect records (single metric single company)
   end
 end
 
@@ -47,5 +61,12 @@ format :html do
         data: { filter: { status: status } } }
     end
     progress_bar(*sections)
+  end
+
+  def answer_count_badge count, codename
+    simple_label = codename.cardname.vary :plural
+    label = responsive_count_badge_label icon_tag: mapped_icon_tag(codename),
+                                         simple_label: simple_label
+    labeled_badge count, label, color: "#{codename.cardname.downcase} badge-secondary"
   end
 end

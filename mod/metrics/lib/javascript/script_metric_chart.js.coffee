@@ -45,3 +45,9 @@ updateFilter = (el, filterVals) ->
 
 updateDetails = (detailsAnswer) ->
   $("[data-details-mark=\"#{detailsAnswer}\"]").trigger "click"
+
+
+$(document).ready ->
+  $('body').on 'click', '._filter-bindings', ->
+    vb = $('.vega-bindings')
+    if vb.is(":visible") then vb.hide() else vb.show()

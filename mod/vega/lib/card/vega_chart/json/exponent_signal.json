@@ -1,0 +1,9 @@
+{
+  "name": "exponent",
+  "value": 1,
+  "bind": {
+    "input": "range",
+    "min": 0.1,
+    "max": 1
+  }
+}
