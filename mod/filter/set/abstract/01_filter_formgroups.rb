@@ -16,7 +16,7 @@ format :html do
   end
 
   view :filter_year_formgroup, cache: :never do
-    select_filter :year, "most recent"
+    select_filter :year
   end
 
   view :filter_wikirate_topic_formgroup, cache: :never do

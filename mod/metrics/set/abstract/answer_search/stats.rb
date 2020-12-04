@@ -64,7 +64,7 @@ format :html do
   end
 
   def answer_count_badge count, codename
-    simple_label = codename.cardname.vary :plural
+    simple_label = codename.cardname.pluralize count
     label = responsive_count_badge_label icon_tag: mapped_icon_tag(codename),
                                          simple_label: simple_label
     labeled_badge count, label, color: "#{codename.cardname.downcase} badge-secondary"

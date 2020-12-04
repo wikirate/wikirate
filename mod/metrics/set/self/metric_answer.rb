@@ -53,3 +53,9 @@ format :html do
     end
   end
 end
+
+format :json do
+  def default_vega_options
+    { layout: { width: 700 } }
+  end
+end

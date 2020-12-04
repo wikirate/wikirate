@@ -643,3 +643,12 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     color: $gray-600;
   }
 }
+
+.with-bindings {
+  .vega-bindings {
+    display: block;
+  }
+  canvas {
+    max-width: 80%;
+  }
+}

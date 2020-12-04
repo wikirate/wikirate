@@ -17,9 +17,12 @@ end
 format :json do
   def vega
     type = chart_type
-    options = try("#{type}_options") || {}
-    options[:layout] ||= { width: 700 }
+    options = default_vega_options.merge(try("#{type}_options") || {})
     VegaChart.new chart_type, self, options
+  end
+
+  def default_vega_options
+    {}
   end
 
   def chart_type
