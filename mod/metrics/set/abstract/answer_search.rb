@@ -26,6 +26,12 @@ def query paging={}
 end
 
 format do
+  def filter_hash_from_params
+    super.tap do |h|
+      normalize_filter_hash h
+    end
+  end
+
   def search_with_params
     card.search query: query
   end
@@ -45,6 +51,13 @@ format do
 
   def card_content_limit
     nil
+  end
+
+  def normalize_filter_hash hash
+    %i[metric company].each do |type|
+      next unless (id = hash.delete :"#{type}_id")&.present?
+      hash[:"#{type}_name"] = "=#{id.to_i.cardname}"
+    end
   end
 end
 

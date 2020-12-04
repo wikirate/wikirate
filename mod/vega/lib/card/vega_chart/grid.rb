@@ -2,7 +2,6 @@ class Card
   class VegaChart
     # Metric/Company Grid of answer values
     class Grid < VegaChart
-
       def initialize format, opts
         @invert = opts[:invert]
         super

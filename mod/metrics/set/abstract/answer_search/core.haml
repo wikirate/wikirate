@@ -8,7 +8,10 @@
       = answer_count_badge company_count, :wikirate_company
       = answer_count_badge year_count, :year
     .filter-result-menu
-      %a._filter-bindings.filter-bindings
+      - unless card.codename == :metric_answer
+        = link_to_card :metric_answer, icon_tag(:dashboard),
+                       path: { filter: query_hash }, title: "Answer Dashboard"
+      %a._filter-bindings.known-card{ title: "Chart Bindings" }
         = icon_tag :tune
 
 - if voo.show? :chart

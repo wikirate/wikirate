@@ -28,7 +28,8 @@ format :html do
   end
 
   def responsive_count_badge_label icon_tag: nil, simple_label: nil
-    return unless (icon_tag ||= count_badge_icon)
+    icon_tag ||= count_badge_icon
+    return unless icon_tag
 
     simple_label ||= simple_count_badge_label
     haml :responsive_count_badge_label, label: simple_label, icon_tag: icon_tag

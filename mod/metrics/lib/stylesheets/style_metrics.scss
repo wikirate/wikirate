@@ -619,9 +619,17 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 
-.filter-bindings i {
-  font-size: 2em;
-  cursor: pointer;
+.filter-result-menu {
+  a {
+    color: $gray-600 !important
+  }
+  a:hover {
+    color: $primary !important;
+  }
+  i {
+    font-size: 2em;
+    cursor: pointer;
+  }
 }
 
 .vega-bindings {

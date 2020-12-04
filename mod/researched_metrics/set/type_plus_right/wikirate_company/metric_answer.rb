@@ -7,7 +7,7 @@ include_set Abstract::CachedCount
 include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
-# recount number of answers for a given metric when a Metric Value card is
+# recount number of answers for a given metric when an answer card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: [:create, :delete] do |changed_card|
   changed_card.company_card&.fetch :metric_answer
