@@ -617,3 +617,28 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     font-size: 1.2em;
   }
 }
+
+
+.filter-result-menu {
+  a {
+    color: $gray-600 !important
+  }
+  a:hover {
+    color: $primary !important;
+  }
+  i {
+    font-size: 2em;
+    cursor: pointer;
+  }
+}
+
+.vega-bindings {
+  float: right;
+  width: 20%;
+  text-align: right;
+  display: none;
+  .vega-bind-name {
+    display: block;
+    color: $gray-600;
+  }
+}

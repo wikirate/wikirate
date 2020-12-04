@@ -44,11 +44,7 @@ format :json do
   end
 
   view :year_list, cache: :never do
-    AnswerQuery.new(filter_hash).year_counts
-  end
-
-  def answer_lookup
-    query.answer_lookup
+    AnswerQuery.new(filter_hash).year_counts metric_type_id: false
   end
 
   def answer_array hash
@@ -66,7 +62,7 @@ format :json do
   end
 
   def map_unique *fields
-    answer_lookup.distinct.reorder(nil).pluck(*fields).map do |result|
+    answer_query.distinct.pluck(*fields).map do |result|
       yield result
     end
   end
