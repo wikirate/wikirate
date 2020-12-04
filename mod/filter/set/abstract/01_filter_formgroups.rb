@@ -74,9 +74,7 @@ format :html do
   def status_options
     { "Researched - All" => "exists",
       "Researched - Known" => "known",
-      "Researched - Unknown" => "unknown",
-      "Not Researched" => "none",
-      "Researched and Not" => "all" }
+      "Researched - Unknown" => "unknown" }
   end
 
   def outliers_options

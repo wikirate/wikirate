@@ -24,4 +24,9 @@ format do
   def query_hash
     super.merge card.fixed_filter
   end
+
+  # none and all not available on answer dashboard yet.
+  def status_options
+    super.merge "Not Researched" => "none", "Researched and Not" => "all"
+  end
 end

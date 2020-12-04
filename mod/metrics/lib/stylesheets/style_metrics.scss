@@ -621,13 +621,14 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .filter-result-menu {
   a {
-    color: $gray-600 !important
+    color: $gray-600 !important;
+    padding: 0 3px;
   }
   a:hover {
     color: $primary !important;
   }
   i {
-    font-size: 2em;
+    font-size: 1.5em;
     cursor: pointer;
   }
 }
