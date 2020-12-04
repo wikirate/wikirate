@@ -1,0 +1,129 @@
+{
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {
+      },
+      "on": [
+        {
+          "events": "arc:mouseover",
+          "update": "datum"
+        },
+        {
+          "events": "arc:mouseout",
+          "update": "{}"
+        }
+      ]
+    }
+  ],
+
+  "data": [
+    {
+      "name": "metricTypes",
+      "url": "/Metric_Type+*type.json",
+      "format": {
+        "property": "items"
+      }
+    },
+    {
+      "name": "counts",
+      "transform": [
+        {
+          "type":"aggregate",
+          "groupby": ["metric_type_id"],
+          "ops": ["sum"],
+          "fields": ["count"],
+          "as": ["count"]
+        },
+        {
+          "type": "lookup",
+          "from": "metricTypes",
+          "key": "id",
+          "fields": [
+            "metric_type_id"
+          ],
+          "as": [
+            "metricType"
+          ],
+          "values": [
+            "name"
+          ]
+        },
+        {
+          "type": "pie",
+          "field": "count"
+        },
+        {
+          "type": "formula",
+          "expr": "{ metric_type: datum.metricType }",
+          "as": "filter"
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "counts", "field": "metricType"},
+      "range": {"scheme": "rainbow"}
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "arc",
+      "from": {"data": "counts"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "metricType"},
+          "x": {"value": 100 },
+          "y": {"value": 100 },
+          "tooltip": {"field": "count" }
+        },
+        "update": {
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "padAngle": {"value": 0.02 },
+          "innerRadius": {"value": 3 },
+          "outerRadius": {"value": 100 },
+          "cornerRadius": {"value": 3 },
+          "opacity": {
+            "value": 1
+          }
+        },
+        "hover" : {
+          "opacity": {
+            "value": 0.8
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "type": "symbol",
+      "orient": "top-right",
+      "encode": {
+        "labels": {
+          "update": {
+            "fontWeight": [
+              { "test": "tooltip.metricType == datum.label", "value": 900 },
+              { "value": 400 }
+            ]
+          }
+        },
+        "symbols": {
+          "update": {
+            "fillOpacity": [
+              { "test": "tooltip.metricType == datum.label", "value": 0.8 },
+              { "value": 1 }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
