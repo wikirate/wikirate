@@ -7,7 +7,7 @@ include_set Abstract::CachedCount
 include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
-# recount number of answers for a given metric when a Metric Value card is
+# recount number of answers for a given metric when an answer card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: [:create, :delete] do |changed_card|
   changed_card.company_card&.fetch :metric_answer
@@ -33,19 +33,15 @@ format do
   end
 
   def default_sort_option
-    record? ? :year : :bookmarkers
+    record? || !single_year? ? :year : :bookmarkers
   end
 
   def default_filter_hash
-    { status: :exists, year: :latest, metric_name: "" }
+    { status: :exists, metric_name: "" }
   end
 end
 
 format :html do
-  before :core do
-    voo.hide! :chart
-  end
-
   def cell_views
     [:metric_thumbnail_with_bookmark, :concise]
   end
