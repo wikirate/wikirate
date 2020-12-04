@@ -1,8 +1,8 @@
 .year{class: slot_attr}
   - if year_pinned?
     .d-flex.flex-nowrap
-      .image-box.small.bg-white
-        = fa_icon :calendar, class: "text-muted"
+      .image-box.small.bg-white.text-muted
+        = mapped_icon_tag :year
       %h5.mb-0
         = year
   - else

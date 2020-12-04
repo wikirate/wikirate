@@ -28,7 +28,7 @@ end
 format do
   def filter_hash_from_params
     super.tap do |h|
-      normalize_filter_hash h
+      normalize_filter_hash h if h
     end
   end
 
