@@ -1,6 +1,6 @@
 def self.metric_type_options
   @metric_type_options ||= %i[
-    researched relationship formula wiki_rating score descendant
+    researched relationship inverse_relationship formula wiki_rating score descendant
   ].map(&:cardname).freeze
 end
 
