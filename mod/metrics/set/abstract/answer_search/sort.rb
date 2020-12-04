@@ -21,11 +21,11 @@ format do
     @sort_by ||= safe_sql_param("sort_by") || default_sort_option
   end
 
-  # override
   def default_sort_option
-    if    record? then :year
-    elsif lookup? then :value
-    else               :name
+    if lookup?
+      single_year? ? :value : :year
+    else
+      :name
     end
   end
 

@@ -45,3 +45,10 @@ updateFilter = (el, filterVals) ->
 
 updateDetails = (detailsAnswer) ->
   $("[data-details-mark=\"#{detailsAnswer}\"]").trigger "click"
+
+
+$(document).ready ->
+  $('body').on 'click', '._filter-bindings', ->
+    vis = $(this).closest('.filtered-results').find '.vis'
+    klass = 'with-bindings'
+    if vis.hasClass(klass) then vis.removeClass(klass) else vis.addClass(klass)

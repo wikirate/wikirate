@@ -33,7 +33,7 @@ describe "filtering on company pages", ->
     cy.location("search").should "contain", "filter"
 
     # refreshes filter
-    cy.get(".left-col .fa-refresh").click()
+    cy.get(".left-col .fa-sync").click()
 
     # old results are back
     cy.contains("Victims")
