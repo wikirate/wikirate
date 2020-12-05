@@ -113,20 +113,7 @@ class Card
       condition_sql([@conditions.join(" AND ")] + @values)
     end
 
-    def year_counts
-      sql = year_sql answer_conditions
-      ActiveRecord::Base.connection.exec_query(sql).to_a
-    end
-
     private
-
-    def year_sql where
-      select = "SELECT count(*) as count, year, " \
-        "answer_id is null as calculated, checkers is not null as verified " \
-        "FROM answers"
-      where = "WHERE #{where}" if where.present?
-      "#{select} #{where} GROUP BY year, calculated, verified"
-    end
 
     def status_filter
       @filter_args[:status]&.to_sym || :exists
