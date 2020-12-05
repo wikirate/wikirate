@@ -6,7 +6,6 @@ def item_type
 end
 
 # shared search method for card and format
-
 def search args={}
   return_type = args.delete :return
   query = args.delete(:query) || query(args)
@@ -93,8 +92,8 @@ format :html do
   end
 
   view :answer_header, cache: :never do
-    [table_sort_link("Answer", :value, "pull-left mx-3 px-1"),
-     table_sort_link("Year", :year, "pull-right mx-3 px-1")]
+    [table_sort_link("Answer", :value, "float-left mx-3 px-1"),
+     table_sort_link("Year", :year, "float-right mx-3 px-1")]
   end
 
   def tr_attribs row_card

@@ -26,7 +26,8 @@ ICON_MAP = {
   activity: :directions_run,
   program: :extension,
   community_assessed: [:unlock, { library: :font_awesome }],
-  designer_assessed: [:lock, { library: :font_awesome }]
+  designer_assessed: [:lock, { library: :font_awesome }],
+  dashboard: ["tachometer-alt", { library: :font_awesome }]
 }.freeze
 
 format :html do

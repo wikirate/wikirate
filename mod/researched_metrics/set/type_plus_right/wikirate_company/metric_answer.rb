@@ -59,15 +59,15 @@ format :html do
   end
 
   def title_sort_link
-    table_sort_link "Metric", :metric_title, "pull-left mx-3 px-1"
+    table_sort_link "Metric", :metric_title, "float-left mx-3 px-1"
   end
 
   def designer_sort_link
-    table_sort_link "", :metric_designer, "pull-left mx-3 px-1"
+    table_sort_link "", :metric_designer, "float-left mx-3 px-1"
   end
 
   def bookmarkers_sort_link
-    table_sort_link "", :bookmarkers, "pull-left mx-3 px-1"
+    table_sort_link "", :bookmarkers, "float-left mx-3 px-1"
   end
 
   def filter_label field

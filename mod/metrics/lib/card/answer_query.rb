@@ -113,24 +113,7 @@ class Card
       condition_sql([@conditions.join(" AND ")] + @values)
     end
 
-    def year_counts group_by={}
-      sql = year_sql answer_conditions, group_by
-      ActiveRecord::Base.connection.exec_query(sql).to_a
-    end
-
     private
-
-    def year_sql where, group_by
-      select_fields = ["count(*) as count", "year"]
-      group_fields = ["year"]
-      group_by.each do |field, as|
-        select_fields << (as ? "#{field} AS #{as}" : field)
-        group_fields << (as || field)
-      end
-      where = "WHERE #{where}" if where.present?
-      "SELECT #{select_fields.join ', '} FROM answers " \
-        "#{where} GROUP BY #{group_fields.join ', '}"
-    end
 
     def status_filter
       @filter_args[:status]&.to_sym || :exists
