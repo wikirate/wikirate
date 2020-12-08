@@ -43,7 +43,8 @@
         "data":"answers",
         "field":"value"
       },
-      "type":"linear",
+      "type":"pow",
+      "exponent": { "signal": "exponent" },
       "nice":true
     },
     {
@@ -85,6 +86,11 @@
           "height":{
             "scale":"yscale",
             "band":1
+          }
+        },
+        "update":{
+          "fill":{
+            "value":"#8ECDC7"
           },
           "x2":{
             "scale":"xscale",
@@ -93,11 +99,6 @@
           "x":{
             "scale":"xscale",
             "value":0
-          }
-        },
-        "update":{
-          "fill":{
-            "value":"#8ECDC7"
           }
         },
         "hover":{

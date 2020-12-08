@@ -7,22 +7,11 @@
     "axis": {
       "labelColor": "#888",
       "titleColor": "#666"
+    },
+    "legend": {
+      "labelColor": "#888",
+      "titleColor": "#666"
     }
   },
-  "signals": [
-    {
-      "name": "tooltip",
-      "value": {},
-      "on": [
-        {
-          "events": "rect:mouseover",
-          "update": "datum"
-        },
-        {
-          "events": "rect:mouseout",
-          "update": "{}"
-        }
-      ]
-    }
-  ]
+  "signals": []
 }

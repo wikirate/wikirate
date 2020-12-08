@@ -6,7 +6,6 @@ def item_type
 end
 
 # shared search method for card and format
-
 def search args={}
   return_type = args.delete :return
   query = args.delete(:query) || query(args)
@@ -21,12 +20,17 @@ def run_query_returning query, return_type
   end
 end
 
-# override
 def query paging={}
   AnswerQuery.new({}, {}, paging)
 end
 
 format do
+  def filter_hash_from_params
+    super.tap do |h|
+      normalize_filter_hash h if h
+    end
+  end
+
   def search_with_params
     card.search query: query
   end
@@ -46,6 +50,13 @@ format do
 
   def card_content_limit
     nil
+  end
+
+  def normalize_filter_hash hash
+    %i[metric company].each do |type|
+      next unless (id = hash.delete :"#{type}_id")&.present?
+      hash[:"#{type}_name"] = "=#{id.to_i.cardname}"
+    end
   end
 end
 
@@ -81,8 +92,8 @@ format :html do
   end
 
   view :answer_header, cache: :never do
-    [table_sort_link("Answer", :value, "pull-left mx-3 px-1"),
-     table_sort_link("Year", :year, "pull-right mx-3 px-1")]
+    [table_sort_link("Answer", :value, "float-left mx-3 px-1"),
+     table_sort_link("Year", :year, "float-right mx-3 px-1")]
   end
 
   def tr_attribs row_card

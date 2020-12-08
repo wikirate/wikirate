@@ -15,6 +15,9 @@
 .details-header > .media {
   border-bottom: 1px solid #ddd;
   padding: 0.5rem 0;
+  h5.media-heading {
+    border: 0;
+  }
 }
 
 .details {
@@ -59,6 +62,10 @@
   }
 }
 
+#answer-table-view td {
+  width: 33%;
+}
+
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
   .details {
@@ -98,4 +105,20 @@
   }
   border-bottom: 1px solid $border-color;
   margin-bottom: 1em;
+}
+
+body.wikirate-two-column-layout,
+body.wikirate-one-full-column-layout {
+  .details-content {
+    .d0-card-header-title {
+      font-size: 1.3em !important;
+      border-bottom: 0 !important;
+      .card-title {
+        font-size: 1em !important;
+      }
+    }
+    h5 {
+      border-bottom: 0 !important;
+    }
+  }
 }
