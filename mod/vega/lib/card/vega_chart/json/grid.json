@@ -70,8 +70,15 @@
         },
         {"events": "window:mouseup", "update": "-1"}
       ]
+    },
+    {
+      "name": "researchedExist",
+      "init": "data('researchedAnswers').length > 0"
+    },
+    {
+      "name": "calculatedExist",
+      "init": "data('calculatedAnswers').length > 0"
     }
-
   ],
   "data": [
     {
@@ -285,7 +292,7 @@
       "name": "color",
       "type": "ordinal",
       "range": {
-        "scheme": "teals"
+        "scheme": "tealblues"
       },
       "domain": {
         "fields": [
@@ -520,7 +527,23 @@
       "direction": "horizontal",
       "symbolType": "square",
       "symbolSize": 250,
-      "columnPadding": 20
+      "columnPadding": 20,
+      "encode": {
+        "symbols": {
+          "update": {
+            "opacity": {
+              "signal": "researchedExist ? 1 : 0"
+            }
+          }
+        },
+        "labels": {
+          "update": {
+            "fillOpacity": {
+              "signal": "researchedExist ? 1 : 0"
+            }
+          }
+        }
+      }
     },
     {
       "title": "Scores:",
@@ -530,7 +553,30 @@
       "orient": "bottom",
       "direction": "horizontal",
       "format": "~s",
-      "padding": 1
+      "padding": 1,
+      "encode": {
+        "gradient": {
+          "update" : {
+            "opacity": {
+              "signal" : "calculatedExist ? 1 : 0"
+            }
+          }
+        },
+        "title": {
+          "update" : {
+            "opacity": {
+              "signal" : "calculatedExist ? 1 : 0"
+            }
+          }
+        },
+        "labels": {
+          "update" : {
+            "fillOpacity": {
+              "signal" : "calculatedExist ? 1 : 0"
+            }
+          }
+        }
+      }
     }
   ]
 }

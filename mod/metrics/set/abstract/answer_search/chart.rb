@@ -1,14 +1,6 @@
 HORIZONTAL_MAX = 10
 
 format do
-  def single_year?
-    filter_hash[:year].present?
-  end
-
-  def single_metric?
-    filter_hash[:metric_id].is_a? Integer
-  end
-
   def metric_card
     Card[filter_hash[:metric_id]]
   end
@@ -28,9 +20,9 @@ format :json do
   def chart_type
     if (type = params[:chart])&.present?
       type.to_sym
-    elsif single_metric?
+    elsif single? :metric
       single_metric_chart_type
-    elsif single_year?
+    elsif single? :year
       single_year_chart_type
     else
       :timeline
@@ -46,7 +38,7 @@ format :json do
   end
 
   def horizontal?
-    count_by_status[:known] <= HORIZONTAL_MAX
+    counts[:known] <= HORIZONTAL_MAX
   end
 
   def grid_options

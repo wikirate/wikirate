@@ -37,11 +37,15 @@ format do
   end
 
   def count_with_params
-    card.search query: query, return: :count
+    card.search query: count_query, return: :count
   end
 
   def query
     AnswerQuery.new query_hash, sort_hash, paging_params
+  end
+
+  def count_query
+    AnswerQuery.new query_hash
   end
 
   # note: overridden in fixed

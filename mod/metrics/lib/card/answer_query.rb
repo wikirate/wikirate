@@ -68,30 +68,6 @@ class Card
       @empty_result ? 0 : main_query.count
     end
 
-    # @return [Hash] with a key for each group and a count as the value
-    def count_by_group group
-      main_query.group(group).count
-    end
-
-    # @return [Hash] with a key for each status and a count as the value
-    def count_by_status
-      if status_filter.in? %i[all exists]
-        count_by_status_groups
-      else
-        { status_filter => count }
-      end
-    end
-
-    def count_by_status_groups
-      counts = { total: 0 }
-      count_by_group("value <> 'Unknown'").each do |val, count|
-        num = count.to_i
-        counts[STATUS_GROUPS[val]] = num
-        counts[:total] += num
-      end
-      counts
-    end
-
     def limit
       @paging_args[:limit]
     end
