@@ -43,7 +43,7 @@ format do
   end
 
   def default_filter_hash
-    { year: :latest, status: :exists, company_name: "" }
+    { status: :exists, company_name: "" }
   end
 end
 
@@ -104,7 +104,7 @@ format :html do
 
   def company_sort_links
     output [table_sort_link(rate_subjects, :company_name),
-            table_sort_link("", :bookmarkers, "pull-left mx-3 px-1")]
+            table_sort_link("", :bookmarkers, "float-left mx-3 px-1")]
   end
 end
 

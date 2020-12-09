@@ -102,7 +102,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
       end
       it "has progress_bar" do
         is_expected.to have_tag "div.answer-search-progress" do
-          with_tag "div.progress-known", "4 Known"
+          with_tag "div.progress-known", "11 Known"
         end
       end
       it "has table" do

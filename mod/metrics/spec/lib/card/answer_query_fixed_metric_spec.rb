@@ -37,7 +37,7 @@ RSpec.describe Card::AnswerQuery do
 
   # @return [Array] of company+year strings
   def sort_by key, order="asc"
-    run_query({ year: :latest }, sort_by: key, sort_order: order)
+    run_query({ year: :latest }, sort_by: key, sort_dir: order)
   end
 
   def run_query filter, sort={}
