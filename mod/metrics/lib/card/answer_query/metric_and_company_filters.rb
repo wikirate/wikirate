@@ -45,13 +45,23 @@ class Card
       end
 
       def company_name_query value
-        restrict_by_cql :company_id, name: [:match, value], type_id: WikirateCompanyID
+        handle_equals_syntax :company_id, value do
+          restrict_by_cql :company_id, name: [:match, value], type_id: WikirateCompanyID
+        end
       end
 
       def metric_name_query value
-        restrict_by_cql :title_id,
-                        name: [:match, value],
-                        left_plus: [{}, { type_id: Card::MetricID }]
+        handle_equals_syntax :metric_id, value do
+          restrict_by_cql :title_id,
+                          name: [:match, value],
+                          left_plus: [{}, { type_id: Card::MetricID }]
+        end
+      end
+
+      def handle_equals_syntax field, value
+        return yield unless value.to_s.match?(/^=/)
+
+        filter field, value.to_name.card_id
       end
 
       # SUPPORT METHODS
