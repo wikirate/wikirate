@@ -1,4 +1,12 @@
 
+.SELF-answer.titled-view > .d0-card-header .d0-card-header-title {
+  text-align: center;
+  i {
+    font-size: 0.8em;
+    padding: 0 5px;
+  }
+}
+
 .tabbable.company-tabs .tab-content {
   margin-left: -15px;
 }
@@ -615,5 +623,40 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   i {
     margin-right: 0.5em;
     font-size: 1.2em;
+  }
+}
+
+
+.filter-result-menu {
+  a {
+    color: $gray-600 !important;
+    padding: 0 3px;
+  }
+  a:hover {
+    color: $primary !important;
+  }
+  i {
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+}
+
+.vega-bindings {
+  float: right;
+  width: 20%;
+  text-align: right;
+  display: none;
+  .vega-bind-name {
+    display: block;
+    color: $gray-600;
+  }
+}
+
+.with-bindings {
+  .vega-bindings {
+    display: block;
+  }
+  canvas {
+    max-width: 80%;
   }
 }

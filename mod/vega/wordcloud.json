@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A word cloud visualization depicting Vega research paper abstracts.",
+  "padding": 0,
+  "width": 800,
+  "data": [
+    {
+      "name": "table",
+      "url": "https://wikirate.org/cached/Topic.json",
+      "format": { "property": "items" },
+      "transform": [
+        {
+          "type": "formula", "as": "angle",
+          "expr": "[-45, 0, 45][~~(random() * 3)]"
+        },
+        {
+          "type": "formula", "as": "weight",
+          "expr": "if(datum.text=='VEGA', 600, 300)"
+        },
+        {
+          "type": "filter", "expr": "datum.projects > 0"
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "table", "field": "name"},
+      "range": ["#2B7EA0", "#674EA7", "#D3741C"]
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "text",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "text": {"field": "name"},
+          "align": {"value": "center"},
+          "baseline": {"value": "alphabetic"},
+          "fill": {"scale": "color", "field": "name"}
+        },
+        "update": {
+          "fillOpacity": {"value": 1}
+        },
+        "hover": {
+          "fillOpacity": {"value": 0.5}
+        }
+      },
+      "transform": [
+        {
+          "type": "wordcloud",
+          "size": [800, 400],
+          "text": {"field": "name"},
+          "rotate": {"field": "datum.angle"},
+          "font": "Helvetica Neue, Arial",
+          "fontSize": {"field": "datum.projects"},
+          "fontWeight": {"field": "datum.weight"},
+          "fontSizeRange": [10, 25],
+          "padding": 4
+        }
+      ]
+    }
+  ]
+}

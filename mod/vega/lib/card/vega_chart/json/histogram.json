@@ -1,4 +1,15 @@
 {
+  "signals": [
+    {
+      "name": "maxBins",
+      "value": 20,
+      "bind": {
+        "input": "range",
+        "max": 100,
+        "min": 1
+      }
+    }
+  ],
   "data": [
     {
       "name": "answers",
@@ -36,6 +47,9 @@
           "field": "value",
           "extent": {
             "signal": "extent"
+          },
+          "maxbins": {
+            "signal": "maxBins"
           }
         },
         {
@@ -80,7 +94,10 @@
         "data":"counts",
         "field":"count"
       },
-      "type":"linear",
+      "type": "pow",
+      "exponent": {
+        "signal": "exponent"
+      },
       "round":true,
       "zero": true,
       "nice": true
@@ -94,6 +111,11 @@
       },
       "encode":{
         "enter":{
+          "fill": {
+            "value": "#03998d"
+          }
+        },
+        "update": {
           "x":{
             "scale":"xscale",
             "field":"bin0",
@@ -111,11 +133,6 @@
           "y2":{
             "scale":"yscale",
             "value":0
-          }
-        },
-        "update": {
-          "fill": {
-            "value": "#03998d"
           },
           "opacity": {
             "value": 0.75

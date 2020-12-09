@@ -29,7 +29,7 @@ format :html do
   end
 
   def checkbox
-    content_tag :div, class: "form-check checkbox-pull pull-right" do
+    content_tag :div, class: "form-check checkbox-pull float-right" do
       content_tag :label, class: "form-check-label" do
         concat((check_box_tag "equalizer"))
         concat(content_tag(:span, "Equalize"))
