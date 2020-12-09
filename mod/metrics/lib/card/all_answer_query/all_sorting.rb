@@ -34,17 +34,17 @@ class Card
       end
 
       def sort_by_bookmarkers rel
-        Card::Bookmark.sort rel, "#{@partner}.id", @sort_args[:sort_order]
+        Card::Bookmark.sort rel, "#{@partner}.id", @sort_args[:sort_dir]
       end
 
       # FIXME: right_id is not the title for Score metrics!
       def sort_by_metric_title rel
         rel.joins(sort_join("right_id = sort.id"))
-           .order(Arel.sql("sort.key #{@sort_args[:sort_order]}"))
+           .order(Arel.sql("sort.key #{@sort_args[:sort_dir]}"))
       end
 
       def standard_sort rel
-        rel.order Arel.sql("#{@sort_args[:sort_by]} #{@sort_args[:sort_order]}")
+        rel.order Arel.sql("#{@sort_args[:sort_by]} #{@sort_args[:sort_dir]}")
       end
 
       def sort_join sql

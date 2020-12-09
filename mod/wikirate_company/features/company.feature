@@ -22,7 +22,6 @@ Feature: company feature
   Scenario: Filter by metric
     When I click on "More Filters"
     And I click on "Metric"
-    And I wait for ajax response
     And I fill in "filter[metric_name]" with "deadliness"
     # To change focus
     And I click on "More Filters"
@@ -33,8 +32,6 @@ Feature: company feature
   Scenario: Filter by topic
     When I click on "More Filters"
     And I click on "Topic"
-    And I wait for ajax response
-    And I wait 2 seconds
     And I select2 "Force" from "filter[wikirate_topic][]"
     # To change focus
     And I click on "More Filters"
@@ -43,6 +40,8 @@ Feature: company feature
     And I should see "disturbances in the Force"
 
   Scenario: Filter by year
+    When I click on "More Filters"
+    And I click on "Year"
     And I select2 "2001" from "filter[year]"
     And I wait for ajax response
     Then I should not see "dinosaurlabor"
@@ -64,6 +63,9 @@ Feature: company feature
   #   Then I should see "Weapons"
 
   Scenario: Paging
+    When I click on "More Filters"
+    And I click on "Year"
+    And I select2 "Latest" from "filter[year]"
     Then I should see "Victims by Employees"
     Then I click "2" within ".paging"
     And I should not see "Victims by Employees"

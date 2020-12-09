@@ -1,11 +1,10 @@
 class Answer
   module ActiveRecordExtension
-    NAME_COLUMNS = [:metric, :company, :designer, :title, :record].freeze
-
     def answer_cards
       map(&:card).compact
     end
 
+    # TODO: optimize with a join
     def value_cards
       left_ids = pluck :answer_id
       return [] unless left_ids.present?
@@ -23,7 +22,7 @@ class Answer
     def sort args
       return self unless valid_sort_args? args
       if args[:sort_by].to_sym == :bookmarkers
-        order_by_bookmarkers args[:sort_order]
+        order_by_bookmarkers args[:sort_dir]
       else
         order_by args
       end
@@ -53,11 +52,7 @@ class Answer
       when *Answer.column_names
         pluck(val)
       else
-        if Answer.column_names.include? "#{val}_name"
-          pluck("#{val}_name")
-        else
-          answer_cards
-        end
+        answer_cards
       end
     end
 
@@ -75,7 +70,6 @@ class Answer
     private
 
     def multi_return cols
-      cols.map! { |col| col.to_sym.in?(NAME_COLUMNS) ? "#{col}_name" : col }
       pluck(*cols)
     end
 
@@ -83,15 +77,15 @@ class Answer
       order order_args(args)
     end
 
-    def order_by_bookmarkers sort_order
-      Card::Bookmark.sort self, "answers.metric_id", sort_order
-    end
-
     def order_args args
       by = args[:cast] ? "CAST(#{args[:sort_by]} AS #{args[:cast]})" : args[:sort_by]
       # I think it's ok to call Arel.sql here because the arguments coming from params
       # use Query.safe_sql
-      Arel.sql "#{by} #{args[:sort_order]}"
+      Arel.sql "#{by} #{args[:sort_dir]}"
+    end
+
+    def order_by_bookmarkers sort_dir
+      Card::Bookmark.sort self, "answers.metric_id", sort_dir
     end
 
     def valid_sort_args? args
