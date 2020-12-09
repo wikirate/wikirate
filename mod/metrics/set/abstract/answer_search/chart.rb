@@ -1,6 +1,10 @@
 HORIZONTAL_MAX = 10
 
 format do
+  def single_metric?
+    filter_hash[:metric_id].is_a? Integer
+  end
+
   def metric_card
     Card[filter_hash[:metric_id]]
   end
@@ -20,13 +24,21 @@ format :json do
   def chart_type
     if (type = params[:chart])&.present?
       type.to_sym
-    elsif single? :metric
+    elsif single_metric?
       single_metric_chart_type
     elsif single? :year
       single_year_chart_type
     else
       :timeline
     end
+  end
+
+  def metric_count
+    counts[:metric]
+  end
+
+  def company_count
+    counts[:wikirate_company]
   end
 
   def single_year_chart_type
