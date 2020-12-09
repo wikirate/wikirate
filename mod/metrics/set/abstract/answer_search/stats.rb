@@ -77,7 +77,7 @@ end
 format :html do
   def each_progress_bar_status
     %i[known unknown none].map do |status|
-      yield status, counts[:status] if counts[:status].to_i > 0
+      yield status, counts[status] if counts[status].to_i > 0
     end.compact
   end
 
