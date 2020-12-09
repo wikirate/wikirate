@@ -4,7 +4,7 @@ class Answer
       map(&:card).compact
     end
 
-    # FIXME: do this with a join
+    # TODO: optimize with a join
     def value_cards
       left_ids = pluck :answer_id
       return [] unless left_ids.present?
@@ -70,7 +70,6 @@ class Answer
     private
 
     def multi_return cols
-      cols.map! { |col| col.to_sym.in?(NAME_COLUMNS) ? "#{col}_name" : col }
       pluck(*cols)
     end
 
