@@ -4,6 +4,10 @@ class Answer
       map(&:card).compact
     end
 
+    def answer_names
+      pluck(:metric_id, :company_id, :year).map { |m, c, y| Card::Name[m, c, y.to_s] }
+    end
+
     # TODO: optimize with a join
     def value_cards
       left_ids = pluck :answer_id
@@ -12,11 +16,7 @@ class Answer
     end
 
     def cards type
-      col = "#{type}_id"
-      unless Answer.column_names.include? col
-        raise ArgumentError, "column doesn't exist: #{col}"
-      end
-      pluck(col).map { |id| Card.fetch id }
+      self.return("#{type}_id").map &:card
     end
 
     def sort args
@@ -34,43 +34,36 @@ class Answer
     end
 
     def return args={}
+      puts "called return with #{args}"
+
       return answer_cards unless args.present?
       val = args.is_a?(Hash) ? args[:return] : args
       return multi_return val if val.is_a? Array
 
-      case val.to_s
-      when "value_card"
-        value_cards
-      when /^(\w+)_card/
-        cards Regexp.last_match(1)
-      when "count"
-        count
-      when "name", "answer_name"
-        pluck(:metric_id, :company_id, :year).map { |m, c, y| Card::Name[m, c, y.to_s] }
-      when "id"
-        pluck(:answer_id)
-      when *Answer.column_names
-        pluck(val)
-      else
-        answer_cards
-      end
-    end
-
-    def uniq_select args={}
-      return self unless valid_uniq_select_args? args
-      if group_necessary?(args)
-        group(args[:uniq])
-      elsif args[:return] == :count
-        select(args[:uniq]).distinct
-      else
-        distinct
-      end
+      standard_return val.to_s
     end
 
     private
 
     def multi_return cols
       pluck(*cols)
+    end
+
+    def standard_return val
+      case val
+      when "value_card"
+        value_cards
+      when "count"
+        count
+      when "name", "answer_name"
+        answer_names
+      when *Answer.column_names
+        pluck(val)
+      when /^(\w+)_card/
+        cards Regexp.last_match(1)
+      else
+        raise ArgumentError, "unknown Answer return val: #{val}"
+      end
     end
 
     def order_by args
@@ -104,15 +97,6 @@ class Answer
 
     def valid_page_args? args
       args.present? && args[:limit].to_i.positive?
-    end
-
-    def valid_uniq_select_args? args
-      args.present? && args[:uniq]
-    end
-
-    def group_necessary? args
-      (!args[:return] && args[:uniq] != :answer_id) ||
-        (args[:return] != :count && args[:uniq] != args[:return])
     end
   end
 end
