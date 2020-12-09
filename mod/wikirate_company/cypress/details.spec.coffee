@@ -43,7 +43,7 @@ describe "expanding details on company pages", ->
 
     # refreshes filter
     cy.get(".left-col").within () ->
-      cy.get(".fa-refresh").click()
+      cy.get(".fa-sync").click()
       cy.contains "Victims by Employees"
 
     # details are still visible (even after filter results have changed)

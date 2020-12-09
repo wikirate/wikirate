@@ -23,7 +23,7 @@ class Answer
     def sort args
       return self unless valid_sort_args? args
       if args[:sort_by].to_sym == :bookmarkers
-        order_by_bookmarkers args[:sort_order]
+        order_by_bookmarkers args[:sort_dir]
       else
         order_by args
       end
@@ -83,15 +83,15 @@ class Answer
       order order_args(args)
     end
 
-    def order_by_bookmarkers sort_order
-      Card::Bookmark.sort self, "answers.metric_id", sort_order
+    def order_by_bookmarkers sort_dir
+      Card::Bookmark.sort self, "answers.metric_id", sort_dir
     end
 
     def order_args args
       by = args[:cast] ? "CAST(#{args[:sort_by]} AS #{args[:cast]})" : args[:sort_by]
       # I think it's ok to call Arel.sql here because the arguments coming from params
       # use Query.safe_sql
-      Arel.sql "#{by} #{args[:sort_order]}"
+      Arel.sql "#{by} #{args[:sort_dir]}"
     end
 
     def valid_sort_args? args
