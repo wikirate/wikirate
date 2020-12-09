@@ -16,7 +16,7 @@ format :html do
   end
 
   view :filter_year_formgroup, cache: :never do
-    select_filter :year, "most recent"
+    select_filter :year
   end
 
   view :filter_wikirate_topic_formgroup, cache: :never do
@@ -74,9 +74,7 @@ format :html do
   def status_options
     { "Researched - All" => "exists",
       "Researched - Known" => "known",
-      "Researched - Unknown" => "unknown",
-      "Not Researched" => "none",
-      "Researched and Not" => "all" }
+      "Researched - Unknown" => "unknown" }
   end
 
   def outliers_options

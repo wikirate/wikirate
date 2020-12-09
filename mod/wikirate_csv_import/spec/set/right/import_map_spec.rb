@@ -129,7 +129,7 @@ RSpec.describe Card::Set::Right::ImportMap do
             with_tag "div.tab-badge" do
               with_tag("span.badge") { 2 }
               with_tag "span.badge-label" do
-                with_tag "i.fa-bar-chart"
+                with_tag "i.fa-ruler-combined"
               end
             end
           end

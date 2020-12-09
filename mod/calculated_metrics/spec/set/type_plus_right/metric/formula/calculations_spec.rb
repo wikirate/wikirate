@@ -110,7 +110,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
       with_delayed_jobs { create_formula }
       expect(view(:core, card: "Jedi+formula test+answer")).to have_tag :tr do
         with_text /Death Star/
-        without_tag "i.fa-refresh"
+        without_tag "i.fa-sync"
         with_text /322/
       end
     end
