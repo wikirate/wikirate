@@ -1,20 +1,20 @@
 
 format do
-  def sort_order
+  def sort_dir
     return unless sort_by
-    @sort_order ||= safe_sql_param("sort_order") || default_sort_order(sort_by)
+    @sort_dir ||= safe_sql_param("sort_dir") || default_sort_dir(sort_by)
   end
 
-  def default_sort_order sort_by
-    default_desc_sort_order.include?(sort_by.to_sym) ? :desc : :asc
+  def default_sort_dir sort_by
+    default_desc_sort_dir.include?(sort_by.to_sym) ? :desc : :asc
   end
 
-  def default_desc_sort_order
+  def default_desc_sort_dir
     ::Set.new %i[updated_at bookmarkers value year]
   end
 
   def sort_hash
-    { sort_by: sort_by, sort_order: sort_order }
+    { sort_by: sort_by, sort_dir: sort_dir }
   end
 
   def sort_by
@@ -23,17 +23,17 @@ format do
 
   def default_sort_option
     if lookup?
-      single_year? ? :value : :year
+      single?(:year) ? :value : :year
     else
       :name
     end
   end
 
-  def toggle_sort_order field
+  def toggle_sort_dir field
     if field.to_sym == sort_by.to_sym
-      sort_order == "asc" ? "desc" : "asc"
+      sort_dir == "asc" ? "desc" : "asc"
     else
-      default_sort_order field
+      default_sort_dir field
     end
   end
 
@@ -46,7 +46,7 @@ format :html do
   def table_sort_link name, key, css_class=""
     sort_link "#{name} #{sort_icon key}",
               sort_by: key,
-              sort_order: toggle_sort_order(key),
+              sort_dir: toggle_sort_dir(key),
               class: "#{css_class} table-sort-link table-sort-by-#{key}"
   end
 
@@ -61,12 +61,12 @@ format :html do
   end
 
   def sort_path args
-    paging_path_args sort_order: args[:sort_order], sort_by: args[:sort_by]
+    paging_path_args sort_dir: args[:sort_dir], sort_by: args[:sort_by]
   end
 
   def sort_icon field
     icon = "sort"
-    icon += "-#{sort_order}" if field.to_sym == sort_by.to_sym
+    icon += "-#{sort_dir}" if field.to_sym == sort_by.to_sym
     fa_icon icon
   end
 end

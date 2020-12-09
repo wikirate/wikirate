@@ -2,7 +2,7 @@ class Answer
   module AnswerClassMethods
     include Export::ClassMethods
 
-    SEARCH_OPTS = { sort: [:sort_by, :sort_order, :cast],
+    SEARCH_OPTS = { sort: [:sort_by, :sort_dir, :cast],
                     page: [:limit, :offset],
                     return: [:return],
                     uniq: [:uniq],
@@ -20,7 +20,7 @@ class Answer
     # passed as hash to `where`.
     # @option opts [Array] :where
     # @option opts [Symbol] :sort_by column name or :bookmarkers
-    # @option opts [Symbol] :sort_order :asc or :desc
+    # @option opts [Symbol] :sort_dir :asc or :desc
     # @option opts [Integer] :limit
     # @option opts [Integer] :offset
     # @return answer card objects

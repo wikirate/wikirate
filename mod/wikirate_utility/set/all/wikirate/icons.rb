@@ -1,7 +1,7 @@
 # default is material
 
 ICON_MAP = {
-  wikirate_company: [:store, { library: :font_awesome }],
+  wikirate_company: [:building, { library: :font_awesome }],
   wikirate_topic: :widgets,
   company_group: [:city, { library: :font_awesome }], # city not available in 4.7
   project: [:flask, { library: :font_awesome }],

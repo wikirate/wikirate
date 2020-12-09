@@ -3,10 +3,11 @@
     = render_progress_bar
   .filter-result-header.d-flex.justify-content-between
     .filter-result-badges
-      = answer_count_badge total_results, :metric_answer
-      = answer_count_badge metric_count, :metric
-      = answer_count_badge company_count, :wikirate_company
-      = answer_count_badge year_count, :year
+      = answer_count_badge :metric_answer
+      - unless unresearched_query?
+        = answer_count_badge :metric
+        = answer_count_badge :wikirate_company
+        = answer_count_badge :year
     .filter-result-menu
       - unless card.codename == :metric_answer
         = link_to_card :metric_answer, mapped_icon_tag(:dashboard),
