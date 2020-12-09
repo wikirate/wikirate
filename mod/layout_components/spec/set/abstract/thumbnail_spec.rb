@@ -41,7 +41,7 @@ RSpec.describe Card::Set::Abstract::Thumbnail do
     expect_view(:thumbnail).to have_tag("div.image-box") do
       with_tag "div.image-box.small" do
         with_tag "a.known-card" do
-          with_tag "i", text: "business"
+          with_tag "i.fa-building"
         end
       end
     end

@@ -49,6 +49,21 @@ $box_stripe_color: $gray-700;
   }
 }
 
+.filter-result-badges {
+  display: flex;
+  padding: 2px 0;
+  justify-content: flex-end;
+  max-height: 1.8em;
+  .labeled-badge {
+    label {
+      .count-badge-label-icon, .count-badge-label-text {
+        display: inline-block;
+      }
+    }
+    padding-left: 10px;
+  }
+}
+
 /*----------- Bars and Boxes -------------*/
 
 

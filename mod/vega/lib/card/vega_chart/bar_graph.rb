@@ -5,6 +5,8 @@ class Card
       include Helper::SingleMetric
       include Helper::Axes
       include Helper::Highlight
+      include Helper::CountTips
+      include Helper::Exponent
 
       def hash
         with_values(answer_list: 0) do

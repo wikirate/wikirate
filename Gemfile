@@ -30,6 +30,10 @@ end
 # DATABASE
 gem "mysql2", "> 0.4"
 
+# DATABASE OPTIMIZATION
+gem "bulk_insert"                    # adds #bulk_insert method used for answer
+gem "pluck_all"                      # supports optimized pluck queries
+
 # FILE / SOURCE HANDLING
 gem "addressable"                    # URI encoding
 gem "curb"                           # libcurl bindings for ruby
@@ -47,7 +51,6 @@ gem "savanna-outliers"               # calculates outliers
 gem "statistics2"                    # required by savanna-outliers
 
 # MISCELLANEOUS
-gem "bulk_insert"                    # adds #bulk_insert method used for answer
 gem "company-mapping"                # Vasso's gem, written for WikiRate
 gem "rack-cors"                      # support for Cross-Origin Resource Sharing (CORS)
 
