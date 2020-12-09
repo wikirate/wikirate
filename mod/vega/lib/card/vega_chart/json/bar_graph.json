@@ -48,7 +48,10 @@
         "data":"counts",
         "field":"count"
       },
-      "type":"sqrt",
+      "type": "pow",
+      "exponent": {
+        "signal": "exponent"
+      },
       "round":true
     }
   ],
@@ -69,6 +72,11 @@
             "band":true,
             "offset":-1
           },
+          "fill": {
+            "value": "#03998d"
+          }
+        },
+        "update": {
           "y":{
             "scale":"yscale",
             "field":"count"
@@ -76,11 +84,6 @@
           "y2":{
             "scale":"yscale",
             "value":0
-          }
-        },
-        "update": {
-          "fill": {
-            "value": "#03998d"
           },
           "opacity": {
             "value": 0.75
