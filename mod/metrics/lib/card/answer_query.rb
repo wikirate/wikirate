@@ -68,30 +68,6 @@ class Card
       @empty_result ? 0 : main_query.count
     end
 
-    # @return [Hash] with a key for each group and a count as the value
-    def count_by_group group
-      main_query.group(group).count
-    end
-
-    # @return [Hash] with a key for each status and a count as the value
-    def count_by_status
-      if status_filter.in? %i[all exists]
-        count_by_status_groups
-      else
-        { status_filter => count }
-      end
-    end
-
-    def count_by_status_groups
-      counts = { total: 0 }
-      count_by_group("value <> 'Unknown'").each do |val, count|
-        num = count.to_i
-        counts[STATUS_GROUPS[val]] = num
-        counts[:total] += num
-      end
-      counts
-    end
-
     def limit
       @paging_args[:limit]
     end
@@ -113,20 +89,7 @@ class Card
       condition_sql([@conditions.join(" AND ")] + @values)
     end
 
-    def year_counts
-      sql = year_sql answer_conditions
-      ActiveRecord::Base.connection.exec_query(sql).to_a
-    end
-
     private
-
-    def year_sql where
-      select = "SELECT count(*) as count, year, " \
-        "answer_id is null as calculated, checkers is not null as verified " \
-        "FROM answers"
-      where = "WHERE #{where}" if where.present?
-      "#{select} #{where} GROUP BY year, calculated, verified"
-    end
 
     def status_filter
       @filter_args[:status]&.to_sym || :exists

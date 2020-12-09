@@ -47,7 +47,7 @@ format :html do
                   type: "button",
                   path: { action: :delete,
                           success: research_params.merge(mark: :research_page.cardname) },
-                  class: "btn btn-sm btn-outline-danger pull-right",
+                  class: "btn btn-sm btn-outline-danger float-right",
                   'data-confirm': "Are you sure you want to delete the #{answer_label}?",
                   "data-disable-with": "Deleting"
   end

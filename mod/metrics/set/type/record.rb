@@ -6,7 +6,7 @@ def answer_query
 end
 
 def answers
-  @answers ||= Answer.search answer_query.merge(sort_by: :year, sort_order: :desc)
+  @answers ||= Answer.search answer_query.merge(sort_by: :year, sort_dir: :desc)
 end
 
 def count

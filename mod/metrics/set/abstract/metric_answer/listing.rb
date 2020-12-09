@@ -63,7 +63,7 @@ format :html do
 
   view :year_and_icon do
     wrap_with :span, class: "answer-year" do
-      "#{fa_icon :calendar} #{card.year}"
+      "#{mapped_icon_tag :year} #{card.year}"
     end
   end
 

@@ -16,7 +16,7 @@ format :html do
     responsive_count_badge_label || simple_count_badge_label
   end
 
-  # TODO: override and turn off caching in cacheable sets (eg pointers)
+  # TODO: override and turn off caching in cacheable sets (eg. pointers)
   view :count_badge, cache: :never, unknown: true do
     label = nest card.right, view: :count_badge_label
     labeled_badge count, label, klass: card.safe_set_keys,
@@ -27,10 +27,12 @@ format :html do
     field_nest field, view: :count_badge
   end
 
-  def responsive_count_badge_label
-    return unless (icon_tag = count_badge_icon)
+  def responsive_count_badge_label icon_tag: nil, simple_label: nil
+    icon_tag ||= count_badge_icon
+    return unless icon_tag
 
-    haml :responsive_count_badge_label, icon_tag: icon_tag
+    simple_label ||= simple_count_badge_label
+    haml :responsive_count_badge_label, label: simple_label, icon_tag: icon_tag
   end
 
   def count_badge_icon
