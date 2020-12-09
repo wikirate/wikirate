@@ -31,8 +31,8 @@ end
 gem "mysql2", "> 0.4"
 
 # DATABASE OPTIMIZATION
-gem "pluck_all"                      # supports optimized pluck queries
 gem "bulk_insert"                    # adds #bulk_insert method used for answer
+gem "pluck_all"                      # supports optimized pluck queries
 
 # FILE / SOURCE HANDLING
 gem "addressable"                    # URI encoding

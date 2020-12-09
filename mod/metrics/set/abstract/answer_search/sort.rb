@@ -22,19 +22,23 @@ format do
   end
 
   def default_sort_option
-    if lookup?
-      single?(:year) ? :value : :year
-    else
-      :name
-    end
+    lookup? ? default_lookup_sort_option : :name
+  end
+
+  def default_lookup_sort_option
+    single?(:year) ? :value : :year
   end
 
   def toggle_sort_dir field
     if field.to_sym == sort_by.to_sym
-      sort_dir == "asc" ? "desc" : "asc"
+      opposite_sort_dir
     else
       default_sort_dir field
     end
+  end
+
+  def opposite_sort_dir
+    sort_dir == "asc" ? "desc" : "asc"
   end
 
   def lookup?

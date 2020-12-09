@@ -11,7 +11,7 @@ include_set Abstract::Paging
 format :html do
   view :expanded_details do
     wrap_with :div, class: "details-content",
-              "data-details-view": expanded_data_details_view do
+                    "data-details-view": expanded_data_details_view do
       render :"expanded_#{details_type}_details"
     end
   end

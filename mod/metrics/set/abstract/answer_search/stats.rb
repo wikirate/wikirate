@@ -9,13 +9,13 @@ DISTINCTS = {
   designer_id: :designer,
   metric_type_id: :metric_types,
   year: :year
-}
+}.freeze
 
 INDISTINCTS = {
   "value <> 'Unknown'" => :known,
   "value = 'Unknown'" => :unknown,
   "*" => :metric_answer
-}
+}.freeze
 
 format do
   delegate :answer_query, :answer_lookup, to: :query
@@ -77,7 +77,7 @@ end
 format :html do
   def each_progress_bar_status
     %i[known unknown none].map do |status|
-      yield status, counts[status] if counts[status].to_i > 0
+      yield status, counts[status] if counts[status].to_i.positive?
     end.compact
   end
 
