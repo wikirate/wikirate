@@ -44,7 +44,9 @@ format :json do
   end
 
   view :year_list, cache: :never do
-    AnswerQuery.new(filter_hash).year_counts metric_type_id: false
+    answer_query.group(:year, :metric_type_id).count.map do |array, count|
+      { count: count, year: array.first, metric_type_id: array.last }
+    end
   end
 
   def answer_array hash
