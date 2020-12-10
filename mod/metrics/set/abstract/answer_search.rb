@@ -73,9 +73,7 @@ end
 format :html do
   delegate :partner, to: :card
 
-  def export_formats
-    %i[csv json]
-  end
+  before(:filter_form) { voo.hide :sort_formgroup }
 
   view :filtered_content do
     super() + raw('<div class="details"></div>')
@@ -91,13 +89,25 @@ format :html do
     end
   end
 
-  def table_type
-    :metric_answer
-  end
-
   view :answer_header, cache: :never do
     [table_sort_link("Answer", :value, "float-left mx-3 px-1"),
      table_sort_link("Year", :year, "float-right mx-3 px-1")]
+  end
+
+  def show_company_count?
+    true
+  end
+
+  def show_metric_count?
+    true
+  end
+
+  def export_formats
+    %i[csv json]
+  end
+
+  def table_type
+    :metric_answer
   end
 
   def tr_attribs row_card

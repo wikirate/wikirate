@@ -7,7 +7,7 @@ include_set Abstract::AnswerSearch
 
 format do
   def default_filter_hash
-    { status: :exists, metric_name: "", company_name: "" }
+    { metric_name: "", company_name: "" }
   end
 
   def filter_keys
