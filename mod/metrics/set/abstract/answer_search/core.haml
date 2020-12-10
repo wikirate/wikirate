@@ -5,10 +5,10 @@
     .filter-result-badges
       = answer_count_badge :metric_answer
       - unless unresearched_query?
-        - if show_metric_count?
-          = answer_count_badge :metric
         - if show_company_count?
           = answer_count_badge :wikirate_company
+        - if show_metric_count?
+          = answer_count_badge :metric
         = answer_count_badge :year
     .filter-result-menu
       - unless card.codename == :metric_answer

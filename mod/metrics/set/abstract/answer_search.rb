@@ -89,11 +89,6 @@ format :html do
     end
   end
 
-  view :answer_header, cache: :never do
-    [table_sort_link("Answer", :value, "float-left mx-3 px-1"),
-     table_sort_link("Year", :year, "float-right mx-3 px-1")]
-  end
-
   def show_company_count?
     true
   end

@@ -40,27 +40,31 @@ format :html do
   end
 
   def header_cells
-    %w[Metric Company Answer]
+    [company_sort_links, metric_sort_links, answer_sort_links]
   end
 
   def cell_views
-    [:metric_thumbnail_with_bookmark, :company_thumbnail_with_bookmark, :concise]
+    [:company_thumbnail_with_bookmark, :metric_thumbnail_with_bookmark, :concise]
   end
 
   def quick_filter_list
     @quick_filter_list ||=
-      bookmark_quick_filters + topic_quick_filters + project_quick_filters
+      bookmark_quick_filter + topic_quick_filters + project_quick_filters
   end
 
-  def bookmark_quick_filters
-    return [] unless my_bookmarks?
-
-    %i[wikirate_company metric].map do |codename|
-      { bookmark: :bookmark,
-        text: "My #{codename.cardname} Bookmarks",
-        class: "quick-filter-by-#{codename}" }
-    end
+  def bookmark_type
+    :todo
   end
+
+  # def bookmark_quick_filters
+  #   return [] unless my_bookmarks?
+  #
+  #   %i[wikirate_company metric].map do |codename|
+  #     { bookmark: :bookmark,
+  #       text: "My #{codename.cardname} Bookmarks",
+  #       class: "quick-filter-by-#{codename}" }
+  #   end
+  # end
 end
 
 format :json do

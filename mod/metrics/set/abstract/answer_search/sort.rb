@@ -77,4 +77,40 @@ format :html do
   def sort_dir_arrow
     sort_dir.to_sym == :asc ? :up : :down
   end
+
+  def company_sort_links
+    "#{bookmarkers_sort_link :company}#{company_name_sort_link}"
+  end
+
+  def metric_sort_links
+    "#{bookmarkers_sort_link :metric}#{designer_sort_link}#{title_sort_link}"
+  end
+
+  def answer_sort_links
+    "#{value_sort_link}#{year_sort_link}"
+  end
+
+  def title_sort_link
+    table_sort_link "Metric", :metric_title, "float-left mx-3 px-1"
+  end
+
+  def designer_sort_link
+    table_sort_link "", :metric_designer, "float-left mx-3 px-1"
+  end
+
+  def bookmarkers_sort_link type
+    table_sort_link "", :"#{type}_bookmarkers", "float-left mx-3 px-1"
+  end
+
+  def company_name_sort_link
+    table_sort_link rate_subjects, :company_name, "float-left mx-5 px-4"
+  end
+
+  def value_sort_link
+    table_sort_link "Answer", :value, "float-left mx-3 px-1"
+  end
+
+  def year_sort_link
+    table_sort_link "Year", :year, "float-right mx-3 px-1"
+  end
 end
