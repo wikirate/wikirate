@@ -63,7 +63,7 @@ RSpec.describe Card::AnswerQuery do
   # @return [Array] of metric_title(+scorer)+year strings
   def filter_by filter, latest: true, parts: nil
     filter.reverse_merge! year: :latest if latest
-    short_answers run_query(filter, sort_by: :metric_title), parts: parts
+    short_answers run_query(filter, metric_title: :asc), parts: parts
   end
 
   # @return [Array] of strings, by default: metric_title+year
@@ -75,8 +75,8 @@ RSpec.describe Card::AnswerQuery do
   end
 
   # @return [Array] of answer cards
-  def sort_by key, dir=:asc
-    run_query({ year: :latest }, sort_by: key, sort_dir: dir)
+  def sort_by sort_by, sort_dir=:asc
+    run_query({ year: :latest }, sort_by => sort_dir)
   end
 
   def run_query filter, sort

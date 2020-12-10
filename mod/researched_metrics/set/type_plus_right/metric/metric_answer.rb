@@ -34,6 +34,10 @@ def metric_card
 end
 
 format do
+  def secondary_sort_hash
+    super.merge year: { value: :asc }
+  end
+
   def filter_keys
     STANDARD_FILTER_KEYS + special_filter_keys
   end
@@ -106,6 +110,3 @@ format :html do
     :company_details_sidebar
   end
 end
-
-# no sort options because sorting is done by links
-# in the header of the table

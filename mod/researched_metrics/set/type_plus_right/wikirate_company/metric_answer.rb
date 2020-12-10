@@ -36,6 +36,10 @@ format do
     record? || !single?(:year) ? :year : :metric_bookmarkers
   end
 
+  def secondary_sort_hash
+    super.merge year: { metric_title: :asc }
+  end
+
   def default_filter_hash
     { metric_name: "" }
   end

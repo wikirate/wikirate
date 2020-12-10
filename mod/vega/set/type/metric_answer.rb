@@ -10,9 +10,9 @@ format :json do
                   layout: { height: 80, width: 200, max_ticks: 5, padding: 2 }
   end
 
-  def sort_hash
-    { sort_by: :year }
-  end
+  # def sort_hash
+  #   { sort_by: :year }
+  # end
 
   view :answer_list, cache: :never do
     chart_query.answer_lookup.map(&:compact_json)

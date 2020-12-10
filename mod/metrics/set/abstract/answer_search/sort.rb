@@ -1,5 +1,10 @@
-
 format do
+  SECONDARY_SORT = {
+    metric_bookmarkers: { metric_title: :asc },
+    metric_designer: { metric_title: :asc },
+    company_bookmarkers: { company_name: :asc }
+  }.freeze
+
   def sort_dir
     return unless sort_by
     @sort_dir ||= safe_sql_param("sort_dir") || default_sort_dir(sort_by)
@@ -14,7 +19,17 @@ format do
   end
 
   def sort_hash
-    { sort_by: sort_by, sort_dir: sort_dir }
+    primary = { sort_by.to_sym => sort_dir }
+    secondary_sort ? primary.merge(secondary_sort) : primary
+  end
+
+  def secondary_sort
+    @secondary_sort ||= secondary_sort_hash[sort_by]
+  end
+
+  # for override
+  def secondary_sort_hash
+    SECONDARY_SORT
   end
 
   def sort_by

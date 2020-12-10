@@ -17,10 +17,8 @@ class Card
 
       def process_sort
         @sort_joins = []
-        sort_bys = Array.wrap(@sort_args[:sort_by]).compact
-        sort_dirs = Array.wrap(@sort_args[:sort_dir]).compact
-        @sort_hash = sort_bys.each_with_index.with_object({}) do |(by, i), h|
-          h[sort_by(by.to_sym)] = sort_dirs[i]
+        @sort_hash = @sort_args.each_with_object({}) do |(key, val), h|
+          h[sort_by(key)] = val
         end
       end
 
