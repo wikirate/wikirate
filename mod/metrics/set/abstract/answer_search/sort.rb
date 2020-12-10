@@ -75,6 +75,6 @@ format :html do
   end
 
   def sort_dir_arrow
-    sort_dir == :asc ? :up : :down
+    sort_dir.to_sym == :asc ? :up : :down
   end
 end
