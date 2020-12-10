@@ -26,7 +26,8 @@ class Answer
     # @return answer card objects
     def search opts={}
       args = extract_search_args opts
-      search_where(opts).sort(args[:sort])
+      search_where(opts).uniq_select(args[:uniq], args[:return])
+                        .sort(args[:sort])
                         .paging(args[:page])
                         .return(args[:return])
     end

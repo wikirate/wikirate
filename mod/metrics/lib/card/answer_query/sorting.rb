@@ -11,12 +11,17 @@ class Card
       def sort_and_page
         relation = yield
         @sort_joins.each { |j| relation = relation.joins(j) }
+
         relation.sort(@sort_hash).paging(@paging_args)
       end
 
       def process_sort
         @sort_joins = []
-        @sort_hash = { sort_by(@sort_args[:sort_by]&.to_sym) => @sort_args[:sort_dir] }
+        sort_bys = Array.wrap(@sort_args[:sort_by]).compact
+        sort_dirs = Array.wrap(@sort_args[:sort_dir]).compact
+        @sort_hash = sort_bys.each_with_index.with_object({}) do |(by, i), h|
+          h[sort_by(by)] = sort_dirs[i]
+        end
       end
 
       def sort_by sort_by

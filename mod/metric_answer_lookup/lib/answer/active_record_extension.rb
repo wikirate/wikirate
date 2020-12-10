@@ -39,12 +39,15 @@ class Answer
       end
     end
 
-    def normalize_sort_metric_bookmarkers rel
-      sort_by_bookmarkers :metric_id, rel
-    end
-
-    def normalize_sort_company_bookmarkers rel
-      sort_by_bookmarkers :company_id, rel
+    def uniq_select uniq, retrn
+      return self unless uniq.present?
+      if group_necessary? uniq, retrn
+        group uniq
+      elsif retrn == :count
+        select(uniq).distinct
+      else
+        distinct
+      end
     end
 
     private
@@ -81,20 +84,16 @@ class Answer
       rel
     end
 
-    def normalize_sort_key key
-      try("normalize_sort_#{key}") || key
-    end
-
     def sort_by_bookmarkers type, rel
       [Card::Bookmark.add_sort_join(rel, "answers.#{type}_id"), "cts.value"]
     end
 
-    def sort_join_field? sort_value
-      sort_value.match?(/\w+\.\w+/)
-    end
-
     def valid_page_args? args
       args.present? && args[:limit].to_i.positive?
+    end
+
+    def group_necessary? uniq, retrn
+      (!retrn && uniq != :answer_id) || (retrn != :count && uniq != retrn)
     end
   end
 end
