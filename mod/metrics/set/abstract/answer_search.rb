@@ -32,11 +32,11 @@ format do
   end
 
   def search_with_params
-    card.search query: query
+    @search_with_params ||= card.search query: query
   end
 
   def count_with_params
-    card.search query: count_query, return: :count
+    @count_with_params ||= card.search query: count_query, return: :count
   end
 
   def query

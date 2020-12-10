@@ -70,7 +70,7 @@ format do
   end
 
   def count_with_params
-    Relationship.where(card.relationship_query).count
+    @count_with_params ||= Relationship.where(card.relationship_query).count
   end
 end
 
