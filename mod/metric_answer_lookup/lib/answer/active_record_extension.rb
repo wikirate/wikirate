@@ -71,9 +71,8 @@ class Answer
     end
 
     def sort_by_hash hash
-      hash.each_with_object({}) do |(key, dir), normalized|
-        norm_key = normalize_sort_key key
-        order Arel.sql("#{normalized[norm_key]} #{dir}")
+      hash.each do |key, dir|
+        order Arel.sql("#{normalize_sort_key key} #{dir}")
       end
     end
 
