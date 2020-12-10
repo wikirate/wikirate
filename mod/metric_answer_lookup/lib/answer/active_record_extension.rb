@@ -21,7 +21,7 @@ class Answer
 
     # @params hash [Hash] key1: dir1, key2: dir2
     def sort hash
-      self.tap { sort_by_hash hash if hash.present? }
+      hash.present? ? sort_by_hash(hash) : self
     end
 
     def paging args
@@ -39,12 +39,12 @@ class Answer
       end
     end
 
-    def normalize_sort_metric_bookmarkers
-      sort_by_bookmarkers :metric_id
+    def normalize_sort_metric_bookmarkers rel
+      sort_by_bookmarkers :metric_id, rel
     end
 
-    def normalize_sort_company_bookmarkers
-      sort_by_bookmarkers :company_id
+    def normalize_sort_company_bookmarkers rel
+      sort_by_bookmarkers :company_id, rel
     end
 
     private
@@ -71,18 +71,22 @@ class Answer
     end
 
     def sort_by_hash hash
+      rel = self
       hash.each do |key, dir|
-        order Arel.sql("#{normalize_sort_key key} #{dir}")
+        if (match = key.match(/^(\w+)_bookmarkers$/))
+          rel, key = sort_by_bookmarkers match[1], rel
+        end
+        rel = rel.order Arel.sql("#{key} #{dir}")
       end
+      rel
     end
 
     def normalize_sort_key key
       try("normalize_sort_#{key}") || key
     end
 
-    def sort_by_bookmarkers field
-      Card::Bookmark.add_sort_join self, "answers.#{field}"
-      "cts.value"
+    def sort_by_bookmarkers type, rel
+      [Card::Bookmark.add_sort_join(rel, "answers.#{type}_id"), "cts.value"]
     end
 
     def sort_join_field? sort_value
