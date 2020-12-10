@@ -10,7 +10,7 @@ format do
   end
 
   def default_desc_sort_dir
-    ::Set.new %i[updated_at bookmarkers value year]
+    ::Set.new %i[updated_at metric_bookmarkers value year]
   end
 
   def sort_hash
@@ -70,7 +70,11 @@ format :html do
 
   def sort_icon field
     icon = "sort"
-    icon += "-#{sort_dir}" if field.to_sym == sort_by.to_sym
+    icon += "-#{sort_dir_arrow}" if field.to_sym == sort_by.to_sym
     fa_icon icon
+  end
+
+  def sort_dir_arrow
+    sort_dir == :asc ? :up : :down
   end
 end
