@@ -25,7 +25,7 @@ RSpec.describe Answer, "Answer.search" do
 
   it "can sort by bookmarks" do
     result = search(designer_id: "Jedi".card_id, return: :metric_id,
-                    sort_by: :bookmarkers, sort_dir: :desc)
+                    sort: { metric_bookmarkers: :desc })
     expect(result.first.card.metric_title).to eq "disturbances in the Force"
   end
 

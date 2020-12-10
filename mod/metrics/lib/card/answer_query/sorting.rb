@@ -11,15 +11,15 @@ class Card
       def sort_and_page
         relation = yield
         @sort_joins.each { |j| relation = relation.joins(j) }
-        relation.sort(@sort_args).paging(@paging_args)
+        relation.sort(@sort_hash).paging(@paging_args)
       end
 
       def process_sort
         @sort_joins = []
-        @sort_args[:sort_by] = process_sort_by @sort_args[:sort_by]&.to_sym
+        @sort_hash = { sort_by(@sort_args[:sort_by]&.to_sym) => @sort_args[:sort_dir] }
       end
 
-      def process_sort_by sort_by
+      def sort_by sort_by
         if sort_by == :value
           numeric_sort? ? :numeric_value : :value
         elsif (id_field = SORT_JOIN_FIELD[sort_by])

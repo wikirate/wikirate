@@ -2,11 +2,7 @@ class Answer
   module AnswerClassMethods
     include Export::ClassMethods
 
-    SEARCH_OPTS = { sort: [:sort_by, :sort_dir, :cast],
-                    page: [:limit, :offset],
-                    return: [:return],
-                    uniq: [:uniq],
-                    where: [:where] }.freeze
+    SEARCH_OPTS = { page: [:limit, :offset] }.freeze
 
     # @return answer card objects
     def fetch where_args, sort_args={}, page_args={}
@@ -19,16 +15,15 @@ class Answer
     # method. Otherwise all remaining values that are not sort or page options are
     # passed as hash to `where`.
     # @option opts [Array] :where
-    # @option opts [Symbol] :sort_by column name or :bookmarkers
-    # @option opts [Symbol] :sort_dir :asc or :desc
+    # @option opts [Hash] :sort
     # @option opts [Integer] :limit
     # @option opts [Integer] :offset
     # @return answer card objects
     def search opts={}
-      args = split_search_args opts
-      where(*args[:where]).sort(args[:sort])
-                          .paging(args[:page])
-                          .return(args[:return])
+      split_search_args opts
+      search_where(opts).sort(opts[:sort])
+                        .paging(opts[:page])
+                        .return(opts[:return])
     end
 
     def existing id
@@ -57,19 +52,18 @@ class Answer
     private
 
     def split_search_args args
-      hash = {}
-      SEARCH_OPTS.each { |cat, keys| hash[cat] = args.extract!(*keys) }
-      hash[:uniq].merge! hash[:return] if hash[:uniq] && hash[:return]
-      hash[:where] = Array.wrap where_condition(hash[:where], args)
-      hash
+      SEARCH_OPTS.each do |cat, keys|
+        args[cat] = args.extract!(*keys)
+      end
+    end
+
+    def search_where args
+      cond = where_condition args[:where], args
+      where(*cond)
     end
 
     def where_condition explicit, implicit
-      if explicit.blank?
-        implicit
-      else
-        explicit[:where]
-      end
+      Array.wrap(explicit.blank? ? implicit : explicit)
     end
   end
 end

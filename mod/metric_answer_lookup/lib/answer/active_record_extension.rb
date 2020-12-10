@@ -16,16 +16,12 @@ class Answer
     end
 
     def cards type
-      self.return("#{type}_id").map &:card
+      self.return("#{type}_id").map(&:card)
     end
 
-    def sort args
-      return self unless valid_sort_args? args
-      if args[:sort_by].to_sym == :bookmarkers
-        order_by_bookmarkers args[:sort_dir]
-      else
-        order_by args
-      end
+    # @params hash [Hash] key1: dir1, key2: dir2
+    def sort hash
+      self.tap { sort_by_hash hash if hash.present? }
     end
 
     def paging args
@@ -33,14 +29,22 @@ class Answer
       limit(args[:limit]).offset(args[:offset])
     end
 
-    def return args={}
-      puts "called return with #{args}"
+    def return val
+      if val.blank?
+        answer_cards
+      elsif val.is_a? Array
+        multi_return val
+      else
+        standard_return val.to_s
+      end
+    end
 
-      return answer_cards unless args.present?
-      val = args.is_a?(Hash) ? args[:return] : args
-      return multi_return val if val.is_a? Array
+    def normalize_sort_metric_bookmarkers
+      sort_by_bookmarkers :metric_id
+    end
 
-      standard_return val.to_s
+    def normalize_sort_company_bookmarkers
+      sort_by_bookmarkers :company_id
     end
 
     private
@@ -57,42 +61,33 @@ class Answer
         count
       when "name", "answer_name"
         answer_names
-      when *Answer.column_names
-        pluck(val)
       when /^(\w+)_card/
         cards Regexp.last_match(1)
+      when *Answer.column_names
+        pluck(val)
       else
         raise ArgumentError, "unknown Answer return val: #{val}"
       end
     end
 
-    def order_by args
-      order order_args(args)
+    def sort_by_hash hash
+      hash.each_with_object({}) do |(key, dir), normalized|
+        norm_key = normalize_sort_key key
+        order Arel.sql("#{normalized[norm_key]} #{dir}")
+      end
     end
 
-    def order_args args
-      by = args[:cast] ? "CAST(#{args[:sort_by]} AS #{args[:cast]})" : args[:sort_by]
-      # I think it's ok to call Arel.sql here because the arguments coming from params
-      # use Query.safe_sql
-      Arel.sql "#{by} #{args[:sort_dir]}"
+    def normalize_sort_key key
+      try("normalize_sort_#{key}") || key
     end
 
-    def order_by_bookmarkers sort_dir
-      Card::Bookmark.sort self, "answers.metric_id", sort_dir
-    end
-
-    def valid_sort_args? args
-      return false unless args.present? && (sort_value = args[:sort_by]&.to_s)
-
-      valid_sort_value_list.include?(sort_value) || sort_join_field?(sort_value)
+    def sort_by_bookmarkers field
+      Card::Bookmark.add_sort_join self, "answers.#{field}"
+      "cts.value"
     end
 
     def sort_join_field? sort_value
       sort_value.match?(/\w+\.\w+/)
-    end
-
-    def valid_sort_value_list
-      @valid_sort_value_list ||= Answer.column_names + ["bookmarkers"]
     end
 
     def valid_page_args? args
