@@ -37,7 +37,7 @@ format do
   end
 
   def secondary_sort_hash
-    super.merge year: { metric_title: :asc }
+    super.merge year: { metric_bookmarkers: :desc, metric_title: :asc }
   end
 
   def default_filter_hash
