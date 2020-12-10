@@ -43,12 +43,16 @@ format do
   end
 
   def default_filter_hash
-    { status: :exists, company_name: "" }
+    { company_name: "" }
   end
 end
 
 format :html do
   delegate :metric_card, to: :card
+
+  def show_metric_count?
+    false
+  end
 
   def quick_filter_list
     @quick_filter_list ||=

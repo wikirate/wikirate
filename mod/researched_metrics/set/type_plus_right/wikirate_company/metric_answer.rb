@@ -37,7 +37,7 @@ format do
   end
 
   def default_filter_hash
-    { status: :exists, metric_name: "" }
+    { metric_name: "" }
   end
 end
 
@@ -77,5 +77,9 @@ format :html do
   def quick_filter_list
     @quick_filter_list ||=
       Card.fetch(:metric, :browse_metric_filter).format.quick_filter_list
+  end
+
+  def show_company_count?
+    false
   end
 end
