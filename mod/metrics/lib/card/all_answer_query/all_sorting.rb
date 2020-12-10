@@ -4,13 +4,6 @@ class Card
     module AllSorting
       private
 
-      def process_sort
-        super
-        return unless (partner_field = partner_field_map[@sort_args[:sort_by]])
-
-        @sort_args[:sort_by] = "#{@partner}.#{partner_field}"
-      end
-
       def sort_and_page
         rel = yield
         rel = sort rel
@@ -20,31 +13,39 @@ class Card
       end
 
       def sort rel
-        return rel unless @sort_args.present?
-        case @sort_args[:sort_by]&.to_sym
-        when :bookmarkers then sort_by_bookmarkers rel
-        when :metric_title then sort_by_metric_title rel
-        else standard_sort rel
+        @sort_hash.each do |fld, dir|
+          rel, fld = interpret_sort_field rel, fld
+          rel = rel.order Arel.sql("#{fld} #{dir}")
+        end
+        rel
+      end
+
+      def interpret_sort_field rel, fld
+        case fld
+        when /bookmarkers$/
+          sort_by_bookmarkers rel
+        when :metric_title
+          sort_by_metric_title rel
+        else
+          [rel, fld]
         end
       end
 
-      # overrides sorting.rb
-      def sort_by_join sort_by, _id_field
-        sort_by
+      def sort_by sort_by
+        if (partner_field = partner_field_map[sort_by])
+          "#{@partner}.#{partner_field}"
+        else
+          sort_by
+        end
       end
 
       def sort_by_bookmarkers rel
-        Card::Bookmark.sort rel, "#{@partner}.id", @sort_args[:sort_dir]
+        [Card::Bookmark.add_sort_join(rel, "#{@partner}.id"), "cts.value"]
       end
 
       # FIXME: right_id is not the title for Score metrics!
       def sort_by_metric_title rel
-        rel.joins(sort_join("right_id = sort.id"))
-           .order(Arel.sql("sort.key #{@sort_args[:sort_dir]}"))
-      end
-
-      def standard_sort rel
-        rel.order Arel.sql("#{@sort_args[:sort_by]} #{@sort_args[:sort_dir]}")
+        [rel.joins(sort_join("right_id = sort.id")), "sort.key"]
       end
 
       def sort_join sql

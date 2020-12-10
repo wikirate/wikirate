@@ -17,21 +17,21 @@ class Card
 
       def process_sort
         @sort_joins = []
-        sort_bys = Array.wrap(@sort_args[:sort_by]).compact
-        sort_dirs = Array.wrap(@sort_args[:sort_dir]).compact
-        @sort_hash = sort_bys.each_with_index.with_object({}) do |(by, i), h|
-          h[sort_by(by)] = sort_dirs[i]
+        @sort_hash = @sort_args.each_with_object({}) do |(key, val), h|
+          h[sort_by(key)] = val
         end
       end
 
       def sort_by sort_by
-        if sort_by == :value
-          numeric_sort? ? :numeric_value : :value
-        elsif (id_field = SORT_JOIN_FIELD[sort_by])
+        if (id_field = SORT_JOIN_FIELD[sort_by])
           sort_by_join sort_by, id_field
         else
-          sort_by
+          sort_by == :value ? sort_by_value : sort_by
         end
+      end
+
+      def sort_by_value
+        numeric_sort? ? :numeric_value : :value
       end
 
       def sort_by_join sort_by, id_field

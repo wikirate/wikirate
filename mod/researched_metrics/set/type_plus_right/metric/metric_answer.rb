@@ -34,6 +34,10 @@ def metric_card
 end
 
 format do
+  def secondary_sort_hash
+    super.merge year: { value: :asc }
+  end
+
   def filter_keys
     STANDARD_FILTER_KEYS + special_filter_keys
   end
@@ -43,12 +47,16 @@ format do
   end
 
   def default_filter_hash
-    { status: :exists, company_name: "" }
+    { company_name: "" }
   end
 end
 
 format :html do
   delegate :metric_card, to: :card
+
+  def show_metric_count?
+    false
+  end
 
   def quick_filter_list
     @quick_filter_list ||=
@@ -95,18 +103,10 @@ format :html do
   end
 
   def header_cells
-    [company_sort_links, render_answer_header]
+    [company_sort_links, answer_sort_links]
   end
 
   def details_view
     :company_details_sidebar
   end
-
-  def company_sort_links
-    output [table_sort_link(rate_subjects, :company_name),
-            table_sort_link("", :metric_bookmarkers, "float-left mx-3 px-1")]
-  end
 end
-
-# no sort options because sorting is done by links
-# in the header of the table

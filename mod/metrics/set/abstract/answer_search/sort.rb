@@ -1,5 +1,10 @@
-
 format do
+  SECONDARY_SORT = {
+    metric_bookmarkers: { metric_title: :asc },
+    metric_designer: { metric_title: :asc },
+    company_bookmarkers: { company_name: :asc }
+  }.freeze
+
   def sort_dir
     return unless sort_by
     @sort_dir ||= safe_sql_param("sort_dir") || default_sort_dir(sort_by)
@@ -14,7 +19,17 @@ format do
   end
 
   def sort_hash
-    { sort_by: sort_by, sort_dir: sort_dir }
+    primary = { sort_by.to_sym => sort_dir }
+    secondary_sort ? primary.merge(secondary_sort) : primary
+  end
+
+  def secondary_sort
+    @secondary_sort ||= secondary_sort_hash[sort_by]
+  end
+
+  # for override
+  def secondary_sort_hash
+    SECONDARY_SORT
   end
 
   def sort_by
@@ -75,6 +90,42 @@ format :html do
   end
 
   def sort_dir_arrow
-    sort_dir == :asc ? :up : :down
+    sort_dir.to_sym == :asc ? :up : :down
+  end
+
+  def company_sort_links
+    "#{bookmarkers_sort_link :company}#{company_name_sort_link}"
+  end
+
+  def metric_sort_links
+    "#{bookmarkers_sort_link :metric}#{designer_sort_link}#{title_sort_link}"
+  end
+
+  def answer_sort_links
+    "#{value_sort_link}#{year_sort_link}"
+  end
+
+  def title_sort_link
+    table_sort_link "Metric", :metric_title, "float-left mx-3 px-1"
+  end
+
+  def designer_sort_link
+    table_sort_link "", :metric_designer, "float-left mx-3 px-1"
+  end
+
+  def bookmarkers_sort_link type
+    table_sort_link "", :"#{type}_bookmarkers", "float-left mx-3 px-1"
+  end
+
+  def company_name_sort_link
+    table_sort_link rate_subjects, :company_name, "float-left mx-5 px-4"
+  end
+
+  def value_sort_link
+    table_sort_link "Answer", :value, "float-left mx-3 px-1"
+  end
+
+  def year_sort_link
+    table_sort_link "Year", :year, "float-right mx-3 px-1"
   end
 end
