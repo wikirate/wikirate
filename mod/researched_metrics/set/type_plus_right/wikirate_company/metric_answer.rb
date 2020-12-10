@@ -33,7 +33,7 @@ format do
   end
 
   def default_sort_option
-    record? || !single?(:year) ? :year : :bookmarkers
+    record? || !single?(:year) ? :year : :metric_bookmarkers
   end
 
   def default_filter_hash
