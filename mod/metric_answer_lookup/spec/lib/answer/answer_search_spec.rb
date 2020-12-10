@@ -17,15 +17,14 @@ RSpec.describe Answer, "Answer.search" do
   end
 
   it "can sort by year" do
-    result = record_names(title_id: "darkness rating".card_id,
-                          sort_by: :year, sort_dir: :desc)
+    result = record_names title_id: "darkness rating".card_id, sort: { year: :desc }
     expect(result.size).to eq 3
     expect(result.first).to eq "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
   it "can sort by bookmarks" do
-    result = search(designer_id: "Jedi".card_id, return: :metric_id,
-                    sort: { metric_bookmarkers: :desc })
+    result = search designer_id: "Jedi".card_id, return: :metric_id,
+                    sort: { metric_bookmarkers: :desc }
     expect(result.first.card.metric_title).to eq "disturbances in the Force"
   end
 

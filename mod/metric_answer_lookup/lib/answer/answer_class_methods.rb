@@ -2,7 +2,12 @@ class Answer
   module AnswerClassMethods
     include Export::ClassMethods
 
-    SEARCH_OPTS = { page: [:limit, :offset] }.freeze
+    SEARCH_OPTS = {
+      page: [:limit, :offset],
+      sort: true,
+      return: true,
+      uniq: true
+    }.freeze
 
     # @return answer card objects
     def fetch where_args, sort_args={}, page_args={}
@@ -20,10 +25,10 @@ class Answer
     # @option opts [Integer] :offset
     # @return answer card objects
     def search opts={}
-      split_search_args opts
-      search_where(opts).sort(opts[:sort])
-                        .paging(opts[:page])
-                        .return(opts[:return])
+      args = extract_search_args opts
+      search_where(opts).sort(args[:sort])
+                        .paging(args[:page])
+                        .return(args[:return])
     end
 
     def existing id
@@ -51,9 +56,9 @@ class Answer
 
     private
 
-    def split_search_args args
-      SEARCH_OPTS.each do |cat, keys|
-        args[cat] = args.extract!(*keys)
+    def extract_search_args args
+      SEARCH_OPTS.each_with_object({}) do |(cat, keys), hash|
+        hash[cat] = keys.is_a?(Array) ? args.extract!(*keys) : args.delete(cat)
       end
     end
 
