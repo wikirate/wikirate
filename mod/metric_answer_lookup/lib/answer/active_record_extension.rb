@@ -75,13 +75,19 @@ class Answer
 
     def sort_by_hash hash
       rel = self
-      hash.each do |key, dir|
-        if (match = key.match(/^(\w+)_bookmarkers$/))
-          rel, key = sort_by_bookmarkers match[1], rel
-        end
-        rel = rel.order Arel.sql("#{key} #{dir}")
+      hash.each do |fld, dir|
+        rel, fld = interpret_sort_field rel, fld
+        rel = rel.order Arel.sql("#{fld} #{dir}")
       end
       rel
+    end
+
+    def interpret_sort_field rel, fld
+      if (match = fld.match(/^(\w+)_bookmarkers$/))
+        sort_by_bookmarkers match[1], rel
+      else
+        [rel, fld]
+      end
     end
 
     def sort_by_bookmarkers type, rel

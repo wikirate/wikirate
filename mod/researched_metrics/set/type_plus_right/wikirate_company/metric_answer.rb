@@ -36,8 +36,12 @@ format do
     record? || !single?(:year) ? :year : :metric_bookmarkers
   end
 
+  def secondary_sort_hash
+    super.merge year: { metric_bookmarkers: :desc, metric_title: :asc }
+  end
+
   def default_filter_hash
-    { status: :exists, metric_name: "" }
+    { metric_name: "" }
   end
 end
 
@@ -47,27 +51,11 @@ format :html do
   end
 
   def header_cells
-    [name_sort_links, render_answer_header]
+    [metric_sort_links, answer_sort_links]
   end
 
   def details_view
     :metric_details_sidebar
-  end
-
-  def name_sort_links
-    "#{bookmarkers_sort_link}#{designer_sort_link}#{title_sort_link}"
-  end
-
-  def title_sort_link
-    table_sort_link "Metric", :metric_title, "float-left mx-3 px-1"
-  end
-
-  def designer_sort_link
-    table_sort_link "", :metric_designer, "float-left mx-3 px-1"
-  end
-
-  def bookmarkers_sort_link
-    table_sort_link "", :metric_bookmarkers, "float-left mx-3 px-1"
   end
 
   def filter_label field
@@ -77,5 +65,9 @@ format :html do
   def quick_filter_list
     @quick_filter_list ||=
       Card.fetch(:metric, :browse_metric_filter).format.quick_filter_list
+  end
+
+  def show_company_count?
+    false
   end
 end

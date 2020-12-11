@@ -2,7 +2,7 @@
   "signals": [
     {
       "name": "interpolate",
-      "value": "monotone",
+      "value": "basis",
       "bind": {
         "input": "select",
         "options": [
