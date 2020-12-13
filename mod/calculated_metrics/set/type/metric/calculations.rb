@@ -113,3 +113,13 @@ def to_company_id company
 
   Card.fetch_id(company)
 end
+
+# The bulk_insert gem stopped working with the rail 6.1 upgrade;
+# This is a bit of a hack to get it working again.
+module ConnectionPatch
+  def type_cast_from_column _column, value
+    value
+  end
+end
+
+ActiveRecord::ConnectionAdapters::Mysql2Adapter.include ConnectionPatch
