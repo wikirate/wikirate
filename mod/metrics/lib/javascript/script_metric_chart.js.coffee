@@ -46,7 +46,6 @@ updateFilter = (el, filterVals) ->
 updateDetails = (detailsAnswer) ->
   $("[data-details-mark=\"#{detailsAnswer}\"]").trigger "click"
 
-
 $(document).ready ->
   $('body').on 'click', '._filter-bindings', ->
     vis = $(this).closest('.filtered-results').find '.vis'

@@ -110,4 +110,8 @@ format :html do
 
     { class: "details-toggle", "data-details-mark": row_card.name.url_key }
   end
+
+  def extra_paging_path_args
+    @extra_paging_path_args ||= super.merge sort_by: sort_by, sort_dir: sort_dir
+  end
 end

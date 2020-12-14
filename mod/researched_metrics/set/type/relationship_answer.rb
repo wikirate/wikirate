@@ -38,8 +38,8 @@ event :run_value_events_on_name_change, :validate, changed: :name, on: :update d
   value_card = Card[name_before_act, :value]
   value_card.instance_variable_set "@name", Card::Name[name, :value]
   value_card.valid?
-  value_card.errors.each do |_fld, message|
-    errors.add :value, message
+  value_card.errors.each do |error|
+    errors.add :value, error.message
   end
   update_relationship relationship_id: id
   # this is a bit of a hack.
