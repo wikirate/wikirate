@@ -40,6 +40,11 @@
   @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
 }
 
+.modal-dialog .details {
+  position: static;
+  width: 100%
+}
+
 .details-toggle.active {
   @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
 }

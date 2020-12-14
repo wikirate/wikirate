@@ -99,4 +99,8 @@ format :html do
                                          simple_label: simple_label
     labeled_badge count, label, color: "#{codename.cardname.downcase} badge-secondary"
   end
+
+  def show_chart?
+    super && counts[:known] > 1
+  end
 end
