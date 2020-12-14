@@ -75,18 +75,22 @@ format :html do
 
   before(:filter_form) { voo.hide :sort_formgroup }
 
-  view :filtered_content do
-    super() + raw('<div class="details"></div>')
-  end
-
   view :core, cache: :never, template: :haml
 
   view :table, cache: :never do
-    wrap true, "data-details-view": details_view do
+    wrap true, "data-details-config": details_config.to_json do
       wikirate_table table_type, self, cell_views, header: header_cells,
                                                    td: { classes: %w[header data] },
                                                    tr: { method: :tr_attribs }
     end
+  end
+
+  def details_config
+    { view: details_view, layout: details_layout }
+  end
+
+  def details_layout
+    :sidebar
   end
 
   def show_company_count?

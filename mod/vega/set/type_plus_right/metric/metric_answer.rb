@@ -9,9 +9,3 @@ format :json do
     @metric_card ||= card.left
   end
 end
-
-format :html do
-  def show_chart?
-    super && counts[:known].to_i.positive?
-  end
-end
