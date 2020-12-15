@@ -39,6 +39,10 @@ format :html do
     :details_sidebar
   end
 
+  def details_layout
+    :modal
+  end
+
   def header_cells
     [company_sort_links, metric_sort_links, answer_sort_links]
   end

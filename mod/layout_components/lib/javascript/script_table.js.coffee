@@ -2,10 +2,10 @@
 
 $(document).ready ->
   $('body').on 'click', "[data-details-mark]", ->
-    (new decko.details(this)).toggle $(this)
+    (new decko.details()).toggle $(this)
 
   $('body').on 'click', ".details-close-icon", (e)->
-    (new decko.details($(this).closest(".details-toggle"))).closeLast()
+    (new decko.details()).closeLast()
     e.stopPropagation()
     e.preventDefault()
 
@@ -13,12 +13,25 @@ $(document).ready ->
     unless $(this).closest(".relations_table-view").length > 0
     # update details unless we're looking at relationship details
     # (we don't yet have a relationship details view)
-      (new decko.details(this)).add $(this)
+      (new decko.details()).add $(this)
       e.preventDefault()
 
-decko.details = (el) ->
-  @dInnerSlot = $(el).find ".details"
-  @dSlot = if @dInnerSlot.exists() then @dInnerSlot else $(".details")
+decko.details = () ->
+  @initDSlot = ()->
+    $("body").append("<div class='details'></div>") unless $(".details").exists()
+    @dSlot = $(".details")
+    @initModal() if @config("layout") == "modal"
+
+  @initModal = ()->
+    unless @inModal()
+      @mSlot = @dSlot.showAsModal $("body")
+      @modalDialog().addClass "modal-lg"
+
+  @inModal = ()->
+    @modalDialog().exists()
+
+  @modalDialog = ()->
+    @dSlot.closest ".modal-dialog"
 
   @closeLast = ()->
     if @dSlot.children().length == 1
@@ -34,6 +47,7 @@ decko.details = (el) ->
   @turnOff = () ->
     $(".details-toggle").removeClass "active"
     @dSlot.hide()
+    @dSlot.closest(".modal").modal('hide') if @inModal()
 
   @toggle = (el) ->
     if el.hasClass "active"
@@ -49,8 +63,11 @@ decko.details = (el) ->
 
   @urlFor = (el) ->
     mark = el.attr("href") || el.data "details-mark"
-    view = el.closest("[data-details-view]").data "details-view"
-    decko.path mark + "?view=" + view
+    decko.path mark + "?view=" + @config("view")
+
+  @config = (key)->
+    @configHash ||= $("[data-details-config]").data "details-config"
+    @configHash[key]
 
   @showDetails = (url, root) ->
     unless @currentURL() == url
@@ -79,5 +96,7 @@ decko.details = (el) ->
     page.load url, ()->
       page.find(".card-slot").trigger "slotReady"
     page
+
+  @initDSlot()
 
   this
