@@ -24,4 +24,3 @@ format :html do
     nest card_type, view: :count
   end
 end
-
