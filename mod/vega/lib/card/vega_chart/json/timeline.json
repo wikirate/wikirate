@@ -2,7 +2,7 @@
   "signals": [
     {
       "name": "interpolate",
-      "value": "basis",
+      "value": "catmull-rom",
       "bind": {
         "input": "select",
         "options": [
@@ -50,7 +50,7 @@
       "name": "years"
     },
     {
-      "name": "metricTypes",
+      "name": "groups",
       "url": "/Metric_Type+*type.json",
       "format": { "property": "items" }
     },
@@ -68,10 +68,14 @@
       "name": "counts",
       "source": "years",
       "transform" : [
+        { "type": "formula",
+          "expr": "datum.metric_type_id",
+          "as": "group_id"
+        },
         {
           "type": "impute",
           "groupby": [
-            "metric_type_id"
+            "group_id"
           ],
           "key": "year",
           "keyvals": {
@@ -86,7 +90,7 @@
           "sort": {
             "field": [
               "year",
-              "metric_type_id"
+              "group_id"
             ]
           }
         },
@@ -99,15 +103,15 @@
         },
         {
           "type": "lookup",
-          "from": "metricTypes",
+          "from": "groups",
           "key": "id",
-          "fields": ["metric_type_id"],
-          "as": ["metricType"],
+          "fields": ["group_id"],
+          "as": ["group"],
           "values": ["name"]
         },
         {
           "type": "formula",
-          "expr": "{ metric_type: datum.metricType }",
+          "expr": "{ metric_type: datum.group }",
           "as": "filter"
         }
       ]
@@ -165,7 +169,7 @@
       },
       "domain": {
         "data": "counts",
-        "field": "metricType"
+        "field": "group"
       }
     }
   ],
@@ -177,7 +181,7 @@
           "name": "series",
           "data": "counts",
           "groupby": [
-            "metricType"
+            "group"
           ]
         }
       },
@@ -195,7 +199,7 @@
               },
               "fill": {
                 "scale": "color",
-                "field": "metricType"
+                "field": "group"
               }
             },
             "update": {
@@ -311,7 +315,7 @@
         "labels": {
           "update": {
             "fontWeight": [
-              { "test": "areatip.metricType == datum.label", "value": 900 },
+              { "test": "areatip.group == datum.label", "value": 900 },
               { "value": 400 }
             ]
           }
@@ -319,7 +323,7 @@
         "symbols": {
           "update": {
             "fillOpacity": [
-              { "test": "areatip.metricType == datum.label", "value": 0.9 },
+              { "test": "areatip.group == datum.label", "value": 0.9 },
               { "value": 1 }
             ]
           }
