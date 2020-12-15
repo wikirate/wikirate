@@ -44,8 +44,9 @@ format :json do
   end
 
   view :year_list, cache: :never do
-    answer_query.group(:year, :metric_type_id).count.map do |array, count|
-      { count: count, year: array.first, metric_type_id: array.last }
+    subgroup = params[:subgroup] || :metric_type_id
+    answer_query.group(:year, subgroup).count.map do |array, count|
+      { count: count, year: array.first, subgroup: array.last }
     end
   end
 
