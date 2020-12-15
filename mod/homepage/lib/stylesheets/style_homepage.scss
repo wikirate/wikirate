@@ -24,12 +24,14 @@
 .year-icon-cal.image-box  {
   position: relative;
    i {
-     font-size: 55px;
+     font-size: 28px;
+     position: relative;
+     bottom: 11px;
    }
   .icon-cal-text {
     position: absolute;
-    top: 45%;
-    font-size: 16px;
+    bottom: 5%;
+    font-size: 17px;
     font-weight: bold;
     }
   }

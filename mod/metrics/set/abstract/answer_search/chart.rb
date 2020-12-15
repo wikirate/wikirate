@@ -53,6 +53,7 @@ format :json do
     counts[:known] <= HORIZONTAL_MAX
   end
 
+  # determine which of metric/company is column/row
   def grid_options
     (40 - metric_count).abs > (40 - company_count).abs ? { invert: true } : {}
   end

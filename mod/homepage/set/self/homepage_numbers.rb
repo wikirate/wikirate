@@ -1,19 +1,19 @@
 include_set Abstract::HamlFile
 
 format :html do
-  Category = Struct.new :codename, :title, :count, :color, :icon
+  Category = Struct.new :codename, :title, :count, :color
 
   def categories
     [
       category(:wikirate_company, rate_subjects, :company),
-      category(:metric, "Metric Questions", :metric, :help),
-      category(:metric_answer, "Metric Answers", :metric, :check),
+      category(:metric, "Metric Questions", :metric),
+      category(:metric_answer, "Metric Answers", :answer),
       category(:source, "Sources", :source)
     ]
   end
 
-  def category codename, title, color, icon=icon_map(codename)
-    Category.new codename, title, count(codename), color, icon
+  def category codename, title, color
+    Category.new codename, title, count(codename), color
   end
 
   def featured_answers
@@ -24,3 +24,4 @@ format :html do
     nest card_type, view: :count
   end
 end
+

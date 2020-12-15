@@ -68,14 +68,10 @@
       "name": "counts",
       "source": "years",
       "transform" : [
-        { "type": "formula",
-          "expr": "datum.metric_type_id",
-          "as": "group_id"
-        },
         {
           "type": "impute",
           "groupby": [
-            "group_id"
+            "subgroup"
           ],
           "key": "year",
           "keyvals": {
@@ -90,7 +86,7 @@
           "sort": {
             "field": [
               "year",
-              "group_id"
+              "subgroup"
             ]
           }
         },
@@ -105,7 +101,7 @@
           "type": "lookup",
           "from": "groups",
           "key": "id",
-          "fields": ["group_id"],
+          "fields": ["subgroup"],
           "as": ["group"],
           "values": ["name"]
         },
