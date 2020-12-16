@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class FixPrmeYears < Card::Migration
+class FixPrmeYears < Cardio::Migration
   def up
     repair_answers_without_latest
     conflicts = []
