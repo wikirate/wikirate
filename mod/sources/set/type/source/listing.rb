@@ -79,7 +79,7 @@ format :html do
 
   # make view of year?
   def year_icon
-    wrap_with :span, fa_icon("calendar"), class: "pr-1"
+    wrap_with :span, mapped_icon_tag(:year), class: "pr-1"
   end
 
   def website_text
