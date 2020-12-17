@@ -42,9 +42,12 @@ def affinity_name affinity, project_card=nil
   end
 end
 
+def create_relation
+  Answer.where(creator_id: Auth.current_id).where.not(answer_id: nil)
+end
+
 def create_count restriction={}
-  Answer.where(restriction.merge(creator_id: Auth.current_id))
-        .where.not(answer_id: nil).count
+  create_relation.where(restriction).count
 end
 
 def create_count_general
@@ -52,7 +55,10 @@ def create_count_general
 end
 
 def create_count_designer
-  create_count designer_id: metric_card.metric_designer_card.id
+  create_relation
+    .joins(:metric)
+    .where(metric: { designer_id: metric_card.metric_designer_id })
+    .count
 end
 
 def create_count_company

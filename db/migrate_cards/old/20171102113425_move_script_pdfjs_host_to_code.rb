@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class MoveScriptPdfjsHostToCode < Card::Migration
+class MoveScriptPdfjsHostToCode < Cardio::Migration
   def up
     ensure_card "script: pdfjs hosts",
                 codename: "script_pdfjs_hosts",

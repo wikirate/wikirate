@@ -1,4 +1,4 @@
-class StructureFixes < Card::Migration
+class StructureFixes < Cardio::Migration
   def up
     merge_cards [ "research_page+company",
                   "research page+metric",

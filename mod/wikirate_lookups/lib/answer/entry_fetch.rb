@@ -1,11 +1,14 @@
 class Answer
   # Methods to fetch the data needed to initialize a new answer lookup table entry.
   module EntryFetch
-    include MetricDetails
     include ValueDetails
 
     def fetch_answer_id
-      card.id if card.id && card.value_card.id
+      card.id if card.id && card.value_card.id # why this if??
+    end
+
+    def fetch_metric_id
+      Card.fetch_id fetch_record_name.left
     end
 
     def fetch_company_id
@@ -51,12 +54,12 @@ class Answer
 
     def fetch_source_url
       return unless (url_card = source_field.first_card&.field(:wikirate_link))
-      url_card.content.truncate(1024, omission: "")
+      url_card.content.truncate 1024, omission: ""
     end
 
     def fetch_comments
       return nil unless (comment_card = Card.fetch [card.name, :discussion])
-      comment_card.format(:text).render_core.gsub(/^\s*--.*$/,"").squish.truncate(1024)
+      comment_card.format(:text).render_core.gsub(/^\s*--.*$/, "").squish.truncate 1024
     end
 
     private
