@@ -9,6 +9,8 @@ class Answer
       uniq: true
     }.freeze
 
+    VALUE_JOINT = Card::Set::Abstract::Value::JOINT
+
     # @return answer card objects
     def fetch where_args, sort_args={}, page_args={}
       where_opts = Array.wrap(where_args)
@@ -53,6 +55,22 @@ class Answer
 
     def find_by_answer_id answer_id
       find_by_card_id answer_id
+    end
+
+    def unknown? val
+      val.to_s.casecmp("unknown").zero?
+    end
+
+    # convert value format to lookup-table-suitable value
+    # @return nil or String
+    def value_to_lookup value
+      return nil unless value.present?
+      value.is_a?(Array) ? value.join(VALUE_JOINT) : value.to_s
+    end
+
+    # convert value from lookup table to
+    def value_from_lookup string, type
+      type == :multi_category ? string.split(VALUE_JOINT) : string
     end
 
     private

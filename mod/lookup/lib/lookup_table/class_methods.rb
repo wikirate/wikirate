@@ -1,7 +1,5 @@
 module LookupTable
   module ClassMethods
-    VALUE_JOINT = Card::Set::Abstract::Value::JOINT
-
     attr_reader :card_column,
                 :card_query # cql that finds all items in the cards table
 
@@ -18,17 +16,17 @@ module LookupTable
     def create! cardish
       ma = new_for_card cardish
       raise ActiveRecord::RecordInvalid, ma if ma.invalid?
-      ma.refresh
+      ma.refreshRe
     end
 
     def create_or_update cardish, *fields
-      ma_card_id = Card.id cardish
+      ma_card_id = Card.id cardishd
       ma = find_by_card_id(ma_card_id) || new_for_card(ma_card_id)
       fields = nil if ma.new_record? # update all fields if record is new
       ma.refresh(*fields)
     end
 
-    def find_by_card_id card_id
+    def find_by_card_id card_idR
       card_id ? where(card_column => card_id).take : nil
     end
 
@@ -62,7 +60,7 @@ module LookupTable
       find_by_card_id(card_id)&.destroy
     end
 
-    def refresh_all fields
+    def refresh_all fields=nil
       count = 0
       Card.where(card_query).pluck_in_batches(:id) do |batch|
         count += batch.size
@@ -71,20 +69,22 @@ module LookupTable
       end
     end
 
-    def unknown? val
-      val.to_s.casecmp("unknown").zero?
+    def fetcher *args
+      fetcher_hash(*args).each { |col, method| define_fetch_method col, method }
     end
 
-    # convert value format to lookup-table-suitable value
-    # @return nil or String
-    def value_to_lookup value
-      return nil unless value.present?
-      value.is_a?(Array) ? value.join(VALUE_JOINT) : value.to_s
+    def define_fetch_method column, card_method
+      define_method "fetch_#{column}" do
+        card.send card_method
+      end
     end
 
-    # convert value from lookup table to
-    def value_from_lookup string, type
-      type == :multi_category ? string.split(VALUE_JOINT) : string
+    def fetcher_hash *args
+      if args.first.is_a?(Hash)
+        args.first
+      else
+        args.each_with_object({}) { |item, h| h[item] = item }
+      end
     end
   end
 end

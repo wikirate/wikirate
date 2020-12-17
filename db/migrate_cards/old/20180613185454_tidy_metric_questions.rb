@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class TidyMetricQuestions < Card::Migration
+class TidyMetricQuestions < Cardio::Migration
   def up
     merge_cards ["Metric+Score+*type plus right+*structure",
                  "Metric+question+*type plus right+*default"]

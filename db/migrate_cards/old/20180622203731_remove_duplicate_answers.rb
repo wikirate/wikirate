@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class RemoveDuplicateAnswers < Card::Migration
+class RemoveDuplicateAnswers < Cardio::Migration
   def up
     duplicates.each do |dup|
       wipe_duplicate dup

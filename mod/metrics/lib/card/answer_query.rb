@@ -46,6 +46,7 @@ class Card
       @paging_args = paging
 
       @conditions = []
+      @joins = []
       @values = []
       @restrict_to_ids = {}
 
@@ -77,7 +78,9 @@ class Card
     end
 
     def answer_query
-      Answer.where answer_conditions
+      q = Answer.where answer_conditions
+      q = q.joins(@joins) if @joins.present?
+      q
     end
 
     def answer_lookup
@@ -96,7 +99,7 @@ class Card
     end
 
     def main_results
-      # puts "SQL: #{answer_lookup.to_sql}"
+      puts "SQL: #{answer_lookup.to_sql}"
       answer_lookup.answer_cards
     end
 

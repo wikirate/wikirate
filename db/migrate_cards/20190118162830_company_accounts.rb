@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class CompanyAccounts < Card::Migration
+class CompanyAccounts < Cardio::Migration
   def up
     ensure_card %i[wikirate_company type accountable], content: "1"
     create_account_card
