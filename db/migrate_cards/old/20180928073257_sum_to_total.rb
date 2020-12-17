@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class SumToTotal < Card::Migration
+class SumToTotal < Cardio::Migration
   def up
     Card.search(right_id: Card::FormulaID, left: { type_id:  Card::MetricID },
                 content: ["match", "Sum"]).each do |card|
