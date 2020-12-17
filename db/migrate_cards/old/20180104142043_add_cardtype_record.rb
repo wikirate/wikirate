@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddCardtypeRecord < Card::Migration
+class AddCardtypeRecord < Cardio::Migration
   def up
     ensure_card "Record", type: Card::CardtypeID, codename: "record"
     Card::Cache.reset_all

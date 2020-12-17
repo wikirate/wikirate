@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class MoveHomepageToCode < Card::Migration
+class MoveHomepageToCode < Cardio::Migration
   def up
     ensure_card "homepage top banner", codename: "homepage_top_banner"
     ensure_card "About WikiRate", codename: "about_wikirate"

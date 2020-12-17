@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class RecalculateAnswers < Card::Migration
+class RecalculateAnswers < Cardio::Migration
   def up
     Card.search type_id: Card::MetricID do |metric|
       next unless (formula_card = metric.try(:formula_card))

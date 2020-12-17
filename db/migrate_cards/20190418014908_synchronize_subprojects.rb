@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class SynchronizeSubprojects < Card::Migration
+class SynchronizeSubprojects < Cardio::Migration
   def up
     Card.search(type_id: Card::ProjectID) do |project|
       %i[metric wikirate_company].each do |trait|

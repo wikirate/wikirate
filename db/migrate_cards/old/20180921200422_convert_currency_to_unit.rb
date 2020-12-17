@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class ConvertCurrencyToUnit < Card::Migration
+class ConvertCurrencyToUnit < Cardio::Migration
   UNITS = { /^\$$/ => "USD", /US Dollars/ => "USD" }
 
   def up
