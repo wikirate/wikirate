@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class SeparateMetricVariables < Card::Migration
+class SeparateMetricVariables < Cardio::Migration
   def up
     ensure_card "*metric variables", codename: :metric_variables
   end

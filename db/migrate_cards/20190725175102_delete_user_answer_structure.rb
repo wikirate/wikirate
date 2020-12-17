@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class DeleteUserAnswerStructure < Card::Migration
+class DeleteUserAnswerStructure < Cardio::Migration
   def up
     %i[metric_answer metric project].each do |type|
       Card["User+#{type.cardname}+*type plus right+*structure"]&.delete!
