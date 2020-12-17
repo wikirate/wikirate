@@ -1,4 +1,4 @@
- RSpec.describe Answer do
+RSpec.describe Answer do
   def answer id=answer_id
     described_class.find_by_answer_id id
   end
@@ -49,6 +49,7 @@
       let(:relationship_answer) do
         answer Card.fetch_id("Jedi+more evil+Death Star+1977")
       end
+
       it "returns true" do
         expect(relationship_answer).to be_relationship
       end
@@ -117,7 +118,7 @@
         new_name = "Joe User+researched number 1+Apple Inc+2014"
         update name, name: new_name
         answer_id = Card.fetch_id new_name
-        answer = Answer.find_by_answer_id answer_id
+        answer = described_class.find_by_answer_id answer_id
         expect(answer.latest).to eq true
       end
     end
@@ -157,13 +158,13 @@
       a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
       expect(a.attributes.symbolize_keys)
         .to include(
-          metric_id: "Jedi+friendliness".card_id, designer_id: "Jedi".card_id,
-          title_id: "friendliness".card_id, company_id: "Death Star".card_id,
-          year: 2001, metric_type_id: Card::FormulaID, value: "50",
+          metric_id: "Jedi+friendliness".card_id,
+          company_id: "Death Star".card_id,
+          year: 2001, value: "50",
           numeric_value: 50, creator_id: "Joe User".card_id, editor_id: nil,
           updated_at: be_within(2).of(Time.now), record_id: be_nil,
           answer_id: nil, checkers: nil, check_requester: nil,
-          policy_id: nil, latest: true, imported: false
+          latest: true, imported: false
         )
     end
 

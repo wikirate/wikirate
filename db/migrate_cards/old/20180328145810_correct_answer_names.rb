@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class CorrectAnswerNames < Card::Migration
+class CorrectAnswerNames < Cardio::Migration
   disable_ddl_transaction!
 
   def up

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddScriptResearch < Card::Migration
+class AddScriptResearch < Cardio::Migration
   def up
     add_script "research",
                type_id: Card::CoffeeScriptID,

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class CorrectRelationshipCounts < Card::Migration
+class CorrectRelationshipCounts < Cardio::Migration
   disable_ddl_transaction!
 
   def up
