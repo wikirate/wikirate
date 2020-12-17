@@ -1,4 +1,4 @@
- RSpec.describe Answer do
+RSpec.describe Answer do
   def answer id=answer_id
     described_class.find_by_answer_id id
   end
@@ -27,10 +27,10 @@
         expect(answer.metric_id).to eq Card.fetch_id("Joe User+RM")
       end
       it "has metric_type_id" do
-        expect(answer.metric_type_id).to eq Card.fetch_id("researched")
+        expect(answer.metric.metric_type_id).to eq Card.fetch_id("researched")
       end
       it "has designer_id" do
-        expect(answer.designer_id).to eq Card.fetch_id("Joe User")
+        expect(answer.metric.designer_id).to eq Card.fetch_id("Joe User")
       end
       it "has value" do
         expect(answer.value).to eq "13"
@@ -49,6 +49,7 @@
       let(:relationship_answer) do
         answer Card.fetch_id("Jedi+more evil+Death Star+1977")
       end
+
       it "returns true" do
         expect(relationship_answer).to be_relationship
       end
@@ -117,7 +118,7 @@
         new_name = "Joe User+researched number 1+Apple Inc+2014"
         update name, name: new_name
         answer_id = Card.fetch_id new_name
-        answer = Answer.find_by_answer_id answer_id
+        answer = described_class.find_by_answer_id answer_id
         expect(answer.latest).to eq true
       end
     end
@@ -129,17 +130,17 @@
 
     it "updates designer" do
       update "Joe User", name: "Jimmy User"
-      expect(answer.metric_card.metric_designer).to eq("Jimmy User")
+      expect(answer.metric.designer_id.cardname).to eq("Jimmy User")
     end
 
     it "updates metric type" do
       update [metric, :metric_type], content: "[[Score]]"
-      expect(answer.metric_type_id).to eq Card.fetch_id("score")
+      expect(answer.metric.metric_type_id).to eq Card.fetch_id("score")
     end
 
     it "updates policy" do
       create_or_update [metric, :research_policy], content: "[[Community Assessed]]"
-      expect(answer.policy_id).to eq Card.fetch_id("Community Assessed")
+      expect(answer.metric.policy_id).to eq Card.fetch_id("Community Assessed")
     end
 
     xit "updates updated_at" do
@@ -157,13 +158,13 @@
       a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
       expect(a.attributes.symbolize_keys)
         .to include(
-          metric_id: "Jedi+friendliness".card_id, designer_id: "Jedi".card_id,
-          title_id: "friendliness".card_id, company_id: "Death Star".card_id,
-          year: 2001, metric_type_id: Card::FormulaID, value: "50",
+          metric_id: "Jedi+friendliness".card_id,
+          company_id: "Death Star".card_id,
+          year: 2001, value: "50",
           numeric_value: 50, creator_id: "Joe User".card_id, editor_id: nil,
           updated_at: be_within(2).of(Time.now), record_id: be_nil,
           answer_id: nil, checkers: nil, check_requester: nil,
-          policy_id: nil, latest: true, imported: false
+          latest: true, imported: false
         )
     end
 

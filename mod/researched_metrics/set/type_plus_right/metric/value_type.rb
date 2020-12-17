@@ -15,6 +15,10 @@ event :validate_value_type_matches_values, :validate, on: :save, changed: :conte
   errors.add :answers, "Cannot change to #{content}: #{error_message}"
 end
 
+event :update_metric_lookup_value_id, :finalize, changed: :content do
+  ::Metric.find_by_card_id(left_id).refresh :value_type_id unless left.action == :create
+end
+
 def valid_content?
   first_code.in? VALUE_TYPE_CODES
 end

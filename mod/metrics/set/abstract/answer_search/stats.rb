@@ -5,9 +5,9 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
 
 DISTINCTS = {
   company_id: :wikirate_company,
-  metric_id: :metric,
-  designer_id: :designer,
-  metric_type_id: :metric_types,
+  "answers.metric_id": :metric,
+  "metrics.designer_id": :designer,
+  "metrics.metric_type_id": :metric_types,
   year: :year
 }.freeze
 
@@ -28,7 +28,7 @@ format do
     return {} if status_filter == :none
 
     fields = distinct_fields + indistinct_fields
-    count_query.answer_query.pluck_all(*fields).first.symbolize_keys
+    count_query.answer_query.joins(:metric).pluck_all(*fields).first.symbolize_keys
   end
 
   def unresearched_counts

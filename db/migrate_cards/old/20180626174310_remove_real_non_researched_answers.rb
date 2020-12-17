@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class RemoveRealNonResearchedAnswers < Card::Migration
+class RemoveRealNonResearchedAnswers < Cardio::Migration
   def up
     calculated_ids = [Card::WikiRatingID, Card::FormulaID, Card::ScoreID,
                       Card::DescendantID]
