@@ -5,12 +5,10 @@ class AddMetricLookupTable < ActiveRecord::Migration[6.1]
       t.integer :metric_id
       t.integer :designer_id
       t.integer :title_id
-      t.ingeger :scorer_id
+      t.integer :scorer_id
       t.integer :metric_type_id
       t.integer :value_type_id
       t.integer :policy_id
-      t.string :designer
-      t.string :title
       t.string :unit
       t.boolean :hybrid
     end
@@ -23,4 +21,9 @@ class AddMetricLookupTable < ActiveRecord::Migration[6.1]
     add_index :metrics, :value_type_id, name: "metrics_value_type_id_index"
     add_index :metrics, :policy_id, name: "metrics_policy_id_index"
   end
+
+  # remove_column :answers, :designer_id
+  # remove_column :answers, :title_id
+  # remove_column :answers, :metric_type_id
+  # remove_column :answers, :policy_id
 end

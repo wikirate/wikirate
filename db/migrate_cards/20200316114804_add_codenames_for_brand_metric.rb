@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddCodenamesForBrandMetric < Card::Migration
+class AddCodenamesForBrandMetric < Cardio::Migration
   def up
     widget_cards = { oc_has_brands: "Open Corporates+Has Brands",
                      oc_is_brand_of: "Open Corporates+Is Brand Of",

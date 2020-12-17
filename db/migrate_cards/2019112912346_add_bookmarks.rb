@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddBookmarks < Card::Migration
+class AddBookmarks < Cardio::Migration
   def up
     ensure_code_card "Bookmarks"
     ensure_code_card "Bookmarkers"

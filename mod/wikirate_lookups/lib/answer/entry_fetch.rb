@@ -5,7 +5,11 @@ class Answer
     include ValueDetails
 
     def fetch_answer_id
-      card.id if card.id && card.value_card.id
+      card.id if card.id && card.value_card.id # why this if??
+    end
+
+    def fetch_metric_id
+      Card.fetch_id fetch_record_name.left
     end
 
     def fetch_company_id
