@@ -5,7 +5,6 @@ class Answer < ApplicationRecord
   extend AnswerClassMethods
 
   include CardlessAnswers
-  include Filter
   include Validations
   include EntryFetch
   include Export
@@ -17,7 +16,7 @@ class Answer < ApplicationRecord
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
   validate :must_be_an_answer, :card_must_exist, unless: :virtual?
-  validate :metric_must_exit
+  validate :metric_must_exist
 
   after_destroy :latest_to_true
 

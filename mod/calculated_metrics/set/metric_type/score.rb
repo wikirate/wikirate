@@ -27,6 +27,10 @@ def scorer
   name.tag
 end
 
+def scorer_id
+  name.tag_name.card_id
+end
+
 def scorer_card
   right
 end

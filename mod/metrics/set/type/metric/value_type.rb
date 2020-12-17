@@ -8,8 +8,9 @@
 #
 # These could and should clearly be unified.
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Value Type, short name:
-# ~~~~
+# eg "number"
 
 # @return String
 def value_type
@@ -21,9 +22,19 @@ def value_type_code
   value_type_card&.first_code || default_value_type_code
 end
 
+# @return Integer
+def value_type_id
+  value_type_card&.first_id || default_value_type_id
+end
+
 # @return Symbol
 def default_value_type_code
   calculated? ? :number : :free_text
+end
+
+# @return Integer
+def default_value_type_id
+  Codename.id default_value_type_code
 end
 
 # Overwritten in Abstract::Relationship
@@ -35,8 +46,10 @@ def simple_value_type_code
   value_type_code
 end
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Value Type, long name:
-# ~~~~
+# # eg "number_value"
+
 # @return Symbol
 def value_cardtype_code
   :"#{value_type_code}_value"
@@ -52,6 +65,9 @@ def value_cardtype_id
   Card::Codename.id value_cardtype_code
 end
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Value type tests
+#
 def numeric?
   ten_scale? || value_type_code.in?(%i[number money])
 end

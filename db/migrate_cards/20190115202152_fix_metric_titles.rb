@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class FixMetricTitles < Card::Migration
+class FixMetricTitles < Cardio::Migration
   def up
     Card.search type_id: Card::MetricID do |metric|
       title = metric.right

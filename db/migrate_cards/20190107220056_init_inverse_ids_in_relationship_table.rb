@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class InitInverseIdsInRelationshipTable < Card::Migration
+class InitInverseIdsInRelationshipTable < Cardio::Migration
   def up
     Relationship.pluck(:metric_id).uniq.each do |mid|
       inverse_id = Card.fetch(mid).inverse_card.id

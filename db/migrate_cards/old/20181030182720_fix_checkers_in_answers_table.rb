@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class FixCheckersInAnswersTable < Card::Migration
+class FixCheckersInAnswersTable < Cardio::Migration
   def up
     Card.where(right_id: Card::CheckedByID).find_each do |checked_by|
       answer_card = checked_by.left

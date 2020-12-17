@@ -5,6 +5,7 @@ include_set Abstract::AnswerDetailsToggle
 include_set Abstract::ExpandedResearchedDetails
 include_set Abstract::MetricAnswer
 include_set Abstract::DesignerPermissions
+include_set Abstract::Lookup
 
 require_field :value
 require_field :source, when: :source_required?
@@ -47,8 +48,8 @@ event :run_value_events_on_name_change, :validate, changed: :name, on: :update d
   # have to trigger the value validation manually
 end
 
-def lookup
-  ::Relationship.where(relationship_id: id).take
+def lookup_class
+  ::Relationship
 end
 
 def related_company
