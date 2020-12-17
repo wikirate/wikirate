@@ -20,13 +20,13 @@ module LookupTable
     end
 
     def create_or_update cardish, *fields
-      ma_card_id = Card.id cardishd
+      ma_card_id = Card.id cardish
       ma = find_by_card_id(ma_card_id) || new_for_card(ma_card_id)
       fields = nil if ma.new_record? # update all fields if record is new
       ma.refresh(*fields)
     end
 
-    def find_by_card_id card_idR
+    def find_by_card_id card_id
       card_id ? where(card_column => card_id).take : nil
     end
 
