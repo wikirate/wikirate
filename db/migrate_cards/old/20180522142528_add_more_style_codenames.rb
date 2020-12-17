@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddMoreStyleCodenames < Card::Migration
+class AddMoreStyleCodenames < Cardio::Migration
   def up
     style_card :badges
     style_card :projects

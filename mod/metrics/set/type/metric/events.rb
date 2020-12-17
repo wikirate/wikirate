@@ -67,6 +67,6 @@ event :skip_answer_updates_on_metric_rename, :validate,
   skip_event! :update_answer_lookup_table_due_to_answer_change
 end
 
-event :update_answer_lookup_name_parts, :finalize, changed: :name, on: :update do
-  answers.update_all designer_id: metric_designer_id, title_id: metric_title_id
+event :update_metric_lookup_name_parts, :finalize, changed: :name, on: :update do
+  lookup.refresh :designer_id, :metric_title_id
 end

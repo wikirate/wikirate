@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddIndustryCards < Card::Migration
+class AddIndustryCards < Cardio::Migration
   def up
     merge_cards %w[industry common+industry common+industry+*metric_type
       common+industry+value_type common+industry+research_policy

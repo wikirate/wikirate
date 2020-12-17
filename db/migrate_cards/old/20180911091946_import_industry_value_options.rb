@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class ImportIndustryValueOptions < Card::Migration
+class ImportIndustryValueOptions < Cardio::Migration
   def up
     import_cards 'industry_value_options.json'
   end

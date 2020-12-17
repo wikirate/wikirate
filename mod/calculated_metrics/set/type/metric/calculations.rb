@@ -98,9 +98,6 @@ end
 def shared_dummy_answer_attribs
   {
     metric_id: id,
-    designer_id: left_id,
-    title_id: metric_designer_id,
-    metric_type_id: metric_type_id,
     calculating: true,
     creator_id: Card::Auth.current_id,
     latest: true
