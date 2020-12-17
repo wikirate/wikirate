@@ -16,17 +16,17 @@ module LookupTable
     def create! cardish
       ma = new_for_card cardish
       raise ActiveRecord::RecordInvalid, ma if ma.invalid?
-      ma.refresh
+      ma.refreshRe
     end
 
     def create_or_update cardish, *fields
-      ma_card_id = Card.id cardish
+      ma_card_id = Card.id cardishd
       ma = find_by_card_id(ma_card_id) || new_for_card(ma_card_id)
       fields = nil if ma.new_record? # update all fields if record is new
       ma.refresh(*fields)
     end
 
-    def find_by_card_id card_id
+    def find_by_card_id card_idR
       card_id ? where(card_column => card_id).take : nil
     end
 
