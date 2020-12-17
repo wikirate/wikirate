@@ -83,7 +83,7 @@ namespace :wikirate do
       # otherwise codename cards get the wrong type
       import.cards_of_type "cardtype"
       import.items_of :codenames, depth: 2
-      # Card::Mod::Loader.reload_sets
+      # Cardio::Mod::Loader.reload_sets
       import.cards_of_type "year"
 
       Card.search(type_id: Card::SettingID, return: :name).each do |setting|

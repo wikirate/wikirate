@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddImportMap < Card::Migration
+class AddImportMap < Cardio::Migration
   def up
     ensure_code_card "import map"
   end

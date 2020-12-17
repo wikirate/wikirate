@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class RemoveContentOfCodedCards < Card::Migration
+class RemoveContentOfCodedCards < Cardio::Migration
   DEPRECATED = %i[
      style_top_bar
      style_overview_item

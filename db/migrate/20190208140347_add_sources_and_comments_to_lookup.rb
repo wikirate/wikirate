@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddSourcesAndCommentsToLookup < Card::Migration
+class AddSourcesAndCommentsToLookup < Cardio::Migration
   def up
     add_column :answers, :source_count, :integer
     add_column :answers, :source_url, :string, limit: 1024

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class WikirateVariablesAndMixins < Card::Migration
+class WikirateVariablesAndMixins < Cardio::Migration
   def up
     if Card::Codename.exist? :wikirate_stylesheets
       update_card :wikirate_stylesheets, name: "coded stylesheets",
