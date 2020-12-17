@@ -81,10 +81,10 @@ module LookupTable
 
     def fetcher_hash *args
       if args.first.is_a?(Hash)
-         args.first
-       else
-         args.each_with_object({}) { |item, h| h[item] = item }
-       end
+        args.first
+      else
+        args.each_with_object({}) { |item, h| h[item] = item }
+      end
     end
   end
 end

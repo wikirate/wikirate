@@ -18,6 +18,8 @@ class Answer < ApplicationRecord
   validate :must_be_an_answer, :card_must_exist, unless: :virtual?
   validate :metric_must_exist
 
+  belongs_to :metric, primary_key: :metric_id
+
   after_destroy :latest_to_true
 
   def card_column
