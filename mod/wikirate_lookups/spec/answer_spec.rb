@@ -27,10 +27,10 @@ RSpec.describe Answer do
         expect(answer.metric_id).to eq Card.fetch_id("Joe User+RM")
       end
       it "has metric_type_id" do
-        expect(answer.metric_type_id).to eq Card.fetch_id("researched")
+        expect(answer.metric.metric_type_id).to eq Card.fetch_id("researched")
       end
       it "has designer_id" do
-        expect(answer.designer_id).to eq Card.fetch_id("Joe User")
+        expect(answer.metric.designer_id).to eq Card.fetch_id("Joe User")
       end
       it "has value" do
         expect(answer.value).to eq "13"
@@ -130,17 +130,17 @@ RSpec.describe Answer do
 
     it "updates designer" do
       update "Joe User", name: "Jimmy User"
-      expect(answer.metric_card.metric_designer).to eq("Jimmy User")
+      expect(answer.metric.designer_id.cardname).to eq("Jimmy User")
     end
 
     it "updates metric type" do
       update [metric, :metric_type], content: "[[Score]]"
-      expect(answer.metric_type_id).to eq Card.fetch_id("score")
+      expect(answer.metric.metric_type_id).to eq Card.fetch_id("score")
     end
 
     it "updates policy" do
       create_or_update [metric, :research_policy], content: "[[Community Assessed]]"
-      expect(answer.policy_id).to eq Card.fetch_id("Community Assessed")
+      expect(answer.metric.policy_id).to eq Card.fetch_id("Community Assessed")
     end
 
     xit "updates updated_at" do
