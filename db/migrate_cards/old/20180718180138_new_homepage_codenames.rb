@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class NewHomepageCodenames < Card::Migration
+class NewHomepageCodenames < Cardio::Migration
   def up
     ["homepage numbers", "homepage projects",
      "homepage topics", "homepage organizations",
