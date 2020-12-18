@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AnswerHelpText < Card::Migration
+class AnswerHelpText < Cardio::Migration
   HELP_TEXT = <<-HTML.strip_heredoc
     <p>
       What is the answer to the question this metric asks?

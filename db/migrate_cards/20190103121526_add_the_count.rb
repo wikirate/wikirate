@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddTheCount < Card::Migration
+class AddTheCount < Cardio::Migration
   def up
     ensure_code_card "the count"
   end

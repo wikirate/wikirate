@@ -170,12 +170,8 @@ format :html do
   end
 end
 
-# currently testing for main action, but what is important is that
-# we don't create a conflict when the checked by card is created
-# as part of the original answer create event.
-event :update_answer_lookup_table_due_to_check_change, :finalize,
-      changed: :content, when: :main_action? do
-  update_answer answer_id: left_id
+event :update_answer_lookup_table_checked_by, :finalize, changed: :content do
+  update_answer answer_id: left_id unless left.action == :create
 end
 
 def main_action?
