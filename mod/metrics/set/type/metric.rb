@@ -7,6 +7,7 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::BsBadge
 include_set Abstract::Bookmarkable
 include_set Abstract::Delist
+include_set Abstract::Lookup
 
 card_accessor :metric_type, type: PointerID, default: "[[Researched]]"
 card_accessor :about
@@ -23,6 +24,14 @@ card_accessor :report_type, type: PointerID
 card_accessor :score, type: PointerID
 card_accessor :wikirate_topic, type: ListID
 card_accessor :research_policy, type: PointerID
+
+def lookup_class
+  ::Metric
+end
+
+def scorer_id
+  nil
+end
 
 # METRIC-CHILD-STYLE METHODS
 
