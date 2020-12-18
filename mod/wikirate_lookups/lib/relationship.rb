@@ -12,10 +12,12 @@ class Relationship < ApplicationRecord
 
   delegate :company_id, :designer_id, :title_id, to: :answer
 
-  def self.existing id
-    return unless id
+  class << self
+    delegate :unknown?, to: Answer
 
-    find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
+    def existing id
+      find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id)) if id
+    end
   end
 
   # other relationships in same record
