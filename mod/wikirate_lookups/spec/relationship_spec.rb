@@ -1,6 +1,6 @@
 RSpec.describe Relationship do
   def relation id=relation_id
-    described_class.find_by_card_id id
+    described_class.for_card id
   end
   let(:metric) { "Jedi+more evil" }
   let(:relation_name) { "#{metric}+Death Star+1977+Los Pollos Hermanos" }
@@ -44,7 +44,7 @@ RSpec.describe Relationship do
 
     describe "random example" do
       it "exists" do
-        expect(subject).to be_instance_of(described_class)
+        is_expected.to be_instance_of(described_class)
       end
       it "has subject_company_id" do
         expect(relation.subject_company_id).to eq Card.fetch_id("Death Star")
@@ -73,7 +73,7 @@ RSpec.describe Relationship do
 
     it "updates latest" do
       record = "Commons+Supplied by+SPECTRE"
-      new_latest = described_class.find_by_answer_id Card.fetch_id("#{record}+1977")
+      new_latest = described_class.for_card Card.fetch_id("#{record}+1977")
       expect(new_latest.latest).to be_falsey
       delete "#{record}+2000" # "+Los Pollos Hermanos"
       new_latest.refresh
@@ -104,7 +104,7 @@ RSpec.describe Relationship do
         new_name = "Commons+Supplied by+SPECTRE+1999"
         update name, name: new_name
         relation_id = Card.fetch_id "#{new_name}+Los_Pollos_Hermanos"
-        relation = Relationship.find_by_relationship_id relation_id
+        relation = described_class.find_by_relationship_id relation_id
         expect(relation.latest).to eq true
       end
     end

@@ -16,7 +16,7 @@ def create_relationship relationship_id:
 end
 
 def delete_relationship relationship_id:
-  Relationship.delete_for_card_id relationship_id
+  Relationship.delete_for_card relationship_id
 end
 
 def update_relationships_now_or_later ids

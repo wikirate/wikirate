@@ -1,4 +1,5 @@
 class Answer
+  # class methods for the Answer (lookup) constant
   module AnswerClassMethods
     include Export::ClassMethods
 
@@ -36,7 +37,7 @@ class Answer
 
     def existing id
       return unless id
-      find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
+      for_card(id) || (refresh(id) && for_card(id))
     end
 
     def latest_answer_card metric_id, company_id
@@ -51,10 +52,6 @@ class Answer
 
     def answered? metric_id, company_id
       where(metric_id: metric_id, company_id: company_id).exist?
-    end
-
-    def find_by_answer_id answer_id
-      find_by_card_id answer_id
     end
 
     def unknown? val

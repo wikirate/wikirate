@@ -1,3 +1,4 @@
+# Lookup table for metrics
 class Metric < ApplicationRecord
   @card_column = :metric_id
   @card_query = { type_id: Card::MetricID, trash: false }

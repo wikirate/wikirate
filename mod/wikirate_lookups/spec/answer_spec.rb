@@ -1,6 +1,6 @@
 RSpec.describe Answer do
   def answer id=answer_id
-    described_class.find_by_answer_id id
+    described_class.for_card id
   end
 
   let(:metric) { "Joe User+RM" }
@@ -77,7 +77,7 @@ RSpec.describe Answer do
 
     it "updates latest" do
       record = "#{metric}+Apple_Inc"
-      new_latest = described_class.find_by_answer_id Card.fetch_id("#{record}+2014")
+      new_latest = described_class.for_card Card.fetch_id("#{record}+2014")
       expect(new_latest.latest).to be_falsey
       delete "#{record}+2015"
       new_latest.refresh
@@ -118,7 +118,7 @@ RSpec.describe Answer do
         new_name = "Joe User+researched number 1+Apple Inc+2014"
         update name, name: new_name
         answer_id = Card.fetch_id new_name
-        answer = described_class.find_by_answer_id answer_id
+        answer = described_class.for_card answer_id
         expect(answer.latest).to eq true
       end
     end

@@ -1,5 +1,4 @@
 # lookup table for metric answers
-
 class Answer < ApplicationRecord
   include LookupTable
   extend AnswerClassMethods
@@ -21,10 +20,6 @@ class Answer < ApplicationRecord
   belongs_to :metric, primary_key: :metric_id
 
   after_destroy :latest_to_true
-
-  def card_column
-    :answer_id
-  end
 
   def card
     return @card if @card
@@ -69,18 +64,6 @@ class Answer < ApplicationRecord
     # when we override a hybrid metric the answer is invalid because of the
     # missing answer_id, so we don't delete invalid hybrids..
     !metric_card.hybrid? && invalid?
-  end
-
-  def method_missing method_name, *args, &block
-    card.send method_name, *args, &block
-  end
-
-  def respond_to_missing? *args
-    card.respond_to?(*args) || super
-  end
-
-  def is_a? klass
-    klass == Card || super
   end
 
   def to_numeric_value val
