@@ -1,4 +1,4 @@
-# optimize lookups of complex card systems
+# lookup table to optimize complex card systems
 #
 # TODO: make this a class and have lookup classes inherit from it
 module LookupTable
