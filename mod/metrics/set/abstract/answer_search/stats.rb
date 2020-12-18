@@ -6,7 +6,7 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
 DISTINCTS = {
   company_id: :wikirate_company,
   "answers.metric_id": :metric,
-  "metrics.designer_id": :designer,
+  "designer_id": :designer,
   "metrics.metric_type_id": :metric_types,
   year: :year
 }.freeze

@@ -23,8 +23,10 @@ RSpec.describe Answer do
   end
 
   it "can sort by bookmarks" do
-    result = search designer_id: "Jedi".card_id, return: :metric_id,
-                    sort: { metric_bookmarkers: :desc }
+    result = described_class.joins(:metric)
+      .where(metrics: { designer_id: "Jedi".card_id })
+      .sort(metric_bookmarkers: :desc)
+      .pluck(:metric_id)
     expect(result.first.card.metric_title).to eq "disturbances in the Force"
   end
 

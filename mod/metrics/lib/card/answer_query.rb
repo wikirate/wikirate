@@ -99,7 +99,7 @@ class Card
     end
 
     def main_results
-      puts "SQL: #{answer_lookup.to_sql}"
+      # puts "SQL: #{answer_lookup.to_sql}"
       answer_lookup.answer_cards
     end
 
