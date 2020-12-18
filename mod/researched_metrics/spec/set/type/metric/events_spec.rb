@@ -14,11 +14,11 @@ RSpec.describe Card::Set::Type::Metric::Events do
       end
 
       it "updates metric title ids in lookup table" do
-        expect(newcard.answers.first.title_id.cardname).to eq(newname.to_name.right)
+        expect(newcard.answers.first.metric.title_id.cardname).to eq(newname.to_name.right)
       end
 
       it "updates metric designer in lookup table" do
-        expect(newcard.answers.first.designer_id.cardname).to eq(newname.to_name.left)
+        expect(newcard.answers.first.metric.designer_id.cardname).to eq(newname.to_name.left)
       end
 
       it "updates record names in lookup table" do

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddAlwaysOneYearlyVariable < Card::Migration
+class AddAlwaysOneYearlyVariable < Cardio::Migration
   def up
     subcards =
       Card.search(type_id: Card::YearID, return: :name)

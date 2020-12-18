@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class ImportMenuCards < Card::Migration
+class ImportMenuCards < Cardio::Migration
   def up
     import_cards 'menu_cards.json'
   end

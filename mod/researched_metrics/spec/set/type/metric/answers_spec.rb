@@ -9,7 +9,7 @@ RSpec.describe Card::Set::Type::Metric::Answers do
         .update! name: "Joe User+invented number", update_referers: true
 
       answer = Card["Joe User+invented number"].answers.first
-      expect(answer.title_id.cardname).to eq "invented number"
+      expect(answer.metric.title_id.cardname).to eq "invented number"
     end
   end
 end

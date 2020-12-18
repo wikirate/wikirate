@@ -33,7 +33,8 @@ class Card
       def filter_card_id key, value
         return unless (card_id = to_card_id value)
 
-        filter CARD_ID_MAP[key], card_id
+        @joins << :metric
+        filter "metrics.#{CARD_ID_MAP[key]}", card_id
       end
 
       def to_card_id value
@@ -73,7 +74,8 @@ class Card
       end
 
       def filter key, value, operator=nil
-        condition = "answers.#{key} #{op_and_val operator, value}"
+        field = key.to_s.match?(/\./) ? key : "answers.#{key}"
+        condition = "#{field} #{op_and_val operator, value}"
         add_condition condition, value
       end
 
