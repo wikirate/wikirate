@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class NewBrowseFilters < Card::Migration
+class NewBrowseFilters < Cardio::Migration
   def up
     ensure_code_card "browse research group filter"
     ensure_code_card "browse project filter"

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class UpgradeResearchGroups < Card::Migration
+class UpgradeResearchGroups < Cardio::Migration
   def up
     merge_cards %w[researcher+*right+*default
                    conversation+*type+*structure
