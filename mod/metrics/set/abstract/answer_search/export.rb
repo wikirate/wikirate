@@ -65,7 +65,7 @@ format :json do
   end
 
   def map_unique *fields
-    answer_query.distinct.pluck(*fields).map do |result|
+    answer_query.joins(:metric).distinct.pluck(*fields).map do |result|
       yield result
     end
   end
