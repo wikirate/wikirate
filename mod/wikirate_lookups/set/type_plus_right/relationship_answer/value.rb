@@ -2,7 +2,8 @@ event :update_relationship_lookup_table_due_to_value_change, :finalize, on: :upd
   update_relationship relationship_id: left_id
 end
 
-event :delete_relationship_lookup_table_entry_due_to_value_change, :finalize, on: :delete do
+event :delete_relationship_lookup_table_entry_due_to_value_change,
+      :finalize, on: :delete do
   delete_relationship relationship_id: left_id
 end
 

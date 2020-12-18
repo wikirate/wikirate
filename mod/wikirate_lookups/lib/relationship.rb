@@ -5,24 +5,19 @@ class Relationship < ApplicationRecord
 
   include LookupTable
 
-  # include Answer::Filter
-  # include Answer::Validations
   include EntryFetch
   include Csv
 
-  # validates :relationship_id, numericality: { only_integer: true }, presence: true
-  # validate :must_be_an_answer, :card_must_exist
-  # validate :metric_must_exit
-
   after_destroy :latest_to_true
 
-  delegate :company_id, :designer_id, :title_id,
-           to: :answer
+  delegate :company_id, :designer_id, :title_id, to: :answer
 
-  def self.existing id
-    return unless id
+  class << self
+    delegate :unknown?, to: Answer
 
-    find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
+    def existing id
+      find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id)) if id
+    end
   end
 
   # other relationships in same record

@@ -1,4 +1,4 @@
-RSpec.describe Answer, "Answer.search" do
+RSpec.describe Answer do
   def search args
     described_class.search args
   end
@@ -9,22 +9,24 @@ RSpec.describe Answer, "Answer.search" do
     end
   end
 
-  it "searches by title" do
-    expect(record_names(title_id: "darkness rating".card_id))
+  it "searches by metric" do
+    expect(record_names(metric_id: "Jedi+darkness rating".card_id))
       .to contain_exactly "Jedi+darkness rating+Death Star",
                           "Jedi+darkness rating+Slate Rock and Gravel Company",
                           "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
   it "can sort by year" do
-    result = record_names title_id: "darkness rating".card_id, sort: { year: :desc }
+    result = record_names metric_id: "Jedi+darkness rating".card_id, sort: { year: :desc }
     expect(result.size).to eq 3
     expect(result.first).to eq "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
   it "can sort by bookmarks" do
-    result = search designer_id: "Jedi".card_id, return: :metric_id,
-                    sort: { metric_bookmarkers: :desc }
+    result = described_class.joins(:metric)
+      .where(metrics: { designer_id: "Jedi".card_id })
+      .sort(metric_bookmarkers: :desc)
+      .pluck(:metric_id)
     expect(result.first.card.metric_title).to eq "disturbances in the Force"
   end
 
