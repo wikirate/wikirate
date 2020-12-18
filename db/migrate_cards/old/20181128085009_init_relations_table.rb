@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class InitRelationsTable < Card::Migration
+class InitRelationsTable < Cardio::Migration
   def up
-    Relationship.refresh_all nil
+    Relationship.refresh_all
   end
 end

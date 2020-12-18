@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddMetricImportType < Card::Migration
+class AddMetricImportType < Cardio::Migration
   def up
     ensure_code_card "Metric Import", type_id: Card::CardtypeID
 

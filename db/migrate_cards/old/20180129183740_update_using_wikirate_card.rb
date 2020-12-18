@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class UpdateUsingWikirateCard < Card::Migration
+class UpdateUsingWikirateCard < Cardio::Migration
   def up
     merge_cards ["Using WikiRate", "*css"]
   end

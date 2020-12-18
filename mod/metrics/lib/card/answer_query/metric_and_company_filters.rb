@@ -52,7 +52,8 @@ class Card
 
       def metric_name_query value
         handle_equals_syntax :metric_id, value do
-          restrict_by_cql :title_id,
+          @joins << :metric
+          restrict_by_cql "metrics.title_id",
                           name: [:match, value],
                           left_plus: [{}, { type_id: Card::MetricID }]
         end

@@ -40,7 +40,7 @@ namespace :wikirate do
 
   def import_cards
     return unless (filename = import_filename_base)
-    require "card/migration"
+    require "cardio/migration"
     require "generators/card"
     import_data = yield
     write_card_content! import_data
@@ -49,7 +49,7 @@ namespace :wikirate do
   end
 
   def write_card_attributes filename, card_attributes
-    path = Card::Migration.data_path("#{filename}.json")
+    path = Cardio::Migration.data_path("#{filename}.json")
     File.open(path, "w") do |f|
       f.print JSON.pretty_generate(card_attributes)
     end
@@ -59,7 +59,7 @@ namespace :wikirate do
   def write_card_content! import_data
     import_data.each do |card_attr|
       path = File.join "cards", card_attr[:name].to_name.key
-      File.open(Card::Migration.data_path(path), "w") do |f|
+      File.open(Cardio::Migration.data_path(path), "w") do |f|
         f.puts card_attr.delete :content
       end
     end
