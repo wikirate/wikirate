@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddSubprojectCards < Card::Migration
+class AddSubprojectCards < Cardio::Migration
   def up
     merge_cards %w[
                     parent

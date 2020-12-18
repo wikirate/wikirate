@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class MoreCodenamesForBrandMetric < Card::Migration
+class MoreCodenamesForBrandMetric < Cardio::Migration
   def up
     widget_cards = { commons_has_brands: "Commons+Has Brands",
                      commons_is_brand_of: "Commons+Is Brand Of",

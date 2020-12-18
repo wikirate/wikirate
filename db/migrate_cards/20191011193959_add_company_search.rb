@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddCompanySearch < Card::Migration
+class AddCompanySearch < Cardio::Migration
   def up
     ensure_code_card "Company Search"
     update_card "specification", name: "Specification"

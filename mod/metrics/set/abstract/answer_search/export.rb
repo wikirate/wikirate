@@ -45,7 +45,7 @@ format :json do
 
   view :year_list, cache: :never do
     subgroup = params[:subgroup] || :metric_type_id
-    answer_query.group(:year, subgroup).count.map do |array, count|
+    answer_query.joins(:metric).group(:year, subgroup).count.map do |array, count|
       { count: count, year: array.first, subgroup: array.last }
     end
   end
@@ -65,7 +65,7 @@ format :json do
   end
 
   def map_unique *fields
-    answer_query.distinct.pluck(*fields).map do |result|
+    answer_query.joins(:metric).distinct.pluck(*fields).map do |result|
       yield result
     end
   end

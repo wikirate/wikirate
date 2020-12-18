@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Abstract::MetricAnswer::Validate do
     it "requires that (most) answers have sources and a value" do
       sourceless = answer_for("Joe User+RM")
       sourceless.save
-      expect(sourceless.errors.keys).to eq(%i[value source])
+      expect(sourceless.errors.attribute_names).to eq(%i[value source])
     end
 
     it "prevents deletion of source citations", as_bot: true do
