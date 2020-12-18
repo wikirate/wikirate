@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddHybridFlag < Card::Migration
+class AddHybridFlag < Cardio::Migration
   def up
     ensure_trait "hybrid", :hybrid,
                  default: { type_id: Card::ToggleID },
