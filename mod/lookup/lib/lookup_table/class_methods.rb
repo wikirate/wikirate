@@ -1,33 +1,36 @@
 module LookupTable
+  # shared class methods for lookup tables.
   module ClassMethods
     attr_reader :card_column,
                 :card_query # cql that finds all items in the cards table
 
+    def for_card cardish
+      card_id = Card.id cardish
+      card_id ? where(card_column => card_id).take : nil
+    end
+    alias_method :find_for_card, :for_card
+
     def new_for_card cardish
-      ma = new # to document: why can't answer_id be assigned in new?
-      ma.card_id = Card.id cardish
-      ma
+      new.tap do |lookup|
+        lookup.card_id = Card.id cardish
+      end
     end
 
+    # TODO: change to create_for_card for consistency
     def create cardish
       new_for_card(cardish).refresh
     end
 
     def create! cardish
-      ma = new_for_card cardish
-      raise ActiveRecord::RecordInvalid, ma if ma.invalid?
-      ma.refreshRe
+      lookup = new_for_card cardish
+      raise ActiveRecord::RecordInvalid, lookup if lookup.invalid?
+      lookup.refresh
     end
 
     def create_or_update cardish, *fields
-      ma_card_id = Card.id cardish
-      ma = find_by_card_id(ma_card_id) || new_for_card(ma_card_id)
-      fields = nil if ma.new_record? # update all fields if record is new
-      ma.refresh(*fields)
-    end
-
-    def find_by_card_id card_id
-      card_id ? where(card_column => card_id).take : nil
+      lookup = for_card(cardish) || new_for_card(cardish)
+      fields = nil if lookup.new_record? # update all fields if record is new
+      lookup.refresh(*fields)
     end
 
     # @param ids [Array<Integer>] ids of answers in the answer table (NOT card ids)
@@ -36,6 +39,10 @@ module LookupTable
         next unless (entry = find_by_id(id))
         entry.refresh(*fields)
       end
+    end
+
+    def delete_for_card cardish
+      for_card(cardish)&.destroy
     end
 
     # @param ids [Integer, Array<Integer>] card ids of metric answer cards
@@ -49,15 +56,11 @@ module LookupTable
       if Card.exists? card_id
         create_or_update card_id, *fields
       else
-        delete_for_card_id card_id
+        delete_for_card card_id
       end
     rescue StandardError => e
       raise e, "failed to refresh #{name} lookup table " \
                "for card id #{card_id}: #{e.message}"
-    end
-
-    def delete_for_card_id card_id
-      find_by_card_id(card_id)&.destroy
     end
 
     def refresh_all fields=nil
@@ -69,9 +72,16 @@ module LookupTable
       end
     end
 
+    # define standard lookup fetch methods.
+    #
+    # Eg. fetcher(:company_id) defines #fetch_company_id to fetch from card.company_id
+    #
+    # And fetcher(foo: :bar) defines #fetch_foo to fetch from card.bar
     def fetcher *args
       fetcher_hash(*args).each { |col, method| define_fetch_method col, method }
     end
+
+    private
 
     def define_fetch_method column, card_method
       define_method "fetch_#{column}" do

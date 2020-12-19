@@ -14,10 +14,6 @@ class Relationship < ApplicationRecord
 
   class << self
     delegate :unknown?, to: Answer
-
-    def existing id
-      find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id)) if id
-    end
   end
 
   # other relationships in same record
@@ -81,18 +77,6 @@ class Relationship < ApplicationRecord
 
   def object_company_name
     object_company_id.cardname
-  end
-
-  def method_missing method_name, *args, &block
-    card.send method_name, *args, &block
-  end
-
-  def respond_to_missing? *args
-    card.respond_to?(*args) || super
-  end
-
-  def is_a? klass
-    klass == Card || super
   end
 
   def to_numeric_value val

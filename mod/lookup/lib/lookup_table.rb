@@ -1,3 +1,6 @@
+# lookup table to optimize complex card systems
+#
+# TODO: make this a class and have lookup classes inherit from it
 module LookupTable
   def self.included host_class
     host_class.extend LookupTable::ClassMethods
@@ -27,10 +30,27 @@ module LookupTable
     return delete if delete_on_refresh?
     keys = fields.present? ? fields : attributes.keys
     keys.delete("id")
-    keys.each do |method_name|
-      new_value = send "fetch_#{method_name}"
-      send "#{method_name}=", new_value
-    end
+    keys.each { |method_name| refresh_value method_name }
     save
+  end
+
+  def refresh_value method_name
+    send "#{method_name}=", send("fetch_#{method_name}")
+  end
+
+  def method_missing method_name, *args, &block
+    if card.respond_to? method_name
+      card.send method_name, *args, &block
+    else
+      super
+    end
+  end
+
+  def respond_to_missing? *args
+    card.respond_to?(*args) || super
+  end
+
+  def is_a? klass
+    klass == Card || super
   end
 end

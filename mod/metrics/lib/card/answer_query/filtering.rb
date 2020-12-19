@@ -81,11 +81,11 @@ class Card
 
       def filter field, value, operator=nil
         table = if METRIC_FIELDS_FILTERS.include?(field.to_sym)
-          @joins << :metric
-          "metrics"
-        else
-          "answers"
-        end
+                  @joins << :metric
+                  "metrics"
+                else
+                  "answers"
+                end
         condition = "#{table}.#{field} #{op_and_val operator, value}"
         add_condition condition, value
       end

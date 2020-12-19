@@ -23,7 +23,7 @@ RSpec.describe Card::Set::Type::AnswerImport do
     xit "marks value in answer table as imported" do
       import_ready_items
       answer_id = status.item_hash(status.status_indeces(:imported).first)[:id]
-      answer = Answer.find_by_answer_id(answer_id)
+      answer = Answer.for_card(answer_id)
       expect(answer.imported).to eq true
     end
   end

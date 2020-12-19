@@ -1,4 +1,5 @@
 class Answer
+  # module extends the functionality of Answer lookup relations
   module ActiveRecordExtension
     def answer_cards
       map(&:card).compact
@@ -6,13 +7,6 @@ class Answer
 
     def answer_names
       pluck(:metric_id, :company_id, :year).map { |m, c, y| Card::Name[m, c, y.to_s] }
-    end
-
-    # TODO: optimize with a join
-    def value_cards
-      left_ids = pluck :answer_id
-      return [] unless left_ids.present?
-      Card.search left_id: ["in"] + left_ids, right_id: Card::ValueID
     end
 
     def cards type
@@ -71,6 +65,13 @@ class Answer
       else
         raise ArgumentError, "unknown Answer return val: #{val}"
       end
+    end
+
+    # TODO: either optimize with a join or move out of here
+    def value_cards
+      left_ids = pluck :answer_id
+      return [] unless left_ids.present?
+      Card.search left_id: ["in"] + left_ids, right_id: Card::ValueID
     end
 
     def sort_by_hash hash

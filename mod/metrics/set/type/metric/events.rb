@@ -76,5 +76,5 @@ event :update_metric_lookup_name_parts, :finalize, changed: :name, on: :update d
 end
 
 event :delete_metric_lookup, :finalize, on: :delete do
-  ::Metric.delete_for_card_id id
+  ::Metric.delete_for_card id
 end
