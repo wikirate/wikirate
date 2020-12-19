@@ -24,8 +24,8 @@ class Card
         case fld
         when /bookmarkers$/
           sort_by_bookmarkers rel
-        when :metric_title
-          sort_by_metric_title rel
+        when :metric_title, :metric_designer
+          sort_by_metric_field rel, fld
         else
           [rel, fld]
         end
@@ -43,9 +43,19 @@ class Card
         [Card::Bookmark.add_sort_join(rel, "#{@partner}.id"), "cts.value"]
       end
 
-      # FIXME: right_id is not the title for Score metrics!
-      def sort_by_metric_title rel
-        [rel.joins(sort_join("right_id = sort.id")), "sort.key"]
+      def sort_by_metric_field rel, field
+        rel = join_metrics_table rel unless @mjoined
+        @mjoined = true
+        [rel.joins(metric_sort_join(field)), "sort.key"]
+      end
+
+      def metric_sort_join field
+        field = AnswerQuery::Sorting::SORT_BY_CARDNAME[field] || field
+        "LEFT JOIN cards sort ON metrics.#{field} = sort.id"
+      end
+
+      def join_metrics_table rel
+        rel.joins("JOIN metrics on metrics.metric_id = #{@partner}.id")
       end
 
       def sort_join sql
