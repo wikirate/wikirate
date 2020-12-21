@@ -27,7 +27,7 @@ class Card
       end
 
       def y_axis
-        super.merge tickMinStep: 1
+        super.merge count_axis
       end
     end
   end

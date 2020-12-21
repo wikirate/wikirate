@@ -11,9 +11,9 @@
           = answer_count_badge :metric
         = answer_count_badge :year
     .filter-result-menu
-      - unless card.codename == :metric_answer
-        = link_to_card :metric_answer, mapped_icon_tag(:dashboard),
-                       path: { filter: query_hash }, title: "Answer Dashboard"
+      -# - unless card.codename == :metric_answer
+      -#   = link_to_card :metric_answer, mapped_icon_tag(:dashboard),
+      -#                  path: { filter: query_hash }, title: "Answer Dashboard"
       %a._filter-bindings.known-card{ title: "Chart Bindings" }
         = icon_tag :tune
 

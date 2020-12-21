@@ -25,6 +25,14 @@ class Card
 
           "#{title} (#{unit})"
         end
+
+        def count_axis
+          { title: "# #{count_unit}", tickMinStep: 1 }
+        end
+
+        def count_unit
+          multiyear? ? "Answers" : "Companies"
+        end
       end
     end
   end
