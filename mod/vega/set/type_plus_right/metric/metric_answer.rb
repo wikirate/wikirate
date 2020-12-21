@@ -1,3 +1,5 @@
+include_set Abstract::Chart
+
 format :json do
   def single_metric_chart?
     counts[:known] > 1
