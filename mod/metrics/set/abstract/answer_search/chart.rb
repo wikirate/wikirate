@@ -65,6 +65,7 @@ format :json do
     optimal = max_grid_cells / 2
     (optimal - metric_count).abs > (optimal - company_count).abs
   end
+
   # determine which of metric/company is column/row
   def grid_options
     company_columns? ? { invert: true } : {}

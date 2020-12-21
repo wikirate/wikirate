@@ -1,5 +1,3 @@
-include_set Abstract::FixedMetricChart
-
 format :json do
   def single_metric_chart?
     counts[:known] > 1

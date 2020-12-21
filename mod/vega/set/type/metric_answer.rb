@@ -1,5 +1,3 @@
-include_set Abstract::FixedMetricChart
-
 format :json do
   delegate :metric_card, to: :card
 
