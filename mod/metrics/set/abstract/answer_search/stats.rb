@@ -29,7 +29,7 @@ format do
     researched = counts[:metric_answer].to_i
     total = unresearched_query? ? count_query.count : researched
 
-    { metric_answer: total, researched: researched, none: (total - researched) }
+    counts.merge metric_answer: total, researched: researched, none: (total - researched)
   end
 
   def answer_table_counts

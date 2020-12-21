@@ -1,3 +1,5 @@
+include_set Abstract::Chart
+
 format :json do
   delegate :metric_card, to: :card
 
@@ -20,3 +22,4 @@ format :json do
     AnswerQuery.new metric_id: card.metric_id, year: card.year
   end
 end
+
