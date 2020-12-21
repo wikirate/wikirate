@@ -32,11 +32,10 @@ format do
   end
 
   def unresearched_counts
-    return {} unless unresearched_query?
     researched = counts[:metric_answer].to_i
-    total = count_query.count
+    total = unresearched_query? ? count_query.count : researched
 
-    { metric_answer: total, none: (total - researched) }
+    { metric_answer: total, researched: researched, none: (total - researched) }
   end
 
   def distinct_fields
@@ -101,6 +100,6 @@ format :html do
   end
 
   def show_chart?
-    super && counts[:known] > 1
+    super && counts[:researched] > 1
   end
 end

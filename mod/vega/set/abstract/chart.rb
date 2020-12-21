@@ -30,11 +30,7 @@ format :html do
   end
 
   def show_chart?
-    voo.show?(:chart) && chartable_filter?
-  end
-
-  def chartable_filter?
-    !filter_hash[:status].in? %w[none unknown]
+    voo.show? :chart
   end
 end
 
