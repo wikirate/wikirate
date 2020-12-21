@@ -1,10 +1,6 @@
 HORIZONTAL_MAX = 10
 
 format do
-  def single_metric?
-    filter_hash[:metric_id].is_a? Integer
-  end
-
   def metric_card
     Card[filter_hash[:metric_id]]
   end
@@ -24,7 +20,7 @@ format :json do
   def chart_type
     if (type = params[:chart])&.present?
       type.to_sym
-    elsif single_metric?
+    elsif single_metric_chart?
       single_metric_chart_type
     elsif single? :year
       single_year_chart_type
@@ -41,8 +37,20 @@ format :json do
     counts[:wikirate_company]
   end
 
+  def max_grid_cells
+    75
+  end
+
+  def show_grid?
+    metric_count <= max_grid_cells && company_count <= max_grid_cells
+  end
+
+  def single_metric_chart?
+    filter_hash[:metric_id].is_a?(Integer) && counts[:known] > 1
+  end
+
   def single_year_chart_type
-    metric_count > 75 || company_count > 75 ? :pie : :grid
+    show_grid? ? :grid : :pie
   end
 
   def single_metric_chart_type
@@ -53,8 +61,12 @@ format :json do
     counts[:known] <= HORIZONTAL_MAX
   end
 
+  def company_columns?
+    optimal = max_grid_cells / 2
+    (optimal - metric_count).abs > (optimal - company_count).abs
+  end
   # determine which of metric/company is column/row
   def grid_options
-    (40 - metric_count).abs > (40 - company_count).abs ? { invert: true } : {}
+    company_columns? ? { invert: true } : {}
   end
 end
