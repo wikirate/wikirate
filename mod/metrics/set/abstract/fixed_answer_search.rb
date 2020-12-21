@@ -26,6 +26,12 @@ format do
   end
 end
 
+format :json do
+  def max_grid_cells
+    30
+  end
+end
+
 format :html do
   # none and all not available on answer dashboard yet.
   def status_options

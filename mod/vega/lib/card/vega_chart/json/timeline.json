@@ -164,8 +164,8 @@
         "scheme": "rainbow"
       },
       "domain": {
-        "data": "counts",
-        "field": "group"
+        "data": "groups",
+        "field": "name"
       }
     }
   ],
