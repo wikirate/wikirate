@@ -1,8 +1,8 @@
-include_set Abstract::FixedMetricChart
+include_set Abstract::Chart
 
 format :json do
-  def single_metric?
-    true
+  def single_metric_chart?
+    counts[:known] > 1
   end
 
   def metric_card

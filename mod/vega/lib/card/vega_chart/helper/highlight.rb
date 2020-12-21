@@ -34,7 +34,9 @@ class Card
         end
 
         def highlight_marks hash
-          hash[:marks].first[:encode][:update][:fill] = highlight_fill
+          encode = hash[:marks].first[:encode]
+          encode[:update][:fill] = highlight_fill
+          encode[:hover][:cursor] = "default"
         end
 
         def highlight_data hash

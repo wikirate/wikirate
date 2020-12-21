@@ -26,6 +26,9 @@
 .filter-in-filter-form {
   max-width: 100%;
   // overflow-x: hidden;
+  .dropdown-menu {
+    z-index: 1035;
+  }
 }
 
 .filter-input-group, .sort-input-group {
