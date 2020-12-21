@@ -21,7 +21,15 @@ format do
   delegate :answer_query, :answer_lookup, to: :query
 
   def counts
-    @counts ||= answer_table_counts.merge(unresearched_counts)
+    @counts ||= tally_counts
+  end
+
+  def tally_counts
+    counts = answer_table_counts
+    researched = counts[:metric_answer].to_i
+    total = unresearched_query? ? count_query.count : researched
+
+    { metric_answer: total, researched: researched, none: (total - researched) }
   end
 
   def answer_table_counts
@@ -29,13 +37,6 @@ format do
 
     fields = distinct_fields + indistinct_fields
     count_query.answer_query.joins(:metric).pluck_all(*fields).first.symbolize_keys
-  end
-
-  def unresearched_counts
-    researched = counts[:metric_answer].to_i
-    total = unresearched_query? ? count_query.count : researched
-
-    { metric_answer: total, researched: researched, none: (total - researched) }
   end
 
   def distinct_fields

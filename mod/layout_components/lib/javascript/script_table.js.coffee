@@ -67,7 +67,7 @@ decko.details = () ->
 
   @config = (key)->
     @configHash ||= $("[data-details-config]").data "details-config"
-    @configHash[key]
+    @configHash[key] if @configHash
 
   @showDetails = (url, root) ->
     unless @currentURL() == url
