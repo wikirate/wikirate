@@ -1,0 +1,11 @@
+{
+  "name": "countExtremes",
+  "source": "counts",
+  "transform": [
+    {
+      "type": "aggregate",
+      "fields": ["count", "count"],
+      "ops": ["min", "max"]
+    }
+  ]
+}

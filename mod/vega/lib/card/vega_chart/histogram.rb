@@ -2,11 +2,7 @@ class Card
   class VegaChart
     # Company count histograms.  Each vertical bar represents a range of values
     class Histogram < VegaChart
-      include Helper::SingleMetric
-      include Helper::Axes
-      include Helper::Highlight
-      include Helper::CountTips
-      include Helper::Exponent
+      include Helper::VerticalBar
 
       def hash
         with_values(answer_list: 0) { super }.tap do |hash|
@@ -17,7 +13,7 @@ class Card
       private
 
       def extent
-        "[data('extremes')[0].min_value, data('extremes')[0].max_value]"
+        "[data('valueExtremes')[0].min_value, data('valueExtremes')[0].max_value]"
       end
 
       def layout
@@ -41,3 +37,4 @@ class Card
     end
   end
 end
+

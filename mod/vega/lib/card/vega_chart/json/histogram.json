@@ -22,7 +22,7 @@
       ]
     },
     {
-      "name": "extremes",
+      "name": "valueExtremes",
       "source": "answers",
       "transform": [
         {
