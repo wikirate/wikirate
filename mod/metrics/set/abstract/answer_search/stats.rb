@@ -98,3 +98,4 @@ format :html do
     super && counts[:researched] > 1
   end
 end
+
