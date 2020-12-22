@@ -22,7 +22,7 @@
       ]
     },
     {
-      "name": "extremes",
+      "name": "valueExtremes",
       "source": "answers",
       "transform": [
         {
@@ -42,6 +42,10 @@
       "name": "counts",
       "source": "answers",
       "transform": [
+        {
+          "type": "filter",
+          "expr": "isValid(datum['value'])"
+        },
         {
           "type": "bin",
           "field": "value",
