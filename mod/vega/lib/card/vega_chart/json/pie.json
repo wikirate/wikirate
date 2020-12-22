@@ -1,7 +1,7 @@
 {
   "signals": [
     {
-      "name": "tooltip",
+      "name": "grouptip",
       "value": {
       },
       "on": [
@@ -35,8 +35,7 @@
 
   "data": [
     {
-      "name": "metricTypes",
-      "url": "/Metric_Type+*type.json",
+      "name": "groups",
       "format": {
         "property": "items"
       }
@@ -53,13 +52,13 @@
         },
         {
           "type": "lookup",
-          "from": "metricTypes",
+          "from": "groups",
           "key": "id",
           "fields": [
             "subgroup"
           ],
           "as": [
-            "metricType"
+            "group"
           ],
           "values": [
             "name"
@@ -69,22 +68,8 @@
           "type": "pie",
           "field": "count",
           "sort": {"signal": "sort"}
-        },
-        {
-          "type": "formula",
-          "expr": "{ metric_type: datum.metricType }",
-          "as": "filter"
         }
       ]
-    }
-  ],
-
-  "scales": [
-    {
-      "name": "color",
-      "type": "ordinal",
-      "domain": {"data": "counts", "field": "metricType"},
-      "range": {"scheme": "rainbow"}
     }
   ],
 
@@ -94,7 +79,7 @@
       "from": {"data": "counts"},
       "encode": {
         "enter": {
-          "fill": {"scale": "color", "field": "metricType"},
+          "fill": {"scale": "color", "field": "group"},
           "x": {"value": 100 },
           "y": {"value": 100 },
           "tooltip": {"field": "count" }
@@ -121,31 +106,6 @@
         "hover" : {
           "opacity": {
             "value": 0.8
-          }
-        }
-      }
-    }
-  ],
-  "legends": [
-    {
-      "fill": "color",
-      "type": "symbol",
-      "orient": "top-right",
-      "encode": {
-        "labels": {
-          "update": {
-            "fontWeight": [
-              { "test": "tooltip.metricType == datum.label", "value": 900 },
-              { "value": 400 }
-            ]
-          }
-        },
-        "symbols": {
-          "update": {
-            "fillOpacity": [
-              { "test": "tooltip.metricType == datum.label", "value": 0.8 },
-              { "value": 1 }
-            ]
           }
         }
       }

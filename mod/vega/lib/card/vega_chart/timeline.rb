@@ -5,10 +5,7 @@ class Card
       include Helper::Axes
       include Helper::CountTips
       include Helper::Exponent
-
-      def hash
-        with_values(year_list: 0) { super }
-      end
+      include Helper::Subgroup
 
       def layout
         super.merge builtin(:timeline)
@@ -24,6 +21,10 @@ class Card
                    { value: "#888" }]
           )
         end
+      end
+
+      def filter_data_index
+        -2
       end
 
       def y_axis

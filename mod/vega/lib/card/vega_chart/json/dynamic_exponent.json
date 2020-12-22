@@ -1,0 +1,13 @@
+{
+  "signals": [
+    {
+      "name": "inequality",
+      "init": "data('countExtremes')[0].max_count / data('countExtremes')[0].min_count"
+    },
+    {
+      "name": "exponent",
+      "init": "inequality > 50 ? 0.5 : 1",
+      "bind": {"input": "range", "min": 0.1, "max": 1}
+    }
+  ]
+}
