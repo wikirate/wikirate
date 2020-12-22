@@ -3,18 +3,13 @@ include_set Abstract::Filterable
 LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
            total: "Total" }.freeze
 
-DISTINCTS = {
+COUNT_FIELDS = {
   company_id: :wikirate_company,
   "answers.metric_id": :metric,
   "designer_id": :designer,
   "metrics.metric_type_id": :metric_types,
-  year: :year
-}.freeze
-
-INDISTINCTS = {
-  "value <> 'Unknown'" => :known,
-  "value = 'Unknown'" => :unknown,
-  "*" => :metric_answer
+  year: :year,
+  "*": :metric_answer
 }.freeze
 
 format do
@@ -29,28 +24,27 @@ format do
     researched = counts[:metric_answer].to_i
     total = unresearched_query? ? count_query.count : researched
 
-    counts.merge metric_answer: total, researched: researched, none: (total - researched)
+    counts.merge(knowns_and_unknowns(researched)).merge(
+      metric_answer: total, researched: researched, none: (total - researched)
+    )
   end
 
   def answer_table_counts
     return {} if status_filter == :none
 
-    fields = distinct_fields + indistinct_fields
-    count_query.answer_query.joins(:metric).pluck_all(*fields).first.symbolize_keys
+    count_query.answer_query.joins(:metric).pluck_all(*count_fields).first.symbolize_keys
   end
 
-  def distinct_fields
-    count_fields(DISTINCTS) { |field| "DISTINCT(#{field})" }
-  end
-
-  def indistinct_fields
-    count_fields INDISTINCTS
-  end
-
-  def count_fields fields
-    fields.map do |field, key|
-      "COUNT(#{block_given? ? yield(field) : field}) AS #{key}"
+  def count_fields
+    COUNT_FIELDS.map do |field, key|
+      field = "DISTINCT(#{field})" unless field.to_s == "*"
+      "COUNT(#{field}) AS #{key}"
     end
+  end
+
+  def knowns_and_unknowns researched
+    unknowns = count_query.answer_query.where("value = 'Unknown'").count
+    { unknown: unknowns, known: (researched - unknowns) }
   end
 
   def unresearched_query?

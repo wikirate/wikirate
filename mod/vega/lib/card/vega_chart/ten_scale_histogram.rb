@@ -23,7 +23,7 @@ class Card
       end
 
       def tenscale_data data
-        data.last[:transform] <<
+        data[2][:transform] <<
           { type: "formula", expr: "floor(datum.bin0)", as: "floor" }
       end
 
