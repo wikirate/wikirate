@@ -1,45 +1,95 @@
 {
+  "signals" : [
+    {
+      "name": "maxBars",
+      "value": 25,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 500
+      }
+    },
+    {
+      "name": "sortField",
+      "value": "count",
+      "bind": {"input": "select", "options": ["count", "value"]}
+    }
+  ],
   "data": [
     {
       "name": "answers"
     },
     {
-      "name": "counts",
+      "name": "rawCounts",
       "source": "answers",
       "transform": [
         {
           "type": "aggregate",
-          "groupby": [
-            "value"
-          ],
-          "fields": [
-            "value"
-          ],
-          "ops": [
-            "count"
-          ],
-          "as": [
-            "count"
-          ]
+          "groupby": ["value"],
+          "fields": ["value"],
+          "ops": ["count"],
+          "as": ["count"]
         },
         {
-          "type" : "formula",
-          "expr" : "{ value: datum.value }",
-          "as" : "filter"
+          "type": "window",
+          "ops": ["row_number"],
+          "sort": {
+            "field": {"signal": "sortField"},
+            "order": {
+              "signal": "sortField == 'count' ? 'descending' : 'ascending'"
+            }
+          },
+          "as": ["seq"]
         }
       ]
+    },
+    {
+      "name": "shownCounts",
+      "source": "rawCounts",
+      "transform": [
+        {"type": "filter", "expr": "datum.seq <= maxBars"},
+        {"type": "formula", "expr": "{ value: datum.value }", "as": "filter"}
+      ]
+    },
+    {
+      "name": "otherCounts",
+      "source": "rawCounts",
+      "transform": [
+        {"type": "filter", "expr": "datum.seq > maxBars"},
+        {
+          "type": "aggregate",
+          "fields": ["count"],
+          "ops": ["sum"],
+          "as": ["count"]
+        },
+        {
+          "type": "formula",
+          "expr": "'Other'",
+          "as": "value"
+        },
+        {
+          "type": "formula",
+          "expr": "maxBars + 1",
+          "as": "seq"
+        }
+      ]
+    },
+    {
+      "name": "counts",
+      "source": ["shownCounts","otherCounts"]
     }
   ],
   "scales":[
     {
-      "name":"xscale",
-      "range":"width",
-      "domain":{
-        "data":"counts",
-        "field":"value"
+      "name": "xscale",
+      "range": "width",
+      "domain": {
+        "data": "counts",
+        "field": "value",
+        "sort": {"field": "seq", "op": "min"}
       },
-      "type":"band",
-      "padding":0.15
+      "type": "band",
+      "padding": 0.15
     },
     {
       "name":"yscale",
@@ -62,7 +112,7 @@
         "data":"counts"
       },
       "encode":{
-        "enter":{
+        "update": {
           "x":{
             "scale":"xscale",
             "field":"value"
@@ -74,9 +124,7 @@
           },
           "fill": {
             "value": "#03998d"
-          }
-        },
-        "update": {
+          },
           "y":{
             "scale":"yscale",
             "field":"count"
