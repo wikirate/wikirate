@@ -43,6 +43,10 @@
       "source": "answers",
       "transform": [
         {
+          "type": "filter",
+          "expr": "isValid(datum['value'])"
+        },
+        {
           "type": "bin",
           "field": "value",
           "extent": {
