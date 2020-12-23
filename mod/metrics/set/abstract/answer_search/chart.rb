@@ -83,7 +83,7 @@ format :json do
   def chart_grouping
     group = params[:subgroup]
     group ||=
-      (counts[:value_type] == 1 || params[:value_type]) ? :metric_type : :value_type
+      counts[:value_type] == 1 || params[:value_type] ? :metric_type : :value_type
     { group: group }
   end
 end
