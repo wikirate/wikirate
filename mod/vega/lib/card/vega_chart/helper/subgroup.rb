@@ -6,7 +6,7 @@ class Card
         GROUP_PATHS = {
           value_type: "Value_Type.json",
           metric_type: "/Metric_Type+*type+by_create.json"
-        }
+        }.freeze
 
         def hash
           with_values year_list: 1 do
