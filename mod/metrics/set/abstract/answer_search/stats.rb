@@ -7,7 +7,8 @@ COUNT_FIELDS = {
   company_id: :wikirate_company,
   "answers.metric_id": :metric,
   "designer_id": :designer,
-  "metrics.metric_type_id": :metric_types,
+  "metrics.metric_type_id": :metric_type,
+  "metrics.value_type_id": :value_type,
   year: :year,
   "*": :metric_answer
 }.freeze
@@ -98,4 +99,3 @@ format :html do
     super && counts[:researched] > 1
   end
 end
-
