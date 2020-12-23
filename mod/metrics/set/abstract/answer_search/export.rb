@@ -57,7 +57,6 @@ format :json do
     end
   end
 
-
   def answer_array hash
     hash[:answers] = hash[:answers].each_with_object([]) do |(key, val), array|
       array << val.merge(id: key)

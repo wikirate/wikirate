@@ -9,7 +9,7 @@ class Card
         }.freeze
 
         def initialize format, opts={}
-          @group = opts[:group]
+          @group = opts[:group] || :value_type
           super
         end
 
