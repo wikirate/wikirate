@@ -790,6 +790,10 @@
   :type: Markdown
   :key: formula_syntax
   :merged: 2019-02-12 14:36:02 UTC
+- :name: value type
+  :type: Pointer
+  :codename: :value_type
+  :key: value_type
 :remotes:
   :live: https://wikirate.org
   :dev: https://dev.wikirate.org

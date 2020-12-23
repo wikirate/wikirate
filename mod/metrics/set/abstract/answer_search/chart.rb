@@ -51,6 +51,7 @@ format :json do
 
   def single_year_chart_type
     show_grid? ? :grid : :pie
+    :pie
   end
 
   def single_metric_chart_type
@@ -69,5 +70,20 @@ format :json do
   # determine which of metric/company is column/row
   def grid_options
     company_columns? ? { invert: true } : {}
+  end
+
+  def timeline_options
+    chart_grouping
+  end
+
+  def pie_options
+    chart_grouping
+  end
+
+  def chart_grouping
+    group = params[:subgroup]
+    group ||=
+      counts[:value_type] == 1 || params[:value_type] ? :metric_type : :value_type
+    { group: group }
   end
 end
