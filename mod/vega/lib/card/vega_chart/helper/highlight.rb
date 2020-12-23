@@ -40,7 +40,9 @@ class Card
         end
 
         def highlight_data hash
-          hash[:data].last[:transform] << highlight_transform
+          dataset = hash[:data].last
+          dataset[:transform] ||= []
+          dataset[:transform] << highlight_transform
         end
       end
     end

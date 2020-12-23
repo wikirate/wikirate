@@ -1,0 +1,11 @@
+{
+  "name": "color",
+  "type": "ordinal",
+  "range": {
+    "scheme": "rainbow"
+  },
+  "domain": {
+    "data": "groups",
+    "field": "name"
+  }
+}

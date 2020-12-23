@@ -2,11 +2,7 @@ class Card
   class VegaChart
     # chart for categorical metrics shows companies per category
     class BarGraph < VegaChart
-      include Helper::SingleMetric
-      include Helper::Axes
-      include Helper::Highlight
-      include Helper::CountTips
-      include Helper::Exponent
+      include Helper::VerticalBar
 
       def hash
         with_values(answer_list: 0) do
@@ -33,10 +29,6 @@ class Card
 
       def x_axis
         super.merge title: "Category"
-      end
-
-      def y_axis
-        super.merge count_axis
       end
     end
   end

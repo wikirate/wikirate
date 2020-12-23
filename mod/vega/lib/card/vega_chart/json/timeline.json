@@ -30,7 +30,7 @@
       "init": "yearEnds['max_year']"
     },
     {
-      "name": "areatip",
+      "name": "grouptip",
       "value": {
       },
       "on": [
@@ -47,12 +47,11 @@
   ],
   "data": [
     {
-      "name": "years"
+      "name": "groups",
+      "format": { "property": "items" }
     },
     {
-      "name": "groups",
-      "url": "/Metric_Type+*type.json",
-      "format": { "property": "items" }
+      "name": "years"
     },
     {
       "name" : "yearEnds",
@@ -155,17 +154,6 @@
         "fields": [
           "y1"
         ]
-      }
-    },
-    {
-      "name": "color",
-      "type": "ordinal",
-      "range": {
-        "scheme": "rainbow"
-      },
-      "domain": {
-        "data": "groups",
-        "field": "name"
       }
     }
   ],
@@ -298,30 +286,6 @@
           },
           "text": {
             "signal": "tooltip.sum_count"
-          }
-        }
-      }
-    }
-  ],
-  "legends": [
-    {
-      "fill": "color",
-      "type": "symbol",
-      "encode": {
-        "labels": {
-          "update": {
-            "fontWeight": [
-              { "test": "areatip.group == datum.label", "value": 900 },
-              { "value": 400 }
-            ]
-          }
-        },
-        "symbols": {
-          "update": {
-            "fillOpacity": [
-              { "test": "areatip.group == datum.label", "value": 0.9 },
-              { "value": 1 }
-            ]
           }
         }
       }
