@@ -70,4 +70,8 @@ format :json do
   def grid_options
     company_columns? ? { invert: true } : {}
   end
+
+  def timeline_options
+    { group: :metric_type }
+  end
 end
