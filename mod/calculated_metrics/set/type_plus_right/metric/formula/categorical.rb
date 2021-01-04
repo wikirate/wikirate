@@ -1,4 +1,4 @@
-# include_set Abstract::TenScale
+# scoring of categorical metrics
 
 format :html do
   view :categorical_core do
