@@ -1,7 +1,7 @@
-RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Descendant do
+RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Categorical do
   def card_subject
-    Card["Joe User+descendant 1+formula"]
+    Card["Jedi+disturbances in the Force+Joe User+formula"]
   end
 
-  check_views_for_errors :ancestor_core
+  check_views_for_errors :categorical_core, :categorical_editor
 end
