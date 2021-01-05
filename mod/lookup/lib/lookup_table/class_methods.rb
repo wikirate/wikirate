@@ -81,6 +81,10 @@ module LookupTable
       fetcher_hash(*args).each { |col, method| define_fetch_method col, method }
     end
 
+    def define_main_fetcher
+      define_fetch_method @card_column, :id
+    end
+
     private
 
     def define_fetch_method column, card_method

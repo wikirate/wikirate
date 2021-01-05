@@ -1,5 +1,8 @@
 # lookup table for metric answers
 class Answer < ApplicationRecord
+  @card_column = :answer_id
+  @card_query = { type_id: Card::MetricAnswerID, trash: false }
+
   include LookupTable
   extend AnswerClassMethods
 
@@ -8,9 +11,6 @@ class Answer < ApplicationRecord
   include EntryFetch
   include Export
   include Latest
-
-  @card_column = :answer_id
-  @card_query = { type_id: Card::MetricAnswerID, trash: false }
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?

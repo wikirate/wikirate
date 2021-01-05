@@ -4,15 +4,12 @@ class Relationship < ApplicationRecord
   @card_query = {  type_id: Card::RelationshipAnswerID, trash: false }
 
   include LookupTable
-
   include EntryFetch
   include Csv
 
   after_destroy :latest_to_true
-
   delegate :company_id, :designer_id, :title_id, to: :answer
-
-  fetcher :answer_id, :value, :numeric_value
+  fetcher :answer_id, :value, :numeric_value, :imported
 
   # other relationships in same record
   def record_relationships

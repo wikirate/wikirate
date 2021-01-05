@@ -30,12 +30,12 @@ def check_requester
   cb.check_requester
 end
 
-def imported
-  value_card&.actions&.last&.comment == "imported"
-end
-
 def comments
   return unless (comment_card = discussion_card)
 
   comment_card.format(:text).render_core.gsub(/^\s*--.*$/, "").squish.truncate 1024
+end
+
+def overridden_value
+  super.tap { |ov| return unless ov.present? }
 end
