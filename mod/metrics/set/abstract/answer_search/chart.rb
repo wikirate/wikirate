@@ -51,7 +51,6 @@ format :json do
 
   def single_year_chart_type
     show_grid? ? :grid : :pie
-    :pie
   end
 
   def single_metric_chart_type
