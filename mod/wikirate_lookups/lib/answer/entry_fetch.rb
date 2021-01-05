@@ -4,32 +4,11 @@ class Answer
     include ValueDetails
 
     def fetch_answer_id
-      card.id if card.id && card.value_card.id # why this if??
-    end
-
-    def fetch_metric_id
-      Card.fetch_id fetch_record_name.left
-    end
-
-    def fetch_company_id
-      Card.fetch_id fetch_record_name.right
-    end
-
-    def fetch_company_name
-      Card.fetch_name(company_id || fetch_company_id)
-    end
-
-    def fetch_record_id
-      # TODO: optimize. skip if calculated and not overridden
-      card.left_id.positive? ? card.left_id : Card.fetch_id(fetch_record_name)
-    end
-
-    def fetch_record_name
-      card.name.left_name
+      card.id
     end
 
     def fetch_year
-      card.name.right.to_i
+      card.year.to_i
     end
 
     def fetch_checkers
@@ -40,12 +19,6 @@ class Answer
     def fetch_check_requester
       return unless (cb = card.field(:checked_by)) && cb.check_requested?
       cb.check_requester
-    end
-
-    def fetch_latest
-      return true unless (latest_year = latest_year_in_db)
-      @new_latest = (latest_year < fetch_year)
-      latest_year <= fetch_year
     end
 
     def fetch_source_count

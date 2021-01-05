@@ -37,11 +37,11 @@ initVega = (spec, el) ->
   new vega.View(runtime).initialize(el[0]).hover().run()
 
 updateFilter = (el, filterVals) ->
-  #  if filterVals["value"] == "Other"
-  #    alert 'Filtering for "Other" values is not yet supported.'
-  #  else
-  filter = new decko.filter el.closest("._filtered-content").find("._filter-widget")
-  filter.addRestrictions filterVals
+  if filterVals["value"] == "Other"
+    alert 'Filtering for "Other" values is not yet supported.'
+  else
+    filter = new decko.filter el.closest("._filtered-content").find("._filter-widget")
+    filter.addRestrictions filterVals
 
 updateDetails = (detailsAnswer) ->
   $("[data-details-mark=\"#{detailsAnswer}\"]").trigger "click"

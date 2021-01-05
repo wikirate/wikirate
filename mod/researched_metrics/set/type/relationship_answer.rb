@@ -82,7 +82,7 @@ def answer
 end
 
 def answer_id
-  @answer_id ||= Card.fetch_id answer_name
+  @answer_id ||= left_id.positive? ? left_id : Card.fetch_id(answer_name)
 end
 
 def answer_name
