@@ -1,6 +1,6 @@
 card_accessor :checked_by
 card_accessor :check_requested_by
-card_accessor :source
+card_accessor :source, type: PointerID
 
 # for hybrid metrics: If a calculated value is overridden by a researched value
 #   then :overridden_value holds on to that value. It also serves as flag to mark
@@ -29,9 +29,18 @@ def value_card
   vc
 end
 
+def numeric_value
+  Answer.to_numeric(value) if metric_card.numeric? || metric_card.relationship?
+end
+
 # make sure pointer-style content works for multi-category
 def content_from_value value
   Array.wrap(::Answer.value_from_lookup(value, value_type_code)).join "\n"
+end
+
+def expire cache_type=nil
+  super
+  Card.expire [name, :value].to_name
 end
 
 # MISCELLANEOUS METHODS
@@ -56,9 +65,4 @@ end
 
 def calculating?
   calculated? && answer.calculating
-end
-
-def expire cache_type=nil
-  super
-  Card.expire [name, :value].to_name
 end

@@ -21,6 +21,9 @@ class Answer < ApplicationRecord
 
   after_destroy :latest_to_true
 
+  fetcher :metric_id, :company_id, :record_id, :source_count, :source_url, :imported
+          :value, :numeric_value, :checkers, :check_requester
+
   def card
     return @card if @card
     if answer_id
@@ -64,11 +67,6 @@ class Answer < ApplicationRecord
     # when we override a hybrid metric the answer is invalid because of the
     # missing answer_id, so we don't delete invalid hybrids..
     !metric_card.hybrid? && invalid?
-  end
-
-  def to_numeric_value val
-    return if unknown?(val) || !val.number?
-    val.to_d
   end
 
   def unknown? val
