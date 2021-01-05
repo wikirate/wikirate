@@ -2,10 +2,6 @@ class Answer
   module EntryFetch
     # fetching value-related answer details
     module ValueDetails
-      def fetch_value
-        card.value
-      end
-
       def fetch_numeric_value
         return unless metric_card.numeric? || metric_card.relationship?
         to_numeric_value fetch_value

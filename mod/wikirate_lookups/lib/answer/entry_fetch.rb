@@ -4,20 +4,10 @@ class Answer
     include ValueDetails
 
     def fetch_answer_id
-      card.id if card.id && card.value_card.id # why this if??
+      card.id
     end
 
-    def fetch_metric_id
-      Card.fetch_id fetch_record_name.left
-    end
-
-    def fetch_company_id
-      Card.fetch_id fetch_record_name.right
-    end
-
-    def fetch_company_name
-      Card.fetch_name(company_id || fetch_company_id)
-    end
+    fetcher :metric_id, :company_id, :year, :value
 
     def fetch_record_id
       # TODO: optimize. skip if calculated and not overridden
@@ -26,10 +16,6 @@ class Answer
 
     def fetch_record_name
       card.name.left_name
-    end
-
-    def fetch_year
-      card.name.right.to_i
     end
 
     def fetch_checkers
