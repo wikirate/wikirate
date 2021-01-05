@@ -1,10 +1,6 @@
 class Relationship
   # Methods to fetch the data needed to initialize a new answer lookup table entry.
   module EntryFetch
-    def fetch_answer_id
-      card.left_id
-    end
-
     def fetch_relationship_id
       card.id
     end
@@ -36,11 +32,7 @@ class Relationship
     end
 
     def fetch_year
-      card.name.left_name.right.to_i
-    end
-
-    def fetch_value
-      card.value
+      card.year.to_i
     end
 
     def fetch_numeric_value

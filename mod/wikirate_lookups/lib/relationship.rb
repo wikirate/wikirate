@@ -12,6 +12,8 @@ class Relationship < ApplicationRecord
 
   delegate :company_id, :designer_id, :title_id, to: :answer
 
+  fetcher :answer_id, :value
+
   class << self
     delegate :unknown?, to: Answer
   end

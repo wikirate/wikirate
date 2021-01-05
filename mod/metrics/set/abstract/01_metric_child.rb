@@ -135,6 +135,10 @@ def record_name
   metric_name.field_name(company)
 end
 
+def record_id
+  Card.fetch_id record_name
+end
+
 def record_card
   Card.fetch record
 end

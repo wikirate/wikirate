@@ -7,13 +7,8 @@ class Answer
       card.id
     end
 
-    def fetch_record_id
-      # TODO: optimize. skip if calculated and not overridden
-      card.left_id.positive? ? card.left_id : Card.fetch_id(fetch_record_name)
-    end
-
-    def fetch_record_name
-      card.name.left_name
+    def fetch_year
+      card.year.to_i
     end
 
     def fetch_checkers
@@ -24,12 +19,6 @@ class Answer
     def fetch_check_requester
       return unless (cb = card.field(:checked_by)) && cb.check_requested?
       cb.check_requester
-    end
-
-    def fetch_latest
-      return true unless (latest_year = latest_year_in_db)
-      @new_latest = (latest_year < fetch_year)
-      latest_year <= fetch_year
     end
 
     def fetch_source_count

@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::MetricType::Relationship do
+RSpec.describe Card::Set::MetricType::InverseRelationship do
   def card_subject
     Card["Jedi+less evil"]
   end

@@ -21,7 +21,7 @@ class Answer < ApplicationRecord
 
   after_destroy :latest_to_true
 
-  fetcher :metric_id, :company_id, :year, :value
+  fetcher :metric_id, :company_id, :record_id, :value
 
   def card
     return @card if @card
