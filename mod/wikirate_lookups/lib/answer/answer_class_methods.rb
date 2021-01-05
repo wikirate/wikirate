@@ -58,6 +58,10 @@ class Answer
       val.to_s.casecmp("unknown").zero?
     end
 
+    def to_numeric val
+      Answer.unknown?(val) || !val.number? ? nil : val.to_d
+    end
+
     # convert value format to lookup-table-suitable value
     # @return nil or String
     def value_to_lookup value
