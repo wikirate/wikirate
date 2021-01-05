@@ -1,8 +1,6 @@
 class Answer
   # Methods to fetch the data needed to initialize a new answer lookup table entry.
   module EntryFetch
-    include ValueDetails
-
     def fetch_answer_id
       card.id
     end
@@ -11,19 +9,38 @@ class Answer
       card.year.to_i
     end
 
-    def fetch_checkers
-      return unless (cb = card.field(:checked_by)) && cb.checked?
-      cb.checkers.join(", ")
+    def fetch_creator_id
+      card.creator_id || Card::Auth.current_id
     end
 
-    def fetch_check_requester
-      return unless (cb = card.field(:checked_by)) && cb.check_requested?
-      cb.check_requester
+    def fetch_created_at
+      card&.value_card&.created_at || created_at || Time.now
     end
 
-    def fetch_comments
-      return nil unless (comment_card = Card.fetch [card.name, :discussion])
-      comment_card.format(:text).render_core.gsub(/^\s*--.*$/, "").squish.truncate 1024
+    def fetch_editor_id
+      card.value_card.updater_id if value_updated?
+    end
+
+    def fetch_updated_at
+      return card.updated_at unless (vc = card.value_card)
+
+      [card.updated_at, vc.updated_at].compact.max
+    end
+
+    def fetch_overridden_value
+      ov = card.try :overridden_value
+      ov.present? ? ov : nil
+    end
+
+    def fetch_calculating
+      false
+    end
+
+    private
+
+    def value_updated?
+      return unless (vc = card.value_card)
+      vc.updated_at && vc.updated_at > vc.created_at
     end
   end
 end

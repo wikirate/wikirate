@@ -14,10 +14,6 @@ class Relationship < ApplicationRecord
 
   fetcher :answer_id, :value, :numeric_value
 
-  class << self
-    delegate :unknown?, to: Answer
-  end
-
   # other relationships in same record
   def record_relationships
     Relationship
@@ -81,9 +77,7 @@ class Relationship < ApplicationRecord
     object_company_id.cardname
   end
 
-
-
   def unknown? val
-    self.class.unknown? val
+    Answer.unknown? val
   end
 end

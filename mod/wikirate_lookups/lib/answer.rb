@@ -21,8 +21,8 @@ class Answer < ApplicationRecord
 
   after_destroy :latest_to_true
 
-  fetcher :metric_id, :company_id, :record_id, :source_count, :source_url,
-          :value, :numeric_value
+  fetcher :metric_id, :company_id, :record_id, :source_count, :source_url, :imported
+          :value, :numeric_value, :checkers, :check_requester
 
   def card
     return @card if @card

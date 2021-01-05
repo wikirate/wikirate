@@ -36,8 +36,7 @@ class Answer
     end
 
     def existing id
-      return unless id
-      for_card(id) || (refresh(id) && for_card(id))
+      for_card(id) || (refresh(id) && for_card(id)) if id
     end
 
     def latest_answer_card metric_id, company_id
@@ -48,10 +47,6 @@ class Answer
 
     def latest_year metric_id, company_id
       where(metric_id: metric_id, company_id: company_id, latest: true).pluck(:year).first
-    end
-
-    def answered? metric_id, company_id
-      where(metric_id: metric_id, company_id: company_id).exist?
     end
 
     def unknown? val
