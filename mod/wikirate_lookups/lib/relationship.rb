@@ -12,7 +12,7 @@ class Relationship < ApplicationRecord
 
   delegate :company_id, :designer_id, :title_id, to: :answer
 
-  fetcher :answer_id, :value
+  fetcher :answer_id, :value, :numeric_value
 
   class << self
     delegate :unknown?, to: Answer
@@ -81,11 +81,7 @@ class Relationship < ApplicationRecord
     object_company_id.cardname
   end
 
-  def to_numeric_value val
-    return if unknown?(val) || !val.number?
 
-    val.to_d
-  end
 
   def unknown? val
     self.class.unknown? val

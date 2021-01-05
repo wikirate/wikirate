@@ -35,12 +35,6 @@ class Relationship
       card.year.to_i
     end
 
-    def fetch_numeric_value
-      return unless metric_card.numeric?
-
-      to_numeric_value fetch_value
-    end
-
     def fetch_imported
       return false unless (action = card.value_card.actions.last)
 

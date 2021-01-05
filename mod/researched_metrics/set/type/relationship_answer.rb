@@ -69,6 +69,10 @@ def valid_related_company?
     Director.include?(related_company)
 end
 
+def numeric_value
+  super if metric_card.numeric?
+end
+
 def value_type_code
   metric_card.value_type_code
 end
