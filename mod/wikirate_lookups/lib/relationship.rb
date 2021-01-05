@@ -4,17 +4,12 @@ class Relationship < ApplicationRecord
   @card_query = {  type_id: Card::RelationshipAnswerID, trash: false }
 
   include LookupTable
-
   include EntryFetch
   include Csv
 
   after_destroy :latest_to_true
-
   delegate :company_id, :designer_id, :title_id, to: :answer
-
-  class << self
-    delegate :unknown?, to: Answer
-  end
+  fetcher :answer_id, :value, :numeric_value, :imported
 
   # other relationships in same record
   def record_relationships
@@ -79,13 +74,7 @@ class Relationship < ApplicationRecord
     object_company_id.cardname
   end
 
-  def to_numeric_value val
-    return if unknown?(val) || !val.number?
-
-    val.to_d
-  end
-
   def unknown? val
-    self.class.unknown? val
+    Answer.unknown? val
   end
 end

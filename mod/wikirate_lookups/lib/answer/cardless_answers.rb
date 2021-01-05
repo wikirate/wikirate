@@ -77,7 +77,7 @@ class Answer
     def value_attributes value
       {
         value: value,
-        numeric_value: to_numeric_value(value),
+        numeric_value: self.class.to_numeric(value),
         updated_at: Time.now,
         editor_id: Card::Auth.current_id,
         calculating: false
