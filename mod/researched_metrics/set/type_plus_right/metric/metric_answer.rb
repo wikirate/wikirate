@@ -35,7 +35,7 @@ end
 
 format do
   def secondary_sort_hash
-    super.merge year: { value: :asc }
+    super.merge year: { value: :desc }
   end
 
   def filter_keys
