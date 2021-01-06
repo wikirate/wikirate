@@ -69,6 +69,10 @@ def valid_related_company?
     Director.include?(related_company)
 end
 
+def numeric_value
+  super if metric_card.numeric?
+end
+
 def value_type_code
   metric_card.value_type_code
 end
@@ -82,7 +86,7 @@ def answer
 end
 
 def answer_id
-  @answer_id ||= Card.fetch_id answer_name
+  @answer_id ||= left_id.positive? ? left_id : Card.fetch_id(answer_name)
 end
 
 def answer_name
