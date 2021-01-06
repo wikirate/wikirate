@@ -1,5 +1,8 @@
 # lookup table for metric answers
 class Answer < ApplicationRecord
+  @card_column = :answer_id
+  @card_query = { type_id: Card::MetricAnswerID, trash: false }
+
   include LookupTable
   extend AnswerClassMethods
 
@@ -9,9 +12,6 @@ class Answer < ApplicationRecord
   include Export
   include Latest
 
-  @card_column = :answer_id
-  @card_query = { type_id: Card::MetricAnswerID, trash: false }
-
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
   validate :must_be_an_answer, :card_must_exist, unless: :virtual?
@@ -20,6 +20,9 @@ class Answer < ApplicationRecord
   belongs_to :metric, primary_key: :metric_id
 
   after_destroy :latest_to_true
+
+  fetcher :metric_id, :company_id, :record_id, :source_count, :source_url, :imported,
+          :value, :numeric_value, :checkers, :check_requester
 
   def card
     return @card if @card
@@ -64,11 +67,6 @@ class Answer < ApplicationRecord
     # when we override a hybrid metric the answer is invalid because of the
     # missing answer_id, so we don't delete invalid hybrids..
     !metric_card.hybrid? && invalid?
-  end
-
-  def to_numeric_value val
-    return if unknown?(val) || !val.number?
-    val.to_d
   end
 
   def unknown? val
