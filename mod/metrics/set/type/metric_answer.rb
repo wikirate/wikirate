@@ -37,5 +37,6 @@ def comments
 end
 
 def overridden_value
-  super.tap { |ov| return unless ov.present? }
+  ov = super
+  ov.present? ? ov : nil
 end
