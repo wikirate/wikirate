@@ -4,6 +4,7 @@
 module LookupTable
   def self.included host_class
     host_class.extend LookupTable::ClassMethods
+    host_class.define_main_fetcher
   end
 
   def card_column

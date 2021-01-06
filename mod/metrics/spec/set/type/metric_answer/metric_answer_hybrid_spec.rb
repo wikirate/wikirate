@@ -29,7 +29,7 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
   end
 
   example "research calculated value" do
-    expect(answer.overridden_value).to eq ""
+    expect(answer.overridden_value).to eq nil
     research_value 5
     expect(answer.overridden_value).to eq "0.01"
     expect(answer.value).to eq "5"
@@ -51,16 +51,16 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
     expect(answer.overridden_value).to eq "0.01"
     delete_input 1977
     expect(answer.value).to eq "5"
-    expect(answer.overridden_value).to eq ""
+    expect(answer.overridden_value).to eq nil
     expect(answer.calculation_overridden?).to be_falsey
   end
 
   example "unresearch calculated value", as_bot: true do
-    expect(calculated_answer.overridden_value).to eq ""
+    expect(calculated_answer.overridden_value).to eq nil
     research_value 5
     expect(answer.value).to eq "5"
     Card[metric, company, "1977"].delete!
-    expect(calculated_answer.overridden_value).to eq ""
+    expect(calculated_answer.overridden_value).to eq nil
     expect(calculated_answer.value).to eq "0.01"
     expect(calculated_answer).not_to be_calculation_overridden
   end
