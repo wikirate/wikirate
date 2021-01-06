@@ -6,6 +6,17 @@ def suggested_sources
   @potential_sources ||= find_suggested_sources
 end
 
+# used in lookup
+def source_count
+  source_card.item_names.size
+end
+
+# used in lookup
+def source_url
+  return unless (url_card = source_card.first_card&.wikirate_link_card)
+  url_card.content.truncate 1024, omission: ""
+end
+
 def find_suggested_sources
   return [] unless report_type&.item_ids&.any? && Card::Auth.current_id
   Card.search type_id: Card::SourceID,

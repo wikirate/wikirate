@@ -1,5 +1,8 @@
 include_set Abstract::Relationship
 
+delegate :value_type, :value_type_code, :value_type_id,
+         :value_cardtype_code, :value_cardtype_id, to: :inverse_card
+
 # OVERRIDES
 def inverse?
   true
