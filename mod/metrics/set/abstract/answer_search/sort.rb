@@ -33,7 +33,7 @@ format do
   end
 
   def sort_by
-    @sort_by ||= safe_sql_param("sort_by") || default_sort_option
+    @sort_by ||= safe_sql_param("sort_by")&.to_sym || default_sort_option
   end
 
   def default_sort_option
