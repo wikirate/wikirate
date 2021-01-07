@@ -22,16 +22,26 @@ class SharedData
         Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
       end
 
+      #
       # Card::Metric.create name: "Commons+Supplied by",
       #                     type: :relationship,
       #                     test_source: true,
       #                     value_type: "Category",
       #                     value_options: ["Tier 1 Supplier", "Tier 2 Supplier"],
       #                     inverse_title: "Supplier of" do
+
+      # The following is because these metrics are in the migrated seed data but
+      # lack some vital metadata:
+
       Card.create name: "Commons+Supplied by+*metric type", content: "Relationship"
       Card.create name: "Commons+Supplied by+inverse", content: "Commons+Supplier of"
       Card.create name: "Commons+Supplier of+*metric type",
                   content: "Inverse Relationship"
+      Card.create name: "Commons+Supplier of+inverse", content: "Commons+Supplied By"
+
+      Card.create name: "Commons+Is Brand Of+inverse", content: "Commons+Has Brands"
+
+
       Card::Cache.reset_all
       Card["Commons+Supplied by"].create_answers(true) do
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" },

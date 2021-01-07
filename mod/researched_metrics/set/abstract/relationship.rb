@@ -13,10 +13,10 @@ def inverse_card
 end
 
 def inverse
-  puts "name: #{name}"
   fetch(:inverse)&.first_name
 end
 
+# title only (not sure this is real)
 def inverse_title
   Card.fetch([metric_title, :inverse])&.first_name
 end
