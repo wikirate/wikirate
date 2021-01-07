@@ -4,6 +4,7 @@ class Relationship < ApplicationRecord
   @card_query = {  type_id: Card::RelationshipAnswerID, trash: false }
 
   include LookupTable
+  include LookupTable::Latest
   include EntryFetch
   include Csv
 
@@ -12,30 +13,10 @@ class Relationship < ApplicationRecord
   fetcher :answer_id, :value, :numeric_value, :imported
 
   # other relationships in same record
-  def record_relationships
+  def latest_context
     Relationship
       .where(subject_company_id: subject_company_id, metric_id: metric_id)
       .where.not(id: id)
-  end
-
-  def latest_year_in_db
-    # (object_company_id: object_company_id)
-    record_relationships.maximum :year
-  end
-
-  def latest_to_false
-    record_relationships.where(latest: true).update_all latest: false
-  end
-
-  def latest_to_true
-    return unless (latest_year = latest_year_in_db)
-
-    record_relationships.where(year: latest_year, latest: false).update_all latest: true
-  end
-
-  def latest= value
-    latest_to_false if @new_latest
-    super
   end
 
   def company_key

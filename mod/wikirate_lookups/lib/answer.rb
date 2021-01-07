@@ -4,13 +4,14 @@ class Answer < ApplicationRecord
   @card_query = { type_id: Card::MetricAnswerID, trash: false }
 
   include LookupTable
+  include LookupTable::Latest
+
   extend AnswerClassMethods
 
   include CardlessAnswers
   include Validations
   include EntryFetch
   include Export
-  include Latest
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
@@ -51,6 +52,13 @@ class Answer < ApplicationRecord
 
   def delete_on_refresh?
     super() || invalid_metric_card? || invalid_non_hybrid_answer?
+  end
+
+  # other answers in same record
+  def latest_context
+    self.company_id ||= fetch_company_id
+    self.metric_id ||= fetch_metric_id
+    Answer.where(company_id: company_id, metric_id: metric_id).where.not(id: id)
   end
 
   private
