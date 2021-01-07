@@ -11,6 +11,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Json do
                              type: "Company",
                              wikipedia: nil,
                              open_corporates: nil,
+                             oar_id: nil,
                              aliases: [],
                              headquarters: nil)
     end
