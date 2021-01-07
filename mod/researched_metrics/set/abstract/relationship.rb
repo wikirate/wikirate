@@ -9,11 +9,12 @@ def simple_value_type_code
 end
 
 def inverse_card
-  fetch(:inverse).first_card
+  Card[inverse]
 end
 
 def inverse
-  fetch(:inverse).first_name
+  puts "name: #{name}"
+  fetch(:inverse)&.first_name
 end
 
 def inverse_title
