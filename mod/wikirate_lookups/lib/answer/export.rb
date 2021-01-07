@@ -37,7 +37,8 @@ class Answer
         metric: metric_id,
         year: year,
         value: value,
-        id: flex_id
+        id: flex_id,
+        comment: comments
       }
     end
 
