@@ -1,13 +1,13 @@
 format :json do
   def atom
-    atom = super
-    %i[metric company year].each do |key|
-      atom[key] = card.send key
+    super.tap do |atom|
+      %i[metric company year].each do |key|
+        atom[key] = card.send key
+      end
+      atom[:value] = card.value # nest card.value_card, view: :core
+      atom[:record_url] = path mark: card.name.left, format: :json
+      atom.delete(:content)
     end
-    atom[:value] = card.value # nest card.value_card, view: :core
-    atom[:record_url] = path mark: card.name.left, format: :json
-    atom.delete(:content)
-    atom
   end
 
   def molecule

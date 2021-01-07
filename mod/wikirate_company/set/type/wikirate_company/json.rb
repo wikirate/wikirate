@@ -1,5 +1,6 @@
 format :json do
-  NESTED_FIELD_CODENAMES = %i[wikipedia open_corporates aliases headquarters].freeze
+  NESTED_FIELD_CODENAMES =
+    %i[wikipedia open_corporates aliases headquarters oar_id].freeze
 
   view :links do
     []

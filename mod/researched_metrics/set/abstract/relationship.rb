@@ -9,13 +9,14 @@ def simple_value_type_code
 end
 
 def inverse_card
-  fetch(:inverse).first_card
+  Card[inverse]
 end
 
 def inverse
-  fetch(:inverse).first_name
+  fetch(:inverse)&.first_name
 end
 
+# title only (not sure this is real)
 def inverse_title
   Card.fetch([metric_title, :inverse])&.first_name
 end
