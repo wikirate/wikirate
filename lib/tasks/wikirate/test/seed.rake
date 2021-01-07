@@ -53,6 +53,8 @@ namespace :wikirate do
 
       desc "add updated seed data"
       task update: :environment do |task|
+        Cardio.config.delaying = false
+
         ensure_env :test, task do
           Rake::Task["wikirate:test:load_dump"].invoke(migrated_dump_path)
           Card # I don't fully understand why this is necessary, but without it there
