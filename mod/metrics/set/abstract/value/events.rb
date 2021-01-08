@@ -26,7 +26,7 @@ event :check_length, :validate, on: :save, changed: :content do
   errors.add :value, "too long (not more than 1000 characters)" if value.size >= 1000
 end
 
-event :reset_double_check_flag, :validate, on: [:update, :delete], changed: :content do
+event :reset_double_check_flag, :validate, on: :update, changed: :content do
   [:checked_by, :check_requested_by].each do |trait|
     full_trait_name = name.left_name.field_name trait
     next unless Card.real?(full_trait_name) && !subcard(full_trait_name)
