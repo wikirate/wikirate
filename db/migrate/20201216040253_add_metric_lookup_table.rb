@@ -21,7 +21,4 @@ class AddMetricLookupTable < ActiveRecord::Migration[6.1]
     add_index :metrics, :value_type_id, name: "metrics_value_type_id_index"
     add_index :metrics, :policy_id, name: "metrics_policy_id_index"
   end
-
-  # TODO: remove these columns on live site!
-  # remove_columns :answers, :designer_id, :title_id, :metric_type_id, :policy_id
 end
