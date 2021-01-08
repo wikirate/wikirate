@@ -121,8 +121,7 @@ format :html do
 
   view :expanded_relationship_details do
     wrap_researched_details do
-      [field_nest(:relationship_search, view: :filtered_content),
-       field_nest(:relationship_search, view: :export_links)]
+      field_nest :relationship_search, view: :filtered_content
     end
   end
 
