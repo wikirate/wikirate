@@ -21,7 +21,6 @@ end
 def transparency_info company_name
   transparency_info_short(company_name).merge(
     logo: logo_url,
-    address: address,
     location: location,
     number_of_workers: number_of_workers,
     top_production_countries: latest_value(:ccc_top_production_countries),
@@ -53,10 +52,6 @@ end
 
 def number_of_workers
   latest_answer :ccc_number_of_workers
-end
-
-def address
-  latest_value :ccc_address
 end
 
 def twitter_handle
