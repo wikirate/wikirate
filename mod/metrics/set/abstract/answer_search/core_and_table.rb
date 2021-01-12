@@ -5,7 +5,8 @@ format :html do
 
   view :table, cache: :never do
     wrap true, "data-details-config": details_config.to_json do
-      wikirate_table table_type, self, cell_views, header: header_cells,
+      wikirate_table table_type, self, cell_views,
+                     header: header_cells,
                      td: { classes: %w[header data] },
                      tr: { method: :tr_attribs }
     end
