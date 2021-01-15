@@ -2,10 +2,10 @@
 
 $(document).ready ->
   $('body').on 'click', "[data-details-mark]", ->
-    (new decko.details()).toggle $(this)
+    (new decko.details(this)).toggle $(this)
 
   $('body').on 'click', ".details-close-icon", (e)->
-    (new decko.details()).closeLast()
+    (new decko.details(this)).closeLast()
     e.stopPropagation()
     e.preventDefault()
 
@@ -13,14 +13,14 @@ $(document).ready ->
     unless $(this).closest(".relations_table-view").length > 0
     # update details unless we're looking at relationship details
     # (we don't yet have a relationship details view)
-      (new decko.details()).add $(this)
+      (new decko.details(this)).add $(this)
       e.preventDefault()
 
-decko.details = () ->
-  @initDSlot = ()->
+decko.details = (el) ->
+  @initDSlot = (el)->
     $("body").append("<div class='details'></div>") unless $(".details").exists()
-    @dSlot = $(".details")
-    @initModal() if @config("layout") == "modal"
+    innerSlot = $(el).closest(".details-toggle").find(".details") if el
+    @dSlot = if innerSlot.exists() then innerSlot else $(".details")
 
   @initModal = ()->
     unless @inModal()
@@ -97,6 +97,7 @@ decko.details = () ->
       page.find(".card-slot").trigger "slotReady"
     page
 
-  @initDSlot()
+  @initDSlot(el)
+  @initModal() if @config("layout") == "modal"
 
   this
