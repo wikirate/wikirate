@@ -12,7 +12,6 @@ card_accessor :aliases, type: PointerID
 card_accessor :metric_answer
 card_accessor :image
 card_accessor :incorporation
-card_accessor :headquarters
 
 event :validate_company_name, :validate, changed: :name, on: :save do
   errors.add :name, "Use ＋ instead of + in company name" if name.junction?

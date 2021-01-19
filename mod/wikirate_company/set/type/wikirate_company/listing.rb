@@ -23,7 +23,7 @@ format :html do
   end
 
   view :bar_bottom do
-    output [render_bar_middle, wikipedia_extract, open_corporates_extract]
+    output [render_bar_middle, render_details_tab]
   end
 
   view :box_middle do
