@@ -83,6 +83,14 @@ RSpec.describe Answer do
       new_latest.refresh
       expect(new_latest.latest).to be_truthy
     end
+
+    it "allows re-creation" do
+      delete answer_name
+      create name: answer_name,
+             "+value": "Unknown",
+             "+source": :space_opera_source.cardname
+      expect(answer.value).to eq("Unknown")
+    end
   end
 
   describe "updates" do

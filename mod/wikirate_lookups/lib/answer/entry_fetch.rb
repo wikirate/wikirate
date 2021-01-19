@@ -36,7 +36,7 @@ class Answer
     private
 
     def value_updated?
-      return unless (vc = card.value_card)
+      return unless (vc = card.value_card)&.real?
       vc.updated_at && vc.updated_at > vc.created_at
     end
   end
