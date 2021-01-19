@@ -1,10 +1,11 @@
 format :json do
   def atom
     super.tap do |atom|
-      %i[metric company year].each do |key|
-        atom[key] = card.send key
+      lookup = card.answer
+      atom[:metric] = lookup.metric_name
+      %i[company year value comments].each do |key|
+        atom[key] = lookup.send key
       end
-      atom[:value] = card.value # nest card.value_card, view: :core
       atom[:record_url] = path mark: card.name.left, format: :json
       atom.delete(:content)
     end
