@@ -1,8 +1,11 @@
 include_set Abstract::Filterable
 
-card_accessor :wikipedia
-card_accessor :open_corporates
-card_accessor :post
+# card_accessor :post
+
+IDENTIFIERS = %i[headquarters sec_cik oar_id].freeze
+INTEGRATIONS = %i[wikipedia open_corporates].freeze
+
+(IDENTIFIERS + INTEGRATIONS).each { |field| card_accessor field, type: PhraseID }
 
 format :html do
   # EDITING
@@ -73,18 +76,14 @@ format :html do
   end
 
   view :details_tab do
-    [labeled_field(:headquarters)] + integrations
+    [identifiers, content_tag(:h1, "Integrations"), integrations]
+  end
+
+  def identifiers
+    IDENTIFIERS.map { |fieldcode| labeled_field fieldcode }
   end
 
   def integrations
-    [content_tag(:h1, "Integrations"), wikipedia_extract, open_corporates_extract]
-  end
-
-  def wikipedia_extract
-    nest card.wikipedia_card, view: :titled, title: "Wikipedia"
-  end
-
-  def open_corporates_extract
-    nest card.open_corporates_card, view: :titled, title: "OpenCorporates"
+    INTEGRATIONS.map { |fieldcode| field_nest fieldcode, view: :titled }
   end
 end
