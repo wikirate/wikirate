@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::Type::MetricAnswer::Json do
-  YEAR = 1977.freeze
+  YEAR = 1977
   COMPANY_NAME = "Death Star".freeze
 
   let(:company) { Card[COMPANY_NAME] }
