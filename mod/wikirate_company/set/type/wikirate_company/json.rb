@@ -1,6 +1,6 @@
 format :json do
   NESTED_FIELD_CODENAMES =
-    %i[wikipedia open_corporates aliases headquarters oar_id].freeze
+    %i[wikipedia open_corporates aliases headquarters oar_id sec_cik].freeze
 
   view :links do
     []
@@ -11,21 +11,22 @@ format :json do
   end
 
   def atom
-    hash = super()
-    hash.delete(:content)
-    add_fields_to_hash hash, :core
-    hash
+    super.tap do |h|
+      h.delete :content
+      add_fields_to_hash h, :core
+    end
   end
 
   def molecule
-    super().merge(add_fields_to_hash({}))
-           .merge answers_url: path(mark: card.field(:metric_answer), format: :json)
+    super.tap do |h|
+      add_fields_to_hash(h)
+      h[:answers_url] = path mark: card.field(:metric_answer), format: :json
+    end
   end
 
   def add_fields_to_hash hash, view=:atom
     NESTED_FIELD_CODENAMES.each do |fieldcode|
       hash[fieldcode] = field_nest fieldcode, view: view
     end
-    hash
   end
 end
