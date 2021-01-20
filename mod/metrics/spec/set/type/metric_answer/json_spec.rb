@@ -1,9 +1,9 @@
 RSpec.describe Card::Set::Type::MetricAnswer::Json do
-  YEAR = "1977".freeze
+  YEAR = 1977
   COMPANY_NAME = "Death Star".freeze
 
   let(:company) { Card[COMPANY_NAME] }
-  let(:answer) { Card.fetch metric.name, COMPANY_NAME, YEAR }
+  let(:answer) { Card.fetch metric.name, COMPANY_NAME, YEAR.to_s }
 
   def json_view view
     render_view view, answer, format: :json
