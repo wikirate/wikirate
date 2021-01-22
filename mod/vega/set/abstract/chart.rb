@@ -2,7 +2,7 @@ include_set Abstract::FilterHelper
 
 format :html do
   view :chart, cache: :never do
-    return unless show_chart?
+    return unless voo.show? :chart
 
     wrap do
       wrap_with :div, "", id: chart_id, class: chart_class, data: { url: chart_load_url }
@@ -27,10 +27,6 @@ format :html do
     filter_hash.dup.tap do |hash|
       hash.delete(:status) if hash[:status]&.to_sym == :all
     end
-  end
-
-  def show_chart?
-    voo.show? :chart
   end
 end
 

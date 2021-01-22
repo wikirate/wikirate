@@ -1,4 +1,11 @@
 format do
+  SORT_OPTIONS = ::Set.new(
+    %i[metric_bookmarkers metric_designer metric_title
+       company_bookmarkers company_name
+       year
+       value numeric_value ]
+  )
+
   SECONDARY_SORT = {
     metric_bookmarkers: { metric_title: :asc },
     metric_designer: { metric_title: :asc },
@@ -33,7 +40,15 @@ format do
   end
 
   def sort_by
-    @sort_by ||= safe_sql_param("sort_by")&.to_sym || default_sort_option
+    @sort_by ||= sort_by_from_param || default_sort_option
+  end
+
+  def sort_by_from_param
+    safe_sql_param(:sort_by)&.to_sym.tap do |sort_by|
+      if sort_by && !SORT_OPTIONS.include?(sort_by)
+        raise Error::UserError, "Invalid Sort Param: #{sort_by}"
+      end
+    end
   end
 
   def default_sort_option
