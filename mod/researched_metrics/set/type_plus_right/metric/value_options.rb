@@ -39,6 +39,10 @@ def option_hash_from_names
   item_names.each_with_object({}) { |name, hash| hash[name] = name }
 end
 
+def count
+  item_names.size
+end
+
 format :html do
   def default_item_view
     :name
