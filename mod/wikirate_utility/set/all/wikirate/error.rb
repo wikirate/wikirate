@@ -9,7 +9,7 @@ format do
 end
 
 format :html do
-  view :server_error, template: :haml
+  view :server_error, template: :haml, cache: :never
 
   def wikirat_image_source
     nest :wikirat, view: :source, size: :large
