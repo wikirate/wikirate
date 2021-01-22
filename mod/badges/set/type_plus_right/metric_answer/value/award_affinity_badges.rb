@@ -8,9 +8,9 @@ event :award_answer_create_badges, :finalize,
   [:general, :designer, :company].each do |affinity|
     award_create_badge_if_earned affinity
   end
-  project_cards.each do |pc|
-    award_create_badge_if_earned :project, pc
-  end
+  # project_cards.each do |pc|
+  #   award_create_badge_if_earned :project, pc
+  # end
 end
 
 def metric_awards_answer_badges?
