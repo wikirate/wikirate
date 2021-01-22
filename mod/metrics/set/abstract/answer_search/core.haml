@@ -4,7 +4,7 @@
   .filter-result-header.d-flex.justify-content-between
     .filter-result-badges
       = answer_count_badge :metric_answer
-      - unless unresearched_query?
+      - unless all_answer?
         - if show_company_count?
           = answer_count_badge :wikirate_company
         - if show_metric_count?
@@ -17,7 +17,7 @@
       %a._filter-bindings.known-card{ title: "Chart Bindings" }
         = icon_tag :tune
 
-- if voo.show? :chart
+- if show_chart?
   .answer-search-chart.my-2.text-center
     = _render_chart
 - if total_results.positive?
