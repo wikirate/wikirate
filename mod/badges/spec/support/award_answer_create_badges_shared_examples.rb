@@ -27,9 +27,9 @@ shared_examples "create badges" do |threshold, badge_name|
     it "has company badge" do
       expect(user_badges).to include "Death_Star+#{badge}+company badge"
     end
-    it "has project badge" do
-      expect(user_badges).to include "Evil Project+#{badge}+project badge"
-    end
+    # it "has project badge" do
+    #   expect(user_badges).to include "Evil Project+#{badge}+project badge"
+    # end
   end
 
   def answer number
