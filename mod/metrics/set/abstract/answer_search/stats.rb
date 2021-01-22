@@ -23,7 +23,8 @@ format do
   def tally_counts
     counts = answer_table_counts
     researched = counts[:metric_answer].to_i
-    total = unresearched_query? ? count_query.count : researched
+    # binding.pry
+    total = all_answer? ? count_query.count : researched
 
     counts.merge(knowns_and_unknowns(researched)).merge(
       metric_answer: total, researched: researched, none: (total - researched)
@@ -31,7 +32,7 @@ format do
   end
 
   def answer_table_counts
-    return {} if status_filter == :none
+    return {} if not_researched?
 
     count_query.answer_query.joins(:metric).pluck_all(*count_fields).first.symbolize_keys
   end
@@ -48,12 +49,16 @@ format do
     { unknown: unknowns, known: (researched - unknowns) }
   end
 
-  def unresearched_query?
+  def all_answer?
     status_filter.in? %i[all none]
   end
 
+  def not_researched?
+    status_filter == :none
+  end
+
   def status_filter
-    filter_hash[:status]
+    filter_hash[:status]&.to_sym
   end
 
   def total_results
@@ -96,6 +101,6 @@ format :html do
   end
 
   def show_chart?
-    super && counts[:researched] > 1
+    voo.show?(:chart) && !not_researched? && counts[:researched] > 1
   end
 end
