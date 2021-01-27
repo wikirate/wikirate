@@ -1,5 +1,8 @@
 require "timeout"
 
+DOWNLOAD_MAX_SECONDS = 10
+CONVERSION_MAX_SECONDS = 30
+
 event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
   left.add_subfield :wikirate_link, content: remote_file_url
 end
@@ -29,9 +32,14 @@ event :normalize_html_file, after: :validate_source_file, on: :save, when: :html
   end
 end
 
-# def unfilled?
-#   !remote_file_url && super
-# end
+def remote_file_url=
+  Timeout.timeout(DOWNLOAD_MAX_SECONDS) { super }
+rescue TimeoutError
+end
+
+def unfilled?
+  !remote_file_url && super
+end
 
 def accepted_mime_type?
   file.content_type.in? ACCEPTED_MIME_TYPES
@@ -56,7 +64,7 @@ def converting_to_tmp_pdf
 end
 
 def pdf_from_url path
-  Timeout.timeout(30) do
+  Timeout.timeout(CONVERSION_MAX_SECONDS) do
     kit = PDFKit.new remote_file_url, "load-error-handling" => "ignore",
                                       "load-media-error-handling" => "ignore"
     kit.to_file path
