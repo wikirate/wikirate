@@ -95,7 +95,6 @@ format :html do
     source_list "Suggested Sources", suggested_sources
   end
 
-  # I think this view always returns blank?
   view :source_results, cache: :never, unknown: true do
     when_searching do |results|
       if results.present?
@@ -107,8 +106,7 @@ format :html do
   end
 
   def already_added results
-    output [render_sourcebox,
-            source_list("Sources Already Added", results)]
+    output [render_sourcebox, source_list("Sources Already Added", results)]
   end
 
   # view :freshen_form, cache: :never, unknown: true do
