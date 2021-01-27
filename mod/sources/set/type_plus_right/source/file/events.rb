@@ -32,11 +32,8 @@ event :normalize_html_file, after: :validate_source_file, on: :save, when: :html
   end
 end
 
-def remote_file_url=
-  Timeout.timeout(DOWNLOAD_MAX_SECONDS) { super }
-rescue TimeoutError
-end
-
+# otherwise download errors that occur when assigning remote_file_url
+# will prevent subfield from being recognized as present. that screws up error tracking.
 def unfilled?
   !remote_file_url && super
 end
