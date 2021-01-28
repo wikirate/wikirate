@@ -12,8 +12,8 @@ end
 
 format :html do
   view :conversion_error do
-    voo.title = "Unable to create WikiRate file copy"
-    class_up "d0-card-header", "bg-danger"
+    voo.title = "Unable to create Citable Source File"
+    class_up "d0-card-header", "bg-danger text-white"
     frame { haml :conversion_error }
   end
 
