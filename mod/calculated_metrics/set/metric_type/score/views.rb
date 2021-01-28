@@ -21,7 +21,7 @@ format :html do
   end
 
   def scorer_image_card
-    card.scorer_card.fetch :image, new: { type_id: Card::ImageID }
+    scorer_card.fetch :image, new: { type_id: Card::ImageID }
   end
 
   def table_properties
@@ -31,6 +31,10 @@ format :html do
       scorer:         "Scored by",
       wikirate_topic: "Topics"
     }
+  end
+
+  def header_text
+    super + fixed_thumbnail_subtitle
   end
 
   def new_name_field _form=nil, _options={}
