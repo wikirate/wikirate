@@ -1,5 +1,8 @@
 require "timeout"
 
+DOWNLOAD_MAX_SECONDS = 10
+CONVERSION_MAX_SECONDS = 30
+
 event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
   left.add_subfield :wikirate_link, content: remote_file_url
 end
@@ -9,11 +12,16 @@ end
 # end
 
 event :validate_source_file, :validate, on: :save, changed: :content do
-  if file_download_error # CarrierWave magic
-    errors.add :download, file_download_error.message
-  elsif !accepted_mime_type?
-    errors.add :mime, "unaccepted MIME type: #{file.content_type}"
-  end
+  error_message =
+    if @download_timeout
+      "Download timed out"
+    elsif file_download_error # CarrierWave magic
+      file_download_error.message
+    elsif !accepted_mime_type?
+      "unaccepted MIME type: #{file.content_type}"
+    end
+
+  raise SourceConversionError, error_message if error_message
 end
 
 event :block_file_changing, after: :write_identifier, on: :update, changed: :content,
@@ -22,16 +30,24 @@ event :block_file_changing, after: :write_identifier, on: :update, changed: :con
 end
 
 event :normalize_html_file, after: :validate_source_file, on: :save, when: :html_file? do
-  if remote_file_url # CarrierWave magic
+  if remote_file_url
     convert_to_pdf
   else
     errors.add :file, "HTML Sources must be downloaded from URLS"
   end
 end
 
-# def unfilled?
-#   !remote_file_url && super
-# end
+def remote_file_url= url
+  Timeout.timeout(DOWNLOAD_MAX_SECONDS) { super }
+rescue TimeoutError
+  @download_timeout = true
+end
+
+# otherwise download errors that occur when assigning remote_file_url
+# will prevent subfield from being recognized as present. that screws up error tracking.
+def unfilled?
+  !remote_file_url && super
+end
 
 def accepted_mime_type?
   file.content_type.in? ACCEPTED_MIME_TYPES
@@ -56,7 +72,7 @@ def converting_to_tmp_pdf
 end
 
 def pdf_from_url path
-  Timeout.timeout(30) do
+  Timeout.timeout(CONVERSION_MAX_SECONDS) do
     kit = PDFKit.new remote_file_url, "load-error-handling" => "ignore",
                                       "load-media-error-handling" => "ignore"
     kit.to_file path
