@@ -22,7 +22,6 @@ def first_source_card
   @first_source_card ||= source_card.first_card
 end
 
-
 def find_suggested_sources
   return [] unless report_type&.item_ids&.any? && Card::Auth.current_id
   Card.search type_id: Card::SourceID,
