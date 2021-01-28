@@ -7,7 +7,7 @@ format :html do
 
   view :edit_in_form do
     return "" if other_user_requested_check?
-    wrap_with(:h5, "#{fa_icon('check-circle-o', class: 'text-muted')} Checks") + super()
+    wrap_with(:h5, "#{fa_icon(:flag, class: 'text-muted')} Checks") + super()
   end
 
   def input_type
@@ -25,14 +25,14 @@ format :html do
   end
 
   view :core, template: :haml
-  view :check_interaction, cache: :never, template: :haml,
-       perms: ->(fmt) { fmt.allowed_to_check? }
+  view :check_interaction,
+       cache: :never, template: :haml, perms: ->(fmt) { fmt.allowed_to_check? }
 
   def research_params
     @research_params ||=
-        inherit(:research_params) ||
-            parent.try(:research_params) ||
-            card.left&.format&.try(:research_params) || {}
+      inherit(:research_params) ||
+      parent.try(:research_params) ||
+      card.left&.format&.try(:research_params) || {}
   end
 
   view :flag, unknown: true do
@@ -69,7 +69,7 @@ format :html do
   end
 
   def request_icon
-    fa_icon :check_circle_o, class: "request-red", title: "check requested"
+    fa_icon "flag", class: "request-red", title: "check requested"
   end
 
   BTN_CLASSES = "btn btn-outline-secondary btn-sm".freeze
@@ -77,9 +77,8 @@ format :html do
   # @param text [String] linktext
   # @param flag [Symbol] :check or :uncheck
   def check_button text, flag: :check
-    link_to text, class: "#{BTN_CLASSES} slotter",
-            remote: true, rel: "nofollow",
-            href: path(action: :update, set_flag: flag)
+    link_to text, class: "#{BTN_CLASSES} slotter", remote: true, rel: "nofollow",
+                  href: path(action: :update, set_flag: flag)
   end
 
   def fix_link
@@ -94,4 +93,3 @@ format :json do
     super().merge checks: card.checkers.count, check_requested: card.check_requested?
   end
 end
-sourc
