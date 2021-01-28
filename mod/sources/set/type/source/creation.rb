@@ -12,7 +12,7 @@ end
 
 format :html do
   view :conversion_error do
-    voo.title = "Unable to generate PDF"
+    voo.title = "Unable to create WikiRate file copy"
     class_up "d0-card-header", "bg-danger"
     frame { haml :conversion_error }
   end

@@ -12,11 +12,16 @@ end
 # end
 
 event :validate_source_file, :validate, on: :save, changed: :content do
-  if file_download_error # CarrierWave magic
-    raise SourceConversionError, file_download_error.message
-  elsif !accepted_mime_type?
-    raise SourceConversionError, "unaccepted MIME type: #{file.content_type}"
-  end
+  error_message =
+    if @download_timeout
+      "Download timed out"
+    elsif file_download_error # CarrierWave magic
+      file_download_error.message
+    elsif !accepted_mime_type?
+      "unaccepted MIME type: #{file.content_type}"
+    end
+
+  raise SourceConversionError, error_message if error_message
 end
 
 event :block_file_changing, after: :write_identifier, on: :update, changed: :content,
@@ -25,17 +30,17 @@ event :block_file_changing, after: :write_identifier, on: :update, changed: :con
 end
 
 event :normalize_html_file, after: :validate_source_file, on: :save, when: :html_file? do
-  if remote_file_url # CarrierWave magic
+  if remote_file_url
     convert_to_pdf
   else
     errors.add :file, "HTML Sources must be downloaded from URLS"
   end
 end
 
-def remote_file_url=
+def remote_file_url= url
   Timeout.timeout(DOWNLOAD_MAX_SECONDS) { super }
 rescue TimeoutError
-  raise SourceConversionError, "Download timed out"
+  @download_timeout = true
 end
 
 # otherwise download errors that occur when assigning remote_file_url
