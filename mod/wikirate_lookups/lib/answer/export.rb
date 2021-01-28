@@ -6,8 +6,10 @@ class Answer
     # Export methods for Answer class
     module ClassMethods
       def csv_title
-        CSV.generate_line ["Answer ID", "Answer Link", "Metric", "Company",
-                           "Year", "Value", "Source", "Source Count", "Comments"]
+        CSV.generate_line ["Answer ID", "Answer Page",
+                           "Metric", "Company", "Year", "Value",
+                           "Source Page", "Original Source", "Source Count",
+                           "Comments"]
       end
     end
 
@@ -18,6 +20,7 @@ class Answer
                          company_name,
                          year,
                          value,
+                         source_page_url,
                          source_url,
                          source_count,
                          comments]
@@ -29,6 +32,10 @@ class Answer
 
     def answer_name
       "#{record_name}+#{year}".to_name
+    end
+
+    def source_page_url
+      card_url "~#{first_source_card.id}" if first_source_card
     end
 
     def compact_json
