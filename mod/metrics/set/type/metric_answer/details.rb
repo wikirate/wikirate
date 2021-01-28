@@ -33,10 +33,6 @@ format :html do
     nest card.company_card, view: :details_tab
   end
 
-  # view :year_tab do
-  #   nest card.record_card, view: :data
-  # end
-
   view :details do
     [details_top, render_expanded_details]
   end
