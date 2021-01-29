@@ -16,7 +16,7 @@ class Card
       end
 
       def x_axis
-        super.merge title: value_title, format: "~s" # number formatting
+        super.merge title: value_title, format: ",~r" # number formatting
       end
 
       def y_axis
