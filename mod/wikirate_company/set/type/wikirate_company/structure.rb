@@ -11,7 +11,7 @@ format :html do
   # EDITING
 
   before :content_formgroups do
-    voo.edit_structure = [:headquarters, :image, :wikipedia]
+    voo.edit_structure = [:image] + IDENTIFIERS + INTEGRATIONS
   end
 
   # LEFT SIDE
@@ -80,7 +80,7 @@ format :html do
   end
 
   def identifiers
-    IDENTIFIERS.map { |fieldcode| labeled_field fieldcode }
+    IDENTIFIERS.map { |fieldcode| labeled_field fieldcode, :name, unknown: :blank }
   end
 
   def integrations
