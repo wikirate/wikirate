@@ -552,7 +552,7 @@
       "fill": "scoreColor",
       "orient": "bottom",
       "direction": "horizontal",
-      "format": "~s",
+      "format": ",~r",
       "padding": 1,
       "encode": {
         "gradient": {
