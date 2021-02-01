@@ -72,7 +72,7 @@ format do
   end
 
   def lookup?
-    !filter_hash[:status]&.to_sym.in? %i[none all]
+    !AnswerQuery.all_answer_query?(filter_hash.symbolize_keys)
   end
 end
 

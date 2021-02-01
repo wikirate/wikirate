@@ -73,7 +73,7 @@ module Formula
       def parse_json type, json
         JSON.parse json
       rescue JSON::ParserError => e
-        log_error "Unexpected Wolfram #{type} response", "JSON = #{json}\n#{e.message}"
+        log_error "Unexpected #{type} response", "JSON = #{json}\n#{e.message}"
       end
     end
   end
