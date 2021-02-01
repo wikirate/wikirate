@@ -30,6 +30,10 @@ class Card
         # already AllAnswer; don't re-init
         return false if self == AllAnswerQuery
 
+        all_answer_query? filter
+      end
+
+      def all_answer_query? filter
         # eg, if filtering by value, don't bother looking for not-yet-researched answers
         RESEARCHED_ANSWERS_ONLY.each { |key| return false if filter[key].present? }
 
