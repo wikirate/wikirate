@@ -277,7 +277,9 @@ body#tinymce, body.wikirate-one-column-layout, body.wikirate-one-full-column-lay
     padding-bottom: 0.1em;
     margin-bottom: 1em;
     >.d0-card-header-title {
-      font-size: 2.5em;
+      .card-title {
+        font-size: 2.5em;
+      }
       border-bottom: 0;
       padding-bottom: auto;
       margin: auto;
@@ -290,12 +292,12 @@ body#tinymce, body.wikirate-one-column-layout, body.wikirate-one-full-column-lay
     font-weight: normal;
     margin-top: 1em;
   }
-  h1, h2, .titled-view >.d0-card-header > .d0-card-header-title {
+  h1, h2, .titled-view >.d0-card-header > .d0-card-header-title .card-title {
     font-weight: normal;
     font-size: 2rem;
   }
   h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
     padding-bottom: 0.1em;
     margin-bottom: 0.3em;
   }
@@ -310,10 +312,19 @@ body#tinymce, body.wikirate-one-column-layout, body.wikirate-one-full-column-lay
     margin: 2px 0;
     font-size: 1.5rem;
   }
+  .expanded-bar > .bar-body > .bar-bottom {
+    h1, h2, .titled-view >.d0-card-header > .d0-card-header-title .card-title {
+      font-size: 1.6rem;
+    }
+    h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title {
+      border-bottdom: 0;
+    }
+  }
 }
 
 div#wikirate-info-video {
-  width: 100%;height: 54vh;
+  width: 100%;
+  height: 54vh;
 }
 
 div#wikirate-info-video iframe  {

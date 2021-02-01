@@ -63,8 +63,6 @@ format :html do
   def filterable_div item_name
     wrap_with :div, item_name,
               class: "pointer-item item-name _filterable",
-              data: { filter: { status: :exists,
-                                year: :latest,
-                                value: card.item_value(item_name) } }
+              data: { filter: { value: card.item_value(item_name) } }
   end
 end
