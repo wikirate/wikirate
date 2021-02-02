@@ -5,9 +5,10 @@ event :award_answer_create_badges, :finalize,
       on: :create,
       after: :create_answer_lookup_entry_due_to_value_change,
       when: :metric_awards_answer_badges? do
-  [:general, :designer, :company].each do |affinity|
-    award_create_badge_if_earned affinity
-  end
+  award_create_badge_if_earned :general
+  # [:general, :designer, :company].each do |affinity|
+  #   award_create_badge_if_earned affinity
+  # end
   # project_cards.each do |pc|
   #   award_create_badge_if_earned :project, pc
   # end
@@ -100,14 +101,6 @@ end
 
 def affinity_badge_name badge_name, affinity, project_card=nil
   return badge_name if affinity == :general
-  prefix =
-    case affinity
-    when :designer
-      metric_card.metric_designer
-    when :company
-      company
-    when :project
-      project_card.name
-    end
+  prefix = affinity_name affinity, project_card
   "#{prefix}+#{badge_name}+#{affinity} badge"
 end
