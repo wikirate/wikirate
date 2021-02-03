@@ -23,7 +23,7 @@ def awardable_act?
 end
 
 def api_act?
-  (Env.params[:token] || Env.params[:api_key]) && !Card::Auth.session_user
+  Env.params[:token] || Env.params[:api_key]
 end
 
 # @return badge name if count equals its threshold
