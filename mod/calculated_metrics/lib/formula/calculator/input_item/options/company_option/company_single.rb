@@ -22,7 +22,7 @@ module Formula
               end
             end
 
-            def each_answer
+            def each_answer_value
               answers.each do |a|
                 value = Answer.value_from_lookup a.value, type
                 yield nil, a.year, value
