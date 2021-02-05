@@ -9,7 +9,7 @@ format :html do
   end
 
   def flag_names
-    %i[comment imported calculated]
+    %i[comment calculated]
   end
 
   def flags
@@ -40,9 +40,5 @@ format :html do
     return "" unless card.answer&.comment&.present?
 
     fa_icon :commenting, title: "Has comments"
-  end
-
-  def imported_flag
-    card.imported? ? icon_tag("upload", library: :font_awesome, title: "imported") : ""
   end
 end

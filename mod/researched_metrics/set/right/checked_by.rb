@@ -38,7 +38,7 @@ def verification_level
 end
 
 def wikirate_team?
-  (item_ids & Self::WikirateTeam.member_ids).any?
+  (item_ids & Card::Set::Self::WikirateTeam.member_ids).any?
 end
 
 def user_checked?

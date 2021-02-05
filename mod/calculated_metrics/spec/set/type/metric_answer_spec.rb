@@ -5,6 +5,5 @@ RSpec.describe Card::Set::Type::MetricAnswer do
     example "WikiRating" do
       expect(answer.dependee_answers.count).to eq(2)
     end
-
   end
 end

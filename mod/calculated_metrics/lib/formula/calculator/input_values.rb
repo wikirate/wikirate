@@ -118,9 +118,10 @@ module Formula
         end
       end
 
-      # def full_search
-      #   search_values_for
-      # end
+      # this is called from tests. not sure about intent for other uses ?
+      def full_search
+        search_values_for
+      end
 
       def while_full_input_set_possible company_id=nil, year=nil
         @result_cache.track_search company_id, year, no_mandatories? do |result_space|

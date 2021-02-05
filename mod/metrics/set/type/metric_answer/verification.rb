@@ -21,7 +21,7 @@ def verification_level
   if metric_card.designer_assessed?
     verification_index :steward
   elsif researched_value?
-    checked_card.verification_level
+    checked_by_card.verification_level
   else
 
     # calculated_verification_level
@@ -36,7 +36,7 @@ end
 
 format :html do
   def flag_names
-    super.unshift :verification
+    %i[verification imported] << super
   end
 
   def verification_flag
@@ -44,5 +44,9 @@ format :html do
 
     icon = h[:icon] || "check-circle"
     fa_icon icon, class: "verify-#{h[:color]}", title: h[:title]
+  end
+
+  def imported_flag
+    card.imported? ? icon_tag("upload", library: :font_awesome, title: "imported") : ""
   end
 end
