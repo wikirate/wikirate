@@ -114,7 +114,6 @@ module Formula
 
       def search_values_for company_id: nil, year: nil
         while_full_input_set_possible company_id, year do |input_item, result_space|
-          with_restricted_search_space company_id, year
           input_item.search_value_for result_space, company_id: company_id, year: year
         end
       end

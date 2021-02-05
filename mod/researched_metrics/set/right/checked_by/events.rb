@@ -43,8 +43,7 @@ end
 
 def drop_checker
   drop_item user.name
-  mark_as_requested if item_names.empty? &&
-    check_was_requested_before_double_check?
+  mark_as_requested if item_names.empty? && check_was_requested_before_double_check?
 end
 
 def mark_as_requested

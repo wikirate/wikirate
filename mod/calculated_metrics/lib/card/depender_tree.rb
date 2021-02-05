@@ -40,7 +40,7 @@ class Card
     # @roots is a fixed list of nodes with no child/parent info
     #
     # build_tree creates a @tree object. every child object also appears in the root.
-    # ¯\_(ツ)_/¯
+    # so maybe not super efficient ¯\_(ツ)_/¯
     def build_tree
       @tree = @roots.clone
       @roots.each { |node| add_children node }

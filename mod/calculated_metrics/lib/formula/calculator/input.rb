@@ -53,7 +53,6 @@ module Formula
         yield company, year
       end
 
-
       def validate_input input
         return unless input.is_a?(Array)
         input.map! do |val|

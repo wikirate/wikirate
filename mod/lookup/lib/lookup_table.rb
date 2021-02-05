@@ -40,7 +40,6 @@ module LookupTable
     keys.each { |method_name| refresh_value method_name }
   end
 
-
   def refresh_value method_name
     send "#{method_name}=", send("fetch_#{method_name}")
   end

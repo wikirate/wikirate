@@ -3,9 +3,7 @@ VERIFICATION_LEVEL = [
   { name: :unverified, color: :grey, title: "answer unverified" },
   { name: :community, color: :blue, title: "verified by community" },
   { name: :steward, color: :gold, title: "verified by steward" }
-]
-
-
+].freeze
 
 def imported?
   answer.imported || false

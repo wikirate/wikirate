@@ -55,8 +55,10 @@ module Formula
     end
 
     def answers_to_be_calculated opts={}
-      each_input(opts).with_object([]) do |(_input, company_id, year), res|
-        res << [company_id, year]
+      [].tap do |res|
+        each_input opts do |_input, company_id, year|
+          res << [company_id, year]
+        end
       end
     end
 
