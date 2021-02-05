@@ -1,6 +1,6 @@
 class Card
-  # Build a tree of formula dependency
-  class DependencyTree
+  # Build a tree of metrics that depend on metrics in a given list.
+  class DependerTree
     Node = Struct.new :metric, :children, :parent_cnt
 
     def initialize root_metrics
@@ -8,12 +8,17 @@ class Card
     end
 
     # iterate over all metrics in the tree
+    # note: this deconstructs the tree. Probably shouldn't!!
     def each_metric
       build_tree
       while @tree.present?
         @tree.sort_by!(&:parent_cnt).reverse!
         yield pop_node.metric
       end
+    end
+
+    def metrics
+      @metrics ||= each_metric.with_object([]) { |metric, array| array << metric }
     end
 
     private
@@ -27,6 +32,15 @@ class Card
       node
     end
 
+    # each node has
+    # - metric
+    # - children (dependers: nodes for metrics that depend on this node
+    # - parent_cnt (dependee: number of nodes that this metric depends on)
+    #
+    # @roots is a fixed list of nodes with no child/parent info
+    #
+    # build_tree creates a @tree object. every child object also appears in the root.
+    # so maybe not super efficient ¯\_(ツ)_/¯
     def build_tree
       @tree = @roots.clone
       @roots.each { |node| add_children node }
@@ -37,7 +51,7 @@ class Card
     end
 
     def add_children node
-      node.metric.directly_dependent_metrics.each do |metric|
+      node.metric.direct_depender_metrics.each do |metric|
         add_child node, metric
       end
     end
