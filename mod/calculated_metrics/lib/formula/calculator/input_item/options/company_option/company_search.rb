@@ -20,7 +20,7 @@ module Formula
               add_error e.message
             end
 
-            def each_answer
+            def each_answer_value
               relations.each_pair do |subject_company_id, years|
                 years.each do |year, object_company_ids|
                   v = values_from_db object_company_ids, year
@@ -33,7 +33,7 @@ module Formula
 
             def values_by_year_for_each_company
               hash = {}
-              each_answer do |sc_id, y, v|
+              each_answer_value do |sc_id, y, v|
                 hash[sc_id] ||= {}
                 hash[sc_id][y] = v
               end

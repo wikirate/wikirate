@@ -80,7 +80,7 @@ format :json do
   end
 
   def chart_grouping
-    group = params[:subgroup]
+    group = params[:subgroup]&.to_sym
     group ||=
       counts[:value_type] == 1 || params[:value_type] ? :metric_type : :value_type
     { group: group }
