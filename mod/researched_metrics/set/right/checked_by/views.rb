@@ -35,20 +35,6 @@ format :html do
       card.left&.format&.try(:research_params) || {}
   end
 
-  view :flag, unknown: true do
-    card.items.present? ? render_icon : ""
-  end
-
-  view :icon do
-    if checked?
-      double_check_icon
-    elsif check_requested?
-      request_icon
-    else
-      ""
-    end
-  end
-
   def verb
     answer.editor_id ? "last updated" : "created"
   end
@@ -62,14 +48,6 @@ format :html do
       wrap_with :div, pointer_items(paging_args.extract!(:limit, :offset)),
                 class: "pointer-list"
     end
-  end
-
-  def double_check_icon
-    fa_icon "check-circle", class: "verify-blue", title: "value checked"
-  end
-
-  def request_icon
-    fa_icon "flag", class: "request-red", title: "check requested"
   end
 
   BTN_CLASSES = "btn btn-outline-secondary btn-sm".freeze

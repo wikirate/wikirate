@@ -38,6 +38,16 @@ module Formula
         end
       end
 
+      # @return answer objects for a given company and year
+      def answers company_id, year
+        [].tap do |array|
+          @input_list.sort.each do |input_item|
+            input_item.search_space = SearchSpace.new company_id, year
+            array << input_item.answers
+          end
+        end
+      end
+
       def each_company_and_year_with_value &block
         years_with_values.each do |year|
           companies_with_value(year).each do |company_id|
@@ -108,9 +118,9 @@ module Formula
         end
       end
 
-      def full_search
-        search_values_for
-      end
+      # def full_search
+      #   search_values_for
+      # end
 
       def while_full_input_set_possible company_id=nil, year=nil
         @result_cache.track_search company_id, year, no_mandatories? do |result_space|

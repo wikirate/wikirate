@@ -23,13 +23,11 @@ module Formula
       # @option opts [String] :company only yield input for given company
       # @option opts [String] :year only yield input for given year
       def each opts={}
-        company = opts[:company]
-        company = Card.fetch_id(company) unless company.is_a? Integer
-        year = opts[:year]&.to_i
-
-        @input_values.each company_id: company, year: year do |values, company_id, year|
-          next unless (input_values = normalize_values(values))
-          yield input_values, company_id, year
+        with_company_and_year opts do |company, year|
+          @input_values.each company_id: company, year: year do |values, company_id, year|
+            next unless (input_values = normalize_values(values))
+            yield input_values, company_id, year
+          end
         end
       end
 
@@ -39,7 +37,21 @@ module Formula
         normalize_values values
       end
 
+      def answers opts
+        with_company_and_year opts do |company_id, year|
+          @input_values.answers company_id, year
+        end
+      end
+
       private
+
+      def with_company_and_year opts
+        company = opts[:company]
+        company = Card.fetch_id(company) unless company.is_a? Integer
+        year = opts[:year]&.to_i
+
+        yield company, year
+      end
 
       def validate_input input
         return unless input.is_a?(Array)
