@@ -1,5 +1,5 @@
 def calculation_in_progress!
-  ids = all_dependent_answer_ids
+  ids = all_depender_answer_ids
   Answer.where(id: ids, overridden_value: nil).update_all(calculating: true)
   Answer.where(id: ids).each(&:expire)
 end
@@ -12,7 +12,7 @@ end
 def deep_answer_update initial_update=false
   @initial_update = initial_update
   recalculate_answers
-  each_dependent_metric(&:recalculate_answers)
+  each_depender_metric(&:recalculate_answers)
 end
 
 def recalculate_answers

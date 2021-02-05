@@ -29,11 +29,17 @@ module LookupTable
 
   def refresh *fields
     return delete if delete_on_refresh?
+    refresh_fields fields
+    card&.expire
+    save
+  end
+
+  def refresh_fields fields
     keys = fields.present? ? fields : attributes.keys
     keys.delete("id")
     keys.each { |method_name| refresh_value method_name }
-    save
   end
+
 
   def refresh_value method_name
     send "#{method_name}=", send("fetch_#{method_name}")
