@@ -36,7 +36,7 @@ end
 
 format :html do
   def flag_names
-    %i[verification imported] << super
+    %i[verification imported] + super
   end
 
   def verification_flag
