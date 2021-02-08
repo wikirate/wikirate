@@ -23,7 +23,6 @@ def verification_level
   elsif researched_value?
     checked_by_card.verification_level
   else
-
     # calculated_verification_level
     1
   end

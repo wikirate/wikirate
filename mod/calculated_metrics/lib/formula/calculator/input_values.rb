@@ -40,12 +40,12 @@ module Formula
 
       # @return answer objects for a given company and year
       def answers company_id, year
-        [].tap do |array|
-          @input_list.sort.each do |input_item|
-            input_item.search_space = SearchSpace.new company_id, year
-            array << input_item.answers
-          end
+        array = []
+        @input_list.sort.each do |input_item|
+          input_item.search_space = SearchSpace.new company_id, year
+          array += input_item.answers.map.to_a
         end
+        array.uniq
       end
 
       def each_company_and_year_with_value &block
