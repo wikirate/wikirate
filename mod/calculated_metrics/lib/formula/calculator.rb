@@ -14,7 +14,9 @@ module Formula
   class Calculator
     INPUT_CAST = ->(val) { val }
 
-    attr_reader :errors
+    attr_reader :errors, :input
+
+    delegate :answers, to: :input
 
     def initialize parser, &value_normalizer
       @value_normalizer = value_normalizer
@@ -39,19 +41,25 @@ module Formula
     # @return [Hash] { year => { company => value } }
     def result opts={}
       result_hash do |result|
-        @input.each(opts) do |input, company, year|
+        each_input(opts) do |input, company, year|
           next unless (value = value_for_input input, company, year)
           result[year][company] = value
         end
       end
     end
 
-    def answers_to_be_calculated opts={}
-      res = []
-      @input.each(opts) do |_input, company_id, year|
-        res << [company_id, year]
+    def each_input opts
+      @input.each(opts) do |input, company, year|
+        yield input, company, year
       end
-      res
+    end
+
+    def answers_to_be_calculated opts={}
+      [].tap do |res|
+        each_input opts do |_input, company_id, year|
+          res << [company_id, year]
+        end
+      end
     end
 
     def input_data company, year

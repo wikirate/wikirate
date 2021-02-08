@@ -24,7 +24,7 @@ class Answer < ApplicationRecord
 
   fetcher :metric_id, :company_id, :record_id, :source_count, :source_url, :imported,
           :value, :numeric_value, :checkers, :check_requester, :overridden_value,
-          :comments
+          :comments, :verification_level
 
   def card
     return @card if @card
