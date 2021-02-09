@@ -10,10 +10,14 @@ module Formula
 
         delegate :with_full_year_space, to: :search_space
 
-        def each_answer
+        def each_answer_value
           value_cards.each do |value_card|
             yield nil, value_card.year.to_i, value_card.content
           end
+        end
+
+        def answers
+          []
         end
 
         def values_by_year_for_each_company

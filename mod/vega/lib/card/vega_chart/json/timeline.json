@@ -47,8 +47,7 @@
   ],
   "data": [
     {
-      "name": "groups",
-      "format": { "property": "items" }
+      "name": "groups"
     },
     {
       "name": "years"
@@ -103,11 +102,6 @@
           "fields": ["subgroup"],
           "as": ["group"],
           "values": ["name"]
-        },
-        {
-          "type": "formula",
-          "expr": "{ metric_type: datum.group }",
-          "as": "filter"
         }
       ]
     },

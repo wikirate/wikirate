@@ -55,13 +55,13 @@ format :html do
   end
 
   def calculations_list
-    card.directly_dependent_metrics.map do |metric|
+    card.direct_depender_metrics.map do |metric|
       nest metric, view: :bar
     end.join
   end
 
   def tab_options
-    { calculation: { count: card.directly_dependent_metrics.size } }
+    { calculation: { count: card.direct_depender_metrics.size } }
   end
 
   def add_score_link
