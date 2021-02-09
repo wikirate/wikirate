@@ -22,7 +22,7 @@ format :html do
   end
 
   def verification_flag
-    verfication_flag_for card.verification
+    verification_flag_for card.verification
   end
 
   def verification_flag_for index
