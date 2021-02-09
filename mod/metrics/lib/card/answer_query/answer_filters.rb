@@ -31,19 +31,23 @@ class Card
         end
       end
 
-      def check_query value
+      def verification_query value
         case value
-        when "completed" then filter :checkers, nil, "IS NOT"
-        when "requested" then filter :check_requester, nil, "IS NOT"
-        when "neither"
-          %i[checkers check_requester].each { |fld| filter fld, nil, "IS" }
+        when "flagged", "unverified", "community", "steward"
+          standard_verification_query value
+        when "verified"
+          filter :verification, [2, 3] # community or steward verified
         when "current_user"
           checked_by Auth.current_id
         when "wikirate_team"
           checked_by id: Set::Self::WikirateTeam.member_ids.unshift(:in)
         else
-          checked_by Card.fetch_id(value)
+          raise User::Error, "unknown verification level: #{value}"
         end
+      end
+
+      def standard_verification_query value
+        filter :verification, Answer.verification_index(value)
       end
 
       def checked_by whom
