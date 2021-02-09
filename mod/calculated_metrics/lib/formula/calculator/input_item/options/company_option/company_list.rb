@@ -24,7 +24,7 @@ module Formula
               end
             end
 
-            def each_answer
+            def each_answer_value
               years_from_db(object_company_ids).each do |year|
                 yield nil, year, values_from_db(object_company_ids, year)
               end

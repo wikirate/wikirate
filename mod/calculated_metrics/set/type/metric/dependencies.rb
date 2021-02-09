@@ -1,23 +1,24 @@
-def all_dependent_answer_ids
+def all_depender_answer_ids
   ids = answer_ids
-  each_dependent_metric do |m|
+  each_depender_metric do |m|
     ids += m.answer_ids
   end
   ids
 end
 
-def each_dependent_metric
-  dependency_tree.each_metric { |m| yield m }
+# all metrics that depend on this metric
+def each_depender_metric
+  depender_tree.each_metric { |m| yield m }
 end
 
 # note: #formula_metrics will find score metrics when scored by formula
 # but not when scored by mapping.
-def directly_dependent_metrics
+def direct_depender_metrics
   (score_metrics + formula_metrics).uniq
 end
 
-def dependency_tree
-  DependencyTree.new directly_dependent_metrics
+def depender_tree
+  DependerTree.new direct_depender_metrics
 end
 
 def score_metrics
