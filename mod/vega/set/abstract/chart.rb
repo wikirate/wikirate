@@ -37,8 +37,6 @@ end
 format :json do
   # views requested by ajax to load chart
   view :vega, cache: :never do
-    # ve = JSON.pretty_generate vega_chart_config.to_hash
-    # puts ve
     vega.render
   end
 

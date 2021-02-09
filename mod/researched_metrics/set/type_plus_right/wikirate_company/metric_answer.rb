@@ -28,7 +28,7 @@ end
 
 format do
   def filter_keys
-    %i[status year metric_name wikirate_topic value updated updater check calculated
+    %i[status year metric_name wikirate_topic value updated updater verification calculated
        metric_type value_type project source research_policy bookmark]
   end
 

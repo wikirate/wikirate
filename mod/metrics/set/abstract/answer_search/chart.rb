@@ -80,9 +80,12 @@ format :json do
   end
 
   def chart_grouping
-    group = params[:subgroup]&.to_sym
-    group ||=
-      counts[:value_type] == 1 || params[:value_type] ? :metric_type : :value_type
+    group = params[:subgroup].to_sym if params[:subgroup].present?
+    group ||= first_interesting_group %i[verification value_type], :metric_type
     { group: group }
+  end
+
+  def first_interesting_group groups, fallback
+    groups.find { |g| !(counts[g] == 1 || params[g].present?) } || fallback
   end
 end

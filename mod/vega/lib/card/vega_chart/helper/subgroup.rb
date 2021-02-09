@@ -29,12 +29,30 @@ class Card
         end
 
         def add_group_data data_array
-          data_array.first[:url] = data_url
+          data_hash = data_array.first
+          if GROUP_PATHS.key? @group
+            add_data_url data_hash
+          else
+            add_data_values data_hash
+          end
           data_array[filter_data_index][:transform] << filter_transform
         end
 
-        def data_url
-          format.card_url GROUP_PATHS[@group]
+        def add_data_url data_hash
+          data_hash.merge!(
+            url: format.card_url(GROUP_PATHS[@group]),
+            format: { property: "items" }
+          )
+        end
+
+        def add_data_values data_hash
+          data_hash[:values] = verifications.map.with_index do |h, i|
+            h.merge id: i, name: h[:title]
+          end
+        end
+
+        def verifications
+          Card::Set::Type::MetricAnswer::Verification::VERIFICATION_LEVELS
         end
 
         def filter_transform

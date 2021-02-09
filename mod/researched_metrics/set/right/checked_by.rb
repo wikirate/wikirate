@@ -23,7 +23,7 @@ def user
   Auth.current
 end
 
-def verification_level
+def verification
   symbol =
     if wikirate_team?
       :steward

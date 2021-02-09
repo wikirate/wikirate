@@ -17,6 +17,6 @@ def researched_dependee_answers
   dependee_answers.select(&:researched_value?)
 end
 
-def calculated_verification_level
-  dependee_answers.map(&:verification_level).compact.min
+def calculated_verification
+  dependee_answers.map(&:verification).compact.min
 end

@@ -1,6 +1,6 @@
 format :html do
-  view :filter_check_formgroup, cache: :never do
-    select_filter :check
+  view :filter_verification_formgroup, cache: :never do
+    select_filter :verification
   end
 
   view :filter_updater_formgroup, cache: :never do
@@ -81,8 +81,10 @@ format :html do
     { "Only" => "only", "Exclude" => "exclude" }
   end
 
-  def check_options
-    opts = { "Completed" => "completed",
+  def verification_options
+    opts = { "Verified" => "verified",
+             "Verified by Steward" => "steward",
+
              "Requested" => "requested",
              "Neither" => "neither" }
     opts["Completed by Me"] = "current_user" if Card::Auth.signed_in?

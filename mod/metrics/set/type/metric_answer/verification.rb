@@ -1,36 +1,46 @@
-VERIFICATION_LEVEL = [
-  { name: :flagged, icon: :flag, color: :red, title: "check requested" },
-  { name: :unverified, color: :grey, title: "answer unverified" },
-  { name: :community, color: :blue, title: "verified by community" },
-  { name: :steward, color: :gold, title: "verified by steward" }
+VERIFICATION_LEVELS = [
+  { name: :flagged, icon: :flag, color: :red, title: "Check Requested" },
+  { name: :unverified, color: :grey, title: "Answer Unverified" },
+  { name: :community, color: :blue, title: "Verified by Community" },
+  { name: :steward, color: :gold, title: "Verified by Steward" }
 ].freeze
 
 def imported?
   answer.imported || false
 end
 
+# @params [Symbol] symbol
+# @return [Integer] matching given verification level symbol
+#  (:flagged -> 0, :unverified -> 1, ...)
 def verification_index symbol
-  VERIFICATION_LEVEL.index { |v| v[:name] == symbol }
+  VERIFICATION_LEVELS.index { |v| v[:name] == symbol }
 end
 
+# @params [Integer] index
+# @return [Hash] with name, color, title, and (sometimes) icon for given
+# verification index
 def verification_hash index
-  VERIFICATION_LEVEL[index]
+  VERIFICATION_LEVELS[index]
 end
 
-def verification_level
+# @return [Integer] current verification index
+def verification
   if metric_card.designer_assessed?
     verification_index :steward
   elsif researched_value?
-    checked_by_card.verification_level
+    checked_by_card.verification
+  elsif relationship?
+    1 # hard-code unverified for now
   else
-    # calculated_verification_level
-    1
+    calculated_verification
   end
 end
+alias :current_verification_index :verification
 
+# @return [Hash]
 def current_verification_hash
-  # verification_hash card.answer.verification_level
-  verification_hash verification_level
+  # verification_hash card.answer.verification
+  verification_hash verification
 end
 
 format :html do
