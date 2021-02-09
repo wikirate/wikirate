@@ -100,8 +100,8 @@
           "from": "groups",
           "key": "id",
           "fields": ["subgroup"],
-          "as": ["group"],
-          "values": ["name"]
+          "as": ["group", "group_title"],
+          "values": ["name", "title"]
         }
       ]
     },
@@ -177,7 +177,7 @@
               },
               "fill": {
                 "scale": "color",
-                "field": "group"
+                "field": "group_title"
               }
             },
             "update": {

@@ -13,7 +13,7 @@
 # to "request". A double check removes the "request" and adds the checker to
 # +checked_by but the requester stays in +check_requested_by.
 
-delegate :verification_index, :check_requested_by_card, to: :answer_card
+delegate :check_requested_by_card, to: :answer_card
 
 def virtual?
   left.present?
@@ -25,7 +25,7 @@ end
 
 def verification
   symbol =
-    if wikirate_team?
+    if wikirate_team_checked? || designer_checked?
       :steward
     elsif check_requested?
       :flagged
@@ -34,11 +34,15 @@ def verification
     else
       :unverified
     end
-  verification_index symbol
+  Answer.verification_index symbol
 end
 
-def wikirate_team?
+def wikirate_team_checked?
   (item_ids & Card::Set::Self::WikirateTeam.member_ids).any?
+end
+
+def designer_checked?
+  item_ids.include? answer_card.metric_card.metric_designer_id
 end
 
 def user_checked?

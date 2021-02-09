@@ -1,4 +1,12 @@
 class Answer
+
+  VERIFICATION_LEVELS = [
+    { name: :flagged, icon: :flag, color: :red, title: "Flagged" },
+    { name: :unverified, color: :grey, title: "Answer Unverified" },
+    { name: :community, color: :blue, title: "Verified by Community" },
+    { name: :steward, color: :gold, title: "Verified by Steward" }
+  ].freeze
+
   # class methods for the Answer (lookup) constant
   module AnswerClassMethods
     include Export::ClassMethods
@@ -67,6 +75,14 @@ class Answer
     # convert value from lookup table to
     def value_from_lookup string, type
       type == :multi_category ? string.split(VALUE_JOINT) : string
+    end
+
+    # @param [Symbol, String] name
+    # @return [Integer] matching given verification level name
+    #  (:flagged -> 0, :unverified -> 1, ...)
+    def verification_index name
+      name = name.to_sym
+      VERIFICATION_LEVELS.index { |v| v[:name] == name }
     end
 
     private

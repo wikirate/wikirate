@@ -8,7 +8,7 @@ end
 
 def dependee_answers
   direct_dependee_answers.tap do |answers|
-    answers << answers.map { |a| a.dependee_answers }
+    answers << answers.map(&:dependee_answers)
     answers.flatten!.uniq!
   end
 end

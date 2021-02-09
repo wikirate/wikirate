@@ -41,18 +41,15 @@ class Card
         def add_data_url data_hash
           data_hash.merge!(
             url: format.card_url(GROUP_PATHS[@group]),
-            format: { property: "items" }
+            format: { property: "items" },
+            transform: [{ type: "formula", as: "title", expr: "datum.name" }]
           )
         end
 
         def add_data_values data_hash
-          data_hash[:values] = verifications.map.with_index do |h, i|
-            h.merge id: i, name: h[:title]
+          data_hash[:values] = Answer::VERIFICATION_LEVELS.map.with_index do |h, i|
+            h.merge id: i
           end
-        end
-
-        def verifications
-          Card::Set::Type::MetricAnswer::Verification::VERIFICATION_LEVELS
         end
 
         def filter_transform
