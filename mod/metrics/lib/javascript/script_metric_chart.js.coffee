@@ -35,6 +35,7 @@ handleChartClicks = (vega, el) ->
 initVega = (spec, el) ->
   runtime = vega.parse spec
   new vega.View(runtime).initialize(el[0]).hover().run()
+  # new vega.View(runtime, renderer: 'svg').initialize(el[0]).hover().run()
 
 updateFilter = (el, filterVals) ->
   if filterVals["value"] == "Other"
