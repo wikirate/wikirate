@@ -1,3 +1,5 @@
+include_set Abstract::LookupField
+
 JOINT = ", "
 
 def value_card

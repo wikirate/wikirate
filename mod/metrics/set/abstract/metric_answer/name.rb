@@ -11,6 +11,12 @@ event :auto_add_company, after: :set_answer_name, on: :create, trigger: :require
   add_company name_part("company") unless valid_company?
 end
 
+event :update_lookup_for_answer_rename, :finalize, on: :update, changed: :name do
+  # could specify fields but there are a lot of fields affected, and they're
+  # different for relationships and answers
+  lookup.refresh
+end
+
 event :validate_year_change, :validate, on: :update, when: :year_updated? do
   new_year = subfield(:year).first_name
   new_name = "#{metric_name}+#{company_name}+#{new_year}"

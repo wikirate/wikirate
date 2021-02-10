@@ -10,9 +10,16 @@ module Formula
           @type ||= @input_card.simple_value_type_code
         end
 
+        # Searches for all metric answers for this metric input.
+        # If a year is given then the search will be restricted to that year
+        # @param year
+        def answers
+          Answer.where answer_query
+        end
+
         private
 
-        def each_answer
+        def each_answer_value
           answers.each do |a|
             value = Answer.value_from_lookup a.value, type
             yield a.company_id, a.year, value
@@ -54,13 +61,6 @@ module Formula
         # used only by YearOption; overwritten by CompanyOption
         def search_years_and_values company_id
           Answer.where(metric_id: card_id, company_id: company_id).pluck(:year, :value)
-        end
-
-        # Searches for all metric answers for this metric input.
-        # If a year is given then the search will be restricted to that year
-        # @param year
-        def answers
-          Answer.where answer_query
         end
 
         def answer_query
