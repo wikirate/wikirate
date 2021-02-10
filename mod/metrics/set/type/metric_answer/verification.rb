@@ -27,10 +27,6 @@ format :html do
     fa_icon icon, class: "verification-#{h[:name]}", title: h[:title]
   end
 
-  def verification_flag_for index
-
-  end
-
   def imported_flag
     card.imported? ? icon_tag("upload", library: :font_awesome, title: "imported") : ""
   end
