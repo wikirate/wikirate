@@ -226,7 +226,9 @@ a.box-item {
   }
 }
 
-.bar-and-fixme .bar-view {
-  width: 100%;
-  margin-right: 1em;
+.bar-and-fixme {
+  .bar-view, .expanded_bar-view {
+    width: 100%;
+    margin-right: 1em;
+  }
 }
