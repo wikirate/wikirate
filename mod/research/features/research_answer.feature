@@ -32,7 +32,7 @@ Feature: Research answer
     And I should see "10"
     And I wait a sec
     And I should see a "comment" icon with tooltip "Has comments"
-    And I should see a "check request" icon with tooltip "check requested"
+    And I should see a "flagged" icon with tooltip "Flagged"
     Then I should see "thereaderwiki.com"
     And I should see "Baam!"
     And I should see "check requested by Joe User"

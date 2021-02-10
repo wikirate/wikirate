@@ -45,7 +45,7 @@ format :html do
 
   def contribs_made?
     Card.cache.fetch "#{card.id}-CONTRIB" do
-      metrics_designed? || research_groups_organized? || projects_organized?
+      metrics_designed? # || research_groups_organized? || projects_organized?
       # only updates with cache clearing.  fine for now...
     end
   end
