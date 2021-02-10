@@ -37,8 +37,8 @@ format :html do
   end
 
   def comment_flag
-    return "" unless card.answer&.comment&.present?
+    return "" if card.lookup.comments.blank?
 
-    fa_icon :commenting, title: "Has comments"
+    fa_icon :comment, title: "Has comments"
   end
 end
