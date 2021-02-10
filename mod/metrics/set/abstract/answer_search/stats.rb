@@ -7,6 +7,7 @@ COUNT_FIELDS = {
   company_id: :wikirate_company,
   "answers.metric_id": :metric,
   "designer_id": :designer,
+  verification: :verification,
   "metrics.metric_type_id": :metric_type,
   "metrics.value_type_id": :value_type,
   year: :year,

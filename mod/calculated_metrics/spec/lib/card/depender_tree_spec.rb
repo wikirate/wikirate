@@ -1,4 +1,4 @@
-RSpec.describe Card::DependencyTree do
+RSpec.describe Card::DependerTree do
   def formula_tree tree
     tree.each_pair do |source, targets|
       allow(source).to receive(:formula_metrics).and_return targets
