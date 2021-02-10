@@ -18,8 +18,12 @@ format :html do
   end
 
   def chart_load_url
-    path view: :vega, format: :json, filter: chart_filter_hash,
-         limit: 0, chart: params[:chart]
+    path view: :vega,
+         format: :json,
+         filter: chart_filter_hash,
+         limit: 0,
+         chart: params[:chart],
+         subgroup: params[:subgroup]
   end
 
   # json does not show not-researched answers.
@@ -33,8 +37,6 @@ end
 format :json do
   # views requested by ajax to load chart
   view :vega, cache: :never do
-    # ve = JSON.pretty_generate vega_chart_config.to_hash
-    # puts ve
     vega.render
   end
 
