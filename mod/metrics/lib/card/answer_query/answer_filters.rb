@@ -3,19 +3,8 @@ class Card
     # filters based on year and children of the answer card
     # (as opposed to metric and company)
     module AnswerFilters
-      CALCULATED_TYPE_IDS = [FormulaID, WikiRatingID, DescendantID, ScoreID].freeze
-      CALCULATED_TYPE_ID_STRING = "(#{CALCULATED_TYPE_IDS.join ', '})".freeze
-
-      # :exists/researched (known + unknown) is default case;
-      # :all and :none are handled in AllQuery
-      def status_query value
-        case value.to_sym
-        when :unknown
-          filter :value, "Unknown"
-        when :known
-          filter :value, "Unknown", "<>"
-        end
-      end
+      CALCULATED_TYPE_IDS =
+        "(#{[FormulaID, WikiRatingID, DescendantID, ScoreID].join ', '})".freeze
 
       def updated_query value
         return unless (period = timeperiod value)
@@ -85,42 +74,9 @@ class Card
         end
       end
 
-      def value_query value
-        case value
-        when Array # category filters. eg ["option1", "option2"]
-          category_query value
-        when Hash  # numeric range filters. eg { from: 20, to: 30 }
-          numeric_range_query value
-        else       # keyword matching filter. eg "carbon"
-          filter :value, "%#{value.strip}%", "LIKE"
-        end
-      end
-
-      def category_query array
-        if metric_card&.multi_categorical?
-          multi_category_query array
-        else
-          filter :value, array
-        end
-      end
-
-      def multi_category_query array
-        # FIND_IN_SET only works with comma separation (no spaces).
-        # So we have to use REPLACE to transform the category into what is expected
-        constraints = array.map do |val|
-          condition_sql ["FIND_IN_SET(?, REPLACE(answers.value, ', ', ','))", val]
-        end
-        @conditions << "(#{constraints.join ' OR '})"
-      end
-
       def calculated_query value
         @conditions <<
           (value.to_sym == :calculated ? calculated_condition : not_calculated_condition)
-      end
-
-      def numeric_range_query value
-        filter :numeric_value, value[:from], ">=" if value[:from].present?
-        filter :numeric_value, value[:to], "<" if value[:to].present?
       end
 
       def source_query value
@@ -158,12 +114,11 @@ class Card
       end
 
       def calculated_condition
-        "(metric_type_id IN #{CALCULATED_TYPE_ID_STRING} AND answer_id IS NULL)"
+        "(metric_type_id IN #{CALCULATED_TYPE_IDS} AND answer_id IS NULL)"
       end
 
       def not_calculated_condition
-        "(metric_type_id NOT IN #{CALCULATED_TYPE_ID_STRING} " \
-        "OR answer_id IS NOT NULL)"
+        "(metric_type_id NOT IN #{CALCULATED_TYPE_IDS} OR answer_id IS NOT NULL)"
       end
 
       def timeperiod value

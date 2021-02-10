@@ -1,5 +1,4 @@
 class Answer
-
   VERIFICATION_LEVELS = [
     { name: :flagged, icon: :flag, color: :red, title: "Flagged" },
     { name: :unverified, color: :grey, title: "Answer Unverified" },
