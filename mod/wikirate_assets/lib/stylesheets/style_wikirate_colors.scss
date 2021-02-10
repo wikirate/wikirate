@@ -302,11 +302,16 @@ $colorMap: (
   color: #999;
 }
 
-.verify-blue {
-  color: $blue;
+.verification-steward {
+  color: $brand-primary;
 }
-
-.request-red {
-  color: $red;
+.verification-community {
+  color: $source-color;
+}
+.verification-unverified {
+  color: $gray-200;
+}
+.verification-flagged {
+  color: $wanted-card-color;
 }
 
