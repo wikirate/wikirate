@@ -35,10 +35,7 @@
 
   "data": [
     {
-      "name": "groups",
-      "format": {
-        "property": "items"
-      }
+      "name": "groups"
     },
     {
       "name": "counts",

@@ -47,8 +47,7 @@
   ],
   "data": [
     {
-      "name": "groups",
-      "format": { "property": "items" }
+      "name": "groups"
     },
     {
       "name": "years"
@@ -101,13 +100,8 @@
           "from": "groups",
           "key": "id",
           "fields": ["subgroup"],
-          "as": ["group"],
-          "values": ["name"]
-        },
-        {
-          "type": "formula",
-          "expr": "{ metric_type: datum.group }",
-          "as": "filter"
+          "as": ["group", "group_title"],
+          "values": ["name", "title"]
         }
       ]
     },
@@ -183,7 +177,7 @@
               },
               "fill": {
                 "scale": "color",
-                "field": "group"
+                "field": "group_title"
               }
             },
             "update": {
