@@ -13,7 +13,7 @@
 # to "request". A double check removes the "request" and adds the checker to
 # +checked_by but the requester stays in +check_requested_by.
 
-delegate :verification_flag_for, :check_requested_by_card, to: :answer_card
+delegate :check_requested_by_card, to: :answer_card
 
 def virtual?
   left.present?

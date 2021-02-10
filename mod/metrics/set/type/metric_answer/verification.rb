@@ -18,17 +18,17 @@ alias :current_verification_index :verification
 
 format :html do
   def flag_names
-    %i[verification imported] + super
+    super + %i[imported verification]
   end
 
   def verification_flag
-    verification_flag_for card.verification
+    h = Answer::VERIFICATION_LEVELS[card.verification]
+    icon = h[:icon] || "check-circle"
+    fa_icon icon, class: "verification-#{h[:name]}", title: h[:title]
   end
 
   def verification_flag_for index
-    h = Answer::VERIFICATION_LEVELS[index]
-    icon = h[:icon] || "check-circle"
-    fa_icon icon, class: "verify-#{h[:color]}", title: h[:title]
+
   end
 
   def imported_flag
