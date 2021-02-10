@@ -1,3 +1,9 @@
+include_set Abstract::Lookup
+
+def lookup_class
+  ::Answer
+end
+
 # In theory the following shouldn't be necessary, because there is an event on the
 # value card.
 

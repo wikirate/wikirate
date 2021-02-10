@@ -1,6 +1,7 @@
 card_accessor :checked_by
 card_accessor :check_requested_by
 card_accessor :source, type: PointerID
+card_accessor :discussion
 
 # for hybrid metrics: If a calculated value is overridden by a researched value
 #   then :overridden_value holds on to that value. It also serves as flag to mark
