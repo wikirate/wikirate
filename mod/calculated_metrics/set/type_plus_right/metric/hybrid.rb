@@ -1,6 +1,4 @@
-event :update_metric_lookup_hybrid, :finalize, changed: :content do
-  ::Metric.for_card(left_id).refresh :hybrid unless left.action == :create
-end
+include_set Abstract::LookupField
 
 format :html do
   view :unknown do

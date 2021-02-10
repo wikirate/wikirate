@@ -1,3 +1,5 @@
+include_set Abstract::LookupEvents
+
 VALID_DESIGNER_TYPE_IDS = [ResearchGroupID, UserID, WikirateCompanyID].freeze
 
 # The new metric form has a title and a designer field instead of a name field
@@ -34,7 +36,7 @@ event :ensure_title, :validate, on: :save, changed: :name do
     attach_subcard metric_title, type_id: MetricTitleID
   else
     errors.add :metric_title, "#{metric_title} is a #{Card[metric_title].type_name} "\
-                            "card and can't be used as metric title"
+                              "card and can't be used as metric title"
   end
 end
 
@@ -56,25 +58,9 @@ end
 
 event :delete_all_metric_answers, :store, on: :delete do
   answers.delete_all
-  skip_event! :reset_double_check_flag,
-              :delete_answer_lookup_table_entry_due_to_value_change,
-              :delete_relationship_lookup_table_entry_due_to_value_change,
-              :update_related_calculations
-end
-
-event :skip_answer_updates_on_metric_rename, :validate,
-      on: :update, changed: :name do
-  skip_event! :update_answer_lookup_table_due_to_answer_change
-end
-
-event :add_metric_lookup, :finalize, on: :create do
-  ::Metric.create self
+  skip_event! :update_related_calculations
 end
 
 event :update_metric_lookup_name_parts, :finalize, changed: :name, on: :update do
   lookup.refresh :designer_id, :title_id, :scorer_id
-end
-
-event :delete_metric_lookup, :finalize, on: :delete do
-  ::Metric.delete_for_card id
 end

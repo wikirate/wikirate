@@ -1,7 +1,3 @@
-def imported?
-  answer.imported || false
-end
-
 format :html do
   view :flags do
     flags
@@ -11,10 +7,12 @@ format :html do
     flags.map { |flag| "<small>#{flag}</small>" }
   end
 
+  def flag_names
+    %i[comment calculated]
+  end
+
   def flags
-    %i[checked_value comment imported calculated].map do |flag_name|
-      send "#{flag_name}_flag"
-    end
+    flag_names.map { |flag_name| send "#{flag_name}_flag" }
   end
 
   def calculated_flag
@@ -37,19 +35,10 @@ format :html do
     end
   end
 
-  def checked_value_flag
-    flag_nest :checked_by
-  end
-
   def comment_flag
-    flag_nest :discussion
-  end
-
-  def flag_nest field
-    field_nest field, view: :flag
-  end
-
-  def imported_flag
-    card.imported? ? icon_tag("upload", library: :font_awesome, title: "imported") : ""
+    # the following will work once relationships have answer lookups
+    # return "" unless card.lookup&.comments&.present?
+    # fa_icon :comment, title: "Has comments"
+    field_nest :discussion, view: :flag
   end
 end

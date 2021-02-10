@@ -13,14 +13,6 @@ format :html do
     render_rich_header
   end
 
-  def header_text
-    field_nest :description
-  end
-
-  def thumbnail_subtitle
-    field_nest :description
-  end
-
   view :bar_left do
     render_thumbnail
   end
@@ -30,4 +22,16 @@ format :html do
   end
 
   view :core, template: :haml
+
+  def header_text
+    field_nest :description
+  end
+
+  def thumbnail_title
+    bar_title
+  end
+
+  def thumbnail_subtitle
+    field_nest :description
+  end
 end
