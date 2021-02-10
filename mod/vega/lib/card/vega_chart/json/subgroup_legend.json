@@ -5,7 +5,7 @@
     "labels": {
       "update": {
         "fontWeight": [
-          { "test": "grouptip.group == datum.label", "value": 900 },
+          { "test": "grouptip.group_title == datum.label", "value": 900 },
           { "value": 400 }
         ]
       }
@@ -13,7 +13,7 @@
     "symbols": {
       "update": {
         "fillOpacity": [
-          { "test": "grouptip.group == datum.label", "value": 0.8 },
+          { "test": "grouptip.group_title == datum.label", "value": 0.8 },
           { "value": 1 }
         ]
       }

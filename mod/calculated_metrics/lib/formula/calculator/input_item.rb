@@ -23,6 +23,7 @@ module Formula
       include ValidationChecks
       include Options
 
+      attr_writer :search_space
       attr_reader :card_id, :input_list, :result_space
       delegate :answer_candidates, to: :result_space
       delegate :parser, to: :input_list
@@ -75,7 +76,7 @@ module Formula
       # Find answer for the given input card and cache the result.
       # If year is given look only for that year
       def full_search
-        each_answer(&method(:store_value))
+        each_answer_value(&method(:store_value))
       end
 
       def after_search
