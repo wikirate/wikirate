@@ -221,7 +221,7 @@ end
 
 ICONS = {
   "check request" => "flag",
-  "comment" => "commenting",
+  "comment" => "comments",
   "remove" => "times-circle-o"
 }.freeze
 
