@@ -6,6 +6,7 @@ include_set Abstract::ExpandedResearchedDetails
 include_set Abstract::MetricAnswer
 include_set Abstract::DesignerPermissions
 include_set Abstract::Lookup
+include_set Abstract::LookupEvents
 
 require_field :value
 require_field :source, when: :source_required?

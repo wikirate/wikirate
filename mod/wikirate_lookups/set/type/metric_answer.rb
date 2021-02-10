@@ -10,6 +10,7 @@ end
 # event :update_answer_lookup_table_due_to_answer_deletion, :finalize, on: :delete do
 #   delete_answer answer_id: id
 # end
+
 attr_writer :answer
 
 event :update_answer_lookup_table_due_to_answer_change, :finalize, on: :update do
