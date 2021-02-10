@@ -1,3 +1,5 @@
+include_set Abstract::LookupField
+
 # +checked_by stores the current check state as follows:
 # empty/non-existent: no check
 # refer to "request": double check is requested
@@ -14,6 +16,10 @@
 # +checked_by but the requester stays in +check_requested_by.
 
 delegate :check_requested_by_card, to: :answer_card
+
+def lookup_columns
+  %i[check_requester checkers verification]
+end
 
 def virtual?
   left.present?

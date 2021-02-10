@@ -1,8 +1,3 @@
-
-event :update_answer_lookup_table_checked_by, :finalize, changed: :content do
-  update_answer answer_id: left_id unless left.action == :create
-end
-
 event :user_checked_value, :prepare_to_store, on: :save, when: :add_checked_flag? do
   add_checker unless user_checked?
   update_user_check_log.add_id left.id

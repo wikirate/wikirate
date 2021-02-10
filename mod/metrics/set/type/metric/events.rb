@@ -62,10 +62,10 @@ event :delete_all_metric_answers, :store, on: :delete do
               :update_related_calculations
 end
 
-event :skip_answer_updates_on_metric_rename, :validate,
-      on: :update, changed: :name do
-  skip_event! :update_answer_lookup_table_due_to_answer_change
-end
+# event :skip_answer_updates_on_metric_rename, :validate,
+#       on: :update, changed: :name do
+#   skip_event! :update_answer_lookup_table_due_to_answer_change
+# end
 
 event :add_metric_lookup, :finalize, on: :create do
   ::Metric.create self
