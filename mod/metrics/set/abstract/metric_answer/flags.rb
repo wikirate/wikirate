@@ -1,4 +1,3 @@
-
 format :html do
   view :flags do
     flags
@@ -37,8 +36,9 @@ format :html do
   end
 
   def comment_flag
-    return "" unless card.lookup&.comments&.present?
-
-    fa_icon :comment, title: "Has comments"
+    # the following will work once relationships have answer lookups
+    # return "" unless card.lookup&.comments&.present?
+    # fa_icon :comment, title: "Has comments"
+    field_nest :discussion, view: :flag
   end
 end
