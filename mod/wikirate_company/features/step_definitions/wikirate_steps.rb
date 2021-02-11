@@ -220,8 +220,8 @@ When(/^I maximize the browser$/) do
 end
 
 ICONS = {
-  "check request" => "flag",
-  "comment" => "commenting",
+  "flagged" => "flag",
+  "comment" => "comments",
   "remove" => "times-circle-o"
 }.freeze
 
