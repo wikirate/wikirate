@@ -51,6 +51,10 @@ format :json do
     grouped_counts :value_type_id
   end
 
+  view :verification_counts, cache: :never do
+    grouped_counts :verification
+  end
+
   def grouped_counts subgroup
     answer_query.joins(:metric).group(:year, subgroup).count.map do |array, count|
       { count: count, year: array.first, subgroup: array.last }

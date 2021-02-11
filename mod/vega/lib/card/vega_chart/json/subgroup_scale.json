@@ -6,6 +6,6 @@
   },
   "domain": {
     "data": "groups",
-    "field": "name"
+    "field": "title"
   }
 }

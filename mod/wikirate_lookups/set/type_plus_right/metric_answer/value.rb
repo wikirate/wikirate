@@ -1,5 +1,9 @@
+# include_set Abstract::LookupField
+
 event :update_answer_lookup_table_due_to_value_change, :finalize, on: :update do
   update_answer answer_id: answer_id
+  # def lookup_columns
+  #   %i[value numeric_value imported updated_at editor_id calculating]
 end
 
 event :delete_answer_lookup_table_entry_due_to_value_change, :finalize, on: :delete do

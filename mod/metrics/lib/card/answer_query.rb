@@ -5,6 +5,7 @@ class Card
     include Filtering
     include Sorting
     include AnswerFilters
+    include ValueFilters
     include MetricAndCompanyFilters
     include OutlierFilter
 
