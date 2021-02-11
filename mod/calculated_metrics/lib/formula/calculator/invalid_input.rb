@@ -4,9 +4,13 @@ module Formula
     class InvalidInput
       def initialize; end
 
-      def each opts={}; end
+      def each _opts={}; end
 
-      def input_for company, year; end
+      def input_for _company, _year; end
+
+      def answers _args
+        []
+      end
     end
   end
 end

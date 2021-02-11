@@ -10,7 +10,7 @@
       -# must nest as value_card (not symbol) to get the correct value cardtype.
       = nest card.value_card, title: "Answer"
       = haml_partial :citations_formgroup
-      = field_nest :discussion, title: "#{fa_icon :commenting, class: 'text-muted'} Comment".html_safe
+      = field_nest :discussion, title: "#{fa_icon :comments, class: 'text-muted'} Comment".html_safe
 
   .buttons
     = button_formgroup do
