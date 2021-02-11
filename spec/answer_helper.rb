@@ -54,4 +54,10 @@ module AnswerHelper
     s.delete!("  ")
     s
   end
+
+  def check_answer answer_card
+    Card::Env.with_params set_flag: "check" do
+      answer_card.checked_by_card.update!({})
+    end
+  end
 end

@@ -10,14 +10,6 @@ format :html do
     wrap_with(:h5, "#{fa_icon(:flag, class: 'text-muted')} Checks") + super()
   end
 
-  def input_type
-    :checkbox
-  end
-
-  def option_label_text _option_name
-    "request"
-  end
-
   view :input, unknown: true do
     wrap_with :div, class: "d-flex flex-nowrap" do
       super() + popover_link("Not sure? Ask another researcher to double check this.")
@@ -27,6 +19,21 @@ format :html do
   view :core, template: :haml
   view :check_interaction,
        cache: :never, template: :haml, perms: ->(fmt) { fmt.allowed_to_check? }
+
+  view :full_list, cache: :never do
+    with_paging do |paging_args|
+      wrap_with :div, pointer_items(paging_args.extract!(:limit, :offset)),
+                class: "pointer-list"
+    end
+  end
+
+  def input_type
+    :checkbox
+  end
+
+  def option_label_text _option_name
+    "request"
+  end
 
   def research_params
     @research_params ||=
@@ -41,13 +48,6 @@ format :html do
 
   def checkers_list
     checkers.map { |n| nest n, view: :link }.to_sentence
-  end
-
-  view :full_list, cache: :never do
-    with_paging do |paging_args|
-      wrap_with :div, pointer_items(paging_args.extract!(:limit, :offset)),
-                class: "pointer-list"
-    end
   end
 
   BTN_CLASSES = "btn btn-outline-secondary btn-sm".freeze

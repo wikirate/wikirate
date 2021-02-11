@@ -81,7 +81,6 @@ format :json do
 
   def chart_grouping
     group = params[:subgroup].to_sym if params[:subgroup].present?
-    # binding.pry
     group ||= first_interesting_group %i[verification value_type], :metric_type
     { group: group }
   end

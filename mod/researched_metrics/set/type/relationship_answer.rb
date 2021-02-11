@@ -45,7 +45,7 @@ event :run_value_events_on_name_change, :validate, changed: :name, on: :update d
   end
   update_relationship relationship_id: id
   # this is a bit of a hack.
-  # NSince we don't add renamed children to the act any more, we
+  # Since we don't add renamed children to the act any more, we
   # have to trigger the value validation manually
 end
 

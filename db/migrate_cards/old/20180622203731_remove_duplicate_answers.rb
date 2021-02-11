@@ -26,7 +26,9 @@ class RemoveDuplicateAnswers < Cardio::Migration
   end
 
   def refresh_calculated dup
-    card(dup)&.delete! skip: %i[update_related_calculations update_related_scores]
+    card(dup)&.delete! skip: %i[update_related_calculations
+                                update_related_scores
+                                update_related_verifications]
     Card[dup.metric_id].update_value_for! company: dup.company_id, year: dup.year
   end
 
