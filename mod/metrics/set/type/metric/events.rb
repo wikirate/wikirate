@@ -58,7 +58,9 @@ end
 
 event :delete_all_metric_answers, :store, on: :delete do
   answers.delete_all
-  skip_event! :update_related_calculations
+  skip_event! :update_related_calculations,
+              :update_related_scores,
+              :update_related_verifications
 end
 
 event :update_metric_lookup_name_parts, :finalize, changed: :name, on: :update do
