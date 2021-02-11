@@ -23,7 +23,10 @@ end
 
 event :delete_all_company_answers, :validate, on: :delete do
   answers.delete_all
-  skip_event! :schedule_answer_counts, :update_related_calculations
+  skip_event! :schedule_answer_counts,
+              :update_related_calculations,
+              :update_related_scores,
+              :update_related_verifications
 end
 
 def headquarters_jurisdiction_code

@@ -46,11 +46,11 @@ def mark_as_requested
 end
 
 def add_checked_flag?
-  Env.params["set_flag"] == "check"
+  Env.params[:set_flag] == "check"
 end
 
 def remove_checked_flag?
-  Env.params["set_flag"] == "uncheck"
+  Env.params[:set_flag] == "uncheck"
 end
 
 def request_check_flag_update?
