@@ -1,17 +1,33 @@
 RSpec.describe Card::Set::TypePlusRight::MetricAnswer::CheckedBy do
-  let(:researched_card) { Card["Jedi+deadliness+Death_Star+1977"]}
+  let(:researched_card) { Card["Jedi+deadliness+Death_Star+1977"] }
+  let(:researched_card_2) { Card["Jedi+disturbances in the force+Death_Star+1977"] }
   let(:wikirating_card) { Card.fetch "Jedi+darkness_rating+Death_Star+1977" }
 
   describe "wikirating verification" do
     it "starts as a 1 (unverified)" do
-      expect(wikirating_card.verification).to eq(1)
+      expect(wikirating_card.answer.verification).to eq(1)
     end
 
-    context "when one researched card is flagged" do
-      it "lowers to 0 (flagged) if researched card is flagged" do
+    context "when one (not all) dependee researched card's verification changes" do
+      it "lowers to 0 (flagged) if flagged" do
         researched_card.checked_by_card.update! content: "request"
-        expect(researched_card.verification).to eq(0)
-        expect(wikirating_card.verification).to eq(0)
+        expect(researched_card.answer.verification).to eq(0)
+        expect(wikirating_card.answer.verification).to eq(0)
+      end
+
+      it "stays 1 (unverified) if verified" do
+        check_answer researched_card
+        expect(researched_card.answer.verification).to eq(2)
+        expect(wikirating_card.answer.verification).to eq(1)
+      end
+    end
+
+    context "when all dependee research cards are verified" do
+      it "raises to 2" do
+        check_answer researched_card
+        check_answer researched_card_2
+        expect(researched_card.answer.verification).to eq(2)
+        expect(wikirating_card.answer.verification).to eq(2)
       end
     end
   end

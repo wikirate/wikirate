@@ -1,15 +1,9 @@
 RSpec.describe Card::Set::Right::CheckedBy do
   let(:answer_card) { Card["joe_user+RM+death_star+1977"] }
 
-  def check_value
-    Card::Env.with_params set_flag: "check" do
-      answer_card.checked_by_card.update!({})
-    end
-  end
-
   describe "check value" do
     before do
-      check_value
+      check_answer answer_card
     end
 
     let(:double_checked) do

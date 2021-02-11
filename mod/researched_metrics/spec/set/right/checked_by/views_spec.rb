@@ -3,16 +3,11 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
   let(:checked_by_card) { Card["joe_user+RM+death_star+1977"].checked_by_card }
 
   def with_badge binding, num
-    binding.with_tag :h5 do
-      with_tag "span.badge", /#{num}/
-    end
+    binding.with_tag(:h5) { with_tag "span.badge", /#{num}/ }
   end
 
-  # duplicate with checked_by_spec. move to shared space.
   def check_value
-    Card::Env.with_params set_flag: "check" do
-      answer_card.checked_by_card.update!({})
-    end
+    check_answer answer_card
   end
 
   describe "view :core" do
