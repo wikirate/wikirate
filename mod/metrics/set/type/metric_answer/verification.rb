@@ -15,6 +15,10 @@ end
 alias :current_verification_index :verification
 
 def researched_verification
+  Answer.verification_index researched_verification_symbol
+end
+
+def researched_verification_symbol
   steward_added? ? :steward_added : :community_added
 end
 
