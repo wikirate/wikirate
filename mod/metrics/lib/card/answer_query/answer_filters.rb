@@ -21,20 +21,24 @@ class Card
       end
 
       def verification_query value
+        standard_verification_query(value) || non_standard_verification_query(value)
+      end
+
+      def standard_verification_query value
+        return unless (index = Answer.verification_index value)
+
+        filter :verification, index
+      end
+
+      def non_standard_verification_query value
         case value
-        when (index = Answer.verification_index value)
-          standard_verification_query index
         when "current_user"
           checked_by Auth.current_id
         when "wikirate_team"
           checked_by id: Set::Self::WikirateTeam.member_ids.unshift(:in)
         else
-          raise User::Error, "unknown verification level: #{value}"
+          raise Error::UserError, "unknown verification level: #{value}"
         end
-      end
-
-      def standard_verification_query index
-        filter :verification, index
       end
 
       def checked_by whom

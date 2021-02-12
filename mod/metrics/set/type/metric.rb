@@ -22,6 +22,7 @@ card_accessor :hybrid, type: ToggleID
 card_accessor :question, type: PlainTextID
 card_accessor :report_type, type: PointerID
 card_accessor :score, type: PointerID
+card_accessor :steward, type: PointerID
 card_accessor :wikirate_topic, type: ListID
 card_accessor :research_policy, type: PointerID
 
@@ -87,6 +88,10 @@ end
 
 def designer_assessed?
   research_policy&.casecmp("designer assessed")&.zero?
+end
+
+def steward_ids
+  @steward_ids ||= (steward_card&.item_ids || []) << metric_designer_id
 end
 
 # note: can return True for anonymous user if answer is generally researchable

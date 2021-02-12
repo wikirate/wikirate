@@ -23,16 +23,23 @@ def researched_verification_symbol
 end
 
 def steward_added?
-  answer.editor_id&.in? steward_ids
+  answer.updater_id&.in? steward_ids
 end
 
 def steward_ids
-  @steward_ids ||=
-    Card::Set::Self::WikirateTeam.member_ids << metric_card.metric_designer_id
+  @steward_ids ||= Card::Set::Self::WikirateTeam.member_ids + metric_card.steward_ids
 end
 
 def update_related_verifications
   each_dependee_answer { |answer| answer.refresh :verification }
+end
+
+def update_verification
+  answer.tap do |a|
+    old_verification = a.verification
+    a.refresh :verification
+    update_related_verifications if a.verification != old_verification
+  end
 end
 
 def each_dependee_answer
@@ -49,8 +56,7 @@ format :html do
 
   def verification_flag
     h = Answer::VERIFICATION_LEVELS[card.verification]
-    icon = h[:icon] || "check-circle"
-    fa_icon icon, class: "verification-#{h[:name]}", title: h[:title]
+    fa_icon h[:icon], title: h[:title], class: "verification-#{h[:klass] || h[:name]}"
   end
 
   def imported_flag
