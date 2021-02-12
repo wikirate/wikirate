@@ -4,10 +4,8 @@ end
 
 # @return [Integer] current verification index
 def verification
-  if metric_card.designer_assessed?
-    Answer.verification_index :steward
-  elsif researched_value?
-    checked_by_card.verification
+  if researched_value?
+    checked_by_card&.verification || researched_verification
   elsif relationship?
     1 # hard-code unverified for now
   else
@@ -15,6 +13,19 @@ def verification
   end
 end
 alias :current_verification_index :verification
+
+def researched_verification
+  steward_added? ? :steward_added : :community_added
+end
+
+def steward_added?
+  answer.editor_id&.in? steward_ids
+end
+
+def steward_ids
+  @steward_ids ||=
+    Card::Set::Self::WikirateTeam.member_ids << metric_card.metric_designer_id
+end
 
 def update_related_verifications
   each_dependee_answer { |answer| answer.refresh :verification }

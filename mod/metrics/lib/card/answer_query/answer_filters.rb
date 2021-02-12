@@ -22,10 +22,8 @@ class Card
 
       def verification_query value
         case value
-        when "flagged", "unverified", "community", "steward"
-          standard_verification_query value
-        when "verified"
-          filter :verification, [2, 3] # community or steward verified
+        when (index = Answer.verification_index value)
+          standard_verification_query index
         when "current_user"
           checked_by Auth.current_id
         when "wikirate_team"
@@ -35,8 +33,8 @@ class Card
         end
       end
 
-      def standard_verification_query value
-        filter :verification, Answer.verification_index(value)
+      def standard_verification_query index
+        filter :verification, index
       end
 
       def checked_by whom
