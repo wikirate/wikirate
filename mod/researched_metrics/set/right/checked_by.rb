@@ -30,25 +30,22 @@ def user
 end
 
 def verification
-  symbol =
-    if wikirate_team_checked? || designer_checked?
-      :steward
-    elsif check_requested?
-      :flagged
-    elsif checkers.any?
-      :community
-    else
-      :unverified
-    end
-  Answer.verification_index symbol
+  symbol = verification_symbol
+  Answer.verification_index symbol if symbol
 end
 
-def wikirate_team_checked?
-  (item_ids & Card::Set::Self::WikirateTeam.member_ids).any?
+def verification_symbol
+  if steward_verified?
+    :steward_verified
+  elsif check_requested?
+    :flagged
+  elsif checkers.any?
+    :community_verified
+  end
 end
 
-def designer_checked?
-  item_ids.include? answer_card.metric_card.metric_designer_id
+def steward_verified?
+  (item_ids & answer_card.steward_ids).any?
 end
 
 def user_checked?
