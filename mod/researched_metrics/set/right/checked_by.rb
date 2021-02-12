@@ -31,24 +31,18 @@ end
 
 def verification
   symbol =
-    if wikirate_team_checked? || designer_checked?
-      :steward
+    if steward_verified?
+      :steward_verified
     elsif check_requested?
       :flagged
     elsif checkers.any?
-      :community
-    else
-      :unverified
+      :community_verified
     end
   Answer.verification_index symbol
 end
 
-def wikirate_team_checked?
-  (item_ids & Card::Set::Self::WikirateTeam.member_ids).any?
-end
-
-def designer_checked?
-  item_ids.include? answer_card.metric_card.metric_designer_id
+def steward_verified?
+  (item_ids & card.steward_ids).any?
 end
 
 def user_checked?
