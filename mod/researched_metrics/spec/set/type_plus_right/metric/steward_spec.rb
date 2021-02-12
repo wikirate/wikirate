@@ -9,7 +9,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Steward do
   end
 
   describe "updating stewards" do
-    it "should start with community added metrics" do
+    it "starts with community added metrics" do
       expect(researched_card.answer.verification).to eq(level(:community_added))
       expect(wikirating_card.answer.verification).to eq(level(:community_added))
     end
