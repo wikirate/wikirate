@@ -23,7 +23,8 @@ def steward_added?
 end
 
 def steward_ids
-  @steward_ids ||= Set::Self::WikirateTeam.member_ids << metric_card.metric_designer_id
+  @steward_ids ||=
+    Card::Set::Self::WikirateTeam.member_ids << metric_card.metric_designer_id
 end
 
 def update_related_verifications

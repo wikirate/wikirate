@@ -30,19 +30,22 @@ def user
 end
 
 def verification
-  symbol =
-    if steward_verified?
-      :steward_verified
-    elsif check_requested?
-      :flagged
-    elsif checkers.any?
-      :community_verified
-    end
-  Answer.verification_index symbol
+  symbol = verification_symbol
+  Answer.verification_index symbol if symbol
+end
+
+def verification_symbol
+  if steward_verified?
+    :steward_verified
+  elsif check_requested?
+    :flagged
+  elsif checkers.any?
+    :community_verified
+  end
 end
 
 def steward_verified?
-  (item_ids & card.steward_ids).any?
+  (item_ids & answer_card.steward_ids).any?
 end
 
 def user_checked?

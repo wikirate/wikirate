@@ -82,11 +82,15 @@ format :html do
   end
 
   def verification_options
-    Answer::VERIFICATION_LEVELS.map.with_object({}) do |level, opts|
-      opts[level[:title]] = level[:name]
-    end.tap do |opts|
+    standard_verification_options.tap do |opts|
       opts["Verified by Me"] = "current_user" if Card::Auth.signed_in?
       opts["Verified by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
+    end
+  end
+
+  def standard_verification_options
+    Answer::VERIFICATION_LEVELS.map.with_object({}) do |level, opts|
+      opts[level[:title]] = level[:name]
     end
   end
 
