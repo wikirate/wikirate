@@ -83,8 +83,8 @@ format :html do
 
   def verification_options
     standard_verification_options.tap do |opts|
-      opts["Verified by Me"] = "current_user" if Card::Auth.signed_in?
-      opts["Verified by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
+      verified_by_me_option opts
+      verified_by_wikirate_team opts
     end
   end
 
@@ -92,6 +92,14 @@ format :html do
     Answer::VERIFICATION_LEVELS.map.with_object({}) do |level, opts|
       opts[level[:title]] = level[:name]
     end
+  end
+
+  def verified_by_me_option opts
+    opts["Verified by Me"] = "current_user" if Card::Auth.signed_in?
+  end
+
+  def verified_by_wikirate_team opts
+    opts["Verified by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
   end
 
   def updater_options
