@@ -303,13 +303,10 @@ $colorMap: (
 }
 
 .verification-steward {
-  color: $brand-primary;
+  color: $metric-color;
 }
 .verification-community {
-  color: $source-color;
-}
-.verification-unverified {
-  color: $gray-200;
+  color: $brand-primary;
 }
 .verification-flagged {
   color: $wanted-card-color;

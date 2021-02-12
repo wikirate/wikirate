@@ -90,6 +90,10 @@ def designer_assessed?
   research_policy&.casecmp("designer assessed")&.zero?
 end
 
+def steward_ids
+  @steward_ids ||= (steward_card&.item_ids || []) << metric_designer_id
+end
+
 # note: can return True for anonymous user if answer is generally researchable
 def user_can_answer?
   return false unless researchable?
