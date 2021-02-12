@@ -23,7 +23,8 @@ format :html do
 
   def research_properties
     { research_policy: "Research Policy",
-      report_type:     "Report Type" }
+      report_type:     "Report Type",
+      steward:         "Steward" }
   end
 
   view :metric_properties do
