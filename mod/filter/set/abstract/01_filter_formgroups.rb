@@ -82,14 +82,12 @@ format :html do
   end
 
   def verification_options
-    opts = { "Flagged" => "flagged",
-             "Unverified" => "unverified",
-             "Verified" => "verified",
-             "Verified by Community" => "community",
-             "Verified by Steward" => "steward" }
-    opts["Verified by Me"] = "current_user" if Card::Auth.signed_in?
-    opts["Verified by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
-    opts
+    Answer::VERIFICATION_LEVELS.map.with_object({}) do |level, opts|
+      opts[level[:title]] = level[:name]
+    end.tap do |opts|
+      opts["Verified by Me"] = "current_user" if Card::Auth.signed_in?
+      opts["Verified by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
+    end
   end
 
   def updater_options
