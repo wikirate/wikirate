@@ -16,6 +16,17 @@ def verification
 end
 alias :current_verification_index :verification
 
+def update_related_verifications
+  each_dependee_answer { |answer| answer.refresh :verification }
+end
+
+def each_dependee_answer
+  metric_card.each_depender_metric do |metric|
+    answer = Answer.where(metric_id: metric, company_id: company_id, year: year).take
+    yield answer if answer.present?
+  end
+end
+
 format :html do
   def flag_names
     super + %i[imported verification]

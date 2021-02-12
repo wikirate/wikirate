@@ -21,6 +21,10 @@ event :update_answer_lookup_table_due_to_answer_change, :finalize, on: :update d
   end
 end
 
+def lookup
+  answer
+end
+
 def answer
   @answer ||= Answer.existing(id) || virtual_answer || Answer.new
 end

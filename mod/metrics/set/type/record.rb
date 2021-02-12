@@ -1,6 +1,10 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::TwoColumnLayout
 
+event :update_lookups_on_record_rename, :finalize, changed: :name do
+  Answer.where(company_id: company_id, metric_id: metric_id).each(&:refresh)
+end
+
 def answer_query
   @answer_query ||= { company_id: company_id, metric_id: metric_id }
 end
