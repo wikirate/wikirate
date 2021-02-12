@@ -1,9 +1,10 @@
 class Answer
   VERIFICATION_LEVELS = [
     { name: :flagged, title: "Flagged", icon: :flag },
-    { name: :unverified, title: "Answer Unverified" },
-    { name: :community, title: "Verified by Community" },
-    { name: :steward, title: "Verified by Steward" }
+    { name: :community_added, title: "Unverified - Added by Community" },
+    { name: :steward_added, title: "Unverified - Added by Steward" },
+    { name: :community_verified, title: "Verified by Community" },
+    { name: :steward_verified, title: "Verified by Steward" }
   ].freeze
 
   # class methods for the Answer (lookup) constant
