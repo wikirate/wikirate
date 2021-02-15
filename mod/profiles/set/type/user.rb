@@ -16,12 +16,6 @@ format :html do
     two_column_layout 5, 7
   end
 
-  def header_text
-    wrap_with :div, class: "badges-earned" do
-      content_tag :h3, medal_counts("horizontal")
-    end
-  end
-
   view :data do
     wrap_with :div, class: "profile-data" do
       [
@@ -31,19 +25,8 @@ format :html do
     end
   end
 
-  def type_link_label
-    "Researcher"
-  end
-
-  def tab_list
-    %i[research_group bookmarks contributions activity]
-  end
-
-  def tab_options
-    {
-      contributions: { count: nil, label: "Contributions" },
-      activity: { count: nil, label: "Activity" }
-    }
+  view :simple_account_tab do
+    field_nest :account_settings
   end
 
   view :research_group_tab do
@@ -63,5 +46,33 @@ format :html do
 
   view :activity_tab, cache: :never do
     field_nest :activity
+  end
+
+  def type_link_label
+    "Researcher"
+  end
+
+  def tab_list
+    %i[research_group bookmarks contributions activity].tap do |list|
+      list.insert 2, :simple_account if simple_account_tab?
+    end
+  end
+
+  def simple_account_tab?
+    card.current_account? || card.account.ok?(:read)
+  end
+
+  def tab_options
+    {
+      contributions: { count: nil, label: "Contributions" },
+      activity: { count: nil, label: "Activity" },
+      simple_account: { count: nil, label: "Account" }
+    }
+  end
+
+  def header_text
+    wrap_with :div, class: "badges-earned" do
+      content_tag :h3, medal_counts("horizontal")
+    end
   end
 end
