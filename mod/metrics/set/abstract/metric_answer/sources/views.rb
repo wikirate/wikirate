@@ -1,5 +1,5 @@
 format :html do
-  delegate :suggested_sources, :my_sources, :cited?, to: :card
+  delegate :cited?, to: :card
 
   view :sourcebox, unknown: true, cache: :never do
     wrap { haml :sourcebox }
@@ -48,10 +48,25 @@ format :html do
   view :source_results, cache: :never, unknown: true do
     when_searching do |results|
       if results.present?
+        @already_added = results
         already_added results
       else
         render_new_source_form
       end
+    end
+  end
+
+  def suggested_sources
+    without_already_added { card.suggested_sources }
+  end
+
+  def my_sources
+    without_already_added { card.my_sources }
+  end
+
+  def without_already_added
+    yield.tap do |results|
+      results.reject! { |r| r.in? @already_added } if @already_added.present?
     end
   end
 
