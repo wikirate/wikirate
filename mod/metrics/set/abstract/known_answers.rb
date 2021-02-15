@@ -67,7 +67,6 @@ def answers
   Answer.where where_answer
 end
 
-
 def records
   Answer.select(:metric_id, :company_id).distinct.where where_answer
 end

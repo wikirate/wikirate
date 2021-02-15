@@ -66,9 +66,7 @@ format :html do
 
   def without_already_added
     yield.tap do |results|
-      if @already_added.present?
-        results.reject! { |r| r.in? @already_added }
-      end
+      results.reject! { |r| r.in? @already_added } if @already_added.present?
     end
   end
 
