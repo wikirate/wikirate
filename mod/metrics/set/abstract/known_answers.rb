@@ -67,12 +67,12 @@ def answers
   Answer.where where_answer
 end
 
-def record_ids
-  Answer.select(:record_id).distinct.where where_answer
+def records
+  Answer.select(:metric_id, :company_id).distinct.where where_answer
 end
 
 def researched_relation
-  project_card.years ? answers : record_ids
+  project_card.years ? answers : records
 end
 
 def where_year
