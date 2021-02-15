@@ -2,7 +2,11 @@ include_set Abstract::MetricChild, generation: 1
 include_set Abstract::TwoColumnLayout
 
 event :update_lookups_on_record_rename, :finalize, changed: :name do
-  Answer.where(company_id: company_id, metric_id: metric_id).each(&:refresh)
+  answer_relation.each(&:refresh)
+end
+
+def answer_relation
+  Answer.where answer_query
 end
 
 def answer_query
@@ -14,7 +18,7 @@ def answers
 end
 
 def count
-  Answer.where(answer_query).count
+  answer_relation.count
 end
 
 def virtual?
