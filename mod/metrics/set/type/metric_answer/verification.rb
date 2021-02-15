@@ -23,7 +23,7 @@ def researched_verification_symbol
 end
 
 def steward_added?
-  return true if metric.designer_assessed?
+  return true if metric_card.designer_assessed?
 
   answer.updater_id&.in? steward_ids
 end
