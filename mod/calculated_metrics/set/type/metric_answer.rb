@@ -18,5 +18,5 @@ def researched_dependee_answers
 end
 
 def calculated_verification
-  dependee_answers.map(&:verification).compact.min
+  dependee_answers.map(&:verification).compact.min || 1
 end

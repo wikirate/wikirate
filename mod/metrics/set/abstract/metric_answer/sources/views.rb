@@ -1,9 +1,8 @@
 format :html do
-  delegate :cited?, to: :card
+  delegate :my_sources, :suggested_sources, :cited?, to: :card
 
-  view :sourcebox, unknown: true, cache: :never do
-    wrap { haml :sourcebox }
-  end
+  view :source_selector, cache: :never, unknown: true, template: :haml, wrap: :slot
+  view :sourcebox, unknown: true, cache: :never, template: :haml
 
   view :sources do
     output [citations_count,
@@ -33,41 +32,20 @@ format :html do
     nest source_card, view: :new
   end
 
-  view :source_selector, cache: :never, unknown: true do
-    wrap { haml :source_selector }
-  end
-
   view :my_sources, cache: :never, unknown: true do
     source_list "Sources I added", my_sources
   end
 
   view :suggested_sources, cache: :never, unknown: true do
-    source_list "Suggested Sources", suggested_sources
+    source_list "Sources Suggested", suggested_sources
   end
 
   view :source_results, cache: :never, unknown: true do
-    when_searching do |results|
-      if results.present?
-        @already_added = results
-        already_added results
-      else
-        render_new_source_form
-      end
-    end
+    source_list "Sources Found", raw_source_results
   end
 
-  def suggested_sources
-    without_already_added { card.suggested_sources }
-  end
-
-  def my_sources
-    without_already_added { card.my_sources }
-  end
-
-  def without_already_added
-    yield.tap do |results|
-      results.reject! { |r| r.in? @already_added } if @already_added.present?
-    end
+  def new_source_form?
+    params[:button] == "source_search" && raw_source_results.blank?
   end
 
   def source_previews
@@ -80,23 +58,8 @@ format :html do
     root.voo&.root&.ok_view&.to_sym == :edit
   end
 
-  def already_added results
-    output [render_sourcebox, source_list("Sources Already Added", results)]
-  end
-
-  # view :freshen_form, cache: :never, unknown: true do
-  #   return unless params[:freshen_source]
-  #   render_new_source_form
-  # end
-
-  def when_searching
-    return "" unless params[:button] == "source_search"
-    yield raw_source_results
-  end
-
   def raw_source_results
-    return [] unless source_search_term.present?
-    sources_found_by_url
+    @raw_source_results = source_search_term.present? ? sources_found_by_url : []
   end
 
   def source_search_term
