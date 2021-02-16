@@ -1,7 +1,6 @@
-
 .sourcebox.p-3
   %form.slotter{ method: "get", "data-remote": true,
-                 action: path(view: :source_results,
+                 action: path(view: :source_selector,
                               card: { type_id: Card::MetricAnswerID }) }
     = text_field_tag :source_search_term, nil, placeholder: "http://",
                                                class: "p-2 w-50",
@@ -10,6 +9,8 @@
                     class: "_sourcebox",
                     value: "source_search",
                     situation: "outline-primary"
+
+    = submit_button text: fa_icon("sync-alt"), situation: "outline-primary"
 
 = render_flash
 //= render_freshen_form

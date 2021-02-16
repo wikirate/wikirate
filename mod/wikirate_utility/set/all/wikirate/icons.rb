@@ -11,6 +11,7 @@ ICON_MAP = {
   metric_answer: ["clipboard-check", { library: :font_awesome }],
   researcher: [:user, { library: :font_awesome }],
   user: [:user, { library: :font_awesome }],
+  simple_account: [:user, { library: :font_awesome }],
   post: :insert_comment,
   bookmark: [:bookmark, { library: :font_awesome }],
   bookmarks: [:bookmark, { library: :font_awesome }],
