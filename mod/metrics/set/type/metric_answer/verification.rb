@@ -58,7 +58,9 @@ format :html do
 
   def verification_flag
     h = Answer::VERIFICATION_LEVELS[card.verification]
-    fa_icon h[:icon], title: h[:title], class: "verification-#{h[:klass] || h[:name]}"
+    return "" unless (icon = h[:icon])
+
+    fa_icon icon, title: h[:title], class: "verification-#{h[:klass] || h[:name]}"
   end
 
   def imported_flag
