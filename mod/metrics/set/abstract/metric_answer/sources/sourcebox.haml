@@ -7,10 +7,12 @@
                                                value: params[:source_search_term]
     = submit_button text: "#{fa_icon :globe} Add New Source".html_safe,
                     class: "_sourcebox",
-                    value: "source_search",
+                    value: "search",
                     situation: "outline-primary"
 
-    = submit_button text: fa_icon("sync-alt"), situation: "outline-primary"
+    = submit_button text: fa_icon("sync-alt"),
+                    value: "reset",
+                    situation: "outline-primary"
 
 = render_flash
 //= render_freshen_form

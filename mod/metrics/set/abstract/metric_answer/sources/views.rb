@@ -45,7 +45,7 @@ format :html do
   end
 
   def new_source_form?
-    params[:button] == "source_search" && raw_source_results.blank?
+    params[:button] == "search" && raw_source_results.blank?
   end
 
   def source_previews
@@ -56,6 +56,10 @@ format :html do
   def editing_answer?
     return true if card.unknown?
     root.voo&.root&.ok_view&.to_sym == :edit
+  end
+
+  def source_results?
+    raw_source_results.present? && params[:button] != "reset"
   end
 
   def raw_source_results

@@ -3,7 +3,7 @@
     = render :new_source_form
   - else
     = render :sourcebox
-    - if raw_source_results.present?
+    - if source_results?
       = render :source_results
     - else
       = render :my_sources

@@ -1,0 +1,16 @@
+{
+  "type": "lookup",
+  "from": "groups",
+  "key": "id",
+  "fields": [
+    "subgroup"
+  ],
+  "as": [
+    "group",
+    "group_title"
+  ],
+  "values": [
+    "name",
+    "title"
+  ]
+}
