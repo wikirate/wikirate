@@ -48,20 +48,6 @@
           "as": ["count"]
         },
         {
-          "type": "lookup",
-          "from": "groups",
-          "key": "id",
-          "fields": [
-            "subgroup"
-          ],
-          "as": [
-            "group"
-          ],
-          "values": [
-            "name"
-          ]
-        },
-        {
           "type": "pie",
           "field": "count",
           "sort": {"signal": "sort"}
@@ -73,17 +59,32 @@
   "marks": [
     {
       "type": "arc",
-      "from": {"data": "counts"},
+      "from": {
+        "data": "counts"
+      },
       "encode": {
         "enter": {
-          "fill": {"scale": "color", "field": "group"},
-          "x": {"value": 100 },
-          "y": {"value": 100 },
-          "tooltip": {"field": "count" }
+          "fill": {
+            "scale": "color",
+            "field": "group_title"
+          },
+          "x": {
+            "value": 100
+          },
+          "y": {
+            "value": 100
+          },
+          "tooltip": {
+            "field": "count"
+          }
         },
         "update": {
-          "startAngle": {"field": "startAngle"},
-          "endAngle": {"field": "endAngle"},
+          "startAngle": {
+            "field": "startAngle"
+          },
+          "endAngle": {
+            "field": "endAngle"
+          },
           "padAngle": {
             "signal": "padAngle"
           },
