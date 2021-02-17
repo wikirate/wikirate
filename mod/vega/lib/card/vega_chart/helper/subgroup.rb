@@ -19,13 +19,23 @@ class Card
               h[:legends] = [builtin(:subgroup_legend)]
               h[:scales] ||= []
               h[:scales] << builtin(:subgroup_scale)
-              add_group_data h[:data]
+              subgroup_data h[:data]
             end
           end
         end
 
         def filter_data_index
           -1
+        end
+
+        def subgroup_data data_array
+          add_group_data data_array
+          transform_counts data_array
+        end
+
+        def transform_counts data_array
+          counts = data_array.find { |i| i[:name] == "counts" }
+          counts[:transform] << builtin(:subgroup_counts_transform)
         end
 
         def add_group_data data_array
