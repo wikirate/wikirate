@@ -5,6 +5,4 @@ include_set Abstract::DesignerPermissions
 require_field :value, when: :value_required?
 require_field :source, when: :source_required?
 
-def value_required?
-  metric_card&.respond_to?(:value_required?) ? metric_card.value_required? : true
-end
+delegate :value_required?, to: :metric_card
