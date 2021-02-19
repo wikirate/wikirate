@@ -78,6 +78,10 @@ default_false :descendant?
 default_false :score?
 default_false :rating?
 
+def value_required?
+  true
+end
+
 def calculated?
   !researched?
 end

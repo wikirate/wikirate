@@ -45,6 +45,10 @@ format :html do
     end
   end
 
+  def default_limit
+    10
+  end
+
   def members_on_page paging_args
     Card::Auth.as_bot do
       cql = { referred_to_by: card.name, sort: :name, right_plus: :account }
