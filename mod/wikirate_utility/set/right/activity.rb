@@ -3,7 +3,7 @@ def virtual?
 end
 
 def user_acts
-  Card::Act.where "actor_id=#{left.id} and card_id is not NULL"
+  Card::Act.where(actor_id: left.id).where.not(card_id: nil).order("acted_at desc")
 end
 
 def accounted?
