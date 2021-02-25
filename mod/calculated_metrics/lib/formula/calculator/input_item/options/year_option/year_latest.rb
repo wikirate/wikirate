@@ -13,7 +13,7 @@ module Formula
 
             # @return an array of years for which values can be calculated out of the
             #   given list of years
-            def translate_years years
+            def translate_years _years
               all_years
             end
           end

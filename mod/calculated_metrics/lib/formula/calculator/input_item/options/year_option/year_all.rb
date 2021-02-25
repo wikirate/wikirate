@@ -3,7 +3,8 @@ module Formula
     class InputItem
       module Options
         module YearOption
-          # Handles the year option that searches for all existing years for a given record
+          # Handles the year option that searches for all
+          # existing years for a given record
           # Example:
           #    year: all
           module YearAll
@@ -11,9 +12,10 @@ module Formula
               :all
             end
 
-            # @return an array of years for which values can be calculated out of the
-            #   given list of years
-            def translate_years years
+            # @return an array of years for which values
+            # can be calculated out of the
+            # given list of years
+            def translate_years _years
               all_years
             end
           end
