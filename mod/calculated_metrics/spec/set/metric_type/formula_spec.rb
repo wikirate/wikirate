@@ -28,11 +28,11 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   describe "formula with year reference" do
-    subject(:answer_value) do
-      take_answer_value "Apple Inc", 2015
-    end
-
     context "with single year" do
+      subject(:answer_value) do
+        take_answer_value "Apple Inc", 2015
+      end
+
       def formula year:
         create_formula_metric year: year, add: { metric: @metric_name1 }
       end
@@ -52,9 +52,26 @@ RSpec.describe Card::Set::MetricType::Formula do
         formula year: "0"
         expect(answer_value).to eq "115.0"
       end
+
+      it "latest" do
+        formula year: "latest"
+        expect(take_answer_value("Apple Inc", 2002)).to eq "115.0"
+      end
+    end
+
+    it "all years" do
+      # {{@metric_name3|year: all}} + {{@metric_name1}}
+      create_formula_metric metric: @metric_name3, method: "Total",
+                            year: "all", add: { metric: @metric_name1 }
+      expect(take_answer_value("Samsung", 2014)).to eq "12.0"
+      expect(take_answer_value("Samsung", 2015)).to eq "7.0"
     end
 
     context "with total of" do
+      subject(:answer_value) do
+        take_answer_value "Apple Inc", 2015
+      end
+
       def formula year:
         create_formula_metric method: "Total", year: year, add: { metric: @metric_name1 }
       end
@@ -86,6 +103,11 @@ RSpec.describe Card::Set::MetricType::Formula do
       it "list of years" do
         formula year: "2012, 2014"
         expect(answer_value).to eq "126.0"
+      end
+      it "all" do
+        formula year: "all"
+        # Total is unknown because two values are unknown
+        expect(answer_value).to eq "Unknown"
       end
     end
   end
