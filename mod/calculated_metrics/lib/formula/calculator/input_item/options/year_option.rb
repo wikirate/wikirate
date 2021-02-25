@@ -9,6 +9,8 @@ module Formula
         #    year: -4..0
         #    year: -4, 2
         #    year: 1999, 2001, -1
+        #    year: latest
+        #    year: all
         module YearOption
           extend AddValidationChecks
           add_validation_checks :check_year_option
@@ -55,6 +57,10 @@ module Formula
               ip.map { |y| value_data[y] }
             when Proc
               ip.call(year).map { |y| value_data[y] }
+            when :all
+              value_data.values
+            when :latest
+              value_data.values.last
             else
               raise Card::Error, "illegal input processor type: #{ip.class}"
             end
@@ -76,6 +82,8 @@ module Formula
             when /^[-+]?\d+$/ then extend YearSingle
             when /^[-+]?[\d\s]+,[-+\d\s,]+$/ then extend YearList
             when /[-+]?\d+\.\.[-+]?\d+$/ then extend YearRange
+            when /^all$/ then extend YearAll
+            when /^latest$/ then extend YearLatest
             end
           end
         end
