@@ -49,11 +49,13 @@ module Formula
           def apply_year_option value_data, year
             ip = processed_year_option
             method = "apply_#{ip.class.to_s.downcase}_year_option"
-            if respond_to? method
-              send method, value_data, ip, year.to_i
-            else
-              raise Card::Error, "illegal input processor type: #{ip.class}"
-            end
+            illegal_input_processor! ip unless respond_to? method
+
+            send method, value_data, ip, year.to_i
+          end
+
+          def illegal_input_processor! ip
+            raise Card::Error, "illegal input processor type: #{ip.class}"
           end
 
           def apply_integer_year_option value_data, ip, year
