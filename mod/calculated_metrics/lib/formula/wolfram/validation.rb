@@ -8,8 +8,8 @@ module Formula
            MaximalBy MinimalBy
            AllTrue AnyTrue NoneTrue
            Sort SortBy
+           StringMatchQ RegularExpression
            Take TakeLargest TakeSmallest TakeLargestBy TakeSmallestBy
-           AllTrue AnyTrue NoneTrue
            ContainsAll ContainsNone ContainsAny ContainsOnly ContainsExactly
            Mean Variance StandardDeviation Median Quantile Covariance] +
           Formula::Ruby::FUNCTIONS.keys
@@ -17,7 +17,7 @@ module Formula
 
       def safety_checks
         super
-        check_whitelist
+        # check_whitelist
       end
 
       def check_whitelist

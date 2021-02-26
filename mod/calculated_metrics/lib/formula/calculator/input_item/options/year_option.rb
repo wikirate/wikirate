@@ -9,6 +9,8 @@ module Formula
         #    year: -4..0
         #    year: -4, 2
         #    year: 1999, 2001, -1
+        #    year: latest
+        #    year: all
         module YearOption
           extend AddValidationChecks
           add_validation_checks :check_year_option
@@ -45,18 +47,35 @@ module Formula
           #   for every year
           # @param the year we want the input data for
           def apply_year_option value_data, year
-            year = year.to_i
-
             ip = processed_year_option
-            case ip
-            when Integer
-              year?(ip) ? value_data[ip] : value_data[year + ip]
-            when Array
-              ip.map { |y| value_data[y] }
-            when Proc
-              ip.call(year).map { |y| value_data[y] }
+            method = "apply_#{ip.class.to_s.downcase}_year_option"
+            if respond_to? method
+              send method, value_data, ip, year.to_i
             else
               raise Card::Error, "illegal input processor type: #{ip.class}"
+            end
+          end
+
+          def apply_integer_year_option value_data, ip, year
+            year?(ip) ? value_data[ip] : value_data[year + ip]
+          end
+
+          def apply_array_year_option value_data, ip, _year
+            ip.map { |y| value_data[y] }
+          end
+
+          def apply_proc_year_option value_data, ip, year
+            ip.call(year).map { |y| value_data[y] }
+          end
+
+          def apply_symbol_year_option value_data, ip, _year
+            case ip
+            when :all
+              value_data.values
+            when :latest
+              value_data.values.last
+            else
+              raise Card::Error, "unknown year Symbol: #{ip}"
             end
           end
 
@@ -76,6 +95,8 @@ module Formula
             when /^[-+]?\d+$/ then extend YearSingle
             when /^[-+]?[\d\s]+,[-+\d\s,]+$/ then extend YearList
             when /[-+]?\d+\.\.[-+]?\d+$/ then extend YearRange
+            when /^all$/ then extend YearAll
+            when /^latest$/ then extend YearLatest
             end
           end
         end
