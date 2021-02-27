@@ -38,7 +38,7 @@ class Card
         constraints = array.map do |val|
           condition_sql ["FIND_IN_SET(?, REPLACE(answers.value, ', ', ','))", val]
         end
-        @conditions << "(#{constraints.join ' OR '})"
+        @conditions << "(#{constraints.join ' AND '})"
       end
 
       def numeric_range_query value
