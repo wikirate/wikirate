@@ -22,7 +22,7 @@ RSpec.describe Formula::Calculator do
   end
 
   example "invalid method" do
-    invalid "NotAMethod[M3]", "unknown or not supported method: NotAMethod",
+    invalid "NotAMethod[M3]", # "unknown or not supported method: NotAMethod",
             "at least one metric variable nest is required"
   end
 
