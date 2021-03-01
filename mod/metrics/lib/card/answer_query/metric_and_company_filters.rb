@@ -10,7 +10,7 @@ class Card
 
       def company_group_query value
         multi_company do
-          group_lists = Array.wrap(value).map { |v| "#{v}+#{:wikirate_company.cardname}"}
+          group_lists = Array.wrap(value).map { |v| "#{v}+#{:wikirate_company.cardname}" }
           restrict_by_cql :company_id, referred_to_by: group_lists
         end
       end
