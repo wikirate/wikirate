@@ -65,7 +65,7 @@ format :html do
             class: "btn btn-outline-secondary btn-sm research-answer-button",
             path: { mark: :research_page,
                     company: card.company_card.name,
-                    pinned: :company,
+                    # pinned: :company,
                     project: project_name.url_key }
   end
 
