@@ -50,6 +50,7 @@ module Formula
             year = year.to_i
 
             ip = processed_year_option
+
             case ip
             when Integer
               year?(ip) ? value_data[ip] : value_data[year + ip]

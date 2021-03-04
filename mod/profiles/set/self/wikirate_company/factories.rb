@@ -59,11 +59,12 @@ format :json do
             return: :id }
     if country_code
       cql[:right_plus] = [{ codename: "headquarters" },
-                          { refer_to: { codename: country_code.to_s } }]
+                          { refer_to: { id: country_code.to_s } }]
     end
     Card.search cql
   end
 
+  # card id of a region card (Used to be the OC jurisdiction code)
   def country_code
     params[:country_code] if params[:country_code].present? &&
                              params[:country_code] != "undefined"

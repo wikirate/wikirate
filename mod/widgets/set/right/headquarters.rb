@@ -31,13 +31,13 @@ end
 # TODO: reduce duplicated code
 def jurisdiction_name oc_code
   oc_code = "oc_#{oc_code}" unless oc_code.to_s.match?(/^oc_/)
-  return unless Card::Codename[oc_code.to_sym]
-  Card.fetch_name oc_code.to_sym
+  return unless (card = Card.search(type_id: Card::JurisdictionID, content: oc_code)&.first)
+  card.left_name
 end
 
 def oc_code
   jur = known_item_cards.first
-  return unless jur&.type_id == Card::JurisdictionID
+  return unless jur&.type_id == Card::RegionID
   jur.oc_code
 end
 
