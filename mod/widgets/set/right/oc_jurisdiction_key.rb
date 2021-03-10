@@ -24,7 +24,10 @@ module ClassMethods
   end
 end
 
-
 def oc_code
   content[3..-1].to_sym
+end
+
+event :clear_jurisdiction_key_cache do
+  Set::Right::OcJurisdictionKey.cache.reset_all
 end
