@@ -3,8 +3,8 @@
 # to define a option list for a select field.
 class CountryGroups < Array
   def initialize cards=nil
-    cards ||= Card.search(type_id: Card::JurisdictionID)
-    cards.reject! { |c| c.codename.nil? }
+    cards ||= Card.search(type_id: Card::RegionID)
+    # cards.reject! { |c| c.codename.nil? }
     @groups = Hash.new { |hash, key| hash[key] = {} }
     process_cards cards
     sanitize_and_sort
@@ -36,12 +36,12 @@ class CountryGroups < Array
   def add_state card, country, state
     @groups[country][:text] ||= country
     @groups[country][:children] ||= []
-    @groups[country][:children] << { id: card.codename, text: state }
+    @groups[country][:children] << { id: card.id, text: state }
   end
 
   def add_country card
     @groups[card.name][:text] ||= card.name
-    @groups[card.name][:id] = card.codename
+    @groups[card.name][:id] = card.id
   end
 
   def sanitize_group country, group
@@ -69,10 +69,10 @@ format :json do
 
   def select2_option_list
     if name_query
-      cql = { type_id: Card::JurisdictionID, name: ["match", name_query] }
+      cql = { type_id: Card::RegionID, name: ["match", name_query] }
       Card.search(cql).each_with_object([]) do |i, ar|
-        next unless i.codename
-        ar << { id: i.codename, text: i.name }
+        # next unless i.codename
+        ar << { id: i.id, text: i.name }
       end
     else
       CountryGroups.new
