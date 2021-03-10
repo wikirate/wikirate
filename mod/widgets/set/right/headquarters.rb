@@ -2,8 +2,8 @@
 event :transform_jurisdiction_codes, :prepare_to_validate do
   return if oc_code
   oc_code_from_content = first_name.sub(/^:/, "")
-  return unless (j_name = jurisdiction_name(oc_code_from_content))
-  self.content = "[[#{j_name}]]"
+  return unless (r_name = Set::Right::OcJurisdictionKey.region_name(oc_code_from_content))
+  self.content = "[[#{r_name}]]"
 end
 
 event :validate_jurisdiction_code, :validate do
@@ -24,20 +24,14 @@ event :update_oc_mapping_due_to_headquarters_entry, :integrate,
   add_subcard name.left_name.field(:open_corporates),
               content: oc.company_number, type: :phrase
   add_subcard name.left_name.field(:incorporation),
-              content: jurisdiction_name(oc.incorporation_jurisdiction_code),
+              content: Set::Right::OcJurisdictionKey.region_name(oc.incorporation_jurisdiction_code),
               type: :pointer
 end
 
-# TODO: reduce duplicated code
-def jurisdiction_name oc_code
-  oc_code = "oc_#{oc_code}" unless oc_code.to_s.match?(/^oc_/)
-  return unless Card::Codename[oc_code.to_sym]
-  Card.fetch_name oc_code.to_sym
-end
 
 def oc_code
   jur = known_item_cards.first
-  return unless jur&.type_id == Card::JurisdictionID
+  return unless jur&.type_id == Card::RegionID
   jur.oc_code
 end
 

@@ -10,15 +10,8 @@
 #
 #   add_subfield :open_corporates, content: oc.company_number, type: :phrase
 #   add_subfield :incorporation,
-#                content: jurisdiction_name(oc.incorporation_jurisdiction_code),
+#                content: Set::Right::OcJurisdictionKey(oc.incorporation_jurisdiction_code),
 #                type: :pointer
-# end
-#
-# def jurisdiction_name oc_code
-#   unless oc_code.to_s =~ /^oc_/
-#     oc_code = "oc_#{oc_code}"
-#   end
-#   Card.fetch_name oc_code.to_sym
 # end
 #
 # def has_mapping_data?
