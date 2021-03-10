@@ -55,7 +55,7 @@ class JurisdictionToRegion < Cardio::Migration
   def import_ilo_regions
     each_region do |region, country, ilo|
       ensure_card name: region, type_id: Card::RegionID,
-                  ubcards: { "+Country" => country, "+ILO Region" => ilo }
+                  subcards: { "+Country" => country, "+ILO Region" => ilo }
     end
   end
 
