@@ -17,10 +17,10 @@ end
 
 event :update_oc_mapping_due_to_headquarters_entry, :integrate,
       on: :save, when: :needs_oc_mapping?, skip: :allowed do
-  prefixed_oc_code = oc_code.start_with? "oc_" ? oc_code : "oc_#{oc_code}"
+  prefixed_oc_code = oc_code.start_with?("oc_") ? oc_code : "oc_#{oc_code}"
   oc = ::OpenCorporates::MappingApi
-         .fetch_oc_company_number company_name: name.left,
-                                  jurisdiction_code: prefixed_oc_code
+       .fetch_oc_company_number company_name: name.left,
+                                jurisdiction_code: prefixed_oc_code
   return unless oc&.company_number.present?
 
   region_name =
