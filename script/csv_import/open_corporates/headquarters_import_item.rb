@@ -20,7 +20,7 @@ class HeadquartersImportItem < ImportItem
   end
 
   def validate_jurisdiction value
-    (jc = Card[value]) && jc.type_id == Card::JurisdictionID
+    Card.search(content: value, right_id: Card::OcJurisdictionKeyID).present?
   end
 
   def import_headquarters
