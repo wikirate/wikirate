@@ -69,8 +69,8 @@ format :html do
 
   # TODO: reduce duplicated code
   def jurisdiction_name oc_code
-    oc_code = "oc_#{oc_code}" unless oc_code.to_s.match?(/^oc_/)
-    Card.fetch_name oc_code.to_sym
+    oc_code = oc_code.sub(/^oc_/, "")
+    Card.search(right_id: Card::OcJurisdictionKeyID, content: oc_code)&.first&.left_name
   end
 
   def incorporation_date

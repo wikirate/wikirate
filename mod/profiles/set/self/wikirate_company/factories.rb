@@ -10,7 +10,7 @@ format :json do
   end
 
   def country_search
-    return [].to_json unless country_code
+    return [].to_json unless region_id
     company_traits(factory_ids).to_json
   end
 
@@ -57,15 +57,15 @@ format :json do
     cql = { type_id: Card::WikirateCompanyID,
             left_plus: Card::Codename.id(:commons_supplier_of),
             return: :id }
-    if country_code
+    if region_id
       cql[:right_plus] = [{ codename: "headquarters" },
-                          { refer_to: { id: country_code.to_s } }]
+                          { refer_to: { id: region_id } }]
     end
     Card.search cql
   end
 
   # card id of a region card (Used to be the OC jurisdiction code)
-  def country_code
+  def region_id
     params[:country_code] if params[:country_code].present? &&
                              params[:country_code] != "undefined"
   end

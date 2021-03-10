@@ -34,7 +34,7 @@ class OpenCorporatesImportItem < ImportItem
   end
 
   def validate_jurisdiction value
-    Card.search(content: value, type_id: Card::JurisdictionID).present?
+    Card.search(content: value, right_id: Card::OcJurisdictionKeyID).present?
   end
 
   def import
