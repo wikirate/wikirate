@@ -101,8 +101,10 @@ event :update_oc_mapping_due_to_wikipedia_entry, :integrate,
   return unless oc&.company_number&.present?
 
   add_left_subcard :open_corporates, oc.company_number, :phrase
-  add_left_subcard :incorporation, Set::Right::OcJurisdictionKey(oc.incorporation_jurisdiction_code)
-  add_left_subcard :headquarters, Set::Right::OcJurisdictionKey(oc.jurisdiction_code)
+  add_left_subcard :incorporation,
+                   Set::Right::OcJurisdictionKey(oc.incorporation_jurisdiction_code)
+  add_left_subcard :headquarters,
+                   Set::Right::OcJurisdictionKey(oc.jurisdiction_code)
 end
 
 def add_left_subcard fieldname, content, type=:pointer

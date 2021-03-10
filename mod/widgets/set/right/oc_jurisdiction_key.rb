@@ -1,20 +1,21 @@
+
+# cache for mapping jurisdiction codes to region ids
 module ClassMethods
   def jurisdiction_cards
-    Card.where(right_id: Card::OcJurisdictionKey, left: { type_id: Card::RegionID})
-        .pluck(:left_id, :content)
+    Card.where(right_id: Card::OcJurisdictionKey, left: { type_id: Card::RegionID })
+      .pluck(:left_id, :content)
   end
 
   def cache
     Card::Cache[Card::Set::Right::OcJurisdictionKey]
   end
 
-  # maps jurisdiction codes to region ids
   def jurisdiction_map
-     @jurisdiction_map ||= cache.fetch("jurisdiction_map") do
-       jurisdiction_cards.each_with_object({}) do |(region_id, oc_code), h|
-         h[oc_code] = region_id
-       end
-     end
+    @jurisdiction_map ||= cache.fetch("jurisdiction_map") do
+      jurisdiction_cards.each_with_object({}) do |(region_id, oc_code), h|
+        h[oc_code] = region_id
+      end
+    end
   end
 
   def region_name oc_code
@@ -25,7 +26,7 @@ module ClassMethods
 end
 
 def oc_code
-  content[3..-1].to_sym
+  content.to_sym
 end
 
 event :clear_jurisdiction_key_cache do

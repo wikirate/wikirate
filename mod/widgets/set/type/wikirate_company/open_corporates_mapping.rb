@@ -10,8 +10,8 @@
 #
 #   add_subfield :open_corporates, content: oc.company_number, type: :phrase
 #   add_subfield :incorporation,
-#                content: Set::Right::OcJurisdictionKey(oc.incorporation_jurisdiction_code),
-#                type: :pointer
+#             content: Set::Right::OcJurisdictionKey(oc.incorporation_jurisdiction_code),
+#             type: :pointer
 # end
 #
 # def has_mapping_data?

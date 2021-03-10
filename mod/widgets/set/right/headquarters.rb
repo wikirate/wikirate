@@ -17,17 +17,20 @@ end
 
 event :update_oc_mapping_due_to_headquarters_entry, :integrate,
       on: :save, when: :needs_oc_mapping?, skip: :allowed do
-  oc = ::OpenCorporates::MappingApi.fetch_oc_company_number company_name: name.left,
-                                                            jurisdiction_code: oc_code
+  prefixed_oc_code = oc_code.start_with? "oc_" ? oc_code : "oc_#{oc_code}"
+  oc = ::OpenCorporates::MappingApi
+         .fetch_oc_company_number company_name: name.left,
+                                  jurisdiction_code: prefixed_oc_code
   return unless oc&.company_number.present?
 
+  region_name =
+    Set::Right::OcJurisdictionKey.region_name(oc.incorporation_jurisdiction_code)
   add_subcard name.left_name.field(:open_corporates),
               content: oc.company_number, type: :phrase
   add_subcard name.left_name.field(:incorporation),
-              content: Set::Right::OcJurisdictionKey.region_name(oc.incorporation_jurisdiction_code),
+              content: region_name,
               type: :pointer
 end
-
 
 def oc_code
   jur = known_item_cards.first
