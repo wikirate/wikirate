@@ -214,9 +214,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     context "when formula changes" do
       def update_formula new_formula
         Card::Auth.as_bot do
-          @metric.formula_card.update!(
-            content: build_formula(new_formula)
-          )
+          @metric.formula_card.update! content: build_formula(new_formula)
         end
       end
 
@@ -260,9 +258,7 @@ RSpec.describe Card::Set::MetricType::Formula do
           .to change { calc_value }.from("60.0").to("15.0")
       end
       it "removes incomplete calculated values" do
-        Card::Auth.as_bot do
-          Card["#{@metric_name1}+Samsung+2014"].delete
-        end
+        Card::Auth.as_bot { Card["#{@metric_name1}+Samsung+2014"].delete }
         expect(calc_answer).to be_falsey
       end
     end

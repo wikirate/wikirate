@@ -47,23 +47,37 @@ module Formula
           #   for every year
           # @param the year we want the input data for
           def apply_year_option value_data, year
-            year = year.to_i
-
             ip = processed_year_option
+            method = "apply_#{ip.class.to_s.downcase}_year_option"
+            illegal_input_processor! ip unless respond_to? method
 
+            send method, value_data, ip, year.to_i
+          end
+
+          def illegal_input_processor! ip
+            raise Card::Error, "illegal input processor type: #{ip.class}"
+          end
+
+          def apply_integer_year_option value_data, ip, year
+            year?(ip) ? value_data[ip] : value_data[year + ip]
+          end
+
+          def apply_array_year_option value_data, ip, _year
+            ip.map { |y| value_data[y] }
+          end
+
+          def apply_proc_year_option value_data, ip, year
+            ip.call(year).map { |y| value_data[y] }
+          end
+
+          def apply_symbol_year_option value_data, ip, _year
             case ip
-            when Integer
-              year?(ip) ? value_data[ip] : value_data[year + ip]
-            when Array
-              ip.map { |y| value_data[y] }
-            when Proc
-              ip.call(year).map { |y| value_data[y] }
             when :all
               value_data.values
             when :latest
               value_data.values.last
             else
-              raise Card::Error, "illegal input processor type: #{ip.class}"
+              raise Card::Error, "unknown year Symbol: #{ip}"
             end
           end
 
