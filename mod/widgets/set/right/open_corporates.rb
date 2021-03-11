@@ -64,7 +64,7 @@ format :html do
   end
 
   def jurisdiction
-    jurisdiction_code && Set::Right::OcJurisdictionKey.region_name(jurisdiction_code)
+    jurisdiction_code && ::OpenCorporates::RegionCache.region_name(jurisdiction_code)
   end
 
   def incorporation_date

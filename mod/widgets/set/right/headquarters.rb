@@ -2,7 +2,7 @@
 event :transform_jurisdiction_codes, :prepare_to_validate do
   return if oc_code
   oc_code_from_content = first_name.sub(/^:/, "")
-  return unless (r_name = Set::Right::OcJurisdictionKey.region_name(oc_code_from_content))
+  return unless (r_name = ::OpenCorporates::RegionCache.region_name(oc_code_from_content))
   self.content = "[[#{r_name}]]"
 end
 
@@ -24,7 +24,7 @@ event :update_oc_mapping_due_to_headquarters_entry, :integrate,
   return unless oc&.company_number.present?
 
   region_name =
-    Set::Right::OcJurisdictionKey.region_name(oc.incorporation_jurisdiction_code)
+    ::OpenCorporates::RegionCache.region_name(oc.incorporation_jurisdiction_code)
   add_subcard name.left_name.field(:open_corporates),
               content: oc.company_number, type: :phrase
   add_subcard name.left_name.field(:incorporation),
@@ -34,7 +34,9 @@ end
 
 def oc_code
   jur = known_item_cards.first
-  return unless jur&.type_id == Card::RegionID
+  expected_type_id =
+    Card::Codename.exist?(:region) ? Card::RegionID : Card::JurisdictionID
+  return unless jur&.type_id == expected_type_id
   jur.oc_code
 end
 
