@@ -2,16 +2,16 @@
 
 class JurisdictionToRegion < Cardio::Migration
   def up
-    ensure_card name: "Country code", codename: "country_code"
+    ensure_card name: "Country code", codename:    "country_code"
     ensure_card name: "OpenCorporates Jurisdiction key", codename: "oc_jurisdiction_key"
     ensure_card name: "ILO Region", codename: "ilo_region"
-    ensure_card name: "Region", type_id: CardtypeID, codename: "region"
-    ensure_card name: ["Region", :type, :structure], type_id: NestListID,
+    ensure_card name: "Region", type_id: Card::CardtypeID, codename: "region"
+    ensure_card name: ["Region", :type, :structure], type_id: Card::NestListID,
                 content: "{{+Continent|labeled|name}}\n" \
-                         "{{+OpenCorporates Jurisdiction key|labeled|name}}\n" \
-                         "{{+ILO Region|labeled|name}}\n" \
-                         "{{+Country|labeled|name}}\n" \
-                         "{{+Country code|labeled|name}}"
+                                   "{{+OpenCorporates Jurisdiction key|labeled|name}}\n" \
+                                   "{{+ILO Region|labeled|name}}\n" \
+                                   "{{+Country|labeled|name}}\n" \
+                                   "{{+Country code|labeled|name}}"
     Card::Cache.reset_all
 
     move_oc_country_codes
@@ -21,8 +21,6 @@ class JurisdictionToRegion < Cardio::Migration
     end
 
     import_ilo_regions
-
-    remove_jurisdiction_type
   end
 
   def country_map
@@ -39,17 +37,13 @@ class JurisdictionToRegion < Cardio::Migration
 
   def move_oc_country_codes
     Card.search(type_id: Card::JurisdictionID) do |card|
-      jur_code = card.codename.sub(/^oc_/, "")
+      jur_code = card.codename.to_s.sub(/^oc_/, "")
       ensure_card name: [card.name, :oc_jurisdiction_key], content: jur_code
       card.update codename: nil, type_id: Card::RegionID
-      if jur_code.size == 2
-        ensure_card name: [card.name, :country_code], content: jur_code
+      if jur_code.size >= 2
+        ensure_card name: [card.name, :country_code], content: jur_code[0..1]
       end
     end
-  end
-
-  def remove_jurisdiction_type
-    delete_codename_card :jurisdiction
   end
 
   def import_ilo_regions
