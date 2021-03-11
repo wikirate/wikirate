@@ -4,8 +4,8 @@ module OpenCorporates
   class RegionCache
     class << self
       def jurisdiction_cards
-        Card.where(right_id: Card::OcJurisdictionKeyID, left: { type_id: Card::RegionID })
-            .pluck(:left_id, :content)
+        Card.where(right_id: Card::OcJurisdictionKeyID)
+            .pluck(:left_id, :db_content)
       end
 
       def cache
