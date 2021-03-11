@@ -68,7 +68,7 @@ format :json do
   end
 
   def country_search
-    return [].to_json unless country_code
+    return [].to_json unless region_id
     company_traits(brand_ids).to_json
   end
 
