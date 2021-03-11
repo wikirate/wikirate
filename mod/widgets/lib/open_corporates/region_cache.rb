@@ -1,6 +1,5 @@
+# cache for mapping jurisdiction codes to region ids
 module OpenCorporates
-  # cache for mapping jurisdiction codes to region ids
-
   class RegionCache
     class << self
       def jurisdiction_cards

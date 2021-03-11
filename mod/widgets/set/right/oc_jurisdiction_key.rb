@@ -1,6 +1,3 @@
-
-
-
 def oc_code
   content.to_sym
 end
