@@ -10,12 +10,16 @@ RSpec.describe Card::Set::Self::WikirateCompany::Factories do
       }
     end
 
+    let(:california_id) do
+      Card.fetch_id("California (United States)")
+    end
+
     example "empty params" do
       is_expected.to eq []
     end
 
     example "search by country" do
-      Card::Env.params[:country_code] = "oc_us_ca"
+      Card::Env.params[:country_code] = california_id
       is_expected.to contain_exactly google_fields
     end
 
@@ -26,19 +30,19 @@ RSpec.describe Card::Set::Self::WikirateCompany::Factories do
 
     example "search by name and country" do
       Card::Env.params[:keyword] = "oog"
-      Card::Env.params[:country_code] = "oc_us_ca"
+      Card::Env.params[:country_code] = california_id
       is_expected.to contain_exactly google_fields
     end
 
     example "search by address and country" do
       Card::Env.params[:keyword] = "Mountain"
-      Card::Env.params[:country_code] = "oc_us_ca"
+      Card::Env.params[:country_code] = california_id
       is_expected.to contain_exactly google_fields
     end
 
     example "search with no result" do
       Card::Env.params[:keyword] = "empty result"
-      Card::Env.params[:country_code] = "oc_us_ca"
+      Card::Env.params[:country_code] = california_id
       is_expected.to eq []
     end
   end
