@@ -28,7 +28,7 @@ format :html do
   end
 
   view :filter_company_group_formgroup, cache: :never do
-    select_filter :company_group
+    multiselect_filter :company_group
   end
 
   view :filter_company_name_formgroup, cache: :never do
