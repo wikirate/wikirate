@@ -101,8 +101,10 @@ event :update_oc_mapping_due_to_wikipedia_entry, :integrate,
   return unless oc&.company_number&.present?
 
   add_left_subcard :open_corporates, oc.company_number, :phrase
-  add_left_subcard :incorporation, jurisdiction_name(oc.incorporation_jurisdiction_code)
-  add_left_subcard :headquarters, jurisdiction_name(oc.jurisdiction_code)
+  add_left_subcard :incorporation,
+                   ::OpenCorporates::RegionCache(oc.incorporation_jurisdiction_code)
+  add_left_subcard :headquarters,
+                   ::OpenCorporates::RegionCache(oc.jurisdiction_code)
 end
 
 def add_left_subcard fieldname, content, type=:pointer
@@ -111,12 +113,6 @@ end
 
 def needs_oc_mapping?
   (l = left) && l.open_corporates.blank?
-end
-
-# TODO: reduce duplicated code
-def jurisdiction_name oc_code
-  oc_code = "oc_#{oc_code}" unless oc_code.to_s.match?(/^oc_/)
-  Card.fetch_name oc_code.to_sym
 end
 
 format :html do
