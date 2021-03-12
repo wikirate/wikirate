@@ -1,3 +1,7 @@
+def imported?
+  lookup.imported || false
+end
+
 def researched_value?
   researched? || (hybrid? && answer&.answer_id)
 end

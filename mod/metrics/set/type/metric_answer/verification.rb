@@ -1,7 +1,3 @@
-def imported?
-  answer.imported || false
-end
-
 # @return [Integer] current verification index
 def verification
   if researched_value?
