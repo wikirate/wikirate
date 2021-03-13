@@ -110,3 +110,9 @@ format :csv do
       card.relationship_relation(limit: nil).map(&:csv_line).join
   end
 end
+
+format :json do
+  def item_cards
+    card.relationship_answers
+  end
+end
