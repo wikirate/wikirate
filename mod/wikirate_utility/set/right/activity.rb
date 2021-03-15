@@ -11,7 +11,7 @@ def accounted?
 end
 
 format :html do
-  view :core do
+  view :core, cache: :never do
     acts_layout card.user_acts, :absolute
   end
 

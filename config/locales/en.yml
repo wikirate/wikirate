@@ -11,14 +11,9 @@ en:
           trillion: T
           quadrillion: Q
 
-  mod:
-    card-mod-list:
-      set:
-        type:
-          mirrored_list:
-            cardtype_right: must have a cardtype name as right part
-            conflict_item_type: name conflicts with list items' type; delete content first
-            only_type_allowed: "%{cardname} has wrong cardtype; only cards of type %{cardtype} are allowed"
-          mirror_list:
-            cardtype_right: must have a cardtype name as right part
-            only_type: "%{cardname} has wrong cardtype; only cards of type %{cardtype} are allowed"
+
+  card-mod-list:
+    cardtype_right: must have a cardtype name as right part
+    conflict_item_type: name conflicts with list items' type; delete content first
+    only_type_allowed: "%{cardname} has wrong cardtype; only cards of type %{cardtype} are allowed"
+    only_type: "%{cardname} has wrong cardtype; only cards of type %{cardtype} are allowed"
