@@ -175,10 +175,15 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   z-index: 0 !important;
 }
 
+.RIGHT-formula.d0-card-body {
+  white-space: normal;
+}
+
 .standard-formula-core {
   background: #fafafa;
-  padding: 1.5em;
+  padding: .75em 1.5em;
   width: 100%;
+  margin: 0.5em 0;
   .formula-equals {
     font-weight: bold;
     font-size: 1.5em;
@@ -186,8 +191,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   .formula-body {
     white-space: pre-wrap;
     font-size: 1.2em;
-    .bar, .expanded-bar, .bar-view, expanded-bar-view {
+    .bar-view, expanded-bar-view {
       white-space: normal;
+      margin: 0.5em;
       .bar-body {
         background: #fff;
       }
