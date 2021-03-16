@@ -2,6 +2,7 @@ class Card
   # method shared in many queries.
   module WikirateFilterQuery
     def topic_cql topic
+      topic = Array.wrap(topic).unshift "in"
       add_to_cql :right_plus, [Card::WikirateTopicID, { refer_to: topic }]
     end
     alias wikirate_topic_cql topic_cql
