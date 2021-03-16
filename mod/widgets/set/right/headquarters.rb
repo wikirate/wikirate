@@ -16,7 +16,9 @@ def needs_oc_mapping?
 end
 
 event :update_oc_mapping_due_to_headquarters_entry, :integrate,
-      on: :save, when: :needs_oc_mapping?, skip: :allowed do
+      on: :save, when: :needs_oc_mapping?, trigger: :required do
+      # This was previously "skip: :allowed", but then we realized the old CERTH
+      # server was not actually handling these requests any more.
   prefixed_oc_code = oc_code.start_with?("oc_") ? oc_code : "oc_#{oc_code}"
   oc = ::OpenCorporates::MappingApi
        .fetch_oc_company_number company_name: name.left,
