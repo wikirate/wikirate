@@ -16,7 +16,7 @@ def needs_oc_mapping?
   # Not doing mapping for now
   # We realized the old CERTH server was not actually handling these requests any more.
 
-  (l = left) && l.open_corporates.blank?
+  # (l = left) && l.open_corporates.blank?
 end
 
 event :update_oc_mapping_due_to_headquarters_entry, :integrate,

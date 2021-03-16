@@ -11,11 +11,10 @@
 #     config.wolfram_api_key = "adfsadf-asdfsad-asdfsa-dfsdfds"
 #
 # Soon we would like to automate the update...
-
-
+#
 require File.expand_path "../../config/environment", __FILE__
 
-Card::Auth.as_bot
+Card::Auth.signin "Ethan McCutchen"
 
 def region_fields field
   Card.search(left: { type: "Region" }, right: field).map do |card|
@@ -30,9 +29,8 @@ end
 
 puts <<-WOLFRAM
 
-
-ILORegion = #{region_association "ILO Region"};
-Country = #{region_association "Country"};
+ILORegion = #{region_association 'ILO Region'};
+Country = #{region_association 'Country'};
 Zeros = Function[a, Count[a, 0]];
 Unknowns = Function[a, Count[a, "Unknown"]];
 
