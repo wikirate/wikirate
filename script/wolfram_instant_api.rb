@@ -33,22 +33,24 @@ puts <<-WOLFRAM
 
 ILORegion = #{region_association "ILO Region"};
 Country = #{region_association "Country"};
+Zeros = Function[a, Count[a, 0]];
+Unknowns = Function[a, Count[a, "Unknown"]];
 
 CloudDeploy[
   APIFunction[
     {"expr"->"String"},
     ResponseForm[
-      ( 
-        Zeros = Function[a, Count[a, 0]];
-        Unknowns = Function[a, Count[a, "Unknown"]];
+      (
+        Zeros = Zeros;
+        Unknowns = Unknowns;
         ILORegion = ILORegion;
-        Country = Country;        
+        Country = Country;
         ToExpression[#expr]
       ), "JSON"
     ] &,
     "JSON"
-  ],  
-  Permissions -> "Public"   
+  ],
+  Permissions -> "Public"
 ]
 
 WOLFRAM
