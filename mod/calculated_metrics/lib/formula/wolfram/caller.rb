@@ -60,7 +60,7 @@ module Formula
 
       def syntax_error_response
         # Are we sure this is always a syntax error?
-        return unless (messages = body["MessagesText"])
+        return unless (messages = response_body["MessagesText"])
 
         messages.unshift "Formula Syntax Error: bad Wolfram syntax"
         messages.each { |message| log_error message }
