@@ -112,7 +112,10 @@ def add_left_subcard fieldname, content, type=:pointer
 end
 
 def needs_oc_mapping?
-  (l = left) && l.open_corporates.blank?
+  return false
+  # skip until oc api is fixed
+
+  # (l = left) && l.open_corporates.blank?
 end
 
 format :html do
