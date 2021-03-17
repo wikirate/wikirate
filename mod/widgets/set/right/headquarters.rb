@@ -12,11 +12,16 @@ end
 
 # if we're assuming left is a company, this should arguably be in a type_plus_right set
 def needs_oc_mapping?
-  (l = left) && l.open_corporates.blank?
+  return false
+  # Not doing mapping for now
+  # We realized the old CERTH server was not actually handling these requests any more.
+
+  # (l = left) && l.open_corporates.blank?
 end
 
 event :update_oc_mapping_due_to_headquarters_entry, :integrate,
       on: :save, when: :needs_oc_mapping?, skip: :allowed do
+
   prefixed_oc_code = oc_code.start_with?("oc_") ? oc_code : "oc_#{oc_code}"
   oc = ::OpenCorporates::MappingApi
        .fetch_oc_company_number company_name: name.left,
