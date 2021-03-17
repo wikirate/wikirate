@@ -180,7 +180,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .standard-formula-core {
-  background: #fafafa;
+  background: #f2f2f2;
   padding: .75em 1.5em;
   width: 100%;
   margin: 0.5em 0;
@@ -189,10 +189,8 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     font-size: 1.5em;
   }
   .formula-body {
-    white-space: pre-wrap;
     font-size: 1.2em;
     .bar-view, .expanded_bar-view {
-      white-space: normal;
       margin: 0.5em;
       .bar-body {
         background: #fff;

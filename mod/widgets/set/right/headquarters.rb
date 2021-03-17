@@ -12,7 +12,7 @@ end
 
 # if we're assuming left is a company, this should arguably be in a type_plus_right set
 def needs_oc_mapping?
-  return false
+  false
   # Not doing mapping for now
   # We realized the old CERTH server was not actually handling these requests any more.
 
