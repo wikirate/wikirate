@@ -33,7 +33,7 @@ puts <<~WOLFRAM
   Country = #{region_association 'Country'};
   Zeros = Function[a, Count[a, 0]];
   Unknowns = Function[a, Count[a, "Unknown"]];
-  
+
   CloudDeploy[
     APIFunction[
       {"expr"->"String"},
