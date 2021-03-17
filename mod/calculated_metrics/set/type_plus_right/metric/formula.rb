@@ -51,7 +51,7 @@ format :html do
     render card.metric_card.formula_core
   end
 
-  view :standard_formula_core, template: :haml
+  view :standard_formula_core, template: :haml, cache: :never
 
   def default_nest_view
     :bar
