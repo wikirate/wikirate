@@ -175,18 +175,27 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   z-index: 0 !important;
 }
 
-.titled-view.TYPE_PLUS_RIGHT-metric-formula .TYPE_PLUS_RIGHT-metric-formula.d0-card-content {
-  white-space: inherit;
-  display: inline-block;
+.RIGHT-formula.d0-card-body {
+  white-space: normal;
+}
+
+.standard-formula-core {
+  background: #f2f2f2;
+  padding: .75em 1.5em;
   width: 100%;
-  .thumbnail {
-    background: #fafafa;
-    border: 1px solid #eee;
-    padding: 0.25rem;
-  }
-  > span {
-    font-size: 1.5em;
+  margin: 0.5em 0;
+  .formula-equals {
     font-weight: bold;
+    font-size: 1.5em;
+  }
+  .formula-body {
+    font-size: 1.2em;
+    .bar-view, .expanded_bar-view {
+      margin: 0.5em;
+      .bar-body {
+        background: #fff;
+      }
+    }
   }
 }
 
