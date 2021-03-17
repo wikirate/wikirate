@@ -80,8 +80,6 @@ format :html do
     haml :details_top
   end
 
-
-
   view :details_sidebar do
     wrap { filtering(".RIGHT-answer ._filter-widget") { haml :details_sidebar } }
   end
