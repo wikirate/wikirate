@@ -5,11 +5,6 @@ module Formula
     include Unknowns
     include Validation
 
-    FUNC_DEFS = ["Zeros[x_] := Count[x, 0]",
-                 'Unknowns[x_] := Count[x, "Unknown"]'].freeze
-
-    COMMAND_JOINT = ";".freeze
-
     # INPUT_CAST = lambda { |val| val == 'Unknown' ? 'Unknown'.to_f }
     # To reduce the Wolfram Cloud calls the Wolfram calculator
     # calculates all values at once when it compiles the formula and saves
@@ -39,17 +34,13 @@ module Formula
     end
 
     def wolfram_expression
-      with_function_defs "Apply[(#{wl_formula})&,<| #{wl_input} |>,{2}]"
+      "Apply[(#{wl_formula})&,<| #{wl_input} |>,{2}]"
     end
 
     # @return Hash (parsed JSON from "Result" of body section)
     #   if there is an error, returns False and errors are added to @errors array
 
     protected
-
-    def with_function_defs wl_input
-      (FUNC_DEFS + [wl_input]).join COMMAND_JOINT
-    end
 
     # Sends a Wolfram language expression to the Wolfram cloud. Fetches and
     # validates the result.
