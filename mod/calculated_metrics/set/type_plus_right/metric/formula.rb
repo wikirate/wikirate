@@ -51,12 +51,10 @@ format :html do
     render card.metric_card.formula_core
   end
 
-  view :standard_formula_core do
-    "<span>=</span><span>#{process_content _render_raw}</span>"
-  end
+  view :standard_formula_core, template: :haml, cache: :never
 
   def default_nest_view
-    :formula_thumbnail
+    :bar
   end
 end
 

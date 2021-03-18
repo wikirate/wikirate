@@ -94,3 +94,7 @@ $(document).ready ->
   # the "View Methodology" button
   $("body").on "click", "._methodology-tab", ->
     $("#research-details .nav-tabs > li:nth-child(2) a").tab("show")
+
+  $("body").on "click", "._reset_sourcebox", ->
+    $(this).hide()
+    $("#source_search_term").val("")
