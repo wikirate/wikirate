@@ -1,3 +1,241 @@
+PATH
+  remote: vendor/card-mods
+  specs:
+    card-mod-bookmarks (1.1)
+      card
+    card-mod-counts (0.1)
+      card
+    card-mod-csv_import (0.9)
+      card
+    card-mod-fulltext (0.1)
+      card
+    card-mod-new_relic (1.1)
+      card
+      decko
+      newrelic_rpm
+    card-mod-pdfjs (1.1)
+      card
+    card-mod-solid_cache (0.1)
+      card
+
+PATH
+  remote: vendor/decko-cap
+  specs:
+    decko-cap (0.1)
+      airbrussh
+      bcrypt_pbkdf
+      capistrano
+      capistrano-bundler
+      capistrano-git-with-submodules (~> 2.0)
+      capistrano-maintenance
+      capistrano-passenger
+      capistrano-rvm
+      ed25519
+
+PATH
+  remote: vendor/decko
+  specs:
+    card (1.101.2)
+      activerecord-import (~> 1.0)
+      bootstrap4-kaminari-views (~> 1.0)
+      cardname (= 0.11.2)
+      coderay (~> 1.1)
+      coffee-script (~> 2.4)
+      colorize (~> 0.8)
+      diff-lcs (~> 1.3)
+      haml (~> 5.0)
+      jwt (~> 2.2)
+      kaminari (~> 1.0)
+      rails (~> 6.1)
+      rake (<= 12.3.0)
+      sassc (~> 2.0)
+      sprockets (~> 3.7)
+      uglifier (~> 3.2)
+    card-mod-account (0.11.2)
+      card (= 1.101.2)
+      card-mod-email (= 0.11.2)
+      card-mod-list (= 0.11.2)
+      card-mod-permissions (= 0.11.2)
+    card-mod-ace_editor (0.11.2)
+      card (= 1.101.2)
+      card-mod-edit (= 0.11.2)
+      card-mod-script (= 0.11.2)
+    card-mod-bar_and_box (0.11.2)
+      card (= 1.101.2)
+      card-mod-style (= 0.11.2)
+    card-mod-bootstrap (0.11.2)
+      card (= 1.101.2)
+      card-mod-bar_and_box (= 0.11.2)
+      card-mod-edit (= 0.11.2)
+      card-mod-script (= 0.11.2)
+      card-mod-style (= 0.11.2)
+    card-mod-carrierwave (0.11.2)
+      card (= 1.101.2)
+      card-mod-history (= 0.11.2)
+      card-mod-permissions (= 0.11.2)
+      carrierwave (= 2.0.2)
+      mini_magick (~> 4.2)
+    card-mod-collection (0.11.2)
+      card (= 1.101.2)
+    card-mod-comment (0.11.2)
+      card (= 1.101.2)
+      card-mod-permissions (= 0.11.2)
+    card-mod-content (0.11.2)
+      card (= 1.101.2)
+    card-mod-date (0.11.2)
+      card (= 1.101.2)
+    card-mod-defaults (0.11.2)
+      card (= 1.101.2)
+      card-mod-account (= 0.11.2)
+      card-mod-ace_editor (= 0.11.2)
+      card-mod-bar_and_box (= 0.11.2)
+      card-mod-bootstrap (= 0.11.2)
+      card-mod-carrierwave (= 0.11.2)
+      card-mod-comment (= 0.11.2)
+      card-mod-date (= 0.11.2)
+      card-mod-delayed_job (= 0.11.2)
+      card-mod-follow (= 0.11.2)
+      card-mod-google_analytics (= 0.11.2)
+      card-mod-help (= 0.11.2)
+      card-mod-history (= 0.11.2)
+      card-mod-integrate (= 0.11.2)
+      card-mod-layout (= 0.11.2)
+      card-mod-legacy (= 0.11.2)
+      card-mod-list (= 0.11.2)
+      card-mod-machines (= 0.11.2)
+      card-mod-markdown (= 0.11.2)
+      card-mod-permissions (= 0.11.2)
+      card-mod-prosemirror_editor (= 0.11.2)
+      card-mod-recaptcha (= 0.11.2)
+      card-mod-rules (= 0.11.2)
+      card-mod-search (= 0.11.2)
+      card-mod-tinymce_editor (= 0.11.2)
+    card-mod-delayed_job (0.11.2)
+      card (= 1.101.2)
+      daemons
+      delayed_job_active_record (>= 4.1)
+      delayed_job_web
+    card-mod-edit (0.11.2)
+      card (= 1.101.2)
+    card-mod-email (0.11.2)
+      card (= 1.101.2)
+    card-mod-follow (0.11.2)
+      card (= 1.101.2)
+      card-mod-carrierwave (= 0.11.2)
+    card-mod-format (0.11.2)
+      card (= 1.101.2)
+      card-mod-content (= 0.11.2)
+    card-mod-google_analytics (0.11.2)
+      card (= 1.101.2)
+      staccato
+    card-mod-help (0.11.2)
+      card (= 1.101.2)
+    card-mod-history (0.11.2)
+      card (= 1.101.2)
+    card-mod-integrate (0.11.2)
+      card (= 1.101.2)
+    card-mod-layout (0.11.2)
+      card (= 1.101.2)
+      card-mod-account (= 0.11.2)
+      card-mod-session (= 0.11.2)
+    card-mod-legacy (0.11.2)
+      card (= 1.101.2)
+    card-mod-list (0.11.2)
+      card (= 1.101.2)
+      card-mod-collection (= 0.11.2)
+      card-mod-format (= 0.11.2)
+    card-mod-machines (0.11.2)
+      card (= 1.101.2)
+      card-mod-carrierwave (= 0.11.2)
+      card-mod-format (= 0.11.2)
+      card-mod-list (= 0.11.2)
+      card-mod-virtual (= 0.11.2)
+    card-mod-markdown (0.11.2)
+      card (= 1.101.2)
+      kramdown
+    card-mod-monkey (0.11.2)
+      better_errors
+      card (= 1.101.2)
+      colorize
+      html2haml
+      pry-byebug
+      pry-rails
+      pry-rescue
+      pry-stack_explorer
+      rubocop (= 0.88)
+    card-mod-permissions (0.11.2)
+      card (= 1.101.2)
+    card-mod-prosemirror_editor (0.11.2)
+      card (= 1.101.2)
+      card-mod-edit (= 0.11.2)
+    card-mod-recaptcha (0.11.2)
+      card (= 1.101.2)
+      recaptcha (~> 4.13.1)
+    card-mod-rules (0.11.2)
+      card (= 1.101.2)
+      card-mod-format (= 0.11.2)
+      card-mod-search (= 0.11.2)
+    card-mod-script (0.11.2)
+      card (= 1.101.2)
+      card-mod-list (= 0.11.2)
+      card-mod-machines (= 0.11.2)
+    card-mod-search (0.11.2)
+      card (= 1.101.2)
+      card-mod-collection (= 0.11.2)
+    card-mod-session (0.11.2)
+      card (= 1.101.2)
+      card-mod-list (= 0.11.2)
+    card-mod-style (0.11.2)
+      card (= 1.101.2)
+      card-mod-list (= 0.11.2)
+      card-mod-machines (= 0.11.2)
+    card-mod-tinymce_editor (0.11.2)
+      card (= 1.101.2)
+      card-mod-edit (= 0.11.2)
+    card-mod-virtual (0.11.2)
+      card (= 1.101.2)
+    cardname (0.11.2)
+      activesupport (~> 6)
+      htmlentities (~> 4.3)
+    decko (0.11.2)
+      card (= 1.101.2)
+      card-mod-defaults (= 0.11.2)
+    decko-cucumber (0.11.2)
+      capybara (~> 2.18)
+      capybara-puma
+      chromedriver-helper (~> 2.1.0)
+      cucumber (~> 3.1)
+      cucumber-expressions
+      cucumber-rails
+      database_cleaner (~> 1.5)
+      email_spec
+      launchy
+      rspec
+      selenium-webdriver (= 3.141.0)
+      simplecov (~> 0.17.1)
+    decko-cypress (0.11.2)
+      cypress-on-rails (~> 1.4)
+    decko-profile (0.11.2)
+      ruby-prof
+    decko-rspec (0.11.2)
+      i18n-tasks (~> 0.9.5)
+      minitest
+      nokogumbo
+      rails-controller-testing
+      rr
+      rspec
+      rspec-html-matchers (= 0.9.1)
+      rspec-rails (~> 4.0.0.beta2)
+      rubocop-rspec
+      simplecov (~> 0.17.1)
+      spork (>= 0.9)
+      timecop
+    decko-spring (0.11.2)
+      listen (= 3.0.6)
+      spring
+      spring-commands-cucumber
+      spring-commands-rspec
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -64,8 +302,14 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    airbrussh (1.4.0)
+      sshkit (>= 1.6.1, != 1.7.0)
     ansi (1.5.0)
+    archive-zip (0.12.0)
+      io-like (~> 0.3.0)
     ast (2.4.2)
+    backports (3.20.2)
+    bcrypt_pbkdf (1.1.0)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -79,6 +323,22 @@ GEM
     bulk_insert (1.9.0)
       activerecord (>= 3.2.0)
     byebug (11.1.3)
+    capistrano (3.16.0)
+      airbrussh (>= 1.0.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (2.0.1)
+      capistrano (~> 3.1)
+    capistrano-git-with-submodules (2.0.4)
+      capistrano (~> 3.7)
+    capistrano-maintenance (1.2.1)
+      capistrano (>= 3.0)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     capybara (2.18.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -86,37 +346,21 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
-    card (1.101.1)
-      activerecord-import (~> 1.0)
-      bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.11.1)
-      coderay (~> 1.1)
-      coffee-script (~> 2.4)
-      colorize (~> 0.8)
-      diff-lcs (~> 1.3)
-      haml (~> 5.0)
-      jwt (~> 2.2)
-      kaminari (~> 1.0)
-      rails (~> 6.1)
-      rake (<= 12.3.0)
-      sassc (~> 2.0)
-      sprockets (~> 3.7)
-      uglifier (~> 3.2)
-    card-mod-monkey (0.11.1)
-      better_errors
-      card (= 1.101.1)
-      colorize
-      html2haml
-      pry-byebug
-      pry-rails
-      pry-rescue
-      pry-stack_explorer
-      rubocop (= 0.88)
-    cardname (0.11.1)
-      activesupport (~> 6)
-      htmlentities (~> 4.3)
+    capybara-puma (1.0.1)
+      capybara
+      puma
+    carrierwave (2.0.2)
+      activemodel (>= 5.0.0)
+      activesupport (>= 5.0.0)
+      addressable (~> 2.6)
+      image_processing (~> 1.1)
+      mimemagic (>= 0.3.0)
+      mini_mime (>= 0.1.3)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (2.1.1)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
     coderay (1.1.3)
     coffee-script (2.4.1)
       coffee-script-source
@@ -129,24 +373,55 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    cucumber (3.2.0)
+      builder (>= 2.1.2)
+      cucumber-core (~> 3.2.0)
+      cucumber-expressions (~> 6.0.1)
+      cucumber-wire (~> 0.0.1)
+      diff-lcs (~> 1.3)
+      gherkin (~> 5.1.0)
+      multi_json (>= 1.7.5, < 2.0)
+      multi_test (>= 0.1.2)
+    cucumber-core (3.2.1)
+      backports (>= 3.8.0)
+      cucumber-tag_expressions (~> 1.1.0)
+      gherkin (~> 5.0)
+    cucumber-expressions (6.0.1)
+    cucumber-rails (2.2.0)
+      capybara (>= 2.18, < 4)
+      cucumber (>= 3.0.2, < 6)
+      mime-types (~> 3.2)
+      nokogiri (~> 1.8)
+      rails (>= 5.0, < 7)
+    cucumber-tag_expressions (1.1.1)
+    cucumber-wire (0.0.1)
     curb (0.9.11)
     cypress-on-rails (1.9.1)
       rack
+    daemons (1.3.1)
     dalli (2.7.11)
+    database_cleaner (1.99.0)
     debug_inspector (1.0.0)
-    decko-cypress (0.11.2)
-      cypress-on-rails (~> 1.4)
-    decko-profile (0.11.2)
-      ruby-prof
-    decko-spring (0.11.2)
-      listen (= 3.0.6)
-      spring
-      spring-commands-cucumber
-      spring-commands-rspec
+    delayed_job (4.1.9)
+      activesupport (>= 3.0, < 6.2)
+    delayed_job_active_record (4.1.5)
+      activerecord (>= 3.0, < 6.2)
+      delayed_job (>= 3.0, < 5)
+    delayed_job_web (1.4.4)
+      activerecord (> 3.0.0)
+      delayed_job (> 2.0.3)
+      rack-protection (>= 1.5.5)
+      sinatra (>= 1.4.4)
     descriptive_statistics (2.5.1)
     diff-lcs (1.4.4)
+    docile (1.3.5)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    ed25519 (1.2.4)
+    email_spec (2.2.0)
+      htmlentities (~> 4.3.3)
+      launchy (~> 2.1)
+      mail (~> 2.7)
     erubi (1.10.0)
     erubis (2.7.0)
     ethon (0.12.0)
@@ -171,11 +446,13 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
+    gherkin (5.1.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
+    highline (2.0.3)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -187,12 +464,26 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
+    i18n-tasks (0.9.34)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      erubi
+      highline (>= 2.0.0)
+      i18n
+      parser (>= 2.2.3.0)
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      terminal-table (>= 1.5.1)
     image_info (1.2.2)
       addressable (~> 2.0)
       image_size (~> 2.0)
       typhoeus (~> 1.0)
+    image_processing (1.12.1)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     image_size (2.1.0)
     interception (0.5)
+    io-like (0.3.1)
     ipaddress (0.8.3)
     iso8601 (0.9.1)
     json (2.5.1)
@@ -209,6 +500,10 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kramdown (2.3.1)
+      rexml
+    launchy (2.5.0)
+      addressable (~> 2.7)
     libv8 (3.16.14.19)
     link_thumbnailer (3.4.0)
       activesupport (>= 3.0)
@@ -233,21 +528,31 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.0225)
     mimemagic (0.3.5)
+    mini_magick (4.11.0)
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
     minitest (5.14.4)
     multi_json (1.15.0)
+    multi_test (0.1.2)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.3)
     net-http-persistent (4.0.1)
       connection_pool (~> 2.2)
+    net-scp (3.0.0)
+      net-ssh (>= 2.6.5, < 7.0.0)
+    net-ssh (6.1.0)
     net_http_timeout_errors (0.3.5)
     netrc (0.11.0)
+    newrelic_rpm (6.15.0)
     nio4r (2.5.7)
     nokogiri (1.11.2)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
       nokogiri (~> 1.5)
+    nokogumbo (2.0.4)
+      nokogiri (~> 1.8, >= 1.8.4)
     oga (3.3)
       ast
       ruby-ll (~> 2.1)
@@ -286,6 +591,8 @@ GEM
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
+    rack-protection (2.1.0)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.3)
@@ -303,11 +610,18 @@ GEM
       bundler (>= 1.15.0)
       railties (= 6.1.3)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails-i18n (6.0.0)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 7)
     rails_compatibility (0.0.3)
       activerecord (>= 3)
     railties (6.1.3)
@@ -321,6 +635,8 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    recaptcha (4.13.2)
+      json
     ref (2.0.0)
     regexp_parser (2.1.1)
     rest-client (2.1.0)
@@ -332,6 +648,31 @@ GEM
     roo (2.8.3)
       nokogiri (~> 1)
       rubyzip (>= 1.3.0, < 3.0.0)
+    rr (1.2.1)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
+    rspec-core (3.10.1)
+      rspec-support (~> 3.10.0)
+    rspec-expectations (3.10.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-html-matchers (0.9.1)
+      nokogiri (~> 1)
+      rspec (>= 3.0.0.a, < 4)
+    rspec-mocks (3.10.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-rails (4.0.2)
+      actionpack (>= 4.2)
+      activesupport (>= 4.2)
+      railties (>= 4.2)
+      rspec-core (~> 3.10)
+      rspec-expectations (~> 3.10)
+      rspec-mocks (~> 3.10)
+      rspec-support (~> 3.10)
+    rspec-support (3.10.2)
     rubocop (0.88.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
@@ -344,6 +685,8 @@ GEM
     rubocop-ast (0.5.1)
       parser (>= 2.7.1.5)
     rubocop-decko (0.2)
+    rubocop-rspec (1.43.2)
+      rubocop (~> 0.87)
     ruby-jmeter (3.1.08)
       nokogiri
       rest-client
@@ -352,6 +695,9 @@ GEM
       ast
     ruby-prof (1.4.3)
     ruby-progressbar (1.11.0)
+    ruby-vips (2.1.0)
+      ffi (~> 1.12)
+    ruby2_keywords (0.0.4)
     ruby_parser (3.15.1)
       sexp_processor (~> 4.9)
     rubyzip (1.3.0)
@@ -362,6 +708,17 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
     sexp_processor (4.15.2)
+    simplecov (0.17.1)
+      docile (~> 1.1)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
+    sinatra (2.1.0)
+      mustermann (~> 1.0)
+      rack (~> 2.2)
+      rack-protection (= 2.1.0)
+      tilt (~> 2.0)
+    spork (0.9.2)
     spring (2.1.1)
     spring-commands-cucumber (1.0.1)
       spring (>= 0.9.1)
@@ -374,8 +731,14 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sshkit (1.21.2)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
+    staccato (0.5.3)
     statistics2 (0.54)
     temple (0.8.2)
+    terminal-table (3.0.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -415,12 +778,25 @@ PLATFORMS
 DEPENDENCIES
   addressable
   bulk_insert
+  card-mod-bookmarks!
+  card-mod-counts
+  card-mod-csv_import
+  card-mod-defaults
+  card-mod-delayed_job
+  card-mod-fulltext
   card-mod-monkey
+  card-mod-new_relic
+  card-mod-pdfjs
+  card-mod-solid_cache
   company-mapping
   curb
   dalli
+  decko!
+  decko-cap!
+  decko-cucumber
   decko-cypress
   decko-profile
+  decko-rspec
   decko-spring
   descriptive_statistics
   fog-aws
