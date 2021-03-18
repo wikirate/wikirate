@@ -84,6 +84,10 @@ format :html do
     wrap { filtering(".RIGHT-answer ._filter-widget") { haml :details_sidebar } }
   end
 
+  view :full_details do
+    render_details_sidebar hide: :details_sidebar_closer
+  end
+
   view :company_details_sidebar do
     render_details_sidebar hide: :metric_header
   end
@@ -92,6 +96,8 @@ format :html do
   view :metric_details_sidebar do
     render_details_sidebar hide: :company_header
   end
+
+  view :details_sidebar_closer, template: :haml
 
   view :company_header do
     nest card.company_card, view: :shared_header
