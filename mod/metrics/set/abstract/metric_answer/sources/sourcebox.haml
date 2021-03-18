@@ -4,15 +4,15 @@
                               card: { type_id: Card::MetricAnswerID }) }
     = text_field_tag :source_search_term, nil, placeholder: "http://",
                                                class: "p-2 w-50",
-                                               value: params[:source_search_term]
-    = submit_button text: "#{fa_icon :globe} Add New Source".html_safe,
+                                               value: source_search_term
+    - if source_results?
+      = submit_button text: fa_icon("times"),
+                      class: "_reset_sourcebox",
+                      value: "reset",
+                      situation: "outline-secondary"
+    = submit_button text: "#{fa_icon :globe} Find or Add Source".html_safe,
                     class: "_sourcebox",
                     value: "search",
                     situation: "outline-primary"
-
-    = submit_button text: fa_icon("sync-alt"),
-                    value: "reset",
-                    situation: "outline-primary"
-
 = render_flash
 //= render_freshen_form

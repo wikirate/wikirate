@@ -18,7 +18,7 @@ format :html do
 
   # overridden in Researched
   view :main_details do
-    [nest_formula, nest_about, nest_methodology]
+    [nest_about, nest_formula, nest_methodology]
   end
 
   def nest_about
