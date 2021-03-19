@@ -77,14 +77,6 @@ module Formula
       end
     end
 
-    def formula_with_nests input
-      input_enum = input.each
-      replace_nests do |index|
-        yield input_enum.next, @parser.input_cards[index], index
-      end
-    end
-
-
     def formula
       @formula ||= @parser.formula
     end
@@ -104,6 +96,13 @@ module Formula
     end
 
     private
+
+    def formula_with_nests input
+      input_enum = input.each
+      replace_nests do |index|
+        yield input_enum.next, @parser.input_cards[index], @parser.year_options[index]
+      end
+    end
 
     def initialize_input
       if @parser.input_cards.any?(&:nil?)

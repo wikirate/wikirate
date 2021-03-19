@@ -23,8 +23,9 @@ event :create_metric_answers, :integrate_with_delay,
   metric_card.deep_answer_update true
 end
 
-def calculator
-  calculator_class.new parser, &method(:normalize_value)
+def calculator parser_method=nil
+  calculator_class.new (parser_method ? parser.send(parser_method) : parser),
+                       &method(:normalize_value)
 end
 
 def calculator_class
