@@ -3,19 +3,15 @@
 module Formula
   # Calculates the values of a formula
   #
-  # Calculator.new(formula_card)
-  # The formula_card must respond to:
-  #   #clean_formula: a String with just nests and operators
-  #   #input_cards: array of cards
-  #   #company_options: array of the same size as input card with a company option string
-  #                    for each input card
-  #   #year_options: array of the same size as input card with a year option string
-  #   #              for each input card
+  # Calculator.new(parser, value_normalizer)
   class Calculator
     INPUT_CAST = ->(val) { val }
 
     attr_reader :errors, :input
 
+    # All the answers a given calculation depends on
+    # (same opts as #result)
+    # @return [Array] array of Answer objects
     delegate :answers, to: :input
 
     def initialize parser, &value_normalizer
@@ -30,7 +26,7 @@ module Formula
     # @param [Hash] opts
     # @option opts [String] :company
     # @option opts [String] :year
-    # @return [Hash] { year => { company => value } }
+    # @return [Hash] { year => { company_id => value } }
     def result opts={}
       result_hash do |result|
         each_input(opts) do |input, company, year|
@@ -40,13 +36,13 @@ module Formula
       end
     end
 
-    def each_input opts
-      @input.each(opts) do |input, company, year|
-        yield input, company, year
-      end
-    end
-
-    def answers_to_be_calculated opts={}
+    # The scope of results that would be calculated for given result options
+    # (but without the actual calculated value)
+    # @param [Hash] opts
+    # @option opts [String] :company
+    # @option opts [String] :year
+    # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
+    def result_scope opts={}
       [].tap do |res|
         each_input opts do |_input, company_id, year|
           res << [company_id, year]
@@ -54,19 +50,26 @@ module Formula
       end
     end
 
-    def input_data company, year
+    # All the inputs for a given answer (the calculator implies the metric)
+    # @param [Integer, String, Card] company (any company mark)
+    # @param [String] year four-digit year
+    # @return [Array] [[metric_card_1, value_1, year_options_1], [metric_card2...], ...]
+    def inputs_for company, year
       @parser.input_cards.zip(
         Array.wrap(@input.input_for(company, year)), @parser.year_options
       )
     end
 
+    # The formula for a given answer (the calculator implies the metric)
+    # @param [Integer, String, Card] company (any company mark)
+    # @param [String] year four-digit year
     # @param [Proc] block . Block that can handle three args:
     #     1: raw input value
     #     2. input metric card
-    #     3. the year index
+    #     3. the year option
     # @return [String] the formula with nests replaced by the result of the given block
     def formula_for company, year, &block
-      input = @input.input_for(company, year)
+      input = @input.input_for company, year
       case input
       when :unknown
         "Unknown"
@@ -81,21 +84,30 @@ module Formula
       @formula ||= @parser.formula
     end
 
-    def validate_formula
+    # @return list of errors
+    def detect_errors
       @errors = []
       compile_formula
       @errors
     end
 
-    def self.remove_nests content
-      content.gsub(/{{[^}]*}}/, "")
-    end
+    class << self
+      def remove_nests content
+        content.gsub(/{{[^}]*}}/, "")
+      end
 
-    def self.remove_quotes content
-      content.gsub(/"[^"]+"/, "")
+      def remove_quotes content
+        content.gsub(/"[^"]+"/, "")
+      end
     end
 
     private
+
+    def each_input opts
+      @input.each(opts) do |input, company, year|
+        yield input, company, year
+      end
+    end
 
     def formula_with_nests input
       input_enum = input.each

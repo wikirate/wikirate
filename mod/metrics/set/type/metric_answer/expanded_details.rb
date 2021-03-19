@@ -67,8 +67,8 @@ format :html do
     end
   end
 
-  def input_value_link value, metric, year_option
-    link_to_card [metric,
+  def input_value_link value, input_card, year_option
+    link_to_card [input_card,
                   card.company,
                   input_value_link_year(value, year_option)].compact,
                  Array.wrap(value).join(", "),
