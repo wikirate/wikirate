@@ -25,14 +25,6 @@ module Formula
       @errors = []
     end
 
-    def initialize_input
-      if @parser.input_cards.any?(&:nil?)
-        InvalidInput.new
-      else
-        Input.new @parser, &self.class::INPUT_CAST
-      end
-    end
-
     # Calculates answers
     # If a company or a year is given it calculates only answers only for those
     # @param [Hash] opts
@@ -68,30 +60,30 @@ module Formula
       )
     end
 
-    # @return [String] the formula with nests replaced by the input values
-    #   A block can be used to format the input values
-    def formula_for company, year
-      input_enum = @input.input_for(company, year).each
-      replace_nests do
-        block_given? ? yield(input_enum.next) : input_enum.next
-      end
-    end
-
-    # provides (in contrast to formula_for) also the input metric and index for every input
-    # and not only the input value for formatting the formula
+    # @param [Proc] block . Block that can handle three args:
+    #     1: raw input value
+    #     2. input metric card
+    #     3. the year index
     # @return [String] the formula with nests replaced by the result of the given block
-    def advanced_formula_for company, year
+    def formula_for company, year, &block
       input = @input.input_for(company, year)
       case input
-      when :unknown then return "Unknown"
-      when nil then return "No value"
-      end
-
-      input_enum = input.each
-      replace_nests do |index|
-        yield(input_enum.next, @parser.input_cards[index], index)
+      when :unknown
+        "Unknown"
+      when nil
+        "No value"
+      else
+        formula_with_nests input, &block
       end
     end
+
+    def formula_with_nests input
+      input_enum = input.each
+      replace_nests do |index|
+        yield input_enum.next, @parser.input_cards[index], index
+      end
+    end
+
 
     def formula
       @formula ||= @parser.formula
@@ -112,6 +104,14 @@ module Formula
     end
 
     private
+
+    def initialize_input
+      if @parser.input_cards.any?(&:nil?)
+        InvalidInput.new
+      else
+        Input.new @parser, &self.class::INPUT_CAST
+      end
+    end
 
     def safe_execution expr
       return if @errors.any?

@@ -60,7 +60,7 @@ format :html do
   def formula_details
     parser = card.metric_card.formula_card.parser.processed_input!
     calculator = Formula::Calculator.new(parser)
-    calculator.advanced_formula_for card.company,
+    calculator.formula_for card.company,
                                     card.year.to_i do |input, input_card, index|
       input_value_link input, input_card, parser.year_options[index]
     end
