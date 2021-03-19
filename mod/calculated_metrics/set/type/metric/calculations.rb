@@ -93,7 +93,7 @@ private
 
 def dummy_answers_attribs
   shared_attribs = shared_dummy_answer_attribs
-  calculator.answers_to_be_calculated.map do |company_id, year|
+  calculator.result_scope.map do |company_id, year|
     shared_attribs.merge company_id: company_id, year: year
   end
 end

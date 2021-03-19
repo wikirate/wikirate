@@ -2,7 +2,7 @@
 
 # For now, the way this works is
 #
-# 1. we run this script on a copy of the site with urrent geo data (using bundle exec)
+# 1. we run this script on a copy of the site with current geo data (using bundle exec)
 #
 # 2. we cut and paste the API string into Wolfram Cloud:
 #    https://www.wolframcloud.com/env/philipp.kuehl/wikirate.nb
