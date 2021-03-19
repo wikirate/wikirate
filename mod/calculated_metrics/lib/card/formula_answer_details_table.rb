@@ -4,8 +4,7 @@ class Card
     @columns = %w[Metric Value Year]
 
     def calculator
-      @calculator ||=
-        Formula::Calculator.new @format.card.metric_card.formula_card.parser.raw_input!
+      @calculator ||= @format.card.metric_card.formula_card.calculator :raw_input!
     end
 
     def table_rows
