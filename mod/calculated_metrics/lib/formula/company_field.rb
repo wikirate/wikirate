@@ -1,4 +1,8 @@
 module Formula
+  # This "Calculator" class replicates the behavior of
+  # more sophisticated Formula::Calculator classes but performs a much
+  # simplier "calculation" – it just takes values from company fields
+  # and creates metric answers out of them.
   class CompanyField < Calculator
     YEAR = "2019".freeze
 
