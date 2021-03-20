@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../lib/open_corporates/api"
+require_relative "../../../../lib/open_corporates/api"
 
-RSpec.describe Card::Set::Right::OpenCorporates do
+RSpec.describe Card::Set::TypePlusRight::WikirateCompany::OpenCorporates do
   let(:api_response) do
     path =
       File.expand_path("../../../support/open_corporates_api_response.json", __FILE__)

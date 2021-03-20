@@ -6,8 +6,12 @@ module Formula
   class CompanyField < Calculator
     YEAR = "2019".freeze
 
-    def initialize_input
-      # NOOP
+    attr_reader :field_code
+
+    def initialize field_code, &value_normalizer
+      @value_normalizer = value_normalizer
+      @field_code = field_code
+      @errors = []
     end
 
     # company fields don't depend on any other answers
@@ -67,10 +71,6 @@ module Formula
       else
         yield
       end
-    end
-
-    def field_code
-      @parser
     end
 
     def field_id

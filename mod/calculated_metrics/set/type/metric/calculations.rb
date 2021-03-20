@@ -1,3 +1,16 @@
+def calculator parser_method=nil
+  calculator_class.new (parser_method ? parser.send(parser_method) : parser),
+                       &method(:normalize_value)
+end
+
+def parser
+  formula_card.parser
+end
+
+def calculator_class
+  ::Formula.calculator_class parser.formula
+end
+
 def calculation_in_progress!
   ids = all_depender_answer_ids
   Answer.where(id: ids, overridden_value: nil).update_all(calculating: true)
@@ -86,8 +99,6 @@ end
 def add_answer company, year, value
   Answer.create_calculated_answer self, company, year, value
 end
-
-delegate :calculator, to: :formula_card
 
 private
 

@@ -57,7 +57,7 @@ format :html do
   end
 
   def calculator *args
-    card.metric_card.formula_card.calculator *args
+    card.metric_card.calculator *args
   end
 
   # TODO: make item-wrapping format-specific
