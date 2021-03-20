@@ -4,13 +4,12 @@ class Card
     @columns = %w[Metric Value Year]
 
     def calculator
-      @calculator ||=
-        Formula::Calculator.new @format.card.metric_card.formula_card.parser.raw_input!
+      @calculator ||= @format.card.metric_card.calculator :raw_input!
     end
 
     def table_rows
-      calculator.input_data(company, year).uniq.map do |input_card, input, year_option|
-        metric_row input_card, input, year_option
+      calculator.inputs_for(company, year).uniq.map do |input_card, value, year_option|
+        metric_row input_card, value, year_option
       end
     end
 
@@ -45,9 +44,9 @@ class Card
       year_option.present? ? year_option : year
     end
 
-    def metric_row input_card, input, year_option
+    def metric_row input_card, value, year_option
       [metric_thumbnail(input_card),
-       value_column_content(input_card, input, year_option),
+       value_column_content(input_card, value, year_option),
        year_column_content(year_option)]
     end
   end
