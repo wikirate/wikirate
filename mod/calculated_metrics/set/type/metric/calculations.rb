@@ -1,3 +1,7 @@
+def simple_calculator parser_method=nil
+  ::Formula::Calculator.new parser.send(parser_method)
+end
+
 def calculator parser_method=nil
   calculator_class.new (parser_method ? parser.send(parser_method) : parser),
                        &method(:normalize_value)

@@ -56,7 +56,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::OpenCorporates do
       is_expected.to have_table([["Name", "BP P.L.C."]])
     end
 
-    context "api not available" do
+    context "when api not available" do
       it "shows error message" do
         stub_const("OpenCorporates::Api::HOST", "open-corporates-is-down.org")
         is_expected.to have_tag "div.alert", text: /service temporarily not available/

@@ -1,4 +1,4 @@
-INVALID_TITLE_CHARACTERS = %w[# < > [ ] | { }]
+INVALID_TITLE_CHARACTERS = %w[# < > [ ] | { }].freeze
 INVALID_TITLE_CHARACTERS_REGEXP =
   Regexp.new("[#{Regexp.escape INVALID_TITLE_CHARACTERS.join}]")
 
@@ -79,7 +79,7 @@ def valid_wikipedia_title title
 end
 
 def normalize_title response
-  return unless query = response["query"]
+  return unless (query = response["query"])
   normalize_title_via(query, "redirects") || normalize_title_via(query, "normalized")
 end
 

@@ -57,13 +57,13 @@ format :html do
   end
 
   def calculator *args
-    card.metric_card.calculator *args
+    card.metric_card.calculator(*args)
   end
 
   # TODO: make item-wrapping format-specific
   def formula_details
     calculator(:processed_input!).formula_for card.company, card.year.to_i do |*args|
-      input_value_link *args
+      input_value_link(*args)
     end
   end
 
