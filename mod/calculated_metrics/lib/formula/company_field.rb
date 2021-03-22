@@ -52,7 +52,7 @@ module Formula
 
     def company_id_to_value_hash company
       company_fields(company).each_with_object({}) do |field_card, hash|
-        hash[field_card.left_id] = field_card.content
+        hash[field_card.left_id] = field_card.answer_value
       end
     end
 
