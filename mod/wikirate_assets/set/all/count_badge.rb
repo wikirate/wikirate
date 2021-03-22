@@ -18,9 +18,9 @@ format :html do
 
   # TODO: override and turn off caching in cacheable sets (eg. pointers)
   view :count_badge, cache: :never, unknown: true do
-    label = nest card.right, view: :count_badge_label
-    labeled_badge count, label, klass: card.safe_set_keys,
-                                title: card.name.right_name.vary(:plural)
+    labeled_badge number_with_delimiter(count),
+                  nest(card.right, view: :count_badge_label),
+                  klass: card.safe_set_keys, title: card.name.right_name.vary(:plural)
   end
 
   def count_badge field

@@ -132,7 +132,7 @@ module Formula
     end
 
     def count_related_replacer
-      Calculator::FunctionTranslator.new(COUNT_RELATED_FUNC) do |replacement, arg|
+      Calculator::FunctionTranslator.new(COUNT_RELATED_FUNC) do |_func, replacement, arg|
         "#{replacement}[#{arg}]}} ]"
       end
     end

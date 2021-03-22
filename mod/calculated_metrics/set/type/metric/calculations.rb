@@ -1,3 +1,14 @@
+delegate :parser, :calculator_class, to: :formula_card
+
+def simple_calculator parser_method=nil
+  ::Formula::Calculator.new parser.send(parser_method)
+end
+
+def calculator parser_method=nil
+  calculator_class.new (parser_method ? parser.send(parser_method) : parser),
+                       &method(:normalize_value)
+end
+
 def calculation_in_progress!
   ids = all_depender_answer_ids
   Answer.where(id: ids, overridden_value: nil).update_all(calculating: true)
@@ -87,13 +98,11 @@ def add_answer company, year, value
   Answer.create_calculated_answer self, company, year, value
 end
 
-delegate :calculator, to: :formula_card
-
 private
 
 def dummy_answers_attribs
   shared_attribs = shared_dummy_answer_attribs
-  calculator.answers_to_be_calculated.map do |company_id, year|
+  calculator.result_scope.map do |company_id, year|
     shared_attribs.merge company_id: company_id, year: year
   end
 end
