@@ -5,7 +5,7 @@ require_relative "../../../../lib/open_corporates/api"
 RSpec.describe Card::Set::TypePlusRight::WikirateCompany::OpenCorporates do
   let(:api_response) do
     path =
-      File.expand_path("../../../support/open_corporates_api_response.json", __FILE__)
+      File.expand_path("../../../../support/open_corporates_api_response.json", __FILE__)
     JSON.parse(File.read(path))["results"]["company"]
   end
 
