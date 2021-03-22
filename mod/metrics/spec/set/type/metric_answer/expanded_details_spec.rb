@@ -32,10 +32,8 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "1977"
       end
 
-      expect(table).to have_tag "div.formula-with-values",
-                                text: "= 1/100" do
-        with_tag :a, with: { href: "/Jedi+deadliness+Death_Star+1977" },
-                     text: 100
+      expect(table).to have_tag "div.formula-with-values", text: "= 1/100" do
+        with_tag :a, with: { href: "/Jedi+deadliness+Death_Star+1977" }, text: 100
       end
     end
 
@@ -112,8 +110,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag :td, text: "-2..0"
       end
 
-      expect(table).to have_tag "div.formula-with-values",
-                                text: "= Total[8, 9, 10]/3" do
+      expect(table).to have_tag "div.formula-with-values", text: "= Total[8, 9, 10]/3" do
         with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company" },
                      text: "8, 9, 10"
       end

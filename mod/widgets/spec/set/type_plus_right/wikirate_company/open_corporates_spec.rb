@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../lib/open_corporates/api"
+require_relative "../../../../lib/open_corporates/api"
 
-RSpec.describe Card::Set::Right::OpenCorporates do
+RSpec.describe Card::Set::TypePlusRight::WikirateCompany::OpenCorporates do
   let(:api_response) do
     path =
-      File.expand_path("../../../support/open_corporates_api_response.json", __FILE__)
+      File.expand_path("../../../../support/open_corporates_api_response.json", __FILE__)
     JSON.parse(File.read(path))["results"]["company"]
   end
 
@@ -56,7 +56,7 @@ RSpec.describe Card::Set::Right::OpenCorporates do
       is_expected.to have_table([["Name", "BP P.L.C."]])
     end
 
-    context "api not available" do
+    context "when api not available" do
       it "shows error message" do
         stub_const("OpenCorporates::Api::HOST", "open-corporates-is-down.org")
         is_expected.to have_tag "div.alert", text: /service temporarily not available/
