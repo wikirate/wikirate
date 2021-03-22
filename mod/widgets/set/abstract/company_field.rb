@@ -1,15 +1,27 @@
 # handles company fields (eg headquarters) that are duplicated as metric answers
 #
-# must define #metric code
+# includer must define #metric code
 
-event :update_company_field_answer_lookup, :integrate, on: :save do
-  Card[metric_code].update_or_add_answer(
-    answer_company_id,
-    answer_year,
-    answer_value
-  )
+event :update_company_field_answer_lookup, :finalize, on: :save do
+  update_direct_answer_lookup
+  update_depender_answers
 end
 
+def metric_code
+  raise Card::Error::ServerError, "must define #metric_code"
+end
+
+def metric_card
+  Card[metric_code]
+end
+
+def update_direct_answer_lookup
+  metric_card.update_or_add_answer answer_company_id, answer_year, answer_value
+end
+
+def update_depender_answers
+  metric_card.update_depender_values_for! answer_company_id, answer_year
+end
 
 def answer_company_id
   left_id

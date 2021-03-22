@@ -1,4 +1,4 @@
-include Abstract::CompanyField
+include_set Abstract::CompanyField
 
 event :standardize_jurisdiction_codes, :prepare_to_validate do
   return if oc_code
@@ -18,7 +18,6 @@ end
 def metric_code
   :core_headquarters_location
 end
-
 
 # event :validate_jurisdiction_code, :validate do
 #   errors.add :content, "invalid headquarters: #{content}" unless oc_code

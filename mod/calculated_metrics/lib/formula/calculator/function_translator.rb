@@ -26,9 +26,9 @@ module Formula
       # @return [String] Wolfram functions calls in formula replaced
       #   with ruby method calls
       def translate formula, offset=0
-        with_next_match formula do |replacement, pos, i_arg_start|
+        with_next_match formula do |function, pos, i_arg_start|
           arg, rest = translate_after_match formula, offset, i_arg_start
-          [formula[0, pos], @replace_policy.call(replacement, arg), rest].join
+          [formula[0, pos], @replace_policy.call(function, @map[function], arg), rest].join
         end
       end
 
@@ -38,7 +38,7 @@ module Formula
         match = part.match(/(?<!\w)(#{@matcher})(?=\[)/)
         return part unless match
 
-        yield @map[match[0]], match.begin(0), match.end(0)
+        yield match[0], match.begin(0), match.end(0)
       end
 
       def tr_part formula, offset, start, stop=-1

@@ -17,7 +17,7 @@ require File.expand_path "../../config/environment", __FILE__
 Card::Auth.signin "Ethan McCutchen"
 
 def region_fields field
-  Card.search(left: { type: "Region" }, right: field).map do |card|
+  Card::Set::Self::Region.region_fields(field).map do |card|
     yield card
   end
 end

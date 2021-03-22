@@ -16,13 +16,6 @@ def update_value_for! opts
   end
 end
 
-def update_depender_values_for! company_id, year
-  each_depender_metric do |metric|
-    metric.update_value_for! company: company_id, year: year
-    # FIXME: this will break when year is specified in the formula.
-  end
-end
-
 def update_existing_answer answer, value
   if already_researched? answer
     update_overridden_calculated_value answer, value
