@@ -1,4 +1,9 @@
-delegate :calculator, :calculator_class, to: :left
+delegate :calculator, to: :left
+
+# often overwritten in metric
+def calculator_class
+  ::Formula.calculator_class(parser.formula)
+end
 
 event :flag_metric_answer_calculation, :prepare_to_store,
       on: :update, changed: :content do
