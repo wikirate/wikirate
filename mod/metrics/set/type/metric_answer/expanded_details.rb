@@ -56,13 +56,13 @@ format :html do
      wrap_with(:div, "= #{yield}", class: "formula-with-values")]
   end
 
-  def calculator *args
-    card.metric_card.calculator(*args)
+  def formula_calculator
+    card.metric_card.simple_calculator :processed_input!
   end
 
   # TODO: make item-wrapping format-specific
   def formula_details
-    calculator(:processed_input!).formula_for card.company, card.year.to_i do |*args|
+    formula_calculator.formula_for card.company, card.year.to_i do |*args|
       input_value_link(*args)
     end
   end
