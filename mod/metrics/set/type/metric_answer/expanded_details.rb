@@ -60,7 +60,6 @@ format :html do
     card.metric_card.simple_calculator :processed_input!
   end
 
-  # TODO: make item-wrapping format-specific
   def formula_details
     formula_calculator.formula_for card.company, card.year.to_i do |*args|
       input_value_link(*args)

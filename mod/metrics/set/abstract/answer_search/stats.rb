@@ -24,7 +24,6 @@ format do
   def tally_counts
     counts = answer_table_counts
     researched = counts[:metric_answer].to_i
-    # binding.pry
     total = all_answer? ? count_query.count : researched
 
     counts.merge(knowns_and_unknowns(researched)).merge(
