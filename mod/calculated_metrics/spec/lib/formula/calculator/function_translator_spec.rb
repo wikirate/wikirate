@@ -1,6 +1,6 @@
 RSpec.describe Formula::Calculator::FunctionTranslator do
   def translate str
-    ft = described_class.new "aaa" => "bbb" do |replacement, arg|
+    ft = described_class.new "aaa" => "bbb" do |_key, replacement, arg|
       "(#{replacement}).(#{arg})"
     end
     ft.translate str

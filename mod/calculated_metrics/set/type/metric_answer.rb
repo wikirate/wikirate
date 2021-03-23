@@ -1,5 +1,6 @@
 
-# The answers that a
+# The answers that a calculated answer depends on
+# @return [Array] array of Answer objects
 def direct_dependee_answers
   return [] if researched_value?
 

@@ -11,7 +11,7 @@ module Formula
 
       # @param [Card] parser has to respond to #input_cards and #input_requirement
       # @param [Proc] input_cast a block that is called for every input value
-      def initialize parser, &input_cast
+      def initialize parser, input_cast
         @input_cards = parser.input_cards
         @input_cast = input_cast
         @input_values = InputValues.new parser
@@ -64,16 +64,22 @@ module Formula
       end
 
       def normalize_values val
-        if val.is_a?(Symbol)
+        case val
+        when Symbol
           val
-        elsif val.is_a?(Array)
+        when Array
           val.map(&method(:normalize_values))
-        elsif val.blank?
+        when nil, ""
           nil
         else
-          @input_cast.call(val)
+          cast_val val
         end
       end
+
+      def cast_val val
+        @input_cast == :none ? val : send(@input_cast, val)
+      end
+
     end
   end
 end
