@@ -20,8 +20,4 @@ def formula_input_requirement
   :all
 end
 
-def calculator_class
-  nil
-end
-
 # </OVERRIDES>
