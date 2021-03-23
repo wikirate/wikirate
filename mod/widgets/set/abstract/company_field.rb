@@ -2,7 +2,7 @@
 #
 # includer must define #metric code
 
-event :update_company_field_answer_lookup, :finalize, on: :save do
+event :update_company_field_answer_lookup, :finalize do
   update_direct_answer_lookup
   update_depender_answers
 end
@@ -16,7 +16,7 @@ def metric_card
 end
 
 def update_direct_answer_lookup
-  metric_card.update_or_add_answer answer_company_id, answer_year, answer_value
+  metric_card.update_value_for! company: answer_company_id, year: answer_year
 end
 
 def update_depender_answers

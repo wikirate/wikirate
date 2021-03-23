@@ -26,7 +26,6 @@ end
 # Not doing mapping for now
 # We realized the old CERTH server was not actually handling these requests any more.
 
-
 # def needs_oc_mapping?
 #   (l = left) && l.open_corporates.blank?
 # end
@@ -47,7 +46,6 @@ end
 #               content: region_name,
 #               type: :pointer
 # end
-
 
 format :json do
   view :core do

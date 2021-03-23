@@ -17,5 +17,4 @@ RSpec.describe Card::Set::Abstract::CompanyFieldMetric do
 
     end
   end
-
 end

@@ -28,7 +28,11 @@ module Formula
       def translate formula, offset=0
         with_next_match formula do |function, pos, i_arg_start|
           arg, rest = translate_after_match formula, offset, i_arg_start
-          [formula[0, pos], @replace_policy.call(function, @map[function], arg), rest].join
+          [
+            formula[0, pos],
+            @replace_policy.call(function, @map[function], arg),
+            rest
+          ].join
         end
       end
 

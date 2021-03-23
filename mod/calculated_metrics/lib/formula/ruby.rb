@@ -8,6 +8,8 @@ module Formula
   # The formula may only consist of numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
   class Ruby < NestFormula
+    extend RubyClassMethods
+
     SYMBOLS = %w[+ - ( ) \[ \] . * , / || && { } ].freeze
     FUNCTIONS = {
       "Total" => "sum",
@@ -16,7 +18,8 @@ module Formula
       "Zeros" => "count(0)",
       "Flatten" => "flatten",
       "Unknowns" => "count('Unknown')",
-      "Country" => "country_lookup"
+      "Country" => "country_lookup",
+      "ILORegion" => "ilo_region_lookup"
     }.freeze
     LOOKUPS = ::Set.new %w[Country]
     LAMBDA_ARGS_NAME = "args".freeze
@@ -24,54 +27,6 @@ module Formula
     INPUT_CAST = ->(val) { val.number? ? val.to_f : val }
 
     FUNC_KEY_MATCHER = FUNCTIONS.keys.join("|").freeze
-
-    class << self
-      # Is this the right class for this formula?
-      def supported_formula? formula
-        apply %i[remove_functions remove_nests check_symbols], formula
-      end
-
-      def remove_functions formula, translated=false
-        allowed = translated ? FUNCTIONS.values : FUNCTIONS.keys
-        cleaned = formula.clone
-        allowed.each do |word|
-          cleaned = cleaned&.gsub word, ""
-        end
-        cleaned
-        # matcher = translated ? FUNC_VALUE_MATCHER : FUNC_KEY_MATCHER
-        # formula.gsub(/#{matcher}/,'')
-      end
-
-      def check_symbols formula
-        symbols = SYMBOLS.map { |s| "\\#{s}" }.join
-        formula =~ /^[\s\d#{symbols}]*$/
-      end
-
-      def apply methods, arg
-        methods = Array.wrap methods
-
-        methods.inject(arg) do |ret, method|
-          send method, ret
-        end
-      end
-
-      def function_re
-        @function_re ||= %r{#{standard_function_re}|#{lookup_function_re}}
-      end
-
-      def arg_re
-        /([^.]+)/
-      end
-
-      def standard_function_re
-        %r{\[#{arg_re}\]\.flatten\.count}
-      end
-
-      def lookup_function_re
-        lookup_functions = LOOKUPS.map { |key| FUNCTIONS[key] }
-        %r{(#{lookup_functions.join '|'})\(#{arg_re}\)}
-      end
-    end
 
     def get_value input, _company, _year
       input.each_with_index do |inp, index|
@@ -112,9 +67,18 @@ module Formula
 
     # FIXME: country needs codename!
     def country_lookup region
+      lookup_for_region region, "Country"
+    end
+
+    # FIXME: ILO region needs codename!
+    def ilo_region region
+      lookup_for_region region, "ILO Region"
+    end
+
+    def lookup_for_region region, field
       region_id =  Card.fetch_id region
-      country = Card::Set::Self::Region.region_lookup("Country")[region_id] if region_id
-      country || "Country not found"
+      country = Card::Set::Self::Region.region_lookup(field)[region_id] if region_id
+      country || "#{field} not found"
     end
 
     def safe_to_exec? expr
