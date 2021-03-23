@@ -1,7 +1,7 @@
 class Card
   class VegaChart
     module Helper
-      # default axis configuration for vega charts
+      # default exponent signal configuration for vega charts
       module Exponent
         def hash
           super.tap do |h|
