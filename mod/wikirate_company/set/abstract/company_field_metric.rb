@@ -4,8 +4,9 @@ def calculator_class
   Formula::CompanyField
 end
 
-def calculator _parser_method=nil
-  calculator_class.new company_field_code, &method(:normalize_value)
+def calculator opts={}
+  opts[:normalize_value] ||= method(:normalize_value)
+  calculator_class.new company_field_code, opts
 end
 
 def company_field_code

@@ -24,7 +24,13 @@ module Formula
     LOOKUPS = ::Set.new %w[Country]
     LAMBDA_ARGS_NAME = "args".freeze
 
-    INPUT_CAST = ->(val) { val.number? ? val.to_f : val }
+    def numeric_cast val
+      val.number? ? val.to_f : val
+    end
+
+    def default_cast
+      :numeric_cast
+    end
 
     FUNC_KEY_MATCHER = FUNCTIONS.keys.join("|").freeze
 
@@ -76,7 +82,7 @@ module Formula
     end
 
     def lookup_for_region region, field
-      region_id =  Card.fetch_id region
+      region_id = Card.fetch_id region
       country = Card::Set::Self::Region.region_lookup(field)[region_id] if region_id
       country || "#{field} not found"
     end

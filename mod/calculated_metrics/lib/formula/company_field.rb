@@ -8,8 +8,8 @@ module Formula
 
     attr_reader :field_code
 
-    def initialize field_code, &value_normalizer
-      @value_normalizer = value_normalizer
+    def initialize field_code, opts={}
+      @value_normalizer = opts[:value_normalizer]
       @field_code = field_code
       @errors = []
     end

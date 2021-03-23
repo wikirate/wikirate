@@ -1,8 +1,6 @@
 require File.expand_path "../../../config/environment", __FILE__
 
-Card::Auth.signin "Joe Admin"
-# Card::Auth.signin "Ethan McCutchen"
-
+Card::Auth.signin "Ethan McCutchen"
 
 include Card::Model::SaveHelper
 

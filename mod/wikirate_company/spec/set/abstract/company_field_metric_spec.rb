@@ -14,7 +14,6 @@ RSpec.describe Card::Set::Abstract::CompanyFieldMetric do
     example do
       card_subject.recalculate_answers
       expect(google_llc_hq_lookup.value).to eq("California (United States)")
-
     end
   end
 end

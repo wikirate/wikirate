@@ -32,7 +32,7 @@ module Formula
       end
 
       def function_re
-        @function_re ||= %r{#{standard_function_re}|#{lookup_function_re}}
+        @function_re ||= /#{standard_function_re}|#{lookup_function_re}/
       end
 
       def arg_re

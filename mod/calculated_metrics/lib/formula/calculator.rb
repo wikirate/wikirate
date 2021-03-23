@@ -5,8 +5,6 @@ module Formula
   #
   # Calculator.new(parser, value_normalizer)
   class Calculator
-    INPUT_CAST = ->(val) { val }
-
     attr_reader :errors, :input
 
     # All the answers a given calculation depends on
@@ -14,10 +12,15 @@ module Formula
     # @return [Array] array of Answer objects
     delegate :answers, to: :input
 
-    def initialize parser, &value_normalizer
-      @value_normalizer = value_normalizer
+    # @param parser [Formula::Parser]
+    # @param opts [Hash]
+    # @option opts [Symbol] :cast
+    # @option opts [Symbol] :cast
+    def initialize parser, opts={}
+      @value_normalizer = opts[:value_normalizer]
       @parser = parser
-      @input = initialize_input
+      @parser.send opts[:parser_method] if opts[:parser_method]
+      @input = initialize_input opts[:cast]
       @errors = []
     end
 
@@ -116,11 +119,11 @@ module Formula
       end
     end
 
-    def initialize_input
+    def initialize_input cast
       if @parser.input_cards.any?(&:nil?)
         InvalidInput.new
       else
-        Input.new @parser, &self.class::INPUT_CAST
+        Input.new @parser, (cast || default_cast)
       end
     end
 
@@ -135,6 +138,10 @@ module Formula
     end
 
     protected
+
+    def default_cast
+      :none
+    end
 
     def compile_formula
       return unless safe_to_convert? formula
