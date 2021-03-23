@@ -77,9 +77,8 @@ module Formula
       end
 
       def cast_val val
-        @input_cast == :none ? val : send(@input_cast, val)
+        @input_cast ? @input_cast.call(val) : val
       end
-
     end
   end
 end

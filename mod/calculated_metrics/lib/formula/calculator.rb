@@ -123,7 +123,7 @@ module Formula
       if @parser.input_cards.any?(&:nil?)
         InvalidInput.new
       else
-        Input.new @parser, (cast || default_cast)
+        Input.new @parser, input_cast(cast)
       end
     end
 
@@ -138,6 +138,12 @@ module Formula
     end
 
     protected
+
+    def input_cast cast
+      cast ||= default_cast
+      return nil if cast == :none
+      method cast
+    end
 
     def default_cast
       :none
