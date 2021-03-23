@@ -18,9 +18,7 @@ loadVis = (vis) ->
     success: (data) -> initChart(data, this.visID)
 
 initChart = (spec, id) ->
-  el = $("##{id}")
-  vega = initVega spec, el
-  handleChartClicks vega, el
+  initVega spec, $("##{id}")
 
 handleChartClicks = (vega, el) ->
   vega.addEventListener 'click', (_event, item) ->
@@ -32,10 +30,10 @@ handleChartClicks = (vega, el) ->
     else if d.details
       updateDetails d.details
 
+
 initVega = (spec, el) ->
-  runtime = vega.parse spec
-  new vega.View(runtime).initialize(el[0]).hover().run()
-  # new vega.View(runtime, renderer: 'svg').initialize(el[0]).hover().run()
+  vegaEmbed(el[0], spec).then (result)->
+    handleChartClicks result.view, el
 
 updateFilter = (el, filterVals) ->
   if filterVals["value"] == "Other"

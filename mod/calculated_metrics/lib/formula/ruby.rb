@@ -8,47 +8,25 @@ module Formula
   # The formula may only consist of numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
   class Ruby < NestFormula
+    extend RubyClassMethods
+
     SYMBOLS = %w[+ - ( ) \[ \] . * , / || && { } ].freeze
-    FUNCTIONS = { "Total" => "sum", "Max" => "max", "Min" => "min",
-                  "Zeros" => "count(0)", "Flatten" => "flatten",
-                  "Unknowns" => "count('Unknown')" }.freeze
+    FUNCTIONS = {
+      "Total" => "sum",
+      "Max" => "max",
+      "Min" => "min",
+      "Zeros" => "count(0)",
+      "Flatten" => "flatten",
+      "Unknowns" => "count('Unknown')",
+      "Country" => "country_lookup",
+      "ILORegion" => "ilo_region_lookup"
+    }.freeze
+    LOOKUPS = ::Set.new %w[Country]
     LAMBDA_ARGS_NAME = "args".freeze
 
     INPUT_CAST = ->(val) { val.number? ? val.to_f : val }
 
     FUNC_KEY_MATCHER = FUNCTIONS.keys.join("|").freeze
-    # FUNC_VALUE_MATCHER = FUNCTIONS.values.join("|").freeze
-
-    class << self
-      # Is this the right class for this formula?
-      def supported_formula? formula
-        apply %i[remove_functions remove_nests check_symbols], formula
-      end
-
-      def remove_functions formula, translated=false
-        allowed = translated ? FUNCTIONS.values : FUNCTIONS.keys
-        cleaned = formula.clone
-        allowed.each do |word|
-          cleaned = cleaned&.gsub word, ""
-        end
-        cleaned
-        # matcher = translated ? FUNC_VALUE_MATCHER : FUNC_KEY_MATCHER
-        # formula.gsub(/#{matcher}/,'')
-      end
-
-      def check_symbols formula
-        symbols = SYMBOLS.map { |s| "\\#{s}" }.join
-        formula =~ /^[\s\d#{symbols}]*$/
-      end
-
-      def apply methods, arg
-        methods = Array.wrap methods
-
-        methods.inject(arg) do |ret, method|
-          send method, ret
-        end
-      end
-    end
 
     def get_value input, _company, _year
       input.each_with_index do |inp, index|
@@ -87,6 +65,22 @@ module Formula
       eval expr
     end
 
+    # FIXME: country needs codename!
+    def country_lookup region
+      lookup_for_region region, "Country"
+    end
+
+    # FIXME: ILO region needs codename!
+    def ilo_region region
+      lookup_for_region region, "ILO Region"
+    end
+
+    def lookup_for_region region, field
+      region_id =  Card.fetch_id region
+      country = Card::Set::Self::Region.region_lookup(field)[region_id] if region_id
+      country || "#{field} not found"
+    end
+
     def safe_to_exec? expr
       cleaned = if expr =~ /^lambda \{ \|args\| (.+)\}$/
                   Regexp.last_match(1).gsub(/args\[\d+\]/, "")
@@ -119,8 +113,12 @@ module Formula
 
     def function_translator
       @function_translator ||=
-        Formula::Calculator::FunctionTranslator.new(FUNCTIONS) do |replacement, arg|
-          "[#{arg}].flatten.#{replacement}"
+        Formula::Calculator::FunctionTranslator.new(FUNCTIONS) do |func, replacement, arg|
+          if LOOKUPS.include? func
+            "#{replacement}(#{arg})"
+          else
+            "[#{arg}].flatten.#{replacement}"
+          end
         end
     end
 
@@ -135,8 +133,8 @@ module Formula
 
     def find_allowed_non_numeric_input formula
       @non_numeric_ok ||= ::Set.new
-      formula.scan(/\[([^.]+)\]\.flatten\.count/) do |match|
-        match.each do |args|
+      formula.scan(self.class.function_re) do |match|
+        match.compact.each do |args|
           args.scan(/#{LAMBDA_ARGS_NAME}\[(\d+)\]/) do |num|
             @non_numeric_ok += num.map(&:to_i)
           end
