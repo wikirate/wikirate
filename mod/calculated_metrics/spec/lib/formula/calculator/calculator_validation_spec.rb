@@ -10,11 +10,11 @@ RSpec.describe Formula::Calculator do
   end
 
   def valid formula
-    expect(calculator(formula).validate_formula).to be_empty
+    expect(calculator(formula).detect_errors).to be_empty
   end
 
   def invalid formula, *errors
-    expect(calculator(formula).validate_formula).to eq errors
+    expect(calculator(formula).detect_errors).to eq errors
   end
 
   example "simple formula" do
