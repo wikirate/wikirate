@@ -1,21 +1,19 @@
+require File.expand_path "../../config/environment", __FILE__
+
+Card::Auth.signin "Ethan McCutchen"
+
+REGIONS = "indian_states".freeze
+FILE_PATH = File.expand_path "../csv_import/regions/#{REGIONS}.csv", __FILE__
+
 # Import Region cards
 #
 # NOTES:
 #
-#  1. csv file expected in csv_import/regions folder.  enter filename as constant below
+#  1. csv file expected in csv_import/regions folder.  enter filename as constant above
 #     (REGIONS)
 #
 #  2. csv file must have a header row. First header is "Region".  Each other header
 #     must be the correct field name for Region cards
-#
-require File.expand_path "../../config/environment", __FILE__
-
-Card::Auth.signin "Ethan McCutchen"
-Card::Auth.signin "Joe Admin"
-
-REGIONS = "indian_states"
-FILE_PATH = File.expand_path "../csv_import/regions/#{REGIONS}.csv", __FILE__
-
 module RegionImporter
   class << self
     include Card::Model::SaveHelper
