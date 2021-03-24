@@ -37,7 +37,10 @@ metrics.each do |h|
   ensure_card(h[:title], type: "Metric Title")
 
   metric_name = "Core+#{h[:title]}"
-  ensure_card metric_name, type_id: Card::MetricID
+  metric_card = ensure_card metric_name, type_id: Card::MetricID
+  metric_card.answers.each do |answer|
+    answer.delete!
+  end
 
   f = fields.clone.merge value_options: h[:options]
   f[:formula] = h[:formula] if h[:formula]
