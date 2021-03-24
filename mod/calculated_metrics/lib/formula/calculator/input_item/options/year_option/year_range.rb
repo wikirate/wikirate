@@ -23,15 +23,11 @@ module Formula
             private
 
             def year_option_type
-              if year?(@start) && year?(@stop)
-                :fixed_start_fixed_end
-              elsif !year?(@start) && !year?(@stop)
-                :relative_start_relative_end
-              elsif !year?(@start)
-                :relative_start_fixed_end
-              else
-                :fixed_start_relative_end
-              end
+              :"#{fixed_or_relative @start}_start_#{fixed_or_relative @stop}_end"
+            end
+
+            def fixed_or_relative config
+              year?(config) ? :fixed : :relative
             end
 
             def process_year_option_type option
@@ -106,18 +102,26 @@ module Formula
             end
 
             def each_rsre_year years, seq_len
-              i = 0
-              while i < years.size - seq_len
-                j = i + 1
-                while next_year_index? j, years
-                  yield years[j] if j - i >= seq_len
-                  j += 1
+              index = 0
+              while index < years.size - seq_len
+                index = scan_years years, index do |year, span|
+                  yield year if span >= seq_len
                 end
-                i = j
               end
             end
 
-            def next_year_index? index, years
+            def scan_years years, index
+              scan_index = index + 1
+
+              while applicable_index? scan_index, years
+                yield years[scan_index], (scan_index - index)
+                scan_index += 1
+              end
+
+              scan_index
+            end
+
+            def applicable_index? index, years
               index < years.size && years[index] == years[index - 1] + 1
             end
           end

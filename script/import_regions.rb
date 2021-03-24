@@ -1,12 +1,20 @@
-#!/usr/bin/env ruby
-
+# Import Region cards
+#
+# NOTES:
+#
+#  1. csv file expected in csv_import/regions folder.  enter filename as constant below
+#     (REGIONS)
+#
+#  2. csv file must have a header row. First header is "Region".  Each other header
+#     must be the correct field name for Region cards
+#
 require File.expand_path "../../config/environment", __FILE__
 
 Card::Auth.signin "Ethan McCutchen"
+Card::Auth.signin "Joe Admin"
 
 REGIONS = "indian_states"
 FILE_PATH = File.expand_path "../csv_import/regions/#{REGIONS}.csv", __FILE__
-COLUMNS = [:region, :oc_jurisdiction_key, "ILO Region", "Country", :country_code]
 
 module RegionImporter
   class << self
@@ -21,19 +29,13 @@ module RegionImporter
 
     def csv_rows
       csv = File.read FILE_PATH
-      CSV.parse csv
+      CSV.parse csv, headers: true
     end
 
     def each_region
       csv_rows.each do |row|
-        hash = row_to_hash row
-        yield hash.delete(:region), hash
-      end
-    end
-
-    def row_to_hash row
-      row.each.with_index.with_object({}) do |(item, index), hash|
-        hash[COLUMNS[index]] = item
+        hash = row.to_h
+        yield hash.delete("Region"), hash
       end
     end
 
