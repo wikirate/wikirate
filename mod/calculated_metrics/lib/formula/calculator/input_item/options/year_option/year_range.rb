@@ -11,24 +11,53 @@ module Formula
           module YearRange
             def process_year_option
               @start, @stop = year_option.split("..").map(&:to_i)
+              process_year_option_type year_option_type
+            end
+
+            # @return an array of years for which values can be calculated out of the
+            #   given list of years
+            def translate_years years
+              send @translate, years
+            end
+
+            private
+
+            def year_option_type
               if year?(@start) && year?(@stop)
-                @translate = :fixed_start_fixed_end
-                (@start..@stop).to_a
+                :fixed_start_fixed_end
               elsif !year?(@start) && !year?(@stop)
-                @translate = :relative_start_relative_end
-                proc do |year|
-                  (year + @start..year + @stop).to_a
-                end
+                :relative_start_relative_end
               elsif !year?(@start)
-                @translate = :relative_start_fixed_end
-                proc do |year|
-                  (year + @start..@stop).to_a
-                end
-              else # = !year?(stop)
-                @translate = :fixed_start_relative_end
-                proc do |year|
-                  (@start..year + @stop).to_a
-                end
+                :relative_start_fixed_end
+              else
+                :fixed_start_relative_end
+              end
+            end
+
+            def process_year_option_type option
+              @translate = option
+              send "process_#{option}"
+            end
+
+            def process_fixed_start_fixed_end
+              (@start..@stop).to_a
+            end
+
+            def process_relative_start_relative_end
+              proc do |year|
+                (year + @start..year + @stop).to_a
+              end
+            end
+
+            def process_relative_start_fixed_end
+              proc do |year|
+                (year + @start..@stop).to_a
+              end
+            end
+
+            def process_fixed_start_relative_end
+              proc do |year|
+                (@start..year + @stop).to_a
               end
             end
 
@@ -69,25 +98,27 @@ module Formula
 
             def relative_start_relative_end years
               # -4..-1
-              years = years.sort
-              seq_len = @stop - @start
-              i = 0
               [].tap do |result|
-                while i < years.size - seq_len
-                  j = i + 1
-                  while j < years.size && years[j] == years[j - 1] + 1
-                    result << years[j] - @stop if j - i >= seq_len
-                    j += 1
-                  end
-                  i = j
+                each_rsre_year years.sort, (@stop - @start) do |year|
+                  result << year - @stop
                 end
               end
             end
 
-            # @return an array of years for which values can be calculated out of the
-            #   given list of years
-            def translate_years years
-              send @translate, years
+            def each_rsre_year years, seq_len
+              i = 0
+              while i < years.size - seq_len
+                j = i + 1
+                while next_year_index? j, years
+                  yield years[j] if j - i >= seq_len
+                  j += 1
+                end
+                i = j
+              end
+            end
+
+            def next_year_index? index, years
+              index < years.size && years[index] == years[index - 1] + 1
             end
           end
         end
