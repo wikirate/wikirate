@@ -58,7 +58,7 @@ format :html do
 
   def formula_calculator
     card.metric_card.calculator parser_method: :processed_input!,
-                                cast: :none, format: self
+                                cast: :no_cast, format: self
   end
 
   def formula_details

@@ -5,7 +5,7 @@ class Card
 
     def calculator
       @calculator ||=
-        @format.card.metric_card.calculator parser_method: :raw_input!, cast: :none
+        @format.card.metric_card.calculator parser_method: :raw_input!, cast: :no_cast
     end
 
     def table_rows

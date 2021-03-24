@@ -11,7 +11,7 @@ module Formula
 
       # @param [Card] parser has to respond to #input_cards and #input_requirement
       # @param [Proc] input_cast a block that is called for every input value
-      def initialize parser, input_cast
+      def initialize parser, &input_cast
         @input_cards = parser.input_cards
         @input_cast = input_cast
         @input_values = InputValues.new parser
@@ -25,7 +25,7 @@ module Formula
       def each opts={}
         with_company_and_year opts do |company, year|
           @input_values.each company_id: company, year: year do |values, company_id, year|
-            next unless (input_values = normalize_values(values))
+            next unless (input_values = normalize_values values)
             yield input_values, company_id, year
           end
         end
@@ -69,15 +69,9 @@ module Formula
           val
         when Array
           val.map(&method(:normalize_values))
-        when nil, ""
-          nil
         else
-          cast_val val
+          val.blank? ? nil : @input_cast.call(val)
         end
-      end
-
-      def cast_val val
-        @input_cast ? @input_cast.call(val) : val
       end
     end
   end

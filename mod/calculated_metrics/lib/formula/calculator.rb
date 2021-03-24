@@ -17,7 +17,7 @@ module Formula
     # @option opts [Symbol] :cast
     # @option opts [Symbol] :cast
     def initialize parser, opts={}
-      @value_normalizer = opts[:value_normalizer]
+      @value_normalizer = opts[:normalize_value]
       @parser = parser
       @parser.send opts[:parser_method] if opts[:parser_method]
       @input = initialize_input opts[:cast]
@@ -123,7 +123,7 @@ module Formula
       if @parser.input_cards.any?(&:nil?)
         InvalidInput.new
       else
-        Input.new @parser, input_cast(cast)
+        Input.new @parser, &method(cast || default_cast)
       end
     end
 
@@ -139,14 +139,12 @@ module Formula
 
     protected
 
-    def input_cast cast
-      cast ||= default_cast
-      return nil if cast == :none
-      method cast
+    def default_cast
+      :no_cast
     end
 
-    def default_cast
-      :none
+    def no_cast val
+      val
     end
 
     def compile_formula
