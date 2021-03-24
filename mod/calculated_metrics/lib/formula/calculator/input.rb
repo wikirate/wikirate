@@ -65,12 +65,10 @@ module Formula
 
       def normalize_values val
         case val
-        when Symbol
-          val
-        when Array
-          val.map(&method(:normalize_values))
-        else
-          val.blank? ? nil : @input_cast.call(val)
+        when Symbol  then val
+        when Array   then val.map(&method(:normalize_values))
+        when nil, "" then nil
+        else              @input_cast.call val
         end
       end
     end
