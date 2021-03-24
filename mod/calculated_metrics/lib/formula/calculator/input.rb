@@ -25,7 +25,7 @@ module Formula
       def each opts={}
         with_company_and_year opts do |company, year|
           @input_values.each company_id: company, year: year do |values, company_id, year|
-            next unless (input_values = normalize_values(values))
+            next unless (input_values = normalize_values values)
             yield input_values, company_id, year
           end
         end
@@ -64,14 +64,11 @@ module Formula
       end
 
       def normalize_values val
-        if val.is_a?(Symbol)
-          val
-        elsif val.is_a?(Array)
-          val.map(&method(:normalize_values))
-        elsif val.blank?
-          nil
-        else
-          @input_cast.call(val)
+        case val
+        when Symbol  then val
+        when Array   then val.map(&method(:normalize_values))
+        when nil, "" then nil
+        else              @input_cast.call val
         end
       end
     end

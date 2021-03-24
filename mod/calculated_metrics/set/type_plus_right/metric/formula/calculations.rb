@@ -1,3 +1,10 @@
+delegate :calculator, to: :left
+
+# often overwritten in metric
+def calculator_class
+  ::Formula.calculator_class(parser.formula)
+end
+
 event :flag_metric_answer_calculation, :prepare_to_store,
       on: :update, changed: :content do
   metric_card.calculation_in_progress!
@@ -21,12 +28,4 @@ event :create_metric_answers, :integrate_with_delay,
   # reset_patterns
   # include_set_modules
   metric_card.deep_answer_update true
-end
-
-def calculator
-  calculator_class.new parser, &method(:normalize_value)
-end
-
-def calculator_class
-  metric_card&.calculator_class || ::Formula.calculator_class(parser.formula)
 end

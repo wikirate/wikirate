@@ -1,7 +1,7 @@
 module Formula
   # Formula that translates one value to another based on a JSON map
   class Translation < JsonFormula
-    def initialize parser, &value_normalizer
+    def initialize parser, opts={}
       parser.unknown_handling :unknown_string
       super
     end
