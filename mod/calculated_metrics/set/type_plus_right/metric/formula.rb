@@ -78,10 +78,6 @@ def replace_reference_syntax old_name, new_name
   content.gsub old_name, new_name
 end
 
-def normalize_value value
-  metric_card.normalize_value value
-end
-
 def ruby_formula?
   calculator_class == ::Formula::Ruby
 end

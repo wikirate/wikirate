@@ -81,7 +81,7 @@ module Formula
 
     def compile_formula
       return unless safe_to_convert? formula
-      @executed_lambda ||= safe_execution(to_lambda)
+      @executed_lambda ||= safe_execution to_lambda
     end
 
     def safe_to_convert? _expr
