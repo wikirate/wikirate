@@ -3,34 +3,27 @@
 module Formula
   # Calculates the values of a formula
   #
-  # Calculator.new(formula_card)
-  # The formula_card must respond to:
-  #   #clean_formula: a String with just nests and operators
-  #   #input_cards: array of cards
-  #   #company_options: array of the same size as input card with a company option string
-  #                    for each input card
-  #   #year_options: array of the same size as input card with a year option string
-  #   #              for each input card
+  # Calculator.new(parser, value_normalizer)
   class Calculator
-    INPUT_CAST = ->(val) { val }
+    include ShowWork
 
     attr_reader :errors, :input
 
+    # All the answers a given calculation depends on
+    # (same opts as #result)
+    # @return [Array] array of Answer objects
     delegate :answers, to: :input
 
-    def initialize parser, &value_normalizer
-      @value_normalizer = value_normalizer
+    # @param parser [Formula::Parser]
+    # @param opts [Hash]
+    # @option opts [Symbol] :cast
+    # @option opts [Symbol] :cast
+    def initialize parser, opts={}
+      @value_normalizer = opts[:normalize_value]
       @parser = parser
-      @input = initialize_input
+      @parser.send opts[:parser_method] if opts[:parser_method]
+      @input = initialize_input opts[:cast]
       @errors = []
-    end
-
-    def initialize_input
-      if @parser.input_cards.any?(&:nil?)
-        InvalidInput.new
-      else
-        Input.new @parser, &self.class::INPUT_CAST
-      end
     end
 
     # Calculates answers
@@ -38,7 +31,7 @@ module Formula
     # @param [Hash] opts
     # @option opts [String] :company
     # @option opts [String] :year
-    # @return [Hash] { year => { company => value } }
+    # @return [Hash] { year => { company_id => value } }
     def result opts={}
       result_hash do |result|
         each_input(opts) do |input, company, year|
@@ -48,13 +41,13 @@ module Formula
       end
     end
 
-    def each_input opts
-      @input.each(opts) do |input, company, year|
-        yield input, company, year
-      end
-    end
-
-    def answers_to_be_calculated opts={}
+    # The scope of results that would be calculated for given result options
+    # (but without the actual calculated value)
+    # @param [Hash] opts
+    # @option opts [String] :company
+    # @option opts [String] :year
+    # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
+    def result_scope opts={}
       [].tap do |res|
         each_input opts do |_input, company_id, year|
           res << [company_id, year]
@@ -62,81 +55,33 @@ module Formula
       end
     end
 
-    def input_data company, year
-      @parser.input_cards.zip(
-        Array.wrap(@input.input_for(company, year)), @parser.year_options
-      )
-    end
-
-    # @return [String] the formula with nests replaced by the input values
-    #   A block can be used to format the input values
-    def formula_for company, year
-      input_enum = @input.input_for(company, year).each
-      replace_nests do
-        block_given? ? yield(input_enum.next) : input_enum.next
-      end
-    end
-
-    # provides (in contrast to formula_for) also the input metric and index for every input
-    # and not only the input value for formatting the formula
-    # @return [String] the formula with nests replaced by the result of the given block
-    def advanced_formula_for company, year
-      input = @input.input_for(company, year)
-      case input
-      when :unknown then return "Unknown"
-      when nil then return "No value"
-      end
-
-      input_enum = input.each
-      replace_nests do |index|
-        yield(input_enum.next, @parser.input_cards[index], index)
-      end
-    end
-
+    # @return [Formula]
     def formula
       @formula ||= @parser.formula
     end
 
-    def validate_formula
+    # @return [Array] list of errors
+    def detect_errors
       @errors = []
       compile_formula
       @errors
     end
 
-    def self.remove_nests content
-      content.gsub(/{{[^}]*}}/, "")
-    end
-
-    def self.remove_quotes content
-      content.gsub(/"[^"]+"/, "")
-    end
-
-    private
-
-    def safe_execution expr
-      return if @errors.any?
-
-      unless safe_to_exec?(expr)
-        @errors << "invalid formula"
-        return
+    class << self
+      def remove_nests content
+        content.gsub(/{{[^}]*}}/, "")
       end
-      exec_lambda expr
+
+      def remove_quotes content
+        content.gsub(/"[^"]+"/, "")
+      end
     end
 
     protected
 
     def compile_formula
       return unless safe_to_convert? formula
-      @executed_lambda ||= safe_execution(to_lambda)
-    end
-
-    def replace_nests content=nil
-      content ||= formula
-      index = -1
-      content.gsub(/{{[^{}]*}}/) do |_match|
-        index += 1
-        yield(index)
-      end
+      @executed_lambda ||= safe_execution to_lambda
     end
 
     def safe_to_convert? _expr
@@ -145,6 +90,34 @@ module Formula
 
     def safe_to_exec? _expr
       false
+    end
+
+    def normalize_value value
+      @value_normalizer ? @value_normalizer.call(value) : value
+    end
+
+    def default_cast
+      :no_cast
+    end
+
+    private
+
+    def no_cast val
+      val
+    end
+
+    def initialize_input cast
+      if @parser.input_cards.any?(&:nil?)
+        InvalidInput.new
+      else
+        Input.new @parser, &method(cast || default_cast)
+      end
+    end
+
+    def each_input opts
+      @input.each(opts) do |input, company, year|
+        yield input, company, year
+      end
     end
 
     def value_for_input input, company, year
@@ -159,8 +132,14 @@ module Formula
       result
     end
 
-    def normalize_value value
-      @value_normalizer ? @value_normalizer.call(value) : value
+    def safe_execution expr
+      return if @errors.any?
+
+      unless safe_to_exec?(expr)
+        @errors << "invalid formula"
+        return
+      end
+      exec_lambda expr
     end
   end
 end

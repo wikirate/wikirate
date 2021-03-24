@@ -59,7 +59,7 @@ format :html do
 end
 
 event :validate_formula, :validate, when: :wolfram_formula?, changed: :content do
-  formula_errors = calculator.validate_formula
+  formula_errors = calculator.detect_errors
   return if formula_errors.empty?
   formula_errors.each do |msg|
     errors.add :formula, msg
@@ -76,10 +76,6 @@ end
 def replace_reference_syntax old_name, new_name
   return super unless rating?
   content.gsub old_name, new_name
-end
-
-def normalize_value value
-  metric_card.normalize_value value
 end
 
 def ruby_formula?

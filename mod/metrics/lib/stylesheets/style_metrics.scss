@@ -650,9 +650,15 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .vega-bindings {
+  background: #eee;
+  border: 1px solid #666;
+  padding: 1em;
   float: right;
+  min-width: 180px;
   width: 20%;
   text-align: right;
+  right: 0;
+  top: 38px;
   display: none;
   span {
     display: block;
