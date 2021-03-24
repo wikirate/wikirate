@@ -22,6 +22,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     it "has codename" do
       expect(formula_card.codename).to eq :formula
     end
+
     it 'has type "metric type"' do
       expect(formula_card.type_id).to eq Card["metric type"].id
     end
