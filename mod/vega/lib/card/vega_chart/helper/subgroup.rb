@@ -1,7 +1,7 @@
 class Card
   class VegaChart
     module Helper
-      # default axis configuration for vega charts
+      # default subgroup configuration for vega charts
       module Subgroup
         GROUP_PATHS = {
           value_type: "Value_Type.json",

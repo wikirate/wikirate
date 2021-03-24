@@ -56,24 +56,27 @@ format :html do
      wrap_with(:div, "= #{yield}", class: "formula-with-values")]
   end
 
-  # TODO: make item-wrapping format-specific
+  def formula_calculator
+    card.metric_card.calculator parser_method: :processed_input!,
+                                cast: :no_cast, format: self
+  end
+
   def formula_details
-    parser = card.metric_card.formula_card.parser.processed_input!
-    calculator = Formula::Calculator.new(parser)
-    calculator.advanced_formula_for card.company,
-                                    card.year.to_i do |input, input_card, index|
-      input_value_link input, input_card, parser.year_options[index]
+    formula_calculator.formula_for card.company, card.year.to_i do |*args|
+      input_value_link(*args)
     end
   end
 
-  def input_value_link input, input_card, year_option
-    target = [input_card, card.company, input_value_link_year(input, year_option)]
-    input = input.join ", " if input.is_a?(Array)
-    link_to_card target.compact, input, class: "metric-value _update-details"
+  def input_value_link value, input_card, year_option
+    link_to_card [input_card,
+                  card.company,
+                  input_value_link_year(value, year_option)].compact,
+                 Array.wrap(value).join(", "),
+                 class: "metric-value _update-details"
   end
 
-  def input_value_link_year input, year_option
-    input.is_a?(Array) && year_option ? nil : card.year
+  def input_value_link_year value, year_option
+    value.is_a?(Array) && year_option ? nil : card.year
   end
 
   # ~~~~~ SCORE AND WIKIRATING DETAILS

@@ -13,11 +13,13 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
   end
 
   def expect_answers_to_move
-    expect(company.answers.count).to eq(2)
+    expect(company.answers.count).to eq(5)
     expect(target.answers.count).to eq(10)
     yield
     expect(company.answers.count).to eq(1) # there is one conflicting answer
     expect(target.answers.count).to eq(11)
+    # Note: we do not move over hq field, so the hq answer and the answers that depend on
+    # it don't move
   end
 
   describe "#move_answers_to" do
