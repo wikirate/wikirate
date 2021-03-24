@@ -5,6 +5,8 @@ module Formula
   #
   # Calculator.new(parser, value_normalizer)
   class Calculator
+    include ShowWork
+
     attr_reader :errors, :input
 
     # All the answers a given calculation depends on
@@ -53,41 +55,12 @@ module Formula
       end
     end
 
-    # All the inputs for a given answer (the calculator implies the metric)
-    # @param [Integer, String, Card] company (any company mark)
-    # @param [String] year four-digit year
-    # @return [Array] [[metric_card_1, value_1, year_options_1], [metric_card2...], ...]
-    def inputs_for company, year
-      @parser.input_cards.zip(
-        Array.wrap(@input.input_for(company, year)), @parser.year_options
-      )
-    end
-
-    # The formula for a given answer (the calculator implies the metric)
-    # @param [Integer, String, Card] company (any company mark)
-    # @param [String] year four-digit year
-    # @param [Proc] block . Block that can handle three args:
-    #     1: raw input value
-    #     2. input metric card
-    #     3. the year option
-    # @return [String] the formula with nests replaced by the result of the given block
-    def formula_for company, year, &block
-      input = @input.input_for company, year
-      case input
-      when :unknown
-        "Unknown"
-      when nil
-        "No value"
-      else
-        formula_with_nests input, &block
-      end
-    end
-
+    # @return [Formula]
     def formula
       @formula ||= @parser.formula
     end
 
-    # @return list of errors
+    # @return [Array] list of errors
     def detect_errors
       @errors = []
       compile_formula
@@ -104,19 +77,33 @@ module Formula
       end
     end
 
-    private
+    protected
 
-    def each_input opts
-      @input.each(opts) do |input, company, year|
-        yield input, company, year
-      end
+    def compile_formula
+      return unless safe_to_convert? formula
+      @executed_lambda ||= safe_execution(to_lambda)
     end
 
-    def formula_with_nests input
-      input_enum = input.each
-      replace_nests do |index|
-        yield input_enum.next, @parser.input_cards[index], @parser.year_options[index]
-      end
+    def safe_to_convert? _expr
+      true
+    end
+
+    def safe_to_exec? _expr
+      false
+    end
+
+    def normalize_value value
+      @value_normalizer ? @value_normalizer.call(value) : value
+    end
+
+    def default_cast
+      :no_cast
+    end
+
+    private
+
+    def no_cast val
+      val
     end
 
     def initialize_input cast
@@ -127,46 +114,10 @@ module Formula
       end
     end
 
-    def safe_execution expr
-      return if @errors.any?
-
-      unless safe_to_exec?(expr)
-        @errors << "invalid formula"
-        return
+    def each_input opts
+      @input.each(opts) do |input, company, year|
+        yield input, company, year
       end
-      exec_lambda expr
-    end
-
-    protected
-
-    def default_cast
-      :no_cast
-    end
-
-    def no_cast val
-      val
-    end
-
-    def compile_formula
-      return unless safe_to_convert? formula
-      @executed_lambda ||= safe_execution(to_lambda)
-    end
-
-    def replace_nests content=nil
-      content ||= formula
-      index = -1
-      content.gsub(/{{[^{}]*}}/) do |_match|
-        index += 1
-        yield(index)
-      end
-    end
-
-    def safe_to_convert? _expr
-      true
-    end
-
-    def safe_to_exec? _expr
-      false
     end
 
     def value_for_input input, company, year
@@ -181,8 +132,14 @@ module Formula
       result
     end
 
-    def normalize_value value
-      @value_normalizer ? @value_normalizer.call(value) : value
+    def safe_execution expr
+      return if @errors.any?
+
+      unless safe_to_exec?(expr)
+        @errors << "invalid formula"
+        return
+      end
+      exec_lambda expr
     end
   end
 end
