@@ -429,7 +429,7 @@ GEM
     excon (0.79.0)
     execjs (2.7.0)
     ffi (1.15.0)
-    fog-aws (3.9.0)
+    fog-aws (3.10.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
@@ -551,7 +551,7 @@ GEM
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
       nokogiri (~> 1.5)
-    nokogumbo (2.0.4)
+    nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
     oga (3.3)
       ast
