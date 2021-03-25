@@ -21,7 +21,7 @@ module Formula
       "Country" => "country_lookup",
       "ILORegion" => "ilo_region_lookup"
     }.freeze
-    LOOKUPS = ::Set.new %w[Country]
+    LOOKUPS = ::Set.new %w[Country ILORegion]
     LAMBDA_ARGS_NAME = "args".freeze
 
     def numeric_cast val
@@ -77,7 +77,7 @@ module Formula
     end
 
     # FIXME: ILO region needs codename!
-    def ilo_region region
+    def ilo_region_lookup region
       lookup_for_region region, "ILO Region"
     end
 
