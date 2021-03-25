@@ -39,10 +39,12 @@ metrics.each do |h|
 
   ensure_card(h[:title], type: "Metric Title")
   metric_card = ensure_card metric_name, type_id: Card::MetricID
-  metric_card.answers.each do |answer|
-    puts "deleting: #{answer.name}"
-    answer.delete!
-  end
+
+  Answer.where(metric_id: metric_card.id).delete_all
+  # metric_card.answers.each do |answer|
+  #   puts "deleting: #{answer.name}"
+  #   answer.delete!
+  # end
 
   f = fields.clone.merge value_options: h[:options]
   f[:formula] = h[:formula] if h[:formula]
