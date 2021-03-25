@@ -25,6 +25,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Headquarters do
       it "updates depender values" do
         death_star_to "Alabama (United States)"
         expect(company_hq_lookup("Core+Country").value).to eq("United States")
+        expect(company_hq_lookup("Core+ILO Region").value).to eq("Americas")
       end
     end
 
