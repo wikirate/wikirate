@@ -17,9 +17,11 @@ class Card
 
       def topic_query value
         multi_metric do
-          topics = Array.wrap(value).unshift "in"
           restrict_by_cql :metric_id,
-                          right_plus: [Card::WikirateTopicID, { refer_to: topics }]
+                          right_plus: [
+                            Card::WikirateTopicID,
+                            { refer_to: (["in"] + Array.wrap(value)) }
+                          ]
         end
       end
       alias wikirate_topic_query topic_query

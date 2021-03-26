@@ -37,7 +37,7 @@ class Card
     end
 
     def refer_to codename, value
-      value = value.is_a?(Array) ? value.unshift(:in) : value
+      value = [:in] + value if value.is_a? Array
       [Codename.id(codename), { refer_to: value }]
     end
   end
