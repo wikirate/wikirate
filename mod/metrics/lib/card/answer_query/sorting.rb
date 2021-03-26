@@ -17,8 +17,8 @@ class Card
 
       def process_sort
         @sort_joins = []
-        @sort_hash = @sort_args.each_with_object({}) do |(key, val), h|
-          h[sort_by(key)] = val
+        @sort_hash = @sort_args.each_with_object({}) do |(by, dir), h|
+          h[sort_by(by)] = sort_dir(dir)
         end
       end
 
@@ -28,6 +28,12 @@ class Card
         else
           sort_by == :value ? sort_by_value : sort_by
         end
+      end
+
+      def sort_dir dir
+        return dir unless dir == :default_value_sort_dir
+
+        numeric_sort? ? :desc : :asc
       end
 
       def sort_by_value

@@ -18,7 +18,13 @@ format do
   end
 
   def default_sort_dir sort_by
-    default_desc_sort_dir.include?(sort_by.to_sym) ? :desc : :asc
+    if sort_by == :value
+      :default_value_sort_dir
+    elsif default_desc_sort_dir.include? sort_by.to_sym
+      :desc
+    else
+      :asc
+    end
   end
 
   def default_desc_sort_dir
