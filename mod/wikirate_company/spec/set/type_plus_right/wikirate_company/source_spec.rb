@@ -36,7 +36,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
 
       it "adds filters to right_plus_array" do
         is_expected.to include(
-          right_plus: [[Card::WikirateTopicID, { refer_to: %w[in Force] }],
+          right_plus: [[Card::WikirateTopicID, { refer_to: [:in, "Force"] }],
                        right_plus_val]
         )
       end
