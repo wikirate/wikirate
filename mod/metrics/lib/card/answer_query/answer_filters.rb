@@ -70,7 +70,7 @@ class Card
         when "current_user"
           Auth.current_id
         when "wikirate_team"
-          Set::Self::WikirateTeam.member_ids.join ", "
+          Set::Self::WikirateTeam.member_ids
         else
           Card.fetch_id value
         end
