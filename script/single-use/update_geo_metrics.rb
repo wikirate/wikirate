@@ -38,13 +38,7 @@ metrics.each do |h|
   puts "starting on metric: #{metric_name}"
 
   ensure_card(h[:title], type: "Metric Title")
-  metric_card = ensure_card metric_name, type_id: Card::MetricID
-
-  Answer.where(metric_id: metric_card.id).delete_all
-  # metric_card.answers.each do |answer|
-  #   puts "deleting: #{answer.name}"
-  #   answer.delete!
-  # end
+  ensure_card metric_name, type_id: Card::MetricID
 
   f = fields.clone.merge value_options: h[:options]
   f[:formula] = h[:formula] if h[:formula]
@@ -54,4 +48,5 @@ metrics.each do |h|
   end
 end
 
+puts "starting deep answer update"
 Card["Core+#{hq}"].deep_answer_update

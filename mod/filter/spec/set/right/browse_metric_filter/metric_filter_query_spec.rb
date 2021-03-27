@@ -19,7 +19,7 @@ RSpec.describe Card::Set::Right::BrowseMetricFilter do
     end
 
     def topic_cql
-      simple_field_filter Card::WikirateTopicID, %w[in myTopic]
+      simple_field_filter Card::WikirateTopicID, [:in, "myTopic"]
     end
 
     def simple_field_filter field_id, value
