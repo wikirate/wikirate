@@ -20,7 +20,8 @@ format :html do
   end
 
   def edit_form_opts
-    { "data-slot-selector" => ".card-slot.TYPE-metric" }
+    { "data-slot-selector" => ".card-slot.TYPE-metric",
+      "data-slot-error-selector" => ".RIGHT-formula.edit_form-view" }
   end
 
   def edit_success
