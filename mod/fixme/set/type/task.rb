@@ -18,7 +18,8 @@ format :html do
   end
 
   view :bar_right, cache: :never do
-    labeled_badge card.search_type_card.count, "Items"
+    ""
+    # labeled_badge card.search_type_card.count, "Items"
   end
 
   view :core, template: :haml
