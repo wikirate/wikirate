@@ -800,119 +800,119 @@
 - :name: Add a Company Logo
   :type: Task
   :key: add_a_company_logo
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add a Company Logo+icon
   :type: Phrase
   :key: add_a_company_logo+icon
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add a Company Logo+description
   :type: RichText
   :key: add_a_company_logo+description
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add a Company Logo+why
   :type: RichText
   :key: add_a_company_logo+why
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add a Company Logo+how to
   :type: RichText
   :key: add_a_company_logo+how_to
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add a Company Logo+Search
   :type: Search
   :key: add_a_company_logo+search
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add an OpenCorporates mapping
   :type: Task
   :key: add_an_open_corporate_mapping
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add an OpenCorporates mapping+description
   :type: RichText
   :key: add_an_open_corporate_mapping+description
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add an OpenCorporates mapping+why
   :type: RichText
   :key: add_an_open_corporate_mapping+why
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add an OpenCorporates mapping+how to
   :type: RichText
   :key: add_an_open_corporate_mapping+how_to
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add an OpenCorporates mapping+Search
   :type: Search
   :key: add_an_open_corporate_mapping+search
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add Wikipedia Information
   :type: Task
   :key: add_wikipedium_information
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add Wikipedia Information+description
   :type: RichText
   :key: add_wikipedium_information+description
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add Wikipedia Information+why
   :type: RichText
   :key: add_wikipedium_information+why
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add Wikipedia Information+how to
   :type: RichText
   :key: add_wikipedium_information+how_to
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Add Wikipedia Information+Search
   :type: Search
   :key: add_wikipedium_information+search
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Review a Flagged Answer
   :type: Task
   :key: review_a_flagged_answer
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Review a Flagged Answer+icon
   :type: Phrase
   :key: review_a_flagged_answer+icon
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Review a Flagged Answer+description
   :type: RichText
   :key: review_a_flagged_answer+description
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Review a Flagged Answer+why
   :type: RichText
   :key: review_a_flagged_answer+why
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Review a Flagged Answer+how to
   :type: RichText
   :key: review_a_flagged_answer+how_to
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Review a Flagged Answer+Search
   :type: Search
   :key: review_a_flagged_answer+search
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Sources without a File
   :type: Task
   :key: source_without_a_file
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Sources without a File+description
   :type: RichText
   :key: source_without_a_file+description
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Sources without a File+why
   :type: RichText
   :key: source_without_a_file+why
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Sources without a File+how to
   :type: RichText
   :key: source_without_a_file+how_to
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Sources without a File+Search
   :type: Search
   :key: source_without_a_file+search
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Topics without an Image
   :type: Task
   :key: topic_without_an_image
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 - :name: Topics without an Image+Search
   :type: Search
   :key: topic_without_an_image+search
-  :merged: 2021-03-29 19:09:29 UTC
+  :merged: 2021-04-01 02:06:15 UTC
 :remotes:
   :live: https://wikirate.org
   :dev: https://dev.wikirate.org
