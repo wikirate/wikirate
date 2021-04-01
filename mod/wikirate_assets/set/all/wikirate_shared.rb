@@ -1,8 +1,8 @@
 NAV_MENUS = {
   "Explore" => ["Companies", "Topics", "Metrics",
                 "Projects", "Research Groups", "Company Groups", "Sources", "Changes"],
-  "How To"  => ["Add Data", "Use Data", "Organize Projects",
-                "FAQ", "Glossary", "Report Issue"],
+  "How To"  => ["Contribute", "Use Data", "Take Part in Projects", "Organize Projects",
+                "Advanced", "FAQ", "Glossary", "Report Issue"],
   "About"   => ["About Us", "Our Team", "Programs",
                 "Publications", "News", "Legal", "Contact Us", "Donate"]
 }.freeze
@@ -11,8 +11,10 @@ MENU_REFS = { "Groups" => "Research Groups",
               "Changes" => ":recent",
               "FAQ" => "Frequently Asked Questions",
               "Report Issue" => "Tickets",
-              "Add Data" => "How to Add Data",
+              "Contribute" => "How to Contribute",
               "Use Data" => "How to Use Data",
+              "Take Part in Projects" => "How to take part in Projects",
+              "Advanced" => "How to (Advanced)",
               "Organize Projects" => "How to Organize Projects",
               "Facebook" => "https://www.facebook.com/wikirate/",
               "Twitter" => "https://twitter.com/WikiRate",

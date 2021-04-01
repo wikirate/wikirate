@@ -1,5 +1,5 @@
 NAV_MENU_HR_AFTER = { "Metrics" => true,
-                      "Organize Projects" => true,
+                      "Advanced" => true,
                       "Programs" => true }
 
 format :html do

@@ -31,7 +31,7 @@ class Card
       end
 
       def sort_dir dir
-        return dir unless dir == :default_value_sort_dir
+        return dir unless dir&.to_sym == :default_value_sort_dir
 
         numeric_sort? ? :desc : :asc
       end
