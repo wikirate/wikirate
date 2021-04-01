@@ -4,7 +4,7 @@ include_set Abstract::TaskFilter
 
 format do
   def default_filter_hash
-    { metric_name: "", company_name: "", verification: "flagged"}
+    { metric_name: "", company_name: "", verification: "flagged" }
   end
 end
 

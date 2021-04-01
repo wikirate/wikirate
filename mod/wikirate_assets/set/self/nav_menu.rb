@@ -1,6 +1,6 @@
 NAV_MENU_HR_AFTER = { "Metrics" => true,
                       "Advanced" => true,
-                      "Programs" => true }
+                      "Programs" => true }.freeze
 
 format :html do
   view :core do
