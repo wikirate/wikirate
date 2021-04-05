@@ -103,9 +103,22 @@ $.extend wikirate,
     load_path = decko.slotPath(sourceID + "?view=preview")
     slot.reloadSlot load_path
 
+  openBar = (bar) ->
+    path = "~" + bar.slot().data "card-id"
+    window.open decko.path(path)
+
 staticPreviewLink = ".slot_machine-view .TYPE-answer.titled-view .source-preview-link"
 
+
+
 $(document).ready ->
+  $('body').on 'click', '.bar.TYPE-task', () ->
+    openBar $(this)
+
+  $('body').on 'click', '.bar.TYPE-task a', () ->
+    openBar $(this).closest('.bar')
+    return false
+
   $('body').on 'click', '._cite-button', (event) ->
     wikirate.toggleCitation(this, 'cite')
 

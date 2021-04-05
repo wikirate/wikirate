@@ -1,0 +1,13 @@
+{
+  "type":"Topic", 
+  "not": { 
+    "right_plus": "image"
+  },
+  "limit": 5
+  /*,
+  "sort": {
+    "right": "bookmarkers",
+    "item": "cached_count",
+    "return": "count"
+  }*/
+}
