@@ -121,7 +121,7 @@ format :html do
     type_options :company_group
   end
 
-  def company_options
+  def country_options
     Wikirate::Region.countries
   end
 

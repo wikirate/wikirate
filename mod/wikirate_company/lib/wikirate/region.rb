@@ -3,7 +3,7 @@ module Wikirate
     class << self
       # FIXME: country needs codename!
       def countries
-        @countries ||= region_lookup("Country").values
+        @countries ||= region_lookup("Country").values.uniq.sort
       end
 
       def regions_for_country country
