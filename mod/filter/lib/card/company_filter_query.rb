@@ -2,6 +2,10 @@ class Card
   class CompanyFilterQuery < FilterQuery
     include WikirateFilterQuery
 
+    def country_cql country
+
+    end
+
     def company_cql company
       name_cql company
     end
