@@ -55,8 +55,7 @@ class Card
 
       def country_query value
         @joins << "JOIN answers AS countries ON answers.company_id = countries.company_id"
-        @conditions <<
-          "countries.metric_id = #{Codename.id :core_country} AND countries.value IN (?)"
+        @conditions << CompanyFilterQuery.country_condition
         @values << Array.wrap(value)
       end
 
