@@ -53,6 +53,13 @@ class Card
         end
       end
 
+      def country_query value
+        @joins << "JOIN answers AS countries ON answers.company_id = countries.company_id"
+        @conditions <<
+          "countries.metric_id = #{Codename.id :core_country} AND countries.value IN (?)"
+        @values << Array.wrap(value)
+      end
+
       def metric_name_query value
         handle_equals_syntax :metric_id, value do
           @joins << :metric
