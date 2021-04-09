@@ -2,6 +2,14 @@ class Card
   class CompanyFilterQuery < FilterQuery
     include WikirateFilterQuery
 
+    def self.country_condition
+      "countries.metric_id = #{Codename.id :core_country} AND countries.value IN (?)"
+    end
+
+    def country_cql country
+      add_to_cql :country, country
+    end
+
     def company_cql company
       name_cql company
     end
@@ -19,6 +27,30 @@ class Card
       return unless trunk.present?
       # this "and" is a hack to prevent collision between the referred_to_by's
       add_to_cql :and, referred_to_by: Card::Name[trunk, :wikirate_company]
+    end
+  end
+
+  # add :country attribute to Card::Query
+  module Query
+    attributes[:country] = :relational
+
+    class CardQuery
+      # extend CardQuery to look up companies' countries in card table
+      module CountryQuery
+        def country_join
+          Join.new side: :left, from: self, from_field: "id",
+                   to: %i[answers countries company_id]
+        end
+
+        def country val
+          joins << country_join
+
+          @conditions << ::Answer.sanitize_sql_for_conditions(
+            [CompanyFilterQuery.country_condition, Array.wrap(val)]
+          )
+        end
+      end
+      include CountryQuery
     end
   end
 end
