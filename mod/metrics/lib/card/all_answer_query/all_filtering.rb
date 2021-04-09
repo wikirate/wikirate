@@ -8,7 +8,7 @@ class Card
         company: CompanyFilterQuery, metric: MetricFilterQuery
       }.freeze
       PARTNER_CQL_FILTERS = {
-        company: ::Set.new([:project]),
+        company: ::Set.new(%i[project country]),
         metric: ::Set.new(%i[project designer metric_type research_policy bookmark])
       }.freeze
 
