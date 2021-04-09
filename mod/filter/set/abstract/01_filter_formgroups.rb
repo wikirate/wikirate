@@ -31,6 +31,10 @@ format :html do
     multiselect_filter :company_group
   end
 
+  view :filter_country_formgroup, cache: :never do
+    select_filter :country
+  end
+
   view :filter_company_name_formgroup, cache: :never do
     text_filter :company_name
   end
@@ -115,6 +119,10 @@ format :html do
 
   def company_group_options
     type_options :company_group
+  end
+
+  def country_options
+    Wikirate::Region.countries
   end
 
   def bookmark_options
