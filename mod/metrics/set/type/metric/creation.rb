@@ -93,8 +93,7 @@ format :html do
   def new_tab_pane_hidden
     hidden_tags(
       "card[subcards][+*metric type][content]" => "[[#{card.metric_type}]]",
-      "card[type_id]" => MetricID,
-      success: "_self"
+      "card[type_id]" => MetricID
     )
   end
 
