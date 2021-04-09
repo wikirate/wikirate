@@ -56,7 +56,7 @@ gem "rack-cors"                      # support for Cross-Origin Resource Sharing
 
 group :live do
   gem "dalli"                        # Memcache
-  gem "therubyracer"                 # JS runtime
+  # gem "therubyracer"                 # JS runtime
 end
 
 group :development do
