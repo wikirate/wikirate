@@ -9,7 +9,7 @@ format :html do
       with_nest_mode :edit do
         wrap do
           card_form :update,
-                    "main-success" => "REDIRECT",
+                    "data-main-success": JSON(redirect: true),
                     "data-slot-selector": ".card-slot.slot_machine-view",
                     success: research_form_success do
             output [edit_view_hidden, _render_content_formgroup]

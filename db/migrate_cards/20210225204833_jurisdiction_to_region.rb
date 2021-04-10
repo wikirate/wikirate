@@ -56,7 +56,7 @@ class JurisdictionToRegion < Cardio::Migration
   def each_region
     path = File.expand_path "../csv/headquarters_country_mapping.csv", __FILE__
     csv = File.read path
-    rows = CSV.parse csv
+    rows = CSV.parse csv, headers: true
     rows.each { |row| yield row }
   end
 end
