@@ -76,7 +76,7 @@ format :html do
   view :new_tab_pane, unknown: true, cache: :never do
     with_nest_mode :edit do
       wrap do
-        card_form :create, "main-success" => "REDIRECT",
+        card_form :create, "data-main-success": JSON(redirect: true),
                            "data-slot-selector": ".new-view.TYPE-metric" do
           output [
             new_tab_pane_hidden,
@@ -93,8 +93,7 @@ format :html do
   def new_tab_pane_hidden
     hidden_tags(
       "card[subcards][+*metric type][content]" => "[[#{card.metric_type}]]",
-      "card[type_id]" => MetricID,
-      success: "_self"
+      "card[type_id]" => MetricID
     )
   end
 
