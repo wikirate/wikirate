@@ -85,7 +85,7 @@ format :html do
   def new_success
     return super unless answer_name
     {
-      id: answer_name,
+      mark: answer_name,
       type_id: Card::MetricAnswerID,
       view: :source_selector,
       soft_redirect: true

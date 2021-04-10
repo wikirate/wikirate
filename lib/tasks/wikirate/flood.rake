@@ -45,7 +45,7 @@ namespace :wikirate do
                  "card[subcards][*signin+*email][type_id]" => "52",
                  "card[subcards][*signin+*password][content]" => "flooder_pass",
                  "card[subcards][*signin+*password][type_id]" => "52",
-                 success: "REDIRECT: *previous"
+                 success: { redirect: true, mark: "*previous" }
                }
       end
     end
