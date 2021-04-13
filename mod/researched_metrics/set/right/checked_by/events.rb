@@ -9,7 +9,7 @@ event :user_unchecked_value, :prepare_to_store,
   update_user_check_log.drop_id left.id
 end
 
-event :user_requests_check, :prepare_to_store,
+event :user_requests_check, :prepare_to_store, on: :change,
       when: :request_check_flag_update?, changed: :content do
   if content == "[[#{request_tag}]]"
     attach_request "[[#{user.name}]]" unless check_requester.present?
@@ -53,6 +53,7 @@ def remove_checked_flag?
   Env.params[:set_flag] == "uncheck"
 end
 
+# this is a terrible test for this. should be an explicit request!
 def request_check_flag_update?
   !add_checked_flag? && !remove_checked_flag?
 end
