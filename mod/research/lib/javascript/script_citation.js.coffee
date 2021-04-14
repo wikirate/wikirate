@@ -104,7 +104,7 @@ $.extend wikirate,
     slot.reloadSlot load_path
 
   openBar = (bar) ->
-    path = "~" + bar.slot().data "card-id"
+    path = bar.slot().data "card-link-name"
     window.open decko.path(path)
 
 staticPreviewLink = ".slot_machine-view .TYPE-answer.titled-view .source-preview-link"

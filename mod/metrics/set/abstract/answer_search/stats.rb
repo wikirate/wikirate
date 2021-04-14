@@ -94,10 +94,15 @@ format :html do
 
   def answer_count_badge codename
     count = counts[codename]
+    labeled_badge number_with_delimiter(count),
+                  answer_count_badge_label(codename, count),
+                  color: "#{codename.cardname.downcase} badge-secondary"
+  end
+
+  def answer_count_badge_label codename, count
     simple_label = codename.cardname.pluralize count
-    label = responsive_count_badge_label icon_tag: mapped_icon_tag(codename),
-                                         simple_label: simple_label
-    labeled_badge count, label, color: "#{codename.cardname.downcase} badge-secondary"
+    responsive_count_badge_label icon_tag: mapped_icon_tag(codename),
+                                 simple_label: simple_label
   end
 
   def show_chart?

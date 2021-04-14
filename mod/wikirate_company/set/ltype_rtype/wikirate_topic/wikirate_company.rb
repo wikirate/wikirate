@@ -28,7 +28,8 @@ format :html do
   end
 
   def answer_count_badge
-    labeled_badge answer_count, mapped_icon_tag(:metric_answer),
+    labeled_badge number_with_delimiter(answer_count),
+                  mapped_icon_tag(:metric_answer),
                   klass: "RIGHT-answer", title: "Answers"
   end
 
