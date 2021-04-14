@@ -4,13 +4,13 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
            total: "Total" }.freeze
 
 COUNT_FIELDS = {
-  company_id: :wikirate_company,
+  "answers.company_id": :wikirate_company,
   "answers.metric_id": :metric,
   "designer_id": :designer,
-  verification: :verification,
+  "answers.verification": :verification,
   "metrics.metric_type_id": :metric_type,
   "metrics.value_type_id": :value_type,
-  year: :year,
+  "answers.year": :year,
   "*": :metric_answer
 }.freeze
 
@@ -45,7 +45,7 @@ format do
   end
 
   def knowns_and_unknowns researched
-    unknowns = count_query.answer_query.where("value = 'Unknown'").count
+    unknowns = count_query.answer_query.where("answers.value = 'Unknown'").count
     { unknown: unknowns, known: (researched - unknowns) }
   end
 

@@ -66,7 +66,7 @@ format :html do
       with_nest_mode :edit do
         card_form action,
                   class: "new-value-form",
-                  "main-success": "REDIRECT",
+                  "data-main-success": JSON(redirect: true),
                   "data-slot-selector": ".card-slot.left_research_side-view",
                   success: research_form_success do
           yield

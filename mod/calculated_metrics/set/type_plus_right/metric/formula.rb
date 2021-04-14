@@ -12,7 +12,7 @@ end
 
 format :html do
   def new_success
-    { id: card.name.left }
+    { mark: card.name.left }
   end
 
   def new_form_opts
