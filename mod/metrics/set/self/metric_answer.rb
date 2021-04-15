@@ -7,7 +7,7 @@ include_set Abstract::AnswerSearch
 
 format do
   def default_filter_hash
-    { metric_name: "", company_name: "" }
+    { company_name: "" }
   end
 
   def filter_keys

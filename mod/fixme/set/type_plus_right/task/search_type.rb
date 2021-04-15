@@ -8,6 +8,6 @@ end
 
 format :html do
   view :core do
-    nest card.filter_search_name, view: :filtered_content
+    nest card.filter_search_name, view: :filtered_content, hide: :paging
   end
 end
