@@ -370,7 +370,7 @@ GEM
     colorize (0.8.1)
     company-mapping (0.2.3)
     concurrent-ruby (1.1.8)
-    connection_pool (2.2.4)
+    connection_pool (2.2.5)
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -505,7 +505,6 @@ GEM
       rexml
     launchy (2.5.0)
       addressable (~> 2.7)
-    libv8 (3.16.14.19)
     link_thumbnailer (3.4.0)
       activesupport (>= 3.0)
       image_info (~> 1.0, >= 1.2.0)
@@ -636,7 +635,6 @@ GEM
       ffi (~> 1.0)
     recaptcha (4.13.2)
       json
-    ref (2.0.0)
     regexp_parser (2.1.1)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -739,9 +737,6 @@ GEM
     temple (0.8.2)
     terminal-table (3.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (1.1.0)
     tilt (2.0.10)
     timecop (0.9.4)
@@ -814,7 +809,6 @@ DEPENDENCIES
   ruby-jmeter
   savanna-outliers
   statistics2
-  therubyracer
   timecop
   wbench
   wkhtmltopdf-binary (= 0.12.5.4)
