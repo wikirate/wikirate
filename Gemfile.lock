@@ -370,7 +370,7 @@ GEM
     colorize (0.8.1)
     company-mapping (0.2.3)
     concurrent-ruby (1.1.8)
-    connection_pool (2.2.4)
+    connection_pool (2.2.5)
     crack (0.4.5)
       rexml
     crass (1.0.6)
