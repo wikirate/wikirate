@@ -62,7 +62,7 @@ end
 group :development do
   gem "card-mod-monkey"
 
-  gem "rubocop-ast", "~> 0.5.0" # version jump to 0.7 produced lots of errors
+  gem "rubocop-ast"
   gem "rubocop-decko"
 
   gem "pivotal-tracker"
