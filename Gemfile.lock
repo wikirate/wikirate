@@ -805,7 +805,6 @@ DEPENDENCIES
   puma
   rack-cors
   roo
-  rubocop-ast
   rubocop-decko
   ruby-jmeter
   savanna-outliers

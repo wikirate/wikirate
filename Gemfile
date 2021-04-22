@@ -62,8 +62,8 @@ end
 group :development do
   gem "card-mod-monkey"
 
-  gem "rubocop-ast"
-  gem "rubocop-decko"
+  # gem "rubocop-ast"
+  # gem "rubocop-decko"
 
   gem "pivotal-tracker"
 end
