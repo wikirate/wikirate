@@ -162,7 +162,7 @@ PATH
       pry-rails
       pry-rescue
       pry-stack_explorer
-      rubocop (= 0.88)
+      rubocop
     card-mod-permissions (0.11.3)
       card (= 1.101.3)
     card-mod-prosemirror_editor (0.11.3)
@@ -427,7 +427,7 @@ GEM
     erubis (2.7.0)
     ethon (0.13.0)
       ffi (>= 1.15.0)
-    excon (0.79.0)
+    excon (0.80.1)
     execjs (2.7.0)
     ffi (1.15.0)
     fog-aws (3.10.0)
@@ -488,7 +488,7 @@ GEM
     ipaddress (0.8.3)
     iso8601 (0.9.1)
     json (2.5.1)
-    jwt (2.2.2)
+    jwt (2.2.3)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -670,20 +670,21 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (0.88.0)
+    rubocop (1.13.0)
       parallel (~> 1.10)
-      parser (>= 2.7.1.1)
+      parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.7)
+      regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 0.1.0, < 1.0)
+      rubocop-ast (>= 1.2.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.5.1)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.4.1)
       parser (>= 2.7.1.5)
     rubocop-decko (0.2)
-    rubocop-rspec (1.43.2)
-      rubocop (~> 0.87)
+    rubocop-rspec (2.2.0)
+      rubocop (~> 1.0)
+      rubocop-ast (>= 1.1.0)
     ruby-jmeter (3.1.08)
       nokogiri
       rest-client
@@ -804,7 +805,7 @@ DEPENDENCIES
   puma
   rack-cors
   roo
-  rubocop-ast (~> 0.5.0)
+  rubocop-ast
   rubocop-decko
   ruby-jmeter
   savanna-outliers
