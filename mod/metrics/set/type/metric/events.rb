@@ -63,6 +63,7 @@ event :delete_all_metric_answers, :store, on: :delete do
               :update_related_verifications
 end
 
-event :update_metric_lookup_name_parts, :finalize, changed: :name, on: :update do
+event :update_metric_lookup_name_parts, :finalize,
+      changed: :name, on: :update, after_subcards: true do
   lookup.refresh :designer_id, :title_id, :scorer_id
 end
