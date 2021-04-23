@@ -60,7 +60,7 @@ RSpec.describe Card::Set::Type::Metric do
     end
   end
 
-  context "renaming" do
+  context "when renaming" do
     it "expires the metric type", as_bot: true do
       newname = "Core+Western"
       original = Card["Core+Country"]
