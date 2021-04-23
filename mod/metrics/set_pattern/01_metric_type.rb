@@ -9,6 +9,7 @@ DEFAULT_METRIC_TYPE = "Researched".freeze
 def metric_type card_or_name
   current_card, metric_name = current_card_and_name card_or_name
   metric_type_name = "#{metric_name}+*metric type"
+  # binding.pry
   metric_type_card =
     metric_type_card_from_fetch(metric_type_name) ||
     metric_type_card_from_subfield(current_card) ||
