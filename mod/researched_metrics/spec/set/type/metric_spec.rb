@@ -59,4 +59,14 @@ RSpec.describe Card::Set::Type::Metric do
       end
     end
   end
+
+  context "renaming" do
+    it "expires the metric type", as_bot: true do
+      newname = "Core+Western"
+      original = Card["Core+Country"]
+      original.format.render_open
+      original.update! name: newname, update_referers: true
+      expect(Card["#{newname}+*metric_type"]).to be_a(Card)
+    end
+  end
 end
