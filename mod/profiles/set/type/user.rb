@@ -26,7 +26,10 @@ format :html do
   end
 
   view :simple_account_tab do
-    field_nest :account_settings
+    [
+      field_nest(:account_settings),
+      field_nest(:account, view: :api_key, items: { view: :titled_content, title: "API" })
+    ]
   end
 
   view :research_group_tab do

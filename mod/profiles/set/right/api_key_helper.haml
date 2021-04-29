@@ -1,0 +1,16 @@
+.py-2.api-key-helper
+  %p.alert.alert-secondary
+    The key above can be used to access WikiRate's REST API as
+    %strong
+      = card.name.left
+    without a browser session. You can add the
+    %strong.text-monospace api_key
+    param to query strings or to request headers.
+    Or, for faster authentication, you can use this key to
+    = render_token_link + ";"
+    the token can then be passed via the
+    %strong.text-monospace token
+    param. Tokens expire after two days.
+    For more information see
+    %a{ href: "https://app.swaggerhub.com/apis-docs/Decko/WikiRate/" }<
+      our SwaggerHub docs.
