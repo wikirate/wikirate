@@ -10,11 +10,10 @@ RSpec.describe Card::Set::Type::WikirateCompany do
 
   describe "creating company with post request", type: :controller do
     routes { Decko::Engine.routes }
-    before { @controller = CardController.new }
-
     let(:api_key) { "asdfasf98as8238ruisdsd" }
 
     before do
+      @controller = CardController.new
       Card::Auth.as_bot do
         Card["Joe Admin", :account, :api_key].update! content: api_key
       end
