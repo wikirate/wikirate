@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Abstract::CompanyFieldMetric do
 
   def google_llc_hq_lookup
     Answer.where(
-      company_id: Card.fetch_id("Google LLC"),
+      company_id: "Google LLC".card_id,
       metric_id: card_subject.id
     ).first
   end

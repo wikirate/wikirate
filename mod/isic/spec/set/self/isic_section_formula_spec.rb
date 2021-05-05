@@ -14,7 +14,7 @@ RSpec.describe Card::Set::Self::IsicSectionFormula do
                     value: %w[0111 9609],
                     user: "Joe Admin"
       section_answer = Answer.where(company_id: sample_company.id,
-                                    metric_id: Card.fetch_id("ISIC+Industry Section"),
+                                    metric_id: "ISIC+Industry Section".card_id,
                                     year: 2015).take.card
       expect(section_answer.value_card.raw_value).to eq(%w[A S])
     end

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanySearch::CompanyQuery do
-  let(:more_evil_id) { Card.fetch_id "Jedi+more evil" }
-  let(:less_evil_id) { Card.fetch_id "Jedi+less evil" }
-  let(:supplied_by_id) { Card.fetch_id "Commons+Supplied by" }
-  let(:deadliness_id) { Card.fetch_id "Jedi+deadliness" }
+  let(:more_evil_id) { "Jedi+more evil".card_id }
+  let(:less_evil_id) { "Jedi+less evil".card_id }
+  let(:supplied_by_id) { "Commons+Supplied by".card_id }
+  let(:deadliness_id) { "Jedi+deadliness".card_id }
 
   describe "#sql", output_length: 5000 do
     def sql str
@@ -156,12 +156,12 @@ RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanySe
   end
 
   describe "#relations" do
-    let(:sc_id_1) { Card.fetch_id "Death Star" }
-    let(:sc_id_2) { Card.fetch_id "SPECTRE" }
+    let(:sc_id_1) { "Death Star".card_id }
+    let(:sc_id_2) { "SPECTRE".card_id }
 
-    let(:oc_id_1) { Card.fetch_id "Los Pollos Hermanos" }
-    let(:oc_id_2) { Card.fetch_id "SPECTRE" }
-    let(:oc_id_3) { Card.fetch_id "Google LLC" }
+    let(:oc_id_1) { "Los Pollos Hermanos".card_id }
+    let(:oc_id_2) { "SPECTRE".card_id }
+    let(:oc_id_3) { "Google LLC".card_id }
 
     def relations str
       rel = described_class.new(str, Formula::Calculator::SearchSpace.new).relations

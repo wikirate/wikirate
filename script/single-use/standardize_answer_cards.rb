@@ -17,6 +17,6 @@ structured_ids = %i[
   wikirate_company metric_title wikirate_topic metric metric_answer project
 ].map { |code| Card.fetch_id code }
 
-structured_ids << Card.fetch_id("Ticket")
+structured_ids << "Ticket".card_id
 
 Card.where("type_id in (#{structured_ids * ', '})").update_all(db_content: "")
