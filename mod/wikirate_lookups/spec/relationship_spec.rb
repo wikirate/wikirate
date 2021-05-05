@@ -4,7 +4,7 @@ RSpec.describe Relationship do
   end
   let(:metric) { "Jedi+more evil" }
   let(:relation_name) { "#{metric}+Death Star+1977+Los Pollos Hermanos" }
-  let(:relation_id) { Card.fetch_id relation_name }
+  let(:relation_id) { relation_name.card_id }
 
   describe "create" do
     it "creates relationship entry" do

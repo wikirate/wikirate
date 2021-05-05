@@ -89,7 +89,7 @@ private
 def normalize_metric_arg args={}
   return unless (metric = args.delete :metric)
 
-  args[:metric_id] = Card.fetch_id metric
+  args[:metric_id] = metric.card_id
 end
 
 # DEPRECATED.  +answer csv replaces following:

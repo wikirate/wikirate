@@ -5,7 +5,7 @@ RSpec.describe Answer do
 
   let(:metric) { "Joe User+RM" }
   let(:answer_name) { "#{metric}+Apple_Inc+2013" }
-  let(:answer_id) { Card.fetch_id answer_name }
+  let(:answer_id) { answer_name.card_id }
 
   describe "seeded metric answer table" do
     it "has more than researched values" do
@@ -125,7 +125,7 @@ RSpec.describe Answer do
         name = "Joe User+researched number 1+Apple Inc+2015"
         new_name = "Joe User+researched number 1+Apple Inc+2014"
         update name, name: new_name
-        answer_id = Card.fetch_id new_name
+        answer_id = new_name.card_id
         answer = described_class.for_card answer_id
         expect(answer.latest).to eq true
       end
