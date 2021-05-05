@@ -48,7 +48,7 @@ def metric_name
 end
 
 def metric_id
-  Card.fetch_id metric
+  metric.card_id
 end
 
 def metric_was
@@ -120,7 +120,7 @@ def company_card
 end
 
 def company_id
-  Card.fetch_id company
+  company.card_id
 end
 
 def answer_name
@@ -136,7 +136,7 @@ def record_name
 end
 
 def record_id
-  Card.fetch_id record_name
+  record_name.card_id
 end
 
 def record_card

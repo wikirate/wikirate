@@ -43,7 +43,7 @@ private
 def normalize_company_arg key, args={}
   return unless (company = args.delete :company)
 
-  args[key] = Card.fetch_id company
+  args[key] = company.card_id
 end
 
 # def answer_card company, year

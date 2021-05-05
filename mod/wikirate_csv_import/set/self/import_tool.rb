@@ -43,13 +43,13 @@ format :html do
   end
 
   def import_status_cards import_type, limit=20
-    type_id = Card.fetch_id import_type
+    type_id = import_type.card_id
     Card.search left: { type_id: type_id }, right: { codename: "import_status" },
                 limit: limit, sort: "update"
   end
 
   def import_file_cards import_type
-    type_id = Card.fetch_id import_type
+    type_id = import_type.card_id
     Card.search(type_id: type_id, sort: "create").map do |item|
       nest item, view: :link
     end
