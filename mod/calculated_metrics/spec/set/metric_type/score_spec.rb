@@ -14,7 +14,7 @@ RSpec.describe Card::Set::MetricType::Score do
   end
 
   def score_answer company="Samsung", year="2014"
-    Answer.where(metric_id: Card.fetch_id("Joe User+#{@metric_title}+Big Brother"),
+    Answer.where(metric_id: "Joe User+#{@metric_title}+Big Brother".card_id,
                  company_id: Card.fetch_id(company), year: year.to_i)
           .take
   end
@@ -116,7 +116,7 @@ RSpec.describe Card::Set::MetricType::Score do
   context "when original value changed" do
     def answer metric
       Answer.where(metric_id: Card.fetch_id(metric),
-                   company_id: Card.fetch_id("Death Star"), year: 1977).take
+                   company_id: "Death Star".card_id, year: 1977).take
     end
 
     before do
