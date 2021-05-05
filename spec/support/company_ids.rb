@@ -1,14 +1,14 @@
 RSpec.shared_context "with company ids" do
-  let(:apple_id) { Card.fetch_id "Apple Inc" }
-  let(:spectre_id) { Card.fetch_id "SPECTRE" }
-  let(:death_star_id) { Card.fetch_id "Death Star" }
-  let(:samsung_id) { Card.fetch_id "Samsung" }
+  let(:apple_id) { "Apple Inc".card_id }
+  let(:spectre_id) { "SPECTRE".card_id }
+  let(:death_star_id) { "Death Star".card_id }
+  let(:samsung_id) { "Samsung".card_id }
 
-  let(:sony) { Card.fetch_id "Sony Corporation" }
-  let(:samsung) { Card.fetch_id "Samsung" }
-  let(:death_star) { Card.fetch_id "Death Star" }
-  let(:apple) { Card.fetch_id "Apple Inc" }
-  let(:slate_rock) { Card.fetch_id "Slate Rock and Gravel Company" }
-  let(:los_pollos) { Card.fetch_id "Los Pollos Hermanos" }
-  let(:spectre) { Card.fetch_id "SPECTRE" }
+  let(:sony) { "Sony Corporation".card_id }
+  let(:samsung) { "Samsung".card_id }
+  let(:death_star) { "Death Star".card_id }
+  let(:apple) { "Apple Inc".card_id }
+  let(:slate_rock) { "Slate Rock and Gravel Company".card_id }
+  let(:los_pollos) { "Los Pollos Hermanos".card_id }
+  let(:spectre) { "SPECTRE".card_id }
 end

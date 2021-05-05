@@ -1,5 +1,5 @@
 def metric_designer
-  junction? ? name.parts.first.to_name : creator.name
+  compound? ? name.parts.first.to_name : creator.name
 end
 
 def metric_designer_id
@@ -7,7 +7,7 @@ def metric_designer_id
 end
 
 def metric_designer_card
-  junction? ? self[0] : creator
+  compound? ? self[0] : creator
 end
 
 def designer_image_card
@@ -15,7 +15,7 @@ def designer_image_card
 end
 
 def metric_title
-  junction? ? name.parts[1].to_name : name
+  compound? ? name.parts[1].to_name : name
 end
 
 def metric_title_id
@@ -23,5 +23,5 @@ def metric_title_id
 end
 
 def metric_title_card
-  junction? ? self[1] : self
+  compound? ? self[1] : self
 end
