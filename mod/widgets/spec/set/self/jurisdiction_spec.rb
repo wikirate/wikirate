@@ -6,13 +6,13 @@ RSpec.describe Card::Set::Self::Jurisdiction do
       expect(json_format.select2_option_list).to include(
         { text: "United States",
           children: include(
-            { id: Card.fetch_id("Illinois (United States)"), text: "Illinois" },
-            id: Card.fetch_id("Indiana (United States)"), text: "Indiana"
+            { id: "Illinois (United States)".card_id, text: "Illinois" },
+            id: "Indiana (United States)".card_id, text: "Indiana"
           ) },
-        { id: Card.fetch_id("Canada"), text: "Canada" },
+        { id: "Canada".card_id, text: "Canada" },
         { text: "Canada",
-          children: include(id: Card.fetch_id("Alberta (Canada)"), text: "Alberta") },
-        { id: Card.fetch_id("Holy See (Vatican City State)"),
+          children: include(id: "Alberta (Canada)".card_id, text: "Alberta") },
+        { id: "Holy See (Vatican City State)".card_id,
           text: "Holy See (Vatican City State)" }
       )
     end
@@ -20,7 +20,7 @@ RSpec.describe Card::Set::Self::Jurisdiction do
     example "name search" do
       Card::Env.params[:q] = "Cali"
       expect(json_format.select2_option_list)
-        .to contain_exactly id: Card.fetch_id("California (United States)"),
+        .to contain_exactly id: "California (United States)".card_id,
                             text: "California (United States)"
     end
   end

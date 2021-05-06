@@ -96,7 +96,7 @@ format :json do
   end
 
   def search_brand_ids
-    [Card.fetch_id("Google Inc")]
+    ["Google Inc".card_id]
   end
 
   def keyword

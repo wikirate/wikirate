@@ -59,7 +59,7 @@ module Formula
 
     def company_fields company
       if company
-        company_id = Card.fetch_id company
+        company_id = company.card_id
         Card.search left_id: company_id, right_id: field_id
       else
         Card.search left: { type_id: Card::WikirateCompanyID }, right_id: field_id
