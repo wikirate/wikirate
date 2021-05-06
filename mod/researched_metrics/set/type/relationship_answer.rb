@@ -99,7 +99,7 @@ def inverse_answer_name
 end
 
 def inverse_answer_id
-  @inverse_answer_id ||= Card.fetch_id inverse_answer_name
+  @inverse_answer_id ||= inverse_answer_name.card_id
 end
 
 def schedule_answer_count name
