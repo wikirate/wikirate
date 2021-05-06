@@ -72,7 +72,7 @@ class Card
         when "wikirate_team"
           Set::Self::WikirateTeam.member_ids
         else
-          Card.fetch_id value
+          value.card_id
         end
       end
 

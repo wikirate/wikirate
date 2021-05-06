@@ -6,11 +6,11 @@ class Relationship
     end
 
     def fetch_record_id
-      Card.fetch_id card.name.left_name.left_name
+      card.name.left_name.left_name.card_id
     end
 
     def fetch_metric_id
-      Card.fetch_id card.name.left_name.left_name.left_name
+      card.name.left_name.left_name.left_name.card_id
     end
 
     def fetch_inverse_metric_id
@@ -24,7 +24,7 @@ class Relationship
     end
 
     def fetch_subject_company_id
-      Card.fetch_id card.name.left_name.left_name.right
+      card.name.left_name.left_name.right.card_id
     end
 
     def fetch_object_company_id

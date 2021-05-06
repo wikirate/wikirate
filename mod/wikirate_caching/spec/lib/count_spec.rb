@@ -1,6 +1,6 @@
 RSpec.describe Count do
-  let(:card) do
-    double("count card", junction?: true, recount: 10, left_id: 1, right_id: 5)
+  let :card do
+    instance_double "count card", compound?: true, recount: 10, left_id: 1, right_id: 5
   end
   let(:create_count) { described_class.create(card) }
 
