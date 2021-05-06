@@ -6,7 +6,7 @@ format :html do
   end
 
   def company_id
-    Card.fetch_id card.name.right
+    card.name.right.card_id
   end
 
   def topic_metric

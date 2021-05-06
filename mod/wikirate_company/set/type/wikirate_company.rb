@@ -8,13 +8,13 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Bookmarkable
 # include_set Abstract::Export
 
-card_accessor :aliases, type: PointerID
+card_accessor :alias, type: PointerID
 card_accessor :metric_answer
 card_accessor :image
 card_accessor :incorporation
 
 event :validate_company_name, :validate, changed: :name, on: :save do
-  errors.add :name, "Use ＋ instead of + in company name" if name.junction?
+  errors.add :name, "Use ＋ instead of + in company name" if name.compound?
 end
 
 event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
@@ -34,7 +34,7 @@ def headquarters_jurisdiction_code
 end
 
 def add_alias alias_name
-  aliases_card.insert_item! 0, alias_name
+  alias_card.insert_item! 0, alias_name
 end
 
 # @return [Answer]
@@ -89,7 +89,7 @@ private
 def normalize_metric_arg args={}
   return unless (metric = args.delete :metric)
 
-  args[:metric_id] = Card.fetch_id metric
+  args[:metric_id] = metric.card_id
 end
 
 # DEPRECATED.  +answer csv replaces following:

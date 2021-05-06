@@ -1,5 +1,5 @@
 RSpec.shared_context "report query" do |type, action|
-  let(:user_id) { Card.fetch_id "Joe User" }
+  let(:user_id) { "Joe User".card_id }
   let(:type_card) { Card[type] }
   let(:action) { action }
 
