@@ -8,7 +8,7 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Bookmarkable
 # include_set Abstract::Export
 
-card_accessor :aliases, type: PointerID
+card_accessor :alias, type: PointerID
 card_accessor :metric_answer
 card_accessor :image
 card_accessor :incorporation
@@ -34,7 +34,7 @@ def headquarters_jurisdiction_code
 end
 
 def add_alias alias_name
-  aliases_card.insert_item! 0, alias_name
+  alias_card.insert_item! 0, alias_name
 end
 
 # @return [Answer]
