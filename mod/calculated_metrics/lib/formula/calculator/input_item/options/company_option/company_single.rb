@@ -38,7 +38,7 @@ module Formula
             private
 
             def object_company_id
-              Card.fetch_id company_option
+              company_option.card_id
             end
 
             def answer_query
