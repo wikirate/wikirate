@@ -21,7 +21,7 @@ def company_key
 end
 
 def company_id
-  Card.fetch_id company_key
+  company_key.card_id
 end
 
 def record

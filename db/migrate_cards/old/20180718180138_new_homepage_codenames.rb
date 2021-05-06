@@ -35,7 +35,7 @@ class NewHomepageCodenames < Cardio::Migration
     ensure_card name, type_id: Card::PointerID, content: content, codename: codename(name)
     ensure_card [name, :self, :options],
                 type_id: Card::SearchTypeID,
-                content: %({"type_id":"#{Card.fetch_id type}"})
+                content: %({"type_id":"#{type.card_id}"})
   end
 
   def ensure_code_card name, type_id, prefix

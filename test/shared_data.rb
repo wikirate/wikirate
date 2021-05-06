@@ -82,7 +82,7 @@ class SharedData
       end
       ensure_card ["Google LLC", :headquarters],
                   type: :pointer, content: "California (United States)"
-      ensure_card ["Google LLC", :aliases],
+      ensure_card ["Google LLC", :alias],
                   type: :pointer, content: %w[Google Alphabet]
       ensure_card ["Google LLC", :incorporation],
                   type: :pointer, content: "Delaware (United States)"

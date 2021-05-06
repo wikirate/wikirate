@@ -86,7 +86,7 @@ format :html do
   # end
 
   # def searched_type_id
-  #   @searched_type_id ||= Card.fetch_id card.name.left_name.right
+  #   @searched_type_id ||= card.name.left_name.right.card_id
   # end
 
   def button_classes
