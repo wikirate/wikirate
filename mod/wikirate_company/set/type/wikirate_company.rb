@@ -14,7 +14,7 @@ card_accessor :image
 card_accessor :incorporation
 
 event :validate_company_name, :validate, changed: :name, on: :save do
-  errors.add :name, "Use ＋ instead of + in company name" if name.junction?
+  errors.add :name, "Use ＋ instead of + in company name" if name.compound?
 end
 
 event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
@@ -89,7 +89,7 @@ private
 def normalize_metric_arg args={}
   return unless (metric = args.delete :metric)
 
-  args[:metric_id] = Card.fetch_id metric
+  args[:metric_id] = metric.card_id
 end
 
 # DEPRECATED.  +answer csv replaces following:

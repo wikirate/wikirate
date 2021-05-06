@@ -73,7 +73,7 @@ RSpec.describe Card::Set::Right::ImportMap do
   describe "event: update_import_mapping" do
     it "updates map based on 'mapping' parameter" do
       card = update_with_mapping_param wikirate_company: { "Google" => "Google LLC" }
-      expect(card.map[:wikirate_company]["Google"]).to eq("Google LLC".to_name.card_id)
+      expect(card.map[:wikirate_company]["Google"]).to eq("Google LLC".card_id)
     end
 
     it "catches error if mapping is not a card" do

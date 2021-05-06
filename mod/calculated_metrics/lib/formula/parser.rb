@@ -114,7 +114,7 @@ module Formula
     end
 
     def find_input_chunks
-      content_object.find_chunks(Card::Content::Chunk::FormulaInput)
+      content_object.find_chunks :FormulaInput
     end
 
     def content_object

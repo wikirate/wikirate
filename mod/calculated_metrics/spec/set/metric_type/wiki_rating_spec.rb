@@ -37,7 +37,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
   end
 
   def rating_answer company="Samsung", year="2014"
-    Answer.where(metric_id: Card.fetch_id("Joe User+#{@metric_title}"),
+    Answer.where(metric_id: "Joe User+#{@metric_title}".card_id,
                  company_id: Card.fetch_id(company), year: year.to_i)
           .take
   end
@@ -120,7 +120,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
       it "changes name in formula", as_bot: true do
         update_card "Joe User+researched number 1",
                     name: "Joe User+invented number", update_referers: true
-        expect(formula_card.content).to include "Joe User+invented number"
+        expect(formula_card.content).to include("Joe User+invented number")
       end
     end
   end
