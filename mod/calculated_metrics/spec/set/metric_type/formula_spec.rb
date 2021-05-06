@@ -185,7 +185,7 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   def calc_answer company="Samsung", year="2014"
-    Answer.where(metric_id: Card.fetch_id("Joe User+#{@metric_title}"),
+    Answer.where(metric_id: "Joe User+#{@metric_title}".card_id,
                  company_id: Card.fetch_id(company), year: year.to_i).take
   end
 

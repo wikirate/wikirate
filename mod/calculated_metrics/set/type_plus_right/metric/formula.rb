@@ -74,7 +74,7 @@ def each_reference_out &block
   end
 end
 
-def replace_reference_syntax old_name, new_name
+def replace_references old_name, new_name
   return super unless rating?
   content.gsub old_name, new_name
 end

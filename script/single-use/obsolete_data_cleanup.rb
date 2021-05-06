@@ -130,7 +130,7 @@ end
 
 def admin_ids
   ["Vasiliki Gkatziaki", "Richard Mills", "Laureen van Breen"].map do |name|
-    Card.fetch_id name
+    name.card_id
   end
 end
 
