@@ -129,9 +129,7 @@ def old_admin_actions
 end
 
 def admin_ids
-  ["Vasiliki Gkatziaki", "Richard Mills", "Laureen van Breen"].map do |name|
-    name.card_id
-  end
+  ["Vasiliki Gkatziaki", "Richard Mills", "Laureen van Breen"].map(&:card_id)
 end
 
 delete_overwritten_import_actions import_delete_actions
