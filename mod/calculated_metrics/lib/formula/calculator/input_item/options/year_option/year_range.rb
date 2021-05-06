@@ -74,12 +74,13 @@ module Formula
             end
 
             def tallying years, offset
+              years.sort!
+              index = years.index offset
+
               @tally = []
               @tally_years = years
               @tally_offset = offset
 
-              years.sort!
-              index = years.index @tally_offset
               yield index if index
               @tally
             end
