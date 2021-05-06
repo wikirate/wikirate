@@ -6,6 +6,7 @@ require "csv"
 
 FILENAME = File.expand_path "script/single-use/data/wrong_year.csv"
 
+# For correcting answer years
 module AnswerFixer
   class << self
     def csv
