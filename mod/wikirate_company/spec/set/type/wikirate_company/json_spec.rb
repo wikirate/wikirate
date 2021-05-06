@@ -12,7 +12,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Json do
                              wikipedia: nil,
                              open_corporates: nil,
                              oar_id: nil,
-                             aliases: [],
+                             alias: [],
                              headquarters: nil)
     end
   end
@@ -29,7 +29,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Json do
           type: a_hash_including(name: "Company"),
           wikipedia: a_hash_including(id: nil),
           open_corporates: a_hash_including(id: nil),
-          aliases: a_hash_including(id: nil),
+          alias: a_hash_including(id: nil),
           headquarters: a_hash_including(id: nil),
           answers_url: "http://wikirate.org/Samsung+Answer.json"
         )
