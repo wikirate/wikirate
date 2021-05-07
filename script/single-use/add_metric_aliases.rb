@@ -28,13 +28,18 @@ module MetricAliaser
       end
     end
 
+    def add_alias from, to
+      puts "adding alias from #{from} to #{to}"
+      Card.fetch(from, new: {}).update! type_code: :alias, content: to
+    end
+
     def run!
       csv.each do |r|
         source = card r["Old link"]
         target = card r["New Link"]
         next if different_designer? source, target
-        alias_card = Card.fetch source.name.right, new: {}
-        alias_card.update! type_code: :alias, content: target.name.right
+        source.delete! if source.real? # get rid of compound card
+        add_alias source.name.right, target.name.right
       end
     end
   end
