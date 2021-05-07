@@ -30,7 +30,9 @@ module MetricAliaser
 
     def add_alias from, to
       puts "adding alias from #{from} to #{to}"
-      Card.fetch(from, new: {}).update! type_code: :alias, content: to
+      a = Card.fetch from, new: {}
+      return if a.type_code == :alias # already an alias
+      a.update! type_code: :alias, content: to
     end
 
     def run!
