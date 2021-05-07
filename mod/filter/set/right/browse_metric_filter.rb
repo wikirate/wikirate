@@ -43,6 +43,10 @@ format do
 end
 
 format :html do
+  def export_formats
+    [:csv, :json]
+  end
+
   def quick_filter_list
     bookmark_quick_filter + topic_quick_filters + project_quick_filters
   end
