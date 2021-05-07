@@ -79,12 +79,7 @@ format :html do
   end
 
   view :standard_formula_editor, unknown: true do
-    output [formula_text_area, _render_variables]
-  end
-
-  def formula_text_area
-    text_area :content, rows: 5, class: "d0-card-content",
-                        "data-card-type-code": card.type_code
+    output [text_area_input, _render_variables]
   end
 
   view :core do
