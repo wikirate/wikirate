@@ -22,7 +22,7 @@ format :html do
   view :bar_bottom do
     [badge_header,
      labeled_field(:report_type),
-     labeled_field(:wikirate_topic, :link, title: "Topics"),
+     # labeled_field(:wikirate_topic, :link, title: "Topics"),
      field_nest(:description, view: :titled)]
   end
 
