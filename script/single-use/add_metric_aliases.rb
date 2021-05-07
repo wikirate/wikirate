@@ -6,6 +6,7 @@ require "csv"
 
 FILENAME = File.expand_path "script/single-use/data/renamed_metrics.csv"
 
+# create aliases for renamed metrics
 module MetricAliaser
   class << self
     def csv
@@ -17,7 +18,7 @@ module MetricAliaser
     end
 
     def card string
-      name = string.gsub(/^.*\//, "")
+      name = string.gsub(%r{^.*/}, "")
       Card.fetch name, new: {}
     end
 
