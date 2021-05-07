@@ -23,7 +23,7 @@ def item_names _args={}
 end
 
 def special_item_names
-  case metric_card.metric_type_codename
+  case metric_type_codename
   when :score       then [metric_card.basic_metric]
   when :wiki_rating then translation_hash.keys
   when :descendant  then item_names
