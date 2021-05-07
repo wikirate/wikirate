@@ -49,4 +49,5 @@ RSpec.describe Card::Set::Type::Metric::Export do
                ",,,,,,Community Assessed\n")
     end
   end
+
 end
