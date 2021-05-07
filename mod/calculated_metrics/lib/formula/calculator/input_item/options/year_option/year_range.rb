@@ -64,7 +64,7 @@ module Formula
 
             def fixed_start_relative_end years
               # 2000..-1
-              tallying years, @start do |index|
+              tallying years, @start, @stop do |index|
                 index.upto(years.size - 1) do |i|
                   break if i > index && years[i] != years[i - 1] + 1
 
@@ -73,9 +73,9 @@ module Formula
               end
             end
 
-            def tallying years, offset
+            def tallying years, from, offset
               years.sort!
-              index = years.index offset
+              index = years.index from
 
               @tally = []
               @tally_years = years
@@ -91,11 +91,11 @@ module Formula
 
             def relative_start_fixed_end years
               # 2..2001
-              tallying years, @stop do |index|
+              tallying years, @stop, @start do |index|
                 index.downto(0) do |i|
                   break if i < index && years[i] != years[i + 1] - 1
 
-                  tally!
+                  tally! i
                 end
               end
             end
