@@ -2,12 +2,51 @@ include_set Abstract::Variable
 include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
+delegate :metric_type_codename, :metric_type_card,
+         :researched?, :calculated?, :rating?, to: :metric_card
+
 def categorical?
   score? && metric_card.categorical?
 end
 
+def translation?
+  categorical? || rating?
+end
+
 def help_rule_card
-  metric_card.metric_type_card.first_card&.fetch :help
+  metric_type_card.first_card&.fetch :help
+end
+
+event :validate_formula, :validate, when: :wolfram_formula?, changed: :content do
+  formula_errors = calculator.detect_errors
+  return if formula_errors.empty?
+  formula_errors.each do |msg|
+    errors.add :formula, msg
+  end
+end
+
+def each_reference_out &block
+  return super(&block) unless rating?
+  translation_table.each do |key, _value|
+    yield(key, Content::Chunk::Link::CODE)
+  end
+end
+
+def replace_references old_name, new_name
+  return super unless rating?
+  content.gsub old_name, new_name
+end
+
+def ruby_formula?
+  calculator_class == ::Formula::Ruby
+end
+
+def translate_formula?
+  calculator_class == ::Formula::Translation
+end
+
+def wolfram_formula?
+  calculator_class ==  ::Formula::Wolfram
 end
 
 format :html do
@@ -45,7 +84,7 @@ format :html do
 
   def formula_text_area
     text_area :content, rows: 5, class: "d0-card-content",
-                        "data-card-type-code": card.type_code
+              "data-card-type-code": card.type_code
   end
 
   view :core do
@@ -59,34 +98,12 @@ format :html do
   end
 end
 
-event :validate_formula, :validate, when: :wolfram_formula?, changed: :content do
-  formula_errors = calculator.detect_errors
-  return if formula_errors.empty?
-  formula_errors.each do |msg|
-    errors.add :formula, msg
-  end
+format :json do
+  view(:content) { card.json_content }
 end
 
-def each_reference_out &block
-  return super(&block) unless rating?
-  translation_table.each do |key, _value|
-    yield(key, Content::Chunk::Link::CODE)
-  end
-end
+def json_content
+  return if researched?
 
-def replace_references old_name, new_name
-  return super unless rating?
-  content.gsub old_name, new_name
-end
-
-def ruby_formula?
-  calculator_class == ::Formula::Ruby
-end
-
-def translate_formula?
-  calculator_class == ::Formula::Translation
-end
-
-def wolfram_formula?
-  calculator_class ==  ::Formula::Wolfram
+  translation? ? translation_hash : content
 end
