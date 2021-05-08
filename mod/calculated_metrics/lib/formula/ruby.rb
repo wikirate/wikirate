@@ -82,7 +82,7 @@ module Formula
     end
 
     def lookup_for_region region, field
-      region_id = Card.fetch_id region
+      region_id = region.card_id
       country = Wikirate::Region.region_lookup(field)[region_id] if region_id
       country || "#{field} not found"
     end

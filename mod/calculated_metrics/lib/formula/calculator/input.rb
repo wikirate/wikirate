@@ -54,13 +54,21 @@ module Formula
       end
 
       def validate_input input
-        return unless input.is_a?(Array)
-        input.map! do |val|
-          val = normalize_values val
-          return if @requirement == :all && val.blank?
-          val
+        return unless input.is_a? Array
+        input.map! { |v| normalize_values v }
+        return unless requirements_satisfied? input
+        input
+      end
+
+      def requirements_satisfied? input
+        case @requirement
+        when :all
+          !input.any?(&:blank?)
+        when :any
+          input.flatten.compact.present?
+        else
+          true
         end
-        @requirement == :any && input.flatten.compact.blank? ? nil : input
       end
 
       def normalize_values val

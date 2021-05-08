@@ -4,7 +4,7 @@ RSpec.describe Relationship do
   end
   let(:metric) { "Jedi+more evil" }
   let(:relation_name) { "#{metric}+Death Star+1977+Los Pollos Hermanos" }
-  let(:relation_id) { Card.fetch_id relation_name }
+  let(:relation_id) { relation_name.card_id }
 
   describe "create" do
     it "creates relationship entry" do
@@ -12,7 +12,7 @@ RSpec.describe Relationship do
         Monster_Inc "2000" => { "Los_Pollos_Hermanos" => "no" }
       end
 
-      r_id = Card.fetch_id "Jedi+more evil+Monster_Inc+2000+Los_Pollos_Hermanos"
+      r_id = "Jedi+more evil+Monster_Inc+2000+Los_Pollos_Hermanos".card_id
       relation = described_class.find_by_relationship_id r_id
       expect(relation).to be_instance_of(described_class)
       aggregate_failures "relationship id attributes" do
@@ -47,10 +47,10 @@ RSpec.describe Relationship do
         is_expected.to be_instance_of(described_class)
       end
       it "has subject_company_id" do
-        expect(relation.subject_company_id).to eq Card.fetch_id("Death Star")
+        expect(relation.subject_company_id).to eq "Death Star".card_id
       end
       it "has object_company_id" do
-        expect(relation.object_company_id).to eq Card.fetch_id("Los Pollos Hermanos")
+        expect(relation.object_company_id).to eq "Los Pollos Hermanos".card_id
       end
       it "has year" do
         expect(relation.year).to eq 1977
@@ -73,7 +73,7 @@ RSpec.describe Relationship do
 
     it "updates latest" do
       record = "Commons+Supplied by+SPECTRE"
-      new_latest = described_class.find_by_answer_id Card.fetch_id("#{record}+1977")
+      new_latest = described_class.find_by_answer_id "#{record}+1977".card_id
       expect(new_latest.latest).to be_falsey
       delete "#{record}+2000" # "+Los Pollos Hermanos"
       new_latest.refresh
@@ -89,12 +89,12 @@ RSpec.describe Relationship do
 
     it "updates subject company" do
       update relation_name, name: "#{metric}+Google LLC+1977+Los Pollos Hermanos"
-      expect(relation.subject_company_id).to eq Card.fetch_id("Google LLC")
+      expect(relation.subject_company_id).to eq "Google LLC".card_id
     end
 
     it "updates object company" do
       update relation_name, name: "#{metric}+Death Star+1977+Google LLC"
-      expect(relation.object_company_id).to eq Card.fetch_id("Google LLC")
+      expect(relation.object_company_id).to eq "Google LLC".card_id
     end
 
     context "when year changes" do
@@ -103,7 +103,7 @@ RSpec.describe Relationship do
         name = "Commons+Supplied by+SPECTRE+2000"
         new_name = "Commons+Supplied by+SPECTRE+1999"
         update name, name: new_name
-        relation_id = Card.fetch_id "#{new_name}+Los_Pollos_Hermanos"
+        relation_id = "#{new_name}+Los_Pollos_Hermanos".card_id
         relation = described_class.find_by_relationship_id relation_id
         expect(relation.latest).to eq true
       end

@@ -2,7 +2,7 @@
 format :json do
   NESTED_FIELD_CODENAMES = %i[
     question metric_type about methodology value_type value_options report_type
-    research_policy unit range hybrid wikirate_topic score
+    research_policy unit range hybrid wikirate_topic score formula
   ].freeze
 
   COUNT_FIELD_CODENAMES = %i[metric_answer bookmarkers project].freeze
@@ -30,8 +30,19 @@ format :json do
   def add_fields_to_hash hash, view=:atom
     add_nested_fields_to_hash hash, view
     add_count_fields_to_hash hash
-    hash[:answers_url] = path mark: card.metric_answer_card, format: :json
+    add_calculations_to_hash hash
+    add_answers_to_hash hash
     hash
+  end
+
+  def add_answers_to_hash hash
+    hash[:answers_url] = path mark: card.metric_answer_card, format: :json
+  end
+
+  def add_calculations_to_hash hash
+    hash[:calculations] = card.direct_depender_metrics.map do |metric|
+      path mark: metric, format: :json
+    end
   end
 
   def add_count_fields_to_hash hash

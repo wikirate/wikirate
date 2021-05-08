@@ -5,7 +5,7 @@ RSpec.describe Answer do
 
   let(:metric) { "Joe User+RM" }
   let(:answer_name) { "#{metric}+Apple_Inc+2013" }
-  let(:answer_id) { Card.fetch_id answer_name }
+  let(:answer_id) { answer_name.card_id }
 
   describe "seeded metric answer table" do
     it "has more than researched values" do
@@ -18,19 +18,19 @@ RSpec.describe Answer do
         is_expected.to be_instance_of(described_class)
       end
       it "has company_id" do
-        expect(answer.company_id).to eq Card.fetch_id("Apple Inc.")
+        expect(answer.company_id).to eq "Apple Inc.".card_id
       end
       it "has year" do
         expect(answer.year).to eq 2013
       end
       it "has metric_id" do
-        expect(answer.metric_id).to eq Card.fetch_id("Joe User+RM")
+        expect(answer.metric_id).to eq "Joe User+RM".card_id
       end
       it "has metric_type_id" do
-        expect(answer.metric.metric_type_id).to eq Card.fetch_id("researched")
+        expect(answer.metric.metric_type_id).to eq "researched".card_id
       end
       it "has designer_id" do
-        expect(answer.metric.designer_id).to eq Card.fetch_id("Joe User")
+        expect(answer.metric.designer_id).to eq "Joe User".card_id
       end
       it "has value" do
         expect(answer.value).to eq "13"
@@ -47,7 +47,7 @@ RSpec.describe Answer do
   describe "#relationship?" do
     context "when metric is a relationship metric" do
       let(:relationship_answer) do
-        answer Card.fetch_id("Jedi+more evil+Death Star+1977")
+        answer "Jedi+more evil+Death Star+1977".card_id
       end
 
       it "returns true" do
@@ -77,7 +77,7 @@ RSpec.describe Answer do
 
     it "updates latest" do
       record = "#{metric}+Apple_Inc"
-      new_latest = described_class.for_card Card.fetch_id("#{record}+2014")
+      new_latest = described_class.for_card "#{record}+2014".card_id
       expect(new_latest.latest).to be_falsey
       delete "#{record}+2015"
       new_latest.refresh
@@ -100,13 +100,13 @@ RSpec.describe Answer do
     end
     it "updates company" do
       update answer_name, name: "Joe User+RM+Samsung+2013"
-      expect(answer.company_id).to eq Card.fetch_id("Samsung")
+      expect(answer.company_id).to eq "Samsung".card_id
       expect(answer.company_name).to eq "Samsung"
     end
 
     it "updates metric" do
       update answer_name, name: "Joe User+researched number 2+Apple_Inc+2013"
-      expect(answer.metric_id).to eq Card.fetch_id("Joe User+researched number 2")
+      expect(answer.metric_id).to eq "Joe User+researched number 2".card_id
       expect(answer.metric_name).to eq "Joe User+researched number 2"
     end
 
@@ -125,7 +125,7 @@ RSpec.describe Answer do
         name = "Joe User+researched number 1+Apple Inc+2015"
         new_name = "Joe User+researched number 1+Apple Inc+2014"
         update name, name: new_name
-        answer_id = Card.fetch_id new_name
+        answer_id = new_name.card_id
         answer = described_class.for_card answer_id
         expect(answer.latest).to eq true
       end
@@ -143,12 +143,12 @@ RSpec.describe Answer do
 
     it "updates metric type" do
       update [metric, :metric_type], content: "[[Score]]"
-      expect(answer.metric.metric_type_id).to eq Card.fetch_id("score")
+      expect(answer.metric.metric_type_id).to eq "score".card_id
     end
 
     it "updates policy" do
       create_or_update [metric, :research_policy], content: "[[Community Assessed]]"
-      expect(answer.metric.policy_id).to eq Card.fetch_id("Community Assessed")
+      expect(answer.metric.policy_id).to eq "Community Assessed".card_id
     end
 
     xit "updates updated_at" do
@@ -156,7 +156,7 @@ RSpec.describe Answer do
   end
 
   # describe "fetch" do
-  #   described_class.fetch company_id: Card.fetch_id("Apple Inc")
+  #   described_class.fetch company_id: "Apple Inc".card_id
   # end
 
   describe "calculated answers" do
@@ -183,10 +183,10 @@ RSpec.describe Answer do
         .to include answer_id: nil,
                     value: "100.5",
                     numeric_value: 100.5,
-                    creator_id: Card.fetch_id("Joe User"),
+                    creator_id: "Joe User".card_id,
                     updated_at: be_within(1).of(Time.now),
                     latest: true,
-                    editor_id: Card.fetch_id("Joe User")
+                    editor_id: "Joe User".card_id
     end
   end
 end

@@ -56,14 +56,14 @@ gem "rack-cors"                      # support for Cross-Origin Resource Sharing
 
 group :live do
   gem "dalli"                        # Memcache
-  gem "therubyracer"                 # JS runtime
+  # gem "therubyracer"                 # JS runtime
 end
 
 group :development do
   gem "card-mod-monkey"
 
-  gem "rubocop-ast", "~> 0.5.0" # version jump to 0.7 produced lots of errors
-  gem "rubocop-decko"
+  # gem "rubocop-ast"
+  # gem "rubocop-decko"
 
   gem "pivotal-tracker"
 end

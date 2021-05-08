@@ -71,7 +71,7 @@ class Card
       def handle_equals_syntax field, value
         return yield unless value.to_s.match?(/^=/)
 
-        filter field, value.to_name.card_id
+        filter field, value.card_id
       end
 
       # SUPPORT METHODS

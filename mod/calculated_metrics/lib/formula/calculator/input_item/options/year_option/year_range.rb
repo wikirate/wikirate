@@ -17,7 +17,7 @@ module Formula
             # @return an array of years for which values can be calculated out of the
             #   given list of years
             def translate_years years
-              send @translate, years
+              send @translate, years.clone
             end
 
             private
@@ -64,32 +64,40 @@ module Formula
 
             def fixed_start_relative_end years
               # 2000..-1
-              years = years.sort
-              index = years.index @start
-              return [] unless index
-
-              [].tap do |result|
+              tallying years, @start, @stop do |index|
                 index.upto(years.size - 1) do |i|
                   break if i > index && years[i] != years[i - 1] + 1
 
-                  result.push years[i] - @stop
+                  tally! i
                 end
               end
             end
 
             def relative_start_fixed_end years
               # 2..2001
-              years = years.sort
-              index = years.index @stop
-              return [] unless index
-
-              [].tap do |result|
+              tallying years, @stop, @start do |index|
                 index.downto(0) do |i|
                   break if i < index && years[i] != years[i + 1] - 1
 
-                  result.push years[i] - @start
+                  tally! i
                 end
               end
+            end
+
+            def tallying years, from, offset
+              years.sort!
+              index = years.index from
+
+              @tally = []
+              @tally_years = years
+              @tally_offset = offset
+
+              yield index if index
+              @tally
+            end
+
+            def tally! index
+              @tally.push @tally_years[index] - @tally_offset
             end
 
             def relative_start_relative_end years
