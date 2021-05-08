@@ -2,61 +2,19 @@ include_set Abstract::Variable
 include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
+delegate :metric_type_codename, :metric_type_card,
+         :researched?, :calculated?, :rating?, to: :metric_card
+
 def categorical?
   score? && metric_card.categorical?
 end
 
-def help_rule_card
-  metric_card.metric_type_card.first_card&.fetch :help
+def translation?
+  categorical? || rating?
 end
 
-format :html do
-  def new_success
-    { mark: card.name.left }
-  end
-
-  def new_form_opts
-    super().merge "data-slot-selector" => ".card-slot.TYPE-metric"
-  end
-
-  def edit_form_opts
-    { "data-slot-selector" => ".card-slot.TYPE-metric",
-      "data-slot-error-selector" => ".RIGHT-formula.edit_form-view" }
-  end
-
-  def edit_success
-    new_success
-  end
-
-  view :input do
-    with_hidden_content do
-      _render card.metric_card.formula_editor
-    end
-  end
-
-  def with_hidden_content
-    hidden = card.metric_card.hidden_content_in_formula_editor?
-    (hidden ? _render_hidden_content_field : "") + yield
-  end
-
-  view :standard_formula_editor, unknown: true do
-    output [formula_text_area, _render_variables]
-  end
-
-  def formula_text_area
-    text_area :content, rows: 5, class: "d0-card-content",
-                        "data-card-type-code": card.type_code
-  end
-
-  view :core do
-    render card.metric_card.formula_core
-  end
-
-  view :standard_formula_core, template: :haml, cache: :never
-
-  def default_nest_view
-    :bar
-  end
+def help_rule_card
+  metric_type_card.first_card&.fetch :help
 end
 
 event :validate_formula, :validate, when: :wolfram_formula?, changed: :content do
@@ -89,4 +47,58 @@ end
 
 def wolfram_formula?
   calculator_class ==  ::Formula::Wolfram
+end
+
+format :html do
+  def new_success
+    { mark: card.name.left }
+  end
+
+  def new_form_opts
+    super().merge "data-slot-selector" => ".card-slot.TYPE-metric"
+  end
+
+  def edit_form_opts
+    { "data-slot-selector" => ".card-slot.TYPE-metric",
+      "data-slot-error-selector" => ".RIGHT-formula.edit_form-view" }
+  end
+
+  def edit_success
+    new_success
+  end
+
+  view :input do
+    with_hidden_content do
+      _render card.metric_card.formula_editor
+    end
+  end
+
+  def with_hidden_content
+    hidden = card.metric_card.hidden_content_in_formula_editor?
+    (hidden ? _render_hidden_content_field : "") + yield
+  end
+
+  view :standard_formula_editor, unknown: true do
+    output [text_area_input, _render_variables]
+  end
+
+  view :core do
+    render card.metric_card.formula_core
+  end
+
+  view :standard_formula_core, template: :haml, cache: :never
+
+  def default_nest_view
+    :bar
+  end
+end
+
+format :json do
+  view(:content) { card.json_content }
+end
+
+def json_content
+  return if researched?
+
+  translation? ? translation_hash : content
 end
