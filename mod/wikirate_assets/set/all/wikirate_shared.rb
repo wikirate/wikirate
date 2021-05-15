@@ -3,7 +3,7 @@ NAV_MENUS = {
                 "Projects", "Research Groups", "Company Groups", "Sources", "Changes"],
   "How To"  => ["Use Data", "Contribute", "Add to Projects", "Start Projects",
                 "Advanced", "FAQ", "Glossary", "Report Issue"],
-  "About"   => ["About Us", "Our Team", "Programs",
+  "About"   => ["About Us", "Team and Advisors", "Programs",
                 "Publications", "News", "Legal", "Contact Us", "Donate"]
 }.freeze
 
