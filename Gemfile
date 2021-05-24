@@ -9,7 +9,7 @@ if ENV["RM_INFO"] && ARGV[0] == 'check'
 else
   gem "decko", path: "./vendor/decko"
 
-  gem "card-mod-defaults"
+  gem "card-mod-defaults", path: "./vendor/decko/mod"
   gem "card-mod-delayed_job"
 
   gem "card-mod-bookmarks", path: "./vendor/card-mods"
@@ -21,7 +21,7 @@ else
   gem "card-mod-pdfjs"
   gem "card-mod-solid_cache"
 
-  gem "decko-cucumber", group: :cucumber
+  gem "decko-cucumber", group: :cucumber, path: "./vendor/decko/support"
   gem "decko-rspec", group: :test
 
   gem "decko-cap", path: "./vendor/decko-cap", group: :development
