@@ -33,24 +33,8 @@ PATH
       ed25519
 
 PATH
-  remote: vendor/decko
+  remote: vendor/decko/mod
   specs:
-    card (1.101.6)
-      activerecord-import (~> 1.0)
-      bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.11.6)
-      coderay (~> 1.1)
-      coffee-script (~> 2.4)
-      colorize (~> 0.8)
-      diff-lcs (~> 1.3)
-      haml (~> 5.0)
-      jwt (~> 2.2)
-      kaminari (~> 1.0)
-      rails (~> 6.1.3.1)
-      rake (~> 13.0)
-      sassc (~> 2.0)
-      sprockets (~> 3.7)
-      uglifier (~> 4.2)
     card-mod-account (0.11.6)
       card (= 1.101.6)
       card-mod-email (= 0.11.6)
@@ -202,12 +186,10 @@ PATH
       card-mod-edit (= 0.11.6)
     card-mod-virtual (0.11.6)
       card (= 1.101.6)
-    cardname (0.11.6)
-      activesupport (~> 6)
-      htmlentities (~> 4.3)
-    decko (0.11.6)
-      card (= 1.101.6)
-      card-mod-defaults (= 0.11.6)
+
+PATH
+  remote: vendor/decko/support
+  specs:
     decko-cucumber (0.11.6)
       capybara (~> 2.18)
       capybara-puma
@@ -243,6 +225,32 @@ PATH
       spring
       spring-commands-cucumber
       spring-commands-rspec
+
+PATH
+  remote: vendor/decko
+  specs:
+    card (1.101.6)
+      activerecord-import (~> 1.0)
+      bootstrap4-kaminari-views (~> 1.0)
+      cardname (= 0.11.6)
+      coderay (~> 1.1)
+      coffee-script (~> 2.4)
+      colorize (~> 0.8)
+      diff-lcs (~> 1.3)
+      haml (~> 5.0)
+      jwt (~> 2.2)
+      kaminari (~> 1.0)
+      rails (~> 6.1.3.1)
+      rake (~> 13.0)
+      sassc (~> 2.0)
+      sprockets (~> 3.7)
+      uglifier (~> 4.2)
+    cardname (0.11.6)
+      activesupport (~> 6)
+      htmlentities (~> 4.3)
+    decko (0.11.6)
+      card (= 1.101.6)
+      card-mod-defaults (= 0.11.6)
 
 GEM
   remote: http://rubygems.org/
@@ -784,7 +792,7 @@ DEPENDENCIES
   card-mod-bookmarks!
   card-mod-counts
   card-mod-csv_import
-  card-mod-defaults
+  card-mod-defaults!
   card-mod-delayed_job
   card-mod-fulltext
   card-mod-monkey
@@ -796,7 +804,7 @@ DEPENDENCIES
   dalli
   decko!
   decko-cap!
-  decko-cucumber
+  decko-cucumber!
   decko-cypress
   decko-profile
   decko-rspec
