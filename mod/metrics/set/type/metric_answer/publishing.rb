@@ -1,0 +1,3 @@
+def unpublished
+  nil
+end
