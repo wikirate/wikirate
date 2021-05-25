@@ -67,7 +67,7 @@ format :html do
   def add_score_link
     return if card.score?
     link_to_card :metric, "Add new score",
-                 path: { action: :new, tab: :score, metric: card.name },
+                 path: { action: :new, metric_type: :score, metric: card.name },
                  class: "btn btn-primary mt-4"
   end
 end
