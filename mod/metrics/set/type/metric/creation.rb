@@ -23,10 +23,22 @@ format :html do
   view :new_form, template: :haml, cache: :never
 
   def main_tabs
-    tab_hash = TAB_CONFIG.keys.each_with_object({}) do |cat, hash|
+    tabs main_tab_hash, main_tab_from_subtab(params[:metric_type])
+  end
+
+  def main_tab_from_subtab subtab
+    return unless subtab.present?
+
+    subtab = subtab.to_name
+    TAB_CONFIG.keys.find do |k|
+      TAB_CONFIG[k][:subtabs].find { |s| s.to_name == subtab }
+    end
+  end
+
+  def main_tab_hash
+    TAB_CONFIG.keys.each_with_object({}) do |cat, hash|
       hash[cat] = { title: cat.capitalize, content: main_tab_content(cat) }
     end
-    tabs tab_hash
   end
 
   def main_tab_content category
@@ -38,8 +50,8 @@ format :html do
     tab_hash = tab_keys.each_with_object({}) do |subcat, hash|
       hash[subcat] = { path: new_metric_subform_path(subcat) }
     end
-    tabs tab_hash, nil, tab_type: :pills, load: :lazy do
-      new_metric_subform tab_keys.first
+    tabs tab_hash, params[:metric_type], tab_type: :pills, load: :lazy do
+      new_metric_subform (params[:metric_type] || tab_keys.first)
     end
   end
 
