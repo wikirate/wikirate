@@ -7,7 +7,6 @@ class Card
       @roots = root_metrics.uniq.map { |metric| Node.new(metric, [], 0) }
     end
 
-
     def each_metric &block
       metrics.each(&block)
     end
