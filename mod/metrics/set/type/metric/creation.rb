@@ -45,7 +45,6 @@ format :html do
     haml :main_tab_content, category: category, help: TAB_CONFIG[category][:help]
   end
 
-
   def subtabs category
     tab_keys = TAB_CONFIG[category][:subtabs]
     tab_hash = subtab_tab_hash tab_keys
