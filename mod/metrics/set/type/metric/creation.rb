@@ -45,13 +45,19 @@ format :html do
     haml :main_tab_content, category: category, help: TAB_CONFIG[category][:help]
   end
 
+
   def subtabs category
     tab_keys = TAB_CONFIG[category][:subtabs]
-    tab_hash = tab_keys.each_with_object({}) do |subcat, hash|
-      hash[subcat] = { path: new_metric_subform_path(subcat) }
+    tab_hash = subtab_tab_hash tab_keys
+    metric_type = params[:metric_type] || tab_keys.first
+    tabs tab_hash, metric_type, tab_type: :pills, load: :lazy do
+      new_metric_subform metric_type
     end
-    tabs tab_hash, params[:metric_type], tab_type: :pills, load: :lazy do
-      new_metric_subform (params[:metric_type] || tab_keys.first)
+  end
+
+  def subtab_tab_hash tab_keys
+    tab_keys.each_with_object({}) do |subcat, hash|
+      hash[subcat] = { path: new_metric_subform_path(subcat) }
     end
   end
 
