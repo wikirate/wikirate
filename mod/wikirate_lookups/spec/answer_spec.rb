@@ -62,12 +62,6 @@ RSpec.describe Answer do
     end
   end
 
-  # describe "#fetch_by" do
-  #   it "handles company id" do
-  #     expect(described_class.find_by)
-  #   end
-  # end
-
   describe "delete" do
     it "removes entry" do
       answer_id
