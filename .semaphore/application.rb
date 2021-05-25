@@ -34,9 +34,6 @@ module Wikirate
     # config.paths['files'] = 'files'
     # where uploaded files are actually stored. (eg Image and File cards)
 
-    # config.paths['local-mods'] = 'mods'
-    # where mods are stored
-
     # config.allow_inline_styles = false
     # don't strip style attributes (not recommended)
 
