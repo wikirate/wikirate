@@ -1,13 +1,26 @@
 RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Unpublished do
+  let(:researched_answer) { Card["Jedi+deadliness+Death_Star+1977"] }
+  let(:wikirating_answer) { Card.fetch "Jedi+darkness_rating+Death_Star+1977" }
+
   before do
-    sample_answer.unpublished_card.update! content: 1
+    researched_answer.unpublished_card.update! content: 1
   end
+
   it "updates answer lookup table on create" do
-    expect(sample_answer.answer.unpublished).to be_truthy
+    expect(researched_answer.answer.unpublished).to be_truthy
   end
 
   it "updates answer lookup table on delete", as_bot: true do
-    sample_answer.unpublished_card.delete!
-    expect(sample_answer.answer.unpublished).to be_falsey
+    researched_answer.unpublished_card.delete!
+    expect(researched_answer.answer.unpublished).to be_falsey
+  end
+
+  it "'unpublishes' calculated answer when researched answer is unpublished" do
+    expect(wikirating_answer.answer.unpublished).to be_truthy
+  end
+
+  it "'publishes' calculated answer when researched answer is published", as_bot: true do
+    researched_answer.unpublished_card.update! content: 0
+    expect(wikirating_answer.answer.unpublished).to be_falsey
   end
 end
