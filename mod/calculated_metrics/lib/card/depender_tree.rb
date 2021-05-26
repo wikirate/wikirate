@@ -7,21 +7,27 @@ class Card
       @roots = root_metrics.uniq.map { |metric| Node.new(metric, [], 0) }
     end
 
-    # iterate over all metrics in the tree
-    # note: this deconstructs the tree. Probably shouldn't!!
-    def each_metric
-      build_tree
-      while @tree.present?
-        @tree.sort_by!(&:parent_cnt).reverse!
-        yield pop_node.metric
-      end
+    def each_metric &block
+      metrics.each(&block)
     end
 
     def metrics
-      @metrics ||= each_metric.with_object([]) { |metric, array| array << metric }
+      @metrics ||= pluck_metrics
     end
 
     private
+
+    # iterate over all metrics in the tree
+    # note: this deconstructs the tree. Can only run once
+    def pluck_metrics
+      build_tree
+      [].tap do |metrics|
+        while @tree.present?
+          @tree.sort_by!(&:parent_cnt).reverse!
+          metrics << pop_node.metric
+        end
+      end
+    end
 
     def pop_node
       node = @tree.pop

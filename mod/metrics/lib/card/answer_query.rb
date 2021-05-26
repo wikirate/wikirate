@@ -12,7 +12,8 @@ class Card
     STATUS_GROUPS = { 0 => :unknown, 1 => :known, nil => :none }.freeze
 
     RESEARCHED_ANSWERS_ONLY =
-      %i[value numeric_value related_company_group source updated calculated check].freeze
+      %i[value numeric_value updated check source calculated
+         related_company_group published].freeze
 
     class << self
       # instantiates AllAnswerQuery object for searches that can return
@@ -20,11 +21,9 @@ class Card
       # objects for all other searches
       def new filter, sorting={}, paging={}
         filter = filter.deep_symbolize_keys
-        if new_all_answer_query? filter
-          AllAnswerQuery.new filter, sorting, paging
-        else
-          super
-        end
+        return super unless new_all_answer_query? filter
+
+        AllAnswerQuery.new filter, sorting, paging
       end
 
       def new_all_answer_query? filter
@@ -39,7 +38,7 @@ class Card
         RESEARCHED_ANSWERS_ONLY.each { |key| return false if filter[key].present? }
 
         # status is "all" or "none"
-        filter[:status]&.to_sym.in?(%i[all none])
+        filter[:status]&.to_sym.in? %i[all none]
       end
     end
 
