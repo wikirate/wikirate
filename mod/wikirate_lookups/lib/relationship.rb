@@ -1,5 +1,5 @@
 # Lookup table for relationship answers to relationship metrics
-class Relationship < ApplicationRecord
+class Relationship < Cardio::Record
   @card_column = :relationship_id
   @card_query = {  type_id: Card::RelationshipAnswerID, trash: false }
 
