@@ -1,5 +1,5 @@
 # lookup table for metric answers
-class Answer < ApplicationRecord
+class Answer < Cardio::Record
   @card_column = :answer_id
   @card_query = { type_id: Card::MetricAnswerID, trash: false }
 
