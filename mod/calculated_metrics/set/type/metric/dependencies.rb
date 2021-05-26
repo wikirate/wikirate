@@ -14,6 +14,11 @@ def all_depender_answer_ids
 end
 
 # all metrics that depend on this metric
+def depender_metrics
+  depender_tree.metrics
+end
+
+# each metrics that depends on this metric
 def each_depender_metric
   depender_tree.each_metric { |m| yield m }
 end

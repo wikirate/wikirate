@@ -24,23 +24,6 @@ class Card
         standard_verification_query(value) || non_standard_verification_query(value)
       end
 
-      def standard_verification_query value
-        return unless (index = Answer.verification_index value)
-
-        filter :verification, index
-      end
-
-      def non_standard_verification_query value
-        case value
-        when "current_user"
-          checked_by Auth.current_id
-        when "wikirate_team"
-          checked_by id: Set::Self::WikirateTeam.member_ids.unshift(:in)
-        else
-          raise Error::UserError, "unknown verification level: #{value}"
-        end
-      end
-
       def checked_by whom
         restrict_by_cql(:answer_id,
                         type_id: MetricAnswerID,
@@ -65,6 +48,39 @@ class Card
                       updater_ids(value)
       end
 
+      def calculated_query value
+        @conditions << calculated_condition(value.to_sym == :calculated)
+      end
+
+      def source_query value
+        restrict_by_cql :answer_id,
+                        type_id: Card::MetricAnswerID,
+                        right_plus: [Card::SourceID, { refer_to: value }]
+      end
+
+      def published_query value
+
+      end
+
+      private
+
+      def standard_verification_query value
+        return unless (index = Answer.verification_index value)
+
+        filter :verification, index
+      end
+
+      def non_standard_verification_query value
+        case value
+        when "current_user"
+          checked_by Auth.current_id
+        when "wikirate_team"
+          checked_by id: Set::Self::WikirateTeam.member_ids.unshift(:in)
+        else
+          raise Error::UserError, "unknown verification level: #{value}"
+        end
+      end
+
       def updater_ids value
         case value
         when "current_user"
@@ -76,51 +92,9 @@ class Card
         end
       end
 
-      def calculated_query value
-        @conditions <<
-          (value.to_sym == :calculated ? calculated_condition : not_calculated_condition)
-      end
-
-      def source_query value
-        restrict_by_cql :answer_id,
-                        type_id: Card::MetricAnswerID,
-                        right_plus: [Card::SourceID, { refer_to: value }]
-      end
-
-      def related_company_group_query value
-        company_id_field = "#{metric_card&.inverse? ? :subject : :object}_company_id"
-        company_pointer_id = Card[value]&.wikirate_company_card&.id
-        answer_ids = answer_ids_from_relationships company_id_field, company_pointer_id
-        restrict_to_ids :answer_id, answer_ids
-      end
-
-      private
-
-      def answer_ids_from_relationships company_id_field, referer_id
-        answer_id_field = :"#{relationship_prefix}answer_id"
-        relationship_relation(company_id_field, referer_id).distinct.pluck answer_id_field
-      end
-
-      # "relationship" in the wikirate sense. "relation" in the rails sense
-      def relationship_relation company_id_field, referer_id
-        Relationship.joins(
-          "join card_references cr on cr.referee_id = relationships.#{company_id_field}"
-        ).where(
-          "cr.referer_id = #{referer_id} " \
-          "and #{relationship_prefix}metric_id = #{metric_card.id}"
-        )
-      end
-
-      def relationship_prefix
-        @relationship_prefix ||= metric_card&.inverse? ? "inverse_" : ""
-      end
-
-      def calculated_condition
-        "(metric_type_id IN #{CALCULATED_TYPE_IDS} AND answer_id IS NULL)"
-      end
-
-      def not_calculated_condition
-        "(metric_type_id NOT IN #{CALCULATED_TYPE_IDS} OR answer_id IS NOT NULL)"
+      def calculated_condition positive=true
+        nott = positive ? "" : "NOT "
+        "(metric_type_id #{nott}IN #{CALCULATED_TYPE_IDS} AND answer_id IS #{nott}NULL)"
       end
 
       def timeperiod value
