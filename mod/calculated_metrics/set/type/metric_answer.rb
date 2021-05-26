@@ -18,6 +18,11 @@ def researched_dependee_answers
   dependee_answers.select(&:researched_value?)
 end
 
-def calculated_verification
-  dependee_answers.map(&:verification).compact.min || 1
+# note: cannot do this in a single answer query, because it's important that we not skip
+# over direct dependencies.
+def each_depender_answer
+  metric_card.each_depender_metric do |metric|
+    answer = Answer.where(metric_id: metric, company_id: company_id, year: year).take
+    yield answer if answer.present?
+  end
 end
