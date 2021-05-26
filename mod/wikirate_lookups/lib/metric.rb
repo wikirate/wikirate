@@ -1,5 +1,5 @@
 # Lookup table for metrics
-class Metric < ApplicationRecord
+class Metric < Cardio::Record
   @card_column = :metric_id
   @card_query = { type_id: Card::MetricID, trash: false }
 
