@@ -14,26 +14,41 @@ class Card
       SIMPLE_FILTERS = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
       CARD_ID_FILTERS = ::Set.new(CARD_ID_MAP.keys).freeze
 
+      FILTER_METHOD_MAP = { filter_exact_match: SIMPLE_FILTERS,
+                            filter_card_id: CARD_ID_FILTERS }.freeze
+
       protected
 
       def process_filters
         return if @empty_result
+        normalize_filter_args
         @filter_args.each { |k, v| process_filter_option k, v if v.present? }
         @restrict_to_ids.each { |k, v| filter k, v }
       end
 
+      def normalize_filter_args
+        @filter_args[:published] = true unless @filter_args.key? :published
+      end
+
       # TODO: optimize with hash lookups for methods
       def process_filter_option key, value
-        %i[exact_match card_id].each do |ftype|
-          if send("#{ftype}_filters").include? key
-            return send("filter_#{ftype}", key, value)
-          end
+        if (method = filter_method key)
+          send method, key, value
+        else
+          try "#{key}_query", value
         end
-        try "#{key}_query", value
+      end
+
+      def filter_method key
+        FILTER_METHOD_MAP.each do |method, keylist|
+          return method if keylist.include? key
+        end
+        nil
       end
 
       def filter_exact_match key, value
         return unless value.present?
+
         filter key, value
       end
 
@@ -65,18 +80,6 @@ class Card
       def restrict_by_cql col, cql
         cql.reverse_merge! return: :id, limit: 0
         restrict_to_ids col, Card.search(cql)
-      end
-
-      def exact_match_filters
-        SIMPLE_FILTERS
-      end
-
-      def name_filters
-        name_FILTERS
-      end
-
-      def card_id_filters
-        CARD_ID_FILTERS
       end
 
       def filter field, value, operator=nil

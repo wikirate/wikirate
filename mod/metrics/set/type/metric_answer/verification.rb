@@ -18,6 +18,10 @@ def researched_verification_symbol
   steward_added? ? :steward_added : :community_added
 end
 
+def calculated_verification
+  dependee_answers.map(&:verification).compact.min || 1
+end
+
 def steward_added?
   return true if metric_card.designer_assessed?
 
@@ -29,7 +33,7 @@ def steward_ids
 end
 
 def update_related_verifications
-  each_dependee_answer { |answer| answer.refresh :verification }
+  each_depender_answer { |answer| answer.refresh :verification }
 end
 
 def update_verification
@@ -37,13 +41,6 @@ def update_verification
     old_verification = a.verification
     a.refresh :verification
     update_related_verifications if a.verification != old_verification
-  end
-end
-
-def each_dependee_answer
-  metric_card.each_depender_metric do |metric|
-    answer = Answer.where(metric_id: metric, company_id: company_id, year: year).take
-    yield answer if answer.present?
   end
 end
 
