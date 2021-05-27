@@ -8,6 +8,7 @@ class Card
     include ValueFilters
     include MetricAndCompanyFilters
     include OutlierFilter
+    include RelationshipFilters
 
     STATUS_GROUPS = { 0 => :unknown, 1 => :known, nil => :none }.freeze
 

@@ -14,6 +14,9 @@ class Card
       SIMPLE_FILTERS = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
       CARD_ID_FILTERS = ::Set.new(CARD_ID_MAP.keys).freeze
 
+      FILTER_METHOD_MAP = { filter_exact_match: SIMPLE_FILTERS,
+                            filter_card_id: CARD_ID_FILTERS }.freeze
+
       protected
 
       def process_filters
@@ -37,10 +40,10 @@ class Card
       end
 
       def filter_method key
-        { filter_exact_match: SIMPLE_FILTERS,
-          filter_card_id: CARD_ID_FILTERS }.each do |method, keylist|
+        FILTER_METHOD_MAP.each do |method, keylist|
           return method if keylist.include? key
         end
+        nil
       end
 
       def filter_exact_match key, value
