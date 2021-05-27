@@ -59,7 +59,9 @@ class Card
       end
 
       def published_query value
-
+        if value
+          @conditions << "answers.unpublished is not true"
+        end
       end
 
       private
