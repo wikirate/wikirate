@@ -21,3 +21,13 @@ end
 def calculated_unpublished
   dependee_answers.find(&:unpublished).present?
 end
+
+def check_published
+  return true unless unpublished && !Auth.as_id.in?(steward_ids)
+
+  deny_because "not yet published"
+end
+
+def ok_to_read
+  super && check_published
+end

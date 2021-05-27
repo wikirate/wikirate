@@ -74,6 +74,7 @@ class Card
 
       private
 
+      # WikiRate team members are stewards of all metrics
       def stewards_all?
         Card::Auth.current.stewards_all?
       end

@@ -4,6 +4,7 @@ include_set Abstract::Export
 include_set Abstract::MetricChild, generation: 3
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
+include_set Abstract::AnswerField
 
 def bookmark_type
   :wikirate_company
