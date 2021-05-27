@@ -4,7 +4,7 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
       Card::AnswerQuery.new(query.merge(metric_id: answer.metric_id)).run
     end
 
-    context "user is not steward" do
+    context "when user is not steward" do
       let(:answer) { Card["Jedi+deadliness+Death_Star+1977"] }
 
       it "implicitly finds answers.unpublished = nil" do
@@ -23,11 +23,11 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
 
       it "finds no answers when looking for unpublished" do
         answer.unpublished_card.update! content: 1
-        expect(results(published: :false)).to be_empty
+        expect(results(published: "false")).to be_empty
       end
     end
 
-    context "user is steward" do
+    context "when user is steward" do
       let(:answer) { Card["Joe User+RM+Apple Inc+2015"] }
 
       it "implicitly does not find answers.unpublished = true" do
@@ -37,7 +37,7 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
 
       it "finds stewarded unpublished answer when looking for unpublished" do
         answer.unpublished_card.update! content: 1
-        expect(results(published: :false).first).to eq(answer)
+        expect(results(published: "false").first).to eq(answer)
       end
 
       it "finds stewarded unpublished answer when looking for all" do
