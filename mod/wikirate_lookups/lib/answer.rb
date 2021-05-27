@@ -1,5 +1,5 @@
 # lookup table for metric answers
-class Answer < ApplicationRecord
+class Answer < Cardio::Record
   @card_column = :answer_id
   @card_query = { type_id: Card::MetricAnswerID, trash: false }
 
@@ -24,7 +24,7 @@ class Answer < ApplicationRecord
 
   fetcher :metric_id, :company_id, :record_id, :source_count, :source_url, :imported,
           :value, :numeric_value, :checkers, :check_requester, :overridden_value,
-          :comments, :verification
+          :comments, :verification, :unpublished
 
   def card
     return @card if @card
