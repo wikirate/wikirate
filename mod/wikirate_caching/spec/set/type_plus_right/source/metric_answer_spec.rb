@@ -15,6 +15,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::MetricAnswer do
   # it...)
 
   let(:source_answers) { "#{Card::Name[:star_wars_source]}+answer" }
+
   def current_count
     Card.fetch(source_answers).cached_count
   end

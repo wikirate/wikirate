@@ -117,3 +117,7 @@ end
 def source_required?
   force_source_not_required? ? false : true
 end
+
+def steward?
+  false
+end

@@ -53,10 +53,10 @@ format do
   end
 
   def special_filter_keys
-    [].tap do |keys|
-      keys << :related_company_group if metric_card.relationship?
-      keys << :published if metric_card.steward?
-    end
+    keys = []
+    keys << :related_company_group if metric_card.relationship?
+    keys << :published if metric_card.steward?
+    keys
   end
 
   def default_filter_hash
