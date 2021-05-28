@@ -59,6 +59,10 @@ format :html do
     autocomplete_filter :source
   end
 
+  view :filter_published_formgroup, cache: :never do
+    select_filter :published, "true"
+  end
+
   def default_year_option
     { "Latest" => "latest" }
   end
@@ -140,5 +144,13 @@ format :html do
 
   def value_filter_label
     "Value"
+  end
+
+  def published_options
+    {
+      "Published only"   => "true",
+      "Unpublished only" => "false",
+      "Either"           => "all"
+    }
   end
 end

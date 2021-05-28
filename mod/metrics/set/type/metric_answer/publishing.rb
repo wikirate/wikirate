@@ -23,7 +23,7 @@ def calculated_unpublished
 end
 
 def check_published
-  return true unless unpublished && !Auth.as_id.in?(steward_ids)
+  return true unless unpublished && !steward?
 
   deny_because "not yet published"
 end

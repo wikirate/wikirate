@@ -9,10 +9,17 @@ include_set Abstract::FixedAnswerSearch
 
 # recount number of answers for a given metric when an answer card is
 # created or deleted
-recount_trigger :type, :metric_answer, on: [:create, :delete] do |changed_card|
+recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
   changed_card.company_card&.fetch :metric_answer
 end
 # TODO: trigger recount from virtual answer batches
+
+# ...or when answer is (un)published
+recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  return if changed_card.left&.action&.in? %i[create delete]
+
+  changed_card.left.company_card.fetch :metric_answer
+end
 
 def fixed_field
   :company_id
@@ -27,9 +34,13 @@ def bookmark_type
 end
 
 format do
-  def filter_keys
-    %i[status year metric_name wikirate_topic value updated updater verification
-       calculated metric_type value_type project source research_policy bookmark]
+  STANDARD_FILTER_KEYS = %i[
+    status year metric_name wikirate_topic value updated updater verification
+    calculated metric_type value_type project source research_policy bookmark
+  ].freeze
+
+  def standard_filter_keys
+    STANDARD_FILTER_KEYS
   end
 
   def default_sort_option

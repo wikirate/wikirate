@@ -10,9 +10,17 @@ include_set Abstract::Paging
 
 format :html do
   view :expanded_details do
-    wrap_with :div, class: "details-content" do
-      render :"expanded_#{details_type}_details"
+    alerting_unpublished do
+      wrap_with :div, class: "details-content" do
+        render :"expanded_#{details_type}_details"
+      end
     end
+  end
+
+  def alerting_unpublished
+    return yield unless card.answer.unpublished
+
+    wrap_with(:div, class: "alert alert-warning my-3") { "Unpublished" } + yield
   end
 
   def expanded_data_details_view
