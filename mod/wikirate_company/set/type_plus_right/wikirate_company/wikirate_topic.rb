@@ -2,10 +2,15 @@ include_set Right::BrowseTopicFilter
 include_set Abstract::SearchCachedCount
 
 # when metric value is edited
-recount_trigger :type, :metric_answer do |changed_card|
-  if (company_name = changed_card.company_name)
-    Card.fetch company_name.to_name.trait(:wikirate_topic)
-  end
+recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
+  changed_card.company_card&.fetch :wikirate_topic
+end
+
+# ...or when answer is (un)published
+recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  return if changed_card.left&.action&.in? %i[create delete]
+
+  changed_card.left.company_card&.fetch :wikirate_topic
 end
 
 # ... when <metric>+topic is edited
@@ -13,7 +18,7 @@ recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   metric_id = changed_card.left_id
   Answer.select(:company_id).where(metric_id: metric_id).distinct
         .pluck(:company_id).map do |company_id|
-    Card.fetch(company_id.cardname.trait(:wikirate_topic))
+    company_id.card&.fetch :wikirate_topic
   end
 end
 

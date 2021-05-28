@@ -20,10 +20,16 @@ def skip_search?
   metric_ids.empty?
 end
 
-# when metric value is edited
-recount_trigger :type, :metric_answer do |changed_card|
-  topic_names = changed_card.metric_card&.wikirate_topic_card&.item_names
-  company_cache_cards_for_topics topic_names
+# when answer is created/deleted
+recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
+  company_cache_cards_for_answer changed_card
+end
+
+# ...or when answer is (un)published
+recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  return if changed_card.left&.action&.in? %i[create delete]
+
+  company_cache_cards_for_answer changed_card.left
 end
 
 # ... when <metric>+topic is edited
@@ -32,6 +38,14 @@ recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
 end
 
 class << self
+  def company_cache_cards_for_answer answer
+    company_cache_cards_for_topics topic_names_for_answer(answer)
+  end
+
+  def topic_names_for_answer answer
+    answer.metric_card&.wikirate_topic_card&.item_names
+  end
+
   def company_cache_cards_for_topics topic_names
     topic_names.map do |topic_name|
       # TODO: confirm all +topic items are valid topics so this check isn't necessary

@@ -20,8 +20,15 @@ def answer_ids
   ::Answer.where(metric_id: left.id).where.not(answer_id: nil).pluck :answer_id
 end
 
-# recount no. of sources on metric
+# recount no. of sources on metric when citation is edited
 recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
+  changed_card.left.metric_card.fetch :source
+end
+
+# ...or when answer is (un)published
+recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  return if changed_card.left&.action&.in? %i[create delete]
+
   changed_card.left.metric_card.fetch :source
 end
 
