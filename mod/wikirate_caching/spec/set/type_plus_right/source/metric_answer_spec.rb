@@ -15,13 +15,14 @@ RSpec.describe Card::Set::TypePlusRight::Source::MetricAnswer do
   # it...)
 
   let(:source_answers) { "#{Card::Name[:star_wars_source]}+answer" }
+  let(:answer) { Card["Jedi+cost of planets destroyed+Death Star+1977"] }
 
   def current_count
     Card.fetch(source_answers).cached_count
   end
 
   def unpublish!
-    Card["Jedi+cost of planets destroyed+Death Star+1977"].unpublished_card.update! "1"
+    answer.unpublished_card.update! content: "1"
   end
 
   it "lowers count if answer is unpublished" do
