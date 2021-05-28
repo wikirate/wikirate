@@ -9,4 +9,23 @@ RSpec.describe Card::Set::TypePlusRight::Source::MetricAnswer do
       Card["Jedi+cost of planets destroyed+Death Star+1977"].delete
     end
   end
+
+  # TODO: add unpublished card to seed data so we can use the add one / delete one
+  # pattern in shared examples.  (could add one by adding answer rather than publishing
+  # it...)
+
+  let(:source_answers) { "#{Card::Name[:star_wars_source]}+answer" }
+  def current_count
+    Card.fetch(source_answers).cached_count
+  end
+
+  def unpublish!
+    Card["Jedi+cost of planets destroyed+Death Star+1977"].unpublished_card.update! "1"
+  end
+
+  it "lowers count if answer is unpublished" do
+    original_count = current_count
+    unpublish!
+    expect(current_count).to eq(original_count - 1)
+  end
 end
