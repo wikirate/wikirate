@@ -2,7 +2,7 @@
 # The answers that a calculated answer depends on
 # @return [Array] array of Answer objects
 def direct_dependee_answers
-  return [] if researched_value?
+  return [] if researched_value? || !metric_card
 
   metric_card.calculator.answers(company: company_id, year: year).uniq
 end
