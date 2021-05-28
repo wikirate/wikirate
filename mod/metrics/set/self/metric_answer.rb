@@ -6,14 +6,18 @@ include_set Abstract::SdgFiltering
 include_set Abstract::AnswerSearch
 
 format do
-  def default_filter_hash
-    { company_name: "" }
+  STANDARD_FILTER_KEYS = %i[
+    status year metric_name company_name company_group wikirate_topic value updated
+    updater verification calculated metric_type value_type project source research_policy
+    bookmark
+  ].freeze
+
+  def standard_filter_keys
+    STANDARD_FILTER_KEYS
   end
 
-  def filter_keys
-    %i[status year metric_name company_name company_group
-       wikirate_topic value updated updater verification calculated
-       metric_type value_type project source research_policy bookmark]
+  def default_filter_hash
+    { company_name: "" }
   end
 
   def filter_label field

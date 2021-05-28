@@ -91,7 +91,7 @@ class Card
         if metric_ids.empty?
           @empty_results = true
         else
-          "#{cond} and metric_id in (#{metric_ids.join ', '})"
+          "#{cond} and answers.metric_id in (#{metric_ids.join ', '})"
         end
       end
 

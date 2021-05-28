@@ -19,7 +19,7 @@ def search_anchor
 end
 
 def recount
-  Answer.search answer_query(:count)
+  ::Answer.search answer_query(:count)
 end
 
 def answer_query return_field
@@ -44,7 +44,7 @@ def skip_search?
 end
 
 def target_ids
-  ::Answer.search(answer_query(target_id_field))
+  ::Answer.search answer_query(target_id_field)
 end
 
 # turn query caching off because cql_content can change

@@ -6,8 +6,13 @@ def search_anchor
 end
 
 # recount metrics related to company whenever a value is created or deleted
-recount_trigger :type, :metric_answer, on: [:create, :delete] do |changed_card|
-  if (company_name = changed_card.company_name)
-    Card.fetch company_name.to_name.trait(:metric)
-  end
+recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
+  changed_card.company_card&.fetch :metric
+end
+
+# ...or when answer is (un)published
+recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  return if changed_card.left&.action&.in? %i[create delete]
+
+  changed_card.left.company_card&.fetch :metric
 end
