@@ -94,8 +94,17 @@ def designer_assessed?
   research_policy&.casecmp("designer assessed")&.zero?
 end
 
+def steward?
+  Auth.as_id.in? steward_ids
+end
+
 def steward_ids
-  @steward_ids ||= (steward_card&.item_ids || []) << metric_designer_id
+  @steward_ids ||=
+    [always_steward_ids, steward_card&.item_ids, metric_designer_id].flatten.compact.uniq
+end
+
+def always_steward_ids
+  Card::Set::Self::WikirateTeam.member_ids
 end
 
 # note: can return True for anonymous user if answer is generally researchable

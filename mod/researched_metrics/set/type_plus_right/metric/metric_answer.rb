@@ -1,7 +1,4 @@
 # Answer search for a given Metric
-STANDARD_FILTER_KEYS =
-  %i[status year company_name company_group country value updated updater verification
-     calculated source project outliers bookmark].freeze
 
 include_set Abstract::FilterFormgroups
 include_set Abstract::BookmarkFiltering
@@ -10,11 +7,19 @@ include_set Abstract::CachedCount
 include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
-# recount number of answers for a given metric when a Metric Value card is
+# recount number of answers for a given metric when an Answer card is
 # created or deleted
-recount_trigger :type, :metric_answer, on: [:create, :delete] do |changed_card|
+recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
   changed_card.metric_card.fetch :metric_answer
 end
+
+# ...or when answer is (un)published
+recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  return if changed_card.left&.action&.in? %i[create delete]
+
+  changed_card.left.metric_card.fetch :metric_answer
+end
+
 # TODO: trigger recount from virtual answer batches
 
 def fixed_field
@@ -34,16 +39,24 @@ def metric_card
 end
 
 format do
+  STANDARD_FILTER_KEYS = %i[
+    status year company_name company_group country value updated updater verification
+    calculated source project outliers bookmark
+  ].freeze
+
   def secondary_sort_hash
     super.merge year: { value: :desc }
   end
 
-  def filter_keys
-    STANDARD_FILTER_KEYS + special_filter_keys
+  def standard_filter_keys
+    STANDARD_FILTER_KEYS
   end
 
   def special_filter_keys
-    metric_card.relationship? ? [:related_company_group] : []
+    [].tap do |keys|
+      keys << :related_company_group if metric_card.relationship?
+      keys << :published if metric_card.steward?
+    end
   end
 
   def default_filter_hash

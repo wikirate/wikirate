@@ -31,6 +31,16 @@ format do
     end
   end
 
+  def filter_keys
+    standard_filter_keys + special_filter_keys
+  end
+
+  def special_filter_keys
+    [].tap do |keys|
+      keys << :published if Card::Auth.current.stewards_any?
+    end
+  end
+
   def search_with_params
     @search_with_params ||= card.search query: query
   end
