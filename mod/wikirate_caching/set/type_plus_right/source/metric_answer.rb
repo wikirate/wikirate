@@ -1,12 +1,13 @@
 # answers that cite this source
 include_set Abstract::SearchCachedCount
 
-def search_anchor
-  { answer_id: answer_ids }
-end
+# def search_anchor
+#   { answer_id: answer_ids }
+# end
 
 def cql_content
   { type_id: MetricAnswerID,
+    not: { right_plus: [:unpublished, { eq: "1" }] },
     right_plus: [SourceID, { link_to: name.left }] }
 end
 
