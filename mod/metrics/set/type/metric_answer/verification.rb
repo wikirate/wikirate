@@ -1,3 +1,5 @@
+delegate :steward_ids, :steward?, to: :metric_card
+
 # @return [Integer] current verification index
 def verification
   if researched_value?
@@ -26,10 +28,6 @@ def steward_added?
   return true if metric_card.designer_assessed?
 
   answer.updater_id&.in? steward_ids
-end
-
-def steward_ids
-  @steward_ids ||= Card::Set::Self::WikirateTeam.member_ids + metric_card.steward_ids
 end
 
 def update_related_verifications
