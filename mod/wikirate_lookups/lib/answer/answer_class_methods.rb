@@ -43,7 +43,7 @@ class Answer
     def search opts={}
       args = extract_search_args opts
       search_where(opts).uniq_select(args[:uniq], args[:return])
-                        .where.not(unpublished: true)
+                        .where("answers.unpublished is not true")
                         .sort(args[:sort])
                         .paging(args[:page])
                         .return(args[:return])
