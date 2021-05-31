@@ -6,7 +6,7 @@ event :update_lookups_on_record_rename, :finalize, changed: :name do
 end
 
 def answer_relation
-  Answer.where(answer_query).where.not(unpublished: true)
+  Answer.where(answer_query).where("answers.unpublished is not true")
 end
 
 def answer_query

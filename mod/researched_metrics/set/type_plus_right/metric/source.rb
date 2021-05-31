@@ -19,7 +19,7 @@ end
 def answer_ids
   ::Answer.where(metric_id: left.id)
           .where.not(answer_id: nil)
-          .where.not(unpublished: true)
+          .where("answers.unpublished is not true")
           .pluck :answer_id
 end
 
