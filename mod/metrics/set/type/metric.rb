@@ -8,6 +8,7 @@ include_set Abstract::BsBadge
 include_set Abstract::Bookmarkable
 include_set Abstract::Delist
 include_set Abstract::Lookup
+include_set Abstract::Publishable
 
 card_accessor :metric_type, type: PointerID, default: "[[Researched]]"
 card_accessor :about

@@ -6,7 +6,7 @@ class Metric < Cardio::Record
   include LookupTable
 
   fetcher designer_id: :metric_designer_id, title_id: :metric_title_id
-  fetcher :scorer_id, :metric_type_id, :value_type_id
+  fetcher :scorer_id, :metric_type_id, :value_type_id, :unpublished
 
   # TODO: this should be implicit
   def fetch_metric_id
