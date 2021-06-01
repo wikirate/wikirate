@@ -1,4 +1,4 @@
-class UnpublishedAnswerFlag < ActiveRecord::Migration[6.1]
+class UnpublishedAnswerFlag < Cardio::Migration
   def change
     add_column :answers, :unpublished, :boolean
   end
