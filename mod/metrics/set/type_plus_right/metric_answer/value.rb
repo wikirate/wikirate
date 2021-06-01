@@ -1,6 +1,6 @@
 include_set Abstract::MetricChild, generation: 3
 include_set Abstract::DesignerPermissions
-include_set Abstract::AnswerField
+include_set Abstract::PublishableField
 
 def history?
   !metric_card&.relationship?
