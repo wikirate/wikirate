@@ -96,7 +96,7 @@ def designer_assessed?
 end
 
 def steward?
-  Auth.as_id.in? steward_ids
+  Auth.as_id.in?(steward_ids) || Auth.always_ok?
 end
 
 def designer?

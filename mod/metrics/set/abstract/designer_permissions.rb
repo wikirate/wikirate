@@ -8,7 +8,7 @@
 def check_designer_permissions action
   return true if !metric_card || metric_card.ok_as_steward?
 
-  deny_because "Only the metric designer can #{action} this on designer-assessed metrics"
+  deny_because "Only metric stewards can #{action} this on designer-assessed metrics"
 end
 
 def ok_to_create
