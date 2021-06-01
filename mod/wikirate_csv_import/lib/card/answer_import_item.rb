@@ -6,6 +6,7 @@ class Card
                  year: { map: true },
                  value: {},
                  source: { map: true, separator: "; ", auto_add: true },
+                 unpublished: { optional: true },
                  comment: { optional: true } }
 
     CSV_KEYS = %i[answer_id answer_link metric wikirate_company year value
@@ -24,6 +25,10 @@ class Card
       else
         val
       end
+    end
+
+    def normalize_unpublished val
+      val.to_s.downcase.in? %w[1 true t yes y] ? "1" : "0"
     end
 
     def map_source val
