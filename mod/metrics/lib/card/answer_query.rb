@@ -1,7 +1,7 @@
 class Card
   # Query lookup table for researched answers
   # (See #new for handling of not-researched)
-  class AnswerQuery
+  class AnswerQuery < LookupFilterQuery
     include Filtering
     include Sorting
     include AnswerFilters
@@ -45,20 +45,6 @@ class Card
 
     attr_accessor :filter_args, :sort_args, :paging_args
 
-    def initialize filter, sorting={}, paging={}
-      @filter_args = filter
-      @sort_args = sorting
-      @paging_args = paging
-
-      @conditions = []
-      @joins = []
-      @values = []
-      @restrict_to_ids = {}
-
-      not_researched! if status_filter == :none
-      process_sort
-      process_filters
-    end
 
     # TODO: support optionally returning answer objects
 
@@ -99,10 +85,6 @@ class Card
 
     private
 
-    def status_filter
-      @filter_args[:status]&.to_sym || :exists
-    end
-
     def main_results
       # puts "SQL: #{answer_lookup.to_sql}"
       answer_lookup.answer_cards
@@ -110,14 +92,6 @@ class Card
 
     def condition_sql conditions
       ::Answer.sanitize_sql_for_conditions conditions
-    end
-
-    # overridden in AllAnswerQuery.
-    # this method is only reached in AnswerQuery instances if there is a
-    # RESEARCHED_ANSWERS_ONLY filter and the status filter is none.
-    # That combination guarantees there are no results.
-    def not_researched!
-      @empty_result = true
     end
   end
 end

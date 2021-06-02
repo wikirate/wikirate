@@ -19,15 +19,19 @@ class Card
 
       protected
 
-      def process_filters
-        return if @empty_result
-        normalize_filter_args
-        @filter_args.each { |k, v| process_filter_option k, v if v.present? }
-        @restrict_to_ids.each { |k, v| filter k, v }
+      def normalize_filter_args
+        # this case is only reached if there is a RESEARCHED_ANSWERS_ONLY filter and
+        # the status filter is none. That combination guarantees there are no results.
+        return (@empty_result = true) if @filter_args[:status]&.to_sym == :none
+
+        @filter_args[:published] = true unless @filter_args.key? :published
       end
 
-      def normalize_filter_args
-        @filter_args[:published] = true unless @filter_args.key? :published
+      def process_filters
+        normalize_filter_args
+        return if @empty_result
+        @filter_args.each { |k, v| process_filter_option k, v if v.present? }
+        @restrict_to_ids.each { |k, v| filter k, v }
       end
 
       # TODO: optimize with hash lookups for methods
