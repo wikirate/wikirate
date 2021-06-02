@@ -43,19 +43,18 @@ class Card
       end
     end
 
-    def lookup_table
-      "answers"
-    end
-
     def lookup_class
       ::Answer
+    end
+
+    def lookup_table
+      "answers"
     end
 
     def process_filters
       not_researched! if status_filter == :none
       super
     end
-
 
     private
 

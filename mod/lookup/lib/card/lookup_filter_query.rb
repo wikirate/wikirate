@@ -1,5 +1,7 @@
 class Card
   class LookupFilterQuery
+    include Filtering
+
     attr_accessor :filter_args, :sort_args, :paging_args
 
     def initialize filter, sorting={}, paging={}
@@ -20,6 +22,10 @@ class Card
       q = lookup_class.where lookup_conditions
       q = q.joins(@joins) if @joins.present?
       q
+    end
+
+    def lookup_table
+      @lookup_table ||= lookup_class.arel_table.name
     end
 
     def condition_sql conditions
@@ -59,104 +65,39 @@ class Card
 
     private
 
-    def process_filters
-      normalize_filter_args
-      return if @empty_result
-      @filter_args.each { |k, v| process_filter_option k, v if v.present? }
-      @restrict_to_ids.each { |k, v| filter k, v }
+    def sort_and_page
+      relation = yield
+      @sort_joins.uniq.each { |j| relation = relation.joins(j) }
+
+      relation.sort(@sort_hash).paging(@paging_args)
     end
 
-    def normalize_filter_args
-      # override
+    def process_sort
+      @sort_joins = []
+      @sort_hash = @sort_args.each_with_object({}) do |(by, dir), h|
+        h[sort_by(by)] = sort_dir(dir)
+      end
     end
 
-    def simple_filters
+    def sort_by sort_by
+      if (id_field = sort_by_cardname[sort_by])
+        sort_by_join sort_by, id_field
+      else
+        simple_sort_by sort_by
+      end
+    end
+
+    def sort_by_cardname
       []
     end
 
-    def card_id_filters
-      []
+    def simple_sort_by sort_by
+      sort_by
     end
 
-    def card_id_map
-      {}
-    end
-
-    def process_filter_option key, value
-      if (method = filter_method key)
-        send method, key, value
-      else
-        try "#{key}_query", value
-      end
-    end
-
-    def filter_method key
-      case key
-      when *simple_filters
-        :filter_exact_match
-      when *card_id_filters
-        :filter_card_id
-      end
-    end
-
-    def filter_exact_match key, value
-      filter key, value if value.present?
-    end
-
-    def filter_card_id key, value
-      return unless (card_id = to_card_id value)
-
-      filter card_id_map[key], card_id
-    end
-
-    def to_card_id value
-      if value.is_a?(Array)
-        value.map { |v| Card.fetch_id(v) }
-      else
-        Card.fetch_id(value)
-      end
-    end
-
-    def restrict_to_ids col, ids
-      ids = Array(ids)
-      @empty_result ||= ids.empty?
-      restrict_lookup_ids col, ids
-    end
-
-    def restrict_lookup_ids col, ids
-      existing = @restrict_to_ids[col]
-      @restrict_to_ids[col] = existing ? (existing & ids) : ids
-    end
-
-    def restrict_by_cql col, cql
-      cql.reverse_merge! return: :id, limit: 0
-      restrict_to_ids col, Card.search(cql)
-    end
-
-    def filter field, value, operator=nil
-      condition = "#{filter_table field}.#{field} #{op_and_val operator, value}"
-      add_condition condition, value
-    end
-
-    def filter_table _field
-      lookup_table
-    end
-
-    def op_and_val op, val
-      "#{db_operator op, val} #{db_value val}"
-    end
-
-    def add_condition condition, value
-      @conditions << condition
-      @values << value
-    end
-
-    def db_operator operator, value
-      operator || (value.is_a?(Array) ? "IN" : "=")
-    end
-
-    def db_value value
-      value.is_a?(Array) ? "(?)" : "?"
+    def sort_by_join sort_by, id_field
+      @sort_joins << "JOIN cards as #{sort_by} on #{sort_by}.id = #{id_field}"
+      "#{sort_by}.key"
     end
   end
 end

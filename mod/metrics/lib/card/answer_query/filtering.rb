@@ -14,7 +14,6 @@ class Card
         %i[title_id designer_id scorer_id policy_id metric_type_id value_type_id]
       )
 
-
       protected
 
       def simple_filters
@@ -42,7 +41,5 @@ class Card
         end
       end
     end
-
-
   end
 end
