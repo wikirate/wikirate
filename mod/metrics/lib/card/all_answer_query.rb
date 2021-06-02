@@ -42,7 +42,7 @@ class Card
     # This left join is the essence of the search strategy.
     def partner_join
       "AS #{@partner} LEFT JOIN answers " \
-      "ON #{@partner}.id = #{@partner}_id AND #{answer_conditions}"
+      "ON #{@partner}.id = #{@partner}_id AND #{lookup_conditions}"
     end
 
     def partner_where

@@ -71,15 +71,9 @@ class Card
         @partner_id_col ||= "#{@partner}_id".to_sym
       end
 
-      # we left join cards to answers. if answers.id is nil, then answer is not researched
-      def handle_not_researched
-        @card_conditions << "answers.id is null" if @filter_args[:status].to_sym == :none
-      end
-
       def not_researched!
         @card_conditions << "answers.id is null"
       end
-
     end
   end
 end

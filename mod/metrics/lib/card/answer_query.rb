@@ -43,9 +43,13 @@ class Card
       end
     end
 
-    attr_accessor :filter_args, :sort_args, :paging_args
+    def lookup_table
+      "answers"
+    end
 
-
+    def lookup_class
+      ::Answer
+    end
 
     def process_filters
       not_researched! if status_filter == :none
@@ -53,52 +57,11 @@ class Card
     end
 
 
-    # TODO: support optionally returning answer objects
-
-    # @return array of metric answer card objects
-    #   if filtered by missing values then the card objects
-    #   are newly instantiated and not in the database
-    def run
-      @empty_result ? [] : main_results
-    end
-
-    # @return [Array]
-    def count
-      @empty_result ? 0 : main_query.count
-    end
-
-    def limit
-      @paging_args[:limit]
-    end
-
-    def main_query
-      answer_query
-    end
-
-    def answer_query
-      q = Answer.where answer_conditions
-      q = q.joins(@joins) if @joins.present?
-      q
-    end
-
-    def answer_lookup
-      sort_and_page { main_query }
-    end
-
-    # @return args for AR's where method
-    def answer_conditions
-      condition_sql([@conditions.join(" AND ")] + @values)
-    end
-
     private
 
     def main_results
-      # puts "SQL: #{answer_lookup.to_sql}"
-      answer_lookup.answer_cards
-    end
-
-    def condition_sql conditions
-      ::Answer.sanitize_sql_for_conditions conditions
+      # puts "SQL: #{lookup_relation.to_sql}"
+      lookup_relation.answer_cards
     end
 
     def status_filter
@@ -106,6 +69,8 @@ class Card
     end
 
     def not_researched!
+      # this case is only reached if there is a RESEARCHED_ANSWERS_ONLY filter and
+      # the status filter is none. That combination guarantees there are no results.
       @empty_result = true
     end
   end

@@ -30,15 +30,7 @@ class Card
       end
 
       def normalize_filter_args
-        # this case is only reached if there is a RESEARCHED_ANSWERS_ONLY filter and
-        # the status filter is none. That combination guarantees there are no results.
-        # return (@empty_result = true) if @filter_args[:status]&.to_sym == :none
-
         @filter_args[:published] = true unless @filter_args.key? :published
-      end
-
-      def lookup_table
-        "answers"
       end
 
       def filter_table field
