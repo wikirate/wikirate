@@ -18,6 +18,7 @@ class Card
       require_partner!
       add_card_condition "#{@partner}.type_id = ?", PARTNER_TYPE_ID[@partner]
       super
+      handle_non_researched
     end
 
     def main_query

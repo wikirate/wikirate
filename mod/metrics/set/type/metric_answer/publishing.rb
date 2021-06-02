@@ -1,7 +1,9 @@
 include_set Abstract::Publishable
 
 def unpublished
-  if researched_value?
+  if metric_card.unpublished
+    true
+  elsif researched_value?
     super
   elsif relationship?
     false
