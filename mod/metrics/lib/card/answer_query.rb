@@ -46,6 +46,13 @@ class Card
     attr_accessor :filter_args, :sort_args, :paging_args
 
 
+
+    def process_filters
+      not_researched! if status_filter == :none
+      super
+    end
+
+
     # TODO: support optionally returning answer objects
 
     # @return array of metric answer card objects
@@ -92,6 +99,14 @@ class Card
 
     def condition_sql conditions
       ::Answer.sanitize_sql_for_conditions conditions
+    end
+
+    def status_filter
+      @filter_args[:status]&.to_sym || :exists
+    end
+
+    def not_researched!
+      @empty_result = true
     end
   end
 end
