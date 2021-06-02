@@ -8,7 +8,7 @@ def unpublished
 end
 
 def check_published
-  return true unless unpublished && !steward?
+  return true unless lookup&.unpublished && !steward?
 
   deny_because "not yet published"
 end

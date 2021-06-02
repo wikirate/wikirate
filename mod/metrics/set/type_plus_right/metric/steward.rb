@@ -1,4 +1,5 @@
 include_set Abstract::DesignerPermissions
+include_set Abstract::PublishableField
 
 def metric_card
   left
