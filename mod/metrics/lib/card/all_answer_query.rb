@@ -8,13 +8,14 @@ class Card
     PARTNER_TYPE_ID = { company: Card::WikirateCompanyID, metric: Card::MetricID }.freeze
 
     def initialize filter, sorting={}, paging={}
-      @filter_args = filter # duplicated, but must happen before require_partner!
-
       @card_conditions = []
       @card_values = []
       @card_ids = []
       @cql_filter = {}
+      super
+    end
 
+    def process_filters
       require_partner!
       add_card_condition "#{@partner}.type_id = ?", PARTNER_TYPE_ID[@partner]
       super
