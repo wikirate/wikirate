@@ -10,9 +10,6 @@ class Card
 
       SIMPLE_FILTERS = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
       CARD_ID_FILTERS = ::Set.new(CARD_ID_MAP.keys).freeze
-      METRIC_FIELDS_FILTERS = ::Set.new(
-        %i[title_id designer_id scorer_id policy_id metric_type_id value_type_id]
-      )
 
       protected
 
@@ -33,7 +30,7 @@ class Card
       end
 
       def filter_table field
-        if METRIC_FIELDS_FILTERS.include?(field.to_sym)
+        if MetricQuery::CARD_ID_FILTERS.include?(field.to_sym)
           @joins << :metric
           "metrics"
         else

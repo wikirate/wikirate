@@ -56,7 +56,7 @@ format :json do
   end
 
   def grouped_counts subgroup
-    answer_query.joins(:metric).group(:year, subgroup).count.map do |array, count|
+    lookup_query.joins(:metric).group(:year, subgroup).count.map do |array, count|
       { count: count, year: array.first, subgroup: array.last }
     end
   end
@@ -76,7 +76,7 @@ format :json do
   end
 
   def map_unique *fields
-    answer_query.joins(:metric).distinct.pluck(*fields).map do |result|
+    lookup_query.joins(:metric).distinct.pluck(*fields).map do |result|
       yield result
     end
   end

@@ -63,6 +63,11 @@ class Card
       lookup_query
     end
 
+    def main_results
+      # puts "SQL: #{lookup_relation.to_sql}"
+      lookup_relation.map(&:card)
+    end
+
     private
 
     def sort_and_page
