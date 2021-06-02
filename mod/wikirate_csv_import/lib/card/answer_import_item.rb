@@ -28,7 +28,7 @@ class Card
     end
 
     def normalize_unpublished val
-      val.to_s.downcase.in? %w[1 true t yes y] ? "1" : "0"
+      val.to_s.downcase.in?(%w[1 true t yes y]) ? "1" : "0"
     end
 
     def map_source val

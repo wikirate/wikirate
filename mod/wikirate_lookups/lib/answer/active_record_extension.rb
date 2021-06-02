@@ -46,7 +46,6 @@ class Answer
 
     private
 
-
     def standard_return val
       case val
       when "value_card"

@@ -21,11 +21,11 @@ end
 
 def published_unflagged_answers
   answers.where(
-    %Q[NOT EXISTS (
+    "NOT EXISTS (
       SELECT * from cards
       WHERE left_id = answers.answer_id
       AND right_id = #{:unpublished.card_id}
       AND db_content= '1'
-    )]
+    )"
   ).update_all unpublished: false
 end

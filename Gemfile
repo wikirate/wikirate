@@ -76,8 +76,6 @@ group :test, :development do
   gem "puma"                         # local webserver
 end
 
-
-
 group :profile do
   gem "decko-profile"
   gem "ruby-jmeter"                  # connected to Flood.io, used in load testing
