@@ -1,5 +1,6 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DesignerPermissions
+include_set Abstract::PublishableField
 include_set Abstract::Filterable
 
 event :validate_no_commas_in_value_options, :validate,

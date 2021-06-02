@@ -28,11 +28,11 @@ format :json do
   end
 
   view :answer_list, cache: :never do
-    answer_lookup.map(&:compact_json)
+    lookup_relation.map(&:compact_json)
   end
 
   view :keyed_answer_list, cache: :never do
-    answer_lookup.map { |a| a.compact_json.merge key: a.name.url_key }
+    lookup_relation.map { |a| a.compact_json.merge key: a.name.url_key }
   end
 
   view :type_lists, cache: :never do
