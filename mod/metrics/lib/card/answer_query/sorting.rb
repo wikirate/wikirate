@@ -8,26 +8,13 @@ class Card
         company_name: :company_id
       }.freeze
 
-      def sort_and_page
-        relation = yield
-        @sort_joins.uniq.each { |j| relation = relation.joins(j) }
-
-        relation.sort(@sort_hash).paging(@paging_args)
+      def sort_by_join sort_by, _id_field
+        @sort_joins << :metric if sort_by.to_s.match?(/^metric/)
+        super
       end
 
-      def process_sort
-        @sort_joins = []
-        @sort_hash = @sort_args.each_with_object({}) do |(by, dir), h|
-          h[sort_by(by)] = sort_dir(dir)
-        end
-      end
-
-      def sort_by sort_by
-        if (id_field = SORT_BY_CARDNAME[sort_by])
-          sort_by_join sort_by, id_field
-        else
-          sort_by == :value ? sort_by_value : sort_by
-        end
+      def sort_by_cardname
+        SORT_BY_CARDNAME
       end
 
       def sort_dir dir
@@ -40,10 +27,8 @@ class Card
         numeric_sort? ? :numeric_value : :value
       end
 
-      def sort_by_join sort_by, id_field
-        @sort_joins << :metric if sort_by.to_s.match?(/^metric/)
-        @sort_joins << "JOIN cards as #{sort_by} on #{sort_by}.id = #{id_field}"
-        "#{sort_by}.key"
+      def simple_sort_by sort_by
+        sort_by == :value ? sort_by_value : sort_by
       end
 
       def numeric_sort?

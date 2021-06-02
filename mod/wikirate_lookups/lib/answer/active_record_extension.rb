@@ -27,7 +27,7 @@ class Answer
       if val.blank?
         answer_cards
       elsif val.is_a? Array
-        multi_return val
+        pluck(*val)
       else
         standard_return val.to_s
       end
@@ -45,10 +45,6 @@ class Answer
     end
 
     private
-
-    def multi_return cols
-      pluck(*cols)
-    end
 
     def standard_return val
       case val

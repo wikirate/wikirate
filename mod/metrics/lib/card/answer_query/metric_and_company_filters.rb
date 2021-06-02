@@ -40,6 +40,7 @@ class Card
         multi_company { bookmark_restriction :company_id, value }
       end
 
+      #TODO: this should not need CQL!
       def value_type_query value
         multi_metric do
           restrict_by_cql :metric_id,
