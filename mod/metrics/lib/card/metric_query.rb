@@ -22,24 +22,6 @@ class Card
       "metrics"
     end
   end
-end
-
-
-module ::LookupTable
-  module ActiveRecordExtension
-    # @params hash [Hash] key1: dir1, key2: dir2
-    def sort hash
-      hash.present? ? sort_by_hash(hash) : self
-    end
-
-    def paging args
-      return self unless valid_page_args? args
-      limit(args[:limit]).offset(args[:offset])
-    end
-
-    def valid_page_args? args
-      args.present? && args[:limit].to_i.positive?
-    end
-  end
-  ::Metric.const_get("ActiveRecord_Relation").send :include, ActiveRecordExtension
+  ::Metric.const_get("ActiveRecord_Relation")
+    .send :include, LookupFilterQuery::ActiveRecordExtension
 end

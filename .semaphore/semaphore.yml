@@ -60,7 +60,7 @@ blocks:
             - RAILS_ENV=cucumber bundle exec decko cucumber
         - name: Cypress
           commands:
-            - RAILS_ENV=cypress bundle exec decko server -p 5002 -d
+            - RAILS_ENV=cypress bundle exec decko server -p 5002 &
             - nvm use 12.18.2
             - yarn install
             - yarn run cypress run --record --key ffd8ff95-9033-4fd3-bcee-fc13cd67b3b7

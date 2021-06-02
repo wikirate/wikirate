@@ -1,6 +1,8 @@
 class Answer
   # module extends the functionality of Answer lookup relations
   module ActiveRecordExtension
+    include Card::LookupFilterQuery::ActiveRecordExtension
+
     def answer_cards
       map(&:card).compact
     end
@@ -11,16 +13,6 @@ class Answer
 
     def cards type
       self.return("#{type}_id").map(&:card)
-    end
-
-    # @params hash [Hash] key1: dir1, key2: dir2
-    def sort hash
-      hash.present? ? sort_by_hash(hash) : self
-    end
-
-    def paging args
-      return self unless valid_page_args? args
-      limit(args[:limit]).offset(args[:offset])
     end
 
     def return val
@@ -89,10 +81,6 @@ class Answer
 
     def sort_by_bookmarkers type, rel
       [Card::Bookmark.add_sort_join(rel, "answers.#{type}_id"), "cts.value"]
-    end
-
-    def valid_page_args? args
-      args.present? && args[:limit].to_i.positive?
     end
 
     def group_necessary? uniq, retrn
