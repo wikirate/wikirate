@@ -24,5 +24,5 @@ class Card
   end
 end
 
-Card::Metric.const_get("ActiveRecord_Relation")
-            .send :include, LookupFilterQuery::ActiveRecordExtension
+Metric.const_get("ActiveRecord_Relation")
+      .send :include, LookupFilterQuery::ActiveRecordExtension
