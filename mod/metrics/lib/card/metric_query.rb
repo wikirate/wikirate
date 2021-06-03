@@ -10,7 +10,8 @@ class Card
       value_type: :value_type_id
     }.freeze
 
-    CARD_ID_FILTERS = ::Set.new(CARD_ID_MAP.values)
+    CARD_ID_FILTERS = ::Set.new(CARD_ID_MAP.keys).freeze
+    SIMPLE_FILTERS = ::Set.new(CARD_ID_MAP.values).freeze
 
     # include MetricFilters
 
@@ -21,8 +22,20 @@ class Card
     def lookup_table
       "metrics"
     end
+
+    def card_id_map
+      CARD_ID_MAP
+    end
+
+    def card_id_filters
+      CARD_ID_FILTERS
+    end
+
+    def simple_filters
+      SIMPLE_FILTERS
+    end
   end
 end
 
 Metric.const_get("ActiveRecord_Relation")
-      .send :include, LookupFilterQuery::ActiveRecordExtension
+      .send :include, Card::LookupFilterQuery::ActiveRecordExtension

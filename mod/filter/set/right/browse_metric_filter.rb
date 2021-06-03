@@ -16,6 +16,10 @@ def filter_class
   MetricQuery
 end
 
+def target_type_id
+  MetricID
+end
+
 format do
   def default_filter_hash
     { name: "" }
