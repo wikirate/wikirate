@@ -36,6 +36,10 @@ format do
     secondary_sort ? primary.merge(secondary_sort) : primary
   end
 
+  def sort_by
+    @sort_by ||= sort_by_from_param || default_sort_option
+  end
+
   def secondary_sort
     @secondary_sort ||= secondary_sort_hash[sort_by]
   end
@@ -43,10 +47,6 @@ format do
   # for override
   def secondary_sort_hash
     SECONDARY_SORT
-  end
-
-  def sort_by
-    @sort_by ||= sort_by_from_param || default_sort_option
   end
 
   def sort_by_from_param
