@@ -21,7 +21,7 @@ def query paging={}
   filter_class.new({}, {}, paging)
 end
 
-format :html do
+format do
   delegate :filter_class, to: :card
 
   def search_with_params
