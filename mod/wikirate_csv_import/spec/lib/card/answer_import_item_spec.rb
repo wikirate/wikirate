@@ -10,6 +10,7 @@ RSpec.describe Card::AnswerImportItem do
       year: "2017",
       value: "yes",
       source: :opera_source.cardname,
+      unpublished: nil,
       comment: ""
     }
   end
@@ -23,14 +24,16 @@ RSpec.describe Card::AnswerImportItem do
   describe "#default_header_map" do
     it "uses order specified in @columns hash" do
       expect(described_class.default_header_map).to(
-        eq(metric: 0, wikirate_company: 1, year: 2, value: 3, source: 4, comment: 5)
+        eq(metric: 0, wikirate_company: 1, year: 2, value: 3,
+           source: 4, unpublished: 5, comment: 6)
       )
     end
   end
 
   describe "#map_headers" do
     let :header_map do
-      { metric: 5, wikirate_company: 1, year: 3, value: 0, source: 2, comment: 4 }
+      { metric: 5, wikirate_company: 1, year: 3, value: 0,
+        source: 2, comment: 4, unpublished: nil }
     end
 
     it "interprets headings in any order" do
@@ -58,7 +61,8 @@ RSpec.describe Card::AnswerImportItem do
     it "ignores extra columns" do
       array = %w[Value Mama Company Why Source No Year Cookie Comment Today Metric]
       expect(described_class.map_headers(array)).to(
-        eq(metric: 10, wikirate_company: 2, year: 6, value: 0, source: 4, comment: 8)
+        eq(metric: 10, wikirate_company: 2, year: 6, value: 0,
+           source: 4, comment: 8, unpublished: nil)
       )
     end
   end
