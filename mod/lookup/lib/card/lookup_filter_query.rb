@@ -1,4 +1,5 @@
 class Card
+  # base class for FilterQuery classes built on lookup tables
   class LookupFilterQuery
     include Filtering
 

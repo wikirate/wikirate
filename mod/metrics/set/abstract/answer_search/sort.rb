@@ -49,7 +49,6 @@ format do
     SECONDARY_SORT
   end
 
-
   def sort_by_from_param
     safe_sql_param(:sort_by)&.to_sym.tap do |sort_by|
       if sort_by && !SORT_OPTIONS.include?(sort_by)

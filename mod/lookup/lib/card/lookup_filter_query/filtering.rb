@@ -1,5 +1,6 @@
 class Card
   class LookupFilterQuery
+    # shared filtering methods for FilterQuery classes built on lookup tables
     module Filtering
       def process_filters
         normalize_filter_args
