@@ -16,7 +16,7 @@ def stewarded_metric_ids
 end
 
 def designed_metric_ids
-  @designed_metric_ids ||= :Metric.where(designer_id: id).pluck :metric_id
+  @designed_metric_ids ||= ::Metric.where(designer_id: id).pluck :metric_id
 end
 
 def assigned_steward_metric_ids
