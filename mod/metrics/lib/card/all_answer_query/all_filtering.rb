@@ -62,7 +62,7 @@ class Card
         end
       end
 
-      def restrict_answer_ids col, ids
+      def restrict_lookup_ids col, ids
         return super unless col == partner_id_col
         @card_ids = @card_ids.any? ? (@card_ids & ids) : ids
       end
@@ -71,7 +71,6 @@ class Card
         @partner_id_col ||= "#{@partner}_id".to_sym
       end
 
-      # we left join cards to answers. if answers.id is nil, then answer is not researched
       def not_researched!
         @card_conditions << "answers.id is null"
       end
