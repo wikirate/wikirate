@@ -11,7 +11,6 @@ def virtual?
 end
 
 def cql_content
-  binding.pry
   { type_id: target_type_id, limit: 20 }
 end
 
