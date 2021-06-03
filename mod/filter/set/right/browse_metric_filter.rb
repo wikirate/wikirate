@@ -2,20 +2,21 @@ include_set Abstract::BrowseFilterForm
 include_set Abstract::MetricFilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
-
-def target_type_id
-  MetricID
-end
+include_set Abstract::LookupSearch
 
 def bookmark_type
   :metric
 end
 
-format do
-  def filter_class
-    MetricFilterQuery
-  end
+def item_type
+  "Metric"
+end
 
+def filter_class
+  MetricQuery
+end
+
+format do
   def default_filter_hash
     { name: "" }
   end
@@ -33,9 +34,9 @@ format do
     key == :metric_type ? "Metric type" : super
   end
 
-  def default_year_option
-    { "Any Year" => "" }
-  end
+  # def default_year_option
+  #   { "Any Year" => "" }
+  # end
 
   def sort_options
     { "Most Companies": :company, "Most Answers": :answer }.merge super
