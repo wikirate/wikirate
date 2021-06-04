@@ -108,7 +108,7 @@ class Card
 
     def sort_by_join sort_by, id_field
       @sort_joins <<
-        "JOIN cards as #{sort_by} ON #{sort_by}.id = #{lookup_table}.#{id_field}"
+        "JOIN cards as #{sort_by} ON #{sort_by}.id = #{id_field}"
       "#{sort_by}.key"
     end
   end
