@@ -37,7 +37,7 @@ format do
   end
 
   def sort_by_from_param
-    super.to_sym.tap do |sort_by|
+    super.tap do |sort_by|
       if sort_by && !SORT_OPTIONS.include?(sort_by)
         raise Error::UserError, "Invalid Sort Param: #{sort_by}"
       end

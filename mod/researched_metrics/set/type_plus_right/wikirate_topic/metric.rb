@@ -8,9 +8,9 @@ def query_hash
   { topic: left.id }
 end
 
-def bookmark_type
-  :metric
-end
+# def bookmark_type
+#   :metric
+# end
 
 format do
   def query_hash
