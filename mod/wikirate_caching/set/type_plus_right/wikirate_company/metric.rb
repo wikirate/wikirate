@@ -1,5 +1,5 @@
 # cache # of metrics with answers for this company (=left)
-include_set Abstract::AnswerTableCachedCount, target_type: :metric
+include_set Abstract::AnswerLookupCachedCount, target_type: :metric
 
 def search_anchor
   { company_id: left.id }
