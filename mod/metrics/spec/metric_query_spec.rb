@@ -1,14 +1,20 @@
 RSpec.describe Card::MetricQuery do
-  describe "designer filter" do
-    it "works with id" do
-      results = described_class.new(designer_id: "Jedi".card_id).run
+  def run query
+    described_class.new(query).run
+  end
 
-      expect(results.map { |c| c.metric_designer }.uniq).to eq(["Jedi"])
-    end
+  example "simple filter" do
+    expect(run(designer_id: "Jedi".card_id).map(&:metric_designer).uniq)
+      .to eq(["Jedi"])
+  end
 
-    it "works without id" do
-      results = described_class.new(designer: "Jedi").run
-      expect(results.map { |c| c.metric_designer }.uniq).to eq(["Jedi"])
-    end
+  example "card id mapping" do
+    expect(run(designer: "Jedi").map(&:metric_designer).uniq)
+      .to eq(["Jedi"])
+  end
+
+  example "topic filter" do
+    expect(run(topic: "Taming").map(&:name))
+      .to include("Jedi+more evil", "Jedi+less evil")
   end
 end
