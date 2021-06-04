@@ -2,20 +2,25 @@ include_set Abstract::BrowseFilterForm
 include_set Abstract::MetricFilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
-
-def target_type_id
-  MetricID
-end
+include_set Abstract::LookupSearch
 
 def bookmark_type
   :metric
 end
 
-format do
-  def filter_class
-    MetricFilterQuery
-  end
+def item_type
+  "Metric"
+end
 
+def filter_class
+  MetricQuery
+end
+
+def target_type_id
+  MetricID
+end
+
+format do
   def default_filter_hash
     { name: "" }
   end
@@ -25,20 +30,40 @@ format do
   end
 
   def filter_keys
+    standard_filter_keys + special_filter_keys
+  end
+
+  def special_filter_keys
+    [].tap do |keys|
+      keys << :published if Card::Auth.current.stewards_any?
+    end
+  end
+
+  def standard_filter_keys
     %i[name wikirate_topic designer project metric_type value_type
-       research_policy bookmark]
+      research_policy bookmark]
   end
 
   def filter_label key
     key == :metric_type ? "Metric type" : super
   end
 
-  def default_year_option
-    { "Any Year" => "" }
+  def sort_options
+    {
+      "Most Bookmarked": :bookmarkers,
+      "Most Companies": :company,
+      "Most Answers": :answer,
+      "Designer": :metric_designer,
+      "Title": :metric_title
+    }
   end
 
-  def sort_options
-    { "Most Companies": :company, "Most Answers": :answer }.merge super
+  def default_desc_sort_dir
+    ::Set.new %i[bookmarkers company answer]
+  end
+
+  def sort_by_from_param
+    safe_sql_param(:sort)&.to_sym
   end
 end
 

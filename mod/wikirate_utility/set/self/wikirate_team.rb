@@ -1,8 +1,8 @@
 
 class << self
   def member_ids
-    @member_ids = Card.search return: :id,
-                              right_plus: [:roles, refer_to: Card::WikirateTeamID]
+    @member_ids ||= Card.search return: :id,
+                                right_plus: [:roles, refer_to: Card::WikirateTeamID]
   end
 
   def member_id_hash

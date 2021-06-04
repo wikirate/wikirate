@@ -2,6 +2,8 @@ class Card
   class AnswerQuery
     # conditions and condition support methods for non-standard fields.
     module MetricAndCompanyFilters
+      include MetricQuery::MetricFilters
+
       def industry_query value
         multi_company do
           restrict_by_cql :company_id, CompanyFilterQuery.industry_cql(value)
@@ -16,35 +18,18 @@ class Card
       end
 
       def topic_query value
-        multi_metric do
-          restrict_by_cql :metric_id,
-                          right_plus: [
-                            Card::WikirateTopicID,
-                            { refer_to: (["in"] + Array.wrap(value)) }
-                          ]
-        end
+        multi_metric { super }
       end
-      alias wikirate_topic_query topic_query
+      alias_method :wikirate_topic_query, :topic_query
 
       def project_query value
         multi_metric { project_restriction :metric_id, :metric, value }
         multi_company { project_restriction :company_id, :wikirate_company, value }
       end
 
-      def project_restriction field, codename, value
-        restrict_by_cql field, referred_to_by: "#{value}+#{codename.cardname}"
-      end
-
       def bookmark_query value
         multi_metric { bookmark_restriction :metric_id, value }
         multi_company { bookmark_restriction :company_id, value }
-      end
-
-      def value_type_query value
-        multi_metric do
-          restrict_by_cql :metric_id,
-                          right_plus: [Card::ValueTypeID, { refer_to: value }]
-        end
       end
 
       def company_name_query value
@@ -99,10 +84,12 @@ class Card
         single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
-      def bookmark_restriction field, value
-        Card::Bookmark.id_restriction(value.to_sym == :bookmark) do |restriction|
-          operator = restriction.shift # restriction looks like cql, eg ["in", 1, 2]
-          filter field, restriction, operator
+      def filter_table field
+        if MetricQuery.simple_filters.include?(field.to_sym)
+          @joins << :metric
+          "metrics"
+        else
+          "answers"
         end
       end
     end
