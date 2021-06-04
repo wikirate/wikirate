@@ -1,7 +1,7 @@
 .sourcebox.p-3
   %form.slotter{ method: "get", "data-remote": true,
                  action: path(view: :source_selector,
-                              card: { type_id: Card::MetricAnswerID }) }
+                              card: { type_id: card.type_id }) }
     = text_field_tag :source_search_term, nil, placeholder: "http://",
                                                class: "p-2 w-50",
                                                value: source_search_term
