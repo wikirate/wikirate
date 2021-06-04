@@ -1,5 +1,5 @@
 # cache # of companies with values for metric (=_left)
-include_set Abstract::AnswerTableCachedCount, target_type: :company
+include_set Abstract::AnswerLookupCachedCount, target_type: :company
 
 # recount number of companies for a given metric when a Metric Value card is
 # created or deleted

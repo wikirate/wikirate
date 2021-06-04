@@ -12,3 +12,4 @@ test: &test
   host: 0.0.0.0
 
 cucumber: *test
+cypress: *test

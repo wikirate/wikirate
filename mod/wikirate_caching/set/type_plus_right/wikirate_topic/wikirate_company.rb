@@ -2,7 +2,7 @@ include_set Right::BrowseCompanyFilter
 
 # cache # of companies related to this topic (=left) via answers for metrics that
 # are tagged with this topic
-include_set Abstract::AnswerTableCachedCount, target_type: :company
+include_set Abstract::AnswerLookupCachedCount, target_type: :company
 
 def search_anchor
   { metric_id: metric_ids }
