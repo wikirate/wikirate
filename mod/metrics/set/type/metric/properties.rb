@@ -3,7 +3,8 @@ format :html do
   def basic_table_properties
     { designer:       "Designed by",
       wikirate_topic: "Topics",
-      metric_type:    "Metric Type" }
+      metric_type:    "Metric Type",
+      unpublished:    "Unpublished" }
   end
 
   # all metrics have these properties in their editor
@@ -62,6 +63,12 @@ format :html do
 
   def wikirate_topic_property title
     labeled_field :wikirate_topic, :link, title: title
+  end
+
+  def unpublished_property title
+    return unless card.steward?
+
+    labeled_field :unpublished, nil, title: title
   end
 
   def value_options_property title

@@ -77,7 +77,7 @@ format :html do
     return super unless answer_name
     { href: path(mark: answer_name,
                  view: :source_selector,
-                 card: { type_id: Card::MetricAnswerID }),
+                 card: { type_id: card.type_id }),
       "data-slot-selector": ".sourcebox-view" }
   end
 
@@ -86,7 +86,7 @@ format :html do
     return super unless answer_name
     {
       mark: answer_name,
-      type_id: Card::MetricAnswerID,
+      type_id: card.type_id,
       view: :source_selector,
       soft_redirect: true
     }

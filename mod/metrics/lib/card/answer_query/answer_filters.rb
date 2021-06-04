@@ -58,42 +58,7 @@ class Card
                         right_plus: [Card::SourceID, { refer_to: value }]
       end
 
-      # note: :false and "false" work; false doesn't (can't survive #process_filter)
-      def published_query value
-        return if value.to_s == "all" && stewards_all?
-        @conditions <<
-          case value.to_s
-          when "true"
-            published_condition
-          when "false"
-            unpublished_condition
-          when "all"
-            "(#{published_condition} OR (#{unpublished_condition}))"
-          end
-      end
-
       private
-
-      # WikiRate team members are stewards of all metrics
-      def stewards_all?
-        Card::Auth.current.stewards_all?
-      end
-
-      def published_condition
-        # handles nil and false
-        "answers.unpublished is not true"
-      end
-
-      def unpublished_condition
-        cond = "answers.unpublished is true"
-        return cond if stewards_all?
-        metric_ids = Card::Auth.current.stewarded_metric_ids
-        if metric_ids.empty?
-          @empty_results = true
-        else
-          "#{cond} and answers.metric_id in (#{metric_ids.join ', '})"
-        end
-      end
 
       def standard_verification_query value
         return unless (index = Answer.verification_index value)
