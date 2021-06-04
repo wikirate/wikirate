@@ -14,7 +14,7 @@ end
 
 format do
   def query_hash
-    super.merge card.fixed_filter
+    super.merge card.query_hash
   end
 end
 

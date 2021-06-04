@@ -15,6 +15,6 @@ RSpec.describe Card::MetricQuery do
 
   example "topic filter" do
     expect(run(topic: "Taming").map(&:name))
-      .to include("Jedi+more evil", "Jedi+less evil")
+      .to eq(["Fred+dinosaurlabor", "Joe User+researched number 3"])
   end
 end

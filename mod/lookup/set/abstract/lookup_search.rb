@@ -26,7 +26,7 @@ def query_hash
 end
 
 def count
-  search return: :count
+  query.count
 end
 
 format do
