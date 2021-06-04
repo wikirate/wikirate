@@ -12,28 +12,19 @@ format do
     company_bookmarkers: { company_name: :asc }
   }.freeze
 
-  def sort_dir
-    return unless sort_by
-    @sort_dir ||= safe_sql_param("sort_dir") || default_sort_dir(sort_by)
+  def sort_hash
+    primary = { sort_by.to_sym => sort_dir }
+    secondary_sort ? primary.merge(secondary_sort) : primary
   end
 
   def default_sort_dir sort_by
-    if sort_by == :value
-      :default_value_sort_dir
-    elsif default_desc_sort_dir.include? sort_by.to_sym
-      :desc
-    else
-      :asc
-    end
+    return super unless sort_by == :value
+
+    :default_value_sort_dir
   end
 
   def default_desc_sort_dir
     ::Set.new %i[updated_at metric_bookmarkers value year]
-  end
-
-  def sort_hash
-    primary = { sort_by.to_sym => sort_dir }
-    secondary_sort ? primary.merge(secondary_sort) : primary
   end
 
   def secondary_sort
@@ -45,12 +36,8 @@ format do
     SECONDARY_SORT
   end
 
-  def sort_by
-    @sort_by ||= sort_by_from_param || default_sort_option
-  end
-
   def sort_by_from_param
-    safe_sql_param(:sort_by)&.to_sym.tap do |sort_by|
+    super.tap do |sort_by|
       if sort_by && !SORT_OPTIONS.include?(sort_by)
         raise Error::UserError, "Invalid Sort Param: #{sort_by}"
       end

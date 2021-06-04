@@ -1,6 +1,8 @@
 class Answer
   # module extends the functionality of Answer lookup relations
   module ActiveRecordExtension
+    include Card::LookupFilterQuery::ActiveRecordExtension
+
     def answer_cards
       map(&:card).compact
     end
@@ -13,21 +15,11 @@ class Answer
       self.return("#{type}_id").map(&:card)
     end
 
-    # @params hash [Hash] key1: dir1, key2: dir2
-    def sort hash
-      hash.present? ? sort_by_hash(hash) : self
-    end
-
-    def paging args
-      return self unless valid_page_args? args
-      limit(args[:limit]).offset(args[:offset])
-    end
-
     def return val
       if val.blank?
         answer_cards
       elsif val.is_a? Array
-        multi_return val
+        pluck(*val)
       else
         standard_return val.to_s
       end
@@ -45,10 +37,6 @@ class Answer
     end
 
     private
-
-    def multi_return cols
-      pluck(*cols)
-    end
 
     def standard_return val
       case val
@@ -72,31 +60,6 @@ class Answer
       left_ids = pluck :answer_id
       return [] unless left_ids.present?
       Card.search left_id: ["in"] + left_ids, right_id: Card::ValueID
-    end
-
-    def sort_by_hash hash
-      rel = self
-      hash.each do |fld, dir|
-        rel, fld = interpret_sort_field rel, fld
-        rel = rel.order Arel.sql("#{fld} #{dir}")
-      end
-      rel
-    end
-
-    def interpret_sort_field rel, fld
-      if (match = fld.match(/^(\w+)_bookmarkers$/))
-        sort_by_bookmarkers match[1], rel
-      else
-        [rel, fld]
-      end
-    end
-
-    def sort_by_bookmarkers type, rel
-      [Card::Bookmark.add_sort_join(rel, "answers.#{type}_id"), "cts.value"]
-    end
-
-    def valid_page_args? args
-      args.present? && args[:limit].to_i.positive?
     end
 
     def group_necessary? uniq, retrn

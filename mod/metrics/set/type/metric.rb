@@ -96,7 +96,11 @@ def designer_assessed?
 end
 
 def steward?
-  Auth.as_id.in? steward_ids
+  Auth.as_id.in?(steward_ids) || Auth.always_ok?
+end
+
+def designer?
+  Auth.as_id == metric_designer_id
 end
 
 def steward_ids
@@ -108,12 +112,10 @@ def always_steward_ids
   Card::Set::Self::WikirateTeam.member_ids
 end
 
-# note: can return True for anonymous user if answer is generally researchable
-def user_can_answer?
-  return false unless researchable?
+def ok_as_steward?
+  designer_assessed? ? steward? : true
+end
 
-  # TODO: add metric designer respresentative logic here
-  is_admin = Auth.always_ok?
-  is_owner = Auth.current.id == creator&.id
-  (is_admin || is_owner) || !designer_assessed?
+def user_can_answer?
+  Auth.signed_in? && researchable? && ok_as_steward?
 end
