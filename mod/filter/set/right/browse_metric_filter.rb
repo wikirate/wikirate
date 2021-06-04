@@ -41,7 +41,7 @@ format do
 
   def standard_filter_keys
     %i[name wikirate_topic designer project metric_type value_type
-      research_policy bookmark]
+       research_policy bookmark]
   end
 
   def filter_label key

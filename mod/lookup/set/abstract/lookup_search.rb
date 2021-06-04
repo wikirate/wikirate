@@ -65,7 +65,6 @@ format do
     @sort_dir ||= safe_sql_param("sort_dir") || default_sort_dir(sort_by)
   end
 
-
   def default_sort_dir sort_by
     if default_desc_sort_dir.include? sort_by.to_sym
       :desc

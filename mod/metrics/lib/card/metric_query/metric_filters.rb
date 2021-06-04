@@ -5,7 +5,7 @@ class Card
       def topic_query value
         restrict_by_cql(
           :metric_id,
-          right_plus: [:wikirate_topic, { refer_to: (["in"] + Array.wrap(value)) } ]
+          right_plus: [:wikirate_topic, { refer_to: ["in", value].flatten }]
         )
       end
       alias_method :wikirate_topic_query, :topic_query

@@ -34,7 +34,6 @@ class Card
 
     def simple_sort_by value
       value == :bookmarkers ? :metric_bookmarkers : value
-
     end
 
     def sort_by value

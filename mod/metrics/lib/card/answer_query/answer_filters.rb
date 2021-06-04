@@ -60,7 +60,6 @@ class Card
 
       private
 
-
       def standard_verification_query value
         return unless (index = Answer.verification_index value)
 
