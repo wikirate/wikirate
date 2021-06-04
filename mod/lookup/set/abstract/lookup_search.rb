@@ -18,7 +18,15 @@ def filter_class
 end
 
 def query paging={}
-  filter_class.new({}, {}, paging)
+  filter_class.new query_hash, {}, paging
+end
+
+def query_hash
+  {}
+end
+
+def count
+  search return: :count
 end
 
 format do
@@ -42,6 +50,10 @@ format do
 
   def query_hash
     filter_hash || {}
+  end
+
+  def default_filter_hash
+    card.query_hash
   end
 
   def sort_hash

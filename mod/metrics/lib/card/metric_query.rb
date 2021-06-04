@@ -13,7 +13,7 @@ class Card
     CARD_ID_FILTERS = ::Set.new(CARD_ID_MAP.keys).freeze
     SIMPLE_FILTERS = ::Set.new(CARD_ID_MAP.values).freeze
 
-    # include MetricFilters
+    include MetricFilters
 
     def lookup_class
       ::Metric

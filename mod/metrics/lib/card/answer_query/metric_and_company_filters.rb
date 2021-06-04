@@ -2,6 +2,8 @@ class Card
   class AnswerQuery
     # conditions and condition support methods for non-standard fields.
     module MetricAndCompanyFilters
+      include MetricQuery::MetricFilters
+
       def industry_query value
         multi_company do
           restrict_by_cql :company_id, CompanyFilterQuery.industry_cql(value)
