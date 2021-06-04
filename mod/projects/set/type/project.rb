@@ -8,6 +8,7 @@ card_reader :organizer
 card_reader :year
 card_reader :parent
 card_reader :subproject
+card_accessor :unpublished
 
 def parent_project_card
   Card[parent_project]
@@ -51,6 +52,10 @@ end
 
 def companies
   wikirate_company_card.valid_item_names
+end
+
+def organizer?
+  as_moderator? || organizer_card.item_ids.include?(Auth.as_id)
 end
 
 def years
