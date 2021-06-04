@@ -22,6 +22,7 @@ else
   gem "card-mod-solid_cache"
 
   gem "decko-cucumber", group: :cucumber, path: "./vendor/decko/support"
+  gem "decko-cypress", group: :cypress
   gem "decko-rspec", group: :test
 
   gem "decko-cap", path: "./vendor/decko-cap", group: :development
@@ -70,8 +71,7 @@ end
 
 gem "timecop", group: %i[test cucumber] # date/time manipulation in tests
 
-group :test, :development, :cypress do
-  gem "decko-cypress"
+group :test, :development do
   gem "decko-spring"
   gem "puma"                         # local webserver
 end

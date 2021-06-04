@@ -28,11 +28,11 @@ format :json do
   end
 
   view :answer_list, cache: :never do
-    answer_lookup.map(&:compact_json)
+    lookup_relation.map(&:compact_json)
   end
 
   view :keyed_answer_list, cache: :never do
-    answer_lookup.map { |a| a.compact_json.merge key: a.name.url_key }
+    lookup_relation.map { |a| a.compact_json.merge key: a.name.url_key }
   end
 
   view :type_lists, cache: :never do
@@ -56,7 +56,7 @@ format :json do
   end
 
   def grouped_counts subgroup
-    answer_query.joins(:metric).group(:year, subgroup).count.map do |array, count|
+    lookup_query.joins(:metric).group(:year, subgroup).count.map do |array, count|
       { count: count, year: array.first, subgroup: array.last }
     end
   end
@@ -76,7 +76,7 @@ format :json do
   end
 
   def map_unique *fields
-    answer_query.joins(:metric).distinct.pluck(*fields).map do |result|
+    lookup_query.joins(:metric).distinct.pluck(*fields).map do |result|
       yield result
     end
   end

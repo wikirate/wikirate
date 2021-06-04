@@ -27,7 +27,7 @@ def constraint_conditions constraint
     year: constraint.year,
     value: constraint.value,
     related_company_group: constraint.group
-  ).answer_conditions
+  ).lookup_conditions
 end
 
 def item_names_from_spec
