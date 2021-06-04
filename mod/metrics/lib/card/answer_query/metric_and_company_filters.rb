@@ -16,15 +16,9 @@ class Card
       end
 
       def topic_query value
-        multi_metric do
-          restrict_by_cql :metric_id,
-                          right_plus: [
-                            Card::WikirateTopicID,
-                            { refer_to: (["in"] + Array.wrap(value)) }
-                          ]
-        end
+        multi_metric { super }
       end
-      alias wikirate_topic_query topic_query
+      alias_method :wikirate_topic_query, :topic_query
 
       def project_query value
         multi_metric { project_restriction :metric_id, :metric, value }
@@ -40,6 +34,7 @@ class Card
         multi_company { bookmark_restriction :company_id, value }
       end
 
+      # TODO: this should not need CQL!
       def value_type_query value
         multi_metric do
           restrict_by_cql :metric_id,
