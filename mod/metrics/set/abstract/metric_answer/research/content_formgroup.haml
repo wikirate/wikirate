@@ -8,7 +8,7 @@
       -# must nest as value_card (not symbol) to get the correct value cardtype.
       = nest card.value_card, title: "Answer"
       = haml_partial :citations_formgroup
-      - if card.steward? && !card.metric_card.unpublished
+      - if unpublished_option?
         = field_nest :unpublished
       = haml_partial :discussion
 
