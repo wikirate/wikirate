@@ -1,3 +1,7 @@
+def unpublished_option?
+  steward? && !metric_card.unpublished
+end
+
 format :html do
   RESEARCH_PARAMS_KEY = :rp
 
@@ -139,6 +143,13 @@ format :html do
       card.metric_card.relationship? ? Card::RelationshipAnswerID : Card::MetricAnswerID
     # tags["card[subcards][+source][content]"] = source if source.present?
     hidden_tags tags
+  end
+
+  def unpublished_option?
+    return false unless card.unpublished_option?
+
+    card.unpublished_card.content = "1" if project&.card&.unpublished == "1"
+    true
   end
 
   def project
