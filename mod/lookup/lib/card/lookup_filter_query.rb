@@ -4,6 +4,7 @@ class Card
     include Filtering
 
     attr_accessor :filter_args, :sort_args, :paging_args
+    class_attribute :card_id_map, :card_id_filters, :simple_filters
 
     def initialize filter, sorting={}, paging={}
       @filter_args = filter
@@ -94,7 +95,11 @@ class Card
     end
 
     def sort_by_cardname
-      []
+      {}
+    end
+
+    def sort_dir dir
+      dir
     end
 
     def simple_sort_by sort_by
@@ -102,7 +107,8 @@ class Card
     end
 
     def sort_by_join sort_by, id_field
-      @sort_joins << "JOIN cards as #{sort_by} on #{sort_by}.id = #{id_field}"
+      @sort_joins <<
+        "JOIN cards as #{sort_by} ON #{sort_by}.id = #{lookup_table}.#{id_field}"
       "#{sort_by}.key"
     end
   end

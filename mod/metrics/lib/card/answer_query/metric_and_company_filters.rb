@@ -27,21 +27,9 @@ class Card
         multi_company { project_restriction :company_id, :wikirate_company, value }
       end
 
-      def project_restriction field, codename, value
-        restrict_by_cql field, referred_to_by: "#{value}+#{codename.cardname}"
-      end
-
       def bookmark_query value
         multi_metric { bookmark_restriction :metric_id, value }
         multi_company { bookmark_restriction :company_id, value }
-      end
-
-      # TODO: this should not need CQL!
-      def value_type_query value
-        multi_metric do
-          restrict_by_cql :metric_id,
-                          right_plus: [Card::ValueTypeID, { refer_to: value }]
-        end
       end
 
       def company_name_query value
@@ -96,10 +84,12 @@ class Card
         single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
-      def bookmark_restriction field, value
-        Card::Bookmark.id_restriction(value.to_sym == :bookmark) do |restriction|
-          operator = restriction.shift # restriction looks like cql, eg ["in", 1, 2]
-          filter field, restriction, operator
+      def filter_table field
+        if MetricQuery.simple_filters.include?(field.to_sym)
+          @joins << :metric
+          "metrics"
+        else
+          "answers"
         end
       end
     end

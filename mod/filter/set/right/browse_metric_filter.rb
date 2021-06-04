@@ -30,20 +30,40 @@ format do
   end
 
   def filter_keys
+    standard_filter_keys + special_filter_keys
+  end
+
+  def special_filter_keys
+    [].tap do |keys|
+      keys << :published if Card::Auth.current.stewards_any?
+    end
+  end
+
+  def standard_filter_keys
     %i[name wikirate_topic designer project metric_type value_type
-       research_policy bookmark]
+      research_policy bookmark]
   end
 
   def filter_label key
     key == :metric_type ? "Metric type" : super
   end
 
-  # def default_year_option
-  #   { "Any Year" => "" }
-  # end
-
   def sort_options
-    { "Most Companies": :company, "Most Answers": :answer }.merge super
+    {
+      "Most Bookmarked": :bookmarkers,
+      "Most Companies": :company,
+      "Most Answers": :answer,
+      "Designer": :metric_designer,
+      "Title": :metric_title
+    }
+  end
+
+  def default_desc_sort_dir
+    ::Set.new %i[bookmarkers company answer]
+  end
+
+  def sort_by_from_param
+    safe_sql_param(:sort)&.to_sym
   end
 end
 

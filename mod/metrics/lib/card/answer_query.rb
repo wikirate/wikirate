@@ -2,13 +2,20 @@ class Card
   # Query lookup table for researched answers
   # (See #new for handling of not-researched)
   class AnswerQuery < LookupFilterQuery
-    include Filtering
     include Sorting
     include AnswerFilters
     include ValueFilters
     include MetricAndCompanyFilters
     include OutlierFilter
     include RelationshipFilters
+
+    self.card_id_map = {
+      research_policy: :policy_id,
+      metric_type: :metric_type_id,
+      value_type: :value_type_id
+    }.freeze
+    self.card_id_filters = ::Set.new(card_id_map.keys).freeze
+    self.simple_filters = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
 
     STATUS_GROUPS = { 0 => :unknown, 1 => :known, nil => :none }.freeze
 

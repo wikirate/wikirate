@@ -13,18 +13,6 @@ class Card
         # override
       end
 
-      def simple_filters
-        []
-      end
-
-      def card_id_filters
-        []
-      end
-
-      def card_id_map
-        {}
-      end
-
       def process_filter_option key, value
         if (method = filter_method key)
           send method, key, value

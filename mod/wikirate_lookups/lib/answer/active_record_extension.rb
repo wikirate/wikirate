@@ -62,27 +62,6 @@ class Answer
       Card.search left_id: ["in"] + left_ids, right_id: Card::ValueID
     end
 
-    def sort_by_hash hash
-      rel = self
-      hash.each do |fld, dir|
-        rel, fld = interpret_sort_field rel, fld
-        rel = rel.order Arel.sql("#{fld} #{dir}")
-      end
-      rel
-    end
-
-    def interpret_sort_field rel, fld
-      if (match = fld.match(/^(\w+)_bookmarkers$/))
-        sort_by_bookmarkers match[1], rel
-      else
-        [rel, fld]
-      end
-    end
-
-    def sort_by_bookmarkers type, rel
-      [Card::Bookmark.add_sort_join(rel, "answers.#{type}_id"), "cts.value"]
-    end
-
     def group_necessary? uniq, retrn
       (!retrn && uniq != :answer_id) || (retrn != :count && uniq != retrn)
     end

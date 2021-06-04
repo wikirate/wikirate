@@ -57,11 +57,40 @@ format do
   end
 
   def sort_hash
-    {}
-    # FIXME
+    { sort_by.to_sym => sort_dir }
+  end
+
+  def sort_dir
+    return unless sort_by
+    @sort_dir ||= safe_sql_param("sort_dir") || default_sort_dir(sort_by)
+  end
+
+
+  def default_sort_dir sort_by
+    if default_desc_sort_dir.include? sort_by.to_sym
+      :desc
+    else
+      :asc
+    end
+  end
+
+  def default_desc_sort_dir
+    []
+  end
+
+  def sort_by
+    @sort_by ||= sort_by_from_param || default_sort_option
+  end
+
+  def default_sort_option
+    # override
+  end
+
+  def sort_by_from_param
+    safe_sql_param(:sort_by)&.to_sym
   end
 
   def default_limit
-    20
+    Auth.signed_in? ? 5000 : 500
   end
 end

@@ -1,7 +1,7 @@
 class Card
   # query metric lookup table
   class MetricQuery < LookupFilterQuery
-    CARD_ID_MAP = {
+    self.card_id_map = {
       designer: :designer_id,
       title: :title_id,
       scorer: :scorer_id,
@@ -9,9 +9,13 @@ class Card
       metric_type: :metric_type_id,
       value_type: :value_type_id
     }.freeze
+    self.card_id_filters = ::Set.new(card_id_map.keys).freeze
+    self.simple_filters = ::Set.new(card_id_map.values).freeze
 
-    CARD_ID_FILTERS = ::Set.new(CARD_ID_MAP.keys).freeze
-    SIMPLE_FILTERS = ::Set.new(CARD_ID_MAP.values).freeze
+    SORT_BY_COUNT = {
+      company: :wikirate_company,
+      answer: :metric_answer
+    }.freeze
 
     include MetricFilters
 
@@ -23,16 +27,27 @@ class Card
       "metrics"
     end
 
-    def card_id_map
-      CARD_ID_MAP
+    def name_query value
+      restrict_by_cql "title_id", name: [:match, value],
+                                  left_plus: [{}, { type_id: MetricID }]
     end
 
-    def card_id_filters
-      CARD_ID_FILTERS
+    def simple_sort_by value
+      value == :bookmarkers ? :metric_bookmarkers : value
+
     end
 
-    def simple_filters
-      SIMPLE_FILTERS
+    def sort_by value
+      return super unless (codename = SORT_BY_COUNT[value])
+
+      @sort_joins <<
+        "LEFT JOIN counts ON left_id = metric_id and right_id = #{codename.card_id}"
+      "counts.value"
+    end
+
+    def sort_by_cardname
+      { metric_designer: :designer_id,
+        metric_title: :title_id }
     end
   end
 end
