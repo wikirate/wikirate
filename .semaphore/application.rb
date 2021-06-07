@@ -1,5 +1,5 @@
 require File.expand_path("boot", __dir__)
-require "decko/all"
+require "decko/application"
 
 module Wikirate
   class Application < Decko::Application

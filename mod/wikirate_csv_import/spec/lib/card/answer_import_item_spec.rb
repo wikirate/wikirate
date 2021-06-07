@@ -93,6 +93,11 @@ RSpec.describe Card::AnswerImportItem do
       expect_card(item_name).to exist
     end
 
+    example "imports unpublished answer" do
+      import unpublished: "1"
+      expect_card(item_name).to be_unpublished
+    end
+
     example "updates existing answer" do
       args = { wikirate_company: "Death Star", year: "2000" } # existing answer
       import args

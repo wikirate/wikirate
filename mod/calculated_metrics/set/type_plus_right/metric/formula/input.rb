@@ -30,7 +30,6 @@ def special_item_names
   end
 end
 
-
 # are values required for ALL inputs or ANY input?
 def input_requirement
   metric_card.formula_input_requirement
