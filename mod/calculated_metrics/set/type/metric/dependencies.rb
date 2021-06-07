@@ -50,5 +50,5 @@ end
 def direct_dependee_metrics
   return [] unless calculated?
 
-  formula_card&.item_names&.map(&:card)&.select { |i| i.type_id == MetricID }
+  formula_card&.item_names&.map(&:card)&.select { |i| i&.type_id == MetricID }
 end
