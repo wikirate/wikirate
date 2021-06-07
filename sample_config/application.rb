@@ -1,6 +1,6 @@
 require File.expand_path("../boot", __FILE__)
 
-require "decko/all"
+require "decko/application"
 
 module Wikirate
   # WikiRate application object. holds config options

@@ -19,8 +19,8 @@ def depender_metrics
 end
 
 # each metrics that depends on this metric
-def each_depender_metric
-  depender_tree.each_metric { |m| yield m }
+def each_depender_metric &block
+  depender_tree.each_metric &block
 end
 
 # note: #formula_metrics will find score metrics when scored by formula
@@ -42,4 +42,13 @@ end
 def formula_metrics
   @formula_metrics ||=
     Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
+end
+
+# depender = metrics that depend on me
+# dependee = metrics that I depend on
+
+def direct_dependee_metrics
+  return [] unless calculated?
+
+  formula_card&.item_names&.map(&:card)&.select { |i| i&.type_id == MetricID }
 end

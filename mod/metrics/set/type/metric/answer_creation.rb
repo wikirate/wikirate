@@ -68,6 +68,10 @@ def add_answer_discussion_args hash, comment
   hash["+discussion"] = { comment: comment } if comment.present?
 end
 
+def add_unpublished_args hash, val
+  hash["+unpublished"] = { content: val } if val.present?
+end
+
 def create_answer_args args
   return unless valid_answer_args? args
   create_args = { name: answer_name_from_args(args),
@@ -75,5 +79,6 @@ def create_answer_args args
                   "+value" => args[:value] }
   add_answer_discussion_args create_args, args[:comment]
   add_answer_source_args create_args, args[:source]
+  add_unpublished_args create_args, args[:unpublished]
   create_args.merge args.slice(:trigger, :trigger_in_action)
 end

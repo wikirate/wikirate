@@ -1,4 +1,4 @@
-if defined?(Card::MetricID)
+ if defined?(Card::MetricID)
   VALID_INPUT_TYPE_IDS = [Card::MetricID, Card::YearlyVariableID].freeze
 end
 
@@ -29,7 +29,6 @@ def special_item_names
   when :descendant  then item_names
   end
 end
-
 
 # are values required for ALL inputs or ANY input?
 def input_requirement
