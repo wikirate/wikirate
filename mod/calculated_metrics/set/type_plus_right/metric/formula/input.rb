@@ -1,4 +1,4 @@
- if defined?(Card::MetricID)
+if defined?(Card::MetricID)
   VALID_INPUT_TYPE_IDS = [Card::MetricID, Card::YearlyVariableID].freeze
 end
 

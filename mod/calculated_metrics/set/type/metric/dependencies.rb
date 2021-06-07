@@ -19,7 +19,7 @@ def depender_metrics
 end
 
 # each metrics that depends on this metric
-def each_depender_metric &block
+def each_depender_metric(&block)
   depender_tree.each_metric &block
 end
 
