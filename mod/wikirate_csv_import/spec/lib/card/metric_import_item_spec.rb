@@ -3,6 +3,8 @@ require_relative "import_item_spec_helper"
 RSpec.describe Card::MetricImportItem do
   include Card::ImportItemSpecHelper
 
+  let(:metric_name) { "Joe User+Policities" }
+
   let :default_item_hash do
     {
       question: "What are the company’s policies?",
@@ -42,7 +44,7 @@ RSpec.describe Card::MetricImportItem do
     it "imports new metric card" do
       item = import
       expect(item.errors).to be_blank
-      expect(Card.fetch_type_id("Joe User+Policities")).to eq(Card::MetricID)
+      expect(Card.fetch_type_id(metric_name)).to eq(Card::MetricID)
     end
 
     it "works for score" do
@@ -54,11 +56,16 @@ RSpec.describe Card::MetricImportItem do
     end
   end
 
+  it "handles unpublished" do
+    import unpublished: "true"
+    expect(Card[metric_name]).to be_unpublished
+  end
+
   describe "#import_hash" do
     it "generates arguments for card creation" do
       item = validate
       expect(item.import_hash)
-        .to include(name: "Joe User+Policities",
+        .to include(name: metric_name,
                     type_id: Card::MetricID,
                     subfields: a_hash_including(
                       question: "What are the company’s policies?",
