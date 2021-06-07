@@ -29,7 +29,8 @@ format :html do
       metric_type:    "Metric Type",
       scored_metric:  "Scored Metric",
       scorer:         "Scored by",
-      wikirate_topic: "Topics"
+      wikirate_topic: "Topics",
+      unpublished:    "Unpublished"
     }
   end
 
