@@ -12,6 +12,7 @@ class Card
       formula: { optional: true },
 
       wikirate_topic: { optional: true, map: true, separator: ";" },
+      unpublished: { optional: true },
 
       # Rich-Text fields
       about: { optional: true },
@@ -40,6 +41,10 @@ class Card
     #   topics = topics.select { |t| Card[t]&.type_id == Card::WikirateTopicID }
     #   topics.to_pointer_content
     # end
+
+    def normalize_unpublished val
+      val.to_s.downcase.in?(%w[1 true t yes y]) ? "1" : "0"
+    end
 
     def normalize_value_type value
       value = value.to_name
