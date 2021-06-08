@@ -12,7 +12,8 @@ format :html do
     { question:       "Question",
       wikirate_topic: "Topic",
       about:          "About",
-      methodology:    "Methodology" }
+      methodology:    "Methodology",
+      unpublished:    "Unpublished" }
   end
 
   def value_type_properties

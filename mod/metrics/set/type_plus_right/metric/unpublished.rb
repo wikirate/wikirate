@@ -3,12 +3,32 @@ include_set Abstract::LookupField
 include_set Abstract::DesignerPermissions
 include_set Abstract::PublishableField
 
+delegate :unpublished?, :published?, :calculated?, to: :metric_card
+
 event :toggle_answer_publication, :finalize, changed: :content do
-  if action == :delete || content == "1"
+  if content == "1"
     unpublish_all_answers
   else
-    published_unflagged_answers
+    publish_unflagged_answers
   end
+end
+
+# unpublishing a metric means unpublishing all calculations that depend on that metric
+event :unpublish_calculations, :finalize, changed: :content, when: :unpublished? do
+  metric_card.direct_depender_metrics.each do |metric|
+    metric.unpublished_card.update content: 1
+  end
+end
+
+# publishing a metric means publishing all inputs a metric depends on
+event :publish_inputs, :finalize, changed: :content, when: :publish_inputs? do
+  metric_card.direct_dependee_metrics.each do |metric|
+    metric.unpublished_card.update content: 0
+  end
+end
+
+def publish_inputs?
+  published? && calculated?
 end
 
 def answers
@@ -19,7 +39,7 @@ def unpublish_all_answers
   answers.update_all unpublished: true
 end
 
-def published_unflagged_answers
+def publish_unflagged_answers
   answers.where(
     "NOT EXISTS (
       SELECT * from cards

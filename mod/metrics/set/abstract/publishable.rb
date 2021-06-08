@@ -7,6 +7,14 @@ def unpublished
   unpublished_card.content == "1"
 end
 
+def unpublished?
+  unpublished
+end
+
+def published?
+  !unpublished?
+end
+
 def check_published
   return true unless unpublished && !steward?
 
