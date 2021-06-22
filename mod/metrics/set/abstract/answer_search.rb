@@ -45,6 +45,6 @@ end
 
 format :csv do
   view :core do
-    Answer.csv_title + query.lookup_relation.map(&:csv_line).join
+    Answer.csv_title + lookup_relation.map(&:csv_line).join
   end
 end
