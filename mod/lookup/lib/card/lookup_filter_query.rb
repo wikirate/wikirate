@@ -35,7 +35,7 @@ class Card
     end
 
     def lookup_relation
-      sort_and_page { main_query }
+      sort_and_page { lookup_query }
     end
 
     # @return args for AR's where method
@@ -62,7 +62,7 @@ class Card
     end
 
     def main_query
-      lookup_query
+      @main_query ||= lookup_query
     end
 
     def main_results

@@ -22,7 +22,7 @@ class Card
     end
 
     def main_query
-      Card.joins(partner_join).where(partner_where)
+      @main_query ||= Card.joins(partner_join).where(partner_where)
     end
 
     private
