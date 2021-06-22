@@ -1,5 +1,3 @@
-# require "./test/seed"
-
 RSpec.describe Card::AnswerQuery do
   RESEARCHED_TITLES = ["Industry Class", "Weapons", "big multi", "big single",
                        "researched number 2", "researched number 3", "small multi",

@@ -15,7 +15,19 @@ COUNT_FIELDS = {
 }.freeze
 
 format do
-  delegate :lookup_query, :lookup_relation, to: :query
+  delegate :lookup_query, :lookup_relation, to: :research_query
+
+  def research_query
+    AnswerQuery.new research_query_hash, sort_hash, paging_params
+  end
+
+  def research_count_query
+    AnswerQuery.new(research_query_hash).lookup_query
+  end
+
+  def research_query_hash
+    query_hash.merge status: :exists
+  end
 
   def counts
     @counts ||= tally_counts
@@ -34,7 +46,7 @@ format do
   def answer_table_counts
     return {} if not_researched?
 
-    count_query.lookup_query.joins(:metric).pluck_all(*count_fields).first.symbolize_keys
+    research_count_query.joins(:metric).pluck_all(*count_fields).first.symbolize_keys
   end
 
   def count_fields
@@ -45,7 +57,7 @@ format do
   end
 
   def knowns_and_unknowns researched
-    unknowns = count_query.lookup_query.where("answers.value = 'Unknown'").count
+    unknowns = research_count_query.where("answers.value = 'Unknown'").count
     { unknown: unknowns, known: (researched - unknowns) }
   end
 

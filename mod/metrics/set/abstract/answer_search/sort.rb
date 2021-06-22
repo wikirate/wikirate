@@ -1,7 +1,7 @@
 format do
   SORT_OPTIONS = ::Set.new(
     %i[metric_bookmarkers metric_designer metric_title
-       company_bookmarkers company_name
+       company_bookmarkers company_name name
        year
        value numeric_value ]
   )
