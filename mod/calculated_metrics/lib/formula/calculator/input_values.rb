@@ -25,12 +25,12 @@ module Formula
       # the answer that can be calculated with these input values.
       # The iteration can be restricted to a specific company or year or both.
       # @param company_id [Integer]
-      # @param year [Integer]
-      def each company_id: nil, year: nil, &block
-        if company_id && year
-          result company_id, year, &block
-        elsif year
-          each_company_with_value year, &block
+      # @param years [Integer, String, Array]
+      def each company_id: nil, years: nil, &block
+        if company_id && years
+          result company_id, years, &block
+        elsif years
+          each_company_with_value years, &block
         elsif company_id
           each_year_with_value company_id, &block
         else
@@ -39,44 +39,16 @@ module Formula
       end
 
       # @return answer objects for a given company and year
-      def answers company_id, year
+      def answers company_id, years
         array = []
         @input_list.sort.each do |input_item|
-          input_item.search_space = SearchSpace.new company_id, year
+          input_item.search_space = SearchSpace.new company_id, years
           array += input_item.answers.map.to_a
         end
         array.uniq
       end
 
-      def each_company_and_year_with_value &block
-        years_with_values.each do |year|
-          companies_with_value(year).each do |company_id|
-            result company_id, year, &block
-          end
-        end
-      end
-
-      def each_year_with_value company_id, &block
-        years_with_values(company_id).each do |year|
-          result company_id, year, &block
-        end
-      end
-
-      def each_company_with_value year, &block
-        companies_with_value(year).each do |company_id|
-          result company_id, year, &block
-        end
-      end
-
-      def result company_id, year
-        values = fetch company: company_id, year: year
-        yield values, company_id, year
-      end
-
-      # @return input values to calculate values for the given company and year
-      #   If year is given it returns an array with one value for every input card,
-      #   otherwise it returns an array with a hash for every input card. The hashes
-      #   contain a value for every year.
+      # @return Array[String] simple input values for the given company and year
       def fetch company:, year:
         company = Card.fetch_id(company) unless company.is_a? Integer
 
@@ -101,6 +73,31 @@ module Formula
       end
 
       private
+
+      def result company_id, year
+        values = fetch company: company_id, year: year
+        yield values, company_id, year
+      end
+
+      def each_company_and_year_with_value &block
+        years_with_values.each do |year|
+          companies_with_value(year).each do |company_id|
+            result company_id, year, &block
+          end
+        end
+      end
+
+      def each_year_with_value company_id, &block
+        years_with_values(company_id).each do |year|
+          result company_id, year, &block
+        end
+      end
+
+      def each_company_with_value years, &block
+        companies_with_value(years).each do |company_id|
+          result company_id, years, &block
+        end
+      end
 
       def years_with_values company_id=nil
         search_values_for company_id: company_id

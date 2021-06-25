@@ -24,8 +24,8 @@ module Formula
       # @option opts [String] :year only yield input for given year
       def each opts={}
         with_company_and_year opts do |company, year|
-          @input_values.each company_id: company, year: year do |values, company_id, year|
-            next unless (input_values = normalize_values values)
+          @input_values.each company_id: company, years: year do |vals, company_id, year|
+            next unless (input_values = normalize_values vals)
             yield input_values, company_id, year
           end
         end

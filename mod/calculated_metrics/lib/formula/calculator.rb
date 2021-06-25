@@ -30,7 +30,7 @@ module Formula
     # If a company or a year is given it calculates only answers only for those
     # @param [Hash] opts
     # @option opts [String] :company
-    # @option opts [String] :year
+    # @option opts [String, Array] :year
     # @return [Hash] { year => { company_id => value } }
     def result opts={}
       result_hash do |result|
@@ -45,7 +45,7 @@ module Formula
     # (but without the actual calculated value)
     # @param [Hash] opts
     # @option opts [String] :company
-    # @option opts [String] :year
+    # @option opts [String, Array] :year
     # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
     def result_scope opts={}
       [].tap do |res|
