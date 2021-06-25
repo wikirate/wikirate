@@ -1,5 +1,6 @@
 card_accessor :formula, type: PhraseID
 card_accessor :metric_variables
+card_accessor :year, type: ListID # applicability
 
 Card::Content::Chunk::FormulaInput # trigger load.  might be better place?
 
@@ -46,4 +47,10 @@ end
 
 def normalize_value value
   ::Answer.value_to_lookup value
+end
+
+format :html do
+  def table_properties
+    super.merge year: "Years"
+  end
 end
