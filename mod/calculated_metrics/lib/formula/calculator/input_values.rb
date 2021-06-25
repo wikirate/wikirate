@@ -19,22 +19,20 @@ module Formula
         @input_list = InputList.new @parser
       end
 
-      # Every iteration of the passed block receives an array with values for each
-      # input item in the formula (= each double curly bracket part in the formula)
-      # and a company_id and year which specifies
-      # the answer that can be calculated with these input values.
-      # The iteration can be restricted to a specific company or year or both.
-      # @param company_id [Integer]
-      # @param years [Integer, String, Array]
-      def each company_id: nil, years: nil, &block
-        if company_id && years
-          result company_id, years, &block
+      # Iterates over results.
+      # yields value Array, company_id, and year (as integer) for each result
+      #
+      # @param :companies [cardish, Array] only yield input for given companies
+      # @param :years [String, Integer, Array] :year only yield input for given years
+      def each companies: nil, years: nil, &block
+        if companies && years
+          results_for_companies_and_years companies, years, &block
         elsif years
-          each_company_with_value years, &block
-        elsif company_id
-          each_year_with_value company_id, &block
+          results_for_years years, &block
+        elsif companies
+          results_for_companies companies, &block
         else
-          each_company_and_year_with_value(&block)
+          all_results(&block)
         end
       end
 
@@ -74,12 +72,39 @@ module Formula
 
       private
 
-      def result company_id, year
-        values = fetch company: company_id, year: year
-        yield values, company_id, year
+      def result company, year
+        company = company.card_id
+        year = year.to_i
+
+        values = fetch company: company, year: year
+        yield values, company, year
       end
 
-      def each_company_and_year_with_value &block
+      def results_for_companies_and_years companies, years, &block
+        each_year(years) do |year|
+          each_company(companies) do |company_id|
+            result company_id, year, &block
+          end
+        end
+      end
+
+      def results_for_years years, &block
+        each_year(years) do |year|
+          companies_with_value(year).each do |company_id|
+            result company_id, year, &block
+          end
+        end
+      end
+
+      def results_for_companies companies, &block
+        each_company(companies) do |company_id|
+          years_with_values(company_id).each do |year|
+            result company_id, year, &block
+          end
+        end
+      end
+
+      def all_results &block
         years_with_values.each do |year|
           companies_with_value(year).each do |company_id|
             result company_id, year, &block
@@ -87,16 +112,12 @@ module Formula
         end
       end
 
-      def each_year_with_value company_id, &block
-        years_with_values(company_id).each do |year|
-          result company_id, year, &block
-        end
+      def each_year years, &block
+        Array.wrap(years).each &block
       end
 
-      def each_company_with_value years, &block
-        companies_with_value(years).each do |company_id|
-          result company_id, years, &block
-        end
+      def each_company companies, &block
+        Array.wrap(companies).each &block
       end
 
       def years_with_values company_id=nil
