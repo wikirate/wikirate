@@ -1,6 +1,6 @@
 def update_depender_values_for! company_id, year
   each_depender_metric do |metric|
-    metric.update_value_for! company: company_id, year: year
+    metric.update_value_for! companies: company_id, years: year
     # FIXME: this will break when year is specified in the formula.
   end
 end

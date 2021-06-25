@@ -1,17 +1,18 @@
 card_accessor :formula, type: PhraseID
 card_accessor :metric_variables
+card_accessor :year, type: ListID # applicability
 
 Card::Content::Chunk::FormulaInput # trigger load.  might be better place?
 
-# @param [Hash] opts
-# @option opts [card key] :company
-# @option opts [String] :year
-def update_value_for! opts
-  calculate_values_for(opts) do |year, value|
-    if (ans = answer_for opts[:company], year)
+# @param :companies [cardish, Array] only yield input for given companies
+# @option :years [String, Integer, Array] :year only yield input for given years
+def update_value_for! companies:, years: nil
+  # FIXME: this assumes one company!
+  calculate_values_for(companies: companies, years: years) do |year, value|
+    if (ans = answer_for companies, year)
       update_existing_answer ans, value
     elsif value
-      Answer.create_calculated_answer self, opts[:company], year, value
+      Answer.create_calculated_answer self, companies, year, value
     end
   end
 end
@@ -46,4 +47,10 @@ end
 
 def normalize_value value
   ::Answer.value_to_lookup value
+end
+
+format :html do
+  def table_properties
+    super.merge year: "Years"
+  end
 end

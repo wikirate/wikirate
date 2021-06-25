@@ -44,15 +44,14 @@ def calculate_all_values
   end
 end
 
-# @param [Hash] opts
-# @option opts [String] :company
-# @option opts [String] :year optional
-def calculate_values_for opts={}, &block
-  values = calculator.result opts  # values by year and company
+# @param :companies [cardish, Array] only yield input for given companies
+# @option :years [String, Integer, Array] :year only yield input for given years
+def calculate_values_for companies:, years: nil, &block
+  values = calculator.result companies: companies, years: years
   if values.present?
-    update_calculated_values values, opts[:company], &block
-  elsif opts[:year] # yield with nil value to trigger deletion
-    yield opts[:year], nil
+    update_calculated_values values, companies, &block
+  elsif years # yield with nil value to trigger deletion
+    Array.wrap(years).each { |year| yield year, nil }
   end
 end
 

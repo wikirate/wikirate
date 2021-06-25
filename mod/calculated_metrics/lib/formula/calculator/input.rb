@@ -19,39 +19,25 @@ module Formula
 
       delegate :type, :card_id, to: :input_values
 
-      # @param [Hash] opts restrict input values
-      # @option opts [String] :company only yield input for given company
-      # @option opts [String] :year only yield input for given year
-      def each opts={}
-        with_company_and_year opts do |company, year|
-          @input_values.each company_id: company, year: year do |values, company_id, year|
-            next unless (input_values = normalize_values values)
-            yield input_values, company_id, year
-          end
+      # @param :companies [cardish, Array] only yield input for given companies
+      # @option :years [String, Integer, Array] :year only yield input for given years
+      def each companies: nil, years: nil
+        @input_values.each companies: companies, years: years do |vals, company_id, year|
+          next unless (input_values = normalize_values vals)
+          yield input_values, company_id, year
         end
       end
 
       def input_for company, year
-        year = year.to_i
         values = @input_values.fetch company: company, year: year
         normalize_values values
       end
 
-      def answers opts
-        with_company_and_year opts do |company_id, year|
-          @input_values.answers company_id, year
-        end
+      def answers company: nil, year: nil
+        @input_values.answers company&.card_id, year&.to_i
       end
 
       private
-
-      def with_company_and_year opts
-        company = opts[:company]
-        company = Card.fetch_id(company) unless company.is_a? Integer
-        year = opts[:year]&.to_i
-
-        yield company, year
-      end
 
       def validate_input input
         return unless input.is_a? Array
