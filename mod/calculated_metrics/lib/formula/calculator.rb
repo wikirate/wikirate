@@ -27,14 +27,12 @@ module Formula
     end
 
     # Calculates answers
-    # If a company or a year is given it calculates only answers only for those
-    # @param [Hash] opts
-    # @option opts [String] :company
-    # @option opts [String] :year
+    # @param :companies [cardish, Array] only yield input for given companies
+    # @option :years [String, Integer, Array] :year only yield input for given years
     # @return [Hash] { year => { company_id => value } }
-    def result opts={}
+    def result companies: nil, years: nil
       result_hash do |result|
-        each_input(opts) do |input, company, year|
+        each_input(companies: companies, years: years) do |input, company, year|
           next unless (value = value_for_input input, company, year)
           result[year][company] = value
         end
@@ -45,7 +43,7 @@ module Formula
     # (but without the actual calculated value)
     # @param [Hash] opts
     # @option opts [String] :company
-    # @option opts [String] :year
+    # @option opts [String, Array] :year
     # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
     def result_scope opts={}
       [].tap do |res|
