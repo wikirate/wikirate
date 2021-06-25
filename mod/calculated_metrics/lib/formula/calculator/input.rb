@@ -29,7 +29,7 @@ module Formula
       end
 
       def input_for company, year
-        values = @input_values.fetch company: company, year: year
+        values = @input_values.fetch company: company.card_id, year: year.to_i
         normalize_values values
       end
 

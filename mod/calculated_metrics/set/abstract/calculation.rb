@@ -4,15 +4,14 @@ card_accessor :year, type: ListID # applicability
 
 Card::Content::Chunk::FormulaInput # trigger load.  might be better place?
 
-# @param :companies [cardish, Array] only yield input for given companies
-# @option :years [String, Integer, Array] :year only yield input for given years
-def update_value_for! companies:, years: nil
-  # FIXME: this assumes one company!
-  calculate_values_for(companies: companies, years: years) do |year, value|
-    if (ans = answer_for companies, year)
+# @param company [cardish]
+# @option years [String, Integer, Array] years to update value for (all years if nil)
+def update_value_for! company, years=nil
+  calculate_values_for company, years do |year, value|
+    if (ans = answer_for company, year)
       update_existing_answer ans, value
     elsif value
-      Answer.create_calculated_answer self, companies, year, value
+      Answer.create_calculated_answer self, company, year, value
     end
   end
 end
