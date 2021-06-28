@@ -27,6 +27,10 @@ card_accessor :steward, type: PointerID
 card_accessor :wikirate_topic, type: ListID
 card_accessor :research_policy, type: PointerID
 
+# applicability
+card_accessor :year, type: ListID
+card_accessor :company_group, type: ListID
+
 def lookup_class
   ::Metric
 end
