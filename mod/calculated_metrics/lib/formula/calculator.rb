@@ -47,8 +47,10 @@ module Formula
     # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
     def result_scope **restraints
-      each_input(**restraints).with_object([]) do |(_input, company_id, year), results|
-        results << [company_id, year]
+      [].tap do |results|
+        each_input(**restraints) do |_input, company_id, year|
+          results << [company_id, year]
+        end
       end
     end
 
