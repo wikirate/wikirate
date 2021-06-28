@@ -14,12 +14,12 @@ module Formula
 
     # @param parser [Formula::Parser]
     # @param normalizer: [Method] # called to normalize each *result* value
-    # @param applicable_years: []
-    def initialize parser,
-                   normalizer: nil, applicable_years: nil, applicable_companies: nil
+    # @param years: [String, Integer, Array] applicable year or years
+    # @param companies: [String, Integer, Array] applicable company or companies
+    def initialize parser, normalizer: nil, years: nil, companies: nil
       @parser = parser
-      @applicable_years = applicable_years
-      @applicable_companies = applicable_companies
+      @applicable_years = years
+      @applicable_companies = companies
       @normalizer = normalizer
       @errors = []
     end
@@ -47,10 +47,8 @@ module Formula
     # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
     def result_scope **restraints
-      [].tap do |results|
-        each_input **restraints do |_input, company_id, year|
-          results << [company_id, year]
-        end
+      each_input(**restraints).with_object([]) do |(_input, company_id, year), results|
+        results << [company_id, year]
       end
     end
 

@@ -4,8 +4,8 @@ def calculator parser_method=nil
   p = parser
   p.send parser_method if parser_method
   calculator_class.new p, normalizer: method(:normalize_value),
-                          applicable_years: year_card.item_names,
-                          applicable_companies: applicable_companies
+                          years: year_card.item_names,
+                          companies: applicable_companies
 end
 
 def applicable_companies

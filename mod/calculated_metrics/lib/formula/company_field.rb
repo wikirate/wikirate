@@ -6,10 +6,11 @@ module Formula
   class CompanyField < Calculator
     YEAR = "2019".freeze
 
-    attr_reader :field_code
+    attr_reader :field_code, :card
 
     def initialize field_code, card=nil
       @field_code = field_code
+      @card = card
       @errors = []
     end
 
