@@ -8,10 +8,8 @@ module Formula
 
     attr_reader :field_code
 
-    def initialize field_code, opts={}
-      @value_normalizer = opts[:value_normalizer]
+    def initialize field_code, card=nil
       @field_code = field_code
-      @format = opts[:format]
       @errors = []
     end
 
@@ -45,7 +43,7 @@ module Formula
 
     def formula_for company, year
       requiring_year year, "No value" do
-        "Pulled from #{field_name} field of #{@format.link_to_card company}"
+        "Pulled from #{field_name} field of #{card.format.link_to_card company}"
       end
     end
 

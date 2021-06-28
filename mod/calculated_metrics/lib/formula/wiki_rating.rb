@@ -14,7 +14,7 @@ module Formula
     protected
 
     def weight_from_index index
-      @executed_lambda[@input.card_id(index)].to_f
+      @executed_lambda[input.card_id(index)].to_f
     end
 
     def exec_lambda expr

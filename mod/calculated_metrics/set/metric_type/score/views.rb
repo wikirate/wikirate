@@ -30,7 +30,8 @@ format :html do
       scored_metric:  "Scored Metric",
       scorer:         "Scored by",
       wikirate_topic: "Topics",
-      unpublished:    "Unpublished"
+      unpublished:    "Unpublished",
+      year:           "Years"
     }
   end
 

@@ -3,15 +3,14 @@ card_accessor :metric_variables
 
 Card::Content::Chunk::FormulaInput # trigger load.  might be better place?
 
-# @param [Hash] opts
-# @option opts [card key] :company
-# @option opts [String] :year
-def update_value_for! opts
-  calculate_values_for(opts) do |year, value|
-    if (ans = answer_for opts[:company], year)
+# @param company [cardish]
+# @option years [String, Integer, Array] years to update value for (all years if nil)
+def update_value_for! company, years=nil
+  calculate_values_for company, years do |year, value|
+    if (ans = answer_for company, year)
       update_existing_answer ans, value
     elsif value
-      Answer.create_calculated_answer self, opts[:company], year, value
+      Answer.create_calculated_answer self, company, year, value
     end
   end
 end
@@ -46,4 +45,10 @@ end
 
 def normalize_value value
   ::Answer.value_to_lookup value
+end
+
+format :html do
+  def table_properties
+    super.merge year: "Years"
+  end
 end
