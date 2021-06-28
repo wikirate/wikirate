@@ -1,6 +1,5 @@
 card_accessor :formula, type: PhraseID
 card_accessor :metric_variables
-card_accessor :year, type: ListID # applicability
 
 Card::Content::Chunk::FormulaInput # trigger load.  might be better place?
 

@@ -14,9 +14,10 @@ module Formula
 
     # @param parser [Formula::Parser]
     # @param normalizer: [Method] # called to normalize each *result* value
-    def initialize parser, normalizer: nil
+    def initialize parser, normalizer: nil, applicable_years: nil
       @parser = parser
-      @value_normalizer = normalizer
+      @applicable_years = applicable_years
+      @normalizer = normalizer
       @errors = []
     end
 
@@ -26,11 +27,11 @@ module Formula
 
     # Calculates answers
     # @param :companies [cardish, Array] only yield input for given companies
-    # @option :years [String, Integer, Array] :year only yield input for given years
+    # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Hash] { year => { company_id => value } }
-    def result companies: nil, years: nil
+    def result **restraints
       result_hash do |result|
-        each_input(companies: companies, years: years) do |input, company, year|
+        each_input(**restraints) do |input, company, year|
           next unless (value = value_for_input input, company, year)
           result[year][company] = value
         end
@@ -39,14 +40,13 @@ module Formula
 
     # The scope of results that would be calculated for given result options
     # (but without the actual calculated value)
-    # @param [Hash] opts
-    # @option opts [String] :company
-    # @option opts [String, Array] :year
+    # @param :companies [cardish, Array] only yield input for given companies
+    # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
-    def result_scope opts={}
-      [].tap do |res|
-        each_input opts do |_input, company_id, year|
-          res << [company_id, year]
+    def result_scope **restraints
+      [].tap do |results|
+        each_input **restraints do |_input, company_id, year|
+          results << [company_id, year]
         end
       end
     end
@@ -89,7 +89,7 @@ module Formula
     end
 
     def normalize_value value
-      @value_normalizer ? @value_normalizer.call(value) : value
+      @normalizer ? @normalizer.call(value) : value
     end
 
     # doesn't actually cast anything; overridden in other calculators
@@ -119,6 +119,17 @@ module Formula
       result = Hash.new_nested Hash
       yield result if compile_formula
       result
+    end
+
+    def restraints companies: nil, years: nil
+      { companies: companies, years: years }
+    end
+
+    def year_restraint years
+      return years unless @applicable_years
+      return @applicable_years unless years.present?
+
+      Array.wrap(years) & @applicable_years
     end
 
     def safe_execution expr
