@@ -2,12 +2,10 @@
 
 module Formula
   # Calculates the values of a formula
-  #
-  # Calculator.new(parser, value_normalizer)
   class Calculator
     include ShowWork
 
-    attr_reader :errors, :input
+    attr_reader :errors
 
     # All the answers a given calculation depends on
     # (same opts as #result)
@@ -15,26 +13,24 @@ module Formula
     delegate :answers, to: :input
 
     # @param parser [Formula::Parser]
-    # @param opts [Hash]
-    # @option opts [Symbol] :cast
-    # @option opts [Symbol] :cast
-    def initialize parser, opts={}
-      @value_normalizer = opts[:normalize_value]
+    # @param normalizer: [Method] # called to normalize each *result* value
+    def initialize parser, normalizer: nil
       @parser = parser
-      @parser.send opts[:parser_method] if opts[:parser_method]
-      @input = initialize_input opts[:cast]
+      @value_normalizer = normalizer
       @errors = []
     end
 
+    def input
+      @input ||= with_input_cards { Input.new @parser, &method(:cast) }
+    end
+
     # Calculates answers
-    # If a company or a year is given it calculates only answers only for those
-    # @param [Hash] opts
-    # @option opts [String] :company
-    # @option opts [String] :year
+    # @param :companies [cardish, Array] only yield input for given companies
+    # @option :years [String, Integer, Array] :year only yield input for given years
     # @return [Hash] { year => { company_id => value } }
-    def result opts={}
+    def result companies: nil, years: nil
       result_hash do |result|
-        each_input(opts) do |input, company, year|
+        each_input(companies: companies, years: years) do |input, company, year|
           next unless (value = value_for_input input, company, year)
           result[year][company] = value
         end
@@ -45,7 +41,7 @@ module Formula
     # (but without the actual calculated value)
     # @param [Hash] opts
     # @option opts [String] :company
-    # @option opts [String] :year
+    # @option opts [String, Array] :year
     # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
     def result_scope opts={}
       [].tap do |res|
@@ -96,26 +92,19 @@ module Formula
       @value_normalizer ? @value_normalizer.call(value) : value
     end
 
-    def default_cast
-      :no_cast
+    # doesn't actually cast anything; overridden in other calculators
+    def cast val
+      val
     end
 
     private
 
-    def no_cast val
-      val
-    end
-
-    def initialize_input cast
-      if @parser.input_cards.any?(&:nil?)
-        InvalidInput.new
-      else
-        Input.new @parser, &method(cast || default_cast)
-      end
+    def with_input_cards
+      @parser.input_cards.any?(&:nil?) ? InvalidInput.new : yield
     end
 
     def each_input opts
-      @input.each(opts) do |input, company, year|
+      input.each(opts) do |input, company, year|
         yield input, company, year
       end
     end

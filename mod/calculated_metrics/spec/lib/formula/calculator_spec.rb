@@ -25,5 +25,9 @@ RSpec.describe Formula::Calculator do
                 "Max[{{Joe User+researched number 2| year: 2014..2015}}]"
       expect(rendered_formula(formula)).to eq 'Total[["10", "5"]] + Max[["5", "2"]]'
     end
+
+    describe "applicability" do
+      it "handles multi-year"
+    end
   end
 end
