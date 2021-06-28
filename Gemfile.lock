@@ -460,7 +460,7 @@ GEM
     erubis (2.7.0)
     ethon (0.14.0)
       ffi (>= 1.15.0)
-    excon (0.82.0)
+    excon (0.83.0)
     execjs (2.8.1)
     ffi (1.15.3)
     fog-aws (3.10.0)
