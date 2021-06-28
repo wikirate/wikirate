@@ -70,7 +70,7 @@ RSpec.describe Formula::Calculator::Input do
 
   context "with company option" do
     example "related" do
-      @input = ["Jedi+deadliness"]
+      @input ||= ["Jedi+deadliness"]
       @company_options = ["Related[Jedi+more evil = yes]"]
       expect { |b| input.each(years: 1977, companies: "Death Star", &b) }
         .to yield_with_args([[40.0, 50.0]], death_star_id, 1977)
@@ -78,21 +78,32 @@ RSpec.describe Formula::Calculator::Input do
   end
 
   describe "#each" do
-    def expect_each_for years
-      @input = ["Joe User+RM"]
-      expect { |b| input.each(years: years, companies: "Apple Inc", &b) }
+    def expect_each opts={}
+      @input ||= ["Joe User+RM"]
+      opts.reverse_merge! years: 1977, companies: "Apple Inc"
+      expect { |b| input.each(**opts, &b) }
     end
 
     let :successive_year_args do
       [[[13.0], apple_id, 2013], [[14.0], apple_id, 2014]]
     end
 
-    it "handles array of Integers" do
-      expect_each_for([2013, 2014]).to yield_successive_args(*successive_year_args)
+    let :successive_company_args do
+      [[[100.0], death_star_id, 1977], [:unknown, samsung_id, 1977]]
     end
 
-    it "handles array of Strings" do
-      expect_each_for(%w[2013 2014]).to yield_successive_args(*successive_year_args)
+    it "handles array of Integers for years" do
+      expect_each(years: [2013, 2014]).to yield_successive_args(*successive_year_args)
+    end
+
+    it "handles array of Strings for years" do
+      expect_each(years: %w[2013 2014]).to yield_successive_args(*successive_year_args)
+    end
+
+    it "handles array of Integers for companies" do
+      @input = ["Jedi+deadliness"]
+      expect_each(companies: [death_star_id, samsung_id])
+        .to yield_successive_args(*successive_company_args)
     end
   end
 end

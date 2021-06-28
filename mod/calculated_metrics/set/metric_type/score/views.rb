@@ -31,7 +31,8 @@ format :html do
       scorer:         "Scored by",
       wikirate_topic: "Topics",
       unpublished:    "Unpublished",
-      year:           "Years"
+      year:           "Years",
+      company_group:  "Company Groups"
     }
   end
 

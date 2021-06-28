@@ -4,7 +4,15 @@ def calculator parser_method=nil
   p = parser
   p.send parser_method if parser_method
   calculator_class.new p, normalizer: method(:normalize_value),
-                          applicable_years: year_card.item_names
+                          applicable_years: year_card.item_names,
+                          applicable_companies: applicable_companies
+end
+
+def applicable_companies
+  groups = company_group_card.item_cards
+  return unless groups.present?
+
+  groups.map { |g| g.wikirate_company_card&.item_ids }.flatten.compact
 end
 
 def calculation_in_progress!

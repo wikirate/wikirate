@@ -49,6 +49,6 @@ end
 
 format :html do
   def table_properties
-    super.merge year: "Years"
+    super.merge year: "Years", company_group: "Company Groups"
   end
 end

@@ -14,9 +14,12 @@ module Formula
 
     # @param parser [Formula::Parser]
     # @param normalizer: [Method] # called to normalize each *result* value
-    def initialize parser, normalizer: nil, applicable_years: nil
+    # @param applicable_years: []
+    def initialize parser,
+                   normalizer: nil, applicable_years: nil, applicable_companies: nil
       @parser = parser
       @applicable_years = applicable_years
+      @applicable_companies = applicable_companies
       @normalizer = normalizer
       @errors = []
     end
@@ -129,7 +132,7 @@ module Formula
       return years unless @applicable_years
       return @applicable_years unless years.present?
 
-      Array.wrap(years) & @applicable_years
+      Array.wrap(years) & Array.wrap(@applicable_years)
     end
 
     def safe_execution expr
