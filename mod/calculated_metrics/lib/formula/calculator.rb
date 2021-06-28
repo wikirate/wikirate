@@ -2,12 +2,10 @@
 
 module Formula
   # Calculates the values of a formula
-  #
-  # Calculator.new(parser, value_normalizer)
   class Calculator
     include ShowWork
 
-    attr_reader :errors, :input
+    attr_reader :errors
 
     # All the answers a given calculation depends on
     # (same opts as #result)
@@ -15,15 +13,15 @@ module Formula
     delegate :answers, to: :input
 
     # @param parser [Formula::Parser]
-    # @param opts [Hash]
-    # @option opts [Symbol] :cast
-    # @option opts [Symbol] :cast
-    def initialize parser, opts={}
-      @value_normalizer = opts[:normalize_value]
+    # @param normalizer: [Method] # called to normalize each *result* value
+    def initialize parser, normalizer: nil
       @parser = parser
-      @parser.send opts[:parser_method] if opts[:parser_method]
-      @input = initialize_input opts[:cast]
+      @value_normalizer = normalizer
       @errors = []
+    end
+
+    def input
+      @input ||= with_input_cards { Input.new @parser, &method(:cast) }
     end
 
     # Calculates answers
@@ -94,26 +92,19 @@ module Formula
       @value_normalizer ? @value_normalizer.call(value) : value
     end
 
-    def default_cast
-      :no_cast
+    # doesn't actually cast anything; overridden in other calculators
+    def cast val
+      val
     end
 
     private
 
-    def no_cast val
-      val
-    end
-
-    def initialize_input cast
-      if @parser.input_cards.any?(&:nil?)
-        InvalidInput.new
-      else
-        Input.new @parser, &method(cast || default_cast)
-      end
+    def with_input_cards
+      @parser.input_cards.any?(&:nil?) ? InvalidInput.new : yield
     end
 
     def each_input opts
-      @input.each(opts) do |input, company, year|
+      input.each(opts) do |input, company, year|
         yield input, company, year
       end
     end

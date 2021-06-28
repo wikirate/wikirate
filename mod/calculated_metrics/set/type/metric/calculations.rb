@@ -1,8 +1,9 @@
 delegate :parser, :calculator_class, to: :formula_card
 
-def calculator opts={}
-  opts[:normalize_value] ||= method(:normalize_value)
-  calculator_class.new parser, opts
+def calculator parser_method=nil
+  p = parser
+  p.send parser_method if parser_method
+  calculator_class.new p, normalizer: method(:normalize_value)
 end
 
 def calculation_in_progress!
