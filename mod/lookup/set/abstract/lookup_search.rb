@@ -41,7 +41,6 @@ format do
   end
 
   def query
-    puts "SORT HASH = #{sort_hash}"
     filter_class.new query_hash, sort_hash, paging_params
   end
 
