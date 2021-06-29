@@ -83,7 +83,7 @@ module Formula
         return if values.nil?
         return values if values.is_a? ::Set
 
-        Array.wrap(values).to_set
+        Array.wrap(values).map(&:to_i).to_set
       end
     end
   end
