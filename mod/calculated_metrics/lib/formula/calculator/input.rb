@@ -19,7 +19,7 @@ module Formula
 
       delegate :type, :card_id, to: :input_values
 
-      # @param :companies [cardish, Array] only yield input for given companies
+      # @param :companies [Integer, Array] only yield input for given companies
       # @option :years [String, Integer, Array] :year only yield input for given years
       def each companies: nil, years: nil
         @input_values.each companies: companies, years: years do |vals, company_id, year|

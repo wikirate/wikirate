@@ -24,7 +24,7 @@ module Formula
       # Iterates over results.
       # yields value Array, company_id, and year (as integer) for each result
       #
-      # @param :companies [cardish, Array] only yield input for given companies
+      # @param :companies [Integer, Array] only yield input for given companies
       # @param :years [String, Integer, Array] :year only yield input for given years
       def each companies: nil, years: nil, &block
         if companies && years
