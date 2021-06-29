@@ -24,12 +24,8 @@ module Formula
     LOOKUPS = ::Set.new %w[Country ILORegion]
     LAMBDA_ARGS_NAME = "args".freeze
 
-    def numeric_cast val
+    def cast val
       val.number? ? val.to_f : val
-    end
-
-    def default_cast
-      :numeric_cast
     end
 
     FUNC_KEY_MATCHER = FUNCTIONS.keys.join("|").freeze

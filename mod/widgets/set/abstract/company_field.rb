@@ -16,7 +16,7 @@ def metric_card
 end
 
 def update_direct_answer_lookup
-  metric_card.update_value_for! company: answer_company_id, year: answer_year
+  metric_card.update_value_for! answer_company_id, answer_year
 end
 
 def update_depender_answers
