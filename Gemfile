@@ -8,9 +8,9 @@ if ENV["RM_INFO"] && ARGV[0] == "check"
   # That way the files are included as normal project sources in Find and Open.
 else
   path "./vendor/decko" do
-    gem "decko"
     gem "card", require: false
     gem "cardname"
+    gem "decko"
   end
 
   path "./vendor/decko/mod" do
@@ -28,7 +28,6 @@ else
     gem "card-mod-pdfjs"
     gem "card-mod-solid_cache"
   end
-
 
   path "./vendor/decko/support" do
     gem "decko-cucumber", group: :cucumber
