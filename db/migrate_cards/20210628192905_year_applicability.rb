@@ -16,7 +16,7 @@ class YearApplicability < Cardio::Migration
     card_named_list = Card["List"]
     return if card_named_list&.codename == :list
 
-    card_named_list.delete!
+    card_named_list&.delete!
     Card[:list].update! name: "List"
   end
 end
