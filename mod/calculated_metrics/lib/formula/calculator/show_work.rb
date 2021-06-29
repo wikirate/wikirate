@@ -8,7 +8,7 @@ module Formula
       # @return [Array] [[metric_card_1, value_1, year_options_1], [metric_card2...], ...]
       def inputs_for company, year
         @parser.input_cards.zip(
-          Array.wrap(@input.input_for(company, year)), @parser.year_options
+          Array.wrap(uncasted_input.input_for(company, year)), @parser.year_options
         )
       end
 
@@ -21,18 +21,26 @@ module Formula
       #     3. the year option
       # @return [String] the formula with nests replaced by the result of the given block
       def formula_for company, year, &block
-        input = @input.input_for company, year
-        case input
+        input_val = uncasted_input.input_for company, year
+        case input_val
         when :unknown
           "Unknown"
         when nil
           "No value"
         else
-          formula_with_nests input, &block
+          formula_with_nests input_val, &block
         end
       end
 
       private
+
+      def uncasted_input
+        @uncasted_input ||= with_input_cards { Input.new @parser, &method(:no_cast) }
+      end
+
+      def no_cast val
+        val
+      end
 
       def formula_with_nests input
         input_enum = input.each
