@@ -4,12 +4,16 @@ class YearApplicability < Cardio::Migration
   def up
     clean_up_list_card
 
+    # TODO: move to core?
+    ensure_card %i[list type input_type], content: 'list'
+
     ensure_card %i[metric year type_plus_right default], type_code: :list, content: ""
     ensure_card %i[metric year type_plus_right input_type], content: "multiselect"
 
-    ensure_card %i[company_group year type_plus_right default],
+    ensure_card %i[metric company_group type_plus_right default],
                 type_code: :list, content: ""
     ensure_card %i[company_group right content_options],
+                type_code: :search_type,
                 content: '{"type":"Company Group","sort":"name","dir":"desc","limit":"0"}'
   end
 

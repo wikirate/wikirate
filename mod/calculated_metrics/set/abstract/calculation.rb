@@ -48,7 +48,15 @@ def normalize_value value
 end
 
 format :html do
+  def calculation_properties
+    { year: "Years", company_group: "Company Groups" }
+  end
+
   def table_properties
-    super.merge year: "Years", company_group: "Company Groups"
+    super.merge calculation_properties
+  end
+
+  def edit_properties
+    super.merge calculation_properties
   end
 end
