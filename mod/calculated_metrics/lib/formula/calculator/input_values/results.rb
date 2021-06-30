@@ -46,11 +46,11 @@ module Formula
         end
 
         def each_year years, &block
-          Array.wrap(years).each(&block)
+          Array.wrap(years).map(&:to_i).each(&block)
         end
 
         def each_company companies, &block
-          Array.wrap(companies).each(&block)
+          Array.wrap(companies).map(&:card_id).each(&block)
         end
 
         def years_with_values company_id=nil

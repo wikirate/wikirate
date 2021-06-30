@@ -29,7 +29,7 @@ module Formula
     end
 
     # Calculates answers
-    # @param :companies [cardish, Array] only yield input for given companies
+    # @param :companies [Array, Integer] only yield input for given companies
     # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Hash] { year => { company_id => value } }
     def result **restraints
@@ -43,7 +43,7 @@ module Formula
 
     # The scope of results that would be calculated for given result options
     # (but without the actual calculated value)
-    # @param :companies [cardish, Array] only yield input for given companies
+    # @param :companies [Array, Integer] only yield input for given companies
     # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
     def result_scope **restraints
@@ -106,10 +106,32 @@ module Formula
       @parser.input_cards.any?(&:nil?) ? InvalidInput.new : yield
     end
 
-    def each_input opts
-      input.each(opts) do |input, company, year|
-        yield input, company, year
+    # @param :companies [Integer Array] only yield input for given companies
+    # @param :years [String, Integer, Array] :year only yield input for given years
+    def each_input companies: nil, years: nil
+      with_valid_restraints companies, years do |c, y|
+        input.each(companies: c, years: y) do |input, company, year|
+          yield input, company, year
+        end
       end
+    end
+
+    def with_valid_restraints companies, years
+      c = restraint @applicable_companies, companies
+      y = restraint @applicable_years, years
+
+      # puts "#{companies} => #{c}, #{years} = #{y}"
+      return if [c, y].include? false
+
+      yield c, y
+    end
+
+    def restraint applicable, local
+      return local unless applicable.present?
+      return applicable unless local.present?
+
+      intersection = Array.wrap(local).map(&:to_i) & Array.wrap(applicable).map(&:to_i)
+      intersection.blank? ? false : intersection
     end
 
     def value_for_input input, company, year
@@ -122,17 +144,6 @@ module Formula
       result = Hash.new_nested Hash
       yield result if compile_formula
       result
-    end
-
-    def restraints companies: nil, years: nil
-      { companies: companies, years: years }
-    end
-
-    def year_restraint years
-      return years unless @applicable_years
-      return @applicable_years unless years.present?
-
-      Array.wrap(years) & Array.wrap(@applicable_years)
     end
 
     def safe_execution expr
