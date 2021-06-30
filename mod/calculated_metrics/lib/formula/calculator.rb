@@ -127,11 +127,22 @@ module Formula
     end
 
     def restraint applicable, local
-      return local unless applicable.present?
-      return applicable unless local.present?
+      if !applicable.present?
+        local
+      elsif !local.present?
+        applicable
+      else
+        restraint_intersection applicable, local
+      end
+    end
 
-      intersection = Array.wrap(local).map(&:to_i) & Array.wrap(applicable).map(&:to_i)
+    def restraint_intersection applicable, local
+      intersection = integers(applicable) & integers(local)
       intersection.blank? ? false : intersection
+    end
+
+    def integers restraint
+      Array.wrap(restraint).map(&:to_i)
     end
 
     def value_for_input input, company, year
