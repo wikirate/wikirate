@@ -18,15 +18,13 @@ format do
   delegate :lookup_query, :lookup_relation, to: :research_query
 
   def research_query
-    AnswerQuery.new research_query_hash, sort_hash, paging_params
+    answer_table_only do |research_query_hash|
+      AnswerQuery.new research_query_hash, sort_hash, paging_params
+    end
   end
 
   def research_count_query
-    AnswerQuery.new(research_query_hash).lookup_query
-  end
-
-  def research_query_hash
-    query_hash.merge status: :exists
+    answer_table_only { |research_query_hash| AnswerQuery.new research_query_hash }
   end
 
   def counts
@@ -83,6 +81,25 @@ format do
 
   def record?
     single?(:metric) && single?(:wikirate_company)
+  end
+
+  private
+
+  def answer_table_only
+    yield query_hash.merge(answer_table_only_alteration)
+  end
+
+  def answer_table_only_alteration
+    case status_filter
+    when :all
+      { status: :exists }
+    when :none
+      # the combination of :none status and a "Researched Only" field (value)
+      # ensures an empty result
+      { value: "bogus" }
+    else
+      {}
+    end
   end
 end
 
