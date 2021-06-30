@@ -1,8 +1,11 @@
 delegate :parser, :calculator_class, to: :formula_card
 
-def calculator opts={}
-  opts[:normalize_value] ||= method(:normalize_value)
-  calculator_class.new parser, opts
+def calculator parser_method=nil
+  p = parser
+  p.send parser_method if parser_method
+  calculator_class.new p, normalizer: method(:normalize_value),
+                          years: year_card.item_names,
+                          companies: company_group_card.company_ids
 end
 
 def calculation_in_progress!
@@ -44,15 +47,14 @@ def calculate_all_values
   end
 end
 
-# @param [Hash] opts
-# @option opts [String] :company
-# @option opts [String] :year optional
-def calculate_values_for opts={}, &block
-  values = calculator.result opts  # values by year and company
+# @param company [cardish]
+# @option years [String, Integer, Array] years to update value for (all years if nil)
+def calculate_values_for company, years=nil, &block
+  values = calculator.result companies: company, years: years
   if values.present?
-    update_calculated_values values, opts[:company], &block
-  elsif opts[:year] # yield with nil value to trigger deletion
-    yield opts[:year], nil
+    update_calculated_values values, company, &block
+  elsif years # yield with nil value to trigger deletion
+    Array.wrap(years).each { |year| yield year, nil }
   end
 end
 

@@ -35,7 +35,7 @@ def answer_for company, year
 end
 
 def answer_name_for company, year
-  Card::Name[name, Card.fetch_name(company), year.to_s]
+  Card::Name[name, company.cardname, year.to_s]
 end
 
 private

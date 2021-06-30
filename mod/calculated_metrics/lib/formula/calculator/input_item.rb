@@ -57,14 +57,6 @@ module Formula
         after_search
       end
 
-      def with_restricted_search_space company_id, year
-        @search_space = SearchSpace.new company_id, year
-        @search_space.intersect! result_space.answer_candidates
-        yield
-      ensure
-        @search_space = nil
-      end
-
       def search_space
         @search_space ||= result_space.answer_candidates
       end
@@ -123,6 +115,16 @@ module Formula
       # This can be changed with the not_researched nest option
       def mandatory?
         true
+      end
+
+      private
+
+      def with_restricted_search_space company_id, year
+        @search_space = SearchSpace.new company_id, year
+        @search_space.intersect! result_space.answer_candidates
+        yield
+      ensure
+        @search_space = nil
       end
     end
   end
