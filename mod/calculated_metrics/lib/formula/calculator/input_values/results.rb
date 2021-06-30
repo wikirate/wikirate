@@ -50,7 +50,7 @@ module Formula
         end
 
         def each_company companies, &block
-          Array.wrap(companies).map(&:to_i).each(&block)
+          Array.wrap(companies).map(&:card_id).each(&block)
         end
 
         def years_with_values company_id=nil
