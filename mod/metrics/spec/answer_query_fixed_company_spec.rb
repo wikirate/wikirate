@@ -59,7 +59,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   # @return [Array] of metric_title(+scorer)+year strings
-  def filter_by filter={}, latest: true, parts: nil
+  def filter_by filter, latest: true, parts: nil
     filter.reverse_merge! year: :latest if latest
     short_answers run_query(filter, metric_title: :asc), parts: parts
   end
