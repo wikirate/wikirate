@@ -2,12 +2,12 @@
 module AnswerHelper
   def create_answer args
     with_user(args.delete(:user) || "Joe User") do
-      Card.create answer_args(args)
+      Card.create answer_args(**args)
     end
   end
 
   def build_answer args
-    Card.new answer_args(args)
+    Card.new answer_args(**args)
   end
 
   def answer_args metric: sample_metric.name,

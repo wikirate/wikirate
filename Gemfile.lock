@@ -709,7 +709,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.17.0)
+    rubocop (1.18.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -820,26 +820,28 @@ PLATFORMS
 DEPENDENCIES
   addressable
   bulk_insert
+  card!
   card-mod-bookmarks!
-  card-mod-counts
-  card-mod-csv_import
+  card-mod-counts!
+  card-mod-csv_import!
   card-mod-defaults!
-  card-mod-delayed_job
-  card-mod-fulltext
-  card-mod-monkey
-  card-mod-new_relic
-  card-mod-pdfjs
-  card-mod-solid_cache
+  card-mod-delayed_job!
+  card-mod-fulltext!
+  card-mod-monkey!
+  card-mod-new_relic!
+  card-mod-pdfjs!
+  card-mod-solid_cache!
+  cardname!
   company-mapping
   curb
   dalli
   decko!
   decko-cap!
   decko-cucumber!
-  decko-cypress
-  decko-profile
-  decko-rspec
-  decko-spring
+  decko-cypress!
+  decko-profile!
+  decko-rspec!
+  decko-spring!
   descriptive_statistics
   fog-aws
   link_thumbnailer
@@ -859,4 +861,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (= 0.12.5.4)
 
 BUNDLED WITH
-   2.1.4
+   2.2.15
