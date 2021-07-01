@@ -1,4 +1,4 @@
-include Set::Abstract::Calculation
+include_set Set::Abstract::Calculation
 
 delegate :categorical?, :value_options, :value_option_names, to: :basic_metric_card
 # <OVERRIDES>

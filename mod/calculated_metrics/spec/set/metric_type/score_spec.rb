@@ -1,38 +1,32 @@
 # -*- encoding : utf-8 -*-
 
-# the metric in the test database:
-# Card::Metric.create name: 'Jedi+deadliness+Joe User',
-#                     type: :score,
-#                     formula: '{{Jedi+deadliness}}/10'
 RSpec.describe Card::Set::MetricType::Score do
-  let(:metric) { Card[@name] }
+  let(:scored_name) { "Joe User+researched number 2" }
+  let(:scored) { Card[scored_name] }
 
-  before { @name = "Jedi+deadliness+Joe User" }
+  let(:score_name) { "#{scored_name}+Big Brother" }
+  let(:score_formula) { "{{#{scored_name}}}*2" }
+
+  let(:score) do
+    Card::Auth.as_bot do
+      create_metric name: score_name, type: :score, formula: score_formula
+    end
+  end
 
   def score_value company="Samsung", year="2014"
-    score_answer(company, year).value
+    score_answer(company, year)&.value
   end
 
   def score_answer company="Samsung", year="2014"
-    Answer.where(metric_id: "Joe User+#{@metric_title}+Big Brother".card_id,
-                 company_id: Card.fetch_id(company), year: year.to_i)
-          .take
+    Answer.where(
+      metric_id: score.id,
+      company_id: company.card_id,
+      year: year
+    ).take
   end
 
   describe "score for numerical metric" do
     context "when created with formula" do
-      let(:metric_card) { Card[@metric_name] }
-
-      before do
-        @metric_title = "researched number 2"
-        @metric_name = "Joe User+#{@metric_title}"
-        Card::Auth.as_bot do
-          @metric = create_metric(
-            name: "#{@metric_name}+Big Brother", type: :score,
-            formula: "{{#{@metric_name}}}*2"
-          )
-        end
-      end
       it "creates score values" do
         expect(score_value).to eq("10.0")
         expect(score_value("Samsung", "2015")).to eq("4.0")
@@ -43,11 +37,12 @@ RSpec.describe Card::Set::MetricType::Score do
       context "when formula changes" do
         def update_formula formula
           Card::Auth.as_bot do
-            @metric.formula_card.update! content: formula
+            score.formula_card.update! content: formula
           end
         end
+
         it "updates existing rating value" do
-          update_formula "{{#{@metric_name}}}*3"
+          update_formula "{{#{scored_name}}}*3"
           expect(score_value).to eq "10"
         end
         # it 'fails if basic metric is not used in formula' do
@@ -62,61 +57,62 @@ RSpec.describe Card::Set::MetricType::Score do
         end
         it "creates score value if missing value is added" do
           Card::Auth.as_bot do
-            metric_card.create_answer company: "Death Star",
-                                     year: "1977",
-                                     value: "2",
-                                     source: sample_source
+            scored.create_answer company: "Death Star",
+                                 year: "1977",
+                                 value: "2",
+                                 source: sample_source
           end
           expect(score_value("Death Star", "1977")).to eq("4.0")
         end
       end
 
       context "when input metric value changes" do
+        let(:answer_name) { "#{scored_name}+Samsung+2014" }
+
         it "updates score value" do
-          Card["#{@metric_name}+Samsung+2014+value"].update! content: "1"
+          Card["#{answer_name}+value"].update! content: "1"
           expect(score_value).to eq "2.0"
         end
+
         it "removes score value that lost input metric value" do
-          Card::Auth.as_bot do
-            Card["#{@metric_name}+Samsung+2014"].delete
-          end
+          Card::Auth.as_bot { Card[answer_name].delete }
           expect(score_answer).to be_falsey
         end
       end
     end
 
     context "when created without formula" do
-      before do
+      let(:score) do
         Card::Auth.as_bot do
-          @metric_title = "researched number 1"
-          @metric = create_metric name: "Joe User+#{@metric_title}+Big Brother",
-                                  type: :score
+          create_metric(name: score_name, type: :score)
         end
       end
 
       it "has basic metric as formula" do
-        expect(Card["#{@metric.name}+formula"].content)
-          .to eq "{{Joe User+#{@metric_title}}}"
+        expect(Card["#{score.name}+formula"].content).to eq "{{#{scored_name}}}"
       end
 
       it "creates score values if formula updated" do
         Card::Auth.as_bot do
-          @metric.formula_card.update!(
+          score.formula_card.update!(
             type_id: Card::PlainTextID,
-            content: "{{Joe User+#{@metric_title}}}*2"
+            content: "{{#{scored_name}}}*2"
           )
         end
-        expect(score_value).to eq("10")
-        expect(score_value("Samsung", "2015")).to eq("10.0")
-        expect(score_value("Sony_Corporation")).to eq("2.0")
+        expect(score_value).to eq("10.0")
+        expect(score_value("Samsung", "2015")).to eq("4.0")
+        expect(score_value("Sony_Corporation")).to eq("4.0")
       end
     end
   end
 
   context "when original value changed" do
     def answer metric
-      Answer.where(metric_id: Card.fetch_id(metric),
-                   company_id: "Death Star".card_id, year: 1977).take
+      Answer.where(
+        metric_id: metric.card_id,
+        company_id: "Death Star".card_id,
+        year: 1977
+      ).take
     end
 
     before do
@@ -133,51 +129,67 @@ RSpec.describe Card::Set::MetricType::Score do
   end
 
   describe "score for multi-categorical formula", as_bot: true do
+    let(:scored_name) { "Joe User+small multi" }
+    let(:score_formula) { '{"1":"2", "2":4, "3":6}' }
+
     it "sums values", as_bot: true do
-      @metric_title = "small multi"
-      @metric_name = "Joe User+small multi"
-      @metric = create_metric(
-        name: "#{@metric_name}+Big Brother",
-        type: :score,
-        formula: '{"1":"2", "2":4, "3":6}'
-      )
+      score
       expect(score_value("Sony Corporation", "2010")).to eq "6.0"
     end
 
     it "updates when formula updated", as_bot: true do
-      @metric_title = "small multi"
-      @metric_name = "Joe User+small multi"
-      @metric = create_metric(
-        name: "#{@metric_name}+Big Brother",
-        type: :score,
-        formula: '{"1":2, "2":4, "3":6}'
-      )
-      expect(score_value("Sony Corporation", "2010")).to eq "6.0"
-      @metric.formula_card.update!(
+      score.formula_card.update!(
         type_id: Card::PlainTextID,
         content: '{"1":2, "2":5, "3":6}'
       )
-
       expect(score_value("Sony Corporation", "2010")).to eq "7.0"
     end
   end
 
-  example "score with else case", as_bot: true do
-    @metric_title = "small single"
-    @metric_name = "Joe User+small single"
-    @metric = create_metric(name: "#{@metric_name}+Big Brother", type: :score,
-                            formula: '{"2":4, "3":6, "else": 5}')
-    expect(score_value("Sony Corporation", "2010")).to eq "5.0"
+  context "with else case" do
+    let(:scored_name) { "Joe User+small single" }
+    let(:score_formula) { '{"2":4, "3":6, "else": 5}' }
+
+    example do
+      score
+      expect(score_value("Sony Corporation", "2010")).to eq "5.0"
+    end
   end
 
-  example "score unknown value", as_bot: true do
-    @metric_title = "RM"
-    @metric_name = "Joe User+RM"
-    @metric = create_metric(name: "#{@metric_name}+Big Brother", type: :score,
-                            formula: '{"Unknown":0, "else": 10}')
-    aggregate_failures do
-      expect(score_value("Apple Inc", "2001")).to eq "0.0"
-      expect(score_value("Apple Inc", "2010")).to eq "10.0"
+  context "with unknown case" do
+    let(:scored_name) { "Joe User+RM" }
+    let(:score_formula) { '{"Unknown":0, "else": 10}' }
+
+    example do
+      aggregate_failures do
+        score
+        expect(score_value("Apple Inc", "2001")).to eq "0.0"
+        expect(score_value("Apple Inc", "2010")).to eq "10.0"
+      end
+    end
+  end
+
+  context "with year restrictions" do
+    it "scores only applicable year (single)" do
+      score.year_card.update! content: "2014"
+      expect(score_value("Samsung", "2014")).to eq("10.0")
+      expect(score_value("Samsung", "2015")).to be_nil # scored metric has data for 2015
+    end
+
+    it "scores only applicable years (multiple)" do
+      score.year_card.update! content: %w[2013 2014]
+      expect(score_value("Samsung", "2014")).to eq("10.0")
+      expect(score_value("Samsung", "2015")).to be_nil
+    end
+  end
+
+  context "with company group restrictions" do
+    let(:scored_name) { "Joe User+researched number 1" }
+
+    it "scores only applicable companies" do
+      score.company_group_card.update! content: "Deadliest"
+      expect(score_value("Samsung", "2014")).to be_nil # not in group
+      expect(score_value("Death Star", "1977")).to eq("10.0")
     end
   end
 end

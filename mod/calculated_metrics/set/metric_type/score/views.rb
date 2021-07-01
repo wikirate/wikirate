@@ -26,12 +26,12 @@ format :html do
 
   def table_properties
     {
-      metric_type:    "Metric Type",
       scored_metric:  "Scored Metric",
       scorer:         "Scored by",
       wikirate_topic: "Topics",
+      metric_type:    "Metric Type",
       unpublished:    "Unpublished"
-    }
+    }.merge calculation_properties
   end
 
   def header_text
