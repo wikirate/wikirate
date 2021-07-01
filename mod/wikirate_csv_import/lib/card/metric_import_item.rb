@@ -28,7 +28,10 @@ class Card
 
       value_options: { optional: true, separator: ";" },
       report_type: { map: true, optional: true, separator: ";" },
-      research_policy: { map: true, separator: ";" }
+      research_policy: { map: true, separator: ";" },
+
+      year: { optional: true, separator: ";" },
+      company_group: { optional: true, separator: ";" }
     }
 
     VALUE_TYPE_CORRECTIONS = { "categorical" => :category.cardname }.freeze
