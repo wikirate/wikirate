@@ -132,7 +132,7 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "finds researched" do
-        expect(filter_by({ metric_type: "Researched" } )).to contain_exactly(*researched)
+        expect(filter_by({ metric_type: "Researched" })).to contain_exactly(*researched)
       end
 
       it "finds combinations" do
@@ -174,7 +174,8 @@ RSpec.describe Card::AnswerQuery do
 
     context "with bookmark" do
       it "finds bookmarked" do
-        expect(filter_by({ bookmark: :bookmark })).to eq ["disturbances in the Force+2001"]
+        expect(filter_by({ bookmark: :bookmark }))
+          .to eq ["disturbances in the Force+2001"]
       end
 
       it "finds not bookmarked" do

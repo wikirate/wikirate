@@ -4,6 +4,7 @@ module Formula
   # Calculates the values of a formula
   class Calculator
     include ShowWork
+    include Restraints
 
     attr_reader :errors
 
@@ -109,40 +110,11 @@ module Formula
     # @param :companies [Integer Array] only yield input for given companies
     # @param :years [String, Integer, Array] :year only yield input for given years
     def each_input companies: nil, years: nil
-      with_valid_restraints companies, years do |c, y|
+      with_restraints companies, years do |c, y|
         input.each(companies: c, years: y) do |input, company, year|
           yield input, company, year
         end
       end
-    end
-
-    def with_valid_restraints companies, years
-      c = restraint @applicable_companies, companies
-      y = restraint @applicable_years, years
-
-      # puts "#{companies} => #{c}, #{years} = #{y}"
-      return if [c, y].include? false
-
-      yield c, y
-    end
-
-    def restraint applicable, local
-      if !applicable.present?
-        local
-      elsif !local.present?
-        applicable
-      else
-        restraint_intersection applicable, local
-      end
-    end
-
-    def restraint_intersection applicable, local
-      intersection = integers(applicable) & integers(local)
-      intersection.blank? ? false : intersection
-    end
-
-    def integers restraint
-      Array.wrap(restraint).map(&:to_i)
     end
 
     def value_for_input input, company, year
