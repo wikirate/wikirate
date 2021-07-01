@@ -16,7 +16,7 @@ def published?
 end
 
 def check_published
-  return true unless unpublished && !steward?
+  return true unless unpublished? && !steward?
 
   deny_because "not yet published"
 end
