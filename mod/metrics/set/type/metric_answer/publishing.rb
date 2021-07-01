@@ -12,6 +12,10 @@ def unpublished
   end
 end
 
+def unpublished?
+  answer.unpublished
+end
+
 # this answer is calculated
 def calculated_unpublished
   dependee_answers.find(&:unpublished).present?
