@@ -24,7 +24,9 @@ format do
   end
 
   def research_count_query
-    answer_table_only { |research_query_hash| AnswerQuery.new research_query_hash }
+    answer_table_only do |research_query_hash|
+      AnswerQuery.new(research_query_hash).lookup_query
+    end
   end
 
   def counts
