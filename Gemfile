@@ -1,29 +1,39 @@
 # -*- encoding : utf-8 -*-
 source "http://rubygems.org"
 
-if ENV["RM_INFO"] && ARGV[0] == 'check'
+if ENV["RM_INFO"] && ARGV[0] == "check"
   puts "Execution in RubyMine detected in Gemfile. Ignoring decko gem path"
   # This causes Rubymine and IntelliJ to handle these paths as normal sources rather
   # than gems or libraries.
   # That way the files are included as normal project sources in Find and Open.
 else
-  gem "decko", path: "./vendor/decko"
+  path "./vendor/decko" do
+    gem "card", require: false
+    gem "cardname"
+    gem "decko"
+  end
 
-  gem "card-mod-defaults", path: "./vendor/decko/mod"
-  gem "card-mod-delayed_job"
+  path "./vendor/decko/mod" do
+    gem "card-mod-defaults"
+    gem "card-mod-delayed_job"
+  end
 
-  gem "card-mod-bookmarks", path: "./vendor/card-mods"
-  gem "card-mod-counts"
-  gem "card-mod-csv_import"
-  gem "card-mod-fulltext"
-  # gem "card-mod-logger"
-  gem "card-mod-new_relic"
-  gem "card-mod-pdfjs"
-  gem "card-mod-solid_cache"
+  path "./vendor/card-mods" do
+    gem "card-mod-bookmarks"
+    gem "card-mod-counts"
+    gem "card-mod-csv_import"
+    gem "card-mod-fulltext"
+    # gem "card-mod-logger"
+    gem "card-mod-new_relic"
+    gem "card-mod-pdfjs"
+    gem "card-mod-solid_cache"
+  end
 
-  gem "decko-cucumber", group: :cucumber, path: "./vendor/decko/support"
-  gem "decko-cypress", group: :cypress
-  gem "decko-rspec", group: :test
+  path "./vendor/decko/support" do
+    gem "decko-cucumber", group: :cucumber
+    gem "decko-cypress", group: :cypress
+    gem "decko-rspec", group: :test
+  end
 
   gem "decko-cap", path: "./vendor/decko-cap", group: :development
 end
@@ -61,7 +71,7 @@ group :live do
 end
 
 group :development do
-  gem "card-mod-monkey"
+  gem "card-mod-monkey", path: "./vendor/decko/mod"
 
   # gem "rubocop-ast"
   # gem "rubocop-decko"
@@ -72,12 +82,12 @@ end
 gem "timecop", group: %i[test cucumber] # date/time manipulation in tests
 
 group :test, :development do
-  gem "decko-spring"
+  gem "decko-spring", path: "./vendor/decko/support"
   gem "puma"                         # local webserver
 end
 
 group :profile do
-  gem "decko-profile"
+  gem "decko-profile", path: "./vendor/decko/support"
   gem "ruby-jmeter"                  # connected to Flood.io, used in load testing
   gem "wbench"                       # Benchmarking web requests
 end
