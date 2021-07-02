@@ -1,8 +1,18 @@
 format :json do
   def atom
-    super().merge(
-      file_url: nest(card.file_card, view: :core),
-      report_type: card.report_type_card&.first_name
-    )
+    nucleus.merge fields_with_view(:content)
+  end
+
+  def molecule
+    super.merge fields_with_view(:atom)
+  end
+
+  def fields_with_view view
+    %i[file wikirate_link report_type title wikirate_company year description discussion
+       metric metric_answer].each_with_object({}) do |codename, hash|
+
+      key = codename.cardname.downcase.tr(" ", "_").to_sym
+      hash[key] = field_nest codename, view: view
+    end
   end
 end

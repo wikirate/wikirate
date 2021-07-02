@@ -105,6 +105,12 @@ format :html do
   end
 end
 
+format :html do
+  def export_formats
+    %i[csv json]
+  end
+end
+
 format :csv do
   view :core do
     Relationship.csv_title +
