@@ -85,3 +85,9 @@ format do
     {}
   end
 end
+
+format :json do
+  view :items do
+    []
+  end
+end
