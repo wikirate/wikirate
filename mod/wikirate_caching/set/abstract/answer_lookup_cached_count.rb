@@ -36,7 +36,7 @@ end
 # needed for "found_by" cql searches that refer to search results
 # of these cards
 def cql_content
-  { id: [:in] + target_ids.compact }
+  { id: [:in] + (skip_search? ? [-1] : target_ids.compact) }
 end
 
 def skip_search?
