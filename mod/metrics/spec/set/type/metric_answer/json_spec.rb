@@ -80,7 +80,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
       # expect(json_view(:molecule)).to include(molecule_fields)
 
       # expect([{a: 1, b: 2}]).to include(a_hash_including({a: 1}))
-      expect(json_view(:molecule)[:sources]).to include(a_hash_including(source_fields.slice :file))
+      expect(json_view(:molecule)[:sources]).to include(a_hash_including(source_fields))
     end
   end
 
