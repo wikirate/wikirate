@@ -18,6 +18,6 @@ format :json do
   def item_cards
     return [] unless card.metric_card.relationship?
 
-    card.fetch(:relationship_search).relationship_answers
+    card.fetch(:relationship_answer).format(:json).item_cards
   end
 end
