@@ -68,7 +68,7 @@ end
 
 format :html do
   view :export_links, cache: :never do
-    super unless metric_card.relationship?
+    super() unless metric_card.relationship?
 
     wrap_with :div, class: "export-links py-2" do
       [wrap_export_links("Answer", export_format_links),

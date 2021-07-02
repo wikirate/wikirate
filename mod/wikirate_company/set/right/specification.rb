@@ -90,6 +90,7 @@ format :json do
   def molecule
     super.merge constraints: constraints
   end
+
   def constraints
     card.constraints.map do |c|
       {
