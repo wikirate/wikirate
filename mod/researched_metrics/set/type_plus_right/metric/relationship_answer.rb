@@ -5,6 +5,10 @@ def query
   { metric_id: left_id }
 end
 
+def item_type
+  :relationship_answer
+end
+
 format do
   def relationship_query
     card.query
@@ -15,8 +19,10 @@ format do
   end
 
   def relationship_relation
-    puts "answer query sql: #{answer_relation.to_sql}"
+    super.where("#{answer_id_field} in (#{answer_relation.select(:answer_id).to_sql})")
+  end
 
-    super
+  def answer_id_field
+    inverse? ? :inverse_answer_id : :answer_id
   end
 end

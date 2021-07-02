@@ -33,6 +33,10 @@ format do
     skip_lookup? ? 0 : super
   end
 
+  def relationships
+    skip_lookup? ? [] : relationship_relation
+  end
+
   def skip_lookup?
     Env.params[:filter] && other_company_ids.empty?
   end

@@ -1,5 +1,6 @@
 include_set Abstract::Export
 include_set Type::SearchType
+include_set Abstract::FilterHelper
 
 delegate :inverse?, to: :metric_card
 
@@ -26,6 +27,10 @@ format do
     with_relation_paging Relationship.where(relationship_query)
   end
 
+  def relationships
+    relationship_relation
+  end
+
   def with_relation_paging relation
     paging = paging_params
     relation.limit(paging[:limit]).offset(paging[:offset])
@@ -40,8 +45,10 @@ format :csv do
   def default_limit
     nil
   end
+end
 
-  def relationships
-    skip_lookup? ? [] : relationship_relation
+format :html do
+  def export_link_path format
+    super.merge filter_and_sort_hash
   end
 end
