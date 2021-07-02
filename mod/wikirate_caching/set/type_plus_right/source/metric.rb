@@ -6,9 +6,14 @@ def search_anchor
 end
 
 def answer_ids
-  Card.search type_id: MetricAnswerID, return: :id,
-              not: { right_plus: [:unpublished, { eq: "1" }] },
-              right_plus: [SourceID, { link_to: name.left }]
+  @answer_ids ||=
+    Card.search type_id: MetricAnswerID, return: :id,
+                not: { right_plus: [:unpublished, { eq: "1" }] },
+                right_plus: [SourceID, { link_to: name.left }]
+end
+
+def cql_content
+  { id: [:in] + (skip_search? ? [-1] : answer_ids.compact) }
 end
 
 def skip_search?
