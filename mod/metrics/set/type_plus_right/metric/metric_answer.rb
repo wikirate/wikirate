@@ -39,6 +39,8 @@ def metric_card
 end
 
 format do
+  delegate :metric_card, to: :card
+
   STANDARD_FILTER_KEYS = %i[
     status year company_name company_group country value updated updater verification
     calculated source project outliers bookmark
@@ -65,7 +67,24 @@ format do
 end
 
 format :html do
-  delegate :metric_card, to: :card
+  view :export_links, cache: :never do
+    super unless metric_card.relationship?
+
+    wrap_with :div, class: "export-links py-2" do
+      [wrap_export_links("Answer", export_format_links),
+       wrap_export_links("Relationship", relationship_export_links)]
+    end
+  end
+
+  def relationship_export_links
+    metric_card.relationship_answer_card.format(:html).export_format_links
+  end
+
+  def wrap_export_links label, links
+    wrap_with :div, class: "#{label.downcase}-export-links py-1" do
+      "#{label} Export: #{links}"
+    end
+  end
 
   def show_metric_count?
     false
