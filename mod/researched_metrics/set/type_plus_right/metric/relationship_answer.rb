@@ -2,7 +2,7 @@ include_set Abstract::MetricChild, generation: 1
 include_set Abstract::PublishableField
 
 def query
-  { metric_id: left_id }
+  { metric_id: left.id }
 end
 
 def item_type

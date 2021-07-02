@@ -13,7 +13,7 @@ def target_type_id
 end
 
 def query
-  { metric_card.answer_lookup_field => left_id }
+  { metric_card.answer_lookup_field => left.id }
 end
 
 format do
