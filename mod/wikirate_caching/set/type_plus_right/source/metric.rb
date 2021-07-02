@@ -12,12 +12,8 @@ def answer_ids
                 right_plus: [SourceID, { link_to: name.left }]
 end
 
-def cql_content
-  { id: [:in] + (skip_search? ? [-1] : answer_ids.compact) }
-end
-
 def skip_search?
-  answer_ids.blank?
+  answer_ids.blank? || super
 end
 
 # recount no. of sources on metric when citation is changed
