@@ -1,4 +1,3 @@
-
 format :json do
   NESTED_FIELD_CODENAMES = %i[
     question metric_type about methodology value_type value_options report_type
