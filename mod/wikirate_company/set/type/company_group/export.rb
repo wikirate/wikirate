@@ -1,5 +1,5 @@
 format :json do
-  KEYMAP = { wikirate_company: :companies, specification: :specification}
+  KEYMAP = { wikirate_company: :companies, specification: :specification }.freeze
 
   def atom
     nucleus.merge fields_with_view(:content)

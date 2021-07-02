@@ -33,7 +33,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
         id: source.id,
         name: source.name,
         url: name_url(source.name),
-        file_url: wr_url(source.file_url)
+        file: wr_url(source.file_url)
         # "https://thereaderwiki.com/en/Star_Wars.json"
       }
     end
@@ -77,7 +77,10 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
     # then run separate tests for the different values.
     # Will be MUCH easier to debug.
     specify "molecule view" do
-      expect(json_view(:molecule)).to include(molecule_fields)
+      # expect(json_view(:molecule)).to include(molecule_fields)
+
+      # expect([{a: 1, b: 2}]).to include(a_hash_including({a: 1}))
+      expect(json_view(:molecule)[:sources]).to include(a_hash_including(source_fields.slice :file))
     end
   end
 

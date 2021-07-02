@@ -11,7 +11,8 @@ format :json do
     %i[file wikirate_link report_type title wikirate_company year description discussion
        metric metric_answer].each_with_object({}) do |codename, hash|
 
-      hash[codename.cardname.downcase.tr(" ", "_")] = field_nest codename, view: view
+      key = codename.cardname.downcase.tr(" ", "_").to_sym
+      hash[key] = field_nest codename, view: view
     end
   end
 end
