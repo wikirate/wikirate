@@ -25,16 +25,12 @@ format do
     end
   end
 
-  def relationship_ids
+  def search_with_params
     skip_lookup? ? [] : super
   end
 
-  def count_with_params
-    skip_lookup? ? 0 : super
-  end
-
   def relationships
-    skip_lookup? ? [] : relationship_relation
+    skip_lookup? ? [] : super
   end
 
   def skip_lookup?
