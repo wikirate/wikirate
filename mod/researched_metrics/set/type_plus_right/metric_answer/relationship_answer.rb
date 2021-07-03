@@ -30,7 +30,7 @@ format do
   end
 
   def relationships
-    skip_lookup? ? [] : relationship_relation
+    skip_lookup? ? [] : super
   end
 
   def skip_lookup?
