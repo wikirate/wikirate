@@ -20,7 +20,7 @@ end
 
 format :csv do
   view :core do
-    Answer.csv_title + card.answers.map(&:csv_line).flatten.join
+    Answer.csv_title + card.answers.limit(1000).map(&:csv_line).flatten.join
   end
 
   view :import_template do
