@@ -4,10 +4,15 @@ format :json do
     research_policy unit range hybrid wikirate_topic score formula
   ].freeze
 
-  COUNT_FIELD_CODENAMES = %i[metric_answer bookmarkers project].freeze
+  COUNT_FIELD_CODENAMES =
+    %i[metric_answer bookmarkers project wikirate_company].freeze
 
   FIELD_LABELS = {
-    wikirate_topic: :topics, score: :scores, metric_answer: :answers, project: :projects
+    wikirate_topic: :topics,
+    score: :scores,
+    metric_answer: :answers,
+    project: :projects,
+    wikirate_company: :companies
   }.freeze
 
   view :links do
