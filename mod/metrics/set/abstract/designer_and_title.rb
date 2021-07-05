@@ -1,3 +1,7 @@
+def tracker_options
+  super.merge cg3: metric_designer
+end
+
 def metric_designer
   compound? ? name.parts.first.to_name : creator.name
 end
@@ -24,4 +28,10 @@ end
 
 def metric_title_card
   compound? ? self[1] : self
+end
+
+format :html do
+  def google_analytics_snippet_vars
+    super.merge contentGroup3: card.metric_designer
+  end
 end
