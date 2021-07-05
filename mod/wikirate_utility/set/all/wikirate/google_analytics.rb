@@ -1,6 +1,6 @@
 
 def track_page_from_server?
-  response_format.in?(%i[csv json]) && !internal_api_request?
+  tracker && response_format.in?(%i[csv json]) && !internal_api_request?
 end
 
 def tracker_options
