@@ -1,6 +1,8 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Stewardable
+include_set Abstract::ProfileType
+
 # include_set Abstract::Bookmarker
 
 CONTRIBUTION_TYPES = %i[metric_answer metric wikirate_company project
