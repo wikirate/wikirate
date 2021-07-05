@@ -4,11 +4,17 @@ def track_page_from_server?
 end
 
 def tracker_options
-  super.merge cg1: type_name, cg2: (export_request? ? "Export" : "API")
+  super.merge cg1: type_name,
+              cg2: (export_request? ? "Export" : "API"),
+              cg4: profile_type
 end
 
 def export_request?
   request_var("HTTP_SEC_FETCH_MODE") == "navigate" || response_format == :csv
+end
+
+def profile_type
+  Auth.current&.profile_type_card&.first_name
 end
 
 def response_format
@@ -20,6 +26,7 @@ def request_var variable
 end
 
 def internal_api_request?
+  Rails.logger.info "HTTP_SEC_FETCH_SITE = #{request_var 'HTTP_SEC_FETCH_SITE'}"
   Env.ajax? && request_var("HTTP_SEC_FETCH_SITE") == "same-origin"
 end
 
