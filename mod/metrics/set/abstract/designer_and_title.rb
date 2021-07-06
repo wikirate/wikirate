@@ -1,4 +1,4 @@
-def tracker_options
+def tracker_content_groups
   super.merge cg3: metric_designer
 end
 

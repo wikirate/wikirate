@@ -16,7 +16,8 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Unpublished do
   end
 
   it "'unpublishes' calculated answer when researched answer is unpublished" do
-    expect(wikirating_answer.answer.unpublished).to be_truthy
+    expect(wikirating_answer.answer.unpublished).to be_truthy # unpublished
+    expect(wikirating_answer.answer).to be_unpublished        # unpublished?
   end
 
   it "'publishes' calculated answer when researched answer is published", as_bot: true do
