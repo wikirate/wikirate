@@ -1,18 +1,23 @@
 
+def track_page!
+  hit = ::Staccato::Pageview.new tracker, tracker_options
+  hit.add_custom_dimension 1, profile_type
+  # the following is a bit of hack, because staccato doesn't yet support content groups
+  hit.custom_dimensions.merge! tracker_content_groups
+  hit.track!
+end
+
 def track_page_from_server?
   tracker && response_format.in?(%i[csv json]) && !internal_api_request?
 end
 
-def tracker_options
-  # cg = content grouping
-  # cd = custom dimension
-  super.merge cg1: type_name,
-              cg2: (export_request? ? "Export" : "API"),
-              cd1: profile_type
+def tracker_content_groups
+  { cg1: type_name, cg2: format_content_group }
 end
 
-def export_request?
-  request_var("HTTP_SEC_FETCH_MODE") == "navigate" || response_format == :csv
+def format_content_group
+  response_format == :csv ? "CSV" : "JSON"
+  # request_var("HTTP_SEC_FETCH_MODE") == "navigate" ||
 end
 
 def profile_type
