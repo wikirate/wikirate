@@ -111,7 +111,8 @@ def shared_dummy_answer_attribs
     metric_id: id,
     calculating: true,
     creator_id: Card::Auth.current_id,
-    latest: true
+    latest: true,
+    unpublished: unpublished?
   }
 end
 
