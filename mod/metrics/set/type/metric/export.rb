@@ -1,14 +1,18 @@
-
 format :json do
   NESTED_FIELD_CODENAMES = %i[
     question metric_type about methodology value_type value_options report_type
     research_policy unit range hybrid wikirate_topic score formula
   ].freeze
 
-  COUNT_FIELD_CODENAMES = %i[metric_answer bookmarkers project].freeze
+  COUNT_FIELD_CODENAMES =
+    %i[metric_answer bookmarkers project wikirate_company].freeze
 
   FIELD_LABELS = {
-    wikirate_topic: :topics, score: :scores, metric_answer: :answers, project: :projects
+    wikirate_topic: :topics,
+    score: :scores,
+    metric_answer: :answers,
+    project: :projects,
+    wikirate_company: :companies
   }.freeze
 
   view :links do

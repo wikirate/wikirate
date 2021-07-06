@@ -12,7 +12,7 @@ def answer_ids
 end
 
 def skip_search?
-  answer_ids.blank?
+  answer_ids.blank? || super
 end
 
 # recount no. of sources on metric when citation is changed

@@ -85,3 +85,22 @@ format do
     {}
   end
 end
+
+format :json do
+  def molecule
+    super.merge constraints: constraints
+  end
+
+  def constraints
+    card.constraints.map do |c|
+      {
+        metric: c.metric.name,
+        year: c.year,
+        value: c.value,
+        group: c.group
+      }
+    end
+  end
+
+  view(:items) { [] }
+end

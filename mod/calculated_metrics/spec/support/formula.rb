@@ -6,7 +6,7 @@ shared_context "formula" do
     res += "| #{options}" if options.present?
     res += "}}"
     res = "#{method}[#{res}]" if method
-    res = "#{res}+#{formula_str(add)}" if add
+    res = "#{res}+#{formula_str(**add)}" if add
     res
   end
 

@@ -1,3 +1,5 @@
+include_set Abstract::ProfileType
+
 card_reader :projects_organized, type: :search_type
 card_reader :metrics_designed, type: :search_type
 card_reader :research_group, type: :search_type

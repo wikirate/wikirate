@@ -1,13 +1,12 @@
 format :json do
   def atom
-    super.tap do |atom|
-      lookup = card.answer
+    lookup = card.answer
+    nucleus.tap do |atom|
       atom[:metric] = lookup.metric_name
       %i[company year value comments].each do |key|
         atom[key] = lookup.send key
       end
       atom[:record_url] = path mark: card.name.left, format: :json
-      atom.delete(:content)
     end
   end
 
@@ -19,6 +18,6 @@ format :json do
   def item_cards
     return [] unless card.metric_card.relationship?
 
-    card.fetch(:relationship_search).relationship_answers
+    card.fetch(:relationship_answer).format(:json).item_cards
   end
 end
