@@ -34,6 +34,7 @@ class Answer
       "#{record_name}+#{year}".to_name
     end
 
+    # TODO: store first_source_id as lookup field
     def source_page_url
       card_url "~#{first_source_card.id}" if first_source_card
     end
@@ -52,6 +53,18 @@ class Answer
     def flex_id
       # prefix id with V (for virtual) if using id from answers table
       answer_id || "V#{id}"
+    end
+
+    def metric_name
+      metric_id&.cardname
+    end
+
+    def company_name
+      company_id&.cardname
+    end
+
+    def record_name
+      "#{metric_name}+#{company_name}"
     end
   end
 end
