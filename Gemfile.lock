@@ -462,7 +462,7 @@ GEM
     erubis (2.7.0)
     ethon (0.14.0)
       ffi (>= 1.15.0)
-    excon (0.83.0)
+    excon (0.84.0)
     execjs (2.8.1)
     ffi (1.15.3)
     fog-aws (3.10.0)
@@ -590,7 +590,7 @@ GEM
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
     parallel (1.20.1)
-    parser (3.0.1.1)
+    parser (3.0.2.0)
       ast (~> 2.4.1)
     pdfkit (0.8.5)
     pivotal-tracker (0.5.13)
@@ -668,7 +668,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rainbow (3.0.0)
-    rake (13.0.3)
+    rake (13.0.5)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -709,7 +709,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.18.2)
+    rubocop (1.18.3)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -861,4 +861,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (= 0.12.5.4)
 
 BUNDLED WITH
-   2.1.4
+   2.2.15
