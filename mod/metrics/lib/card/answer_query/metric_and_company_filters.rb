@@ -27,6 +27,10 @@ class Card
         multi_company { project_restriction :company_id, :wikirate_company, value }
       end
 
+      def project_metric_query value
+        project_restriction :metric_id, :metric, value
+      end
+
       def bookmark_query value
         multi_metric { bookmark_restriction :metric_id, value }
         multi_company { bookmark_restriction :company_id, value }
