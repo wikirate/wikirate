@@ -57,6 +57,11 @@ class Card
         end
       end
 
+      def relationship_query value
+        @joins << "JOIN relationships AS r ON answers.company_id = r.company_id"
+
+      end
+
       def handle_equals_syntax field, value
         return yield unless value.to_s.match?(/^=/)
 
