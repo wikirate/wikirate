@@ -17,6 +17,10 @@ def relationship_lookup_id
   id
 end
 
+def company_id_field
+  :subject_company_id
+end
+
 def inverse_company_id_field
   :object_company_id
 end

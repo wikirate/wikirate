@@ -2,10 +2,6 @@ format :json do
   view :transparency_info do
     card.transparency_info(card.name).to_json
   end
-
-  view :transparency_info_short do
-    card.transparency_info_short(card.name).to_json
-  end
 end
 
 def transparency_info_short company_name
@@ -13,8 +9,7 @@ def transparency_info_short company_name
     id: id,
     owned_by: name,
     name: company_name,
-    scores: scores,
-    contact_url: contact_url
+    scores: scores
   }
 end
 
@@ -27,7 +22,7 @@ def transparency_info company_name
     revenue: latest_number(:ccc_revenue),
     profit: latest_number(:ccc_profit),
     brands: all_brands,
-    suppliers: supplier_infos,
+    # suppliers: supplier_infos,
     twitter_handle: twitter_handle
   )
 end
@@ -111,17 +106,13 @@ def living_wage_score_key
   latest_value :ccc_living_wages_paid_score_key
 end
 
-def contact_url
-  "http://action.com"
-end
-
-def suppliers
-  related_companies(metric: :commons_supplied_by)
-end
-
-def supplier_infos
-  suppliers.map(&:supplier_info).sort_by do |info|
-    info[:sort_key]
-    "#{99 - info[:num_values]}-#{info[:name]}"
-  end
-end
+# def suppliers
+#   related_companies(metric: :commons_supplied_by)
+# end
+#
+# def supplier_infos
+#   suppliers.map(&:supplier_info).sort_by do |info|
+#     info[:sort_key]
+#     "#{99 - info[:num_values]}-#{info[:name]}"
+#   end
+# end
