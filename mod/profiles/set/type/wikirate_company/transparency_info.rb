@@ -22,7 +22,7 @@ def transparency_info company_name
     revenue: latest_number(:ccc_revenue),
     profit: latest_number(:ccc_profit),
     brands: all_brands,
-    suppliers: supplier_infos,
+    # suppliers: supplier_infos,
     twitter_handle: twitter_handle
   )
 end
@@ -106,13 +106,13 @@ def living_wage_score_key
   latest_value :ccc_living_wages_paid_score_key
 end
 
-def suppliers
-  related_companies(metric: :commons_supplied_by)
-end
-
-def supplier_infos
-  suppliers.map(&:supplier_info).sort_by do |info|
-    info[:sort_key]
-    "#{99 - info[:num_values]}-#{info[:name]}"
-  end
-end
+# def suppliers
+#   related_companies(metric: :commons_supplied_by)
+# end
+#
+# def supplier_infos
+#   suppliers.map(&:supplier_info).sort_by do |info|
+#     info[:sort_key]
+#     "#{99 - info[:num_values]}-#{info[:name]}"
+#   end
+# end
