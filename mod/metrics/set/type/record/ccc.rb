@@ -1,6 +1,6 @@
 # special API for CCC widget.
 #
-# TODO: update to use relationships table!
+# TODO: obviate in widget; replace with standard API calls
 
 format :json do
   view :related_companies_with_year do
