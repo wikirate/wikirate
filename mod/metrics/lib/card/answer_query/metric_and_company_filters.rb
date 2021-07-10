@@ -67,7 +67,7 @@ class Card
 
         @joins << "JOIN relationships AS r " \
                   "ON answers.company_id = r.#{metric_card.inverse_company_id_field}"
-        @conditions << "metric_id = ? AND #{metric_card.company_id_field} = ?"
+        @conditions << "r.metric_id = ? AND #{metric_card.company_id_field} = ?"
         @values += [metric_id, value[:company_id]]
       end
 
