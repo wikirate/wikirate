@@ -27,6 +27,7 @@ class Card
         multi_company { project_restriction :company_id, :wikirate_company, value }
       end
 
+      # EXPERIMENTAL. used by fashionchecker but otherwise not public
       def project_metric_query value
         project_restriction :metric_id, :metric, value
       end
@@ -57,9 +58,17 @@ class Card
         end
       end
 
+      # EXPERIMENTAL. used by fashionchecker but otherwise not public
+      #
+      # will also need to support year and value constraints
       def relationship_query value
-        @joins << "JOIN relationships AS r ON answers.company_id = r.company_id"
+        metric_id = value[:metric_id]&.to_i
+        return unless (metric_card = metric_id&.card)
 
+        @joins << "JOIN relationships AS r " \
+                  "ON answers.company_id = r.#{metric_card.inverse_company_id_field}"
+        @conditions << "metric_id = ? AND #{metric_card.company_id_field} = ?"
+        @values += [metric_id, value[:company_id]]
       end
 
       def handle_equals_syntax field, value
