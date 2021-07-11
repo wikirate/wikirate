@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
     Card["Commons+Supplied by+Monster_Inc+1977+Los_Pollos_Hermanos"]
   end
 
-  check_views_for_errors :edit, :bar, :expanded_bar, :box
+  check_html_views_for_errors
 
   let(:year) { "1977" }
   let(:metric) { "Jedi+more evil" }

@@ -2,8 +2,8 @@ RSpec.describe Card::Set::Type::ResearchGroup do
   def card_subject
     Card["Jedi"]
   end
-  check_views_for_errors :open_content, :bar, :expanded_bar, :edit,
-                         :researcher_tab, :metric_tab, :project_tab
+
+  check_html_views_for_errors
 
   specify "view :info_bar" do
     expect_view(:info_bar).to have_tag "div.bar" do
