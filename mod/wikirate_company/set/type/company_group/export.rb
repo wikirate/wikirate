@@ -11,7 +11,7 @@ format :json do
 
   def fields_with_view view
     %i[specification wikirate_company].each_with_object({}) do |codename, hash|
-      hash[KEYMAP[codename]] = field_nest codename, view: view
+      hash[KEYMAP[codename]] = field_nest codename, view: (view)
     end
   end
 end

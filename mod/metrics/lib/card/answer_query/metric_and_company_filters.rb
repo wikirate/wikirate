@@ -38,9 +38,7 @@ class Card
       end
 
       def company_name_query value
-        handle_equals_syntax :company_id, value do
-          restrict_by_cql :company_id, name: [:match, value], type_id: WikirateCompanyID
-        end
+        restrict_by_cql :company_id, name: [:match, value], type_id: WikirateCompanyID
       end
 
       def country_query value
@@ -50,12 +48,10 @@ class Card
       end
 
       def metric_name_query value
-        handle_equals_syntax :metric_id, value do
-          @joins << :metric
-          restrict_by_cql "title_id",
-                          name: [:match, value],
-                          left_plus: [{}, { type_id: Card::MetricID }]
-        end
+        @joins << :metric
+        restrict_by_cql "title_id",
+                        name: [:match, value],
+                        left_plus: [{}, { type_id: Card::MetricID }]
       end
 
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
@@ -69,12 +65,6 @@ class Card
                   "ON answers.company_id = r.#{metric_card.inverse_company_id_field}"
         @conditions << "r.metric_id = ? AND #{metric_card.company_id_field} = ?"
         @values += [metric_id, value[:company_id]]
-      end
-
-      def handle_equals_syntax field, value
-        return yield unless value.to_s.match?(/^=/)
-
-        filter field, value.card_id
       end
 
       # SUPPORT METHODS
