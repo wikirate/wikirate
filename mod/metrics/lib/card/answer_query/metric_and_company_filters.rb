@@ -27,7 +27,7 @@ class Card
         multi_company { project_restriction :company_id, :wikirate_company, value }
       end
 
-      # EXPERIMENTAL. used by fashionchecker but otherwise not public
+      # EXPERIMENTAL. no public usage
       def project_metric_query value
         project_restriction :metric_id, :metric, value
       end
@@ -38,9 +38,7 @@ class Card
       end
 
       def company_name_query value
-        handle_equals_syntax :company_id, value do
-          restrict_by_cql :company_id, name: [:match, value], type_id: WikirateCompanyID
-        end
+        restrict_by_cql :company_id, name: [:match, value], type_id: WikirateCompanyID
       end
 
       def country_query value
@@ -50,15 +48,16 @@ class Card
       end
 
       def metric_name_query value
-        handle_equals_syntax :metric_id, value do
-          @joins << :metric
-          restrict_by_cql "title_id",
-                          name: [:match, value],
-                          left_plus: [{}, { type_id: Card::MetricID }]
-        end
+        @joins << :metric
+        restrict_by_cql "title_id",
+                        name: [:match, value],
+                        left_plus: [{}, { type_id: Card::MetricID }]
       end
 
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
+      #
+      # This is ultimately a company restriction, limiting the answers to the
+      # companies related to another by a given relationship metric
       #
       # will also need to support year and value constraints
       def relationship_query value
@@ -71,12 +70,20 @@ class Card
         @values += [metric_id, value[:company_id]]
       end
 
-      def handle_equals_syntax field, value
-        return yield unless value.to_s.match?(/^=/)
+      # EXPERIMENTAL. used by fashionchecker but otherwise not public
+      #
+      # This is ultimately a company restriction, limiting the answers to the
+      # companies with an answer for another metric.
+      #
+      # will also need to support year and value constraints
+      def answer_query value
+        return unless (metric_id = value[:metric_id]&.to_i)
 
-        filter field, value.card_id
+        @joins << "JOIN answers AS a2 ON answers.company_id = a2.company_id"
+        @conditions << "a2.metric_id = ?"
+        @values << metric_id
       end
-
+      
       # SUPPORT METHODS
       def single_metric?
         @filter_args[:metric_id].is_a? Integer
