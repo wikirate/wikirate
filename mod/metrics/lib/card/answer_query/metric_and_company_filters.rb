@@ -27,7 +27,7 @@ class Card
         multi_company { project_restriction :company_id, :wikirate_company, value }
       end
 
-      # EXPERIMENTAL. used by fashionchecker but otherwise not public
+      # EXPERIMENTAL. no public usage
       def project_metric_query value
         project_restriction :metric_id, :metric, value
       end
@@ -56,6 +56,9 @@ class Card
 
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
       #
+      # This is ultimately a company restriction, limiting the answers to the
+      # companies related to another by a given relationship metric
+      #
       # will also need to support year and value constraints
       def relationship_query value
         metric_id = value[:metric_id]&.to_i
@@ -67,6 +70,20 @@ class Card
         @values += [metric_id, value[:company_id]]
       end
 
+      # EXPERIMENTAL. used by fashionchecker but otherwise not public
+      #
+      # This is ultimately a company restriction, limiting the answers to the
+      # companies with an answer for another metric.
+      #
+      # will also need to support year and value constraints
+      def answer_query value
+        return unless (metric_id = value[:metric_id]&.to_i)
+
+        @joins << "JOIN answers AS a2 ON answers.company_id = a2.company_id"
+        @conditions << "a2.metric_id = ?"
+        @values << metric_id
+      end
+      
       # SUPPORT METHODS
       def single_metric?
         @filter_args[:metric_id].is_a? Integer
