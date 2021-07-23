@@ -100,8 +100,12 @@ class Card
 
         @joins << "JOIN relationships AS r " \
                   "ON answers.company_id = r.#{metric_card.inverse_company_id_field}"
-        @conditions << "r.metric_id = ? AND #{metric_card.company_id_field} = ?"
-        @values += [metric_id, value[:company_id]]
+        @conditions << "r.metric_id = ?"
+        @values << metric_id
+        if value[:company_id].present?
+          @conditions << "#{metric_card.company_id_field} = ?"
+          @values << value[:company_id]
+        end
       end
 
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
