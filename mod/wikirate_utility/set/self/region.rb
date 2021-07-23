@@ -1,8 +1,13 @@
+def countries_by_code
+  # FIXME: country code needs codename!
+  Wikirate::Region.region_lookup("Country Code").sort_by { |_id, code| code }
+end
+
 format :json do
   view :countries do
-    # FIXME: country code needs codename!
-    Wikirate::Region.region_lookup("Country Code").map do |region_id, country_code|
+    array = card.countries_by_code.map do |region_id, country_code|
       { "code": country_code, name: region_id.cardname }
-    end.to_json
+    end
+    JSON.pretty_generate array
   end
 end
