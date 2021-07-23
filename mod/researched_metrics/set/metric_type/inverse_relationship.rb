@@ -13,6 +13,10 @@ def answer_lookup_field
   :inverse_answer_id
 end
 
+def metric_lookup_field
+  :inverse_metric_id
+end
+
 def company_id_field
   :object_company_id
 end
