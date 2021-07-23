@@ -105,10 +105,10 @@ class Card
 
         @values << metric_id
         if company_id.present?
-          exists << " #{m.inverse_company_id_field} = ?"
+          exists << " AND #{m.inverse_company_id_field} = ?"
           @values << company_id
         end
-        @conditions << "WHERE EXISTS (#{exists})"
+        @conditions << "EXISTS (#{exists})"
       end
 
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
@@ -121,7 +121,7 @@ class Card
         return unless (metric_id = value[:metric_id]&.to_i)
         exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
           "AND a2.metric_id = ?"
-        @conditions << "WHERE EXISTS (#{exists})"
+        @conditions << "EXISTS (#{exists})"
         @values << metric_id
       end
     end
