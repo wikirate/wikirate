@@ -18,7 +18,7 @@ format :json do
   view :company_list, cache: :never do
     map_unique :company_id do |id|
       { id: id, name: id.cardname }
-    end
+    end.sort_by {|h| h[:name] }
   end
 
   view :metric_list, cache: :never do
