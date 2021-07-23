@@ -96,11 +96,11 @@ class Card
       # will also need to support year and value constraints
       def relationship_query value
         metric_id = value[:metric_id]&.to_i
-        return unless (metric_card = metric_id&.card)
+        return unless (m = metric_id&.card)
 
         @joins << "JOIN relationships AS r " \
-                  "ON answers.company_id = r.#{metric_card.inverse_company_id_field}"
-        @conditions << "r.metric_id = ?"
+                  "ON answers.company_id = r.#{m.inverse_company_id_field}"
+        @conditions << "r.#{m.metric_lookup_field} = ?"
         @values << metric_id
         if value[:company_id].present?
           @conditions << "#{metric_card.company_id_field} = ?"
