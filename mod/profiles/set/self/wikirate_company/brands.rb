@@ -57,7 +57,6 @@ format :json do
     Env.params[:q] if Env.params[:q].present?
   end
 
-
   view :search_brands, cache: :never do
     keyword ? search_with_keyword : "{}"
   end
