@@ -96,16 +96,19 @@ class Card
       # will also need to support year and value constraints
       def relationship_query value
         metric_id = value[:metric_id]&.to_i
+        company_id = value[:company_id]
         return unless (m = metric_id&.card)
 
-        @joins << "JOIN relationships AS r " \
-                  "ON answers.company_id = r.#{m.inverse_company_id_field}"
-        @conditions << "r.#{m.metric_lookup_field} = ?"
+        exists = "SELECT * FROM relationships AS r " \
+          "WHERE answers.company_id = r.#{m.company_id_field} " \
+          "AND r.#{m.metric_lookup_field} = ?"
+
         @values << metric_id
-        if value[:company_id].present?
-          @conditions << "#{metric_card.company_id_field} = ?"
-          @values << value[:company_id]
+        if company_id.present?
+          exists << " #{m.inverse_company_id_field} = ?"
+          @values << company_id
         end
+        @conditions << "WHERE EXISTS (#{exists})"
       end
 
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
@@ -116,9 +119,9 @@ class Card
       # will also need to support year and value constraints
       def answer_query value
         return unless (metric_id = value[:metric_id]&.to_i)
-
-        @joins << "JOIN answers AS a2 ON answers.company_id = a2.company_id"
-        @conditions << "a2.metric_id = ?"
+        exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
+          "AND a2.metric_id = ?"
+        @conditions << "WHERE EXISTS (#{exists})"
         @values << metric_id
       end
     end
