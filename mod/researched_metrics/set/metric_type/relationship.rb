@@ -13,6 +13,10 @@ def answer_lookup_field
   :answer_id
 end
 
+def metric_lookup_field
+  :metric_id
+end
+
 def relationship_lookup_id
   id
 end
