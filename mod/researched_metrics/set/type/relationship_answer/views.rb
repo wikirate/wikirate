@@ -73,20 +73,25 @@ end
 
 format :json do
   def lookup
-    @lookup = card.lookup
+    @lookup ||= card.lookup
   end
 
   def atom
-    super().merge year: lookup.year,
-                  value: lookup.value,
-                  import: lookup.imported,
-                  comments: field_nest(:discussion, view: :core),
-                  metric_id: lookup.metric_id,
-                  inverse_metric_id: lookup.inverse_metric_id,
-                  subject_company_id: lookup.subject_company_id,
-                  subject_company: lookup.subject_company_id.cardname,
-                  object_company_id: lookup.object_company_id,
-                  object_company: lookup.object_company_id.cardname
+    fields =
+      %i[year value metric_id inverse_metric_id subject_company_id object_company_id]
+
+    super().merge(lookup_fields(fields)).merge(
+      import: lookup.imported,
+      comments: field_nest(:discussion, view: :core),
+      subject_company: lookup.subject_company_id.cardname,
+      object_company: lookup.object_company_id.cardname
+    )
+  end
+
+  def lookup_fields fields
+    fields.each_with_object({}) do |field, hash|
+      hash[field] = lookup.send field
+    end
   end
 
   def molecule
