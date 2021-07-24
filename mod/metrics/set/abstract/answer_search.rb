@@ -33,8 +33,12 @@ format do
 
   def normalize_filter_hash hash
     %i[metric company].each do |type|
-      next unless (id = hash.delete :"#{type}_id")&.present?
-      hash[:"#{type}_name"] = "=#{id.to_i.cardname}"
+      key = :"#{type}_name"
+      name = hash[key]
+      next unless name&.match(/^=/)
+
+      hash.delete key
+      hash[:"#{type}_name"] = name.card_id
     end
   end
 
