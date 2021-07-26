@@ -67,19 +67,17 @@ module Formula
       eval expr
     end
 
-    # FIXME: country needs codename!
     def country_lookup region
-      lookup_for_region region, "Country"
+      lookup_for_region region, :country
     end
 
-    # FIXME: ILO region needs codename!
     def ilo_region_lookup region
-      lookup_for_region region, "ILO Region"
+      lookup_for_region region, :ilo_region
     end
 
     def lookup_for_region region, field
       region_id = region.card_id
-      country = Wikirate::Region.region_lookup(field)[region_id] if region_id
+      country = Card::Region.lookup_vals(field)[region_id] if region_id
       country || "#{field} not found"
     end
 
