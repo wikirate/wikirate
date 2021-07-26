@@ -1,6 +1,5 @@
 def countries_by_code
-  # FIXME: country code needs codename!
-  Wikirate::Region.region_lookup("Country Code").sort_by { |_id, code| code }
+  Card::Region.lookup_vals(:country_code).sort_by { |_id, code| code }
 end
 
 format :json do

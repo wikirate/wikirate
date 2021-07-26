@@ -48,7 +48,7 @@ format :html do
     [
       ["Name", oc.name],
       ["Previous Names", oc.previous_names],
-      ["Jurisdiction", jurisdiction],
+      # ["Jurisdiction", jurisdiction],
       ["Registered Address", oc.registered_address],
       ["Incorporation date", incorporation_date],
       ["Company Type", oc.company_type],
@@ -63,9 +63,11 @@ format :html do
     [label, wrap_with(:strong, value)]
   end
 
-  def jurisdiction
-    jurisdiction_code && ::OpenCorporates::RegionCache.region_name(jurisdiction_code)
-  end
+  # removed this; it's duplication, and the data is actually in some ways as much wikirate
+  # as OC.
+  # def jurisdiction
+  #   jurisdiction_code && ::OpenCorporates::RegionCache.region_name(jurisdiction_code)
+  # end
 
   def incorporation_date
     date = oc.incorporation_date

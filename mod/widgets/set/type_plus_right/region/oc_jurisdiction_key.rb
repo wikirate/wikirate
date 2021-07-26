@@ -3,5 +3,5 @@ def oc_code
 end
 
 event :clear_jurisdiction_key_cache do
-  ::OpenCorporates::RegionCache.cache.reset_all
+  Card::Region.cache.reset_all
 end
