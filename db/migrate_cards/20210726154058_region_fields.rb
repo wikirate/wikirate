@@ -28,20 +28,41 @@ class RegionFields < Cardio::Migration
 
   def standardize_country_codes
     Card.search type: "Region" do |reg|
-      cc = reg.fetch :country_code
+
       case reg.oc_code
       when /\w{5}/
-        # puts "deleting country code for #{reg.name} (#{reg.oc_code})"
-        cc&.delete!
+        delete_country_code reg
+      when "in"
+        handle_india_region reg
       when /^\w\w$/
-        code = cc.content
-        # puts "updating country code from  #{code} to #{code.upcase} (OC: #{reg.oc_code})"
-        cc.update! content: code.upcase
-        # puts "setting country to self: #{reg.name}"
-        reg.fetch(:country)&.update! content: [reg.name].to_pointer_content
+        standardize_country_code reg
       else
         puts "no action for #{reg.name}"
       end
     end
+  end
+
+  def handle_india_region reg
+    if reg.name == "India"
+      standardize_country_code reg
+    else
+      delete_country_code reg
+      puts "deleting jurisdiction key: #{reg.name}"
+      reg.fetch(:oc_jurisdiction_key)&.delete!
+    end
+  end
+
+  def delete_country_code reg
+    puts "deleting country code for #{reg.name} (#{reg.oc_code})"
+    reg.fetch(:country_code)&.delete!
+  end
+
+  def standardize_country_code reg
+    cc = reg.fetch :country_code
+    code = cc.content
+    puts "updating country code from  #{code} to #{code.upcase} (OC: #{reg.oc_code})"
+    cc.update! content: code.upcase
+    puts "setting country to self: #{reg.name}"
+    reg.fetch(:country)&.update! content: [reg.name].to_pointer_content
   end
 end
