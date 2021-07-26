@@ -77,7 +77,7 @@ module Formula
 
     def lookup_for_region region, field
       region_id = region.card_id
-      country = Card::Region.lookup_vals(field)[region_id] if region_id
+      country = Card::Region.lookup_val(field)[region_id] if region_id
       country || "#{field} not found"
     end
 

@@ -1,5 +1,5 @@
 def countries_by_code
-  Card::Region.lookup_vals(:country_code).sort_by { |_id, code| code }
+  Card::Region.lookup_val(:country_code).sort_by { |_id, code| code }
 end
 
 format :json do
