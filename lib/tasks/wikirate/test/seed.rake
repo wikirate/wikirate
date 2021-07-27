@@ -62,7 +62,7 @@ namespace :wikirate do
 
           Rake::Task["wikirate:test:seed:add_wikirate_test_data"].invoke
           Card::Cache.reset_all
-          Rake::Task["wikirate:test:update_machine_output"].invoke
+          Rake::Task["decko:mod_install"].invoke
           Rake::Task["wikirate:test:dump"].execute
         end
       end
