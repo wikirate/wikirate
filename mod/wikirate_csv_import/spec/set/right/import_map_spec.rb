@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Right::ImportMap do
     @card_subject ||= Card["answer import test"].import_map_card
   end
 
-  check_views_for_errors :core, :bar
+  check_html_views_for_errors
 
   describe "HtmlFormat" do
     describe "#map_ui" do
