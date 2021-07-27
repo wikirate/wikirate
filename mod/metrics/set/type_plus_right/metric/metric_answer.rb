@@ -68,11 +68,13 @@ end
 
 format :html do
   view :export_links, cache: :never do
-    super() unless metric_card.relationship?
-
-    wrap_with :div, class: "export-links py-2" do
-      [wrap_export_links("Answer", export_format_links),
-       wrap_export_links("Relationship", relationship_export_links)]
+    if metric_card.relationship?
+      wrap_with :div, class: "export-links py-2" do
+        [wrap_export_links("Answer", export_format_links),
+         wrap_export_links("Relationship", relationship_export_links)]
+      end
+    else
+      super()
     end
   end
 

@@ -42,7 +42,6 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::OpenCorporates do
       is_expected.to have_table [
         ["Name", "BP P.L.C."],
         ["Previous Names", "BP AMOCO P.L.C., THE BRITISH PETROLEUM COMPANY P.L.C."],
-        ["Jurisdiction", "California (United States)"],
         ["Registered Address", "1 ST JAMES'S SQUARE, LONDON, SW1Y 4PD"],
         ["Incorporation date", /14 April 1909 \((almost|over|about) \d+ years ago\)/],
         ["Company Type", "Public Limited Company"],
