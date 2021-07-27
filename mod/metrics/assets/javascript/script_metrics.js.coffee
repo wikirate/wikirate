@@ -1,10 +1,4 @@
 $(document).ready ->
-  $(".topic-list .RIGHT-topic").readmore(
-    maxHeight: 70,
-    heightMargin: 16,
-    moreLink: '<a href="#" ><small>View all</small></a>',
-    lessLink: '<a href="#"><small>View less</small></a>'
-  )
 
 decko.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
