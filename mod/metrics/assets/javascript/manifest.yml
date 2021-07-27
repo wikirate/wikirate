@@ -1,0 +1,10 @@
+metrics:
+  items:
+    - script_metrics.js.coffee
+    - script_metric_properties.js.coffee
+    - script_metric_chart.js.coffee
+
+vega:
+  minimize: false
+  items:
+    - script_vega.js

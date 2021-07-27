@@ -126,7 +126,7 @@ format :html do
   end
 
   def country_options
-    Wikirate::Region.countries
+    Card::Region.countries
   end
 
   def bookmark_options

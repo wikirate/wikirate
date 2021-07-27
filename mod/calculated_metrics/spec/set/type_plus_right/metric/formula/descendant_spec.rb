@@ -3,5 +3,5 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Descendant do
     Card["Joe User+descendant 1+formula"]
   end
 
-  check_views_for_errors :ancestor_core
+  check_html_views_for_errors
 end
