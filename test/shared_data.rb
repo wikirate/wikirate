@@ -41,7 +41,7 @@ class SharedData
     include Card::Model::SaveHelper
 
     def add_wikirate_data
-      puts "add wikirate data"
+      puts "adding wikirate data".green
       setup
       add :companies, :topics, :sources, :report_types,
           :yearly_variables,
