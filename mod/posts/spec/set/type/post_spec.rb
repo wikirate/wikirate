@@ -13,8 +13,7 @@ RSpec.describe Card::Set::Type::Post do
 
     # let(:card_subject) { post }
 
-    check_views_for_errors :open_content, :bar, :edit,
-                           :wikirate_company_tab, :wikirate_topic_tab, :project_tab
+    check_html_views_for_errors
 
     let(:badges_matcher) {  %w[1 Companies 1 Topics 1 Projects].join(".*") }
 
