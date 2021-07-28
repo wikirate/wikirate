@@ -69,9 +69,11 @@ namespace :wikirate do
     end
 
     desc "dump test database"
-    task :dump, [:path] do |_task, args|
-      dump_path = args[:path] || full_dump_path
-      dump dump_path, testdb
+    task :dump, [:path] do |task, args|
+      ensure_env :test, task do
+        dump_path = args[:path] || full_dump_path
+        dump dump_path, testdb
+      end
     end
   end
 end
