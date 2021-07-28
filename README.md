@@ -32,7 +32,7 @@ The following will help set up a functioning wikirate site with a small subset o
    or start fresh with a subject of your choice: `bundle exec rake wikirate:new_with_subject Camels`
 1. add AWS credentials to config/application.rb (Ask wikirate dev team!  Sorry, we'll make this easier soon)
 1. to make assets like icons work: `bundle exec rake decko:update_assets_symlink`
-1. reset machines `rake card:reset_machine_output`
+1. reset assets `rake card:asset:refresh`
 1. start server: `bundle exec decko s`
 
 note: 
@@ -97,4 +97,3 @@ quick examples:
   cap production maintenance:disable
 
 ```
-
