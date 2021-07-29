@@ -40,7 +40,6 @@ $.extend wikirate:
     child: ->
       target.find(loader.child)
 
-window.wikirate = $.wikirate
 
 #get url param
 $.urlParam = (name) ->
