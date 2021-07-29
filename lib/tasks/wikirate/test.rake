@@ -62,38 +62,18 @@ namespace :wikirate do
       end
     end
 
-    desc "update caches for machine output"
-    task update_machine_output: :environment do |task|
-      ENV["STORE_CODED_FILES"] = "true"
-      Card.reset_all_machines
-      ensure_env :test, task do
-        Card::Auth.as_bot do
-          [[:all, :script],
-           [:all, :style],
-           [:script_html5shiv_printshiv]].each do |name_parts|
-            Card[*name_parts].reset_machine_output
-            Card[*name_parts].regenerate_machine_output
-            codename = "#{name_parts.join('_')}_output"
-            Card[*name_parts, :machine_output].update!(
-              codename: codename, storage_type: :coded, mod: :test
-            )
-          end
-        end
-      end
-      Card::Cache.reset_all # should not be needed, but currently failing without.
-    end
-
     desc "load db dump into test db"
     task :load_dump, [:path] do |_task, args|
       dump_path = args[:path] || ARGV[1] || full_dump_path
       load_dump dump_path, testdb
     end
 
-
     desc "dump test database"
-    task :dump, [:path] do |_task, args|
-      dump_path = args[:path] || full_dump_path
-      dump dump_path, testdb
+    task :dump, [:path] do |task, args|
+      ensure_env :test, task do
+        dump_path = args[:path] || full_dump_path
+        dump dump_path, testdb
+      end
     end
   end
 end
