@@ -9,7 +9,7 @@ $ ->
 
 
 # Loader animation
-$.extend wikirate:
+window.wikirate =
   ajaxLoader: { head: '#ajax_loader', child: '.loader-anime'}
   initRowRemove: ($button) ->
     $button =  $("._remove_row") unless $button
@@ -39,7 +39,6 @@ $.extend wikirate:
       this.child().remove()
     child: ->
       target.find(loader.child)
-
 
 #get url param
 $.urlParam = (name) ->
@@ -87,7 +86,7 @@ decko.slotReady (slot) ->
 
   wikirate.initRowRemove(slot.find("._remove_row"))
 
-# destory modal content after closing modal window (On homepage only)
+# destroy modal content after closing modal window (On homepage only)
 $(document).ready ->
 #  if $('#Home').exists()
 #    $('#modal-main-slot').on 'hidden.bs.modal', ->

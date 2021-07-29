@@ -458,81 +458,79 @@ standard "data-card-name" attribute.
     });
   });
 
-  $.extend({
-    wikirate: {
-      ajaxLoader: {
-        head: '#ajax_loader',
-        child: '.loader-anime'
-      },
-      initRowRemove: function($button) {
-        if (!$button) {
-          $button = $("._remove_row");
-        }
-        return $button.each(function() {
-          var $this;
-          $this = $(this);
-          return $this.on('click', function() {
-            return $this.closest('tr').remove();
-          });
-        });
-      },
-      isString: function(val) {
-        var ref;
-        return (ref = typeof val === 'string') != null ? ref : {
-          "true": false
-        };
-      },
-      jObj: function(ele) {
-        if (this.isString(ele)) {
-          return $(ele);
-        } else {
-          return ele;
-        }
-      },
-      loader: function(target, relative) {
-        var fn, loader;
-        if (relative == null) {
-          relative = false;
-        }
-        fn = this;
-        target = fn.jObj(target);
-        loader = fn.ajaxLoader;
-        return {
-          isLoading: function() {
-            if (this.child().exists()) {
-              return true;
-            } else {
-              return false;
-            }
-          },
-          add: function() {
-            if (this.isLoading()) {
-              return;
-            }
-            target.append($(loader.head).html());
-            if (relative) {
-              return this.child().addClass("relative");
-            }
-          },
-          prepend: function() {
-            if (this.isLoading()) {
-              return;
-            }
-            target.prepend($(loader.head).html());
-            if (relative) {
-              return this.child().addClass("relative");
-            }
-          },
-          remove: function() {
-            return this.child().remove();
-          },
-          child: function() {
-            return target.find(loader.child);
-          }
-        };
+  window.wikirate = {
+    ajaxLoader: {
+      head: '#ajax_loader',
+      child: '.loader-anime'
+    },
+    initRowRemove: function($button) {
+      if (!$button) {
+        $button = $("._remove_row");
       }
+      return $button.each(function() {
+        var $this;
+        $this = $(this);
+        return $this.on('click', function() {
+          return $this.closest('tr').remove();
+        });
+      });
+    },
+    isString: function(val) {
+      var ref;
+      return (ref = typeof val === 'string') != null ? ref : {
+        "true": false
+      };
+    },
+    jObj: function(ele) {
+      if (this.isString(ele)) {
+        return $(ele);
+      } else {
+        return ele;
+      }
+    },
+    loader: function(target, relative) {
+      var fn, loader;
+      if (relative == null) {
+        relative = false;
+      }
+      fn = this;
+      target = fn.jObj(target);
+      loader = fn.ajaxLoader;
+      return {
+        isLoading: function() {
+          if (this.child().exists()) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+        add: function() {
+          if (this.isLoading()) {
+            return;
+          }
+          target.append($(loader.head).html());
+          if (relative) {
+            return this.child().addClass("relative");
+          }
+        },
+        prepend: function() {
+          if (this.isLoading()) {
+            return;
+          }
+          target.prepend($(loader.head).html());
+          if (relative) {
+            return this.child().addClass("relative");
+          }
+        },
+        remove: function() {
+          return this.child().remove();
+        },
+        child: function() {
+          return target.find(loader.child);
+        }
+      };
     }
-  });
+  };
 
   $.urlParam = function(name) {
     var results;
