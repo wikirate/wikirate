@@ -2,7 +2,7 @@ RSpec.describe Card::Set::MetricType::Relationship do
   def card_subject
     Card["Jedi+more evil"]
   end
-  check_views_for_errors :edit
+  check_html_views_for_errors
 
   describe "create" do
     before do
