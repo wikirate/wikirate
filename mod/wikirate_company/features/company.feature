@@ -14,7 +14,7 @@ Feature: company feature
     And I should see "Force"
     Then I click on "Projects"
     And I should see "Evil Project"
-    And I should see "2 1" with line breaks
+    And I should see "2 1"
     Then I click on "Sources"
     And I should see "thereaderwiki.com"
     And I should see "Original"
@@ -69,4 +69,3 @@ Feature: company feature
     Then I should see "Victims by Employees"
     Then I click "2" within ".paging"
     And I should not see "Victims by Employees"
-

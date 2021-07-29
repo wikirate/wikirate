@@ -9,7 +9,7 @@ Feature: Multi-Category
     And I uncheck "2"
     And I press "Save"
     And I wait for ajax response
-    Then I should see "1, 3" with line breaks
+    Then I should see "1, 3"
 
 #  FIXME: select step not working for multi-select
 #  Scenario: Check and uncheck value for metric with many options
@@ -19,4 +19,3 @@ Feature: Multi-Category
 #    #And I select "2" from "Answer"
 #    And I submit
 #    Then I should see "1, 3"
-
