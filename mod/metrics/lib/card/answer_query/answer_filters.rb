@@ -71,7 +71,7 @@ class Card
         when "current_user"
           checked_by Auth.current_id
         when "wikirate_team"
-          checked_by id: Set::Self::WikirateTeam.member_ids.unshift(:in)
+          checked_by id: Set::Self::Steward.always_ids.unshift(:in)
         else
           raise Error::UserError, "unknown verification level: #{value}"
         end
