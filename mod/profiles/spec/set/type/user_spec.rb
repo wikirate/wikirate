@@ -3,6 +3,5 @@ RSpec.describe Card::Set::Type::User do
     Card["Joe Camel"]
   end
 
-  check_views_for_errors :open_content, :edit,
-                         :research_group_tab, :contributions_tab, :activity_tab
+  check_html_views_for_errors
 end

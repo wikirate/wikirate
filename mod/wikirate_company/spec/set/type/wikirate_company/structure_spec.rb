@@ -3,8 +3,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
     Card["Google Inc"]
   end
 
-  check_views_for_errors :open_content, :edit,
-                         :wikirate_topic_tab, :source_tab, :post_tab, :project_tab
+  check_html_views_for_errors
 
   describe "details tab" do
     it "has jurisdiction information" do
