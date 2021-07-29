@@ -18,6 +18,6 @@ class MoveCustomizedBootswatchSkin < Cardio::Migration
                 content: "[[wikirate stylesheets]]\n[[emergency style hacks]]"
     Card["wikirate skin", :colors].update_column :db_content, WIKIRATE_VARIABLES
     update_card [:all, :style], content: "[[wikirate skin]]"
-    Card.reset_all_machines
+    Card::Machine.reset_all
   end
 end

@@ -8,8 +8,7 @@ describe Card::Set::Type::Project do
   let(:project) { card_subject }
 
   context "with no year" do
-    check_views_for_errors :open_content, :bar, :expanded_bar, :edit,
-                           :wikirate_company_tab, :metric_tab, :subproject_tab
+    check_html_views_for_errors
 
     it "has no year" do
       expect(card_subject.years).to eq(false)

@@ -22,7 +22,6 @@ format :html do
   def wikirate_layout body_class
     <<-HTML.strip_heredoc
       <body class="wikirate-layout #{body_class}">
-        <div id="fakeLoader"></div>
         #{nest :nav_bar, view: :core}
         #{yield}
         #{nest :wikirate_footer, view: :content}
