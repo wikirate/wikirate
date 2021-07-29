@@ -534,8 +534,6 @@ standard "data-card-name" attribute.
     }
   });
 
-  window.wikirate = $.wikirate;
-
   $.urlParam = function(name) {
     var results;
     results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
