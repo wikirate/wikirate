@@ -15,7 +15,7 @@ Feature: create calculated metrics
     And I scroll 500 pixels down
     And I press "Submit"
     Then I should see "MyFormula"
-    And I should see "Designed by Joe Camel" with line breaks
+    And I should see "Designed by Joe Camel"
     And I should see "Metric Type Formula"
     And I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
@@ -52,7 +52,7 @@ Feature: create calculated metrics
     # And I fill in "Topic" with "Animal Welfare"
     And I press "Submit"
     Then I should see "MyWikiRating"
-    And I should see "Designed by Joe Camel" with line breaks
+    And I should see "Designed by Joe Camel"
     And I should see "Metric Type WikiRating"
     And I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
