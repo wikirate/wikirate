@@ -15,7 +15,11 @@ format :html do
 
   def form_fields
     flds = %i[wikirate_title report_type wikirate_company year description]
-    flds = flds.unshift :file if card.new?
+    if card.new?
+      flds.unshift :file
+    elsif card.wikirate_link_card.new?
+      flds.unshift :wikirate_link
+    end
     flds
   end
 
