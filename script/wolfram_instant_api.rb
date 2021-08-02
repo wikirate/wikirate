@@ -7,9 +7,12 @@
 # 2. we cut and paste the API string into Wolfram Cloud:
 #    https://www.wolframcloud.com/
 #    (click new Notebook)
+#    paste
+#    evaluate
 #
 # 3. we update the server configuration with the new object identification:
 #     config.wolfram_api_key = "adfsadf-asdfsad-asdfsa-dfsdfds"
+#     (key is probably first one here: https://www.wolframcloud.com/dashboard)
 #
 # Soon we would like to automate the update...
 #
