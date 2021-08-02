@@ -28,8 +28,8 @@ class Card
     private
 
     # Currently these queries only work with a fixed company or metric
-    # it will be possible to handle not-researched answers for multiple companies and
-    # metrics, but this is not yet supported.
+    # it is not yet possible to handle not-researched answers for multiple companies and
+    # metrics in one query
     def require_partner!
       if single_metric?
         @partner = :company
