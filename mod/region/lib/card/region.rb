@@ -34,6 +34,10 @@ class Card
         lookup_region_id(OcJurisdictionKeyID)[oc_code]&.cardname
       end
 
+      def field_cards field
+        Card.search left: { type: :region }, right: field
+      end
+
       private
 
       def build_val_lookup field
@@ -53,10 +57,6 @@ class Card
         field_cards(field).each_with_object({}) do |fld, hash|
           yield fld.left_id, fld.send(content_method), hash
         end
-      end
-
-      def field_cards field
-        Card.search left: { type: :region }, right: field
       end
     end
   end
