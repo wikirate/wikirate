@@ -7,6 +7,7 @@ class Card
       PARTNER_FILTER_QUERY = {
         company: CompanyFilterQuery, metric: MetricFilterQuery
       }.freeze
+
       PARTNER_CQL_FILTERS = {
         company: ::Set.new(%i[project country]),
         metric: ::Set.new(%i[project designer metric_type research_policy bookmark])
@@ -14,12 +15,16 @@ class Card
 
       # TEMPORARY HACK.  replace with metric lookup
       def metric_name_query value
-        @card_ids = Card.search(type_id: Card::MetricID,
-                                right: { name: [:match, value] },
-                                return: :id)
+        restrict_partner_ids matching_metric_ids(value)
       end
 
       private
+
+      def matching_metric_ids value
+        Card.search type_id: Card::MetricID,
+                    right: { name: [:match, value] },
+                    return: :id
+      end
 
       def process_filter_option key, value
         return super unless PARTNER_CQL_FILTERS[@partner].include? key
@@ -47,8 +52,9 @@ class Card
       end
 
       def card_conditions
-        add_card_condition "#{@partner}.id IN (?)", @card_ids if @card_ids.present?
-        @card_conditions << " #{@partner}.id IN (#{cql_subquery})" if @cql_filter.present?
+        add_card_condition "#{@partner}.id IN (?)", @partner_ids if @partner_ids.present?
+        add_card_condition "#{@partner}.id NOT IN (?)", @not_ids if @not_ids.present?
+        @card_conditions << "#{@partner}.id IN (#{cql_subquery})" if @cql_filter.present?
         condition_sql([@card_conditions.join(" AND ")] + @card_values)
       end
 
@@ -62,9 +68,24 @@ class Card
         end
       end
 
+      def restrict_partner_ids ids
+        @partner_ids = @partner_ids.nil? ? ids : (@partner_ids & ids)
+        @empty_result = true if @partner_ids.blank?
+      end
+
+      def restrict_not_partners_ids ids
+        @not_ids = @not_ids.nil? ? ids : (@not_ids | ids)
+      end
+
+      def filtered_year
+        year = @filter_args[:year]
+        year unless year.blank? || year.to_s == "latest"
+      end
+
       def restrict_lookup_ids col, ids
         return super unless col == partner_id_col
-        @card_ids = @card_ids.any? ? (@card_ids & ids) : ids
+
+        restrict_partner_ids ids
       end
 
       def partner_id_col

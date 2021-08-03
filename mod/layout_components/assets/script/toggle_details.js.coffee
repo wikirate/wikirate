@@ -1,4 +1,5 @@
-# FIXME: change name to "toggle_details"
+# Check if container exists
+$.fn.exists = -> return this.length > 0
 
 $(document).ready ->
   $('body').on 'click', "[data-details-mark]", ->

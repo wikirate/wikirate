@@ -31,19 +31,26 @@ format do
     nil
   end
 
+  def default_limit
+    Auth.signed_in? ? 5000 : 500
+  end
+
+  private
+
   def normalize_filter_hash hash
     %i[metric company].each do |type|
-      key = :"#{type}_name"
-      name = hash[key]
-      next unless name&.match(/^=/)
-
-      hash.delete key
-      hash[:"#{type}_name"] = name.card_id
+      handle_exact_name hash, type
     end
   end
 
-  def default_limit
-    Auth.signed_in? ? 5000 : 500
+  # names prefixed with an equals sign are treated as "exact" names
+  def handle_exact_name hash, type
+    key = :"#{type}_name"
+    name = hash[key]
+    return unless name&.match(/^=/)
+
+    hash.delete key
+    hash[:"#{type}_id"] = name.card_id
   end
 end
 
