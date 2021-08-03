@@ -10,8 +10,7 @@ Feature: create calculated metrics
     And I click on "Calculated"
     And I fill in "Metric Title" with "MyFormula"
     #And I fill in "Question" with "my question"
-    # And I fill in "Topic" with "Animal Welfare"
-    And I select "Animal Welfare" from "Topic"
+    And I select "Animal Welfare" from "Topics"
     And I scroll 500 pixels down
     And I press "Submit"
     Then I should see "MyFormula"
