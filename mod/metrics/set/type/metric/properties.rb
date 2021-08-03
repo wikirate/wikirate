@@ -4,16 +4,16 @@ format :html do
     { designer:       "Designed by",
       wikirate_topic: "Topics",
       metric_type:    "Metric Type",
-      unpublished:    "Unpublished" }
+      unpublished:    "Unpublished" }.merge applicability_properties
   end
 
   # all metrics have these properties in their editor
   def basic_edit_properties
     { question:       "Question",
-      wikirate_topic: "Topic",
+      wikirate_topic: "Topics",
       about:          "About",
       methodology:    "Methodology",
-      unpublished:    "Unpublished" }
+      unpublished:    "Unpublished" }.merge applicability_properties
   end
 
   def value_type_properties
@@ -27,6 +27,11 @@ format :html do
     { research_policy: "Research Policy",
       report_type:     "Report Type",
       steward:         "Steward" }
+  end
+
+  def applicability_properties
+    { year:          "Years",
+      company_group: "Company Groups" }
   end
 
   view :metric_properties do

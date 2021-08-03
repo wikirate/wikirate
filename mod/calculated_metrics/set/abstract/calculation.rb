@@ -46,17 +46,3 @@ end
 def normalize_value value
   ::Answer.value_to_lookup value
 end
-
-format :html do
-  def calculation_properties
-    { year: "Years", company_group: "Company Groups" }
-  end
-
-  def table_properties
-    super.merge calculation_properties
-  end
-
-  def edit_properties
-    super.merge calculation_properties
-  end
-end
