@@ -85,6 +85,35 @@ def inverse_related_company_ids args={}
   inverse_relationships(args).distinct.pluck :subject_company_id
 end
 
+# ids of metrics that do not apply to this company (because of company group restriction)
+def inapplicable_metric_ids
+  company_group_condition =
+    if (cg_ids = company_group_ids)&.any?
+      { not: { refer_to: { "id": ["in"] + cg_ids } } }
+    else
+      {}
+    end
+
+  Card.search(
+    type: :metric,
+    return: :id,
+    limit: 0,
+    right_plus: [:company_group, company_group_condition]
+  )
+end
+
+# ids of company groups of which company is a member
+def company_group_ids
+  Card.search(
+    type: :company_group,
+    return: :id,
+    right_plus: [
+      :wikirate_company,
+      { refer_to: id }
+    ]
+  )
+end
+
 private
 
 def normalize_metric_arg args={}

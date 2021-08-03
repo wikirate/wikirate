@@ -25,9 +25,9 @@ class Card
       end
 
       def checked_by whom
-        restrict_by_cql(:answer_id,
+        restrict_by_cql :answer_id,
                         type_id: MetricAnswerID,
-                        right_plus: [CheckedByID, { refer_to: whom }])
+                        right_plus: [CheckedByID, { refer_to: whom }]
       end
 
       def updater_query value

@@ -31,7 +31,7 @@ format :html do
       wikirate_topic: "Topics",
       metric_type:    "Metric Type",
       unpublished:    "Unpublished"
-    }.merge calculation_properties
+    }.merge applicability_properties
   end
 
   def header_text
