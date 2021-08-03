@@ -71,6 +71,5 @@ RSpec.describe Card::Set::Type::WikirateCompany do
     it "does not finds metrics that include it" do
       expect(Card["Death Star"].inapplicable_metric_ids).to eq([])
     end
-
   end
 end

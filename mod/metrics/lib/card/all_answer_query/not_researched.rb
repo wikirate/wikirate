@@ -17,28 +17,17 @@ class Card
       end
 
       def new_name_year
-        @new_name_year ||= determine_new_name_year.to_s
-      end
-
-      def determine_new_name_year
-        year = @filter_args[:year]
-        year.blank? || year.to_s == "latest" ? latest_applicable_year : year
-      end
-
-      def latest_applicable_year
-        if (years = applicable_years)&.present?
-          years.last
-        else
-          Time.now.year
-        end
+        @new_name_year ||= filtered_year || latest_applicable_year
       end
 
       # not sure this really matters; year isn't displayed or included in link
       # at present
-      def applicable_years
-        return unless @partner == :company
-
-        metric_card&.year_card&.item_names&.sort
+      def latest_applicable_year
+        if (years = applicable_years).present?
+          years.last
+        else
+          Time.now.year.to_s
+        end
       end
     end
   end

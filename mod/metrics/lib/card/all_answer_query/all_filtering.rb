@@ -82,40 +82,53 @@ class Card
           restrict_to_applicable_companies
           validate_year_restriction
         else
-          restrict_to_applicable_metrics
+          # filter_inapplicable_metrics
+          restrict_metrics_by_company_group
+          restrict_metrics_by_year
         end
       end
 
       def restrict_to_applicable_companies
-        return unless (ids = metric_card&.company_group_card&.company_ids)&.present?
+        return unless (ids = metric_card&.company_group_card&.company_ids).present?
 
         restrict_partner_ids ids
       end
 
-      def restrict_to_applicable_metrics
-        if (never_ids = company_card&.inapplicable_metric_ids)&.present?
-          restrict_not_partners_ids never_ids
-        end
+      def restrict_metrics_by_company_group
+        return unless (never_ids = company_card&.inapplicable_metric_ids).present?
 
-        if (not_now_ids = year_card&.inapplicable_metric_ids)&.present?
-          restrict_not_partners_ids not_now_ids
-        end
+        restrict_not_partners_ids never_ids
+      end
+
+      def restrict_metrics_by_year
+        return unless (not_now_ids = year_card&.inapplicable_metric_ids).present?
+
+        restrict_not_partners_ids not_now_ids
       end
 
       def year_card
-        year = @filter_args[:year]&.to_s
-        return if year.blank? || year == "latest"
-
-        Card[year]
+        year = filtered_year
+        year && Card[year]
       end
 
       # if there are year filters and year applicability restrictions,
       # there must be at least one year in common to find a result.
       def validate_year_restriction
-        return unless (filtered_years = Array.wrap(@filter_args[:year]))&.present?
-        return unless (applicable_years = metric_card&.year_card&.item_names)&.present?
+        return unless (filt_year = filtered_year) &&
+                      (appl_years = applicable_years).present?
 
-        @empty_result = true unless (filtered_years & applicable_years).present?
+        @empty_result = true unless filt_year.in? appl_years
+      end
+
+      def applicable_years
+        return unless @partner == :company
+
+        metric_card&.year_card&.item_names&.sort
+      end
+
+      def filtered_year
+        year = @filter_args[:year]
+        year unless year.blank? || year.to_s == "latest"
       end
 
       def restrict_lookup_ids col, ids
