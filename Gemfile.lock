@@ -583,7 +583,7 @@ GEM
     net_http_timeout_errors (0.3.5)
     netrc (0.11.0)
     newrelic_rpm (7.2.0)
-    nio4r (2.5.7)
+    nio4r (2.5.8)
     nokogiri (1.12.0-x86_64-darwin)
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
@@ -816,6 +816,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-darwin-20
 
 DEPENDENCIES
   addressable
