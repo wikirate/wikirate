@@ -9,3 +9,15 @@ end
 format :html do
   view :in_calendar, unknown: true, template: :haml
 end
+
+def inapplicable_metric_ids
+  Card.search(
+    type: :metric,
+    return: :id,
+    limit: 0,
+    right_plus: [
+      :year,
+      { not: { refer_to: id } }
+    ]
+  )
+end

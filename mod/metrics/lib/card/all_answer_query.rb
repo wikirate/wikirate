@@ -10,7 +10,7 @@ class Card
     def initialize filter, sorting={}, paging={}
       @card_conditions = []
       @card_values = []
-      @card_ids = []
+      @partner_ids = nil
       @cql_filter = {}
       super
     end
@@ -18,6 +18,7 @@ class Card
     def process_filters
       require_partner!
       add_card_condition "#{@partner}.type_id = ?", PARTNER_TYPE_ID[@partner]
+      filter_applicability
       super
     end
 
@@ -31,12 +32,14 @@ class Card
     # it is not yet possible to handle not-researched answers for multiple companies and
     # metrics in one query
     def require_partner!
-      if single_metric?
-        @partner = :company
-      elsif single_company?
-        @partner = :metric
-      end
-      raise "must have partner for status: all or none" unless @partner
+      @partner =
+        if single_metric?
+          :company
+        elsif single_company?
+          :metric
+        else
+          raise "must have partner for status: all or none"
+        end
     end
 
     # This left join is the essence of the search strategy.

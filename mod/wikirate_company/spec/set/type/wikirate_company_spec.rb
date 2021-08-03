@@ -53,4 +53,24 @@ RSpec.describe Card::Set::Type::WikirateCompany do
       expect(Relationship.where(object_company_id: company_id).count).to eq(0)
     end
   end
+
+  describe "inapplicable_metrics" do
+    let(:metric) { Card["Jedi+cost of planets destroyed"] }
+
+    before do
+      Card::Auth.as_bot do
+        metric.company_group_card.update! content: "Deadliest"
+        # restricts metric to Death Star, Los Pollos Hermanos, and SPECTRE
+      end
+    end
+
+    it "finds metrics that exclude it" do
+      expect(Card["Samsung"].inapplicable_metric_ids).to eq([metric.id])
+    end
+
+    it "does not finds metrics that include it" do
+      expect(Card["Death Star"].inapplicable_metric_ids).to eq([])
+    end
+
+  end
 end
