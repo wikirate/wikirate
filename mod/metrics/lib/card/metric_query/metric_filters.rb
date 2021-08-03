@@ -49,7 +49,7 @@ class Card
         return cond if stewards_all?
         metric_ids = Card::Auth.current.stewarded_metric_ids
         if metric_ids.empty?
-          @empty_results = true
+          @empty_result = true
         else
           "#{cond} and #{lookup_table}.metric_id in (#{metric_ids.join ', '})"
         end
