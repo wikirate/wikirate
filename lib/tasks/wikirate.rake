@@ -31,7 +31,7 @@ namespace :wikirate do
       Card::Cache.reset_all
       ActiveRecord::Base.descendants.each(&:reset_column_information)
       Card::Cache.reset_all
-      Rake::Task["card:refresh_machine_output"].invoke
+      Rake::Task["card:asset:refresh"].invoke
       dump dump_path
     end
   end

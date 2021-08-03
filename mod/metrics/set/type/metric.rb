@@ -109,12 +109,11 @@ def designer?
 end
 
 def steward_ids
-  @steward_ids ||=
-    [always_steward_ids, steward_card&.item_ids, metric_designer_id].flatten.compact.uniq
-end
-
-def always_steward_ids
-  Card::Set::Self::WikirateTeam.member_ids
+  @steward_ids ||= [
+    Self::Steward.always_ids,
+    steward_card&.item_ids,
+    metric_designer_id
+  ].flatten.compact.uniq
 end
 
 def ok_as_steward?

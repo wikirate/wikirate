@@ -101,10 +101,12 @@ event :update_oc_mapping_due_to_wikipedia_entry, :integrate,
   return unless oc&.company_number&.present?
 
   add_left_subcard :open_corporates, oc.company_number, :phrase
-  add_left_subcard :incorporation,
-                   ::OpenCorporates::RegionCache(oc.incorporation_jurisdiction_code)
-  add_left_subcard :headquarters,
-                   ::OpenCorporates::RegionCache(oc.jurisdiction_code)
+  add_left_subcard :incorporation, region_for_code(oc.incorporation_jurisdiction_code)
+  add_left_subcard :headquarters, region_for_code(oc.jurisdiction_code)
+end
+
+def region_for_code oc_code
+  Card::Region.region_name_for_oc_code oc_code
 end
 
 def add_left_subcard fieldname, content, type=:pointer

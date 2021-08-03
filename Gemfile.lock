@@ -470,7 +470,7 @@ GEM
     erubis (2.7.0)
     ethon (0.14.0)
       ffi (>= 1.15.0)
-    excon (0.84.0)
+    excon (0.85.0)
     execjs (2.8.1)
     ffi (1.15.3)
     fog-aws (3.10.0)
@@ -569,7 +569,6 @@ GEM
     mime-types-data (3.2021.0704)
     mini_magick (4.11.0)
     mini_mime (1.0.3)
-    mini_portile2 (2.5.3)
     minitest (5.14.4)
     multi_json (1.15.0)
     multi_test (0.1.2)
@@ -585,8 +584,7 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (7.2.0)
     nio4r (2.5.7)
-    nokogiri (1.11.7)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.12.0-x86_64-darwin)
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
       nokogiri (~> 1.5)
@@ -624,7 +622,7 @@ GEM
       binding_of_caller (~> 1.0)
       pry (~> 0.13)
     public_suffix (4.0.6)
-    puma (5.3.2)
+    puma (5.4.0)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -817,7 +815,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  ruby
+  x86_64-darwin-19
 
 DEPENDENCIES
   addressable
