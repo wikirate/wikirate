@@ -75,7 +75,7 @@ format :json do
   end
 
   def map_unique *fields
-    lookup_query.joins(:metric).distinct.pluck(*fields).map do |result|
+    lookup_query.joins(:metric).distinct.limit(1000).pluck(*fields).map do |result|
       yield result
     end
   end
