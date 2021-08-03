@@ -3,6 +3,7 @@ class Card
   class AllAnswerQuery < AnswerQuery
     include AllFiltering
     include AllSorting
+    include Applicability
     include NotResearched
 
     PARTNER_TYPE_ID = { company: Card::WikirateCompanyID, metric: Card::MetricID }.freeze
