@@ -48,8 +48,8 @@ $.urlParam = (name) ->
   else
     results[1] or 0
 
-# Check if container exist
-$.fn.exists = -> return this.length>0
+# Check if container exists
+$.fn.exists = -> return this.length > 0
 
 decko.slotReady (slot) ->
   # use jQuery chosen library for select tags
