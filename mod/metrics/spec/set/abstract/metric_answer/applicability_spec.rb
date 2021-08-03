@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Abstract::MetricAnswer::Name do
+RSpec.describe Card::Set::Abstract::MetricAnswer::Applicability do
   # only has answers for Samsung in 2014, 2015
-  let(:metric) { Card["Joe User+researched number 3"]}
+  let(:metric) { Card["Joe User+researched number 3"] }
 
   describe "event: validate_applicable_year" do
     before do

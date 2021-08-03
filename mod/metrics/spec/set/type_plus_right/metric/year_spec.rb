@@ -2,7 +2,7 @@
 
 RSpec.describe Card::Set::TypePlusRight::Metric::Year do
   # only has answers for Samsung in 2014, 2015
-  let(:metric) { Card["Joe User+researched number 3"]}
+  let(:metric) { Card["Joe User+researched number 3"] }
 
   # event in in Abstract::Applicability
   describe "event: verify_no_current_answers_inapplicable" do

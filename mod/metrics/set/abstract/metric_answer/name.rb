@@ -23,20 +23,6 @@ event :validate_year_change, :validate, on: :update, when: :year_updated? do
   success.year = new_year if success.year
 end
 
-event :validate_applicable_year, :validate, on: :save, changed: :name do
-  app_years = metric_card.year_card&.item_names
-  return if app_years.blank? || year.in?(app_years)
-
-  errors.add :name, "Inapplicable Year: #{year}"
-end
-
-event :validate_applicable_company, :validate, on: :save, changed: :name do
-  app_company_ids = metric_card.company_group_card&.company_ids
-  return if app_company_ids.blank? || company_id.in?(app_company_ids)
-
-  errors.add :name, "Inapplicable Company: #{company}"
-end
-
 def year_updated?
   (year_card = subfield(:year)) && !year_card.item_names.size.zero?
 end
