@@ -1,6 +1,7 @@
-# note: in cap deployments, the current/config is symlinked to
-# shared/config.  So long as that is the case, any changes here will need
-# to be copied over manually to shared/config.
+# note: in cap deployments, the shared/config/initializers directory links to this file's
+# "initializers" directory
+
+# better still would be to move this to a mod.
 
 require "delayed_job_web"
 
