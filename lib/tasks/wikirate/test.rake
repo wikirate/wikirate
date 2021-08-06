@@ -3,7 +3,7 @@ require File.expand_path "../importer", __FILE__
 
 namespace :wikirate do
   namespace :test do
-    full_dump_path = File.join Decko.root, "test", "seed.db"
+    full_dump_path = File.join Decko.root, "test", "dump", "seed.db"
 
     def testdb
       @testdb ||= ENV["DATABASE_NAME_TEST"] ||
