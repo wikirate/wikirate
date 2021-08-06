@@ -1,8 +1,9 @@
 namespace :wikirate do
   namespace :test do
     namespace :seed do
-      base_dump_path = File.join Decko.root, "test", "base_seed.db"
-      migrated_dump_path = File.join Decko.root, "test", "migrated_seed.db"
+      base_dump_path = File.join Decko.root, "test", "dump", "base_seed.db"
+
+      migrated_dump_path = File.join Decko.root, "test", "dump", "migrated_seed.db"
 
       # run it with rake "wikirate:test:seed:generate[local]" to fetch data from
       # local server
