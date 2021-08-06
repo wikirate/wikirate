@@ -19,6 +19,4 @@ module CoreExtensions
   end
 end
 
-class String
-  include CoreExtensions::String
-end
+String.include CoreExtensions::String
