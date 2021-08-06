@@ -473,7 +473,7 @@ GEM
     excon (0.85.0)
     execjs (2.8.1)
     ffi (1.15.3)
-    fog-aws (3.10.0)
+    fog-aws (3.11.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
@@ -585,7 +585,7 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (7.2.0)
     nio4r (2.5.8)
-    nokogiri (1.12.0)
+    nokogiri (1.12.2)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
@@ -736,7 +736,7 @@ GEM
     ruby-vips (2.1.2)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
-    ruby_parser (3.16.0)
+    ruby_parser (3.17.0)
       sexp_processor (~> 4.15, >= 4.15.1)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -863,4 +863,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (= 0.12.5.4)
 
 BUNDLED WITH
-   2.0.1
+   2.2.15
