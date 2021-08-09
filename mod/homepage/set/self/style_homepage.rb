@@ -1,5 +1,5 @@
 include_set Abstract::CodeFile
-Self::StyleMods.add_item :style_homepage
+basket[:style_mods] << :style_homepage
 
 FILE_NAMES = %i[homepage].freeze
 

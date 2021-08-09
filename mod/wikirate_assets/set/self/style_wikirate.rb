@@ -1,6 +1,6 @@
 include_set Abstract::CodeFile
 
-Self::StyleMods.add_item :style_wikirate
+basket[:style_mods] << :style_wikirate
 
 FILE_NAMES =
   %i[top_bar
