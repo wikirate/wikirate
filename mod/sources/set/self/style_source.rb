@@ -1,5 +1,5 @@
 include_set Abstract::CodeFile
-Self::StyleMods.add_item :style_source
+basket[:style_mods] << :style_source
 
 FILE_NAMES = %i[source_preview].freeze
 
