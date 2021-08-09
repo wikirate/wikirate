@@ -3,7 +3,7 @@ include_set Abstract::MetricChild, generation: 1
 delegate :researchable?, to: :metric_card
 
 event :verify_no_current_answers_inapplicable, :validate,
-      on: :save, changed: :content, when: :researchable? do
+      on: :update, changed: :content, when: :researchable? do
   return unless content.present? && inapplicable_answers.any?
 
   errors.add :content, "Invalid #{name.right} applicability restriction." \
