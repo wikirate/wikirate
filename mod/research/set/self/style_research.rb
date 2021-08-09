@@ -1,2 +1,2 @@
 include_set Abstract::CodeFile
-Self::StyleMods.add_item :style_research
+basket[:style_mods] << :style_research
