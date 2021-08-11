@@ -1,5 +1,5 @@
 module Formula
-  class Wolfram < NestFormula
+  class Wolfram
     # Provide methods to handle "Unknown" input values for Wolfram formulas
     module Validation
       WHITELIST = ::Set.new(
@@ -26,7 +26,7 @@ module Formula
         end
       end
 
-      def safe_to_exec? _expr
+      def safe_to_exec?
         true
       end
 
