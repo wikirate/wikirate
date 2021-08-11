@@ -1,5 +1,5 @@
 module Formula
-  class Wolfram < NestFormula
+  class Wolfram
     # Provide methods to handle "Unknown" return values for Wolfram formulas
     module Unknowns
       # Deals with the "unknown: result_unknown" option for Wolfram formulas.

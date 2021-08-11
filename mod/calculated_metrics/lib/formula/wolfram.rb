@@ -1,17 +1,15 @@
-require "formula/wolfram/unknowns"
-
 module Formula
-  class Wolfram < NestFormula
+  class Wolfram < NestCalculator
     include Unknowns
     include Validation
 
     # INPUT_CAST = lambda { |val| val == 'Unknown' ? 'Unknown'.to_f }
     # To reduce the Wolfram Cloud calls the Wolfram calculator
     # calculates all values at once when it compiles the formula and saves
-    # the result in @executed_lambda
+    # the result in @executed
     # Getting the value is just fetching the value from a hash
     def get_value _input, company, year
-      @executed_lambda[year.to_s][@company_index[year.to_s][company]]
+      @executed[year.to_s][@company_index[year.to_s][company]]
     end
 
     # Converts the formula to a Wolfram Language expression
@@ -29,11 +27,7 @@ module Formula
     # the values for all companies
     # <|2014 -> {32.28, 34.28}, 2015 -> {32.30, 34.30}|>
 
-    def to_lambda
-      wolfram_expression
-    end
-
-    def wolfram_expression
+    def build_executable
       "Apply[(#{wl_formula})&,<| #{wl_input} |>,{2}]"
     end
 
@@ -47,8 +41,8 @@ module Formula
     # @param [String] expr an expression in Wolfram language that returns json
     #   when evaluated in the Wolfram cloud
     # @return the parsed response
-    def exec_lambda expr
-      caller = Caller.new expr
+    def execute
+      caller = Caller.new executable
       caller.run
       if caller.errors.present?
         @errors += caller.errors
