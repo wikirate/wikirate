@@ -77,18 +77,22 @@ module Formula
       end
     end
 
+    def executable
+      @executable ||= build_executable
+    end
+
     protected
 
     def compile_formula
       return unless safe_to_convert? formula
-      @executed_lambda ||= safe_execution to_lambda
+      @executed ||= safely_execute
     end
 
     def safe_to_convert? _expr
       true
     end
 
-    def safe_to_exec? _expr
+    def safe_to_exec?
       false
     end
 
@@ -129,14 +133,12 @@ module Formula
       result
     end
 
-    def safe_execution expr
-      return if @errors.any?
+    def safely_execute
+      return if @errors.any? || (!safe_to_exec? && @errors << "invalid formula")
 
-      unless safe_to_exec?(expr)
-        @errors << "invalid formula"
-        return
-      end
-      exec_lambda expr
+      execute
+    rescue StandardError => e
+      @errors << e.message
     end
   end
 end

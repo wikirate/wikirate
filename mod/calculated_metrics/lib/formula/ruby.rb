@@ -7,7 +7,7 @@ module Formula
   # It converts the formula to a ruby lambda function
   # The formula may only consist of numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
-  class Ruby < NestFormula
+  class Ruby < NestCalculator
     extend RubyClassMethods
 
     SYMBOLS = %w[+ - ( ) \[ \] . * , / || && { } ].freeze
@@ -35,7 +35,7 @@ module Formula
         valid = validate_input inp, index
         return valid unless valid == true
       end
-      @executed_lambda.call(input)
+      @executed.call(input)
     end
 
     def validate_input input, index
@@ -53,7 +53,7 @@ module Formula
       end
     end
 
-    def to_lambda
+    def build_executable
       rb_formula = translate %i[functions nests list_syntax], formula
       find_allowed_non_numeric_input rb_formula
       lambda_wrap rb_formula
@@ -63,8 +63,8 @@ module Formula
 
     protected
 
-    def exec_lambda expr
-      eval expr
+    def execute
+      eval executable
     end
 
     def country_lookup region
@@ -81,7 +81,8 @@ module Formula
       country || "#{field} not found"
     end
 
-    def safe_to_exec? expr
+    def safe_to_exec?
+      expr = executable
       cleaned = if expr =~ /^lambda \{ \|args\| (.+)\}$/
                   Regexp.last_match(1).gsub(/args\[\d+\]/, "")
                 else
