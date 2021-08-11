@@ -78,7 +78,7 @@ module Formula
     end
 
     def executable
-      @executable ||= executable
+      @executable ||= build_executable
     end
 
     protected
@@ -134,7 +134,7 @@ module Formula
     end
 
     def safely_execute
-      return if @errors.any? || (!safe_to_exec? &&  @errors << "invalid formula")
+      return if @errors.any? || (!safe_to_exec? && @errors << "invalid formula")
 
       execute
     rescue StandardError => e
