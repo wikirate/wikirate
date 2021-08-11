@@ -8,8 +8,7 @@ class AddWidgetCodenames < Cardio::Migration
     # rename CCC metric if it exists
     if (supplier_card = Card["Clean Clothes Campaign+Supplier Of"])
       supplier_card.update! name: widget_cards[:commons_supplier_of],
-                                       update_referers: true,
-                                       silent_change: true
+                            silent_change: true
     end
 
     # add codenames to cards

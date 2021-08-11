@@ -15,15 +15,12 @@ class AddBookmarks < Cardio::Migration
       end
     end
     if Card::Codename.id :voted_up
-      Card[:voted_up].update! name: "Bookmarked",
-                              codename: "bookmarked",
-                              update_referers: true
+      Card[:voted_up].update! name: "Bookmarked", codename: "bookmarked"
     end
 
     if Card::Codename.id :metric_voter
       Card[:metric_voter]&.update! name: "Metric Bookmarker",
-                                   codename: "metric_bookmarker",
-                                   update_referers: true
+                                   codename: "metric_bookmarker"
     end
 
     Card.search refer_to: Card::VotedDownID do |vd_ref|
