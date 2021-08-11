@@ -1,7 +1,7 @@
 module Formula
   # The common ground of Translations and WikiRatings formula
-  class JsonFormula < Calculator
-    def to_lambda
+  class JsonCalculator < Calculator
+    def build_executable
       @parser.formula
     end
 
@@ -14,14 +14,14 @@ module Formula
       self.class.supported_formula? expr
     end
 
-    def safe_to_exec? _expr
+    def safe_to_exec?
       true
     end
 
-    def exec_lambda expr
-      JSON.parse expr
+    def execute
+      JSON.parse executable
     rescue JSON::ParserError => _e
-      @errors << "invalid #{self.class.name} formula #{expr}"
+      @errors << "invalid #{self.class.name} formula #{executable}"
       false
     end
   end

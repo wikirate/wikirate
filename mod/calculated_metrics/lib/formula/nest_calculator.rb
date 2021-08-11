@@ -1,6 +1,6 @@
 module Formula
   # The common ground of Ruby and Wolfram formula
-  class NestFormula < Calculator
+  class NestCalculator < Calculator
     def safe_to_convert? expr
       @unsafe = expr
       safety_checks
