@@ -1,12 +1,12 @@
 module Formula
   # Formula that translates one value to another based on a JSON map
-  class Translation < JsonFormula
+  class Translation < JsonCalculator
     def initialize parser, **_opts
       parser.unknown_handling :unknown_string
       super
     end
 
-    def to_lambda
+    def build_executable
       super.downcase
     end
 
@@ -17,7 +17,7 @@ module Formula
       # For multi-category metrics a value can be a list of value.
       # In that case map every item and take the sum.
       Array.wrap(input.first).inject(0.0) do |res, inp|
-        res + (@executed_lambda[inp.to_s.downcase] || @executed_lambda["else"]).to_f
+        res + (@executed[inp.to_s.downcase] || @executed["else"]).to_f
       end
     end
   end
