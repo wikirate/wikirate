@@ -4,10 +4,10 @@ module Formula
   # Calculate formula values using JavaScript
   class JavaScript < NestCalculator
     def compile
-      "calc = function(iN) { return (#{js_formula}) }"
+      ::CoffeeScript.compile "calc = (iN) ->\n#{prepend_spaces coffee_formula}", bare: true
     end
 
-    def js_formula
+    def coffee_formula
       replace_nests { |index| input_name index }
     end
 
@@ -20,6 +20,10 @@ module Formula
     end
 
     private
+
+    def prepend_spaces formula
+      formula.split("\n").map { |l| "  #{l}" }.join "\n"
+    end
 
     def prepare_values input
       input.map.with_index do |value, index|
