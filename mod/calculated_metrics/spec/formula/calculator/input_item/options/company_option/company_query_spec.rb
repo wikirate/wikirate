@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Formula::Calculator::InputItem::Options::CompanyOption::CompanySearch::CompanyQuery do
+RSpec.describe(
+  Formula::Calculator::InputItem::Options::CompanyOption::CompanySearch::CompanyQuery
+) do
   let(:more_evil_id) { "Jedi+more evil".card_id }
   let(:less_evil_id) { "Jedi+less evil".card_id }
   let(:supplied_by_id) { "Commons+Supplied by".card_id }

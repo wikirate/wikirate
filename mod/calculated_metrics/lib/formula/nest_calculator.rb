@@ -1,7 +1,7 @@
 module Formula
   # The common ground of Ruby and Wolfram formula
   class NestCalculator < Calculator
-    def safe_to_convert? expr
+    def programmable? expr
       @unsafe = expr
       safety_checks
       @errors.concat input.input_values.validate

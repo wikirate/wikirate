@@ -1,4 +1,4 @@
-require_relative "../../support/calculator_stub"
+require_relative "../support/calculator_stub"
 require "./spec/support/company_ids"
 
 RSpec.describe Formula::Ruby do
@@ -95,14 +95,14 @@ RSpec.describe Formula::Ruby do
   describe "formula with unknown option" do
     specify "Zeros with unknown and year option" do
       result = calculate "Zeros[{{Joe User+RM|year:-2..0; unknown: 0}}]"
-           expect(result).to include 2002 => { apple_id => 3 },
-                                     2012 => { apple_id => 0 }
+      expect(result).to include 2002 => { apple_id => 3 },
+                                2012 => { apple_id => 0 }
     end
 
     specify "Total with unknown and year option" do
       result = calculate "Total[{{Joe User+RM|year:-2..0; unknown:1}}]"
-           expect(result).to include 2002 => { apple_id => 2.0 },
-                                     2012 => { apple_id => 33.0 }
+      expect(result).to include 2002 => { apple_id => 2.0 },
+                                2012 => { apple_id => 33.0 }
     end
   end
 
@@ -135,6 +135,6 @@ RSpec.describe Formula::Ruby do
 
   example "function names in metrics names M" do
     calculator = described_class.new formula_parser("{{A+Max}}")
-    expect { calculator.executable }.not_to raise_error
+    expect { calculator.program }.not_to raise_error
   end
 end

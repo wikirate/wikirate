@@ -26,10 +26,6 @@ module Formula
         end
       end
 
-      def safe_to_exec?
-        true
-      end
-
       private
 
       def invalid_method_calls
