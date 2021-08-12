@@ -20,7 +20,7 @@ module Formula
     end
 
     # formula is always valid
-    def compile_formula
+    def ready?
       true
     end
 

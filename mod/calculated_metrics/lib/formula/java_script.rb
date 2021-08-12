@@ -3,7 +3,7 @@ require "execjs"
 module Formula
   # Calculate formula values using JavaScript
   class JavaScript < NestCalculator
-    def build_executable
+    def compile
       "calc = function(iN) { return (#{js_formula}) }"
     end
 
@@ -11,12 +11,12 @@ module Formula
       replace_nests { |index| input_name index }
     end
 
-    def get_value input, _c, _v
-      executed.call "calc", prepare_values(input)
+    def compute input, _c, _v
+      computer.call "calc", prepare_values(input)
     end
 
-    def execute
-      ExecJS.compile executable
+    def boot
+      ExecJS.compile program
     end
 
     private
@@ -30,7 +30,7 @@ module Formula
     def ruby_value value, index
       case value
       when Array
-        value.map { |v| translate_input_value(v, index) }
+        value.map { |v| ruby_value v, index }
       when "false"
         false
       when "nil"

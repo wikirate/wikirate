@@ -6,10 +6,10 @@ module Formula
     # INPUT_CAST = lambda { |val| val == 'Unknown' ? 'Unknown'.to_f }
     # To reduce the Wolfram Cloud calls the Wolfram calculator
     # calculates all values at once when it compiles the formula and saves
-    # the result in @executed
+    # the result in @computer
     # Getting the value is just fetching the value from a hash
-    def get_value _input, company, year
-      executed[year.to_s][@company_index[year.to_s][company]]
+    def compute _input, company, year
+      computer[year.to_s][@company_index[year.to_s][company]]
     end
 
     # Converts the formula to a Wolfram Language expression
@@ -27,7 +27,7 @@ module Formula
     # the values for all companies
     # <|2014 -> {32.28, 34.28}, 2015 -> {32.30, 34.30}|>
 
-    def build_executable
+    def compile
       "Apply[(#{wl_formula})&,<| #{wl_input} |>,{2}]"
     end
 
@@ -41,8 +41,8 @@ module Formula
     # @param [String] expr an expression in Wolfram language that returns json
     #   when evaluated in the Wolfram cloud
     # @return the parsed response
-    def execute
-      caller = Caller.new executable
+    def boot
+      caller = Caller.new program
       caller.run
       if caller.errors.present?
         @errors += caller.errors
