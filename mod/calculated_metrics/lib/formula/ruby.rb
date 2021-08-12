@@ -68,9 +68,10 @@ module Formula
     protected
 
     def cleaned_program
-      return program unless program.match?(/^lambda \{ \|args\| (.+)\}$/)
+      m = program.match(/^lambda \{ \|args\| (?<raw_program>.+)\}$/)
+      return program unless m
 
-      Regexp.last_match(1).gsub(/args\[\d+\]/, "")
+      m[:raw_program].gsub(/args\[\d+\]/, "")
     end
 
     def boot
@@ -90,8 +91,6 @@ module Formula
       country = Card::Region.lookup_val(field)[region_id] if region_id
       country || "#{field} not found"
     end
-
-
 
     private
 

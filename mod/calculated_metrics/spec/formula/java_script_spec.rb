@@ -16,6 +16,4 @@ RSpec.describe Formula::JavaScript do
     result = calculate "{{Jedi+disturbances in the Force+Joe User}}*2"
     expect(result[2000][death_star_id]).to eq 20.0
   end
-
-
 end

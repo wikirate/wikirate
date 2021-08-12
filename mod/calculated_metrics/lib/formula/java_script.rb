@@ -48,7 +48,6 @@ module Formula
       @numeric[index] = input.type(index).in? %i[number yearly_value]
     end
 
-
     # just weird enough that users aren't likely to use it...
     def input_name index
       "iN[#{index}]"
