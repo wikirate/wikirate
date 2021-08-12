@@ -14,7 +14,6 @@ Feature: company feature
     And I should see "Force"
     Then I click on "Projects"
     And I should see "Evil Project"
-    And I should see "2 1"
     Then I click on "Sources"
     And I should see "thereaderwiki.com"
     And I should see "Original"

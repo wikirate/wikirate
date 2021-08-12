@@ -65,7 +65,7 @@ RSpec.describe Card::Set::Type::Metric do
       newname = "Core+Western"
       original = Card["Core+Country"]
       original.format.render_open
-      original.update! name: newname, update_referers: true
+      original.update! name: newname
       expect(Card["#{newname}+*metric_type"]).to be_a(Card)
     end
   end
