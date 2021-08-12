@@ -1,4 +1,4 @@
-require_relative "../../../support/calculator_stub"
+require_relative "../../support/calculator_stub"
 
 RSpec.describe Formula::Ruby do
   include_context "with calculator stub"

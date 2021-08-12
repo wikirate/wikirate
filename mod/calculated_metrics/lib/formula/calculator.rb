@@ -1,12 +1,18 @@
 # encoding: UTF-8
 
 module Formula
-  # Calculates the values of a formula
+  # Base class for calculators that can compute the values of a formula
+  #
+  # Different calculator implementations share the same 3 main phases:
+  #
+  # 1. program phase: converts the formula into a "program" via #compile method
+  # 2. boot phases: loads formula into a "computer" via a #boot method
+  # 3. computation phase: converts inputs into outputs via a #compute method.
   class Calculator
     include ShowWork
     include Restraints
 
-    attr_reader :errors
+    attr_reader :errors, :computer
 
     # All the answers a given calculation depends on
     # (same opts as #result)
@@ -62,8 +68,8 @@ module Formula
 
     # @return [Array] list of errors
     def detect_errors
-      @errors = []
-      compile_formula
+      reset
+      ready?
       @errors
     end
 
@@ -77,24 +83,30 @@ module Formula
       end
     end
 
-    def executable
-      @executable ||= build_executable
+    def program
+      @program ||= compile
     end
 
-    protected
-
-    def compile_formula
-      return unless safe_to_convert? formula
-      @executed ||= safely_execute
+    def ready?
+      return false unless programmable? formula
+      @computer ||= safely_boot
+      @errors.empty?
     end
 
-    def safe_to_convert? _expr
+    def programmable? _expr
       true
     end
 
-    def safe_to_exec?
-      false
+    def bootable?
+      true
     end
+
+    def reset
+      @computer = @program = nil
+      @errors = []
+    end
+
+    protected
 
     def normalize_value value
       @normalizer ? @normalizer.call(value) : value
@@ -123,20 +135,20 @@ module Formula
 
     def value_for_input input, company, year
       return "Unknown" if input == :unknown
-      value = get_value input, company, year
+      value = compute input, company, year
       normalize_value value if value
     end
 
     def result_hash
       result = Hash.new_nested Hash
-      yield result if compile_formula
+      yield result if ready?
       result
     end
 
-    def safely_execute
-      return if @errors.any? || (!safe_to_exec? && @errors << "invalid formula")
+    def safely_boot
+      return if @errors.any? || (!bootable? && @errors << "invalid formula")
 
-      execute
+      boot
     rescue StandardError => e
       @errors << e.message
     end

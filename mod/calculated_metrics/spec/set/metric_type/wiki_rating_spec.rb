@@ -118,8 +118,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
 
     context "when input metric is renamed" do
       it "changes name in formula", as_bot: true do
-        update_card "Joe User+researched number 1",
-                    name: "Joe User+invented number", update_referers: true
+        update_card "Joe User+researched number 1", name: "Joe User+invented number"
         expect(formula_card.content).to include("Joe User+invented number")
       end
     end

@@ -30,12 +30,12 @@ module Formula
 
     FUNC_KEY_MATCHER = FUNCTIONS.keys.join("|").freeze
 
-    def get_value input, _company, _year
+    def compute input, _company, _year
       input.each_with_index do |inp, index|
         valid = validate_input inp, index
         return valid unless valid == true
       end
-      @executed.call(input)
+      computer.call(input)
     end
 
     def validate_input input, index
@@ -53,7 +53,7 @@ module Formula
       end
     end
 
-    def build_executable
+    def compile
       rb_formula = translate %i[functions nests list_syntax], formula
       find_allowed_non_numeric_input rb_formula
       lambda_wrap rb_formula
@@ -61,10 +61,20 @@ module Formula
       @errors << e.message
     end
 
+    def bootable?
+      ruby_safe? cleaned_program
+    end
+
     protected
 
-    def execute
-      eval executable
+    def cleaned_program
+      return program unless program.match?(/^lambda \{ \|args\| (.+)\}$/)
+
+      Regexp.last_match(1).gsub(/args\[\d+\]/, "")
+    end
+
+    def boot
+      eval program
     end
 
     def country_lookup region
@@ -81,15 +91,7 @@ module Formula
       country || "#{field} not found"
     end
 
-    def safe_to_exec?
-      expr = executable
-      cleaned = if expr =~ /^lambda \{ \|args\| (.+)\}$/
-                  Regexp.last_match(1).gsub(/args\[\d+\]/, "")
-                else
-                  expr
-                end
-      ruby_safe? cleaned
-    end
+
 
     private
 
