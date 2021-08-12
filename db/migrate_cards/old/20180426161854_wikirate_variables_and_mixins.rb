@@ -3,9 +3,9 @@
 class WikirateVariablesAndMixins < Cardio::Migration
   def up
     if Card::Codename.exist? :wikirate_stylesheets
-      update_card :wikirate_stylesheets, name: "coded stylesheets",
-                  codename: "coded_stylesheets",
-                  update_referers: true
+      update_card :wikirate_stylesheets,
+                  name: "coded stylesheets",
+                  codename: "coded_stylesheets"
     else
       ensure_card "coded stylesheets", codename: "coded_stylesheets",
                                        type_id: Card::SkinIDå
@@ -14,7 +14,6 @@ class WikirateVariablesAndMixins < Cardio::Migration
     card = Card["wikirate skin", :stylesheets]
     card.insert_item! 0, item_name
 
-    # for some reasons `update_referers` doesn't work
     if card.content.include? "wikirate stylesheets"
       card.update!(
         content: card.content.sub("wikirate stylesheets", "coded stylesheets")
