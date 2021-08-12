@@ -96,6 +96,11 @@ def add_answer company, year, value
   Answer.create_calculated_answer self, company, year, value
 end
 
+# temporary hack
+def multiline_formula_ok?
+  false
+end
+
 private
 
 def dummy_answers_attribs
@@ -121,11 +126,6 @@ def to_company_id company
   return company if company.is_a?(Integer)
 
   Card.fetch_id(company)
-end
-
-# temporary hack
-def multiline_formula_ok?
-  false
 end
 
 # The bulk_insert gem stopped working with the rail 6.1 upgrade;

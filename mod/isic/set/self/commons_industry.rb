@@ -4,5 +4,5 @@ end
 
 # temporary hack
 def multiline_formula_ok?
-  false
+  true
 end

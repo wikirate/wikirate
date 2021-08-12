@@ -19,7 +19,7 @@ module Formula
     private
 
     def prepended_coffee_formula
-      coffee_formula.split("\n").map { |l| "  #{l}" }.join "\n"
+      coffee_formula.split(/[\r\n]+/).map { |l| "  #{l}" }.join "\n"
     end
 
     def coffee_formula
