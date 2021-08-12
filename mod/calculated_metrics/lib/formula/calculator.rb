@@ -6,7 +6,7 @@ module Formula
     include ShowWork
     include Restraints
 
-    attr_reader :errors
+    attr_reader :errors, :executed
 
     # All the answers a given calculation depends on
     # (same opts as #result)
@@ -93,7 +93,7 @@ module Formula
     end
 
     def safe_to_exec?
-      false
+      true
     end
 
     def normalize_value value

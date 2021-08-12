@@ -43,8 +43,7 @@ end
 def rename_source source
   return unless source.name.match?(/Page/)
   update_source source, content: ""
-  update_source source, name: source.name.gsub("Page", "Source"),
-                        update_referers: true
+  update_source source, name: source.name.gsub("Page", "Source")
 rescue => e
   tick :name_error, "problem renaming #{source.name}", e
 end

@@ -14,7 +14,7 @@ module Formula
     protected
 
     def weight_from_index index
-      @executed[input.card_id(index)].to_f
+      executed[input.card_id(index)].to_f
     end
 
     def execute

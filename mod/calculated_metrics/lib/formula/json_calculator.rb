@@ -14,10 +14,6 @@ module Formula
       self.class.supported_formula? expr
     end
 
-    def safe_to_exec?
-      true
-    end
-
     def execute
       JSON.parse executable
     rescue JSON::ParserError => _e

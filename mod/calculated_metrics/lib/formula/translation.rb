@@ -17,7 +17,7 @@ module Formula
       # For multi-category metrics a value can be a list of value.
       # In that case map every item and take the sum.
       Array.wrap(input.first).inject(0.0) do |res, inp|
-        res + (@executed[inp.to_s.downcase] || @executed["else"]).to_f
+        res + (executed[inp.to_s.downcase] || executed["else"]).to_f
       end
     end
   end
