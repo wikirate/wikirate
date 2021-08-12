@@ -7,7 +7,7 @@ def clean_formula
 end
 
 def standard_formula
-  content.gsub(/[\r\n]+/m, "")
+  calculator_class == Formula::JavaScript ? content : content.gsub(/[\r\n]+/m, "")
 end
 
 def parser
