@@ -9,7 +9,7 @@ module Formula
     # the result in @executed
     # Getting the value is just fetching the value from a hash
     def get_value _input, company, year
-      @executed[year.to_s][@company_index[year.to_s][company]]
+      executed[year.to_s][@company_index[year.to_s][company]]
     end
 
     # Converts the formula to a Wolfram Language expression

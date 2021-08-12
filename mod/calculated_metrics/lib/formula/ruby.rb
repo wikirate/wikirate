@@ -35,7 +35,7 @@ module Formula
         valid = validate_input inp, index
         return valid unless valid == true
       end
-      @executed.call(input)
+      executed.call(input)
     end
 
     def validate_input input, index
