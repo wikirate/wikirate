@@ -1,15 +1,15 @@
-require_relative "../../../support/calculator_stub"
+require_relative "../../support/calculator_stub"
 
 RSpec.describe Formula::Ruby do
   include_context "with calculator stub"
 
   describe ".valid_formula?" do
     def valid formula
-      expect(::Formula::Ruby.supported_formula?(formula)).to be_truthy
+      expect(::Formula::Ruby).to be_supported_formula(formula)
     end
 
     def invalid formula
-      expect(::Formula::Ruby.supported_formula?(formula)).to be_falsey
+      expect(::Formula::Ruby).not_to be_supported_formula(formula)
     end
 
     example "simple symbols" do

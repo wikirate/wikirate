@@ -1,4 +1,4 @@
-require "./mod/calculated_metrics/spec/support/calculator_stub"
+require_relative "../support/calculator_stub"
 require "./spec/support/company_ids"
 
 RSpec.describe Formula::Translation do

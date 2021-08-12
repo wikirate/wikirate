@@ -1,4 +1,4 @@
-require_relative "../../../support/calculator_stub"
+require_relative "../../support/calculator_stub"
 
 RSpec.describe Formula::Calculator do
   include_context "with calculator stub"
@@ -27,7 +27,7 @@ RSpec.describe Formula::Calculator do
   end
 
   example "messed up curly brackets" do
-    invalid "2*Total[{{Jedi+deadliness|company: Related[Jedi+more evil]}}}]+{{Jedi+deadliness}}",
+    invalid "2*Total[{{Jedi+deadliness}}}]+{{Jedi+deadliness}}",
             "syntax error: unexpected '}'"
   end
 
@@ -61,11 +61,6 @@ RSpec.describe Formula::Calculator do
             "there must be at least one nest that doesn't explicitly specify companies"
   end
 
-  example "company option with invalid relation card" do
-    invalid "{{Jedi+deadliness|company: Related[not_a_card]}}",
-            "not a metric: \"not_a_card\""
-  end
-
   example "company option with invalid metric" do
     invalid "{{Jedi+deadliness|company: Related[not_a_card]}}",
             "not a metric: \"not_a_card\""
@@ -81,4 +76,3 @@ RSpec.describe Formula::Calculator do
             "invalid expression \"Jedi+deadliness =\""
   end
 end
-

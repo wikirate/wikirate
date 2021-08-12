@@ -3,13 +3,13 @@ module Formula
   # (those cards will include the Abstract::HardCodedFormula set)
   class HardCoded < Calculator
     # unlike user contributed formulae, hard-coded formulae should always be valid
-    def compile_formula
+    def ready?
       true
     end
 
     # The following three method pass calculation, validation, and normalization
     # responsibilities to the formula card
-    def get_value input, company=nil, year=nil
+    def compute input, company=nil, year=nil
       return unless validate_input input
       value_for_validated_input input, company, year
     end
