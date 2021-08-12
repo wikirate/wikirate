@@ -1,5 +1,3 @@
-include_set Abstract::BsBadge
-
 format do
   # note: overridden in cached_count
   def count
@@ -14,13 +12,6 @@ format :html do
 
   view :count_badge_label do
     responsive_count_badge_label || simple_count_badge_label
-  end
-
-  # TODO: override and turn off caching in cacheable sets (eg. pointers)
-  view :count_badge, cache: :never, unknown: true do
-    labeled_badge number_with_delimiter(count),
-                  nest(card.right, view: :count_badge_label),
-                  klass: card.safe_set_keys, title: card.name.right_name.vary(:plural)
   end
 
   def count_badge field
