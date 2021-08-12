@@ -9,7 +9,7 @@ def move! name_parts
 end
 
 def move_attributes name
-  { name: name, update_referers: true, silent_change: true }
+  { name: name, silent_change: true }
 end
 
 def without_move_conflict name_parts
