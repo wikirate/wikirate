@@ -123,6 +123,11 @@ def to_company_id company
   Card.fetch_id(company)
 end
 
+# temporary hack
+def multiline_formula_ok?
+  false
+end
+
 # The bulk_insert gem stopped working with the rail 6.1 upgrade;
 # This is a bit of a hack to get it working again.
 module ConnectionPatch
