@@ -6,8 +6,7 @@ include_set Abstract::Filterable
 event :validate_no_commas_in_value_options, :validate,
       skip: :allowed, # until we fix all the bad ones
       on: :save, changed: :content do
-  return unless metric_card&.multi_categorical? &&
-                item_names.find { |item| item.match? "," }
+  return unless metric_card&.multi_categorical? && item_names.join.match?(",")
 
   errors.add :content, "Multi-category options cannot have commas"
 end
@@ -65,5 +64,13 @@ format :html do
     wrap_with :div, item_name,
               class: "pointer-item item-name _filterable",
               data: { filter: { value: card.item_value(item_name) } }
+  end
+end
+
+format :json do
+  view :option_list do
+    card.options_hash.map.with_object([]) do |(name, key), array|
+      array << { name: name, key: key }
+    end
   end
 end
