@@ -20,6 +20,9 @@
       "name": "answers"
     },
     {
+      "name": "options"
+    },
+    {
       "name": "rawCounts",
       "source": "answers",
       "transform": [
@@ -47,7 +50,15 @@
       "name": "shownCounts",
       "source": "rawCounts",
       "transform": [
-        {"type": "filter", "expr": "datum.seq <= maxBars"}
+        {"type": "filter", "expr": "datum.seq <= maxBars"},
+        {
+          "type": "lookup",
+          "from": "options",
+          "key": "key",
+          "fields": ["value"],
+          "as": ["label"],
+          "values": ["name"]
+        }
       ]
     },
     {
