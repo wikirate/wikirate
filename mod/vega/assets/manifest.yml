@@ -1,0 +1,4 @@
+vega:
+  minimize: false
+  items:
+    - script_vega.js
