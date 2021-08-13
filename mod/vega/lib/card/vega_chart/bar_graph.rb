@@ -33,7 +33,8 @@ class Card
       end
 
       def value_options_url
-        metric_card.value_options_card.format.path view: :option_list, format: :json
+        metric_card.value_options_card.format(:json)
+                   .path view: :option_list, format: :json
       end
 
       def lookup_option_labels data

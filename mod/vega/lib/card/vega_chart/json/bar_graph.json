@@ -47,8 +47,7 @@
       "name": "shownCounts",
       "source": "rawCounts",
       "transform": [
-        {"type": "filter", "expr": "datum.seq <= maxBars"},
-        {"type": "formula", "expr": "{ value: datum.value }", "as": "filter"}
+        {"type": "filter", "expr": "datum.seq <= maxBars"}
       ]
     },
     {
@@ -63,9 +62,10 @@
           "as": ["count"]
         },
         {
-          "type": "formula",
-          "expr": "'Other'",
-          "as": "value"
+          "type": "aggregate",
+          "fields": ["count", "value"],
+          "ops": ["sum", "values"],
+          "as": ["count", "value"]
         },
         {
           "type": "formula",
@@ -81,7 +81,10 @@
     },
     {
       "name": "counts",
-      "source": ["shownCounts","otherCounts"]
+      "source": ["shownCounts","otherCounts"],
+      "transform": [
+        {"type": "formula", "expr": "{ value: datum.value }", "as": "filter"}
+      ]
     }
   ],
   "scales":[
