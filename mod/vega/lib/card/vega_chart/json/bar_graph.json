@@ -69,6 +69,11 @@
         },
         {
           "type": "formula",
+          "expr": "'Other'",
+          "as": "label"
+        },
+        {
+          "type": "formula",
           "expr": "maxBars + 1",
           "as": "seq"
         }
@@ -85,7 +90,7 @@
       "range": "width",
       "domain": {
         "data": "counts",
-        "field": "value",
+        "field": "label",
         "sort": {"field": "seq", "op": "min"}
       },
       "type": "band",
@@ -115,7 +120,7 @@
         "update": {
           "x":{
             "scale":"xscale",
-            "field":"value"
+            "field":"label"
           },
           "width":{
             "scale":"xscale",
@@ -161,7 +166,7 @@
         "update":{
           "x":{
             "scale":"xscale",
-            "signal":"tooltip.value",
+            "signal":"tooltip.label",
             "band":0.5
           },
           "y":{
