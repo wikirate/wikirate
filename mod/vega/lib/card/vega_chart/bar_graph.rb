@@ -26,10 +26,7 @@ class Card
       end
 
       def insert_value_options_map data
-        data.insert 1, {
-          name: "options",
-          url: value_options_url
-        }
+        data.insert 1, name: "options", url: value_options_url
       end
 
       def value_options_url

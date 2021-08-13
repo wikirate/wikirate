@@ -57,16 +57,11 @@
         {"type": "filter", "expr": "datum.seq > maxBars"},
         {
           "type": "aggregate",
-          "fields": ["count"],
-          "ops": ["sum"],
-          "as": ["count"]
-        },
-        {
-          "type": "aggregate",
           "fields": ["count", "value"],
           "ops": ["sum", "values"],
-          "as": ["count", "value"]
+          "as": ["count", "objects"]
         },
+        {"type":"formula", "expr":"pluck(datum.objects, 'value')", "as": "value" },
         {
           "type": "formula",
           "expr": "'Other'",
