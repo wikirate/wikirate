@@ -31,6 +31,12 @@ def options_hash
   json_options? ? parse_content : option_hash_from_names
 end
 
+def options_hash_with_unknown
+  options_hash.tap do |hash|
+    hash["Unknown"] = "Unknown"
+  end
+end
+
 def json_options?
   type_id == Card::JsonID
 end
@@ -69,7 +75,7 @@ end
 
 format :json do
   view :option_list do
-    card.options_hash.map.with_object([]) do |(name, key), array|
+    card.options_hash_with_unknown.map.with_object([]) do |(name, key), array|
       array << { name: name, key: key }
     end
   end

@@ -166,7 +166,7 @@
         "update":{
           "x":{
             "scale":"xscale",
-            "signal":"tooltip.value",
+            "signal":"tooltip.label",
             "band":0.5
           },
           "y":{
