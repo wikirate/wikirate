@@ -30,7 +30,6 @@ handleChartClicks = (vega, el) ->
     else if d.details
       updateDetails d.details
 
-
 initVega = (spec, el) ->
   vegaEmbed(el[0], spec).then (result)->
     handleChartClicks result.view, el
