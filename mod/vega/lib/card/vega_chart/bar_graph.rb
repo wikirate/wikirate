@@ -8,6 +8,8 @@ class Card
         with_values(answer_list: 0) do
           super.tap do |h|
             transform_multi_values h[:data]
+            insert_value_options_map h[:data]
+            lookup_option_labels h[:data]
           end
         end
       end
@@ -21,6 +23,33 @@ class Card
           { type: "formula", expr: "split(datum.value, ', ')", as: "value" },
           { type: "flatten", fields: ["value"] }
         ]
+      end
+
+      def insert_value_options_map data
+        data.insert 1, {
+          name: "options",
+          url: value_options_url
+        }
+      end
+
+      def value_options_url
+        metric_card.value_options_card.format(:json)
+                   .path view: :option_list, format: :json
+      end
+
+      def lookup_option_labels data
+        # this is rawCounts
+        # TODO: lookup dataset by name
+        # don't rely on index staying the same!
+        # should add support library
+        data[2][:transform] << {
+          type: "lookup",
+          from: "options",
+          key: "key",
+          fields: ["value"],
+          as: ["label"],
+          values: ["name"]
+        }
       end
 
       def layout

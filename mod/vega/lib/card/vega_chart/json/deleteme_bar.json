@@ -1,0 +1,282 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 350,
+  "height": 180,
+  "padding": 10,
+  "config": {
+    "axis": {"labelColor": "#888", "titleColor": "#666"},
+    "legend": {"labelColor": "#888", "titleColor": "#666"}
+  },
+  "signals": [
+    {
+      "name": "maxBars",
+      "value": 25,
+      "bind": {"input": "range", "min": 1, "max": 500}
+    },
+    {
+      "name": "sortField",
+      "value": "count",
+      "bind": {"input": "select", "options": ["count", "value"]}
+    },
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {"events": "rect:mouseover", "update": "datum"},
+        {"events": "rect:mouseout", "update": "{}"}
+      ]
+    },
+    {
+      "name": "inequality",
+      "init": "data('countExtremes')[0].max_count / data('countExtremes')[0].min_count"
+    },
+    {
+      "name": "exponent",
+      "init": "inequality > 50 ? 0.5 : 1",
+      "bind": {"input": "range", "min": 0.1, "max": 1}
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "encode": {
+        "labels": {
+          "update": {
+            "angle": {"value": 45},
+            "limit": {"value": 100},
+            "align": {"value": "left"}
+          }
+        }
+      },
+      "title": "Category"
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "# Answers",
+      "tickMinStep": 1
+    }
+  ],
+  "data": [
+
+    {
+      "name": "options",
+      "values": [
+        {
+          "name": "A: Agriculture, forestry and fishing",
+          "key": "A"
+        },
+        {
+          "name": "B: Mining and quarrying",
+          "key": "B"
+        },
+        {
+          "name": "C: Manufacturing",
+          "key": "C"
+        },
+        {
+          "name": "D: Energy supply",
+          "key": "D"
+        },
+        {
+          "name": "E: Water and waste management",
+          "key": "E"
+        },
+        {
+          "name": "F: Construction",
+          "key": "F"
+        },
+        {
+          "name": "G: Wholesale and retail trade",
+          "key": "G"
+        },
+        {
+          "name": "H: Transportation and storage",
+          "key": "H"
+        },
+        {
+          "name": "I: Accommodation and food services",
+          "key": "I"
+        },
+        {
+          "name": "J: Information and communication",
+          "key": "J"
+        },
+        {
+          "name": "K: Finance and insurance",
+          "key": "K"
+        },
+        {
+          "name": "L: Real estate",
+          "key": "L"
+        },
+        {
+          "name": "M: Professional, scientific and technical",
+          "key": "M"
+        },
+        {
+          "name": "N: Administrative and support services",
+          "key": "N"
+        },
+        {
+          "name": "O: Public administration and defence",
+          "key": "O"
+        },
+        {
+          "name": "P: Education",
+          "key": "P"
+        },
+        {
+          "name": "Q: Human health and social work",
+          "key": "Q"
+        },
+        {
+          "name": "R: Arts, entertainment and recreation",
+          "key": "R"
+        },
+        {
+          "name": "S: Other service activities",
+          "key": "S"
+        },
+        {
+          "name": "T: Households as employers",
+          "key": "T"
+        },
+        {
+          "name": "U: Extraterritorial organizations",
+          "key": "U"
+        }
+      ]
+    },
+
+
+    {
+      "name": "answers",
+      "transform": [
+        {"type": "formula", "expr": "split(datum.value, ', ')", "as": "value"},
+        {"type": "flatten", "fields": ["value"]}
+      ],
+      "url": "https://wikirate.org/ISIC+Industry_Section+Answer.json?filter%5Bcompany_name%5D=&limit=0&view=answer_list"
+    },
+    {
+      "name": "rawCounts",
+      "source": "answers",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": ["value"],
+          "fields": ["value"],
+          "ops": ["count"],
+          "as": ["count"]
+        },
+        {
+          "type": "window",
+          "ops": ["row_number"],
+          "sort": {
+            "field": {"signal": "sortField"},
+            "order": {
+              "signal": "sortField == 'count' ? 'descending' : 'ascending'"
+            }
+          },
+          "as": ["seq"]
+        },
+        {
+          "type": "lookup",
+          "from": "options",
+          "key": "key",
+          "fields": ["value"],
+          "as": ["label"],
+          "values": ["name"]
+        }
+      ]
+    },
+    {
+      "name": "shownCounts",
+      "source": "rawCounts",
+      "transform": [
+        {"type": "filter", "expr": "datum.seq <= maxBars"},
+        {"type": "formula", "expr": "{ value: datum.value }", "as": "filter"}
+      ]
+    },
+    {
+      "name": "otherCounts",
+      "source": "rawCounts",
+      "transform": [
+        {"type": "filter", "expr": "datum.seq > maxBars"},
+        {
+          "type": "aggregate",
+          "fields": ["count"],
+          "ops": ["sum"],
+          "as": ["count"]
+        },
+        {"type": "formula", "expr": "'Other'", "as": "value"},
+        {"type": "formula", "expr": "maxBars + 1", "as": "seq"}
+      ]
+    },
+    {"name": "counts", "source": ["shownCounts", "otherCounts"]},
+    {
+      "name": "countExtremes",
+      "source": "counts",
+      "transform": [
+        {
+          "type": "aggregate",
+          "fields": ["count", "count"],
+          "ops": ["min", "max"]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "range": "width",
+      "domain": {
+        "data": "counts",
+        "field": "label",
+        "sort": {"field": "seq", "op": "min"}
+      },
+      "type": "band",
+      "padding": 0.15
+    },
+    {
+      "name": "yscale",
+      "range": "height",
+      "domain": {"data": "counts", "field": "count"},
+      "type": "pow",
+      "exponent": {"signal": "exponent"},
+      "round": true
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "counts"},
+      "encode": {
+        "update": {
+          "x": {"scale": "xscale", "field": "label"},
+          "width": {"scale": "xscale", "band": true, "offset": -1},
+          "fill": {"value": "#03998d"},
+          "y": {"scale": "yscale", "field": "count"},
+          "y2": {"scale": "yscale", "value": 0},
+          "opacity": {"value": 0.75}
+        },
+        "hover": {"opacity": {"value": 1}, "cursor": {"value": "pointer"}}
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {"value": "center"},
+          "baseline": {"value": "bottom"}
+        },
+        "update": {
+          "x": {"scale": "xscale", "signal": "tooltip.value", "band": 0.5},
+          "y": {"scale": "yscale", "signal": "tooltip.count", "offset": -2},
+          "text": {"signal": "tooltip.count"}
+        }
+      }
+    }
+  ]
+}
