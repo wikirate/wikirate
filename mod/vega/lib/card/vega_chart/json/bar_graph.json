@@ -47,8 +47,7 @@
       "name": "shownCounts",
       "source": "rawCounts",
       "transform": [
-        {"type": "filter", "expr": "datum.seq <= maxBars"},
-        {"type": "formula", "expr": "{ value: datum.value }", "as": "filter"}
+        {"type": "filter", "expr": "datum.seq <= maxBars"}
       ]
     },
     {
@@ -58,14 +57,15 @@
         {"type": "filter", "expr": "datum.seq > maxBars"},
         {
           "type": "aggregate",
-          "fields": ["count"],
-          "ops": ["sum"],
-          "as": ["count"]
+          "fields": ["count", "value"],
+          "ops": ["sum", "values"],
+          "as": ["count", "objects"]
         },
+        {"type":"formula", "expr":"pluck(datum.objects, 'value')", "as": "value" },
         {
           "type": "formula",
           "expr": "'Other'",
-          "as": "value"
+          "as": "label"
         },
         {
           "type": "formula",
@@ -76,7 +76,10 @@
     },
     {
       "name": "counts",
-      "source": ["shownCounts","otherCounts"]
+      "source": ["shownCounts","otherCounts"],
+      "transform": [
+        {"type": "formula", "expr": "{ value: datum.value }", "as": "filter"}
+      ]
     }
   ],
   "scales":[
@@ -85,7 +88,7 @@
       "range": "width",
       "domain": {
         "data": "counts",
-        "field": "value",
+        "field": "label",
         "sort": {"field": "seq", "op": "min"}
       },
       "type": "band",
@@ -115,7 +118,7 @@
         "update": {
           "x":{
             "scale":"xscale",
-            "field":"value"
+            "field":"label"
           },
           "width":{
             "scale":"xscale",
@@ -161,7 +164,7 @@
         "update":{
           "x":{
             "scale":"xscale",
-            "signal":"tooltip.value",
+            "signal":"tooltip.label",
             "band":0.5
           },
           "y":{
