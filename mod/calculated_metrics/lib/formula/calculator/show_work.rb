@@ -42,8 +42,8 @@ module Formula
         val
       end
 
-      def formula_with_nests input
-        input_enum = input.each
+      def formula_with_nests input_val
+        input_enum = input_val.each
         replace_nests do |index|
           yield input_enum.next, @parser.input_cards[index], @parser.year_options[index]
         end
