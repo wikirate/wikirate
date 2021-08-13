@@ -17,6 +17,7 @@ Feature: Double check
     And I should see "Uncheck"
 
     When I am signed in as Joe Admin
+    And I wait a sec
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     Then I should see "Joe User checked this value"
     When I click on "Yes, I checked"
@@ -38,6 +39,7 @@ Feature: Double check
     Then I should see "Double check requested by Joe User"
 
     When I am signed in as Joe Admin
+    And I wait a sec
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Yes, I checked"
     Then I should see "Joe Admin checked this value"
