@@ -8,6 +8,7 @@ class Card
         with_values(answer_list: 0) do
           super.tap do |h|
             transform_multi_values h[:data]
+            translate_value_options h[:data]
           end
         end
       end
@@ -21,6 +22,11 @@ class Card
           { type: "formula", expr: "split(datum.value, ', ')", as: "value" },
           { type: "flatten", fields: ["value"] }
         ]
+      end
+
+      def translate_value_options data
+        data[1][:url] = metric_card.value_options_card.format(:json)
+                                   .path view: :option_list, format: :json
       end
 
       def layout

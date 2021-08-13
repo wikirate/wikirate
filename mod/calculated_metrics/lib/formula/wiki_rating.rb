@@ -1,9 +1,9 @@
 module Formula
   class WikiRating < JsonCalculator
-    def compute input, _company, _year
+    def compute input_vals, _company, _year
       result = 0.0
       total_weight = 0
-      input.each.with_index do |value, index|
+      input_vals.each.with_index do |value, index|
         weight = weight_from_index(index)
         result += value.to_f * weight
         total_weight += weight

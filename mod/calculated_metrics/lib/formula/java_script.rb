@@ -3,44 +3,74 @@ require "execjs"
 module Formula
   # Calculate formula values using JavaScript
   class JavaScript < NestCalculator
+    # coffeescript has the advantage of making sure the function _returns_ the value
     def compile
-      "calc = function(iN) { return (#{js_formula}) }"
+      ::CoffeeScript.compile full_coffee, bare: true
     end
 
-    def js_formula
-      replace_nests { |index| input_name index }
-    end
-
-    def compute input, _c, _v
-      computer.call "calc", prepare_values(input)
+    def compute _v, company_id, year
+      computer[lookup_key(company_id, year)]
     end
 
     def boot
-      ExecJS.compile program
+      ExecJS.compile(program).call "calcAll", input_hash
     end
 
     private
 
-    def prepare_values input
-      input.map.with_index do |value, index|
-        ruby_value value, index
+    def full_coffee
+      <<~COFFEE
+      calcAll = (obj) ->
+        r = {}
+        for key, val of obj
+          r[key] = calc(val)
+        r
+
+      calc = (iN) ->
+      #{prepended_coffee_formula}
+      COFFEE
+    end
+
+    def lookup_key company_id, year
+      "#{year}-#{company_id}"
+    end
+
+    def input_hash
+      {}.tap do |hash|
+        each_input do |values, company_id, year|
+          hash[lookup_key(company_id, year)] = values
+        end
       end
     end
 
-    def ruby_value value, index
-      case value
-      when Array
-        value.map { |v| ruby_value v, index }
-      when "false"
-        false
-      when "nil"
-        nil
-      when "Unknown"
-        value
-      else
-        numeric?(index) ? value.to_f : value
-      end
+    def prepended_coffee_formula
+      coffee_formula.split(/[\r\n]+/).map { |l| "  #{l}" }.join "\n"
     end
+
+    def coffee_formula
+      replace_nests { |index| input_name index }
+    end
+
+    # def prepare_values values
+    #   values.map.with_index do |val, index|
+    #     ruby_value val, index
+    #   end
+    # end
+    #
+    # def ruby_value value, index
+    #   case value
+    #   when Array
+    #     value.map { |v| ruby_value v, index }
+    #   when "false"
+    #     false
+    #   when "nil"
+    #     nil
+    #   when "Unknown"
+    #     value
+    #   else
+    #     numeric?(index) ? value.to_f : value
+    #   end
+    # end
 
     def numeric? index
       @numeric ||= {}

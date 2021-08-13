@@ -2,11 +2,17 @@ module Formula
   class Calculator
     # limit calculation to applicable years / companies
     module Restraints
+
+      def restrain_to companies: nil, years: nil
+        @requested_companies = companies
+        @requested_years = years
+      end
+
       private
 
-      def with_restraints companies, years
-        c = restraint @applicable_companies, companies
-        y = restraint @applicable_years, years
+      def with_restraints
+        c = restraint @applicable_companies, @requested_companies
+        y = restraint @applicable_years, @requested_years
 
         # puts "#{companies} => #{c}, #{years} = #{y}"
         return if [c, y].include? false
