@@ -3,12 +3,9 @@ require "execjs"
 module Formula
   # Calculate formula values using JavaScript
   class JavaScript < NestCalculator
+    # coffeescript has the advantage of making sure the function _returns_ the value
     def compile
-      "calc = function(iN) { return (#{js_formula}) }"
-    end
-
-    def js_formula
-      replace_nests { |index| input_name index }
+      ::CoffeeScript.compile "calc = (iN) ->\n#{prepended_coffee_formula}", bare: true
     end
 
     def compute input, _c, _v
@@ -20,6 +17,14 @@ module Formula
     end
 
     private
+
+    def prepended_coffee_formula
+      coffee_formula.split(/[\r\n]+/).map { |l| "  #{l}" }.join "\n"
+    end
+
+    def coffee_formula
+      replace_nests { |index| input_name index }
+    end
 
     def prepare_values input
       input.map.with_index do |value, index|
