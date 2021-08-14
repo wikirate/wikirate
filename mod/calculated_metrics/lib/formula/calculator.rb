@@ -25,8 +25,8 @@ module Formula
     # @param companies: [String, Integer, Array] applicable company or companies
     def initialize parser, normalizer: nil, years: nil, companies: nil
       @parser = parser
-      @applicable_years = years
-      @applicable_companies = companies
+      @applicable_years = integers years
+      @applicable_companies = integers companies
       @normalizer = normalizer
       @errors = []
     end

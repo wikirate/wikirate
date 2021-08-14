@@ -3,8 +3,8 @@ module Formula
     # limit calculation to applicable years / companies
     module Restraints
       def restrain_to companies: nil, years: nil
-        @requested_companies = companies
-        @requested_years = years
+        @requested_companies = integers companies
+        @requested_years = integers years
       end
 
       private
@@ -30,7 +30,7 @@ module Formula
       end
 
       def restraint_intersection applicable, local
-        intersection = integers(applicable) & integers(local)
+        intersection = applicable & local
         intersection.blank? ? false : intersection
       end
 
