@@ -30,15 +30,15 @@ module Formula
 
     FUNC_KEY_MATCHER = FUNCTIONS.keys.join("|").freeze
 
-    def compute input, _company, _year
-      input.each_with_index do |inp, index|
-        valid = validate_input inp, index
+    def compute values, _company, _year
+      values.each_with_index do |val, index|
+        valid = validate_input_value val, index
         return valid unless valid == true
       end
-      computer.call(input)
+      computer.call(values)
     end
 
-    def validate_input input, index
+    def validate_input_value input, index
       return true if @non_numeric_ok.include?(index)
 
       input = Array.wrap(input)

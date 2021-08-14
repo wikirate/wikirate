@@ -377,12 +377,8 @@
 
   updateFilter = function(el, filterVals) {
     var filter;
-    if (filterVals["value"] === "Other") {
-      return alert('Filtering for "Other" values is not yet supported.');
-    } else {
-      filter = new decko.filter(el.closest("._filtered-content").find("._filter-widget"));
-      return filter.addRestrictions(filterVals);
-    }
+    filter = new decko.filter(el.closest("._filtered-content").find("._filter-widget"));
+    return filter.addRestrictions(filterVals);
   };
 
   updateDetails = function(detailsAnswer) {
