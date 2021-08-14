@@ -2,11 +2,16 @@ module Formula
   class Calculator
     # limit calculation to applicable years / companies
     module Restraints
+      def restrain_to companies: nil, years: nil
+        @requested_companies = integers companies
+        @requested_years = integers years
+      end
+
       private
 
-      def with_restraints companies, years
-        c = restraint @applicable_companies, companies
-        y = restraint @applicable_years, years
+      def with_restraints
+        c = restraint @applicable_companies, @requested_companies
+        y = restraint @applicable_years, @requested_years
 
         # puts "#{companies} => #{c}, #{years} = #{y}"
         return if [c, y].include? false
@@ -25,7 +30,7 @@ module Formula
       end
 
       def restraint_intersection applicable, local
-        intersection = integers(applicable) & integers(local)
+        intersection = applicable & local
         intersection.blank? ? false : intersection
       end
 
