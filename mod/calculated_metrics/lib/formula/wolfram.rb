@@ -34,8 +34,6 @@ module Formula
     # @return Hash (parsed JSON from "Result" of body section)
     #   if there is an error, returns False and errors are added to @errors array
 
-    protected
-
     # Sends a Wolfram language expression to the Wolfram cloud. Fetches and
     # validates the result.
     # @param [String] expr an expression in Wolfram language that returns json
@@ -78,7 +76,7 @@ module Formula
       @company_index = Hash.new_nested Hash
       input_by_year = Hash.new_nested Array
 
-      input.each do |input_values, company, year|
+      each_input do |input_values, company, year|
         handle_unknowns input_values, company, year do
           input_by_year[year] << "{#{wl_single_answer_input input_values}}"
           add_company_index company, year, input_by_year[year].size - 1
