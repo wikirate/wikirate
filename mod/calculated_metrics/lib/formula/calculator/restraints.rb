@@ -35,7 +35,7 @@ module Formula
       end
 
       def integers restraint
-        Array.wrap(restraint).map(&:to_i)
+        Array.wrap(restraint).compact.map(&:to_i)
       end
     end
   end

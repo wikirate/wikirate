@@ -19,9 +19,9 @@ module Formula
 
       delegate :type, :card_id, to: :input_values
 
-      # @param :companies [Integer, Array] only yield input for given companies
-      # @option :years [String, Integer, Array] :year only yield input for given years
-      def each companies: nil, years: nil
+      # @param :companies [Array of Integers] only yield input for given companies
+      # @option :years [Array of Integers] :year only yield input for given years
+      def each companies: [], years: []
         @input_values.each companies: companies, years: years do |vals, company_id, year|
           next unless (input_values = normalize_values vals)
           yield input_values, company_id, year
