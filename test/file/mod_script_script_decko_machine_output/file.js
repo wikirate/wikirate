@@ -155,24 +155,11 @@
 
 // name_editor.js.coffee
 (function() {
-  var checkName, checkNameAfterTyping, referenceConfirm;
+  var checkName, checkNameAfterTyping;
 
   checkNameAfterTyping = null;
 
   $(window).ready(function() {
-    $('body').on('click', '._renamer-updater', function() {
-      return $(this).closest('form').find('#card_update_referers').val('true');
-    });
-    $('body').on('submit', '._rename-form', function() {
-      var confirm, f;
-      f = $(this);
-      confirm = f.find('.alert');
-      if (confirm.is(':hidden')) {
-        referenceConfirm(f);
-        confirm.show('blind');
-        return false;
-      }
-    });
     return $('body').on('keyup', '.name-editor input', function(event) {
       var input;
       if (checkNameAfterTyping) {
@@ -190,18 +177,6 @@
       }
     });
   });
-
-  referenceConfirm = function(form) {
-    var btn, confirm;
-    confirm = form.find('._rename-reference-confirm');
-    if (!(confirm.data('referer-count') > 0)) {
-      return;
-    }
-    confirm.show();
-    btn = form.find('._renamer-updater');
-    btn.show();
-    return btn.focus();
-  };
 
   checkName = function(box) {
     var name;
@@ -2270,7 +2245,7 @@
       return field.find("input, select").first().focus();
     };
     this.fieldValue = function(field, value) {
-      if (typeof value === "object") {
+      if (typeof value === "object" && !Array.isArray(value)) {
         return this.compoundFieldValue(field, value);
       } else {
         return this.simpleFieldValue(field, value);

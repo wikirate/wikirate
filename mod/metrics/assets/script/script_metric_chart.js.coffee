@@ -30,17 +30,13 @@ handleChartClicks = (vega, el) ->
     else if d.details
       updateDetails d.details
 
-
 initVega = (spec, el) ->
   vegaEmbed(el[0], spec).then (result)->
     handleChartClicks result.view, el
 
 updateFilter = (el, filterVals) ->
-  if filterVals["value"] == "Other"
-    alert 'Filtering for "Other" values is not yet supported.'
-  else
-    filter = new decko.filter el.closest("._filtered-content").find("._filter-widget")
-    filter.addRestrictions filterVals
+  filter = new decko.filter el.closest("._filtered-content").find("._filter-widget")
+  filter.addRestrictions filterVals
 
 updateDetails = (detailsAnswer) ->
   $("[data-details-mark=\"#{detailsAnswer}\"]").trigger "click"
