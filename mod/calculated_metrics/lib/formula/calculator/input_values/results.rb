@@ -5,12 +5,11 @@ module Formula
       module Results
         private
 
-        def result company, year
-          company = company.card_id
+        def result company_id, year
           year = year.to_i
 
-          values = fetch company: company, year: year
-          yield values, company, year
+          values = fetch company: company_id, year: year
+          yield values, company_id, year
         end
 
         def results_for_companies_and_years companies, years, &block

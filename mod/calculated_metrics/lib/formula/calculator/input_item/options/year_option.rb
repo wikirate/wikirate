@@ -25,8 +25,6 @@ module Formula
             add_error "invalid year option: #{year_option}" unless interpret_year_option
           end
 
-
-
           def processed_year_option
             @processed_year_option ||= process_year_option
           end

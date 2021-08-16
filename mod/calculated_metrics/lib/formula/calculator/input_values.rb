@@ -52,7 +52,7 @@ module Formula
       def fetch company:, year:
         company = Card.fetch_id(company) unless company.is_a? Integer
 
-        search_values_for company_id: company, year: year
+        # search_values_for company_id: company, year: year
         return unless @result_cache.has_value? company, year
 
         catch(:cancel_calculation) do
@@ -74,8 +74,8 @@ module Formula
 
       def cached_lookup
         @cached_lookup ||= Answer.where(metric_id: input_ids) # .sort(year: :desc)
-                          .pluck(:metric_id, :company_id, :year, :value)
-                          .each_with_object({}) do |(m, c, y, v), h|
+                                 .pluck(:metric_id, :company_id, :year, :value)
+                                 .each_with_object({}) do |(m, c, y, v), h|
           h[m] ||= {}
           h[m][c] ||= {}
           h[m][c][y] = v

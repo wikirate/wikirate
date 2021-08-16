@@ -10,6 +10,10 @@ module Formula
 
         delegate :with_full_year_space, to: :search_space
 
+        def answers
+          []
+        end
+
         def year_value_pairs_by_company
           v_by_y =
             with_full_year_space do
