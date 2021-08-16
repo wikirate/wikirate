@@ -48,18 +48,9 @@ module Formula
         array.uniq
       end
 
-      # @return Array[String] simple input values for the given company and year
-      def fetch company:, year:
-        company = Card.fetch_id(company) unless company.is_a? Integer
-
-        search_values_for company_id: company, year: year
-        return unless @result_cache.has_value? company, year
-
-        catch(:cancel_calculation) do
-          @input_list.map do |input_item|
-            input_item.value_for company, year
-          end
-        end
+      def input_for company_id, year
+        search_values_for company_id: company_id, year: year
+        fetch company: company_id, year: year
       end
 
       # type of input
