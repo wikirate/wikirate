@@ -12,13 +12,13 @@ module Formula
       attr_reader :input_cards, :result_space, :parser, :input_list, :result_cache
 
       delegate :no_mandatories?, :validate, to: :input_list
+      delegate :input_cards, :input_ids, to: :parser
 
       # @param [Formula::Parser] parser
       def initialize parser
         @parser = parser
-        @input_cards = parser.input_cards
         @result_cache = ResultCache.new
-        @input_list = InputList.new @parser
+        @input_list = InputList.new self
       end
 
       # Iterates over results.
@@ -52,7 +52,7 @@ module Formula
       def fetch company:, year:
         company = Card.fetch_id(company) unless company.is_a? Integer
 
-        search_values_for company_id: company, year: year
+        # search_values_for company_id: company, year: year
         return unless @result_cache.has_value? company, year
 
         catch(:cancel_calculation) do
@@ -70,6 +70,16 @@ module Formula
 
       def card_id index
         @input_list[index].card_id
+      end
+
+      def cached_lookup
+        @cached_lookup ||= Answer.where(metric_id: input_ids) # .sort(year: :desc)
+                                 .pluck(:metric_id, :company_id, :year, :value)
+                                 .each_with_object({}) do |(m, c, y, v), h|
+          h[m] ||= {}
+          h[m][c] ||= {}
+          h[m][c][y] = v
+        end
       end
 
       private

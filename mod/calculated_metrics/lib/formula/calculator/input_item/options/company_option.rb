@@ -19,6 +19,10 @@ module Formula
             interpret_company_option
           end
 
+          def year_value_pairs_by_company
+            { nil => year_value_pairs }
+          end
+
           private
 
           def interpret_company_option
