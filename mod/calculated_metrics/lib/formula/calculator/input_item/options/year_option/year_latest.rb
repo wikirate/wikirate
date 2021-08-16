@@ -16,6 +16,10 @@ module Formula
             def translate_years _years
               all_years
             end
+
+            def answer_query
+              super.merge latest: true
+            end
           end
         end
       end

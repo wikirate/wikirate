@@ -31,6 +31,10 @@ module Formula
       input_names.size
     end
 
+    def input_ids
+      @input_ids ||= input_names.map(&:card_id)
+    end
+
     def input_cards
       @input_cards ||= input_names.map { |name| Card.fetch name }
     end

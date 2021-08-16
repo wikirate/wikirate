@@ -7,14 +7,14 @@ module Formula
         { Card::YearlyVariableID => InputItem::YearlyVariableInputItem,
           Card::MetricID => InputItem::MetricInputItem }.freeze
 
-      attr_reader :parser, :errors
+      attr_reader :input_values
+      delegate :parser, :cached_lookup, :input_cards, to: :input_values
 
-      def initialize parser
-        @parser = parser
-        @input_cards = parser.input_cards
+      def initialize input_values
+        @input_values = input_values
         @errors = []
         # Array.new input_values.input_cards.size, &method(:add_item)
-        @input_cards.size.times(&method(:add_item))
+        input_cards.size.times(&method(:add_item))
       end
 
       # returns empty array if everything is ok
@@ -51,7 +51,7 @@ module Formula
       end
 
       def item_class i
-        input_card = @input_cards[i]
+        input_card = input_cards[i]
         INPUT_ITEM_CLASS_MAP[input_card.type_id] || InputItem::InvalidInput
       end
     end

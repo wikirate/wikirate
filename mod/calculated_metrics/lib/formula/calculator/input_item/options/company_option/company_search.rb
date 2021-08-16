@@ -20,25 +20,13 @@ module Formula
               add_error e.message
             end
 
-            def each_answer_value
-              relations.each_pair do |subject_company_id, years|
-                years.each do |year, object_company_ids|
+            def year_value_pairs_by_company
+              relations.each_with_object({}) do |(subject_company_id, answers), hash|
+                hash[subject_company_id] ||= {}
+                answers.each do |year, object_company_ids|
                   v = values_from_db object_company_ids, year
-                  next unless v.present?
-
-                  yield subject_company_id, year, v
+                  hash[subject_company_id][year] = v if v.present?
                 end
-              end
-            end
-
-            def values_by_year_for_each_company
-              hash = {}
-              each_answer_value do |sc_id, y, v|
-                hash[sc_id] ||= {}
-                hash[sc_id][y] = v
-              end
-              hash.each_pair do |c_id, v_by_y|
-                yield c_id, v_by_y
               end
             end
 
