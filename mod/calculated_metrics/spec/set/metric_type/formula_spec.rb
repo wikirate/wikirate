@@ -4,16 +4,14 @@ require_relative "../../../spec/support/formula.rb"
 
 RSpec.describe Card::Set::MetricType::Formula do
   include_context "formula"
-  #
-  before do
-    @metric_name = "Joe User+RM"
-    @metric_name1 = "Joe User+researched number 1"
-    @metric_name2 = "Joe User+researched number 2"
-    @metric_name3 = "Joe User+researched number 3"
-  end
+
+  let (:metric_name) { "Joe User+RM"}
+  let (:metric_name1) { "Joe User+researched number 1" }
+  let (:metric_name2) { "Joe User+researched number 2" }
+  let (:metric_name3) { "Joe User+researched number 3" }
 
   def build_formula formula
-    format formula, @metric_name1, @metric_name2, @metric_name3
+    format formula, metric_name1, metric_name2, metric_name3
   end
 
   describe "formula card" do
@@ -35,10 +33,10 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
 
       def formula year:
-        create_formula_metric year: year, add: { metric: @metric_name1 }
+        create_formula_metric year: year, add: { metric: metric_name1 }
       end
       # let(:formula) do
-      #   "{{#{@metric_name}|year:#{@year_expr} }}+{{#{@metric_name1}}}"
+      #   "{{#{metric_name}|year:#{@year_expr} }}+{{#{metric_name1}}}"
       # end
 
       it "fixed year" do
@@ -61,9 +59,9 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
 
     it "all years" do
-      # {{@metric_name3|year: all}} + {{@metric_name1}}
-      create_formula_metric metric: @metric_name3, method: "Total",
-                            year: "all", add: { metric: @metric_name1 }
+      # {{metric_name3|year: all}} + {{metric_name1}}
+      create_formula_metric metric: metric_name3, method: "Total",
+                            year: "all", add: { metric: metric_name1 }
       expect(take_answer_value("Samsung", 2014)).to eq "12.0"
       expect(take_answer_value("Samsung", 2015)).to eq "7.0"
     end
@@ -74,11 +72,11 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
 
       def formula year:
-        create_formula_metric method: "Total", year: year, add: { metric: @metric_name1 }
+        create_formula_metric method: "Total", year: year, add: { metric: metric_name1 }
       end
 
       # let(:formula) do
-      #   "Total[{{ #{@metric_name}|year:#{@year_expr} }}]+{{#{@metric_name1}}}"
+      #   "Total[{{ #{metric_name}|year:#{@year_expr} }}]+{{#{metric_name1}}}"
       # end
 
       it "relative range" do
@@ -254,12 +252,12 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     context "when input metric value changes" do
       it "updates calculated value" do
-        card = Card["#{@metric_name1}+Samsung+2014+value"]
+        card = Card["#{metric_name1}+Samsung+2014+value"]
         expect { card.update! content: "1" }
           .to change { calc_value }.from("60.0").to("15.0")
       end
       it "removes incomplete calculated values" do
-        Card::Auth.as_bot { Card["#{@metric_name1}+Samsung+2014"].delete }
+        Card::Auth.as_bot { Card["#{metric_name1}+Samsung+2014"].delete }
         expect(calc_answer).to be_falsey
       end
     end

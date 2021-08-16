@@ -52,7 +52,7 @@ module Formula
       def fetch company:, year:
         company = Card.fetch_id(company) unless company.is_a? Integer
 
-        # search_values_for company_id: company, year: year
+        search_values_for company_id: company, year: year
         return unless @result_cache.has_value? company, year
 
         catch(:cancel_calculation) do
