@@ -17,7 +17,6 @@ end
 delegate :input_chunks, :input_cards, :input_names, :input_keys,
          :year_options, :company_options, :unknown_options, to: :parser
 
-
 def item_names _args={}
   descendant? ? super : parser.input_names
 end

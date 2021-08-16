@@ -25,15 +25,7 @@ module Formula
             add_error "invalid year option: #{year_option}" unless interpret_year_option
           end
 
-          def full_search
-            values_by_year_for_each_company do |c_id, values_by_year|
-              years = values_by_year.keys
-              translate_years(years).each do |year|
-                final_val = apply_year_option values_by_year, year
-                store_value c_id, year, final_val
-              end
-            end
-          end
+
 
           def processed_year_option
             @processed_year_option ||= process_year_option
@@ -75,14 +67,19 @@ module Formula
             when :all
               value_data.values
             when :latest
-              value_data.values.last
+              value_data.values.max
             else
               raise Card::Error, "unknown year Symbol: #{ip}"
             end
           end
 
+          def restrict_years_in_query?
+            false
+          end
+
           private
 
+          # TODO: move this somewhere that guarantees it only gets run once.
           def all_years
             @all_years ||= Card.search(type_id: Card::YearID, return: :name)
                                .map(&:to_i).tap { |a| a.delete 0 }

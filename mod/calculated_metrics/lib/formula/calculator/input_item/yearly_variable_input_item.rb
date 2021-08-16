@@ -10,22 +10,12 @@ module Formula
 
         delegate :with_full_year_space, to: :search_space
 
-        def each_answer_value
-          value_cards.each do |value_card|
-            yield nil, value_card.year.to_i, value_card.content
-          end
-        end
-
-        def answers
-          []
-        end
-
-        def values_by_year_for_each_company
+        def year_value_pairs_by_company
           v_by_y =
             with_full_year_space do
               value_cards.each_with_object({}) { |vc, h| h[vc.year.to_i] = vc.content }
             end
-          yield nil, v_by_y
+          { nil => v_by_y }
         end
 
         # used for CompanyOption
