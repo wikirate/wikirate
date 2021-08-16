@@ -26,12 +26,12 @@ module Formula
       #
       # @param :companies [Integer, Array] only yield input for given companies
       # @param :years [String, Integer, Array] :year only yield input for given years
-      def each companies: nil, years: nil, &block
-        if companies && years
+      def each companies: [], years: [], &block
+        if companies.present? && years.present?
           results_for_companies_and_years companies, years, &block
-        elsif years
+        elsif years.present?
           results_for_years years, &block
-        elsif companies
+        elsif companies.present?
           results_for_companies companies, &block
         else
           all_results(&block)

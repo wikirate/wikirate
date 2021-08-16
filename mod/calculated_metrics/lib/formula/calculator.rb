@@ -25,8 +25,8 @@ module Formula
     # @param companies: [String, Integer, Array] applicable company or companies
     def initialize parser, normalizer: nil, years: nil, companies: nil
       @parser = parser
-      @applicable_years = years
-      @applicable_companies = companies
+      @applicable_years = integers years
+      @applicable_companies = integers companies
       @normalizer = normalizer
       @errors = []
     end
@@ -40,7 +40,7 @@ module Formula
     # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Hash] { year => { company_id => value } }
     def result **restraints
-      restrain_to **restraints
+      restrain_to(**restraints)
       result_hash do |result|
         each_input do |input, company, year|
           next unless (value = value_for_input input, company, year)
@@ -55,7 +55,7 @@ module Formula
     # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
     def result_scope **restraints
-      restrain_to **restraints
+      restrain_to(**restraints)
       [].tap do |results|
         each_input do |_input, company_id, year|
           results << [company_id, year]
