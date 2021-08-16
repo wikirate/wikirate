@@ -101,6 +101,12 @@ RSpec.describe Formula::Calculator::InputValues do
         .to eq %w[10 5]
     end
 
+    example "metric with latest year" do
+      ii, = input_items "{{Joe User+researched number 1|year:latest}}"
+      expect(ii.value_for(samsung, 2000))
+        .to eq "5"
+    end
+
     example "yearly variable with relative year option" do
       ii, = input_items "{{half year|year: -1}}"
       expect(ii.value_for(death_star, 2005)).to eq "1002"

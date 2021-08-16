@@ -4,6 +4,8 @@ module Formula
       # Methods to handle nest option for a metric variable in a formula.
       # For every supported option there is a module which take cares of that option.
       module Options
+        # note: these modules are included in InputItem
+        # (calling extend from an instance is like calling include from a class)
         def initialize_options
           extend CompanyOption if company_option?
           extend YearOption if year_option?
