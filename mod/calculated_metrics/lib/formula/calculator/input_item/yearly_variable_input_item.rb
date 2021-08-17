@@ -10,7 +10,7 @@ module Formula
 
         delegate :with_full_year_space, to: :search_space
 
-        def answers
+        def answers_for _company_id, _year
           []
         end
 

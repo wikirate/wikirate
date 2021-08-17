@@ -7,53 +7,74 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class Input
-      attr_reader :input_values
+      include Values
+
+      attr_reader :input_cards, :result_space, :parser, :input_list, :result_cache
+
+      delegate :no_mandatories?, :validate, to: :input_list
+      delegate :input_cards, :input_ids, to: :parser
 
       # @param [Card] parser has to respond to #input_cards and #input_requirement
       # @param [Proc] input_cast a block that is called for every input value
       def initialize parser, &input_cast
+        @parser = parser
         @input_cast = input_cast
-        @input_values = InputValues.new parser
+        @result_cache = ResultCache.new
+        @input_list = InputList.new self
       end
-
-      delegate :type, :card_id, to: :input_values
 
       # @param :companies [Array of Integers] only yield input for given companies
       # @option :years [Array of Integers] :year only yield input for given years
       def each companies: [], years: []
-        @input_values.each companies: companies, years: years do |vals, company_id, year|
+        each_value companies: companies, years: years do |vals, company_id, year|
           next unless (input_values = normalize_values vals)
           yield input_values, company_id, year
         end
       end
 
-      def input_for company, year
-        values = @input_values.input_for company.card_id, year.to_i
-        normalize_values values
+      # input values for a given company/year
+      # @return [Array<String, Symbol, Integer, Array>]
+      def input_for company_id, year
+        with_integers company_id, year do |c, y|
+          search_values_for company_id: c, year: y
+          normalize_values fetch_val(c, y)
+        end
       end
 
-      def answers company: nil, year: nil
-        @input_values.answers company&.card_id, year&.to_i
+      # @return array of input answer objects
+      def answers_for company_id, year
+        with_integers company_id, year do |c, y|
+          input_list.each_with_object([]) do |input_item, array|
+            input_item.answers_for(c, y).each { |a| array << a }
+          end.uniq
+        end
       end
 
       private
 
-      def validate_input input
-        return unless input.is_a? Array
-        input.map! { |v| normalize_values v }
-        return unless requirements_satisfied? input
-        input
+      # yields value, company_id, and year (as integer) for each result
+      def each_value companies: [], years: [], &block
+        if companies.present? && years.present?
+          values_for_companies_and_years companies, years, &block
+        elsif years.present?
+          values_for_years years, &block
+        elsif companies.present?
+          values_for_companies companies, &block
+        else
+          all_values(&block)
+        end
       end
 
-      def requirements_satisfied? input
-        case @requirement
-        when :all
-          !input.any?(&:blank?)
-        when :any
-          input.flatten.compact.present?
-        else
-          true
-        end
+      def with_integers company_id, year
+        yield company_id&.card_id, year&.to_i
+      end
+
+      def each_year years, &block
+        Array.wrap(years).map(&:to_i).each(&block)
+      end
+
+      def each_company companies, &block
+        Array.wrap(companies).map(&:card_id).each(&block)
       end
 
       def normalize_values val
@@ -64,6 +85,37 @@ module Formula
           val.map(&method(:normalize_values))
         else
           val.blank? ? nil : @input_cast.call(val)
+        end
+      end
+
+      def cached_lookup
+        @cached_lookup ||= Answer.where(metric_id: input_ids) # .sort(year: :desc)
+                                 .pluck(:metric_id, :company_id, :year, :value)
+                                 .each_with_object({}) do |(m, c, y, v), h|
+          h[m] ||= {}
+          h[m][c] ||= {}
+          h[m][c][y] = v
+        end
+      end
+
+      def search_values_for company_id: nil, year: nil
+        while_full_input_set_possible company_id, year do |input_item, result_space|
+          input_item.search_value_for result_space, company_id: company_id, year: year
+        end
+      end
+
+      def while_full_input_set_possible company_id=nil, year=nil
+        @result_cache.track_search company_id, year, no_mandatories? do |result_space|
+          # subtle but IMPORTANT:
+          # The "sort" call puts all items without non_researched option in front.
+          # This way the search space becomes restricted before we have to deal with input
+          # items that have a default value for the whole company-year-space.
+          input_list.sort.each do |input_item|
+            yield input_item, result_space
+            # skip remaining input items if there are no candidates left that can have
+            # values for all input items
+            break if result_space.run_out_of_options?
+          end
         end
       end
     end

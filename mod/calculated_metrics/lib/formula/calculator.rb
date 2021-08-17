@@ -17,7 +17,7 @@ module Formula
     # All the answers a given calculation depends on
     # (same opts as #result)
     # @return [Array] array of Answer objects
-    delegate :answers, to: :input
+    delegate :answers_for, to: :input
 
     # @param parser [Formula::Parser]
     # @param normalizer: [Method] # called to normalize each *result* value
@@ -151,8 +151,8 @@ module Formula
       return if @errors.any? || (!bootable? && @errors << "invalid formula")
 
       boot
-    rescue StandardError => e
-      @errors << e.message
+      # rescue StandardError => e
+      #   @errors << e.message
     end
   end
 end
