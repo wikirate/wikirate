@@ -35,18 +35,17 @@ module Formula
       # input values for a given company/year
       # @return [Array<String, Symbol, Integer, Array>]
       def input_for company_id, year
-        with_integers company_id, year do |company_id, year|
-          search_values_for company_id: company_id, year: year
-          normalize_values fetch_val(company_id, year)
+        with_integers company_id, year do |c, y|
+          search_values_for company_id: c, year: y
+          normalize_values fetch_val(c, y)
         end
       end
 
       # @return array of input answer objects
-      def answers company_id, year
-        with_integers company_id, year do |company_id, year|
+      def answers_for company_id, year
+        with_integers company_id, year do |c, y|
           input_list.each_with_object([]) do |input_item, array|
-            input_item.search_space = SearchSpace.new company_id, year
-            input_item.answers.each { |a| array << a }
+            input_item.answers_for(c, y).each { |a| array << a }
           end.uniq
         end
       end

@@ -4,7 +4,7 @@
 def direct_dependee_answers
   return [] if researched_value? || !metric_card
 
-  metric_card.calculator.answers(company_id, year).uniq
+  metric_card.calculator.answers_for(company_id, year).uniq
 end
 
 def dependee_answers

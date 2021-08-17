@@ -8,7 +8,7 @@ module Formula
 
       def input_for _company, _year; end
 
-      def answers _company_id, _year
+      def answers_for _company_id, _year
         []
       end
     end

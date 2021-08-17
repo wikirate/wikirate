@@ -15,7 +15,7 @@ module Formula
     end
 
     # company fields don't depend on any other answers
-    def answers _company_id, _year
+    def answers_for _company_id, _year
       []
     end
 
