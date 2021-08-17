@@ -50,6 +50,11 @@ module Formula
         end
       end
 
+      def answers_for company_id, year
+        @search_space = SearchSpace.new company_id, year
+        answers
+      end
+
       def search result_space
         @result_space = result_space
         @result_slice = ResultSlice.new

@@ -96,11 +96,6 @@ def add_answer company, year, value
   Answer.create_calculated_answer self, company, year, value
 end
 
-# temporary hack
-def multiline_formula_ok?
-  false
-end
-
 private
 
 def dummy_answers_attribs

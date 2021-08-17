@@ -2,8 +2,8 @@ include_set Abstract::Variable
 include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
-delegate :metric_type_codename, :metric_type_card, :multiline_formula_ok?,
-         :researched?, :calculated?, :rating?, to: :metric_card
+delegate :metric_type_codename, :metric_type_card, :researched?, :calculated?, :rating?,
+         to: :metric_card
 
 def categorical?
   score? && metric_card.categorical?
@@ -35,6 +35,11 @@ end
 def replace_references old_name, new_name
   return super unless rating?
   content.gsub old_name, new_name
+end
+
+def javascript_formula?
+  # expected to be a short-term solution
+  content.lines.first&.match? "CoffeeScript"
 end
 
 def ruby_formula?
