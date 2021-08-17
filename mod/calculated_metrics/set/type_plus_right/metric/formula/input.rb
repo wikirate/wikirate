@@ -7,7 +7,7 @@ def clean_formula
 end
 
 def standard_formula
-  multiline_formula_ok? ? content : content.gsub(/[\r\n]+/m, "")
+  javascript_formula? ? content.lines[1..-1].join : content.gsub(/[\r\n]+/m, "")
 end
 
 def parser
