@@ -45,7 +45,11 @@ class Answer
 
     def calculated_answer metric_card, company, year, value
       @card = card_without_answer_id metric_card.answer_name_for(company, year), value
-      refresh
+      self.metric_id = metric_card.id
+      self.year = year
+      self.company_id = company.card_id
+      assign_attributes value_attributes(value)
+      refresh :latest, :verification, :unpublished
       @card.expire
       update_cached_counts
       self
