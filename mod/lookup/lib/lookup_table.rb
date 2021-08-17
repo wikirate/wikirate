@@ -31,7 +31,7 @@ module LookupTable
     return delete if delete_on_refresh?
     refresh_fields fields
     # card&.expire
-    save
+    save!
   end
 
   def refresh_fields fields
