@@ -20,7 +20,6 @@ def calculation_in_progress!
   end
 end
 
-
 def initial_calculation_in_progress!
   Answer.bulk_insert values: dummy_answers_attribs
 end

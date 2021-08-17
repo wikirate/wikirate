@@ -162,8 +162,9 @@ RSpec.describe Answer do
         .to include(
           metric_id: "Jedi+friendliness".card_id,
           company_id: "Death Star".card_id,
-          year: 2001, value: "50",
-          numeric_value: 50, creator_id: "Joe User".card_id, editor_id: "Joe User".card_id,
+          year: 2001, value: "50", numeric_value: 50,
+          creator_id: "Joe User".card_id,
+          editor_id: "Joe User".card_id,
           updated_at: be_within(2).of(Time.now), record_id: be_nil,
           answer_id: nil, checkers: nil, check_requester: nil,
           latest: true, imported: false
