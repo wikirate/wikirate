@@ -5,17 +5,30 @@ module Formula
       module Results
         private
 
-        def result company, year
-          company = company.card_id
-          year = year.to_i
+        # @return Array[String] simple input values for the given company and year
+        def fetch company:, year:
+          company = Card.fetch_id(company) unless company.is_a? Integer
 
-          values = fetch company: company, year: year
-          yield values, company, year
+          # search_values_for company_id: company, year: year
+          return unless @result_cache.has_value? company, year
+
+          catch(:cancel_calculation) do
+            @input_list.map do |input_item|
+              input_item.value_for company, year
+            end
+          end
+        end
+
+        def result company_id, year
+          year = year.to_i
+          values = fetch company: company_id, year: year
+          yield values, company_id, year
         end
 
         def results_for_companies_and_years companies, years, &block
           each_year(years) do |year|
             each_company(companies) do |company_id|
+              search_values_for company_id: company_id, year: year
               result company_id, year, &block
             end
           end

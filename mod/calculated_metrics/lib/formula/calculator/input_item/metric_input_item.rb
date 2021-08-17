@@ -11,33 +11,22 @@ module Formula
         end
 
         # Searches for all metric answers for this metric input.
-        # If a year is given then the search will be restricted to that year
-        # @param year
         def answers
           Answer.where answer_query
         end
 
         private
 
-        def each_answer_value
-          answers.each do |a|
-            value = Answer.value_from_lookup a.value, type
-            yield a.company_id, a.year, value
+        def year_value_pairs_by_company
+          answers.pluck(:company_id, :year, :value)
+                 .each_with_object({}) do |(c, y, v), h|
+            h[c] ||= {}
+            h[c][y] = v
           end
         end
 
-        # used by YearOption to find values
-        # Other options like CompanyOption adapt it so that
-        # they work together with year options
-        def values_by_year_for_each_company
-          search_company_ids.each do |c_id|
-            # years, values = search_years_and_values(c_id).transpose
-            values_by_year =
-              search_years_and_values(c_id).each_with_object({}) do |(y, v), h|
-                h[y] = v
-              end
-            yield c_id, values_by_year
-          end
+        def store_value company_id, year, value
+          super company_id, year, Answer.value_from_lookup(value, type)
         end
 
         # used for CompanyOption
@@ -58,16 +47,15 @@ module Formula
           Answer.select(:company_id).where(metric_id: card_id).distinct.pluck(:company_id)
         end
 
-        # used only by YearOption; overwritten by CompanyOption
-        def search_years_and_values company_id
-          Answer.where(metric_id: card_id, company_id: company_id).pluck(:year, :value)
-        end
-
         def answer_query
           query = { metric_id: card_id }
-          query[:year] = search_space.years if search_space.years?
+          query[:year] = search_space.years if restrict_years_in_query?
           query[:company_id] = search_space.company_ids if search_space.company_ids?
           query
+        end
+
+        def restrict_years_in_query?
+          search_space.years?
         end
       end
     end

@@ -5,10 +5,6 @@ def value_required?
   false
 end
 
-def researched?
-  true
-end
-
 def answer_lookup_field
   :answer_id
 end
