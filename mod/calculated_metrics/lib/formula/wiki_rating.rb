@@ -14,7 +14,11 @@ module Formula
     protected
 
     def weight_from_index index
-      computer[input.card_id(index)].to_f
+      computer[input_metric_id(index)].to_f
+    end
+
+    def input_metric_id index
+      input.input_list[index].card_id
     end
 
     def boot
