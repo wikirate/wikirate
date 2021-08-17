@@ -53,6 +53,7 @@ class Answer
         company_id: company.card_id,
         created_at: Time.now,
         creator_id: Card::Auth.current_id,
+        imported: false
       )
       refresh :latest, :verification, :unpublished
 

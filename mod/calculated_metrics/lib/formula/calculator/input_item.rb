@@ -26,7 +26,7 @@ module Formula
       attr_writer :search_space
       attr_reader :card_id, :input_list, :result_space
       delegate :answer_candidates, to: :result_space
-      delegate :parser, :cached_lookup, to: :input_list
+      delegate :parser, to: :input_list
 
       def initialize input_list, input_index
         @input_list = input_list
