@@ -4,7 +4,7 @@ module Formula
     def programmable? expr
       @unsafe = expr
       safety_checks
-      @errors.concat input.input_values.validate
+      @errors.concat input.validate
       @errors.empty?
     end
 

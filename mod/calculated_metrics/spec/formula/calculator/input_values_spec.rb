@@ -1,6 +1,6 @@
 require "./spec/support/company_ids"
 
-RSpec.describe Formula::Calculator::InputValues do
+RSpec.describe Formula::Calculator::Input do
   include_context "with company ids"
 
   def input_values formula
@@ -11,7 +11,7 @@ RSpec.describe Formula::Calculator::InputValues do
 
   def input_items formula
     iv = input_values formula
-    iv.send(:full_search)
+    iv.send :search_values_for
     iv.instance_variable_get("@input_list")
   end
 

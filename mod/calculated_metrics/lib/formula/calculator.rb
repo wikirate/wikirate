@@ -151,8 +151,8 @@ module Formula
       return if @errors.any? || (!bootable? && @errors << "invalid formula")
 
       boot
-    rescue StandardError => e
-      @errors << e.message
+    # rescue StandardError => e
+    #   @errors << e.message
     end
   end
 end

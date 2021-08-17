@@ -12,7 +12,7 @@ module Formula
            Take TakeLargest TakeSmallest TakeLargestBy TakeSmallestBy
            ContainsAll ContainsNone ContainsAny ContainsOnly ContainsExactly
            Mean Variance StandardDeviation Median Quantile Covariance] +
-          Formula::Ruby::FUNCTIONS.keys
+          Ruby::FUNCTIONS.keys
       ).freeze
 
       def safety_checks
@@ -35,7 +35,7 @@ module Formula
       end
 
       def strip_safe_parts
-        ::Formula::Calculator.remove_quotes(::Formula::Calculator.remove_nests(@unsafe))
+        Calculator.remove_quotes(Calculator.remove_nests(@unsafe))
       end
     end
   end
