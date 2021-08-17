@@ -24,17 +24,10 @@ module Formula
               end
             end
 
-            def each_answer_value
-              years_from_db(object_company_ids).each do |year|
-                yield nil, year, values_from_db(object_company_ids, year)
-              end
-            end
-
-            def values_by_year_for_each_company
-              v_by_y = years_from_db(object_company_ids).each_with_object({}) do |y, h|
+            def year_value_pairs
+              years_from_db(object_company_ids).each_with_object({}) do |y, h|
                 h[y.to_i] = values_from_db object_company_ids, y
               end
-              yield nil, v_by_y
             end
 
             def object_companies

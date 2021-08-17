@@ -36,11 +36,11 @@ module Formula
 
     # all inputs in the form of { year-company_id => values }
     def input_hash
-      {}.tap do |hash|
-        each_input do |values, company_id, year|
-          hash[lookup_key(company_id, year)] = values
-        end
+      hash = {}
+      each_input do |values, company_id, year|
+        hash[lookup_key(company_id, year)] = values
       end
+      hash
     end
 
     # adds spaces before each coffeescript line so the initial indentation is correct

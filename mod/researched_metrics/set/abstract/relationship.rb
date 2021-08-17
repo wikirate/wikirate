@@ -4,6 +4,10 @@ def relationship?
   true
 end
 
+def researched?
+  true
+end
+
 def simple_value_type_code
   :number
 end

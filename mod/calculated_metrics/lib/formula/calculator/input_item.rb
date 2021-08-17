@@ -26,7 +26,7 @@ module Formula
       attr_writer :search_space
       attr_reader :card_id, :input_list, :result_space
       delegate :answer_candidates, to: :result_space
-      delegate :parser, to: :input_list
+      delegate :parser, :cached_lookup, to: :input_list
 
       def initialize input_list, input_index
         @input_list = input_list
@@ -68,7 +68,19 @@ module Formula
       # Find answer for the given input card and cache the result.
       # If year is given look only for that year
       def full_search
-        each_answer_value(&method(:store_value))
+        year_value_pairs_by_company.each do |company_id, year_value_hash|
+          translate_years(year_value_hash.keys).each do |year|
+            store_value company_id, year, apply_year_option(year_value_hash, year)
+          end
+        end
+      end
+
+      def translate_years years
+        years
+      end
+
+      def apply_year_option year_value_hash, year
+        year_value_hash[year]
       end
 
       def after_search
