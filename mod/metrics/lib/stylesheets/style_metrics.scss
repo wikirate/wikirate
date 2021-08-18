@@ -580,6 +580,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .formula-with-values {
   font-size: 18px;
+  white-space: pre-wrap;
   > .metric-value {
     margin-right: 2px;
     margin-left: 2px;
