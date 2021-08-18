@@ -4,7 +4,6 @@ format :html do
   end
 
   def industry_options
-    card_name = CompanyFilterQuery::INDUSTRY_METRIC_NAME
-    Card[card_name].value_options
+    :commons_industry.card.value_options_card.options_hash
   end
 end
