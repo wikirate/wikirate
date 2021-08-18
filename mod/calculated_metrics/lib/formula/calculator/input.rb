@@ -9,7 +9,7 @@ module Formula
     class Input
       include Values
 
-      attr_reader :input_cards, :result_space, :parser, :input_list, :result_cache
+      attr_reader :parser, :input_list, :result_cache
 
       delegate :no_mandatories?, :validate, to: :input_list
       delegate :input_cards, :input_ids, to: :parser
@@ -41,7 +41,7 @@ module Formula
         end
       end
 
-      # @return array of input answer objects
+      # @return [Array<Answer>]
       def answers_for company_id, year
         with_integers company_id, year do |c, y|
           input_list.each_with_object([]) do |input_item, array|
@@ -88,16 +88,6 @@ module Formula
         end
       end
 
-      def cached_lookup
-        @cached_lookup ||= Answer.where(metric_id: input_ids) # .sort(year: :desc)
-                                 .pluck(:metric_id, :company_id, :year, :value)
-                                 .each_with_object({}) do |(m, c, y, v), h|
-          h[m] ||= {}
-          h[m][c] ||= {}
-          h[m][c][y] = v
-        end
-      end
-
       def search_values_for company_id: nil, year: nil
         while_full_input_set_possible company_id, year do |input_item, result_space|
           input_item.search_value_for result_space, company_id: company_id, year: year
@@ -118,6 +108,18 @@ module Formula
           end
         end
       end
+
+      # optimization idea, never fully implemented:
+      #
+      # def cached_lookup
+      #   @cached_lookup ||= Answer.where(metric_id: input_ids) # .sort(year: :desc)
+      #                            .pluck(:metric_id, :company_id, :year, :value)
+      #                            .each_with_object({}) do |(m, c, y, v), h|
+      #     h[m] ||= {}
+      #     h[m][c] ||= {}
+      #     h[m][c][y] = v
+      #   end
+      # end
     end
   end
 end

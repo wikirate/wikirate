@@ -13,6 +13,10 @@ def all_depender_answer_ids
   ids
 end
 
+def all_depender_relation
+  @all_depender_relation ||= Answer.where id: all_depender_answer_ids
+end
+
 # all metrics that depend on this metric
 def depender_metrics
   depender_tree.metrics

@@ -24,15 +24,15 @@ module Formula
       true
     end
 
-    def result opts={}
-      requiring_year opts[:year], {} do
-        { YEAR => company_id_to_value_hash(opts[:company]) }
+    def result companies: nil, years: nil
+      requiring_year years, {} do
+        { YEAR => company_id_to_value_hash(companies) }
       end
     end
 
-    def result_scope opts={}
-      requiring_year opts[:year], [] do
-        company_fields(opts[:company]).map do |field_card|
+    def result_scope companies: nil, years: nil
+      requiring_year years, [] do
+        company_fields(companies).map do |field_card|
           [field_card.left_id, YEAR]
         end
       end
