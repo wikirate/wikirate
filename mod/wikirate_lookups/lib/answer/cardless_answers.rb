@@ -56,7 +56,6 @@ class Answer
         imported: false
       )
       refresh :latest, :verification, :unpublished
-
       @card.expire
       update_cached_counts
       self
