@@ -13,7 +13,12 @@ module Formula
     end
 
     def boot
-      ExecJS.compile(program).call "calcAll", input_hash
+      computer = {}
+      # running in slices keeps JS from running out of memory
+      input_hash.each_slice 5000 do |input_hash_slice|
+        computer.merge! ExecJS.compile(program).call "calcAll", input_hash_slice
+      end
+      computer
     end
 
     private
