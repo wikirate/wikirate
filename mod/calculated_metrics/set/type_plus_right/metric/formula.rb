@@ -98,6 +98,15 @@ format :html do
   end
 end
 
+def standard_display_formula
+  if javascript_formula?
+    # no "CoffeeScript" tag at top
+    standard_formula
+  else
+    # no line breaks
+    content
+  end
+
 format :json do
   view(:content) { card.json_content }
 end
