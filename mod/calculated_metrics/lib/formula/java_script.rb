@@ -5,7 +5,7 @@ module Formula
   class JavaScript < NestCalculator
     # coffeescript has the advantage of making sure the function _returns_ the value
     def compile
-      ::CoffeeScript.compile full_coffee, bare: true
+      ExecJS.compile ::CoffeeScript.compile(full_coffee, bare: true)
     end
 
     def compute _v, company_id, year
@@ -13,7 +13,12 @@ module Formula
     end
 
     def boot
-      ExecJS.compile(program).call "calcAll", input_hash
+      computer = {}
+      # running in slices keeps JS from running out of memory
+      input_hash.each_slice 5000 do |input_hash_slice|
+        computer.merge! program.call "calcAll", input_hash_slice.to_h
+      end
+      computer
     end
 
     private
