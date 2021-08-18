@@ -9,9 +9,15 @@ def calculator parser_method=nil
 end
 
 def calculation_in_progress!
-  ids = all_depender_answer_ids
-  Answer.where(id: ids, overridden_value: nil).update_all(calculating: true)
-  Answer.where(id: ids).each(&:expire)
+  rel = all_depender_relation
+  rel.where(overridden_value: nil).update_all calculating: true
+  if rel.count > 1000
+    # not worth it to loop through > 1000 answers
+    # maybe we should clear cache?  maybe in integrate stage?
+    # Card::Cache.reset_all
+  else
+    rel.each(&:expire)
+  end
 end
 
 def initial_calculation_in_progress!
