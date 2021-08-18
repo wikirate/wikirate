@@ -7,13 +7,12 @@ module Formula
         { Card::YearlyVariableID => InputItem::YearlyVariableInputItem,
           Card::MetricID => InputItem::MetricInputItem }.freeze
 
-      attr_reader :input_values
-      delegate :parser, :cached_lookup, :input_cards, to: :input_values
+      attr_reader :input
+      delegate :parser, :input_cards, to: :input
 
-      def initialize input_values
-        @input_values = input_values
+      def initialize input
+        @input = input
         @errors = []
-        # Array.new input_values.input_cards.size, &method(:add_item)
         input_cards.size.times(&method(:add_item))
       end
 
@@ -49,6 +48,8 @@ module Formula
         item = item_class(i).new(self, i)
         self << item
       end
+
+      private
 
       def item_class i
         input_card = input_cards[i]

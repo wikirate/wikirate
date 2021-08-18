@@ -45,7 +45,17 @@ class Answer
 
     def calculated_answer metric_card, company, year, value
       @card = card_without_answer_id metric_card.answer_name_for(company, year), value
-      refresh
+      # The following is an unbenchmarked optimization attempt.
+      # idea is to minimize "refresh" time by fetching as few fields as possible.
+      assign_attributes updated_calculated_value_attributes(value).merge(
+        metric_id: metric_card.id,
+        year: year,
+        company_id: company.card_id,
+        created_at: Time.now,
+        creator_id: Card::Auth.current_id,
+        imported: false
+      )
+      refresh :latest, :verification, :unpublished
       @card.expire
       update_cached_counts
       self
@@ -71,10 +81,10 @@ class Answer
     end
 
     def update_value value
-      update! value_attributes(value)
+      update! updated_calculated_value_attributes(value)
     end
 
-    def value_attributes value
+    def updated_calculated_value_attributes value
       {
         value: value,
         numeric_value: self.class.to_numeric(value),
