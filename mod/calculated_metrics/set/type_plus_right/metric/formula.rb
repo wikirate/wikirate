@@ -106,6 +106,7 @@ def standard_display_formula
     # no line breaks
     content
   end
+end
 
 format :json do
   view(:content) { card.json_content }
