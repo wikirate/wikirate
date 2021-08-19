@@ -4,12 +4,6 @@ class Card
     module MetricAndCompanyFilters
       include MetricQuery::MetricFilters
 
-      def industry_query value
-        multi_company do
-          restrict_by_cql :company_id, CompanyFilterQuery.industry_cql(value)
-        end
-      end
-
       def company_group_query value
         multi_company do
           group_lists = Array.wrap(value).map { |v| "#{v}+#{:wikirate_company.cardname}" }
@@ -42,8 +36,17 @@ class Card
       end
 
       def country_query value
-        @joins << "JOIN answers AS countries ON answers.company_id = countries.company_id"
-        @conditions << CompanyFilterQuery.country_condition
+        company_filter_query "countries", :country_condition, value
+      end
+
+      def industry_query value
+        company_filter_query "industries", :industry_condition, value
+      end
+
+      # TODO: refactor this away / use answer_query
+      def company_filter_query table, condition_method, value
+        @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
+        @conditions << CompanyFilterQuery.send(condition_method)
         @values << Array.wrap(value)
       end
 
