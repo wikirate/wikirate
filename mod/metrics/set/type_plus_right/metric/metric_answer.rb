@@ -42,8 +42,8 @@ format do
   delegate :metric_card, to: :card
 
   STANDARD_FILTER_KEYS = %i[
-    status year company_name company_group country value updated updater verification
-    calculated source project outliers bookmark
+    status year company_name company_group industry country value updated updater
+    verification calculated source project outliers bookmark
   ].freeze
 
   def secondary_sort_hash

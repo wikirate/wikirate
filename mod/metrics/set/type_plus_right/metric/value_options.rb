@@ -6,7 +6,7 @@ include_set Abstract::Filterable
 event :validate_no_commas_in_value_options, :validate,
       skip: :allowed, # until we fix all the bad ones
       on: :save, changed: :content do
-  return unless metric_card&.multi_categorical? && item_names.join.match?(",")
+  return unless metric_card&.multi_categorical? && options_hash.values.join.match?(",")
 
   errors.add :content, "Multi-category options cannot have commas"
 end

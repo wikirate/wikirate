@@ -1,10 +1,9 @@
 format :html do
   view :filter_industry_formgroup, cache: :never do
-    select_filter :industry
+    multiselect_filter :industry
   end
 
   def industry_options
-    card_name = CompanyFilterQuery::INDUSTRY_METRIC_NAME
-    Card[card_name].value_options
+    :commons_industry.card.value_options_card.options_hash
   end
 end
