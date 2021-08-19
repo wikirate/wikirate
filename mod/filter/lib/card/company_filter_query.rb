@@ -8,7 +8,7 @@ class Card
       end
 
       def industry_condition
-        answer_condition :industry, :commons_industry
+        answer_condition :industries, :commons_industry
       end
 
       def answer_condition table, codename
@@ -46,7 +46,7 @@ class Card
 
   # add :country attribute to Card::Query
   module Query
-    attributes[:country] = :relational
+    attributes.merge! country: :relational, industry: :relational
 
     class CardQuery
       # extend CardQuery to look up companies' countries in card table

@@ -5,7 +5,8 @@ class Card
     # that handling is in AnswerQuery::Filtering)
     module AllFiltering
       PARTNER_FILTER_QUERY = {
-        company: CompanyFilterQuery, metric: MetricFilterQuery
+        company: CompanyFilterQuery,
+        metric: MetricFilterQuery
       }.freeze
 
       PARTNER_CQL_FILTERS = {

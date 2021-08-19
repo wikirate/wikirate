@@ -1,6 +1,6 @@
 format :html do
   view :filter_industry_formgroup, cache: :never do
-    select_filter :industry
+    multiselect_filter :industry
   end
 
   def industry_options
