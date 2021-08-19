@@ -2,12 +2,26 @@ class Card
   class CompanyFilterQuery < FilterQuery
     include WikirateFilterQuery
 
-    def self.country_condition
-      "countries.metric_id = #{Codename.id :core_country} AND countries.value IN (?)"
+    class << self
+      def country_condition
+        answer_condition :countries, :core_country
+      end
+
+      def industry_condition
+        answer_condition :industries, :commons_industry
+      end
+
+      def answer_condition table, codename
+        "#{table}.metric_id = #{codename.card_id} AND #{table}.value IN (?)"
+      end
     end
 
     def country_cql country
       add_to_cql :country, country
+    end
+
+    def industry_cql industry
+      add_to_cql :industry, industry
     end
 
     def company_cql company
@@ -32,22 +46,30 @@ class Card
 
   # add :country attribute to Card::Query
   module Query
-    attributes[:country] = :relational
+    attributes.merge! country: :relational, industry: :relational
 
     class CardQuery
       # extend CardQuery to look up companies' countries in card table
       module CountryQuery
-        def country_join
-          Join.new side: :left, from: self, from_field: "id",
-                   to: %i[answers countries company_id]
+        def country val
+          joins << answer_join(:countries)
+          add_answer_condition CompanyFilterQuery.country_condition, val
         end
 
-        def country val
-          joins << country_join
+        def industry val
+          joins << answer_join(:industries)
+          add_answer_condition CompanyFilterQuery.industry_condition, val
+        end
 
-          @conditions << ::Answer.sanitize_sql_for_conditions(
-            [CompanyFilterQuery.country_condition, Array.wrap(val)]
-          )
+        private
+
+        def answer_join answer_alias
+          Join.new side: :left, from: self, from_field: "id",
+                   to: [:answers, answer_alias, :company_id]
+        end
+
+        def add_answer_condition cond, val
+          @conditions << ::Answer.sanitize_sql_for_conditions([cond, Array.wrap(val)])
         end
       end
       include CountryQuery
