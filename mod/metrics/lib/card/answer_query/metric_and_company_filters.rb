@@ -4,12 +4,6 @@ class Card
     module MetricAndCompanyFilters
       include MetricQuery::MetricFilters
 
-      def industry_query value
-        multi_company do
-          restrict_by_cql :company_id, CompanyFilterQuery.industry_cql(value)
-        end
-      end
-
       def company_group_query value
         multi_company do
           group_lists = Array.wrap(value).map { |v| "#{v}+#{:wikirate_company.cardname}" }
