@@ -46,7 +46,8 @@ class Card
 
   # add :country attribute to Card::Query
   module Query
-    attributes.merge! country: :relational, industry: :relational
+    attributes.merge! country: :conjunction, industry: :conjunction
+    # FIXME: conjunction is weird here, but unlike :relational it passes on arrays
 
     class CardQuery
       # extend CardQuery to look up companies' countries in card table

@@ -34,7 +34,6 @@ class Card
       @card_joins.unshift("AS #{@partner}").push answer_join
     end
 
-
     # Currently these queries only work with a fixed company or metric
     # it is not yet possible to handle not-researched answers for multiple companies and
     # metrics in one query
