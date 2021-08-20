@@ -44,7 +44,6 @@ class SharedData
       puts "adding wikirate data".green
       setup
       add :companies, :topics, :sources, :report_types,
-          :yearly_variables,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
           :projects, :industry, :researchers, :program, :company_group,
           :profile_sections, :badges, :import_files
@@ -101,15 +100,6 @@ class SharedData
       Card::Auth.as_bot do
         Card::Auth.current.bookmarks_card.add_item! name
       end
-    end
-
-    def add_yearly_variables
-      Card::YearlyVariable.create(
-        name: "half year",
-        values: { 2015 => "1007.5", 2014 => "1007", 2013 => "1006.5", 2004 => "1002" }
-      )
-      Card::YearlyVariable.create_or_update name: "always one",
-                                            values: { 1977 => "1", 2000 => "1", 2014 => 1 }
     end
 
     def add_program

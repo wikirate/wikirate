@@ -49,33 +49,6 @@ RSpec.describe Formula::Wolfram do
   #   end
   # end
   #
-  # describe "formula with yearly variables" do
-  #   it "with fixed year" do
-  #     result = calculate "{{half year|2013}}+{{Joe User+RM}}"
-  #     expect(result).to include 2011 => { apple_id => 1006.5 + 11 },
-  #                               2012 => { apple_id => 1006.5 + 12 },
-  #                               2013 => { apple_id => 1006.5 + 13 }
-  #   end
-  #   it "with relative year" do
-  #     result = calculate "{{half year}}+{{Joe User+RM}}"
-  #     expect(result).to include 2014 => { apple_id => 1007 + 14 },
-  #                               2013 => { apple_id => 1006.5 + 13 }
-  #   end
-  #   it "with sum" do
-  #     result = calculate "Total[{{half year|2013..0}}]+{{Joe User+RM}}"
-  #     expect(result).to include 2013 => { apple_id => 1006.5 + 13 },
-  #                               2014 => { apple_id => 1007 + 1006.5 + 14 }
-  #     expect(result).not_to include 2012, 2016
-  #   end
-  #   it "double sum" do
-  #     result =
-  #       calculate "Total[{{half year|2013..0}}]+Total[{{Joe User+RM|-1..0}}]"
-  #     expect(result).to include 2013 => { apple_id => 1006.5 + 13 + 12 },
-  #                               2014 => { apple_id => 1007 + 1006.5 + 14 + 13 }
-  #     expect(result).not_to include 2012, 2016
-  #   end
-  # end
-
   # describe ".valid_formula?" do
   #   subject { ::Formula::Ruby.valid_formula? content }
   #

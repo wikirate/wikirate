@@ -105,7 +105,7 @@ module Formula
       when "Unknown"
         "\"Unknown\""
       else
-        input.type(index).in?(%i[number yearly_value]) ? value : "\"#{value}\""
+        input.type(index) == :number ? value : "\"#{value}\""
       end
     end
 
