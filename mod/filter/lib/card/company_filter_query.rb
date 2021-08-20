@@ -7,8 +7,8 @@ class Card
         answer_condition :countries, :core_country
       end
 
-      def industry_condition
-        answer_condition :industries, :commons_industry
+      def company_category_condition
+        answer_condition :categories, :company_category
       end
 
       def answer_condition table, codename
@@ -20,8 +20,8 @@ class Card
       add_to_cql :country, country
     end
 
-    def industry_cql industry
-      add_to_cql :industry, industry
+    def company_category_cql company_category
+      add_to_cql :company_category, company_category
     end
 
     def company_cql company
@@ -46,7 +46,7 @@ class Card
 
   # add :country attribute to Card::Query
   module Query
-    attributes.merge! country: :conjunction, industry: :conjunction
+    attributes.merge! country: :conjunction, company_category: :conjunction
     # FIXME: conjunction is weird here, but unlike :relational it passes on arrays
 
     class CardQuery
@@ -57,9 +57,9 @@ class Card
           add_answer_condition CompanyFilterQuery.country_condition, val
         end
 
-        def industry val
-          joins << answer_join(:industries)
-          add_answer_condition CompanyFilterQuery.industry_condition, val
+        def company_category val
+          joins << answer_join(:categories)
+          add_answer_condition CompanyFilterQuery.company_category_condition, val
         end
 
         private

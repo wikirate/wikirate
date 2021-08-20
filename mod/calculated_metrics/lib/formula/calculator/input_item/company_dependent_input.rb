@@ -1,8 +1,8 @@
 module Formula
   class Calculator
     class InputItem
-      # To be included if the values of the input item depend on the output company.
-      # Can be either a metric or a yearly variable with related company option.
+      # To be included if the values of the input item depends on the output company.
+      # (ie, independent company is not specified for item)
       module CompanyDependentInput
         def value_store_class
           ValueStore

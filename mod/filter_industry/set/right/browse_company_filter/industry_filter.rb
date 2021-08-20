@@ -1,3 +1,3 @@
 def filter_keys
-  super << :industry
+  super << :company_category
 end

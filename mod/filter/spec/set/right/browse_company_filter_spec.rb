@@ -22,9 +22,9 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
       it { is_expected.to eq cql(and: { referred_to_by: "Deadliest+Company" }) }
     end
 
-    context "with industry argument" do
-      before { filter_args industry: "myIndustry" }
-      it { is_expected.to eq cql(industry: "myIndustry") }
+    context "with company_category argument" do
+      before { filter_args company_category: "myIndustry" }
+      it { is_expected.to eq cql(company_category: "myIndustry") }
     end
 
     context "with project argument" do
@@ -37,13 +37,13 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
     context "with multiple filter conditions" do
       before do
         filter_args name: "Apple",
-                    industry: "myIndustry",
+                    company_category: "myIndustry",
                     project: "myProject"
       end
       it "joins filter conditions correctly" do
         is_expected.to eq cql(
           name: %w[match Apple],
-          industry: "myIndustry",
+          company_category: "myIndustry",
           and: { referred_to_by: "myProject+Company" }
         )
       end

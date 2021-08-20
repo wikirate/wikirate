@@ -39,8 +39,8 @@ class Card
         company_filter_query "countries", :country_condition, value
       end
 
-      def industry_query value
-        company_filter_query "industries", :industry_condition, value
+      def company_category_query value
+        company_filter_query "categories", :company_category_condition, value
       end
 
       # TODO: refactor this away / use answer_query
