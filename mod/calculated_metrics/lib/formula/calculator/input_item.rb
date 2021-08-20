@@ -3,17 +3,16 @@ module Formula
     # {InputItem} represents a nested metric in a formula.
     # For example "{{Jedi+friendliness|year: -1}}" in the formula
     # "{{Jedi+friendliness|year: -1}} + 10 / {{Jedi+deadliness}}"
-    # #
+    #
     # It is responsible for finding all relevant values for that input item.
     # How this is handled depends on the nest options (year and/or company)
     # The logic for the nest options is in the modules {CompanyOption} and {YearOption}
-
+    #
     # A metric with a fixed company is option company independent.
     # That's why the company dependency is separated into the modules
     # {CompanyDependentInput} and {CompanyIndependentInput}
     class InputItem
       include ValidationChecks
-      # include MetricInputItem
       include Options
 
       attr_writer :search_space
@@ -21,8 +20,9 @@ module Formula
       delegate :answer_candidates, to: :result_space
       delegate :parser, to: :input_list
 
+
       def self.item_class type_id
-        type_id == Card::MetricID ? MetricInputItem : InvalidInputItem
+        type_id == Card::MetricID ? StandardInputItem : InvalidInputItem
       end
 
       def initialize input_list, input_index
