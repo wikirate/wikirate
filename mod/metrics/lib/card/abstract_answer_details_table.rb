@@ -49,16 +49,7 @@ class Card
     end
 
     def answer_card input_card
-      # cql = input_card.metric_value_query
-      # cql[:left][:right] = company
-      # cql[:right] = year
-      # return unless (value_card = Card.search(cql).first)
-      # value_card
-      if input_card.type_id == Card::YearlyVariableID
-        Card.fetch input_card, year
-      else
-        Card.fetch input_card, company, year
-      end
+      Card.fetch input_card, company, year
     end
 
     def link_to_answer answer_card

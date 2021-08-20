@@ -1,7 +1,3 @@
-if defined?(Card::MetricID)
-  VALID_INPUT_TYPE_IDS = [Card::MetricID, Card::YearlyVariableID].freeze
-end
-
 def clean_formula
   descendant? ? inheritance_formula : standard_formula
 end
@@ -53,7 +49,7 @@ def ok_input_card chunk
 end
 
 def ok_input_cardtype chunk
-  ok_input? VALID_INPUT_TYPE_IDS.include?(chunk.referee_card.type_id) do
+  ok_input? (chunk.referee_card.type_id == Card::MetricID) do
     "#{chunk.referee_name} has invalid type #{chunk.referee_card.type_name}"
   end
 end

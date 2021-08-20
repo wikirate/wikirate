@@ -1,8 +1,7 @@
 module Formula
   class Calculator
     class InputItem
-      # Instances of {MetricInput} represent input items that refer to a metric
-      # It uses the answer table to find values.
+      # Uses the answer table to find values.
       class MetricInputItem < InputItem
         include CompanyDependentInput
 

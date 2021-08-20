@@ -37,13 +37,6 @@ RSpec.describe Formula::Calculator::Input do
                                 [[5.0, 2.0], samsung_id, 2015])
   end
 
-  example "yearly variable" do
-    @input = ["half year", "Joe User+researched number 1"]
-    expect { |b| input.each(years: 2015, &b) }
-      .to yield_successive_args([[1007.5, 100.0], apple_id, 2015],
-                                [[1007.5, 5.0], samsung_id, 2015])
-  end
-
   context "with year option" do
     before do
       @input = ["Joe User+RM"]
