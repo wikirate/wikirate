@@ -2,7 +2,7 @@ module Formula
   class Calculator
     class InputItem
       # Uses the answer table to find values.
-      module MetricInputItem
+      class MetricInputItem < InputItem
         include CompanyDependentInput
 
         def type

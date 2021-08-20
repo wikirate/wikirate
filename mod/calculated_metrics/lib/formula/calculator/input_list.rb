@@ -49,7 +49,7 @@ module Formula
 
       def item_class i
         input_card = input_cards[i]
-        input_card.type_id == Card::MetricID ? InputItem : InputItem::InvalidInput
+        input_card.type_id == Card::MetricID ? InputItem::MetricInputItem : InputItem::InvalidInputItem
       end
     end
   end

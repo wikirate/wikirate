@@ -30,7 +30,7 @@ module Formula
           for key, val of obj
             r[key] = calc(val)
           r
-        calc = (iN) -> 
+        calc = (iN) ->
         #{prepended_coffee_formula}
       COFFEE
     end
@@ -62,32 +62,5 @@ module Formula
     def input_name index
       "iN[#{index}]"
     end
-
-    # def prepare_values values
-    #   values.map.with_index do |val, index|
-    #     ruby_value val, index
-    #   end
-    # end
-    #
-    # def ruby_value value, index
-    #   case value
-    #   when Array
-    #     value.map { |v| ruby_value v, index }
-    #   when "false"
-    #     false
-    #   when "nil"
-    #     nil
-    #   when "Unknown"
-    #     value
-    #   else
-    #     numeric?(index) ? value.to_f : value
-    #   end
-    # end
-
-    # def numeric? index
-    #   @numeric ||= {}
-    #   return @numeric[index] unless @numeric[index].nil?
-    #   @numeric[index] = input.type(index).in? %i[number yearly_value]
-    # end
   end
 end

@@ -13,7 +13,7 @@ module Formula
     # {CompanyDependentInput} and {CompanyIndependentInput}
     class InputItem
       include ValidationChecks
-      include MetricInputItem
+      # include MetricInputItem
       include Options
 
       attr_writer :search_space
