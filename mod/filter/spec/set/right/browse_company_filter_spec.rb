@@ -24,13 +24,7 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
 
     context "with industry argument" do
       before { filter_args industry: "myIndustry" }
-      it do
-        is_expected.to eq cql(
-          left_plus: ["Global Reporting Initiative+Sector Industry",
-                      { right_plus: ["2015",
-                                     { right_plus: ["value", { eq: "myIndustry" }] }] }]
-        )
-      end
+      it { is_expected.to eq cql(industry: "myIndustry") }
     end
 
     context "with project argument" do
@@ -49,11 +43,7 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
       it "joins filter conditions correctly" do
         is_expected.to eq cql(
           name: %w[match Apple],
-          left_plus: [
-            "Global Reporting Initiative+Sector Industry", {
-              right_plus: ["2015", { right_plus: ["value", { eq: "myIndustry" }] }]
-            }
-          ],
+          industry: "myIndustry",
           and: { referred_to_by: "myProject+Company" }
         )
       end
