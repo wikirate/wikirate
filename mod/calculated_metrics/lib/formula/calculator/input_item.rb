@@ -20,7 +20,12 @@ module Formula
       delegate :answer_candidates, to: :result_space
       delegate :parser, to: :input_list
 
-
+      # We instantiate with a super class because we dynamically include a lot of modules
+      # based on options, and included modules don't override methods defined directly
+      # on the including class. (Alternatively we could move everything out of here into
+      # modules and have them override each other. Arguably more elegant; we got here
+      # because of legacy reasons, and it's not bad enough to inspire me to change the
+      # approach as of Aug 2021 --efm)
       def self.item_class type_id
         type_id == Card::MetricID ? StandardInputItem : InvalidInputItem
       end
