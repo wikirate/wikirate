@@ -1,7 +1,7 @@
 RSpec.describe Card::AnswerQuery do
-  RESEARCHED_TITLES = ["Industry Class", "Weapons", "big multi", "big single",
-                       "researched number 2", "researched number 3", "small multi",
-                       "small single"].freeze
+  RESEARCHED_TITLES = ["Industry Class", "Sector Industry", "Weapons", "big multi",
+                       "big single", "researched number 2", "researched number 3",
+                       "small multi", "small single"].freeze
 
   let(:company) { Card[@company_name || "Death_Star"] }
   let(:all_metrics) { Card.search type_id: Card::MetricID, return: :name }
@@ -22,8 +22,8 @@ RSpec.describe Card::AnswerQuery do
       "friendliness+1977", "deadliness+1977", "deadliness+1977",
       "disturbances in the Force+2001", "darkness rating+1977", "descendant 1+1977",
       "descendant 2+1977", "descendant hybrid+1977", "double friendliness+1977",
-      "Sector Industry+2015", "researched number 1+1977", "know the unknowns+1977",
-      "more evil+1977", "RM+1977", "deadliness+1977"
+      "researched number 1+1977", "know the unknowns+1977",
+      "more evil+1977", "RM+1977", "deadliness+1977", "Industry+2019"
     ]
   end
 
@@ -33,8 +33,9 @@ RSpec.describe Card::AnswerQuery do
       "deadliness+1977", "deadliness+1977", "descendant 1+1977", "descendant 2+1977",
       "descendant hybrid+1977", "dinosaurlabor+2010", "disturbances in the Force+2001",
       "disturbances in the Force+2001", "double friendliness+1977", "friendliness+1977",
-      "know the unknowns+1977", "more evil+1977", "researched number 1+1977", "RM+1977",
-      "Sector Industry+2015", "Sith Lord in Charge+1977", "Victims by Employees+1977"
+      "Industry+2019", "know the unknowns+1977", "more evil+1977",
+      "researched number 1+1977", "RM+1977", "Sith Lord in Charge+1977",
+      "Victims by Employees+1977"
     ]
   end
 
@@ -42,7 +43,7 @@ RSpec.describe Card::AnswerQuery do
     [
       "cost of planets destroyed+1977", "deadliness+1977", "dinosaurlabor+2010",
       "disturbances in the Force+2001", "researched number 1+1977", "RM+1977",
-      "Sector Industry+2015", "Sith Lord in Charge+1977", "Victims by Employees+1977"
+      "Sith Lord in Charge+1977", "Victims by Employees+1977"
     ]
   end
 
@@ -118,7 +119,7 @@ RSpec.describe Card::AnswerQuery do
     context "with metric type" do
       it "finds formulas" do
         expect(filter_by({ metric_type: "Formula" }))
-          .to eq ["double friendliness+1977", "friendliness+1977",
+          .to eq ["double friendliness+1977", "friendliness+1977", "Industry+2019",
                   "know the unknowns+1977"]
       end
 
@@ -139,7 +140,7 @@ RSpec.describe Card::AnswerQuery do
         expect(filter_by({ metric_type: %w[Score Formula] }))
           .to eq ["deadliness+1977", "deadliness+1977",
                   "disturbances in the Force+2001", "double friendliness+1977",
-                  "friendliness+1977", "know the unknowns+1977"]
+                  "friendliness+1977", "Industry+2019", "know the unknowns+1977"]
       end
     end
 
@@ -269,7 +270,7 @@ RSpec.describe Card::AnswerQuery do
            "darkness rating", "deadliness", "deadliness",
            "deadliness", "dinosaurlabor", "friendliness",
            "Sith Lord in Charge", "descendant 1", "descendant 2",
-           "descendant hybrid", "Sector Industry",
+           "descendant hybrid", "Industry",
            "RM", "researched number 1", "know the unknowns",
            "more evil", "double friendliness"],
           2001
@@ -353,7 +354,7 @@ RSpec.describe Card::AnswerQuery do
   end
 
   context "with sort conditions" do
-    let(:sorted_designer) { ["Fred", "Global Reporting Initiative", "Jedi", "Joe User"] }
+    let(:sorted_designer) { ["Commons", "Fred", "Jedi", "Joe User"] }
 
     it "sorts by designer name (asc)" do
       sorted = sort_by(:metric_designer, :asc).map { |a| a.name.parts.first }.uniq
@@ -372,7 +373,7 @@ RSpec.describe Card::AnswerQuery do
          "researched number 1", "Victims by Employees"].map do |t|
           sorted.index(t)
         end
-      expect(indices).to eq [0, 1, 2, 15, 19]
+      expect(indices).to eq [0, 1, 2, 16, 19]
     end
 
     it "sorts by recently updated" do
