@@ -45,7 +45,7 @@ class SharedData
       setup
       add :companies, :topics, :sources, :report_types,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :projects, :industry, :researchers, :program, :company_group,
+          :projects, :company_category, :researchers, :program, :company_group,
           :profile_sections, :badges, :import_files
 
       Card::Cache.reset_all
@@ -113,8 +113,9 @@ class SharedData
       researchers.add_item! "Joe Camel"
     end
 
-    def add_industry
-      metric = :commons_industry.card
+    def add_company_category
+      metric = :company_category.card
+      metric.value_type_card.update! content: "Multi-Category"
       metric.value_options_card.update! content: %w[A B C D].to_pointer_content
       ["Death Star", "SPECTRE"].each do |name|
         metric.create_answer company: name, year: "2019", value: "A", source: :opera_source.cardname

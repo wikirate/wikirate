@@ -82,7 +82,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "-1"
       end
 
-      expect(table).to have_tag "div.formula-with-values", text: "= 9-8" do
+      expect(table).to have_tag "div.formula-with-values", text: "= 9+8" do
         with_tag :a,
                  with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004" },
                  text: "9"
