@@ -3,10 +3,6 @@ module Formula
     # {InputList} is an array of {InputItem}s.
     # It chooses the right InputItem class depending on the cardtype of the input item.
     class InputList < Array
-      INPUT_ITEM_CLASS_MAP =
-        { Card::YearlyVariableID => InputItem::YearlyVariableInputItem,
-          Card::MetricID => InputItem::MetricInputItem }.freeze
-
       attr_reader :input
       delegate :parser, :input_cards, to: :input
 
@@ -53,7 +49,7 @@ module Formula
 
       def item_class i
         input_card = input_cards[i]
-        INPUT_ITEM_CLASS_MAP[input_card.type_id] || InputItem::InvalidInput
+        input_card.type_id == Card::MetricID ? InputItem : InputItem::InvalidInput
       end
     end
   end

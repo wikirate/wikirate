@@ -80,9 +80,6 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag("td") { with_tag "a", text: "deadliness" }
         with_tag("td") { with_tag "span.metric-value", text: "8" }
         with_tag "td", text: "-1"
-        with_tag("td") { with_tag "a", text: "half year" }
-        with_tag("td") { with_tag "a.metric-value", text: "1002" }
-        with_tag "td", text: "2004"
       end
 
       expect(table).to have_tag "div.formula-with-values", text: "= 9-8+1002" do
