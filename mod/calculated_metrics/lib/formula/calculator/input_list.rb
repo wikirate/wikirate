@@ -41,15 +41,7 @@ module Formula
       end
 
       def add_item i
-        item = item_class(i).new(self, i)
-        self << item
-      end
-
-      private
-
-      def item_class i
-        input_card = input_cards[i]
-        input_card.type_id == Card::MetricID ? InputItem::MetricInputItem : InputItem::InvalidInputItem
+        self << InputItem.item_class(input_cards[i].type_id).new(self, i)
       end
     end
   end

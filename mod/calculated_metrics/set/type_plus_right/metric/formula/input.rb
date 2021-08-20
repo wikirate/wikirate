@@ -49,7 +49,7 @@ def ok_input_card chunk
 end
 
 def ok_input_cardtype chunk
-  ok_input? (chunk.referee_card.type_id == Card::MetricID) do
+  ok_input?(chunk.referee_card.type_id == Card::MetricID) do
     "#{chunk.referee_name} has invalid type #{chunk.referee_card.type_name}"
   end
 end

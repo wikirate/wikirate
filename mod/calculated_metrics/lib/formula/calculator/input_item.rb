@@ -21,6 +21,10 @@ module Formula
       delegate :answer_candidates, to: :result_space
       delegate :parser, to: :input_list
 
+      def self.item_class type_id
+        type_id == Card::MetricID ? MetricInputItem : InvalidInputItem
+      end
+
       def initialize input_list, input_index
         @input_list = input_list
         @input_index = input_index
@@ -107,8 +111,7 @@ module Formula
       end
 
       # overwritten in other places to move input items with no restriction on
-      # companies or years
-      # (like yearly variable or fixed year optiosn) to the end.
+      # companies or years (because of company and/or year options) to the end.
       # That way when they are processed the search
       # space for values is already restricted to some companies and years
       def sort_index

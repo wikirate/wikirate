@@ -15,15 +15,6 @@ RSpec.describe Formula::Calculator::Input do
     iv.instance_variable_get("@input_list")
   end
 
-  # def yearly_values
-  #   [2004, 2013, 2014, 2015].each_with_object({}) do |y, h|
-  #     h[y] = Card["A"].format
-  #                     .number_with_precision(y / 2.0, precision: 5,
-  #                                                     strip_insignificant_zeros: true)
-  #                     .to_s
-  #   end
-  # end
-
   example "single metric" do
     ii, = input_items "2*{{Jedi+Victims by Employees}}"
     aggregate_failures do
