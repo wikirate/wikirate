@@ -1,5 +1,5 @@
-include_set Abstract::WikirateImport
 include_set Type::File
+include_set Abstract::WikirateImport
 
 attachment :source_import, uploader: CarrierWave::FileCardUploader
 

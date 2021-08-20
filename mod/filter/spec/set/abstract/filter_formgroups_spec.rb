@@ -13,21 +13,6 @@ describe Card::Set::Abstract::FilterFormgroups do
     end
   end
 
-  describe "industry formgroup" do
-    subject { filter_card.format.render_filter_industry_formgroup }
-
-    it "renders select form" do
-      industries = Card[Card::CompanyFilterQuery::INDUSTRY_METRIC_NAME].value_options
-      is_expected.to have_tag :select, with: { name: "filter[industry]",
-                                               class: "pointer-select" } do
-        industries.each do |text|
-          with_option text, text
-        end
-        with_option "--", ""
-      end
-    end
-  end
-
   context "with metric filter card" do
     let(:filter_card) { Card[:metric].fetch :browse_metric_filter }
 
