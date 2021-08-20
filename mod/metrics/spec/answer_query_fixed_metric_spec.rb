@@ -72,7 +72,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "finds exact match by industry" do
-      expect(filter_by(industry: "Technology Hardware"))
+      expect(filter_by(industry: "A"))
         .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
 
@@ -161,13 +161,13 @@ RSpec.describe Card::AnswerQuery do
 
       it "... industry" do
         expect(filter_by(status: :none,
-                         industry: "Technology Hardware"))
+                         industry: "A"))
           .to eq []
       end
 
       it "... industry and year" do
         expect(filter_by(status: :none,
-                         industry: "Technology Hardware",
+                         industry: "A",
                          year: "2001"))
           .to eq ["SPECTRE+2001"]
       end
@@ -189,7 +189,7 @@ RSpec.describe Card::AnswerQuery do
 
       it "... industry and year" do
         expect(filter_by(status: :all,
-                         industry: "Technology Hardware",
+                         industry: "A",
                          year: "2001"))
           .to contain_exactly(*with_year(["SPECTRE", "Death Star"], 2001))
       end
@@ -197,18 +197,18 @@ RSpec.describe Card::AnswerQuery do
 
     it "project and industry" do
       expect(filter_by(project: "Evil Project",
-                       industry: "Technology Hardware"))
+                       industry: "A"))
         .to eq(["Death Star+2001", "SPECTRE+2000"])
     end
     it "year and industry" do
       expect(filter_by(year: "1977",
-                       industry: "Technology Hardware"))
+                       industry: "A"))
         .to eq(with_year("Death Star", 1977))
     end
     it "all in" do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
         expect(filter_by(year: "1990",
-                         industry: "Technology Hardware",
+                         industry: "A",
                          project: "Evil Project",
                          updated: :today,
                          name: "star"))

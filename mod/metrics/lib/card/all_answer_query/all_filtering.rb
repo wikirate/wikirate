@@ -45,6 +45,12 @@ class Card
         @card_values << value
       end
 
+      def company_filter_query table, condition_method, value
+        @card_joins << "JOIN answers AS #{table} ON #{@partner}.id = #{table}.company_id"
+        add_card_condition CompanyFilterQuery.send(condition_method),
+        Array.wrap(value)
+      end
+
       # map answer fields to partner card fields
       def partner_field_map
         @partner_field_map ||= %i[id name].each_with_object({}) do |fld, hash|
