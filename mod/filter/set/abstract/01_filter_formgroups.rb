@@ -32,7 +32,7 @@ format :html do
   end
 
   view :filter_country_formgroup, cache: :never do
-    select_filter :country
+    multiselect_filter :country
   end
 
   view :filter_company_name_formgroup, cache: :never do
