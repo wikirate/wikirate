@@ -125,8 +125,9 @@ class SharedData
 
     def add_industry
       metric = :commons_industry.card
+      metric.value_options_card.update! content: %w[A B C D].to_pointer_content
       ["Death Star", "SPECTRE"].each do |name|
-        metric.create_answer company: name, year: "2019", value: "A"
+        metric.create_answer company: name, year: "2019", value: "A", source: :opera_source.cardname
       end
     end
 
