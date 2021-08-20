@@ -10,6 +10,7 @@ class Card
 
     def initialize filter, sorting={}, paging={}
       @card_conditions = []
+      @card_joins = []
       @card_values = []
       @partner_ids = nil
       @cql_filter = {}
@@ -24,10 +25,15 @@ class Card
     end
 
     def main_query
-      @main_query ||= Card.joins(partner_join).where(partner_where)
+      @main_query ||= Card.joins(partner_joins).where partner_where
     end
 
     private
+
+    def partner_joins
+      @card_joins.unshift("AS #{@partner}").push answer_join
+    end
+
 
     # Currently these queries only work with a fixed company or metric
     # it is not yet possible to handle not-researched answers for multiple companies and
@@ -44,9 +50,9 @@ class Card
     end
 
     # This left join is the essence of the search strategy.
-    def partner_join
-      "AS #{@partner} LEFT JOIN answers " \
-      "ON #{@partner}.id = #{@partner}_id AND #{lookup_conditions}"
+    def answer_join
+      "LEFT JOIN answers " \
+      "ON #{@partner}.id = answers.#{@partner}_id AND #{lookup_conditions}"
     end
 
     def partner_where

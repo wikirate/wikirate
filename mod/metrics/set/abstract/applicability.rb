@@ -3,7 +3,7 @@ include_set Abstract::MetricChild, generation: 1
 delegate :researchable?, to: :metric_card
 
 event :verify_no_current_answers_inapplicable, :validate,
-      on: :create, changed: :content, when: :researchable? do
+      on: :save, changed: :content, when: :researchable? do
   return unless content.present? && metric_id && inapplicable_answers.any?
 
   errors.add :content, "Invalid #{name.right} applicability restriction." \
@@ -13,3 +13,5 @@ end
 def researched_answers
   Answer.where "metric_id = #{metric_id} AND answer_id IS NOT NULL"
 end
+
+# TODO: trigger recalculation (or corrections at least) if calculated metric.
