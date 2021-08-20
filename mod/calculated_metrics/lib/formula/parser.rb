@@ -3,14 +3,12 @@ module Formula
     Card::Content::Chunk.register_list :formula, [:FormulaInput]
 
     OPTIONS = %i[year company unknown not_researched].freeze
-    COUNT_RELATED_FUNC =
-      { "CountRelated" => "Total[ {{always one|company: Related" }.freeze
 
     attr_reader :input_names, :formula
     alias_method :item_names, :input_names
 
     def initialize formula, input_names=nil, card=nil
-      @formula = translate_shortcuts formula
+      @formula = formula
       @card = card || Card.new # only needed for the content object
       @input_names = input_names || standard_input_names
     end
@@ -128,16 +126,6 @@ module Formula
     def input_options option_name
       input_chunks.map do |chunk|
         chunk.options[option_name]
-      end
-    end
-
-    def translate_shortcuts formula
-      count_related_replacer.translate formula
-    end
-
-    def count_related_replacer
-      Calculator::FunctionTranslator.new(COUNT_RELATED_FUNC) do |_func, replacement, arg|
-        "#{replacement}[#{arg}]}} ]"
       end
     end
   end

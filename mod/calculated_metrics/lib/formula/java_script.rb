@@ -30,7 +30,7 @@ module Formula
           for key, val of obj
             r[key] = calc(val)
           r
-        calc = (iN) ->
+        calc = (iN) -> 
         #{prepended_coffee_formula}
       COFFEE
     end

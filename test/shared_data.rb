@@ -103,15 +103,6 @@ class SharedData
       end
     end
 
-    def add_yearly_variables
-      Card::YearlyVariable.create(
-        name: "half year",
-        values: { 2015 => "1007.5", 2014 => "1007", 2013 => "1006.5", 2004 => "1002" }
-      )
-      Card::YearlyVariable.create_or_update name: "always one",
-                                            values: { 1977 => "1", 2000 => "1", 2014 => 1 }
-    end
-
     def add_program
       Card.create type: :cardtype, name: "Program"
       create "Test Program", type: :program
