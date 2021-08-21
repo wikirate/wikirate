@@ -42,7 +42,7 @@ format do
   delegate :metric_card, to: :card
 
   STANDARD_FILTER_KEYS = %i[
-    status year company_name company_group industry country value updated updater
+    status year company_name company_group company_category country value updated updater
     verification calculated source project outliers bookmark
   ].freeze
 

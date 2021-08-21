@@ -23,18 +23,18 @@ RSpec.describe Card::AnswerQuery do
       "disturbances in the Force+2001", "darkness rating+1977", "descendant 1+1977",
       "descendant 2+1977", "descendant hybrid+1977", "double friendliness+1977",
       "researched number 1+1977", "know the unknowns+1977",
-      "more evil+1977", "RM+1977", "deadliness+1977", "Industry+2019"
+      "more evil+1977", "RM+1977", "deadliness+1977", "Company Category+2019"
     ]
   end
 
   let :latest_answers do # by metric title
     [
-      "cost of planets destroyed+1977", "darkness rating+1977", "deadliness+1977",
-      "deadliness+1977", "deadliness+1977", "descendant 1+1977", "descendant 2+1977",
-      "descendant hybrid+1977", "dinosaurlabor+2010", "disturbances in the Force+2001",
-      "disturbances in the Force+2001", "double friendliness+1977", "friendliness+1977",
-      "Industry+2019", "know the unknowns+1977", "more evil+1977",
-      "researched number 1+1977", "RM+1977", "Sith Lord in Charge+1977",
+      "Company Category+2019", "cost of planets destroyed+1977", "darkness rating+1977",
+      "deadliness+1977", "deadliness+1977", "deadliness+1977", "descendant 1+1977",
+      "descendant 2+1977", "descendant hybrid+1977", "dinosaurlabor+2010",
+      "disturbances in the Force+2001", "disturbances in the Force+2001",
+      "double friendliness+1977", "friendliness+1977", "know the unknowns+1977",
+      "more evil+1977", "researched number 1+1977", "RM+1977", "Sith Lord in Charge+1977",
       "Victims by Employees+1977"
     ]
   end
@@ -119,8 +119,8 @@ RSpec.describe Card::AnswerQuery do
     context "with metric type" do
       it "finds formulas" do
         expect(filter_by({ metric_type: "Formula" }))
-          .to eq ["double friendliness+1977", "friendliness+1977", "Industry+2019",
-                  "know the unknowns+1977"]
+          .to eq ["Company Category+2019", "double friendliness+1977",
+                  "friendliness+1977", "know the unknowns+1977"]
       end
 
       it "finds scores" do
@@ -138,9 +138,9 @@ RSpec.describe Card::AnswerQuery do
 
       it "finds combinations" do
         expect(filter_by({ metric_type: %w[Score Formula] }))
-          .to eq ["deadliness+1977", "deadliness+1977",
+          .to eq ["Company Category+2019", "deadliness+1977", "deadliness+1977",
                   "disturbances in the Force+2001", "double friendliness+1977",
-                  "friendliness+1977", "Industry+2019", "know the unknowns+1977"]
+                  "friendliness+1977", "know the unknowns+1977"]
       end
     end
 
@@ -270,7 +270,7 @@ RSpec.describe Card::AnswerQuery do
            "darkness rating", "deadliness", "deadliness",
            "deadliness", "dinosaurlabor", "friendliness",
            "Sith Lord in Charge", "descendant 1", "descendant 2",
-           "descendant hybrid", "Industry",
+           "descendant hybrid", "Company Category",
            "RM", "researched number 1", "know the unknowns",
            "more evil", "double friendliness"],
           2001
@@ -373,7 +373,7 @@ RSpec.describe Card::AnswerQuery do
          "researched number 1", "Victims by Employees"].map do |t|
           sorted.index(t)
         end
-      expect(indices).to eq [0, 1, 2, 16, 19]
+      expect(indices).to eq [1, 2, 3, 16, 19]
     end
 
     it "sorts by recently updated" do

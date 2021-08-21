@@ -34,9 +34,7 @@ class SharedData
       Card::Metric.create name: "Jedi+deadlier",
                           type: :formula,
                           hybrid: "1",
-                          formula: "{{Jedi+deadliness}}-{{Jedi+deadliness|year:-1}}" \
-                                   "+{{half year}}"
-
+                          formula: "{{Jedi+deadliness}}+{{Jedi+deadliness|year:-1}}"
       Card::Metric.create name: "Jedi+know the unknowns",
                           type: :formula,
                           formula: "{{Joe User+RM|unknown: 10}} + {{Joe User+small multi|not_researched: 20}}"

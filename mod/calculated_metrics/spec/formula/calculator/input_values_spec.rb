@@ -15,15 +15,6 @@ RSpec.describe Formula::Calculator::Input do
     iv.instance_variable_get("@input_list")
   end
 
-  def yearly_values
-    [2004, 2013, 2014, 2015].each_with_object({}) do |y, h|
-      h[y] = Card["A"].format
-                      .number_with_precision(y / 2.0, precision: 5,
-                                                      strip_insignificant_zeros: true)
-                      .to_s
-    end
-  end
-
   example "single metric" do
     ii, = input_items "2*{{Jedi+Victims by Employees}}"
     aggregate_failures do
@@ -38,11 +29,6 @@ RSpec.describe Formula::Calculator::Input do
       expect(ii.value_for(death_star, nil)).to eq(1977 => "0.31")
       expect(ii2.value_for(death_star, nil)).to eq(1977 => "100")
     end
-  end
-
-  example "yearly variable" do
-    ii, = input_items "{{half year}}"
-    expect(ii.value_for(death_star, nil)).to eq yearly_values
   end
 
   def all_years value
@@ -106,17 +92,6 @@ RSpec.describe Formula::Calculator::Input do
       expect(ii.value_for(samsung, 2000))
         .to eq "5"
     end
-
-    example "yearly variable with relative year option" do
-      ii, = input_items "{{half year|year: -1}}"
-      expect(ii.value_for(death_star, 2005)).to eq "1002"
-    end
-
-    example "yearly variable with relative year range" do
-      ii, = input_items "{{half year|year: 2013..0}}"
-      expect(ii.value_for(death_star, nil))
-        .to eq 2013 => ["1006.5"], 2014 => %w[1006.5 1007], 2015 => %w[1006.5 1007 1007.5]
-    end
   end
 
   describe "company options" do
@@ -148,22 +123,6 @@ RSpec.describe Formula::Calculator::Input do
       aggregate_failures do
         expect(ii.value_for(samsung, nil)).to eq(1977 => "Unknown")
         expect(ii2.value_for(samsung, nil)).to eq(1977 => %w[100 50])
-      end
-    end
-
-    example "yearly variable with company list" do
-      ii, = input_items "{{half year|company: Death Star, SPECTRE}}"
-      expect(ii.value_for(death_star, 2014))
-        .to eq %w[1007 1007]
-    end
-
-    example "yearly variable with related company options", as_bot: true do
-      Card.create!(name: "half year+1977", type_id: Card::YearlyAnswerID,
-                   "+value" => { type_id: Card::YearlyValueID, content: "988.6" })
-      ii, = input_items "{{half year|company:Related[Jedi+more evil = yes]}}"
-      aggregate_failures do
-        expect(ii.value_for(spectre, 1977)).to eq %w[988.6]
-        expect(ii.value_for(death_star, 1977)).to eq %w[988.6 988.6]
       end
     end
   end
