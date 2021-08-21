@@ -4,6 +4,6 @@ format :html do
   end
 
   def company_category_options
-    :company_category.card.value_options_card.options_hash
+    :commons_company_category.card.value_options_card.options_hash
   end
 end

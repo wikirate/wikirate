@@ -114,7 +114,7 @@ class SharedData
     end
 
     def add_company_category
-      metric = :company_category.card
+      metric = :commons_company_category.card
       metric.value_type_card.update! content: "Multi-Category"
       metric.value_options_card.update! content: %w[A B C D].to_pointer_content
       ["Death Star", "SPECTRE"].each do |name|

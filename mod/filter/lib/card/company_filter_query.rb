@@ -8,7 +8,7 @@ class Card
       end
 
       def company_category_condition
-        answer_condition :categories, :company_category
+        answer_condition :categories, :commons_company_category
       end
 
       def answer_condition table, codename
