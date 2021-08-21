@@ -15,7 +15,7 @@ format do
   end
 
   def filter_keys
-    %i[name project company_group industry country bookmark]
+    %i[name project company_group company_category country bookmark]
   end
 
   def default_sort_option

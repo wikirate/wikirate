@@ -1,23 +1,15 @@
 module Formula
   class Calculator
-    # {InputItem} represents a nest in a formula.
-    # For example "{{Jedi+friedliness|year: -1}}" in the formula
-    # "{{Jedi+friedliness|year: -1}} + 10 / {{Jedi+deadliness}}"
-    # #
+    # {InputItem} represents a nested metric in a formula.
+    # For example "{{Jedi+friendliness|year: -1}}" in the formula
+    # "{{Jedi+friendliness|year: -1}} + 10 / {{Jedi+deadliness}}"
+    #
     # It is responsible for finding all relevant values for that input item.
-    # How this is handled depends on two things:
-    # The cardtype of the input item (either a metric or a yearly variable)
-    # and the nest options (year and/or company)
-    # The differences between the cardtypes is handled by the two subclasses
-    # {MetricInput} and {YearlyVariableInput}.
+    # How this is handled depends on the nest options (year and/or company)
     # The logic for the nest options is in the modules {CompanyOption} and {YearOption}
-
-    # Note: The main difference between metrics and yearly variables is that
-    # yearly variables are in general independent of the company of the answer we
-    # want to calculate.
-    # But this can change. A metric with a fixed company option is also company
-    # independent whereas a yearly variable with a related company option is company
-    # dependent. That's why the company dependency is separated into the modules
+    #
+    # A metric with a fixed company is option company independent.
+    # That's why the company dependency is separated into the modules
     # {CompanyDependentInput} and {CompanyIndependentInput}
     class InputItem
       include ValidationChecks
@@ -27,6 +19,16 @@ module Formula
       attr_reader :card_id, :input_list, :result_space
       delegate :answer_candidates, to: :result_space
       delegate :parser, to: :input_list
+
+      # We instantiate with a super class because we dynamically include a lot of modules
+      # based on options, and included modules don't override methods defined directly
+      # on the including class. (Alternatively we could move everything out of here into
+      # modules and have them override each other. Arguably more elegant; we got here
+      # because of legacy reasons, and it's not bad enough to inspire me to change the
+      # approach as of Aug 2021 --efm)
+      def self.item_class type_id
+        type_id == Card::MetricID ? StandardInputItem : InvalidInputItem
+      end
 
       def initialize input_list, input_index
         @input_list = input_list
@@ -114,8 +116,7 @@ module Formula
       end
 
       # overwritten in other places to move input items with no restriction on
-      # companies or years
-      # (like yearly variable or fixed year optiosn) to the end.
+      # companies or years (because of company and/or year options) to the end.
       # That way when they are processed the search
       # space for values is already restricted to some companies and years
       def sort_index

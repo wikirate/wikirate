@@ -44,9 +44,8 @@ class SharedData
       puts "adding wikirate data".green
       setup
       add :companies, :topics, :sources, :report_types,
-          :yearly_variables,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :projects, :industry, :researchers, :program, :company_group,
+          :projects, :company_category, :researchers, :program, :company_group,
           :profile_sections, :badges, :import_files
 
       Card::Cache.reset_all
@@ -103,15 +102,6 @@ class SharedData
       end
     end
 
-    def add_yearly_variables
-      Card::YearlyVariable.create(
-        name: "half year",
-        values: { 2015 => "1007.5", 2014 => "1007", 2013 => "1006.5", 2004 => "1002" }
-      )
-      Card::YearlyVariable.create_or_update name: "always one",
-                                            values: { 1977 => "1", 2000 => "1", 2014 => 1 }
-    end
-
     def add_program
       Card.create type: :cardtype, name: "Program"
       create "Test Program", type: :program
@@ -123,8 +113,9 @@ class SharedData
       researchers.add_item! "Joe Camel"
     end
 
-    def add_industry
-      metric = :commons_industry.card
+    def add_company_category
+      metric = :commons_company_category.card
+      metric.value_type_card.update! content: "Multi-Category"
       metric.value_options_card.update! content: %w[A B C D].to_pointer_content
       ["Death Star", "SPECTRE"].each do |name|
         metric.create_answer company: name, year: "2019", value: "A", source: :opera_source.cardname

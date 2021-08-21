@@ -71,8 +71,8 @@ RSpec.describe Card::AnswerQuery do
         .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
 
-    it "finds exact match by industry" do
-      expect(filter_by(industry: "A"))
+    it "finds exact match by company_category" do
+      expect(filter_by(company_category: "A"))
         .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
 
@@ -159,15 +159,15 @@ RSpec.describe Card::AnswerQuery do
           .to eq(with_year(["Los Pollos Hermanos"]))
       end
 
-      it "... industry" do
+      it "... company_category" do
         expect(filter_by(status: :none,
-                         industry: "A"))
+                         company_category: "A"))
           .to eq []
       end
 
-      it "... industry and year" do
+      it "... company_category and year" do
         expect(filter_by(status: :none,
-                         industry: "A",
+                         company_category: "A",
                          year: "2001"))
           .to eq ["SPECTRE+2001"]
       end
@@ -187,28 +187,28 @@ RSpec.describe Card::AnswerQuery do
           .to contain_exactly(*with_year(all_companies, 2001))
       end
 
-      it "... industry and year" do
+      it "... company_category and year" do
         expect(filter_by(status: :all,
-                         industry: "A",
+                         company_category: "A",
                          year: "2001"))
           .to contain_exactly(*with_year(["SPECTRE", "Death Star"], 2001))
       end
     end
 
-    it "project and industry" do
+    it "project and company_category" do
       expect(filter_by(project: "Evil Project",
-                       industry: "A"))
+                       company_category: "A"))
         .to eq(["Death Star+2001", "SPECTRE+2000"])
     end
-    it "year and industry" do
+    it "year and company_category" do
       expect(filter_by(year: "1977",
-                       industry: "A"))
+                       company_category: "A"))
         .to eq(with_year("Death Star", 1977))
     end
     it "all in" do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
         expect(filter_by(year: "1990",
-                         industry: "A",
+                         company_category: "A",
                          project: "Evil Project",
                          updated: :today,
                          name: "star"))

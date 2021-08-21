@@ -1,9 +1,9 @@
 format :html do
-  view :filter_industry_formgroup, cache: :never do
-    multiselect_filter :industry
+  view :filter_company_category_formgroup, cache: :never do
+    multiselect_filter :company_category
   end
 
-  def industry_options
-    :commons_industry.card.value_options_card.options_hash
+  def company_category_options
+    :commons_company_category.card.value_options_card.options_hash
   end
 end
