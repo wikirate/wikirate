@@ -7,7 +7,7 @@ Feature: Research answer for hybrid metric
 
   Scenario: Override a calculated answer
     When I go to card "Jedi+deadlier+Slate Rock and Gravel Company+2004"
-    Then I should see "1,003"
+    Then I should see "9+8"
     When I edit answer
     And I fill in "50" for "Answer"
     And I cite source
@@ -19,7 +19,7 @@ Feature: Research answer for hybrid metric
   Scenario: Create a new researched answer
     When I go to card "Jedi+deadlier"
     Then I should see "Slate Rock and Gravel Company"
-    And I should see "1,003"
+    And I should see "17"
     And I should not see "Research answer"
     When I click on item "Slate Rock and Gravel Company"
     And I click "Research" within ".record-buttons"
