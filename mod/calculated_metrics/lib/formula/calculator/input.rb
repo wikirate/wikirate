@@ -76,7 +76,7 @@ module Formula
       end
 
       def normalize_answers answers
-        answers.map do |answer|
+        answers&.map do |answer|
           if answer.nil?
             nil
           else

@@ -41,14 +41,10 @@ module Formula
       end
 
       def replace_not_researched
-        @value = replace_value(value, not_researched_value) { |v| v.blank? }
+        @value = replace_value value, not_researched_value, &:blank?
       end
 
       private
-
-      def normalize_and_cast
-
-      end
 
       def not_researched_value
         option = input_item.not_researched_option

@@ -14,7 +14,8 @@ RSpec.describe Formula::Calculator::Input do
   def input_answers years, companies=nil
     [].tap do |yields|
       input.each years: years, companies: companies do |input_answers, company, year|
-        yields << [input_answers.map{ |a| a&.value }, company, year]
+        input_values = input_answers.map { |a| a&.value }
+        yields << [input_values, company, year]
       end
     end
   end

@@ -5,7 +5,7 @@ module Formula
       class StandardInputItem < InputItem
         include CompanyDependentInput
 
-        INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification]
+        INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification].freeze
 
         def type
           @type ||= @input_card.simple_value_type_code
