@@ -5,8 +5,8 @@ module Formula
         module UnknownOption
           # Used if the "unknown" option is set to "no_result"
           module UnknownNoResult
-            def update_result_slice company_id, year, value
-              return super unless input_value_unknown? value
+            def update_result_slice company_id, year, answer
+              return super unless input_answer_unknown? answer
 
               @result_slice.remove company_id, year
             end

@@ -107,12 +107,8 @@ module Formula
       #   Value is usually a string, but it can be an array of strings if the input item
       #   uses an option that generates multiple values for one year like a
       #   year option "year: 2000..-1"
-      def value_for company_id, year
+      def answer_for company_id, year
         value_store.get company_id, year
-      end
-
-      def values_by_year company
-        value_store.get company
       end
 
       # overwritten in other places to move input items with no restriction on
@@ -136,6 +132,11 @@ module Formula
       end
 
       private
+
+      def unknown! answer
+        answer.value = :unknown
+        throw :cancel_calculation, [answer]
+      end
 
       def with_restricted_search_space company_id, year
         @search_space = SearchSpace.new company_id, year
