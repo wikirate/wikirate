@@ -22,9 +22,13 @@ module Formula
               end
             end
 
-            def year_value_pairs
-              Answer.where(metric_id: card_id, company_id: requested_company_id)
-                    .pluck(:year, :value).to_h
+            def year_answer_pairs
+              {}.tap do |hash|
+                rel = Answer.where metric_id: card_id, company_id: requested_company_id
+                each_input_answer rel do |input_answer|
+                  hash[input_answer.year] = input_answer
+                end
+              end
             end
 
             private
