@@ -3,6 +3,7 @@
 module Formula
   class Calculation
     attr_reader :calculator, :input_answers, :company_id, :year
+    attr_writer :value
 
     def initialize calculator, input_answers, company_id, year
       @calculator = calculator
@@ -16,7 +17,7 @@ module Formula
     end
 
     def value
-      calculator.result_value input_values, company_id, year
+      @value ||= calculator.result_value input_values, company_id, year
     end
   end
 end
