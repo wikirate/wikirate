@@ -18,11 +18,12 @@ module Formula
       end
 
       def normalize
-        @value = Answer.value_from_lookup value, @input_item.type
+        @already_normalized ||= @value = Answer.value_from_lookup value, @input_item.type
       end
 
       def cast
         return if @already_cast
+        normalize
         @value =
           case @value
           when Array
@@ -41,6 +42,12 @@ module Formula
 
       def replace_not_researched
         @value = replace_value(value, not_researched_value) { |v| v.blank? }
+      end
+
+      private
+
+      def normalize_and_cast
+
       end
 
       def not_researched_value
