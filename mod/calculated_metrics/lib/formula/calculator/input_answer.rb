@@ -20,17 +20,16 @@ module Formula
         @value = Answer.value_from_lookup value, @input_item.type
       end
 
-      private
-
-      def normalize_values val
-        case val
-        when Symbol
-          val
-        when Array
-          val.map(&method(:normalize_values))
-        else
-          val.blank? ? nil : @input_cast.call(val)
-        end
+      def cast
+        @value =
+          case @value
+          when Array
+            @value.map { |v| yield v }
+          when Symbol
+            @value
+          else
+            @value.blank? ? nil : yield(@value)
+          end
       end
     end
   end

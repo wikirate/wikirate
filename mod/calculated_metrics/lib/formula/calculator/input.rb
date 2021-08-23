@@ -76,9 +76,13 @@ module Formula
       end
 
       def normalize_answers answers
-        return :unknown if answers == :unknown
-
-        answers.map { |a| a&.normalize }
+        answers.map do |answer|
+          if answer.nil?
+            nil
+          else
+            answer.cast { |val| @input_cast.call val }
+          end
+        end
       end
 
       def search_values_for company_id: nil, year: nil

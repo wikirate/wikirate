@@ -12,8 +12,9 @@ module Formula
 
         # @return [InputAnswer]
         def get company, year
-          answer = values.dig company, year
-          answer if answer.present?
+          dig_args = [company, year].compact
+          ret = dig_args.present? ? values.dig(*dig_args) : values
+          ret if ret.present?
         end
 
         def add company, year, value
