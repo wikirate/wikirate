@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 module Formula
+  # handle outputs for a given answer
   class Calculation
     attr_reader :calculator, :input_answers, :company_id, :year
     attr_writer :value

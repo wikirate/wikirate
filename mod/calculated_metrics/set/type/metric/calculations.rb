@@ -100,7 +100,6 @@ end
 
 private
 
-
 def to_company_id company
   raise Card::Error, "#calculate_values_for: no company given" unless company
   return company if company.is_a?(Integer)
