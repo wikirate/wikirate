@@ -30,14 +30,6 @@ module Formula
       end
     end
 
-    def result_scope companies: nil, years: nil
-      requiring_year years, [] do
-        company_fields(companies).map do |field_card|
-          [field_card.left_id, YEAR]
-        end
-      end
-    end
-
     def inputs_for _company, _year
       []
     end

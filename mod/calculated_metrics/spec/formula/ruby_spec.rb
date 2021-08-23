@@ -7,24 +7,24 @@ RSpec.describe Formula::Ruby do
 
   example "simple formula" do
     result = calculate "{{Joe User+RM}}*2"
-    expect(result[2011][apple]).to eq 22.0
-    expect(result[2012][apple]).to eq 24.0
-    expect(result[2013][apple]).to eq 26.0
+    expect(result[2011][apple].value).to eq 22.0
+    expect(result[2012][apple].value).to eq 24.0
+    expect(result[2013][apple].value).to eq 26.0
   end
 
   example "formula with score metric as input" do
     result = calculate "{{Jedi+disturbances in the Force+Joe User}}*2"
-    expect(result[2000][death_star_id]).to eq 20.0
+    expect(result[2000][death_star_id].value).to eq 20.0
   end
 
   example "network aware" do
     result = calculate "Total[{{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}]"
-    expect(result[1977][death_star_id]).to eq 90.0
+    expect(result[1977][death_star_id].value).to eq 90.0
   end
 
   example "network aware with exist condition" do
     result = calculate "Total[{{Jedi+deadliness|company:Related[Jedi+more evil]}}]"
-    expect(result[1977][death_star_id]).to eq 90.0
+    expect(result[1977][death_star_id].value).to eq 90.0
   end
 
   describe "functions" do
