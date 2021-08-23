@@ -7,7 +7,7 @@ module Formula
           # that the calculated value becomes "Unknown".
           module NotResearchedResultUnknown
             def answer_for company_id, year
-              super.tap { |a| unknown! a if input_value_not_researched? a&.value }
+              super.tap { |a| unknown! a if input_value_not_researched? a }
             end
           end
         end

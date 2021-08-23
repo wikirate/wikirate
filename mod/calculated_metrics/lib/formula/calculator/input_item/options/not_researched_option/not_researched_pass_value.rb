@@ -6,29 +6,19 @@ module Formula
           # Used if the "not researched" option is set to an arbitrary return value
           module NotResearchedPassValue
             def answer_for company_id, year
-              super.tap do |answer|
-                if answer && input_value_not_researched?(answer.value)
-                  answer.value = answer.value = replace_nil answer.value
+              super.tap do |a|
+                if (nra = not_researched_answer a, company_id, year)
+                  nra.replace_not_researched
+                  return nra
                 end
               end
             end
 
-            def not_researched_value
-              case not_researched_option
-              when "false" then false
-              # when /^[+-]?\d+$/
-              #   not_researched_option.to_i  casting happens later
-              else
-                not_researched_option
-              end
-            end
+            def not_researched_answer answer, company_id, year
+              return unless input_value_not_researched? answer
+              return answer if answer
 
-            def replace_nil value
-              if value.is_a?(Array)
-                value.map { |v| v.blank? ? not_researched_value : v }
-              else
-                not_researched_value
-              end
+              InputAnswer.new self, company_id, year
             end
 
             def mandatory?

@@ -21,8 +21,8 @@ module Formula
           end
 
           # input value has "not researched" value
-          def input_value_not_researched? value
-            value.blank? || Array.wrap(value).any?(&:blank?)
+          def input_value_not_researched? answer
+            !answer || Array.wrap(answer.value).any?(&:blank?)
           end
 
           private

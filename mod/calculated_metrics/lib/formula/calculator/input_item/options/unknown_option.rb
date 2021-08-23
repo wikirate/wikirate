@@ -30,7 +30,7 @@ module Formula
           def input_answer_unknown? answer
             return if answer.is_a? Hash
 
-            Array.wrap(answer).any? { |a| Answer.unknown? a&.value }
+            Array.wrap(answer&.value).any? { |v| Answer.unknown? v }
           end
 
           private
