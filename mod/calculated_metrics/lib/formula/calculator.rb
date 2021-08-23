@@ -129,8 +129,9 @@ module Formula
     # @param :years [String, Integer, Array] :year only yield input for given years
     def each_answer
       with_restraints do |c, y|
-        input.each(companies: c, years: y) do |answer, company, year|
-          yield answer.value, company, year
+        input.each(companies: c, years: y) do |answers, company, year|
+          values = answers.map { |a| a&.value }
+          yield values, company, year
         end
       end
     end

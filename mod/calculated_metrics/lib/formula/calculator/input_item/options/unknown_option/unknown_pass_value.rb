@@ -6,11 +6,7 @@ module Formula
           # Used if the "unknown" option is set to a specific value
           module UnknownPassValue
             def answer_for company_id, year
-              super.tap do |answer|
-                if input_value_unknown? answer.value
-                  replace_unknown answer.value
-                end
-              end
+              super.tap { |a| replace_unknown a.value if input_value_unknown? a&.value }
             end
 
             def replace_unknown value

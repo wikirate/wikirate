@@ -111,7 +111,6 @@ module Formula
         value_store.get company_id, year
       end
 
-
       # overwritten in other places to move input items with no restriction on
       # companies or years (because of company and/or year options) to the end.
       # That way when they are processed the search

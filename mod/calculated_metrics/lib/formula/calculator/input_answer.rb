@@ -1,5 +1,6 @@
 module Formula
   class Calculator
+    # Holds key answer fields for one input metric / company / year
     class InputAnswer
       attr_accessor :company_id, :year, :value, :unpublished, :verification
 

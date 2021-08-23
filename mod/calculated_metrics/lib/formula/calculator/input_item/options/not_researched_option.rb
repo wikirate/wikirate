@@ -30,7 +30,7 @@ module Formula
           def interpret_not_researched_option
             case not_researched_option
             when "no_result"
-              # noop; default behavior
+              nil # noop; default behavior
             when "result_unknown"
               extend NotResearchedResultUnknown
             else

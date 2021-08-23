@@ -6,7 +6,7 @@ RSpec.describe Formula::Calculator::Input do
   def input formula
     f_card = Card["Jedi+friendliness+formula"]
     f_card.content = formula
-    described_class.new(f_card.parser)
+    described_class.new f_card.parser
   end
 
   def input_items formula

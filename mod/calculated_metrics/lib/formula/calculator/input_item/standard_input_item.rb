@@ -4,7 +4,7 @@ module Formula
       # Uses the answer table to find values.
       class StandardInputItem < InputItem
         include CompanyDependentInput
-        
+
         INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification]
 
         def type
@@ -40,7 +40,7 @@ module Formula
         # used for CompanyOption
         def combined_input_answers company_ids, year
           sub_input_answers = [].tap do |array|
-            each_input_answer sub_answers_rel( company_ids, year) do |input_answer|
+            each_input_answer sub_answers_rel(company_ids, year) do |input_answer|
               array << input_answer
             end
           end
