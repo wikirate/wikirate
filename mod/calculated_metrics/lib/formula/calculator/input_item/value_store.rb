@@ -10,14 +10,10 @@ module Formula
           @values = Hash.new_nested(Hash, Hash)
         end
 
-        # @return [Hash]
-        #   { company_id => { year => value } if company is nil and year is nil or missing
-        #   { year => value }                 if year is nil or missing
-        #   value                             if both are present
-        def get company, year=nil
-          dig_args = [company, year].compact
-          ret = dig_args.present? ? values.dig(*dig_args) : values
-          ret unless ret&.empty?
+        # @return [InputAnswer]
+        def get company, year
+          answer = values.dig company, year
+          answer if answer.present?
         end
 
         def add company, year, value

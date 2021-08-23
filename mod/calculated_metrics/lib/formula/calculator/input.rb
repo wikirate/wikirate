@@ -6,7 +6,7 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class Input
-      include Values
+      include Answers
 
       attr_reader :parser, :input_list, :result_cache
 
@@ -25,9 +25,8 @@ module Formula
       # @param :companies [Array of Integers] only yield input for given companies
       # @option :years [Array of Integers] :year only yield input for given years
       def each companies: [], years: []
-        each_value companies: companies, years: years do |vals, company_id, year|
-          next unless (input_values = normalize_values vals)
-          yield input_values, company_id, year
+        each_answer companies: companies, years: years do |answers, company_id, year|
+          yield answers, company_id, year if normalize_answers answers
         end
       end
 
@@ -36,7 +35,7 @@ module Formula
       def input_for company_id, year
         with_integers company_id, year do |c, y|
           search_values_for company_id: c, year: y
-          normalize_values fetch_val(c, y)
+          normalize_answers fetch_answer(c, y)
         end
       end
 
@@ -52,7 +51,7 @@ module Formula
       private
 
       # yields value, company_id, and year (as integer) for each result
-      def each_value companies: [], years: [], &block
+      def each_answer companies: [], years: [], &block
         if companies.present? && years.present?
           values_for_companies_and_years companies, years, &block
         elsif years.present?
@@ -76,15 +75,10 @@ module Formula
         Array.wrap(companies).map(&:card_id).each(&block)
       end
 
-      def normalize_values val
-        case val
-        when Symbol
-          val
-        when Array
-          val.map(&method(:normalize_values))
-        else
-          val.blank? ? nil : @input_cast.call(val)
-        end
+      def normalize_answers answers
+        return :unknown if answers == :unknown
+
+        answers.map { |a| a&.normalize }
       end
 
       def search_values_for company_id: nil, year: nil
