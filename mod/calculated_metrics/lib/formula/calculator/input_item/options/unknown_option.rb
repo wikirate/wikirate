@@ -27,8 +27,10 @@ module Formula
           end
 
           # input value has the value "Unknown"
-          def input_value_unknown? value
-            Array.wrap(value).any? { |val| Answer.unknown? val }
+          def input_answer_unknown? answer
+            return if answer.is_a? Hash
+
+            Array.wrap(answer).any? { |a| Answer.unknown? a&.value }
           end
 
           private

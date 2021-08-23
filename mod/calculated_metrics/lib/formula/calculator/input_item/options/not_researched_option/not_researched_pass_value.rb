@@ -5,8 +5,12 @@ module Formula
         module NotResearchedOption
           # Used if the "not researched" option is set to an arbitrary return value
           module NotResearchedPassValue
-            def value_for company_id, year
-              replace_nil super
+            def answer_for company_id, year
+              super.tap do |answer|
+                if answer && input_value_not_researched?(answer.value)
+                  answer.value = answer.value = replace_nil answer.value
+                end
+              end
             end
 
             def not_researched_value
@@ -20,8 +24,6 @@ module Formula
             end
 
             def replace_nil value
-              return value unless input_value_not_researched?(value)
-
               if value.is_a?(Array)
                 value.map { |v| v.blank? ? not_researched_value : v }
               else
