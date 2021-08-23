@@ -33,39 +33,40 @@ module Formula
             year_option
           end
 
-          # @param value_data [Array<Hash] for every input item a hash with values
+          # @param answer_hash [Hash] for every input item a hash with values
           #   for every year
-          # @param the year we want the input data for
-          def apply_year_option value_data, year
+          # @param year [Integer]the year we want the input data for
+          def apply_year_option answer_hash, year
             ip = processed_year_option
             method = "apply_#{ip.class.to_s.downcase}_year_option"
             illegal_input_processor! ip unless respond_to? method
 
-            send method, value_data, ip, year.to_i
+            send method, answer_hash, ip, year.to_i
           end
 
           def illegal_input_processor! ip
             raise Card::Error, "illegal input processor type: #{ip.class}"
           end
 
-          def apply_integer_year_option value_data, ip, year
-            year?(ip) ? value_data[ip] : value_data[year + ip]
+          def apply_integer_year_option answer_hash, ip, year
+            year?(ip) ? answer_hash[ip] : answer_hash[year + ip]
           end
 
-          def apply_array_year_option value_data, ip, _year
-            ip.map { |y| value_data[y] }
+          def apply_array_year_option answer_hash, ip, year
+            input_answers = ip.map { |y| answer_hash[y] }
+            consolidated_input_answer input_answers, year
           end
 
-          def apply_proc_year_option value_data, ip, year
-            ip.call(year).map { |y| value_data[y] }
+          def apply_proc_year_option answer_hash, ip, year
+            apply_array_year_option answer_hash, ip.call(year), year
           end
 
-          def apply_symbol_year_option value_data, ip, _year
+          def apply_symbol_year_option answer_hash, ip, year
             case ip
             when :all
-              value_data.values
+              consolidated_input_answer answer_hash.values, year
             when :latest
-              value_data.values.max
+              answer_hash[answer_hash.keys.max]
             else
               raise Card::Error, "unknown year Symbol: #{ip}"
             end
