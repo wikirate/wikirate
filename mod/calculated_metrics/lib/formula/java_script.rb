@@ -42,7 +42,7 @@ module Formula
     # all inputs in the form of { year-company_id => values }
     def input_hash
       hash = {}
-      each_input do |values, company_id, year|
+      each_answer do |values, company_id, year|
         hash[lookup_key(company_id, year)] = values
       end
       hash

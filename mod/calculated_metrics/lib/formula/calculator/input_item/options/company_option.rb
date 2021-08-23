@@ -20,7 +20,7 @@ module Formula
           end
 
           def year_value_pairs_by_company
-            { nil => year_value_pairs }
+            { nil => year_answer_pairs }
           end
 
           private

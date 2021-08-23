@@ -4,6 +4,8 @@ module Formula
       # Uses the answer table to find values.
       class StandardInputItem < InputItem
         include CompanyDependentInput
+        
+        INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification]
 
         def type
           @type ||= @input_card.simple_value_type_code
@@ -17,33 +19,54 @@ module Formula
         private
 
         def year_value_pairs_by_company
-          answers.pluck(:company_id, :year, :value)
-                 .each_with_object({}) do |(c, y, v), h|
-            h[c] ||= {}
-            h[c][y] = v
+          {}.tap do |hash|
+            each_input_answer answers do |input_answer|
+              company_hash = hash[input_answer.company_id] ||= {}
+              company_hash[input_answer.year] = input_answer
+            end
           end
         end
 
-        def store_value company_id, year, value
-          super company_id, year, Answer.value_from_lookup(value, type)
+        def each_input_answer rel
+          rel.pluck(*INPUT_ANSWER_FIELDS).each do |fields|
+            company_id = fields.shift
+            year = fields.shift
+            input_answer = InputAnswer.new self, company_id, year
+            input_answer.assign(*fields)
+            yield input_answer
+          end
         end
 
         # used for CompanyOption
-        def values_from_db company_ids, year
-          Answer.where(metric_id: card_id, company_id: company_ids, year: year.to_i)
-                .pluck(:value).map do |v|
-            Answer.value_from_lookup v, type
+        def combined_input_answers company_ids, year
+          sub_input_answers = [].tap do |array|
+            each_input_answer sub_answers_rel( company_ids, year) do |input_answer|
+              array << input_answer
+            end
           end
+          consolidated_input_answer sub_input_answers, year
+        end
+
+        def sub_answers_rel company_ids, year
+          Answer.where metric_id: card_id, company_id: company_ids, year: year
+        end
+
+        def consolidated_input_answer input_answers, year
+          value = input_answers.map(&:value)
+          unpublished = input_answers.find(&:unpublished)
+          verification = input_answers.map(&:verification).compact.min || 1
+          InputAnswer.new(self, nil, year).assign value, unpublished, verification
         end
 
         # used for CompanyOption
         def years_from_db company_ids
-          Answer.select(:year).where(metric_id: card_id, company_id: company_ids)
-                .distinct.pluck(:year)
+          Answer.select(:year).distinct
+                .where(metric_id: card_id, company_id: company_ids)
+                .distinct.pluck(:year).map(&:to_i)
         end
 
         def search_company_ids
-          Answer.select(:company_id).where(metric_id: card_id).distinct.pluck(:company_id)
+          Answer.select(:company_id).distinct.where(metric_id: card_id).pluck(:company_id)
         end
 
         def answer_query

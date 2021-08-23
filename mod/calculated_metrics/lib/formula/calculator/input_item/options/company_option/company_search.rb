@@ -24,7 +24,7 @@ module Formula
               relations.each_with_object({}) do |(subject_company_id, answers), hash|
                 hash[subject_company_id] ||= {}
                 answers.each do |year, object_company_ids|
-                  v = values_from_db object_company_ids, year
+                  v = combined_input_answers object_company_ids, year
                   hash[subject_company_id][year] = v if v.present?
                 end
               end
