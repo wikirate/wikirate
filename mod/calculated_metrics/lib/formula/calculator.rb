@@ -43,7 +43,7 @@ module Formula
       restrain_to(**restraints)
       result_hash do |result|
         each_answer do |input, company, year|
-          next unless (value = value_for_input input, company, year)
+          next unless (value = result_value input, company, year)
           result[year][company] = value
         end
       end
@@ -136,10 +136,10 @@ module Formula
       end
     end
 
-    def value_for_input input, company, year
-      return "Unknown" if input == :unknown
-      value = compute input, company, year
-      normalize_value value if value
+    def result_value input_values, company, year
+      return "Unknown" if input_values.first == :unknown
+      result = compute input_values, company, year
+      normalize_value result if result
     end
 
     def result_hash
