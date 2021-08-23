@@ -36,11 +36,11 @@ module Formula
       end
 
       def replace_unknown
-        @value = replace_value value, input_item.unknown_option { |v| Answer.unknown? v }
+        @value = replace_value(value, input_item.unknown_option) { |v| Answer.unknown? v }
       end
 
       def replace_not_researched
-        @value = replace_value value, not_researched_value { |v| v.blank? }
+        @value = replace_value(value, not_researched_value) { |v| v.blank? }
       end
 
       def not_researched_value
@@ -52,7 +52,7 @@ module Formula
         if old_value.is_a? Array
           old_value.map { |v| replace_value v, new_value, &test }
         else
-          test.call(old_value) ? new_value : old_value
+          yield(old_value) ? new_value : old_value
         end
       end
     end
