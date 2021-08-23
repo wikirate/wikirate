@@ -42,23 +42,8 @@ module Formula
     def result **restraints
       restrain_to(**restraints)
       result_hash do |result|
-        each_answer do |input, company, year|
-          next unless (value = result_value input, company, year)
-          result[year][company] = value
-        end
-      end
-    end
-
-    # The scope of results that would be calculated for given result options
-    # (but without the actual calculated value)
-    # @param :companies [Array, Integer] only yield input for given companies
-    # @param :years [String, Integer, Array] :year only yield input for given years
-    # @return [Array] [company_id1, year1], [company_id2, year2], ... ]
-    def result_scope **restraints
-      restrain_to(**restraints)
-      [].tap do |results|
-        each_answer do |_input, company_id, year|
-          results << [company_id, year]
+        each_answer do |input_answers, company, year|
+          result[year][company] = Calculation.new self, input_answers, company, year
         end
       end
     end
@@ -108,6 +93,12 @@ module Formula
       @errors = []
     end
 
+    def result_value input_values, company, year
+      return "Unknown" if input_values.first == :unknown
+      result = compute input_values, company, year
+      normalize_value result if result
+    end
+
     protected
 
     def normalize_value value
@@ -129,17 +120,17 @@ module Formula
     # @param :years [String, Integer, Array] :year only yield input for given years
     def each_answer
       with_restraints do |c, y|
-        input.each(companies: c, years: y) do |answers, company, year|
-          values = answers.map { |a| a&.value }
-          yield values, company, year
+        input.each(companies: c, years: y) do |input_answers, company, year|
+          yield input_answers, company, year
         end
       end
     end
 
-    def result_value input_values, company, year
-      return "Unknown" if input_values.first == :unknown
-      result = compute input_values, company, year
-      normalize_value result if result
+    def input_values
+      each_answer do |input_answers, company, year|
+        values = input_answers&.map { |a| a&.value }
+        yield values, company, year
+      end
     end
 
     def result_hash

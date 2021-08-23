@@ -76,7 +76,7 @@ module Formula
       @company_index = Hash.new_nested Hash
       input_by_year = Hash.new_nested Array
 
-      each_answer do |input_values, company, year|
+      input_values do |input_values, company, year|
         handle_unknowns input_values, company, year do
           input_by_year[year] << "{#{wl_single_answer_input input_values}}"
           add_company_index company, year, input_by_year[year].size - 1

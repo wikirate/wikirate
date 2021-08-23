@@ -21,9 +21,6 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
   def updates_answer_with_delay from: nil, to:, metric_title: "formula test", &block
     with_delayed_jobs do
       expect_answer_not_to_change from, metric_title, &block
-      expect(calc_answer(metric_title).calculating)
-        .to be_truthy,
-            "'Jedi+#{metric_title}+Death Star+1977' not marked as being calculated"
     end
     expect(answer_value(metric_title)).to match(to)
     expect(calc_answer(metric_title).calculating).to be_falsey
@@ -88,30 +85,6 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
 
       it "creates answer for company/year not previously covered" do
         expect(answer_value("friendliness", "Monster Inc", 2000)).to eq("30.0")
-      end
-    end
-  end
-
-  context "when formula is created" do
-    it "creates dummy answers" do
-      updates_answer_with_delay to: /^322/ do
-        create_formula
-        answer_card = Card.fetch "Jedi+formula test+Death Star+1977", type: :metric_answer
-        expect(answer_card.answer.id).to eq calc_answer.id
-        expect(view(:core, card: "Jedi+formula test+answer"))
-          .to have_tag :tr do
-          with_text /Death Star/
-          with_tag "i.fa-calculator.fa-spin"
-        end
-      end
-    end
-
-    it "replaces dummy answers after calculation" do
-      with_delayed_jobs { create_formula }
-      expect(view(:core, card: "Jedi+formula test+answer")).to have_tag :tr do
-        with_text /Death Star/
-        without_tag "i.fa-sync-alt"
-        with_text /322/
       end
     end
   end
