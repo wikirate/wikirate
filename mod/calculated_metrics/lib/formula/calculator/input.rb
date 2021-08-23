@@ -35,7 +35,7 @@ module Formula
       def input_for company_id, year
         with_integers company_id, year do |c, y|
           search_values_for company_id: c, year: y
-          normalize_answers fetch_answer(c, y)
+          normalize_answers(fetch_answer(c, y)).map(&:value)
         end
       end
 
@@ -81,6 +81,7 @@ module Formula
             nil
           else
             answer.cast { |val| @input_cast.call val }
+            answer
           end
         end
       end
