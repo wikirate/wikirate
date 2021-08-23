@@ -22,6 +22,7 @@ module Formula
       end
 
       def cast
+        return if @already_cast
         @value =
           case @value
           when Array
@@ -31,6 +32,7 @@ module Formula
           else
             @value.blank? ? nil : yield(@value)
           end
+        @already_cast = true
       end
 
       def replace_unknown
