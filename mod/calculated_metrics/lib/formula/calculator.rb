@@ -42,7 +42,7 @@ module Formula
     def result **restraints
       restrain_to(**restraints)
       result_hash do |result|
-        each_input do |input, company, year|
+        each_answer do |input, company, year|
           next unless (value = value_for_input input, company, year)
           result[year][company] = value
         end
@@ -57,7 +57,7 @@ module Formula
     def result_scope **restraints
       restrain_to(**restraints)
       [].tap do |results|
-        each_input do |_input, company_id, year|
+        each_answer do |_input, company_id, year|
           results << [company_id, year]
         end
       end
@@ -127,9 +127,10 @@ module Formula
 
     # @param :companies [Integer Array] only yield input for given companies
     # @param :years [String, Integer, Array] :year only yield input for given years
-    def each_input
+    def each_answer
       with_restraints do |c, y|
-        input.each(companies: c, years: y) do |values, company, year|
+        input.each(companies: c, years: y) do |answers, company, year|
+          values = answers.map { |a| a&.value }
           yield values, company, year
         end
       end

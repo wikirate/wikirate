@@ -24,9 +24,9 @@ module Formula
               end
             end
 
-            def year_value_pairs
-              years_from_db(object_company_ids).each_with_object({}) do |y, h|
-                h[y.to_i] = values_from_db object_company_ids, y
+            def year_answer_pairs
+              years_from_db(object_company_ids).each_with_object({}) do |year, h|
+                h[year] = combined_input_answers object_company_ids, year
               end
             end
 
