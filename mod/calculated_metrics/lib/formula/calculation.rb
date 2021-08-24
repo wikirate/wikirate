@@ -21,6 +21,14 @@ module Formula
       @value ||= calculator.result_value input_values, company_id, year
     end
 
+    def verification
+      input_answers.map(&:verification).compact.min || 1
+    end
+
+    def unpublished
+      input_answers.find(&:unpublished).present?
+    end
+
     def answer_attributes
       {
         company_id: company_id,
@@ -30,9 +38,11 @@ module Formula
         created_at: Time.now,
         updated_at: Time.now,
         creator_id: Card::Auth.current_id,
-        updater_id: Card::Auth.current_id,
+        editor_id: Card::Auth.current_id,
         imported: false,
-        calculating: false
+        calculating: false,
+        unpublished: unpublished,
+        verification: verification
       }
     end
   end

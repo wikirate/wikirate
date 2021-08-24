@@ -20,8 +20,9 @@ def recalculate_answers
     insert_calculations not_overridden
     update_overridden_calculations overridden
   end
-  # expire_caanswers
+  # expire_answers
   # update cached counts
+  # update latest
 end
 
 def delete_non_overridden_answers
@@ -84,7 +85,7 @@ end
 
 # @param company [cardish]
 # @option years [String, Integer, Array] years to update value for (all years if nil)
-def calculate_values_for company, years=nil, &block
+def calculate_values_for company, years=nil
   calculations = calculator.result companies: company, years: years
   if calculations.present?
     calculations.each { |c| yield c.year, c.value }
