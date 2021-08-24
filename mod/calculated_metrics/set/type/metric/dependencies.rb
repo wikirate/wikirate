@@ -1,7 +1,6 @@
-def update_depender_values_for! company_id, year
+def update_depender_values_for! company_id
   each_depender_metric do |metric|
-    metric.update_value_for! company_id, year
-    # FIXME: this will break when year is specified in the formula.
+    metric.calculate_answers company_id: company_id
   end
 end
 
