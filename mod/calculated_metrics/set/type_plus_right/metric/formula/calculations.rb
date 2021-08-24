@@ -9,11 +9,6 @@ def calculator_class
   end
 end
 
-event :create_dummy_answers, :finalize,
-      on: :create, changed: :content, when: :content? do
-  metric_card.initial_calculation_in_progress!
-end
-
 event :flag_as_calculating, :prepare_to_store,
       on: :update, changed: :content, when: :content? do
   metric_card.calculation_in_progress!
