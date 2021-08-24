@@ -8,7 +8,7 @@ delegate :parser, :calculator_class, to: :formula_card
 def calculator parser_method=nil
   p = parser
   p.send parser_method if parser_method
-  calculator_class.new p, normalizer: method(:normalize_value),
+  calculator_class.new p, normalizer: Answer.method(:value_to_lookup),
                           years: year_card.item_names,
                           companies: company_group_card.company_ids
 end
@@ -19,17 +19,12 @@ def deep_answer_update
   each_depender_metric(&:calculate_answers)
 end
 
+# param @args [Hash] :company_id, :year, both, or neither.
 def calculate_answers args={}
   c = Calculate.new self, args
   c.prepare
   c.transact
   c.clean
-end
-
-# @param company [cardish]
-# @option years [String, Integer, Array] years to update value for (all years if nil)
-def update_value_for! company, years=nil
-  calculate_answers company_id: company.card_id, year: years
 end
 
 class Calculate
@@ -44,6 +39,7 @@ class Calculate
 
   def prepare
     # stash the following
+    old_company_ids
     expirables
     overridden_hash
   end
@@ -62,6 +58,20 @@ class Calculate
   end
 
   private
+
+  def old_company_ids
+    @old_company_ids ||= unique_company_ids
+  end
+
+  def unique_company_ids
+    array =
+      if @company_id
+        [@company_id]
+      else
+        answers.select(:company_id).distinct.pluck :company_id
+      end
+    ::Set.new array
+  end
 
   def delete_non_overridden_answers
     answers.where(overridden_value: nil).delete_all
@@ -133,12 +143,31 @@ class Calculate
     Director.expirees << answer_name
     Director.expirees << Card::Name[answer_name, :value]
   end
-end
 
-private
+  def update_cached_counts
+    (metric_cache_count_cards +
+      topic_cache_count_cards +
+      company_cache_count_cards).each(&:update_cached_count)
+  end
 
-def normalize_value value
-  ::Answer.value_to_lookup value
+  def company_cache_count_cards
+    (old_company_ids | unique_company_ids).map do |company_id|
+      %i[metric metric_answer wikirate_topic].map { |fld| Card.fetch [company_id, fld] }
+    end.flatten
+  end
+
+  def metric_cache_count_cards
+    %i[metric_answer wikirate_company].map { |fld| Card.fetch [metric.name, fld] }
+  end
+
+  def topic_cache_count_cards
+    TypePlusRight::WikirateTopic::WikirateCompany
+      .company_cache_cards_for_topics metric.wikirate_topic_card&.item_names
+  end
+
+  def restore_overridden_value
+    calculated_answer metric_card, company, year, overridden_value
+  end
 end
 
 # The bulk_insert gem stopped working with the rail 6.1 upgrade;
