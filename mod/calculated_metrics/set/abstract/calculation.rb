@@ -45,7 +45,7 @@ class Calculate
   end
 
   def transact
-    delete_non_overridden_answers
+    wipe_current_calculations
     process_calculations do |overridden, not_overridden|
       insert_calculations not_overridden
       update_overridden_calculations overridden
@@ -64,17 +64,19 @@ class Calculate
   end
 
   def unique_company_ids
-    array =
-      if @company_id
-        [@company_id]
-      else
-        answers.select(:company_id).distinct.pluck :company_id
-      end
+    array = if @company_id
+              [@company_id]
+            else
+              answers.select(:company_id).distinct.pluck :company_id
+            end
     ::Set.new array
   end
 
-  def delete_non_overridden_answers
-    answers.where(overridden_value: nil).delete_all
+  def wipe_current_calculations
+    answers.where(answer_id: nil).delete_all
+    if overridden_hash.present?
+      answers.where("answer_id is not null").update_all(overridden_value: nil)
+    end
   end
 
   def expirables
@@ -83,7 +85,7 @@ class Calculate
   end
 
   def overridden_hash
-    @overridden_hash ||= answers.where("overridden_value is not null")
+    @overridden_hash ||= answers.where("answer_id is not null")
                                 .pluck(:company_id, :year)
                                 .each_with_object({}) do |(c, y), h|
       h["#{c}-#{y}"] = true
@@ -124,7 +126,7 @@ class Calculate
     answer_hashes = not_overridden.map do |calculation|
       calculation.answer_attributes.merge metric_id: metric.id
     end
-    Answer.insert_all answer_hashes
+    Answer.insert_all answer_hashes if answer_hashes.present?
   end
 
   def update_overridden_calculations overridden
