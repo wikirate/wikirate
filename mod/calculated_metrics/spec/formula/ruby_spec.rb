@@ -62,34 +62,34 @@ RSpec.describe Formula::Ruby do
 
   describe "lists" do
     example "simple list" do
-      result = calculate "Max[{ {{Joe User+RM}}, {{Jedi+deadliness}} }]"
-      expect(result[1977][death_star].value).to eq(100.0)
+      expect(calculate("Max[{ {{Joe User+RM}}, {{Jedi+deadliness}} }]"))
+        .to include(have_attributes(year: 1977, company_id: death_star_id, value: 100.0))
     end
 
     example "simple list without spacing" do
-      result = calculate "Max[{{{Joe User+RM}}, {{Jedi+deadliness}}}]"
-      expect(result[1977][death_star].value).to eq(100.0)
+      expect(calculate("Max[{{{Joe User+RM}}, {{Jedi+deadliness}}}]"))
+        .to include(have_attributes(year: 1977, company_id: death_star_id, value: 100.0))
     end
 
     example "list with not_researched option" do
-      result = calculate "Zeros[{ {{Joe User+RM }}, "\
-                         "{{Joe User+researched number 1| not_researched: 0}} }]"
-      expect(result[1977][death_star].value).to eq(0)
-      expect(result[2000][apple_id].value).to eq(2)
+      expect(calculate("Zeros[{ {{Joe User+RM }}, "\
+                       "{{Joe User+researched number 1| not_researched: 0}} }]"))
+        .to include(have_attributes(year: 1977, company_id: death_star, value: 0),
+                    have_attributes(year: 2000, company_id: apple_id, value: 2))
     end
   end
 
   describe "formula with unknown option" do
     specify "Zeros with unknown and year option" do
-      result = calculate "Zeros[{{Joe User+RM|year:-2..0; unknown: 0}}]"
-      expect(result[2002][apple_id].value).to eq(3)
-      expect(result[2012][apple_id].value).to eq(0)
+      expect(calculate("Zeros[{{Joe User+RM|year:-2..0; unknown: 0}}]"))
+        .to include(have_attributes(year: 2002, company_id: apple_id, value: 3),
+                    have_attributes(year: 2012, company_id: apple_id, value: 0))
     end
 
     specify "Total with unknown and year option" do
-      result = calculate "Total[{{Joe User+RM|year:-2..0; unknown:1}}]"
-      expect(result[2002][apple_id].value).to eq(2.0)
-      expect(result[2012][apple_id].value).to eq(33.0)
+      expect(calculate("Total[{{Joe User+RM|year:-2..0; unknown:1}}]"))
+        .to include(have_attributes(year: 2002, company_id: apple_id, value: 2.0),
+                    have_attributes(year: 2012, company_id: apple_id, value: 33.0))
     end
   end
 
