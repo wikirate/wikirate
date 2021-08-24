@@ -41,9 +41,9 @@ module Formula
     # @return [Hash] { year => { company_id => value } }
     def result **restraints
       restrain_to(**restraints)
-      result_hash do |result|
+      result_array do |result|
         each_answer do |input_answers, company, year|
-          result[year][company] = Calculation.new self, input_answers, company, year
+          result << Calculation.new(self, input_answers, company, year)
         end
       end
     end
@@ -133,8 +133,8 @@ module Formula
       end
     end
 
-    def result_hash
-      result = Hash.new_nested Hash
+    def result_array
+      result = []
       yield result if ready?
       result
     end
