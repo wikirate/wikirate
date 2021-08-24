@@ -26,7 +26,7 @@ module Formula
 
     def result companies: nil, years: nil
       requiring_year years, {} do
-        { YEAR => company_id_to_value_hash(companies) }
+        field_calculations companies
       end
     end
 
@@ -42,9 +42,9 @@ module Formula
 
     private
 
-    def company_id_to_value_hash company
-      company_fields(company).each_with_object({}) do |field_card, hash|
-        hash[field_card.left_id] = calculation company, field_card.answer_value
+    def field_calculations company
+      company_fields(company).each_with_object([]) do |field_card, array|
+        array << calculation(field_card.left_id, field_card.answer_value)
       end
     end
 

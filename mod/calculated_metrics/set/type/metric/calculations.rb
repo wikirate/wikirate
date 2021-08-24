@@ -62,27 +62,6 @@ def process_calculations
   yield overridden, not_overridden
 end
 
-
-
-
-
-# def remove_unchanged_answers
-#   @existing = ::Set.new answer_ids
-#   yield if block_given?
-#   Answer.where(id: @existing.to_a, answer_id: nil).delete_all
-# ensure
-#   @existing = nil
-# end
-
-# def calculate_all_values
-#   calculator.result.each_pair do |year, company_hash|
-#     company_hash.each_pair do |company, calculation|
-#       value = calculation.value
-#       yield company, year, value if value
-#     end
-#   end
-# end
-
 # @param company [cardish]
 # @option years [String, Integer, Array] years to update value for (all years if nil)
 def calculate_values_for company, years=nil
@@ -99,21 +78,6 @@ def expire_answer company, year
   Director.expirees << answer_name
   Director.expirees << Card::Name[answer_name, :value]
 end
-
-# def update_answer answer, company, year, value
-#   @existing&.delete answer.id
-#   if @initial_update
-#     answer.calculated_answer self, company, year, value
-#   elsif already_researched? answer
-#     update_overridden_calculated_value answer, value
-#   else
-#     answer.update_value value
-#   end
-# end
-
-# def add_answer company, year, value
-#   Answer.create_calculated_answer self, company, year, value
-# end
 
 private
 
