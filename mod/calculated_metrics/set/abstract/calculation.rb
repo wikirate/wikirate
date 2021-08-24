@@ -45,7 +45,7 @@ class Calculate
   end
 
   def transact
-    wipe_current_calculations
+    wipe_old_calculations
     process_calculations do |overridden, not_overridden|
       insert_calculations not_overridden
       update_overridden_calculations overridden
@@ -72,19 +72,21 @@ class Calculate
     ::Set.new array
   end
 
-  def wipe_current_calculations
-    answers.where(answer_id: nil).delete_all
+  def wipe_old_calculations
+    answers.where(answer_id: nil).delete_all if old_company_ids.present?
     if overridden_hash.present?
       answers.where("answer_id is not null").update_all(overridden_value: nil)
     end
   end
 
   def expirables
+    return [] unless old_company_ids.present?
     @expirables ||= answers.joins("JOIN cards AS companies ON company_id = companies.id")
                            .pluck :name, :year
   end
 
   def overridden_hash
+    return {} unless old_company_ids.present?
     @overridden_hash ||= answers.where("answer_id is not null")
                                 .pluck(:company_id, :year)
                                 .each_with_object({}) do |(c, y), h|
