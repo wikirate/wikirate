@@ -153,35 +153,4 @@ RSpec.describe Answer do
   #   described_class.fetch company_id: "Apple Inc".card_id
   # end
 
-  describe "calculated answers" do
-    let(:metric) { Card["Jedi+friendliness"] }
-
-    specify "#calculated_answer", with_user: "Joe User" do
-      a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
-      expect(a.attributes.symbolize_keys)
-        .to include(
-          metric_id: "Jedi+friendliness".card_id,
-          company_id: "Death Star".card_id,
-          year: 2001, value: "50", numeric_value: 50,
-          creator_id: "Joe User".card_id,
-          editor_id: "Joe User".card_id,
-          updated_at: be_within(2).of(Time.now), record_id: be_nil,
-          answer_id: nil, checkers: nil, check_requester: nil,
-          latest: true, imported: false
-        )
-    end
-
-    specify "#update_value", with_user: "Joe User" do
-      a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
-      a.update_value "100.5"
-      expect(a.attributes.symbolize_keys)
-        .to include answer_id: nil,
-                    value: "100.5",
-                    numeric_value: 100.5,
-                    creator_id: "Joe User".card_id,
-                    updated_at: be_within(1).of(Time.now),
-                    latest: true,
-                    editor_id: "Joe User".card_id
-    end
-  end
 end
