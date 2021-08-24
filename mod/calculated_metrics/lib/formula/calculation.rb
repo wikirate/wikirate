@@ -41,6 +41,7 @@ module Formula
         editor_id: Card::Auth.current_id,
         imported: false,
         calculating: false,
+        latest: false,
         unpublished: unpublished,
         verification: verification
       }
