@@ -3,30 +3,20 @@
 class Calculate
   # handle outputs for a given answer
   class Calculation
-    attr_reader :calculator, :input_answers, :company_id, :year
-    attr_writer :value
+    attr_reader :company_id, :year, :value, :verification, :unpublished
 
     def initialize calculator, input_answers, company_id, year
-      @calculator = calculator
-      @input_answers = input_answers
       @company_id = company_id
       @year = year
-    end
+      @input_answers = input_answers
 
-    def input_values
-      @input_values ||= input_answers.map { |a| a&.value }
-    end
+      @value = calculator.result_value map(:value), company_id, year
 
-    def value
-      @value ||= calculator.result_value input_values, company_id, year
-    end
+      # trigger calculation
+      verification
+      unpublished
 
-    def verification
-      input_answers.map(&:verification).compact.min || 1
-    end
-
-    def unpublished
-      input_answers.find(&:unpublished).present?
+      @input_answers = nil # don't keep input_answers (or calculator) in memory
     end
 
     def answer_attributes
@@ -45,6 +35,20 @@ class Calculate
         unpublished: unpublished,
         verification: verification
       }
+    end
+
+    private
+
+    def determine_unpublished
+      @unpublished = map(:unpublished).find(&:present?) || false
+    end
+
+    def determine_verification
+      @verification = map(:verification).compact.min || 1
+    end
+
+    def map field
+      @input_answers.map { |a| a&.send field }
     end
   end
 end
