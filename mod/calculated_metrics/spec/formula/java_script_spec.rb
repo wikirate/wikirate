@@ -6,14 +6,14 @@ RSpec.describe Formula::JavaScript do
   include_context "with company ids"
 
   example "simple formula" do
-    result = calculate "{{Joe User+RM}}*2"
-    expect(result[2011][apple].value).to eq 22.0
-    expect(result[2012][apple].value).to eq 24.0
-    expect(result[2013][apple].value).to eq 26.0
+    expect(calculate("{{Joe User+RM}}*2"))
+      .to include(have_attributes(year: 2011, company_id: apple, value: 22.0),
+                  have_attributes(year: 2012, company_id: apple, value: 24.0),
+                  have_attributes(year: 2013, company_id: apple, value: 26.0))
   end
 
   example "formula with score metric as input" do
-    result = calculate "{{Jedi+disturbances in the Force+Joe User}}*2"
-    expect(result[2000][death_star_id].value).to eq 20.0
+    expect(calculate("{{Jedi+disturbances in the Force+Joe User}}*2"))
+      .to include(have_attributes(year: 2000, company_id: death_star_id, value: 20.0))
   end
 end

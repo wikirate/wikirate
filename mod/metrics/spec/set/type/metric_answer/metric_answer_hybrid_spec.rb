@@ -36,7 +36,7 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
     expect(answer).to be_calculation_overridden
   end
 
-  example "calculate researched value" do
+  example "calculate researched value 1" do
     research_value 5, 2010
     expect(answer(2010).answer.answer_id).to be_present
     input_for_calculation 10, 2010
