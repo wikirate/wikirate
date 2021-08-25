@@ -594,7 +594,7 @@ GEM
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
-    parallel (1.20.2)
+    parallel (1.20.1)
     parser (3.0.2.0)
       ast (~> 2.4.1)
     pdfkit (0.8.5)
@@ -846,6 +846,7 @@ DEPENDENCIES
   link_thumbnailer
   mysql2 (> 0.4)
   open_uri_redirections
+  parallel (!= 1.20.2)
   pdfkit
   pivotal-tracker
   pluck_all
