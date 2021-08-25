@@ -34,9 +34,8 @@ event :reset_double_check_flag, :validate, on: :update, changed: :content do
   end
 end
 
-event :save_overridden_calculated_value, :prepare_to_store,
-      on: :create, when: :overridden_value? do
-  add_subcard [name.left, :overridden_value], content: left.answer.value, type: :phrase
+event :monitor_hybridness, :integrate, on: %i[create delete], when: :calculated? do
+  metric_card.calculate_answers company_id: company_id, year: year
 end
 
 event :mark_as_imported, before: :finalize_action, when: :import_act? do

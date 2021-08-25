@@ -13,7 +13,15 @@ module Formula
     # {CompanyDependentInput} and {CompanyIndependentInput}
     class InputItem
       include ValidationChecks
+      include Defaults
+      include CompanyDependentInput
       include Options
+
+      INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification].freeze
+
+      def type
+        @type ||= @input_card.simple_value_type_code
+      end
 
       attr_writer :search_space
       attr_reader :card_id, :input_list, :result_space
@@ -27,7 +35,7 @@ module Formula
       # because of legacy reasons, and it's not bad enough to inspire me to change the
       # approach as of Aug 2021 --efm)
       def self.item_class type_id
-        type_id == Card::MetricID ? StandardInputItem : InvalidInputItem
+        type_id == Card::MetricID ? self : InvalidInputItem
       end
 
       def initialize input_list, input_index
@@ -68,10 +76,6 @@ module Formula
         @search_space ||= result_space.answer_candidates
       end
 
-      def years_with_values
-        value_store.years
-      end
-
       # Find answer for the given input card and cache the result.
       # If year is given look only for that year
       def full_search
@@ -80,14 +84,6 @@ module Formula
             store_value company_id, year, apply_year_option(year_value_hash, year)
           end
         end
-      end
-
-      def translate_years years
-        years
-      end
-
-      def apply_year_option year_value_hash, year
-        year_value_hash[year]
       end
 
       def after_search
@@ -99,10 +95,6 @@ module Formula
         update_result_slice company_id, year, value
       end
 
-      def value_store
-        @value_store ||= value_store_class.new
-      end
-
       # @return a hash { year => value } if year is nil otherwise only value.
       #   Value is usually a string, but it can be an array of strings if the input item
       #   uses an option that generates multiple values for one year like a
@@ -111,27 +103,62 @@ module Formula
         value_store.get company_id, year
       end
 
-      # overwritten in other places to move input items with no restriction on
-      # companies or years (because of company and/or year options) to the end.
-      # That way when they are processed the search
-      # space for values is already restricted to some companies and years
-      def sort_index
-        @input_index
+      def value_store
+        @value_store ||= value_store_class.new
       end
 
       def <=> other
         sort_index <=> other.sort_index
       end
 
-      # mandatory means
-      # if this input item doesn't have a value (for a company and a year)
-      # then the calculated value doesn't get a value (for that company and year)
-      # This can be changed with the not_researched nest option
-      def mandatory?
-        true
+      # Searches for all metric answers for this metric input.
+      def answers
+        Answer.where answer_query
       end
 
       private
+
+      def each_input_answer rel
+        rel.pluck(*INPUT_ANSWER_FIELDS).each do |fields|
+          company_id = fields.shift
+          year = fields.shift
+          input_answer = InputAnswer.new self, company_id, year
+          input_answer.assign(*fields)
+          yield input_answer
+        end
+      end
+
+      # used for CompanyOption
+      def combined_input_answers company_ids, year
+        sub_input_answers = [].tap do |array|
+          each_input_answer sub_answers_rel(company_ids, year) do |input_answer|
+            array << input_answer
+          end
+        end
+        consolidated_input_answer sub_input_answers, year
+      end
+
+      def sub_answers_rel company_ids, year
+        Answer.where metric_id: card_id, company_id: company_ids, year: year
+      end
+
+      def consolidated_input_answer input_answers, year
+        value = input_answers.map(&:value)
+        unpublished = input_answers.find(&:unpublished)
+        verification = input_answers.map(&:verification).compact.min || 1
+        InputAnswer.new(self, nil, year).assign value, unpublished, verification
+      end
+
+      # used for CompanyOption
+      def years_from_db company_ids
+        Answer.select(:year).distinct
+              .where(metric_id: card_id, company_id: company_ids)
+              .distinct.pluck(:year).map(&:to_i)
+      end
+
+      def search_company_ids
+        Answer.select(:company_id).distinct.where(metric_id: card_id).pluck(:company_id)
+      end
 
       def unknown! answer
         answer.value = :unknown

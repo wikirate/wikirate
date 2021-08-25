@@ -16,11 +16,11 @@ def metric_card
 end
 
 def update_direct_answer_lookup
-  metric_card.update_value_for! answer_company_id, answer_year
+  metric_card.calculate_answers company_id: answer_company_id, year: answer_year
 end
 
 def update_depender_answers
-  metric_card.update_depender_values_for! answer_company_id, answer_year
+  metric_card.update_depender_values_for! answer_company_id
 end
 
 def answer_company_id
