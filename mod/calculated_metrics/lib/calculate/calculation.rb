@@ -12,9 +12,8 @@ class Calculate
 
       @value = calculator.result_value map(:value), company_id, year
 
-      # trigger calculation
-      verification
-      unpublished
+      determine_verification
+      determine_unpublished
 
       @input_answers = nil # don't keep input_answers (or calculator) in memory
     end
@@ -48,6 +47,7 @@ class Calculate
     end
 
     def map field
+      # note the ampersand
       @input_answers.map { |a| a&.send field }
     end
   end
