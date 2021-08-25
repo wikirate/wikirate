@@ -41,10 +41,11 @@ RSpec.describe Card::Set::MetricType::Score do
           end
         end
 
-        it "updates existing rating value" do
+        it "updates existing score" do
           update_formula "{{#{scored_name}}}*3"
-          expect(score_value).to eq "10"
+          expect(score_value).to eq "15.0"
         end
+
         # it 'fails if basic metric is not used in formula' do
         #   #update_formula '{{Jedi+deadliness}}'
         #   pending 'not checked yet'

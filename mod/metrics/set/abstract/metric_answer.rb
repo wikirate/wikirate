@@ -3,10 +3,7 @@ card_accessor :check_requested_by
 card_accessor :source, type: PointerID
 card_accessor :discussion
 
-# for hybrid metrics: If a calculated value is overridden by a researched value
-#   then :overridden_value holds on to that value. It also serves as flag to mark
-#   overridden answers
-card_accessor :overridden_value, type: PhraseID
+
 
 # virtual card's _values_ are held in the content of the _answer_ card
 # (...not that I understand why - EM)
