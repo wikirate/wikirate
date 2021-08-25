@@ -14,7 +14,7 @@ class Calculate
     end
 
     def expire_answer company_name, year
-      Director.expirees << Card::Name[metric.name, company_name, year.to_s]
+      Card::Director.expirees << Card::Name[metric.name, company_name, year.to_s]
     end
 
     # CACHED COUNTS
@@ -36,7 +36,7 @@ class Calculate
     end
 
     def topic_cache_count_cards
-      TypePlusRight::WikirateTopic::WikirateCompany
+      Card::Set::TypePlusRight::WikirateTopic::WikirateCompany
         .company_cache_cards_for_topics metric.wikirate_topic_card&.item_names
     end
   end
