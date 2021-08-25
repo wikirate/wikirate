@@ -1,24 +1,32 @@
 shared_context "formula" do
   def formula_str options: nil, method: nil, year: nil, unknown: nil, company: nil,
               metric: "Joe User+RM", related: nil, add: nil
-    res = "{{#{metric}"
-    options ||= nest_options(year, unknown, company, related)
-    res += "| #{options}" if options.present?
-    res += "}}"
+    res = "{{#{metric}#{nest_options options, year, unknown, company, related}}}"
     res = "#{method}[#{res}]" if method
     res = "#{res}+#{formula_str(**add)}" if add
     res
   end
 
-  def nest_options year, unknown, company, related
-    options = []
-    { "year: %s" => year,
+  def nest_options options, year, unknown, company, related
+    options ||= implicit_nest_options(year, unknown, company, related)
+    format_nest_options options.compact
+  end
+
+  def implicit_nest_options year, unknown, company, related
+    {
+      "year: %s" => year,
       "unknown: %s" => unknown,
       "company: %s" => company,
-      "company: Related[%s]" => related }.each do |clause, option|
+      "company: Related[%s]" => related
+    }.each_with_object([]) do |(clause, option), options|
       add_option_if_exists options, clause, option
     end
-    options.compact.join "; "
+  end
+
+  def format_nest_options options
+    return unless options.present?
+
+    "| #{options.join ';'}"
   end
 
   def add_option_if_exists array, clause, option
