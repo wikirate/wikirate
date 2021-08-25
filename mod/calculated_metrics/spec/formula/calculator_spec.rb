@@ -1,6 +1,6 @@
 require_relative "../support/calculator_stub"
 
-RSpec.describe Formula::Calculator do
+RSpec.describe Calculate::Calculator do
   describe "#formula_for" do
     include_context "with calculator stub"
 

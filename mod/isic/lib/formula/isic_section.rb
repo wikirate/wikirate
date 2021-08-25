@@ -1,4 +1,4 @@
-module Formula
+class Calculate
   # Calculator class to translate ISIC numbers to letters.
   class IsicSection < Isic
     letter_start_finish = [%w[A 01 03],

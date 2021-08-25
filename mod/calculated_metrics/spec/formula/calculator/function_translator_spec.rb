@@ -1,4 +1,4 @@
-RSpec.describe Formula::Calculator::FunctionTranslator do
+RSpec.describe Calculate::Calculator::FunctionTranslator do
   def translate str
     ft = described_class.new "aaa" => "bbb" do |_key, replacement, arg|
       "(#{replacement}).(#{arg})"
@@ -12,12 +12,12 @@ RSpec.describe Formula::Calculator::FunctionTranslator do
 
   example "missing ]" do
     expect { translate "10 * aaa[{{M1|company:Related[M2]}}" }
-      .to raise_error Formula::Calculator::FunctionTranslator::SyntaxError, /at 9/
+      .to raise_error Calculate::Calculator::FunctionTranslator::SyntaxError, /at 9/
   end
 
   # example "missing [" do
   #   expect { translate "aaa{{M1|company:Related[M2]}}" }
-  #     .to raise_error Formula::Calculator::FunctionTranslator::SyntaxError, /at 4/
+  #     .to raise_error Calculate::Calculator::FunctionTranslator::SyntaxError, /at 4/
   # end
 
   it "doesn't translate if function is part of a word" do

@@ -1,6 +1,6 @@
 require "./spec/support/company_ids"
 
-RSpec.describe Formula::Calculator::Input do
+RSpec.describe Calculate::Calculator::Input do
   include_context "with company ids"
 
   def input formula

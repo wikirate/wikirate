@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe(
-  Formula::Calculator::InputItem::Options::CompanyOption::CompanySearch::CompanyQuery
+  Calculate::Calculator::InputItem::Options::CompanyOption::CompanySearch::CompanyQuery
 ) do
   let(:more_evil_id) { "Jedi+more evil".card_id }
   let(:less_evil_id) { "Jedi+less evil".card_id }
@@ -166,7 +166,7 @@ RSpec.describe(
     let(:oc_id_3) { "Google LLC".card_id }
 
     def relations str
-      rel = described_class.new(str, Formula::Calculator::SearchSpace.new).relations
+      rel = described_class.new(str, Calculate::Calculator::SearchSpace.new).relations
       rel.keys.each_with_object([]) { |a, res| rel[a].each { |c, d| res << [a, c, d] } }
     end
 

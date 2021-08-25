@@ -7,7 +7,7 @@ def standard_formula
 end
 
 def parser
-  ::Formula::Parser.new clean_formula, special_item_names, self
+  ::Calculate::Parser.new clean_formula, special_item_names, self
 end
 
 delegate :input_chunks, :input_cards, :input_names, :input_keys,

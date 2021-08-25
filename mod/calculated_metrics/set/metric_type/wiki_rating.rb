@@ -18,7 +18,7 @@ def formula_core
 end
 
 def calculator_class
-  ::Formula::WikiRating
+  ::Calculate::WikiRating
 end
 # </OVERRIDES>
 
