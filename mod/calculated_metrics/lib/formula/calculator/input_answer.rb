@@ -11,29 +11,24 @@ module Formula
       end
 
       def assign value, unpublished, verification
-        @value = value
+        @value = Answer.value_from_lookup value, @input_item.type
         @unpublished = unpublished
         @verification = verification
         self
       end
 
-      def normalize
-        @already_normalized ||= @value = Answer.value_from_lookup value, @input_item.type
-      end
-
       def cast
-        return if @already_cast
-        normalize
-        @value =
-          case @value
-          when Array
-            @value.map { |v| yield v }
-          when Symbol
-            @value
-          else
-            @value.blank? ? nil : yield(@value)
-          end
-        @already_cast = true
+        not_already_cast do
+          @value =
+            case @value
+            when Array
+              @value.map { |v| yield v }
+            when Symbol
+              @value
+            else
+              @value.blank? ? nil : yield(@value)
+            end
+        end
       end
 
       def replace_unknown
@@ -45,6 +40,12 @@ module Formula
       end
 
       private
+
+      def not_already_cast
+        return unless @already_cast
+        @already_cast = true
+        yield
+      end
 
       def not_researched_value
         option = input_item.not_researched_option

@@ -52,7 +52,6 @@ module Formula
         end
 
         def consolidated_input_answer input_answers, year
-          input_answers.map(&:normalize)
           value = input_answers.map(&:value)
           unpublished = input_answers.find(&:unpublished)
           verification = input_answers.map(&:verification).compact.min || 1

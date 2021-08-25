@@ -46,7 +46,7 @@ class Calculate
 
   def transact
     wipe_old_calculations
-    process_calculations do |overridden, not_overridden|
+    process_calculations do |not_overridden, overridden|
       insert_calculations not_overridden
       update_overridden_calculations overridden
     end
@@ -55,6 +55,7 @@ class Calculate
 
   def clean
     expire_old_answers
+    update_cached_counts
   end
 
   private
@@ -111,17 +112,23 @@ class Calculate
     SQL
   end
 
+  def results
+    metric.calculator.result companies: @company_id, years: @year
+  end
+
   def process_calculations
-    overridden = []
-    not_overridden = []
-    metric.calculator.result(companies: @company_id, years: @year).each do |calculation|
-      if overridden_hash["#{calculation.company_id}-#{calculation.year}"]
-        overridden << calculation
-      else
-        not_overridden << calculation
-      end
+    calcs = calculations
+    yield calcs[:not_overridden], calcs[:overridden]
+  end
+
+  def overridden? calc
+    overridden_hash["#{calc.company_id}-#{calc.year}"]
+  end
+
+  def calculations
+    results.each_with_object({ overridden: [], not_overridden: [] }) do |calc, hash|
+      (overridden?(calc) ? hash[:overridden] : hash[:not_overridden]) << calc
     end
-    yield overridden, not_overridden
   end
 
   def insert_calculations not_overridden
@@ -173,13 +180,3 @@ class Calculate
     calculated_answer metric_card, company, year, overridden_value
   end
 end
-
-# The bulk_insert gem stopped working with the rail 6.1 upgrade;
-# This is a bit of a hack to get it working again.
-module ConnectionPatch
-  def type_cast_from_column _column, value
-    value
-  end
-end
-
-ActiveRecord::ConnectionAdapters::Mysql2Adapter.include ConnectionPatch
