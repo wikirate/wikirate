@@ -42,7 +42,7 @@ module Formula
       private
 
       def not_already_cast
-        return unless @already_cast
+        return if @already_cast
         @already_cast = true
         yield
       end

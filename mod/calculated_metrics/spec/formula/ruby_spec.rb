@@ -6,6 +6,8 @@ RSpec.describe Formula::Ruby do
   include_context "with company ids"
 
   example "simple formula" do
+
+
     expect(calculate("{{Joe User+RM}}*2"))
       .to include(have_attributes(year: 2011, company_id: apple, value: 22.0),
                   have_attributes(year: 2012, company_id: apple, value: 24.0),
