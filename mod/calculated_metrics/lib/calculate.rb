@@ -71,7 +71,7 @@ class Calculate
   end
 
   def update_latest
-    latest_rel.pluck(:id).each_slice(25000) do |ids|
+    latest_rel.pluck(:id).each_slice(25_000) do |ids|
       Answer.where("id in (#{ids.join ', '})").update_all latest: true
     end
   end
