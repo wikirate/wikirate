@@ -1,6 +1,6 @@
 shared_context "with calculator stub" do
   def calculator formula, input_names=nil
-    Formula::Calculator.new(formula_parser(formula, input_names))
+    Calculate::Calculator.new(formula_parser(formula, input_names))
   end
 
   def calculate formula, input_names=nil
@@ -10,7 +10,7 @@ shared_context "with calculator stub" do
 
   def parser_with_input names, year_options=nil, company_options=nil,
                               unknown_options=nil, not_researched_options=nil
-    parser = Formula::Parser.new "", names
+    parser = Calculate::Parser.new "", names
     year_options ||= []
     company_options ||= []
     unknown_options ||= []
@@ -28,7 +28,7 @@ shared_context "with calculator stub" do
   end
 
   def formula_parser formula, input_names=nil
-    Formula::Parser.new formula, input_names
+    Calculate::Parser.new formula, input_names
   end
 
   alias_method :parser, :formula_parser
