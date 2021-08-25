@@ -71,7 +71,7 @@ class Calculate
   end
 
   def update_latest
-    latest_rel.pluck(:id).each_slice(5000) do |ids|
+    latest_rel.pluck(:id).each_slice(25000) do |ids|
       Answer.where("id in (#{ids.join ', '})").update_all latest: true
     end
   end
@@ -106,11 +106,9 @@ class Calculate
     end
   end
 
-  def insert_calculations not_overridden
-    answer_hashes = not_overridden.map do |calculation|
-      calculation.answer_attributes.merge metric_id: metric.id
-    end
-    answer_hashes.each_slice(1000) { |slice| Answer.insert_all slice }
+  def insert_calculations calcs
+    attribs = calcs.map { |calc| calc.answer_attributes.merge metric_id: metric.id }
+    attribs.each_slice(5000) { |slice| Answer.insert_all slice }
   end
 
   def update_overridden_calculations overridden
