@@ -29,7 +29,7 @@ class RemoveDuplicateAnswers < Cardio::Migration
     card(dup)&.delete! skip: %i[update_related_calculations
                                 update_related_scores
                                 update_related_verifications]
-    Card[dup.metric_id].update_value_for! dup.company_id, dup.year
+    Card[dup.metric_id].calculate_answers company_id: dup.company_id, year: dup.year
   end
 
   def duplicates

@@ -3,15 +3,17 @@ card_accessor :check_requested_by
 card_accessor :source, type: PointerID
 card_accessor :discussion
 
-# for hybrid metrics: If a calculated value is overridden by a researched value
-#   then :overridden_value holds on to that value. It also serves as flag to mark
-#   overridden answers
-card_accessor :overridden_value, type: PhraseID
-
-# virtual card's _values_ are held in the content of the _answer_ card
-# (...not that I understand why - EM)
+# for speed, virtual card's _values_ are held both in the content of the _answer_ card
+# and in the value_card itself (using content is much faster)
 def value
   virtual? ? content : value_card&.value
+end
+
+# used by lookup
+def virtual_value_card lookup_value
+  content = ::Answer.value_from_lookup lookup_value, value_type_code
+  Card.fetch [name, :value], eager_cache: true,
+                             new: { content: content, type_code: value_cardtype_code }
 end
 
 # since real answers require real values, it is assumed that new answers
@@ -20,14 +22,14 @@ def fetch_value_card
   fetch :value, new: new_value_card_args
 end
 
-def new_value_card_args
-  { type_code: value_cardtype_code, supercard: self }
-end
-
 def value_card
   vc = fetch_value_card
   vc.content = content_from_value(value) if virtual?
   vc
+end
+
+def new_value_card_args
+  { type_code: value_cardtype_code, supercard: self }
 end
 
 def numeric_value

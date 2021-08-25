@@ -43,15 +43,15 @@ def javascript_formula?
 end
 
 def ruby_formula?
-  calculator_class == ::Formula::Ruby
+  calculator_class == ::Calculate::Ruby
 end
 
 def translate_formula?
-  calculator_class == ::Formula::Translation
+  calculator_class == ::Calculate::Translation
 end
 
 def wolfram_formula?
-  calculator_class ==  ::Formula::Wolfram
+  calculator_class ==  ::Calculate::Wolfram
 end
 
 format :html do

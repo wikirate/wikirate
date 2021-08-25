@@ -1,7 +1,7 @@
 include_set Abstract::Calculation
 
 def calculator_class
-  Formula::CompanyField
+  Calculate::CompanyField
 end
 
 def calculator _parser_method=nil

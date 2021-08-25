@@ -1,7 +1,7 @@
 include_set Abstract::HardCodedFormula
 
 def calculator_class
-  Formula::Isic
+  Calculate::Isic
 end
 
 format :html do

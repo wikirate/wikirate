@@ -1,0 +1,88 @@
+class Calculate
+  class Calculator
+    # {InputItem} represents a nested metric in a formula.
+    # For example "{{Jedi+friendliness|year: -1}}" in the formula
+    # "{{Jedi+friendliness|year: -1}} + 10 / {{Jedi+deadliness}}"
+    #
+    # It is responsible for finding all relevant values for that input item.
+    # How this is handled depends on the nest options (year and/or company)
+    # The logic for the nest options is in the modules {CompanyOption} and {YearOption}
+    #
+    # A metric with a fixed company is option company independent.
+    # That's why the company dependency is separated into the modules
+    # {CompanyDependentInput} and {CompanyIndependentInput}
+    class InputItem
+      include ValidationChecks
+      include Search
+      include Defaults
+      include CompanyDependentInput
+      include Options
+
+      INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification].freeze
+
+      attr_reader :card_id, :input_list, :result_space
+      delegate :answer_candidates, to: :result_space
+      delegate :parser, to: :input_list
+
+      # We instantiate with a super class because we dynamically include a lot of modules
+      # based on options, and included modules don't override methods defined directly
+      # on the including class. (Alternatively we could move everything out of here into
+      # modules and have them override each other. Arguably more elegant; we got here
+      # because of legacy reasons, and it's not bad enough to inspire me to change the
+      # approach as of Aug 2021 --efm)
+      def self.item_class type_id
+        type_id == Card::MetricID ? self : InvalidInputItem
+      end
+
+      def initialize input_list, input_index
+        @input_list = input_list
+        @input_index = input_index
+
+        @input_card = parser.input_cards[input_index]
+        @card_id = @input_card.id
+        initialize_options
+        # @value_store = value_store_class.new
+      end
+
+      def type
+        @type ||= @input_card.simple_value_type_code
+      end
+
+      # @param [Array<company_id>] company_id when given search only for answers for those
+      #    companies
+      # @param [Array<year>] year when given search only for answers for those years
+      def search_value_for result_space, company_id:, year:
+        return search result_space if company_id.nil? && year.nil?
+
+        @result_space = result_space
+        with_restricted_search_space company_id, year do
+          search result_space
+        end
+      end
+
+      def answers_for company_id, year
+        @search_space = SearchSpace.new company_id, year
+        answers
+      end
+
+      # @return a hash { year => value } if year is nil otherwise only value.
+      #   Value is usually a string, but it can be an array of strings if the input item
+      #   uses an option that generates multiple values for one year like a
+      #   year option "year: 2000..-1"
+      def answer_for company_id, year
+        value_store.get company_id, year
+      end
+
+      def <=> other
+        sort_index <=> other.sort_index
+      end
+
+      private
+
+      def unknown! answer
+        answer.value = :unknown
+        throw :cancel_calculation, [answer]
+      end
+    end
+  end
+end

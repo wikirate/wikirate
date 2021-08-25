@@ -37,6 +37,5 @@ def comments
 end
 
 def overridden_value
-  ov = super
-  ov.present? ? ov : nil
+  answer.overridden_value
 end

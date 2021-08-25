@@ -37,7 +37,8 @@ class SharedData
                           formula: "{{Jedi+deadliness}}+{{Jedi+deadliness|year:-1}}"
       Card::Metric.create name: "Jedi+know the unknowns",
                           type: :formula,
-                          formula: "{{Joe User+RM|unknown: 10}} + {{Joe User+small multi|not_researched: 20}}"
+                          formula: "{{Joe User+RM|unknown: 10}} + " \
+                                   "{{Joe User+small multi|not_researched: 20}}"
       # calculated value: "Slate Rock and Gravel Company+2004"
     end
 
