@@ -1,7 +1,7 @@
 require_relative "../support/calculator_stub"
 require "./spec/support/company_ids"
 
-RSpec.describe Formula::JavaScript do
+RSpec.describe Calculate::JavaScript do
   include_context "with calculator stub"
   include_context "with company ids"
 

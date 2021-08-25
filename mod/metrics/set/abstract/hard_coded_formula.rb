@@ -1,5 +1,5 @@
 def calculator_class
-  Formula::HardCoded
+  Calculate::HardCoded
 end
 
 format :html do

@@ -1,7 +1,7 @@
 require_relative "../support/calculator_stub"
 require "./spec/support/company_ids"
 
-RSpec.describe Formula::Translation do
+RSpec.describe Calculate::Translation do
   include_context "with calculator stub"
   include_context "with company ids"
 

@@ -1,13 +1,11 @@
 require_relative "../support/calculator_stub"
 require "./spec/support/company_ids"
 
-RSpec.describe Formula::Ruby do
+RSpec.describe Calculate::Ruby do
   include_context "with calculator stub"
   include_context "with company ids"
 
   example "simple formula" do
-
-
     expect(calculate("{{Joe User+RM}}*2"))
       .to include(have_attributes(year: 2011, company_id: apple, value: 22.0),
                   have_attributes(year: 2012, company_id: apple, value: 24.0),

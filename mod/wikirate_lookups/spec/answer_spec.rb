@@ -148,9 +148,4 @@ RSpec.describe Answer do
     xit "updates updated_at" do
     end
   end
-
-  # describe "fetch" do
-  #   described_class.fetch company_id: "Apple Inc".card_id
-  # end
-
 end

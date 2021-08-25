@@ -1,4 +1,4 @@
-module Formula
+class Calculate
   # Calculator class for ISIC division and group codes
   class Isic < HardCoded
     # @param input [Array of Arrays] ...of 3 digit ISIC group codes

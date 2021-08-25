@@ -1,7 +1,7 @@
 require_relative "../support/calculator_stub"
 require "./spec/support/company_ids"
 
-RSpec.describe Formula::Wolfram do
+RSpec.describe Calculate::Wolfram do
   include_context "with calculator stub"
   include_context "with company ids"
 
@@ -36,11 +36,11 @@ RSpec.describe Formula::Wolfram do
   #     expect(result[2011]).to eq({})
   #   end
   #   specify "Zeros" do
-  #     Formula::Wolfram::Unknowns::UNKNOWN_STRATEGY = :pass
+  #     Calculate::Wolfram::Unknowns::UNKNOWN_STRATEGY = :pass
   #     result = calculate "Zeros[#{nest}]"
   #     expect(result).to include 2002 => { apple_id => 1 },
   #                               2012 => { apple_id => 0 }
-  #     Formula::Wolfram::Unknowns::UNKNOWN_STRATEGY = :reject
+  #     Calculate::Wolfram::Unknowns::UNKNOWN_STRATEGY = :reject
   #   end
   #   specify "Unknowns" do
   #     result = calculate "Unknowns[#{nest}]"
@@ -50,7 +50,7 @@ RSpec.describe Formula::Wolfram do
   # end
   #
   # describe ".valid_formula?" do
-  #   subject { ::Formula::Ruby.valid_formula? content }
+  #   subject { ::Calculate::Ruby.valid_formula? content }
   #
   #   context "with formula with simple symbols" do
   #     let(:content) { "1/{{Jedi+deadliness}}" }

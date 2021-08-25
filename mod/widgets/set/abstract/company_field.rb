@@ -32,5 +32,5 @@ def answer_value
 end
 
 def answer_year
-  ::Formula::CompanyField::YEAR
+  ::Calculate::CompanyField::YEAR
 end

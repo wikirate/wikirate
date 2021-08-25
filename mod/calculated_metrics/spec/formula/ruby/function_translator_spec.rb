@@ -1,6 +1,6 @@
 require_relative "../../support/calculator_stub.rb"
 
-RSpec.describe Formula::Ruby do
+RSpec.describe Calculate::Ruby do
   include_context "with calculator stub"
   describe "#function_translator" do
     def translate formula
@@ -17,12 +17,12 @@ RSpec.describe Formula::Ruby do
 
     example "missing ]" do
       expect { translate "10 * Total[{{M1|company:Related[M2]}}" }
-        .to raise_error Formula::Ruby::FunctionTranslator::SyntaxError, /at 11/
+        .to raise_error Calculate::Ruby::FunctionTranslator::SyntaxError, /at 11/
     end
 
     # example "missing [" do
     #   expect { translate "Total{{M1|company:Related[M2]}}" }
-    #     .to raise_error Formula::Ruby::FunctionTranslator::SyntaxError, /at 6/
+    #     .to raise_error Calculate::Ruby::FunctionTranslator::SyntaxError, /at 6/
     # end
   end
 end
