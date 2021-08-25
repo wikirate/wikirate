@@ -110,7 +110,7 @@ class Calculate
     answer_hashes = not_overridden.map do |calculation|
       calculation.answer_attributes.merge metric_id: metric.id
     end
-    answer_hashes.each_slice(1000) { |slice| Answer.insert_all slice.to_h }
+    answer_hashes.each_slice(1000) { |slice| Answer.insert_all slice }
   end
 
   def update_overridden_calculations overridden
