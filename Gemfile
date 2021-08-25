@@ -38,11 +38,13 @@ else
   gem "decko-cap", path: "./vendor/decko-cap", group: :development
 end
 
+gem "parallel", "!= 1.20.2"          # 1.20.2 was removed (?!)
+# can remove this from gemfile once newer version is available
+
 # DATABASE
 gem "mysql2", "> 0.4"
 
 # DATABASE OPTIMIZATION
-gem "bulk_insert"                    # adds #bulk_insert method used for answer
 gem "pluck_all"                      # supports optimized pluck queries
 
 # FILE / SOURCE HANDLING
