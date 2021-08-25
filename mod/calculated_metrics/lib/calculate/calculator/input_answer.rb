@@ -22,11 +22,11 @@ class Calculate
           @value =
             case @value
             when Array
-              cast_array &block
+              cast_array(&block)
             when Symbol
               @value
             else
-              standard_cast &block
+              standard_cast(&block)
             end
         end
       end

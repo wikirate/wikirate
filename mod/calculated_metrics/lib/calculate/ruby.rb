@@ -10,7 +10,7 @@ class Calculate
   class Ruby < NestCalculator
     extend RubyClassMethods
 
-    SYMBOLS = %w[+ - ( ) \[ \] . * , / || && { } ].freeze
+    SYMBOLS = %w[+ - ( ) \[ \] . * , / || && { }].freeze
     FUNCTIONS = {
       "Total" => "sum",
       "Max" => "max",

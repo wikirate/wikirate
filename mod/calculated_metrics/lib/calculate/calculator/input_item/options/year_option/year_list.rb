@@ -15,11 +15,17 @@ class Calculate
               list = year_option.split(",").map(&:to_i)
               @fixed = []
               @offsets = []
+              process_year_option_list list
+              @offsets.empty? ? @fixed : year_option_list_proc(list)
+            end
+
+            def process_year_option_list list
               list.each do |y|
                 year?(y) ? @fixed << y : @offsets << y
               end
-              return @fixed if @offsets.empty?
+            end
 
+            def year_option_list_proc list
               proc do |year|
                 list.map do |year_offset|
                   if year? year_offset
@@ -35,12 +41,20 @@ class Calculate
             #   the given list of years
             def translate_years years
               if @offsets.empty?
-                (@fixed - years).empty? ? all_years : []
-              elsif @fixed.present? && (@fixed - years).present?
+                translated_years_without_offsets years
+              elsif not_all_fixed_years_present? years
                 []
               else
                 translate_nonstandard_years years
               end
+            end
+
+            def not_all_fixed_years_present? years
+              @fixed.present? && (@fixed - years).present?
+            end
+
+            def translated_years_without_offsets years
+              (@fixed - years).empty? ? all_years : []
             end
 
             def translate_nonstandard_years years

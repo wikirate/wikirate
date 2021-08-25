@@ -32,8 +32,6 @@ def new_value_card_args
   { type_code: value_cardtype_code, supercard: self }
 end
 
-
-
 def numeric_value
   Answer.to_numeric(value) if metric_card.numeric? || metric_card.relationship?
 end

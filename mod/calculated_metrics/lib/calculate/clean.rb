@@ -1,4 +1,5 @@
 class Calculate
+  # handles post-transaction phase of calculation
   module Clean
     def clean
       expire_old_answers

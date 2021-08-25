@@ -9,17 +9,7 @@ class Calculate
       end
 
       def searched? company_id: nil, year: nil
-        return true if @full_search
-
-        if company_id && year
-          searched_answer? company_id, year
-        elsif year
-          searched_year? year
-        elsif company_id
-          searched_company_id? company_id
-        else
-          false
-        end
+        @full_search || explicitly_searched?(company_id: company_id, year: year) || false
       end
 
       def update search_space
@@ -39,6 +29,16 @@ class Calculate
       end
 
       private
+
+      def explicitly_searched? company_id: nil, year: nil
+        if company_id && year
+          searched_answer? company_id, year
+        elsif year
+          searched_year? year
+        elsif company_id
+          searched_company_id? company_id
+        end
+      end
 
       def searched_answer? company_id, year
         @answer_searched[year.to_i].include?(company_id)

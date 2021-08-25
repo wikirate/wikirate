@@ -9,9 +9,10 @@ class Calculate
           intersect company_ids, years
         end
 
-        def intersect! search_space
-          intersect_companies search_space.company_ids unless search_space.no_company_restriction?
-           intersect_years search_space.years unless search_space.no_year_restriction?
+        # @param ss [SearchSpace]
+        def intersect! ss
+          intersect_companies ss.company_ids unless ss.no_company_restriction?
+          intersect_years ss.years unless ss.no_year_restriction?
         end
 
         private

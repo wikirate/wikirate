@@ -26,4 +26,3 @@ def calculate_answers args={}
   c.transact
   c.clean
 end
-

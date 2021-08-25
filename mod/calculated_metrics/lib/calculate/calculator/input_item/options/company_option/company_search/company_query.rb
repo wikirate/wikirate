@@ -36,8 +36,9 @@ class Calculate
               #   At this point we haven't checked if the input metric has actually
               #   an answer for these object_companies
               def relations
+                hash = Hash.new_nested Hash, Array
                 ActiveRecord::Base.connection.select_rows(sql)
-                                  .each_with_object(Hash.new_nested(Hash, Array)) do |(sc_id, year, oc_id), h|
+                                  .each_with_object(hash) do |(sc_id, year, oc_id), h|
                   h[sc_id][year] << oc_id.to_i
                 end
               end
@@ -69,7 +70,8 @@ class Calculate
               def company_search_space_sql
                 return unless @search_space&.company_ids?
 
-                "(#{@related_condition.subject_sql} #{in_or_eq @search_space.company_ids})"
+                "(#{@related_condition.subject_sql} " \
+                  "#{in_or_eq @search_space.company_ids})"
               end
 
               def year_search_space_sql
