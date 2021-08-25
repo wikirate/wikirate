@@ -57,7 +57,7 @@ class Calculate
       rb_formula = translate %i[functions nests list_syntax], formula
       find_allowed_non_numeric_input rb_formula
       lambda_wrap rb_formula
-    rescue FunctionTranslator::SyntaxError => e
+    rescue Calculator::FunctionTranslator::SyntaxError => e
       @errors << e.message
     end
 
@@ -115,7 +115,7 @@ class Calculate
 
     def function_translator
       @function_translator ||=
-        Calculate::Calculator::FunctionTranslator.new(FUNCTIONS) do |func, replacement, arg|
+        Calculator::FunctionTranslator.new(FUNCTIONS) do |func, replacement, arg|
           if LOOKUPS.include? func
             "#{replacement}(#{arg})"
           else

@@ -105,8 +105,12 @@ class Calculate
       when "Unknown"
         "\"Unknown\""
       else
-        input.type(index) == :number ? value : "\"#{value}\""
+        value_type(index) == :number ? value : "\"#{value}\""
       end
+    end
+
+    def value_type index
+      input.input_list[index].type
     end
 
     def add_company_index company, year, index
