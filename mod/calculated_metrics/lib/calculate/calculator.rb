@@ -43,7 +43,8 @@ class Calculate
       restrain_to(**restraints)
       result_array do |result|
         each_answer do |input_answers, company, year|
-          result << Calculation.new(self, input_answers, company, year)
+          result << Calculation.new(company, year, calculator: self,
+                                                   input_answers: input_answers)
         end
       end
     end

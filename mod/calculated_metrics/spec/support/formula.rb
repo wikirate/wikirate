@@ -8,15 +8,19 @@ shared_context "formula" do
   end
 
   def nest_options options, year, unknown, company, related
-    options ||= {
+    options ||= implicit_nest_options(year, unknown, company, related)
+    format_nest_options options.compact
+  end
+
+  def implicit_nest_options year, unknown, company, related
+    {
       "year: %s" => year,
       "unknown: %s" => unknown,
       "company: %s" => company,
       "company: Related[%s]" => related
-    }.each_with_object([]) do |clause, option|
+    }.each_with_object([]) do |(clause, option), options|
       add_option_if_exists options, clause, option
     end
-    format_nest_options options.compact
   end
 
   def format_nest_options options

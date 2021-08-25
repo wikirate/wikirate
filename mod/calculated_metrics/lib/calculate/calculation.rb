@@ -5,12 +5,12 @@ class Calculate
   class Calculation
     attr_reader :company_id, :year, :value, :verification, :unpublished
 
-    def initialize calculator, input_answers, company_id, year
+    def initialize company_id, year, calculator: nil, input_answers: nil, value: nil
       @company_id = company_id
       @year = year
       @input_answers = input_answers
 
-      @value = calculator.result_value map(:value), company_id, year
+      @value = value || calculator.result_value(map(:value), company_id, year)
 
       determine_verification
       determine_unpublished
@@ -39,16 +39,16 @@ class Calculate
     private
 
     def determine_unpublished
-      @unpublished = map(:unpublished).find(&:present?) || false
+      @unpublished = map(:unpublished)&.find(&:present?) || false
     end
 
     def determine_verification
-      @verification = map(:verification).compact.min || 1
+      @verification = map(:verification)&.compact&.min || 1
     end
 
     def map field
       # note the ampersand
-      @input_answers.map { |a| a&.send field }
+      @input_answers&.map { |a| a&.send field }
     end
   end
 end

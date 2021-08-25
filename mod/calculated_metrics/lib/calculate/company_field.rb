@@ -49,9 +49,7 @@ class Calculate
     end
 
     def calculation company, value
-      Calculation.new(self, {}, company, YEAR).tap do |calc|
-        calc.value = value
-      end
+      Calculation.new company, YEAR, value: value
     end
 
     def company_fields company
