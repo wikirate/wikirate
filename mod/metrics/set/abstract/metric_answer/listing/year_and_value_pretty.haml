@@ -2,6 +2,6 @@
   = nest card.year, view: :in_calendar
   .thumbnail-text
     %span.metric-color.font-weight-bold
-      = handle_unknowns { calculated { nest card.value_card, view: :pretty } }
+      = handle_unknowns { nest card.value_card, view: :pretty }
     %span.text-muted
       = render_legend
