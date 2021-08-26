@@ -10,7 +10,7 @@
           = render_other_year_links
     .value-details
       .metric-color.font-weight-bold
-        = handle_unknowns { calculated { nest card.value_card, view: :pretty } }
+        = handle_unknowns { nest card.value_card, view: :pretty }
       .text-muted
         = render_legend
   .details-chart

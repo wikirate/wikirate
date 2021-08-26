@@ -20,6 +20,18 @@ class Calculate
 
     # CACHED COUNTS
 
+    # TODO: optimize
+    # by looking for opportunities not to update cached counts, eg:
+    # when a company's answers are merely updated (not added or removed),
+    # the company has same number of answers and metrics before and after the calculation,
+    # so there is no need to recount
+    #
+    # have not yet confirmed with benchmarking, but it appears that these cached count
+    # updates are the slowest remaining part of the calculation process
+    #
+    # we could also consider some sort of bulk querying/counting/updating mechanism,
+    # but that's a heavier lift than just avoiding counts that don't need to be made.
+
     def update_cached_counts
       (metric_cache_count_cards +
         topic_cache_count_cards +

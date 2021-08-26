@@ -41,13 +41,6 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
       end
     end
 
-    it "shows refresh icon while calculating" do
-      with_delayed_jobs do
-        Card["Jedi+friendliness+formula"]
-          .update! content: "1/{{Jedi+deadliness}}+5"
-      end
-    end
-
     it "updates values of dependent calculated metric" do
       updates_answer_with_delay from: /^0.02/, to: /^10.02/,
                                 metric_title: "double friendliness" do

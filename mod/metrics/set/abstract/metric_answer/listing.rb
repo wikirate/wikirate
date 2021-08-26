@@ -56,7 +56,7 @@ format :html do
   view :value_and_flags, unknown: true do
     wrap_with :div, class: "value-and-flags" do
       handle_unknowns do
-        [calculated { nest card.value_card, view: :pretty }, render_flags]
+        [nest(card.value_card, view: :pretty), render_flags]
       end
     end
   end
@@ -73,14 +73,6 @@ format :html do
 
   view :plain_year do
     card.year
-  end
-
-  def calculated
-    card.calculating? ? calculating_icon : yield
-  end
-
-  def calculating_icon
-    fa_icon :calculator, title: "calculating ...", class: "fa-spin px-1"
   end
 
   def handle_unknowns
