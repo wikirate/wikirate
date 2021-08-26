@@ -20,6 +20,8 @@ def deep_answer_update
 end
 
 # param @args [Hash] :company_id, :year, both, or neither.
+# TODO: convert to :companies and :years as named arguments to be consistent with
+# calculator#result
 def calculate_answers args={}
   c = ::Calculate.new self, args
   c.prepare
