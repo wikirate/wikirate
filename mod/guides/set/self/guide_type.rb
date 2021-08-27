@@ -1,13 +1,11 @@
 format :html do
   def layout_name_from_rule
-    :guide_layout
+    :wikirate_one_full_column_layout
   end
 
-  layout :guide_layout, view: :titled do
-    wikirate_layout "wikirate-guide-layout" do
-      wrap_with :div, class: "container" do
-        layout_nest
-      end
-    end
+  def default_page_view
+    :guide_page
   end
+
+  view :guide_page, template: :haml
 end
