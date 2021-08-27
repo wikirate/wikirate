@@ -22,9 +22,8 @@ window.wikirate =
   jObj: (ele) ->
     if this.isString(ele) then $(ele) else ele
   loader: (target, relative = false) ->
-    fn = this
-    target = fn.jObj(target)
-    loader = fn.ajaxLoader
+    target = @jObj target
+    loader = wikirate.ajaxLoader
     isLoading: ->
       if this.child().exists() then true else false
     add: ->
@@ -96,4 +95,4 @@ $(document).ready ->
 
   $('body').on "submit", "._filter-form", ->
     slot = $(this).findSlot($(this).data("slot-selector"))
-    wikirate.loader($(slot), true).prepend()
+    wikirate.loader($(slot), false).prepend()

@@ -46,7 +46,7 @@ class SharedData
       add :companies, :topics, :sources, :report_types,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
           :projects, :company_category, :researchers, :program, :company_group,
-          :profile_sections, :badges, :import_files
+          :profile_sections, :badges, :import_files, :guides
 
       Card::Cache.reset_all
       Answer.refresh
@@ -156,6 +156,16 @@ class SharedData
              storage_type: :coded,
              mod: :test
     end
+
+    def add_guides
+      create "Force Guide",
+             type: :guide_type,
+             subfields: {
+               description: "guided by guy dead",
+               body: "my body is a force"
+             }
+    end
+
 
     def csv_file name
       path = ::File.expand_path("../shared_data/file/#{name}.csv", __FILE__)

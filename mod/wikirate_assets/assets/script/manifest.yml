@@ -7,3 +7,4 @@ wikirate:
     - script_empty_tab_content.js.coffee
     - script_wikirate_coffee.js.coffee
     - script_wikirate_common.js.coffee
+    - anime.min.js
