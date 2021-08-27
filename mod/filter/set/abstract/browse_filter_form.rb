@@ -58,6 +58,10 @@ format :html do
     [:json]
   end
 
+  def export_link_path format
+    super.merge filter_and_sort_hash
+  end
+
   def default_item_view
     :bar
   end
