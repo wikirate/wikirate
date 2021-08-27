@@ -1,0 +1,12 @@
+%header.jumbotron.jumbotron-fluid
+  .container
+    %h1
+      = render_title
+    .lead
+      = field_nest :description, view: :content
+.container
+  %section.guide-body.row
+    %aside#guide-sidebar.col-3
+      sidebar!
+    %main#guide-body.col-9
+      = field_nest :body, view: :content, show: :menu
