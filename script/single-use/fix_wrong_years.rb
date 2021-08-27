@@ -4,7 +4,7 @@ Card::Auth.signin "Ethan McCutchen"
 
 require "csv"
 
-FILENAME = File.expand_path "script/single-use/data/wrong_year.csv"
+FILENAME = File.expand_path "script/single-use/data/wrong_year2.csv"
 
 # For correcting answer years
 module AnswerFixer
@@ -44,7 +44,7 @@ module AnswerFixer
       csv.each do |r|
         next unless
           (card = card_ok r["Answer ID"]) &&
-          (year = year_ok r["Correct Year"], card) &&
+          (year = year_ok r["Correct year"], card) &&
           (name = name_ok year, card)
         puts "renaming: #{card.name}\n      to: #{name}"
         card.update! name: name

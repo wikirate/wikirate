@@ -22,7 +22,7 @@ class Card
 
     def lookup_query
       q = lookup_class.where lookup_conditions
-      q = q.joins(@joins) if @joins.present?
+      q = q.joins(@joins.uniq) if @joins.present?
       q
     end
 
