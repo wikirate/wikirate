@@ -89,6 +89,7 @@ class Card
       end
 
       def calculated_condition positive=true
+        @joins << :metric
         nott = positive ? "" : "NOT "
         "(metric_type_id #{nott}IN #{CALCULATED_TYPE_IDS} AND answer_id IS #{nott}NULL)"
       end
