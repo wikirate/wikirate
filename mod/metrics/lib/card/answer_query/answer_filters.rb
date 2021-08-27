@@ -3,9 +3,6 @@ class Card
     # filters based on year and children of the answer card
     # (as opposed to metric and company)
     module AnswerFilters
-      CALCULATED_TYPE_IDS =
-        "(#{[FormulaID, WikiRatingID, DescendantID, ScoreID].join ', '})".freeze
-
       def updated_query value
         return unless (period = timeperiod value)
 
@@ -49,7 +46,7 @@ class Card
       end
 
       def calculated_query value
-        @conditions << calculated_condition(value.to_sym == :calculated)
+        @conditions << calculated_condition(value.to_sym != :calculated)
       end
 
       def source_query value
@@ -88,9 +85,8 @@ class Card
         end
       end
 
-      def calculated_condition positive=true
-        nott = positive ? "" : "NOT "
-        "(metric_type_id #{nott}IN #{CALCULATED_TYPE_IDS} AND answer_id IS #{nott}NULL)"
+      def calculated_condition negate
+        "answer_id IS #{'NOT ' if negate}NULL"
       end
 
       def timeperiod value

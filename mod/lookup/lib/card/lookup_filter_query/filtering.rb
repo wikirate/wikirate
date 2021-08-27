@@ -40,6 +40,10 @@ class Card
         filter card_id_map[key], card_id
       end
 
+      def not_ids_query value
+        add_condition "#{lookup_class.card_column} not in (?)", value.split(",")
+      end
+
       def to_card_id value
         if value.is_a?(Array)
           value.map { |v| Card.fetch_id(v) }
