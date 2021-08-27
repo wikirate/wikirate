@@ -1,6 +1,6 @@
 format :html do
   def layout_name_from_rule
-    :wikirate_layout
+    :wikirate_one_full_column_layout
   end
 
   layout :wikirate_layout, view: :titled do

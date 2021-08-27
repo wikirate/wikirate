@@ -4,7 +4,7 @@ format :html do
   end
 
   layout :guide_layout, view: :titled do
-    wikirate_layout "wikirate-one-column-layout" do
+    wikirate_layout "wikirate-guide-layout" do
       wrap_with :div, class: "container" do
         layout_nest
       end
