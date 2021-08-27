@@ -1,4 +1,8 @@
 format :html do
+  def layout_name_from_rule
+    :wikirate_one_full_column_layout
+  end
+
   layout :wikirate_layout, view: :titled do
     wikirate_layout "wikirate-one-column-layout" do
       wrap_with :div, class: "container" do
