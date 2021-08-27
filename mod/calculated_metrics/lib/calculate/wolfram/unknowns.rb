@@ -8,7 +8,7 @@ class Calculate
       # add the "Unknown" after we got the result from the Wolfram server
       def handle_unknowns input_values, company, year
         @unknown_result ||= Hash.new_nested Array
-        if input_values == :unknown
+        if input_values.first == :unknown
           @unknown_result[year.to_s] << company
         else
           yield
