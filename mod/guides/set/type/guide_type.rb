@@ -3,11 +3,21 @@ format :html do
     :guide_layout
   end
 
-  layout :guide_layout, view: :guide_page do
-    wikirate_layout "wikirate-one-full-column-layout guide-layout px-2" do
-      layout_nest
-    end
+  before :content_formgroups do
+    voo.edit_structure = [
+      :description,
+      :body
+    ]
   end
 
-  view :guide_page, template: :haml
+  view :box_middle do
+    field_nest :description
+  end
+
+  view :box_bottom do
+    link_to_card card, "View Guide"
+  end
+
+  view :guide_page, template: :haml, wrap: :slot
+  view :sidebar_nav, template: :haml
 end
