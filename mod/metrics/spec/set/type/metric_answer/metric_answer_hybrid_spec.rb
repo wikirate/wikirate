@@ -60,8 +60,9 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
     research_value 5
     expect(answer.value).to eq "5"
     Card[metric, company, "1977"].delete!
-    expect(calculated_answer.overridden_value).to eq nil
-    expect(calculated_answer.value).to eq "0.01"
-    expect(calculated_answer).not_to be_calculation_overridden
+    a = answer
+    expect(a.overridden_value).to eq nil
+    expect(a.value).to eq "0.01"
+    expect(a).not_to be_calculation_overridden
   end
 end
