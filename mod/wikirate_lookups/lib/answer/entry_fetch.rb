@@ -33,6 +33,11 @@ class Answer
       false
     end
 
+    # overridden values calculated later.
+    def fetch_overridden_value
+      nil
+    end
+
     private
 
     def value_updated?
