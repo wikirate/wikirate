@@ -674,3 +674,29 @@ a {
       -webkit-transform: scale(1.0);
     }
 }
+
+// Guide
+
+.sidebar-nav {
+  .btn .fas:before {
+    content: "\f105";
+    transition: transform 0.35s ease;
+    transform-origin: .5em 50%;
+  }
+
+  .btn[aria-expanded="true"] .fas {
+    transform: rotate(90deg)
+  }
+}
+
+html {
+  scroll-padding-top: 80px; /* height of sticky header */
+}
+
+.wr-infobox {
+  background: $gray-200;
+  padding: 2rem;
+  border-radius: 6px;
+  border-left: 8px solid $gray-700;
+  margin: 1rem 0;
+}

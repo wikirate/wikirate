@@ -1,0 +1,15 @@
+.d-flex.pt-4.justify-content-between
+  .previous-guide
+    - if current_index > 0
+      - previous = guide_names[current_index - 1]
+      - link_text = capture_haml do
+        %i.fas.fa-arrow-left
+        = previous
+      = link_to_card previous, link_text
+  .next-guide
+    - if (current_index + 1) < guide_names.size
+      - nexxt = guide_names[current_index + 1]
+      - link_text = capture_haml do
+        %i.fas.fa-arrow-right
+        = nexxt
+      = link_to_card nexxt, link_text
