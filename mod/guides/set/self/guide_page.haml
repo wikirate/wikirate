@@ -1,8 +1,9 @@
-.jumbotron.bg-secondary
-  hi mom
-.container
-  %section.row
-    .guide-sidebar.col-3
-      sidebar!
-    .guide-body.col-9
-      main body
+%header.jumbotron.jumbotron-fluid
+  .container
+    %h1
+      = render_title
+    .lead
+      = field_nest :description, view: :content
+%main.container.py-5
+  .guide-list.p-4
+  = field_nest :list, type: :list, items: { view: :box }
