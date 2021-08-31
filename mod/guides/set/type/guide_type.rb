@@ -13,14 +13,20 @@ format :html do
     field_nest :description
   end
 
-  view :box_bottom do
-    link_to_card card, "View Guide"
-  end
-
+  view :box_top, template: :haml
+  view :box_bottom, template: :haml
   view :guide_page, template: :haml, wrap: :slot
   view :sidebar_nav, template: :haml, cache: :never
+
   view :guide_paging do
-    "hello world"
+    guide_names = guide_list_card.item_names
+    return unless (current_index = guide_names.index card.name)
+
+    haml :guide_paging, guide_names: guide_names, current_index: current_index
+  end
+
+  def guide_list_card
+    Card[%i[guide_type list]]
   end
 
   def expanded?

@@ -12,11 +12,16 @@ end
 format do
   def humanized_number value
     number = BigDecimal(value)
-    size = number.abs >= 1_000_000 ? :big : :small
-    send "humanized_#{size}_number", number
+    send number_method(number), number
   rescue
     Rails.logger.info "#{card.name} has bad number: #{value}"
     value
+  end
+
+  private
+
+  def number_method number
+    "humanized_#{number.abs >= 1_000_000 ? :big : :small}_number"
   end
 
   def humanized_big_number number
@@ -24,11 +29,14 @@ format do
   end
 
   def humanized_small_number number
-    less_than_one = number.abs < 1
-    humanized = number_with_precision(
-      number, delimiter: ",", strip_insignificant_zeros: true,
-              precision: (less_than_one ? 2 : 1), significant: less_than_one
-    )
+    humanized = small_number_with_precision number, (number.abs < 1)
     humanized == "0" && number.positive? ? "~0" : humanized
+  end
+
+  def small_number_with_precision number, less_than_one
+    number_with_precision number, delimiter: ",",
+                                  strip_insignificant_zeros: true,
+                                  precision: (less_than_one ? 2 : 1),
+                                  significant: less_than_one
   end
 end

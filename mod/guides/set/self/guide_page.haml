@@ -4,6 +4,8 @@
       = render_title
     .lead
       = field_nest :description, view: :content
-%main.container.py-5
-  .guide-list.p-4
-  = field_nest :list, type: :list, items: { view: :box }
+%main.container.py-5.position-relative
+  .pb-5
+    = render_menu
+  .guide-list.py-2
+    = field_nest :list, type: :list, items: { view: :box }

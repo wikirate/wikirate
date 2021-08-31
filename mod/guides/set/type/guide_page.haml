@@ -12,8 +12,8 @@
           %i.fas.fa-arrow-left
           Back to Help
         = link_to_card :guide_type, link_text
-      .sidebar-nav-list
-        = nest %i[guide_type list], items: { view: :sidebar_nav }
+      .sidebar-nav-list.accordion
+        = nest guide_list_card, items: { view: :sidebar_nav }
 
     %main#guide-body.col-sm-8
       .pb-5
