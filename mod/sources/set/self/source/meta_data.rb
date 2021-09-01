@@ -41,9 +41,16 @@ class MetaData
 
   def data_from_url
     return unless preview
+
     @title = preview.title || ""
     @description = preview.description || ""
-    @image_url = preview.images.first.src.to_s unless preview.images.empty?
+    image_url_from preview.images&.first
+  end
+
+  def image_url_from image
+    return unless image
+
+    @image_url = image.src.to_s
   end
 
   def preview

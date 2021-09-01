@@ -7,7 +7,6 @@ def lookup_columns
 end
 
 event :delete_answer_lookup_table_entry_due_to_value_change, :finalize, on: :delete do
-  return if metric_card&.calculated? # FIXME: AND metric has a valid virtual answer
   delete_answer answer_id: answer_id
 end
 
