@@ -1,7 +1,7 @@
 %header.jumbotron.jumbotron-fluid
   .container
     %h1
-      = render_title
+      = field_nest :title, view: :content, type: :plain_text
     .lead
       = field_nest :description, view: :content
 %main.container.py-5.position-relative

@@ -7,7 +7,7 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
   let(:calculated_answer) { answer 1977 }
 
   def answer year=1977
-    Card.fetch(metric.name, company, year.to_s)
+    Card.fetch(metric.name, company, year.to_s).answer
   end
 
   def research_value value, year=1977
@@ -28,40 +28,39 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
     end
   end
 
-  example "research calculated value" do
+  example "initial value" do
     expect(answer.overridden_value).to eq nil
+    expect(answer.value).to eq "0.01"
+  end
+
+  example "research calculated value" do
     research_value 5
-    expect(answer.overridden_value).to eq "0.01"
-    expect(answer.value).to eq "5"
-    expect(answer).to be_calculation_overridden
+    expect(answer).to have_attributes(overridden_value: "0.01",
+                                      value: "5",
+                                      answer_id: (a_value > 0))
   end
 
   example "calculate researched value 1" do
     research_value 5, 2010
-    expect(answer(2010).answer.answer_id).to be_present
     input_for_calculation 10, 2010
-    expect(answer(2010).value).to eq "5"
-    expect(answer(2010).overridden_value).to eq "0.1"
-    expect(answer(2010).answer.answer_id).to be_present
-    expect(answer(2010)).to be_calculation_overridden
+    expect(answer(2010)).to have_attributes(value: "5",
+                                            overridden_value: "0.1",
+                                            answer_id: (a_value > 0))
   end
 
   example "uncalculate researched value" do
     research_value 5
-    expect(answer.overridden_value).to eq "0.01"
     delete_input 1977
-    expect(answer.value).to eq "5"
-    expect(answer.overridden_value).to eq nil
-    expect(answer.calculation_overridden?).to be_falsey
+    expect(answer).to have_attributes(value: "5",
+                                      overridden_value: nil,
+                                      answer_id: (a_value > 0))
   end
 
   example "unresearch calculated value", as_bot: true do
-    expect(calculated_answer.overridden_value).to eq nil
     research_value 5
-    expect(answer.value).to eq "5"
     Card[metric, company, "1977"].delete!
-    expect(calculated_answer.overridden_value).to eq nil
-    expect(calculated_answer.value).to eq "0.01"
-    expect(calculated_answer).not_to be_calculation_overridden
+    expect(answer).to have_attributes(overridden_value: nil,
+                                      answer_id: nil,
+                                      value: "0.01")
   end
 end
