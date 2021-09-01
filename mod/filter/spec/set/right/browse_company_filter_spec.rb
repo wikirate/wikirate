@@ -27,10 +27,10 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
       it { is_expected.to eq cql(company_category: "myIndustry") }
     end
 
-    context "with project argument" do
-      before { filter_args project: "myProject" }
+    context "with dataset argument" do
+      before { filter_args dataset: "myDataset" }
       it do
-        is_expected.to eq cql(and: { referred_to_by: "myProject+Company" })
+        is_expected.to eq cql(and: { referred_to_by: "myDataset+Company" })
       end
     end
 
@@ -38,13 +38,13 @@ RSpec.describe Card::Set::Right::BrowseCompanyFilter do
       before do
         filter_args name: "Apple",
                     company_category: "myIndustry",
-                    project: "myProject"
+                    dataset: "myDataset"
       end
       it "joins filter conditions correctly" do
         is_expected.to eq cql(
           name: %w[match Apple],
           company_category: "myIndustry",
-          and: { referred_to_by: "myProject+Company" }
+          and: { referred_to_by: "myDataset+Company" }
         )
       end
     end

@@ -1,0 +1,6 @@
+= field_nest :description
+= nest :homepage_featured_datasets, view: "titled",
+                                    title: "Featured Datasets",
+                                    items: { view: :bar }
+%h2.font-weight-normal All Datasets
+= field_nest :browse_project_filter, view: :filtered_content

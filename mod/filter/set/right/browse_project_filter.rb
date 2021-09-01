@@ -1,4 +1,4 @@
-# filter interface for "Browse Projects" page
+# filter interface for "Browse Datasets" page
 
 include_set Type::SearchType
 include_set Abstract::BrowseFilterForm
@@ -6,12 +6,12 @@ include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 
 def target_type_id
-  ProjectID
+  DatasetID
 end
 
 format do
   def filter_class
-    ProjectFilterQuery
+    DatasetFilterQuery
   end
 
   def default_sort_option
@@ -30,7 +30,7 @@ format do
     { "Most Bookmarked": :bookmarkers,
       "Recently Added": :create,
       "Alphabetical": :name,
-      "Most Subprojects": :subprojects,
+      "Most Subdatasets": :data_subsets,
       "Most Metrics": :metric,
       "Most Companies": :company }
   end
@@ -51,7 +51,7 @@ format :html do
 end
 
 # cql query to filter sources
-class ProjectFilterQuery < Card::FilterQuery
+class DatasetFilterQuery < Card::FilterQuery
   include WikirateFilterQuery
 
   def wikirate_status_cql value
