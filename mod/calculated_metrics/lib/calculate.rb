@@ -117,8 +117,4 @@ class Calculate
              .update_all overridden_value: o.value
     end
   end
-
-  def restore_overridden_value
-    calculated_answer metric_card, company, year, overridden_value
-  end
 end

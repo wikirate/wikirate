@@ -92,15 +92,18 @@ class BadgeLine
 
   # pass a list of thresholds or a hash that sets thresholds explicitly
   def change_thresholds *thresholds
-    unless thresholds.first.is_a? Hash
-      return change_thresholds LEVELS[0, thresholds.size].zip(thresholds).to_h
-    end
-    thresholds.first.each do |k, new_threshold|
+    threshold_hash(*thresholds).each do |k, new_threshold|
       next unless (badge = @badge[k])
       @badge.delete badge.threshold
       badge.threshold = new_threshold
       @badge[new_threshold] = badge
     end
+  end
+
+  def threshold_hash *thresholds
+    return thresholds if thresholds.first.is_a? Hash
+
+    LEVELS[0, thresholds.size].zip(thresholds).to_h
   end
 
   def to_h value_key=nil

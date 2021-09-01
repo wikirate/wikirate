@@ -14,9 +14,9 @@ def calculator parser_method=nil
 end
 
 # update all answers of this metric and the answers of all dependent metrics
-def deep_answer_update
-  calculate_answers
-  each_depender_metric(&:calculate_answers)
+def deep_answer_update args={}
+  calculate_answers args
+  each_depender_metric { |m| m.send :calculate_answers, args }
 end
 
 # param @args [Hash] :company_id, :year, both, or neither.

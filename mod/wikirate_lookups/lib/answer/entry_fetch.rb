@@ -33,6 +33,11 @@ class Answer
       false
     end
 
+    # don't change the value
+    def fetch_overridden_value
+      overridden_value
+    end
+
     private
 
     def value_updated?

@@ -11,15 +11,17 @@ format :json do
   end
 
   def iframable? url, user_agent
-    rescuing_iframe_errors url do
+    return false unless url.present?
+
+    rescuing_iframe_errors do
       x_frame_options, content_type = iframable_options url
       valid_x_frame_options?(x_frame_options) &&
         valid_content_type?(content_type, user_agent)
     end
   end
 
-  def rescuing_iframe_errors url
-    url.present? ? yield : false
+  def rescuing_iframe_errors
+    yield
   rescue StandardError => error
     handle_iframe_error error
   end

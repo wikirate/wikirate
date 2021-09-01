@@ -4,7 +4,7 @@ format :html do
   end
 
   before :content_formgroups do
-    voo.edit_structure = %i[description list]
+    voo.edit_structure = %i[title description list]
   end
 
   view :guide_page, template: :haml, wrap: :slot
