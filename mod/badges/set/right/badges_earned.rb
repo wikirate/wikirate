@@ -62,8 +62,7 @@ end
 def badge_count level=nil
   return item_names.count unless level
   item_cards.count do |badge|
-    next unless badge.respond_to?(:badge_level)
-    badge.badge_level == level
+    badge.try(:badge_level) == level
   end
 end
 

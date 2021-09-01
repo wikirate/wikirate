@@ -37,7 +37,7 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
     research_value 5
     expect(answer).to have_attributes(overridden_value: "0.01",
                                       value: "5",
-                                      answer_id: (a_value > 0))
+                                      answer_id: a_kind_of(Integer))
   end
 
   example "calculate researched value 1" do
@@ -45,7 +45,7 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
     input_for_calculation 10, 2010
     expect(answer(2010)).to have_attributes(value: "5",
                                             overridden_value: "0.1",
-                                            answer_id: (a_value > 0))
+                                            answer_id: a_kind_of(Integer))
   end
 
   example "uncalculate researched value" do
@@ -53,7 +53,7 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
     delete_input 1977
     expect(answer).to have_attributes(value: "5",
                                       overridden_value: nil,
-                                      answer_id: (a_value > 0))
+                                      answer_id: a_kind_of(Integer))
   end
 
   example "unresearch calculated value", as_bot: true do
