@@ -33,9 +33,9 @@ class Answer
       false
     end
 
-    # overridden values calculated later.
+    # don't change the value
     def fetch_overridden_value
-      nil
+      overridden_value
     end
 
     private
