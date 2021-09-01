@@ -101,7 +101,7 @@ class BadgeLine
   end
 
   def threshold_hash *thresholds
-    return thresholds if thresholds.first.is_a? Hash
+    return thresholds.first if thresholds.first.is_a? Hash
 
     LEVELS[0, thresholds.size].zip(thresholds).to_h
   end
