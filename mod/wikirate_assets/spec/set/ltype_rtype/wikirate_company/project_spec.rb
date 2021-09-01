@@ -1,4 +1,4 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::LtypeRtype::WikirateCompany::Project do
+describe Card::Set::LtypeRtype::WikirateCompany::Dataset do
 end
