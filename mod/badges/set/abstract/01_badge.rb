@@ -112,34 +112,28 @@ def badge_class
 end
 
 def <=> other
-  valid_to_compare? other
-  level_order = compare_levels other
-  return level_order unless level_order.zero?
-  actions_order = compare_actions other
-  return actions_order unless actions_order.zero?
-  affinity_type == :general ? 1 : -1
+  valid_to_compare! other
+  compare_levels(other) ||
+    compare_actions(other) ||
+    (affinity_type == :general ? 1 : -1)
 end
 
 def compare_actions other
   actions = badge_class.badge_actions
-  actions.index(other.badge_action) <=> actions.index(badge_action)
+  action_order = actions.index(other.badge_action) <=> actions.index(badge_action)
+  !action_order.zero? && action_order
 end
 
 def compare_levels other
-  badge_level_index <=> other.badge_level_index
-  # if badge_level == other.badge_level
-  #   affinity_type == :general ? 1 : -1
-  # else
-  #   badge_level_index <=> other.badge_level_index
-  # end
+  level_order = badge_level_index <=> other.badge_level_index
+  !level_order.zero? && level_order
 end
 
-def valid_to_compare? other
+def valid_to_compare! other
   unless other.respond_to? :badge_class
     raise ArgumentError, "comparison with non-badge card #{other} failed"
   end
   if badge_class != other.badge_class
     raise ArgumentError, "comparison of different badge types failed"
   end
-  true
 end
