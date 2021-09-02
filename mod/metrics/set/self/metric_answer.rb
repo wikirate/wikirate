@@ -8,7 +8,7 @@ include_set Abstract::AnswerSearch
 format do
   STANDARD_FILTER_KEYS = %i[
     status year metric_name company_name company_category company_group wikirate_topic
-    value updated updater verification calculated metric_type value_type project source
+    value updated updater verification calculated metric_type value_type dataset source
     research_policy bookmark
   ].freeze
 
@@ -57,7 +57,7 @@ format :html do
 
   def quick_filter_list
     @quick_filter_list ||=
-      bookmark_quick_filter + topic_quick_filters + project_quick_filters
+      bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
   end
 
   def bookmark_type

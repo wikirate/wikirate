@@ -43,7 +43,7 @@ format do
 
   STANDARD_FILTER_KEYS = %i[
     status year company_name company_group company_category country value updated updater
-    verification calculated source project outliers bookmark
+    verification calculated source dataset outliers bookmark
   ].freeze
 
   def secondary_sort_hash
