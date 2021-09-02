@@ -39,7 +39,7 @@ format :html do
     if contrib_page?
       %i[research_group projects_organized details]
     else
-      %i[details wikirate_topic company_group source project]
+      %i[details wikirate_topic company_group source dataset]
     end
   end
 
@@ -67,8 +67,8 @@ format :html do
     end
   end
 
-  view :project_tab do
-    answer_filtering { |items| field_nest :project, items: items }
+  view :dataset_tab do
+    answer_filtering { |items| field_nest :dataset, items: items }
   end
 
   view :company_group_tab do

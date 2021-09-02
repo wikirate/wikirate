@@ -1,6 +1,7 @@
 def cql_content
   { type:
-      %i[in wikirate_company wikirate_topic metric metric_title project research_group],
+      %i[in wikirate_company wikirate_topic metric metric_title project
+         dataset research_group],
     fulltext_match: "$keyword",
     sort: "relevance" }
 end
