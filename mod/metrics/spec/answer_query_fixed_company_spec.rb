@@ -254,9 +254,9 @@ RSpec.describe Card::AnswerQuery do
       end
     end
 
-    context "with project" do
+    context "with dataset" do
       it "finds exact match" do
-        expect(filter_by({ project: "Evil Project" }))
+        expect(filter_by({ dataset: "Evil Dataset" }))
           .to eq ["disturbances in the Force+2001"]
       end
     end
@@ -286,8 +286,8 @@ RSpec.describe Card::AnswerQuery do
           .to contain_exactly(*with_year(["researched number 2"]))
       end
 
-      it "... project" do
-        expect(filter_by({ status: :none, project: "Evil Project" }))
+      it "... dataset" do
+        expect(filter_by({ status: :none, dataset: "Evil Dataset" }))
           .to contain_exactly(*with_year(["researched number 2"]))
       end
 
@@ -305,8 +305,8 @@ RSpec.describe Card::AnswerQuery do
     end
 
     context "with filter for all values and ..." do
-      it "... project" do
-        expect(filter_by({ status: :all, project: "Evil Project" }))
+      it "... dataset" do
+        expect(filter_by({ status: :all, dataset: "Evil Dataset" }))
           .to contain_exactly("disturbances in the Force+2001",
                               *with_year("researched number 2"))
       end
@@ -330,7 +330,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "policy and bookmark" do
-      expect(filter_by({ policy: "Evil Project", bookmark: :bookmark }))
+      expect(filter_by({ policy: "Evil Dataset", bookmark: :bookmark }))
         .to eq(["disturbances in the Force+2001"])
     end
 
@@ -345,7 +345,7 @@ RSpec.describe Card::AnswerQuery do
     it "all in" do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
         expect(filter_by({ year: "1992", topic: "Force", bookmark: :bookmark,
-                           updated: :month, project: "Evil Project",
+                           updated: :month, dataset: "Evil Dataset",
                            research_policy: "Community Assessed", name: "in the",
                            metric_type: "Researched" }))
           .to eq(with_year("disturbances in the Force", 1992))
