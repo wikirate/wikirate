@@ -8,12 +8,7 @@ card_accessor :discussion
 
 format :html do
   before :content_formgroups do
-    voo.edit_structure = [
-      :wikirate_company,
-      :wikirate_topic,
-      :dataset,
-      :body
-    ]
+    voo.edit_structure = %i[wikirate_company wikirate_topic dataset body]
   end
 
   view :rich_header_body, template: :haml

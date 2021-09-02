@@ -7,7 +7,7 @@ RSpec.describe Card::Set::Type::Post do
       Card.create! type: "Post", name: "My Post",
                    subcards: { "+company" => "Death Star",
                                "+topic" => "Force",
-                               "+dataset" => "Evil Dataset",
+                               "+data set" => "Evil Dataset",
                                "+body" => "body text" }
     end
 
@@ -15,7 +15,7 @@ RSpec.describe Card::Set::Type::Post do
 
     check_html_views_for_errors
 
-    let(:badges_matcher) {  %w[1 Companies 1 Topics 1 Datasets].join(".*") }
+    let(:badges_matcher) {  %w[1 Companies 1 Topics 1 Data Sets].join(".*") }
 
     specify "view bar" do
       expect_view(:bar).to have_tag "div.bar" do
