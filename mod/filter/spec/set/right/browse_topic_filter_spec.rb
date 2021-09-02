@@ -31,7 +31,7 @@ RSpec.describe Card::Set::Right::BrowseTopicFilter do
       end
     end
 
-    context "dataset argument" do
+    context "with dataset argument" do
       before { filter_args dataset: "myDataset" }
       it do
         is_expected.to eq cql(

@@ -12,7 +12,7 @@ RSpec.describe Card::Set::TypePlusRight::Dataset::WikirateCompany do
       subject { dataset_companies.format.render_core }
 
       it "shows bar views of <Company>+<Dataset> cards" do
-        is_expected.to have_tag(".LTYPE_RTYPE-company-dataset.bar") do
+        is_expected.to have_tag(".LTYPE_RTYPE-company-datum_set.bar") do
           with_tag ".bar-middle"
         end
       end
@@ -36,7 +36,7 @@ RSpec.describe Card::Set::TypePlusRight::Dataset::WikirateCompany do
     end
 
     def dataset_with_only_calculated_metrics
-      dataset = Card["organized dataset"]
+      dataset = Card["empty dataset"]
       add_formula_and_company_to dataset
       dataset
     end
@@ -56,7 +56,7 @@ RSpec.describe Card::Set::TypePlusRight::Dataset::WikirateCompany do
       subject { dataset_companies.format.render_core }
 
       it "shows bar views of <Company>+<Dataset> cards" do
-        is_expected.to have_tag(".LTYPE_RTYPE-company-dataset.bar")
+        is_expected.to have_tag(".LTYPE_RTYPE-company-datum_set.bar")
       end
 
       it "does not have the middle column" do

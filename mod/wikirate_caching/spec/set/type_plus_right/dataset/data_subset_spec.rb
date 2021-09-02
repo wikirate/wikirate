@@ -30,13 +30,13 @@ RSpec.describe Card::Set::TypePlusRight::Dataset::DataSubset do
 
     it "prevents removal of companies from parent" do
       create_data_subset wikirate_company: "Death Star"
-      expect { Card["Evil Project+companies"].update_attributes! content: "SPECTRE" }
+      expect { Card["Evil Dataset+companies"].update_attributes! content: "SPECTRE" }
         .to raise_error(/cannot be removed: Death Star/)
     end
 
     it "prevents deletion of parent trait card" do
       create_data_subset wikirate_company: "Death Star"
-      expect { Card["Evil Project+companies"].delete! }
+      expect { Card["Evil Dataset+companies"].delete! }
         .to raise_error(
           /cannot be deleted, because there are data_subsets with at least one Company/
         )
