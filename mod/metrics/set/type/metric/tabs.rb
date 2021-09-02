@@ -3,7 +3,7 @@ include_set Abstract::Filterable
 format :html do
   # default tab list (several metric types override)
   def tab_list
-    %i[details calculation project]
+    %i[details calculation dataset]
   end
 
   view :tabs do
@@ -40,10 +40,10 @@ format :html do
     end
   end
 
-  view :project_tab do
+  view :dataset_tab do
     answer_filtering do |items|
       tab_wrap do
-        field_nest :project, view: :content, items: items
+        field_nest :dataset, view: :content, items: items
       end
     end
   end
