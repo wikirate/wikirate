@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::TypePlusRight::Dataset::Subdataset do
+RSpec.describe Card::Set::TypePlusRight::Dataset::DataSubset do
   describe "data_subsets" do
     def create_data_subset subfields={}
       subfields.reverse_merge! parent: "Evil Dataset"

@@ -28,6 +28,6 @@ format :html do
 
   def data_subset_detail
     return if card.parent.blank?
-    labeled_field :parent, :link, title: "Subdataset of"
+    labeled_field :parent, :link, title: "Data Subset of"
   end
 end

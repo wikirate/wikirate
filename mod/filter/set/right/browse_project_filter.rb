@@ -30,7 +30,7 @@ format do
     { "Most Bookmarked": :bookmarkers,
       "Recently Added": :create,
       "Alphabetical": :name,
-      "Most Subdatasets": :data_subsets,
+      "Most Data Subsets": :data_subsets,
       "Most Metrics": :metric,
       "Most Companies": :company }
   end

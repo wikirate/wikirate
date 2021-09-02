@@ -3,7 +3,7 @@
   = nest Card.fetch [:data_subset, :description], new: {}
 .data_subset-link
   - path_args = { mark: :dataset.cardname, _Parent: card.name, action: :new }
-  = link_to "Add Subdataset", path: path_args.merge(copied_dataset_fields),
+  = link_to "Add Data Subset", path: path_args.merge(copied_dataset_fields),
                               class: "btn btn-primary"
 .data_subset-list
   = field_nest :data_subset, view: :titled,
