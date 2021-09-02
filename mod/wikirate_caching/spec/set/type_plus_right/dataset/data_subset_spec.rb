@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::TypePlusRight::Project::Subproject do
+RSpec.describe Card::Set::TypePlusRight::Dataset::DataSubset do
   describe "subprojects" do
     def create_subproject subfields={}
       subfields.reverse_merge! parent: "Evil Project"
