@@ -35,7 +35,7 @@ class SharedData
   extend RelationshipMetrics
   extend Badges
   extend Sources
-  extend Projects
+  extend Datasets
 
   class << self
     include Card::Model::SaveHelper
@@ -45,7 +45,7 @@ class SharedData
       setup
       add :companies, :topics, :sources, :report_types,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :projects, :company_category, :researchers, :program, :company_group,
+          :datasets, :company_category, :researchers, :program, :company_group,
           :profile_sections, :badges, :import_files, :guides
 
       Card::Cache.reset_all

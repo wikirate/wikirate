@@ -3,7 +3,7 @@
 RSpec.describe Card::Set::Type::Project::AwardBadges do
   let(:badge_action) { :create }
   let(:badge_type) { :project }
-  let(:sample_acting_card) { sample_project }
+  let(:sample_acting_card) { sample_dataset }
 
   describe "create badges" do
     def execute_awarded_action number

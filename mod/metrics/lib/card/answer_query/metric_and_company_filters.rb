@@ -16,14 +16,14 @@ class Card
       end
       alias_method :wikirate_topic_query, :topic_query
 
-      def project_query value
-        multi_metric { project_restriction :metric_id, :metric, value }
-        multi_company { project_restriction :company_id, :wikirate_company, value }
+      def dataset_query value
+        multi_metric { dataset_restriction :metric_id, :metric, value }
+        multi_company { dataset_restriction :company_id, :wikirate_company, value }
       end
 
       # EXPERIMENTAL. no public usage
-      def project_metric_query value
-        project_restriction :metric_id, :metric, value
+      def dataset_metric_query value
+        dataset_restriction :metric_id, :metric, value
       end
 
       def bookmark_query value
