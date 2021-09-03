@@ -22,9 +22,9 @@ end
 
 # ...or when answer is (un)published
 recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  return if changed_card.left&.action&.in? %i[create delete]
-
-  source_metric_counts_for_citation changed_card.left&.source_card
+  field_recount changed_card do
+    source_metric_counts_for_citation changed_card.left&.source_card
+  end
 end
 
 def self.source_metric_counts_for_citation citation
