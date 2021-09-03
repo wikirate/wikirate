@@ -27,7 +27,7 @@ class Answer
     # @return answer card objects
     def search retrn, opts={}
       uniq = opts.delete :uniq
-      where(where_condition(opts.delete(:where), opts))
+      where(opts.delete(:where) || opts)
         .uniq_select(uniq, retrn)
         .where("unpublished is not true")
         .return retrn
@@ -74,17 +74,13 @@ class Answer
     def new_researched cardish
       return unless (card_id = Card.id cardish)
 
-      new_for_card(card_id).tap { |answer| answer.refresh_fields }
+      new_for_card(card_id).tap(&:refresh_fields)
     end
 
     def virtual cardish
       return unless (virtual_query = Card.cardish(cardish)&.virtual_query)
 
       where(virtual_query).take
-    end
-
-    def where_condition explicit, implicit
-      Array.wrap(explicit.blank? ? implicit : explicit)
     end
   end
 end
