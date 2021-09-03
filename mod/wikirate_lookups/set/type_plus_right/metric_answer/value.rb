@@ -1,21 +1,7 @@
 include_set Abstract::LookupField
 
-# event :update_answer_lookup_table_due_to_value_change, :finalize, on: :update do
-#   update_answer answer_id: answer_id
 def lookup_columns
   %i[value numeric_value imported updated_at editor_id]
-end
-
-event :delete_answer_lookup_table_entry_due_to_value_change, :finalize, on: :delete do
-  delete_answer answer_id: answer_id
-end
-
-event :create_answer_lookup_entry_due_to_value_change, :finalize, on: :create do
-  if hybrid? && (lookup_id = left&.answer&.id)
-    update_answer id: lookup_id
-  else
-    create_answer answer_id: answer_id
-  end
 end
 
 def answer_id
