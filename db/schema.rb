@@ -201,5 +201,4 @@ ActiveRecord::Schema.define(version: 2020_08_05_200729) do
     t.datetime "updated_at"
     t.index ["session_id"], name: "sessions_session_id_index"
   end
-
 end

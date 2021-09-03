@@ -19,7 +19,7 @@ end
 
 # used in lookup
 def first_source_card
-  @first_source_card ||= source_card.first_card
+  @first_source_card ||= confirmed_first_source_card
 end
 
 def find_suggested_sources
@@ -48,4 +48,11 @@ end
 def cited? source_card
   return unless source_card
   cited_source_ids.include? source_card.id
+end
+
+# would not be necessary if data were sufficiently clean
+def confirmed_first_source_card
+  source_card.first_card.tap do |s|
+    return nil unless s&.type_id == SourceID
+  end
 end

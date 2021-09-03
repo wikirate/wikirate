@@ -44,24 +44,24 @@ class Answer
       args = extract_search_args opts
       search_where(opts).uniq_select(args[:uniq], args[:return])
                         .where("answers.unpublished is not true")
-                        .sort(args[:sort])
-                        .paging(args[:page])
                         .return(args[:return])
     end
 
-    def existing id
-      for_card(id) || (refresh(id) && for_card(id)) if id
+    def for_card cardish
+      (super || virtual(cardish) || new).tap do |answer|
+        answer.card = Card.cardish cardish
+      end
     end
 
-    def latest_answer_card metric_id, company_id
-      a_id = where(metric_id: metric_id, company_id: company_id,
-                   latest: true).pluck(:answer_id).first
-      a_id && Card.fetch(a_id)
-    end
+    # def latest_answer_card metric_id, company_id
+    #   a_id = where(metric_id: metric_id, company_id: company_id,
+    #                latest: true).pluck(:answer_id).first
+    #   a_id && Card.fetch(a_id)
+    # end
 
-    def latest_year metric_id, company_id
-      where(metric_id: metric_id, company_id: company_id, latest: true).pluck(:year).first
-    end
+    # def latest_year metric_id, company_id
+    #   where(metric_id: metric_id, company_id: company_id, latest: true).pluck(:year).first
+    # end
 
     def unknown? val
       val.to_s.casecmp("unknown").zero?
@@ -92,6 +92,12 @@ class Answer
     end
 
     private
+
+    def virtual cardish
+      return unless (virtual_query = Card.cardish(cardish)&.virtual_query)
+
+      where(virtual_query).take
+    end
 
     def extract_search_args args
       SEARCH_OPTS.each_with_object({}) do |(cat, keys), hash|
