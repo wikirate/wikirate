@@ -27,9 +27,9 @@ end
 
 # ...or when answer is (un)published
 recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  return if changed_card.left&.action&.in? %i[create delete]
-
-  company_cache_cards_for_answer changed_card.left
+  field_recount changed_card do
+    company_cache_cards_for_answer changed_card.left
+  end
 end
 
 # ... when <metric>+topic is edited

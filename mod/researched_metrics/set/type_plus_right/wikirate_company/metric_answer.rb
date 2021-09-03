@@ -16,9 +16,9 @@ end
 
 # ...or when answer is (un)published
 recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  return if changed_card.left&.action&.in? %i[create delete]
-
-  changed_card.left.company_card.fetch :metric_answer
+  field_recount changed_card do
+    changed_card.left.company_card.fetch :metric_answer
+  end
 end
 
 def fixed_field
