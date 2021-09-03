@@ -47,8 +47,8 @@ class Answer
                         .return(args[:return])
     end
 
-    def for_card cardish
-      super || new_researched(cardish) || virtual(cardish) || new
+    def fetch cardish
+      for_card(cardish) || new_researched(cardish) || virtual(cardish) || new
     end
 
     def new_researched cardish

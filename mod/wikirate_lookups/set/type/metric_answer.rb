@@ -20,7 +20,7 @@ def lookup
 end
 
 def answer
-  @answer ||= Answer.for_card self
+  @answer ||= Answer.fetch self
 end
 
 def virtual?
