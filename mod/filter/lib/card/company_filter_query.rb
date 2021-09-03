@@ -33,8 +33,8 @@ class Card
       referred_to_by_company_list group
     end
 
-    def project_cql project
-      referred_to_by_company_list project
+    def dataset_cql dataset
+      referred_to_by_company_list dataset
     end
 
     def referred_to_by_company_list trunk

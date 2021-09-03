@@ -38,19 +38,15 @@ format do
   end
 
   def other_company_ids
-    @other_company_ids ||= Env.params[:filter] ? search(return: :id, limit: 0) : []
+    @other_company_ids ||= Env.params[:filter] ? filtered_company_ids : []
   end
 
   def other_company_id_field
     metric_card.inverse_company_id_field
   end
 
-  def filter_class
-    CompanyFilterQuery
-  end
-
   def filter_keys
-    %i[name company_group bookmark project]
+    %i[name company_group bookmark dataset]
   end
 
   def default_sort_option
@@ -81,7 +77,7 @@ format :html do
   end
 
   def quick_filter_list
-    bookmark_quick_filter + company_group_quick_filters + project_quick_filters
+    bookmark_quick_filter + company_group_quick_filters + dataset_quick_filters
   end
 
   def add_relation_link

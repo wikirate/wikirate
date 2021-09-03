@@ -1,6 +1,6 @@
 def merge_into target_metric
   move_answers_to target_metric
-  move_project_listings_to target_metric
+  move_dataset_listings_to target_metric
 end
 
 def move_answers_to target_metric
@@ -10,9 +10,9 @@ def move_answers_to target_metric
   end
 end
 
-def move_project_listings_to target_metric
-  replace_metric_listings :project, target_metric do |met_proj|
-    Card[met_proj.right] # each item is <metric>+<project>
+def move_dataset_listings_to target_metric
+  replace_metric_listings :dataset, target_metric do |met_proj|
+    Card[met_proj.right] # each item is <metric>+<dataset>
   end
 end
 
