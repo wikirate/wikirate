@@ -29,12 +29,14 @@ module LookupTable
 
   def refresh *fields
     return delete if delete_on_refresh?
+
     refresh_fields fields
-    # card&.expire
+    raise Card::Error, "invalid #{self.class} lookup" if invalid?
+
     save!
   end
 
-  def refresh_fields fields
+  def refresh_fields fields=nil
     keys = fields.present? ? fields : attribute_names
     keys.delete("id")
     keys.each { |method_name| refresh_value method_name }
