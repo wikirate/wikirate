@@ -48,9 +48,13 @@ class Answer
     end
 
     def for_card cardish
-      (super || virtual(cardish) || new).tap do |answer|
-        answer.card = Card.cardish cardish
-      end
+      super || new_researched(cardish) || virtual(cardish) || new
+    end
+
+    def new_researched cardish
+      return unless (card_id = Card.id cardish)
+
+      new_for_card(card_id).tap { |answer| answer.refresh_fields }
     end
 
     # def latest_answer_card metric_id, company_id
