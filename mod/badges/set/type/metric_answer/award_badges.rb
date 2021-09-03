@@ -1,9 +1,11 @@
+include_set Abstract::AwardBadges, squad_type: :metric_answer
+
 # The answer table refresh happens on the act card.
 # That can cause problem if this is not the act card.
 # To be safe we count before the update
 event :award_answer_create_badges, :finalize,
       on: :create,
-      after: :create_answer_lookup_entry_due_to_value_change,
+      after: :refresh_answer_lookup,
       when: :metric_awards_answer_badges? do
   award_create_badge_if_earned :general
   # [:general, :designer, :company].each do |affinity|

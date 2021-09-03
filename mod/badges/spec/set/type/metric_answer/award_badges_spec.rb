@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
-  let(:sample_acting_card) { sample_metric_answer.value_card }
+RSpec.describe Card::Set::Type::MetricAnswer do
+  let(:sample_acting_card) { sample_metric_answer }
 
   describe "create badges" do
     let(:start_year) { 1990 }
