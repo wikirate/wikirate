@@ -7,7 +7,7 @@ describe Card::Set::TypePlusRight::Dataset::Metric do
     subject { dataset_metrics.format.render_core }
 
     it "shows bar views of <Company>+<Dataset> cards" do
-      is_expected.to have_tag(".LTYPE_RTYPE-metric-dataset.bar")
+      is_expected.to have_tag(".LTYPE_RTYPE-metric-datum_set.bar")
     end
 
     it "does not include research buttons" do
