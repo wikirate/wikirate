@@ -4,21 +4,15 @@ def lookup_class
   ::Answer
 end
 
-# In theory the following shouldn't be necessary, because there is an event on the
-# value card.
-
-# event :update_answer_lookup_table_due_to_answer_deletion, :finalize, on: :delete do
-#   delete_answer answer_id: id
-# end
+event :delete_answer_lookup, :finalize, on: :delete do
+  Answer.delete_for_card id
+end
 
 attr_writer :answer
 
-event :update_answer_lookup_table_due_to_answer_change, :finalize, on: :update do
-  if hybrid?
-    update_answer id: answer.id
-  else
-    update_answer answer_id: id
-  end
+event :refresh_answer_lookup, :finalize, on: :save do
+  answer.card = self
+  answer.refresh
 end
 
 def lookup
