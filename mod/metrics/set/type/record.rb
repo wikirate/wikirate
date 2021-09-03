@@ -11,7 +11,7 @@ def answer_relation
 end
 
 def answers
-  @answers ||= answer.relation.sort(year: :desc)
+  @answers ||= answer_relation.sort(year: :desc)
 end
 
 def count
