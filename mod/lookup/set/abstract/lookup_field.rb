@@ -11,7 +11,13 @@ def lookup_columns
 end
 
 event :update_lookup_field, :finalize, changed: :content do
-  return if lookup_card.action.in? %i[create delete]
+  lookup_field_update do
+    lookup.refresh(*Array.wrap(lookup_columns))
+  end
+end
 
-  lookup.refresh(*Array.wrap(lookup_columns))
+private
+
+def lookup_field_update
+  yield unless lookup_card.action.in? %i[create delete]
 end
