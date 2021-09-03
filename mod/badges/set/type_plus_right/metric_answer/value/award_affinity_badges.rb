@@ -3,7 +3,7 @@
 # To be safe we count before the update
 event :award_answer_create_badges, :finalize,
       on: :create,
-      after: :create_answer_lookup_entry_due_to_value_change,
+      after: :update_lookup_field,
       when: :metric_awards_answer_badges? do
   award_create_badge_if_earned :general
   # [:general, :designer, :company].each do |affinity|
