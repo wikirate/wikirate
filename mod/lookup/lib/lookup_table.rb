@@ -31,7 +31,7 @@ module LookupTable
     return delete if delete_on_refresh?
 
     refresh_fields fields
-    raise Card::Error, "invalid answer lookup" if invalid?
+    raise Card::Error, "invalid #{self.class} lookup" if invalid?
 
     save!
   end
