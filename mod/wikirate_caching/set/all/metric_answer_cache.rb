@@ -1,7 +1,3 @@
-
-
-
-
 def act_finished_integrate_stage?
   dir = act_card.director
   !dir.stage || dir.finished_stage?(:integrate)

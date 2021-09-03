@@ -11,6 +11,7 @@ end
 attr_writer :answer
 
 event :refresh_answer_lookup, :finalize, on: :save do
+  answer.card = self
   answer.refresh
 end
 
