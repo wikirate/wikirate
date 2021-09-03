@@ -5,12 +5,8 @@ def update_answer id: nil, answer_id: nil, metric_id: nil
   update_answers_now_or_later ids
 end
 
-def create_answer answer_id:
-  Answer.create answer_id
-end
-
 def delete_answer answer_id:
-  Answer.delete_for_card answer_id
+   answer_id
 end
 
 def update_answers_now_or_later ids
