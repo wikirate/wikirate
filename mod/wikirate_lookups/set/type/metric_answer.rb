@@ -20,7 +20,7 @@ def lookup
 end
 
 def answer
-  @answer ||= Answer.existing(id) || virtual_answer || Answer.new
+  @answer ||= Answer.for_card self
 end
 
 def virtual?
@@ -39,14 +39,8 @@ def created_at
   virtual? ? answer.created_at : super
 end
 
-private
+def virtual_query
+  return unless calculated?
 
-def virtual_answer
-  return nil unless calculated?
-
-  answer_by_metric_company_year
-end
-
-def answer_by_metric_company_year
-  Answer.where(metric_id: metric_id, company_id: company_id, year: year.to_i).take
+  { metric_id: metric_id, company_id: company_id, year: year.to_i }
 end
