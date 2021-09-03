@@ -2,7 +2,8 @@ event :create_lookup, :finalize, on: :create do
   lookup_class.create self
 end
 
-event :refresh_lookup, :finalize, changed: :name, on: :update do
+# lookup fields are often based on cards' compound names
+event :refresh_lookup, :integrate, changed: :name, on: :update do
   lookup.refresh
 end
 

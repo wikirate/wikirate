@@ -16,12 +16,6 @@ RSpec.describe Answer do
                           "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
-  it "can sort by year" do
-    result = record_names metric_id: "Jedi+darkness rating".card_id, sort: { year: :desc }
-    expect(result.size).to eq 3
-    expect(result.first).to eq "Jedi+darkness rating+Slate Rock and Gravel Company"
-  end
-
   it "can sort by bookmarks" do
     result = described_class.joins(:metric)
                             .where(metrics: { designer_id: "Jedi".card_id })
