@@ -19,7 +19,7 @@ class Answer
     end
 
     def metric_error message
-      errors.add :metric_id, "#{fetch_metric_name} #{message}"
+      errors.add :metric_id, "#{metric_id&.cardname} #{message}"
     end
   end
 end

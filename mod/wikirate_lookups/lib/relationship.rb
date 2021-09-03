@@ -31,12 +31,6 @@ class Relationship < Cardio::Record
     editor_id || creator_id
   end
 
-  def delete_on_refresh?
-    super() || (!metric_card&.hybrid? && invalid?)
-    # when we override a hybrid metric the answer is invalid because of the
-    # missing answer_id, so we check `invalid?` only for non-hybrid metrics)
-  end
-
   private
 
   def metric_card
