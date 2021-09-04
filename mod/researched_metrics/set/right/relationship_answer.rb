@@ -23,9 +23,21 @@ format do
     Relationship.where relationship_query
   end
 
+  def filtered_company_ids
+    Card.search filter_and_sort_cql.merge(type: :wikirate_company, return: :id)
+  end
+
+  def default_sort_option
+    nil
+  end
+
   def with_relation_paging relation
     paging = paging_params
     relation.limit(paging[:limit]).offset(paging[:offset])
+  end
+
+  def filter_class
+    CompanyFilterQuery
   end
 end
 

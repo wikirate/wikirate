@@ -16,57 +16,35 @@ class Answer
   module AnswerClassMethods
     include Export::ClassMethods
 
-    SEARCH_OPTS = {
-      page: [:limit, :offset],
-      sort: true,
-      return: true,
-      uniq: true
-    }.freeze
-
     VALUE_JOINT = Card::Set::Abstract::Value::JOINT
 
-    # @return answer card objects
-    def fetch where_args, sort_args={}, page_args={}
-      where_opts = Array.wrap(where_args)
-      where(*where_opts).sort(sort_args).paging(page_args).answer_cards
-    end
-
+    # param retrn [Symbol] AR return argument(:count, :company_id, etc)
     # @param opts [Hash] search options
     # If the :where option is used then its value is passed as argument list to AR's where
-    # method. Otherwise all remaining values that are not sort or page options are
+    # method. Otherwise all remaining values besides `return` and `uniq` are
     # passed as hash to `where`.
-    # @option opts [Array] :where
-    # @option opts [Hash] :sort
-    # @option opts [Integer] :limit
-    # @option opts [Integer] :offset
+    # @option opts [Hash] :where
     # @return answer card objects
-    def search opts={}
-      args = extract_search_args opts
-      search_where(opts).uniq_select(args[:uniq], args[:return])
-                        .where("answers.unpublished is not true")
-                        .sort(args[:sort])
-                        .paging(args[:page])
-                        .return(args[:return])
+    def search retrn, opts={}
+      uniq = opts.delete :uniq
+      where(opts.delete(:where) || opts)
+        .uniq_select(uniq, retrn)
+        .where("unpublished is not true")
+        .return retrn
     end
 
-    def existing id
-      for_card(id) || (refresh(id) && for_card(id)) if id
+    # @return [Answer]
+    def fetch cardish
+      for_card(cardish) || new_researched(cardish) || virtual(cardish) || new
     end
 
-    def latest_answer_card metric_id, company_id
-      a_id = where(metric_id: metric_id, company_id: company_id,
-                   latest: true).pluck(:answer_id).first
-      a_id && Card.fetch(a_id)
-    end
-
-    def latest_year metric_id, company_id
-      where(metric_id: metric_id, company_id: company_id, latest: true).pluck(:year).first
-    end
-
+    # @return [True/False]
     def unknown? val
       val.to_s.casecmp("unknown").zero?
     end
 
+    # @return [BigDecimal, nil]
+    # If a val is a valid number return BigDecimal, otherwise nil.
     def to_numeric val
       Answer.unknown?(val) || !val.number? ? nil : val.to_d
     end
@@ -93,19 +71,16 @@ class Answer
 
     private
 
-    def extract_search_args args
-      SEARCH_OPTS.each_with_object({}) do |(cat, keys), hash|
-        hash[cat] = keys.is_a?(Array) ? args.extract!(*keys) : args.delete(cat)
-      end
+    def new_researched cardish
+      return unless (card_id = Card.id cardish)
+
+      new_for_card(card_id).tap(&:refresh_fields)
     end
 
-    def search_where args
-      cond = where_condition args[:where], args
-      where(*cond)
-    end
+    def virtual cardish
+      return unless (virtual_query = Card.cardish(cardish)&.virtual_query)
 
-    def where_condition explicit, implicit
-      Array.wrap(explicit.blank? ? implicit : explicit)
+      where(virtual_query).take
     end
   end
 end

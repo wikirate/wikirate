@@ -2,15 +2,7 @@ include_set Abstract::MetricChild, generation: 1
 include_set Abstract::PublishableField
 
 def query
-  "#{answer_id_field} in (#{answer_relation.select(:answer_id).to_sql})"
-end
-
-def answer_relation
-  metric_card.fetch(:metric_answer).format.research_query.lookup_query
-end
-
-def answer_id_field
-  inverse? ? :inverse_answer_id : :answer_id
+  { metric_card.metric_lookup_field => metric_id }
 end
 
 def item_type
@@ -19,6 +11,18 @@ end
 
 format do
   def relationship_query
-    card.query
+    card.query.tap do |query|
+      if subject_company_ids.present?
+        query.merge! subject_company_id: subject_company_ids.unshift("in")
+      end
+    end
+  end
+
+  def subject_company_ids
+    @subject_company_ids ||= Env.params[:filter] ? filtered_company_ids : []
+  end
+
+  def filter_keys
+    %i[name company_group]
   end
 end
