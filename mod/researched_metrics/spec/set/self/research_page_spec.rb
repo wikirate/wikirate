@@ -46,7 +46,7 @@ RSpec.describe Card::Set::Self::ResearchPage do
 
     it "has source tab" do
       params metric: "Joe User+RM", company: "Death Star",
-             year: "2014", project: "Evil Project"
+             year: "2014", dataset: "Evil Project"
       is_expected.to have_tag "div.sourcebox" do
         with_tag "form.slotter", method: "get", "data-remote": true do
           with_tag "input", name: "source_search_term"
@@ -64,7 +64,7 @@ RSpec.describe Card::Set::Self::ResearchPage do
     it "has slot", params: { metric: "Joe User+RM",
                              company: "Death Star",
                              year: "2014",
-                             project: "Evil Project" } do
+                             dataset: "Evil Project" } do
       is_expected.to have_tag ".card-slot.left_research_side-view"
     end
   end
