@@ -15,7 +15,7 @@ format do
   end
 
   def filter_keys
-    %i[name project company_group company_category country bookmark]
+    %i[name dataset company_group company_category country bookmark]
   end
 
   def default_sort_option
@@ -33,6 +33,6 @@ end
 
 format :html do
   def quick_filter_list
-    bookmark_quick_filter + company_group_quick_filters + project_quick_filters
+    bookmark_quick_filter + company_group_quick_filters + dataset_quick_filters
   end
 end

@@ -1,8 +1,8 @@
 def ids_related_to_research_group research_group
-  research_group.projects.map do |project|
+  research_group.datasets.map do |dataset|
     Answer.where(
-      company_id: project.company_ids,
-      metric_id: project.metric_ids
+      company_id: dataset.company_ids,
+      metric_id: dataset.metric_ids
     ).pluck :answer_id
   end.flatten.compact
 end
