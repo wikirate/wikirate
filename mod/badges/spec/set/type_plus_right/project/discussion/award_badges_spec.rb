@@ -4,7 +4,7 @@ describe Card::Set::TypePlusRight::Project::Discussion::AwardBadges do
   describe "discuss badges" do
     let(:badge_action) { :discuss }
     let(:badge_type) { :project }
-    let(:sample_acting_card) { sample_project.field(:discussion, new: {}) }
+    let(:sample_acting_card) { sample_dataset.field(:discussion, new: {}) }
 
     def execute_awarded_action number
       Card::Auth.as_bot do

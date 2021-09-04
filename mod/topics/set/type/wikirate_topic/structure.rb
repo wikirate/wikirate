@@ -16,7 +16,7 @@ format :html do
   end
 
   def tab_list
-    %i[metric research_group project]
+    %i[metric research_group dataset]
   end
 
   def tab_options
@@ -38,7 +38,7 @@ format :html do
     field_nest :research_group, items: { view: :bar }
   end
 
-  view :project_tab do
-    field_nest :project, items: { view: :bar }
+  view :dataset_tab do
+    field_nest :dataset, items: { view: :bar }
   end
 end
