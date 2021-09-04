@@ -45,7 +45,7 @@ class SharedData
       setup
       add :companies, :topics, :sources, :report_types,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :datasets, :company_category, :researchers, :company_group,
+          :project, :datasets, :company_category, :researchers, :company_group,
           :profile_sections, :badges, :import_files, :guides
 
       Card::Cache.reset_all
