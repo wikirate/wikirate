@@ -45,7 +45,7 @@ class SharedData
       setup
       add :companies, :topics, :sources, :report_types,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :datasets, :company_category, :researchers, :program, :company_group,
+          :datasets, :company_category, :researchers, :company_group,
           :profile_sections, :badges, :import_files, :guides
 
       Card::Cache.reset_all
@@ -102,9 +102,10 @@ class SharedData
       end
     end
 
-    def add_program
-      Card.create type: :cardtype, name: "Program"
-      create "Test Program", type: :program
+    def add_project
+      create "Evil Project",
+             type: :project,
+             subfields: { dataset: { content: "Evil Dataset", type: :pointer } }
     end
 
     def add_researchers
@@ -118,7 +119,10 @@ class SharedData
       metric.value_type_card.update! content: "Multi-Category"
       metric.value_options_card.update! content: %w[A B C D].to_pointer_content
       ["Death Star", "SPECTRE"].each do |name|
-        metric.create_answer company: name, year: "2019", value: "A", source: :opera_source.cardname
+        metric.create_answer company: name,
+                             year: "2019",
+                             value: "A",
+                             source: :opera_source.cardname
       end
     end
 

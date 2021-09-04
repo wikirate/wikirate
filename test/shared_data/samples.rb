@@ -59,6 +59,10 @@ class SharedData
       Card["Evil Dataset"]
     end
 
+    def sample_project
+      Card["Evil Project"]
+    end
+
     # @param source [String] existing examples you can choose from
     # are :space_opera, :opera, :apple, and :star_wars
     def sample_source source=:opera
