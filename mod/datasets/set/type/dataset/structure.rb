@@ -61,19 +61,9 @@ format :html do
       [
         data_subset_detail,
         labeled_field(:wikirate_status),
-        labeled_field(:organizer, :thumbnail),
-        default_unpublished,
-        labeled_field(:wikirate_topic, :link, title: "Topics"),
-        field_nest(:description, view: :titled),
-        field_nest(:conversation, view: :titled)
+        labeled_field(:wikirate_topic, :link, title: "Topics")
       ]
     end
-  end
-
-  def default_unpublished
-    return unless card.organizer?
-
-    labeled_field :unpublished, nil, title: "Default unpublished"
   end
 
   def copied_dataset_fields

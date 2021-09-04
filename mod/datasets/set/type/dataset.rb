@@ -4,11 +4,9 @@ include_set Abstract::Bookmarkable
 
 card_reader :wikirate_company
 card_reader :metric
-card_reader :organizer
 card_reader :year
 card_reader :parent
 card_reader :data_subset
-card_accessor :unpublished
 
 def parent_dataset_card
   Card[parent_dataset]
@@ -52,10 +50,6 @@ end
 
 def companies
   wikirate_company_card.valid_item_names
-end
-
-def organizer?
-  as_moderator? || organizer_card.item_ids.include?(Auth.as_id)
 end
 
 def years
