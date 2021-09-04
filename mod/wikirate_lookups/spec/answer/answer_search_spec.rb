@@ -1,10 +1,10 @@
 RSpec.describe Answer do
-  def search args
-    described_class.search args
+  def search retrn, args
+    described_class.search retrn, args
   end
 
   def record_names args
-    search(args.merge(return: %i[metric_id company_id])).map do |array|
+    search(%i[metric_id company_id], args).map do |array|
       Card::Name[*array]
     end
   end
@@ -16,12 +16,6 @@ RSpec.describe Answer do
                           "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
-  it "can sort by year" do
-    result = record_names metric_id: "Jedi+darkness rating".card_id, sort: { year: :desc }
-    expect(result.size).to eq 3
-    expect(result.first).to eq "Jedi+darkness rating+Slate Rock and Gravel Company"
-  end
-
   it "can sort by bookmarks" do
     result = described_class.joins(:metric)
                             .where(metrics: { designer_id: "Jedi".card_id })
@@ -31,9 +25,7 @@ RSpec.describe Answer do
   end
 
   it "can return multiple columns" do
-    result = search metric_id: sample_metric(:number).id,
-                    return: [:company_id, :year, :value]
-    expect(result)
+    expect(search(%i[company_id year value], metric_id: sample_metric(:number).id))
       .to include ["Death Star".card_id, 1977, "100"],
                   ["SPECTRE".card_id, 1977, "50"],
                   ["Los Pollos Hermanos".card_id, 1977, "40"],
@@ -43,12 +35,11 @@ RSpec.describe Answer do
   end
 
   it "can count" do
-    expect(search(year: "2000", return: :count)).to eq 16
+    expect(search(:count, year: "2000")).to eq 16
   end
 
   it "can uniquify and return count" do
-    result = search year: "2000", uniq: :company_id, return: :count
-    expect(result).to eq 7
+    expect(search(:count, year: "2000", uniq: :company_id)).to eq 7
   end
 
   # it "can uniquify and return different column" do

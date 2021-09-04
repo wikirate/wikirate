@@ -6,15 +6,12 @@ event :update_lookups_on_record_rename, :finalize, changed: :name do
 end
 
 def answer_relation
-  Answer.where(answer_query).where("answers.unpublished is not true")
-end
-
-def answer_query
-  @answer_query ||= { company_id: company_id, metric_id: metric_id }
+  Answer.where(company_id: company_id, metric_id: metric_id)
+        .where "answers.unpublished is not true"
 end
 
 def answers
-  @answers ||= Answer.search answer_query.merge(sort: { year: :desc })
+  @answers ||= answer_relation.sort(year: :desc)
 end
 
 def count

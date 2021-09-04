@@ -22,6 +22,8 @@ class Answer < Cardio::Record
 
   after_destroy :latest_to_true
 
+  attr_writer :card
+
   fetcher :metric_id, :company_id, :record_id, :source_count, :source_url, :imported,
           :value, :numeric_value, :checkers, :check_requester,
           :comments, :verification, :unpublished
@@ -49,10 +51,6 @@ class Answer < Cardio::Record
     editor_id || creator_id
   end
 
-  def delete_on_refresh?
-    super() || invalid_metric_card? || invalid_non_hybrid_answer?
-  end
-
   # other answers in same record
   def latest_context
     self.company_id ||= fetch_company_id
@@ -63,18 +61,12 @@ class Answer < Cardio::Record
   private
 
   def metric_card
-    @metric_card ||= Card.fetch(fetch_metric_id || fetch_metric_name)
+    @metric_card ||= fetch_metric_id&.card
   end
 
   # companies with +'s in the name were causing invalid metrics...
   def invalid_metric_card?
     !(metric_card&.type_id == Card::MetricID)
-  end
-
-  def invalid_non_hybrid_answer?
-    # when we override a hybrid metric the answer is invalid because of the
-    # missing answer_id, so we don't delete invalid hybrids..
-    !metric_card.hybrid? && invalid?
   end
 
   def unknown? val
