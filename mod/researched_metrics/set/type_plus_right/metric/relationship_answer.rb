@@ -18,7 +18,7 @@ format do
   end
 
   def filter_by_year query
-    return unless year = Env.params.dig :filter, :year
+    return unless (year = Env.params.dig :filter, :year)
 
     query[:year] = year
   end
