@@ -11,6 +11,6 @@
   - if existing_answer? && researchable_answer?
     %div
       = nest answer_card, view: :year_edit_link
-  -#- if project?
+  -#- if dataset?
   -#  .w-25
-  -#    = nest [year.to_s, project], view: :research_progress_bar
+  -#    = nest [year.to_s, dataset], view: :research_progress_bar

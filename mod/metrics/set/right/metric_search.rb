@@ -1,7 +1,7 @@
 include_set Right::BrowseMetricFilter
 
 def query_hash
-  { project: name.left }
+  { dataset: name.left }
 end
 
 format do

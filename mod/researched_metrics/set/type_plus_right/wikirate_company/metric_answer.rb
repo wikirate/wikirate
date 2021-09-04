@@ -36,7 +36,7 @@ end
 format do
   STANDARD_FILTER_KEYS = %i[
     status year metric_name wikirate_topic value updated updater verification
-    calculated metric_type value_type project source research_policy bookmark
+    calculated metric_type value_type dataset source research_policy bookmark
   ].freeze
 
   def standard_filter_keys
