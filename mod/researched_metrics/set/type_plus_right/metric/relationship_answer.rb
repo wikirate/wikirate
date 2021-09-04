@@ -18,13 +18,17 @@ format do
   end
 
   def filter_by_year query
-    return unless (year = Env.params.dig :filter, :year)
+    return unless (year = year_from_params)
 
     if year.try(:to_sym) == :latest
       query[:latest] = true
     else
       query[:year] = year
     end
+  end
+
+  def year_from_params
+    Env.params.dig :filter, :year
   end
 
   def filter_by_subject_companies query
