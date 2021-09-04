@@ -19,7 +19,7 @@ format do
 
   def filter_by_year query
     return unless (year = Env.params.dig :filter, :year)
-    
+
     if year.try(:to_sym) == :latest
       query[:latest] = true
     else
