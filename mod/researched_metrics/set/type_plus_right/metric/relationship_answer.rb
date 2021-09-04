@@ -23,6 +23,6 @@ format do
   end
 
   def filter_keys
-    %i[name company_group ]
+    %i[name company_group]
   end
 end

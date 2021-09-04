@@ -25,7 +25,7 @@ RSpec.describe Answer do
   end
 
   it "can return multiple columns" do
-    expect(search %i[company_id year value], metric_id: sample_metric(:number).id)
+    expect(search(%i[company_id year value], metric_id: sample_metric(:number).id))
       .to include ["Death Star".card_id, 1977, "100"],
                   ["SPECTRE".card_id, 1977, "50"],
                   ["Los Pollos Hermanos".card_id, 1977, "40"],
@@ -35,11 +35,11 @@ RSpec.describe Answer do
   end
 
   it "can count" do
-    expect(search :count, year: "2000").to eq 16
+    expect(search(:count, year: "2000")).to eq 16
   end
 
   it "can uniquify and return count" do
-    expect(search :count, year: "2000", uniq: :company_id).to eq 7
+    expect(search(:count, year: "2000", uniq: :company_id)).to eq 7
   end
 
   # it "can uniquify and return different column" do
