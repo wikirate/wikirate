@@ -4,7 +4,7 @@ format :html do
   end
 
   view :bar_middle do
-    count_badges :research_group, :project
+    count_badges :research_group, :dataset
   end
 
   view :bar_right do
@@ -20,6 +20,6 @@ format :html do
   end
 
   view :box_bottom do
-    count_badges :metric, :project
+    count_badges :metric, :dataset
   end
 end
