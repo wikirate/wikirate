@@ -59,7 +59,7 @@ def merge_into target_company
   target_company = Card.fetch_name target_company
   move_relationships_to target_company
   move_answers_to target_company
-  move_project_listings_to target_company
+  move_dataset_listings_to target_company
   move_group_listings_to target_company
   move_source_listings_to target_company
 end
@@ -83,9 +83,9 @@ def move_answers_to target_company
   end
 end
 
-def move_project_listings_to target_company
-  replace_company_listings :project, target_company do |comp_proj|
-    Card[comp_proj.right] # each item is <company>+<project>
+def move_dataset_listings_to target_company
+  replace_company_listings :dataset, target_company do |comp_proj|
+    Card[comp_proj.right] # each item is <company>+<dataset>
   end
 end
 
