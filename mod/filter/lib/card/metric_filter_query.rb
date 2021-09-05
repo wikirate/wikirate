@@ -11,8 +11,8 @@ class Card
       name_cql metric
     end
 
-    def project_cql project
-      add_to_cql :referred_to_by, left: project, right_id: MetricID
+    def dataset_cql dataset
+      add_to_cql :referred_to_by, left: dataset, right_id: MetricID
     end
 
     def year_cql year
