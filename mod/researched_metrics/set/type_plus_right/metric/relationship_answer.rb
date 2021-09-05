@@ -17,14 +17,24 @@ format do
     end
   end
 
+  def filter_keys
+    %i[name company_group]
+  end
+
+  private
+
   def filter_by_year query
     return unless (year = year_from_params)
 
-    if year.try(:to_sym) == :latest
+    if latest? year
       query[:latest] = true
     else
       query[:year] = year
     end
+  end
+
+  def latest? year
+    year.try(:to_sym) == :latest
   end
 
   def year_from_params
@@ -39,9 +49,5 @@ format do
 
   def subject_company_ids
     @subject_company_ids ||= Env.params[:filter] ? filtered_company_ids : []
-  end
-
-  def filter_keys
-    %i[name company_group]
   end
 end

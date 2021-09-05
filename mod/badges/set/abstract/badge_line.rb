@@ -67,7 +67,8 @@ class BadgeLine
   def all_earned_badges count=nil, user_id=nil
     count ||= count_valued_actions user_id
     LEVELS.map do |level|
-      @badge[level].name if @badge[level]&.threshold <= count
+      next unless (badge = @badge[level])
+      badge.name if badge.threshold <= count
     end.compact
   end
 

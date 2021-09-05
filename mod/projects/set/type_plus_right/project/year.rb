@@ -27,6 +27,5 @@ format :html do
                    table: { class: "year" },
                    header: ["Year", "Answers Researched"],
                    td: { classes: ["year-answer", "default-progress-box"] }
-
   end
 end
