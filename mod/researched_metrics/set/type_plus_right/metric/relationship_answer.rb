@@ -24,21 +24,17 @@ format do
   private
 
   def filter_by_year query
-    return unless (year = year_from_params)
+    return unless (year_value = Env.params.dig :filter, :year)
 
-    if latest? year
-      query[:latest] = true
+    query.merge year_constraint(year_value)
+  end
+
+  def year_constraint year_value
+    if year_value.try(:to_sym) == :latest
+      { latest: true }
     else
-      query[:year] = year
+      { year: year_value }
     end
-  end
-
-  def latest? year
-    year.try(:to_sym) == :latest
-  end
-
-  def year_from_params
-    Env.params.dig :filter, :year
   end
 
   def filter_by_subject_companies query
