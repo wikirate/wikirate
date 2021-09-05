@@ -6,8 +6,10 @@ RSpec.describe Calculate::Calculator::Input do
   include_context "with company ids"
 
   let :input do
-    fc = parser_with_input @input, @year_options, @company_options, @unknown_options,
-                           @not_researched_options
+    fc = parser_with_input @input, year: @year_options,
+                                   company: @company_options,
+                                   unknown: @unknown_options,
+                                   not_researched: @not_researched_options
     described_class.new(fc, &:to_f)
   end
 

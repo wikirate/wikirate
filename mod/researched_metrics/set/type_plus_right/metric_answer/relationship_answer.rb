@@ -70,10 +70,10 @@ format :html do
 
   view :relations_table, cache: :never do
     name_view = inverse? ? :inverse_company_name : :company_name
-    wikirate_table :company,
-                   search_with_params,
+    wikirate_table search_with_params,
                    [name_view, :details],
-                   header: [rate_subject, "Answer"]
+                   header: [rate_subject, "Answer"],
+                   table: { class: "company" }
   end
 
   def quick_filter_list
