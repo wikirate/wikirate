@@ -9,10 +9,10 @@ HOVER_TEXT = { known: "Known",
                unknown: "Unknown",
                not_researched: "Not Researched" }.freeze
 
-# most common pattern is <TYPE>+<Project> (ltype_rtype)
+# most common pattern is <TYPE>+<Dataset> (ltype_rtype)
 # overridden elsewhere
-def project_card
-  @project_card ||= right
+def dataset_card
+  @dataset_card ||= right
 end
 
 # has an answer
@@ -72,12 +72,12 @@ def records
 end
 
 def researched_relation
-  project_card.years ? answers : records
+  dataset_card.years ? answers : records
 end
 
 def where_year
   where = yield
-  where[:year] = project_card.years if project_card.years
+  where[:year] = dataset_card.years if dataset_card.years
   where
 end
 
