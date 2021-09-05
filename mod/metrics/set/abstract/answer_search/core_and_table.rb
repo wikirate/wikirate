@@ -5,10 +5,11 @@ format :html do
 
   view :table, cache: :never do
     wrap true, "data-details-config": details_config.to_json do
-      wikirate_table table_type, self, cell_views,
+      wikirate_table self, cell_views,
                      header: header_cells,
                      td: { classes: %w[header data] },
-                     tr: { method: :tr_attribs }
+                     tr: { method: :tr_attribs },
+                     table: { class: table_type }
     end
   end
 

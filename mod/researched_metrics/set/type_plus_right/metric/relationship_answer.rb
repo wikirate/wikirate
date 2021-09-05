@@ -17,10 +17,24 @@ format do
     end
   end
 
-  def filter_by_year query
-    return unless (year = Env.params.dig :filter, :year)
+  def filter_keys
+    %i[name company_group]
+  end
 
-    query[:year] = year
+  private
+
+  def filter_by_year query
+    return unless (year_value = Env.params.dig :filter, :year)
+
+    query.merge year_constraint(year_value)
+  end
+
+  def year_constraint year_value
+    if year_value.try(:to_sym) == :latest
+      { latest: true }
+    else
+      { year: year_value }
+    end
   end
 
   def filter_by_subject_companies query
@@ -31,9 +45,5 @@ format do
 
   def subject_company_ids
     @subject_company_ids ||= Env.params[:filter] ? filtered_company_ids : []
-  end
-
-  def filter_keys
-    %i[name company_group]
   end
 end

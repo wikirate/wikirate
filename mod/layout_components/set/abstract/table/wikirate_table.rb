@@ -4,18 +4,18 @@ class WikirateTable
   attr_accessor :format
   delegate :add_class, :subformat, :path, :table, to: :format
 
-  def initialize format, table_type, row_cards, cell_views, opts={}
+  def initialize format, row_cards, cell_views, opts={}
     @format = format
 
-    initialize_opts opts, table_type
+    initialize_opts opts
     @row_cards = row_cards
     @cell_views = cell_views
   end
 
-  def initialize_opts opts, table_type
+  def initialize_opts opts
     @table_opts = opts.delete(:table) || {}
     @table_opts[:header] = opts.delete(:header)
-    add_class @table_opts, "wikirate-table #{table_type}"
+    add_class @table_opts, "wikirate-table"
     @tr_opts = opts.delete(:tr) || {}
     @td_opts = opts.delete(:td) || {}
     @td_classes = @td_opts.delete(:classes)
