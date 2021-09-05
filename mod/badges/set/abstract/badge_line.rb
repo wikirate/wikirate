@@ -65,10 +65,10 @@ class BadgeLine
   end
 
   def all_earned_badges count=nil, user_id=nil
-    count ||= count_valued_actions user_id || Card::Auth.current_id
+    count ||= count_valued_actions user_id
     LEVELS.map do |level|
-      next unless @badge[level] && @badge[level].threshold <= count
-      @badge[level].name
+      next unless (badge = @badge[level])
+      badge.name if badge.threshold <= count
     end.compact
   end
 

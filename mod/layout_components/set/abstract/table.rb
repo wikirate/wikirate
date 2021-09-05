@@ -12,11 +12,10 @@ format :html do
   #   to :classes to assign to every column a html class.
   # @option opts [Hash] :tr html options for tr tags
   # @option opts [Hash] :table html options for table tags
-  def wikirate_table table_type, row_cards, cell_views, opts={}
+  def wikirate_table row_cards, cell_views, opts={}
     @table_context = self
     row_cards, format = normalize_table_args row_cards
-    rendered_table = WikirateTable.new(self, table_type, row_cards,
-                                       cell_views, opts).render
+    rendered_table = WikirateTable.new(self, row_cards, cell_views, opts).render
     format ? format.with_paging { rendered_table } : rendered_table
   end
 
