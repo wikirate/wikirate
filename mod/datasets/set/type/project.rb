@@ -32,5 +32,3 @@ format :html do
     labeled_field :unpublished, nil, title: "Default unpublished"
   end
 end
-
-
