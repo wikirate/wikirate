@@ -23,6 +23,7 @@ else
     gem "card-mod-counts"
     gem "card-mod-csv_import"
     gem "card-mod-fulltext"
+    gem "card-mod-social"
     # gem "card-mod-logger"
     gem "card-mod-new_relic"
     gem "card-mod-pdfjs"
