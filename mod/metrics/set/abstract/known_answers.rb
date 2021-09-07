@@ -9,10 +9,14 @@ HOVER_TEXT = { known: "Known",
                unknown: "Unknown",
                not_researched: "Not Researched" }.freeze
 
+def project_card
+  @project_card ||= right
+end
+
 # most common pattern is <TYPE>+<Dataset> (ltype_rtype)
 # overridden elsewhere
 def dataset_card
-  @dataset_card ||= right
+  @dataset_card ||= project_card.dataset_card
 end
 
 # has an answer

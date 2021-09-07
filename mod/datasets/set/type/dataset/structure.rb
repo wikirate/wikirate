@@ -30,23 +30,13 @@ format :html do
   view :right_column do
     wrap_with :div, class: "progress-column" do
       [render_type_link,
-       overall_progress_box,
-       render_tabs,
        render_export_links,
        render_import_links]
     end
   end
 
-  def tab_list
-    [:wikirate_company, :metric, (:year if card.years), :data_subset].compact
-  end
-
   view :metric_tab do
     tab_nest :metric
-  end
-
-  view :wikirate_company_tab do
-    tab_nest :wikirate_company
   end
 
   view :year_tab do

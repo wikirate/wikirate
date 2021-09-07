@@ -4,9 +4,9 @@
 .data_subset-link
   - path_args = { mark: :dataset.cardname, _Parent: card.name, action: :new }
   = link_to "Add Data Subset", path: path_args.merge(copied_dataset_fields),
-                              class: "btn btn-primary"
+                               class: "btn btn-primary"
 .data_subset-list
   = field_nest :data_subset, view: :titled,
-                            title: :data_subset.cardname,
-                            variant: "plural capitalized",
-                            items: { view: :bar }
+                             title: :data_subset.cardname,
+                             variant: "plural capitalized",
+                             items: { view: :bar }

@@ -60,7 +60,7 @@ format :html do
   end
 
   def overall_progress_box legend=true
-    wrap_with :div, class: "default-progress-box" do
+    wrap_with :div, class: "default-progress-box my-2" do
       [
         (progress_legend if legend),
         bs_layout do
@@ -74,7 +74,7 @@ format :html do
   end
 
   def main_progress_bar
-    wrap_with :div, class: "main-progress-bar mt-1" do
+    wrap_with :div, class: "main-progress-bar" do
       [_render_research_progress_bar, _render_progress_description]
     end
   end
