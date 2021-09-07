@@ -24,12 +24,6 @@ format :html do
     end
   end
 
-  view :meta_preview do
-    content = _render_core
-    truncated = Card::Content.smart_truncate content, 50
-    ::ActionView::Base.full_sanitizer.sanitize truncated
-  end
-
   view :titled_row do
     [
       { content: _render_title, class: "title" },
