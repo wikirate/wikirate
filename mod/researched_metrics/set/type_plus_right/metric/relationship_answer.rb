@@ -26,7 +26,7 @@ format do
   def filter_by_year query
     return unless (year_value = Env.params.dig :filter, :year)
 
-    query.merge year_constraint(year_value)
+    query.merge! year_constraint(year_value)
   end
 
   def year_constraint year_value
