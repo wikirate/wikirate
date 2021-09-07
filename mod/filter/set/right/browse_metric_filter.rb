@@ -40,7 +40,7 @@ format do
   end
 
   def standard_filter_keys
-    %i[name wikirate_topic designer project metric_type value_type
+    %i[name wikirate_topic designer dataset metric_type value_type
        research_policy bookmark]
   end
 
@@ -73,7 +73,7 @@ format :html do
   end
 
   def quick_filter_list
-    bookmark_quick_filter + topic_quick_filters + project_quick_filters
+    bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
   end
 end
 
