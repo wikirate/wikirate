@@ -25,6 +25,12 @@ class Calculate
 
     def full_coffee
       <<~COFFEE
+        isKnown = (answer) ->
+          answer != "Unknown"
+        numKnown = (list) ->
+          list.filter(isKnown).length
+        anyKnown = (list) ->
+          list.find isKnown
         calcAll = (obj) ->
           r = {}
           for key, val of obj
