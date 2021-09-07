@@ -36,17 +36,6 @@ def item_cards_for_validation
   item_cards
 end
 
-# @return [Card] a single (Right name)+<Dataset> card. Configured in Ltype-Rtype set.
-def item_dataset_card item_card
-  Card.fetch item_card.name, dataset_name, new: {}
-end
-
-def all_item_dataset_cards
-  valid_item_cards.map do |item|
-    item_dataset_card item
-  end
-end
-
 def hereditary_field?
   true
 end
@@ -67,11 +56,6 @@ end
 # eg return :wikirate_company on +Company cards
 def scope_code
   name.right_name&.codename
-end
-
-# eg return :company on +Company cards
-def short_scope_code
-  scope_code
 end
 
 # same field, different dataset

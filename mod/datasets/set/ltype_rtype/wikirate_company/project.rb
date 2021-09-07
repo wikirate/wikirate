@@ -39,7 +39,7 @@ format :html do
   info_bar_cols 6, 2, 4
 
   view :bar_left do
-    [render_company_header, render_dataset_header]
+    render_company_header
   end
 
   view :company_header do
@@ -75,10 +75,6 @@ format :html do
 
   view :project_header do
     nest card.project_card, view: :bar_left, hide: :default_research_progress_bar
-  end
-
-  def full_page_card
-    card.dataset_card
   end
 
   def dataset_name

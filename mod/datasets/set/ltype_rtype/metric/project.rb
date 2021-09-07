@@ -44,7 +44,7 @@ format :html do
   end
 
   view :bar_left do
-    [render_metric_header, render_dataset_header]
+    render_metric_header
   end
 
   view :bar_right do
@@ -59,8 +59,8 @@ format :html do
     research_progress_bar :metric_link
   end
 
-  view :dataset_header do
-    nest card.dataset_card, view: :bar_left, hide: :default_research_progress_bar
+  view :project_header do
+    nest card.project_card, view: :bar_left, hide: :default_research_progress_bar
   end
 
   def full_page_card

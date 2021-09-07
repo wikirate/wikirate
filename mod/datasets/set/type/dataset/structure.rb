@@ -30,17 +30,22 @@ format :html do
   view :right_column do
     wrap_with :div, class: "progress-column" do
       [render_type_link,
+       render_tabs,
        render_export_links,
        render_import_links]
     end
   end
 
-  view :metric_tab do
-    tab_nest :metric
+  def tab_list
+    [:wikirate_company, :metric].compact
   end
 
-  view :year_tab do
-    tab_nest :year
+  view :wikirate_company_tab do
+    field_nest :wikirate_company, view: :menued
+  end
+
+  view :metric_tab do
+    field_nest :metric, view: :menued
   end
 
   view :data_subset_tab, template: :haml

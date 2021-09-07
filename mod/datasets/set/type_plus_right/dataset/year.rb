@@ -20,12 +20,4 @@ format :html do
       year_progress_table
     end
   end
-
-  def year_progress_table
-    wikirate_table card.all_item_dataset_cards,
-                   %i[fancy_year research_progress_bar],
-                   table: { class: "year" },
-                   header: ["Year", "Answers Researched"],
-                   td: { classes: ["year-answer", "default-progress-box"] }
-  end
 end

@@ -41,7 +41,7 @@ format :html do
 
   view :right_column do
     wrap_with :div, class: "progress-column" do
-      render_tabs
+      [render_type_link, render_tabs]
     end
   end
 
@@ -50,10 +50,14 @@ format :html do
   end
 
   def tab_list
-    [:wikirate_company] #, :metric, (:year if card.years), :data_subset].compact
+    [:wikirate_company, :metric] #, (:year if card.years)].compact
   end
 
   view :wikirate_company_tab do
-    tab_nest :wikirate_company
+    field_nest :wikirate_company, view: :filtered_content
+  end
+
+  view :metric_tab do
+    field_nest :metric, view: :filtered_content
   end
 end

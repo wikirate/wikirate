@@ -1,31 +1,22 @@
-include_set Abstract::CqlSearch
+include_set Type::SearchType
 include_set Right::BrowseCompanyFilter
-include_set Abstract::DatasetFilteredList
-
-delegate :dataset_name, to: :project_card
-
-def project_name
-  name.left_name
-end
-
-def project_card
-  left
-end
-
-def company_list
-  dataset_name.field :wikirate_company
-end
+include_set Abstract::ProjectList
 
 def cql_content
   {
-    type_id: Card::WikirateCompanyID,
-    referred_to_by: company_list,
-    append: project_name
+    type: :wikirate_company,
+    referred_to_by: dataset_name.field(:wikirate_company),
+    append: project_name,
+    sort: :name,
+    limit: 100
   }
 end
 
-def short_scope_code
-  :company
+# are any of the metrics associated with this dataset researchable for this user?
+# @return [True/False]
+def researchable_metrics?
+  return false unless (metric_card = Card.fetch([dataset_name, :metric]))
+  metric_card.item_cards.find(&:user_can_answer?)
 end
 
 format do
@@ -35,6 +26,11 @@ format do
 end
 
 format :html do
+  before :filtered_content do
+    super()
+    voo.items[:show] = :bar_middle if card.researchable_metrics?
+  end
+
   # don't add quick filters for other datasets
   def dataset_quick_filters
     []
