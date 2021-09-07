@@ -2,18 +2,13 @@ include_set Abstract::TwoColumnLayout
 
 card_accessor :wikirate_company, type: PointerID
 card_accessor :wikirate_topic, type: PointerID
-card_accessor :project, type: PointerID
+card_accessor :dataset, type: PointerID
 card_accessor :body
 card_accessor :discussion
 
 format :html do
   before :content_formgroups do
-    voo.edit_structure = [
-      :wikirate_company,
-      :wikirate_topic,
-      :project,
-      :body
-    ]
+    voo.edit_structure = %i[wikirate_company wikirate_topic dataset body]
   end
 
   view :rich_header_body, template: :haml
@@ -31,10 +26,10 @@ format :html do
   info_bar_cols 4, 4, 4
 
   def tab_list
-    %i[wikirate_company wikirate_topic project]
+    %i[wikirate_company wikirate_topic dataset]
   end
 
-  %i[wikirate_company wikirate_topic project].each do |codename|
+  %i[wikirate_company wikirate_topic dataset].each do |codename|
     view :"#{codename}_tab" do
       field_nest codename, items: { view: :bar }
     end

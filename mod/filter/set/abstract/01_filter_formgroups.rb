@@ -11,8 +11,8 @@ format :html do
     text_filter :value
   end
 
-  view :filter_project_formgroup, cache: :never do
-    autocomplete_filter :project
+  view :filter_dataset_formgroup, cache: :never do
+    autocomplete_filter :dataset
   end
 
   view :filter_year_formgroup, cache: :never do
