@@ -15,6 +15,8 @@ PATH
       newrelic_rpm
     card-mod-pdfjs (1.1)
       card
+    card-mod-social (0.1)
+      card
     card-mod-solid_cache (0.1)
       card
 
@@ -829,6 +831,7 @@ DEPENDENCIES
   card-mod-monkey!
   card-mod-new_relic!
   card-mod-pdfjs!
+  card-mod-social!
   card-mod-solid_cache!
   cardname!
   company-mapping

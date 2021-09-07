@@ -54,4 +54,8 @@ format do
   view :core, unknown: true do
     super()
   end
+
+  def twitter_site
+    "@WikiRate"
+  end
 end
