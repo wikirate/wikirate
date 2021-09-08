@@ -22,7 +22,7 @@ format :json do
       type.to_sym
     elsif single_metric_chart?
       single_metric_chart_type
-    elsif single? :year
+    elsif single_year_chart?
       single_year_chart_type
     else
       :timeline
@@ -47,6 +47,10 @@ format :json do
 
   def single_metric_chart?
     filter_hash[:metric_id].is_a?(Integer) && counts[:known] > 1
+  end
+
+  def single_year_chart?
+    single?(:year) || filter_hash[:year]&.to_sym == :latest
   end
 
   def single_year_chart_type

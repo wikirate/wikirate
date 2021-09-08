@@ -22,5 +22,11 @@ class SharedData
       end
       create name, hash
     end
+
+    def add_project
+      create "Evil Project",
+             type: :project,
+             subfields: { dataset: { content: "Evil Dataset", type: :pointer } }
+    end
   end
 end

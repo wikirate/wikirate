@@ -1,3 +1,5 @@
+include_set Abstract::Media
+
 format :html do
   view :thumbnail do
     voo.show :thumbnail_link
@@ -16,7 +18,7 @@ format :html do
   end
 
   view :thumbnail_image do
-    field_nest :image, view: thumbnail_image_view, size: thumbnail_image_size
+    nest image_card, view: thumbnail_image_view, size: thumbnail_image_size
   end
 
   view :thumbnail_subtitle do
