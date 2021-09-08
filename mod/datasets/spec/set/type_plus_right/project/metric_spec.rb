@@ -1,13 +1,13 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::TypePlusRight::Dataset::Metric do
-  let(:dataset_metrics) { Card.fetch("Evil Dataset", :metric) }
+describe Card::Set::TypePlusRight::Project::Metric do
+  let(:project_metrics) { Card.fetch("Evil Project", :metric) }
 
   describe "table (core view)" do
-    subject { dataset_metrics.format.render_core }
+    subject { project_metrics.format.render_core }
 
     it "shows bar views of <Company>+<Dataset> cards" do
-      is_expected.to have_tag(".LTYPE_RTYPE-metric-datum_set.bar")
+      is_expected.to have_tag(".LTYPE_RTYPE-metric-project.bar")
     end
 
     it "does not include research buttons" do

@@ -50,7 +50,7 @@ format :html do
   end
 
   def tab_list
-    [:wikirate_company, :metric] #, (:year if card.years)].compact
+    [:wikirate_company, :metric]
   end
 
   view :wikirate_company_tab do

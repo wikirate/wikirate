@@ -1,18 +1,18 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::TypePlusRight::Dataset::WikirateCompany do
+RSpec.describe Card::Set::TypePlusRight::Project::WikirateCompany do
   context "when dataset has research metrics" do
-    let(:dataset_companies) { Card.fetch("Evil Dataset", :wikirate_company) }
+    let(:project_companies) { Card.fetch("Evil Project", :wikirate_company) }
 
     it "has researchable metrics" do
-      expect(dataset_companies).to be_researchable_metrics
+      expect(project_companies).to be_researchable_metrics
     end
 
     describe "table (core view)" do
-      subject { dataset_companies.format.render_core }
+      subject { project_companies.format.render_core }
 
-      it "shows bar views of <Company>+<Dataset> cards" do
-        is_expected.to have_tag(".LTYPE_RTYPE-company-datum_set.bar") do
+      it "shows bar views of <Company>+<Project> cards" do
+        is_expected.to have_tag(".LTYPE_RTYPE-company-project.bar") do
           with_tag ".bar-middle"
         end
       end
@@ -30,15 +30,17 @@ RSpec.describe Card::Set::TypePlusRight::Dataset::WikirateCompany do
   end
 
   context "when dataset only has calculated metrics" do
-    let(:dataset_companies) do
-      @dataset_companies ||=
-        Card.fetch(dataset_with_only_calculated_metrics, :wikirate_company)
+    let :project_companies do
+      @project_companies ||=
+        Card.fetch(project_with_only_calculated_metrics, :wikirate_company)
     end
 
-    def dataset_with_only_calculated_metrics
-      dataset = Card["empty dataset"]
-      add_formula_and_company_to dataset
-      dataset
+    def project_with_only_calculated_metrics
+      add_formula_and_company_to Card["empty dataset"]
+      Card.create name: "empty project",
+                  type: :project,
+                  subfields: { dataset: { type: :pointer,
+                                          content: "empty dataset" } }
     end
 
     def add_formula_and_company_to dataset
@@ -49,14 +51,14 @@ RSpec.describe Card::Set::TypePlusRight::Dataset::WikirateCompany do
     end
 
     it "have no researchable metrics" do
-      expect(dataset_companies).not_to be_researchable_metrics
+      expect(project_companies).not_to be_researchable_metrics
     end
 
     describe "table (core view)" do
-      subject { dataset_companies.format.render_core }
+      subject { project_companies.format.render_core }
 
-      it "shows bar views of <Company>+<Dataset> cards" do
-        is_expected.to have_tag(".LTYPE_RTYPE-company-datum_set.bar")
+      it "shows bar views of <Company>+<Project> cards" do
+        is_expected.to have_tag(".LTYPE_RTYPE-company-project.bar")
       end
 
       it "does not have the middle column" do

@@ -26,8 +26,7 @@ format do
 end
 
 format :html do
-  before :filtered_content do
-    super()
+  before :core do
     voo.items[:show] = :bar_middle if card.researchable_metrics?
   end
 
