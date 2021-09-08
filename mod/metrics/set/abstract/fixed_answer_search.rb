@@ -11,7 +11,7 @@ def query_hash
 end
 
 def query paging={}
-  AnswerQuery.new fixed_filter, {}, paging
+  AnswerQuery.new query_hash, {}, paging
 end
 
 format do
