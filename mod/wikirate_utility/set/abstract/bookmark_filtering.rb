@@ -44,8 +44,8 @@ format :html do
     quick_filters_for :company_group, %i[company_group featured]
   end
 
-  def project_quick_filters
-    quick_filters_for :project # , :homepage_featured_projects
+  def dataset_quick_filters
+    quick_filters_for :dataset # , :homepage_featured_datasets
   end
 
   def quick_filters_for type_code, featured=nil

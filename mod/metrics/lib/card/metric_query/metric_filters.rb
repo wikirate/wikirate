@@ -10,8 +10,8 @@ class Card
       end
       alias_method :wikirate_topic_query, :topic_query
 
-      def project_query value
-        project_restriction :metric_id, :metric, value
+      def dataset_query value
+        dataset_restriction :metric_id, :metric, value
       end
 
       def bookmark_query value
@@ -60,7 +60,7 @@ class Card
       end
 
       # also used by metric_and_company_filters.rb
-      def project_restriction field, codename, value
+      def dataset_restriction field, codename, value
         restrict_by_cql field, referred_to_by: "#{value}+#{codename.cardname}"
       end
 

@@ -47,7 +47,7 @@ format :html do
     [organizer_detail,
      topic_detail,
      field_nest(:description, view: :titled),
-     standard_nest(:conversation)]
+     field_nest(:conversation, items: { view: :link })]
   end
 
   def organizer_detail
