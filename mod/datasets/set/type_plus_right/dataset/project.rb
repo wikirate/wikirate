@@ -5,5 +5,5 @@ def virtual?
 end
 
 def cql_content
-  { type: :project, right_plus: [:dataset, { refer_to: "_left"} ] }
+  { type: :project, right_plus: [:dataset, { refer_to: "_left" }] }
 end
