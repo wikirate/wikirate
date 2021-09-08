@@ -66,8 +66,8 @@ RSpec.describe Card::AnswerQuery do
         .to eq with_year(["Death Star", "Monster Inc",  "SPECTRE"], 2000)
     end
 
-    it "finds exact match by project" do
-      expect(filter_by(project: "Evil Project"))
+    it "finds exact match by dataset" do
+      expect(filter_by(dataset: "Evil Dataset"))
         .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
 
@@ -154,8 +154,8 @@ RSpec.describe Card::AnswerQuery do
                             "Apple Inc.", "Google Inc."]))
       end
 
-      it "... project" do
-        expect(filter_by(status: :none, project: "Evil Project").sort)
+      it "... dataset" do
+        expect(filter_by(status: :none, dataset: "Evil Dataset").sort)
           .to eq(with_year(["Los Pollos Hermanos"]))
       end
 
@@ -174,8 +174,8 @@ RSpec.describe Card::AnswerQuery do
     end
 
     context "when filtering for all values and ..." do
-      it "... project" do
-        expect(filter_by(status: :all, project: "Evil Project"))
+      it "... dataset" do
+        expect(filter_by(status: :all, dataset: "Evil Dataset"))
           .to contain_exactly("Death Star+2001", "SPECTRE+2000",
                               *with_year("Los Pollos Hermanos"))
       end
@@ -195,8 +195,8 @@ RSpec.describe Card::AnswerQuery do
       end
     end
 
-    it "project and company_category" do
-      expect(filter_by(project: "Evil Project",
+    it "dataset and company_category" do
+      expect(filter_by(dataset: "Evil Dataset",
                        company_category: "A"))
         .to eq(["Death Star+2001", "SPECTRE+2000"])
     end
@@ -209,7 +209,7 @@ RSpec.describe Card::AnswerQuery do
       Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
         expect(filter_by(year: "1990",
                          company_category: "A",
-                         project: "Evil Project",
+                         dataset: "Evil Dataset",
                          updated: :today,
                          name: "star"))
           .to eq(with_year("Death Star", 1990))

@@ -12,8 +12,8 @@ class TopicFilterQuery < Card::FilterQuery
     add_to_cql :referred_to_by, left: { name: metric }, right: "topic"
   end
 
-  def project_cql project
-    add_to_cql :referred_to_by, left: { name: project }, right: "topic"
+  def dataset_cql dataset
+    add_to_cql :referred_to_by, left: { name: dataset }, right: "topic"
   end
 
   def wikirate_company_cql company

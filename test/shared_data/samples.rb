@@ -55,6 +55,10 @@ class SharedData
       #sample_metric(value_type).random_value_card
     end
 
+    def sample_dataset
+      Card["Evil Dataset"]
+    end
+
     def sample_project
       Card["Evil Project"]
     end
