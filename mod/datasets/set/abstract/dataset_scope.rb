@@ -1,6 +1,6 @@
 include_set Abstract::PointerCachedCount
 
-# module for dataset-scope-definining cards
+# module for dataset-scope-defining cards
 # (+company, +metric, and +year on datasets)
 
 # @return [Card::Name]
@@ -98,4 +98,14 @@ event :prevent_deletion_if_data_subset_items_present, :validate, on: :delete do
 
   errors.add :content, "This card cannot be deleted, because there are data_subsets " \
                        "with at least one #{scope_code.cardname}"
+end
+
+format :html do
+  def input_type
+    card.count > 500 ? :list : :filtered_list
+  end
+
+  def filter_card
+    Card.fetch card.scope_code, filter_field_code
+  end
 end

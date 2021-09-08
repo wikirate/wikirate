@@ -47,6 +47,7 @@ format :html do
       [
         nest(card.dataset_card, view: :overall_progress_box),
         labeled_field(:dataset, :link),
+        labeled_field(:wikirate_status, :name),
         labeled_field(:organizer, :thumbnail),
         default_unpublished,
         field_nest(:description, view: :titled),

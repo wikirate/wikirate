@@ -4,10 +4,10 @@ format :html do
       :image,
       :parent,
       :wikirate_topic,
-      :description,
       :year,
+      :wikirate_company,
       :metric,
-      :wikirate_company
+      :description
     ]
   end
 
@@ -35,7 +35,7 @@ format :html do
   end
 
   def tab_list
-    [:wikirate_company, :metric].compact
+    %i[wikirate_company metric data_subset]
   end
 
   view :wikirate_company_tab do
@@ -53,7 +53,7 @@ format :html do
     wrap_with :div do
       [
         data_subset_detail,
-        labeled_field(:wikirate_status),
+        labeled_field(:year, :name, title: "Years"),
         labeled_field(:wikirate_topic, :link, title: "Topics"),
         field_nest(:description)
       ]

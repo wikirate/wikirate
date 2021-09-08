@@ -3,3 +3,9 @@
 
 include_set Abstract::DatasetScope
 include_set Abstract::IdPointer
+
+format :html do
+  def filter_field_code
+    :browse_metric_filter
+  end
+end
