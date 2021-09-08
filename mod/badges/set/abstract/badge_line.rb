@@ -66,10 +66,11 @@ class BadgeLine
 
   def all_earned_badges count=nil, user_id=nil
     count ||= count_valued_actions user_id
-    LEVELS.map do |level|
-      next unless (badge = @badge[level])
-      badge.name if badge.threshold <= count
-    end.compact
+    LEVELS.map { |level| earned_badge_name @badge[level], count }.compact
+  end
+
+  def earned_badge_name badge, count
+    badge.name if badge && badge.threshold <= count
   end
 
   def threshold badge_mark

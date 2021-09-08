@@ -8,7 +8,7 @@ format :html do
   end
 
   view :bar_middle do
-    count_badges :source, :project
+    count_badges :source, :dataset
   end
 
   view :bar_bottom do

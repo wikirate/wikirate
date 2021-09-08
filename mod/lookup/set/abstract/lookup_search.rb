@@ -1,4 +1,3 @@
-# shared search method for card and format
 def search args={}
   return_type = args.delete :return
   query = args.delete(:query) || query(args)
@@ -49,7 +48,7 @@ format do
   end
 
   def query_hash
-    filter_hash || {}
+    (filter_hash || {}).merge card.query_hash
   end
 
   def default_filter_hash

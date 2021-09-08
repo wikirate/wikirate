@@ -6,12 +6,12 @@ def table_type
   partner
 end
 
-def fixed_filter
+def query_hash
   { fixed_field => left.id }
 end
 
 def query paging={}
-  AnswerQuery.new fixed_filter, {}, paging
+  AnswerQuery.new query_hash, {}, paging
 end
 
 format do
@@ -19,10 +19,6 @@ format do
 
   def record?
     filter_hash[:"#{partner}_name"]&.match?(/^\=/)
-  end
-
-  def query_hash
-    super.merge card.fixed_filter
   end
 end
 
