@@ -15,9 +15,9 @@ format :html do
     :multiselect
   end
 
-  view :core do
-    wrap_with :div, class: "progress-bar-table" do
-      year_progress_table
-    end
-  end
+  # view :core do
+  #   wrap_with :div, class: "progress-bar-table" do
+  #     year_progress_table
+  #   end
+  # end
 end

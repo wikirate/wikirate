@@ -45,7 +45,7 @@ class SharedData
       setup
       add :companies, :topics, :sources, :report_types,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :project, :datasets, :company_category, :researchers, :company_group,
+          :projects, :datasets, :company_category, :researchers, :company_group,
           :profile_sections, :badges, :import_files, :guides
 
       Card::Cache.reset_all
@@ -100,12 +100,6 @@ class SharedData
       Card::Auth.as_bot do
         Card::Auth.current.bookmarks_card.add_item! name
       end
-    end
-
-    def add_project
-      create "Evil Project",
-             type: :project,
-             subfields: { dataset: { content: "Evil Dataset", type: :pointer } }
     end
 
     def add_researchers
