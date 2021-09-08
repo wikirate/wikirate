@@ -19,11 +19,11 @@ format :html do
   end
 
   view :bar_bottom do
-    [main_progress_bar, dataset_details]
+    dataset_details
   end
 
   def thumbnail_subtitle
-    output [field_nest(:organizer, view: :credit), render_default_research_progress_bar]
+    field_nest :year, items: { view: :name }, unknown: :blank
   end
 
   def data_subset_detail

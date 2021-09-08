@@ -5,8 +5,8 @@ format :html do
       :parent,
       :wikirate_topic,
       :year,
-      :wikirate_company,
-      :metric,
+      # :wikirate_company,  # filter editor screwing up multiedit
+      # :metric,
       :description
     ]
   end
@@ -28,14 +28,12 @@ format :html do
   view :right_column do
     wrap_with :div, class: "progress-column" do
       [render_type_link,
-       render_tabs,
-       render_export_links,
-       render_import_links]
+       render_tabs]
     end
   end
 
   def tab_list
-    %i[wikirate_company metric data_subset]
+    %i[metric_answer wikirate_company metric data_subset project]
   end
 
   view :wikirate_company_tab do
@@ -46,6 +44,12 @@ format :html do
     field_nest :metric, view: :menued
   end
 
+  view :metric_answer_tab do
+    [field_nest(:metric_answer, view: :filtered_content),
+     render_import_links]
+  end
+
+  view :project_tab, template: :haml
   view :data_subset_tab, template: :haml
 
   # left column content
@@ -53,7 +57,7 @@ format :html do
     wrap_with :div do
       [
         data_subset_detail,
-        labeled_field(:year, :name, title: "Years"),
+        labeled_field(:year, :name, title: "Years", unknown: :blank),
         labeled_field(:wikirate_topic, :link, title: "Topics"),
         field_nest(:description)
       ]

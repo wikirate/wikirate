@@ -60,8 +60,14 @@ class Card
       end
 
       # also used by metric_and_company_filters.rb
-      def dataset_restriction field, codename, value
-        restrict_by_cql field, referred_to_by: "#{value}+#{codename.cardname}"
+      def dataset_restriction field, codename, dataset
+        restrict_by_cql field, referred_to_by: "#{dataset}+#{codename.cardname}"
+      end
+
+      def dataset_year_restriction dataset
+        return unless (years = Card.fetch(dataset, :year)&.item_names)
+
+        filter :year, years
       end
 
       # also used by metric_and_company_filters.rb

@@ -19,6 +19,7 @@ class Card
       def dataset_query value
         multi_metric { dataset_restriction :metric_id, :metric, value }
         multi_company { dataset_restriction :company_id, :wikirate_company, value }
+        dataset_year_restriction value
       end
 
       # EXPERIMENTAL. no public usage

@@ -3,7 +3,8 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Bookmarkable
 
 card_accessor :unpublished
-card_reader :organizer
+card_accessor :wikirate_status
+card_accessor :organizer
 
 def organizer?
   as_moderator? || organizer_card.item_ids.include?(Auth.as_id)
@@ -23,7 +24,8 @@ end
 
 delegate :metrics, :companies, :years,
          :metric_list, :company_list, :year_list,
-         :metric_ids, :company_ids, :year_ids, to: :dataset_card
+         :metric_ids, :company_ids, :year_ids,
+         to: :dataset_card
 
 # used in filtering answers on company and dataset pages
 # @param values [Symbol] researched, known, not_researched
@@ -38,8 +40,12 @@ def filter_path_args values
 end
 
 format :html do
+  def image_card
+    @image_card ||= card.dataset_card.fetch(:image, new: {})
+  end
+
   before :content_formgroups do
-    voo.edit_structure = %i[image dataset wikirate_status organizer description]
+    voo.edit_structure = %i[wikirate_status dataset organizer description]
   end
 
   view :data do
