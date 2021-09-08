@@ -21,9 +21,25 @@ def dataset_name
   dataset_pointer.first_name
 end
 
+delegate :metrics, :companies, :years,
+         :metric_list, :company_list, :year_list,
+         :metric_ids, :company_ids, :year_ids, to: :dataset_card
+
+# used in filtering answers on company and dataset pages
+# @param values [Symbol] researched, known, not_researched
+# (need better term for this param)
+def filter_path_args values
+  filter = { project: name, status: values  }
+  # show latest dataset year.  could consider updating answer tables
+  # to handle latest value among a group of years, but that's not yet
+  # an option
+  filter[:year] = years.first if years && years.one?
+  { filter: filter }
+end
+
 format :html do
   before :content_formgroups do
-    voo.edit_structure = %i[image dataset organizer description]
+    voo.edit_structure = %i[image dataset wikirate_status organizer description]
   end
 
   view :data do

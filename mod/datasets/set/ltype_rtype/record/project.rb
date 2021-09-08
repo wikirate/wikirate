@@ -6,13 +6,13 @@ def metric_name
   record.metric_name
 end
 
-def dataset_years
+def project_years
   right&.years
 end
 
 def answers
   rel = record.answer_relation.order year: :desc
-  if (years = dataset_years) && years.present?
+  if (years = project_years) && years.present?
     rel = rel.where year: years
   end
   rel.map(&:card)

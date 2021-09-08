@@ -6,6 +6,8 @@ class AddDatasets < Cardio::Migration
     Card.search type: "Project" do |project|
       project.update! type: "Data Set"
     end
+    # move status to dataset
+
     Card[:subproject]&.update! codename: :data_subset, name: "Data Subset"
   end
 end

@@ -65,8 +65,7 @@ format :html do
             class: "btn btn-outline-secondary btn-sm research-answer-button",
             path: { mark: :research_page,
                     company: card.company_card.name,
-                    # pinned: :company,
-                    dataset: dataset_name.url_key }
+                    project: card.project_name.url_key }
   end
 
   view :research_progress_bar, cache: :never do

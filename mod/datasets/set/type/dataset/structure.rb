@@ -2,9 +2,7 @@ format :html do
   before :content_formgroups do
     voo.edit_structure = [
       :image,
-      :wikirate_status,
       :parent,
-      :organizer,
       :wikirate_topic,
       :description,
       :year,
@@ -56,7 +54,8 @@ format :html do
       [
         data_subset_detail,
         labeled_field(:wikirate_status),
-        labeled_field(:wikirate_topic, :link, title: "Topics")
+        labeled_field(:wikirate_topic, :link, title: "Topics"),
+        field_nest(:description)
       ]
     end
   end

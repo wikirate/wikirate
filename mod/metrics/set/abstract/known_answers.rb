@@ -13,6 +13,10 @@ def project_card
   @project_card ||= right
 end
 
+def project_name
+  name.right_name
+end
+
 # most common pattern is <TYPE>+<Dataset> (ltype_rtype)
 # overridden elsewhere
 def dataset_card
