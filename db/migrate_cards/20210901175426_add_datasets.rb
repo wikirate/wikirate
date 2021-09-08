@@ -23,6 +23,6 @@ class AddDatasets < Cardio::Migration
   end
 
   def move_to_project project_name, dataset, field_code
-    dataset.fetch(field_code).update! name: [project_name, field_code].cardname
+    dataset.fetch(field_code)&.update! name: [project_name, field_code].cardname
   end
 end
