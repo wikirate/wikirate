@@ -15,7 +15,7 @@ card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
 card_accessor :value_options
-card_accessor :project
+card_accessor :dataset
 card_accessor :metric_answer
 card_accessor :unit
 card_accessor :range

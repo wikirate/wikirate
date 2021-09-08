@@ -18,8 +18,8 @@ RSpec.describe Card::MetricQuery do
       .to eq(["Fred+dinosaurlabor", "Joe User+researched number 3"])
   end
 
-  example "project filter" do
-    expect(run(project: "Evil Project").map(&:name))
+  example "dataset filter" do
+    expect(run(dataset: "Evil Dataset").map(&:name))
       .to eq(["Jedi+disturbances in the Force", "Joe User+researched number 2"])
   end
 
