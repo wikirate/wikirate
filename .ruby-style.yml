@@ -22,7 +22,6 @@ AllCops:
   - "db/schema.rb"
   - "mod/sources/files/**/*"
   - "mod/sources/lib/javascript/**/*"
-  - "script/single-use/**/*"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Style/CommentAnnotation:

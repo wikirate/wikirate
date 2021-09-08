@@ -31,11 +31,11 @@ RSpec.describe Card::Set::Right::BrowseTopicFilter do
       end
     end
 
-    context "project argument" do
-      before { filter_args project: "myProject" }
+    context "with dataset argument" do
+      before { filter_args dataset: "myDataset" }
       it do
         is_expected.to eq cql(
-          referred_to_by: { left: { name: "myProject" }, right: "topic" }
+          referred_to_by: { left: { name: "myDataset" }, right: "topic" }
         )
       end
     end
@@ -45,7 +45,7 @@ RSpec.describe Card::Set::Right::BrowseTopicFilter do
         filter_args name: "Animal Rights",
                     wikirate_company: "Apple Inc",
                     metric: "myMetric",
-                    project: "myProject"
+                    dataset: "myDataset"
       end
       it "joins filter conditions correctly" do
         is_expected.to eq cql(
@@ -53,7 +53,7 @@ RSpec.describe Card::Set::Right::BrowseTopicFilter do
           found_by: "Apple Inc+topic",
           referred_to_by: [
             { left: { name: "myMetric" }, right: "topic" },
-            { left: { name: "myProject" }, right: "topic" }
+            { left: { name: "myDataset" }, right: "topic" }
           ]
         )
       end
