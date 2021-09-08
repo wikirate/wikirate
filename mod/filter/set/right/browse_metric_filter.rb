@@ -44,10 +44,6 @@ format do
        research_policy bookmark]
   end
 
-  def filter_label key
-    key == :metric_type ? "Metric type" : super
-  end
-
   def sort_options
     {
       "Most Bookmarked": :bookmarkers,

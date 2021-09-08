@@ -69,10 +69,6 @@ format :html do
     :metric_details_sidebar
   end
 
-  def filter_label field
-    field.to_sym == :metric_type ? "Metric type" : super
-  end
-
   def quick_filter_list
     @quick_filter_list ||=
       Card.fetch(:metric, :browse_metric_filter).format.quick_filter_list
