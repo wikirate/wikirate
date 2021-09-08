@@ -22,4 +22,4 @@ exclude_paths:
 - mod/**/lib/javascript/**/*.js
 - test/**/*
 - db/**/*
-- script/single-use/old/**/*
+- script/single-use/**/*
