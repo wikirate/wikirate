@@ -2,7 +2,7 @@
 
 class AddDatasets < Cardio::Migration
   def up
-    ensure_code_card "Data Set", codename: :dataset
+    ensure_code_card "Data Set", codename: :dataset, type: :cardtype
     Card.search(type: :project) { |dataset| convert_to_dataset dataset }
     Card[:subproject]&.update! codename: :data_subset, name: "Data Subset"
   end
@@ -11,7 +11,7 @@ class AddDatasets < Cardio::Migration
     dataset.update! type: "Data Set"
     project_name = "Research: #{dataset.name}"
     create_project project_name, dataset.name
-    %i[organizer wikirate_status].each do |field|
+    %i[organizer wikirate_status description].each do |field|
       move_to_project project_name, dataset, field
     end
   end
