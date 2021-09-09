@@ -57,7 +57,7 @@ format :html do
     wrap_with :div do
       [
         data_subset_detail,
-        labeled_field(:year, :name, title: "Years", unknown: :blank),
+        labeled_field(:year, :name, title: "Years", unknown: :blank, separator: ", "),
         labeled_field(:wikirate_topic, :link, title: "Topics"),
         field_nest(:description)
       ]
