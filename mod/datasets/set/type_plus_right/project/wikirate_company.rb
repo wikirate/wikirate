@@ -14,6 +14,7 @@ end
 # @return [True/False]
 def researchable_metrics?
   return false unless (metric_card = Card.fetch([dataset_name, :metric]))
+
   metric_card.item_cards.find(&:user_can_answer?)
 end
 

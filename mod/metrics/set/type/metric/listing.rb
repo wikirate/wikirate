@@ -28,4 +28,8 @@ format :html do
   view :research_option_header, template: :haml
 
   view :research_option, template: :haml
+
+  def social_description_card
+    card.about_card
+  end
 end
