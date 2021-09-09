@@ -1,6 +1,6 @@
 NAV_MENUS = {
   "Explore" => ["Companies", "Topics", "Metrics",
-                "Projects", "Research Groups", "Company Groups", "Sources", "Changes"],
+                "Data Sets", "Research Groups", "Company Groups", "Sources", "Changes"],
   "How To"  => ["Use Data", "Contribute", "Add to Projects", "Start Projects",
                 "Advanced", "FAQ", "Glossary", "Report Issue"],
   "About"   => ["About Us", "Team and Advisors", "Programs",

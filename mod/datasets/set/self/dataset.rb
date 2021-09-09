@@ -1,5 +1,7 @@
+include_set Abstract::DatasetFilter
+
 format :html do
-  view :core, template: :haml
+  view :titled_content, template: :haml
 end
 
 format :csv do
