@@ -6,9 +6,7 @@ def cql_content
   {
     type: :wikirate_company,
     referred_to_by: dataset_name.field(:wikirate_company),
-    append: project_name,
-    sort: :name,
-    limit: 100
+    append: project_name
   }
 end
 
