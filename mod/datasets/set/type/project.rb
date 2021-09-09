@@ -41,7 +41,7 @@ end
 
 format :html do
   def image_card
-    @image_card ||= card.dataset_card.fetch(:image, new: {})
+    @image_card ||= card.dataset_card&.fetch :image, new: {}
   end
 
   before :content_formgroups do

@@ -22,10 +22,6 @@ format do
 end
 
 format :html do
-  view :titled_content do
-    [field_nest(:description), render_filtered_content(items: { view: :bar })]
-  end
-
   def details_view
     :details_sidebar
   end

@@ -18,7 +18,9 @@ format :html do
   end
 
   view :thumbnail_image do
-    nest image_card, view: thumbnail_image_view, size: thumbnail_image_size
+    return unless (image = image_card)
+
+    nest image, view: thumbnail_image_view, size: thumbnail_image_size
   end
 
   view :thumbnail_subtitle do
