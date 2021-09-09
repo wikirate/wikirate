@@ -7,7 +7,7 @@ format :html do
   end
 
   view :bar_right do
-    field_nest :wikirate_status, items: { view: :name}, unknown: :blank
+    field_nest :wikirate_status, items: { view: :name }, unknown: :blank
   end
 
   view :bar_bottom do
