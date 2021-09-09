@@ -492,6 +492,7 @@ GEM
     formatador (0.3.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    graphql (1.12.16)
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
@@ -846,6 +847,7 @@ DEPENDENCIES
   decko-spring!
   descriptive_statistics
   fog-aws
+  graphql
   link_thumbnailer
   mysql2 (> 0.4)
   open_uri_redirections
