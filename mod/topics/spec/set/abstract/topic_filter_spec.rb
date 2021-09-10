@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
-require File.expand_path("../filter_spec_helper.rb", __FILE__)
+RSpec.describe Card::Set::Abstract::TopicFilter do
+  include Cardio::FilterSpecHelper
 
-RSpec.describe Card::Set::Right::BrowseTopicFilter do
   let(:format) { format_subject :base }
 
   describe "filter_cql" do

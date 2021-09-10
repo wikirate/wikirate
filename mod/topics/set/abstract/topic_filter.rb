@@ -1,8 +1,14 @@
+include_set Abstract::CqlSearch
+include_set Abstract::SearchViews
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
 
 def target_type_id
   WikirateTopicID
+end
+
+def bookmark_type
+  :wikirate_topic
 end
 
 class TopicFilterQuery < Card::FilterQuery

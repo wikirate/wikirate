@@ -1,4 +1,4 @@
-include_set Right::BrowseTopicFilter
+include_set Abstract::TopicFilter
 include_set Abstract::SearchCachedCount
 
 # when metric value is edited
