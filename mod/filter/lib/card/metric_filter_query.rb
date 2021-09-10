@@ -1,8 +1,6 @@
 class Card
   # Filter metrics (e.g. on company pages)
-  class MetricFilterQuery < FilterQuery
-    include WikirateFilterQuery
-
+  class MetricFilterQuery < WikirateFilterQuery
     def name_cql title
       add_to_cql :right, name: [:match, title]
     end

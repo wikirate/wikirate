@@ -16,7 +16,7 @@ end
 
 format do
   def filter_class
-    DatasetFilterQuery
+    WikirateFilterQuery
   end
 
   def default_sort_option
@@ -45,9 +45,4 @@ format :html do
   def quick_filter_list
     bookmark_quick_filter + topic_quick_filters
   end
-end
-
-# cql query to filter sources
-class DatasetFilterQuery < Card::FilterQuery
-  include WikirateFilterQuery
 end

@@ -1,3 +1,4 @@
+include_set Abstract::SourceFilter
 
 class << self
   def search term
@@ -37,5 +38,5 @@ class << self
 end
 
 format :html do
-  view :core, template: :haml
+  view :titled_content, template: :haml
 end
