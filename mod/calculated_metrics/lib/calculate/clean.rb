@@ -16,7 +16,8 @@ class Calculate
 
     def expire_answer company_name, year
       answer_name = Card::Name[metric.name, company_name, year.to_s]
-      Card::Director.expirees += [answer_name, answer_name.field(:value)]
+      Card::Director.expirees << answer_name
+      Card::Director.expirees << answer_name.field(:value)
     end
 
     # CACHED COUNTS
