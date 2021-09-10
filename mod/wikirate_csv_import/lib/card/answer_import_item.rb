@@ -84,7 +84,7 @@ class Card
       end
 
       def source_suggestion_filter_mark
-        "Source+browse_source_filter"
+        "Source"
       end
 
       def source_suggestion_filter_key

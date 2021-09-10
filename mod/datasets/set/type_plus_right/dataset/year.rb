@@ -1,6 +1,7 @@
 include_set Abstract::Table
 include_set Abstract::PointerCachedCount
 include_set Abstract::DatasetScope
+include_set Abstract::Filterable
 
 def hereditary_field?
   false
@@ -15,9 +16,13 @@ format :html do
     :multiselect
   end
 
-  # view :core do
-  #   wrap_with :div, class: "progress-bar-table" do
-  #     year_progress_table
-  #   end
-  # end
+  view :core do
+    filtering(".RIGHT-answer ._filter-widget") { super() }
+  end
+
+  def wrap_item rendered, item_view
+    filterable({ year: rendered }, class: "pointer-item item-#{item_view}") do
+      rendered
+    end
+  end
 end

@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   def fetch_answer *name_parts
-    Card.fetch(Card::Name[name_parts])
+    Card.fetch Card::Name[name_parts]
   end
 
   def expanded_details answer_name, metric_type

@@ -1,3 +1,7 @@
+include_set Abstract::CqlSearch
+include_set Abstract::SearchViews
+include_set Abstract::TopicFilter
+
 format :html do
-  view :core, template: :haml
+  view :titled_content, template: :haml
 end
