@@ -1,6 +1,7 @@
-# filter interface for "Browse Sources" page
+# Source filtering
 
-include_set Type::SearchType
+include_set Abstract::CqlSearch
+include_set Abstract::SearchViews
 include_set Abstract::BrowseFilterForm
 
 def target_type_id
@@ -13,11 +14,9 @@ format do
   end
 
   def sort_cql
-    if current_sort.to_sym == :title
-      { sort: { right: "title" } }
-    else
-      super
-    end
+    return super unless current_sort.to_sym == :title
+
+    { sort: { right: "title" } }
   end
 
   def sort_options
@@ -64,22 +63,17 @@ format :html do
 end
 
 # cql query to filter sources
-class SourceFilterQuery < FilterQuery
-  include WikirateFilterQuery
-
+class SourceFilterQuery < WikirateFilterQuery
   def wikirate_link_cql value
-    return unless value.present?
-    add_to_cql :right_plus, [WikirateLinkID, { content: [:match, value] }]
+    matching_field WikirateLinkID, value
   end
 
   def wikirate_title_cql value
-    return unless value.present?
-    add_to_cql :right_plus, [WikirateTitleID, { content: [:match, value] }]
+    matching_field WikirateTitleID, value
   end
 
   def wikirate_company_cql value
-    return unless value.present?
-    add_to_cql :right_plus, [WikirateCompanyID, { refer_to: { match: value } }]
+    matching_field WikirateCompanyID, value
   end
 
   def report_type_cql value
@@ -88,5 +82,9 @@ class SourceFilterQuery < FilterQuery
 
   def year_cql value
     add_to_cql :right_plus, [YearID, { refer_to: value }]
+  end
+
+  def matching_field field_id, value
+    add_to_cql :right_plus, [field_id, { content: [:match, value] }] if value.present?
   end
 end

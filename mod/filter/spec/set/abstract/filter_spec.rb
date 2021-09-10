@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::Abstract::Filter do
-  let(:card) { Card["Company"].fetch :browse_topic_filter }
+  let(:card) { :wikirate_topic.card }
 
   describe "#select_filter_tag" do
     it "renders single select list" do
