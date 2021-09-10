@@ -22,6 +22,11 @@ format do
 end
 
 format :html do
+  FULL_ANSWER_SECONDARY_SORT = {
+    metric_title: { company_name: :asc },
+    company_name: { metric_title: :asc },
+  }.freeze
+
   def details_view
     :details_sidebar
   end
@@ -41,6 +46,14 @@ format :html do
   def quick_filter_list
     @quick_filter_list ||=
       bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
+  end
+
+  def default_sort_option
+    :metric_title
+  end
+
+  def secondary_sort
+    @secondary_sort ||= FULL_ANSWER_SECONDARY_SORT[sort_by] || super
   end
 
   def bookmark_type
