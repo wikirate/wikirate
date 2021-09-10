@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Right::BrowseCompanyFilter do
-  include Cardio::FilterSpecHelper
+  include FilterSpecHelper
 
   let(:format) { format_subject :base }
 

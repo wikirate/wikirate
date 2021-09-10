@@ -1,5 +1,5 @@
 describe Card::Set::Abstract::FilterFormgroups do
-  let(:filter_card) { Card[:wikirate_company].fetch :browse_topic_filter }
+  let(:filter_card) { :wikirate_topic.card }
 
   describe "sort formgroup" do
     subject { filter_card.format.render_sort_formgroup }

@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Abstract::TopicFilter do
-  include Cardio::FilterSpecHelper
+  include FilterSpecHelper
 
   let(:format) { format_subject :base }
 
@@ -12,17 +12,17 @@ RSpec.describe Card::Set::Abstract::TopicFilter do
       args # merge type_id: Card::WikirateTopicID
     end
 
-    context "name argument" do
+    context "with name argument" do
       before { filter_args name: "Animal Rights" }
       it { is_expected.to eq cql(name: ["match", "Animal Rights"]) }
     end
 
-    context "company argument" do
+    context "with company argument" do
       before { filter_args wikirate_company: "Apple Inc" }
       it { is_expected.to eq cql(found_by: "Apple Inc+topic") }
     end
 
-    context "metric argument" do
+    context "with metric argument" do
       before { filter_args metric: "myMetric" }
       it do
         is_expected.to eq cql(
@@ -40,7 +40,7 @@ RSpec.describe Card::Set::Abstract::TopicFilter do
       end
     end
 
-    context "multiple filter conditions" do
+    context "with multiple filter conditions" do
       before do
         filter_args name: "Animal Rights",
                     wikirate_company: "Apple Inc",
