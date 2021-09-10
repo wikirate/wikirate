@@ -24,7 +24,7 @@ end
 format :html do
   FULL_ANSWER_SECONDARY_SORT = {
     metric_title: { company_name: :asc },
-    company_name: { metric_title: :asc },
+    company_name: { metric_title: :asc }
   }.freeze
 
   def details_view

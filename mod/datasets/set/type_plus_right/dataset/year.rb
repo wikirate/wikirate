@@ -21,7 +21,7 @@ format :html do
   end
 
   def wrap_item rendered, item_view
-    filterable({ year: rendered }, class: "pointer-item item-#{item_view}" ) do
+    filterable({ year: rendered }, class: "pointer-item item-#{item_view}") do
       rendered
     end
   end
