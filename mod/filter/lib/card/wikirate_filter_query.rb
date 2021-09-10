@@ -1,6 +1,6 @@
 class Card
   # method shared in many queries.
-  module WikirateFilterQuery
+  class WikirateFilterQuery < FilterQuery
     def topic_cql topic
       topic = [:in] + Array.wrap(topic)
       add_to_cql :right_plus, [Card::WikirateTopicID, { refer_to: topic }]

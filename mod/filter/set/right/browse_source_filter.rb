@@ -64,9 +64,7 @@ format :html do
 end
 
 # cql query to filter sources
-class SourceFilterQuery < FilterQuery
-  include WikirateFilterQuery
-
+class SourceFilterQuery < WikirateFilterQuery
   def wikirate_link_cql value
     return unless value.present?
     add_to_cql :right_plus, [WikirateLinkID, { content: [:match, value] }]
