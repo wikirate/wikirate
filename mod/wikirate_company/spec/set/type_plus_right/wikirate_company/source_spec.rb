@@ -1,4 +1,6 @@
 RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
+  include FilterSpecHelper
+
   it_behaves_like "cached count", ["Death Star", :source], 4, 1 do
     let :add_one do
       card = Card.fetch sample_source(:apple), :wikirate_company, new: {}
@@ -31,7 +33,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
       subject { card_subject.format(:base).search_params }
 
       before do
-        Card::Env.params[:filter] = { wikirate_topic: "Force" }
+        add_filter :wikirate_topic, "Force"
       end
 
       it "adds filters to right_plus_array" do

@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Self::Source do
 
   describe "browse sources page" do
     subject do
-      render_card :core, name: :source
+      render_card :titled_content, name: :source
     end
 
     it "has 'add source' button" do
