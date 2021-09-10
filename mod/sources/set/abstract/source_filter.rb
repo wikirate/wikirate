@@ -84,6 +84,8 @@ class SourceFilterQuery < WikirateFilterQuery
     add_to_cql :right_plus, [YearID, { refer_to: value }]
   end
 
+  private
+
   def matching_field field_id, value
     add_to_cql :right_plus, [field_id, { content: [:match, value] }] if value.present?
   end
