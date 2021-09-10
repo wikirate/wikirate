@@ -18,6 +18,10 @@ format :html do
     @image_card ||= card.metric_designer_card.fetch :image, new: {}
   end
 
+  def social_description
+    card.question
+  end
+
   view :data do
     field_nest :metric_answer, view: :filtered_content
   end
