@@ -1,3 +1,4 @@
+# bypasses card controller, executes graphql queries
 class GraphqlController < ActionController::Base
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
@@ -25,14 +26,10 @@ class GraphqlController < ActionController::Base
   private
 
   # Handle variables in form data, JSON body, or a blank value
-  def prepare_variables(variables_param)
+  def prepare_variables variables_param
     case variables_param
     when String
-      if variables_param.present?
-        JSON.parse(variables_param) || {}
-      else
-        {}
-      end
+      prepare_string_variable variables_param
     when Hash
       variables_param
     when ActionController::Parameters
@@ -45,7 +42,13 @@ class GraphqlController < ActionController::Base
     end
   end
 
-  def handle_error_in_development(e)
+  def prepare_string_variable string
+    return {} unless string.present?
+
+    JSON.parse(string) || {}
+  end
+
+  def handle_error_in_development e
     logger.error e.message
     logger.error e.backtrace.join("\n")
 

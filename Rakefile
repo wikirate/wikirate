@@ -5,6 +5,3 @@
 require File.expand_path("../config/application", __FILE__)
 
 Wikirate::Application.load_tasks
-
-Dir.glob("vendor/card-mods/lib/tasks/*.rake").each { |r| load r }
-Dir.glob("vendor/decko/lib/tasks/*.rake").each { |r| load r }
