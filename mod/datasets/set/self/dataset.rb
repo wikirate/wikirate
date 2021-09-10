@@ -6,7 +6,7 @@ end
 
 format :csv do
   def title_row
-    CSV.generate_line ["PROJECT", "METRICS", "COMPANIES", "ANSWERS",
+    CSV.generate_line ["DATA SET", "METRICS", "COMPANIES", "ANSWERS",
                        "USERS", "COMMUNITY-ASSESSED", "DESIGNER-ASSESSED", "CREATED AT"]
   end
 
