@@ -1,5 +1,5 @@
 include_set Type::SearchType
-include_set Right::BrowseSourceFilter
+include_set Abstract::SourceFilter
 include_set Abstract::TaskFilter
 
 format :html do

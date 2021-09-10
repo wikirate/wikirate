@@ -1,6 +1,5 @@
-# filter interface for "Browse ResearchGroup" page
-
-include_set Type::SearchType
+include_set Abstract::CqlSearch
+include_set Abstract::SearchViews
 include_set Abstract::BrowseFilterForm
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
@@ -9,9 +8,13 @@ def target_type_id
   ResearchGroupID
 end
 
+def bookmark_type
+  :research_group
+end
+
 format do
   def filter_class
-    ResearchGroupFilterQuery
+    WikirateFilterQuery
   end
 
   def sort_options
@@ -35,8 +38,8 @@ format :html do
   def quick_filter_list
     bookmark_quick_filter + topic_quick_filters
   end
-end
 
-class ResearchGroupFilterQuery < FilterQuery
-  include WikirateFilterQuery
+  view :titled_content do
+    [field_nest(:description), render_add_button, render_filtered_content]
+  end
 end

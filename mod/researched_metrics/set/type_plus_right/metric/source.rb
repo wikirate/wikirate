@@ -1,7 +1,7 @@
-include_set Right::BrowseSourceFilter
 
 # cache # of sources on which answers for this metric (=left) are based on
 include_set Abstract::SearchCachedCount
+include_set Abstract::SourceFilter
 
 def cql_content
   { referred_to_by: { right_id: SourceID, left_id: [:in] + answer_ids } }

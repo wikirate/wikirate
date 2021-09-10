@@ -1,7 +1,5 @@
 class Card
-  class CompanyFilterQuery < FilterQuery
-    include WikirateFilterQuery
-
+  class CompanyFilterQuery < WikirateFilterQuery
     class << self
       def country_condition
         answer_condition :countries, :core_country
