@@ -14,7 +14,7 @@ end
 
 format do
   def filter_class
-    ResearchGroupFilterQuery
+    WikirateFilterQuery
   end
 
   def sort_options
@@ -42,8 +42,4 @@ format :html do
   view :titled_content do
     [field_nest(:description), render_add_button, render_filtered_content]
   end
-end
-
-class ResearchGroupFilterQuery < FilterQuery
-  include WikirateFilterQuery
 end

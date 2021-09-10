@@ -5,14 +5,9 @@ def target_type_id
   Card::CompanyGroupID
 end
 
-# FilterQuery class for company groups
-class CompanyGroupFilterQuery < Card::FilterQuery
-  include WikirateFilterQuery
-end
-
 format do
   def filter_class
-    CompanyGroupFilterQuery
+    WikirateFilterQuery
   end
 
   def filter_keys

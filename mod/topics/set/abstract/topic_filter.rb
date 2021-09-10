@@ -33,9 +33,8 @@ format do
   end
 end
 
-class TopicFilterQuery < Card::FilterQuery
-  include WikirateFilterQuery
-
+# FilterQuery class for topic filtering
+class TopicFilterQuery < WikirateFilterQuery
   def metric_cql metric
     add_to_cql :referred_to_by, left: { name: metric }, right: "topic"
   end
