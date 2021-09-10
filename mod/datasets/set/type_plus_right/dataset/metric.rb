@@ -8,6 +8,10 @@ include_set Abstract::DatasetScope
 include_set Abstract::IdPointer
 
 format :html do
+  view :titled_content do
+    render_filtered_content
+  end
+
   def filter_field_code
     :browse_metric_filter
   end

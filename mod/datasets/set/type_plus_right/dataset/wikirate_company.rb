@@ -12,6 +12,10 @@ def item_cards_for_validation
 end
 
 format :html do
+  view :titled_content do
+    render_filtered_content
+  end
+
   def filter_field_code
     :browse_company_filter
   end
