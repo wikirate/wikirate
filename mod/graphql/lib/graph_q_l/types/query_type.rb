@@ -15,6 +15,7 @@ module GraphQL
 
       field :cards, [Card], null: false do
         argument :name, String, required: false
+        argument :type, String, required: false
       end
 
       field :company, Company, null: true do
@@ -26,12 +27,14 @@ module GraphQL
         argument :name, String, required: false
       end
 
+      field :metrics, [Metric], null: false
+
       def card **mark
         ok_card nil, **mark
       end
 
-      def cards name: nil
-        card_search name
+      def cards name: nil, type: nil
+        card_search name, type
       end
 
       def company **mark
@@ -39,8 +42,18 @@ module GraphQL
       end
 
       def companies name: nil
-        card_search name, type: :wikirate_company
+        card_search name, type
       end
+
+      def metrics
+        ::Metric.limit(10).all
+      end
+
+      def answers
+        ::Answer.limit(10).all
+      end
+
+      private
 
       def ok_card_of_type type_code, **mark
         card = ok_card(**mark)
@@ -48,12 +61,13 @@ module GraphQL
       end
 
       def ok_card type_code, name: nil, id: nil
-        card = ::Card.cardish(name || id)
+        card = ::Card.fetch name || id
         card if card&.ok?(:read) && (!type_code || card.type_code == type_code)
       end
 
-      def card_search name, cql={}
-        cql.merge! limit: 10
+      def card_search name, type
+        cql = { limit: 10 }
+        cql[:type] = type if type
         cql[:name] = [:match, name] if name
         ::Card.search cql
       end

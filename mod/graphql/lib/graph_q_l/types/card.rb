@@ -38,7 +38,7 @@ module GraphQL
         object.type_id.card
       end
 
-      def link_name
+      def linkname
         object.name.url_key
       end
 
