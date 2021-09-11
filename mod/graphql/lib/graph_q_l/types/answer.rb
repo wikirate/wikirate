@@ -25,7 +25,7 @@ module GraphQL
       def sources
         object.source_card.item_cards
       end
-      
+
       # value(unit: String = undefined, currency: String = undefined): FlexibleValueType
       # input_answers: [Answer]
       # relationships: [Relationship!]

@@ -2,6 +2,7 @@ module GraphQL
   module Types
     class Metric < Card
       field :designer, Card, null: false
+      field :title, String, null: true
       field :question, String, null: true
       field :about, String, null: true
       field :methodology, String, null: true
@@ -15,6 +16,10 @@ module GraphQL
 
       def id
         object.metric_id
+      end
+
+      def title
+        object.metric_title
       end
 
       def designer
