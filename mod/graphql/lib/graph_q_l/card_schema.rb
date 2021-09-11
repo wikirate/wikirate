@@ -1,5 +1,5 @@
-module Wikirate
-  class Schema < GraphQL::Schema
+module GraphQL
+  class CardSchema < GraphQL::Schema
     mutation Types::MutationType
     query Types::QueryType
 
@@ -31,6 +31,5 @@ module Wikirate
         # ...
       end
     end
-
   end
 end

@@ -1,4 +1,4 @@
-module Wikirate
+module GraphQL
   module Types
     class Card < BaseObject
       field :id, Integer, null: true,
@@ -13,10 +13,10 @@ module Wikirate
       field :linkname, String, null: false,
             description: "url-friendly name variant"
 
-      field :created_at, GraphQL::Types::ISO8601DateTime, null: true,
+      field :created_at, Types::ISO8601DateTime, null: true,
             description: "Date and Time when created"
 
-      field :updated_at, GraphQL::Types::ISO8601DateTime, null: true,
+      field :updated_at, Types::ISO8601DateTime, null: true,
             description: "Date and Time when last updated"
 
       field :creator, Card, null: true,

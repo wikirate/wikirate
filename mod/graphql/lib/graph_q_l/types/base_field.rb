@@ -1,6 +1,6 @@
-module Wikirate
+module GraphQL
   module Types
-    class BaseInputObject < GraphQL::Schema::InputObject
+    class BaseField < Schema::Field
       argument_class Types::BaseArgument
     end
   end

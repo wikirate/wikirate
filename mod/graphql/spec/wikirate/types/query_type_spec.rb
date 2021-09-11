@@ -1,6 +1,6 @@
-RSpec.describe Wikirate::Types::QueryType do
+RSpec.describe GraphQL::Types::QueryType do
   def result query_string
-    Wikirate::Schema.execute(query_string)["data"]
+    GraphQL::Schema.execute(query_string)["data"]
   end
 
   describe "card field" do

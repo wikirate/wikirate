@@ -1,4 +1,4 @@
-module Wikirate
+module GraphQL
   module Types
     class Company < Card
       field :logo_url, String, null: true,
