@@ -9,6 +9,8 @@ PATH
       card
     card-mod-fulltext (0.1)
       card
+    card-mod-graphql (1.1)
+      card
     card-mod-new_relic (1.1)
       card
       decko
@@ -832,6 +834,7 @@ DEPENDENCIES
   card-mod-defaults!
   card-mod-delayed_job!
   card-mod-fulltext!
+  card-mod-graphql!
   card-mod-monkey!
   card-mod-new_relic!
   card-mod-pdfjs!

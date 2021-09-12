@@ -39,12 +39,11 @@ module GraphQL
       #   value_options: [Category!]!
       #   value_type: valueType
       #   topics: [Topic!]!
-      #   formula: String
-      #   scores: String
+      #   scores: [Metric]
       #   answers: [Answer!]!
       #   relationships: [Relationship!]    answers: [BaseAnswer!]
       #   datasets: [Datase!]!
-      #   calculations:[String!]!
+      #   calculations:[Metric!]!
       # }
     end
   end

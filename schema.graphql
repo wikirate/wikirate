@@ -1,0 +1,337 @@
+type Answer {
+  comments: String
+  company: Company!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  Date and Time when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  metric: Metric!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+
+  """
+  left name
+  """
+  right: Card
+  sources: [Source!]!
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  Date and Time when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+  value: String!
+  year: Int!
+}
+
+type Card {
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  Date and Time when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+
+  """
+  left name
+  """
+  right: Card
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  Date and Time when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+}
+
+type Company {
+  answers: [Answer!]!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  Date and Time when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+
+  """
+  url for company logo image
+  """
+  logoUrl: String
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+
+  """
+  left name
+  """
+  right: Card
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  Date and Time when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+}
+
+"""
+An ISO 8601-encoded datetime
+"""
+scalar ISO8601DateTime
+
+type Metric {
+  about: String
+  answers: [Answer!]!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  Date and Time when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+  designer: Card!
+  formula: String
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  methodology: String
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+  question: String
+  range: String
+  reportType: String
+  researchPolicy: String
+
+  """
+  left name
+  """
+  right: Card
+  title: String
+
+  """
+  card type
+  """
+  type: Card!
+  unit: String
+
+  """
+  Date and Time when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+}
+
+type Mutation {
+  """
+  An example field added by the generator
+  """
+  testField: String!
+}
+
+type Query {
+  card(id: Int, name: String): Card
+  cards(name: String, type: String): [Card!]!
+  companies(name: String): [Company!]!
+  company(id: Int, name: String): Company
+  metrics: [Metric!]!
+}
+
+type Source {
+  answers: [Answer!]!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  Date and Time when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+  description: String
+  fileUrl: String
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+  reportType: String
+
+  """
+  left name
+  """
+  right: Card
+  title: String
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  Date and Time when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+  years: [Int!]!
+}
