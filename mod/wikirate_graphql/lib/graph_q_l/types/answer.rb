@@ -7,7 +7,6 @@ module GraphQL
 
       field :value, String, null: false
       field :comments, String, null: true
-
       field :sources, [Source], null: false
 
       def id
