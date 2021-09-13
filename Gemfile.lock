@@ -9,6 +9,8 @@ PATH
       card
     card-mod-fulltext (0.1)
       card
+    card-mod-graphql (1.1)
+      card
     card-mod-new_relic (1.1)
       card
       decko
@@ -492,6 +494,10 @@ GEM
     formatador (0.3.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    graphiql-rails (1.8.0)
+      railties
+      sprockets-rails
+    graphql (1.12.16)
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
@@ -828,6 +834,7 @@ DEPENDENCIES
   card-mod-defaults!
   card-mod-delayed_job!
   card-mod-fulltext!
+  card-mod-graphql!
   card-mod-monkey!
   card-mod-new_relic!
   card-mod-pdfjs!
@@ -846,6 +853,8 @@ DEPENDENCIES
   decko-spring!
   descriptive_statistics
   fog-aws
+  graphiql-rails
+  graphql
   link_thumbnailer
   mysql2 (> 0.4)
   open_uri_redirections
