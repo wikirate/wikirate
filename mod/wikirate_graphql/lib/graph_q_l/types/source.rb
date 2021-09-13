@@ -1,29 +1,34 @@
 module GraphQL
   module Types
+    # Source type for GraphQL
     class Source < Card
       field :title, String, null: true
       field :description, String, null: true
       field :report_type, String, null: true
       field :years, [Integer], null: false
 
+      field :original_url, String, null: true
       field :file_url, String, null: true
       field :answers, [Answer], null: false
+      field :relationships, [Relationship], null: false
 
-      # very inefficient!!
+      def relationships
+        referers(:relationship_answer, :source)&.map(&:lookup)
+      end
+
       def answers
-        ::Card.search(type: :metric_answer,
-                      right_plus: [:source, { refer_to: object.id }])&.map &:lookup
+        referers(:metric_answer, :source)&.map(&:lookup)
+      end
+
+      def original_url
+        object.link_url
       end
     end
   end
 end
 
 # type Source implements WikiRateEntity{
-#   original_source: String
-#   file_url: String
 #   year: Int
-#   answers: [Answer!]!
-#   relationships: [Relationship!]
 #   metrics: [Metric!]!
 #   report_type: [String!]!
 #   companies: [Company!]!

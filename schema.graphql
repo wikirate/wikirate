@@ -8,7 +8,7 @@ type Answer {
   content: String
 
   """
-  Date and Time when created
+  when created
   """
   createdAt: ISO8601DateTime
 
@@ -37,9 +37,10 @@ type Answer {
   name that is unique across all cards
   """
   name: String!
+  relationships: [Relationship!]!
 
   """
-  left name
+  right name
   """
   right: Card
   sources: [Source!]!
@@ -50,7 +51,7 @@ type Answer {
   type: Card!
 
   """
-  Date and Time when last updated
+  when last updated
   """
   updatedAt: ISO8601DateTime
 
@@ -69,7 +70,7 @@ type Card {
   content: String
 
   """
-  Date and Time when created
+  when created
   """
   createdAt: ISO8601DateTime
 
@@ -99,7 +100,7 @@ type Card {
   name: String!
 
   """
-  left name
+  right name
   """
   right: Card
 
@@ -109,7 +110,7 @@ type Card {
   type: Card!
 
   """
-  Date and Time when last updated
+  when last updated
   """
   updatedAt: ISO8601DateTime
 
@@ -120,6 +121,9 @@ type Card {
 }
 
 type Company {
+  """
+  answers to questions about company
+  """
   answers: [Answer!]!
 
   """
@@ -128,7 +132,7 @@ type Company {
   content: String
 
   """
-  Date and Time when created
+  when created
   """
   createdAt: ISO8601DateTime
 
@@ -163,7 +167,12 @@ type Company {
   name: String!
 
   """
-  left name
+  relationships of which company is either subject or object
+  """
+  relationships: [Relationship!]!
+
+  """
+  right name
   """
   right: Card
 
@@ -173,7 +182,7 @@ type Company {
   type: Card!
 
   """
-  Date and Time when last updated
+  when last updated
   """
   updatedAt: ISO8601DateTime
 
@@ -181,6 +190,69 @@ type Company {
   User who last updated
   """
   updater: Card
+}
+
+type Dataset {
+  answers: [Answer!]!
+  companies: [Company!]!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+  description: String!
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  metrics: [Metric!]!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+
+  """
+  right name
+  """
+  right: Card
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+  years: [Int!]!
 }
 
 """
@@ -198,7 +270,7 @@ type Metric {
   content: String
 
   """
-  Date and Time when created
+  when created
   """
   createdAt: ISO8601DateTime
 
@@ -206,6 +278,7 @@ type Metric {
   User who created
   """
   creator: Card
+  datasets: [Dataset!]!
   designer: Card!
   formula: String
 
@@ -231,14 +304,16 @@ type Metric {
   name: String!
   question: String
   range: String
+  relationships: [Relationship!]
   reportType: String
   researchPolicy: String
 
   """
-  left name
+  right name
   """
   right: Card
   title: String
+  topics: [Topic!]!
 
   """
   card type
@@ -247,7 +322,7 @@ type Metric {
   unit: String
 
   """
-  Date and Time when last updated
+  when last updated
   """
   updatedAt: ISO8601DateTime
 
@@ -265,11 +340,86 @@ type Mutation {
 }
 
 type Query {
+  answer(id: Int): Answer
+  answers: [Answer!]!
   card(id: Int, name: String): Card
   cards(name: String, type: String): [Card!]!
-  companies(name: String): [Company!]!
+  companies(id: Int): [Company!]!
   company(id: Int, name: String): Company
+  dataset(id: Int, name: String): Dataset
+  datasets(id: Int): [Dataset!]!
+  metric(id: Int, name: String): Metric
   metrics: [Metric!]!
+  relationship(id: Int): Relationship
+  relationships: [Relationship!]!
+  source(id: Int, name: String): Source
+  sources(id: Int): [Source!]!
+  topic(id: Int, name: String): Topic
+  topics(id: Int): [Topic!]!
+}
+
+type Relationship {
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+  inverseMetric: Metric!
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  metric: Metric!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+  objectCompany: Company!
+
+  """
+  right name
+  """
+  right: Card
+  sources: [Source!]!
+  subjectCompany: Company!
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+  value: String!
+  year: Int!
 }
 
 type Source {
@@ -281,7 +431,7 @@ type Source {
   content: String
 
   """
-  Date and Time when created
+  when created
   """
   createdAt: ISO8601DateTime
 
@@ -311,10 +461,12 @@ type Source {
   name that is unique across all cards
   """
   name: String!
+  originalUrl: String
+  relationships: [Relationship!]!
   reportType: String
 
   """
-  left name
+  right name
   """
   right: Card
   title: String
@@ -325,7 +477,7 @@ type Source {
   type: Card!
 
   """
-  Date and Time when last updated
+  when last updated
   """
   updatedAt: ISO8601DateTime
 
@@ -334,4 +486,64 @@ type Source {
   """
   updater: Card
   years: [Int!]!
+}
+
+type Topic {
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+  datasets: [Dataset!]!
+  description: String!
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  metrics: [Metric!]!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+
+  """
+  right name
+  """
+  right: Card
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
 }

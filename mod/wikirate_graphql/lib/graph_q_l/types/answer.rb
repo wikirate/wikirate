@@ -1,5 +1,6 @@
 module GraphQL
   module Types
+    # Answer type for GraphQL
     class Answer < Card
       field :year, Integer, null: false
       field :company, Company, null: false
@@ -8,6 +9,8 @@ module GraphQL
       field :value, String, null: false
       field :comments, String, null: true
       field :sources, [Source], null: false
+
+      field :relationships, [Relationship], null: false
 
       def id
         object.answer_id
@@ -25,9 +28,14 @@ module GraphQL
         object.source_card.item_cards
       end
 
+      def relationships
+        return unless object.relationship?
+
+        Relationship.where(object.answer_lookup_field => object.id).limit(10).all
+      end
+
       # value(unit: String = undefined, currency: String = undefined): FlexibleValueType
       # input_answers: [Answer]
-      # relationships: [Relationship!]
     end
   end
 end

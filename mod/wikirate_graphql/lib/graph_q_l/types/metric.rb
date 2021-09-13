@@ -1,5 +1,6 @@
 module GraphQL
   module Types
+    # Metric type for GraphQL
     class Metric < Card
       field :designer, Card, null: false
       field :title, String, null: true
@@ -11,8 +12,10 @@ module GraphQL
       field :range, String, null: true
       field :formula, String, null: true
       field :report_type, String, null: true
-
       field :answers, [Answer], null: false
+      field :relationships, [Relationship], null: true
+      field :topics, [Topic], null: false
+      field :datasets, [Dataset], null: false
 
       def id
         object.metric_id
@@ -30,18 +33,29 @@ module GraphQL
         ::Answer.where(metric_id: object.metric_id).limit(10).all
       end
 
+      def relationships
+        return unless object.relationship?
+
+        ::Relationship.where(object.metric_lookup_field => object.id).limit(10).all
+      end
+
       def formula
         object.try :formula
+      end
+
+      def topics
+        object.wikirate_topic_card.item_cards
+      end
+
+      def datasets
+
       end
 
       # type Metric implements WikiRateEntity{
       #   metric_type: metricType
       #   value_options: [Category!]!
       #   value_type: valueType
-      #   topics: [Topic!]!
       #   scores: [Metric]
-      #   answers: [Answer!]!
-      #   relationships: [Relationship!]    answers: [BaseAnswer!]
       #   datasets: [Datase!]!
       #   calculations:[Metric!]!
       # }
