@@ -30,7 +30,7 @@ module GraphQL
       end
 
       def answers
-        ::Answer.where(metric_id: object.metric_id).limit(10).all
+        ::Card::AnswerQuery.new({ metric_id: object.metric_id }, {}, limit: 10).run
       end
 
       def relationships
@@ -48,17 +48,14 @@ module GraphQL
       end
 
       def datasets
-
+        referers :dataset, :metric
       end
 
-      # type Metric implements WikiRateEntity{
       #   metric_type: metricType
       #   value_options: [Category!]!
       #   value_type: valueType
       #   scores: [Metric]
-      #   datasets: [Datase!]!
       #   calculations:[Metric!]!
-      # }
     end
   end
 end

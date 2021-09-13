@@ -1,4 +1,4 @@
-RSpec.describe GraphQL::Types::Query do
+RSpec.describe GraphQL::Types::Company do
   def result query_string
     GraphQL::CardSchema.execute(query_string)["data"]["company"]
   end
