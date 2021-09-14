@@ -32,7 +32,7 @@ end
 
 format :html do
   def units
-    @units ||= "Metric #{card.dataset_card.units}"
+    @units ||= "metric #{card.dataset_card.units}"
   end
 
   bar_cols 8, 4
@@ -75,6 +75,8 @@ format :html do
   view :project_header do
     nest card.project_card, view: :bar_left, hide: :default_research_progress_bar
   end
+
+  view :research_dashboard_progress, template: :haml
 
   def dataset_name
     card.dataset_card.name
