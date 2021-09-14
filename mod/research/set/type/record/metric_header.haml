@@ -1,0 +1,10 @@
+- if project_card
+  .metric-project-research.row.align-items-center
+    .col-1.h2
+      = fa_icon "angle-left"
+    .col-10
+      = render_metric_option
+    .col-1.h2
+      = fa_icon "angle-right"
+- else
+  = render_metric_option

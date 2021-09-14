@@ -1,0 +1,9 @@
+.research-header-progress
+  .py-3
+    = render :research_progress_bar
+  %label
+    = card.num_researched
+    \/
+    = card.num_possible
+    = units
+    completed for company.
