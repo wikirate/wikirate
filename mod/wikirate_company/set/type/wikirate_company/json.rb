@@ -20,7 +20,7 @@ format :json do
   def molecule
     super.tap do |h|
       add_fields_to_hash(h)
-      h[:answers_url] = path mark: card.field(:metric_answer), format: :json
+      h[:answers_url] = path mark: card.name.field(:metric_answer), format: :json
     end
   end
 

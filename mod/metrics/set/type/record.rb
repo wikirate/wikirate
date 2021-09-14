@@ -3,8 +3,8 @@ include_set Abstract::TwoColumnLayout
 
 card_accessor :metric_answer
 
-event :update_lookups_on_record_rename, :finalize, changed: :name do
-  search.each(&:refresh)
+event :update_lookups_on_record_rename, :finalize, changed: :name, on: :update do
+  metric_answer_card.search.each(&:refresh)
 end
 
 def virtual?
