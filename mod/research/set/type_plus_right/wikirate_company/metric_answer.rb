@@ -4,7 +4,6 @@ include_set Abstract::MetricFilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 include_set Abstract::CachedCount
-include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
 # recount number of answers for a given metric when an answer card is
