@@ -676,3 +676,26 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     max-width: 80%;
   }
 }
+
+header.research-phases {
+  padding: 4.5rem;
+  display: flex;
+  justify-content: space-around;
+  .research-phase {
+    padding: 1rem 3rem;
+    min-width: 25%;
+    .circle-num {
+      border: 1px solid $gray-400;
+      border-radius: 50%;
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 1rem;
+    }
+  }
+}
+.research-company-context {
+  display: flex;
+  padding: 4.5rem;
+}
+

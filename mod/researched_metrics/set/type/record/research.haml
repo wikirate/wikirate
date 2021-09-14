@@ -1,7 +1,21 @@
-%header.container.py-5
-  question / source / answer
-.bg-light.py-5
-  .container
-    project/company
+%header.container.research-phases
+  - %w[Question Source Answer].each_with_index do |phase, index|
+    .btn.btn-outline-secondary.research-phase
+      .circle-num
+        = index
+      = phase
+.bg-light
+  .container.research-company-context
+    .w-50.pr-4
+      - if project_card
+        %h2.project-color
+          = project_card.name
+      %h2.company-color
+        = card.company_name
+    .w-50.pl-4
+      - if project_card
+        = render :research_progress_bar
+
+
 %main.container.py-5.position-relative
   metric
