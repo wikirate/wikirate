@@ -12,12 +12,8 @@ def company_card
   @company_card ||= left
 end
 
-def company_image
-  company_card.fetch :image, new: {}
-end
-
 def metric_ids
-  dataset_card.metric_ids
+  @metric_ids ||= dataset_card.metric_ids
 end
 
 def num_possible
@@ -32,7 +28,7 @@ end
 
 format :html do
   def units
-    @units ||= "metric #{card.dataset_card.units}"
+    @units ||= card.dataset_card.units
   end
 
   bar_cols 8, 4
@@ -60,23 +56,22 @@ format :html do
     nest card.dataset_card, view: :bar_bottom
   end
 
-  view :research_button, unknown: true do
+  view :research_button, cache: :never do
     link_to "Research",
             class: "btn btn-outline-secondary btn-sm research-answer-button",
-            path: { mark: :research_page,
-                    company: card.company_card.name,
-                    project: card.project_name.url_key }
+            path: { mark: record_name, project: card.project_name, view: :research }
   end
 
   view :research_progress_bar, cache: :never do
     research_progress_bar :company_link
   end
 
-  view :project_header do
-    nest card.project_card, view: :bar_left, hide: :default_research_progress_bar
-  end
+  view :research_header_progress, template: :haml
 
-  view :research_dashboard_progress, template: :haml
+  def record_name
+    metric_name = (params[:metric] || card.metric_ids.first).cardname
+    metric_name.field card.company_card.name
+  end
 
   def dataset_name
     card.dataset_card.name

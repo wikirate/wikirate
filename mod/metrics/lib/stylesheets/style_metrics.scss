@@ -677,25 +677,36 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-header.research-phases {
-  padding: 4.5rem;
-  display: flex;
-  justify-content: space-around;
-  .research-phase {
-    padding: 1rem 3rem;
-    min-width: 25%;
-    .circle-num {
-      border: 1px solid $gray-400;
-      border-radius: 50%;
-      display: inline-block;
-      width: 1.5rem;
-      height: 1.5rem;
-      margin-right: 1rem;
+.research-layout {
+  header.research-phases {
+    padding: 4.5rem;
+    display: flex;
+    justify-content: space-around;
+
+    .research-phase {
+      padding: 2rem 3rem;
+      min-width: 25%;
+
+      .circle-num {
+        border: 1px solid $gray-400;
+        border-radius: 50%;
+        display: inline-block;
+        text-align: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+  header, section {
+    padding: 4.5rem 0;
+    h2 {
+      margin-top: 0.1rem
     }
   }
 }
-.research-company-context {
-  display: flex;
-  padding: 4.5rem;
+
+.progress {
+  border-radius: 10px;
 }
 

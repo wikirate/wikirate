@@ -11,7 +11,7 @@ def metric_card
 end
 
 def company_ids
-  dataset_card.company_ids
+  @company_ids ||= dataset_card.company_ids
 end
 
 def num_possible
@@ -33,18 +33,27 @@ def where_answer
 end
 
 format :html do
+  delegate :metric_card, :dataset_card, :company_ids, :project_name, to: :card
   def units
-    @units ||= "#{rate_subject} #{card.dataset_card.units}"
+    @units ||= "#{rate_subject} #{dataset_card.units}"
   end
 
   view :metric_header do
     metric_link do
-      nest card.metric_card, view: :thumbnail_with_bookmark, hide: :thumbnail_link
+      nest metric_card, view: :thumbnail_with_bookmark, hide: :thumbnail_link
     end
+  end
+
+  before :bar do
+    voo.show :bar_middle if metric_card.researchable?
   end
 
   view :bar_left do
     render_metric_header
+  end
+
+  view :bar_middle do
+    render_research_button
   end
 
   view :bar_right do
@@ -52,15 +61,22 @@ format :html do
   end
 
   view :bar_bottom do
-    nest card.dataset_card, view: :bar_bottom
+    nest dataset_card, view: :bar_bottom
   end
 
   view :research_progress_bar, cache: :never do
     research_progress_bar :metric_link
   end
 
-  view :project_header do
-    nest card.project_card, view: :bar_left, hide: :default_research_progress_bar
+  view :research_button, cache: :never do
+    link_to "Research",
+            class: "btn btn-outline-secondary btn-sm research-answer-button",
+            path: { mark: record_name, project: project_name, view: :research }
+  end
+
+  def record_name
+    company_name = (params[:company] || company_ids.first).cardname
+    metric_card.name.field company_name
   end
 
   def full_page_card
@@ -72,7 +88,7 @@ format :html do
   end
 
   def metric_link values=:all
-    path_args = card.dataset_card.filter_path_args values
-    link_to_card card.metric_card, yield, path: path_args, class: "metric-color"
+    path_args = dataset_card.filter_path_args values
+    link_to_card metric_card, yield, path: path_args, class: "metric-color"
   end
 end
