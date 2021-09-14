@@ -1,6 +1,10 @@
 format :html do
   def project_card
-    @project_card || params[:project]&.card
+    @project_card ||= params[:project]&.card
+  end
+
+  def dataset_card
+    @dataset_card ||= project_card&.dataset_card
   end
 
   def project_name
@@ -8,11 +12,11 @@ format :html do
   end
 
   def project_companies_mark
-    project_name.field :wikirate_company
+    project_name&.field :wikirate_company
   end
 
   def project_metrics_mark
-    project_name.field :metric
+    project_name&.field :metric
   end
 
   def company_project_mark
@@ -33,10 +37,39 @@ format :html do
   view :company_header, template: :haml
   view :metric_header, template: :haml
   view :metric_option, template: :haml
-  private
 
-  def research_header type
-    base = card.send "#{type}_name"
-    nest Card.fetch([base, project_card]), view: :research_header
+  def angle dir
+    fa_icon "angle-#{dir}", class: "text-secondary"
+  end
+
+  def multi_company?
+    dataset_card && dataset_card.num_companies > 1
+  end
+
+  def multi_metric?
+    dataset_card && dataset_card.num_metrics > 1
+  end
+
+  def link_to_company
+    link_to_card company_name, nil, class: "company-color", target: "_company"
+  end
+
+  def metric_ids
+    @metric_ids ||= dataset_card&.metric_ids
+  end
+
+  def metric_index
+    @metric_index ||= metric_ids.index card.metric_id
+  end
+
+  def link_to_metric index, text
+    record_name = metric_id_for_index(index).cardname.field card.company_name
+    link_to_card record_name, text, path: { project: project_name, view: :research }
+  end
+
+  def metric_id_for_index index
+    return metric_ids.last if index.negative?
+
+    metric_ids[index] || metric_ids.first
   end
 end

@@ -1,10 +1,17 @@
-- if project_card
+- if multi_metric?
   .metric-project-research.row.align-items-center
     .col-1.h2
-      = fa_icon "angle-left"
+      = link_to_metric metric_index - 1, angle(:left)
     .col-10
       = render_metric_option
+      %label.text-secondary.py-3
+        Question
+        = metric_index + 1
+        \/
+        = metric_ids.size
+
+
     .col-1.h2
-      = fa_icon "angle-right"
+      = link_to_metric metric_index + 1, angle(:right)
 - else
   = render_metric_option
