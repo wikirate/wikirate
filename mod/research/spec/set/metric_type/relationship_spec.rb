@@ -88,6 +88,6 @@ RSpec.describe Card::Set::MetricType::Relationship do
   end
 
   it "is researchable" do
-    expect(Card["Jedi+more evil"].researched?).to be_truthy
+    expect("Jedi+more evil".card).to be_researched
   end
 end

@@ -16,7 +16,7 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
       create_answer metric: metric.name, company: company.name, value: value
     end
 
-    context "value not fit the value type" do
+    context "when value doesn't fit the value type" do
       next unless invalid_content
 
       xit "fails" do
@@ -25,14 +25,14 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
       end
     end
 
-    context "value fit the value type" do
+    context "when value fits the value type" do
       it "saves correct value" do
         answer = metric_answer valid_content
         expect(Card[answer, :value].content).to eq valid_content
       end
     end
 
-    context 'value is "unknown"' do
+    context 'when value is "unknown"' do
       xit "passes the validation" do
         expect(metric_answer("unknown")).to be_valid
       end
