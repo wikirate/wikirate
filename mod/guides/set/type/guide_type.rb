@@ -30,7 +30,7 @@ format :html do
   end
 
   def expanded?
-    parent&.parent&.card == card
+    root.card == card
   end
 
   def subheaders
