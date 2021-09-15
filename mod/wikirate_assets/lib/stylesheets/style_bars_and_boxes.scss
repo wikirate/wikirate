@@ -44,9 +44,9 @@ $box_stripe_color: $gray-700;
       display: none;
     }
   }
-  @include media-breakpoint-down(sm) {
-    padding: 0;
-  }
+  //@include media-breakpoint-down(sm) {
+  //  padding: 0;
+  //}
 }
 
 .filter-result-badges {

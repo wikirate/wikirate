@@ -17,12 +17,16 @@ format :html do
   end
 
   view :core do
-    filtering(".RIGHT-answer ._filter-widget") { super() }
+    filtering(".RIGHT-answer ._filter-widget") do
+      wrap_with :div, class: "pointer-list" do
+        filterable_years
+      end
+    end
   end
 
-  def wrap_item rendered, item_view
-    filterable({ year: rendered }, class: "pointer-item item-#{item_view}") do
-      rendered
-    end
+  def filterable_years
+    card.item_names.map do |year|
+      filterable({ year: year }, class: "pointer-item item-name") { year }
+    end.join ", "
   end
 end
