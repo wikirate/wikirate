@@ -49,7 +49,7 @@ format :html do
   end
 
   def record_count
-    @record_count ||= card.record_card.count
+    @record_count ||= card.record_card.metric_answer_card.count
   end
 
   view :record_filter_button, cache: :never do

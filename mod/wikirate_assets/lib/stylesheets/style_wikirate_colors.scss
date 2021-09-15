@@ -117,7 +117,9 @@ $colorMap: (
   }
 
   .#{$type}-color, .#{$type}-color a {
-    color: $color;
+    &, &:hover, &:focus, &:visited {
+      color: $color;
+    }
   }
 
   .badge-#{$type} {
