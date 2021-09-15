@@ -5,6 +5,15 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
 
   check_html_views_for_errors
 
+  %w[Views Listing Flags].each do |subdir|
+    abstract_answer_views =
+      Card::Set::Format::AbstractFormat::ViewDefinition.views[
+        Card::Set::Abstract::MetricAnswer.const_get(subdir).const_get("HtmlFormat")
+      ].keys
+    include_context_for abstract_answer_views, "view without errors"
+    include_context_for abstract_answer_views, "view with valid html"
+  end
+
   let(:year) { "1977" }
   let(:metric) { "Jedi+more evil" }
   let(:inverse_metric) { "Jedi+less evil" }
@@ -87,14 +96,6 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
       expect(rel.lookup).to be_nil
       expect(Card[value_card_id]).to be_nil
     end
-  end
-
-  specify "#default_research_params" do
-    expect(format_subject.default_research_params)
-      .to eq(company: "Monster Inc",
-             metric: "Commons+Supplied by",
-             year: "1977",
-             related_company: "Los Pollos Hermanos")
   end
 
   # context "when changing relationship answer name" do

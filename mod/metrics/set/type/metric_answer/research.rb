@@ -29,14 +29,6 @@ format :html do
     end
   end
 
-  view :research_button, unknown: true do
-    return "" unless metric_card.user_can_answer?
-    link_to_card :research_page, "Research Answer",
-                 class: "btn btn-primary btn-sm research-answer-button",
-                 path: { mark: card.record_name, year: card.year, view: :research },
-                 title: "Research Answer"
-  end
-
   view :year_option, unknown: true do
     return unless card.year.present?
     card.known? ? render(:year_and_value) : haml(:new_year_option)

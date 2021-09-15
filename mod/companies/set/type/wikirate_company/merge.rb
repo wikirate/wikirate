@@ -101,8 +101,8 @@ def move_source_listings_to target_company
 end
 
 def replace_company_listings trait, target_company
-  fetch(trait).item_names.each do |trait|
-    next unless base = yield(trait)
+  fetch(trait).item_names.each do |trt|
+    next unless (base = yield trt)
 
     replace_company_in_list base, target_company
   end

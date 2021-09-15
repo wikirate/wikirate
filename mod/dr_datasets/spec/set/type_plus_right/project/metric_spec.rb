@@ -6,12 +6,12 @@ describe Card::Set::TypePlusRight::Project::Metric do
   describe "table (core view)" do
     subject { project_metrics.format.render_core }
 
-    it "shows bar views of <Company>+<Dataset> cards" do
-      is_expected.to have_tag(".LTYPE_RTYPE-metric-project.bar")
+    it "shows bar views of <Company>+<Project> cards" do
+      is_expected.to have_tag(".LTYPE_RTYPE-metric-project.bar-view")
     end
 
-    it "does not include research buttons" do
-      is_expected.not_to have_tag("a.research-answer-button")
+    it "includes research buttons" do
+      is_expected.to have_tag("a.research-answer-button")
     end
 
     it "includes progress bars" do
