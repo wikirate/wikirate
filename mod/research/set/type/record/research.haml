@@ -1,0 +1,17 @@
+%header.container.research-phases
+  - %w[Question Source Answer].each_with_index do |phase, index|
+    .btn.btn-outline-secondary.research-phase
+      .circle-num
+        = index + 1
+      = phase
+%main
+  .research-phase-one
+    .bg-light
+      %section.container.research-company
+        = render_company_header
+    %section.container.research-metric-and-year
+      = render_metric_header
+      = render_research_years
+
+  .research-phase-two
+  .research-phase-three

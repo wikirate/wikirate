@@ -6,20 +6,11 @@ end
 
 format :html do
   view :core do
-    [render_chart, render_expanded_details]
+    render_concise
   end
 
-  view :titled_content, cache: :never do
-    bs do
-      layout do
-        row 12 do
-          column render_basic_details
-        end
-        row 12 do
-          column render_expanded_details
-        end
-      end
-    end
+  view :titled_content, wrap: :slot do
+    render_full_details
   end
 
   view :bar_middle do
@@ -74,6 +65,16 @@ format :html do
   view :plain_year do
     card.year
   end
+
+  view :research_option, perms: :none do
+    if card.known?
+      render_concise
+    else
+      render_year_not_researched
+    end
+  end
+
+  view :year_not_researched, perms: :none, template: :haml
 
   def handle_unknowns
     return yield if card.known?
