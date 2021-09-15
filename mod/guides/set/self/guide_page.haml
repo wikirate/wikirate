@@ -1,11 +1,39 @@
 %header.jumbotron.jumbotron-fluid
   .container
+    = render_menu
     %h1
       = field_nest :title, view: :content, type: :plain_text
     .lead
       = field_nest :description, view: :content
 %main.container.py-5.position-relative
-  .pb-5
-    = render_menu
   .guide-list.py-2
     = field_nest :list, type: :list, items: { view: :box }
+%section.container.guide-support
+  %h2
+    Further Support
+  .row
+    - support_cards.each do |name|
+      .col-4.p-5
+        .card.bg-light
+          .card-body.d-flex.align-items-center.justify-content-between
+            %h4
+              = name
+            .learn-more
+              - link_text = capture_haml do
+                Learn More
+                %i.fas.fa-arrow-right
+              = link_to_card name, link_text
+
+%section.container.guide-ticket
+  .card.m-5
+    .card-body.row.align-items-center.justify-content-between.px-5
+      .col-8
+        %h4.text-danger
+          Problems with a web page?
+        %p
+          If you encounter problems using WikiRate,
+          please let us know.
+      .col-4.text-align-right
+        %button.btn.btn-danger{ href: "/new/Ticket" }
+          Add a Ticket
+

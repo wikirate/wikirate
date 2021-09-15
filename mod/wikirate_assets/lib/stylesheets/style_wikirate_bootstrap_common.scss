@@ -683,10 +683,13 @@ a {
     transition: transform 0.35s ease;
     transform-origin: .5em 50%;
   }
-
   .btn[aria-expanded="true"] .fas {
     transform: rotate(90deg)
   }
+}
+
+.SELF-guide-list .item-box {
+  min-width: 340px;
 }
 
 html {
@@ -699,4 +702,11 @@ html {
   border-radius: 6px;
   border-left: 8px solid $gray-700;
   margin: 1rem 0;
+}
+
+.guide-support {
+  h4 {
+    padding: 0;
+    margin: 0 !important;
+  }
 }
