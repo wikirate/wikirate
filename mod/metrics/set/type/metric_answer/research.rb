@@ -33,7 +33,7 @@ format :html do
     return "" unless metric_card.user_can_answer?
     link_to_card :research_page, "Research Answer",
                  class: "btn btn-primary btn-sm research-answer-button",
-                 path: { metric: card.metric, company: card.company },
+                 path: { mark: card.record_name, year: card.year, view: :research },
                  title: "Research Answer"
   end
 
