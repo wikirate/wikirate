@@ -1,17 +1,11 @@
-.metric-dropdown-item {
-  max-width: 500px;
-  white-space: normal !important;
-  color: $muted;
-}
-
-.titled-view.LTYPE_RTYPE-record-year > .d0-card-header > .d0-card-header-title > .card-title {
-  font-size: 1.25rem; // make title look like h5 tag
-  margin-bottom: 0.5rem;
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.2;
-  color: inherit;
-}
+//.titled-view.LTYPE_RTYPE-record-year > .d0-card-header > .d0-card-header-title > .card-title {
+//  font-size: 1.25rem; // make title look like h5 tag
+//  margin-bottom: 0.5rem;
+//  font-family: inherit;
+//  font-weight: 500;
+//  line-height: 1.2;
+//  color: inherit;
+//}
 
 .open-view.TYPE-metric_value > .d0-card-frame > .d0-card-body {
   padding: 0;
@@ -28,28 +22,6 @@
   }
 }
 
-.metric-nav {
-    margin: 0px 10px;
-}
-
-.metric-select, .year-select {
-  .select2-selection,
-  .select2-container--focus,
-  .select2-container--open {
-    padding: 0;
-    border: none;
-    width: 100%!important;
-  }
-  .select2-selection__arrow {
-    background: #fff;
-    width: 25px !important;
-    right: 0 !important;
-    text-align: center;
-    b {
-      left: auto !important;
-    }
-  }
-}
 
 
 .html-select2.select2-dropdown.select2-dropdown--below .select2-results__options {
@@ -96,4 +68,10 @@
   .pdf-source-preview iframe {
     height: calc(100vh - 158px) !important;
   }
+}
+
+.research-year-option {
+  padding: 1em;
+  font-size: 1.1em;
+  border-bottom: 1px solid $gray-300;
 }

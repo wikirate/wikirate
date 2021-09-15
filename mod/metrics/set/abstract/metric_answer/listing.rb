@@ -66,6 +66,16 @@ format :html do
     card.year
   end
 
+  view :research_option, perms: :none do
+    if card.known?
+      render_concise
+    else
+      render_year_not_researched
+    end
+  end
+
+  view :year_not_researched, perms: :none, template: :haml
+
   def handle_unknowns
     return yield if card.known?
 

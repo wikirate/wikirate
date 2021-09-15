@@ -1,7 +1,8 @@
 .concise-answer.d-flex.justify-content-between
-  .metric-value.text-left.ellipsis
-    = nest card.value_card, view: :pretty
-    %span.text-muted.small.pt-1{ title: card.format(:text).render_legend }
+  .d-flex.flex-column.justify-content-between.w-100
+    .metric-value.text-left.ellipsis
+      = nest card.value_card, view: :pretty
+    %span.text-muted.small{ title: card.format(:text).render_legend }
       = render_legend
   .d-flex.justify-content-end.align-items-end
     = render_flags

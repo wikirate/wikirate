@@ -89,14 +89,6 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
     end
   end
 
-  specify "#default_research_params" do
-    expect(format_subject.default_research_params)
-      .to eq(company: "Monster Inc",
-             metric: "Commons+Supplied by",
-             year: "1977",
-             related_company: "Los Pollos Hermanos")
-  end
-
   # context "when changing relationship answer name" do
   #   def change_relationship_answer_name
   #     Card["Jedi"]

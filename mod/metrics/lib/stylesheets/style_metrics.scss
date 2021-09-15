@@ -85,7 +85,7 @@
     color: $answer-color;
   }
   color: $answer-color;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .year-and-value .metric-value {
@@ -314,19 +314,17 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .range-value {
   position: relative;
-  display: inline-block;
   span {
     position: absolute;
-    left: 0;
-    font-size: 14px;
     color: #FFF;
-    text-align: center;
-    width: 25px;
-    padding: 5px 0;
     font-weight: bold;
+    font-size: 0.9em;
+    padding: 0.15em 0;
+    width: 1.5em;
+    text-align: center;
   }
   i {
-    font-size: 30px;
+    font-size: 1.6em;
   }
 }
 
