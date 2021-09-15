@@ -4,11 +4,11 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
 
   describe "ok_to_merge?" do
     it "is not permitted for Joe User" do
-      expect(company.ok_to_merge?).to be_falsey
+      expect(company).not_to be_ok_to_merge
     end
 
     it "is permitted for admins", as_bot: true do
-      expect(company.ok_to_merge?).to be_truthy
+      expect(company).to be_ok_to_merge
     end
   end
 

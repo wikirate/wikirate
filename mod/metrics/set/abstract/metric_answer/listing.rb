@@ -9,10 +9,6 @@ format :html do
     render_concise
   end
 
-  view :titled_content, wrap: :slot do
-    render_full_details
-  end
-
   view :bar_middle do
     citations_count
   end

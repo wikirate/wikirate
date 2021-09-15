@@ -5,6 +5,15 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
 
   check_html_views_for_errors
 
+  %w[Views Listing Flags].each do |subdir|
+    abstract_answer_views =
+      Card::Set::Format::AbstractFormat::ViewDefinition.views[
+        Card::Set::Abstract::MetricAnswer.const_get(subdir).const_get("HtmlFormat")
+      ].keys
+    include_context_for abstract_answer_views, "view without errors"
+    include_context_for abstract_answer_views, "view with valid html"
+  end
+
   let(:year) { "1977" }
   let(:metric) { "Jedi+more evil" }
   let(:inverse_metric) { "Jedi+less evil" }

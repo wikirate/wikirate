@@ -1,4 +1,4 @@
-include Set::Abstract::Calculation
+include_set Set::Abstract::Calculation
 
 # <OVERRIDES>
 def rating?

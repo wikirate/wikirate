@@ -1,6 +1,6 @@
 shared_context "formula" do
   def formula_str options: nil, method: nil, year: nil, unknown: nil, company: nil,
-              metric: "Joe User+RM", related: nil, add: nil
+                  metric: "Joe User+RM", related: nil, add: nil
     nest_values = [year, unknown, company, related]
     res = "{{#{metric}#{nest_options options, nest_values}}}"
     res = "#{method}[#{res}]" if method
@@ -45,8 +45,10 @@ shared_context "formula" do
                             method: nil, year: nil, unknown: nil, company: nil,
                             related: nil,
                             add: nil
-    formula ||= formula_str(options: options, method: method, year: year, unknown: unknown,
-                          company: company, metric: metric, add: add, related: related)
+    formula ||= formula_str(
+      options: options, method: method, year: year, unknown: unknown,
+      company: company, metric: metric, add: add, related: related
+    )
     # puts formula
     create_metric name: "Jedi+formula1", type: :formula, formula: formula
   end

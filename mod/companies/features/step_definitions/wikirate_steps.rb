@@ -146,12 +146,12 @@ When(/^(?:|I )select "([^"]*)" from hidden "([^"]*)"$/) do |value, field|
   find(:xpath, "//input[@id='#{field}']", visible: false).set value
 end
 
-When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
+When(/^(?:|I )single-select "([^"]*)" as value$/) do |value|
   find("#card_subcards__values_content_chosen a.chosen-single").click
   find("li", text: value).click
 end
 
-Then /^(?:|I )should see "([^"]*)" or "([^"]*)"$/ do |text1, text2|
+Then(/^(?:|I )should see "([^"]*)" or "([^"]*)"$/) do |text1, text2|
   expect(page).to have_content(text1)
 rescue
   expect(page).to have_content(text2)
@@ -254,6 +254,6 @@ end
 Then(/^I should see add link "([^"]*)"$/) do |arg|
   expect(page).to have_tag(:a) do
     with_tag :i, with: { class: "fa-plus-square" }
-    with_text /#{arg}/
+    with_text(/#{arg}/)
   end
 end
