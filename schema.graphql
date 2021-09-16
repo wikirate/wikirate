@@ -1,0 +1,549 @@
+type Answer {
+  comments: String
+  company: Company!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  metric: Metric!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+  relationships: [Relationship!]!
+
+  """
+  right name
+  """
+  right: Card
+  sources: [Source!]!
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+  value: String!
+  year: Int!
+}
+
+type Card {
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+
+  """
+  right name
+  """
+  right: Card
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+}
+
+type Company {
+  """
+  answers to questions about company
+  """
+  answers: [Answer!]!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+
+  """
+  url for company logo image
+  """
+  logoUrl: String
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+
+  """
+  relationships of which company is either subject or object
+  """
+  relationships: [Relationship!]!
+
+  """
+  right name
+  """
+  right: Card
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+}
+
+type Dataset {
+  answers: [Answer!]!
+  companies: [Company!]!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+  description: String!
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  metrics: [Metric!]!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+
+  """
+  right name
+  """
+  right: Card
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+  years: [Int!]!
+}
+
+"""
+An ISO 8601-encoded datetime
+"""
+scalar ISO8601DateTime
+
+type Metric {
+  about: String
+  answers: [Answer!]!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+  datasets: [Dataset!]!
+  designer: Card!
+  formula: String
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  methodology: String
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+  question: String
+  range: String
+  relationships: [Relationship!]
+  reportType: String
+  researchPolicy: String
+
+  """
+  right name
+  """
+  right: Card
+  title: String
+  topics: [Topic!]!
+
+  """
+  card type
+  """
+  type: Card!
+  unit: String
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+}
+
+type Mutation {
+  """
+  An example field added by the generator
+  """
+  testField: String!
+}
+
+type Query {
+  answer(id: Int): Answer
+  answers: [Answer!]!
+  card(id: Int, name: String): Card
+  cards(name: String, type: String): [Card!]!
+  companies(id: Int): [Company!]!
+  company(id: Int, name: String): Company
+  dataset(id: Int, name: String): Dataset
+  datasets(id: Int): [Dataset!]!
+  metric(id: Int, name: String): Metric
+  metrics: [Metric!]!
+  relationship(id: Int): Relationship
+  relationships: [Relationship!]!
+  source(id: Int, name: String): Source
+  sources(id: Int): [Source!]!
+  topic(id: Int, name: String): Topic
+  topics(id: Int): [Topic!]!
+}
+
+type Relationship {
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+  inverseMetric: Metric!
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  metric: Metric!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+  objectCompany: Company!
+
+  """
+  right name
+  """
+  right: Card
+  sources: [Source!]!
+  subjectCompany: Company!
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+  value: String!
+  year: Int!
+}
+
+type Source {
+  answers: [Answer!]!
+
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+  description: String
+  fileUrl: String
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+  originalUrl: String
+  relationships: [Relationship!]!
+  reportType: String
+
+  """
+  right name
+  """
+  right: Card
+  title: String
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+  years: [Int!]!
+}
+
+type Topic {
+  """
+  core view of card rendered in text format
+  """
+  content: String
+
+  """
+  when created
+  """
+  createdAt: ISO8601DateTime
+
+  """
+  User who created
+  """
+  creator: Card
+  datasets: [Dataset!]!
+  description: String!
+
+  """
+  unique numerical identifier
+  """
+  id: Int
+
+  """
+  left name
+  """
+  left: Card
+
+  """
+  url-friendly name variant
+  """
+  linkname: String!
+  metrics: [Metric!]!
+
+  """
+  name that is unique across all cards
+  """
+  name: String!
+
+  """
+  right name
+  """
+  right: Card
+
+  """
+  card type
+  """
+  type: Card!
+
+  """
+  when last updated
+  """
+  updatedAt: ISO8601DateTime
+
+  """
+  User who last updated
+  """
+  updater: Card
+}
