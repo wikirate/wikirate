@@ -1,0 +1,4 @@
+.bg-light
+  %section.container
+    - Env.with_params filter: default_source_filters do
+      = nest :source, view: :filtered_content, items: { view: :box }

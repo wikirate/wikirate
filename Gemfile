@@ -23,6 +23,7 @@ else
     gem "card-mod-counts"
     gem "card-mod-csv_import"
     gem "card-mod-fulltext"
+    gem "card-mod-graphql"
     gem "card-mod-social"
     # gem "card-mod-logger"
     gem "card-mod-new_relic"
@@ -63,6 +64,10 @@ gem "wkhtmltopdf-binary", "0.12.5.4" # converting HTML to PDF
 gem "descriptive_statistics"         # adds stats methods to enumerables
 gem "savanna-outliers"               # calculates outliers
 gem "statistics2"                    # required by savanna-outliers
+
+# GRAPHQL
+gem "graphql"
+gem "graphiql-rails"
 
 # MISCELLANEOUS
 gem "company-mapping"                # Vasso's gem, written for WikiRate
