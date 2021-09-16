@@ -8,9 +8,11 @@ class Card
         company_name: :company_id
       }.freeze
 
-      def sort_by_join sort_by, _id_field
-        @sort_joins << :metric if sort_by.to_s.match?(/^metric/)
-        super
+      def sort_by_join sort_by, _from_table, from_id_field
+        return super unless sort_by.to_s.match?(/^metric/)
+
+        @sort_joins << :metric
+        super sort_by, :metrics, from_id_field
       end
 
       def sort_by_cardname
