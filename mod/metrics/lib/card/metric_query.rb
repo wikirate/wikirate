@@ -9,8 +9,8 @@ class Card
       metric_type: :metric_type_id,
       value_type: :value_type_id
     }.freeze
-    self.card_id_filters = ::Set.new(card_id_map.keys).freeze
-    self.simple_filters = ::Set.new(card_id_map.values).freeze
+    self.card_id_filters = ::Set.new(card_id_map).freeze
+    self.simple_filters = ::Set.new(card_id_map.values << :metric_id).freeze
 
     SORT_BY_COUNT = {
       company: :wikirate_company,
