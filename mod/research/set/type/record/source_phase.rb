@@ -1,5 +1,5 @@
 format :html do
-  view :source_phase, template: :haml
+  view :source_phase, template: :haml, cache: :never
 
   def default_source_filters
     {
