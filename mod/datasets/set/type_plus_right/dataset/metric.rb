@@ -7,6 +7,10 @@ include_set Abstract::DatasetScope
 include_set Abstract::IdPointer
 include_set Abstract::FilterList
 
+def query_hash
+  { metric_id: item_ids }
+end
+
 format :html do
   view :titled_content do
     render_filtered_content
