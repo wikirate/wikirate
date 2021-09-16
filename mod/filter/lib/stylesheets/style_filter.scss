@@ -46,8 +46,9 @@
 }
 
 .filter-form {
-  >.card {
+  > .card {
     border: 0;
+    background: inherit;
     > .card-body {
       padding: 1rem 0 0.5rem 0;
     }
