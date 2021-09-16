@@ -675,16 +675,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-.research-layout {
-  header.research-phases {
-    padding: 4.5rem;
-    display: flex;
-    justify-content: space-around;
-
-    .research-phase {
+.research-layout #main {
+  .nav-pills {
+    a {
       padding: 2rem 3rem;
       min-width: 25%;
-
       .circle-num {
         border: 1px solid $gray-400;
         border-radius: 50%;
@@ -696,7 +691,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       }
     }
   }
-  header, section {
+  .nav-pills, section {
     padding: 4.5rem 0;
     h2 {
       margin-top: 0.1rem

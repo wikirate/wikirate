@@ -1,4 +1,10 @@
 format :html do
+  RESEARCH_TABS = {
+    question: "Question",
+    source: "Source",
+    answer: "Answer"
+  }.freeze
+
   def project_card
     @project_card ||= params[:project]&.card
   end
@@ -33,11 +39,37 @@ format :html do
     :research_layout if view&.to_sym == :research
   end
 
-  view :research, template: :haml
+  def research_tab_map
+    index = 0
+    RESEARCH_TABS.each_with_object({}) do |(codename, title), hash|
+      index += 1
+      hash[codename] = {
+        view: :"#{codename}_phase",
+        title: research_tab_title(index, title)
+      }
+    end
+  end
+
+  def research_tab_title num, title
+    haml :research_tab_title, num: num, title: title
+  end
+
+  view :research do
+    tabs research_tab_map, :question_phase, load: :lazy, tab_type: :pills do
+      render_question_phase
+    end
+  end
+
+  view :question_phase, template: :haml
   view :company_header, template: :haml
   view :metric_header, template: :haml
   view :metric_option, template: :haml
   view :research_years, template: :haml
+
+  view :question_phase, template: :haml
+  view :source_phase, template: :haml
+  view :answer_phase, template: :haml
+
 
   def angle dir
     fa_icon "angle-#{dir}", class: "text-secondary"
