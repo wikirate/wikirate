@@ -88,7 +88,7 @@ class Card
 
     def sort_by sort_by
       if (id_field = sort_by_cardname[sort_by])
-        sort_by_join sort_by, id_field
+        sort_by_join sort_by, lookup_table, id_field
       else
         simple_sort_by sort_by
       end
@@ -106,9 +106,9 @@ class Card
       sort_by
     end
 
-    def sort_by_join sort_by, id_field
+    def sort_by_join sort_by, from_table, from_id_field
       @sort_joins <<
-        "JOIN cards as #{sort_by} ON #{sort_by}.id = #{id_field}"
+        "JOIN cards as #{sort_by} ON #{sort_by}.id = #{from_table}.#{from_id_field}"
       "#{sort_by}.key"
     end
   end
