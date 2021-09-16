@@ -9,15 +9,17 @@ class Card
       metric_type: :metric_type_id,
       value_type: :value_type_id
     }.freeze
-    self.card_id_filters = ::Set.new(card_id_map).freeze
+    self.card_id_filters = ::Set.new(card_id_map.keys).freeze
     self.simple_filters = ::Set.new(card_id_map.values << :metric_id).freeze
 
-    SORT_BY_COUNT = {
-      company: :wikirate_company,
-      answer: :metric_answer
-    }.freeze
+    SORT_BY_COUNT = { company: :wikirate_company, answer: :metric_answer }.freeze
 
     include MetricFilters
+
+    # whether answer queries with this field should use a metrics table join
+    def self.join? field
+      field != :metric_id && simple_filters.include?(field)
+    end
 
     def lookup_class
       ::Metric
