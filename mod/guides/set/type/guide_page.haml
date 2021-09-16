@@ -1,4 +1,5 @@
 %header.jumbotron.jumbotron-fluid
+  = render_menu
   .container
     %h1
       = render_title
@@ -15,9 +16,7 @@
       .sidebar-nav-list.accordion
         = nest guide_list_card, items: { view: :sidebar_nav }
 
-    %main#guide-body.col-sm-8
-      .pb-5
-        = render_menu
+    %article#guide-body.col-sm-8.py-2
       = field_nest :body, view: :content_with_anchored_headers
   %section.guide-paging.p-5
     = render_guide_paging

@@ -1,7 +1,8 @@
 
 .sidebar-nav
-  %button.btn.my-1{ data: { "toggle": "collapse", "target": "##{card.key}-collapse" },
-                    "aria-expanded": ("true" if expanded?) }
+  %button.btn.btn-light.my-1{ data: { "toggle": "collapse",
+                                      "target": "##{card.key}-collapse" },
+                              "aria-expanded": ("true" if expanded?) }
     %i.fas
     %span.pl-2
       = card.name
