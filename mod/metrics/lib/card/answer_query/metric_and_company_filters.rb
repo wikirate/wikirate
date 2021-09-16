@@ -84,7 +84,7 @@ class Card
       end
 
       def filter_table field
-        if MetricQuery.simple_filters.include?(field.to_sym)
+        if MetricQuery.join? field.to_sym
           @joins << :metric
           "metrics"
         else
