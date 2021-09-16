@@ -45,7 +45,8 @@ format :html do
       index += 1
       hash[codename] = {
         view: :"#{codename}_phase",
-        title: research_tab_title(index, title)
+        title: research_tab_title(index, title),
+        button_attr: { class: "btn btn-outline-secondary" }
       }
     end
   end
@@ -55,7 +56,8 @@ format :html do
   end
 
   view :research do
-    tabs research_tab_map, :question_phase, load: :lazy, tab_type: :pills do
+    tabs research_tab_map, :question_phase,
+         load: :lazy, tab_type: "pills container justify-content-around" do
       render_question_phase
     end
   end
