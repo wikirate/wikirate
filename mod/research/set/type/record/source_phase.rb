@@ -3,8 +3,8 @@ format :html do
 
   def default_source_filters
     {
-      # wikirate_company: card.company_name,
-      report_type: card.metric_card.report_type,
+      company_name: card.company_name,
+      report_type: card.metric_card.report_type_card.first_name,
       year: ""
     }
   end

@@ -1,8 +1,8 @@
 format :html do
   RESEARCH_TABS = {
-    question: "Question",
-    source: "Source",
-    answer: "Answer"
+    question_phase: "Question",
+    source_phase: "Source",
+    answer_phase: "Answer"
   }.freeze
 
   # view :data do
@@ -24,7 +24,7 @@ format :html do
     RESEARCH_TABS.each_with_object({}) do |(codename, title), hash|
       index += 1
       hash[codename] = {
-        view: :"#{codename}_phase",
+        view: codename,
         title: research_tab_title(index, title),
         button_attr: { class: "btn btn-outline-secondary" }
       }
@@ -36,10 +36,10 @@ format :html do
   end
 
   def default_research_tab
-    params[:tab] || :question_phase
+    params[:tab]&.to_sym || :question_phase
   end
 
-  view :research do
+  view :research, cache: :never do
     tabs research_tab_map, default_research_tab,
          load: :lazy, tab_type: "pills container justify-content-around" do
       render default_research_tab

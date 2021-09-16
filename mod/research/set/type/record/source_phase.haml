@@ -1,4 +1,4 @@
 .bg-light
-  %section.container
+  %section.container._noFilterUrlUpdates
     - Env.with_params filter: default_source_filters do
-      = nest :source, view: :filtered_content, items: { view: :box }
+      = nest :source, view: :filtered_content, items: { view: :box }, hide: :export_links
