@@ -10,18 +10,7 @@ format :html do
   view(:bar_left) { filterable(source: card.name) { render_compact } }
   view(:bar_middle) { count_badges :metric_answer, :metric, :wikirate_company }
   view(:bar_right) { render_years }
-  view :bar_bottom do
-    [badge_header,
-     labeled_field(:report_type),
-     # labeled_field(:wikirate_topic, :link, title: "Topics"),
-     field_nest(:description, view: :titled)]
-  end
-
-  def badge_header
-    wrap_with :div, class: "d-flex justify-content-center pb-3" do
-      render_bar_middle
-    end
-  end
+  view :bar_bottom, template: :haml
 
   bar_cols 7, 5
 
@@ -33,7 +22,6 @@ format :html do
     [render_years]
   end
 
-
   # LINK AND BUTTON VIEWS
 
   # download and original links.  (view makes them hideable)
@@ -41,17 +29,10 @@ format :html do
   view :close_icon, template: :haml
   view :years, template: :haml
 
-  view :source_link do
-    wrap_with :div, class: "source-link d-block" do
-      [wrap_with(:div, source_title, class: "source-title"),
-       wrap_with(:div, website_text, class: "source-website text-muted")]
-    end
-  end
-
+  view :source_link, template: :haml
   view :title_link do
-    link_to_card card, title_text,
-                 target: "_blank",
-                 class: "source-preview-link preview-page-link"
+    link_to_card card, title_text, target: "_blank",
+                                   class: "source-preview-link preview-page-link"
   end
 
   # OTHER VIEWS
@@ -88,5 +69,4 @@ format :html do
 
   # DELETE?
   view :wikirate_copy_message, template: :haml
-  view :preview_link_bar, template: :haml
 end

@@ -1,7 +1,12 @@
+$(document).ready ->
+  # toggle download and url ui
+  $('body').on 'click', ".toggle-source-option", ->
+    $('.download-option input').val("")
+    $('.source-option').show()
+    $(this).closest('.source-option').hide()
+
 # Resize PDF preview iframe to use full available height
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-$(document).ready ->
   resizeIframe($('body'))
 
 decko.slotReady (slot) ->

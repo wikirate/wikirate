@@ -4,4 +4,4 @@
     %span.pr-1
       = mapped_icon_tag :year
     %span.fancy-years
-      = year_list.join ", "
+      = year_list.sort.reverse.join ", "

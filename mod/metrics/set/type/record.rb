@@ -12,11 +12,12 @@ def virtual?
 end
 
 format do
-  delegate :answers, to: :card
+  def answers
+    card.metric_answer_card.search
+  end
 end
 
 format :html do
-
   def tab_list
     %i[metric wikirate_company]
   end

@@ -72,14 +72,6 @@ format :html do
     Env.params[:source_search_term]
   end
 
-  # when cancelling in a sourcebox context, refresh the source_selector slot
-  def cancel_button_new_args
-    return super unless answer_name
-    { href: path(mark: answer_name,
-                 view: :source_selector,
-                 card: { type_id: card.type_id }),
-      "data-slot-selector": ".sourcebox-view" }
-  end
 
   # when successfully adding in a sourcebox context, refresh the whole source tab
   def new_success

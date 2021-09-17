@@ -13,13 +13,13 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
 
   def designer_can action, card
     Card::Auth.as "Joe User" do
-      expect(card.ok?(action)).to be_truthy
+      expect(card).to be_ok(action)
     end
   end
 
   def nondesigner_cant action, card
     Card::Auth.as "Joe Camel" do
-      expect(card.ok?(action)).to be_falsey
+      expect(card).not_to be_ok(action)
     end
   end
 
@@ -33,7 +33,7 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
     end
 
     specify "super user can #{action} metric", with_user: "Joe Admin"  do
-      expect(metric.ok?(action)).to be_truthy
+      expect(metric).to be_ok(action)
     end
   end
 
