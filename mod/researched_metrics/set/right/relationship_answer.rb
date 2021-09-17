@@ -24,7 +24,11 @@ format do
   end
 
   def filtered_company_ids
-    Card.search filter_and_sort_cql.merge(type: :wikirate_company, return: :id)
+    if (explicit = params.dig :filter, :company_id)
+      [explicit]
+    else
+      Card.search filter_and_sort_cql.merge(type: :wikirate_company, return: :id)
+    end
   end
 
   def default_sort_option
