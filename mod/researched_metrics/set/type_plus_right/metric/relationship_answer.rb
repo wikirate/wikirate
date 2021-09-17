@@ -40,8 +40,11 @@ format do
   def filter_by_companies query
     return unless company_ids.present?
 
-    company_field = metric_card.inverse? ? :object_company_id : :subject_company_id
-    query[company_field] = company_ids.unshift("in")
+    query[company_field] = ["in"] + company_ids
+  end
+
+  def company_field
+    metric_card.inverse? ? :object_company_id : :subject_company_id
   end
 
   def company_ids
