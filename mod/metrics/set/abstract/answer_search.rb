@@ -40,6 +40,7 @@ format do
   def normalize_filter_hash hash
     %i[metric company].each do |type|
       handle_exact_name hash, type
+      handle_project_filter hash
     end
   end
 
@@ -51,6 +52,12 @@ format do
 
     hash.delete key
     hash[:"#{type}_id"] = name.card_id
+  end
+
+  def handle_project_filter hash
+    return unless (dataset = hash.delete :project)
+
+    hash[:dataset] ||= dataset
   end
 end
 
