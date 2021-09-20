@@ -11,7 +11,7 @@ format :html do
 
   view :source_editor do
     with_nest_mode :normal do
-      field_nest :source, view: :core, items: { view: :cite_bar }
+      field_nest :source, view: :core
     end
   end
 
