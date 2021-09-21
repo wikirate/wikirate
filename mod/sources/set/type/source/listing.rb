@@ -34,18 +34,12 @@ format :html do
 
   bar_cols 7, 5
 
-  view :cite_bar, template: :haml
   view :preview_link_bar, template: :haml
 
   # LINK AND BUTTON VIEWS
 
   # download and original links.  (view makes them hideable)
   view :links, template: :haml
-
-  view :cite_button, template: :haml
-  view :uncite_button, template: :haml
-  view :freshen_button, template: :haml
-
   view :close_icon, template: :haml
 
   view :source_link do
