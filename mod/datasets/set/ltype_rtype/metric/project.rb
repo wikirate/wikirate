@@ -60,7 +60,7 @@ format :html do
   end
 
   view :project_header do
-    nest card.project_card, view: :bar_left, hide: :default_research_progress_bar
+    nest card.project_card, view: :bar_left
   end
 
   def full_page_card
