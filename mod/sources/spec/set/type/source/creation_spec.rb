@@ -26,6 +26,12 @@ describe Card::Set::Type::Source::Creation do
                                         name: "success[view]",
                                         value: "source_selector" }
       end
+
+      it "has special cancel button" do
+        expect_view(:new)
+          .to have_tag "a.btn.cancel-button",
+                       with: { "data-slot-selector": ".sourcebox-view" }
+      end
     end
 
     def have_field_with_value field, value
