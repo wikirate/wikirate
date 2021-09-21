@@ -1,3 +1,7 @@
+# project and dataset names got screwed up on the live site after the add_dataset
+# migration (presumably due to some issues that led to the deployment script being
+# run multiple times).
+
 require File.expand_path "../../../config/environment", __FILE__
 
 Card::Auth.signin "Ethan McCutchen"
