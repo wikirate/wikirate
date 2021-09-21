@@ -10,22 +10,25 @@ def drop_research_prefices name
   name.sub(/^(Research: )+/, "")
 end
 
-def fix_project project
-  return unless project
-  puts "fix project: #{project.name}"
-
-  dataset_field = project.field :dataset
-  dataset_field.update! content: drop_research_prefices(dataset_field.first_name)
-  project.update! name: "Research: #{drop_research_prefices project.name}"
-end
-
-Card.where("type_id = #{Card::DatasetID} and name like 'Research:%'").each do |dataset|
-  root_name = drop_research_prefix dataset.name
+Card.where(
+  "type_id = #{Card::DatasetID} and trash is false and name like 'Research:%'"
+).each do |dataset|
+  root_name = drop_research_prefices dataset.name
   next unless root_name != dataset.name && Card.exist?(root_name)
 
   dataset.include_set_modules
 
-  fix_project dataset.fetch(:project)&.first_card
-  puts "fix delete dataset: #{dataset.name}"
+  projects << dataset.fetch(:project)&.first_card
+  puts "delete dataset: #{dataset.name}"
   dataset.delete!
+end
+
+Card.where(
+  "type_id = #{Card::ProjectID} and trash is false and name like 'Research: Research:%'"
+).each do |project|
+  dataset_field = project.field :dataset
+  dataset_field.update! content: drop_research_prefices(dataset_field.first_name)
+  puts "project id: #{project.id}"
+  puts "new project name: Research: #{drop_research_prefices project.name}"
+  project.update! name: "Research: #{drop_research_prefices project.name}"
 end
