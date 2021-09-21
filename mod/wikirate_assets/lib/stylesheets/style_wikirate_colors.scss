@@ -15,12 +15,12 @@
 
   &.box {
     .box-top a {
-      color: $gray-900;
+      color: $color;
     }
     &:hover {
       border-top-color: $color !important;
 
-      .box-top a, .box-middle i {
+      .box-middle i {
         color: $color;
       }
     }
