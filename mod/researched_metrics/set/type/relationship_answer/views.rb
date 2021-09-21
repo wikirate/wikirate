@@ -48,7 +48,7 @@ format :html do
   view :inverse_company_name do
     nest card.company_card, view: :thumbnail
   end
-  
+
   view :expanded_details do
     _render :expanded_researched_details
   end
