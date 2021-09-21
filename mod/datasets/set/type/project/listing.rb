@@ -7,7 +7,8 @@ format :html do
   end
 
   view :bar_right do
-    field_nest :wikirate_status, items: { view: :name }, unknown: :blank
+    [nest(card.dataset_card, view: :default_research_progress_bar),
+     field_nest(:wikirate_status, wrap: :em, items: { view: :name }, unknown: :blank)]
   end
 
   view :bar_bottom do
