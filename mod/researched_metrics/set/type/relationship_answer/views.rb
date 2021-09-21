@@ -49,10 +49,6 @@ format :html do
     nest card.company_card, view: :thumbnail
   end
 
-  view :value do
-    value
-  end
-
   view :expanded_details do
     _render :expanded_researched_details
   end

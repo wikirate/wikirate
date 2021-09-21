@@ -41,7 +41,7 @@ end
 
 format :html do
   def image_card
-    @image_card ||= card.dataset_card&.fetch :image, new: {}
+    @image_card ||= card.dataset_card&.fetch(:image) || super
   end
 
   before :content_formgroups do
@@ -52,9 +52,9 @@ format :html do
     wrap_with :div, class: "project-details" do
       [
         nest(card.dataset_card, view: :overall_progress_box),
-        labeled_field(:dataset, :link),
-        labeled_field(:wikirate_status, :name),
+        labeled_field(:dataset, :thumbnail),
         labeled_field(:organizer, :thumbnail),
+        labeled_field(:wikirate_status, :name),
         default_unpublished,
         field_nest(:description, view: :titled),
         field_nest(:conversation, view: :titled)
