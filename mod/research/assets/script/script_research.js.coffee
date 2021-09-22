@@ -38,41 +38,15 @@ isUnknown = (val)->
 
 # ~~~~~~~~ Other Research Page Handling ~~~~~~~~~~~~~~~~
 
+revealOverlay = (overlay) ->
+  overlay.hide()
+  $("html, body").animate { scrollTop: 0 }, 300
+  $(window).scrollTop
+  overlay.show "slide", { direction: "down" }, 600
+
 decko.slotReady (slot) ->
-# autocomplete tag on research (new/Answer) page
-  slot.find('input._research-select').autocomplete
-    select: (e, ui) ->
-      $target = $(e.target)
-      url = $target.data("url")
-      url += (if url.match /\?/ then '&' else '?')
-      url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
-      $target.reloadSlot(url)
-
-  # company, metric, and year dropdowns on research page
-  slot.find("._html-select:not(.loaded)").each ->
-    $(this).addClass("loaded")
-    $(this).select2
-      minimumInputLength: 0
-      #minimumResultsForSearch: 4
-      maximumSelectionSize: 1
-      dropdownAutoWidth: "true"
-      width: "100%"
-      templateResult: formatHtmlOptionItem
-      templateSelection: formatHtmlSelectedItem
-      escapeMarkup: (markup) ->
-        markup
-      containerCssClass: "html-select2"
-      dropdownCssClass: "html-select2"
-
-formatHtmlOptionItem = (i) ->
-  if i.loading
-    return i.text
-  selector = $(i.element).data("option-selector")
-  $(selector).html()
-
-formatHtmlSelectedItem = (i) ->
-  selector = $(i.element).data("selected-option-selector")
-  $(selector).html()
+  if slot.hasClass "_overlay"
+    revealOverlay slot
 
 $(document).ready ->
   # add related company to name
@@ -86,15 +60,3 @@ $(document).ready ->
       # $form.find("#card_name").val(name + "+" + related_company.val())
       unless $form.find("#success_id").val() == ":research_page"
         $form.find("#success_id").val("_left")
-
-  $("body").on "select2:select", "._html-select", (event) ->
-    url = $(event.params.data.element).data("url")
-    window.location = decko.path(url)
-
-  # the "View Methodology" button
-  $("body").on "click", "._methodology-tab", ->
-    $("#research-details .nav-tabs > li:nth-child(2) a").tab("show")
-
-  $("body").on "click", "._reset_sourcebox", ->
-    $(this).hide()
-    $("#source_search_term").val("")
