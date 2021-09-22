@@ -77,8 +77,8 @@ format :html do
     card.dataset_card.name
   end
 
-  def company_link values=:all
-    path_args = card.dataset_card.filter_path_args values
+  def company_link status=:all
+    path_args = card.dataset_card.filter_path_args status
     link_to_card card.company_card, yield, path: path_args, class: "company-color"
   end
 end

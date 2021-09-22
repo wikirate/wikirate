@@ -41,35 +41,23 @@ def metric_ids
 end
 
 def year_ids
-  @year_ids ||= years && year_card.valid_item_ids
+  @year_ids ||= year_card.valid_item_ids
 end
 
 def metrics
-  metric_card.valid_item_names
+  @metrics ||= metric_card.valid_item_names
 end
 
 def companies
-  wikirate_company_card.valid_item_names
+  @companies ||= wikirate_company_card.valid_item_names
 end
 
 def years
-  return @years unless @years.nil?
-  valids = year_card.valid_item_names
-  @years = valids.empty? ? false : valids
+  @years ||= year_card.valid_item_names
 end
 
-alias_method :metric_list, :metrics
-alias_method :company_list, :companies
-alias_method :year_list, :years
-
 # used in filtering answers on company and dataset pages
-# @param values [Symbol] researched, known, not_researched
-# (need better term for this param)
-def filter_path_args values
-  filter = { dataset: name, status: values  }
-  # show latest dataset year.  could consider updating answer tables
-  # to handle latest value among a group of years, but that's not yet
-  # an option
-  filter[:year] = years.first if years && years.one?
-  { filter: filter }
+# @param status [Symbol] researched, known, not_researched
+def filter_path_args status
+  { filter: { dataset: name, status: status } }
 end

@@ -72,7 +72,6 @@ format :html do
     Env.params[:source_search_term]
   end
 
-
   # when successfully adding in a sourcebox context, refresh the whole source tab
   def new_success
     return super unless answer_name

@@ -87,8 +87,8 @@ format :html do
     card.dataset_card.name
   end
 
-  def metric_link values=:all
-    path_args = dataset_card.filter_path_args values
+  def metric_link status=:all
+    path_args = dataset_card.filter_path_args status
     link_to_card metric_card, yield, path: path_args, class: "metric-color"
   end
 end

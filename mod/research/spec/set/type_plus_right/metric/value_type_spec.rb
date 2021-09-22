@@ -13,7 +13,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
     let(:metric) { Card["Jedi+Weapons"] }
     let(:value_type_card) { metric.value_type_card }
 
-    context "some values do not fit the numeric type" do
+    context "when some values do not fit the numeric type" do
       it "blocks type changing" do
         # key = "#{metric.name}+#{sample_company.name}+2015".to_sym
         expect(type_change_for_value("wow", new_type, metric))
@@ -21,14 +21,14 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
       end
     end
 
-    context "all values fit the numeric type" do
+    context "when all values fit the numeric type" do
       it "updates the value type successfully" do
         expect(type_change_for_value("65535", new_type, metric)).to be_valid
         expect(metric.value_type).to eq(new_type)
       end
     end
 
-    context 'some values are "unknown"' do
+    context 'when some values are "unknown"' do
       it "updates the value type successfully" do
         expect(type_change_for_value("unknown", new_type, metric)).to be_valid
         expect(metric.value_type).to eq(new_type)
@@ -37,20 +37,20 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
   end
 
   describe "changing type" do
-    context "to Number" do
+    context "when to Number" do
       it_behaves_like "changing type to numeric", "Number"
     end
 
-    context "to Money" do
+    context "when to Money" do
       it_behaves_like "changing type to numeric", "Money"
     end
 
-    describe "to Category" do
+    describe "when to Category" do
       subject { metric.value_type_card }
 
       let(:metric) { sample_metric :number }
 
-      context "some values are not in the options" do
+      context "when some values are not in the options" do
         it "blocks type changing" do
           subject.update content:  "Category"
           is_expected.to be_invalid.because_of answers: include("valid options")
@@ -58,7 +58,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
         end
       end
 
-      context "all values are in the options", with_user: "Joe Admin" do
+      context "when all values are in the options", with_user: "Joe Admin" do
         before do
           metric.value_options_card.update(
             content: %w[5 8 9 10 20 40 50 100].to_pointer_content
@@ -71,7 +71,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
           is_expected.to be_valid
         end
 
-        context 'some values are "unknown"' do
+        context 'when some values are "unknown"' do
           it "updates the value type successfully" do
             type_change_for_value "unknown", "Category", metric
 

@@ -9,15 +9,15 @@ shared_examples_for "viewable metric" do |metric_name|
 end
 
 RSpec.describe Card::Set::Type::Metric do
-  context "Numeric type metric" do
+  describe "Numeric type metric" do
     it_behaves_like "viewable metric", "Jedi+deadliness"
   end
 
-  context "Money type metric" do
+  describe "Money type metric" do
     it_behaves_like "viewable metric", "Jedi+cost of planets destroyed"
   end
 
-  context "Category type metric" do
+  describe "Category type metric" do
     it_behaves_like "viewable metric", "Jedi+disturbances in the Force"
   end
 
@@ -39,21 +39,21 @@ RSpec.describe Card::Set::Type::Metric do
     end
   end
 
-  context "changing value type" do
-    context "from numeric", with_user: "Joe Admin" do
+  context "when changing value type" do
+    context "when from numeric", with_user: "Joe Admin" do
       let(:metric) { sample_metric(:number) }
 
-      example "to free text" do
+      example "when to free text" do
         metric.value_type_card.update! content: "Free Text"
         expect(metric.value_type).to eq "Free Text"
       end
 
-      example "to category" do
+      example "when to category" do
         expect { metric.value_type_card.update! content: "Category" }
           .to raise_error ActiveRecord::RecordInvalid
       end
 
-      example "to money" do
+      example "when to money" do
         metric.value_type_card.update! content: "Money"
         expect(metric.value_type).to eq "Money"
       end
