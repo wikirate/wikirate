@@ -6,7 +6,7 @@ format :html do
   end
 
   view :open_content do
-    hidden_information + two_column_layout(7, 5)
+    two_column_layout 7, 5
   end
 
   view :left_column do
