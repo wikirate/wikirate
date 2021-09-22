@@ -23,11 +23,15 @@ format :html do
     company_name.field project_name
   end
 
-  view :question_phase, template: :haml
   view :company_header, template: :haml
   view :metric_header, template: :haml
   view :metric_option, template: :haml
   view :research_years, template: :haml
+
+  view :question_phase, template: :haml, wrap: :slot
+  view :methodology, template: :haml, wrap: :overlay do
+    voo.hide :overlay_title
+  end
 
   def angle dir
     fa_icon "angle-#{dir}", class: "text-secondary"
