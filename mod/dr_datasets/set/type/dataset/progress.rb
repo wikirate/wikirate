@@ -12,7 +12,7 @@ end
 
 # used to calculate possible records/answers
 def year_multiplier
-  @year_multiplier ||= years ? num_years : 1
+  @year_multiplier ||= years? ? num_years : 1
 end
 
 def num_possible_records
@@ -101,7 +101,7 @@ format :html do
 
   def formula
     vars = %i[wikirate_company metric]
-    vars << :year if card.years
+    vars << :year if card.years?
     vars.compact.map do |codename|
       "#{type_count codename} #{codename.cardname.vary :plural}"
     end.join " x "

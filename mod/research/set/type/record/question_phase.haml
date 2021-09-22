@@ -4,14 +4,13 @@
 %section.container.research-metric-and-year
   = render_metric_header
   = render_research_years
-.container.mb-5
-  %section.bg-light.mb-5
-    .row.align-items-center.px-5
-      .col-8.px-5
-        %h2
-          Learn more about the methodology
-        %p
-          Cause it's the coolest.
-      .col-4.text-center
-        = link_to_view :methodology, "View Methodology",
-                       class: "btn btn-outline-secondary p-3 px-4"
+%section.container.learn-methodology.bg-light.mb-5
+  .row.align-items-center.px-5
+    .col-8.px-5
+      %h2
+        Learn more about the methodology
+      %p
+        Cause it's the coolest.
+    .col-4.text-center
+      = link_to_view :methodology, "View Methodology",
+                     class: "btn btn-outline-secondary p-3 px-4"

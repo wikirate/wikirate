@@ -703,6 +703,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   .research-selector {
     padding-left: 1rem;
   }
+  .d0-card-overlay > .d0-card-frame > .d0-card-body {
+    background-color: $gray-100 !important;
+  }
 }
 
 .progress {

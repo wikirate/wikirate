@@ -23,13 +23,13 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
   end
 
   describe "#move_answers_to" do
-    it "should move non-conflicting answers from source to target company" do
+    it "moves non-conflicting answers from source to target company" do
       expect_answers_to_move do
         company.move_answers_to target.name
       end
     end
 
-    it "should work when triggered within act", as_bot: true do
+    it "works when triggered within act", as_bot: true do
       Card::Env.params[:target_company] = target.name
 
       expect_answers_to_move do

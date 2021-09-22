@@ -56,6 +56,10 @@ def years
   @years ||= year_card.valid_item_names
 end
 
+def years?
+  years.present?
+end
+
 # used in filtering answers on company and dataset pages
 # @param status [Symbol] researched, known, not_researched
 def filter_path_args status
