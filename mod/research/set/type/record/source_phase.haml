@@ -12,5 +12,10 @@
           Easily add a new source here that you found on the web and contribute
           on WikiRate.
       .col-4.text-center
-        = link_to_view :add_source, "Add New Source",
-                       class: "btn btn-primary p-3 px-4"
+        = modal_link "Add New Source",
+                     path: { mark: :source,
+                             action: :new,
+                             slot: { hide: :cancel_button } },
+                     data: { source_fields: source_fields },
+                     class: "_add_source_modal_link btn btn-primary p-3 px-4",
+                     size: :large

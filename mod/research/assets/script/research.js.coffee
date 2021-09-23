@@ -48,6 +48,13 @@ decko.slotReady (slot) ->
   if slot.hasClass "_overlay"
     revealOverlay slot
 
+  newSource = slot.find "._new_source"
+  if newSource.length
+    sourceId = newSource.data "cardId"
+    slot.closest("._modal-slot").find("._close-modal").trigger "click"
+    alert "source id = #{sourceId}"
+    (new decko.filter $(".SELF-source.filtered_content-view ._filter-widget")).update()
+
 $(document).ready ->
   # toggle more/less years
   $("body").on "click", "._more-years-toggle", () ->
@@ -57,9 +64,32 @@ $(document).ready ->
     else
       el.text "more"
 
+  # open source tab after clicking "select year"
   $("body").on "click", "#_select_year", (e) ->
-    $(".tab-li-source_phase a").trigger "click"
+    link = $(".tab-li-source_phase a")
+    link.data "url", appendToUrl(link.data("url"), year: selectedYear())
+    link.trigger "click"
     e.preventDefault()
+
+  $("body").on "click", "._add_source_modal_link", () ->
+    link = $(this)
+    params = link.data "sourceFields"
+    params._Year = selectedYear
+    appendToHref link, params
+
+selectedYear = ()->
+  $("input[name='year']:checked").val()
+
+appendToUrl = (url, params) ->
+  url + "&" + $.param(params)
+
+appendToHref = (link, params)->
+  link.attr "href", appendToUrl(initialHref(link), params)
+
+initialHref = (link) ->
+  unless link.data "initialHref"
+    link.data "initialHref", link.attr("href")
+  link.data "initialHref"
 
   # add related company to name
   # otherwise the card can get the wrong type because it
