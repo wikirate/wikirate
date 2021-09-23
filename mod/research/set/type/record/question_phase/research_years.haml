@@ -1,0 +1,21 @@
+.research-select-year.d-flex.justify-content-center.py-3
+  .w-50
+    - years[0..4].each do |year|
+      = haml_partial :year_option, year: year
+    - if years.size > 5
+      #moreYears.collapse
+        - years[5..-1].each do |year|
+          = haml_partial :year_option, year: year
+      .text-align-right.py-3
+        %a._more-years-toggle{ "aria-expanded": "false",
+                               "aria-controls": "#moreYears",
+                               "data-toggle": "collapse",
+                               href: "#moreYears" }
+          %span._more-or-fewer
+            more
+          years
+    .py-2.text-align-right
+      %a#_select_year{ href: "", class: "btn btn-primary" }
+
+        Select Year
+
