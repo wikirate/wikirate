@@ -1,2 +1,4 @@
 %section.container.methodology-section
-  = nest card.metric_card.methodology_card, view: :titled, title: "Methodology"
+  %h2 Methodology
+  .methodology-body
+    = nest card.metric_card.methodology_card, view: :core

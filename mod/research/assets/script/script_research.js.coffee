@@ -49,14 +49,26 @@ decko.slotReady (slot) ->
     revealOverlay slot
 
 $(document).ready ->
+  # toggle more/less years
+  $("body").on "click", "._more-years-toggle", () ->
+    el = $(this).find "._more-or-fewer"
+    if el.text().match(/more/)
+      el.text "fewer"
+    else
+      el.text "more"
+
+  $("body").on "click", "#_select_year", (e) ->
+    $(".tab-li-source_phase a").trigger "click"
+    e.preventDefault()
+
   # add related company to name
   # otherwise the card can get the wrong type because it
   # matches the ltype_rtype/record/year pattern
-  $("body").on "submit", "form.answer-form", (e) ->
-    $form = $(e.target)
-    related_company = $form.find("#card_subcards__related_company_content")
-    if related_company.length == 1
-      # name = $form.find("#card_name").val()
-      # $form.find("#card_name").val(name + "+" + related_company.val())
-      unless $form.find("#success_id").val() == ":research_page"
-        $form.find("#success_id").val("_left")
+  #  $("body").on "submit", "form.answer-form", (e) ->
+  #    $form = $(e.target)
+  #    related_company = $form.find("#card_subcards__related_company_content")
+  #    if related_company.length == 1
+  #      # name = $form.find("#card_name").val()
+  #      # $form.find("#card_name").val(name + "+" + related_company.val())
+  #      unless $form.find("#success_id").val() == ":research_page"
+  #        $form.find("#success_id").val("_left")

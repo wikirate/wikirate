@@ -1,4 +1,16 @@
-.bg-light
+.bg-light.pb-5
   %section.container._noFilterUrlUpdates
     - Env.with_params filter: default_source_filters do
       = nest :source, view: :filtered_content, items: { view: :box }, hide: :export_links
+
+  %section.container.research-add-source.bg-white.mb-5
+    .row.align-items-center.px-5
+      .col-8.px-5
+        %h2
+          Can't find the source you're looking for?
+        %p
+          Easily add a new source here that you found on the web and contribute
+          on WikiRate.
+      .col-4.text-center
+        = link_to_view :add_source, "Add New Source",
+                       class: "btn btn-primary p-3 px-4"

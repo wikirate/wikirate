@@ -706,6 +706,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   .d0-card-overlay > .d0-card-frame > .d0-card-body {
     background-color: $gray-100 !important;
   }
+  input[type='radio'] {
+    transform: scale(1.5);
+  }
 }
 
 .progress {
