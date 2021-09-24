@@ -1,3 +1,4 @@
+include_set Abstract::FilterFormgroups
 include_set Abstract::Table
 include_set Abstract::BrowseFilterForm
 include_set Abstract::LookupSearch
