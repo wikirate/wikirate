@@ -15,6 +15,16 @@ format :html do
     end
   end
 
+  wrapper :research_overlay do |opts|
+    class_up "card-slot", "d0-card-overlay", :single_use
+    @content_body = true
+    overlay_frame(true, research_overlay_header) { interior }
+  end
+
+  def research_overlay_header
+    haml :research_overlay_header
+  end
+
   def layout_for_view view
     :research_layout if view&.to_sym == :research
   end

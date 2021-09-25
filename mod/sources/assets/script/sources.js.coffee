@@ -5,6 +5,10 @@ $(document).ready ->
     $('.source-option').show()
     $(this).closest('.source-option').hide()
 
+  $('body').on 'click', ".TYPE-source.box", ->
+    window.location = decko.path $(this).data("cardLinkName")
+
+
 # Resize PDF preview iframe to use full available height
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   resizeIframe($('body'))
@@ -16,3 +20,4 @@ decko.slotReady (slot) ->
   preview = el.find(".pdf-source-preview")
   if preview.exists()
     preview.height ($(window).height() - $('.navbar').height() - 1)
+

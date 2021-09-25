@@ -7,15 +7,14 @@
     .row.align-items-center.px-5
       .col-8.px-5
         %h2
-          Can't find the source you're looking for?
+          Is the source you need not on WikiRate yet?
         %p
-          Easily add a new source here that you found on the web and contribute
-          on WikiRate.
+          Find a source elsewhere and add it here.
       .col-4.text-center
-        = modal_link "Add New Source",
+        = modal_link "Add new source",
                      path: { mark: :source,
                              action: :new,
                              slot: { hide: :cancel_button } },
                      data: { source_fields: source_fields },
-                     class: "_add_source_modal_link btn btn-primary p-3 px-4",
+                     class: "_add_source_modal_link btn btn-primary btn-research",
                      size: :large

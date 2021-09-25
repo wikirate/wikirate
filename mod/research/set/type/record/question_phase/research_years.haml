@@ -6,16 +6,16 @@
       #moreYears.collapse
         - years[5..-1].each do |year|
           = haml_partial :year_option, year: year
-      .text-align-right.py-3
+      .d-flex.py-5.justify-content-between
         %a._more-years-toggle{ "aria-expanded": "false",
                                "aria-controls": "#moreYears",
                                "data-toggle": "collapse",
-                               href: "#moreYears" }
+                               href: "#moreYears",
+                               class: "btn btn-outline-secondary btn-research" }
           %span._more-or-fewer
-            more
+            More
           years
-    .py-2.text-align-right
-      %a#_select_year{ href: "", class: "btn btn-primary" }
+        %a#_select_year{ href: "", class: "btn btn-primary btn-research" }
+          Select year
 
-        Select Year
 

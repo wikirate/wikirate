@@ -22,6 +22,15 @@ format :html do
     [render_years]
   end
 
+  view :box_bottom do
+    render_meatballs
+  end
+
+  view :meatballs do
+
+  end
+
+
   # LINK AND BUTTON VIEWS
 
   # download and original links.  (view makes them hideable)

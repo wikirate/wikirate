@@ -44,6 +44,8 @@ revealOverlay = (overlay) ->
   $(window).scrollTop
   overlay.show "slide", { direction: "down" }, 600
 
+hideOverlay = (overlay) ->
+
 decko.slotReady (slot) ->
   if slot.hasClass "_overlay"
     revealOverlay slot
@@ -59,10 +61,14 @@ $(document).ready ->
   # toggle more/less years
   $("body").on "click", "._more-years-toggle", () ->
     el = $(this).find "._more-or-fewer"
-    if el.text().match(/more/)
-      el.text "fewer"
+    if el.text().match(/More/)
+      el.text "Fewer"
     else
-      el.text "more"
+      el.text "More"
+
+  # click anywhere on year option to select it
+  $("body").on "click", "._research-year-option", () ->
+    $(this).find("input").prop "checked", "true"
 
   # open source tab after clicking "select year"
   $("body").on "click", "#_select_year", (e) ->
@@ -71,11 +77,23 @@ $(document).ready ->
     link.trigger "click"
     e.preventDefault()
 
+  # open new source form from button
   $("body").on "click", "._add_source_modal_link", () ->
     link = $(this)
     params = link.data "sourceFields"
     params._Year = selectedYear
     appendToHref link, params
+
+  # close overlay with a smooth slide
+  $(".research-layout #main").on "click", '[data-dismiss="overlay"]', (e)->
+    el = $(this)
+    el.overlaySlot().hide "slide", {
+      direction: "down",
+      complete: ()->
+        el.removeOverlay()
+    }, 600
+    e.stopPropagation()
+
 
 selectedYear = ()->
   $("input[name='year']:checked").val()

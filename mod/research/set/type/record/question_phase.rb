@@ -29,7 +29,7 @@ format :html do
   view :research_years, template: :haml
 
   view :question_phase, template: :haml, wrap: :slot
-  view :methodology, template: :haml, wrap: :overlay do
+  view :methodology, template: :haml, wrap: :research_overlay do
     voo.hide :overlay_title
   end
 

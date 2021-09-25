@@ -703,11 +703,26 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   .research-selector {
     padding-left: 1rem;
   }
-  .d0-card-overlay > .d0-card-frame > .d0-card-body {
-    background-color: $gray-100 !important;
+  .d0-card-overlay {
+    background-color: $gray-100;
   }
   input[type='radio'] {
     transform: scale(1.5);
+  }
+  .research-year-option {
+    cursor: pointer;
+    &:hover {
+      @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
+    }
+  }
+  .TYPE-source.box {
+    cursor: pointer;
+  }
+  .btn-research {
+    padding: 1em 2em;
+  }
+  .source-selector-header {
+    background-color: $gray-300;
   }
 }
 
