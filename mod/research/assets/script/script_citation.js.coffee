@@ -3,21 +3,17 @@ researchPath = (view)->
   path = window.location.pathname.replace(/\/\w+$/, "")
   decko.path path + "/" + view
 
-openPdf = (linkName) ->
-  url = researchPath "source_selector"
+openPdf = (sourceMark) ->
+  url = researchPath("source_selector") + "?" + $.param(source: sourceMark)
   el = $(".source_phase-view")
   el.addClass "slotter"
   el[0].href = url
   $.rails.handleRemote el
 
-
 $(document).ready ->
   $('.tab-pane-source_phase').on 'click', ".TYPE-source.box", (e) ->
     openPdf $(this).data("cardLinkName")
     e.stopPropagation()
-    # e.stopImmediatePropagation()
-
-
 
 
 #showSourceTab = () ->

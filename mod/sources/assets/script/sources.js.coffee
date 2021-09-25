@@ -9,6 +9,16 @@ $(document).ready ->
     window.location = decko.path $(this).data("cardLinkName")
 
 
+
+decko.slotReady (slot) ->
+  slot.find(".TYPE-source.box .meatball-button").on "click", (e) ->
+    $(this).dropdown "toggle"
+    e.stopImmediatePropagation()
+
+  slot.find(".TYPE-source.box a").on "click", (e) ->
+    e.preventDefault()
+
+
 # Resize PDF preview iframe to use full available height
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   resizeIframe($('body'))

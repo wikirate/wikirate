@@ -77,6 +77,12 @@ $(document).ready ->
     link.trigger "click"
     e.preventDefault()
 
+  # open source tab after clicking "select year"
+  $("body").on "click", "#_select_source", (e) ->
+    link = $(".tab-li-answer_phase a")
+    link.trigger "click"
+    e.preventDefault()
+
   # open new source form from button
   $("body").on "click", "._add_source_modal_link", () ->
     link = $(this)

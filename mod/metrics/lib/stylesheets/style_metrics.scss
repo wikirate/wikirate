@@ -691,6 +691,12 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
           height: 1.5rem;
           margin-right: 1rem;
         }
+        &.active, &:hover {
+          background-color: $white;
+          color: $secondary;
+          border: 0;
+          @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
+        }
       }
     }
   }
@@ -723,6 +729,21 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
   .source-selector-header {
     background-color: $gray-300;
+  }
+  .d0-card-overlay > .d0-card-frame > .d0-card-content {
+    padding: 0 !important;
+  }
+  .close-research-overlay {
+    right: 0;
+    a {
+      border: 0;
+      i {
+        padding: 0 0.2em;
+      }
+      &:hover i {
+        color: $white;
+      }
+    }
   }
 }
 

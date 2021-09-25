@@ -5,6 +5,12 @@ format do
 end
 
 format :html do
+  view :preview do
+    wrap_with :div, class: "nodblclick" do
+      nest card.file_card, view: :preview
+    end
+  end
+
   view :conversion_error do
     voo.title = "Unable to create Citable Source File"
     class_up "d0-card-header", "bg-danger text-white"
@@ -40,4 +46,5 @@ format :html do
   #   return unless term&.url?
   #   @metadata ||= Self::Source::MetaData.new(term)
   # end
+  # kind of a misleading name - it's a full file view
 end

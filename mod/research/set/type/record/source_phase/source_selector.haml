@@ -1,9 +1,8 @@
 .source-selector
   .source-selector-header
     .container.d-flex.justify-content-between.py-3.align-items-center
-      %h2 PDF Viewer
-      %a.btn.btn-primary.btn-research
-        Select Source
-  .source-selector-body
-    .container
-      source here
+      %h2.m-0 Source viewer
+      %a#_select_source.btn.btn-primary.btn-research{ href: "#" }
+        Select source
+  .source-selector-body.container
+    = nest current_source, view: :preview
