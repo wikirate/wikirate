@@ -11,7 +11,7 @@ describe Card::Set::Type::Dataset do
     check_html_views_for_errors
 
     it "has no year" do
-      expect(card_subject.years).to eq(false)
+      expect(card_subject.years).to eq([])
     end
 
     it "connects metrics and companies" do
