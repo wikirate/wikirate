@@ -28,10 +28,6 @@ format :html do
 
   view :research_success, wrap: :slot, template: :haml
 
-  # before :new do
-  #   voo.hide! :new_type_formgroup
-  # end
-
   # def default_wikirate_title
   #   metadata&.title
   # end

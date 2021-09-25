@@ -10,7 +10,7 @@ def source_file key
   File.open "#{Rails.root}/#{SOURCE_PATHS[key]}"
 end
 
-RSpec.describe Card::Set::Type::Source::Preview do
+RSpec.describe Card::Set::Type::Source::Views do
   describe "rendering preview view" do
     context "when text source" do
       before do
