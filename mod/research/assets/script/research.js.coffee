@@ -100,7 +100,6 @@ $(document).ready ->
     }, 600
     e.stopPropagation()
 
-
 selectedYear = ()->
   $("input[name='year']:checked").val()
 

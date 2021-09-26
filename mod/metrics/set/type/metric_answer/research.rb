@@ -7,18 +7,13 @@ end
 format :html do
   # AS RESEARCH PAGE
 
-  # NOCACHE because slot machine manipulates instance variables
-  view :open, cache: :never do
-    wrap do
-      subformat(:research_page).slot_machine metric: card.metric,
-                                             company: card.company,
-                                             year: card.year
-    end
-  end
-
   before :title do
     # HACK: to prevent cancel button on research page from losing title
     voo.title ||= "Answer"
+  end
+
+  before :content_formgroups do
+    voo.edit_structure = %i[value source discussion]
   end
 
   def success_alert
@@ -28,12 +23,4 @@ format :html do
       end
     end
   end
-
-  view :year_option, unknown: true do
-    return unless card.year.present?
-    card.known? ? render(:year_and_value) : haml(:new_year_option)
-    # merry christmas and a haml new year.
-  end
-
-  view :year_selected_option, template: :haml, unknown: true
 end

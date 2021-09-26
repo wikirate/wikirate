@@ -55,6 +55,4 @@ format :html do
       render default_research_tab
     end
   end
-
-  view :answer_phase, template: :haml
 end

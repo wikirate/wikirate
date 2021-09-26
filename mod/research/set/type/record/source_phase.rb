@@ -6,6 +6,10 @@ format :html do
     params[:source]
   end
 
+  def current_year
+    params[:year]
+  end
+
   def report_type
     metric_card.report_type_card.first_name
   end
@@ -14,7 +18,7 @@ format :html do
     {
       company_name: company_name,
       report_type: report_type,
-      year: params[:year]
+      year: current_year
     }
   end
 
