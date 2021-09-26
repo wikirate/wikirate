@@ -39,4 +39,8 @@ end
 
 format :html do
   view :titled_content, template: :haml
+
+  def default_item_view
+    :info_bar
+  end
 end

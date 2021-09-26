@@ -42,4 +42,11 @@ format :html do
     return unless key.present? && (icon_args = icon_map(key))
     icon_tag(*Array.wrap(icon_args))
   end
+
+  view :icon_labeled, template: :haml
+
+  def icon_labeled_field field, item_view=:name, opts={}
+    field_nest field, opts.merge(view: :labeled,
+                                 items: (opts[:items] || {}).merge(view: item_view))
+  end
 end

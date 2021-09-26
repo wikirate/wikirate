@@ -1,9 +1,10 @@
-.metric-value.text-left.ellipsis
-  = nest card.value_card, view: :pretty
-.small.pt-1.w-100
-  %span.text-muted.ellipsis.d-inline-block{ title: card.format(:text).render_legend }
-    = render_legend
-  %span.float-right
+.concise-answer.d-flex.justify-content-between
+  .d-flex.flex-column.justify-content-between.w-100
+    .metric-value.text-left.ellipsis
+      = nest card.value_card, view: :pretty
+    %span.text-muted.small{ title: card.format(:text).render_legend }
+      = render_legend
+  .d-flex.justify-content-end.align-items-end
     = render_flags
-    %span.text-muted.pl-2
-      = render_year_and_icon
+    .text-muted.ml-2
+      = nest card.year, view: :in_calendar

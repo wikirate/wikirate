@@ -70,9 +70,6 @@ $box_stripe_color: $gray-700;
 .bar {
   @include badge-icons();
   border-left: 3px solid $border-color;
-  > div {
-    overflow: hidden;
-  }
   .thumbnail {
     align-items: center;
   }
