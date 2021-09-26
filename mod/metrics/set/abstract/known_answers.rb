@@ -80,12 +80,12 @@ def records
 end
 
 def researched_relation
-  dataset_card.years ? answers : records
+  dataset_card.years? ? answers : records
 end
 
 def where_year
   where = yield
-  where[:year] = dataset_card.years if dataset_card.years
+  where[:year] = dataset_card.years if dataset_card.years?
   where
 end
 
