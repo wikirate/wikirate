@@ -12,6 +12,12 @@ format :html do
     voo.title ||= "Answer"
   end
 
+  def edit_fields
+    [
+      [card.value_card, { title: "Answer", show: :help }]
+    ]
+  end
+
   before :content_formgroups do
     voo.edit_structure = %i[value source discussion]
   end

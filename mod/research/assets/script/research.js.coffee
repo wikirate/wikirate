@@ -1,42 +1,4 @@
-# ~~~~~~~~ Handling of Unknown Checkbox ~~~~~~~~~~~~~~~~
-
-decko.slotReady (slot) ->
-  slot.find(".RIGHT-unknown input[type=checkbox]").on "change", ->
-    if $(this).is(":checked")
-      clearAnswerValue $(this).slot()
-
-  slot.find(".RIGHT-value").find("input, select").on "change", () ->
-    updateUnknownness(slot, $(this).val())
-
-clearAnswerValue = (slot) ->
-  editor = slot.find ".card-editor.RIGHT-value .content-editor"
-  clearValue editor
-
-clearValue = (editor) ->
-  select = editor.find "select"
-  if (select[0])
-    select.val(null).change()
-  else
-    clearInputValue editor
-
-clearInputValue = (editor) ->
-  $.each editor.find("input:not(.current_revision_id)"), ->
-    input = $(this)
-    if input.prop("type") == "text"
-      input.val null
-    else
-      input.prop "checked", false
-
-updateUnknownness = (slot, val)->
-  val = val.toString()
-  return if val == ""
-  unknown_checkbox = slot.find(".RIGHT-unknown input[type=checkbox]")
-  $(unknown_checkbox).prop 'checked', isUnknown(val)
-
-isUnknown = (val)->
-  val.toLowerCase() == 'unknown'
-
-# ~~~~~~~~ Other Research Page Handling ~~~~~~~~~~~~~~~~
+# ~~~~~~~~ Research Dashboard Handling ~~~~~~~~~~~~~~~~
 
 revealOverlay = (overlay) ->
   overlay.hide()
@@ -47,6 +9,7 @@ revealOverlay = (overlay) ->
 hideOverlay = (overlay) ->
 
 decko.slotReady (slot) ->
+  # slide up new overlays
   if slot.hasClass "_overlay"
     revealOverlay slot
 
@@ -71,17 +34,12 @@ $(document).ready ->
     $(this).find("input").prop "checked", "true"
 
   # open source tab after clicking "select year"
-  $("body").on "click", "#_select_year", (e) ->
-    link = $(".tab-li-source_phase a")
-    link.data "url", appendToUrl(link.data("url"), year: selectedYear())
-    link.trigger "click"
-    e.preventDefault()
+  $("body").on "click", "#_select_year", (event) ->
+    openTabWithParams "source_phase", event, year: selectedYear()
 
-  # open source tab after clicking "select year"
-  $("body").on "click", "#_select_source", (e) ->
-    link = $(".tab-li-answer_phase a")
-    link.trigger "click"
-    e.preventDefault()
+  # open answer tab after clicking "select year"
+  $("body").on "click", "#_select_source", (event) ->
+    openTabWithParams "answer_phase", event, year: selectedYear()
 
   # open new source form from button
   $("body").on "click", "._add_source_modal_link", () ->
@@ -100,19 +58,30 @@ $(document).ready ->
     }, 600
     e.stopPropagation()
 
+openTabWithParams = (tabname, event, params)->
+  link = $(".tab-li-#{tabname} a")
+  appendToDataUrl link, params
+  link.trigger "click"
+  event.preventDefault()
+
 selectedYear = ()->
   $("input[name='year']:checked").val()
 
 appendToUrl = (url, params) ->
   url + "&" + $.param(params)
 
-appendToHref = (link, params)->
-  link.attr "href", appendToUrl(initialHref(link), params)
+appendToDataUrl = (link, params) ->
+  url = initialUrl link, link.data("url")
+  link.data "url", appendToUrl(url, params)
 
-initialHref = (link) ->
-  unless link.data "initialHref"
-    link.data "initialHref", link.attr("href")
-  link.data "initialHref"
+appendToHref = (link, params)->
+  href = initialUrl link, link.attr("href")
+  link.attr "href", appendToUrl(href, params)
+
+initialUrl = (link, url) ->
+  unless link.data "initialUrl"
+    link.data "initialUrl", url
+  link.data "initialUrl"
 
   # add related company to name
   # otherwise the card can get the wrong type because it

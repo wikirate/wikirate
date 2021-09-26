@@ -17,9 +17,17 @@ format :html do
   def edit_fields
     [
       value_field_card_and_options,
-      unknown_field_card_and_options,
       check_request_field_card_and_options
     ].compact
+  end
+
+  view :input do
+    super() + unknown_checkbox
+  end
+
+  def unknown_checkbox
+    card.attach_unknown
+    haml :unknown_checkbox
   end
 
   # prevents multi-edit recursion on value field
@@ -29,10 +37,6 @@ format :html do
 
   def value_field_card_and_options
     [card, { title: "Answer", input_type: :standard, show: :help }]
-  end
-
-  def unknown_field_card_and_options
-    [card.attach_unknown, { hide: [:title, :help] }]
   end
 
   def check_request_field_card_and_options
