@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Abstract::MetricAnswer::Research do
-  specify "non-researchable metrics are not editable" do
+  xspecify "non-researchable metrics are not editable" do
     rendered = view :edit,
                     card: "Jedi+deadliness average+Slate Rock and Gravel Company+2005"
     aggregate_failures "no edit form" do
