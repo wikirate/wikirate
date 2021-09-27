@@ -4,8 +4,13 @@ include_set Abstract::Filterable
 
 IDENTIFIERS = %i[headquarters sec_cik oar_id].freeze
 INTEGRATIONS = %i[wikipedia open_corporates].freeze
+UNKNOWN_IDENTIFIER_VIEW = { headquarters: :unknown }.freeze
 
 (IDENTIFIERS + INTEGRATIONS).each { |field| card_accessor field, type: PhraseID }
+
+def field_cards
+  (IDENTIFIERS + INTEGRATIONS).map { |field| fetch field }.compact
+end
 
 format :html do
   # EDITING
@@ -80,7 +85,9 @@ format :html do
   end
 
   def identifiers
-    IDENTIFIERS.map { |fieldcode| labeled_field fieldcode, :name, unknown: :blank }
+    IDENTIFIERS.map do |code|
+      labeled_field code, :name, unknown: (UNKNOWN_IDENTIFIER_VIEW[code] || :blank)
+    end
   end
 
   def integrations
