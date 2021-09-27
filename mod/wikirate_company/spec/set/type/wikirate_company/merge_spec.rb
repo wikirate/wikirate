@@ -60,6 +60,14 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
     end
   end
 
+  describe "#move_field_cards_to" do
+    it "moves identifiers over" do
+      company.sec_cik_card.update! content: "bogusCIK"
+      company.move_field_cards_to target.name
+      expect(target.sec_cik).to eq("bogusCIK")
+    end
+  end
+
   describe "#move_source_listings_to" do
     "TODO"
   end
