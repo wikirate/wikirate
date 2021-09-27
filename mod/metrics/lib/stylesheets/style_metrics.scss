@@ -745,6 +745,32 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       }
     }
   }
+  .card-form {
+    .form-group {
+      display: flex;
+      > label {
+        .card-title {
+          font-size: 2rem;
+        }
+        width: 30%;
+        padding:  0 2rem;
+      }
+      > .content-editor {
+        width: 70%;
+        padding: 2rem;
+        ul.pointer-radio-list {
+          padding: 0;
+          li.pointer-radio {
+            padding: 0.2rem 0;
+            label {
+              margin-left: 1rem;
+            }
+          }
+        }
+
+      }
+    }
+  }
 }
 
 .progress {

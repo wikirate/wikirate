@@ -5,10 +5,10 @@ format :html do
            :checkers, :check_requester, :user, :checker_count,
            to: :card
 
-  view :edit_in_form do
-    return "" if other_user_requested_check?
-    wrap_with(:h5, "#{fa_icon(:flag, class: 'text-muted')} Checks") + super()
-  end
+  # view :edit_in_form do
+  #   return "" if other_user_requested_check?
+  #   wrap_with(:h5, "#{fa_icon(:flag, class: 'text-muted')} Checks") + super()
+  # end
 
   view :input, unknown: true do
     wrap_with :div, class: "d-flex flex-nowrap" do
