@@ -1,17 +1,31 @@
 # ~~~~~~~~ Handling of Unknown Checkbox ~~~~~~~~~~~~~~~~
 
+# set content value to "Unknown" if unknown checkbox is checked
+decko.editorContentFunctionMap["._unknown-checkbox input:checked"] = ->
+  @val()
+
 decko.slotReady (slot) ->
-  slot.find("._unknown-checkbox input[type=checkbox]").on "change", ->
-    if $(this).is(":checked")
-      clearAnswerValue $(this).slot()
+  # reset value when "unknown" is checked
+  unknownCheckbox(slot).on "change", ->
+    clearValue valueEditor(slot) if $(this).is(":checked")
 
-  slot.find(".RIGHT-value").find("input, select").on "change", () ->
-    updateUnknownness(slot, $(this).val())
+  # reset unknown checkbox when value changes
+  valueEditor(slot).find("#{knownInputSelector}, select").on "change", () ->
+    unknownCheckbox(slot).prop "checked", isUnknown($(this))
 
-clearAnswerValue = (slot) ->
-  editor = slot.find ".card-editor.RIGHT-value .content-editor"
-  clearValue editor
+# content editor of +value card
+valueEditor = (el) ->
+  el.find ".card-editor.RIGHT-value .content-editor"
 
+unknownCheckbox = (el) ->
+  el.find "._unknown-checkbox input[type=checkbox]"
+
+isUnknown = (el)->
+  el.val().toString().toLowerCase() == 'unknown'
+
+knownInputSelector = "input:not([name=_unknown])"
+
+# reset (known) value
 clearValue = (editor) ->
   select = editor.find "select"
   if (select[0])
@@ -19,19 +33,11 @@ clearValue = (editor) ->
   else
     clearInputValue editor
 
+# reset known value for input (ie, NOT select) tags
 clearInputValue = (editor) ->
-  $.each editor.find("input:not(.current_revision_id)"), ->
+  $.each editor.find("#{knownInputSelector}:not(.current_revision_id)"), ->
     input = $(this)
     if input.prop("type") == "text"
       input.val null
     else
       input.prop "checked", false
-
-updateUnknownness = (slot, val)->
-  val = val.toString()
-  return if val == ""
-  unknown_checkbox = slot.find("._unknown-checkbox input[type=checkbox]")
-  $(unknown_checkbox).prop 'checked', isUnknown(val)
-
-isUnknown = (val)->
-  val.toLowerCase() == 'unknown'
