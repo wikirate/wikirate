@@ -1,21 +1,10 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::TwoColumnLayout
 
-event :update_lookups_on_record_rename, :finalize, changed: :name do
-  answer_relation.each(&:refresh)
-end
+card_accessor :metric_answer
 
-def answer_relation
-  Answer.where(company_id: company_id, metric_id: metric_id)
-        .where "answers.unpublished is not true"
-end
-
-def answers
-  @answers ||= answer_relation.sort(year: :desc)
-end
-
-def count
-  answer_relation.count
+event :update_lookups_on_record_rename, :finalize, changed: :name, on: :update do
+  metric_answer_card.search.each(&:refresh)
 end
 
 def virtual?
@@ -23,7 +12,9 @@ def virtual?
 end
 
 format do
-  delegate :answers, to: :card
+  def answers
+    card.metric_answer_card.search
+  end
 end
 
 format :html do
@@ -37,30 +28,13 @@ format :html do
     end
   end
 
+  view :data do
+    field_nest :metric_answer, view: :filtered_content
+  end
+
   view :rich_header do
     [nest(card.metric_card, view: :shared_header),
      nest(card.company_card, view: :shared_header)]
-  end
-
-  view :data do
-    wrap_with :div, class: "p-3" do
-      [render_years_and_values, render_research_answer_button]
-    end
-  end
-
-  view :research_answer_button, cache: :never do
-    return "" unless metric_card.user_can_answer?
-    link_to_card :research_page, "Research",
-                 class: "btn btn-sm btn-outline-secondary",
-                 path: { metric: card.metric, company: card.company },
-                 title: "Research answers for this company and metric"
-  end
-
-  # NOCACHE because item search
-  view :years_and_values, cache: :never, unknown: true do
-    card.answers.map do |a|
-      nest a, view: :year_and_value
-    end
   end
 
   view :metric_tab do

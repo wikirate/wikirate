@@ -16,7 +16,7 @@
 }
 
 @mixin projectbar($name, $color) {
-  .LTYPE_RTYPE-#{$name}-project.bar {
+  .LTYPE_RTYPE-#{$name}-project.bar-view {
     .progress {
       width: 100%;
     }
