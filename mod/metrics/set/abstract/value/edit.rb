@@ -1,11 +1,3 @@
-def unknown_subfield
-  subfield :unknown
-end
-
-def attach_unknown
-  attach_subfield :unknown, content: (unknown_value? ? "1" : "0")
-end
-
 format :html do
   # When editing +value cards, whether independently or within a form,
   # there is an "unknown" field, which is implemented as a card but never stored.
@@ -17,9 +9,12 @@ format :html do
   def edit_fields
     [
       value_field_card_and_options,
-      unknown_field_card_and_options,
       check_request_field_card_and_options
     ].compact
+  end
+
+  view :input do
+    super() + haml(:unknown_checkbox)
   end
 
   # prevents multi-edit recursion on value field
@@ -29,10 +24,6 @@ format :html do
 
   def value_field_card_and_options
     [card, { title: "Answer", input_type: :standard, show: :help }]
-  end
-
-  def unknown_field_card_and_options
-    [card.attach_unknown, { hide: [:title, :help] }]
   end
 
   def check_request_field_card_and_options

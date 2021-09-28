@@ -28,7 +28,7 @@ format do
   end
 
   def filter_keys
-    %i[wikirate_title wikirate_topic report_type year wikirate_link]
+    %i[wikirate_title wikirate_topic report_type year wikirate_link company_name]
   end
 
   def default_filter_hash
@@ -72,7 +72,7 @@ class SourceFilterQuery < WikirateFilterQuery
     matching_field WikirateTitleID, value
   end
 
-  def wikirate_company_cql value
+  def company_name_cql value
     matching_field WikirateCompanyID, value
   end
 
