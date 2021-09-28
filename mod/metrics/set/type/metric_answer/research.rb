@@ -19,7 +19,8 @@ format :html do
   def edit_fields
     [
       [card.value_card, { title: "Answer" }],
-      [card.discussion_card, { title: "Comments" }]
+      [card.discussion_card, { title: "Comments" }],
+      [card.source_card, { title: "Source", input_type: :removable_content }],
     ]
   end
 

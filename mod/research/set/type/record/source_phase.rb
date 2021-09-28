@@ -28,4 +28,8 @@ format :html do
       hash["_#{key.cardname}"] = value
     end
   end
+
+  def source_data
+    { source: current_source }
+  end
 end

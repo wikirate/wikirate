@@ -39,7 +39,10 @@ $(document).ready ->
 
   # open answer tab after clicking "select year"
   $("body").on "click", "#_select_source", (event) ->
-    openTabWithParams "answer_phase", event, year: selectedYear()
+    openTabWithParams "answer_phase", event, {
+      year: selectedYear()
+      source: $(this).data("source")
+    }
 
   # open new source form from button
   $("body").on "click", "._add_source_modal_link", () ->
