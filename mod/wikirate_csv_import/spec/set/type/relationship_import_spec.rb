@@ -14,7 +14,11 @@ RSpec.describe Card::Set::Type::RelationshipImport do
   def import_indeces key
     indeces = INDECES[key]
     row_params = indeces.each_with_object({}) { |i, h| h[i] = true }
-    Card::Env.with_params(import_rows: row_params) { card_subject.update!({}) }
+    Card::Env.with_params(import_rows: row_params) do
+      Delayed::Worker.delay_jobs = true
+      card_subject.update!({})
+      Delayed::Worker.new.work_off
+    end
   end
 
   def check_relationship_answer_cards
