@@ -36,6 +36,6 @@ format :html do
   end
 
   view :question do
-    field_nest :question, view: :content
+    field_nest :question, view: :content, unknown: :blank
   end
 end

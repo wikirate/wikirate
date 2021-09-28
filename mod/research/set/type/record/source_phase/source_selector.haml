@@ -1,0 +1,8 @@
+.source-selector
+  .source-selector-header
+    .container.d-flex.justify-content-between.py-3.align-items-center
+      %h2.m-0 Source viewer
+      %a#_select_source.btn.btn-primary.btn-research{ href: "#", data: source_data }
+        Select source
+  .source-selector-body.container
+    = nest current_source, view: :preview

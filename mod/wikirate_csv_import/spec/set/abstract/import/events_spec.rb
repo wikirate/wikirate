@@ -29,42 +29,46 @@ RSpec.describe Card::Set::Abstract::Import::Events do
 
   describe "event: mark_items_as_importing" do
     it "immediately marks items in progress as 'importing'" do
-      Delayed::Worker.delay_jobs = true
       # status should remain "importing" until delayed job is processed
-      importing_items(8) { old_file_card.update({}) }
-      expect(refreshed_status.item_hash(8)[:status]).to eq(:importing)
+      expect(import_status_for(8, work_off: false)).to eq(:importing)
     end
   end
 
   describe "event: initiate import" do
     it "imports valid rows" do
-      importing_items(8) { old_file_card.update({}) }
-      expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
+      expect(import_status_for(8)).to eq(:success)
     end
 
     it "fails on invalid rows" do
-      importing_items(1) { old_file_card.update({}) }
-      expect(refreshed_status.item_hash(1)[:status]).to eq(:not_ready)
+      expect(import_status_for(1)).to eq(:not_ready)
     end
 
     context "when item has failed previously" do
       it "imports valid rows even after a failure" do
-        # 1 is not ready, 8 is valid (see above)
-        importing_items(1, 8) { old_file_card.update({}) }
-        expect(refreshed_status.item_hash(8)[:status]).to eq(:success)
+        expect(import_status_for(8, import_indeces: [1, 8])).to eq(:success)
       end
     end
   end
 
   private
 
+  def import_status_for status_index, import_indeces: nil, work_off: true
+    Delayed::Worker.delay_jobs = true
+    import_indeces ||= [status_index]
+    importing_items(*import_indeces, work_off) { old_file_card.update({}) }
+    refreshed_status.item_hash(status_index)[:status]
+  end
+
   def refreshed_status
     old_file_card.import_status_card.refresh(true).status
   end
 
-  def importing_items *indeces, &block
+  def importing_items *indeces, work_off
     row_hash = indeces.each_with_object({}) { |i, h| h[i] = true }
-    Card::Env.with_params import_rows: row_hash, &block
+    Card::Env.with_params import_rows: row_hash do
+      yield
+      Delayed::Worker.new.work_off if work_off
+    end
   end
 
   def create_import_file
