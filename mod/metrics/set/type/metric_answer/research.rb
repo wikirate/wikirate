@@ -12,14 +12,15 @@ format :html do
     voo.title ||= "Answer"
   end
 
-  def edit_fields
-    [
-      [card.value_card, { title: "Answer", show: :help }]
-    ]
+  view :submit_answer do
+    standard_save_button text: "Submit Answer", class: "btn-research"
   end
 
-  before :content_formgroups do
-    voo.edit_structure = %i[value source discussion]
+  def edit_fields
+    [
+      [card.value_card, { title: "Answer" }],
+      [card.discussion_card, { title: "Comments" }]
+    ]
   end
 
   def success_alert
