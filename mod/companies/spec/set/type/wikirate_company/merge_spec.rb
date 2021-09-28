@@ -12,19 +12,19 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
     end
   end
 
-  def expect_answers_to_move
+  def expect_answers_to_move target_num
     expect(company.answers.count).to eq(5)
     expect(target.answers.count).to eq(10)
     yield
     expect(company.answers.count).to eq(1) # there is one conflicting answer
-    expect(target.answers.count).to eq(11)
-    # Note: we do not move over hq field, so the hq answer and the answers that depend on
-    # it don't move
+    expect(target.answers.count).to eq(target_num)
+    # Note: move_answers_to alone does not move the hq field, so the hq answer and
+    # the answers that depend on it don't move
   end
 
   describe "#move_answers_to" do
     it "moves non-conflicting answers from source to target company" do
-      expect_answers_to_move do
+      expect_answers_to_move 11 do
         company.move_answers_to target.name
       end
     end
@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
     it "works when triggered within act", as_bot: true do
       Card::Env.params[:target_company] = target.name
 
-      expect_answers_to_move do
+      expect_answers_to_move 14 do
         company.update! trigger: :merge_companies
       end
     end
@@ -57,6 +57,14 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
       expect(Card[*new_relationship].value).to eq("yes")
       expect(Card[*new_answer].value).to eq("1")
       expect(Card[*old_answer]).to eq(nil)
+    end
+  end
+
+  describe "#move_field_cards_to" do
+    it "moves identifiers over" do
+      company.sec_cik_card.update! content: "bogusCIK"
+      company.move_field_cards_to target.name
+      expect(target.sec_cik).to eq("bogusCIK")
     end
   end
 
