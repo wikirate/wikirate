@@ -1,5 +1,5 @@
 def ids_related_to_research_group research_group
-  research_group.datasets.map do |dataset|
+  research_group.projects.map do |dataset|
     Answer.where(
       company_id: dataset.company_ids,
       metric_id: dataset.metric_ids
