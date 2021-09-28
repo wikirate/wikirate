@@ -33,9 +33,7 @@ event :leave_group, :validate, when: :leaving? do
 end
 
 format :html do
-  view :overview, unknown: true do
-    wrap { haml :overview }
-  end
+  view :overview, unknown: true, wrap: :slot, template: :haml
 
   view :contributions, unknown: true, cache: :never do
     return "" unless card.count.positive?
