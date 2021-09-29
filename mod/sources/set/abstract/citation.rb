@@ -79,3 +79,11 @@ def invalid_source_item_error_message source_name
     "No such source exists: #{source_name}"
   end
 end
+
+format :html do
+  def removable_content_input
+    render_removable_content
+  end
+
+  view :removable_content, wrap: :slot, cache: :never, unknown: true, template: :haml
+end
