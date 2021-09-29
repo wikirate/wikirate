@@ -5,6 +5,8 @@ RSpec.describe Card::Set::Type::Source do
     "#{Card::Env[:protocol]}#{Card::Env[:host]}/#{url}"
   end
 
+  check_html_views_for_errors
+
   describe "while creating a Source" do
     before do
       login_as "joe_user"
