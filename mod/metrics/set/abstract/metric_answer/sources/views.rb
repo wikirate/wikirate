@@ -4,18 +4,12 @@ format :html do
             nest(card.source_card, view: :core, items: { view: :bar })]
   end
 
-  view :source_editor do
-    with_nest_mode :normal do
-      field_nest :source, view: :core
-    end
-  end
-
-  view :new_source_form, unknown: true, cache: :never do
-    params[:answer] = card.name
-    params[:source_url] = source_search_term if source_search_term&.url?
-    source_card = Card.new type_id: Card::SourceID
-    nest source_card, view: :new
-  end
+  # view :new_source_form, unknown: true, cache: :never do
+  #   params[:answer] = card.name
+  #   params[:source_url] = source_search_term if source_search_term&.url?
+  #   source_card = Card.new type_id: Card::SourceID
+  #   nest source_card, view: :new
+  # end
 
   def wikirate_source_from_url
     mdata = source_search_term.match(%r{//wikirate\.org/(.*)$})

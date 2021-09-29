@@ -721,9 +721,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
     }
   }
-  .TYPE-source.box {
-    cursor: pointer;
-  }
   .btn-research {
     padding: 1em 2em;
   }
@@ -745,33 +742,35 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       }
     }
   }
-  .card-form {
-    .form-group {
-      display: flex;
-      > label {
-        .card-title {
-          font-size: 2rem;
-        }
-        width: 30%;
-        padding: 0 2rem;
+
+  .tab-pane-answer_phase .submit-button {
+    margin-left: calc(30% + 2rem);
+  }
+}
+
+.research-layout .card-form, .read_form-view {
+  .form-group {
+    display: flex;
+    > label {
+      .card-title {
+        font-size: 2rem;
       }
-      > .content-editor {
-        width: 70%;
-        padding: 2rem;
-        ul.pointer-radio-list {
-          padding: 0;
-          li.pointer-radio {
-            padding: 0.2rem 0;
-            label {
-              margin-left: 1rem;
-            }
+      width: 30%;
+      padding: 0 2rem;
+    }
+    > .content-editor, .read-formgroup-content {
+      width: 70%;
+      padding: 2rem;
+      ul.pointer-radio-list {
+        padding: 0;
+        li.pointer-radio {
+          padding: 0.2rem 0;
+          label {
+            margin-left: 1rem;
           }
         }
       }
     }
-  }
-  .tab-pane-answer_phase .submit-button {
-    margin-left: calc(30% + 2rem);
   }
 }
 

@@ -12,6 +12,10 @@ format :html do
     voo.title ||= "Answer"
   end
 
+  before :edit_inline do
+    voo.buttons_view = :submit_answer
+  end
+
   view :submit_answer do
     standard_save_button text: "Submit Answer", class: "btn-research"
   end
@@ -19,10 +23,10 @@ format :html do
   def edit_fields
     [
       [card.value_card, { title: "Answer" }],
-      [card.discussion_card, { title: "Comments" }],
       [card.source_card, { title: "Source",
                            input_type: :removable_content,
                            view: :removable_content }],
+      [card.discussion_card, { title: "Comments" }]
     ]
   end
 

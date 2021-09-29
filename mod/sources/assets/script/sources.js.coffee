@@ -5,17 +5,15 @@ $(document).ready ->
     $('.source-option').show()
     $(this).closest('.source-option').hide()
 
-  $('body').on 'click', ".TYPE-source.box", ->
-    window.location = decko.path $(this).data("cardLinkName")
-
-
+  $('body').on 'click', ".TYPE-source.box, .TYPE-source.bar", ->
+    window.location = decko.path($(this).data("cardLinkName"))
 
 decko.slotReady (slot) ->
-  slot.find(".TYPE-source.box .meatball-button").on "click", (e) ->
+  slot.find(".TYPE-source .meatball-button").on "click", (e) ->
     $(this).dropdown "toggle"
     e.stopImmediatePropagation()
 
-  slot.find(".TYPE-source.box a").on "click", (e) ->
+  slot.find(".TYPE-source.box a, .TYPE-source.bar a").on "click", (e) ->
     e.preventDefault()
 
 
