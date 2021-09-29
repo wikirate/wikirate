@@ -20,7 +20,9 @@ format :html do
     [
       [card.value_card, { title: "Answer" }],
       [card.discussion_card, { title: "Comments" }],
-      [card.source_card, { title: "Source", input_type: :removable_content }],
+      [card.source_card, { title: "Source",
+                           input_type: :removable_content,
+                           view: :removable_content }],
     ]
   end
 

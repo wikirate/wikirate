@@ -1,16 +1,11 @@
 # ~~~~~~~~ Research Dashboard Handling ~~~~~~~~~~~~~~~~
 
-revealOverlay = (overlay) ->
-  overlay.hide()
-  $("html, body").animate { scrollTop: 0 }, 300
-  $(window).scrollTop
-  overlay.show "slide", { direction: "down" }, 600
-
-hideOverlay = (overlay) ->
+decko.editorContentFunctionMap["._removable-content-list"] = ->
+  decko.pointerContent selectedSources($(this))
 
 decko.slotReady (slot) ->
   # slide up new overlays
-  if slot.hasClass "_overlay"
+  if slot.hasClass "_overlay" && slot.closest(".research-layout")[0]
     revealOverlay slot
 
   newSource = slot.find "._new_source"
@@ -35,14 +30,14 @@ $(document).ready ->
 
   # open source tab after clicking "select year"
   $("body").on "click", "#_select_year", (event) ->
-    openTabWithParams "source_phase", event, year: selectedYear()
+    openTabWithParams "source", event, year: selectedYear()
 
   # open answer tab after clicking "select year"
   $("body").on "click", "#_select_source", (event) ->
-    openTabWithParams "answer_phase", event, {
-      year: selectedYear()
-      source: $(this).data("source")
-    }
+    source = $(this).data "source"
+    unless tabPhase("answer").hasClass "load"
+      addSource source
+    openAnswerPhase event, source
 
   # open new source form from button
   $("body").on "click", "._add_source_modal_link", () ->
@@ -61,8 +56,42 @@ $(document).ready ->
     }, 600
     e.stopPropagation()
 
-openTabWithParams = (tabname, event, params)->
-  link = $(".tab-li-#{tabname} a")
+  researchTabSelector = ".research-layout #main .nav-item:not(.tab-li-question_phase)"
+  $(researchTabSelector).on "click", ".nav-link:not(.active)", (e)->
+    unless selectedYear()
+      alert "Please select a year"
+      e.preventDefault()
+      e.stopPropagation()
+
+openAnswerPhase = (event, source) ->
+  openTabWithParams "answer", event, {
+    year: selectedYear()
+    source: source
+    view: "removable_content"
+  }
+
+tabPhase = (phase) ->
+  $(".tab-li-#{phase}_phase a")
+
+addSource = (source) ->
+  ed = $(".RIGHT-source.card-editor")
+  sources = selectedSources ed
+  sources.push source
+  ed.find(".d0-card-content").val decko.pointerContent(sources)
+  slot = ed.find(".card-slot.removable_content-view")
+  url = "#{slot.data 'cardLinkName'}?" + $.param({
+    assign: true
+    card: { content: decko.pointerContent(sources) }
+  })
+  slot.reloadSlot url
+
+decko.addSource = addSource
+
+selectedSources = (el) ->
+  el.find('._removable-content-item').map( -> $(this).data('cardName') )
+
+openTabWithParams = (phase, event, params) ->
+  link = tabPhase phase
   appendToDataUrl link, params
   link.trigger "click"
   event.preventDefault()
@@ -85,6 +114,12 @@ initialUrl = (link, url) ->
   unless link.data "initialUrl"
     link.data "initialUrl", url
   link.data "initialUrl"
+
+revealOverlay = (overlay) ->
+  overlay.hide()
+  $("html, body").animate { scrollTop: 0 }, 300
+  $(window).scrollTop
+  overlay.show "slide", { direction: "down" }, 600
 
   # add related company to name
   # otherwise the card can get the wrong type because it

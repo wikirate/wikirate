@@ -85,7 +85,5 @@ format :html do
     render_removable_content
   end
 
-  view :removable_content, wrap: :slot, cache: :never, unknown: true do
-    render_core
-  end
+  view :removable_content, wrap: :slot, cache: :never, unknown: true, template: :haml
 end

@@ -712,7 +712,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   .d0-card-overlay {
     background-color: $gray-100;
   }
-  input {
+  input[type=radio], input[type=checkbox] {
     transform: scale(1.5);
   }
   .research-year-option {
