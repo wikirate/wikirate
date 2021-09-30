@@ -143,13 +143,12 @@ researchPath = (view)->
   decko.path path + "/" + view
 
 openPdf = (sourceMark) ->
-  unless sourceMark == selectedSource
+  el = $(".source_phase-view")
+  if el[0] && sourceMark != selectedSource
     url = researchPath("source_selector") + "?" + $.param(source: sourceMark)
-    el = $(".source_phase-view")
     el.addClass "slotter"
     el[0].href = url
     $.rails.handleRemote el
-
 
 # add related company to name
 # otherwise the card can get the wrong type because it
