@@ -15,13 +15,18 @@ end
 format :html do
   # AS RESEARCH PAGE
 
-  before :title do
-    # HACK: to prevent cancel button on research page from losing title
-    voo.title ||= "Answer"
-  end
+  # before :title do
+  #   # HACK: to prevent cancel button on research page from losing title
+  #   voo.title ||= "Answer"
+  # end
 
   view :edit_inline do
-    voo.buttons_view = card.new? ? :submit_answer_button : :edit_answer_buttons
+    voo.buttons_view = :edit_answer_buttons
+    super()
+  end
+
+  view :simple_new do
+    voo.buttons_view = :submit_answer_button
     super()
   end
 
