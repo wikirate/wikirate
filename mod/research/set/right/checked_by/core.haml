@@ -1,0 +1,17 @@
+.checked-by-core
+  .checked-by-status
+    - if checked?
+      .checkers-list
+        %em
+          = checkers_list
+          %span checked this value
+    - elsif check_requested?
+      .check-requested-by
+        Double check
+        %i.fa.fa-flag.verification-flagged
+          requested by #{check_requester}
+    - else
+      .unchecked-status
+        Nobody has verified that the answer accurately represents its source
+        since it was #{verb}.
+  = render_check_interaction if allowed_to_check?
