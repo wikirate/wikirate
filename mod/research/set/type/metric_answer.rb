@@ -63,7 +63,7 @@ format :html do
   def success_alert
     alert :success, true, false, class: "text-center" do
       wrap_with :p do
-        "Success! To research another answer select a different metric or year."
+        "Success! To research another answer select a different metric, company, or year."
       end
     end
   end
