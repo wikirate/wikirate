@@ -1,3 +1,5 @@
+# TODO: refactor to use triggers!
+
 event :user_checked_value, :prepare_to_store, on: :save, when: :add_checked_flag? do
   add_checker unless user_checked?
   update_user_check_log.add_id left.id

@@ -2,4 +2,4 @@
   .col-11
     = nest answer_for(year), view: :research_option
   .col-1.text-align-center
-    = radio_button_tag :year, year
+    = radio_button_tag :year, year, params[:year] == year

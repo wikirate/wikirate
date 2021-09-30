@@ -18,10 +18,14 @@ format :html do
   end
 
   def construct_source answer
+    return if answer.real? || current_sources.blank?
+
     answer.source_card.content = current_sources.to_pointer_content
   end
 
   def current_sources
+    return [] unless params[:source].present?
+
     Array.wrap params[:source]
   end
 end
