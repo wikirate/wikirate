@@ -1,0 +1,18 @@
+%a#metric-header
+- if multi_metric?
+  .metric-project-research.row.align-items-center
+    .col-1.h2
+      = link_to_metric metric_index - 1, angle(:left)
+    .col-10
+      = render_metric_option
+      %label.text-secondary.py-3
+        Question
+        = metric_index + 1
+        \/
+        = metric_ids.size
+
+
+    .col-1.h2
+      = link_to_metric metric_index + 1, angle(:right)
+- else
+  = render_metric_option
