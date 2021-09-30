@@ -21,8 +21,10 @@ format :html do
     date_view card.content_updated_at
   end
 
-  view :core do
-    card.item_names.join(",")
+  view :core, unknown: true do
+    wrap_with :span, pretty_span_args do
+      beautify(pretty_value).html_safe
+    end
   end
 
   view :credit do
@@ -33,9 +35,7 @@ format :html do
   end
 
   view :pretty, unknown: true do
-    wrap_with :span, pretty_span_args do
-      beautify(pretty_value).html_safe
-    end
+    render_core
   end
 
   # do not link to the relationship answer counts that comprise the "value" of
