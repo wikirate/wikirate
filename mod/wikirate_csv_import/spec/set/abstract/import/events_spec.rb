@@ -29,7 +29,6 @@ RSpec.describe Card::Set::Abstract::Import::Events do
 
   describe "event: mark_items_as_importing" do
     it "immediately marks items in progress as 'importing'" do
-
       # status should remain "importing" until delayed job is processed
       expect(import_status_for(8, work_off: false)).to eq(:importing)
     end
