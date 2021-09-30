@@ -768,6 +768,12 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       }
     }
   }
+  .read-formgroup-content {
+    background-color: $gray-100;
+    .bar-body {
+      background-color: $white;
+    }
+  }
   .button-form-group {
     margin-left: calc(30% + 2rem);
   }
