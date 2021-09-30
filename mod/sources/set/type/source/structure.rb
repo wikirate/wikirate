@@ -6,7 +6,7 @@ format :html do
   end
 
   view :open_content do
-    hidden_information + two_column_layout(7, 5)
+    two_column_layout 7, 5
   end
 
   view :left_column do
@@ -47,13 +47,19 @@ format :html do
     end
   end
 
+  # download and original links.  (view makes them hideable)
+
   def original_link
     return unless card.link_url.present?
-    link_with_icon card.link_url, "external-link-square", "Original"
+    link_with_icon card.link_url, "external-link-square-alt", "Original"
   end
 
   def download_link
     link_with_icon card.file_url, :download, "Download"
+  end
+
+  def source_page_link
+    link_with_icon card.name.url_key, "external-link-alt", "Source Page"
   end
 
   def link_with_icon url, icon, title
