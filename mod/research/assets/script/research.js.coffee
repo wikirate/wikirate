@@ -27,10 +27,6 @@ $(document).ready ->
     else
       el.text "More"
 
-  # click anywhere on year option to select it
-  $("body").on "click", "._research-year-option", () ->
-    $(this).find("input").prop "checked", "true"
-
   # open source tab after clicking "select year"
   $("body").on "click", "#_select_year", (event) ->
     toPhase "source", event
@@ -149,6 +145,8 @@ openPdf = (sourceMark) ->
     el.addClass "slotter"
     el[0].href = url
     $.rails.handleRemote el
+
+wikirate.tabPhase = tabPhase
 
 # add related company to name
 # otherwise the card can get the wrong type because it

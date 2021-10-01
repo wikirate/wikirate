@@ -7,6 +7,10 @@ require_field :source, when: :source_required?
 
 delegate :value_required?, to: :metric_card
 
+def unpublished_option?
+  steward? && !metric_card.unpublished
+end
+
 # EVENTS
 event :flash_success_message, :finalize, on: :create do
   success.flash format(:html).success_alert
@@ -15,10 +19,9 @@ end
 format :html do
   # AS RESEARCH PAGE
 
-  # before :title do
-  #   # HACK: to prevent cancel button on research page from losing title
-  #   voo.title ||= "Answer"
-  # end
+  view :research_button do
+    nest record_card, view: :research_button
+  end
 
   view :edit_inline do
     voo.buttons_view = :edit_answer_buttons
@@ -56,6 +59,12 @@ format :html do
   end
 
   def edit_fields
+    standard_edit_fields.tap do |fields|
+      fields << [:unpublished, title: "Unpublished"] if card.unpublished_option?
+    end
+  end
+
+  def standard_edit_fields
     [
       [card.value_card, title: "Answer"],
       [:source, title: "Source",
