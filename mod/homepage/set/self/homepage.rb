@@ -24,7 +24,6 @@ format :html do
 
   view :core do
     output [
-      render_wikirate_modal,
       nest(:homepage_top_banner, view: :core),
       nest(:homepage_video_section, view: :core),
       nest(:homepage_numbers, view: :core),

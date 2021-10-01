@@ -1,0 +1,7 @@
+- if year_list.any?
+  .fancy-year-list
+    // make view of year?
+    %span.pr-1
+      = mapped_icon_tag :year
+    %span.fancy-years
+      = year_list.sort.reverse.join ", "
