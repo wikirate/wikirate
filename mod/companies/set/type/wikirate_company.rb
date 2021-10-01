@@ -7,7 +7,6 @@ include_set Abstract::Stewardable
 include_set Abstract::TwoColumnLayout
 
 include_set Abstract::Bookmarkable
-# include_set Abstract::Export
 
 card_accessor :alias, type: PointerID
 card_accessor :metric_answer

@@ -1,6 +1,5 @@
 require "savanna-outliers"
 
-# include_set Abstract::Export
 include_set Abstract::DesignerAndTitle
 include_set Abstract::MetricThumbnail
 include_set Abstract::TwoColumnLayout
