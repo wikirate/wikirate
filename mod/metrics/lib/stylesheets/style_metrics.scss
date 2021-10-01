@@ -676,6 +676,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .research-layout #main {
+  .research-company .progress-bar {
+    background-color: $metric-color;
+  }
   .nav-pills {
     li {
       min-width: 25%;

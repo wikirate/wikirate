@@ -24,7 +24,7 @@ format :html do
 
   view :target_company_select do
     text_field_tag :target_company, "",
-               class: "company_autocomplete form-control"
+               class: "wikirate_company_autocomplete form-control"
   end
 
   view :engage_tab do
