@@ -33,6 +33,10 @@ format :html do
     voo.hide :overlay_title
   end
 
+  view :confirm_leave, wrap: { modal: { footer: "" } }, template: :haml do
+    voo.hide :menu
+  end
+
   def angle dir
     fa_icon "angle-#{dir}", class: "text-secondary"
   end
@@ -100,4 +104,6 @@ format :html do
         hash[answer.year.to_i] = answer
       end
   end
+
+
 end

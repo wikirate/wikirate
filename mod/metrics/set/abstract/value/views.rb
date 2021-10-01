@@ -17,6 +17,10 @@ def content_updater
 end
 
 format :html do
+  def raw_help_text
+    metric_card.question
+  end
+
   view :updated_at, compact: true do
     date_view card.content_updated_at
   end
