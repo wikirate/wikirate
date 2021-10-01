@@ -23,18 +23,31 @@
 
 .year-icon-cal.image-box  {
   position: relative;
-   i {
-     font-size: 28px;
-     position: relative;
-     bottom: 11px;
-   }
+  width: 4em;
+  height: 4em;
+  min-width: 4em;
+  min-height: 4em;
+  margin-right: 0;
+  i {
+    font-size: 1.5em;
+    position: relative;
+    bottom: 0.5em;
+  }
   .icon-cal-text {
     position: absolute;
     bottom: 5%;
-    font-size: 17px;
+    font-size: 1.15em;
     font-weight: bold;
-    }
   }
+}
+
+.concise-answer .year-icon-cal {
+  font-size: 0.7rem;
+}
+.details-top .year-icon-cal {
+  font-size: 1.2em;
+}
+
 
 /*----------- Slide ---------*/
 

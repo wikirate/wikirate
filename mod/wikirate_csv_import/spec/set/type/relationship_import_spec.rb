@@ -12,12 +12,11 @@ RSpec.describe Card::Set::Type::RelationshipImport do
   end
 
   def import_indeces key
-    indeces = INDECES[key]
-    row_params = indeces.each_with_object({}) { |i, h| h[i] = true }
+    row_params = INDECES[key].each_with_object({}) { |i, h| h[i] = true }
     Card::Env.with_params(import_rows: row_params) do
-      Delayed::Worker.delay_jobs = true
-      card_subject.update!({})
-      Delayed::Worker.new.work_off
+      with_delayed_jobs do
+        card_subject.update!({})
+      end
     end
   end
 
