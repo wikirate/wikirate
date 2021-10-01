@@ -226,12 +226,6 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
           .format.render :expanded_details
     end
 
-    it "shows cited source" do
-      is_expected.to have_tag "div.cited-sources" do
-        with_tag "div.source-title", /Opera/
-      end
-    end
-
     it "shows overridden value" do
       is_expected.to have_tag "div.overridden-answer" do
         with_tag "h5", "Overridden answer"
