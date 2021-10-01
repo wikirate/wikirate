@@ -67,7 +67,10 @@ format :html do
   def link_to_metric index, text
     record_name = metric_id_for_index(index).cardname.field card.company_name
     link_to_card record_name, text,
-                 path: { project: project_name, view: :research, anchor: "metric-header" }
+                 class: "_research-metric-link",
+                 path: { project: project_name,
+                         view: :research,
+                         anchor: "company-header" }
   end
 
   def metric_id_for_index index
