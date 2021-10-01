@@ -1,17 +1,20 @@
 .checked-by-core
   .checked-by-status
-    - if checked?
-      .checkers-list
-        %em
-          = checkers_list
-          %span checked this value
-    - elsif check_requested?
+    - if check_requested?
       .check-requested-by
-        Double check
+        Check
         %i.fa.fa-flag.verification-flagged
-          requested by #{check_requester}
+        requested by #{check_requester}
     - else
-      .unchecked-status
-        Nobody has verified that the answer accurately represents its source
+      - link_text = capture_haml do
+        Community members who have verified that the
+        %strong answer accurately represents its source
         since it was #{verb}.
+      .checkers-list.d-flex.align-items-center
+        - count = checker_count
+        = labeled_badge count, "Checker".pluralize(count)
+        = popover_link link_text
+        .d-inline.ml-3
+          = checkers_list
+
   = render_check_interaction if allowed_to_check?

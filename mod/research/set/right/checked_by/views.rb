@@ -3,11 +3,8 @@ def raw_help_text
 end
 
 format :html do
-  delegate :answer,
-           :allowed_to_check?, :checked?, :user_checked?,
-           :other_user_requested_check?, :check_requested?,
-           :checkers, :check_requester, :user, :checker_count,
-           to: :card
+  delegate :answer, :allowed_to_check?, :checked?, :user_checked?, :check_requested?,
+           :checkers, :check_requester, :user, :checker_count, to: :card
 
   view :core, template: :haml
   view :check_interaction, cache: :never, template: :haml

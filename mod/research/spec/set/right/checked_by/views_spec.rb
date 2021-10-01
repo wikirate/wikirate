@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
   let(:checked_by_card) { Card["joe_user+RM+death_star+1977"].checked_by_card }
 
   def with_badge binding, num
-    binding.with_tag(:h5) { with_tag "span.badge", /#{num}/ }
+    binding.with_tag(".labeled-badge") { with_tag "span.badge", /#{num}/ }
   end
 
   def check_value
@@ -17,8 +17,6 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
       example "creator", with_user: "Decko Bot" do
         expect(core).to have_tag :div do
           with_badge self, 0
-          with_text /Nobody has checked this value since it was created/
-          without_text "checked this value"
           without_tag "a.btn"
         end
       end
@@ -26,10 +24,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
       example "other user" do
         expect(core).to have_tag :div do
           with_badge self, 0
-          with_text /Nobody has checked this value since it was created/
-          without_text "checked this value"
-          with_tag :a, "Yes, I checked"
-          with_tag :a, "No, I'll fix it"
+          with_tag :a, "I verified this answer"
         end
       end
 
@@ -43,19 +38,15 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
         example "creator", with_user: "Decko Bot" do
           expect(core).to have_tag :div do
             with_badge self, 0
-            with_text /Nobody has checked this value since it was last updated/
-            without_text "checked this value"
-            with_tag :a, "Yes, I checked"
-            with_tag :a, "No, I'll fix it"
+            with_tag :a, "I verified this answer"
           end
         end
 
         example "updater", with_user: "John" do
           expect(core).to have_tag :div do
             with_badge self, 0
-            with_text /Nobody has checked this value since it was last updated/
-            without_text "checked this value"
-            without_tag :a
+            with_tag "a._popover_link"
+            without_tag "a.btn"
           end
         end
       end
@@ -72,7 +63,6 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
         expect(core).to have_tag :div do
           with_badge self, 1
           with_tag :a, "John"
-          with_text /checked this value/
           without_tag "a.btn"
         end
       end
@@ -81,7 +71,6 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
         expect(core).to have_tag :div do
           with_badge self, 1
           with_tag :a, "John"
-          with_text /checked this value/
           with_tag :a, "Uncheck"
         end
       end
@@ -90,9 +79,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
         expect(core).to have_tag :div do
           with_badge self, 1
           with_tag :a, "John"
-          with_text /checked this value/
-          with_tag :a, "Yes, I checked"
-          with_tag :a, "No, I'll fix it"
+          with_tag :a, "I verified this answer"
         end
       end
     end

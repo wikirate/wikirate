@@ -52,10 +52,6 @@ def user_checked?
   checked? && checkers.include?(user.name)
 end
 
-def other_user_requested_check?
-  check_requested? && check_requester != user.name
-end
-
 def checked?
   checkers.present?
 end
