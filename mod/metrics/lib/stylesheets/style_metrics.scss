@@ -745,6 +745,10 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       }
     }
   }
+  .jp-current {
+    background-color: $primary;
+    color: $white;
+  }
 }
 
 .research-layout .card-form, .read_form_with_button-view {

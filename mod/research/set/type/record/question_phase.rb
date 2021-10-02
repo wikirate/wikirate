@@ -37,6 +37,10 @@ format :html do
     voo.hide :menu
   end
 
+  view :confirm_year, wrap: { modal: { footer: "" } }, template: :haml do
+    voo.hide :menu
+  end
+
   def angle dir
     fa_icon "angle-#{dir}", class: "text-secondary"
   end

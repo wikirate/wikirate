@@ -1,7 +1,9 @@
 $(document).ready ->
+  # track whether there are changes in the answer form
   $(".research-layout .tab-pane-answer_phase").on "change", "input, textarea, select", ->
     $(".research-answer .card-form").data "changed", true
 
+  # must confirm links to new record when answer form is changed
   $(".research-layout").on "click", "._research-metric-link, .research-answer-button", (e) ->
     return unless editInProgress()
     e.preventDefault()
@@ -9,16 +11,24 @@ $(document).ready ->
     leave.trigger "click"
     leave.data "confirmHref", $(this).attr "href"
 
+  # handle confirmed link to new record
   $(".research-layout").on "click", "._yes_leave", () ->
     window.location.href = $("#confirmLeave").data "confirmHref"
 
-  # click anywhere on year option to select it
+  # handle confirmed link to new record
+  $(".research-layout").on "click", "._yes_year", () ->
+    year = $("#confirmYear").data "year"
+    $("._research-#{year} input").prop "checked", true
+    clearTab "answer"
+
+  # click anywhere on year option to select it and (if necessary) trigger confirmation
   $("body").on "click", "._research-year-option, ._research-year-option input", (e) ->
-    input = $(this).find("input")
+    el = $(this)
+    input = el.is("input") ? el : el.find("input")
     if answerReadyForYearChange input
       input.prop "checked", "true"
     else
-      confirmYearChange e, input
+      confirmYearChange e, input.val()
 
 editInProgress = ->
   $(".research-answer .card-form").data "changed"
@@ -55,6 +65,9 @@ clearTab = (phase) ->
 tabPane = (phase) ->
   $(".tab-pane-#{phase}_phase")
 
-confirmYearChange = (event, input) ->
-  alert "confirm year change: " + input.val()
+confirmYearChange = (event, year) ->
+  link = $("#confirmYear")
+  link.trigger "click"
+  link.data "year", year
   event.preventDefault()
+  event.stopPropagation()

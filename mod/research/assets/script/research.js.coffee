@@ -18,15 +18,14 @@ decko.slotReady (slot) ->
     alert "source id = #{sourceId}"
     (new decko.filter $(".SELF-source.filtered_content-view ._filter-widget")).update()
 
-$(document).ready ->
-  # toggle more/less years
-  $("body").on "click", "._more-years-toggle", () ->
-    el = $(this).find "._more-or-fewer"
-    if el.text().match(/More/)
-      el.text "Fewer"
-    else
-      el.text "More"
+  if slot.find("#jPages")[0]
+    $("#jPages").jPages
+      containerID: "research-year-list"
+      perPage: 5
+      previous: false
+      next: false
 
+$(document).ready ->
   # open source tab after clicking "select year"
   $("body").on "click", "#_select_year", (event) ->
     toPhase "source", event
