@@ -14,10 +14,10 @@ global_job_config:
       value: ~/wikirate
     - name: RAILS_ENV
       value: test
-  prologue:
+  pwrologue:
     commands:
       - checkout
-      - sem-version ruby 2.6.3
+      - sem-version ruby 2.7.3
       - alias be='bundle exec'
       - git submodule update --init --recursive
       - sem-service start mysql

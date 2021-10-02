@@ -1,3 +1,5 @@
+include_set Abstract::AnswerSearch
+
 # including module must respond to
 # `fixed_field`, returning a Symbol representing an AnswerQuery id filter, and
 # `partner`, returning a Symbol
