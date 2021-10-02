@@ -7,23 +7,29 @@ decko.editorContentFunctionMap["._removable-content-list"] = ->
   decko.pointerContent citedSources($(this))
 
 decko.slotReady (slot) ->
-  # slide up new overlays
-  if slot.hasClass("_overlay") && slot.closest(".research-layout")[0]
-    revealOverlay slot
+  if slot.closest(".research-layout")[0]
 
-  newSource = slot.find "._new_source"
-  if newSource.length
-    sourceId = newSource.data "cardId"
-    slot.closest("._modal-slot").find("._close-modal").trigger "click"
-    alert "source id = #{sourceId}"
-    (new decko.filter $(".SELF-source.filtered_content-view ._filter-widget")).update()
+    # slide up new overlays
+    if slot.hasClass("_overlay")
+      revealOverlay slot
 
-  if slot.find("#jPages")[0]
-    $("#jPages").jPages
-      containerID: "research-year-list"
-      perPage: 5
-      previous: false
-      next: false
+    newSource = slot.find "._new_source"
+    if newSource.length
+      sourceId = newSource.data "cardId"
+      slot.closest("._modal-slot").find("._close-modal").trigger "click"
+      alert "source id = #{sourceId}"
+      (new decko.filter $(".SELF-source.filtered_content-view ._filter-widget")).update()
+
+    if slot.find("#jPages")[0]
+      $("#jPages").jPages
+        containerID: "research-year-list"
+        perPage: 5
+        previous: false
+        next: false
+
+    if slot.hasClass("edit_inline-view") && $("#_select_source").data("stash")
+      $("#_select_source").data "stash", false
+      addSourceItem()
 
 $(document).ready ->
   # open source tab after clicking "select year"
@@ -32,8 +38,7 @@ $(document).ready ->
 
   # open answer tab after clicking "select year"
   $("body").on "click", "#_select_source", (event) ->
-    unless tabPhase("answer").hasClass "load"
-      addSource selectedSource()
+    addSourceItem() unless tabPhase("answer").hasClass "load"
     toPhase "answer", event
 
   # open new source form from button
@@ -96,11 +101,19 @@ toPhase = (phase, event) ->
 tabPhase = (phase) ->
   $(".tab-li-#{phase}_phase a")
 
-addSource = (source) ->
+addSourceItem = () ->
+  return if openAnswerFormBeforeAddingSource()
   ed = $(".RIGHT-source.card-editor")
-  sourceContent = addToSourceContent ed, source
+  sourceContent = addToSourceContent ed, selectedSource()
   slot = ed.find(".card-slot.removable_content-view")
   reloadSourceSlot slot, sourceContent
+
+openAnswerFormBeforeAddingSource = ->
+  edit_answer = $("._edit-answer-button")
+  return false unless edit_answer[0] # answer is in view mode
+  edit_answer.trigger "click"
+  $("#_select_source").data "stash", true
+  true
 
 addToSourceContent = (editor, source) ->
   sources = citedSources editor

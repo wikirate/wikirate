@@ -18,17 +18,22 @@ $(document).ready ->
   # handle confirmed link to new record
   $(".research-layout").on "click", "._yes_year", () ->
     year = $("#confirmYear").data "year"
-    $("._research-#{year} input").prop "checked", true
+    changeToYear year
     clearTab "answer"
 
   # click anywhere on year option to select it and (if necessary) trigger confirmation
   $("body").on "click", "._research-year-option, ._research-year-option input", (e) ->
-    el = $(this)
-    input = el.is("input") ? el : el.find("input")
+    input = $(this)
+    input = input.find "input" unless input.is "input"
+    year = input.val()
     if answerReadyForYearChange input
-      input.prop "checked", "true"
+      changeToYear year
     else
-      confirmYearChange e, input.val()
+      confirmYearChange e, year
+
+changeToYear = (year)->
+  $("._research-#{year} input").prop "checked", true
+  changeYearInSourceFilter year
 
 editInProgress = ->
   $(".research-answer .card-form").data "changed"
@@ -46,6 +51,9 @@ changeYearInAnswerForm = (input)->
   answerName = tabPane("answer").find "#new_card input#card_name"
   changeHiddenName answerName, input.val()
   true
+
+changeYearInSourceFilter = (year)->
+  decko.filter(".SELF-source ._filter-widget").addRestrictions year: year
 
 changeHiddenName = (nameField, year) ->
   newName = nameField.val().replace /\d{4}$/, year
