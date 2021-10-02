@@ -25,7 +25,7 @@ RSpec.describe Card::Set::Type::Source::Structure do
       expect_source_link source.format.original_link,
                          "Original",
                          source.fetch(:wikirate_link).content,
-                         "external-link-square"
+                         "external-link-square-alt"
     end
   end
 end

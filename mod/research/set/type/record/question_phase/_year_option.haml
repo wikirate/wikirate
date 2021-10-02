@@ -1,0 +1,6 @@
+.research-year-option{ class: "_research-#{year}" }
+  ._research-year-option.row.align-items-center
+    .col-11
+      = nest answer_for(year), view: :research_option
+    .col-1.text-align-center
+      = radio_button_tag :year, year, params[:year] == year
