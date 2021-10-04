@@ -31,6 +31,10 @@ decko.slotReady (slot) ->
       $("#_select_source").data "stash", false
       addSourceItem()
 
+    success_in_project = slot.find ".answer-success-in-project"
+    if success_in_project[0] && $("._company-project-research")[0]
+      success_in_project.show()
+
 $(document).ready ->
   # open source tab after clicking "select year"
   $("body").on "click", "#_select_year", (event) ->
@@ -53,6 +57,9 @@ $(document).ready ->
     toPhase "source", e
     openPdf $(this).data("cardName")
     e.stopPropagation()
+
+  $("body").on "click", "._back_to_question_link", (e) ->
+    toPhase "question", e
 
   # remove source item from answer page
   $('body').on 'click', '._remove-removable', ->

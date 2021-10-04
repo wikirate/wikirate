@@ -222,6 +222,12 @@ a.box-item {
   }
 }
 
+.TYPE-topic, .TYPE-company {
+  &.box .box-middle {
+    text-align: center;
+  }
+}
+
 .bar-and-fixme {
   .bar-view, .expanded_bar-view {
     width: 100%;

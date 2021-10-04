@@ -14,6 +14,11 @@ format :html do
     metric_card.report_type_card.first_name
   end
 
+  def company_name
+    # need fetch_name to standardize
+    Card.fetch_name card.company_name
+  end
+
   def default_source_filters
     {
       company_name: company_name,

@@ -17,10 +17,8 @@ event :flash_success_message, :finalize, on: :create do
 end
 
 format :html do
-  # AS RESEARCH PAGE
-
-  view :research_button do
-    nest record_card, view: :research_button
+  view :research_button, unknown: true do
+    record_card.format.research_button year_name
   end
 
   view :edit_inline do
@@ -77,9 +75,7 @@ format :html do
 
   def success_alert
     alert :success, true, false, class: "text-center" do
-      wrap_with :p do
-        "Success! To research another answer select a different metric, company, or year."
-      end
+      haml :success_alert
     end
   end
 end
