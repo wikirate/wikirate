@@ -166,12 +166,6 @@ a.box-item {
 
 .TYPE-metric.box {
   height: 320px;
-  .box-middle {
-    min-height: auto;
-    i {
-      font-size: 20px;
-    }
-  }
   .box-top {
     min-height: 80px;
     .thumbnail-title {
@@ -205,9 +199,17 @@ a.box-item {
     }
   }
   .box-middle {
+    min-height: auto;
     padding: 0;
     text-align: center;
+    i {
+      font-size: 20px;
+    }
     &:before {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 95px;
       font-family: 'FontAwesome';
       color: #f5f5f5;
       content: "\f059";

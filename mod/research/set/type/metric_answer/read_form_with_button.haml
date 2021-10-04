@@ -3,4 +3,5 @@
   = render_flash
   .button-form-group
     = link_to_view :edit_inline, "Edit Answer",
-                   class: "btn btn-primary btn-research _edit-answer-button"
+                   class: "btn btn-outline-secondary btn-research _edit-answer-button",
+                   data: { "disable-with": "Loading..." }

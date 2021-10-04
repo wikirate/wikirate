@@ -33,8 +33,9 @@ format :html do
   # @param text [String] linktext
   # @param flag [Symbol] :check or :uncheck
   def check_button text, flag: :check
-    link_to text, class: "btn btn-outline-secondary btn-research slotter",
+    link_to text, class: "btn btn-primary btn-research slotter",
                   remote: true, rel: "nofollow",
+                  data: { "disable-with": "Updating..." },
                   href: path(action: :update, set_flag: flag)
   end
 end

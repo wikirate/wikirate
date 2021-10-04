@@ -9,7 +9,7 @@ format :html do
 
   view :expanded_researched_details do
     wrap_researched_details do
-      [render_sources, checked_by_details, override_details]
+      [checked_by_details, render_sources, override_details]
     end
   end
 
