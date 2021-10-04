@@ -1,12 +1,5 @@
-UNKNOWN = "Unknown".freeze
-
-event :unknown_value_from_subfield, :prepare_to_validate, when: :unknown_subfield do
-  self.content = UNKNOWN if unknown_subfield.checked?
-  detach_subfield :unknown
-end
-
 event :standardize_unknown_value, :prepare_to_validate do
-  self.content = UNKNOWN if Answer.unknown? content
+  self.content = Answer::UNKNOWN if Answer.unknown? content
 end
 
 event :no_empty_value, :validate do
