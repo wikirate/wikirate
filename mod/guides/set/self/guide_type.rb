@@ -1,5 +1,5 @@
 format :html do
-  SUPPORT_CARDS = ["FAQ", "Glossary", "Talk to us"]
+  SUPPORT_CARDS = ["FAQ", "Glossary", "Talk to us"].freeze
 
   def layout_name_from_rule
     :guide_layout
