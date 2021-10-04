@@ -10,7 +10,7 @@ format :html do
   end
 
   view :bar_middle do
-    citations_count
+    ""
   end
 
   view :bar_right do
