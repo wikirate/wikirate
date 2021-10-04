@@ -11,7 +11,8 @@
 # So this is actually TWO todos:
 #
 # 1. review set load order.  Definitely need to load all abstract sets before loading
-#   any anchored ones
+#   any anchored ones  (this should be fixed -efm)
+
 # 2. there neds to be a simple coded way to set a default type. (probably new api for
 #    Card::Rule)
 
