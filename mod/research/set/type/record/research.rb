@@ -15,7 +15,7 @@ format :html do
     end
   end
 
-  wrapper :research_overlay do |opts|
+  wrapper :research_overlay do
     class_up "card-slot", "d0-card-overlay", :single_use
     @content_body = true
     overlay_frame(true, research_overlay_header) { interior }

@@ -20,6 +20,6 @@ end
 
 # would not be necessary if data were sufficiently clean
 def confirmed_first_source_card
-  s = source_card.first_card.tap
+  s = source_card.first_card
   s if s&.type_id == SourceID
 end
