@@ -8,8 +8,5 @@
       = render_year_and_value_pretty
   .source-border-left.row.border-bottom
     .mt-1.text-center.col-2.px-0.pt-3
-      %h5
-        = citations_count_badge
-      .small citations
     .col
-      = nest card.source_card, items: { view: :listing_compact, hide: :creator_credit }
+      = nest card.source_card, items: { view: :compact, hide: :creator_credit }
