@@ -85,7 +85,5 @@ format :html do
   end
 
   view :removable_content,
-       wrap: :slot, cache: :never, unknown: :missing_citation, template: :haml
-
-  view :missing_citation, unknown: true, template: :haml
+       wrap: :slot, cache: :never, unknown: true, template: :haml
 end

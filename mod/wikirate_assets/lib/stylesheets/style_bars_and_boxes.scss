@@ -200,7 +200,9 @@ a.box-item {
   }
   .box-middle {
     min-height: auto;
-    padding: 0;
+    padding: 1em;
+    display: flex;
+    align-items: center;
     text-align: center;
     i {
       font-size: 20px;

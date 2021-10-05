@@ -1,9 +1,9 @@
 # ~~~~~~~~ Research Dashboard Handling ~~~~~~~~~~~~~~~~
 
-decko.editorInitFunctionMap["._removable-content-list"] = ->
+decko.editorInitFunctionMap["._removable-content-list ul"] = ->
   @sortable({handle: '._handle', cancel: ''})
 
-decko.editorContentFunctionMap["._removable-content-list"] = ->
+decko.editorContentFunctionMap["._removable-content-list ul"] = ->
   decko.pointerContent citedSources($(this))
 
 decko.slotReady (slot) ->
