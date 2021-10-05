@@ -8,8 +8,7 @@ event :auto_add_source, :prepare_to_validate,
 end
 
 # make sure sources exists, are valid, and are properly annotated
-event :validate_and_normalize_sources, :validate,
-      on: :save, changed: :content do
+event :validate_and_normalize_sources, :validate, on: :save, changed: :content do
   errors.add :content, "sources required" if item_names.blank? && required_field?
   annotate_sources
 end
@@ -85,5 +84,8 @@ format :html do
     render_removable_content
   end
 
-  view :removable_content, wrap: :slot, cache: :never, unknown: true, template: :haml
+  view :removable_content,
+       wrap: :slot, cache: :never, unknown: :missing_citation, template: :haml
+
+  view :missing_citation, unknown: true, template: :haml
 end

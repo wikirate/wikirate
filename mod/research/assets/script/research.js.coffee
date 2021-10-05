@@ -61,6 +61,9 @@ $(document).ready ->
   $("body").on "click", "._back_to_question_link", (e) ->
     toPhase "question", e
 
+  $("body").on "click", "._go_to_sources", (e) ->
+    toPhase "source", e
+
   # remove source item from answer page
   $('body').on 'click', '._remove-removable', ->
     $(this).closest('li').remove()

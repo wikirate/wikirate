@@ -787,8 +787,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   .comment-buttons {
     text-align: right;
   }
+  .go_to_sources {
+    display: inline;
+  }
 }
-.answer-success-in-project {
+.go_to_sources, .answer-success-in-project {
   display: none;
 }
 .progress {
