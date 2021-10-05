@@ -6,7 +6,12 @@ $(document).ready ->
     $(this).closest('.source-option').hide()
 
   $('body').on 'click', ".TYPE-source.box, .TYPE-source.bar", ->
-    window.location = decko.path($(this).data("cardLinkName"))
+    window.location = decko.path $(this).data("cardLinkName")
+
+  $("body").on "change", ".RIGHT-file .download-option .d0-card-content", ->
+    el = $(this)
+    catcher = el.slot().find ".copy_catcher-view"
+    catcher.reloadSlot catcher.slotUrl() + "&" + $.param(url: el.val())
 
 decko.slotReady (slot) ->
   slot.find(".TYPE-source .meatball-button").on "click", (e) ->

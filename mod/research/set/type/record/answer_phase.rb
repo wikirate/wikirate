@@ -1,6 +1,10 @@
 format :html do
   view :answer_phase, cache: :never, template: :haml
 
+  def current_year
+    params[:year]
+  end
+
   def answer
     @answer ||= construct_answer
   end

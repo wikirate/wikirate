@@ -1,7 +1,7 @@
 .bg-light.pb-5
   %section.container._noFilterUrlUpdates
-    - Env.with_params filter: default_source_filters do
-      = nest :source, view: :filtered_content, items: { view: :box }, hide: :export_links
+    = field_nest :source, view: :filtered_content,
+                          items: { view: :box }, hide: :export_links
 
   %section.container.research-add-source.bg-white.mb-5
     .row.align-items-center.px-5
@@ -15,6 +15,6 @@
                      path: { mark: :source,
                              action: :new,
                              slot: { hide: :cancel_button } },
-                     data: { source_fields: source_fields },
+                     data: { source_fields: card.source_card.format.new_source_defaults },
                      class: "_add_source_modal_link btn btn-primary btn-research",
                      size: :large

@@ -42,7 +42,7 @@ format :html do
   end
 
   view :filter_wikirate_link_formgroup, cache: :never do
-    text_filter :wikirate_link
+    text_filter :wikirate_link, "",  placeholder: "https://"
   end
 
   view :filter_report_type_formgroup, cache: :never do

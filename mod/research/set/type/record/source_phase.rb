@@ -6,34 +6,6 @@ format :html do
     params[:source]
   end
 
-  def current_year
-    params[:year]
-  end
-
-  def report_type
-    metric_card.report_type_card.first_name
-  end
-
-  def company_name
-    # need fetch_name to standardize
-    Card.fetch_name card.company_name
-  end
-
-  def default_source_filters
-    {
-      company_name: company_name,
-      report_type: report_type,
-      year: current_year
-    }
-  end
-
-  def source_fields
-    { wikirate_company: company_name,
-      report_type: report_type }.each_with_object({}) do |(key, value), hash|
-      hash["_#{key.cardname}"] = value
-    end
-  end
-
   def source_data
     { source: current_source }
   end

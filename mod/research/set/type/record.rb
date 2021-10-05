@@ -1,3 +1,5 @@
+card_reader :source
+
 format :html do
   view :research_button, unknown: true do
     research_button

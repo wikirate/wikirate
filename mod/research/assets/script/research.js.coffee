@@ -13,13 +13,13 @@ decko.slotReady (slot) ->
     if slot.hasClass("_overlay")
       revealOverlay slot
 
+    # newly added source
     newSource = slot.find "._new_source"
     if newSource.length
-      sourceId = newSource.data "cardId"
-      slot.closest("._modal-slot").find("._close-modal").trigger "click"
-      alert "source id = #{sourceId}"
+      closeSourceModal slot
       (new decko.filter $(".SELF-source.filtered_content-view ._filter-widget")).update()
 
+    # year paging
     if slot.find("#jPages")[0]
       $("#jPages").jPages
         containerID: "research-year-list"
@@ -27,18 +27,22 @@ decko.slotReady (slot) ->
         previous: false
         next: false
 
+    # add source to edit answer
     if slot.hasClass("edit_inline-view") && $("#_select_source").data("stash")
       $("#_select_source").data "stash", false
       addSourceItem()
 
+    # new answer success message (if in project context)
     success_in_project = slot.find ".answer-success-in-project"
     if success_in_project[0] && $("._company-project-research")[0]
       success_in_project.show()
 
 $(document).ready ->
-  # open source tab after clicking "select year"
-  $("body").on "click", "#_select_year", (event) ->
-    toPhase "source", event
+  $("body").on "click", "._to_question_phase", (e) ->
+    toPhase "question", e
+
+  $("body").on "click", "._to_source_phase", (e) ->
+    toPhase "source", e
 
   # open answer tab after clicking "select year"
   $("body").on "click", "#_select_source", (event) ->
@@ -57,12 +61,6 @@ $(document).ready ->
     toPhase "source", e
     openPdf $(this).data("cardName")
     e.stopPropagation()
-
-  $("body").on "click", "._back_to_question_link", (e) ->
-    toPhase "question", e
-
-  $("body").on "click", "._go_to_sources", (e) ->
-    toPhase "source", e
 
   # remove source item from answer page
   $('body').on 'click', '._remove-removable', ->
@@ -87,6 +85,16 @@ $(document).ready ->
       appendToDataUrl $(this),
         year: selectedYear()
         source: selectedSource()
+
+  $(".research-layout").on "click", "._copy_caught_source", (e) ->
+    link = $(this)
+    sourceMark = link.data "cardName"
+    closeSourceModal link
+    openPdf sourceMark
+    e.preventDefault()
+
+closeSourceModal = (el)->
+  el.closest("._modal-slot").find("._close-modal").trigger "click"
 
 appendToUrl = (url, params) ->
   url + "&" + $.param(params)

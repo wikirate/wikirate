@@ -712,6 +712,12 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   .research-selector {
     padding-left: 1rem;
   }
+  .overlay-container {
+    min-height: 1460px;
+  }
+  .pdf-source-preview {
+    height: 1320px !important;
+  }
   .d0-card-overlay {
     background-color: $gray-100;
   }
@@ -749,9 +755,28 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     background-color: $primary;
     color: $white;
   }
+  .answer-breadcrumb-link:hover {
+    text-decoration: none;
+  }
+  .answer-breadcrumb {
+    background-color: $gray-200;
+    color: $gray-800;
+    border-radius: 5px;
+    padding: 1em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid $gray-300;
+    .breadknife {
+      margin: 0 1em;
+    }
+    &:hover {
+      @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
+    }
+  }
 }
 
-.research-layout .card-form, .read_form_with_button-view {
+.research-layout .tab-pane-answer_phase .card-form, .read_form_with_button-view {
   .form-group {
     display: flex;
     > label {
@@ -800,17 +825,5 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 #main section.research-answer {
   padding: 0;
-}
-
-.answer-breadcrumb {
-  background-color: $gray-200;
-  border-radius: 5px;
-  padding: 1em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  .breadknife {
-    margin: 0 1em;
-  }
 }
 
