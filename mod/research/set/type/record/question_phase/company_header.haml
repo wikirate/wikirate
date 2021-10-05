@@ -1,0 +1,17 @@
+%a#company-header
+- if multi_company?
+  ._company-project-research.d-flex.align-items-center
+    .w-50.pr-4
+      %h2
+        = link_to_card project_name, nil, class: "project-color", target: "_project"
+      %h2
+        = link_to_company
+        = modal_link angle(:down), size: :large, class: "research-selector",
+                                   path: { mark: project_companies_mark,
+                                           metric: card.metric_name,
+                                           view: :filtered_content }
+    .w-50.pl-4
+      = nest company_project_mark, view: :research_header_progress
+- else
+  %h2
+    = link_to_company

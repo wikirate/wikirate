@@ -70,9 +70,6 @@ $box_stripe_color: $gray-700;
 .bar {
   @include badge-icons();
   border-left: 3px solid $border-color;
-  > div {
-    overflow: hidden;
-  }
   .thumbnail {
     align-items: center;
   }
@@ -169,12 +166,6 @@ a.box-item {
 
 .TYPE-metric.box {
   height: 320px;
-  .box-middle {
-    min-height: auto;
-    i {
-      font-size: 20px;
-    }
-  }
   .box-top {
     min-height: 80px;
     .thumbnail-title {
@@ -208,21 +199,34 @@ a.box-item {
     }
   }
   .box-middle {
-    position: relative;
+    min-height: auto;
+    padding: 1em;
+    display: flex;
+    align-items: center;
     text-align: center;
+    i {
+      font-size: 20px;
+    }
     &:before {
       position: absolute;
+      width: 100%;
+      left: 0;
+      top: 95px;
       font-family: 'FontAwesome';
-      top: 0.3em;
-      left: 0.85em;
       color: #f5f5f5;
       content: "\f059";
       text-align: center;
-      font-size: 6em;
+      font-size: 8em;
     }
   }
   .box-bottom .labeled-badge {
     padding: 0!important;
+  }
+}
+
+.TYPE-topic, .TYPE-company {
+  &.box .box-middle {
+    text-align: center;
   }
 }
 
