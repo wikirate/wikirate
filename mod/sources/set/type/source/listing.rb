@@ -7,58 +7,34 @@ format :html do
     super()
   end
 
-  view :bar_left do
-    filterable source: card.name do
-      haml :bar_left
-    end
+  view(:bar_left) { filterable(source: card.name) { render_compact } }
+  view(:bar_middle) { render_years }
+  view(:bar_right) do
+    [count_badge(:metric_answer), render_meatballs]
   end
-
-  view :bar_right, template: :haml
-
-  view :bar_middle do
-    count_badges :metric_answer, :metric, :wikirate_company
-  end
-
-  view :bar_bottom do
-    [badge_header,
-     labeled_field(:report_type),
-     # labeled_field(:wikirate_topic, :link, title: "Topics"),
-     field_nest(:description, view: :titled)]
-  end
-
-  def badge_header
-    wrap_with :div, class: "d-flex justify-content-center pb-3" do
-      render_bar_middle
-    end
-  end
+  view :bar_bottom, template: :haml
 
   bar_cols 7, 5
 
-  view :cite_bar, template: :haml
-  view :preview_link_bar, template: :haml
-
-  # LINK AND BUTTON VIEWS
-
-  # download and original links.  (view makes them hideable)
-  view :links, template: :haml
-
-  view :cite_button, template: :haml
-  view :uncite_button, template: :haml
-  view :freshen_button, template: :haml
-
-  view :close_icon, template: :haml
-
-  view :source_link do
-    wrap_with :div, class: "source-link d-block" do
-      [wrap_with(:div, source_title, class: "source-title"),
-       wrap_with(:div, website_text, class: "source-website text-muted")]
-    end
+  view :box_top do
+    render_compact
   end
 
+  view :box_middle do
+    [render_years]
+  end
+
+  view :box_bottom, template: :haml
+  view :meatballs, template: :haml
+
+  # LINK AND BUTTON VIEWS
+  view :close_icon, template: :haml
+  view :years, template: :haml
+
+  view :source_link, template: :haml
   view :title_link do
-    link_to_card card, title_text,
-                 target: "_blank",
-                 class: "source-preview-link preview-page-link"
+    link_to_card card, title_text, target: "_blank",
+                                   class: "source-preview-link preview-page-link"
   end
 
   # OTHER VIEWS
@@ -69,17 +45,10 @@ format :html do
     end
   end
 
-  # TODO: unify with bar-left
-  view :listing_compact, template: :haml
-  view :wikirate_copy_message, template: :haml
+  view :compact, template: :haml
 
   def year_list
-    card.year_card.item_names || []
-  end
-
-  # make view of year?
-  def year_icon
-    wrap_with :span, mapped_icon_tag(:year), class: "pr-1"
+    @year_list ||= card.year_card.item_names || []
   end
 
   def website_text
@@ -95,12 +64,11 @@ format :html do
     voo.show?(:title_link) ? _render_title_link : title_text
   end
 
-  def hidden_item_input
-    tag :input, type: "hidden", class: "_pointer-item", value: card.name
-  end
-
   def creator
     return unless (creator_card = Card[card.creator_id])
     nest creator_card, view: :link
   end
+
+  # DELETE?
+  view :wikirate_copy_message, template: :haml
 end
