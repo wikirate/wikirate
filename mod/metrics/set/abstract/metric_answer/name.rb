@@ -23,20 +23,12 @@ event :auto_add_company, after: :set_answer_name, on: :create, trigger: :require
   add_company name_part("company") unless valid_company?
 end
 
-event :validate_year_change, :validate, on: :update, when: :year_updated? do
-  new_year = subfield(:year).first_name
-  new_name = "#{metric_name}+#{company_name}+#{new_year}"
-  if new_year != year && Card.exists?(new_name)
-    errors.add :year, "value for year #{new_year} already exists"
-    abort :failure
-  end
-  self.name = new_name
-  detach_subfield(:year)
-  success.year = new_year if success.year
+event :interpret_year_change, :prepare_to_validate, on: :update, when: :year_updated? do
+  self.name = compose_name
 end
 
 def year_updated?
-  (year_card = subfield(:year)) && !year_card.item_names.size.zero?
+  subfield(:year)&.item_names&.size&.positive?
 end
 
 event :validate_answer_name, :validate, on: :save, changed: :name do

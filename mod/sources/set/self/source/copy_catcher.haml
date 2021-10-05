@@ -1,0 +1,12 @@
+.alert.alert-warning
+  .row.w-100
+    .col-11
+      A source already exists for this url:
+      %ul
+      - sources.each do |source|
+        %li
+          = link_to_card source, nil, class: "_copy_caught_source", target: "_source",
+                                      data: { "card-name": source.name }
+    .col-1.text-align-right
+      %a{ data: { dismiss: "alert" } }
+        %i.fa.fa-times
