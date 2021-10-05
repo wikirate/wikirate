@@ -798,3 +798,19 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   border-radius: 10px;
 }
 
+#main section.research-answer {
+  padding: 0;
+}
+
+.answer-breadcrumb {
+  background-color: $gray-200;
+  border-radius: 5px;
+  padding: 1em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  .breadknife {
+    margin: 0 1em;
+  }
+}
+

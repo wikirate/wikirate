@@ -78,10 +78,10 @@ class Calculate
 
           private
 
-          # TODO: move this somewhere that guarantees it only gets run once.
           def all_years
-            @all_years ||= Card.search(type_id: Card::YearID, return: :name)
-                               .map(&:to_i).tap { |a| a.delete 0 }
+            @all_years ||= Card::Set::Type::Year.all_years.map(&:to_i).tap do |a|
+              a.delete 0
+            end
           end
 
           def year? year

@@ -85,13 +85,9 @@ format :html do
     index.negative? ? metric_ids.last : (metric_ids[index] || metric_ids.first)
   end
 
-  def self.all_years
-    @all_years ||= Card.search type: :year, return: :name
-  end
-
   def years
     @years ||=
-      (dataset_card&.years? ? dataset_card&.years : HtmlFormat.all_years).sort.reverse
+      dataset_card&.years? ? dataset_card&.years.sort.reverse : Type::Year.all_years
   end
 
   def answer_for year

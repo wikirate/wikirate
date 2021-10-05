@@ -1,2 +1,5 @@
 %section.container.research-answer
-  = nest answer, view: :read_form_with_button, unknown: :simple_new
+  %a._answer-breadcrumb-link.mb-5.d-block
+    = nest answer, view: :breadcrumb
+  .py-2
+    = nest answer, view: :read_form_with_button, unknown: :simple_new

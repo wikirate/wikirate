@@ -7,7 +7,8 @@ format :html do
 
   def raw_help_text
     text = haml <<-HAML.strip_heredoc
-      %p Ask community members to confirm that the answer accurately represents its source.
+      %p 
+        Ask community members to confirm that the answer accurately represents its source.
       %p.mb-0
         %em Please use sparingly and leave comments giving clear reasons for your request.
     HAML
@@ -33,7 +34,7 @@ format :html do
   # @param text [String] linktext
   # @param flag [Symbol] :check or :uncheck
   def check_button text, flag: :check
-    link_to text, class: "btn btn-primary btn-research slotter",
+    link_to text, class: "btn btn-outline-secondary btn-research slotter",
                   remote: true, rel: "nofollow",
                   data: { "disable-with": "Updating..." },
                   href: path(action: :update, set_flag: flag)
