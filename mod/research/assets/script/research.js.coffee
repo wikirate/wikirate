@@ -38,6 +38,11 @@ decko.slotReady (slot) ->
       success_in_project.show()
 
 $(document).ready ->
+  $("body").on "click", "#_select_year", (e) ->
+    return unless selectedYear()
+    phase = selectedYearNotResearched() && "source" || "answer"
+    toPhase phase, e
+
   $("body").on "click", "._to_question_phase", (e) ->
     toPhase "question", e
 
@@ -151,7 +156,13 @@ citedSources = (el) ->
   el.find('._removable-content-item').map( -> $(this).data('cardName') )
 
 selectedYear = ()->
-  $("input[name='year']:checked").val()
+  selectedYearInput().val()
+
+selectedYearNotResearched = ->
+  selectedYearInput().closest("._research-year-option").find(".not-researched")[0]
+
+selectedYearInput = ->
+  $("input[name='year']:checked")
 
 initialUrl = (link, url) ->
   unless link.data "initialUrl"
