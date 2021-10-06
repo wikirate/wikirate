@@ -43,6 +43,10 @@ format :html do
 
   view :read_form_with_button, wrap: :slot, template: :haml
 
+  view :new do
+    "Answers are created via the Research Page."
+  end
+
   def cancel_answer_button
     link_to_view :read_form_with_button, "Cancel",
                  class: "btn btn-outline-secondary btn-research btn-sm"

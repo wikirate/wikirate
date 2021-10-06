@@ -1,4 +1,6 @@
 toAnswerPhase = (metric, company, year)->
+  year ||= 2020
+  company ||= "Sony_Corporation"
   cy.visit "#{metric}+#{company}/research?year=#{year}&tab=answer_phase"
 
 testUnknown = (value) ->
@@ -6,6 +8,7 @@ testUnknown = (value) ->
   lookupValueContent().should "eq", value
 
   cy.get("#_unknown").check().should "be.checked"
+  shiftFocus()
   lookupValueContent().should "eq", "Unknown"
 
 edSelector = (klass) ->
@@ -24,13 +27,38 @@ lookupValueContent = ->
 valueContent = ->
   Cypress.$("[name='card[subcards][+values][content]']").val()
 
+# move focus to trigger change event
+shiftFocus = ->
+  cy.get(".RIGHT-discussion textarea").focus()
+
 describe "the 'unknown' checkbox", ->
-  before ->
+  beforeEach ->
     cy.login("sample@user.com", "sample_pass")
 
   specify "numeric metric", ->
-    toAnswerPhase "Jedi+deadliness", "Death Star", "2020"
+    toAnswerPhase "Jedi+deadliness", "Death_Star"
     testUnknown ""
     cy.get(edSelector(".short-input")).clear().type "42"
-    cy.get(".RIGHT-discussion textarea").focus() # move focus to trigger change event
+    shiftFocus()
     testUnknown "42"
+
+  specify "metric with checkboxes", ->
+    toAnswerPhase "Joe_User+small_multi"
+    testUnknown ""
+    cy.get(edSelector(".pointer-checkbox-button")).click(multiple: true)
+    shiftFocus()
+    testUnknown "[[1]]\n[[2]]\n[[3]]"
+
+  specify "metric with radios", ->
+    toAnswerPhase "Joe_User+small_single"
+    testUnknown ""
+    cy.get(edSelector("#pointer-radio-3")).click()
+    shiftFocus()
+    testUnknown "[[3]]"
+
+  specify "metric with select", ->
+    toAnswerPhase "Joe_User+big_single"
+    testUnknown ""
+    cy.get(edSelector("select")).select2 "7"
+    shiftFocus()
+    testUnknown "[[7]]"

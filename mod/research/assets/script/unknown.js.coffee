@@ -1,6 +1,8 @@
 # ~~~~~~~~ Handling of Unknown Checkbox ~~~~~~~~~~~~~~~~
 
 # set content value to "Unknown" if unknown checkbox is checked
+# FIXME: this relies on the idea that this function will get called AFTER
+# the default editor content function, but there's no guarantee it will.
 decko.editorContentFunctionMap["._unknown-checkbox input:checked"] = ->
   @val()
 
@@ -11,7 +13,9 @@ decko.slotReady (slot) ->
 
   # reset unknown checkbox when value changes
   valueEditor(slot).find("#{knownInputSelector}, select").on "change", () ->
-    unknownCheckbox(slot).prop "checked", isUnknown($(this))
+    unbox = unknownCheckbox slot
+    unless unbox.is(":checked") && !$(this).val()
+      unbox.prop "checked", isUnknown($(this))
 
 # content editor of +value card
 valueEditor = (el) ->
@@ -23,7 +27,7 @@ unknownCheckbox = (el) ->
 isUnknown = (el)->
   el.val().toString().toLowerCase() == 'unknown'
 
-knownInputSelector = "input:not([name=_unknown])"
+knownInputSelector = "input:not([name=_unknown]):visible"
 
 # reset (known) value
 clearValue = (editor) ->
@@ -35,7 +39,7 @@ clearValue = (editor) ->
 
 # reset known value for input (ie, NOT select) tags
 clearInputValue = (editor) ->
-  $.each editor.find("#{knownInputSelector}:not(.current_revision_id)"), ->
+  $.each editor.find(knownInputSelector), ->
     input = $(this)
     if input.prop("type") == "text"
       input.val null
