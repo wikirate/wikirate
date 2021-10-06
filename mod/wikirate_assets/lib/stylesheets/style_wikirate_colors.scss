@@ -14,9 +14,15 @@
   }
 
   &.box {
-    border-top-color: $color !important;
-    .box-top a, &:hover .box-middle i {
+    .box-top a {
       color: $color;
+    }
+    &:hover {
+      border-top-color: $color !important;
+
+      .box-middle i {
+        color: $color;
+      }
     }
   }
 }
@@ -117,7 +123,9 @@ $colorMap: (
   }
 
   .#{$type}-color, .#{$type}-color a {
-    color: $color;
+    &, &:hover, &:focus, &:visited {
+      color: $color;
+    }
   }
 
   .badge-#{$type} {
