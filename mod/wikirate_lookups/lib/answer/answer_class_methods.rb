@@ -12,6 +12,8 @@ class Answer
       title: "Verified by Steward" }
   ].freeze
 
+  UNKNOWN = "Unknown".freeze
+
   # class methods for the Answer (lookup) constant
   module AnswerClassMethods
     include Export::ClassMethods
