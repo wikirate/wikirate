@@ -53,7 +53,8 @@ changeYearInAnswerForm = (input)->
   true
 
 changeYearInSourceFilter = (year)->
-  decko.filter(".SELF-source ._filter-widget").addRestrictions year: year
+  if $(".RIGHT-source ._filter-widget")[0]
+    decko.filter(".RIGHT-source ._filter-widget").addRestrictions year: year
 
 changeHiddenName = (nameField, year) ->
   newName = nameField.val().replace /\d{4}$/, year
