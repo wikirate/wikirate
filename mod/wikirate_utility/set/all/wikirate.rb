@@ -37,20 +37,6 @@ format :html do
     super()
   end
 
-  view :wikirate_modal do
-    card_name = Card::Env.params[:show_modal]
-    if card_name.present?
-      after_card = Card[card_name]
-      if !after_card
-        Rails.logger.info "Expect #{card_name} exist"
-        "" # otherwise it will return true
-      else
-        "<div class='modal-window'>#{subformat(after_card).render_core} </div>"
-      end
-    else
-      ""
-    end
-  end
 
   view :panel_primary, template: :haml, cache: :never do
     root.primary_panels << card.tag

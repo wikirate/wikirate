@@ -12,24 +12,6 @@ RSpec.describe Card::Set::All::Wikirate do
       expect(html).to include("Can I help you?")
     end
 
-    it "return html for an existing card for modal view" do
-      card = create "test_basic", type: "html", content: "Hello World"
-      Card::Env.params[:show_modal] = card.name
-      expect(render_card(:wikirate_modal, name: card.name)).to eq(
-        "<div class='modal-window'>#{render_card :core, name: card.name} </div>"
-      )
-    end
-
-    it "return \"\" for a nonexisting card or nil card for modal view" do
-      # nil card in arg
-      html = render_card :wikirate_modal, name: "test1"
-      expect(html).to eq("")
-
-      Card::Env.params[:show_modal] = "test1"
-      html = render_card :wikirate_modal, name: "test1"
-      expect(html).to eq("")
-    end
-
     it "shows correct html for the menu_link view" do
       html = render_card :menu, name: "A"
       expect(html).to include('<i class="material-icons">edit</i>')
