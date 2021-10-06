@@ -6,24 +6,11 @@ end
 
 format :html do
   view :core do
-    [render_chart, render_expanded_details]
-  end
-
-  view :titled_content, cache: :never do
-    bs do
-      layout do
-        row 12 do
-          column render_basic_details
-        end
-        row 12 do
-          column render_expanded_details
-        end
-      end
-    end
+    render_concise
   end
 
   view :bar_middle do
-    citations_count
+    ""
   end
 
   view :bar_right do
@@ -43,10 +30,6 @@ format :html do
   # prominent value, less prominent year, legend, and flags
   view :concise, unknown: true do
     handle_unknowns { haml :concise }
-  end
-
-  view :basic_details do
-    render_concise hide: :year_and_icon
   end
 
   # prominent year, prominent value, less prominent flags
@@ -74,6 +57,12 @@ format :html do
   view :plain_year do
     card.year
   end
+
+  view :research_option, perms: :none do
+    card.known? ? render_concise : render_year_not_researched
+  end
+
+  view :year_not_researched, perms: :none, template: :haml
 
   def handle_unknowns
     return yield if card.known?
