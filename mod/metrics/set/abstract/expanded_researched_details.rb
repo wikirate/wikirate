@@ -9,19 +9,14 @@ format :html do
 
   view :expanded_researched_details do
     wrap_researched_details do
-      [checked_by_details, source_details, override_details]
+      [checked_by_details, render_sources, override_details]
     end
   end
 
   def checked_by_details
     return if metric_card.designer_assessed?
-    wrap_with :div, class: "double-check mt-3" do
-      nest card.fetch(:checked_by, new: {}), view: :content
-    end
-  end
 
-  def source_details
-    wrap_with :div, render_sources, class: "cited-sources mt-3"
+    nest card.fetch(:checked_by, new: {}), view: :titled, title: "Checks"
   end
 
   def override_details
