@@ -1,0 +1,20 @@
+.bg-light
+  %section.container.research-company
+    = render_company_header
+%section.container.research-metric-and-year
+  = render_metric_header
+  = render_research_years
+%section.container.learn-methodology.bg-light.mb-5
+  .row.align-items-center.px-5
+    .col-8.px-5
+      %h2
+        Learn the methodology
+      %p
+        How to find answers for this question.
+    .col-4.text-center
+      = link_to_view :methodology, "View methodology",
+                     class: "btn btn-outline-primary btn-research"
+
+.d-none
+  = link_to_view :confirm_leave, "", id: "confirmLeave"
+  = link_to_view :confirm_year, "", id: "confirmYear"
