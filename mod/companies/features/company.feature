@@ -16,7 +16,6 @@ Feature: company feature
     And I should see "Evil Dataset"
     Then I click on "Sources"
     And I should see "thereaderwiki.com"
-    And I should see "Original"
 
   Scenario: Filter by metric
     When I click on "More Filters"

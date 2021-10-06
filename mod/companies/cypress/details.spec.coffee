@@ -22,19 +22,19 @@ describe "expanding details on company pages", ->
       cy.root().should "not.contain", "Death Star"
       cy.contains "Scored Metric"
       cy.get("> div:visible").should "not.contain", "disturbance"
-      cy.get("> div:visible").should "not.contain", "Citations"
+      cy.get("> div:visible").should "not.contain", "Sources"
 
       # expands details of raw value
       cy.get("> div:visible").contains("100").click()
       cy.root().should "not.contain", "Death Star"
-      cy.contains "Citations"
+      cy.contains "Sources"
       cy.contains "thereaderwiki.com"
 
       # closes raw value
       cy.get("> div:visible .details-close-icon").click()
       cy.contains "Scored Metric"
       cy.get("> div:visible").should "not.contain", "disturbance"
-      cy.get("> div:visible").should "not.contain", "Citations"
+      cy.get("> div:visible").should "not.contain", "Sources"
 
       # closes score
       cy.get("> div:visible .details-close-icon").click()

@@ -7,7 +7,11 @@ format :html do
   # of the value or moved out of the +value form.
 
   view :input do
-    super() + haml(:unknown_checkbox)
+    super() + unknown_checkbox
+  end
+
+  def unknown_checkbox
+    haml :unknown_checkbox
   end
 
   def check_request_field_card_and_options

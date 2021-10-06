@@ -8,7 +8,9 @@ end
 format :html do
   view :input do
     [text_field(:content, class: "d0-card-content short-input"), " ",
-     nest(card.left, view: :legend)]
+     nest(card.left, view: :legend),
+     unknown_checkbox
+    ]
   end
 
   def pretty_value
