@@ -7,19 +7,15 @@ format :html do
     super() + render_preview
   end
 
-  view :preview, unknown: true do
-    wrap do
-      if card.new?
-        no_file_to_preview
-      else
-        send "#{preview_type}_preview"
-      end
-    end
+  view :preview, unknown: :missing_preview, wrap: :slot do
+    send "#{preview_type}_preview"
   end
 
-  def no_file_to_preview
+  view :missing_preview, unknown: true, wrap: :slot do
     "File currently missing for this source."
   end
+
+
 
   def web_editor
     form.text_field :remote_file_url, class: "d0-card-content form-control",

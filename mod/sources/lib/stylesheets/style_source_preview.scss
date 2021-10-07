@@ -1,14 +1,3 @@
-.cite-bar {
-  display: flex;
-  .details-toggle {
-    width: 100%;
-  }
-}
-.bar_and_preview-view {
-  .bar-view {
-    width: 100%;
-  }
-}
 .pdf-source-preview, .webpage-preview {
   border-left: 3px solid rgba($source-color, 0.2);
   border-top: 1px solid $border-color;
@@ -95,6 +84,45 @@
   }
 }
 
+.TYPE-source {
+  &.box, > .bar-body {
+    cursor: pointer;
+    &:hover {
+      @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
+    }
+  }
+  &.box {
+    > .box-middle {
+      i {
+        font-size: 1rem;
+        display: inline;
+      }
+    }
+    > .box-bottom {
+      padding-top: 0.2em;
+      padding-bottom: 0.2em;
+    }
+  }
+  .meatball-button {
+    padding: 0.2em 0.75em;
+    &:hover {
+      background-color: $secondary;
+      color: $white;
+      border-radius: 5px;
+    }
+  }
+  .dropdown-menu a {
+    padding: 0.3em 1em;
+    display: block;
+    &:hover {
+      @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
+    }
+    i {
+      padding-right: 0.4em;
+    }
+  }
+}
+
 .TYPE-metric.new-view .nav-pills  {
   background: #f5f5f5;
   border-bottom: 1px solid $border-color;
@@ -104,13 +132,20 @@
     border-radius: 0;
   }
 }
+
 .open-view > .d0-card-frame > .d0-card-body.TYPE-source{
   padding-left: 0;
 }
+
 .upload-option {
   display: none;
 }
+
 a.toggle-source-option {
   font-weight: bold;
   color: $source-color !important;
+}
+
+#filter_wikirate_link {
+  min-width: 300px;
 }
