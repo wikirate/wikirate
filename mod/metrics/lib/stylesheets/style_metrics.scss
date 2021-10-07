@@ -85,7 +85,7 @@
     color: $answer-color;
   }
   color: $answer-color;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .year-and-value .metric-value {
@@ -314,19 +314,17 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .range-value {
   position: relative;
-  display: inline-block;
   span {
     position: absolute;
-    left: 0;
-    font-size: 14px;
     color: #FFF;
-    text-align: center;
-    width: 25px;
-    padding: 5px 0;
     font-weight: bold;
+    font-size: 0.9em;
+    padding: 0.15em 0;
+    width: 1.5em;
+    text-align: center;
   }
   i {
-    font-size: 30px;
+    font-size: 1.6em;
   }
 }
 
@@ -675,4 +673,156 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   canvas {
     max-width: 80%;
   }
+}
+
+.research-layout #main {
+  .research-company .progress-bar {
+    background-color: $metric-color;
+  }
+  .nav-pills {
+    li {
+      min-width: 25%;
+      a {
+        padding: 2rem 3rem;
+        width: 100%;
+        .circle-num {
+          border: 1px solid $gray-400;
+          border-radius: 50%;
+          display: inline-block;
+          text-align: center;
+          width: 1.5rem;
+          height: 1.5rem;
+          margin-right: 1rem;
+        }
+        &.active, &:hover {
+          background-color: $white;
+          color: $secondary;
+          border: 0;
+          @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
+        }
+      }
+    }
+  }
+  .nav-pills, section {
+    padding: 4.5rem 0;
+    h2 {
+      margin-top: 0.1rem
+    }
+  }
+  .research-selector {
+    padding-left: 1rem;
+  }
+  .overlay-container {
+    min-height: 1460px;
+  }
+  .pdf-source-preview {
+    height: 1320px !important;
+  }
+  .d0-card-overlay {
+    background-color: $gray-100;
+  }
+  input[type=radio], input[type=checkbox] {
+    transform: scale(1.5);
+  }
+  .research-year-option {
+    cursor: pointer;
+    &:hover {
+      @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
+    }
+  }
+  .btn-research {
+    padding: 1em 2em;
+  }
+  .source-selector-header {
+    background-color: $gray-300;
+  }
+  .d0-card-overlay > .d0-card-frame > .d0-card-content {
+    padding: 0 !important;
+  }
+  .close-research-overlay {
+    right: 0;
+    a {
+      border: 0;
+      i {
+        padding: 0 0.2em;
+      }
+      &:hover i {
+        color: $white;
+      }
+    }
+  }
+  .jp-current {
+    background-color: $primary;
+    color: $white;
+  }
+  .answer-breadcrumb-link:hover {
+    text-decoration: none;
+  }
+  .answer-breadcrumb {
+    background-color: $gray-200;
+    color: $gray-800;
+    border-radius: 5px;
+    padding: 1em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid $gray-300;
+    .breadknife {
+      margin: 0 1em;
+    }
+    &:hover {
+      @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
+    }
+  }
+}
+
+.research-layout .tab-pane-answer_phase .card-form, .read_form_with_button-view {
+  .form-group {
+    display: flex;
+    > label {
+      .card-title {
+        font-size: 2rem;
+      }
+      width: 30%;
+      padding: 0 2rem;
+    }
+    > .content-editor, .read-formgroup-content {
+      width: 70%;
+      padding: 2rem;
+      ul.pointer-radio-list {
+        padding: 0;
+        li.pointer-radio {
+          padding: 0.2rem 0;
+          label {
+            margin-left: 1rem;
+          }
+        }
+      }
+    }
+  }
+  .read-formgroup-content {
+    background-color: $gray-100;
+    .bar-body {
+      background-color: $white;
+    }
+  }
+  .button-form-group {
+    margin-left: calc(30% + 2rem);
+  }
+  .comment-buttons {
+    text-align: right;
+  }
+  .go_to_sources {
+    display: inline;
+  }
+}
+.go_to_sources, .answer-success-in-project {
+  display: none;
+}
+.progress {
+  border-radius: 10px;
+}
+
+#main section.research-answer {
+  padding: 0;
 }
