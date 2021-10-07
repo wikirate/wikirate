@@ -1,0 +1,9 @@
+.research-header-progress
+  .py-3
+    = render :research_progress_bar
+  %label.text-secondary
+    = card.num_researched
+    \/
+    = card.num_possible
+    = units
+    researched for this company.
