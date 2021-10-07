@@ -26,7 +26,7 @@ format :html do
   view :company_header, template: :haml
   view :metric_header, template: :haml
   view :metric_option, template: :haml
-  view :research_years, template: :haml
+  view :research_years, template: :haml, cache: :never
 
   view :question_phase, template: :haml, wrap: :slot
   view :methodology, template: :haml, wrap: :research_overlay do
@@ -104,6 +104,4 @@ format :html do
         hash[answer.year.to_i] = answer
       end
   end
-
-
 end
