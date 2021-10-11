@@ -1,0 +1,7 @@
+.answer-read-form
+  = render_read_form
+  = render_flash
+  .button-form-group
+    = link_to_view :edit_inline, "Edit Answer",
+                   class: "btn btn-outline-secondary btn-research _edit-answer-button",
+                   data: { "disable-with": "Loading..." }
