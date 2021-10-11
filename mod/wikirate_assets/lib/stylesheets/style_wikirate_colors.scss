@@ -270,24 +270,25 @@ $colorMap: (
 
 @each $score, $color in $score-colors {
   .score-color-#{$score} {
-    color: $color;
+    background-color: $color;
   }
   .details-toggle {
     .score-color-#{$score} {
-      color: rgba($color, 0.75);
+      background-color: rgba($color, 0.75);
     }
     &:hover .score-color-#{$score} {
-      color: $color;
+      background-color: $color;
     }
   }
 }
 
 // light colors
-.light-color-0{
-  color: #ccc;
+.light-color-0 {
+  background-color: #ccc;
 }
-.light-color-1{
-  color: #e4e9f1;
+
+.light-color-1 {
+  background-color: #e4e9f1;
 }
 
 .main-color {
