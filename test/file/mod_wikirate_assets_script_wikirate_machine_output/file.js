@@ -275,89 +275,7 @@
 
 // script_general_popup.js.coffee
 (function() {
-  var gettingSourceListHtmlFail, linkOnClick, sourceListHtmlReturned;
-
-  sourceListHtmlReturned = function(header, data) {
-    var $_data, $popupWindow, height;
-    $popupWindow = $('#popup-window');
-    $_data = $(data);
-    if (header) {
-      $_data.find('.d0-card-header').remove();
-    }
-    $popupWindow.html($_data);
-    height = $(window).height() - $('.navbar:first').height() - 1;
-    if ($popupWindow.height() > height) {
-      $popupWindow.dialog('option', 'height', height);
-    }
-    decko.initializeEditors($popupWindow.find('div:first'));
-    $popupWindow.find('div:first').trigger('slotReady');
-  };
-
-  gettingSourceListHtmlFail = function(xhr, ajaxOptions, thrownError) {
-    var $popupWindow, html;
-    $popupWindow = $('#popup-window');
-    html = $(xhr.responseText);
-    $popupWindow.html(html);
-  };
-
-  linkOnClick = function(e) {
-    var $_this, $popupWindow, header, href, jqxhr, loadingImageUrl, originalLink, position, title;
-    e.preventDefault();
-    $_this = $(this);
-    href = $_this.attr('href');
-    loadingImageUrl = '{{loading gif|source;size:large}}';
-    position = 'center';
-    if ($_this.hasClass('position-right')) {
-      position = {
-        of: '.navbar',
-        my: 'right bottom',
-        at: 'right top',
-        collision: 'flipfit'
-      };
-    }
-    if ($_this.hasClass('position-left')) {
-      position = {
-        my: 'left bottom',
-        at: 'left top',
-        of: '.navbar',
-        collision: 'flipfit'
-      };
-    }
-    title = '<i class="fa fa-arrows"></i>';
-    if ($_this.data('popup-title')) {
-      title = $_this.data('popup-title');
-    }
-    $popupWindow = $('#popup-window');
-    if ($popupWindow.length === 0) {
-      $('#main').prepend('<div id="popup-window" style="display:none;"></div>');
-    }
-    $popupWindow = $('#popup-window');
-    $popupWindow.html('<img src=\'' + loadingImageUrl + '\' />');
-    $popupWindow.removeAttr('style');
-    $popupWindow.dialog({
-      height: 'auto',
-      minWidth: 700,
-      position: position,
-      title: title,
-      closeOnEscape: false,
-      resizable: false,
-      draggable: true,
-      close: function(event, ui) {
-        $popupWindow.dialog('destroy');
-      }
-    });
-    header = $_this.hasClass('no-header');
-    originalLink = $_this.hasClass('popup-original-link');
-    jqxhr = $.ajax(href + (originalLink ? '' : '?view=content')).done(function(data) {
-      return sourceListHtmlReturned(header, data);
-    }).fail(gettingSourceListHtmlFail);
-    return false;
-  };
-
   decko.slotReady(function(slot) {
-    slot.find('.show-link-in-popup').each(function() {
-      return $(this).off('click').click(linkOnClick);
-    });
     return slot.find('[data-toggle="popover"]').popover();
   });
 
@@ -446,18 +364,6 @@ standard "data-card-name" attribute.
 
 // script_wikirate_common.js.coffee
 (function() {
-  $(function() {
-    return $('.modal-window').dialog({
-      modal: true,
-      width: '46%',
-      buttons: {
-        Ok: function() {
-          return $(this).dialog('close');
-        }
-      }
-    });
-  });
-
   window.wikirate = {
     ajaxLoader: {
       head: '#ajax_loader',
@@ -531,25 +437,11 @@ standard "data-card-name" attribute.
     }
   };
 
-  $.urlParam = function(name) {
-    var results;
-    results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results === null) {
-      return null;
-    } else {
-      return results[1] || 0;
-    }
-  };
-
   $.fn.exists = function() {
     return this.length > 0;
   };
 
   decko.slotReady(function(slot) {
-    slot.find('.company_autocomplete').autocomplete({
-      source: '/Companies+*right+*content_options.json?view=name_match',
-      minLength: 2
-    });
     slot.find('.wikirate_company_autocomplete').autocomplete({
       source: '/Companies+*right+*content_options.json?view=name_match',
       minLength: 2

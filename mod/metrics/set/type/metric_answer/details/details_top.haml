@@ -1,18 +1,21 @@
-.details-top.mb-3.d-flex.justify-content-between
-  .detail-year-and-value.w-50
-    .year-details.d-flex
-      = filterable(year: card.year, status: :exists) { nest card.year, view: :in_calendar }
-      .record-details
-        .record-buttons
-          = render_record_filter_button
-          = nest record_card, view: :research_answer_button
-        .other-year-links
-          = render_other_year_links
-    .value-details
-      .metric-color.font-weight-bold
+.details-top.my-3
+  .row.justify-content-between
+    .col-9
+      .value-details.font-weight-bold
         = handle_unknowns { nest card.value_card, view: :pretty }
-      .text-muted
-        = render_legend
-  .details-chart
-    = render_chart
-  = render_full_page_link
+        .text-muted
+          = render_legend
+    .col-3.year-details.d-flex.justify-content-end.align-items-start
+      .ml-2
+        = filterable year: card.year, status: :exists do
+          - nest card.year, view: :in_calendar
+      = render_full_page_link
+  .record-details.d-flex.justify-content-between.my-3
+    .d-flex.align-items-center
+      .mr-2
+        = render_research_button
+      = render_flags
+    .year-details.d-flex.justify-content-end.align-items-center
+      .other-year-links.mx-3
+        = render_other_year_links
+      = render_record_filter_button
