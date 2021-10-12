@@ -75,8 +75,7 @@ class Calculate
       self
     end
 
-    # Look up all input values. Apply input options if present otherwise
-    # pass raw value
+    # Look up all input values. Apply input options if present otherwise pass raw value
     def processed_input!
       unknown_handling :process
       not_researched_handling :process

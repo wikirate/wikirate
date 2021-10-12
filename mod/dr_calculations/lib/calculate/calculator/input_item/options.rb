@@ -47,7 +47,7 @@ class Calculate
         end
 
         def normalize_year_option option
-          option.tr("?", "0")
+          option.tr "?", "0"
         end
       end
     end

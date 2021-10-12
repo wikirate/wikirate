@@ -48,7 +48,7 @@ class Answer
     # @return [BigDecimal, nil]
     # If a val is a valid number return BigDecimal, otherwise nil.
     def to_numeric val
-      Answer.unknown?(val) || !val.number? ? nil : val.to_d
+      val.nil? || Answer.unknown?(val) || !val.number? ? nil : val.to_d
     end
 
     # convert value format to lookup-table-suitable value
