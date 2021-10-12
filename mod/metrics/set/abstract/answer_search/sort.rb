@@ -65,6 +65,8 @@ format do
   end
 
   def lookup?
+    return true if @answer_table_only
+
     !AnswerQuery.all_answer_query?(filter_hash.symbolize_keys)
   end
 end
