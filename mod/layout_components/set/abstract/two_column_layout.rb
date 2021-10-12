@@ -32,10 +32,8 @@ format :html do
     [render_type_link, render_tabs]
   end
 
-  view :data, cache: :never do
-    wrap do
-      [_render_filter, _render_table]
-    end
+  view :data do
+    raise Card::Error, "must override data view"
   end
 
   def two_column_layout col1=6, col2=6, row_hash={}
