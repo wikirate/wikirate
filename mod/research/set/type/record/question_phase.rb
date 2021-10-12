@@ -87,7 +87,7 @@ format :html do
 
   def years
     @years ||=
-      dataset_card&.years? ? dataset_card&.years.sort.reverse : Type::Year.all_years
+      dataset_card&.years? ? dataset_card.years.sort.reverse : Type::Year.all_years
   end
 
   def answer_for year

@@ -37,7 +37,6 @@ format :html do
     super()
   end
 
-
   view :panel_primary, template: :haml, cache: :never do
     root.primary_panels << card.tag
   end
