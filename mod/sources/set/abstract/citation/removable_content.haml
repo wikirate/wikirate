@@ -1,0 +1,17 @@
+._removable-content-list
+  - if card.count.positive?
+    %ul.pointer-list.list-group.vertical.p-0
+      - card.item_cards(context: :raw).each do |item_card|
+        %li._removable-content-item.d-flex.align-items-center.justify-content-between{ data: item_card.format.wrap_data(false) }
+          %button._handle.btn.btn-outline-secondary
+            = icon_tag :reorder
+          - nest_item item_card do |rendered, view|
+            %span{ class: "item-#{view} w-75"}
+              = rendered
+          %button._remove-removable.btn.btn-outline-secondary
+            = icon_tag :remove
+  - else
+    %h5
+      Citation required.
+      %a._to_source_phase.go_to_sources{ href: "#" }
+        Go to sources.

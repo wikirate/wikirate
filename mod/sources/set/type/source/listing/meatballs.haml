@@ -1,0 +1,10 @@
+.source-meatballs.dropdown
+  .meatball-button{ "aria-expanded": "false",
+                    "aria-haspopup": "true",
+                    "data-toggle": "dropdown" }
+    %i.fa.fa-ellipsis-h
+  .dropdown-menu{ "aria-labelledby": "dropdownMenuButton" }
+    - if card.link_url.present?
+      = original_link
+    = download_link
+    = source_page_link
