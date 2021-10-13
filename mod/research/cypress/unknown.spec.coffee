@@ -3,6 +3,7 @@ toAnswerPhase = (metric, company, year)->
   company ||= "Sony_Corporation"
   cy.visit "#{metric}+#{company}/research?year=#{year}&tab=answer_phase"
 
+# check and uncheck unknown box, ensuring desired effects
 testUnknown = (value) ->
   cy.get("#_unknown").should "not.be.checked"
   lookupValueContent().should "eq", value
@@ -11,6 +12,7 @@ testUnknown = (value) ->
   shiftFocus()
   lookupValueContent().should "eq", "Unknown"
 
+# for finding content editor
 edSelector = (klass) ->
   ".card-editor.RIGHT-value .content-editor #{klass}"
 
@@ -33,7 +35,7 @@ shiftFocus = ->
 
 describe "the 'unknown' checkbox", ->
   beforeEach ->
-    cy.login("sample@user.com", "sample_pass")
+    cy.login "sample@user.com", "sample_pass"
 
   specify "numeric metric", ->
     toAnswerPhase "Jedi+deadliness", "Death_Star"

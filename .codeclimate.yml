@@ -23,3 +23,4 @@ exclude_paths:
 - test/**/*
 - db/**/*
 - script/single-use/**/*
+- mod/research/assets/script/jpages.js
