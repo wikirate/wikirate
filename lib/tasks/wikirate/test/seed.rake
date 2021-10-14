@@ -68,6 +68,8 @@ namespace :wikirate do
 
       desc "add update_assets"
       task update_assets: :environment do |task|
+        Cardio.config.delaying = false
+
         ensure_env :test, task do
           Rake::Task["card:mod:install"].execute
           ENV["SEED_MACHINE_OUTPUT_TO"] = "test"
