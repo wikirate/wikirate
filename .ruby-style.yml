@@ -22,6 +22,7 @@ AllCops:
   - "db/schema.rb"
   - "mod/sources/files/**/*"
   - "mod/sources/lib/javascript/**/*"
+  - "mod/research/assets/script/jpages.js"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Style/CommentAnnotation:
