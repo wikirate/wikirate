@@ -10,7 +10,7 @@ event :verify_no_current_answers_inapplicable, :validate,
     "This change would disallow existing researched answers."
 end
 
-event :enforce_applicability_to_calculations, :after_integrate,
+event :enforce_applicability_to_calculations, :integrate_with_delay,
       skip: :allowed, when: :calculated? do
   metric_card.deep_answer_update unless metric_card.action.in? %i[create delete]
 end
