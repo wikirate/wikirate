@@ -8,8 +8,7 @@ event :auto_add_source, :prepare_to_validate,
 end
 
 # make sure sources exists, are valid, and are properly annotated
-event :validate_and_normalize_sources, :validate,
-      on: :save, changed: :content do
+event :validate_and_normalize_sources, :validate, on: :save, changed: :content do
   errors.add :content, "sources required" if item_names.blank? && required_field?
   annotate_sources
 end
@@ -78,4 +77,13 @@ def invalid_source_item_error_message source_name
   else
     "No such source exists: #{source_name}"
   end
+end
+
+format :html do
+  def removable_content_input
+    render_removable_content
+  end
+
+  view :removable_content,
+       wrap: :slot, cache: :never, unknown: true, template: :haml
 end

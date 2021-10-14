@@ -1,4 +1,10 @@
 format :html do
+  view :breadcrumb, unknown: true, template: :haml
+
+  view :basic_details do
+    render_concise hide: :year_and_icon
+  end
+
   view :comments do
     wrap_with :div, class: "comments-div" do
       field_nest :discussion, view: :titled, title: "Comments", show: "comment_box"
