@@ -12,6 +12,8 @@ class Answer
       title: "Verified by Steward" }
   ].freeze
 
+  UNKNOWN = "Unknown".freeze
+
   # class methods for the Answer (lookup) constant
   module AnswerClassMethods
     include Export::ClassMethods
@@ -46,7 +48,7 @@ class Answer
     # @return [BigDecimal, nil]
     # If a val is a valid number return BigDecimal, otherwise nil.
     def to_numeric val
-      Answer.unknown?(val) || !val.number? ? nil : val.to_d
+      val.nil? || Answer.unknown?(val) || !val.number? ? nil : val.to_d
     end
 
     # convert value format to lookup-table-suitable value
