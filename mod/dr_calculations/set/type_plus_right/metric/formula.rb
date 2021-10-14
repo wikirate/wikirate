@@ -43,7 +43,7 @@ def javascript_formula?
 end
 
 def syntax_formula?
-  calculator.is_a? Calculate::NestFormula
+  calculator.is_a? Calculate::NestCalculator
 end
 
 def ruby_formula?
