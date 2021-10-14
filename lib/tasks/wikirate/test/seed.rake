@@ -62,6 +62,13 @@ namespace :wikirate do
           # is an autoloading problem.
 
           Rake::Task["wikirate:test:seed:add_wikirate_test_data"].invoke
+          Rake::Task["wikirate:test:seed:update_assets"].invoke
+        end
+      end
+
+      desc "add update_assets"
+      task update_assets: :environment do |task|
+        ensure_env :test, task do
           Rake::Task["card:mod:install"].execute
           ENV["SEED_MACHINE_OUTPUT_TO"] = "test"
           Rake::Task["card:asset:refresh!"].execute

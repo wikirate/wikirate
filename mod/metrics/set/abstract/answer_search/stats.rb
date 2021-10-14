@@ -88,6 +88,8 @@ format do
   private
 
   def answer_table_only
+    @answer_table_only = true
+
     yield query_hash.merge(answer_table_only_alteration)
   end
 
