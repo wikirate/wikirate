@@ -58,7 +58,7 @@ class Calculate
             end
 
             def translate_nonstandard_years years
-              @year_set ||= ::Set.new years
+              year_set ||= ::Set.new years
               years = years.sort
 
               # Example: offsets = [-3, -2, 1]
@@ -67,16 +67,16 @@ class Calculate
               first = diffs.shift
               diffs.map! { |n| n - first } # differences compared to the first offset
               # Example:  diffs = [1, 4]
-              up_to_years years, diffs, first
+              up_to_years years, diffs, first, year_set
             end
 
-            def up_to_years years, diffs, first
+            def up_to_years years, diffs, first, year_set
               0.upto(years.size - diffs.size).with_object([]) do |i, result|
                 # Example:
                 #      << 2000 - (-3) = 2003 is the only year for which the offsets
                 #                            match to the given years
                 year = years[i]
-                result << year - first if years_suit? year, diffs, @year_set
+                result << year - first if years_suit? year, diffs, year_set
               end
             end
 

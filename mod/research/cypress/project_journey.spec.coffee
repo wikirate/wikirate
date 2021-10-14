@@ -1,8 +1,6 @@
 describe "research page", ->
-  beforeEach ->
-    cy.login "sample@user.com", "sample_pass"
-
   specify "project journey", ->
+    cy.login "sample@user.com", "sample_pass"
     cy.visit "Evil Project"
     cy.get(".tab-pane-wikirate_company").within ->
       cy.bar("Death_Star+Evil_Project").within ->

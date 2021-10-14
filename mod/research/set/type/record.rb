@@ -7,7 +7,7 @@ format :html do
 
   def research_button year=nil
     link_to_card card, "Research",
-                 class: "btn btn-sm btn-outline-secondary",
+                 class: "btn btn-sm btn-outline-secondary _research_answer_button",
                  path: { view: :research, year: year },
                  title: "Research answers for this company and metric"
   end
