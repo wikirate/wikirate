@@ -1,7 +1,7 @@
 - if total_results.positive?
   .answer-search-progress.py-2
     = render_progress_bar
-  .filter-result-header.d-flex.justify-content-between
+  .filter-result-header.d-flex.justify-content-between.mb-2
     .filter-result-badges
       = answer_count_badge :metric_answer
       - unless all_answer?

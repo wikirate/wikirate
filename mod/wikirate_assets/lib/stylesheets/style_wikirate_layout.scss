@@ -273,7 +273,7 @@ body.wikirate-two-column-layout {
 
 body#tinymce, body.wikirate-one-column-layout, body.wikirate-one-full-column-layout {
   #main > .titled-view>.d0-card-header {
-    border-bottom: 1px solid #03998d;
+    border-bottom: 1px solid $brand-primary;
     padding-bottom: 0.1em;
     margin-bottom: 1em;
     >.d0-card-header-title {
@@ -297,7 +297,6 @@ body#tinymce, body.wikirate-one-column-layout, body.wikirate-one-full-column-lay
     font-size: 2rem;
   }
   h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title {
-    border-bottom: 1px solid #ddd;
     padding-bottom: 0.1em;
     margin-bottom: 0.3em;
   }

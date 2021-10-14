@@ -2,10 +2,7 @@ RSpec.describe Card::Set::Abstract::TenScale do
   describe "#colorify" do
     it "adds correct color class" do
       expect(format_subject.colorify("3.49")).to(
-        have_tag(".range-value") do
-          with_tag "span", text: "3.5"
-          with_tag "i.fa-square.score-color.score-color-3"
-        end
+        have_tag ".range-value.score-color-3", text: /3\.5/
       )
     end
   end

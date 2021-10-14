@@ -9,3 +9,9 @@ format :json do
     @metric_card ||= card.left
   end
 end
+
+format :html do
+  def show_chart?
+    super && card.metric_card.chart_class
+  end
+end
