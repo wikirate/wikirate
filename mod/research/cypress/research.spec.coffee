@@ -39,6 +39,7 @@ describe "research page", ->
     # choose year
     cy.get(".research-years").within ->
       cy.get(".research-year-list").should "not.contain", "2015"
+      cy.scrollTo 0, 500
       cy.get(".page-link").contains("2").click()
       cy.get(".research-year-list").should "contain", "2015"
       cy.get("#year_2015").check()
