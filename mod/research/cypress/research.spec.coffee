@@ -39,11 +39,24 @@ describe "research page", ->
     # choose year
     cy.get(".research-years").within ->
       cy.get(".research-year-list").should "not.contain", "2015"
-      cy.scrollTo 0, 500
-      cy.get(".page-link").contains("2").click()
-      cy.get(".research-year-list").should "contain", "2015"
-      cy.get("#year_2015").check()
+      # cy.scrollTo(0, 500)
+      #      cy.get(".page-link").contains("2").click()
+      #      cy.get(".research-year-list").should "contain", "2015"
+      cy.get("#year_2020").check()
       cy.get("#_select_year").click()
 
+    cy.closeFilter "year"
+    cy.closeFilter "company_name"
+    cy.get(".TYPE-source.box:first").click()
+    cy.get("#_select_source").click()
 
+    crumb = cy.get ".answer-breadcrumb"
+    crumb.should "contain", "2020"
+    crumb.should "contain", "Los Pollos Hermanos"
+    crumb.should "contain", "disturbances in the Force"
 
+    cy.editor("value").find("input[value=yes]").check()
+    cy.editor("source").should "contain", "Opera"
+    cy.get("button").contains("Submit Answer").click()
+
+    cy.get(".research-answer").should "contain", "Edit Answer"
