@@ -75,7 +75,7 @@ Feature: Double check
     And I wait for ajax response
     Then I should see "1 Checker"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
-    And I fill in "no" for "Answer"
+    And I check "no"
     And I scroll 300 pixels down
     And I press "Save and Close"
     Then I should see "0 Checkers"
