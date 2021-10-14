@@ -1,6 +1,3 @@
-toPhase = (phase) ->
-  cy.get(".tab-li-#{phase}_phase .nav-link").click()
-
 describe "research page", ->
   specify "project journey", ->
     cy.login "sample@user.com", "sample_pass"

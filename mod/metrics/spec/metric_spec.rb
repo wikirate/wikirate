@@ -54,8 +54,7 @@ RSpec.describe Card::Metric do
     def create_metric
       Card::Auth.as_bot do
         source = create_source "http://example.com"
-        described_class.create name: "MD+MT", type: :formula,
-                               formula: "1", test_source: true do
+        described_class.create name: "MD+MT", type: :researched, test_source: true do
           SPECTRE 2000 => 50, 2001 => 100
           Death_Star 2000 => { value: 50, source: "[[#{source.name}]]" }
         end
@@ -67,8 +66,7 @@ RSpec.describe Card::Metric do
 
       expect(metric).to be_truthy
       expect(metric.type_id).to eq Card::MetricID
-      expect(metric.field(:formula).content).to eq "1"
-      expect(metric.metric_type).to eq "Formula"
+      expect(metric.metric_type).to eq "Researched"
 
       expect(value).to be_truthy
       expect(value.type_id).to eq Card::MetricAnswerID

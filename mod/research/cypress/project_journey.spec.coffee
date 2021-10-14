@@ -1,3 +1,6 @@
+toPhase = (phase) ->
+  cy.get(".tab-li-#{phase}_phase .nav-link").click()
+
 describe "research page", ->
   specify "project journey", ->
     cy.login "sample@user.com", "sample_pass"
@@ -57,6 +60,15 @@ describe "research page", ->
 
     cy.editor("value").find("input[value=yes]").check()
     cy.editor("source").should "contain", "Opera"
-    cy.get("button").contains("Submit Answer").click()
 
+    # forget to submit, try to go to a new question
+    toPhase "question"
+    cy.get(".research-metric-and-year [rel=next]").click()
+    cy.get(".modal-body").within ->
+      cy.get(".alert").should "contain", "Editing in progress"
+      cy.wait 2000
+      cy.get("._dont_leave").click()
+
+    toPhase "answer"
+    cy.get("button").contains("Submit Answer").click()
     cy.get(".research-answer").should "contain", "Edit Answer"
