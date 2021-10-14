@@ -52,4 +52,4 @@ describe "research page", ->
       .should "contain", "Edit Answer"
       .should "contain", "Apple"
       .should "contain", "Star Wars"
-      .should "contain", "54321"
+      .should "contain", "54,321"
