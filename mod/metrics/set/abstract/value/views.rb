@@ -17,12 +17,18 @@ def content_updater
 end
 
 format :html do
+  def raw_help_text
+    metric_card.question
+  end
+
   view :updated_at, compact: true do
     date_view card.content_updated_at
   end
 
-  view :core do
-    card.item_names.join(",")
+  view :core, unknown: true do
+    wrap_with :span, pretty_span_args do
+      beautify(pretty_value).html_safe
+    end
   end
 
   view :credit do
@@ -33,9 +39,7 @@ format :html do
   end
 
   view :pretty, unknown: true do
-    wrap_with :span, pretty_span_args do
-      beautify(pretty_value).html_safe
-    end
+    render_core
   end
 
   # do not link to the relationship answer counts that comprise the "value" of

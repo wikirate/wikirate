@@ -87,7 +87,6 @@
 .details-top {
   .record-details {
     width: 100%;
-    padding: 0 3% 0.5em 3%;
   }
   .record-buttons {
     > * {
@@ -101,12 +100,12 @@
     color: $text-muted;
   }
   .value-details {
-    padding: 0.5em;
+    padding: 1em;
     background-color: rgba($brand-primary, 0.1);
-    margin-top: 0.5em;
   }
   .full-page-link i {
     font-size: 1.5em;
+    margin-left: 1em;
   }
   border-bottom: 1px solid $border-color;
   margin-bottom: 1em;
