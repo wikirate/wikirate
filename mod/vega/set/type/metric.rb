@@ -3,8 +3,6 @@ def chart_class horizontal=false
     numeric_chart_class horizontal
   elsif categorical?
     :bar_graph
-  else
-    raise Card::Error, "VegaChart not supported for #{name}"
   end
 end
 

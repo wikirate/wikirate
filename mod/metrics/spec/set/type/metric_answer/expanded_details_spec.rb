@@ -146,12 +146,12 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         end
         with_tag("td") { with_tag "a", text: "deadliness" }
         with_tag("td") { with_tag "a.metric-value", text: "100" }
-        with_tag "td", text: "10"
+        with_tag "td", text: /10/
         with_tag "td", text: "x 60%"
         with_tag "td", text: "= 6.0"
         with_tag("td") { with_tag "a", text: "disturbances in the Force" }
         with_tag("td") { with_tag "a.metric-value", text: "yes" }
-        with_tag "td", text: "10"
+        with_tag "td", text: /10/
         with_tag "td", text: "x 40%"
         with_tag "td", text: "= 4.0"
       end
@@ -224,12 +224,6 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
     subject do
       Card.fetch("Joe User+descendant hybrid+Death Star+1977")
           .format.render :expanded_details
-    end
-
-    it "shows cited source" do
-      is_expected.to have_tag "div.cited-sources" do
-        with_tag "div.source-title", /Opera/
-      end
     end
 
     it "shows overridden value" do
