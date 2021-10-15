@@ -66,5 +66,5 @@ describe "research page", ->
     toPhase "answer"
     cy.get("button").contains("Submit Answer").click()
     cy.get(".research-answer").should "contain", "Edit Answer"
-    cy.get(".research-answer._next-question-button").click()
+    cy.get(".research-answer ._next-question-button").click()
     cy.get(".research-metric-and-year").should "contain", "researched number 2"
