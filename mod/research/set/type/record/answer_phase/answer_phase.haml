@@ -3,9 +3,3 @@
     = nest answer, view: :breadcrumb
   .py-2
     = nest answer, view: :read_form_with_button, unknown: :simple_new
-
-.d-none.next-button-template
-  - if multi_metric?
-    - class_up "_research-metric-link",
-               "btn btn-outline-secondary btn-research _next-question-button ml-4"
-    = link_to_metric :next, "Next Question", (metric_index + 1)
