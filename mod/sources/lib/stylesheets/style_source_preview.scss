@@ -92,7 +92,14 @@
     }
   }
   &.box {
+    min-height: 250px;
+    .box-top {
+      div, span, a {
+        white-space: normal;
+      }
+    }
     > .box-middle {
+      min-height: auto;
       i {
         font-size: 1rem;
         display: inline;

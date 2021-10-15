@@ -1,0 +1,17 @@
+.company-project-metrics-overview.px-3
+  %h2.py-1.my-1 Metrics Overview
+  .lead
+    %em
+      = company_card.name
+    Answers in
+    %em
+      = card.project_name
+  - record_names.each do |record_name|
+    %a{ href: path(mark: record_name, view: :research, project: card.project_name),
+        class: "_research-metric-link record-in-project" }
+      .p-3
+        = nest record_name.left, view: :title_and_question
+        .record-answers.d-flex.justify-content-center
+          .w-75
+            - record_answers(record_name).each do |answer|
+              = nest answer, view: :research_option # , hide: :legend

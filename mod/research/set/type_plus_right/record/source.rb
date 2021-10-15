@@ -2,6 +2,10 @@ include_set Abstract::MetricChild, generation: 2
 include_set Abstract::SourceFilter
 
 format :html do
+  view :filter_form do
+    super() + haml(:source_help)
+  end
+
   def current_year
     params[:year]
   end

@@ -37,6 +37,11 @@ decko.slotReady (slot) ->
     if success_in_project[0] && $("._company-project-research")[0]
       success_in_project.show()
 
+    btn = $("._next-question-button")
+    if btn.length && slot.find("._edit-answer-button").length
+      btn = btn.clone()
+      slot.find(".button-form-group").append btn
+
 $(document).ready ->
   $("body").on "click", "#_select_year", (e) ->
     return unless selectedYear()

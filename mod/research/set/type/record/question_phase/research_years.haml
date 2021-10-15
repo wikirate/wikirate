@@ -6,5 +6,8 @@
     %nav.d-flex.py-5.justify-content-between.align-items-center
       .left
         #jPages.pagination
+      = modal_link "All Metrics",
+                   path: { mark: company_project_mark, view: :metrics_overview },
+                   class: "_ btn btn-outline-secondary btn-research _all_metrics_button"
       %a#_select_year{ href: "", class: "btn btn-primary btn-research" }
         Select year

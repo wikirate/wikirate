@@ -11,10 +11,12 @@ def virtual?
   new?
 end
 
+def answers
+  metric_answer_card.search
+end
+
 format do
-  def answers
-    card.metric_answer_card.search
-  end
+  delegate :answers, to: :card
 end
 
 format :html do

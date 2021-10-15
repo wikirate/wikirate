@@ -54,10 +54,6 @@ format :html do
     "Not Researched"
   end
 
-  view :plain_year do
-    card.year
-  end
-
   view :research_option, perms: :none do
     card.known? ? render_concise : render_year_not_researched
   end

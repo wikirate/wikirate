@@ -770,6 +770,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
     }
   }
+  .source-help {
+    width: 100%;
+    text-align: right;
+    font-size: 1.4em;
+  }
 }
 
 .research-layout .tab-pane-answer_phase .card-form, .read_form_with_button-view {
@@ -821,4 +826,13 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 #main section.research-answer {
   padding: 0;
+}
+
+.record-in-project {
+  &:hover {
+    text-decoration: none;
+    > div {
+      @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
+    }
+  }
 }

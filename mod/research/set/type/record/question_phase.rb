@@ -72,10 +72,11 @@ format :html do
     raise Error::UserError, "Metric (#{metric_name}) is not in project (#{project_name})"
   end
 
-  def link_to_metric rel, label, index, text
+  def link_to_metric rel, label, index, text=nil
+    text ||= label
     record_name = metric_id_for_index(index).cardname.field card.company_name
     link_to_card record_name, text,
-                 class: "_research-metric-link",
+                 class: classy("_research-metric-link"),
                  rel: rel,
                  title: label,
                  "aria-label": label,
