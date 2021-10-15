@@ -37,17 +37,17 @@ def internal_api_request?
 end
 
 format :html do
+  def views_in_head
+    super << :google_analytics_four_snippet
+  end
+
   def google_analytics_snippet_vars
     super.merge contentGroup1: card.type_name,
                 contentGroup2: "Web",
                 dimension1: card.profile_type
   end
 
-  view :google_analytics_snippet do
-    super() + ga4_tag
-  end
-
-  def ga4_tag
+  view :google_analytics_four_snippet do
     # FIXME: clean up and move to ga mod
     return unless (ga4_key = Card.config.google_analytics_four_key)
 
