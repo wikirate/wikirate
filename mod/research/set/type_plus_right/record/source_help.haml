@@ -1,0 +1,10 @@
+.source-help
+  - link_content = capture_haml do
+    %p
+      The default filters will find sources that are already assigned the correct
+      company, year, and report type, but there may be a good source for this answer
+      that's missing one or more of these.
+    %p.pb-0
+      %strong Remove or change filter settings
+      to view other sources.
+  = popover_link link_content
