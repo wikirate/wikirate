@@ -15,12 +15,9 @@ describe "research page", ->
       .should "contain", "Death Star"
 
     # next metric
-    cy.get(".research-metric-and-year")
-      .should "contain", "disturbances in the Force"
-      .within ->
-        cy.get("[rel=next]").click()
-    cy.get(".research-metric-and-year")
-      .should "contain", "researched number 2"
+    cy.get(".research-metric-and-year").should "contain", "disturbances in the Force"
+      .within -> cy.get("[rel=next]").click()
+    cy.get(".research-metric-and-year").should "contain", "researched number 2"
 
     # click angle down to open company selector
     cy.get(".research-company [title='Select Company']").click()
@@ -30,12 +27,9 @@ describe "research page", ->
       cy.get(".research-answer-button").click()
 
     # previous metric
-    cy.get(".research-metric-and-year")
-      .should "contain", "researched number 2"
-      .within ->
-        cy.get("[rel=prev]").click()
-    cy.get(".research-metric-and-year")
-      .should "contain", "disturbances in the Force"
+    cy.get(".research-metric-and-year").should "contain", "researched number 2"
+      .within -> cy.get("[rel=prev]").click()
+    cy.get(".research-metric-and-year").should "contain", "disturbances in the Force"
 
     # choose year
     cy.get(".research-years").within ->
@@ -72,3 +66,5 @@ describe "research page", ->
     toPhase "answer"
     cy.get("button").contains("Submit Answer").click()
     cy.get(".research-answer").should "contain", "Edit Answer"
+    cy.get(".research-answer ._next-question-button").click()
+    cy.get(".research-metric-and-year").should "contain", "researched number 2"

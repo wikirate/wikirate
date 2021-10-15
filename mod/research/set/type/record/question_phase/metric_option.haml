@@ -2,10 +2,10 @@
   %h2
     = link_to_card card.metric_card, card.metric_card.metric_title,
                    class: "metric-color", target: "_metric"
-    - if multi_metric?
-      = modal_link angle(:down), size: :large, class: "research-selector",
-                                 path: { mark: project_metrics_mark,
-                                         company: card.company_name,
-                                         view: :filtered_content }
+    -# - if multi_metric?
+    -#   = modal_link angle(:down), size: :large, class: "research-selector",
+    -#                              path: { mark: project_metrics_mark,
+    -#                                      company: card.company_name,
+    -#                                      view: :filtered_content }
   .lead.research-question
     = nest card.metric_card.question_card, view: :core
