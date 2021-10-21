@@ -1,6 +1,8 @@
 PATH
   remote: vendor/card-mods
   specs:
+    card-mod-alias (0.14)
+      card
     card-mod-bookmarks (1.1)
       card
     card-mod-counts (0.1)
@@ -8,9 +10,15 @@ PATH
       card-mod-search
     card-mod-csv_import (0.9)
       card
+      card-mod-export
       card-mod-tabs
+    card-mod-export (0.1)
+      card
     card-mod-fulltext (0.1)
       card
+    card-mod-google_analytics (0.14)
+      card
+      staccato (~> 0.5)
     card-mod-graphql (1.1)
       card
       graphiql-rails (~> 1.7)
@@ -58,8 +66,6 @@ PATH
       card (= 1.103.4)
       card-mod-edit (= 0.13.4)
       card-mod-script (= 0.13.4)
-    card-mod-alias (0.13.4)
-      card (= 1.103.4)
     card-mod-api_key (0.13.4)
       card (= 1.103.4)
       card-mod-account (= 0.13.4)
@@ -96,7 +102,6 @@ PATH
       card (= 1.103.4)
       card-mod-account (= 0.13.4)
       card-mod-ace_editor (= 0.13.4)
-      card-mod-alias (= 0.13.4)
       card-mod-api_key (= 0.13.4)
       card-mod-bar_and_box (= 0.13.4)
       card-mod-bootstrap (= 0.13.4)
@@ -105,17 +110,14 @@ PATH
       card-mod-date (= 0.13.4)
       card-mod-delayed_job (= 0.13.4)
       card-mod-follow (= 0.13.4)
-      card-mod-google_analytics (= 0.13.4)
       card-mod-help (= 0.13.4)
       card-mod-history (= 0.13.4)
       card-mod-integrate (= 0.13.4)
       card-mod-layout (= 0.13.4)
-      card-mod-legacy (= 0.13.4)
       card-mod-list (= 0.13.4)
       card-mod-machines (= 0.13.4)
       card-mod-markdown (= 0.13.4)
       card-mod-permissions (= 0.13.4)
-      card-mod-prosemirror_editor (= 0.13.4)
       card-mod-recaptcha (= 0.13.4)
       card-mod-rules (= 0.13.4)
       card-mod-search (= 0.13.4)
@@ -135,9 +137,6 @@ PATH
     card-mod-format (0.13.4)
       card (= 1.103.4)
       card-mod-content (= 0.13.4)
-    card-mod-google_analytics (0.13.4)
-      card (= 1.103.4)
-      staccato (~> 0.5)
     card-mod-help (0.13.4)
       card (= 1.103.4)
     card-mod-history (0.13.4)
@@ -148,8 +147,6 @@ PATH
       card (= 1.103.4)
       card-mod-account (= 0.13.4)
       card-mod-session (= 0.13.4)
-    card-mod-legacy (0.13.4)
-      card (= 1.103.4)
     card-mod-list (0.13.4)
       card (= 1.103.4)
       card-mod-collection (= 0.13.4)
@@ -176,9 +173,6 @@ PATH
       rubocop (~> 1.17)
     card-mod-permissions (0.13.4)
       card (= 1.103.4)
-    card-mod-prosemirror_editor (0.13.4)
-      card (= 1.103.4)
-      card-mod-edit (= 0.13.4)
     card-mod-recaptcha (0.13.4)
       card (= 1.103.4)
       recaptcha (~> 4.13.1)
@@ -839,12 +833,14 @@ PLATFORMS
 DEPENDENCIES
   addressable
   card!
+  card-mod-alias!
   card-mod-bookmarks!
   card-mod-counts!
   card-mod-csv_import!
   card-mod-defaults!
   card-mod-delayed_job!
   card-mod-fulltext!
+  card-mod-google_analytics!
   card-mod-graphql!
   card-mod-lookup!
   card-mod-monkey!

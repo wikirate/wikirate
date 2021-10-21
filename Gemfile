@@ -19,10 +19,12 @@ else
   end
 
   path "./vendor/card-mods" do
+    gem "card-mod-alias"
     gem "card-mod-bookmarks"
     gem "card-mod-counts"
     gem "card-mod-csv_import"
     gem "card-mod-fulltext"
+    gem "card-mod-google_analytics"
     gem "card-mod-graphql"
     gem "card-mod-lookup"
     gem "card-mod-social"
