@@ -24,11 +24,14 @@ else
     gem "card-mod-csv_import"
     gem "card-mod-fulltext"
     gem "card-mod-graphql"
+    gem "card-mod-lookup"
     gem "card-mod-social"
     # gem "card-mod-logger"
     gem "card-mod-new_relic"
     gem "card-mod-pdfjs"
     gem "card-mod-solid_cache"
+    gem "card-mod-tabs"
+    gem "card-mod-thumbnail"
   end
 
   path "./vendor/decko/support" do
