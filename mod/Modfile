@@ -1,5 +1,4 @@
 gem_mods
-
 mod "wikirate_layout"
 mod "wikirate_assets"
 mod "wikirate_utility"
