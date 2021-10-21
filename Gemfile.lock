@@ -1,15 +1,29 @@
 PATH
   remote: vendor/card-mods
   specs:
+    card-mod-alias (0.14)
+      card
     card-mod-bookmarks (1.1)
       card
     card-mod-counts (0.1)
       card
+      card-mod-search
     card-mod-csv_import (0.9)
+      card
+      card-mod-export
+      card-mod-tabs
+    card-mod-export (0.1)
       card
     card-mod-fulltext (0.1)
       card
+    card-mod-google_analytics (0.14)
+      card
+      staccato (~> 0.5)
     card-mod-graphql (1.1)
+      card
+      graphiql-rails (~> 1.7)
+      graphql (~> 1.12)
+    card-mod-lookup (0.1)
       card
     card-mod-new_relic (1.1)
       card
@@ -20,6 +34,10 @@ PATH
     card-mod-social (0.1)
       card
     card-mod-solid_cache (0.1)
+      card
+    card-mod-tabs (0.1)
+      card
+    card-mod-thumbnail (0.1)
       card
 
 PATH
@@ -48,8 +66,6 @@ PATH
       card (= 1.103.4)
       card-mod-edit (= 0.13.4)
       card-mod-script (= 0.13.4)
-    card-mod-alias (0.13.4)
-      card (= 1.103.4)
     card-mod-api_key (0.13.4)
       card (= 1.103.4)
       card-mod-account (= 0.13.4)
@@ -86,7 +102,6 @@ PATH
       card (= 1.103.4)
       card-mod-account (= 0.13.4)
       card-mod-ace_editor (= 0.13.4)
-      card-mod-alias (= 0.13.4)
       card-mod-api_key (= 0.13.4)
       card-mod-bar_and_box (= 0.13.4)
       card-mod-bootstrap (= 0.13.4)
@@ -95,17 +110,14 @@ PATH
       card-mod-date (= 0.13.4)
       card-mod-delayed_job (= 0.13.4)
       card-mod-follow (= 0.13.4)
-      card-mod-google_analytics (= 0.13.4)
       card-mod-help (= 0.13.4)
       card-mod-history (= 0.13.4)
       card-mod-integrate (= 0.13.4)
       card-mod-layout (= 0.13.4)
-      card-mod-legacy (= 0.13.4)
       card-mod-list (= 0.13.4)
       card-mod-machines (= 0.13.4)
       card-mod-markdown (= 0.13.4)
       card-mod-permissions (= 0.13.4)
-      card-mod-prosemirror_editor (= 0.13.4)
       card-mod-recaptcha (= 0.13.4)
       card-mod-rules (= 0.13.4)
       card-mod-search (= 0.13.4)
@@ -125,9 +137,6 @@ PATH
     card-mod-format (0.13.4)
       card (= 1.103.4)
       card-mod-content (= 0.13.4)
-    card-mod-google_analytics (0.13.4)
-      card (= 1.103.4)
-      staccato (~> 0.5)
     card-mod-help (0.13.4)
       card (= 1.103.4)
     card-mod-history (0.13.4)
@@ -138,8 +147,6 @@ PATH
       card (= 1.103.4)
       card-mod-account (= 0.13.4)
       card-mod-session (= 0.13.4)
-    card-mod-legacy (0.13.4)
-      card (= 1.103.4)
     card-mod-list (0.13.4)
       card (= 1.103.4)
       card-mod-collection (= 0.13.4)
@@ -166,9 +173,6 @@ PATH
       rubocop (~> 1.17)
     card-mod-permissions (0.13.4)
       card (= 1.103.4)
-    card-mod-prosemirror_editor (0.13.4)
-      card (= 1.103.4)
-      card-mod-edit (= 0.13.4)
     card-mod-recaptcha (0.13.4)
       card (= 1.103.4)
       recaptcha (~> 4.13.1)
@@ -259,6 +263,7 @@ PATH
       sprockets (~> 3.7)
       sprockets-rails (~> 3.2)
       uglifier (~> 4.2)
+      zeitwerk (!= 2.5.0)
     cardname (0.13.4)
       activesupport (~> 6.1)
       htmlentities (~> 4.3)
@@ -414,8 +419,8 @@ GEM
       cucumber-gherkin (~> 22.0, >= 22.0.0)
       cucumber-messages (~> 17.1, >= 17.1.1)
       cucumber-tag-expressions (~> 4.0, >= 4.0.2)
-    cucumber-create-meta (6.0.1)
-      cucumber-messages (~> 17.0, >= 17.0.1)
+    cucumber-create-meta (6.0.2)
+      cucumber-messages (~> 17.1, >= 17.1.1)
       sys-uname (~> 1.2, >= 1.2.2)
     cucumber-cucumber-expressions (14.0.0)
     cucumber-gherkin (22.0.0)
@@ -440,7 +445,7 @@ GEM
     cypress-on-rails (1.11.0)
       rack
     daemons (1.4.1)
-    dalli (3.0.2)
+    dalli (3.0.3)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.1)
@@ -632,7 +637,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
-    racc (1.5.2)
+    racc (1.6.0)
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
@@ -692,7 +697,7 @@ GEM
     roo (2.8.3)
       nokogiri (~> 1)
       rubyzip (>= 1.3.0, < 3.0.0)
-    rr (3.0.7)
+    rr (3.0.8)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -747,7 +752,7 @@ GEM
     sassc (2.4.0)
       ffi (~> 1.9)
     savanna-outliers (0.0.1)
-    selenium-webdriver (4.0.0)
+    selenium-webdriver (4.0.3)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
@@ -820,7 +825,7 @@ GEM
     wkhtmltopdf-binary (0.12.5.4)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   ruby
@@ -828,18 +833,23 @@ PLATFORMS
 DEPENDENCIES
   addressable
   card!
+  card-mod-alias!
   card-mod-bookmarks!
   card-mod-counts!
   card-mod-csv_import!
   card-mod-defaults!
   card-mod-delayed_job!
   card-mod-fulltext!
+  card-mod-google_analytics!
   card-mod-graphql!
+  card-mod-lookup!
   card-mod-monkey!
   card-mod-new_relic!
   card-mod-pdfjs!
   card-mod-social!
   card-mod-solid_cache!
+  card-mod-tabs!
+  card-mod-thumbnail!
   cardname!
   company-mapping
   curb
@@ -873,4 +883,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (= 0.12.5.4)
 
 BUNDLED WITH
-   2.2.28
+   2.2.29
