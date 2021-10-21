@@ -4,5 +4,5 @@
 \\--format documentation
 --default-path "mod"
 --require "./spec/spec_helper"
---pattern "{mod/*,vendor/card-mods/card-mod-{bookmarks,fulltext,new_relic,csv_import,solid_cache}}/spec/**/*_spec.rb"
+--pattern "*/spec/**/*_spec.rb"
 

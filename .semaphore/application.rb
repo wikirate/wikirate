@@ -25,7 +25,7 @@ module Wikirate
 
     # config.cache_store = :file_store, 'tmp/cache'
     # determines caching mechanism.
-    # options include: file_store, memory_store, mem_cache_store, mem_cache_store...
+    # options include: file_store, memory_store, mem_cache_store...
     #
     # for production, we highly recommend memcache
     # here's a sample configuration for use with the dalli gem
