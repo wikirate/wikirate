@@ -19,16 +19,21 @@ else
   end
 
   path "./vendor/card-mods" do
+    gem "card-mod-alias"
     gem "card-mod-bookmarks"
     gem "card-mod-counts"
     gem "card-mod-csv_import"
     gem "card-mod-fulltext"
+    gem "card-mod-google_analytics"
     gem "card-mod-graphql"
+    gem "card-mod-lookup"
     gem "card-mod-social"
     # gem "card-mod-logger"
     gem "card-mod-new_relic"
     gem "card-mod-pdfjs"
     gem "card-mod-solid_cache"
+    gem "card-mod-tabs"
+    gem "card-mod-thumbnail"
   end
 
   path "./vendor/decko/support" do
@@ -64,10 +69,6 @@ gem "wkhtmltopdf-binary", "0.12.5.4" # converting HTML to PDF
 gem "descriptive_statistics"         # adds stats methods to enumerables
 gem "savanna-outliers"               # calculates outliers
 gem "statistics2"                    # required by savanna-outliers
-
-# GRAPHQL
-gem "graphql"
-gem "graphiql-rails"
 
 # MISCELLANEOUS
 gem "company-mapping"                # Vasso's gem, written for WikiRate
