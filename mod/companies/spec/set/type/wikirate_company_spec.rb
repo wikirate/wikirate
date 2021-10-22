@@ -8,6 +8,16 @@ RSpec.describe Card::Set::Type::WikirateCompany do
                                           name: "non-existing-card"))
   end
 
+  specify "view thumbnail_image" do
+    expect_view(:thumbnail).to have_tag("div.image-box") do
+      with_tag "div.image-box.small" do
+        with_tag "a.known-card" do
+          with_tag "i.fa-building"
+        end
+      end
+    end
+  end
+
   describe "creating company with post request", type: :controller do
     routes { Decko::Engine.routes }
     let(:api_key) { "asdfasf98as8238ruisdsd" }

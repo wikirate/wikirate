@@ -10,8 +10,6 @@ global_job_config:
       value: ~/wikirate/vendor/bundle/
     - name: COVERAGE
       value: 'false'
-    - name: DECKO_REPO_PATH
-      value: ~/wikirate
     - name: RAILS_ENV
       value: test
   prologue:
