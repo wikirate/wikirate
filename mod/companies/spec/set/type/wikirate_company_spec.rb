@@ -1,6 +1,10 @@
 RSpec.describe Card::Set::Type::WikirateCompany do
   let(:company_card) { Card["Death Star"] }
 
+  def card_subject
+    company_card
+  end
+
   it "shows the link for view \"missing\"" do
     html = render_card :unknown, type_id: Card::WikirateCompanyID,
                                  name: "non-existing-card"
