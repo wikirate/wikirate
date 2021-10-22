@@ -10,8 +10,3 @@ en:
           billion: B
           trillion: T
           quadrillion: Q
-
-  mirror_cardtype_right: must have a cardtype name as right part
-  mirror_conflict_item_type: name conflicts with list items' type; delete content first
-  mirror_only_type_allowed: "%{cardname} has wrong cardtype; only cards of type %{cardtype} are allowed"
-  mirror_only_type: "%{cardname} has wrong cardtype; only cards of type %{cardtype} are allowed"

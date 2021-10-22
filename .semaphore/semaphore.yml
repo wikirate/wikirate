@@ -10,8 +10,6 @@ global_job_config:
       value: ~/wikirate/vendor/bundle/
     - name: COVERAGE
       value: 'false'
-    - name: DECKO_REPO_PATH
-      value: ~/wikirate
     - name: RAILS_ENV
       value: test
   prologue:
@@ -30,7 +28,8 @@ blocks:
         commands:
           - cache restore gems-baseline # occasionally clear: `cache delete gems-baseline`
           - cache restore gems-$(checksum Gemfile.lock)
-          - bundle install --deployment
+          - bundle config set --local deployment 'true'
+          - bundle install
           - cache store gems-$(checksum Gemfile.lock) vendor/bundle
           - cache store gems-baseline vendor/bundle
           - cache store bundle-config .bundle
