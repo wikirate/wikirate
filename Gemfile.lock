@@ -219,6 +219,7 @@ PATH
     decko-profile (0.13.4)
       ruby-prof (~> 1.4)
     decko-rspec (0.13.4)
+      capybara (> 2)
       i18n-tasks (~> 0.9)
       minitest (~> 5.14)
       nokogumbo (~> 2.0)
@@ -580,7 +581,6 @@ GEM
     mime-types-data (3.2021.0901)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.6.1)
     minitest (5.14.4)
     multi_json (1.15.0)
     multi_test (0.1.2)
@@ -596,8 +596,7 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (8.0.0)
     nio4r (2.5.8)
-    nokogiri (1.12.5)
-      mini_portile2 (~> 2.6.1)
+    nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
       nokogiri (~> 1.5)
@@ -722,7 +721,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.22.1)
+    rubocop (1.22.2)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -828,7 +827,7 @@ GEM
     zeitwerk (2.5.1)
 
 PLATFORMS
-  ruby
+  x86_64-darwin-20
 
 DEPENDENCIES
   addressable
@@ -863,8 +862,6 @@ DEPENDENCIES
   decko-spring!
   descriptive_statistics
   fog-aws
-  graphiql-rails
-  graphql
   link_thumbnailer
   mysql2 (> 0.4)
   open_uri_redirections
@@ -883,4 +880,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (= 0.12.5.4)
 
 BUNDLED WITH
-   2.2.29
+   2.2.15
