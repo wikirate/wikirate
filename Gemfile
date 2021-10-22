@@ -65,10 +65,6 @@ gem "descriptive_statistics"         # adds stats methods to enumerables
 gem "savanna-outliers"               # calculates outliers
 gem "statistics2"                    # required by savanna-outliers
 
-# GRAPHQL
-gem "graphql"
-gem "graphiql-rails"
-
 # MISCELLANEOUS
 gem "company-mapping"                # Vasso's gem, written for WikiRate
 gem "rack-cors"                      # support for Cross-Origin Resource Sharing (CORS)
