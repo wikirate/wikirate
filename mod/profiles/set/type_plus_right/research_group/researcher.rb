@@ -1,4 +1,4 @@
-include_set Abstract::PointerCachedCount
+include_set Abstract::ListCachedCount
 
 CONTRIBUTION_CATEGORIES = %i[created updated discussed double_checked].freeze
 CONTRIBUTION_CATEGORY_HEADER = ["Answers"].concat(
