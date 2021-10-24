@@ -1,7 +1,7 @@
 # data_subsets tagged with this dataset (=left) via <dataset>+parent
 include_set Abstract::SearchCachedCount
 
-# does not quite fit the Abstract::TaggedByCachedCount pattern, because the cached
+# does not quite fit the Abstract::ListRefCachedCount pattern, because the cached
 # count is on dataset+data_subset, not dataset+dataset
 
 recount_trigger :type_plus_right, :dataset, :parent do |changed_card|
