@@ -1,4 +1,4 @@
-include_set Abstract::PointerCachedCount
+include_set Abstract::ListCachedCount
 
 # module for dataset-scope-defining cards
 # (+company, +metric, and +year on datasets)
