@@ -1,2 +1,3 @@
-include_set Abstract::TaggedByCachedCount, type_to_count: :company_group,
-                                           tag_pointer: :wikirate_company
+include_set Abstract::ListRefCachedCount,
+            type_to_count: :company_group,
+            list_field: :wikirate_company
