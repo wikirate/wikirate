@@ -4,7 +4,7 @@ class ReorderAllScript < Cardio::Migration
   def up
     mods = %w[
       script ace_editor bootstrap date rules tinymce_editor prosemirror_editor
-      layout_components wikirate_assets sources metrics research homepage
+      wikirate_layout wikirate_assets sources metrics research homepage
     ]
     Card[:all, :script].update!(
       content: mods.map { |m| "mod: #{m}+*script" }.to_pointer_content
