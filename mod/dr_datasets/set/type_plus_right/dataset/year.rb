@@ -1,5 +1,5 @@
 include_set Abstract::Table
-include_set Abstract::PointerCachedCount
+include_set Abstract::ListCachedCount
 include_set Abstract::DatasetScope
 include_set Abstract::Filterable
 
