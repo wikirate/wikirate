@@ -1,6 +1,7 @@
 # cache # of metrics tagged with this topic (=_left) via <metric>+topic
-include_set Abstract::TaggedByCachedCount,
-            type_to_count: :metric, tag_pointer: :wikirate_topic
+include_set Abstract::ListRefCachedCount,
+            type_to_count: :metric,
+            list_field: :wikirate_topic
 
 include_set Right::BrowseMetricFilter
 
