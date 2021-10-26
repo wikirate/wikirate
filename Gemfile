@@ -32,7 +32,6 @@ else
     gem "card-mod-new_relic"
     gem "card-mod-pdfjs"
     gem "card-mod-solid_cache"
-    gem "card-mod-tabs"
     gem "card-mod-thumbnail"
   end
 
