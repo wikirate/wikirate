@@ -6,7 +6,7 @@ class Relationship < Cardio::Record
   include LookupTable
   include LookupTable::Latest
   include EntryFetch
-  include Csv
+  include Export
 
   after_destroy :latest_to_true
   delegate :company_id, :designer_id, :title_id, to: :answer
