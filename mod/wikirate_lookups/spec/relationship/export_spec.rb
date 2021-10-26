@@ -1,4 +1,4 @@
-RSpec.describe Relationship::Csv do
+RSpec.describe Relationship::Export do
   let :relationship_answer do
     Card["Jedi+more evil+Death Star+1977+SPECTRE"]
   end
