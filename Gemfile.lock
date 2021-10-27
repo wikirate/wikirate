@@ -3,7 +3,7 @@ PATH
   specs:
     card-mod-alias (0.14)
       card
-    card-mod-bookmarks (1.1)
+    card-mod-bookmarks (0.1)
       card
       card-mod-counts
     card-mod-counts (0.1)
@@ -21,17 +21,17 @@ PATH
     card-mod-google_analytics (0.14)
       card
       staccato (~> 0.5)
-    card-mod-graphql (1.1)
+    card-mod-graphql (0.1)
       card
       graphiql-rails (~> 1.7)
       graphql (~> 1.12)
     card-mod-lookup (0.1)
       card
-    card-mod-new_relic (1.1)
+    card-mod-new_relic (0.1)
       card
       decko
       newrelic_rpm
-    card-mod-pdfjs (1.1)
+    card-mod-pdfjs (0.1)
       card
     card-mod-social (0.1)
       card
@@ -452,7 +452,7 @@ GEM
     cypress-on-rails (1.11.0)
       rack
     daemons (1.4.1)
-    dalli (3.0.3)
+    dalli (3.0.4)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.1)
@@ -484,7 +484,7 @@ GEM
     erubis (2.7.0)
     ethon (0.15.0)
       ffi (>= 1.15.0)
-    excon (0.87.0)
+    excon (0.88.0)
     execjs (2.8.1)
     ffi (1.15.4)
     fog-aws (3.12.0)
