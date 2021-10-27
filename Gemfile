@@ -99,6 +99,3 @@ group :profile do
   gem "ruby-jmeter"                  # connected to Flood.io, used in load testing
   gem "wbench"                       # Benchmarking web requests
 end
-
-gem "rake"
-#Dir.glob("mod/**/Gemfile").each { |gemfile| instance_eval(File.read(gemfile)) }
