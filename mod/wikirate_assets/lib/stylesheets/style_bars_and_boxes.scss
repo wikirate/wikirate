@@ -93,10 +93,14 @@ $box_stripe_color: $gray-700;
   }
 }
 
+$new-dark: #171831;
+
 .box {
-  border-top: 3px solid $border-color;
+  border-top: 3px solid $gray-500;
+  box-shadow: 0 5px 10px 0 rgba($new-dark, .08);
   &:hover {
-    @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
+    box-shadow: 0 15px 50px 0 rgba($new-dark, .3);
+    cursor: pointer;
   }
 }
 
