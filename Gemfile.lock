@@ -881,7 +881,6 @@ DEPENDENCIES
   pluck_all
   puma
   rack-cors
-  rake
   roo
   ruby-jmeter
   savanna-outliers
