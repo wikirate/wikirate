@@ -72,10 +72,14 @@ format :html do
     raise Error::UserError, "Metric (#{metric_name}) is not in project (#{project_name})"
   end
 
-  def link_to_metric index, text
+  def link_to_metric rel, label, index, text=nil
+    text ||= label
     record_name = metric_id_for_index(index).cardname.field card.company_name
     link_to_card record_name, text,
-                 class: "_research-metric-link",
+                 class: classy("_research-metric-link"),
+                 rel: rel,
+                 title: label,
+                 "aria-label": label,
                  path: { project: project_name,
                          view: :research,
                          anchor: "company-header" }
@@ -87,7 +91,7 @@ format :html do
 
   def years
     @years ||=
-      dataset_card&.years? ? dataset_card&.years.sort.reverse : Type::Year.all_years
+      dataset_card&.years? ? dataset_card.years.sort.reverse : Type::Year.all_years
   end
 
   def answer_for year

@@ -17,7 +17,7 @@ def help_rule_card
   metric_type_card.first_card&.fetch :help
 end
 
-event :validate_formula, :validate, when: :wolfram_formula?, changed: :content do
+event :validate_formula, :validate, when: :syntax_formula?, changed: :content do
   formula_errors = calculator.detect_errors
   return if formula_errors.empty?
   formula_errors.each do |msg|
@@ -28,7 +28,7 @@ end
 def each_reference_out &block
   return super(&block) unless rating?
   translation_table.each do |key, _value|
-    yield(key, Content::Chunk::Link::CODE)
+    yield key, Content::Chunk::Link::CODE
   end
 end
 
@@ -42,6 +42,10 @@ def javascript_formula?
   content.lines.first&.match? "CoffeeScript"
 end
 
+def syntax_formula?
+  calculator.is_a? Calculate::NestCalculator
+end
+
 def ruby_formula?
   calculator_class == ::Calculate::Ruby
 end
@@ -51,7 +55,7 @@ def translate_formula?
 end
 
 def wolfram_formula?
-  calculator_class ==  ::Calculate::Wolfram
+  calculator_class == ::Calculate::Wolfram
 end
 
 format :html do

@@ -30,7 +30,7 @@ format :html do
     contribs_made? ? render_contrib_switch : ""
   end
 
-  view :data do
+  view :data, cache: :never do
     if contrib_page?
       render_contributions_data
     else

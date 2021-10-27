@@ -45,6 +45,12 @@ format do
   end
 end
 
+format :json do
+  view :answer_list, cache: :never do
+    relationships.map(&:compact_json)
+  end
+end
+
 format :csv do
   view :core do
     Relationship.csv_title + relationships.map(&:csv_line).join

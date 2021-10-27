@@ -1,5 +1,6 @@
 .bg-light.pb-5
-  %section.container._noFilterUrlUpdates
+  %section.container._noFilterUrlUpdates.position-relative
+
     = field_nest :source, view: :filtered_content,
                           items: { view: :box }, hide: :export_links
 

@@ -1,10 +1,11 @@
-.concise-answer.d-flex.justify-content-between
-  .d-flex.flex-column.justify-content-between.w-100
+.concise-answer.d-flex.justify-content-between.w-100
+  .d-flex.flex-column.justify-content-between.w-75.mw-75
     .metric-value.text-left.ellipsis
       = nest card.value_card, view: :pretty
     %span.text-muted.small{ title: card.format(:text).render_legend }
       = render_legend
   .d-flex.justify-content-end.align-items-end
-    = render_flags
+    .d-flex.flex-wrap.flex-column.justify-content-around.h-100
+      = render_flags
     .text-muted.ml-2
       = nest card.year, view: :in_calendar

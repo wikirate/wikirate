@@ -61,10 +61,15 @@ format :html do
   end
 
   def edit_fields
-    standard_edit_fields.tap do |fields|
-      fields.unshift [:year, title: "Year"] if card.real? && @nest_mode == :edit
-      fields << [:unpublished, title: "Unpublished"] if card.unpublished_option?
-    end
+    standard_edit_fields + [year_field, unpublished_field].compact
+  end
+
+  def year_field
+    [:year, title: "Year"] if card.real? && @nest_mode == :edit
+  end
+
+  def unpublished_field
+    [:unpublished, title: "Unpublished"] if card.unpublished_option?
   end
 
   def standard_edit_fields

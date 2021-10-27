@@ -27,6 +27,8 @@ def where_answer
 end
 
 format :html do
+  delegate :company_card, :dataset_card, :metric_ids, :project_name, to: :card
+
   def units
     @units ||= card.dataset_card.units
   end
@@ -36,6 +38,10 @@ format :html do
 
   view :bar_left do
     render_company_header
+  end
+
+  view :metrics_overview, template: :haml do
+    voo.hide :menu
   end
 
   view :company_header do
@@ -80,5 +86,19 @@ format :html do
   def company_link status=:all
     path_args = card.dataset_card.filter_path_args status
     link_to_card card.company_card, yield, path: path_args, class: "company-color"
+  end
+
+  def record_names
+    @record_names ||= metric_ids.map do |metric_id|
+      [metric_id, company_card].cardname
+    end
+  end
+
+  def record_answers record
+    if dataset_card.years?
+      dataset_card.years.map { |y| [record, y].cardname }
+    else
+      record.card.metric_answer_card.format.search_with_params
+    end
   end
 end

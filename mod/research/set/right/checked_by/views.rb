@@ -7,7 +7,7 @@ format :html do
 
   def raw_help_text
     text = haml <<-HAML.strip_heredoc
-      %p 
+      %p
         Ask community members to confirm that the answer accurately represents its source.
       %p.mb-0
         %em Please use sparingly and leave comments giving clear reasons for your request.

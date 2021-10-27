@@ -18,3 +18,7 @@
 .d-none
   = link_to_view :confirm_leave, "", id: "confirmLeave"
   = link_to_view :confirm_year, "", id: "confirmYear"
+  - if multi_metric?
+    - class_up "_research-metric-link",
+               "btn btn-outline-secondary btn-research _next-question-button ml-4"
+    = link_to_metric :next, "Next Question", (metric_index + 1)

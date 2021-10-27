@@ -66,10 +66,6 @@ end
 format :html do
   delegate :metric, :company, :year, to: :card
 
-  def default_limit
-    1
-  end
-
   view :core, template: :haml
 
   view :relations_table, cache: :never do

@@ -15,8 +15,6 @@ format :html do
     "File currently missing for this source."
   end
 
-
-
   def web_editor
     form.text_field :remote_file_url, class: "d0-card-content form-control",
                                       placeholder: "http://example.com",

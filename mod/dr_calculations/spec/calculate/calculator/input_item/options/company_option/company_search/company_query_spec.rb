@@ -158,9 +158,11 @@ RSpec.describe(
   end
 
   describe "#relations" do
+    # sc = subject company
     let(:sc_id_1) { "Death Star".card_id }
     let(:sc_id_2) { "SPECTRE".card_id }
 
+    # oc = object company
     let(:oc_id_1) { "Los Pollos Hermanos".card_id }
     let(:oc_id_2) { "SPECTRE".card_id }
     let(:oc_id_3) { "Google LLC".card_id }

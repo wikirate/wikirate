@@ -8,7 +8,9 @@ include_set Abstract::IdPointer
 include_set Abstract::FilterList
 
 def query_hash
-  { metric_id: item_ids }
+  ids = item_ids
+  ids = [-1] if ids.empty?
+  { metric_id: ids }
 end
 
 format :html do

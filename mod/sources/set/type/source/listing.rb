@@ -33,7 +33,7 @@ format :html do
 
   view :source_link, template: :haml
   view :title_link do
-    link_to_card card, title_text, target: "_blank",
+    link_to_card card, title_text, target: "_blank", title: card.wikirate_title,
                                    class: "source-preview-link preview-page-link"
   end
 
