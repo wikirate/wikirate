@@ -100,4 +100,5 @@ group :profile do
   gem "wbench"                       # Benchmarking web requests
 end
 
-Dir.glob("mod/**/Gemfile").each { |gemfile| instance_eval(File.read(gemfile)) }
+gem "rake"
+#Dir.glob("mod/**/Gemfile").each { |gemfile| instance_eval(File.read(gemfile)) }
