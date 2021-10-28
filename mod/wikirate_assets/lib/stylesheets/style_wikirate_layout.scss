@@ -216,6 +216,13 @@ div[data-slot*="float:right"]{
   }
 }
 
+.card-menu._show-on-hover {
+  background: rgba($white, 0.9);
+  z-index: 100;
+  border-radius: 6px;
+  padding: 2px 4px;
+}
+
 .titled-view .d0-card-header {
   margin-top: 0.5em;
   border: 0
