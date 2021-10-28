@@ -7,7 +7,7 @@ module GraphQL
         # argument :offset, Integer, required: false
       end
 
-      def companies # limit, offset
+      def companies
         object.wikirate_company_card.item_cards # limit: limit, offset: offset
       end
     end
