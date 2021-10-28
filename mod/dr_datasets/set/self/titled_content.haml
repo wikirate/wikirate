@@ -1,0 +1,4 @@
+= field_nest :description
+= nest [card, :featured], view: "titled", title: "Featured"
+%h2.font-weight-normal All
+= render_filtered_content
