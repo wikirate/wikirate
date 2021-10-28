@@ -4,10 +4,12 @@ module GraphQL
     class Query < BaseObject
       class << self
         def cardtype_field field, type, codename=nil
-          singular_field field, type
-          plural_field field, type
-
           codename ||= field
+          plural = field.to_s.to_name.vary(:plural).to_sym
+
+          singular_field field, type
+          plural_field plural, field, type
+
           define_method(field) { |**mark| ok_card codename, **mark }
           define_method plural do |name: nil, limit: 10, offset: 0|
             card_search name, codename, limit, offset
@@ -21,8 +23,7 @@ module GraphQL
           end
         end
 
-        def plural_field field, type
-          plural = field.to_s.to_name.vary(:plural).to_sym
+        def plural_field name, field, type
           field plural, [type], null: false do
             argument :id, Integer, required: false
             argument :limit, Integer, required: false
