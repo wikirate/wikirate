@@ -449,3 +449,16 @@ footer.homepage-footer {
   right: 5%;
   bottom: -1rem;
 }
+
+.showcase-banner {
+  top: -120px;
+  border-radius: 8px;
+  box-shadow: $primary-shadow;
+  .btn {
+    font-size: 1.5em;
+  }
+}
+
+.solution-section {
+  padding-top: 180px !important;
+}

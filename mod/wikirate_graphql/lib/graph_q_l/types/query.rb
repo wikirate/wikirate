@@ -2,26 +2,32 @@ module GraphQL
   module Types
     # Root Query for GraphQL
     class Query < BaseObject
-      def self.cardtype_field field, type, codename=nil
-        field field, type, null: true do
-          argument :name, String, required: false
-          argument :id, Integer, required: false
+      class << self
+        def cardtype_field field, type, codename=nil
+          singular_field field, type
+          plural_field field, type
+
+          codename ||= field
+          define_method(field) { |**mark| ok_card codename, **mark }
+          define_method plural do |name: nil, limit: 10, offset: 0|
+            card_search name, codename, limit, offset
+          end
         end
 
-        plural = field.to_s.to_name.vary(:plural).to_sym
-        field plural, [type], null: false do
-          argument :id, Integer, required: false
-          argument :limit, Integer, required: false
-          argument :offset, Integer, required: false
+        def singular_field field, type
+          field field, type, null: true do
+            argument :name, String, required: false
+            argument :id, Integer, required: false
+          end
         end
 
-        codename ||= field
-        define_method field do |**mark|
-          ok_card codename, **mark
-        end
-
-        define_method plural do |name: nil, limit: 10, offset: 0|
-          card_search name, codename, limit, offset
+        def plural_field field, type
+          plural = field.to_s.to_name.vary(:plural).to_sym
+          field plural, [type], null: false do
+            argument :id, Integer, required: false
+            argument :limit, Integer, required: false
+            argument :offset, Integer, required: false
+          end
         end
       end
 
