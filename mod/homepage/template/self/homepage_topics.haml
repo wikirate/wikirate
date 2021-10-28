@@ -4,8 +4,8 @@
     %h3.font-weight-light
       = nest :homepage_topic_text, view: :core
   .col-12.topic-section
-    = nest :homepage_featured_topics, items: { view: :box, show: :title_link },
-                                      cql: { limit: 4 }, hide: :paging
+    = nest %i[wikirate_topic featured], items: { view: :box, show: :title_link },
+                                        cql: { limit: 4 }, hide: :paging
     %a.btn.btn-outline-secondary.m-3{href: "/Topics"}
       Explore Topics
       .fa.fa-arrow-circle-right.ml-1.fa-lg
