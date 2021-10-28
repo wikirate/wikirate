@@ -37,7 +37,7 @@ format :html do
   end
 
   def topic_quick_filters
-    quick_filters_for :wikirate_topic, :homepage_featured_topics
+    quick_filters_for :wikirate_topic, %i[wikirate_topic featured]
   end
 
   def company_group_quick_filters
@@ -45,7 +45,7 @@ format :html do
   end
 
   def dataset_quick_filters
-    quick_filters_for :dataset # , :homepage_featured_datasets
+    quick_filters_for :dataset, %i[dataset featured]
   end
 
   def quick_filters_for type_code, featured=nil
