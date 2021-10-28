@@ -2,11 +2,11 @@ include_set Abstract::HamlFile
 
 format :html do
   def companies
-    Card[:homepage_featured_companies].item_names
+    Card[:wikirate_company, :featured].item_names
   end
 
   def topics
-    Card[:homepage_featured_topics].item_names.map { |n| words_after_colon n }
+    Card[:wikirate_topic, :featured].item_names.map { |n| words_after_colon n }
   end
 
   def words_after_colon string
