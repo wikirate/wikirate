@@ -5,7 +5,7 @@ $(document).ready ->
     $('.source-option').show()
     $(this).closest('.source-option').hide()
 
-  $('body').on 'click', ".TYPE-source.box, .TYPE-source.bar", ->
+  $('body').on 'click', ".TYPE-source.bar", ->
     window.location = decko.path $(this).data("cardLinkName")
 
   $("body").on "change", ".RIGHT-file .download-option .d0-card-content", ->
