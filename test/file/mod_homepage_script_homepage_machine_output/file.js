@@ -12,7 +12,7 @@
       animationDelay = 2000;
       animationDuration = 1000;
       staggerInterval = 250;
-      fontUsed = 'bold 1.75rem Roboto';
+      fontUsed = 'bold 1.75rem IBM Plex Sans';
       spanWidthAdjust = 1.1;
       iOS = function() {
         var iDevices;
