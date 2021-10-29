@@ -31,9 +31,8 @@ $(window).ready ->
     #  history.replaceState(slot_id: id, "")
     history.pushState(slot_id: id, url: this.href, "", location.href);
 
-# $(window).on "popstate", (event) ->
-  #  state = event.originalEvent.state
-  #  if state?
-  #    $("##{state.slot_id}").reloadSlot(state.url)
-  # else
-  #  window.location.reload(true)
+  $(document).on 'click', ".box", ->
+    window.location = decko.path $(this).data("cardLinkName")
+
+  $('body').on 'click', ".box a", (event)->
+    event.preventDefault()
