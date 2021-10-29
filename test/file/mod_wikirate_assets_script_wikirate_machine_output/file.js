@@ -358,11 +358,11 @@ standard "data-card-name" attribute.
         url: this.href
       }, "", location.href);
     });
-    $('body').on('click', ".box", function() {
+    $(document).on('click', ".box", function() {
       return window.location = decko.path($(this).data("cardLinkName"));
     });
-    return $('body').on('click', ".box a", function() {
-      return preventDefault();
+    return $('body').on('click', ".box a", function(event) {
+      return event.preventDefault();
     });
   });
 

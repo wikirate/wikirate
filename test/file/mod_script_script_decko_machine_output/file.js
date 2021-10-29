@@ -4,10 +4,10 @@
 
   $(window).ready(function() {
     var firstShade;
-    document.on('click', '._stop_propagation', function(event) {
+    $(document).on('click', '._stop_propagation', function(event) {
       return event.stopPropagation();
     });
-    document.on('click', '._prevent_default', function(event) {
+    $(document).on('click', '._prevent_default', function(event) {
       return event.preventDefault();
     });
     $('body').on('mouseenter', 'a[data-hover-text]', function() {
