@@ -451,14 +451,30 @@ footer.homepage-footer {
 }
 
 .showcase-banner {
+  h3 {
+    color: $new-purple;
+  }
   top: -120px;
   border-radius: 8px;
   box-shadow: $primary-shadow;
-  .btn {
-    font-size: 1.5em;
-  }
 }
 
-.solution-section {
-  padding-top: 180px !important;
+.btn-purple {
+  background: $new-purple;
+  color: white;
+  box-shadow: $small-shadow;
+  &:hover {
+    background: $new-dark-purple;
+    color: white;
+  }
+  &:active {
+    box-shadow: $primary-shadow;
+    color: $new-purple;
+    background: $new-button-gray;
+  }
+  &:focus {
+    background: $new-button-gray;
+    color: #2E34B7;
+    border: 3px solid #2E34B7;
+  }
 }

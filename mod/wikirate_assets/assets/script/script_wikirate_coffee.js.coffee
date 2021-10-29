@@ -31,8 +31,8 @@ $(window).ready ->
     #  history.replaceState(slot_id: id, "")
     history.pushState(slot_id: id, url: this.href, "", location.href);
 
-  $('body').on 'click', ".box", ->
+  $(document).on 'click', ".box", ->
     window.location = decko.path $(this).data("cardLinkName")
 
-  $('body').on 'click', ".box a", ->
-    preventDefault()
+  $('body').on 'click', ".box a", (event)->
+    event.preventDefault()
