@@ -1,6 +1,9 @@
 RSpec.describe Card::Set::Self::Dataset do
   def card_subject
-    :dataset.card
+    card = :dataset.card
+    # FIXME - get this right in test data!
+    card.update! type: :cardtype
+    card
   end
 
   describe "view core" do
