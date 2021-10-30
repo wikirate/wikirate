@@ -8,7 +8,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   // override bootstrap 4 font
-  font-family: "Roboto","Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   background-color: #fff;
 }
 
@@ -214,6 +214,13 @@ div[data-slot*="float:right"]{
       display: inline-block;
     }
   }
+}
+
+.card-menu._show-on-hover {
+  background: rgba($white, 0.9);
+  z-index: 100;
+  border-radius: 6px;
+  padding: 2px 4px;
 }
 
 .titled-view .d0-card-header {

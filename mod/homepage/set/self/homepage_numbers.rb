@@ -17,7 +17,7 @@ format :html do
   end
 
   def featured_answers
-    Card[:homepage_featured_answers].item_names
+    Card[%i[metric_answer featured]].item_names
   end
 
   def count card_type

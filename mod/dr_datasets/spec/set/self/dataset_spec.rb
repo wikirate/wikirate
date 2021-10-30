@@ -8,8 +8,8 @@ RSpec.describe Card::Set::Self::Dataset do
       expect_view(:titled_content).to have_tag("div.RIGHT-description")
     end
 
-    it "has a featured datasets section" do
-      expect_view(:titled_content).to have_tag("div.SELF-homepage_featured_project") do
+    it "has a featured dataset section" do
+      expect_view(:titled_content).to have_tag("div.SELF-datum_set-featured") do
         with_tag "div.item-bar"
       end
     end
