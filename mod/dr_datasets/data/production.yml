@@ -1,0 +1,17 @@
+---
+- :name: Data Set
+  :codename: dataset
+  :type: :cardtype
+
+- :name:
+  - :dataset
+  - :description
+  :content: |
+    <p>
+      <strong>Data Sets</strong> help you structure information on WikiRate by combining
+      Companies and Metrics associated with a particular Topic or theme.
+    </p>
+
+- :name: Project
+  :codename: project
+  :type: :cardtype

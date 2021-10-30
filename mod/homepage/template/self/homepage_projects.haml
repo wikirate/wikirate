@@ -9,6 +9,6 @@
         Explore Projects
         .fa.fa-arrow-circle-right.ml-1.fa-lg
   .col-sm-6
-    = nest :homepage_featured_projects,
+    = nest %i[project featured],
            hide: :paging, cql: { limit: 4 }, items: { view: :bar,
                                                       hide: %i[bar_nav bar_right] }
