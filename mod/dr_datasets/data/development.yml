@@ -15,14 +15,14 @@
         - Los Pollos Hermanos
     :wikirate_topic:
       :type: :list
-      :content: ["Force"]
+      :content: "[[Force]]"
 
 - :name: Son of Evil Dataset
   :type: :dataset
   :subfields:
     :parent:
       :type: :pointer
-      :content: ["Evil Dataset"]
+      :content: "[[Evil Dataset]]"
     :metric:
       :type: :list
       :content: []
@@ -45,20 +45,20 @@
   :subfields:
     :dataset:
       :type: :pointer
-      :content: ["Evil Dataset"]
+      :content: "[[Evil Dataset]]"
     :organizer:
       :type: :list
-      :content: ["Jedi"]
+      :content: "[[Jedi]]"
     :wikirate_status:
       :type: :pointer
-      :content: ["Active"]
+      :content: "[[Active]]"
 
 - :name: Empty Project
   :type: :project
   :subfields:
     :dataset:
       :type: :pointer
-      :content: ["Empty Dataset"]
+      :content: "[[Empty Dataset]]"
 
 - :name:
     - :dataset
@@ -66,9 +66,3 @@
   :content:
     - Evil Dataset
     - Son of Evil Dataset
-
-- :name:
-    - Evil Project
-    - :dataset
-  :type: :pointer
-  :content: ["Evil Dataset", "Coconuts"]
