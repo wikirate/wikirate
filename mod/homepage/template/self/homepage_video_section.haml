@@ -1,10 +1,27 @@
-.row.m-0.p-0.bg-white.nodblclick.slide-container.border-top
-  .p-5.text-center.col-12.col-md-8.mx-auto
+.mb-5.p-0.bg-white.nodblclick.slide-container.border-top
+  .container.position-relative
+    .bg-white.dflex.py-5.mt-3.showcase-banner.position-relative
+      .row.align-items-center.mx-4.justify-content-around
+        .col-sm-8
+          %h3.pb-2
+            Are your clothes transparent?
+          %p
+            It's not just for emperors any more. Check out WikiRate's first
+            %strong data showcase:
+            a look into how
+            %strong top apparel companies
+            are responding to a push for transparency.
+        .col-sm-4.text-center
+          = link_to "Go to Showcase",
+                    path: "https://staging.showcase.wikirate.org/",
+                    class: "btn btn-purple btn-lg m-4"
+
+  .pb-5.text-center.col-12.col-md-8.mx-auto
     .row
       .col-12.col-md-8.mx-auto
         %h3.text-muted.font-weight-light
           = nest :homepage_solution_text, view: :core
-    .col-12
+    .col-12.mt-5
       = modal_link "<span></span>", path: { mark: "homepage video container" },
                    class: "video-play-button drop-shadow", size: :large,
                    id: "_play-video"
