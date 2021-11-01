@@ -1,14 +1,18 @@
-// FIXME: ugly. The root is no place for relativity.
 :root {
-  font-size: 95%;
+  font-size: 16px;
+}
+
+@include media-breakpoint-down(md) {
+  :root { font-size: 14px; }
 }
 
 body {
   color: $body-text-color;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  // override bootstrap 4 font
   font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
+  line-height: 1.55;
+  font-size: 1rem;
   background-color: #fff;
 }
 

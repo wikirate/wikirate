@@ -31,6 +31,10 @@ format do
     NAV_MENUS
   end
 
+  def nav_help?
+    true
+  end
+
   def secondary_menus
     SECONDARY_MENUS
   end
@@ -45,8 +49,12 @@ format do
     shared_url_prefix(menu == "About")
   end
 
+  def wr_subdomain
+    Env.host&.match?(/staging/) ? "staging." : ""
+  end
+
   def shared_url_prefix project=true
-    project ? "https://wikirateproject.org/" : "/"
+    project ? "https://#{wr_subdomain}wikirateproject.org/" : "/"
   end
 
   # this is just to add the unknown setting, which was (perhaps unintentionally?)
