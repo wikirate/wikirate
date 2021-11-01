@@ -70,7 +70,7 @@ class Constraint
   end
 
   def valid_year?
-    year.match(/^\d{4}$/) || year.in?(["any", "latest"])
+    year.match(/^\d{4}$/) || year.in?(%w[any latest])
   end
 
   def query_hash
