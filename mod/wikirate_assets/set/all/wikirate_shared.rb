@@ -31,6 +31,10 @@ format do
     NAV_MENUS
   end
 
+  def nav_help?
+    true
+  end
+
   def secondary_menus
     SECONDARY_MENUS
   end
