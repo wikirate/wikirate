@@ -50,7 +50,13 @@ format do
   end
 
   def shared_url_prefix project=true
-    project ? "https://wikirateproject.org/" : "/"
+    if !project
+      "/"
+    elsif Env.host&.match?(/staging/)
+      "https://staging.wikirateproject.org/"
+    else
+      "https://wikirateproject.org/"
+    end
   end
 
   # this is just to add the unknown setting, which was (perhaps unintentionally?)
