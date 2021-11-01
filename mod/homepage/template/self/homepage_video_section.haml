@@ -1,20 +1,20 @@
 .mb-5.p-0.bg-white.nodblclick.slide-container.border-top
   .container.position-relative
     .bg-white.dflex.py-5.mt-3.showcase-banner.position-relative
-      .row.align-items-center.mx-4.justify-content-around
-        .col-sm-8
+      .row.align-items-center.justify-content-around
+        .col-md-8
           %h3.pb-2
             Are your clothes transparent?
-          %p
+          .lead
             It's not just for emperors any more. Check out WikiRate's first
-            %strong data showcase:
+            %em data showcase:
             a look into how
-            %strong top apparel companies
+            %em top apparel companies
             are responding to a push for transparency.
-        .col-sm-4.text-center
+        .col-md-4.showcase-btn-col
           = link_to "Go to Showcase",
                     path: "https://staging.showcase.wikirate.org/",
-                    class: "btn btn-purple btn-lg m-4"
+                    class: "btn btn-purple btn-lg"
 
   .pb-5.text-center.col-12.col-md-8.mx-auto
     .row
