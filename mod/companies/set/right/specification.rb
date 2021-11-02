@@ -75,7 +75,7 @@ class Constraint
 
   def query_hash
     h = { metric_id: metric.id, value: value, related_company_group: group }
-    h[year] = year unless year == "any"
+    h[:year] = year unless year == "any"
     h
   end
 
