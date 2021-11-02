@@ -36,11 +36,15 @@ format :html do
   end
 
   def header_cells
-    [company_sort_links, metric_sort_links, answer_sort_links]
+    [company_name_sort_link, metric_sort_links, answer_sort_links]
+  end
+
+  def metric_sort_links
+    "#{designer_sort_link}#{title_sort_link}"
   end
 
   def cell_views
-    [:company_thumbnail_with_bookmark, :metric_thumbnail_with_bookmark, :concise]
+    [:company_thumbnail, :metric_thumbnail, :concise]
   end
 
   def quick_filter_list

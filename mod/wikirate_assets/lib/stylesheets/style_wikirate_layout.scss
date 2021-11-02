@@ -94,6 +94,7 @@ body {
     width: 100%;
     color: #999;
     padding: 0.5em;
+    margin-top: 2em;
     small {
       width: 100%;
       display: inherit;
@@ -326,10 +327,11 @@ body#tinymce, body.wikirate-one-column-layout, body.wikirate-one-full-column-lay
     h1, h2, .titled-view >.d0-card-header > .d0-card-header-title .card-title {
       font-size: 1.6rem;
     }
-    h1, h3, h5, .titled-view >.d0-card-header > .d0-card-header-title {
-      border-bottdom: 0;
-    }
   }
+}
+
+.labeled-view .labeled-content {
+  font-weight: 600;
 }
 
 div#wikirate-info-video {
