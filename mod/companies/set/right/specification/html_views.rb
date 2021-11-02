@@ -60,6 +60,10 @@ format :html do
     select_filter :year, selected
   end
 
+  def year_options
+    { "Any" => "any" }.merge super
+  end
+
   # TODO: merge with #autocomplete_field on research page
   def metric_dropdown constraint
     selected = constraint&.metric&.name || ""
