@@ -65,9 +65,8 @@ class Card
       end
 
       def dataset_year_restriction dataset
-        return unless (years = Card.fetch(dataset, :year)&.item_names)
-
-        filter :year, years
+        years = dataset&.card&.years
+        filter :year, years if years.present?
       end
 
       # also used by metric_and_company_filters.rb

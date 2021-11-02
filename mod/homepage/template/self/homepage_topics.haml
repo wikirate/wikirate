@@ -1,7 +1,7 @@
 .row.m-0.pb-5.transparent-background-white.nodblclick.slide-container.border-top.text-center
   .col-8.text-center.p-3.m-auto
-    %h1.font-weight-light.m-4 Topics
-    .lead
+    %h1.font-weight-normal.m-4 Topics
+    .lead.font-weight-normal
       = nest :homepage_topic_text, view: :core
   .col-12.topic-section
     = nest %i[wikirate_topic featured], items: { view: :box, show: :title_link },
