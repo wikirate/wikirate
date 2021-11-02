@@ -70,12 +70,12 @@ class Constraint
   end
 
   def valid_year?
-    year.match(/^\d{4}$/) || year.in?(["any", "latest"])
+    year.match(/^\d{4}$/) || year.in?(%w[any latest])
   end
 
   def query_hash
     h = { metric_id: metric.id, value: value, related_company_group: group }
-    h[year] = year unless year == "any"
+    h[:year] = year unless year == "any"
     h
   end
 
