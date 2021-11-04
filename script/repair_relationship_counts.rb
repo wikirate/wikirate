@@ -1,4 +1,4 @@
-
+# for use in the console
 
 metric_type_ids = [Card::RelationshipID, Card::InverseRelationshipID]
 Metric.where("metric_type_id in (#{metric_type_ids.join ', '})").each do |m|
@@ -8,4 +8,5 @@ Metric.where("metric_type_id in (#{metric_type_ids.join ', '})").each do |m|
     puts "update #{a.name} from #{a.value} to #{cnt}"
     a.value_card.update! content: cnt
   end
-end; ''
+end; ""
+# this little semicolon/quotation trick is just to prevent noise in the console
