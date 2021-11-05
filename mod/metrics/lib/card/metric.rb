@@ -106,7 +106,9 @@ class Card::Metric
                  :value_options, :research_policy, :wikirate_topic, :unit, :report_type,
                  :inverse_title])
            .freeze
-    ALIAS_SUBFIELDS = { type: :metric_type, topic: :wikirate_topic, inverse: :inverse_title }.freeze
+    ALIAS_SUBFIELDS = {
+      type: :metric_type, topic: :wikirate_topic, inverse: :inverse_title
+    }.freeze
 
     def subfields opts
       resolve_alias opts
