@@ -43,7 +43,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
       expect_card("new company")
         .to exist
         .and have_a_field(:open_corporates).with_content("C0806592")
-        .and have_a_field(:headquarters).with_content("[[California (United States)]]")
+        .and have_a_field(:headquarters).with_content("California (United States)")
     end
   end
 
