@@ -39,7 +39,7 @@ format :html do
      :menu_explore,
      :menu_about,
      :menu_connect,
-     :menu_legal].map { |f| [f, { absolute: true}] }
+     :menu_legal].map { |f| [f, { absolute: true }] }
   end
 
   def companies
