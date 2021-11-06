@@ -82,7 +82,7 @@ RSpec.describe Card::Metric do
         researched_metrics
       end
       expect(Card["Jedi+strength in the Force+value type"].content)
-        .to eq "[[Category]]"
+        .to eq "Category"
       expect(Card["Jedi+strength in the Force+value options"].content)
         .to eq %w[yes no].to_pointer_content
     end
