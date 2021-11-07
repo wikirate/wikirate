@@ -61,6 +61,20 @@ namespace :wikirate do
     exit
   end
 
+  desc "pull from decko repository to vendor/decko and commit"
+  task :decko_tick do |branch|
+    _task, branch = ARGV
+    branch ||= "wikirate"
+    psystem "cd vendor/decko && git pull origin #{branch}"
+    psystem "git commit vendor/decko -m 'decko tick'"
+    exit
+  end
+
+  def psystem cmd
+    puts cmd.green
+    system cmd
+  end
+
   def sub_in_db old, new
     Card.search(name: ["match", old]).uniq.each do |card|
       next unless card.simple?
@@ -74,32 +88,6 @@ namespace :wikirate do
             .gsub(/\b#{old.capitalize}\b/, new.capitalize)
             .gsub(/\b#{old.downcase}\b/, new.downcase)
       card.update! db_content: new_content
-    end
-  end
-
-  def import_wikirate_essentials location=:live
-    import_from(location) do |import|
-      # cardtype has to be the first
-      # otherwise codename cards get the wrong type
-      import.cards_of_type "cardtype"
-      import.items_of :codenames, depth: 2
-      # Cardio::Mod::Loader.reload_sets
-      import.cards_of_type "year"
-
-      Card.search(type_id: Card::SettingID, return: :name).each do |setting|
-        # TODO: make export view for setting cards
-        #   then we don't need to import all script and style cards
-        #   we do it via subitems: true
-        depth = %w[*script *style *layout].include?(setting) ? 3 : 1
-
-        import.items_of setting, depth: depth
-      end
-      import.items_of :production_export, depth: 2
-
-      # don't import table migrations
-      # exclude = %w(20161005120800 20170118180006 20170210153241 20170303130557
-      #            20170330102819)
-      import.migration_records # exclude
     end
   end
 

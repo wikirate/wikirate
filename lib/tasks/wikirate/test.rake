@@ -17,15 +17,6 @@ namespace :wikirate do
       system cmd
     end
 
-    def import_from location
-      FileUtils.rm_rf(Dir.glob("tmp/*"))
-      require "#{Decko.root}/config/environment"
-      importer = Importer.new location
-      puts "Source DB: #{importer.export_location}".green
-      yield importer
-      FileUtils.rm_rf(Dir.glob("tmp/*"))
-    end
-
     def ensure_env env, task, args=nil
       if !ENV["RAILS_ENV"] || ENV["RAILS_ENV"].to_sym != env.to_sym
         puts "restart task in #{env} environment"
@@ -52,15 +43,6 @@ namespace :wikirate do
 
     desc "seed test database"
     task seed: :load_dump
-
-    desc "import cards from given location"
-    task :import_from, [:location] => :environment do |task, args|
-      ensure_env(:init_test, task, args) do
-        Card::Cache.reset_all
-        # Cardio::Mod::Loader.load_mods
-        import_wikirate_essentials(args[:location] || "live")
-      end
-    end
 
     desc "load db dump into test db"
     task :load_dump, [:path] do |_task, args|
