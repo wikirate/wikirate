@@ -4,7 +4,7 @@ def new_relic_label
   "home"
 end
 
-cache_expire_trigger Card::Set::All::ActiveCard do |_changed_card|
+cache_expire_trigger Card::Set::All::Base do |_changed_card|
   Card[:homepage]
 end
 
