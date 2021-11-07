@@ -1,5 +1,4 @@
 require "colorize"
-require File.expand_path "../importer", __FILE__
 
 namespace :wikirate do
   namespace :test do
