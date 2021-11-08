@@ -42,7 +42,8 @@
 - :name: Deadliest
   :type: :company_group
   :subfields:
-    :specification: [[Jedi+deadliness]],1977,"{""from"":30}"
+    :specification: |
+      [[Jedi+deadliness]],1977,"{""from"":30}"
 
 - :name: Googliest
   :type: :company_group
