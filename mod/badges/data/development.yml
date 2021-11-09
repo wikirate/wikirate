@@ -3,8 +3,7 @@
   - Joe Camel
   - :metric_answer
   - :badges_earned
-  :type: :pointer
-  :codename:
+  :type: :list
   :content: |-
     Research Master
     Research Pro
