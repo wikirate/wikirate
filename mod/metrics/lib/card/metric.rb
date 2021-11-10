@@ -2,6 +2,7 @@ class Card::Metric
   class AnswerCreator
     def initialize metric=nil, test_source=false, &answers_block
       @metric = metric
+      @metric = Card[metric] unless metric.is_a? Card
       @test_source = test_source
       define_singleton_method(:add_answers, answers_block)
     end

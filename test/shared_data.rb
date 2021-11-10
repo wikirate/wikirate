@@ -22,8 +22,7 @@ class SharedData
     def add_wikirate_data
       puts "adding wikirate data".green
       setup
-      add :sources, :report_types,
-          :researched_metrics, :calculated_metrics, :relationship_metrics,
+      add :sources,
           :company_category, :researchers,
           :profile_sections, :badges, :import_files
     end
@@ -63,8 +62,6 @@ class SharedData
 
     def add_company_category
       metric = :commons_company_category.card
-      metric.value_type_card.update! content: "Multi-Category"
-      metric.value_options_card.update! content: %w[A B C D].to_pointer_content
       ["Death Star", "SPECTRE"].each do |name|
         metric.create_answer company: name,
                              year: "2019",

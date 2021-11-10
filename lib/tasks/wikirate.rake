@@ -8,9 +8,9 @@ namespace :wikirate do
   task :release do
     version = wikirate_version
     system %(
-    git tag -a v#{version} -m "WikiRate Version #{version}"
-    git push --tags wikirate
-  )
+      git tag -a v#{version} -m "WikiRate Version #{version}"
+      git push --tags wikirate
+    )
   end
 
   desc "generate minimal seed data for a fresh start without any data"
@@ -62,7 +62,7 @@ namespace :wikirate do
   end
 
   desc "pull from decko repository to vendor/decko and commit"
-  task :decko_tick do |branch|
+  task :decko_tick do
     _task, branch = ARGV
     branch ||= "wikirate"
     psystem "cd vendor/decko && git pull origin #{branch}"

@@ -58,7 +58,7 @@ namespace :wikirate do
 
         ensure_env :test, task do
           Rake::Task["wikirate:test:load_dump"].invoke(migrated_dump_path)
-          Cardio::Mod::InData.new().merge
+          Cardio::Mod::InData.new.merge
           Card # I don't fully understand why this is necessary, but without it there
           # is an autoloading problem.
 
