@@ -14,3 +14,132 @@
     Answer Enhancer
     Answer Advancer
     Commentator
+- :name:
+  - Big Brother
+  - :metric
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Metric Creator
+    Metric Tonnes
+    Research Agenda-Setter
+    Metric Bookmarker
+    Metric Critic
+    Metric Connoisseur
+- :name:
+  - Big Brother
+  - :project
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Project Launcher
+    Project Q&#38;A
+- :name:
+  - Big Brother
+  - :metric_answer
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Checker
+    Check Pro
+    Check Mate
+    Answer Chancer
+    Answer Enhancer
+    Answer Advancer
+    Commentator
+    Commentary Team
+    Expert Commentary
+    Researcher
+    Research Pro
+    Research Master
+    Death Star+Research Pro+company badge
+    Evil Project+Researcher+project badge
+    Death Star+Researcher+company badge
+- :name:
+  - Big Brother
+  - :source
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Inside Source
+    A Cite to Behold
+    A Source of Inspiration
+- :name:
+  - Big Brother
+  - :wikirate_company
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Company Register
+    The Company Store
+    Companies (in the) House
+    Logo Adder
+    How Lo can you Go
+    Logo and Behold
+- :name:
+  - Joe User
+  - :wikirate_company
+  - :badges_earned
+  :type: :list
+  :content: Company Register
+- :name:
+  - Joe Admin
+  - :wikirate_company
+  - :badges_earned
+  :type: :list
+  :content: Company Register
+- :name:
+  - Joe User
+  - :project
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Project Launcher
+    Project Q&#38;A
+- :name:
+  - Joe Admin
+  - :project
+  - :badges_earned
+  :type: :list
+  :content: Project Launcher
+- :name:
+  - Joe Admin
+  - :metric_answer
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Checker
+    Answer Chancer
+    Commentator
+- :name:
+  - Joe User
+  - :metric_answer
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Checker
+    Answer Chancer
+    Commentator
+    Researcher
+- :name:
+  - Joe User
+  - :metric
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Metric Creator
+    Metric Bookmarker
+- :name:
+  - Joe Admin
+  - :metric
+  - :badges_earned
+  :type: :list
+  :content: Metric Bookmarker
+- :name:
+  - :wagn_bot
+  - :metric_answer
+  - :badges_earned
+  :type: :list
+  :content: |-
+    Research Pro
+    Researcher
