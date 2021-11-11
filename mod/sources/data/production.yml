@@ -1,0 +1,7 @@
+---
+- :name: Report Type
+  :type: :cardtype
+  :codename: :report_type
+- :name: Source
+  :type: :cardtype
+  :codename: :source

@@ -1,0 +1,10 @@
+---
+- :name: Force
+  :type: :wikirate_topic
+  :subfields:
+    :about: A Jedi uses the Force for knowledge and defense, never for attack.
+
+- :name: Taming
+  :type: :wikirate_topic
+  :subfields:
+    :about: What a cute animal
