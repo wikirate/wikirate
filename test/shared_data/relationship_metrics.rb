@@ -12,10 +12,10 @@ class SharedData
     end
 
     def relationship_metrics
-      Card::Metric::AnswerCreator.new "Jedi+more evil", true do
+      Card["Jedi+more evil"].create_answers true do
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "yes" }
         Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
-      end.add_answers
+      end
 
       Card["Commons+Supplied by"].create_answers(true) do
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" },
