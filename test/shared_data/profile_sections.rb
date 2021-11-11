@@ -46,11 +46,7 @@ class SharedData
     def metric_section
       # reuse existing metrics
       with_joe_user do
-        create_card "Joe User+small single+about", {}
         update_card "Joe User+small single+about", content: "changed"
-
-        create_card ["Jedi+Victims by Employees", :discussion],
-                    content: "comment"
       end
     end
 
@@ -102,8 +98,8 @@ class SharedData
         Card.create! name: "discuss conversation project 2",
                      type: :conversation,
                      subfields: {
-                       project: { content: "[[conversation project]]" },
-                       discussion: { content: "comment" }
+                       project: "conversation project",
+                       discussion: "comment"
                      }
       end
     end

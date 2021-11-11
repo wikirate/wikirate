@@ -4,7 +4,7 @@ def new_relic_label
   "home"
 end
 
-cache_expire_trigger Card::Set::All::ActiveCard do |_changed_card|
+cache_expire_trigger Card::Set::All::Base do |_changed_card|
   Card[:homepage]
 end
 
@@ -22,31 +22,66 @@ format :html do
     :home_layout
   end
 
-  view :core do
-    output [
-      nest(:homepage_top_banner, view: :core),
-      nest(:homepage_video_section, view: :core),
-      nest(:homepage_numbers, view: :core),
-      nest(:homepage_projects, view: :core),
-      nest(:homepage_topics, view: :core),
-      nest(:homepage_organizations, view: :core),
-      nest(:homepage_footer, view: :core)
-    ]
+  %i[core top_banner video_section numbers projects organizations footer].each do |view|
+    view view, template: :haml
   end
 
   def edit_fields
-    [[:homepage_solution_text, { absolute: true }],
-     [:homepage_project_text, { absolute: true }],
-     [:homepage_topic_text, { absolute: true }],
-     [:homepage_adjectives, { absolute: true }],
-     [%i[wikirate_company featured], { absolute: true }],
-     [%i[wikirate_topic featured], { absolute: true }],
-     [%i[project featured], { absolute: true }],
-     [%i[metric_answer featured], { absolute: true }],
-     [:organizations_using_wikirate, { absolute: true }],
-     [:menu_explore, { absolute: true }],
-     [:menu_about, { absolute: true }],
-     [:menu_connect, { absolute: true }],
-     [:menu_legal, { absolute: true }]]
+    [:homepage_solution_text,
+     :homepage_project_text,
+     :homepage_topic_text,
+     :homepage_adjectives,
+     %i[wikirate_company featured],
+     %i[wikirate_topic featured],
+     %i[project featured],
+     %i[metric_answer featured],
+     :organizations_using_wikirate,
+     :menu_explore,
+     :menu_about,
+     :menu_connect,
+     :menu_legal].map { |f| [f, { absolute: true }] }
+  end
+
+  def companies
+    Card[:wikirate_company, :featured].item_names
+  end
+
+  def topics
+    Card[:wikirate_topic, :featured].item_names.map { |n| words_after_colon n }
+  end
+
+  def featured_answers
+    Card[%i[metric_answer featured]].item_names
+  end
+
+  def words_after_colon string
+    string.gsub(/^.*\:\s*/, "")
+  end
+
+  def adjectives
+    Card[:homepage_adjectives].item_names
+  end
+
+  def organization_cards
+    Card.fetch(:organizations_using_wikirate).item_cards
+  end
+
+  Category = Struct.new :codename, :title, :count, :color
+
+  def categories
+    [
+      category(:wikirate_company, rate_subjects, :company),
+      category(:metric, "Metric Questions", :metric),
+      category(:metric_answer, "Metric Answers", :answer),
+      category(:source, "Sources", :source)
+    ]
+  end
+
+  def category codename, title, color
+    Category.new codename, title, category_count(codename), color
+  end
+
+  def category_count card_type
+    nest card_type, view: :count
   end
 end
