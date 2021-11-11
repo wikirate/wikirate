@@ -1634,7 +1634,7 @@
     - Joe User
   :type: :metric
   :subfields:
-    :value_type: Category
+    # :value_type: Category
     :metric_type: Score
     :formula: '{"yes":10,"no":0}'
 - :name:
