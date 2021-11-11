@@ -9,7 +9,7 @@ include_set Abstract::Delist
 include_set Abstract::Lookup
 include_set Abstract::Publishable
 
-card_accessor :metric_type, type: PointerID, default: "[[Researched]]"
+card_accessor :metric_type, type: :pointer, default: "Researched"
 card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
@@ -18,18 +18,18 @@ card_accessor :dataset
 card_accessor :metric_answer
 card_accessor :unit
 card_accessor :range
-card_accessor :hybrid, type: ToggleID
-card_accessor :question, type: PlainTextID
-card_accessor :report_type, type: PointerID
-card_accessor :score, type: PointerID
-card_accessor :steward, type: PointerID
-card_accessor :wikirate_topic, type: ListID
-card_accessor :research_policy, type: PointerID
+card_accessor :hybrid, type: :toggle
+card_accessor :question, type: :plain_text
+card_accessor :report_type, type: :pointer
+card_accessor :score, type: :pointer
+card_accessor :steward, type: :pointer
+card_accessor :wikirate_topic, type: :list
+card_accessor :research_policy, type: :pointer
 card_accessor :relationship_answer
 
 # applicability
-card_accessor :year, type: ListID
-card_accessor :company_group, type: ListID
+card_accessor :year, type: :list
+card_accessor :company_group, type: :list
 
 def lookup_class
   ::Metric
