@@ -23,6 +23,7 @@ class SharedData
       puts "adding wikirate data".green
       setup
       add :sources,
+          :researched_metrics, :calculated_metrics, :relationship_metrics
           :company_category, :researchers,
           :profile_sections, :badges, :import_files
     end
