@@ -36,7 +36,7 @@ event :validate_inverse, :validate, after: :ensure_inverse do
              "the inverse of '#{metric_title}' is already defined as '#{inverse_title}'"
 end
 
-event :create_inverse, :prepare_to_store, on: :create do
+event :create_inverse, :prepare_to_store, on: :save do
   inverse = new_inverse_title || inverse_title
   inverse_name = "#{metric_designer}+#{inverse}"
   add_subcard inverse_name, type: Card::MetricID,

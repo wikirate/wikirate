@@ -1,5 +1,3 @@
-include_set Type::Pointer
-
 event :validate_subtopics, :validate, on: :save do
   added_item_names.each do |subtopic|
     next if Card[subtopic]&.type_id == WikirateTopicID
@@ -22,8 +20,7 @@ def add_topic_to_subtopic_referers subtopic
 end
 
 def subtopic_referers subtopic, query={}
-  query.merge! right: :wikirate_topic, type_id: PointerID, refer_to: subtopic
-  Card.search query
+  Card.search query.merge(right: :wikirate_topic, refer_to: subtopic)
 end
 
 def ok_to_create

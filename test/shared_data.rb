@@ -8,32 +8,11 @@ class SharedData
   # on the date above 3 tests will fail
   # (if you reseed the test database)
 
-  COMPANIES = {
-    "Death Star" => "Kuuuhhh Shhhhhh Kuuuhhhh Shhhhh",
-    "Monster Inc" => "We scare because we care.",
-    "Slate Rock and Gravel Company" => "Yabba Dabba Doo!",
-    "Los Pollos Hermanos" => "I'm the one who knocks",
-    "SPECTRE" => "shaken not stirred",
-    "Google LLC" => "don't be evil" # ,
-    # "Global Reporting Initiative" => "I'm just here for the industry hack."
-
-    # in addition pulled from production:
-    # Google Inc, Apple Inc, Samsung, Siemens AG, Sony Corporation, Amazon.com
-  }.freeze
-
-  TOPICS = {
-    "Force" => "A Jedi uses the Force for knowledge and defense, never for attack.",
-    "Taming" => "What a cute animal"
-    # in addition pulled from production:
-    # Natural Resource Use, Community, Human Rights, Climate Change, Animal Welfare
-  }.freeze
-
   extend Samples
   extend ProfileSections
   extend ResearchedMetrics
   extend CalculatedMetrics
   extend RelationshipMetrics
-  extend Badges
   extend Sources
 
   class << self
@@ -42,13 +21,10 @@ class SharedData
     def add_wikirate_data
       puts "adding wikirate data".green
       setup
-      add :companies, :topics, :sources, :report_types,
+      add :sources,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :company_category, :researchers, :company_group,
-          :profile_sections, :badges, :import_files, :guides
-
-      Card::Cache.reset_all
-      Answer.refresh
+          :company_category, :researchers,
+          :profile_sections, :import_files
     end
 
     def setup
@@ -60,6 +36,7 @@ class SharedData
 
     def add *categories
       categories.each do |cat|
+        puts "adding #{cat}".green
         send "add_#{cat}"
       end
     end
@@ -70,29 +47,6 @@ class SharedData
 
     def account_args hash
       { "+*account" => { "+*password" => "joe_pass" }.merge(hash) }
-    end
-
-    def add_companies
-      COMPANIES.each do |company, about|
-        create company,
-               type: "company",
-               subcards: { "+about" => about }
-      end
-      ensure_card ["Google LLC", :headquarters],
-                  type: :pointer, content: "California (United States)"
-      ensure_card ["Google LLC", :alias],
-                  type: :pointer, content: %w[Google Alphabet]
-      ensure_card ["Google LLC", :incorporation],
-                  type: :pointer, content: "Delaware (United States)"
-      ensure_card ["Google LLC", :open_corporates], content: "201727810678"
-    end
-
-    def add_topics
-      TOPICS.each do |topic, about|
-        create topic,
-               type: "topic",
-               subcards: { "+about" => about }
-      end
     end
 
     def bookmark name
@@ -109,28 +63,12 @@ class SharedData
 
     def add_company_category
       metric = :commons_company_category.card
-      metric.value_type_card.update! content: "Multi-Category"
-      metric.value_options_card.update! content: %w[A B C D].to_pointer_content
       ["Death Star", "SPECTRE"].each do |name|
         metric.create_answer company: name,
                              year: "2019",
                              value: "A",
                              source: :opera_source.cardname
       end
-    end
-
-    def add_company_group
-      create "Deadliest",
-             type: :company_group,
-             subfields: {
-               specification: "[[Jedi+deadliness]],1977,\"{\"\"from\"\":30}\""
-             }
-      create "Googliest",
-             type: :company_group,
-             subfields: {
-               specification: "explicit",
-               wikirate_company: "Google LLC"
-             }
     end
 
     def add_import_files
@@ -153,16 +91,6 @@ class SharedData
              storage_type: :coded,
              mod: :test
     end
-
-    def add_guides
-      create "Force Guide",
-             type: :guide_type,
-             subfields: {
-               description: "guided by guy dead",
-               body: "my body is a force"
-             }
-    end
-
 
     def csv_file name
       path = ::File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
