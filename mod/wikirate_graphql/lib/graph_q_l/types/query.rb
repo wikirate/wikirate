@@ -35,10 +35,9 @@ module GraphQL
           10
         end
 
-        def lookup_field fieldname, type, filter_query_class
-
-        end
-
+        # def lookup_field fieldname, type, filter_query_class
+        #
+        # end
       end
 
       cardtype_field :research_group, ResearchGroup
@@ -88,7 +87,7 @@ module GraphQL
 
       def answers metric: nil, limit: Query.default_limit, **filter
         filter[:metric_id] = metric.card_id if metric
-        ::Card::AnswerQuery.new(filter, {}, { limit: limit }).lookup_relation.all
+        ::Card::AnswerQuery.new(filter, {}, limit: limit).lookup_relation.all
       end
 
       def relationship **mark

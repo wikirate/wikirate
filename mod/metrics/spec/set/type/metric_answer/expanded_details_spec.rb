@@ -65,7 +65,13 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "2001"
       end
 
-      expect(table).to have_tag "div.formula-with-values", text: "= 10 + 20" do
+      # FIXME: formula is "10 + 20" (with spaces) in the YAML but
+      # was getting stripped to 10+20 by #standardize_content,
+      # because +formula included Abstract::Pointer
+      #
+      # This has been changed to Abstract::Items, so I *think* we'll need to add
+      # back the spaces (which is more correct) next time we reseed.
+      expect(table).to have_tag "div.formula-with-values", text: "= 10+20" do
         with_tag :a, with: { href: "/Joe_User+RM+Apple_Inc+2001" }, text: 10
       end
     end

@@ -20,8 +20,7 @@ def add_topic_to_subtopic_referers subtopic
 end
 
 def subtopic_referers subtopic, query={}
-  query.merge! right: :wikirate_topic, refer_to: subtopic
-  Card.search query
+  Card.search query.merge(right: :wikirate_topic, refer_to: subtopic)
 end
 
 def ok_to_create
