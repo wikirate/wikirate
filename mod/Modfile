@@ -1,4 +1,10 @@
 gem_mods
+
+# clean and move to card-mods
+mod "posts"
+mod "guides"
+
+
 mod "wikirate_layout"
 mod "wikirate_assets"
 mod "wikirate_utility"
@@ -6,7 +12,6 @@ mod "region"
 mod "wikirate_search"
 mod "filter"
 mod "filter_industry"
-mod "posts"
 mod "sources"
 mod "topics"
 mod "metrics"
@@ -21,10 +26,13 @@ mod "widgets"
 mod "dr_datasets"
 mod "wikirate_caching"
 mod "wikirate_csv_import"
-mod "profiles"
-mod "badges"
-mod "conversation"
-mod "vega"
-mod "tasks"
-mod "guides"
+
 mod "wikirate_graphql"
+
+mod "profiles"
+mod "conversation"
+
+# extract wikirate code, clean, and move to card-mods
+mod "badges"
+mod "tasks"
+mod "vega"
