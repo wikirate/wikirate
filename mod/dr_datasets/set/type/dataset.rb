@@ -2,10 +2,10 @@ include_set Abstract::Thumbnail
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Bookmarkable
 
-card_reader :wikirate_company
-card_reader :metric
-card_reader :year
-card_reader :parent
+card_reader :wikirate_company, type: :list
+card_reader :metric, type: :list
+card_reader :year, type: :list
+card_reader :parent, type: :pointer
 card_reader :data_subset
 
 def parent_dataset_card

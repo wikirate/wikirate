@@ -7,8 +7,8 @@ RSpec.describe Card::Set::Right::WikirateTopic do
     it "autotags supertopic if it exists", as_bot: true do
       # "Energy" is subtopic of "Taming"
       Card.create! name: "Taming+subtopic",
-                   content: "[[Energy]]",
-                   type_id: Card::PointerID
+                   content: "Energy",
+                   type: :list
 
       # metric updated with topic "Energy"
       metric_topic.add_item "Energy"

@@ -14,12 +14,12 @@ RSpec.describe Card::MetricQuery do
   end
 
   example "topic filter" do
-    expect(run(topic: "Taming").map(&:name))
+    expect(run(topic: "Taming").map(&:name).sort)
       .to eq(["Fred+dinosaurlabor", "Joe User+researched number 3"])
   end
 
   example "dataset filter" do
-    expect(run(dataset: "Evil Dataset").map(&:name))
+    expect(run(dataset: "Evil Dataset").map(&:name).sort)
       .to eq(["Jedi+disturbances in the Force", "Joe User+researched number 2"])
   end
 

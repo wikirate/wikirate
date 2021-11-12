@@ -6,7 +6,7 @@ IDENTIFIERS = %i[headquarters sec_cik oar_id].freeze
 INTEGRATIONS = %i[wikipedia open_corporates].freeze
 UNKNOWN_IDENTIFIER_VIEW = { headquarters: :unknown }.freeze
 
-(IDENTIFIERS + INTEGRATIONS).each { |field| card_accessor field, type: PhraseID }
+(IDENTIFIERS + INTEGRATIONS).each { |field| card_accessor field, type: :phrase }
 
 def field_cards
   (IDENTIFIERS + INTEGRATIONS).map { |field| fetch field }.compact

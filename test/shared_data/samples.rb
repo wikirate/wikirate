@@ -26,20 +26,12 @@ class SharedData
       Card[notes[num - 1]]
     end
 
-    def sample_company index=0
-      Card[SharedData::COMPANIES.keys[index]]
+    def sample_company
+      "Death Star".card
     end
 
-    def sample_topic index=0
-      Card[SharedData::TOPICS.keys[index]]
-    end
-
-    def sample_companies num=1, args={}
-      search_samples  Card::WikirateCompanyID, num, args
-    end
-
-    def sample_topics num=1, args={}
-      search_samples Card::WikirateTopicID, num, args
+    def sample_topic
+      "Force".card
     end
 
     def sample_metrics num=1, args={}
