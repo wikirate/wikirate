@@ -30,7 +30,7 @@ RSpec.describe Card::Set::TypePlusRight::CompanyGroup::WikirateCompany do
     it "finds companies when there is more than one constraint" do
       spec = Card["Deadliest+specification"]
       new_constraint = constraint_class.new("Fred+dinosaurlabor", 2000, "\"yes\"")
-      spec.update! content: "#{spec.content}\n#{new_constraint}"
+      spec.update! content: [spec.content, new_constraint].join("\n")
       expect(card_subject.item_names).to eq(["Death Star"])
     end
   end

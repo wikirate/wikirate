@@ -1,5 +1,3 @@
-include_set Type::Pointer
-
 event :validate_subtopics, :validate, on: :save do
   added_item_names.each do |subtopic|
     next if Card[subtopic]&.type_id == WikirateTopicID
