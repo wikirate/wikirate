@@ -902,6 +902,7 @@
     - disturbances in the Force
     - Joe User
   :type: :metric
+  :user: Joe User
   :subfields:
     # :value_type: Category
     :metric_type: Score

@@ -22,6 +22,7 @@
   - Joe User
   - big single
   :type: :metric
+  :user: Joe User
   :subfields:
     :value_type: Category
     :metric_type: Researched
@@ -48,7 +49,7 @@
       1
       2
       3
-    About: changed
+    :about: unchanged
 - :name:
   - Joe User
   - big multi
@@ -140,7 +141,6 @@
   :subfields:
     :value_type: Number
     :metric_type: Researched
-    :discussion: comment
 - :name:
   - Jedi
   - deadliness
@@ -734,3 +734,11 @@
         "9900: Activities of extraterritorial organizations and bodies": "9900"
       }
     :research_policy: Designer Assessed
+
+# comment separate - made by Joe User
+- :name:
+    - Jedi
+    - Victims by Employees
+    - :discussion
+  :user: Joe User
+  :content: comment

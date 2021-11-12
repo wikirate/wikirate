@@ -23,6 +23,3 @@
 
 mod: wikirate_assets+*style+local
 // loader.scss
-
-mod: research+*style+local
-mod: wikirate_graphql+*style+local

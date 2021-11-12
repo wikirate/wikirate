@@ -13,7 +13,6 @@ class SharedData
   extend ResearchedMetrics
   extend CalculatedMetrics
   extend RelationshipMetrics
-  extend Badges
   extend Sources
 
   class << self
@@ -26,7 +25,7 @@ class SharedData
           :researched_metrics, :calculated_metrics
       add :relationship_metrics,
           :company_category, :researchers,
-          :profile_sections, :badges, :import_files
+          :profile_sections, :import_files
     end
 
     def setup
