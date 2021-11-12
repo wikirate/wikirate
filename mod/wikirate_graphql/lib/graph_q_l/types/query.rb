@@ -30,8 +30,17 @@ module GraphQL
             argument :offset, Integer, required: false
           end
         end
+
+        def default_limit
+          10
+        end
+
+        # def lookup_field fieldname, type, filter_query_class
+        #
+        # end
       end
 
+      cardtype_field :research_group, ResearchGroup
       cardtype_field :company_group, CompanyGroup
       cardtype_field :company, Company, :wikirate_company
       cardtype_field :topic, Topic, :wikirate_topic
@@ -42,17 +51,25 @@ module GraphQL
         argument :name, String, required: false
         argument :id, Integer, required: false
       end
-      field :metrics, [Metric], null: false
+      field :metrics, [Metric], null: false do
+        argument :limit, Integer, required: false
+      end
 
       field :answer, Answer, null: true do
         argument :id, Integer, required: false
       end
       field :answers, [Answer], null: false do
         argument :metric, String, required: false
+        argument :limit, Integer, required: false
+        # argument :sort, String, required: false
+        ::Card::AnswerQuery.card_id_filters.each do |filter|
+          argument filter, String, required: false
+        end
       end
 
       field :relationship, Relationship, null: true do
         argument :id, Integer, required: false
+        argument :limit, Integer, required: false
       end
       field :relationships, [Relationship], null: false
 
@@ -60,26 +77,25 @@ module GraphQL
         ok_card(:metric, **mark)&.lookup
       end
 
-      def metrics
-        ::Metric.limit(10).all
+      def metrics limit: Query.default_limit
+        ::Metric.limit(limit).all
       end
 
       def answer **mark
         ok_card :metric_answer, **mark
       end
 
-      def answers metric: nil
-        query = {}
-        query[:metric_id] = metric.card_id if metric
-        ::Answer.where(query).limit(10).all
+      def answers metric: nil, limit: Query.default_limit, **filter
+        filter[:metric_id] = metric.card_id if metric
+        ::Card::AnswerQuery.new(filter, {}, limit: limit).lookup_relation.all
       end
 
       def relationship **mark
         ok_card :relationship_answer, **mark
       end
 
-      def relationships
-        ::Relationship.limit(10).all
+      def relationships limit: Query.default_limit
+        ::Relationship.limit(limit).all
       end
     end
   end
