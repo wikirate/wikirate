@@ -18,7 +18,6 @@ class SharedData
       end.add_answers
     end
 
-
     def descendant_metrics
       Card::Metric::AnswerCreator.new "Joe User+descendant hybrid", true do
         Death_Star 1977 => 1000

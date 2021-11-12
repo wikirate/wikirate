@@ -22,8 +22,7 @@ class SharedData
       puts "adding wikirate data".green
       setup
       add :sources,
-          :researched_metrics, :calculated_metrics
-      add :relationship_metrics,
+          :researched_metrics, :calculated_metrics, :relationship_metrics,
           :company_category, :researchers,
           :profile_sections, :import_files
     end
@@ -92,7 +91,6 @@ class SharedData
              storage_type: :coded,
              mod: :test
     end
-
 
     def csv_file name
       path = ::File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
