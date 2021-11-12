@@ -74,8 +74,10 @@ RSpec.describe Card::AnswerQuery do
   end
 
   # @return [Array] of answer cards
-  def sort_by sort_by, sort_dir=:asc
-    run_query({ year: :latest }, sort_by => sort_dir)
+  def sort_by sort_by, sort_dir: :asc, researched_only: false
+    query = { year: :latest }
+    query[:metric_type] = "Researched" if researched_only
+    run_query(query, sort_by => sort_dir)
   end
 
   def run_query filter, sort
@@ -147,8 +149,9 @@ RSpec.describe Card::AnswerQuery do
     context "with value type" do
       it "finds category metrics" do
         expect(filter_by({ value_type: "Category" }))
-          .to eq(["dinosaurlabor+2010", "disturbances in the Force+2001",
-                  "disturbances in the Force+2001", "more evil+1977"])
+          .to eq(["dinosaurlabor+2010",
+                  "disturbances in the Force+2001",
+                  "more evil+1977"])
       end
     end
 
@@ -242,7 +245,11 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "finds this months's edits" do
-        expect(filter_by({ updated: :month }, latest: false, parts: 1))
+        # I added 'metric_type: "Researched"' because the new yaml loading
+        # made it so that calculated metrics, including scores, were created before the
+        # researched answers, which meant timecop affect the calculation times
+        expect(filter_by({ updated: :month, metric_type: "Researched" },
+                         latest: false, parts: 1))
           .to eq ["dinosaurlabor", "disturbances in the Force",
                   "disturbances in the Force", "disturbances in the Force"]
       end
@@ -357,12 +364,12 @@ RSpec.describe Card::AnswerQuery do
     let(:sorted_designer) { ["Commons", "Fred", "Jedi", "Joe User"] }
 
     it "sorts by designer name (asc)" do
-      sorted = sort_by(:metric_designer, :asc).map { |a| a.name.parts.first }.uniq
+      sorted = sort_by(:metric_designer, sort_dir: :asc).map { |a| a.name.parts.first }.uniq
       expect(sorted).to eq(sorted_designer)
     end
 
     it "sorts by designer name (desc)" do
-      sorted = sort_by(:metric_designer, :desc).map { |a| a.name.parts.first }.uniq
+      sorted = sort_by(:metric_designer, sort_dir: :desc).map { |a| a.name.parts.first }.uniq
       expect(sorted).to eq(sorted_designer.reverse)
     end
 
@@ -377,12 +384,12 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "sorts by recently updated" do
-      expect(sort_by(:updated_at, :desc).first.name)
+      expect(sort_by(:updated_at, sort_dir: :desc, researched_only: true).first.name)
         .to eq "Fred+dinosaurlabor+Death_Star+2010"
     end
 
     it "sorts by bookmarkers" do
-      actual = short_answers sort_by(:metric_bookmarkers, :desc)
+      actual = short_answers sort_by(:metric_bookmarkers, sort_dir: :desc)
       expected = latest_answers_by_bookmarks
 
       bookmarked = (0..1)
