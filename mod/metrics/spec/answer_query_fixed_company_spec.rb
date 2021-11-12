@@ -363,14 +363,16 @@ RSpec.describe Card::AnswerQuery do
   context "with sort conditions" do
     let(:sorted_designer) { ["Commons", "Fred", "Jedi", "Joe User"] }
 
+    def sort_designers dir
+      sort_by(:metric_designer, sort_dir: dir).map { |a| a.name.parts.first }.uniq
+    end
+
     it "sorts by designer name (asc)" do
-      sorted = sort_by(:metric_designer, sort_dir: :asc).map { |a| a.name.parts.first }.uniq
-      expect(sorted).to eq(sorted_designer)
+      expect(sort_designers(:asc)).to eq(sorted_designer)
     end
 
     it "sorts by designer name (desc)" do
-      sorted = sort_by(:metric_designer, sort_dir: :desc).map { |a| a.name.parts.first }.uniq
-      expect(sorted).to eq(sorted_designer.reverse)
+      expect(sort_designers(:desc)).to eq(sorted_designer.reverse)
     end
 
     it "sorts by title" do

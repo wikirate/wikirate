@@ -1,5 +1,5 @@
 include_set Abstract::Variable
-include_set Abstract::Items
+include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
 delegate :metric_type_codename, :metric_type_card, :researched?, :calculated?, :rating?,
