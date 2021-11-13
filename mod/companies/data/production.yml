@@ -1,9 +1,0 @@
----
-# Cardtypes
-
-- :name: Company
-  :type: :cardtype
-  :codename: :wikirate_company
-- :name: Company Group
-  :type: :cardtype
-  :codename: :company_group
