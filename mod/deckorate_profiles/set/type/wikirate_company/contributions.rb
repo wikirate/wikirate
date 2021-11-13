@@ -6,9 +6,7 @@ card_reader :research_group, type: :search_type
 
 format :html do
   def contrib_page?
-    return @contrib_page unless @contrib_page.nil?
-    param = Env.params[:contrib]
-    @contrib_page = contribs_made? ? param != "N" : param == "Y"
+    @contrib_page.nil? ? (@contrib_page = contrib_page_from_params?) : @contrib_page
   end
 
   view :contributions_data do
@@ -70,5 +68,12 @@ format :html do
 
   view :projects_organized_tab do
     field_nest :projects_organized, view: :content
+  end
+
+  private
+
+  def contrib_page_from_params?
+    param = Env.params[:contrib]
+    contribs_made? ? param != "N" : param == "Y"
   end
 end

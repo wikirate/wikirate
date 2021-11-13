@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 
 SOURCE_PATHS = {
-  pdf: "mod/sources/spec/set/type/source/test_pdf.pdf",
-  img: "mod/sources/spec/set/type/source/test_logo.png",
-  docx: "mod/sources/spec/set/type/source/test_word.docx"
+  pdf: "mod/deckorate_research/spec/set/type/source/test_pdf.pdf",
+  img: "mod/deckorate_research/spec/set/type/source/test_logo.png",
+  docx: "mod/deckorate_research/spec/set/type/source/test_word.docx"
 }.freeze
 
 def source_file key
