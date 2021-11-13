@@ -1,30 +1,47 @@
 gem_mods
-mod "wikirate_layout"
-mod "wikirate_assets"
-mod "wikirate_utility"
-mod "region"
-mod "wikirate_search"
-mod "filter"
-mod "filter_industry"
+
+# clean and move to card-mods
 mod "posts"
-mod "sources"
-mod "topics"
-mod "metrics"
-mod "dr_calculations"
-mod "research"
-mod "isic"
-mod "rating"
-mod "wikirate_lookups"
-mod "companies"
-mod "homepage"
-mod "widgets"
-mod "dr_datasets"
-mod "wikirate_caching"
-mod "wikirate_csv_import"
-mod "profiles"
-mod "badges"
-mod "conversation"
-mod "vega"
-mod "tasks"
 mod "guides"
-mod "wikirate_graphql"
+
+# these need rethinking...
+mod "wikirate_layout"
+mod "wikirate_utility"
+mod "filter"
+mod "topics"
+
+## DeckoRate mods
+## ~~~~~~~~~~~~~~
+
+# deckorate_core (and topics)
+mod "deckorate_core"
+mod "wikirate_lookups"
+
+# deckorate_research
+mod "deckorate_research"
+mod "deckorate_import"
+mod "deckorate_calculations"
+mod "deckorate_datasets"
+mod "deckorate_graphql"
+mod "deckorate_search"
+mod "deckorate_profiles"
+
+## WikiRate mods
+## ~~~~~~~~~~~~~
+
+# wikirate_companies
+mod "wikirate_companies"
+
+# wikirate_looks
+mod "homepage"
+mod "wikirate_assets"
+
+# refactor away
+mod "conversation"
+mod "wikirate_caching"
+mod "isic"
+
+# extract wikirate code, clean, and move to card-mods
+mod "badges"
+mod "tasks"
+mod "vega"

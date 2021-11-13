@@ -17,10 +17,8 @@ ratings:
    - "**.rb"
 exclude_paths:
 - vendor/**/*
-- card-mods/pdfjs/files/**/*
-- mod/sources/files/**/*
 - mod/**/lib/javascript/**/*.js
 - test/**/*
 - db/**/*
 - script/single-use/**/*
-- mod/research/assets/script/jpages.js
+- mod/deckorate_research/assets/script/jpages.js
