@@ -6,26 +6,37 @@ mod "guides"
 
 
 mod "wikirate_layout"
-mod "wikirate_assets"
+mod "wikirate_lookups"
+
 mod "wikirate_utility"
-mod "region"
-mod "wikirate_search"
 mod "filter"
 mod "filter_industry"
-mod "sources"
 mod "topics"
+
+# deckorate_core
 mod "metrics"
-mod "dr_calculations"
+
+# deckorate_research
+mod "sources"
 mod "research"
+
+# deckorate_calculations
+mod "dr_calculations"
+
 mod "isic"
 mod "rating"
-mod "wikirate_lookups"
+
+mod "region"
 mod "companies"
 mod "homepage"
 mod "widgets"
 mod "dr_datasets"
+
+mod "wikirate_assets"
+
 mod "wikirate_caching"
 mod "wikirate_csv_import"
+mod "wikirate_search"
 
 mod "wikirate_graphql"
 
