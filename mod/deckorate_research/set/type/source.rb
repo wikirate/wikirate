@@ -21,6 +21,10 @@ def link_url
   wikirate_link_card&.content
 end
 
+def export_content
+  nil
+end
+
 format :html do
   view :unknown do
     _view_link
