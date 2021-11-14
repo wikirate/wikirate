@@ -29,8 +29,6 @@ class Card
         end
       end
 
-      private
-
       def find_or_add_source_card url
         found = search_by_url url
         return found.first if found.present?
