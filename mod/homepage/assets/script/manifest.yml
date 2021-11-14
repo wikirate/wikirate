@@ -1,6 +1,0 @@
-homepage:
-  items:
-    - script_homepage_carousel.js.coffee
-    - ../../vendor/slick/slick/slick.js
-    - ../../vendor/countUp/dist/countUp.js
-    - ../../vendor/wodry/dist/wodry.js

@@ -45,10 +45,6 @@ class SharedData
       with_user "Joe User", &block
     end
 
-    def account_args hash
-      { "+*account" => { "+*password" => "joe_pass" }.merge(hash) }
-    end
-
     def bookmark name
       Card::Auth.as_bot do
         Card::Auth.current.bookmarks_card.add_item! name
