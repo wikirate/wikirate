@@ -62,7 +62,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Source do
         # Goes away if we get rid of unwanted structure rule
         # that makes User+Source an HTML card
         expect(a.source_card.first_name)
-          .to eq(Card::Set::Self::Source.search_by_url(url).first.name)
+          .to eq(Card::Source.search_by_url(url).first.name)
       end
 
       it "fails when not triggered to auto-add" do

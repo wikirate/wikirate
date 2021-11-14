@@ -23,7 +23,7 @@ class MetaData
   end
 
   def duplicates
-    @duplicates ||= Source.search_by_url @url
+    @duplicates ||= Card::Source.search_by_url @url
   end
 
   def website= url
