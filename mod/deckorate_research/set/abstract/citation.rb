@@ -1,7 +1,7 @@
 # add source card if needed
 event :auto_add_source, :prepare_to_validate,
       on: :save, changed: :content, trigger: :required do
-  Self::Source.each_url_source item_names do |url, source|
+  Card::Source.each_url_source item_names do |url, source|
     drop_item url
     add_item source.name
   end
@@ -72,7 +72,7 @@ def invalid_source_item source_name
 end
 
 def invalid_source_item_error_message source_name
-  if Self::Source.url? source_name
+  if Card::Source.url? source_name
     "Adding urls as sources directly requires event configuration"
   else
     "No such source exists: #{source_name}"
