@@ -1,7 +1,12 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::SingleItem
+include_set Abstract::LookupField
 # include_set Abstract::DesignerPermissions
 # Currently governed by *rstar rules
+
+def lookup_columns
+  :metric_type_id
+end
 
 event :reset_metrics_set_pattern_for_metric_type, :finalize,
       on: :save, changed: :content do
