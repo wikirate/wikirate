@@ -52,7 +52,7 @@ def host
 end
 
 def duplicates
-  @duplicates ||= Self::Source.search_by_url content
+  @duplicates ||= Card::Source.search_by_url content
 end
 
 def link_present?
