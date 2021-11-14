@@ -8,11 +8,8 @@ class SharedData
   # on the date above 3 tests will fail
   # (if you reseed the test database)
 
-  extend Samples
+  extend Answers
   extend ProfileSections
-  extend ResearchedMetrics
-  extend CalculatedMetrics
-  extend RelationshipMetrics
   extend Sources
 
   class << self
@@ -21,13 +18,12 @@ class SharedData
     def add_wikirate_data
       puts "adding wikirate data".green
       setup
-      add :sources,
-          :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :company_category, :researchers,
-          :profile_sections, :import_files
+      add :sources, :answers, :bookmarkings, :profile_sections, :import_files
     end
 
     def setup
+      Card::Env[:protocol] = "http://"
+      Card::Env[:host] = "wikirate.org"
       Card::Cache.reset_all
       Card::Env.reset
       Card::Auth.signin "Decko Bot"
@@ -51,19 +47,13 @@ class SharedData
       end
     end
 
-    def add_researchers
-      researchers = Card.fetch "Jedi+Researchers", new: {}
-      researchers.add_item! "Joe User"
-      researchers.add_item! "Joe Camel"
-    end
-
-    def add_company_category
-      metric = :commons_company_category.card
-      ["Death Star", "SPECTRE"].each do |name|
-        metric.create_answer company: name,
-                             year: "2019",
-                             value: "A",
-                             source: :opera_source.cardname
+    def bookmarkings
+      with_user "Joe Admin" do
+        bookmark "Jedi+disturbances in the Force"
+        bookmark "Jedi+Victims by Employees"
+      end
+      with_user "Joe User" do
+        bookmark "Jedi+disturbances in the Force"
       end
     end
 
