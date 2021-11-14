@@ -10,7 +10,6 @@ class SharedData
 
   extend Answers
   extend ProfileSections
-  extend Sources
 
   class << self
     include Card::Model::SaveHelper

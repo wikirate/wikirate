@@ -62,6 +62,6 @@ class SharedData
     #                   "+title"       => { content: "Apple" },
     #                   "+description" => { content: "What is an apple?" }
     #                 }
-    end
+    # end
   end
 end
