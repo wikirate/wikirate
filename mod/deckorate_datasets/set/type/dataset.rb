@@ -6,7 +6,7 @@ card_reader :wikirate_company, type: :list
 card_reader :metric, type: :list
 card_reader :year, type: :list
 card_reader :parent, type: :pointer
-card_reader :data_subset
+card_reader :data_subset, type: :search_type
 
 def parent_dataset_card
   Card[parent_dataset]

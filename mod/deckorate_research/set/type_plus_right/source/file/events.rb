@@ -21,7 +21,7 @@ event :validate_source_file, :validate, on: :save, changed: :content do
       "unaccepted MIME type: #{file.content_type}"
     end
 
-  raise SourceConversionError, error_message if error_message
+  raise Card::Source::ConversionError, error_message if error_message
 end
 
 event :block_file_changing, after: :write_identifier, on: :update, changed: :content,
@@ -61,7 +61,7 @@ def convert_to_pdf
 rescue StandardError => e
   msg = "failed to convert HTML to pdf"
   Rails.logger.info "#{msg}: #{e.message}"
-  raise SourceConversionError, msg
+  raise Card::Source::ConversionError, msg
 end
 
 def converting_to_tmp_pdf

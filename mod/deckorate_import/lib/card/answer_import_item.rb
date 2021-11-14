@@ -32,7 +32,7 @@ class Card
     end
 
     def map_source val
-      result = Card::Set::Self::Source.search val
+      result = Card::Source.search val
       # result.first.id if result.size == 1
       #
       # FIXME: below is temporary solution to speed along FTI duplicates.
@@ -67,8 +67,7 @@ class Card
 
     class << self
       def auto_add_source url
-        src = Card::Set::Self::Source
-        src.find_or_add_source_card(url)&.id if src.url? url
+        Card::Source.find_or_add_source_card(url)&.id if Card::Source.url? url
       end
 
       def export_csv_header
