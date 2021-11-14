@@ -15,7 +15,7 @@ class Card
     end
 
     def detect_existing
-      results = Card::Set::Self::Source.search_by_url wikirate_link
+      results = Card::Source.search_by_url wikirate_link
       results.first&.id
     end
 
