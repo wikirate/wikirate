@@ -11,13 +11,9 @@ mod "filter"
 mod "topics"
 
 ## DeckoRate mods
-## ~~~~~~~~~~~~~~
 
 # deckorate_core (and topics)
 mod "deckorate_core"
-mod "wikirate_lookups"
-
-# deckorate_research
 mod "deckorate_research"
 mod "deckorate_import"
 mod "deckorate_calculations"
