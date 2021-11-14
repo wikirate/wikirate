@@ -1,9 +1,7 @@
 ---
-
-
 # Company Groups
-# Note: for now companies are seeded in deckorate_core, because they have to
-# be in place as sample subjects.  but that needs to be cleaner.
+# Note: for now most companies are seeded in deckorate_core, because they have to
+# be in place as sample subjects.
 
 - :name: Deadliest
   :type: :company_group
