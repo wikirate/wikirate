@@ -8,7 +8,7 @@ RSpec.describe Card::AnswerImportItem do
       metric: "Jedi+disturbances in the Force",
       wikirate_company: "Google Inc",
       year: "2017",
-      value: "yes",
+      value: "yes",w
       source: :opera_source.cardname,
       unpublished: nil,
       comment: ""

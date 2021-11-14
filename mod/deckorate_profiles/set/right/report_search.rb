@@ -11,7 +11,7 @@
 # (not by user or research_group), so the query methods are defined on the
 # cardtype set modules (eg self/metric).
 
-attr_accessor :variant
+attr_writer :variant
 
 def user_plus_cardtype_name
   @user_plus_cardtype_name ||=
