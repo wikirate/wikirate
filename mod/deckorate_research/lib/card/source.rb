@@ -1,4 +1,5 @@
 class Card
+  # methods for supporting source searches
   module Source
     class << self
       def search term
