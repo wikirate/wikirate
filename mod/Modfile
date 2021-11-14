@@ -11,8 +11,6 @@ mod "filter"
 mod "topics"
 
 ## DeckoRate mods
-
-# deckorate_core (and topics)
 mod "deckorate_core"
 mod "deckorate_research"
 mod "deckorate_import"
@@ -23,18 +21,12 @@ mod "deckorate_search"
 mod "deckorate_profiles"
 
 ## WikiRate mods
-## ~~~~~~~~~~~~~
-
-# wikirate_companies
 mod "wikirate_companies"
-
-# wikirate_looks
-mod "homepage"
+mod "wikirate_homepage"
 mod "wikirate_assets"
 
 # refactor away
 mod "conversation"
-mod "wikirate_caching"
 mod "isic"
 
 # extract wikirate code, clean, and move to card-mods

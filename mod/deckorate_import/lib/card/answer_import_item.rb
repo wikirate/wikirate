@@ -32,7 +32,7 @@ class Card
     end
 
     def map_source val
-      result = Card::Set::Self::Source.search val
+      result = Card::Source.search val
       # result.first.id if result.size == 1
       #
       # FIXME: below is temporary solution to speed along FTI duplicates.
