@@ -3,14 +3,14 @@
   :type: :answer_import
   :codename: :answer_import_test
   :storage_type: :coded
-  :file: answer_import_test.csv
+  :file: answer_import_test/file.csv
 - :name: relationship import test
   :type: :relationship_import
   :codename: :relationship_import_test
   :storage_type: :coded
-  :file: relationship_import_test.csv
+  :file: relationship_import_test/file.csv
 - :name: source import test
   :type: :source_import
   :codename: :source_import_test
   :storage_type: :coded
-  :file: source_import_test.csv
+  :file: source_import_test/file.csv
