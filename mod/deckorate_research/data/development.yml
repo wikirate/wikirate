@@ -41,7 +41,8 @@
       2003
       2019
     :wikirate_link: https://thereaderwiki.com/en/Opera
-    :file: opera_source.pdf
+    :file:
+      :file: opera_source.pdf
 - :name: Page-000053756
   :type: :source
   :codename: :space_opera_source
@@ -52,7 +53,8 @@
     :wikirate_title: Space Opera
     :description: Space Opera Wikipedia article
     :wikirate_link: https://thereaderwiki.com/en/Space_opera
-    :file: space_opera_source.pdf
+    :file:
+      :file: space_opera_source.pdf
 
 - :name: Page-000053760
   :type: :source
@@ -61,7 +63,8 @@
     :wikirate_title: Apple
     :description: What is an apple?
     :wikirate_link: https://thereaderwiki.com/en/Apple
-    :file: apple_source.pdf
+    :file:
+      :file: apple_source.pdf
 - :name: Page-000053759
   :type: :source
   :codename: :star_wars_source
@@ -86,7 +89,8 @@
       2003
       2004
     :wikirate_link: https://thereaderwiki.com/en/Star_Wars
-    :file: star_wars_source.pdf
+    :file:
+      :file: star_wars_source.pdf
     :report_type: |-
       Force Report
       Conflict Mineral Report
@@ -98,5 +102,6 @@
     :wikirate_company: Death Star
     :description: Darth Vader Wikipedia article
     :wikirate_link: https://thereaderwiki.com/en/Darth_Vader
-    :file: darth_vader_source.pdf
+    :file:
+      :file: darth_vader_source.pdf
     :report_type: Force Report

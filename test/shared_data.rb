@@ -17,7 +17,7 @@ class SharedData
     def add_wikirate_data
       puts "adding wikirate data".green
       setup
-      add :sources, :answers, :bookmarkings, :profile_sections, :import_files
+      add :answers, :bookmarkings, :profile_sections
     end
 
     def setup
@@ -54,32 +54,6 @@ class SharedData
       with_user "Joe User" do
         bookmark "Jedi+disturbances in the Force"
       end
-    end
-
-    def add_import_files
-      create "answer import test",
-             type: :answer_import,
-             codename: "answer_import_test_with_file",
-             answer_import: csv_file("answer_import"),
-             storage_type: :coded,
-             mod: :test
-      create "relationship import test",
-             type: :relationship_import,
-             codename: "relationship_import_test_with_file",
-             relationship_import: csv_file("relationship_import"),
-             storage_type: :coded,
-             mod: :test
-      create "source import test",
-             type: :source_import,
-             codename: "source_import_test_with_file",
-             source_import: csv_file("source_import"),
-             storage_type: :coded,
-             mod: :test
-    end
-
-    def csv_file name
-      path = ::File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
-      ::File.open path
     end
   end
 end
