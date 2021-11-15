@@ -1,3 +1,107 @@
 ---
 - :name: Hologram Report
   :type: :report_type
+
+- :name: Page-000053757
+  :type: :source
+  :codename: :opera_source
+  :time: "+172800"
+  :subfields:
+    :wikirate_company: |-
+      Slate_Rock_and_Gravel_Company
+      Monster_Inc
+      Death_Star
+      SPECTRE
+      Los_Pollos_Hermanos
+      Samsung
+      Sony_Corporation
+      Apple_Inc
+      Google LLC
+    :wikirate_title: Opera
+    :description: Opera Wikipedia article
+    :year: |-
+      1977
+      2000
+      1991
+      1992
+      2010
+      2014
+      2015
+      2002
+      2001
+      2011
+      2012
+      2013
+      2009
+      2008
+      2007
+      2006
+      2005
+      2004
+      2003
+      2019
+    :wikirate_link: https://thereaderwiki.com/en/Opera
+    :file:
+      :file: opera_source.pdf
+- :name: Page-000053756
+  :type: :source
+  :codename: :space_opera_source
+  :time: "+86400"
+  :subfields:
+    :wikirate_topic: Force
+    :wikirate_company: Death Star
+    :wikirate_title: Space Opera
+    :description: Space Opera Wikipedia article
+    :wikirate_link: https://thereaderwiki.com/en/Space_opera
+    :file:
+      :file: space_opera_source.pdf
+
+- :name: Page-000053760
+  :type: :source
+  :codename: :apple_source
+  :subfields:
+    :wikirate_title: Apple
+    :description: What is an apple?
+    :wikirate_link: https://thereaderwiki.com/en/Apple
+    :file:
+      :file: apple_source.pdf
+- :name: Page-000053759
+  :type: :source
+  :codename: :star_wars_source
+  :subfields:
+    :wikirate_topic: Force
+    :wikirate_company: |-
+      Death Star
+      Monster_Inc
+      Slate_Rock_and_Gravel_Company
+      SPECTRE
+      Los_Pollos_Hermanos
+      Samsung
+    :wikirate_title: Star Wars
+    :description: Star Wars Wikipedia article
+    :year: |-
+      2008
+      1977
+      2000
+      2001
+      2005
+      1990
+      2003
+      2004
+    :wikirate_link: https://thereaderwiki.com/en/Star_Wars
+    :file:
+      :file: star_wars_source.pdf
+    :report_type: |-
+      Force Report
+      Conflict Mineral Report
+- :name: Page-000053758
+  :type: :source
+  :codename: :darth_vader_source
+  :subfields:
+    :wikirate_topic: Force
+    :wikirate_company: Death Star
+    :description: Darth Vader Wikipedia article
+    :wikirate_link: https://thereaderwiki.com/en/Darth_Vader
+    :file:
+      :file: darth_vader_source.pdf
+    :report_type: Force Report

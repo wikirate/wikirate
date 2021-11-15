@@ -1,0 +1,13 @@
+---
+- :name: answer import test
+  :type: :answer_import
+  :codename: :answer_import_test_with_file
+  :file: answer_import.csv
+- :name: relationship import test
+  :type: :relationship_import
+  :codename: :relationship_import_test_with_file
+  :file: relationship_import.csv
+- :name: source import test
+  :type: :source_import
+  :codename: :source_import_test_with_file
+  :file: source_import.csv
