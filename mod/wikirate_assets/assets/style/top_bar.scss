@@ -1,30 +1,4 @@
-/*----------- Navigation color variables ---------*/
-$nav-srch-background: #fff;
-$nav-srch-txt-color: #a8a8a8;
-$navmenu-anchor-color: #fff;
-$navmenu-hover-bgcolor: $brand-primary;
-$navsbmenu-bgcolor: $brand-primary;
-$navsbmenu-anchor-color: #00ac9e;
 
-/*----------- General variables ---------*/
-
-$anchor_color: $brand-primary;
-// $body-txt-color: #777;
-
-
-/*----------- Mixins ---------*/
-
-@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
-  @if ($inset != "") {
-    -webkit-box-shadow: $inset $x $y $blur $color;
-    -moz-box-shadow: $inset $x $y $blur $color;
-    box-shadow: $inset $x $y $blur $color;
-  } @else {
-    -webkit-box-shadow: $x $y $blur $color;
-    -moz-box-shadow: $x $y $blur $color;
-    box-shadow: $x $y $blur $color;
-  }
-}
 
 /*----------- Top bar ---------*/
 .navbar-brand img {

@@ -1,17 +1,20 @@
-// TODO: optimise this file
-
-//---------------- color variables
-
 $brand-primary: #03998D;
 
 $border-color: $gray-200;
 $dark-text-color: #999;
 $bright-text-color: $gray-200;//#ededed;
 $muted: $text-muted;
+$help-text: $gray-600;
 
 $company-color: #2B7EA0;
 $metric-color: #674EA7;
 $answer-color: #666666;
+
+
+// TODO: optimise this file
+
+//---------------- color variables
+
 $record-color: $answer-color;
 $topic-color: #D3741C;
 $company-group-color: #ED4D50;
@@ -23,9 +26,7 @@ $default-cardtype-color: $gray-800;
 
 $shadow-rgba: rgba(0, 0, 0, .4);
 
-
 $overview-color: #666;
-$help-text: $gray-600;
 
 $heading-color: $gray-700;
 $body-text-color: #495057;
@@ -67,8 +68,6 @@ $min-page-height: 1000px;
 
 $sub-text-size: 0.8em;
 
-
-
 @mixin ellipsis() {
   white-space: nowrap;
   overflow: hidden;
@@ -99,7 +98,6 @@ $sub-text-size: 0.8em;
 
 // ***Shadow- END***//
 
-
 //***Opacity***//
 
 @mixin opacity($opacity) {
@@ -109,3 +107,32 @@ $sub-text-size: 0.8em;
 }
 
 //***Opacity- END***//
+
+
+/*----------- Navigation color variables ---------*/
+$nav-srch-background: #fff;
+$nav-srch-txt-color: #a8a8a8;
+$navmenu-anchor-color: #fff;
+$navmenu-hover-bgcolor: $brand-primary;
+$navsbmenu-bgcolor: $brand-primary;
+$navsbmenu-anchor-color: #00ac9e;
+
+/*----------- General variables ---------*/
+
+$anchor_color: $brand-primary;
+// $body-txt-color: #777;
+
+
+/*----------- Mixins ---------*/
+
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
+  @if ($inset != "") {
+    -webkit-box-shadow: $inset $x $y $blur $color;
+    -moz-box-shadow: $inset $x $y $blur $color;
+    box-shadow: $inset $x $y $blur $color;
+  } @else {
+    -webkit-box-shadow: $x $y $blur $color;
+    -moz-box-shadow: $x $y $blur $color;
+    box-shadow: $x $y $blur $color;
+  }
+}
