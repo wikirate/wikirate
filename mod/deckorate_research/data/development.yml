@@ -3,6 +3,7 @@
   :type: :report_type
 
 - :name: Page-000053757
+  :skip: requirements
   :type: :source
   :codename: :opera_source
   :time: "+172800"
@@ -21,29 +22,30 @@
     :description: Opera Wikipedia article
     :year: |-
       1977
-      2000
       1991
       1992
-      2010
-      2014
-      2015
-      2002
+      2000
       2001
+      2002
+      2003
+      2004
+      2005
+      2006
+      2007
+      2008
+      2009
+      2010
       2011
       2012
       2013
-      2009
-      2008
-      2007
-      2006
-      2005
-      2004
-      2003
+      2014
+      2015
       2019
     :wikirate_link: https://thereaderwiki.com/en/Opera
     :file:
       :file: opera_source.pdf
 - :name: Page-000053756
+  :skip: requirements
   :type: :source
   :codename: :space_opera_source
   :time: "+86400"
@@ -57,6 +59,7 @@
       :file: space_opera_source.pdf
 
 - :name: Page-000053760
+  :skip: requirements
   :type: :source
   :codename: :apple_source
   :subfields:
@@ -80,14 +83,14 @@
     :wikirate_title: Star Wars
     :description: Star Wars Wikipedia article
     :year: |-
-      2008
       1977
+      1990
       2000
       2001
-      2005
-      1990
       2003
       2004
+      2005
+      2008
     :wikirate_link: https://thereaderwiki.com/en/Star_Wars
     :file:
       :file: star_wars_source.pdf
@@ -95,6 +98,7 @@
       Force Report
       Conflict Mineral Report
 - :name: Page-000053758
+  :skip: requirements
   :type: :source
   :codename: :darth_vader_source
   :subfields:

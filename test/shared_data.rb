@@ -46,7 +46,7 @@ class SharedData
       end
     end
 
-    def bookmarkings
+    def add_bookmarkings
       with_user "Joe Admin" do
         bookmark "Jedi+disturbances in the Force"
         bookmark "Jedi+Victims by Employees"

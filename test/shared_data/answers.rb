@@ -102,11 +102,11 @@ class SharedData
       end
 
       "Joe User+small multi".card.create_answers true do
-        Sony_Corporation "2010" => [1, 2]
+        Sony_Corporation "2010" => [1, 2].to_pointer_content
       end
 
       "Joe User+big multi".card.create_answers true do
-        Sony_Corporation "2010" => [1, 2]
+        Sony_Corporation "2010" => [1, 2].to_pointer_content
       end
 
       "Joe User+small single".card.create_answers true do
@@ -137,7 +137,7 @@ class SharedData
       end
     end
 
-    def relationship_answers
+    def add_relationship_answers
       Card["Jedi+more evil"].create_answers true do
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "yes" }
         Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
