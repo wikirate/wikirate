@@ -33,8 +33,8 @@ format :html do
 
   view :thumbnail_image do
     nest card.designer_image_card, view: thumbnail_image_view,
-         size: thumbnail_image_size,
-         title: "Designed by #{card.metric_designer}"
+                                   size: thumbnail_image_size,
+                                   title: "Designed by #{card.metric_designer}"
   end
 
   # not hacky??  inline-block doesn't achieve this?
