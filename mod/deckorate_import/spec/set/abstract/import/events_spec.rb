@@ -73,7 +73,9 @@ RSpec.describe Card::Set::Abstract::Import::Events do
 
   def create_import_file
     file_path = mod.subpath "data/files/answer_import_test/file.csv"
-    Card.create name: new_file_card_name, type: :answer_import, file: File.open(file_path)
+    Card.create name: new_file_card_name,
+                type: :answer_import,
+                answer_import: File.open(file_path)
   end
 
   # TODO: generalize so "#mod" always returns Cardio::Mod object for containing mod

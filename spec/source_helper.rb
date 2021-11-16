@@ -10,7 +10,7 @@ module SourceHelper
   end
 
   def new_source source, subcards: {}
-    Card.new type_id: Card::SourceID,
+    Card.new type: :source,
              skip: :requirements,
              subcards: source_subcard_args(source, subcards)
   end
