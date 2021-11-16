@@ -59,8 +59,8 @@ RSpec.describe Card::Set::Type::Source::Views do
         # "https://www.sample-videos.com/text/Sample-text-file-10kb.txt"
         @company = "Amazon.com, Inc."
         @topic = "Natural Resource Use"
-        @existing_source = create_source @url, subcards: { "+Company" => @company,
-                                                           "+Topic" => @topic }
+        @existing_source = create_source @url, subfields: { "Company" => @company,
+                                                            "Topic" => @topic }
         @result = @existing_source.format._render_preview
       end
       it "wraps plain text in a <pre> tag" do
