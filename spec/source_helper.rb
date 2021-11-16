@@ -6,10 +6,12 @@ module SourceHelper
     Card::Auth.as_bot { new_source(*args).save! }
   end
 
-  def new_source file_or_url, subfields: {}
-    subfields[:wikirate_file] ||= source_file_args(file_or_url)
-    Card.new type: :source, skip: :requirements, subfields: subfields
+  def new_source file_or_url, fields: {}
+    fields[:file] ||= source_file_args(file_or_url)
+    Card.new type: :source, skip: :requirements, subfields: fields
   end
+
+  private
 
   def source_file_args file_or_url
     file_or_url ||= DEFAULT_SOURCE_URL
