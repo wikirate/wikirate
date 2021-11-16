@@ -72,7 +72,7 @@ RSpec.describe Card::Set::Abstract::Import::Events do
   end
 
   def create_import_file
-    file_path = mod.subpath "data/files/answer_import_test/file.csv"
+    file_path = mod.subpath "data/files/answer_import_test/answer_import.csv"
     Card.create name: new_file_card_name,
                 type: :answer_import,
                 answer_import: File.open(file_path)
