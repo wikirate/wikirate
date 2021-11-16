@@ -1,5 +1,3 @@
-require "./spec/support/company_ids"
-
 RSpec.describe Calculate::Calculator::Input do
   include_context "with company ids"
 
