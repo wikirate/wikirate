@@ -2,7 +2,7 @@
 - :name: Hologram Report
   :type: :report_type
 
-- :name: Page-000053757
+- :name: Source-000000001
   :skip: requirements
   :type: :source
   :codename: :opera_source
@@ -44,7 +44,7 @@
     :wikirate_link: https://thereaderwiki.com/en/Opera
     :file:
       :file: opera_source.pdf
-- :name: Page-000053756
+- :name: Source-000000002
   :skip: requirements
   :type: :source
   :codename: :space_opera_source
@@ -58,7 +58,7 @@
     :file:
       :file: space_opera_source.pdf
 
-- :name: Page-000053760
+- :name: Source-000000003
   :skip: requirements
   :type: :source
   :codename: :apple_source
@@ -68,7 +68,7 @@
     :wikirate_link: https://thereaderwiki.com/en/Apple
     :file:
       :file: apple_source.pdf
-- :name: Page-000053759
+- :name: Source-000000004
   :type: :source
   :codename: :star_wars_source
   :subfields:
@@ -97,7 +97,7 @@
     :report_type: |-
       Force Report
       Conflict Mineral Report
-- :name: Page-000053758
+- :name: Source-000000005
   :skip: requirements
   :type: :source
   :codename: :darth_vader_source
@@ -109,3 +109,10 @@
     :file:
       :file: darth_vader_source.pdf
     :report_type: Force Report
+
+- :name:
+    - :source
+    - :type
+    - :autoname
+  :type: :phrase
+  :content: Source-000000006
