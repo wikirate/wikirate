@@ -1,3 +1,5 @@
+# TODO: abstract and move to card-mod-csv_import
+
 RSpec.describe Card::Set::Right::ImportMap do
   def card_subject
     @card_subject ||= Card["answer import test"].import_map_card

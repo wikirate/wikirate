@@ -10,7 +10,7 @@ module SourceHelper
   end
 
   def new_source source, subcards: {}
-    Card.new type_id: Card::SourceID,
+    Card.new type: :source,
              skip: :requirements,
              subcards: source_subcard_args(source, subcards)
   end
@@ -18,10 +18,6 @@ module SourceHelper
   def source_subcard_args source, subcards={}
     source ||= "http://www.google.com/?q=wikirate"
     subcards.reverse_merge! "+File" => source_file_args(source)
-    # "+Title"       => "Sample Source Title",
-    # "+Year"        => "1999",
-    # "+Company"     => "Death Star",
-    # "+Report Type" => "Creature Report"
   end
 
   def source_file_args source

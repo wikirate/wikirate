@@ -1,0 +1,8 @@
+---
+- :name:
+  - Jedi
+  - :researcher
+  :type: :list
+  :content: |-
+    Joe User
+    Joe Camel
