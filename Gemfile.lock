@@ -211,6 +211,7 @@ PATH
   specs:
     decko-cucumber (0.13.4)
       capybara-puma (~> 1.0)
+      cucumber-create-meta (!= 6.0.3)
       cucumber-rails (~> 2.3)
       database_cleaner (~> 2.0)
       email_spec (~> 2.2)
