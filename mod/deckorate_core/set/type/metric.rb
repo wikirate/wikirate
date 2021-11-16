@@ -1,7 +1,6 @@
 require "savanna-outliers"
 
-include_set Abstract::DesignerAndTitle
-include_set Abstract::MetricThumbnail
+include_set Abstract::Thumbnail
 include_set Abstract::TwoColumnLayout
 include_set Abstract::BsBadge
 include_set Abstract::Bookmarkable
