@@ -4,72 +4,70 @@
     - big single
     - Sony Corporation
     - '2010'
+    - :value
   :user: Joe User
-  :subfields:
-    :value: '4'
+  :content: '4'
 - :name:
     - Joe User
     - big single
     - Sony Corporation
     - '2008'
+    - :value
   :user: Joe User
-  :subfields:
-    :value: '5'
+  :content: '5'
 - :name:
     - Joe User
     - big single
     - Sony Corporation
     - '2007'
+    - :discussion
   :user: Joe User
-  :subfields:
-    :discussion: 'comment'
+  :discussion: comment
 - :name:
     - Joe User
     - big single
     - Sony Corporation
     - '2005'
+    - :checked_by
   :user: Joe User
-  :subfields:
-    :checked_by:
-      :trigger: :add_check
+  :trigger: :add_check
 - :name:
     - Joe User
     - big single
     - Sony Corporation
     - '2003'
+    - :checked_by
   :user: Joe User
-  :subfields:
-    :checked_by: request
+  :content: request
 - :name:
     - Joe User
     - big single
     - Sony Corporation
     - '2009'
+    - :value
   :user: Joe Admin
-  :subfields:
-    :value: '5'
+  :content: '5'
 - :name:
     - Joe User
     - big single
     - Sony Corporation
     - '2008'
+    - :value
   :user: Joe Admin
-  :subfields:
-    :value: '6'
+  :content: '6'
 - :name:
     - Joe User
     - big single
     - Sony Corporation
     - '2006'
+    - :discussion
   :user: Joe Admin
-  :subfields:
-    :discussion: 'content'
+  :content: 'content'
 - :name:
     - Joe User
     - big single
     - Sony Corporation
     - '2004'
+    - :checked_by
   :user: Joe Admin
-  :subfields:
-    :checked_by:
-      :trigger: :add_check
+  :trigger: :add_check

@@ -5,6 +5,7 @@ event :add_check_request, :prepare_to_store,
 end
 
 event :add_check, :prepare_to_store, on: :save, trigger: :required do
+  binding.pry
   check_requested? ? (self.content = user.name) : add_item(user.name)
 end
 
