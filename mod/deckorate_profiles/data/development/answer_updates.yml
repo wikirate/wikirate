@@ -1,0 +1,73 @@
+---
+- :name:
+    - Joe User
+    - big single
+    - Sony Corporation
+    - '2010'
+    - :value
+  :user: Joe User
+  :content: '4'
+- :name:
+    - Joe User
+    - big single
+    - Sony Corporation
+    - '2008'
+    - :value
+  :user: Joe User
+  :content: '5'
+- :name:
+    - Joe User
+    - big single
+    - Sony Corporation
+    - '2007'
+    - :discussion
+  :user: Joe User
+  :discussion: comment
+- :name:
+    - Joe User
+    - big single
+    - Sony Corporation
+    - '2005'
+    - :checked_by
+  :user: Joe User
+  :trigger: :add_check
+- :name:
+    - Joe User
+    - big single
+    - Sony Corporation
+    - '2003'
+    - :checked_by
+  :user: Joe User
+  :content: request
+- :name:
+    - Joe User
+    - big single
+    - Sony Corporation
+    - '2009'
+    - :value
+  :user: Joe Admin
+  :content: '5'
+- :name:
+    - Joe User
+    - big single
+    - Sony Corporation
+    - '2008'
+    - :value
+  :user: Joe Admin
+  :content: '6'
+- :name:
+    - Joe User
+    - big single
+    - Sony Corporation
+    - '2006'
+    - :discussion
+  :user: Joe Admin
+  :content: 'content'
+- :name:
+    - Joe User
+    - big single
+    - Sony Corporation
+    - '2004'
+    - :checked_by
+  :user: Joe Admin
+  :trigger: :add_check
