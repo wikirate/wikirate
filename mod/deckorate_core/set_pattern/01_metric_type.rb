@@ -14,10 +14,7 @@ def metric_type card_or_name
     metric_type_card_from_subfield(current_card) ||
     metric_type_card_from_act(metric_type_name)
 
-  v = type_from_card_content(metric_type_card) || DEFAULT_METRIC_TYPE
-  # puts "metric_name: #{metric_name}; v = #{v}".red
-  # binding.pry if metric_name == "Jedi+more evil" && v != "Relationship"
-  v
+  type_from_card_content(metric_type_card) || DEFAULT_METRIC_TYPE
 end
 
 def current_card_and_name card_or_name
