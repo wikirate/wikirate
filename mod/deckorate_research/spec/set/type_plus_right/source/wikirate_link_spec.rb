@@ -13,5 +13,4 @@ RSpec.describe Card::Set::TypePlusRight::Source::WikirateLink do
     page = create_source HTML_URL
     expect(page).to have_file_trait.of_size(be > 100)
   end
-  
 end
