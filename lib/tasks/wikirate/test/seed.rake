@@ -61,8 +61,6 @@ namespace :wikirate do
           Cardio::Mod::Eat.new(verbose: true).up
           Card # I don't fully understand why this is necessary, but without it there
           # is an autoloading problem.
-
-          Rake::Task["wikirate:test:seed:add_wikirate_test_data"].invoke
           Rake::Task["wikirate:test:seed:update_assets"].invoke
         end
       end
@@ -77,14 +75,6 @@ namespace :wikirate do
           ENV["SEED_MACHINE_OUTPUT_TO"] = "test"
           Rake::Task["card:asset:refresh!"].execute
           Rake::Task["wikirate:test:dump"].execute
-        end
-      end
-
-      desc "add wikirate test data to test database"
-      task add_wikirate_test_data: :environment do |task|
-        ensure_env :test, task do
-          require "#{Decko.root}/test/shared_data.rb"
-          SharedData.add_wikirate_data
         end
       end
     end
