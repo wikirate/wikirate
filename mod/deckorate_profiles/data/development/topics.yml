@@ -19,7 +19,7 @@
 - :name: discussed topic
   :user: Joe User
   :subfields:
-    :discussion: :comment
+    :discussion: comment
 
 # FIXME: use card[add]
 # (and get rid of Jedi+disturbances in the Force)
