@@ -3,7 +3,7 @@
 describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
   describe "discuss badges" do
     let(:badge_action) { :discuss }
-    let(:sample_acting_card) { sample_metric_answer.field(:discussion, new: {}) }
+    let(:sample_acting_card) { sample_answer.field(:discussion, new: {}) }
 
     def execute_awarded_action count
       answer_card(count).field(:discussion, new: {})

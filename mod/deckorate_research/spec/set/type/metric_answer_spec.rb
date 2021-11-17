@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::Type::MetricAnswer do
-  let(:answer) { sample_metric_answer }
+  let(:answer) { sample_answer }
   let(:metric) { sample_metric }
   let(:company) { sample_company }
 
