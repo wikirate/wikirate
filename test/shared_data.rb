@@ -8,7 +8,6 @@ class SharedData
   # on the date above 3 tests will fail
   # (if you reseed the test database)
 
-  extend Answers
   extend ProfileSections
 
   class << self
@@ -17,7 +16,8 @@ class SharedData
     def add_wikirate_data
       puts "adding wikirate data".green
       setup
-      add :answers, :bookmarkings, :profile_sections
+      # add :relationship_answers
+      add :profile_sections
     end
 
     def setup
@@ -43,16 +43,6 @@ class SharedData
     def bookmark name
       Card::Auth.as_bot do
         Card::Auth.current.bookmarks_card.add_item! name
-      end
-    end
-
-    def add_bookmarkings
-      with_user "Joe Admin" do
-        bookmark "Jedi+disturbances in the Force"
-        bookmark "Jedi+Victims by Employees"
-      end
-      with_user "Joe User" do
-        bookmark "Jedi+disturbances in the Force"
       end
     end
   end
