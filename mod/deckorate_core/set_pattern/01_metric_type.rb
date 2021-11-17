@@ -15,7 +15,6 @@ def metric_type card_or_name
     metric_type_card_from_act(metric_type_name)
 
   type_from_card_content(metric_type_card) || DEFAULT_METRIC_TYPE
-
 end
 
 def current_card_and_name card_or_name
