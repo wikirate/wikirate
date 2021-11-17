@@ -1,5 +1,5 @@
 .checked-by-action.pt-4
   - if user_checked?
-    = check_button "Uncheck", flag: :uncheck
+    = check_button "Uncheck", :drop_check
   - else
-    = check_button "I checked this answer", flag: :check
+    = check_button "I checked this answer", :add_check
