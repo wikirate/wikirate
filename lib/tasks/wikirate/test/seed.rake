@@ -72,6 +72,7 @@ namespace :wikirate do
         Cardio.config.delaying = false
 
         ensure_env :test, task do
+          Rake::Task["card:mod:uninstall"].execute
           Rake::Task["card:mod:install"].execute
           ENV["SEED_MACHINE_OUTPUT_TO"] = "test"
           Rake::Task["card:asset:refresh!"].execute
