@@ -17,8 +17,8 @@ class SharedData
     def add_wikirate_data
       puts "adding wikirate data".green
       setup
-      add :relationship_answers
-      # add :profile_sections
+      # add :relationship_answers
+      add :profile_sections
     end
 
     def setup
