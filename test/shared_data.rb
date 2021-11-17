@@ -8,7 +8,6 @@ class SharedData
   # on the date above 3 tests will fail
   # (if you reseed the test database)
 
-  extend Answers
   extend ProfileSections
 
   class << self
