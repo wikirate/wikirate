@@ -3,7 +3,7 @@
 RSpec.describe Card::Set::TypePlusRight::MetricAnswer::CheckedBy::AwardBadges do
   describe "check badges" do
     let(:badge_action) { :check }
-    let(:sample_acting_card) { sample_metric_answer.field(:checked_by, new: {}) }
+    let(:sample_acting_card) { sample_answer.field(:checked_by, new: {}) }
 
     def execute_awarded_action count
       answer_card(count).field(:checked_by, new: {})

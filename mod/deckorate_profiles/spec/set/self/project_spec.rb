@@ -1,9 +1,9 @@
 RSpec.describe Card::Set::Self::Project, "project report queries" do
   describe "created query" do
     include_context "report query", :project, :created
-    variants submitted: ["created project", "submitted project"],
+    variants submitted: "created project",
              organized: "organized project",
-             all: 3
+             all: 2
   end
 
   describe "updated query" do

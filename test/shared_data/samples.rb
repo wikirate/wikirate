@@ -20,12 +20,6 @@ class SharedData
       METRIC_COUNT
     end
 
-    # cards only exist in testing db
-    def sample_note num=1
-      notes = ["Death Star uses dark side of the Force", "Fruits are round"]
-      Card[notes[num - 1]]
-    end
-
     def sample_company
       "Death Star".card
     end
@@ -47,22 +41,14 @@ class SharedData
       #sample_metric(value_type).random_value_card
     end
 
-    def sample_dataset
-      Card["Evil Dataset"]
-    end
-
     def sample_project
-      Card["Evil Project"]
+      "Evil Project".card
     end
 
     # @param source [String] existing examples you can choose from
     # are :space_opera, :opera, :apple, and :star_wars
     def sample_source source=:opera
       Card[:"#{source}_source"]
-    end
-
-    def sample_metric_answer value_type=:free_text
-      Card["#{METRIC_NAMES[value_type]}+Death_Star+1977"]
     end
 
     private
