@@ -43,7 +43,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
       cb_card = answer_card.fetch :checked_by, new: { content: "Joe User" }
       cb_card.save!
       cb_card.clear_subcards
-      cb_card.update! trigger: :uncheck
+      cb_card.update! trigger: :drop_check
       cb_card
     end
 
