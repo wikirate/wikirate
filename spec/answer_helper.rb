@@ -56,8 +56,6 @@ module AnswerHelper
   end
 
   def check_answer answer_card
-    Card::Env.with_params set_flag: "check" do
-      answer_card.checked_by_card.update!({})
-    end
+    answer_card.checked_by_card.update! trigger: :add_check
   end
 end
