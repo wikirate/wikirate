@@ -113,18 +113,18 @@ class SharedData
       #   Sony_Corporation "2010" => 1
       # end
 
-      # with_joe_user do
-      #   "Joe User+big single".card.create_answers true do
-      #     Sony_Corporation "2010" => 1,
-      #                      "2009" => 9,
-      #                      "2008" => 8,
-      #                      "2007" => 7,
-      #                      "2006" => 6,
-      #                      "2005" => 5,
-      #                      "2004" => 4,
-      #                      "2003" => 3
-      #   end
-      # end
+      with_joe_user do
+        "Joe User+big single".card.create_answers true do
+          Sony_Corporation "2010" => 1,
+                           "2009" => 9,
+                           "2008" => 8,
+                           "2007" => 7,
+                           "2006" => 6,
+                           "2005" => 5,
+                           "2004" => 4,
+                           "2003" => 3
+        end
+      end
 
       # Card[:company_address].create_answers(true) do
       #   SPECTRE "1977" => "Baker Street, London"
