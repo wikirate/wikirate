@@ -125,6 +125,12 @@ class SharedData
                            "2003" => 3
         end
       end
+
+      Card[:company_address].create_answers(true) do
+        SPECTRE "1977" => "Baker Street, London"
+        Monster_Inc "1977" => "Alderaan"
+        Google_LLC 2000 => "Mountain View"
+      end
     end
 
     def add_calculated_answers
@@ -148,12 +154,6 @@ class SharedData
                 "2000" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier",
                             "Google LLC" => "Tier 2 Supplier" }
         Monster_Inc "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" }
-      end
-
-      Card[:company_address].create_answers(true) do
-        SPECTRE "1977" => "Baker Street, London"
-        Monster_Inc "1977" => "Alderaan"
-        Google_LLC 2000 => "Mountain View"
       end
 
       Card[:commons_has_brands].create_answers(true) do
