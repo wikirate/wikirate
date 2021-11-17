@@ -51,7 +51,7 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "finds partial match" do
-        expect(filter_by(company_name: "at"))
+        expect(filter_by(company_name: "at").sort)
           .to eq ["Death Star+2001", "Slate Rock and Gravel Company+2005"]
       end
 
@@ -67,12 +67,12 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "finds exact match by dataset" do
-      expect(filter_by(dataset: "Evil Dataset"))
+      expect(filter_by(dataset: "Evil Dataset").sort)
         .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
 
     it "finds exact match by company_category" do
-      expect(filter_by(company_category: "A"))
+      expect(filter_by(company_category: "A").sort)
         .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
 
@@ -197,7 +197,7 @@ RSpec.describe Card::AnswerQuery do
 
     it "dataset and company_category" do
       expect(filter_by(dataset: "Evil Dataset",
-                       company_category: "A"))
+                       company_category: "A").sort)
         .to eq(["Death Star+2001", "SPECTRE+2000"])
     end
     it "year and company_category" do
