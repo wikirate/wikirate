@@ -6,4 +6,8 @@ class CodeCardCleanup < Cardio::Migration
   ]
   def up
   end
+
+  def remove_ccc_codenames
+    Card.where("codename like 'ccc_%'").update_all codename: null
+  end
 end
