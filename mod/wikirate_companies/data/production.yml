@@ -5,4 +5,11 @@
 - :name: Company Group
   :type: :cardtype
   :codename: :company_group
-# - regions
+- :name: Specification
+  :codename: :specification
+- :name: Region
+  :type: :cardtype
+  :codename: :region
+#- :name: Jurisdiction
+#  :type: :cardtype
+#  :codename: :jurisdiction
