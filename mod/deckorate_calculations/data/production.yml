@@ -1,3 +1,13 @@
 ---
 - :name: Calculation
   :codename: :calculation
+
+- :name: Yearly Variable
+  :type: :cardtype
+  :codename: :yearly_variable
+- :name: Yearly Value
+  :type: :cardtype
+  :codename: :yearly_value
+- :name: Yearly Answer
+  :type: :cardtype
+  :codename: :yearly_answer

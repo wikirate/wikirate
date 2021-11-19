@@ -1,0 +1,4 @@
+---
+- :name: Badge
+  :type: :cardtype
+  :codename: :badge
