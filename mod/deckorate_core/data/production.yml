@@ -2,9 +2,6 @@
 - :name: Metric Title
   :type: :cardtype
   :codename: :metric_title
-- :name: Topic
-  :type: :cardtype
-  :codename: :wikirate_topic
 - :name: Answer
   :type: :cardtype
   :codename: :metric_answer
