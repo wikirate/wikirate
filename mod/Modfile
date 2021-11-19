@@ -30,7 +30,7 @@ mod "deckorate_profiles"
 mod "wikirate_companies"
 mod "wikirate_assets" # TODO: rename to wikirate_theme
 mod "wikirate_homepage"
-# mod "wikirate" # TODO
+mod "wikirate"
 
 # refactor away
 mod "conversation" # upgrade discussions/comments

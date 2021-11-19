@@ -1,0 +1,10 @@
+---
+- :name: wikirate footer
+  :type: :html
+  :codename: :wikirate_footer
+- :name: wikirate license
+  :type: :html
+  :codename: :wikirate_license
+- :name: nav menu
+  :type: :html
+  :codename: :nav_menu
