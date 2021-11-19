@@ -1,0 +1,8 @@
+---
+- :name: WikiRate Team
+  :codename: :wikirate_team
+- :name: WikiRat
+  :codename: :wikirat
+  :type: :image
+  :storage: :coded
+  :image: wikirat/image.jpg

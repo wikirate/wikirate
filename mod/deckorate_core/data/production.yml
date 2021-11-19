@@ -1,0 +1,41 @@
+---
+- :name: Metric Title
+  :type: :cardtype
+  :codename: :metric_title
+- :name: Answer
+  :type: :cardtype
+  :codename: :metric_answer
+- :name: Metric type
+  :type: :cardtype
+  :codename: :metric_type_type
+- :name: Relationship Answer
+  :type: :cardtype
+  :codename: :relationship_answer
+- :name: Year
+  :type: :cardtype
+  :codename: :year
+- :name: Company
+  :type: :cardtype
+  :codename: :wikirate_company
+- :name: Record
+  :type: :cardtype
+  :codename: :record
+- :name: Metric
+  :type: :cardtype
+  :codename: :metric
+
+- :name: NumberValue
+  :type: :cardtype
+  :codename: :number_value
+- :name: MoneyValue
+  :type: :cardtype
+  :codename: :money_value
+- :name: CategoryValue
+  :type: :cardtype
+  :codename: :category_value
+- :name: MultiCategoryValue
+  :type: :cardtype
+  :codename: :multi_category_value
+- :name: FreeTextValue
+  :type: :cardtype
+  :codename: :free_text_value
