@@ -4,5 +4,5 @@
 - :name: WikiRat
   :codename: :wikirat
   :type: :image
-  :storage: :coded
+  :storage_type: :coded
   :image: wikirat/image.jpg
