@@ -5,3 +5,6 @@
 - :name: Source
   :type: :cardtype
   :codename: :source
+- :name: Website
+  :type: :cardtype
+  :codename: :wikirate_website
