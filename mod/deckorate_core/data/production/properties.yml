@@ -1,0 +1,28 @@
+---
+- :name: Steward
+  :codename: :steward
+- :name: value options
+  :codename: :value_options
+- :name: unit
+  :codename: :unit
+- :name: methodology
+  :codename: :methodology
+- :name: "*metric type"
+  :codename: :metric_type
+- :name: value type
+  :type: :pointer
+  :codename: :value_type
+  :content: |-
+    Number
+    Money
+    Category
+    Multi-Category
+    Free Text
+- :name: Questions
+  :codename: :question
+- :name: About
+  :codename: :about
+- :name: Range
+  :codename: :range
+- :name: Designer
+  :codename: :designer

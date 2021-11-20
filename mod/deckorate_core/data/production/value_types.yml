@@ -1,0 +1,33 @@
+---
+- :name: NumberValue
+  :type: :cardtype
+  :codename: :number_value
+- :name: MoneyValue
+  :type: :cardtype
+  :codename: :money_value
+- :name: CategoryValue
+  :type: :cardtype
+  :codename: :category_value
+- :name: MultiCategoryValue
+  :type: :cardtype
+  :codename: :multi_category_value
+- :name: FreeTextValue
+  :type: :cardtype
+  :codename: :free_text_value
+
+- :name: Number
+  :type: :cardtype
+  :codename: :number
+- :name: Money
+  :codename: :money
+- :name: Category
+  :type: :pointer
+  :codename: :category
+  :content: |-
+    Yes
+    No
+    Unknown
+- :name: Multi-Category
+  :codename: :multi_category
+- :name: Free Text
+  :codename: :free_text
