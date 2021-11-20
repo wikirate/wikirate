@@ -7,6 +7,11 @@
 - :name: Research Policy
   :type: :cardtype
   :codename: :research_policy
-- :name: Report Type
-  :type: :cardtype
-  :codename: :report_type
+- :name: activity
+  :codename: :activity
+- :name: report search
+  :codename: :report_search
+- :name: Metrics Designed
+  :codename: :metrics_designed
+- :name: Projects Organized
+  :codename: :projects_organized

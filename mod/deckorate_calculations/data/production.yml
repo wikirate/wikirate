@@ -11,3 +11,23 @@
 - :name: Yearly Answer
   :type: :cardtype
   :codename: :yearly_answer
+
+- :name: overridden value
+  :codename: :overridden_value
+- :name: "*metric variables"
+  :codename: :metric_variables
+- :name: hybrid
+  :codename: :hybrid
+
+- :name: Formula
+  :type: :metric_type_type
+  :codename: :formula
+- :name: WikiRating
+  :type: :metric_type_type
+  :codename: :wiki_rating
+- :name: Score
+  :type: :metric_type_type
+  :codename: :score
+- :name: Descendant
+  :type: :metric_type_type
+  :codename: :descendant

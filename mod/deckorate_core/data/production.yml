@@ -1,4 +1,5 @@
 ---
+# Cardtypes
 - :name: Metric Title
   :type: :cardtype
   :codename: :metric_title
@@ -23,19 +24,16 @@
 - :name: Metric
   :type: :cardtype
   :codename: :metric
+# misc
+- :name: values
+  :codename: :value
+- :name: Unknown
+  :codename: :unknown
+- :name: Researched
+  :type: :metric_type_type
+  :codename: :researched
+- :name: unpublished
+  :codename: :unpublished
 
-- :name: NumberValue
-  :type: :cardtype
-  :codename: :number_value
-- :name: MoneyValue
-  :type: :cardtype
-  :codename: :money_value
-- :name: CategoryValue
-  :type: :cardtype
-  :codename: :category_value
-- :name: MultiCategoryValue
-  :type: :cardtype
-  :codename: :multi_category_value
-- :name: FreeTextValue
-  :type: :cardtype
-  :codename: :free_text_value
+- value_types
+- properties
