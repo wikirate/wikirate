@@ -2,7 +2,7 @@
 
 # all badges related to metrics
 class BadgeSquad
-  extend Abstract::BadgeSquad
+  extend Card::BadgeSquad
 
   add_badge_line :create,
                  metric_creator: 1,

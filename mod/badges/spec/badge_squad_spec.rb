@@ -1,8 +1,8 @@
-describe Card::Set::Abstract::BadgeSquad do
+describe Card::BadgeSquad do
   let(:squad) do
     # a badge squad for testing
     class TestSquad
-      extend Card::Set::Abstract::BadgeSquad
+      extend Card::BadgeSquad
       add_badge_line :create,
                      basic: 10, pointer: 20, phrase: 30,
                      &create_type_count(1)
