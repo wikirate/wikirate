@@ -22,7 +22,6 @@ module BadgeSquad
   def add_affinity_badge_line action, map
     return unless Codename.id :badge # ie, don't explode when seeding.
 
-    binding.pry
     @map ||= {}
     @map[action] = {}
     map.each do |affinity, affinity_badge_line|

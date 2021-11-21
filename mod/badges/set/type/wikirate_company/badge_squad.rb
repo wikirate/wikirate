@@ -2,7 +2,7 @@
 
 # all badges related to companies
 class BadgeSquad
-  if defined? Card::WikirateCompanyID
+  # if defined? Card::WikirateCompanyID
     extend Abstract::BadgeSquad
 
     add_badge_line :create,
@@ -16,5 +16,5 @@ class BadgeSquad
                    how_lo_can_you_go: 10,
                    logo_and_behold: 100,
                    &type_plus_right_edited_count(:wikirate_company, :image)
-  end
+  # end
 end

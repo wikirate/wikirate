@@ -35,5 +35,19 @@
 - :name: unpublished
   :codename: :unpublished
 
+
+# (duplicate)
+- :name: Wikipedia
+  :codename: :wikipedia
+# can't create company without wikipedia, so this can't be a company yet
+
+
+- :name: Research Policy
+  :type: :cardtype
+  :codename: :research_policy
+- :name: Report Type
+  :type: :cardtype
+  :codename: :report_type
+
 - value_types
 - properties
