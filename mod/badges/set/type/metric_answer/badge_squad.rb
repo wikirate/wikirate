@@ -2,7 +2,7 @@
 
 # all badges related to metric answers
 class BadgeSquad
-  extend Abstract::BadgeSquad
+  extend Card::BadgeSquad
 
   def self.research_badges bronze, silver, gold
     { researcher: bronze,
@@ -15,19 +15,19 @@ class BadgeSquad
                    checker: 1,
                    check_pro: 50,
                    check_mate: 250,
-                   &type_plus_right_count(MetricAnswerID, CheckedByID, :refer_to)
+                   &type_plus_right_count(:metric_answer, :checked_by, :refer_to)
 
     add_badge_line :update,
                    answer_chancer: 1,
                    answer_enhancer: 25,
                    answer_advancer: 100,
-                   &type_plus_right_count(MetricAnswerID, ValueID, :updated_by)
+                   &type_plus_right_count(:metric_answer, :value, :updated_by)
 
     add_badge_line :discuss,
                    commentator: 1,
                    commentary_team: 50,
                    expert_commentary: 250,
-                   &type_plus_right_edited_count(MetricAnswerID, DiscussionID)
+                   &type_plus_right_edited_count(:metric_answer, :discussion)
   end
 
   add_affinity_badge_line :create,

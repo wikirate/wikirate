@@ -5,3 +5,20 @@
 - :name: Source
   :type: :cardtype
   :codename: :source
+- :name: Website
+  :type: :cardtype
+  :codename: :wikirate_website
+- :name: checked by
+  :codename: :checked_by
+- :name: check requested by
+  :codename: :check_requested_by
+- :name: request
+  :codename: :request
+- :name: Link
+  :codename: :wikirate_link
+- :name: Tag
+  :codename: :wikirate_tag
+- :name: Title
+  :codename: :wikirate_title
+
+# - relationships

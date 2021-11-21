@@ -1,11 +1,17 @@
 ---
+- :name: Research Group
+  :type: :cardtype
+  :codename: :research_group
 - :name: Jedi
   :type: :research_group
+
 - :name:
     - Clean_Clothes_Campaign
     - Address
   :type: :metric
-  :codename: :company_address
+  :subfields:
+    :metric_type: Researched
+    :value_type: Free Text
 - :name:
     - Jedi
     - more evil
@@ -171,122 +177,100 @@
       no
     :research_policy: Community Assessed
     :wikirate_topic: Force
-- :name:
-    - Clean_Clothes_Campaign
-    - Surveyed Workers with Temporary Contract
-  :type: :metric
-  :codename: :ccc_temporary_workers
-- :name:
-    - Clean_Clothes_Campaign
-    - Workers Surveyed Neither Male or Female
-  :type: :metric
-  :codename: :ccc_neither_male_or_female
-- :name:
-    - Clean_Clothes_Campaign
-    - Surveyed Workers with Permanent Contract
-  :type: :metric
-  :codename: :ccc_permanent_workers
-- :name:
-    - Clean_Clothes_Campaign
-    - Public Commitment on Living Wage
-  :type: :metric
-  :codename: :ccc_public_commitment
-- :name:
-    - Clean_Clothes_Campaign
-    - Living Wage Action Plan
-  :type: :metric
-  :codename: :ccc_action_plan
-- :name:
-    - Clean_Clothes_Campaign
-    - Isolating Labour Cost
-  :type: :metric
-  :codename: :ccc_isolating_labour_cost
-- :name:
-    - Clean_Clothes_Campaign
-    - Top 3 Production Countries
-  :type: :metric
-  :codename: :ccc_top_production_countries
-- :name:
-    - Clean_Clothes_Campaign
-    - Profit EUR
-  :type: :metric
-  :codename: :ccc_profit
-- :name:
-    - Clean_Clothes_Campaign
-    - Revenue EUR
-  :type: :metric
-  :codename: :ccc_revenue
-- :name:
-    - Clean_Clothes_Campaign
-    - Workers Who Had Pregnancy Leave
-  :type: :metric
-  :codename: :ccc_workers_who_had_pregnancy_leave
-- :name:
-    - Clean_Clothes_Campaign
-    - Surveyed Workers Who Know Which Brands They Produce For
-  :type: :metric
-  :codename: :ccc_surveyed_workers_who_know_which_brands_they_produce_for
-- :name:
-    - Clean_Clothes_Campaign
-    - Collective Bargaining Agreement
-  :type: :metric
-  :codename: :ccc_collective_bargaining_agreement
-- :name:
-    - Clean_Clothes_Campaign
-    - Living Wages Paid Score
-  :type: :metric
-  :codename: :ccc_living_wages_paid_score
-- :name:
-    - Clean_Clothes_Campaign
-    - Policy Promise Score
-  :type: :metric
-  :codename: :ccc_policy_promise_score
-- :name:
-    - Clean_Clothes_Campaign
-    - Supply Chain Transparency Score
-  :type: :metric
-  :codename: :ccc_supply_chain_transparency_score
-- :name:
-    - Commons
-    - Has Brands
-  :type: :metric
-  :codename: :commons_has_brands
-  :subfields:
-    :metric_type: Relationship
-    :inverse_title: Is Brand Of
-- :name:
-    - Commons
-    - Supplied by
-  :type: :metric
-  :codename: :commons_supplied_by
-  :subfields:
-    :metric_type: Relationship
-    :inverse_title: Supplier of
-- :name:
-    - Clean_Clothes_Campaign
-    - male Workers
-  :type: :metric
-  :codename: :ccc_male_workers
-- :name:
-    - Clean_Clothes_Campaign
-    - Female Workers
-  :type: :metric
-  :codename: :ccc_female_workers
-- :name:
-    - Clean_Clothes_Campaign
-    - Number of Workers
-  :type: :metric
-  :codename: :ccc_number_of_workers
-- :name:
-    - :open_corporates
-    - Is Brand Of
-  :type: :metric
-  :codename: :oc_is_brand_of
-- :name:
-    - :open_corporates
-    - Has Brands
-  :type: :metric
-  :codename: :oc_has_brands
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Surveyed Workers with Temporary Contract
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Workers Surveyed Neither Male or Female
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Surveyed Workers with Permanent Contract
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Public Commitment on Living Wage
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Living Wage Action Plan
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Isolating Labour Cost
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Top 3 Production Countries
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Profit EUR
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Revenue EUR
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Workers Who Had Pregnancy Leave
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Surveyed Workers Who Know Which Brands They Produce For
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Collective Bargaining Agreement
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Living Wages Paid Score
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Policy Promise Score
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Supply Chain Transparency Score
+#  :type: :metric
+#- :name:
+#    - Commons
+#    - Has Brands
+#  :type: :metric
+#  :subfields:
+#    :metric_type: Relationship
+#    :inverse_title: Is Brand Of
+#- :name:
+#    - Commons
+#    - Supplied by
+#  :type: :metric
+#  :subfields:
+#    :metric_type: Relationship
+#    :inverse_title: Supplier of
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - male Workers
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Female Workers
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Number of Workers
+#  :type: :metric
+#- :name:
+#    - :open_corporates
+#    - Is Brand Of
+#  :type: :metric
+#- :name:
+#    - :open_corporates
+#    - Has Brands
+#  :type: :metric
 - :name:
     - Global Reporting Initiative
     - Sector Industry

@@ -1,4 +1,4 @@
-class AddMetricLookupTable < ActiveRecord::Migration[6.1]
+class AddMetricLookupTable < Cardio::Migration::DeckStructure
   def change
     drop_table :metrics if table_exists? :metrics
     create_table :metrics do |t|
