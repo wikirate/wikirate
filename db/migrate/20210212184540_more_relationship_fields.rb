@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class MoreRelationshipFields < Cardio::Migration
+class MoreRelationshipFields < Cardio::Migration::DeckStructure
 #   def up
 #     add_column :relationships, :checkers, :string
 #     add_column :relationships, :check_requester, :string

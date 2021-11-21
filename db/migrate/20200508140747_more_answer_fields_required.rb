@@ -1,4 +1,4 @@
-class MoreAnswerFieldsRequired < ActiveRecord::Migration[6.0]
+class MoreAnswerFieldsRequired < Cardio::Migration::DeckStructure
   REQUIRED_ANSWER_COLUMNS =
     %i[metric_id designer_id company_id metric_type_id year
        metric_name company_name record_name creator_id]
