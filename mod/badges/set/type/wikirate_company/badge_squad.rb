@@ -3,7 +3,7 @@
 # all badges related to companies
 class BadgeSquad
   if defined? Card::WikirateCompanyID
-    extend Abstract::BadgeSquad
+    extend Card::BadgeSquad
 
     add_badge_line :create,
                    company_register: 1,
