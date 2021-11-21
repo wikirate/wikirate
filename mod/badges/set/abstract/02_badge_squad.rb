@@ -13,11 +13,16 @@ module BadgeSquad
   attr_reader :badge_level, :levels, :levels_descending, :badge_action
 
   def add_badge_line action, badge_line, &count_cql
+    return unless Codename.id :badge # ie, don't explode when seeding.
+
     @map ||= {}
     @map[action] = Abstract::BadgeLine.new badge_line, &count_cql
   end
 
   def add_affinity_badge_line action, map
+    return unless Codename.id :badge # ie, don't explode when seeding.
+
+    binding.pry
     @map ||= {}
     @map[action] = {}
     map.each do |affinity, affinity_badge_line|
@@ -25,20 +30,20 @@ module BadgeSquad
     end
   end
 
-  def create_type_count type_id
+  def create_type_count type
     lambda do |user_id|
       {
-        type_id: type_id,
+        type: type,
         created_by: user_id
       }
     end
   end
 
-  def type_plus_right_count type_id, right_id, relation_to_user
+  def type_plus_right_count type, right, relation_to_user
     lambda do |user_id|
       {
-        left: { type_id: type_id },
-        right_id: right_id,
+        left: { type: type },
+        right: right,
         relation_to_user => user_id
       }
     end
