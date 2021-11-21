@@ -2,7 +2,7 @@
 
 # all badges related to metric answers
 class BadgeSquad
-  extend Abstract::BadgeSquad
+  extend Card::BadgeSquad
 
   def self.research_badges bronze, silver, gold
     { researcher: bronze,
