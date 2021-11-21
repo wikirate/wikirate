@@ -5,12 +5,10 @@ class Card
   class BadgeLine
     LEVELS = [:bronze, :silver, :gold].freeze
 
-    Badge = Struct.new :name, :codename, :threshold, :level, :level_index
-
-    attr_reader :badge_names
+    Badge = Struct.new :codename, :threshold, :level, :level_index
 
     def initialize map, &block
-      @badge_names = []
+      @badge_codes = []
       @badge = {}
       map.each.with_index do |(codename, threshold), i|
         initialize_badge codename, threshold, i
@@ -19,7 +17,6 @@ class Card
     end
 
     def initialize_badge codename, threshold, index
-      name = name_from_codename codename
       if threshold.is_a? Array
         threshold, level = threshold
         level_index = LEVELS.index(level)
@@ -28,18 +25,21 @@ class Card
         level = LEVELS[index]
       end
 
-      badge = Badge.new name, codename, threshold, level, level_index
+      badge = Badge.new codename, threshold, level, level_index
       validate_threshold badge.threshold
       add_badge badge
     end
 
     def add_badge badge
-      @badge_names << badge.name
-      @badge[badge.name] = badge
+      @badge_codes << badge.codename
       @badge[badge.codename] = badge
       @badge[badge.codename.to_s] = badge
       @badge[badge.threshold] = badge
       @badge[badge.level] = badge
+    end
+
+    def badge_names
+      @badge_codes.map(&:cardname)
     end
 
     def validate_threshold threshold
@@ -49,7 +49,7 @@ class Card
 
     def earns_badge count=nil
       count ||= count_valued_actions
-      @badge[count]&.name
+      @badge[count]&.codename&.cardname
     end
 
     def count_valued_actions user_id=nil
@@ -70,7 +70,7 @@ class Card
     end
 
     def earned_badge_name badge, count
-      badge.name if badge && badge.threshold <= count
+      badge.codename&.cardname if badge && badge.threshold <= count
     end
 
     def threshold badge_mark
@@ -120,23 +120,8 @@ class Card
         end
     end
 
-    def name_from_codename codename
-      badge_names_map[codename] || codename.cardname
-    end
-
     def cache
       Card::Cache[BadgeLine]
-    end
-
-    def badge_names_map
-      @badge_names_map ||= cache.fetch("badge_names_map") do
-        Card.where(type_id: Card::BadgeID).pluck(:name, :codename)
-            .each_with_object({}) do |(name, codename), h|
-          # I was using `type_id: Card::BadgeID` instead of `codename:nil`,
-          # but that broke some (weird?) tests
-          h[codename.to_sym] = name
-        end
-      end
     end
   end
 end
