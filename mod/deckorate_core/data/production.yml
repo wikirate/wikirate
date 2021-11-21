@@ -40,7 +40,8 @@
 - :name: Wikipedia
   :codename: :wikipedia
 # can't create company without wikipedia, so this can't be a company yet
-
+- :name: hybrid
+  :codename: :hybrid
 
 - :name: Research Policy
   :type: :cardtype
@@ -51,3 +52,4 @@
 
 - value_types
 - properties
+- relationships

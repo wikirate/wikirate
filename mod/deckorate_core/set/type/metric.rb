@@ -11,7 +11,7 @@ include_set Abstract::Publishable
 card_accessor :metric_type, type: :pointer, default: "Researched"
 card_accessor :about
 card_accessor :methodology
-card_accessor :value_type
+card_accessor :value_type, type: :pointer
 card_accessor :value_options
 card_accessor :dataset
 card_accessor :metric_answer

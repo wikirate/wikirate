@@ -1,10 +1,17 @@
 ---
+- :name: Research Group
+  :type: :cardtype
+  :codename: :research_group
 - :name: Jedi
   :type: :research_group
+
 - :name:
     - Clean_Clothes_Campaign
     - Address
   :type: :metric
+  :subfields:
+    :metric_type: Researched
+    :value_type: Free Text
 - :name:
     - Jedi
     - more evil
@@ -170,100 +177,100 @@
       no
     :research_policy: Community Assessed
     :wikirate_topic: Force
-- :name:
-    - Clean_Clothes_Campaign
-    - Surveyed Workers with Temporary Contract
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Workers Surveyed Neither Male or Female
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Surveyed Workers with Permanent Contract
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Public Commitment on Living Wage
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Living Wage Action Plan
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Isolating Labour Cost
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Top 3 Production Countries
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Profit EUR
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Revenue EUR
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Workers Who Had Pregnancy Leave
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Surveyed Workers Who Know Which Brands They Produce For
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Collective Bargaining Agreement
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Living Wages Paid Score
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Policy Promise Score
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Supply Chain Transparency Score
-  :type: :metric
-- :name:
-    - Commons
-    - Has Brands
-  :type: :metric
-  :subfields:
-    :metric_type: Relationship
-    :inverse_title: Is Brand Of
-- :name:
-    - Commons
-    - Supplied by
-  :type: :metric
-  :subfields:
-    :metric_type: Relationship
-    :inverse_title: Supplier of
-- :name:
-    - Clean_Clothes_Campaign
-    - male Workers
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Female Workers
-  :type: :metric
-- :name:
-    - Clean_Clothes_Campaign
-    - Number of Workers
-  :type: :metric
-- :name:
-    - :open_corporates
-    - Is Brand Of
-  :type: :metric
-- :name:
-    - :open_corporates
-    - Has Brands
-  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Surveyed Workers with Temporary Contract
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Workers Surveyed Neither Male or Female
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Surveyed Workers with Permanent Contract
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Public Commitment on Living Wage
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Living Wage Action Plan
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Isolating Labour Cost
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Top 3 Production Countries
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Profit EUR
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Revenue EUR
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Workers Who Had Pregnancy Leave
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Surveyed Workers Who Know Which Brands They Produce For
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Collective Bargaining Agreement
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Living Wages Paid Score
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Policy Promise Score
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Supply Chain Transparency Score
+#  :type: :metric
+#- :name:
+#    - Commons
+#    - Has Brands
+#  :type: :metric
+#  :subfields:
+#    :metric_type: Relationship
+#    :inverse_title: Is Brand Of
+#- :name:
+#    - Commons
+#    - Supplied by
+#  :type: :metric
+#  :subfields:
+#    :metric_type: Relationship
+#    :inverse_title: Supplier of
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - male Workers
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Female Workers
+#  :type: :metric
+#- :name:
+#    - Clean_Clothes_Campaign
+#    - Number of Workers
+#  :type: :metric
+#- :name:
+#    - :open_corporates
+#    - Is Brand Of
+#  :type: :metric
+#- :name:
+#    - :open_corporates
+#    - Has Brands
+#  :type: :metric
 - :name:
     - Global Reporting Initiative
     - Sector Industry

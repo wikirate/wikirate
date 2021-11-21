@@ -14,3 +14,10 @@
   :codename: :relationship_answer
 - :name: related company
   :codename: :related_company
+
+- :name:
+    - :inverse
+    - :right
+    - :default
+  :type: :pointer
+  

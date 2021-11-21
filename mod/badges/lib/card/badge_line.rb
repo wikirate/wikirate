@@ -50,6 +50,8 @@ class Card
     def earns_badge count=nil
       count ||= count_valued_actions
       @badge[count]&.codename&.cardname
+    rescue
+      puts "badge failure"
     end
 
     def count_valued_actions user_id=nil
