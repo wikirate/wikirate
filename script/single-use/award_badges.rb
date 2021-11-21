@@ -55,7 +55,7 @@ class AwardBadges
       { metric: :vote, metric_answer: [:check, :discuss, :update],
         project: :discuss, wikirate_company: :logo }.each do |type, actions|
         Array(actions).each do |action|
-          badge_names = Card::Set::Abstract::BadgeSquad
+          badge_names = Card::BadgeSquad
                         .for_type(type)
                         .all_earned_badges action, nil, nil, user_id
           award_badges! user_id, type, badge_names
@@ -135,7 +135,7 @@ class AwardBadges
 
     def award_affinity_answer_badges_if_earned! count, user_id,
                                                 affinity_type, affinity_name
-      hierarchy = Card::Set::Abstract::BadgeSquad.for_type(:metric_answer)
+      hierarchy = Card::BadgeSquad.for_type(:metric_answer)
       badge_names = hierarchy.all_earned_badges(:create, affinity_type, count)
                              .map do |badge_name|
         "#{affinity_name}+#{badge_name}+#{affinity_type} badge"
@@ -144,7 +144,7 @@ class AwardBadges
     end
 
     def award_badges_if_earned! count, user_id, type_code, affinity=nil
-      badge_names = Card::Set::Abstract::BadgeSquad
+      badge_names = Card::BadgeSquad
                     .for_type(type_code).all_earned_badges :create, affinity, count
       award_badges! user_id, type_code, badge_names
     end

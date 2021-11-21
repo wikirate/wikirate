@@ -2,7 +2,7 @@
 
 # all badges related to projects
 class BadgeSquad
-  extend Abstract::BadgeSquad
+  extend Card::BadgeSquad
 
   add_badge_line :create,
                  project_launcher: [1, :silver],

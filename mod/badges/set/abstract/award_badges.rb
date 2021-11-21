@@ -3,7 +3,7 @@ def self.included host_class
   host_class.class_eval do
     define_method :badge_squad do
       @badge_squad ||=
-        Card::Set::Abstract::BadgeSquad.for_type host_class.squad_type
+        Card::BadgeSquad.for_type host_class.squad_type
     end
   end
 end
