@@ -47,15 +47,19 @@ class Card
       type_plus_right_count(type_id, right_id, :edited_by)
     end
 
-    def bookmark_count type_id
+    def bookmark_count type
       lambda do |user_id|
-        user = user_id ? Card[user_id] : Auth.current
-        next nil unless (bookmarks_card_id = user&.try(:bookmarks_card)&.id)
-        {
-          type_id: type_id,
-          referred_to_by: bookmarks_card_id
-        }
+        for_bookmarker user_id do |bookmarks_card_id|
+          { type: type, referred_to_by: bookmarks_card_id }
+        end
       end
+    end
+
+    def for_bookmarker user_id
+      user = user_id ? Card[user_id] : Auth.current
+      return unless (bookmarks_card_id = user&.try(:bookmarks_card)&.id)
+
+      yield bookmarks_card_id
     end
 
     # returns a badge if the threshold is reached
