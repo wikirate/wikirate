@@ -76,7 +76,7 @@ format :html do
   end
 
   def has_badges?
-    cardtype_codename.in? Abstract::BadgeSquad::BADGE_TYPES
+    cardtype_codename.in? Card::BadgeSquad::BADGE_TYPES
   end
 
   def report_title_link

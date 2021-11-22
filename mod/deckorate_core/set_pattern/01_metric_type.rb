@@ -48,6 +48,9 @@ end
 
 def pattern_applies? card
   card.type_id == Card::MetricID
+rescue NameError
+  # eg when seeding and metric card doesn't exist yet.
+  false
 end
 
 def prototype_args anchor
