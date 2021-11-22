@@ -26,20 +26,15 @@ class Card
 
     def create_type_count type
       lambda do |user_id|
-        {
-          type: type,
-          created_by: user_id
-        }
+        { type: type, created_by: user_id }
       end
     end
 
     def type_plus_right_count type, right, relation_to_user
       lambda do |user_id|
-        {
-          left: { type: type },
+        { left: { type: type },
           right: right,
-          relation_to_user => user_id
-        }
+          relation_to_user => user_id }
       end
     end
 
@@ -95,6 +90,7 @@ class Card
               !@map[action][affinity_type].is_a?(BadgeLine)
           "affinity type #{affinity_type} not supported for action #{action}"
         end
+      binding.pry if error
       raise StandardError, error if error
     end
 
