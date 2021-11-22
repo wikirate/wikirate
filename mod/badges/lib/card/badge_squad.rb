@@ -95,6 +95,7 @@ class Card
               !@map[action][affinity_type].is_a?(BadgeLine)
           "affinity type #{affinity_type} not supported for action #{action}"
         end
+      binding.pry if error
       raise StandardError, error if error
     end
 
