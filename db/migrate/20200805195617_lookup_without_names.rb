@@ -1,4 +1,4 @@
-class LookupWithoutNames < ActiveRecord::Migration[6.0]
+class LookupWithoutNames < Cardio::Migration::DeckStructure
   def change
     add_column :answers, :title_id, :integer
 

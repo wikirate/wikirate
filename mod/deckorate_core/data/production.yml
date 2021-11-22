@@ -1,0 +1,57 @@
+---
+# Cardtypes
+- :name: Metric Title
+  :type: :cardtype
+  :codename: :metric_title
+- :name: Answer
+  :type: :cardtype
+  :codename: :metric_answer
+- :name: Metric type
+  :type: :cardtype
+  :codename: :metric_type_type
+- :name: Relationship Answer
+  :type: :cardtype
+  :codename: :relationship_answer
+- :name: Year
+  :type: :cardtype
+  :codename: :year
+- :name: Company
+  :type: :cardtype
+  :codename: :wikirate_company
+- :name: Record
+  :type: :cardtype
+  :codename: :record
+- :name: Metric
+  :type: :cardtype
+  :codename: :metric
+# misc
+- :name: values
+  :codename: :value
+- :name: Unknown
+  :codename: :unknown
+- :name: Researched
+  :type: :metric_type_type
+  :codename: :researched
+- :name: unpublished
+  :codename: :unpublished
+
+
+# (duplicate)
+- :name: Wikipedia
+  :codename: :wikipedia
+# can't create company without wikipedia, so this can't be a company yet
+- :name: hybrid
+  :codename: :hybrid
+- :name: Company Group
+  :type: :cardtype
+  :codename: :company_group
+- :name: Research Policy
+  :type: :cardtype
+  :codename: :research_policy
+- :name: Report Type
+  :type: :cardtype
+  :codename: :report_type
+
+- value_types
+- properties
+- relationships

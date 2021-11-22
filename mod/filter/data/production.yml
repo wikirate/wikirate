@@ -1,0 +1,7 @@
+---
+- :name: browse company filter
+  :codename: :browse_company_filter
+- :name: browse_company_group_filter
+  :codename: :browse_company_group_filter
+- :name: browse metric filter
+  :codename: :browse_metric_filter

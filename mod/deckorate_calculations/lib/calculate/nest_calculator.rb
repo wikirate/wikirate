@@ -6,6 +6,8 @@ class Calculate
       safety_checks
       @errors.concat input.validate
       @errors.empty?
+    rescue
+      binding.pry
     end
 
     def safety_checks
