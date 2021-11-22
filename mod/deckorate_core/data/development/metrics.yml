@@ -181,6 +181,21 @@
     :research_policy: Community Assessed
     :wikirate_topic: Force
 #- :name:
+#    - Commons
+#    - Has Brands
+#  :type: :metric
+#  :subfields:
+#    :metric_type: Relationship
+#    :inverse_title: Is Brand Of
+- :name:
+    - Commons
+    - Supplied by
+  :type: :metric
+  :subfields:
+    :metric_type: Relationship
+    :inverse_title: Supplier of
+
+#- :name:
 #    - Clean_Clothes_Campaign
 #    - Surveyed Workers with Temporary Contract
 #  :type: :metric
@@ -240,20 +255,6 @@
 #    - Clean_Clothes_Campaign
 #    - Supply Chain Transparency Score
 #  :type: :metric
-#- :name:
-#    - Commons
-#    - Has Brands
-#  :type: :metric
-#  :subfields:
-#    :metric_type: Relationship
-#    :inverse_title: Is Brand Of
-#- :name:
-#    - Commons
-#    - Supplied by
-#  :type: :metric
-#  :subfields:
-#    :metric_type: Relationship
-#    :inverse_title: Supplier of
 #- :name:
 #    - Clean_Clothes_Campaign
 #    - male Workers

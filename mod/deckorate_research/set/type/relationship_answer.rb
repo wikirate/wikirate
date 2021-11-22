@@ -8,6 +8,10 @@ include_set Abstract::DesignerPermissions
 include_set Abstract::Lookup
 include_set Abstract::LookupEvents
 
+card_accessor :checked_by, type: :list
+card_accessor :check_requested_by, type: :pointer
+card_accessor :source, type: :list
+
 require_field :value
 require_field :source, when: :source_required?
 
@@ -83,6 +87,8 @@ end
 
 def inverse_answer_name
   [metric_card.inverse, related_company, year].join "+"
+  rescue
+    binding.pry
 end
 
 def inverse_answer_id

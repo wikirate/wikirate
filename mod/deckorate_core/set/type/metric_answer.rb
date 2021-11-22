@@ -4,6 +4,10 @@ include_set Abstract::Lookup
 
 attr_writer :answer
 
+card_accessor :checked_by, type: :list
+card_accessor :check_requested_by, type: :pointer
+card_accessor :source, type: :list
+
 event :delete_answer_lookup, :finalize, on: :delete do
   Answer.delete_for_card id
 end

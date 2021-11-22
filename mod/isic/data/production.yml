@@ -1,22 +1,22 @@
 ---
-- :name:
-  - ISIC
-  - Industry Division
-  - :formula
-  :type: :plain_text
-  :codename: :isic_division_formula
-  :content: "{{ISIC+Industry Group}}"
-- :name:
-  - ISIC
-  - Industry Group
-  - :formula
-  :type: :plain_text
-  :codename: :isic_group_formula
-  :content: "{{ISIC+Industry Class}}"
-- :name:
-  - ISIC
-  - Industry Section
-  - :formula
-  :type: :plain_text
-  :codename: :isic_section_formula
-  :content: "{{ISIC+Industry Division}}"
+#- :name:
+#    - ISIC
+#    - Industry Group
+#    - :formula
+#  :type: :plain_text
+#  :codename: :isic_group_formula
+#  :content: "{{ISIC+Industry Class}}"
+#- :name:
+#  - ISIC
+#  - Industry Division
+#  - :formula
+#  :type: :plain_text
+#  :codename: :isic_division_formula
+#  :content: "{{ISIC+Industry Group}}"
+#- :name:
+#  - ISIC
+#  - Industry Section
+#  - :formula
+#  :type: :plain_text
+#  :codename: :isic_section_formula
+#  :content: "{{ISIC+Industry Division}}"

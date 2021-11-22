@@ -33,3 +33,10 @@
     :alias:
       - Google
       - Alphabet
+
+- :name: Sony Corporation
+  :type: :wikirate_company
+- :name: Samsung
+  :type: :wikirate_company
+- :name: Apple Inc.
+  :type: :wikirate_company
