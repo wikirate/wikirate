@@ -1,6 +1,3 @@
-card_accessor :checked_by, type: :list
-card_accessor :check_requested_by, type: :pointer
-card_accessor :source, type: :list
 card_accessor :discussion
 
 # for speed, virtual card's _values_ are held both in the content of the _answer_ card

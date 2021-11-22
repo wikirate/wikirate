@@ -636,27 +636,26 @@
   :subfields:
     :value: 'yes'
     :source: Source-000000004
-- :name:
-  - Global Reporting Initiative
-  - Fuel consumption from non-renewable sources (G4-EN3-a)
-  - AT&T Inc.
-  - '2016'
-  :type: :metric_answer
-  :subfields:
-    :value: Unknown
-    :discussion: "<hr>\r\n<p><span>It has disappeared from the 2016 data report that
-      in 2014 </span>if<span> provided in detail, i</span><span>n 2014 it appeared
-      the information as \"energy consumption whiten the organization\"...</span></p>\r\n<p><span>We
-      see that comparing the third document (citations) respect the one of 2014</span></p>\r\n<p>From
-      what I have been able to read, the 2014 data no longer appear in the same way.<span><span></span></span></p>\r\n<p><span>I've
-      been searching and trying to clarify it but I do not get reliable results.</span></p>\r\n<hr>\r\n<p>It
-      has disappeared from the 2016 data report that in 2014 if provided in detail,
-      in 2014 it appeared the information as \"energy consumption whiten the organization\"...</p>\r\n<p> </p>\r\n<p>We
-      see that comparing the third document (citations) respect the one of 2014</p>\r\n<p> </p>\r\n<p>From
-      what I have been able to read, the 2014 data no longer appear in the same way.</p>\r\n<p> </p>\r\n<p>I've
-      been searching and trying to clarify it but I do not get reliable results.</p>\r\n<div
-      class=\"w-comment-author\">[[Borja]].....2018-02-27 17:22:07 UTC</div>"
-    :source: |-
-      Page-000053746
-      Page-000053758
-      Page-000053747
+#- :name:
+#  - Global Reporting Initiative
+#  - Fuel consumption from non-renewable sources (G4-EN3-a)
+#  - AT&T Inc.
+#  - '2016'
+#  :type: :metric_answer
+#  :subfields:
+#    :value: Unknown
+#    :discussion: "<hr>\r\n<p><span>It has disappeared from the 2016 data report that
+#      in 2014 </span>if<span> provided in detail, i</span><span>n 2014 it appeared
+#      the information as \"energy consumption whiten the organization\"...</span></p>\r\n<p><span>We
+#      see that comparing the third document (citations) respect the one of 2014</span></p>\r\n<p>From
+#      what I have been able to read, the 2014 data no longer appear in the same way.<span><span></span></span></p>\r\n<p><span>I've
+#      been searching and trying to clarify it but I do not get reliable results.</span></p>\r\n<hr>\r\n<p>It
+#      has disappeared from the 2016 data report that in 2014 if provided in detail,
+#      in 2014 it appeared the information as \"energy consumption whiten the organization\"...</p>\r\n<p> </p>\r\n<p>We
+#      see that comparing the third document (citations) respect the one of 2014</p>\r\n<p> </p>\r\n<p>From
+#      what I have been able to read, the 2014 data no longer appear in the same way.</p>\r\n<p> </p>\r\n<p>I've
+#      been searching and trying to clarify it but I do not get reliable results.</p>\r\n<div
+#      class=\"w-comment-author\">[[Borja]].....2018-02-27 17:22:07 UTC</div>"
+#    :source: |-
+#      Source-000000005
+#
