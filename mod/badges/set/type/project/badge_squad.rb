@@ -2,13 +2,13 @@
 
 # all badges related to projects
 class BadgeSquad
-  extend Abstract::BadgeSquad
+  extend Card::BadgeSquad
 
   add_badge_line :create,
                  project_launcher: [1, :silver],
-                 &create_type_count(ProjectID)
+                 &create_type_count(:project)
 
   add_badge_line :discuss,
                  project_q_a: 1,
-                 &type_plus_right_edited_count(ProjectID, DiscussionID)
+                 &type_plus_right_edited_count(:project, :discussion)
 end

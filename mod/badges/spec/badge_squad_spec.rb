@@ -1,8 +1,8 @@
-describe Card::Set::Abstract::BadgeSquad do
+describe Card::BadgeSquad do
   let(:squad) do
     # a badge squad for testing
     class TestSquad
-      extend Card::Set::Abstract::BadgeSquad
+      extend Card::BadgeSquad
       add_badge_line :create,
                      basic: 10, pointer: 20, phrase: 30,
                      &create_type_count(1)
@@ -17,6 +17,7 @@ describe Card::Set::Abstract::BadgeSquad do
   describe "map" do
     it "has correct thresholds" do
       expect(squad.map[:create].to_h(:threshold))
+        .to eq(basic: 10, pointer: 20, phrase: 30)
     end
     it "has correct affinitiy thresholds" do
       expect(squad.map[:update][:designer].to_h(:threshold))
