@@ -87,8 +87,6 @@ end
 
 def inverse_answer_name
   [metric_card.inverse, related_company, year].join "+"
-  rescue
-    binding.pry
 end
 
 def inverse_answer_id

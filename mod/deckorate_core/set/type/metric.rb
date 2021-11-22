@@ -30,6 +30,9 @@ card_accessor :relationship_answer, type: :search
 card_accessor :year, type: :list
 card_accessor :company_group, type: :list
 
+# TODO: make this work (was breaking seeding)
+# require_field :metric_type
+
 def lookup_class
   ::Metric
 end

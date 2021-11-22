@@ -17,6 +17,7 @@ describe Card::BadgeSquad do
   describe "map" do
     it "has correct thresholds" do
       expect(squad.map[:create].to_h(:threshold))
+        .to eq(basic: 10, pointer: 20, phrase: 30)
     end
     it "has correct affinitiy thresholds" do
       expect(squad.map[:update][:designer].to_h(:threshold))

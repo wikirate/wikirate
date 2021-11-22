@@ -50,7 +50,7 @@ class Card
     def earns_badge count=nil
       count ||= count_valued_actions
       @badge[count]&.codename&.cardname
-    rescue
+    rescue Card::Error::CodenameNotFound
       puts "badge failure"
     end
 
@@ -88,7 +88,7 @@ class Card
     end
 
     def badge mark
-      # FIXME - this is a temporary solution so we can keep supporting name arguments
+      # FIXME: this is a temporary solution so we can keep supporting name arguments
       @badge[mark] || @badge.fetch(mark.to_name.code) do
         raise ArgumentError, "badge #{mark} doesn't exist"
       end
