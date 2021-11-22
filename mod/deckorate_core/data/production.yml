@@ -42,7 +42,9 @@
 # can't create company without wikipedia, so this can't be a company yet
 - :name: hybrid
   :codename: :hybrid
-
+- :name: Company Group
+  :type: :cardtype
+  :codename: :company_group
 - :name: Research Policy
   :type: :cardtype
   :codename: :research_policy
