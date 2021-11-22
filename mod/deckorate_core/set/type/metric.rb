@@ -11,10 +11,10 @@ include_set Abstract::Publishable
 card_accessor :metric_type, type: :pointer, default: "Researched"
 card_accessor :about
 card_accessor :methodology
-card_accessor :value_type
-card_accessor :value_options
-card_accessor :dataset
-card_accessor :metric_answer
+card_accessor :value_type, type: :pointer
+card_accessor :value_options, type: :list
+card_accessor :dataset, type: :search
+card_accessor :metric_answer, type: :search
 card_accessor :unit
 card_accessor :range
 card_accessor :hybrid, type: :toggle
@@ -24,11 +24,14 @@ card_accessor :score, type: :pointer
 card_accessor :steward, type: :pointer
 card_accessor :wikirate_topic, type: :list
 card_accessor :research_policy, type: :pointer
-card_accessor :relationship_answer
+card_accessor :relationship_answer, type: :search
 
 # applicability
 card_accessor :year, type: :list
 card_accessor :company_group, type: :list
+
+# TODO: make this work (was breaking seeding)
+# require_field :metric_type
 
 def lookup_class
   ::Metric
