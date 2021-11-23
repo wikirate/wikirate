@@ -1,4 +1,14 @@
 ---
+- :name: value type
+  :type: :list
+  :codename: :value_type
+  :content: |-
+    Number
+    Money
+    Category
+    Multi-Category
+    Free Text
+
 - :name: NumberValue
   :type: :cardtype
   :codename: :number_value
@@ -31,3 +41,17 @@
   :codename: :multi_category
 - :name: Free Text
   :codename: :free_text
+
+
+- :name: |-
+    :metric
+    :value_type
+    :type_plus_right
+    :content_options
+  :type: :list
+  :content: |-
+    Number
+    Money
+    Category
+    Multi-Category
+    Free Text
