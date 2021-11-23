@@ -43,11 +43,11 @@
   :codename: :free_text
 
 
-- :name: |-
-    :metric
-    :value_type
-    :type_plus_right
-    :content_options
+- :name:
+    - :metric
+    - :value_type
+    - :type_plus_right
+    - :content_options
   :type: :list
   :content: |-
     Number
