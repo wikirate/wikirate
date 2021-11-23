@@ -12,7 +12,7 @@ card_accessor :alias, type: :list
 card_accessor :metric_answer, type: :search_type
 card_accessor :image
 card_accessor :incorporation
-card_accessor :headquarters, type: :list
+card_accessor :headquarters, type: :pointer
 
 event :validate_company_name, :validate, changed: :name, on: :save do
   errors.add :name, "Use ＋ instead of + in company name" if name.compound?

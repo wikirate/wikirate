@@ -17,3 +17,11 @@
   :codename: :range
 - :name: Designer
   :codename: :designer
+
+- :name:
+    - :metric_type
+    - :right
+    - :create
+  :type: :list
+  :content:
+    - :anyone_signed_in
