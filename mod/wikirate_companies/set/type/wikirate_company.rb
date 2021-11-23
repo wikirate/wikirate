@@ -8,10 +8,11 @@ include_set Abstract::TwoColumnLayout
 
 include_set Abstract::Bookmarkable
 
-card_accessor :alias, type: ListID
+card_accessor :alias, type: :list
 card_accessor :metric_answer
 card_accessor :image
 card_accessor :incorporation
+card_accessor :headquarters, type: :list
 
 event :validate_company_name, :validate, changed: :name, on: :save do
   errors.add :name, "Use ＋ instead of + in company name" if name.compound?
