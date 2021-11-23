@@ -14,7 +14,10 @@
   :codename: :designer_badge
 
 
-
+- :name: Details
+  :codename: :details
+- :name: Organizer
+  :codename: :organizer
 
 # Cardtypes
 - :name: Metric Title
