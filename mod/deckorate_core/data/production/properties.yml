@@ -9,15 +9,6 @@
   :codename: :methodology
 - :name: "*metric type"
   :codename: :metric_type
-- :name: value type
-  :type: :pointer
-  :codename: :value_type
-  :content: |-
-    Number
-    Money
-    Category
-    Multi-Category
-    Free Text
 - :name: Questions
   :codename: :question
 - :name: About
