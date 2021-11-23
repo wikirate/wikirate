@@ -1,0 +1,42 @@
+- :name: Death Star
+  :type: :wikirate_company
+  :subfields:
+    :about: Kuuuhhh Shhhhhh Kuuuhhhh Shhhhh
+
+- :name: Monster Inc
+  :type: :wikirate_company
+  :subfields:
+    :about: We scare because we care.
+
+- :name: Slate Rock and Gravel Company
+  :type: :wikirate_company
+  :subfields:
+    :about: Yabba Dabba Doo!
+
+- :name: Los Pollos Hermanos
+  :type: :wikirate_company
+  :subfields:
+    :about: I'm the one who knocks
+
+- :name: SPECTRE
+  :type: :wikirate_company
+  :subfields:
+    :about: shaken not stirred
+
+- :name: Google LLC
+  :type: :wikirate_company
+  :subfields:
+    :about: don't be evil
+    :headquarters: California (United States)
+    :incorporation: Delaware (United States)
+    :open_corporates: 201727810678
+    :alias:
+      - Google
+      - Alphabet
+
+- :name: Sony Corporation
+  :type: :wikirate_company
+- :name: Samsung
+  :type: :wikirate_company
+- :name: Apple Inc.
+  :type: :wikirate_company

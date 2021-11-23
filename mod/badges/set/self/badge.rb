@@ -21,7 +21,7 @@ format :html do
   end
 
   def badge_cards squad_type
-    Abstract::BadgeSquad.for_type(squad_type).badge_names.map do |name|
+    BadgeSquad.for_type(squad_type).badge_names.map do |name|
       Card[name]
     end.compact
   end

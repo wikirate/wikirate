@@ -1,3 +1,7 @@
 ---
 - :name: Hologram Report
   :type: :report_type
+
+- sources
+- answers
+- relationship_answers

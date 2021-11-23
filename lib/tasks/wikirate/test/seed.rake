@@ -54,16 +54,22 @@ namespace :wikirate do
 
       desc "add updated seed data"
       task update: :environment do |task|
+        puts "Card before Cardio: #{Object.const_defined? :Card}"
         Cardio.config.delaying = false
 
         ensure_env :test, task do
-          Rake::Task["wikirate:test:load_dump"].invoke(migrated_dump_path)
-          Cardio::Mod::Eat.new(verbose: true).up
-          Card # I don't fully understand why this is necessary, but without it there
-          # is an autoloading problem.
+          # Rake::Task["wikirate:test:load_dump"].invoke(migrated_dump_path)
+          puts "Card before seed: #{Object.const_defined? :Card}"
+          Rake::Task["decko:seed"].invoke
+          puts "Card before migrate: #{Object.const_defined? :Card}"
+          Rake::Task["card:migrate:deck_structure"].invoke
+          puts "Card after migrate: #{Object.const_defined? :Card}"
 
-          Rake::Task["wikirate:test:seed:add_wikirate_test_data"].invoke
-          Rake::Task["wikirate:test:seed:update_assets"].invoke
+          # Cardio::Mod::Eat.new(verbose: true).up
+          # Cardio::Mod::Eat.new.up
+          # Card # I don't fully understand why this is necessary, but without it there
+          # # is an autoloading problem.
+          # Rake::Task["wikirate:test:seed:update_assets"].invoke
         end
       end
 
@@ -72,18 +78,11 @@ namespace :wikirate do
         Cardio.config.delaying = false
 
         ensure_env :test, task do
+          Rake::Task["card:mod:uninstall"].execute
           Rake::Task["card:mod:install"].execute
           ENV["SEED_MACHINE_OUTPUT_TO"] = "test"
           Rake::Task["card:asset:refresh!"].execute
           Rake::Task["wikirate:test:dump"].execute
-        end
-      end
-
-      desc "add wikirate test data to test database"
-      task add_wikirate_test_data: :environment do |task|
-        ensure_env :test, task do
-          require "#{Decko.root}/test/shared_data.rb"
-          SharedData.add_wikirate_data
         end
       end
     end

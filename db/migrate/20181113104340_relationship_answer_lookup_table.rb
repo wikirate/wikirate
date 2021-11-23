@@ -1,4 +1,4 @@
-class RelationshipAnswerLookupTable < ActiveRecord::Migration[5.2]
+class RelationshipAnswerLookupTable < Cardio::Migration::DeckStructure
   def up
     drop_table :relationships if table_exists? :relationships
     create_table :relationships do |t|
