@@ -2,7 +2,6 @@
 
 class AddCompanySearch < Cardio::Migration
   def up
-    ensure_code_card "Company Search"
     update_card "specification", name: "Specification"
     ensure_card %i[company_search right default],
                 type_id: Card::SearchTypeID
@@ -14,7 +13,6 @@ class AddCompanySearch < Cardio::Migration
                 type_id: Card::SearchTypeID,
                 content: '{"type":"Company", "sort":"name"}'
 
-    ensure_code_card "Featured"
     ensure_card %i[company_group featured],
                 type_id: Card::PointerID
     ensure_card %i[company_group featured self content_options],
