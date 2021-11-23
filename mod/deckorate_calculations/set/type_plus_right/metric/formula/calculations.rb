@@ -9,8 +9,6 @@ def calculator_class
   end
 end
 
-event :update_metric_answers, :integrate, # _with_delay,
-      on: :save, changed: :content, when: :content? do
-  binding.pry
+event :update_metric_answers, :integrate, on: :save, changed: :content, when: :content? do
   metric_card.deep_answer_update
 end
