@@ -1,4 +1,27 @@
 ---
+# move this!!
+- :name: Home
+  :codename: :homepage
+- :name: Badge
+  :type: :cardtype
+  :codename: :badge
+- badges
+- :name: Badges earned
+  :codename: :badges_earned
+- :name: project badge
+  :codename: :project_badge
+- :name: company badge
+  :codename: :company_badge
+- :name: designer badge
+  :codename: :designer_badge
+
+
+
+- :name: Details
+  :codename: :details
+- :name: Organizer
+  :codename: :organizer
+
 # Cardtypes
 - :name: Metric Title
   :type: :cardtype
@@ -51,6 +74,11 @@
 - :name: Report Type
   :type: :cardtype
   :codename: :report_type
+- :name: Designer Assessed
+  :type: :report_type
+- :name: Community Assessed
+  :type: :report_type
+
 
 - value_types
 - properties
