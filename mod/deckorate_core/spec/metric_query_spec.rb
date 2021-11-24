@@ -24,8 +24,8 @@ RSpec.describe Card::MetricQuery do
   end
 
   example "name filter" do
-    expect(run(name: "Mark").first.metric_title)
-      .to eq("Marketing Score")
+    expect(run(name: "quart").map &:metric_title)
+      .to eq(["Headquarters Location"])
   end
 
   example "bookmark filter" do
