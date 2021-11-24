@@ -4,7 +4,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
                   company: sample_company.name, value: value
     card = metric.value_type_card
     Card::Auth.as_bot do
-      card.update! content: value_type
+      card.update content: value_type
     end
     card
   end
