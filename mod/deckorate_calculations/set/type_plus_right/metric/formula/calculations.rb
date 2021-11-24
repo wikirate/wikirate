@@ -9,6 +9,8 @@ def calculator_class
   end
 end
 
-event :update_metric_answers, :integrate, on: :save, changed: :content, when: :content? do
+event :update_metric_answers, :integrate_with_delay,
+      on: :save, changed: :content, when: :content? do
+  puts "CALCULATING".yellow
   metric_card.deep_answer_update
 end
