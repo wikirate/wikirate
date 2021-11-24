@@ -4,10 +4,10 @@ include_set Abstract::FilterableBar
 include_set Abstract::Bookmarkable
 include_set Abstract::CachedTypeOptions
 
-card_accessor :image, type: ImageID
-card_accessor :wikirate_company
+card_accessor :image, type: :image
+card_accessor :wikirate_company, type: :list
 card_accessor :specification
-card_accessor :wikirate_topic
+card_accessor :wikirate_topic, type: :list
 
 format :html do
   def header_body
