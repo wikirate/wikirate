@@ -14,9 +14,6 @@
   :codename: :company_badge
 - :name: designer badge
   :codename: :designer_badge
-- :name: Designer Assessed
-- :name: Community Assessed
-
 
 
 
@@ -77,6 +74,11 @@
 - :name: Report Type
   :type: :cardtype
   :codename: :report_type
+- :name: Designer Assessed
+  :type: :report_type
+- :name: Community Assessed
+  :type: :report_type
+
 
 - value_types
 - properties
