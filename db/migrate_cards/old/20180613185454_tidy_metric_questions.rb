@@ -2,8 +2,6 @@
 
 class TidyMetricQuestions < Cardio::Migration
   def up
-    merge_cards ["Metric+Score+*type plus right+*structure",
-                 "Metric+question+*type plus right+*default"]
     Card.search left: { type_id: Card::MetricID }, right_id: Card::QuestionID do |card|
       next if card.type_id == Card::PlainTextID
       card.update!(

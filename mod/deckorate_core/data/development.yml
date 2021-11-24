@@ -3,3 +3,10 @@
 - metrics
 - years
 - bookmarkings
+
+- :name:
+    - "Joe Admin"
+    - :account
+    - :api_key
+  :type: :phrase
+  :content: yabbadabbadoo9238749823742874
