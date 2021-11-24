@@ -75,9 +75,9 @@
   :type: :cardtype
   :codename: :report_type
 - :name: Designer Assessed
-  :type: :report_type
+  :type: :research_policy
 - :name: Community Assessed
-  :type: :report_type
+  :type: :research_policy
 
 
 - value_types
