@@ -1,7 +1,7 @@
 RSpec.describe Card::AnswerQuery do
   RESEARCHED_TITLES = ["Industry Class", "Sector Industry", "Weapons", "big multi",
                        "big single", "researched number 2", "researched number 3",
-                       "small multi", "small single"].freeze
+                       "small multi", "small single", "Address"].freeze
 
   let(:company) { Card[@company_name || "Death_Star"] }
   let(:all_metrics) { Card.search type_id: Card::MetricID, return: :name }

@@ -10,7 +10,6 @@ class RegionFields < Cardio::Migration
 
   def add_code_cards
     TYPE_MAP.each do |cardname, type|
-      ensure_code_card cardname
       ensure_card [cardname, :right, :default], type: type
       update_existing_cardtypes cardname, type
     end

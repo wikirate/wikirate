@@ -8,8 +8,6 @@ class FeaturedCards < Cardio::Migration
     answers: :metric_answer,
   }
   def up
-    ensure_code_card "Featured"
-    ensure_card %i[dataset featured], type: :list
     SPLIT.each do |old_code, new_left|
       Card[:"homepage_featured_#{old_code}"].update! codename: nil,
                                                      name: [new_left, :featured]

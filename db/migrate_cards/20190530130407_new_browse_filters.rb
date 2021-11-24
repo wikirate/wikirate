@@ -2,9 +2,6 @@
 
 class NewBrowseFilters < Cardio::Migration
   def up
-    ensure_code_card "browse research group filter"
-    ensure_code_card "browse project filter"
-
     update_counts :research_group, :researcher, :project
     update_counts :project, :metric, :wikirate_company, :subproject
     update_counts :wikirate_topic, :research_group
