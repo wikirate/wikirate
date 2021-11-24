@@ -1,32 +1,36 @@
 ---
-
 - :name:
     - :wikirate_company
     - :featured
-  :type: :list
   :content: |-
     Death Star
     Monster Inc
     Los Pollos Hermanos
-
 - :name:
     - :company_group
     - :featured
-  :type: :list
   :content: |-
     Deadliest
     Googliest
-
 - :name:
     - :wikirate_topic
     - :featured
-  :type: :list
   :content: |-
     Force
     Taming
-
 - :name:
     - :metric_answer
     - :featured
-  :type: :list
   :content: |-
+
+# updating with subfields here to trigger geography calculations
+- :name: Google LLC
+  :type: :wikirate_company
+  :subfields:
+    :about: don't be evil
+    :headquarters: California (United States)
+    :incorporation: Delaware (United States)
+    :open_corporates: 201727810678
+    :alias:
+      - Google
+      - Alphabet
