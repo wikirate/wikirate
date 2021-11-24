@@ -5,7 +5,7 @@ def new_relic_label
 end
 
 cache_expire_trigger Card::Set::All::Base do |_changed_card|
-  Card[:homepage]
+  Card[:homepage] if Codename.exist? :homepage
 end
 
 format :html do
