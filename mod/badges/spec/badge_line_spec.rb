@@ -6,7 +6,7 @@ describe Card::BadgeLine do
   end
 
   describe "#initialize" do
-    context "levels defined explicitly" do
+    context "with levels defined explicitly" do
       let(:set) { described_class.new researcher: [3, :silver] }
 
       it "initializes correcly" do
@@ -16,7 +16,7 @@ describe Card::BadgeLine do
       end
     end
 
-    context "not all levels defined" do
+    context "with not all levels defined" do
       let(:set) { described_class.new researcher: 3 }
 
       it "initializes correcly" do
@@ -26,7 +26,7 @@ describe Card::BadgeLine do
       end
     end
 
-    context "same threshold used twice" do
+    context "with same threshold used twice" do
       def init_with_same_threshold
         described_class.new researcher: 1, research_pro: 1
       end
@@ -39,7 +39,7 @@ describe Card::BadgeLine do
   end
 
   describe "#earns_badge" do
-    context "threshold reached" do
+    context "with threshold reached" do
       subject { set.earns_badge(5) }
 
       it "returns earned badge name" do
@@ -47,7 +47,7 @@ describe Card::BadgeLine do
       end
     end
 
-    context "threshold not reached" do
+    context "with threshold not reached" do
       subject { set.earns_badge(4) }
 
       it "returns earned badge name" do
@@ -94,7 +94,7 @@ describe Card::BadgeLine do
   end
 
   describe "#change_thresholds" do
-    context "called with threshold list" do
+    context "when called with threshold list" do
       it "changes thresholds" do
         set.change_thresholds 1, 3, 4
         expect(set.to_h(:threshold))
@@ -102,7 +102,7 @@ describe Card::BadgeLine do
       end
     end
 
-    context "called with hash" do
+    context "when called with hash" do
       it "changes thresholds" do
         set.change_thresholds research_pro: 10
         expect(set.to_h(:threshold))
