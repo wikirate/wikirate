@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 source "http://rubygems.org"
 
 if ENV["RM_INFO"] && ARGV[0] == "check"

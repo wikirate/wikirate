@@ -3,11 +3,11 @@ include_set Abstract::Thumbnail
 include_set Abstract::Table
 include_set Abstract::Bookmarkable
 
-card_accessor :organizer
-card_accessor :researcher
-card_accessor :project
-card_accessor :metric
-card_accessor :wikirate_topic
+card_accessor :organizer, type: :list
+card_accessor :researcher, type: :list
+card_accessor :project, type: :search_type
+card_accessor :metric, type: :search_type
+card_accessor :wikirate_topic, type: :list
 
 def report_card member, cardtype, variant
   rcard = Card.new name: [member, cardtype, name, :report_search]
