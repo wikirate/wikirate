@@ -1,5 +1,0 @@
-{
-  "type":"Source",
-  "not":{ "right_plus":"File"},
-  "limit": 5 
-}

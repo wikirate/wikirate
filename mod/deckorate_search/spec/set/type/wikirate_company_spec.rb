@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
     Card::Query.run @query.reverse_merge(return: :name, sort: :name)
   end
 
-  xdescribe "fulltext_match: value" do
+  describe "fulltext_match: value" do
     it "matches on search_content" do
       @query = { fulltext_match: "Alphabet", type: "Company" }
       is_expected.to eq(["Google LLC"])
