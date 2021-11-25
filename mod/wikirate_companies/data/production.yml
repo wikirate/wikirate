@@ -4,16 +4,12 @@
   :codename: :company_group
 - :name: Specification
   :codename: :specification
-- :name: Region
-  :type: :cardtype
-  :codename: :region
+
 - :name: Jurisdiction
   :type: :cardtype
   :codename: :jurisdiction
 - :name: OAR id
   :codename: :oar_id
-- :name: OpenCorporates Jurisdiction key
-  :codename: :oc_jurisdiction_key
 - :name: SEC CIK
   :codename: :sec_cik
 - :name: OpenCorporates
@@ -36,3 +32,4 @@
   :codename: :ilo_region
 - :name: Headquarters
   :codename: :headquarters
+- regions
