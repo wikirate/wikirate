@@ -1,3 +1,10 @@
 ---
 - :name: WikiRate Team
   :codename: :wikirate_team
+
+- :name:
+    - :metric
+    - :type
+    - :delete
+  :type: :list
+  :content: Wikirate Team

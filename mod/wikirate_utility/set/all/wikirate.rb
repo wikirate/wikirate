@@ -16,14 +16,6 @@ format do
 end
 
 format :html do
-  view :og_source, unknown: true do
-    if card.real?
-      card.format.render_source
-    else
-      Card["*Vertical_Logo"].format.render_source size: "large"
-    end
-  end
-
   view :titled_row do
     [
       { content: _render_title, class: "title" },

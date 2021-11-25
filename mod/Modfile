@@ -6,6 +6,9 @@ gem_mods
 mod "posts"
 mod "guides"
 
+#refactor away
+mod "conversation" # upgrade discussions/comments
+
 # these need rethinking...
 mod "wikirate_layout"
 mod "wikirate_utility"
@@ -31,9 +34,7 @@ mod "wikirate_assets" # TODO: rename to wikirate_theme
 mod "wikirate_homepage"
 mod "wikirate"
 
-# refactor away
-mod "conversation" # upgrade discussions/comments
-mod "isic" # (replace with CoffeeScript formulas)
+mod "isic" # refactor away (replace with CoffeeScript formulas)
 
 # extract wikirate code, clean, and move to card-mods
 mod "badges"
