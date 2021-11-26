@@ -1,5 +1,0 @@
-<i class="fa fa-{{+icon|core; type: Phrase}}"></i>
-{{+description|titled; title: What}}
-{{+why|titled; title: Why}}
-{{+how to|titled; title: How}}
-{{+search|titled; title: Which; type: Search}}
