@@ -1,7 +1,0 @@
-<div id="popup-window" style="display:none;"></div>
-<div>{{+description}}</div>
-
-<div class="filter-search-form">
-  {{+browse source filter|filter_form}}
-</div>
-{{+browse source filter||listing}}
