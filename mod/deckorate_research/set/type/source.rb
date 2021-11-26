@@ -14,7 +14,6 @@ card_accessor :wikirate_link, type: :phrase
 card_accessor :file, type: :file
 card_accessor :report_type, type: :pointer
 
-
 def file_url
   file_card&.file&.url
 end

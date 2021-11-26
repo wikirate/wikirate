@@ -24,7 +24,7 @@ RSpec.describe Card::MetricQuery do
   end
 
   example "name filter" do
-    expect(run(name: "quart").map &:metric_title)
+    expect(run(name: "quart").map(&:metric_title))
       .to eq(["Headquarters Location"])
   end
 

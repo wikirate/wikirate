@@ -31,4 +31,3 @@ def created_query user_id, variant=nil
             and: created_query(user_id, :designed) } }
   end
 end
-
