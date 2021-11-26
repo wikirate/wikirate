@@ -2,7 +2,6 @@
 
 class AddDatasets < Cardio::Migration
   def up
-    ensure_code_card "Data Set", codename: :dataset, type: :cardtype
     Card.search(type: :project) { |dataset| convert_to_dataset dataset }
     Card[:subproject]&.update! codename: :data_subset, name: "Data Subset"
   end

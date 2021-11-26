@@ -1,4 +1,21 @@
 ---
+# move this!!
+- :name: Badge
+  :type: :cardtype
+  :codename: :badge
+- badges
+- :name: Badges earned
+  :codename: :badges_earned
+- :name: project badge
+  :codename: :project_badge
+- :name: company badge
+  :codename: :company_badge
+- :name: designer badge
+  :codename: :designer_badge
+
+
+
+
 # Cardtypes
 - :name: Metric Title
   :type: :cardtype
