@@ -150,8 +150,7 @@ RSpec.describe Card::AnswerQuery do
 
       it "... keyword" do
         expect(filter_by(status: :none, company_name: "Inc").sort)
-          .to eq(with_year(["AT&T Inc.", "Amazon.com, Inc.",
-                            "Apple Inc.", "Google Inc."]))
+          .to eq(with_year(["Apple Inc.", "Google Inc."]))
       end
 
       it "... dataset" do
