@@ -8,8 +8,8 @@ card_accessor :metric_answer, type: :search_type
 card_accessor :year, type: :list
 card_accessor :wikirate_topic, type: :list
 card_accessor :wikirate_company, type: :list
-card_accessor :wikirate_title
-card_accessor :wikirate_website
+card_accessor :wikirate_title, type: :phrase
+card_accessor :wikirate_website, type: :phrase
 card_accessor :wikirate_link, type: :phrase
 card_accessor :file, type: :file
 card_accessor :report_type, type: :pointer
