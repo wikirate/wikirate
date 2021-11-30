@@ -67,7 +67,7 @@ toResearched = (input) ->
   !input.closest("._research-year-option").find(".not-researched")[0]
 
 clearTab = (phase) ->
-  link = wikirate.tabPhase phase
+  link = deckorate.tabPhase phase
   link.addClass "load"
   tabPane(phase).html ""
 
