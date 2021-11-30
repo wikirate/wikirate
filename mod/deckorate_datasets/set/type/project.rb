@@ -2,9 +2,9 @@ include_set Abstract::Thumbnail
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Bookmarkable
 
-card_accessor :unpublished
-card_accessor :wikirate_status
-card_accessor :organizer
+card_accessor :unpublished, type: :toggle, default_content: "No"
+card_accessor :wikirate_status, type: :pointer
+card_accessor :organizer, type: :list
 
 def organizer?
   as_moderator? || organizer_card.item_ids.include?(Auth.as_id)
