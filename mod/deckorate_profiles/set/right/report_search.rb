@@ -12,6 +12,7 @@
 # cardtype set modules (eg self/metric).
 
 attr_writer :variant
+assign_type :search_type
 
 def user_plus_cardtype_name
   @user_plus_cardtype_name ||=

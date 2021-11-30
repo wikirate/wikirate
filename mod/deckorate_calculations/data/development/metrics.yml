@@ -1,15 +1,6 @@
 ---
 
-- :name: Country
-  :type: :metric_title
-  :codename: :country
-- :name: Country code
-  :codename: :country_code
-- :name: ILO Region
-  :type: :metric_title
-  :codename: :ilo_region
-- :name: Headquarters
-  :codename: :headquarters
+
 
 #- :name:
 #    - Global Reporting Initiative
