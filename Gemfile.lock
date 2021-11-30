@@ -24,7 +24,7 @@ PATH
     card-mod-graphql (0.1)
       card
       graphiql-rails (~> 1.7)
-      graphql (~> 1.12)
+      graphql (~> 1.12.20)
     card-mod-lookup (0.1)
       card
     card-mod-new_relic (0.1)
@@ -505,7 +505,7 @@ GEM
     graphiql-rails (1.8.0)
       railties
       sprockets-rails
-    graphql (1.13.0)
+    graphql (1.12.21)
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
@@ -597,11 +597,9 @@ GEM
     net-ssh (6.1.0)
     net_http_timeout_errors (0.3.5)
     netrc (0.11.0)
-    newrelic_rpm (8.1.0)
+    newrelic_rpm (8.2.0)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
       nokogiri (~> 1.5)
@@ -612,7 +610,7 @@ GEM
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
     parallel (1.21.0)
-    parser (3.0.3.0)
+    parser (3.0.3.1)
       ast (~> 2.4.1)
     pdfkit (0.8.5)
     pivotal-tracker (0.5.13)

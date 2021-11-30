@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::TypePlusRight::WikirateCompany::Image::AwardBadges do
+RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Image::AwardBadges do
   describe "logo badges" do
     let(:badge_action) { :logo }
     let(:badge_type) { :wikirate_company }
