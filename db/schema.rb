@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_05_200729) do
+ActiveRecord::Schema.define(version: 2021_11_28_040849) do
 
   create_table "answers", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "answer_id"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 2020_08_05_200729) do
     t.integer "right_id"
     t.string "left_key"
     t.text "content", size: :medium
+    t.datetime "updated_at"
     t.index ["left_id"], name: "right_id_index"
     t.index ["right_id"], name: "left_id_index"
   end

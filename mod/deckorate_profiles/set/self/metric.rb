@@ -31,11 +31,3 @@ def created_query user_id, variant=nil
             and: created_query(user_id, :designed) } }
   end
 end
-
-format :html do
-  view :core, template: :haml
-
-  view :add_button do
-    link_to "Add Metric", href: "/new/Metric", class: "add-metric btn btn-secondary"
-  end
-end
