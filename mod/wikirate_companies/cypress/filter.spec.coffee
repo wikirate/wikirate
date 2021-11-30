@@ -3,7 +3,7 @@ describe "filtering on company pages", ->
     cy.visit "Death Star"
 
     # shows lots of answers before filtering
-    cy.contains "Industry"
+    cy.contains "Category"
     cy.contains "disturbances"
 
     # go to topic tab
@@ -27,7 +27,7 @@ describe "filtering on company pages", ->
     # shows answer for metric tagged by topic
     cy.contains "disturbances"
     # ...but not for metric not tagged by topic
-    cy.should "not.contain", "Industry"
+    cy.should "not.contain", "Company Category"
 
     # url bar is updated with filter
     cy.location("search").should "contain", "filter"
@@ -36,5 +36,5 @@ describe "filtering on company pages", ->
     cy.get(".left-col .fa-sync-alt").click()
 
     # old results are back
-    cy.contains("Industry")
+    cy.contains("Company Category")
     cy.contains "disturbances"
