@@ -448,7 +448,7 @@ GEM
     cypress-on-rails (1.11.0)
       rack
     daemons (1.4.1)
-    dalli (3.0.4)
+    dalli (3.0.5)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.1)
@@ -600,6 +600,8 @@ GEM
     newrelic_rpm (8.2.0)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
       nokogiri (~> 1.5)
