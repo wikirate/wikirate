@@ -1,6 +1,0 @@
-{ 
-  "type": "Answer",
-  "right_plus": ["check requested by",  {"refer_to": {}}],
-  "limit": 5
-
-}

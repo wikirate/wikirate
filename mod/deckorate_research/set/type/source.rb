@@ -4,6 +4,7 @@ require "link_thumbnailer"
 include_set Abstract::Delist
 
 card_accessor :metric, type: :list
+card_accessor :metric_answer, type: :search_type
 card_accessor :year, type: :list
 card_accessor :wikirate_topic, type: :list
 card_accessor :wikirate_company, type: :list
