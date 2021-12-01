@@ -39,9 +39,11 @@ RSpec.describe Calculate::Calculator::Input do
   example "two metrics with not researched options" do
     @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
     @not_researched_options = %w[false false]
-    expect(input_answers(2015))
-      .to eq([[[100.0, nil], apple_id, 2015],
-              [[5.0, 2.0], samsung_id, 2015]])
+
+    yields = input_answers 2015
+    expect(yields.size).to eq(2)
+    expect(yields).to include([[100.0, nil], apple_id, 2015])
+    expect(yields).to include([[5.0, 2.0], samsung_id, 2015])
   end
 
   context "with year option" do

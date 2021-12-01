@@ -49,3 +49,18 @@
     Walk Free Foundation
     Principles for Responsible Management Education (PRME)
     Oxfam India
+- :name: "*logo"
+  :type: :image
+  :codename: :logo
+  :image: logo.png
+  :storage_type: :coded
+- :name: wikirate white logo
+  :type: :image
+  :codename: :wikirate_white_logo
+  :image: wikirate_white_logo.png
+  :storage_type: :coded
+- :name: homepage video background image
+  :type: :image
+  :codename: :homepage_video_background_image
+  :image: homepage_video_background_image.png
+  :storage_type: :coded

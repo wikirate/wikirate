@@ -11,6 +11,7 @@ namespace :wikirate do
     end
 
     def execute_command cmd, env=nil
+      cmd = "bundle exec #{cmd}"
       cmd = "env RAILS_ENV=#{env} #{cmd}" if env
       puts cmd.green
       system cmd
