@@ -1,5 +1,7 @@
 ---
 # move this!!
+- :name: Home
+  :codename: :homepage
 - :name: Badge
   :type: :cardtype
   :codename: :badge
@@ -15,6 +17,10 @@
 
 
 
+- :name: Details
+  :codename: :details
+- :name: Organizer
+  :codename: :organizer
 
 # Cardtypes
 - :name: Metric Title
@@ -68,7 +74,27 @@
 - :name: Report Type
   :type: :cardtype
   :codename: :report_type
+- :name: Designer Assessed
+  :type: :research_policy
+- :name: Community Assessed
+  :type: :research_policy
+- :name: Headquarters
+  :codename: :headquarters
+- :name: OpenCorporates Jurisdiction key
+  :codename: :oc_jurisdiction_key
+- :name: Region
+  :type: :cardtype
+  :codename: :region
+- :name: Country
+  :type: :metric_title
+  :codename: :country
+- :name: Country code
+  :codename: :country_code
+- :name: ILO Region
+  :type: :metric_title
+  :codename: :ilo_region
 
+- regions
 - value_types
 - properties
 - relationships

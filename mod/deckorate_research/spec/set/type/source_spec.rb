@@ -5,6 +5,10 @@ RSpec.describe Card::Set::Type::Source do
     "#{Card::Env[:protocol]}#{Card::Env[:host]}/#{url}"
   end
 
+  def card_subject
+    sample_source
+  end
+
   check_html_views_for_errors
 
   describe "while creating a Source" do

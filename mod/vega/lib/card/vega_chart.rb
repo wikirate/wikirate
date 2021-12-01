@@ -31,7 +31,7 @@ class Card
     delegate :builtin, to: :class
 
     def render
-      method = Card.config.compress_javascript ? :generate : :pretty_generate
+      method = Card.config.compress_assets ? :generate : :pretty_generate
       JSON.send method, hash
     end
 
