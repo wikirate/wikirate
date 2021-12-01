@@ -7,3 +7,9 @@ include_set Abstract::LookupField
 def lookup_columns
   :policy_id
 end
+
+format :html do
+  def input_type
+    :select
+  end
+end

@@ -18,9 +18,7 @@ Feature: company feature
     And I should see "thereaderwiki.com"
 
   Scenario: Filter by metric
-    When I click on "More Filters"
-    And I click on "Metric"
-    And I fill in "filter[metric_name]" with "deadliness"
+q    And I fill in "filter[metric_name]" with "deadliness"
     # To change focus
     And I click on "More Filters"
     And I wait for ajax response
