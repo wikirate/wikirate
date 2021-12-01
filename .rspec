@@ -1,7 +1,7 @@
 --color
 --profile
 --backtrace
-\\--format documentation
+//--format documentation
 --default-path "mod"
 --require "./spec/spec_helper"
 --pattern "*/spec/**/*_spec.rb"
