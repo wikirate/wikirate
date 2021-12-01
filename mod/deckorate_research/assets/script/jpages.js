@@ -8,8 +8,8 @@
  * https://github.com/luis-almeida
  */
 
-;(function($, window, document, undefined) {
 
+;(function($, window, document, undefined) {
         var name = "jPages",
             instance = null,
             defaults = {

@@ -13,29 +13,6 @@ namespace :wikirate do
     )
   end
 
-  desc "generate minimal seed data for a fresh start without any data"
-  task :generate_seed do |task, _args|
-    ensure_env :init_test, task do
-      execute_command "rake decko:seed_without_reset", "init_test SCHEMA=db/schema.rb"
-      import_wikirate_essentials
-      Delayed::Job.delete_all
-      Card::Cache.reset_all
-      dump base_dump_path
-    end
-  end
-
-  task :migrate_seed do |task, _args|
-    ensure_env Rails.env, task do
-      load_dump base_dump_path
-      Rake::Task["decko:migrate"].invoke
-      Card::Cache.reset_all
-      ActiveRecord::Base.descendants.each(&:reset_column_information)
-      Card::Cache.reset_all
-      Rake::Task["card:asset:refresh"].invoke
-      dump dump_path
-    end
-  end
-
   task :new_with_subject do
     load_dump dump_path
     Rake::Task["wikirate:change_subject"].invoke

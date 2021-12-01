@@ -1,8 +1,0 @@
-
-					<div class="tab-pane active" id="company-metrics">
-					  <p></p>
-					  <p>
-				      {{_l+Review||content;structure: overview item topic}}	 
-				    </p>  
-		      </div>
-				
