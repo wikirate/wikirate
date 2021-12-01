@@ -4,6 +4,8 @@
 #   "#debd00", "#c2c000", "#9ab700", "#65a300", "#008000",
 #   "008800"]
 
+window.deckorate = {}
+
 decko.slotReady (slot) ->
   for vis in slot.find('.vis._load-vis')
     loadVis $(vis)

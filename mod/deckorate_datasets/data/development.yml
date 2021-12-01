@@ -52,3 +52,9 @@
   :content:
     - Evil Dataset
     - Son of Evil Dataset
+
+- :name:
+    - :project
+    - :featured
+  :content:
+    - Evil Project
