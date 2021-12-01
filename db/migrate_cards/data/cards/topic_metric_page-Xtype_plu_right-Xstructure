@@ -1,9 +1,0 @@
-<div class="tab-pane active" id="company-metrics">
-   <p>
-    
-    {{#metric+definition}}
-  </p>
-  
-	  {{_l|metric_tab}}
-
-</div>

@@ -28,3 +28,9 @@ end
 def value_type
   first_name
 end
+
+format :html do
+  def input_type
+    :radio
+  end
+end

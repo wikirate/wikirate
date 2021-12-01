@@ -44,7 +44,7 @@ describe "expanding details on company pages", ->
     # refreshes filter
     cy.get(".left-col").within () ->
       cy.get(".fa-sync-alt").click()
-      cy.contains "Industry"
+      cy.contains "Company Category"
 
     # details are still visible (even after filter results have changed)
     cy.get(".details").within () ->
