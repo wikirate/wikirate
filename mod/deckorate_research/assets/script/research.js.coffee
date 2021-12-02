@@ -192,7 +192,7 @@ openPdf = (sourceMark) ->
     el[0].href = url
     $.rails.handleRemote el
 
-wikirate.tabPhase = tabPhase
+deckorate.tabPhase = tabPhase
 
 # add related company to name
 # otherwise the card can get the wrong type because it

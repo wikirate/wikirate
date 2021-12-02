@@ -1,5 +1,9 @@
 include_set Abstract::FilterableBar
 
+def virtual?
+  new?
+end
+
 format :html do
   def topic
     card.left
