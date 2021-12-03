@@ -32,4 +32,3 @@ format :html do
     :multiselect
   end
 end
-
