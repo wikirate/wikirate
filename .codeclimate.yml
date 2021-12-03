@@ -17,6 +17,7 @@ ratings:
    - "**.rb"
 exclude_paths:
 - vendor/**/*
+- mod/*/{data/files,public,vendor}/**/*
 - mod/**/lib/javascript/**/*.js
 - test/**/*
 - db/**/*

@@ -61,7 +61,9 @@ format :html do
   view :core do
     filtering(".RIGHT-answer ._filter-widget") do
       wrap_with :div, class: "pointer-list" do
-        card.item_names.map { |name| filterable_div name }
+        card.item_names.map do |name|
+          card.metric_card.relationship? ? name : filterable_div(name)
+        end
       end
     end
   end

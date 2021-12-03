@@ -1,11 +1,10 @@
-require "pry"
-
 namespace :wikirate do
   namespace :test do
     namespace :seed do
       desc "add updated seed data"
       task update: :environment do
         Rake::Task["decko:seed"].invoke
+        ENV["NO_CARD_LOAD"] = "true"
         Rake::Task["card:migrate:deck_structure"].invoke
         Cardio::Migration.assume_current # deck_cards
 
@@ -18,8 +17,9 @@ namespace :wikirate do
         Cardio.config.delaying = false
 
         ensure_env :test, task do
-          Rake::Task["card:mod:uninstall"].execute
-          Rake::Task["card:mod:install"].execute
+          # Rake::Task["card:mod:uninstall"].execute
+          # Rake::Task["card:mod:install"].execute
+          ENV["STYLE_OUTPUT_MOD"] = "wikirate"
           Rake::Task["decko:seed:make_asset_output_coded"].execute
           Rake::Task["wikirate:test:dump"].execute
         end

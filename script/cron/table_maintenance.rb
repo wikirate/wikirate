@@ -14,11 +14,16 @@ def optimize_table table
   exec_query "OPTIMIZE TABLE #{table}"
 end
 
+def analyze_table table
+  exec_query "ANALYZE TABLE #{table}"
+end
+
 def reindex_table table
   exec_query "ALTER TABLE #{table} ENGINE=INNODB;"
 end
 
 tables.each do |table|
-  optimize_table table
+  analyze_table table
+  # optimize_table table
   reindex_table table
 end
