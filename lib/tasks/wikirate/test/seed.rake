@@ -1,5 +1,3 @@
-require "pry"
-
 namespace :wikirate do
   namespace :test do
     namespace :seed do
