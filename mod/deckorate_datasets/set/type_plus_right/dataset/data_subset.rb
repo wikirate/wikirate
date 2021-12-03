@@ -6,7 +6,7 @@ include_set Abstract::SearchCachedCount
 
 recount_trigger :type_plus_right, :dataset, :parent do |changed_card|
   changed_card.changed_item_names.map do |item_name|
-    Card.fetch item_name.to_name.trait :data_subset
+    Card.fetch item_name.to_name.field :data_subset
   end
 end
 
