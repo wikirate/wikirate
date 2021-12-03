@@ -1,5 +1,3 @@
-include_set Abstract::CodeFile
-
 format :html do
   view :core, template: :haml
 
