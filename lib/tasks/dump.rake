@@ -39,10 +39,6 @@ namespace :wikirate do
     Decko.config.database_configuration.dig(env, key)
   end
 
-  def base_dump_path
-    File.join Decko.root, "db", "base_seed.db"
-  end
-
   def dump_path
     File.join Decko.root, "db", "seed.db"
   end
