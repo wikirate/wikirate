@@ -6,7 +6,7 @@ def search_args
   unless type.in? %w[file image]
     raise ArgumentError, "not a valid file type. pass 'file' or 'image'"
   end
-  hash = { type_id: Card.fetch_id(type.to_sym) }
+  hash = { type_id: type.to_sym.card_id }
   hash[:limit] = limit.to_i if limit
   hash
 end

@@ -18,13 +18,13 @@ RSpec.describe Card::Set::MetricType::Descendant do
   end
 
   def inherited_answer company, year
-    Answer.where(metric_id: Card.fetch_id(metric_title),
-                 company_id: Card.fetch_id(company), year: year.to_i).take
+    Answer.where(metric_id: metric_name.card_id,
+                 company_id: company.card_id, year: year.to_i).take
   end
 
   context "with two ancestors" do
-    let(:metric_title) { "Joe User+descendant 1" }
-    let(:metric) { Card[metric_title] }
+    let(:metric_name) { "Joe User+descendant 1" }
+    let(:metric) { Card[metric_name] }
 
     context "with answers" do
       it "uses first ancestor when both are present" do
