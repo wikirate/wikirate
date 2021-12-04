@@ -32,7 +32,7 @@ class Card
         # string substitutions, so the SQL had ?'s in it.
         #
         # Card.joins(actions: :act).where(
-        #   "card_acts.actor_id" => Card.fetch_id(whom),
+        #   "card_acts.actor_id" => whom.card_id,
         #   left_id: "answers.id",
         #   right_id: Card::ValueID
         # ).arel.exists.to_sql

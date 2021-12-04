@@ -30,8 +30,7 @@ def random_answer_card
 end
 
 def answer_for company, year
-  company = Card.fetch_id(company) unless company.is_a? Integer
-  Answer.where(metric_id: id, company_id: company, year: year.to_i).take
+  Answer.where(metric_id: id, company_id: company.card_id, year: year.to_i).take
 end
 
 def answer_name_for company, year
