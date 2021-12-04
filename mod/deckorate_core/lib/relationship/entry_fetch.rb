@@ -18,9 +18,9 @@ class Relationship
     end
 
     def fetch_inverse_answer_id
-      Card.fetch_id (inverse_metric_id || fetch_inverse_metric_id),
-                    (object_company_id || fetch_object_company_id),
-                    (year || fetch_year).to_s
+      metric_id = inverse_metric_id || fetch_inverse_metric_id
+      company_id = object_company_id || fetch_object_company_id
+      Card.id [metric_id, company_id, (year || fetch_year).to_s]
     end
 
     def fetch_subject_company_id
