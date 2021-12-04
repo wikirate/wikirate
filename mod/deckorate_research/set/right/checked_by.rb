@@ -76,10 +76,6 @@ def allowed_to_check?
   Auth.current_id != answer&.value_card&.content_updater_id
 end
 
-def check_was_requested_before_double_check?
-  check_requester.present?
-end
-
 def items
   @items ||= item_names
 end

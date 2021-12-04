@@ -21,7 +21,7 @@ end
 event :reset_double_check_flag, :validate, on: :update, changed: :content do
   [:checked_by, :check_requested_by].each do |trait|
     full_trait_name = name.left_name.field_name trait
-    next unless Card.real?(full_trait_name) && !subcard(full_trait_name)
+    next unless Card.real?(full_trait_name) && !subcard?(full_trait_name)
     subcard full_trait_name, content: ""
   end
 end
