@@ -5,8 +5,8 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Headquarters do
 
   def company_hq_lookup metric
     Answer.where(
-      company_id: Card.fetch_id(company_name),
-      metric_id: Card.fetch_id(metric),
+      company_id: company_name.card_id,
+      metric_id: metric.card_id,
       year: "2019"
     ).first
   end

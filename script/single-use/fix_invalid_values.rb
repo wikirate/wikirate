@@ -74,7 +74,7 @@ NO_VALUE_NO_SOURCE.each do |answer_name|
 end
 
 VALUE_IDS_WRONG.each do |answer_name|
-  Card["#{answer_name}+value"]&.update! left_id: Card.fetch_id(answer_name)
+  Card["#{answer_name}+value"]&.update! left_id: answer_name.card_id
 end
 
 NONSTANDARD_UNKNOWNS.each do |answer_name|
