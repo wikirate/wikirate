@@ -38,7 +38,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
 
   def rating_answer company="Samsung", year="2014"
     Answer.where(metric_id: "Joe User+#{@metric_title}".card_id,
-                 company_id: Card.fetch_id(company), year: year.to_i)
+                 company_id: company.card_id, year: year.to_i)
           .take
   end
 
