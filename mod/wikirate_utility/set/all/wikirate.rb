@@ -48,7 +48,7 @@ format :html do
 
   def main_name
     left_name = card.name.left_name
-    left_name = left_name.left unless card.key.include?("limited_metric")
+    left_name = left_name.left unless card.key.include? "limited_metric"
     @main_name ||= left_name
   end
 

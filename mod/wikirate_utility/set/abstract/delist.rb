@@ -2,6 +2,6 @@
 event :delist, :prepare_to_store, on: :delete do
   Card.search(type: %i[in pointer list], limit: 0, refer_to: id).each do |referer|
     referer.drop_item name
-    add_subcard referer
+    subcard referer
   end
 end

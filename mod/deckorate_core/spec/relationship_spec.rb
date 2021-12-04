@@ -22,9 +22,9 @@ RSpec.describe Relationship do
           answer_id: "Jedi+more evil+Monster Inc+2000",
           relationship_id: "Jedi+more evil+Monster Inc+2000+Los Pollos Hermanos",
           metric_id: "Jedi+more evil" }.each_pair do |attr, name|
-          expect(relation.send(attr)).to eq(Card.fetch_id(name)),
+          expect(relation.send(attr)).to eq(name.card_id),
                                          "#{attr}: #{relation.send(attr)}; "\
-                                                 "expected: '#{Card.fetch_id(name)}'"
+                                                 "expected: '#{name.card_id}'"
         end
         expect(relation.year).to eq 2000
         expect(relation.value).to eq "no"
@@ -56,7 +56,7 @@ RSpec.describe Relationship do
         expect(relation.year).to eq 1977
       end
       it "has metric_id" do
-        expect(relation.metric_id).to eq Card.fetch_id(metric)
+        expect(relation.metric_id).to eq metric.card_id
       end
       it "has value" do
         expect(relation.value).to eq "yes"
