@@ -6,10 +6,6 @@ RSpec.describe Card::Set::Right::CheckedBy do
       check_answer answer_card
     end
 
-    # let(:double_checked) do
-    #   Card.fetch("Joe User", :double_checked).content
-    # end
-
     let(:checked_by) do
       answer_card.fetch :checked_by
     end
@@ -18,10 +14,6 @@ RSpec.describe Card::Set::Right::CheckedBy do
       expect(checked_by.item_names.size).to eq(1)
       expect(checked_by.item_names).to include("Joe User")
     end
-
-    # it "is added to user's +double_checked card" do
-    #   expect(double_checked).to include(answer_card.name)
-    # end
 
     it "updates the answers table" do
       expect(answer_card.answer.checkers).to eq("Joe User")
@@ -32,7 +24,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
         answer_card.value_card.update content: "200"
       end
 
-      it "clears double checked status" do
+      it "clears checked by status" do
         expect(checked_by.content).to eq ""
       end
     end

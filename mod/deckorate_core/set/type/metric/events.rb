@@ -20,7 +20,7 @@ event :ensure_designer, :validate, on: :save, changed: :name do
   if (card = Card[metric_designer])
     errors.add :metric_designer, "invalid type #{card.type_name}"
   else
-    attach_subcard metric_designer, type_id: ResearchGroupID
+    subcard metric_designer, type: :research_group
   end
 end
 
@@ -34,7 +34,7 @@ event :ensure_title, :validate, on: :save, changed: :name do
   when MetricTitleID, ReportTypeID
     return
   when nil
-    attach_subcard metric_title, type_id: MetricTitleID
+    subcard metric_title, type_id: MetricTitleID
   else
     errors.add :metric_title, "#{metric_title} is a #{Card[metric_title].type_name} "\
                               "card and can't be used as metric title"

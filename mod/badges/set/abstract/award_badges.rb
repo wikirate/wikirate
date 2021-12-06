@@ -34,7 +34,7 @@ end
 def award_badge badge_card
   badge_pointer = current_badge_pointer badge_card
   badge_pointer.add_badge_card badge_card
-  attach_subcard badge_pointer
+  subcard badge_pointer
 end
 
 def current_badge_pointer badge_card

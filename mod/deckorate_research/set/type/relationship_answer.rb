@@ -24,9 +24,9 @@ end
 
 # TODO: this shouldn't be necessary if default type_id were based on ltype rtype set
 event :ensure_left_type_is_answer, after: :prepare_left_and_right do
-  answer = Card.fetch name.left, new: { type_id: MetricAnswerID }
+  answer = Card.fetch name.left, new: { type: :metric_answer }
   answer.type_id = MetricAnswerID
-  add_subcard answer if answer.type_id_changed?
+  subcard answer if answer.type_id_changed?
 end
 
 event :schedule_old_answer_counts, :finalize, changed: :name, on: :update do
@@ -78,7 +78,7 @@ def answer
 end
 
 def answer_id
-  @answer_id ||= left_id.positive? ? left_id : Card.fetch_id(answer_name)
+  @answer_id ||= left_id.positive? ? left_id : answer_name.card_id
 end
 
 def answer_name
@@ -97,7 +97,7 @@ def schedule_answer_count name
   answer_card = Card.fetch name, new: { type_id: MetricAnswerID, "+value" => "1" }
   answer_card.schedule_answer_count
   # answer_card.director.restart
-  add_subcard answer_card
+  subcard answer_card
 end
 
 def update_subcard_name subcard, new_name, name_to_replace

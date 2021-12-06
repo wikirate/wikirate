@@ -23,7 +23,7 @@ class Calculate
 
     def boot
       super.each_pair.with_object({}) do |(k, v), hash|
-        hash[Card.fetch_id(k)] = v.to_f
+        hash[k.card_id] = v.to_f
       end
     end
   end

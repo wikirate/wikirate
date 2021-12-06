@@ -12,7 +12,7 @@ Card::Auth.as_bot
 
 # remove old types (without codenames)
 ["Old Project", "Task", "Publication"].each do |type_name|
-  delete_cards_of_type Card.fetch_id(type_name)
+  delete_cards_of_type type_name.card_id
   delete_card type_name
 end
 

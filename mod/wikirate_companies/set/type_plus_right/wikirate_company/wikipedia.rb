@@ -110,7 +110,7 @@ def region_for_code oc_code
 end
 
 def add_left_subcard fieldname, content, type=:pointer
-  add_subcard name.left_name.field(fieldname), content: content, type: type
+  subcard name.left_name.field(fieldname), content: content, type: type
 end
 
 def needs_oc_mapping?

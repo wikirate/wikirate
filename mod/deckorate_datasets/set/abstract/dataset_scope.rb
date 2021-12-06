@@ -75,7 +75,7 @@ end
 
 event :add_items_to_parent_dataset, :integrate, on: :save do
   return unless add_to_parent?
-  add_subcard parent_field.name, content: union_with_parent_field.to_pointer_content
+  subcard parent_field.name, content: union_with_parent_field.to_pointer_content
 end
 
 def missing_data_subset_item_names
