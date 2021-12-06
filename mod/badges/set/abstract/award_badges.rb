@@ -27,7 +27,7 @@ def awardable_act?
 end
 
 # @return badge name if count equals its threshold
-def earns_badge actiony
+def earns_badge action
   badge_squad.earns_badge action
 end
 
