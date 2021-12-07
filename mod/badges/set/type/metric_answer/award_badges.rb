@@ -21,7 +21,7 @@ def metric_awards_answer_badges?
 end
 
 def award_create_badge_if_earned affinity, project_card=nil
-  return unless awardable_act?
+  return unless awardable?
 
   # the actions of the current act are not included
   # because we do this search before the answer table update
