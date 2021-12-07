@@ -9,7 +9,7 @@ def self.included host_class
 end
 
 def award_badge_if_earned badge_type
-  return unless awardable_act? && (badge = earns_badge(badge_type))
+  return unless awardable? && (badge = earns_badge(badge_type))
 
   award_badge fetch_badge_card(badge)
 end
@@ -17,13 +17,13 @@ end
 include ::NewRelic::Agent::MethodTracer
 add_method_tracer :award_badge_if_earned, "award_badge_if_earned"
 
-# don't award badges during imports or API calls
-def awardable_act?
-  !(import_act? || api_act?)
+def awardable?
+  awardable_act? && !Card::Auth.has_role?(:no_badges)
 end
 
-def api_act?
-  Env.params[:token] || Env.params[:api_key]
+# don't award badges during imports or API calls
+def awardable_act?
+  !(import_act? || Card::Auth.api_act?)
 end
 
 # @return badge name if count equals its threshold
