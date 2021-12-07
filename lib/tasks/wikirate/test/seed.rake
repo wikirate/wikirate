@@ -17,8 +17,8 @@ namespace :wikirate do
         Cardio.config.delaying = false
 
         ensure_env :test, task do
-          # Rake::Task["card:mod:uninstall"].execute
-          # Rake::Task["card:mod:install"].execute
+          Rake::Task["card:mod:uninstall"].execute
+          Rake::Task["card:mod:install"].execute
           ENV["STYLE_OUTPUT_MOD"] = "wikirate"
           Rake::Task["decko:seed:make_asset_output_coded"].execute
           Rake::Task["wikirate:test:dump"].execute
