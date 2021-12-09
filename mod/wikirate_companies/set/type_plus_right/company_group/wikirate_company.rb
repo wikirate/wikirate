@@ -3,6 +3,11 @@ include_set Abstract::ListCachedCount
 include_set Abstract::IdPointer
 
 delegate :specification_card, to: :left
+delegate :explicit?, :implicit?, to: :specification_card
+
+def history?
+  explicit?
+end
 
 def constraints
   specification_card.constraints
@@ -25,9 +30,7 @@ def item_names_from_spec
 end
 
 def update_content_from_spec
-  return if specification_card.explicit?
-
-  self.content = item_names_from_spec.to_pointer_content
+  self.content = item_names_from_spec.to_pointer_content if implicit?
 end
 
 def bookmark_type
@@ -36,7 +39,7 @@ end
 
 format :html do
   view :filtered_content, cache: :never do
-    if card.specification_card.explicit?
+    if card.explicit?
       wrap { [%{<div class="py-3">#{render_menu}</div>}, nest_search_card] }
     else
       nest_search_card
