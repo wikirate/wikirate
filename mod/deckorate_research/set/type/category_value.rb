@@ -2,8 +2,8 @@ include_set Abstract::Pointer
 include_set Abstract::Value
 
 event :validate_valid_categories, :validate, on: :save do
-  invalid_options = illegal_items
-  return true if Answer.unknown?(value) || invalid_options.empty?
+  return true if Answer.unknown?(value) || (invalid_options = illegal_items).empty?
+
   url = "/#{options_card.name.url_key}?view=edit"
   anchor = %(<a href='#{url}' target="_blank">add that option</a>)
   errors.add :content, "invalid option(s): #{invalid_options.join ', '}. " \
