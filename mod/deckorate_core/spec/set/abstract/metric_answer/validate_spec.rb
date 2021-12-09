@@ -10,11 +10,6 @@ RSpec.describe Card::Set::Abstract::MetricAnswer::Validate do
       expect(answer_for("Joe User+RM")).to be_source_required
     end
 
-    it "is false if metric is tagged with 'no source'" do
-      Card.create! name: "Joe User+RM+tag", content: "no source"
-      expect(answer_for("Joe User+RM")).not_to be_source_required
-    end
-
     it "is false for non-hybrid calculated metrics" do
       expect(answer_for("Jedi+darkness rating")).not_to be_source_required
     end
