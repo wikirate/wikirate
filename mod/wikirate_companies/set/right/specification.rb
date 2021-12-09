@@ -21,6 +21,10 @@ def explicit?
   content == "explicit"
 end
 
+def implicit?
+  !explicit?
+end
+
 def constraints
   raw_constraints.map do |raw_constraint|
     Constraint.new_from_raw raw_constraint

@@ -56,6 +56,8 @@ end
 
 # note: company names overridden in answer and relationship_answer
 def tag_with_company source_card
+  return if source_card.wikirate_company_card.count > 100
+  
   add_trait_to_source source_card, :wikirate_company, company_names
 end
 
