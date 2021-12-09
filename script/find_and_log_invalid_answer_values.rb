@@ -1,38 +1,47 @@
-# require File.expand_path("../../config/environment",  __FILE__)
-
-require_relative "../../config/environment"
+require_relative "../config/environment"
 
 FILENAME = "/tmp/invalid_answer_values.csv".freeze
-SITE = "".freeze
+SITE = "https://wikirate.org".freeze
+VALUE_TYPES = %i[multi_category].freeze
+METRIC_TYPES = %i[researched].freeze
 OFFSET = 0
 
 Card::Auth.as_bot
-@seq = 0
 
-def track_validity val
-  with_seq_tracking do
-    record_invalid val, "INVALID", val.content unless val.valid?
-  end
+def validate answer_id
+  answer = answer_id.card
+  return if answer.relationship? || answer.calculated?
+
+  validate_value answer.value_card
 rescue StandardError => e
-  record_invalid val, "ERROR", e.message
+  record_invalid answer_id, "ERROR", e.message
 end
 
-def with_seq_tracking
-  @seq += 1
-  return if @seq < OFFSET
-  #  can't use offset with find_each
+def validate_value val
+  return if Answer.unknown?(val.content) || !val.illegal_items.present?
 
-  puts "TRACK SEQ: #{@seq}" if (@seq % 1000).zero?
-  yield
+  record_invalid answer_id, "INVALID", val.content
 end
 
-def record_invalid val, type, msg
-  puts "#{@seq} #{type}: #{SITE}/#{val.name.url_key}"
+def milestones seq
+  puts "TRACK SEQ: #{seq}" if (seq % 1000).zero?
+  Card::Cache.reset_soft
+end
+
+def record_invalid answer_id, type, msg
+  url = "#{SITE}/~#{answer_id}"
+  puts "#{type}: #{url}"
   File.open FILENAME, "a" do |file|
-    file.puts "#{type},#{val.name.url_key},#{msg}"
+    file.puts "#{type},#{answer_id},#{url},#{msg}"
   end
 end
 
-Card.where(right_id: Card::ValueID, trash: false).find_each do |val|
-  track_validity val
+Metric.joins("join answers on metrics.metric_id = answers.metric_id")
+      .where(value_type_id: VALUE_TYPES.map(&:card_id),
+             metric_type_id: METRIC_TYPES.map(&:card_id))
+      .select(:answer_id).offset(OFFSET)
+      .pluck(:answer_id).each_with_index do |answer_id, index|
+
+  validate answer_id
+  milestones index
 end

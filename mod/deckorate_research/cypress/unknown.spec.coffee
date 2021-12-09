@@ -49,18 +49,18 @@ describe "the 'unknown' checkbox", ->
     testUnknown ""
     cy.get(edSelector(".pointer-checkbox-button")).click(multiple: true)
     shiftFocus()
-    testUnknown "[[1]]\n[[2]]\n[[3]]"
+    testUnknown "1\n2\n3"
 
   specify "metric with radios", ->
     toAnswerPhase "Joe_User+small_single"
     testUnknown ""
     cy.get(edSelector("#pointer-radio-3")).click()
     shiftFocus()
-    testUnknown "[[3]]"
+    testUnknown "3"
 
   specify "metric with select", ->
     toAnswerPhase "Joe_User+big_single"
     testUnknown ""
     cy.get(edSelector("select")).select2 "7"
     shiftFocus()
-    testUnknown "[[7]]"
+    testUnknown "7"
