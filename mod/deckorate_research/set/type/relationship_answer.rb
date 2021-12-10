@@ -106,7 +106,7 @@ def update_subcard_name subcard, new_name, name_to_replace
 end
 
 def source_required?
-  force_source_not_required? ? false : true
+  true
 end
 
 def steward?

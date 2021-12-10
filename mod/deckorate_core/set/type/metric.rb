@@ -19,8 +19,8 @@ card_accessor :unit
 card_accessor :range
 card_accessor :hybrid, type: :toggle
 card_accessor :question, type: :plain_text
-card_accessor :report_type, type: :pointer
-card_accessor :score, type: :pointer
+card_accessor :report_type, type: :list
+card_accessor :score, type: :search_type
 card_accessor :steward, type: :pointer
 card_accessor :wikirate_topic, type: :list
 card_accessor :research_policy, type: :pointer, default_content: "Community Assessed"
