@@ -34,7 +34,8 @@ end
 
 def replace_references old_name, new_name
   return super unless rating?
-  content.gsub old_name, new_name
+
+  self.content_quietly = content.gsub old_name, new_name
 end
 
 def javascript_formula?
