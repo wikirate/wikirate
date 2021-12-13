@@ -66,12 +66,12 @@ end
 
 event :set_scored_metric_name, :initialize, on: :create do
   return if name.parts.size >= 3
-  metric = remove_subfield(:metric)&.first_name
+  metric = drop_subfield(:metric)&.first_name
   self.name = "#{metric}+#{Auth.current.name}"
 end
 
 event :default_formula, :prepare_to_store, on: :create, when: :formula_unspecified? do
-  add_subfield :formula, content: "{{#{basic_metric}}}", type_id: PlainTextID
+  subfield :formula, content: "{{#{basic_metric}}}", type_id: PlainTextID
 end
 
 def formula_unspecified?
