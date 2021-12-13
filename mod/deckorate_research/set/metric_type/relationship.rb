@@ -42,7 +42,7 @@ event :create_inverse, :prepare_to_store, on: :save do
   subcard inverse_name, type: :metric,
                         subfields: { metric_type: "Inverse Relationship",
                                      inverse: name }
-  add_subfield :inverse, content: inverse_name, type: :pointer
+  subfield :inverse, content: inverse_name, type: :pointer
   add_title_inverse_pointer metric_title, inverse
 end
 
@@ -85,8 +85,7 @@ format :html do
   end
 
   def inverse_title_field options={}
-    title = card.add_subfield :inverse_title, content: card.name.tag,
-                                              type_id: Card::PhraseID
+    title = card.subfield :inverse_title, content: card.name.tag, type: :phrase
     title.reset_patterns
     title.include_set_modules
     subformat(title)._render_edit_in_form(options.merge(title: "Inverse Title"))
