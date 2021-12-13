@@ -23,7 +23,8 @@ end
 # </OVERRIDES>
 
 event :create_formula, :initialize, on: :create do
-  ensure_subfield :formula, content: "{}"
+  sf = subfield :formula
+  sf.content = "{}" unless sf.content.present?
 end
 
 format do
