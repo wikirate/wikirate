@@ -36,8 +36,8 @@ format :html do
   end
 
   view :content_formgroup do
-    card.add_subfield :year, content: card.year
-    card.add_subfield :related_company, content: card.related_company
+    card.subfield :year, content: card.year
+    card.subfield :related_company, content: card.related_company
     super()
   end
 

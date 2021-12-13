@@ -165,7 +165,7 @@ format :html do
 end
 
 def add_subfield_and_reset *args
-  subfield = add_subfield(*args)
+  subfield = subfield(*args)
   subfield.reset_patterns
   subfield.include_set_modules
 end

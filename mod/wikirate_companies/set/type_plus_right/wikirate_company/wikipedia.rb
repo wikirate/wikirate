@@ -63,7 +63,7 @@ def validate_new_and_blank
   return if content.present?
 
   if supercard
-    supercard.detach_subcard name
+    supercard.drop_subcard name
   else
     errors.add :content, "cannot be blank"
   end

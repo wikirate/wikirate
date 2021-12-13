@@ -4,7 +4,7 @@ DOWNLOAD_MAX_SECONDS = 10
 CONVERSION_MAX_SECONDS = 30
 
 event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
-  left.add_subfield :wikirate_link, content: remote_file_url
+  left.subfield :wikirate_link, content: remote_file_url
 end
 
 # CarrierWave.configure do |config|
