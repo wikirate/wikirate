@@ -37,7 +37,7 @@ class Card
     # it is not yet possible to handle not-researched answers for multiple companies and
     # metrics in one query
     def partner
-      partner ||=
+      @partner ||=
         if single_metric?
           :company
         elsif single_company?
@@ -62,17 +62,14 @@ class Card
     end
 
     def main_results
-      puts "all answer query sql: #{main_results_sql}"
       Card.find_by_sql(main_results_sql).map do |rec|
         rec.id ? researched_card(rec.id) : not_researched_card(rec.name)
       end
     end
 
     def main_results_sql
-      p = partner
-      sort_and_page do
-        main_query.select "answers.id, #{p}.name, #{p}.left_id, #{p}.right_id"
-      end.to_sql
+      fields = "answers.id, #{partner}.name, #{partner}.left_id, #{partner}.right_id"
+      @main_results_sql ||= sort_and_page { main_query.select fields }.to_sql
     end
   end
 end
