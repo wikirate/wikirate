@@ -15,6 +15,7 @@ class Card
     SORT_BY_COUNT = { company: :wikirate_company, answer: :metric_answer }.freeze
 
     include MetricFilters
+    include AnswerFilters
 
     # whether answer queries with this field should use a metrics table join
     def self.join? field

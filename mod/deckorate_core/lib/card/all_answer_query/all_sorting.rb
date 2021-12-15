@@ -33,14 +33,14 @@ class Card
 
       def sort_by sort_by
         if (partner_field = partner_field_map[sort_by])
-          "#{@partner}.#{partner_field}"
+          "#{partner}.#{partner_field}"
         else
           sort_by
         end
       end
 
       def sort_by_bookmarkers rel
-        [Card::Bookmark.add_sort_join(rel, "#{@partner}.id"), "cts.value"]
+        [Card::Bookmark.add_sort_join(rel, "#{partner}.id"), "cts.value"]
       end
 
       def sort_by_metric_field rel, field
@@ -55,11 +55,11 @@ class Card
       end
 
       def join_metrics_table rel
-        rel.joins("JOIN metrics on metrics.metric_id = #{@partner}.id")
+        rel.joins("JOIN metrics on metrics.metric_id = #{partner}.id")
       end
 
       def sort_join sql
-        "LEFT JOIN cards sort ON #{@partner}.#{sql}"
+        "LEFT JOIN cards sort ON #{partner}.#{sql}"
       end
     end
   end

@@ -18,8 +18,7 @@ class Card
     end
 
     def process_filters
-      require_partner!
-      add_card_condition "#{@partner}.type_id = ?", PARTNER_TYPE_ID[@partner]
+      add_card_condition "#{partner}.type_id = ?", PARTNER_TYPE_ID[partner]
       filter_applicability
       super
     end
@@ -31,14 +30,14 @@ class Card
     private
 
     def partner_joins
-      @card_joins.unshift("AS #{@partner}").push answer_join
+      @card_joins.unshift("AS #{partner}").push answer_join
     end
 
     # Currently these queries only work with a fixed company or metric
     # it is not yet possible to handle not-researched answers for multiple companies and
     # metrics in one query
-    def require_partner!
-      @partner =
+    def partner
+      @partner ||=
         if single_metric?
           :company
         elsif single_company?
@@ -51,11 +50,11 @@ class Card
     # This left join is the essence of the search strategy.
     def answer_join
       "LEFT JOIN answers " \
-      "ON #{@partner}.id = answers.#{@partner}_id AND #{lookup_conditions}"
+      "ON #{partner}.id = answers.#{partner}_id AND #{lookup_conditions}"
     end
 
     def partner_where
-      "#{@partner}.trash is false AND #{card_conditions} "
+      "#{partner}.trash is false AND #{card_conditions} "
     end
 
     def researched_card id
@@ -69,10 +68,8 @@ class Card
     end
 
     def main_results_sql
-      p = @partner
-      sort_and_page do
-        main_query.select "answers.id, #{p}.name, #{p}.left_id, #{p}.right_id"
-      end.to_sql
+      fields = "answers.id, #{partner}.name, #{partner}.left_id, #{partner}.right_id"
+      @main_results_sql ||= sort_and_page { main_query.select fields }.to_sql
     end
   end
 end

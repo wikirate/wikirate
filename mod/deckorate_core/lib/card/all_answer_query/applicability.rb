@@ -5,7 +5,7 @@ class Card
       private
 
       def filter_applicability
-        if @partner == :company
+        if partner == :company
           restrict_to_applicable_companies
           validate_year_restriction
         else
@@ -43,7 +43,7 @@ class Card
       end
 
       def applicable_years
-        return unless @partner == :company
+        return unless partner == :company
 
         metric_card&.year_card&.item_names&.sort
       end
