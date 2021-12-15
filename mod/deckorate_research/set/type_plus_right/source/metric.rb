@@ -16,18 +16,16 @@ def skip_search?
 end
 
 # recount no. of sources on metric when citation is changed
-recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
-  source_metric_counts_for_citation changed_card
+recount_trigger :type_plus_right, :metric_answer, :source do |citation|
+  metric_lists_for_sources citation
 end
 
 # ...or when answer is (un)published
-recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  field_recount changed_card do
-    source_metric_counts_for_citation changed_card.left&.source_card
-  end
+recount_trigger :type_plus_right, :metric_answer, :unpublished do |citation|
+  field_recount(citation) { metric_lists_for_sources citation }
 end
 
-def self.source_metric_counts_for_citation citation
+def self.metric_lists_for_sources citation
   citation.item_cards.map do |source_card|
     source_card.fetch :metric
   end.compact
