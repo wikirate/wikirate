@@ -32,6 +32,11 @@ class Card
           end
       end
 
+      def source_query value
+        answer_query = AnswerQuery.new(source: value).lookup_relation.select :metric_id
+        @conditions << "metrics.metric_id in (#{answer_query.to_sql})"
+      end
+
       private
 
       # WikiRate team members are stewards of all metrics
