@@ -9,7 +9,7 @@ class Card
       end
 
       def new_name partner_name
-        if @partner == :company
+        if partner == :company
           Card::Name[metric_card.name, partner_name, new_name_year]
         else
           Card::Name[partner_name, company_card.name, new_name_year]

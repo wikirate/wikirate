@@ -33,7 +33,7 @@ class Card
       end
 
       def company_name_query value
-        restrict_by_cql :company_id, name: [:match, value], type_id: WikirateCompanyID
+        restrict_by_cql :company_id, name: [:match, value], type: :wikirate_company
       end
 
       def country_query value
@@ -53,9 +53,8 @@ class Card
 
       def metric_name_query value
         @joins << :metric
-        restrict_by_cql "title_id",
-                        name: [:match, value],
-                        left_plus: [{}, { type_id: Card::MetricID }]
+        restrict_by_cql "title_id", name: [:match, value],
+                                    left_plus: [{}, { type_id: Card::MetricID }]
       end
 
       # SUPPORT METHODS
