@@ -14,13 +14,14 @@ end
 
 # ...or when answer is (un)published
 recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+
   field_recount changed_card do
-    answer_searches_for_sources changed_card.left&.source_card
+    answer_searches_for_sources changed_card.left&.fetch :source
   end
 end
 
 def self.answer_searches_for_sources citation
-  citation.changed_item_names.map do |source_name|
-    source_name.card.fetch :metric_answer
+  citation.item_cards.map do |source_card|
+    source_card.fetch :metric_answer
   end.compact
 end

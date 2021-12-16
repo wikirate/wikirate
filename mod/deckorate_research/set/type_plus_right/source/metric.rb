@@ -18,7 +18,7 @@ recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
 end
 
 def self.metric_searches_for_sources citation
-  citation.changed_item_names.map do |source_name|
-    source_name.card.fetch :metric
+  citation.changed_item_cards.map do |source_card|
+    source_card.fetch :metric
   end.compact
 end
