@@ -11,7 +11,3 @@ end
 def company_names
   [company_name]
 end
-
-view :missing_in_research do
-  "hi mom"
-end

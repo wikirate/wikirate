@@ -152,7 +152,7 @@ addToSourceContent = (editor, source) ->
 
 reloadSourceSlot = (slot, content) ->
   query = $.param assign: true, card: { content: content }
-  slot.reloadSlot "#{slot.data 'cardName'}?#{query}"
+  slot.reloadSlot "#{slot.data 'cardLinkName'}?#{query}"
 
 selectedSource = ()->
   $("#_select_source").data "source"
