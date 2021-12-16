@@ -50,9 +50,7 @@ class Card
       end
 
       def source_query value
-        restrict_by_cql :answer_id,
-                        type_id: Card::MetricAnswerID,
-                        right_plus: [Card::SourceID, { refer_to: value }]
+        restrict_by_cql :answer_id, right: :source, refer_to: value, return: :left_id
       end
 
       private
