@@ -8,6 +8,8 @@ class Metric < Cardio::Record
   fetcher designer_id: :metric_designer_id, title_id: :metric_title_id
   fetcher :scorer_id, :metric_type_id, :value_type_id, :unpublished
 
+  has_many :answer, primary_key: :metric_id
+
   # TODO: this should be implicit
   def fetch_metric_id
     card.id

@@ -28,7 +28,7 @@ class Card
       end
 
       def process_filter_option key, value
-        return super unless PARTNER_CQL_FILTERS[@partner].include? key
+        return super unless PARTNER_CQL_FILTERS[partner].include? key
 
         @cql_filter[key] = value
       end
@@ -36,8 +36,16 @@ class Card
       def filter key, value, operator=nil
         return super unless (partner_column = partner_field_map[key])
 
-        condition = "#{@partner}.#{partner_column} #{op_and_val operator, value}"
+        condition = "#{partner}.#{partner_column} #{op_and_val operator, value}"
         add_card_condition condition, value
+      end
+
+      def restrict_by_cql col, cql
+        return super unless (partner_column = partner_field_map[col])
+
+        cql.reverse_merge! return: :id, limit: 0
+        @card_conditions <<
+          "#{partner}.#{partner_column} IN (#{Card::Query.new(cql).sql})"
       end
 
       def add_card_condition condition, value
@@ -46,27 +54,27 @@ class Card
       end
 
       def company_filter_query table, condition_method, value
-        @card_joins << "JOIN answers AS #{table} ON #{@partner}.id = #{table}.company_id"
+        @card_joins << "JOIN answers AS #{table} ON #{partner}.id = #{table}.company_id"
         add_card_condition CompanyFilterQuery.send(condition_method), Array.wrap(value)
       end
 
       # map answer fields to partner card fields
       def partner_field_map
         @partner_field_map ||= %i[id name].each_with_object({}) do |fld, hash|
-          hash["#{@partner}_#{fld}".to_sym] = fld
+          hash["#{partner}_#{fld}".to_sym] = fld
         end
       end
 
       def card_conditions
-        add_card_condition "#{@partner}.id IN (?)", @partner_ids if @partner_ids.present?
-        add_card_condition "#{@partner}.id NOT IN (?)", @not_ids if @not_ids.present?
-        @card_conditions << "#{@partner}.id IN (#{cql_subquery})" if @cql_filter.present?
+        add_card_condition "#{partner}.id IN (?)", @partner_ids if @partner_ids.present?
+        add_card_condition "#{partner}.id NOT IN (?)", @not_ids if @not_ids.present?
+        @card_conditions << "#{partner}.id IN (#{cql_subquery})" if @cql_filter.present?
         condition_sql([@card_conditions.join(" AND ")] + @card_values)
       end
 
       # most metric and company constraints are handled in a cql subquery
       def cql_subquery
-        statement = PARTNER_FILTER_QUERY[@partner].new(@cql_filter).to_cql
+        statement = PARTNER_FILTER_QUERY[partner].new(@cql_filter).to_cql
         Card::Auth.as_bot do
           cq = Card::Query.new statement.merge(return: :id), ""
           cq.define_singleton_method(:full?) { false }
@@ -95,7 +103,7 @@ class Card
       end
 
       def partner_id_col
-        @partner_id_col ||= "#{@partner}_id".to_sym
+        @partner_id_col ||= "#{partner}_id".to_sym
       end
 
       def not_researched!
