@@ -50,6 +50,11 @@ class Card
       { metric_designer: :designer_id,
         metric_title: :title_id }
     end
+
+    def source_query value
+      subsql = AnswerQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
+      @conditions << "metrics.metric_id in (#{subsql})"
+    end
   end
 end
 
