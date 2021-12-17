@@ -20,7 +20,7 @@ class Card
     end
 
     def self.wikirate_company_suggestion_filter_mark
-      "Company+browse_company_filter"
+      "Company"
     end
   end
 end

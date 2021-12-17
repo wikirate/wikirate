@@ -3,7 +3,7 @@ include_set Abstract::ListRefCachedCount,
             type_to_count: :metric,
             list_field: :wikirate_topic
 
-include_set Right::BrowseMetricFilter
+include_set Abstract::MetricFilter
 
 def query_hash
   { topic: left.id }

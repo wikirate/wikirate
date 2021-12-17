@@ -11,7 +11,7 @@ format :html do
   end
 
   def filter_card
-    Card.fetch :metric, :browse_metric_filter
+    :metric.card
   end
 
   view :ancestor_core do
