@@ -1,4 +1,4 @@
-include_set Right::BrowseCompanyFilter
+include_set Abstract::CompanyFilter
 
 # cache # of companies related to this topic (=left) via answers for metrics that
 # are tagged with this topic
