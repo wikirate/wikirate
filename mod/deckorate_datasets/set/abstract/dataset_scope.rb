@@ -111,6 +111,6 @@ format :html do
   end
 
   def filter_card
-    Card.fetch card.scope_code, filter_field_code
+    card.scope_code.card
   end
 end

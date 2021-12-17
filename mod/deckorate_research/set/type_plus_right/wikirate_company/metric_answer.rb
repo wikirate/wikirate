@@ -69,8 +69,7 @@ format :html do
   end
 
   def quick_filter_list
-    @quick_filter_list ||=
-      Card.fetch(:metric, :browse_metric_filter).format.quick_filter_list
+    @quick_filter_list ||= :metric.card.format.quick_filter_list
   end
 
   def show_company_count?

@@ -10,7 +10,7 @@ class NewBrowseFilters < Cardio::Migration
   def update_counts type, *fields
     Card.search(type: type) do |base|
       fields.each do |trait|
-        base.fetch(trait, new: {}).update_cached_count
+        base.fetch(trait, new: {}).update_cached_count_without_callbacks
       end
     end
   end

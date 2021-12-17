@@ -1,3 +1,5 @@
+# TODO: rename to AnswerFilter for consistency (see MetricFilter, TopicFilter, etc)
+
 include_set Abstract::BsBadge
 include_set Abstract::Table
 include_set Abstract::BrowseFilterForm

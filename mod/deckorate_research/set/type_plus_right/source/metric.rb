@@ -1,5 +1,5 @@
 include_set Abstract::SearchCachedCount
-include_set Right::BrowseMetricFilter
+include_set Abstract::MetricFilter
 
 def query_hash
   { source: left.id }

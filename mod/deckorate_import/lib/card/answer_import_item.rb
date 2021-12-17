@@ -75,11 +75,11 @@ class Card
       end
 
       def wikirate_company_suggestion_filter_mark
-        "Company+browse_company_filter"
+        "Company"
       end
 
       def metric_suggestion_filter_mark
-        "Metric+browse_metric_filter"
+        "Metric"
       end
 
       def source_suggestion_filter_mark

@@ -1,6 +1,6 @@
 include_set Type::SearchType
 include_set Abstract::ProjectList
-include_set Right::BrowseMetricFilter
+include_set Abstract::MetricFilter
 
 def query_hash
   { dataset: dataset_name }
