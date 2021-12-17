@@ -15,7 +15,6 @@ class Card
     SORT_BY_COUNT = { company: :wikirate_company, answer: :metric_answer }.freeze
 
     include MetricFilters
-    include AnswerFilters
 
     # whether answer queries with this field should use a metrics table join
     def self.join? field
@@ -50,6 +49,11 @@ class Card
     def sort_by_cardname
       { metric_designer: :designer_id,
         metric_title: :title_id }
+    end
+
+    def source_query value
+      subsql = AnswerQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
+      @conditions << "metrics.metric_id in (#{subsql})"
     end
   end
 end
