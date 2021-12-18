@@ -3,6 +3,7 @@ include_set Abstract::MetricFilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 include_set Abstract::LookupSearch
+include_set Abstract::SearchViews
 
 def bookmark_type
   :metric

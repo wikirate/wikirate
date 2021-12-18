@@ -1,12 +1,9 @@
 # cache # of metrics tagged with this topic (=_left) via <metric>+topic
-include_set Abstract::ListRefCachedCount,
-            type_to_count: :metric,
-            list_field: :wikirate_topic
-
+include_set Abstract::CachedCount
 include_set Abstract::MetricFilter
 
 def query_hash
-  { topic: left.id }
+  { topic: left_id }
 end
 
 format :html do

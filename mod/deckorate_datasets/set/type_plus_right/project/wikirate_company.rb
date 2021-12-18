@@ -1,6 +1,6 @@
 include_set Type::SearchType
-include_set Abstract::CompanyFilter
 include_set Abstract::ProjectList
+include_set Abstract::CompanyFilter
 
 def cql_content
   {
