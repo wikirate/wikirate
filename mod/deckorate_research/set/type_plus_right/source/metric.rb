@@ -1,8 +1,8 @@
-include_set Abstract::SearchCachedCount
-include_set Right::BrowseMetricFilter
+include_set Abstract::CachedCount
+include_set Abstract::MetricFilter
 
 def query_hash
-  { source: left.id }
+  { source: left_id }
 end
 
 # recount no. of sources on metric when citation is changed

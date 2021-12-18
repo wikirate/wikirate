@@ -15,7 +15,7 @@ format do
   end
 
   def filter_keys
-    %i[name dataset company_group company_category country bookmark]
+    %i[name dataset company_group company_category country bookmark company_category]
   end
 
   def default_sort_option
