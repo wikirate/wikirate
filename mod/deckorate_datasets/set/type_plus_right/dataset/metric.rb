@@ -2,7 +2,7 @@
 # all companies on a given dataset.
 include_set Abstract::CqlSearch
 include_set Abstract::SearchViews
-include_set Right::BrowseMetricFilter
+include_set Abstract::MetricFilter
 include_set Abstract::DatasetScope
 include_set Abstract::IdPointer
 include_set Abstract::FilterList
@@ -16,9 +16,5 @@ end
 format :html do
   view :titled_content do
     render_filtered_content
-  end
-
-  def filter_field_code
-    :browse_metric_filter
   end
 end

@@ -4,7 +4,7 @@ include_set Abstract::FullAnswerSearch
 include_set Abstract::Chart
 
 def query_hash
-  { source: left.id }
+  { source: left_id }
 end
 
 # recount answers when a citation is updated

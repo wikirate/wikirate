@@ -59,7 +59,7 @@ format :html do
   end
 
   def filter_card
-    Card.fetch :wikirate_company, :browse_company_filter
+    :wikirate_company.card
   end
 end
 

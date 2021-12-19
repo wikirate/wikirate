@@ -1,8 +1,8 @@
-include_set Abstract::SearchCachedCount
-include_set Right::BrowseMetricFilter
+include_set Abstract::CachedCount
+include_set Abstract::MetricFilter
 
 def query_hash
-  { source: left.id }
+  { source: left_id }
 end
 
 # recount no. of sources on metric when citation is changed
@@ -13,7 +13,7 @@ end
 # ...or when answer is (un)published
 recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
   field_recount changed_card do
-    source_metric_counts_for_citation changed_card.left&.source_card
+    metric_searches_for_sources changed_card.left&.source_card
   end
 end
 

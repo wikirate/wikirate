@@ -13,9 +13,7 @@ shared_examples "cached count" do |name, count, increment|
   include_examples "check count", count
 
   context "when item added" do
-    before do
-      Card::Auth.as_bot { add_one }
-    end
+    before { Card::Auth.as_bot { add_one } }
     include_examples "check count", count + increment
   end
 
