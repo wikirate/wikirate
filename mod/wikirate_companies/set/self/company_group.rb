@@ -1,3 +1,5 @@
+include_set Abstract::CompanyGroupFilter
+
 format :html do
-  view :core, template: :haml
+  view :titled_content, template: :haml
 end
