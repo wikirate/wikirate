@@ -3,6 +3,7 @@ include_set Abstract::MetricFilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 include_set Abstract::LookupSearch
+include_set Abstract::SearchViews
 
 def bookmark_type
   :metric
@@ -14,10 +15,6 @@ end
 
 def filter_class
   MetricQuery
-end
-
-def target_type_id
-  MetricID
 end
 
 format do

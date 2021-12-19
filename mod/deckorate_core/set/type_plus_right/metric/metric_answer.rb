@@ -93,8 +93,7 @@ format :html do
   end
 
   def quick_filter_list
-    @quick_filter_list ||=
-      Card.fetch(:wikirate_company, :browse_company_filter).format.quick_filter_list
+    @quick_filter_list ||= :wikirate_company.card.format.quick_filter_list
   end
 
   view :filter_value_formgroup do

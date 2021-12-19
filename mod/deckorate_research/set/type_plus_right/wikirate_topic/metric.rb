@@ -1,12 +1,15 @@
 # cache # of metrics tagged with this topic (=_left) via <metric>+topic
-include_set Abstract::ListRefCachedCount,
-            type_to_count: :metric,
-            list_field: :wikirate_topic
-
-include_set Right::BrowseMetricFilter
+include_set Abstract::CachedCount
+include_set Abstract::MetricFilter
 
 def query_hash
-  { topic: left.id }
+  { topic: left_id }
+end
+
+recount_trigger :type_plus_right, :metric, :wikirate_topic do |topic_list|
+  topic_list.changed_item_names.map do |item_name|
+    Card.fetch item_name.to_name.field(:metric)
+  end
 end
 
 format :html do
