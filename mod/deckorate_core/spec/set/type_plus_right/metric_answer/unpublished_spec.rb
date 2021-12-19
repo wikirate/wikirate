@@ -11,8 +11,9 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Unpublished do
   end
 
   it "updates answer lookup table on delete", as_bot: true do
-    researched_answer.unpublished_card.delete!
-    expect(researched_answer.answer.unpublished).to be_falsey
+    answer = researched_answer.refresh true
+    answer.unpublished_card.delete!
+    expect(answer.answer.unpublished).to be_falsey
   end
 
   it "'unpublishes' calculated answer when researched answer is unpublished" do
