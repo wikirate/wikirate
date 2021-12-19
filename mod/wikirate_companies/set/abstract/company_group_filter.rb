@@ -5,6 +5,10 @@ def target_type_id
   Card::CompanyGroupID
 end
 
+def bookmark_type
+  :company_group
+end
+
 format do
   def filter_class
     WikirateFilterQuery

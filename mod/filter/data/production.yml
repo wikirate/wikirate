@@ -1,9 +1,0 @@
----
-- :name: browse_company_group_filter
-  :codename: :browse_company_group_filter
-
-- :name:
-    - :browse_company_group_filter
-    - :right
-    - :default
-  :type: :search_type
