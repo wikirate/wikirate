@@ -4,20 +4,12 @@ include_set Abstract::CompanyFilter
 # are tagged with this topic
 include_set Abstract::AnswerLookupCachedCount, target_type: :company
 
-def search_anchor
-  { metric_id: metric_ids }
+def query_hash
+  { topic: left_id }
 end
 
 def topic_name
   name.left_name
-end
-
-def metric_ids
-  left.fetch(:metric, new: {}).item_ids
-end
-
-def skip_search?
-  metric_ids.empty?
 end
 
 # when answer is created/deleted
