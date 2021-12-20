@@ -4,23 +4,13 @@ include_set Abstract::SearchCachedCount
 include_set Abstract::SourceFilter
 
 def cql_content
-  { referred_to_by: { right_id: SourceID, left_id: [:in] + answer_ids } }
+  { referred_to_by: { right_id: SourceID, left_id: answer_relation } }
 end
 
-def skip_search?
-  answer_ids.blank?
-end
-
-# turn query caching off because cql_hash varies
-def cache_query?
-  false
-end
-
-def answer_ids
+def answer_relation
   ::Answer.where(metric_id: left.id)
           .where.not(answer_id: nil)
           .where("answers.unpublished is not true")
-          .pluck :answer_id
 end
 
 # recount no. of sources on metric when citation is edited
