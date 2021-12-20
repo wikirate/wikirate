@@ -4,13 +4,11 @@ include_set Abstract::SearchCachedCount
 include_set Abstract::SourceFilter
 
 def cql_content
-  { referred_to_by: { right_id: SourceID, left_id: answer_relation } }
+  { referred_to_by: { right_id: SourceID, left_id: answer_relation.select(:answer_id) } }
 end
 
 def answer_relation
-  ::Answer.where(metric_id: left.id)
-          .where.not(answer_id: nil)
-          .where("answers.unpublished is not true")
+  AnswerQuery.new(metric_id: left.id).lookup_relation
 end
 
 # recount no. of sources on metric when citation is edited
