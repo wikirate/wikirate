@@ -1,8 +1,8 @@
 # cache # of metrics with answers for this company (=left)
 include_set Abstract::AnswerLookupCachedCount, target_type: :metric
 
-def search_anchor
-  { company_id: left.id }
+def query_hash
+  { company_id: left_id }
 end
 
 # recount metrics related to company whenever a value is created or deleted
