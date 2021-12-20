@@ -18,7 +18,7 @@ def search_anchor
   raise "need search anchor method"
 end
 
-def recount
+def count
   ::Answer.search :count, answer_query
 end
 
