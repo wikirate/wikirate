@@ -44,11 +44,3 @@ def normalize_company_arg key, args={}
 
   args[key] = company.card_id
 end
-
-# def answer_card company, year
-#   field(company)&.field(year.to_s)
-# end
-#
-# def value_cards _opts={}
-#   Answer.search metric_id: id, return: :value_card
-# end
