@@ -18,7 +18,7 @@ end
 
 format :html do
   def raw_help_text
-    metric_card.question
+    [metric_card.question, methodology_link].join " <br/>"
   end
 
   view :updated_at, compact: true do
@@ -56,6 +56,10 @@ format :html do
   end
 
   private
+
+  def methodology_link
+    link_to "Methodology", path: "#", class: "_methodology-link"
+  end
 
   def pretty_link text
     return text if voo.hide? :link

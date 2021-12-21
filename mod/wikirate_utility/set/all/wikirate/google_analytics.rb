@@ -7,9 +7,10 @@ def track_page!
   hit.track!
 end
 
-def track_page_from_server?
-  tracker && response_format.in?(%i[csv json]) && !internal_api_request?
-end
+# turning off for now
+# def track_page_from_server?
+#   tracker && response_format.in?(%i[csv json]) && !internal_api_request?
+# end
 
 def tracker_content_groups
   { cg1: type_name, cg2: format_content_group }

@@ -103,6 +103,10 @@ $(document).ready ->
     openPdf sourceMark
     e.preventDefault()
 
+  $(".research-layout").on "click", "._methodology-link", (e) ->
+    toPhase "question", e
+    $("._methodology-button").click()
+
 closeSourceModal = (el)->
   el.closest("._modal-slot").find("._close-modal").trigger "click"
 
