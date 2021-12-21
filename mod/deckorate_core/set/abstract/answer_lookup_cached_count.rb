@@ -14,18 +14,16 @@ def self.included host_class
 end
 
 # override this to restrict the Answer search result
-def search_anchor
-  raise "need search anchor method"
+def query_hash
+  raise "need #query_hash method"
 end
 
-def recount
-  ::Answer.search :count, answer_query
+def count
+  answer_query.count
 end
 
 def answer_query
-  query = search_anchor
-  query[:uniq] = target_id_field unless target_type == :answer
-  query
+  AnswerQuery.new(query_hash).lookup_relation.select(target_id_field).distinct
 end
 
 def target_id_field
@@ -35,18 +33,5 @@ end
 # needed for "found_by" cql searches that refer to search results
 # of these cards
 def cql_content
-  { id: [:in] + target_ids.compact }
-end
-
-def skip_search?
-  target_ids.empty?
-end
-
-def target_ids
-  ::Answer.search target_id_field, answer_query
-end
-
-# turn query caching off because cql_content can change
-def cache_query?
-  false
+  { id: answer_query }
 end
