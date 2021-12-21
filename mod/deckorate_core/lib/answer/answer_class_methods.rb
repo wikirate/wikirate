@@ -20,21 +20,6 @@ class Answer
 
     VALUE_JOINT = Card::Set::Abstract::Value::JOINT
 
-    # param retrn [Symbol] AR return argument(:count, :company_id, etc)
-    # @param opts [Hash] search options
-    # If the :where option is used then its value is passed as argument list to AR's where
-    # method. Otherwise all remaining values besides `return` and `uniq` are
-    # passed as hash to `where`.
-    # @option opts [Hash] :where
-    # @return answer card objects
-    def search retrn, opts={}
-      uniq = opts.delete :uniq
-      where(opts.delete(:where) || opts)
-        .uniq_select(uniq, retrn)
-        .where("unpublished is not true")
-        .return retrn
-    end
-
     # @return [Answer]
     def fetch cardish
       for_card(cardish) || new_researched(cardish) || virtual(cardish) || new
