@@ -1,4 +1,5 @@
 include_set Abstract::BrowseFilterForm
+# include_set Abstract::FilterFormgroups
 include_set Abstract::MetricFilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
@@ -17,9 +18,17 @@ def filter_class
   MetricQuery
 end
 
+def target_type_id
+  MetricID
+end
+
 format do
   def default_filter_hash
     { name: "" }
+  end
+
+  def default_limit
+    Auth.signed_in? ? 5000 : 500
   end
 
   def default_sort_option
