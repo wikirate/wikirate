@@ -24,14 +24,14 @@ format :html do
   end
 
   def wikirate_layout body_class
-    <<-HTML.strip_heredoc
-      <body class="wikirate-layout #{body_class}">
+    body_tag "wikirate-layout #{body_class}" do
+      <<-HTML.strip_heredoc
         #{nest :nav_bar, view: :core}
         #{yield}
         #{nest :wikirate_footer, view: :content}
         #{nest 'ajax loader anime', view: :content}
         #{nest '_main+google analytics conversion snippet', view: :core}
-      </body>
-    HTML
+      HTML
+    end
   end
 end
