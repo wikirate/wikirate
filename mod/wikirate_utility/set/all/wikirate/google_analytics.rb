@@ -7,10 +7,9 @@ def track_page!
   hit.track!
 end
 
-# turning off for now
-# def track_page_from_server?
-#   tracker && response_format.in?(%i[csv json]) && !internal_api_request?
-# end
+def track_page_from_server?
+  tracker && response_format.in?(%i[csv json]) && !internal_api_request?
+end
 
 def tracker_content_groups
   { cg1: type_name, cg2: format_content_group }
@@ -38,20 +37,9 @@ def internal_api_request?
 end
 
 format :html do
-  def views_in_head
-    super << :google_analytics_four_snippet
-  end
-
   def google_analytics_snippet_vars
     super.merge contentGroup1: card.type_name,
                 contentGroup2: "Web",
                 dimension1: card.profile_type
-  end
-
-  view :google_analytics_four_snippet do
-    # FIXME: clean up and move to ga mod
-    return unless (ga4_key = Card.config.google_analytics_four_key)
-
-    haml :ga4_tag, ga4_key: ga4_key
   end
 end
