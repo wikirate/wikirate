@@ -447,10 +447,10 @@ GEM
       cucumber-cucumber-expressions (~> 14.0, >= 14.0.0)
       cucumber-messages (~> 17.1, >= 17.1.1)
     curb (0.9.11)
-    cypress-on-rails (1.11.0)
+    cypress-on-rails (1.12.0)
       rack
     daemons (1.4.1)
-    dalli (3.1.6)
+    dalli (3.2.0)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.1)
@@ -725,7 +725,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
-    rspec_junit_formatter (0.4.1)
+    rspec_junit_formatter (0.5.0)
       rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (1.24.1)
       parallel (~> 1.10)
@@ -844,7 +844,6 @@ DEPENDENCIES
   card-mod-counts!
   card-mod-csv_import!
   card-mod-defaults!
-  card-mod-delayed_job!
   card-mod-fulltext!
   card-mod-google_analytics!
   card-mod-graphql!
