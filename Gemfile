@@ -14,6 +14,7 @@ else
 
   path "./vendor/decko/mod" do
     gem "card-mod-defaults"
+    gem "card-mod-delayed_job"
   end
 
   path "./vendor/card-mods" do

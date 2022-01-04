@@ -844,6 +844,7 @@ DEPENDENCIES
   card-mod-counts!
   card-mod-csv_import!
   card-mod-defaults!
+  card-mod-delayed_job!
   card-mod-fulltext!
   card-mod-google_analytics!
   card-mod-graphql!
