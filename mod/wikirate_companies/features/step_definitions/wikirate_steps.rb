@@ -62,10 +62,7 @@ When(
 ) do |field, value|
   duplicates = Card::Source.search_by_url value
   duplicated_card = duplicates.first if duplicates.any?
-
-  url = "#{Card::Env[:protocol]}#{Card::Env[:host]}"\
-        "/#{duplicated_card.name.url_key}"
-  fill_in(field, with: url)
+  fill_in(field, with: "#{Card::Env.origin}/#{duplicated_card.name.url_key}")
 end
 
 Then(/^Within "([^"]*)" I should not see "([^"]*)"$/) do |section, text|
