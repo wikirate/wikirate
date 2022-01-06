@@ -20,8 +20,6 @@ RSpec.describe Card::Metric do
   end
 
   let :researched_metrics do
-    Card::Env[:protocol] = "http://"
-    Card::Env[:host] = "wikirate.org"
     sample_source_name = sample_source.name
     described_class.create name: "Jedi+strength in the Force",
                            value_type: "Category",

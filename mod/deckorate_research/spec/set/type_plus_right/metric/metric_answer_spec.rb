@@ -19,7 +19,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
   end
 
   def with_latest_filter_params
-    Card::Env[:filter] = { year: :latest }
+    Card::Env.params[:filter] = { year: :latest }
   end
 
   context "when no filter in params" do
