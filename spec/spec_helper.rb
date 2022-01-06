@@ -15,10 +15,7 @@ require_relative "answer_helper"
 Spork.prefork do
   RSpec.configure do |config|
     config.include RSpecHtmlMatchers
-    config.before do
-      Card::Env[:protocol] = "http://"
-      Card::Env[:host] = "wikirate.org"
-    end
+    config.before { Cardio.config.deck_origin = "http://wikirate.org" }
     config.example_status_persistence_file_path = "spec/examples.txt"
   end
 end
