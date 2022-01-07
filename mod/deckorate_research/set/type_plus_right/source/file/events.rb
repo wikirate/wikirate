@@ -77,7 +77,7 @@ def pdf_from_url path
     kit = PDFKit.new remote_file_url,
                      "load-error-handling" => "ignore",
                      "load-media-error-handling" => "ignore",
-                     "custom-header" => "User-Agent: #{PDF_REQUEST_AGENT}"
+                     "custom-header" => ["User-Agent", PDF_REQUEST_AGENT]
     kit.to_file path
   end
 end
