@@ -4,7 +4,6 @@ include_set Abstract::Filterable
 
 IDENTIFIERS = %i[headquarters sec_cik oar_id].freeze
 INTEGRATIONS = %i[wikipedia open_corporates].freeze
-UNKNOWN_IDENTIFIER_VIEW = { headquarters: :unknown }.freeze
 
 (IDENTIFIERS + INTEGRATIONS).each { |field| card_accessor field, type: :phrase }
 
@@ -86,7 +85,7 @@ format :html do
 
   def identifiers
     IDENTIFIERS.map do |code|
-      labeled_field code, :name, unknown: (UNKNOWN_IDENTIFIER_VIEW[code] || :blank)
+      labeled_field code, :name if card.fetch(code) || code == :headquarters
     end
   end
 
