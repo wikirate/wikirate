@@ -2,6 +2,7 @@ require "timeout"
 
 DOWNLOAD_MAX_SECONDS = 10
 CONVERSION_MAX_SECONDS = 30
+PDF_REQUEST_CUSTOM_HEADER = "User-Agent: The WikiRate Project e.V. (info@wikirate.org)"
 
 event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
   left.subfield :wikirate_link, content: remote_file_url
@@ -74,7 +75,8 @@ end
 def pdf_from_url path
   Timeout.timeout(CONVERSION_MAX_SECONDS) do
     kit = PDFKit.new remote_file_url, "load-error-handling" => "ignore",
-                                      "load-media-error-handling" => "ignore"
+                                      "load-media-error-handling" => "ignore",
+                                      "custom-header" => PDF_REQUEST_CUSTOM_HEADER
     kit.to_file path
   end
 end
