@@ -85,9 +85,7 @@ format :html do
 
   def identifiers
     IDENTIFIERS.map do |code|
-      next unless card.fetch(code) || code == :headquarters
-
-      labeled_field code, :name
+      labeled_field code, :name if card.fetch(code) || code == :headquarters
     end
   end
 
