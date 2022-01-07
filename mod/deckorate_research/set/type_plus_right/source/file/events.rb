@@ -73,11 +73,11 @@ def converting_to_tmp_pdf
 end
 
 def pdf_from_url path
-  Timeout.timeout(CONVERSION_MAX_SECONDS) do
+  Timeout.timeout CONVERSION_MAX_SECONDS do
     kit = PDFKit.new remote_file_url,
-                     "load-error-handling" => "ignore",
-                     "load-media-error-handling" => "ignore",
-                     "custom-header" => ["User-Agent", PDF_REQUEST_AGENT]
+                     "load-error-handling": "ignore",
+                     "load-media-error-handling": "ignore",
+                     "custom-header": [["User-Agent", PDF_REQUEST_AGENT]]
     kit.to_file path
   end
 end
