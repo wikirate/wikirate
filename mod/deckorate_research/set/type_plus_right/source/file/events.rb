@@ -2,6 +2,7 @@ require "timeout"
 
 DOWNLOAD_MAX_SECONDS = 10
 CONVERSION_MAX_SECONDS = 30
+PDF_REQUEST_AGENT = "The WikiRate Project e.V. (info@wikirate.org)".freeze
 
 event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
   left.subfield :wikirate_link, content: remote_file_url
@@ -72,9 +73,12 @@ def converting_to_tmp_pdf
 end
 
 def pdf_from_url path
-  Timeout.timeout(CONVERSION_MAX_SECONDS) do
-    kit = PDFKit.new remote_file_url, "load-error-handling" => "ignore",
-                                      "load-media-error-handling" => "ignore"
+  Timeout.timeout CONVERSION_MAX_SECONDS do
+    kit = PDFKit.new remote_file_url,
+                     "load-error-handling": "ignore",
+                     "load-media-error-handling": "ignore",
+                     "custom-header": [["User-Agent", PDF_REQUEST_AGENT]],
+                     "custom-header-propagation": true
     kit.to_file path
   end
 end
