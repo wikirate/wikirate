@@ -39,6 +39,7 @@ event :normalize_html_file, after: :validate_source_file, on: :save, when: :html
 end
 
 def remote_file_url= url
+  self.remote_file_request_header = { "User-Agent": PDF_REQUEST_AGENT }
   Timeout.timeout(DOWNLOAD_MAX_SECONDS) { super }
 rescue TimeoutError
   @download_timeout = true
