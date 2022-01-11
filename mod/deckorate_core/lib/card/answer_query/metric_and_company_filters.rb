@@ -53,8 +53,8 @@ class Card
 
       def metric_name_query value
         @joins << :metric
-        restrict_by_cql "title_id", name: [:match, value],
-                                    left_plus: [{}, { type_id: Card::MetricID }]
+        restrict_by_cql :title_id, name: [:match, value],
+                                   left_plus: [{}, { type_id: Card::MetricID }]
       end
 
       # SUPPORT METHODS
