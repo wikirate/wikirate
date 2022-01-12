@@ -40,13 +40,13 @@ class Card
         add_card_condition condition, value
       end
 
-      # def restrict_by_cql col, cql
-      #   return super unless (partner_column = partner_field_map[col])
-      #
-      #   cql.reverse_merge! return: :id, limit: 0
-      #   @card_conditions <<
-      #     "#{partner}.#{partner_column} IN (#{Card::Query.new(cql).sql})"
-      # end
+      def restrict_by_cql col, cql
+        return super unless (partner_column = partner_field_map[col])
+
+        cql.reverse_merge! return: :id, limit: 0
+        @card_conditions <<
+          "#{partner}.#{partner_column} IN (#{Card::Query.new(cql).sql})"
+      end
 
       def add_card_condition condition, value
         @card_conditions << " #{condition} "
