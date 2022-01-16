@@ -56,13 +56,12 @@ format :html do
   end
 
   def excerpt_result
-    json = excerpt_json
-    return unless json.present?
+    rescuing_excerpt_error do
+      json = excerpt_json
+      return unless json.present?
 
-    @excerpt_result = OpenStruct.new json
-  rescue StandardError => error
-    @excerpt_error_message = error.message
-    nil
+      @excerpt_result = OpenStruct.new json
+    end
   end
 
   def excerpt_body
@@ -87,5 +86,12 @@ format :html do
 
   def excerpt_table_hash
     raise Error, "excerpt_table_hash not overridden"
+  end
+
+  def rescuing_excerpt_error
+    yield
+  rescue StandardError => error
+    @excerpt_error_message = error.message
+    nil
   end
 end

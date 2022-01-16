@@ -7,7 +7,7 @@ card_accessor :headquarters, type: :pointer
 (IDENTIFIERS + INTEGRATIONS).each { |field| card_accessor field, type: :phrase }
 
 def field_cards
-  (IDENTIFIERS + INTEGRATIONS).map { |field| fetch field }.compact
+  ([:headquarters] + IDENTIFIERS + INTEGRATIONS).map { |field| fetch field }.compact
 end
 
 format :html do
