@@ -251,10 +251,15 @@ td .pointer-list {
   padding: 0;
 }
 
-.RIGHT-open_corporate .table-borderless td:first-child {
-  text-align: right;
-  padding-right: 25px;
-  width: 33%;
+.excerpt-table {
+  td:first-child {
+    text-align: right;
+    padding-right: 25px;
+    width: 33%;
+  }
+  td:last-child {
+    font-weight: bold;
+  }
 }
 
 .origin-link {
