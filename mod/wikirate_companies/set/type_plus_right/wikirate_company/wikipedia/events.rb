@@ -2,7 +2,6 @@ INVALID_TITLE_CHARACTERS = %w[# < > [ ] | { }].freeze
 INVALID_TITLE_CHARACTERS_REGEXP =
   Regexp.new("[#{Regexp.escape INVALID_TITLE_CHARACTERS.join}]")
 
-
 event :validate_and_normalize_wikipedia_title, :validate, changed: :content, on: :save do
   if content.present?
     validate_title_from_content
@@ -61,12 +60,16 @@ rescue StandardError
 end
 
 def valid_wikipedia_title title
-  response = excerpt_response titles: title, prop: :info
-  pages = wikipedia_pages_data(response)
+  json = excerpt_json titles: title, prop: :info
+  pages = wikipedia_page_data json
   return unless pages&.keys&.first != "-1"
 
-  normed = normalize_title response
+  normed = normalize_title json
   self.content = normed || title
+end
+
+def wikipedia_page_data json
+  json&.dig "query", "pages"
 end
 
 def normalize_title response

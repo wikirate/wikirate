@@ -56,7 +56,7 @@ format :html do
   end
 
   def excerpt_result
-    json = card.excerpt_json
+    json = excerpt_json
     return unless json.present?
 
     @excerpt_result = OpenStruct.new json

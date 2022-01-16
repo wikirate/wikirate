@@ -22,19 +22,13 @@ def excerpt_link_url
 end
 
 format :html do
+  def excerpt_json
+    card.excerpt_json exsentences: 5, prop: :extracts, exintro: nil, explaintext: nil
+  end
+
   def excerpt_body
-    return "" unless (pages = page_data)
+    return "" unless (pages = @excerpt_result&.query&.dig "pages")
 
     pages.to_a.first[1]["extract"]
-  end
-
-  private
-
-  def page_json
-    excerpt_json exsentences: 5, prop: :extracts, exintro: nil, explaintext: nil
-  end
-
-  def page_data
-    page_json&.dig "query", "pages"
   end
 end

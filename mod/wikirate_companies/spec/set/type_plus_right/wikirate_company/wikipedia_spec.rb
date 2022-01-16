@@ -50,8 +50,9 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Wikipedia do
 
   describe "html#excerpt_body" do
     it "pulls extract from wikipedia" do
-      field = wikipedia_field "Death Star", content: "Death Star"
-      expect(field.format.excerpt_body).to match(/mobile space/)
+      fmt = wikipedia_field("Death Star", content: "Death Star").format
+      fmt.excerpt_result
+      expect(fmt.excerpt_body).to match(/mobile space/)
     end
   end
 end
