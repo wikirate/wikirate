@@ -13,7 +13,7 @@ def excerpt_json query={}
 end
 
 def excerpt_link_url
-  excerpt_uri
+  protocol_class.build host: excerpt_host, path: "/facilities/#{content}"
 end
 
 def excerpt_authorization
