@@ -4,7 +4,7 @@ decko.editorInitFunctionMap["._removable-content-list ul"] = ->
   @sortable({handle: '._handle', cancel: ''})
 
 decko.editorContentFunctionMap["._removable-content-list ul"] = ->
-  decko.pointerContent citedSources($(this))
+  decko.pointerContent citedSources()
 
 decko.slotReady (slot) ->
   if slot.closest(".research-layout")[0]
@@ -148,7 +148,7 @@ openAnswerFormBeforeAddingSource = ->
   true
 
 addToSourceContent = (editor, source) ->
-  sources = citedSources editor
+  sources = citedSources()
   sources.push source
   content = decko.pointerContent $.uniqueSort(sources)
   editor.find(".d0-card-content").val content
@@ -161,8 +161,9 @@ reloadSourceSlot = (slot, content) ->
 selectedSource = ()->
   $("#_select_source").data "source"
 
-citedSources = (el) ->
-  el.find('._removable-content-item').map( -> $(this).data('cardName') )
+citedSources = () ->
+  el = $(".RIGHT-source")
+  el.find('._removable-content-item, .bar').map( -> $(this).data('cardName') )
 
 selectedYear = ()->
   selectedYearInput().val()
@@ -191,7 +192,10 @@ researchPath = (view)->
 openPdf = (sourceMark) ->
   el = $(".source_phase-view")
   if el[0] && sourceMark != selectedSource
-    url = researchPath("source_selector") + "?" + $.param(source: sourceMark)
+    params = { source: sourceMark }
+    if citedSources().toArray().includes(sourceMark)
+      params["slot"] = { hide: "select_source_button" }
+    url = researchPath("source_selector") + "?" + $.param(params)
     el.addClass "slotter"
     el[0].href = url
     $.rails.handleRemote el
