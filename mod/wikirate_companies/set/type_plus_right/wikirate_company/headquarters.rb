@@ -1,6 +1,6 @@
 include_set Abstract::CompanyField
 
-event :standardize_jurisdiction_codes, :prepare_to_validate do
+event :standardize_jurisdiction_codes, :prepare_to_validate, on: :save do
   return if oc_code # already standardized
 
   region_name = Card::Region.region_name_for_oc_code oc_code_from_content
