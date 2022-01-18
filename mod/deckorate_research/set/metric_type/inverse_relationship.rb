@@ -1,18 +1,21 @@
 include_set Abstract::Relationship
 
-DEPENDENT_PROPERTIES =
-  %i[wikirate_topic value_type unpublished year company_group research_policy
-  report_type steward about methodology unit range value_options].freeze
+%i[wikirate_topic value_type unpublished year company_group research_policy report_type
+   steward about methodology unit range value_options].each do |property|
+  delegate property, to: :inverse_card
+  delegate "#{property}_card", to: :inverse_card
+end
 
-delegate *(DEPENDENT_PROPERTIES + [{ to: :inverse_card }])
-delegate *(DEPENDENT_PROPERTIES.map { |dp| "#{dp}_card" } + [{ to: :inverse_card }])
-
-delegate :value_type_code, :value_type_id,
-         :value_cardtype_code, :value_cardtype_id, to: :inverse_card
+delegate :value_type_code, :value_type_id, :value_cardtype_code, :value_cardtype_id,
+         :steward_ids, to: :inverse_card
 
 # OVERRIDES
 def inverse?
   true
+end
+
+def check_designer_permissions action
+  action == :create ? true : super
 end
 
 # lookup field for answers in relationship table
