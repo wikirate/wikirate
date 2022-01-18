@@ -54,4 +54,4 @@ describe "expanding details on company pages", ->
       cy.get(".details-close-icon").click()
 
     # details tab visible again
-    cy.contains("Integrations")
+    cy.contains("wikipedia")

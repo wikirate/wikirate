@@ -70,6 +70,14 @@ def with_company_from_params
 end
 
 format :html do
+  def table_properties
+    if voo.hide? :relationship_properties
+      super.select { |k, v| k != :metric_type }
+    else
+      super.merge inverse: "Inverse Metric"
+    end
+  end
+
   def title_fields options
     wrap_with :div do
       [
