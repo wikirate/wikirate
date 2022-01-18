@@ -4,7 +4,8 @@ decko.editorInitFunctionMap["._removable-content-list ul"] = ->
   @sortable({handle: '._handle', cancel: ''})
 
 decko.editorContentFunctionMap["._removable-content-list ul"] = ->
-  decko.pointerContent citedSources()
+  itemNames = $(this).find("._removable-content-item").map -> $(this).data("cardName")
+  decko.pointerContent $.unique(itemNames)
 
 decko.slotReady (slot) ->
   if slot.closest(".research-layout")[0]
@@ -162,8 +163,7 @@ selectedSource = ()->
   $("#_select_source").data "source"
 
 citedSources = () ->
-  el = $(".RIGHT-source")
-  el.find('._removable-content-item, .bar').map( -> $(this).data('cardName') )
+  $(".RIGHT-source .bar").map( -> $(this).data("cardName") )
 
 selectedYear = ()->
   selectedYearInput().val()

@@ -32,11 +32,19 @@ format :html do
       id: @excerpt_result.id,
       country: prop["country_code"],
       address: prop["address"],
-      coordinates: excerpt_coordinates.compact.join(", ")
+      coordinates: coordinates_link
     }
   end
 
-  def excerpt_coordinates
-    Array.wrap @excerpt_result.geometry&.dig("coordinates")
+  def coordinates_link
+    link_to coordinates.join(", "), href: openstreetmap_url if coordinates.present?
+  end
+
+  def openstreetmap_url
+    "https://www.openstreetmap.org/?mlon=%s&mlat=%s&zoom=25" % coordinates
+  end
+
+  def coordinates
+    @coordinates ||= Array.wrap(@excerpt_result.geometry&.dig("coordinates"))
   end
 end
