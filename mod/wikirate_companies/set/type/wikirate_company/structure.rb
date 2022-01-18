@@ -1,21 +1,20 @@
 include_set Abstract::Filterable
 
-# card_accessor :post
+IDENTIFIERS = %i[sec_cik].freeze
+INTEGRATIONS = %i[wikipedia oar_id open_corporates].freeze
 
-IDENTIFIERS = %i[headquarters sec_cik oar_id].freeze
-INTEGRATIONS = %i[wikipedia open_corporates].freeze
-
+card_accessor :headquarters, type: :pointer
 (IDENTIFIERS + INTEGRATIONS).each { |field| card_accessor field, type: :phrase }
 
 def field_cards
-  (IDENTIFIERS + INTEGRATIONS).map { |field| fetch field }.compact
+  ([:headquarters] + IDENTIFIERS + INTEGRATIONS).map { |field| fetch field }.compact
 end
 
 format :html do
   # EDITING
 
   before :content_formgroups do
-    voo.edit_structure = [:image] + IDENTIFIERS + INTEGRATIONS
+    voo.edit_structure = %i[image headquarters] + IDENTIFIERS + INTEGRATIONS
   end
 
   # LEFT SIDE
@@ -80,16 +79,20 @@ format :html do
   end
 
   view :details_tab do
-    [identifiers, content_tag(:h1, "Integrations"), integrations]
+    [labeled_field(:headquarters, :name), identifiers, integrations]
   end
 
   def identifiers
     IDENTIFIERS.map do |code|
-      labeled_field code, :name if card.fetch(code) || code == :headquarters
+      labeled_field code, :name if card.fetch(code)
     end
   end
 
   def integrations
-    INTEGRATIONS.map { |fieldcode| field_nest fieldcode, view: :titled }
+    INTEGRATIONS.map do |fieldcode|
+      next unless card.fetch fieldcode
+
+      field_nest fieldcode, view: :titled, title: fieldcode.cardname
+    end
   end
 end

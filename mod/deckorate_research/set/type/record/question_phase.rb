@@ -82,6 +82,7 @@ format :html do
                  "aria-label": label,
                  path: { project: project_name,
                          view: :research,
+                         year: params[:year],
                          anchor: "company-header" }
   end
 

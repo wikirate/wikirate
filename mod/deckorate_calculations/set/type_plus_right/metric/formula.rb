@@ -5,6 +5,11 @@ include_set Abstract::MetricChild, generation: 1
 delegate :metric_type_codename, :metric_type_card, :researched?, :calculated?, :rating?,
          to: :metric_card
 
+# don't do pointer item standardization
+def standardize_content value
+  value
+end
+
 def categorical?
   score? && metric_card.categorical?
 end
