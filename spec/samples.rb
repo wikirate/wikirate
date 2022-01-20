@@ -39,7 +39,7 @@ module Wikirate
 
     def sample_answer value_type=:free_text
       Card["#{METRIC_NAMES[value_type]}+Death_Star+1977"]
-      #sample_metric(value_type).random_value_card
+      # sample_metric(value_type).random_value_card
     end
 
     def sample_project

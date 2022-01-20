@@ -1,7 +1,7 @@
 include_set Abstract::CompanyExcerpt
 
 OPENSTREETMAP_URL =
-  "https://www.openstreetmap.org/?mlon=%{longitude}&mlat=%{latitude}&zoom=25".freeze
+  "https://www.openstreetmap.org/?mlon=%<longitude>s&mlat=%<latitude>s&zoom=25".freeze
 
 def excerpt_host
   "openapparel.org"

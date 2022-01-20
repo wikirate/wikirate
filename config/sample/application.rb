@@ -53,8 +53,8 @@ module Wikirate
     # not clear if these are still needed? If so, they should probably be in deckorate
     # code.
     config.action_dispatch.default_headers = {
-      'X-Frame-Options' => 'ALLOWALL',
-      'Access-Control-Allow-Origin' => '*'
+      "X-Frame-Options" => "ALLOWALL",
+      "Access-Control-Allow-Origin" => "*"
     }
   end
 end
