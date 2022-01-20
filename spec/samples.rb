@@ -1,5 +1,6 @@
 
-class SharedData
+module Wikirate
+  # sample data for use in tests
   module Samples
     METRIC_COUNT = 20
 

@@ -1,5 +1,5 @@
-require_relative "../../../../test/shared_data"
-include SharedData::Samples
+require_relative "../../../../spec/samples"
+include Wikirate::Samples
 
 When(/^I research answer "([^"]*)" for year "([^"]*)"$/) do |answer, year|
   visit path_to("new answer")
