@@ -5,7 +5,7 @@ Wikirate::Application.configure do
   # config/application.rb
 
   if ENV["WIKIRATE_IDE"] == "RubyMine"
-    BetterErrors.editor = "x-mine://open?file=%{file}&line=%{line}"
+    BetterErrors.editor = "x-mine://open?file=%<file>s&line=%<line>s"
   end
 
   # config.performance_logger = {

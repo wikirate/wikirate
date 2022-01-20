@@ -73,7 +73,7 @@ options here to get you started:
 
 Now we seed the database with our silly data and start the server:
 
-7. `bundle exec rake wikirate:test:seed`
+7. `env RAILS_ENV=development bundle exec rake wikirate:test:seed`
 8. `bundle exec decko s`
 
 You can log into the test data with:
