@@ -12,7 +12,7 @@
 Decko application code used at Wikirate.org
 
 Code Organization
-=========
+=================
 WikiRate is a website built with Decko, or a "deck."
 
 Decko code is primarily written in Ruby, and ruby code is typically distributed in 
@@ -31,10 +31,13 @@ other mod gems developed by Decko Commons, and
 
 
 Setting up a Development Environment
-----
+====================================
 
 The following will help set up a functioning wikirate site with a small subset of 
 (mostly fake, largely silly) WikiRate data.
+
+First, you will need to install Decko dependencies
+
 
 First, you will need to make your own fork of the GitHub repository. 
 1. fork repo on github: https://github.com/wikirate/wikirate/
@@ -66,27 +69,30 @@ example. And some configuration settings (such as credentials) are private. So t
 config files are not in git.  However, we have set up some sample configuration
 options here to get you started:
 
-6. `cp -R sample_config/* config`
-
-Depending on what you're working on, you may need various credentials that are not
-in those sample configs. Ask the WikiRate team for details.
-
-7. (add credentials)
+6. `cp -R config/sample/* config`
 
 Now we seed the database with our silly data and start the server:
 
-8. `bundle exec rake wikirate:test:seed`
-9. `bundle exec decko s`
+7. `bundle exec rake wikirate:test:seed`
+8. `bundle exec decko s`
 
-
-
-
-note: 
-- initial homepage load will take a long time.
-- You can log into the test data with:
+You can log into the test data with:
+  
   - joe@user.com  / joe_pass, or
   - joe@admin.com / joe_pass
-  
+
+
+
+Updating your code
+==================
+
+To get the latest code you will need to do the following:
+
+```
+git pull                             # pull the latest wikirate/wikirate code
+git submodule update -f --recursive  # update the nested git repositories
+bundle update                        # get the latest gems 
+```
 
 
 Testing
@@ -114,20 +120,27 @@ Paths:
  mod/*/features/step_definitions  # cucumber step definitions
 ```
 
-CoffeeScript Tests
-----
-You need [node.js](https://nodejs.org/en/) (>=6) and [ yarn ](https://yarnpkg.com/en/docs/install) installed. 
-To set up CoffeeScript testing run `yarn install`. 
-Start tests with `yarn jest test`.
-Jest is configured to run all `.coffee` files in `mod/**/spec` folders.
-The configuration can be changed in `package.json`. 
-The basic setup for Jest with jquery and Decko's coffeescript is loaded in 
-`test/setup_jest.js`. 
-See `mod/wikirate/spec/lib/javascript/script_wikirate_common.test.coffee` for 
-a simple example. 
+[//]: # (CoffeeScript Tests)
+[//]: # (----)
+[//]: # (You need [node.js]&#40;https://nodejs.org/en/&#41; &#40;>=6&#41; and [ yarn ]&#40;https://yarnpkg.com/en/docs/install&#41; installed. )
+[//]: # (To set up CoffeeScript testing run `yarn install`. )
+[//]: # (Start tests with `yarn jest test`.)
+[//]: # (Jest is configured to run all `.coffee` files in `mod/**/spec` folders.)
+[//]: # (The configuration can be changed in `package.json`. )
+[//]: # (The basic setup for Jest with jquery and Decko's coffeescript is loaded in )
+[//]: # (`test/setup_jest.js`. )
+[//]: # (See `mod/wikirate/spec/lib/javascript/script_wikirate_common.test.coffee` for )
+[//]: # (a simple example. )
 
-Site Maintenance
+Deploying Changes
 ================
+
+Requires server permissions.
+
+**TODO!**
+
+Maintenance messages
+----------------
 
 See documentation here: https://github.com/capistrano/maintenance
 

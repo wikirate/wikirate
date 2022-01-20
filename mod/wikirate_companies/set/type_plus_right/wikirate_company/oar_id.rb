@@ -1,5 +1,8 @@
 include_set Abstract::CompanyExcerpt
 
+OPENSTREETMAP_URL =
+  "https://www.openstreetmap.org/?mlon=%<longitude>s&mlat=%<latitude>s&zoom=25".freeze
+
 def excerpt_host
   "openapparel.org"
 end
@@ -41,7 +44,7 @@ format :html do
   end
 
   def openstreetmap_url
-    "https://www.openstreetmap.org/?mlon=%s&mlat=%s&zoom=25" % coordinates
+    format OPENSTREETMAP_URL, longitude: coordinates.first, latitude: coordinates.last
   end
 
   def coordinates
