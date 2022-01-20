@@ -1,5 +1,6 @@
 def api_key
-  Card.config.try "#{name.right_name.key}_api_key"
+  Card.config.try("#{name.right_name.key}_api_key") ||
+    raise("API key not found")
 end
 
 def excerpt_json query={}
