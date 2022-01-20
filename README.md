@@ -13,27 +13,73 @@ Decko application code used at Wikirate.org
 
 Code Organization
 =========
-Like all Decko decks, WikiRate's code is organized in
-[_mods_](https://www.rubydoc.info/gems/card/Card/Mod).
+WikiRate is a website built with Decko, or a "deck."
+
+Decko code is primarily written in Ruby, and ruby code is typically distributed in 
+libraries called "gems." Decko code has a few main core gems (_decko_, _card_, 
+and _cardname_), and then everything else is organized into 
+[_mods_][https://docs.decko.org/docs/Cardio/Mod], which you can
+think of as short for "modules" or "modifications". 
+
+WikiRate developers work with mods in three different main GitHub repositories:
+
+1. [decko-commons/decko](https://github.com/decko-commons/decko), which contains code
+for core gems and the mods that are included by default in new decks.
+2. [decko-commons/card-mods](https://github.com/decko-commons/card-mods), which contains 
+other mod gems developed by Decko Commons, and
+3. [wikirate/wikirate](https://github.com/wikirate/wikirate/). (this repo!)
 
 
-Steps to make it work
+Setting up a Development Environment
 ----
 
-The following will help set up a functioning wikirate site with a small subset of (mostly fake) data.  Some pages will not look complete.
+The following will help set up a functioning wikirate site with a small subset of 
+(mostly fake, largely silly) WikiRate data.
 
+First, you will need to make your own fork of the GitHub repository. 
 1. fork repo on github: https://github.com/wikirate/wikirate/
-1. clone repo: `git clone git@github.com:YOURNAME/wikirate.git`
-1. enter dir: `cd wikirate`
-1. init/update submodules `git submodule update -f --init --recursive`
-1. install gems: `bundle install`
-1. set up config: `cp -R sample_config/* config`
-1. populate dev database (with test data): `DATABASE_NAME_TEST=wikirate_dev bundle exec rake wikirate:test:seed`
-   or start fresh with a subject of your choice: `bundle exec rake wikirate:new_with_subject Camels`
-1. add AWS credentials to config/application.rb (Ask wikirate dev team!  Sorry, we'll make this easier soon)
-1. to make assets like icons work: `bundle exec rake decko:update_assets_symlink`
-1. reset assets `rake card:asset:refresh`
-1. start server: `bundle exec decko s`
+
+We each maintain our own fork so that we can make pull requests from that fork. For 
+example, Ethan's fork is at https://github.com/ethn/wikirate.
+
+Now we pull that code down to our computers.
+
+2. `git clone git@github.com:YOURNAME/wikirate.git`
+
+At this point we have the main wikirate repo, but there's a lot more code we need in
+nested repositories, which git calls _submodules_.  The following command will pull down
+the latest submodules, including the _decko_, _card-mods_, and others that we don't 
+maintain.
+
+3. `cd wikirate`
+4. `git submodule update -f --init --recursive`
+
+Nearly all ruby developers these days use a beloved gem management tool called _bundler_.
+Bundler defines the "bundle" of gems you need for your application. "bundle install" will
+install all those gems.
+
+5. `bundle install`
+
+Each different decko site has different configuration options for their own purposes.
+The production site does not have all the same configuration as your test site for 
+example. And some configuration settings (such as credentials) are private. So the main
+config files are not in git.  However, we have set up some sample configuration
+options here to get you started:
+
+6. `cp -R sample_config/* config`
+
+Depending on what you're working on, you may need various credentials that are not
+in those sample configs. Ask the WikiRate team for details.
+
+7. (add credentials)
+
+Now we seed the database with our silly data and start the server:
+
+8. `bundle exec rake wikirate:test:seed`
+9. `bundle exec decko s`
+
+
+
 
 note: 
 - initial homepage load will take a long time.

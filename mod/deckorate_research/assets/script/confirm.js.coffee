@@ -34,6 +34,7 @@ $(document).ready ->
 changeToYear = (year)->
   $("._research-#{year} input").prop "checked", true
   changeYearInSourceFilter year
+  changeYearInMetricLinks year
 
 editInProgress = ->
   $(".research-answer .card-form").data "changed"
@@ -55,6 +56,13 @@ changeYearInAnswerForm = (input)->
 changeYearInSourceFilter = (year)->
   if $(".RIGHT-source ._filter-widget")[0]
     decko.filter(".RIGHT-source ._filter-widget").addRestrictions year: year
+
+changeYearInMetricLinks = (year)->
+  $("._research-metric-link").each ->
+    link = $(this)
+    url = new URL(link.prop("href"))
+    url.searchParams.set "year", "2020"
+    link.prop "href", url.toString()
 
 changeHiddenName = (nameField, year) ->
   newName = nameField.val().replace /\d{4}$/, year
