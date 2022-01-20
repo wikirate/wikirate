@@ -72,7 +72,7 @@ end
 format :html do
   def table_properties
     if voo.hide? :relationship_properties
-      super.select { |k, v| k != :metric_type }
+      super.select { |k, _v| k != :metric_type }
     else
       super.merge inverse: "Inverse Metric"
     end
