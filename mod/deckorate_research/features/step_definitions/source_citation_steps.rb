@@ -1,6 +1,3 @@
-require_relative "../../../../spec/samples"
-include Wikirate::Samples
-
 When(/^I research answer "([^"]*)" for year "([^"]*)"$/) do |answer, year|
   visit path_to("new answer")
   fill_autocomplete("metric", with: "Joe User+RM")
@@ -53,6 +50,10 @@ def confirm_citation expected_msg=nil
   msg = accept_confirm { click_link_or_button "Cite!" }
   return unless expected_msg
   expect(msg).to eq expected_msg
+end
+
+def sample_source source=:opera
+  Card[:"#{source}_source"]
 end
 
 def add_source wikipedia_article=:darth_vader
