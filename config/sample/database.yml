@@ -29,6 +29,7 @@ test: &test
 #  socket: /tmp/mysql.sock
 
 cucumber: *test
+cypress: *test
 
 production:
   adapter: mysql2
