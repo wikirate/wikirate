@@ -1,18 +1,12 @@
-# MySQL.  Versions 4.1 and 5.0 are recommended.
-#
-# Install the MYSQL driver
-#   gem install mysql2
-#
-# Ensure the MySQL gem is defined in your Gemfile
-#   gem 'mysql2'
-#
-# And be sure to use new-style password hashing:
+# MySQL.
+
+# Be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: wikirate_dev
+  database: wikirate_test
   pool: 5
   username: root
   password:
@@ -35,6 +29,7 @@ test: &test
 #  socket: /tmp/mysql.sock
 
 cucumber: *test
+cypress: *test
 
 production:
   adapter: mysql2
