@@ -2,7 +2,7 @@ require "colorize"
 
 namespace :wikirate do
   namespace :test do
-    full_dump_path = File.join Decko.root, "test", "dump", "seed.db"
+    full_dump_path = File.join Decko.root, "db", "test_seed.db"
 
     def testdb
       @testdb ||= ENV["DATABASE_NAME_TEST"] ||
