@@ -109,7 +109,7 @@ RSpec.describe Card::AnswerQuery do
 
       context "with update date filter" do
         before do
-          Timecop.freeze(SharedData::HAPPY_BIRTHDAY)
+          Timecop.freeze(Wikirate::HAPPY_BIRTHDAY)
         end
         after do
           Timecop.return
@@ -205,7 +205,7 @@ RSpec.describe Card::AnswerQuery do
         .to eq(with_year("Death Star", 1977))
     end
     it "all in" do
-      Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
+      Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
         expect(filter_by(year: "1990",
                          company_category: "A",
                          dataset: "Evil Dataset",
