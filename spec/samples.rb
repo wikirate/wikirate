@@ -11,10 +11,6 @@ module Wikirate
       money: "Jedi+cost of planets destroyed"
     }.freeze
 
-    def self.metric_count
-      METRIC_COUNT
-    end
-
     def metric_count
       METRIC_COUNT
     end

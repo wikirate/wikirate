@@ -14,7 +14,7 @@ end
 RSpec::Core::ExampleGroup.include Wikirate::SourceHelper
 RSpec::Core::ExampleGroup.include Wikirate::AnswerHelper
 RSpec::Core::ExampleGroup.include Wikirate::Samples
-RSpec::Core::ExampleGroup.extend Wikirate::Samples::ClassMethods
+RSpec::Core::ExampleGroup.extend Wikirate::Samples
 
 Wikirate::HAPPY_BIRTHDAY = Time.utc(2035, 2, 5, 12, 0, 0).freeze
 # gift to Ethan's 60th birthday:
