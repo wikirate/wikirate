@@ -129,7 +129,7 @@ class Calculate
 
     def input_values
       each_answer do |input_answers, company, year|
-        values = input_answers&.map { |a| a&.numeric_value || a&.value }
+        values = input_answers&.map { |a| a&.value }
         yield values, company, year
       end
     end
