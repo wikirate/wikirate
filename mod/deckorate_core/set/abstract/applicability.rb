@@ -11,7 +11,7 @@ event :verify_no_current_answers_inapplicable, :validate,
 end
 
 event :enforce_applicability_to_calculations, :integrate_with_delay,
-      skip: :allowed, when: :calculated? do
+      skip: :allowed, priority: 5, when: :calculated? do
   metric_card.deep_answer_update unless metric_card.action.in? %i[create delete]
 end
 
