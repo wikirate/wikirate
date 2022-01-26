@@ -21,6 +21,10 @@ class Calculate
       computer
     end
 
+    def cast val
+      val.number? ? val.to_f : val
+    end
+
     private
 
     def full_coffee
