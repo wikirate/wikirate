@@ -9,7 +9,7 @@ def calculator_class
   end
 end
 
-event :update_calculated_answers, :integrate_with_delay, priority: 5,
-      on: :save, changed: :content, when: :content? do
+event :update_calculated_answers, :integrate_with_delay,
+      on: :save, changed: :content, priority: 5, when: :content? do
   metric_card.deep_answer_update
 end
