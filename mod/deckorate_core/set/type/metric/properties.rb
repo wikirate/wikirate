@@ -74,7 +74,7 @@ format :html do
   def unpublished_property title
     return unless card.steward?
 
-    labeled_field :unpublished, nil, title: title
+    labeled_field :unpublished, nil, title: title, unknown: :blank
   end
 
   def value_options_property title
