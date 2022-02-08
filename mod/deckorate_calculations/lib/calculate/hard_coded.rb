@@ -14,7 +14,9 @@ class Calculate
       value_for_validated_input input, company, year
     end
 
-    # can be overridden, but by default only validates that input is not unknown
+    private
+
+    # by default only validates that input is not unknown
     def validate_input input
       no_unknowns? input
     end
