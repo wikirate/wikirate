@@ -60,10 +60,6 @@ def translate_formula?
   calculator_class == ::Calculate::Translation
 end
 
-def wolfram_formula?
-  calculator_class == ::Calculate::Wolfram
-end
-
 format :html do
   def new_success
     { mark: card.name.left }

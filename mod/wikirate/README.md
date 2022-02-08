@@ -19,9 +19,14 @@ install standard packages: (these are on top of Hetzner's "minimal" ubuntu insta
 apt update
 apt dist-upgrade
 
-apt install ruby mysql-server mysql-client memcached apache2 git imagemagick certbot \
-nodejs zsh vim automysqlbackup ruby-dev ruby-bundler build-essential locate dnsutils\
-libapache2-mod-xsendfile python3-certbot-apache libmysqlclient-dev libcurl4-openssl-dev
+apt install \
+    build-essential locate dnsutils git zsh vim \
+    ruby ruby-dev ruby-bundler \
+    mysql-server mysql-client automysqlbackup libmysqlclient-dev \
+    apache2 libapache2-mod-xsendfile python3-certbot-apache certbot \
+    nodejs npm \
+    memcached imagemagick libcurl4-openssl-dev libxrender1 
+   
 ```
 
 install passenger packages, see: https://www.phusionpassenger.com/library/install/apache/install/oss/bionic/
@@ -98,7 +103,7 @@ sudo a2enmod ssl
 sudo a2enmod rewrite
 sudo a2enmod expires
 sudo a2enmod xsendfile
-sudo a2enmod socache_shmcb
+sudo a2enmod proxy_http  # for docs.decko
 ```
 
 copy certs to `/etc/letsencrypt` and sites to `/etc/apache2/sites-available`
@@ -150,3 +155,7 @@ permission on config.ru files but does not over-empower it)
 > deploy  ALL=(ALL) NOPASSWD:/usr/bin/chown www-data config.ru
  
 (do NOT put deploy user in sudo group!).
+
+### might need to update node?
+
+https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version
