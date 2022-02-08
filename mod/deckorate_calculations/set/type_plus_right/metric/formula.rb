@@ -44,8 +44,7 @@ def replace_references old_name, new_name
 end
 
 def javascript_formula?
-  # expected to be a short-term solution
-  content.lines.first&.match? "CoffeeScript"
+  calculator_class == ::Calculate::JavaScript
 end
 
 def syntax_formula?
@@ -101,16 +100,6 @@ format :html do
 
   def default_nest_view
     :bar
-  end
-end
-
-def standard_display_formula
-  if javascript_formula?
-    # no "CoffeeScript" tag at top
-    standard_formula
-  else
-    # no line breaks
-    content
   end
 end
 
