@@ -54,7 +54,7 @@ class Calculate
     end
 
     def stripped_formula
-      formula.lines[1..-1].join.tap do |stripped|
+      formula.lines[1..-1].join.strip.tap do |stripped|
         raise "unsafe formula" unless self.class.safe_formula? stripped
       end
     end
