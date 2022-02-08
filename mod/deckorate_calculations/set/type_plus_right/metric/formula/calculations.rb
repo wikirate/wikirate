@@ -2,11 +2,7 @@ delegate :calculator, :normalize_value, to: :left # left is metric
 
 # often overwritten in metric
 def calculator_class
-  if javascript_formula?
-    ::Calculate::JavaScript
-  else
-    ::Calculate.calculator_class parser.formula
-  end
+  ::Calculate.calculator_class parser.formula
 end
 
 event :update_calculated_answers, :integrate_with_delay,
