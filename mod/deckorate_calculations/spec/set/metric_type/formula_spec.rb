@@ -41,20 +41,20 @@ RSpec.describe Card::Set::MetricType::Formula do
 
       it "fixed year" do
         formula year: "2014"
-        expect(answer_value).to eq "114.0"
+        expect(answer_value).to eq "114"
       end
       it "relative year" do
         formula year: "-2"
-        expect(answer_value).to eq "113.0"
+        expect(answer_value).to eq "113"
       end
       it "current year" do
         formula year: "0"
-        expect(answer_value).to eq "115.0"
+        expect(answer_value).to eq "115"
       end
 
       it "latest" do
         formula year: "latest"
-        expect(take_answer_value("Apple Inc", 2002)).to eq "115.0"
+        expect(take_answer_value("Apple Inc", 2002)).to eq "115"
       end
     end
 
@@ -183,9 +183,9 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
 
     it "creates calculated values" do
-      test_calculation [], "60.0"
-      test_calculation %w[Samsung 2015], "29.0"
-      test_calculation %w[Sony_Corporation], "9.0"
+      test_calculation [], "60"
+      test_calculation %w[Samsung 2015], "29"
+      test_calculation %w[Sony_Corporation], "9"
       not_researched_card = calc_answer "Death_Star", "1977"
       expect(not_researched_card).to be_falsey
     end
@@ -199,7 +199,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
       it "updates existing calculated value" do
         update_formula "{{%s}}*4+{{%s}}*2"
-        expect(calc_value).to eq "50.0"
+        expect(calc_value).to eq "50"
       end
 
       it "removes incomplete calculated value" do
@@ -209,7 +209,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
       it "adds complete calculated value" do
         update_formula "{{%s}}*5"
-        test_calculation %w[Death_Star 1977], "25.0"
+        test_calculation %w[Death_Star 1977], "25"
       end
     end
 
@@ -226,7 +226,7 @@ RSpec.describe Card::Set::MetricType::Formula do
             source: sample_source
           )
         end
-        test_calculation %w[Death_Star 1977], "29.0"
+        test_calculation %w[Death_Star 1977], "29"
       end
     end
 
@@ -234,7 +234,7 @@ RSpec.describe Card::Set::MetricType::Formula do
       it "updates calculated value" do
         card = Card["#{metric_name1}+Samsung+2014+value"]
         expect { card.update! content: "1" }
-          .to change { calc_value }.from("60.0").to("15.0")
+          .to change { calc_value }.from("60").to("15")
       end
       it "removes incomplete calculated values" do
         Card::Auth.as_bot { Card["#{metric_name1}+Samsung+2014"].delete! }
@@ -255,24 +255,11 @@ RSpec.describe Card::Set::MetricType::Formula do
                      type_id: Card::PlainTextID,
                      content: build_formula("{{%s}}*5+{{%s}}*2")
       end
-      test_calculation [], "60.0"
-      test_calculation %w[Samsung 2015], "29.0"
-      test_calculation %w[Sony_Corporation], "9.0"
+      test_calculation [], "60"
+      test_calculation %w[Samsung 2015], "29"
+      test_calculation %w[Sony_Corporation], "9"
       not_researched_card = calc_answer "Death_Star", "1977"
       expect(not_researched_card).to be_falsey
     end
-  end
-
-  xit "handles wolfram formula" do
-    # TODO: get Wolfram API is working again!!
-    Card::Auth.as_bot do
-      Card::Metric.create(
-        name: "Jedi+Force formula",
-        type: :formula,
-        formula: "{{Jedi+deadliness}}/10 - 5 + " \
-               'Boole[{{Jedi+disturbances in the Force}} == "yes"]'
-      )
-    end
-    expect(Card["Jedi+Force formula+Death Star+1977+value"].content).to eq "6"
   end
 end

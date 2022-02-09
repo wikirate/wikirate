@@ -4,7 +4,7 @@ class Calculate
     module RubyClassMethods
       # Is this the right class for this formula?
       def supported_formula? formula
-        apply %i[remove_functions remove_nests check_symbols], formula
+        formula.match? /^\# DeprecatedFormula/
       end
 
       def remove_functions formula, translated=false
@@ -21,6 +21,10 @@ class Calculate
       def check_symbols formula
         symbols = SYMBOLS.map { |s| "\\#{s}" }.join
         formula =~ /^[\s\d#{symbols}]*$/
+      end
+
+      def safe_formula? formula
+        apply %i[remove_functions remove_nests check_symbols], formula
       end
 
       def apply methods, arg

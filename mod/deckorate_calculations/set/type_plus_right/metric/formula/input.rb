@@ -1,13 +1,5 @@
-def clean_formula
-  descendant? ? inheritance_formula : standard_formula
-end
-
-def standard_formula
-  javascript_formula? ? content.lines[1..-1].join : content.gsub(/[\r\n]+/m, "")
-end
-
 def parser
-  ::Calculate::Parser.new clean_formula, special_item_names, self
+  ::Calculate::Parser.new formula_for_parser, special_item_names, self
 end
 
 delegate :input_chunks, :input_cards, :input_names, :input_keys,
@@ -36,6 +28,8 @@ event :validate_formula_input, :validate, on: :save, changed: :content do
   end
 end
 
+private
+
 def ok_input_name chunk
   ok_input? !variable_name?(chunk.referee_name) do
     "invalid input name: #{chunk.referee_name}"
@@ -58,4 +52,8 @@ def ok_input? test
   return true if test
   errors.add :formula, yield
   false
+end
+
+def formula_for_parser
+  descendant? ? inheritance_formula : content
 end

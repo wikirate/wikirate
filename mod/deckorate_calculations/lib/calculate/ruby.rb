@@ -53,8 +53,14 @@ class Calculate
       end
     end
 
+    def stripped_formula
+      formula.lines[1..-1].join.strip.tap do |stripped|
+        raise "unsafe formula" unless self.class.safe_formula? stripped
+      end
+    end
+
     def compile
-      rb_formula = translate %i[functions nests list_syntax], formula
+      rb_formula = translate %i[functions nests list_syntax], stripped_formula
       find_allowed_non_numeric_input rb_formula
       lambda_wrap rb_formula
     rescue Calculator::FunctionTranslator::SyntaxError => e
