@@ -5,14 +5,14 @@ class Calculate
         # Handle company options for input items of formulas
         # Examples:
         # Case 1a: explicit company
-        #   Total[{{Jedi+deadliness|company:"Death Star"}}]'
+        #   {{Jedi+deadliness|company:"Death Star"}}
         # Case 1b: explicit company list
-        #   Total[{{Jedi+deadliness|company:"Death Star", "SPECTRE"}}]'
+        #   {{Jedi+deadliness|company:"Death Star", "SPECTRE"}}
         # Case 2: related companies
-        #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}]'
-        #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6]}}]'
-        #   Total[{{Jedi+deadliness|company:Related[Jedi+more evil>=6 &&
-        #                                   Commons+Supplied by=Tier 1 Supplier]}}]'
+        #   {{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}
+        #   {{Jedi+deadliness|company:Related[Jedi+more evil>=6]}}
+        #   {{Jedi+deadliness|company:Related[Jedi+more evil>=6 &&
+        #                                   Commons+Supplied by=Tier 1 Supplier]}}
         module CompanyOption
           def initialize_option
             super

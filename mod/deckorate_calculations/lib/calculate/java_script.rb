@@ -40,7 +40,7 @@ class Calculate
         isKnown = (answer) ->
           answer != "Unknown"
         numKnown = (list) ->
-          list.filter(isKnown).length
+          formulajs.COUNTIF list, "<>Unknown"
         anyKnown = (list) ->
           list.find isKnown
         calcAll = (obj) ->

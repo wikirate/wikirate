@@ -133,7 +133,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     example "pass arbitrary value" do
       formula unknown: "1"
-      expect(answer_value).to eq "0"
+      expect(answer_value).to eq "2"
     end
 
     example "pass 'Unknown'" do
