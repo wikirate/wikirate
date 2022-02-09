@@ -446,8 +446,16 @@
     :hybrid: '1'
     :metric_type: Formula
     :formula:
-      :codename: :isic_group_formula
-      :content: "{{ISIC+Industry Class}}\n"
+      :content: |-
+        m1 = {{ISIC+Industry Class}}
+        
+        results = []
+
+        [m1].flat().forEach
+        (number) ->
+          results.push String(number).padStart(4, "0").slice(0, 3)
+
+        results
     :methodology: "<p>see https://unstats.un.org/unsd/publication/seriesM/seriesm_4rev4e.pdf</p>"
     :value_options:
       :type: :json
@@ -700,9 +708,16 @@
     :value_type: Multi-Category
     :hybrid: '1'
     :metric_type: Formula
-    :formula:
-      :codename: :isic_division_formula
-      :content: "{{ISIC+Industry Group}}\n"
+    :formula: |-
+      m1 = {{ISIC+Industry Class}}
+      
+      results = []
+      
+      [m1].flat().forEach
+      (number) ->
+      results.push String(number).padStart(4, "0").slice(0, 3)
+      
+      results
     :methodology: '<p><span style="font-size: 15.2px;">see https://unstats.un.org/unsd/publication/seriesM/seriesm_4rev4e.pdf</span></p>'
     :value_options:
       :type: :json
@@ -811,9 +826,42 @@
     :value_type: Multi-Category
     :hybrid: '1'
     :metric_type: Formula
-    :formula:
-      :codename: :isic_section_formula
-      :content: "{{ISIC+Industry Division}}\n"
+    :formula: |-
+      m1 = {{ISIC+Industry Division}}
+      
+      ranges =
+        A: [1, 3]
+        B: [5, 9]
+        C: [10, 33]
+        D: [35, 35]
+        E: [36, 39]
+        F: [41, 43]
+        G: [45, 47]
+        H: [49, 53]
+        I: [55, 56]
+        J: [58, 63]
+        K: [64, 66]
+        L: [68, 68]
+        M: [69, 75]
+        N: [77, 82]
+        O: [84, 84]
+        P: [85, 85]
+        Q: [86, 88]
+        R: [90, 93]
+        S: [94, 96]
+        T: [97, 98]
+        U: [99, 99]
+      
+      result = []
+      
+      Object.keys(ranges).forEach (letter) ->
+      
+        vals = ranges[letter]
+        [m1].flat().forEach (number) ->
+          result.push
+        letter if number >= vals[0] && number <= vals[1]
+      
+      result
     :methodology: |
       <p>See https://unstats.un.org/unsd/publication/seriesM/seriesm_4rev4e.pdf</span></p>
     :value_options:
