@@ -126,7 +126,10 @@
   :subfields:
     :value_type: Number
     :metric_type: Formula
-    :formula: Total[{{Jedi+deadliness|year:-2..0}}]/3
+    :formula: |-
+      m1 = {{Jedi+deadliness|year:-2..0}}
+      sum = m1.reduce ((a, b) -> a + b), 0
+      sum / 3
 - :name:
     - Jedi
     - friendliness
@@ -551,7 +554,9 @@
   :subfields:
     :value_type: Category
     :metric_type: Formula
-    :formula: ILORegion[{{Core+Headquarters Location}}]
+    :formula: |-
+      # DeprecatedFormula
+      ILORegion[{{Core+Headquarters Location}}]
     :value_options: |-
       Africa
       Americas
@@ -568,7 +573,10 @@
   :subfields:
     :value_type: Category
     :metric_type: Formula
-    :formula: Country[{{Core+Headquarters Location}}]
+    :formula: |-
+      # DeprecatedFormula
+      
+      Country[{{Core+Headquarters Location}}]
     :value_options: |-
       Afghanistan
       Albania
