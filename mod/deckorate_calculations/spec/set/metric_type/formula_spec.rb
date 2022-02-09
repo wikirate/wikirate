@@ -60,10 +60,10 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     it "all years" do
       # {{metric_name3|year: all}} + {{metric_name1}}
-      create_formula_metric metric: metric_name3, method: "Total",
+      create_formula_metric metric: metric_name3, method: "formulajs.SUM",
                             year: "all", add: { metric: metric_name1 }
-      expect(take_answer_value("Samsung", 2014)).to eq "12.0"
-      expect(take_answer_value("Samsung", 2015)).to eq "7.0"
+      expect(take_answer_value("Samsung", 2014)).to eq "12"
+      expect(take_answer_value("Samsung", 2015)).to eq "7"
     end
 
     context "with total of" do
@@ -72,7 +72,8 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
 
       def formula year:
-        create_formula_metric method: "Total", year: year, add: { metric: metric_name1 }
+        create_formula_metric method: "formulajs.SUM",
+                              year: year, add: { metric: metric_name1 }
       end
 
       # let(:formula) do
@@ -81,27 +82,27 @@ RSpec.describe Card::Set::MetricType::Formula do
 
       it "relative range" do
         formula year: "-3..-1"
-        expect(answer_value).to eq "139.0"
+        expect(answer_value).to eq "139"
       end
       it "relative range with 0" do
         formula year: "-3..0"
-        expect(answer_value).to eq "154.0"
+        expect(answer_value).to eq "154"
       end
       it "relative range with ?" do
         formula year: "-3..?"
-        expect(answer_value).to eq "154.0"
+        expect(answer_value).to eq "154"
       end
       it "fixed range" do
         formula year: "2012..2013"
-        expect(answer_value).to eq "125.0"
+        expect(answer_value).to eq "125"
       end
       it "fixed start" do
         formula year: "2012..0"
-        expect(answer_value).to eq "154.0"
+        expect(answer_value).to eq "154"
       end
       it "list of years" do
         formula year: "2012, 2014"
-        expect(answer_value).to eq "126.0"
+        expect(answer_value).to eq "126"
       end
       it "all" do
         formula year: "all"
@@ -117,7 +118,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
 
     def formula unknown:
-      create_formula_metric method: "Unknowns", year: "2000..0", unknown: unknown
+      create_formula_metric method: "numKnown", year: "2000..0", unknown: unknown
     end
 
     example "unknown option no_result" do
@@ -147,15 +148,15 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   example "network aware formula" do
-    create_formula_metric method: "Total", related: "Jedi+more evil=yes",
+    create_formula_metric method: "formulajs.SUM", related: "Jedi+more evil=yes",
                           metric: "Jedi+deadliness"
-    expect(take_answer_value("Death Star", 1977)).to eq "90.0"
+    expect(take_answer_value("Death Star", 1977)).to eq "90"
   end
 
   example "network aware formula using inverse relationship" do
-    create_formula_metric method: "Total", related: "Jedi+less evil=yes",
+    create_formula_metric method: "formulajs.SUM", related: "Jedi+less evil=yes",
                           metric: "Jedi+deadliness"
-    expect(take_answer_value("Los Pollos Hermanos", 1977)).to eq "150.0"
+    expect(take_answer_value("Los Pollos Hermanos", 1977)).to eq "150"
   end
 
   def calc_value company="Samsung", year="2014"
