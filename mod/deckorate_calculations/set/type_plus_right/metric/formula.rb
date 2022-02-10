@@ -51,10 +51,6 @@ def syntax_formula?
   calculator.is_a? Calculate::NestCalculator
 end
 
-def ruby_formula?
-  calculator_class == ::Calculate::Ruby
-end
-
 def translate_formula?
   calculator_class == ::Calculate::Translation
 end
