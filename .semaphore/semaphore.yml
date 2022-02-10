@@ -26,7 +26,8 @@ blocks:
     task:
       prologue:
         commands:
-          - cache restore gems-baseline # occasionally clear: `cache delete gems-baseline`
+          - cache delete gems-baseline # occasionally clear
+          - cache restore gems-baseline
           - cache restore gems-$(checksum Gemfile.lock)
           - bundle config set --local deployment 'true'
           - bundle install
