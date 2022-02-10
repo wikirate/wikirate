@@ -3,9 +3,17 @@ require "execjs"
 class Calculate
   # Calculate formula values using JavaScript
   class JavaScript < NestCalculator
+    LIBRARIES = %w[formula.js].freeze
+
+    def library_code
+      LIBRARIES.map do |lib|
+        File.read File.expand_path("../../../assets/script/#{lib}", __FILE__)
+      end.join "\n"
+    end
+
     # coffeescript has the advantage of making sure the function _returns_ the value
     def compile
-      ExecJS.compile ::CoffeeScript.compile(full_coffee, bare: true)
+      ExecJS.compile library_code + ::CoffeeScript.compile(full_coffee, bare: true)
     end
 
     def compute _v, company_id, year
@@ -32,7 +40,7 @@ class Calculate
         isKnown = (answer) ->
           answer != "Unknown"
         numKnown = (list) ->
-          list.filter(isKnown).length
+          formulajs.COUNTIF list, "<>Unknown"
         anyKnown = (list) ->
           list.find isKnown
         calcAll = (obj) ->

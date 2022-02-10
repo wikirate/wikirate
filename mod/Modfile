@@ -34,8 +34,6 @@ mod "wikirate_assets" # TODO: rename to wikirate_theme
 mod "wikirate_homepage"
 mod "wikirate"
 
-mod "isic" # refactor away (replace with CoffeeScript formulas)
-
 # extract wikirate code, clean, and move to card-mods
 mod "badges"
 mod "tasks"
