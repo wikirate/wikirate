@@ -62,13 +62,16 @@ class Calculate
           formulajs.COUNTIF list, "<>Unknown"
         anyKnown = (list) ->
           list.find isKnown
+        addFormulaFunctions = (context) ->
+          for key of Object.keys formulajs
+            context[key] = formulajs[key]
         calcAll = (obj) ->
           r = {}
           for key, val of obj
             r[key] = calc(val)
           r
         calc = (iN) ->
-          
+          addFormulaFunctions this      
         #{prepended_coffee_formula}
       COFFEE
     end

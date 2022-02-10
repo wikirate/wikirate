@@ -145,7 +145,7 @@
     :formula: |-
       m1 = {{Jedi+deadliness|year:-2..0}}
       
-      formulajs.SUM m1
+      SUM m1
 - :name:
     - Jedi
     - friendliness
