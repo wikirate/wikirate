@@ -4,7 +4,7 @@ class Calculate
   # Calculate formula values using JavaScript
   class JavaScript < NestCalculator
     def formula_js_code
-      read_file_in_mod "assets/script/formula.js"
+      read_file_in_mod "deckorate_calculations/assets/script/formula.js"
     end
 
     # coffeescript has the advantage of making sure the function _returns_ the value
@@ -24,8 +24,9 @@ class Calculate
       File.read File.expand_path("../../../#{path_in_mod}", __FILE__)
     end
 
+    # FIXME - should not be in this mod!!
     def region_json
-      "wikirateRegion = #{read_file_in_mod 'lib/region.json'}"
+      "wikirateRegion = #{read_file_in_mod 'wikirate_companies/lib/region.json'}"
     end
 
     def compute _v, company_id, year
