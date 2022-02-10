@@ -100,7 +100,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Json do
     let(:metric) { Card["Jedi+deadliness+Joe Camel"] }
 
     it "atom view has calculated value" do
-      expect(json_view(:atom)[:value]).to eq("5.0")
+      expect(json_view(:atom)[:value]).to eq("5")
     end
   end
 end

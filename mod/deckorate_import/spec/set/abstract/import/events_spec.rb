@@ -9,6 +9,8 @@ RSpec.describe Card::Set::Abstract::Import::Events do
       create_import_file
       im = Card[new_file_card_name].import_map_card
       expect(im.id).to be_positive
+      puts im.content
+      puts old_file_card.import_map_card.content
       expect(im.content).to eq(old_file_card.import_map_card.content)
     end
   end

@@ -23,7 +23,7 @@ class Calculate
       # @param [String] formula the formula to translate
       # @param [Integer] offset were we are in the original formula.
       #   only used for error messages
-      # @return [String] Wolfram functions calls in formula replaced
+      # @return [String] Wolframesque functions calls in formula replaced
       #   with ruby method calls
       def translate formula, offset=0
         with_next_match formula do |function, pos, i_arg_start|
