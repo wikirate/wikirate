@@ -3,17 +3,29 @@ require "execjs"
 class Calculate
   # Calculate formula values using JavaScript
   class JavaScript < NestCalculator
-    LIBRARIES = %w[formula.js].freeze
-
-    def library_code
-      LIBRARIES.map do |lib|
-        File.read File.expand_path("../../../assets/script/#{lib}", __FILE__)
-      end.join "\n"
+    def formula_js_code
+      read_file_in_mod "assets/script/formula.js"
     end
 
     # coffeescript has the advantage of making sure the function _returns_ the value
     def compile
-      ExecJS.compile library_code + ::CoffeeScript.compile(full_coffee, bare: true)
+      ExecJS.compile full_javascript
+    end
+
+    def full_javascript
+      [
+        formula_js_code,
+        region_json,
+        ::CoffeeScript.compile(full_coffee, bare: true)
+      ].join "\n"
+    end
+
+    def read_file_in_mod path_in_mod
+      File.read File.expand_path("../../../#{path_in_mod}", __FILE__)
+    end
+
+    def region_json
+      "wikirateRegion = #{read_file_in_mod 'lib/region.json'}"
     end
 
     def compute _v, company_id, year
@@ -37,6 +49,13 @@ class Calculate
 
     def full_coffee
       <<~COFFEE
+        iloRegion = (region) ->
+          regionLookup region, "ilo_region"
+        country = (region) ->
+          regionLookup region, "country"
+        regionLookup = (region, field) ->
+          entry = wikirateRegion[region]
+          entry[field] if entry
         isKnown = (answer) ->
           answer != "Unknown"
         numKnown = (list) ->
@@ -49,6 +68,7 @@ class Calculate
             r[key] = calc(val)
           r
         calc = (iN) ->
+          
         #{prepended_coffee_formula}
       COFFEE
     end

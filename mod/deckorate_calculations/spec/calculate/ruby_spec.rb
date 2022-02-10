@@ -1,14 +1,14 @@
-require_relative "../support/calculator_stub"
-RSpec.describe Calculate::Ruby do
-  include_context "with calculator stub"
-  include_context "with company ids"
-
-  example "simple formula" do
-    expect(calculate("# DeprecatedFormula\n{{Joe User+RM}}*2"))
-      .to include(have_attributes(year: 2011, company_id: apple, value: 22.0),
-                  have_attributes(year: 2012, company_id: apple, value: 24.0),
-                  have_attributes(year: 2013, company_id: apple, value: 26.0))
-  end
+# require_relative "../support/calculator_stub"
+# RSpec.describe Calculate::Ruby do
+#   include_context "with calculator stub"
+#   include_context "with company ids"
+  #
+  # example "simple formula" do
+  #   expect(calculate("# DeprecatedFormula\n{{Joe User+RM}}*2"))
+  #     .to include(have_attributes(year: 2011, company_id: apple, value: 22.0),
+  #                 have_attributes(year: 2012, company_id: apple, value: 24.0),
+  #                 have_attributes(year: 2013, company_id: apple, value: 26.0))
+  # end
 
   # Move to JavaScript
   #
@@ -26,33 +26,33 @@ RSpec.describe Calculate::Ruby do
   #   expect(calculate("Total[{{Jedi+deadliness|company:Related[Jedi+more evil]}}]"))
   #     .to include(have_attributes(year: 1977, company_id: death_star_id, value: 90.0))
   # end
-
-  describe "functions" do
-    let(:nest) { "{{Joe User+RM|year:-2..0}}" }
-
-    specify "Total" do
-      expect(calculate("# DeprecatedFormula\nTotal[#{nest}]"))
-        .to include(have_attributes(year: 2012, company_id: apple_id, value: 33.0),
-                    have_attributes(year: 2013, company_id: apple_id, value: 36.0))
-    end
-
-    specify "Max" do
-      expect(calculate("# DeprecatedFormula\nMax[#{nest}]"))
-        .to include(have_attributes(year: 2012, company_id: apple_id, value: 12.0),
-                    have_attributes(year: 2013, company_id: apple_id, value: 13.0))
-    end
-
-    specify "Min" do
-      expect(calculate("# DeprecatedFormula\nMin[#{nest}]"))
-        .to include(have_attributes(year: 2012, company_id: apple_id, value: 10.0),
-                    have_attributes(year: 2013, company_id: apple_id, value: 11.0))
-    end
-
-    specify "Zeros" do
-      expect(calculate("# DeprecatedFormula\nZeros[#{nest}]"))
-        .to include(have_attributes(year: 2012, company_id: apple_id, value: 0))
-    end
-  end
+  #
+  # describe "functions" do
+  #   let(:nest) { "{{Joe User+RM|year:-2..0}}" }
+  #
+  #   specify "Total" do
+  #     expect(calculate("# DeprecatedFormula\nTotal[#{nest}]"))
+  #       .to include(have_attributes(year: 2012, company_id: apple_id, value: 33.0),
+  #                   have_attributes(year: 2013, company_id: apple_id, value: 36.0))
+  #   end
+  #
+  #   specify "Max" do
+  #     expect(calculate("# DeprecatedFormula\nMax[#{nest}]"))
+  #       .to include(have_attributes(year: 2012, company_id: apple_id, value: 12.0),
+  #                   have_attributes(year: 2013, company_id: apple_id, value: 13.0))
+  #   end
+  #
+  #   specify "Min" do
+  #     expect(calculate("# DeprecatedFormula\nMin[#{nest}]"))
+  #       .to include(have_attributes(year: 2012, company_id: apple_id, value: 10.0),
+  #                   have_attributes(year: 2013, company_id: apple_id, value: 11.0))
+  #   end
+  #
+  #   specify "Zeros" do
+  #     expect(calculate("# DeprecatedFormula\nZeros[#{nest}]"))
+  #       .to include(have_attributes(year: 2012, company_id: apple_id, value: 0))
+  #   end
+  # end
 
   # Move to JavaScript
   #
@@ -102,4 +102,4 @@ RSpec.describe Calculate::Ruby do
   #   calculator = described_class.new formula_parser("{{A+Max}}")
   #   expect { calculator.program }.not_to raise_error
   # end
-end
+# end
