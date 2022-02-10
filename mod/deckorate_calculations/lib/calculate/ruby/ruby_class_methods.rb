@@ -4,7 +4,7 @@ class Calculate
     module RubyClassMethods
       # Is this the right class for this formula?
       def supported_formula? formula
-        formula.match? /^\# DeprecatedFormula/
+        formula.match?(/^\# DeprecatedFormula/)
       end
 
       def remove_functions formula, translated=false

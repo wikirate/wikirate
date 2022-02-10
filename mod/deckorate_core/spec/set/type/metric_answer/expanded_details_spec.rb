@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "1977"
       end
 
-      expect(table).to have_tag "div.formula-with-values", text: /1 \/ m1/ do
+      expect(table).to have_tag "div.formula-with-values", text: %r{1 / m1} do
         with_tag :a, with: { href: "/Jedi+deadliness+Death_Star+1977" }, text: 100
       end
     end

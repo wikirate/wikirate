@@ -3,7 +3,7 @@ require "execjs"
 class Calculate
   # Calculate formula values using JavaScript
   class JavaScript < NestCalculator
-    LIBRARIES = %w[formula.js]
+    LIBRARIES = %w[formula.js].freeze
 
     def library_code
       LIBRARIES.map do |lib|
