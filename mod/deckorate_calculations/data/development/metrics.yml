@@ -91,7 +91,13 @@
   :subfields:
     :value_type: Number
     :metric_type: Score
-    :formula: "{{Jedi+deadliness}}/20"
+    :formula: |-
+      m1 = {{Jedi+deadliness}}
+      
+      m1 / 20
+      
+      
+
 - :name:
     - Jedi
     - deadliness
@@ -100,7 +106,10 @@
   :subfields:
     :value_type: Number
     :metric_type: Score
-    :formula: "{{Jedi+deadliness}}/10"
+    :formula: |-
+      m1 = {{Jedi+deadliness}}
+      
+      m1 / 10
 - :name:
     - Jedi
     - know the unknowns
@@ -108,8 +117,11 @@
   :subfields:
     :value_type: Number
     :metric_type: Formula
-    :formula: "{{Joe User+RM|unknown: 10}} + {{Joe User+small multi|not_researched:
-      20}}"
+    :formula: |-
+      m1 = {{Joe User+RM|unknown: 10}}
+      m2 = {{Joe User+small multi|not_researched: 20}}
+      
+      m1 + m2
 - :name:
     - Jedi
     - deadlier
@@ -118,7 +130,11 @@
     :value_type: Number
     :hybrid: '1'
     :metric_type: Formula
-    :formula: "{{Jedi+deadliness}}+{{Jedi+deadliness|year:-1}}"
+    :formula: |-
+      m1 = {{Jedi+deadliness}}
+      m2 = {{Jedi+deadliness|year:-1}}
+      
+      m1 + m2
 - :name:
     - Jedi
     - deadliness average
@@ -126,7 +142,10 @@
   :subfields:
     :value_type: Number
     :metric_type: Formula
-    :formula: Total[{{Jedi+deadliness|year:-2..0}}]/3
+    :formula: |-
+      m1 = {{Jedi+deadliness|year:-2..0}}
+      
+      formulajs.SUM m1
 - :name:
     - Jedi
     - friendliness
@@ -135,7 +154,10 @@
     :value_type: Number
     :hybrid: '1'
     :metric_type: Formula
-    :formula: 1/{{Jedi+deadliness}}
+    :formula: |-
+      m1 = {{Jedi+deadliness}}
+      
+      1 / m1
 - :name:
     - Jedi
     - double friendliness
@@ -143,7 +165,9 @@
   :subfields:
     :value_type: Number
     :metric_type: Formula
-    :formula: "{{Jedi+friendliness}}*2"
+    :formula: |-
+      m1 = {{Jedi+friendliness}}
+      m1 * 2
 - :name:
     - Commons
     - Industry
@@ -551,7 +575,10 @@
   :subfields:
     :value_type: Category
     :metric_type: Formula
-    :formula: ILORegion[{{Core+Headquarters Location}}]
+    :formula: |-
+      # DeprecatedFormula
+      
+      ILORegion[{{Core+Headquarters Location}}]
     :value_options: |-
       Africa
       Americas
@@ -568,7 +595,10 @@
   :subfields:
     :value_type: Category
     :metric_type: Formula
-    :formula: Country[{{Core+Headquarters Location}}]
+    :formula: |-
+      # DeprecatedFormula
+      
+      Country[{{Core+Headquarters Location}}]
     :value_options: |-
       Afghanistan
       Albania

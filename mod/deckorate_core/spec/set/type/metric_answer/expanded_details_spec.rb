@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "1977"
       end
 
-      expect(table).to have_tag "div.formula-with-values", text: "= 1/100" do
+      expect(table).to have_tag "div.formula-with-values", text: /1 \/ m1/ do
         with_tag :a, with: { href: "/Jedi+deadliness+Death_Star+1977" }, text: 100
       end
     end
@@ -68,7 +68,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       # FIXME: formula is "10 + 20" (with spaces) in the YAML but
       # is getting stripped to 10+20 by #standardize_content,
       # because +formula includes Abstract::Pointer
-      expect(table).to have_tag "div.formula-with-values", text: "= 10+20" do
+      expect(table).to have_tag "div.formula-with-values", text: /m1 \+ m2/ do
         with_tag :a, with: { href: "/Joe_User+RM+Apple_Inc+2001" }, text: 10
       end
     end
@@ -85,7 +85,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "-1"
       end
 
-      expect(table).to have_tag "div.formula-with-values", text: "= 9+8" do
+      expect(table).to have_tag "div.formula-with-values", text: /m1 \+ m2/ do
         with_tag :a,
                  with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004" },
                  text: "9"
@@ -108,7 +108,8 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag :td, text: "-2..0"
       end
 
-      expect(table).to have_tag "div.formula-with-values", text: "= Total[8, 9, 10]/3" do
+      expect(table).to have_tag "div.formula-with-values",
+                                text: /= m1 = 8, 9, 10\s+formulajs.SUM m1/m do
         with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company" },
                      text: "8, 9, 10"
       end

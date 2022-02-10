@@ -1,5 +1,5 @@
 class Calculate
-  # The common ground of Ruby and Wolfram formula
+  # The common ground of Ruby and JavaScript formulae
   class NestCalculator < Calculator
     def programmable? expr
       @unsafe = expr
