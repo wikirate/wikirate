@@ -11,7 +11,7 @@ RSpec.describe Card::Set::Abstract::Value do
 
   # score of Jedi+deadliness answer
   it "updates scores" do
-    expect(answer_for("Jedi+deadliness+Joe User").value).to eq("5.0")
+    expect(answer_for("Jedi+deadliness+Joe User").value).to eq("5")
   end
 
   # formula with Jedi+deadliness as a variable metric

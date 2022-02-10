@@ -61,7 +61,7 @@ gem "open_uri_redirections"          # redirections from http to https or vice v
 gem "roo"                            # Spreadsheet-related tasks
 
 gem "pdfkit"                         # PDF-related tasks
-gem "wkhtmltopdf-binary", "0.12.5.4" # converting HTML to PDF
+gem "wkhtmltopdf-binary"             # converting HTML to PDF
 
 # MATH
 gem "descriptive_statistics"         # adds stats methods to enumerables
