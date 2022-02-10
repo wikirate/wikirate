@@ -3,7 +3,7 @@ shared_context "formula" do
                   metric: "Joe User+RM", related: nil, add: nil
     nest_values = [year, unknown, company, related]
     res = "{{#{metric}#{nest_options options, nest_values}}}"
-    res = "#{method}[#{res}]" if method
+    res = "#{method}(#{res})" if method
     res = "#{res}+#{formula_str(**add)}" if add
     res
   end

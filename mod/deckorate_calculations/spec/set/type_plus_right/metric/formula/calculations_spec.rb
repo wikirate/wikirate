@@ -59,7 +59,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
       end
 
       it "creates answer for company/year not previously covered" do
-        expect(answer_value("friendliness", "Apple Inc", 2015)).to eq("700.0")
+        expect(answer_value("friendliness", "Apple Inc", 2015)).to eq("700")
       end
 
       it "removes answer for company no longer covered" do
@@ -77,7 +77,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
       end
 
       it "creates answer for company/year not previously covered" do
-        expect(answer_value("friendliness", "Monster Inc", 2000)).to eq("30.0")
+        expect(answer_value("friendliness", "Monster Inc", 2000)).to eq("30")
       end
     end
   end
