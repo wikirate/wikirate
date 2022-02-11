@@ -60,7 +60,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     it "all years" do
       # {{metric_name3|year: all}} + {{metric_name1}}
-      create_formula_metric metric: metric_name3, method: "formulajs.SUM",
+      create_formula_metric metric: metric_name3, method: "SUM",
                             year: "all", add: { metric: metric_name1 }
       expect(take_answer_value("Samsung", 2014)).to eq "12"
       expect(take_answer_value("Samsung", 2015)).to eq "7"
@@ -72,7 +72,7 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
 
       def formula year:
-        create_formula_metric method: "formulajs.SUM",
+        create_formula_metric method: "SUM",
                               year: year, add: { metric: metric_name1 }
       end
 
@@ -148,13 +148,13 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   example "network aware formula" do
-    create_formula_metric method: "formulajs.SUM", related: "Jedi+more evil=yes",
+    create_formula_metric method: "SUM", related: "Jedi+more evil=yes",
                           metric: "Jedi+deadliness"
     expect(take_answer_value("Death Star", 1977)).to eq "90"
   end
 
   example "network aware formula using inverse relationship" do
-    create_formula_metric method: "formulajs.SUM", related: "Jedi+less evil=yes",
+    create_formula_metric method: "SUM", related: "Jedi+less evil=yes",
                           metric: "Jedi+deadliness"
     expect(take_answer_value("Los Pollos Hermanos", 1977)).to eq "150"
   end
