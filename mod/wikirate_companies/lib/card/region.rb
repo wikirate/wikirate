@@ -28,6 +28,14 @@ class Card
         Card::Cache[Region]
       end
 
+      def hash
+        cache.fetch("hash") do
+          Card.search(type: :region).each_with_object({}) do |region, hash|
+            hash[region.name] = region_hash region
+          end
+        end
+      end
+
       # TODO: move to oc mod
       def region_name_for_oc_code oc_code
         oc_code = oc_code.to_s.sub(/^oc_/, "")
@@ -39,6 +47,12 @@ class Card
       end
 
       private
+
+      def region_hash region
+        %i[ilo_region country].each_with_object({}) do |fld, hash|
+          hash[fld] = lookup_val(fld)[region.id]
+        end
+      end
 
       def build_val_lookup field
         each_field_card field do |region_id, field_val, hash|
