@@ -72,7 +72,7 @@ class Calculate
             r[key] = calc(val)
           r
         calc = (iN) ->
-          addFormulaFunctions this      
+          addFormulaFunctions this
         #{prepended_coffee_formula}
       COFFEE
     end
