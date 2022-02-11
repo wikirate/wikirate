@@ -21,7 +21,7 @@ class Calculate
     end
 
     def read_file_in_mod path_in_mod
-      File.read File.expand_path("../../../#{path_in_mod}", __FILE__)
+      File.read File.expand_path("../../../../#{path_in_mod}", __FILE__)
     end
 
     # FIXME - should not be in this mod!!
