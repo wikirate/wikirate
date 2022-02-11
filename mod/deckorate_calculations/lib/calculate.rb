@@ -5,7 +5,7 @@ class Calculate
   attr_reader :answers, :metric
 
   def self.calculator_class formula
-    [Translation, Ruby].find { |klass| klass.supported_formula? formula } || JavaScript
+    Translation.supported_formula?(formula) ? Translation : JavaScript
   end
 
   def initialize metric, args={}
