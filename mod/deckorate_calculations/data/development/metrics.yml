@@ -576,9 +576,9 @@
     :value_type: Category
     :metric_type: Formula
     :formula: |-
-      # DeprecatedFormula
+      m1 = {{Core+Headquarters Location}}
       
-      ILORegion[{{Core+Headquarters Location}}]
+      iloRegion m1
     :value_options: |-
       Africa
       Americas
@@ -596,9 +596,9 @@
     :value_type: Category
     :metric_type: Formula
     :formula: |-
-      # DeprecatedFormula
+      m1 = {{Core+Headquarters Location}}
       
-      Country[{{Core+Headquarters Location}}]
+      country m1
     :value_options: |-
       Afghanistan
       Albania
