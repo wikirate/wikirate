@@ -24,7 +24,7 @@ class Calculate
       File.read File.expand_path("../../../../#{path_in_mod}", __FILE__)
     end
 
-    # FIXME - should not be in this mod!!
+    # FIXME: should not be in this mod!!
     def region_json
       "wikirateRegion = #{read_file_in_mod 'wikirate_companies/lib/region.json'}"
     end
@@ -64,7 +64,7 @@ class Calculate
         anyKnown = (list) ->
           list.find isKnown
         addFormulaFunctions = (context) ->
-          for key of Object.keys formulajs
+          for key in Object.keys formulajs
             context[key] = formulajs[key]
         calcAll = (obj) ->
           r = {}
