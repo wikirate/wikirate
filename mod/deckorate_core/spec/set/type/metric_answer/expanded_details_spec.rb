@@ -109,7 +109,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       end
 
       expect(table).to have_tag "div.formula-with-values",
-                                text: /= m1 = 8, 9, 10\s+formulajs.SUM m1/m do
+                                text: /= m1 = 8, 9, 10\s+SUM m1/m do
         with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company" },
                      text: "8, 9, 10"
       end
