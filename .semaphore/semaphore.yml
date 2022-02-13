@@ -46,8 +46,8 @@ blocks:
           commands:
             - be rspec -- --format RspecJunitFormatter --out junit.xml --format documentation
       epilogue:
-        - always:
-            - test-results publish junit.xml
+        always:
+          - test-results publish junit.xml
 
   - name: Integration Tests
     task:
