@@ -75,3 +75,9 @@ blocks:
         always:
           commands:
             - test-results publish /home/semaphore/reports/*.xml
+after_pipeline:
+  task:
+    jobs:
+      - name: Publish Results
+        commands:
+          - test-results gen-pipeline-report
