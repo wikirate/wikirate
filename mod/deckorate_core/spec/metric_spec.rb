@@ -44,9 +44,9 @@ RSpec.describe Card::Metric do
 
   describe "#create" do
     let(:metric) { Card["MD+MT"] }
-    let(:value) { metric.field("SPECTRE").field("2000") }
+    let(:value) { metric.fetch("SPECTRE").fetch("2000") }
     let(:source_link) do
-      Card["MD+MT+Death Star+2000+source"].first_card.field("link")
+      Card["MD+MT+Death Star+2000+source"].first_card.fetch("link")
     end
 
     def create_metric
@@ -68,7 +68,7 @@ RSpec.describe Card::Metric do
 
       expect(value).to be_truthy
       expect(value.type_id).to eq Card::MetricAnswerID
-      expect(value.field("value").content).to eq "50"
+      expect(value.fetch("value").content).to eq "50"
       expect(Card["MD+MT+SPECTRE+2001+value"].content).to eq "100"
 
       expect(source_link.content).to eq("http://example.com")
