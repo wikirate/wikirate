@@ -18,7 +18,7 @@ global_job_config:
       - sem-version ruby 2.7.3
       - alias be='bundle exec'
       - git submodule update --init --recursive
-      - sem-service start mysql
+      - sem-service start mysql 8.0
       - cp -R config/sample/* config/
 
 blocks:
