@@ -93,6 +93,6 @@ def name_part_from_name type
 end
 
 def name_part_from_field type
-  part = drop_subfield(type)&.content
+  part = drop_field(type)&.content
   part if part.present?
 end
