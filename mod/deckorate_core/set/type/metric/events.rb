@@ -5,7 +5,7 @@ DESIGNER_TYPES = [:research_group, :user, :wikirate_company].freeze
 # The new metric form has a title and a designer field instead of a name field
 # We compose the card's name here
 event :set_metric_name, :initialize, on: :create, when: :needs_name? do
-  self.name = %i[designer title].map { |f| drop_subfield(f)&.content }.cardname
+  self.name = %i[designer title].map { |f| drop_field(f)&.content }.cardname
 end
 
 # for override
