@@ -68,7 +68,7 @@ class Card
     end
 
     def base_metric_answer
-      base_metric_card.field(company).field(year)
+      base_metric_card.fetch(company).fetch(year)
     end
   end
 end
