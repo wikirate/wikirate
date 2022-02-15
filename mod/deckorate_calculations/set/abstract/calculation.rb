@@ -1,5 +1,9 @@
-card_accessor :formula, type: PhraseID
-card_accessor :metric_variables
+
+card_accessor :formula, type: :phrase # not needed by descendants or wikiratings
+card_accessor :variables, type: :list # not needed by scores
+
+
+card_accessor :metric_variables # deprecated
 
 Card::Content::Chunk::FormulaInput # trigger load.  might be better place?
 
