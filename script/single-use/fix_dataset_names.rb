@@ -26,7 +26,7 @@ end
 Card.where(
   "type_id = #{Card::ProjectID} and trash is false and name like 'Research: Research:%'"
 ).each do |project|
-  dataset_field = project.field :dataset
+  dataset_field = project.fetch :dataset
   dataset_field.update! content: drop_research_prefices(dataset_field.first_name)
   puts "project id: #{project.id}"
   puts "new project name: Research: #{drop_research_prefices project.name}"

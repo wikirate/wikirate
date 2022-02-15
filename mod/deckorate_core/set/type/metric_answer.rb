@@ -77,7 +77,7 @@ def check_requester
 end
 
 def comments
-  return unless (comment_card = field :discussion)
+  return unless (comment_card = fetch :discussion)
 
   comment_card.format(:text).render_core.gsub(/^\s*--.*$/, "").squish.truncate 1024
 end

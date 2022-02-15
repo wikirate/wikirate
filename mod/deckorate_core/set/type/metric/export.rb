@@ -51,7 +51,7 @@ format :json do
 
   def add_count_fields_to_hash hash
     assign_each_field hash, COUNT_FIELD_CODENAMES do |fieldcode|
-      card.field(fieldcode)&.cached_count
+      card.fetch(fieldcode)&.cached_count
     end
   end
 
