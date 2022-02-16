@@ -1,6 +1,4 @@
 
-card_accessor :formula, type: :phrase # not needed by descendants or wikiratings
-card_accessor :variables, type: :list # not needed by scores
 
 
 card_accessor :metric_variables # deprecated
@@ -31,4 +29,14 @@ def calculate_answers args={}
   c.prepare
   c.transact
   c.clean
+end
+
+format :html do
+  view :main_details do
+    [nest_about, render_formula, nest_methodology]
+  end
+
+  view :formula do
+    field_nest :formula, view: :titled
+  end
 end
