@@ -1,3 +1,7 @@
+card_accessor :formula, type: :phrase # not needed by descendants or wikiratings
+card_accessor :variables, type: :list # not needed by scores
+
+
 # <OVERRIDES>
 # note: the following only _really_ apply to calculated metrics and should arguably
 # be in Abstract::Calculation.  However that breaks an API test that assumes formulas
@@ -14,10 +18,6 @@ end
 
 def formula_core
   :standard_formula_core
-end
-
-def formula_input_requirement
-  :all
 end
 
 # </OVERRIDES>
