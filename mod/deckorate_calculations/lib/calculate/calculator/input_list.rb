@@ -3,13 +3,13 @@ class Calculate
     # {InputList} is an array of {InputItem}s.
     # It chooses the right InputItem class depending on the cardtype of the input item.
     class InputList < Array
-      attr_reader :input
-      delegate :parser, :input_cards, to: :input
-
-      def initialize input
-        @input = input
+      def initialize input_hash
         @errors = []
-        input_cards.size.times(&method(:add_item))
+        count = input_hash.keys.count
+        input_hash.each_with_index do |(id, options), index|
+          card = id.card
+          add_item card, index, count, options
+        end
       end
 
       # returns empty array if everything is ok
@@ -40,8 +40,9 @@ class Calculate
         @no_company_dependency = none?(&:company_dependent?)
       end
 
-      def add_item i
-        self << InputItem.item_class(input_cards[i].type_id).new(self, i)
+      def add_item card, *args
+        puts "add_item: #{card}, #{args}"
+        self << InputItem.item_class(card.type_id).new(card, *args)
       end
     end
   end

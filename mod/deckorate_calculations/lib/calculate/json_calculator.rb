@@ -2,7 +2,7 @@ class Calculate
   # The common ground of Translations and WikiRatings formula
   class JsonCalculator < Calculator
     def compile
-      @parser.formula
+      @formula
     end
 
     # Is this the right class for this formula?

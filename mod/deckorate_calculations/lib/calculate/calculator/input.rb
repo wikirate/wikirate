@@ -8,18 +8,15 @@ class Calculate
     class Input
       include Answers
 
-      attr_reader :parser, :input_list, :result_cache
-
+      attr_reader :input_list, :result_cache
       delegate :no_mandatories?, :validate, to: :input_list
-      delegate :input_cards, :input_ids, to: :parser
 
-      # @param [Card] parser has to respond to #input_cards
+      # @param [Hash] input_hash
       # @param [Proc] input_cast a block that is called for every input value
-      def initialize parser, &input_cast
-        @parser = parser
+      def initialize input_hash, &input_cast
         @input_cast = input_cast
         @result_cache = ResultCache.new
-        @input_list = InputList.new self
+        @input_list = InputList.new input_hash
       end
 
       # @param :companies [Array of Integers] only yield input for given companies

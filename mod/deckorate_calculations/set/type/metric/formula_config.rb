@@ -1,5 +1,5 @@
 card_accessor :formula, type: :phrase # not needed by descendants or wikiratings
-card_accessor :variables, type: :list # not needed by scores
+card_accessor :variables, type: :json # not needed by scores
 
 
 # <OVERRIDES>

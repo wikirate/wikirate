@@ -1,5 +1,17 @@
 include_set Abstract::IdPointer
 
+def standardize_content value
+  return value if value.match?(/^\s*\{/) # already JSON
+
+  value.to_s.split(/\n+/).each_with_object({}) do |variable, hash|
+    hash[standardize_item(variable)] = {}
+  end.to_json
+end
+
+def export_content
+  db_content
+end
+
 format :html do
   def input_type
     :filtered_list

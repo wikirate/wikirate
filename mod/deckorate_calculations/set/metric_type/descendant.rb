@@ -10,6 +10,10 @@ def calculator_class
   ::Calculate::Inheritance
 end
 
+def variable_hash
+
+end
+
 format do
   view :legend do
     return unless (ancestor = card.formula_card.input_names.first)
