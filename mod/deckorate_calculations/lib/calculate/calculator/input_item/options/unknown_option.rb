@@ -15,11 +15,15 @@ class Calculate
 
           def initialize_option
             super
-            if unknown_option?
+            if option? :unknown
               interpret_unknown_option
             else
               extend UnknownResultUnknown
             end
+          end
+
+          def unknown_option
+            @unknown_option ||= option(:unknown)
           end
 
           def check_unknown_option

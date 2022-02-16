@@ -20,9 +20,8 @@ class Calculate
 
       INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification].freeze
 
-      attr_reader :card_id, :input_list, :result_space
+      attr_reader :input_card, :options, :input_index, :input_count, :result_space
       delegate :answer_candidates, to: :result_space
-      delegate :parser, to: :input_list
 
       # We instantiate with a super class because we dynamically include a lot of modules
       # based on options, and included modules don't override methods defined directly
@@ -34,14 +33,12 @@ class Calculate
         type_id == Card::MetricID ? self : InvalidInputItem
       end
 
-      def initialize input_list, input_index
-        @input_list = input_list
+      def initialize input_card, input_index, input_count, options
+        @input_card = input_card
         @input_index = input_index
-
-        @input_card = parser.input_cards[input_index]
-        @card_id = @input_card.id
+        @input_count = input_count
+        @options = options.symbolize_keys
         initialize_options
-        # @value_store = value_store_class.new
       end
 
       def type

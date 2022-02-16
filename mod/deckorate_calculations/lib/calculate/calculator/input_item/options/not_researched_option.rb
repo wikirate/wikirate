@@ -20,6 +20,10 @@ class Calculate
             interpret_not_researched_option
           end
 
+          def not_researched_option
+            @not_researched_option ||= option(:not_researched)
+          end
+
           # input value has "not researched" value
           def input_value_not_researched? answer
             !answer || Array.wrap(answer.value).any?(&:blank?)
