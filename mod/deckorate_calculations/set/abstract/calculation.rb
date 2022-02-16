@@ -1,5 +1,7 @@
-card_accessor :formula, type: PhraseID
-card_accessor :metric_variables
+
+
+
+card_accessor :metric_variables # deprecated
 
 Card::Content::Chunk::FormulaInput # trigger load.  might be better place?
 
@@ -27,4 +29,14 @@ def calculate_answers args={}
   c.prepare
   c.transact
   c.clean
+end
+
+format :html do
+  view :main_details do
+    [nest_about, render_formula, nest_methodology]
+  end
+
+  view :formula do
+    field_nest :formula, view: :titled
+  end
 end

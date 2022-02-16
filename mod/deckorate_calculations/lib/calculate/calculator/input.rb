@@ -13,7 +13,7 @@ class Calculate
       delegate :no_mandatories?, :validate, to: :input_list
       delegate :input_cards, :input_ids, to: :parser
 
-      # @param [Card] parser has to respond to #input_cards and #input_requirement
+      # @param [Card] parser has to respond to #input_cards
       # @param [Proc] input_cast a block that is called for every input value
       def initialize parser, &input_cast
         @parser = parser
