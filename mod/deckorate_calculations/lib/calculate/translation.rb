@@ -1,11 +1,6 @@
 class Calculate
   # Formula that translates one value to another based on a JSON map
   class Translation < JsonCalculator
-    def initialize parser, **_opts
-      parser.unknown_handling :unknown_string
-      super
-    end
-
     def compile
       super.downcase
     end
