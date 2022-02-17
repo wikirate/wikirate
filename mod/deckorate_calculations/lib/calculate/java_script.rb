@@ -37,7 +37,7 @@ class Calculate
       computer = {}
       # running in slices keeps JS from running out of memory
       value_hash.each_slice 5000 do |value_hash_slice|
-        puts "calling with #{value_hash_slice.to_h}"
+        # puts "calling with #{value_hash_slice.to_h}"
         computer.merge! program.call "calcAll", value_hash_slice.to_h
       end
       computer
@@ -104,7 +104,7 @@ class Calculate
     def coffee_variables
       input.input_list.map do |input_item|
         x = "#{input_item.options[:name]} = #{input_name input_item.input_index}"
-        puts x
+        # puts x
         x
       end
     end

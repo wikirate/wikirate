@@ -19,12 +19,12 @@ class Calculate
     # @return [Array] array of Answer objects
     delegate :answers_for, to: :input
 
-    # @param input_hash [Hash]
+    # @param input_array [Array]
     # @param normalizer: [Method] # called to normalize each *result* value
     # @param years: [String, Integer, Array] applicable year or years
     # @param companies: [String, Integer, Array] applicable company or companies
-    def initialize input_hash, formula: nil, normalizer: nil, years: nil, companies: nil
-      @input_hash = input_hash
+    def initialize input_array, formula: nil, normalizer: nil, years: nil, companies: nil
+      @input_array = input_array.map &:symbolize_keys
       @formula = formula
       @applicable_years = integers years
       @applicable_companies = integers companies
@@ -110,8 +110,8 @@ class Calculate
     private
 
     def input_with_cast cast
-      if @input_hash.keys.present?
-        Input.new @input_hash, &cast
+      if @input_array.present?
+        Input.new @input_array, &cast
       else
         InvalidInput.new
       end

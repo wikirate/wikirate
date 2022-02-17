@@ -11,12 +11,12 @@ class Calculate
       attr_reader :input_list, :result_cache
       delegate :no_mandatories?, :validate, to: :input_list
 
-      # @param [Hash] input_hash
+      # @param [Array] input_array
       # @param [Proc] input_cast a block that is called for every input value
-      def initialize input_hash, &input_cast
+      def initialize input_array, &input_cast
         @input_cast = input_cast
         @result_cache = ResultCache.new
-        @input_list = InputList.new input_hash
+        @input_list = InputList.new input_array
       end
 
       # @param :companies [Array of Integers] only yield input for given companies

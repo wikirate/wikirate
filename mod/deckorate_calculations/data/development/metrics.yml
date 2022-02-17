@@ -38,14 +38,16 @@
     :value_type: Number
     :metric_type: WikiRating
     :variables: |-
-      {
-        "Jedi+deadliness+Joe User": { 
+      [ 
+        { 
+          "metric" : "Jedi+deadliness+Joe User",
           "weight" : "60"
         },
-        "Jedi+disturbances in the Force+Joe User": {
+        { 
+          "metric" : "Jedi+disturbances in the Force+Joe User",
           "weight" : "40"
         }
-      }
+      ]
 - :name:
     - Jedi
     - disturbances in the Force
@@ -84,16 +86,18 @@
     :value_type: Number
     :metric_type: Formula
     :variables: |-
-      {
-        "Joe User+RM" : {
+      [ 
+        { 
+          "metric" : "Joe User+RM",
           "unknown" : "10",
           "name" : "m1"
         },
-        "Joe User+small multi" : {
+        { 
+          "metric" : "Joe User+small multi",
           "not_researched" : "20",
           "name" : "m2"
         }
-      }
+      ]
     :formula: m1 + m2
 
 - :name:
@@ -105,16 +109,19 @@
     :hybrid: '1'
     :metric_type: Formula
     :variables: |-
-      {
-        "Jedi+deadliness" : {
+      [ 
+        { 
+          "metric" : "Jedi+deadliness",
           "name" : "m1"
         },
-        "Jedi+deadliness" : {
+        { 
+          "metric" : "Jedi+deadliness",
           "year" : "-1",
           "name" : "m2"
         }
-      }
+      ]
     :formula: m1 + m2
+
 - :name:
     - Jedi
     - deadliness average
@@ -123,12 +130,13 @@
     :value_type: Number
     :metric_type: Formula
     :variables: |-
-      {
-        "Jedi+deadliness" : {
+      [
+        {
+          "metric" : "Jedi+deadliness",
           "year" : "-2..0",
           "name" : "m1"
         }
-      }
+      ]
     :formula: SUM m1
 - :name:
     - Jedi
@@ -139,11 +147,12 @@
     :hybrid: '1'
     :metric_type: Formula
     :variables: |-
-      {
-        "Jedi+deadliness" : {
+      [
+        {
+          "metric" : "Jedi+deadliness",
           "name" : "m1"
         }
-      }
+      ]
     :formula: 1 / m1
 - :name:
     - Jedi
@@ -153,11 +162,12 @@
     :value_type: Number
     :metric_type: Formula
     :variables: |-
-      {
-        "Jedi+friendliness" : {
+      [
+        {
+          "metric" : "Jedi+friendliness",
           "name" : "m1"
         }
-      }
+      ]
     :formula: m1 * 2
 - :name:
     - Commons
@@ -567,11 +577,12 @@
     :value_type: Category
     :metric_type: Formula
     :variables: |-
-      {
-        "Core+Headquarters Location" : {
+      [
+        {
+          "metric" : "Core+Headquarters Location",
           "name" : "m1"
         }
-      }
+      ]
     :formula: iloRegion m1
     :value_options: |-
       Africa
@@ -588,11 +599,12 @@
     :value_type: Category
     :metric_type: Formula
     :variables: |-
-      {
-        "Core+Headquarters Location" : {
+      [
+        {
+          "metric" : "Core+Headquarters Location",
           "name" : "m1"
         }
-      }
+      ]
     :formula: country m1
     :value_options: |-
       Afghanistan

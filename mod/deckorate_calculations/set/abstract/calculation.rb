@@ -1,7 +1,7 @@
 card_accessor :metric_variables # deprecated
 
 def calculator
-  calculator_class.new input_hash,
+  calculator_class.new input_array,
                        formula: formula,
                        normalizer: Answer.method(:value_to_lookup),
                        years: year_card.item_names,
@@ -24,8 +24,8 @@ def calculate_answers args={}
   c.clean
 end
 
-def input_hash
-  puts "input hash: #{variables_card.parse_content}"
+def input_array
+  puts "input array: #{variables_card.parse_content}"
   variables_card.parse_content
 end
 

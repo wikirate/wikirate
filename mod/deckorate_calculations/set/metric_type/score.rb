@@ -16,8 +16,8 @@ def needs_name?
   false
 end
 
-def input_hash
-  { left_id => { name: "answer" } }
+def input_array
+  [{ metric: left_id, name: "answer" }]
 end
 
 def calculator_class

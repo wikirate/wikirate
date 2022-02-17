@@ -37,7 +37,7 @@ class Calculate
         @input_card = input_card
         @input_index = input_index
         @input_count = input_count
-        @options = options.symbolize_keys
+        @options = options
         initialize_options
       end
 

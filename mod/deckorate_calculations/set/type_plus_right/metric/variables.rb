@@ -1,11 +1,21 @@
 include_set Abstract::IdPointer
 
-def standardize_content value
-  return value if value.match?(/^\s*\{/) # already JSON
+def standardize_content content
+  items = content.match?(/^\s*\[/) ? JSON.parse(content) : items_from_simple(content)
 
-  value.to_s.split(/\n+/).each_with_object({}) do |variable, hash|
-    hash[standardize_item(variable)] = {}
-  end.to_json
+  puts "standardize_content: #{items}"
+
+  items.map { |hash| hash["metric"] = standardize_item hash["metric"] }.to_json
+end
+
+def items_from_simple content
+  content.to_s.split(/\n+/).map do |variable|
+    { "metric" => variable }
+  end
+end
+
+def raw_item_strings content
+  JSON.parse(content).map { |item_hash| item_hash["metric"] }
 end
 
 def export_content
@@ -34,7 +44,6 @@ format :html do
       ]
     end
   end
-
 
   private
 

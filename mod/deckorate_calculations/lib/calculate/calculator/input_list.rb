@@ -3,11 +3,11 @@ class Calculate
     # {InputList} is an array of {InputItem}s.
     # It chooses the right InputItem class depending on the cardtype of the input item.
     class InputList < Array
-      def initialize input_hash
+      def initialize input_array
         @errors = []
-        count = input_hash.keys.count
-        input_hash.each_with_index do |(id, options), index|
-          card = id.card
+        count = input_array.count
+        input_array.each_with_index do |options, index|
+          card = options.delete(:metric).card
           add_item card, index, count, options
         end
       end
