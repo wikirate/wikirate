@@ -1,16 +1,14 @@
 RSpec.describe Calculate::Calculator::Input do
   include_context "with company ids"
 
-  def input formula
-    f_card = Card["Jedi+friendliness+formula"]
-    f_card.content = formula
-    described_class.new f_card.parser
+  def input input_array
+    described_class.new input_array
   end
 
-  def input_items formula
-    iv = input formula
-    iv.send :search_values_for
-    iv.instance_variable_get("@input_list")
+  def input_list input_array
+    i = input input_array
+    i.send :search_values_for
+    i.input_list
   end
 
   def answer_value_hash item, *args
