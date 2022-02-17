@@ -562,6 +562,7 @@
   :subfields:
     :value_type: Multi-Category
     :metric_type: Formula
+    :variables: '[]'
     :value_options: |-
       A
       B

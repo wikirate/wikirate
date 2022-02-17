@@ -1,5 +1,7 @@
 card_accessor :metric_variables # deprecated
 
+delegate :input_array, to: :variables_card
+
 def calculator
   calculator_class.new input_array,
                        formula: formula,
@@ -22,11 +24,6 @@ def calculate_answers args={}
   c.prepare
   c.transact
   c.clean
-end
-
-def input_array
-  puts "input array: #{variables_card.parse_content}"
-  variables_card.parse_content
 end
 
 format :html do

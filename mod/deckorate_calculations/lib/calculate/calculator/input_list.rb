@@ -41,7 +41,6 @@ class Calculate
       end
 
       def add_item card, *args
-        puts "add_item: #{card}, #{args}"
         self << InputItem.item_class(card.type_id).new(card, *args)
       end
     end

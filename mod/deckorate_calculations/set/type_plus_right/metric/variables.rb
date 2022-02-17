@@ -1,11 +1,14 @@
 include_set Abstract::IdPointer
 
+def check_json_syntax
+  self.content = content # trigger standardization
+  super
+end
+
 def standardize_content content
   items = content.match?(/^\s*\[/) ? JSON.parse(content) : items_from_simple(content)
-
-  puts "standardize_content: #{items}"
-
-  items.map { |hash| hash["metric"] = standardize_item hash["metric"] }.to_json
+  items.each { |hash| hash["metric"] = standardize_item hash["metric"] }
+  items.to_json
 end
 
 def items_from_simple content
@@ -20,6 +23,10 @@ end
 
 def export_content
   db_content
+end
+
+def input_array
+  content.present? ? parse_content : []
 end
 
 format :html do
