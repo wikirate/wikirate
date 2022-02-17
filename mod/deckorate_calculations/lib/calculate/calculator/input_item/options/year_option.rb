@@ -15,6 +15,10 @@ class Calculate
           extend AddValidationChecks
           add_validation_checks :check_year_option
 
+          def year_option
+            @year_option ||= option(:year)
+          end
+
           def initialize_option
             super
             interpret_year_option

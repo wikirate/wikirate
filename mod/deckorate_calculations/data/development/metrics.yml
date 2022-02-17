@@ -1,39 +1,14 @@
 ---
-
-
-
-#- :name:
-#    - Global Reporting Initiative
-#    - Fuel consumption from non-renewable sources (G4-EN3-a)
-#  :type: :metric
-#- :name:
-#    - CDP
-#    - Scope 2 Emissions
-#  :type: :metric
-#- :name:
-#    - CDP
-#    - Disclosure Score
-#  :type: :metric
-#- :name:
-#    - CDP
-#    - Performance Score
-#  :type: :metric
-#- :name:
-#    - Access to Nutrition Index
-#    - Marketing Score
-#  :type: :metric
-#- :name:
-#    - BSR
-#    - BSR Member
-#  :type: :metric
-#- :name:
-#    - Good Company Index
-#    - Good Company Grade
-#  :type: :metric
-#- :name:
-#    - Sebastian Jekutsch
-#    - CSR Report Available
-#  :type: :metric
+- :name:
+    - Joe User
+    - descendant 1
+  :type: :metric
+  :subfields:
+    :value_type: Number
+    :metric_type: Descendant
+    :variables: |-
+      Joe User+researched number 2
+      Joe User+researched number 1
 - :name:
     - Joe User
     - descendant 2
@@ -41,9 +16,9 @@
   :subfields:
     :value_type: Number
     :metric_type: Descendant
-    :formula: |-
-      [[Joe User+RM]]
-      [[Joe User+researched number 1]]
+    :variables: |-
+      Joe User+RM
+      Joe User+researched number 1
 - :name:
     - Joe User
     - descendant hybrid
@@ -52,19 +27,9 @@
     :value_type: Number
     :hybrid: '1'
     :metric_type: Descendant
-    :formula: |-
-      [[Joe User+researched number 2]]
-      [[Joe User+researched number 1]]
-- :name:
-    - Joe User
-    - descendant 1
-  :type: :metric
-  :subfields:
-    :value_type: Number
-    :metric_type: Descendant
-    :formula: |-
-      [[Joe User+researched number 2]]
-      [[Joe User+researched number 1]]
+    :variables: |-
+      Joe User+researched number 2
+      Joe User+researched number 1
 - :name:
     - Jedi
     - darkness rating
@@ -72,7 +37,17 @@
   :subfields:
     :value_type: Number
     :metric_type: WikiRating
-    :formula: '{"Jedi+deadliness+Joe User":60,"Jedi+disturbances in the Force+Joe User":40}'
+    :variables: |-
+      [ 
+        { 
+          "metric" : "Jedi+deadliness+Joe User",
+          "weight" : "60"
+        },
+        { 
+          "metric" : "Jedi+disturbances in the Force+Joe User",
+          "weight" : "40"
+        }
+      ]
 - :name:
     - Jedi
     - disturbances in the Force
@@ -92,12 +67,7 @@
     :value_type: Number
     :metric_type: Score
     :formula: |-
-      m1 = {{Jedi+deadliness}}
-      
-      m1 / 20
-      
-      
-
+      answer / 20
 - :name:
     - Jedi
     - deadliness
@@ -107,9 +77,7 @@
     :value_type: Number
     :metric_type: Score
     :formula: |-
-      m1 = {{Jedi+deadliness}}
-      
-      m1 / 10
+      answer / 10
 - :name:
     - Jedi
     - know the unknowns
@@ -117,11 +85,21 @@
   :subfields:
     :value_type: Number
     :metric_type: Formula
-    :formula: |-
-      m1 = {{Joe User+RM|unknown: 10}}
-      m2 = {{Joe User+small multi|not_researched: 20}}
-      
-      m1 + m2
+    :variables: |-
+      [ 
+        { 
+          "metric" : "Joe User+RM",
+          "unknown" : "10",
+          "name" : "m1"
+        },
+        { 
+          "metric" : "Joe User+small multi",
+          "not_researched" : "20",
+          "name" : "m2"
+        }
+      ]
+    :formula: m1 + m2
+
 - :name:
     - Jedi
     - deadlier
@@ -130,11 +108,20 @@
     :value_type: Number
     :hybrid: '1'
     :metric_type: Formula
-    :formula: |-
-      m1 = {{Jedi+deadliness}}
-      m2 = {{Jedi+deadliness|year:-1}}
-      
-      m1 + m2
+    :variables: |-
+      [ 
+        { 
+          "metric" : "Jedi+deadliness",
+          "name" : "m1"
+        },
+        { 
+          "metric" : "Jedi+deadliness",
+          "year" : "-1",
+          "name" : "m2"
+        }
+      ]
+    :formula: m1 + m2
+
 - :name:
     - Jedi
     - deadliness average
@@ -142,10 +129,15 @@
   :subfields:
     :value_type: Number
     :metric_type: Formula
-    :formula: |-
-      m1 = {{Jedi+deadliness|year:-2..0}}
-      
-      SUM m1
+    :variables: |-
+      [
+        {
+          "metric" : "Jedi+deadliness",
+          "year" : "-2..0",
+          "name" : "m1"
+        }
+      ]
+    :formula: SUM m1
 - :name:
     - Jedi
     - friendliness
@@ -154,10 +146,14 @@
     :value_type: Number
     :hybrid: '1'
     :metric_type: Formula
-    :formula: |-
-      m1 = {{Jedi+deadliness}}
-      
-      1 / m1
+    :variables: |-
+      [
+        {
+          "metric" : "Jedi+deadliness",
+          "name" : "m1"
+        }
+      ]
+    :formula: 1 / m1
 - :name:
     - Jedi
     - double friendliness
@@ -165,9 +161,14 @@
   :subfields:
     :value_type: Number
     :metric_type: Formula
-    :formula: |-
-      m1 = {{Jedi+friendliness}}
-      m1 * 2
+    :variables: |-
+      [
+        {
+          "metric" : "Jedi+friendliness",
+          "name" : "m1"
+        }
+      ]
+    :formula: m1 * 2
 - :name:
     - Commons
     - Industry
@@ -575,18 +576,20 @@
   :subfields:
     :value_type: Category
     :metric_type: Formula
-    :formula: |-
-      m1 = {{Core+Headquarters Location}}
-      
-      iloRegion m1
+    :variables: |-
+      [
+        {
+          "metric" : "Core+Headquarters Location",
+          "name" : "m1"
+        }
+      ]
+    :formula: iloRegion m1
     :value_options: |-
       Africa
       Americas
       Arab States
       Asia and the Pacific
       Europe and Central Asia
-
-
 
 - :name:
     - Core
@@ -595,10 +598,14 @@
   :subfields:
     :value_type: Category
     :metric_type: Formula
-    :formula: |-
-      m1 = {{Core+Headquarters Location}}
-      
-      country m1
+    :variables: |-
+      [
+        {
+          "metric" : "Core+Headquarters Location",
+          "name" : "m1"
+        }
+      ]
+    :formula: country m1
     :value_options: |-
       Afghanistan
       Albania

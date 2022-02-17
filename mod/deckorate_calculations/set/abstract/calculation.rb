@@ -1,16 +1,11 @@
-card_accessor :formula, type: PhraseID
-card_accessor :metric_variables
+card_accessor :metric_variables # deprecated
 
-Card::Content::Chunk::FormulaInput # trigger load.  might be better place?
-
-delegate :parser, :calculator_class, to: :formula_card
-
-def calculator parser_method=nil
-  p = parser
-  p.send parser_method if parser_method
-  calculator_class.new p, normalizer: Answer.method(:value_to_lookup),
-                          years: year_card.item_names,
-                          companies: company_group_card.company_ids
+def calculator
+  calculator_class.new input_array,
+                       formula: formula,
+                       normalizer: Answer.method(:value_to_lookup),
+                       years: year_card.item_names,
+                       companies: company_group_card.company_ids
 end
 
 # update all answers of this metric and the answers of all dependent metrics
@@ -27,4 +22,19 @@ def calculate_answers args={}
   c.prepare
   c.transact
   c.clean
+end
+
+def input_array
+  puts "input array: #{variables_card.parse_content}"
+  variables_card.parse_content
+end
+
+format :html do
+  view :main_details do
+    [nest_about, render_formula, nest_methodology]
+  end
+
+  view :formula do
+    field_nest :formula, view: :titled
+  end
 end
