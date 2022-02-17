@@ -16,7 +16,7 @@ class Calculate
       def initialize input_array, &input_cast
         @input_cast = input_cast
         @result_cache = ResultCache.new
-        @input_list = InputList.new input_array
+        @input_list = InputList.new input_array.map(&:symbolize_keys)
       end
 
       # @param :companies [Array of Integers] only yield input for given companies
@@ -74,12 +74,8 @@ class Calculate
 
       def normalize_answers answers
         answers&.map do |answer|
-          if answer.nil?
-            nil
-          else
-            answer.cast { |val| @input_cast.call val }
-            answer
-          end
+          answer.cast { |val| @input_cast.call val } if @input_cast && !answer.nil?
+          answer
         end
       end
 

@@ -24,7 +24,7 @@ class Calculate
     # @param years: [String, Integer, Array] applicable year or years
     # @param companies: [String, Integer, Array] applicable company or companies
     def initialize input_array, formula: nil, normalizer: nil, years: nil, companies: nil
-      @input_array = input_array.map &:symbolize_keys
+      @input_array = input_array
       @formula = formula
       @applicable_years = integers years
       @applicable_companies = integers companies
@@ -33,7 +33,7 @@ class Calculate
     end
 
     def input
-      @input ||= input_with_cast method(:cast)
+      @input ||= input_with :cast
     end
 
     # Calculates answers
@@ -109,9 +109,9 @@ class Calculate
 
     private
 
-    def input_with_cast cast
+    def input_with cast=:cast
       if @input_array.present?
-        Input.new @input_array, &cast
+        Input.new @input_array, &method(cast)
       else
         InvalidInput.new
       end

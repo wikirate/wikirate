@@ -25,7 +25,7 @@ def items_from_simple content
   end
 end
 
-def item_strings _args
+def item_strings _args={}
   parse_content.map { |item_hash| item_hash["metric"] }
 end
 

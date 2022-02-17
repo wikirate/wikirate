@@ -32,24 +32,6 @@
       Joe User+researched number 1
 - :name:
     - Jedi
-    - darkness rating
-  :type: :metric
-  :subfields:
-    :value_type: Number
-    :metric_type: WikiRating
-    :variables: |-
-      [ 
-        { 
-          "metric" : "Jedi+deadliness+Joe User",
-          "weight" : "60"
-        },
-        { 
-          "metric" : "Jedi+disturbances in the Force+Joe User",
-          "weight" : "40"
-        }
-      ]
-- :name:
-    - Jedi
     - disturbances in the Force
     - Joe User
   :type: :metric
@@ -78,6 +60,24 @@
     :metric_type: Score
     :formula: |-
       answer / 10
+- :name:
+    - Jedi
+    - darkness rating
+  :type: :metric
+  :subfields:
+    :value_type: Number
+    :metric_type: WikiRating
+    :variables: |-
+      [ 
+        { 
+          "metric" : "Jedi+deadliness+Joe User",
+          "weight" : "60"
+        },
+        { 
+          "metric" : "Jedi+disturbances in the Force+Joe User",
+          "weight" : "40"
+        }
+      ]
 - :name:
     - Jedi
     - know the unknowns

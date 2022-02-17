@@ -25,9 +25,13 @@ def calculate_answers args={}
 end
 
 def input_array variant
-  variables_card.input_array.tap do |array|
+  base_input_array.tap do |array|
     array.each { |input| send "#{variant}_formula_input", input }
   end
+end
+
+def base_input_array
+  variables_card.input_array
 end
 
 def standard_formula_input input

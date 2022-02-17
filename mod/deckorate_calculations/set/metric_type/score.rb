@@ -16,7 +16,7 @@ def needs_name?
   false
 end
 
-def input_array
+def base_input_array
   [{ metric: left_id, name: "answer" }]
 end
 

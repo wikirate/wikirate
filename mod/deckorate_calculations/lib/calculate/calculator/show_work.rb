@@ -7,8 +7,8 @@ class Calculate
       # @param [String] year four-digit year
       # @return [Array] [[metric_card_1, value_1, year_options_1], [metric_card2...], ...]
       def inputs_for company, year
-        values = Array.wrap uncasted_input.input_for(company, year)
-        uncasted_input.input_list.map.with_index do |input_item, index|
+        values = Array.wrap uncast_input.input_for(company, year)
+        uncast_input.input_list.map.with_index do |input_item, index|
           [input_item.input_card,
            values[index],
            input_item.try(:year_option) ]
@@ -24,7 +24,7 @@ class Calculate
       #     3. the year option
       # @return [String] the formula with nests replaced by the result of the given block
       def formula_for company, year, &block
-        input_val = uncasted_input.input_for company, year
+        input_val = uncast_input.input_for company, year
         case input_val
         when :unknown
           "Unknown"
@@ -37,29 +37,13 @@ class Calculate
 
       private
 
-      def uncasted_input
-        @uncasted_input ||= input_with_cast method(:no_cast)
+      def uncast_input
+        @uncast_input ||= input_with :no_cast
       end
 
       def no_cast val
         val
       end
-
-      # def formula_with_nests input_val
-      #   input_enum = input_val.each
-      #   replace_nests do |index|
-      #     yield input_enum.next, @parser.input_cards[index], @parser.year_options[index]
-      #   end
-      # end
-      #
-      # def replace_nests content=nil
-      #   content ||= formula
-      #   index = -1
-      #   content.gsub(/{{[^{}]*}}/) do |_match|
-      #     index += 1
-      #     yield(index)
-      #   end
-      # end
     end
   end
 end
