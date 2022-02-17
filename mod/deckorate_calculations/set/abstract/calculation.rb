@@ -1,9 +1,7 @@
 card_accessor :metric_variables # deprecated
 
-delegate :input_array, to: :variables_card
-
-def calculator
-  calculator_class.new input_array,
+def calculator variant=:standard
+  calculator_class.new input_array(variant),
                        formula: formula,
                        normalizer: Answer.method(:value_to_lookup),
                        years: year_card.item_names,
@@ -24,6 +22,24 @@ def calculate_answers args={}
   c.prepare
   c.transact
   c.clean
+end
+
+def input_array variant
+  variables_card.input_array.tap do |array|
+    array.each { |input| send "#{variant}_formula_input", input }
+  end
+end
+
+def standard_formula_input input
+  input
+end
+
+def raw_formula_input input
+  input.merge! unknown: "Unknown", not_researched: "No value"
+end
+
+def processed_formula_input input
+  input.merge! unknown: :process, not_researched: :process
 end
 
 format :html do

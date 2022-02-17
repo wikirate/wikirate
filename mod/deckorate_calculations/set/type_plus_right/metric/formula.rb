@@ -99,7 +99,5 @@ format :json do
 end
 
 def json_content
-  return if researched?
-
-  translation? ? translation_hash : content
+  translation? ? translation_hash : content unless researched?
 end

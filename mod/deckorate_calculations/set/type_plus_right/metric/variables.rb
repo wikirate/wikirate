@@ -1,4 +1,12 @@
+include_set Abstract::Pointer
 include_set Abstract::IdPointer
+include_set Abstract::MetricChild, generation: 1
+
+# FIXME: make sure not calculated twice when updated in same act as formula
+event :update_calculated_answers, :integrate_with_delay,
+      on: :save, changed: :content, priority: 5, when: :content? do
+  metric_card.deep_answer_update
+end
 
 def check_json_syntax
   self.content = content # trigger standardization
@@ -17,8 +25,8 @@ def items_from_simple content
   end
 end
 
-def raw_item_strings content
-  JSON.parse(content).map { |item_hash| item_hash["metric"] }
+def item_strings _args
+  parse_content.map { |item_hash| item_hash["metric"] }
 end
 
 def export_content
@@ -26,7 +34,7 @@ def export_content
 end
 
 def input_array
-  content.present? ? parse_content : []
+  (content.present? ? parse_content : [])
 end
 
 format :html do

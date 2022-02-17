@@ -7,9 +7,12 @@ class Calculate
       # @param [String] year four-digit year
       # @return [Array] [[metric_card_1, value_1, year_options_1], [metric_card2...], ...]
       def inputs_for company, year
-        @parser.input_cards.zip(
-          Array.wrap(uncasted_input.input_for(company, year)), @parser.year_options
-        )
+        values = Array.wrap uncasted_input.input_for(company, year)
+        uncasted_input.input_list.map.with_index do |input_item, index|
+          [input_item.input_card,
+           values[index],
+           input_item.try(:year_option) ]
+        end
       end
 
       # The formula for a given answer (the calculator implies the metric)
