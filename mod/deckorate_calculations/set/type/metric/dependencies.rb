@@ -44,7 +44,7 @@ end
 # note: includes score metrics
 def formula_metrics
   @formula_metrics ||=
-    Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
+    Card.search type_id: MetricID, right_plus: [:variables, { refer_to: id }]
 end
 
 # depender = metrics that depend on me

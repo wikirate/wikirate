@@ -16,17 +16,12 @@ format :html do
     end
   end
 
-  # overridden in Researched
   view :main_details do
-    [nest_about, nest_formula, nest_methodology]
+    [nest_about, nest_methodology]
   end
 
   def nest_about
     field_nest :about, view: :titled
-  end
-
-  def nest_formula
-    field_nest :formula, view: :titled
   end
 
   def nest_methodology
