@@ -23,6 +23,10 @@ class Calculate
             { nil => year_answer_pairs }
           end
 
+          def company_option
+            @company_option ||= option(:company)
+          end
+
           private
 
           def interpret_company_option
