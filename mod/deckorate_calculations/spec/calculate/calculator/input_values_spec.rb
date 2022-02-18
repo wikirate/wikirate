@@ -1,16 +1,14 @@
 RSpec.describe Calculate::Calculator::Input do
   include_context "with company ids"
 
-  def input formula
-    f_card = Card["Jedi+friendliness+formula"]
-    f_card.content = formula
-    described_class.new f_card.parser
+  def input input_array
+    described_class.new input_array
   end
 
-  def input_items formula
-    iv = input formula
-    iv.send :search_values_for
-    iv.instance_variable_get("@input_list")
+  def input_list input_array
+    i = input input_array
+    i.send :search_values_for
+    i.input_list
   end
 
   def answer_value_hash item, *args
@@ -19,19 +17,59 @@ RSpec.describe Calculate::Calculator::Input do
     end
   end
 
-  example "single metric" do
-    ii, = input_items "2*{{Jedi+Victims by Employees}}"
-    aggregate_failures do
-      expect(ii.answer_for(death_star, nil)[1977].value).to eq("0.31")
-      expect(ii.answer_for(death_star, 1977).value).to eq("0.31")
+  describe "#answers_for" do
+    def answers_for *args
+      input(input_array).answers_for *args
+    end
+
+    context "single metric" do
+      let(:input_array) { [{ metric: "Jedi+Victims by Employees" }] }
+
+      example "no year specified" do
+        expect(answers_for(death_star, nil).first.value).to eq("0.31")
+      end
+
+      example "year specified" do
+        expect(answers_for(death_star, 1977).first.value).to eq("0.31")
+      end
+    end
+
+    context "two metrics" do
+      let :input_array do
+        [{ metric: "Jedi+Victims by Employees" }, { metric: "Jedi+deadliness" }]
+      end
+
+      example "no year specified" do
+        expect(answers_for(death_star, nil).map(&:value)).to eq(["0.31", "100"])
+      end
+
+      example "year specified" do
+        expect(answers_for(death_star, 1977).map(&:value)).to eq(["0.31", "100"])
+      end
     end
   end
 
-  example "two metrics" do
-    ii, ii2 = input_items "{{Jedi+Victims by Employees}} + {{Jedi+deadliness}}"
-    aggregate_failures do
-      expect(ii.answer_for(death_star, nil)[1977].value).to eq("0.31")
-      expect(ii2.answer_for(death_star, nil)[1977].value).to eq("100")
+  describe "input_for" do
+    def input_for *args
+      input(input_array).input_for *args
+    end
+
+    context "single metric" do
+      let(:input_array) { [{ metric: "Jedi+Victims by Employees" }] }
+
+      example "year specified" do
+        expect(input_for(death_star, 1977)).to eq(["0.31"])
+      end
+    end
+
+    context "two metrics" do
+      let :input_array do
+        [{ metric: "Jedi+Victims by Employees" }, { metric: "Jedi+deadliness" }]
+      end
+
+      example "year specified" do
+        expect(input_for(death_star, 1977)).to eq(["0.31", "100"])
+      end
     end
   end
 
