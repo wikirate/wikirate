@@ -17,7 +17,9 @@ def needs_name?
 end
 
 def base_input_array
-  [{ metric: left_id, name: "answer" }]
+  input = { metric: left_id, name: "answer" }
+  input[:unknown] = "Unknown" if categorical?
+  [input]
 end
 
 def calculator_class

@@ -2,7 +2,7 @@ require "execjs"
 
 class Calculate
   # Calculate formula values using JavaScript
-  class JavaScript < NestCalculator
+  class JavaScript < Calculator
     def formula_js_code
       read_file_in_mod "deckorate_calculations/assets/script/vendor/formula.js"
     end
@@ -45,6 +45,12 @@ class Calculate
 
     def cast val
       val.number? ? val.to_f : val
+    end
+
+    def programmable? expr
+      @unsafe = expr
+      @errors.concat input.validate
+      @errors.empty?
     end
 
     private

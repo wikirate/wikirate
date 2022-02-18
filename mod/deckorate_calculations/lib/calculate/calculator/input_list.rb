@@ -23,8 +23,7 @@ class Calculate
         if empty?
           @errors << "at least one metric variable nest is required" if empty?
         elsif no_company_dependency?
-          @errors <<
-            "there must be at least one nest that doesn't explicitly specify companies"
+          @errors << "must have at least one variable not explicitly specify company"
         end
       end
 
