@@ -14,7 +14,14 @@ def check_json_syntax
 end
 
 def standardize_content content
-  items = content.match?(/^\s*\[/) ? JSON.parse(content) : items_from_simple(content)
+  items = case content
+          when Array
+            items
+          when (/^\s*\[/)
+            JSON.parse content
+          else
+            items_from_simple content
+          end
   items.each { |hash| hash["metric"] = standardize_item hash["metric"] }
   items.to_json
 end

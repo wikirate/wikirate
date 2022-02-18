@@ -1,17 +1,34 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../spec/support/formula.rb"
-
 RSpec.describe Card::Set::MetricType::Formula do
-  include_context "formula"
 
   let(:metric_name) { "Joe User+RM" }
   let(:metric_name1) { "Joe User+researched number 1" }
   let(:metric_name2) { "Joe User+researched number 2" }
   let(:metric_name3) { "Joe User+researched number 3" }
 
-  def build_formula formula
-    format formula, metric_name1, metric_name2, metric_name3
+  let(:formula_metric_name) { "Jedi+formula1" }
+
+  let :variables do
+    [
+      { metric: metric_name, name: "m1" },
+      { metric: metric_name1, name: "m2" }
+    ]
+  end
+
+  def take_answer_value company, year=1977
+    Answer.where(
+      metric_id: "Jedi+formula1".card_id,
+      company_id: company.card_id,
+      year: year
+    ).take&.value
+  end
+
+  def create_formula formula="m1 + m2", vars=variables
+    create_metric name: formula_metric_name,
+                  type: :formula,
+                  variables: vars.to_json,
+                  formula: formula
   end
 
   describe "formula card" do
@@ -33,13 +50,8 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
 
       def formula year:
-        create_metric name: "Jedi+formula1",
-                      type: :formula,
-                      variables: [
-                        { metric: metric_name, name: "m1", year: year },
-                        { metric: metric_name1, name: "m2" }
-                      ].to_json,
-                      formula: "m1 + m2"
+        variables.first[:year] = year
+        create_formula
       end
       # let(:formula) do
       #   "{{#{metric_name}|year:#{@year_expr} }}+{{#{metric_name1}}}"
@@ -65,9 +77,8 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
 
     it "all years" do
-      # {{metric_name3|year: all}} + {{metric_name1}}
-      create_formula_metric metric: metric_name3, method: "SUM",
-                            year: "all", add: { metric: metric_name1 }
+      variables.first.merge! metric: metric_name3, year: "all"
+      create_formula "SUM m1, m2"
       expect(take_answer_value("Samsung", 2014)).to eq "12"
       expect(take_answer_value("Samsung", 2015)).to eq "7"
     end
@@ -78,8 +89,8 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
 
       def formula year:
-        create_formula_metric method: "SUM",
-                              year: year, add: { metric: metric_name1 }
+        variables.first[:year] = year
+        create_formula "SUM m1, m2"
       end
 
       # let(:formula) do
@@ -124,7 +135,8 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
 
     def formula unknown:
-      create_formula_metric method: "numKnown", year: "2000..0", unknown: unknown
+      var = variables.first.merge  year: "2000..0", unknown: unknown
+      create_formula "numKnown m1", [var]
     end
 
     example "unknown option no_result" do
@@ -153,16 +165,22 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
   end
 
-  example "network aware formula" do
-    create_formula_metric method: "SUM", related: "Jedi+more evil=yes",
-                          metric: "Jedi+deadliness"
-    expect(take_answer_value("Death Star", 1977)).to eq "90"
-  end
+  context "network aware formula" do
+    def formula related
+      vars = [{ metric: "Jedi+deadliness", name: "m1", company: "Related[#{related}]" }]
+      create_formula "SUM m1", vars
+    end
 
-  example "network aware formula using inverse relationship" do
-    create_formula_metric method: "SUM", related: "Jedi+less evil=yes",
-                          metric: "Jedi+deadliness"
-    expect(take_answer_value("Los Pollos Hermanos", 1977)).to eq "150"
+    example "using direct relationship" do
+      formula "Jedi+more evil=yes"
+      expect(take_answer_value("Death Star", 1977)).to eq "90"
+    end
+
+    example "using inverse relationship" do
+      formula "Jedi+less evil=yes"
+      expect(take_answer_value("Los Pollos Hermanos", 1977)).to eq "150"
+    end
+
   end
 
   def calc_value company="Samsung", year="2014"
@@ -170,7 +188,7 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   def calc_answer company="Samsung", year="2014"
-    Answer.where(metric_id: "Joe User+#{@metric_title}".card_id,
+    Answer.where(metric_id: formula_metric_name.card_id,
                  company_id: company.card_id, year: year.to_i).take
   end
 
@@ -179,14 +197,15 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   context "when created with formula" do
+    let :variables do
+      [
+        { metric: metric_name1, name: "m1" },
+        { metric: metric_name2, name: "m2" }
+      ]
+    end
+
     before do
-      @metric_title = "formula1"
-      Card::Auth.as_bot do
-        @metric = create_metric(
-          name: @metric_title, type: :formula,
-          formula: build_formula("{{%s}}*5+{{%s}}*2")
-        )
-      end
+      create_formula "m1 * 5 + m2 * 2"
     end
 
     it "creates calculated values" do
@@ -198,24 +217,25 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
 
     context "when formula changes" do
-      def update_formula new_formula
+      def update_formula subfields
         Card::Auth.as_bot do
-          @metric.formula_card.update! content: build_formula(new_formula)
+          formula_metric_name.card.update!(subfields: subfields)
         end
       end
 
       it "updates existing calculated value" do
-        update_formula "{{%s}}*4+{{%s}}*2"
+        update_formula formula: "m1 * 4 + m2 * 2"
         expect(calc_value).to eq "50"
       end
 
       it "removes incomplete calculated value" do
-        update_formula "{{%s}}*5+{{%s}}*2+{{%s}}"
+        vars = variables << { metric: metric_name3, name: "m3" }
+        update_formula formula: "m1*5+m2*2+m3", variables: vars.to_json
         expect(calc_answer("Sony_Corporation", "2014")).to be_falsey
       end
 
       it "adds complete calculated value" do
-        update_formula "{{%s}}*5"
+        update_formula formula: "m1*5", variables: [variables.first].to_json
         test_calculation %w[Death_Star 1977], "25"
       end
     end
@@ -251,17 +271,19 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   context "when created without formula" do
-    before do
-      @metric_title = "formula2"
-      @metric = create_metric name: @metric_title, type: :formula
+    let :variables do
+      [
+        { metric: metric_name1, name: "m1" },
+        { metric: metric_name2, name: "m2" }
+      ]
     end
 
-    it "creates calculated values if formula created" do
-      Card::Auth.as_bot do
-        Card.create! name: "#{@metric.name}+formula",
-                     type_id: Card::PlainTextID,
-                     content: build_formula("{{%s}}*5+{{%s}}*2")
-      end
+    before do
+      create_formula nil
+    end
+
+    it "creates calculated values if formula created", as_bot: true do
+      Card.create! name: [formula_metric_name, :formula], content: "m1 * 5 + m2 * 2"
       test_calculation [], "60"
       test_calculation %w[Samsung 2015], "29"
       test_calculation %w[Sony_Corporation], "9"
