@@ -54,7 +54,7 @@ class Calculate
         end
 
         def sub_answers_rel company_ids, year
-          Answer.where metric_id: card_id, company_id: company_ids, year: year
+          Answer.where metric_id: input_card.id, company_id: company_ids, year: year
         end
 
         def consolidated_input_answer input_answers, year
@@ -67,12 +67,13 @@ class Calculate
         # used for CompanyOption
         def years_from_db company_ids
           Answer.select(:year).distinct
-                .where(metric_id: card_id, company_id: company_ids)
+                .where(metric_id: input_card.id, company_id: company_ids)
                 .distinct.pluck(:year).map(&:to_i)
         end
 
         def search_company_ids
-          Answer.select(:company_id).distinct.where(metric_id: card_id).pluck(:company_id)
+          Answer.select(:company_id).distinct
+                .where(metric_id: input_card.id).pluck(:company_id)
         end
 
         def value_store

@@ -33,7 +33,13 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
 
       def formula year:
-        create_formula_metric year: year, add: { metric: metric_name1 }
+        create_metric name: "Jedi+formula1",
+                      type: :formula,
+                      variables: [
+                        { metric: metric_name, name: "m1", year: year },
+                        { metric: metric_name1, name: "m2" }
+                      ].to_json,
+                      formula: "m1 + m2"
       end
       # let(:formula) do
       #   "{{#{metric_name}|year:#{@year_expr} }}+{{#{metric_name1}}}"

@@ -54,8 +54,10 @@ shared_context "formula" do
   end
 
   def take_answer_value company, year=1977
-    company_id = company.card_id unless company_id.is_a?(Integer)
-    Answer.where(metric_id: "Jedi+formula1".card_id, company_id: company_id, year: year)
-          .take&.value
+    Answer.where(
+      metric_id: "Jedi+formula1".card_id,
+      company_id: company.card_id,
+      year: year
+    ).take&.value
   end
 end
