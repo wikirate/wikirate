@@ -1,6 +1,5 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Type::Pointer
-include_set Abstract::Variable
 include_set Abstract::Table
 
 # The Metric+:metric_variables help support +:formula cards. They're used:
