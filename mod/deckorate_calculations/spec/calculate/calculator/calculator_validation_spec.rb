@@ -1,8 +1,4 @@
-require_relative "../../support/calculator_stub"
-
 RSpec.describe Calculate::Calculator do
-  include_context "with calculator stub"
-
   let(:metric) { "Jedi+friendliness".card }
   let(:variables) { [{ metric: "Jedi+deadliness", name: "m1" }] }
 

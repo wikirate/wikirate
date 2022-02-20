@@ -80,7 +80,7 @@ format :html do
   end
 
   view :standard_formula_editor, unknown: true do
-    output [text_area_input, _render_variables]
+    output [text_area_input]
   end
 
   view :core do

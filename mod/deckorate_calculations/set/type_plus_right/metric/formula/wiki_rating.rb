@@ -11,7 +11,7 @@ format :html do
       output [rating_editor_table,
               _render_hidden_content_field,
               weight_row_template,
-              nest(card.variables_card, view: :edit_in_wikirating)]
+              nest(card.metric_card.variables_card, view: :edit_in_wikirating)]
     end
   end
 
