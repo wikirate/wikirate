@@ -48,8 +48,7 @@ end
 # depender = metrics that depend on me
 # dependee = metrics that I depend on
 
+# overwritten in calculations
 def direct_dependee_metrics
-  return [] unless calculated?
-
-  formula_card&.item_names&.map(&:card)&.select { |i| i&.type_id == MetricID }
+  []
 end

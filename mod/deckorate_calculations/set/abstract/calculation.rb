@@ -46,6 +46,14 @@ def processed_formula_input input
   input.merge! unknown: :process, not_researched: :process
 end
 
+def direct_dependee_metrics
+  return [] unless variables.present?
+
+  # TODO: simplify once we get rid of Yearly Variables
+  variables_card&.item_names&.map(&:card)&.select { |i| i&.type_id == MetricID }
+end
+
+
 format :html do
   view :main_details do
     [nest_about, render_formula, nest_methodology]

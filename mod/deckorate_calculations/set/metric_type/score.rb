@@ -66,6 +66,10 @@ def value_type
   "Number"
 end
 
+def direct_dependee_metrics
+  [left]
+end
+
 event :validate_score_name, :validate, changed: :name, on: :save do
   unless basic_metric_card&.type_id == MetricID
     errors.add :name, "#{basic_metric} is not a metric"
