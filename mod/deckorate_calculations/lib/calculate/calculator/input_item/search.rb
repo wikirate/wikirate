@@ -3,8 +3,8 @@ class Calculate
     class InputItem
       # private methods for finding relevant input answers
       module Search
-        def search result_space
-          @result_space = result_space
+        def search result_space=nil
+          @result_space = result_space || ResultSpace.new(false)
           @result_slice = ResultSlice.new
           full_search
           after_search

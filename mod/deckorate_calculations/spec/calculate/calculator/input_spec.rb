@@ -86,20 +86,74 @@ RSpec.describe Calculate::Calculator::Input do
       end
     end
 
-    describe "#each" do
-      it "handles array of Integers for years" do
-        expect(input_each("Joe User+RM", [2013, 2014], "Apple Inc"))
-          .to eq([[[13.0], apple_id, 2013], [[14.0], apple_id, 2014]])
+    it "handles array of Integers for years" do
+      expect(input_each("Joe User+RM", [2013, 2014], "Apple Inc"))
+        .to eq([[[13.0], apple_id, 2013], [[14.0], apple_id, 2014]])
+    end
+
+    it "handles array of Strings for years" do
+      expect(input_each("Joe User+RM", %w[2013 2014], "Apple Inc"))
+        .to eq([[[13.0], apple_id, 2013], [[14.0], apple_id, 2014]])
+    end
+
+    it "handles array of Integers for companies" do
+      expect(input_each("Jedi+deadliness", 1977, [death_star_id, samsung_id]))
+        .to eq([[[100.0], death_star_id, 1977], [[:unknown], samsung_id, 1977]])
+    end
+  end
+
+  describe "#answers_for" do
+    def answers_for *args
+      input(input_array).answers_for *args
+    end
+
+    context "single metric" do
+      let(:input_array) { [{ metric: "Jedi+Victims by Employees" }] }
+
+      example "no year specified" do
+        expect(answers_for(death_star, nil).first.value).to eq("0.31")
       end
 
-      it "handles array of Strings for years" do
-        expect(input_each("Joe User+RM", %w[2013 2014], "Apple Inc"))
-          .to eq([[[13.0], apple_id, 2013], [[14.0], apple_id, 2014]])
+      example "year specified" do
+        expect(answers_for(death_star, 1977).first.value).to eq("0.31")
+      end
+    end
+
+    context "two metrics" do
+      let :input_array do
+        [{ metric: "Jedi+Victims by Employees" }, { metric: "Jedi+deadliness" }]
       end
 
-      it "handles array of Integers for companies" do
-        expect(input_each("Jedi+deadliness", 1977, [death_star_id, samsung_id]))
-          .to eq([[[100.0], death_star_id, 1977], [[:unknown], samsung_id, 1977]])
+      example "no year specified" do
+        expect(answers_for(death_star, nil).map(&:value)).to eq(["0.31", "100"])
+      end
+
+      example "year specified" do
+        expect(answers_for(death_star, 1977).map(&:value)).to eq(["0.31", "100"])
+      end
+    end
+  end
+
+  describe "input_for" do
+    def input_for *args
+      input(input_array).input_for *args
+    end
+
+    context "single metric" do
+      let(:input_array) { [{ metric: "Jedi+Victims by Employees" }] }
+
+      example "year specified" do
+        expect(input_for(death_star, 1977)).to eq([0.31])
+      end
+    end
+
+    context "two metrics" do
+      let :input_array do
+        [{ metric: "Jedi+Victims by Employees" }, { metric: "Jedi+deadliness" }]
+      end
+
+      example "year specified" do
+        expect(input_for(death_star, 1977)).to eq([0.31, 100])
       end
     end
   end
