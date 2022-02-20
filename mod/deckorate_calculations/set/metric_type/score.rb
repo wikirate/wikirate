@@ -1,6 +1,8 @@
 include_set Set::Abstract::Calculation
 
 delegate :categorical?, :value_options, :value_option_names, to: :basic_metric_card
+delegate :calculator_class, to: :formula_card
+
 # <OVERRIDES>
 def score?
   true
@@ -12,6 +14,16 @@ end
 
 def needs_name?
   false
+end
+
+def base_input_array
+  input = { metric: left_id, name: "answer" }
+  input[:unknown] = "Unknown" if categorical?
+  [input]
+end
+
+def calculator_class
+  Calculate.calculator_class formula
 end
 
 def formula_editor
@@ -71,7 +83,7 @@ event :set_scored_metric_name, :initialize, on: :create do
 end
 
 event :default_formula, :prepare_to_store, on: :create, when: :formula_unspecified? do
-  subfield :formula, content: "{{#{basic_metric}}}", type_id: PlainTextID
+  subfield :formula, content: "answer", type_id: PlainTextID
 end
 
 def formula_unspecified?
