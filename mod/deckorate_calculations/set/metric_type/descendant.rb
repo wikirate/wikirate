@@ -14,6 +14,10 @@ def standard_formula_input input
   input.merge! not_researched: "false", unknown: "Unknown"
 end
 
+def variables_input_type
+  :filtered_list
+end
+
 format do
   view :legend do
     return unless (ancestor = card.variables_card.item_names.first)

@@ -8,32 +8,30 @@ event :update_calculated_answers, :integrate_with_delay,
   metric_card.deep_answer_update
 end
 
+event :validate_metric_items do
+  item_ids.each do |card_id|
+    errors.add "unknown id: #{card_id}" unless (card = card_id.card)
+    errors.add "not a metric: #{card.name}" unless card.type_id == MetricID
+  end
+end
+
 def check_json_syntax
   self.content = content # trigger standardization
   super
 end
 
 def standardize_content content
-  items = case content
-          when Array
-            items
-          when (/^\s*\[/)
-            JSON.parse content
-          else
-            items_from_simple content
-          end
+  items = content_to_hash_list content
   items.each { |hash| hash["metric"] = standardize_item hash["metric"] }
   items.to_json
 end
 
-def items_from_simple content
-  content.to_s.split(/\n+/).map do |variable|
-    { "metric" => variable }
-  end
-end
-
 def item_strings _args={}
   parse_content.map { |item_hash| item_hash["metric"] }
+end
+
+def hash_list
+  @hash_list ||= parse_content.map(&:symbolize_keys!)
 end
 
 def export_content
@@ -44,9 +42,28 @@ def input_array
   (content.present? ? parse_content : [])
 end
 
+private
+
+def content_to_hash_list content
+  case content
+  when Array
+    items
+  when (/^\s*\[/)
+    JSON.parse content
+  else
+    items_from_simple content
+  end
+end
+
+def items_from_simple content
+  content.to_s.split(/\n+/).map do |variable|
+    { "metric" => variable }
+  end
+end
+
 format :html do
   def input_type
-    :filtered_list
+    metric_card.variables_input_type
   end
 
   def default_item_view
@@ -55,29 +72,5 @@ format :html do
 
   def filter_card
     :metric.card
-  end
-
-  view :descendant_formula do
-    wrap do
-      [
-        wrap_with(:h6) { "Inherit from ancestor (in order of precedence):" },
-        render_menu,
-        raw(ancestor_thumbnails.join("<div>OR</div>"))
-      ]
-    end
-  end
-
-  private
-
-  def ancestor_thumbnails
-    card.item_cards.map do |item_card|
-      nest_item(item_card, view: :formula_thumbnail) do |rendered, item_view|
-        wrap_ancestor { wrap_item rendered, item_view }
-      end
-    end
-  end
-
-  def wrap_ancestor
-    wrap_with(:div, class: "clearfix") { yield }
   end
 end

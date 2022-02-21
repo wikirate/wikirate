@@ -1,7 +1,4 @@
 decko.slotReady (slot) ->
-  if slot.hasClass "edit_in_wikirating-view"
-    addMissingVariables slot
-
   $('td.metric-weight input').on 'keyup', (event) ->
     activeEqualize()
 
@@ -29,7 +26,14 @@ variableValuesAreEqual = (values) ->
 # { metric_name: metric_weight }
 
 decko.editorContentFunctionMap['.wikiRating-editor'] = ->
-  JSON.stringify wikiRatingEditorHash(this)
+  JSON.stringify wikiRatingInputs(this)
+
+wikiRatingInputs = (table) ->
+  arr = []
+  hash = wikiRatingEditorHash table
+  for metric, weight of hash
+    arr.push { metric: metric, weight: weight }
+  arr
 
 wikiRatingEditorHash = (table) ->
   hash = {}
@@ -110,43 +114,44 @@ isMaxDigit = (num) ->
 updateWikiRatingSubmitButton =(form, valid) ->
   form.find(".submit-button").prop('disabled', !valid)
 
-addMissingVariables = (slot) ->
-  pairsEditor = slot.closest(".editor").find ".wikiRating-editor"
-  addNeededWeightRows pairsEditor, slot.find(".thumbnail")
-  validateWikiRating pairsEditor
-  if $('#equalizer').prop('checked') == true
-    toEqualize( $('.wikiRating-editor') )
+#addMissingVariables = (slot) ->
+#  pairsEditor = slot.closest(".editor").find ".wikiRating-editor"
+#  addNeededWeightRows pairsEditor, slot.find(".thumbnail")
+#  validateWikiRating pairsEditor
+#  if $('#equalizer').prop('checked') == true
+#    toEqualize( $('.wikiRating-editor') )
 
-addNeededWeightRows = (editor, thumbnails) ->
-  thumbnails.each ->
-    nail = $(this)
-    if needsWeightRow editor, nail.data("cardId")
-      addWeightRow editor, nail
+#addNeededWeightRows = (editor, thumbnails) ->
+#  thumbnails.each ->
+#    nail = $(this)
+#    if needsWeightRow editor, nail.data("cardId")
+#      addWeightRow editor, nail
 
-needsWeightRow = (editor, cardId) ->
-  findByCardId(editor, cardId).length == 0
+#needsWeightRow = (editor, cardId) ->
+#  findByCardId(editor, cardId).length == 0
+#
+#addWeightRow = (editor, thumbnail) ->
+#  templateRow = editor.slot().find "._weight-row-template tr"
+#  newRow = rowWithThumbnail templateRow, thumbnail
+#  editor.find("tbody tr:last-child").before newRow
 
-addWeightRow = (editor, thumbnail) ->
-  templateRow = editor.slot().find "._weight-row-template tr"
-  newRow = rowWithThumbnail templateRow, thumbnail
-  editor.find("tbody tr:last-child").before newRow
-
+# TODO: put somewhere more general
 findByCardId = (from, cardId) ->
   $(from).find("[data-card-id='" + cardId + "']")
 
 removeWeightRow = (formulaRow) ->
   editor = formulaRow.closest ".wikiRating-editor"
   cardId = formulaRow.find(".thumbnail").data("cardId")
-  variableItem = variableItemWithId editor.slot(), cardId
+  variableItem = findByCardId editor.slot(), cardId
   formulaRow.remove()
   variableItem.remove()
   validateWikiRating editor
 
-variableItemWithId = (slot, cardId) ->
-  variablesList = slot.find ".edit_in_wikirating-view"
-  findByCardId variablesList, cardId
+#variableItemWithId = (slot, cardId) ->
+#  variablesList = slot.find ".edit_in_wikirating-view"
+#  findByCardId variablesList, cardId
 
-rowWithThumbnail = (templateRow, thumbnail) ->
-  row = templateRow.clone()
-  row.find(".metric-label").html thumbnail.clone()
-  row
+#rowWithThumbnail = (templateRow, thumbnail) ->
+#  row = templateRow.clone()
+#  row.find(".metric-label").html thumbnail.clone()
+#  row

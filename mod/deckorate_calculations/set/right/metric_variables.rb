@@ -1,48 +1,7 @@
-include_set Abstract::MetricChild, generation: 1
-include_set Type::Pointer
-include_set Abstract::Table
-
-# The Metric+:metric_variables help support +:formula cards. They're used:
-#   A. by Formula metrics as a holder (and name shortener) for
-#      variable metrics that may or may not already be in the formula, and
-#   B. by WikiRating metrics as a hidden container that helps with state
-#      maintenance
-#
-# In both cases, the +:metric_variables card is the integration point for
-# the filtered list interface
-
-# +:metric_variables cards are never stored.
-event :abort_storage, :validate, on: :save do
-  abort :success
-end
-
-def formula_card
-  metric_card.fetch :formula
-end
-
-# db_content should only be present when it has been set by a `card[content]` parameter.
-def content
-  @content ||=
-    db_content.present? ? db_content : variables_in_use.to_pointer_content
-end
-
-# existing variables from the +:formula card
-def variables_in_use
-  formula_card&.input_names || []
-end
 
 format :html do
-  def default_item_view
-    :bar
-  end
 
-  def filter_card
-    :metric.card
-  end
 
-  def variable_editor
-    wrap { with_nest_mode(:normal) { yield } }
-  end
 
   def slot_selector view
     "#{card.patterns.first.safe_key}.#{view}-view"

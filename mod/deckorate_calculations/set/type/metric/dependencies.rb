@@ -39,7 +39,7 @@ def score_metrics
     Card.search type_id: MetricID, left_id: id
 end
 
-# note: does not includes score metrics
+# note: includes Formula, WikiRating, and Descendants but not Score metrics
 def formula_metrics
   @formula_metrics ||=
     Card.search type_id: MetricID, right_plus: [:variables, { refer_to: id }]
