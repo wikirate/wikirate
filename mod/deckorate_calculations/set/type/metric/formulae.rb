@@ -9,21 +9,12 @@ def formula_editor
   :standard_formula_editor
 end
 
-def hidden_content_in_formula_editor?
-  false
-end
-
 def formula_core
   :standard_formula_core
 end
 
-# </OVERRIDES>
-
-
-# special method used in the context of a wikirating
-
 format :html do
-  # TODO: hamlize
+  # used when metric is a variable in a WikiRating
   def weight_row weight=0, label=nil
     haml :weight_row, weight: weight, label: (label || render_thumbnail_no_link)
   end

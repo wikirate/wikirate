@@ -50,14 +50,7 @@ format :html do
   end
 
   view :input do
-    with_hidden_content do
-      _render card.metric_card.formula_editor
-    end
-  end
-
-  def with_hidden_content
-    hidden = card.metric_card.hidden_content_in_formula_editor?
-    (hidden ? _render_hidden_content_field : "") + yield
+    _render card.metric_card.formula_editor
   end
 
   view :standard_formula_editor, unknown: true do
