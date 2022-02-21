@@ -1,78 +1,77 @@
-require_relative "../../support/calculator_stub"
-
 RSpec.describe Calculate::Calculator do
-  include_context "with calculator stub"
+  let(:metric) { "Jedi+friendliness".card }
+  let(:variables) { [{ metric: "Jedi+deadliness", name: "m1" }] }
 
-  def calculator formula
-    f_card = Card["Jedi+friendliness+formula"]
-    f_card.content = formula
-    f_card.calculator
+  def calculator variables, formula
+    metric.assign_attributes subfields: { variables: variables.to_json, formula: formula }
+    metric.calculator
   end
 
-  def valid formula
-    expect(calculator(formula).detect_errors).to be_empty
+  def valid variables, formula
+    expect(calculator(variables, formula).detect_errors).to be_empty
   end
 
-  def invalid formula, *errors
-    expect(calculator(formula).detect_errors).to eq errors
+  def invalid variables, formula, *errors
+    expect(calculator(variables, formula).detect_errors).to eq errors
   end
 
   example "simple formula" do
-    valid "1/{{Jedi+deadliness}}"
+    valid variables, "1 / m1"
   end
 
   example "invalid method" do
-    invalid "NotAMethod[M3]", # "unknown or not supported method: NotAMethod",
-            "at least one metric variable nest is required"
+    invalid variables, "NotAMethod m1", "ReferenceError: NotAMethod is not defined"
   end
 
-  example "messed up curly brackets" do
-    invalid "2*Total[{{Jedi+deadliness}}}]+{{Jedi+deadliness}}",
-            "syntax error: unexpected '}'"
+  example "messed up parentheses" do
+    invalid variables, "SUM(m1", "SyntaxError: [stdin]:25:9: unmatched OUTDENT"
   end
 
   example "invalid year option" do
-    invalid "{{Jedi+deadliness|year: not_a_year}}]",
-            "syntax error: unexpected ']'", "invalid year option: not_a_year"
+    variables.first[:year] = "not_a_year"
+    invalid variables, "m1", "invalid year option: not_a_year"
   end
 
   example "invalid year option list" do
-    invalid "2*Total[{{Jedi+deadliness|year: 2001, dog}}]",
-            "invalid year option: 2001, dog"
+    variables.first[:year] = "2001, dog"
+    invalid variables, "m1", "invalid year option: 2001, dog"
   end
 
-  example "invalid year option rang" do
-    invalid "2*Total[{{Jedi+deadliness|year: 2001..}}]",
-            "invalid year option: 2001.."
+  example "invalid year option range" do
+    variables.first[:year] = "2001.."
+    invalid variables, "m1", "invalid year option: 2001.."
   end
 
   example "invalid company option" do
-    invalid "{{Jedi+deadliness|company: not_a_company}}/{{Jedi+deadliness}}",
-            "unknown card: not_a_company"
+    variables << variables.first.clone
+    variables.first[:company] = "not_a_company"
+    invalid variables, "m1", "unknown card: not_a_company"
   end
 
   example "invalid company option list" do
-    invalid "{{Jedi+deadliness|company: not_a_card, A}}/{{Jedi+deadliness}}",
-            "unknown card: not_a_card", "not a company:  A"
+    variables << variables.first.clone
+    variables.first[:company] = "not_a_card, A"
+    invalid variables, "m1", "unknown card: not_a_card", "not a company:  A"
   end
 
   example "no company dependency" do
-    invalid "{{Jedi+deadliness|company: Death Star}}",
-            "there must be at least one nest that doesn't explicitly specify companies"
+    variables.first[:company] = "Death Star"
+    invalid variables, "m1",
+            "must have at least one variable not explicitly specify company"
   end
 
   example "company option with invalid metric" do
-    invalid "{{Jedi+deadliness|company: Related[not_a_card]}}",
-            "not a metric: \"not_a_card\""
+    variables.first[:company] = "Related[not_a_card]"
+    invalid variables, "m1", "not a metric: \"not_a_card\""
   end
 
   example "empty company relation condition" do
-    invalid "{{Jedi+deadliness|company: Related[Jedi+deadliness]}}",
-            "expected a relationship metric: \"Jedi+deadliness\""
+    variables.first[:company] = "Related[Jedi+deadliness]"
+    invalid variables, "m1", "expected a relationship metric: \"Jedi+deadliness\""
   end
 
   example "company option with invalid relation condition" do
-    invalid "{{Jedi+deadliness|company: Related[Jedi+deadliness =]}}",
-            "invalid expression \"Jedi+deadliness =\""
+    variables.first[:company] = "Related[Jedi+deadliness =]"
+    invalid variables, "m1", "invalid expression \"Jedi+deadliness =\""
   end
 end

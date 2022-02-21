@@ -1,13 +1,14 @@
-include_set Abstract::Variable
-include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
-delegate :metric_type_codename, :metric_type_card, :researched?, :calculated?, :rating?,
-         to: :metric_card
+delegate :metric_type_codename, :metric_type_card, :calculator_class,
+         :researched?, :calculated?, :rating?, to: :metric_card
 
-# don't do pointer item standardization
-def standardize_content value
-  value
+event :validate_formula, :validate, when: :javascript_formula?, changed: :content do
+  formula_errors = calculator.detect_errors
+  return if formula_errors.empty?
+  formula_errors.each do |msg|
+    errors.add :formula, msg
+  end
 end
 
 def categorical?
@@ -22,33 +23,8 @@ def help_rule_card
   metric_type_card.first_card&.fetch :help
 end
 
-event :validate_formula, :validate, when: :syntax_formula?, changed: :content do
-  formula_errors = calculator.detect_errors
-  return if formula_errors.empty?
-  formula_errors.each do |msg|
-    errors.add :formula, msg
-  end
-end
-
-def each_reference_out &block
-  return super(&block) unless rating?
-  translation_table.each do |key, _value|
-    yield key, Content::Chunk::Link::CODE
-  end
-end
-
-def replace_references old_name, new_name
-  return super unless rating?
-
-  self.content_quietly = content.gsub old_name, new_name
-end
-
 def javascript_formula?
   calculator_class == ::Calculate::JavaScript
-end
-
-def syntax_formula?
-  calculator.is_a? Calculate::NestCalculator
 end
 
 def translate_formula?
@@ -85,7 +61,7 @@ format :html do
   end
 
   view :standard_formula_editor, unknown: true do
-    output [text_area_input, _render_variables]
+    output [text_area_input]
   end
 
   view :core do
@@ -104,7 +80,5 @@ format :json do
 end
 
 def json_content
-  return if researched?
-
-  translation? ? translation_hash : content
+  translation? ? translation_hash : content unless researched?
 end

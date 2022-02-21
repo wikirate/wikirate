@@ -12,12 +12,6 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     calc_answer(metric_title, company_name, year)&.value
   end
 
-  # values for the input answers are 100 and 0.31
-  def create_formula formula: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}",
-                     title: "formula test"
-    Card::Metric.create name: "Jedi+#{title}", type: :formula, formula: formula
-  end
-
   def updates_answer_with_delay from: nil, to:, metric_title: "formula test", &block
     with_delayed_jobs do
       expect_answer_not_to_change from, metric_title, &block
@@ -36,25 +30,24 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     it "updates values" do
       updates_answer_with_delay from: /^0.01/, to: /^5.01/,
                                 metric_title: "friendliness" do
-        Card["Jedi+friendliness+formula"]
-          .update! content: "1/{{Jedi+deadliness}}+5"
+        Card["Jedi+friendliness+formula"].update! content: "1/m1 + 5"
       end
     end
 
     it "updates values of dependent calculated metric" do
       updates_answer_with_delay from: /^0.02/, to: /^10.02/,
                                 metric_title: "double friendliness" do
-        Card["Jedi+friendliness+formula"]
-          .update! content: "1/{{Jedi+deadliness}}+5"
+        Card["Jedi+friendliness+formula"].update! content: "1/m1+5"
       end
     end
 
     context "with different variables" do
       before do
         with_delayed_jobs do
-          Card["Jedi+friendliness+formula"].update!(
-            content: "7*{{Joe User+researched number 1}}"
-          )
+          Card["Jedi+friendliness"].update! subfields: {
+            variables: [{ metric: "Joe User+researched number 1", name: "m1" }].to_json,
+            formula: "7 * m1"
+          }
         end
       end
 
@@ -70,9 +63,12 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     context "with scores as variables" do
       before do
         with_delayed_jobs do
-          Card["Jedi+friendliness+formula"].update!(
-            content: "3*{{Jedi+disturbances in the Force+Joe User}}"
-          )
+          Card["Jedi+friendliness"].update! subfields: {
+            variables: [
+              { metric: "Jedi+disturbances in the Force+Joe User", name: "m1" }
+            ].to_json,
+            formula: "3 * m1"
+          }
         end
       end
 
@@ -83,17 +79,24 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
   end
 
   it "calculates values if formula is added after creation" do
+    name = "Jedi+formula test"
     updates_answer_with_delay to: /^322/ do
-      Card::Metric.create name: "Jedi+formula test", type: :formula
-      create "Jedi+formula test+formula",
-             content: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}"
+      Card::Metric.create name: name, type: :formula
+      name.card.update! subfields: {
+        variables: [
+          { metric: "Jedi+deadliness", name: "m1" },
+          { metric: "Jedi+Victims by Employees", name: "m2" },
+        ].to_json,
+        formula: "m1 / m2"
+      }
     end
   end
 
   example "formula with formula input" do
-    create_formula title: "triple friendliness",
-                   formula: "{{Jedi+friendliness}}*3"
-
+    Card::Metric.create name: "Jedi+triple friendliness",
+                        type: :formula,
+                        formula: "m1 * 3",
+                        variables: [{ metric: "Jedi+friendliness", name: "m1" }].to_json
     expect(answer_value("triple friendliness")).to match /0.03/
   end
 

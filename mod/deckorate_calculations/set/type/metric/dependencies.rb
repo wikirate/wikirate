@@ -26,8 +26,6 @@ def each_depender_metric &block
   depender_tree.each_metric(&block)
 end
 
-# note: #formula_metrics will find score metrics when scored by formula
-# but not when scored by mapping.
 def direct_depender_metrics
   (score_metrics + formula_metrics).uniq
 end
@@ -41,17 +39,16 @@ def score_metrics
     Card.search type_id: MetricID, left_id: id
 end
 
-# note: includes score metrics
+# note: includes Formula, WikiRating, and Descendants but not Score metrics
 def formula_metrics
   @formula_metrics ||=
-    Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
+    Card.search type_id: MetricID, right_plus: [:variables, { refer_to: id }]
 end
 
 # depender = metrics that depend on me
 # dependee = metrics that I depend on
 
+# overwritten in calculations
 def direct_dependee_metrics
-  return [] unless calculated?
-
-  formula_card&.item_names&.map(&:card)&.select { |i| i&.type_id == MetricID }
+  []
 end
