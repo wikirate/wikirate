@@ -13,10 +13,6 @@ format :html do
     super.insert 2, :source
   end
 
-  view :main_details do
-    [nest_about, nest_methodology].join "<br/>"
-  end
-
   view :source_tab do
     answer_filtering do |items|
       field_nest :source, view: :filtered_content, items: items

@@ -4,12 +4,13 @@ class Card
     @columns = %w[Metric Input Score Weight Points]
 
     def table_rows
-      metric_card.formula_card.translation_table.map do |card_name, weight|
-        metric_row(Card.fetch(card_name), weight.to_f)
+      metric_card.weight_hash.map do |metric_id, weight|
+        metric_row(metric_id.card, weight.to_f)
       end
     end
 
     def metric_row input_card, weight
+      # binding.pry
       score_card = answer_card input_card
       super(input_card).push score_cell(score_card),
                              weight_cell(weight),

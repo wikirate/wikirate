@@ -5,7 +5,7 @@ RSpec.describe Card::Set::MetricType::Score do
   let(:scored) { Card[scored_name] }
 
   let(:score_name) { "#{scored_name}+Big Brother" }
-  let(:score_formula) { "{{#{scored_name}}}*2" }
+  let(:score_formula) { "answer * 2" }
 
   let(:score) do
     Card::Auth.as_bot do
@@ -42,7 +42,7 @@ RSpec.describe Card::Set::MetricType::Score do
         end
 
         it "updates existing score" do
-          update_formula "{{#{scored_name}}}*3"
+          update_formula "answer * 3"
           expect(score_value).to eq "15"
         end
 
@@ -85,20 +85,17 @@ RSpec.describe Card::Set::MetricType::Score do
     context "when created without formula" do
       let(:score) do
         Card::Auth.as_bot do
-          create_metric(name: score_name, type: :score)
+          create_metric name: score_name, type: :score
         end
       end
 
       it "has basic metric as formula" do
-        expect(Card["#{score.name}+formula"].content).to eq "{{#{scored_name}}}"
+        expect(Card["#{score.name}+formula"].content).to eq "answer"
       end
 
       it "creates score values if formula updated" do
         Card::Auth.as_bot do
-          score.formula_card.update!(
-            type_id: Card::PlainTextID,
-            content: "{{#{scored_name}}}*2"
-          )
+          score.formula_card.update!(content: "answer * 2")
         end
         expect(score_value).to eq("10")
         expect(score_value("Samsung", "2015")).to eq("4")

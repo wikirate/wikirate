@@ -65,7 +65,7 @@ format :html do
   end
 
   def formula_calculator
-    card.metric_card.calculator :processed_input!
+    card.metric_card.calculator :processed
   end
 
   def formula_details
