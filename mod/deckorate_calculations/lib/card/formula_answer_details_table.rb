@@ -1,15 +1,15 @@
 class Card
   # Renders the table with details for an answer of a formula metric
   class FormulaAnswerDetailsTable < AbstractAnswerDetailsTable
-    @columns = %w[Metric Value Year]
+    @columns = %w[Variable Metric Value Year]
 
     def calculator
       @calculator ||= @format.card.metric_card.calculator :raw
     end
 
     def table_rows
-      calculator.inputs_for(company, year).uniq.map do |input_card, value, year_option|
-        metric_row input_card, value, year_option
+      calculator.inputs_for(company, year) do |input_card, value, options|
+        metric_row input_card, value, options
       end
     end
 
@@ -44,8 +44,10 @@ class Card
       year_option.present? ? year_option : year
     end
 
-    def metric_row input_card, value, year_option
-      [metric_thumbnail(input_card),
+    def metric_row input_card, value, options
+      year_option = options[:year]
+      [options[:name],
+       metric_thumbnail(input_card),
        value_column_content(input_card, value, year_option),
        year_column_content(year_option)]
     end
