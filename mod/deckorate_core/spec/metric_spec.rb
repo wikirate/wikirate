@@ -10,7 +10,7 @@ RSpec.describe Card::Metric do
     researched_metrics
     described_class.create name: "Jedi+strength in the Force+Joe Camel",
                            type: :score,
-                           formula: { yes: 10, no: 0 }
+                           rubric: { yes: 10, no: 0 }
     described_class.create name: "Jedi+darksidiness+Joe User",
                            type: :score,
                            formula: "{{Jedi+darksidiness}}/10"
@@ -93,7 +93,7 @@ RSpec.describe Card::Metric do
         researched_metrics
         described_class.create name: "Jedi+strength in the Force+Joe Camel",
                                type: :score,
-                               formula: { yes: 10, no: 0 }
+                               rubric: { yes: 10, no: 0 }.to_json
       end
     end
 

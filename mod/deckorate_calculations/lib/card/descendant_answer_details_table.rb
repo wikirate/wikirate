@@ -8,11 +8,11 @@ class Card
       super
     end
 
-    def metric_row input_card, value, year_option
+    def metric_row input_card, value, _options
       @row_index += 1
       [@row_index,
        metric_thumbnail(input_card),
-       value_column_content(input_card, value, year_option)]
+       link_to_answer(input_card, value, year)]
     end
   end
 end

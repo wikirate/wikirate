@@ -17,7 +17,7 @@ class Calculate
         end
 
         def sort_index
-          super + parser.input_count
+          super + input_count
         end
       end
     end

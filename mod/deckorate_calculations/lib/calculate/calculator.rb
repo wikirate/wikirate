@@ -12,19 +12,20 @@ class Calculate
     include ShowWork
     include Restraints
 
-    attr_reader :errors, :computer
+    attr_reader :errors, :computer, :formula
 
     # All the answers a given calculation depends on
     # (same opts as #result)
     # @return [Array] array of Answer objects
     delegate :answers_for, to: :input
 
-    # @param parser [Calculate::Parser]
+    # @param input_array [Array]
     # @param normalizer: [Method] # called to normalize each *result* value
     # @param years: [String, Integer, Array] applicable year or years
     # @param companies: [String, Integer, Array] applicable company or companies
-    def initialize parser, normalizer: nil, years: nil, companies: nil
-      @parser = parser
+    def initialize input_array, formula: nil, normalizer: nil, years: nil, companies: nil
+      @input_array = input_array
+      @formula = formula
       @applicable_years = integers years
       @applicable_companies = integers companies
       @normalizer = normalizer
@@ -32,7 +33,7 @@ class Calculate
     end
 
     def input
-      @input ||= with_input_cards { Input.new @parser, &method(:cast) }
+      @input ||= input_with :cast
     end
 
     # Calculates answers
@@ -47,11 +48,6 @@ class Calculate
                                                    input_answers: input_answers)
         end
       end
-    end
-
-    # @return [Formula]
-    def formula
-      @formula ||= @parser.formula
     end
 
     # @return [Array] list of errors
@@ -72,20 +68,10 @@ class Calculate
     end
 
     def program
-      @program ||= compile
+      @program ||= @formula
     end
 
     def ready?
-      return false unless programmable? formula
-      @computer ||= safely_boot
-      @errors.empty?
-    end
-
-    def programmable? _expr
-      true
-    end
-
-    def bootable?
       true
     end
 
@@ -113,8 +99,12 @@ class Calculate
 
     private
 
-    def with_input_cards
-      @parser.input_cards.any?(&:nil?) ? InvalidInput.new : yield
+    def input_with cast=:cast
+      if @input_array.present?
+        Input.new @input_array, &method(cast)
+      else
+        InvalidInput.new
+      end
     end
 
     # @param :companies [Integer Array] only yield input for given companies
@@ -138,14 +128,6 @@ class Calculate
       result = []
       yield result if ready?
       result
-    end
-
-    def safely_boot
-      return if @errors.any? || (!bootable? && @errors << "invalid formula")
-
-      boot
-      # rescue StandardError => e
-      #   @errors << e.message
     end
   end
 end
