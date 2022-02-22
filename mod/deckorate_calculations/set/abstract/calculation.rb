@@ -59,6 +59,6 @@ format :html do
   end
 
   view :formula do
-    field_nest :formula, view: :titled
+    field_nest :formula, view: :variables_and_formula
   end
 end

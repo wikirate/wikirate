@@ -22,6 +22,15 @@ def help_rule_card
 end
 
 format :html do
+  view :variables_and_formula do
+    wrap do
+      [render_header(title: "Formula"),
+       render_menu,
+       nest(card.left.fetch(:variables), view: :table),
+       render_content]
+    end
+  end
+
   def new_success
     { mark: card.name.left }
   end

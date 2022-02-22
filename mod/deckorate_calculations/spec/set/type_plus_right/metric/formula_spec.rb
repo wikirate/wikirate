@@ -7,12 +7,12 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
 
   check_html_views_for_errors
 
-  it "show input options in thumbnail" do
-    expect_view(:core, card: "Jedi+deadliness average+formula")
-      .to have_tag "div.thumbnail", with: { "data-card-name": "Jedi+deadliness" } do
-
-      with_tag "div.thumbnail-subtitle", /Research.*year: -2..0/m
-    end
+  it "show input options in table" do
+    expect_view(:variables_and_formula, card: "Jedi+deadliness average+formula")
+      .to have_tag("table") do
+        with_tag "div.thumbnail", with: { "data-card-name": "Jedi+deadliness" }
+        with_tag "div.formula-option", /year.*-2..0/m
+      end
   end
 
   def calc_answer metric_title="formula test", company_name=nil, year=1977
