@@ -34,11 +34,11 @@ class Calculate
       []
     end
 
-    def formula_for company, year
-      requiring_year year, "No value" do
-        "Pulled from #{field_name} field of #{card.format.link_to_card company}"
-      end
-    end
+    # def formula_for company, year
+    #   requiring_year year, "No value" do
+    #     "Pulled from #{field_name} field of #{card.format.link_to_card company}"
+    #   end
+    # end
 
     private
 
