@@ -32,25 +32,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "1977"
       end
 
-      expect(table).to have_tag "div.formula-with-values", text: %r{1 / m1} do
-        with_tag :a, with: { href: "/Jedi+deadliness+Death_Star+1977" }, text: 100
-      end
-    end
-
-    example "formula details with unknown values", as_bot: true do
-      metric = Card["Joe User+small multi"]
-      metric.create_answers true do
-        Apple_Inc 2001 => "Unknown"
-      end
-
-      answer = fetch_answer("Jedi+know the unknowns", "Apple Inc", "2001")
-      expect(answer.format.formula_details)
-        .to have_tag "a.metric-value", with: { href: "/Joe_User+RM+Apple_Inc+2001" },
-                                       text: "10"
-      expect(answer.format.formula_details)
-        .to have_tag "a.metric-value",
-                     with: { href: "/Joe_User+small_multi+Apple_Inc+2001" },
-                     text: "Unknown"
+      expect(table).to have_tag "div.formula-content", text: "= 1 / m1"
     end
 
     example "not_researched and unknown options" do
@@ -65,12 +47,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "2001"
       end
 
-      # FIXME: formula is "10 + 20" (with spaces) in the YAML but
-      # is getting stripped to 10+20 by #standardize_content,
-      # because +formula includes Abstract::Pointer
-      expect(table).to have_tag "div.formula-with-values", text: /m1 \+ m2/ do
-        with_tag :a, with: { href: "/Joe_User+RM+Apple_Inc+2001" }, text: 10
-      end
+      expect(table).to have_tag "div.formula-content", text: "= m1 + m2"
     end
 
     example "year argument" do
@@ -85,14 +62,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "-1"
       end
 
-      expect(table).to have_tag "div.formula-with-values", text: /m1 \+ m2/ do
-        with_tag :a,
-                 with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004" },
-                 text: "9"
-        with_tag :a,
-                 with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004" },
-                 text: "8"
-      end
+      expect(table).to have_tag "div.formula-content", text: "= m1 + m2"
     end
 
     example "year range" do
@@ -108,11 +78,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag :td, text: "-2..0"
       end
 
-      expect(table).to have_tag "div.formula-with-values",
-                                text: /= m1 = 8, 9, 10\s+SUM m1/m do
-        with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company" },
-                     text: "8, 9, 10"
-      end
+      expect(table).to have_tag "div.formula-content", text: "= SUM m1"
     end
   end
 
@@ -143,7 +109,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         .format.render :expanded_wiki_rating_details
     end
 
-    specify do
+      specify do
       is_expected.to have_tag "table" do
         %w[Metric Input Score Weight Points].each do |text|
           with_tag "th", text: text

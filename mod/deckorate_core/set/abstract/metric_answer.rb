@@ -52,7 +52,7 @@ end
 def scored_answer_card
   return self unless metric_type == :score
 
-  metric_card&.basic_metric_card&.fetch(company)&.fetch(year)
+  metric_card&.scoree_card&.fetch(company)&.fetch(year)
 end
 
 # so that all fields show up in history
