@@ -24,7 +24,8 @@ class Calculate
 
             def year_answer_pairs
               {}.tap do |hash|
-                rel = Answer.where metric_id: card_id, company_id: requested_company_id
+                rel = Answer.where metric_id: input_card.id,
+                                   company_id: requested_company_id
                 each_input_answer rel do |input_answer|
                   hash[input_answer.year] = input_answer
                 end

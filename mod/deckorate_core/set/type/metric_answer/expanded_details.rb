@@ -61,17 +61,15 @@ format :html do
   # TODO: move to haml
   def formula_wrapper
     [wrap_with(:h5, "Formula"),
-     wrap_with(:div, "= #{yield}", class: "formula-with-values")]
+     wrap_with(:div, "= #{yield}", class: "formula-content")]
   end
 
   def formula_calculator
-    card.metric_card.calculator :processed_input!
+    card.metric_card.calculator :processed
   end
 
   def formula_details
-    formula_calculator.formula_for card.company, card.year.to_i do |*args|
-      input_value_link(*args)
-    end
+    card.metric_card.formula
   end
 
   def input_value_link value, input_card, year_option
