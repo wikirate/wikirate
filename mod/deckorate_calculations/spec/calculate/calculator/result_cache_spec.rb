@@ -13,6 +13,15 @@ RSpec.describe Calculate::Calculator::ResultCache do
       expect(rc).to eq hash
     end
 
+    let :any_researched do
+      {
+        2014 => [samsung, sony], 2015 => [samsung, apple],
+        1977 => [death_star, spectre, los_pollos, slate_rock, samsung],
+        2003 => [slate_rock], 2004 => [slate_rock],
+        2005 => [slate_rock], 2002 => [apple]
+      }
+    end
+
     example "single metric" do
       rc = result_cache metric: "Joe User+researched number 2"
       expect_result_space rc, 2014 => [samsung, sony], 2015 => [samsung]
@@ -34,21 +43,13 @@ RSpec.describe Calculate::Calculator::ResultCache do
     example "without mandatory input items" do
       rc = result_cache({ metric: "Joe User+researched number 1", not_researched: "0" },
                         { metric: "Jedi+deadliness", not_researched: "5" })
-      expect_result_space rc,
-                          2014 => [samsung, sony], 2015 => [samsung, apple],
-                          1977 => [death_star, spectre, los_pollos, slate_rock, samsung],
-                          2003 => [slate_rock], 2004 => [slate_rock],
-                          2005 => [slate_rock], 2002 => [apple]
+      expect_result_space rc, any_researched
     end
 
     example "without mandatory input items and unknown option" do
       rc = result_cache({ metric: "Joe User+researched number 1", not_researched: "0" },
                         { metric: "Jedi+deadliness", not_researched: "5", unknown: "0" })
-      expect_result_space rc,
-                          2014 => [samsung, sony], 2015 => [samsung, apple],
-                          1977 => [death_star, spectre, los_pollos, slate_rock, samsung],
-                          2003 => [slate_rock], 2004 => [slate_rock],
-                          2005 => [slate_rock], 2002 => [apple]
+      expect_result_space rc, any_researched
     end
   end
 end
