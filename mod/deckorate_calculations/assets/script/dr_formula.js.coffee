@@ -11,3 +11,6 @@ pairsEditorHash = (table) ->
     if (key = $(cols[0]).data('key'))
       hash[key] = $(cols[1]).find('input').val()
   hash
+
+variableMetricRows = (table) ->
+  table.find("tbody tr")

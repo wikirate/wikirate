@@ -19,9 +19,9 @@ event :set_scored_metric_name, :initialize, on: :create do
   self.name = "#{metric}+#{Auth.current.name}"
 end
 
-event :default_formula, :prepare_to_store, on: :create, when: :formula_unspecified? do
-  subfield :formula, content: "answer", type_id: PlainTextID
-end
+# event :default_formula, :prepare_to_store, on: :create, when: :formula_unspecified? do
+#   subfield :formula, content: "answer", type_id: PlainTextID
+# end
 
 # <OVERRIDES>
 def score?
@@ -87,6 +87,16 @@ def direct_dependee_metrics
   [left]
 end
 
-def formula_unspecified?
-  !subfield(:formula)&.content&.present?
+# def formula_unspecified?
+#   !subfield(:formula)&.content&.present?
+# end
+
+format :html do
+  view :formula do
+    if card.categorical?
+      field_nest :rubric, view: :titled, title: "Formula"
+    else
+      field_nest :formula, view: :titled
+    end
+  end
 end

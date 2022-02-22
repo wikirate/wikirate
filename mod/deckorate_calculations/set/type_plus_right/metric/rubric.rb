@@ -1,4 +1,5 @@
 include_set Abstract::MetricChild, generation: 1
+include_set Abstract::TenScale
 
 # rubrics are used for scoring of categorical metrics
 
@@ -35,29 +36,31 @@ def unmapped_option?
 end
 
 format :html do
+  COLUMNS = %w[Value Score]
+
+  view :core do
+    table categorical_content, header: COLUMNS
+  end
+
+  view :input do
+    table_content = card.complete_translation_table.map do |key, value|
+      [{ content: key, "data-key" => key }, text_field_tag("pair_value", value)]
+    end
+    table_editor table_content, COLUMNS
+  end
+
+  private
+
+  def categorical_content
+    card.translation_table.map do |value, score|
+      [value, colorify(score.to_s)]
+    end
+  end
+
   # @param [Array] table_content 2-dimensional array with the data for the
   # table; first row is the header
   def table_editor table_content, header=nil
     table(table_content, class: "pairs-editor", header: header) +
       _render_hidden_content_field
-  end
-
-  view :categorical_core do
-    table categorical_content, header: %w[Value Score]
-  end
-
-  def categorical_content
-    card.translation_table
-    # TODO: following is preferable (colorifies the scores), but there are CSS problems
-    # card.translation_table.map do |value, score|
-    #   [value, colorify(score.to_s)]
-    # end
-  end
-
-  view :categorical_editor do
-    table_content = card.complete_translation_table.map do |key, value|
-      [{ content: key, "data-key" => key }, text_field_tag("pair_value", value)]
-    end
-    table_editor table_content, %w[Option Value]
   end
 end

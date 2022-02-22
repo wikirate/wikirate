@@ -57,8 +57,4 @@ format :html do
   view :main_details do
     [nest_about, render_formula, nest_methodology]
   end
-
-  view :formula do
-    field_nest :formula, view: :variables_and_formula
-  end
 end
