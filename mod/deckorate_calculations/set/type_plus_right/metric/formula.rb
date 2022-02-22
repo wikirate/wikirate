@@ -3,7 +3,7 @@ include_set Abstract::MetricChild, generation: 1
 delegate :metric_type_codename, :metric_type_card, :calculator_class,
          :researched?, :calculated?, :rating?, to: :metric_card
 
-event :validate_formula, :validate, when: :javascript_formula?, changed: :content do
+event :validate_formula, :validate, changed: :content do
   formula_errors = calculator.detect_errors
   return if formula_errors.empty?
   formula_errors.each do |msg|
@@ -11,25 +11,10 @@ event :validate_formula, :validate, when: :javascript_formula?, changed: :conten
   end
 end
 
-def categorical?
-  score? && metric_card.categorical?
-end
-
-def translation?
-  categorical? || rating?
-end
-
 def help_rule_card
   metric_type_card.first_card&.fetch :help
 end
 
-def javascript_formula?
-  calculator_class == ::Calculate::JavaScript
-end
-
-def translate_formula?
-  calculator_class == ::Calculate::Translation
-end
 
 format :html do
   def new_success
@@ -66,12 +51,4 @@ format :html do
   def default_nest_view
     :bar
   end
-end
-
-format :json do
-  view(:content) { card.json_content }
-end
-
-def json_content
-  translation? ? translation_hash : content unless researched?
 end

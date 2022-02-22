@@ -28,7 +28,7 @@ event :update_calculated_answers, :integrate_with_delay,
   metric_card.deep_answer_update
 end
 
-event :validate_metric_items do
+event :validate_variables, :validate, on: :save, changed: :content do
   item_ids.each do |card_id|
     errors.add "unknown id: #{card_id}" unless (card = card_id.card)
     errors.add "not a metric: #{card.name}" unless card.type_id == MetricID

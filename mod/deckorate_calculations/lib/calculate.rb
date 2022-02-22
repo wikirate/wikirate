@@ -4,10 +4,6 @@ class Calculate
 
   attr_reader :answers, :metric
 
-  def self.calculator_class formula
-    Translation.supported_formula?(formula) ? Translation : JavaScript
-  end
-
   def initialize metric, args={}
     @metric = metric
     @company_id = args[:company_id]

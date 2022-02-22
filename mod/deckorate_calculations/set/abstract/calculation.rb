@@ -53,7 +53,6 @@ def direct_dependee_metrics
   variables_card&.item_names&.map(&:card)&.select { |i| i&.type_id == MetricID }
 end
 
-
 format :html do
   view :main_details do
     [nest_about, render_formula, nest_methodology]

@@ -3,6 +3,7 @@
 
 card_accessor :formula, type: :phrase # not needed by descendants or wikiratings
 card_accessor :variables, type: :json # not needed by scores
+card_accessor :rubric, type: :json
 
 
 def formula_editor

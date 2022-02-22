@@ -39,7 +39,7 @@
   :subfields:
     # :value_type: Category
     :metric_type: Score
-    :formula: '{"yes":10,"no":0}'
+    :rubric: '{"yes":10,"no":0}'
 - :name:
     - Jedi
     - deadliness
