@@ -16,6 +16,10 @@ def complete_translation_table
   metric_card.value_options.map { |option| [option, hash[option]] }
 end
 
+def translation_hash
+  JSON.parse content.downcase
+end
+
 private
 
 def unmapped_option?

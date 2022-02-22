@@ -1,6 +1,6 @@
 def weight_hash
   @weight_hash ||= hash_list.each_with_object({}) do |item, hash|
-    hash[item[:metric]]= item[:weight]
+    hash[item[:metric].card_id]= item[:weight].to_f
   end
 end
 

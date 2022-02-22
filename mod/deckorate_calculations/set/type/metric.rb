@@ -1,3 +1,22 @@
+# NOTE: it would be nice to have these accessors in Abstract::Calculation, but
+# if there they don't properly set the default cardtype for the fields
+
+card_accessor :variables, type: :json # Formula, WikiRatings, and Descendants (not Scores)
+card_accessor :formula, type: :coffeescript # Formula and non-categorical Scores
+card_accessor :rubric, type: :json # Scores (of categorical metrics)
+
+
+# DEPENDEES = metrics that I depend on
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# overwritten in calculations
+def direct_dependee_metrics
+  []
+end
+
+# DEPENDERS = metrics that depend on me
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 def update_depender_values_for! company_id
   each_depender_metric do |metric|
     metric.calculate_answers company_id: company_id
@@ -45,10 +64,10 @@ def formula_metrics
     Card.search type_id: MetricID, right_plus: [:variables, { refer_to: id }]
 end
 
-# depender = metrics that depend on me
-# dependee = metrics that I depend on
 
-# overwritten in calculations
-def direct_dependee_metrics
-  []
+format :html do
+  # used when metric is a variable in a WikiRating
+  def weight_row weight=0, label=nil
+    haml :weight_row, weight: weight, label: (label || render_thumbnail_no_link)
+  end
 end

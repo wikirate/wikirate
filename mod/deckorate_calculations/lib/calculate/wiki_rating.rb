@@ -1,5 +1,5 @@
 class Calculate
-  class WikiRating < JsonCalculator
+  class WikiRating < Calculator
     def compute input_vals, _company, _year
       result = 0.0
       total_weight = 0
@@ -15,12 +15,6 @@ class Calculate
 
     def weights
       @weights ||= input.input_list.map { |input_item| input_item.options[:weight].to_f }
-    end
-
-    def boot
-      super.each_pair.with_object({}) do |(k, v), hash|
-        hash[k.card_id] = v.to_f
-      end
     end
   end
 end

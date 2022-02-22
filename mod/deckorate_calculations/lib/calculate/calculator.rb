@@ -68,20 +68,10 @@ class Calculate
     end
 
     def program
-      @program ||= compile
+      @program ||= @formula
     end
 
     def ready?
-      return false unless programmable? formula
-      @computer ||= safely_boot
-      @errors.empty?
-    end
-
-    def programmable? _expr
-      true
-    end
-
-    def bootable?
       true
     end
 
@@ -138,14 +128,6 @@ class Calculate
       result = []
       yield result if ready?
       result
-    end
-
-    def safely_boot
-      return if @errors.any? || (!bootable? && @errors << "invalid formula")
-
-      boot
-    rescue StandardError => e
-      @errors << e.message
     end
   end
 end

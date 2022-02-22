@@ -5,7 +5,7 @@ class Card
 
     def table_rows
       metric_card.weight_hash.map do |metric_id, weight|
-        metric_row(metric_id.card, weight.to_f)
+        metric_row(metric_id.card, weight)
       end
     end
 

@@ -8,8 +8,8 @@ class Calculate
     end
 
     # coffeescript has the advantage of making sure the function _returns_ the value
-    def compile
-      ExecJS.compile full_javascript
+    def program
+      @program ||= ExecJS.compile full_javascript
     end
 
     def full_javascript
@@ -50,6 +50,12 @@ class Calculate
     def programmable? expr
       @unsafe = expr
       @errors.concat input.validate
+      @errors.empty?
+    end
+
+    def ready?
+      return false unless programmable? formula
+      @computer ||= safely_boot
       @errors.empty?
     end
 
@@ -115,6 +121,11 @@ class Calculate
       end
     end
 
+    def safely_boot
+      boot unless @errors.any?
+    rescue StandardError => e
+      @errors << e.message
+    end
 
     # just weird enough that users aren't likely to use it...
     def input_name index

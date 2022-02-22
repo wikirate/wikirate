@@ -1,14 +1,14 @@
 include_set Set::Abstract::Calculation
 
-delegate :categorical?, :value_options, :value_option_names, to: :basic_metric_card
+delegate :categorical?, :value_options, :value_option_names, to: :scoree_card
 delegate :calculator_class, to: :formula_card
 
 event :validate_score_name, :validate, changed: :name, on: :save do
-  unless basic_metric_card&.type_id == MetricID
-    errors.add :name, "#{basic_metric} is not a metric"
+  unless scoree_card&.type_id == MetricID
+    errors.add :name, "#{scoree} is not a metric"
   end
   # can't be company because Metric+Company is a record
-  unless Card[scorer]&.type_id.in? [UserID, ResearchGroupID]
+  unless scorer&.type_id.in? [UserID, ResearchGroupID]
     errors.add :name, "Invalid Scorer: #{scorer}; must be a User or Research Group"
   end
 end
@@ -43,7 +43,11 @@ def base_input_array
 end
 
 def calculator_class
-  categorical? ? Translation : JavaScript
+  categorical? ? Calculate::Rubric : Calculate::JavaScript
+end
+
+def formula
+  categorical? ? rubric_card.translation_hash : super
 end
 
 # </OVERRIDES>
@@ -60,11 +64,11 @@ def scorer_card
   right
 end
 
-def basic_metric
+def scoree
   name.trunk
 end
 
-def basic_metric_card
+def scoree_card
   left
 end
 
