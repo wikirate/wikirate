@@ -16,7 +16,7 @@ RSpec.describe Calculate::Calculator::Input do
     end
 
     def input_yields metrics
-      input_array = Array.wrap(metrics).map { |m| m.is_a?(Hash) ? m  : { metric: m } }
+      input_array = Array.wrap(metrics).map { |m| m.is_a?(Hash) ? m : { metric: m } }
       [].tap do |yields|
         yield input(input_array), yields
       end
@@ -40,8 +40,8 @@ RSpec.describe Calculate::Calculator::Input do
 
     example "two metrics with not researched options" do
       yields = input_each(
-        [{ metric: "Joe User+researched number 1", not_researched: "false"},
-         { metric: "Joe User+researched number 2", not_researched: "false"}],
+        [{ metric: "Joe User+researched number 1", not_researched: "false" },
+         { metric: "Joe User+researched number 2", not_researched: "false" }],
         2015
       )
 
@@ -104,10 +104,10 @@ RSpec.describe Calculate::Calculator::Input do
 
   describe "#answers_for" do
     def answers_for *args
-      input(input_array).answers_for *args
+      input(input_array).answers_for(*args)
     end
 
-    context "single metric" do
+    context "with single metric" do
       let(:input_array) { [{ metric: "Jedi+Victims by Employees" }] }
 
       example "no year specified" do
@@ -119,7 +119,7 @@ RSpec.describe Calculate::Calculator::Input do
       end
     end
 
-    context "two metrics" do
+    context "with two metrics" do
       let :input_array do
         [{ metric: "Jedi+Victims by Employees" }, { metric: "Jedi+deadliness" }]
       end
@@ -135,11 +135,11 @@ RSpec.describe Calculate::Calculator::Input do
   end
 
   describe "input_for" do
-    def input_for *args
+    def input_for(*args)
       input(input_array).input_for *args
     end
 
-    context "single metric" do
+    context "with single metric" do
       let(:input_array) { [{ metric: "Jedi+Victims by Employees" }] }
 
       example "year specified" do
@@ -147,7 +147,7 @@ RSpec.describe Calculate::Calculator::Input do
       end
     end
 
-    context "two metrics" do
+    context "with two metrics" do
       let :input_array do
         [{ metric: "Jedi+Victims by Employees" }, { metric: "Jedi+deadliness" }]
       end

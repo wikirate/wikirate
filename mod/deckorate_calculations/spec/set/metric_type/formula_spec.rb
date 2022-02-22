@@ -168,7 +168,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
   end
 
-  context "network aware formula" do
+  context "with network aware formula" do
     def formula related
       vars = [{ metric: "Jedi+deadliness", name: "m1", company: "Related[#{related}]" }]
       create_formula "SUM m1", vars
@@ -204,7 +204,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     it "creates calculated values" do
       expect(answer_value).to eq("60")
-      expect(answer_value(year:2015)).to eq("29")
+      expect(answer_value(year: 2015)).to eq("29")
       expect(answer_value(company: "Sony_Corporation")).to eq("9")
       expect(answer(company: "Death_Star", year: 1977)).to be_falsey
     end
@@ -278,7 +278,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     it "creates calculated values if formula created", as_bot: true do
       Card.create! name: [formula_metric_name, :formula], content: "m1 * 5 + m2 * 2"
       expect(answer_value).to eq("60")
-      expect(answer_value(year:2015)).to eq("29")
+      expect(answer_value(year: 2015)).to eq("29")
       expect(answer_value(company: "Sony_Corporation")).to eq("9")
       expect(answer(company: "Death_Star", year: 1977)).to be_falsey
     end

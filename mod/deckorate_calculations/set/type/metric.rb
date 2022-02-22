@@ -5,7 +5,6 @@ card_accessor :variables, type: :json # Formula, WikiRatings, and Descendants (n
 card_accessor :formula, type: :coffeescript # Formula and non-categorical Scores
 card_accessor :rubric, type: :json # Scores (of categorical metrics)
 
-
 # DEPENDEES = metrics that I depend on
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -63,7 +62,6 @@ def formula_metrics
   @formula_metrics ||=
     Card.search type_id: MetricID, right_plus: [:variables, { refer_to: id }]
 end
-
 
 format :html do
   # used when metric is a variable in a WikiRating

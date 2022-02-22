@@ -109,7 +109,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         .format.render :expanded_wiki_rating_details
     end
 
-      specify do
+    specify do
       is_expected.to have_tag "table" do
         %w[Metric Input Score Weight Points].each do |text|
           with_tag "th", text: text

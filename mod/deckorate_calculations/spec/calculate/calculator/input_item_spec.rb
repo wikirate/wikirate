@@ -26,7 +26,7 @@ RSpec.describe Calculate::Calculator::InputItem do
       end
     end
 
-    context "no options" do
+    context "without options" do
       example "no year specified" do
         expect(answer_for(death_star, nil).values.first.value).to eq("0.31")
       end
@@ -43,12 +43,12 @@ RSpec.describe Calculate::Calculator::InputItem do
         expect(answers.values.map(&:value).uniq).to eq ["0.31"]
       end
 
-      example "metric with relative year option" do 
+      example "metric with relative year option" do
         expect(answer_for(death_star, nil, year: "-1")[1978].value).to eq("0.31")
       end
 
       context "with disturbance" do
-        let(:mark) { "Jedi+disturbances in the Force "}
+        let(:mark) { "Jedi+disturbances in the Force" }
 
         example "metric with relative year list" do
           expect(answer_for(death_star, nil, year: "-23, 0, 1")[2000].value)
@@ -62,7 +62,7 @@ RSpec.describe Calculate::Calculator::InputItem do
       end
 
       context "with researched" do
-        let(:mark) { "Joe User+researched number 1"}
+        let(:mark) { "Joe User+researched number 1" }
 
         example "metric with relative year range" do
           expect(answer_for(samsung, nil, year: "-1..0")[2015].value).to eq(%w[10 5])

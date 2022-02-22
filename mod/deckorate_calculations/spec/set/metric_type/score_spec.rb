@@ -6,10 +6,11 @@ RSpec.describe Card::Set::MetricType::Score do
 
   let(:score_name) { "#{scored_name}+Big Brother" }
   let(:score_formula) { "answer * 2" }
+  let(:formula_type) { :formula }
 
   let(:score) do
     Card::Auth.as_bot do
-      create_metric name: score_name, type: :score, formula: score_formula
+      create_metric name: score_name, type: :score, formula_type => score_formula
     end
   end
 
@@ -128,7 +129,8 @@ RSpec.describe Card::Set::MetricType::Score do
 
   describe "score for multi-categorical formula", as_bot: true do
     let(:scored_name) { "Joe User+small multi" }
-    let(:score_formula) { '{"1":"2", "2":4, "3":6}' }
+    let(:formula_type) { :rubric }
+    let(:score_formula) { '{"1": 2, "2":4, "3":6}' }
 
     it "sums values", as_bot: true do
       score
@@ -136,16 +138,15 @@ RSpec.describe Card::Set::MetricType::Score do
     end
 
     it "updates when formula updated", as_bot: true do
-      score.formula_card.update!(
-        type_id: Card::PlainTextID,
-        content: '{"1":2, "2":5, "3":6}'
-      )
+      score.rubric_card.update! content: '{"1":2, "2":5, "3":6}'
       expect(score_value("Sony Corporation", "2010")).to eq "7.0"
     end
   end
 
   context "with else case" do
     let(:scored_name) { "Joe User+small single" }
+    let(:formula_type) { :rubric }
+
     let(:score_formula) { '{"2":4, "3":6, "else": 5}' }
 
     example do
@@ -155,14 +156,15 @@ RSpec.describe Card::Set::MetricType::Score do
   end
 
   context "with unknown case" do
-    let(:scored_name) { "Joe User+RM" }
+    let(:scored_name) { "Jedi+disturbances in the Force" }
+    let(:formula_type) { :rubric }
     let(:score_formula) { '{"Unknown":0, "else": 10}' }
 
     example do
       aggregate_failures do
         score
-        expect(score_value("Apple Inc", "2001")).to eq "0.0"
-        expect(score_value("Apple Inc", "2010")).to eq "10.0"
+        expect(score_value("Slate Rock and Gravel Company", "2006")).to eq "0.0"
+        expect(score_value("Slate Rock and Gravel Company", "2005")).to eq "10.0"
       end
     end
   end

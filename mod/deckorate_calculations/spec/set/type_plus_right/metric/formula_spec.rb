@@ -99,7 +99,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
       name.card.update! subfields: {
         variables: [
           { metric: "Jedi+deadliness", name: "m1" },
-          { metric: "Jedi+Victims by Employees", name: "m2" },
+          { metric: "Jedi+Victims by Employees", name: "m2" }
         ].to_json,
         formula: "m1 / m2"
       }

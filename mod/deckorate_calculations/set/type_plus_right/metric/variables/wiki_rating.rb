@@ -1,25 +1,25 @@
 def weight_hash
   @weight_hash ||= hash_list.each_with_object({}) do |item, hash|
-    hash[item[:metric].card_id]= item[:weight].to_f
+    hash[item[:metric].card_id] = item[:weight].to_f
   end
 end
 
 format :html do
   view :rating_core do
-    wrap {[
-      render_header(title: "Formula"),
-      table(rating_core_table_content, header: %w[Metric Weight])
-    ]}
+    wrap do
+      [render_header(title: "Formula"),
+       table(rating_core_table_content, header: %w[Metric Weight])]
+    end
   end
 
   def rating_input
     with_nest_mode :normal do
       class_up "card-slot", filtered_list_slot_class
-      wrap {[
-        rating_editor_table,
-        _render_hidden_content_field,
-        add_item_modal_link
-      ]}
+      wrap do
+        [rating_editor_table,
+         render_hidden_content_field,
+         add_item_modal_link]
+      end
     end
   end
 

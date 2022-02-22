@@ -1,11 +1,11 @@
 format :html do
   view :descendant_formula do
-    wrap {[
-      render_header(title: "Formula"),
-      wrap_with(:h6) { "Inherit from ancestor (in order of precedence):" },
-      render_menu,
-      raw(ancestor_thumbnails.join("<div>OR</div>"))
-    ]}
+    wrap do
+      [render_header(title: "Formula"),
+       wrap_with(:h6) { "Inherit from ancestor (in order of precedence):" },
+       render_menu,
+       raw(ancestor_thumbnails.join("<div>OR</div>"))]
+    end
   end
 
   private

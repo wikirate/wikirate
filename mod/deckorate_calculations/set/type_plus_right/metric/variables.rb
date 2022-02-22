@@ -70,7 +70,7 @@ def content_to_hash_list content
   case content
   when Array
     items
-  when (/^\s*\[/)
+  when /^\s*\[/
     JSON.parse content
   else
     items_from_simple content

@@ -17,7 +17,6 @@ event :recalculate_on_formula_change, :integrate_with_delay,
   metric_card.deep_answer_update
 end
 
-
 def help_rule_card
   metric_type_card.first_card&.fetch :help
 end

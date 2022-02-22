@@ -8,7 +8,7 @@ class Card
       super
     end
 
-    def metric_row input_card, value, options
+    def metric_row input_card, value, _options
       @row_index += 1
       [@row_index,
        metric_thumbnail(input_card),

@@ -8,7 +8,7 @@ event :validate_score_name, :validate, changed: :name, on: :save do
     errors.add :name, "#{scoree} is not a metric"
   end
   # can't be company because Metric+Company is a record
-  unless scorer&.type_id.in? [UserID, ResearchGroupID]
+  unless scorer_card&.type_id.in? [UserID, ResearchGroupID]
     errors.add :name, "Invalid Scorer: #{scorer}; must be a User or Research Group"
   end
 end

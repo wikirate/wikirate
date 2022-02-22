@@ -8,6 +8,6 @@ shared_context "with calculator stub" do
   end
 
   def normalized_inputs inputs
-    inputs.map { |i| i.is_a?(Hash) ? i : { metric: i, name: "m1"}}
+    inputs.map { |i| i.is_a?(Hash) ? i : { metric: i, name: "m1" } }
   end
 end
