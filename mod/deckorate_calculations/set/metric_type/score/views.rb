@@ -5,7 +5,7 @@ format do
 end
 
 format :html do
-  delegate :scorer_card, :basic_metric_card, to: :card
+  delegate :scorer_card, :scoree_card, to: :card
 
   view :select do
     options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
