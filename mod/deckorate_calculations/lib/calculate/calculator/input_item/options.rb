@@ -7,41 +7,25 @@ class Calculate
         # note: these modules are included in InputItem
         # (calling extend from an instance is like calling include from a class)
         def initialize_options
-          extend CompanyOption if company_option?
+          extend CompanyOption if option? :company
           extend YearOption if year_option?
           extend UnknownOption
-          extend NotResearchedOption if not_researched_option?
+          extend NotResearchedOption if option? :not_researched
           initialize_option
         end
 
         def initialize_option; end
 
         def year_option?
-          year_option.present? && year_option != "0"
+          option?(:year) && option(:year) != "0"
         end
 
-        def company_option?
-          company_option.present?
+        def option? opt
+          @options[opt].present?
         end
 
-        def unknown_option?
-          unknown_option.present?
-        end
-
-        def not_researched_option?
-          not_researched_option.present?
-        end
-
-        Calculate::Parser::OPTIONS.each do |opt|
-          define_method "#{opt}_option" do
-            instance_variable_get("@#{opt}_option") ||
-              instance_variable_set("@#{opt}_option", normalized_option_value(opt))
-          end
-        end
-
-        def normalized_option_value opt
-          value = parser.send("#{opt}_option", @input_index)
-          return unless value.present?
+        def option opt
+          return unless (value = @options[opt]).present?
 
           try("normalize_#{opt}_option", value) || value
         end

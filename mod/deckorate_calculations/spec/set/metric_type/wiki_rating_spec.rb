@@ -38,8 +38,8 @@ RSpec.describe Card::Set::MetricType::WikiRating do
 
   def rating_answer company="Samsung", year="2014"
     Answer.where(metric_id: "Joe User+#{@metric_title}".card_id,
-                 company_id: company.card_id, year: year.to_i)
-          .take
+                 company_id: company.card_id,
+                 year: year.to_i).take
   end
 
   context "when created with formula" do
@@ -47,12 +47,10 @@ RSpec.describe Card::Set::MetricType::WikiRating do
       @metric_title = "rating1"
       @metric = create_metric(
         name: @metric_title, type: :wiki_rating,
-        formula: '{"Joe User+researched number 1":"60",'\
-                  '"Joe User+researched number 2":"40"}'
+        variables: [{ metric: "Joe User+researched number 1", weight: "60" },
+                    { metric: "Joe User+researched number 2", weight: "40" }].to_json
       )
     end
-
-    let(:formula_card) { Card["#{@metric.name}+formula"] }
 
     it "creates rating values" do
       expect(rating_value).to eq("8.0")
@@ -61,9 +59,10 @@ RSpec.describe Card::Set::MetricType::WikiRating do
       expect(rating_answer("Death_Star", "1977")).to be_falsey
     end
 
-    context "when formula changes" do
+    context "when variables/formula change" do
       def update_weights weights
-        @metric.formula_card.update! content: weights.to_json
+        formula = weights.to_a.map { |m, w| { metric: m, weight: w } }
+        @metric.variables_card.update! content: formula.to_json
       end
       it "updates existing rating value" do
         update_weights "Joe User+researched number 1" => 40,
@@ -119,7 +118,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
     context "when input metric is renamed" do
       it "changes name in formula", as_bot: true do
         update_card "Joe User+researched number 1", name: "Joe User+invented number"
-        expect(formula_card.content).to include("Joe User+invented number")
+        expect(@metric.variables_card.item_names).to include("Joe User+invented number")
       end
     end
   end
@@ -130,17 +129,11 @@ RSpec.describe Card::Set::MetricType::WikiRating do
       @metric = create_metric name: @metric_title, type: :wiki_rating
     end
 
-    let(:formula_card) { Card["#{@metric.name}+formula"] }
-
-    it "has empty json hash as formula" do
-      expect(formula_card.content).to eq "{}"
-    end
     it "creates rating values if formula updated" do
       Card::Auth.as_bot do
-        formula_card.update!(
-          type_id: Card::PlainTextID,
-          content: '{"Joe User+researched number 1":"60",' \
-                    '"Joe User+researched number 2":"40"}'
+        @metric.variables_card.update!(
+          content: [{ metric: "Joe User+researched number 1", weight: "60" },
+                    { metric: "Joe User+researched number 2", weight: "40" }].to_json
         )
       end
       expect(rating_value).to eq("8.0")

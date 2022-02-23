@@ -18,6 +18,8 @@
   :codename: :metric_variables
 - :name: hybrid
   :codename: :hybrid
+- :name: Rubric
+  :codename: :rubric
 
 - :name: Formula
   :type: :metric_type_type
