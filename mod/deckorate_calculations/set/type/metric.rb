@@ -2,8 +2,8 @@
 # if there they don't properly set the default cardtype for the fields
 
 card_accessor :variables, type: :json # Formula, WikiRatings, and Descendants (not Scores)
-card_accessor :formula, type: :coffeescript # Formula and non-categorical Scores
 card_accessor :rubric, type: :json # Scores (of categorical metrics)
+card_accessor :formula, type: :coffee_script # Formula and non-categorical Scores
 
 # DEPENDEES = metrics that I depend on
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

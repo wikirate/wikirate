@@ -1,6 +1,6 @@
 include_set Abstract::MetricChild, generation: 1
 
-delegate :metric_type_codename, :metric_type_card,
+delegate :metric_type_codename, :metric_type_card, :variables_card,
          :calculator_class, :calculator, :normalize_value,
          :researched?, :calculated?, :rating?, to: :metric_card
 
@@ -23,7 +23,15 @@ end
 
 format :html do
   view :titled_content do
-    [nest(card.metric_card.variables_card, view: :core), render_content]
+    [nest(card.variables_card, view: :core), render_content]
+  end
+
+  def edit_fields
+    [[card.variables_card, {}], [card, {}]]
+  end
+
+  def multi_card_editor?
+    depth == 0
   end
 
   def new_success

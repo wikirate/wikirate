@@ -8,7 +8,7 @@ RSpec.describe Card::Set::MetricType::Score do
   let(:score_formula) { "answer * 2" }
   let(:formula_type) { :formula }
 
-  let(:score) do
+  let :score do
     Card::Auth.as_bot do
       create_metric name: score_name, type: :score, formula_type => score_formula
     end
