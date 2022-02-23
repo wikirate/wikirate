@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
-  it_behaves_like "cached count", "Jedi+disturbances in the force+answer", 11, 1 do
+  it_behaves_like "cached count", "Jedi+disturbances in the force+answer", 12, 1 do
     let :add_one do
       Card["Jedi+disturbances in the force"].create_answers true do
         Samsung "1977" => "yes"
@@ -39,7 +39,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
       with_latest_filter_params do
         expect(answer_items).to eq(["Death Star+2001",
                                     "Monster Inc+2000",
-                                    "Slate Rock and Gravel Company+2005",
+                                    "Slate Rock and Gravel Company+2006",
                                     "SPECTRE+2000"])
       end
     end

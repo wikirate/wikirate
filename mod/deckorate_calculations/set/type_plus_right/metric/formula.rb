@@ -1,28 +1,10 @@
-include_set Abstract::Variable
-include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
-delegate :metric_type_codename, :metric_type_card, :researched?, :calculated?, :rating?,
-         to: :metric_card
+delegate :metric_type_codename, :metric_type_card,
+         :calculator_class, :calculator, :normalize_value,
+         :researched?, :calculated?, :rating?, to: :metric_card
 
-# don't do pointer item standardization
-def standardize_content value
-  value
-end
-
-def categorical?
-  score? && metric_card.categorical?
-end
-
-def translation?
-  categorical? || rating?
-end
-
-def help_rule_card
-  metric_type_card.first_card&.fetch :help
-end
-
-event :validate_formula, :validate, when: :syntax_formula?, changed: :content do
+event :validate_formula, :validate, changed: :content do
   formula_errors = calculator.detect_errors
   return if formula_errors.empty?
   formula_errors.each do |msg|
@@ -30,32 +12,20 @@ event :validate_formula, :validate, when: :syntax_formula?, changed: :content do
   end
 end
 
-def each_reference_out &block
-  return super(&block) unless rating?
-  translation_table.each do |key, _value|
-    yield key, Content::Chunk::Link::CODE
-  end
+event :recalculate_on_formula_change, :integrate_with_delay,
+      on: :save, changed: :content, priority: 5, when: :content? do
+  metric_card.deep_answer_update
 end
 
-def replace_references old_name, new_name
-  return super unless rating?
-
-  self.content_quietly = content.gsub old_name, new_name
-end
-
-def javascript_formula?
-  calculator_class == ::Calculate::JavaScript
-end
-
-def syntax_formula?
-  calculator.is_a? Calculate::NestCalculator
-end
-
-def translate_formula?
-  calculator_class == ::Calculate::Translation
+def help_rule_card
+  metric_type_card.first_card&.fetch :help
 end
 
 format :html do
+  view :titled_content do
+    [nest(card.metric_card.variables_card, view: :core), render_content]
+  end
+
   def new_success
     { mark: card.name.left }
   end
@@ -73,38 +43,7 @@ format :html do
     new_success
   end
 
-  view :input do
-    with_hidden_content do
-      _render card.metric_card.formula_editor
-    end
-  end
-
-  def with_hidden_content
-    hidden = card.metric_card.hidden_content_in_formula_editor?
-    (hidden ? _render_hidden_content_field : "") + yield
-  end
-
-  view :standard_formula_editor, unknown: true do
-    output [text_area_input, _render_variables]
-  end
-
-  view :core do
-    render card.metric_card.formula_core
-  end
-
-  view :standard_formula_core, template: :haml, cache: :never
-
   def default_nest_view
     :bar
   end
-end
-
-format :json do
-  view(:content) { card.json_content }
-end
-
-def json_content
-  return if researched?
-
-  translation? ? translation_hash : content
 end
