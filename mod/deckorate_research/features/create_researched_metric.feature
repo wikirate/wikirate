@@ -10,6 +10,7 @@ Feature: create researched metrics
     # And I choose "Number"
     And I fill in "Metric Title" with "MyResearch"
     And I press "Submit"
+    And I wait for ajax response
     Then I should see "MyResearch"
     Then I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."

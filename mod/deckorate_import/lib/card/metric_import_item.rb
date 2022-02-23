@@ -9,7 +9,10 @@ class Card
       metric_designer: {}, # TODO: map when we support multi-type mapping
       metric_title: {},
       scorer: { optional: true },
+
       formula: { optional: true },
+      variables: { optional: true },
+      rubric: { optional: true },
 
       wikirate_topic: { optional: true, map: true, separator: ";" },
       unpublished: { optional: true },

@@ -99,8 +99,8 @@ RSpec.describe Card::Set::MetricType::Score, "basic properties" do
     it { is_expected.to eq Card["Joe User"] }
   end
 
-  describe "#basic_metric" do
-    subject { metric.basic_metric }
+  describe "#scoree" do
+    subject { metric.scoree }
 
     it { is_expected.to eq "Jedi+deadliness" }
   end
