@@ -22,6 +22,8 @@ include_set Abstract::Pointer
 include_set Abstract::IdPointer
 include_set Abstract::MetricChild, generation: 1
 
+delegate :metric_type_codename, to: :metric_card
+
 # FIXME: make sure not calculated twice when updated in same act as formula
 event :update_calculated_answers, :integrate_with_delay,
       on: :save, changed: :content, priority: 5, when: :content? do
@@ -78,14 +80,23 @@ def content_to_hash_list content
 end
 
 def items_from_simple content
-  content.to_s.split(/\n+/).map do |variable|
-    { "metric" => variable }
+  content.to_s.split(/\n+/).map.with_index do |variable, index|
+    { "metric" => variable, "name" => "m#{index + 1}" }
   end
 end
 
 format :html do
+  view :core do
+    render :"#{card.metric_type_codename}_core"
+  end
+
+  view :input do
+    card.check_json_syntax
+    super()
+  end
+
   def input_type
-    metric_card.variables_input_type
+    card.metric_type_codename
   end
 
   def default_item_view

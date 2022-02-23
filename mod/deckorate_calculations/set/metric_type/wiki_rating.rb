@@ -26,13 +26,12 @@ event :create_formula, :initialize, on: :create do
 end
 
 format do
+  def formula_field
+    :variables
+  end
+
   def value_legend
     "0-10"
   end
 end
 
-format :html do
-  view :formula do
-    field_nest :variables, view: :rating_core
-  end
-end

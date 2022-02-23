@@ -5,14 +5,14 @@ def weight_hash
 end
 
 format :html do
-  view :rating_core do
+  view :wiki_rating_core do
     wrap do
       [render_header(title: "Formula"),
        table(rating_core_table_content, header: %w[Metric Weight])]
     end
   end
 
-  def rating_input
+  def wiki_rating_input
     with_nest_mode :normal do
       class_up "card-slot", filtered_list_slot_class
       wrap do
@@ -33,7 +33,6 @@ format :html do
 
   # table with Metrics on left and Weight inputs on right
   def rating_editor_table
-    card.check_json_syntax
     table rating_editor_table_content, class: "wikiRating-editor",
                                        header: ["Metric", haml(:weight_heading)]
   end

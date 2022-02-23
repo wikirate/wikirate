@@ -26,7 +26,7 @@ format :html do
     wrap do
       [render_header(title: "Formula"),
        render_menu,
-       nest(card.left.fetch(:variables), view: :table),
+       nest(card.metric_card.variables_card),
        render_content]
     end
   end

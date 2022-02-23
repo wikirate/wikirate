@@ -1,11 +1,15 @@
 format :html do
-  view :descendant_formula do
+  view :descendant_core do
     wrap do
       [render_header(title: "Formula"),
        wrap_with(:h6) { "Inherit from ancestor (in order of precedence):" },
        render_menu,
        raw(ancestor_thumbnails.join("<div>OR</div>"))]
     end
+  end
+
+  def descendant_input
+    filtered_list_input
   end
 
   private

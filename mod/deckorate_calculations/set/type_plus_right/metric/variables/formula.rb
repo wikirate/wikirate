@@ -1,6 +1,10 @@
 format :html do
-  view :table do
+  view :formula_core do
     table table_rows, header: %w[Variable Metric Options]
+  end
+
+  def formula_input
+    filtered_list_input
   end
 
   def table_rows

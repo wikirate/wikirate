@@ -54,6 +54,10 @@ def direct_dependee_metrics
 end
 
 format :html do
+  view :formula do
+
+  end
+
   view :main_details do
     [nest_about, render_formula, nest_methodology]
   end
