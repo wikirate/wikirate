@@ -27,8 +27,10 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
 
     it "increases cached answer count" do
       Card.fetch("Monster Inc+metric").cached_count
+      "hmm"
       expect { add_first_relationship_answer }
         .to change(Card.fetch("Monster Inc+metric"), :cached_count).from(6).to(7)
+      "hmm"
     end
 
     it "creates inverse answer" do

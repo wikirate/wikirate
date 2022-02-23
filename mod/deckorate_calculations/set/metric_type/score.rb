@@ -48,6 +48,17 @@ def formula
   categorical? ? rubric_card.translation_hash : super
 end
 
+def direct_dependee_metrics
+  [left]
+end
+
+def formula_field
+  categorical? ? :rubric : :formula
+end
+
+def value_type
+  "Number"
+end
 # </OVERRIDES>
 
 def scorer
@@ -75,16 +86,4 @@ def normalize_value value
   return "0" if value.negative?
   return "10" if value > 10
   value.to_s
-end
-
-def value_type
-  "Number"
-end
-
-def direct_dependee_metrics
-  [left]
-end
-
-def formula_field
-  categorical? ? :rubric : :formula
 end

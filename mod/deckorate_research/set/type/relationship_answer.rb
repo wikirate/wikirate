@@ -17,22 +17,26 @@ require_field :source, when: :source_required?
 
 # has to happen after :set_answer_name,
 # but always, also if :set_answer_name is not executed
-event :schedule_answer_counts, :prepare_to_store do
-  schedule_answer_count answer_name
-  schedule_answer_count inverse_answer_name
+
+
+event :ensure_simple_answers, after: :prepare_left_and_right, on: :save do
+  [answer_card, inverse_answer_card].each do |card|
+    # TODO: this shouldn't be necessary if default type_id were based on ltype rtype set
+    card.type_id = MetricAnswerID
+    subcard card if card.type_id_changed?
+  end
 end
 
-# TODO: this shouldn't be necessary if default type_id were based on ltype rtype set
-event :ensure_left_type_is_answer, after: :prepare_left_and_right, on: :save do
-  answer = Card.fetch name.left, new: { type: :metric_answer }
-  answer.type_id = MetricAnswerID
-  subcard answer if answer.type_id_changed?
+event :schedule_answer_counts, :integrate do
+  answer_card.schedule :update_relationship_count
+  inverse_answer_card.schedule :update_relationship_count
 end
 
-event :schedule_old_answer_counts, :finalize, changed: :name, on: :update do
+event :schedule_old_answer_counts, :integrate, changed: :name, on: :update do
   lu = lookup
-  schedule_answer_count lu.answer_id.cardname
-  schedule_answer_count lu.inverse_answer_id.cardname
+  [lu.answer_id, lu.inverse_answer_id].each do |id|
+    id.card&.schedule :update_relationship_count
+  end
 end
 
 event :auto_add_object_company,
@@ -82,22 +86,27 @@ def answer_id
 end
 
 def answer_name
-  name.left
+  name.left_name
+end
+
+def answer_card
+  ensure_answer_card answer_name
 end
 
 def inverse_answer_name
-  [metric_card.inverse, related_company, year].join "+"
+  [metric_card.inverse, related_company, year].cardname
+end
+
+def inverse_answer_card
+  ensure_answer_card inverse_answer_name
+end
+
+def ensure_answer_card name
+  Card.fetch name, new: { type: :metric_answer, subfields: { value: "1" } }
 end
 
 def inverse_answer_id
   @inverse_answer_id ||= inverse_answer_name.card_id
-end
-
-def schedule_answer_count name
-  answer_card = Card.fetch name, new: { type_id: MetricAnswerID, "+value" => "1" }
-  answer_card.schedule_answer_count
-  # answer_card.director.restart
-  subcard answer_card
 end
 
 def update_subcard_name subcard, new_name, name_to_replace
