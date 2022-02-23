@@ -15,13 +15,11 @@ card_accessor :source, type: :list
 require_field :value
 require_field :source, when: :source_required?
 
-# has to happen after :set_answer_name,
-# but always, also if :set_answer_name is not executed
-
-
 event :ensure_simple_answers, after: :prepare_left_and_right, on: :save do
   [answer_card, inverse_answer_card].each do |card|
-    # TODO: this shouldn't be necessary if default type_id were based on ltype rtype set
+    # TODO: this shouldn't be necessary.
+    # default type_id should be based on ltype rtype set
+    # (but good to make sure the simple cards are there regardless)
     card.type_id = MetricAnswerID
     subcard card if card.type_id_changed?
   end
