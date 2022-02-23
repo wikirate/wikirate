@@ -1,16 +1,12 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::TenScale
+include_set Abstract::CalcTrigger
 
 # rubrics are used for scoring of categorical metrics
 
 event :validate_rubric, :validate, on: :save, changed: :content do
   errors.add "invalid JSON" unless parse_content
   # errors.add "not all options mapped" if unmapped_option?
-end
-
-event :recalculate_on_rubric_change, :integrate_with_delay,
-      on: :save, changed: :content, priority: 5, when: :content? do
-  metric_card.deep_answer_update
 end
 
 # converts a categorical formula content to an array
