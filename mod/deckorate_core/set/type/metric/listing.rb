@@ -51,9 +51,10 @@ format :html do
   end
 
   def formula_options
-    %i[year company unknown not_researched].map do |key|
-      next unless (value = voo.send key)
-      "#{key}: #{value}"
-    end.compact
+    # FIXME: handle options from json
+    # %i[year company unknown not_researched].map do |key|
+    #   next unless (value = voo.send key)
+    #   "#{key}: #{value}"
+    # end.compact
   end
 end

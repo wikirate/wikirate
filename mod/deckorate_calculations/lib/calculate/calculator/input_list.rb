@@ -3,13 +3,13 @@ class Calculate
     # {InputList} is an array of {InputItem}s.
     # It chooses the right InputItem class depending on the cardtype of the input item.
     class InputList < Array
-      attr_reader :input
-      delegate :parser, :input_cards, to: :input
-
-      def initialize input
-        @input = input
+      def initialize input_array
         @errors = []
-        input_cards.size.times(&method(:add_item))
+        count = input_array.count
+        input_array.each_with_index do |options, index|
+          card = options.delete(:metric).card
+          add_item card, index, count, options
+        end
       end
 
       # returns empty array if everything is ok
@@ -23,8 +23,7 @@ class Calculate
         if empty?
           @errors << "at least one metric variable nest is required" if empty?
         elsif no_company_dependency?
-          @errors <<
-            "there must be at least one nest that doesn't explicitly specify companies"
+          @errors << "must have at least one variable not explicitly specify company"
         end
       end
 
@@ -40,8 +39,8 @@ class Calculate
         @no_company_dependency = none?(&:company_dependent?)
       end
 
-      def add_item i
-        self << InputItem.item_class(input_cards[i].type_id).new(self, i)
+      def add_item card, *args
+        self << InputItem.item_class(card.type_id).new(card, *args)
       end
     end
   end

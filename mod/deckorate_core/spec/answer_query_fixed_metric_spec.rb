@@ -3,7 +3,7 @@
 RSpec.describe Card::AnswerQuery do
   LATEST_ANSWERS = ["Death Star+2001",
                     "Monster Inc+2000",
-                    "Slate Rock and Gravel Company+2005",
+                    "Slate Rock and Gravel Company+2006",
                     "SPECTRE+2000"].freeze
 
   let(:metric) { Card[@metric_name || "Jedi+disturbances in the Force"] }
@@ -52,7 +52,7 @@ RSpec.describe Card::AnswerQuery do
 
       it "finds partial match" do
         expect(filter_by(company_name: "at").sort)
-          .to eq ["Death Star+2001", "Slate Rock and Gravel Company+2005"]
+          .to eq ["Death Star+2001", "Slate Rock and Gravel Company+2006"]
       end
 
       it "ignores case" do
@@ -229,7 +229,7 @@ RSpec.describe Card::AnswerQuery do
     it "sorts categories by value" do
       res = sort_by(:value)
       yes_index = res.index "Death Star+2001"
-      no_index = res.index "Slate Rock and Gravel Company+2005"
+      no_index = res.index "Slate Rock and Gravel Company+2006"
       expect(no_index).to be < yes_index
     end
 

@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../spec/support/formula.rb"
-
 RSpec.describe Card::Set::MetricType::Formula do
   describe "basic properties" do
     before do
