@@ -16,11 +16,6 @@ def calculator_class
 end
 # </OVERRIDES>
 
-event :create_formula, :initialize, on: :create do
-  sf = subfield :formula
-  sf.content = "{}" unless sf.content.present?
-end
-
 format do
   def value_legend
     "0-10"
