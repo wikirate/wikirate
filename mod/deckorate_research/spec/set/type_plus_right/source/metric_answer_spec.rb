@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::TypePlusRight::Source::MetricAnswer do
-  it_behaves_like "cached count", "#{Card::Name[:star_wars_source]}+answer", 19, 1 do
+  it_behaves_like "cached count", "#{Card::Name[:star_wars_source]}+answer", 20, 1 do
     let :add_one do
       Card["Jedi+Weapons"].create_answers do
         Samsung "1977" => { value: "hand", source: Card[:star_wars_source] }
