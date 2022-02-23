@@ -90,10 +90,6 @@ RSpec.describe Card::Set::MetricType::Score do
         end
       end
 
-      it "has basic metric as formula" do
-        expect(Card["#{score.name}+formula"].content).to eq "answer"
-      end
-
       it "creates score values if formula updated" do
         Card::Auth.as_bot do
           score.formula_card.update!(content: "answer * 2")
