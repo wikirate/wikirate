@@ -22,13 +22,8 @@ def help_rule_card
 end
 
 format :html do
-  view :variables_and_formula do
-    wrap do
-      [render_header(title: "Formula"),
-       render_menu,
-       nest(card.metric_card.variables_card),
-       render_content]
-    end
+  view :titled_content do
+    [nest(card.metric_card.variables_card, view: :core), render_content]
   end
 
   def new_success

@@ -14,10 +14,6 @@ end
 def calculator_class
   ::Calculate::WikiRating
 end
-
-def variables_input_type
-  :rating
-end
 # </OVERRIDES>
 
 event :create_formula, :initialize, on: :create do
@@ -26,10 +22,6 @@ event :create_formula, :initialize, on: :create do
 end
 
 format do
-  def formula_field
-    :variables
-  end
-
   def value_legend
     "0-10"
   end

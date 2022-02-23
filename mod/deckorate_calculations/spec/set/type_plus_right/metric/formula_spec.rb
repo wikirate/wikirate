@@ -8,7 +8,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
   check_html_views_for_errors
 
   it "show input options in table" do
-    expect_view(:variables_and_formula, card: "Jedi+deadliness average+formula")
+    expect_view(:titled, card: "Jedi+deadliness average+formula")
       .to have_tag("table") do
         with_tag "div.thumbnail", with: { "data-card-name": "Jedi+deadliness" }
         with_tag "div.formula-option", /year.*-2..0/m

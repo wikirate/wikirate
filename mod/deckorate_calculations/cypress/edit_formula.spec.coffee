@@ -61,5 +61,5 @@ describe 'edit metric formulas', ->
       .should("contain", "big multi")
     cy.get("input#Joe_User_small_multi").click()
     cy.get("._add-selected").click()
-    cy.contains "M0"
-    cy.contains "M1"
+    cy.contains "m1"
+    cy.contains "m2"

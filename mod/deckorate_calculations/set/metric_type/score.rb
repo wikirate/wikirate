@@ -85,16 +85,6 @@ def direct_dependee_metrics
   [left]
 end
 
-# def formula_unspecified?
-#   !subfield(:formula)&.content&.present?
-# end
-
-format :html do
-  view :formula do
-    if card.categorical?
-      field_nest :rubric, view: :titled, title: "Formula"
-    else
-      field_nest :formula, view: :titled
-    end
-  end
+def formula_field
+  categorical? ? :rubric : :formula
 end

@@ -53,9 +53,13 @@ def direct_dependee_metrics
   variables_card&.item_names&.map(&:card)&.select { |i| i&.type_id == MetricID }
 end
 
+def formula_field
+  :variables
+end
+
 format :html do
   view :formula do
-
+    field_nest card.formula_field, view: :titled, title: "Formula"
   end
 
   view :main_details do

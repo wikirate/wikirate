@@ -15,10 +15,6 @@ def standard_formula_input input
 end
 
 format do
-  def formula_field
-    :variables
-  end
-
   view :legend do
     return unless (ancestor = card.variables_card.item_names.first)
     nest ancestor, view: :legend

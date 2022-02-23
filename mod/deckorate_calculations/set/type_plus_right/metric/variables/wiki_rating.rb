@@ -6,10 +6,7 @@ end
 
 format :html do
   view :wiki_rating_core do
-    wrap do
-      [render_header(title: "Formula"),
-       table(rating_core_table_content, header: %w[Metric Weight])]
-    end
+    table(rating_core_table_content, header: %w[Metric Weight])
   end
 
   def wiki_rating_input
