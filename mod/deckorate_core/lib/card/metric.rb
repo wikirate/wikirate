@@ -103,10 +103,8 @@ class Card::Metric
 
     # type is an alias for metric_type
     VALID_SUBFIELDS =
-      ::Set.new([:metric_type, :formula, :value_type, :hybrid,
-                 :value_options, :research_policy, :wikirate_topic, :unit, :report_type,
-                 :inverse_title])
-           .freeze
+      ::Set.new(%i[metric_type formula value_type hybrid variables value_options rubric
+                   research_policy wikirate_topic unit report_type inverse_title]).freeze
     ALIAS_SUBFIELDS = {
       type: :metric_type, topic: :wikirate_topic, inverse: :inverse_title
     }.freeze
@@ -115,26 +113,7 @@ class Card::Metric
       resolve_alias opts
       validate_subfields opts
       normalize_subfields opts
-
-      opts.each_with_object({}) do |(field, content), subfields|
-        subfields[field] = subfield_args field, content
-      end
-    end
-
-    def subfield_args field, content
-      type_id = subfield_type_id(field)
-      content = Array.wrap(content).to_pointer_content if type_id == Card::PointerID
-      { content: content, type_id: type_id }
-    end
-
-    def subfield_type_id field
-      case field
-      when :formula, :unit, :inverse_title
-        Card::PhraseID
-      when :hybrid
-        Card::ToggleID
-      else Card::PointerID
-      end
+      opts
     end
 
     def resolve_alias opts
@@ -150,10 +129,9 @@ class Card::Metric
     end
 
     def normalize_subfields opts
-      opts[:formula] = opts[:formula].to_json if opts[:formula].is_a? Hash
       opts[:metric_type] ||= :researched
       opts[:value_type] ||= "Number"
-      opts[:metric_type] = Card.fetch_name opts[:metric_type]
+      opts[:metric_type] = opts[:metric_type].cardname
     end
   end
 end
