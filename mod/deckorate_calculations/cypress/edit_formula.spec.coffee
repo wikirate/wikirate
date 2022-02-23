@@ -11,14 +11,15 @@ describe 'edit metric formulas', ->
 
   before =>
     cy.login()
-    cy.ensure(
-      "Jedi+darkness rating+formula",
-      '{"Jedi+deadliness+Joe User":"60","Jedi+disturbances in the Force+Joe User":"40"}'
-    )
+#    cy.ensure(
+#      "Jedi+darkness rating+:variables",
+#      '[{ "metric": "Jedi+deadliness+Joe User", "weight" : "60" }, ' \
+#      ' { "metric": "Jedi+disturbances in the Force+Joe User", "weight" : "40" }]'
+#    )
 
   specify 'WikiRating formula', =>
     cy.visit "Jedi+darkness rating"
-    cy.slot "jedi+darkness_rating+formula"
+    cy.slot "jedi+darkness_rating+*variable"
       .find(".card-menu > a").click(force: true)
     cy.contains("a", "add metric", timeout: 15000)
       .click()
@@ -39,7 +40,7 @@ describe 'edit metric formulas', ->
     expectTotalWeight "100"
     cy.contains("Save and Close").should "not.have.attr", "disabled"
     cy.el("submit-modal").click()
-    cy.slot("jedi+darkness_rating+formula")
+    cy.slot("jedi+darkness_rating+*variable")
       .should "contain", "30"
       .and "contain", "40"
       .and "not.contain", "100"
