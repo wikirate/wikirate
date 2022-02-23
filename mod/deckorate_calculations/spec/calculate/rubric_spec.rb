@@ -12,19 +12,19 @@ RSpec.describe Calculate::Rubric do
   end
 
   example "multi category mapping" do
-    expect(calculate({ "1" => 10, "2"=> 20, "13"=> 3 }, "Joe User+small multi"))
+    expect(calculate({ "1" => 10, "2" => 20, "13" => 3 }, "Joe User+small multi"))
       .to include(have_attributes(year: 2010, company_id: sony, value: 30.0))
   end
 
   example "else" do
-    expect(calculate({ "11"=> 10, "else"=> 20 }, "Joe User+RM"))
+    expect(calculate({ "11" => 10, "else" => 20 }, "Joe User+RM"))
       .to include(have_attributes(year: 2011, company_id: apple, value: 10.0),
                   have_attributes(year: 2012, company_id: apple, value: 20.0),
                   have_attributes(year: 2013, company_id: apple, value: 20.0))
   end
 
   example "else with multi category" do
-    expect(calculate({ "1"=> 10, "else"=> 20 }, "Joe User+small multi"))
+    expect(calculate({ "1" => 10, "else" => 20 }, "Joe User+small multi"))
       .to include(have_attributes(year: 2010, company_id: sony, value: 30.0))
   end
 end

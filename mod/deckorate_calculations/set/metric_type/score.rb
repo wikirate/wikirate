@@ -4,9 +4,7 @@ delegate :categorical?, :value_options, :value_option_names, to: :scoree_card
 delegate :calculator_class, to: :formula_card
 
 event :validate_score_name, :validate, changed: :name, on: :save do
-  unless scoree_card&.type_id == MetricID
-    errors.add :name, "#{scoree} is not a metric"
-  end
+  errors.add :name, "#{scoree} is not a metric" unless scoree_card&.type_id == MetricID
   # can't be company because Metric+Company is a record
   unless scorer_card&.type_id.in? [UserID, ResearchGroupID]
     errors.add :name, "Invalid Scorer: #{scorer}; must be a User or Research Group"

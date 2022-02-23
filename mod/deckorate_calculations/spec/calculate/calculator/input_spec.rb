@@ -135,8 +135,8 @@ RSpec.describe Calculate::Calculator::Input do
   end
 
   describe "input_for" do
-    def input_for(*args)
-      input(input_array).input_for *args
+    def input_for *args
+      input(input_array).input_for(*args)
     end
 
     context "with single metric" do

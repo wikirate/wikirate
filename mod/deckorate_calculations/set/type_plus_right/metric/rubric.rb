@@ -36,7 +36,7 @@ def unmapped_option?
 end
 
 format :html do
-  COLUMNS = %w[Value Score]
+  COLUMNS = %w[Value Score].freeze
 
   view :core do
     table categorical_content, header: COLUMNS

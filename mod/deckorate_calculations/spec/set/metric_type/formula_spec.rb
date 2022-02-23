@@ -183,7 +183,6 @@ RSpec.describe Card::Set::MetricType::Formula do
       formula "Jedi+less evil=yes"
       expect(answer_value(company: "Los Pollos Hermanos", year: 1977)).to eq "150"
     end
-
   end
 
   def test_calculation input, output

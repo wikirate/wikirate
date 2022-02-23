@@ -11,11 +11,11 @@ describe 'edit metric formulas', ->
 
   before =>
     cy.login()
-    cy.ensure(
-      "Jedi+darkness rating+:variables",
-      '[{ "metric": "Jedi+deadliness+Joe User", "weight" :"60" }, ' \
-      ' { "metric": "Jedi+disturbances in the Force+Joe User", "weight" : "40" }]'
-    )
+#    cy.ensure(
+#      "Jedi+darkness rating+:variables",
+#      '[{ "metric": "Jedi+deadliness+Joe User", "weight" : "60" }, ' \
+#      ' { "metric": "Jedi+disturbances in the Force+Joe User", "weight" : "40" }]'
+#    )
 
   specify 'WikiRating formula', =>
     cy.visit "Jedi+darkness rating"
