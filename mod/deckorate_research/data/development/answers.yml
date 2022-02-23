@@ -592,6 +592,15 @@
     :value: 'no'
     :source: Source-000000004
 - :name:
+    - Jedi
+    - disturbances in the Force
+    - Slate Rock and Gravel Company
+    - '2006'
+  :type: :metric_answer
+  :subfields:
+    :value: Unknown
+    :source: Source-000000004
+- :name:
   - Jedi
   - disturbances in the Force
   - Monster Inc

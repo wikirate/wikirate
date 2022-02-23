@@ -39,9 +39,9 @@ format :html do
   end
 
   def overridden_formula
-    wrap_with(:div,
-              "#{humanized_overridden_calculated_value} = #{formula_details}",
-              class: "formula-with-values")
+    output [humanized_overridden_calculated_value,
+            answer_details_table,
+            calculation_details]
   end
 
   def overridden_descendant

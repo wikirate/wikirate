@@ -41,14 +41,14 @@ RSpec.describe Card::Set::MetricType::Descendant do
     end
 
     context "with views" do
-      let(:formula_format) { metric.fetch(:formula).format }
-
       it "renders pointer edit view" do
-        expect(formula_format.render(:edit)).to have_tag("ul._pointer-filtered-list")
+        expect(metric.variables_card.format.render_edit)
+          .to have_tag("ul._pointer-filtered-list")
       end
 
-      it "renders ancestors in formula core" do
-        expect(formula_format.render(:core)).to have_tag("h6") { "Inherit from:" }
+      it "renders ancestors in formula view" do
+        expect(metric.format.render_formula)
+          .to have_tag("h6", text: /Inherit from ancestor/)
       end
     end
   end

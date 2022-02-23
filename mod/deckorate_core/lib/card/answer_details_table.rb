@@ -4,8 +4,7 @@ class Card
   class AnswerDetailsTable
     attr_reader :table
 
-    # @param format [Card::Format] the format of a card of
-    #    cardtype "metric value" (=answer)
+    # @param format [Card::Format] the format object of an answer card
     def initialize format, table_class_base=nil
       @format = format
       @table_class_base = table_class_base || table_class_base_from_metric_type
