@@ -30,7 +30,11 @@ def new_value_card_args
 end
 
 def numeric_value
-  Answer.to_numeric(value) if metric_card.numeric? || metric_card.relationship?
+  if metric_card.relationship?
+    value.to_i
+  elsif metric_card.numeric?
+    Answer.to_numeric value
+  end
 end
 
 # make sure pointer-style content works for multi-category

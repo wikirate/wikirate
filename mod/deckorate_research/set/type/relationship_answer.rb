@@ -30,10 +30,10 @@ event :schedule_answer_counts, :integrate do
   inverse_answer_card.schedule :update_relationship_count
 end
 
-event :schedule_old_answer_counts, :integrate, changed: :name, on: :update do
+event :schedule_old_answer_counts, :finalize, changed: :name, on: :update do
   lu = lookup
   [lu.answer_id, lu.inverse_answer_id].each do |id|
-    id.card&.schedule :update_relationship_count
+    id.card.schedule :update_relationship_count
   end
 end
 
@@ -64,7 +64,7 @@ def valid_related_company?
 end
 
 def numeric_value
-  super if metric_card.numeric?
+  Answer.to_numeric value if metric_card.numeric?
 end
 
 def value_type_code
@@ -88,7 +88,7 @@ def answer_name
 end
 
 def answer_card
-  ensure_answer_card answer_name
+  answer_card_fetch answer_name
 end
 
 def inverse_answer_name
@@ -96,10 +96,10 @@ def inverse_answer_name
 end
 
 def inverse_answer_card
-  ensure_answer_card inverse_answer_name
+  answer_card_fetch inverse_answer_name
 end
 
-def ensure_answer_card name
+def answer_card_fetch name
   Card.fetch name, new: { type: :metric_answer, subfields: { value: "1" } }
 end
 

@@ -2,7 +2,8 @@ event :update_relationship_count, delay: true, priority: 4 do
   count = relationship_answer_count
   if count.positive?
     update_relationship_answer_count! count
-  elsif !trash
+  else
+    director.restart
     delete
   end
 end
