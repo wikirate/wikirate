@@ -21,14 +21,9 @@
 include_set Abstract::Pointer
 include_set Abstract::IdPointer
 include_set Abstract::MetricChild, generation: 1
+include_set Abstract::CalcTrigger
 
 delegate :metric_type_codename, to: :metric_card
-
-# FIXME: make sure not calculated twice when updated in same act as formula
-event :update_calculated_answers, :integrate_with_delay,
-      on: :save, changed: :content, priority: 5, when: :content? do
-  metric_card.deep_answer_update
-end
 
 event :validate_variables, :validate, on: :save, changed: :content do
   item_ids.each do |card_id|

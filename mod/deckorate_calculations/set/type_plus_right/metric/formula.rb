@@ -1,4 +1,5 @@
 include_set Abstract::MetricChild, generation: 1
+include_set Abstract::CalcTrigger
 
 delegate :metric_type_codename, :metric_type_card, :variables_card,
          :calculator_class, :calculator, :normalize_value,
@@ -10,11 +11,6 @@ event :validate_formula, :validate, changed: :content do
   formula_errors.each do |msg|
     errors.add :formula, msg
   end
-end
-
-event :recalculate_on_formula_change, :integrate_with_delay,
-      on: :save, changed: :content, priority: 5, when: :content? do
-  metric_card.deep_answer_update
 end
 
 def help_rule_card
@@ -31,7 +27,7 @@ format :html do
   end
 
   def multi_card_editor?
-    depth == 0
+    depth.zero?
   end
 
   def new_success
