@@ -5,6 +5,10 @@ card_accessor :variables, type: :json # Formula, WikiRatings, and Descendants (n
 card_accessor :rubric, type: :json # Scores (of categorical metrics)
 card_accessor :formula, type: :coffee_script # Formula and non-categorical Scores
 
+event :recalculate_answers, delay: true, priority: 5 do
+  deep_answer_update
+end
+
 # DEPENDEES = metrics that I depend on
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
