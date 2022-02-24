@@ -52,7 +52,9 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
       expect(Card[*old_answer].value).to eq("1")
       expect(Card[*new_answer]).to eq(nil)
 
-      company.move_relationships_to target.name
+      with_delayed_jobs do
+        company.move_relationships_to target.name
+      end
 
       expect(Card[*new_relationship].value).to eq("yes")
       expect(Card[*new_answer].value).to eq("1")
