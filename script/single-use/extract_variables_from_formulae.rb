@@ -9,9 +9,14 @@ Cardio.config.perform_deliveries = false
 
 include Card::Model::SaveHelper
 
-ensure_code_card "Rubric"
 
 NEST_REGEXP = /^\s*(?<variable>\w+)\s*=\s*(?<nest>\{\{[^}]*\}\})\s*$/
+
+ensure_code_card "Rubric"
+
+Card.search(left: {type: :metric}, right: :variables).each do |v|
+  v.delete! unless v.type_code == :json
+end
 
 %i[year not_researched company].each { |k| Card::View::Options.shark_keys << k }
 
@@ -48,16 +53,16 @@ def update_calculations
     begin
       send "update_#{metric.metric_type_codename}", metric
     rescue => e
-      puts "error updating #{metric.name} (#{metric.id}: #{e.message}".red
+      puts "error updating #{metric.name.url_key} (#{metric.id}): #{e.message}".red
     end
   end
 end
 
 def variables_only metric
   variables = yield.to_json
-  puts "variables for #{metric.name}: #{variables}".green
-  #metric.variables_card.update! content: variables
-  #metric.formula_card.delete!
+  # puts "variables for #{metric.name}: #{variables}".green
+  metric.variables_card.update! content: variables
+  metric.formula_card.delete!
 end
 
 def update_descendant metric
@@ -79,8 +84,8 @@ end
 def update_score metric
   if metric.categorical?
     new_name = [metric, :rubric].cardname
-    puts "renaming #{metric.formula_card.name} to #{new_name}".magenta
-    # metric.formula_card.update! name: new_name
+    # puts "renaming #{metric.formula_card.name} to #{new_name}".magenta
+    metric.formula_card.update! name: new_name
   else
     update_coffeescript_score metric
   end
@@ -91,21 +96,25 @@ def update_coffeescript_score metric
     variables_and_formula(metric).tap do |fields|
       next unless (varname = fields.delete(:variables).first&.dig :name)
       fields[:formula].gsub! /\b#{varname}\b/, "answer"
+      if fields[:formula].lines.size == 1
+        fields[:formula].sub! /^answer =\s*/, ""
+      end
     end
   end
 end
 
-
 def update_coffeescript metric, color
   subfields = yield
-  puts "subfields for #{metric.name}: #{subfields}".send color
-  # metric.update! subfields
-  # metric.formula_card.update! type: :coffeescript
+  # puts "subfields for #{metric.name}: #{subfields}".send color
+  metric.update! subfields: subfields
+  metric.formula_card.update! type: :coffee_script
 end
 
 def update_formula metric
   update_coffeescript metric, :cyan do
-    variables_and_formula metric
+    variables_and_formula(metric).tap do |fields|
+      fields[:variables] = fields[:variables].to_json
+    end
   end
 end
 
