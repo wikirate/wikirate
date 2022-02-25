@@ -30,8 +30,8 @@ class Card
     end
 
     def name_query value
-      restrict_by_cql "title_id", name: [:match, value],
-                                  left_plus: [{}, { type: :metric }]
+      restrict_by_cql :title, "title_id",
+                      name: [:match, value], left_plus: [{}, { type: :metric }]
     end
 
     def simple_sort_by value
