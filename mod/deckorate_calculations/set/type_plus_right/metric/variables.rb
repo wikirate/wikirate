@@ -66,7 +66,7 @@ private
 def content_to_hash_list content
   case content
   when Array
-    items
+    content
   when /^\s*\[/
     JSON.parse content
   else
