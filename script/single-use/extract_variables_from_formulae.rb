@@ -3,58 +3,44 @@ require "json"
 require "colorize"
 
 Card::Auth.signin "Ethan McCutchen"
+Card::Auth.as_bot
+
 Cardio.config.perform_deliveries = false
 
 include Card::Model::SaveHelper
 
 ensure_code_card "Rubric"
 
-NEST_REGEXP = /^\s*(?<variable>\w+)\s*=\s*\{\{(?<nest>[^}]*)\}\}\s*$/
+NEST_REGEXP = /^\s*(?<variable>\w+)\s*=\s*(?<nest>\{\{[^}]*\}\})\s*$/
 
-# def inspect_inputs inputs, formula
-#   puts "#{inputs.keys.size} found variables for #{formula.name.left}: " \
-#        "#{inputs.keys.join ', '}".green
-#
-#   chunks = formula.nest_chunks
-#   inspect_nest_count inputs, chunks.size, formula
-#   inspect_nest_options chunks, formula
-# end
-
-# def inspect_nest_count inputs, nest_count, formula
-#   return if inputs.keys.size == nest_count
-#
-#   puts "expected #{formula.nest_chunks.size} variables from " \
-#        "/#{formula.name.url_key} :\n#{formula.content}".red
-# end
-#
-# def inspect_nest_options chunks, formula
-#   opts = chunks.map { |n| n.options.except :nest_name, :nest_syntax }.uniq
-#   puts opts
-#
-#   @option_groups[opts] ||= []
-#   @option_groups[opts] << formula
-#
-#   return unless opts.size > 1
-#
-#   puts "nest options vary! " # ":\n#{formula.content}".yellow
-# end
+%i[year not_researched company].each { |k| Card::View::Options.shark_keys << k }
 
 def strip_coffeescript_comment fcontent
   fcontent.sub /^#\s*CoffeeScript\s*/m, ""
 end
 
 def variables_and_formula metric
-  vars = {}
-  formula = []
-
-  strip_coffeescript_comment(metric.formula).each_line do |line|
-    if (match = line.match NEST_REGEXP)
-      vars[match[:variable]] = match[:nest]
-    else
-      formula << line
+  { variables: [], formula: [] }.tap do |fields|
+    strip_coffeescript_comment(metric.formula).each_line do |line|
+      interpret_formula_line line, fields
     end
+    fields[:formula] = fields[:formula].join("\n").strip
   end
-  { variables: vars, formula: formula.join("\n").strip }
+end
+
+def interpret_formula_line line, fields
+  if (match = line.match NEST_REGEXP)
+    fields[:variables] << variablize(match)
+  else
+    fields[:formula] << line
+  end
+end
+
+def variablize match
+  hash = { name: match[:variable] }
+  nest = Card::Content::Chunk::Nest.new match[:nest], nil
+  hash[:metric] = nest.name
+  hash.merge nest.interpret_options
 end
 
 def update_calculations
@@ -93,28 +79,34 @@ end
 def update_score metric
   if metric.categorical?
     new_name = [metric, :rubric].cardname
-    puts "renaming #{metric.formula_card.name} to #{new_name}".yellow
+    puts "renaming #{metric.formula_card.name} to #{new_name}".magenta
     # metric.formula_card.update! name: new_name
   else
-    update_coffeescript metric do
-      variables_and_formula(metric).tap { |fields| fields.delete :variables }
+    update_coffeescript_score metric
+  end
+end
+
+def update_coffeescript_score metric
+  update_coffeescript metric, :light_blue do
+    variables_and_formula(metric).tap do |fields|
+      next unless (varname = fields.delete(:variables).first&.dig :name)
+      fields[:formula].gsub! /\b#{varname}\b/, "answer"
     end
   end
 end
 
-def update_coffeescript metric
+
+def update_coffeescript metric, color
   subfields = yield
-  puts "subfields for #{metric.name}: #{subfields}".blue
+  puts "subfields for #{metric.name}: #{subfields}".send color
   # metric.update! subfields
   # metric.formula_card.update! type: :coffeescript
 end
 
-
 def update_formula metric
-  update_coffeescript metric do
+  update_coffeescript metric, :cyan do
     variables_and_formula metric
   end
 end
-
 
 update_calculations
