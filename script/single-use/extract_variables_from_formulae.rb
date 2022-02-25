@@ -3,8 +3,11 @@ require "json"
 require "colorize"
 
 Card::Auth.signin "Ethan McCutchen"
-config.perform_deliveries = false
+Cardio.config.perform_deliveries = false
 
+include Card::Model::SaveHelper
+
+ensure_code_card "Rubric"
 
 NEST_REGEXP = /^\s*(?<variable>\w+)\s*=\s*\{\{(?<nest>[^}]*)\}\}\s*$/
 
@@ -57,9 +60,9 @@ end
 def update_calculations
   Card.search type: :metric, right_plus: :formula do |metric|
     begin
-      send "update_#{metric.metric_type_codename}"
+      send "update_#{metric.metric_type_codename}", metric
     rescue => e
-      puts "error updating #{metric.name} (#{metric.id)}: #{e.message}".red
+      puts "error updating #{metric.name} (#{metric.id}: #{e.message}".red
     end
   end
 end
