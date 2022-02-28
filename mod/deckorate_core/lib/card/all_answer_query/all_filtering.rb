@@ -40,7 +40,7 @@ class Card
         add_card_condition condition, value
       end
 
-      def restrict_by_cql col, cql
+      def restrict_by_cql _suffix, col, cql
         return super unless (partner_column = partner_field_map[col])
 
         cql.reverse_merge! return: :id, limit: 0
