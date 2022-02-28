@@ -22,7 +22,7 @@ class Card
       end
 
       def checked_by whom
-        restrict_by_cql :answer_id,
+        restrict_by_cql :checked_by, :answer_id,
                         type_id: MetricAnswerID,
                         right_plus: [CheckedByID, { refer_to: whom }]
       end
@@ -50,7 +50,8 @@ class Card
       end
 
       def source_query value
-        restrict_by_cql :answer_id, right: :source, refer_to: value, return: :left_id
+        restrict_by_cql :source, :answer_id,
+                        right: :source, refer_to: value, return: :left_id
       end
 
       private
