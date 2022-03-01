@@ -35,7 +35,7 @@ class Answer
         card.define_singleton_method(:value) { val }
         # card.define_singleton_method(:updated_at) { updated_at }
         card.define_singleton_method(:value_card) { virtual_value_card val }
-        card.answer= self
+        card.answer = self
       end
     end
   end
