@@ -66,7 +66,7 @@ class Card
     private
 
     def main_results
-      puts "SQL: #{lookup_relation.to_sql}"
+      # puts "SQL: #{lookup_relation.to_sql}"
       lookup_relation.answer_cards
     end
 
