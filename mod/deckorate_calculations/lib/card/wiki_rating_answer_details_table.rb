@@ -10,7 +10,6 @@ class Card
     end
 
     def metric_row input_card, weight
-      # binding.pry
       score_card = answer_card input_card
       super(input_card).push score_cell(score_card),
                              weight_cell(weight),
