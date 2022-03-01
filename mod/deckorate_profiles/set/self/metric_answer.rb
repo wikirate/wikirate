@@ -1,8 +1,6 @@
 def ids_related_to_research_group research_group
   research_group.projects.map do |project|
-    project.dataset_card.item_names.map do |dataset|
-      AnswerQuery.new(dataset: dataset).lookup_relation.pluck :answer_id
-    end
+    AnswerQuery.new(dataset: project.dataset_name).lookup_relation.pluck :answer_id
   end.flatten.compact
 end
 
