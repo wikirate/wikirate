@@ -12,7 +12,7 @@ RSpec.describe Calculate::Calculator do
   end
 
   def invalid variables, formula, *errors
-    expect(calculator(variables, formula).detect_errors).to eq errors
+    expect(calculator(variables, formula).detect_errors).to include(*errors)
   end
 
   example "simple formula" do
@@ -45,13 +45,13 @@ RSpec.describe Calculate::Calculator do
   example "invalid company option" do
     variables << variables.first.clone
     variables.first[:company] = "not_a_company"
-    invalid variables, "m1", "unknown card: not_a_company"
+    invalid variables, "m1", /invalid company option: not_a_company/
   end
 
   example "invalid company option list" do
     variables << variables.first.clone
     variables.first[:company] = "not_a_card, A"
-    invalid variables, "m1", "unknown card: not_a_card", "not a company:  A"
+    invalid variables, "m1", /invalid company option: not_a_card, A/
   end
 
   example "no company dependency" do
@@ -60,18 +60,14 @@ RSpec.describe Calculate::Calculator do
             "must have at least one variable not explicitly specify company"
   end
 
-  example "company option with invalid metric" do
-    variables.first[:company] = "Related[not_a_card]"
-    invalid variables, "m1", "not a metric: \"not_a_card\""
+  example "company option with company group" do
+    variables.first[:company] = "Deadliest"
+    invalid variables, "m1",
+            "must have at least one variable not explicitly specify company"
   end
 
-  example "empty company relation condition" do
-    variables.first[:company] = "Related[Jedi+deadliness]"
-    invalid variables, "m1", "expected a relationship metric: \"Jedi+deadliness\""
-  end
-
-  example "company option with invalid relation condition" do
-    variables.first[:company] = "Related[Jedi+deadliness =]"
-    invalid variables, "m1", "invalid expression \"Jedi+deadliness =\""
+  example "company option with relationship metric" do
+    variables.first[:company] = "Jedi+deadliness"
+    valid variables, "m1"
   end
 end
