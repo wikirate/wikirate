@@ -48,7 +48,7 @@ format :html do
   end
 
   def verification_flag
-    h = Answer::VERIFICATION_LEVELS[card.answer.verification]
+    h = Answer::VERIFICATION_LEVELS[(card.answer.verification || 1)]
     return "" unless (icon = h[:icon])
 
     fa_icon icon, title: h[:title], class: "verification-#{h[:klass] || h[:name]}"
