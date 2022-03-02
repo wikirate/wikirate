@@ -49,7 +49,12 @@ format :html do
 
   def categorical_content
     card.translation_table.map do |value, score|
-      [value, colorify(score.to_s)]
+      score = score.to_s
+      score = colorify score unless card.metric_card.multi_categorical?
+      # if score is one of many categories, then its score is often a partial value,
+      # so the color mapping doesn't make sense.  Eg, each of five values might be
+      # worth two points each, but the color associate with 2 implies a bad score
+      [value, score]
     end
   end
 

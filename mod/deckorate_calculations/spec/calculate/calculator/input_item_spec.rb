@@ -91,30 +91,23 @@ RSpec.describe Calculate::Calculator::InputItem do
     describe "company options" do
       let(:mark) { "Jedi+deadliness" }
 
-      example "metric with fixed single company option" do
+      example "single company" do
         expect(answer_value_hash(death_star, nil, company: "Death Star"))
           .to eq(1977 => "100")
       end
 
-      example "metric with fixed list company option" do
-        expect(answer_value_hash(samsung, nil, company: "Death Star, SPECTRE"))
-          .to eq(1977 => %w[100 50])
+      example "company group" do
+        expect(answer_value_hash(samsung, nil, company: "Deadliest"))
+          .to eq(1977 => %w[100 40 50])
       end
 
       example "metric with related company option" do
-        expect(answer_value_hash(death_star, nil, company: "Related[Jedi+more evil=yes]"))
+        expect(answer_value_hash(death_star, nil, company: "Jedi+more evil"))
           .to eq(1977 => %w[40 50])
       end
 
-      example "metric with related company options with 2 conditions" do
-        condition = "Jedi+more evil = yes && Commons+Supplied by = Tier 1 Supplier"
-        expect(answer_value_hash(spectre, nil, company: "Related[#{condition}]"))
-          .to eq(1977 => %w[40])
-      end
-
       example "metric with company and year options" do
-        expect(answer_value_hash(death_star, nil, year: "-1",
-                                                  company: "Related[Jedi+more evil=yes]"))
+        expect(answer_value_hash(death_star, nil, year: "-1", company: "Jedi+more evil"))
           .to eq(1978 => %w[40 50])
       end
     end
