@@ -3,32 +3,38 @@ class Calculate
     class InputItem
       module Options
         module CompanyOption
-          # Used if a single company is passed as company option.
+          # Used if a company group is passed as company option.
           # It makes the values for this input item independent of the output company
-          # (since the answer for company of the company option is always used)
-          # Example:
-          #   {{ M1 | company: Death Star }}
+          # (since the answers for the company group are always used)
           module GroupedCompanies
             include CompanyIndependentInput
 
+            # year => InputAnswer
             def year_answer_pairs
-              each_input_answer answer_query_relation, {} do |input_answer, hash|
-                hash[input_answer.year] ||= []
-                hash[input_answer.year] << input_answer
+              answer_lists.each_with_object({}) do |(year, array), hash|
+                hash[year] = consolidated_input_answer array, year
               end
-            end
-
-            def answer_query_relation
-              Card::AnswerQuery.new(
-                metric_id: input_card.id,
-                company_group: company_option_card.id
-              ).lookup_relation
             end
 
             private
 
-            def requested_company_group_name
-              @requested_company_id ||= company_option.card_id
+            # year => [Answer]
+            def answer_lists
+              answer_relation.each_with_object({}) do |answer, hash|
+                hash[answer.year] ||= []
+                hash[answer.year] << answer
+              end
+            end
+
+            def answer_relation
+              Card::AnswerQuery.new(
+                metric_id: input_card.id,
+                company_group: company_group.id
+              ).lookup_relation
+            end
+
+            def company_group
+              company_option_card
             end
           end
         end

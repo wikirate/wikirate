@@ -43,36 +43,6 @@ class Calculate
           end
         end
 
-        # used for CompanyOption
-        def combined_input_answers company_ids, year
-          consolidated_input_answer sub_input_answers(company_ids, year), year
-        end
-
-        def sub_input_answers company_ids, year
-          rel = sub_answers_rel company_ids, year
-          each_input_answer rel, [] do |input_answer, array|
-            array << input_answer
-          end
-        end
-
-        def sub_answers_rel company_ids, year
-          Answer.where metric_id: input_card.id, company_id: company_ids, year: year
-        end
-
-        def consolidated_input_answer input_answers, year
-          value = input_answers.map(&:value)
-          unpublished = input_answers.find(&:unpublished)
-          verification = input_answers.map(&:verification).compact.min || 1
-          InputAnswer.new(self, nil, year).assign value, unpublished, verification
-        end
-
-        # used for CompanyOption
-        def years_from_db company_ids
-          Answer.select(:year).distinct
-                .where(metric_id: input_card.id, company_id: company_ids)
-                .distinct.pluck(:year).map(&:to_i)
-        end
-
         def search_company_ids
           Answer.select(:company_id).distinct
                 .where(metric_id: input_card.id).pluck(:company_id)
@@ -93,6 +63,13 @@ class Calculate
           yield
         ensure
           @search_space = nil
+        end
+
+        def consolidated_input_answer input_answers, year
+          value = input_answers.map(&:value)
+          unpublished = input_answers.find(&:unpublished)
+          verification = input_answers.map(&:verification).compact.min || 1
+          InputAnswer.new(self, nil, year).assign value, unpublished, verification
         end
       end
     end

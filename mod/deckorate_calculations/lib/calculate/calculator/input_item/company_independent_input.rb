@@ -12,6 +12,10 @@ class Calculate
           YearlyValueStore
         end
 
+        def year_value_pairs_by_company
+          { nil => year_answer_pairs }
+        end
+
         def update_result_slice _company_id, year, _value
           @result_slice.add :all, year
         end

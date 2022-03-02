@@ -67,7 +67,7 @@ RSpec.describe Calculate::Calculator do
   end
 
   example "company option with relationship metric" do
-    variables.first[:company] = "Jedi+deadliness"
+    variables.first[:company] = "Jedi+more evil"
     valid variables, "m1"
   end
 end

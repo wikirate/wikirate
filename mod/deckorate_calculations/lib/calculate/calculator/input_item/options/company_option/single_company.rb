@@ -6,8 +6,6 @@ class Calculate
           # Used if a single company is passed as company option.
           # It makes the values for this input item independent of the output company
           # (since the answer for company of the company option is always used)
-          # Example:
-          #   {{ M1 | company: Death Star }}
           module SingleCompany
             include CompanyIndependentInput
 
@@ -15,7 +13,7 @@ class Calculate
               each_input_answer answer_query_relation, {} do |input_answer, hash|
                 hash[input_answer.year] = input_answer
               end
-              gca -    end
+            end
 
             def answer_query_relation
               Answer.where metric_id: input_card.id, company_id: requested_company_id

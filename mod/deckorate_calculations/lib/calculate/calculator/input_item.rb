@@ -15,7 +15,6 @@ class Calculate
       include ValidationChecks
       include Search
       include Defaults
-      include CompanyDependentInput
       include Options
 
       INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification].freeze
