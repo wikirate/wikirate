@@ -6,13 +6,13 @@ class Card
     ICON_MAP = { true => "check-circle", false => "circle" }.freeze
 
     def table_rows
-      translation_hash.map do |option, value|
+      rubric_hash.map do |option, value|
         Option.new(self, option, value).table_row_hash
       end
     end
 
-    def translation_hash
-      @translation_hash ||= metric_card.rubric_card.translation_hash
+    def rubric_hash
+      @rubric_hash ||= metric_card.rubric_card.parse_content
     end
 
     def icon_tag checked
@@ -30,7 +30,7 @@ class Card
     end
 
     def score_links
-      checked_options.map { |o| link_to_answer translation_hash[o] }
+      checked_options.map { |o| link_to_answer rubric_hash[o] }
     end
 
     # category scores have a row for each of the metric's value options.
