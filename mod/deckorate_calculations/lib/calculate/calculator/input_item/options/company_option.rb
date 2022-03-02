@@ -14,6 +14,10 @@ class Calculate
         #   {{Jedi+deadliness|company:Related[Jedi+more evil>=6 &&
         #                                   Commons+Supplied by=Tier 1 Supplier]}}
         module CompanyOption
+          extend AddValidationChecks
+
+          add_validation_checks :check_company_option
+
           def initialize_option
             super
             interpret_company_option
@@ -24,21 +28,30 @@ class Calculate
           end
 
           def company_option
-            @company_option ||= option(:company)
+            @company_option ||= option :company
+          end
+
+          def company_option_card
+            @company_option_card ||= company_option&.card
+          end
+
+          def check_company_option
+            add_error @value_type_error if @value_type_error
           end
 
           private
 
           def interpret_company_option
-            case company_option
-            when /Related\[([^\]]*)\]/
-              extend CompanySearch
-            when /&&/
-              extend CompanyQuery
-            when /,/
-              extend CompanyList
+            case company_option_card&.type_code
+            when :metric
+              extend RelatedCompanies
+            when :company_group
+              extend GroupedCompanies
+            when :wikirate_company
+              extend SingleCompany
             else
-              extend CompanySingle
+              @value_type_error = "invalid company option: #{company_option}. " \
+                                  "Must be company, company group, or relationship metric"
             end
           end
         end
