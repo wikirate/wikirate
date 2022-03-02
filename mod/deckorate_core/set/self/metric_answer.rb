@@ -21,6 +21,10 @@ format :html do
     :wikirate_one_full_column_layout
   end
 
+  def default_sort_option
+    :year
+  end
+
   before :header do
     voo.title = "Answer Dashboard #{mapped_icon_tag :dashboard}"
     voo.variant = nil

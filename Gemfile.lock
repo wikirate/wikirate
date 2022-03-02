@@ -52,7 +52,6 @@ PATH
       capistrano-git-with-submodules (~> 2.0)
       capistrano-maintenance
       capistrano-passenger
-      capistrano-rvm
       ed25519
 
 PATH
@@ -371,9 +370,6 @@ GEM
       capistrano (>= 3.0)
     capistrano-passenger (0.2.1)
       capistrano (~> 3.0)
-    capistrano-rvm (0.1.2)
-      capistrano (~> 3.0)
-      sshkit (~> 1.2)
     capybara (3.36.0)
       addressable
       matrix
