@@ -170,7 +170,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
   context "with network aware formula" do
     def formula related
-      vars = [{ metric: "Jedi+deadliness", name: "m1", company: "Relatead[#{related}]" }]
+      vars = [{ metric: "Jedi+deadliness", name: "m1", company: "Related[#{related}]" }]
       create_formula "SUM m1", vars
     end
 
