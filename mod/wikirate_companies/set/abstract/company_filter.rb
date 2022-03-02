@@ -21,7 +21,7 @@ format do
   end
 
   def default_sort_option
-    "answer"
+    "id"
   end
 
   def default_filter_hash
@@ -34,6 +34,10 @@ format do
 end
 
 format :html do
+  def default_sort_option
+    "answer"
+  end
+
   def quick_filter_list
     bookmark_quick_filter + company_group_quick_filters + dataset_quick_filters
   end
