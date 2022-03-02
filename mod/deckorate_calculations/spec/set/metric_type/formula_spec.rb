@@ -170,17 +170,17 @@ RSpec.describe Card::Set::MetricType::Formula do
 
   context "with network aware formula" do
     def formula related
-      vars = [{ metric: "Jedi+deadliness", name: "m1", company: "Related[#{related}]" }]
+      vars = [{ metric: "Jedi+deadliness", name: "m1", company: related }]
       create_formula "SUM m1", vars
     end
 
     example "using direct relationship" do
-      formula "Jedi+more evil=yes"
+      formula "Jedi+more evil"
       expect(answer_value(company: "Death Star", year: 1977)).to eq "90"
     end
 
     example "using inverse relationship" do
-      formula "Jedi+less evil=yes"
+      formula "Jedi+less evil"
       expect(answer_value(company: "Los Pollos Hermanos", year: 1977)).to eq "150"
     end
   end

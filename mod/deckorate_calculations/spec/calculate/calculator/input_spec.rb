@@ -79,7 +79,7 @@ RSpec.describe Calculate::Calculator::Input do
 
         expect(
           input_each(
-            [{ metric: "Jedi+deadliness", company: "Related[Jedi+more evil = yes]" }],
+            [{ metric: "Jedi+deadliness", company: "Jedi+more evil" }],
             1977, "Death Star"
           )
         ).to eq([[[[40.0, 50.0]], death_star_id, 1977]])

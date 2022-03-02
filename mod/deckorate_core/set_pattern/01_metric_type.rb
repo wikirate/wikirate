@@ -55,7 +55,7 @@ end
 
 def prototype_args anchor
   metric_type = metric_type anchor
-  { type: "metric", "+*metric_type" => "[[#{metric_type}]]"  }
+  { type: "metric", "+*metric_type" => metric_type  }
 end
 
 def anchor_name card
