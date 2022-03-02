@@ -12,7 +12,7 @@ class Card
     end
 
     def translation_hash
-      @translation_hash ||= metric_card.formula_card.translation_hash
+      @translation_hash ||= metric_card.rubric_card.translation_hash
     end
 
     def icon_tag checked
