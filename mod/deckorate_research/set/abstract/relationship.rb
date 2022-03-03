@@ -31,8 +31,6 @@ def relationships args={}
   ::Relationship.where args
 end
 
-
-
 # @return [Array] of Integers
 def inverse_company_ids args={}
   normalize_company_arg company_id_field, args
