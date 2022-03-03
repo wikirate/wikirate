@@ -6,7 +6,6 @@ class Calculate
           # Used if a relationship metric (or inverse relationship metric) is
           # passed as company option.
           module RelatedCompanies
-
             # year => InputAnswer
             def year_value_pairs_by_company
               each_input_answer answers, {} do |input_answer, hash|
@@ -35,8 +34,6 @@ class Calculate
                 company_id: relationship_metric.inverse_company_ids(company: company_id)
               )
             end
-
-            private
 
             def relationship_metric
               @relationship_metric ||= company_option_card
