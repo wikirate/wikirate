@@ -4,6 +4,18 @@ class Calculate
       # Methods for override
       # (if they are defined directly on the base class, they can't be overridden)
       module Defaults
+        def company_dependent?
+          true
+        end
+
+        def value_store_class
+          ValueStore
+        end
+
+        def update_result_slice company_id, year, _value
+          @result_slice.add company_id, year
+        end
+
         def years_with_values
           value_store.years
         end
@@ -17,11 +29,9 @@ class Calculate
         end
 
         def year_value_pairs_by_company
-          {}.tap do |hash|
-            each_input_answer answers do |input_answer|
-              company_hash = hash[input_answer.company_id] ||= {}
-              company_hash[input_answer.year] = input_answer
-            end
+          each_input_answer answers, {} do |input_answer, hash|
+            company_hash = hash[input_answer.company_id] ||= {}
+            company_hash[input_answer.year] = input_answer
           end
         end
 

@@ -33,7 +33,7 @@ end
 
 # @return [Array] of Integers
 def inverse_company_ids args={}
-  normalize_company_arg inverse_company_id_field, args
+  normalize_company_arg company_id_field, args
   relationships(args).distinct.pluck inverse_company_id_field
 end
 
