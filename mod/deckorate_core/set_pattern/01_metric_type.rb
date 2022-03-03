@@ -33,14 +33,15 @@ end
 private
 
 def metric_type metric_card_or_name
-  type_from_card_content(metric_type_card metric_card_or_name) || DEFAULT_METRIC_TYPE
+  metric_type_card(metric_card_or_name)&.db_content&.strip || DEFAULT_METRIC_TYPE
 end
 
 def metric_type_card metric_card_or_name
   metric_card, metric_name = metric_card_and_name metric_card_or_name
-  metric_type_card_from_fetch(metric_card) ||
+  metric_type_name = "#{metric_name}+*metric type"
+  metric_type_card_from_fetch(metric_type_name) ||
     metric_type_card_from_subfield(metric_card) ||
-    metric_type_card_from_act(metric_name)
+    metric_type_card_from_act(metric_type_name)
 end
 
 def metric_card_and_name card_or_name
@@ -55,15 +56,11 @@ def metric_type_card_from_act metric_type_name
   Card::Director.card metric_type_name
 end
 
-def metric_type_card_from_fetch metric_card
-  metric_card&.fetch :metric_type, skip_modules: true, skip_type_lookup: true
+def metric_type_card_from_fetch metric_type_name
+  Card.fetch metric_type_name, skip_modules: true, skip_type_lookup: true
 end
 
 def metric_type_card_from_subfield metric_card
   # puts "subcards for #{card.name}: #{card.subcards.keys}".yellow
   metric_card.subfield :metric_type if metric_card.subfield? :metric_type
-end
-
-def type_from_card_content metric_type_card
-  metric_type_card&.standard_content&.scan(/^(?:\[\[)?([^\]]+)(?:\]\])?$/)&.flatten&.first
 end
