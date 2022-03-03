@@ -85,7 +85,8 @@ def update_score metric
   if metric.categorical?
     new_name = [metric, :rubric].cardname
     # puts "renaming #{metric.formula_card.name} to #{new_name}".magenta
-    metric.formula_card.update! name: new_name, type: :json, skip: :validate_renaming
+    metric.formula_card.update! type: :json
+    metric.formula_card.update! name: new_name
   else
     update_coffeescript_score metric
   end
