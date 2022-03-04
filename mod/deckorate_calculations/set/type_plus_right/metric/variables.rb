@@ -50,7 +50,8 @@ def item_strings _args={}
 end
 
 def hash_list
-  @hash_list ||= parse_content.map(&:symbolize_keys!)
+  #@hash_list ||=
+    parse_content.map(&:symbolize_keys!)
 end
 
 def export_content
