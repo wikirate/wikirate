@@ -58,18 +58,22 @@ end
 
 def score_metrics
   @score_metrics ||=
-    Card.search type_id: MetricID, left_id: id
+    Card.search type: :metric, left_id: id
 end
 
 # note: includes Formula, WikiRating, and Descendants but not Score metrics
 def formula_metrics
   @formula_metrics ||=
-    Card.search type_id: MetricID, right_plus: [:variables, { refer_to: id }]
+    Card.search type: :metric, right_plus: [:variables, { refer_to: id }]
 end
 
 format :html do
   # used when metric is a variable in a WikiRating
-  def weight_row weight=0, label=nil
-    haml :weight_row, weight: weight, label: (label || render_thumbnail_no_link)
+  def weight_row weight=0
+    haml :weight_row, weight: weight
+  end
+
+  def formula_variable_row hash
+    haml :formula_variable_row, hash
   end
 end
