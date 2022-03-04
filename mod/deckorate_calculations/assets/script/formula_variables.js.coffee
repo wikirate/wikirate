@@ -1,27 +1,18 @@
-decko.editorContentFunctionMap['._variablesEditor'] = ->
-  vt = new VariablesTable this
-  vt.json()
+decko.editorContentFunctionMap['._variablesEditor'] = -> variabler(this).json()
 
-class VariablesTable
-  constructor: (table) ->
-    @table = $(table)
+$(window).ready ->
+  $('body').on "click", "._remove-variable", ->
+    variabler(this).removeVariable this
 
-  variables:->
-    for row in @table.find "tbody tr"
-      new Variable row
+variabler = (el) ->
+  new FormulaVariablesTable el
 
-  hashList:->
-    for v in @variables()
-      v.hash()
+class FormulaVariablesTable extends deckorate.VariablesTable
+  variableClass: -> FormulaVariable
 
-  json:-> JSON.stringify @hashList()
-
-class Variable
-  constructor: (tr) ->
-    @row = $(tr)
-
-  metricId:-> @row.find(".TYPE-metric.thumbnail").data "cardId"
-
+class FormulaVariable extends deckorate.Variable
   variableName:-> @row.find("._variable-name").val()
 
-  hash:-> { metric: "~#{@metricId()}", name: @variableName() }
+  hash:->
+    metric: "~#{@metricId()}"
+    name: @variableName()
