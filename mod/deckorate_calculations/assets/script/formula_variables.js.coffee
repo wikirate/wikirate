@@ -11,12 +11,10 @@ class VariablesTable
       new Variable row
 
   hashList:->
-    vars = []
     for v in @variables()
-      vars.push v.hash()
-    vars
+      v.hash()
 
-  json:-> JSON.stringify vars
+  json:-> JSON.stringify @hashList()
 
 class Variable
   constructor: (tr) ->

@@ -4,7 +4,7 @@
 #
 # { metric: metric_name, weight: metric_weight }
 decko.editorContentFunctionMap['.wikiRating-editor'] = ->
-  JSON.stringify wikiRatingInputs(this)
+  rating(this).json()
 
 decko.slotReady ->
   $('td.metric-weight input').on 'keyup', (event) ->
@@ -27,29 +27,36 @@ class VariablesTable
   constructor: (el) ->
     @table = $(el).closest ".wikiRating-editor"
 
-  variables:->
-    for row in @table.find "tbody tr"
-      new Variable row
+    @digitsAfterDecimal = 2
+    @multiplier = 10 ** @digitsAfterDecimal
 
-  hashList:->
-    vars = []
-    for v in @variables()
-      vars.push v.hash()
+  variables:->
+    vars = for row in @table.find "tbody tr"
+      new Variable row
+    vars.pop() # last row is total
     vars
 
-  weights:->
-    wts = []
+  hashList:->
+    # vars = []
     for v in @variables()
-      wts.push v.weight()
-    wts
+      # vars.push
+      v.hash()
+    # vars
 
-  json:-> JSON.stringify vars
+  weights:->
+    # wts = []
+    for v in @variables()
+      # wts.push
+      v.weight()
+    # wts
+
+  json:-> JSON.stringify @hashList()
 
   checkEqualization: ->
-    $('#equalizer').prop 'checked', areEqual()
+    $('#equalizer').prop 'checked', @areEqual()
 
   areEqual: ->
-    weights.every( (val, i, arr) => val == arr[0] ) == true
+    @weights().every( (val, i, arr) => val == arr[0] ) == true
 
   removeVariable: (el) ->
     $(el).closest("tr").remove()
@@ -60,10 +67,24 @@ class VariablesTable
     weight = (100 / (vars.length - 1)).toFixed(2)
     for v in vars
       v.setWeight weight
-    validate()
+    @validate()
 
-  validate:-> #todo
+  validate:->
+    @totalIsValid()
 
+  totalIsValid:->
+    t = @weights().reduce ((a, b) -> a + (parseFloat(b) * @multiplier)), 0
+    debugger
+    t = t / @multiplier
+    alert t
+    @publishTotal t
+    if t > 99.90 and t <= 100.09
+      t
+    else
+      false
+
+  publishTotal: (total) ->
+    @table.find('.weight-sum').val total
 
 class Variable
   constructor: (tr) ->
@@ -77,9 +98,9 @@ class Variable
 
   weightInput:-> @row.find(".metric-weight input")
 
-  weight:-> @weightInput.val()
+  weight:-> @weightInput().val()
 
-  setWeight: (val)-> @weightInput.val(val)
+  setWeight: (val)-> @weightInput().val val
 
 
 
