@@ -1,5 +1,5 @@
 
-# Translation (Score) editor
+# rubric (Score) editor
 
 decko.editorContentFunctionMap['.pairs-editor'] = ->
   JSON.stringify pairsEditorHash(this)

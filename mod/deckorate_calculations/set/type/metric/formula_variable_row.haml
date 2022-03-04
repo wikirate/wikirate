@@ -1,0 +1,9 @@
+%td.formula-variable
+  = text_field_tag "variable-name", name, class: "_variable-name"
+%td.metric-label._filtered-list-item{ data: wrap_data }
+  = render_thumbnail_no_link
+%td.formula-options
+  (options)
+%td
+  %span._remove-variable.btn.btn-outline-secondary.btn-sm
+    = fa_icon :close
