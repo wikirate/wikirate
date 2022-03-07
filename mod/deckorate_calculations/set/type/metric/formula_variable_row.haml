@@ -1,9 +1,10 @@
-%td.formula-variable
-  = text_field_tag "variable-name", name, class: "_variable-name"
-%td.metric-label._filtered-list-item{ data: wrap_data }
-  = render_thumbnail_no_link
-%td.formula-options
-  (options)
-%td
-  %span._remove-variable.btn.btn-outline-secondary.btn-sm
-    = fa_icon :close
+.row.p-2._filtered-list-item{ data: wrap_data }
+  .col-3.formula-variable
+    = text_field_tag "variable-name", name, class: "_variable-name"
+  .col-5.metric-label._filtered-list-item{ data: wrap_data }
+    = render_thumbnail_no_link
+  .col-3.formula-options
+    (options)
+  .col-1
+    %span._remove-variable.btn.btn-outline-secondary.btn-sm
+      = fa_icon :close

@@ -68,9 +68,17 @@ def formula_metrics
 end
 
 format :html do
+  view :weight_row do
+    weight_row 0
+  end
+
   # used when metric is a variable in a WikiRating
   def weight_row weight=0
     haml :weight_row, weight: weight
+  end
+
+  view :formula_variable_row do
+    formula_variable_row name: ""
   end
 
   def formula_variable_row hash

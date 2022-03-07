@@ -7,7 +7,7 @@ decko.editorContentFunctionMap['.wikiRating-editor'] = ->
   weighter(this).json()
 
 decko.slotReady ->
-  $('td.metric-weight input').on 'keyup', ->
+  $('.metric-weight input').on 'keyup', ->
     weighter(this).checkEqualization()
 
   $('#equalizer').on 'click', ->
@@ -25,11 +25,6 @@ weighter = (el) ->
 
 class WeightsTable extends deckorate.VariablesTable
   variableClass: -> WeightedVariable
-
-  variables:->
-    v = super
-    v.pop() # last row is total
-    v
 
   weights:-> v.weight() for v in @variables()
 

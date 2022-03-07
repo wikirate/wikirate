@@ -95,11 +95,26 @@ format :html do
     card.metric_type_codename
   end
 
+  def filtered_item_view
+    send "#{card.metric_type_codename}_filtered_item_view"
+  end
+
+  def filtered_item_wrap
+    send "#{card.metric_type_codename}_filtered_item_wrap"
+  end
+
   def default_item_view
     :bar
   end
 
   def filter_card
     :metric.card
+  end
+
+  def custom_variable_input template
+    with_nest_mode :normal do
+      class_up "card-slot", filtered_list_slot_class
+      wrap { haml template }
+    end
   end
 end

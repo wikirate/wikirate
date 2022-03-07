@@ -8,6 +8,14 @@ format :html do
     filtered_list_input
   end
 
+  def descendant_filtered_item_view
+    :filtered_list_item
+  end
+
+  def descendant_filtered_item_wrap
+    :filtered_list_item
+  end
+
   private
 
   def ancestor_thumbnails
