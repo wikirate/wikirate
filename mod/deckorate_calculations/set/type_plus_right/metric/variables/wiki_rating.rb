@@ -10,45 +10,14 @@ format :html do
   end
 
   def wiki_rating_input
-    with_nest_mode :normal do
-      class_up "card-slot", filtered_list_slot_class
-      wrap do
-        [rating_editor_table,
-         render_hidden_content_field,
-         add_item_modal_link]
-      end
-    end
+    custom_variable_input :wiki_rating_input
   end
 
-  private
-
-  def rating_core_table_content
-    card.weight_hash.map do |metric, weight|
-      [nest(metric, view: :thumbnail), "#{weight}%"]
-    end
+  def wiki_rating_filtered_item_view
+    :weight_row
   end
 
-  # table with Metrics on left and Weight inputs on right
-  def rating_editor_table
-    table rating_editor_table_content, class: "wikiRating-editor",
-                                       header: ["Metric", haml(:weight_heading)]
-  end
-
-  def rating_editor_table_content
-    table_content = rating_editor_table_main_content
-    table_content.push ["Total", sum_cell(table_content)]
-  end
-
-  def rating_editor_table_main_content
-    card.weight_hash.map do |metric, weight|
-      subformat(metric).weight_row weight
-    end.compact
-  end
-
-  # cell showing the total of all wikiratings
-  def sum_cell table_content
-    sum_content = text_field_tag "weight_sum", 100, class: "weight-sum", disabled: true
-    sum_content = "#{sum_content}%"
-    table_content.empty? ? { content: sum_content } : sum_content
+  def wiki_rating_filtered_item_wrap
+    :none
   end
 end
