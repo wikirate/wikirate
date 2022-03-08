@@ -9,7 +9,7 @@ format :html do
   end
 
   def descendant_filtered_item_view
-    :filtered_list_item
+    implicit_item_view
   end
 
   def descendant_filtered_item_wrap
