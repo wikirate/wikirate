@@ -1,0 +1,13 @@
+.formula-editor.variablesEditor._variablesEditor
+  .formula-editor-table
+    .formula-editor-header.row.p-2
+      .col-3 Variable
+      .col-5 Metric
+      .col-3 Options
+      .col-1
+    ._filtered-list
+      - card.hash_list.each do |var|
+        = subformat(var[:metric]).formula_variable_row var
+
+  .p-2.my-3
+    = add_item_modal_link
