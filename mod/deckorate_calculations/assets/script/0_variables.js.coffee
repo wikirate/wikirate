@@ -1,5 +1,3 @@
-
-
 window.deckorate =
   VariablesTable: class
     constructor: (el) -> @table = $(el).closest ".variablesEditor"

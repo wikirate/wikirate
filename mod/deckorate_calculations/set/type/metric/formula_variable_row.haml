@@ -1,7 +1,7 @@
 .row.p-2._filtered-list-item{ data: wrap_data }
   .col-3.formula-variable
     = text_field_tag "variable-name", name, class: "_variable-name"
-  .col-5.metric-label._filtered-list-item{ data: wrap_data }
+  .col-5.metric-label
     = render_thumbnail_no_link
   .col-3.formula-options
     (options)
