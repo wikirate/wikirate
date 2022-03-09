@@ -4,11 +4,17 @@ $(window).ready ->
   $('body').on "click", "._remove-variable", ->
     variabler(this).removeVariable this
 
-variabler = (el) ->
-  new FormulaVariablesTable el
+decko.slotReady (slot) ->
+  optScheme = slot.find("._options-scheme")
 
-class FormulaVariablesTable extends deckorate.VariablesTable
+
+variabler = (el) ->
+  new FormulaVariablesEditor el
+
+class FormulaVariablesEditor extends deckorate.VariablesEditor
   variableClass: -> FormulaVariable
+
+  optionsScheme: -> @ed.find("._options-scheme").val()
 
 class FormulaVariable extends deckorate.Variable
   variableName:-> @row.find("._variable-name").val()
@@ -16,3 +22,12 @@ class FormulaVariable extends deckorate.Variable
   hash:->
     metric: "~#{@metricId()}"
     name: @variableName()
+    options: @options()
+
+  options:->
+    switch @ed.optionsScheme
+      when "default" then {}
+      when "flexible" then { }
+    else if
+
+

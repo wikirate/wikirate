@@ -21,9 +21,9 @@ $(window).ready ->
     weighter(this).removeVariable this
 
 weighter = (el) ->
-  new WeightsTable el
+  new WeightsEditor el
 
-class WeightsTable extends deckorate.VariablesTable
+class WeightsEditor extends deckorate.VariablesEditor
   variableClass: -> WeightedVariable
 
   weights:-> v.weight() for v in @variables()
@@ -50,7 +50,7 @@ class WeightsTable extends deckorate.VariablesTable
 
   total:->
     t = (@weights().reduce ((a, b) -> a + b), 0).toFixed(2)
-    @table.find('.weight-sum').val t
+    @ed.find('.weight-sum').val t
     t
 
 class WeightedVariable extends deckorate.Variable

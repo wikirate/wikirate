@@ -15,6 +15,14 @@ format :html do
     :none
   end
 
+  def options_schemes
+    {
+      "Researched Only (default)": :default,
+      "Flexible Unknowns": :flexible,
+      "Custom": :custom
+    }
+  end
+
   private
 
   def formula_core_table_rows

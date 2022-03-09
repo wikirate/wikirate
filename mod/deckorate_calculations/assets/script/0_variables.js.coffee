@@ -1,16 +1,17 @@
 window.deckorate =
-  VariablesTable: class
-    constructor: (el) -> @table = $(el).closest ".variablesEditor"
+  VariablesEditor: class
+    constructor: (el) -> @ed = $(el).closest ".variablesEditor"
 
-    form:-> @table.closest "form"
+    form:-> @ed.closest "form"
     submitButton:-> @form().find(".submit-button")
 
     variableClass: -> deckorate.Variable
 
     variables:->
-      for row in @table.find "._filtered-list-item"
-        klass = @variableClass()
-        new klass row
+      klass = @variableClass()
+      ed = @ed
+      for row in ed.find "._filtered-list-item"
+          new klass ed, row
 
     hashList:-> v.hash() for v in @variables()
 
@@ -20,6 +21,8 @@ window.deckorate =
       $(el).closest("._filtered-list-item").remove()
 
   Variable: class
-    constructor: (row) -> @row = $(row)
+    constructor: (ed, row) ->
+      @ed = ed
+      @row = $(row)
 
     metricId:-> @row.find(".TYPE-metric.thumbnail").data "cardId"
