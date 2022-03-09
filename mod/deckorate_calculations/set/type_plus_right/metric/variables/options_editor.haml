@@ -1,6 +1,38 @@
-.formula-options-template._formula-options-template.p-5
-  .row
-    .col-6
-      Unknown
+.modal-lg
+  .formula-options-template._formula-options-template.p-5
+    .row
+      .col-4
+        %h3 Unknown
+        When value is researched but unknown...
+      .col-8.small
+        .vo-radio
+          = radio_button_tag "vo-unknown", "result_unknown"
+          %label
+            the
+            %strong final result
+            of the formula is the word
+            %strong "Unknown".
+            %em (default)
+        .vo-radio
+          = radio_button_tag "vo-unknown", "no_result"
+          %label
+            %strong no result
+            should be calculated for this company / year
+        .vo-radio
+          = radio_button_tag "vo-unknown", "Unknown"
+          %label
+            Use the word
+            %strong "Unknown"
+            as the
+            %strong variable value
+            within the formula.
+        .vo-radio
+          = radio_button_tag "vo-unknown", "custom"
+          %label
+            Use the
+            %strong following
+            as the
+            %strong variable value
+            within the formula:
+            = text_field_tag "vo_unknown"
 
-  woot baby

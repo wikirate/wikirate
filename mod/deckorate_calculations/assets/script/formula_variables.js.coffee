@@ -31,7 +31,8 @@ class FormulaVariablesEditor extends deckorate.VariablesEditor
     # TODO: detect scheme
     @toggleOptionEdit scheme
 
-  toggleOptionEdit: (scheme)-> $("._edit-variable-options").toggle scheme == "custom"
+  toggleOptionEdit: (scheme)->
+    $("._edit-variable-options").toggle true # scheme == "custom"
 
   setOptions: (scheme)->
     @toggleOptionEdit scheme
@@ -51,8 +52,8 @@ class FormulaVariablesEditor extends deckorate.VariablesEditor
     v = new FormulaVariable @variable(el)
     tmpl = @ed.find "._formula-options-template"
     tmpl = tmpl.clone()
-    # tmpl.show()
     tmpl.showAsModal($(el))
+    tmpl.closest(".modal-dialog").addClass "modal-lg"
 
 
 class FormulaVariable extends deckorate.Variable

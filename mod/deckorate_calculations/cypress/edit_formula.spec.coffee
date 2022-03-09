@@ -52,7 +52,7 @@ describe 'edit metric formulas', ->
     cy.visit "Jedi+friendliness+formula"
     cy.slot "jedi+friendliness+formula"
       .find(".card-menu > a.edit-link").click(force: true)
-    cy.contains("a", "Add Item", timeout: 15000)
+    cy.contains("a", "Add Variable", timeout: 15000)
       .click()
     cy.get("._filter-container [name='filter[name]']")
       .type("multi{enter}")

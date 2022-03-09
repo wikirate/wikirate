@@ -1,3 +1,13 @@
 .formula-options-template {
-  display: none;
+  h3 {
+    margin-top: 0 !important;
+    padding-top: 0;
+  }
+  .vo-radio {
+    display: flex;
+    input {
+      margin-right: 1em;
+      margin-top: 0.3em;
+    }
+  }
 }
