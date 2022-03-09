@@ -2,7 +2,7 @@ include_set Abstract::Header
 include_set Abstract::Thumbnail
 
 card_accessor :discussion
-card_accessor :search_type, type: SearchTypeID
+card_accessor :search_type, type: :search_type
 
 format :html do
   before :content_formgroups do

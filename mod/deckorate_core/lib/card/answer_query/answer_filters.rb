@@ -22,7 +22,7 @@ class Card
       end
 
       def checked_by whom
-        restrict_by_cql :answer_id,
+        restrict_by_cql :checked_by, :answer_id,
                         type_id: MetricAnswerID,
                         right_plus: [CheckedByID, { refer_to: whom }]
       end
@@ -32,7 +32,7 @@ class Card
         # string substitutions, so the SQL had ?'s in it.
         #
         # Card.joins(actions: :act).where(
-        #   "card_acts.actor_id" => Card.fetch_id(whom),
+        #   "card_acts.actor_id" => whom.card_id,
         #   left_id: "answers.id",
         #   right_id: Card::ValueID
         # ).arel.exists.to_sql
@@ -50,9 +50,8 @@ class Card
       end
 
       def source_query value
-        restrict_by_cql :answer_id,
-                        type_id: Card::MetricAnswerID,
-                        right_plus: [Card::SourceID, { refer_to: value }]
+        restrict_by_cql :source, :answer_id,
+                        right: :source, refer_to: value, return: :left_id
       end
 
       private

@@ -14,7 +14,7 @@ describe Card::Set::Abstract::FilterFormgroups do
   end
 
   context "with metric filter card" do
-    let(:filter_card) { Card[:metric].fetch :browse_metric_filter }
+    let(:filter_card) { Card[:metric] }
 
     describe "designer formgroup" do
       it "renders option form" do

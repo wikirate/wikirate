@@ -36,15 +36,11 @@ format :html do
   end
 
   view :metric_tab do
-    tab_wrap do
-      field_nest :metric, items: { view: :bar }
-    end
+    tab_wrap { field_nest :metric, view: :filtered_content }
   end
 
   view :metric_answer_tab do
-    tab_wrap do
-      field_nest :metric_answer, items: { view: :bar }
-    end
+    tab_wrap { field_nest :metric_answer, view: :filtered_content }
   end
 
   # download and original links.  (view makes them hideable)

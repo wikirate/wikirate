@@ -5,7 +5,7 @@ def new_relic_label
 end
 
 cache_expire_trigger Card::Set::All::Base do |_changed_card|
-  Card[:homepage]
+  Card[:homepage] if Codename.exist? :homepage
 end
 
 format :html do
@@ -35,11 +35,7 @@ format :html do
      %i[wikirate_topic featured],
      %i[project featured],
      %i[metric_answer featured],
-     :organizations_using_wikirate,
-     :menu_explore,
-     :menu_about,
-     :menu_connect,
-     :menu_legal].map { |f| [f, { absolute: true }] }
+     :organizations_using_wikirate].map { |f| [f, { absolute: true }] }
   end
 
   def companies

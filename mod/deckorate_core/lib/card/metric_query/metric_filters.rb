@@ -4,8 +4,8 @@ class Card
     module MetricFilters
       def topic_query value
         restrict_by_cql(
-          :metric_id,
-          right_plus: [:wikirate_topic, { refer_to: ["in", value].flatten }]
+          :topic, :metric_id,
+          right: :wikirate_topic, refer_to: ["in", value].flatten, return: :left_id
         )
       end
       alias_method :wikirate_topic_query, :topic_query
@@ -61,7 +61,8 @@ class Card
 
       # also used by metric_and_company_filters.rb
       def dataset_restriction field, codename, dataset
-        restrict_by_cql field, referred_to_by: "#{dataset}+#{codename.cardname}"
+        restrict_by_cql "metric_#{field}", field,
+                        referred_to_by: "#{dataset}+#{codename.cardname}"
       end
 
       def dataset_year_restriction dataset

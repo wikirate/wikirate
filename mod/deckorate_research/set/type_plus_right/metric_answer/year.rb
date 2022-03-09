@@ -1,6 +1,10 @@
 # not to be stored - year is in name
 include_set Abstract::Pointer
 
+event :do_not_save_year, :validate, on: :save do
+  abort :success
+end
+
 def option_names
   Type::Year.all_years
 end

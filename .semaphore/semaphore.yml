@@ -3,7 +3,7 @@ name: WikiRate Standard Pipeline
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu1804
+    os_image: ubuntu2004
 global_job_config:
   env_vars:
     - name: BUNDLE_PATH
@@ -18,15 +18,16 @@ global_job_config:
       - sem-version ruby 2.7.3
       - alias be='bundle exec'
       - git submodule update --init --recursive
-      - sem-service start mysql
-      - cp .semaphore/* config/
+      - sem-service start mysql 8.0
+      - cp -R config/sample/* config/
 
 blocks:
   - name: Unit Tests
     task:
       prologue:
         commands:
-          - cache restore gems-baseline # occasionally clear: `cache delete gems-baseline`
+          # - cache delete gems-baseline # occasionally clear
+          - cache restore gems-baseline
           - cache restore gems-$(checksum Gemfile.lock)
           - bundle config set --local deployment 'true'
           - bundle install
@@ -43,7 +44,12 @@ blocks:
       jobs:
         - name: RSpec
           commands:
-            - be rspec
+            - be rspec --format RspecJunitFormatter --out junit.xml --format documentation
+      epilogue:
+        always:
+          commands:
+            - test-results publish junit.xml
+
   - name: Integration Tests
     task:
       prologue:
@@ -56,10 +62,22 @@ blocks:
       jobs:
         - name: Cucumber
           commands:
-            - RAILS_ENV=cucumber bundle exec decko cucumber
+            - RAILS_ENV=cucumber bundle exec decko cucumber -- --format junit --out /home/semaphore/reports
+
         - name: Cypress
           commands:
             - RAILS_ENV=cypress bundle exec decko server -p 5002 &
             - nvm use 12.18.2
             - yarn install
-            - yarn run cypress run --record --key ffd8ff95-9033-4fd3-bcee-fc13cd67b3b7
+            - yarn run cypress run --record --key ffd8ff95-9033-4fd3-bcee-fc13cd67b3b7 --reporter junit --reporter-options "mochaFile=/home/semaphore/reports/cypress-output-[hash].xml"
+
+      epilogue:
+        always:
+          commands:
+            - test-results publish /home/semaphore/reports/*.xml
+after_pipeline:
+  task:
+    jobs:
+      - name: Publish Results
+        commands:
+          - test-results gen-pipeline-report

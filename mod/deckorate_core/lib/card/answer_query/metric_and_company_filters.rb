@@ -6,8 +6,8 @@ class Card
 
       def company_group_query value
         multi_company do
-          group_lists = Array.wrap(value).map { |v| "#{v}+#{:wikirate_company.cardname}" }
-          restrict_by_cql :company_id, referred_to_by: group_lists
+          group_lists = Array.wrap(value).map { |v| [v, :wikirate_company].cardname }
+          restrict_by_cql :groups, :company_id, referred_to_by: group_lists
         end
       end
 
@@ -33,7 +33,8 @@ class Card
       end
 
       def company_name_query value
-        restrict_by_cql :company_id, name: [:match, value], type_id: WikirateCompanyID
+        restrict_by_cql :company_name, :company_id,
+                        name: [:match, value], type: :wikirate_company
       end
 
       def country_query value
@@ -53,7 +54,7 @@ class Card
 
       def metric_name_query value
         @joins << :metric
-        restrict_by_cql "title_id",
+        restrict_by_cql :title, :title_id,
                         name: [:match, value],
                         left_plus: [{}, { type_id: Card::MetricID }]
       end

@@ -35,7 +35,7 @@ def report_card variant
   return if variant.blank?
   @report_cards ||= {}
   @report_cards[variant] ||= begin
-    rcard = Card.new name: name.trait(:report_search), type_id: Card::SearchTypeID
+    rcard = Card.new name: name.field(:report_search), type_id: Card::SearchTypeID
     # note: #new is important here, because we want different cards
     # for different variants
     rcard.variant = variant
@@ -76,7 +76,7 @@ format :html do
   end
 
   def has_badges?
-    cardtype_codename.in? Abstract::BadgeSquad::BADGE_TYPES
+    cardtype_codename.in? Card::BadgeSquad::BADGE_TYPES
   end
 
   def report_title_link

@@ -3,10 +3,10 @@
 RSpec.describe Card::Set::TypePlusRight::MetricAnswer::CheckedBy::AwardBadges do
   describe "check badges" do
     let(:badge_action) { :check }
-    let(:sample_acting_card) { sample_metric_answer.field(:checked_by, new: {}) }
+    let(:sample_acting_card) { sample_answer.subfield(:checked_by) }
 
     def execute_awarded_action count
-      answer_card(count).field(:checked_by, new: {})
+      answer_card(count).subfield(:checked_by)
                         .update! content: "[[John]]"
     end
 

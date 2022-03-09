@@ -30,8 +30,8 @@ class Card
     end
 
     def name_query value
-      restrict_by_cql "title_id", name: [:match, value],
-                                  left_plus: [{}, { type_id: MetricID }]
+      restrict_by_cql :title, "title_id",
+                      name: [:match, value], left_plus: [{}, { type: :metric }]
     end
 
     def simple_sort_by value
@@ -49,6 +49,11 @@ class Card
     def sort_by_cardname
       { metric_designer: :designer_id,
         metric_title: :title_id }
+    end
+
+    def source_query value
+      subsql = AnswerQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
+      @conditions << "metrics.metric_id in (#{subsql})"
     end
   end
 end

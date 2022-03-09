@@ -36,8 +36,8 @@ class Calculate
 
     def update_cached_counts
       (metric_cache_count_cards +
-        topic_cache_count_cards +
-        company_cache_count_cards).each(&:update_cached_count)
+        # topic_cache_count_cards +
+        company_cache_count_cards).each(&:update_cached_count_when_ready)
     end
 
     def company_cache_count_cards
@@ -50,9 +50,9 @@ class Calculate
       %i[metric_answer wikirate_company].map { |fld| Card.fetch [metric.name, fld] }
     end
 
-    def topic_cache_count_cards
-      Card::Set::TypePlusRight::WikirateTopic::WikirateCompany
-        .company_cache_cards_for_topics metric.wikirate_topic_card&.item_names
-    end
+    # def topic_cache_count_cards
+    #   Card::Set::TypePlusRight::WikirateTopic::WikirateCompany
+    #     .company_cache_cards_for_topics metric.wikirate_topic_card&.item_names
+    # end
   end
 end

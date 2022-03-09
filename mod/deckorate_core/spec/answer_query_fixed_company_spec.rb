@@ -1,7 +1,7 @@
 RSpec.describe Card::AnswerQuery do
   RESEARCHED_TITLES = ["Industry Class", "Sector Industry", "Weapons", "big multi",
                        "big single", "researched number 2", "researched number 3",
-                       "small multi", "small single"].freeze
+                       "small multi", "small single", "Address"].freeze
 
   let(:company) { Card[@company_name || "Death_Star"] }
   let(:all_metrics) { Card.search type_id: Card::MetricID, return: :name }
@@ -231,7 +231,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     describe "filter by update date" do
-      before { Timecop.freeze SharedData::HAPPY_BIRTHDAY }
+      before { Timecop.freeze Wikirate::HAPPY_BIRTHDAY }
       after { Timecop.return }
 
       it "finds today's edits" do
@@ -342,7 +342,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "year and industry" do
-      Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
+      Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
         expect(filter_by({ year: "1991", topic: "Force",
                            bookmark: :bookmark, updated: :week }))
           .to eq(with_year("disturbances in the Force", 1991))
@@ -350,7 +350,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "all in" do
-      Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
+      Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
         expect(filter_by({ year: "1992", topic: "Force", bookmark: :bookmark,
                            updated: :month, dataset: "Evil Dataset",
                            research_policy: "Community Assessed", name: "in the",

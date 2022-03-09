@@ -4,10 +4,6 @@ class Calculate
 
   attr_reader :answers, :metric
 
-  def self.calculator_class formula
-    [Translation, Ruby].find { |klass| klass.supported_formula? formula } || Wolfram
-  end
-
   def initialize metric, args={}
     @metric = metric
     @company_id = args[:company_id]

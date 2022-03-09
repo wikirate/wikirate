@@ -1,13 +1,11 @@
 include_set Abstract::LookupEvents
 
-VALID_DESIGNER_TYPE_IDS = [ResearchGroupID, UserID, WikirateCompanyID].freeze
+DESIGNER_TYPES = [:research_group, :user, :wikirate_company].freeze
 
 # The new metric form has a title and a designer field instead of a name field
 # We compose the card's name here
 event :set_metric_name, :initialize, on: :create, when: :needs_name? do
-  title = (tcard = remove_subfield(:title)) && tcard.content
-  designer = (dcard = remove_subfield(:designer)) && dcard.content
-  self.name = "#{designer}+#{title}"
+  self.name = %i[designer title].map { |f| drop_field(f)&.content }.cardname
 end
 
 # for override
@@ -20,12 +18,13 @@ event :ensure_designer, :validate, on: :save, changed: :name do
   if (card = Card[metric_designer])
     errors.add :metric_designer, "invalid type #{card.type_name}"
   else
-    attach_subcard metric_designer, type_id: ResearchGroupID
+    subcard metric_designer, type: :research_group
   end
 end
 
 def valid_designer?
-  Card.fetch_type_id(metric_designer).in? VALID_DESIGNER_TYPE_IDS
+  @valid_designer_type_ids ||= ::Set.new DESIGNER_TYPES.map(&:card_id)
+  Card.fetch_type_id(metric_designer).in? @valid_designer_type_ids
 end
 
 event :ensure_title, :validate, on: :save, changed: :name do
@@ -33,7 +32,7 @@ event :ensure_title, :validate, on: :save, changed: :name do
   when MetricTitleID, ReportTypeID
     return
   when nil
-    attach_subcard metric_title, type_id: MetricTitleID
+    subcard metric_title, type_id: MetricTitleID
   else
     errors.add :metric_title, "#{metric_title} is a #{Card[metric_title].type_name} "\
                               "card and can't be used as metric title"

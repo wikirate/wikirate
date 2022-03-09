@@ -93,7 +93,6 @@ def name_part_from_name type
 end
 
 def name_part_from_field type
-  field = remove_subfield type
-  return unless field&.content.present?
-  field.content.gsub("[[", "").gsub("]]", "")
+  part = drop_field(type)&.content
+  part if part.present?
 end

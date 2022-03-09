@@ -35,7 +35,7 @@ RSpec.describe Card::RelationshipImportItem do
       answer_card = Card[item_name(year: "1977").left]
       expect(answer_card.answer.numeric_value).to eq(2)
       import year: "1977"
-      expect(answer_card.answer.numeric_value).to eq(3)
+      expect(answer_card.answer.reload.numeric_value).to eq(3)
     end
   end
 

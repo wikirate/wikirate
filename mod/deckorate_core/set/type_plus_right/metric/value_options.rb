@@ -13,7 +13,7 @@ end
 
 event :validate_value_options_match_values, :validate,
       skip: :allowed,  # should only be skipped when fixing bad data.
-      on: :save, changed: :content do
+      on: :save, when: :categorical?, changed: :content do
   return unless (error_message = metric_card.validate_all_values)
 
   errors.add :content, "Change makes current answers invalid: #{error_message}"
@@ -61,7 +61,9 @@ format :html do
   view :core do
     filtering(".RIGHT-answer ._filter-widget") do
       wrap_with :div, class: "pointer-list" do
-        card.item_names.map { |name| filterable_div name }
+        card.item_names.map do |name|
+          card.metric_card.relationship? ? name : filterable_div(name)
+        end
       end
     end
   end

@@ -30,8 +30,7 @@ def random_answer_card
 end
 
 def answer_for company, year
-  company = Card.fetch_id(company) unless company.is_a? Integer
-  Answer.where(metric_id: id, company_id: company, year: year.to_i).take
+  Answer.where(metric_id: id, company_id: company.card_id, year: year.to_i).take
 end
 
 def answer_name_for company, year
@@ -45,11 +44,3 @@ def normalize_company_arg key, args={}
 
   args[key] = company.card_id
 end
-
-# def answer_card company, year
-#   field(company)&.field(year.to_s)
-# end
-#
-# def value_cards _opts={}
-#   Answer.search metric_id: id, return: :value_card
-# end

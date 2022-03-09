@@ -1,6 +1,3 @@
-card_accessor :checked_by
-card_accessor :check_requested_by
-card_accessor :source, type: PointerID
 card_accessor :discussion
 
 # for speed, virtual card's _values_ are held both in the content of the _answer_ card
@@ -33,7 +30,11 @@ def new_value_card_args
 end
 
 def numeric_value
-  Answer.to_numeric(value) if metric_card.numeric? || metric_card.relationship?
+  if metric_card.relationship?
+    value.to_i
+  elsif metric_card.numeric?
+    Answer.to_numeric value
+  end
 end
 
 # make sure pointer-style content works for multi-category
@@ -55,7 +56,7 @@ end
 def scored_answer_card
   return self unless metric_type == :score
 
-  metric_card&.basic_metric_card&.field(company)&.field(year)
+  metric_card&.scoree_card&.fetch(company)&.fetch(year)
 end
 
 # so that all fields show up in history

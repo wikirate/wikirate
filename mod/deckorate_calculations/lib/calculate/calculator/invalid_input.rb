@@ -11,6 +11,10 @@ class Calculate
       def answers_for _company_id, _year
         []
       end
+
+      def validate
+        ["Invalid Input"]
+      end
     end
   end
 end

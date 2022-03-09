@@ -39,10 +39,10 @@ end
 event :create_inverse, :prepare_to_store, on: :save do
   inverse = new_inverse_title || inverse_title
   inverse_name = "#{metric_designer}+#{inverse}"
-  add_subcard inverse_name, type: Card::MetricID,
-                            subfields: { metric_type: "Inverse Relationship",
-                                         inverse: name }
-  add_subfield :inverse, content: inverse_name, type: :pointer
+  subcard inverse_name, type: :metric,
+                        subfields: { metric_type: "Inverse Relationship",
+                                     inverse: name }
+  subfield :inverse, content: inverse_name, type: :pointer
   add_title_inverse_pointer metric_title, inverse
 end
 
@@ -70,6 +70,14 @@ def with_company_from_params
 end
 
 format :html do
+  def table_properties
+    if voo.hide? :relationship_properties
+      super.select { |k, _v| k != :metric_type }
+    else
+      super.merge inverse: "Inverse Metric"
+    end
+  end
+
   def title_fields options
     wrap_with :div do
       [
@@ -85,8 +93,7 @@ format :html do
   end
 
   def inverse_title_field options={}
-    title = card.add_subfield :inverse_title, content: card.name.tag,
-                                              type_id: Card::PhraseID
+    title = card.subfield :inverse_title, content: card.name.tag, type: :phrase
     title.reset_patterns
     title.include_set_modules
     subformat(title)._render_edit_in_form(options.merge(title: "Inverse Title"))
@@ -101,8 +108,8 @@ def new_inverse_title
 end
 
 def add_title_inverse_pointer title, inverse
-  add_subcard [inverse, :inverse], content: title, type_id: Card::PointerID
-  add_subcard [title, :inverse], content: inverse, type_id: Card::PointerID
+  subcard [inverse, :inverse], content: title, type: :pointer
+  subcard [title, :inverse], content: inverse, type: :pointer
 end
 
 def delete_answers_for_company company

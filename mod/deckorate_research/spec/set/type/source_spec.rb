@@ -2,7 +2,11 @@
 
 RSpec.describe Card::Set::Type::Source do
   def source_url url
-    "#{Card::Env[:protocol]}#{Card::Env[:host]}/#{url}"
+    "#{Card::Env.origin}/#{url}"
+  end
+
+  def card_subject
+    sample_source
   end
 
   check_html_views_for_errors

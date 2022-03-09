@@ -6,3 +6,14 @@
   :content: |-
     Joe User
     Joe Camel
+- :name:
+  - Joe User
+  - small single
+  - :about
+  :user: Joe User
+  :content: changed
+- answer_updates
+- topics
+- projects
+- subjects
+- research_groups

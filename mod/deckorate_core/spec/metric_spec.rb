@@ -10,7 +10,7 @@ RSpec.describe Card::Metric do
     researched_metrics
     described_class.create name: "Jedi+strength in the Force+Joe Camel",
                            type: :score,
-                           formula: { yes: 10, no: 0 }
+                           rubric: { yes: 10, no: 0 }
     described_class.create name: "Jedi+darksidiness+Joe User",
                            type: :score,
                            formula: "{{Jedi+darksidiness}}/10"
@@ -20,8 +20,6 @@ RSpec.describe Card::Metric do
   end
 
   let :researched_metrics do
-    Card::Env[:protocol] = "http://"
-    Card::Env[:host] = "wikirate.org"
     sample_source_name = sample_source.name
     described_class.create name: "Jedi+strength in the Force",
                            value_type: "Category",
@@ -46,9 +44,9 @@ RSpec.describe Card::Metric do
 
   describe "#create" do
     let(:metric) { Card["MD+MT"] }
-    let(:value) { metric.field("SPECTRE").field("2000") }
+    let(:value) { metric.fetch("SPECTRE").fetch("2000") }
     let(:source_link) do
-      Card["MD+MT+Death Star+2000+source"].first_card.field("link")
+      Card["MD+MT+Death Star+2000+source"].first_card.fetch("link")
     end
 
     def create_metric
@@ -70,7 +68,7 @@ RSpec.describe Card::Metric do
 
       expect(value).to be_truthy
       expect(value.type_id).to eq Card::MetricAnswerID
-      expect(value.field("value").content).to eq "50"
+      expect(value.fetch("value").content).to eq "50"
       expect(Card["MD+MT+SPECTRE+2001+value"].content).to eq "100"
 
       expect(source_link.content).to eq("http://example.com")
@@ -95,7 +93,7 @@ RSpec.describe Card::Metric do
         researched_metrics
         described_class.create name: "Jedi+strength in the Force+Joe Camel",
                                type: :score,
-                               formula: { yes: 10, no: 0 }
+                               rubric: { yes: 10, no: 0 }.to_json
       end
     end
 

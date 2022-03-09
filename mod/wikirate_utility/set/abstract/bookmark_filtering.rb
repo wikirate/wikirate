@@ -12,7 +12,6 @@ end
 
 def my_bookmarks?
   Card::Bookmark.ok?
-  # Bookmark.current_bookmarks[Card.fetch_id(bookmark_type)].present?
 end
 
 format do

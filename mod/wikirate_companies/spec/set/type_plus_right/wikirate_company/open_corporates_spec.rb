@@ -40,19 +40,19 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::OpenCorporates do
     it "shows all fields" do
       stub_oc_api
       is_expected.to have_table [
-        ["Name", "BP P.L.C."],
-        ["Previous Names", "BP AMOCO P.L.C., THE BRITISH PETROLEUM COMPANY P.L.C."],
-        ["Registered Address", "1 ST JAMES'S SQUARE, LONDON, SW1Y 4PD"],
-        ["Incorporation date", /14 April 1909 \((almost|over|about) \d+ years ago\)/],
-        ["Company Type", "Public Limited Company"],
-        %w[Status Active]
+        ["name", "BP P.L.C."],
+        ["previous names", "BP AMOCO P.L.C., THE BRITISH PETROLEUM COMPANY P.L.C."],
+        ["registered address", "1 ST JAMES'S SQUARE, LONDON, SW1Y 4PD"],
+        ["incorporation date", /14 April 1909 \((almost|over|about) \d+ years ago\)/],
+        ["company type", "Public Limited Company"],
+        %w[status Active]
       ]
     end
 
     it "hides empty fields" do
       stub_oc_api "current_status" => ""
       is_expected.not_to include("Status")
-      is_expected.to have_table([["Name", "BP P.L.C."]])
+      is_expected.to have_table([["name", "BP P.L.C."]])
     end
 
     context "when api not available" do

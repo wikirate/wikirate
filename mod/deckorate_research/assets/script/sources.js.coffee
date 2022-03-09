@@ -1,3 +1,4 @@
+
 $(document).ready ->
   # toggle download and url ui
   $('body').on 'click', ".toggle-source-option", ->

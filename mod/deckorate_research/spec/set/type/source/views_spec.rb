@@ -57,10 +57,8 @@ RSpec.describe Card::Set::Type::Source::Views do
         @url = "https://decko.org/Home.txt"
         # "Operation timed out" for the following url
         # "https://www.sample-videos.com/text/Sample-text-file-10kb.txt"
-        @company = "Amazon.com, Inc."
-        @topic = "Natural Resource Use"
-        @existing_source = create_source @url, subfields: { "Company" => @company,
-                                                            "Topic" => @topic }
+        @existing_source = create_source @url, fields: { "Company" => "Death Star",
+                                                         "Topic" => "Taming" }
         @result = @existing_source.format._render_preview
       end
       it "wraps plain text in a <pre> tag" do

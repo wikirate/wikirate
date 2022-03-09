@@ -3,14 +3,14 @@
     .col-6.col-md-2.text-center.image-column
       .py-4
         %a{ href: "https://wikirate.org/" }
-          %img{ src: "/mod/homepage/logos/wikirate_grey.png" }
+          %img{ src: "/mod/wikirate_homepage/logos/wikirate_grey.png" }
       .py-4
         %a{ href: "https://ec.europa.eu/", target: "wr-partner" }
-          %img{ src: "/mod/homepage/logos/european_commission.png",
+          %img{ src: "/mod/wikirate_homepage/logos/european_commission.png",
                 alt: "powered by Decko" }
       .py-4
         %a{ href: "https://decko.org/", target: "wr-partner" }
-          %img{ src: "/mod/homepage/logos/decko.png", alt: "powered by Decko" }
+          %img{ src: "/mod/wikirate_homepage/logos/decko.png", alt: "powered by Decko" }
     - nav_menus.merge(secondary_menus).each do |header, items|
       .footer-menu.col-6.col-md-2.text-center
         %h4
@@ -22,7 +22,7 @@
                 - if header == "Social"
                   = fa_icon item.downcase, brand: true
                 = item
-    %img{ src: "/mod/homepage/logos/stop_slavery.png", class: "stop-slavery-award" }
+    %img{ src: "/mod/wikirate_homepage/logos/stop_slavery.png", class: "stop-slavery-award" }
 
 
 

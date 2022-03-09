@@ -4,7 +4,8 @@ decko.editorInitFunctionMap["._removable-content-list ul"] = ->
   @sortable({handle: '._handle', cancel: ''})
 
 decko.editorContentFunctionMap["._removable-content-list ul"] = ->
-  decko.pointerContent citedSources($(this))
+  itemNames = $(this).find("._removable-content-item").map -> $(this).data("cardName")
+  decko.pointerContent $.unique(itemNames)
 
 decko.slotReady (slot) ->
   if slot.closest(".research-layout")[0]
@@ -103,6 +104,10 @@ $(document).ready ->
     openPdf sourceMark
     e.preventDefault()
 
+  $(".research-layout").on "click", "._methodology-link", (e) ->
+    toPhase "question", e
+    $("._methodology-button").click()
+
 closeSourceModal = (el)->
   el.closest("._modal-slot").find("._close-modal").trigger "click"
 
@@ -144,7 +149,7 @@ openAnswerFormBeforeAddingSource = ->
   true
 
 addToSourceContent = (editor, source) ->
-  sources = citedSources editor
+  sources = citedSources()
   sources.push source
   content = decko.pointerContent $.uniqueSort(sources)
   editor.find(".d0-card-content").val content
@@ -152,13 +157,13 @@ addToSourceContent = (editor, source) ->
 
 reloadSourceSlot = (slot, content) ->
   query = $.param assign: true, card: { content: content }
-  slot.reloadSlot "#{slot.data 'cardName'}?#{query}"
+  slot.reloadSlot "#{slot.data 'cardLinkName'}?#{query}"
 
 selectedSource = ()->
   $("#_select_source").data "source"
 
-citedSources = (el) ->
-  el.find('._removable-content-item').map( -> $(this).data('cardName') )
+citedSources = () ->
+  $(".RIGHT-source .bar").map( -> $(this).data("cardName") )
 
 selectedYear = ()->
   selectedYearInput().val()
@@ -187,12 +192,15 @@ researchPath = (view)->
 openPdf = (sourceMark) ->
   el = $(".source_phase-view")
   if el[0] && sourceMark != selectedSource
-    url = researchPath("source_selector") + "?" + $.param(source: sourceMark)
+    params = { source: sourceMark }
+    if citedSources().toArray().includes(sourceMark)
+      params["slot"] = { hide: "select_source_button" }
+    url = researchPath("source_selector") + "?" + $.param(params)
     el.addClass "slotter"
     el[0].href = url
     $.rails.handleRemote el
 
-wikirate.tabPhase = tabPhase
+deckorate.tabPhase = tabPhase
 
 # add related company to name
 # otherwise the card can get the wrong type because it

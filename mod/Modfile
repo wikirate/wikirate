@@ -1,10 +1,13 @@
-gem_mods
+gem_mods # first load all mods referred to in the Gemfile
 
 # see DeckoRate mod planning spreadsheet: https://docs.google.com/spreadsheets/d/1SeQYpC8nIRNkkkX0nDxZOrKavgTn7n_LJBeloEBZj8o/edit#gid=0
 
 # clean and move to card-mods
 mod "posts"
 mod "guides"
+
+#refactor away
+mod "conversation" # upgrade discussions/comments
 
 # these need rethinking...
 mod "wikirate_layout"
@@ -22,7 +25,6 @@ mod "deckorate_graphql"
 # mod "deckorate_viz"  # TODO
 mod "deckorate_search"
 mod "deckorate_profiles"
-#
 # mod "deckorate_relationships" # TODO
 # mod "deckorate" # (wrapper) # TODO
 
@@ -30,11 +32,7 @@ mod "deckorate_profiles"
 mod "wikirate_companies"
 mod "wikirate_assets" # TODO: rename to wikirate_theme
 mod "wikirate_homepage"
-# mod "wikirate" # TODO
-
-# refactor away
-mod "conversation" # upgrade discussions/comments
-mod "isic" # (replace with CoffeeScript formulas)
+mod "wikirate"
 
 # extract wikirate code, clean, and move to card-mods
 mod "badges"

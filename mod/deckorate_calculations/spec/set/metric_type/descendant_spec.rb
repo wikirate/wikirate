@@ -18,13 +18,13 @@ RSpec.describe Card::Set::MetricType::Descendant do
   end
 
   def inherited_answer company, year
-    Answer.where(metric_id: Card.fetch_id(metric_title),
-                 company_id: Card.fetch_id(company), year: year.to_i).take
+    Answer.where(metric_id: metric_name.card_id,
+                 company_id: company.card_id, year: year.to_i).take
   end
 
   context "with two ancestors" do
-    let(:metric_title) { "Joe User+descendant 1" }
-    let(:metric) { Card[metric_title] }
+    let(:metric_name) { "Joe User+descendant 1" }
+    let(:metric) { Card[metric_name] }
 
     context "with answers" do
       it "uses first ancestor when both are present" do
@@ -41,14 +41,14 @@ RSpec.describe Card::Set::MetricType::Descendant do
     end
 
     context "with views" do
-      let(:formula_format) { metric.fetch(:formula).format }
-
       it "renders pointer edit view" do
-        expect(formula_format.render(:edit)).to have_tag("ul._pointer-filtered-list")
+        expect(metric.variables_card.format.render_edit)
+          .to have_tag("ul._pointer-filtered-list")
       end
 
-      it "renders ancestors in formula core" do
-        expect(formula_format.render(:core)).to have_tag("h6") { "Inherit from:" }
+      it "renders ancestors in formula view" do
+        expect(metric.format.render_formula)
+          .to have_tag("h6", text: /Inherit from ancestor/)
       end
     end
   end

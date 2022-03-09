@@ -16,4 +16,8 @@ format :json do
   view :pretty_countries do
     JSON.pretty_generate country_hash_list
   end
+
+  view :lookup do
+    Card::Region.hash.to_json
+  end
 end

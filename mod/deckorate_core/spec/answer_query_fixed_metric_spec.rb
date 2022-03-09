@@ -3,7 +3,7 @@
 RSpec.describe Card::AnswerQuery do
   LATEST_ANSWERS = ["Death Star+2001",
                     "Monster Inc+2000",
-                    "Slate Rock and Gravel Company+2005",
+                    "Slate Rock and Gravel Company+2006",
                     "SPECTRE+2000"].freeze
 
   let(:metric) { Card[@metric_name || "Jedi+disturbances in the Force"] }
@@ -51,8 +51,8 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "finds partial match" do
-        expect(filter_by(company_name: "at"))
-          .to eq ["Death Star+2001", "Slate Rock and Gravel Company+2005"]
+        expect(filter_by(company_name: "at").sort)
+          .to eq ["Death Star+2001", "Slate Rock and Gravel Company+2006"]
       end
 
       it "ignores case" do
@@ -67,12 +67,12 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "finds exact match by dataset" do
-      expect(filter_by(dataset: "Evil Dataset"))
+      expect(filter_by(dataset: "Evil Dataset").sort)
         .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
 
     it "finds exact match by company_category" do
-      expect(filter_by(company_category: "A"))
+      expect(filter_by(company_category: "A").sort)
         .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
 
@@ -109,7 +109,7 @@ RSpec.describe Card::AnswerQuery do
 
       context "with update date filter" do
         before do
-          Timecop.freeze(SharedData::HAPPY_BIRTHDAY)
+          Timecop.freeze(Wikirate::HAPPY_BIRTHDAY)
         end
         after do
           Timecop.return
@@ -150,8 +150,7 @@ RSpec.describe Card::AnswerQuery do
 
       it "... keyword" do
         expect(filter_by(status: :none, company_name: "Inc").sort)
-          .to eq(with_year(["AT&T Inc.", "Amazon.com, Inc.",
-                            "Apple Inc.", "Google Inc."]))
+          .to eq(with_year(["Apple Inc.", "Google Inc."]))
       end
 
       it "... dataset" do
@@ -197,7 +196,7 @@ RSpec.describe Card::AnswerQuery do
 
     it "dataset and company_category" do
       expect(filter_by(dataset: "Evil Dataset",
-                       company_category: "A"))
+                       company_category: "A").sort)
         .to eq(["Death Star+2001", "SPECTRE+2000"])
     end
     it "year and company_category" do
@@ -206,7 +205,7 @@ RSpec.describe Card::AnswerQuery do
         .to eq(with_year("Death Star", 1977))
     end
     it "all in" do
-      Timecop.freeze(SharedData::HAPPY_BIRTHDAY) do
+      Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
         expect(filter_by(year: "1990",
                          company_category: "A",
                          dataset: "Evil Dataset",
@@ -230,7 +229,7 @@ RSpec.describe Card::AnswerQuery do
     it "sorts categories by value" do
       res = sort_by(:value)
       yes_index = res.index "Death Star+2001"
-      no_index = res.index "Slate Rock and Gravel Company+2005"
+      no_index = res.index "Slate Rock and Gravel Company+2006"
       expect(no_index).to be < yes_index
     end
 

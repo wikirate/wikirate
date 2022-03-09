@@ -25,11 +25,13 @@
 
 - :name: Google LLC
   :type: :wikirate_company
+- :name: Sony Corporation
+  :type: :wikirate_company
+- :name: Samsung
+  :type: :wikirate_company
   :subfields:
-    :about: don't be evil
-    :headquarters: California (United States)
-    :incorporation: Delaware (United States)
-    :open_corporates: 201727810678
-    :alias:
-      - Google
-      - Alphabet
+    :wikipedia: Samsung
+- :name: Apple Inc.
+  :type: :wikirate_company
+- :name: Google Inc.
+  :type: :wikirate_company

@@ -1,4 +1,4 @@
-event :do_not_save_related_company, :validate do
+event :do_not_save_related_company, :validate, on: :save do
   abort :success
 end
 

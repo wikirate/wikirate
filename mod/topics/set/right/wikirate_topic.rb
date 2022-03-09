@@ -27,4 +27,8 @@ format :html do
   def default_item_view
     :link
   end
+
+  def input_type
+    :multiselect
+  end
 end

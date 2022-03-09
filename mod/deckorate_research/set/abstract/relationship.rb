@@ -33,7 +33,7 @@ end
 
 # @return [Array] of Integers
 def inverse_company_ids args={}
-  normalize_company_arg inverse_company_id_field, args
+  normalize_company_arg company_id_field, args
   relationships(args).distinct.pluck inverse_company_id_field
 end
 
@@ -49,10 +49,6 @@ format do
 end
 
 format :html do
-  def table_properties
-    super.merge inverse: "Inverse Metric"
-  end
-
   def inverse_property title
     wrap :div, class: "row inverse-property" do
       labeled title, nest(card.inverse_card, view: :thumbnail)
