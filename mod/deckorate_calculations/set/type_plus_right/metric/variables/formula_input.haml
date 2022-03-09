@@ -1,0 +1,18 @@
+.formula-editor.variablesEditor._variablesEditor
+  .formula-editor-table
+    .formula-editor-header.row.p-2
+      .col-3 Variable
+      .col-5 Metric
+      .col-3 Options
+      .col-1
+    ._filtered-list
+      - card.hash_list.each do |var|
+        = subformat(var[:metric]).formula_variable_row var
+
+  .row.p-2.my-3
+    .col-8
+      = add_item_modal_link "Add Variable"
+    .col-3
+      = select_tag "options_scheme",
+                   options_for_select(options_schemes, :default),
+                   class: "_options-scheme"

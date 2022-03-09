@@ -50,7 +50,8 @@ def item_strings _args={}
 end
 
 def hash_list
-  @hash_list ||= parse_content.map(&:symbolize_keys!)
+  # @hash_list ||=
+  parse_content.map(&:symbolize_keys!)
 end
 
 def export_content
@@ -81,8 +82,10 @@ def items_from_simple content
 end
 
 format :html do
+  delegate :metric_type_codename, to: :card
+
   view :core do
-    render :"#{card.metric_type_codename}_core"
+    render :"#{metric_type_codename}_core"
   end
 
   view :input do
@@ -91,7 +94,15 @@ format :html do
   end
 
   def input_type
-    card.metric_type_codename
+    metric_type_codename
+  end
+
+  def filtered_item_view
+    send "#{metric_type_codename}_filtered_item_view"
+  end
+
+  def filtered_item_wrap
+    send "#{metric_type_codename}_filtered_item_wrap"
   end
 
   def default_item_view
@@ -100,5 +111,15 @@ format :html do
 
   def filter_card
     :metric.card
+  end
+
+  def custom_variable_input template
+    with_nest_mode :normal do
+      haml template
+    end
+  end
+
+  def duplicates_ok?
+    metric_type_codename == :formula
   end
 end

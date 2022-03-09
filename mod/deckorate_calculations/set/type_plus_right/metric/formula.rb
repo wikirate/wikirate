@@ -19,11 +19,11 @@ end
 
 format :html do
   view :titled_content do
-    [nest(card.variables_card, view: :core), render_content]
+    [nest(card.variables_card, view: :core, title: "Variables"), render_content]
   end
 
   def edit_fields
-    [[card.variables_card, {}], [card, {}]]
+    [[card.variables_card, { title: "Variables" }], [card, { title: "Formula" }]]
   end
 
   def multi_card_editor?
