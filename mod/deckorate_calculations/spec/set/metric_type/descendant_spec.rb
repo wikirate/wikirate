@@ -43,7 +43,7 @@ RSpec.describe Card::Set::MetricType::Descendant do
     context "with views" do
       it "renders pointer edit view" do
         expect(metric.variables_card.format.render_edit)
-          .to have_tag("ul._pointer-filtered-list")
+          .to have_tag("ul._filtered-list")
       end
 
       it "renders ancestors in formula view" do
