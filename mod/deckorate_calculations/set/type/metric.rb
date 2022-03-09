@@ -82,6 +82,7 @@ format :html do
   end
 
   def formula_variable_row hash
+    hash[:options] ||= {}
     haml :formula_variable_row, hash
   end
 end

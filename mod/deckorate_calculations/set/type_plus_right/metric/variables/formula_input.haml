@@ -16,3 +16,5 @@
       = select_tag "options_scheme",
                    options_for_select(options_schemes, :default),
                    class: "_options-scheme"
+  .d-none
+    = render_options_editor
