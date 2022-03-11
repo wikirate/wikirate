@@ -42,7 +42,7 @@ class Card
       return super unless (codename = SORT_BY_COUNT[value])
 
       @sort_joins <<
-        "LEFT JOIN counts ON left_id = metric_id and right_id = #{codename.card_id}"
+        "LEFT JOIN counts ON counts.left_id = metric_id and counts.right_id = #{codename.card_id}"
       "counts.value"
     end
 
