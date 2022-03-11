@@ -2,6 +2,12 @@
   // width: 400px !important;
   max-width: 50% !important;
 }
+.formula-editor-table, .wikiRating-editor-table {
+  .row > div {
+    padding: 0.5em 1em;
+    border: 1px solid #eee;
+  }
+}
 .formula-options-editor {
   .row {
     padding: 1.5em 0;
