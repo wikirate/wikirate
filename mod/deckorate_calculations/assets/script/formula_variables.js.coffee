@@ -18,9 +18,8 @@ $(window).ready ->
     $(this).closest(".vo-radio").find("input[type=radio]").prop "checked", true
 
 decko.slotReady (slot) ->
-  if slot.hasClass("RIGHT-Xvariable")
-    ed = slot.find "._variablesEditor"
-    variabler(ed).initOptions() if ed.length > 0
+  ed = slot.find "._variablesEditor"
+  variabler(ed).initOptions() if ed.length > 0
 
 
 variabler = (el) ->
