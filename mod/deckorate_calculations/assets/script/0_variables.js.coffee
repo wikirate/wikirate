@@ -3,6 +3,7 @@ window.deckorate =
     constructor: (el) -> @ed = $(el).closest ".variablesEditor"
 
     form:-> @ed.closest "form"
+
     submitButton:-> @form().find(".submit-button")
 
     variableClass: -> deckorate.Variable

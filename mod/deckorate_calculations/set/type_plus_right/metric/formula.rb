@@ -13,14 +13,12 @@ event :validate_formula, :validate, changed: :content do
   end
 end
 
-def help_rule_card
-  metric_type_card.first_card&.fetch :help
-end
-
 format :html do
   view :titled_content do
     [nest(card.variables_card, view: :core, title: "Variables"), render_content]
   end
+
+  before(:edit) {  voo.hide :edit_type_row }
 
   def edit_fields
     [[card.variables_card, { title: "Variables" }], [card, { title: "Formula" }]]
