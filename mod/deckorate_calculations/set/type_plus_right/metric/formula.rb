@@ -14,6 +14,14 @@ event :validate_formula, :validate, changed: :content do
 end
 
 format :html do
+  def input_type
+    :formula
+  end
+
+  def formula_input
+    haml :formula_input
+  end
+
   view :titled_content do
     [nest(card.variables_card, view: :core, title: "Variables"), render_content]
   end

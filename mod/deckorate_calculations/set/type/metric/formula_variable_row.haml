@@ -1,7 +1,7 @@
 .row._filtered-list-item{ data: wrap_data }
-  .col-3.formula-variable
+  .col-2.formula-variable
     = text_field_tag "variable-name", name, class: "_variable-name"
-  .col-5.metric-label
+  .col-4.metric-label
     = render_thumbnail_no_link
   .col-3.formula-options
     .text-right
@@ -9,6 +9,8 @@
         = icon_tag :pencil
 
     ._formula_options{ "data-options": options.to_json }
-  .col-1
+  .col-1.border-none
     %span._remove-variable.btn.btn-outline-secondary.btn-sm
       = fa_icon :close
+  .col-2.formula-sample-value-cell
+    = text_field_tag "formula-sample-value", "", class: "_sample-value"
