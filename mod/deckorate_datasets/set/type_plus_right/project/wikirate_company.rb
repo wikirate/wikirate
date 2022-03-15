@@ -2,12 +2,18 @@ include_set Type::SearchType
 include_set Abstract::ProjectList
 include_set Abstract::CompanyFilter
 
+require_field :dataset
+
 def cql_content
   {
     type: :wikirate_company,
-    referred_to_by: dataset_name.field(:wikirate_company),
+    referred_to_by: dataset_name&.field(:wikirate_company),
     append: project_name
   }
+end
+
+def skip_search?
+  dataset_name.nil?
 end
 
 # are any of the metrics associated with this dataset researchable for this user?

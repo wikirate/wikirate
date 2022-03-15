@@ -1,6 +1,6 @@
 .wikiRating-editor.variablesEditor
   .wikiRating-editor-table
-    .wikiRating-editor-header.row.p-2
+    .wikiRating-editor-header.row
       .col-6 Metric
       .col-6.wikirating-weight-heading
         %span Weight
@@ -12,7 +12,7 @@
       - card.weight_hash.each do |metric, weight|
         = subformat(metric).weight_row weight
 
-    .wikiRating-editor-header.row.p-2
+    .wikiRating-editor-footer.row
       .col-6 Total
       .col-6
         = text_field_tag "weight_sum", 100, class: "weight-sum", disabled: true

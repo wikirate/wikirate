@@ -3,6 +3,7 @@ window.deckorate =
     constructor: (el) -> @ed = $(el).closest ".variablesEditor"
 
     form:-> @ed.closest "form"
+
     submitButton:-> @form().find(".submit-button")
 
     variableClass: -> deckorate.Variable
@@ -13,7 +14,7 @@ window.deckorate =
       for item in ed.find "._filtered-list-item"
         new klass item
 
-    hashList:-> v.hash() for v in @variables()
+    hashList:-> Object.assign({}, v.hash()) for v in @variables()
 
     json:-> JSON.stringify @hashList()
 
