@@ -17,8 +17,8 @@ format :html do
 
   def options_schemes
     {
-      "Researched Only (default)": :default,
-      "Flexible Unknowns": :flexible,
+      "All Researched (default)": :all_researched,
+      "Any Researched": :any_researched,
       "Custom": :custom
     }
   end

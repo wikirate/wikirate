@@ -1,0 +1,34 @@
+.vo-radio
+  = radio_button_tag input_name, "result_unknown"
+  %label
+    make the
+    %strong final result
+    of the formula
+    %strong "Unknown".
+    - if input_name == "vo-unknown"
+      %em (default)
+.vo-radio
+  = radio_button_tag input_name, "no_result"
+  %label
+    calculate
+    %strong no result
+    for this company / year.
+    - if input_name == "vo-not_researched"
+      %em (default)
+.vo-radio
+  = radio_button_tag input_name, "Unknown"
+  %label
+    use the word
+    %strong "Unknown"
+    as the
+    %strong variable value
+    within the formula.
+.vo-radio
+  = radio_button_tag input_name, "custom"
+  %label
+    use the
+    %strong following
+    as the
+    %strong variable value
+    within the formula:
+    = text_field_tag "#{input_name}-custom", "", class: "_custom-formula-option"
