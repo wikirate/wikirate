@@ -2,8 +2,6 @@ include_set Type::SearchType
 include_set Abstract::ProjectList
 include_set Abstract::CompanyFilter
 
-require_field :dataset
-
 def cql_content
   {
     type: :wikirate_company,
