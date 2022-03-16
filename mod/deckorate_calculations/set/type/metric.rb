@@ -82,7 +82,9 @@ format :html do
   end
 
   def formula_variable_row hash
-    hash[:options] ||= {}
-    haml :formula_variable_row, hash
+    hash.symbolize_keys!
+    hash.delete :metric
+    name = hash.delete :name
+    haml :formula_variable_row, name: name, options: hash
   end
 end
