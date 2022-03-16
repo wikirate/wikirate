@@ -9,6 +9,12 @@ format :html do
     table(rating_core_table_content, header: %w[Metric Weight])
   end
 
+  def rating_core_table_content
+    card.weight_hash.map do |metric, weight|
+      [nest(metric, view: :thumbnail), "#{weight}%"]
+    end
+  end
+
   def wiki_rating_input
     custom_variable_input :wiki_rating_input
   end
