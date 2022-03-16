@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
+RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
   describe "discuss badges" do
     let(:badge_action) { :discuss }
     let(:sample_acting_card) { sample_answer.subfield(:discussion) }
