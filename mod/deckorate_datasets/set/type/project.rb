@@ -6,6 +6,8 @@ card_accessor :unpublished, type: :toggle, default_content: "No"
 card_accessor :wikirate_status, type: :pointer
 card_accessor :organizer, type: :list
 
+require_field :dataset
+
 def organizer?
   as_moderator? || organizer_card.item_ids.include?(Auth.as_id)
 end
@@ -19,7 +21,7 @@ def dataset_card
 end
 
 def dataset_name
-  dataset_pointer.first_name
+  dataset_pointer&.first_name
 end
 
 delegate :metrics, :companies, :years, :metric_ids, :company_ids, :year_ids,
