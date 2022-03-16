@@ -19,7 +19,7 @@ def dataset_card
 end
 
 def dataset_name
-  dataset_pointer.first_name
+  dataset_pointer&.first_name
 end
 
 delegate :metrics, :companies, :years, :metric_ids, :company_ids, :year_ids,

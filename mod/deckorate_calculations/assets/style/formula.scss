@@ -1,4 +1,18 @@
-.formula-options-template {
+.popover {
+  // width: 400px !important;
+  max-width: 50% !important;
+}
+.formula-editor-table, .wikiRating-editor-table {
+  .row > div {
+    padding: 0.5em 1em;
+    border: 1px solid #eee;
+  }
+}
+.formula-options-editor {
+  .row {
+    padding: 1.5em 0;
+    border-bottom: 1px solid $gray-300;
+  }
   h3 {
     margin-top: 0 !important;
     padding-top: 0;
@@ -7,7 +21,7 @@
     display: flex;
     input {
       margin-right: 1em;
-      margin-top: 0.3em;
+      margin-top: 0.2em;
     }
   }
 }
