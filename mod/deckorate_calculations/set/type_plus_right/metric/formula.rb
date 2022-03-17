@@ -66,7 +66,3 @@ format :html do
     :bar
   end
 end
-
-format :json do
-
-end
