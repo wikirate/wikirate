@@ -23,9 +23,9 @@ decko.slotReady (slot) ->
 
 
 variabler = (el) ->
-  new FormulaVariablesEditor el
+  new decko.FormulaVariablesEditor el
 
-class FormulaVariablesEditor extends deckorate.VariablesEditor
+class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
   variableClass: -> FormulaVariable
 
   detectOptionsScheme: ->

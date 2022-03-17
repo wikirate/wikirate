@@ -1,11 +1,20 @@
+.border-none {
+  border: 0 !important;;
+}
 .popover {
   // width: 400px !important;
   max-width: 50% !important;
 }
-.formula-editor-table, .wikiRating-editor-table {
+.formula-editor-table, .wikiRating-editor-table, .answer-board {
   .row > div {
     padding: 0.5em 1em;
-    border: 1px solid #eee;
+    border: 1px solid $gray-200;
+  }
+  .formula-sample-value-cell {
+    background-color: $gray-200;
+  }
+  input {
+    max-width: 90%;
   }
 }
 .formula-options-editor {
@@ -24,4 +33,17 @@
       margin-top: 0.2em;
     }
   }
+}
+.sample-result-box {
+  border: 1px solid $gray-200;
+  > div {
+    padding: 1em;
+  }
+
+  .sample-result-value {
+    background-color: $gray-200
+  }
+}
+.ab-total {
+  border-bottom: 2px solid $gray-500;
 }

@@ -1,0 +1,22 @@
+._answer-board
+  .pb-2
+    With these variables, we can calculate
+    %strong._ab-total
+      1000
+    answers.
+  .p-1
+    Using sample inputs for
+    %strong._ab-sample-size
+      100
+    we currently get:
+
+  %ul
+    - %i[known unknown error].each do |result|
+
+      %li.p-2{ class: "_ab-sample-#{result}" }
+        %strong
+          33
+          = result
+        answers:
+
+  %em.pt-4 Click on any square to use its sample inputs and see its result.
