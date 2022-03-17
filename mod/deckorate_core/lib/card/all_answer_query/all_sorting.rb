@@ -40,7 +40,7 @@ class Card
       end
 
       def sort_by_bookmarkers rel
-        [Card::Bookmark.add_sort_join(rel, "#{partner}.id"), "cts.value"]
+        [Card::Bookmark.add_sort_join(rel, "#{partner}.id"), "cts.value as bookmarkers"]
       end
 
       def sort_by_metric_field rel, field
