@@ -14,6 +14,12 @@ event :validate_formula, :validate, changed: :content do
 end
 
 format :html do
+  before(:edit) {  voo.hide :edit_type_row }
+
+  view :titled_content do
+    [nest(card.variables_card, view: :core, title: "Variables"), render_content]
+  end
+
   def input_type
     :formula
   end
@@ -21,12 +27,6 @@ format :html do
   def formula_input
     haml :formula_input
   end
-
-  view :titled_content do
-    [nest(card.variables_card, view: :core, title: "Variables"), render_content]
-  end
-
-  before(:edit) {  voo.hide :edit_type_row }
 
   def edit_fields
     [[card.variables_card, { title: "Variables" }], [card, { title: "Formula" }]]
@@ -36,7 +36,14 @@ format :html do
     depth.zero?
   end
 
+  def editor_tabs
+    tabs({ Edit: ace_editor_input,
+           JavaScript: haml(:formula_as_javascript),
+           Answers: haml(:answer_board),
+           Help: haml(:editor_help) },
+         :Answers)
 
+  end
 
   # def new_success
   #   { mark: card.name.left }
@@ -58,4 +65,8 @@ format :html do
   def default_nest_view
     :bar
   end
+end
+
+format :json do
+
 end

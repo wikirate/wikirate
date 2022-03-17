@@ -1,10 +1,13 @@
-.row
-  .col-9
-    = ace_editor_input
+._formula-editor
+  .row
+    .col-8
+      = editor_tabs
 
-  .col-1.border-none
-  .col-2.sample-result-box
-    .sample-result-title
-      Sample Result
-    .sample-result-value._sample-result-value
-      eleventy-one
+    .col-1.border-none
+    .col-3.p-0
+      .sample-result-box
+        .sample-result-title
+          Sample Result
+        .sample-result-value._sample-result-value
+
+  %button._magic Magic!
