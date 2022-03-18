@@ -10,6 +10,7 @@ class decko.FormulaEditor
 
   updateInputs: (inputs) ->
     @ed.data "inputs", inputs
+    @runCalculations()
     @updateAnswers()
     @showInputs 0
 
@@ -27,3 +28,4 @@ class decko.FormulaEditor
   showInputs: (index) ->
     @variableEditor().showInputs @inputs().sample[index]
 
+  runCalculations: ->
