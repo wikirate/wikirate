@@ -23,10 +23,12 @@ decko.slotReady (slot) ->
 
 
 variabler = (el) ->
-  new FormulaVariablesEditor el
+  new decko.FormulaVariablesEditor el
 
-class FormulaVariablesEditor extends deckorate.VariablesEditor
+class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
   variableClass: -> FormulaVariable
+
+  form: -> @ed.closest "form"
 
   detectOptionsScheme: ->
     if !@variables().some((v) -> !v.allResearchedOptions())
@@ -43,6 +45,7 @@ class FormulaVariablesEditor extends deckorate.VariablesEditor
     schemeSelect.val scheme
     schemeSelect.trigger "change"
     @toggleOptionEdit scheme
+    @updateFormulaInputs()
 
   toggleOptionEdit: (scheme)->
     $("._edit-variable-options").toggle scheme == "custom"
@@ -65,6 +68,32 @@ class FormulaVariablesEditor extends deckorate.VariablesEditor
     opEd = @ed.find("._formula-options-template").clone()
     v = new FormulaVariable @variable(el)
     v.initOptionEditor opEd
+
+  formulaEditor: ->
+    el = @form().find "._formula-editor"
+    return unless el.length > 0
+    new decko.FormulaEditor el
+
+  updateFormulaInputs: ->
+    return unless (formEd = @formulaEditor())
+    $.ajax
+      url: decko.path "?#{$.param @inputsParams()}"
+      success: (json) -> formEd.updateInputs json
+      error: (_jqXHR, textStatus)-> formEd.slot().notify "error: #{textStatus}", "error"
+
+  inputsParams: ->
+    assign: true
+    view: "input_lists"
+    format: "json"
+    card:
+      type: ":metric"
+      subfields:
+        ":variables": @json()
+        ":metric_type": "Formula"
+
+  showInputs: (inputs) ->
+    for v, index in @variables()
+      v.sampleInput inputs[index]
 
 class OptionEditor
   constructor: (opEd, variable) ->
@@ -161,3 +190,5 @@ class FormulaVariable extends deckorate.Variable
   anyResearchedOptions: ->
     opts = @options()
     @optionsLength() == 2 && opts.not_researched == "Unknown" && opts.unknown == "Unknown"
+
+  sampleInput: (val) -> @row.find("._sample-value").val JSON.stringify(val)
