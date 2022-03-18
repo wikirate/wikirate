@@ -1,0 +1,12 @@
+remote:
+  items:
+    - src: https://cdnjs.cloudflare.com/ajax/libs/coffee-script/2.5.1/coffeescript.min.js
+
+calculations:
+  items:
+    - variables.js.coffee
+    - formula_variables.js.coffee
+    - metric_formula.js.coffee
+    - rubric.js.coffee
+    - wikirating.js.coffee
+    - vendor/formula.js
