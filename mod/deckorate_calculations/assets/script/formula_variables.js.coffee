@@ -19,7 +19,9 @@ $(window).ready ->
 
 decko.slotReady (slot) ->
   ed = slot.find "._variablesEditor"
-  variabler(ed).initOptions() if ed.length > 0
+  if ed.length > 0
+    variabler(ed).initOptions()
+    ed.closest(".modal-dialog").addClass "modal-full"
 
 
 variabler = (el) ->
@@ -164,8 +166,7 @@ class FormulaVariable extends deckorate.Variable
 
   setOptions: (options) ->
     @cleanOptions options
-    ul = @optionsList()
-    ul.data "options", options
+    @optionsList().data "options", options
     @publishOptions()
 
   cleanOptions: (options) ->
