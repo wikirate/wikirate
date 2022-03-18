@@ -38,7 +38,7 @@ class Calculate
       # running in slices keeps JS from running out of memory
       value_hash.each_slice 5000 do |value_hash_slice|
         # puts "calling with #{value_hash_slice.to_h}"
-        computer.merge! program.call "calcAll", value_hash_slice.to_h
+        computer.merge! program.call "_calculateAll", value_hash_slice.to_h
       end
       computer
     end
@@ -64,10 +64,10 @@ class Calculate
     def full_coffee
       <<~COFFEE
         iloRegion = (region) ->
-          regionLookup region, "ilo_region"
+          _regionLookup region, "ilo_region"
         country = (region) ->
-          regionLookup region, "country"
-        regionLookup = (region, field) ->
+          _regionLookup region, "country"
+        _regionLookup = (region, field) ->
           entry = wikirateRegion[region]
           entry[field] if entry
         isKnown = (answer) ->
@@ -76,16 +76,16 @@ class Calculate
           formulajs.COUNTIF list, "<>Unknown"
         anyKnown = (list) ->
           list.find isKnown
-        addFormulaFunctions = (context) ->
+        _addFormulaFunctions = (context) ->
           for key in Object.keys formulajs
             context[key] = formulajs[key]
-        calcAll = (obj) ->
+        _calculateAll = (obj) ->
           r = {}
           for key, val of obj
-            r[key] = calc(val)
+            r[key] = _calculate val
           r
-        calc = (iN) ->
-          addFormulaFunctions this
+        _calculate = (inputList) ->
+          _addFormulaFunctions this
         #{prepended_coffee_formula}
       COFFEE
     end
@@ -129,7 +129,7 @@ class Calculate
 
     # just weird enough that users aren't likely to use it...
     def input_name index
-      "iN[#{index}]"
+      "inputList[#{index}]"
     end
   end
 end

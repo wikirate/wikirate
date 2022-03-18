@@ -17,13 +17,16 @@ $(window).ready ->
   $('body').on "change", "._custom-formula-option", ->
     $(this).closest(".vo-radio").find("input[type=radio]").prop "checked", true
 
+  $('body').on "change keyup paste", "._variablesEditor ._sample-value", ->
+    variabler(this).runSampleCalculation()
+
+
 decko.slotReady (slot) ->
   ed = slot.find "._variablesEditor"
   variabler(ed).initOptions() if ed.length > 0
 
 
-variabler = (el) ->
-  new decko.FormulaVariablesEditor el
+variabler = (el) -> new decko.FormulaVariablesEditor el
 
 class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
   variableClass: -> FormulaVariable
@@ -74,6 +77,8 @@ class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
     return unless el.length > 0
     new decko.FormulaEditor el
 
+  runSampleCalculation: -> @formulaEditor().runVisibleCalculation()
+
   updateFormulaInputs: ->
     return unless (formEd = @formulaEditor())
     $.ajax
@@ -93,7 +98,11 @@ class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
 
   showInputs: (inputs) ->
     for v, index in @variables()
-      v.sampleInput inputs[index]
+      v.sampleInput().val JSON.stringify(inputs[index])
+
+  variableNames: -> v.variableName() for v in @variables()
+
+  variableValues: -> v.sampleInput().val() for v in @variables()
 
 class OptionEditor
   constructor: (opEd, variable) ->
@@ -191,4 +200,4 @@ class FormulaVariable extends deckorate.Variable
     opts = @options()
     @optionsLength() == 2 && opts.not_researched == "Unknown" && opts.unknown == "Unknown"
 
-  sampleInput: (val) -> @row.find("._sample-value").val JSON.stringify(val)
+  sampleInput: -> @row.find "._sample-value"

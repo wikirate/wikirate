@@ -37,11 +37,17 @@ format :html do
   end
 
   def editor_tabs
-    tabs({ Edit: ace_editor_input,
+    tabs({ Edit: code_mirror_input,
            JavaScript: haml(:formula_as_javascript),
            Answers: haml(:answer_board),
-           Help: haml(:editor_help) },
-         :Answers)
+           Help: haml(:editor_help) }) #,
+    #:Answers)
+  end
+
+  def code_mirror_input
+    text_area :content, rows: 5,
+              class: "d0-card-content codemirror-editor-textarea",
+              "data-codemirror-mode" => "coffee"
   end
 
   # def new_success
