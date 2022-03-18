@@ -39,11 +39,3 @@ format :html do
     haml :options_cell, options: options
   end
 end
-
-format :json do
-  view :input_lists do
-    metric_card.calculator.input_values.with_object([]) do |(vals, _comp, _year), array|
-      array << vals
-    end
-  end
-end

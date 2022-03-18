@@ -42,7 +42,6 @@ format :html do
            Answers: haml(:answer_board),
            Help: haml(:editor_help) },
          :Answers)
-
   end
 
   # def new_success
