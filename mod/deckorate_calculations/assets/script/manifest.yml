@@ -14,6 +14,7 @@ remote:
 
 calculations:
   items:
+    - calculator.js.coffee
     - variables.js.coffee
     - formula_variables.js.coffee
     - metric_formula.js.coffee

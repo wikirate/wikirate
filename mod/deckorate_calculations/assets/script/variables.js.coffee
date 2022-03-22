@@ -1,4 +1,4 @@
-window.deckorate =
+$.extend deckorate,
   VariablesEditor: class
     constructor: (el) -> @ed = $(el).closest ".variablesEditor"
 

@@ -11,11 +11,17 @@ decko.slotReady ->
 initFormulaEditor = ->
   textarea = $("._formula-editor .codemirror-editor-textarea")
   return unless (cm = textarea.data "codeMirror")
+  getRegionData()
+
   textarea.closest(".modal-dialog").addClass "modal-full"
   cm.on "changes", ->
     fe = formEd textarea
     fe.runVisibleCalculation()
     fe.runCalculations()
+
+getRegionData = ->
+  $.get decko.path("mod/wikirate_companies/region.json"), (json) ->
+    deckorate.region = json
 
 formEd = (el) ->
   new decko.FormulaEditor el
@@ -57,25 +63,27 @@ class decko.FormulaEditor
     results = { known: [], unknown: [], error: [] }
     @submitButton false
     if calc.formula
-      for inputList, index in @inputs().sample
-        key = "known"
-        try
-          r = calc._calculate inputList
-          if r == "Unknown"
-            key = "unknown"
-          else if typeof(r) == "number"
-            key = "error" if isNaN(r) || !isFinite(r)
-        catch
-          key = "error"
-        results[key].push index
-
+      @runEachCalculation calc, results
+      @submitButton true if results["error"].length == 0
     @publishResults results
+
+  runEachCalculation: (calc, results) ->
+    for inputList, index in @inputs().sample
+      key = "known"
+      try
+        r = calc._simple_run inputList
+        if r == "Unknown"
+          key = "unknown"
+        else if typeof(r) == "number"
+          key = "error" if isNaN(r) || !isFinite(r)
+      catch
+        key = "error"
+      results[key].push index
 
   submitButton: (enabled) ->
     @form().find(".submit-button").prop("disabled", !enabled)
 
   publishResults: (results) ->
-    @submitButton true unless results["error"] > 0
     for key in Object.keys(results)
       group = $("._ab-sample-#{key}")
       group.find("._result-count").html results[key].length
@@ -90,7 +98,7 @@ class decko.FormulaEditor
     new drCalculator @rawFormula(), @variableEditor().variableNames(), @ed
 
   runVisibleCalculation: ->
-    result = @calculator().run @variableEditor().variableValues()
+    result = @calculator()._run @variableEditor().variableValues()
     @ed.find("._sample-result-value").html result
 
   rawFormula: ->
@@ -106,39 +114,51 @@ class decko.FormulaEditor
     newFormula = @rawFormula().replace re, newval
     @area.getDoc().setValue newFormula
 
+# we use underscores here to minimize conflict with user formulae
 class drCalculator
-  constructor: (@rawFormula, @variableNames, @ed) ->
-    @formula = @compile()
+  constructor: (@_rawFormula, @_variableNames, @_ed) ->
+    @_formula = @_compile()
 
-  compile: ->
-    f = @formulaJS()
-    f = @setVariablesJS() + "\n" + f if f
-    f
 
-  setVariablesJS: ->
-    string = ""
-    for name, index in @variableNames
-      string += "#{name} = inputList[#{index}];\n"
-    string
-
-  formulaJS: ->
+  _run: (inputList) ->
+    return "invalid formula" unless @_formula
     try
-      raw = CoffeeScript.compile @rawFormula, bare: true
-      @publish raw, ""
-      raw
-    catch e
-      @publish e, e
-      ""
-
-  publish: (js, notify) ->
-    @ed.find("._formula-as-javascript").html js
-    @ed.slot().notify notify
-
-  run: (inputList) ->
-    return "invalid formula" unless @formula
-    try
-      @_calculate inputList
+      @_simple_run inputList
     catch e
       e.message
 
-  _calculate: (inputList) -> eval @formula
+  _simple_run: (inputList) ->
+#    deckorate._addFormulaFunctions this
+#    eval @_formula
+    dumbEval @_formula, inputList
+
+
+  _compile: ->
+    f = @_formulaJS()
+    f = @_setVariablesJS() + "\n" + f if f
+    f
+
+  _setVariablesJS: ->
+    string = ""
+    for name, index in @_variableNames
+      string += "#{name} = inputList[#{index}];\n"
+    string
+
+  _formulaJS: ->
+    try
+      raw = CoffeeScript.compile @_rawFormula, bare: true
+      @_publish raw, ""
+      raw
+    catch e
+      @_publish e, e
+      ""
+
+  _publish: (js, notify) ->
+    @_ed.find("._formula-as-javascript").html js
+    @_ed.slot().notify notify
+
+undefine = ["jQuery", "$"]
+
+dumbEval = (formula, inputList) ->
+  deckorate._addFormulaFunctions this
+  eval formula
