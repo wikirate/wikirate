@@ -4,7 +4,7 @@ class Calculate
   # Calculate formula values using JavaScript
   class JavaScript < Calculator
     def formula_js_code
-      read_file_in_mod "deckorate_calculations/assets/script/vendor/formula.js"
+      read_js_file "vendor/formula.js"
     end
 
     # coffeescript has the advantage of making sure the function _returns_ the value
@@ -20,13 +20,18 @@ class Calculate
       ].join "\n"
     end
 
+    def read_js_file file_in_script
+      read_file_in_mod "deckorate_calculations/assets/script/#{file_in_script}"
+    end
+
     def read_file_in_mod path_in_mod
       File.read File.expand_path("../../../../#{path_in_mod}", __FILE__)
     end
 
     # FIXME: should not be in this mod!!
     def region_json
-      "wikirateRegion = #{read_file_in_mod 'wikirate_companies/lib/region.json'}"
+      file_content = read_file_in_mod "wikirate_companies/public/region.json"
+      "deckorate.region = #{file_content}"
     end
 
     def compute _v, company_id, year
@@ -36,9 +41,10 @@ class Calculate
     def boot
       computer = {}
       # running in slices keeps JS from running out of memory
+      function = "._calculateAll"
       value_hash.each_slice 5000 do |value_hash_slice|
         # puts "calling with #{value_hash_slice.to_h}"
-        computer.merge! program.call "calcAll", value_hash_slice.to_h
+        computer.merge! program.call(function, value_hash_slice.to_h)
       end
       computer
     end
@@ -62,32 +68,7 @@ class Calculate
     private
 
     def full_coffee
-      <<~COFFEE
-        iloRegion = (region) ->
-          regionLookup region, "ilo_region"
-        country = (region) ->
-          regionLookup region, "country"
-        regionLookup = (region, field) ->
-          entry = wikirateRegion[region]
-          entry[field] if entry
-        isKnown = (answer) ->
-          answer != "Unknown"
-        numKnown = (list) ->
-          formulajs.COUNTIF list, "<>Unknown"
-        anyKnown = (list) ->
-          list.find isKnown
-        addFormulaFunctions = (context) ->
-          for key in Object.keys formulajs
-            context[key] = formulajs[key]
-        calcAll = (obj) ->
-          r = {}
-          for key, val of obj
-            r[key] = calc(val)
-          r
-        calc = (iN) ->
-          addFormulaFunctions this
-        #{prepended_coffee_formula}
-      COFFEE
+      read_js_file("calculator.js.coffee") + prepended_coffee_formula
     end
 
     def lookup_key company_id, year
@@ -129,7 +110,7 @@ class Calculate
 
     # just weird enough that users aren't likely to use it...
     def input_name index
-      "iN[#{index}]"
+      "inputList[#{index}]"
     end
   end
 end
