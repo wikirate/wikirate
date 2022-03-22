@@ -20,10 +20,27 @@ $(window).ready ->
   $('body').on "change keyup paste", "._variablesEditor ._sample-value", ->
     variabler(this).runSampleCalculation()
 
+  $('body').on "focus", "._variable-name", ->
+    @previousValue = $(this).val()
+
+  $('body').on "keyup", "._variable-name", ->
+    previous = @previousValue
+    newval = $(this).val()
+    variabler(this).updateVariableNameInFormula previous, newval
+    @previousValue = newval
 
 decko.slotReady (slot) ->
   ed = slot.find "._variablesEditor"
   variabler(ed).initOptions() if ed.length > 0
+
+decko.itemAdded (el) ->
+  if el.hasClass "_variable-row"
+    ve = variabler el
+    ve.setOptions $("._options-scheme").val()
+    ve.updateFormulaInputs()
+
+    v = new FormulaVariable el
+    v.autoName(ve.variableNames())
 
 
 variabler = (el) -> new decko.FormulaVariablesEditor el
@@ -79,6 +96,10 @@ class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
 
   runSampleCalculation: -> @formulaEditor().runVisibleCalculation()
 
+  updateVariableNameInFormula: (oldval, newval) ->
+    if  newval != oldval && (formEd = @formulaEditor())
+      formEd.updateVariableName oldval, newval
+
   updateFormulaInputs: ->
     return unless (formEd = @formulaEditor())
     $.ajax
@@ -100,7 +121,7 @@ class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
     for v, index in @variables()
       v.sampleInput().val JSON.stringify(inputs[index])
 
-  variableNames: -> v.variableName() for v in @variables()
+  variableNames: -> v.variableName().val() for v in @variables()
 
   variableValues: -> v.sampleInput().val() for v in @variables()
 
@@ -153,12 +174,12 @@ class OptionEditor
     @variable.setOptions @hash()
 
 class FormulaVariable extends deckorate.Variable
-  variableName:-> @row.find("._variable-name").val()
+  variableName:-> @row.find("._variable-name")
 
   hash:->
     hash = @options()
     hash.metric = "~#{@metricId()}"
-    hash.name = @variableName()
+    hash.name = @variableName().val()
     hash
 
   options:-> @optionsList().data "options"
@@ -201,3 +222,17 @@ class FormulaVariable extends deckorate.Variable
     @optionsLength() == 2 && opts.not_researched == "Unknown" && opts.unknown == "Unknown"
 
   sampleInput: -> @row.find "._sample-value"
+
+  autoName: (taken) ->
+    name_parts = @row.find(".thumbnail-title .card-title").html().split(" ")
+    name = name_parts.find (candidate) -> !taken.includes candidate
+    x = 1
+    while(!name)
+      candidate = "m#{x}"
+      if taken.includes candidate
+        x += 1
+      else
+        name = candidate
+
+    @variableName().val name
+
