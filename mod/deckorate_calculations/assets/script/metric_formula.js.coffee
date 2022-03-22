@@ -40,6 +40,8 @@ class decko.FormulaEditor
   updateAnswers: ->
     i = @inputs()
     $("._ab-total").html i.total
+    $("._ab-result-unknown").toggle i.unknown > 0
+    $("._ab-result-unknown-count").html i.unknown
     $("._ab-sample-size").html i.sample.length
 
   variableEditor: ->
@@ -53,6 +55,7 @@ class decko.FormulaEditor
   runCalculations: ->
     calc = @calculator()
     results = { known: [], unknown: [], error: [] }
+    @submitButton false
     if calc.formula
       for inputList, index in @inputs().sample
         key = "known"
@@ -68,7 +71,11 @@ class decko.FormulaEditor
 
     @publishResults results
 
+  submitButton: (enabled) ->
+    @form().find(".submit-button").prop("disabled", !enabled)
+
   publishResults: (results) ->
+    @submitButton true unless results["error"] > 0
     for key in Object.keys(results)
       group = $("._ab-sample-#{key}")
       group.find("._result-count").html results[key].length
