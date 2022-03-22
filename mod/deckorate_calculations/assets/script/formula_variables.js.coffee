@@ -60,7 +60,7 @@ class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
 
   initOptions: ->
     v.initOptions() for v in @variables()
-    scheme =  @detectOptionsScheme()
+    scheme = @detectOptionsScheme()
     schemeSelect = @ed.find "select._options-scheme"
     schemeSelect.val scheme
     schemeSelect.trigger "change"
@@ -177,7 +177,7 @@ class FormulaVariable extends deckorate.Variable
   variableName:-> @row.find("._variable-name")
 
   hash:->
-    hash = @options()
+    hash = Object.assign {}, @options()
     hash.metric = "~#{@metricId()}"
     hash.name = @variableName().val()
     hash

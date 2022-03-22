@@ -1,18 +1,21 @@
 
 $(window).ready ->
-  # this sucks.  need to get rid of the timeout in editor.js.coffee that makes
-  # this necessary or implement a better solution.
-  setTimeout (-> initFormulaEditor()), 20
-
   $('body').on "click", "._formula-input-links a", ->
     formEd(this).showInputs $(this).data("inputIndex")
+
+decko.slotReady ->
+# this sucks.  need to get rid of the timeout in editor.js.coffee that makes
+# this necessary or implement a better solution.
+  setTimeout (-> initFormulaEditor()), 20
 
 initFormulaEditor = ->
   textarea = $("._formula-editor .codemirror-editor-textarea")
   return unless (cm = textarea.data "codeMirror")
+  textarea.closest(".modal-dialog").addClass "modal-full"
   cm.on "changes", ->
-    formEd(textarea).runCalculations()
-
+    fe = formEd textarea
+    fe.runVisibleCalculation()
+    fe.runCalculations()
 
 formEd = (el) ->
   new decko.FormulaEditor el
@@ -70,6 +73,7 @@ class decko.FormulaEditor
       group = $("._ab-sample-#{key}")
       group.find("._result-count").html results[key].length
       linkdiv = group.find "._formula-input-links"
+      linkdiv.html ""
       for inputIndex in results[key]
         link = $('<a><i></i></a>')
         link.data "inputIndex", inputIndex
