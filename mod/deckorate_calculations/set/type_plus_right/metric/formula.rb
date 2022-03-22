@@ -29,7 +29,7 @@ format :html do
   end
 
   def edit_fields
-    [[card.variables_card, { title: "Variables" }], [card, { title: "Formula" }]]
+    [[card.variables_card, { title: "" }], [card, { title: "" }]]
   end
 
   def multi_card_editor?
