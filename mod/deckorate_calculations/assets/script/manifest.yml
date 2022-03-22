@@ -1,6 +1,16 @@
 remote:
   items:
-    - src: https://cdnjs.cloudflare.com/ajax/libs/coffee-script/2.5.1/coffeescript.min.js
+    # CoffeeScript compiler
+    - src: https://coffeescript.org/browser-compiler-legacy/coffeescript.js
+
+    # Codemirror
+    - src: https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js
+      integrity: sha512-xwrAU5yhWwdTvvmMNheFn9IyuDbl/Kyghz2J3wQRDR8tyNmT8ZIYOd0V3iPYY/g4XdNPy0n/g0NvqGu9f0fPJQ==
+      crossorigin: anonymous
+
+    - src: https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/coffeescript/coffeescript.min.js
+    - src: https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/lint/coffeescript-lint.min.js
+
 
 calculations:
   items:
@@ -10,3 +20,4 @@ calculations:
     - rubric.js.coffee
     - wikirating.js.coffee
     - vendor/formula.js
+    - dr_codemirror.js.coffee

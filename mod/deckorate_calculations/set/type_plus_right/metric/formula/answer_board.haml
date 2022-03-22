@@ -1,19 +1,21 @@
-._answer-board
+._answer-board.answer-board
   .pb-2
     With these variables, we can calculate
     %strong._ab-total
     answers.
-  .p-1
+  .py-1
     Using sample inputs for
     %strong._ab-sample-size
     we currently get:
 
   %ul
-    - %i[known unknown error].each do |result|
+    - %i[known unknown error].each do |group|
 
-      %li.p-2{ class: "_ab-sample-#{result}" }
+      %li.p-2{ class: "_ab-sample-#{group}" }
         %strong
-          = result
+          %span._result-count
+          = group
         answers:
+        ._formula-input-links.formula-input-links
 
-  %em.pt-4 Click on any square to use its sample inputs and see its result.
+  %em.pt-4 Click on any circle to use its sample inputs and see its result.
