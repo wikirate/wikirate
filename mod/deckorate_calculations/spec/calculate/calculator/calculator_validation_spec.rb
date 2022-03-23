@@ -24,7 +24,7 @@ RSpec.describe Calculate::Calculator do
   end
 
   example "messed up parentheses" do
-    invalid variables, "SUM(m1", "SyntaxError: [stdin]:25:9: unmatched OUTDENT"
+    invalid variables, "SUM(m1", /SyntaxError: \[stdin\]:\d+:\d+: unmatched OUTDENT/
   end
 
   example "invalid year option" do
