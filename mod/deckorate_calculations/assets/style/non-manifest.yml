@@ -1,0 +1,9 @@
+remote:
+  items:
+    - src: https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css
+    - src: https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/midnight.min.css
+
+calculations:
+  items:
+    - formula.scss
+
