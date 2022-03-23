@@ -157,8 +157,6 @@ class drCalculator
     @_ed.find("._formula-as-javascript").html js
     @_ed.slot().notify notify
 
-undefine = ["jQuery", "$"]
-
 dumbEval = (formula, inputList) ->
   deckorate._addFormulaFunctions this
   eval formula

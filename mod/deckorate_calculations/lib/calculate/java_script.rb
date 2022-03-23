@@ -14,6 +14,7 @@ class Calculate
 
     def full_javascript
       [
+        "deckorate = {};",
         formula_js_code,
         region_json,
         ::CoffeeScript.compile(full_coffee, bare: true)
@@ -41,7 +42,7 @@ class Calculate
     def boot
       computer = {}
       # running in slices keeps JS from running out of memory
-      function = "._calculateAll"
+      function = "_calculateAll"
       value_hash.each_slice 5000 do |value_hash_slice|
         # puts "calling with #{value_hash_slice.to_h}"
         computer.merge! program.call(function, value_hash_slice.to_h)
