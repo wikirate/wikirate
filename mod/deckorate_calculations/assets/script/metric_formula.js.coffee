@@ -76,6 +76,9 @@ class decko.FormulaEditor
           key = "unknown"
         else if typeof(r) == "number"
           key = "error" if isNaN(r) || !isFinite(r)
+        else if !r
+          key = "error"
+
       catch
         key = "error"
       results[key].push index
@@ -119,7 +122,6 @@ class drCalculator
   constructor: (@_rawFormula, @_variableNames, @_ed) ->
     @_formula = @_compile()
 
-
   _run: (inputList) ->
     return "invalid formula" unless @_formula
     try
@@ -127,11 +129,7 @@ class drCalculator
     catch e
       e.message
 
-  _simple_run: (inputList) ->
-#    deckorate._addFormulaFunctions this
-#    eval @_formula
-    dumbEval @_formula, inputList
-
+  _simple_run: (inputList) ->    dumbEval @_formula, inputList
 
   _compile: ->
     f = @_formulaJS()
