@@ -62,7 +62,7 @@ class decko.FormulaEditor
     calc = @calculator()
     results = { known: [], unknown: [], error: [] }
     @submitButton false
-    if calc.formula
+    if calc._formula
       @runEachCalculation calc, results
       @submitButton true if results["error"].length == 0
     @publishResults results
