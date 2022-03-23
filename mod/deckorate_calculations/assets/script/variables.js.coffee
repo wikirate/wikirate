@@ -1,4 +1,4 @@
-window.deckorate =
+$.extend deckorate,
   VariablesEditor: class
     constructor: (el) -> @ed = $(el).closest ".variablesEditor"
 
@@ -20,7 +20,7 @@ window.deckorate =
 
     variable: (el) -> $(el).closest "._filtered-list-item"
 
-    removeVariable: (el) -> variable(el).remove()
+    removeVariable: (el) -> @variable(el).remove()
 
   Variable: class
     constructor: (item) ->
