@@ -91,8 +91,8 @@ format :html do
   end
 
   def fixed_thumbnail_subtitle
-    wrap_with :div, class: "scored-by-subtitle d-flex" do
-      "Score by #{render :scorer_image, size: :icon}"
+    wrap_with :div, class: "scored-by-subtitle" do
+      "Scored by #{link_to_card card.scorer}"
     end
   end
 
