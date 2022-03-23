@@ -9,10 +9,9 @@ describe 'edit WikiRating', ->
   expectTotalWeight = (weight) ->
     cy.get("input#weight_sum").should "have.value", weight
 
-  before =>
-    cy.login()
+  before -> cy.login()
 
-  specify 'WikiRating formula', =>
+  specify "WikiRating formula", ->
     cy.visit "Jedi+darkness rating"
     cy.slot "jedi+darkness_rating+*variable"
       .find(".card-menu > a.edit-link").click(force: true)
@@ -23,7 +22,7 @@ describe 'edit WikiRating', ->
     cy.get("input[name='Jedi+deadliness+Joe Camel']")
       .click()
     cy.contains("Add Selected")
-      .click().should  "not.exist"
+      .click().should "not.exist"
 
     cy.get("._modal-slot").within ($modal) ->
       expect($modal).to.contain "Scored by Joe Camel"

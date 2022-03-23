@@ -44,13 +44,20 @@ decko.itemAdded (el) ->
     v = new FormulaVariable el
     v.autoName(ve.variableNames())
 
-
 variabler = (el) -> new decko.FormulaVariablesEditor el
 
 class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
   variableClass: -> FormulaVariable
 
   form: -> @ed.closest "form"
+
+  variableNames: -> v.variableName().val() for v in @variables()
+
+  variableValues: -> v.sampleInput().val() for v in @variables()
+
+  removeVariable: (el)->
+    super el
+    @updateFormulaInputs()
 
   detectOptionsScheme: ->
     if !@variables().some((v) -> !v.allResearchedOptions())
@@ -99,7 +106,7 @@ class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
   runSampleCalculation: -> @formulaEditor().runVisibleCalculation()
 
   updateVariableNameInFormula: (oldval, newval) ->
-    if  newval != oldval && (formEd = @formulaEditor())
+    if newval != oldval && (formEd = @formulaEditor())
       formEd.updateVariableName oldval, newval
 
   updateFormulaInputs: ->
@@ -120,12 +127,9 @@ class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
         ":metric_type": "Formula"
 
   showInputs: (inputs) ->
+    inputs ||= []
     for v, index in @variables()
       v.sampleInput().val JSON.stringify(inputs[index])
-
-  variableNames: -> v.variableName().val() for v in @variables()
-
-  variableValues: -> v.sampleInput().val() for v in @variables()
 
 class OptionEditor
   constructor: (opEd, variable) ->
@@ -174,6 +178,7 @@ class OptionEditor
 
   update: ->
     @variable.setOptions @hash()
+    variabler(@variable.row).updateFormulaInputs()
 
 class FormulaVariable extends deckorate.Variable
   variableName:-> @row.find("._variable-name")
@@ -236,4 +241,3 @@ class FormulaVariable extends deckorate.Variable
         name = candidate
 
     @variableName().val name
-
