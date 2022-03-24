@@ -37,7 +37,7 @@ format :html do
   end
 
   def editor_tabs
-    tabs Edit: code_mirror_input,
+    tabs CoffeeScript: code_mirror_input,
          JavaScript: haml(:formula_as_javascript),
          Answers: haml(:answer_board),
          Help: haml(:editor_help)

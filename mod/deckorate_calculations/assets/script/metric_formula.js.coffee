@@ -70,6 +70,7 @@ class decko.FormulaEditor
   runEachCalculation: (calc, results) ->
     for inputList, index in @inputs().sample
       key = "known"
+      message = ""
       try
         r = calc._simple_run inputList
         if r == "Unknown"
@@ -78,10 +79,12 @@ class decko.FormulaEditor
           key = "error" if isNaN(r) || !isFinite(r)
         else if !r
           key = "error"
+        message = r
 
-      catch
+      catch e
         key = "error"
-      results[key].push index
+        message = e.message
+      results[key].push { index: index, message: message}
 
   submitButton: (enabled) ->
     @form().find(".submit-button").prop("disabled", !enabled)
@@ -92,9 +95,10 @@ class decko.FormulaEditor
       group.find("._result-count").html results[key].length
       linkdiv = group.find "._formula-input-links"
       linkdiv.html ""
-      for inputIndex in results[key]
+      for object in results[key]
         link = $('<a><i></i></a>')
-        link.data "inputIndex", inputIndex
+        link.data "inputIndex", object.index
+        link.attr "title", object.message
         linkdiv.append link
 
   calculator: ->

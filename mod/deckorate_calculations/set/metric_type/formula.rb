@@ -1,7 +1,7 @@
 include_set Abstract::Hybrid
 include_set Abstract::Calculation
 
-SAMPLE_SIZE = 1000
+SAMPLE_SIZE = 100
 
 def calculator_class
   Calculate::JavaScript
