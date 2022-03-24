@@ -5,6 +5,11 @@
   // width: 400px !important;
   max-width: 50% !important;
 }
+.formula-editor {
+  .formula-editor-main {
+    border-top: 1px solid $gray-200;
+  }
+}
 .formula-editor-table, .wikiRating-editor-table, .answer-board {
   .row > div {
     padding: 0.5em 1em;
@@ -78,5 +83,11 @@ code._formula-as-javascript {
   ._ab-sample-error a {
     color: red;
   }
+  strong {
+    margin-right: 0.25em;
+  }
 
+}
+.answer-board-help-text {
+  padding: 1em;
 }
