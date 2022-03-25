@@ -1,6 +1,6 @@
 format :html do
   def standard_title
-    voo.title = card.metric_title
+    voo.title ||= card.metric_title
     add_name_context card.name
     super
   end
