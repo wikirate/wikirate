@@ -1,5 +1,15 @@
+# TODO: move somewhere more general!
 decko.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
+
+$(window).ready ->
+  $(".new-metric").on "click", ".metric-type-list .box", (e) ->
+    params =
+      card:
+        subfields:
+          ":metric_type": $(this).data("cardLinkName")
+    window.location = decko.path "new/Metric?#{$.param params}"
+    e.stopImmediatePropagation()
 
 
 
