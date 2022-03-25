@@ -65,4 +65,14 @@ format :html do
   view :main_details do
     [nest_about, render_formula, nest_methodology]
   end
+
+  view :new_formula, unknown: true do
+    wrap do
+      card_form view: :new, method: :get do
+        with_nest_mode :edit do
+          field_nest card.formula_field, view: :content_formgroups
+        end
+      end
+    end
+  end
 end

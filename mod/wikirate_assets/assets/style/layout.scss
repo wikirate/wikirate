@@ -284,7 +284,7 @@ body.wikirate-two-column-layout {
 }
 
 body#tinymce, body.wikirate-one-column-layout, body.wikirate-one-full-column-layout {
-  #main > .titled-view>.d0-card-header {
+  #main > .titled-view>.d0-card-header, .main-card-header {
     border-bottom: 1px solid $brand-primary;
     padding-bottom: 0.1em;
     margin-bottom: 1em;

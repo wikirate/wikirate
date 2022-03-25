@@ -33,7 +33,7 @@ format :html do
   end
 
   def multi_card_editor?
-    depth.zero?
+    parent.card != card
   end
 
   def editor_tabs
