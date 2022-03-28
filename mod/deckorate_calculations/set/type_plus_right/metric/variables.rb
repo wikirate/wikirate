@@ -119,7 +119,11 @@ format :html do
     end
   end
 
-  def duplicates_ok?
+  def filtered_item_duplicable
     metric_type_codename == :formula
+  end
+
+  def edit_in_form_prefix
+    "card[subfields][:variables]"
   end
 end

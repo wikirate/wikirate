@@ -47,7 +47,7 @@ format :html do
   end
 
   before :content_formgroups do
-    voo.edit_structure = edit_properties.to_a
+    voo.edit_structure ||= edit_properties.to_a
   end
 
   # for override

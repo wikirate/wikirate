@@ -4,7 +4,7 @@ RESEARCHABLE_CHECKBOX = ".RIGHT-hybrid input[type=checkbox]"
 VALUE_TYPE_RADIO = ".RIGHT-value_type input[type=radio]"
 
 decko.slotReady (slot) ->
-  if slot.hasClass("TYPE-metric") && (slot.hasClass("new_tab_pane-view") || slot.hasClass("edit-view"))
+  if slot.hasClass("TYPE-metric") && (slot.hasClass("new-view") || slot.hasClass("edit-view"))
     vizResearchProps slot, slot.find(RESEARCHABLE_CHECKBOX).prop "checked"
     vizPropsFor slot, slot.find(VALUE_TYPE_RADIO + ":checked").val()
 

@@ -68,6 +68,30 @@ def formula_metrics
 end
 
 format :html do
+  view :calculation_tab do
+    tab_wrap { [calculations_list, haml(:new_calculation_links)] }
+  end
+
+  def tab_options
+    { calculation: { count: card.direct_depender_metrics.size } }
+  end
+
+  def calculations_list
+    card.direct_depender_metrics.map do |metric|
+      nest metric, view: :bar
+    end.join
+  end
+
+  def add_calculation_buttons
+    card.calculation_types.map do |metric_type|
+      link_to_card :metric, "Add new #{metric_type.cardname}",
+                   path: { action: :new,
+                           card: { subfields: { ":variables": card.name,
+                                                ":metric_type": metric_type } } },
+                   class: "btn btn-secondary"
+    end
+  end
+
   view :weight_row do
     weight_row 0
   end
