@@ -51,23 +51,6 @@ format :html do
                         "data-codemirror-mode": "coffee"
   end
 
-  # def new_success
-  #   { mark: card.name.left }
-  # end
-  #
-  # def new_form_opts
-  #   super().merge "data-slot-selector" => ".card-slot.TYPE-metric"
-  # end
-  #
-  # def edit_form_opts
-  #   { "data-slot-selector" => ".card-slot.TYPE-metric",
-  #     "data-slot-error-selector" => ".RIGHT-formula.edit_form-view" }
-  # end
-  #
-  # def edit_success
-  #   new_success
-  # end
-
   def default_nest_view
     :bar
   end

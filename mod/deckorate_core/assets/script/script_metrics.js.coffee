@@ -10,6 +10,7 @@ $(window).ready ->
           ":metric_type": $(this).data("cardLinkName")
     window.location = decko.path "new/Metric?#{$.param params}"
     e.stopImmediatePropagation()
+    e.preventDefault()
 
 
 

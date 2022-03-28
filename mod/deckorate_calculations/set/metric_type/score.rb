@@ -93,3 +93,7 @@ def normalize_value value
   return "10" if value > 10
   value.to_s
 end
+
+def calculation_types
+  %i[wiki_rating formula descendant]
+end

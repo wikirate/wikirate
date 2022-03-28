@@ -7,6 +7,13 @@ end
 format :html do
   delegate :scorer_card, :scoree_card, to: :card
 
+  before :new do
+    return unless card.name.blank?
+
+    metric_name = card.drop_field(:variables)&.content
+    card.name = Card::Name[metric_name, Auth.current.name]
+  end
+
   view :select do
     options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
     select_tag("pointer_select",
@@ -49,7 +56,7 @@ format :html do
   def new_score_name_field
     option_names = card.scorable_metrics.map(&:name).sort.map { |x| [x, x] }
     options = [["-- Select --", ""]] + option_names
-    new_name_editor_wrap options, params[:metric]
+    new_name_editor_wrap options, card.name.left
   end
 
   def new_name_editor_wrap options, selected

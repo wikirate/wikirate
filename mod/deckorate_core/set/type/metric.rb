@@ -89,6 +89,12 @@ def value_required?
   true
 end
 
+# calculated metric types that can use this metric as a variable
+# overridden elsewhere; eg you don't score a score
+def calculation_types
+  %i[score formula descendant]
+end
+
 def calculated?
   !researched?
 end
