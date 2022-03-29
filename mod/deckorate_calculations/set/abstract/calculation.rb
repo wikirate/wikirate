@@ -30,12 +30,8 @@ def input_array variant
   end
 end
 
-# HACK: this should not be necessary (we just want `variables_card.input_array`)
-# But without it we
 def base_input_array
   variables_card.input_array
-# rescue
-#   binding.pry
 end
 
 def standard_formula_input input
@@ -96,5 +92,4 @@ format :html do
     hidden_tags card: { subfields: { ":metric_type": card.metric_type },
                         name: card.name }
   end
-
 end
