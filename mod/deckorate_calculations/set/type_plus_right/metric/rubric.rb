@@ -16,7 +16,7 @@ def translation_table
 end
 
 def complete_translation_table
-  hash = parse_content
+  hash = content.present? ? parse_content : {}
   metric_card.value_options.map { |option| [option, hash[option]] }
 end
 

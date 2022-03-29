@@ -128,6 +128,7 @@ class drCalculator
 
   _run: (inputList) ->
     return "invalid formula" unless @_formula
+    debugger
     try
       @_simple_run inputList
     catch e
@@ -137,8 +138,8 @@ class drCalculator
 
   _compile: ->
     f = @_formulaJS()
-    f = @_setVariablesJS() + "\n" + f if f
-    f
+    return "" unless f.trim()
+    @_setVariablesJS() + "\n" + f
 
   _setVariablesJS: ->
     string = ""

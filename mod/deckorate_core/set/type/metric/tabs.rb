@@ -42,27 +42,4 @@ format :html do
       end
     end
   end
-
-  view :calculation_tab do
-    tab_wrap do
-      output [calculations_list, add_score_link]
-    end
-  end
-
-  def calculations_list
-    card.direct_depender_metrics.map do |metric|
-      nest metric, view: :bar
-    end.join
-  end
-
-  def tab_options
-    { calculation: { count: card.direct_depender_metrics.size } }
-  end
-
-  def add_score_link
-    return if card.score?
-    link_to_card :metric, "Add new score",
-                 path: { action: :new, metric_type: :score, metric: card.name },
-                 class: "btn btn-primary mt-4"
-  end
 end
