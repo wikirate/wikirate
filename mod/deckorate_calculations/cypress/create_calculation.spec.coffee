@@ -32,26 +32,34 @@ describe "metric creation", ->
         hasProperty ".designer-property", "Designed by", "Joe Camel"
         hasProperty ".RIGHT-Xmetric_type", "Metric Type", "Descendant"
 
-  describe.only "from variable metric page", ->
+  describe "from variable metric page", ->
     beforeEach ->
+      # metric page
       cy.visit "Jedi+friendliness"
+
+      # calculations tab
       cy.contains("Calculations").click()
 
     specify "metric type: Formula", ->
+      # new formula button
       cy.contains("Add new Formula").click()
 
       cy.get(".new-formula-form").within ->
-        cy.wait 500
+        # make sure sample values are loading and formula is getting run
+        cy.get("._sample-result-value").should "have.text", "invalid formula"
+
+        # add a valid formula
         setValue "friendliness + 1"
 
-      cy.contains("Save as Metric").should("not.have.attr", "disabled").click()
+      # click to save as metric
+      cy.contains("Save as Metric").click()
 
       cy.get(".RIGHT-Xtitle .d0-card-content").type "MyFormula"
       cy.contains("Submit").click()
 
-      cy.get("span.metric-value").should "have.text", "1.1"
+      cy.get("span.metric-value").should "contain", "1.1"
       cy.get(".RIGHT-formula").within ->
-        cy.get("td").should "have.text", "friendliness"
+        cy.get("td").should "contain", "friendliness"
         cy.get(".code").should "contain", "friendliness + 1"
 
 
