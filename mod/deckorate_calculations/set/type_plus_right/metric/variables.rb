@@ -77,7 +77,7 @@ end
 
 def items_from_simple content
   content.to_s.split(/\n+/).map.with_index do |variable, index|
-    { "metric" => variable, "name" => "m#{index + 1}" }
+    { "metric" => variable } #, "name" => "m#{index + 1}" }
   end
 end
 

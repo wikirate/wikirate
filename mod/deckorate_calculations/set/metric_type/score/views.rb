@@ -8,9 +8,8 @@ format :html do
   delegate :scorer_card, :scoree_card, to: :card
 
   before :new do
-    return unless card.name.blank?
+    return unless card.name.blank? && (metric_name = card.drop_field(:variables)&.content)
 
-    metric_name = card.drop_field(:variables)&.content
     card.name = Card::Name[metric_name, Auth.current.name]
   end
 
@@ -28,7 +27,7 @@ format :html do
   end
 
   def scorer_image_card
-    scorer_card.fetch :image, new: { type_id: Card::ImageID }
+    scorer_card.fetch :image, new: { type: :image }
   end
 
   def table_properties

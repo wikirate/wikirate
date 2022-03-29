@@ -1,10 +1,10 @@
 describe "researched metric creation", ->
-  before ->
-    cy.login "joe@camel.com"
+  beforeEach ->
+    cy.login("joe@camel.com")
+    cy.visit("new/Metric")
 
 
   specify "metric type: Research", ->
-    cy.visit "new/Metric"
     cy.get(".box").within -> cy.contains("Researched").click()
     cy.get(".RIGHT-Xtitle .d0-card-content").type("MyResearch")
 
@@ -18,7 +18,6 @@ describe "researched metric creation", ->
 
 
   specify "metric type: Relationship", ->
-    cy.visit "new/Metric?5"
     cy.get(".box").within ->
       cy.contains("Relationship").click()
 

@@ -197,7 +197,9 @@ class FormulaVariable extends deckorate.Variable
     @optionEditor = new OptionEditor opEd, this
     @optionEditor.init()
 
-  initOptions: -> @setOptions @options()
+  initOptions: ->
+    @setOptions @options()
+    @autoName([]) unless @variableName().val()
 
   setOptions: (options) ->
     @cleanOptions options

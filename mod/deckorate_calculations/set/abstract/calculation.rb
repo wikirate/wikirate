@@ -34,8 +34,8 @@ end
 # But without it we
 def base_input_array
   variables_card.input_array
-rescue
-  binding.pry
+# rescue
+#   binding.pry
 end
 
 def standard_formula_input input
