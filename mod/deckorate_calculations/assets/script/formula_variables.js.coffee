@@ -30,7 +30,7 @@ $(window).ready ->
     @previousValue = newval
 
 decko.slotReady (slot) ->
-  ed = slot.find "._variablesEditor"
+  ed = slot.find "._formulaVariablesEditor"
   if ed.length > 0
     variabler(ed).initOptions()
     ed.closest(".modal-dialog").addClass "modal-full"
@@ -44,16 +44,16 @@ decko.itemAdded (el) ->
     v = new FormulaVariable el
     v.autoName(ve.variableNames())
 
-variabler = (el) -> new decko.FormulaVariablesEditor el
+variabler = (el) -> new deckorate.FormulaVariablesEditor el
 
-class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
+class deckorate.FormulaVariablesEditor extends deckorate.VariablesEditor
   variableClass: -> FormulaVariable
 
   form: -> @ed.closest "form"
 
   variableNames: -> v.variableName().val() for v in @variables()
 
-  variableValues: -> v.sampleInput().val() for v in @variables()
+  variableValues: -> v.sampleInputVal() for v in @variables()
 
   removeVariable: (el)->
     super el
@@ -111,20 +111,8 @@ class decko.FormulaVariablesEditor extends deckorate.VariablesEditor
 
   updateFormulaInputs: ->
     return unless (formEd = @formulaEditor())
-    $.ajax
-      url: decko.path "?#{$.param @inputsParams()}"
-      success: (json) -> formEd.updateInputs json
-      error: (_jqXHR, textStatus)-> formEd.slot().notify "error: #{textStatus}", "error"
 
-  inputsParams: ->
-    assign: true
-    view: "input_lists"
-    format: "json"
-    card:
-      type: ":metric"
-      subfields:
-        ":variables": @json()
-        ":metric_type": "Formula"
+    formEd.requestInputs @json()
 
   showInputs: (inputs) ->
     inputs ||= []
@@ -230,6 +218,13 @@ class FormulaVariable extends deckorate.Variable
     @optionsLength() == 2 && opts.not_researched == "Unknown" && opts.unknown == "Unknown"
 
   sampleInput: -> @row.find "._sample-value"
+
+  sampleInputVal: ->
+    raw = @sampleInput().val()
+    if raw
+      $.parseJSON raw
+    else
+      ""
 
   autoName: (taken) ->
     name_parts = @row.find(".thumbnail-title .card-title").html().split(" ")

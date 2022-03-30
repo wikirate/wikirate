@@ -36,7 +36,7 @@ describe "metric creation", ->
         .should "contain", "Awarded for adding your first metric"
 
 
-  describe "from variable metric page", ->
+  describe "from variable researched metric page", ->
     beforeEach ->
       # metric page
       cy.visit "Jedi+friendliness"
@@ -58,23 +58,68 @@ describe "metric creation", ->
       # click to save as metric
       cy.contains("Save as Metric").click()
 
+      # add a name and save
       cy.get(".RIGHT-Xtitle .d0-card-content").type "MyFormula"
       cy.contains("Submit").click()
 
+      # check that an answer exists
       cy.get("span.metric-value").should "contain", "1.1"
+
+      # check that formula looks right
       cy.get(".RIGHT-formula").within ->
         cy.get("td").should "contain", "friendliness"
         cy.get(".code").should "contain", "friendliness + 1"
 
 
+    specify "metric type: Score", ->
+      # new score button
+      cy.contains("Add new Score").click()
 
+      cy.get(".new-formula-form").within ->
+        # make sure sample values are loading and formula is getting run
+        cy.get("._sample-result-value").should "have.text", "invalid formula"
 
+        # add a valid formula
+        setValue "answer + 1"
 
+      # click to save as metric
+      cy.contains("Save as Metric").click()
 
+      # save as metric
+      cy.contains("Submit").click()
 
-#
-#    specify "metric type: Score", ->
-#      cy.contains("Score").click()
-#
-#    specify "metric type: WikiRating", ->
-#      cy.contains("WikiRating").click()
+      # check that an answer exists
+      cy.get("span.metric-value").should "contain", "1.1"
+
+      # check that formula looks right
+      cy.get(".RIGHT-formula").within ->
+        cy.get(".code").should "contain", "answer + 1"
+
+  describe "from variable score metric page", ->
+    beforeEach ->
+# metric page
+      cy.visit "Jedi+disturbances in the force+Joe User"
+
+      # calculations tab
+      cy.contains("Calculations").click()
+
+    specify "metric type: WikiRating", ->
+
+      # new formula button
+      cy.contains("Add new WikiRating").click()
+
+      cy.get("#pair_value").clear().type("100")
+
+      # click to save as metric
+      cy.contains("Save as Metric").click()
+
+      # add a name and save
+      cy.get(".RIGHT-Xtitle .d0-card-content").type "MyWikiRating"
+      cy.contains("Submit").click()
+
+      # check that an answer exists
+      cy.get("span.metric-value").should "contain", "10"
+
+      # check that formula looks right
+      cy.get(".RIGHT-Xvariable").should "contain", "disturbance"
+

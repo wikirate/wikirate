@@ -13,6 +13,11 @@ decko.slotReady ->
   $('#equalizer').on 'click', ->
     weighter(this).equalize() if $(this).prop('checked') == true
 
+  we = $("._wikiRating-editor")
+  if we.length > 0
+    weighter(we).validate()
+
+
 decko.itemsAdded (slot) ->
   ed = slot.find(".wikiRating-editor")
   if ed[0]

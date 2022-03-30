@@ -25,7 +25,7 @@ format :html do
 
   private
 
-  view :options_editor, template: :haml #, wrap: :modal
+  view :options_editor, template: :haml, unknown: true #, wrap: :modal
 
   def formula_core_table_rows
     card.hash_list.clone.map do |hash|

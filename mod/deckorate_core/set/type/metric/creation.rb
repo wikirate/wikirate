@@ -7,7 +7,7 @@ format :html do
     end
   end
 
-  view :name_formgroup do
+  view :name_formgroup, cache: :never do
     return super() unless card.new?
 
     formgroup "Metric Name", input: "name", help: false do

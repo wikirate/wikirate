@@ -1,6 +1,6 @@
 $.extend deckorate,
   VariablesEditor: class
-    constructor: (el) -> @ed = $(el).closest ".variablesEditor"
+    constructor: (el) -> @ed = $(el).closest "._variablesEditor"
 
     form:-> @ed.closest "form"
 

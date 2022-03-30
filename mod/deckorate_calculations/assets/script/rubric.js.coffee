@@ -4,6 +4,13 @@
 decko.editorContentFunctionMap['.pairs-editor'] = ->
   JSON.stringify pairsEditorHash(this)
 
+decko.slotReady (slot) ->
+  ed = slot.find "._variablesEditor"
+  if ed.length > 0
+    variabler(ed).updateFormulaInputs()
+
+variabler = (el) -> new deckorate.ScoreVariableEditor el
+
 pairsEditorHash = (table) ->
   hash = {}
   variableMetricRows(table).each ->
@@ -14,3 +21,14 @@ pairsEditorHash = (table) ->
 
 variableMetricRows = (table) ->
   table.find("tbody tr")
+
+class deckorate.ScoreVariableEditor extends deckorate.FormulaVariablesEditor
+  variableNames: -> ["answer"]
+
+  sampleValueInput: -> @ed.find("._sample-value")
+
+  variableValues: -> [$.parseJSON @sampleValueInput().val()]
+
+  hashList: -> @ed.data "variablesJson"
+
+  showInputs: (inputs) -> @sampleValueInput().val inputs[0]
