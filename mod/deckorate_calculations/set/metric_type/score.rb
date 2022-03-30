@@ -1,5 +1,7 @@
 include_set Set::Abstract::Calculation
 
+SCORABLE_METRIC_TYPES = %i[formula researched descendant].freeze
+
 delegate :categorical?, :value_options, :value_option_names, to: :scoree_card
 delegate :calculator_class, to: :formula_card
 
@@ -81,9 +83,17 @@ def scoree_card
   left
 end
 
+def scorable_metrics
+  ::Metric.where(metric_type_id: SCORABLE_METRIC_TYPES.map(&:card_id))
+end
+
 def normalize_value value
   return value if value.is_a? String
   return "0" if value.negative?
   return "10" if value > 10
   value.to_s
+end
+
+def calculation_types
+  %i[wiki_rating formula descendant]
 end
