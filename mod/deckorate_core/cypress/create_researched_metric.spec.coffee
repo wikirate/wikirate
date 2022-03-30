@@ -10,10 +10,6 @@ describe "researched metric creation", ->
 
     cy.contains("Submit").click()
 
-    cy.get(".alert").should "contain", "Metric Creator"
-                    .should "contain", "Awarded for adding your first metric"
-
-
     cy.get(".RIGHT-Xmetric_type .d0-card-content").should "contain", "Researched"
 
 

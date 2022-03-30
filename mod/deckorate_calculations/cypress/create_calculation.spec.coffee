@@ -32,6 +32,10 @@ describe "metric creation", ->
         hasProperty ".designer-property", "Designed by", "Joe Camel"
         hasProperty ".RIGHT-Xmetric_type", "Metric Type", "Descendant"
 
+      cy.get(".alert").should "contain", "Metric Creator"
+        .should "contain", "Awarded for adding your first metric"
+
+
   describe "from variable metric page", ->
     beforeEach ->
       # metric page
