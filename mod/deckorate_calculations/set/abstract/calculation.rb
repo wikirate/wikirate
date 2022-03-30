@@ -57,21 +57,13 @@ def formula_field
   :variables
 end
 
-def formula_field_card
-  card.fetch formula_field, new: {}
-end
-
 def formula_subfield?
   subfield? formula_field
 end
 
 format :html do
   view :new do
-    if card.formula_subfield?
-      super()
-    else
-      render_new_formula
-    end
+    params[:button] == "formulated" ? super() : render_new_formula
   end
 
   view :formula do

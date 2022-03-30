@@ -219,7 +219,12 @@ class FormulaVariable extends deckorate.Variable
 
   sampleInput: -> @row.find "._sample-value"
 
-  sampleInputVal: -> $.parseJSON @sampleInput().val()
+  sampleInputVal: ->
+    raw = @sampleInput().val()
+    if raw
+      $.parseJSON raw
+    else
+      ""
 
   autoName: (taken) ->
     name_parts = @row.find(".thumbnail-title .card-title").html().split(" ")

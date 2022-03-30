@@ -4,6 +4,6 @@
     = card.metric_type_id.cardname
     Metric
   .new-formula-main
-    = nest card.formula_field_card, view: :content_formgroups
+    = field_nest card.formula_field, view: :content_formgroups
   .new-formula-buttons
-    = submit_button text: "Save as Metric", class: "submit-button"
+    = submit_button text: "Save as Metric", class: "submit-button", value: "formulated"

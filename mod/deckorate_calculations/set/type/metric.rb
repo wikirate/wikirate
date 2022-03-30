@@ -92,7 +92,7 @@ format :html do
     end
   end
 
-  view :weight_row do
+  view :weight_row, cache: :never do
     weight_row 0
   end
 
@@ -101,7 +101,7 @@ format :html do
     haml :weight_row, weight: weight
   end
 
-  view :formula_variable_row do
+  view :formula_variable_row, cache: :never do
     formula_variable_row name: ""
   end
 
