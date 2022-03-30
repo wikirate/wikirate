@@ -1,0 +1,14 @@
+._variablesEditor.scoreVariablesEditor._scoreVariablesEditor{ data: { variables_json: variables_json } }
+  .variable-editor-table
+    .variable-editor-header.row
+      .col-3 Variable
+      .col-5 Scored Metric
+      .col-1.border-none
+      .col-3 Sample Input
+    .row
+      .col-3 answer
+      .col-5
+        = nest card.metric_card.scoree_card, view: :thumbnail_no_link
+      .col-1.border-none
+      .col-3.formula-sample-value-cell
+        = text_field_tag "score-sample-value", "", class: "_sample-value"

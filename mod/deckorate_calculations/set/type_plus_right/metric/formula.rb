@@ -3,7 +3,7 @@ include_set Abstract::CalcTrigger
 
 delegate :metric_type_codename, :metric_type_card, :variables_card,
          :calculator_class, :calculator, :normalize_value,
-         :researched?, :calculated?, :rating?, to: :metric_card
+         :researched?, :calculated?, :rating?, :score?, to: :metric_card
 
 event :validate_formula, :validate, changed: :content do
   formula_errors = calculator.detect_errors
@@ -14,9 +14,13 @@ event :validate_formula, :validate, changed: :content do
 end
 
 format :html do
+  delegate :score?, to: :card
+
   before(:edit) {  voo.hide :edit_type_row }
 
   view :titled_content do
+    return super() if score?
+
     [nest(card.variables_card, view: :core, title: "Variables"), render_content]
   end
 
