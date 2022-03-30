@@ -1,7 +1,6 @@
 ---
 - :name: Calculation
   :codename: :calculation
-
 - :name: Yearly Variable
   :type: :cardtype
   :codename: :yearly_variable
@@ -14,8 +13,6 @@
 
 - :name: overridden value
   :codename: :overridden_value
-- :name: "*metric variables"
-  :codename: :metric_variables
 - :name: hybrid
   :codename: :hybrid
 - :name: Rubric
@@ -33,3 +30,31 @@
 - :name: Descendant
   :type: :metric_type_type
   :codename: :descendant
+
+# override rstar rule
+- :name:
+    - :metric
+    - :variables
+    - :type_plus_right
+    - :create
+  :content: Anyone Signed In
+- :name:
+    - :metric
+    - :variables
+    - :type_plus_right
+    - :update
+  :content: Anyone Signed In
+
+# override CoffeeScript+*type rule
+- :name:
+    - :metric
+    - :formula
+    - :type_plus_right
+    - :create
+  :content: Anyone Signed In
+- :name:
+    - :metric
+    - :formula
+    - :type_plus_right
+    - :update
+  :content: Anyone Signed In

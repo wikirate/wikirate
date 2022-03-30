@@ -57,12 +57,39 @@ def formula_field
   :variables
 end
 
+def formula_subfield?
+  subfield? formula_field
+end
+
 format :html do
+  view :new do
+    if card.formula_subfield?
+      super()
+    else
+      render_new_formula
+    end
+  end
+
   view :formula do
     field_nest card.formula_field, view: :titled, title: "Formula"
   end
 
   view :main_details do
     [nest_about, render_formula, nest_methodology]
+  end
+
+  view :new_formula, unknown: true do
+    wrap do
+      card_form({ action: :new, mark: :metric }, method: :get, redirect: true) do
+        with_nest_mode :edit do
+          [haml(:new_formula_form), new_formula_hidden_tags]
+        end
+      end
+    end
+  end
+
+  def new_formula_hidden_tags
+    hidden_tags card: { subfields: { ":metric_type": card.metric_type },
+                        name: card.name }
   end
 end

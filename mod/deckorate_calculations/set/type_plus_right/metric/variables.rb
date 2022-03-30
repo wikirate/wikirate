@@ -76,9 +76,7 @@ def content_to_hash_list content
 end
 
 def items_from_simple content
-  content.to_s.split(/\n+/).map.with_index do |variable, index|
-    { "metric" => variable, "name" => "m#{index + 1}" }
-  end
+  content.to_s.split(/\n+/).map { |var| { "metric" => var } }
 end
 
 format :html do
@@ -119,7 +117,11 @@ format :html do
     end
   end
 
-  def duplicates_ok?
+  def filtered_item_duplicable
     metric_type_codename == :formula
+  end
+
+  def edit_in_form_prefix
+    "card[subfields][:variables]"
   end
 end
