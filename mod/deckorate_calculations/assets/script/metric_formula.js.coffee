@@ -3,10 +3,13 @@ $(window).ready ->
   $('body').on "click", "._formula-input-links a", ->
     formEd(this).showInputs $(this).data("inputIndex")
 
-decko.slotReady ->
-# this sucks.  need to get rid of the timeout in editor.js.coffee that makes
-# this necessary or implement a better solution.
-  setTimeout (-> initFormulaEditor()), 20
+decko.slotReady (slot) ->
+  edEl = slot.find("._formula-editor")
+  if edEl[0] && !edEl.data("editorInitialized")
+  # this sucks.  need to get rid of the timeout in editor.js.coffee that makes
+  # this necessary or implement a better solution.
+    setTimeout (-> initFormulaEditor()), 20
+    edEl.data "editorInitialized", true
 
 initFormulaEditor = ->
   textarea = $("._formula-editor .codemirror-editor-textarea")
@@ -14,8 +17,9 @@ initFormulaEditor = ->
   getRegionData()
 
   textarea.closest(".modal-dialog").addClass "modal-full"
+
   cm.on "changes", ->
-    fe = formEd textarea
+    fe = new decko.FormulaEditor textarea
     fe.runVisibleCalculation()
     fe.runCalculations()
 
@@ -23,17 +27,34 @@ getRegionData = ->
   $.get decko.path("mod/wikirate_companies/region.json"), (json) ->
     deckorate.region = json
 
-formEd = (el) ->
-  new decko.FormulaEditor el
+formEd = (el) -> new decko.FormulaEditor el
 
 class decko.FormulaEditor
   constructor: (el) ->
     @ed = $(el).closest "._formula-editor"
     @area = @ed.find(".codemirror-editor-textarea").data "codeMirror"
 
-  form: -> @ed.closest "form"
+    @slot = @ed.slot()
+    @form = @ed.closest "form"
 
-  slot: -> @ed.slot()
+    @isScore = @slot.find("._scoreVariablesEditor").length > 0
+
+  requestInputs: (variables)->
+    formEd = this
+    $.ajax
+      url: decko.path "?#{$.param @requestInputsParams(variables)}"
+      success: (json) -> formEd.updateInputs json
+      error: (_jqXHR, textStatus)-> formEd.slot.notify "error: #{textStatus}", "error"
+
+  requestInputsParams: (variables) ->
+    assign: true
+    view: "input_lists"
+    format: "json"
+    card:
+      type: ":metric"
+      subfields:
+        ":variables": variables
+        ":metric_type": "Formula"
 
   updateInputs: (inputs) ->
     @ed.data "inputs", inputs
@@ -51,8 +72,9 @@ class decko.FormulaEditor
     $("._ab-sample-size").html i.sample.length
 
   variableEditor: ->
-    ved = @form().find "._variablesEditor"
-    new decko.FormulaVariablesEditor ved
+    ved = @form.find "._variablesEditor"
+    klass = @isScore && "ScoreVariableEditor" || "FormulaVariablesEditor"
+    new deckorate[klass] ved
 
   showInputs: (index) ->
     @variableEditor().showInputs @inputs().sample[index]
@@ -87,7 +109,7 @@ class decko.FormulaEditor
       results[key].push { index: index, message: message}
 
   submitButton: (enabled) ->
-    @form().find(".submit-button").prop("disabled", !enabled)
+    @form.find(".submit-button").prop("disabled", !enabled)
 
   publishResults: (results) ->
     for key in Object.keys(results)
@@ -128,13 +150,12 @@ class drCalculator
 
   _run: (inputList) ->
     return "invalid formula" unless @_formula
-    debugger
     try
       @_simple_run inputList
     catch e
       e.message
 
-  _simple_run: (inputList) ->    dumbEval @_formula, inputList
+  _simple_run: (inputList) -> dumbEval @_formula, inputList
 
   _compile: ->
     f = @_formulaJS()
@@ -160,6 +181,10 @@ class drCalculator
     @_ed.find("._formula-as-javascript").html js
     @_ed.slot().notify notify
 
+# inputList is referred to in the formula, which uses it to assign
+# metric variable values
+#
+# eg m1 = inputList[0]
 dumbEval = (formula, inputList) ->
   deckorate._addFormulaFunctions this
   eval formula

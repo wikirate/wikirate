@@ -57,6 +57,10 @@ def formula_field
   :variables
 end
 
+def formula_field_card
+  card.fetch formula_field, new: {}
+end
+
 def formula_subfield?
   subfield? formula_field
 end
@@ -78,7 +82,7 @@ format :html do
     [nest_about, render_formula, nest_methodology]
   end
 
-  view :new_formula, unknown: true do
+  view :new_formula, unknown: true, cache: :never do
     wrap do
       card_form({ action: :new, mark: :metric }, method: :get, redirect: true) do
         with_nest_mode :edit do

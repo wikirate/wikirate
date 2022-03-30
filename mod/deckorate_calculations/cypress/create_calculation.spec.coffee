@@ -68,10 +68,6 @@ describe "metric creation", ->
 
 
 
-
-
-
-
 #
 #    specify "metric type: Score", ->
 #      cy.contains("Score").click()

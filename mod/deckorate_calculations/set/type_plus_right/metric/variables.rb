@@ -23,7 +23,7 @@ include_set Abstract::IdPointer
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CalcTrigger
 
-delegate :metric_type_codename, to: :metric_card
+delegate :metric_type_codename, :score?, to: :metric_card
 
 event :validate_variables, :validate, on: :save, changed: :content do
   item_ids.each do |card_id|
@@ -80,15 +80,19 @@ def items_from_simple content
 end
 
 format :html do
-  delegate :metric_type_codename, to: :card
+  delegate :metric_type_codename, :score?, to: :card
 
   view :core do
     render :"#{metric_type_codename}_core"
   end
 
   view :input do
-    card.check_json_syntax
-    super()
+    if score?
+      score_input
+    else
+      card.check_json_syntax
+      super()
+    end
   end
 
   def input_type
@@ -112,15 +116,14 @@ format :html do
   end
 
   def custom_variable_input template
-    with_nest_mode :normal do
-      haml template
-    end
+    with_nest_mode(:normal) { haml template }
   end
 
   def filtered_item_duplicable
     metric_type_codename == :formula
   end
 
+  # hacky. prevents new form from treating +variables as a subcard of +formula
   def edit_in_form_prefix
     "card[subfields][:variables]"
   end
