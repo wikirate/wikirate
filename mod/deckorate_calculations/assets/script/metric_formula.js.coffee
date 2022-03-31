@@ -1,10 +1,10 @@
 
 $(window).ready ->
   $('body').on "click", "._formula-input-links a", ->
-    formEd(this).showInputs $(this).data("inputIndex")
+    former(this).showInputs $(this).data("inputIndex")
 
 decko.slotReady (slot) ->
-  edEl = slot.find("._formula-editor")
+  edEl = slot.find("> form ._formula-editor")
   if edEl[0] && !edEl.data("editorInitialized")
   # this sucks.  need to get rid of the timeout in editor.js.coffee that makes
   # this necessary or implement a better solution.
@@ -19,7 +19,7 @@ initFormulaEditor = ->
   textarea.closest(".modal-dialog").addClass "modal-full"
 
   cm.on "changes", ->
-    fe = new decko.FormulaEditor textarea
+    fe = former textarea
     fe.runVisibleCalculation()
     fe.runCalculations()
 
@@ -27,7 +27,7 @@ getRegionData = ->
   $.get decko.path("mod/wikirate_companies/region.json"), (json) ->
     deckorate.region = json
 
-formEd = (el) -> new decko.FormulaEditor el
+former = (el) -> new decko.FormulaEditor el
 
 class decko.FormulaEditor
   constructor: (el) ->
