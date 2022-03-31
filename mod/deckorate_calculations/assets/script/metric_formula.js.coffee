@@ -1,7 +1,7 @@
 
 $(window).ready ->
   $('body').on "click", "._formula-input-links a", ->
-    former(this).showInputs $(this).data("inputIndex")
+    formEd(this).showInputs $(this).data("inputIndex")
 
 decko.slotReady (slot) ->
   edEl = slot.find("> form ._formula-editor")
@@ -19,7 +19,7 @@ initFormulaEditor = ->
   textarea.closest(".modal-dialog").addClass "modal-full"
 
   cm.on "changes", ->
-    fe = former textarea
+    fe = formEd textarea
     fe.runVisibleCalculation()
     fe.runCalculations()
 
@@ -27,7 +27,7 @@ getRegionData = ->
   $.get decko.path("mod/wikirate_companies/region.json"), (json) ->
     deckorate.region = json
 
-former = (el) -> new decko.FormulaEditor el
+formEd = (el) -> new decko.FormulaEditor el
 
 class decko.FormulaEditor
   constructor: (el) ->
@@ -40,11 +40,11 @@ class decko.FormulaEditor
     @isScore = @slot.find("._scoreVariablesEditor").length > 0
 
   requestInputs: (variables)->
-    formEd = this
+    f = this
     $.ajax
       url: decko.path "?#{$.param @requestInputsParams(variables)}"
-      success: (json) -> formEd.updateInputs json
-      error: (_jqXHR, textStatus)-> formEd.slot.notify "error: #{textStatus}", "error"
+      success: (json) -> f.updateInputs json
+      error: (_jqXHR, textStatus)-> f.slot.notify "error: #{textStatus}", "error"
 
   requestInputsParams: (variables) ->
     assign: true

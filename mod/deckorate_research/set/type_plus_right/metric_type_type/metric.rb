@@ -7,7 +7,7 @@ def count
 end
 
 def cql_content
-  { right_plus: [:metric_type, { refer_to: left_id }]}
+  { right_plus: [:metric_type, { refer_to: left_id }] }
 end
 
 format do
