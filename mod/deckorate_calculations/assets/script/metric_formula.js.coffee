@@ -4,7 +4,7 @@ $(window).ready ->
     formEd(this).showInputs $(this).data("inputIndex")
 
 decko.slotReady (slot) ->
-  edEl = slot.find("._formula-editor")
+  edEl = slot.find("> form ._formula-editor")
   if edEl[0] && !edEl.data("editorInitialized")
   # this sucks.  need to get rid of the timeout in editor.js.coffee that makes
   # this necessary or implement a better solution.
@@ -19,7 +19,7 @@ initFormulaEditor = ->
   textarea.closest(".modal-dialog").addClass "modal-full"
 
   cm.on "changes", ->
-    fe = new decko.FormulaEditor textarea
+    fe = formEd textarea
     fe.runVisibleCalculation()
     fe.runCalculations()
 
@@ -40,11 +40,11 @@ class decko.FormulaEditor
     @isScore = @slot.find("._scoreVariablesEditor").length > 0
 
   requestInputs: (variables)->
-    formEd = this
+    f = this
     $.ajax
       url: decko.path "?#{$.param @requestInputsParams(variables)}"
-      success: (json) -> formEd.updateInputs json
-      error: (_jqXHR, textStatus)-> formEd.slot.notify "error: #{textStatus}", "error"
+      success: (json) -> f.updateInputs json
+      error: (_jqXHR, textStatus)-> f.slot.notify "error: #{textStatus}", "error"
 
   requestInputsParams: (variables) ->
     assign: true
