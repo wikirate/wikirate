@@ -107,6 +107,12 @@ format :html do
     send "#{metric_type_codename}_filtered_item_wrap"
   end
 
+  def filter_items_default_filter
+    super.tap do |hash|
+      hash[:metric_type] = %w[Score WikiRating] if metric_type_codename == :wiki_rating
+    end
+  end
+
   def default_item_view
     :bar
   end
