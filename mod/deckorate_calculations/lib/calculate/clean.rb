@@ -35,9 +35,9 @@ class Calculate
     # but that's a heavier lift than just avoiding counts that don't need to be made.
 
     def update_cached_counts
-      (metric_cache_count_cards +
-        # topic_cache_count_cards +
-        company_cache_count_cards).each(&:update_cached_count_when_ready)
+      # topic_cache_count_cards +
+      count_cards = (metric_cache_count_cards + company_cache_count_cards).compact
+      count_cards.each(&:update_cached_count_when_ready)
     end
 
     def company_cache_count_cards

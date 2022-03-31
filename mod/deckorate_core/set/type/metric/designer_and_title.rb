@@ -3,7 +3,7 @@ def tracker_content_groups
 end
 
 def metric_designer
-  compound? ? name.parts.first.to_name : creator.name
+  compound? ? name.parts.first.to_name : creator&.name
 end
 
 def metric_designer_id

@@ -63,11 +63,7 @@ end
 
 format :html do
   view :new do
-    if card.formula_subfield?
-      super()
-    else
-      render_new_formula
-    end
+    params[:button] == "formulated" ? super() : render_new_formula
   end
 
   view :formula do
@@ -78,7 +74,7 @@ format :html do
     [nest_about, render_formula, nest_methodology]
   end
 
-  view :new_formula, unknown: true do
+  view :new_formula, unknown: true, cache: :never do
     wrap do
       card_form({ action: :new, mark: :metric }, method: :get, redirect: true) do
         with_nest_mode :edit do
