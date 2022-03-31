@@ -23,7 +23,7 @@ include_set Abstract::IdPointer
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CalcTrigger
 
-delegate :metric_type_codename, :score?, to: :metric_card
+delegate :metric_type_codename, :score?, :rating?, to: :metric_card
 
 event :validate_variables, :validate, on: :save, changed: :content do
   item_ids.each do |card_id|
@@ -80,7 +80,7 @@ def items_from_simple content
 end
 
 format :html do
-  delegate :metric_type_codename, :score?, to: :card
+  delegate :metric_type_codename, :score?, :rating?, to: :card
 
   view :core do
     render :"#{metric_type_codename}_core"
@@ -109,7 +109,7 @@ format :html do
 
   def filter_items_default_filter
     super.tap do |hash|
-      hash[:metric_type] = %w[Score WikiRating] if metric_type_codename == :wiki_rating
+      hash.merge! metric_type: %w[Score WikiRating], name: "" if rating?
     end
   end
 
