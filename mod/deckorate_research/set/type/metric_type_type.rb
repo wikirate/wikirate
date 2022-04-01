@@ -1,5 +1,5 @@
-card_accessor :metric, type: :search
-card_accessor :metric_answer, type: :search
+card_accessor :metric, type: :search_type
+card_accessor :metric_answer, type: :search_type
 
 def new_metric
   Card.new type_id: Card::MetricID, "+*metric_type": name
@@ -14,6 +14,11 @@ def calculated?
 end
 
 format :html do
+  view :core do
+    [field_nest(:description),
+     field_nest(:metric, view: :titled, title: "Metrics")]
+  end
+
   view :box_bottom do
     count_badges :metric, :metric_answer
   end
