@@ -2,9 +2,11 @@
 # It is not ready for primetime.
 
 format :html do
-  view :merge, cache: :never, template: :haml, perms: ->(f) { f.card.as_moderator? }
+  delegate :as_moderator?, to: :card
 
-  view :merge_form, cache: :never, perms: ->(f) { f.card.as_moderator? } do
+  view :merge, cache: :never, template: :haml, perms: :as_moderator?
+
+  view :merge_form, cache: :never, perms: :as_moderator? do
     wrap do
       card_form :update, success: { view: :merge_success } do
         [
@@ -28,7 +30,7 @@ format :html do
   end
 
   view :engage_tab do
-    return super() unless card.as_moderator?
+    return super() unless as_moderator?
 
     [super(), haml(:merge_link)]
   end

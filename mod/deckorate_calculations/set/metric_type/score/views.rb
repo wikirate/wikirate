@@ -13,6 +13,16 @@ format :html do
     card.name = Card::Name[metric_name, Auth.current.name]
   end
 
+  view :new do
+    if card.name.card_id
+      alert(:warning) do
+        "You have already scored this metric: #{link_to_card card}."
+      end
+    else
+      super()
+    end
+  end
+
   view :select do
     options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
     select_tag("pointer_select",
