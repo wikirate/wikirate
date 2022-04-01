@@ -33,6 +33,8 @@ event :leave_group, :validate, when: :leaving? do
 end
 
 format :html do
+  delegate :ok_to_join?, :current_user_is_member?, to: :card
+
   view :overview, unknown: true, wrap: :slot, template: :haml
 
   view :contributions, unknown: true, cache: :never do
@@ -56,7 +58,7 @@ format :html do
 
   def self.membership_button action, test, btnclass
     view "#{action}_button".to_sym, unknown: true, denial: :blank, cache: :never,
-                                    perms: ->(fmt) { fmt.card.send test } do
+                                    perms: test do
       link_to "#{action.to_s.capitalize} Group",
               path: { action: :update, action => true, success: { view: :overview } },
               class: "btn #{btnclass} btn-sm slotter",
