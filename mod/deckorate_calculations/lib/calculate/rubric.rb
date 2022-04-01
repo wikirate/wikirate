@@ -6,7 +6,7 @@ class Calculate
         raise Card::Error, "translate formula with more than one metric involved"
       end
 
-      normalize_result  simple_compute(input)
+      normalize_result simple_compute(input)
     end
 
     private

@@ -79,6 +79,12 @@ def items_from_simple content
   content.to_s.split(/\n+/).map { |var| { "metric" => var } }
 end
 
+format :data do
+  view :core do
+    card.parse_content
+  end
+end
+
 format :html do
   delegate :metric_type_codename, :score?, :rating?, to: :card
 
