@@ -5,7 +5,7 @@ decko.editorContentFunctionMap['.pairs-editor'] = ->
   JSON.stringify pairsEditorHash(this)
 
 decko.slotReady (slot) ->
-  ed = slot.find "._variablesEditor"
+  ed = slot.find "> form ._scoreVariablesEditor"
   if ed.length > 0
     variabler(ed).updateFormulaInputs()
 

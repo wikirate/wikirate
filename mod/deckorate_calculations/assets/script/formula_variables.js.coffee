@@ -30,7 +30,7 @@ $(window).ready ->
     @previousValue = newval
 
 decko.slotReady (slot) ->
-  ed = slot.find "._formulaVariablesEditor"
+  ed = slot.find "> form ._formulaVariablesEditor"
   if ed.length > 0
     variabler(ed).initOptions()
     ed.closest(".modal-dialog").addClass "modal-full"
