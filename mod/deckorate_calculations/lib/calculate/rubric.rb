@@ -15,7 +15,7 @@ class Calculate
       return result unless result.is_a? Numeric
       if result > 10
         10
-      elsif result < 0
+      elsif result.negative?
         0
       else
         result
