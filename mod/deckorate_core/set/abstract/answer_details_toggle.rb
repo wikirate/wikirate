@@ -29,7 +29,7 @@ format :html do
   view :answer_details_toggle do
     wrap_with(:button, "",
               class: "fa fa-caret-right fa-lg margin-left-10 " \
-                     "btn btn-outline-secondary btn-sm float-right",
+                     "btn btn-outline-secondary btn-sm float-end",
               data: { toggle: "collapse",
                       url: path(view: :expanded_details),
                       target: ".answer-details##{collapse_id}",

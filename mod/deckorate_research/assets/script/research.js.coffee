@@ -78,7 +78,7 @@ $(document).ready ->
     $(this).closest('li').remove()
 
   # close overlay with a smooth slide
-  $(".research-layout #main").on "click", '[data-dismiss="overlay"]', (e)->
+  $(".research-layout #main").on "click", '[data-bs-dismiss="overlay"]', (e)->
     el = $(this)
     el.overlaySlot().hide "slide", {
       direction: "down",

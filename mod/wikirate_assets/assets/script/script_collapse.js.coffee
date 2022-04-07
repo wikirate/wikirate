@@ -33,10 +33,10 @@
 # Extend bootstrap collapse.
 $(document).ready ->
 # Collapse next element
-  $('body').on 'click.collapse-next', '[data-toggle=collapse-next]', ->
+  $('body').on 'click.collapse-next', '[data-bs-dismiss=collapse-next]', ->
     findCollapseTarget($(this)).collapse('toggle')
 
-  $('body').on 'click', '[data-toggle="collapse"]', ->
+  $('body').on 'click', '[data-bs-dismiss="collapse"]', ->
     if $(this).data("url")?
       $target = $(findCollapseTarget(this))
       if !$target.text().length
@@ -44,7 +44,7 @@ $(document).ready ->
 
 decko.slotReady (slot) ->
 # Extend bootstrap collapse with in and out text
-  slot.find('[data-toggle="collapse"], [data-toggle="collapse-next"]').each (i) ->
+  slot.find('[data-bs-dismiss="collapse"], [data-bs-dismiss="collapse-next"]').each (i) ->
     if $(this).data('collapse-icon-in')?
       registerIconToggle $(this)
     if $(this).data('collapse-text-in')?
