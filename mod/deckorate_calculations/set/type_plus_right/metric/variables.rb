@@ -137,6 +137,6 @@ format :html do
 
   # hacky. prevents new form from treating +variables as a subcard of +formula
   def edit_in_form_prefix
-    "card[subfields][:variables]"
+    card.new? ? "card[subfields][:variables]" : super
   end
 end
