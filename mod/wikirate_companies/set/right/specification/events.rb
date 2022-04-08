@@ -5,9 +5,8 @@ event :validate_constraints, :validate, on: :save, changed: :content do
   errors.add :content, "Invalid specifications: #{err}" if err
 end
 
-event :update_company_list, :prepare_to_store, on: :save, changed: :content do
-  return if explicit?
-
+event :update_company_list, :prepare_to_store,
+      on: :save, changed: :content, when: :explicit? do
   company_list.update_content_from_spec
 end
 
@@ -18,9 +17,7 @@ def company_list
 end
 
 def standardize_constraint_csv
-  return unless content.match? ";|;"
-
-  self.content = js_generated_csv_to_array.map(&:to_csv).join
+  self.content = js_generated_csv_to_array.map(&:to_csv).join if content.match?(/;\|;/)
 end
 
 # The JavaScript generates a kind of half-way csv.
@@ -29,7 +26,7 @@ end
 def js_generated_csv_to_array
   content.split(/\r?\n/).map do |row|
     row_array = row.split ";|;"
-    row_array[0] = "[[#{row_array[0]}]]" unless row_array[0].match? /\[\[/
+    row_array[0] = "[[#{row_array[0]}]]" unless row_array[0].match?(/\[\[/)
     row_array[2] = serialized_value_to_json row_array[2]
     row_array
   end
