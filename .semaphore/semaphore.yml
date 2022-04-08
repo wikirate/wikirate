@@ -36,6 +36,7 @@ blocks:
           - cache store gems-baseline vendor/bundle
           - cache store bundle-config .bundle
 
+          - nvm use 12.18.2
           - be rake db:create
           - be rake wikirate:test:seed
 

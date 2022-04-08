@@ -6,4 +6,3 @@ module Cardio
     end
   end
 end
-
