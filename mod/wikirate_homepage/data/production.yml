@@ -67,6 +67,7 @@
 - :name: wikirate skin
   :type: :customized_bootswatch_skin
   :codename: :wikirate_skin
+  :skip: :asset_input_changed
   :subfields:
     :colors: |
       $teal: #03998d !default;
