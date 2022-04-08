@@ -29,6 +29,7 @@ end
 def js_generated_csv_to_array
   content.split(/\r?\n/).map do |row|
     row_array = row.split ";|;"
+    row_array[0] = "[[#{row_array[0]}]]" unless row_array[0].match? /\[\[/
     row_array[2] = serialized_value_to_json row_array[2]
     row_array
   end
