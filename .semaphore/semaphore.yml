@@ -28,13 +28,15 @@ blocks:
         commands:
           # - cache delete gems-baseline # occasionally clear
           - cache restore gems-baseline
-          - cache restore gems-$(checksum Gemfile.lock)
+          - GLCHECK=`checksum Gemfile.lock`
+          - cache restore gems-$GLCHECK
           - bundle config set --local deployment 'true'
           - bundle install
-          - cache store gems-$(checksum Gemfile.lock) vendor/bundle
+          - cache store gems-$GLCHECK vendor/bundle
           - cache store gems-baseline vendor/bundle
           - cache store bundle-config .bundle
 
+          - nvm use 12.18.2
           - be rake db:create
           - be rake wikirate:test:seed
 
