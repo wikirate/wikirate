@@ -1,12 +1,12 @@
-event :validate_constraints, :validate, on: :save, changed: :content do
-  return if explicit?
+event :validate_constraints, :validate,
+      on: :save, changed: :content, when: :implicit? do
   standardize_constraint_csv
   err = constraint_error
   errors.add :content, "Invalid specifications: #{err}" if err
 end
 
 event :update_company_list, :prepare_to_store,
-      on: :save, changed: :content, when: :explicit? do
+      on: :save, changed: :content, when: :implicit? do
   company_list.update_content_from_spec
 end
 
