@@ -33,7 +33,7 @@ format :html do
 
   view :credit do
     return unless card.real?
-    wrap_with :div, class: "credit ml-1 pl-1 text-muted" do
+    wrap_with :div, class: "credit ms-1 ps-1 text-muted" do
       [credit_verb, credit_date, credit_whom].join " "
     end
   end
