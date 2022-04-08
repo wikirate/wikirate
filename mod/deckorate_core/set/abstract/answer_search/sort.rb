@@ -116,26 +116,26 @@ format :html do
   end
 
   def title_sort_link
-    table_sort_link "Metric", :metric_title, "float-left mx-3 px-1"
+    table_sort_link "Metric", :metric_title, "float-start mx-3 px-1"
   end
 
   def designer_sort_link
-    table_sort_link "", :metric_designer, "float-left mx-3 px-1"
+    table_sort_link "", :metric_designer, "float-start mx-3 px-1"
   end
 
   def bookmarkers_sort_link type
-    table_sort_link "", :"#{type}_bookmarkers", "float-left mx-3 px-1"
+    table_sort_link "", :"#{type}_bookmarkers", "float-start mx-3 px-1"
   end
 
   def company_name_sort_link
-    table_sort_link rate_subjects, :company_name, "float-left mx-5 px-4"
+    table_sort_link rate_subjects, :company_name, "float-start mx-5 px-4"
   end
 
   def value_sort_link
-    table_sort_link "Answer", :value, "float-left mx-3 px-1"
+    table_sort_link "Answer", :value, "float-start mx-3 px-1"
   end
 
   def year_sort_link
-    table_sort_link "Year", :year, "float-right mx-3 px-1"
+    table_sort_link "Year", :year, "float-end mx-3 px-1"
   end
 end
