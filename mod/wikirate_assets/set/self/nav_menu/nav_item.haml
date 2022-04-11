@@ -1,5 +1,5 @@
 %li.nav-item.dropdown
-  %a.nav-link.dropdown-toggle{ href: "#", "data-toggle": "dropdown", role: "button",
+  %a.nav-link.dropdown-toggle{ href: "#", "data-bs-dismiss": "dropdown", role: "button",
                                  "aria-expanded": false }
     = menu
     %span.caret
@@ -9,7 +9,7 @@
         %a.nav-link.text-nowrap{ href: nav_menu_item_url(menu, item), target: ("_wikirateproject" if remote) }
           = item
           - if remote
-            %span.ml-2
+            %span.ms-2
               = fa_icon "external-link-alt"
         - if hr_after[item]
           %hr

@@ -235,10 +235,10 @@ PATH
       spork (~> 0.9)
       timecop (~> 0.9)
     decko-spring (0.14.2)
-      listen (~> 3.5)
-      spring (~> 2.1)
-      spring-commands-cucumber (~> 1.0)
-      spring-commands-rspec (~> 1.0)
+      listen (> 3.5)
+      spring (> 3)
+      spring-commands-cucumber (> 1.0)
+      spring-commands-rspec (> 1.0)
 
 PATH
   remote: vendor/decko
@@ -767,7 +767,7 @@ GEM
       rack-protection (= 2.2.0)
       tilt (~> 2.0)
     spork (0.9.2)
-    spring (2.1.1)
+    spring (4.0.0)
     spring-commands-cucumber (1.0.1)
       spring (>= 0.9.1)
     spring-commands-rspec (1.0.4)
