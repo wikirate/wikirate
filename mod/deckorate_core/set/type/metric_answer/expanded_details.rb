@@ -102,7 +102,7 @@ format :html do
         [
           answer_details_table,
           wrap_with(:div, class: "col-md-12") do
-            wrap_with(:div, class: "float-right") do
+            wrap_with(:div, class: "float-end") do
               "= #{nest card.value_card, view: :pretty}"
             end
           end
