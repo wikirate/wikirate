@@ -68,7 +68,6 @@
   :type: :bootswatch_skin
   :codename: :wikirate_skin
   :subfields:
-    :parent:
     :colors: |
       $teal: #03998d !default;
       $primary: $teal !default;
