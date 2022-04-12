@@ -11,7 +11,7 @@ describe 'Formula editor', ->
     cy.contains("a", "Add Variable", timeout: 15000)
       .click()
     cy.get("._filter-container [name='filter[name]']")
-      .type("disturb{enter}")
+      .type("disturb{enter}", force: true)
     cy.get("._search-checkbox-list")
       .should("contain", "Research")
       .should("contain", "Scored by")
@@ -67,12 +67,13 @@ describe 'Formula editor', ->
     # retains previous settings
     cy.get("._formula_options").should "include.text", "unknown: Unknown"
       .get("._edit-variable-options").should "not.be.hidden"
-      .click()
+      .click force: true
 
     # choose "no result" for Unknown
     cy.get("[name=vo-unknown]:visible").check("no_result")
 
     # update / close modal
+    cy.wait 100
     cy.contains("Update Options").click()
 
     # make sure changes show
@@ -116,8 +117,8 @@ describe 'Formula editor', ->
 
     cy.get "._sample-value"
       .should "have.value", "100"
-      .clear()
-      .type "50"
+      .clear force: true
+      .type "50", force: true
 
     cy.get "._sample-result-value"
       .should "have.text", "0.02"
@@ -127,7 +128,7 @@ describe 'Formula editor', ->
 
     cy.get "input._variable-name"
       .should "have.value", "m1"
-      .type "{backspace}agic"
+      .type "{backspace}agic", force: true
 
     cy.get("._formula-editor").should "contain", "magic"
 

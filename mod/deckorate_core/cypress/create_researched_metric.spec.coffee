@@ -8,7 +8,7 @@ describe "researched metric creation", ->
     cy.get(".box").within -> cy.contains("Researched").click()
     cy.get(".RIGHT-Xtitle .d0-card-content").type("MyResearch")
 
-    cy.contains("Submit").click()
+    cy.contains("Submit").scrollIntoView().click()
 
     cy.get(".RIGHT-Xmetric_type .d0-card-content").should "contain", "Researched"
 
@@ -22,7 +22,7 @@ describe "researched metric creation", ->
 
     cy.get(".RIGHT-value_type input[type=radio]").check("Number")
 
-    cy.contains("Submit").click()
+    cy.contains("Submit").scrollIntoView().click()
 
     hasProperty = (prop, label, value)->
       cy.get prop
