@@ -88,7 +88,7 @@ $(document).ready ->
     e.stopPropagation()
 
   researchTabSelector = ".research-layout #main .nav-item:not(.tab-li-question_phase)"
-  $(researchTabSelector).on "click", ".nav-link:not(.active)", (e)->
+  $(researchTabSelector).on "show.bs.tab", ".nav-link", (e) ->
     return unless $(this).hasClass "load"
     if !selectedYear()
       demandYear e
@@ -128,7 +128,7 @@ demandYear = (event) ->
   event.stopPropagation()
 
 toPhase = (phase, event) ->
-  tabPhase(phase).trigger "click"
+  (new bootstrap.Tab tabPhase(phase)).show()
   event.preventDefault()
 
 tabPhase = (phase) ->
