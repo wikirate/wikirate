@@ -74,7 +74,6 @@
     :variables: |
       $enable-smooth-scroll: false;
       // scroll-behavior: smooth breaks cypress tests
-
 - :name:
     - :all
     - :style
