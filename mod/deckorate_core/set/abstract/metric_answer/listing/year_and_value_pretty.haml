@@ -1,7 +1,7 @@
 .year-and-value-pretty.d-flex.row
   = nest card.year, view: :in_calendar
   .thumbnail-text
-    %span.metric-color.font-weight-bold
+    %span.metric-color.fw-bold
       = handle_unknowns { nest card.value_card, view: :pretty }
     %span.text-muted
       = render_legend
