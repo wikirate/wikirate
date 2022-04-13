@@ -20,12 +20,7 @@ namespace :wikirate do
           Rake::Task["card:mod:uninstall"].execute
           Rake::Task["card:mod:install"].execute
           ENV["STYLE_OUTPUT_MOD"] = "wikirate"
-
-          # replace once using latest from decko
-          # Rake::Task["decko:assets:code"].execute
-          Cardio.config.compress_assets = true
-          Card::Assets.make_output_coded
-
+          Rake::Task["decko:assets:code"].execute
           Rake::Task["wikirate:test:dump"].execute
         end
       end

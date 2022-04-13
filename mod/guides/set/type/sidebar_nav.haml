@@ -10,6 +10,6 @@
                                  data: { parent: ".sidebar-nav-list" },
                                  class: ("show" if expanded?) }
     - subheaders.each do |subheader|
-      .sidebar-subheader.p-2.ml-4
+      .sidebar-subheader.p-2.ms-4
         - anchor_href = "#{card.name.url_key}##{subheader.text.to_name.key}"
         = link_to subheader.text, href: anchor_href
