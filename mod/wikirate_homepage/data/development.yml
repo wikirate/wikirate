@@ -34,3 +34,10 @@
     :alias:
       - Google
       - Alphabet
+- :name:
+    - :metric_answer
+    - :featured
+  :type: :list
+  :content:
+    - Jedi+disturbances in the Force+Death Star+1990
+    - Fred+dinosaurlabor+Death Star+2010

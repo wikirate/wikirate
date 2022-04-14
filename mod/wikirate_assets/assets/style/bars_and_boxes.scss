@@ -76,7 +76,7 @@ $box_stripe_color: $gray-700;
 }
 
 .bar:hover, .expanded-bar:hover .bar {
-  border-left-color: $dark-text-color;
+  border-left-color: $gray-500;
   // Following needed on answer bars
   .bar-left .company-link a {
     color: $company-color !important;
@@ -145,7 +145,7 @@ a.box-item {
 
 .TYPE-project, .TYPE-research_group {
   &.bar:hover .bar-left a {
-    color: $brand-primary;
+    color: $primary;
   }
 }
 
@@ -163,7 +163,7 @@ a.box-item {
     -webkit-filter: none;
     filter: none;
     .progress-bar {
-      background-color: $brand-primary;
+      background-color: $primary;
     }
   }
 }

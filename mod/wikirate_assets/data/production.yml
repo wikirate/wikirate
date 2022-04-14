@@ -22,3 +22,117 @@
     \     {{nav bar menu|core}}\r\n      {{*navbox|navbar}}\r\n      <ul class=\"navbar-nav
     ms-auto\">\r\n        <li>\r\n          <div class=\"account-info-bar\">{{*account
     links|core}}</div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n</nav>\r\n"
+- :name: wikirate skin
+  :type: :bootswatch_skin
+  :codename: :wikirate_skin
+  :subfields:
+    :colors: |
+      $blue: #2B7EA0 !default;
+      $indigo: #6610f2 !default;
+      $purple: #674EA7 !default;
+      $pink: #ED4D50 !default;
+      $red: #B6060A !default;
+      $orange: #D3741C !default;
+      $yellow: #F7BD1D !default;
+      $green: #198754 !default;
+      $teal: #03998d !default;
+      $cyan: #0091E0 !default;
+      $black: #000000 !default;
+      $white: #ffffff !default;
+      $gray-100: #f8f9fa !default;
+      $gray-200: #e9ecef !default;
+      $gray-300: #dee2e6 !default;
+      $gray-400: #ced4da !default;
+      $gray-500: #adb5bd !default;
+      $gray-600: #6c757d !default;
+      $gray-700: #495057 !default;
+      $gray-800: #343a40 !default;
+      $gray-900: #212529 !default;
+      $primary: $teal !default;
+      $secondary: $gray-600 !default;
+      $success: $green !default;
+      $info: $cyan !default;
+      $warning: $yellow !default;
+      $danger: $red !default;
+      $light: $gray-100 !default;
+      $dark: $gray-900 !default;
+      $body-bg: $white !default;
+      $body-color: $gray-900 !default;
+    :variables: |
+      /*----------- Mixins ---------*/
+      
+      @mixin ellipsis() {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      @mixin opacity($opacity) {
+        opacity: $opacity;
+        $opacity-ie: $opacity * 100;
+        filter: alpha(opacity=$opacity-ie); //IE8
+      }
+      
+      /*----------- WikiRate Categories ---------*/
+      
+      $company-color: $blue;
+      $metric-color: $purple;
+      $answer-color: $gray-600;
+      $record-color: $answer-color;
+      $topic-color: $orange;
+      $company-group-color: $pink;
+      $source-color: $cyan;
+      $project-color: $gray-800;
+      $year-color: $yellow;
+      $default-cardtype-color: $gray-800;
+      
+      /*----------- WikiRate Scores ---------*/
+      // Gradient generated from this url
+      // https://gka.github.io/palettes
+      // /#colors=,red,orange,yellow,green|steps=10|bez=1|coL=0
+      // 0 <= x < 1
+
+      $score-colors: (
+        "0": #ff0000,
+        "1": #ff5700,
+        "2": #ff7e00,
+        "3": #fc9b00,
+        "4": #f1b000,
+        "5": #debd00,
+        "6": #c2c000,
+        "7": #9ab700,
+        "8": #65a300,
+        "9": #008000
+      );
+      
+      /*----------- Other WikiRate-specific variables ---------*/
+      
+      $verification-flag-color: $red;
+      $top-bar-anchor-color: $primary;
+      
+      
+      // These are meant as transitional variables and are in use on the homepage
+      // we will probably want to get rid of them eventually
+      
+      $new-dark: #171831;
+      $new-purple: #484C9D;
+      $new-dark-purple: #353875;
+      $new-button-gray: #EDEEF7;
+      
+      $small-shadow: 0 5px 10px 0 rgba($new-dark, .08);
+      $primary-shadow: 0 10px 20px 0 rgba($new-dark, .2);
+      $large-shadow: 0 15px 50px 0 rgba($new-dark, .3);
+      
+      
+      //----------- Bootstrap Overrides ---------
+      
+      $border-color: $gray-200;
+      
+      // NOTE: scroll-behavior: smooth breaks cypress tests
+      $enable-smooth-scroll: false;
+
+- :name:
+    - :all
+    - :style
+  :type: :pointer
+  :content: wikirate skin

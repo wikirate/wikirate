@@ -64,18 +64,3 @@
   :codename: :homepage_video_background_image
   :image: homepage_video_background_image.png
   :storage_type: :coded
-- :name: wikirate skin
-  :type: :bootswatch_skin
-  :codename: :wikirate_skin
-  :subfields:
-    :colors: |
-      $teal: #03998d;
-      $primary: $teal;
-    :variables: |
-      $enable-smooth-scroll: false;
-      // scroll-behavior: smooth breaks cypress tests
-- :name:
-    - :all
-    - :style
-  :type: :pointer
-  :content: wikirate skin

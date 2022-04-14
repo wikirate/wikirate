@@ -7,7 +7,6 @@
 }
 
 body {
-  color: $body-text-color;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
@@ -38,14 +37,14 @@ sup {
   line-height: 0;
 }
 a {
-  color: $anchor_color;
+  color: $top-bar-anchor-color;
 
 }
 img {
   border: 0;
 }
 h1, h2 {
-  color: $heading_color;
+  color: $gray-700;
 }
 canvas {
   max-width: 100%;
@@ -74,7 +73,7 @@ canvas {
 .wikirate-layout #main {
   clear: both;
   padding-top:70px;
-  max-width: $max-page-width;
+  max-width: 100%;
   margin: 0;
 }
 
@@ -285,7 +284,7 @@ body.wikirate-two-column-layout {
 
 body#tinymce, body.wikirate-one-column-layout, body.wikirate-one-full-column-layout {
   #main > .titled-view>.d0-card-header, .main-card-header {
-    border-bottom: 1px solid $brand-primary;
+    border-bottom: 1px solid $primary;
     padding-bottom: 0.1em;
     margin-bottom: 1em;
     >.d0-card-header-title {
