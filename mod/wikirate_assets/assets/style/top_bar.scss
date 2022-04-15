@@ -21,7 +21,7 @@
   #logging {
     a.nav-link {
       padding: 0 1rem;
-      color: $anchor_color;
+      color: $top-bar-anchor-color;
       display: inline;
     }
     .btn-group {
@@ -91,7 +91,7 @@
 }
 
 .slicknav_nav a {
-  color: $anchor_color;
+  color: $top-bar-anchor-color;
 }
 a.slicknav_btn {
   float: left;
@@ -103,7 +103,7 @@ a.slicknav_btn {
 }
 
 .slicknav_menu .slicknav_icon-bar {
-  background-color: $anchor_color;
+  background-color: $top-bar-anchor-color;
   @include box-shadow(0, 0, 0, rgba(0, 0, 0, .13));
 }
 

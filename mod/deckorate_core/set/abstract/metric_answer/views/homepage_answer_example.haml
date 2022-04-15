@@ -1,12 +1,12 @@
-.answer-example.container.drop-shadow.bg-white
-  .company-border-left.row
+.answer-example.drop-shadow.bg-white
+  .company-border-left
     = nest card.company, view: :shared_header, size: :medium
-  .metric-border-left.row
-    = nest card.metric, view: :shared_header, size: :medium, hide: :bookmark
-  .metric-border-left.row
-    .container
-      = render_year_and_value_pretty
-  .source-border-left.row.border-bottom
-    .mt-1.text-center.col-2.px-0.pt-3
-    .col
-      = nest card.source_card, items: { view: :compact, hide: :creator_credit }
+  .metric-border-left
+    = nest card.metric, view: :shared_header, size: :medium
+  .metric-border-left
+    = render_year_and_value_pretty
+  .source-border-left.border-bottom
+    .row
+      .col-2
+      .col-10.ps-2
+        = nest card.source_card, items: { view: :compact, hide: :creator_credit }

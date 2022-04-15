@@ -53,12 +53,11 @@ table.wikirate-table, .table.wikirate-table {
   thead > tr > th {
     background: #fff;
     padding: 2px;
-    font-size: $sub-text-size;
+    font-size: 0.8em;
     text-align: center;
-    // color: $heading-color;
-    color: $dark-text-color;
+    color: $gray-500;
     a {
-      color: $dark-text-color;
+      color: $gray-500;
     }
   }
 

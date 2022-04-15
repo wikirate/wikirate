@@ -216,7 +216,7 @@
 }
 
 .with-fancy-border:hover {
-    // border-left-color: $dark-text-color !important
+    // border-left-color: $gray-500 !important
 }
 
 //custom column
@@ -231,7 +231,7 @@
 }
 //heights
 .min-page-height {
-  min-height: $min-page-height;
+  min-height: 1000px;
 }
 
 // Modal
@@ -360,15 +360,15 @@
 .help-block {
   margin-top: 0;
   margin-bottom: 0;
-  color: $help-text;
+  color: $gray-600;
   font-size: 13px;
   width: 100%;
   display: inline-block;
 }
 
 .navbar-inverse {
-  background-color: $brand-primary;
-  border-color: $brand-primary;
+  background-color: $primary;
+  border-color: $primary;
 
   .navbar-nav > li > a,
   .navbar-text {

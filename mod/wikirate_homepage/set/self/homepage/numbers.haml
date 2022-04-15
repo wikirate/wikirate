@@ -14,7 +14,7 @@
             - icon = icon_map cat.codename
             = icon_tag icon.first, icon.last.merge(class: "md-24 p-3")
     .d-none.d-md-inline.col-5.mt-5.pt-3
-      .carousel.carousel-fade.slide.drop-shadow.carousal-slide-width{"data-ride" => "carousel"}
+      .carousel.carousel-fade.slide.drop-shadow.carousal-slide-width{"data-bs-ride" => "carousel"}
         .carousel-inner
           - featured_answers.each_with_index do |mv, i|
             .carousel-item{class: i == 0 && "active"}
