@@ -100,18 +100,10 @@ $colorMap: (
 ); // border color for bars and boxes
 
 @each $type, $color in $colorMap {
-  #main > .TYPE-#{$type} > .card {
-    > .card-header {
-      color: #fff;
-      background: $color;
-      text-align: center;
-      a {
-        color: #fff !important;
-      }
-    }
-
-    .two-column-box {
-      border-top: 5px solid $color;
+  #main > .TYPE-#{$type}.rich-header {
+    border-top: 5px solid $color;
+    a {
+      color: $color !important;
     }
   }
 
@@ -129,7 +121,7 @@ $colorMap: (
     }
   }
 
-  .badge-#{$type} {
+  .bg-#{$type} {
     background-color: $color !important;
   }
 

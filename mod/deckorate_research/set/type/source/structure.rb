@@ -1,16 +1,8 @@
-include_set Abstract::TwoColumnLayout
+include_set Abstract::WikirateTabbed
 
 format :html do
   before :content_formgroups do
     voo.edit_structure = form_fields
-  end
-
-  view :open_content do
-    two_column_layout 7, 5
-  end
-
-  view :left_column do
-    render_preview
   end
 
   def form_fields
@@ -24,24 +16,26 @@ format :html do
   end
 
   def tab_list
-    %i[details metric metric_answer]
+    %i[preview metric metric_answer details]
   end
 
-  view :source_details, template: :haml
+  def tab_options
+    { preview: { count: nil, label: "Preview" } }
+  end
 
-  view :details_tab do
-    tab_wrap do
-      _render_source_details
-    end
+  view :preview_tab do
+    render_preview
   end
 
   view :metric_tab do
-    tab_wrap { field_nest :metric, view: :filtered_content }
+    field_nest :metric, view: :filtered_content
   end
 
   view :metric_answer_tab do
-    tab_wrap { field_nest :metric_answer, view: :filtered_content }
+    field_nest :metric_answer, view: :filtered_content
   end
+
+  view :details_tab, template: :haml
 
   # download and original links.  (view makes them hideable)
 
