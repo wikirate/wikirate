@@ -129,7 +129,7 @@ format :html do
     count = counts[codename]
     labeled_badge number_with_delimiter(count),
                   answer_count_badge_label(codename, count),
-                  color: "#{codename.cardname.downcase} badge-secondary"
+                  color: "#{codename.cardname.downcase} bg-secondary"
   end
 
   def answer_count_badge_label codename, count

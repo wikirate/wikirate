@@ -130,7 +130,7 @@ $colorMap: (
   }
 
   .badge-#{$type} {
-    background-color: $color;
+    background-color: $color !important;
   }
 
   .top-border-#{$type} {
@@ -149,20 +149,20 @@ $colorMap: (
 
   .nav-item .RIGHT-#{$type} {
     &.tab-badge .badge {
-      background-color: rgba($color, 0.75);
+      background-color: rgba($color, 0.75) !important;
     }
   }
 
   .nav-item:hover .RIGHT-#{$type} {
     &.tab-badge .badge {
-      background-color: $color;
+      background-color: $color !important;
     }
   }
 
   .expanded-bar, .bar, .box {
     &:hover .RIGHT-#{$type} {
       &.labeled-badge .badge {
-        background-color: $color;
+        background-color: $color !important;
       }
     }
   }
