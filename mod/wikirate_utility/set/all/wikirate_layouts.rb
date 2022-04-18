@@ -17,6 +17,14 @@ format :html do
     end
   end
 
+  layout :wikirate_tabbed_layout, view: :page do
+    wikirate_layout "wikirate-tabbed-layout" do
+      wrap_with :div, class: "container" do
+        layout_nest
+      end
+    end
+  end
+
   layout :wikirate_one_full_column_layout, view: :titled do
     wikirate_layout "wikirate-one-full-column-layout px-2" do
       layout_nest

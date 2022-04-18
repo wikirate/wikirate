@@ -3,8 +3,9 @@
   border-bottom: 4px solid $border-color;
 }
 .nav-tabs .nav-link{
-  &:hover{
-    background:#fafafa;;
+  &:hover, &:focus {
+    background: $gray-100;
+    text-decoration: none;
   }
   &.active {
     border: 0 solid #e6e6e6;

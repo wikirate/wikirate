@@ -1,4 +1,4 @@
-include_set Abstract::TwoColumnLayout
+include_set Abstract::WikirateTabbed
 include_set Abstract::Thumbnail
 include_set Abstract::FilterableBar
 include_set Abstract::Bookmarkable
@@ -10,11 +10,6 @@ card_accessor :specification
 card_accessor :wikirate_topic, type: :list
 
 format :html do
-  def header_body
-    class_up "media-heading", "company-group-color"
-    super
-  end
-
   view :bar_left do
     render_thumbnail_with_bookmark
   end
@@ -42,10 +37,10 @@ format :html do
   end
 
   def tab_list
-    %i[wikirate_company]
+    %i[wikirate_company details]
   end
 
-  view :data do
+  view :details_tab do
     [
       labeled_field(:wikirate_topic, :link, title: "Topics"),
       field_nest(:specification, view: :titled),

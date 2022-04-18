@@ -1,9 +1,4 @@
 format :html do
-  def header_body
-    class_up "media-heading", "topic-color"
-    super
-  end
-
   view :unknown do
     _render_link
   end
@@ -16,14 +11,14 @@ format :html do
   end
 
   def tab_list
-    %i[metric research_group dataset]
+    %i[metric dataset research_group details]
   end
 
   def tab_options
     { research_group: { label: "Research Groups" } }
   end
 
-  view :data do
+  view :details_tab do
     [
       field_nest(:subtopic, view: :titled, title: "Subtopics", items: { view: :bar }),
       field_nest(:general_overview, view: :titled)

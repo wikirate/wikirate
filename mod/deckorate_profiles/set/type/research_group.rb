@@ -1,4 +1,4 @@
-include_set Abstract::TwoColumnLayout
+include_set Abstract::WikirateTabbed
 include_set Abstract::Thumbnail
 include_set Abstract::Table
 include_set Abstract::Bookmarkable
@@ -39,17 +39,6 @@ format :html do
 
   info_bar_cols 5, 5, 2
 
-  view :open_content do
-    two_column_layout 5, 7
-  end
-
-  view :data do
-    [organizer_detail,
-     topic_detail,
-     field_nest(:description, view: :titled),
-     field_nest(:conversation, items: { view: :link })]
-  end
-
   def organizer_detail
     labeled_field :organizer, :thumbnail, title: "Group Organizer"
   end
@@ -63,7 +52,7 @@ format :html do
   end
 
   def tab_list
-    %i[researcher project metric]
+    %i[researcher project metric details]
   end
 
   view :metric_tab do
@@ -76,6 +65,13 @@ format :html do
 
   view :researcher_tab do
     field_nest :researcher, view: :overview
+  end
+
+  view :details_tab do
+    [organizer_detail,
+     topic_detail,
+     field_nest(:description, view: :titled),
+     field_nest(:conversation, items: { view: :link })]
   end
 
   view :bar_left do

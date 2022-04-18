@@ -4,7 +4,7 @@ include_set Abstract::Media
 include_set Abstract::Delist
 include_set Abstract::Accountable
 include_set Abstract::Stewardable
-include_set Abstract::TwoColumnLayout
+include_set Abstract::WikirateTabbed
 
 include_set Abstract::Bookmarkable
 
@@ -34,9 +34,9 @@ def headquarters_jurisdiction_code
   headquarters_card&.item_cards&.first&.oc_code
 end
 
-def add_alias alias_name
-  alias_card.insert_item! 0, alias_name
-end
+# def add_alias alias_name
+#   alias_card.insert_item! 0, alias_name
+# end
 
 # @return [Answer]
 def latest_answer metric

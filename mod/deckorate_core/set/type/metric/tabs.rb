@@ -3,11 +3,19 @@ include_set Abstract::Filterable
 format :html do
   # default tab list (several metric types override)
   def tab_list
-    %i[details calculation dataset]
+    %i[metric_answer calculation dataset wikirate_topic details]
   end
 
   view :tabs do
     super()
+  end
+
+  view :wikirate_topic_tab do
+    field_nest :wikirate_topic
+  end
+
+  view :metric_answer_tab do
+    field_nest :metric_answer, view: :filtered_content
   end
 
   view :details_tab do
@@ -29,17 +37,13 @@ format :html do
     field_nest :methodology, view: :titled
   end
 
-  def answer_filtering
-    filtering(".RIGHT-answer ._filter-widget") do
-      yield view: :bar, show: :full_page_link, hide: %i[metric_header edit_link]
-    end
-  end
+  # def answer_filtering
+  #   filtering(".RIGHT-answer ._filter-widget") do
+  #     yield view: :bar, show: :full_page_link, hide: %i[metric_header edit_link]
+  #   end
+  # end
 
   view :dataset_tab do
-    answer_filtering do |items|
-      tab_wrap do
-        field_nest :dataset, view: :content, items: items
-      end
-    end
+    field_nest :dataset, view: :content, items: items
   end
 end

@@ -5,13 +5,12 @@ format :html do
     super
   end
 
-  def header_body
-    class_up "media-heading", "metric-color"
-    super
+  def header_text
+    wrap_with(:div, class: "lead mb-3") { render_question } + super
   end
 
-  def header_text
-    render_question
+  def header_text_items
+    { designer: link_to_card(card.metric_designer) }.merge super
   end
 
   def image_card
