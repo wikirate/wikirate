@@ -44,9 +44,9 @@
   }
   .panel-collapse {
     padding: 10px;
-    color: $dark-text-color;
+    color: $gray-500;
     label {
-      color: $dark-text-color;
+      color: $gray-500;
       float: left;
       width: 15%;
     }
@@ -97,7 +97,7 @@
 }
 
 .RIGHT-company.d0-card-content .company-item .item-link > a {
-  background: $brand-primary;
+  background: $primary;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -496,7 +496,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .answer-unit {
   font-size: 13px;
-  color: $help-text;
+  color: $gray-600;
   padding: 5px;
   font-style: italic;
 }
@@ -550,16 +550,10 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       //background: #fff;
     }
   }
-  &.metric-item .header .name {
-    color: $muted;
-  }
-  &.company-item .header .name {
-    color: $muted;
-
-  }
-  &.topic-item .header .name {
-    color: $muted;
-
+  &.metric-item, &.company-item, &.topic-item{
+    .header .name {
+      color: $text-muted;
+    }
   }
 }
 
