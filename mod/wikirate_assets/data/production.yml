@@ -127,6 +127,7 @@
       //----------- Bootstrap Overrides ---------
       
       $border-color: $gray-200;
+      $table-group-separator-color: $gray-200;
       
       // NOTE: scroll-behavior: smooth breaks cypress tests
       $enable-smooth-scroll: false;

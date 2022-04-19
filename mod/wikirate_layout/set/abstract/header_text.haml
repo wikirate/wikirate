@@ -1,0 +1,7 @@
+.header-text
+  - header_text_items.each do |label, text|
+    .header-text-item
+      %label.fst-italic
+        = "#{label}:"
+      %span.ps-2
+        = text

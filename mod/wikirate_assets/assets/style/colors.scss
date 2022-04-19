@@ -100,18 +100,10 @@ $colorMap: (
 ); // border color for bars and boxes
 
 @each $type, $color in $colorMap {
-  #main > .TYPE-#{$type} > .card {
-    > .card-header {
-      color: #fff;
-      background: $color;
-      text-align: center;
-      a {
-        color: #fff !important;
-      }
-    }
-
-    .two-column-box {
-      border-top: 5px solid $color;
+  #main > .TYPE-#{$type}.rich-header {
+    border-top: 5px solid $color;
+    a {
+      color: $color !important;
     }
   }
 
@@ -129,8 +121,8 @@ $colorMap: (
     }
   }
 
-  .badge-#{$type} {
-    background-color: $color;
+  .bg-#{$type} {
+    background-color: $color !important;
   }
 
   .top-border-#{$type} {
@@ -149,20 +141,20 @@ $colorMap: (
 
   .nav-item .RIGHT-#{$type} {
     &.tab-badge .badge {
-      background-color: rgba($color, 0.75);
+      background-color: rgba($color, 0.75) !important;
     }
   }
 
   .nav-item:hover .RIGHT-#{$type} {
     &.tab-badge .badge {
-      background-color: $color;
+      background-color: $color !important;
     }
   }
 
   .expanded-bar, .bar, .box {
     &:hover .RIGHT-#{$type} {
       &.labeled-badge .badge {
-        background-color: $color;
+        background-color: $color !important;
       }
     }
   }
