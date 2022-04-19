@@ -57,8 +57,12 @@ format do
   end
 
   def knowns_and_unknowns researched
-    unknowns = research_count_query.where("answers.value = 'Unknown'").count
+    unknowns = researched.zero? ? 0 : count_unknowns
     { unknown: unknowns, known: (researched - unknowns) }
+  end
+
+  def count_unknowns
+    research_count_query.where("answers.value = 'Unknown'").count
   end
 
   def all_answer?
@@ -75,6 +79,10 @@ format do
 
   def total_results
     counts[:metric_answer]
+  end
+
+  def no_results?
+    total_results.zero?
   end
 
   def single? field
@@ -129,7 +137,7 @@ format :html do
     count = counts[codename]
     labeled_badge number_with_delimiter(count),
                   answer_count_badge_label(codename, count),
-                  color: "#{codename.cardname.downcase} badge-secondary"
+                  color: "#{codename.cardname.downcase} bg-secondary"
   end
 
   def answer_count_badge_label codename, count

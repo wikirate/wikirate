@@ -19,7 +19,7 @@ format :html do
   end
 
   view :bar_bottom do
-    dataset_details
+    render_details
   end
 
   def thumbnail_subtitle

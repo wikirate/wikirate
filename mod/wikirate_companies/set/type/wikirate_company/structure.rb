@@ -17,17 +17,19 @@ format :html do
     voo.edit_structure = %i[image headquarters] + IDENTIFIERS + INTEGRATIONS
   end
 
-  # LEFT SIDE
-  #
-  def header_body
-    class_up "media-heading", "company-color"
-    super
+  def header_text_items
+    super.tap do |h|
+      if (hq = card.headquarters).present?
+        h[:headquarters] = hq
+      end
+    end
   end
 
-  def header_text
-    contribs_made? ? render_contrib_switch : ""
-  end
+  # def header_text
+  #   contribs_made? ? render_contrib_switch : ""
+  # end
 
+  # TODO: move contributions_data to tab
   view :data, cache: :never do
     if contrib_page?
       render_contributions_data
@@ -36,13 +38,11 @@ format :html do
     end
   end
 
-  # RIGHT SIDE
-
   def tab_list
     if contrib_page?
       %i[research_group projects_organized details]
     else
-      %i[details wikirate_topic company_group source dataset]
+      %i[metric_answer source company_group dataset details]
     end
   end
 
@@ -52,26 +52,28 @@ format :html do
       company_group: { label: "Groups" } }
   end
 
-  def answer_filtering
-    filtering(".RIGHT-answer ._filter-widget") do
-      yield view: :bar, show: :full_page_link, hide: %i[company_header edit_link]
-    end
-  end
+  # def answer_filtering
+  #   filtering(".RIGHT-answer ._filter-widget") do
+  #     yield view: :bar, show: :full_page_link, hide: %i[company_header edit_link]
+  #   end
+  # end
 
-  view :wikirate_topic_tab do
-    answer_filtering do |items|
-      field_nest :wikirate_topic, view: :filtered_content, items: items
-    end
+  # view :wikirate_topic_tab do
+  #   answer_filtering do |items|
+  #     field_nest :wikirate_topic, view: :filtered_content, items: items
+  #   end
+  # end
+
+  view :metric_answer_tab do
+    field_nest :metric_answer, view: :filtered_content
   end
 
   view :source_tab do
-    answer_filtering do |items|
-      field_nest :source, view: :filtered_content, items: items
-    end
+    field_nest :source, view: :filtered_content
   end
 
   view :dataset_tab do
-    answer_filtering { |items| field_nest :dataset, items: items }
+    field_nest :dataset, view: :filtered_content
   end
 
   view :company_group_tab do
