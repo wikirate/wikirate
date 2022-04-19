@@ -21,10 +21,6 @@ format :html do
     card.question
   end
 
-  view :data do
-    field_nest :metric_answer, view: :filtered_content
-  end
-
   view :title_and_question, template: :haml
 
   # TODO: fix homepage and get rid of this!

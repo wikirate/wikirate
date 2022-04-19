@@ -44,6 +44,6 @@ format :html do
   # end
 
   view :dataset_tab do
-    field_nest :dataset, view: :content, items: items
+    field_nest :dataset, view: :content
   end
 end
