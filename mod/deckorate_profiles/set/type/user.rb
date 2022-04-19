@@ -60,8 +60,6 @@ format :html do
     "Researcher"
   end
 
-
-
   def simple_account_tab?
     card.current_account? || card.account.ok?(:read)
   end

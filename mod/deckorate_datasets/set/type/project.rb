@@ -53,6 +53,10 @@ format :html do
   end
 
   view :details_tab do
+    render_details
+  end
+
+  view :details do
     wrap_with :div, class: "project-details" do
       [
         nest(card.dataset_card, view: :overall_progress_box),

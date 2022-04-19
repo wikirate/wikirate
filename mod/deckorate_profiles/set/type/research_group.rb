@@ -68,10 +68,7 @@ format :html do
   end
 
   view :details_tab do
-    [organizer_detail,
-     topic_detail,
-     field_nest(:description, view: :titled),
-     field_nest(:conversation, items: { view: :link })]
+    render_details
   end
 
   view :bar_left do
@@ -87,10 +84,17 @@ format :html do
   end
 
   view :bar_bottom do
-    render_data
+    render_details
   end
 
   view :one_line_content do
     ""
+  end
+
+  view :details do
+    [organizer_detail,
+     topic_detail,
+     field_nest(:description, view: :titled),
+     field_nest(:conversation, items: { view: :link })]
   end
 end

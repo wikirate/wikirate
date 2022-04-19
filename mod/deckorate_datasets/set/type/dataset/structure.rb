@@ -4,14 +4,6 @@ format :html do
       %i[image parent wikirate_topic year wikirate_company metric description]
   end
 
-  before :open do
-    voo.hide! :header
-  end
-
-  view :open_content do
-    two_column_layout 5, 7
-  end
-
   view :right_column do
     wrap_with(:div, class: "progress-column") { [render_type_link, render_tabs] }
   end
@@ -36,6 +28,11 @@ format :html do
   view :data_subset_tab, template: :haml
 
   view :details_tab do
+    render_details
+  end
+
+  # shared with bar bottom
+  view :details do
     wrap_with :div, class: "dataset-details" do
       [
         data_subset_detail,

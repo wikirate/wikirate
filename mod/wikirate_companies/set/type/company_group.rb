@@ -19,7 +19,7 @@ format :html do
   end
 
   view :bar_bottom do
-    [render_bar_middle, render_data]
+    [render_bar_middle, render_details]
   end
 
   view :box_middle do
@@ -41,15 +41,19 @@ format :html do
   end
 
   view :details_tab do
+    render_details
+  end
+
+  view :wikirate_company_tab do
+    field_nest :wikirate_company, view: :filtered_content
+  end
+
+  view :details do
     [
       labeled_field(:wikirate_topic, :link, title: "Topics"),
       field_nest(:specification, view: :titled),
       field_nest(:about, view: :titled),
       field_nest(:discussion, view: :titled)
     ]
-  end
-
-  view :wikirate_company_tab do
-    field_nest :wikirate_company, view: :filtered_content
   end
 end
