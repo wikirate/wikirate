@@ -1,14 +1,8 @@
-include_set Abstract::TwoColumnLayout
-
 card_accessor :body
 card_accessor :discussion
 
 format :html do
   view :rich_header_body, template: :haml
-
-  view :open_content do
-    two_column_layout 7, 5
-  end
 
   view :data do
     output [field_nest(:body),

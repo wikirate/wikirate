@@ -27,38 +27,117 @@
   :codename: :wikirate_skin
   :subfields:
     :colors: |
-      $blue: #2B7EA0 !default;
-      $indigo: #6610f2 !default;
-      $purple: #674EA7 !default;
-      $pink: #ED4D50 !default;
-      $red: #B6060A !default;
-      $orange: #D3741C !default;
+      $blue: #1D1E3F !default;
+      $purple: #484C9D !default;
+      $red: #DD4549 !default;
+      $orange: #F7733D !default;
       $yellow: #F7BD1D !default;
-      $green: #198754 !default;
-      $teal: #03998d !default;
-      $cyan: #0091E0 !default;
+      $green: #7AC774 !default;
+      $teal: #09AB90 !default;
       $black: #000000 !default;
       $white: #ffffff !default;
+      
       $gray-100: #f8f9fa !default;
-      $gray-200: #e9ecef !default;
+      $gray-200: #EDEEF7 !default;
       $gray-300: #dee2e6 !default;
       $gray-400: #ced4da !default;
       $gray-500: #adb5bd !default;
       $gray-600: #6c757d !default;
-      $gray-700: #495057 !default;
-      $gray-800: #343a40 !default;
-      $gray-900: #212529 !default;
-      $primary: $teal !default;
-      $secondary: $gray-600 !default;
-      $success: $green !default;
-      $info: $cyan !default;
-      $warning: $yellow !default;
+      $gray-700: #34343B !default;
+      $gray-800: #2E34B7 !default;
+      $gray-900: #171831 !default;
+
+      $primary: $purple !default;
+      $secondary: $blue !default;
+      $success: $teal !default;
+      $info: $purple !default;
+      $warning: $orange !default;
       $danger: $red !default;
       $light: $gray-100 !default;
       $dark: $gray-900 !default;
       $body-bg: $white !default;
       $body-color: $gray-900 !default;
-    :variables: |
+    :variables: |      
+      /*----------- WikiRate Categories ---------*/
+      
+      // not standard bootstrap color variable
+      $yellow-orange: #F7B13D;
+    
+      $company-color: $yellow;
+      $company-group-color: $company-color;
+      $metric-color: $orange;
+      $answer-color: $gray-600;
+      $record-color: $answer-color;
+      $topic-color: $teal;
+      $source-color: $green;
+      $user-color: $green;
+      $research-group-color: $green;
+      $project-color: $yellow-orange;
+      $dataset-color: $yellow-orange;
+      $year-color: $yellow;
+      
+      /*----------- WikiRate Scores ---------*/
+
+      $score-colors: (
+        "0": $red,
+        "1": #EA5C43,
+        "2": $orange,
+        "3": #F7923D,
+        "4": $yellow-orange,
+        "5": $yellow,
+        "6": #BFCA4B,
+        "7": $green,
+        "8": #65a300,
+        "9": $teal
+      );
+      
+      /*----------- Other WikiRate-specific variables ---------*/
+      
+      $verification-flag-color: $red;
+      $top-bar-anchor-color: $primary;
+      
+      // badge levels
+      $gold: gold;
+      $silver: silver;
+      $bronze: #cd7f32;
+      
+      // TODO: see if there is a more standard bootstrap way to do this:      
+      $small-shadow: 0 5px 10px 0 rgba($dark, .08);
+      $primary-shadow: 0 10px 20px 0 rgba($dark, .2);
+      $large-shadow: 0 15px 50px 0 rgba($dark, .3);
+      
+      
+      //----------- Bootstrap Overrides ---------
+      
+      $border-color: $gray-200;
+      $table-group-separator-color: $gray-200;
+      
+      // NOTE: scroll-behavior: smooth breaks cypress tests
+      $enable-smooth-scroll: false;
+
+      /*----------- Official SDG colors ---------*/
+      
+      $sdg-colors: (
+        sdg1: #E5243B,
+        sdg2: #DDA63A,
+        sdg3: #4C9F38,
+        sdg4: #C5192D,
+        sdg5: #FF3A21,
+        sdg6: #26BDE2,
+        sdg7: #FCC30B,
+        sdg8: #A21942,
+        sdg9: #FD6925,
+        sdg10: #DD1367,
+        sdg11: #FD9D24,
+        sdg12: #BF8B2E,
+        sdg13: #3F7E44,
+        sdg14: #0A97D9,
+        sdg15: #56C02B,
+        sdg16: #00689D,
+        sdg17: #19486A
+      );
+
+
       /*----------- Mixins ---------*/
       
       @mixin ellipsis() {
@@ -72,64 +151,6 @@
         $opacity-ie: $opacity * 100;
         filter: alpha(opacity=$opacity-ie); //IE8
       }
-      
-      /*----------- WikiRate Categories ---------*/
-      
-      $company-color: $blue;
-      $metric-color: $purple;
-      $answer-color: $gray-600;
-      $record-color: $answer-color;
-      $topic-color: $orange;
-      $company-group-color: $pink;
-      $source-color: $cyan;
-      $project-color: $gray-800;
-      $year-color: $yellow;
-      $default-cardtype-color: $gray-800;
-      
-      /*----------- WikiRate Scores ---------*/
-      // Gradient generated from this url
-      // https://gka.github.io/palettes
-      // /#colors=,red,orange,yellow,green|steps=10|bez=1|coL=0
-      // 0 <= x < 1
-
-      $score-colors: (
-        "0": #ff0000,
-        "1": #ff5700,
-        "2": #ff7e00,
-        "3": #fc9b00,
-        "4": #f1b000,
-        "5": #debd00,
-        "6": #c2c000,
-        "7": #9ab700,
-        "8": #65a300,
-        "9": #008000
-      );
-      
-      /*----------- Other WikiRate-specific variables ---------*/
-      
-      $verification-flag-color: $red;
-      $top-bar-anchor-color: $primary;
-      
-      
-      // These are meant as transitional variables and are in use on the homepage
-      // we will probably want to get rid of them eventually
-      
-      $new-dark: #171831;
-      $new-purple: #484C9D;
-      $new-dark-purple: #353875;
-      $new-button-gray: #EDEEF7;
-      
-      $small-shadow: 0 5px 10px 0 rgba($new-dark, .08);
-      $primary-shadow: 0 10px 20px 0 rgba($new-dark, .2);
-      $large-shadow: 0 15px 50px 0 rgba($new-dark, .3);
-      
-      
-      //----------- Bootstrap Overrides ---------
-      
-      $border-color: $gray-200;
-      
-      // NOTE: scroll-behavior: smooth breaks cypress tests
-      $enable-smooth-scroll: false;
 
 - :name:
     - :all
