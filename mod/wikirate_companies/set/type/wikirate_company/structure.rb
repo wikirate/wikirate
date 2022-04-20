@@ -17,10 +17,10 @@ format :html do
     voo.edit_structure = %i[image headquarters] + IDENTIFIERS + INTEGRATIONS
   end
 
-  def header_text_items
+  def header_middle_items
     super.tap do |h|
       if (hq = card.headquarters).present?
-        h[:headquarters] = hq
+        h[:Headquarters] = hq
       end
     end
   end

@@ -133,17 +133,24 @@ format :html do
     progress_bar(*sections)
   end
 
+  def badge_label codename
+    Codename.exists?(codename) ? codename.cardname : codename.to_s.to_name
+  end
+
   def answer_count_badge codename
     count = counts[codename]
     labeled_badge number_with_delimiter(count),
                   answer_count_badge_label(codename, count),
-                  color: "#{codename.cardname.downcase} bg-secondary"
+                  color: "#{badge_label(codename).downcase} bg-secondary"
   end
 
   def answer_count_badge_label codename, count
-    simple_label = codename.cardname.pluralize count
-    responsive_count_badge_label icon_tag: mapped_icon_tag(codename),
-                                 simple_label: simple_label
+    simple_label = badge_label(codename).vary("capitalize").pluralize count
+    if (icon = mapped_icon_tag codename)
+      responsive_count_badge_label icon_tag: icon, simple_label: simple_label
+    else
+      simple_label
+    end
   end
 
   def show_chart?

@@ -1,5 +1,5 @@
 .filter-result-stats
-  .filter-result-badges
+  .filter-result-badges.flex.flex-wrap
     = answer_count_badge :metric_answer
     - unless all_answer?
       - if show_company_count?
@@ -7,5 +7,8 @@
       - if show_metric_count?
         = answer_count_badge :metric
       = answer_count_badge :year
-  .answer-search-progress.py-2
-    = render_progress_bar
+      -# = answer_count_badge :known
+      -# = answer_count_badge :unknown
+
+  -#.answer-search-progress.py-2
+  -#  = render_progress_bar

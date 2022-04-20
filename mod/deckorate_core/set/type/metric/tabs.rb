@@ -19,9 +19,7 @@ format :html do
   end
 
   view :details_tab do
-    tab_wrap do
-      [render_metric_properties, render_main_details]
-    end
+    [render_metric_properties, render_main_details]
   end
 
   view :main_details do

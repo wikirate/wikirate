@@ -1,7 +1,7 @@
 
 format :html do
   view :header_right do
-    [render_menu, render_bookmark]
+    render_bookmark
   end
 
   view :thumbnail_with_bookmark do

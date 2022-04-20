@@ -10,8 +10,10 @@ format :html do
     header_left
   end
 
+  view :header_middle, template: :haml
+
   view :header_right do
-    render_menu
+    ""
   end
 
   def header_left
@@ -23,13 +25,12 @@ format :html do
   end
 
   def header_text
-    haml :header_text
+    ""
   end
 
-  def header_text_items
+  def header_middle_items
     {
-      type: link_to_card(card.type_card),
-      id: link_to(card.id, href: "/~#{card.id}")
+      "WikiRate ID": link_to(card.id, href: "/~#{card.id}")
     }
   end
 

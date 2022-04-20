@@ -6,11 +6,13 @@ format :html do
   end
 
   def header_text
-    wrap_with(:div, class: "lead mb-3") { render_question } + super
+    render_question
   end
 
-  def header_text_items
-    { designer: link_to_card(card.metric_designer) }.merge super
+  def header_middle_items
+    super.merge Designer: link_to_card(card.metric_designer),
+                "Metric Type": card.metric_type,
+                "Value Type": card.value_type
   end
 
   def image_card

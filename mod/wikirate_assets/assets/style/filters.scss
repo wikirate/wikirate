@@ -1,4 +1,7 @@
-.filter-header-with-chart .controls-and-stats {
-  // height should correspond to the chart height
-  height: 245px;
+
+@include media-breakpoint-up(md) {
+  .filter-header-with-chart .controls-and-stats {
+    // height should correspond to the chart height
+    height: 245px;
+  }
 }

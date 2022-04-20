@@ -85,18 +85,20 @@
 
 // type specific colors
 $colorMap: (
-        metric: $metric-color,
-        metric_type: $metric-color,
-        record: $record-color,
-        company: $company-color,
-        topic: $topic-color,
-        source: $source-color,
-        project: $project-color,
-        answer: $answer-color,
-        research_group: $default-cardtype-color,
-        post: $default-cardtype-color,
-        company_group: $company-group-color,
-        year: $year-color
+  metric: $metric-color,
+  metric_type: $metric-color,
+  record: $record-color,
+  company: $company-color,
+  topic: $topic-color,
+  source: $source-color,
+  project: $project-color,
+  answer: $answer-color,
+  research_group: $research-group-color,
+  company_group: $company-group-color,
+  year: $year-color,
+  datum_set: $dataset-color,
+  datum_subset: $dataset-color,
+  user: $user-color
 ); // border color for bars and boxes
 
 @each $type, $color in $colorMap {
@@ -138,18 +140,18 @@ $colorMap: (
       border-left: 4px solid $color;
     }
   }
+  //
+  //.nav-item .RIGHT-#{$type} {
+  //  &.tab-badge .badge {
+  //    background-color: rgba($color, 0.75) !important;
+  //  }
+  //}
 
-  .nav-item .RIGHT-#{$type} {
-    &.tab-badge .badge {
-      background-color: rgba($color, 0.75) !important;
-    }
-  }
-
-  .nav-item:hover .RIGHT-#{$type} {
-    &.tab-badge .badge {
-      background-color: $color !important;
-    }
-  }
+  //.nav-item:hover .RIGHT-#{$type} {
+  //  &.tab-badge .badge {
+  //    background-color: $color !important;
+  //  }
+  //}
 
   .expanded-bar, .bar, .box {
     &:hover .RIGHT-#{$type} {
@@ -191,10 +193,10 @@ $colorMap: (
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    background: #666;
+    background: $gray-600;
     cursor: default;
     &.active {
-      color: #fff;
+      color: $white;
       cursor: pointer;
     }
   }
@@ -208,23 +210,9 @@ $colorMap: (
 @include hoverTag(metric, $metric-color);
 @include hoverTag(project, $project-color);
 
-@include quickFilterTag(sdg1, #E5243B)
-@include quickFilterTag(sdg2, #DDA63A)
-@include quickFilterTag(sdg3, #4C9F38)
-@include quickFilterTag(sdg4, #C5192D)
-@include quickFilterTag(sdg5, #FF3A21)
-@include quickFilterTag(sdg6, #26BDE2)
-@include quickFilterTag(sdg7, #FCC30B)
-@include quickFilterTag(sdg8, #A21942)
-@include quickFilterTag(sdg9, #FD6925)
-@include quickFilterTag(sdg10, #DD1367)
-@include quickFilterTag(sdg11, #FD9D24)
-@include quickFilterTag(sdg12, #BF8B2E)
-@include quickFilterTag(sdg13, #3F7E44)
-@include quickFilterTag(sdg14, #0A97D9)
-@include quickFilterTag(sdg15, #56C02B)
-@include quickFilterTag(sdg16, #00689D)
-@include quickFilterTag(sdg17, #19486A)
+@each $sdg, $color in $score-colors {
+  @include quickFilterTag($sdg, $color);
+}
 
 .sdg-quick-filters {
   .sdg-label > a {
@@ -277,11 +265,11 @@ $colorMap: (
 
 // light colors
 .light-color-0 {
-  background-color: #ccc;
+  background-color: $gray-400;
 }
 
 .light-color-1 {
-  background-color: #e4e9f1;
+  background-color: $gray-200;
 }
 
 .main-color {
@@ -289,19 +277,19 @@ $colorMap: (
 }
 
 .white-text {
-  color: #fff;
+  color: $white;
 }
 
 .dark-grey-color {
-  color: #333;
+  color: $gray-700;
 }
 
 .light-grey-color {
-  color: #ccc;
+  color: $gray-400;
 }
 
 .light-grey-color-2 {
-  color: #999;
+  color: $gray-500;
 }
 
 .verification-steward {
