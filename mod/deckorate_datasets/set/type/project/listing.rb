@@ -12,7 +12,7 @@ format :html do
   end
 
   view :bar_bottom do
-    render_data
+    render_details
   end
 
   def thumbnail_subtitle

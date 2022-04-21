@@ -1,4 +1,6 @@
-gem_mods # first load all mods referred to in the Gemfile
+# first load all mods referred to in the Gemfile
+# load order of gem mods is based on dependencies specified in .gemspec files
+gem_mods
 
 # see DeckoRate mod planning spreadsheet: https://docs.google.com/spreadsheets/d/1SeQYpC8nIRNkkkX0nDxZOrKavgTn7n_LJBeloEBZj8o/edit#gid=0
 
