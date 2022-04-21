@@ -127,13 +127,10 @@ RSpec.describe Card::Set::Right::ImportMap do
     it "gives counts for total and unmapped values" do
       expect(format_subject.tab_title(:metric))
         .to have_tag("div.tab-title") do
-          with_tag "span.count-number" do
-            with_tag "div.tab-badge" do
-              with_tag("span.badge") { 2 }
-              with_tag "span.badge-label" do
-                with_tag "i.fa-ruler-combined"
-              end
-            end
+
+          with_tag "div.tab-badge" do
+            with_tag("span.badge") { 2 }
+            with_tag "span.badge-label"
           end
           with_tag "span.count-label" do
             "(1) Metrics"

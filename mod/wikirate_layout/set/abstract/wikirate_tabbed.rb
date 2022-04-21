@@ -13,10 +13,6 @@ format :html do
     :wikirate_tabbed_layout
   end
 
-  def one_line_tab?
-    true
-  end
-
   view :page do
     [
       naming { render_rich_header },
