@@ -3,7 +3,7 @@ format :html do
     _render_link
   end
 
-  bar_cols 7, 5
+  mini_bar_cols 7, 5
 
   before :content_formgroups do
     # voo.edit_structure = %i[image subtopic general_overview]

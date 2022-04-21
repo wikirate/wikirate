@@ -34,5 +34,5 @@ format :html do
     count_badges :metric_answer, :metric
   end
 
-  bar_cols 7, 5
+  mini_bar_cols 7, 5
 end

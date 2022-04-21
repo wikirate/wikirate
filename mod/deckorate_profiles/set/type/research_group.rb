@@ -37,7 +37,7 @@ format :html do
     ]
   end
 
-  info_bar_cols 5, 5, 2
+  bar_cols 5, 5, 2
 
   def organizer_detail
     labeled_field :organizer, :thumbnail, title: "Group Organizer"

@@ -2,7 +2,6 @@
 
 include_set Abstract::KnownAnswers
 include_set Abstract::Media
-include_set Abstract::FilterableBar
 
 def virtual?
   new?
@@ -33,8 +32,8 @@ format :html do
     @units ||= card.dataset_card.units
   end
 
-  bar_cols 8, 4
-  info_bar_cols 6, 2, 4
+  mini_bar_cols 8, 4
+  bar_cols 6, 2, 4
 
   view :bar_left do
     render_company_header

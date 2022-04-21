@@ -39,21 +39,21 @@ format :html do
 
   # download and original links.  (view makes them hideable)
 
+  def bar_menu_items
+    super + [original_link, download_link]
+  end
+
   def original_link
     return unless card.link_url.present?
-    link_with_icon card.link_url, "external-link-square-alt", "Original"
+    link_with_icon card.link_url, "external-link-square-alt", "original"
   end
 
   def download_link
-    link_with_icon card.file_url, :download, "Download"
-  end
-
-  def source_page_link
-    link_with_icon card.name.url_key, "external-link-alt", "Source Page"
+    link_with_icon card.file_url, :download, "download"
   end
 
   def link_with_icon url, icon, title
     text = "#{fa_icon icon} #{title}"
-    link_to text, href: url, target: "_blank", class: "source-color"
+    link_to text, href: url, target: "_blank"
   end
 end

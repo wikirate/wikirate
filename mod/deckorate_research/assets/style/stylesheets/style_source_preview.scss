@@ -77,12 +77,6 @@
 }
 
 .TYPE-source {
-  &.box, > .bar-body {
-    cursor: pointer;
-    &:hover {
-      @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
-    }
-  }
   &.box {
     min-height: 250px;
     .box-top {
@@ -100,24 +94,6 @@
     > .box-bottom {
       padding-top: 0.2em;
       padding-bottom: 0.2em;
-    }
-  }
-  .meatball-button {
-    padding: 0.2em 0.75em;
-    &:hover {
-      background-color: $secondary;
-      color: $white;
-      border-radius: 5px;
-    }
-  }
-  .dropdown-menu a {
-    padding: 0.3em 1em;
-    display: block;
-    &:hover {
-      @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
-    }
-    i {
-      padding-right: 0.4em;
     }
   }
 }

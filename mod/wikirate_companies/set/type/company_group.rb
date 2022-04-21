@@ -30,7 +30,7 @@ format :html do
     count_badges :wikirate_company
   end
 
-  bar_cols 7, 5
+  mini_bar_cols 7, 5
 
   before :content_formgroups do
     voo.edit_structure = %i[image specification wikirate_company about discussion]

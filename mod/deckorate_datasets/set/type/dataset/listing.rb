@@ -1,13 +1,13 @@
 include_set Abstract::FilterableBar
 
 format :html do
-  info_bar_cols 6, 4, 2
+  bar_cols 6, 4, 2
 
   view :bar_left do
     voo.size = :medium
-    filterable({ dataset: card.name, status: :all }, class: "w-100") do
-      render_thumbnail_with_bookmark
-    end
+    # filterable({ dataset: card.name, status: :all }, class: "w-100") do
+    render_thumbnail_with_bookmark
+    # end
   end
 
   view :bar_middle do

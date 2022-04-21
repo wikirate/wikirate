@@ -69,7 +69,6 @@ $box_stripe_color: $gray-700;
 
 .bar {
   @include badge-icons();
-  border-left: 3px solid $border-color;
   .thumbnail {
     align-items: center;
   }
@@ -97,14 +96,7 @@ $box_stripe_color: $gray-700;
   }
 }
 
-.box {
-  border-top: 3px solid $gray-500;
-  box-shadow: $small-shadow;
-  &:hover {
-    box-shadow: $large-shadow;
-    cursor: pointer;
-  }
-}
+
 
 .box-top {
   h1, h2, h3, h4, h5, h6 {
@@ -131,7 +123,6 @@ a.box-item {
 
 .box-bottom {
   @include badge-icons();
-  justify-content: space-around;
 }
 
 // MOVE rules below to type-specific sheets?
@@ -241,8 +232,4 @@ a.box-item {
     width: 100%;
     margin-right: 1em;
   }
-}
-
-.bar.TYPE-task:hover {
-  cursor: pointer;
 }

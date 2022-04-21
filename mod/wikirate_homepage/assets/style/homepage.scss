@@ -456,7 +456,7 @@ footer.homepage-footer {
 
   top: -120px;
   border-radius: 8px;
-  box-shadow: $small-shadow;
+  box-shadow: $box-shadow-sm;
 
   > .row {
     margin: 0 3rem;
@@ -474,7 +474,7 @@ footer.homepage-footer {
 .btn-purple {
   background: $purple;
   color: white;
-  box-shadow: $primary-shadow;
+  box-shadow: $box-shadow;
 
   padding: 0.7rem 2rem;
   min-width: 165px;
@@ -488,7 +488,7 @@ footer.homepage-footer {
     color: white;
   }
   &:active {
-    box-shadow: $large-shadow;
+    box-shadow: $box-shadow-lg;
     color: $purple;
     background: $gray-200;
   }

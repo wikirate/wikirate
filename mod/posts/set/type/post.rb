@@ -9,8 +9,8 @@ format :html do
             field_nest(:discussion, view: :titled, title: "Discussion")]
   end
 
-  bar_cols 6, 6
-  info_bar_cols 4, 4, 4
+  mini_bar_cols 6, 6
+  bar_cols 4, 4, 4
 
   view :bar_bottom do
     nest card.body_card, view: :content
