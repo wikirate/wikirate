@@ -15,6 +15,7 @@ body {
   background-color: #fff;
 }
 
+// make sure footer is at bottom
 body.wikirate-layout #main {
   min-height: calc(100vh - 85px);
 }
@@ -36,10 +37,6 @@ body.home-layout.wikirate-layout > nav.navbar {
 sup {
   line-height: 0;
 }
-a {
-  color: $top-bar-anchor-color;
-
-}
 img {
   border: 0;
 }
@@ -57,24 +54,12 @@ canvas {
       line-height: 1.4em;
       margin-top: 1em;
     }
-
   }
-
 }
 
 .RIGHT-logo.d0-card-content img {
   max-height: 100%;
 
-}
-#Home {
-  overflow: inherit;
-}
-
-.wikirate-layout #main {
-  clear: both;
-  padding-top:70px;
-  max-width: 100%;
-  margin: 0;
 }
 
 .revision-navigation,
@@ -89,7 +74,7 @@ body {
     bottom: 0px;
     z-index: 9;
     background: #fff;
-    border-top: 1px solid #eaeaea;
+    border-top: 1px solid $gray-200;
     width: 100%;
     color: #999;
     padding: 0.5em;
@@ -115,15 +100,6 @@ body {
   }
 }
 
-
-#Donate input[type='image'] {
-  width: auto;
-  height: auto;
-  padding: 0;
-  background: none;
-  box-shadow: none;
-}
-
 .TYPE-image.d0-card-content img, .TYPE-image .card-body img {
   max-width: 100%;
   max-height: 100%;
@@ -143,20 +119,20 @@ input.navbox, .select2-navbox-autocomplete input.select2-search__field {
 
 //Default Images
 
-div[data-slot*="float:right"]{
-    float:right;
-    border: 2px solid $border-color;
-    margin-left: 15px;
-}
-
+//div[data-slot*="float:right"]{
+//    float:right;
+//    border: 2px solid $border-color;
+//    margin-left: 15px;
+//}
+//
 
 .content-view.RIGHT-headquarter {
   white-space: inherit;
 }
 
 .wikirate-layout > nav.navbar {
-    box-shadow: none;
-    border-bottom: 1px solid $border-color;
+  box-shadow: none;
+  border-bottom: 1px solid $border-color;
 }
 
 .titled-view .d0-card-header {
@@ -181,44 +157,9 @@ div[data-slot*="float:right"]{
 }
 
 
-.rich-header {
-  .card-menu {
-    z-index: 3;
-    background-color: #fff;
-  }
-  .media {
-    .media-body {
-      padding: 4px;
-      &.media-body-large {
-        padding: 1em;
-        .media-heading {
-          margin-right: 2em;
-        }
-      }
-      .media-heading {
-        @include media-breakpoint-up(sm) {
-          font-size: 1.7rem !important;
-        }
-        .card-title {
-          color: inherit;
-        }
-      }
-    }
-  }
-}
 
-@include media-breakpoint-up(xs) {
-  .rich-header {
-    > .card-menu._show-on-hover > a {
-      display: none;
-    }
-  }
-  .rich-header:hover {
-    > .card-menu._show-on-hover > a {
-      display: inline-block;
-    }
-  }
-}
+
+
 
 .card-menu._show-on-hover {
   background: rgba($white, 0.9);

@@ -5,8 +5,8 @@ RSpec.describe Card::Set::Type::ResearchGroup do
 
   check_html_views_for_errors
 
-  specify "view :info_bar" do
-    expect_view(:info_bar).to have_tag "div.bar" do
+  specify "view :bar" do
+    expect_view(:bar).to have_tag "div.bar" do
       with_tag "div.bar-left" do
         with_tag "div.thumbnail"
       end
