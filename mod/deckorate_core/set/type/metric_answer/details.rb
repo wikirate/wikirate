@@ -17,10 +17,6 @@ format :html do
   #   }
   # end
   #
-  # def one_line_tab?
-  #   true
-  # end
-  #
   # view :details_tab do
   #   render_details
   # end

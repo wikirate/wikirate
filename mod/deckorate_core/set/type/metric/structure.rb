@@ -5,13 +5,14 @@ format :html do
     super
   end
 
-  def header_body
-    class_up "media-heading", "metric-color"
-    super
-  end
-
   def header_text
     render_question
+  end
+
+  def header_middle_items
+    super.merge Designer: link_to_card(card.metric_designer),
+                "Metric Type": card.metric_type,
+                "Value Type": card.value_type
   end
 
   def image_card
@@ -20,10 +21,6 @@ format :html do
 
   def social_description
     card.question
-  end
-
-  view :data do
-    field_nest :metric_answer, view: :filtered_content
   end
 
   view :title_and_question, template: :haml

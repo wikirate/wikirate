@@ -68,7 +68,4 @@ format :html do
     return unless (creator_card = Card[card.creator_id])
     nest creator_card, view: :link
   end
-
-  # DELETE?
-  view :wikirate_copy_message, template: :haml
 end
