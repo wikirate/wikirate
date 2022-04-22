@@ -1,0 +1,12 @@
+.rich-header.card-menu-hoverspace{ class: card.safe_set_keys }
+  .rich-header-top.d-flex.justify-content-between
+    = render_breadcrumbs
+    = render_menu
+  .rich-header-main.d-flex.justify-content-between
+    .header-left.col-md-6.col-9
+      = render_header_left
+    .header-middle.d-none.d-md-flex.col-md-4
+      = render_header_middle
+    .header-right.col-md-2.col-3
+      = render_header_right
+
