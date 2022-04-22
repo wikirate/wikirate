@@ -53,6 +53,10 @@ And(/^I click on item "([^"]*)"$/) do |item|
   find("td", text: item).click
 end
 
+And(/^I close the offcanvas$/) do
+  find(".offcanvas-header .btn-close").click
+end
+
 And(/^I click on "([^"]*)" and confirm$/) do |link|
   page.accept_confirm { click_link_or_button(link) }
 end
