@@ -28,12 +28,14 @@ describe "metric creation", ->
       cy.get(".RIGHT-Xtitle .d0-card-content").type "MyChild"
       cy.contains("Submit").click()
 
+      cy.get(".alert").should "contain", "Metric Creator"
+        .should "contain", "Awarded for adding your first metric"
+
+      cy.contains("Details").click()
+
       cy.get(".metric-properties").within ->
         hasProperty ".designer-property", "Designed by", "Joe Camel"
         hasProperty ".RIGHT-Xmetric_type", "Metric Type", "Descendant"
-
-      cy.get(".alert").should "contain", "Metric Creator"
-        .should "contain", "Awarded for adding your first metric"
 
 
   describe "from variable researched metric page", ->
@@ -65,6 +67,9 @@ describe "metric creation", ->
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "1.1"
 
+      # go to details tab
+      cy.contains("Details").click()
+
       # check that formula looks right
       cy.get(".RIGHT-formula").within ->
         cy.get("td").should "contain", "friendliness"
@@ -90,6 +95,9 @@ describe "metric creation", ->
 
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "1.1"
+
+      # go to details tab
+      cy.contains("Details").click()
 
       # check that formula looks right
       cy.get(".RIGHT-formula").within ->
@@ -119,6 +127,9 @@ describe "metric creation", ->
 
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "10"
+
+      # go to details tab
+      cy.contains("Details").click()
 
       # check that formula looks right
       cy.get(".RIGHT-Xvariable").should "contain", "disturbance"
