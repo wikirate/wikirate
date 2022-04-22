@@ -70,7 +70,7 @@ format :html do
 
   view :research_button, cache: :never do
     link_to "Research",
-            class: "btn btn-outline-secondary btn-sm research-answer-button",
+            class: "btn btn-outline-secondary btn-sm research-answer-button over-bar",
             path: { mark: record_name, project: project_name, view: :research }
   end
 
@@ -80,11 +80,11 @@ format :html do
   end
 
   def full_page_card
-    card.dataset_card
+    metric_card
   end
 
   def dataset_name
-    card.dataset_card.name
+    dataset_card.name
   end
 
   def metric_link status=:all

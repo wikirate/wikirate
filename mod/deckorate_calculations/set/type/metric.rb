@@ -69,7 +69,7 @@ end
 
 format :html do
   view :calculation_tab do
-    tab_wrap { [calculations_list, haml(:new_calculation_links)] }
+    [calculations_list, haml(:new_calculation_links)]
   end
 
   def tab_options

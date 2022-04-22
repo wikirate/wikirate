@@ -1,9 +1,10 @@
-$bg-default: #fff;
+$bg-default: $white;
 $bg-highlight: $primary;
-$col-default: #8E8E8E;
-$col-highlight: #fff;
+$col-default: $gray-600;
+$col-highlight: $white;
 $dropDown: true;
-$nav-inverse-border: #038076;
+$nav-inverse-border: $primary;
+
 .navbar-default {
   background: $bg-default;
   // border-color: $bg-highlight;

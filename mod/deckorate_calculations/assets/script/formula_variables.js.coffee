@@ -86,6 +86,8 @@ class deckorate.FormulaVariablesEditor extends deckorate.VariablesEditor
       options = @optionsFor scheme
       v.setOptions(options) for v in @variables()
 
+    @updateFormulaInputs()
+
   optionsFor: (scheme) ->
     switch scheme
       when "all_researched" then {}

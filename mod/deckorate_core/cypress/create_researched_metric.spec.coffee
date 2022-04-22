@@ -10,6 +10,8 @@ describe "researched metric creation", ->
 
     cy.contains("Submit").scrollIntoView().click()
 
+    # go to details tab
+    cy.contains("Details").click()
     cy.get(".RIGHT-Xmetric_type .d0-card-content").should "contain", "Researched"
 
 
@@ -24,11 +26,13 @@ describe "researched metric creation", ->
 
     cy.contains("Submit").scrollIntoView().click()
 
+    # go to details tab
+    cy.contains("Details").click()
+
     hasProperty = (prop, label, value)->
       cy.get prop
         .should "contain", label
         .should "contain", value
-
 
     cy.get(".metric-properties").within ->
       hasProperty ".designer-property", "Designed by", "Joe Camel"

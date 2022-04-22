@@ -38,7 +38,7 @@
 }
 
 .slab:hover {
-  background: #fbfbfb;
+  background: $gray-100;
 }
 
 .btn {
@@ -202,11 +202,11 @@
 }
 //background and borders
 .background-white {
-  background-color: #fff;
+  background-color: $white;
 }
 
 .background-grey {
-  background: #fafafa;
+  background: $gray-100;
 }
 
 // Borders
@@ -262,7 +262,7 @@
   }
 
   a {
-    color: #ababab;
+    color: $gray-500;
     font-weight: bold;
   }
 
@@ -297,15 +297,15 @@
 }
 
 .panel-default {
-  border-color: #efefef;
+  border-color: $gray-200;
   // margin-bottom: -2px;
   > .panel-heading {
     background-image: none;
   }
 
   > .panel-heading {
-    color: #333;
-    background-color: #f5f5f5;
+    color: $gray-700;
+    background-color: $gray-100;
     border-right: 1px solid rgba(0, 0, 0, 0.05);
     padding: 10px;
   }
@@ -313,10 +313,10 @@
 
 .panel-primary-container > .card-slot > {
   .menu-slot > .vertical-card-menu._show-on-hover .btn-group.slotter a {
-    color: #fff;
+    color: $white;
 
     &:hover {
-      color: #fafafa;
+      color: $gray-100;
     }
   }
 
@@ -327,11 +327,11 @@
 
 .panel-primary,
 .panel-primary-container > .card-slot > .panel-default {
-  border-color: #eaeaea;
+  border-color: $gray-200;
 
   > .panel-heading {
-    color: #404040;
-    background-color: #ffffff;
+    color: $gray-700;
+    background-color: $white;
     padding-bottom: 2px;
     border-bottom: 2px solid $primary;
     margin-bottom: 15px;
@@ -351,11 +351,6 @@
   border-radius: 0;
 }
 
-.alert-info {
-  background-color: rgba(3, 153, 141, 0.08);
-  border-color: rgba(3, 153, 141, 0.08);
-  color: #31708f;
-}
 
 .help-block {
   margin-top: 0;

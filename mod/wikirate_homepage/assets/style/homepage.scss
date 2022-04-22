@@ -3,7 +3,7 @@
 .home-layout {
   background: url("https://dq06ugkuram52.cloudfront.net/files/538748/12604285-original.png");
   .bar {
-    background: #ffffff
+    background: $white
   }
 }
 
@@ -101,15 +101,17 @@
 }
 
 .banner-background {
-  //background: rgba(0, 74, 68, 0.95);
+  //background: rgba(0, 74, 68,teal
   //Proposed colour
-  background: $metric-color; /* Old browsers */
-  background: -moz-linear-gradient(-45deg, $metric-color 0%, $company-color 68%, $primary 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg, $metric-color 0%,$company-color 68%, $primary 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, $metric-color 0%, $company-color 68%, $primary 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$metric-color', endColorstr='#03998d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background: $teal; /* Old browsers */
+  background: -moz-linear-gradient(+45 $teal 0%, $purple 68%, $red 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(+45deg, $teal 0%, $purple 68%, $red 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(225deg, $teal 0%, $purple 68%, $red 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$purple', endColorstr='$teal',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   opacity: 0.97
 }
+
+
 .transparent-background-white {
   background: rgba(#fff, 0.97);
 }
@@ -117,7 +119,7 @@
 .transparent-background-black {
   //background: rgba(22, 6, 35, 0.95);
   //Proposed colour
-  background: #322456;
+  background: $purple-800;
   opacity: 0.97;
 }
 
@@ -136,7 +138,7 @@
 //}
 
 .metric-header {
-  border-top: 3px solid #674EA7;
+  border-top: 3px solid $metric-color;
 }
 
 .homepage-logo-container {
@@ -403,7 +405,7 @@ footer.homepage-footer {
     padding-left: 0;
     list-style: none;
     a {
-      color: #797f84;
+      color: $gray-600;
     }
     li {
       padding: 5px 0;
@@ -449,12 +451,12 @@ footer.homepage-footer {
 
 .showcase-banner {
   h3 {
-    color: $new-purple;
+    color: $purple;
   }
 
   top: -120px;
   border-radius: 8px;
-  box-shadow: $small-shadow;
+  box-shadow: $box-shadow-sm;
 
   > .row {
     margin: 0 3rem;
@@ -470,9 +472,9 @@ footer.homepage-footer {
 }
 
 .btn-purple {
-  background: $new-purple;
+  background: $purple;
   color: white;
-  box-shadow: $primary-shadow;
+  box-shadow: $box-shadow;
 
   padding: 0.7rem 2rem;
   min-width: 165px;
@@ -482,18 +484,18 @@ footer.homepage-footer {
   letter-spacing: 0.3px;
 
   &:hover {
-    background: $new-dark-purple;
+    background: $purple-600;
     color: white;
   }
   &:active {
-    box-shadow: $large-shadow;
-    color: $new-purple;
-    background: $new-button-gray;
+    box-shadow: $box-shadow-lg;
+    color: $purple;
+    background: $gray-200;
   }
   &:focus {
-    background: $new-button-gray;
-    color: #2E34B7;
-    border: 3px solid #2E34B7;
+    background: $gray-200;
+    color: $gray-800;
+    border: 3px solid $gray-800;
   }
 }
 
