@@ -18,20 +18,4 @@ RSpec.describe Card::Set::Type::ResearchGroup do
       end
     end
   end
-
-  specify "view :expanded_bar" do
-    expect_view(:expanded_bar).to have_tag "div.expanded-bar" do
-      with_tag "div.bar" do
-        with_tag "div.bar-left" do
-          with_tag "div.thumbnail"
-        end
-        with_tag "div.bar-right" do
-          with_tag "span.badge"
-        end
-      end
-      with_tag "div.bar-bottom" do
-        with_tag "div.RIGHT-topic"
-      end
-    end
-  end
 end
