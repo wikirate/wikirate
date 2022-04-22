@@ -12,20 +12,10 @@ RSpec.describe Card::Set::Type::Post do
 
     check_html_views_for_errors
 
-    specify "view bar" do
-      expect_view(:bar).to have_tag "div.bar" do
+    specify "view mini_bar" do
+      expect_view(:mini_bar).to have_tag "div.bar" do
         with_tag "div.bar-left", "My Post"
         without_tag "div.bar-middle"
-      end
-    end
-
-    specify "expanded bar" do
-      expect_view(:expanded_bar).to have_tag ".expanded-bar" do
-        with_tag ".bar" do
-          with_tag ".bar-left", "My Post"
-          without_tag "div.bar-middle"
-        end
-        with_tag "div.bar-bottom", /body text/
       end
     end
   end

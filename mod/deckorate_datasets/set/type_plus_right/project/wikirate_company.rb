@@ -30,7 +30,11 @@ end
 
 format :html do
   before :core do
-    voo.items[:show] = :bar_middle if card.researchable_metrics?
+    voo.items[:view] = :bar if card.researchable_metrics?
+  end
+
+  def default_item_view
+    :mini_bar
   end
 
   # don't add quick filters for other datasets

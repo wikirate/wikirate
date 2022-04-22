@@ -7,40 +7,39 @@ Feature: company feature
 
   Scenario: Browse through tabs
     Then I should see "disturbances in the Force"
-    And I should see "Wikipedia"
-    And I wait for ajax response
-    Then I should see "mobile space"
-    Then I click on "Topics"
-    And I should see "Force"
     Then I click on "Data Sets"
     And I should see "Evil Dataset"
     Then I click on "Sources"
     And I should see "thereaderwiki.com"
+    Then I click on "Details"
+    And I should see "Wikipedia"
+    And I wait for ajax response
+    Then I should see "mobile space"
 
   Scenario: Filter by metric
-#    When I click on "More Filters"
-#    And I click on "Metric"
+    When I click on "Filter"
     And I fill in "filter[metric_name]" with "deadliness"
-    # To change focus
-    And I click on "More Filters"
+    And I close the offcanvas
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
     And I should see "deadliness"
 
   Scenario: Filter by topic
+    When I click on "Filter"
     When I click on "More Filters"
     And I click on "Topic"
     And I select2 "Force" from "filter[wikirate_topic][]"
-    # To change focus
-    And I click on "More Filters"
+    And I close the offcanvas
     And I wait for ajax response
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"
 
   Scenario: Filter by year
+    When I click on "Filter"
     When I click on "More Filters"
     And I click on "Year"
     And I select2 "2001" from "filter[year]"
+    And I close the offcanvas
     And I wait for ajax response
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"
@@ -61,9 +60,11 @@ Feature: company feature
   #   Then I should see "Weapons"
 
   Scenario: Paging
+    When I click on "Filter"
     When I click on "More Filters"
     And I click on "Year"
     And I select2 "Latest" from "filter[year]"
+    And I close the offcanvas
     Then I should see "Victims by Employees"
     Then I click "2" within ".paging"
     And I should not see "Victims by Employees"

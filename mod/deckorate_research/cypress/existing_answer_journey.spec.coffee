@@ -1,4 +1,4 @@
-describe "research page", ->
+describe "research page from answer", ->
   specify "existing answer journey", ->
     cy.login "sample@user.com", "sample_pass"
     cy.visit "Jedi+cost_of_planets_destroyed+Death_Star+1977"
