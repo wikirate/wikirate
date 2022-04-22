@@ -1,7 +1,19 @@
 format :html do
   before(:filter_form) { voo.hide :sort_formgroup }
 
-  view :core, cache: :never, template: :haml
+  view :filtered_results_header, cache: :never, template: :haml
+
+  view :filter_result_stats, cache: :never, template: :haml
+
+  view :controls_and_stats, cache: :never, template: :haml
+
+  view :core, cache: :never do
+    if total_results.positive?
+      haml :core
+    else
+      haml :no_results
+    end
+  end
 
   view :table, cache: :never do
     wrap true, "data-details-config": details_config.to_json do

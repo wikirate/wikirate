@@ -2,7 +2,6 @@
 
 include_set Abstract::KnownAnswers
 include_set Abstract::Media
-include_set Abstract::FilterableBar
 
 def virtual?
   new?
@@ -33,8 +32,8 @@ format :html do
     @units ||= card.dataset_card.units
   end
 
-  bar_cols 8, 4
-  info_bar_cols 6, 2, 4
+  mini_bar_cols 8, 4
+  bar_cols 6, 2, 4
 
   view :bar_left do
     render_company_header
@@ -64,7 +63,7 @@ format :html do
 
   view :research_button, cache: :never do
     link_to "Research",
-            class: "btn btn-outline-secondary btn-sm research-answer-button",
+            class: "btn btn-outline-secondary btn-sm research-answer-button over-bar",
             path: { mark: record_name, project: card.project_name, view: :research }
   end
 
@@ -77,6 +76,10 @@ format :html do
   def record_name
     metric_name = (params[:metric] || card.metric_ids.first).cardname
     metric_name.field card.company_card.name
+  end
+
+  def full_page_card
+    company_card
   end
 
   def dataset_name
