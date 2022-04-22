@@ -12,7 +12,7 @@ RSpec.describe Card::Set::TypePlusRight::Project::WikirateCompany do
       subject { project_companies.format.render_core }
 
       it "shows bar views of <Company>+<Project> cards" do
-        is_expected.to have_tag(".LTYPE_RTYPE-company-project.bar") do
+        is_expected.to have_tag(".TYPE-company.bar") do
           with_tag ".bar-middle"
         end
       end
@@ -58,7 +58,7 @@ RSpec.describe Card::Set::TypePlusRight::Project::WikirateCompany do
       subject { project_companies.format.render_core }
 
       it "shows bar views of <Company>+<Project> cards" do
-        is_expected.to have_tag(".LTYPE_RTYPE-company-project.bar")
+        is_expected.to have_tag(".TYPE-company.bar")
       end
 
       it "does not have the middle column" do
