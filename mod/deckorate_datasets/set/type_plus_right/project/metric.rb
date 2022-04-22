@@ -22,10 +22,6 @@ format :html do
     super - [:dataset]
   end
 
-  def default_item_view
-    :info_bar
-  end
-
   # don't add quick filters for other datasets
   def dataset_quick_filters
     []

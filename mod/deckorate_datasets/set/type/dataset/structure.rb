@@ -4,24 +4,12 @@ format :html do
       %i[image parent wikirate_topic year wikirate_company metric description]
   end
 
-  before :open do
-    voo.hide! :header
-  end
-
-  view :open_content do
-    two_column_layout 5, 7
-  end
-
-  view :data do
-    wrap_with(:div, class: "dataset-details") { dataset_details }
-  end
-
   view :right_column do
     wrap_with(:div, class: "progress-column") { [render_type_link, render_tabs] }
   end
 
   def tab_list
-    %i[metric_answer wikirate_company metric data_subset]
+    %i[metric_answer wikirate_company metric data_subset details]
   end
 
   view :wikirate_company_tab do
@@ -39,9 +27,13 @@ format :html do
   # view :project_tab, template: :haml
   view :data_subset_tab, template: :haml
 
-  # left column content
-  def dataset_details
-    wrap_with :div do
+  view :details_tab do
+    render_details
+  end
+
+  # shared with bar bottom
+  view :details do
+    wrap_with :div, class: "dataset-details" do
       [
         data_subset_detail,
         labeled_field(:year, :name, title: "Years", unknown: :blank, separator: ", "),

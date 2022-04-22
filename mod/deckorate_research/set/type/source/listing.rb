@@ -4,17 +4,14 @@ format :html do
   # BAR VIEWS
   before :bar do
     class_up "bar-left", "_filterable"
-    super()
   end
 
   view(:bar_left) { filterable(source: card.name) { render_compact } }
   view(:bar_middle) { render_years }
-  view(:bar_right) do
-    [count_badge(:metric_answer), render_meatballs]
-  end
+  view(:bar_right) { count_badge(:metric_answer) }
   view :bar_bottom, template: :haml
 
-  bar_cols 7, 5
+  mini_bar_cols 7, 5
 
   view :box_top do
     render_compact
@@ -25,7 +22,6 @@ format :html do
   end
 
   view :box_bottom, template: :haml
-  view :meatballs, template: :haml
 
   # LINK AND BUTTON VIEWS
   view :close_icon, template: :haml
@@ -68,7 +64,4 @@ format :html do
     return unless (creator_card = Card[card.creator_id])
     nest creator_card, view: :link
   end
-
-  # DELETE?
-  view :wikirate_copy_message, template: :haml
 end

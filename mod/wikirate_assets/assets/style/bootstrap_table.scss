@@ -51,7 +51,7 @@ table.wikirate-table, .table.wikirate-table {
   background: #fff;
   width: 100%;
   thead > tr > th {
-    background: #fff;
+    background: $white;
     padding: 2px;
     font-size: 0.8em;
     text-align: center;
@@ -66,7 +66,7 @@ table.wikirate-table, .table.wikirate-table {
     &.in-file {
       width: 33%;
     }
-    border-bottom: 1px dotted #eee;
+    border-bottom: 1px dotted $gray-200;
   }
   // td {
   //   &.data {
@@ -88,7 +88,7 @@ table.wikirate-table, .table.wikirate-table {
   // }
 
   .tr-link:hover {
-    background-color: #fafafa;
+    background-color: $gray-100;
     cursor: pointer;
   }
   &.metric {
@@ -139,7 +139,7 @@ table.wikirate-table, .table.wikirate-table {
 .TYPE-research_group table {
   thead {
     border-bottom: 4px solid $border-color;
-    border-left: 4px solid #646464;
+    border-left: 4px solid $gray-600;
     .thumbnail {
       border: 0;
       font-size: 18px;
