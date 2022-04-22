@@ -14,10 +14,7 @@ format :html do
   end
 
   view :page do
-    [
-      naming { render_rich_header },
-      render_tabs
-    ]
+    wrap { [naming { render_rich_header }, render_tabs] }
   end
 
   view :breadcrumbs do

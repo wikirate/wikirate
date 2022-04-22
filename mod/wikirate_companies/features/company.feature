@@ -7,8 +7,6 @@ Feature: company feature
 
   Scenario: Browse through tabs
     Then I should see "disturbances in the Force"
-    Then I click on "Topics"
-    And I should see "Force"
     Then I click on "Data Sets"
     And I should see "Evil Dataset"
     Then I click on "Sources"

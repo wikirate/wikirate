@@ -6,22 +6,22 @@ describe "filtering on company pages", ->
     cy.contains "Category"
     cy.contains "disturbances"
 
-    # go to topic tab
-    cy.contains("Topics").click()
-
-    # "Taming" topic present before filtering
-    cy.contains("Taming")
-    cy.get("._filter-container [name='filter[name]']")
-      .type("forc")
-
-    # Topic is now filtered out
-    cy.should "not.contain", "Taming"
-
-    # url bar is NOT updated with filter
-    cy.location("search").should "not.contain", "filter"
-
-    # click on a topic
-    cy.contains("Force").click()
+#    # go to topic tab
+#    cy.contains("Topics").click()
+#
+#    # "Taming" topic present before filtering
+#    cy.contains("Taming")
+#    cy.get("._filter-container [name='filter[name]']")
+#      .type("forc")
+#
+#    # Topic is now filtered out
+#    cy.should "not.contain", "Taming"
+#
+#    # url bar is NOT updated with filter
+#    cy.location("search").should "not.contain", "filter"
+#
+#    # click on a topic
+#    cy.contains("Force").click()
 
 
 #
