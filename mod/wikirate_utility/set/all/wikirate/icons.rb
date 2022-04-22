@@ -18,6 +18,7 @@ ICON_MAP = {
   bookmarks: [:bookmark, { library: :font_awesome }],
   details: ["info-circle", { library: :font_awesome }],
   source: ["globe-africa", { library: :font_awesome }],
+  preview: ["file-pdf", { library: :font_awesome }],
   score: :adjust,
   answer_import: :input,
   metric_import: :input,

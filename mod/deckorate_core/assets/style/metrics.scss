@@ -7,19 +7,9 @@
   }
 }
 
-.tabbable.company-tabs .tab-content {
-  margin-left: -15px;
-}
-
-/*Common styles and classes ENDS*/
-.SELF-homepage_company {
-  .pointer-item {
-    float: left;
-  }
-}
-.details-body .nav-tabs label {
-  margin-bottom: 0;
-}
+//.details-body .nav-tabs label {
+//  margin-bottom: 0;
+//}
 
 .details_sidebar-view .year-and-value {
   cursor: pointer;
@@ -30,17 +20,17 @@
 }
 
 .filter.panel {
-  background: #F9F9F9;
+  background: $gray-100;
   border-radius: 0;
   margin-top: 10px;
   margin-bottom: 0;
   .panel-heading {
     cursor: pointer;
-    color: #ccc !important;
+    color: $gray-400 !important;
     padding: 6px 12px;
     height: 32px;
     text-decoration: none;
-    background: #fff;
+    background: $white;
   }
   .panel-collapse {
     padding: 10px;
@@ -58,18 +48,6 @@
   }
 }
 
-.metric-source .tab-content {
-  background: #fffefa;
-  padding: 30px;
-}
-
-.form .metric-value-year {
-  width: 135px;
-}
-
-.form .metric-value-value {
-  width: 200px;
-}
 
 .label-metric {
   background: $metric-color;
@@ -91,36 +69,36 @@
 .year-and-value .metric-value {
   font-size: inherit;
 }
+//
+//.no-metric-value {
+//  display: none;
+//}
 
-.no-metric-value {
-  display: none;
-}
+//.RIGHT-company.d0-card-content .company-item .item-link > a {
+//  background: $primary;
+//  border-top-left-radius: 0;
+//  border-bottom-left-radius: 0;
+//}
+//
+//.details-header,
+//.metric-info {
+//  .row {
+//    margin-left: 5px;
+//    margin-right: 5px;
+//
+//    .glyphicon-question-mark {
+//      font-weight: bold;
+//    }
+//  }
+//}
 
-.RIGHT-company.d0-card-content .company-item .item-link > a {
-  background: $primary;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.details-header,
-.metric-info {
-  .row {
-    margin-left: 5px;
-    margin-right: 5px;
-
-    .glyphicon-question-mark {
-      font-weight: bold;
-    }
-  }
-}
-
-.metric-author-info {
-  img {
-    max-height: 100%;
-    max-width: 100%;
-    vertical-align: middle;
-  }
-}
+//.metric-author-info {
+//  img {
+//    max-height: 100%;
+//    max-width: 100%;
+//    vertical-align: middle;
+//  }
+//}
 
 .scored-by-subtitle .image-box {
   margin-left: 0.3em;
@@ -130,22 +108,6 @@
     .thumbnail-subtitle a {
       color: inherit !important;
       margin-left: 0.2em;
-    }
-  }
-}
-
-.TYPE-metric_value {
-  // &.LTYPE_RTYPE-html-year > .card-frame > .card-body {
-  //   padding: 0px;
-  //   margin-top: 1px;
-  // }
-  .RIGHT-discussion,
-  .TYPE_PLUS_RIGHT-metric_value-source,
-  .timeline {
-    float: left;
-    width: 100% !important;
-    .missing-view {
-      display: none;
     }
   }
 }
@@ -180,7 +142,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .standard-formula-core {
-  background: #f2f2f2;
+  background: $gray-100;
   padding: .75em 1.5em;
   width: 100%;
   margin: 0.5em 0;
@@ -193,7 +155,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     .bar-view, .expanded_bar-view {
       margin: 0.5em;
       .bar-body {
-        background: #fff;
+        background: $white;
       }
     }
   }
@@ -227,7 +189,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     display: inline-block;
     vertical-align: middle;
     > a {
-      color: #888;
+      color: $gray-600;
     }
     a > div {
       max-width: 225px;
@@ -292,11 +254,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .metric-row {
   padding-bottom: 15px;
-  background: #fafafa;
+  background: $gray-100;
   > div {
-    background: #fff;
+    background: $white;
     &:first-child {
-      border-top: 1px solid #EEE;
+      border-top: 1px solid $gray-200;
     }
   }
 }
@@ -332,7 +294,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
  width: 60%;
 }
 
-
 .TYPE-source.open-view {
   .left-col {
     border: 0;
@@ -345,7 +306,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 // metric value details
 #metric-container, #source-preview-main {
   border: 1px solid $gray-100;
-  background: #fff;
+  background: $white;
 
   .thumbnail {
     border: none;
@@ -368,30 +329,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   padding: 1px;
   margin-bottom: 30px;
   padding-right: 15px;
-}
-
-.stick-left, .stick-right {
-  position: fixed;
-  top: 130px; //68px;
-  bottom: 0px;
-  z-index: 1;
-}
-
-.stick-left {
-  overflow-y: scroll;
-  width: 40.8%;
-}
-
-.stick-right {
-  width: 57%;
-  left: 41.9%;
-  margin: -1px;
-  .webpage-preview {
-    height: auto !important;
-    top: 81px;
-    bottom: 0;
-    position: absolute;
-  }
 }
 
 .topic-list .pointer-item {
@@ -453,13 +390,13 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   .stick-left {
     left: 0px;
     top: 66px;
-    background: #fff;
+    background: $white;
   }
   .stick-right {
     top: 66px;
     left: 40.8%;
     width: 60%;
-    background: #fff;
+    background: $white;
   }
 
   //.answer_table-view.LTYPE_RTYPE-metric-company {
@@ -485,9 +422,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .row.panel-default.metric-list {
-  background: rgba(103, 78, 167, 0.06);
+  background: $purple-800;
  .record-row {
-   background: #fff;
+   background: $white;
    margin-bottom: 30px;
    border-top: 1px solid $border-color;
    border-bottom: 1px solid $border-color;
@@ -533,7 +470,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     width: 70%;
     //cursor: pointer;
     float: left;
-    border-right: 1px solid #eee;
+    border-right: 1px solid $gray-200;
     //color: #ccc !important;
     padding: 6px 12px;
     text-decoration: none;
@@ -547,7 +484,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     padding: 6px 12px;
     text-decoration: none;
     &:hover {
-      //background: #fff;
+      //background: $white;
     }
   }
   &.metric-item, &.company-item, &.topic-item{
@@ -640,8 +577,8 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .vega-bindings {
-  background: #eee;
-  border: 1px solid #666;
+  background: $gray-200;
+  border: 1px solid $gray-600;
   padding: 1em;
   float: right;
   min-width: 180px;

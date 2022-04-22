@@ -13,6 +13,10 @@ describe 'edit WikiRating', ->
 
   specify "WikiRating formula", ->
     cy.visit "Jedi+darkness rating"
+
+    # go to details tab
+    cy.contains("Details").click()
+
     cy.slot "jedi+darkness_rating+*variable"
       .find(".card-menu > a.edit-link").click(force: true)
     cy.contains("a", "Add Metric", timeout: 15000)
