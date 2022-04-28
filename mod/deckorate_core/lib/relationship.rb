@@ -1,7 +1,6 @@
 # Lookup table for relationship answers to relationship metrics
 class Relationship < Cardio::Record
   @card_column = :relationship_id
-  @card_query = {  type_id: Card::RelationshipAnswerID, trash: false }
 
   include LookupTable
   include LookupTable::Latest
@@ -11,6 +10,10 @@ class Relationship < Cardio::Record
   after_destroy :latest_to_true
   delegate :company_id, :designer_id, :title_id, to: :answer
   fetcher :answer_id, :value, :numeric_value, :imported
+
+  def card_query
+    { type_id: Card::RelationshipAnswerID, trash: false }
+  end
 
   # other relationships in same record
   def latest_context
