@@ -37,8 +37,7 @@ blocks:
           - cache store bundle-config .bundle
 
           - nvm use 12.18.2
-          - be rake db:create
-          - be rake wikirate:test:seed
+          - be decko setup
 
       env_vars:
         - name: RAILS_ROOT
@@ -58,8 +57,7 @@ blocks:
         commands:
           - cache restore bundle-config
           - cache restore gems-$(checksum Gemfile.lock)
-          - be rake db:create
-          - be rake wikirate:test:seed
+          - be decko setup
 
       jobs:
         - name: Cucumber

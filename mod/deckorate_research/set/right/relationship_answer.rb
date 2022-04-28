@@ -1,11 +1,12 @@
 include_set Abstract::Export
-include_set Type::SearchType
 include_set Abstract::FilterHelper
+
+assign_type :search_type
 
 delegate :inverse?, to: :metric_card
 
 def virtual?
-  true
+  new?
 end
 
 format do
