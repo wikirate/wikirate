@@ -7,7 +7,7 @@
 include_set Abstract::Header
 include_set Abstract::Tabs
 
-card_reader :badges_earned, default: { type_id: Card::PointerID }
+card_reader :badges_earned, type: :pointer
 
 ACTION_LABELS = {
   created: "Created", updated: "Updated", discussed: "Discussed",
