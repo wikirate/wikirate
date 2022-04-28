@@ -411,3 +411,40 @@ card_changes_079:
   card_action_id: 3890
   field: 2
   value: updated
+card_changes_080:
+  id: 80
+  card_action_id: 3909
+  field: 0
+  value:
+card_changes_081:
+  id: 81
+  card_action_id: 3909
+  field: 1
+  value: '4'
+card_changes_082:
+  id: 82
+  card_action_id: 3909
+  field: 2
+  value: ''
+card_changes_083:
+  id: 83
+  card_action_id: 3909
+  field: 3
+  value: f
+card_changes_084:
+  id: 84
+  card_action_id: 3909
+  field: 4
+  value: '672'
+card_changes_085:
+  id: 85
+  card_action_id: 3909
+  field: 5
+  value: '3532'
+card_changes_086:
+  id: 86
+  card_action_id: 3916
+  field: 2
+  value: |-
+    Jedi+disturbances in the Force+Death Star+1990
+    Fred+dinosaurlabor+Death Star+2010

@@ -183,12 +183,12 @@ counts_037:
   id: 37
   left_id: 2834
   right_id: 678
-  value: 2
+  value: 5
 counts_038:
   id: 38
   left_id: 2834
   right_id: 672
-  value: 2
+  value: 5
 counts_039:
   id: 39
   left_id: 2834
@@ -718,22 +718,22 @@ counts_144:
   id: 144
   left_id: 3499
   right_id: 672
-  value: 0
+  value: 1
 counts_145:
   id: 145
   left_id: 3499
   right_id: 676
-  value: 0
+  value: 1
 counts_146:
   id: 146
   left_id: 3505
   right_id: 672
-  value: 0
+  value: 1
 counts_147:
   id: 147
   left_id: 3505
   right_id: 676
-  value: 0
+  value: 1
 counts_148:
   id: 148
   left_id: 3469
@@ -848,4 +848,14 @@ counts_170:
   id: 170
   left_id: 3494
   right_id: 2391
+  value: 1
+counts_171:
+  id: 171
+  left_id: 3489
+  right_id: 672
+  value: 1
+counts_172:
+  id: 172
+  left_id: 3489
+  right_id: 676
   value: 1
