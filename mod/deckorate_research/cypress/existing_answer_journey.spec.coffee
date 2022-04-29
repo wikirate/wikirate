@@ -14,7 +14,6 @@ describe "research page from answer", ->
     crumb.should "contain", "cost of planets destroyed"
     crumb.should "not.contain", "Jedi"
 
-
     # click on the source bar to go to source phase
     cy.get(".TYPE-source.bar").click()
 

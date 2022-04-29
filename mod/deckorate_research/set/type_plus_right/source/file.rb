@@ -1,6 +1,8 @@
 include_set Abstract::Pdfjs
 include_set Abstract::Tabs
 
+assign_type :file
+
 EXCEL_MIME_TYPES = %w[
   application/vnd.ms-excel
   application/msexcel
