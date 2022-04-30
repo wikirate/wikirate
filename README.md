@@ -150,7 +150,7 @@ environments (test, development, production, etc.).
 
 Now we seed the database with our silly data and start the server:
 
-    bundle exec rake wikirate:test:seed
+    bundle exec decko setup
     bundle exec decko server
 
 You should now be able to access a copy of your site at http://localhost:3000. You can
@@ -181,7 +181,7 @@ Running Tests
 ----
 All tests required a populated test database
 
-    bundle exec rake wikirate:test:seed
+    bundle exec rake decko:seed:replant
 
 ### RSpec
 
