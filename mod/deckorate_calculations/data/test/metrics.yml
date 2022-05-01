@@ -3,7 +3,7 @@
     - Joe User
     - descendant 1
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Descendant
     :variables: |-
@@ -13,7 +13,7 @@
     - Joe User
     - descendant 2
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Descendant
     :variables: |-
@@ -23,7 +23,7 @@
     - Joe User
     - descendant hybrid
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :hybrid: '1'
     :metric_type: Descendant
@@ -36,7 +36,7 @@
     - Joe User
   :type: :metric
   :user: Joe User
-  :subfields:
+  :fields:
     # :value_type: Category
     :metric_type: Score
     :rubric: '{"yes":10,"no":0}'
@@ -45,7 +45,7 @@
     - deadliness
     - Joe Camel
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Score
     :formula: |-
@@ -55,7 +55,7 @@
     - deadliness
     - Joe User
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Score
     :formula: |-
@@ -64,7 +64,7 @@
     - Jedi
     - darkness rating
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: WikiRating
     :variables: |-
@@ -82,7 +82,7 @@
     - Jedi
     - know the unknowns
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Formula
     :variables: |-
@@ -104,7 +104,7 @@
     - Jedi
     - deadlier
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :hybrid: '1'
     :metric_type: Formula
@@ -126,7 +126,7 @@
     - Jedi
     - deadliness average
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Formula
     :variables: |-
@@ -142,7 +142,7 @@
     - Jedi
     - friendliness
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :hybrid: '1'
     :metric_type: Formula
@@ -158,7 +158,7 @@
     - Jedi
     - double friendliness
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Formula
     :variables: |-
@@ -174,7 +174,7 @@
     - Industry
   :type: :metric
   :codename: :commons_industry
-  :subfields:
+  :fields:
     :value_type: Multi-Category
     :hybrid: '1'
     :metric_type: Formula
@@ -187,7 +187,7 @@
     - Headquarters Location
   :type: :metric
   :codename: :core_headquarters_location
-  :subfields:
+  :fields:
     :value_type: Category
     :metric_type: Formula
     :value_options: |-
@@ -559,7 +559,7 @@
     - :company_category
   :type: :metric
   :codename: :commons_company_category
-  :subfields:
+  :fields:
     :value_type: Multi-Category
     :metric_type: Formula
     :variables: '[]'
@@ -574,7 +574,7 @@
     - Core
     - :ilo_region
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Category
     :metric_type: Formula
     :variables: |-
@@ -596,7 +596,7 @@
     - Core
     - :country
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Category
     :metric_type: Formula
     :variables: |-

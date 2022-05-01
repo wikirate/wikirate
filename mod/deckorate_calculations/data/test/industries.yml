@@ -2,7 +2,7 @@
     - ISIC
     - Industry Class
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Multi-Category
     :hybrid: '1'
     :metric_type: Descendant
@@ -441,7 +441,7 @@
     - ISIC
     - Industry Group
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Multi-Category
     :hybrid: '1'
     :metric_type: Formula
@@ -703,7 +703,7 @@
     - ISIC
     - Industry Division
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Multi-Category
     :hybrid: '1'
     :metric_type: Formula
@@ -820,7 +820,7 @@
     - ISIC
     - Industry Section
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Multi-Category
     :hybrid: '1'
     :metric_type: Formula
