@@ -5,11 +5,11 @@
 
 - :name: Deadliest
   :type: :company_group
-  :subfields:
+  :fields:
     :specification: '[[Jedi+deadliness]],1977,"{""from"":30}"'
 - :name: Googliest
   :type: :company_group
-  :subfields:
+  :fields:
     :specification: explicit
     :wikirate_company: Google LLC
 - answers

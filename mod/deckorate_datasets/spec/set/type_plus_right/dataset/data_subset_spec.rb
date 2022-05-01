@@ -2,11 +2,11 @@
 
 RSpec.describe Card::Set::TypePlusRight::Dataset::DataSubset do
   describe "data_subsets" do
-    def create_data_subset subfields={}
-      subfields.reverse_merge! parent: "Evil Dataset"
+    def create_data_subset fields={}
+      fields.reverse_merge! parent: "Evil Dataset"
       Card.create! name: "Daughter of Evil Dataset",
                    type_id: Card::DatasetID,
-                   subfields: subfields
+                   fields: fields
     end
 
     it_behaves_like "cached count", "Evil Dataset+data_subset", 1, 1 do

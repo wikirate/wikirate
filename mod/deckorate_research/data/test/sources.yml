@@ -4,7 +4,7 @@
   :type: :source
   :codename: :opera_source
   :time: "+172800"
-  :subfields:
+  :fields:
     :wikirate_company: |-
       Slate_Rock_and_Gravel_Company
       Monster_Inc
@@ -46,7 +46,7 @@
   :type: :source
   :codename: :space_opera_source
   :time: "+86400"
-  :subfields:
+  :fields:
     :wikirate_topic: Force
     :wikirate_company: Death Star
     :wikirate_title: Space Opera
@@ -59,7 +59,7 @@
   :skip: requirements
   :type: :source
   :codename: :apple_source
-  :subfields:
+  :fields:
     :wikirate_title: Apple
     :description: What is an apple?
     :wikirate_link: https://thereaderwiki.com/en/Apple
@@ -68,7 +68,7 @@
 - :name: Source-000000004
   :type: :source
   :codename: :star_wars_source
-  :subfields:
+  :fields:
     :wikirate_topic: Force
     :wikirate_company: |-
       Death Star
@@ -98,7 +98,7 @@
   :skip: requirements
   :type: :source
   :codename: :darth_vader_source
-  :subfields:
+  :fields:
     :wikirate_topic: Force
     :wikirate_company: Death Star
     :description: Darth Vader Wikipedia article
