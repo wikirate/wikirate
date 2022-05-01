@@ -67,7 +67,7 @@ RSpec.describe Card::MetricImportItem do
       expect(item.import_hash)
         .to include(name: metric_name,
                     type_id: Card::MetricID,
-                    subfields: a_hash_including(
+                    fields: a_hash_including(
                       question: "What are the company’s policies?",
                       value_type: "Category"
                     ))
@@ -75,24 +75,24 @@ RSpec.describe Card::MetricImportItem do
 
     it "handles unmapped multi-value fields" do
       item = validate
-      expect(subfield(item, :value_options)).to eq(content: %w[A B C])
+      expect(field(item, :value_options)).to eq(content: %w[A B C])
     end
 
     it "handles multi-value fields" do
       item = validate
-      expect(subfield(item, :wikirate_topic)).to eq(content: %w[Force Taming])
+      expect(field(item, :wikirate_topic)).to eq(content: %w[Force Taming])
     end
   end
 
   describe "#format_html" do
     it "makes 'Note' bold" do
       item = validate
-      expect(subfield(item, :about))
+      expect(field(item, :about))
         .to eq("<em><strong>Note:</strong> about policies</em><br>\n")
     end
   end
 
-  def subfield item, column
-    item.import_hash[:subfields][column]
+  def field item, column
+    item.import_hash[:fields][column]
   end
 end

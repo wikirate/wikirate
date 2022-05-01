@@ -3,6 +3,6 @@
 
 - :name: Force Guide
   :type: :guide_type
-  :subfields:
+  :fields:
     description: guided by guy dead
     body: my body is a force

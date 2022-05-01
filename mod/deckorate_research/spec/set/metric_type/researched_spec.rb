@@ -82,11 +82,11 @@ describe Card::Set::MetricType::Researched do
   end
 
   describe ".create" do
-    it "composes the name using the title and designer subfields" do
+    it "composes the name using the title and designer fields" do
       Card::Auth.as_bot do
         metric = Card.create!(
           type_id: Card::MetricID,
-          subfields: { title: "MetricTitle1", designer: "MetricDesigner" }
+          fields: { title: "MetricTitle1", designer: "MetricDesigner" }
         )
         expect(metric.name).to eq "MetricDesigner+MetricTitle1"
       end

@@ -6,7 +6,7 @@ $(window).ready ->
   $(".new-metric").on "click", ".metric-type-list .box", (e) ->
     params =
       card:
-        subfields:
+        fields:
           ":metric_type": $(this).data("cardLinkName")
     window.location = decko.path "new/Metric?#{$.param params}"
     e.stopImmediatePropagation()

@@ -13,7 +13,7 @@ end
 private
 
 def company_list
-  left&.subfield :wikirate_company
+  left&.field :wikirate_company
 end
 
 def standardize_constraint_csv
