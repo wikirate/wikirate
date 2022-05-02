@@ -34,7 +34,7 @@ event :validate_link, :validate, on: :save, when: :link_present? do
 end
 
 event :populate_website, :prepare_to_store, on: :create, when: :link_present? do
-  left.subfield :wikirate_website, content: host, type: :pointer
+  left.field :wikirate_website, content: host, type: :pointer
   return if Card.exists?(host) || host.blank?
   left.subcard host, type: :wikirate_website
 end

@@ -12,7 +12,7 @@ RSpec.describe Card::Set::Type::CompanyGroup do
     supgoog =
       Card.create! name: "Google Supplied",
                    type: :company_group,
-                   subfields: {
+                   fields: {
                      specification: "[[Commons+Supplied by]],latest,,Googliest"
                    }
 

@@ -1,7 +1,7 @@
 # TODO: support unchecking (!) and multiple requests (?)
 event :add_check_request, :prepare_to_store,
       on: :save, changed: :content, when: :check_requested? do
-  subfield :check_requested_by, content: user.name unless check_requester.present?
+  field :check_requested_by, content: user.name unless check_requester.present?
 end
 
 event :add_check, :prepare_to_store, on: :save, trigger: :required do

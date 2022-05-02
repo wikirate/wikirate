@@ -22,9 +22,9 @@ class MoveHomepageToCode < Cardio::Migration
       ["Investors", "Investors", "money", "<h6>Assess corporate responsibility</h6><h6>Integrate financial and performance metrics</h6><h6>Press for improved impacts</h6>"],
       ["Press", "Press", "newspaper", "<h6>Ground corporate journalism in data</h6><h6>Link articles to live research</h6><h6>Support push for transparency</h6>",]
     ].each do |name, title, icon, info|
-      ensure_card "WikiRate for #{name}", subfields: {
+      ensure_card "WikiRate for #{name}", fields: {
         community: {
-          subfields: {
+          fields: {
             title: { content: title, type: :phrase },
             icon: { content: icon, type: :phrase },
             info: info
