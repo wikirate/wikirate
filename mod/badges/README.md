@@ -7,5 +7,5 @@
 ## _Work in progress_: need to abstract 
 
 type: :badge
-subfields:
+fields:
   

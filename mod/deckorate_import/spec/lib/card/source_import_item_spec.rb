@@ -21,7 +21,7 @@ RSpec.describe Card::SourceImportItem do
       expect(item.import_hash)
         .to include(
           type_id: Card::SourceID,
-          subfields: a_hash_including(
+          fields: a_hash_including(
             wikirate_company: { content: ["Death Star"] },
             wikirate_link: TEST_URL
           )

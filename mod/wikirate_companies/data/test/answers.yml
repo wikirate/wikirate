@@ -4,7 +4,7 @@
     - SPECTRE
     - '2019'
   :type: :metric_answer
-  :subfields:
+  :fields:
     :value: A
     :source: Source-000000001
 - :name:
@@ -13,6 +13,6 @@
     - Death Star
     - '2019'
   :type: :metric_answer
-  :subfields:
+  :fields:
     :value: A
     :source: Source-000000001
