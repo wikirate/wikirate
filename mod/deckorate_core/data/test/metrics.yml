@@ -16,14 +16,14 @@
     - Clean_Clothes_Campaign
     - Address
   :type: :metric
-  :subfields:
+  :fields:
     :metric_type: Researched
     :value_type: Free Text
 - :name:
     - Jedi
     - more evil
   :type: :metric
-  :subfields:
+  :fields:
     :metric_type: Relationship
     :value_type: Category
     :value_options: |-
@@ -35,7 +35,7 @@
     - big single
   :type: :metric
   :user: Joe User
-  :subfields:
+  :fields:
     :value_type: Category
     :metric_type: Researched
     :value_options: |-
@@ -54,7 +54,7 @@
     - Joe User
     - small single
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Category
     :metric_type: Researched
     :value_options: |-
@@ -66,7 +66,7 @@
     - Joe User
     - big multi
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Multi-Category
     :metric_type: Researched
     :value_options: |-
@@ -85,7 +85,7 @@
     - Joe User
     - small multi
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Multi-Category
     :metric_type: Researched
     :value_options: |-
@@ -96,14 +96,14 @@
     - Joe User
     - RM
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Researched
 - :name:
     - Joe User
     - researched number 3
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Researched
     :research_policy: Designer Assessed
@@ -112,28 +112,28 @@
     - Joe User
     - researched number 2
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Researched
 - :name:
     - Joe User
     - researched number 1
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Researched
 - :name:
     - Jedi
     - Weapons
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Free Text
     :metric_type: Researched
 - :name:
     - Jedi
     - Sith Lord in Charge
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Free Text
     :metric_type: Researched
     :unit: Imperial military units
@@ -142,7 +142,7 @@
     - Jedi
     - cost of planets destroyed
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Money
     :metric_type: Researched
     :unit: USD
@@ -150,21 +150,21 @@
     - Jedi
     - Victims by Employees
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Researched
 - :name:
     - Jedi
     - deadliness
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Number
     :metric_type: Researched
 - :name:
     - Fred
     - dinosaurlabor
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Category
     :metric_type: Researched
     :value_options: |-
@@ -176,7 +176,7 @@
     - Jedi
     - disturbances in the Force
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Category
     :metric_type: Researched
     :value_options: |-
@@ -188,14 +188,14 @@
     - Commons
     - Has Brands
   :type: :metric
-  :subfields:
+  :fields:
     :metric_type: Relationship
     :inverse_title: Is Brand Of
 - :name:
     - Commons
     - Supplied by
   :type: :metric
-  :subfields:
+  :fields:
     :metric_type: Relationship
     :inverse_title: Supplier of
 
@@ -283,7 +283,7 @@
     - Global Reporting Initiative
     - Sector Industry
   :type: :metric
-  :subfields:
+  :fields:
     :metric_type: Researched
     :value_options: |-
       Automotive
@@ -299,7 +299,7 @@
     - :open_corporates
     - Industry Class
   :type: :metric
-  :subfields:
+  :fields:
     :value_type: Multi-Category
     :metric_type: Researched
     :value_options:

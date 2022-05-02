@@ -2,7 +2,7 @@
 - :name: Data Set
   :codename: dataset
   :type: :cardtype
-  :subfields:
+  :fields:
     :description: |
       <p>
       <strong>Data Sets</strong> help you structure information on WikiRate by combining

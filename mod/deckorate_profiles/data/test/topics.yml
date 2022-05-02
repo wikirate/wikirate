@@ -18,7 +18,7 @@
   :user: Joe User
 - :name: discussed topic
   :user: Joe User
-  :subfields:
+  :fields:
     :discussion: comment
 
 # FIXME: use card[add]

@@ -20,7 +20,7 @@ event :set_scored_metric_name, :initialize, on: :create do
 end
 
 # event :default_formula, :prepare_to_store, on: :create, when: :formula_unspecified? do
-#   subfield :formula, content: "answer", type_id: PlainTextID
+#   field :formula, content: "answer", type_id: PlainTextID
 # end
 
 # <OVERRIDES>

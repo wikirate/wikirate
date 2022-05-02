@@ -58,7 +58,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
     context "with different variables" do
       before do
         with_delayed_jobs do
-          Card["Jedi+friendliness"].update! subfields: {
+          Card["Jedi+friendliness"].update! fields: {
             variables: [{ metric: "Joe User+researched number 1", name: "m1" }].to_json,
             formula: "7 * m1"
           }
@@ -77,7 +77,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
     context "with scores as variables" do
       before do
         with_delayed_jobs do
-          Card["Jedi+friendliness"].update! subfields: {
+          Card["Jedi+friendliness"].update! fields: {
             variables: [
               { metric: "Jedi+disturbances in the Force+Joe User", name: "m1" }
             ].to_json,
@@ -96,7 +96,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
     name = "Jedi+formula test"
     updates_answer_with_delay to: /^322/ do
       Card::Metric.create name: name, type: :formula
-      name.card.update! subfields: {
+      name.card.update! fields: {
         variables: [
           { metric: "Jedi+deadliness", name: "m1" },
           { metric: "Jedi+Victims by Employees", name: "m2" }

@@ -66,46 +66,24 @@ schema_migrations_deck_cards_032:
 schema_migrations_deck_cards_033:
   version: '20190118162830'
 schema_migrations_deck_cards_034:
-  version: '20190418014908'
-schema_migrations_deck_cards_035:
-  version: '20190530130407'
-schema_migrations_deck_cards_036:
-  version: '20190725175102'
-schema_migrations_deck_cards_037:
   version: '20191011193959'
-schema_migrations_deck_cards_038:
-  version: '20200224213450'
-schema_migrations_deck_cards_039:
+schema_migrations_deck_cards_035:
   version: '20200225183332'
-schema_migrations_deck_cards_040:
-  version: '20200417132818'
-schema_migrations_deck_cards_041:
+schema_migrations_deck_cards_036:
   version: '20200509210907'
-schema_migrations_deck_cards_042:
+schema_migrations_deck_cards_037:
   version: '20200613014844'
-schema_migrations_deck_cards_043:
+schema_migrations_deck_cards_038:
   version: '20201216040507'
-schema_migrations_deck_cards_044:
+schema_migrations_deck_cards_039:
   version: '20210129194541'
-schema_migrations_deck_cards_045:
-  version: '20210212184516'
-schema_migrations_deck_cards_046:
-  version: '20210225204833'
-schema_migrations_deck_cards_047:
-  version: '20210329190407'
-schema_migrations_deck_cards_048:
+schema_migrations_deck_cards_040:
   version: '20210504195646'
-schema_migrations_deck_cards_049:
+schema_migrations_deck_cards_041:
   version: '20210524203956'
-schema_migrations_deck_cards_050:
+schema_migrations_deck_cards_042:
   version: '20210628192909'
-schema_migrations_deck_cards_051:
+schema_migrations_deck_cards_043:
   version: '20210726154058'
-schema_migrations_deck_cards_052:
-  version: '20210728185754'
-schema_migrations_deck_cards_053:
+schema_migrations_deck_cards_044:
   version: '20210826200444'
-schema_migrations_deck_cards_054:
-  version: '20210901175426'
-schema_migrations_deck_cards_055:
-  version: '20211027235412'

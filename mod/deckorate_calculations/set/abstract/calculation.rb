@@ -57,8 +57,8 @@ def formula_field
   :variables
 end
 
-def formula_subfield?
-  subfield? formula_field
+def formula_field?
+  field? formula_field
 end
 
 format :html do
@@ -85,7 +85,7 @@ format :html do
   end
 
   def new_formula_hidden_tags
-    hidden_tags card: { subfields: { ":metric_type": card.metric_type },
+    hidden_tags card: { fields: { ":metric_type": card.metric_type },
                         name: card.name }
   end
 end

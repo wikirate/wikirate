@@ -40,7 +40,7 @@ def metric_type_card metric_card_or_name
   metric_card, metric_name = metric_card_and_name metric_card_or_name
   metric_type_name = "#{metric_name}+*metric type"
   metric_type_card_from_fetch(metric_type_name) ||
-    metric_type_card_from_subfield(metric_card) ||
+    metric_type_card_from_field(metric_card) ||
     metric_type_card_from_act(metric_type_name)
 end
 
@@ -60,7 +60,7 @@ def metric_type_card_from_fetch metric_type_name
   Card.fetch metric_type_name, skip_modules: true, skip_type_lookup: true
 end
 
-def metric_type_card_from_subfield metric_card
+def metric_type_card_from_field metric_card
   # puts "subcards for #{card.name}: #{card.subcards.keys}".yellow
-  metric_card.subfield :metric_type if metric_card.subfield? :metric_type
+  metric_card.field :metric_type if metric_card.subcards.field(:metric_type).present?
 end
