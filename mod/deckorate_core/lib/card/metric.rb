@@ -102,10 +102,10 @@ class Card::Metric
     end
 
     # type is an alias for metric_type
-    VALID_fieldS =
+    VALID_FIELDS =
       ::Set.new(%i[metric_type formula value_type hybrid variables value_options rubric
                    research_policy wikirate_topic unit report_type inverse_title]).freeze
-    ALIAS_fieldS = {
+    ALIAS_FIELDS = {
       type: :metric_type, topic: :wikirate_topic, inverse: :inverse_title
     }.freeze
 
@@ -117,13 +117,13 @@ class Card::Metric
     end
 
     def resolve_alias opts
-      ALIAS_fieldS.each do |alias_key, key|
+      ALIAS_FIELDS.each do |alias_key, key|
         opts[key] = opts.delete(alias_key) if opts.key? alias_key
       end
     end
 
     def validate_fields opts
-      invalid = ::Set.new(opts.keys) - VALID_fieldS
+      invalid = ::Set.new(opts.keys) - VALID_FIELDS
       return if invalid.empty?
       raise ArgumentError, "invalid metric fields: #{invalid.to_a}"
     end
