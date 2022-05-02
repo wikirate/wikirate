@@ -1,6 +1,192 @@
 // script_metrics.js.coffee
-(function(){decko.slotReady(function(t){return t.find('[data-tooltip="true"]').tooltip()}),$(window).ready(function(){return $(".new-metric").on("click",".metric-type-list .box",function(t){var e;return e={card:{fields:{":metric_type":$(this).data("cardLinkName")}}},window.location=decko.path("new/Metric?"+$.param(e)),t.stopImmediatePropagation(),t.preventDefault()})})}).call(this);
+(function() {
+  decko.slotReady(function(slot) {
+    return slot.find('[data-tooltip="true"]').tooltip();
+  });
+
+  $(window).ready(function() {
+    return $(".new-metric").on("click", ".metric-type-list .box", function(e) {
+      var params;
+      params = {
+        card: {
+          fields: {
+            ":metric_type": $(this).data("cardLinkName")
+          }
+        }
+      };
+      window.location = decko.path("new/Metric?" + ($.param(params)));
+      e.stopImmediatePropagation();
+      return e.preventDefault();
+    });
+  });
+
+}).call(this);
+
 // script_metric_properties.js.coffee
-(function(){var e,t,n,r,i,o,c,u,a,s,f;e=".metric-properties",t=".RIGHT-hybrid input[type=checkbox]",n=".RIGHT-value_type input[type=radio]",decko.slotReady(function(r){var o;return r.hasClass("TYPE-metric")&&(r.hasClass("new-view")||r.hasClass("edit-view"))&&(f(r,r.find(t).prop("checked")),s(r,r.find(n+":checked").val())),(o=r.find(e)).length>0&&(f(o,c(o)),s(o,o.find(".RIGHT-value_type .item-name").text())),r.on("change",t,function(){return f(i(this),$(this).prop("checked"))}),r.on("change",n,function(){return s(i(this),$(this).val())})}),c=function(e){return"yes"===$.trim(e.find(".RIGHT-hybrid.content-view").text())},f=function(e,t){if(e.find(".RIGHT-hybrid")[0])return $.each(["research_policy","report_type","about","methodology","steward"],function(n,r){return u(e,r).toggle(t)})},i=function(e){return $(e).closest(".TYPE-metric")},o=function(e){switch(e){case"Number":case"Money":return["unit","range"];case"Category":case"Multi-Category":return["value_option"];default:return[]}},s=function(e,t){return r(e),a(e,t)},r=function(e){return["unit","range","value_option"].forEach(function(t){return u(e,t).hide()})},a=function(e,t){return o(t).forEach(function(t){return u(e,t).show()})},u=function(t,n){var r;return(r=t.find(".RIGHT-"+n)).closest(e)[0]?r.closest(".labeled-view"):r}}).call(this);
+(function() {
+  var METRIC_PROPERTIES_TABLE, RESEARCHABLE_CHECKBOX, VALUE_TYPE_RADIO, hideAllTypeSpecificProperties, propScope, propertiesForValueType, researchableFromContent, rowForProp, showPropsFor, vizPropsFor, vizResearchProps;
+
+  METRIC_PROPERTIES_TABLE = ".metric-properties";
+
+  RESEARCHABLE_CHECKBOX = ".RIGHT-hybrid input[type=checkbox]";
+
+  VALUE_TYPE_RADIO = ".RIGHT-value_type input[type=radio]";
+
+  decko.slotReady(function(slot) {
+    var mpt;
+    if (slot.hasClass("TYPE-metric") && (slot.hasClass("new-view") || slot.hasClass("edit-view"))) {
+      vizResearchProps(slot, slot.find(RESEARCHABLE_CHECKBOX).prop("checked"));
+      vizPropsFor(slot, slot.find(VALUE_TYPE_RADIO + ":checked").val());
+    }
+    mpt = slot.find(METRIC_PROPERTIES_TABLE);
+    if (mpt.length > 0) {
+      vizResearchProps(mpt, researchableFromContent(mpt));
+      vizPropsFor(mpt, mpt.find(".RIGHT-value_type .item-name").text());
+    }
+    slot.on("change", RESEARCHABLE_CHECKBOX, function(_e) {
+      return vizResearchProps(propScope(this), $(this).prop("checked"));
+    });
+    return slot.on("change", VALUE_TYPE_RADIO, function(_e) {
+      return vizPropsFor(propScope(this), $(this).val());
+    });
+  });
+
+  researchableFromContent = function(scope) {
+    var value;
+    value = $.trim(scope.find(".RIGHT-hybrid.content-view").text());
+    return value === "yes";
+  };
+
+  vizResearchProps = function(scope, show_or_hide) {
+    if (scope.find(".RIGHT-hybrid")[0]) {
+      return $.each(["research_policy", "report_type", "about", "methodology", "steward"], function(_i, prop) {
+        return rowForProp(scope, prop).toggle(show_or_hide);
+      });
+    }
+  };
+
+  propScope = function(context) {
+    return $(context).closest(".TYPE-metric");
+  };
+
+  propertiesForValueType = function(value) {
+    switch (value) {
+      case 'Number':
+      case 'Money':
+        return ['unit', 'range'];
+      case 'Category':
+      case 'Multi-Category':
+        return ['value_option'];
+      default:
+        return [];
+    }
+  };
+
+  vizPropsFor = function(scope, value_type) {
+    hideAllTypeSpecificProperties(scope);
+    return showPropsFor(scope, value_type);
+  };
+
+  hideAllTypeSpecificProperties = function(scope) {
+    return ['unit', 'range', 'value_option'].forEach(function(prop) {
+      return rowForProp(scope, prop).hide();
+    });
+  };
+
+  showPropsFor = function(scope, value_type) {
+    return propertiesForValueType(value_type).forEach(function(prop) {
+      return rowForProp(scope, prop).show();
+    });
+  };
+
+  rowForProp = function(scope, prop) {
+    var set;
+    set = scope.find('.RIGHT-' + prop);
+    if (set.closest(METRIC_PROPERTIES_TABLE)[0]) {
+      return set.closest('.labeled-view');
+    } else {
+      return set;
+    }
+  };
+
+}).call(this);
+
 // script_metric_chart.js.coffee
-(function(){var t,e,n,i,r,s;window.deckorate={},decko.slotReady(function(t){var e,n,r,s,d;for(s=[],e=0,n=(r=t.find(".vis._load-vis")).length;e<n;e++)d=r[e],s.push(i($(d)));return s}),i=function(t){return t.removeClass("_load-vis"),$.ajax({url:t.data("url"),visID:t.attr("id"),dataType:"json",type:"GET",success:function(t){return e(t,this.visID)}})},e=function(t,e){return n(t,$("#"+e))},t=function(t,e){return t.addEventListener("click",function(t,n){var i;if(e.closest("._filtered-content").exists())return(i=n.datum).filter?s(e,i.filter):i.details?r(i.details):void 0})},n=function(e,n){return vegaEmbed(n[0],e).then(function(e){return t(e.view,n)})},s=function(t,e){return new decko.filter(t.closest("._filtered-content").find("._filter-widget")).addRestrictions(e)},r=function(t){return $('[data-details-mark="'+t+'"]').trigger("click")},$(document).ready(function(){return $("body").on("click","._filter-bindings",function(){var t,e;return t="with-bindings",(e=$(this).closest(".filtered-results").find(".vis")).hasClass(t)?e.removeClass(t):e.addClass(t)})})}).call(this);
+(function() {
+  var handleChartClicks, initChart, initVega, loadVis, updateDetails, updateFilter;
+
+  window.deckorate = {};
+
+  decko.slotReady(function(slot) {
+    var i, len, ref, results, vis;
+    ref = slot.find('.vis._load-vis');
+    results = [];
+    for (i = 0, len = ref.length; i < len; i++) {
+      vis = ref[i];
+      results.push(loadVis($(vis)));
+    }
+    return results;
+  });
+
+  loadVis = function(vis) {
+    vis.removeClass("_load-vis");
+    return $.ajax({
+      url: vis.data("url"),
+      visID: vis.attr('id'),
+      dataType: "json",
+      type: "GET",
+      success: function(data) {
+        return initChart(data, this.visID);
+      }
+    });
+  };
+
+  initChart = function(spec, id) {
+    return initVega(spec, $("#" + id));
+  };
+
+  handleChartClicks = function(vega, el) {
+    return vega.addEventListener('click', function(_event, item) {
+      var d;
+      if (!el.closest("._filtered-content").exists()) {
+        return;
+      }
+      d = item.datum;
+      if (d.filter) {
+        return updateFilter(el, d.filter);
+      } else if (d.details) {
+        return updateDetails(d.details);
+      }
+    });
+  };
+
+  initVega = function(spec, el) {
+    return vegaEmbed(el[0], spec).then(function(result) {
+      return handleChartClicks(result.view, el);
+    });
+  };
+
+  updateFilter = function(el, filterVals) {
+    var filter;
+    filter = new decko.filter(el.closest("._filtered-content").find("._filter-widget"));
+    return filter.addRestrictions(filterVals);
+  };
+
+  updateDetails = function(detailsAnswer) {
+    return $("[data-details-mark=\"" + detailsAnswer + "\"]").trigger("click");
+  };
+
+  $(document).ready(function() {
+    return $('body').on('click', '._filter-bindings', function() {
+      var klass, vis;
+      vis = $(this).closest('.filtered-results').find('.vis');
+      klass = 'with-bindings';
+      if (vis.hasClass(klass)) {
+        return vis.removeClass(klass);
+      } else {
+        return vis.addClass(klass);
+      }
+    });
+  });
+
+}).call(this);

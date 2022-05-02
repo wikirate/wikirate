@@ -25,7 +25,7 @@
 - :name: wikirate skin
   :type: :bootswatch_skin
   :codename: :wikirate_skin
-  :subfields:
+  :fields:
     :colors: |
       $blue: #0dcaf0 !default;
       $purple: #484c9d !default;

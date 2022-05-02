@@ -86,8 +86,8 @@ format :html do
     card.calculation_types.map do |metric_type|
       link_to_card :metric, "Add new #{metric_type.cardname}",
                    path: { action: :new,
-                           card: { subfields: { ":variables": card.name,
-                                                ":metric_type": metric_type } } },
+                           card: { fields: { ":variables": card.name,
+                                             ":metric_type": metric_type } } },
                    class: "btn btn-secondary"
     end
   end
