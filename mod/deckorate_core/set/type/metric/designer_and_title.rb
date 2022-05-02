@@ -23,7 +23,10 @@ def metric_title
 end
 
 def metric_title_id
-  metric_title.card_id
+  # without second option, title_id fetching breaks on new cards added from ui, in which
+  # +:title is a subcard. not sure why. tests will not catch, but don't remove without
+  # testing/fixing.
+  metric_title.card_id || subcard(metric_title).id
 end
 
 def metric_title_card

@@ -62,5 +62,5 @@ end
 
 def metric_type_card_from_field metric_card
   # puts "subcards for #{card.name}: #{card.subcards.keys}".yellow
-  metric_card.field :metric_type if metric_card.field? :metric_type
+  metric_card.field :metric_type if metric_card.subcards.field(:metric_type).present?
 end
