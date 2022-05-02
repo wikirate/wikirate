@@ -1,6 +1,6 @@
 format :html do
   view :new do
-    if card.subfield? :metric_type
+    if card.field? :metric_type
       super()
     else
       haml :new_metric
@@ -25,7 +25,7 @@ format :html do
 
   def new_view_hidden
     hidden_tags card: {
-      subfields: Card::Env.hash(params.dig(:card, :subfields)),
+      fields: Card::Env.hash(params.dig(:card, :fields)),
       subcards: Card::Env.hash(params.dig(:card, :subcards))
     }
   end
@@ -45,7 +45,7 @@ format :html do
   end
 
   def name_part_field field, content, options={}
-    pseudo_card = card.subfield field, content: content, type: :phrase
+    pseudo_card = card.field field, content: content, type: :phrase
     subformat(pseudo_card)._render_edit_in_form options
   end
 end

@@ -3,7 +3,7 @@ RSpec.describe Calculate::Calculator do
   let(:variables) { [{ metric: "Jedi+deadliness", name: "m1" }] }
 
   def calculator variables, formula
-    metric.assign_attributes subfields: { variables: variables.to_json, formula: formula }
+    metric.assign_attributes fields: { variables: variables.to_json, formula: formula }
     metric.calculator
   end
 

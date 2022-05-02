@@ -5,7 +5,7 @@
     - Slate Rock and Gravel Company
     - '2003'
   :type: :metric_answer
-  :subfields:
+  :fields:
     :value: '100'
     :source: Source-000000001
 - :name:
@@ -14,6 +14,6 @@
     - Death Star
     - '1977'
   :type: :metric_answer
-  :subfields:
+  :fields:
     :value: '1000'
     :source: Source-000000001

@@ -9,7 +9,7 @@ RSpec.describe Card::Set::Type::Project::AwardBadges do
     def execute_awarded_action number
       Card.create! type_id: Card::ProjectID,
                    name: "Project #{number}",
-                   subfields: { dataset: "Evil Dataset" }
+                   fields: { dataset: "Evil Dataset" }
     end
 
     context "when reached silver threshold" do
