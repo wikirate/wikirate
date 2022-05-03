@@ -16,42 +16,31 @@ describe Card::Set::Abstract::FilterFormgroups do
   context "with metric filter card" do
     let(:filter_card) { Card[:metric] }
 
-    describe "designer formgroup" do
+    describe "designer filter" do
       it "renders option form" do
         Card.create! name: "Jedi+disturbances in the Force+Joe Admin",
                      type_id: Card::MetricID
-        html = filter_card.format.render_filter_designer_formgroup
+        html = filter_card.format.filter_input_field :designer
         # ensure score metric is return the third part as designer name
         expect(html).to have_tag(:option, with: { value: "Joe Admin" },
                                           text: "Joe Admin")
       end
     end
 
-    describe "research_policy formgroup" do
-      context "select form" do
-        subject { filter_card.format.render_filter_research_policy_formgroup }
+    describe "research_policy filter" do
+      subject { filter_card.format.filter_input_field :research_policy }
 
-        it "renders select list" do
-          is_expected.to have_tag(
-            :select, with: { name: "filter[research_policy]" }
-          )
-        end
-      end
-      context "multiselect form" do
-        subject { filter_card.format.render_filter_research_policy_formgroup }
-
-        it "render multiselect list" do
-          is_expected.to have_tag :select do
-            with_option "Community Assessed", "Community Assessed"
-            with_option "Designer Assessed", "Designer Assessed"
-          end
+      it "render multiselect list" do
+        is_expected.to have_tag(:select, with: { name: "filter[research_policy]" }) do
+          with_option "Community Assessed", "Community Assessed"
+          with_option "Designer Assessed", "Designer Assessed"
         end
       end
     end
 
-    describe "metric_type formgroup" do
+    describe "metric_type filter" do
       context "multiselect form" do
-        subject { filter_card.format.render_filter_metric_type_formgroup }
+        subject { filter_card.format.filter_input_field :metric_type }
 
         it "renders checkboxes" do
           is_expected.to have_tag :select, with: { multiple: "multiple" } do
@@ -64,8 +53,8 @@ describe Card::Set::Abstract::FilterFormgroups do
     end
   end
 
-  describe "name formgroup" do
-    subject { filter_card.format.render_filter_name_formgroup }
+  describe "name filter" do
+    subject { filter_card.format.filter_input_field :name }
 
     it "renders input tag" do
       is_expected.to have_tag(:input, with: { name: "filter[name]" })
