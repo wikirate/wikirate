@@ -1,18 +1,14 @@
 include_set Abstract::CommonFilters
 
 format :html do
-  {
-    verification: :select,
-    updater: :select,
-    value: :text,
-    calculated: :select,
-    status: :select,
-    updated: :select,
-    outliers: :select,
-    source: :autocomplete,
-  }.each do |filter_key, filter_type|
-    define_method("filter_#{filter_key}_type") { filter_type }
-  end
+  Abstract::CommonFilters::HtmlFormat.define_filter_types verification: :select,
+                                                          updater: :select,
+                                                          value: :text,
+                                                          calculated: :select,
+                                                          status: :select,
+                                                          updated: :select,
+                                                          outliers: :select,
+                                                          source: :autocomplete
 
   def filter_status_default
     "exists"

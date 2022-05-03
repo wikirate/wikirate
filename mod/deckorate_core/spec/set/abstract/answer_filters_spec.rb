@@ -39,15 +39,13 @@ describe Card::Set::Abstract::AnswerFilters do
     end
 
     describe "metric_type filter" do
-      context "multiselect form" do
-        subject { filter_card.format.filter_input_field :metric_type }
+      subject { filter_card.format.filter_input_field :metric_type }
 
-        it "renders checkboxes" do
-          is_expected.to have_tag :select, with: { multiple: "multiple" } do
-            with_option "Researched"
-            with_option "Formula"
-            with_option "WikiRating"
-          end
+      it "renders checkboxes" do
+        is_expected.to have_tag :select, with: { multiple: "multiple" } do
+          with_option "Researched"
+          with_option "Formula"
+          with_option "WikiRating"
         end
       end
     end
