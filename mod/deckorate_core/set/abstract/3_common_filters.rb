@@ -1,4 +1,4 @@
-include_set BookmarkFilters
+include_set BookmarkFiltering
 
 format :html do
   {
