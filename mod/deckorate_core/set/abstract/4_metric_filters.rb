@@ -1,4 +1,5 @@
 include_set Abstract::CommonFilters
+include_set Abstract::BookmarkFiltering
 
 def self.metric_type_options
   @metric_type_options ||= %i[

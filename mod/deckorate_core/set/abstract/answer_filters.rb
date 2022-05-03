@@ -1,4 +1,5 @@
 include_set Abstract::CommonFilters
+include_set Abstract::BookmarkFiltering
 
 format :html do
   Abstract::CommonFilters::HtmlFormat.define_filter_types verification: :select,

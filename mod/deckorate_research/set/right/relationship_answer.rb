@@ -1,4 +1,5 @@
 include_set Abstract::Export
+include_set Abstract::BookmarkFiltering
 include_set Abstract::CommonFilters
 
 assign_type :search_type

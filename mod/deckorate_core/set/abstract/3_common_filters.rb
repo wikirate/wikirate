@@ -1,5 +1,3 @@
-include_set BookmarkFiltering
-
 format :html do
   def self.define_filter_types hash
     hash.each do |filter_key, filter_type|
