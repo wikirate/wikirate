@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Abstract::TopicFilter do
+RSpec.describe Card::Set::Abstract::TopicSearch do
   include FilterSpecHelper
 
   let(:format) { format_subject :base }
