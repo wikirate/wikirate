@@ -1,7 +1,7 @@
 .constraint-value-fields
-  = filter_value_formgroup metric.simple_value_type_code, value
+  = filter_input_field :value, value
 - if metric.relationship?
   .constraint-related-group
     .input-group-text
       Related Company Group
-    = filter_related_company_group_formgroup group
+    = filter_input_field :related_company_group, group

@@ -1,7 +1,7 @@
 include_set Abstract::CqlSearch
 include_set Abstract::SearchViews
 include_set Abstract::BrowseFilterForm
-include_set Abstract::BookmarkFiltering
+include_set Abstract::CommonFilters
 
 def bookmark_type
   :wikirate_company
