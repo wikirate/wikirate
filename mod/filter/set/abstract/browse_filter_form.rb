@@ -1,9 +1,7 @@
 # used for the filters on the "browse ..." pages
 
 include_set Abstract::Search
-include_set Abstract::Filter
 include_set Abstract::WikirateFilter
-include_set Abstract::FilterFormgroups
 include_set Abstract::Export
 
 def virtual?
