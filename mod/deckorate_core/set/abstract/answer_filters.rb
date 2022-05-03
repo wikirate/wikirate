@@ -1,24 +1,16 @@
-WIKIRATE_FILTER_TYPES = {
-  verification: :select,
-  updater: :select,
-  value: :text,
-  dataset: :autocomplete,
-  year: :multi,
-  wikirate_topic: :multi,
-  calculated: :select,
-  company_group: :multi,
-  company_name: :text,
-  country: :multi,
-  status: :select,
-  bookmark: :select,
-  updated: :select,
-  outliers: :select,
-  source: :autocomplete,
-  published: :select
-}
+include_set Abstract::CommonFilters
 
 format :html do
-  WIKIRATE_FILTER_TYPES.each do |filter_key, filter_type|
+  {
+    verification: :select,
+    updater: :select,
+    value: :text,
+    calculated: :select,
+    status: :select,
+    updated: :select,
+    outliers: :select,
+    source: :autocomplete,
+  }.each do |filter_key, filter_type|
     define_method("filter_#{filter_key}_type") { filter_type }
   end
 
@@ -28,16 +20,6 @@ format :html do
 
   def filter_outliers_default
     "only"
-  end
-
-  def filter_published_default
-    "true"
-  end
-
-  def filter_year_options
-    type_options(:year, "desc").each_with_object("Latest" => "latest") do |v, h|
-      h[v] = v
-    end
   end
 
   def filter_updated_options
@@ -70,23 +52,6 @@ format :html do
     o
   end
 
-  def filter_wikirate_topic_options
-    type_options :wikirate_topic
-  end
-
-  def filter_company_group_options
-    type_options :company_group
-  end
-
-  def filter_country_options
-    Card::Region.countries
-  end
-
-  def filter_bookmark_options
-    { "I bookmarked" => :bookmark,
-      "I did NOT bookmark" => :nobookmark }
-  end
-
   def filter_calculated_options
     { "Yes" => :calculated, "No" => :not_calculated }
   end
@@ -97,14 +62,6 @@ format :html do
 
   def filter_value_label
     "Value"
-  end
-
-  def filter_published_options
-    {
-      "Published only"   => "true",
-      "Unpublished only" => "false",
-      "Either"           => "all"
-    }
   end
 
   private

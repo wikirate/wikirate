@@ -1,4 +1,4 @@
-describe Card::Set::Abstract::FilterFormgroups do
+describe Card::Set::Abstract::AnswerFilters do
   let(:filter_card) { :wikirate_topic.card }
 
   describe "sort formgroup" do

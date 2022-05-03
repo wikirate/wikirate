@@ -1,3 +1,5 @@
+include_set Abstract::CommonFilters
+
 def self.metric_type_options
   @metric_type_options ||= %i[
     researched relationship inverse_relationship formula wiki_rating score descendant
@@ -10,7 +12,7 @@ METRIC_FILTER_TYPES = {
   metric_type: :multi,
   designer: :select,
   value_type: :multi
-}
+}.freeze
 
 format :html do
   METRIC_FILTER_TYPES.each do |filter_key, filter_type|
@@ -29,7 +31,7 @@ format :html do
   end
 
   def filter_metric_type_options
-    @metric_type_options ||= Abstract::MetricFilterFormgroups.metric_type_options.dup
+    @metric_type_options ||= Abstract::MetricFilters.metric_type_options.dup
   end
 
   def filter_research_policy_options

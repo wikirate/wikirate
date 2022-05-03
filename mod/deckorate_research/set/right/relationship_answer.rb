@@ -1,5 +1,5 @@
 include_set Abstract::Export
-include_set Abstract::FilterHelper
+include_set Abstract::CommonFilters
 
 assign_type :search_type
 

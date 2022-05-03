@@ -1,10 +1,8 @@
 # Answer search for a given Metric
 
-include_set Abstract::FilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CachedCount
-include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
 # recount number of answers for a given metric when an Answer card is

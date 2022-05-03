@@ -1,5 +1,3 @@
-include_set Abstract::FilterHelper
-
 format :html do
   view :chart, cache: :never do
     return unless voo.show? :chart
