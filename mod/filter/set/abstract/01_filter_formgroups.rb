@@ -91,11 +91,11 @@ format :html do
     { "Yes" => :calculated, "No" => :not_calculated }
   end
 
-  def filter_status_filter_label
+  def filter_status_label
     "Status"
   end
 
-  def filter_value_filter_label
+  def filter_value_label
     "Value"
   end
 
