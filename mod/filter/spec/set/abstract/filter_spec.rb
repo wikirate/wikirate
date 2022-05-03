@@ -9,10 +9,10 @@ RSpec.describe Card::Set::Abstract::Filter do
     end
   end
 
-  describe "#multiselect_filter" do
+  describe "#multi_filter" do
     it "renders multi select list" do
       options = card.format.type_options :wikirate_topic
-      html = card.format.multiselect_filter :wikirate_topic, nil, options
+      html = card.format.multi_filter :wikirate_topic, nil, options
       expect(html).to have_tag :select, with: { name: "filter[wikirate_topic][]",
                                                 multiple: "multiple" }
     end
