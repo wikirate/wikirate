@@ -52,7 +52,7 @@ class decko.FormulaEditor
     format: "json"
     card:
       type: ":metric"
-      subfields:
+      fields:
         ":variables": variables
         ":metric_type": "Formula"
 

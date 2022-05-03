@@ -46,7 +46,7 @@ class Card
       translate_company_args r
       r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
       r[:ok_to_exist] = true
-      r = prep_subfields r
+      r = prep_fields r
       r
     end
 

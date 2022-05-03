@@ -8,7 +8,7 @@ RSpec.describe Card::Set::MetricType::Relationship do
     before do
       create "Joe User+bigger than",
              type_id: Card::MetricID,
-             subfields: {
+             fields: {
                metric_type: "Relationship",
                inverse_title: "smaller than"
              }

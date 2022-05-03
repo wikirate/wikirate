@@ -2,50 +2,50 @@
 - :name: updated project
   :type: :project
   :user: Joe Admin
-  :subfields:
+  :fields:
     :dataset: Evil Dataset
 - :name: discussed project
   :type: :project
   :user: Joe Admin
-  :subfields:
+  :fields:
     :dataset: Evil Dataset
 - :name: bookmarked project
   :type: :project
   :user: Joe Admin
-  :subfields:
+  :fields:
     :dataset: Evil Dataset
 - :name: conversation project
   :type: :project
   :user: Joe Admin
-  :subfields:
+  :fields:
     :dataset: Evil Dataset
 - :name: organized project
   :type: :project
   :user: Joe Admin
-  :subfields:
+  :fields:
     :dataset: Evil Dataset
 
 - :name: created project
   :type: :project
   :content: updated
   :user: Joe User
-  :subfields:
+  :fields:
     :dataset: Evil Dataset
 - :name: organized project
   :user: Joe User
   :type: :project
-  :subfields:
+  :fields:
     :organizer: Joe User
 - :name: updated project
   :content: updated
   :user: Joe User
 - :name: discussed project
   :user: Joe User
-  :subfields:
+  :fields:
     :discussion: comment
 - :name: discuss conversation project 2
   :user: Joe User
   :type: :conversation
-  :subfields:
+  :fields:
     :project: conversation project
     :discussion: comment

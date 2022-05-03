@@ -100,7 +100,7 @@ def inverse_answer_card
 end
 
 def answer_card_fetch name
-  Card.fetch name, new: { type: :metric_answer, subfields: { value: "1" } }
+  Card.fetch name, new: { type: :metric_answer, fields: { value: "1" } }
 end
 
 def inverse_answer_id

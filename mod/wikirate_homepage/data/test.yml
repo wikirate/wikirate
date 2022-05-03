@@ -23,10 +23,10 @@
     - :featured
   :content: |-
 
-# updating with subfields here to trigger geography calculations
+# updating with fields here to trigger geography calculations
 - :name: Google LLC
   :type: :wikirate_company
-  :subfields:
+  :fields:
     :about: don't be evil
     :headquarters: California (United States)
     :incorporation: Delaware (United States)

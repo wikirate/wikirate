@@ -19,7 +19,7 @@ event :validate_company_name, :validate, changed: :name, on: :save do
 end
 
 event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
-  subfield :wikipedia
+  field :wikipedia
 end
 
 event :delete_all_company_answers, :validate, on: :delete do

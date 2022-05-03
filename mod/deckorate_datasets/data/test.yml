@@ -3,7 +3,7 @@
 
 - :name: Evil Dataset
   :type: :dataset
-  :subfields:
+  :fields:
     :metric:
       - Jedi+disturbances in the Force
       - Joe User+researched number 2
@@ -16,7 +16,7 @@
 
 - :name: Son of Evil Dataset
   :type: :dataset
-  :subfields:
+  :fields:
     :parent:
       - Evil Dataset
 
@@ -27,7 +27,7 @@
 
 - :name: Evil Project
   :type: :project
-  :subfields:
+  :fields:
     :dataset:
       - Evil Dataset
     :organizer:
@@ -37,7 +37,7 @@
 
 - :name: Empty Project
   :type: :project
-  :subfields:
+  :fields:
     :dataset:
       - Empty Dataset
 

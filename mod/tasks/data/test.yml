@@ -1,7 +1,7 @@
 ---
 - :name: Add a Company Logo
   :type: :task
-  :subfields:
+  :fields:
     :search_type: |
       {
         "type":"Company",

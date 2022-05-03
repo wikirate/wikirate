@@ -3,7 +3,7 @@ format :html do
     super << :vega_js
   end
 
-  view :vega_js do
+  view :vega_js, unknown: true do
     output [javascript_include_tag("https://cdn.jsdelivr.net/npm/vega@5"),
             javascript_include_tag("https://cdn.jsdelivr.net/npm/vega-embed@6")]
   end
