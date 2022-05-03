@@ -37,29 +37,21 @@ format do
 end
 
 format :html do
-  view :filter_wikirate_title_formgroup, cache: :never do
-    text_filter :wikirate_title
+  {
+    wikirate_title: :text,
+    wikirate_link: :text,
+    report_type: :select
+  }.each do |filter_key, filter_type|
+    define_method("filter_#{filter_key}_type") { filter_type }
   end
 
-  view :filter_wikirate_link_formgroup, cache: :never do
-    text_filter :wikirate_link, "",  placeholder: "https://"
-  end
-
-  view :filter_report_type_formgroup, cache: :never do
-    select_filter :report_type
-  end
-
-  def report_type_options
+  def filter_report_type_options
     type_options :report_type
   end
 
-  view :filter_year_formgroup, cache: :never do
-    select_filter :year
-  end
-
-  def year_options
-    type_options :year, "desc"
-  end
+  # def year_options
+  #   type_options :year, "desc"
+  # end
 end
 
 # cql query to filter sources
