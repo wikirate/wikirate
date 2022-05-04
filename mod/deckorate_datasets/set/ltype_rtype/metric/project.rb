@@ -1,6 +1,5 @@
 include_set Abstract::KnownAnswers
 include_set Abstract::Media
-include_set Abstract::FilterableBar
 
 def virtual?
   new?

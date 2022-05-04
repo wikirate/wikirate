@@ -1,4 +1,4 @@
-include_set Abstract::CompanyFilter
+include_set Abstract::CompanySearch
 
 def pointer_mark
   name.left

@@ -1,5 +1,3 @@
-include_set Abstract::Filterable
-
 format :html do
   # default tab list (several metric types override)
   def tab_list

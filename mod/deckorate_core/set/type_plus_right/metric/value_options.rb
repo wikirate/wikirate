@@ -1,7 +1,6 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DesignerPermissions
 include_set Abstract::PublishableField
-include_set Abstract::Filterable
 
 event :validate_no_commas_in_value_options, :validate,
       skip: :allowed, # until we fix all the bad ones
@@ -58,21 +57,21 @@ format :html do
     50
   end
 
-  view :core do
-    filtering(".RIGHT-answer ._filter-widget") do
-      wrap_with :div, class: "pointer-list" do
-        card.item_names.map do |name|
-          card.metric_card.relationship? ? name : filterable_div(name)
-        end
-      end
-    end
-  end
-
-  def filterable_div item_name
-    wrap_with :div, item_name,
-              class: "pointer-item item-name _filterable",
-              data: { filter: { value: card.item_value(item_name) } }
-  end
+  # view :core do
+  #   filtering(".RIGHT-answer ._filter-widget") do
+  #     wrap_with :div, class: "pointer-list" do
+  #       card.item_names.map do |name|
+  #         card.metric_card.relationship? ? name : filterable_div(name)
+  #       end
+  #     end
+  #   end
+  # end
+  #
+  # def filterable_div item_name
+  #   wrap_with :div, item_name,
+  #             class: "pointer-item item-name _filterable",
+  #             data: { filter: { value: card.item_value(item_name) } }
+  # end
 end
 
 format :json do
