@@ -1,6 +1,6 @@
 include_set Abstract::CqlSearch
 include_set Abstract::SearchViews
-include_set Abstract::BrowseFilterForm
+include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
 include_set Abstract::CommonFilters
 

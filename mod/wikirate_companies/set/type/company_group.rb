@@ -1,6 +1,5 @@
 include_set Abstract::WikirateTabbed
 include_set Abstract::Thumbnail
-include_set Abstract::FilterableBar
 include_set Abstract::Bookmarkable
 include_set Abstract::CachedTypeOptions
 

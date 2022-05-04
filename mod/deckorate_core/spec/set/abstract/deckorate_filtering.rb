@@ -1,5 +1,5 @@
-describe Card::Set::Abstract::BrowseFilterForm do
-  # define the sample card to use that includes the BrowseFilterForm
+describe Card::Set::Abstract::DeckorateFiltering do
+  # define the sample card to use that includes the DeckorateFiltering
   let(:card) { :wikirate_topic.card }
 
   describe "view :filter_form" do

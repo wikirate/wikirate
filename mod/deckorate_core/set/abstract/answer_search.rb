@@ -1,6 +1,6 @@
 include_set Abstract::BsBadge
 include_set Abstract::Table
-include_set Abstract::BrowseFilterForm
+include_set Abstract::DeckorateFiltering
 include_set Abstract::LookupSearch
 include_set Abstract::AnswerFilters
 

@@ -1,7 +1,4 @@
-# used for the filters on the "browse ..." pages
-
 include_set Abstract::Search
-include_set Abstract::WikirateFilter
 include_set Abstract::Export
 
 def virtual?
@@ -50,6 +47,13 @@ format do
 end
 
 format :html do
+  def quick_filter_item hash, filter_key
+    icon = hash.delete :icon
+    super.tap do |item|
+      item[:icon] = icon || mapped_icon_tag(filter_key)
+    end
+  end
+
   def export_formats
     [:json]
   end
