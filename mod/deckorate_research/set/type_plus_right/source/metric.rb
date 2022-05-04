@@ -1,5 +1,5 @@
 include_set Abstract::CachedCount
-include_set Abstract::MetricFilter
+include_set Abstract::MetricSearch
 
 def query_hash
   { source: left_id }
