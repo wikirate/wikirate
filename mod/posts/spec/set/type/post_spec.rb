@@ -4,8 +4,7 @@ RSpec.describe Card::Set::Type::Post do
   context "with body" do
     # TODO: move this post to seed data
     def card_subject
-      Card.create! type: "Post", name: "My Post",
-                   subcards: { "+body" => "body text" }
+      Card.create! type: "Post", name: "My Post", fields: { body: "body text" }
     end
 
     # let(:card_subject) { post }
