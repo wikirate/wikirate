@@ -1,6 +1,5 @@
 include_set Abstract::BrowseFilterForm
-# include_set Abstract::FilterFormgroups
-include_set Abstract::MetricFilterFormgroups
+include_set Abstract::MetricFilters
 include_set Abstract::BookmarkFiltering
 include_set Abstract::SdgFiltering
 include_set Abstract::LookupSearch
