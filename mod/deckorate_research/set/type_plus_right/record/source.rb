@@ -1,5 +1,5 @@
 include_set Abstract::MetricChild, generation: 2
-include_set Abstract::SourceFilter
+include_set Abstract::SourceSearch
 
 format :html do
   view :filter_form do

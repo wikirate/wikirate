@@ -1,6 +1,6 @@
 include_set Abstract::Table
 include_set Abstract::MetricChild, generation: 3
-include_set Abstract::BrowseFilterForm
+include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
 include_set Abstract::PublishableField
 

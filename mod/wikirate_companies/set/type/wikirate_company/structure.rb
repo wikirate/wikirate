@@ -1,5 +1,3 @@
-include_set Abstract::Filterable
-
 IDENTIFIERS = %i[sec_cik].freeze
 INTEGRATIONS = %i[wikipedia oar_id open_corporates].freeze
 

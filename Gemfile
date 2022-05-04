@@ -22,6 +22,7 @@ else
     gem "card-mod-bookmarks"
     gem "card-mod-counts"
     gem "card-mod-csv_import"
+    gem "card-mod-filter"
     gem "card-mod-fulltext"
     gem "card-mod-google_analytics"
     gem "card-mod-graphql"
