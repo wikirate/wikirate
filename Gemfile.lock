@@ -30,7 +30,7 @@ PATH
       graphql (~> 1.12.20)
     card-mod-lookup (0.1)
       card
-      filter
+      card-mod-filter
     card-mod-new_relic (0.1)
       card
       decko
@@ -488,7 +488,6 @@ GEM
     excon (0.92.3)
     execjs (2.8.1)
     ffi (1.15.5)
-    filter (0.0.6)
     fog-aws (3.13.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
