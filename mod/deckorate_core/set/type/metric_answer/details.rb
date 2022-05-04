@@ -1,5 +1,4 @@
 include_set Abstract::Tabs
-include_set Abstract::Filterable
 
 format :html do
   # def tab_list
@@ -52,18 +51,18 @@ format :html do
     @record_count ||= card.record_card.metric_answer_card.count
   end
 
-  view :record_filter_button, cache: :never do
-    filter_for_record do
-      link_to_card card.record_card, "#{record_count}-Year Record",
-                   class: "btn btn-sm btn-outline-secondary"
-    end
-  end
+  # view :record_filter_button, cache: :never do
+  #   filter_for_record do
+  #     link_to_card card.record_card, ,
+  #                  class: "btn btn-sm btn-outline-secondary"
+  #   end
+  # end
 
-  def filter_for_record
-    filterable record_filter_hash, class: "record-filter" do
-      yield
-    end
-  end
+  # def filter_for_record
+  #   filterable record_filter_hash, class: "record-filter" do
+  #     yield
+  #   end
+  # end
 
   def record_filter_hash
     { status: :exists,
@@ -80,9 +79,9 @@ format :html do
     haml :details_top
   end
 
-  view :details_sidebar do
-    wrap { filtering(".RIGHT-answer ._filter-widget") { haml :details_sidebar } }
-  end
+  view :details_sidebar, wrap: :slot, template: :haml # do
+  #   wrap { filtering(".RIGHT-answer ._filter-widget") { haml :details_sidebar } }
+  # end
 
   view :full_details do
     render_details_sidebar hide: %i[details_sidebar_closer full_page_link]

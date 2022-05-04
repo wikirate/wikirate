@@ -1,5 +1,5 @@
 include_set Abstract::CachedCount
-include_set Abstract::MetricFilter
+include_set Abstract::MetricSearch
 
 recount_trigger :type, :metric, on: [:create, :delete] do |_changed_card|
   Card[:metric]

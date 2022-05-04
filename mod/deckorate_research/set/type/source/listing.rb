@@ -1,4 +1,3 @@
-include_set Abstract::Filterable
 
 format :html do
   # BAR VIEWS
@@ -6,7 +5,8 @@ format :html do
     class_up "bar-left", "_filterable"
   end
 
-  view(:bar_left) { filterable(source: card.name) { render_compact } }
+  # view(:bar_left) { filterable(source: card.name) { render_compact } }
+  view(:bar_left) { render_compact }
   view(:bar_middle) { render_years }
   view(:bar_right) { count_badge(:metric_answer) }
   view :bar_bottom, template: :haml

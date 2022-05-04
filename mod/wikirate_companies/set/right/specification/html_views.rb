@@ -57,10 +57,10 @@ format :html do
 
   def year_dropdown constraint
     selected = constraint&.year || "latest"
-    select_filter :year, selected
+    select_filter :year, selected, filter_year_options
   end
 
-  def year_options
+  def filter_year_options
     { "Any" => "any" }.merge super
   end
 

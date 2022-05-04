@@ -1,6 +1,6 @@
-def filter_keys
-  [:bookmark]
-end
+# TODO: rename this. it's about quick filters, not just bookmarks
+
+include_set BookmarkFilters
 
 def default_sort_option
   :bookmarkers
