@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Abstract::CompanyFilter do
+RSpec.describe Card::Set::Abstract::CompanySearch do
   include FilterSpecHelper
 
   let(:format) { format_subject :base }
