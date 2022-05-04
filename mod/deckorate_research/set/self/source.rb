@@ -1,4 +1,4 @@
-include_set Abstract::SourceFilter
+include_set Abstract::SourceSearch
 include_set Abstract::CachedCount
 
 recount_trigger :type, :source, on: [:create, :delete] do |_changed_card|

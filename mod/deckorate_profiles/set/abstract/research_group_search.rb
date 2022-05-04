@@ -1,17 +1,14 @@
-# filter interface for Data Sets
-
 include_set Abstract::CqlSearch
 include_set Abstract::SearchViews
-include_set Abstract::BrowseFilterForm
+include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
-include_set Abstract::SdgFiltering
 
 def target_type_id
-  DatasetID
+  ResearchGroupID
 end
 
 def bookmark_type
-  :dataset
+  :research_group
 end
 
 format do
@@ -19,8 +16,12 @@ format do
     WikirateFilterQuery
   end
 
+  def sort_options
+    { "Most Researchers": :researcher, "Most Projects": :project }.merge super
+  end
+
   def default_sort_option
-    "create"
+    "researcher"
   end
 
   def filter_keys
@@ -30,19 +31,14 @@ format do
   def default_filter_hash
     { name: "" }
   end
-
-  def sort_options
-    { "Most Bookmarked": :bookmarkers,
-      "Recently Added": :create,
-      "Alphabetical": :name,
-      "Most Data Subsets": :data_subsets,
-      "Most Metrics": :metric,
-      "Most Companies": :company }
-  end
 end
 
 format :html do
   def quick_filter_list
     bookmark_quick_filter + topic_quick_filters
+  end
+
+  view :titled_content do
+    [field_nest(:description), render_add_button, render_filtered_content]
   end
 end
