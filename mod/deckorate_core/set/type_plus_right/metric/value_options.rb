@@ -57,6 +57,14 @@ format :html do
     50
   end
 
+  view :core do
+    wrap_with :div, class: "pointer-list" do
+      card.item_names.map do |item_name|
+        wrap_with :div, item_name, class: "pointer-item item-name"
+      end
+    end
+  end
+
   # view :core do
   #   filtering(".RIGHT-answer ._filter-widget") do
   #     wrap_with :div, class: "pointer-list" do
