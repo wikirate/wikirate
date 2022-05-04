@@ -1,31 +1,26 @@
+include_set Abstract::CommonFilters
+include_set Abstract::BookmarkFiltering
+
 def self.metric_type_options
   @metric_type_options ||= %i[
     researched relationship inverse_relationship formula wiki_rating score descendant
   ].map(&:cardname).freeze
 end
 
+METRIC_FILTER_TYPES = {
+  metric_name: :text,
+  research_policy: :select,
+  metric_type: :multi,
+  designer: :select,
+  value_type: :multi
+}.freeze
+
 format :html do
-  view :filter_metric_name_formgroup, cache: :never do
-    text_filter :metric_name
+  METRIC_FILTER_TYPES.each do |filter_key, filter_type|
+    define_method("filter_#{filter_key}_type") { filter_type }
   end
 
-  view :filter_research_policy_formgroup, cache: :never do
-    select_filter :research_policy
-  end
-
-  view :filter_metric_type_formgroup, cache: :never do
-    multiselect_filter :metric_type
-  end
-
-  view :filter_designer_formgroup, cache: :never do
-    select_filter :designer
-  end
-
-  view :filter_value_type_formgroup, cache: :never do
-    multiselect_filter :value_type
-  end
-
-  def designer_options
+  def filter_designer_options
     Card.cache.fetch "METRIC-DESIGNER-OPTIONS" do
       metrics = Card.search type_id: MetricID, return: :name
       metrics.map do |m|
@@ -36,26 +31,26 @@ format :html do
     end
   end
 
-  def metric_type_options
-    @metric_type_options ||= Abstract::MetricFilterFormgroups.metric_type_options.dup
+  def filter_metric_type_options
+    @metric_type_options ||= Abstract::MetricFilters.metric_type_options.dup
   end
 
-  def research_policy_options
+  def filter_research_policy_options
     type_options :research_policy
   end
 
-  def value_type_options
+  def filter_value_type_options
     Card.cache.fetch "VALUE-TYPE-OPTIONS" do
       options = Card[:metric, :value_type, :type_plus_right, :content_options].item_names
       options.map(&:to_s)
     end.map(&:to_name)
   end
 
-  def value_type_filter_label
+  def filter_value_type_label
     "Value Type"
   end
 
-  def metric_type_filter_label
+  def filter_metric_type_label
     "Metric Type"
   end
 end
