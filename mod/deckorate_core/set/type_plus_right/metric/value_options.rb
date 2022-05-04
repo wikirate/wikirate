@@ -22,8 +22,8 @@ def item_names args={}
   super args.merge(context: :raw)
 end
 
-def item_cards
-  item_names.map(&:card)
+def item_cards args={}
+  item_names(args).map(&:card)
 end
 
 def options_hash

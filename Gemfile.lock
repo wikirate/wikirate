@@ -8,6 +8,7 @@ PATH
       card-mod-counts
     card-mod-counts (0.1)
       card
+      card-mod-filter
       card-mod-search
     card-mod-csv_import (0.9)
       card
