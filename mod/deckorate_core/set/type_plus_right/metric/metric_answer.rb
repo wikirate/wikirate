@@ -1,10 +1,8 @@
 # Answer search for a given Metric
 
-include_set Abstract::FilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CachedCount
-include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
 # recount number of answers for a given metric when an Answer card is
@@ -96,30 +94,10 @@ format :html do
     @quick_filter_list ||= :wikirate_company.card.format.quick_filter_list
   end
 
-  view :filter_value_formgroup do
-    filter_value_formgroup metric_card.simple_value_type_code
-  end
-
-  def filter_value_formgroup metric_type, default=nil
-    send "#{value_filter_type metric_type}_filter", :value, default
-  end
-
-  view :filter_related_company_group_formgroup, cache: :never do
-    filter_related_company_group_formgroup
-  end
-
-  def filter_related_company_group_formgroup default=nil
-    select_filter :related_company_group, default&.name
-  end
-
-  def related_company_group_options
-    type_options :company_group
-  end
-
-  def value_filter_type value_type
-    case value_type
+  def filter_value_type
+    case metric_card.simple_value_type_code
     when :category, :multi_category
-      :multiselect
+      :multi
     when :number, :money
       :range
     else
@@ -127,7 +105,15 @@ format :html do
     end
   end
 
-  def value_options
+  def filter_related_company_group_type
+    :select
+  end
+
+  def filter_related_company_group_options
+    type_options :company_group
+  end
+
+  def filter_value_options
     metric_card.value_options_card&.options_hash&.reverse_merge "Unknown" => "Unknown"
   end
 
