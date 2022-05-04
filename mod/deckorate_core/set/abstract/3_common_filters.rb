@@ -6,7 +6,7 @@ format :html do
   end
 
   define_filter_types dataset: :autocomplete,
-                      year: :multi,
+                      year: :select,
                       wikirate_topic: :multi,
                       company_category: :multi,
                       company_group: :multi,
