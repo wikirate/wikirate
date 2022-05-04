@@ -14,7 +14,6 @@ mod "conversation" # upgrade discussions/comments
 # these need rethinking...
 mod "wikirate_layout"
 mod "wikirate_utility"
-mod "filter"
 mod "topics"
 
 ## DeckoRate mods
