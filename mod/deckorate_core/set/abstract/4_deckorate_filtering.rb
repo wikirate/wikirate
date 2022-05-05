@@ -18,10 +18,6 @@ format do
     Card::FilterQuery
   end
 
-  def filter_keys
-    []
-  end
-
   def default_sort_option
     "name"
   end
@@ -43,6 +39,10 @@ format do
               return: "count" },
       sort_as: "integer",
       dir: "desc" }
+  end
+
+  def filtering_by_published
+    yield.tap { |arr| arr << :published if Card::Auth.current.stewards_any? }
   end
 end
 

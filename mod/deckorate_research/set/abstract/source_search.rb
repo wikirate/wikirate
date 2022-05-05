@@ -28,7 +28,7 @@ format do
     "create"
   end
 
-  def filter_keys
+  def filter_map
     %i[wikirate_title wikirate_topic report_type year wikirate_link company_name]
   end
 
