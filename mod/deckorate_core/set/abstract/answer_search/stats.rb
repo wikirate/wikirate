@@ -1,5 +1,3 @@
-include_set Abstract::Filterable
-
 LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
            total: "Total" }.freeze
 

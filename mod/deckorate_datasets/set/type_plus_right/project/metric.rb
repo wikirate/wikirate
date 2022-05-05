@@ -1,5 +1,5 @@
 include_set Abstract::ProjectList
-include_set Abstract::MetricFilter
+include_set Abstract::MetricSearch
 
 def query_hash
   { dataset: dataset_name }

@@ -1,4 +1,3 @@
-include_set Abstract::FilterableBar
 
 format :html do
   bar_cols 6, 4, 2

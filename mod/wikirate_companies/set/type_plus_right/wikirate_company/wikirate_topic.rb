@@ -1,6 +1,6 @@
 # order of the following two matters for filtering, but I don't really know why
 include_set Abstract::SearchCachedCount
-include_set Abstract::TopicFilter
+include_set Abstract::TopicSearch
 
 # when metric value is edited
 recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
