@@ -1,19 +1,6 @@
-include_set Abstract::DeckorateFiltering
-include_set Abstract::MetricFilters
-include_set Abstract::BookmarkFiltering
 include_set Abstract::AnswerSearch
 
 format do
-  STANDARD_FILTER_KEYS = %i[
-    status year metric_name company_name company_category company_group wikirate_topic
-    value updated updater verification calculated metric_type value_type dataset source
-    research_policy bookmark
-  ].freeze
-
-  def standard_filter_keys
-    STANDARD_FILTER_KEYS
-  end
-
   def default_filter_hash
     { company_name: "" }
   end

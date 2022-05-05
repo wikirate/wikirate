@@ -1,6 +1,8 @@
 include_set Abstract::BsBadge
 include_set Abstract::Table
 include_set Abstract::DeckorateFiltering
+include_set Abstract::MetricSearch
+include_set Abstract::BookmarkFiltering
 include_set Abstract::LookupSearch
 include_set Abstract::AnswerFilters
 
@@ -13,19 +15,38 @@ def filter_class
 end
 
 format do
-  def filter_hash_from_params
-    super.tap do |h|
-      normalize_filter_hash h if h
+  def filter_map
+    filtering_by_published do
+      [
+        :year,
+        :dataset,
+        { key: :metric, type: :group, filters: metric_filter_map },
+        { key: :wikirate_company,
+          type: :group,
+          filters: [
+            { key: :company_name, lock: true, label: false },
+            :company_category,
+            :company_group,
+          ] },
+        { key: :metric_answer,
+          type: :group,
+          filters: [
+            :value,
+            :verification,
+            :calculated,
+            :status,
+            :updated,
+            :updater,
+            :source
+          ]
+        }
+      ]
     end
   end
 
-  def filter_keys
-    standard_filter_keys + special_filter_keys
-  end
-
-  def special_filter_keys
-    [].tap do |keys|
-      keys << :published if Card::Auth.current.stewards_any?
+  def filter_hash_from_params
+    super.tap do |h|
+      normalize_filter_hash h if h
     end
   end
 

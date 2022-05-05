@@ -10,10 +10,6 @@ def query_hash
 end
 
 format :html do
-  def standard_filter_keys
-    super - [:dataset]
-  end
-
   # don't add quick filters for other datasets
   def dataset_quick_filters
     []
