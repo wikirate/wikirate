@@ -45,7 +45,7 @@ format do
     metric_card.inverse_company_id_field
   end
 
-  def filter_keys
+  def filter_map
     %i[name company_group bookmark dataset]
   end
 
