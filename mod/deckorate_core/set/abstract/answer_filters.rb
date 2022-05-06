@@ -2,13 +2,13 @@ include_set Abstract::CommonFilters
 include_set Abstract::BookmarkFiltering
 
 format :html do
-  Abstract::CommonFilters::HtmlFormat.define_filter_types verification: :select,
-                                                          updater: :select,
+  Abstract::CommonFilters::HtmlFormat.define_filter_types verification: :radio,
+                                                          updater: :radio,
                                                           value: :text,
-                                                          calculated: :select,
-                                                          status: :select,
-                                                          updated: :select,
-                                                          outliers: :select,
+                                                          calculated: :radio,
+                                                          status: :radio,
+                                                          updated: :radio,
+                                                          outliers: :radio,
                                                           source: :autocomplete
 
   def filter_status_default

@@ -1,18 +1,18 @@
 RSpec.describe Card::Set::Abstract::Filter do
   let(:card) { :wikirate_topic.card }
 
-  describe "#select_filter_tag" do
+  describe "#select_filter" do
     it "renders single select list" do
       options = card.format.type_options :wikirate_topic
-      html = card.format.select_filter_tag "Topic", nil, options
+      html = card.format.send :select_filter, "Topic", nil, options
       expect(html).to have_tag :select, with: { name: "filter[Topic]" }
     end
   end
 
-  describe "#multi_filter" do
+  describe "#multiselect_filter" do
     it "renders multi select list" do
       options = card.format.type_options :wikirate_topic
-      html = card.format.multi_filter :wikirate_topic, nil, options
+      html = card.format.send :multiselect_filter, :wikirate_topic, nil, options
       expect(html).to have_tag :select, with: { name: "filter[wikirate_topic][]",
                                                 multiple: "multiple" }
     end

@@ -28,7 +28,7 @@ format do
     "create"
   end
 
-  def filter_keys
+  def filter_map
     %i[wikirate_title wikirate_topic report_type year wikirate_link company_name]
   end
 
@@ -41,7 +41,7 @@ format :html do
   {
     wikirate_title: :text,
     wikirate_link: :text,
-    report_type: :select
+    report_type: :radio
   }.each do |filter_key, filter_type|
     define_method("filter_#{filter_key}_type") { filter_type }
   end
