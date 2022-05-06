@@ -3,7 +3,7 @@ describe Card::Set::Abstract::DeckorateFiltering do
   let(:card) { :wikirate_topic.card }
 
   describe "view :filter_form" do
-    subject { card.format.render_filter_form }
+    subject { card.format.render_compact_filter_form }
 
     it "has filter widget" do
       is_expected.to have_tag("._filter-widget") do

@@ -19,7 +19,7 @@ format do
     "metric"
   end
 
-  def filter_keys
+  def filter_map
     %i[name bookmark]
   end
 

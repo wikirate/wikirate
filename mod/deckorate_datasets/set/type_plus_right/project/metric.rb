@@ -6,6 +6,10 @@ def query_hash
 end
 
 format do
+  def filter_map
+    filtering_by_published { metric_filter_map }
+  end
+
   def default_sort_option
     :metric_title
   end
@@ -18,10 +22,6 @@ format do
 end
 
 format :html do
-  def standard_filter_keys
-    super - [:dataset]
-  end
-
   # don't add quick filters for other datasets
   def dataset_quick_filters
     []

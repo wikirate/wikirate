@@ -2,7 +2,7 @@ describe Card::Set::Abstract::AnswerFilters do
   let(:filter_card) { :wikirate_topic.card }
 
   describe "sort formgroup" do
-    subject { filter_card.format.render_sort_formgroup }
+    subject { filter_card.format.render_compact_filter_sort_dropdown }
 
     it "renders select form" do
       is_expected.to have_tag :select, with: { name: "sort" } do
