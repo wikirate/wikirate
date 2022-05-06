@@ -17,7 +17,7 @@ format do
     "create"
   end
 
-  def filter_keys
+  def filter_map
     %i[name wikirate_status]
   end
 
@@ -33,7 +33,7 @@ end
 
 format :html do
   def filter_wikirate_status_type
-    :select
+    :radio
   end
 
   def filter_wikirate_status_default

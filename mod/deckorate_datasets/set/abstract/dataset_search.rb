@@ -23,7 +23,7 @@ format do
     "create"
   end
 
-  def filter_keys
+  def filter_map
     %i[name wikirate_topic bookmark]
   end
 

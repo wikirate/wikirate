@@ -1,5 +1,4 @@
 # Answer search for a given Company
-include_set Abstract::MetricFilters
 include_set Abstract::BookmarkFiltering
 include_set Abstract::CachedCount
 include_set Abstract::FixedAnswerSearch
@@ -35,15 +34,6 @@ def bookmark_type
 end
 
 format do
-  STANDARD_FILTER_KEYS = %i[
-    status year metric_name wikirate_topic value updated updater verification
-    calculated metric_type value_type dataset source research_policy bookmark
-  ].freeze
-
-  def standard_filter_keys
-    STANDARD_FILTER_KEYS
-  end
-
   def default_sort_option
     record? || !single?(:year) ? :year : :metric_bookmarkers
   end
