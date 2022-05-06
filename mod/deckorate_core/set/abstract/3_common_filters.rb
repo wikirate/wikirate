@@ -6,13 +6,13 @@ format :html do
   end
 
   define_filter_types dataset: :autocomplete,
-                      year: :select,
-                      wikirate_topic: :multi,
-                      company_category: :multi,
-                      company_group: :multi,
+                      year: :radio,
+                      wikirate_topic: :check,
+                      company_category: :check,
+                      company_group: :check,
                       company_name: :text,
-                      country: :multi,
-                      published: :select
+                      country: :check,
+                      published: :radio
 
   def filter_company_category_options
     :commons_company_category.card.value_options_card.options_hash

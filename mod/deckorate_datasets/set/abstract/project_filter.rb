@@ -33,7 +33,7 @@ end
 
 format :html do
   def filter_wikirate_status_type
-    :select
+    :radio
   end
 
   def filter_wikirate_status_default

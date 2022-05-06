@@ -85,7 +85,7 @@ format :html do
   def filter_value_type
     case metric_card.simple_value_type_code
     when :category, :multi_category
-      :multi
+      :check
     when :number, :money
       :range
     else
@@ -94,7 +94,7 @@ format :html do
   end
 
   def filter_related_company_group_type
-    :select
+    :radio
   end
 
   def filter_related_company_group_options

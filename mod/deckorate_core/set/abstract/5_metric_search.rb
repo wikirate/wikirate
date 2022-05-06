@@ -67,10 +67,10 @@ end
 format :html do
   METRIC_FILTER_TYPES = {
     metric_name: :text,
-    research_policy: :select,
-    metric_type: :multi,
-    designer: :select,
-    value_type: :multi
+    research_policy: :radio,
+    metric_type: :check,
+    designer: :radio,
+    value_type: :check
   }.freeze
 
   METRIC_FILTER_TYPES.each do |filter_key, filter_type|

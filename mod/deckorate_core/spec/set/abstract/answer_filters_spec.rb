@@ -20,7 +20,7 @@ describe Card::Set::Abstract::AnswerFilters do
       it "renders option form" do
         Card.create! name: "Jedi+disturbances in the Force+Joe Admin",
                      type_id: Card::MetricID
-        html = filter_card.format.filter_input_field :designer
+        html = filter_card.format.filter_input_field :designer, compact: true
         # ensure score metric is return the third part as designer name
         expect(html).to have_tag(:option, with: { value: "Joe Admin" },
                                           text: "Joe Admin")
@@ -28,7 +28,7 @@ describe Card::Set::Abstract::AnswerFilters do
     end
 
     describe "research_policy filter" do
-      subject { filter_card.format.filter_input_field :research_policy }
+      subject { filter_card.format.filter_input_field :research_policy, compact: true }
 
       it "render multiselect list" do
         is_expected.to have_tag(:select, with: { name: "filter[research_policy]" }) do
@@ -39,7 +39,7 @@ describe Card::Set::Abstract::AnswerFilters do
     end
 
     describe "metric_type filter" do
-      subject { filter_card.format.filter_input_field :metric_type }
+      subject { filter_card.format.filter_input_field :metric_type, compact: true }
 
       it "renders checkboxes" do
         is_expected.to have_tag :select, with: { multiple: "multiple" } do
