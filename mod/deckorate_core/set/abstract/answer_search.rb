@@ -17,30 +17,27 @@ end
 format do
   def filter_map
     filtering_by_published do
-      [
-        :year,
-        :dataset,
-        { key: :metric, type: :group, filters: metric_filter_map },
-        { key: :wikirate_company,
-          type: :group,
-          filters: [
-            { key: :company_name, lock: true, label: false },
-            :company_category,
-            :company_group,
-          ] },
-        { key: :metric_answer,
-          type: :group,
-          filters: [
-            :value,
-            :verification,
-            :calculated,
-            :status,
-            :updated,
-            :updater,
-            :source
-          ]
-        }
-      ]
+      [:year,
+       :dataset,
+       { key: :metric, type: :group, filters: metric_filter_map },
+       { key: :wikirate_company,
+         type: :group,
+         filters: [
+           { key: :company_name, lock: true, label: false },
+           :company_category,
+           :company_group
+         ] },
+       { key: :metric_answer,
+         type: :group,
+         filters: [
+           :value,
+           :verification,
+           :calculated,
+           :status,
+           :updated,
+           :updater,
+           :source
+         ] }]
     end
   end
 
