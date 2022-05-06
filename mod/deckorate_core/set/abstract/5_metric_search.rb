@@ -46,7 +46,9 @@ format do
   end
 
   def filter_map
-    filtering_by_published { metric_filter_map } << :dataset
+    filtering_by_published do
+      [:name] + metric_filter_map[1..-1]
+    end << :dataset
   end
 
   def sort_options
