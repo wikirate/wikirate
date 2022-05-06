@@ -39,24 +39,12 @@ end
 format do
   delegate :metric_card, to: :card
 
-  STANDARD_FILTER_KEYS = %i[
-    status year company_name company_group company_category country value updated updater
-    verification calculated source dataset outliers bookmark
-  ].freeze
-
   def secondary_sort_hash
     super.merge year: { value: :desc }
   end
 
-  def standard_filter_keys
-    STANDARD_FILTER_KEYS
-  end
-
-  def special_filter_keys
-    keys = []
-    keys << :related_company_group if metric_card.relationship?
-    keys << :published if metric_card.steward?
-    keys
+  def filter_map
+    super.tap { |arr| arr << :related_company_group if metric_card.relationship? }
   end
 
   def default_filter_hash
@@ -97,7 +85,7 @@ format :html do
   def filter_value_type
     case metric_card.simple_value_type_code
     when :category, :multi_category
-      :multi
+      :check
     when :number, :money
       :range
     else
@@ -106,7 +94,7 @@ format :html do
   end
 
   def filter_related_company_group_type
-    :select
+    :radio
   end
 
   def filter_related_company_group_options

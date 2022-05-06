@@ -64,7 +64,7 @@ format :csv do
 end
 
 format :html do
-  before(:filter_form) { voo.hide :sort_formgroup }
+  before(:compact_filter_form) { voo.hide :compact_filter_sort_dropdown }
 
   def export_link_path format
     super.merge filter_and_sort_hash

@@ -17,8 +17,14 @@ format do
     CompanyFilterQuery
   end
 
-  def filter_keys
-    %i[name dataset company_group company_category country bookmark company_category]
+  # TODO: bookmark
+  def company_filter_map
+    [
+      { name: { lock: true, label: false } },
+      :company_category,
+      :company_group,
+      :country
+    ]
   end
 
   def default_sort_option
