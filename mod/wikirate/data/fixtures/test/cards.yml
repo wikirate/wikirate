@@ -51333,7 +51333,7 @@ cards_2628:
   right_id:
   current_revision_id:
   created_at: 2022-05-02 19:10:51.000000000 Z
-  updated_at: 2022-05-02 19:10:51.000000000 Z
+  updated_at: 2022-05-09 18:14:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -51342,7 +51342,15 @@ cards_2628:
   trash: 0
   type_id: 3
   db_content: "[[/new/{{_self|name}}|new]]"
-  search_content: ''
+  search_content: |+
+    {{+:description|content}}
+    {{_|add_button}}{{_|configure_button}}
+    {{+:type+:by_name|content}}
+
+    {{+:description|content}}
+    {{_|add_button}}{{_|configure_button}}
+    {{+:type+:by_name|content}}
+
 cards_2629:
   id: 2630
   name: UserForm
@@ -52370,7 +52378,7 @@ cards_2679:
   right_id:
   current_revision_id:
   created_at: 2022-05-02 19:10:53.000000000 Z
-  updated_at: 2022-05-02 19:10:53.000000000 Z
+  updated_at: 2022-05-09 18:14:38.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -54344,7 +54352,7 @@ cards_2782:
   right_id:
   current_revision_id:
   created_at: 2022-05-02 19:10:58.000000000 Z
-  updated_at: 2022-05-02 19:10:58.000000000 Z
+  updated_at: 2022-05-09 18:14:39.000000000 Z
   creator_id: 2531
   updater_id: 2531
   read_rule_class: "*all"
@@ -54439,7 +54447,7 @@ cards_2787:
   right_id:
   current_revision_id:
   created_at: 2022-05-02 19:10:58.000000000 Z
-  updated_at: 2022-05-02 19:10:58.000000000 Z
+  updated_at: 2022-05-09 18:14:39.000000000 Z
   creator_id: 2531
   updater_id: 2531
   read_rule_class: "*all"
@@ -54515,7 +54523,7 @@ cards_2791:
   right_id:
   current_revision_id:
   created_at: 2022-05-02 19:10:59.000000000 Z
-  updated_at: 2022-05-02 19:10:59.000000000 Z
+  updated_at: 2022-05-09 18:14:39.000000000 Z
   creator_id: 2531
   updater_id: 2531
   read_rule_class: "*self"
@@ -54572,7 +54580,7 @@ cards_2794:
   right_id:
   current_revision_id:
   created_at: 2022-05-02 19:10:59.000000000 Z
-  updated_at: 2022-05-02 19:10:59.000000000 Z
+  updated_at: 2022-05-09 18:14:39.000000000 Z
   creator_id: 2531
   updater_id: 2531
   read_rule_class: "*self"
@@ -56229,7 +56237,7 @@ cards_2879:
   right_id: 2382
   current_revision_id:
   created_at: 2022-05-02 19:11:09.000000000 Z
-  updated_at: 2022-05-02 19:12:45.000000000 Z
+  updated_at: 2022-05-09 18:15:37.000000000 Z
   creator_id: 1
   updater_id: 2531
   read_rule_class: "*all plus"
@@ -59652,7 +59660,7 @@ cards_3012:
   right_id: 614
   current_revision_id:
   created_at: 2022-05-02 19:11:17.000000000 Z
-  updated_at: 2022-05-02 19:12:49.000000000 Z
+  updated_at: 2022-05-09 18:15:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -59908,7 +59916,7 @@ cards_3022:
   right_id: 279
   current_revision_id:
   created_at: 2022-05-04 19:11:17.000000000 Z
-  updated_at: 2022-05-04 19:11:17.000000000 Z
+  updated_at: 2022-05-11 18:14:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -59916,8 +59924,8 @@ cards_3022:
   references_expired:
   trash: 0
   type_id: 279
-  db_content: "~3023/3339.pdf"
-  search_content: "~288/3339.pdf"
+  db_content: "~3023/4119.pdf"
+  search_content: "~3023/4119.pdf"
 cards_3023:
   id: 3024
   name:
@@ -60079,7 +60087,7 @@ cards_3031:
   right_id: 279
   current_revision_id:
   created_at: 2022-05-03 19:11:18.000000000 Z
-  updated_at: 2022-05-03 19:11:18.000000000 Z
+  updated_at: 2022-05-10 18:14:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -60087,8 +60095,8 @@ cards_3031:
   references_expired:
   trash: 0
   type_id: 279
-  db_content: "~3032/3348.pdf"
-  search_content: "~288/3348.pdf"
+  db_content: "~3032/4126.pdf"
+  search_content: "~3032/4126.pdf"
 cards_3032:
   id: 3033
   name:
@@ -60193,7 +60201,7 @@ cards_3037:
   right_id: 279
   current_revision_id:
   created_at: 2022-05-02 19:11:19.000000000 Z
-  updated_at: 2022-05-02 19:11:19.000000000 Z
+  updated_at: 2022-05-09 18:14:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -60201,8 +60209,8 @@ cards_3037:
   references_expired:
   trash: 0
   type_id: 279
-  db_content: "~3038/3354.pdf"
-  search_content: "~288/3354.pdf"
+  db_content: "~3038/4131.pdf"
+  search_content: "~3038/4131.pdf"
 cards_3038:
   id: 3039
   name:
@@ -60338,7 +60346,7 @@ cards_3044:
   right_id: 675
   current_revision_id:
   created_at: 2022-05-02 19:11:19.000000000 Z
-  updated_at: 2022-05-02 19:12:05.000000000 Z
+  updated_at: 2022-05-09 18:14:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -60355,7 +60363,6 @@ cards_3044:
     2004
     2005
     2008
-    2006
   search_content: |-
     1977
     1990
@@ -60365,7 +60372,6 @@ cards_3044:
     2004
     2005
     2008
-    2006
 cards_3045:
   id: 3046
   name:
@@ -60394,7 +60400,7 @@ cards_3046:
   right_id: 279
   current_revision_id:
   created_at: 2022-05-02 19:11:19.000000000 Z
-  updated_at: 2022-05-02 19:11:19.000000000 Z
+  updated_at: 2022-05-09 18:14:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -60402,8 +60408,8 @@ cards_3046:
   references_expired:
   trash: 0
   type_id: 279
-  db_content: "~3047/3363.pdf"
-  search_content: "~288/3363.pdf"
+  db_content: "~3047/4139.pdf"
+  search_content: "~3047/4139.pdf"
 cards_3047:
   id: 3048
   name:
@@ -60550,7 +60556,7 @@ cards_3054:
   right_id: 279
   current_revision_id:
   created_at: 2022-05-02 19:11:20.000000000 Z
-  updated_at: 2022-05-02 19:11:20.000000000 Z
+  updated_at: 2022-05-09 18:14:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -60558,8 +60564,8 @@ cards_3054:
   references_expired:
   trash: 0
   type_id: 279
-  db_content: "~3055/3371.pdf"
-  search_content: "~288/3371.pdf"
+  db_content: "~3055/4146.pdf"
+  search_content: "~3055/4146.pdf"
 cards_3055:
   id: 3056
   name:
@@ -61550,7 +61556,7 @@ cards_3106:
   right_id: 679
   current_revision_id:
   created_at: 2022-05-02 19:11:31.000000000 Z
-  updated_at: 2022-05-02 19:12:47.000000000 Z
+  updated_at: 2022-05-09 18:15:38.000000000 Z
   creator_id: 2531
   updater_id: 2524
   read_rule_class: "*all plus"
@@ -61607,7 +61613,7 @@ cards_3109:
   right_id: 679
   current_revision_id:
   created_at: 2022-05-02 19:11:32.000000000 Z
-  updated_at: 2022-05-02 19:12:47.000000000 Z
+  updated_at: 2022-05-09 18:15:38.000000000 Z
   creator_id: 2531
   updater_id: 2524
   read_rule_class: "*all plus"
@@ -61664,7 +61670,7 @@ cards_3112:
   right_id: 679
   current_revision_id:
   created_at: 2022-05-02 19:11:33.000000000 Z
-  updated_at: 2022-05-02 19:12:45.000000000 Z
+  updated_at: 2022-05-09 18:15:37.000000000 Z
   creator_id: 2531
   updater_id: 2531
   read_rule_class: "*all plus"
@@ -72156,7 +72162,7 @@ cards_3514:
   right_id: 2995
   current_revision_id:
   created_at: 2022-05-02 19:12:40.000000000 Z
-  updated_at: 2022-05-02 19:12:40.000000000 Z
+  updated_at: 2022-05-09 18:15:35.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -72165,7 +72171,7 @@ cards_3514:
   trash: 0
   type_id: 672
   db_content: ''
-  search_content: '0.125'
+  search_content: ''
 cards_3515:
   id: 3516
   name:
@@ -72232,7 +72238,7 @@ cards_3518:
   right_id: 2981
   current_revision_id:
   created_at: 2022-05-02 19:12:41.000000000 Z
-  updated_at: 2022-05-02 19:12:41.000000000 Z
+  updated_at: 2022-05-09 18:15:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -72241,7 +72247,7 @@ cards_3518:
   trash: 0
   type_id: 672
   db_content: ''
-  search_content: '5'
+  search_content: ''
 cards_3519:
   id: 3520
   name:
@@ -72883,9 +72889,9 @@ cards_3551:
   right_id:
   current_revision_id:
   created_at: 2022-05-02 19:12:49.000000000 Z
-  updated_at: 2022-05-02 19:12:51.000000000 Z
+  updated_at: 2022-05-09 18:15:39.000000000 Z
   creator_id: 2524
-  updater_id: 2531
+  updater_id: 2524
   read_rule_class: "*all"
   read_rule_id: 10
   references_expired:
@@ -72959,7 +72965,7 @@ cards_3555:
   right_id:
   current_revision_id:
   created_at: 2022-05-02 19:12:49.000000000 Z
-  updated_at: 2022-05-02 19:12:51.000000000 Z
+  updated_at: 2022-05-09 18:15:41.000000000 Z
   creator_id: 2524
   updater_id: 2531
   read_rule_class: "*all"
@@ -73073,7 +73079,7 @@ cards_3561:
   right_id:
   current_revision_id:
   created_at: 2022-05-02 19:12:50.000000000 Z
-  updated_at: 2022-05-02 19:12:50.000000000 Z
+  updated_at: 2022-05-09 18:15:41.000000000 Z
   creator_id: 2524
   updater_id: 2531
   read_rule_class: "*all"
@@ -73168,9 +73174,9 @@ cards_3566:
   right_id: 665
   current_revision_id:
   created_at: 2022-05-02 19:12:50.000000000 Z
-  updated_at: 2022-05-02 19:12:58.000000000 Z
+  updated_at: 2022-05-09 18:15:41.000000000 Z
   creator_id: 2531
-  updater_id: 1
+  updater_id: 2531
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
@@ -73895,7 +73901,7 @@ cards_3603:
   right_id: 3535
   current_revision_id:
   created_at: 2022-05-02 19:12:56.000000000 Z
-  updated_at: 2022-05-02 19:12:57.000000000 Z
+  updated_at: 2022-05-09 18:15:43.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -74420,3 +74426,155 @@ cards_3624:
       },
       "dir": "desc"
     }
+cards_3625:
+  id: 3626
+  name:
+  key:
+  codename:
+  left_id: 3313
+  right_id: 675
+  current_revision_id:
+  created_at: 2022-05-09 18:15:20.000000000 Z
+  updated_at: 2022-05-09 18:15:20.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: ''
+  search_content: ''
+cards_3626:
+  id: 3627
+  name:
+  key:
+  codename:
+  left_id: 3322
+  right_id: 675
+  current_revision_id:
+  created_at: 2022-05-09 18:15:20.000000000 Z
+  updated_at: 2022-05-09 18:15:20.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: ''
+  search_content: ''
+cards_3627:
+  id: 3628
+  name:
+  key:
+  codename:
+  left_id: 3331
+  right_id: 675
+  current_revision_id:
+  created_at: 2022-05-09 18:15:21.000000000 Z
+  updated_at: 2022-05-09 18:15:21.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: ''
+  search_content: ''
+cards_3628:
+  id: 3629
+  name:
+  key:
+  codename:
+  left_id: 3339
+  right_id: 675
+  current_revision_id:
+  created_at: 2022-05-09 18:15:21.000000000 Z
+  updated_at: 2022-05-09 18:15:21.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: ''
+  search_content: ''
+cards_3629:
+  id: 3630
+  name:
+  key:
+  codename:
+  left_id: 3342
+  right_id: 675
+  current_revision_id:
+  created_at: 2022-05-09 18:15:22.000000000 Z
+  updated_at: 2022-05-09 18:15:22.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: ''
+  search_content: ''
+cards_3630:
+  id: 3631
+  name:
+  key:
+  codename:
+  left_id: 3350
+  right_id: 675
+  current_revision_id:
+  created_at: 2022-05-09 18:15:22.000000000 Z
+  updated_at: 2022-05-09 18:15:22.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: ''
+  search_content: ''
+cards_3631:
+  id: 3632
+  name:
+  key:
+  codename:
+  left_id: 3356
+  right_id: 675
+  current_revision_id:
+  created_at: 2022-05-09 18:15:23.000000000 Z
+  updated_at: 2022-05-09 18:15:23.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: ''
+  search_content: ''
+cards_3632:
+  id: 3633
+  name:
+  key:
+  codename:
+  left_id: 3365
+  right_id: 675
+  current_revision_id:
+  created_at: 2022-05-09 18:15:23.000000000 Z
+  updated_at: 2022-05-09 18:15:23.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: ''
+  search_content: ''
