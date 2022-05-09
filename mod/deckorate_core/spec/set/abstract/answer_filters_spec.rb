@@ -21,20 +21,20 @@ describe Card::Set::Abstract::AnswerFilters do
     context "with full (not compact) filters" do
       subject { filter_card.format.filter_input_field filter_type }
 
+      def with_check_option binding, type, value
+        binding.with_tag("div") do
+          with_tag "label", text: value
+          with_tag "input", type: type, value: value
+        end
+      end
+
       describe "research_policy filter" do
         let(:filter_type) { :research_policy }
 
         specify do
           is_expected.to have_tag("div.filter-radio-list") do
-            with_tag("div.filter-radio-item") do
-              with_tag "label", text: "Community Assessed"
-              with_tag "input", type: "radio", value: "Community Assessed"
-            end
-
-            with_tag("div.filter-radio-item") do
-              with_tag "label", text: "Designer Assessed"
-              with_tag "input", type: "radio", value: "Designer Assessed"
-            end
+            with_check_option self, "radio", "Community Assessed"
+            with_check_option self, "radio", "Designer Assessed"
           end
         end
       end
@@ -44,15 +44,8 @@ describe Card::Set::Abstract::AnswerFilters do
 
         specify do
           is_expected.to have_tag("div.filter-check-list") do
-            with_tag("div.filter-check-item") do
-              with_tag "label", text: "Researched"
-              with_tag "input", type: "checkbox", value: "Researched"
-            end
-
-            with_tag("div.filter-check-item") do
-              with_tag "label", text: "Formula"
-              with_tag "input", type: "checkbox", value: "Formula"
-            end
+            with_check_option self, "checkbox", "Researched"
+            with_check_option self, "checkbox", "Formula"
           end
         end
       end
