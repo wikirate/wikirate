@@ -5,9 +5,9 @@ format :html do
     end
   end
 
-  define_filter_types dataset: :autocomplete,
+  define_filter_types dataset: :multiselect,
                       year: :radio,
-                      wikirate_topic: :check,
+                      wikirate_topic: :multiselect,
                       company_category: :check,
                       company_group: :check,
                       company_name: :text,
@@ -26,6 +26,10 @@ format :html do
 
   def filter_published_default
     "true"
+  end
+
+  def filter_dataset_options
+    type_options :dataset
   end
 
   def filter_wikirate_topic_options

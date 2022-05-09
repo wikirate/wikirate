@@ -168,7 +168,7 @@
 
   updateFilter = function(el, filterVals) {
     var filter;
-    filter = new decko.filter(el.closest("._filtered-content").find("._filter-widget"));
+    filter = new decko.filter(el.closest("._filtered-content").find("._compact-filter"));
     return filter.addRestrictions(filterVals);
   };
 

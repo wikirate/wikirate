@@ -19,25 +19,19 @@ format do
     filtering_by_published do
       [:year,
        :dataset,
-       { key: :metric, type: :group, filters: metric_filter_map },
+       { key: :metric,
+         type: :group,
+         filters: shared_metric_filter_map.unshift(key: :metric_name, open: true) },
        { key: :wikirate_company,
          type: :group,
          filters: [
-           { key: :company_name, lock: true, label: false },
+           { key: :company_name, open: true },
            :company_category,
            :company_group
          ] },
        { key: :metric_answer,
          type: :group,
-         filters: [
-           :value,
-           :verification,
-           :calculated,
-           :status,
-           :updated,
-           :updater,
-           :source
-         ] }]
+         filters: %i[value verification calculated status updated updater source] }]
     end
   end
 

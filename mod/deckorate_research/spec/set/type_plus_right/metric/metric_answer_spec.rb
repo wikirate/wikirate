@@ -91,7 +91,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
 
       it "has filter widget" do
         is_expected.to have_tag ".card" do
-          with_tag "._filter-widget"
+          with_tag "._compact-filter"
         end
       end
       it "has chart" do
