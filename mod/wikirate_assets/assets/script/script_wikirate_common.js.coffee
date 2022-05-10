@@ -51,6 +51,6 @@ decko.slotReady (slot) ->
 
 # destroy modal content after closing modal window (On homepage only)
 $(document).ready ->
-  $('body').on "submit", "._filter-form", ->
+  $('body').on "submit", "._compact-filter-form", ->
     slot = $(this).findSlot($(this).data("slot-selector"))
     wikirate.loader($(slot), false).prepend()

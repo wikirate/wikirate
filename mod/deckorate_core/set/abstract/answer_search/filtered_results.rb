@@ -1,5 +1,5 @@
 format :html do
-  before(:compact_filter_form) { voo.hide :compact_filter_sort_dropdown }
+  before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
 
   view :filtered_results_header, cache: :never, template: :haml
 
