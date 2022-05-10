@@ -42,7 +42,7 @@ class Calculate
 
     def company_cache_count_cards
       (old_company_ids | unique_company_ids).map do |company_id|
-        %i[metric metric_answer wikirate_topic].map { |fld| Card.fetch [company_id, fld] }
+        %i[metric metric_answer].map { |fld| Card.fetch [company_id, fld] }
       end.flatten
     end
 

@@ -34,7 +34,7 @@ format :html do
   end
 
   # def answer_filtering
-  #   filtering(".RIGHT-answer ._filter-widget") do
+  #   filtering(".RIGHT-answer ._compact-filter") do
   #     yield view: :bar, show: :full_page_link, hide: %i[metric_header edit_link]
   #   end
   # end
