@@ -70,8 +70,8 @@
   };
 
   changeYearInSourceFilter = function(year) {
-    if ($(".RIGHT-source ._filter-widget")[0]) {
-      return decko.filter(".RIGHT-source ._filter-widget").addRestrictions({
+    if ($(".RIGHT-source ._compact-filter")[0]) {
+      return decko.filter(".RIGHT-source ._compact-filter").addRestrictions({
         year: year
       });
     }
@@ -718,7 +718,7 @@
       newSource = slot.find("._new_source");
       if (newSource.length) {
         closeSourceModal(slot);
-        (new decko.filter($(".RIGHT-source.filtered_content-view ._filter-widget"))).update();
+        (new decko.filter($(".RIGHT-source.filtered_content-view ._compact-filter"))).update();
       }
       if (slot.find("#jPages")[0]) {
         $("#jPages").jPages({
