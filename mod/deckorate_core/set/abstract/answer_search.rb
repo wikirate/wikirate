@@ -18,7 +18,6 @@ format do
   def filter_map
     filtering_by_published do
       [:year,
-       :dataset,
        { key: :metric,
          type: :group,
          filters: shared_metric_filter_map.unshift(key: :metric_name, open: true) },
@@ -31,8 +30,13 @@ format do
          ] },
        { key: :metric_answer,
          type: :group,
-         filters: %i[value verification calculated status updated updater source] }]
+         filters: %i[value verification calculated status updated updater source] },
+       :dataset]
     end
+  end
+
+  def map_without_key map, key
+    map.reject { |item| item.is_a?(Hash) && item[:key] == key }
   end
 
   def filter_hash_from_params
