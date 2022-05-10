@@ -368,7 +368,7 @@ standard "data-card-name" attribute.
   });
 
   $(document).ready(function() {
-    return $('body').on("submit", "._filter-form", function() {
+    return $('body').on("submit", "._compact-filter-form", function() {
       var slot;
       slot = $(this).findSlot($(this).data("slot-selector"));
       return wikirate.loader($(slot), false).prepend();

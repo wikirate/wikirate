@@ -80,7 +80,7 @@ format :html do
   end
 
   view :details_sidebar, wrap: :slot, template: :haml # do
-  #   wrap { filtering(".RIGHT-answer ._filter-widget") { haml :details_sidebar } }
+  #   wrap { filtering(".RIGHT-answer ._compact-filter") { haml :details_sidebar } }
   # end
 
   view :full_details do

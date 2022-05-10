@@ -44,7 +44,8 @@ format do
   end
 
   def filter_map
-    super.tap { |arr| arr << :related_company_group if metric_card.relationship? }
+    map_without_key(super, :metric)
+      .tap { |arr| arr << :related_company_group if metric_card.relationship? }
   end
 
   def default_filter_hash

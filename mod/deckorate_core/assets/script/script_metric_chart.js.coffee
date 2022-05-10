@@ -37,7 +37,7 @@ initVega = (spec, el) ->
     handleChartClicks result.view, el
 
 updateFilter = (el, filterVals) ->
-  filter = new decko.filter el.closest("._filtered-content").find("._filter-widget")
+  filter = new decko.filter el.closest("._filtered-content").find("._compact-filter")
   filter.addRestrictions filterVals
 
 updateDetails = (detailsAnswer) ->

@@ -2,12 +2,11 @@ describe "expanding details on company pages", ->
   specify "WikiRating", ->
     cy.visit "Death Star"
 
-    cy.get(".filter-button").click()
-
     # use filter to find darkness rating
-    cy.get("._filter-container [name='filter[metric_name]']")
-      .type("darkness{enter}")
-
+    cy.contains("Filter").click()
+    cy.get(".offcanvas").within () ->
+      cy.contains("Metric").click() ->
+      cy.get("[name='filter[metric_name]']").type("darkness{enter}")
     cy.get(".offcanvas-header .btn-close").click()
 
     # filter works
