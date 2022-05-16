@@ -37,7 +37,7 @@ initVega = (spec, el) ->
     handleChartClicks result.view, el
 
 updateFilter = (el, filterVals) ->
-  filter = new decko.filter el.closest("._filtered-content").find("._filter-widget")
+  filter = new decko.filter el.closest("._filtered-content").find("._compact-filter")
   filter.addRestrictions filterVals
 
 updateDetails = (detailsAnswer) ->
@@ -45,6 +45,6 @@ updateDetails = (detailsAnswer) ->
 
 $(document).ready ->
   $('body').on 'click', '._filter-bindings', ->
-    vis = $(this).closest('.filtered-results').find '.vis'
+    vis = $(this).closest("._filtered-content").find '.vis'
     klass = 'with-bindings'
     if vis.hasClass(klass) then vis.removeClass(klass) else vis.addClass(klass)
