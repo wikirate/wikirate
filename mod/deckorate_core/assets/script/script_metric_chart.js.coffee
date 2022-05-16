@@ -45,6 +45,6 @@ updateDetails = (detailsAnswer) ->
 
 $(document).ready ->
   $('body').on 'click', '._filter-bindings', ->
-    vis = $(this).closest('.filtered-results').find '.vis'
+    vis = $(this).closest("._filtered-content").find '.vis'
     klass = 'with-bindings'
     if vis.hasClass(klass) then vis.removeClass(klass) else vis.addClass(klass)

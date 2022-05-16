@@ -125,7 +125,7 @@ format :html do
       { value: (count / total_results.to_f * 100),
         body: "#{count} #{LABELS[status]}",
         title: "#{count} #{LABELS[status]} Answers",
-        class: "_filter-link progress-#{status}",
+        class: "_compact-filter-link progress-#{status}",
         data: { filter: { status: status } } }
     end
     progress_bar(*sections)

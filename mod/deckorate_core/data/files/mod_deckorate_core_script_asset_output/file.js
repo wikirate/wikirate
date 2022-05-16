@@ -179,7 +179,7 @@
   $(document).ready(function() {
     return $('body').on('click', '._filter-bindings', function() {
       var klass, vis;
-      vis = $(this).closest('.filtered-results').find('.vis');
+      vis = $(this).closest("._filtered-content").find('.vis');
       klass = 'with-bindings';
       if (vis.hasClass(klass)) {
         return vis.removeClass(klass);
