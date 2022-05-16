@@ -29,11 +29,8 @@ format do
   end
 
   def filter_map
-    %i[wikirate_title wikirate_topic report_type year wikirate_link company_name]
-  end
-
-  def default_filter_hash
-    { wikirate_title: "" }
+    %i[wikirate_topic report_type year wikirate_link company_name]
+      .unshift key: :wikirate_title, open: true
   end
 end
 
