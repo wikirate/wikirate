@@ -6,7 +6,7 @@ describe Card::Set::Abstract::DeckorateFiltering do
     subject { card.format.render_compact_filter_form }
 
     it "has filter widget" do
-      is_expected.to have_tag("._filter-widget") do
+      is_expected.to have_tag("._compact-filter") do
         with_tag "._add-filter-dropdown" do
           with_tag "a.dropdown-item", text: /Name/,
                                       with: { "data-category": "name" }

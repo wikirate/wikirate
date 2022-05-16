@@ -34,20 +34,13 @@ format do
   end
 
   # TODO: bookmarking
-  def metric_filter_map
-    [
-      { key: :metric_name, lock: true, header: false },
-      :wikirate_topic,
-      :designer,
-      :metric_type,
-      :value_type,
-      :research_policy
-    ]
+  def shared_metric_filter_map
+    %i[wikirate_topic designer metric_type value_type research_policy]
   end
 
   def filter_map
     filtering_by_published do
-      [:name] + metric_filter_map[1..-1]
+      shared_metric_filter_map.unshift key: :name, open: true
     end << :dataset
   end
 
@@ -71,7 +64,7 @@ format :html do
     metric_name: :text,
     research_policy: :radio,
     metric_type: :check,
-    designer: :radio,
+    designer: :check,
     value_type: :check
   }.freeze
 
