@@ -19,6 +19,7 @@ PATH
       card-mod-search
     card-mod-filter (0.1)
       card
+      card-mod-bootstrap
       card-mod-search
     card-mod-fulltext (0.1)
       card
