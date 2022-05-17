@@ -37,7 +37,7 @@ Feature: company feature
 
   Scenario: Filter by year
     When I click on "Filter"
-    And I click on "Year"
+    And I click on "Year" in the offcanvas
     And I click on "show more"
     And I choose "2001"
     And I close the offcanvas
@@ -62,7 +62,7 @@ Feature: company feature
 
   Scenario: Paging
     When I click on "Filter"
-    And I click on "Year"
+    And I click on "Year" in the offcanvas
     And I choose "latest"
     And I close the offcanvas
     Then I should see "Victims by Employees"

@@ -33,6 +33,7 @@ end
 
 Capybara.default_max_wait_time = 20
 
+
 When(/^I press "([^"]*)" within "([^"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
     click_button(button)
@@ -49,8 +50,14 @@ When(/^I print html of the page$/) do
   puts page.html
 end
 
-And(/^I click on item "([^"]*)"$/) do |item|
-  find("td", text: item).click
+# And(/^I click on item "([^"]*)"$/) do |item|
+#   find("td", text: item).click
+# end
+
+When(/^I click on "([^"]*)" in the offcanvas$/) do |link|
+  within(".offcanvas-body") do
+    click_link_or_button(link)
+  end
 end
 
 And(/^I close the offcanvas$/) do
