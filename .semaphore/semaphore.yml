@@ -45,8 +45,7 @@ blocks:
       jobs:
         - name: RSpec
           commands:
-            - echo 'woot'
-            # - be rspec --format RspecJunitFormatter --out junit.xml --format documentation
+            - be rspec --format RspecJunitFormatter --out junit.xml --format documentation
       epilogue:
         always:
           commands:
