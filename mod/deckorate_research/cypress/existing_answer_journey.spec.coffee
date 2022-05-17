@@ -4,8 +4,9 @@ describe "research page from answer", ->
     cy.visit "Jedi+cost_of_planets_destroyed+Death_Star+1977"
     cy.get("._research_answer_button").click()
 
+
     # year is already selected.  go to answer tab
-    cy.get("#_select_year").click force: true
+    cy.contains("Select year").scrollIntoView().click()
 
     # check the breadcrumb
     crumb = cy.get ".answer-breadcrumb"

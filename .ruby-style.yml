@@ -72,12 +72,7 @@ Lint/AmbiguousRegexpLiteral:
   Exclude:
     - '**/*_spec.rb'
 Metrics/BlockLength:
-  Enabled: true
-  Exclude:
-    - 'Rakefile'
-    - '**/*.rake'
-    - 'spec/**/*.rb'
-    - '**/*_spec.rb'
+  Enabled: false
 RSpec/ExampleLength:
   Description: Checks for long examples.
   Enabled: false
