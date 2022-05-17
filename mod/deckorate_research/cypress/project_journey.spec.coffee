@@ -44,10 +44,10 @@ describe "research page", ->
 
 
     # remove default year and company filters
-    cy.get(".filter-button").click()
+    # cy.get("._filters-button").click()
     cy.closeFilter "year"
     cy.closeFilter "company_name"
-    cy.get(".offcanvas-header .btn-close").click()
+    # cy.get(".offcanvas-header .btn-close").click()
 
 
     cy.get(".TYPE-source.box:first").click()

@@ -89,9 +89,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
     describe ":core view" do
       subject { metric_answer.format._render_filtered_content }
 
-      it "has filter widget" do
-        is_expected.to have_tag ".card" do
-          with_tag "._filter-widget"
+      it "has filter button" do
+        is_expected.to have_tag ".filtered-results-header" do
+          with_tag "._filters-button"
         end
       end
       it "has chart" do

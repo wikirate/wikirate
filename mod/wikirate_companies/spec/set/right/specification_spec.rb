@@ -1,4 +1,3 @@
-
 RSpec.describe Card::Set::Right::Specification do
   def card_subject
     Card["Deadliest+specification"]

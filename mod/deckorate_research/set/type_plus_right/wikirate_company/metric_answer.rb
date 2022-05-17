@@ -42,6 +42,10 @@ format do
     super.merge year: { metric_bookmarkers: :desc, metric_title: :asc }
   end
 
+  def filter_map
+    map_without_key super, :wikirate_company
+  end
+
   def default_filter_hash
     { metric_name: "" }
   end
