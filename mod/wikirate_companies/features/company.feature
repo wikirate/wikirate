@@ -38,7 +38,7 @@ Feature: company feature
   Scenario: Filter by year
     When I click on "Filter"
     And I click on "Year"
-    And I click "show more"
+    And I click on "show more"
     And I choose "2001"
     And I close the offcanvas
     And I wait for ajax response
@@ -63,7 +63,7 @@ Feature: company feature
   Scenario: Paging
     When I click on "Filter"
     And I click on "Year"
-    And I choose "Latest"
+    And I choose "latest"
     And I close the offcanvas
     Then I should see "Victims by Employees"
     Then I click "2" within ".paging"

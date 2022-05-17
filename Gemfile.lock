@@ -231,7 +231,7 @@ PATH
     decko-profile (0.14.2)
       ruby-prof (~> 1.4)
     decko-rspec (0.14.2)
-      capybara (> 2)
+      capybara (~> 3.37)
       i18n-tasks (~> 0.9)
       minitest (~> 5.14)
       nokogumbo (~> 2.0)
