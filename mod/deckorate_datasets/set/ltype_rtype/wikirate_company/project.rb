@@ -35,8 +35,6 @@ format :html do
     @units ||= card.dataset_card.units
   end
 
-
-
   view :bar_left do
     render_company_header
   end

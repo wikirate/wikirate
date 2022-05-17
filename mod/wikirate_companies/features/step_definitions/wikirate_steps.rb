@@ -33,7 +33,6 @@ end
 
 Capybara.default_max_wait_time = 20
 
-
 When(/^I press "([^"]*)" within "([^"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
     click_button(button)
