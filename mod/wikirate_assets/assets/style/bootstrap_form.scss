@@ -24,12 +24,12 @@ textarea {
   width: 200px;
 }
 
-input[type="checkbox"], input[type="radio"] {
-  height: inherit;
-  border: none;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-}
+//input[type="checkbox"], input[type="radio"] {
+//  height: inherit;
+//  border: none;
+//  box-shadow: none;
+//  -webkit-box-shadow: none;
+//}
 
 .prosemirror-editor{
   border: 1px solid #ccc;
@@ -37,31 +37,31 @@ input[type="checkbox"], input[type="radio"] {
   @include box-shadow(0,1px,1px,rgba(0,0,0,0.075), inset);
 }
 
-input[type="radio"] {
-    background-color: #fff;
-    background-image: none;
-    border: 0;
-    border-radius: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    cursor: pointer;
-}
-
-input[type="checkbox"] {
-    margin-right: 5px;
-}
-
-label[for] {
-    cursor: pointer;
-    display: inline;
-}
-
-li > input[type="radio"] {
-    display: inline-block;
-    height: auto;
-    padding: 4px 13px;
-    //width: 2%;
-}
+//input[type="radio"] {
+//    background-color: #fff;
+//    background-image: none;
+//    border: 0;
+//    border-radius: 0;
+//    -webkit-box-shadow: none;
+//    box-shadow: none;
+//    cursor: pointer;
+//}
+//
+//input[type="checkbox"] {
+//    margin-right: 5px;
+//}
+//
+//label[for] {
+//    cursor: pointer;
+//    display: inline;
+//}
+//
+//li > input[type="radio"] {
+//    display: inline-block;
+//    height: auto;
+//    padding: 4px 13px;
+//    //width: 2%;
+//}
 
 .conflict-view,
 .history-view > .d0-card-content,
