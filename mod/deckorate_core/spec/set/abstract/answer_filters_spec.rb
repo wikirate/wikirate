@@ -1,14 +1,16 @@
 describe Card::Set::Abstract::AnswerFilters do
   let(:filter_card) { :wikirate_topic.card }
 
-  describe "sort formgroup" do
-    subject { filter_card.format.render_compact_filter_sort_dropdown }
+  context "with topic filter card" do
+    describe "filter_sort_dropdown" do
+      subject { filter_card.format.render_filter_sort_dropdown }
 
-    it "renders select form" do
-      is_expected.to have_tag :select, with: { name: "sort" } do
-        with_option "Most Bookmarked", "bookmarkers" # , selected: "selected"
-        with_option "Most Metrics", "metric"
-        with_option "Most Companies", "company"
+      it "renders select form" do
+        is_expected.to have_tag :select, with: { name: "sort" } do
+          with_option "Most Bookmarked", "bookmarkers" # , selected: "selected"
+          with_option "Most Metrics", "metric"
+          with_option "Most Companies", "company"
+        end
       end
     end
   end
@@ -16,46 +18,84 @@ describe Card::Set::Abstract::AnswerFilters do
   context "with metric filter card" do
     let(:filter_card) { Card[:metric] }
 
-    describe "designer filter" do
-      it "renders option form" do
-        Card.create! name: "Jedi+disturbances in the Force+Joe Admin",
-                     type_id: Card::MetricID
-        html = filter_card.format.filter_input_field :designer, compact: true
-        # ensure score metric is return the third part as designer name
-        expect(html).to have_tag(:option, with: { value: "Joe Admin" },
-                                          text: "Joe Admin")
-      end
-    end
+    context "with full (not compact) filters" do
+      subject { filter_card.format.filter_input_field filter_type }
 
-    describe "research_policy filter" do
-      subject { filter_card.format.filter_input_field :research_policy, compact: true }
-
-      it "render multiselect list" do
-        is_expected.to have_tag(:select, with: { name: "filter[research_policy]" }) do
-          with_option "Community Assessed", "Community Assessed"
-          with_option "Designer Assessed", "Designer Assessed"
+      def with_check_option binding, type, value
+        binding.with_tag("div") do
+          with_tag "label", text: value
+          with_tag "input", type: type, value: value
         end
       end
-    end
 
-    describe "metric_type filter" do
-      subject { filter_card.format.filter_input_field :metric_type, compact: true }
+      describe "research_policy filter" do
+        let(:filter_type) { :research_policy }
 
-      it "renders checkboxes" do
-        is_expected.to have_tag :select, with: { multiple: "multiple" } do
-          with_option "Researched"
-          with_option "Formula"
-          with_option "WikiRating"
+        specify do
+          is_expected.to have_tag("div.filter-radio-list") do
+            with_check_option self, "radio", "Community Assessed"
+            with_check_option self, "radio", "Designer Assessed"
+          end
         end
       end
+
+      describe "metric_type filter" do
+        let(:filter_type) { :metric_type }
+
+        specify do
+          is_expected.to have_tag("div.filter-check-list") do
+            with_check_option self, "checkbox", "Researched"
+            with_check_option self, "checkbox", "Formula"
+          end
+        end
+      end
+
+      describe "name filter" do
+        let(:filter_type) { :name }
+
+        specify { is_expected.to have_tag(:input, with: { name: "filter[name]" }) }
+      end
     end
-  end
 
-  describe "name filter" do
-    subject { filter_card.format.filter_input_field :name }
+    context "with compact filters" do
+      subject { filter_card.format.filter_input_field filter_type, compact: true }
 
-    it "renders input tag" do
-      is_expected.to have_tag(:input, with: { name: "filter[name]" })
+      describe "designer filter" do
+        let(:filter_type) { :designer }
+
+        specify do
+          is_expected.to have_tag(:option, with: { value: "Jedi" }, text: "Jedi")
+        end
+      end
+
+      describe "research_policy filter" do
+        let(:filter_type) { :research_policy }
+
+        specify do
+          is_expected.to have_tag(:select, with: { name: "filter[research_policy]" }) do
+            with_option "Community Assessed", "Community Assessed"
+            with_option "Designer Assessed", "Designer Assessed"
+          end
+        end
+      end
+
+      describe "metric_type filter" do
+        let(:filter_type) { :metric_type }
+
+        specify do
+          is_expected.to have_tag :select, with: { multiple: "multiple" } do
+            with_option "Researched"
+            with_option "Formula"
+            with_option "WikiRating"
+          end
+        end
+      end
+
+      describe "name filter" do
+        let(:filter_type) { :name }
+
+        specify { is_expected.to have_tag(:input, with: { name: "filter[name]" }) }
+      end
     end
   end
 end

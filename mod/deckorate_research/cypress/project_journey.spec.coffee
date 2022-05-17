@@ -44,11 +44,9 @@ describe "research page", ->
 
 
     # remove default year and company filters
-    cy.get(".filter-button").click()
-    cy.closeFilter "year"
-    cy.closeFilter "company_name"
-    cy.get(".offcanvas-header .btn-close").click()
-
+    cy.contains("Clear All").click()
+#    cy.closeFilter "year"
+#    cy.closeFilter "company_name"
 
     cy.get(".TYPE-source.box:first").click()
     cy.get("#_select_source").click()

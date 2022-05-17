@@ -16,10 +16,6 @@ RSpec.describe Card::Set::Self::Source do
                                        with: { href: "/new/Source" }
     end
 
-    it "has Title filter open by default" do
-      is_expected.to have_tag "div.input-group[data-category='wikirate_title']"
-    end
-
     it "has list of sources" do
       is_expected.to have_tag "div.search-result-list" do
         with_tag "div.search-result-item" do
@@ -36,6 +32,15 @@ RSpec.describe Card::Set::Self::Source do
     it "has sources ordered by 'most recent'" do
       is_expected.to have_tag "div.search-result-list" do
         with_text(/Opera.+Space Opera.+Star Wars/m)
+      end
+    end
+
+    describe "filter bars" do
+      it "has Title filter open by default" do
+        expect(page_card.format.render_filter_bars)
+          .to have_tag("div.accordion-collapse.show") do
+            with_tag"input[name='filter[wikirate_title]']"
+          end
       end
     end
   end

@@ -16,7 +16,7 @@ format :html do
   end
 
   # view :core do
-  #   filtering(".RIGHT-answer ._filter-widget") do
+  #   filtering(".RIGHT-answer ._compact-filter") do
   #     wrap_with :div, class: "pointer-list" do
   #       filterable_years
   #     end

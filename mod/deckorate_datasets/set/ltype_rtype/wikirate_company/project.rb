@@ -28,12 +28,12 @@ end
 format :html do
   delegate :company_card, :dataset_card, :metric_ids, :project_name, to: :card
 
+  bar_cols 6, 2, 4
+  mini_bar_cols 8, 4
+
   def units
     @units ||= card.dataset_card.units
   end
-
-  mini_bar_cols 8, 4
-  bar_cols 6, 2, 4
 
   view :bar_left do
     render_company_header
