@@ -33,6 +33,10 @@ end
 
 format :html do
   delegate :metric_card, :dataset_card, :company_ids, :project_name, to: :card
+
+  bar_cols 6, 2, 4
+  mini_bar_cols 8, 4
+
   def units
     @units ||= "#{rate_subject} #{dataset_card.units}"
   end
@@ -43,16 +47,12 @@ format :html do
     end
   end
 
-  before :bar do
-    voo.show :bar_middle if metric_card.researchable?
-  end
-
   view :bar_left do
     render_metric_header
   end
 
   view :bar_middle do
-    render_research_button
+    render_research_button if metric_card.researchable?
   end
 
   view :bar_right do

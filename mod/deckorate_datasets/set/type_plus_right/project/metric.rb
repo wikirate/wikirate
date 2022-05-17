@@ -6,9 +6,9 @@ def query_hash
 end
 
 format do
-  def filter_map
-    filtering_by_published { metric_filter_map }
-  end
+  # def filter_map
+  #   filtering_by_published { shared_metric_filter_map }
+  # end
 
   def default_sort_option
     :metric_title

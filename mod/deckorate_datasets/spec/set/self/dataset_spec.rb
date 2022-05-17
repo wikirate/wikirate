@@ -16,8 +16,7 @@ RSpec.describe Card::Set::Self::Dataset do
 
     it "filters datasets" do
       expect_view(:titled_content).to have_tag("div._filtered-content") do
-        with_tag "div.filter-form"
-        with_tag "div.filtered-results" do
+        with_tag "div._filtered-content" do
           with_tag "div.bar-view", with: { "data-card-name": "Evil Dataset" }
         end
       end
