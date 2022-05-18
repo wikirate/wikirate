@@ -30,7 +30,8 @@ format do
          ] },
        { key: :metric_answer,
          type: :group,
-         filters: %i[value verification calculated status updated updater source] },
+         filters: [{ key: :value, open: true }] +
+           %i[verification calculated status updated updater source] },
        :dataset]
     end
   end
