@@ -1,9 +1,4 @@
-include_set Abstract::KnownAnswers
-include_set Abstract::Media
-
-def virtual?
-  new?
-end
+include_set Abstract::ResearchBars
 
 def metric_card
   @metric_card ||= left
@@ -32,10 +27,7 @@ def where_answer
 end
 
 format :html do
-  delegate :metric_card, :dataset_card, :company_ids, :project_name, to: :card
-
-  bar_cols 6, 2, 4
-  mini_bar_cols 8, 4
+  delegate :metric_card, :company_ids, to: :card
 
   def units
     @units ||= "#{rate_subject} #{dataset_card.units}"
@@ -55,22 +47,8 @@ format :html do
     render_research_button if metric_card.researchable?
   end
 
-  view :bar_right do
-    render :research_progress_bar
-  end
-
-  view :bar_bottom do
-    nest dataset_card, view: :bar_bottom
-  end
-
   view :research_progress_bar, cache: :never do
     research_progress_bar :metric_link
-  end
-
-  view :research_button, cache: :never do
-    link_to "Research",
-            class: "btn btn-outline-secondary btn-sm research-answer-button over-bar",
-            path: { mark: record_name, project: project_name, view: :research }
   end
 
   def record_name
@@ -80,10 +58,6 @@ format :html do
 
   def full_page_card
     metric_card
-  end
-
-  def dataset_name
-    dataset_card.name
   end
 
   def metric_link status=:all
