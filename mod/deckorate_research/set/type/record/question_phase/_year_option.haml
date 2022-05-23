@@ -2,5 +2,5 @@
   ._research-year-option.row.align-items-center
     .col-11
       = nest answer_for(year), view: :research_option
-    .col-1.text-align-center
+    .col-1.text-center
       = radio_button_tag :year, year, params[:year] == year

@@ -31,15 +31,14 @@ format :html do
     end
   end
 
+  # FIXME: codify conversion snippet handling
   def wikirate_layout body_class
     body_tag "wikirate-layout #{body_class}" do
-      <<-HTML.strip_heredoc
-        #{nest :nav_bar, view: :core}
-        #{yield}
-        #{nest :wikirate_footer, view: :content}
-        #{nest 'ajax loader anime', view: :content}
-        #{nest '_main+google analytics conversion snippet', view: :core}
-      HTML
+      output [nest(:nav_bar, view: :core),
+              yield,
+              nest(:wikirate_footer, view: :content),
+              haml(:ajax_loader_anime),
+              nest("_main+google analytics conversion snippet", view: :core)]
     end
   end
 end

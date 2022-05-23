@@ -206,7 +206,7 @@ class FormulaVariable extends deckorate.Variable
     list = @optionsList()
     list.children().remove()
     if @allResearchedOptions()
-      list.html "<div class='faint'>(default)</div>"
+      list.html "<div class='text-muted'>(default)</div>"
     else
       for key, value of @options()
         list.append "<div class='small'><label>#{key}</label>: #{value}</div>"

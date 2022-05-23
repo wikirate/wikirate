@@ -103,3 +103,59 @@ table {
 .TYPE-datum_set .TYPE_PLUS_RIGHT-datum_set-year.labeled-view .pointer-item {
   display: inline-block;
 }
+
+//TODO make this generic
+.organized-by {
+  font-size: 85%;
+  margin-bottom: 0.5rem;
+  .pointer-item {
+    &:after {
+      content: ",";
+    }
+    &:last-child:after {
+      content: "";
+    }
+  }
+  &.horizontal-list > {
+    div {
+      display: inline;
+    }
+  }
+}
+
+.record-in-project {
+  &:hover {
+    text-decoration: none;
+    > div {
+      @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
+    }
+  }
+}
+
+
+// PROJECT BARS
+
+.TYPE-project, .TYPE-research_group {
+  &.bar:hover .bar-left a {
+    color: $primary;
+  }
+}
+
+.TYPE-project.bar {
+  .bar-left .thumbnail-text {
+    width: 100%;
+  }
+  .bar-right {
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-end !important;
+    text-align: right;
+  }
+  &:hover .default-progress-box .progress {
+    -webkit-filter: none;
+    filter: none;
+    .progress-bar {
+      background-color: $primary;
+    }
+  }
+}

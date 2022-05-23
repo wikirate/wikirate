@@ -448,3 +448,195 @@ card_changes_086:
   value: |-
     Jedi+disturbances in the Force+Death Star+1990
     Fred+dinosaurlabor+Death Star+2010
+card_changes_087:
+  id: 87
+  card_action_id: 2861
+  field: 0
+  value:
+card_changes_088:
+  id: 88
+  card_action_id: 2861
+  field: 1
+  value: '4'
+card_changes_089:
+  id: 89
+  card_action_id: 2861
+  field: 2
+  value: |-
+    mod: script+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: filter+*script
+    mod: bootstrap+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: tinymce editor+*script
+    mod: wikirate layout+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate assets+*script
+    mod: wikirate homepage+*script
+    mod: tasks+*script
+card_changes_090:
+  id: 90
+  card_action_id: 2861
+  field: 3
+  value: f
+card_changes_091:
+  id: 91
+  card_action_id: 2861
+  field: 4
+  value: '7'
+card_changes_092:
+  id: 92
+  card_action_id: 2861
+  field: 5
+  value: '293'
+card_changes_093:
+  id: 93
+  card_action_id: 3947
+  field: 2
+  value: |-
+    mod: script+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: tinymce editor+*script
+    mod: wikirate layout+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate assets+*script
+    mod: wikirate homepage+*script
+    mod: tasks+*script
+card_changes_094:
+  id: 94
+  card_action_id: 2862
+  field: 0
+  value: 'style: mods'
+card_changes_095:
+  id: 95
+  card_action_id: 2862
+  field: 1
+  value: '4'
+card_changes_096:
+  id: 96
+  card_action_id: 2862
+  field: 2
+  value: |-
+    mod: list+*style
+    mod: style+*style
+    mod: bar and box+*style
+    mod: filter+*style
+    mod: bootstrap+*style
+    mod: date+*style
+    mod: tinymce editor+*style
+    mod: deckorate core+*style
+    mod: deckorate research+*style
+    mod: deckorate calculations+*style
+    mod: deckorate datasets+*style
+    mod: deckorate profiles+*style
+    mod: wikirate assets+*style
+    mod: wikirate homepage+*style
+    mod: badges+*style
+card_changes_097:
+  id: 97
+  card_action_id: 2862
+  field: 3
+  value: f
+card_changes_098:
+  id: 98
+  card_action_id: 2862
+  field: 4
+  value:
+card_changes_099:
+  id: 99
+  card_action_id: 2862
+  field: 5
+  value:
+card_changes_100:
+  id: 100
+  card_action_id: 3948
+  field: 2
+  value: |-
+    mod: format+*style
+    mod: search+*style
+    mod: list+*style
+    mod: permissions+*style
+    mod: account+*style
+    mod: rules+*style
+    mod: edit+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
+    mod: style+*style
+    mod: bar and box+*style
+    mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
+    mod: date+*style
+    mod: follow+*style
+    mod: help+*style
+    mod: layout+*style
+    mod: tinymce editor+*style
+    mod: guides+*style
+    mod: wikirate layout+*style
+    mod: wikirate utility+*style
+    mod: deckorate core+*style
+    mod: deckorate research+*style
+    mod: deckorate import+*style
+    mod: deckorate calculations+*style
+    mod: deckorate datasets+*style
+    mod: deckorate profiles+*style
+    mod: wikirate assets+*style
+    mod: wikirate homepage+*style
+    mod: badges+*style
+    mod: tasks+*style
+card_changes_101:
+  id: 101
+  card_action_id: 3952
+  field: 2
+  value: |-
+    mod: format+*style
+    mod: search+*style
+    mod: list+*style
+    mod: permissions+*style
+    mod: account+*style
+    mod: rules+*style
+    mod: edit+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
+    mod: style+*style
+    mod: bar and box+*style
+    mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
+    mod: date+*style
+    mod: follow+*style
+    mod: help+*style
+    mod: layout+*style
+    mod: tinymce editor+*style
+    mod: thumbnail+*style
+    mod: guides+*style
+    mod: wikirate layout+*style
+    mod: wikirate utility+*style
+    mod: deckorate core+*style
+    mod: deckorate research+*style
+    mod: deckorate import+*style
+    mod: deckorate calculations+*style
+    mod: deckorate datasets+*style
+    mod: deckorate profiles+*style
+    mod: wikirate assets+*style
+    mod: wikirate homepage+*style
+    mod: badges+*style
+    mod: tasks+*style
+    mod: vega+*style
