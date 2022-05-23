@@ -140,20 +140,8 @@ $colorMap: (
       border-left: 4px solid $color;
     }
   }
-  //
-  //.nav-item .RIGHT-#{$type} {
-  //  &.tab-badge .badge {
-  //    background-color: rgba($color, 0.75) !important;
-  //  }
-  //}
 
-  //.nav-item:hover .RIGHT-#{$type} {
-  //  &.tab-badge .badge {
-  //    background-color: $color !important;
-  //  }
-  //}
-
-  .expanded-bar, .bar, .box {
+  .bar, .box {
     &:hover .RIGHT-#{$type} {
       &.labeled-badge .badge {
         background-color: $color !important;

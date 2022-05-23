@@ -45,3 +45,9 @@ table.import-table {
     }
   }
 }
+
+.tab-li-not_ready .tab-title .badge { background-color: $secondary; }
+.tab-li-ready     .tab-title .badge { background-color: $info; }
+.tab-li-importing .tab-title .badge { background-color: $warning; }
+.tab-li-failed    .tab-title .badge { background-color: $danger; }
+.tab-li-success   .tab-title .badge { background-color: $success; }

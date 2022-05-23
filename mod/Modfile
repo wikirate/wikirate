@@ -31,7 +31,7 @@ mod "deckorate_profiles"
 
 ## WikiRate mods
 mod "wikirate_companies"
-mod "wikirate_assets" # TODO: rename to wikirate_theme
+mod "wikirate_assets" # TODO: refactor away
 mod "wikirate_homepage"
 mod "wikirate"
 

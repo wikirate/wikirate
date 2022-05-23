@@ -74,7 +74,7 @@ $box_stripe_color: $gray-700;
   }
 }
 
-.bar:hover, .expanded-bar:hover .bar {
+.bar:hover {
   border-left-color: $gray-500;
   // Following needed on answer bars
   .bar-left .company-link a {
@@ -95,8 +95,6 @@ $box_stripe_color: $gray-700;
     font-size: 1em;
   }
 }
-
-
 
 .box-top {
   h1, h2, h3, h4, h5, h6 {
@@ -126,17 +124,5 @@ a.box-item {
 }
 
 // MOVE rules below to type-specific sheets?
-
-.bar-middle .RIGHT-topic .pointer-list {
-  text-align: center;
-}
-
-
-
-.TYPE-topic, .TYPE-company, .TYPE-company_group {
-  &.box .box-middle {
-    text-align: center;
-  }
-}
 
 

@@ -1,3 +1,9 @@
+.TYPE-company, .TYPE-company_group {
+  &.bar .box-middle {
+    text-align: center;
+  }
+}
+
 .constraint-list-editor {
   li > .input-group {
     margin: 2rem 0;

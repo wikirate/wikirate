@@ -8,9 +8,7 @@
   }
 }
 
-
 table.wikirate-table, .table.wikirate-table {
-
   &.metric {
     @include left-color(rgba(103, 78, 167, 0.14), $metric-color);
   }
@@ -20,8 +18,6 @@ table.wikirate-table, .table.wikirate-table {
   &.topic {
     @include left-color(rgba(43, 126, 160, 0.14), $topic-color);
   }
-
-
 }
 
 .metric_answer.wikirate-table {
@@ -40,14 +36,3 @@ table.wikirate-table, .table.wikirate-table {
     }
   }
 }
-
-
-
-//.tab-li-not_ready .tab-title .badge { background-color: $secondary; }
-//.tab-li-ready     .tab-title .badge { background-color: $info; }
-//.tab-li-importing .tab-title .badge { background-color: $warning; }
-//.tab-li-failed    .tab-title .badge { background-color: $danger; }
-//.tab-li-success   .tab-title .badge { background-color: $success; }
-
-
-
