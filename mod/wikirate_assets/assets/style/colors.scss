@@ -4,7 +4,7 @@
     border-left-color: rgba($color, 0.2) !important;
   }
 
-  &.expanded_bar-view:hover .bar, &.bar:hover {
+  &.bar:hover {
     border-left-color: $color !important;
     .bar-left {
       a, .image-box i {

@@ -1,5 +1,0 @@
-deckorate_core:
-  items:
-    - variables.scss
-    - metrics.scss
-    - new_metric.scss
