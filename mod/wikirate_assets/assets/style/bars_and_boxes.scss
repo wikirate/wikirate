@@ -74,7 +74,7 @@ $box_stripe_color: $gray-700;
   }
 }
 
-.bar:hover, .expanded-bar:hover .bar {
+.bar:hover {
   border-left-color: $gray-500;
   // Following needed on answer bars
   .bar-left .company-link a {
@@ -95,8 +95,6 @@ $box_stripe_color: $gray-700;
     font-size: 1em;
   }
 }
-
-
 
 .box-top {
   h1, h2, h3, h4, h5, h6 {
@@ -127,109 +125,4 @@ a.box-item {
 
 // MOVE rules below to type-specific sheets?
 
-.bar-middle .RIGHT-topic .pointer-list {
-  text-align: center;
-}
 
-
-// PROJECT BARS
-
-.TYPE-project, .TYPE-research_group {
-  &.bar:hover .bar-left a {
-    color: $primary;
-  }
-}
-
-.TYPE-project.bar {
-  .bar-left .thumbnail-text {
-    width: 100%;
-  }
-  .bar-right {
-    flex-direction: column;
-    justify-content: left;
-    align-items: flex-end !important;
-    text-align: right;
-  }
-  &:hover .default-progress-box .progress {
-    -webkit-filter: none;
-    filter: none;
-    .progress-bar {
-      background-color: $primary;
-    }
-  }
-}
-
-// METRIC BOXES
-
-.TYPE-metric.box {
-  height: 320px;
-  .box-top {
-    min-height: 80px;
-    .thumbnail-title {
-      padding-bottom: 0.5rem;
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid #eee;
-    }
-    .box-top-subtitle {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .image-box.small {
-        min-width: 25px;
-        min-height: 25px;
-        width: 25px;
-        height: 25px;
-      }
-      .thumbnail-subtitle {
-        font-size: 0.8em;
-        color: $text-muted;
-      }
-      .bookmark-view {
-        min-width: auto;
-        .bookmark-count {
-          padding-right: 0;
-        }
-      }
-      > .image-box {
-        margin: 0;
-      }
-    }
-  }
-  .box-middle {
-    min-height: auto;
-    padding: 1em;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    i {
-      font-size: 20px;
-    }
-    &:before {
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 95px;
-      font-family: 'FontAwesome';
-      color: $gray-100;
-      content: "\f059";
-      text-align: center;
-      font-size: 8em;
-    }
-  }
-  .box-bottom .labeled-badge {
-    padding: 0!important;
-  }
-}
-
-.TYPE-topic, .TYPE-company, .TYPE-company_group {
-  &.box .box-middle {
-    text-align: center;
-  }
-}
-
-.bar-and-fixme {
-  .bar-view, .expanded_bar-view {
-    width: 100%;
-    margin-right: 1em;
-  }
-}

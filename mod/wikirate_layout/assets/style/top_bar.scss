@@ -80,32 +80,4 @@
   }
 }
 
-/*-------------- Topbar Mobile -------------*/
-.slicknav_menu {
-  background: #fff;
-  .plus-icon {
-    font-family: FontAwesome;
-    float: left;
-    margin-right: 5px;
-  }
-}
-
-.slicknav_nav a {
-  color: $top-bar-anchor-color;
-}
-a.slicknav_btn {
-  float: left;
-  margin: 14px 5px;
-}
-
-.slicknav_btn {
-  background-color: #fff;
-}
-
-.slicknav_menu .slicknav_icon-bar {
-  background-color: $top-bar-anchor-color;
-  @include box-shadow(0, 0, 0, rgba(0, 0, 0, .13));
-}
-
-
 

@@ -1,0 +1,73 @@
+.table-borderless {
+  > thead, > tbody, > tfoot {
+    > tr, > th {
+      border: none;
+    }
+  }
+}
+
+.table-condensed {
+  margin-bottom: 10px;
+  > thead, > tbody, > tfoot {
+    > tr, > th {
+      padding: 4px;
+    }
+  }
+}
+
+.table  {
+  font-style: normal;
+  margin-bottom: 20px;
+  border: 1px solid $border-color;
+  thead,tbody,tfoot {
+    > tr > th, td {
+      line-height: 1.42857;
+      border-top: 1px solid $border-color;
+      border-right: 1px solid $border-color;
+    }
+    td {
+      max-width: 400px;
+    }
+  }
+
+  thead > tr > {
+    th, td {
+      font-style: normal;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+}
+
+table.wikirate-table, .table.wikirate-table {
+  background: #fff;
+  width: 100%;
+  thead > tr > th {
+    background: $white;
+    padding: 2px;
+    font-size: 0.8em;
+    text-align: center;
+    color: $gray-500;
+    a {
+      color: $gray-500;
+    }
+  }
+
+  td {
+    padding: 1em;
+    &.in-file {
+      width: 33%;
+    }
+    border-bottom: 1px dotted $gray-200;
+  }
+
+  .tr-link:hover {
+    background-color: $gray-100;
+    cursor: pointer;
+  }
+
+  .thumbnail {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+}

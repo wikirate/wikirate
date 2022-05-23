@@ -1,3 +1,9 @@
+#research-details .uncite-button,
+.no-citation .cite-and-refresh-buttons,
+.left_research_side-view .cite-and-refresh-buttons {
+  display: none;
+}
+
 .pdf-source-preview, .webpage-preview {
   border-left: 3px solid rgba($source-color, 0.2);
   border-top: 1px solid $border-color;
@@ -7,12 +13,6 @@
   .TYPE-source.bar, .pdf-source-preview, .webpage-preview {
     border-left-color: $source-color!important;
   }
-}
-
-#research-details .uncite-button,
-.no-citation .cite-and-refresh-buttons,
-.left_research_side-view .cite-and-refresh-buttons {
-  display: none;
 }
 
 .preview-view.TYPE-source {
@@ -98,16 +98,6 @@
   }
 }
 
-.TYPE-metric.new-view .nav-pills  {
-  background: $gray-100;
-  border-bottom: 1px solid $border-color;
-  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    color: $white;
-    background-color: $secondary;
-    border-radius: 0;
-  }
-}
-
 .open-view > .d0-card-frame > .d0-card-body.TYPE-source{
   padding-left: 0;
 }
@@ -121,6 +111,27 @@ a.toggle-source-option {
   color: $source-color !important;
 }
 
-#filter_wikirate_link {
-  min-width: 300px;
+.source-creator-credit {
+  // border-bottom: 1px solid $div-border-color;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+  color: #ccc;
+
+  .subtitle-header {
+    float: left;
+    padding-right: 6px;
+  }
+
+  a {
+    color: $gray-500;
+    font-weight: bold;
+  }
+
+  div {
+    display: inline;
+  }
+
+  .item-link {
+    padding: 0;
+  }
 }
