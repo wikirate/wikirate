@@ -11,6 +11,16 @@
   }
 }
 
+//workaround
+.edit-view.TYPE_PLUS_RIGHT-metric-formula .btn {
+  z-index: 0 !important;
+}
+
+.RIGHT-formula.d0-card-body {
+  white-space: normal;
+}
+
+
 .options-scheme-cell {
   padding: 0 !important;
 }
@@ -94,4 +104,39 @@ code._formula-as-javascript {
 }
 .answer-board-help-text {
   padding: 1em;
+}
+
+//custom icons
+.overridden-icon {
+  > i {
+    &:first-child {
+      position: absolute;
+      top: -3px;
+      right: -2px;
+    }
+    &:last-child {
+      opacity: 0.5;
+    }
+  }
+  position: relative;
+}
+
+.standard-formula-core {
+  background: $gray-100;
+  padding: .75em 1.5em;
+  width: 100%;
+  margin: 0.5em 0;
+  white-space: pre-wrap;
+  .formula-equals {
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  .formula-body {
+    .bar-view {
+      margin: 0.5em;
+      .bar-body {
+        background: $white;
+      }
+    }
+  }
 }

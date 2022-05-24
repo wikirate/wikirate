@@ -1,0 +1,83 @@
+
+
+/*----------- Top bar ---------*/
+.navbar-brand img {
+  max-width: 170px;
+  margin: -12px;
+  overflow: hidden;
+}
+
+#navbar-body {
+  > * {
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    padding: 0.5rem 0;
+  }
+
+  .navbar-right .navbar-nav {
+    float: right;
+  }
+
+  #logging {
+    a.nav-link {
+      padding: 0 1rem;
+      color: $top-bar-anchor-color;
+      display: inline;
+    }
+    .btn-group {
+      align-items: center;
+      .dropdown-toggle {
+        padding: 0 !important;
+      }
+      #my-card-link, .dropdown-toggle {
+        padding-right: 0.5em;
+      }
+    }
+
+    a#my-card-link {
+      display: block;
+      font-size: 1.2em;
+    }
+
+    ul.dropdown-menu a, a.dropdown-toggle {
+      font-size: 1rem;
+      padding-top: 0.7rem;
+    }
+
+    .dropdown-header {
+      font-size: 0.875rem !important;
+      margin-top: 0;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    > * {
+      padding: 0;
+      width: 40%;
+    }
+
+    .nav-menu {
+      justify-content: left;
+    }
+    .nav-bar-right {
+      width: 20%;
+    }
+
+    #logging {
+      display: flex;
+
+      &.logged-in {
+        flex-direction: column;
+        a {
+          font-size: .8em;
+        }
+      }
+      a#my-card-link {
+        display: block;
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+

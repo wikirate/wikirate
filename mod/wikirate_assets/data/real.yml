@@ -13,7 +13,7 @@
 - :name: nav bar
   :type: :html
   :codename: :nav_bar
-  :content: "<nav class=\"navbar fixed-top background-white drop-shadow navbar-toggleable-md
+  :content: "<nav class=\"navbar fixed-top bg-white drop-shadow navbar-toggleable-md
     navbar-light\">\r\n    <button class=\"navbar-toggler navbar-toggler-right\" type=\"button\"
     data-bs-dismiss=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\"
     aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n

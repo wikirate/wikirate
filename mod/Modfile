@@ -11,12 +11,12 @@ mod "guides"
 #refactor away
 mod "conversation" # upgrade discussions/comments
 
-# these need rethinking...
-mod "wikirate_layout"
-mod "wikirate_utility"
-mod "topics"
-
 ## DeckoRate mods
+mod "deckorate_utility" # TODO: move out wikirate-specific code
+mod "deckorate_layout"
+
+mod "topics" # TODO: extract generalizable stuff. distribute remainder in dr mods
+
 mod "deckorate_core"
 mod "deckorate_research"
 mod "deckorate_import"
@@ -31,7 +31,7 @@ mod "deckorate_profiles"
 
 ## WikiRate mods
 mod "wikirate_companies"
-mod "wikirate_assets" # TODO: rename to wikirate_theme
+mod "wikirate_assets" # TODO: refactor away
 mod "wikirate_homepage"
 mod "wikirate"
 

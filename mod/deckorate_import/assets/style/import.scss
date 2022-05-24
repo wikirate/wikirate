@@ -1,0 +1,53 @@
+
+table.import-status-table {
+  max-width: 100%;
+  overflow: hidden;
+  td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0.5em;
+    max-width: 200px;
+    &:first-child {
+      text-overflow: clip;
+    }
+  }
+}
+a.import-status-refresh {
+  position: relative;
+  top: 1.5em;
+  i {
+    font-size: 2.5em;
+    color: $gray-600;
+  }
+}
+
+.import-core > .tabbable > .nav a {
+  font-size: 1.5em;
+}
+
+table.import-table {
+  table-layout: fixed;
+  .mapped-import-cell a {
+    color: $info;
+  }
+  .unmapped-import-attrib {
+    background-color: rgba($secondary, 0.3);
+    border: 3px solid white;
+  }
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  thead, tbody, tfoot {
+    > tr > th, td {
+      border-right-style: none
+    }
+  }
+}
+
+.tab-li-not_ready .tab-title .badge { background-color: $secondary; }
+.tab-li-ready     .tab-title .badge { background-color: $info; }
+.tab-li-importing .tab-title .badge { background-color: $warning; }
+.tab-li-failed    .tab-title .badge { background-color: $danger; }
+.tab-li-success   .tab-title .badge { background-color: $success; }
