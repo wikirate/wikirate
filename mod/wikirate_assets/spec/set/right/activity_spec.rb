@@ -13,9 +13,9 @@ describe Card::Set::Right::Activity do
     subject { render_view :core, name: "joe_user+activity" }
 
     it "renders view" do
-      is_expected.to have_tag("div.act-accordion-group") do
-        with_tag "div.card" do
-          with_tag :a, text: /Empty post/
+      is_expected.to have_tag("div.accordion") do
+        with_tag "div.accordion-item" do
+          with_tag :button, text: /Empty post/
         end
       end
     end

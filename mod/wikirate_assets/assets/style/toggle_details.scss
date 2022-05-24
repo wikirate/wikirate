@@ -111,17 +111,9 @@
   margin-bottom: 1em;
 }
 
-body.wikirate-two-column-layout,
-body.wikirate-one-full-column-layout {
-  .details-content {
-    .d0-card-header-title {
-      border-bottom: 0 !important;
-      .card-title {
-        font-size: 1.3em !important;
-      }
-    }
-    h5 {
-      border-bottom: 0 !important;
-    }
-  }
+.details_sidebar-view .year-and-value {
+  cursor: pointer;
 }
+
+
+

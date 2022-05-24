@@ -111,7 +111,6 @@
   opacity: 0.97
 }
 
-
 .transparent-background-white {
   background: rgba(#fff, 0.97);
 }
@@ -197,77 +196,6 @@
   background-color: inherit;
 }
 
-.video-section-lm {
-  margin-top: -10%;
-  position: relative;
-}
-// Play icon on video section
-.video-play-button {
-  position: absolute;
-  z-index: 10;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  box-sizing: content-box;
-  display: block;
-  width: 32px;
-  height: 44px;
-  cursor: pointer;
-  border-radius: 50%;
-  padding: 18px 20px 18px 28px;
-
-  &:before {
-    content: "";
-    position: absolute;
-    z-index: 0;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    display: block;
-    width: 64px;
-    height: 64px;
-    background: lighten($company-color, 10%);
-    border-radius: 50%;
-    -webkit-animation: pulse-border 4s ease-out infinite;
-    animation: pulse-border 4s ease-out infinite;
-  }
-
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    display: block;
-    width: 64px;
-    height: 64px;
-    background: $company-color;
-    border-radius: 50%;
-    -webkit-transition: all 1s;
-    transition: all 1s;
-    @include box-shadow(0,0,20px,rgb(255, 230, 208));
-  }
-
-  &:hover:after {
-    background-color: darken($company-color, 10%);
-  }
-
-  span {
-    display: block;
-    position: relative;
-    top: 12px;
-    left: 7px;
-    z-index: 3;
-    width: 0;
-    height: 0;
-    border-left: 15px solid $white;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-  }
-}
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
     @content;
