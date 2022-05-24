@@ -859,3 +859,43 @@ counts_172:
   left_id: 3497
   right_id: 679
   value: 1
+counts_173:
+  id: 173
+  left_id: 2857
+  right_id: 618
+  value: 0
+counts_174:
+  id: 174
+  left_id: 2861
+  right_id: 618
+  value: 0
+counts_175:
+  id: 175
+  left_id: 2867
+  right_id: 618
+  value: 0
+counts_176:
+  id: 176
+  left_id: 2874
+  right_id: 618
+  value: 0
+counts_177:
+  id: 177
+  left_id: 2881
+  right_id: 618
+  value: 0
+counts_178:
+  id: 178
+  left_id: 2887
+  right_id: 618
+  value: 0
+counts_179:
+  id: 179
+  left_id: 3513
+  right_id: 618
+  value: 0
+counts_180:
+  id: 180
+  left_id: 2897
+  right_id: 618
+  value: 0

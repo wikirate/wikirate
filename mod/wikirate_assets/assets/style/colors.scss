@@ -4,7 +4,7 @@
     border-left-color: rgba($color, 0.2) !important;
   }
 
-  &.expanded_bar-view:hover .bar, &.bar:hover {
+  &.bar:hover {
     border-left-color: $color !important;
     .bar-left {
       a, .image-box i {
@@ -14,11 +14,12 @@
   }
 
   &.box {
-    .box-top a {
-      color: $color;
-    }
     &:hover {
       border-top-color: $color !important;
+
+      .box-top a {
+        color: $color;
+      }
 
       .box-middle i {
         color: $color;
@@ -26,6 +27,7 @@
     }
   }
 }
+
 
 @mixin quickFilterTag($by, $color) {
   .quick-filter {
@@ -112,7 +114,7 @@ $colorMap: (
   .TYPE-#{$type} {
     @include barbox($color);
 
-    &.thumbnail .thumbnail-title .card-title {
+    &.thumbnail:hover .thumbnail-title .card-title {
       color: $color
     }
   }
@@ -140,20 +142,8 @@ $colorMap: (
       border-left: 4px solid $color;
     }
   }
-  //
-  //.nav-item .RIGHT-#{$type} {
-  //  &.tab-badge .badge {
-  //    background-color: rgba($color, 0.75) !important;
-  //  }
-  //}
 
-  //.nav-item:hover .RIGHT-#{$type} {
-  //  &.tab-badge .badge {
-  //    background-color: $color !important;
-  //  }
-  //}
-
-  .expanded-bar, .bar, .box {
+  .bar, .box {
     &:hover .RIGHT-#{$type} {
       &.labeled-badge .badge {
         background-color: $color !important;

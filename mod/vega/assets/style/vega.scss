@@ -1,0 +1,25 @@
+.vega-bindings {
+  background: $gray-200;
+  border: 1px solid $gray-600;
+  padding: 1em;
+  float: right;
+  min-width: 180px;
+  width: 20%;
+  text-align: right;
+  right: 0;
+  top: 38px;
+  display: none;
+  span {
+    display: block;
+    color: $gray-600;
+  }
+}
+
+.with-bindings {
+  .vega-bindings {
+    display: block;
+  }
+  canvas {
+    max-width: 80%;
+  }
+}

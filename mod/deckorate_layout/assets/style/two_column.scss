@@ -1,0 +1,38 @@
+
+body.wikirate-two-column-layout {
+  //h1, h2 {
+  //  font-size: 1.6rem !important;
+  //}
+  //h3, h4, .d0-card-header-title .card-title {
+  //  font-size: 1.4rem !important;
+  //}
+  //h5, h6 {
+  //  font-size: 1.2rem !important;
+  //}
+  .right-col {
+    border-top: 2px solid $border-color;
+    border-color: inherit;
+    margin-top: 15px;
+    > .tabbable {
+      padding-top: 15px;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    //Div alignments
+    .left-col {
+      border-right: 1px solid $border-color;
+    }
+
+    .right-col {
+      border-left: 1px solid $border-color;
+      border-top: 0;
+      margin-left: -1px;
+      margin-top: 0;
+      > .tabbable {
+        padding-top: 0;
+      }
+    }
+  }
+}
+
