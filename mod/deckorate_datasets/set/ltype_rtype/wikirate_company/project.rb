@@ -1,11 +1,5 @@
 # <Company>+<Dataset> handles company listings on datasets' company tabs
-
-include_set Abstract::KnownAnswers
-include_set Abstract::Media
-
-def virtual?
-  new?
-end
+include_set Abstract::ResearchBars
 
 def company_card
   @company_card ||= left
@@ -26,10 +20,7 @@ def where_answer
 end
 
 format :html do
-  delegate :company_card, :dataset_card, :metric_ids, :project_name, to: :card
-
-  bar_cols 6, 2, 4
-  mini_bar_cols 8, 4
+  delegate :company_card, :metric_ids, to: :card
 
   def units
     @units ||= card.dataset_card.units
@@ -53,20 +44,6 @@ format :html do
     render :research_button
   end
 
-  view :bar_right do
-    render :research_progress_bar
-  end
-
-  view :bar_bottom do
-    nest card.dataset_card, view: :bar_bottom
-  end
-
-  view :research_button, cache: :never do
-    link_to "Research",
-            class: "btn btn-outline-secondary btn-sm research-answer-button over-bar",
-            path: { mark: record_name, project: card.project_name, view: :research }
-  end
-
   view :research_progress_bar, cache: :never do
     research_progress_bar :company_link
   end
@@ -80,10 +57,6 @@ format :html do
 
   def full_page_card
     company_card
-  end
-
-  def dataset_name
-    card.dataset_card.name
   end
 
   def company_link status=:all
