@@ -1,0 +1,115 @@
+.TYPE-research_group table {
+  thead {
+    border-bottom: 4px solid $border-color;
+    border-left: 4px solid $gray-600;
+    .thumbnail {
+      border: 0;
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+  tbody tr > td {
+    font-weight: bold;
+    font-size: 12px;
+    &:first-child {
+      text-align: right;
+      font-weight: normal;
+    }
+  }
+  thead tr > th {
+    vertical-align: middle;
+    &:first-child {
+      width: 40%;
+    }
+    width: 20%;
+  }
+}
+
+.contribution-report-header {
+  .nav-tabs{
+    padding-bottom: 3px;
+  }
+  .nav-link{
+    margin: 0px;
+    height: 100%;
+  }
+  .nav-item {
+    width: 16%;
+    margin-bottom: -7px;
+    .tab-label {
+      white-space: nowrap;
+    }
+  }
+}
+
+.contribution-report-title {
+  padding: 0 20px;
+  padding-left: 18px;
+  padding-top: 17px;
+  color: inherit;
+}
+
+.contribution-report {
+  margin-bottom: 15px;
+  border: 1px solid $border-color;
+}
+
+li.contribution-report-title-box {
+  float: left !important;
+  width: 30% !important;
+  > a {
+    padding-bottom: 27px;
+    padding-left: 0px;
+    padding-top: 12px;
+    color: inherit;
+  }
+}
+
+.contribution-report-toggle {
+  width: 6%!important;
+  border-left: 1px solid $border-color;
+  i {
+    padding: 14px 0;
+  }
+}
+
+
+//Contribution section on research group page
+.contribution-item {
+  overflow: hidden;
+  //cursor: move;
+  border: 1px solid $border-color;
+  clear: both;
+  margin-bottom: -1px;
+
+  .thumbnail {
+    border: 0;
+    margin: 2px
+  }
+  .header {
+    width: 70%;
+    //cursor: pointer;
+    float: left;
+    border-right: 1px solid $gray-200;
+    //color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+  .data {
+    width: 28%;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+    &:hover {
+      //background: $white;
+    }
+  }
+  &.metric-item, &.company-item, &.topic-item{
+    .header .name {
+      color: $text-muted;
+    }
+  }
+}

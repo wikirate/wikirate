@@ -29,8 +29,10 @@ format :html do
   # end
 
   view :titled_content, wrap: :slot do
-    render_full_details
+    render_details
   end
+
+  view :title, template: :haml
 
   view :details do
     [details_top, render_expanded_details]

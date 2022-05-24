@@ -1,11 +1,3 @@
-When(/^I research answer "([^"]*)" for year "([^"]*)"$/) do |answer, year|
-  visit path_to("new answer")
-  fill_autocomplete("metric", with: "Joe User+RM")
-  fill_autocomplete("wikirate_company", with: "Apple Inc")
-  select_year year
-  fill_in "Answer", with: answer
-end
-
 And(/^I cite source for 2008 confirming$/) do |expected_msg|
   add_source :star_wars
   confirm_citation expected_msg.tr("\n", " ")
