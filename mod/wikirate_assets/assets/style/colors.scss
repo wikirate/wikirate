@@ -14,11 +14,12 @@
   }
 
   &.box {
-    .box-top a {
-      color: $color;
-    }
     &:hover {
       border-top-color: $color !important;
+
+      .box-top a {
+        color: $color;
+      }
 
       .box-middle i {
         color: $color;
@@ -26,6 +27,7 @@
     }
   }
 }
+
 
 @mixin quickFilterTag($by, $color) {
   .quick-filter {
