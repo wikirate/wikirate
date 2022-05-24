@@ -106,6 +106,7 @@ format :html do
   end
 
   def filtered_item_view
+    voo.items[:hide] = :bookmarks
     send "#{metric_type_codename}_filtered_item_view"
   end
 
@@ -117,6 +118,10 @@ format :html do
     super.tap do |hash|
       hash.merge! metric_type: %w[Score WikiRating], name: "" if rating?
     end
+  end
+
+  def filter_items_modal_slot
+    super.merge items: { view: :thumbnail }
   end
 
   def default_item_view

@@ -1,0 +1,88 @@
+:root {
+  font-size: 16px;
+}
+
+@include media-breakpoint-down(md) {
+  :root { font-size: 14px; }
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
+  line-height: 1.55;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+body.wikirate-two-column-layout,
+body.wikirate-one-full-column-layout {
+  .details-content {
+    .d0-card-header-title {
+      border-bottom: 0 !important;
+      .card-title {
+        font-size: 1.3em !important;
+      }
+    }
+  }
+}
+
+
+// make sure footer is at bottom
+body.wikirate-layout #main {
+  min-height: calc(100vh - 85px);
+}
+
+body#tinymce {
+  padding: 4px;
+}
+
+//body.home-layout.wikirate-layout > nav.navbar {
+//  -webkit-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
+//  -moz-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
+//  box-shadow: 0 9px 20px rgba(0,0,0,0.06);
+//}
+
+
+sup {
+  line-height: 0;
+}
+img {
+  border: 0;
+}
+canvas {
+  max-width: 100%;
+}
+
+body {
+  >#wikirate_footer-content-view {
+    /*position: fixed;*/
+    bottom: 0px;
+    z-index: 9;
+    background: #fff;
+    border-top: 1px solid $gray-200;
+    width: 100%;
+    color: #999;
+    padding: 0.5em;
+    margin-top: 2em;
+    small {
+      width: 100%;
+      display: inherit;
+      text-align: center;
+    }
+    a {
+      color: #999;
+      text-decoration: underline;
+    }
+    a:hover {
+      color: #222
+    }
+  }
+}
+
+
+.wikirate-layout > nav.navbar {
+  box-shadow: none;
+  border-bottom: 1px solid $border-color;
+}
+
