@@ -28767,3 +28767,19 @@ card_actions_3596:
   action_type: 1
   draft: 0
   comment:
+card_actions_3597:
+  id: 3972
+  card_id: 3659
+  card_act_id: 106462
+  super_action_id:
+  action_type: 0
+  draft: 0
+  comment:
+card_actions_3598:
+  id: 3973
+  card_id: 297
+  card_act_id: 106463
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:

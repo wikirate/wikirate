@@ -920,3 +920,25 @@ card_changes_139:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
+card_changes_140:
+  id: 140
+  card_action_id: 3973
+  field: 2
+  value: |-
+    mod: list+*script
+    mod: script+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: tinymce editor+*script
+    mod: deckorate layout+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate assets+*script
+    mod: wikirate homepage+*script
+    mod: tasks+*script
