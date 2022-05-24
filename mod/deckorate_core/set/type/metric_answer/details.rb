@@ -28,11 +28,9 @@ format :html do
   #   nest card.company_card, view: :details_tab
   # end
 
-  view :titled_content, wrap: :slot do
-    render_details
+  view :core, wrap: :slot do
+    [haml(:title), render_details]
   end
-
-  view :title, template: :haml
 
   view :details do
     [details_top, render_expanded_details]
@@ -81,24 +79,6 @@ format :html do
     haml :details_top
   end
 
-  view :details_sidebar, wrap: :slot, template: :haml # do
-  #   wrap { filtering(".RIGHT-answer ._compact-filter") { haml :details_sidebar } }
-  # end
-
-  view :full_details do
-    render_details_sidebar hide: %i[details_sidebar_closer full_page_link]
-  end
-
-  view :company_details_sidebar do
-    render_details_sidebar hide: :metric_header
-  end
-
-  # used in metric values list on a company page
-  view :metric_details_sidebar do
-    render_details_sidebar hide: :company_header
-  end
-
-  view :details_sidebar_closer, template: :haml
 
   view :company_header do
     nest card.company_card, view: :shared_header
