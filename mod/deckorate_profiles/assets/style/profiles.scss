@@ -35,33 +35,18 @@
   }
 }
 
+.company-profile-tab {
+  position: absolute;
+  bottom: 10px;
+  min-width: 60%;
+  text-align: center;
+}
+
 /*----------- Media queries ---------*/
 
-@media all and (max-width: 1150px) {
-
-}
-
-@media all and (max-width: 1205px) {
-
-}
 
 @media all and (max-width: 990px) {
   .contributions-about-link {
     position: relative;
   }
-}
-
-@media all and (max-width: 48em) {
-
-}
-
-@media all and (max-width: 47em) {
-
-
-}
-
-/*----------- Media queries- For mobile devices ---------*/
-
-@media all and (max-width: 40em) {
-
 }

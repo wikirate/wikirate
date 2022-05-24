@@ -27,15 +27,6 @@
     }
   }
 
-  .grid-column,
-  .grid-row {
-    margin-bottom: 24px;
-  }
-
-  // body#wagn {
-  //   min-width: 325px;
-  // }
-
   #top-bar {
     .logo-bar img {
       margin-top: 0;
@@ -55,16 +46,6 @@
     #logging a {
       margin-left: 4px;
     }
-
-    .search-bar-mobile {
-      display: block;
-      float: right;
-    }
-
-    .search-bar {
-      width: 92%;
-      display: none;
-    }
   }
 
   a.slicknav_btn {
@@ -72,36 +53,11 @@
     margin: 6px 0 0 -6px;
   }
 
-  #page-wrapper {
-    padding: 6px 4px;
-  }
-
-  #top-bar-wrapper .slicknav_menu .slicknav_nav .account-info-bar .logged-out {
-    display: none;
-  }
-
-  #top-banner-wrapper .column-2 .SELF-wikirate_globe.d0-card-content {
-    display: none;
-  }
-
-  .ui-tabs .ui-tabs-panel {
-    padding: 0;
-  }
-
   .TYPE_PLUS_RIGHT-user-Xfollowing {
     display: none;
   }
-
-  .card-slot > .card-header .card-menu-link {
-    margin: -40px -3px;
-  }
 }
 
-@media(max-width: 480px) {
-  h1 {
-    font-size: 22pt;
-  }
-}
 
 .popover {
   max-width: 100%;

@@ -36,7 +36,7 @@ format :html do
   # OTHER VIEWS
 
   view :creator_credit do
-    wrap_with :div, class: "last-edit" do
+    wrap_with :div, class: "source-creator-credit" do
       "added #{_render_created_at} ago by #{creator}"
     end
   end

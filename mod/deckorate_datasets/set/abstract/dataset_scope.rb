@@ -101,9 +101,8 @@ event :prevent_deletion_if_data_subset_items_present, :validate, on: :delete do
 end
 
 format :html do
-  def filtered_list_input
-    voo.items = { view: :thumbnail }
-    super
+  def filtered_item_view
+    :thumbnail
   end
 
   def input_type

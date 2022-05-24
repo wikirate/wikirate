@@ -5616,15 +5616,16 @@ cards_270:
   right_id:
   current_revision_id:
   created_at: 2022-05-10 02:43:30.000000000 Z
-  updated_at: 2022-05-10 12:50:51.000000000 Z
+  updated_at: 2022-05-23 18:57:08.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*self"
   read_rule_id: 273
   references_expired:
   trash: 0
   type_id: 2
   db_content: |-
+    *script
     *autoname
     *layout
     *read
@@ -5635,7 +5636,6 @@ cards_270:
     *content options
     *default
     *structure
-    *script
     *delete
     *style
     *help
@@ -5643,6 +5643,7 @@ cards_270:
     *captcha
     *guide
   search_content: |-
+    *script
     *autoname
     *layout
     *read
@@ -5653,7 +5654,6 @@ cards_270:
     *content options
     *default
     *structure
-    *script
     *delete
     *style
     *help
@@ -6207,9 +6207,9 @@ cards_297:
   right_id: 293
   current_revision_id:
   created_at: 2022-05-10 02:43:34.000000000 Z
-  updated_at: 2022-05-10 12:46:03.000000000 Z
+  updated_at: 2022-05-23 23:05:14.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
@@ -6219,12 +6219,12 @@ cards_297:
     mod: script+*script
     mod: ace editor+*script
     mod: bar and box+*script
-    mod: filter+*script
     mod: bootstrap+*script
+    mod: filter+*script
     mod: tabs+*script
     mod: date+*script
     mod: tinymce editor+*script
-    mod: wikirate layout+*script
+    mod: deckorate layout+*script
     mod: deckorate core+*script
     mod: deckorate research+*script
     mod: deckorate calculations+*script
@@ -6236,12 +6236,12 @@ cards_297:
     mod: script+*script
     mod: ace editor+*script
     mod: bar and box+*script
-    mod: filter+*script
     mod: bootstrap+*script
+    mod: filter+*script
     mod: tabs+*script
     mod: date+*script
     mod: tinymce editor+*script
-    mod: wikirate layout+*script
+    mod: deckorate layout+*script
     mod: deckorate core+*script
     mod: deckorate research+*script
     mod: deckorate calculations+*script
@@ -6698,46 +6698,90 @@ cards_318:
   right_id:
   current_revision_id:
   created_at: 2022-05-10 02:43:35.000000000 Z
-  updated_at: 2022-05-10 12:46:04.000000000 Z
+  updated_at: 2022-05-23 23:05:14.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 4
   db_content: |-
+    mod: format+*style
+    mod: search+*style
     mod: list+*style
+    mod: permissions+*style
+    mod: account+*style
+    mod: rules+*style
+    mod: edit+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
     mod: style+*style
     mod: bar and box+*style
-    mod: filter+*style
     mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
     mod: date+*style
+    mod: follow+*style
+    mod: help+*style
+    mod: layout+*style
     mod: tinymce editor+*style
+    mod: thumbnail+*style
+    mod: guides+*style
+    mod: deckorate utility+*style
+    mod: deckorate layout+*style
+    mod: topics+*style
     mod: deckorate core+*style
     mod: deckorate research+*style
+    mod: deckorate import+*style
     mod: deckorate calculations+*style
     mod: deckorate datasets+*style
     mod: deckorate profiles+*style
     mod: wikirate assets+*style
     mod: wikirate homepage+*style
     mod: badges+*style
+    mod: tasks+*style
+    mod: vega+*style
   search_content: |-
+    mod: format+*style
+    mod: search+*style
     mod: list+*style
+    mod: permissions+*style
+    mod: account+*style
+    mod: rules+*style
+    mod: edit+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
     mod: style+*style
     mod: bar and box+*style
-    mod: filter+*style
     mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
     mod: date+*style
+    mod: follow+*style
+    mod: help+*style
+    mod: layout+*style
     mod: tinymce editor+*style
+    mod: thumbnail+*style
+    mod: guides+*style
+    mod: deckorate utility+*style
+    mod: deckorate layout+*style
+    mod: topics+*style
     mod: deckorate core+*style
     mod: deckorate research+*style
+    mod: deckorate import+*style
     mod: deckorate calculations+*style
     mod: deckorate datasets+*style
     mod: deckorate profiles+*style
     mod: wikirate assets+*style
     mod: wikirate homepage+*style
     mod: badges+*style
+    mod: tasks+*style
+    mod: vega+*style
 cards_319:
   id: 319
   name: Local style folder group
@@ -9084,16 +9128,16 @@ cards_438:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 02:44:55.000000000 Z
-  updated_at: 2022-05-10 12:46:20.000000000 Z
+  updated_at: 2022-05-24 17:55:46.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":all_style_asset_output/wikirate.css"
-  search_content: "~438/1652186778.css"
+  search_content: "~438/1653414944.css"
 cards_439:
   id: 439
   name: discussion
@@ -11715,16 +11759,16 @@ cards_559:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 02:45:09.000000000 Z
-  updated_at: 2022-05-10 12:46:18.000000000 Z
+  updated_at: 2022-05-24 17:55:44.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_script_script_asset_output/script.js"
-  search_content: "~560/1652186773.js"
+  search_content: "~560/1653414917.js"
 cards_560:
   id: 561
   name: 'mod: ace editor'
@@ -11772,16 +11816,16 @@ cards_562:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 02:45:09.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:44.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_ace_editor_script_asset_output/ace_editor.js"
-  search_content: "~563/1652186773.js"
+  search_content: "~563/1653414917.js"
 cards_563:
   id: 564
   name: 'mod: api key'
@@ -11886,16 +11930,16 @@ cards_568:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 02:45:10.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:44.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_bar_and_box_script_asset_output/bar_and_box.js"
-  search_content: "~569/1652186773.js"
+  search_content: "~569/1653414918.js"
 cards_569:
   id: 570
   name:
@@ -11962,16 +12006,16 @@ cards_572:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 02:45:11.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:44.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_bootstrap_script_asset_output/bootstrap.js"
-  search_content: "~573/1652186773.js"
+  search_content: "~573/1653414920.js"
 cards_573:
   id: 574
   name:
@@ -12057,16 +12101,16 @@ cards_577:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 02:45:12.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:44.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_date_script_asset_output/date.js"
-  search_content: "~578/1652186773.js"
+  search_content: "~578/1653414922.js"
 cards_578:
   id: 579
   name:
@@ -12228,16 +12272,16 @@ cards_586:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 02:45:13.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_tabs_script_asset_output/tabs.js"
-  search_content: "~587/1652186774.js"
+  search_content: "~587/1653414923.js"
 cards_587:
   id: 588
   name: 'mod: layout'
@@ -12323,16 +12367,16 @@ cards_591:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 02:45:14.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_tinymce_editor_script_asset_output/tinymce_editor.js"
-  search_content: "~592/1652186774.js"
+  search_content: "~592/1653414928.js"
 cards_592:
   id: 593
   name:
@@ -47774,9 +47818,9 @@ cards_2448:
   right_id:
   current_revision_id:
   created_at: 2022-05-10 12:45:29.000000000 Z
-  updated_at: 2022-05-10 12:45:29.000000000 Z
+  updated_at: 2022-05-23 18:57:13.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all"
   read_rule_id: 10
   references_expired:
@@ -48246,16 +48290,16 @@ cards_2467:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 12:45:44.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_filter_script_asset_output/filter.js"
-  search_content: "~2469/1652186775.js"
+  search_content: "~2469/1653414930.js"
 cards_2468:
   id: 2470
   name:
@@ -48583,18 +48627,18 @@ cards_2485:
   id: 2487
   name: 'mod: wikirate layout'
   key: mod_wikirate_layout
-  codename: mod_wikirate_layout
+  codename:
   left_id:
   right_id:
   current_revision_id:
   created_at: 2022-05-10 12:45:46.000000000 Z
-  updated_at: 2022-05-10 12:45:46.000000000 Z
+  updated_at: 2022-05-23 23:05:04.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all"
   read_rule_id: 10
   references_expired:
-  trash: 0
+  trash: 1
   type_id: 15
   db_content: ''
   search_content: ''
@@ -48607,13 +48651,13 @@ cards_2486:
   right_id: 293
   current_revision_id:
   created_at: 2022-05-10 12:45:46.000000000 Z
-  updated_at: 2022-05-10 12:45:46.000000000 Z
+  updated_at: 2022-05-23 23:05:04.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
-  trash: 0
+  trash: 1
   type_id: 4
   db_content: ''
   search_content: ''
@@ -48621,37 +48665,37 @@ cards_2487:
   id: 2489
   name:
   key:
-  codename: mod_wikirate_layout_script_asset_output
+  codename:
   left_id: 2488
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 12:45:47.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-23 23:05:04.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
-  trash: 0
+  trash: 1
   type_id: 279
   db_content: ":mod_wikirate_layout_script_asset_output/wikirate_layout.js"
-  search_content: "~2489/1652186775.js"
+  search_content: "~2489/1653345878.js"
 cards_2488:
   id: 2490
   name: 'mod: wikirate utility'
   key: mod_wikirate_utility
-  codename: mod_wikirate_utility
+  codename:
   left_id:
   right_id:
   current_revision_id:
   created_at: 2022-05-10 12:45:47.000000000 Z
-  updated_at: 2022-05-10 12:45:47.000000000 Z
+  updated_at: 2022-05-23 23:05:09.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all"
   read_rule_id: 10
   references_expired:
-  trash: 0
+  trash: 1
   type_id: 15
   db_content: ''
   search_content: ''
@@ -48721,16 +48765,16 @@ cards_2492:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 12:45:47.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_deckorate_core_script_asset_output/deckorate_core.js"
-  search_content: "~2494/1652186776.js"
+  search_content: "~2494/1653414931.js"
 cards_2493:
   id: 2495
   name:
@@ -48797,16 +48841,16 @@ cards_2496:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 12:45:48.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_deckorate_research_script_asset_output/deckorate_research.js"
-  search_content: "~2498/1652186776.js"
+  search_content: "~2498/1653414933.js"
 cards_2497:
   id: 2499
   name:
@@ -48892,16 +48936,16 @@ cards_2501:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 12:45:50.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_deckorate_calculations_script_asset_output/deckorate_calculations.js"
-  search_content: "~2503/1652186777.js"
+  search_content: "~2503/1653414937.js"
 cards_2502:
   id: 2504
   name:
@@ -49082,16 +49126,16 @@ cards_2511:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 12:45:51.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_wikirate_companies_script_asset_output/wikirate_companies.js"
-  search_content: "~2513/1652186777.js"
+  search_content: "~2513/1653414938.js"
 cards_2512:
   id: 2514
   name: 'mod: wikirate assets'
@@ -49139,16 +49183,16 @@ cards_2514:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 12:45:52.000000000 Z
-  updated_at: 2022-05-10 12:46:19.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_wikirate_assets_script_asset_output/wikirate_assets.js"
-  search_content: "~2516/1652186778.js"
+  search_content: "~2516/1653414940.js"
 cards_2515:
   id: 2517
   name:
@@ -49215,16 +49259,16 @@ cards_2518:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 12:45:56.000000000 Z
-  updated_at: 2022-05-10 12:46:20.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_wikirate_homepage_script_asset_output/wikirate_homepage.js"
-  search_content: "~2520/1652186778.js"
+  search_content: "~2520/1653414942.js"
 cards_2519:
   id: 2521
   name:
@@ -49348,16 +49392,16 @@ cards_2525:
   right_id: 291
   current_revision_id:
   created_at: 2022-05-10 12:46:03.000000000 Z
-  updated_at: 2022-05-10 12:46:20.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
   creator_id: 1
-  updater_id: 1
+  updater_id: 185
   read_rule_class: "*all plus"
   read_rule_id: 10
   references_expired:
   trash: 0
   type_id: 279
   db_content: ":mod_tasks_script_asset_output/tasks.js"
-  search_content: "~2527/1652186778.js"
+  search_content: "~2527/1653414943.js"
 cards_2526:
   id: 2528
   name: 'mod: vega'
@@ -74500,3 +74544,535 @@ cards_3628:
       },
       "dir": "desc"
     }
+cards_3629:
+  id: 3631
+  name:
+  key:
+  codename:
+  left_id: 544
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:02.000000000 Z
+  updated_at: 2022-05-23 18:57:02.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3630:
+  id: 3632
+  name:
+  key:
+  codename:
+  left_id: 545
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:02.000000000 Z
+  updated_at: 2022-05-23 18:57:02.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3631:
+  id: 3633
+  name:
+  key:
+  codename:
+  left_id: 550
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:03.000000000 Z
+  updated_at: 2022-05-23 18:57:03.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3632:
+  id: 3634
+  name:
+  key:
+  codename:
+  left_id: 551
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:03.000000000 Z
+  updated_at: 2022-05-23 18:57:03.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3633:
+  id: 3635
+  name:
+  key:
+  codename:
+  left_id: 552
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:03.000000000 Z
+  updated_at: 2022-05-23 18:57:03.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3634:
+  id: 3636
+  name:
+  key:
+  codename:
+  left_id: 553
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:03.000000000 Z
+  updated_at: 2022-05-23 18:57:03.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3635:
+  id: 3637
+  name:
+  key:
+  codename:
+  left_id: 554
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:04.000000000 Z
+  updated_at: 2022-05-23 18:57:04.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3636:
+  id: 3638
+  name:
+  key:
+  codename:
+  left_id: 555
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:04.000000000 Z
+  updated_at: 2022-05-23 18:57:04.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3637:
+  id: 3639
+  name:
+  key:
+  codename:
+  left_id: 564
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:04.000000000 Z
+  updated_at: 2022-05-23 18:57:04.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3638:
+  id: 3640
+  name:
+  key:
+  codename:
+  left_id: 2472
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:05.000000000 Z
+  updated_at: 2022-05-23 18:57:05.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3639:
+  id: 3641
+  name:
+  key:
+  codename:
+  left_id: 575
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:05.000000000 Z
+  updated_at: 2022-05-23 18:57:05.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3640:
+  id: 3642
+  name:
+  key:
+  codename:
+  left_id: 581
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:05.000000000 Z
+  updated_at: 2022-05-23 18:57:05.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3641:
+  id: 3643
+  name:
+  key:
+  codename:
+  left_id: 583
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:05.000000000 Z
+  updated_at: 2022-05-23 18:57:05.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3642:
+  id: 3644
+  name:
+  key:
+  codename:
+  left_id: 588
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:06.000000000 Z
+  updated_at: 2022-05-23 18:57:06.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3643:
+  id: 3645
+  name:
+  key:
+  codename:
+  left_id: 2485
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:06.000000000 Z
+  updated_at: 2022-05-23 18:57:06.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3644:
+  id: 3646
+  name:
+  key:
+  codename:
+  left_id: 2487
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:07.000000000 Z
+  updated_at: 2022-05-23 23:04:59.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 1
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3645:
+  id: 3647
+  name:
+  key:
+  codename:
+  left_id: 2490
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:07.000000000 Z
+  updated_at: 2022-05-23 23:05:04.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 1
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3646:
+  id: 3648
+  name:
+  key:
+  codename:
+  left_id: 2500
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:07.000000000 Z
+  updated_at: 2022-05-23 18:57:07.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3647:
+  id: 3649
+  name:
+  key:
+  codename:
+  left_id: 2525
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 18:57:07.000000000 Z
+  updated_at: 2022-05-23 18:57:07.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3648:
+  id: 3650
+  name:
+  key:
+  codename:
+  left_id: 2483
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 21:35:45.000000000 Z
+  updated_at: 2022-05-23 21:35:45.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3649:
+  id: 3651
+  name:
+  key:
+  codename:
+  left_id: 2528
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 21:35:45.000000000 Z
+  updated_at: 2022-05-23 21:35:45.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3650:
+  id: 3652
+  name:
+  key:
+  codename:
+  left_id: 2491
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 22:43:59.000000000 Z
+  updated_at: 2022-05-23 22:43:59.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3651:
+  id: 3653
+  name: 'mod: deckorate utility'
+  key: mod_deckorate_utility
+  codename: mod_deckorate_utility
+  left_id:
+  right_id:
+  current_revision_id:
+  created_at: 2022-05-23 23:05:10.000000000 Z
+  updated_at: 2022-05-23 23:05:10.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 15
+  db_content: ''
+  search_content: ''
+cards_3652:
+  id: 3654
+  name:
+  key:
+  codename:
+  left_id: 3653
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 23:05:11.000000000 Z
+  updated_at: 2022-05-23 23:05:11.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3653:
+  id: 3655
+  name: 'mod: deckorate layout'
+  key: mod_deckorate_layout
+  codename: mod_deckorate_layout
+  left_id:
+  right_id:
+  current_revision_id:
+  created_at: 2022-05-23 23:05:11.000000000 Z
+  updated_at: 2022-05-23 23:05:11.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 15
+  db_content: ''
+  search_content: ''
+cards_3654:
+  id: 3656
+  name:
+  key:
+  codename:
+  left_id: 3655
+  right_id: 293
+  current_revision_id:
+  created_at: 2022-05-23 23:05:11.000000000 Z
+  updated_at: 2022-05-23 23:05:11.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_3655:
+  id: 3657
+  name:
+  key:
+  codename: mod_deckorate_layout_script_asset_output
+  left_id: 3656
+  right_id: 291
+  current_revision_id:
+  created_at: 2022-05-23 23:05:12.000000000 Z
+  updated_at: 2022-05-24 17:55:45.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 279
+  db_content: ":mod_deckorate_layout_script_asset_output/deckorate_layout.js"
+  search_content: "~3657/1653414944.js"
+cards_3656:
+  id: 3658
+  name:
+  key:
+  codename:
+  left_id: 3655
+  right_id: 339
+  current_revision_id:
+  created_at: 2022-05-23 23:05:13.000000000 Z
+  updated_at: 2022-05-23 23:05:13.000000000 Z
+  creator_id: 185
+  updater_id: 185
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
