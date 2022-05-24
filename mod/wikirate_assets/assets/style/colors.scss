@@ -114,7 +114,7 @@ $colorMap: (
   .TYPE-#{$type} {
     @include barbox($color);
 
-    &.thumbnail .thumbnail-title .card-title {
+    &.thumbnail:hover .thumbnail-title .card-title {
       color: $color
     }
   }
