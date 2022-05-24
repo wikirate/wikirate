@@ -5,18 +5,14 @@ format do
 end
 
 format :html do
-  view :core do
-    render_concise
-  end
+  bar_cols 7, 2, 3
 
   view :bar_middle do
-    ""
+    render_flags
   end
 
   view :bar_right do
-    wrap_with :div, class: "d-block w-100" do
-      render_concise
-    end
+    nest card.value_card, view: :pretty
   end
 
   view :metric_thumbnail_with_bookmark do

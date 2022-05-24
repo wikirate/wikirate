@@ -1,0 +1,9 @@
+.TYPE-answer.bar {
+  .bar-left > div > div {
+    padding: 0 0.5em;
+
+    &.thumbnail {
+      min-width: 42%;
+    }
+  }
+}

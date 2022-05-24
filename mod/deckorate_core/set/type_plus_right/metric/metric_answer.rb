@@ -106,15 +106,7 @@ format :html do
     metric_card.value_options_card&.options_hash&.reverse_merge "Unknown" => "Unknown"
   end
 
-  def cell_views
-    [:company_thumbnail_with_bookmark, :concise]
-  end
-
   def header_cells
     [company_sort_links, answer_sort_links]
-  end
-
-  def details_view
-    :company_details_sidebar
   end
 end
