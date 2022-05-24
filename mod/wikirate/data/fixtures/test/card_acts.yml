@@ -2693,3 +2693,15 @@ card_acts_449:
   actor_id: 185
   acted_at: 2022-05-23 23:05:14.000000000 Z
   ip_address:
+card_acts_450:
+  id: 106460
+  card_id: 297
+  actor_id: 185
+  acted_at: 2022-05-24 17:54:47.000000000 Z
+  ip_address:
+card_acts_451:
+  id: 106461
+  card_id: 318
+  actor_id: 185
+  acted_at: 2022-05-24 17:54:48.000000000 Z
+  ip_address:

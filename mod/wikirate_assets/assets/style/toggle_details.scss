@@ -71,19 +71,6 @@
   width: 33%;
 }
 
-/* Small Devices, Tablets */
-@media only screen and (max-width : 768px) {
-  .details {
-    top: 65px !important;
-    position: fixed !important;
-    left: 0% !important;
-    width: 100% !important;
-  }
-  .details-top .record-buttons a {
-    font-size: 0.6em;
-  }
-}
-
 .details-top {
   .record-details {
     width: 100%;
@@ -99,15 +86,6 @@
   .other-year-links a {
     color: $text-muted;
   }
-  .value-details {
-    padding: 1em;
-    background-color: rgba($primary, 0.1);
-  }
-  .full-page-link i {
-    font-size: 1.5em;
-    margin-left: 1em;
-  }
-  border-bottom: 1px solid $border-color;
   margin-bottom: 1em;
 }
 

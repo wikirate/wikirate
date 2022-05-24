@@ -18,7 +18,7 @@ format :html do
     { research_group: { label: "Research Groups" } }
   end
 
-  view :deatils_tab do
+  view :details_tab do
     render_details
   end
 
