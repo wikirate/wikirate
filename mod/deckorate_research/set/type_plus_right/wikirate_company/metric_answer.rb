@@ -52,16 +52,8 @@ format do
 end
 
 format :html do
-  def cell_views
-    [:metric_thumbnail_with_bookmark, :concise]
-  end
-
-  def header_cells
-    [metric_sort_links, answer_sort_links]
-  end
-
-  def details_view
-    :metric_details_sidebar
+  before :core do
+    voo.items[:hide] = :company_thumbnail
   end
 
   def quick_filter_list

@@ -7,8 +7,4 @@ format :html do
   view :company_thumbnail do
     company_thumbnail card.company, hide: :thumbnail_link
   end
-
-  view :company_thumbnail_with_bookmark do
-    nest card.company_card, view: :thumbnail_with_bookmark, hide: :thumbnail_link
-  end
 end

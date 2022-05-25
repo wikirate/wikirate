@@ -1,33 +1,6 @@
 include_set Abstract::Tabs
 
 format :html do
-  # def tab_list
-  #   list = [:details]
-  #   list << :metric if voo.show? :metric_header
-  #   list << :wikirate_company if voo.show? :company_header
-  #   list
-  # end
-  #
-  # def tab_options
-  #   {
-  #     details:          { label: "Answer" },
-  #     metric:           { label: "Metric", count: nil },
-  #     wikirate_company: { label: "Company", count: nil }
-  #   }
-  # end
-  #
-  # view :details_tab do
-  #   render_details
-  # end
-  #
-  # view :metric_tab do
-  #   nest card.metric_card, view: :details_tab
-  # end
-  #
-  # view :wikirate_company_tab do
-  #   nest card.company_card, view: :details_tab
-  # end
-
   view :core, wrap: :slot do
     [haml(:title), render_details]
   end
@@ -39,7 +12,7 @@ format :html do
   view :other_year_links do
     return unless record_count > 1
     other_record_answers.map do |answer|
-      link_to answer.year.to_s, href: answer.name.url_key, class: "_update-details"
+      modal_link answer.year.to_s, path: { mark: answer.name }, size: :large
     end.join ", "
   end
 
@@ -50,19 +23,6 @@ format :html do
   def record_count
     @record_count ||= card.record_card.metric_answer_card.count
   end
-
-  # view :record_filter_button, cache: :never do
-  #   filter_for_record do
-  #     link_to_card card.record_card, ,
-  #                  class: "btn btn-sm btn-outline-secondary"
-  #   end
-  # end
-
-  # def filter_for_record
-  #   filterable record_filter_hash, class: "record-filter" do
-  #     yield
-  #   end
-  # end
 
   def record_filter_hash
     { status: :exists,

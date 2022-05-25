@@ -28815,3 +28815,19 @@ card_actions_3602:
   action_type: 1
   draft: 0
   comment:
+card_actions_3603:
+  id: 3978
+  card_id: 297
+  card_act_id: 106470
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_3604:
+  id: 3979
+  card_id: 297
+  card_act_id: 106472
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:

@@ -966,3 +966,48 @@ card_changes_141:
     mod: wikirate assets+*script
     mod: wikirate homepage+*script
     mod: tasks+*script
+card_changes_142:
+  id: 142
+  card_action_id: 3978
+  field: 2
+  value: |-
+    mod: rules+*script
+    mod: script+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate layout+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate assets+*script
+    mod: wikirate homepage+*script
+    mod: tasks+*script
+card_changes_143:
+  id: 143
+  card_action_id: 3979
+  field: 2
+  value: |-
+    mod: rules+*script
+    mod: script+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate assets+*script
+    mod: wikirate homepage+*script
+    mod: tasks+*script

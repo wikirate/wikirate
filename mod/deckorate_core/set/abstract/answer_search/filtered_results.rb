@@ -8,6 +8,10 @@ format :html do
   view :filtered_results_stats, cache: :never, template: :haml
   view :filtered_results_chart, cache: :never, template: :haml
 
+  before :filtered_results do
+    class_up "card-slot", "_card-link-modal"
+  end
+
   def show_company_count?
     true
   end
