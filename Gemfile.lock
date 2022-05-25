@@ -605,6 +605,8 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (8.7.0)
     nio4r (2.5.8)
+    nokogiri (1.13.6-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.13.6-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.13.6-x86_64-linux)
@@ -742,7 +744,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.18.0)
       parser (>= 3.1.1.0)
-    rubocop-rspec (2.10.0)
+    rubocop-rspec (2.11.1)
       rubocop (~> 1.19)
     ruby-jmeter (3.1.08)
       nokogiri
@@ -837,6 +839,7 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
+  arm64-darwin-21
   x86_64-darwin-20
   x86_64-linux
 
@@ -891,4 +894,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   2.3.11
+   2.3.7
