@@ -1,15 +1,8 @@
 include_set Abstract::Media
 include_set Abstract::Table
 
-# views used in answer listings on metric, company, and profile pages
-
 format :html do
-  view :bar_left do
-    wrap_with :div, class: "d-block" do
-      [company_thumbnail(card.company, hide: :thumbnail_subtitle),
-       render_metric_thumbnail]
-    end
-  end
+  view :bar_left, template: :haml
 
   view :company_thumbnail do
     company_thumbnail card.company, hide: :thumbnail_link
