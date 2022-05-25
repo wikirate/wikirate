@@ -524,7 +524,7 @@ GEM
       ruby_parser (~> 3.5)
     htmlentities (4.3.4)
     http-accept (1.7.0)
-    http-cookie (1.0.4)
+    http-cookie (1.0.5)
       domain_name (~> 0.5)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
@@ -894,4 +894,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   2.3.7
+   2.3.13
