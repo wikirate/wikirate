@@ -41,7 +41,7 @@ updateFilter = (el, filterVals) ->
   filter.addRestrictions filterVals
 
 updateDetails = (detailsAnswer) ->
-  $("[data-details-mark=\"#{detailsAnswer}\"]").trigger "click"
+  $(".bar[data-card-link-name=\"#{detailsAnswer}\"]").trigger "click"
 
 $(document).ready ->
   $('body').on 'click', '._filter-bindings', ->

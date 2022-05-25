@@ -20,5 +20,5 @@ def validate_all_numeric_values
 end
 
 def valid_numeric_value? value
-  number?(value) || Answer.unknown?(value)
+  value.to_s.number? || Answer.unknown?(value)
 end
