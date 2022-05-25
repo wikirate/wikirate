@@ -71,7 +71,7 @@ blocks:
             - RAILS_ENV=cypress bundle exec decko server -p 5002 &
             - nvm use 12.18.2
             - yarn install
-            - yarn run cypress run --record --reporter junit --reporter-options "mochaFile=/home/semaphore/reports/cypress-output-[hash].xml"
+            - yarn run cypress run --reporter junit --reporter-options "mochaFile=/home/semaphore/reports/cypress-output-[hash].xml"
 
       epilogue:
         always:

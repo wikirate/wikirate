@@ -18389,119 +18389,175 @@ card_references_2627:
   ref_type: P
   is_present:
 card_references_2628:
-  id: 3449
-  referer_id: 297
-  referee_key: mod_list+*script
-  referee_id: 3659
+  id: 3466
+  referer_id: 3661
+  referee_key: mod_rule+*script+group_local
+  referee_id:
   ref_type: L
   is_present:
 card_references_2629:
-  id: 3450
+  id: 3467
+  referer_id: 3661
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_2630:
+  id: 3468
+  referer_id: 3663
+  referee_key: mod_edit+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_2631:
+  id: 3469
+  referer_id: 3663
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_2632:
+  id: 3470
+  referer_id: 3665
+  referee_key: mod_recaptcha+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_2633:
+  id: 3471
+  referer_id: 3665
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_2634:
+  id: 3472
+  referer_id: 297
+  referee_key: mod_rule+*script
+  referee_id: 3661
+  ref_type: L
+  is_present:
+card_references_2635:
+  id: 3473
+  referer_id: 297
+  referee_key: mod_edit+*script
+  referee_id: 3663
+  ref_type: L
+  is_present:
+card_references_2636:
+  id: 3474
   referer_id: 297
   referee_key: mod_script+*script
   referee_id: 559
   ref_type: L
   is_present:
-card_references_2630:
-  id: 3451
+card_references_2637:
+  id: 3475
   referer_id: 297
   referee_key: mod_ace_editor+*script
   referee_id: 562
   ref_type: L
   is_present:
-card_references_2631:
-  id: 3452
+card_references_2638:
+  id: 3476
   referer_id: 297
   referee_key: mod_bar_and_box+*script
   referee_id: 568
   ref_type: L
   is_present:
-card_references_2632:
-  id: 3453
+card_references_2639:
+  id: 3477
   referer_id: 297
   referee_key: mod_bootstrap+*script
   referee_id: 572
   ref_type: L
   is_present:
-card_references_2633:
-  id: 3454
+card_references_2640:
+  id: 3478
   referer_id: 297
   referee_key: mod_filter+*script
   referee_id: 2468
   ref_type: L
   is_present:
-card_references_2634:
-  id: 3455
+card_references_2641:
+  id: 3479
   referer_id: 297
   referee_key: mod_tab+*script
   referee_id: 586
   ref_type: L
   is_present:
-card_references_2635:
-  id: 3456
+card_references_2642:
+  id: 3480
   referer_id: 297
   referee_key: mod_date+*script
   referee_id: 577
   ref_type: L
   is_present:
-card_references_2636:
-  id: 3457
+card_references_2643:
+  id: 3481
+  referer_id: 297
+  referee_key: mod_recaptcha+*script
+  referee_id: 3665
+  ref_type: L
+  is_present:
+card_references_2644:
+  id: 3482
   referer_id: 297
   referee_key: mod_tinymce_editor+*script
   referee_id: 591
   ref_type: L
   is_present:
-card_references_2637:
-  id: 3458
+card_references_2645:
+  id: 3483
   referer_id: 297
   referee_key: mod_deckorate_layout+*script
   referee_id: 3656
   ref_type: L
   is_present:
-card_references_2638:
-  id: 3459
+card_references_2646:
+  id: 3484
   referer_id: 297
   referee_key: mod_deckorate_core+*script
   referee_id: 2493
   ref_type: L
   is_present:
-card_references_2639:
-  id: 3460
+card_references_2647:
+  id: 3485
   referer_id: 297
   referee_key: mod_deckorate_research+*script
   referee_id: 2497
   ref_type: L
   is_present:
-card_references_2640:
-  id: 3461
+card_references_2648:
+  id: 3486
   referer_id: 297
   referee_key: mod_deckorate_calculation+*script
   referee_id: 2502
   ref_type: L
   is_present:
-card_references_2641:
-  id: 3462
+card_references_2649:
+  id: 3487
   referer_id: 297
   referee_key: mod_wikirate_company+*script
   referee_id: 2512
   ref_type: L
   is_present:
-card_references_2642:
-  id: 3463
+card_references_2650:
+  id: 3488
   referer_id: 297
   referee_key: mod_wikirate_asset+*script
   referee_id: 2515
   ref_type: L
   is_present:
-card_references_2643:
-  id: 3464
+card_references_2651:
+  id: 3489
   referer_id: 297
   referee_key: mod_wikirate_homepage+*script
   referee_id: 2519
   ref_type: L
   is_present:
-card_references_2644:
-  id: 3465
+card_references_2652:
+  id: 3490
   referer_id: 297
   referee_key: mod_task+*script
   referee_id: 2526
