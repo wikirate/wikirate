@@ -814,7 +814,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.8.1)
+    unf_ext (0.0.8.2)
     unicode-display_width (2.1.0)
     video_info (3.0.2)
       iso8601 (~> 0.9.1)
@@ -894,4 +894,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   2.3.13
+   2.3.7
