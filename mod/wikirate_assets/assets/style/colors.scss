@@ -7,7 +7,7 @@
   &.bar:hover {
     border-left-color: $color !important;
     .bar-left {
-      a, .image-box i {
+      a, .image-box i, .bookmark-toggle.active-bookmark {
         color: $color;
       }
     }
@@ -17,8 +17,10 @@
     &:hover {
       border-top-color: $color !important;
 
-      .box-top a {
-        color: $color;
+      .box-top {
+        a, .bookmark-toggle.active-bookmark {
+          color: $color;
+        }
       }
 
       .box-middle i {
