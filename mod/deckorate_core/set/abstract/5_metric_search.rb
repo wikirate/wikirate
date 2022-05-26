@@ -33,9 +33,8 @@ format do
     :bookmarkers
   end
 
-  # TODO: bookmarking
   def shared_metric_filter_map
-    %i[wikirate_topic designer metric_type value_type research_policy]
+    %i[bookmark wikirate_topic designer metric_type value_type research_policy]
   end
 
   def filter_map
