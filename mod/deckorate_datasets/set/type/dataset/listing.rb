@@ -1,6 +1,6 @@
 
 format :html do
-  bar_cols 6, 4, 2
+  bar_cols 7, 5
 
   view :bar_left do
     voo.size = :medium
@@ -9,9 +9,9 @@ format :html do
     # end
   end
 
-  view :bar_middle do
-    field_nest :wikirate_topic
-  end
+  # view :bar_middle do
+  #   field_nest :wikirate_topic
+  # end
 
   view :bar_right do
     count_badges :metric, :wikirate_company, :data_subset

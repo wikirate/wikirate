@@ -17,6 +17,10 @@ format :html do
     wrap { [naming { render_rich_header }, render_flash, render_tabs] }
   end
 
+  view :content do
+    render_page
+  end
+
   view :breadcrumbs do
     type = card.type_card
     items = [link_to("Home", href: "/"),

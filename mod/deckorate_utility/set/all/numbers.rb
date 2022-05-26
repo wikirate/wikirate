@@ -1,8 +1,3 @@
-def number? str
-  true if Float(str)
-rescue StandardError
-  false
-end
 
 # returns with a tenth (eg 11.1%)
 def percent numerator, denominator

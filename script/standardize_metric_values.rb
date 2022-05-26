@@ -1,11 +1,5 @@
 require File.expand_path("../config/environment", __FILE__)
 
-def number? str
-  true if Float(str)
-rescue
-  false
-end
-
 def potential_numeric_metrics_cql
   { type_id: Card::MetricID,
     right_plus: [

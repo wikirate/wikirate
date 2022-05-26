@@ -7,6 +7,10 @@ def source_count
   source_card.item_names.size
 end
 
+def source_required?
+  standard? || hybrid?
+end
+
 # used in lookup
 def source_url
   return unless (url_card = first_source_card&.wikirate_link_card)

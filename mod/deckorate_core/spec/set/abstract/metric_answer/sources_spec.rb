@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Abstract::MetricAnswer::Validate do
+RSpec.describe Card::Set::Abstract::MetricAnswer::Sources do
   def answer_for metric_name
     Card.new type: :metric_answer, name: "#{metric_name}+Samsung+2012"
   end
