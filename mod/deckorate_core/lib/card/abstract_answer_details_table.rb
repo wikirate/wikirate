@@ -53,8 +53,10 @@ class Card
     end
 
     def link_to_answer answer_card
-      @format.link_to_card answer_card, answer_card.value_card.format.pretty_value,
-                           class: "metric-value _update-details"
+      @format.modal_link answer_card.value_card.format.pretty_value,
+                         path: { mark: answer_card },
+                         class: "metric-value",
+                         size: :large
     end
 
     def metric_thumbnail input_card

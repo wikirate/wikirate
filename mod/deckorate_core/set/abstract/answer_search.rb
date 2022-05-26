@@ -20,6 +20,7 @@ format do
       [:year,
        { key: :metric,
          type: :group,
+         open: true,
          filters: shared_metric_filter_map.unshift(key: :metric_name, open: true) },
        { key: :wikirate_company,
          type: :group,
@@ -37,7 +38,10 @@ format do
   end
 
   def map_without_key map, key
-    map.reject { |item| item.is_a?(Hash) && item[:key] == key }
+    map.reject do |item|
+      item_key = item.is_a?(Hash) ? item[:key] : item
+      item_key == key
+    end
   end
 
   def filter_hash_from_params

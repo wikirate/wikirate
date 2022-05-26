@@ -3,7 +3,7 @@
 format :html do
   view :progress_bar do
     value = card.content
-    if card.number? value
+    if value.number?
       progress_bar value: value
     else
       "Only card with numeric content can be shown as progress bar."

@@ -28,8 +28,8 @@ class Card
       end
 
       def bookmark_query value
-        multi_metric { bookmark_restriction :metric_id, value }
-        multi_company { bookmark_restriction :company_id, value }
+        field = single_metric? ? :company_id : :metric_id
+        bookmark_restriction field, value
       end
 
       def company_name_query value

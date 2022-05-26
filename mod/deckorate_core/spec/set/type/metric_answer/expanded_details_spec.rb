@@ -136,7 +136,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
       specify do
         expect_view(:expanded_relationship_details)
-          .to have_tag("table.wikirate-table") do
+          .to have_tag("div.card-list-bar") do
           with_tag("span.card-title", "SPECTRE")
           with_tag("span.metric-value", /Tier 1 Supplier/)
           without_tag("button.fa-caret-down")
@@ -184,9 +184,8 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
     end
 
     it "links to input value" do
-      input_name = "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2003"
-      is_expected.to have_tag "a.metric-value",
-                              with: { href: input_name }, text: "8"
+      url = "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2003?layout=modal"
+      is_expected.to have_tag "a.metric-value", with: { href: url }, text: "8"
     end
   end
 

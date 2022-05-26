@@ -75,11 +75,7 @@ $box_stripe_color: $gray-700;
 }
 
 .bar:hover {
-  border-left-color: $gray-500;
-  // Following needed on answer bars
-  .bar-left .company-link a {
-    color: $company-color !important;
-  }
+  border-left-color: $primary;
 }
 
 
