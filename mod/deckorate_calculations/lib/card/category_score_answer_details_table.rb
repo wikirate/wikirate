@@ -25,8 +25,9 @@ class Card
     end
 
     def link_to_answer option
-      @format.link_to_card base_metric_answer, option,
-                           class: "metric-value _update-details"
+      @format.modal_link option, path: { mark: base_metric_answer },
+                                 class: "metric-value",
+                                 size: :large
     end
 
     def score_links

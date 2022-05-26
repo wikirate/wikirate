@@ -119,6 +119,15 @@ $colorMap: (
     }
   }
 
+  .bar:hover {
+    .TYPE-#{$type}.thumbnail .thumbnail-title .card-title {
+      color: $color
+    }
+    .TYPE-#{$type}.color-on-hover {
+      color: $color
+    }
+  }
+
   .#{$type}-color, .#{$type}-color a {
     &, &:hover, &:focus, &:visited {
       color: $color;

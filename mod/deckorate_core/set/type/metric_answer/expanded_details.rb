@@ -73,11 +73,10 @@ format :html do
   end
 
   def input_value_link value, input_card, year_option
-    link_to_card [input_card,
-                  card.company,
-                  input_value_link_year(value, year_option)].compact,
-                 Array.wrap(value).join(", "),
-                 class: "metric-value _update-details"
+    answer = [input_card, card.company, input_value_link_year(value, year_option)].compact
+    modal_link Array.wrap(value).join(", "),
+               path: { mark: answer },
+               class: "metric-value"
   end
 
   def input_value_link_year value, year_option
