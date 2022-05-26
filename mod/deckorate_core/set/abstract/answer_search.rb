@@ -20,6 +20,7 @@ format do
       [:year,
        { key: :metric,
          type: :group,
+         open: true,
          filters: shared_metric_filter_map.unshift(key: :metric_name, open: true) },
        { key: :wikirate_company,
          type: :group,

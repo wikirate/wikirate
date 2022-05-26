@@ -12,24 +12,12 @@ format :html do
     company_name: { metric_title: :asc }
   }.freeze
 
-  def details_view
-    :details_sidebar
-  end
-
-  def details_layout
-    :modal
-  end
-
   def header_cells
     [company_name_sort_link, metric_sort_links, answer_sort_links]
   end
 
   def metric_sort_links
     "#{designer_sort_link}#{title_sort_link}"
-  end
-
-  def cell_views
-    [:company_thumbnail, :metric_thumbnail, :concise]
   end
 
   def quick_filter_list

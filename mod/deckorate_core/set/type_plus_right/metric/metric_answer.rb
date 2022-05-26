@@ -65,6 +65,10 @@ format :html do
     end
   end
 
+  before :core do
+    voo.items[:hide] = :metric_thumbnail
+  end
+
   def relationship_export_links
     metric_card.relationship_answer_card.format(:html).export_format_links
   end
@@ -104,17 +108,5 @@ format :html do
 
   def filter_value_options
     metric_card.value_options_card&.options_hash&.reverse_merge "Unknown" => "Unknown"
-  end
-
-  def cell_views
-    [:company_thumbnail_with_bookmark, :concise]
-  end
-
-  def header_cells
-    [company_sort_links, answer_sort_links]
-  end
-
-  def details_view
-    :company_details_sidebar
   end
 end
