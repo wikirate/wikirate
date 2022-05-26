@@ -24,11 +24,7 @@ format do
          filters: shared_metric_filter_map.unshift(key: :metric_name, open: true) },
        { key: :wikirate_company,
          type: :group,
-         filters: [
-           { key: :company_name, open: true },
-           :company_category,
-           :company_group
-         ] },
+         filters: shared_metric_filter_map.unshift(key: :company_name, open: true) },
        { key: :metric_answer,
          type: :group,
          filters: [{ key: :value, open: true }] +

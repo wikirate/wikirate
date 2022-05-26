@@ -18116,436 +18116,471 @@ card_references_2588:
   ref_type: P
   is_present:
 card_references_2589:
-  id: 3410
-  referer_id: 318
-  referee_key: mod_format+*style
-  referee_id: 3631
-  ref_type: L
-  is_present:
-card_references_2590:
-  id: 3411
-  referer_id: 318
-  referee_key: mod_search+*style
-  referee_id: 3632
-  ref_type: L
-  is_present:
-card_references_2591:
-  id: 3412
-  referer_id: 318
-  referee_key: mod_list+*style
-  referee_id: 549
-  ref_type: L
-  is_present:
-card_references_2592:
-  id: 3413
-  referer_id: 318
-  referee_key: mod_permission+*style
-  referee_id: 3633
-  ref_type: L
-  is_present:
-card_references_2593:
-  id: 3414
-  referer_id: 318
-  referee_key: mod_account+*style
-  referee_id: 3634
-  ref_type: L
-  is_present:
-card_references_2594:
-  id: 3415
-  referer_id: 318
-  referee_key: mod_rule+*style
-  referee_id: 3635
-  ref_type: L
-  is_present:
-card_references_2595:
-  id: 3416
-  referer_id: 318
-  referee_key: mod_edit+*style
-  referee_id: 3636
-  ref_type: L
-  is_present:
-card_references_2596:
-  id: 3417
-  referer_id: 318
-  referee_key: mod_history+*style
-  referee_id: 3637
-  ref_type: L
-  is_present:
-card_references_2597:
-  id: 3418
-  referer_id: 318
-  referee_key: mod_carrierwave+*style
-  referee_id: 3638
-  ref_type: L
-  is_present:
-card_references_2598:
-  id: 3419
-  referer_id: 318
-  referee_key: mod_api_key+*style
-  referee_id: 3639
-  ref_type: L
-  is_present:
-card_references_2599:
-  id: 3420
-  referer_id: 318
-  referee_key: mod_style+*style
-  referee_id: 566
-  ref_type: L
-  is_present:
-card_references_2600:
-  id: 3421
-  referer_id: 318
-  referee_key: mod_bar_and_box+*style
-  referee_id: 570
-  ref_type: L
-  is_present:
-card_references_2601:
-  id: 3422
-  referer_id: 318
-  referee_key: mod_bootstrap+*style
-  referee_id: 574
-  ref_type: L
-  is_present:
-card_references_2602:
-  id: 3423
-  referer_id: 318
-  referee_key: mod_filter+*style
-  referee_id: 2470
-  ref_type: L
-  is_present:
-card_references_2603:
-  id: 3424
-  referer_id: 318
-  referee_key: mod_bookmark+*style
-  referee_id: 3640
-  ref_type: L
-  is_present:
-card_references_2604:
-  id: 3425
-  referer_id: 318
-  referee_key: mod_comment+*style
-  referee_id: 3641
-  ref_type: L
-  is_present:
-card_references_2605:
-  id: 3426
-  referer_id: 318
-  referee_key: mod_date+*style
-  referee_id: 579
-  ref_type: L
-  is_present:
-card_references_2606:
-  id: 3427
-  referer_id: 318
-  referee_key: mod_follow+*style
-  referee_id: 3642
-  ref_type: L
-  is_present:
-card_references_2607:
-  id: 3428
-  referer_id: 318
-  referee_key: mod_help+*style
-  referee_id: 3643
-  ref_type: L
-  is_present:
-card_references_2608:
-  id: 3429
-  referer_id: 318
-  referee_key: mod_layout+*style
-  referee_id: 3644
-  ref_type: L
-  is_present:
-card_references_2609:
-  id: 3430
-  referer_id: 318
-  referee_key: mod_tinymce_editor+*style
-  referee_id: 593
-  ref_type: L
-  is_present:
-card_references_2610:
-  id: 3431
-  referer_id: 318
-  referee_key: mod_thumbnail+*style
-  referee_id: 3650
-  ref_type: L
-  is_present:
-card_references_2611:
-  id: 3432
-  referer_id: 318
-  referee_key: mod_guide+*style
-  referee_id: 3645
-  ref_type: L
-  is_present:
-card_references_2612:
-  id: 3433
-  referer_id: 318
-  referee_key: mod_deckorate_utility+*style
-  referee_id: 3654
-  ref_type: L
-  is_present:
-card_references_2613:
-  id: 3434
-  referer_id: 318
-  referee_key: mod_deckorate_layout+*style
-  referee_id: 3658
-  ref_type: L
-  is_present:
-card_references_2614:
-  id: 3435
-  referer_id: 318
-  referee_key: mod_topic+*style
-  referee_id: 3652
-  ref_type: L
-  is_present:
-card_references_2615:
-  id: 3436
-  referer_id: 318
-  referee_key: mod_deckorate_core+*style
-  referee_id: 2495
-  ref_type: L
-  is_present:
-card_references_2616:
-  id: 3437
-  referer_id: 318
-  referee_key: mod_deckorate_research+*style
-  referee_id: 2499
-  ref_type: L
-  is_present:
-card_references_2617:
-  id: 3438
-  referer_id: 318
-  referee_key: mod_deckorate_import+*style
-  referee_id: 3648
-  ref_type: L
-  is_present:
-card_references_2618:
-  id: 3439
-  referer_id: 318
-  referee_key: mod_deckorate_calculation+*style
-  referee_id: 2504
-  ref_type: L
-  is_present:
-card_references_2619:
-  id: 3440
-  referer_id: 318
-  referee_key: mod_deckorate_dataset+*style
-  referee_id: 2506
-  ref_type: L
-  is_present:
-card_references_2620:
-  id: 3441
-  referer_id: 318
-  referee_key: mod_deckorate_profile+*style
-  referee_id: 2510
-  ref_type: L
-  is_present:
-card_references_2621:
-  id: 3442
-  referer_id: 318
-  referee_key: mod_wikirate_asset+*style
-  referee_id: 2517
-  ref_type: L
-  is_present:
-card_references_2622:
-  id: 3443
-  referer_id: 318
-  referee_key: mod_wikirate_homepage+*style
-  referee_id: 2521
-  ref_type: L
-  is_present:
-card_references_2623:
-  id: 3444
-  referer_id: 318
-  referee_key: mod_badge+*style
-  referee_id: 2524
-  ref_type: L
-  is_present:
-card_references_2624:
-  id: 3445
-  referer_id: 318
-  referee_key: mod_task+*style
-  referee_id: 3649
-  ref_type: L
-  is_present:
-card_references_2625:
-  id: 3446
-  referer_id: 318
-  referee_key: mod_vega+*style
-  referee_id: 3651
-  ref_type: L
-  is_present:
-card_references_2626:
   id: 3447
   referer_id: 3659
   referee_key: mod_list+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_2627:
+card_references_2590:
   id: 3448
   referer_id: 3659
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_2628:
+card_references_2591:
   id: 3466
   referer_id: 3661
   referee_key: mod_rule+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_2629:
+card_references_2592:
   id: 3467
   referer_id: 3661
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_2630:
+card_references_2593:
   id: 3468
   referer_id: 3663
   referee_key: mod_edit+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_2631:
+card_references_2594:
   id: 3469
   referer_id: 3663
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_2632:
+card_references_2595:
   id: 3470
   referer_id: 3665
   referee_key: mod_recaptcha+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_2633:
+card_references_2596:
   id: 3471
   referer_id: 3665
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_2634:
-  id: 3509
-  referer_id: 297
-  referee_key: mod_rule+*script
-  referee_id: 3661
+card_references_2597:
+  id: 3526
+  referer_id: 3667
+  referee_key: mod_deckorate_import+*script+group_local
+  referee_id:
   ref_type: L
   is_present:
-card_references_2635:
-  id: 3510
+card_references_2598:
+  id: 3527
+  referer_id: 3667
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_2599:
+  id: 3528
   referer_id: 297
   referee_key: mod_script+*script
   referee_id: 559
   ref_type: L
   is_present:
-card_references_2636:
-  id: 3511
+card_references_2600:
+  id: 3529
   referer_id: 297
   referee_key: mod_ace_editor+*script
   referee_id: 562
   ref_type: L
   is_present:
-card_references_2637:
-  id: 3512
+card_references_2601:
+  id: 3530
   referer_id: 297
   referee_key: mod_bar_and_box+*script
   referee_id: 568
   ref_type: L
   is_present:
-card_references_2638:
-  id: 3513
+card_references_2602:
+  id: 3531
   referer_id: 297
   referee_key: mod_bootstrap+*script
   referee_id: 572
   ref_type: L
   is_present:
-card_references_2639:
-  id: 3514
+card_references_2603:
+  id: 3532
   referer_id: 297
   referee_key: mod_filter+*script
   referee_id: 2468
   ref_type: L
   is_present:
-card_references_2640:
-  id: 3515
+card_references_2604:
+  id: 3533
   referer_id: 297
   referee_key: mod_tab+*script
   referee_id: 586
   ref_type: L
   is_present:
-card_references_2641:
-  id: 3516
+card_references_2605:
+  id: 3534
   referer_id: 297
   referee_key: mod_date+*script
   referee_id: 577
   ref_type: L
   is_present:
-card_references_2642:
-  id: 3517
+card_references_2606:
+  id: 3535
   referer_id: 297
   referee_key: mod_recaptcha+*script
   referee_id: 3665
   ref_type: L
   is_present:
-card_references_2643:
-  id: 3518
+card_references_2607:
+  id: 3536
   referer_id: 297
   referee_key: mod_tinymce_editor+*script
   referee_id: 591
   ref_type: L
   is_present:
-card_references_2644:
-  id: 3519
+card_references_2608:
+  id: 3537
   referer_id: 297
   referee_key: mod_deckorate_core+*script
   referee_id: 2493
   ref_type: L
   is_present:
-card_references_2645:
-  id: 3520
+card_references_2609:
+  id: 3538
   referer_id: 297
   referee_key: mod_deckorate_research+*script
   referee_id: 2497
   ref_type: L
   is_present:
-card_references_2646:
-  id: 3521
+card_references_2610:
+  id: 3539
+  referer_id: 297
+  referee_key: mod_deckorate_import+*script
+  referee_id: 3667
+  ref_type: L
+  is_present:
+card_references_2611:
+  id: 3540
   referer_id: 297
   referee_key: mod_deckorate_calculation+*script
   referee_id: 2502
   ref_type: L
   is_present:
-card_references_2647:
-  id: 3522
+card_references_2612:
+  id: 3541
   referer_id: 297
   referee_key: mod_wikirate_company+*script
   referee_id: 2512
   ref_type: L
   is_present:
-card_references_2648:
-  id: 3523
+card_references_2613:
+  id: 3542
   referer_id: 297
   referee_key: mod_wikirate_asset+*script
   referee_id: 2515
   ref_type: L
   is_present:
-card_references_2649:
-  id: 3524
+card_references_2614:
+  id: 3543
   referer_id: 297
   referee_key: mod_wikirate_homepage+*script
   referee_id: 2519
   ref_type: L
   is_present:
-card_references_2650:
-  id: 3525
+card_references_2615:
+  id: 3544
   referer_id: 297
   referee_key: mod_task+*script
   referee_id: 2526
+  ref_type: L
+  is_present:
+card_references_2616:
+  id: 3545
+  referer_id: 3669
+  referee_key: mod_wikirate_company+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_2617:
+  id: 3546
+  referer_id: 3669
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_2618:
+  id: 3547
+  referer_id: 318
+  referee_key: mod_format+*style
+  referee_id: 3631
+  ref_type: L
+  is_present:
+card_references_2619:
+  id: 3548
+  referer_id: 318
+  referee_key: mod_search+*style
+  referee_id: 3632
+  ref_type: L
+  is_present:
+card_references_2620:
+  id: 3549
+  referer_id: 318
+  referee_key: mod_list+*style
+  referee_id: 549
+  ref_type: L
+  is_present:
+card_references_2621:
+  id: 3550
+  referer_id: 318
+  referee_key: mod_permission+*style
+  referee_id: 3633
+  ref_type: L
+  is_present:
+card_references_2622:
+  id: 3551
+  referer_id: 318
+  referee_key: mod_account+*style
+  referee_id: 3634
+  ref_type: L
+  is_present:
+card_references_2623:
+  id: 3552
+  referer_id: 318
+  referee_key: mod_rule+*style
+  referee_id: 3635
+  ref_type: L
+  is_present:
+card_references_2624:
+  id: 3553
+  referer_id: 318
+  referee_key: mod_edit+*style
+  referee_id: 3636
+  ref_type: L
+  is_present:
+card_references_2625:
+  id: 3554
+  referer_id: 318
+  referee_key: mod_history+*style
+  referee_id: 3637
+  ref_type: L
+  is_present:
+card_references_2626:
+  id: 3555
+  referer_id: 318
+  referee_key: mod_carrierwave+*style
+  referee_id: 3638
+  ref_type: L
+  is_present:
+card_references_2627:
+  id: 3556
+  referer_id: 318
+  referee_key: mod_api_key+*style
+  referee_id: 3639
+  ref_type: L
+  is_present:
+card_references_2628:
+  id: 3557
+  referer_id: 318
+  referee_key: mod_style+*style
+  referee_id: 566
+  ref_type: L
+  is_present:
+card_references_2629:
+  id: 3558
+  referer_id: 318
+  referee_key: mod_bar_and_box+*style
+  referee_id: 570
+  ref_type: L
+  is_present:
+card_references_2630:
+  id: 3559
+  referer_id: 318
+  referee_key: mod_bootstrap+*style
+  referee_id: 574
+  ref_type: L
+  is_present:
+card_references_2631:
+  id: 3560
+  referer_id: 318
+  referee_key: mod_filter+*style
+  referee_id: 2470
+  ref_type: L
+  is_present:
+card_references_2632:
+  id: 3561
+  referer_id: 318
+  referee_key: mod_bookmark+*style
+  referee_id: 3640
+  ref_type: L
+  is_present:
+card_references_2633:
+  id: 3562
+  referer_id: 318
+  referee_key: mod_comment+*style
+  referee_id: 3641
+  ref_type: L
+  is_present:
+card_references_2634:
+  id: 3563
+  referer_id: 318
+  referee_key: mod_date+*style
+  referee_id: 579
+  ref_type: L
+  is_present:
+card_references_2635:
+  id: 3564
+  referer_id: 318
+  referee_key: mod_follow+*style
+  referee_id: 3642
+  ref_type: L
+  is_present:
+card_references_2636:
+  id: 3565
+  referer_id: 318
+  referee_key: mod_help+*style
+  referee_id: 3643
+  ref_type: L
+  is_present:
+card_references_2637:
+  id: 3566
+  referer_id: 318
+  referee_key: mod_layout+*style
+  referee_id: 3644
+  ref_type: L
+  is_present:
+card_references_2638:
+  id: 3567
+  referer_id: 318
+  referee_key: mod_tinymce_editor+*style
+  referee_id: 593
+  ref_type: L
+  is_present:
+card_references_2639:
+  id: 3568
+  referer_id: 318
+  referee_key: mod_thumbnail+*style
+  referee_id: 3650
+  ref_type: L
+  is_present:
+card_references_2640:
+  id: 3569
+  referer_id: 318
+  referee_key: mod_guide+*style
+  referee_id: 3645
+  ref_type: L
+  is_present:
+card_references_2641:
+  id: 3570
+  referer_id: 318
+  referee_key: mod_deckorate_utility+*style
+  referee_id: 3654
+  ref_type: L
+  is_present:
+card_references_2642:
+  id: 3571
+  referer_id: 318
+  referee_key: mod_deckorate_layout+*style
+  referee_id: 3658
+  ref_type: L
+  is_present:
+card_references_2643:
+  id: 3572
+  referer_id: 318
+  referee_key: mod_topic+*style
+  referee_id: 3652
+  ref_type: L
+  is_present:
+card_references_2644:
+  id: 3573
+  referer_id: 318
+  referee_key: mod_deckorate_core+*style
+  referee_id: 2495
+  ref_type: L
+  is_present:
+card_references_2645:
+  id: 3574
+  referer_id: 318
+  referee_key: mod_deckorate_research+*style
+  referee_id: 2499
+  ref_type: L
+  is_present:
+card_references_2646:
+  id: 3575
+  referer_id: 318
+  referee_key: mod_deckorate_import+*style
+  referee_id: 3648
+  ref_type: L
+  is_present:
+card_references_2647:
+  id: 3576
+  referer_id: 318
+  referee_key: mod_deckorate_calculation+*style
+  referee_id: 2504
+  ref_type: L
+  is_present:
+card_references_2648:
+  id: 3577
+  referer_id: 318
+  referee_key: mod_deckorate_dataset+*style
+  referee_id: 2506
+  ref_type: L
+  is_present:
+card_references_2649:
+  id: 3578
+  referer_id: 318
+  referee_key: mod_deckorate_profile+*style
+  referee_id: 2510
+  ref_type: L
+  is_present:
+card_references_2650:
+  id: 3579
+  referer_id: 318
+  referee_key: mod_wikirate_company+*style
+  referee_id: 3669
+  ref_type: L
+  is_present:
+card_references_2651:
+  id: 3580
+  referer_id: 318
+  referee_key: mod_wikirate_asset+*style
+  referee_id: 2517
+  ref_type: L
+  is_present:
+card_references_2652:
+  id: 3581
+  referer_id: 318
+  referee_key: mod_wikirate_homepage+*style
+  referee_id: 2521
+  ref_type: L
+  is_present:
+card_references_2653:
+  id: 3582
+  referer_id: 318
+  referee_key: mod_badge+*style
+  referee_id: 2524
+  ref_type: L
+  is_present:
+card_references_2654:
+  id: 3583
+  referer_id: 318
+  referee_key: mod_task+*style
+  referee_id: 3649
+  ref_type: L
+  is_present:
+card_references_2655:
+  id: 3584
+  referer_id: 318
+  referee_key: mod_vega+*style
+  referee_id: 3651
   ref_type: L
   is_present:
