@@ -116,6 +116,9 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  br {
+    display: none;
+  }
 }
 // Bootstrap Tweak
 .media-body {
