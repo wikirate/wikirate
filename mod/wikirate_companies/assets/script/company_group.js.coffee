@@ -32,7 +32,6 @@ decko.slotReady (slot) ->
   if slot.find(".specification-input").length > 0
     updateSpecVisibility slot
 
-
 constraintCsv = (conEd) ->
   rows = conEd.find(".constraint-editor").map ()->
     constraintToImportItem $(this)

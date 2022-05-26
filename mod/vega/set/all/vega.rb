@@ -1,7 +1,5 @@
 format :html do
-  def views_in_head
-    super << :vega_js
-  end
+  basket[:head_views] << :vega_js
 
   view :vega_js, unknown: true do
     output [javascript_include_tag("https://cdn.jsdelivr.net/npm/vega@5"),
