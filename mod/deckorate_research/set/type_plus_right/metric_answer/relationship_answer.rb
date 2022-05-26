@@ -65,16 +65,9 @@ end
 
 format :html do
   delegate :metric, :company, :year, to: :card
-
-  view :core, template: :haml
-
-  view :relations_table, cache: :never do
-    name_view = inverse? ? :inverse_company_name : :company_name
-    wikirate_table search_with_params,
-                   [name_view, :details],
-                   header: [rate_subject, "Answer"],
-                   table: { class: "company" }
-  end
+  #
+  # view :core, template: :haml
+  #
 
   def quick_filter_list
     bookmark_quick_filter + company_group_quick_filters + dataset_quick_filters

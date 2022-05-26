@@ -61,31 +61,6 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
       end
     end
 
-    context "when metric researched" do
-      subject { metric_answer.format._render_table }
-
-      let(:answer_name) { "#{metric.name.url_key}+Death_Star+2001" }
-
-      example "research_metric table" do
-        is_expected.to have_tag "table" do
-          with_answer_row
-        end
-      end
-    end
-
-    context "when metric calculated" do
-      subject { metric_answer.format._render_table }
-
-      let(:metric_name) { "Jedi+friendliness" }
-      let(:answer_name) { "#{metric.name.url_key}+Death_Star+1977" }
-
-      example "formula metric table" do
-        is_expected.to have_tag "table" do
-          with_answer_row
-        end
-      end
-    end
-
     describe ":core view" do
       subject { metric_answer.format._render_filtered_content }
 
@@ -97,16 +72,6 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
       it "has chart" do
         is_expected.to have_tag ".answer-search-chart" do
           with_tag ".vis"
-        end
-      end
-      # it "has progress_bar" do
-      #   is_expected.to have_tag "div.answer-search-progress" do
-      #     with_tag "div.progress-known", "11 Known"
-      #   end
-      # end
-      it "has table" do
-        is_expected.to have_tag "table" do
-          with_text(/Death Star\s*yes\s*yes, no\s*2001/)
         end
       end
     end
