@@ -17,7 +17,7 @@ format :html do
   end
 
   view :metric_thumbnail do
-    nest card.metric_card, view: :thumbnail #, hide: :thumbnail_subtitle
+    nest card.metric_card, view: :thumbnail # , hide: :thumbnail_subtitle
   end
 
   # prominent value, less prominent year, legend, and flags
