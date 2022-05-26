@@ -5,7 +5,7 @@ describe "expanding details on company pages", ->
     # use filter to find darkness rating
     cy.get("._filters-button button").click()
     cy.get(".offcanvas").within () ->
-      cy.contains("Metric").click()
+      # cy.contains("Metric").click()
       cy.get("[name='filter[metric_name]']").type("darkness{enter}")
     cy.get(".offcanvas-header .btn-close").click()
 

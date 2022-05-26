@@ -106,7 +106,7 @@ describe "metric creation", ->
 
   describe "from variable score metric page", ->
     beforeEach ->
-# metric page
+      # metric page
       cy.visit "Jedi+disturbances in the force+Joe User"
 
       # calculations tab
@@ -134,4 +134,3 @@ describe "metric creation", ->
 
       # check that formula looks right
       cy.get(".RIGHT-Xvariable").should "contain", "disturbance"
-
