@@ -1,7 +1,7 @@
 include_set Abstract::Value
 
 event :validate_numeric_value, :validate do
-  return true if number?(value) || Answer.unknown?(value)
+  return true if value.to_s.number? || Answer.unknown?(value)
   errors.add :content, "Only numeric content is valid for this metric."
 end
 

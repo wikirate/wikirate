@@ -15,7 +15,7 @@ describe "expanding details on company pages", ->
     #expands details
     cy.contains("darkness rating").click()
 
-    cy.get(".details").within () ->
+    cy.get(".details-content").within () ->
       cy.contains "deadliness"
       cy.contains "disturbance"
       cy.root().should "not.contain", "Death Star"
@@ -34,12 +34,12 @@ describe "expanding details on company pages", ->
       cy.contains "thereaderwiki.com"
 
       # closes raw value
-      cy.get("> div:visible .details-close-icon").click()
+      cy.get("> div:visible ._close-modal").click()
       cy.contains "Scored Metric"
       cy.get("> div:visible").should "not.contain", "disturbance"
       cy.get("> div:visible").should "not.contain", "Sources"
 
       # closes score
-      cy.get("> div:visible .details-close-icon").click()
+      cy.get("> div:visible ._close-modal").click()
       cy.contains "deadliness"
       cy.contains "disturbance"
