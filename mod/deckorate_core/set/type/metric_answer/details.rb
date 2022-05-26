@@ -39,7 +39,6 @@ format :html do
     haml :details_top
   end
 
-
   view :company_header do
     nest card.company_card, view: :shared_header
   end
