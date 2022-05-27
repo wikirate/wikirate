@@ -75,6 +75,6 @@ format :html do
   end
 
   def filter_prefix
-    "filter[answer][]"
+    "filter[company_answer][]"
   end
 end

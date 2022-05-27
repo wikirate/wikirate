@@ -28,6 +28,7 @@
 
   .input-group-text {
     flex: 0 0 20%;
+    min-width: 72px;
     border-radius: 0 !important;
     &.range-sign {
       font-size: 1.5rem;

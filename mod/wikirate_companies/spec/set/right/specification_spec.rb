@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Right::Specification do
                  "+specification" => specification
     Card["#{group}+specification"]
   end
-  
+
   describe "SubjConstraint class" do
     it "validates metrics" do
       expect { Card::SubjConstraint.new("[[not a metric]]", 2016).validate! }
