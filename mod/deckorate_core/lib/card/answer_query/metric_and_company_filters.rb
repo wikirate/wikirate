@@ -45,7 +45,6 @@ class Card
         company_filter_query "categories", :company_category_condition, value
       end
 
-      # TODO: refactor this away / use answer_query
       def company_filter_query table, condition_method, value
         @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
         @conditions << CompanyFilterQuery.send(condition_method)
@@ -96,6 +95,20 @@ class Card
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
       #
       # This is ultimately a company restriction, limiting the answers to the
+      # companies with an answer for another metric.
+      #
+      # will also need to support year and value constraints
+      def answer_query value
+        return unless (metric_id = value[:metric_id]&.to_i)
+        exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
+          "AND a2.metric_id = ?"
+        @conditions << "EXISTS (#{exists})"
+        @values << metric_id
+      end
+
+      # EXPERIMENTAL. used by fashionchecker but otherwise not public
+      #
+      # This is ultimately a company restriction, limiting the answers to the
       # companies related to another by a given relationship metric
       #
       # will also need to support year and value constraints
@@ -114,20 +127,6 @@ class Card
           @values << company_id
         end
         @conditions << "EXISTS (#{exists})"
-      end
-
-      # EXPERIMENTAL. used by fashionchecker but otherwise not public
-      #
-      # This is ultimately a company restriction, limiting the answers to the
-      # companies with an answer for another metric.
-      #
-      # will also need to support year and value constraints
-      def answer_query value
-        return unless (metric_id = value[:metric_id]&.to_i)
-        exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
-          "AND a2.metric_id = ?"
-        @conditions << "EXISTS (#{exists})"
-        @values << metric_id
       end
     end
   end
