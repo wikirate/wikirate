@@ -1011,3 +1011,68 @@ card_changes_143:
     mod: wikirate assets+*script
     mod: wikirate homepage+*script
     mod: tasks+*script
+card_changes_144:
+  id: 144
+  card_action_id: 3981
+  field: 2
+  value: |-
+    mod: script+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate import+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate assets+*script
+    mod: wikirate homepage+*script
+    mod: tasks+*script
+card_changes_145:
+  id: 145
+  card_action_id: 3984
+  field: 2
+  value: |-
+    mod: format+*style
+    mod: search+*style
+    mod: list+*style
+    mod: permissions+*style
+    mod: account+*style
+    mod: rules+*style
+    mod: edit+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
+    mod: style+*style
+    mod: bar and box+*style
+    mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
+    mod: date+*style
+    mod: follow+*style
+    mod: help+*style
+    mod: layout+*style
+    mod: tinymce editor+*style
+    mod: thumbnail+*style
+    mod: guides+*style
+    mod: deckorate utility+*style
+    mod: deckorate layout+*style
+    mod: topics+*style
+    mod: deckorate core+*style
+    mod: deckorate research+*style
+    mod: deckorate import+*style
+    mod: deckorate calculations+*style
+    mod: deckorate datasets+*style
+    mod: deckorate profiles+*style
+    mod: wikirate companies+*style
+    mod: wikirate assets+*style
+    mod: wikirate homepage+*style
+    mod: badges+*style
+    mod: tasks+*style
+    mod: vega+*style

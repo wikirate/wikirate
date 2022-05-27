@@ -1,8 +1,3 @@
-// defaults
-
-$bar_stripe_color: $gray-700;
-$box_stripe_color: $gray-700;
-
 /*------ Badges ---------*/
 
 .badge {
@@ -34,35 +29,36 @@ $box_stripe_color: $gray-700;
   }
 }
 
-@mixin badge-icons() {
-  .labeled-badge label {
-    .count-badge-label-icon {
-      display: block;
-      width: 22px;
-    }
-    .count-badge-label-text {
-      display: none;
-    }
-  }
-  //@include media-breakpoint-down(sm) {
-  //  padding: 0;
-  //}
-}
 
 .filter-result-badges {
   display: flex;
   padding: 2px 0;
-  //justify-content: flex-end;
   max-height: 1.8em;
   .labeled-badge {
-    label {
-      .count-badge-label-icon, .count-badge-label-text {
-        display: inline-block;
-      }
-    }
-    padding-left: 10px;
+    padding-left: 1em;
   }
 }
+
+@mixin badge-icons() {
+  .labeled-badge {
+    padding-left: 0.5em;
+    label {
+      .count-badge-label-icon {
+        display: block !important;
+        width: 22px;
+      }
+
+      .count-badge-label-text {
+        display: none !important;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  @include badge-icons();
+}
+
 
 /*----------- Bars and Boxes -------------*/
 
@@ -78,7 +74,6 @@ $box_stripe_color: $gray-700;
   border-left-color: $primary;
 }
 
-
 .bar-left a {
   &, .bar-left {
     font-weight: 600;
@@ -86,31 +81,6 @@ $box_stripe_color: $gray-700;
   color: inherit;
 }
 
-@include media-breakpoint-down(sm) {
-  .bar-left h5 {
-    font-size: 1em;
-  }
-}
-
-.box-top {
-  h1, h2, h3, h4, h5, h6 {
-    border: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  h6 {
-    font-size: 1em !important;
-  }
-}
-
-.box-item {
-  transition: all 0.2s ease-out;
-  &:hover {
-    -webkit-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
-  }
-}
 a.box-item {
   text-decoration: none;
 }

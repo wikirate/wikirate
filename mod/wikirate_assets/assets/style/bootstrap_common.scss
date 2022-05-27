@@ -112,7 +112,6 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 
 .ellipsis,
 .ellipsis .known-card {
-  max-width: 94%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -131,10 +130,6 @@ button.pointer-item-delete.btn.btn-outline-secondary {
     display: inline;
     padding: 0;
   }
-}
-
-.labeled-pointers .pointer-list {
-    padding: 0;
 }
 
 .credit .search-result-list {
