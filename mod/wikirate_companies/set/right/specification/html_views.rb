@@ -46,7 +46,7 @@ format :html do
 
   def value_formgroup metric, value=nil, group=nil
     wrap do
-      if metric&.type_id == Card::MetricID
+      if metric&.type_id == MetricID
         card.metric_card = metric
         haml :value_formgroup, metric: metric, value: value, group: group
       else
@@ -66,7 +66,7 @@ format :html do
 
   # TODO: merge with #autocomplete_field on research page
   def metric_dropdown constraint
-    selected = constraint&.metric&.name || ""
+    selected = constraint&.metric&.name || params[:metric_name_delete_me] || ""
     text_field_tag "constraint_metric", selected,
                    class: "_constraint-metric metric_autocomplete " \
                           "pointer-item-text form-control",
@@ -74,9 +74,7 @@ format :html do
                    placeholder: "Enter Metric"
   end
 
-  # this override prevents the addition of a bunch of unnecessary filter-related classes,
-  # etc.
-  def normalize_select_filter_tag_html_options _field, _html_options
-    # NOOP
+  def filter_prefix
+    "filter[answer][]"
   end
 end

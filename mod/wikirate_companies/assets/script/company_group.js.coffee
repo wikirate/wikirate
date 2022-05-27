@@ -4,15 +4,19 @@
 decko.editorContentFunctionMap['.specification-input'] = ->
   if specificationType(this) == "explicit"
     "explicit"
-  else
-    conEd = constraintEditor this
-    if conEd.data "locked" # see note about locking constraint editor below
-      conEd.find("input.d0-card-content").val()
-    else
-      constraintCsv conEd
+#  else
+#    conEd = constraintEditor this
+#    if conEd.data "locked" # see note about locking constraint editor below
+#      conEd.find("input.d0-card-content").val()
+#    else
+#      constraintCsv conEd
 
 $(window).ready ->
-# when metric changes, update value field according to metric's value type
+  # handle changing between explicit and implicit
+  $("body").on "change", "input[name=spec-type]", ->
+    updateSpecVisibility $(this).slot()
+
+  # when metric changes, update value field according to metric's value type
   $("body").on "change", "._constraint-metric", ->
     input = $(this)
     valueSlot = input.closest("li").find(".card-slot")
@@ -20,43 +24,11 @@ $(window).ready ->
     url = valueSlot.slotMark() + "?view=value_formgroup&metric=" + metric
     valueSlot.reloadSlot url
 
-  $("body").on "change", "input[name=spec-type]", ->
-    updateSpecVisibility $(this).slot()
+#  $("body").on "submit", ".card-form", ->
+#    if $(this).find(".specification-input").length > 0
+#      $(this).setContentFieldsFromMap()
+#      lockConstraintEditor constraintEditor(this)
 
-  $("body").on "submit", ".card-form", ->
-    if $(this).find(".specification-input").length > 0
-      $(this).setContentFieldsFromMap()
-      lockConstraintEditor constraintEditor(this)
-
-decko.slotReady (slot) ->
-  if slot.find(".specification-input").length > 0
-    updateSpecVisibility slot
-
-constraintCsv = (conEd) ->
-  rows = conEd.find(".constraint-editor").map ()->
-    constraintToImportItem $(this)
-  rows.get().join "\n"
-
-constraintToImportItem = (con)->
-  [metricValue(con), yearValue(con), valueValue(con), groupValue(con)].join ";|;"
-
-metricValue = (con) ->
-  con.find(".constraint-metric input").val()
-
-yearValue = (con) ->
-  con.find(".constraint-year select").val()
-
-valueValue = (con) ->
-  con.find(".constraint-value input, .constraint-value .constraint-value-fields > select").serialize()
-
-groupValue = (con) ->
-  con.find(".constraint-related-group select").val()
-
-specificationType = (el) ->
-  $(el).find("[name=spec-type]:checked").val()
-
-constraintEditor = (el) ->
-  $(el).find(".constraint-list-editor")
 
 updateSpecVisibility = (slot) ->
   implicit = constraintEditor slot
@@ -68,12 +40,43 @@ updateSpecVisibility = (slot) ->
     explicit.hide()
     implicit.show()
 
+constraintEditor = (el) ->
+  $(el).find ".constraint-list-editor"
 
-# see note about locking constraint editor below
-lockConstraintEditor = (conEd)->
-  conEd.data "locked", "true"
-  conEd.find(".constraint-editor input, .constraint-editor select")
-    .prop "disabled", true
+specificationType = (el) ->
+  $(el).find("[name=spec-type]:checked").val()
+
+decko.slotReady (slot) ->
+  if slot.find(".specification-input").length > 0
+    updateSpecVisibility slot
+
+#constraintCsv = (conEd) ->
+#  rows = conEd.find(".constraint-editor").map ()->
+#    constraintToImportItem $(this)
+#  rows.get().join "\n"
+#
+#constraintToImportItem = (con)->
+#  [metricValue(con), yearValue(con), valueValue(con), groupValue(con)].join ";|;"
+#
+#metricValue = (con) ->
+#  con.find(".constraint-metric input").val()
+#
+#yearValue = (con) ->
+#  con.find(".constraint-year select").val()
+#
+#valueValue = (con) ->
+#  con.find(".constraint-value input, .constraint-value .constraint-value-fields > select").serialize()
+#
+#groupValue = (con) ->
+#  con.find(".constraint-related-group select").val()
+#
+
+#
+## see note about locking constraint editor below
+#lockConstraintEditor = (conEd)->
+#  conEd.data "locked", "true"
+#  conEd.find(".constraint-editor input, .constraint-editor select")
+#    .prop "disabled", true
 
 # note about locking constraint editor
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
