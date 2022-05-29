@@ -36,7 +36,7 @@ window.wikirate =
 # Check if container exists
 $.fn.exists = -> return this.length > 0
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
    # TODO: replace this autocomplete with filtered list ui
   slot.find('.wikirate_company_autocomplete').autocomplete
     source: '/Companies+*right+*content_options.json?view=name_match'

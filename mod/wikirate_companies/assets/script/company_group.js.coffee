@@ -1,7 +1,7 @@
 # special handling for constraints on company group page.
 
 # when saving, convert
-decko.editorContentFunctionMap['.specification-input'] = ->
+decko.editors.content['.specification-input'] = ->
   if specificationType(this) == "explicit"
     "explicit"
 #  else
@@ -46,7 +46,7 @@ constraintEditor = (el) ->
 specificationType = (el) ->
   $(el).find("[name=spec-type]:checked").val()
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   if slot.find(".specification-input").length > 0
     updateSpecVisibility slot
 

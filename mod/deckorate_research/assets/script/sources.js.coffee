@@ -9,13 +9,13 @@ $(document).ready ->
   $("body").on "change", ".RIGHT-file .download-option .d0-card-content", ->
     el = $(this)
     catcher = el.slot().find ".copy_catcher-view"
-    catcher.reloadSlot catcher.slotUrl() + "&" + $.param(url: el.val())
+    catcher.reloadSlot decko.slot.url(catcher) + "&" + $.param(url: el.val())
 
 # Resize PDF preview iframe to use full available height
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   resizeIframe($('body'))
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   resizeIframe(slot)
 
 @resizeIframe = (el) ->

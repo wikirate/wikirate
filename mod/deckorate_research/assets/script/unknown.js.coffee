@@ -3,10 +3,10 @@
 # set content value to "Unknown" if unknown checkbox is checked
 # FIXME: this relies on the idea that this function will get called AFTER
 # the default editor content function, but there's no guarantee it will.
-decko.editorContentFunctionMap["._unknown-checkbox input:checked"] = ->
+decko.editors.content["._unknown-checkbox input:checked"] = ->
   @val()
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   # reset value when "unknown" is checked
   unknownCheckbox(slot).on "change", ->
     clearValue valueEditor(slot) if $(this).is(":checked")
