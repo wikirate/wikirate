@@ -9,24 +9,20 @@ RSpec.describe Card::Set::Right::Specification do
     Card["#{group}+specification"]
   end
 
-  def constraint_class
-    described_class.const_get "Constraint"
-  end
-
-  describe "Constraint class" do
+  describe "SubjConstraint class" do
     it "validates metrics" do
-      expect { constraint_class.new("[[not a metric]]", 2016).validate! }
+      expect { Card::SubjConstraint.new("[[not a metric]]", 2016).validate! }
         .to raise_error(/invalid metric/)
     end
 
     it "validates years" do
-      expect { constraint_class.new("[[Fred+dinosaurlabor]]", 20_166).validate! }
+      expect { Card::SubjConstraint.new("[[Fred+dinosaurlabor]]", 20_166).validate! }
         .to raise_error(/invalid year/)
     end
 
     describe "#to_s" do
       specify do
-        expect(constraint_class.new("FRED+dinosaurlabor?", 2016, from: 20).to_s)
+        expect(Card::SubjConstraint.new("FRED+dinosaurlabor?", 2016, from: 20).to_s)
           .to eq("[[Fred+dinosaurlabor]],2016,\"{\"\"from\"\":20}\",")
       end
     end
