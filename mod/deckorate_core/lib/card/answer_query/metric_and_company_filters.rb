@@ -42,7 +42,7 @@ class Card
       end
 
       def company_category_query value
-        company_filter_query :categories, :company_category_condition, value
+        company_filter_query :categories, :category_condition, value
       end
 
       def company_filter_query table, condition_method, value
