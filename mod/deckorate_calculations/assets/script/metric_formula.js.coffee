@@ -3,7 +3,7 @@ $(window).ready ->
   $('body').on "click", "._formula-input-links a", ->
     formEd(this).showInputs $(this).data("inputIndex")
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   edEl = slot.find("> form ._formula-editor")
   if edEl[0] && !edEl.data("editorInitialized")
   # this sucks.  need to get rid of the timeout in editor.js.coffee that makes

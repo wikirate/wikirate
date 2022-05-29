@@ -1,4 +1,4 @@
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
 $(document).ready ->
   $('body').on 'click', '._import-status-form ._check-all', (_e) ->
     checked = $(this).is(':checked')
@@ -30,7 +30,7 @@ $(document).ready ->
   $('body').on 'click', '._import-status-refresh', (e) ->
     s = $(this).slot()
     current_tab = s.find(".nav-link.active").data("tab-name")
-    s.reloadSlot(s.slotUrl() + "&tab=" + current_tab)
+    s.reloadSlot(decko.slot.url(s) + "&tab=" + current_tab)
 
   # show/hide mapped items
   $('body').on 'click', "._toggle-mapping-vis", (e) ->
