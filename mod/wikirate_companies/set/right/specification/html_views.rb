@@ -4,7 +4,13 @@ format :html do
   view :core, template: :haml
 
   view :value_formgroup, cache: :never, unknown: true do
-    value_formgroup Card[params[:metric]]
+    value_formgroup params[:metric]&.card
+  end
+
+  view :metric_selector, unknown: true do
+    wrap_with :div, class: "_specification-metric-selector" do
+      nest :metric, view: :filtered_content
+    end
   end
 
   def help_text
@@ -22,7 +28,7 @@ format :html do
   def constraint_list_input
     constraints = card.constraints
     constraints = [nil] if constraints.empty?
-    haml :constraint_list_input, constraints: constraints
+    wrap { haml :constraint_list_input, constraints: constraints }
   end
 
   def pretty_value_constraint value
@@ -55,23 +61,16 @@ format :html do
     end
   end
 
-  def year_dropdown constraint
-    selected = constraint&.year || "latest"
-    select_filter :year, selected, filter_year_options
+  def year_dropdown year
+    select_filter :year, (year || "latest"), filter_year_options
   end
 
   def filter_year_options
     { "Any" => "any" }.merge super
   end
 
-  # TODO: merge with #autocomplete_field on research page
-  def metric_dropdown constraint
-    selected = constraint&.metric&.name || params[:metric_name_delete_me] || ""
-    text_field_tag "constraint_metric", selected,
-                   class: "_constraint-metric metric_autocomplete " \
-                          "pointer-item-text form-control",
-                   "data-options-card": Card::Name[:metric, :type, :by_name],
-                   placeholder: "Enter Metric"
+  def metric_selector metric
+    haml :metric_selector, metric: metric
   end
 
   def filter_prefix

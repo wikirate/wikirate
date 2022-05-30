@@ -1,0 +1,7 @@
+._metric-selector.metric-selector.form-control
+  = modal_link (metric&.name || "Choose Metric"),
+               class: "_selectable-filter-link",
+               path: { mark: :metric,
+                       view: :selectable_filtered_content,
+                       items: { view: :thumbnail } }
+  = hidden_field_tag "#{filter_prefix}[metric_id]", metric&.id
