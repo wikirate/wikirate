@@ -1,5 +1,5 @@
 # TODO: move somewhere more general!
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
 
 $(window).ready ->
