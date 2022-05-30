@@ -1,4 +1,4 @@
-decko.addEditor ".codemirror-editor-textarea",
+decko.editors.add ".codemirror-editor-textarea",
   -> initCodeMirror $(this),
   -> codeMirrorContent $(this)
 
