@@ -1,4 +1,4 @@
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
 $(document).ready ->
   $('body').on 'click', '._import-status-form ._check-all', (_e) ->
     checked = $(this).is(':checked')
