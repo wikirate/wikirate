@@ -3,10 +3,10 @@
 # WikiRating variables are stored as a simple JSON hash:
 #
 # { metric: metric_name, weight: metric_weight }
-decko.editorContentFunctionMap['.wikiRating-editor'] = ->
+decko.editors.content['.wikiRating-editor'] = ->
   weighter(this).json()
 
-decko.slotReady ->
+decko.slot.ready ->
   $('.metric-weight input').on 'keyup', ->
     weighter(this).checkEqualization()
 
