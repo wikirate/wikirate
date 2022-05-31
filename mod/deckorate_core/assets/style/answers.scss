@@ -4,11 +4,11 @@
       padding: 0 0.5em;
 
       &.thumbnail {
-        min-width: 42%;
+        width: 42%;
       }
     }
     .one-thumb-answer > .thumbnail {
-      min-width: 84%;
+      width: 84%;
     }
   }
 }

@@ -1,23 +1,24 @@
 .constraint-list-editor
   %ul.pointer-list-editor
     - constraints.each do |constraint|
+      - metric = constraint[:metric_id].to_i.card
       %li.pointer-li.mb-1
         .input-group
           .constraint-editor.col-11
             .input-group.constraint-metric
               .input-group-text
                 Metric
-              = metric_dropdown constraint
+              = metric_selector metric
             .input-group.constraint-year
               .input-group-text
                 Year
-              = year_dropdown constraint
+              = year_dropdown constraint[:year]
             .input-group.constraint-value
               .input-group-text
                 Value
-              = value_formgroup constraint&.metric, constraint&.value, constraint&.group
+              = value_formgroup metric, constraint[:value], constraint[:related_company_group ]
           %button.col-1.pointer-item-delete.btn.btn-secondary{ type: "button"}
-            = icon_tag :remove
+            = icon_tag :remove, class: "d-flex justify-content-center"
   %span.input-group
     %button._pointer-item-add.btn.btn-secondary{ type: "submit" }
       = icon_tag "add"

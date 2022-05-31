@@ -2,7 +2,6 @@ include_set Abstract::BsBadge
 include_set Abstract::Table
 include_set Abstract::DeckorateFiltering
 include_set Abstract::MetricSearch
-# include_set Abstract::BookmarkFiltering
 include_set Abstract::LookupSearch
 include_set Abstract::AnswerFilters
 
@@ -18,13 +17,13 @@ format do
   def filter_map
     filtering_by_published do
       [:year,
+       { key: :wikirate_company,
+         type: :group,
+         filters: shared_company_filter_map.unshift(:company_name) },
        { key: :metric,
          type: :group,
          open: true,
-         filters: shared_metric_filter_map.unshift(key: :metric_name, open: true) },
-       { key: :wikirate_company,
-         type: :group,
-         filters: shared_metric_filter_map.unshift(key: :company_name, open: true) },
+         filters: shared_metric_filter_map.unshift(:metric_name) },
        { key: :metric_answer,
          type: :group,
          filters: [{ key: :value, open: true }] +
