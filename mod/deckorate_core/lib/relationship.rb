@@ -7,6 +7,8 @@ class Relationship < Cardio::Record
   include EntryFetch
   include Export
 
+  extend FilterHelper
+
   after_destroy :latest_to_true
   delegate :company_id, :designer_id, :title_id, to: :answer
   fetcher :answer_id, :value, :numeric_value, :imported
