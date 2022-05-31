@@ -51,7 +51,7 @@ class Card
         def related_clause
           return unless @group.present?
 
-          safe_clause "id in (?)", Relationship.answer_ids_for(@metric, @group)
+          safe_clause "answer_id in (?)", Relationship.answer_ids_for(@metric, @group)
         end
 
         # TODO: reuse more code from value_filters.rb (logic is largely the same)
