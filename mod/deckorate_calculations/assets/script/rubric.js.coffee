@@ -1,10 +1,10 @@
 
 # rubric (Score) editor
 
-decko.editorContentFunctionMap['.pairs-editor'] = ->
+decko.editors.content['.pairs-editor'] = ->
   JSON.stringify pairsEditorHash(this)
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   ed = slot.find "> form ._scoreVariablesEditor"
   if ed.length > 0
     variabler(ed).updateFormulaInputs()
