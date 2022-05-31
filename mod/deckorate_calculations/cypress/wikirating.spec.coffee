@@ -23,6 +23,7 @@ describe 'edit WikiRating', ->
       .click()
     cy.get("._filter-container [name='filter[name]']")
       .type("dead{enter}")
+    cy.wait 200
     cy.get("input[name='Jedi+deadliness+Joe Camel']")
       .click()
     cy.contains("Add Selected")

@@ -9,28 +9,8 @@ def history?
   explicit?
 end
 
-def constraints
-  specification_card.constraints
-end
-
-def relation
-  exist_clauses = constraint_clauses.map { |cc| "exists (#{cc})" }
-  Card.where exist_clauses.join(" and ")
-end
-
-def constraint_clauses
-  constraints.map do |constraint|
-    "SELECT company_id FROM answers " \
-    "WHERE #{constraint.conditions} AND answers.company_id = cards.id"
-  end
-end
-
-def item_names_from_spec
-  relation.pluck :name
-end
-
 def update_content_from_spec
-  self.content = item_names_from_spec.to_pointer_content if implicit?
+  self.content = specification_card.implicit_item_names if implicit?
 end
 
 def bookmark_type
@@ -60,12 +40,5 @@ format :html do
 
   def filter_card
     :wikirate_company.card
-  end
-end
-
-class << self
-  def company_groups_for_metric metric_id
-    Card.search type: :company_group,
-                right_plus: [:specification, { refer_to: metric_id }]
   end
 end
