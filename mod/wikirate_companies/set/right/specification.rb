@@ -17,7 +17,7 @@ event :update_company_list, :prepare_to_store,
   company_list.update_content_from_spec
 end
 
-event :validate_company_group_constraint, :validation,
+event :validate_company_group_constraint, :validate,
       on: :save, changed: :content, when: :implicit? do
   constraints.each do |c|
     validate_constraint_metric c[:metric_id].to_i.card
