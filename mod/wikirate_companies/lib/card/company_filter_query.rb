@@ -19,11 +19,12 @@ class Card
       private
 
       def company_answer_subquery constraint
-        return unless metric_id = constraint[:metric_id]
+        return unless metric = constraint[:metric_id]&.card
 
-        query = [safe_clause("metric_id = ?", metric_id)]
+        query = [safe_clause("metric_id = ?", metric.id)]
         query << year_clause(constraint[:year])
-        query << value_clause(metric_id.card, constraint[:value])
+        query << value_clause(metric, constraint[:value])
+        query << related_clause(metric, constraint[:related_company_group])
         query.compact.join " AND "
       end
 
@@ -38,6 +39,12 @@ class Card
         end
       end
 
+      def related_clause metric, company_group
+        return unless company_group.present?
+
+        safe_clause "id in (?)", Relationship.answer_ids_for(metric, company_group)
+      end
+
       # TODO: reuse more code from value_filters.rb (logic is largely the same)
       def value_clause metric, value
         case value
@@ -45,6 +52,8 @@ class Card
           category_value_clause metric, value
         when Hash
           numeric_value_clause value
+        when "", nil
+          nil
         else
           safe_clause "value LIKE ?", "%#{value.strip}%"
         end

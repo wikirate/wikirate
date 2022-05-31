@@ -28,7 +28,7 @@ format :html do
   def constraint_list_input
     constraints = card.constraints
     constraints = [nil] if constraints.empty?
-    wrap { haml :constraint_list_input, constraints: constraints }
+    haml :constraint_list_input, constraints: constraints
   end
 
   def pretty_value_constraint value

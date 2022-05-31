@@ -2537,3 +2537,15 @@ card_acts_423:
   actor_id: 191
   acted_at: 2022-05-30 18:34:28.000000000 Z
   ip_address:
+card_acts_424:
+  id: 106463
+  card_id: 292
+  actor_id: 191
+  acted_at: 2022-05-31 00:09:17.000000000 Z
+  ip_address:
+card_acts_425:
+  id: 106464
+  card_id: 313
+  actor_id: 191
+  acted_at: 2022-05-31 00:09:18.000000000 Z
+  ip_address:

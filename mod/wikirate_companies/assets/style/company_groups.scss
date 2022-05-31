@@ -40,9 +40,9 @@
 
   .constraint-value {
     background-color: $light;
-    //> .input-view, .value_formgroup-view {
-    //  width: 80%;
-    //}
+    .value_formgroup-view {
+      flex: 1 1 auto;
+    }
 
     .constraint-value-fields { // value row, right column
       display: flex;
