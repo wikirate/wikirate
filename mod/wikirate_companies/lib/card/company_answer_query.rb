@@ -12,8 +12,11 @@ class Card
     end
 
     def company_answer val
-      joins << company_answer_join(:co_ans)
-      @conditions << CompanyFilterQuery.company_answer_conditions(val)
+      Array.wrap(val).each_with_index do |constraint, index|
+        table = "co_ans#{index}"
+        joins << company_answer_join(table)
+        @conditions << CompanyFilterQuery.company_answer_condition(table, constraint)
+      end
     end
 
     private

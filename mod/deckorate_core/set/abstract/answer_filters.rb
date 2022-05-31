@@ -61,6 +61,20 @@ format :html do
     "Value"
   end
 
+  def filter_value_closer_value value
+    case value
+    when Array
+      value.join ", "
+    when Hash
+      [
+        ("> #{value[:from]}" if value[:from]),
+        ("> #{value[:to]}" if value[:to])
+      ].join ", "
+    else
+      value
+    end
+  end
+
   private
 
   def standard_verification_options

@@ -17,6 +17,11 @@
 .constraint-editor {
   padding: 0;
 
+  .metric-selector {
+    // revert nowrap from pointer list editor
+    white-space: normal;
+  }
+
   input, select {
     border-radius: 0;
   }

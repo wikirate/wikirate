@@ -3,15 +3,12 @@ class Card
     # conditions and condition support methods for non-standard fields.
     module AdvancedFilters
       def company_answer_query value
-        Array.wrap(value).each do |constraint|
-
+        Array.wrap(value).each_with_index do |constraint, index|
+          table = "co_ans#{index}"
+          joins << company_answer_join(table)
+          @conditions << CompanyFilterQuery.company_answer_condition(table, constraint)
         end
       end
-
-
-
-
-
 
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
       #

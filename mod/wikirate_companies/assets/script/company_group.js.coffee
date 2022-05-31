@@ -16,6 +16,7 @@ $(window).ready ->
     link.text data.cardName
     link.siblings().val data.cardId # assumes hidden metric id field is only sibling
     updateValueEditor link, data.cardId
+    decko.updateAddItemButton this
 
   # handle new constraint added
   $("body").on "item:added", ".constraint-list-editor li", ->

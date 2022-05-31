@@ -26,7 +26,7 @@ format :html do
   end
 
   def constraint_list_input
-    constraints = card.constraints
+    constraints = card.content_from_params || card.constraints
     constraints = [nil] if constraints.empty?
     haml :constraint_list_input, constraints: constraints
   end
