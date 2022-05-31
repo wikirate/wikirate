@@ -2489,3 +2489,63 @@ card_acts_415:
   actor_id: 191
   acted_at: 2022-05-29 22:02:42.000000000 Z
   ip_address:
+card_acts_416:
+  id: 106455
+  card_id: 292
+  actor_id: 191
+  acted_at: 2022-05-30 13:41:55.000000000 Z
+  ip_address:
+card_acts_417:
+  id: 106456
+  card_id: 313
+  actor_id: 191
+  acted_at: 2022-05-30 13:41:56.000000000 Z
+  ip_address:
+card_acts_418:
+  id: 106457
+  card_id: 292
+  actor_id: 191
+  acted_at: 2022-05-30 14:02:56.000000000 Z
+  ip_address:
+card_acts_419:
+  id: 106458
+  card_id: 313
+  actor_id: 191
+  acted_at: 2022-05-30 14:02:57.000000000 Z
+  ip_address:
+card_acts_420:
+  id: 106459
+  card_id: 292
+  actor_id: 191
+  acted_at: 2022-05-30 14:27:56.000000000 Z
+  ip_address:
+card_acts_421:
+  id: 106460
+  card_id: 313
+  actor_id: 191
+  acted_at: 2022-05-30 14:27:57.000000000 Z
+  ip_address:
+card_acts_422:
+  id: 106461
+  card_id: 292
+  actor_id: 191
+  acted_at: 2022-05-30 18:34:27.000000000 Z
+  ip_address:
+card_acts_423:
+  id: 106462
+  card_id: 313
+  actor_id: 191
+  acted_at: 2022-05-30 18:34:28.000000000 Z
+  ip_address:
+card_acts_424:
+  id: 106463
+  card_id: 292
+  actor_id: 191
+  acted_at: 2022-05-31 00:09:17.000000000 Z
+  ip_address:
+card_acts_425:
+  id: 106464
+  card_id: 313
+  actor_id: 191
+  acted_at: 2022-05-31 00:09:18.000000000 Z
+  ip_address:

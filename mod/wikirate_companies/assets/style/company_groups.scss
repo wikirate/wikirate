@@ -26,23 +26,22 @@
     border-radius: 0;
   }
 
-  .input-group-text {
+  > .input-group > .input-group-text {
     flex: 0 0 20%;
     min-width: 72px;
+  }
+
+  .input-group-text {
     border-radius: 0 !important;
     &.range-sign {
       font-size: 1.5rem;
     }
   }
 
-  .range-filter-field:last-child {
-    border-right: none;
-  }
-
   .constraint-value {
     background-color: $light;
-    > .input-view, .value_formgroup-view {
-      width: 80%;
+    .value_formgroup-view {
+      flex: 1 1 auto;
     }
 
     .constraint-value-fields { // value row, right column
@@ -50,9 +49,6 @@
       background-color: $white;
       .select2 {
         width: 100% !important;
-      }
-      input {
-        min-width: 30%;
       }
     }
 

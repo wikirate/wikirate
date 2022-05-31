@@ -19,10 +19,12 @@ class Card
       private
 
       def company_answer_subquery constraint
-        return unless metric_id = constraint[:metric_id]
+        return unless metric = constraint[:metric_id]&.card
 
-        query = [safe_clause("metric_id = ?", metric_id)]
+        query = [safe_clause("metric_id = ?", metric.id)]
         query << year_clause(constraint[:year])
+        query << value_clause(metric, constraint[:value])
+        query << related_clause(metric, constraint[:related_company_group])
         query.compact.join " AND "
       end
 
@@ -37,10 +39,48 @@ class Card
         end
       end
 
+      def related_clause metric, company_group
+        return unless company_group.present?
+
+        safe_clause "id in (?)", Relationship.answer_ids_for(metric, company_group)
+      end
+
+      # TODO: reuse more code from value_filters.rb (logic is largely the same)
+      def value_clause metric, value
+        case value
+        when Array
+          category_value_clause metric, value
+        when Hash
+          numeric_value_clause value
+        when "", nil
+          nil
+        else
+          safe_clause "value LIKE ?", "%#{value.strip}%"
+        end
+      end
+
+      def numeric_value_clause value
+        bits = []
+        bits << safe_clause("numeric_value > ?", value[:from]) if value[:from]
+        bits << safe_clause("numeric_value < ?", value[:to]) if value[:to]
+        "(#{bits.join ' AND '})"
+      end
+
+      def category_clause metric, value
+        if metric.multi_categorical?
+          # see comment in value_filters.rb
+          ::Answer.sanitize_sql_for_conditions(
+            ["FIND_IN_SET(?, REPLACE(co_ans.value, ', ', ','))",
+             Array.wrap(value)]
+          )
+        else
+          safe_clause "value in (?)", value
+        end
+      end
+
       def safe_clause field, val
         ::Answer.sanitize_sql_for_conditions ["co_ans.#{field}", Array.wrap(val)]
       end
-
 
       def answer_condition table, codename
         "#{table}.metric_id = #{codename.card_id} AND #{table}.value IN (?)"

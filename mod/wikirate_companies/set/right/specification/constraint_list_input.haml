@@ -7,11 +7,11 @@
             .input-group.constraint-metric
               .input-group-text
                 Metric
-              = metric_dropdown constraint
+              = metric_selector constraint&.metric&.card
             .input-group.constraint-year
               .input-group-text
                 Year
-              = year_dropdown constraint
+              = year_dropdown constraint&.year
             .input-group.constraint-value
               .input-group-text
                 Value
