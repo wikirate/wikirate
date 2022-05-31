@@ -46,7 +46,6 @@ class Card
         end
         @conditions << "EXISTS (#{exists})"
       end
-
     end
   end
 end

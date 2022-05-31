@@ -66,16 +66,20 @@ format :html do
     when Array
       value.join ", "
     when Hash
-      [
-        ("> #{value[:from]}" if value[:from]),
-        ("> #{value[:to]}" if value[:to])
-      ].join ", "
+      hash_value_closer_value value
     else
       value
     end
   end
 
   private
+
+  def hash_value_closer_value value
+    [
+      ("> #{value[:from]}" if value[:from]),
+      ("> #{value[:to]}" if value[:to])
+    ].join ", "
+  end
 
   def standard_verification_options
     Answer::VERIFICATION_LEVELS.map.with_object({}) do |level, opts|

@@ -10,12 +10,20 @@
 # we reuse metric and value interface from this set in the constraint editor:
 include_set Card::Set::TypePlusRight::Metric::MetricAnswer
 
+attr_accessor :metric_card
+
 event :update_company_list, :prepare_to_store,
       on: :save, changed: :content, when: :implicit? do
   company_list.update_content_from_spec
 end
 
-attr_accessor :metric_card
+event :validate_company_group_constraint, :validation,
+      on: :save, changed: :content, when: :implicit? do
+  constraints.each do |c|
+    validate_constraint_metric c[:metric_id].to_i.card
+    validate_constraint_year c[:year].to_s
+  end
+end
 
 # store explicit list in `<Company Group>+company`
 def explicit?
@@ -49,7 +57,7 @@ def standardize_content content
   content = content_from_params if content_from_params.present?
   return content unless content.is_a? Array
 
-  JSON(content.map { |constraint| standardize_constraint constraint })
+  JSON(content.map { |constraint| ensure_metric_id constraint })
 end
 
 def content_from_params
@@ -78,27 +86,20 @@ format :json do
   view(:items) { [] }
 end
 
-
 private
 
 def company_list
   left&.field :wikirate_company
 end
 
-def standardize_constraint constraint
-  Env.hash(constraint).tap do |c|
-    ensure_metric_id c
-    errors.add "invalid metric: #{c[:metric_id]}" unless valid_metric? c[:metric_id].card
-    errors.add "invalid year: #{c[:year]}" unless valid_year? c[:year].to_s
-  end
+def validate_constraint_metric metric
+  errors.add "invalid metric: #{metric}" unless metric&.type_id == Card::MetricID
 end
 
-def valid_metric? metric
-  metric&.type_id == Card::MetricID
-end
+def validate_constraint_year year
+  return if year.match(/^\d{4}$/) || year.in?(%w[any latest])
 
-def valid_year? year
-  year.match(/^\d{4}$/) || year.in?(%w[any latest])
+  errors.add "invalid year: #{year}"
 end
 
 def ensure_metric_id constraint

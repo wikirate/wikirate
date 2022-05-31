@@ -63,12 +63,21 @@ format :html do
 
   def filter_company_answer_closer_value constraints
     Array.wrap(constraints).map do |c|
-      string = "#{c[:metric_id].to_i.card&.metric_title} – "
-      string << filter_value_closer_value(c[:value]) if c[:value].present?
-      string << " #{c[:related_company_group]}" if c[:related_company_group].present?
-      string << " (#{c[:year]})" if c[:year].present?
-      string
+      bits = closer_constraint_bits c[:metric_id].to_i, c[:value], c[:group], c[:year]
+      bits.compact.join " "
     end.join ", "
+  end
+
+  private
+
+  def closer_constraint_bits metric_id, value, group, year
+    [
+      metric_id.card&.metric_title,
+      "—",
+      (value.present? && filter_value_closer_value(value)),
+      (group.present? && group),
+      (year.present? && "(#{year})")
+    ]
   end
 end
 
