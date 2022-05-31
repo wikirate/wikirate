@@ -3,6 +3,7 @@ include_set Abstract::SourceSearch
 
 format :html do
   view :compact_filter_form do
+    @compact_filter_form = true
     super() + haml(:source_help)
   end
 
