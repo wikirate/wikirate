@@ -61,8 +61,8 @@ format :html do
     end
   end
 
-  def year_dropdown year
-    select_filter :year, (year || "latest"), filter_year_options
+  def year_dropdown year, disabled
+    select_filter_tag :year, (year || "latest"), filter_year_options, disabled: disabled
   end
 
   def filter_year_options

@@ -15,18 +15,26 @@ $(window).ready ->
     link = $(this)
     link.text data.cardName
     link.siblings().val data.cardId # assumes hidden metric id field is only sibling
+    constraintDisabled link, false
     updateValueEditor link, data.cardId
     decko.updateAddItemButton this
+    link.closest("form").submit()
 
   # handle new constraint added
-  $("body").on "item:added", ".constraint-list-editor li", ->
-    $(this).find(".constraint-metric a").text "Choose Metric"
+  $("body").on "item:added", "._constraint-list-editor li", ->
+    metric_link = $(this).find(".constraint-metric a")
+    metric_link.text "Choose Metric"
     $(this).find(".constraint-value").children(":not(.input-group-text)").remove()
+    constraintDisabled metric_link, true
 
 
 decko.slot.ready (slot) ->
   if slot.find(".specification-input").length > 0
     updateSpecVisibility slot
+
+constraintDisabled = (el, toggle) ->
+  ed = el.closest "._constraint-editor"
+  ed.find("select, input").prop "disabled", toggle
 
 # update value field according to metric's value type
 updateValueEditor = (metricLink, metricId) ->

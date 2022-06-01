@@ -1,11 +1,11 @@
-.constraint-list-editor
+.constraint-list-editor._constraint-list-editor
   %ul.pointer-list-editor
     - constraints.each do |constraint|
       - constraint ||= {}
       - metric = constraint[:metric_id].to_i.card
       %li.pointer-li.mb-1
         .input-group
-          .constraint-editor.col-11
+          ._constraint-editor.constraint-editor.col-11
             .input-group.constraint-metric
               .input-group-text
                 Metric
@@ -13,7 +13,7 @@
             .input-group.constraint-year
               .input-group-text
                 Year
-              = year_dropdown constraint[:year]
+              = year_dropdown constraint[:year], !metric.present?
             .input-group.constraint-value
               .input-group-text
                 Value

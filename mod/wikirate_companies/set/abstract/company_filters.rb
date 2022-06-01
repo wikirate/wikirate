@@ -35,15 +35,22 @@ format :html do
     end.join ", "
   end
 
+  def filter_hash
+    super.tap do |hash|
+      if hash[:company_answer].is_a? Hash
+        hash[:company_answer] = hash[:company_answer].values
+      end
+    end
+  end
+
   private
 
   def closer_constraint_bits metric_id, value, group, year
     [
       metric_id.card&.metric_title,
-      "—",
-      (value.present? && filter_value_closer_value(value)),
-      (group.present? && group),
-      (year.present? && "(#{year})")
+      ("(#{year})" if year.present?),
+      (filter_value_closer_value(value) if value.present?),
+      (group if group.present?)
     ]
   end
 end

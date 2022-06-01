@@ -1,6 +1,6 @@
 # Loader animation
 window.wikirate =
-  ajaxLoader: { head: '#ajax_loader', child: '.loader-anime'}
+  ajaxLoader: { head: '#ajax_loader', child: '.loader- anime'}
 
   initRowRemove: ($button) ->
     $button =  $("._remove_row") unless $button
@@ -46,6 +46,6 @@ decko.slot.ready (slot) ->
 
 # show loader after submitting filter form
 $(document).ready ->
-  $('body').on "submit", "._compact-filter-form", ->
+  $('body').on "submit", "._filter-form", ->
     slot = $(this).findSlot($(this).data("slot-selector"))
     wikirate.loader($(slot), false).prepend()

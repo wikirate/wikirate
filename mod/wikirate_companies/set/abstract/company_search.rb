@@ -3,6 +3,7 @@ include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
 include_set Abstract::CommonFilters
+include_set Abstract::AnswerFilters
 include_set Abstract::CompanyFilters
 
 def bookmark_type

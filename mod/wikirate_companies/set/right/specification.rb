@@ -61,7 +61,7 @@ def standardize_content content
 end
 
 def content_from_params
-  Env.params.dig :filter, :company_answer
+  Env.params.dig(:filter, :company_answer)&.map { |c| Env.hash c }
 end
 
 format do

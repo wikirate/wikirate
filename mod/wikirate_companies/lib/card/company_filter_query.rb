@@ -22,7 +22,7 @@ class Card
       class AnswerCondition
         def initialize table, constraint
           @table = table
-          @metric = constraint[:metric_id]&.card
+          @metric = constraint[:metric_id].to_i.card
           @year = constraint[:year]
           @value = constraint[:value]
           @group = constraint[:related_company_group]
@@ -34,7 +34,7 @@ class Card
         end
 
         def metric_clause
-          safe_clause "metric_id = ?", @metric
+          safe_clause "metric_id = ?", @metric.id
         end
 
         def year_clause
