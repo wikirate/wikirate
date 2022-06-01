@@ -5,21 +5,104 @@ class Card
         answer_condition :countries, :core_country
       end
 
-      def company_category_condition
+      def category_condition
         answer_condition :categories, :commons_company_category
       end
+
+      def company_answer_condition table, constraint
+        AnswerCondition.new(table, constraint).sql
+      end
+
+      private
 
       def answer_condition table, codename
         "#{table}.metric_id = #{codename.card_id} AND #{table}.value IN (?)"
       end
+
+      class AnswerCondition
+        def initialize table, constraint
+          @table = table
+          @metric = constraint[:metric_id].to_i.card
+          @year = constraint[:year]
+          @value = constraint[:value]
+          @group = constraint[:related_company_group]
+        end
+
+        def sql
+          [metric_clause, year_clause, value_clause, related_clause]
+            .compact.join " AND "
+        end
+
+        def metric_clause
+          safe_clause "metric_id = ?", @metric.id
+        end
+
+        def year_clause
+          case @year
+          when "", nil, "any"
+            nil
+          when "latest"
+            "#{@table}.latest is true"
+          else
+            safe_clause "year in (?)", @year
+          end
+        end
+
+        def related_clause
+          return unless @group.present?
+
+          safe_clause "answer_id in (?)", Relationship.answer_ids_for(@metric, @group)
+        end
+
+        # TODO: reuse more code from value_filters.rb (logic is largely the same)
+        def value_clause
+          case @value
+          when Array
+            category_value_clause
+          when Hash
+            numeric_value_clause
+          when "", nil
+            nil
+          else
+            safe_clause "value LIKE ?", "%#{@value.strip}%"
+          end
+        end
+
+        def numeric_value_clause
+          bits = []
+          bits << safe_clause("numeric_value > ?", @value[:from]) if @value[:from]
+          bits << safe_clause("numeric_value < ?", @value[:to]) if @value[:to]
+          "(#{bits.join ' AND '})"
+        end
+
+        def category_clause
+          if @metric.multi_categorical?
+            # see comment in value_filters.rb
+            ::Answer.sanitize_sql_for_conditions(
+              ["FIND_IN_SET(?, REPLACE(#{@table}.value, ', ', ','))",
+               Array.wrap(@value)]
+            )
+          else
+            safe_clause "value in (?)", @value
+          end
+        end
+
+        def safe_clause field, val
+          ::Answer.sanitize_sql_for_conditions ["#{@table}.#{field}", Array.wrap(val)]
+        end
+      end
     end
 
     def country_cql country
-      add_to_cql :country, country
+      add_to_cql :company_country, country
     end
 
     def company_category_cql company_category
       add_to_cql :company_category, company_category
+    end
+
+    def company_answer_cql company_answer
+      add_to_cql :company_answer, company_answer
     end
 
     def company_cql company
@@ -42,36 +125,13 @@ class Card
     end
   end
 
-  # add :country attribute to Card::Query
+  # add :company_country, company_category, and company_answer attribute to Card::Query
   module Query
-    attributes.merge! country: :conjunction, company_category: :conjunction
+    attributes.merge! company_country: :conjunction,
+                      company_category: :conjunction,
+                      company_answer: :conjunction
     # FIXME: conjunction is weird here, but unlike :relational it passes on arrays
 
-    class CardQuery
-      # extend CardQuery to look up companies' countries in card table
-      module CountryQuery
-        def country val
-          joins << answer_join(:countries)
-          add_answer_condition CompanyFilterQuery.country_condition, val
-        end
-
-        def company_category val
-          joins << answer_join(:categories)
-          add_answer_condition CompanyFilterQuery.company_category_condition, val
-        end
-
-        private
-
-        def answer_join answer_alias
-          Join.new side: :left, from: self, from_field: "id",
-                   to: [:answers, answer_alias, :company_id]
-        end
-
-        def add_answer_condition cond, val
-          @conditions << ::Answer.sanitize_sql_for_conditions([cond, Array.wrap(val)])
-        end
-      end
-      include CountryQuery
-    end
+    CardQuery.include CompanyAnswerQuery
   end
 end
