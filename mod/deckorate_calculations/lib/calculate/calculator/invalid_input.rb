@@ -12,6 +12,10 @@ class Calculate
         []
       end
 
+      def input_list
+        []
+      end
+
       def validate
         ["Invalid Input"]
       end

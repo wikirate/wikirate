@@ -18,7 +18,8 @@ Feature: company feature
 
   Scenario: Filter by metric
     When I click on "Filter"
-    # And I click on "Metric" in the offcanvas
+    And I wait for ajax response
+    And I click on "Metric Name" in the offcanvas
     And I fill in "filter[metric_name]" with "deadliness"
     And I close the offcanvas
     And I wait for ajax response
@@ -27,6 +28,8 @@ Feature: company feature
 
   Scenario: Filter by topic
     When I click on "Filter"
+    And I wait for ajax response
+
     # When I click on "Metric" in the offcanvas
     And I click on "Topic"
     And I select2 "Force" from "filter[wikirate_topic][]"
@@ -37,6 +40,8 @@ Feature: company feature
 
   Scenario: Filter by year
     When I click on "Filter"
+    And I wait for ajax response
+
     And I click on "Year" in the offcanvas
     And I click on "show more"
     And I choose "2001"
@@ -62,6 +67,8 @@ Feature: company feature
 
   Scenario: Paging
     When I click on "Filter"
+    And I wait for ajax response
+
     And I click on "Year" in the offcanvas
     And I choose "Latest"
     And I close the offcanvas
