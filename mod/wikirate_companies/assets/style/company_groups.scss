@@ -9,12 +9,18 @@
     margin: 2rem 0;
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid $gray-500;
+    border: 1px solid $border-color;
+    background-color: $border-color;
   }
 }
 
 .constraint-editor {
   padding: 0;
+
+  .metric-selector {
+    // revert nowrap from pointer list editor
+    white-space: normal;
+  }
 
   input, select {
     border-radius: 0;
@@ -25,30 +31,29 @@
     border-radius: 0;
   }
 
-  .input-group-text {
+  > .input-group > .input-group-text {
     flex: 0 0 20%;
+    min-width: 72px;
+  }
+
+  .input-group-text {
     border-radius: 0 !important;
     &.range-sign {
       font-size: 1.5rem;
     }
   }
 
-  .range-filter-field:last-child {
-    border-right: none;
-  }
-
   .constraint-value {
-    > .input-view, .value_formgroup-view {
-      width: 80%;
+    background-color: $light;
+    .value_formgroup-view {
+      flex: 1 1 auto;
     }
 
     .constraint-value-fields { // value row, right column
       display: flex;
+      background-color: $white;
       .select2 {
         width: 100% !important;
-      }
-      input {
-        min-width: 30%;
       }
     }
 
