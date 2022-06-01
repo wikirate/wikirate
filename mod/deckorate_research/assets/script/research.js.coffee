@@ -1,13 +1,13 @@
 # ~~~~~~~~ Research Dashboard Handling ~~~~~~~~~~~~~~~~
 
-decko.editorInitFunctionMap["._removable-content-list ul"] = ->
+decko.editors.init["._removable-content-list ul"] = ->
   @sortable({handle: '._handle', cancel: ''})
 
-decko.editorContentFunctionMap["._removable-content-list ul"] = ->
+decko.editors.content["._removable-content-list ul"] = ->
   itemNames = $(this).find("._removable-content-item").map -> $(this).data("cardName")
   decko.pointerContent $.unique(itemNames)
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   if slot.closest(".research-layout")[0]
 
     # slide up new overlays
