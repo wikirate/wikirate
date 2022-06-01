@@ -87,7 +87,7 @@ end
 private
 
 def standardize_content_array content
-  content.map do|constraint|
+  content.map do |constraint|
     hash = Env.hash constraint
     ensure_metric_id hash
     hash
