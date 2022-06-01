@@ -8,11 +8,11 @@ It basically loops through each item in the list and gets the card name from the
 standard "data-card-name" attribute.
 ###
 
-decko.editorContentFunctionMap['.source-editor > .pointer-list'] = ->
+decko.editors.content['.source-editor > .pointer-list'] = ->
   decko.pointerContent @find('.TYPE-source').map( -> $(this).attr 'data-card-name' )
 
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   return unless slot.hasClass("TYPE-project") && slot.find("form")
   parent = slot.find(".RIGHT-parent .pointer-item-text")
   appendParentToAddItem parent

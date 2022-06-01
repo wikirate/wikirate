@@ -3,6 +3,7 @@ include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
 include_set Abstract::CommonFilters
+include_set Abstract::CompanyFilters
 
 def bookmark_type
   :wikirate_company
@@ -12,18 +13,12 @@ def target_type_id
   WikirateCompanyID
 end
 
+def filter_class
+  CompanyFilterQuery
+end
+
 format do
-  def filter_class
-    CompanyFilterQuery
-  end
-
-  def filter_map
-    shared_company_filter_map.unshift key: :name, open: true
-  end
-
-  def shared_company_filter_map
-    %i[company_category company_group country] << { key: :advanced, open: true }
-  end
+  delegate :filter_class, to: :card
 
   def default_sort_option
     "id"
@@ -39,20 +34,6 @@ format do
 end
 
 format :html do
-  def filter_advanced_type
-    :advanced
-  end
-
-  def filter_advanced_label
-    "Advanced"
-  end
-
-  def advanced_filter field, default, opts
-    editor_wrap(:content) do
-      subformat(card.field(:specification)).constraint_list_input
-    end
-  end
-
   def default_sort_option
     "answer"
   end

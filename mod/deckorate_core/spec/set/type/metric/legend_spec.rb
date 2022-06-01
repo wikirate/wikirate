@@ -7,7 +7,7 @@ RSpec.describe Card::Set::Type::Metric::Legend do
     specify "view: legend" do
       expect_view(:legend, format: :base).to eq("1, 2, 3")
       expect_view(:legend).to have_tag("span.metric-legend") do
-        with_tag "div.small", /1, 2, 3/
+        with_tag "span.small", /1, 2, 3/
       end
     end
   end

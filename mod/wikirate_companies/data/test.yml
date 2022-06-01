@@ -6,7 +6,11 @@
 - :name: Deadliest
   :type: :company_group
   :fields:
-    :specification: '[[Jedi+deadliness]],1977,"{""from"":30}"'
+    :specification:
+      - :metric_id: "Jedi+deadliness"
+        :year: 1977
+        :value:
+          :from: 30
 - :name: Googliest
   :type: :company_group
   :fields:
