@@ -2,10 +2,6 @@
 # AnswerSearch without overriding key methods.
 
 format do
-  def filter_map
-    shared_company_filter_map.unshift key: :name, open: true
-  end
-
   def shared_company_filter_map
     %i[company_category company_group country company_answer]
   end

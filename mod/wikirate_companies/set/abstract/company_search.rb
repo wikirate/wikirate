@@ -35,6 +35,10 @@ format do
 end
 
 format :html do
+  def filter_map
+    shared_company_filter_map.unshift key: :name, open: true
+  end
+
   def default_sort_option
     "answer"
   end
