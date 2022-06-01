@@ -63,4 +63,8 @@ format :html do
   end
 end
 
+# note, ruby 3 handles things with just the first include_set.
+# earlier rubies don't.
 Abstract::AnswerSearch.include_set CompanyFilters
+Abstract::FixedAnswerSearch.include_set CompanyFilters
+Abstract::FullAnswerSearch.include_set CompanyFilters
