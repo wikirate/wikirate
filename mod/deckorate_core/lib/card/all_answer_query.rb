@@ -30,7 +30,7 @@ class Card
     private
 
     def partner_joins
-      @card_joins.unshift("AS #{partner}").push answer_join
+      @card_joins.unshift("AS #{partner}").push partner_answer_join
     end
 
     # Currently these queries only work with a fixed company or metric
@@ -48,7 +48,7 @@ class Card
     end
 
     # This left join is the essence of the search strategy.
-    def answer_join
+    def partner_answer_join
       "LEFT JOIN answers " \
       "ON #{partner}.id = answers.#{partner}_id AND #{lookup_conditions}"
     end

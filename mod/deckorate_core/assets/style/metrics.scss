@@ -1,14 +1,3 @@
-.TYPE-metric.new-view .nav-pills  {
-  background: $gray-100;
-  border-bottom: 1px solid $border-color;
-  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    color: $white;
-    background-color: $secondary;
-    border-radius: 0;
-  }
-}
-
-
 
 .metric-value {
   a {
@@ -147,10 +136,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-.card-slot.new-view.TYPE-metric.METRIC_TYPE-researched .nav-pills {
-  margin: 0 -15px !important;
-}
-
 .source-year {
   position: absolute;
   left: 55px;
@@ -175,7 +160,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .wikirate-table .data .metric-legend {
- width: 60%;
+  width: 60%;
 }
 
 // metric value details
@@ -211,8 +196,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   padding: 0;
 }
 
-
-
 .new-value-form {
   border-top: 1px solid $border-color;
   padding-top: 10px;
@@ -244,12 +227,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 //  }
 //}
 
-
-
 .new-view.TYPE-metric {
-  .nav-pills > li.pointer-radio input.pointer-radio-button {
-    display: none;
-  }
   .card-editor span.select2.select2-container {
     width: 100% !important;
   }
@@ -296,7 +274,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     font-size: 1.2em;
   }
 }
-
 
 .filter-result-menu {
   a {
