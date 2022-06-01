@@ -4,7 +4,13 @@ format :html do
   view :core, template: :haml
 
   view :value_formgroup, cache: :never, unknown: true do
-    value_formgroup Card[params[:metric]]
+    value_formgroup params[:metric]&.card
+  end
+
+  view :metric_selector, unknown: true do
+    wrap_with :div, class: "_specification-metric-selector" do
+      nest :metric, view: :filtered_content
+    end
   end
 
   def help_text
@@ -20,7 +26,7 @@ format :html do
   end
 
   def constraint_list_input
-    constraints = card.constraints
+    constraints = card.content_from_params || card.constraints
     constraints = [nil] if constraints.empty?
     haml :constraint_list_input, constraints: constraints
   end
@@ -46,7 +52,7 @@ format :html do
 
   def value_formgroup metric, value=nil, group=nil
     wrap do
-      if metric&.type_id == Card::MetricID
+      if metric&.type_id == MetricID
         card.metric_card = metric
         haml :value_formgroup, metric: metric, value: value, group: group
       else
@@ -55,28 +61,19 @@ format :html do
     end
   end
 
-  def year_dropdown constraint
-    selected = constraint&.year || "latest"
-    select_filter :year, selected, filter_year_options
+  def year_dropdown year, disabled
+    select_filter_tag :year, (year || "latest"), filter_year_options, disabled: disabled
   end
 
   def filter_year_options
     { "Any" => "any" }.merge super
   end
 
-  # TODO: merge with #autocomplete_field on research page
-  def metric_dropdown constraint
-    selected = constraint&.metric&.name || ""
-    text_field_tag "constraint_metric", selected,
-                   class: "_constraint-metric metric_autocomplete " \
-                          "pointer-item-text form-control",
-                   "data-options-card": Card::Name[:metric, :type, :by_name],
-                   placeholder: "Enter Metric"
+  def metric_selector metric
+    haml :metric_selector, metric: metric
   end
 
-  # this override prevents the addition of a bunch of unnecessary filter-related classes,
-  # etc.
-  def normalize_select_filter_tag_html_options _field, _html_options
-    # NOOP
+  def filter_prefix
+    "filter[company_answer][]"
   end
 end

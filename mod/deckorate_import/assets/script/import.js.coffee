@@ -1,4 +1,4 @@
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
 $(document).ready ->
   $('body').on 'click', '._import-status-form ._check-all', (_e) ->
     checked = $(this).is(':checked')
@@ -55,3 +55,8 @@ $(document).ready ->
 
   closestImportTable = (el)->
     el.closest(".tab-pane").find "._import-table"
+
+  # handle metric name selection (new text, new hidden value, new value editor)
+  $("body").on "filter:selection", "._suggest-link", (event, item) ->
+    data = $(item.firstChild).data() # assumes first child has card data
+    $(this).siblings().val data.cardName # assumes input field is only sibling
