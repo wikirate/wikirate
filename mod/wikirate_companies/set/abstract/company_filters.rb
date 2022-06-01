@@ -1,3 +1,6 @@
+# This module is separated from CompanySearch so that it can be included in
+# AnswerSearch without overriding key methods.
+
 format do
   def filter_map
     shared_company_filter_map.unshift key: :name, open: true
@@ -14,6 +17,8 @@ format :html do
     super.select { |hash| hash[:key] != :company_answer }
   end
 
+  # The following all help support the "advanced" filter for companies based on answers
+  # (a list of constraints; the same ui used for specifying company groups)
   def filter_company_answer_type
     :company_answer_custom
   end
@@ -28,6 +33,7 @@ format :html do
     end
   end
 
+  # value shown on closer badge for company answer filter
   def filter_company_answer_closer_value constraints
     Array.wrap(constraints).map do |c|
       bits = closer_constraint_bits c[:metric_id].to_i, c[:value], c[:group], c[:year]
@@ -35,6 +41,8 @@ format :html do
     end.join ", "
   end
 
+  # fixes handling of certain requests that use $.params(json) and send the company
+  # answer filter as { "0" => constraint1, "1" => constraint2... ...}
   def filter_hash
     super.tap do |hash|
       if hash[:company_answer].is_a? Hash
