@@ -57,13 +57,11 @@ def standardize_content content
   content = content_from_params if content_from_params.present?
   return content unless content.is_a? Array
 
-  JSON(content.map { |constraint| ensure_metric_id constraint })
+  JSON standardize_content_array(content)
 end
 
 def content_from_params
-  Env.params.dig(:filter, :company_answer)&.map do |constraint|
-    Env.hash constraint
-  end
+  Env.params.dig :filter, :company_answer
 end
 
 format do
@@ -88,18 +86,28 @@ end
 
 private
 
+def standardize_content_array content
+  content.map do|constraint|
+    hash = Env.hash constraint
+    ensure_metric_id hash
+    hash
+  end
+end
+
 def company_list
   left&.field :wikirate_company
 end
 
 def validate_constraint_metric metric
-  errors.add "invalid metric: #{metric}" unless metric&.type_id == Card::MetricID
+  return if metric&.type_id == Card::MetricID
+
+  errors.add :content, "invalid metric: #{metric}"
 end
 
 def validate_constraint_year year
   return if year.match(/^\d{4}$/) || year.in?(%w[any latest])
 
-  errors.add "invalid year: #{year}"
+  errors.add :content, "invalid year: #{year}"
 end
 
 def ensure_metric_id constraint

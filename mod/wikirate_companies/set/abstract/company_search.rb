@@ -17,6 +17,8 @@ def filter_class
 end
 
 format do
+  delegate :filter_class, to: :card
+
   def filter_map
     shared_company_filter_map.unshift key: :name, open: true
   end
