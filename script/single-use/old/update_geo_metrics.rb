@@ -5,7 +5,7 @@ Card::Auth.signin "Ethan McCutchen"
 include Card::Model::SaveHelper
 
 def region_options
-  Card.search type: "Region", return: :name, sort: :name, limit: 0
+  Card.search type: "Region", return: :name, sort_by: :name, limit: 0
 end
 
 def country_options

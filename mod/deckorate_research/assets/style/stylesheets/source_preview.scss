@@ -80,6 +80,9 @@
   &.box {
     min-height: 250px;
     .box-top {
+      .source-link {
+        width: 100%
+      }
       div, span, a {
         white-space: normal;
       }

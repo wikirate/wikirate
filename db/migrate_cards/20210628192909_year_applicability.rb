@@ -14,7 +14,7 @@ class YearApplicability < Cardio::Migration
                 type_code: :list, content: ""
     ensure_card %i[company_group right content_options],
                 type_code: :search_type,
-                content: '{"type":"Company Group","sort":"name","dir":"desc","limit":"0"}'
+                content: '{"type":"Company Group","sort_by":"name","dir":"desc","limit":"0"}'
   end
 
   def clean_up_list_card

@@ -12,10 +12,10 @@ describe 'Formula editor', ->
       .click()
     cy.get("._filter-container [name='filter[name]']")
       .type("disturb{enter}", force: true)
-    cy.wait 450
     cy.get("._search-checkbox-list")
       .should("contain", "Research")
       .should("contain", "Scored by")
+      .should("not.contain", "Formula")
     cy.get("input#Jedi_disturbances_in_the_Force").click()
     cy.get("._add-selected").click()
 
