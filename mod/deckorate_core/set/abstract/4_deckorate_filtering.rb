@@ -25,9 +25,9 @@ format do
   def sort_cql
     case current_sort.to_sym
     when :name, :id, :relevance
-      { sort: current_sort.to_s }
+      { sort_by: current_sort.to_s }
     when :create
-      { sort: "create", dir: "desc" }
+      { sort_by: "create", dir: "desc" }
     else
       cached_count_sort_cql
     end

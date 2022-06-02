@@ -16,7 +16,7 @@ describe Card::Set::Abstract::DeckorateFiltering do
 
     it "has sort field" do
       is_expected.to have_tag(".sort-input-group") do
-        with_select "sort", with: { "data-minimum-results-for-search": "Infinity" } do
+        with_select "sort_by", with: { "data-minimum-results-for-search": "Infinity" } do
           with_option "Alphabetical", "name"
           with_option "Most Metrics", "metric"
           with_option "Most Companies", "company"
