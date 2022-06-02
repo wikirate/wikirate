@@ -51,7 +51,7 @@ format :html do
 
   def members_on_page paging_args
     Card::Auth.as_bot do
-      cql = { referred_to_by: card.name, sort: :name, right_plus: :account }
+      cql = { referred_to_by: card.name, sort_by: :name, right_plus: :account }
       Card.search cql.merge!(paging_args.extract!(:limit, :offset))
     end
   end

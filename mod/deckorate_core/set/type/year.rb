@@ -3,7 +3,7 @@ include_set Abstract::CachedTypeOptions
 YEAR_REGEXP = /^\d{4}$/
 
 def self.all_years
-  @all_years ||= Card.search type: :year, return: :name, sort: :name, dir: :desc
+  @all_years ||= Card.search type: :year, return: :name, sort_by: :name, dir: :desc
 end
 
 event :validate_year_name, :validate, on: :save do

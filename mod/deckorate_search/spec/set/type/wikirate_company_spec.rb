@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Type::WikirateCompany do
   subject do
-    Card::Query.run @query.reverse_merge(return: :name, sort: :name)
+    Card::Query.run @query.reverse_merge(return: :name, sort_by: :name)
   end
 
   # These tests were passing but breaking other tests somehow on semaphore.

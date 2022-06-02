@@ -17,7 +17,7 @@ format do
   def sort_cql
     return super unless current_sort.to_sym == :title
 
-    { sort: { right: "title" } }
+    { sort_by: { right: "title" } }
   end
 
   def sort_options

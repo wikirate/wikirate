@@ -23,7 +23,7 @@ klasses = Card.set_patterns.reverse.map do |set_class|
   wql = { left: { type: Card::SetID },
           right: card.id,
 
-          sort: %w[content name],
+          sort_by: %w[content name],
           limit: 0 }
   wql[:left][(set_class.anchorless? ? :id : :right_id)] = set_class.pattern_id
 
