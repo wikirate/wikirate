@@ -27,12 +27,12 @@ RSpec.describe Card::Set::Right::ImportMap do
 
     describe "#suggest_link" do
       it "produces links for supported types" do
-        expect(format_subject.suggest_link(:wikirate_company, "Goog", "abc123"))
+        expect(format_subject.suggest_link(:wikirate_company, "Goog"))
           .to match(Regexp.new(Regexp.escape("/Company")))
       end
 
       it "supports custom filter keys" do
-        expect(format_subject.suggest_link(:source, "http://woot.com", "abc123"))
+        expect(format_subject.suggest_link(:source, "http://woot.com"))
           .to match(Regexp.new(Regexp.escape(CGI.escape("filter[wikirate_link]"))))
       end
     end

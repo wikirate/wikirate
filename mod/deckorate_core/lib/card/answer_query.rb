@@ -4,6 +4,7 @@ class Card
   class AnswerQuery < LookupFilterQuery
     include Sorting
     include AnswerFilters
+    include AdvancedFilters
     include ValueFilters
     include MetricAndCompanyFilters
     include OutlierFilter

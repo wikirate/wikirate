@@ -6,7 +6,7 @@
 
 window.deckorate = {}
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   for vis in slot.find('.vis._load-vis')
     loadVis $(vis)
 

@@ -12,6 +12,7 @@ describe 'Formula editor', ->
       .click()
     cy.get("._filter-container [name='filter[name]']")
       .type("disturb{enter}", force: true)
+    cy.wait 450
     cy.get("._search-checkbox-list")
       .should("contain", "Research")
       .should("contain", "Scored by")
@@ -73,7 +74,7 @@ describe 'Formula editor', ->
     cy.get("[name=vo-unknown]:visible").check("no_result")
 
     # update / close modal
-    cy.wait 100
+    cy.wait 300
     cy.contains("Update Options").click()
 
     # make sure changes show
