@@ -56,10 +56,6 @@ format do
   def default_desc_sort_dir
     ::Set.new %i[bookmarkers company answer]
   end
-
-  # def sort_by_from_param
-  #   safe_sql_param(:sort)&.to_sym
-  # end
 end
 
 format :html do

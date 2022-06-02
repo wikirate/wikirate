@@ -3,7 +3,7 @@ def cql_content
       %i[in wikirate_company wikirate_topic metric metric_title project
          dataset research_group],
     fulltext_match: "$keyword",
-    sort: "relevance" }
+    sort_by: "relevance" }
 end
 
 format :html do

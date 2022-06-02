@@ -1,8 +1,10 @@
 format :html do
-  before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
+  # before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
 
-  view :filtered_results_header do
-    [super(), (render_filtered_results_chart if show_chart?)].compact
+  view :filtered_results_visualization do
+    return "" unless show_chart?
+
+    render_filtered_results_chart
   end
 
   view :filtered_results_stats, cache: :never, template: :haml

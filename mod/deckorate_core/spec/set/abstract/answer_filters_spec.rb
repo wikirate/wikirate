@@ -6,7 +6,7 @@ describe Card::Set::Abstract::AnswerFilters do
       subject { filter_card.format.render_filter_sort_dropdown }
 
       it "renders select form" do
-        is_expected.to have_tag :select, with: { name: "sort" } do
+        is_expected.to have_tag :select, with: { name: "sort_by" } do
           with_option "Most Bookmarked", "bookmarkers" # , selected: "selected"
           with_option "Most Metrics", "metric"
           with_option "Most Companies", "company"

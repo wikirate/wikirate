@@ -66,7 +66,7 @@ end
 
 def awarded_to
   Card.search right_plus: [:badges_earned, { refer_to: id }],
-              return: "_left", sort: :name
+              return: "_left", sort_by: :name
 end
 
 def awarded_count
