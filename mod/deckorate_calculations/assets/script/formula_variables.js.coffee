@@ -1,4 +1,4 @@
-decko.editorContentFunctionMap['._variablesEditor'] = -> variabler(this).json()
+decko.editors.content['._variablesEditor'] = -> variabler(this).json()
 
 $(window).ready ->
   $('body').on "click", "._remove-variable", ->
@@ -29,7 +29,7 @@ $(window).ready ->
     variabler(this).updateVariableNameInFormula previous, newval
     @previousValue = newval
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   ed = slot.find "> form ._formulaVariablesEditor"
   if ed.length > 0
     variabler(ed).initOptions()

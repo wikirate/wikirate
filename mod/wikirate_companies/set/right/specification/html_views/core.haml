@@ -9,13 +9,13 @@
     - card.constraints.each do |constraint|
       %tr.specification-constraint-row
         %td
-          = nest constraint.metric, view: :thumbnail
+          = nest constraint[:metric_id].to_i, view: :thumbnail
         %td
-          = constraint.year
+          = constraint[:year]
         %td
-          = pretty_value_constraint constraint.value
-          - if constraint.group
+          = pretty_value_constraint constraint[:value]
+          - if constraint[:group]
             .related-group-constraint
               %label
                 Related:
-              = link_to_card constraint.group
+              = link_to_card constraint[:group]

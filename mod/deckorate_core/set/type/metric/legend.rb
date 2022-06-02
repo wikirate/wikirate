@@ -40,20 +40,23 @@ format :html do
   end
 
   def category_legend
-    wrap_with :div, class: "small", title: "value options" do
+    wrap_with :span, class: "small", title: "value options" do
       [fa_icon("list"), limited_category_legend_options].flatten.compact.join " "
     end
   end
 
-  def limited_category_legend_options
-    commaed = category_legend_options.join ", "
-    return commaed unless commaed.length > 40
+  private
 
-    [commaed[0..40], category_popover_link]
+  def limited_category_legend_options
+    options = category_legend_options
+    commaed = options.join ", "
+    return commaed unless commaed.length > 5
+
+    category_popover_link commaed[0..40], options.join("</br>")
   end
 
-  def category_popover_link
-    popover_link category_legend_options.join("</br>"), nil, fa_icon("ellipsis-h"),
-                 "data-html": "true", path: "javascript:", class: "border text-muted px-1"
+  def category_popover_link short_options, full_options
+    popover_link full_options, nil, short_options,
+                 "data-html": "true", path: "#", class: "_over-card-link"
   end
 end

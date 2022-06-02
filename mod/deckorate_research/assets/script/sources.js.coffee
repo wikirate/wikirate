@@ -15,7 +15,7 @@ $(document).ready ->
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   resizeIframe($('body'))
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   resizeIframe(slot)
 
 @resizeIframe = (el) ->
