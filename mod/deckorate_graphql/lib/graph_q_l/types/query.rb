@@ -61,7 +61,7 @@ module GraphQL
       field :answers, [Answer], null: false do
         argument :metric, String, required: false
         argument :limit, Integer, required: false
-        # argument :sort, String, required: false
+        # argument :sort_by, String, required: false
         ::Card::AnswerQuery.card_id_filters.each do |filter|
           argument filter, String, required: false
         end

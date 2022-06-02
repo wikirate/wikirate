@@ -12,6 +12,15 @@ format do
     company_bookmarkers: { company_name: :asc }
   }.freeze
 
+  def sort_options
+    {
+      "Year": :year,
+      "Company": :company_name,
+      "Metric": :metric_title,
+      "Answer": :value
+    }
+  end
+
   def sort_hash
     primary = { sort_by.to_sym => sort_dir }
     secondary_sort ? primary.merge(secondary_sort) : primary
