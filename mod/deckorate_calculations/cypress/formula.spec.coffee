@@ -12,7 +12,7 @@ describe 'Formula editor', ->
       .click()
     cy.get("._filter-container [name='filter[name]']")
       .type("disturb{enter}", force: true)
-    cy.wait 300
+    cy.wait 450
     cy.get("._search-checkbox-list")
       .should("contain", "Research")
       .should("contain", "Scored by")
