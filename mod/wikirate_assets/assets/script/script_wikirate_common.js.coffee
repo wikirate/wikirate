@@ -47,5 +47,5 @@ decko.slot.ready (slot) ->
 # show loader after submitting filter form
 $(document).ready ->
   $('body').on "submit", "._filter-form", ->
-    slot = $(this).findSlot($(this).data("slot-selector"))
+    slot = $(this).slotFind($(this).data("slot-selector"))
     wikirate.loader($(slot), false).prepend()
