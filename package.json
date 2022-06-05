@@ -1,34 +1,84 @@
 {
-  "jest": {
-    "transform": {
-      "^.+\\.coffee$": "<rootDir>/node_modules/jest-coffee-preprocessor/index.js"
-    },
-    "preset": "jest-preset-coffeescript",
-    "testPathIgnorePatterns": [
-      "node_modules",
-      "fixtures",
-      "public",
-      "files",
-      "vendor"
-    ],
-    "testRegex": "spec/.*\\.(coffee|litcoffee|coffee.md)$",
-    "setupFiles": [
-      "./test/setup_jest.js"
-    ],
-    "roots": [
-      "<rootDir>/mod/"
-    ]
+  "name": "jest-preset-coffeescript",
+  "version": "1.3.0",
+  "description": "Easily write your Jests in CoffeeScript.",
+  "keywords": [
+    "coffee",
+    "coffeescript",
+    "jest",
+    "preset",
+    "transform",
+    "config",
+    "unit",
+    "test"
+  ],
+  "homepage": "https://github.com/danielbayley/jest-preset-coffeescript#readme",
+  "repository": "danielbayley/jest-preset-coffeescript",
+  "bugs": "https://github.com/danielbayley/jest-preset-coffeescript/issues",
+  "author": "Daniel Bayley <daniel.bayley@me.com> (https://github.com/danielbayley)",
+  "license": "MIT",
+  "devDependencies": {
+    "coffeelint": "^2.1.0",
+    "coffeescript": "^2.4.1",
+    "husky": "^4.2.3",
+    "jest": "^25.2.4",
+    "jest-config": "^25.2.7",
+    "jest-validate": "^25.2.6",
+    "lint-staged": "^10.1.1",
+    "micromatch": "^4.0.2"
   },
   "dependencies": {
-    "coffeescript": ">=2.3.1",
-    "jest": "^26.1.0",
-    "jest-coffee-preprocessor": ">=1.0.0",
-    "jest-preset-coffeescript": "^1.3.0",
-    "wait-on": "^5.1.0"
+    "@babel/plugin-transform-modules-commonjs": "^7.5.0",
+    "babel-preset-jest": "^25.2.0"
   },
-  "name": "wikirate",
-  "repository": "https://github.com/wikirate/wikirate",
-  "devDependencies": {
-    "cypress": "^4.10.0"
+  "peerDependencies": {
+    "@babel/core": "^7.5.0",
+    "coffeescript": "^2.4.1",
+    "jest": "^25.2.4"
+  },
+  "files": [
+    "*.js*"
+  ],
+  "main": "./jest-preset",
+  "babel": {
+    "plugins": [
+      "@babel/transform-modules-commonjs"
+    ],
+    "presets": [
+      "jest"
+    ]
+  },
+  "coffeelintConfig": {
+    "no_unnecessary_fat_arrows": {
+      "level": "ignore"
+    },
+    "max_line_length": {
+      "level": "warn"
+    }
+  },
+  "lint-staged": {
+    "*.@(coffee|litcoffee|coffee.md)": [
+      "coffeelint",
+      "jest --bail --findRelatedTests"
+    ]
+  },
+  "jest": {
+    "verbose": true,
+    "onlyChanged": true,
+    "preset": "./jest-preset"
+  },
+  "scripts": {
+    "prepare": "coffee --compile --bare --transpile *.coffee",
+    "precommit": "lint-staged",
+    "prepublishOnly": "CI=true npm test",
+    "prerelease": "git stash --include-untracked",
+    "release": "npm version --",
+    "postversion": "git push --follow-tags && npm publish && git stash pop --index",
+    "pretest": "npm run prepare",
+    "test": "npm run test.lint && npm run test.jest",
+    "test.lint": "npm run test.lint.coffee",
+    "test.lint.coffee": "coffeelint -- *.coffee test/*.*coffee*",
+    "test.jest": "jest ${CI+--ci --all --no-cache}",
+    "clean": "rm -f jest-preset.js* & jest --clearCache --config {}"
   }
 }
