@@ -1,28 +1,38 @@
-%nav#top-navbar.navbar.navbar-light.bg-white.drop-shadow
+%nav#top-navbar.navbar.navbar-expand.navbar-light.bg-white.drop-shadow
   .container
-    .col-12.col-md-2
-      .navbar-brand
-        = link_to nest(:logo, view: :core, size: :original), href: "/"
-    .col-12.col-md-10
-      .d-flex
-
-        .col-12.col-md-8.p-2.justify-content-center
-          = nest :navbox, view: :navbar
-        .col-8.col-md-3.p-2.justify-content-center
+    .w-100
+      .top-nav-links
+        .top-nav-account
           - class_up "signin-link", "btn btn-primary"
           %ul.navbar-nav.ms-auto
             %li.nav-item.account-info-bar
             = nest :account_links, view: :core
-        .col-4.col-md-1
-          %button.navbar-toggler{ type: "button",
-            "aria-controls": "navbar-body",
-            "aria-expanded": "false",
-            "aria-label": "Toggle main navigation",
-            "data-bs-target": "#nav-menu",
-            "data-bs-toggle": "collapse" }
-            %span.navbar-toggler-icon
-          #nav-menu.collapse.navbar-collapse
-            .navbar-nav
-              = nest :nav_menu, view: :core
+        .top-nav-burger
+          // should really be "bars"
+          = fa_icon :hamburger
 
+      #navbar-body
+        .navbar-brand
+          = link_to nest(:logo, view: :core, size: :original), href: "/"
+        .top-nav-search
+          = nest :navbox, view: :navbar
+
+
+
+
+
+
+
+
+
+-#%button.navbar-toggler{ type: "button",
+-#  "aria-controls": "navbar-body",
+-#  "aria-expanded": "false",
+-#  "aria-label": "Toggle main navigation",
+-#  "data-bs-target": "#nav-menu",
+-#  "data-bs-toggle": "collapse" }
+-#  %span.navbar-toggler-icon
+-##nav-menu.collapse.navbar-collapse
+-#  .navbar-nav
+-#    = nest :nav_menu, view: :core
 
