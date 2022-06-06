@@ -39,7 +39,7 @@ constraintDisabled = (el, toggle) ->
 # update value field according to metric's value type
 updateValueEditor = (metricLink, metricId) ->
   slot = metricLink.closest("li").find(".card-slot")
-  slot.reloadSlot "#{slot.cardMark()}/value_formgroup?metric=~#{metricId}"
+  slot.slotReload "#{slot.cardMark()}/value_formgroup?metric=~#{metricId}"
 
 updateSpecVisibility = (slot) ->
   implicit = constraintEditor slot
