@@ -1,4 +1,4 @@
-%nav#top-navbar.navbar.navbar-expand.navbar-light.bg-white.drop-shadow
+%nav#top-navbar.navbar.navbar-light.bg-white.drop-shadow
   .container
     .w-100
       .top-nav-links
@@ -8,31 +8,10 @@
             %li.nav-item.account-info-bar
             = nest :account_links, view: :core
         .top-nav-burger
-          // should really be "bars"
-          = fa_icon :hamburger
+          = render :nav_menu
 
       #navbar-body
         .navbar-brand
           = link_to nest(:logo, view: :core, size: :original), href: "/"
         .top-nav-search
           = nest :navbox, view: :navbar
-
-
-
-
-
-
-
-
-
--#%button.navbar-toggler{ type: "button",
--#  "aria-controls": "navbar-body",
--#  "aria-expanded": "false",
--#  "aria-label": "Toggle main navigation",
--#  "data-bs-target": "#nav-menu",
--#  "data-bs-toggle": "collapse" }
--#  %span.navbar-toggler-icon
--##nav-menu.collapse.navbar-collapse
--#  .navbar-nav
--#    = nest :nav_menu, view: :core
-
