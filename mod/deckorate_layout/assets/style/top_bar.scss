@@ -19,6 +19,9 @@
   }
 
 
+  // nav-links are using absolute positioning, because we couldn't find an easy way
+  // to have the search bar drop down from the middle position using flex patterns.
+  // There's probably a better way than this.
   .top-nav-links {
     position: absolute;
     right: 0;
@@ -34,8 +37,13 @@
       padding-left: 1em;
       font-size: 1.4em;
 
+      // no caret
       .dropdown-toggle:after {
         display: none;
+      }
+      .dropdown-menu {
+        right: 0;
+        left: auto;
       }
     }
   }
@@ -46,13 +54,19 @@
 
   @include media-breakpoint-up(md) {
     #navbar-body {
-      max-width: 70%;
+      max-width: 50%;
       flex-wrap: nowrap;
     }
     .top-nav-search {
-      width: 60%;
+      width: 70%;
     }
   }
+  @include media-breakpoint-up(lg) {
+    #navbar-body {
+      max-width: 70%;
+    }
+  }
+
   #logging .dropdown-menu {
     position: absolute
   }

@@ -20,12 +20,4 @@ format :html do
   view :content do
     render_page
   end
-
-  view :breadcrumbs do
-    type = card.type_card
-    items = [link_to("Home", href: "/"),
-             link_to_card(type, type.name.vary(:plural)),
-             render_name]
-    breadcrumb items
-  end
 end
