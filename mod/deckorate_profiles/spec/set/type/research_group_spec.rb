@@ -10,9 +10,6 @@ RSpec.describe Card::Set::Type::ResearchGroup do
       with_tag "div.bar-left" do
         with_tag "div.thumbnail"
       end
-      with_tag "div.bar-middle" do
-        with_tag "div.RIGHT-topic"
-      end
       with_tag "div.bar-right" do
         with_tag "span.badge"
       end

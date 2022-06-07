@@ -13,8 +13,8 @@ describe Card::Set::Self::AccountLinks do
 
         expect(rendered_html).to(
           have_tag("div", with: { id: "logging", class: "logged-out" }) do
-            with_tag "a", with: { class: "signup-link", href: "/new/Sign_up" },
-                          text: "Join"
+            # with_tag "a", with: { class: "signup-link", href: "/new/Sign_up" },
+            #               text: "Join"
             with_tag "a", with: { class: "signin-link", href: "/*signin" },
                           text: "Log in"
           end

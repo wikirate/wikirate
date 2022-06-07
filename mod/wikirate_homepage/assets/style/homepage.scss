@@ -5,11 +5,9 @@
   .bar {
     background: $white
   }
-}
-
-// TODO: move this (not about home page).
-.SELF-about_wiki_rate .d0-card-content p {
-  font-size: 1.2em;
+  img {
+    max-width: 100%;
+  }
 }
 
 /*----------- Example answer ---------*/
@@ -50,16 +48,7 @@
 
 .vh-90 {
   height: 90vh;
-  min-height: 600px;
-}
-
-.our-solution {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-
-.our-solution a, .our-solution p {
-  cursor: pointer;
+  min-height: 60rem;
 }
 
 /*----------- Top banner ---------*/
@@ -271,12 +260,14 @@
   }
 }
 .flip-this {
+  display: none;
   white-space: nowrap;
 }
 .flip-slot {
   font-weight: 700;
   padding-bottom: 1px;
-  border-bottom: 1px dotted white;
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 576px) {
@@ -320,6 +311,7 @@
 .newsletter-input {
   font-family: FontAwesome, sans-serif;
   width: 20rem;
+  max-width: 60%;
 }
 
 /* footer */

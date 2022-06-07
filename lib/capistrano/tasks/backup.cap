@@ -1,5 +1,4 @@
-# require "YAML"
-# require "byebug"
+require "colorize"
 
 namespace :backup do
   task :create do
@@ -50,7 +49,7 @@ namespace :backup do
     end
   end
 
-  # refresh db from production backup
+  # refresh db from production backup (unzip first!)
   task :refresh do
     raise "no refreshing production!!!" if fetch(:stage) == :production
     ask :database, "what should the new/refreshed database be called?"
@@ -61,7 +60,7 @@ namespace :backup do
       execute :mysql, "-e 'create database #{database}'"
       execute :mysql, "#{database} < /tmp/wikirate_latest.sql"
     end
-    # update database.yml and restart server
+    puts "Now just update database.yml to use #{database} and restart server!".yellow
   end
 
   task :update_db do
