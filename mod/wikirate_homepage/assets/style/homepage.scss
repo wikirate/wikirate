@@ -5,11 +5,9 @@
   .bar {
     background: $white
   }
-}
-
-// TODO: move this (not about home page).
-.SELF-about_wiki_rate .d0-card-content p {
-  font-size: 1.2em;
+  img {
+    max-width: 100%;
+  }
 }
 
 /*----------- Example answer ---------*/
@@ -320,6 +318,7 @@
 .newsletter-input {
   font-family: FontAwesome, sans-serif;
   width: 20rem;
+  max-width: 60%;
 }
 
 /* footer */
