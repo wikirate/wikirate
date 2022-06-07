@@ -551,7 +551,7 @@ GEM
     interception (0.5)
     iso8601 (0.9.1)
     json (2.6.2)
-    jwt (2.4.0)
+    jwt (2.4.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
