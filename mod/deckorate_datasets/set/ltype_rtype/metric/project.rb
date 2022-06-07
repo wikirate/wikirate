@@ -44,7 +44,7 @@ format :html do
   end
 
   view :bar_middle do
-    render_research_button if metric_card.researchable?
+    render_research_button if company_ids.present? && metric_card.researchable?
   end
 
   view :research_progress_bar, cache: :never do

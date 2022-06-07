@@ -38,7 +38,7 @@ format :html do
 
   def tab_list
     if contrib_page?
-      %i[research_group projects_organized details]
+      %i[metrics_designed research_group projects_organized details]
     else
       %i[metric_answer source company_group dataset details]
     end

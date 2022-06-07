@@ -6,29 +6,28 @@
       Wiki
       %strong> Rate
     %p.lead.mb-0.mb-md-5.text-nowrap Let's make companies better, together.
-    .dynamic-question.pt-5.mt-0.mt-md-5
-      %h3.white-text.fw-normal.mb-4
-        .p-5
+    .dynamic-question.white-text.pt-5.mt-0.mt-md-5
+      %h3.fw-normal
+        .p-3
           How does
         .flip-slot.me-2.loading-text
           .flip-this-default
           .flip-this
             = companies.join("|")
-        .p-5
+        .p-3
           perform on
         .text-nowrap
           .flip-slot.loading-text
             .flip-this-default
             .flip-this
-              = topics.join("|")
-          ?
-      %h3.white-text.fw-normal
-        .p-5
+              = topics.map { |t| "#{t}?" }.join("|")
+      %h3.fw-normal
+        .p-3
           To know and act, you need
         .flip-slot.me-2.loading-text
           .flip-this-default
           .flip-this
             = adjectives.join("|")
-        .p-5
+        .p-3
           data.
 
