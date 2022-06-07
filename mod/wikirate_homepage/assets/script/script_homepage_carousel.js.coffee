@@ -4,65 +4,22 @@ $(document).ready ->
     animationDelay = 2000 # ms; delay between each flip
     animationDuration = 1000 # ms; how fast it should flip
     staggerInterval = 250 # (animationDelay + animationDuration) / $flipTexts.length
-    fontUsed = 'bold 1.75rem IBM Plex Sans' #required to calculate width of longest word
-    spanWidthAdjust = 1.1
-
-    iOS = ->
-      iDevices = [
-        'iPad Simulator'
-        'iPhone Simulator'
-        'iPod Simulator'
-        'iPad'
-        'iPhone'
-        'iPod'
-      ]
-      if ! !navigator.platform
-        while iDevices.length
-          if navigator.platform == iDevices.pop()
-            return true
-      false
-    isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    getTextWidth = (text, font) ->
-      canvas = getTextWidth.canvas or (getTextWidth.canvas = document.createElement('canvas'))
-      context = canvas.getContext('2d')
-      context.font = font
-      metrics = context.measureText(text)
-      metrics.width
 
     $flipTexts.each (i) ->
       $item = $(this)
-      $item.parent().removeClass('loading-text')
-      longest_word = $item.text().split('|').sort((a, b) ->
-        b.length - (a.length)
-      )[0]
-
-      # to prevent from displaying raw content before animation
-      spanWidthAdjust *= 1.42 if iOS() || isSafari
-      spanWidth = getTextWidth(longest_word, fontUsed) * spanWidthAdjust
-      $itemSibling = $item.siblings('.flip-this-default')
-      $itemSibling.css('width': spanWidth + 'px').text longest_word
-      $item.css 'display', 'none'
 
       # set queue for animation
       setTimeout (->
-        $item.attr 'style', ''
-        $itemSibling.remove()
+        $item.parent().removeClass('loading-text')
+        $item.show()
         $item.wodry_wikirate
           animation: 'rotateX'
           delay: animationDelay
           animationDuration: animationDuration
-          fontUsed: fontUsed
-          spanWidthAdjust: spanWidthAdjust
-        return
       ), 400 + staggerInterval * i
-      return
-    return
+
 
   animateHeaderText()
-
-  $('.our-solution p, .our-solution a').on 'click', () ->
-    $('html, body').animate({ scrollTop: $($('.our-solution a')).offset().top }, 500, 'linear');
 
   numberElements = getNumberElements() #elements for animation
 
