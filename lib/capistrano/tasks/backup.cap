@@ -60,7 +60,7 @@ namespace :backup do
       execute :mysql, "-e 'create database #{database}'"
       execute :mysql, "#{database} < /tmp/wikirate_latest.sql"
     end
-    puts "Don't forget to update database.yml and restart server!".yellow
+    puts "Now just update database.yml to use #{database} and restart server!".yellow
   end
 
   task :update_db do
