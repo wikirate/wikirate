@@ -1,0 +1,30 @@
+/*----------- Media queries- For mobile devices ---------*/
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .vega canvas {
+    width: 100%!important;
+    height: 100%!important;
+  }
+
+  table.wikirate-table td.data {
+    min-width: 100%!important;
+  }
+
+  select {
+    width: 100%;
+  }
+}
+
+
+
+.popover {
+  max-width: 100%;
+  h3.popover-header {
+    margin-top: 0 !important;
+    font-size: 1.1rem !important;
+  }
+  .popover-body {
+    padding-bottom: 1.5em !important;
+  }
+}

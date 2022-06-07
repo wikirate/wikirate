@@ -1,83 +1,78 @@
 
 
 /*----------- Top bar ---------*/
-.navbar-brand img {
-  max-width: 170px;
-  margin: -12px;
-  overflow: hidden;
-}
-
-#navbar-body {
-  > * {
-    white-space: nowrap;
-    flex-wrap: nowrap;
-    padding: 0.5rem 0;
+#top-navbar {
+  .navbar-brand img {
+    max-height: 3em;
   }
 
-  .navbar-right .navbar-nav {
-    float: right;
+  #navbar-body {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  #logging {
-    a.nav-link {
-      padding: 0 1rem;
-      color: $top-bar-anchor-color;
-      display: inline;
+  .container {
+    position: relative;
+  }
+
+
+  // nav-links are using absolute positioning, because we couldn't find an easy way
+  // to have the search bar drop down from the middle position using flex patterns.
+  // There's probably a better way than this.
+  .top-nav-links {
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: end;
+    padding: 1em;
+
+    .top-nav-account {
+      white-space: nowrap;
     }
-    .btn-group {
-      align-items: center;
-      .dropdown-toggle {
-        padding: 0 !important;
+
+    .top-nav-burger {
+      padding-left: 1em;
+      font-size: 1.4em;
+
+      // no caret
+      .dropdown-toggle:after {
+        display: none;
       }
-      #my-card-link, .dropdown-toggle {
-        padding-right: 0.5em;
+      .dropdown-menu {
+        right: 0;
+        left: auto;
       }
     }
-
-    a#my-card-link {
-      display: block;
-      font-size: 1.2em;
-    }
-
-    ul.dropdown-menu a, a.dropdown-toggle {
-      font-size: 1rem;
-      padding-top: 0.7rem;
-    }
-
-    .dropdown-header {
-      font-size: 0.875rem !important;
-      margin-top: 0;
-    }
+  }
+  .top-nav-search {
+    width: 100%;
+    padding: 0.5em 0;
   }
 
   @include media-breakpoint-up(md) {
-    > * {
-      padding: 0;
-      width: 40%;
+    #navbar-body {
+      max-width: 50%;
+      flex-wrap: nowrap;
     }
-
-    .nav-menu {
-      justify-content: left;
-    }
-    .nav-bar-right {
-      width: 20%;
-    }
-
-    #logging {
-      display: flex;
-
-      &.logged-in {
-        flex-direction: column;
-        a {
-          font-size: .8em;
-        }
-      }
-      a#my-card-link {
-        display: block;
-        font-size: 1.2em;
-      }
+    .top-nav-search {
+      width: 70%;
     }
   }
+  @include media-breakpoint-up(lg) {
+    #navbar-body {
+      max-width: 70%;
+    }
+  }
+
+  #logging .dropdown-menu {
+    position: absolute
+  }
 }
+
+
+
 
 
