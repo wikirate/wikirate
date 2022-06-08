@@ -11,6 +11,8 @@ format do
   end
 
   def search_with_params
+    return [] unless card.dataset_name.present?
+
     @search_with_params ||= card.search(query: query, return: :name).map do |metric_name|
       Card.fetch metric_name.field(card.project_name)
     end
