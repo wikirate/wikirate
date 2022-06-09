@@ -10,7 +10,7 @@ $(window).ready ->
     updateSpecVisibility $(this).slot()
 
   # handle metric name selection (new text, new hidden value, new value editor)
-  $("body").on "filter:selection", "._metric-selector a", (event, item) ->
+  $("body").on "decko.filter.selection", "._metric-selector a", (event, item) ->
     data = $(item.firstChild).data() # assumes first child has card data
     link = $(this)
     link.text data.cardName
@@ -21,7 +21,7 @@ $(window).ready ->
     link.closest("form").submit()
 
   # handle new constraint added
-  $("body").on "item:added", "._constraint-list-editor li", ->
+  $("body").on "decko.item.added", "._constraint-list-editor li", ->
     metric_link = $(this).find(".constraint-metric a")
     metric_link.text "Choose Metric"
     $(this).find(".constraint-value").children(":not(.input-group-text)").remove()
