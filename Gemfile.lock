@@ -455,7 +455,7 @@ GEM
       cucumber-core (~> 10.1, >= 10.1.0)
       cucumber-cucumber-expressions (~> 14.0, >= 14.0.0)
     curb (1.0.1)
-    cypress-on-rails (1.13.0)
+    cypress-on-rails (1.13.1)
       rack
     daemons (1.4.1)
     dalli (3.2.1)
