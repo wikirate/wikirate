@@ -31,7 +31,7 @@ describe Card::Set::Self::AccountLinks do
                                                     href: "/Joe_User" }
             # with_tag "a", text: "Invite", with: { class: "invite-link",
             #                                       href: "/new/Sign_up" }
-            with_tag "a", text: "Log out", with: { class: "signout-link",
+            with_tag "a", text: "Log out", with: { class: "dropdown-item",
                                                    href: "/delete/*signin" }
           end
         )
