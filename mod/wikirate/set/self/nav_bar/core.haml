@@ -1,0 +1,17 @@
+%nav#top-navbar.navbar.bg-white
+  .container
+    .navbar-container
+      .navbar-brand
+        = link_to nest(:logo, view: :core, size: :original), href: "/"
+
+      .top-nav-links
+        .top-nav-account
+          - class_up "signin-link", "btn btn-primary"
+          %ul.navbar-nav
+            %li.nav-item
+            = nest :account_links, view: :core
+        .top-nav-burger
+          = nest :nav_menu, view: :core
+
+      .top-nav-search
+        = nest :navbox, view: :navbar
