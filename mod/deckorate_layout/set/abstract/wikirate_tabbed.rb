@@ -17,6 +17,11 @@ format :html do
     wrap { [naming { render_rich_header }, render_flash, render_tabs] }
   end
 
+  view :tabs do
+    class_up "nav", "nav-fill"
+    super()
+  end
+
   view :content do
     render_page
   end

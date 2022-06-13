@@ -107,7 +107,7 @@ $colorMap: (
 
 @each $type, $color in $colorMap {
   .TYPE-#{$type}.rich-header {
-    border-top: 5px solid $color;
+    // border-top: 5px solid $color;
     a {
       color: $color !important;
     }
