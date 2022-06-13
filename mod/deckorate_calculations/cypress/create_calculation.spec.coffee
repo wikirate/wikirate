@@ -56,7 +56,7 @@ describe "metric creation", ->
         cy.get("._sample-result-value").should "have.text", "invalid formula"
 
         # add a valid formula
-        cy.wait 400
+        cy.wait 500
         setValue "friendliness + 1"
 
       # click to save as metric
