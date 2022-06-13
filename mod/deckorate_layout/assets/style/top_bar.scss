@@ -2,11 +2,13 @@
 
 /*----------- Top bar ---------*/
 #top-navbar {
+  border-bottom: 1px solid $border-color;
+
   .navbar-brand img {
     max-height: 3em;
   }
 
-  #navbar-body {
+  .navbar-container {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -14,61 +16,51 @@
     align-items: center;
   }
 
-  .container {
-    position: relative;
-  }
-
-
-  // nav-links are using absolute positioning, because we couldn't find an easy way
-  // to have the search bar drop down from the middle position using flex patterns.
-  // There's probably a better way than this.
   .top-nav-links {
-    position: absolute;
-    right: 0;
     display: flex;
     justify-content: end;
-    padding: 1em;
+    align-items: center;
 
     .top-nav-account {
       white-space: nowrap;
+      padding: 0 2em 0 1em;
     }
 
     .top-nav-burger {
-      padding-left: 1em;
       font-size: 1.4em;
 
       // no caret
       .dropdown-toggle:after {
         display: none;
       }
-      .dropdown-menu {
-        right: 0;
-        left: auto;
-      }
+    }
+
+    // right align dropdown items
+    .dropdown-menu {
+      right: 0;
+      left: auto;
+
+      position: absolute;
+      // overrides .navbar-nav .dropdown-menu, which begs the question of whether
+      // .navbar-nav should be hard-coded in the account links
     }
   }
   .top-nav-search {
-    width: 100%;
-    padding: 0.5em 0;
+    flex: 1 1 100%;
+    padding: 0.5em 1em;
   }
 
   @include media-breakpoint-up(md) {
-    #navbar-body {
-      max-width: 50%;
+    .navbar-container {
       flex-wrap: nowrap;
     }
     .top-nav-search {
-      width: 70%;
+      flex: 2 0 70%;
+      order: 2;
     }
-  }
-  @include media-breakpoint-up(lg) {
-    #navbar-body {
-      max-width: 70%;
+    .top-nav-links {
+      order: 3;
     }
-  }
-
-  #logging .dropdown-menu {
-    position: absolute
   }
 }
 
