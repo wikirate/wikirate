@@ -3,15 +3,25 @@ format :html do
     dropdown_button fa_icon(:bars), dropdown_items.compact
   end
 
+  private
+
   def dropdown_items
     content_object.chunks.map do |item|
       case item
       when String
-        item.strip!
-        dropdown_header item if item.present?
+        dropdown_string_item item
       when ::Card::Content::Chunk::Link
-        [item.link_target, item.link_text]
+        dropdown_link_item item
       end
     end
+  end
+
+  def dropdown_string_item item
+    item.strip!
+    dropdown_header item if item.present?
+  end
+
+  def dropdown_link_item item
+    [item.link_target, item.link_text]
   end
 end
