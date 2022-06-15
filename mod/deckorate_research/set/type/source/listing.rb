@@ -43,6 +43,10 @@ format :html do
 
   view :compact, template: :haml
 
+  def bar_menu_items
+    [original_link, download_link] + super
+  end
+
   def year_list
     @year_list ||= card.year_card.item_names || []
   end
