@@ -37,12 +37,6 @@ format :html do
 
   view :details_tab, template: :haml
 
-  # download and original links.  (view makes them hideable)
-
-  def bar_menu_items
-    super + [original_link, download_link]
-  end
-
   def original_link
     return unless card.link_url.present?
     link_with_icon card.link_url, "external-link-square-alt", "original"

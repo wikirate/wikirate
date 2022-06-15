@@ -25,7 +25,7 @@ class Card
       @format.modal_link input_value(input),
                          path: { mark: [input_card.name, company, year].to_name },
                          class: "metric-value",
-                         size: :large
+                         size: :xl
     end
 
     def value_span input
