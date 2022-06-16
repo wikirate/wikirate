@@ -14,6 +14,6 @@ format :html do
   end
 
   view :source_tab do
-    field_nest :source, view: :filtered_content, items: items
+    field_nest :source, view: :filtered_content
   end
 end

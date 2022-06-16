@@ -1,9 +1,9 @@
 format :html do
   # all metrics show these properties in their properties table
   def basic_table_properties
-    { designer:       "Designed by",
+    { # designer:       "Designed by",
       wikirate_topic: "Topics",
-      metric_type:    "Metric Type",
+      # metric_type:    "Metric Type",
       unpublished:    "Unpublished" }.merge applicability_properties
   end
 
