@@ -56,7 +56,7 @@ class Card
       @format.modal_link answer_card.value_card.format.pretty_value,
                          path: { mark: answer_card },
                          class: "metric-value",
-                         size: :large
+                         size: :xl
     end
 
     def metric_thumbnail input_card

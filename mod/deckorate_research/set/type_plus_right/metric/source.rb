@@ -1,3 +1,4 @@
+assign_type :search
 
 # cache # of sources on which answers for this metric (=left) are based on
 include_set Abstract::SearchCachedCount

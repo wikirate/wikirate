@@ -12,7 +12,9 @@ format :html do
   view :other_year_links do
     return unless record_count > 1
     other_record_answers.map do |answer|
-      modal_link answer.year.to_s, path: { mark: answer.name }, size: :large
+      modal_link answer.year.to_s, path: { mark: answer.name },
+                                   size: :xl,
+                                   "data-slotter-mode": "modal-replace"
     end.join ", "
   end
 

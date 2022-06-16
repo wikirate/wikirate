@@ -32,11 +32,11 @@ describe "metric creation", ->
       cy.get(".alert").should "contain", "Metric Creator"
         .should "contain", "Awarded for adding your first metric"
 
-      cy.contains("Details").click()
-
-      cy.get(".metric-properties").within ->
-        hasProperty ".designer-property", "Designed by", "Joe Camel"
-        hasProperty ".RIGHT-Xmetric_type", "Metric Type", "Descendant"
+      cy.get(".header-middle")
+        .should "contain", "Designer"
+        .should "contain", "Joe Camel"
+        .should "contain", "Metric Type"
+        .should "contain", "Descendant"
 
 
   describe "from variable researched metric page", ->

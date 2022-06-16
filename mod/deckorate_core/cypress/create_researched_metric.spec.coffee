@@ -10,9 +10,9 @@ describe "researched metric creation", ->
 
     cy.contains("Submit").scrollIntoView().click()
 
-    # go to details tab
-    cy.contains("Details").click()
-    cy.get(".RIGHT-Xmetric_type .d0-card-content").should "contain", "Researched"
+    cy.get(".header-middle")
+      .should "contain", "Metric Type"
+      .should "contain", "Researched"
 
 
   specify "metric type: Relationship", ->
@@ -26,6 +26,10 @@ describe "researched metric creation", ->
 
     cy.contains("Submit").scrollIntoView().click()
 
+    cy.get(".header-middle")
+    .should "contain", "Metric Type"
+    .should "contain", "Relationship"
+
     # go to details tab
     cy.contains("Details").click()
 
@@ -35,8 +39,6 @@ describe "researched metric creation", ->
         .should "contain", value
 
     cy.get(".metric-properties").within ->
-      hasProperty ".designer-property", "Designed by", "Joe Camel"
-      hasProperty ".RIGHT-Xmetric_type", "Metric Type", "Relationship"
       hasProperty ".RIGHT-value_type", "Value Type", "Number"
       hasProperty ".inverse-property", "Inverse Metric", "owned by"
 
