@@ -17,7 +17,7 @@ format :html do
   end
 
   def value_type_properties
-    { # value_type:    "Value Type",
+    { value_type:    "Value Type",
       unit:          "Unit",
       range:         "Range",
       value_options: "Options" }

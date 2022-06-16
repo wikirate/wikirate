@@ -14,4 +14,6 @@ format :html do
     query_args[:and] = { type_id: ["ne", MetricTitleID] }
     super query_args
   end
+
+
 end
