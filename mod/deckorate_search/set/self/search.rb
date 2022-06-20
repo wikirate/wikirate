@@ -1,19 +1,30 @@
+TYPES = %i[wikirate_company wikirate_topic metric project
+           dataset research_group].freeze
+
 def cql_content
-  { type:
-      %i[in wikirate_company wikirate_topic metric metric_title project
-         dataset research_group],
+  { type: ([:in] + TYPES),
     fulltext_match: "$keyword",
     sort_by: "relevance" }
 end
 
 format :html do
-  # HACK. This makes it so that the main search results don't include metric title
-  # cards.  But those cards are needed in the navbar (json) views
-  def search_with_rescue query_args
-    query_args ||= {}
-    query_args[:and] = { type_id: ["ne", MetricTitleID] }
-    super query_args
+  def search_params
+    super.tap { |p| p[:type] = query_params[:type] if query_params[:type].present? }
   end
 
+  view :search_box do
+    search_form do
+      wrap_with :div, class: "input-group search-box-input-group" do
+        [select_type_tag, search_box_contents]
+      end
+    end
+  end
 
+  def select_type_tag
+    select_tag "query[type]", type_options, class: "search-box-select-type form-select"
+  end
+
+  def type_options
+    options_for_select [["Any Type", ""] + TYPES.map(&:cardname)]
+  end
 end
