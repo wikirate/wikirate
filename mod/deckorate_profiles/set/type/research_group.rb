@@ -76,7 +76,7 @@ format :html do
   end
 
   view :bar_middle do
-    field_nest :wikirate_topic, items: { view: :link }
+    result_middle { field_nest :wikirate_topic, items: { view: :link } }
   end
 
   view :bar_right do
