@@ -560,3 +560,87 @@ card_changes_093:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
+card_changes_094:
+  id: 94
+  card_action_id: 2898
+  field: 0
+  value:
+card_changes_095:
+  id: 95
+  card_action_id: 2898
+  field: 1
+  value: '4'
+card_changes_096:
+  id: 96
+  card_action_id: 2898
+  field: 2
+  value: |-
+    mod: format+*script
+    mod: list+*script
+    mod: search+*script
+    mod: rules+*script
+    mod: edit+*script
+    mod: carrierwave+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: follow+*script
+    mod: layout+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate import+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate homepage+*script
+    mod: wikirate+*script
+    mod: tasks+*script
+card_changes_097:
+  id: 97
+  card_action_id: 2898
+  field: 3
+  value: f
+card_changes_098:
+  id: 98
+  card_action_id: 2898
+  field: 4
+  value: '7'
+card_changes_099:
+  id: 99
+  card_action_id: 2898
+  field: 5
+  value: '288'
+card_changes_100:
+  id: 100
+  card_action_id: 3969
+  field: 2
+  value: |-
+    mod: format+*script
+    mod: list+*script
+    mod: search+*script
+    mod: rules+*script
+    mod: edit+*script
+    mod: carrierwave+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: follow+*script
+    mod: layout+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate import+*script
+    mod: deckorate calculations+*script
+    mod: deckorate search+*script
+    mod: wikirate companies+*script
+    mod: wikirate homepage+*script
+    mod: wikirate+*script
+    mod: tasks+*script

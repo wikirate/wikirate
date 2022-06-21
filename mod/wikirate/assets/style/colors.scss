@@ -138,6 +138,7 @@ $colorMap: (
 
   .bg-#{$type} {
     background-color: $color !important;
+    color: $white !important;
   }
 
   .top-border-#{$type} {

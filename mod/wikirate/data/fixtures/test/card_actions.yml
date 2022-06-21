@@ -28735,3 +28735,19 @@ card_actions_3592:
   action_type: 1
   draft: 0
   comment:
+card_actions_3593:
+  id: 3968
+  card_id: 3671
+  card_act_id: 106497
+  super_action_id:
+  action_type: 0
+  draft: 0
+  comment:
+card_actions_3594:
+  id: 3969
+  card_id: 292
+  card_act_id: 106498
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
