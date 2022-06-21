@@ -1,0 +1,12 @@
+.search-types-nav.d-flex.justify-content-between.align-items-center.my-3
+  .search-type-links.d-flex.align-items-center
+    = link_to_type "", "All Types"
+    - unless search_type
+      \|
+      - search_type_codenames.each do |typecode|
+        = link_to_type typecode
+
+  - if search_type
+    .advanced-filter-link.text-nowrap
+      - plural = search_type.cardname.vary :plural
+      = link_to_card search_type, "Advanced Search for #{plural} #{fa_icon 'arrow-right'}"
