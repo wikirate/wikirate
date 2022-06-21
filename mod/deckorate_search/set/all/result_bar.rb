@@ -12,7 +12,7 @@ format :html do
 
   view :type_badge do
     type = card.type_name
-    wrap_with(:span, class: "badge bg-#{type.key}") { type }
+    link_to_card type, nil, class: "badge bg-#{type.key} _over-card-link"
   end
 
   def result_middle

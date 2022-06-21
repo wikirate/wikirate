@@ -7,7 +7,7 @@ format :html do
 
   # view(:bar_left) { filterable(source: card.name) { render_compact } }
   view(:bar_left) { render_compact }
-  view(:bar_middle) { render_years }
+  view(:bar_middle) { result_middle { render_years } }
   view(:bar_right) { count_badge(:metric_answer) }
   view :bar_bottom, template: :haml
 
@@ -18,7 +18,7 @@ format :html do
   end
 
   view :box_middle do
-    [render_years]
+    render_years
   end
 
   view :box_bottom, template: :haml

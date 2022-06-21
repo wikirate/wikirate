@@ -12,7 +12,7 @@ format :html do
     super.tap { |p| p[:type] = search_type if search_type }
   end
 
-  view :search_box do
+  view :search_box, cache: :never do
     search_form do
       wrap_with :div, class: "input-group search-box-input-group" do
         [select_type_tag, search_box_contents]
@@ -20,7 +20,7 @@ format :html do
     end
   end
 
-  view :search_types, template: :haml
+  view :search_types, template: :haml, cache: :never
 
   view :core do
     voo.items = { view: :result_bar }
@@ -45,13 +45,12 @@ format :html do
 
   def link_to_type typecode, text=nil
     typename = typecode.cardname
-    link_to_card :search, (text || typename),
-                 path: { query: { type: typename, keyword: search_keyword} },
+    link_to_card :search, (text || typename&.vary(:plural)),
+                 path: { query: { type: typename, keyword: search_keyword } },
                  class: "mx-2 my-1 badge " \
                         "bg-#{typename.present? ? typename.key : 'secondary'}"
   end
 end
-
 
 format :json do
   view :search_box_complete, cache: :never do
