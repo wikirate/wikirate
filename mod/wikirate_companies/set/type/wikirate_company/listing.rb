@@ -2,7 +2,7 @@ include_set Abstract::Thumbnail
 
 format :html do
   def thumbnail_subtitle
-    field_nest :headquarters, view: :core, items: { view: :name }
+    field_nest :headquarters, view: :core, unknown: :blank, items: { view: :name }
   end
 
   # TODO: explain?
@@ -11,15 +11,15 @@ format :html do
   end
 
   view :bar_left do
-    render_thumbnail_with_bookmark
+    render_thumbnail
   end
 
   view :bar_right do
-    count_badges :metric_answer, :metric
+    [count_badges(:metric_answer, :metric), render_bookmark]
   end
 
   view :bar_middle do
-    count_badges :wikirate_topic, :source, :dataset
+    result_middle { count_badges :wikirate_topic, :source, :dataset }
   end
 
   view :bar_bottom do

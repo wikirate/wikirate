@@ -10,11 +10,11 @@ card_accessor :wikirate_topic, type: :list
 
 format :html do
   view :bar_left do
-    render_thumbnail_with_bookmark
+    render_thumbnail
   end
 
   view :bar_right do
-    count_badge :wikirate_company
+    [count_badge(:wikirate_company), render_bookmark]
   end
 
   view :bar_bottom do
