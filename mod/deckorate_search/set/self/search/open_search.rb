@@ -11,18 +11,33 @@ end
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
 def search query
-  puts "OPEN SEARCH QUERY =\n#{os_query}".yellow
+  puts "OPEN SEARCH QUERY =\n#{query}".yellow
   open_search_client.search body: { query: query },
                             index: Cardio.config.open_search_index
 end
 
+format :json do
+  # Retrieves Open Search results for autocompletion in
+  # the main search box
+  # @return [Array] list of card names
+  def complete_or_match_search *_args
+    os_results_to_cards { card.search bool: os_query }.map &:name
+  end
+end
+
 format do
+  # Retrieves results for main search results page
+  # Query is based on environmental parameters
+  # @return [Array] list of card objects
   def search_with_params
     @search_with_params ||= os_results_to_cards { card.search bool: os_query }
   end
 
   private
 
+  # Currently this query is shared by autocomplete and the main results.
+  # Can separate by assigning different query methods to #search_with_params
+  # and #complete_or_match_search
   def os_query
     { minimum_should_match: 1 }.tap do |bool|
       os_term_match { bool }
@@ -30,10 +45,12 @@ format do
     end
   end
 
+  # interprets Open Search results, finding ids and fetching cards with those ids
   def os_results_to_cards
-    yield.dig("hits", "hits").map { |result| result["_id"].to_i.card }
+    yield.dig("hits", "hits").map { |result| result["_id"]&.to_i&.card }.compact
   end
 
+  # constructs the keyword matching "should" clause for the os_query
   def os_term_match
     return yield unless search_keyword.present?
 
@@ -41,15 +58,10 @@ format do
                       { match_phrase_prefix: { name: search_keyword } }]
   end
 
+  # constructs the type filtering clause for the os_query
   def os_type_filter
     return yield unless type_param.present?
 
     yield[:filter] = { term: { type_id: type_param.card_id } }
-  end
-end
-
-format :json do
-  def complete_or_match_search *_args
-    os_results_to_cards { card.search bool: os_query }.compact.map &:name
   end
 end
