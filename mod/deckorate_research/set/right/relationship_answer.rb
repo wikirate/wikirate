@@ -14,7 +14,8 @@ format do
   delegate :inverse?, to: :card
 
   def search_with_params
-    with_relation_paging(relationships).pluck(:relationship_id).map(&:card)
+    @search_with_params ||=
+      with_relation_paging(relationships).pluck(:relationship_id).map(&:card)
   end
 
   def count_with_params

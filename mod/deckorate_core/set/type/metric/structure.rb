@@ -11,8 +11,7 @@ format :html do
 
   def header_middle_items
     super.merge Designer: link_to_card(card.metric_designer),
-                "Metric Type": card.metric_type,
-                "Value Type": card.value_type
+                "Metric Type": card.metric_type
   end
 
   def image_card

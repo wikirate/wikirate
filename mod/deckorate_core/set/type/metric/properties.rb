@@ -1,9 +1,9 @@
 format :html do
   # all metrics show these properties in their properties table
   def basic_table_properties
-    { # designer:       "Designed by",
-      wikirate_topic: "Topics",
-      # metric_type:    "Metric Type",
+    # designer:       "Designed by",
+    # metric_type:    "Metric Type",
+    { wikirate_topic: "Topics",
       unpublished:    "Unpublished" }.merge applicability_properties
   end
 
@@ -17,7 +17,7 @@ format :html do
   end
 
   def value_type_properties
-    { # value_type:    "Value Type",
+    { value_type:    "Value Type",
       unit:          "Unit",
       range:         "Range",
       value_options: "Options" }

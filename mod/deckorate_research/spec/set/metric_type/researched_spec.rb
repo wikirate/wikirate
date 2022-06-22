@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::MetricType::Researched do
+RSpec.describe Card::Set::MetricType::Researched do
   let(:metric) { Card["Jedi+disturbances in the Force"] }
 
   describe "#metric_type" do
@@ -101,9 +101,9 @@ describe Card::Set::MetricType::Researched do
             with_tag "div.label", text: /Topics/
             with_tag "div.labeled-content", text: /Force/
           end
-          with_tag("div.RIGHT-Xmetric_type") do
-            with_tag "div.label", text: /Metric Type/
-            with_tag "div.labeled-content", text: /Researched/
+          with_tag("div.RIGHT-value_type") do
+            with_tag "div.label", text: /Value Type/
+            with_tag "div.labeled-content", text: /Category/
           end
         end
       )

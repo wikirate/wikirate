@@ -20,7 +20,7 @@ class Card
       return "" unless score_card.present?
 
       @format.modal_link pretty_score(score_card),
-                         path: { mark: score_card }, size: :large
+                         path: { mark: score_card }, size: :xl
     end
 
     def weight_cell weight
