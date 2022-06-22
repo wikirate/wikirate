@@ -11,7 +11,7 @@ end
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
 def search query
-  puts "OPEN SEARCH QUERY =\n#{query}".yellow
+  # puts "OPEN SEARCH QUERY =\n#{query}".yellow
   open_search_client.search body: { query: query },
                             index: Cardio.config.open_search_index
 end
