@@ -23,19 +23,6 @@ format :html do
     end
   end
 
-  # def header_text
-  #   contribs_made? ? render_contrib_switch : ""
-  # end
-
-  # TODO: move contributions_data to tab
-  view :data, cache: :never do
-    if contrib_page?
-      render_contributions_data
-    else
-      field_nest :metric_answer, view: :filtered_content
-    end
-  end
-
   def tab_list
     if contrib_page?
       %i[metrics_designed research_group projects_organized details]
