@@ -9,8 +9,16 @@ format :html do
     @contrib_page.nil? ? (@contrib_page = contrib_page_from_params?) : @contrib_page
   end
 
-  view :contributions_data do
+  view :metrics_designed_tab do
     field_nest :metrics_designed, view: :titled
+  end
+
+  view :research_group_tab do
+    field_nest :research_group, view: :content
+  end
+
+  view :projects_organized_tab do
+    field_nest :projects_organized, view: :content
   end
 
   # NOCACHE because of special contributor handling
@@ -19,6 +27,8 @@ format :html do
   end
 
   view :contrib_switch, cache: :never do
+    return "" unless contribs_made?
+
     contrib_page? ? switch_to_performance : switch_to_contrib
   end
 
@@ -31,7 +41,10 @@ format :html do
   end
 
   def switch_to text, icon, val, title
-    link_to_card card, "#{mapped_icon_tag icon} See #{text}",
+    text = wrap_with :div, class: "text-secondary" do
+      "#{mapped_icon_tag icon} See #{text}"
+    end
+    link_to_card card, text,
                  class: "company-switch", title: title, path: { contrib: val }
   end
 
@@ -60,14 +73,6 @@ format :html do
 
   def projects_organized?
     card.projects_organized_card.count.positive?
-  end
-
-  view :research_group_tab do
-    field_nest :research_group, view: :content
-  end
-
-  view :projects_organized_tab do
-    field_nest :projects_organized, view: :content
   end
 
   private
