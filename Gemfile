@@ -41,6 +41,10 @@ else
     gem "decko-rspec", group: :test
   end
 
+  path "./mod" do
+    gem "card-mod-deckorate_search"
+  end
+
   gem "decko-cap", path: "./vendor/decko-cap", group: :development
 end
 
