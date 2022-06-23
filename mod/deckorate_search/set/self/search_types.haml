@@ -1,13 +1,13 @@
 .search-types-nav.d-flex.justify-content-between.align-items-center.my-3
   .search-type-links.d-flex.align-items-center
     Search within:
-    - if search_type
+    - if type_param
       = link_to_type "", "All Types"
     - else
       - search_type_codenames.each do |typecode|
         = link_to_type typecode
 
-  - if search_type
+  - if type_param
     .advanced-filter-link.text-nowrap
-      - plural = search_type.cardname.vary :plural
-      = link_to_card search_type, "Browse and Filter #{plural} #{fa_icon 'arrow-right'}"
+      - plural = type_param.cardname.vary :plural
+      = link_to_card type_param, "Browse and Filter #{plural} #{fa_icon 'arrow-right'}"

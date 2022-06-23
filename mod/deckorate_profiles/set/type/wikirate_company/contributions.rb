@@ -9,8 +9,16 @@ format :html do
     @contrib_page.nil? ? (@contrib_page = contrib_page_from_params?) : @contrib_page
   end
 
-  view :contributions_data do
+  view :metrics_designed_tab do
     field_nest :metrics_designed, view: :titled
+  end
+
+  view :research_group_tab do
+    field_nest :research_group, view: :content
+  end
+
+  view :projects_organized_tab do
+    field_nest :projects_organized, view: :content
   end
 
   # NOCACHE because of special contributor handling
@@ -21,6 +29,7 @@ format :html do
   view :contrib_switch, cache: :never do
     contrib_page? ? switch_to_performance : switch_to_contrib
   end
+
 
   def switch_to_performance
     switch_to "Performance", :wikirate_company, "N", "Company performance profile"
@@ -60,14 +69,6 @@ format :html do
 
   def projects_organized?
     card.projects_organized_card.count.positive?
-  end
-
-  view :research_group_tab do
-    field_nest :research_group, view: :content
-  end
-
-  view :projects_organized_tab do
-    field_nest :projects_organized, view: :content
   end
 
   private
