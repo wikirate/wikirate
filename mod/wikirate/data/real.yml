@@ -49,6 +49,9 @@
 - :name: WikiRate Data
   :codename: :wikirate_data
 
+- :name: Contact Us
+  :codename: :contact_us
+  
 - :name: Output
   :codename: :output
   :type: :cardtype
