@@ -23,17 +23,8 @@ format :html do
     end
   end
 
-  # def header_text
-  #   contribs_made? ? render_contrib_switch : ""
-  # end
-
-  # TODO: move contributions_data to tab
-  view :data, cache: :never do
-    if contrib_page?
-      render_contributions_data
-    else
-      field_nest :metric_answer, view: :filtered_content
-    end
+  def header_text
+    render_contrib_switch
   end
 
   def tab_list
@@ -45,8 +36,8 @@ format :html do
   end
 
   def tab_options
-    { research_group: { label: "Research Groups" },
-      projects_organized: { label: "Projects Organized" },
+    { projects_organized: { label: "Projects Organized" },
+      metrics_designed: { label: "Metrics Designed" },
       company_group: { label: "Groups" } }
   end
 
@@ -75,7 +66,8 @@ format :html do
   end
 
   view :company_group_tab do
-    field_nest :company_group, items: { view: :bar, show: :full_page_link }
+    field_nest :company_group, view: :filtered_content,
+                               items: { view: :bar, show: :full_page_link }
   end
 
   view :details_tab do
