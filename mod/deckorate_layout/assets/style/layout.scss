@@ -1,9 +1,9 @@
 :root {
-  font-size: 16px;
+  font-size: 14px;
 }
 
-@include media-breakpoint-down(md) {
-  :root { font-size: 14px; }
+@include media-breakpoint-up(md) {
+  :root { font-size: 16px; }
 }
 
 body {
@@ -12,37 +12,17 @@ body {
   font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   line-height: 1.55;
   font-size: 1rem;
-  background-color: #fff;
-}
+  background-color: $white;
 
-body.wikirate-two-column-layout,
-body.wikirate-one-full-column-layout {
-  .details-content {
-    .d0-card-header-title {
-      border-bottom: 0 !important;
-      .card-title {
-        font-size: 1.3em !important;
-      }
-    }
+  // make sure footer is at bottom
+  &.deckorate-layout #main {
+    min-height: calc(100vh - 85px);
+  }
+
+  body#tinymce {
+    padding: 0.5em;
   }
 }
-
-
-// make sure footer is at bottom
-body.wikirate-layout #main {
-  min-height: calc(100vh - 85px);
-}
-
-body#tinymce {
-  padding: 4px;
-}
-
-//body.home-layout.wikirate-layout > nav.navbar {
-//  -webkit-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
-//  -moz-box-shadow: 0 9px 20px rgba(0,0,0,0.06);
-//  box-shadow: 0 9px 20px rgba(0,0,0,0.06);
-//}
-
 
 sup {
   line-height: 0;
@@ -54,6 +34,7 @@ canvas {
   max-width: 100%;
 }
 
+// TODO: generalize to deckorate or move to wikirate
 body {
   >#wikirate_footer-content-view {
     /*position: fixed;*/

@@ -21,7 +21,7 @@ format :json do
   # the main search box
   # @return [Array] list of card names
   def complete_or_match_search *_args
-    os_results_to_cards { card.search bool: os_query }.map &:name
+    os_results_to_cards { card.search bool: os_query }.map(&:name)
   end
 end
 

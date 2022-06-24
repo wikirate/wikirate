@@ -1,7 +1,7 @@
 require "savanna-outliers"
 
 include_set Abstract::Thumbnail
-include_set Abstract::WikirateTabbed
+include_set Abstract::DeckorateTabbed
 include_set Abstract::BsBadge
 include_set Abstract::Bookmarkable
 include_set Abstract::Delist

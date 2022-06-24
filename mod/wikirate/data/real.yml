@@ -25,12 +25,12 @@
   :type: :basic
   :codename: :nav_menu
   :content: |
-    About
+    About WikiRate
     [[:wikirate_platform | Platform]]
     [[:wikirate_community | Community]]
     [[:wikirate_impact | Impact]]
     [[:wikirate_data | Data]]
-    Resources
+    WikiRate Resources
     [[Use the API|API]]
     [[Guides]]
     [[FAQ]]
@@ -49,6 +49,9 @@
 - :name: WikiRate Data
   :codename: :wikirate_data
 
+- :name: Contact Us
+  :codename: :contact_us
+  
 - :name: Output
   :codename: :output
   :type: :cardtype
