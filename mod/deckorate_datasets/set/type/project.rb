@@ -1,5 +1,5 @@
 include_set Abstract::Thumbnail
-include_set Abstract::WikirateTabbed
+include_set Abstract::DeckorateTabbed
 include_set Abstract::Bookmarkable
 
 card_accessor :unpublished, type: :toggle, default_content: "No"

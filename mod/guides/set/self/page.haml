@@ -1,14 +1,7 @@
-%header.jumbotron.jumbotron-fluid
-  .container
-    = render_menu
-    %h1
-      = field_nest :title, view: :content, type: :plain_text
-    .lead
-      = field_nest :description, view: :content
-%main.container.py-5.position-relative
+%main.py-5.position-relative
   .guide-list.py-2
     = field_nest :list, type: :list, items: { view: :box }
-%section.container.guide-support
+%section.guide-support
   %h2
     Further Support
   .row
@@ -24,7 +17,7 @@
                 %i.fas.fa-arrow-right
               = link_to_card name, link_text
 
-%section.container.guide-ticket
+%section.guide-ticket
   .card.m-5
     .card-body.row.align-items-center.justify-content-between.px-5
       .col-8

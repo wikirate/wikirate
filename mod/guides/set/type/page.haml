@@ -1,10 +1,3 @@
-%header.jumbotron.jumbotron-fluid
-  = render_menu
-  .container
-    %h1
-      = render_title
-    .lead
-      = field_nest :description, view: :content
 .container
   %section.guide-body.row
     %aside#guide-sidebar.col-sm-4.nodblclick
@@ -13,7 +6,7 @@
           %i.fas.fa-arrow-left
           Back to Help
         = link_to_card :guide_type, link_text
-      .sidebar-nav-list.accordion
+      .sidebar-nav-list.sticky-top
         = nest guide_list_card, items: { view: :sidebar_nav }
 
     %article#guide-body.col-sm-8.py-2
