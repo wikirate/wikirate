@@ -10,7 +10,7 @@ end
 
 format :html do
   def layout_name_from_rule
-    :wikirate_tabbed_layout
+    :deckorate_tabbed_layout
   end
 
   view :page do

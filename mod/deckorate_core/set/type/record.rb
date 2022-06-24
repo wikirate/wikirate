@@ -1,5 +1,5 @@
 include_set Abstract::MetricChild, generation: 1
-include_set Abstract::WikirateTabbed
+include_set Abstract::DeckorateTabbed
 
 card_accessor :metric_answer
 

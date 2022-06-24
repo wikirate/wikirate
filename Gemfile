@@ -103,3 +103,5 @@ group :profile do
   gem "ruby-jmeter"                  # connected to Flood.io, used in load testing
   gem "wbench"                       # Benchmarking web requests
 end
+
+gem "rack-test", "1.1.0" # remove me soon (2.0.0 breaks things on sempahore)

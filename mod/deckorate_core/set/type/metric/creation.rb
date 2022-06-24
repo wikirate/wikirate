@@ -20,7 +20,7 @@ format :html do
   end
 
   def layout_for_view view
-    :wikirate_layout if view&.to_sym.in? %i[new new_formula]
+    :deckorate_layout if view&.to_sym.in? %i[new new_formula]
   end
 
   def new_view_hidden
