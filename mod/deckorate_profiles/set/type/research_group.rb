@@ -1,4 +1,4 @@
-include_set Abstract::WikirateTabbed
+include_set Abstract::DeckorateTabbed
 include_set Abstract::Thumbnail
 include_set Abstract::Table
 include_set Abstract::Bookmarkable

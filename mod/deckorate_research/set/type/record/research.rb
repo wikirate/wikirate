@@ -10,7 +10,7 @@ format :html do
   # end
 
   layout :research_layout, view: :research do
-    wikirate_layout "wikirate-one-full-column-layout research-layout nodblclick" do
+    deckorate_layout "wikirate-one-full-column-layout research-layout nodblclick" do
       layout_nest
     end
   end

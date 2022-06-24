@@ -1,0 +1,8 @@
+%header.bg-light.p-5.card-menu-hoverspace
+  .container.position-relative
+    = render_menu
+    %h1.display-4
+      = render_title
+      -#ield_nest :title, view: :content, type: :plain_text
+    .lead
+      = field_nest :description, view: :content
