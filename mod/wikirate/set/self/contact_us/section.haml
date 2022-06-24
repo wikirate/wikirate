@@ -1,0 +1,22 @@
+%section.contact-us
+  .d-flex.justify-content-around.my-4
+    .card.m-2.ms-0
+      .card-body
+        %h4.card-title
+          Get email updates
+        = nest :newsletter_signup, view: :core
+
+    .card.m-2.me-0
+      .card-body
+        %h4.card-title
+          Contact a Human
+        .card-text
+          %a{ href: "https://wikirateproject.org/Contact_Us" }
+            Contact
+          the folks at The WikiRate Project eV.
+        %h5.card-subtitle.mt-4.py-2
+          Follow
+        .list-group
+          %a.list-group-item{ href: "https://www.facebook.com/wikirate/" } Facebook
+          %a.list-group-item{ href: "https://twitter.com/WikiRate" } Twitter
+          %a.list-group-item{ href: "https://www.instagram.com/wikirate/" } Instagram

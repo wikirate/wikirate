@@ -51,7 +51,7 @@
 
 - :name: Contact Us
   :codename: :contact_us
-  
+
 - :name: Output
   :codename: :output
   :type: :cardtype
@@ -60,9 +60,12 @@
   :codename: :testimonial
   :type: :cardtype
 
+- :name: Blurb
+  :codename: :blurb
+  :type: :cardtype
+
 - :name: newsletter signup
   :codename: :newsletter_signup
-
 
 - :name: wikirate skin
   :type: :bootswatch_skin

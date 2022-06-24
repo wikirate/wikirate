@@ -104,4 +104,4 @@ group :profile do
   gem "wbench"                       # Benchmarking web requests
 end
 
-gem "rack-test", "1.1.0" # remove me soon (2.0.0 breaks things on sempahore)
+gem "rack-test", "!=2.0.0" # remove me soon (2.0.0 breaks things on semaphore)

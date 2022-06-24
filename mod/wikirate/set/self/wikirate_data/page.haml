@@ -1,0 +1,11 @@
+%section.p-5
+  = field_nest :general_overview, view: :core
+%section.p-5
+  = field_nest :list, view: :core, items: { view: :box }
+%section.bg-light.p-5
+  %h2 (reliable)
+  \...
+%section.p-5
+  %h2 (organized)
+  \...
+= nest :contact_us, view: :section
