@@ -804,7 +804,7 @@ GEM
     sassc (2.4.0)
       ffi (~> 1.9)
     savanna-outliers (0.0.1)
-    selenium-webdriver (4.2.1)
+    selenium-webdriver (4.3.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -857,7 +857,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
-    unicode-display_width (2.1.0)
+    unicode-display_width (2.2.0)
     video_info (3.0.2)
       iso8601 (~> 0.9.1)
       net_http_timeout_errors (~> 0.3.0)
@@ -929,6 +929,7 @@ DEPENDENCIES
   pluck_all
   puma
   rack-cors
+  rack-test (= 1.1.0)
   roo
   ruby-jmeter
   savanna-outliers

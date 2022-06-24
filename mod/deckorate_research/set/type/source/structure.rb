@@ -1,4 +1,4 @@
-include_set Abstract::WikirateTabbed
+include_set Abstract::DeckorateTabbed
 
 format :html do
   before :content_formgroups do

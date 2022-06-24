@@ -790,3 +790,77 @@ card_changes_104:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
+card_changes_105:
+  id: 105
+  card_action_id: 3974
+  field: 2
+  value: |-
+    mod: format+*script
+    mod: list+*script
+    mod: search+*script
+    mod: rules+*script
+    mod: edit+*script
+    mod: carrierwave+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: deckorate search+*script
+    mod: follow+*script
+    mod: layout+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate import+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate homepage+*script
+    mod: wikirate+*script
+    mod: tasks+*script
+card_changes_106:
+  id: 106
+  card_action_id: 3975
+  field: 2
+  value: |-
+    mod: format+*style
+    mod: list+*style
+    mod: search+*style
+    mod: rules+*style
+    mod: permissions+*style
+    mod: account+*style
+    mod: edit+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
+    mod: style+*style
+    mod: bar and box+*style
+    mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
+    mod: date+*style
+    mod: deckorate search+*style
+    mod: follow+*style
+    mod: help+*style
+    mod: layout+*style
+    mod: tinymce editor+*style
+    mod: thumbnail+*style
+    mod: guides+*style
+    mod: deckorate utility+*style
+    mod: deckorate layout+*style
+    mod: topics+*style
+    mod: deckorate core+*style
+    mod: deckorate research+*style
+    mod: deckorate import+*style
+    mod: deckorate calculations+*style
+    mod: deckorate datasets+*style
+    mod: deckorate profiles+*style
+    mod: wikirate companies+*style
+    mod: wikirate homepage+*style
+    mod: wikirate+*style
+    mod: badges+*style
+    mod: tasks+*style
+    mod: vega+*style
