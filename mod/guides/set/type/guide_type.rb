@@ -2,12 +2,10 @@ card_accessor :body
 
 format :html do
   def layout_name_from_rule
-    :guide_layout
+    :deckorate_jumbotron_layout
   end
 
-  before :content_formgroups do
-    voo.edit_structure = %i[description body]
-  end
+  before(:content_formgroups) { voo.edit_structure = %i[description body] }
 
   view :box_middle do
     field_nest :description
@@ -15,12 +13,12 @@ format :html do
 
   view :box_top, template: :haml
   view :box_bottom, template: :haml
-  view :guide_page, template: :haml, wrap: :slot
+  view :page, template: :haml, wrap: :slot
   view :sidebar_nav, template: :haml, cache: :never
 
   view :guide_paging do
-    guide_names = guide_list_card.item_names
-    return unless (current_index = guide_names.index card.name)
+    guide_names = guide_list_card&.item_names
+    return unless (current_index = guide_names&.index card.name)
 
     haml :guide_paging, guide_names: guide_names, current_index: current_index
   end
