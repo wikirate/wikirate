@@ -6,7 +6,7 @@
           %i.fas.fa-arrow-left
           Back to Help
         = link_to_card :guide_type, link_text
-      .sidebar-nav-list.accordion
+      .sidebar-nav-list.sticky-top
         = nest guide_list_card, items: { view: :sidebar_nav }
 
     %article#guide-body.col-sm-8.py-2

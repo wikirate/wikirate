@@ -1,3 +1,5 @@
+include_set Abstract::Jumbotron
+
 card_accessor :body
 
 format :html do
