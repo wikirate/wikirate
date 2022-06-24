@@ -1,17 +1,27 @@
 TYPES = %i[wikirate_company wikirate_topic metric dataset project
            source research_group company_group].freeze
 
-def cql_content
-  { type: ([:in] + TYPES),
-    fulltext_match: "$keyword",
-    sort_by: "relevance" }
+# def cql_content
+#   { type: ([:in] + TYPES),
+#     fulltext_match: "$keyword",
+#     sort_by: "relevance" }
+# end
+
+format do
+  # def search_params
+  #   super.tap { |p| p[:type] = type_param if type_param }
+  # end
+
+  def search_type_codenames
+    TYPES
+  end
+
+  def type_param
+    query_params[:type].present? && query_params[:type]
+  end
 end
 
 format :html do
-  def search_params
-    super.tap { |p| p[:type] = search_type if search_type }
-  end
-
   view :search_box, cache: :never do
     search_form do
       wrap_with :div, class: "input-group search-box-input-group" do
@@ -27,12 +37,8 @@ format :html do
     [render_search_types, render_results_for_keyword, super()]
   end
 
-  def search_type_codenames
-    TYPES
-  end
-
-  def search_type
-    query_params[:type].present? && query_params[:type]
+  def paging_needed?
+    false
   end
 
   def select_type_tag
