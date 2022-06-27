@@ -1,0 +1,6 @@
+%section.p-5
+  = nest :general_overview, view: :core
+%section.bg-light.p-5
+  %h2 Tools
+  = field_nest :list, view: :core, items: { view: :box }
+= nest :contact_us, view: :section

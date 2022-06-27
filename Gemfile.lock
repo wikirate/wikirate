@@ -929,7 +929,7 @@ DEPENDENCIES
   pluck_all
   puma
   rack-cors
-  rack-test (= 1.1.0)
+  rack-test (!= 2.0.0)
   roo
   ruby-jmeter
   savanna-outliers
