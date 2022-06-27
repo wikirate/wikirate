@@ -56,6 +56,10 @@
   :codename: :output
   :type: :cardtype
 
+- :name: output type
+  :codename: :output_type
+
+
 - :name: Testimonial
   :codename: :testimonial
   :type: :cardtype

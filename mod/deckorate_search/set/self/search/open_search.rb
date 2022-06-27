@@ -1,4 +1,5 @@
 require "opensearch"
+require "colorize"
 
 # Open Search client object
 # note: options configured in config/application.rb
