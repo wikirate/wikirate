@@ -12,8 +12,7 @@ end
 # note: options configured in config/application.rb
 def search query
   # puts "OPEN SEARCH QUERY =\n#{query}".yellow
-  open_search_client.search body: { query: query },
-                            index: Cardio.config.open_search_index
+  open_search_client.search body: query, index: Cardio.config.open_search_index
 end
 
 format :json do
@@ -21,7 +20,9 @@ format :json do
   # the main search box
   # @return [Array] list of card names
   def complete_or_match_search *_args
-    os_results_to_cards { card.search bool: os_query }.map(&:name)
+    list = card.search(suggest: os_term_autocomplete).dig("suggest", "autocomplete")
+    return [] unless list.present? && (options = list.first&.dig "options")
+    options.map { |result| result["_id"]&.to_i&.cardname }
   end
 end
 
@@ -30,7 +31,10 @@ format do
   # Query is based on environmental parameters
   # @return [Array] list of card objects
   def search_with_params
-    @search_with_params ||= os_results_to_cards { card.search bool: os_query }
+    @search_with_params ||=
+      card.search(query: { bool: os_query }).dig("hits", "hits").map do |result|
+        result["_id"]&.to_i&.card
+      end
   end
 
   private
@@ -56,6 +60,14 @@ format do
 
     yield[:should] = [{ match: { name: search_keyword } },
                       { match_phrase_prefix: { name: search_keyword } }]
+  end
+
+  # constructs a suggest query for autocompletion purposes
+  def os_term_autocomplete
+    return yield unless search_keyword.present?
+
+    yield[:autocomplete] = { prefix: search_keyword,
+                             completion: { field: "autocomplete_field" } }
   end
 
   # constructs the type filtering clause for the os_query

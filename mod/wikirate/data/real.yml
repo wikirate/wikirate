@@ -63,6 +63,10 @@
 - :name: Blurb
   :codename: :blurb
   :type: :cardtype
+  :fields:
+    :type:
+      :fields:
+        :autoname: Blurb 0001
 
 - :name: newsletter signup
   :codename: :newsletter_signup
