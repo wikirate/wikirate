@@ -1,7 +1,7 @@
 %section.p-5
   = field_nest :general_overview, view: :core
 %section.p-5
-  %h2
+  %h2.text-center
     What makes our data
     %strong different?
   = field_nest :blurb, view: :core, items: { view: :stack }
@@ -9,9 +9,9 @@
     %a.btn.btn-primary{ href: "/Use_our_Api" }
       Use our API
 %section.bg-light.p-5
-  %h2
+  %h2.text-center
     What makes our data
     %strong reliable?
-  = field_nest :blurb, view: :core, items: { view: :stack }
+  = field_nest :list, view: :core, items: { view: :stack }
 
 = nest :contact_us, view: :section

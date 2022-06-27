@@ -11,7 +11,7 @@ end
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
 def search query
-  # puts "OPEN SEARCH QUERY =\n#{query}".yellow
+  puts "OPEN SEARCH QUERY =\n#{query}".yellow
   open_search_client.search body: query, index: Cardio.config.open_search_index
 end
 
@@ -20,8 +20,11 @@ format :json do
   # the main search box
   # @return [Array] list of card names
   def complete_or_match_search *_args
-    list = card.search(suggest: os_term_autocomplete).dig("suggest", "autocomplete")
-    return [] unless list.present? && (options = list.first&.dig "options")
+    return [] unless search_keyword.present?
+
+    list = card.search(suggestion_query).dig "suggest", "autocomplete"
+    return [] unless (options = list&.first&.dig "options")
+
     options.map { |result| result["_id"]&.to_i&.cardname }
   end
 end
@@ -62,12 +65,10 @@ format do
                       { match_phrase_prefix: { name: search_keyword } }]
   end
 
-  # constructs a suggest query for autocompletion purposes
-  def os_term_autocomplete
-    return yield unless search_keyword.present?
-
-    yield[:autocomplete] = { prefix: search_keyword,
-                             completion: { field: "autocomplete_field" } }
+  # suggest_query
+  def suggestion_query
+    { suggest: { autocomplete: { prefix: search_keyword,
+                                 completion: { field: "autocomplete_field" } } } }
   end
 
   # constructs the type filtering clause for the os_query
