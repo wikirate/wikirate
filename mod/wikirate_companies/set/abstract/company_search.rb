@@ -36,7 +36,7 @@ end
 
 format :html do
   def filter_map
-    shared_company_filter_map.unshift key: :name, open: true
+    shared_company_filter_map.unshift key: :name, label: "Company Name", open: true
   end
 
   def default_sort_option
