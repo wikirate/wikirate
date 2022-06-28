@@ -68,8 +68,15 @@ format do
 
   # suggest_query
   def suggestion_query
-    { suggest: { autocomplete: { prefix: search_keyword,
-                                 completion: { field: "autocomplete_field" } } } }
+    if type_param.present?
+      return { suggest: { autocomplete: { prefix: search_keyword,
+                                 completion: { field: "autocomplete_field", 
+                                 contexts: { type_id: [type_param.card_id]} } } } }
+    else
+      return { suggest: { autocomplete: { prefix: search_keyword,
+                                 completion: { field: "autocomplete_field", 
+                                 contexts: { type_id: [651, 1010, 39830, 2301582, 5458825, 7926098, 629, 43576] } } } } }
+    end
   end
 
   # constructs the type filtering clause for the os_query
