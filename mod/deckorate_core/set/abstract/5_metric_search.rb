@@ -39,7 +39,7 @@ format do
 
   def filter_map
     filtering_by_published do
-      shared_metric_filter_map.unshift key: :name, open: true
+      shared_metric_filter_map.unshift key: :name, label: "Metric Name", open: true
     end << :dataset
   end
 

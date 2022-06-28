@@ -1,17 +1,7 @@
 TYPES = %i[wikirate_company wikirate_topic metric dataset project
            source research_group company_group].freeze
 
-# def cql_content
-#   { type: ([:in] + TYPES),
-#     fulltext_match: "$keyword",
-#     sort_by: "relevance" }
-# end
-
 format do
-  # def search_params
-  #   super.tap { |p| p[:type] = type_param if type_param }
-  # end
-
   def search_type_codenames
     TYPES
   end
@@ -19,13 +9,17 @@ format do
   def type_param
     query_params[:type].present? && query_params[:type]
   end
+
+  def filter_type_ids
+    type_param ? [type_param.card_id] : search_type_codenames.map(&:card_id)
+  end
 end
 
 format :html do
   view :search_box, cache: :never do
     search_form do
       wrap_with :div, class: "input-group search-box-input-group" do
-        [select_type_tag, search_box_contents]
+        [select_type_tag, search_box_contents, haml(:search_button)]
       end
     end
   end

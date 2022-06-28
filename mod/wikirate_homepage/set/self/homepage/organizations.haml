@@ -7,4 +7,6 @@
       .col-6.col-sm-3
         %a{ href: org_card.name.url_key }
           = nest image_card, view: :content
-  = nest :newsletter_signup, view: :core
+  .row
+    .col-12.text-center.p-3.m-auto.d-flex.flex-column.align-items-center.lead
+      = nest :newsletter_signup, view: :core

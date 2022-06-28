@@ -17,6 +17,7 @@
         %h5.card-subtitle.mt-4.py-2
           Follow
         .list-group
-          %a.list-group-item{ href: "https://www.facebook.com/wikirate/" } Facebook
-          %a.list-group-item{ href: "https://twitter.com/WikiRate" } Twitter
-          %a.list-group-item{ href: "https://www.instagram.com/wikirate/" } Instagram
+          - secondary_menus["Social"].each do |item|
+            %a.list-group-item{ href: menu_item_ref(item) }
+              = fa_icon item.downcase, brand: true, class: "me-2"
+              = item

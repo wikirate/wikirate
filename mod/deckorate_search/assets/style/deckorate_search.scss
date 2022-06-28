@@ -14,6 +14,7 @@
 
   // get rid of rounded corders
   .select2-search-box-autocomplete {
+    border-right: 0;
     margin-left: -1px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
