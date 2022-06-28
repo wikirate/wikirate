@@ -1,7 +1,5 @@
 %section.p-5
-  = field_nest :general_overview, view: :core
-%section.bg-light.p-5
-  %h2 Outputs
-  \...
-  =# field_nest :list, view: :core, items: { view: :box }
+  = field_nest :general_overview, view: :content
+%section.bg-light.p-5._card-link-modal
+  = nest Card.fetch([:output, :type, :by_update]), view: :core, items: { view: :box }
 = nest :contact_us, view: :section
