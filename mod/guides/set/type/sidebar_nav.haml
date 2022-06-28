@@ -14,4 +14,4 @@
     - subheaders.each do |subheader|
       .sidebar-subheader.p-2.ms-4
         - anchor_href = "#{card.name.url_key}##{subheader.text.to_name.key}"
-        = link_to subheader.text, href: anchor_href
+        = link_to subheader.text, href: anchor_href, class: "text-reset"

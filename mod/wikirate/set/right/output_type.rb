@@ -1,7 +1,7 @@
 assign_type :pointer
 
 def option_names
-  ["publication", "dashboard"]
+  %w[publication dashboard]
 end
 
 format :html do

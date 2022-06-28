@@ -21,12 +21,13 @@ format :json do
   # the main search box
   # @return [Array] list of card names
   def complete_or_match_search *_args
-    return [] unless search_keyword.present?
-
-    list = card.search(suggestion_query).dig "suggest", "autocomplete"
-    return [] unless (options = list&.first&.dig "options")
+    return [] unless search_keyword.present? && (options = autocomplete_options)
 
     options.map { |result| result["_id"]&.to_i&.cardname }
+  end
+
+  def autocomplete_options
+    card.search(suggestion_query)&.dig("suggest", "autocomplete")&.first&.dig "options"
   end
 end
 
@@ -60,7 +61,7 @@ format do
 
   # constructs the keyword matching "should" clause for the os_query
   def os_term_match
-    return yield unless search_keyword.present?
+    return unless search_keyword.present?
 
     yield[:should] = [{ match: { name: search_keyword } },
                       { match_phrase_prefix: { name: search_keyword } }]
@@ -68,21 +69,13 @@ format do
 
   # suggest_query
   def suggestion_query
-    if type_param.present?
-      return { suggest: { autocomplete: { prefix: search_keyword,
-                                 completion: { field: "autocomplete_field", 
-                                 contexts: { type_id: [type_param.card_id]} } } } }
-    else
-      return { suggest: { autocomplete: { prefix: search_keyword,
-                                 completion: { field: "autocomplete_field", 
-                                 contexts: { type_id: [651, 1010, 39830, 2301582, 5458825, 7926098, 629, 43576] } } } } }
-    end
+    { suggest: { autocomplete: { prefix: search_keyword,
+                                 completion: { field: "autocomplete_field",
+                                 contexts: { type_id: filter_type_ids } } } } }
   end
 
   # constructs the type filtering clause for the os_query
   def os_type_filter
-    return yield unless type_param.present?
-
-    yield[:filter] = { term: { type_id: type_param.card_id } }
+    yield[:filter] = { term: { type_id: filter_type_ids } }
   end
 end

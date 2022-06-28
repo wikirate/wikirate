@@ -9,5 +9,9 @@
 
   - if type_param
     .advanced-filter-link.text-nowrap
-      - plural = type_param.cardname.vary :plural
-      = link_to_card type_param, "Browse and Filter #{plural} #{fa_icon 'arrow-right'}"
+      - type = type_param.cardname
+      - path_opts = { mark: type, query: { type: type } }
+      - path_opts[:filter] = { name: search_keyword } if search_keyword
+      = link_to "Browse and Filter #{type.vary :plural} #{fa_icon 'arrow-right'}",
+                path: path_opts
+
