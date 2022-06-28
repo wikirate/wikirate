@@ -8,26 +8,31 @@
     %p.lead.mb-0.mb-md-5.text-nowrap Let's make companies better, together.
     .dynamic-question.white-text.pt-5.mt-0.mt-md-5
       %h3.fw-normal
-        .p-3
-          How does
-        .flip-slot.me-2.loading-text
-          .flip-this-default
-          .flip-this
-            = companies.join("|")
-        .p-3
-          perform on
-        .text-nowrap
-          .flip-slot.loading-text
-            .flip-this-default
-            .flip-this
-              = topics.map { |t| "#{t}?" }.join("|")
-      %h3.fw-normal
-        .p-3
-          To know and act, you need
-        .flip-slot.me-2.loading-text
-          .flip-this-default
-          .flip-this
-            = adjectives.join("|")
-        .p-3
-          data.
-
+        .row.p-3
+          .col-6.text-end
+            How does
+          .col-6.text-start
+            .flip-slot.me-2.loading-text
+              .flip-this-default
+              .flip-this
+                = companies.join("|")
+        .row.p-3
+          .col-6.text-end
+            perform on
+          .col-6.text-start
+            .text-nowrap
+              .flip-slot.loading-text
+                .flip-this-default
+                .flip-this
+                  = topics.map { |t| "#{t}?" }.join("|")
+        .row.p-3
+          .col-6.text-end
+            To know and act,
+        .row.p-3
+          .col-6.text-end
+            you need
+          .col-6.text-start
+            .flip-slot.me-2.loading-text
+              .flip-this-default
+              .flip-this
+                = adjectives.map { |t| "#{t} data." }.join("|")

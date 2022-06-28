@@ -48,10 +48,10 @@
   }
   .top-nav-search {
     flex: 1 1 100%;
-    padding: 0.5em 1em;
+    padding: 0.5em 0;
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     .navbar-container {
       flex-wrap: nowrap;
     }
@@ -61,6 +61,9 @@
     }
     .top-nav-links {
       order: 3;
+    }
+    .top-nav-search {
+      padding: 0.5em 1em;
     }
   }
 }

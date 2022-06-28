@@ -27,6 +27,7 @@ format :html do
   end
 
   def excerpt_body
+    binding.pry
     return "" unless (pages = @excerpt_result&.query&.dig "pages")
 
     pages.to_a.first[1]["extract"]

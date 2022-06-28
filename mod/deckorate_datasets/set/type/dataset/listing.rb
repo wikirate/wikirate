@@ -5,7 +5,7 @@ format :html do
   view :bar_left do
     voo.size = :medium
     # filterable({ dataset: card.name, status: :all }, class: "w-100") do
-    render_thumbnail_with_bookmark
+    render_thumbnail
     # end
   end
 
@@ -14,7 +14,7 @@ format :html do
   # end
 
   view :bar_right do
-    count_badges :metric, :wikirate_company, :data_subset
+    [count_badges(:metric, :wikirate_company, :data_subset), render_bookmark]
   end
 
   view :bar_bottom do

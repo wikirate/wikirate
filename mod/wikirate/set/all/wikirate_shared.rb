@@ -20,11 +20,12 @@ MENU_REFS = { "Groups" => "Research Groups",
               "Facebook" => "https://www.facebook.com/wikirate/",
               "Twitter" => "https://twitter.com/WikiRate",
               "Instagram" => "https://www.instagram.com/wikirate/",
+              "LinkedIn" => "https://www.linkedin.com/company/wikirate",
               "Notice" => "Notice and Take Down Procedure" }.freeze
 
 SECONDARY_MENUS = { "Legal" => ["Privacy Policy", "Licensing", "Disclaimers",
                                 "Terms of Use", "Notice"],
-                    "Social" => %w[Facebook Twitter Instagram] }.freeze
+                    "Social" => %w[Facebook Twitter Instagram LinkedIn] }.freeze
 
 format do
   def nav_menus
@@ -40,9 +41,13 @@ format do
   end
 
   def nav_menu_item_url menu, item_name
-    ref = MENU_REFS[item_name] || item_name
+    ref = menu_item_ref item_name
     return ref if ref.match?(/^http/)
     url_prefix(menu) + ref.to_name.url_key
+  end
+
+  def menu_item_ref item_name
+    MENU_REFS[item_name] || item_name
   end
 
   def url_prefix menu

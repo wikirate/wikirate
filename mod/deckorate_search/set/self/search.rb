@@ -25,7 +25,7 @@ format :html do
   view :search_box, cache: :never do
     search_form do
       wrap_with :div, class: "input-group search-box-input-group" do
-        [select_type_tag, search_box_contents]
+        [select_type_tag, search_box_contents, haml(:search_button)]
       end
     end
   end

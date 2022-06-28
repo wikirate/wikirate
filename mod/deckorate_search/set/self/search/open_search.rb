@@ -1,4 +1,5 @@
 require "opensearch"
+require "colorize"
 
 # Open Search client object
 # note: options configured in config/application.rb
@@ -11,9 +12,8 @@ end
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
 def search query
-  # puts "OPEN SEARCH QUERY =\n#{query}".yellow
-  open_search_client.search body: { query: query },
-                            index: Cardio.config.open_search_index
+  puts "OPEN SEARCH QUERY =\n#{query}".yellow
+  open_search_client.search body: query, index: Cardio.config.open_search_index
 end
 
 format :json do
@@ -21,7 +21,12 @@ format :json do
   # the main search box
   # @return [Array] list of card names
   def complete_or_match_search *_args
-    os_results_to_cards { card.search bool: os_query }.map(&:name)
+    return [] unless search_keyword.present?
+
+    list = card.search(suggestion_query).dig "suggest", "autocomplete"
+    return [] unless (options = list&.first&.dig "options")
+
+    options.map { |result| result["_id"]&.to_i&.cardname }
   end
 end
 
@@ -30,7 +35,10 @@ format do
   # Query is based on environmental parameters
   # @return [Array] list of card objects
   def search_with_params
-    @search_with_params ||= os_results_to_cards { card.search bool: os_query }
+    @search_with_params ||=
+      card.search(query: { bool: os_query }).dig("hits", "hits").map do |result|
+        result["_id"]&.to_i&.card
+      end
   end
 
   private
@@ -56,6 +64,19 @@ format do
 
     yield[:should] = [{ match: { name: search_keyword } },
                       { match_phrase_prefix: { name: search_keyword } }]
+  end
+
+  # suggest_query
+  def suggestion_query
+    if type_param.present?
+      return { suggest: { autocomplete: { prefix: search_keyword,
+                                 completion: { field: "autocomplete_field", 
+                                 contexts: { type_id: [type_param.card_id]} } } } }
+    else
+      return { suggest: { autocomplete: { prefix: search_keyword,
+                                 completion: { field: "autocomplete_field", 
+                                 contexts: { type_id: [651, 1010, 39830, 2301582, 5458825, 7926098, 629, 43576] } } } } }
+    end
   end
 
   # constructs the type filtering clause for the os_query
