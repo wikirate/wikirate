@@ -11,9 +11,10 @@ end
 # @param query [Hash] query hash
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
-def search query
-  puts "OPEN SEARCH QUERY =\n#{query}".yellow
-  open_search_client.search body: query, index: Cardio.config.open_search_index
+def search parameters={}
+  puts "OPEN SEARCH PARAMS =\n#{parameters}".yellow
+  parameters[:index] = Cardio.config.open_search_index
+  open_search_client.search parameters
 end
 
 format :json do
@@ -27,7 +28,9 @@ format :json do
   end
 
   def autocomplete_options
-    card.search(suggestion_query)&.dig("suggest", "autocomplete")&.first&.dig "options"
+    card.search(body: { suggest: suggestion_query })
+      &.dig("suggest", "autocomplete")
+      &.first&.dig "options"
   end
 end
 
@@ -36,13 +39,22 @@ format do
   # Query is based on environmental parameters
   # @return [Array] list of card objects
   def search_with_params
-    @search_with_params ||=
-      card.search(query: { bool: os_query }).dig("hits", "hits").map do |result|
-        result["_id"]&.to_i&.card
-      end
+    os_search.dig("hits", "hits").map do |result|
+      result["_id"]&.to_i&.card
+    end
+  end
+
+  def count_with_params
+    os_search.dig "hits", "total", "value"
   end
 
   private
+
+  def os_search
+    @os_search ||= card.search body: { query: { bool: os_query } },
+                               from: offset,
+                               size: limit
+  end
 
   # Currently this query is shared by autocomplete and the main results.
   # Can separate by assigning different query methods to #search_with_params
@@ -69,13 +81,15 @@ format do
 
   # suggest_query
   def suggestion_query
-    { suggest: { autocomplete: { prefix: search_keyword,
-                                 completion: { field: "autocomplete_field",
-                                 contexts: { type_id: filter_type_ids } } } } }
+    { autocomplete: { prefix: search_keyword,
+                      completion: { field: "autocomplete_field",
+                                    contexts: { type_id: filter_type_ids } } } }
   end
 
   # constructs the type filtering clause for the os_query
   def os_type_filter
-    yield[:filter] = { term: { type_id: filter_type_ids } }
+    return unless type_param.present?
+
+    yield[:filter] = { term: { type_id: type_param.card_id } }
   end
 end

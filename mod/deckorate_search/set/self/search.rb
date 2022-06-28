@@ -31,10 +31,6 @@ format :html do
     [render_search_types, render_results_for_keyword, super()]
   end
 
-  def paging_needed?
-    false
-  end
-
   def select_type_tag
     select_tag "query[type]", type_options, class: "search-box-select-type form-select"
   end
