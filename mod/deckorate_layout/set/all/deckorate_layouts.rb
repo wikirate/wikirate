@@ -25,7 +25,7 @@ format :html do
   end
 
   layout :deckorate_jumbotron_layout, view: :page do
-    deckorate_layout "deckorate-jumbotron-layout" do
+    deckorate_layout "deckorate-jumbotron-layout nodblclick" do
       [haml(:jumbotron_header),
        wrap_with(:div, class: "container py-3") { layout_nest }]
     end

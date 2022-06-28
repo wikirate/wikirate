@@ -8,7 +8,7 @@ format :html do
     items = [""] if items.empty?
     input = text_field_tag "pointer_item",
                            items[0],
-                           class: "pointer-item-text form-control",
+                           class: "pointer-item-text form-control _autocomplete",
                            "data-options-card": card.options_card_name
 
     %(
