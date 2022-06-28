@@ -27,9 +27,9 @@
   :content: |
     About WikiRate
     [[:wikirate_platform | Platform]]
+    [[:wikirate_data | Data]]
     [[:wikirate_community | Community]]
     [[:wikirate_impact | Impact]]
-    [[:wikirate_data | Data]]
     WikiRate Resources
     [[Use the API|API]]
     [[Guides]]
@@ -37,16 +37,16 @@
     [[:recent|Recent Changes]]
     [[Ticket|Report Issue]]
 
-- :name: WikiRate Platform
+- :name: Platform
   :codename: :wikirate_platform
 
-- :name: WikiRate Community
+- :name: Community
   :codename: :wikirate_community
 
-- :name: WikiRate Impact
+- :name: Impact
   :codename: :wikirate_impact
 
-- :name: WikiRate Data
+- :name: Data
   :codename: :wikirate_data
 
 - :name: Contact Us
@@ -58,7 +58,6 @@
 
 - :name: output type
   :codename: :output_type
-
 
 - :name: Testimonial
   :codename: :testimonial

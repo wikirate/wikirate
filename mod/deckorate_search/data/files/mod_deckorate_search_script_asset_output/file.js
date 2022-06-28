@@ -1,2 +1,2 @@
 // search_box.js.coffee
-(function(){$(window).ready(function(){return $("body").on("change",".search-box-form .search-box-select-type",function(e){return decko.searchBox.select(e)})})}).call(this);
+(function(){var e,o;$(window).ready(function(){return $("body").on("change",".search-box-form .search-box-select-type",function(e){if(o(this))return decko.searchBox.select(e)}),$("body").on("click",".search-box-form ._search-button",function(r){return o(this)?decko.searchBox.select(r):e($(this).closest("form").find("#query_type").val()),r.preventDefault()})}),e=function(e){var o;return o=""===e?":search":e,window.location=decko.path(o+"?"+$.param({query:{type:e}}))},o=function(e){return $(e).closest("form").find("#query_keyword").val()}}).call(this);
