@@ -40,10 +40,10 @@
 - :name: Platform
   :codename: :wikirate_platform
 
-- :name: Community
+- :name: WikiRate Community
   :codename: :wikirate_community
 
-- :name: Impact
+- :name: WikiRate Impact
   :codename: :wikirate_impact
 
 - :name: Data

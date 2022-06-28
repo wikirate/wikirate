@@ -5,5 +5,9 @@ format :html do
     %i[description general_overview blurb]
   end
 
+  before :page do
+    voo.title = "Community"
+  end
+
   view :page, template: :haml
 end

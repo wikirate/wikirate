@@ -5,7 +5,9 @@ format :html do
     %i[description general_overview]
   end
 
+  before :page do
+    voo.title = "Impact"
+  end
+
   view :page, template: :haml
-
-
 end
