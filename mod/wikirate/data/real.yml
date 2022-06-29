@@ -25,12 +25,12 @@
   :type: :basic
   :codename: :nav_menu
   :content: |
-    About WikiRate
+    About
     [[:wikirate_platform | Platform]]
     [[:wikirate_data | Data]]
     [[:wikirate_community | Community]]
     [[:wikirate_impact | Impact]]
-    WikiRate Resources
+    Resources
     [[Use the API|API]]
     [[Guides]]
     [[FAQ]]
