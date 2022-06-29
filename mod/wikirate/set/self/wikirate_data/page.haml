@@ -1,11 +1,17 @@
 %section.p-5
-  = field_nest :general_overview, view: :core
+  = field_nest :general_overview, view: :content
 %section.p-5
-  = field_nest :list, view: :core, items: { view: :box }
+  %h2
+    What makes our data so
+    %strong special?
+  = field_nest :blurb, view: :core, items: { view: :stack }
+  .p-3.text-center
+    %a.btn.btn-primary{ href: "/Use_our_Api" }
+      Use our API
 %section.bg-light.p-5
-  %h2 (reliable)
-  \...
-%section.p-5
-  %h2 (organized)
-  \...
+  %h2
+    What makes our data so
+    %strong reliable?
+  = field_nest :list, view: :core, items: { view: :stack }
+
 = nest :contact_us, view: :section

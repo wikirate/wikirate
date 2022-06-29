@@ -25,19 +25,19 @@
   :type: :basic
   :codename: :nav_menu
   :content: |
-    About WikiRate
+    About
     [[:wikirate_platform | Platform]]
+    [[:wikirate_data | Data]]
     [[:wikirate_community | Community]]
     [[:wikirate_impact | Impact]]
-    [[:wikirate_data | Data]]
-    WikiRate Resources
+    Resources
     [[Use the API|API]]
     [[Guides]]
     [[FAQ]]
     [[:recent|Recent Changes]]
     [[Ticket|Report Issue]]
 
-- :name: WikiRate Platform
+- :name: Platform
   :codename: :wikirate_platform
 
 - :name: WikiRate Community
@@ -46,7 +46,7 @@
 - :name: WikiRate Impact
   :codename: :wikirate_impact
 
-- :name: WikiRate Data
+- :name: Data
   :codename: :wikirate_data
 
 - :name: Contact Us
@@ -56,6 +56,9 @@
   :codename: :output
   :type: :cardtype
 
+- :name: output type
+  :codename: :output_type
+
 - :name: Testimonial
   :codename: :testimonial
   :type: :cardtype
@@ -63,6 +66,10 @@
 - :name: Blurb
   :codename: :blurb
   :type: :cardtype
+  :fields:
+    :type:
+      :fields:
+        :autoname: Blurb 0001
 
 - :name: newsletter signup
   :codename: :newsletter_signup

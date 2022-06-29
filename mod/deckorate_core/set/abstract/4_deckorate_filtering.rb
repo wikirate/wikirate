@@ -66,6 +66,10 @@ format :html do
     :bar
   end
 
+  def filter_name_label
+    card.respond_to?(:target_type_id) ? "#{card.target_type_id.cardname} Name" : "Name"
+  end
+
   before :content do
     class_up "card-slot", "_filter-result-slot"
   end
