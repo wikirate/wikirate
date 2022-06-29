@@ -162,6 +162,10 @@ $colorMap: (
       }
     }
   }
+
+  #main > .SELF-#{$type}.titled-view > .d0-card-header > h1 {
+    color: $color;
+  }
 }
 
 .LTYPE_RTYPE-topic-company {
@@ -265,34 +269,6 @@ $colorMap: (
   }
 }
 
-// light colors
-.light-color-0 {
-  background-color: $gray-400;
-}
-
-.light-color-1 {
-  background-color: $gray-200;
-}
-
-.main-color {
-  color: $primary;
-}
-
-.white-text {
-  color: $white;
-}
-
-.dark-grey-color {
-  color: $gray-700;
-}
-
-.light-grey-color {
-  color: $gray-400;
-}
-
-.light-grey-color-2 {
-  color: $gray-500;
-}
 
 .verification-steward {
   color: $metric-color;
@@ -304,3 +280,17 @@ $colorMap: (
   color: $verification-flag-color;
 }
 
+
+// TODO: get rid of these; use more standard bootstrap classes.
+// light colors
+.light-color-0 {
+  background-color: $gray-400;
+}
+
+.light-grey-color {
+  color: $gray-400;
+}
+
+.light-grey-color-2 {
+  color: $gray-500;
+}
