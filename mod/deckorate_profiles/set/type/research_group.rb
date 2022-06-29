@@ -72,7 +72,7 @@ format :html do
   end
 
   view :bar_left do
-    render_thumbnail_with_bookmark
+    render_thumbnail
   end
 
   view :bar_middle do
@@ -80,7 +80,7 @@ format :html do
   end
 
   view :bar_right do
-    count_badges :researcher, :project, :metric
+    [count_badges(:researcher, :project, :metric), render_bookmark]
   end
 
   view :bar_bottom do
