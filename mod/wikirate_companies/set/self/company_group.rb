@@ -1,5 +1,5 @@
 include_set Abstract::CompanyGroupFilter
 
 format :html do
-  view :titled_content, template: :haml
+  before(:filtered_content) { voo.items[:view] = :box }
 end

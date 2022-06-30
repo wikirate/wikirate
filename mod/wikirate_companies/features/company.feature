@@ -17,7 +17,7 @@ Feature: company feature
     Then I should see "mobile space"
 
   Scenario: Filter by metric
-    When I click on "Filter"
+    When I click on "All Filters"
     And I wait for ajax response
     And I click on "Metric Name" in the offcanvas
     And I fill in "filter[metric_name]" with "deadliness"
@@ -27,7 +27,7 @@ Feature: company feature
     And I should see "deadliness"
 
   Scenario: Filter by topic
-    When I click on "Filter"
+    When I click on "All Filters"
     And I wait for ajax response
 
     # When I click on "Metric" in the offcanvas
@@ -39,7 +39,7 @@ Feature: company feature
     And I should see "disturbances in the Force"
 
   Scenario: Filter by year
-    When I click on "Filter"
+    When I click on "All Filters"
     And I wait for ajax response
 
     And I click on "Year" in the offcanvas
@@ -66,7 +66,7 @@ Feature: company feature
   #   Then I should see "Weapons"
 
   Scenario: Paging
-    When I click on "Filter"
+    When I click on "All Filters"
     And I wait for ajax response
 
     And I click on "Year" in the offcanvas

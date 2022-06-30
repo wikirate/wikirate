@@ -1,4 +1,5 @@
-# TODO: move somewhere more general!
+window.deckorate = {}
+
 decko.slot.ready (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
 
