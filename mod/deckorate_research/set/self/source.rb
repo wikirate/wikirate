@@ -6,8 +6,6 @@ recount_trigger :type, :source, on: [:create, :delete] do |_changed_card|
 end
 
 format :html do
-  view :titled_content, template: :haml
-
   view :copy_catcher, unknown: true, wrap: :slot, cache: :never do
     url = params[:url]
     return "" unless url && (sources = Card::Source.search_by_url url)&.any?

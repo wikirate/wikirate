@@ -18,7 +18,7 @@ decko.slot.ready (slot) ->
     newSource = slot.find "._new_source"
     if newSource.length
       closeSourceModal slot
-      (new decko.filter $(".RIGHT-source.filtered_content-view ._compact-filter")).update()
+      (new decko.compactFilter $(".RIGHT-source.filtered_content-view ._compact-filter")).update()
 
     # year paging
     if slot.find("#jPages")[0]

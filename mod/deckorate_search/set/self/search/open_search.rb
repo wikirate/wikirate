@@ -12,7 +12,7 @@ end
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
 def search parameters={}
-  puts "OPEN SEARCH PARAMS =\n#{parameters}".yellow
+  # puts "OPEN SEARCH PARAMS =\n#{parameters}".yellow
   parameters[:index] = Cardio.config.open_search_index
   open_search_client.search parameters
 end
@@ -79,17 +79,25 @@ format do
                       { match_phrase_prefix: { name: search_keyword } }]
   end
 
-  # suggest_query
-  def suggestion_query
-    { autocomplete: { prefix: search_keyword,
-                      completion: { field: "autocomplete_field",
-                                    contexts: { type_id: filter_type_ids } } } }
-  end
-
   # constructs the type filtering clause for the os_query
   def os_type_filter
     return unless type_param.present?
 
     yield[:filter] = { term: { type_id: type_param.card_id } }
+  end
+
+  # suggest_query
+  def suggestion_query
+    { autocomplete: { prefix: search_keyword,
+                      completion: { field: "autocomplete_field",
+                                    contexts: { type_id: suggest_contexts } } } }
+  end
+
+  # constructs the context filtering clause for the suggest_query
+  # in case of multiple contexts we are favoring other contexts than source
+  def suggest_contexts
+    filter_type_ids.map do |type_id|
+      { context: type_id, boost: (type_id == :source.card_id ? 1 : 2) }
+    end
   end
 end
