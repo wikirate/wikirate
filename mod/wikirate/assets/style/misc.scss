@@ -1,3 +1,17 @@
+
+#main > .TYPE-cardtype.titled-view {
+  margin-top: 3em;
+}
+
+.lead strong {
+  font-weight: 600;
+}
+
+.filter-closer {
+  background-color: $purple-100;
+  border: 0;
+}
+
 /*----------- Media queries- For mobile devices ---------*/
 
 /* Small Devices, Tablets */
@@ -15,8 +29,6 @@
     width: 100%;
   }
 }
-
-
 
 .popover {
   max-width: 100%;

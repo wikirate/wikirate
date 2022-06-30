@@ -52,8 +52,9 @@ format :html do
   view :breadcrumb, unknown: true, template: :haml
 
   view :comments do
-    wrap_with :div, class: "comments-div" do
-      field_nest :discussion, view: :titled, title: "Comments", show: "comment_box"
+    wrap_with :div, class: "comments-div mt-2" do
+      field_nest :discussion,
+                 view: :titled, title: "Comments", show: "comment_box", header: :h5
     end
   end
 
