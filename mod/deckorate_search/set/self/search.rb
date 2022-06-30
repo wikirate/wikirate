@@ -50,8 +50,6 @@ end
 
 format :json do
   view :search_box_complete, cache: :never do
-    term_and_exact do |term, exact|
-      { term: term, goto: goto_items(term, exact) }
-    end
+    search_box_items :search_item, :goto_items
   end
 end

@@ -55,7 +55,7 @@ changeYearInAnswerForm = (input)->
 
 changeYearInSourceFilter = (year)->
   if $(".RIGHT-source ._compact-filter")[0]
-    decko.filter(".RIGHT-source ._compact-filter").addRestrictions year: year
+    decko.compactFilter(".RIGHT-source ._compact-filter").addRestrictions year: year
 
 changeYearInMetricLinks = (year)->
   $("._research-metric-link").each ->

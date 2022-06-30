@@ -28727,3 +28727,19 @@ card_actions_3591:
   action_type: 0
   draft: 0
   comment:
+card_actions_3592:
+  id: 3959
+  card_id: 3672
+  card_act_id: 106459
+  super_action_id:
+  action_type: 0
+  draft: 0
+  comment:
+card_actions_3593:
+  id: 3960
+  card_id: 292
+  card_act_id: 106460
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:

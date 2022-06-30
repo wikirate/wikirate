@@ -43,6 +43,10 @@ format :html do
 
   view :compact, template: :haml
 
+  def autocomplete_label
+    title_text
+  end
+
   def bar_menu_items
     [original_link, download_link] + super
   end
