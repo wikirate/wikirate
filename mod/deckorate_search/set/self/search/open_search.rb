@@ -11,7 +11,7 @@ end
 # @param query [Hash] query hash
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
-def search parameters = {}
+def search parameters={}
   # puts "OPEN SEARCH PARAMS =\n#{parameters}".yellow
   parameters[:index] = Cardio.config.open_search_index
   open_search_client.search parameters
@@ -96,8 +96,6 @@ format do
   # constructs the context filtering clause for the suggest_query
   # in case of multiple contexts we are favoring other contexts than source
   def suggest_contexts
-    return filter_type_ids unless filter_type_ids.length > 1
-
     filter_type_ids.map do |type_id|
       { context: type_id, boost: (type_id == :source.card_id ? 1 : 2) }
     end
