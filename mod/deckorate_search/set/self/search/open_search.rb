@@ -12,7 +12,7 @@ end
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
 def search parameters = {}
-  puts "OPEN SEARCH PARAMS =\n#{parameters}".yellow
+  # puts "OPEN SEARCH PARAMS =\n#{parameters}".yellow
   parameters[:index] = Cardio.config.open_search_index
   open_search_client.search parameters
 end
