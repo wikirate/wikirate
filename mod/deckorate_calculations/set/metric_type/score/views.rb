@@ -97,4 +97,8 @@ format :html do
       labeled title, nest(scorer_card, view: :thumbnail)
     end
   end
+
+  def autocomplete_label
+    super + "<small>#{fixed_thumbnail_subtitle}</small>"
+  end
 end
