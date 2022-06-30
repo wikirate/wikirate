@@ -37,8 +37,4 @@ format :html do
   def quick_filter_list
     bookmark_quick_filter + topic_quick_filters
   end
-
-  view :titled_content do
-    [field_nest(:description), render_add_button, render_filtered_content]
-  end
 end
