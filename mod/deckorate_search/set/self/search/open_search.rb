@@ -79,13 +79,6 @@ format do
                       { match_phrase_prefix: { name: search_keyword } }]
   end
 
-  # suggest_query
-  def suggestion_query
-    { autocomplete: { prefix: search_keyword,
-                      completion: { field: "autocomplete_field",
-                                    contexts: { type_id: suggest_contexts } } } }
-  end
-
   # constructs the type filtering clause for the os_query
   def os_type_filter
     return unless type_param.present?
@@ -93,13 +86,20 @@ format do
     yield[:filter] = { term: { type_id: type_param.card_id } }
   end
 
+  # suggest_query
+  def suggestion_query
+    { autocomplete: { prefix: search_keyword,
+                      completion: { field: "autocomplete_field",
+                                    contexts: { type_id: suggest_contexts } } } }
+  end
+
   # constructs the context filtering clause for the suggest_query
   # in case of multiple contexts we are favoring other contexts than source
   def suggest_contexts
-    return filter_type_ids unless filter_type_ids.length() > 1
-    contexts = []
-    filter_type_ids.each { |card_id| contexts.append("context": card_id, "boost": 2) unless card_id == :source.card_id }
-    contexts.append("context": :source.card_id)
-    contexts
+    return filter_type_ids unless filter_type_ids.length > 1
+
+    filter_type_ids.map do |type_id|
+      { context: type_id, boost: (type_id == :source.card_id ? 1 : 2) }
+    end
   end
 end
