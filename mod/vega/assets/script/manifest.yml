@@ -1,0 +1,8 @@
+remote:
+  items:
+    - src: https://cdn.jsdelivr.net/npm/vega@5.22.1/build/vega.min.js
+    - src: https://cdn.jsdelivr.net/npm/vega-embed@6.21.0/build/vega-embed.min.js
+
+local:
+  items:
+    - decko_vega.js.coffee

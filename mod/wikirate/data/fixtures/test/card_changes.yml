@@ -448,3 +448,89 @@ card_changes_086:
   value: |-
     Jedi+disturbances in the Force+Death Star+1990
     Fred+dinosaurlabor+Death Star+2010
+card_changes_087:
+  id: 87
+  card_action_id: 2892
+  field: 0
+  value:
+card_changes_088:
+  id: 88
+  card_action_id: 2892
+  field: 1
+  value: '4'
+card_changes_089:
+  id: 89
+  card_action_id: 2892
+  field: 2
+  value: |-
+    mod: format+*script
+    mod: list+*script
+    mod: search+*script
+    mod: rules+*script
+    mod: edit+*script
+    mod: carrierwave+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: deckorate search+*script
+    mod: follow+*script
+    mod: layout+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate import+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate homepage+*script
+    mod: wikirate+*script
+    mod: tasks+*script
+card_changes_090:
+  id: 90
+  card_action_id: 2892
+  field: 3
+  value: f
+card_changes_091:
+  id: 91
+  card_action_id: 2892
+  field: 4
+  value: '7'
+card_changes_092:
+  id: 92
+  card_action_id: 2892
+  field: 5
+  value: '288'
+card_changes_093:
+  id: 93
+  card_action_id: 3960
+  field: 2
+  value: |-
+    mod: format+*script
+    mod: list+*script
+    mod: search+*script
+    mod: rules+*script
+    mod: edit+*script
+    mod: carrierwave+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: date+*script
+    mod: deckorate search+*script
+    mod: follow+*script
+    mod: layout+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate import+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate homepage+*script
+    mod: wikirate+*script
+    mod: tasks+*script
+    mod: vega+*script
