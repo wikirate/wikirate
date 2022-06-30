@@ -71,7 +71,7 @@ format :html do
   end
 
   view :details_tab do
-    [labeled_field(:headquarters, :name), identifiers, integrations]
+    [identifiers, integrations]
   end
 
   def identifiers
