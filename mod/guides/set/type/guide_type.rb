@@ -25,6 +25,12 @@ format :html do
     haml :guide_paging, guide_names: guide_names, current_index: current_index
   end
 
+  view :breadcrumbs do
+    breadcrumb [link_to("Home", href: "/"),
+                link_to_card(:guide_type, "Guides"),
+                card.name]
+  end
+
   def guide_list_card
     Card[%i[guide_type list]]
   end
