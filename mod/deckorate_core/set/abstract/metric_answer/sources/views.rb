@@ -1,6 +1,9 @@
 format :html do
   view :sources do
-    nest card.source_card, view: :titled, title: "Sources", items: { view: :bar }
+    field_nest :source, view: :titled,
+                        header: :h5,
+                        title: "Sources",
+                        items: { view: :bar }
   end
 
   def wikirate_source_from_url
