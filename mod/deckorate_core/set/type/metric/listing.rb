@@ -57,4 +57,12 @@ format :html do
     #   "#{key}: #{value}"
     # end.compact
   end
+
+  def goto_autocomplete_icon
+    render_thumbnail_image
+  end
+
+  def autocomplete_label
+    card.metric_title
+  end
 end

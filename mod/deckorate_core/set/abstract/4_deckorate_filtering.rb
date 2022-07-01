@@ -47,6 +47,14 @@ format do
 end
 
 format :html do
+  def target_type_name
+    card.target_type_id.cardname
+  end
+
+  view :filtered_results_stats, cache: :never do
+    labeled_badge count_with_params, target_type_name.vary(:plural)
+  end
+
   def quick_filter_item hash, filter_key
     icon = hash.delete :icon
     super.tap do |item|
@@ -67,7 +75,7 @@ format :html do
   end
 
   def filter_name_label
-    card.respond_to?(:target_type_id) ? "#{card.target_type_id.cardname} Name" : "Name"
+    "#{target_type_name} Name"
   end
 
   before :content do
