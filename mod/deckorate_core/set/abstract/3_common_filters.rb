@@ -6,7 +6,7 @@ format :html do
   end
 
   define_filter_types dataset: :multiselect,
-                      year: :radio,
+                      year: :check,
                       wikirate_topic: :multiselect,
                       company_category: :check,
                       company_group: :check,

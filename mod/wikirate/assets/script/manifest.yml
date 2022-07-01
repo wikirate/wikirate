@@ -1,6 +1,0 @@
-wikirate:
-  items:
-    - script_general_popup.js.coffee
-    - script_wikirate_coffee.js.coffee
-    - script_wikirate_common.js.coffee
-    - anime.min.js

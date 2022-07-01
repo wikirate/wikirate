@@ -63,7 +63,7 @@ format :html do
     metric_name: :text,
     research_policy: :radio,
     metric_type: :check,
-    designer: :check,
+    designer: :multiselect,
     value_type: :check
   }.freeze
 
