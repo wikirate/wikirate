@@ -10,10 +10,13 @@ class Card
       end
 
       def year_query value
-        if value.try(:to_sym) == :latest
+        return unless value.present?
+
+        value = Array.wrap value
+        if value.size == 1 && value.first.to_sym == :latest
           filter :latest, true
         else
-          filter :year, value.to_i
+          filter :year, value.map(&:to_i)
         end
       end
 
