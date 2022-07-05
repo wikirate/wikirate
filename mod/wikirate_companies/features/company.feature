@@ -44,7 +44,7 @@ Feature: company feature
 
     And I click on "Year" in the offcanvas
     And I click on "show more"
-    And I choose "2001"
+    And I check "2001"
     And I close the offcanvas
     And I wait for ajax response
     Then I should not see "dinosaurlabor"
@@ -70,7 +70,7 @@ Feature: company feature
     And I wait for ajax response
 
     And I click on "Year" in the offcanvas
-    And I choose "Latest"
+    And I check "Latest"
     And I close the offcanvas
     Then I should see "Victims by Employees"
     Then I click "2" within ".paging"
