@@ -78,6 +78,7 @@
   :type: :bootswatch_skin
   :codename: :wikirate_skin
   :fields:
+    :stylesheets: ""
     :colors: |
       $blue: #0dcaf0 !default;
       $purple: #484c9d !default;
