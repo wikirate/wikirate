@@ -13,6 +13,7 @@ class Card
     self.card_id_map = {
       research_policy: :policy_id,
       metric_type: :metric_type_id,
+      designer: :designer_id,
       value_type: :value_type_id
     }.freeze
     self.card_id_filters = ::Set.new(card_id_map.keys).freeze
