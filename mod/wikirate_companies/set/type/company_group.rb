@@ -1,6 +1,5 @@
-include_set Abstract::TwoColumnLayout
+include_set Abstract::DeckorateTabbed
 include_set Abstract::Thumbnail
-include_set Abstract::FilterableBar
 include_set Abstract::Bookmarkable
 include_set Abstract::CachedTypeOptions
 
@@ -10,21 +9,16 @@ card_accessor :specification
 card_accessor :wikirate_topic, type: :list
 
 format :html do
-  def header_body
-    class_up "media-heading", "company-group-color"
-    super
-  end
-
   view :bar_left do
-    render_thumbnail_with_bookmark
+    render_thumbnail
   end
 
   view :bar_right do
-    count_badge :wikirate_company
+    [count_badge(:wikirate_company), render_bookmark]
   end
 
   view :bar_bottom do
-    [render_bar_middle, render_data]
+    [render_bar_middle, render_details]
   end
 
   view :box_middle do
@@ -35,26 +29,30 @@ format :html do
     count_badges :wikirate_company
   end
 
-  bar_cols 7, 5
+  mini_bar_cols 7, 5
 
   before :content_formgroups do
     voo.edit_structure = %i[image specification wikirate_company about discussion]
   end
 
   def tab_list
-    %i[wikirate_company]
+    %i[wikirate_company details]
   end
 
-  view :data do
+  view :details_tab do
+    render_details
+  end
+
+  view :wikirate_company_tab do
+    field_nest :wikirate_company, view: :filtered_content
+  end
+
+  view :details do
     [
       labeled_field(:wikirate_topic, :link, title: "Topics"),
       field_nest(:specification, view: :titled),
       field_nest(:about, view: :titled),
       field_nest(:discussion, view: :titled)
     ]
-  end
-
-  view :wikirate_company_tab do
-    field_nest :wikirate_company, view: :filtered_content
   end
 end

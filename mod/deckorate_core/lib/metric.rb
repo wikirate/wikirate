@@ -1,7 +1,6 @@
 # Lookup table for metrics
 class Metric < Cardio::Record
   @card_column = :metric_id
-  @card_query = { type_id: Card::MetricID, trash: false }
 
   include LookupTable
 
@@ -9,6 +8,10 @@ class Metric < Cardio::Record
   fetcher :scorer_id, :metric_type_id, :value_type_id, :unpublished
 
   has_many :answer, primary_key: :metric_id
+
+  def card_query
+    { type: Card::MetricID, trash: false }
+  end
 
   # TODO: this should be implicit
   def fetch_metric_id

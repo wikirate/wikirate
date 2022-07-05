@@ -1,0 +1,31 @@
+---
+- :name: Steward
+  :codename: :steward
+  :fields:
+    :right:
+      :fields:
+        :content: '{ "right_plus": ":account" }'
+- :name: value options
+  :codename: :value_options
+- :name: unit
+  :codename: :unit
+- :name: methodology
+  :codename: :methodology
+- :name: "*metric type"
+  :codename: :metric_type
+- :name: Questions
+  :codename: :question
+- :name: About
+  :codename: :about
+- :name: Range
+  :codename: :range
+- :name: Designer
+  :codename: :designer
+
+- :name:
+    - :metric_type
+    - :right
+    - :create
+  :type: :list
+  :content:
+    - :anyone_signed_in

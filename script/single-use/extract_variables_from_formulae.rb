@@ -105,9 +105,9 @@ def update_coffeescript_score metric
 end
 
 def update_coffeescript metric, color
-  subfields = yield
-  # puts "subfields for #{metric.name}: #{subfields}".send color
-  metric.update! subfields: subfields
+  fields = yield
+  # puts "fields for #{metric.name}: #{fields}".send color
+  metric.update! fields: fields
   metric.formula_card.update! type: :coffee_script
 end
 

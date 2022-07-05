@@ -1,5 +1,9 @@
-- options.each do |option, value|
-  .small.formula-option
-    %strong
-      = option
-    = value
+- if options.present?
+  - options.each do |option, value|
+    .small.formula-option
+      %label
+        = "#{option}:"
+      = value
+- else
+  .text-muted
+    (default)

@@ -14,8 +14,6 @@ format :html do
   end
 
   view :source_tab do
-    answer_filtering do |items|
-      field_nest :source, view: :filtered_content, items: items
-    end
+    field_nest :source, view: :filtered_content
   end
 end

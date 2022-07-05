@@ -1,4 +1,2 @@
 require: rubocop-rspec
 inherit_from: .ruby-style.yml
-Metrics/BlockLength:
-  Enabled: false

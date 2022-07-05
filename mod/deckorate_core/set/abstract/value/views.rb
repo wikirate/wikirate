@@ -33,7 +33,7 @@ format :html do
 
   view :credit do
     return unless card.real?
-    wrap_with :div, class: "credit ml-1 pl-1 text-muted" do
+    wrap_with :div, class: "credit text-muted text-end" do
       [credit_verb, credit_date, credit_whom].join " "
     end
   end
@@ -63,8 +63,8 @@ format :html do
 
   def pretty_link text
     return text if voo.hide? :link
-    link_to text, path: "/#{card.name.left_name.url_key}", target: "_blank",
-                  class: "_update-details"
+
+    modal_link text, path: { mark: card.name }, target: "_blank"
   end
 
   def pretty_span_args

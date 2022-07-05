@@ -1,7 +1,6 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DesignerPermissions
 include_set Abstract::PublishableField
-include_set Abstract::Filterable
 
 event :validate_no_commas_in_value_options, :validate,
       skip: :allowed, # until we fix all the bad ones
@@ -23,8 +22,8 @@ def item_names args={}
   super args.merge(context: :raw)
 end
 
-def item_cards
-  item_names.map(&:card)
+def item_cards args={}
+  item_names(args).map(&:card)
 end
 
 def options_hash
@@ -59,20 +58,28 @@ format :html do
   end
 
   view :core do
-    filtering(".RIGHT-answer ._filter-widget") do
-      wrap_with :div, class: "pointer-list" do
-        card.item_names.map do |name|
-          card.metric_card.relationship? ? name : filterable_div(name)
-        end
+    wrap_with :div, class: "pointer-list" do
+      card.item_names.map do |item_name|
+        wrap_with :div, item_name, class: "pointer-item item-name"
       end
     end
   end
 
-  def filterable_div item_name
-    wrap_with :div, item_name,
-              class: "pointer-item item-name _filterable",
-              data: { filter: { value: card.item_value(item_name) } }
-  end
+  # view :core do
+  #   filtering(".RIGHT-answer ._compact-filter") do
+  #     wrap_with :div, class: "pointer-list" do
+  #       card.item_names.map do |name|
+  #         card.metric_card.relationship? ? name : filterable_div(name)
+  #       end
+  #     end
+  #   end
+  # end
+  #
+  # def filterable_div item_name
+  #   wrap_with :div, item_name,
+  #             class: "pointer-item item-name _filterable",
+  #             data: { filter: { value: card.item_value(item_name) } }
+  # end
 end
 
 format :json do

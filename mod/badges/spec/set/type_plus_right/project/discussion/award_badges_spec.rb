@@ -1,15 +1,16 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::TypePlusRight::Project::Discussion::AwardBadges do
+RSpec.describe Card::Set::TypePlusRight::Project::Discussion::AwardBadges do
   describe "discuss badges" do
     let(:badge_action) { :discuss }
     let(:badge_type) { :project }
-    let(:sample_acting_card) { sample_project.subfield(:discussion) }
+    let(:sample_acting_card) { sample_project.field(:discussion) }
 
     def execute_awarded_action number
       Card::Auth.as_bot do
         project = Card.create! type_id: Card::ProjectID,
-                               name: "Project #{number}"
+                               name: "Project #{number}",
+                               fields: { dataset: "Evil Dataset" }
         Card.create! name: "#{project.name}+discussion"
       end
     end

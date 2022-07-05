@@ -28,8 +28,8 @@ class Card
       end
 
       def bookmark_query value
-        multi_metric { bookmark_restriction :metric_id, value }
-        multi_company { bookmark_restriction :company_id, value }
+        field = single_metric? ? :company_id : :metric_id
+        bookmark_restriction field, value
       end
 
       def company_name_query value
@@ -38,18 +38,21 @@ class Card
       end
 
       def country_query value
-        company_filter_query "countries", :country_condition, value
+        company_filter_query :countries, :country_condition, value
       end
 
       def company_category_query value
-        company_filter_query "categories", :company_category_condition, value
+        company_filter_query :categories, :category_condition, value
       end
 
-      # TODO: refactor this away / use answer_query
       def company_filter_query table, condition_method, value
-        @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
+        company_answer_join table
         @conditions << CompanyFilterQuery.send(condition_method)
         @values << Array.wrap(value)
+      end
+
+      def company_answer_join table
+        @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
       end
 
       def metric_name_query value
@@ -91,43 +94,6 @@ class Card
         else
           "answers"
         end
-      end
-
-      # EXPERIMENTAL. used by fashionchecker but otherwise not public
-      #
-      # This is ultimately a company restriction, limiting the answers to the
-      # companies related to another by a given relationship metric
-      #
-      # will also need to support year and value constraints
-      def relationship_query value
-        metric_id = value[:metric_id]&.to_i
-        company_id = value[:company_id]
-        return unless (m = metric_id&.card)
-
-        exists = "SELECT * FROM relationships AS r " \
-          "WHERE answers.company_id = r.#{m.company_id_field} " \
-          "AND r.#{m.metric_lookup_field} = ?"
-
-        @values << metric_id
-        if company_id.present?
-          exists << " AND #{m.inverse_company_id_field} = ?"
-          @values << company_id
-        end
-        @conditions << "EXISTS (#{exists})"
-      end
-
-      # EXPERIMENTAL. used by fashionchecker but otherwise not public
-      #
-      # This is ultimately a company restriction, limiting the answers to the
-      # companies with an answer for another metric.
-      #
-      # will also need to support year and value constraints
-      def answer_query value
-        return unless (metric_id = value[:metric_id]&.to_i)
-        exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
-          "AND a2.metric_id = ?"
-        @conditions << "EXISTS (#{exists})"
-        @values << metric_id
       end
     end
   end

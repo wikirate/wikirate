@@ -1,5 +1,10 @@
 
 format :html do
+  # turn of decko form helper
+  def guide_card
+    nil
+  end
+
   def formgroup title, opts={}, &block
     if opts.delete :oneline
       oneline_formgroup title, opts, &block

@@ -1,3 +1,7 @@
+include_set Abstract::AnswerFilters
+
+assign_type :search_type
+
 def content_type
   Card::Name[cql_content[:type_id] || cql_content[:type]]
 end

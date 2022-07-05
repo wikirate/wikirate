@@ -1,10 +1,11 @@
 # Answer search for a given Company
-include_set Abstract::FilterFormgroups
-include_set Abstract::MetricFilterFormgroups
 include_set Abstract::BookmarkFiltering
-include_set Abstract::SdgFiltering
 include_set Abstract::CachedCount
 include_set Abstract::FixedAnswerSearch
+
+# TODO: move this elsewhere. sdg is wikirate-specific
+include_set Abstract::SdgFiltering
+
 
 # recount number of answers for a given metric when an answer card is
 # created or deleted
@@ -33,15 +34,6 @@ def bookmark_type
 end
 
 format do
-  STANDARD_FILTER_KEYS = %i[
-    status year metric_name wikirate_topic value updated updater verification
-    calculated metric_type value_type dataset source research_policy bookmark
-  ].freeze
-
-  def standard_filter_keys
-    STANDARD_FILTER_KEYS
-  end
-
   def default_sort_option
     record? || !single?(:year) ? :year : :metric_bookmarkers
   end
@@ -50,22 +42,22 @@ format do
     super.merge year: { metric_bookmarkers: :desc, metric_title: :asc }
   end
 
+  def filter_map
+    map_without_key super, :wikirate_company
+  end
+
   def default_filter_hash
     { metric_name: "" }
+  end
+
+  def sort_options
+    super.reject { |_k, v| v == :company_name }
   end
 end
 
 format :html do
-  def cell_views
-    [:metric_thumbnail_with_bookmark, :concise]
-  end
-
-  def header_cells
-    [metric_sort_links, answer_sort_links]
-  end
-
-  def details_view
-    :metric_details_sidebar
+  before :core do
+    voo.items[:hide] = :company_thumbnail
   end
 
   def quick_filter_list

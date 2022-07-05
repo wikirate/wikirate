@@ -13,7 +13,7 @@ def create_hq_answer company, value
   value.gsub!(/[\[\]]/, "")
   Card.create! name: Card::Name[METRIC_NAME, company, ANSWER_YEAR],
                type_id: Card::MetricAnswerID,
-               subfields: { value: { content: value } }
+               fields: { value: { content: value } }
   puts "success: #{company} -> #{value}"
 rescue => e
   puts "FAILURE: #{company} -> #{value}; #{e.message}"

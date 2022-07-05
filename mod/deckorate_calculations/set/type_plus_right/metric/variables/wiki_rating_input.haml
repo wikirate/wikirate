@@ -1,0 +1,22 @@
+.wikiRating-editor._variablesEditor._wikiRating-editor
+  .wikiRating-editor-table
+    .wikiRating-editor-header.row
+      .col-6 Metric
+      .col-6.wikirating-weight-heading
+        %span Weight
+        .form-check.checkbox-pull.float-end
+          = check_box_tag "equalizer"
+          %label.form-check-label
+            %span Equalize
+    ._filtered-list
+      - card.weight_hash.each do |metric, weight|
+        = subformat(metric).weight_row weight
+
+    .wikiRating-editor-footer.row
+      .col-6 Total
+      .col-6
+        = text_field_tag "weight_sum", 100, class: "weight-sum", disabled: true
+        %span %
+
+  .p-2.my-3
+    = add_item_modal_link "Add Metric"

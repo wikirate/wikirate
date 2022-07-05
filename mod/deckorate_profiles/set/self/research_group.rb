@@ -1,2 +1,2 @@
 include_set Abstract::OrganizerQueries
-include_set Abstract::ResearchGroupFilter
+include_set Abstract::ResearchGroupSearch

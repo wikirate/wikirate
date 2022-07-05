@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::Type::Dataset do
+RSpec.describe Card::Set::Type::Dataset do
   def card_subject
     Card["Evil Dataset"]
   end

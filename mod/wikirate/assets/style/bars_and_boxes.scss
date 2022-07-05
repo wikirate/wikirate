@@ -1,0 +1,94 @@
+/*------ Badges ---------*/
+
+.badge {
+  display: inline-block;
+  //align-items: center;
+  padding: 0.1rem 0.4rem;
+  line-height: inherit;
+}
+
+.labeled-badge {
+  display: inline-block;
+  text-align: center;
+  padding: 1px;
+  label {
+    margin: 0;
+    padding: 0 0.33rem;
+    .count-badge-label-icon {
+      display: none;
+    }
+  }
+}
+
+.bar .labeled-badge {
+  span {
+    font-size: 0.6em;
+  }
+  label {
+    font-size: 0.8em;
+  }
+}
+
+
+.filter-result-badges {
+  display: flex;
+  padding: 2px 0;
+  max-height: 1.8em;
+  .labeled-badge {
+    padding-left: 1em;
+  }
+}
+
+@mixin badge-icons() {
+  .labeled-badge {
+    padding-left: 0.5em;
+    label {
+      .count-badge-label-icon {
+        display: block !important;
+        width: 22px;
+      }
+
+      .count-badge-label-text {
+        display: none !important;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  @include badge-icons();
+}
+
+
+/*----------- Bars and Boxes -------------*/
+
+
+.bar {
+  @include badge-icons();
+  .thumbnail {
+    align-items: center;
+  }
+
+  .bookmark-toggle {
+    margin-left: 2em;
+  }
+}
+
+.bar:hover {
+  border-left-color: $primary;
+}
+
+.bar-left a {
+  &, .bar-left {
+    font-weight: 600;
+  }
+  color: inherit;
+}
+
+a.box-item {
+  text-decoration: none;
+}
+
+.box-bottom {
+  @include badge-icons();
+}

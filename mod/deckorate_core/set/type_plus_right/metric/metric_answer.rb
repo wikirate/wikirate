@@ -1,10 +1,8 @@
 # Answer search for a given Metric
 
-include_set Abstract::FilterFormgroups
 include_set Abstract::BookmarkFiltering
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CachedCount
-include_set Abstract::AnswerSearch
 include_set Abstract::FixedAnswerSearch
 
 # recount number of answers for a given metric when an Answer card is
@@ -41,28 +39,21 @@ end
 format do
   delegate :metric_card, to: :card
 
-  STANDARD_FILTER_KEYS = %i[
-    status year company_name company_group company_category country value updated updater
-    verification calculated source dataset outliers bookmark
-  ].freeze
-
   def secondary_sort_hash
     super.merge year: { value: :desc }
   end
 
-  def standard_filter_keys
-    STANDARD_FILTER_KEYS
-  end
-
-  def special_filter_keys
-    keys = []
-    keys << :related_company_group if metric_card.relationship?
-    keys << :published if metric_card.steward?
-    keys
+  def filter_map
+    map_without_key(super, :metric)
+      .tap { |arr| arr << :related_company_group if metric_card.relationship? }
   end
 
   def default_filter_hash
     { company_name: "" }
+  end
+
+  def sort_options
+    super.reject { |_k, v| v == :metric_title }
   end
 end
 
@@ -76,6 +67,10 @@ format :html do
     else
       super()
     end
+  end
+
+  before :core do
+    voo.items[:hide] = :metric_thumbnail
   end
 
   def relationship_export_links
@@ -96,30 +91,10 @@ format :html do
     @quick_filter_list ||= :wikirate_company.card.format.quick_filter_list
   end
 
-  view :filter_value_formgroup do
-    filter_value_formgroup metric_card.simple_value_type_code
-  end
-
-  def filter_value_formgroup metric_type, default=nil
-    send "#{value_filter_type metric_type}_filter", :value, default
-  end
-
-  view :filter_related_company_group_formgroup, cache: :never do
-    filter_related_company_group_formgroup
-  end
-
-  def filter_related_company_group_formgroup default=nil
-    select_filter :related_company_group, default&.name
-  end
-
-  def related_company_group_options
-    type_options :company_group
-  end
-
-  def value_filter_type value_type
-    case value_type
+  def filter_value_type
+    case metric_card.simple_value_type_code
     when :category, :multi_category
-      :multiselect
+      :check
     when :number, :money
       :range
     else
@@ -127,19 +102,15 @@ format :html do
     end
   end
 
-  def value_options
+  def filter_related_company_group_type
+    :radio
+  end
+
+  def filter_related_company_group_options
+    type_options :company_group
+  end
+
+  def filter_value_options
     metric_card.value_options_card&.options_hash&.reverse_merge "Unknown" => "Unknown"
-  end
-
-  def cell_views
-    [:company_thumbnail_with_bookmark, :concise]
-  end
-
-  def header_cells
-    [company_sort_links, answer_sort_links]
-  end
-
-  def details_view
-    :company_details_sidebar
   end
 end

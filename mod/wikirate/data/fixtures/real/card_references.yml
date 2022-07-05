@@ -1,0 +1,9528 @@
+---
+card_references_001:
+  id: 2
+  referer_id: 19
+  referee_key: user
+  referee_id: 18
+  ref_type: I
+  is_present:
+card_references_002:
+  id: 3
+  referer_id: 22
+  referee_key: "*"
+  referee_id:
+  ref_type: Q
+  is_present:
+card_references_003:
+  id: 4
+  referer_id: 23
+  referee_key: "*"
+  referee_id:
+  ref_type: Q
+  is_present:
+card_references_004:
+  id: 5
+  referer_id: 30
+  referee_key: cardtype+*type+*structure+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_005:
+  id: 6
+  referer_id: 30
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_006:
+  id: 7
+  referer_id: 2
+  referee_key: rich_text+description
+  referee_id: 34
+  ref_type: I
+  is_present:
+card_references_007:
+  id: 8
+  referer_id: 2
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_008:
+  id: 10
+  referer_id: 4
+  referee_key: list+description
+  referee_id: 56
+  ref_type: I
+  is_present:
+card_references_009:
+  id: 11
+  referer_id: 4
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_010:
+  id: 12
+  referer_id: 6
+  referee_key: setting+description
+  referee_id: 134
+  ref_type: I
+  is_present:
+card_references_011:
+  id: 13
+  referer_id: 6
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_012:
+  id: 14
+  referer_id: 15
+  referee_key: mod+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_013:
+  id: 15
+  referer_id: 15
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_014:
+  id: 16
+  referer_id: 18
+  referee_key: user+description
+  referee_id: 19
+  ref_type: I
+  is_present:
+card_references_015:
+  id: 17
+  referer_id: 32
+  referee_key: cardtype+*self+*structure+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_016:
+  id: 18
+  referer_id: 32
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_017:
+  id: 19
+  referer_id: 3
+  referee_key: cardtype+description
+  referee_id: 14
+  ref_type: I
+  is_present:
+card_references_018:
+  id: 20
+  referer_id: 33
+  referee_key: json+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_019:
+  id: 21
+  referer_id: 33
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_020:
+  id: 22
+  referer_id: 35
+  referee_key: number+description
+  referee_id: 36
+  ref_type: I
+  is_present:
+card_references_021:
+  id: 23
+  referer_id: 37
+  referee_key: plain_text+description
+  referee_id: 38
+  ref_type: I
+  is_present:
+card_references_022:
+  id: 24
+  referer_id: 39
+  referee_key: html+description
+  referee_id: 40
+  ref_type: I
+  is_present:
+card_references_023:
+  id: 25
+  referer_id: 41
+  referee_key: toggle+description
+  referee_id: 42
+  ref_type: I
+  is_present:
+card_references_024:
+  id: 26
+  referer_id: 43
+  referee_key: phrase+description
+  referee_id: 44
+  ref_type: I
+  is_present:
+card_references_025:
+  id: 27
+  referer_id: 45
+  referee_key: uri+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_026:
+  id: 28
+  referer_id: 45
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_027:
+  id: 29
+  referer_id: 48
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_028:
+  id: 30
+  referer_id: 49
+  referee_key: "*head"
+  referee_id: 46
+  ref_type: I
+  is_present:
+card_references_029:
+  id: 31
+  referer_id: 51
+  referee_key: "*version"
+  referee_id: 16
+  ref_type: I
+  is_present:
+card_references_030:
+  id: 32
+  referer_id: 53
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_031:
+  id: 33
+  referer_id: 57
+  referee_key: pointer+description
+  referee_id: 58
+  ref_type: I
+  is_present:
+card_references_032:
+  id: 34
+  referer_id: 59
+  referee_key: nest_list+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_033:
+  id: 35
+  referer_id: 59
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_034:
+  id: 36
+  referer_id: 60
+  referee_key: link_list+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_035:
+  id: 37
+  referer_id: 60
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_036:
+  id: 38
+  referer_id: 66
+  referee_key: search+description
+  referee_id: 67
+  ref_type: I
+  is_present:
+card_references_037:
+  id: 39
+  referer_id: 68
+  referee_key: keyword
+  referee_id:
+  ref_type: Q
+  is_present:
+card_references_038:
+  id: 40
+  referer_id: 68
+  referee_key: relevance
+  referee_id:
+  ref_type: Q
+  is_present:
+card_references_039:
+  id: 41
+  referer_id: 71
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_040:
+  id: 42
+  referer_id: 81
+  referee_key: "*created+*right"
+  referee_id: 79
+  ref_type: I
+  is_present:
+card_references_041:
+  id: 43
+  referer_id: 84
+  referee_key: "*edited+*right"
+  referee_id: 83
+  ref_type: I
+  is_present:
+card_references_042:
+  id: 44
+  referer_id: 87
+  referee_key: "*editor+*right"
+  referee_id: 86
+  ref_type: I
+  is_present:
+card_references_043:
+  id: 45
+  referer_id: 90
+  referee_key: "*child+*right"
+  referee_id: 89
+  ref_type: I
+  is_present:
+card_references_044:
+  id: 46
+  referer_id: 93
+  referee_key: "*mate+*right"
+  referee_id: 92
+  ref_type: I
+  is_present:
+card_references_045:
+  id: 47
+  referer_id: 96
+  referee_key: "*nested_by+*right"
+  referee_id: 95
+  ref_type: I
+  is_present:
+card_references_046:
+  id: 48
+  referer_id: 99
+  referee_key: "*linked_to_by+*right"
+  referee_id: 98
+  ref_type: I
+  is_present:
+card_references_047:
+  id: 49
+  referer_id: 102
+  referee_key: "*nest+*right"
+  referee_id: 101
+  ref_type: I
+  is_present:
+card_references_048:
+  id: 50
+  referer_id: 105
+  referee_key: "*link_to+*right"
+  referee_id: 104
+  ref_type: I
+  is_present:
+card_references_049:
+  id: 51
+  referer_id: 108
+  referee_key: "*referred_to_by+*right"
+  referee_id: 107
+  ref_type: I
+  is_present:
+card_references_050:
+  id: 52
+  referer_id: 111
+  referee_key: "*refer_to+*right"
+  referee_id: 110
+  ref_type: I
+  is_present:
+card_references_051:
+  id: 53
+  referer_id: 112
+  referee_key: email_template+description
+  referee_id: 113
+  ref_type: I
+  is_present:
+card_references_052:
+  id: 54
+  referer_id: 112
+  referee_key: email_template+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_053:
+  id: 55
+  referer_id: 112
+  referee_key: email_template+*type
+  referee_id: 114
+  ref_type: P
+  is_present:
+card_references_054:
+  id: 56
+  referer_id: 112
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_055:
+  id: 57
+  referer_id: 115
+  referee_key: email_template+*type+*structure+*from
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_056:
+  id: 58
+  referer_id: 115
+  referee_key: "*from"
+  referee_id: 119
+  ref_type: P
+  is_present:
+card_references_057:
+  id: 59
+  referer_id: 115
+  referee_key: email_template+*type+*structure+*to
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_058:
+  id: 60
+  referer_id: 115
+  referee_key: "*to"
+  referee_id: 116
+  ref_type: P
+  is_present:
+card_references_059:
+  id: 61
+  referer_id: 115
+  referee_key: email_template+*type+*structure+*cc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_060:
+  id: 62
+  referer_id: 115
+  referee_key: "*cc"
+  referee_id: 122
+  ref_type: P
+  is_present:
+card_references_061:
+  id: 63
+  referer_id: 115
+  referee_key: email_template+*type+*structure+*bcc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_062:
+  id: 64
+  referer_id: 115
+  referee_key: "*bcc"
+  referee_id: 125
+  ref_type: P
+  is_present:
+card_references_063:
+  id: 65
+  referer_id: 115
+  referee_key: email_template+*type+*structure+*subject
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_064:
+  id: 66
+  referer_id: 115
+  referee_key: "*subject"
+  referee_id: 128
+  ref_type: P
+  is_present:
+card_references_065:
+  id: 67
+  referer_id: 115
+  referee_key: email_template+*type+*structure+*html_message
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_066:
+  id: 68
+  referer_id: 115
+  referee_key: "*html_message"
+  referee_id: 132
+  ref_type: P
+  is_present:
+card_references_067:
+  id: 69
+  referer_id: 115
+  referee_key: email_template+*type+*structure+*text_message
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_068:
+  id: 70
+  referer_id: 115
+  referee_key: "*text_message"
+  referee_id: 133
+  ref_type: P
+  is_present:
+card_references_069:
+  id: 71
+  referer_id: 115
+  referee_key: email_template+*type+*structure+*attach
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_070:
+  id: 72
+  referer_id: 115
+  referee_key: "*attach"
+  referee_id: 129
+  ref_type: P
+  is_present:
+card_references_071:
+  id: 73
+  referer_id: 118
+  referee_key: account
+  referee_id:
+  ref_type: Q
+  is_present:
+card_references_072:
+  id: 74
+  referer_id: 121
+  referee_key: account
+  referee_id:
+  ref_type: Q
+  is_present:
+card_references_073:
+  id: 75
+  referer_id: 124
+  referee_key: account
+  referee_id:
+  ref_type: Q
+  is_present:
+card_references_074:
+  id: 76
+  referer_id: 127
+  referee_key: account
+  referee_id:
+  ref_type: Q
+  is_present:
+card_references_075:
+  id: 77
+  referer_id: 131
+  referee_key: file
+  referee_id: 274
+  ref_type: Q
+  is_present:
+card_references_076:
+  id: 78
+  referer_id: 131
+  referee_key: update
+  referee_id: 136
+  ref_type: Q
+  is_present:
+card_references_077:
+  id: 79
+  referer_id: 140
+  referee_key: set+*self+*structure+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_078:
+  id: 80
+  referer_id: 140
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_079:
+  id: 81
+  referer_id: 140
+  referee_key: set+*self+*structure+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_080:
+  id: 82
+  referer_id: 140
+  referee_key: set+*self+*structure+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_081:
+  id: 83
+  referer_id: 140
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_082:
+  id: 84
+  referer_id: 140
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_083:
+  id: 85
+  referer_id: 10
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_084:
+  id: 86
+  referer_id: 147
+  referee_key: anyone_signed_in
+  referee_id: 172
+  ref_type: L
+  is_present:
+card_references_085:
+  id: 87
+  referer_id: 148
+  referee_key: anyone_signed_in
+  referee_id: 172
+  ref_type: L
+  is_present:
+card_references_086:
+  id: 88
+  referer_id: 149
+  referee_key: anyone_signed_in
+  referee_id: 172
+  ref_type: L
+  is_present:
+card_references_087:
+  id: 89
+  referer_id: 150
+  referee_key: "*all_plu"
+  referee_id: 20
+  ref_type: L
+  is_present:
+card_references_088:
+  id: 90
+  referer_id: 151
+  referee_key: "*all_plu"
+  referee_id: 20
+  ref_type: L
+  is_present:
+card_references_089:
+  id: 91
+  referer_id: 152
+  referee_key: "*all_plu"
+  referee_id: 20
+  ref_type: L
+  is_present:
+card_references_090:
+  id: 92
+  referer_id: 153
+  referee_key: "*all_plu"
+  referee_id: 20
+  ref_type: L
+  is_present:
+card_references_091:
+  id: 93
+  referer_id: 154
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_092:
+  id: 94
+  referer_id: 155
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_093:
+  id: 95
+  referer_id: 156
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_094:
+  id: 96
+  referer_id: 157
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_095:
+  id: 97
+  referer_id: 158
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_096:
+  id: 98
+  referer_id: 159
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_097:
+  id: 99
+  referer_id: 161
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_098:
+  id: 100
+  referer_id: 162
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_099:
+  id: 101
+  referer_id: 163
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_100:
+  id: 102
+  referer_id: 164
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_101:
+  id: 103
+  referer_id: 165
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_102:
+  id: 104
+  referer_id: 166
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_103:
+  id: 105
+  referer_id: 167
+  referee_key: role+description
+  referee_id: 168
+  ref_type: I
+  is_present:
+card_references_104:
+  id: 106
+  referer_id: 167
+  referee_key: role+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_105:
+  id: 107
+  referer_id: 167
+  referee_key: role+*type
+  referee_id: 522
+  ref_type: P
+  is_present:
+card_references_106:
+  id: 108
+  referer_id: 167
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_107:
+  id: 109
+  referer_id: 167
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_108:
+  id: 110
+  referer_id: 168
+  referee_key: user
+  referee_id: 18
+  ref_type: L
+  is_present:
+card_references_109:
+  id: 111
+  referer_id: 175
+  referee_key: administrator+*member
+  referee_id: 176
+  ref_type: L
+  is_present:
+card_references_110:
+  id: 112
+  referer_id: 178
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_111:
+  id: 113
+  referer_id: 180
+  referee_key: eagle+*member
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_112:
+  id: 114
+  referer_id: 180
+  referee_key: eagle
+  referee_id: 179
+  ref_type: P
+  is_present:
+card_references_113:
+  id: 115
+  referer_id: 180
+  referee_key: "*member"
+  referee_id: 169
+  ref_type: P
+  is_present:
+card_references_114:
+  id: 116
+  referer_id: 182
+  referee_key: shark+*member
+  referee_id: 183
+  ref_type: L
+  is_present:
+card_references_115:
+  id: 117
+  referer_id: 185
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_116:
+  id: 118
+  referer_id: 187
+  referee_key: help_desk+*member
+  referee_id: 188
+  ref_type: L
+  is_present:
+card_references_117:
+  id: 119
+  referer_id: 190
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_118:
+  id: 120
+  referer_id: 192
+  referee_key: sign_up
+  referee_id: 219
+  ref_type: L
+  is_present:
+card_references_119:
+  id: 121
+  referer_id: 192
+  referee_key: sign_up
+  referee_id: 219
+  ref_type: I
+  is_present:
+card_references_120:
+  id: 122
+  referer_id: 192
+  referee_key: user
+  referee_id: 18
+  ref_type: L
+  is_present:
+card_references_121:
+  id: 123
+  referer_id: 192
+  referee_key: user
+  referee_id: 18
+  ref_type: I
+  is_present:
+card_references_122:
+  id: 124
+  referer_id: 192
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_123:
+  id: 125
+  referer_id: 192
+  referee_key: "*create"
+  referee_id: 144
+  ref_type: L
+  is_present:
+card_references_124:
+  id: 126
+  referer_id: 192
+  referee_key: card_with_account
+  referee_id: 266
+  ref_type: L
+  is_present:
+card_references_125:
+  id: 127
+  referer_id: 192
+  referee_key: "*account+*right+by_name"
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_126:
+  id: 128
+  referer_id: 192
+  referee_key: "*account+*right"
+  referee_id: 193
+  ref_type: P
+  is_present:
+card_references_127:
+  id: 129
+  referer_id: 192
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_128:
+  id: 130
+  referer_id: 194
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_129:
+  id: 131
+  referer_id: 195
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_130:
+  id: 132
+  referer_id: 196
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_131:
+  id: 133
+  referer_id: 197
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_132:
+  id: 134
+  referer_id: 200
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_133:
+  id: 135
+  referer_id: 201
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_134:
+  id: 136
+  referer_id: 202
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_135:
+  id: 137
+  referer_id: 205
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_136:
+  id: 138
+  referer_id: 206
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_137:
+  id: 139
+  referer_id: 207
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_138:
+  id: 140
+  referer_id: 210
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_139:
+  id: 141
+  referer_id: 213
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_140:
+  id: 142
+  referer_id: 214
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_141:
+  id: 143
+  referer_id: 215
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_142:
+  id: 144
+  referer_id: 218
+  referee_key: "*account_setting+*right+*account"
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_143:
+  id: 145
+  referer_id: 218
+  referee_key: "*account_setting+*right"
+  referee_id: 217
+  ref_type: P
+  is_present:
+card_references_144:
+  id: 146
+  referer_id: 218
+  referee_key: "*account"
+  referee_id: 192
+  ref_type: P
+  is_present:
+card_references_145:
+  id: 147
+  referer_id: 219
+  referee_key: sign_up+description
+  referee_id: 220
+  ref_type: I
+  is_present:
+card_references_146:
+  id: 148
+  referer_id: 219
+  referee_key: sign_up+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_147:
+  id: 149
+  referer_id: 219
+  referee_key: sign_up+*type
+  referee_id: 223
+  ref_type: P
+  is_present:
+card_references_148:
+  id: 150
+  referer_id: 219
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_149:
+  id: 151
+  referer_id: 220
+  referee_key: sign_up
+  referee_id: 219
+  ref_type: L
+  is_present:
+card_references_150:
+  id: 152
+  referer_id: 220
+  referee_key: user
+  referee_id: 18
+  ref_type: L
+  is_present:
+card_references_151:
+  id: 153
+  referer_id: 222
+  referee_key: sign_up+*self+*structure+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_152:
+  id: 154
+  referer_id: 222
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_153:
+  id: 155
+  referer_id: 222
+  referee_key: sign_up+*self+*structure+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_154:
+  id: 156
+  referer_id: 222
+  referee_key: sign_up+*self+*structure+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_155:
+  id: 157
+  referer_id: 222
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_156:
+  id: 158
+  referer_id: 222
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_157:
+  id: 159
+  referer_id: 224
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_158:
+  id: 160
+  referer_id: 225
+  referee_key: signup_alert_email
+  referee_id: 251
+  ref_type: L
+  is_present:
+card_references_159:
+  id: 161
+  referer_id: 228
+  referee_key: sign_up+*account+*type_plu_right
+  referee_id: 227
+  ref_type: L
+  is_present:
+card_references_160:
+  id: 162
+  referer_id: 230
+  referee_key: active
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_161:
+  id: 163
+  referer_id: 235
+  referee_key: user+*account+*type_plu_right
+  referee_id: 234
+  ref_type: L
+  is_present:
+card_references_162:
+  id: 164
+  referer_id: 235
+  referee_key: user+*account
+  referee_id: 231
+  ref_type: P
+  is_present:
+card_references_163:
+  id: 165
+  referer_id: 235
+  referee_key: user
+  referee_id: 18
+  ref_type: P
+  is_present:
+card_references_164:
+  id: 166
+  referer_id: 235
+  referee_key: "*account"
+  referee_id: 192
+  ref_type: P
+  is_present:
+card_references_165:
+  id: 167
+  referer_id: 235
+  referee_key: "*type_plu_right"
+  referee_id: 25
+  ref_type: P
+  is_present:
+card_references_166:
+  id: 168
+  referer_id: 233
+  referee_key: active
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_167:
+  id: 170
+  referer_id: 240
+  referee_key: welcome_email+*from
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_168:
+  id: 171
+  referer_id: 240
+  referee_key: "*from"
+  referee_id: 119
+  ref_type: P
+  is_present:
+card_references_169:
+  id: 172
+  referer_id: 240
+  referee_key: welcome_email+*to
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_170:
+  id: 173
+  referer_id: 240
+  referee_key: "*to"
+  referee_id: 116
+  ref_type: P
+  is_present:
+card_references_171:
+  id: 174
+  referer_id: 240
+  referee_key: welcome_email+*cc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_172:
+  id: 175
+  referer_id: 240
+  referee_key: "*cc"
+  referee_id: 122
+  ref_type: P
+  is_present:
+card_references_173:
+  id: 176
+  referer_id: 240
+  referee_key: welcome_email+*bcc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_174:
+  id: 177
+  referer_id: 240
+  referee_key: "*bcc"
+  referee_id: 125
+  ref_type: P
+  is_present:
+card_references_175:
+  id: 178
+  referer_id: 240
+  referee_key: welcome_email+*subject
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_176:
+  id: 179
+  referer_id: 240
+  referee_key: "*subject"
+  referee_id: 128
+  ref_type: P
+  is_present:
+card_references_177:
+  id: 180
+  referer_id: 240
+  referee_key: welcome_email+*html_message
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_178:
+  id: 181
+  referer_id: 240
+  referee_key: "*html_message"
+  referee_id: 132
+  ref_type: P
+  is_present:
+card_references_179:
+  id: 182
+  referer_id: 240
+  referee_key: welcome_email+*text_message
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_180:
+  id: 183
+  referer_id: 240
+  referee_key: "*text_message"
+  referee_id: 133
+  ref_type: P
+  is_present:
+card_references_181:
+  id: 184
+  referer_id: 240
+  referee_key: welcome_email+*attach
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_182:
+  id: 185
+  referer_id: 240
+  referee_key: "*attach"
+  referee_id: 129
+  ref_type: P
+  is_present:
+card_references_183:
+  id: 186
+  referer_id: 241
+  referee_key: verification_email+*from
+  referee_id: 242
+  ref_type: I
+  is_present:
+card_references_184:
+  id: 187
+  referer_id: 241
+  referee_key: verification_email+*to
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_185:
+  id: 188
+  referer_id: 241
+  referee_key: "*to"
+  referee_id: 116
+  ref_type: P
+  is_present:
+card_references_186:
+  id: 189
+  referer_id: 241
+  referee_key: verification_email+*cc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_187:
+  id: 190
+  referer_id: 241
+  referee_key: "*cc"
+  referee_id: 122
+  ref_type: P
+  is_present:
+card_references_188:
+  id: 191
+  referer_id: 241
+  referee_key: verification_email+*bcc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_189:
+  id: 192
+  referer_id: 241
+  referee_key: "*bcc"
+  referee_id: 125
+  ref_type: P
+  is_present:
+card_references_190:
+  id: 193
+  referer_id: 241
+  referee_key: verification_email+*subject
+  referee_id: 243
+  ref_type: I
+  is_present:
+card_references_191:
+  id: 194
+  referer_id: 241
+  referee_key: verification_email+*html_message
+  referee_id: 244
+  ref_type: I
+  is_present:
+card_references_192:
+  id: 195
+  referer_id: 241
+  referee_key: verification_email+*text_message
+  referee_id: 245
+  ref_type: I
+  is_present:
+card_references_193:
+  id: 196
+  referer_id: 241
+  referee_key: verification_email+*attach
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_194:
+  id: 197
+  referer_id: 241
+  referee_key: "*attach"
+  referee_id: 129
+  ref_type: P
+  is_present:
+card_references_195:
+  id: 198
+  referer_id: 242
+  referee_key: decko_bot
+  referee_id: 1
+  ref_type: L
+  is_present:
+card_references_196:
+  id: 199
+  referer_id: 243
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_197:
+  id: 200
+  referer_id: 244
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_198:
+  id: 201
+  referer_id: 245
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_199:
+  id: 202
+  referer_id: 246
+  referee_key: password_reset_email+*from
+  referee_id: 247
+  ref_type: I
+  is_present:
+card_references_200:
+  id: 203
+  referer_id: 246
+  referee_key: password_reset_email+*to
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_201:
+  id: 204
+  referer_id: 246
+  referee_key: "*to"
+  referee_id: 116
+  ref_type: P
+  is_present:
+card_references_202:
+  id: 205
+  referer_id: 246
+  referee_key: password_reset_email+*cc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_203:
+  id: 206
+  referer_id: 246
+  referee_key: "*cc"
+  referee_id: 122
+  ref_type: P
+  is_present:
+card_references_204:
+  id: 207
+  referer_id: 246
+  referee_key: password_reset_email+*bcc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_205:
+  id: 208
+  referer_id: 246
+  referee_key: "*bcc"
+  referee_id: 125
+  ref_type: P
+  is_present:
+card_references_206:
+  id: 209
+  referer_id: 246
+  referee_key: password_reset_email+*subject
+  referee_id: 248
+  ref_type: I
+  is_present:
+card_references_207:
+  id: 210
+  referer_id: 246
+  referee_key: password_reset_email+*html_message
+  referee_id: 250
+  ref_type: I
+  is_present:
+card_references_208:
+  id: 211
+  referer_id: 246
+  referee_key: password_reset_email+*text_message
+  referee_id: 249
+  ref_type: I
+  is_present:
+card_references_209:
+  id: 212
+  referer_id: 246
+  referee_key: password_reset_email+*attach
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_210:
+  id: 213
+  referer_id: 246
+  referee_key: "*attach"
+  referee_id: 129
+  ref_type: P
+  is_present:
+card_references_211:
+  id: 214
+  referer_id: 247
+  referee_key: decko_bot
+  referee_id: 1
+  ref_type: L
+  is_present:
+card_references_212:
+  id: 215
+  referer_id: 248
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_213:
+  id: 216
+  referer_id: 249
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_214:
+  id: 217
+  referer_id: 250
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_215:
+  id: 218
+  referer_id: 251
+  referee_key: signup_alert_email+*from
+  referee_id: 252
+  ref_type: I
+  is_present:
+card_references_216:
+  id: 219
+  referer_id: 251
+  referee_key: signup_alert_email+*to
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_217:
+  id: 220
+  referer_id: 251
+  referee_key: "*to"
+  referee_id: 116
+  ref_type: P
+  is_present:
+card_references_218:
+  id: 221
+  referer_id: 251
+  referee_key: signup_alert_email+*cc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_219:
+  id: 222
+  referer_id: 251
+  referee_key: "*cc"
+  referee_id: 122
+  ref_type: P
+  is_present:
+card_references_220:
+  id: 223
+  referer_id: 251
+  referee_key: signup_alert_email+*bcc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_221:
+  id: 224
+  referer_id: 251
+  referee_key: "*bcc"
+  referee_id: 125
+  ref_type: P
+  is_present:
+card_references_222:
+  id: 225
+  referer_id: 251
+  referee_key: signup_alert_email+*subject
+  referee_id: 253
+  ref_type: I
+  is_present:
+card_references_223:
+  id: 226
+  referer_id: 251
+  referee_key: signup_alert_email+*html_message
+  referee_id: 255
+  ref_type: I
+  is_present:
+card_references_224:
+  id: 227
+  referer_id: 251
+  referee_key: signup_alert_email+*text_message
+  referee_id: 254
+  ref_type: I
+  is_present:
+card_references_225:
+  id: 228
+  referer_id: 251
+  referee_key: signup_alert_email+*attach
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_226:
+  id: 229
+  referer_id: 251
+  referee_key: "*attach"
+  referee_id: 129
+  ref_type: P
+  is_present:
+card_references_227:
+  id: 230
+  referer_id: 252
+  referee_key: decko_bot
+  referee_id: 1
+  ref_type: L
+  is_present:
+card_references_228:
+  id: 231
+  referer_id: 253
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_229:
+  id: 232
+  referer_id: 254
+  referee_key: signup_alert_email+*text_message+*account+*email
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_230:
+  id: 233
+  referer_id: 254
+  referee_key: signup_alert_email+*text_message+*account
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_231:
+  id: 234
+  referer_id: 254
+  referee_key: "*account"
+  referee_id: 192
+  ref_type: P
+  is_present:
+card_references_232:
+  id: 235
+  referer_id: 254
+  referee_key: "*email"
+  referee_id: 198
+  ref_type: P
+  is_present:
+card_references_233:
+  id: 236
+  referer_id: 254
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_234:
+  id: 237
+  referer_id: 255
+  referee_key: signup_alert_email+*html_message+*account+*email
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_235:
+  id: 238
+  referer_id: 255
+  referee_key: signup_alert_email+*html_message+*account
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_236:
+  id: 239
+  referer_id: 255
+  referee_key: "*account"
+  referee_id: 192
+  ref_type: P
+  is_present:
+card_references_237:
+  id: 240
+  referer_id: 255
+  referee_key: "*email"
+  referee_id: 198
+  ref_type: P
+  is_present:
+card_references_238:
+  id: 241
+  referer_id: 255
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_239:
+  id: 242
+  referer_id: 258
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_240:
+  id: 243
+  referer_id: 263
+  referee_key: role
+  referee_id: 167
+  ref_type: Q
+  is_present:
+card_references_241:
+  id: 244
+  referer_id: 263
+  referee_key: anyone
+  referee_id: 170
+  ref_type: Q
+  is_present:
+card_references_242:
+  id: 245
+  referer_id: 263
+  referee_key: anyone_signed_in
+  referee_id: 172
+  ref_type: Q
+  is_present:
+card_references_243:
+  id: 246
+  referer_id: 266
+  referee_key: "*account"
+  referee_id: 192
+  ref_type: Q
+  is_present:
+card_references_244:
+  id: 247
+  referer_id: 269
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_245:
+  id: 248
+  referer_id: 272
+  referee_key: overridden
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_246:
+  id: 249
+  referer_id: 274
+  referee_key: file+description
+  referee_id: 275
+  ref_type: I
+  is_present:
+card_references_247:
+  id: 250
+  referer_id: 274
+  referee_key: file+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_248:
+  id: 251
+  referer_id: 274
+  referee_key: file+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_249:
+  id: 252
+  referer_id: 274
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_250:
+  id: 253
+  referer_id: 274
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_251:
+  id: 254
+  referer_id: 281
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_252:
+  id: 255
+  referer_id: 287
+  referee_key: remote_manifest_group+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_253:
+  id: 256
+  referer_id: 287
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_254:
+  id: 257
+  referer_id: 287
+  referee_key: remote_manifest_group+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_255:
+  id: 258
+  referer_id: 287
+  referee_key: remote_manifest_group+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_256:
+  id: 259
+  referer_id: 287
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_257:
+  id: 260
+  referer_id: 287
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_258:
+  id: 261
+  referer_id: 290
+  referee_key: java_script
+  referee_id: 293
+  ref_type: Q
+  is_present:
+card_references_259:
+  id: 262
+  referer_id: 290
+  referee_key: coffee_script
+  referee_id: 299
+  ref_type: Q
+  is_present:
+card_references_260:
+  id: 263
+  referer_id: 291
+  referee_key: list
+  referee_id: 4
+  ref_type: L
+  is_present:
+card_references_261:
+  id: 264
+  referer_id: 293
+  referee_key: java_script+description
+  referee_id: 294
+  ref_type: I
+  is_present:
+card_references_262:
+  id: 265
+  referer_id: 293
+  referee_key: java_script+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_263:
+  id: 266
+  referer_id: 293
+  referee_key: java_script+*type
+  referee_id: 295
+  ref_type: P
+  is_present:
+card_references_264:
+  id: 267
+  referer_id: 293
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_265:
+  id: 268
+  referer_id: 294
+  referee_key: "*script"
+  referee_id: 288
+  ref_type: L
+  is_present:
+card_references_266:
+  id: 269
+  referer_id: 296
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_267:
+  id: 270
+  referer_id: 297
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_268:
+  id: 271
+  referer_id: 298
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_269:
+  id: 272
+  referer_id: 299
+  referee_key: coffee_script+description
+  referee_id: 300
+  ref_type: I
+  is_present:
+card_references_270:
+  id: 273
+  referer_id: 299
+  referee_key: coffee_script+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_271:
+  id: 274
+  referer_id: 299
+  referee_key: coffee_script+*type
+  referee_id: 301
+  ref_type: P
+  is_present:
+card_references_272:
+  id: 275
+  referer_id: 299
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_273:
+  id: 276
+  referer_id: 300
+  referee_key: "*script"
+  referee_id: 288
+  ref_type: L
+  is_present:
+card_references_274:
+  id: 277
+  referer_id: 302
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_275:
+  id: 278
+  referer_id: 303
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_276:
+  id: 279
+  referer_id: 304
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_277:
+  id: 280
+  referer_id: 305
+  referee_key: local_script_folder_group+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_278:
+  id: 281
+  referer_id: 305
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_279:
+  id: 282
+  referer_id: 305
+  referee_key: local_script_folder_group+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_280:
+  id: 283
+  referer_id: 305
+  referee_key: local_script_folder_group+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_281:
+  id: 284
+  referer_id: 305
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_282:
+  id: 285
+  referer_id: 305
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_283:
+  id: 286
+  referer_id: 306
+  referee_key: local_script_manifest_group+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_284:
+  id: 287
+  referer_id: 306
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_285:
+  id: 288
+  referer_id: 306
+  referee_key: local_script_manifest_group+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_286:
+  id: 289
+  referer_id: 306
+  referee_key: local_script_manifest_group+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_287:
+  id: 290
+  referer_id: 306
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_288:
+  id: 291
+  referer_id: 306
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_289:
+  id: 292
+  referer_id: 310
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_290:
+  id: 293
+  referer_id: 311
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_291:
+  id: 294
+  referer_id: 312
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_292:
+  id: 295
+  referer_id: 314
+  referee_key: local_style_folder_group+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_293:
+  id: 296
+  referer_id: 314
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_294:
+  id: 297
+  referer_id: 314
+  referee_key: local_style_folder_group+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_295:
+  id: 298
+  referer_id: 314
+  referee_key: local_style_folder_group+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_296:
+  id: 299
+  referer_id: 314
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_297:
+  id: 300
+  referer_id: 314
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_298:
+  id: 301
+  referer_id: 315
+  referee_key: local_style_manifest_group+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_299:
+  id: 302
+  referer_id: 315
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_300:
+  id: 303
+  referer_id: 315
+  referee_key: local_style_manifest_group+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_301:
+  id: 304
+  referer_id: 315
+  referee_key: local_style_manifest_group+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_302:
+  id: 305
+  referer_id: 315
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_303:
+  id: 306
+  referer_id: 315
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_304:
+  id: 307
+  referer_id: 316
+  referee_key: css+description
+  referee_id: 317
+  ref_type: I
+  is_present:
+card_references_305:
+  id: 308
+  referer_id: 316
+  referee_key: css+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_306:
+  id: 309
+  referer_id: 316
+  referee_key: css+*type
+  referee_id: 318
+  ref_type: P
+  is_present:
+card_references_307:
+  id: 310
+  referer_id: 316
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_308:
+  id: 311
+  referer_id: 317
+  referee_key: skin
+  referee_id: 328
+  ref_type: L
+  is_present:
+card_references_309:
+  id: 312
+  referer_id: 319
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_310:
+  id: 313
+  referer_id: 320
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_311:
+  id: 314
+  referer_id: 321
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_312:
+  id: 315
+  referer_id: 322
+  referee_key: scss+description
+  referee_id: 323
+  ref_type: I
+  is_present:
+card_references_313:
+  id: 316
+  referer_id: 322
+  referee_key: scss+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_314:
+  id: 317
+  referer_id: 322
+  referee_key: scss+*type
+  referee_id: 324
+  ref_type: P
+  is_present:
+card_references_315:
+  id: 318
+  referer_id: 322
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_316:
+  id: 319
+  referer_id: 323
+  referee_key: skin
+  referee_id: 328
+  ref_type: L
+  is_present:
+card_references_317:
+  id: 320
+  referer_id: 325
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_318:
+  id: 321
+  referer_id: 326
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_319:
+  id: 322
+  referer_id: 327
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_320:
+  id: 323
+  referer_id: 328
+  referee_key: skin+description
+  referee_id: 329
+  ref_type: I
+  is_present:
+card_references_321:
+  id: 324
+  referer_id: 328
+  referee_key: skin+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_322:
+  id: 325
+  referer_id: 328
+  referee_key: skin+*type
+  referee_id: 330
+  ref_type: P
+  is_present:
+card_references_323:
+  id: 326
+  referer_id: 328
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_324:
+  id: 327
+  referer_id: 329
+  referee_key: skin
+  referee_id: 328
+  ref_type: L
+  is_present:
+card_references_325:
+  id: 328
+  referer_id: 331
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_326:
+  id: 329
+  referer_id: 332
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_327:
+  id: 330
+  referer_id: 333
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_328:
+  id: 331
+  referer_id: 336
+  referee_key: radio
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_329:
+  id: 332
+  referer_id: 337
+  referee_key: bootswatch_skin
+  referee_id: 344
+  ref_type: Q
+  is_present:
+card_references_330:
+  id: 333
+  referer_id: 344
+  referee_key: bootswatch_skin+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_331:
+  id: 334
+  referer_id: 344
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_332:
+  id: 335
+  referer_id: 344
+  referee_key: bootswatch_skin+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_333:
+  id: 336
+  referer_id: 344
+  referee_key: bootswatch_skin+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_334:
+  id: 337
+  referer_id: 344
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_335:
+  id: 338
+  referer_id: 344
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_336:
+  id: 340
+  referer_id: 434
+  referee_key: date+description
+  referee_id: 435
+  ref_type: I
+  is_present:
+card_references_337:
+  id: 341
+  referer_id: 434
+  referee_key: date+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_338:
+  id: 342
+  referer_id: 434
+  referee_key: date+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_339:
+  id: 343
+  referer_id: 434
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_340:
+  id: 344
+  referer_id: 434
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_341:
+  id: 345
+  referer_id: 440
+  referee_key: notification_template+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_342:
+  id: 346
+  referer_id: 440
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_343:
+  id: 347
+  referer_id: 440
+  referee_key: notification_template+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_344:
+  id: 348
+  referer_id: 440
+  referee_key: notification_template+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_345:
+  id: 349
+  referer_id: 440
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_346:
+  id: 350
+  referer_id: 440
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_347:
+  id: 351
+  referer_id: 443
+  referee_key: radio
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_348:
+  id: 352
+  referer_id: 447
+  referee_key: "*following+*right"
+  referee_id: 446
+  ref_type: L
+  is_present:
+card_references_349:
+  id: 353
+  referer_id: 448
+  referee_key: "*following+*right"
+  referee_id: 446
+  ref_type: L
+  is_present:
+card_references_350:
+  id: 354
+  referer_id: 455
+  referee_key: "*nest"
+  referee_id: 100
+  ref_type: L
+  is_present:
+card_references_351:
+  id: 355
+  referer_id: 458
+  referee_key: radio
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_352:
+  id: 356
+  referer_id: 459
+  referee_key: success
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_353:
+  id: 357
+  referer_id: 459
+  referee_key: info
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_354:
+  id: 358
+  referer_id: 459
+  referee_key: warning
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_355:
+  id: 359
+  referer_id: 459
+  referee_key: danger
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_356:
+  id: 360
+  referer_id: 462
+  referee_key: follower_notification_email+*from
+  referee_id: 463
+  ref_type: I
+  is_present:
+card_references_357:
+  id: 361
+  referer_id: 462
+  referee_key: follower_notification_email+*to
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_358:
+  id: 362
+  referer_id: 462
+  referee_key: "*to"
+  referee_id: 116
+  ref_type: P
+  is_present:
+card_references_359:
+  id: 363
+  referer_id: 462
+  referee_key: follower_notification_email+*cc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_360:
+  id: 364
+  referer_id: 462
+  referee_key: "*cc"
+  referee_id: 122
+  ref_type: P
+  is_present:
+card_references_361:
+  id: 365
+  referer_id: 462
+  referee_key: follower_notification_email+*bcc
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_362:
+  id: 366
+  referer_id: 462
+  referee_key: "*bcc"
+  referee_id: 125
+  ref_type: P
+  is_present:
+card_references_363:
+  id: 367
+  referer_id: 462
+  referee_key: follower_notification_email+*subject
+  referee_id: 464
+  ref_type: I
+  is_present:
+card_references_364:
+  id: 368
+  referer_id: 462
+  referee_key: follower_notification_email+*html_message
+  referee_id: 465
+  ref_type: I
+  is_present:
+card_references_365:
+  id: 369
+  referer_id: 462
+  referee_key: follower_notification_email+*text_message
+  referee_id: 466
+  ref_type: I
+  is_present:
+card_references_366:
+  id: 370
+  referer_id: 462
+  referee_key: follower_notification_email+*attach
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_367:
+  id: 371
+  referer_id: 462
+  referee_key: "*attach"
+  referee_id: 129
+  ref_type: P
+  is_present:
+card_references_368:
+  id: 372
+  referer_id: 463
+  referee_key: decko_bot
+  referee_id: 1
+  ref_type: L
+  is_present:
+card_references_369:
+  id: 373
+  referer_id: 464
+  referee_key: decko_bot
+  referee_id: 1
+  ref_type: I
+  is_present:
+card_references_370:
+  id: 374
+  referer_id: 465
+  referee_key: decko_bot
+  referee_id: 1
+  ref_type: I
+  is_present:
+card_references_371:
+  id: 375
+  referer_id: 466
+  referee_key: decko_bot
+  referee_id: 1
+  ref_type: I
+  is_present:
+card_references_372:
+  id: 376
+  referer_id: 467
+  referee_key: markdown+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_373:
+  id: 377
+  referer_id: 467
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_374:
+  id: 378
+  referer_id: 467
+  referee_key: markdown+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_375:
+  id: 379
+  referer_id: 467
+  referee_key: markdown+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_376:
+  id: 380
+  referer_id: 467
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_377:
+  id: 381
+  referer_id: 467
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_378:
+  id: 382
+  referer_id: 471
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_379:
+  id: 383
+  referer_id: 472
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_380:
+  id: 384
+  referer_id: 473
+  referee_key: help_desk
+  referee_id: 186
+  ref_type: L
+  is_present:
+card_references_381:
+  id: 385
+  referer_id: 474
+  referee_key: "*guide"
+  referee_id: 468
+  ref_type: L
+  is_present:
+card_references_382:
+  id: 386
+  referer_id: 475
+  referee_key: rich_text
+  referee_id: 2
+  ref_type: L
+  is_present:
+card_references_383:
+  id: 387
+  referer_id: 475
+  referee_key: list
+  referee_id: 4
+  ref_type: L
+  is_present:
+card_references_384:
+  id: 388
+  referer_id: 475
+  referee_key: image
+  referee_id: 54
+  ref_type: L
+  is_present:
+card_references_385:
+  id: 389
+  referer_id: 475
+  referee_key: search
+  referee_id: 66
+  ref_type: L
+  is_present:
+card_references_386:
+  id: 390
+  referer_id: 475
+  referee_key: java_script
+  referee_id: 293
+  ref_type: L
+  is_present:
+card_references_387:
+  id: 391
+  referer_id: 475
+  referee_key: user
+  referee_id: 18
+  ref_type: L
+  is_present:
+card_references_388:
+  id: 392
+  referer_id: 475
+  referee_key: ''
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_389:
+  id: 393
+  referer_id: 475
+  referee_key: cardtype
+  referee_id: 3
+  ref_type: L
+  is_present:
+card_references_390:
+  id: 394
+  referer_id: 475
+  referee_key: "*autoname"
+  referee_id: 17
+  ref_type: L
+  is_present:
+card_references_391:
+  id: 395
+  referer_id: 475
+  referee_key: "*structure"
+  referee_id: 28
+  ref_type: L
+  is_present:
+card_references_392:
+  id: 396
+  referer_id: 476
+  referee_key: "*structure"
+  referee_id: 28
+  ref_type: L
+  is_present:
+card_references_393:
+  id: 397
+  referer_id: 477
+  referee_key: session+description
+  referee_id: 478
+  ref_type: I
+  is_present:
+card_references_394:
+  id: 398
+  referer_id: 477
+  referee_key: session+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_395:
+  id: 399
+  referer_id: 477
+  referee_key: session+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_396:
+  id: 400
+  referer_id: 477
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_397:
+  id: 401
+  referer_id: 477
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_398:
+  id: 402
+  referer_id: 481
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_399:
+  id: 403
+  referer_id: 482
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_400:
+  id: 404
+  referer_id: 483
+  referee_key: setting
+  referee_id: 6
+  ref_type: Q
+  is_present:
+card_references_401:
+  id: 405
+  referer_id: 484
+  referee_key: layout+description
+  referee_id: 485
+  ref_type: I
+  is_present:
+card_references_402:
+  id: 406
+  referer_id: 484
+  referee_key: layout+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_403:
+  id: 407
+  referer_id: 484
+  referee_key: layout+*type
+  referee_id: 486
+  ref_type: P
+  is_present:
+card_references_404:
+  id: 408
+  referer_id: 484
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_405:
+  id: 409
+  referer_id: 487
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_406:
+  id: 410
+  referer_id: 488
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_407:
+  id: 411
+  referer_id: 489
+  referee_key: shark
+  referee_id: 181
+  ref_type: L
+  is_present:
+card_references_408:
+  id: 413
+  referer_id: 492
+  referee_key: select
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_409:
+  id: 414
+  referer_id: 493
+  referee_key: layout
+  referee_id: 484
+  ref_type: Q
+  is_present:
+card_references_410:
+  id: 417
+  referer_id: 494
+  referee_key: menu
+  referee_id: 505
+  ref_type: I
+  is_present:
+card_references_411:
+  id: 418
+  referer_id: 496
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_412:
+  id: 422
+  referer_id: 497
+  referee_key: default_layout
+  referee_id: 506
+  ref_type: L
+  is_present:
+card_references_413:
+  id: 428
+  referer_id: 500
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_414:
+  id: 439
+  referer_id: 503
+  referee_key: anyone
+  referee_id: 170
+  ref_type: L
+  is_present:
+card_references_415:
+  id: 440
+  referer_id: 504
+  referee_key: "*credit"
+  referee_id: 51
+  ref_type: I
+  is_present:
+card_references_416:
+  id: 441
+  referer_id: 506
+  referee_key: "*header"
+  referee_id: 501
+  ref_type: I
+  is_present:
+card_references_417:
+  id: 442
+  referer_id: 506
+  referee_key: "*footer"
+  referee_id: 504
+  ref_type: I
+  is_present:
+card_references_418:
+  id: 443
+  referer_id: 507
+  referee_key: "*header"
+  referee_id: 501
+  ref_type: I
+  is_present:
+card_references_419:
+  id: 444
+  referer_id: 507
+  referee_key: "*footer"
+  referee_id: 504
+  ref_type: I
+  is_present:
+card_references_420:
+  id: 445
+  referer_id: 508
+  referee_key: "*header"
+  referee_id: 501
+  ref_type: I
+  is_present:
+card_references_421:
+  id: 446
+  referer_id: 508
+  referee_key: "*footer"
+  referee_id: 504
+  ref_type: I
+  is_present:
+card_references_422:
+  id: 447
+  referer_id: 509
+  referee_key: "*header"
+  referee_id: 501
+  ref_type: I
+  is_present:
+card_references_423:
+  id: 448
+  referer_id: 509
+  referee_key: "*sidebar"
+  referee_id: 494
+  ref_type: I
+  is_present:
+card_references_424:
+  id: 449
+  referer_id: 509
+  referee_key: "*footer"
+  referee_id: 504
+  ref_type: I
+  is_present:
+card_references_425:
+  id: 450
+  referer_id: 510
+  referee_key: "*header"
+  referee_id: 501
+  ref_type: I
+  is_present:
+card_references_426:
+  id: 451
+  referer_id: 510
+  referee_key: "*sidebar"
+  referee_id: 494
+  ref_type: I
+  is_present:
+card_references_427:
+  id: 452
+  referer_id: 510
+  referee_key: "*footer"
+  referee_id: 504
+  ref_type: I
+  is_present:
+card_references_428:
+  id: 458
+  referer_id: 518
+  referee_key: "*getting_started"
+  referee_id: 531
+  ref_type: I
+  is_present:
+card_references_429:
+  id: 459
+  referer_id: 520
+  referee_key: home_layout
+  referee_id: 508
+  ref_type: L
+  is_present:
+card_references_430:
+  id: 465
+  referer_id: 521
+  referee_key: home
+  referee_id: 518
+  ref_type: L
+  is_present:
+card_references_431:
+  id: 466
+  referer_id: 523
+  referee_key: role+*type+*structure+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_432:
+  id: 467
+  referer_id: 523
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_433:
+  id: 468
+  referer_id: 170
+  referee_key: anyone+description
+  referee_id: 171
+  ref_type: I
+  is_present:
+card_references_434:
+  id: 469
+  referer_id: 172
+  referee_key: anyone_signed_in+description
+  referee_id: 173
+  ref_type: I
+  is_present:
+card_references_435:
+  id: 470
+  referer_id: 174
+  referee_key: administrator+description
+  referee_id: 175
+  ref_type: I
+  is_present:
+card_references_436:
+  id: 471
+  referer_id: 179
+  referee_key: eagle+description
+  referee_id: 180
+  ref_type: I
+  is_present:
+card_references_437:
+  id: 472
+  referer_id: 181
+  referee_key: shark+description
+  referee_id: 182
+  ref_type: I
+  is_present:
+card_references_438:
+  id: 473
+  referer_id: 186
+  referee_key: help_desk+description
+  referee_id: 187
+  ref_type: I
+  is_present:
+card_references_439:
+  id: 482
+  referer_id: 525
+  referee_key: "*all+*style"
+  referee_id: 431
+  ref_type: L
+  is_present:
+card_references_440:
+  id: 483
+  referer_id: 525
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_441:
+  id: 484
+  referer_id: 526
+  referee_key: "*admin_info"
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_442:
+  id: 485
+  referer_id: 526
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_443:
+  id: 486
+  referer_id: 526
+  referee_key: "*home"
+  referee_id: 521
+  ref_type: I
+  is_present:
+card_references_444:
+  id: 487
+  referer_id: 526
+  referee_key: "*logo"
+  referee_id: 279
+  ref_type: I
+  is_present:
+card_references_445:
+  id: 488
+  referer_id: 526
+  referee_key: "*main_menu"
+  referee_id: 498
+  ref_type: I
+  is_present:
+card_references_446:
+  id: 489
+  referer_id: 526
+  referee_key: "*header"
+  referee_id: 501
+  ref_type: I
+  is_present:
+card_references_447:
+  id: 490
+  referer_id: 526
+  referee_key: "*footer"
+  referee_id: 504
+  ref_type: I
+  is_present:
+card_references_448:
+  id: 491
+  referer_id: 526
+  referee_key: "*recaptcha_setting"
+  referee_id: 514
+  ref_type: I
+  is_present:
+card_references_449:
+  id: 492
+  referer_id: 526
+  referee_key: "*google_analytic_key"
+  referee_id: 644
+  ref_type: I
+  is_present:
+card_references_450:
+  id: 493
+  referer_id: 526
+  referee_key: "*tiny_mce"
+  referee_id: 517
+  ref_type: I
+  is_present:
+card_references_451:
+  id: 494
+  referer_id: 526
+  referee_key: "*ace"
+  referee_id: 307
+  ref_type: I
+  is_present:
+card_references_452:
+  id: 495
+  referer_id: 527
+  referee_key: cardtype+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_453:
+  id: 496
+  referer_id: 527
+  referee_key: cardtype+*type
+  referee_id: 29
+  ref_type: P
+  is_present:
+card_references_454:
+  id: 497
+  referer_id: 527
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_455:
+  id: 498
+  referer_id: 527
+  referee_key: "*all"
+  referee_id: 7
+  ref_type: I
+  is_present:
+card_references_456:
+  id: 499
+  referer_id: 527
+  referee_key: "*getting_started"
+  referee_id: 531
+  ref_type: I
+  is_present:
+card_references_457:
+  id: 500
+  referer_id: 528
+  referee_key: "*account"
+  referee_id: 192
+  ref_type: I
+  is_present:
+card_references_458:
+  id: 501
+  referer_id: 528
+  referee_key: "*help"
+  referee_id: 469
+  ref_type: I
+  is_present:
+card_references_459:
+  id: 502
+  referer_id: 528
+  referee_key: "*add_help"
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_460:
+  id: 503
+  referer_id: 528
+  referee_key: email_template
+  referee_id: 112
+  ref_type: L
+  is_present:
+card_references_461:
+  id: 504
+  referer_id: 528
+  referee_key: email_template+*type+by_update
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_462:
+  id: 505
+  referer_id: 528
+  referee_key: email_template+*type
+  referee_id: 114
+  ref_type: P
+  is_present:
+card_references_463:
+  id: 506
+  referer_id: 528
+  referee_key: by_update
+  referee_id: 75
+  ref_type: P
+  is_present:
+card_references_464:
+  id: 507
+  referer_id: 529
+  referee_key: decko_bot+*created
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_465:
+  id: 508
+  referer_id: 529
+  referee_key: decko_bot
+  referee_id: 1
+  ref_type: P
+  is_present:
+card_references_466:
+  id: 509
+  referer_id: 529
+  referee_key: "*created"
+  referee_id: 78
+  ref_type: P
+  is_present:
+card_references_467:
+  id: 510
+  referer_id: 529
+  referee_key: decko_bot+*edited
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_468:
+  id: 511
+  referer_id: 529
+  referee_key: "*edited"
+  referee_id: 82
+  ref_type: P
+  is_present:
+card_references_469:
+  id: 512
+  referer_id: 530
+  referee_key: decko_bot+*created
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_470:
+  id: 513
+  referer_id: 530
+  referee_key: decko_bot
+  referee_id: 1
+  ref_type: P
+  is_present:
+card_references_471:
+  id: 514
+  referer_id: 530
+  referee_key: "*created"
+  referee_id: 78
+  ref_type: P
+  is_present:
+card_references_472:
+  id: 515
+  referer_id: 530
+  referee_key: decko_bot+*edited
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_473:
+  id: 516
+  referer_id: 530
+  referee_key: "*edited"
+  referee_id: 82
+  ref_type: P
+  is_present:
+card_references_474:
+  id: 517
+  referer_id: 531
+  referee_key: "*getting_started+shark"
+  referee_id: 532
+  ref_type: I
+  is_present:
+card_references_475:
+  id: 518
+  referer_id: 535
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_476:
+  id: 525
+  referer_id: 541
+  referee_key: mod_format+*script+group_jquery
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_477:
+  id: 526
+  referer_id: 541
+  referee_key: group_jquery
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_478:
+  id: 527
+  referer_id: 541
+  referee_key: mod_format+*script+group_decko
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_479:
+  id: 528
+  referer_id: 541
+  referee_key: group_decko
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_480:
+  id: 529
+  referer_id: 543
+  referee_key: mod_format+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_481:
+  id: 530
+  referer_id: 543
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_482:
+  id: 531
+  referer_id: 545
+  referee_key: mod_list+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_483:
+  id: 532
+  referer_id: 545
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_484:
+  id: 533
+  referer_id: 547
+  referee_key: mod_list+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_485:
+  id: 534
+  referer_id: 547
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_486:
+  id: 535
+  referer_id: 549
+  referee_key: mod_search+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_487:
+  id: 536
+  referer_id: 549
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_488:
+  id: 537
+  referer_id: 551
+  referee_key: mod_search+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_489:
+  id: 538
+  referer_id: 551
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_490:
+  id: 539
+  referer_id: 554
+  referee_key: mod_rule+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_491:
+  id: 540
+  referer_id: 554
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_492:
+  id: 541
+  referer_id: 556
+  referee_key: mod_rule+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_493:
+  id: 542
+  referer_id: 556
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_494:
+  id: 543
+  referer_id: 559
+  referee_key: mod_permission+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_495:
+  id: 544
+  referer_id: 559
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_496:
+  id: 545
+  referer_id: 561
+  referee_key: mod_account+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_497:
+  id: 546
+  referer_id: 561
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_498:
+  id: 547
+  referer_id: 563
+  referee_key: mod_edit+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_499:
+  id: 548
+  referer_id: 563
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_500:
+  id: 549
+  referer_id: 565
+  referee_key: mod_edit+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_501:
+  id: 550
+  referer_id: 565
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_502:
+  id: 551
+  referer_id: 567
+  referee_key: mod_history+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_503:
+  id: 552
+  referer_id: 567
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_504:
+  id: 553
+  referer_id: 569
+  referee_key: mod_carrierwave+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_505:
+  id: 554
+  referer_id: 569
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_506:
+  id: 555
+  referer_id: 571
+  referee_key: mod_carrierwave+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_507:
+  id: 556
+  referer_id: 571
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_508:
+  id: 557
+  referer_id: 576
+  referee_key: mod_ace_editor+*script+group_ace_config
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_509:
+  id: 558
+  referer_id: 576
+  referee_key: group_ace_config
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_510:
+  id: 559
+  referer_id: 579
+  referee_key: mod_api_key+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_511:
+  id: 560
+  referer_id: 579
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_512:
+  id: 561
+  referer_id: 581
+  referee_key: mod_style+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_513:
+  id: 562
+  referer_id: 581
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_514:
+  id: 563
+  referer_id: 583
+  referee_key: mod_bar_and_box+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_515:
+  id: 564
+  referer_id: 583
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_516:
+  id: 565
+  referer_id: 585
+  referee_key: mod_bar_and_box+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_517:
+  id: 566
+  referer_id: 585
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_518:
+  id: 567
+  referer_id: 587
+  referee_key: mod_bootstrap+*script+group_bootstrap
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_519:
+  id: 568
+  referer_id: 587
+  referee_key: group_bootstrap
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_520:
+  id: 569
+  referer_id: 589
+  referee_key: mod_bootstrap+*style+group_bootstrap_decko
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_521:
+  id: 570
+  referer_id: 589
+  referee_key: group_bootstrap_decko
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_522:
+  id: 571
+  referer_id: 589
+  referee_key: mod_bootstrap+*style+group_library
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_523:
+  id: 572
+  referer_id: 589
+  referee_key: group_library
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_524:
+  id: 573
+  referer_id: 589
+  referee_key: mod_bootstrap+*style+group_select2
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_525:
+  id: 574
+  referer_id: 589
+  referee_key: group_select2
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_526:
+  id: 575
+  referer_id: 591
+  referee_key: mod_comment+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_527:
+  id: 576
+  referer_id: 591
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_528:
+  id: 577
+  referer_id: 593
+  referee_key: mod_date+*script+group_datepicker
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_529:
+  id: 578
+  referer_id: 593
+  referee_key: group_datepicker
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_530:
+  id: 579
+  referer_id: 595
+  referee_key: mod_date+*style+group_datepicker
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_531:
+  id: 580
+  referer_id: 595
+  referee_key: group_datepicker
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_532:
+  id: 581
+  referer_id: 598
+  referee_key: mod_follow+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_533:
+  id: 582
+  referer_id: 598
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_534:
+  id: 583
+  referer_id: 600
+  referee_key: mod_follow+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_535:
+  id: 584
+  referer_id: 600
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_536:
+  id: 585
+  referer_id: 603
+  referee_key: mod_help+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_537:
+  id: 586
+  referer_id: 603
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_538:
+  id: 587
+  referer_id: 606
+  referee_key: mod_tab+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_539:
+  id: 588
+  referer_id: 606
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_540:
+  id: 589
+  referer_id: 609
+  referee_key: mod_layout+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_541:
+  id: 590
+  referer_id: 609
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_542:
+  id: 591
+  referer_id: 611
+  referee_key: mod_layout+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_543:
+  id: 592
+  referer_id: 611
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_544:
+  id: 593
+  referer_id: 613
+  referee_key: mod_recaptcha+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_545:
+  id: 594
+  referer_id: 613
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_546:
+  id: 595
+  referer_id: 616
+  referee_key: mod_tinymce_editor+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_547:
+  id: 596
+  referer_id: 616
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_548:
+  id: 597
+  referer_id: 618
+  referee_key: mod_tinymce_editor+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_549:
+  id: 598
+  referer_id: 618
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_550:
+  id: 640
+  referer_id: 622
+  referee_key: "*created+*right"
+  referee_id: 79
+  ref_type: I
+  is_present:
+card_references_551:
+  id: 649
+  referer_id: 623
+  referee_key: "*edited+*right"
+  referee_id: 83
+  ref_type: I
+  is_present:
+card_references_552:
+  id: 650
+  referer_id: 624
+  referee_key: "*editor+*right"
+  referee_id: 86
+  ref_type: I
+  is_present:
+card_references_553:
+  id: 651
+  referer_id: 625
+  referee_key: "*child+*right"
+  referee_id: 89
+  ref_type: I
+  is_present:
+card_references_554:
+  id: 652
+  referer_id: 626
+  referee_key: "*mate+*right"
+  referee_id: 92
+  ref_type: I
+  is_present:
+card_references_555:
+  id: 653
+  referer_id: 627
+  referee_key: "*nested_by+*right"
+  referee_id: 95
+  ref_type: I
+  is_present:
+card_references_556:
+  id: 654
+  referer_id: 628
+  referee_key: "*linked_to_by+*right"
+  referee_id: 98
+  ref_type: I
+  is_present:
+card_references_557:
+  id: 655
+  referer_id: 629
+  referee_key: "*nest+*right"
+  referee_id: 101
+  ref_type: I
+  is_present:
+card_references_558:
+  id: 656
+  referer_id: 630
+  referee_key: "*link_to+*right"
+  referee_id: 104
+  ref_type: I
+  is_present:
+card_references_559:
+  id: 657
+  referer_id: 631
+  referee_key: "*referred_to_by+*right"
+  referee_id: 107
+  ref_type: I
+  is_present:
+card_references_560:
+  id: 658
+  referer_id: 632
+  referee_key: "*refer_to+*right"
+  referee_id: 110
+  ref_type: I
+  is_present:
+card_references_561:
+  id: 659
+  referer_id: 633
+  referee_key: administrator
+  referee_id: 174
+  ref_type: L
+  is_present:
+card_references_562:
+  id: 669
+  referer_id: 238
+  referee_key: system
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_563:
+  id: 670
+  referer_id: 634
+  referee_key: checkbox
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_564:
+  id: 680
+  referer_id: 635
+  referee_key: radio
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_565:
+  id: 681
+  referer_id: 636
+  referee_key: alias+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_566:
+  id: 682
+  referer_id: 636
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_567:
+  id: 683
+  referer_id: 636
+  referee_key: alias+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_568:
+  id: 684
+  referer_id: 636
+  referee_key: alias+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_569:
+  id: 685
+  referer_id: 636
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_570:
+  id: 686
+  referer_id: 636
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_571:
+  id: 697
+  referer_id: 501
+  referee_key: "*home"
+  referee_id: 521
+  ref_type: I
+  is_present:
+card_references_572:
+  id: 698
+  referer_id: 501
+  referee_key: "*logo"
+  referee_id: 279
+  ref_type: I
+  is_present:
+card_references_573:
+  id: 699
+  referer_id: 501
+  referee_key: "*title"
+  referee_id: 50
+  ref_type: I
+  is_present:
+card_references_574:
+  id: 700
+  referer_id: 501
+  referee_key: "*main_menu"
+  referee_id: 498
+  ref_type: I
+  is_present:
+card_references_575:
+  id: 701
+  referer_id: 501
+  referee_key: "*search"
+  referee_id: 68
+  ref_type: I
+  is_present:
+card_references_576:
+  id: 702
+  referer_id: 501
+  referee_key: "*account_link"
+  referee_id: 265
+  ref_type: I
+  is_present:
+card_references_577:
+  id: 703
+  referer_id: 498
+  referee_key: "*getting_started_link"
+  referee_id: 525
+  ref_type: L
+  is_present:
+card_references_578:
+  id: 704
+  referer_id: 498
+  referee_key: "*recent"
+  referee_id: 69
+  ref_type: L
+  is_present:
+card_references_579:
+  id: 705
+  referer_id: 647
+  referee_key: "*solid_cache+*right"
+  referee_id: 646
+  ref_type: L
+  is_present:
+card_references_580:
+  id: 706
+  referer_id: 647
+  referee_key: "*solid_cache"
+  referee_id: 645
+  ref_type: P
+  is_present:
+card_references_581:
+  id: 707
+  referer_id: 647
+  referee_key: "*right"
+  referee_id: 26
+  ref_type: P
+  is_present:
+card_references_582:
+  id: 717
+  referer_id: 648
+  referee_key: post+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_583:
+  id: 718
+  referer_id: 648
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_584:
+  id: 719
+  referer_id: 648
+  referee_key: post+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_585:
+  id: 720
+  referer_id: 648
+  referee_key: post+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_586:
+  id: 721
+  referer_id: 648
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_587:
+  id: 722
+  referer_id: 648
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_588:
+  id: 723
+  referer_id: 650
+  referee_key: guide+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_589:
+  id: 724
+  referer_id: 650
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_590:
+  id: 725
+  referer_id: 650
+  referee_key: guide+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_591:
+  id: 726
+  referer_id: 650
+  referee_key: guide+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_592:
+  id: 727
+  referer_id: 650
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_593:
+  id: 728
+  referer_id: 650
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_594:
+  id: 729
+  referer_id: 651
+  referee_key: reference+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_595:
+  id: 730
+  referer_id: 651
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_596:
+  id: 731
+  referer_id: 651
+  referee_key: reference+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_597:
+  id: 732
+  referer_id: 651
+  referee_key: reference+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_598:
+  id: 733
+  referer_id: 651
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_599:
+  id: 734
+  referer_id: 651
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_600:
+  id: 735
+  referer_id: 652
+  referee_key: conversation+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_601:
+  id: 736
+  referer_id: 652
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_602:
+  id: 737
+  referer_id: 652
+  referee_key: conversation+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_603:
+  id: 738
+  referer_id: 652
+  referee_key: conversation+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_604:
+  id: 739
+  referer_id: 652
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_605:
+  id: 740
+  referer_id: 652
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_606:
+  id: 741
+  referer_id: 655
+  referee_key: topic+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_607:
+  id: 742
+  referer_id: 655
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_608:
+  id: 743
+  referer_id: 655
+  referee_key: topic+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_609:
+  id: 744
+  referer_id: 655
+  referee_key: topic+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_610:
+  id: 745
+  referer_id: 655
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_611:
+  id: 746
+  referer_id: 655
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_612:
+  id: 747
+  referer_id: 659
+  referee_key: badge+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_613:
+  id: 748
+  referer_id: 659
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_614:
+  id: 749
+  referer_id: 659
+  referee_key: badge+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_615:
+  id: 750
+  referer_id: 659
+  referee_key: badge+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_616:
+  id: 751
+  referer_id: 659
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_617:
+  id: 752
+  referer_id: 659
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_618:
+  id: 753
+  referer_id: 695
+  referee_key: metric_title+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_619:
+  id: 754
+  referer_id: 695
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_620:
+  id: 755
+  referer_id: 695
+  referee_key: metric_title+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_621:
+  id: 756
+  referer_id: 695
+  referee_key: metric_title+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_622:
+  id: 757
+  referer_id: 695
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_623:
+  id: 758
+  referer_id: 695
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_624:
+  id: 759
+  referer_id: 696
+  referee_key: answer+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_625:
+  id: 760
+  referer_id: 696
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_626:
+  id: 761
+  referer_id: 696
+  referee_key: answer+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_627:
+  id: 762
+  referer_id: 696
+  referee_key: answer+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_628:
+  id: 763
+  referer_id: 696
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_629:
+  id: 764
+  referer_id: 696
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_630:
+  id: 765
+  referer_id: 697
+  referee_key: metric_type+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_631:
+  id: 766
+  referer_id: 697
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_632:
+  id: 767
+  referer_id: 697
+  referee_key: metric_type+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_633:
+  id: 768
+  referer_id: 697
+  referee_key: metric_type+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_634:
+  id: 769
+  referer_id: 697
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_635:
+  id: 770
+  referer_id: 697
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_636:
+  id: 771
+  referer_id: 698
+  referee_key: relationship_answer+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_637:
+  id: 772
+  referer_id: 698
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_638:
+  id: 773
+  referer_id: 698
+  referee_key: relationship_answer+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_639:
+  id: 774
+  referer_id: 698
+  referee_key: relationship_answer+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_640:
+  id: 775
+  referer_id: 698
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_641:
+  id: 776
+  referer_id: 698
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_642:
+  id: 777
+  referer_id: 699
+  referee_key: year+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_643:
+  id: 778
+  referer_id: 699
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_644:
+  id: 779
+  referer_id: 699
+  referee_key: year+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_645:
+  id: 780
+  referer_id: 699
+  referee_key: year+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_646:
+  id: 781
+  referer_id: 699
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_647:
+  id: 782
+  referer_id: 699
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_648:
+  id: 783
+  referer_id: 700
+  referee_key: company+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_649:
+  id: 784
+  referer_id: 700
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_650:
+  id: 785
+  referer_id: 700
+  referee_key: company+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_651:
+  id: 786
+  referer_id: 700
+  referee_key: company+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_652:
+  id: 787
+  referer_id: 700
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_653:
+  id: 788
+  referer_id: 700
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_654:
+  id: 789
+  referer_id: 701
+  referee_key: record+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_655:
+  id: 790
+  referer_id: 701
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_656:
+  id: 791
+  referer_id: 701
+  referee_key: record+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_657:
+  id: 792
+  referer_id: 701
+  referee_key: record+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_658:
+  id: 793
+  referer_id: 701
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_659:
+  id: 794
+  referer_id: 701
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_660:
+  id: 795
+  referer_id: 702
+  referee_key: metric+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_661:
+  id: 796
+  referer_id: 702
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_662:
+  id: 797
+  referer_id: 702
+  referee_key: metric+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_663:
+  id: 798
+  referer_id: 702
+  referee_key: metric+*type
+  referee_id: 2473
+  ref_type: P
+  is_present:
+card_references_664:
+  id: 799
+  referer_id: 702
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_665:
+  id: 800
+  referer_id: 702
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_666:
+  id: 801
+  referer_id: 709
+  referee_key: company_group+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_667:
+  id: 802
+  referer_id: 709
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_668:
+  id: 803
+  referer_id: 709
+  referee_key: company_group+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_669:
+  id: 804
+  referer_id: 709
+  referee_key: company_group+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_670:
+  id: 805
+  referer_id: 709
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_671:
+  id: 806
+  referer_id: 709
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_672:
+  id: 807
+  referer_id: 710
+  referee_key: research_policy+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_673:
+  id: 808
+  referer_id: 710
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_674:
+  id: 809
+  referer_id: 710
+  referee_key: research_policy+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_675:
+  id: 810
+  referer_id: 710
+  referee_key: research_policy+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_676:
+  id: 811
+  referer_id: 710
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_677:
+  id: 812
+  referer_id: 710
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_678:
+  id: 813
+  referer_id: 711
+  referee_key: report_type+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_679:
+  id: 814
+  referer_id: 711
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_680:
+  id: 815
+  referer_id: 711
+  referee_key: report_type+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_681:
+  id: 816
+  referer_id: 711
+  referee_key: report_type+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_682:
+  id: 817
+  referer_id: 711
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_683:
+  id: 818
+  referer_id: 711
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_684:
+  id: 819
+  referer_id: 716
+  referee_key: region+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_685:
+  id: 820
+  referer_id: 716
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_686:
+  id: 821
+  referer_id: 716
+  referee_key: region+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_687:
+  id: 822
+  referer_id: 716
+  referee_key: region+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_688:
+  id: 823
+  referer_id: 716
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_689:
+  id: 824
+  referer_id: 716
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_690:
+  id: 825
+  referer_id: 724
+  referee_key: united_kingdom
+  referee_id: 720
+  ref_type: L
+  is_present:
+card_references_691:
+  id: 826
+  referer_id: 729
+  referee_key: western_sahara
+  referee_id: 725
+  ref_type: L
+  is_present:
+card_references_692:
+  id: 827
+  referer_id: 734
+  referee_key: zambium
+  referee_id: 730
+  ref_type: L
+  is_present:
+card_references_693:
+  id: 828
+  referer_id: 739
+  referee_key: zimbabwe
+  referee_id: 735
+  ref_type: L
+  is_present:
+card_references_694:
+  id: 829
+  referer_id: 744
+  referee_key: yeman
+  referee_id: 740
+  ref_type: L
+  is_present:
+card_references_695:
+  id: 830
+  referer_id: 749
+  referee_key: walli_and_futuna
+  referee_id: 745
+  ref_type: L
+  is_present:
+card_references_696:
+  id: 831
+  referer_id: 754
+  referee_key: uganda
+  referee_id: 750
+  ref_type: L
+  is_present:
+card_references_697:
+  id: 832
+  referer_id: 759
+  referee_key: ukraine
+  referee_id: 755
+  ref_type: L
+  is_present:
+card_references_698:
+  id: 833
+  referer_id: 764
+  referee_key: turkmenistan
+  referee_id: 760
+  ref_type: L
+  is_present:
+card_references_699:
+  id: 834
+  referer_id: 769
+  referee_key: tunisium
+  referee_id: 765
+  ref_type: L
+  is_present:
+card_references_700:
+  id: 835
+  referer_id: 774
+  referee_key: tonga
+  referee_id: 770
+  ref_type: L
+  is_present:
+card_references_701:
+  id: 836
+  referer_id: 779
+  referee_key: thailand
+  referee_id: 775
+  ref_type: L
+  is_present:
+card_references_702:
+  id: 837
+  referer_id: 784
+  referee_key: turk_and_caico_island
+  referee_id: 780
+  ref_type: L
+  is_present:
+card_references_703:
+  id: 838
+  referer_id: 789
+  referee_key: togo
+  referee_id: 785
+  ref_type: L
+  is_present:
+card_references_704:
+  id: 839
+  referer_id: 794
+  referee_key: united_state_minor_outlying_island
+  referee_id: 790
+  ref_type: L
+  is_present:
+card_references_705:
+  id: 840
+  referer_id: 799
+  referee_key: trinidad_and_tobago
+  referee_id: 795
+  ref_type: L
+  is_present:
+card_references_706:
+  id: 841
+  referer_id: 804
+  referee_key: tuvalu
+  referee_id: 800
+  ref_type: L
+  is_present:
+card_references_707:
+  id: 842
+  referer_id: 809
+  referee_key: turkey
+  referee_id: 805
+  ref_type: L
+  is_present:
+card_references_708:
+  id: 843
+  referer_id: 814
+  referee_key: tokelau
+  referee_id: 810
+  ref_type: L
+  is_present:
+card_references_709:
+  id: 844
+  referer_id: 819
+  referee_key: timor_leste
+  referee_id: 815
+  ref_type: L
+  is_present:
+card_references_710:
+  id: 845
+  referer_id: 824
+  referee_key: uzbekistan
+  referee_id: 820
+  ref_type: L
+  is_present:
+card_references_711:
+  id: 846
+  referer_id: 829
+  referee_key: venezuela
+  referee_id: 825
+  ref_type: L
+  is_present:
+card_references_712:
+  id: 847
+  referer_id: 834
+  referee_key: vanuatu
+  referee_id: 830
+  ref_type: L
+  is_present:
+card_references_713:
+  id: 848
+  referer_id: 839
+  referee_key: uruguay
+  referee_id: 835
+  ref_type: L
+  is_present:
+card_references_714:
+  id: 849
+  referer_id: 844
+  referee_key: south_georgium_and_the_south_sandwich_island
+  referee_id: 840
+  ref_type: L
+  is_present:
+card_references_715:
+  id: 850
+  referer_id: 849
+  referee_key: spain
+  referee_id: 845
+  ref_type: L
+  is_present:
+card_references_716:
+  id: 851
+  referer_id: 854
+  referee_key: switzerland
+  referee_id: 850
+  ref_type: L
+  is_present:
+card_references_717:
+  id: 852
+  referer_id: 859
+  referee_key: sierra_leone
+  referee_id: 855
+  ref_type: L
+  is_present:
+card_references_718:
+  id: 853
+  referer_id: 864
+  referee_key: svalbard_and_jan_mayen
+  referee_id: 860
+  ref_type: L
+  is_present:
+card_references_719:
+  id: 854
+  referer_id: 869
+  referee_key: singapore
+  referee_id: 865
+  ref_type: L
+  is_present:
+card_references_720:
+  id: 855
+  referer_id: 874
+  referee_key: sweden
+  referee_id: 870
+  ref_type: L
+  is_present:
+card_references_721:
+  id: 856
+  referer_id: 879
+  referee_key: sudan
+  referee_id: 875
+  ref_type: L
+  is_present:
+card_references_722:
+  id: 857
+  referer_id: 884
+  referee_key: sri_lanka
+  referee_id: 880
+  ref_type: L
+  is_present:
+card_references_723:
+  id: 858
+  referer_id: 889
+  referee_key: tajikistan
+  referee_id: 885
+  ref_type: L
+  is_present:
+card_references_724:
+  id: 859
+  referer_id: 894
+  referee_key: sint_maarten_dutch_part
+  referee_id: 890
+  ref_type: L
+  is_present:
+card_references_725:
+  id: 860
+  referer_id: 899
+  referee_key: syrian_arab_republic
+  referee_id: 895
+  ref_type: L
+  is_present:
+card_references_726:
+  id: 861
+  referer_id: 904
+  referee_key: swaziland
+  referee_id: 900
+  ref_type: L
+  is_present:
+card_references_727:
+  id: 862
+  referer_id: 909
+  referee_key: suriname
+  referee_id: 905
+  ref_type: L
+  is_present:
+card_references_728:
+  id: 863
+  referer_id: 914
+  referee_key: south_sudan
+  referee_id: 910
+  ref_type: L
+  is_present:
+card_references_729:
+  id: 864
+  referer_id: 919
+  referee_key: u_s_virgin_island
+  referee_id: 915
+  ref_type: L
+  is_present:
+card_references_730:
+  id: 865
+  referer_id: 924
+  referee_key: tanzanium
+  referee_id: 920
+  ref_type: L
+  is_present:
+card_references_731:
+  id: 866
+  referer_id: 929
+  referee_key: taiwan_province_of_china
+  referee_id: 925
+  ref_type: L
+  is_present:
+card_references_732:
+  id: 867
+  referer_id: 934
+  referee_key: saint_pierre_and_miquelon
+  referee_id: 930
+  ref_type: L
+  is_present:
+card_references_733:
+  id: 868
+  referer_id: 939
+  referee_key: saint_martin_french_part
+  referee_id: 935
+  ref_type: L
+  is_present:
+card_references_734:
+  id: 869
+  referer_id: 944
+  referee_key: saint_lucium
+  referee_id: 940
+  ref_type: L
+  is_present:
+card_references_735:
+  id: 870
+  referer_id: 949
+  referee_key: saint_kitt_and_nevi
+  referee_id: 945
+  ref_type: L
+  is_present:
+card_references_736:
+  id: 871
+  referer_id: 954
+  referee_key: slovenium
+  referee_id: 950
+  ref_type: L
+  is_present:
+card_references_737:
+  id: 872
+  referer_id: 959
+  referee_key: saint_helena_ascension_and_tristan_da_cunha
+  referee_id: 955
+  ref_type: L
+  is_present:
+card_references_738:
+  id: 873
+  referer_id: 964
+  referee_key: solomon_island
+  referee_id: 960
+  ref_type: L
+  is_present:
+card_references_739:
+  id: 874
+  referer_id: 969
+  referee_key: seychelle
+  referee_id: 965
+  ref_type: L
+  is_present:
+card_references_740:
+  id: 875
+  referer_id: 974
+  referee_key: saudi_arabium
+  referee_id: 970
+  ref_type: L
+  is_present:
+card_references_741:
+  id: 876
+  referer_id: 979
+  referee_key: serbium
+  referee_id: 975
+  ref_type: L
+  is_present:
+card_references_742:
+  id: 877
+  referer_id: 984
+  referee_key: somalium
+  referee_id: 980
+  ref_type: L
+  is_present:
+card_references_743:
+  id: 878
+  referer_id: 989
+  referee_key: sao_tome_and_principe
+  referee_id: 985
+  ref_type: L
+  is_present:
+card_references_744:
+  id: 879
+  referer_id: 994
+  referee_key: san_marino
+  referee_id: 990
+  ref_type: L
+  is_present:
+card_references_745:
+  id: 880
+  referer_id: 999
+  referee_key: senegal
+  referee_id: 995
+  ref_type: L
+  is_present:
+card_references_746:
+  id: 881
+  referer_id: 1004
+  referee_key: slovakium
+  referee_id: 1000
+  ref_type: L
+  is_present:
+card_references_747:
+  id: 882
+  referer_id: 1009
+  referee_key: south_africa
+  referee_id: 1005
+  ref_type: L
+  is_present:
+card_references_748:
+  id: 883
+  referer_id: 1014
+  referee_key: saint_vincent_and_the_grenadine
+  referee_id: 1010
+  ref_type: L
+  is_present:
+card_references_749:
+  id: 884
+  referer_id: 1019
+  referee_key: samoa
+  referee_id: 1015
+  ref_type: L
+  is_present:
+card_references_750:
+  id: 885
+  referer_id: 1024
+  referee_key: panama
+  referee_id: 1020
+  ref_type: L
+  is_present:
+card_references_751:
+  id: 886
+  referer_id: 1029
+  referee_key: saint_barthélemy
+  referee_id: 1025
+  ref_type: L
+  is_present:
+card_references_752:
+  id: 887
+  referer_id: 1034
+  referee_key: portugal
+  referee_id: 1030
+  ref_type: L
+  is_present:
+card_references_753:
+  id: 888
+  referer_id: 1039
+  referee_key: poland
+  referee_id: 1035
+  ref_type: L
+  is_present:
+card_references_754:
+  id: 889
+  referer_id: 1044
+  referee_key: pakistan
+  referee_id: 1040
+  ref_type: L
+  is_present:
+card_references_755:
+  id: 890
+  referer_id: 1049
+  referee_key: papua_new_guinea
+  referee_id: 1045
+  ref_type: L
+  is_present:
+card_references_756:
+  id: 891
+  referer_id: 1054
+  referee_key: peru
+  referee_id: 1050
+  ref_type: L
+  is_present:
+card_references_757:
+  id: 892
+  referer_id: 1059
+  referee_key: oman
+  referee_id: 1055
+  ref_type: L
+  is_present:
+card_references_758:
+  id: 893
+  referer_id: 1064
+  referee_key: palau
+  referee_id: 1060
+  ref_type: L
+  is_present:
+card_references_759:
+  id: 894
+  referer_id: 1069
+  referee_key: paraguay
+  referee_id: 1065
+  ref_type: L
+  is_present:
+card_references_760:
+  id: 895
+  referer_id: 1074
+  referee_key: qatar
+  referee_id: 1070
+  ref_type: L
+  is_present:
+card_references_761:
+  id: 896
+  referer_id: 1079
+  referee_key: puerto_rico
+  referee_id: 1075
+  ref_type: L
+  is_present:
+card_references_762:
+  id: 897
+  referer_id: 1084
+  referee_key: palestinian_territory
+  referee_id: 1080
+  ref_type: L
+  is_present:
+card_references_763:
+  id: 898
+  referer_id: 1089
+  referee_key: rwanda
+  referee_id: 1085
+  ref_type: L
+  is_present:
+card_references_764:
+  id: 899
+  referer_id: 1094
+  referee_key: russium
+  referee_id: 1090
+  ref_type: L
+  is_present:
+card_references_765:
+  id: 900
+  referer_id: 1099
+  referee_key: réunion
+  referee_id: 1095
+  ref_type: L
+  is_present:
+card_references_766:
+  id: 901
+  referer_id: 1104
+  referee_key: romanium
+  referee_id: 1100
+  ref_type: L
+  is_present:
+card_references_767:
+  id: 902
+  referer_id: 1109
+  referee_key: norfolk_island
+  referee_id: 1105
+  ref_type: L
+  is_present:
+card_references_768:
+  id: 903
+  referer_id: 1114
+  referee_key: mongolium
+  referee_id: 1110
+  ref_type: L
+  is_present:
+card_references_769:
+  id: 904
+  referer_id: 1119
+  referee_key: northern_mariana_island
+  referee_id: 1115
+  ref_type: L
+  is_present:
+card_references_770:
+  id: 905
+  referer_id: 1124
+  referee_key: montenegro
+  referee_id: 1120
+  ref_type: L
+  is_present:
+card_references_771:
+  id: 906
+  referer_id: 1129
+  referee_key: netherland
+  referee_id: 1125
+  ref_type: L
+  is_present:
+card_references_772:
+  id: 907
+  referer_id: 1134
+  referee_key: norway
+  referee_id: 1130
+  ref_type: L
+  is_present:
+card_references_773:
+  id: 908
+  referer_id: 1139
+  referee_key: nigerium
+  referee_id: 1135
+  ref_type: L
+  is_present:
+card_references_774:
+  id: 909
+  referer_id: 1144
+  referee_key: namibium
+  referee_id: 1140
+  ref_type: L
+  is_present:
+card_references_775:
+  id: 910
+  referer_id: 1149
+  referee_key: new_caledonium
+  referee_id: 1145
+  ref_type: L
+  is_present:
+card_references_776:
+  id: 911
+  referer_id: 1154
+  referee_key: niger
+  referee_id: 1150
+  ref_type: L
+  is_present:
+card_references_777:
+  id: 912
+  referer_id: 1159
+  referee_key: new_zealand
+  referee_id: 1155
+  ref_type: L
+  is_present:
+card_references_778:
+  id: 913
+  referer_id: 1164
+  referee_key: nauru
+  referee_id: 1160
+  ref_type: L
+  is_present:
+card_references_779:
+  id: 914
+  referer_id: 1169
+  referee_key: niue
+  referee_id: 1165
+  ref_type: L
+  is_present:
+card_references_780:
+  id: 915
+  referer_id: 1174
+  referee_key: nepal
+  referee_id: 1170
+  ref_type: L
+  is_present:
+card_references_781:
+  id: 916
+  referer_id: 1179
+  referee_key: nicaragua
+  referee_id: 1175
+  ref_type: L
+  is_present:
+card_references_782:
+  id: 917
+  referer_id: 1184
+  referee_key: pitcairn
+  referee_id: 1180
+  ref_type: L
+  is_present:
+card_references_783:
+  id: 918
+  referer_id: 1189
+  referee_key: philippine
+  referee_id: 1185
+  ref_type: L
+  is_present:
+card_references_784:
+  id: 919
+  referer_id: 1194
+  referee_key: monaco
+  referee_id: 1190
+  ref_type: L
+  is_present:
+card_references_785:
+  id: 920
+  referer_id: 1199
+  referee_key: moldova
+  referee_id: 1195
+  ref_type: L
+  is_present:
+card_references_786:
+  id: 921
+  referer_id: 1204
+  referee_key: morocco
+  referee_id: 1200
+  ref_type: L
+  is_present:
+card_references_787:
+  id: 922
+  referer_id: 1209
+  referee_key: luxembourg
+  referee_id: 1205
+  ref_type: L
+  is_present:
+card_references_788:
+  id: 923
+  referer_id: 1214
+  referee_key: micronesium_federated_state_of
+  referee_id: 1210
+  ref_type: L
+  is_present:
+card_references_789:
+  id: 924
+  referer_id: 1219
+  referee_key: martinique
+  referee_id: 1215
+  ref_type: L
+  is_present:
+card_references_790:
+  id: 925
+  referer_id: 1224
+  referee_key: mauritanium
+  referee_id: 1220
+  ref_type: L
+  is_present:
+card_references_791:
+  id: 926
+  referer_id: 1229
+  referee_key: montserrat
+  referee_id: 1225
+  ref_type: L
+  is_present:
+card_references_792:
+  id: 927
+  referer_id: 1234
+  referee_key: mauritiu
+  referee_id: 1230
+  ref_type: L
+  is_present:
+card_references_793:
+  id: 928
+  referer_id: 1239
+  referee_key: maldife
+  referee_id: 1235
+  ref_type: L
+  is_present:
+card_references_794:
+  id: 929
+  referer_id: 1244
+  referee_key: mali
+  referee_id: 1240
+  ref_type: L
+  is_present:
+card_references_795:
+  id: 930
+  referer_id: 1249
+  referee_key: madagascar
+  referee_id: 1245
+  ref_type: L
+  is_present:
+card_references_796:
+  id: 931
+  referer_id: 1254
+  referee_key: mexico
+  referee_id: 1250
+  ref_type: L
+  is_present:
+card_references_797:
+  id: 932
+  referer_id: 1259
+  referee_key: malawi
+  referee_id: 1255
+  ref_type: L
+  is_present:
+card_references_798:
+  id: 933
+  referer_id: 1264
+  referee_key: myanmar
+  referee_id: 1260
+  ref_type: L
+  is_present:
+card_references_799:
+  id: 934
+  referer_id: 1269
+  referee_key: macao
+  referee_id: 1265
+  ref_type: L
+  is_present:
+card_references_800:
+  id: 935
+  referer_id: 1274
+  referee_key: mayotte
+  referee_id: 1270
+  ref_type: L
+  is_present:
+card_references_801:
+  id: 936
+  referer_id: 1279
+  referee_key: mozambique
+  referee_id: 1275
+  ref_type: L
+  is_present:
+card_references_802:
+  id: 937
+  referer_id: 1284
+  referee_key: malaysium
+  referee_id: 1280
+  ref_type: L
+  is_present:
+card_references_803:
+  id: 938
+  referer_id: 1289
+  referee_key: jamaica
+  referee_id: 1285
+  ref_type: L
+  is_present:
+card_references_804:
+  id: 939
+  referer_id: 1294
+  referee_key: israel
+  referee_id: 1290
+  ref_type: L
+  is_present:
+card_references_805:
+  id: 940
+  referer_id: 1299
+  referee_key: isle_of_man
+  referee_id: 1295
+  ref_type: L
+  is_present:
+card_references_806:
+  id: 941
+  referer_id: 1304
+  referee_key: ireland
+  referee_id: 1300
+  ref_type: L
+  is_present:
+card_references_807:
+  id: 942
+  referer_id: 1309
+  referee_key: korea_democratic_person_s_republic_of
+  referee_id: 1305
+  ref_type: L
+  is_present:
+card_references_808:
+  id: 943
+  referer_id: 1314
+  referee_key: korea_republic_of
+  referee_id: 1310
+  ref_type: L
+  is_present:
+card_references_809:
+  id: 944
+  referer_id: 1319
+  referee_key: kuwait
+  referee_id: 1315
+  ref_type: L
+  is_present:
+card_references_810:
+  id: 945
+  referer_id: 1324
+  referee_key: kyrgyzstan
+  referee_id: 1320
+  ref_type: L
+  is_present:
+card_references_811:
+  id: 946
+  referer_id: 1329
+  referee_key: italy
+  referee_id: 1325
+  ref_type: L
+  is_present:
+card_references_812:
+  id: 947
+  referer_id: 1334
+  referee_key: liberium
+  referee_id: 1330
+  ref_type: L
+  is_present:
+card_references_813:
+  id: 948
+  referer_id: 1339
+  referee_key: lesotho
+  referee_id: 1335
+  ref_type: L
+  is_present:
+card_references_814:
+  id: 949
+  referer_id: 1344
+  referee_key: lithuanium
+  referee_id: 1340
+  ref_type: L
+  is_present:
+card_references_815:
+  id: 950
+  referer_id: 1349
+  referee_key: lebanon
+  referee_id: 1345
+  ref_type: L
+  is_present:
+card_references_816:
+  id: 951
+  referer_id: 1354
+  referee_key: liechtenstein
+  referee_id: 1350
+  ref_type: L
+  is_present:
+card_references_817:
+  id: 952
+  referer_id: 1359
+  referee_key: kosovo
+  referee_id: 1355
+  ref_type: L
+  is_present:
+card_references_818:
+  id: 953
+  referer_id: 1364
+  referee_key: maltum
+  referee_id: 1360
+  ref_type: L
+  is_present:
+card_references_819:
+  id: 954
+  referer_id: 1369
+  referee_key: marshall_island
+  referee_id: 1365
+  ref_type: L
+  is_present:
+card_references_820:
+  id: 955
+  referer_id: 1374
+  referee_key: latvium
+  referee_id: 1370
+  ref_type: L
+  is_present:
+card_references_821:
+  id: 956
+  referer_id: 1379
+  referee_key: libya
+  referee_id: 1375
+  ref_type: L
+  is_present:
+card_references_822:
+  id: 957
+  referer_id: 1384
+  referee_key: guam
+  referee_id: 1380
+  ref_type: L
+  is_present:
+card_references_823:
+  id: 958
+  referer_id: 1389
+  referee_key: hong_kong
+  referee_id: 1385
+  ref_type: L
+  is_present:
+card_references_824:
+  id: 959
+  referer_id: 1394
+  referee_key: guadeloupe
+  referee_id: 1390
+  ref_type: L
+  is_present:
+card_references_825:
+  id: 960
+  referer_id: 1399
+  referee_key: guernsey
+  referee_id: 1395
+  ref_type: L
+  is_present:
+card_references_826:
+  id: 961
+  referer_id: 1404
+  referee_key: indium
+  referee_id: 1400
+  ref_type: L
+  is_present:
+card_references_827:
+  id: 962
+  referer_id: 1409
+  referee_key: indonesium
+  referee_id: 1405
+  ref_type: L
+  is_present:
+card_references_828:
+  id: 963
+  referer_id: 1414
+  referee_key: hungary
+  referee_id: 1410
+  ref_type: L
+  is_present:
+card_references_829:
+  id: 964
+  referer_id: 1419
+  referee_key: hondura
+  referee_id: 1415
+  ref_type: L
+  is_present:
+card_references_830:
+  id: 965
+  referer_id: 1424
+  referee_key: guatemala
+  referee_id: 1420
+  ref_type: L
+  is_present:
+card_references_831:
+  id: 966
+  referer_id: 1429
+  referee_key: jordan
+  referee_id: 1425
+  ref_type: L
+  is_present:
+card_references_832:
+  id: 967
+  referer_id: 1434
+  referee_key: jersey
+  referee_id: 1430
+  ref_type: L
+  is_present:
+card_references_833:
+  id: 968
+  referer_id: 1439
+  referee_key: iraq
+  referee_id: 1435
+  ref_type: L
+  is_present:
+card_references_834:
+  id: 969
+  referer_id: 1444
+  referee_key: iran
+  referee_id: 1440
+  ref_type: L
+  is_present:
+card_references_835:
+  id: 970
+  referer_id: 1449
+  referee_key: iceland
+  referee_id: 1445
+  ref_type: L
+  is_present:
+card_references_836:
+  id: 971
+  referer_id: 1454
+  referee_key: holy_see_vatican_city_state
+  referee_id: 1450
+  ref_type: L
+  is_present:
+card_references_837:
+  id: 972
+  referer_id: 1459
+  referee_key: kiribati
+  referee_id: 1455
+  ref_type: L
+  is_present:
+card_references_838:
+  id: 973
+  referer_id: 1464
+  referee_key: kazakhstan
+  referee_id: 1460
+  ref_type: L
+  is_present:
+card_references_839:
+  id: 974
+  referer_id: 1469
+  referee_key: kenya
+  referee_id: 1465
+  ref_type: L
+  is_present:
+card_references_840:
+  id: 975
+  referer_id: 1474
+  referee_key: japan
+  referee_id: 1470
+  ref_type: L
+  is_present:
+card_references_841:
+  id: 976
+  referer_id: 1479
+  referee_key: french_guiana
+  referee_id: 1475
+  ref_type: L
+  is_present:
+card_references_842:
+  id: 977
+  referer_id: 1484
+  referee_key: france
+  referee_id: 1480
+  ref_type: L
+  is_present:
+card_references_843:
+  id: 978
+  referer_id: 1489
+  referee_key: gabon
+  referee_id: 1485
+  ref_type: L
+  is_present:
+card_references_844:
+  id: 979
+  referer_id: 1494
+  referee_key: germany
+  referee_id: 1490
+  ref_type: L
+  is_present:
+card_references_845:
+  id: 980
+  referer_id: 1499
+  referee_key: djibouti
+  referee_id: 1495
+  ref_type: L
+  is_present:
+card_references_846:
+  id: 981
+  referer_id: 1504
+  referee_key: guinea
+  referee_id: 1500
+  ref_type: L
+  is_present:
+card_references_847:
+  id: 982
+  referer_id: 1509
+  referee_key: ghana
+  referee_id: 1505
+  ref_type: L
+  is_present:
+card_references_848:
+  id: 983
+  referer_id: 1514
+  referee_key: grenada
+  referee_id: 1510
+  ref_type: L
+  is_present:
+card_references_849:
+  id: 984
+  referer_id: 1519
+  referee_key: georgium
+  referee_id: 1515
+  ref_type: L
+  is_present:
+card_references_850:
+  id: 985
+  referer_id: 1524
+  referee_key: guinea_bissau
+  referee_id: 1520
+  ref_type: L
+  is_present:
+card_references_851:
+  id: 986
+  referer_id: 1529
+  referee_key: guyana
+  referee_id: 1525
+  ref_type: L
+  is_present:
+card_references_852:
+  id: 987
+  referer_id: 1534
+  referee_key: gibraltar
+  referee_id: 1530
+  ref_type: L
+  is_present:
+card_references_853:
+  id: 988
+  referer_id: 1539
+  referee_key: greenland
+  referee_id: 1535
+  ref_type: L
+  is_present:
+card_references_854:
+  id: 989
+  referer_id: 1544
+  referee_key: gambium
+  referee_id: 1540
+  ref_type: L
+  is_present:
+card_references_855:
+  id: 990
+  referer_id: 1549
+  referee_key: french_southern_territory
+  referee_id: 1545
+  ref_type: L
+  is_present:
+card_references_856:
+  id: 991
+  referer_id: 1554
+  referee_key: french_polynesium
+  referee_id: 1550
+  ref_type: L
+  is_present:
+card_references_857:
+  id: 992
+  referer_id: 1559
+  referee_key: haiti
+  referee_id: 1555
+  ref_type: L
+  is_present:
+card_references_858:
+  id: 993
+  referer_id: 1564
+  referee_key: heard_island_and_mc_donald_island
+  referee_id: 1560
+  ref_type: L
+  is_present:
+card_references_859:
+  id: 994
+  referer_id: 1569
+  referee_key: greece
+  referee_id: 1565
+  ref_type: L
+  is_present:
+card_references_860:
+  id: 995
+  referer_id: 1574
+  referee_key: cook_island
+  referee_id: 1570
+  ref_type: L
+  is_present:
+card_references_861:
+  id: 996
+  referer_id: 1579
+  referee_key: congo
+  referee_id: 1575
+  ref_type: L
+  is_present:
+card_references_862:
+  id: 997
+  referer_id: 1584
+  referee_key: dominican_republic
+  referee_id: 1580
+  ref_type: L
+  is_present:
+card_references_863:
+  id: 998
+  referer_id: 1589
+  referee_key: dominica
+  referee_id: 1585
+  ref_type: L
+  is_present:
+card_references_864:
+  id: 999
+  referer_id: 1594
+  referee_key: colombium
+  referee_id: 1590
+  ref_type: L
+  is_present:
+card_references_865:
+  id: 1000
+  referer_id: 1599
+  referee_key: costum_rica
+  referee_id: 1595
+  ref_type: L
+  is_present:
+card_references_866:
+  id: 1001
+  referer_id: 1604
+  referee_key: côte_d_ivoire
+  referee_id: 1600
+  ref_type: L
+  is_present:
+card_references_867:
+  id: 1002
+  referer_id: 1609
+  referee_key: faroe_island
+  referee_id: 1605
+  ref_type: L
+  is_present:
+card_references_868:
+  id: 1003
+  referer_id: 1614
+  referee_key: ecuador
+  referee_id: 1610
+  ref_type: L
+  is_present:
+card_references_869:
+  id: 1004
+  referer_id: 1619
+  referee_key: estonium
+  referee_id: 1615
+  ref_type: L
+  is_present:
+card_references_870:
+  id: 1005
+  referer_id: 1624
+  referee_key: egypt
+  referee_id: 1620
+  ref_type: L
+  is_present:
+card_references_871:
+  id: 1006
+  referer_id: 1629
+  referee_key: eritrea
+  referee_id: 1625
+  ref_type: L
+  is_present:
+card_references_872:
+  id: 1007
+  referer_id: 1634
+  referee_key: ethiopium
+  referee_id: 1630
+  ref_type: L
+  is_present:
+card_references_873:
+  id: 1008
+  referer_id: 1639
+  referee_key: finland
+  referee_id: 1635
+  ref_type: L
+  is_present:
+card_references_874:
+  id: 1009
+  referer_id: 1644
+  referee_key: fiji
+  referee_id: 1640
+  ref_type: L
+  is_present:
+card_references_875:
+  id: 1010
+  referer_id: 1649
+  referee_key: falkland_island_malvina
+  referee_id: 1645
+  ref_type: L
+  is_present:
+card_references_876:
+  id: 1011
+  referer_id: 1654
+  referee_key: croatium
+  referee_id: 1650
+  ref_type: L
+  is_present:
+card_references_877:
+  id: 1012
+  referer_id: 1659
+  referee_key: equatorial_guinea
+  referee_id: 1655
+  ref_type: L
+  is_present:
+card_references_878:
+  id: 1013
+  referer_id: 1664
+  referee_key: el_salvador
+  referee_id: 1660
+  ref_type: L
+  is_present:
+card_references_879:
+  id: 1014
+  referer_id: 1669
+  referee_key: comoro
+  referee_id: 1665
+  ref_type: L
+  is_present:
+card_references_880:
+  id: 1015
+  referer_id: 1674
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_881:
+  id: 1016
+  referer_id: 1679
+  referee_key: burundi
+  referee_id: 1675
+  ref_type: L
+  is_present:
+card_references_882:
+  id: 1017
+  referer_id: 1684
+  referee_key: brunei_darussalam
+  referee_id: 1680
+  ref_type: L
+  is_present:
+card_references_883:
+  id: 1018
+  referer_id: 1689
+  referee_key: burkina_faso
+  referee_id: 1685
+  ref_type: L
+  is_present:
+card_references_884:
+  id: 1019
+  referer_id: 1694
+  referee_key: bulgarium
+  referee_id: 1690
+  ref_type: L
+  is_present:
+card_references_885:
+  id: 1020
+  referer_id: 1699
+  referee_key: curaçao
+  referee_id: 1695
+  ref_type: L
+  is_present:
+card_references_886:
+  id: 1021
+  referer_id: 1704
+  referee_key: cypru
+  referee_id: 1700
+  ref_type: L
+  is_present:
+card_references_887:
+  id: 1022
+  referer_id: 1709
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_888:
+  id: 1023
+  referer_id: 1714
+  referee_key: chile
+  referee_id: 1710
+  ref_type: L
+  is_present:
+card_references_889:
+  id: 1024
+  referer_id: 1719
+  referee_key: cameroon
+  referee_id: 1715
+  ref_type: L
+  is_present:
+card_references_890:
+  id: 1025
+  referer_id: 1724
+  referee_key: democratic_republic_of_the_congo
+  referee_id: 1720
+  ref_type: L
+  is_present:
+card_references_891:
+  id: 1026
+  referer_id: 1729
+  referee_key: central_african_republic
+  referee_id: 1725
+  ref_type: L
+  is_present:
+card_references_892:
+  id: 1027
+  referer_id: 1734
+  referee_key: cayman_island
+  referee_id: 1730
+  ref_type: L
+  is_present:
+card_references_893:
+  id: 1028
+  referer_id: 1739
+  referee_key: denmark
+  referee_id: 1735
+  ref_type: L
+  is_present:
+card_references_894:
+  id: 1029
+  referer_id: 1744
+  referee_key: czech_republic
+  referee_id: 1740
+  ref_type: L
+  is_present:
+card_references_895:
+  id: 1030
+  referer_id: 1749
+  referee_key: cuba
+  referee_id: 1745
+  ref_type: L
+  is_present:
+card_references_896:
+  id: 1031
+  referer_id: 1754
+  referee_key: cape_verde
+  referee_id: 1750
+  ref_type: L
+  is_present:
+card_references_897:
+  id: 1032
+  referer_id: 1759
+  referee_key: chad
+  referee_id: 1755
+  ref_type: L
+  is_present:
+card_references_898:
+  id: 1033
+  referer_id: 1764
+  referee_key: cambodium
+  referee_id: 1760
+  ref_type: L
+  is_present:
+card_references_899:
+  id: 1034
+  referer_id: 1769
+  referee_key: belgium
+  referee_id: 1765
+  ref_type: L
+  is_present:
+card_references_900:
+  id: 1035
+  referer_id: 1774
+  referee_key: bosnium_and_herzegovina
+  referee_id: 1770
+  ref_type: L
+  is_present:
+card_references_901:
+  id: 1036
+  referer_id: 1779
+  referee_key: antarctica
+  referee_id: 1775
+  ref_type: L
+  is_present:
+card_references_902:
+  id: 1037
+  referer_id: 1784
+  referee_key: antigua_and_barbuda
+  referee_id: 1780
+  ref_type: L
+  is_present:
+card_references_903:
+  id: 1038
+  referer_id: 1789
+  referee_key: anguilla
+  referee_id: 1785
+  ref_type: L
+  is_present:
+card_references_904:
+  id: 1039
+  referer_id: 1794
+  referee_key: belaru
+  referee_id: 1790
+  ref_type: L
+  is_present:
+card_references_905:
+  id: 1040
+  referer_id: 1799
+  referee_key: belize
+  referee_id: 1795
+  ref_type: L
+  is_present:
+card_references_906:
+  id: 1041
+  referer_id: 1804
+  referee_key: benin
+  referee_id: 1800
+  ref_type: L
+  is_present:
+card_references_907:
+  id: 1042
+  referer_id: 1809
+  referee_key: bermuda
+  referee_id: 1805
+  ref_type: L
+  is_present:
+card_references_908:
+  id: 1043
+  referer_id: 1814
+  referee_key: bolivium
+  referee_id: 1810
+  ref_type: L
+  is_present:
+card_references_909:
+  id: 1044
+  referer_id: 1819
+  referee_key: bonaire_sint_eustatiu_and_saba
+  referee_id: 1815
+  ref_type: L
+  is_present:
+card_references_910:
+  id: 1045
+  referer_id: 1824
+  referee_key: british_virgin_island
+  referee_id: 1820
+  ref_type: L
+  is_present:
+card_references_911:
+  id: 1046
+  referer_id: 1829
+  referee_key: british_indian_ocean_territory
+  referee_id: 1825
+  ref_type: L
+  is_present:
+card_references_912:
+  id: 1047
+  referer_id: 1834
+  referee_key: christma_island
+  referee_id: 1830
+  ref_type: L
+  is_present:
+card_references_913:
+  id: 1048
+  referer_id: 1839
+  referee_key: coco_keeling_island
+  referee_id: 1835
+  ref_type: L
+  is_present:
+card_references_914:
+  id: 1049
+  referer_id: 1844
+  referee_key: brazil
+  referee_id: 1840
+  ref_type: L
+  is_present:
+card_references_915:
+  id: 1050
+  referer_id: 1849
+  referee_key: bhutan
+  referee_id: 1845
+  ref_type: L
+  is_present:
+card_references_916:
+  id: 1051
+  referer_id: 1854
+  referee_key: bouvet_island
+  referee_id: 1850
+  ref_type: L
+  is_present:
+card_references_917:
+  id: 1052
+  referer_id: 1859
+  referee_key: botswana
+  referee_id: 1855
+  ref_type: L
+  is_present:
+card_references_918:
+  id: 1053
+  referer_id: 1864
+  referee_key: albanium
+  referee_id: 1860
+  ref_type: L
+  is_present:
+card_references_919:
+  id: 1054
+  referer_id: 1869
+  referee_key: barbado
+  referee_id: 1865
+  ref_type: L
+  is_present:
+card_references_920:
+  id: 1055
+  referer_id: 1874
+  referee_key: austrium
+  referee_id: 1870
+  ref_type: L
+  is_present:
+card_references_921:
+  id: 1056
+  referer_id: 1879
+  referee_key: argentina
+  referee_id: 1875
+  ref_type: L
+  is_present:
+card_references_922:
+  id: 1057
+  referer_id: 1884
+  referee_key: armenium
+  referee_id: 1880
+  ref_type: L
+  is_present:
+card_references_923:
+  id: 1058
+  referer_id: 1889
+  referee_key: afghanistan
+  referee_id: 1885
+  ref_type: L
+  is_present:
+card_references_924:
+  id: 1059
+  referer_id: 1894
+  referee_key: bahama
+  referee_id: 1890
+  ref_type: L
+  is_present:
+card_references_925:
+  id: 1060
+  referer_id: 1899
+  referee_key: bahrain
+  referee_id: 1895
+  ref_type: L
+  is_present:
+card_references_926:
+  id: 1061
+  referer_id: 1904
+  referee_key: bangladesh
+  referee_id: 1900
+  ref_type: L
+  is_present:
+card_references_927:
+  id: 1062
+  referer_id: 1909
+  referee_key: australium
+  referee_id: 1905
+  ref_type: L
+  is_present:
+card_references_928:
+  id: 1063
+  referer_id: 1914
+  referee_key: aruba
+  referee_id: 1910
+  ref_type: L
+  is_present:
+card_references_929:
+  id: 1064
+  referer_id: 1919
+  referee_key: åland_island
+  referee_id: 1915
+  ref_type: L
+  is_present:
+card_references_930:
+  id: 1065
+  referer_id: 1924
+  referee_key: azerbaijan
+  referee_id: 1920
+  ref_type: L
+  is_present:
+card_references_931:
+  id: 1066
+  referer_id: 1929
+  referee_key: algerium
+  referee_id: 1925
+  ref_type: L
+  is_present:
+card_references_932:
+  id: 1067
+  referer_id: 1934
+  referee_key: american_samoa
+  referee_id: 1930
+  ref_type: L
+  is_present:
+card_references_933:
+  id: 1068
+  referer_id: 1939
+  referee_key: angola
+  referee_id: 1935
+  ref_type: L
+  is_present:
+card_references_934:
+  id: 1069
+  referer_id: 1944
+  referee_key: andorra
+  referee_id: 1940
+  ref_type: L
+  is_present:
+card_references_935:
+  id: 1070
+  referer_id: 1957
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_936:
+  id: 1071
+  referer_id: 1961
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_937:
+  id: 1072
+  referer_id: 1965
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_938:
+  id: 1073
+  referer_id: 1969
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_939:
+  id: 1074
+  referer_id: 1973
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_940:
+  id: 1075
+  referer_id: 1977
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_941:
+  id: 1076
+  referer_id: 1981
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_942:
+  id: 1077
+  referer_id: 1985
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_943:
+  id: 1078
+  referer_id: 1989
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_944:
+  id: 1079
+  referer_id: 1993
+  referee_key: united_arab_emirate
+  referee_id: 2378
+  ref_type: L
+  is_present:
+card_references_945:
+  id: 1080
+  referer_id: 1997
+  referee_key: united_arab_emirate
+  referee_id: 2378
+  ref_type: L
+  is_present:
+card_references_946:
+  id: 1081
+  referer_id: 2001
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_947:
+  id: 1082
+  referer_id: 2005
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_948:
+  id: 1083
+  referer_id: 2009
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_949:
+  id: 1084
+  referer_id: 2013
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_950:
+  id: 1085
+  referer_id: 2017
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_951:
+  id: 1086
+  referer_id: 2021
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_952:
+  id: 1087
+  referer_id: 2025
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_953:
+  id: 1088
+  referer_id: 2029
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_954:
+  id: 1089
+  referer_id: 2033
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_955:
+  id: 1090
+  referer_id: 2037
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_956:
+  id: 1091
+  referer_id: 2041
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_957:
+  id: 1092
+  referer_id: 2045
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_958:
+  id: 1093
+  referer_id: 2049
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_959:
+  id: 1094
+  referer_id: 2053
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_960:
+  id: 1095
+  referer_id: 2057
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_961:
+  id: 1096
+  referer_id: 2061
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_962:
+  id: 1097
+  referer_id: 2065
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_963:
+  id: 1098
+  referer_id: 2069
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_964:
+  id: 1099
+  referer_id: 2073
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_965:
+  id: 1100
+  referer_id: 2077
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_966:
+  id: 1101
+  referer_id: 2081
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_967:
+  id: 1102
+  referer_id: 2085
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_968:
+  id: 1103
+  referer_id: 2089
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_969:
+  id: 1104
+  referer_id: 2093
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_970:
+  id: 1105
+  referer_id: 2097
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_971:
+  id: 1106
+  referer_id: 2101
+  referee_key: united_arab_emirate
+  referee_id: 2378
+  ref_type: L
+  is_present:
+card_references_972:
+  id: 1107
+  referer_id: 2105
+  referee_key: united_arab_emirate
+  referee_id: 2378
+  ref_type: L
+  is_present:
+card_references_973:
+  id: 1108
+  referer_id: 2109
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_974:
+  id: 1109
+  referer_id: 2113
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_975:
+  id: 1110
+  referer_id: 2117
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_976:
+  id: 1111
+  referer_id: 2121
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_977:
+  id: 1112
+  referer_id: 2125
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_978:
+  id: 1113
+  referer_id: 2129
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_979:
+  id: 1114
+  referer_id: 2133
+  referee_key: united_arab_emirate
+  referee_id: 2378
+  ref_type: L
+  is_present:
+card_references_980:
+  id: 1115
+  referer_id: 2137
+  referee_key: united_arab_emirate
+  referee_id: 2378
+  ref_type: L
+  is_present:
+card_references_981:
+  id: 1116
+  referer_id: 2141
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_982:
+  id: 1117
+  referer_id: 2145
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_983:
+  id: 1118
+  referer_id: 2149
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_984:
+  id: 1119
+  referer_id: 2153
+  referee_key: china
+  referee_id: 1705
+  ref_type: L
+  is_present:
+card_references_985:
+  id: 1120
+  referer_id: 2157
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_986:
+  id: 1121
+  referer_id: 2161
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_987:
+  id: 1122
+  referer_id: 2165
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_988:
+  id: 1123
+  referer_id: 2169
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_989:
+  id: 1124
+  referer_id: 2173
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_990:
+  id: 1125
+  referer_id: 2177
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_991:
+  id: 1126
+  referer_id: 2181
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_992:
+  id: 1127
+  referer_id: 2185
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_993:
+  id: 1128
+  referer_id: 2189
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_994:
+  id: 1129
+  referer_id: 2193
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_995:
+  id: 1130
+  referer_id: 2197
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_996:
+  id: 1131
+  referer_id: 2201
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_997:
+  id: 1132
+  referer_id: 2205
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_998:
+  id: 1133
+  referer_id: 2209
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_999:
+  id: 1134
+  referer_id: 2213
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1000:
+  id: 1135
+  referer_id: 2217
+  referee_key: united_arab_emirate
+  referee_id: 2378
+  ref_type: L
+  is_present:
+card_references_1001:
+  id: 1136
+  referer_id: 2221
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1002:
+  id: 1137
+  referer_id: 2225
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1003:
+  id: 1138
+  referer_id: 2229
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1004:
+  id: 1139
+  referer_id: 2233
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1005:
+  id: 1140
+  referer_id: 2237
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1006:
+  id: 1141
+  referer_id: 2241
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1007:
+  id: 1142
+  referer_id: 2245
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1008:
+  id: 1143
+  referer_id: 2249
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1009:
+  id: 1144
+  referer_id: 2253
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1010:
+  id: 1145
+  referer_id: 2257
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1011:
+  id: 1146
+  referer_id: 2261
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1012:
+  id: 1147
+  referer_id: 2265
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1013:
+  id: 1148
+  referer_id: 2269
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1014:
+  id: 1149
+  referer_id: 2273
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1015:
+  id: 1150
+  referer_id: 2277
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1016:
+  id: 1151
+  referer_id: 2281
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1017:
+  id: 1152
+  referer_id: 2285
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1018:
+  id: 1153
+  referer_id: 2289
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1019:
+  id: 1154
+  referer_id: 2293
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1020:
+  id: 1155
+  referer_id: 2297
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1021:
+  id: 1156
+  referer_id: 2301
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1022:
+  id: 1157
+  referer_id: 2305
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1023:
+  id: 1158
+  referer_id: 2309
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1024:
+  id: 1159
+  referer_id: 2313
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1025:
+  id: 1160
+  referer_id: 2317
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1026:
+  id: 1161
+  referer_id: 2321
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1027:
+  id: 1162
+  referer_id: 2325
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1028:
+  id: 1163
+  referer_id: 2329
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1029:
+  id: 1164
+  referer_id: 2333
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1030:
+  id: 1165
+  referer_id: 2337
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1031:
+  id: 1166
+  referer_id: 2341
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1032:
+  id: 1167
+  referer_id: 2345
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1033:
+  id: 1168
+  referer_id: 2349
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1034:
+  id: 1169
+  referer_id: 2353
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1035:
+  id: 1170
+  referer_id: 2357
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1036:
+  id: 1171
+  referer_id: 2361
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1037:
+  id: 1172
+  referer_id: 2364
+  referee_key: core+country_value
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1038:
+  id: 1173
+  referer_id: 2364
+  referee_key: core
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1039:
+  id: 1174
+  referer_id: 2364
+  referee_key: country_value
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1040:
+  id: 1175
+  referer_id: 2367
+  referee_key: lao
+  referee_id: 2365
+  ref_type: L
+  is_present:
+card_references_1041:
+  id: 1176
+  referer_id: 2370
+  referee_key: north_macedonium
+  referee_id: 2368
+  ref_type: L
+  is_present:
+card_references_1042:
+  id: 1177
+  referer_id: 2374
+  referee_key: canada
+  referee_id: 1670
+  ref_type: L
+  is_present:
+card_references_1043:
+  id: 1178
+  referer_id: 2377
+  referee_key: vietnam
+  referee_id: 2375
+  ref_type: L
+  is_present:
+card_references_1044:
+  id: 1179
+  referer_id: 2380
+  referee_key: united_arab_emirate
+  referee_id: 2378
+  ref_type: L
+  is_present:
+card_references_1045:
+  id: 1180
+  referer_id: 2383
+  referee_key: united_state
+  referee_id: 2381
+  ref_type: L
+  is_present:
+card_references_1046:
+  id: 1181
+  referer_id: 2384
+  referee_key: number
+  referee_id: 35
+  ref_type: L
+  is_present:
+card_references_1047:
+  id: 1182
+  referer_id: 2384
+  referee_key: money
+  referee_id: 2390
+  ref_type: L
+  is_present:
+card_references_1048:
+  id: 1183
+  referer_id: 2384
+  referee_key: category
+  referee_id: 2391
+  ref_type: L
+  is_present:
+card_references_1049:
+  id: 1184
+  referer_id: 2384
+  referee_key: multi_category
+  referee_id: 2392
+  ref_type: L
+  is_present:
+card_references_1050:
+  id: 1185
+  referer_id: 2384
+  referee_key: free_text
+  referee_id: 2393
+  ref_type: L
+  is_present:
+card_references_1051:
+  id: 1186
+  referer_id: 2385
+  referee_key: number_value+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1052:
+  id: 1187
+  referer_id: 2385
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1053:
+  id: 1188
+  referer_id: 2385
+  referee_key: number_value+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1054:
+  id: 1189
+  referer_id: 2385
+  referee_key: number_value+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1055:
+  id: 1190
+  referer_id: 2385
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1056:
+  id: 1191
+  referer_id: 2385
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1057:
+  id: 1192
+  referer_id: 2386
+  referee_key: money_value+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1058:
+  id: 1193
+  referer_id: 2386
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1059:
+  id: 1194
+  referer_id: 2386
+  referee_key: money_value+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1060:
+  id: 1195
+  referer_id: 2386
+  referee_key: money_value+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1061:
+  id: 1196
+  referer_id: 2386
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1062:
+  id: 1197
+  referer_id: 2386
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1063:
+  id: 1198
+  referer_id: 2387
+  referee_key: category_value+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1064:
+  id: 1199
+  referer_id: 2387
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1065:
+  id: 1200
+  referer_id: 2387
+  referee_key: category_value+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1066:
+  id: 1201
+  referer_id: 2387
+  referee_key: category_value+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1067:
+  id: 1202
+  referer_id: 2387
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1068:
+  id: 1203
+  referer_id: 2387
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1069:
+  id: 1204
+  referer_id: 2388
+  referee_key: multi_category_value+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1070:
+  id: 1205
+  referer_id: 2388
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1071:
+  id: 1206
+  referer_id: 2388
+  referee_key: multi_category_value+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1072:
+  id: 1207
+  referer_id: 2388
+  referee_key: multi_category_value+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1073:
+  id: 1208
+  referer_id: 2388
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1074:
+  id: 1209
+  referer_id: 2388
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1075:
+  id: 1210
+  referer_id: 2389
+  referee_key: free_text_value+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1076:
+  id: 1211
+  referer_id: 2389
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1077:
+  id: 1212
+  referer_id: 2389
+  referee_key: free_text_value+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1078:
+  id: 1213
+  referer_id: 2389
+  referee_key: free_text_value+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1079:
+  id: 1214
+  referer_id: 2389
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1080:
+  id: 1215
+  referer_id: 2389
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1081:
+  id: 1216
+  referer_id: 2391
+  referee_key: ye
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1082:
+  id: 1217
+  referer_id: 2391
+  referee_key: 'no'
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1083:
+  id: 1218
+  referer_id: 2391
+  referee_key: unknown
+  referee_id: 704
+  ref_type: L
+  is_present:
+card_references_1084:
+  id: 1219
+  referer_id: 2396
+  referee_key: number
+  referee_id: 35
+  ref_type: L
+  is_present:
+card_references_1085:
+  id: 1220
+  referer_id: 2396
+  referee_key: money
+  referee_id: 2390
+  ref_type: L
+  is_present:
+card_references_1086:
+  id: 1221
+  referer_id: 2396
+  referee_key: category
+  referee_id: 2391
+  ref_type: L
+  is_present:
+card_references_1087:
+  id: 1222
+  referer_id: 2396
+  referee_key: multi_category
+  referee_id: 2392
+  ref_type: L
+  is_present:
+card_references_1088:
+  id: 1223
+  referer_id: 2396
+  referee_key: free_text
+  referee_id: 2393
+  ref_type: L
+  is_present:
+card_references_1089:
+  id: 1234
+  referer_id: 2410
+  referee_key: anyone_signed_in
+  referee_id: 172
+  ref_type: L
+  is_present:
+card_references_1090:
+  id: 1256
+  referer_id: 2418
+  referee_key: source+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1091:
+  id: 1257
+  referer_id: 2418
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1092:
+  id: 1258
+  referer_id: 2418
+  referee_key: source+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1093:
+  id: 1259
+  referer_id: 2418
+  referee_key: source+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1094:
+  id: 1260
+  referer_id: 2418
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1095:
+  id: 1261
+  referer_id: 2418
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1096:
+  id: 1262
+  referer_id: 2419
+  referee_key: website+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1097:
+  id: 1263
+  referer_id: 2419
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1098:
+  id: 1264
+  referer_id: 2419
+  referee_key: website+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1099:
+  id: 1265
+  referer_id: 2419
+  referee_key: website+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1100:
+  id: 1266
+  referer_id: 2419
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1101:
+  id: 1267
+  referer_id: 2419
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1102:
+  id: 1268
+  referer_id: 2426
+  referee_key: answer_import+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1103:
+  id: 1269
+  referer_id: 2426
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1104:
+  id: 1270
+  referer_id: 2426
+  referee_key: answer_import+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1105:
+  id: 1271
+  referer_id: 2426
+  referee_key: answer_import+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1106:
+  id: 1272
+  referer_id: 2426
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1107:
+  id: 1273
+  referer_id: 2426
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1108:
+  id: 1274
+  referer_id: 2427
+  referee_key: relationship_import+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1109:
+  id: 1275
+  referer_id: 2427
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1110:
+  id: 1276
+  referer_id: 2427
+  referee_key: relationship_import+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1111:
+  id: 1277
+  referer_id: 2427
+  referee_key: relationship_import+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1112:
+  id: 1278
+  referer_id: 2427
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1113:
+  id: 1279
+  referer_id: 2427
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1114:
+  id: 1280
+  referer_id: 2428
+  referee_key: source_import+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1115:
+  id: 1281
+  referer_id: 2428
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1116:
+  id: 1282
+  referer_id: 2428
+  referee_key: source_import+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1117:
+  id: 1283
+  referer_id: 2428
+  referee_key: source_import+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1118:
+  id: 1284
+  referer_id: 2428
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1119:
+  id: 1285
+  referer_id: 2428
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1120:
+  id: 1286
+  referer_id: 2429
+  referee_key: metric_import+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1121:
+  id: 1287
+  referer_id: 2429
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1122:
+  id: 1288
+  referer_id: 2429
+  referee_key: metric_import+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1123:
+  id: 1289
+  referer_id: 2429
+  referee_key: metric_import+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1124:
+  id: 1290
+  referer_id: 2429
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1125:
+  id: 1291
+  referer_id: 2429
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1126:
+  id: 1292
+  referer_id: 2431
+  referee_key: yearly_variable+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1127:
+  id: 1293
+  referer_id: 2431
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1128:
+  id: 1294
+  referer_id: 2431
+  referee_key: yearly_variable+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1129:
+  id: 1295
+  referer_id: 2431
+  referee_key: yearly_variable+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1130:
+  id: 1296
+  referer_id: 2431
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1131:
+  id: 1297
+  referer_id: 2431
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1132:
+  id: 1298
+  referer_id: 2432
+  referee_key: yearly_value+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1133:
+  id: 1299
+  referer_id: 2432
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1134:
+  id: 1300
+  referer_id: 2432
+  referee_key: yearly_value+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1135:
+  id: 1301
+  referer_id: 2432
+  referee_key: yearly_value+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1136:
+  id: 1302
+  referer_id: 2432
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1137:
+  id: 1303
+  referer_id: 2432
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1138:
+  id: 1304
+  referer_id: 2433
+  referee_key: yearly_answer+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1139:
+  id: 1305
+  referer_id: 2433
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1140:
+  id: 1306
+  referer_id: 2433
+  referee_key: yearly_answer+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1141:
+  id: 1307
+  referer_id: 2433
+  referee_key: yearly_answer+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1142:
+  id: 1308
+  referer_id: 2433
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1143:
+  id: 1309
+  referer_id: 2433
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1144:
+  id: 1310
+  referer_id: 2442
+  referee_key: anyone_signed_in
+  referee_id: 172
+  ref_type: L
+  is_present:
+card_references_1145:
+  id: 1322
+  referer_id: 2443
+  referee_key: anyone_signed_in
+  referee_id: 172
+  ref_type: L
+  is_present:
+card_references_1146:
+  id: 1334
+  referer_id: 2446
+  referee_key: anyone_signed_in
+  referee_id: 172
+  ref_type: L
+  is_present:
+card_references_1147:
+  id: 1346
+  referer_id: 2447
+  referee_key: anyone_signed_in
+  referee_id: 172
+  ref_type: L
+  is_present:
+card_references_1148:
+  id: 1358
+  referer_id: 2448
+  referee_key: datum_set+description
+  referee_id: 2449
+  ref_type: I
+  is_present:
+card_references_1149:
+  id: 1359
+  referer_id: 2448
+  referee_key: datum_set+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1150:
+  id: 1360
+  referer_id: 2448
+  referee_key: datum_set+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1151:
+  id: 1361
+  referer_id: 2448
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1152:
+  id: 1362
+  referer_id: 2448
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1153:
+  id: 1363
+  referer_id: 2450
+  referee_key: project+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1154:
+  id: 1364
+  referer_id: 2450
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1155:
+  id: 1365
+  referer_id: 2450
+  referee_key: project+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1156:
+  id: 1366
+  referer_id: 2450
+  referee_key: project+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1157:
+  id: 1367
+  referer_id: 2450
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1158:
+  id: 1368
+  referer_id: 2450
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1159:
+  id: 1369
+  referer_id: 2451
+  referee_key: status+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1160:
+  id: 1370
+  referer_id: 2451
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1161:
+  id: 1371
+  referer_id: 2451
+  referee_key: status+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1162:
+  id: 1372
+  referer_id: 2451
+  referee_key: status+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1163:
+  id: 1373
+  referer_id: 2451
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1164:
+  id: 1374
+  referer_id: 2451
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1165:
+  id: 1375
+  referer_id: 2454
+  referee_key: research_group+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1166:
+  id: 1376
+  referer_id: 2454
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1167:
+  id: 1377
+  referer_id: 2454
+  referee_key: research_group+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1168:
+  id: 1378
+  referer_id: 2454
+  referee_key: research_group+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1169:
+  id: 1379
+  referer_id: 2454
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1170:
+  id: 1380
+  referer_id: 2454
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1171:
+  id: 1381
+  referer_id: 2460
+  referee_key: jurisdiction+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1172:
+  id: 1382
+  referer_id: 2460
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1173:
+  id: 1383
+  referer_id: 2460
+  referee_key: jurisdiction+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1174:
+  id: 1384
+  referer_id: 2460
+  referee_key: jurisdiction+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1175:
+  id: 1385
+  referer_id: 2460
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1176:
+  id: 1386
+  referer_id: 2460
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1177:
+  id: 1387
+  referer_id: 2466
+  referee_key: structured
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1178:
+  id: 1388
+  referer_id: 2466
+  referee_key: open
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1179:
+  id: 1389
+  referer_id: 2466
+  referee_key: interconnected
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1180:
+  id: 1390
+  referer_id: 2466
+  referee_key: engaging
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1181:
+  id: 1391
+  referer_id: 2466
+  referee_key: verifiable
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1182:
+  id: 1392
+  referer_id: 2466
+  referee_key: comparable
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1183:
+  id: 1393
+  referer_id: 2466
+  referee_key: navigable
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1184:
+  id: 1394
+  referer_id: 2466
+  referee_key: integrated
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1185:
+  id: 1395
+  referer_id: 2470
+  referee_key: ranking_digital_right
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1186:
+  id: 1396
+  referer_id: 2470
+  referee_key: clean_clothe_initiative
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1187:
+  id: 1397
+  referer_id: 2470
+  referee_key: walk_free_foundation
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1188:
+  id: 1398
+  referer_id: 2470
+  referee_key: principle_for_responsible_management_education_prme
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1189:
+  id: 1399
+  referer_id: 2470
+  referee_key: oxfam_indium
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1190:
+  id: 1400
+  referer_id: 2474
+  referee_key: wikirate_team
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1191:
+  id: 1413
+  referer_id: 2478
+  referee_key: use_the_api
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1192:
+  id: 1414
+  referer_id: 2478
+  referee_key: guide
+  referee_id: 650
+  ref_type: L
+  is_present:
+card_references_1193:
+  id: 1415
+  referer_id: 2478
+  referee_key: faq
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1194:
+  id: 1416
+  referer_id: 2478
+  referee_key: "*recent"
+  referee_id: 69
+  ref_type: L
+  is_present:
+card_references_1195:
+  id: 1417
+  referer_id: 2478
+  referee_key: ticket
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1196:
+  id: 1418
+  referer_id: 2484
+  referee_key: output+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1197:
+  id: 1419
+  referer_id: 2484
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1198:
+  id: 1420
+  referer_id: 2484
+  referee_key: output+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1199:
+  id: 1421
+  referer_id: 2484
+  referee_key: output+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1200:
+  id: 1422
+  referer_id: 2484
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1201:
+  id: 1423
+  referer_id: 2484
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1202:
+  id: 1424
+  referer_id: 2485
+  referee_key: testimonial+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1203:
+  id: 1425
+  referer_id: 2485
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1204:
+  id: 1426
+  referer_id: 2485
+  referee_key: testimonial+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1205:
+  id: 1427
+  referer_id: 2485
+  referee_key: testimonial+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1206:
+  id: 1428
+  referer_id: 2485
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1207:
+  id: 1429
+  referer_id: 2485
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1208:
+  id: 1430
+  referer_id: 2486
+  referee_key: blurb+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1209:
+  id: 1431
+  referer_id: 2486
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1210:
+  id: 1432
+  referer_id: 2486
+  referee_key: blurb+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1211:
+  id: 1433
+  referer_id: 2486
+  referee_key: blurb+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1212:
+  id: 1434
+  referer_id: 2486
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1213:
+  id: 1435
+  referer_id: 2486
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1214:
+  id: 1436
+  referer_id: 431
+  referee_key: wikirate_skin
+  referee_id: 2488
+  ref_type: L
+  is_present:
+card_references_1215:
+  id: 1450
+  referer_id: 2491
+  referee_key: no_badge+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1216:
+  id: 1451
+  referer_id: 2491
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1217:
+  id: 1452
+  referer_id: 2491
+  referee_key: no_badge+dashboard
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1218:
+  id: 1453
+  referer_id: 2491
+  referee_key: dashboard
+  referee_id: 524
+  ref_type: P
+  is_present:
+card_references_1219:
+  id: 1454
+  referer_id: 2492
+  referee_key: task+description
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1220:
+  id: 1455
+  referer_id: 2492
+  referee_key: description
+  referee_id: 12
+  ref_type: P
+  is_present:
+card_references_1221:
+  id: 1456
+  referer_id: 2492
+  referee_key: task+*type+by_name
+  referee_id:
+  ref_type: I
+  is_present:
+card_references_1222:
+  id: 1457
+  referer_id: 2492
+  referee_key: task+*type
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1223:
+  id: 1458
+  referer_id: 2492
+  referee_key: "*type"
+  referee_id: 21
+  ref_type: P
+  is_present:
+card_references_1224:
+  id: 1459
+  referer_id: 2492
+  referee_key: by_name
+  referee_id: 73
+  ref_type: P
+  is_present:
+card_references_1225:
+  id: 1460
+  referer_id: 2497
+  referee_key: mod_filter+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1226:
+  id: 1461
+  referer_id: 2497
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1227:
+  id: 1462
+  referer_id: 2499
+  referee_key: mod_filter+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1228:
+  id: 1463
+  referer_id: 2499
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1229:
+  id: 1464
+  referer_id: 2502
+  referee_key: mod_bookmark+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1230:
+  id: 1465
+  referer_id: 2502
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1231:
+  id: 1466
+  referer_id: 2506
+  referee_key: mod_deckorate_search+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1232:
+  id: 1467
+  referer_id: 2506
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1233:
+  id: 1468
+  referer_id: 2508
+  referee_key: mod_deckorate_search+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1234:
+  id: 1469
+  referer_id: 2508
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1235:
+  id: 1470
+  referer_id: 2518
+  referee_key: mod_thumbnail+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1236:
+  id: 1471
+  referer_id: 2518
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1237:
+  id: 1472
+  referer_id: 2521
+  referee_key: mod_guide+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1238:
+  id: 1473
+  referer_id: 2521
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1239:
+  id: 1474
+  referer_id: 2524
+  referee_key: mod_deckorate_utility+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1240:
+  id: 1475
+  referer_id: 2524
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1241:
+  id: 1476
+  referer_id: 2526
+  referee_key: mod_deckorate_layout+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1242:
+  id: 1477
+  referer_id: 2526
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1243:
+  id: 1478
+  referer_id: 2528
+  referee_key: mod_topic+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1244:
+  id: 1479
+  referer_id: 2528
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1245:
+  id: 1480
+  referer_id: 2530
+  referee_key: mod_deckorate_core+*script+group_metric
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1246:
+  id: 1481
+  referer_id: 2530
+  referee_key: group_metric
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1247:
+  id: 1482
+  referer_id: 2532
+  referee_key: mod_deckorate_core+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1248:
+  id: 1483
+  referer_id: 2532
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1249:
+  id: 1484
+  referer_id: 2534
+  referee_key: mod_deckorate_research+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1250:
+  id: 1485
+  referer_id: 2534
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1251:
+  id: 1486
+  referer_id: 2536
+  referee_key: mod_deckorate_research+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1252:
+  id: 1487
+  referer_id: 2536
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1253:
+  id: 1488
+  referer_id: 2538
+  referee_key: mod_deckorate_import+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1254:
+  id: 1489
+  referer_id: 2538
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1255:
+  id: 1490
+  referer_id: 2540
+  referee_key: mod_deckorate_import+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1256:
+  id: 1491
+  referer_id: 2540
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1257:
+  id: 1492
+  referer_id: 2542
+  referee_key: mod_deckorate_calculation+*script+group_calculation
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1258:
+  id: 1493
+  referer_id: 2542
+  referee_key: group_calculation
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1259:
+  id: 1494
+  referer_id: 2544
+  referee_key: mod_deckorate_calculation+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1260:
+  id: 1495
+  referer_id: 2544
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1261:
+  id: 1496
+  referer_id: 2546
+  referee_key: mod_deckorate_dataset+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1262:
+  id: 1497
+  referer_id: 2546
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1263:
+  id: 1498
+  referer_id: 2549
+  referee_key: mod_deckorate_profile+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1264:
+  id: 1499
+  referer_id: 2549
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1265:
+  id: 1500
+  referer_id: 2551
+  referee_key: mod_wikirate_company+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1266:
+  id: 1501
+  referer_id: 2551
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1267:
+  id: 1502
+  referer_id: 2553
+  referee_key: mod_wikirate_company+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1268:
+  id: 1503
+  referer_id: 2553
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1269:
+  id: 1504
+  referer_id: 2555
+  referee_key: mod_wikirate_homepage+*script+group_homepage
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1270:
+  id: 1505
+  referer_id: 2555
+  referee_key: group_homepage
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1271:
+  id: 1506
+  referer_id: 2557
+  referee_key: mod_wikirate_homepage+*style+group_homepage
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1272:
+  id: 1507
+  referer_id: 2557
+  referee_key: group_homepage
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1273:
+  id: 1508
+  referer_id: 2559
+  referee_key: mod_wikirate+*script+group_wikirate
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1274:
+  id: 1509
+  referer_id: 2559
+  referee_key: group_wikirate
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1275:
+  id: 1510
+  referer_id: 2561
+  referee_key: mod_wikirate+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1276:
+  id: 1511
+  referer_id: 2561
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1277:
+  id: 1512
+  referer_id: 2563
+  referee_key: mod_badge+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1278:
+  id: 1513
+  referer_id: 2563
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1279:
+  id: 1514
+  referer_id: 2565
+  referee_key: mod_task+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1280:
+  id: 1515
+  referer_id: 2565
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1281:
+  id: 1516
+  referer_id: 2567
+  referee_key: mod_task+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1282:
+  id: 1517
+  referer_id: 2567
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1283:
+  id: 1518
+  referer_id: 2569
+  referee_key: mod_vega+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1284:
+  id: 1519
+  referer_id: 2569
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1285:
+  id: 1520
+  referer_id: 292
+  referee_key: mod_format+*script
+  referee_id: 541
+  ref_type: L
+  is_present:
+card_references_1286:
+  id: 1521
+  referer_id: 292
+  referee_key: mod_list+*script
+  referee_id: 545
+  ref_type: L
+  is_present:
+card_references_1287:
+  id: 1522
+  referer_id: 292
+  referee_key: mod_search+*script
+  referee_id: 549
+  ref_type: L
+  is_present:
+card_references_1288:
+  id: 1523
+  referer_id: 292
+  referee_key: mod_rule+*script
+  referee_id: 554
+  ref_type: L
+  is_present:
+card_references_1289:
+  id: 1524
+  referer_id: 292
+  referee_key: mod_edit+*script
+  referee_id: 563
+  ref_type: L
+  is_present:
+card_references_1290:
+  id: 1525
+  referer_id: 292
+  referee_key: mod_carrierwave+*script
+  referee_id: 569
+  ref_type: L
+  is_present:
+card_references_1291:
+  id: 1526
+  referer_id: 292
+  referee_key: mod_ace_editor+*script
+  referee_id: 576
+  ref_type: L
+  is_present:
+card_references_1292:
+  id: 1527
+  referer_id: 292
+  referee_key: mod_bar_and_box+*script
+  referee_id: 583
+  ref_type: L
+  is_present:
+card_references_1293:
+  id: 1528
+  referer_id: 292
+  referee_key: mod_bootstrap+*script
+  referee_id: 587
+  ref_type: L
+  is_present:
+card_references_1294:
+  id: 1529
+  referer_id: 292
+  referee_key: mod_filter+*script
+  referee_id: 2497
+  ref_type: L
+  is_present:
+card_references_1295:
+  id: 1530
+  referer_id: 292
+  referee_key: mod_tab+*script
+  referee_id: 606
+  ref_type: L
+  is_present:
+card_references_1296:
+  id: 1531
+  referer_id: 292
+  referee_key: mod_date+*script
+  referee_id: 593
+  ref_type: L
+  is_present:
+card_references_1297:
+  id: 1532
+  referer_id: 292
+  referee_key: mod_deckorate_search+*script
+  referee_id: 2506
+  ref_type: L
+  is_present:
+card_references_1298:
+  id: 1533
+  referer_id: 292
+  referee_key: mod_follow+*script
+  referee_id: 598
+  ref_type: L
+  is_present:
+card_references_1299:
+  id: 1534
+  referer_id: 292
+  referee_key: mod_layout+*script
+  referee_id: 609
+  ref_type: L
+  is_present:
+card_references_1300:
+  id: 1535
+  referer_id: 292
+  referee_key: mod_recaptcha+*script
+  referee_id: 613
+  ref_type: L
+  is_present:
+card_references_1301:
+  id: 1536
+  referer_id: 292
+  referee_key: mod_tinymce_editor+*script
+  referee_id: 616
+  ref_type: L
+  is_present:
+card_references_1302:
+  id: 1537
+  referer_id: 292
+  referee_key: mod_deckorate_core+*script
+  referee_id: 2530
+  ref_type: L
+  is_present:
+card_references_1303:
+  id: 1538
+  referer_id: 292
+  referee_key: mod_deckorate_research+*script
+  referee_id: 2534
+  ref_type: L
+  is_present:
+card_references_1304:
+  id: 1539
+  referer_id: 292
+  referee_key: mod_deckorate_import+*script
+  referee_id: 2538
+  ref_type: L
+  is_present:
+card_references_1305:
+  id: 1540
+  referer_id: 292
+  referee_key: mod_deckorate_calculation+*script
+  referee_id: 2542
+  ref_type: L
+  is_present:
+card_references_1306:
+  id: 1541
+  referer_id: 292
+  referee_key: mod_wikirate_company+*script
+  referee_id: 2551
+  ref_type: L
+  is_present:
+card_references_1307:
+  id: 1542
+  referer_id: 292
+  referee_key: mod_wikirate_homepage+*script
+  referee_id: 2555
+  ref_type: L
+  is_present:
+card_references_1308:
+  id: 1543
+  referer_id: 292
+  referee_key: mod_wikirate+*script
+  referee_id: 2559
+  ref_type: L
+  is_present:
+card_references_1309:
+  id: 1544
+  referer_id: 292
+  referee_key: mod_task+*script
+  referee_id: 2565
+  ref_type: L
+  is_present:
+card_references_1310:
+  id: 1545
+  referer_id: 479
+  referee_key: "*script"
+  referee_id: 288
+  ref_type: L
+  is_present:
+card_references_1311:
+  id: 1546
+  referer_id: 479
+  referee_key: "*style"
+  referee_id: 334
+  ref_type: L
+  is_present:
+card_references_1312:
+  id: 1547
+  referer_id: 479
+  referee_key: "*delete"
+  referee_id: 146
+  ref_type: L
+  is_present:
+card_references_1313:
+  id: 1548
+  referer_id: 479
+  referee_key: "*update"
+  referee_id: 145
+  ref_type: L
+  is_present:
+card_references_1314:
+  id: 1549
+  referer_id: 479
+  referee_key: "*create"
+  referee_id: 144
+  ref_type: L
+  is_present:
+card_references_1315:
+  id: 1550
+  referer_id: 479
+  referee_key: "*default"
+  referee_id: 8
+  ref_type: L
+  is_present:
+card_references_1316:
+  id: 1551
+  referer_id: 479
+  referee_key: "*content_option"
+  referee_id: 61
+  ref_type: L
+  is_present:
+card_references_1317:
+  id: 1552
+  referer_id: 479
+  referee_key: "*read"
+  referee_id: 9
+  ref_type: L
+  is_present:
+card_references_1318:
+  id: 1553
+  referer_id: 479
+  referee_key: "*help"
+  referee_id: 469
+  ref_type: L
+  is_present:
+card_references_1319:
+  id: 1554
+  referer_id: 479
+  referee_key: "*input_type"
+  referee_id: 270
+  ref_type: L
+  is_present:
+card_references_1320:
+  id: 1555
+  referer_id: 479
+  referee_key: "*structure"
+  referee_id: 28
+  ref_type: L
+  is_present:
+card_references_1321:
+  id: 1556
+  referer_id: 479
+  referee_key: "*layout"
+  referee_id: 490
+  ref_type: L
+  is_present:
+card_references_1322:
+  id: 1557
+  referer_id: 479
+  referee_key: "*captcha"
+  referee_id: 511
+  ref_type: L
+  is_present:
+card_references_1323:
+  id: 1558
+  referer_id: 313
+  referee_key: mod_format+*style
+  referee_id: 543
+  ref_type: L
+  is_present:
+card_references_1324:
+  id: 1559
+  referer_id: 313
+  referee_key: mod_list+*style
+  referee_id: 547
+  ref_type: L
+  is_present:
+card_references_1325:
+  id: 1560
+  referer_id: 313
+  referee_key: mod_search+*style
+  referee_id: 551
+  ref_type: L
+  is_present:
+card_references_1326:
+  id: 1561
+  referer_id: 313
+  referee_key: mod_rule+*style
+  referee_id: 556
+  ref_type: L
+  is_present:
+card_references_1327:
+  id: 1562
+  referer_id: 313
+  referee_key: mod_permission+*style
+  referee_id: 559
+  ref_type: L
+  is_present:
+card_references_1328:
+  id: 1563
+  referer_id: 313
+  referee_key: mod_account+*style
+  referee_id: 561
+  ref_type: L
+  is_present:
+card_references_1329:
+  id: 1564
+  referer_id: 313
+  referee_key: mod_edit+*style
+  referee_id: 565
+  ref_type: L
+  is_present:
+card_references_1330:
+  id: 1565
+  referer_id: 313
+  referee_key: mod_history+*style
+  referee_id: 567
+  ref_type: L
+  is_present:
+card_references_1331:
+  id: 1566
+  referer_id: 313
+  referee_key: mod_carrierwave+*style
+  referee_id: 571
+  ref_type: L
+  is_present:
+card_references_1332:
+  id: 1567
+  referer_id: 313
+  referee_key: mod_api_key+*style
+  referee_id: 579
+  ref_type: L
+  is_present:
+card_references_1333:
+  id: 1568
+  referer_id: 313
+  referee_key: mod_style+*style
+  referee_id: 581
+  ref_type: L
+  is_present:
+card_references_1334:
+  id: 1569
+  referer_id: 313
+  referee_key: mod_bar_and_box+*style
+  referee_id: 585
+  ref_type: L
+  is_present:
+card_references_1335:
+  id: 1570
+  referer_id: 313
+  referee_key: mod_bootstrap+*style
+  referee_id: 589
+  ref_type: L
+  is_present:
+card_references_1336:
+  id: 1571
+  referer_id: 313
+  referee_key: mod_filter+*style
+  referee_id: 2499
+  ref_type: L
+  is_present:
+card_references_1337:
+  id: 1572
+  referer_id: 313
+  referee_key: mod_bookmark+*style
+  referee_id: 2502
+  ref_type: L
+  is_present:
+card_references_1338:
+  id: 1573
+  referer_id: 313
+  referee_key: mod_comment+*style
+  referee_id: 591
+  ref_type: L
+  is_present:
+card_references_1339:
+  id: 1574
+  referer_id: 313
+  referee_key: mod_date+*style
+  referee_id: 595
+  ref_type: L
+  is_present:
+card_references_1340:
+  id: 1575
+  referer_id: 313
+  referee_key: mod_deckorate_search+*style
+  referee_id: 2508
+  ref_type: L
+  is_present:
+card_references_1341:
+  id: 1576
+  referer_id: 313
+  referee_key: mod_follow+*style
+  referee_id: 600
+  ref_type: L
+  is_present:
+card_references_1342:
+  id: 1577
+  referer_id: 313
+  referee_key: mod_help+*style
+  referee_id: 603
+  ref_type: L
+  is_present:
+card_references_1343:
+  id: 1578
+  referer_id: 313
+  referee_key: mod_layout+*style
+  referee_id: 611
+  ref_type: L
+  is_present:
+card_references_1344:
+  id: 1579
+  referer_id: 313
+  referee_key: mod_tinymce_editor+*style
+  referee_id: 618
+  ref_type: L
+  is_present:
+card_references_1345:
+  id: 1580
+  referer_id: 313
+  referee_key: mod_thumbnail+*style
+  referee_id: 2518
+  ref_type: L
+  is_present:
+card_references_1346:
+  id: 1581
+  referer_id: 313
+  referee_key: mod_guide+*style
+  referee_id: 2521
+  ref_type: L
+  is_present:
+card_references_1347:
+  id: 1582
+  referer_id: 313
+  referee_key: mod_deckorate_utility+*style
+  referee_id: 2524
+  ref_type: L
+  is_present:
+card_references_1348:
+  id: 1583
+  referer_id: 313
+  referee_key: mod_deckorate_layout+*style
+  referee_id: 2526
+  ref_type: L
+  is_present:
+card_references_1349:
+  id: 1584
+  referer_id: 313
+  referee_key: mod_topic+*style
+  referee_id: 2528
+  ref_type: L
+  is_present:
+card_references_1350:
+  id: 1585
+  referer_id: 313
+  referee_key: mod_deckorate_core+*style
+  referee_id: 2532
+  ref_type: L
+  is_present:
+card_references_1351:
+  id: 1586
+  referer_id: 313
+  referee_key: mod_deckorate_research+*style
+  referee_id: 2536
+  ref_type: L
+  is_present:
+card_references_1352:
+  id: 1587
+  referer_id: 313
+  referee_key: mod_deckorate_import+*style
+  referee_id: 2540
+  ref_type: L
+  is_present:
+card_references_1353:
+  id: 1588
+  referer_id: 313
+  referee_key: mod_deckorate_calculation+*style
+  referee_id: 2544
+  ref_type: L
+  is_present:
+card_references_1354:
+  id: 1589
+  referer_id: 313
+  referee_key: mod_deckorate_dataset+*style
+  referee_id: 2546
+  ref_type: L
+  is_present:
+card_references_1355:
+  id: 1590
+  referer_id: 313
+  referee_key: mod_deckorate_profile+*style
+  referee_id: 2549
+  ref_type: L
+  is_present:
+card_references_1356:
+  id: 1591
+  referer_id: 313
+  referee_key: mod_wikirate_company+*style
+  referee_id: 2553
+  ref_type: L
+  is_present:
+card_references_1357:
+  id: 1592
+  referer_id: 313
+  referee_key: mod_wikirate_homepage+*style
+  referee_id: 2557
+  ref_type: L
+  is_present:
+card_references_1358:
+  id: 1593
+  referer_id: 313
+  referee_key: mod_wikirate+*style
+  referee_id: 2561
+  ref_type: L
+  is_present:
+card_references_1359:
+  id: 1594
+  referer_id: 313
+  referee_key: mod_badge+*style
+  referee_id: 2563
+  ref_type: L
+  is_present:
+card_references_1360:
+  id: 1595
+  referer_id: 313
+  referee_key: mod_task+*style
+  referee_id: 2567
+  ref_type: L
+  is_present:
+card_references_1361:
+  id: 1596
+  referer_id: 313
+  referee_key: mod_vega+*style
+  referee_id: 2569
+  ref_type: L
+  is_present:

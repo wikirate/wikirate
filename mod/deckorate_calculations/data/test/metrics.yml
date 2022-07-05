@@ -1,0 +1,854 @@
+---
+- :name:
+    - Joe User
+    - descendant 1
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :metric_type: Descendant
+    :variables: |-
+      Joe User+researched number 2
+      Joe User+researched number 1
+- :name:
+    - Joe User
+    - descendant 2
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :metric_type: Descendant
+    :variables: |-
+      Joe User+RM
+      Joe User+researched number 1
+- :name:
+    - Joe User
+    - descendant hybrid
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :hybrid: '1'
+    :metric_type: Descendant
+    :variables: |-
+      Joe User+researched number 2
+      Joe User+researched number 1
+- :name:
+    - Jedi
+    - disturbances in the Force
+    - Joe User
+  :type: :metric
+  :user: Joe User
+  :fields:
+    # :value_type: Category
+    :metric_type: Score
+    :rubric: '{"yes":10,"no":0}'
+- :name:
+    - Jedi
+    - deadliness
+    - Joe Camel
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :metric_type: Score
+    :formula: |-
+      answer / 20
+- :name:
+    - Jedi
+    - deadliness
+    - Joe User
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :metric_type: Score
+    :formula: |-
+      answer / 10
+- :name:
+    - Jedi
+    - darkness rating
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :metric_type: WikiRating
+    :variables: |-
+      [ 
+        { 
+          "metric" : "Jedi+deadliness+Joe User",
+          "weight" : "60"
+        },
+        { 
+          "metric" : "Jedi+disturbances in the Force+Joe User",
+          "weight" : "40"
+        }
+      ]
+- :name:
+    - Jedi
+    - know the unknowns
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :metric_type: Formula
+    :variables: |-
+      [ 
+        { 
+          "metric" : "Joe User+RM",
+          "unknown" : "10",
+          "name" : "m1"
+        },
+        { 
+          "metric" : "Joe User+small multi",
+          "not_researched" : "20",
+          "name" : "m2"
+        }
+      ]
+    :formula: m1 + m2
+
+- :name:
+    - Jedi
+    - deadlier
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :hybrid: '1'
+    :metric_type: Formula
+    :variables: |-
+      [ 
+        { 
+          "metric" : "Jedi+deadliness",
+          "name" : "m1"
+        },
+        { 
+          "metric" : "Jedi+deadliness",
+          "year" : "-1",
+          "name" : "m2"
+        }
+      ]
+    :formula: m1 + m2
+
+- :name:
+    - Jedi
+    - deadliness average
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :metric_type: Formula
+    :variables: |-
+      [
+        {
+          "metric" : "Jedi+deadliness",
+          "year" : "-2..0",
+          "name" : "m1"
+        }
+      ]
+    :formula: SUM m1
+- :name:
+    - Jedi
+    - friendliness
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :hybrid: '1'
+    :metric_type: Formula
+    :variables: |-
+      [
+        {
+          "metric" : "Jedi+deadliness",
+          "name" : "m1"
+        }
+      ]
+    :formula: 1 / m1
+- :name:
+    - Jedi
+    - double friendliness
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :metric_type: Formula
+    :variables: |-
+      [
+        {
+          "metric" : "Jedi+friendliness",
+          "name" : "m1"
+        }
+      ]
+    :formula: m1 * 2
+- :name:
+    - Commons
+    - Industry
+  :type: :metric
+  :codename: :commons_industry
+  :fields:
+    :value_type: Multi-Category
+    :hybrid: '1'
+    :metric_type: Formula
+    # :formula: "[[ISIC+Industry Section]]"
+    :question: What are the company's industry or industries?
+    :research_policy: Community Assessed
+
+- :name:
+    - Core
+    - Headquarters Location
+  :type: :metric
+  :codename: :core_headquarters_location
+  :fields:
+    :value_type: Category
+    :metric_type: Formula
+    :value_options: |-
+      Abu Dhabi (United Arab Emirates)
+      Afghanistan
+      Ajman (United Arab Emirates)
+      Alabama (United States)
+      Åland Islands
+      Alaska (United States)
+      Albania
+      Alberta (Canada)
+      Algeria
+      American Samoa
+      Andorra
+      Angola
+      Anguilla
+      Anhui (China)
+      Antarctica
+      Antigua and Barbuda
+      Argentina
+      Arizona (United States)
+      Arkansas (United States)
+      Armenia
+      Aruba
+      Australia
+      Austria
+      Azerbaijan
+      Bahamas
+      Bahrain
+      Bangladesh
+      Barbados
+      Beijing (China)
+      Belarus
+      Belgium
+      Belize
+      Benin
+      Bermuda
+      Bhutan
+      Bolivia
+      Bonaire, Sint Eustatius and Saba
+      Bosnia and Herzegovina
+      Botswana
+      Bouvet Island
+      Brazil
+      British Columbia (Canada)
+      British Indian Ocean Territory
+      British Virgin Islands
+      Brunei Darussalam
+      Bulgaria
+      Burkina Faso
+      Burundi
+      California (United States)
+      Cambodia
+      Cameroon
+      Canada
+      Cape Verde
+      Cayman Islands
+      Central African Republic
+      Chad
+      Chile
+      China
+      Chongqing (China)
+      Christmas Island
+      Cocos (Keeling) Islands
+      Colombia
+      Colorado (United States)
+      Comoros
+      Congo
+      Connecticut (United States)
+      Cook Islands
+      Costa Rica
+      Côte d'Ivoire
+      Croatia
+      Cuba
+      Curaçao
+      Cyprus
+      Czech Republic
+      Delaware (United States)
+      Democratic Republic of the Congo
+      Denmark
+      District of Columbia (United States)
+      Djibouti
+      Dominica
+      Dominican Republic
+      Dubai (United Arab Emirates)
+      Ecuador
+      Egypt
+      El Salvador
+      Equatorial Guinea
+      Eritrea
+      Estonia
+      Ethiopia
+      Falkland Islands (Malvinas)
+      Faroe Islands
+      Fiji
+      Finland
+      Florida (United States)
+      France
+      French Guiana
+      French Polynesia
+      French Southern Territories
+      Fujairah (United Arab Emirates)
+      Fujian (China)
+      Gabon
+      Gambia
+      Gansu (China)
+      Georgia
+      Georgia (United States)
+      Germany
+      Ghana
+      Gibraltar
+      Greece
+      Greenland
+      Grenada
+      Guadeloupe
+      Guam
+      Guangdong (China)
+      Guangxi (China)
+      Guatemala
+      Guernsey
+      Guinea
+      Guinea-Bissau
+      Guizhou (China)
+      Guyana
+      Hainan (China)
+      Haiti
+      Hawaii (United States)
+      Headquarters value (jurisdiction)
+      Heard Island and McDonald Islands
+      Hebei (China)
+      Heilongjiang (China)
+      Henan (China)
+      Holy See (Vatican City State)
+      Honduras
+      Hong Kong
+      Hubei (China)
+      Hunan (China)
+      Hungary
+      Iceland
+      Idaho (United States)
+      Illinois (United States)
+      Indiana (United States)
+      India
+      Indonesia
+      Inner Mongolia (China)
+      Iowa (United States)
+      Iran
+      Iraq
+      Ireland
+      Isle of Man
+      Israel
+      Italy
+      Jamaica
+      Japan
+      Jersey
+      Jiangsu (China)
+      Jiangxi (China)
+      Jilin (China)
+      Jordan
+      Kansas (United States)
+      Kazakhstan
+      Kentucky (United States)
+      Kenya
+      Kiribati
+      Korea, Democratic People's Republic of
+      Korea, Republic of
+      Kosovo
+      Kuwait
+      Kyrgyzstan
+      Laos
+      Lao People's Democratic Republic
+      Latvia
+      Lebanon
+      Lesotho
+      Liaoning (China)
+      Liberia
+      Libya
+      Liechtenstein
+      Lithuania
+      Louisiana (United States)
+      Luxembourg
+      Macao
+      Macau (China)
+      Macedonia
+      Madagascar
+      Maine (United States)
+      Malawi
+      Malaysia
+      Maldives
+      Mali
+      Malta
+      Manitoba (Canada)
+      Marshall Islands
+      Martinique
+      Maryland (United States)
+      Massachusetts (United States)
+      Mauritania
+      Mauritius
+      Mayotte
+      Mexico
+      Michigan (United States)
+      Micronesia, Federated States of
+      Minnesota (United States)
+      Mississippi (United States)
+      Missouri (United States)
+      Moldova
+      Monaco
+      Mongolia
+      Montana (United States)
+      Montenegro
+      Montserrat
+      Morocco
+      Mozambique
+      Myanmar
+      Namibia
+      Nauru
+      Nebraska (United States)
+      Nepal
+      Netherlands
+      Nevada (United States)
+      New Brunswick (Canada)
+      New Caledonia
+      New Hampshire (United States)
+      New Jersey (United States)
+      New Mexico (United States)
+      New York (United States)
+      New Zealand
+      Newfoundland and Labrador (Canada)
+      Nicaragua
+      Niger
+      Nigeria
+      Ningxia (China)
+      Niue
+      Norfolk Island
+      North Carolina (United States)
+      North Dakota (United States)
+      North Macedonia
+      Northern Mariana Islands
+      Northwest Territories (Canada)
+      Norway
+      Nova Scotia (Canada)
+      Nunavut (Canada)
+      Ohio (United States)
+      Oklahoma (United States)
+      Oman
+      Ontario, Canada
+      Oregon (United States)
+      Pakistan
+      Palau
+      Palestinian Territory
+      Panama
+      Papua New Guinea
+      Paraguay
+      Pennsylvania (United States)
+      Peru
+      Philippines
+      Pitcairn
+      Poland
+      Portugal
+      Prince Edward Island (Canada)
+      Puerto Rico
+      Qatar
+      Qinghai (China)
+      Quebec (Canada)
+      Ras Al-khaimah (United Arab Emirates)
+      Réunion
+      Rhode Island (United States)
+      Romania
+      Russia
+      Rwanda
+      Saint Barthélemy
+      Saint Helena, Ascension and Tristan da Cunha
+      Saint Kitts and Nevis
+      Saint Lucia
+      Saint Martin (French part)
+      Saint Pierre and Miquelon
+      Saint Vincent and the Grenadines
+      Samoa
+      San Marino
+      Sao Tome and Principe
+      Saskatchewan (Canada)
+      Saudi Arabia
+      Senegal
+      Serbia
+      Seychelles
+      Shaanxi (China)
+      Shandong (China)
+      Shanghai (China)
+      Shanxi (China)
+      Sharjah (United Arab Emirates)
+      Sichuan (China)
+      Sierra Leone
+      Singapore
+      Sint Maarten (Dutch part)
+      Slovakia
+      Slovenia
+      Solomon Islands
+      Somalia
+      South Africa
+      South Carolina (United States)
+      South Dakota (United States)
+      South Georgia and the South Sandwich Islands
+      South Sudan
+      Spain
+      Sri Lanka
+      Sudan
+      Suriname
+      Svalbard and Jan Mayen
+      Swaziland
+      Sweden
+      Switzerland
+      Syrian Arab Republic
+      Taiwan, Province of China
+      Tajikistan
+      Tanzania
+      Tennessee (United States)
+      Texas (United States)
+      Thailand
+      Tianjin (China)
+      Tibet (China)
+      Timor-Leste
+      Togo
+      Tokelau
+      Tonga
+      Trinidad and Tobago
+      Tunisia
+      Turks and Caicos Islands
+      Turkey
+      Turkmenistan
+      Tuvalu
+      U.S. Virgin Islands
+      Uganda
+      Ukraine
+      Umm Al-quwain (United Arab Emirates)
+      United Arab Emirates
+      United Kingdom
+      United States
+      United States Minor Outlying Islands
+      Uruguay
+      Utah (United States)
+      Uzbekistan
+      Vanuatu
+      Venezuela
+      Vermont (United States)
+      Viet Nam
+      Vietnam
+      Virginia (United States)
+      Wallis and Futuna
+      Washington (United States)
+      West Virginia (United States)
+      Western Sahara
+      Wisconsin (United States)
+      Wyoming (United States)
+      Xinjiang (China)
+      Yemen
+      Yukon (Canada)
+      Yunnan (China)
+      Zambia
+      Zhejiang (China)
+      Zimbabwe
+
+
+- :name: Company Category
+  :type: :metric_title
+  :codename: :company_category
+
+- :name:
+    - Commons
+    - :company_category
+  :type: :metric
+  :codename: :commons_company_category
+  :fields:
+    :value_type: Multi-Category
+    :metric_type: Formula
+    :variables: '[]'
+    :value_options: |-
+      A
+      B
+      C
+      D
+
+
+- :name:
+    - Core
+    - :ilo_region
+  :type: :metric
+  :fields:
+    :value_type: Category
+    :metric_type: Formula
+    :variables: |-
+      [
+        {
+          "metric" : "Core+Headquarters Location",
+          "name" : "m1"
+        }
+      ]
+    :formula: iloRegion m1
+    :value_options: |-
+      Africa
+      Americas
+      Arab States
+      Asia and the Pacific
+      Europe and Central Asia
+
+- :name:
+    - Core
+    - :country
+  :type: :metric
+  :fields:
+    :value_type: Category
+    :metric_type: Formula
+    :variables: |-
+      [
+        {
+          "metric" : "Core+Headquarters Location",
+          "name" : "m1"
+        }
+      ]
+    :formula: country m1
+    :value_options: |-
+      Afghanistan
+      Albania
+      Algeria
+      Andorra
+      Angola
+      Anguilla (United Kingdom)
+      Antarctica
+      Antigua and Barbuda
+      Argentina
+      Armenia
+      Aruba (Netherlands)
+      Australia
+      Austria
+      Azerbaijan
+      Bahamas
+      Bahrain
+      Bangladesh
+      Barbados
+      Belarus
+      Belgium
+      Belize
+      Benin
+      Bermuda (United Kingdom)
+      Bhutan
+      Bolivia
+      Bonaire, Sint Eustatius and Saba (Netherlands)
+      Bosnia and Herzegovina
+      Botswana
+      Brazil
+      British Indian Ocean Territory  (United Kingdom)
+      British Virgin Islands (United Kingdom)
+      Brunei Darussalam
+      Bulgaria
+      Burkina Faso
+      Burundi
+      Cambodia
+      Cameroon
+      Canada
+      Cape Verde
+      Cayman Islands  (United Kingdom)
+      Central African Republic
+      Chad
+      Chile
+      China
+      Christmas Island (Australia)
+      Cocos (Keeling) Islands (Australia)
+      Colombia
+      Comoros
+      Congo
+      Cook Islands
+      Costa Rica
+      Croatia
+      Cuba
+      Curaçao (Netherlands)
+      Cyprus
+      Czech Republic
+      Côte d'Ivoire
+      Democratic Republic of the Congo
+      Denmark
+      Djibouti
+      Dominica
+      Dominican Republic
+      Ecuador
+      Egypt
+      El Salvador
+      Equatorial Guinea
+      Eritrea
+      Estonia
+      Ethiopia
+      Falkland Islands (Malvinas) (United Kingdom)
+      Faroe Islands (Denmark)
+      Fiji
+      Finland
+      France
+      French Guiana (France)
+      French Polynesia (France)
+      French Southern Territories (France)
+      Gabon
+      Gambia
+      Georgia
+      Germany
+      Ghana
+      Gibraltar (United Kingdom)
+      Greece
+      Greenland
+      Grenada
+      Guadeloupe (France)
+      Guam (United States)
+      Guatemala
+      Guernsey (United Kingdom)
+      Guinea
+      Guinea-Bissau
+      Guyana
+      Haiti
+      Heard Island and McDonald Islands (Australia)
+      Holy See (Vatican City State)
+      Honduras
+      Hong Kong
+      Hungary
+      Iceland
+      India
+      Indonesia
+      Iran
+      Iraq
+      Ireland
+      Isle of Man (United Kingdom)
+      Israel
+      Italy
+      Jamaica
+      Japan
+      Jersey (United Kingdom)
+      Jordan
+      Kazakhstan
+      Kenya
+      Kiribati
+      Korea, Democratic People's Republic of
+      Korea, Republic of
+      Kosovo
+      Kuwait
+      Kyrgyzstan
+      Laos
+      Latvia
+      Lebanon
+      Lesotho
+      Liberia
+      Libya
+      Liechtenstein
+      Lithuania
+      Luxembourg
+      Macao
+      Madagascar
+      Malawi
+      Malaysia
+      Maldives
+      Mali
+      Malta
+      Marshall Islands (United States)
+      Martinique (France)
+      Mauritania
+      Mauritius
+      Mayotte (France)
+      Mexico
+      Micronesia, Federated States of
+      Moldova
+      Monaco
+      Mongolia
+      Montenegro
+      Montserrat (United Kingdom)
+      Morocco
+      Mozambique
+      Myanmar
+      Namibia
+      Nauru
+      Nepal
+      Netherlands
+      New Caledonia (France)
+      New Zealand
+      Nicaragua
+      Niger
+      Nigeria
+      Niue
+      Norfolk Island (Australia)
+      North Macedonia
+      Norway
+      Oman
+      Pakistan
+      Palau
+      Palestinian Territory
+      Panama
+      Papua New Guinea
+      Paraguay
+      Peru
+      Philippines
+      Pitcairn (United Kingdom)
+      Poland
+      Portugal
+      Puerto Rico (United States)
+      Qatar
+      Romania
+      Russia
+      Rwanda
+      Réunion (France)
+      Saint Barthélemy (France)
+      Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+      Saint Kitts and Nevis
+      Saint Lucia
+      Saint Martin (French part) (France)
+      Saint Pierre and Miquelon (France)
+      Saint Vincent and the Grenadines
+      Samoa
+      San Marino
+      Sao Tome and Principe
+      Saudi Arabia
+      Senegal
+      Serbia
+      Seychelles
+      Sierra Leone
+      Singapore
+      Sint Maarten (Dutch part) (Netherlands)
+      Slovakia
+      Slovenia
+      Solomon Islands
+      Somalia
+      South Africa
+      South Georgia and the South Sandwich Islands (United Kingdom)
+      South Sudan
+      Spain
+      Sri Lanka
+      Sudan
+      Suriname
+      Swaziland
+      Sweden
+      Switzerland
+      Syrian Arab Republic
+      Taiwan, Province of China
+      Tajikistan
+      Tanzania
+      Thailand
+      Timor-Leste
+      Togo
+      Tokelau
+      Tonga
+      Trinidad and Tobago
+      Tunisia
+      Turkey
+      Turkmenistan
+      Turks and Caicos Islands (United Kingdom)
+      Tuvalu
+      U.S. Virgin Islands (United States)
+      Uganda
+      Ukraine
+      United Arab Emirates
+      United Kingdom
+      United States
+      Uruguay
+      Uzbekistan
+      Vanuatu
+      Venezuela
+      Vietnam
+      Wallis and Futuna (France)
+      Western Sahara
+      Yemen
+      Zambia
+      Zimbabwe

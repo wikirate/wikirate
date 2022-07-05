@@ -30,7 +30,8 @@ class Card
 
       def hash
         cache.fetch("hash") do
-          Card.search(type: :region, sort: :name).each_with_object({}) do |region, hash|
+          Card.search(type: :region, sort_by: :name)
+              .each_with_object({}) do |region, hash|
             hash[region.name] = region_hash region
           end
         end

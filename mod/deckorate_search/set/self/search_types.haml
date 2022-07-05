@@ -1,0 +1,17 @@
+.search-types-nav.d-flex.justify-content-between.align-items-center.my-3
+  .search-type-links.d-flex.align-items-center
+    Search within:
+    - if type_param
+      = link_to_type "", "All Types"
+    - else
+      - search_type_codenames.each do |typecode|
+        = link_to_type typecode
+
+  - if type_param
+    .advanced-filter-link.text-nowrap
+      - type = type_param.cardname
+      - path_opts = { mark: type, query: { type: type } }
+      - path_opts[:filter] = { name: search_keyword } if search_keyword
+      = link_to "Browse and Filter #{type.vary :plural} #{fa_icon 'arrow-right'}",
+                path: path_opts
+

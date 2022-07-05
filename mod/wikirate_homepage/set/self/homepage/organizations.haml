@@ -1,5 +1,5 @@
 .col-12.text-center.p-3
-  %h1.font-weight-normal.m-4.mb-3
+  %h1.fw-normal.m-4.mb-3
     Organizations using WikiRate
   .d-flex.flex-wrap.p-2.m-5.org-images.row-fluid.justify-content-center
     - organization_cards.each do |org_card|
@@ -7,4 +7,6 @@
       .col-6.col-sm-3
         %a{ href: org_card.name.url_key }
           = nest image_card, view: :content
-  = nest :newsletter_signup, view: :core
+  .row
+    .col-12.text-center.p-3.m-auto.d-flex.flex-column.align-items-center.lead
+      = nest :newsletter_signup, view: :core

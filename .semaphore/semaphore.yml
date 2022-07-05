@@ -28,15 +28,16 @@ blocks:
         commands:
           # - cache delete gems-baseline # occasionally clear
           - cache restore gems-baseline
-          - cache restore gems-$(checksum Gemfile.lock)
+          - GLCHECK=`checksum Gemfile.lock`
+          - cache restore gems-$GLCHECK
           - bundle config set --local deployment 'true'
           - bundle install
-          - cache store gems-$(checksum Gemfile.lock) vendor/bundle
+          - cache store gems-$GLCHECK vendor/bundle
           - cache store gems-baseline vendor/bundle
           - cache store bundle-config .bundle
 
-          - be rake db:create
-          - be rake wikirate:test:seed
+          - nvm use 12.18.2
+          - be decko setup
 
       env_vars:
         - name: RAILS_ROOT
@@ -52,24 +53,25 @@ blocks:
 
   - name: Integration Tests
     task:
+      secrets:
+        - name: wikirate-cypress
       prologue:
         commands:
           - cache restore bundle-config
           - cache restore gems-$(checksum Gemfile.lock)
-          - be rake db:create
-          - be rake wikirate:test:seed
+          - be decko setup
 
       jobs:
         - name: Cucumber
           commands:
-            - RAILS_ENV=cucumber bundle exec decko cucumber -- --format junit --out /home/semaphore/reports
+            - RAILS_ENV=cucumber bundle exec decko cucumber -- --format pretty --format junit --out /home/semaphore/reports
 
         - name: Cypress
           commands:
             - RAILS_ENV=cypress bundle exec decko server -p 5002 &
             - nvm use 12.18.2
             - yarn install
-            - yarn run cypress run --record --key ffd8ff95-9033-4fd3-bcee-fc13cd67b3b7 --reporter junit --reporter-options "mochaFile=/home/semaphore/reports/cypress-output-[hash].xml"
+            - yarn run cypress run --record --reporter junit --reporter-options "mochaFile=/home/semaphore/reports/cypress-output-[hash].xml"
 
       epilogue:
         always:

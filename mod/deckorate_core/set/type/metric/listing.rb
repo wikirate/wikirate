@@ -1,14 +1,14 @@
 format :html do
   view :bar_left do
-    render :thumbnail_with_bookmark
+    render :thumbnail
   end
 
   view :bar_right do
-    count_badges :wikirate_company, :metric_answer
+    [count_badges(:wikirate_company, :metric_answer), render_bookmark]
   end
 
   view :bar_middle do
-    count_badges :source, :dataset
+    result_middle { count_badges :source, :dataset }
   end
 
   view :bar_bottom do
@@ -56,5 +56,13 @@ format :html do
     #   next unless (value = voo.send key)
     #   "#{key}: #{value}"
     # end.compact
+  end
+
+  def goto_autocomplete_icon
+    render_thumbnail_image
+  end
+
+  def autocomplete_label
+    card.metric_title
   end
 end

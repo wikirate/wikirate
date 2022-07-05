@@ -1,28 +1,27 @@
 %footer.container-fluid.bg-light.border-top.p-5.homepage-footer
-  .row.position-relative
-    .col-6.col-md-2.text-center.image-column
-      .py-4
+  .container
+    .d-flex.flex-wrap
+      .footer-section
         %a{ href: "https://wikirate.org/" }
           %img{ src: "/mod/wikirate_homepage/logos/wikirate_grey.png" }
-      .py-4
+      .footer-section
         %a{ href: "https://ec.europa.eu/", target: "wr-partner" }
           %img{ src: "/mod/wikirate_homepage/logos/european_commission.png",
                 alt: "powered by Decko" }
-      .py-4
-        %a{ href: "https://decko.org/", target: "wr-partner" }
-          %img{ src: "/mod/wikirate_homepage/logos/decko.png", alt: "powered by Decko" }
-    - nav_menus.merge(secondary_menus).each do |header, items|
-      .footer-menu.col-6.col-md-2.text-center
-        %h4
-          = header
-        %ul
-          - items.each do |item|
-            %li
-              %a{ href: nav_menu_item_url(header, item) }
-                - if header == "Social"
-                  = fa_icon item.downcase, brand: true
-                = item
-    %img{ src: "/mod/wikirate_homepage/logos/stop_slavery.png", class: "stop-slavery-award" }
-
-
-
+        .py-4
+          %a{ href: "https://decko.org/", target: "wr-partner" }
+            %img{ src: "/mod/wikirate_homepage/logos/decko.png", alt: "powered by Decko" }
+      - secondary_menus.each do |header, items|
+        .footer-section
+          .footer-menu
+            %h4
+              = header
+            %ul
+              - items.each do |item|
+                %li
+                  %a{ href: nav_menu_item_url(header, item) }
+                    - if header == "Social"
+                      = fa_icon item.downcase, brand: true
+                    = item
+      .footer-section
+        %img{ src: "/mod/wikirate_homepage/logos/stop_slavery.png", class: "stop-slavery-award" }

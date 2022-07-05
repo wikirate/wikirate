@@ -1,12 +1,12 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
+RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Discussion::AwardBadges do
   describe "discuss badges" do
     let(:badge_action) { :discuss }
-    let(:sample_acting_card) { sample_answer.subfield(:discussion) }
+    let(:sample_acting_card) { sample_answer.field(:discussion) }
 
     def execute_awarded_action count
-      answer_card(count).subfield(:discussion)
+      answer_card(count).field(:discussion)
                         .update! content: "comment"
     end
 

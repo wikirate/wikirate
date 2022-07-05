@@ -1,5 +1,5 @@
 include_set Abstract::CachedCount
-include_set Abstract::MetricFilter
+include_set Abstract::MetricSearch
 
 recount_trigger :type, :metric, on: [:create, :delete] do |_changed_card|
   Card[:metric]
@@ -10,9 +10,5 @@ def count
 end
 
 format :html do
-  view :titled_content, template: :haml
-
-  view :add_button do
-    link_to "Add Metric", href: "/new/Metric", class: "add-metric btn btn-secondary"
-  end
+  before(:filtered_content) { voo.items[:view] = :box }
 end

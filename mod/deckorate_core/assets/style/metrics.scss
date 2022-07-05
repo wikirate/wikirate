@@ -1,85 +1,4 @@
 
-.SELF-answer.titled-view > .d0-card-header .d0-card-header-title {
-  text-align: center;
-  i {
-    font-size: 0.8em;
-    padding: 0 5px;
-  }
-}
-
-.tabbable.company-tabs .tab-content {
-  margin-left: -15px;
-}
-
-/*Common styles and classes ENDS*/
-.SELF-homepage_company {
-  .pointer-item {
-    float: left;
-  }
-}
-.details-body .nav-tabs label {
-  margin-bottom: 0;
-}
-
-.details_sidebar-view .year-and-value {
-  cursor: pointer;
-}
-
-.metric_properties-view {
-  width: 100% !important;
-}
-
-.filter.panel {
-  background: #F9F9F9;
-  border-radius: 0;
-  margin-top: 10px;
-  margin-bottom: 0;
-  .panel-heading {
-    cursor: pointer;
-    color: #ccc !important;
-    padding: 6px 12px;
-    height: 32px;
-    text-decoration: none;
-    background: #fff;
-  }
-  .panel-collapse {
-    padding: 10px;
-    color: $dark-text-color;
-    label {
-      color: $dark-text-color;
-      float: left;
-      width: 15%;
-    }
-    input,
-    select {
-      height: 25px;
-      width: 80%;
-    }
-  }
-}
-
-.metric-source .tab-content {
-  background: #fffefa;
-  padding: 30px;
-}
-
-.form .metric-value-year {
-  width: 135px;
-}
-
-.form .metric-value-value {
-  width: 200px;
-}
-
-.label-metric {
-  background: $metric-color;
-  color: white;
-  a {
-    font-weight: normal;
-    color: white;
-  }
-}
-
 .metric-value {
   a {
     color: $answer-color;
@@ -92,36 +11,6 @@
   font-size: inherit;
 }
 
-.no-metric-value {
-  display: none;
-}
-
-.RIGHT-company.d0-card-content .company-item .item-link > a {
-  background: $brand-primary;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.details-header,
-.metric-info {
-  .row {
-    margin-left: 5px;
-    margin-right: 5px;
-
-    .glyphicon-question-mark {
-      font-weight: bold;
-    }
-  }
-}
-
-.metric-author-info {
-  img {
-    max-height: 100%;
-    max-width: 100%;
-    vertical-align: middle;
-  }
-}
-
 .scored-by-subtitle .image-box {
   margin-left: 0.3em;
 }
@@ -130,22 +19,6 @@
     .thumbnail-subtitle a {
       color: inherit !important;
       margin-left: 0.2em;
-    }
-  }
-}
-
-.TYPE-metric_value {
-  // &.LTYPE_RTYPE-html-year > .card-frame > .card-body {
-  //   padding: 0px;
-  //   margin-top: 1px;
-  // }
-  .RIGHT-discussion,
-  .TYPE_PLUS_RIGHT-metric_value-source,
-  .timeline {
-    float: left;
-    width: 100% !important;
-    .missing-view {
-      display: none;
     }
   }
 }
@@ -170,45 +43,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   padding: 10px;
 }
 
-//workaround
-.edit-view.TYPE_PLUS_RIGHT-metric-formula .btn {
-  z-index: 0 !important;
-}
 
-.RIGHT-formula.d0-card-body {
-  white-space: normal;
-}
-
-.standard-formula-core {
-  background: #f2f2f2;
-  padding: .75em 1.5em;
-  width: 100%;
-  margin: 0.5em 0;
-  white-space: pre-wrap;
-  .formula-equals {
-    font-weight: bold;
-    font-size: 1.5em;
-  }
-  .formula-body {
-    .bar-view, .expanded_bar-view {
-      margin: 0.5em;
-      .bar-body {
-        background: #fff;
-      }
-    }
-  }
-}
-
-#modal-add-metric-slot {
-  .modal-dialog {
-    max-width: none;
-    width: 90%;
-  }
-  .modal-body .d0-card-body > .row > .col-md-6 {
-    height: 1000px;
-    overflow-y: scroll;
-  }
-}
 
 .metric-thumbnail {
   font-size: 0.66em;
@@ -227,7 +62,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     display: inline-block;
     vertical-align: middle;
     > a {
-      color: #888;
+      color: $gray-600;
     }
     a > div {
       max-width: 225px;
@@ -292,17 +127,13 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .metric-row {
   padding-bottom: 15px;
-  background: #fafafa;
+  background: $gray-100;
   > div {
-    background: #fff;
+    background: $white;
     &:first-child {
-      border-top: 1px solid #EEE;
+      border-top: 1px solid $gray-200;
     }
   }
-}
-
-.card-slot.new-view.TYPE-metric.METRIC_TYPE-researched .nav-pills {
-  margin: 0 -15px !important;
 }
 
 .source-year {
@@ -317,7 +148,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   font-size: 1.1rem;
   height: 1.8em;
   width: 1.8em;
-  display: flex;
+  display: inline-flex;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
@@ -329,23 +160,13 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .wikirate-table .data .metric-legend {
- width: 60%;
-}
-
-
-.TYPE-source.open-view {
-  .left-col {
-    border: 0;
-  }
-  .right-col {
-    border: 0;
-  }
+  width: 60%;
 }
 
 // metric value details
 #metric-container, #source-preview-main {
   border: 1px solid $gray-100;
-  background: #fff;
+  background: $white;
 
   .thumbnail {
     border: none;
@@ -370,112 +191,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   padding-right: 15px;
 }
 
-.stick-left, .stick-right {
-  position: fixed;
-  top: 130px; //68px;
-  bottom: 0px;
-  z-index: 1;
-}
-
-.stick-left {
-  overflow-y: scroll;
-  width: 40.8%;
-}
-
-.stick-right {
-  width: 57%;
-  left: 41.9%;
-  margin: -1px;
-  .webpage-preview {
-    height: auto !important;
-    top: 81px;
-    bottom: 0;
-    position: absolute;
-  }
-}
-
 .topic-list .pointer-item {
   display: inline;
   padding: 0;
-}
-
-//metric properties
-.metric-properties {
-  //margin: 0px 15px;
-
-  .pointer-list {
-    padding: 0;
-  }
-  .pointer-item {
-    display: inline;
-    padding: 0px;
-  }
-  &.table {
-    border: 0;
-  }
-  td:first-child {
-    min-width: 125px;
-    width: 20%;
-    text-align: right;
-  }
-  td {
-    border: 0 !important;
-    padding: 2px 10px !important;
-    height: 40px;
-    vertical-align: middle !important;
-    color: #555;
-    position: relative; //fix for menu icon on company details page
-    &:last-child {
-      font-weight: bold;
-    }
-  }
-  .numerical-type-info {
-    font-size: 10px;
-    padding: 2px;
-  }
-  .list-group-item, .RIGHT-topic .pointer-item, .numerical-type-info {
-    font-weight: normal;
-  }
-  .list-group-item {
-    width: 80%;
-    .ellipsis {
-      white-space: inherit;
-    }
-  }
-  .labeled-content .RIGHT-value_option .pointer-item {
-    display: block;
-    padding-left: 15px;
-    text-indent: -15px;
-  }
-}
-
-.core-view.SELF-research_page, .research_page-view {
-  .stick-left {
-    left: 0px;
-    top: 66px;
-    background: #fff;
-  }
-  .stick-right {
-    top: 66px;
-    left: 40.8%;
-    width: 60%;
-    background: #fff;
-  }
-
-  //.answer_table-view.LTYPE_RTYPE-metric-company {
-  //  margin: 0px;
-  //  padding: 10px;
-  //  //border: 1px solid $border-color;
-  //}
-
-  td.year {
-    padding-right: 10px;
-    width: 110px;
-  }
-}
-
-.table-view {
-  width: 100%;
 }
 
 .new-value-form {
@@ -485,9 +203,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .row.panel-default.metric-list {
-  background: rgba(103, 78, 167, 0.06);
+  background: $purple-800;
  .record-row {
-   background: #fff;
+   background: $white;
    margin-bottom: 30px;
    border-top: 1px solid $border-color;
    border-bottom: 1px solid $border-color;
@@ -496,7 +214,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .answer-unit {
   font-size: 13px;
-  color: $help-text;
+  color: $gray-600;
   padding: 5px;
   font-style: italic;
 }
@@ -509,64 +227,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 //  }
 //}
 
-.research-left {
-  width: 40%;
-}
-
-.RIGHT-all_metric_value.content-view {
-  min-height: 800px;
-}
-
-//Contribution section on research group page
-.contribution-item {
-  overflow: hidden;
-  //cursor: move;
-  border: 1px solid $border-color;
-  clear: both;
-  margin-bottom: -1px;
-
-  .thumbnail {
-    border: 0;
-    margin: 2px
-  }
-  .header {
-    width: 70%;
-    //cursor: pointer;
-    float: left;
-    border-right: 1px solid #eee;
-    //color: #ccc !important;
-    padding: 6px 12px;
-    text-decoration: none;
-  }
-  .data {
-    width: 28%;
-    text-align: center;
-    cursor: pointer;
-    float: left;
-    color: #ccc !important;
-    padding: 6px 12px;
-    text-decoration: none;
-    &:hover {
-      //background: #fff;
-    }
-  }
-  &.metric-item .header .name {
-    color: $muted;
-  }
-  &.company-item .header .name {
-    color: $muted;
-
-  }
-  &.topic-item .header .name {
-    color: $muted;
-
-  }
-}
-
 .new-view.TYPE-metric {
-  .nav-pills > li.pointer-radio input.pointer-radio-button {
-    display: none;
-  }
   .card-editor span.select2.select2-container {
     width: 100% !important;
   }
@@ -586,16 +247,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   max-height: 206px !important;
 }
 
-.filtered-answer-counts {
-  tr.known {
-    font-weight: bold;
-  }
-
-  .material-icons.small {
-    font-size: small !important;
-  }
-}
-
 .badge {
   &.known {
     color: $white;
@@ -611,12 +262,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-// don't treat relationship values like links
-.relations_table_with_details_toggle-view a._update-details:hover {
-  text-decoration: none;
-  cursor: inherit;
-}
-
 .score-option {
   &.score-option-checked {
     font-weight: bold;
@@ -629,7 +274,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     font-size: 1.2em;
   }
 }
-
 
 .filter-result-menu {
   a {
@@ -645,194 +289,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-.vega-bindings {
-  background: #eee;
-  border: 1px solid #666;
-  padding: 1em;
-  float: right;
-  min-width: 180px;
-  width: 20%;
-  text-align: right;
-  right: 0;
-  top: 38px;
-  display: none;
-  span {
-    display: block;
-    color: $gray-600;
-  }
-}
 
-.with-bindings {
-  .vega-bindings {
-    display: block;
-  }
-  canvas {
-    max-width: 80%;
-  }
-}
 
-.research-layout #main {
-  .research-company .progress-bar {
-    background-color: $metric-color;
-  }
-  .nav-pills {
-    li {
-      min-width: 25%;
-      a {
-        padding: 2rem 3rem;
-        width: 100%;
-        .circle-num {
-          border: 1px solid $gray-400;
-          border-radius: 50%;
-          display: inline-block;
-          text-align: center;
-          width: 1.5rem;
-          height: 1.5rem;
-          margin-right: 1rem;
-        }
-        &.active, &:hover {
-          background-color: $white;
-          color: $secondary;
-          border: 0;
-          @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
-        }
-      }
-    }
-  }
-  .nav-pills, section {
-    padding: 4.5rem 0;
-    h2 {
-      margin-top: 0.1rem
-    }
-  }
-  .research-selector {
-    padding-left: 1rem;
-  }
-  .overlay-container {
-    min-height: 1460px;
-  }
-  .pdf-source-preview {
-    height: 1320px !important;
-  }
-  .d0-card-overlay {
-    background-color: $gray-100;
-  }
-  input[type=radio], input[type=checkbox] {
-    transform: scale(1.5);
-  }
-  .research-year-option {
-    cursor: pointer;
-    &:hover {
-      @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
-    }
-  }
-  .btn-research {
-    padding: 1em 2em;
-  }
-  .source-selector-header {
-    background-color: $gray-300;
-  }
-  .d0-card-overlay > .d0-card-frame > .d0-card-content {
-    padding: 0 !important;
-  }
-  .close-research-overlay {
-    right: 0;
-    a {
-      border: 0;
-      i {
-        padding: 0 0.2em;
-      }
-      &:hover i {
-        color: $white;
-      }
-    }
-  }
-  .jp-current {
-    background-color: $primary;
-    color: $white;
-  }
-  .answer-breadcrumb-link:hover {
-    text-decoration: none;
-  }
-  .answer-breadcrumb {
-    background-color: $gray-200;
-    color: $gray-800;
-    border-radius: 5px;
-    padding: 1em;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    border: 1px solid $gray-300;
-    .breadknife {
-      margin: 0 1em;
-    }
-    &:hover {
-      @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
-    }
-  }
-  .source-help {
-    width: 100%;
-    text-align: right;
-    font-size: 1.4em;
-  }
-}
 
-.research-layout .tab-pane-answer_phase .card-form, .read_form_with_button-view {
-  .form-group {
-    display: flex;
-    > label {
-      .card-title {
-        font-size: 2rem;
-      }
-      width: 30%;
-      padding: 0 2rem;
-    }
-    > .content-editor, .read-formgroup-content {
-      width: 70%;
-      padding: 2rem;
-      ul.pointer-radio-list {
-        padding: 0;
-        li.pointer-radio {
-          padding: 0.2rem 0;
-          label {
-            margin-left: 1rem;
-          }
-        }
-      }
-    }
-  }
-  .read-formgroup-content {
-    background-color: $gray-100;
-    .bar-body {
-      background-color: $white;
-    }
-  }
-  .button-form-group {
-    margin-left: calc(30% + 2rem);
-  }
-  .comment-buttons {
-    text-align: right;
-  }
-  .go_to_sources {
-    display: inline;
-  }
-}
-.go_to_sources, .answer-success-in-project {
-  display: none;
-}
-.progress {
-  border-radius: 10px;
-}
-
-#main section.research-answer {
-  padding: 0;
-}
-
-.record-in-project {
-  &:hover {
-    text-decoration: none;
-    > div {
-      @include box-shadow(0, 10px, 20px, rgba(0, 0, 0, .10));
-    }
-  }
-}

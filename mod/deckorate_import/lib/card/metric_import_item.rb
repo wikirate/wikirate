@@ -86,7 +86,7 @@ class Card
       {
         name: metric_name(i),
         type_id: Card::MetricID,
-        subfields: prep_subfields(i)
+        fields: prep_fields(i)
       }
     end
 

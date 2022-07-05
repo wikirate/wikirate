@@ -1,0 +1,71 @@
+.formula-editor-help
+  %p
+    WikiRate formulae are written in
+    = link_to "CoffeeScript", href: "https://coffeescript.org/#introduction",
+                              target: "_formula_help"
+    a pleasant-to-read language that gets turned into
+    = link_to "JavaScript", href: "https://en.wikipedia.org/wiki/JavaScript",
+                            target: "_formula_help"
+    (a less pleasant-to-read language) before being run.
+
+  %p
+    To write a formula, use the variables defined in the table above in the editor
+    inside the "CoffeeScript" tab. Once you have a formula that produces no errors,
+    you can save this formula as part of a "Calculated Metric". All the answers to that
+    metric produced by the formula will appear on WikiRate, and new answers will be
+    calculated as data becomes available.
+
+  %p
+    A simple formula might just use mathematical operations like addition (
+    %strong> +
+    ), subtraction (
+    %strong -
+    ), multiplication (
+    %strong *
+    ), and division (
+    %strong /
+    ). For example, if you have a variable named "percentRenewable", then
+    you can make a formula to find the percent NOT renewable by doing something like this:
+
+  .p-2.pb-3
+    %code
+      100 - percentRenewable
+
+  %p
+    A slightly more advanced formula might use an if-else statement, like so:
+
+  .p-2.pb-3
+    %code
+      if sharePercent > 10
+      .pl-3 "Major"
+      else
+      .pl-3 "Minor"
+
+  %p
+    Indentation matters in CoffeeScript, so if you didn't indent the "Major" and
+    "Minor" lines in the code above, it wouldn't work.
+
+  %p
+    If you're comfortable with spreadsheets, you will likely be able to get the hang of
+    WikiRate formulae. In fact, we support a lot of
+    = link_to "spreadsheet-like functions", href: "https://formulajs.info/functions/",
+                                            target: "_formula_help"
+    thanks to
+    = link_to "Formula.js.", href: "https://formulajs.info/functions/",
+                             target: "_formula_help"
+    For example, you can sum two variables like so:
+
+  .p-2.pb-3
+    %code
+      SUM tier1, tier2
+
+  %p
+    As you write your formula, look in the Answers tab to get feedback on what kinds of
+    results are being produced. Note that these results are being calculated dynamically
+    in your browser, and there are some differences in your browser environment and the
+    server environment in which the published answers are calculated. Code that you
+    write here will NOT be run directly in anyone else's browser.
+
+  %p
+    For more tips, see our
+    = link_to "Formula Guide.", href: "/Write_Metric_Formulae", target: "_formula_help"

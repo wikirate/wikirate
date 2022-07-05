@@ -5,6 +5,8 @@ include_set Abstract::Table
 include_set Abstract::Certificate
 include_set Abstract::Paging
 
+assign_type :list
+
 attr_accessor :auto_content
 
 def history?

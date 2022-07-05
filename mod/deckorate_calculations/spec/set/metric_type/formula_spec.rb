@@ -209,9 +209,9 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
 
     context "when formula changes" do
-      def update_formula subfields
+      def update_formula fields
         Card::Auth.as_bot do
-          formula_metric_name.card.update!(subfields: subfields)
+          formula_metric_name.card.update!(fields: fields)
         end
       end
 

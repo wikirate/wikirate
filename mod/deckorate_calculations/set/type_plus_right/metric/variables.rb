@@ -23,7 +23,7 @@ include_set Abstract::IdPointer
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CalcTrigger
 
-delegate :metric_type_codename, to: :metric_card
+delegate :metric_type_codename, :score?, :rating?, to: :metric_card
 
 event :validate_variables, :validate, on: :save, changed: :content do
   item_ids.each do |card_id|
@@ -50,7 +50,8 @@ def item_strings _args={}
 end
 
 def hash_list
-  @hash_list ||= parse_content.map(&:symbolize_keys!)
+  # @hash_list ||=
+  parse_content.map(&:symbolize_keys!)
 end
 
 def export_content
@@ -75,23 +76,52 @@ def content_to_hash_list content
 end
 
 def items_from_simple content
-  content.to_s.split(/\n+/).map.with_index do |variable, index|
-    { "metric" => variable, "name" => "m#{index + 1}" }
+  content.to_s.split(/\n+/).map { |var| { "metric" => var } }
+end
+
+format :data do
+  view :core do
+    card.parse_content
   end
 end
 
 format :html do
+  delegate :metric_type_codename, :score?, :rating?, to: :card
+
   view :core do
-    render :"#{card.metric_type_codename}_core"
+    render :"#{metric_type_codename}_core"
   end
 
   view :input do
-    card.check_json_syntax
-    super()
+    if score?
+      score_input
+    else
+      card.check_json_syntax
+      super()
+    end
   end
 
   def input_type
-    card.metric_type_codename
+    metric_type_codename
+  end
+
+  def filtered_item_view
+    voo.items[:hide] = :bookmarks
+    send "#{metric_type_codename}_filtered_item_view"
+  end
+
+  def filtered_item_wrap
+    send "#{metric_type_codename}_filtered_item_wrap"
+  end
+
+  def filter_items_default_filter
+    super.tap do |hash|
+      hash.merge! metric_type: %w[Score WikiRating], name: "" if rating?
+    end
+  end
+
+  def filter_items_modal_slot
+    super.merge items: { view: :thumbnail }
   end
 
   def default_item_view
@@ -100,5 +130,18 @@ format :html do
 
   def filter_card
     :metric.card
+  end
+
+  def custom_variable_input template
+    with_nest_mode(:normal) { haml template }
+  end
+
+  def filtered_item_duplicable
+    metric_type_codename == :formula
+  end
+
+  # hacky. prevents new form from treating +variables as a subcard of +formula
+  def edit_in_form_prefix
+    card.new? ? "card[fields][:variables]" : super
   end
 end

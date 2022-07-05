@@ -1,4 +1,4 @@
-card_accessor :unpublished
+card_accessor :unpublished, type: :toggle
 
 # TODO: this should work without explicit trash handling.
 def unpublished

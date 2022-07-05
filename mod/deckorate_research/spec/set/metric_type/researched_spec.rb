@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::MetricType::Researched do
+RSpec.describe Card::Set::MetricType::Researched do
   let(:metric) { Card["Jedi+disturbances in the Force"] }
 
   describe "#metric_type" do
@@ -82,38 +82,28 @@ describe Card::Set::MetricType::Researched do
   end
 
   describe ".create" do
-    it "composes the name using the title and designer subfields" do
+    it "composes the name using the title and designer fields" do
       Card::Auth.as_bot do
         metric = Card.create!(
           type_id: Card::MetricID,
-          subfields: { title: "MetricTitle1", designer: "MetricDesigner" }
+          fields: { title: "MetricTitle1", designer: "MetricDesigner" }
         )
         expect(metric.name).to eq "MetricDesigner+MetricTitle1"
       end
     end
   end
 
-  describe "structure" do
-    it "has necessary components" do
-      expect(metric.format(:html)._render_open).to(
-        have_tag("div.open-view") do
-          with_tag "div.left-col" do
-            with_tag "div.rich-header"
-            with_tag "div.RIGHT-answer.filtered_content-view" do
-              with_tag "div._filtered-content"
-            end
+  describe "details tab" do
+    it "has metric properties" do
+      expect(metric.format.render_details_tab).to(
+        have_tag("div.metric-properties") do
+          with_tag "div.RIGHT-topic" do
+            with_tag "div.label", text: /Topics/
+            with_tag "div.labeled-content", text: /Force/
           end
-          with_tag "div.right-col" do
-            with_tag("div.metric-properties") do
-              with_tag "div.RIGHT-topic" do
-                with_tag "div.label", text: /Topics/
-                with_tag "div.labeled-content", text: /Force/
-              end
-              with_tag "div.RIGHT-Xmetric_type" do
-                with_tag "div.label", text: /Metric Type/
-                with_tag "div.labeled-content", text: /Researched/
-              end
-            end
+          with_tag("div.RIGHT-value_type") do
+            with_tag "div.label", text: /Value Type/
+            with_tag "div.labeled-content", text: /Category/
           end
         end
       )

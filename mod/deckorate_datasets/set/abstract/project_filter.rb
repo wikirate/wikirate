@@ -2,7 +2,7 @@
 
 include_set Abstract::CqlSearch
 include_set Abstract::SearchViews
-include_set Abstract::BrowseFilterForm
+include_set Abstract::DeckorateFiltering
 
 def target_type_id
   ProjectID
@@ -17,7 +17,7 @@ format do
     "create"
   end
 
-  def filter_keys
+  def filter_map
     %i[name wikirate_status]
   end
 
@@ -32,11 +32,15 @@ format do
 end
 
 format :html do
-  view :filter_wikirate_status_formgroup, cache: :never do
-    select_filter :wikirate_status, "Active"
+  def filter_wikirate_status_type
+    :radio
   end
 
-  def wikirate_status_options
+  def filter_wikirate_status_default
+    "Active"
+  end
+
+  def filter_wikirate_status_options
     %w[Active Inactive]
   end
 end

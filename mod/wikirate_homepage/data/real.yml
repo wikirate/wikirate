@@ -1,0 +1,66 @@
+---
+- :name: Home
+  :type: :html
+  :codename: :homepage
+- :name: homepage adjectives
+  :type: :pointer
+  :codename: :homepage_adjectives
+  :content: |-
+    structured
+    open
+    interconnected
+    engaging
+    verifiable
+    comparable
+    navigable
+    integrated
+- :name: homepage project text
+  :type: :html
+  :codename: :homepage_project_text
+  :content: |
+    Universities and NGOs organize Projects on WikiRate to help
+    <span class="fw-normal">thousands of students and volunteers</span>
+    research metric answers.
+- :name: homepage solution text
+  :type: :html
+  :codename: :homepage_solution_text
+  :content: |
+    WikiRate is an <strong>open, collaborative tool</strong> for asking and answering
+    important questions about corporate impacts.
+- :name: homepage topic text
+  :type: :html
+  :codename: :homepage_topic_text
+  :content: |
+    WikiRate's
+    <span class="topic-color fw-normal">Topics</span>
+    help organize
+    <span class="metric-color fw-normal">Metric</span>
+    answers, each addressing a
+    <span class="metric-color fw-normal">Metric</span>
+    question for a specific
+    <span class="company-color fw-normal">Company</span>
+    and year.
+- :name: organizations using wikirate
+  :type: :pointer
+  :codename: :organizations_using_wikirate
+  :content: |-
+    Ranking Digital Rights
+    Clean_Clothes_Initiative
+    Walk Free Foundation
+    Principles for Responsible Management Education (PRME)
+    Oxfam India
+- :name: "*logo"
+  :type: :image
+  :codename: :logo
+  :image: logo.png
+  :storage_type: :coded
+- :name: wikirate white logo
+  :type: :image
+  :codename: :wikirate_white_logo
+  :image: wikirate_white_logo.png
+  :storage_type: :coded
+- :name: homepage video background image
+  :type: :image
+  :codename: :homepage_video_background_image
+  :image: homepage_video_background_image.png
+  :storage_type: :coded

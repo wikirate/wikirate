@@ -1,0 +1,43 @@
+---
+- :name:
+    - :wikirate_company
+    - :featured
+  :content: |-
+    Death Star
+    Monster Inc
+    Los Pollos Hermanos
+- :name:
+    - :company_group
+    - :featured
+  :content: |-
+    Deadliest
+    Googliest
+- :name:
+    - :wikirate_topic
+    - :featured
+  :content: |-
+    Force
+    Taming
+- :name:
+    - :metric_answer
+    - :featured
+  :content: |-
+
+# updating with fields here to trigger geography calculations
+- :name: Google LLC
+  :type: :wikirate_company
+  :fields:
+    :about: don't be evil
+    :headquarters: California (United States)
+    :incorporation: Delaware (United States)
+    :open_corporates: 201727810678
+    :alias:
+      - Google
+      - Alphabet
+- :name:
+    - :metric_answer
+    - :featured
+  :type: :list
+  :content:
+    - Jedi+disturbances in the Force+Death Star+1990
+    - Fred+dinosaurlabor+Death Star+2010

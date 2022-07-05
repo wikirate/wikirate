@@ -1,18 +1,18 @@
 format :html do
   view :bar_left do
-    render_thumbnail_with_bookmark
+    render_thumbnail
   end
 
   view :bar_middle do
-    count_badges :research_group, :dataset
+    result_middle { count_badges :research_group, :dataset }
   end
 
   view :bar_right do
-    count_badge :metric
+    [count_badge(:metric), render_bookmark]
   end
 
   view :bar_bottom do
-    [render_bar_middle, render_data]
+    [render_bar_middle, render_details]
   end
 
   view :box_middle do

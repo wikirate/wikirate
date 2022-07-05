@@ -50,7 +50,7 @@ format :json do
   end
 
   def single_year_chart?
-    single?(:year) || filter_hash[:year]&.to_sym == :latest
+    single?(:year) || Array.wrap(filter_hash[:year]).first&.to_sym == :latest
   end
 
   def single_year_chart_type

@@ -1,0 +1,17 @@
+.sidebar-nav
+  %button.btn.my-1{ "data-bs": { "toggle": "collapse",
+                                 "target": "##{card.key}-collapse" },
+                    "aria-expanded": ("true" if expanded?),
+                    class: ("text-primary fw-bold" if expanded?) }
+    %i.fas
+    %span.ps-2
+      = card.name
+  .sidebar-nav-content.collapse{ id: "#{card.key}-collapse",
+                                 "data-bs": { parent: ".sidebar-nav-list" },
+                                 class: ("show" if expanded?) }
+    .sidebar-subheader.p-2.ms-4
+      = link_to_card card, nil, class: "text-reset"
+    - subheaders.each do |subheader|
+      .sidebar-subheader.p-2.ms-4
+        - anchor_href = "#{card.name.url_key}##{subheader.text.to_name.key}"
+        = link_to subheader.text, href: anchor_href, class: "text-reset"

@@ -1,0 +1,296 @@
+// set consistent colors for a group of bars/boxes
+@mixin barbox($color) {
+  &.bar {
+    border-left-color: rgba($color, 0.2) !important;
+  }
+
+  &.bar:hover {
+    border-left-color: $color !important;
+    .bar-left {
+      a, .image-box i, .bookmark-toggle.active-bookmark {
+        color: $color;
+      }
+    }
+  }
+
+  &.box {
+    &:hover {
+      border-top-color: $color !important;
+
+      .box-top {
+        a, .bookmark-toggle.active-bookmark {
+          color: $color;
+        }
+      }
+
+      .box-middle i {
+        color: $color;
+      }
+    }
+  }
+}
+
+
+@mixin quickFilterTag($by, $color) {
+  .quick-filter {
+    .quick-filter-by-#{$by} {
+      background: $color;
+      &.active {
+        background: rgba($color, 0.2);
+        color: $color;
+      }
+    }
+  }
+}
+
+@mixin hoverTag($type, $color) {
+  .RIGHT-#{$type}.d0-card-content {
+    > .pointer-list, > .search-result-list {
+      > .item-link > a {
+        background: $color;
+        max-width: 15em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  .#{$type}.select2-selection--multiple .select2-selection__choice {
+    @include coloredTag;
+    background: $color;
+    max-width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .select2-selection__choice__remove {
+      color: #fff;
+    }
+  }
+  @include quickFilterTag($type, $color)
+}
+
+@mixin coloredTag {
+  display: inline-block;
+  text-indent: 0;
+  border-radius: 0.2rem;
+  font-size: 0.9em;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 0.4em;
+  margin: 0 0.5rem 0.25rem 0;
+  opacity: 0.75;
+  border: 0;
+  &:hover {
+    opacity: 1;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 0.8rem;
+  }
+}
+
+// type specific colors
+$colorMap: (
+  metric: $metric-color,
+  metric_type: $metric-color,
+  record: $record-color,
+  company: $company-color,
+  topic: $topic-color,
+  source: $source-color,
+  project: $project-color,
+  answer: $answer-color,
+  research_group: $research-group-color,
+  company_group: $company-group-color,
+  year: $year-color,
+  datum_set: $dataset-color,
+  datum_subset: $dataset-color,
+  user: $user-color
+); // border color for bars and boxes
+
+@each $type, $color in $colorMap {
+  .TYPE-#{$type}.rich-header {
+    // border-top: 5px solid $color;
+    a {
+      color: $color !important;
+    }
+  }
+
+  .TYPE-#{$type} {
+    @include barbox($color);
+
+    &.thumbnail:hover .thumbnail-title .card-title {
+      color: $color
+    }
+  }
+
+  .bar:hover {
+    .TYPE-#{$type}.thumbnail .thumbnail-title .card-title {
+      color: $color
+    }
+    .TYPE-#{$type}.color-on-hover {
+      color: $color
+    }
+  }
+
+  .#{$type}-color, .#{$type}-color a {
+    &, &:hover, &:focus, &:visited {
+      color: $color;
+    }
+  }
+
+  .bg-#{$type} {
+    background-color: $color !important;
+    color: $white !important;
+  }
+
+  .top-border-#{$type} {
+    border-top: 3px solid $color;
+  }
+
+  .#{$type}-border-left {
+    border-left: 3px solid $color !important;
+  }
+
+  .RIGHT-#{$type} {
+    .contribution-report-header {
+      border-left: 4px solid $color;
+    }
+  }
+
+  .bar, .box {
+    &:hover .RIGHT-#{$type} {
+      &.labeled-badge .badge {
+        background-color: $color !important;
+      }
+    }
+  }
+
+  #main > .SELF-#{$type}.titled-view > .d0-card-header > h1 {
+    color: $color;
+  }
+}
+
+.LTYPE_RTYPE-topic-company {
+  @include barbox($topic-color)
+}
+
+.TYPE_PLUS_RIGHT-project-metric.titled-view .LTYPE_RTYPE-metric-project {
+  @include barbox($metric-color);
+}
+
+.TYPE_PLUS_RIGHT-project-company.titled-view .LTYPE_RTYPE-company-project {
+  @include barbox($company-color);
+}
+
+// Topic and company tags
+
+.RIGHT-topic, .RIGHT-company, .RIGHT-company_group {
+  &.d0-card-content .item-link {
+    display: inline;
+    > a {
+      @include coloredTag;
+    }
+  }
+}
+
+.quick-filter {
+  padding-bottom: 0.5rem;
+  a {
+    @include coloredTag;
+    max-width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: $gray-600;
+    cursor: default;
+    &.active {
+      color: $white;
+      cursor: pointer;
+    }
+  }
+}
+
+@include hoverTag(topic, $topic-color);
+@include hoverTag(company, $company-color);
+@include hoverTag(wikirate_topic, $topic-color);
+@include hoverTag(wikirate_company, $company-color);
+@include hoverTag(company_group, $company-group-color);
+@include hoverTag(metric, $metric-color);
+@include hoverTag(project, $project-color);
+
+@each $sdg, $color in $score-colors {
+  @include quickFilterTag($sdg, $color);
+}
+
+.sdg-quick-filters {
+  .sdg-label > a {
+    color: $text-muted !important;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  display: flex;
+  flex-wrap: nowrap;
+  > a {
+    margin: 0;
+    font-size: xx-small;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 0;
+    padding-top: 3px;
+    &.help-link {
+      color: #666 !important;
+      background: transparent;
+      margin-right: 0.4em;
+      cursor: pointer;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    display: inline-block;
+    > a {
+      margin-left: -4px;
+    }
+  }
+}
+
+// Score / WikiRating colors
+
+@each $score, $color in $score-colors {
+  .score-color-#{$score} {
+    background-color: $color;
+  }
+  .details-toggle {
+    .score-color-#{$score} {
+      background-color: rgba($color, 0.75);
+    }
+    &:hover .score-color-#{$score} {
+      background-color: $color;
+    }
+  }
+}
+
+
+.verification-steward {
+  color: $metric-color;
+}
+.verification-community {
+  color: $primary;
+}
+.verification-flagged {
+  color: $verification-flag-color;
+}
+
+
+// TODO: get rid of these; use more standard bootstrap classes.
+// light colors
+.light-color-0 {
+  background-color: $gray-400;
+}
+
+.light-grey-color {
+  color: $gray-400;
+}
+
+.light-grey-color-2 {
+  color: $gray-500;
+}

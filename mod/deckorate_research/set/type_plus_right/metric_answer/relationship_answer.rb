@@ -1,6 +1,6 @@
 include_set Abstract::Table
 include_set Abstract::MetricChild, generation: 3
-include_set Abstract::BrowseFilterForm
+include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
 include_set Abstract::PublishableField
 
@@ -45,7 +45,7 @@ format do
     metric_card.inverse_company_id_field
   end
 
-  def filter_keys
+  def filter_map
     %i[name company_group bookmark dataset]
   end
 
@@ -65,16 +65,9 @@ end
 
 format :html do
   delegate :metric, :company, :year, to: :card
-
-  view :core, template: :haml
-
-  view :relations_table, cache: :never do
-    name_view = inverse? ? :inverse_company_name : :company_name
-    wikirate_table search_with_params,
-                   [name_view, :details],
-                   header: [rate_subject, "Answer"],
-                   table: { class: "company" }
-  end
+  #
+  # view :core, template: :haml
+  #
 
   def quick_filter_list
     bookmark_quick_filter + company_group_quick_filters + dataset_quick_filters

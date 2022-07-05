@@ -1,21 +1,24 @@
 .details-top.my-3
-  .row.justify-content-between
-    .col-9
-      .value-details.font-weight-bold
-        = handle_unknowns { nest card.value_card, view: :pretty }
-        .text-muted
-          = render_legend
-    .col-3.year-details.d-flex.justify-content-end.align-items-start
-      .ml-2
-        = filterable year: card.year, status: :exists do
-          - nest card.year, view: :in_calendar
-      = render_full_page_link
+  %h5 Question
+  .alert.alert-secondary
+    = nest metric_card, view: :question
+  %h5 Answer
+  .alert.alert-primary
+    = handle_unknowns { nest card.value_card, view: :pretty }
+    .text-muted
+      = render_legend
   .record-details.d-flex.justify-content-between.my-3
-    .d-flex.align-items-center
-      .mr-2
-        = render_research_button
-      = render_flags
-    .year-details.d-flex.justify-content-end.align-items-center
+    .year-details.d-flex.align-items-center
+      = "#{record_count}-Year Record#{':' if record_count > 1}"
       .other-year-links.mx-3
         = render_other_year_links
-      = render_record_filter_button
+    .d-flex.align-items-center.justify-content-end
+      .flag-details
+        = render_flags
+      .mb-2
+        = render_research_button
+
+
+
+
+

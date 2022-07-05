@@ -40,9 +40,9 @@ event :create_inverse, :prepare_to_store, on: :save do
   inverse = new_inverse_title || inverse_title
   inverse_name = "#{metric_designer}+#{inverse}"
   subcard inverse_name, type: :metric,
-                        subfields: { metric_type: "Inverse Relationship",
-                                     inverse: name }
-  subfield :inverse, content: inverse_name, type: :pointer
+                        fields: { metric_type: "Inverse Relationship",
+                                  inverse: name }
+  field :inverse, content: inverse_name, type: :pointer
   add_title_inverse_pointer metric_title, inverse
 end
 
@@ -78,32 +78,27 @@ format :html do
     end
   end
 
-  def title_fields options
-    wrap_with :div do
-      [
-        metric_title_field(options),
-        inverse_title_field(options)
-      ]
-    end
+  def title_fields
+    wrap_with(:div) { [metric_title_field, inverse_title_field] }
   end
 
-  def metric_title_field options
-    super options.merge help: "<p>How company A relates to company B, " \
-                              "e.g. company A is <strong>owner of</strong> company B</p>"
+  def metric_title_field
+    help = "How company A relates to company B.<br/> " \
+           "e.g. A is <strong>owner of</strong> B"
+    name_part_field :title, card.name.right, title: "Metric Title", help: help
   end
 
-  def inverse_title_field options={}
-    title = card.subfield :inverse_title, content: card.name.tag, type: :phrase
-    title.reset_patterns
-    title.include_set_modules
-    subformat(title)._render_edit_in_form(options.merge(title: "Inverse Title"))
+  def inverse_title_field
+    help = "How company B relates to company A.<br/> " \
+           "e.g. B is <strong>is owned by</strong> A"
+    name_part_field :inverse_title, card.name.right, title: "Inverse Title", help: help
   end
 end
 
 private
 
 def new_inverse_title
-  inverse_field = subfield(:inverse_title)
+  inverse_field = field(:inverse_title)
   inverse_field&.content.present? && inverse_field.content
 end
 

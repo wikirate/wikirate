@@ -10,7 +10,7 @@ class Card
     def import_hash
       {
         type_id: Card::SourceID,
-        subfields: prep_subfields(input.clone)
+        fields: prep_fields(input.clone)
       }
     end
 

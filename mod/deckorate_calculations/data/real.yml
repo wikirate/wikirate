@@ -1,0 +1,60 @@
+---
+- :name: Calculation
+  :codename: :calculation
+- :name: Yearly Variable
+  :type: :cardtype
+  :codename: :yearly_variable
+- :name: Yearly Value
+  :type: :cardtype
+  :codename: :yearly_value
+- :name: Yearly Answer
+  :type: :cardtype
+  :codename: :yearly_answer
+
+- :name: overridden value
+  :codename: :overridden_value
+- :name: hybrid
+  :codename: :hybrid
+- :name: Rubric
+  :codename: :rubric
+
+- :name: Formula
+  :type: :metric_type_type
+  :codename: :formula
+- :name: WikiRating
+  :type: :metric_type_type
+  :codename: :wiki_rating
+- :name: Score
+  :type: :metric_type_type
+  :codename: :score
+- :name: Descendant
+  :type: :metric_type_type
+  :codename: :descendant
+
+# override rstar rule
+- :name:
+    - :metric
+    - :variables
+    - :type_plus_right
+    - :create
+  :content: Anyone Signed In
+- :name:
+    - :metric
+    - :variables
+    - :type_plus_right
+    - :update
+  :content: Anyone Signed In
+
+# override CoffeeScript+*type rule
+- :name:
+    - :metric
+    - :formula
+    - :type_plus_right
+    - :create
+  :content: Anyone Signed In
+- :name:
+    - :metric
+    - :formula
+    - :type_plus_right
+    - :update
+  :content: Anyone Signed In

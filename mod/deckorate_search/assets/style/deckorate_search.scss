@@ -1,0 +1,23 @@
+.search-box-input-group {
+  flex-wrap: nowrap;
+
+  .search-box-select-type {
+    flex: 1 0 130px !important;
+
+    // we're using this select like the label of an input group (which is not
+    // standard bootstrap procedure). Evidently labels are called "addons" in
+    // bootstrap's variable nomenclature.
+    background-color: $input-group-addon-bg;
+    border-color: $input-group-addon-border-color;
+    color: $input-color;
+  }
+
+  // get rid of rounded corners
+  .select2-search-box-autocomplete {
+    border-right: 0;
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+

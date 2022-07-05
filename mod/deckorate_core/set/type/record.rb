@@ -1,5 +1,5 @@
 include_set Abstract::MetricChild, generation: 1
-include_set Abstract::TwoColumnLayout
+include_set Abstract::DeckorateTabbed
 
 card_accessor :metric_answer
 
@@ -21,7 +21,7 @@ end
 
 format :html do
   def tab_list
-    %i[metric wikirate_company]
+    %i[metric_answer metric wikirate_company]
   end
 
   def tab_options
@@ -30,13 +30,13 @@ format :html do
     end
   end
 
-  view :data do
-    field_nest :metric_answer, view: :filtered_content
+  def header_left
+    output [nest(card.metric_card, view: :thumbnail),
+            nest(card.company_card, view: :thumbnail)]
   end
 
-  view :rich_header do
-    [nest(card.metric_card, view: :shared_header),
-     nest(card.company_card, view: :shared_header)]
+  view :metric_answer_tab do
+    field_nest :metric_answer, view: :filtered_content
   end
 
   view :metric_tab do

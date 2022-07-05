@@ -1,4 +1,4 @@
-include_set Abstract::TwoColumnLayout
+include_set Abstract::DeckorateTabbed
 include_set Abstract::Thumbnail
 include_set Abstract::Stewardable
 include_set Abstract::ProfileType
@@ -15,11 +15,13 @@ format :html do
     voo.edit_structure = [:image, "+about me", :discussion]
   end
 
-  view :open_content do
-    two_column_layout 5, 7
+  def tab_list
+    %i[details research_group bookmarks contributions activity].tap do |list|
+      list << :simple_account if simple_account_tab?
+    end
   end
 
-  view :data do
+  view :details_tab do
     wrap_with :div, class: "profile-data" do
       [
         field_nest("+about me", view: :titled, title: "About me"),
@@ -56,12 +58,6 @@ format :html do
 
   def type_link_label
     "Researcher"
-  end
-
-  def tab_list
-    %i[research_group bookmarks contributions activity].tap do |list|
-      list.insert 2, :simple_account if simple_account_tab?
-    end
   end
 
   def simple_account_tab?

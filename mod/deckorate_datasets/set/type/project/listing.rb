@@ -1,5 +1,5 @@
 format :html do
-  info_bar_cols 6, 4, 2
+  bar_cols 6, 4, 2
 
   view :bar_left do
     voo.size = :medium
@@ -12,7 +12,7 @@ format :html do
   end
 
   view :bar_bottom do
-    render_data
+    render_details
   end
 
   def thumbnail_subtitle

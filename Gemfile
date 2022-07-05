@@ -22,6 +22,7 @@ else
     gem "card-mod-bookmarks"
     gem "card-mod-counts"
     gem "card-mod-csv_import"
+    gem "card-mod-filter"
     gem "card-mod-fulltext"
     gem "card-mod-google_analytics"
     gem "card-mod-graphql"
@@ -38,6 +39,10 @@ else
     gem "decko-cucumber", group: :cucumber
     gem "decko-cypress", group: :cypress
     gem "decko-rspec", group: :test
+  end
+
+  path "./mod" do
+    gem "card-mod-deckorate_search"
   end
 
   gem "decko-cap", path: "./vendor/decko-cap", group: :development
@@ -98,3 +103,5 @@ group :profile do
   gem "ruby-jmeter"                  # connected to Flood.io, used in load testing
   gem "wbench"                       # Benchmarking web requests
 end
+
+gem "rack-test", "!=2.0.0" # remove me soon (2.0.0 breaks things on semaphore)

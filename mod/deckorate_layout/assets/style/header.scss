@@ -1,0 +1,69 @@
+.rich-header {
+  margin-bottom: 1.5rem;
+
+  .breadcrumb {
+    margin: 0.8rem 0 1.6rem 0;
+  }
+
+  .card-menu {
+    z-index: 3;
+    background-color: $white;
+    position: static;
+  }
+
+  .media {
+    .media-body {
+      padding: 4px;
+
+      &.media-body-large {
+        padding: 1em;
+
+        .media-heading {
+          margin-right: 2em;
+        }
+      }
+
+      .media-heading {
+        @include media-breakpoint-up(sm) {
+          font-size: 1.7rem !important;
+        }
+
+        .card-title {
+          color: inherit;
+        }
+      }
+
+      .media-text {
+        font-size: $lead-font-size;
+      }
+    }
+  }
+
+  .header-middle-list, .header-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    @include media-breakpoint-up(md) {
+      min-height: 150px;
+    }
+  }
+  .header-middle {
+    padding-left: 2rem;
+    border-left: 3px solid $border-color;
+    label {
+      min-width: 30%;
+      font-weight: bold;
+    }
+  }
+  .header-right {
+    align-items: end;
+  }
+  .bookmark-toggle {
+    margin-top: 0.5rem;
+
+    .bookmark-count, .fa {
+      font-size: 2.5em;
+      padding: 0 0 0 .3rem;
+    }
+  }
+}

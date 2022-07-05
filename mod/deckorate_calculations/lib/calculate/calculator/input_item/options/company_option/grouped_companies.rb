@@ -29,7 +29,8 @@ class Calculate
             def answer_relation
               Card::AnswerQuery.new(
                 metric_id: input_card.id,
-                company_group: company_group.id
+                company_group: company_group.id,
+                published: :all
               ).lookup_relation
             end
 

@@ -1,13 +1,13 @@
 # ~~~~~~~~ Research Dashboard Handling ~~~~~~~~~~~~~~~~
 
-decko.editorInitFunctionMap["._removable-content-list ul"] = ->
+decko.editors.init["._removable-content-list ul"] = ->
   @sortable({handle: '._handle', cancel: ''})
 
-decko.editorContentFunctionMap["._removable-content-list ul"] = ->
+decko.editors.content["._removable-content-list ul"] = ->
   itemNames = $(this).find("._removable-content-item").map -> $(this).data("cardName")
   decko.pointerContent $.unique(itemNames)
 
-decko.slotReady (slot) ->
+decko.slot.ready (slot) ->
   if slot.closest(".research-layout")[0]
 
     # slide up new overlays
@@ -18,7 +18,7 @@ decko.slotReady (slot) ->
     newSource = slot.find "._new_source"
     if newSource.length
       closeSourceModal slot
-      (new decko.filter $(".RIGHT-source.filtered_content-view ._filter-widget")).update()
+      (new decko.compactFilter $(".RIGHT-source.filtered_content-view ._compact-filter")).update()
 
     # year paging
     if slot.find("#jPages")[0]
@@ -78,7 +78,7 @@ $(document).ready ->
     $(this).closest('li').remove()
 
   # close overlay with a smooth slide
-  $(".research-layout #main").on "click", '[data-dismiss="overlay"]', (e)->
+  $(".research-layout #main").on "click", '[data-bs-dismiss="overlay"]', (e)->
     el = $(this)
     el.overlaySlot().hide "slide", {
       direction: "down",
@@ -88,7 +88,7 @@ $(document).ready ->
     e.stopPropagation()
 
   researchTabSelector = ".research-layout #main .nav-item:not(.tab-li-question_phase)"
-  $(researchTabSelector).on "click", ".nav-link:not(.active)", (e)->
+  $(researchTabSelector).on "show.bs.tab", ".nav-link", (e) ->
     return unless $(this).hasClass "load"
     if !selectedYear()
       demandYear e
@@ -128,7 +128,7 @@ demandYear = (event) ->
   event.stopPropagation()
 
 toPhase = (phase, event) ->
-  tabPhase(phase).trigger "click"
+  (new bootstrap.Tab tabPhase(phase)).show()
   event.preventDefault()
 
 tabPhase = (phase) ->
@@ -157,7 +157,7 @@ addToSourceContent = (editor, source) ->
 
 reloadSourceSlot = (slot, content) ->
   query = $.param assign: true, card: { content: content }
-  slot.reloadSlot "#{slot.data 'cardLinkName'}?#{query}"
+  slot.slotReload "#{slot.data 'cardLinkName'}?#{query}"
 
 selectedSource = ()->
   $("#_select_source").data "source"

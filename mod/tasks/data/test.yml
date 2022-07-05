@@ -1,0 +1,18 @@
+---
+- :name: Add a Company Logo
+  :type: :task
+  :fields:
+    :search_type: |
+      {
+        "type":"Company",
+        "not": {
+          "right_plus": "image"
+        },
+        "limit": 5,
+        "sort": {
+          "right": "answers",
+          "item": "cached_count",
+          "return": "count"
+        },
+        "dir": "desc"
+      }

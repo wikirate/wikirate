@@ -1,18 +1,21 @@
 include_set Abstract::Export
-include_set Type::SearchType
-include_set Abstract::FilterHelper
+include_set Abstract::BookmarkFiltering
+include_set Abstract::CommonFilters
+
+assign_type :search_type
 
 delegate :inverse?, to: :metric_card
 
 def virtual?
-  true
+  new?
 end
 
 format do
   delegate :inverse?, to: :card
 
   def search_with_params
-    with_relation_paging(relationships).pluck(:relationship_id).map(&:card)
+    @search_with_params ||=
+      with_relation_paging(relationships).pluck(:relationship_id).map(&:card)
   end
 
   def count_with_params
@@ -62,6 +65,8 @@ format :csv do
 end
 
 format :html do
+  # before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
+
   def export_link_path format
     super.merge filter_and_sort_hash
   end

@@ -1,7 +1,6 @@
-//$header-bgcolor: #f9f9f9;
-$activity-color: #989898;
+
 .RIGHT-activity.titled-view .activity {
-  color: $activity-color;
+  color: $user-color;
   margin-bottom: 5px;
   overflow-x: hidden;
   .glyphicon {
@@ -21,7 +20,7 @@ $activity-color: #989898;
 .contributions-about-link {
   padding: 14px 12px;
   position: absolute;
-  color: #A7A5A5;
+  color: $gray-500;
   font-size: 12px
 }
 
@@ -36,33 +35,18 @@ $activity-color: #989898;
   }
 }
 
+.company-profile-tab {
+  position: absolute;
+  bottom: 10px;
+  min-width: 60%;
+  text-align: center;
+}
+
 /*----------- Media queries ---------*/
 
-@media all and (max-width: 1150px) {
-
-}
-
-@media all and (max-width: 1205px) {
-
-}
 
 @media all and (max-width: 990px) {
   .contributions-about-link {
     position: relative;
   }
-}
-
-@media all and (max-width: 48em) {
-
-}
-
-@media all and (max-width: 47em) {
-
-
-}
-
-/*----------- Media queries- For mobile devices ---------*/
-
-@media all and (max-width: 40em) {
-
 }

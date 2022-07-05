@@ -49,8 +49,18 @@ When(/^I print html of the page$/) do
   puts page.html
 end
 
-And(/^I click on item "([^"]*)"$/) do |item|
-  find("td", text: item).click
+# And(/^I click on item "([^"]*)"$/) do |item|
+#   find("td", text: item).click
+# end
+
+When(/^I click on "([^"]*)" in the offcanvas$/) do |link|
+  within(".offcanvas-body") do
+    click_link_or_button(link)
+  end
+end
+
+And(/^I close the offcanvas$/) do
+  find(".offcanvas-header .btn-close").click
 end
 
 And(/^I click on "([^"]*)" and confirm$/) do |link|

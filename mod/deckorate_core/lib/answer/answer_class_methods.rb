@@ -18,8 +18,6 @@ class Answer
   module AnswerClassMethods
     include Export::ClassMethods
 
-    VALUE_JOINT = Card::Set::Abstract::Value::JOINT
-
     # @return [Answer]
     def fetch cardish
       for_card(cardish) || new_researched(cardish) || virtual(cardish) || new
@@ -40,12 +38,12 @@ class Answer
     # @return nil or String
     def value_to_lookup value
       return nil unless value.present?
-      value.is_a?(Array) ? value.join(VALUE_JOINT) : value.to_s
+      value.is_a?(Array) ? value.join(value_joint) : value.to_s
     end
 
     # convert value from lookup table to
     def value_from_lookup string, type
-      type == :multi_category ? string.split(VALUE_JOINT) : string
+      type == :multi_category ? string.split(value_joint) : string
     end
 
     # @param [Symbol, String] name
@@ -57,6 +55,10 @@ class Answer
     end
 
     private
+
+    def value_joint
+      Card::Set::Abstract::Value::JOINT
+    end
 
     def new_researched cardish
       return unless (card_id = Card.id cardish)

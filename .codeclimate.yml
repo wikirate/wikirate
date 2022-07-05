@@ -19,6 +19,7 @@ exclude_paths:
 - vendor/**/*
 - mod/*/{data/files,public,vendor}/**/*
 - mod/**/lib/javascript/**/*.js
+- mod/**/*.min.css
 - test/**/*
 - db/**/*
 - script/single-use/**/*

@@ -20,7 +20,7 @@ def add_error_unless_field fieldcode
 end
 
 def field_present? fieldcode
-  subfield?(fieldcode) || (real? && fetch(fieldcode).present?)
+  field?(fieldcode) || (real? && fetch(fieldcode).present?)
 end
 
 require_field :file, when: :check_required?

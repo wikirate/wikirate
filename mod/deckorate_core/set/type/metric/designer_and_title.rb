@@ -3,7 +3,7 @@ def tracker_content_groups
 end
 
 def metric_designer
-  compound? ? name.parts.first.to_name : creator.name
+  compound? ? name.parts.first.to_name : creator&.name
 end
 
 def metric_designer_id
@@ -15,7 +15,7 @@ def metric_designer_card
 end
 
 def designer_image_card
-  metric_designer_card.fetch(:image, new: { type_id: Card::ImageID })
+  metric_designer_card.fetch :image, new: { type: :image }
 end
 
 def metric_title
@@ -23,7 +23,10 @@ def metric_title
 end
 
 def metric_title_id
-  metric_title.card_id
+  # without second option, title_id fetching breaks on new cards added from ui, in which
+  # +:title is a subcard. not sure why. tests will not catch, but don't remove without
+  # testing/fixing.
+  metric_title.card_id || subcard(metric_title).id
 end
 
 def metric_title_card

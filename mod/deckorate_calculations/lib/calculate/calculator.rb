@@ -86,6 +86,13 @@ class Calculate
       normalize_value result if result
     end
 
+    def input_values
+      each_answer do |input_answers, company, year|
+        values = input_answers&.map { |a| a&.value }
+        yield values, company, year
+      end
+    end
+
     protected
 
     def normalize_value value
@@ -114,13 +121,6 @@ class Calculate
         input.each(companies: c, years: y) do |input_answers, company, year|
           yield input_answers, company, year
         end
-      end
-    end
-
-    def input_values
-      each_answer do |input_answers, company, year|
-        values = input_answers&.map { |a| a&.value }
-        yield values, company, year
       end
     end
 

@@ -3,7 +3,7 @@ RSpec.describe Calculate::Calculator do
   let(:variables) { [{ metric: "Jedi+deadliness", name: "m1" }] }
 
   def calculator variables, formula
-    metric.assign_attributes subfields: { variables: variables.to_json, formula: formula }
+    metric.assign_attributes fields: { variables: variables.to_json, formula: formula }
     metric.calculator
   end
 
@@ -24,7 +24,7 @@ RSpec.describe Calculate::Calculator do
   end
 
   example "messed up parentheses" do
-    invalid variables, "SUM(m1", "SyntaxError: [stdin]:25:9: unmatched OUTDENT"
+    invalid variables, "SUM(m1", /SyntaxError: \[stdin\]:\d+:\d+: unmatched OUTDENT/
   end
 
   example "invalid year option" do

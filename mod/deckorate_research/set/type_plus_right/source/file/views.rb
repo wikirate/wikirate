@@ -32,7 +32,7 @@ format :html do
 
   def spreadsheet_preview
     "Previews for spreadsheets and CSVs are coming soon. " \
-    "Click \"Download\" to access the source file."
+    "Go to the Details tab and click \"Download\" to access the source file."
   end
 
   def pdf_preview

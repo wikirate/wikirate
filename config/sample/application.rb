@@ -24,6 +24,13 @@ module Wikirate
 
     # PAGING   # config.paging_limit = 10
 
+    # Use seed data from wikirate mod
+    config.seed_mods.unshift :wikirate
+    config.extra_seed_tables = %w[answers counts metrics relationships]
+
+    # TODO: obviate this (needed so setup finds wr schema)
+    config.paths.add "db", with: "db"
+
     config.recaptcha_public_key =
       ENV["WIKIRATE_RECAPTCHA_PUBLIC_KEY"] || "6LdhRssSAAAAAFfLt1Wkw43hoaA8RTIgso9-tvtc"
     config.recaptcha_private_key =

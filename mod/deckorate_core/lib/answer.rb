@@ -1,7 +1,6 @@
 # lookup table for metric answers
 class Answer < Cardio::Record
   @card_column = :answer_id
-  @card_query = { type_id: Card::MetricAnswerID, trash: false }
 
   include LookupTable
   include LookupTable::Latest
@@ -37,6 +36,10 @@ class Answer < Cardio::Record
     end
     @card.answer = self
     @card
+  end
+
+  def card_query
+    { type: Card::MetricAnswerID, trash: false }
   end
 
   def company_key

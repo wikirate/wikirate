@@ -5,6 +5,8 @@ include_set Abstract::PublishableField
 
 delegate :unpublished?, :published?, :calculated?, to: :metric_card
 
+assign_type :toggle
+
 event :toggle_answer_publication, :finalize, changed: :content do
   if content == "1"
     unpublish_all_answers

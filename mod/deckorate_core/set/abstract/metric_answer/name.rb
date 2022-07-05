@@ -28,7 +28,7 @@ event :interpret_year_change, :prepare_to_validate, on: :update, when: :year_upd
 end
 
 def year_updated?
-  subfield(:year)&.item_names&.size&.positive?
+  field(:year)&.item_names&.size&.positive?
 end
 
 event :validate_answer_name, :validate, on: :save, changed: :name do

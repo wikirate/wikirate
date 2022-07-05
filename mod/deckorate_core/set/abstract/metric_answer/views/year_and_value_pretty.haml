@@ -1,0 +1,7 @@
+.year-and-value-pretty.d-flex
+  = nest card.year, view: :in_calendar
+  .thumbnail-text
+    %span.metric-color.fw-bold
+      = handle_unknowns { nest card.value_card, view: :pretty }
+    %span.text-muted
+      = render_legend

@@ -1,13 +1,17 @@
 include_set Type::SearchType
 include_set Abstract::ProjectList
-include_set Abstract::CompanyFilter
+include_set Abstract::CompanySearch
 
 def cql_content
   {
     type: :wikirate_company,
-    referred_to_by: dataset_name.field(:wikirate_company),
+    referred_to_by: dataset_name&.field(:wikirate_company),
     append: project_name
   }
+end
+
+def skip_search?
+  dataset_name.nil?
 end
 
 # are any of the metrics associated with this dataset researchable for this user?
@@ -26,7 +30,11 @@ end
 
 format :html do
   before :core do
-    voo.items[:show] = :bar_middle if card.researchable_metrics?
+    voo.items[:view] = :bar if card.researchable_metrics?
+  end
+
+  def default_item_view
+    :mini_bar
   end
 
   # don't add quick filters for other datasets

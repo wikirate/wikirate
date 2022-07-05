@@ -19,7 +19,8 @@ class Card
     def score_cell score_card
       return "" unless score_card.present?
 
-      @format.link_to_card score_card, pretty_score(score_card), class: "_update-details"
+      @format.modal_link pretty_score(score_card),
+                         path: { mark: score_card }, size: :xl
     end
 
     def weight_cell weight

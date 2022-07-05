@@ -1,8 +1,8 @@
 include_set Abstract::MetricChild, generation: 2
-include_set Abstract::SourceFilter
+include_set Abstract::SourceSearch
 
 format :html do
-  view :filter_form do
+  view :compact_filter_form do
     super() + haml(:source_help)
   end
 

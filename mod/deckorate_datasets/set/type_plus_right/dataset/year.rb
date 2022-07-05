@@ -1,7 +1,6 @@
 include_set Abstract::Table
 include_set Abstract::ListCachedCount
 include_set Abstract::DatasetScope
-include_set Abstract::Filterable
 
 def hereditary_field?
   false
@@ -16,17 +15,17 @@ format :html do
     :multiselect
   end
 
-  view :core do
-    filtering(".RIGHT-answer ._filter-widget") do
-      wrap_with :div, class: "pointer-list" do
-        filterable_years
-      end
-    end
-  end
-
-  def filterable_years
-    card.item_names.map do |year|
-      filterable({ year: year }, class: "pointer-item item-name") { year }
-    end.join ", "
-  end
+  # view :core do
+  #   filtering(".RIGHT-answer ._compact-filter") do
+  #     wrap_with :div, class: "pointer-list" do
+  #       filterable_years
+  #     end
+  #   end
+  # end
+  #
+  # def filterable_years
+  #   card.item_names.map do |year|
+  #     filterable({ year: year }, class: "pointer-item item-name") { year }
+  #   end.join ", "
+  # end
 end

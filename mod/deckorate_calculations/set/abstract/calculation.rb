@@ -57,12 +57,35 @@ def formula_field
   :variables
 end
 
+def formula_field?
+  field? formula_field
+end
+
 format :html do
+  view :new do
+    params[:button] == "formulated" ? super() : render_new_formula
+  end
+
   view :formula do
     field_nest card.formula_field, view: :titled, title: "Formula"
   end
 
   view :main_details do
     [nest_about, render_formula, nest_methodology]
+  end
+
+  view :new_formula, unknown: true, cache: :never do
+    wrap do
+      card_form({ action: :new, mark: :metric }, method: :get, redirect: true) do
+        with_nest_mode :edit do
+          [haml(:new_formula_form), new_formula_hidden_tags]
+        end
+      end
+    end
+  end
+
+  def new_formula_hidden_tags
+    hidden_tags card: { fields: { ":metric_type": card.metric_type },
+                        name: card.name }
   end
 end

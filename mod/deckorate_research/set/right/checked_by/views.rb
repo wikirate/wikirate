@@ -20,7 +20,7 @@ format :html do
   end
 
   def option_label_text _option_name
-    haml "%span.ml-3 Request"
+    haml "%span.ms-3 Request"
   end
 
   def verb

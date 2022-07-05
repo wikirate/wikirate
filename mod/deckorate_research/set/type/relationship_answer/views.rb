@@ -6,23 +6,6 @@ format do
 end
 
 format :html do
-  # TODO: make relationship answer pages look more like answer pages and use two
-  # column layout
-  view :open_content do
-    bs do
-      layout do
-        row 3, 9 do
-          column render_basic_details
-          column do
-            row 12 do
-              column _render_expanded_details
-            end
-          end
-        end
-      end
-    end
-  end
-
   view :bar_left do
     wrap_with :div, class: "d-block" do
       [company_thumbnail(card.company, hide: :thumbnail_subtitle),
@@ -36,8 +19,8 @@ format :html do
   end
 
   view :content_formgroup do
-    card.subfield :year, content: card.year
-    card.subfield :related_company, content: card.related_company
+    card.field :year, content: card.year
+    card.field :related_company, content: card.related_company
     super()
   end
 
@@ -57,7 +40,7 @@ format :html do
     wrap_with :div, class: "d-flex" do
       [
         nest(card.value_card, view: :credit),
-        link_to_card(card, menu_icon, path: { view: :edit }, class: "text-dark ml-auto")
+        link_to_card(card, menu_icon, path: { view: :edit }, class: "text-dark ms-auto")
       ]
     end
   end

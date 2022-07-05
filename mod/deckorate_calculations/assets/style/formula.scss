@@ -1,0 +1,142 @@
+.border-none {
+  border: 0 !important;;
+}
+.popover {
+  // width: 400px !important;
+  max-width: 50% !important;
+}
+.formula-editor {
+  .formula-editor-main {
+    border-top: 1px solid $gray-200;
+  }
+}
+
+//workaround
+.edit-view.TYPE_PLUS_RIGHT-metric-formula .btn {
+  z-index: 0 !important;
+}
+
+.RIGHT-formula.d0-card-body {
+  white-space: normal;
+}
+
+
+.options-scheme-cell {
+  padding: 0 !important;
+}
+.variable-editor-table, .wikiRating-editor-table, .answer-board {
+  .row > div {
+    padding: 0.5em 1em;
+    border: 1px solid $gray-200;
+  }
+  .formula-sample-value-cell {
+    background-color: $gray-200;
+  }
+  input {
+    max-width: 90%;
+  }
+}
+.formula-options-editor {
+  .row {
+    padding: 1.5em 0;
+    border-bottom: 1px solid $gray-300;
+  }
+  h3 {
+    margin-top: 0 !important;
+    padding-top: 0;
+  }
+  .vo-radio {
+    display: flex;
+    input {
+      margin-right: 1em;
+      margin-top: 0.2em;
+    }
+  }
+}
+.sample-result-box {
+  border: 1px solid $gray-200;
+  > div {
+    padding: 1em;
+  }
+
+  .sample-result-value {
+    background-color: $gray-200
+  }
+}
+
+code._formula-as-javascript {
+  white-space: pre-wrap;
+}
+.answer-board {
+  .ab-total {
+    border-bottom: 2px solid $gray-500;
+  }
+  .formula-input-links {
+    a {
+      cursor: pointer;
+      margin: 0.2em;
+    }
+    i {
+      font-family: 'FontAwesome';
+      font-weight: 900;
+      -webkit-font-smoothing: antialiased;
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+
+      &:before {
+        content: "\f111";
+      }
+    }
+  }
+  ._ab-sample-known a {
+    color: green;
+  }
+  ._ab-sample-error a {
+    color: red;
+  }
+  strong {
+    margin-right: 0.25em;
+  }
+
+}
+.answer-board-help-text {
+  padding: 1em;
+}
+
+//custom icons
+.overridden-icon {
+  > i {
+    &:first-child {
+      position: absolute;
+      top: -3px;
+      right: -2px;
+    }
+    &:last-child {
+      opacity: 0.5;
+    }
+  }
+  position: relative;
+}
+
+.standard-formula-core {
+  background: $gray-100;
+  padding: .75em 1.5em;
+  width: 100%;
+  margin: 0.5em 0;
+  white-space: pre-wrap;
+  .formula-equals {
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  .formula-body {
+    .bar-view {
+      margin: 0.5em;
+      .bar-body {
+        background: $white;
+      }
+    }
+  }
+}

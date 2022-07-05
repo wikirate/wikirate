@@ -1,0 +1,18 @@
+.answer-year
+  %label.text-muted
+    Year:
+  %span.year-color
+    = card.year
+.answer-company
+  %label.text-muted
+    Company:
+  = link_to_card card.company_card, nil, class: "company-color"
+- metric = card.metric_card
+.answer-metric-title
+  %label.text-muted
+    Metric Designer:
+  = link_to_card metric.metric_designer, nil, class: "metric-color"
+.answer-metric-title
+  %label.text-muted
+    Metric Title:
+  = link_to_card metric, metric.metric_title, class: "metric-color"

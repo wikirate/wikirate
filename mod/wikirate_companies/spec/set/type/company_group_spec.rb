@@ -12,8 +12,12 @@ RSpec.describe Card::Set::Type::CompanyGroup do
     supgoog =
       Card.create! name: "Google Supplied",
                    type: :company_group,
-                   subfields: {
-                     specification: "[[Commons+Supplied by]],latest,,Googliest"
+                   fields: {
+                     specification: [
+                       { metric_id: "Commons+Supplied by",
+                         year: "latest",
+                         related_company_group: "Googliest" }
+                     ]
                    }
 
     expect(supgoog.wikirate_company_card.item_names).to eq(["SPECTRE"])

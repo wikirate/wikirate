@@ -1,4 +1,6 @@
-gem_mods # first load all mods referred to in the Gemfile
+# first load all mods referred to in the Gemfile
+# load order of gem mods is based on dependencies specified in .gemspec files
+gem_mods
 
 # see DeckoRate mod planning spreadsheet: https://docs.google.com/spreadsheets/d/1SeQYpC8nIRNkkkX0nDxZOrKavgTn7n_LJBeloEBZj8o/edit#gid=0
 
@@ -9,13 +11,12 @@ mod "guides"
 #refactor away
 mod "conversation" # upgrade discussions/comments
 
-# these need rethinking...
-mod "wikirate_layout"
-mod "wikirate_utility"
-mod "filter"
-mod "topics"
-
 ## DeckoRate mods
+mod "deckorate_utility" # TODO: move out wikirate-specific code
+mod "deckorate_layout"
+
+mod "topics" # TODO: extract generalizable stuff. distribute remainder in dr mods
+
 mod "deckorate_core"
 mod "deckorate_research"
 mod "deckorate_import"
@@ -23,14 +24,13 @@ mod "deckorate_calculations"
 mod "deckorate_datasets"
 mod "deckorate_graphql"
 # mod "deckorate_viz"  # TODO
-mod "deckorate_search"
+# mod "deckorate_search" # gemified
 mod "deckorate_profiles"
 # mod "deckorate_relationships" # TODO
 # mod "deckorate" # (wrapper) # TODO
 
 ## WikiRate mods
 mod "wikirate_companies"
-mod "wikirate_assets" # TODO: rename to wikirate_theme
 mod "wikirate_homepage"
 mod "wikirate"
 

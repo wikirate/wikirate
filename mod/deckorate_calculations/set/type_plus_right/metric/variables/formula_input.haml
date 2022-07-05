@@ -1,0 +1,46 @@
+.formulaVariablesEditor.variablesEditor._variablesEditor._formulaVariablesEditor
+  .variable-editor-table
+    .variable-editor-header.row
+      .col-2 Variable
+      .col-4 Metric
+      .col-2 Options
+      .col-1.border-none
+      .col-3 Sample Input
+    ._filtered-list
+      - card.hash_list.each do |var|
+        = subformat(var[:metric]).formula_variable_row var
+
+  .row.p-2.my-3
+    .col-6
+      = add_item_modal_link "Add Variable"
+    .col-2.options-scheme-cell
+      = select_tag "options_scheme",
+                   options_for_select(options_schemes, :default),
+                   class: "_options-scheme"
+    .col-1
+      - options_help_text = capture_haml do
+        .options-scheme-help
+          %ul
+            %li
+              %strong All Researched
+              means that values will be calculated only for companies/years for which
+              %em all
+              of the variable metrics have been researched. If
+              %em any
+              of those researched answers are marked "Unknown", then the final result will
+              be "Unknown".
+            %li
+              %strong Any Researched
+              means that values will be calculated for all companies/years for which
+              %em at least one
+              of the variable metrics have been researched. For any unknown value, the
+              variable in the formula will be set to the string "Unknown"
+            %li
+              %strong Custom
+              means that you want finer-grained control of your variable options.
+              Choosing this option will make an
+              %em edit icon
+              appear in the options cell for each metric.
+      = popover_link options_help_text
+  .d-none
+    = render_options_editor

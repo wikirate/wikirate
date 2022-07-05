@@ -17,8 +17,8 @@ RSpec.describe Card::Set::LtypeRtype::User::Cardtype do
             end
             with_tag "li.contribution-report-box.nav-item" do
               with_tag :a, with: { href: report_url(:created) } do
-                with_tag "span.count-number", "8"
-                with_tag "span.count-label", "Created"
+                with_tag "span.badge-label", "Created"
+                with_tag "span.badge-count", "8"
               end
             end
             with_tag "li.contribution-report-toggle.text-center.nav-item" do

@@ -1,9 +1,9 @@
-# TODO: rename to AnswerFilter for consistency (see MetricFilter, TopicFilter, etc)
-
 include_set Abstract::BsBadge
 include_set Abstract::Table
-include_set Abstract::BrowseFilterForm
+include_set Abstract::DeckorateFiltering
+include_set Abstract::MetricSearch
 include_set Abstract::LookupSearch
+include_set Abstract::AnswerFilters
 
 def item_type
   "Answer" # :metric_answer.cardname
@@ -14,19 +14,34 @@ def filter_class
 end
 
 format do
-  def filter_hash_from_params
-    super.tap do |h|
-      normalize_filter_hash h if h
+  def filter_map
+    filtering_by_published do
+      [:year,
+       { key: :wikirate_company,
+         type: :group,
+         filters: shared_company_filter_map.unshift(:company_name) },
+       { key: :metric,
+         type: :group,
+         open: true,
+         filters: shared_metric_filter_map.unshift(:metric_name) },
+       { key: :metric_answer,
+         type: :group,
+         filters: [{ key: :value, open: true }] +
+           %i[verification calculated status updated updater source] },
+       :dataset]
     end
   end
 
-  def filter_keys
-    standard_filter_keys + special_filter_keys
+  def map_without_key map, key
+    map.reject do |item|
+      item_key = item.is_a?(Hash) ? item[:key] : item
+      item_key == key
+    end
   end
 
-  def special_filter_keys
-    [].tap do |keys|
-      keys << :published if Card::Auth.current.stewards_any?
+  def filter_hash_from_params
+    super.tap do |h|
+      normalize_filter_hash h if h
     end
   end
 

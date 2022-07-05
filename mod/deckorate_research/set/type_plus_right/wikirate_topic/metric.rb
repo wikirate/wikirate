@@ -1,6 +1,6 @@
 # cache # of metrics tagged with this topic (=_left) via <metric>+topic
 include_set Abstract::CachedCount
-include_set Abstract::MetricFilter
+include_set Abstract::MetricSearch
 
 def query_hash
   { topic: left_id }

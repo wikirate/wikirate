@@ -1,0 +1,32 @@
+%main.py-5.position-relative
+  .guide-list.py-2
+    = field_nest :list, type: :list, items: { view: :box }
+%section.guide-support
+  %h2
+    Further Support
+  .row
+    - support_cards.each do |name|
+      .col-4.p-5
+        .card.bg-light
+          .card-body.d-flex.align-items-center.justify-content-between
+            %h4
+              = name
+            .learn-more
+              - link_text = capture_haml do
+                Learn More
+                %i.fas.fa-arrow-right
+              = link_to_card name, link_text
+
+%section.guide-ticket
+  .card.m-5
+    .card-body.row.align-items-center.justify-content-between.px-5
+      .col-8
+        %h4.text-danger
+          Problems with a web page?
+        %p
+          If you encounter problems using WikiRate,
+          please let us know.
+      .col-4.text-end
+        %a.btn.btn-danger{ href: "/Ticket" }
+          Add a Ticket
+

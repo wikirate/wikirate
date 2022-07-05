@@ -1,0 +1,45 @@
+.formula-options-editor._formula-options-template.p-5
+  .row.formula-option-unknown
+    .col-4
+      %h3 Unknown
+      When value has been researched and marked "Unknown"...
+    .col-8.small
+      = haml_partial :unknown_radios, input_name: "vo-unknown"
+
+  .row.formula-option-not_researched
+    .col-4
+      %h3 Not Researched
+      When value has not been researched...
+    .col-8.small
+      = haml_partial :unknown_radios, input_name: "vo-not_researched"
+
+  .row.formula-option-year
+    .col-4
+      %h3 Year
+      Instead of values from the result year, use values from...
+    .col-8
+      = text_field_tag "vo-year"
+      .small.pt-3
+        Value can be:
+        %ul
+          %li a fixed single year (eg 2020)
+          %li a relative year (eg -1 means previous year)
+          %li a list of years
+          %li the word <em>latest</em>
+
+  .row.formula-option-company
+    .col-4
+      %h3 Company
+      Instead of values from the result company, use values from...
+    .col-8
+      = text_field_tag "vo-company"
+      .small.pt-3
+        Value can be:
+        %ul
+          %li a fixed company
+          %li a fixed company group, or
+          %li a relationship metric by which companies are related to the result company
+
+  .d-flex.mt-3
+    %button.btn.btn-primary._update-formula-options Update Options
+    %button.btn.btn-secondary.ms-3{ data: { dismiss: :modal }} Cancel

@@ -9,7 +9,7 @@ module Wikirate
 
     def new_source file_or_url, fields: {}
       fields[:file] ||= source_file_args(file_or_url)
-      Card.new type: :source, skip: :requirements, subfields: fields
+      Card.new type: :source, skip: :requirements, fields: fields
     end
 
     private

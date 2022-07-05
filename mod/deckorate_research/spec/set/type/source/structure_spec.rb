@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::Source::Structure do
 
   def expect_source_link html, text, url, icon
     expect(html).to(
-      have_tag("a.source-color", with: { href: url }, text: /#{text}/) do
+      have_tag("a", with: { href: url }, text: /#{text}/) do
         with_tag "i.fa-#{icon}"
       end
     )
@@ -14,7 +14,7 @@ RSpec.describe Card::Set::Type::Source::Structure do
   describe "#download_link" do
     it "renders link with download icon" do
       expect_source_link source.format.download_link,
-                         "Download",
+                         "download",
                          source.fetch(:file).file.url,
                          "download"
     end
@@ -23,7 +23,7 @@ RSpec.describe Card::Set::Type::Source::Structure do
   describe "#original_link" do
     it "renders link with external link icon" do
       expect_source_link source.format.original_link,
-                         "Original",
+                         "original",
                          source.fetch(:wikirate_link).content,
                          "external-link-square-alt"
     end

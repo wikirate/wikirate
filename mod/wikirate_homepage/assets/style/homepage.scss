@@ -1,15 +1,13 @@
 
 
 .home-layout {
-  background: url("{{topics collage|source; size:original}}");
+  background: url("https://dq06ugkuram52.cloudfront.net/files/538748/12604285-original.png");
   .bar {
-    background: #ffffff
+    background: $white
   }
-}
-
-// TODO: move this (not about home page).
-.SELF-about_wiki_rate .d0-card-content p {
-  font-size: 1.2em;
+  img {
+    max-width: 100%;
+  }
 }
 
 /*----------- Example answer ---------*/
@@ -23,10 +21,6 @@
 
 .year-icon-cal.image-box  {
   position: relative;
-  width: 4em;
-  height: 4em;
-  min-width: 4em;
-  min-height: 4em;
   margin-right: 0;
   i {
     font-size: 1.5em;
@@ -48,25 +42,13 @@
   font-size: 1.2em;
 }
 
-
-/*----------- Slide ---------*/
-
-
-.vh-90 {
-  height: 90vh;
-  min-height: 600px;
-}
-
-.our-solution {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-
-.our-solution a, .our-solution p {
-  cursor: pointer;
-}
-
 /*----------- Top banner ---------*/
+
+.top-banner-wrapper {
+  height: 90vh;
+  min-height: 48rem;
+}
+
 .wikirate-logo-title {
   font-weight: normal;
   font-size: 3.5rem;
@@ -101,15 +83,16 @@
 }
 
 .banner-background {
-  //background: rgba(0, 74, 68, 0.95);
+  //background: rgba(0, 74, 68,teal
   //Proposed colour
-  background: $metric-color; /* Old browsers */
-  background: -moz-linear-gradient(-45deg, $metric-color 0%, $company-color 68%, $brand-primary 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg, $metric-color 0%,$company-color 68%, $brand-primary 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, $metric-color 0%, $company-color 68%, $brand-primary 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$metric-color', endColorstr='#03998d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-  opacity: 0.97
+  background: $teal; /* Old browsers */
+  background: -moz-linear-gradient(+45 $teal 0%, $purple 68%, $red 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(+45deg, $teal 0%, $purple 68%, $red 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(225deg, $teal 0%, $purple 68%, $red 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$purple', endColorstr='$teal',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  //opacity: 0.97
 }
+
 .transparent-background-white {
   background: rgba(#fff, 0.97);
 }
@@ -117,12 +100,12 @@
 .transparent-background-black {
   //background: rgba(22, 6, 35, 0.95);
   //Proposed colour
-  background: #322456;
+  background: $purple-800;
   opacity: 0.97;
 }
 
 .container-topbar {
-  max-width: $max-page-width;
+  max-width: 100%;
   margin: 0 auto;
   padding: 8px 5px;
 
@@ -136,14 +119,14 @@
 //}
 
 .metric-header {
-  border-top: 3px solid #674EA7;
+  border-top: 3px solid $metric-color;
 }
 
 .homepage-logo-container {
   border-radius: 0;
   padding-bottom: 6px;
   height: 154px;
-  border-color: $bright-text-color;
+  border-color: $gray-200;
   width: 100%;
   border-bottom: 0;
 
@@ -195,77 +178,6 @@
   background-color: inherit;
 }
 
-.video-section-lm {
-  margin-top: -10%;
-}
-// Play icon on video section
-.video-play-button {
-  position: absolute;
-  z-index: 10;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  box-sizing: content-box;
-  display: block;
-  width: 32px;
-  height: 44px;
-  cursor: pointer;
-  border-radius: 50%;
-  padding: 18px 20px 18px 28px;
-
-  &:before {
-    content: "";
-    position: absolute;
-    z-index: 0;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    display: block;
-    width: 64px;
-    height: 64px;
-    background: lighten($company-color, 10%);
-    border-radius: 50%;
-    -webkit-animation: pulse-border 4s ease-out infinite;
-    animation: pulse-border 4s ease-out infinite;
-  }
-
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    display: block;
-    width: 64px;
-    height: 64px;
-    background: $company-color;
-    border-radius: 50%;
-    -webkit-transition: all 1s;
-    transition: all 1s;
-    @include box-shadow(0,0,20px,rgb(255, 230, 208));
-  }
-
-  &:hover:after {
-    background-color: darken($company-color, 10%);
-  }
-
-  span {
-    display: block;
-    position: relative;
-    top: 12px;
-    left: 7px;
-    z-index: 3;
-    width: 0;
-    height: 0;
-    border-left: 15px solid $white;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-  }
-}
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
     @content;
@@ -345,12 +257,14 @@
   }
 }
 .flip-this {
+  display: none;
   white-space: nowrap;
 }
 .flip-slot {
   font-weight: 700;
   padding-bottom: 1px;
-  border-bottom: 1px dotted white;
+  display: flex;
+  justify-content: left;
 }
 
 @media (max-width: 576px) {
@@ -394,6 +308,7 @@
 .newsletter-input {
   font-family: FontAwesome, sans-serif;
   width: 20rem;
+  max-width: 60%;
 }
 
 /* footer */
@@ -403,7 +318,7 @@ footer.homepage-footer {
     padding-left: 0;
     list-style: none;
     a {
-      color: #797f84;
+      color: $gray-600;
     }
     li {
       padding: 5px 0;
@@ -440,21 +355,26 @@ footer.homepage-footer {
   }
 }
 
-.stop-slavery-award {
-  width: 15%;
-  position: absolute;
-  right: 5%;
-  bottom: -1rem;
+.footer-section {
+  width: 20%;
+  text-align: center;
+  min-width: 150px;
+  padding: 1em;
+  justify-content: center;
+
+  img {
+    max-height: 180px
+  }
 }
 
 .showcase-banner {
   h3 {
-    color: $new-purple;
+    color: $purple;
   }
 
   top: -120px;
   border-radius: 8px;
-  box-shadow: $small-shadow;
+  box-shadow: $box-shadow-sm;
 
   > .row {
     margin: 0 3rem;
@@ -470,9 +390,9 @@ footer.homepage-footer {
 }
 
 .btn-purple {
-  background: $new-purple;
+  background: $purple;
   color: white;
-  box-shadow: $primary-shadow;
+  box-shadow: $box-shadow;
 
   padding: 0.7rem 2rem;
   min-width: 165px;
@@ -482,18 +402,18 @@ footer.homepage-footer {
   letter-spacing: 0.3px;
 
   &:hover {
-    background: $new-dark-purple;
+    background: $purple-600;
     color: white;
   }
   &:active {
-    box-shadow: $large-shadow;
-    color: $new-purple;
-    background: $new-button-gray;
+    box-shadow: $box-shadow-lg;
+    color: $purple;
+    background: $gray-200;
   }
   &:focus {
-    background: $new-button-gray;
-    color: #2E34B7;
-    border: 3px solid #2E34B7;
+    background: $gray-200;
+    color: $gray-800;
+    border: 3px solid $gray-800;
   }
 }
 

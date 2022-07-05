@@ -8,10 +8,6 @@ def query_hash
 end
 
 format do
-  def standard_filter_keys
-    %i[status year value updated updater verification calculated dataset source]
-  end
-
   def default_filter_hash
     { year: nil }
   end

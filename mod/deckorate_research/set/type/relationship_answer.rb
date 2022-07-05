@@ -1,7 +1,6 @@
 # name pattern: Metric+Subject Company+Year+Object Company
 
 include_set Abstract::MetricChild, generation: 3
-include_set Abstract::AnswerDetailsToggle
 include_set Abstract::ExpandedResearchedDetails
 include_set Abstract::MetricAnswer
 include_set Abstract::DesignerPermissions
@@ -100,7 +99,7 @@ def inverse_answer_card
 end
 
 def answer_card_fetch name
-  Card.fetch name, new: { type: :metric_answer, subfields: { value: "1" } }
+  Card.fetch name, new: { type: :metric_answer, fields: { value: "1" } }
 end
 
 def inverse_answer_id

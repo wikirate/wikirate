@@ -22,9 +22,10 @@ class Card
     end
 
     def link_to_answer input_card, input, year
-      @format.link_to_card [input_card.name, company, year].to_name,
-                           input_value(input),
-                           class: "metric-value _update-details"
+      @format.modal_link input_value(input),
+                         path: { mark: [input_card.name, company, year].to_name },
+                         class: "metric-value",
+                         size: :xl
     end
 
     def value_span input

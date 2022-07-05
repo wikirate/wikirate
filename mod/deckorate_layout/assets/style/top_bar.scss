@@ -1,0 +1,74 @@
+
+
+/*----------- Top bar ---------*/
+#top-navbar {
+  border-bottom: 1px solid $border-color;
+
+  .navbar-brand img {
+    max-height: 3em;
+    min-width: 120px;
+  }
+
+  .navbar-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .top-nav-links {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    .top-nav-account {
+      white-space: nowrap;
+      padding: 0 2em 0 1em;
+    }
+
+    .top-nav-burger {
+      font-size: 1.4em;
+
+      // no caret
+      .dropdown-toggle:after {
+        display: none;
+      }
+    }
+
+    // right align dropdown items
+    .dropdown-menu {
+      right: 0;
+      left: auto;
+
+      position: absolute;
+      // overrides .navbar-nav .dropdown-menu, which begs the question of whether
+      // .navbar-nav should be hard-coded in the account links
+    }
+  }
+  .top-nav-search {
+    flex: 1 1 100%;
+    padding: 0.5em 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    .navbar-container {
+      flex-wrap: nowrap;
+    }
+    .top-nav-search {
+      flex: 2 0 70%;
+      order: 2;
+    }
+    .top-nav-links {
+      order: 3;
+    }
+    .top-nav-search {
+      padding: 0.5em 1em;
+    }
+  }
+}
+
+
+
+
+

@@ -1,0 +1,60 @@
+---
+# Data Sets
+
+- :name: Evil Dataset
+  :type: :dataset
+  :fields:
+    :metric:
+      - Jedi+disturbances in the Force
+      - Joe User+researched number 2
+    :wikirate_company:
+      - Death Star
+      - SPECTRE
+      - Los Pollos Hermanos
+    :wikirate_topic:
+      - Force
+
+- :name: Son of Evil Dataset
+  :type: :dataset
+  :fields:
+    :parent:
+      - Evil Dataset
+
+- :name: Empty Dataset
+  :type: :dataset
+
+# Projects
+
+- :name: Evil Project
+  :type: :project
+  :fields:
+    :dataset:
+      - Evil Dataset
+    :organizer:
+      - Jedi
+    :wikirate_status:
+      - Active
+
+- :name: Empty Project
+  :type: :project
+  :fields:
+    :dataset:
+      - Empty Dataset
+
+# Featured
+
+- :name: Featured
+  :codename: :featured
+
+- :name:
+    - :dataset
+    - :featured
+  :content:
+    - Evil Dataset
+    - Son of Evil Dataset
+
+- :name:
+    - :project
+    - :featured
+  :content:
+    - Evil Project

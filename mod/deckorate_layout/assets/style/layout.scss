@@ -1,0 +1,65 @@
+:root {
+  font-size: 14px;
+}
+
+@include media-breakpoint-up(md) {
+  :root { font-size: 16px; }
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
+  line-height: 1.55;
+  font-size: 1rem;
+  background-color: $white;
+
+  // make sure footer is at bottom
+  &.deckorate-layout #main {
+    min-height: calc(100vh - 85px);
+  }
+
+  body#tinymce {
+    padding: 0.5em;
+  }
+}
+
+sup {
+  line-height: 0;
+}
+img {
+  border: 0;
+}
+canvas {
+  max-width: 100%;
+}
+
+// TODO: generalize to deckorate or move to wikirate
+body {
+  >#wikirate_footer-content-view {
+    /*position: fixed;*/
+    bottom: 0px;
+    z-index: 9;
+    background: #fff;
+    border-top: 1px solid $gray-200;
+    width: 100%;
+    color: #999;
+    padding: 0.5em;
+    margin-top: 2em;
+    small {
+      width: 100%;
+      display: inherit;
+      text-align: center;
+    }
+    a {
+      color: #999;
+      text-decoration: underline;
+    }
+    a:hover {
+      color: #222
+    }
+  }
+}
+
+
+

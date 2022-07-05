@@ -1,25 +1,24 @@
-include_set Abstract::FilterableBar
 
 format :html do
-  info_bar_cols 6, 4, 2
+  bar_cols 7, 5
 
   view :bar_left do
     voo.size = :medium
-    filterable({ dataset: card.name, status: :all }, class: "w-100") do
-      render_thumbnail_with_bookmark
-    end
+    # filterable({ dataset: card.name, status: :all }, class: "w-100") do
+    render_thumbnail
+    # end
   end
 
-  view :bar_middle do
-    field_nest :wikirate_topic
-  end
+  # view :bar_middle do
+  #   field_nest :wikirate_topic
+  # end
 
   view :bar_right do
-    count_badges :metric, :wikirate_company, :data_subset
+    [count_badges(:metric, :wikirate_company, :data_subset), render_bookmark]
   end
 
   view :bar_bottom do
-    dataset_details
+    render_details
   end
 
   def thumbnail_subtitle

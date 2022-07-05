@@ -16,7 +16,7 @@ def translation_table
 end
 
 def complete_translation_table
-  hash = parse_content
+  hash = content.present? ? parse_content : {}
   metric_card.value_options.map { |option| [option, hash[option]] }
 end
 
@@ -38,7 +38,7 @@ format :html do
     table categorical_content, header: COLUMNS
   end
 
-  view :input do
+  view :input, cache: :never do
     table_content = card.complete_translation_table.map do |key, value|
       [{ content: key, "data-key" => key }, text_field_tag("pair_value", value)]
     end

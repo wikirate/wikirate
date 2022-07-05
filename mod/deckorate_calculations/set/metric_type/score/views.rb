@@ -7,6 +7,22 @@ end
 format :html do
   delegate :scorer_card, :scoree_card, to: :card
 
+  before :new do
+    return unless card.name.blank? && (metric_name = card.drop_field(:variables)&.content)
+
+    card.name = Card::Name[metric_name, Auth.current.name]
+  end
+
+  view :new do
+    if card.name.card_id
+      alert(:warning) do
+        "You have already scored this metric: #{link_to_card card}."
+      end
+    else
+      super()
+    end
+  end
+
   view :select do
     options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
     select_tag("pointer_select",
@@ -21,7 +37,7 @@ format :html do
   end
 
   def scorer_image_card
-    scorer_card.fetch :image, new: { type_id: Card::ImageID }
+    scorer_card.fetch :image, new: { type: :image }
   end
 
   def table_properties
@@ -38,61 +54,35 @@ format :html do
     super + fixed_thumbnail_subtitle
   end
 
-  def new_name_field _form=nil, _options={}
-    option_names = scorable_metrics
+  view :name_formgroup do
+    return super() unless card.new?
 
-    options = [["-- Select --", ""]] + option_names.map { |x| [x, x] }
-    new_name_editor_wrap(options, option_names)
-  end
-
-  # TODO: use metric lookup
-  def scorable_metrics
-    Card.search(type_id: Card::MetricID,
-                right_plus: ["*metric type",
-                             content: scorable_metric_type_content.unshift("in")],
-                sort: "name",
-                return: :name).sort
-  end
-
-  def selected_metric option_names
-    if params[:metric] && option_names.include?(params[:metric])
-      params[:metric]
-    else
-      option_names.first
+    formgroup "Scored Metric", input: "name", help: score_name_help_text do
+      new_score_name_field
     end
   end
 
-  def scorable_metric_type_content
-    scorable_metric_types.map(&:to_s)
+  def new_score_name_field
+    option_names = card.scorable_metrics.map(&:name).sort.map { |x| [x, x] }
+    options = [["-- Select --", ""]] + option_names
+    new_name_editor_wrap options, card.name.left
   end
 
-  def scorable_metric_types
-    %i[formula researched descendant]
-  end
-
-  def new_name_editor_wrap options, option_names
-    selected = selected_metric option_names
+  def new_name_editor_wrap options, selected
     editor_wrap :card do
-      hidden_field_tag("card[subcards][+metric][content]", selected,
-                       class: "d0-card-content") +
-        select_tag("pointer_select",
-                   options_for_select(options, selected),
-                   class: "pointer-select _pointer-select") +
-        help_text.html_safe
+      [hidden_field_tag("card[subcards][+metric]", selected, class: "d0-card-content"),
+       select_tag("pointer_select", options_for_select(options, selected),
+                  class: "pointer-select _pointer-select")]
     end
   end
 
-  def help_text
-    <<-HTML
-    <div class="help-block help-text">
-      <p>Metric name = [Scored Metric name]+[Your username]</p>
-    </div>
-    HTML
+  def score_name_help_text
+    "full metric name = [scored metric]+[your username]"
   end
 
   def fixed_thumbnail_subtitle
-    wrap_with :div, class: "scored-by-subtitle d-flex" do
-      "Score by #{render :scorer_image, size: :icon}"
+    wrap_with :div, class: "scored-by-subtitle" do
+      "Scored by #{link_to_card card.scorer}"
     end
   end
 
@@ -106,5 +96,9 @@ format :html do
     wrap_with :div, class: "row scorer-property" do
       labeled title, nest(scorer_card, view: :thumbnail)
     end
+  end
+
+  def autocomplete_label
+    super + "<small>#{fixed_thumbnail_subtitle}</small>"
   end
 end

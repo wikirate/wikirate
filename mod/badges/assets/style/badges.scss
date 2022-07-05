@@ -1,8 +1,6 @@
-.gold { color: gold; }
-
-.silver { color: silver; }
-
-.bronze { color: #cd7f32; }
+.gold { color: $gold; }
+.silver { color: $silver; }
+.bronze { color: $bronze; }
 
 td {
   &.badge-certificate {

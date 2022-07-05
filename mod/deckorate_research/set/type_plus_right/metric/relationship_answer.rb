@@ -17,7 +17,7 @@ format do
     end
   end
 
-  def filter_keys
+  def filter_map
     %i[name company_group]
   end
 

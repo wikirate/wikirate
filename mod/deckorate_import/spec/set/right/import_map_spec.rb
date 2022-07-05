@@ -27,12 +27,12 @@ RSpec.describe Card::Set::Right::ImportMap do
 
     describe "#suggest_link" do
       it "produces links for supported types" do
-        expect(format_subject.suggest_link(:wikirate_company, "Goog", "abc123"))
+        expect(format_subject.suggest_link(:wikirate_company, "Goog"))
           .to match(Regexp.new(Regexp.escape("/Company")))
       end
 
       it "supports custom filter keys" do
-        expect(format_subject.suggest_link(:source, "http://woot.com", "abc123"))
+        expect(format_subject.suggest_link(:source, "http://woot.com"))
           .to match(Regexp.new(Regexp.escape(CGI.escape("filter[wikirate_link]"))))
       end
     end
@@ -127,16 +127,11 @@ RSpec.describe Card::Set::Right::ImportMap do
     it "gives counts for total and unmapped values" do
       expect(format_subject.tab_title(:metric))
         .to have_tag("div.tab-title") do
-          with_tag "span.count-number" do
-            with_tag "div.tab-badge" do
-              with_tag("span.badge") { 2 }
-              with_tag "span.badge-label" do
-                with_tag "i.fa-ruler-combined"
-              end
+          with_tag "span.tab-badge" do
+            with_tag "span.badge-label" do
+              "(1) Metrics"
             end
-          end
-          with_tag "span.count-label" do
-            "(1) Metrics"
+            with_tag("span.badge-count") { 2 }
           end
         end
     end

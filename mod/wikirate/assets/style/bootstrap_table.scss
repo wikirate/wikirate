@@ -1,0 +1,38 @@
+@mixin left-color($regular, $hover) {
+  .header {
+    vertical-align: middle!important;
+    border-left: 3px solid $regular;
+  }
+  tr:hover .header {
+    border-left: 3px solid $hover;
+  }
+}
+
+table.wikirate-table, .table.wikirate-table {
+  &.metric {
+    @include left-color(rgba(103, 78, 167, 0.14), $metric-color);
+  }
+  &.company {
+    @include left-color(rgba(211, 116, 28, 0.14), $company-color);
+  }
+  &.topic {
+    @include left-color(rgba(43, 126, 160, 0.14), $topic-color);
+  }
+}
+
+.metric_answer.wikirate-table {
+  table-layout: fixed;
+  max-width: 100%;
+  border-width: 0 0 1px 0;
+  th {
+    border: 0;
+  }
+  @include media-breakpoint-down(sm) {
+    .metric-list-header {
+      margin-left: 0 !important;
+    }
+    .thumbnail-with-bookmark .bookmark-view {
+      display: none;
+    }
+  }
+}

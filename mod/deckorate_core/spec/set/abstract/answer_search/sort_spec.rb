@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::Abstract::AnswerSearch::Sort do
   describe "#sort_by" do
     it "raises error with invalid parameter" do
-      Card::Env.with_params sort_by: "bookmarkers" do
+      Card::Env.with_params sort_by: "schnookmarkers" do
         expect { format_subject(:base).sort_by }.to raise_error(/Invalid Sort Param/)
       end
     end

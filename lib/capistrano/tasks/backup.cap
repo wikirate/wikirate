@@ -1,5 +1,4 @@
-# require "YAML"
-# require "byebug"
+require "colorize"
 
 namespace :backup do
   task :create do
@@ -35,7 +34,7 @@ namespace :backup do
 
   task :unzip do
     on roles(:db) do
-      execute "/home/deploy/bin/unzip_wikirate_database.sh"
+      execute :sudo, "/home/deploy/bin/unzip_wikirate_database.sh"
     end
   end
 
@@ -50,17 +49,18 @@ namespace :backup do
     end
   end
 
-  # refresh db from production backup
+  # refresh db from production backup (unzip first!)
   task :refresh do
     raise "no refreshing production!!!" if fetch(:stage) == :production
     ask :database, "what should the new/refreshed database be called?"
-    invoke "backup:unzip"
+    # invoke "backup:unzip"
+    database = fetch :database
     on roles(:db) do
-      execute :mysql, "drop database if exists #{database}"
-      execute :mysql, "create database #{database}"
+      execute :mysql, "-e 'drop database if exists #{database}'"
+      execute :mysql, "-e 'create database #{database}'"
       execute :mysql, "#{database} < /tmp/wikirate_latest.sql"
     end
-    # update database.yml and restart server
+    puts "Now just update database.yml to use #{database} and restart server!".yellow
   end
 
   task :update_db do

@@ -96,39 +96,39 @@ class Card::Metric
       test_source = opts.delete :test_source
       metric = Card.create! name: opts.delete(:name),
                             type_id: Card::MetricID,
-                            subfields: subfields(opts)
+                            fields: fields(opts)
       metric.create_answers test_source, &block if block_given?
       metric
     end
 
     # type is an alias for metric_type
-    VALID_SUBFIELDS =
+    VALID_FIELDS =
       ::Set.new(%i[metric_type formula value_type hybrid variables value_options rubric
                    research_policy wikirate_topic unit report_type inverse_title]).freeze
-    ALIAS_SUBFIELDS = {
+    ALIAS_FIELDS = {
       type: :metric_type, topic: :wikirate_topic, inverse: :inverse_title
     }.freeze
 
-    def subfields opts
+    def fields opts
       resolve_alias opts
-      validate_subfields opts
-      normalize_subfields opts
+      validate_fields opts
+      normalize_fields opts
       opts
     end
 
     def resolve_alias opts
-      ALIAS_SUBFIELDS.each do |alias_key, key|
+      ALIAS_FIELDS.each do |alias_key, key|
         opts[key] = opts.delete(alias_key) if opts.key? alias_key
       end
     end
 
-    def validate_subfields opts
-      invalid = ::Set.new(opts.keys) - VALID_SUBFIELDS
+    def validate_fields opts
+      invalid = ::Set.new(opts.keys) - VALID_FIELDS
       return if invalid.empty?
-      raise ArgumentError, "invalid metric subfields: #{invalid.to_a}"
+      raise ArgumentError, "invalid metric fields: #{invalid.to_a}"
     end
 
-    def normalize_subfields opts
+    def normalize_fields opts
       opts[:metric_type] ||= :researched
       opts[:value_type] ||= "Number"
       opts[:metric_type] = opts[:metric_type].cardname

@@ -1,0 +1,64 @@
+.TYPE-company, .TYPE-company_group {
+  &.bar .box-middle {
+    text-align: center;
+  }
+}
+
+.constraint-list-editor {
+  li > .input-group {
+    margin: 2rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid $border-color;
+    background-color: $border-color;
+  }
+}
+
+.constraint-editor {
+  padding: 0;
+
+  .metric-selector {
+    // revert nowrap from pointer list editor
+    white-space: normal;
+  }
+
+  input, select {
+    border-radius: 0;
+  }
+
+  .select2-selection {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  > .input-group > .input-group-text {
+    flex: 0 0 20%;
+    min-width: 72px;
+  }
+
+  .input-group-text {
+    border-radius: 0 !important;
+    &.range-sign {
+      font-size: 1.5rem;
+    }
+  }
+
+  .constraint-value {
+    background-color: $light;
+    .value_formgroup-view {
+      flex: 1 1 auto;
+    }
+
+    .constraint-value-fields { // value row, right column
+      display: flex;
+      background-color: $white;
+      .select2 {
+        width: 100% !important;
+      }
+    }
+
+    .constraint-related-group {
+      display: flex;
+    }
+  }
+}

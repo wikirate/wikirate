@@ -27,11 +27,13 @@ think of as short for "modules" or "modifications".
 
 WikiRate developers work with mods in three different main GitHub repositories:
 
-1. [decko-commons/decko](https://github.com/decko-commons/decko), which contains code
-for core gems and the mods that are included by default in new decks.
-2. [decko-commons/card-mods](https://github.com/decko-commons/card-mods), which contains 
-other mod gems developed by Decko Commons, and
-3. [wikirate/wikirate][7] – this repo.
+
+1. [wikirate/wikirate][7] – this repo.
+2. [decko-commons/decko](https://github.com/decko-commons/decko), which contains code
+for core gems and the mods that are included by default in new decks. It is included as a
+submodule of this repo at `vendor/decko`.
+3. [decko-commons/card-mods](https://github.com/decko-commons/card-mods), which contains 
+other mod gems developed by Decko Commons. It's included here at `vendor/card-mods`
 
 
 ### Directories
@@ -56,7 +58,7 @@ directories in mods.)
 ### Mods
 
 Inside the `mod` directory there are many mod directories and a file named `Modfile`.
-When a deck has a _Modfile_, it means we've specified a load order for the mods.
+When a deck has a _Modfile_, it means we've specified a load order for the mods. 
 
 WikiRate's [Modfile][9] is more involved than most, but it's reasonably well commented.
 The mods can be grouped into four main groups:
@@ -78,6 +80,7 @@ refactored until they do.
 
 The [mod page on docs.decko.org][8] has details about mods' subdirectory structure
 and is a good place to start if you're learning to be a Decko monkey.
+
 
 Setting up a Development Environment
 ====================================
@@ -147,7 +150,7 @@ environments (test, development, production, etc.).
 
 Now we seed the database with our silly data and start the server:
 
-    bundle exec rake wikirate:test:seed
+    bundle exec decko setup
     bundle exec decko server
 
 You should now be able to access a copy of your site at http://localhost:3000. You can
@@ -178,7 +181,7 @@ Running Tests
 ----
 All tests required a populated test database
 
-    bundle exec rake wikirate:test:seed
+    bundle exec rake decko:seed:replant
 
 ### RSpec
 

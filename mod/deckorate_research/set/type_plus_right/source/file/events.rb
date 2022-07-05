@@ -5,7 +5,7 @@ CONVERSION_MAX_SECONDS = 30
 PDF_REQUEST_AGENT = "The WikiRate Project e.V. (info@wikirate.org)".freeze
 
 event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
-  left.subfield :wikirate_link, content: remote_file_url
+  left.field :wikirate_link, content: remote_file_url
 end
 
 # CarrierWave.configure do |config|
@@ -46,7 +46,7 @@ rescue TimeoutError
 end
 
 # otherwise download errors that occur when assigning remote_file_url
-# will prevent subfield from being recognized as present. that screws up error tracking.
+# will prevent field from being recognized as present. that screws up error tracking.
 def unfilled?
   !remote_file_url && super
 end

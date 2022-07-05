@@ -1,128 +1,8 @@
-$brand-primary: #03998D;
-
-$border-color: $gray-200;
-$dark-text-color: #999;
-$bright-text-color: $gray-200; //#ededed;
-$muted: $text-muted;
-$help-text: $gray-600;
-
-$company-color: #2B7EA0;
-$metric-color: #674EA7;
-$answer-color: #666666;
-
-// TODO: optimise this file
-
-//---------------- color variables
-
-$record-color: $answer-color;
-$topic-color: #D3741C;
-$company-group-color: #ED4D50;
-$source-color: #0091E0;
-$project-color: $gray-800;
-$year-color: #F7BD1D;
-
-$default-cardtype-color: $gray-800;
-
-$shadow-rgba: rgba(0, 0, 0, .4);
-
-$overview-color: #666;
-
-$heading-color: $gray-700;
-$body-text-color: #495057;
-$wanted-card-color: #b6060a;
-
-$card-header-color: #fff;
-
-$new-dark: #171831;
-$new-purple: #484C9D;
-$new-dark-purple: #353875;
-$new-button-gray: #EDEEF7;
-
-$small-shadow: 0 5px 10px 0 rgba($new-dark, .08);
-$primary-shadow: 0 10px 20px 0 rgba($new-dark, .2);
-$large-shadow: 0 15px 50px 0 rgba($new-dark, .3);
-
-
-// Gradient generated from this url
-// https://gka.github.io/palettes
-// /#colors=,red,orange,yellow,green|steps=10|bez=1|coL=0
-// 0 <= x < 1
-$score-colors: (
-  "0": #ff0000,
-  "1": #ff5700,
-  "2": #ff7e00,
-  "3": #fc9b00,
-  "4": #f1b000,
-  "5": #debd00,
-  "6": #c2c000,
-  "7": #9ab700,
-  "8": #65a300,
-  "9": #008000
-);
-
-//----------- General Variables ---------
-
-$max-page-width: 100%; //1660px;
-$min-page-height: 1000px;
-
-$sub-text-size: 0.8em;
-
-@mixin ellipsis() {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-//border radius mixin
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-  border-radius: $radius;
-  background-clip: padding-box;
-  // stops bg color from leaking outside the border:
-}
-
-//***Shadow***//
-
-@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: $shadow-rgba, $inset: '') {
-  @if ($inset != '') {
-    -moz-box-shadow: $inset $x $y $blur $color;
-    -webkit-box-shadow: $inset $x $y $blur $color;
-    box-shadow: $inset $x $y $blur $color;
-  } @else {
-    -webkit-box-shadow: $x $y $blur $color;
-    -moz-box-shadow: $x $y $blur $color;
-    box-shadow: $x $y $blur $color;
-  }
-}
-
-// ***Shadow- END***//
-
-//***Opacity***//
-
-@mixin opacity($opacity) {
-  opacity: $opacity;
-  $opacity-ie: $opacity * 100;
-  filter: alpha(opacity=$opacity-ie); //IE8
-}
-
-//***Opacity- END***//
-
-
-/*----------- Navigation color variables ---------*/
-$nav-srch-background: #fff;
-$nav-srch-txt-color: #a8a8a8;
-$navmenu-anchor-color: #fff;
-$navmenu-hover-bgcolor: $brand-primary;
-$navsbmenu-bgcolor: $brand-primary;
-$navsbmenu-anchor-color: #00ac9e;
-
-/*----------- General variables ---------*/
-
-$anchor_color: $brand-primary;
-// $body-txt-color: #777;
-
-
-/*----------- Mixins ---------*/
+// TODO: refactor these away
+// Most variables, mixins, and functions have been moved to wikirate_skin+variables.
+// The following two mixins were NOT moved over because there are existing bootstrap
+// mixins with the same name.  They
+//
 
 @mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
   @if ($inset != "") {
@@ -134,4 +14,11 @@ $anchor_color: $brand-primary;
     -moz-box-shadow: $x $y $blur $color;
     box-shadow: $x $y $blur $color;
   }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;
+  // stops bg color from leaking outside the border:
 }

@@ -1,0 +1,12 @@
+.container
+  %section.guide-body.row
+    %aside#guide-sidebar.col-sm-4.nodblclick
+      .pb-4
+        = render_breadcrumbs
+      .sidebar-nav-list.sticky-top
+        = nest guide_list_card, items: { view: :sidebar_nav }
+
+    %article#guide-body.col-sm-8.py-2
+      = field_nest :body, view: :content_with_anchored_headers
+  %section.guide-paging.p-5
+    = render_guide_paging

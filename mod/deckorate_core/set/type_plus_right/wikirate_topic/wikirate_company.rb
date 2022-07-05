@@ -1,4 +1,4 @@
-# include_set Abstract::CompanyFilter
+# include_set Abstract::CompanySearch
 #
 # # cache # of companies related to this topic (=left) via answers for metrics that
 # # are tagged with this topic

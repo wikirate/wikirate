@@ -17,10 +17,6 @@ recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
 end
 
 format :html do
-  def layout_name_from_rule
-    :wikirate_one_full_column_layout
-  end
-
   def default_sort_option
     :year
   end

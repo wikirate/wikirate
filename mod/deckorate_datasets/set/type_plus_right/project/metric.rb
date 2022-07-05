@@ -1,5 +1,5 @@
 include_set Abstract::ProjectList
-include_set Abstract::MetricFilter
+include_set Abstract::MetricSearch
 
 def query_hash
   { dataset: dataset_name }
@@ -11,6 +11,8 @@ format do
   end
 
   def search_with_params
+    return [] unless card.dataset_name.present?
+
     @search_with_params ||= card.search(query: query, return: :name).map do |metric_name|
       Card.fetch metric_name.field(card.project_name)
     end
@@ -18,14 +20,6 @@ format do
 end
 
 format :html do
-  def standard_filter_keys
-    super - [:dataset]
-  end
-
-  def default_item_view
-    :info_bar
-  end
-
   # don't add quick filters for other datasets
   def dataset_quick_filters
     []

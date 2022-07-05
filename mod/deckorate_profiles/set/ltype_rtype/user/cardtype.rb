@@ -7,7 +7,7 @@
 include_set Abstract::Header
 include_set Abstract::Tabs
 
-card_reader :badges_earned, default: { type_id: Card::PointerID }
+card_reader :badges_earned, type: :pointer
 
 ACTION_LABELS = {
   created: "Created", updated: "Updated", discussed: "Discussed",
@@ -61,8 +61,10 @@ format :html do
   delegate :report_card, :badges_earned_card, :report_action_applies?, :cardtype_codename,
            to: :card
 
-  view :contribution_report, unknown: true, cache: :never, template: :haml do
+  view :contribution_report, unknown: true, cache: :never do
+    return unless show_contribution_report?
     class_up "card-slot", "contribution-report #{cardtype_codename}-contribution-report"
+    wrap { haml :contribution_report }
   end
 
   def show_contribution_report?
@@ -101,7 +103,7 @@ format :html do
 
   def report_tab action
     @tab_lines = 2
-    wrapped_tab_title ACTION_LABELS[action], report_count(action)
+    tab_title ACTION_LABELS[action], count: report_count(action)
   end
 
   def report_link text, action, nav_link=false

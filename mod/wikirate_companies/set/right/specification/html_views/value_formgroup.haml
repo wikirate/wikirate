@@ -1,0 +1,7 @@
+.constraint-value-fields
+  = filter_input_field :value, default: value, compact: true
+- if metric.relationship?
+  .constraint-related-group
+    .input-group-text
+      Related
+    = filter_input_field :related_company_group, default: group, compact: true

@@ -1,4 +1,3 @@
-include_set Abstract::FilterableBar
 
 def virtual?
   new?
@@ -22,9 +21,9 @@ format :html do
   end
 
   view :bar_left do
-    filterable wikirate_topic: card.name.left do
-      nest topic, view: :bar_left
-    end
+    # filterable wikirate_topic: card.name.left do
+    nest topic, view: :bar_left
+    # end
   end
 
   view :bar_right do

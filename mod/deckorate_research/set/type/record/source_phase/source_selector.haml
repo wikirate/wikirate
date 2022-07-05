@@ -6,7 +6,7 @@
         - if voo.show? :select_source_button
           %a#_select_source.btn.btn-primary.btn-research{ href: "#", data: source_data }
             Select source
-        .TYPE-source.ml-3
-          = nest current_source, view: :meatballs
+        .TYPE-source.ms-3
+          = nest current_source, view: :bar_menu
   .source-selector-body.container
     = nest current_source, view: :preview

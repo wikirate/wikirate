@@ -1,7 +1,8 @@
-%td.metric-label._filtered-list-item{ data: wrap_data }
-  = label
-%td.metric-weight
-  = text_field_tag "pair_value", weight
-  %span>%
-  %span.float-right._remove-weight.btn.btn-outline-secondary.btn-sm
-    = fa_icon :close
+.row._filtered-list-item._weight-row{ data: wrap_data }
+  .col-6.metric-label
+    = render_thumbnail_no_link
+  .col-6.metric-weight
+    = text_field_tag "pair_value", weight
+    %span %
+    %span.float-end._remove-weight.btn.btn-outline-secondary.btn-sm
+      = fa_icon :close

@@ -1,0 +1,20 @@
+.new-metric {
+  h1 {
+    font-size: 2em;
+  }
+  .metric-type-list {
+    display: flex;
+    flex-wrap: wrap;
+    > div {
+      margin: 1em;
+    }
+  }
+}
+.TYPE-metric_type {
+  .box-top {
+    font-size: 1.4em;
+  }
+  .box-middle {
+    text-align: center
+  }
+}

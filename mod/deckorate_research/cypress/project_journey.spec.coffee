@@ -6,7 +6,7 @@ describe "research page", ->
     cy.login "sample@user.com", "sample_pass"
     cy.visit "Evil Project"
     cy.get(".tab-pane-wikirate_company").within ->
-      cy.bar("Death_Star+Evil_Project").within ->
+      cy.bar("Death Star").within ->
         cy.get(".research-answer-button").click()
 
     # project and company
@@ -23,7 +23,7 @@ describe "research page", ->
     cy.get(".research-company [title='Select Company']").click()
 
     # choose Los Pollos Hermanos
-    cy.bar("Los_Pollos_Hermanos+Evil_Project").within ->
+    cy.bar("Los Pollos Hermanos").within ->
       cy.get(".research-answer-button").click()
 
     # previous metric
@@ -42,8 +42,12 @@ describe "research page", ->
       cy.get("#year_2020").check()
       cy.get("#_select_year").click()
 
-    cy.closeFilter "year"
-    cy.closeFilter "company_name"
+
+    # remove default year and company filters
+    cy.contains("Clear All").click()
+#    cy.closeFilter "year"
+#    cy.closeFilter "company_name"
+
     cy.get(".TYPE-source.box:first").click()
     cy.get("#_select_source").click()
 

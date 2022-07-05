@@ -1,4 +1,4 @@
-include_set Abstract::SourceFilter
+include_set Abstract::SourceSearch
 
 # cache # of sources tagged with this company (=left) via <source>+company
 include_set Abstract::ListRefCachedCount,

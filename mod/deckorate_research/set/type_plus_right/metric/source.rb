@@ -1,7 +1,8 @@
+assign_type :search
 
 # cache # of sources on which answers for this metric (=left) are based on
 include_set Abstract::SearchCachedCount
-include_set Abstract::SourceFilter
+include_set Abstract::SourceSearch
 
 def cql_content
   { referred_to_by: { right_id: SourceID, left_id: answer_relation.select(:answer_id) } }

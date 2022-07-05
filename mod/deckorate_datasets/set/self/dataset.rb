@@ -1,4 +1,4 @@
-include_set Abstract::DatasetFilter
+include_set Abstract::DatasetSearch
 
 format :html do
   view :titled_content, template: :haml

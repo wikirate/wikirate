@@ -1,0 +1,21 @@
+---
+# Company Groups
+# Note: for now most companies are seeded in deckorate_core, because they have to
+# be in place as sample subjects.
+
+- :name: Deadliest
+  :type: :company_group
+  :fields:
+    :specification:
+      - :metric_id: "Jedi+deadliness"
+        :year: 1977
+        :value:
+          :from: 30
+- :name: Googliest
+  :type: :company_group
+  :fields:
+    :specification: explicit
+    :wikirate_company: Google LLC
+- answers
+
+

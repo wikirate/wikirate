@@ -28,13 +28,13 @@ format :html do
     field_nest :description
   end
 
-  def header_right
+  def header_title
     "#{link_to_card card.type_id}: #{render_title_link}"
   end
 
-  def thumbnail_title
-    bar_title
-  end
+  # def thumbnail_title
+  #   bar_title
+  # end
 
   def thumbnail_subtitle
     field_nest :description

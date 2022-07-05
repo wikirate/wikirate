@@ -10,7 +10,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
     end
   end
 
-  let(:metric) { Card[@metric_name || "Jedi+disturbances in the Force"] }
+  let(:metric_name)   { "Jedi+disturbances in the Force" }
+  let(:metric)        { metric_name.card }
   let(:metric_answer) { metric.fetch :metric_answer }
 
   # @return [Array] of company+year strings
@@ -60,54 +61,17 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
       end
     end
 
-    context "when metric researched" do
-      subject { metric_answer.format._render_table }
-
-      let(:answer_name) { "#{metric.name.url_key}+Death_Star+2001" }
-
-      example "research_metric table" do
-        is_expected.to have_tag "table" do
-          with_answer_row
-        end
-      end
-    end
-
-    context "when metric calculated" do
-      subject do
-        @metric_name = "Jedi+friendliness"
-        metric_answer.format._render_table
-      end
-
-      let(:answer_name) { "#{metric.name.url_key}+Death_Star+1977" }
-
-      example "formula metric table" do
-        is_expected.to have_tag "table" do
-          with_answer_row
-        end
-      end
-    end
-
     describe ":core view" do
       subject { metric_answer.format._render_filtered_content }
 
-      it "has filter widget" do
-        is_expected.to have_tag ".card" do
-          with_tag "._filter-widget"
+      it "has filter button" do
+        is_expected.to have_tag ".filtered-results-header" do
+          with_tag "._filters-button"
         end
       end
       it "has chart" do
         is_expected.to have_tag ".answer-search-chart" do
           with_tag ".vis"
-        end
-      end
-      it "has progress_bar" do
-        is_expected.to have_tag "div.answer-search-progress" do
-          with_tag "div.progress-known", "11 Known"
-        end
-      end
-      it "has table" do
-        is_expected.to have_tag "table" do
-          with_text(/Death Star\s*yes\s*yes, no\s*2001/)
         end
       end
     end

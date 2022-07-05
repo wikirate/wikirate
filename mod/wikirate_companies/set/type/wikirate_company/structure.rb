@@ -1,5 +1,3 @@
-include_set Abstract::Filterable
-
 IDENTIFIERS = %i[sec_cik].freeze
 INTEGRATIONS = %i[wikipedia oar_id open_corporates].freeze
 
@@ -17,69 +15,51 @@ format :html do
     voo.edit_structure = %i[image headquarters] + IDENTIFIERS + INTEGRATIONS
   end
 
-  # LEFT SIDE
-  #
-  def header_body
-    class_up "media-heading", "company-color"
-    super
-  end
-
-  def header_text
-    contribs_made? ? render_contrib_switch : ""
-  end
-
-  view :data, cache: :never do
-    if contrib_page?
-      render_contributions_data
-    else
-      field_nest :metric_answer, view: :filtered_content
+  def header_middle_items
+    super.tap do |h|
+      if (hq = card.headquarters).present?
+        h[:Headquarters] = hq
+      end
     end
   end
 
-  # RIGHT SIDE
+  def header_text
+    render_contrib_switch
+  end
 
   def tab_list
     if contrib_page?
-      %i[research_group projects_organized details]
+      %i[metrics_designed research_group projects_organized details]
     else
-      %i[details wikirate_topic company_group source dataset]
+      %i[metric_answer source company_group dataset details]
     end
   end
 
   def tab_options
-    { research_group: { label: "Research Groups" },
-      projects_organized: { label: "Projects Organized" },
+    { projects_organized: { label: "Projects Organized" },
+      metrics_designed: { label: "Metrics Designed" },
       company_group: { label: "Groups" } }
   end
 
-  def answer_filtering
-    filtering(".RIGHT-answer ._filter-widget") do
-      yield view: :bar, show: :full_page_link, hide: %i[company_header edit_link]
-    end
-  end
-
-  view :wikirate_topic_tab do
-    answer_filtering do |items|
-      field_nest :wikirate_topic, view: :filtered_content, items: items
-    end
+  view :metric_answer_tab do
+    field_nest :metric_answer, view: :filtered_content
   end
 
   view :source_tab do
-    answer_filtering do |items|
-      field_nest :source, view: :filtered_content, items: items
-    end
+    field_nest :source, view: :filtered_content
   end
 
   view :dataset_tab do
-    answer_filtering { |items| field_nest :dataset, items: items }
+    field_nest :dataset, view: :filtered_content
   end
 
   view :company_group_tab do
-    field_nest :company_group, items: { view: :bar, show: :full_page_link }
+    field_nest :company_group, view: :filtered_content,
+                               items: { view: :bar, show: :full_page_link }
   end
 
   view :details_tab do
-    [labeled_field(:headquarters, :name), identifiers, integrations]
+    [identifiers, integrations]
   end
 
   def identifiers
