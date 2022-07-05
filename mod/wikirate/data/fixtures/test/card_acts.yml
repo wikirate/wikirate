@@ -2519,3 +2519,15 @@ card_acts_420:
   actor_id: 191
   acted_at: 2022-07-01 19:29:44.000000000 Z
   ip_address:
+card_acts_421:
+  id: 106466
+  card_id: 292
+  actor_id: 191
+  acted_at: 2022-07-05 23:03:12.000000000 Z
+  ip_address:
+card_acts_422:
+  id: 106467
+  card_id: 313
+  actor_id: 191
+  acted_at: 2022-07-05 23:03:13.000000000 Z
+  ip_address:
