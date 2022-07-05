@@ -12,3 +12,11 @@ RSpec.shared_context "with company ids" do
   let(:los_pollos) { "Los Pollos Hermanos".card_id }
   let(:spectre) { "SPECTRE".card_id }
 end
+
+RSpec.configure do |config|
+  config.before do
+    # TODO: do not remove the following before resolving the testing issue in
+    # mod/wikirate_companies/spec/set/type/wikirate_company_spec.rb
+    # puts "spectracular: #{Card["Jedi+disturbances in the Force+SPECTRE+2000"]&.name}"
+  end
+end
