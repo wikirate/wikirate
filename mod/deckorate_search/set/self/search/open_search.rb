@@ -11,6 +11,7 @@ end
 # @param query [Hash] query hash
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
+# (overrides default Decko method)
 def search parameters={}
   # puts "OPEN SEARCH PARAMS =\n#{parameters}".yellow
   parameters[:index] = Cardio.config.open_search_index
@@ -21,11 +22,14 @@ format :json do
   # Retrieves Open Search results for autocompletion in
   # the main search box
   # @return [Array] list of card names
+  # (overrides default Decko method)
   def complete_or_match_search *_args
     return [] unless search_keyword.present? && (options = autocomplete_options)
 
     options.map { |result| result["_id"]&.to_i&.cardname }
   end
+
+  private
 
   def autocomplete_options
     card.search(body: { suggest: suggestion_query })
@@ -38,12 +42,15 @@ format do
   # Retrieves results for main search results page
   # Query is based on environmental parameters
   # @return [Array] list of card objects
+  # (overrides default Decko method)
   def search_with_params
     os_search.dig("hits", "hits").map do |result|
       result["_id"]&.to_i&.card
     end
   end
 
+  # @return [Integer]
+  # (overrides default Decko method)
   def count_with_params
     os_search.dig "hits", "total", "value"
   end
