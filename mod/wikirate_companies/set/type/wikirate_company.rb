@@ -7,6 +7,7 @@ include_set Abstract::Stewardable
 include_set Abstract::DeckorateTabbed
 
 include_set Abstract::Bookmarkable
+include_set Abstract::SearchContentFields
 
 card_accessor :alias, type: :list
 card_accessor :metric_answer, type: :search_type
@@ -112,6 +113,10 @@ def company_group_ids
       { refer_to: id }
     ]
   )
+end
+
+def search_content_field_codes
+  [:alias]
 end
 
 private
