@@ -34,7 +34,7 @@ module Wikirate
     config.recaptcha_public_key =
       ENV["WIKIRATE_RECAPTCHA_PUBLIC_KEY"] || "6LdhRssSAAAAAFfLt1Wkw43hoaA8RTIgso9-tvtc"
     config.recaptcha_private_key =
-      ENV["WIKIRATE_RECAPTCHA_PUBLIC_KEY"] || "6LdhRssSAAAAAGwzl069pJQBdmzCZigm1nV-dmqK"
+      ENV["WIKIRATE_RECAPTCHA_PRIVATE_KEY"] || "6LdhRssSAAAAAGwzl069pJQBdmzCZigm1nV-dmqK"
 
     # s3config = {
     #   read_only: true,
