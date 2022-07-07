@@ -1,0 +1,6 @@
+---
+- :name: Ticket
+  :type: :cardtype
+  :codename: ticket
+- :name: status list
+  :codename: :status_list
