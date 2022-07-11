@@ -69,6 +69,10 @@ format :html do
     end
   end
 
+  def export_title
+    metric_card.metric_title.to_name.url_key
+  end
+
   before :core do
     voo.items[:hide] = :metric_thumbnail
   end
