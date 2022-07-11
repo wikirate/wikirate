@@ -8,15 +8,15 @@ def bookmark_type
   :metric
 end
 
-def item_type
-  "Metric"
+def item_type_id
+  MetricID
 end
 
 def filter_class
   MetricQuery
 end
 
-def target_type_id
+def item_type_id
   MetricID
 end
 
