@@ -47,12 +47,8 @@ format do
 end
 
 format :html do
-  def item_type_name
-    card.item_type_id.cardname
-  end
-
   view :filtered_results_stats, cache: :never do
-    labeled_badge count_with_params, item_type_name.vary(:plural)
+    labeled_badge count_with_params, card.item_type_name.vary(:plural)
   end
 
   def quick_filter_item hash, filter_key
@@ -75,7 +71,7 @@ format :html do
   end
 
   def filter_name_label
-    "#{item_type_name} Name"
+    "#{card.item_type_name} Name"
   end
 
   before :content do
