@@ -6,11 +6,11 @@ def virtual?
 end
 
 def cql_content
-  { type_id: target_type_id, limit: 20 }
+  { type_id: item_type_id, limit: 20 }
 end
 
-def target_type_id
-  raise "need target_type_id"
+def item_type_id
+  raise "need item_type_id"
 end
 
 format do
@@ -47,12 +47,12 @@ format do
 end
 
 format :html do
-  def target_type_name
-    card.target_type_id.cardname
+  def item_type_name
+    card.item_type_id.cardname
   end
 
   view :filtered_results_stats, cache: :never do
-    labeled_badge count_with_params, target_type_name.vary(:plural)
+    labeled_badge count_with_params, item_type_name.vary(:plural)
   end
 
   def quick_filter_item hash, filter_key
@@ -66,7 +66,7 @@ format :html do
     [:json]
   end
 
-  def export_link_path format
+  def export_link_path_args format
     super.merge filter_and_sort_hash
   end
 
@@ -75,7 +75,7 @@ format :html do
   end
 
   def filter_name_label
-    "#{target_type_name} Name"
+    "#{item_type_name} Name"
   end
 
   before :content do

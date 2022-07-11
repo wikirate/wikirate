@@ -4,8 +4,8 @@ def query
   { metric_card.metric_lookup_field => metric_id }
 end
 
-def item_type
-  :relationship_answer
+def item_type_id
+  RelationshipAnswerID
 end
 
 format do
