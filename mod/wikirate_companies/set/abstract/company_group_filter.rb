@@ -3,8 +3,8 @@ include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
 
-def target_type_id
-  Card::CompanyGroupID
+def item_type_id
+  CompanyGroupID
 end
 
 def bookmark_type
