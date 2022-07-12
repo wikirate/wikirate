@@ -14,8 +14,8 @@ format :html do
   def export_limit_options
     options = EXPORT_LIMIT_OPTIONS.map { |num|  export_limit_option_label num }
     options_for_select options,
-                       disabled: (Auth.signed_in? ? [] : [1000, 5000]),
-                       selected: (Auth.signed_in? ? 5000 : 500)
+                       disabled: export_limit_options_disabled,
+                       selected: export_limit_option_selected
   end
 
   def export_modal_link text, opts={}
@@ -23,14 +23,26 @@ format :html do
     modal_link text, opts
   end
 
-  # localize
-  def export_limit_option_label num
-    ["up to #{num}", num]
-  end
+
 
   # localize
   def export_item_limit_label
     type_name = card.item_type_name
     type_name.present? ? type_name&.vary(:plural) : "Items"
+  end
+
+  private
+
+  # localize
+  def export_limit_option_label num
+    ["up to #{num}", num]
+  end
+
+  def export_limit_options_disabled
+    Auth.signed_in? ? [] : [1000, 5000]
+  end
+
+  def export_limit_option_selected
+    Auth.signed_in? ? 5000 : 500
   end
 end

@@ -13,7 +13,7 @@ end
 
 # act like list not search
 def item_cards *args
-  standard_item_cards *args
+  standard_item_cards(*args)
 end
 
 format :html do
