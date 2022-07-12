@@ -1,0 +1,9 @@
+.btn-group.my-3
+  %a.btn.btn-primary{ href: default_export_link_path }
+    //#, download: export_filename
+    // handled in header, but still might be nice to have if testing issues can
+    // be resolved
+    = fa_icon :download
+    %span.ms-2
+      Export
+  = export_modal_link fa_icon("ellipsis-h"), class: "btn btn-primary"
