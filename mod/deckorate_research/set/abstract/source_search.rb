@@ -5,7 +5,7 @@ include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::CommonFilters
 
-def target_type_id
+def item_type_id
   SourceID
 end
 
