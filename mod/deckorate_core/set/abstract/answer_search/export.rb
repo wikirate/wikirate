@@ -1,10 +1,10 @@
 include_set Abstract::Export
 
-format :html do
-  def export_link_path format
-    super.merge filter_and_sort_hash
-  end
-end
+# format :html do
+#   def export_link_path_args format
+#     super.merge filter_and_sort_hash
+#   end
+# end
 
 format :json do
   view :compact, cache: :never do

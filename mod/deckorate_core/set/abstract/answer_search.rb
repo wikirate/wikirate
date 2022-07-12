@@ -5,8 +5,8 @@ include_set Abstract::MetricSearch
 include_set Abstract::LookupSearch
 include_set Abstract::AnswerFilters
 
-def item_type
-  "Answer" # :metric_answer.cardname
+def item_type_id
+  MetricAnswerID
 end
 
 def filter_class

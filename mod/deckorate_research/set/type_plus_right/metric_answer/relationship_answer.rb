@@ -8,7 +8,7 @@ def bookmark_type
   :wikirate_company
 end
 
-def target_type_id
+def item_type_id
   WikirateCompanyID
 end
 

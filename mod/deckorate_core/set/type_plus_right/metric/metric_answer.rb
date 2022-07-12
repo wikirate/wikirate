@@ -39,6 +39,10 @@ end
 format do
   delegate :metric_card, to: :card
 
+  def export_title
+    metric_card.metric_title.to_name.url_key
+  end
+
   def secondary_sort_hash
     super.merge year: { value: :desc }
   end
