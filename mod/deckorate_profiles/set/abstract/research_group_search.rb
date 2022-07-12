@@ -3,7 +3,7 @@ include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
 
-def target_type_id
+def item_type_id
   ResearchGroupID
 end
 

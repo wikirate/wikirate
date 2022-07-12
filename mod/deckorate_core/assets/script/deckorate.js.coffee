@@ -1,9 +1,5 @@
 window.deckorate = {}
 
-decko.slot.ready (slot) ->
-  slot.find('[data-tooltip="true"]').tooltip()
-
-  slot.find('[data-bs-dismiss="popover"]').popover()
 
 $(window).ready ->
   $("body").on "click", "a.card-paging-link", ->

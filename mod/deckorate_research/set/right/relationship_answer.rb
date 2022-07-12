@@ -67,7 +67,7 @@ end
 format :html do
   # before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
 
-  def export_link_path format
+  def export_link_path_args format
     super.merge filter_and_sort_hash
   end
 end
