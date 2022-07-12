@@ -1,0 +1,22 @@
+%form.export-panel{ action: path }
+  = hidden_tags filter_and_sort_hash
+  %h2 Export Data
+  .row.mb-3
+    .col-6
+      %label.form-label Format
+    .col-6
+      = select_tag :format, options_for_select(export_formats), class: "form-select"
+  .row.mb-3
+    .col-6
+      %label.form-label
+        = export_item_limit_label
+        - unless Card::Auth.signed_in?
+          - popover_content = capture_haml do
+            = sign_in_or_up_links "to export more data."
+          = popover_link popover_content
+
+    .col-6
+      = select_tag :limit, options_for_select(export_limit_options), class: "form-select"
+
+  .d-flex
+    = submit_button text: "Export"
