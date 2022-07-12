@@ -23,8 +23,6 @@ format :html do
     modal_link text, opts
   end
 
-
-
   # localize
   def export_item_limit_label
     type_name = card.item_type_name
