@@ -44,8 +44,6 @@ format :html do
     icon_tag(*Array.wrap(icon_args))
   end
 
-  view :icon_labeled, template: :haml
-
   def icon_labeled_field field, item_view=:name, opts={}
     field_nest field, opts.merge(view: :labeled,
                                  items: (opts[:items] || {}).merge(view: item_view))
