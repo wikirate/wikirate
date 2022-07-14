@@ -6,6 +6,16 @@ format do
   end
 end
 
+format :csv do
+  view :header do
+    [render_metadata, render_titles].join
+  end
+
+  # for override
+  view :titles, :header, mod: All::Csv::CsvFormat
+  view(:metadata) { "" }
+end
+
 format :html do
   view :export_panel, cache: :never, template: :haml, wrap: :slot
 

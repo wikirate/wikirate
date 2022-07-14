@@ -71,7 +71,9 @@ end
 
 format :csv do
   view :core do # DEPRECATED.  +answer csv replaces this
-    Answer.csv_title + Answer.where(metric_id: card.id).map(&:csv_line).join
+    view :titled do
+      field_nest :metric_answer, view: :titled
+    end
   end
 
   COLUMN_METHODS = {

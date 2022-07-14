@@ -25,7 +25,8 @@ describe "expanding details on company pages", ->
     cy.get("._modal-slot").should "not.contain", "Sources"
 
     # expand details of raw value
-    cy.contains("100").click()
+    cy.get("._modal-slot").within () ->
+      cy.contains("100").click()
     cy.get("._modal-slot").should "not.contain", "Scored Metric"
     cy.contains "Sources"
     cy.contains "thereaderwiki.com"
