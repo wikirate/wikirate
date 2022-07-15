@@ -4,7 +4,7 @@ include_set Abstract::Tabs
 
 format :html do
   def layout_name_from_rule
-    :wikirate_one_full_column_layout
+    :deckorate_one_full_column_layout
   end
 
   def header_text
