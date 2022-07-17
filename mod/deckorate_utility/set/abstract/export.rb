@@ -13,7 +13,7 @@ format :csv do
 
   # for override
   view :titles, :header, mod: All::Csv::CsvFormat
-  view(:metadata) { "" }
+  # view(:metadata) { "" }
 end
 
 format :html do
