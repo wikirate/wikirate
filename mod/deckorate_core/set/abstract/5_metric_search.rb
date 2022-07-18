@@ -112,12 +112,7 @@ format :html do
 end
 
 format :csv do
-  view :core do
-    rows = search_with_params.map { |ic| nest ic, view: :line }
-    rows.unshift(header).join
-  end
-
-  def header
-    CSV.generate_line MetricImportItem.headers
+  view :titles do
+    MetricImportItem.headers
   end
 end

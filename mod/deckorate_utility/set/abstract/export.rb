@@ -8,12 +8,13 @@ end
 
 format :csv do
   view :header do
-    [render_metadata, render_titles].join
+    with_metadata { [render_titles] }
   end
 
   # for override
-  view :titles, :header, mod: All::Csv::CsvFormat
-  view(:metadata) { "" }
+  view :titles do
+    %w[Name Type]
+  end
 end
 
 format :html do

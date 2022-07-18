@@ -5,25 +5,23 @@ class Answer
 
     # Export methods for Answer class
     module ClassMethods
-      def csv_title
-        CSV.generate_line ["Answer ID", "Answer Page",
-                           "Metric", "Company", "Year", "Value",
-                           "Source Page", "Original Source", "Source Count",
-                           "Comments"]
+      def csv_titles
+        ["Answer ID", "Answer Page", "Metric", "Company", "Year", "Value",
+         "Source Page", "Original Source", "Source Count", "Comments"]
       end
     end
 
     def csv_line
-      CSV.generate_line [answer_id,
-                         answer_link,
-                         metric_name,
-                         company_name,
-                         year,
-                         value,
-                         source_page_url,
-                         source_url,
-                         source_count,
-                         comments]
+      [answer_id,
+       answer_link,
+       metric_name,
+       company_name,
+       year,
+       value,
+       source_page_url,
+       source_url,
+       source_count,
+       comments]
     end
 
     def answer_link

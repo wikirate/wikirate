@@ -4,7 +4,7 @@ RSpec.describe Answer::Export do
   end
 
   it "renders csv line" do
-    expect(answer.answer.csv_line)
+    expect(CSV.generate_line answer.answer.csv_line)
       .to match(/\d+,Jedi\+more evil,Death Star,1977,\d+/)
   end
 end
