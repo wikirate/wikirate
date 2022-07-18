@@ -80,11 +80,11 @@ format do
 end
 
 format :csv do
-  view :header do
-    [render_metadata, Answer.csv_title].join
+  view :titles do
+    Answer.csv_titles
   end
 
   view :core do
-    lookup_relation.map(&:csv_line).join
+    lookup_relation.map(&:csv_line)
   end
 end

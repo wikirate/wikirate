@@ -33,9 +33,14 @@ format :csv do
     { url: request_url, license: render_license, time: Time.now.to_s }
   end
 
-  view :metadata, cache: :never do
+  def with_metadata
     h = metadata_hash
-    [h.keys, h.values].map { |line| CSV.generate_line line }.join + "\n"
+    # metadata_rows = [h.keys, h.values, []].map { |line| CSV.generate_line line }.join
+    metadata_rows = h.to_a.map do |line|
+      line[0] = "# #{line[0]}"
+      line
+    end
+    metadata_rows + [[]] + yield
   end
 end
 
