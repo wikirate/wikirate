@@ -14,14 +14,33 @@ def as_moderator?
   Card::Auth.always_ok? || as_wikirate_team?
 end
 
-
 format do
+  view :license do
+    "Creative Commons Attribution-ShareAlike 4.0 International"
+  end
+
   def rate_subject
     @wikirate_subject ||= Card.fetch_name(:wikirate_company)
   end
 
   def rate_subjects
     @wikirate_subjects ||= rate_subject.pluralize
+  end
+end
+
+format :csv do
+  def metadata_hash
+    { url: request_url, license: render_license, time: Time.now.to_s }
+  end
+
+  def with_metadata
+    h = metadata_hash
+    # metadata_rows = [h.keys, h.values, []].map { |line| CSV.generate_line line }.join
+    metadata_rows = h.to_a.map do |line|
+      line[0] = "# #{line[0]}"
+      line
+    end
+    metadata_rows + [[]] + yield
   end
 end
 
