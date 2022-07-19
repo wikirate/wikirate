@@ -2,24 +2,23 @@ class Answer
   # Methods to format answer for csv output
   module Export
     include Card::Env::Location
+    include LookupTable::Export
 
     # Export methods for Answer class
     module ClassMethods
+      include LookupTable::Export
+
       def csv_titles detailed=false
         basic = ["Answer Page", "Metric", "Company", "Year", "Value", "Source Page"]
         with_detailed basic, detailed do
           ["Answer ID", "Original Source", "Source Count", "Comments"]
         end
       end
-
-      def with_detailed basic, detailed=false
-        detailed ? (basic + yield) : basic
-      end
     end
 
     def csv_line detailed=false
       basic = [answer_link, metric_name, company_name, year, value, source_page_url]
-      self.class.with_detailed basic, detailed do
+      with_detailed basic, detailed do
         [answer_id, source_url, source_count, comments]
       end
     end

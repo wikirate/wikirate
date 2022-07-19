@@ -505,38 +505,7 @@ card_changes_092:
   value: '288'
 card_changes_093:
   id: 93
-  card_action_id: 3960
-  field: 2
-  value: |-
-    mod: format+*script
-    mod: list+*script
-    mod: search+*script
-    mod: rules+*script
-    mod: edit+*script
-    mod: carrierwave+*script
-    mod: ace editor+*script
-    mod: bar and box+*script
-    mod: bootstrap+*script
-    mod: filter+*script
-    mod: tabs+*script
-    mod: date+*script
-    mod: deckorate search+*script
-    mod: follow+*script
-    mod: layout+*script
-    mod: recaptcha+*script
-    mod: tinymce editor+*script
-    mod: deckorate core+*script
-    mod: deckorate research+*script
-    mod: deckorate import+*script
-    mod: deckorate calculations+*script
-    mod: wikirate companies+*script
-    mod: wikirate homepage+*script
-    mod: wikirate+*script
-    mod: tasks+*script
-    mod: vega+*script
-card_changes_094:
-  id: 94
-  card_action_id: 3965
+  card_action_id: 3964
   field: 2
   value: |-
     mod: format+*script
@@ -566,18 +535,18 @@ card_changes_094:
     mod: tasks+*script
     mod: vega+*script
     mod: ticket+*script
-card_changes_095:
-  id: 95
+card_changes_094:
+  id: 94
   card_action_id: 2893
   field: 0
   value: 'style: mods'
-card_changes_096:
-  id: 96
+card_changes_095:
+  id: 95
   card_action_id: 2893
   field: 1
   value: '4'
-card_changes_097:
-  id: 97
+card_changes_096:
+  id: 96
   card_action_id: 2893
   field: 2
   value: |-
@@ -620,24 +589,24 @@ card_changes_097:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
-card_changes_098:
-  id: 98
+card_changes_097:
+  id: 97
   card_action_id: 2893
   field: 3
   value: f
-card_changes_099:
-  id: 99
+card_changes_098:
+  id: 98
   card_action_id: 2893
   field: 4
   value:
-card_changes_100:
-  id: 100
+card_changes_099:
+  id: 99
   card_action_id: 2893
   field: 5
   value:
-card_changes_101:
-  id: 101
-  card_action_id: 3966
+card_changes_100:
+  id: 100
+  card_action_id: 3965
   field: 2
   value: |-
     mod: format+*style
@@ -681,113 +650,3 @@ card_changes_101:
     mod: tasks+*style
     mod: vega+*style
     mod: ticket+*style
-card_changes_102:
-  id: 102
-  card_action_id: 3927
-  field: 0
-  value:
-card_changes_103:
-  id: 103
-  card_action_id: 3927
-  field: 1
-  value: '2'
-card_changes_104:
-  id: 104
-  card_action_id: 3927
-  field: 2
-  value: '[{"metric_id":2975,"year":1977,"value":{"from":30}}]'
-card_changes_105:
-  id: 105
-  card_action_id: 3927
-  field: 3
-  value: f
-card_changes_106:
-  id: 106
-  card_action_id: 3927
-  field: 4
-  value: '3633'
-card_changes_107:
-  id: 107
-  card_action_id: 3927
-  field: 5
-  value: '2459'
-card_changes_108:
-  id: 108
-  card_action_id: 3967
-  field: 2
-  value: ''
-card_changes_109:
-  id: 109
-  card_action_id: 3969
-  field: 2
-  value: |-
-    mod: format+*script
-    mod: list+*script
-    mod: search+*script
-    mod: rules+*script
-    mod: edit+*script
-    mod: carrierwave+*script
-    mod: ace editor+*script
-    mod: bar and box+*script
-    mod: bootstrap+*script
-    mod: filter+*script
-    mod: tabs+*script
-    mod: date+*script
-    mod: deckorate search+*script
-    mod: follow+*script
-    mod: layout+*script
-    mod: recaptcha+*script
-    mod: tinymce editor+*script
-    mod: deckorate core+*script
-    mod: deckorate research+*script
-    mod: deckorate import+*script
-    mod: deckorate calculations+*script
-    mod: wikirate companies+*script
-    mod: wikirate homepage+*script
-    mod: wikirate+*script
-    mod: tasks+*script
-    mod: vega+*script
-card_changes_110:
-  id: 110
-  card_action_id: 3970
-  field: 2
-  value: |-
-    mod: format+*style
-    mod: list+*style
-    mod: search+*style
-    mod: rules+*style
-    mod: permissions+*style
-    mod: account+*style
-    mod: edit+*style
-    mod: history+*style
-    mod: carrierwave+*style
-    mod: api key+*style
-    mod: style+*style
-    mod: bar and box+*style
-    mod: bootstrap+*style
-    mod: filter+*style
-    mod: bookmarks+*style
-    mod: comment+*style
-    mod: date+*style
-    mod: deckorate search+*style
-    mod: follow+*style
-    mod: help+*style
-    mod: layout+*style
-    mod: tinymce editor+*style
-    mod: thumbnail+*style
-    mod: guides+*style
-    mod: deckorate utility+*style
-    mod: deckorate layout+*style
-    mod: topics+*style
-    mod: deckorate core+*style
-    mod: deckorate research+*style
-    mod: deckorate import+*style
-    mod: deckorate calculations+*style
-    mod: deckorate datasets+*style
-    mod: deckorate profiles+*style
-    mod: wikirate companies+*style
-    mod: wikirate homepage+*style
-    mod: wikirate+*style
-    mod: badges+*style
-    mod: tasks+*style
-    mod: vega+*style

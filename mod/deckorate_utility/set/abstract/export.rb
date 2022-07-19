@@ -26,10 +26,24 @@ format :csv do
   end
 end
 
+format :json do
+  view :titled do
+    render_atom
+  end
+
+  view :detailed do
+    render_molecule
+  end
+end
+
 format :html do
   view :export_panel, cache: :never, template: :haml, wrap: :slot
 
   view :export_button, cache: :never, template: :haml
+
+  def export_mark
+    card.name
+  end
 
   def export_limit_options
     options = EXPORT_LIMIT_OPTIONS.map { |num|  export_limit_option_label num }

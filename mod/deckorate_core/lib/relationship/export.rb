@@ -2,12 +2,18 @@ class Relationship
   # Methods to format answer for csv output
   module Export
     include Card::Env::Location
+    include LookupTable::Export
 
     # class methods for {Relationship}
     module ClassMethods
-      def csv_titles
-        CSV.generate_line ["Relationship ID", "Relationship Link", "Answer ID", "Metric",
-                           "Subject Company", "Object Company", "Year", "Value"]
+      include LookupTable::Export
+      def csv_titles detailed=false
+        basic = ["Relationship Link", "Metric",
+                 "Subject Company", "Object Company",
+                 "Year", "Value"]
+        with_detailed basic, detailed do
+          ["Relationship ID", "Answer ID"]
+        end
       end
     end
 
@@ -15,9 +21,13 @@ class Relationship
       host_class.extend ClassMethods
     end
 
-    def csv_line
-      CSV.generate_line [relationship_id, relationship_link, answer_id, metric_name,
-                         subject_company_name, object_company_name, year, value]
+    def csv_line detailed=false
+      basic = [relationship_link, metric_name,
+               subject_company_name, object_company_name,
+               year, value]
+      with_detailed basic, detailed do
+        [relationship_id, answer_id]
+      end
     end
 
     def relationship_link
