@@ -6,7 +6,9 @@ class ConvertCompanyGroupSpecifications < Cardio::Migration
     Card.search(left: { type: :company_group }, right: :specification).each do |spec|
       next if spec.explicit? || already_converted?(spec)
 
-      spec.update! content: new_constraints(spec)
+      reporting_error spec do
+        spec.update! content: new_constraints(spec)
+      end
     end
   end
 
@@ -16,10 +18,14 @@ class ConvertCompanyGroupSpecifications < Cardio::Migration
 
   def new_constraints spec
     spec.content.split(/\n+/).map { |constraint| new_constraint(constraint) }
+  end
+
+  def reporting_error spec
+    yield
   rescue StandardError => e
     puts "error updating company group specification for #{spec.name} (#{spec.id})".red
     puts e.message
-    puts e.backtrace
+    puts e.backtrace[0..10].join("\n")
   end
 
   def new_constraint constraint
