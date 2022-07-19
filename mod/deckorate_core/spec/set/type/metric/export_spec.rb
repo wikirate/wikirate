@@ -46,9 +46,8 @@ RSpec.describe Card::Set::Type::Metric::Export do
 
     specify "view: row" do
       expect_view(:row, format: :csv, card: metric)
-        .to eq([nil, "Researched", "Joe User", "researched number 2",
-                nil, nil, nil, nil, nil, nil, nil, nil,
-                "Number", nil, nil, nil, nil, nil, nil, "Community Assessed", nil, nil])
+        .to include("http://wikirate.org/~#{metric.id}", "Researched", "Joe User",
+                    "researched number 2", "Number", "Community Assessed")
     end
   end
 end
