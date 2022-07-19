@@ -8,6 +8,11 @@
       = select_tag :format, options_for_select(export_formats), class: "_no-select2 form-select"
   .row.mb-3
     .col-4
+      %label.form-label Detail
+    .col-8
+      = select_tag :view, options_for_select(export_views), class: "_no-select2 form-select"
+  .row.mb-3
+    .col-4
       %label.form-label
         = export_item_limit_label
         - unless Card::Auth.signed_in?

@@ -70,12 +70,6 @@ format :json do
 end
 
 format :csv do
-  view :core do # DEPRECATED.  +answer csv replaces this
-    view :titled do
-      field_nest :metric_answer, view: :titled
-    end
-  end
-
   COLUMN_METHODS = {
     wikirate_topic: :semicolon_separated_values,
     report_type: :semicolon_separated_values,
@@ -83,13 +77,12 @@ format :csv do
     value_options: :semicolon_separated_values
   }.freeze
 
-  view :header do
-    CSV.generate_line MetricImportItem.headers
+  view :titled do # DEPRECATED.  +answer csv replaces this
+    field_nest :metric_answer, view: :titled
   end
 
-  view :line do
-    CSV.generate_line(line_values.map { |v| v.blank? ? nil : v })
-    # , write_empty_value: nil (only supported in recent versions)
+  view :row do
+    line_values.map { |v| v.blank? ? nil : v }
   end
 
   private
