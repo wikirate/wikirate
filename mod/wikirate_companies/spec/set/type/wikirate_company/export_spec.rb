@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::WikirateCompany::Json do
+RSpec.describe Card::Set::Type::WikirateCompany::Export do
   let(:company) { Card["Samsung"] }
 
   describe "atom view" do
