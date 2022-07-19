@@ -26,7 +26,7 @@ class Card
 
     class << self
       def export_csv_header
-        Relationship.csv_title
+        Relationship.csv_titles
       end
     end
   end
