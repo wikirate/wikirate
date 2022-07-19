@@ -1,4 +1,5 @@
 include_set Abstract::Export
+include_set Abstract::DetailedExport
 include_set Abstract::BookmarkFiltering
 include_set Abstract::CommonFilters
 

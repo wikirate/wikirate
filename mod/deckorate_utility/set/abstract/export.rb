@@ -13,16 +13,7 @@ format :csv do
 
   # for override
   view :titles do
-    %w[Name Type]
-  end
-
-  view :detailed do
-    voo.show! :detailed_export
-    render_titled
-  end
-
-  view :core do
-    item_cards.map { |item_card| nest item_card, show: :detailed_export }
+    %w[Link Name ID]
   end
 end
 
@@ -64,7 +55,7 @@ format :html do
   end
 
   def export_views
-    { Basic: :titled, Extended: :detailed }
+    :titled
   end
 
   private

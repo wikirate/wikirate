@@ -3,6 +3,7 @@ include_set Abstract::CommonFilters
 include_set Abstract::BookmarkFiltering
 include_set Abstract::LookupSearch
 include_set Abstract::SearchViews
+include_set Abstract::DetailedExport
 
 def bookmark_type
   :metric
@@ -102,10 +103,6 @@ format :html do
     "Metric Type"
   end
 
-  def export_formats
-    [:csv, :json]
-  end
-
   def quick_filter_list
     bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
   end
@@ -128,7 +125,5 @@ format :csv do
 
   def headers keys
     keys.map { |k| Card::MetricImportItem.header k }
-  rescue
-    binding.pry
   end
 end

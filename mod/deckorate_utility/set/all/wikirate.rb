@@ -55,6 +55,10 @@ format :csv do
   def detailed?
     voo.explicit_show? :detailed_export
   end
+
+  view :row do
+    [card_url("~#{card.id}"), card.name, card.id]
+  end
 end
 
 format :html do
