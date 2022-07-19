@@ -112,7 +112,23 @@ format :html do
 end
 
 format :csv do
+  BASIC_COLUMNS = %i[question metric_type metric_designer metric_title
+                     value_type value_options research_policy]
+
+  DETAILED_COLUMNS = %i[about methodology wikirate_topic unpublished scorer
+                        formula unit range
+                        hybrid inverse_title report_type year company_group]
+
   view :titles do
-    MetricImportItem.headers
+    basic = headers(BASIC_COLUMNS).unshift "Metric Link"
+    return basic unless detailed?
+
+    basic + headers(DETAILED_COLUMNS)
+  end
+
+  def headers keys
+    keys.map { |k| Card::MetricImportItem.header k }
+  rescue
+    binding.pry
   end
 end

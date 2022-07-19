@@ -82,16 +82,23 @@ format :csv do
   end
 
   view :row do
-    line_values.map { |v| v.blank? ? nil : v }
+    basic = cell_values(Abstract::MetricSearch::BASIC_COLUMNS)
+              .unshift card_url("~#{card.id}")
+    return basic unless detailed?
+
+    basic + cell_values(Abstract::MetricSearch::DETAILED_COLUMNS)
   end
 
   private
 
-  def line_values
-    MetricImportItem.column_keys.map do |column|
-      method = COLUMN_METHODS[column]
-      method ? send(method, column) : card.try(column)
-    end
+  def cell_values columns
+    columns.map { |key| cell_value key }
+  end
+
+  def cell_value key
+    method = COLUMN_METHODS[key]
+    value = method ? send(method, key) : card.try(key)
+    value.blank? ? nil : value
   end
 
   def semicolon_separated_values column

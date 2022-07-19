@@ -51,6 +51,10 @@ format :csv do
     metadata_rows = (metadata_hash.values << "").map { |v| ["# #{v}".strip] }
     metadata_rows + yield
   end
+
+  def detailed?
+    voo.explicit_show? :detailed_export
+  end
 end
 
 format :html do

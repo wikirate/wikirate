@@ -21,8 +21,8 @@ format :csv do
     render_titled
   end
 
-  def detailed?
-    voo.explicit_show? :detailed_export
+  view :core do
+    item_cards.map { |item_card| nest item_card, show: :detailed_export }
   end
 end
 
