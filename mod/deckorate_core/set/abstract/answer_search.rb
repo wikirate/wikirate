@@ -81,10 +81,11 @@ end
 
 format :csv do
   view :titles do
-    Answer.csv_titles
+    Answer.csv_titles detailed?
   end
 
   view :core do
-    lookup_relation.map(&:csv_line)
+    detailed = detailed?
+    lookup_relation.map { |row| row.csv_line detailed }
   end
 end

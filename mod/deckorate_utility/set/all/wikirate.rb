@@ -16,7 +16,7 @@ end
 
 format do
   view :license do
-    "Creative Commons Attribution-ShareAlike 4.0 International"
+    "Creative Commons Attribution-ShareAlike 4.0 International License"
   end
 
   def rate_subject
@@ -34,13 +34,14 @@ format :csv do
   end
 
   def with_metadata
-    h = metadata_hash
+    # h = metadata_hash
     # metadata_rows = [h.keys, h.values, []].map { |line| CSV.generate_line line }.join
-    metadata_rows = h.to_a.map do |line|
-      line[0] = "# #{line[0]}"
-      line
-    end
-    metadata_rows + [[]] + yield
+    # metadata_rows = h.to_a.map do |line|
+    #   line[0] = "# #{line[0]}"
+    #   line
+    # end
+    metadata_rows = (metadata_hash.values << "").map { |v| ["# #{v}".strip] }
+    metadata_rows + yield
   end
 end
 
