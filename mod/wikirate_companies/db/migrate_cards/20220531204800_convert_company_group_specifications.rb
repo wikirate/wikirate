@@ -4,8 +4,14 @@
 class ConvertCompanyGroupSpecifications < Cardio::Migration
   def up
     Card.search(left: { type: :company_group }, right: :specification).each do |spec|
-      spec.update! content: new_constraints(spec) unless spec.explicit?
+      next if spec.explicit? || already_converted?(spec)
+
+      spec.update! content: new_constraints(spec)
     end
+  end
+
+  def already_converted? spec
+    spec.content.first == "["
   end
 
   def new_constraints spec

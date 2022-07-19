@@ -18,7 +18,7 @@ class Answer
     end
 
     def csv_line detailed=false
-      basic = [answer_link, metric_name, company_name, year, value, source_page_url,]
+      basic = [answer_link, metric_name, company_name, year, value, source_page_url]
       self.class.with_detailed basic, detailed do
         [answer_id, source_url, source_count, comments]
       end
