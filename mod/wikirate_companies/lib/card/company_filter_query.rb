@@ -75,7 +75,7 @@ class Card
           "(#{bits.join ' AND '})"
         end
 
-        def category_clause
+        def category_value_clause
           if @metric.multi_categorical?
             # see comment in value_filters.rb
             ::Answer.sanitize_sql_for_conditions(

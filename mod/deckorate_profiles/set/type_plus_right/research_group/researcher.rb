@@ -32,6 +32,14 @@ event :leave_group, :validate, when: :leaving? do
   drop_item Auth.current.name
 end
 
+format do
+  def contribution_counts member
+    CONTRIBUTION_CATEGORIES.map do |category|
+      card.left.contribution_count member.name, :metric_answer, category
+    end
+  end
+end
+
 format :html do
   delegate :ok_to_join?, :current_user_is_member?, to: :card
 
@@ -78,12 +86,6 @@ format :html do
   def member_contribution_content members
     members.map do |member|
       [nest(member, view: :thumbnail)].concat contribution_counts(member)
-    end
-  end
-
-  def contribution_counts member
-    CONTRIBUTION_CATEGORIES.map do |category|
-      card.left.contribution_count member.name, :metric_answer, category
     end
   end
 end
