@@ -58,10 +58,6 @@ format :html do
     end
   end
 
-  def export_formats
-    [:json]
-  end
-
   def export_link_path_args format
     super.merge filter_and_sort_hash
   end

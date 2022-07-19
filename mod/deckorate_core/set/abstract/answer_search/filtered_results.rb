@@ -22,10 +22,6 @@ format :html do
     true
   end
 
-  def export_formats
-    %i[csv json]
-  end
-
   def extra_paging_path_args
     @extra_paging_path_args ||= super.merge sort_by: sort_by, sort_dir: sort_dir
   end

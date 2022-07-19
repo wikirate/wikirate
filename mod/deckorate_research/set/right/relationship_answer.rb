@@ -1,4 +1,5 @@
 include_set Abstract::Export
+include_set Abstract::DetailedExport
 include_set Abstract::BookmarkFiltering
 include_set Abstract::CommonFilters
 
@@ -55,8 +56,13 @@ format :json do
 end
 
 format :csv do
+  view :titles do
+    Relationship.csv_titles detailed?
+  end
+
   view :core do
-    Relationship.csv_title + relationships.map(&:csv_line).join
+    detailed = detailed?
+    relationships.map { |row| row.csv_line detailed }
   end
 
   def default_limit

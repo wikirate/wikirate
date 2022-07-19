@@ -1,4 +1,5 @@
 include_set Abstract::Export
+include_set Abstract::DetailedExport
 
 # format :html do
 #   def export_link_path_args format
