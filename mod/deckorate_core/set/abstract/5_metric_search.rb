@@ -3,6 +3,7 @@ include_set Abstract::CommonFilters
 include_set Abstract::BookmarkFiltering
 include_set Abstract::LookupSearch
 include_set Abstract::SearchViews
+include_set Abstract::DetailedExport
 
 def bookmark_type
   :metric
@@ -102,22 +103,27 @@ format :html do
     "Metric Type"
   end
 
-  def export_formats
-    [:csv, :json]
-  end
-
   def quick_filter_list
     bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
   end
 end
 
 format :csv do
-  view :core do
-    rows = search_with_params.map { |ic| nest ic, view: :line }
-    rows.unshift(header).join
+  BASIC_COLUMNS = %i[question metric_type metric_designer metric_title
+                     value_type value_options research_policy]
+
+  DETAILED_COLUMNS = %i[about methodology wikirate_topic unpublished scorer
+                        formula unit range
+                        hybrid inverse_title report_type year company_group]
+
+  view :titles do
+    basic = headers(BASIC_COLUMNS).unshift "Metric Link"
+    return basic unless detailed?
+
+    basic + headers(DETAILED_COLUMNS)
   end
 
-  def header
-    CSV.generate_line MetricImportItem.headers
+  def headers keys
+    keys.map { |k| Card::MetricImportItem.header k }
   end
 end

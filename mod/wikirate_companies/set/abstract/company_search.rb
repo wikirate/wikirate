@@ -34,6 +34,12 @@ format do
   end
 end
 
+format :csv do
+  view :titles do
+    super() << "Headquarters"
+  end
+end
+
 format :html do
   def filter_map
     shared_company_filter_map.unshift key: :name, label: "Company Name", open: true
