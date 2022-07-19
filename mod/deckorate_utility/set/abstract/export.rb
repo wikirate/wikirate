@@ -8,12 +8,22 @@ end
 
 format :csv do
   view :header do
-    [render_metadata, render_titles].join
+    with_metadata { [render_titles] }
   end
 
   # for override
-  view :titles, :header, mod: All::Csv::CsvFormat
-  view(:metadata) { "" }
+  view :titles do
+    %w[Name Type]
+  end
+
+  view :detailed do
+    voo.show! :detailed_export
+    render_titled
+  end
+
+  def detailed?
+    voo.explicit_show? :detailed_export
+  end
 end
 
 format :html do
@@ -37,6 +47,10 @@ format :html do
   def export_item_limit_label
     type_name = card.item_type_name
     type_name.present? ? type_name&.vary(:plural) : "Items"
+  end
+
+  def export_views
+    { Basic: :titled, Extended: :detailed }
   end
 
   private
