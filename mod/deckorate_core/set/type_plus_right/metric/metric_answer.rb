@@ -39,6 +39,10 @@ end
 format do
   delegate :metric_card, to: :card
 
+  def export_title
+    metric_card.metric_title.to_name.url_key
+  end
+
   def secondary_sort_hash
     super.merge year: { value: :desc }
   end
@@ -73,15 +77,22 @@ format :html do
     voo.items[:hide] = :metric_thumbnail
   end
 
-  def relationship_export_links
-    metric_card.relationship_answer_card.format(:html).export_format_links
+
+  def export_mark
+    return super unless metric_card.relationship?
+
+    { Answers: super, Relationships: metric_card.relationship_answer_card.name }
   end
 
-  def wrap_export_links label, links
-    wrap_with :div, class: "#{label.downcase}-export-links py-1" do
-      "#{label} Export: #{links}"
-    end
-  end
+  # def relationship_export_links
+  #   metric_card.relationship_answer_card.format(:html).export_format_links
+  # end
+  #
+  # def wrap_export_links label, links
+  #   wrap_with :div, class: "#{label.downcase}-export-links py-1" do
+  #     "#{label} Export: #{links}"
+  #   end
+  # end
 
   def show_metric_count?
     false

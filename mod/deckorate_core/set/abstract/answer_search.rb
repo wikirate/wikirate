@@ -5,8 +5,8 @@ include_set Abstract::MetricSearch
 include_set Abstract::LookupSearch
 include_set Abstract::AnswerFilters
 
-def item_type
-  "Answer" # :metric_answer.cardname
+def item_type_id
+  MetricAnswerID
 end
 
 def filter_class
@@ -80,7 +80,12 @@ format do
 end
 
 format :csv do
+  view :titles do
+    Answer.csv_titles detailed?
+  end
+
   view :core do
-    Answer.csv_title + lookup_relation.map(&:csv_line).join
+    detailed = detailed?
+    lookup_relation.map { |row| row.csv_line detailed }
   end
 end

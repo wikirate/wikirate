@@ -18,9 +18,15 @@ def tally_policy policy, count
   count[policy_type] += 1 if policy_type
 end
 
+format do
+  view :license do
+    "not specified"
+  end
+end
+
 format :csv do
-  view :core do
-    Answer.csv_title + card.answers.limit(1000).map(&:csv_line).flatten.join
+  view :titled do
+    field_nest :metric_answer, view: :titled
   end
 
   view :import_template do

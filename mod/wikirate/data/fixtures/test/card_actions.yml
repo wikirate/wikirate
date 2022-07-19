@@ -28730,15 +28730,55 @@ card_actions_3591:
 card_actions_3592:
   id: 3959
   card_id: 3672
-  card_act_id: 106459
+  card_act_id: 106453
   super_action_id:
   action_type: 0
   draft: 0
   comment:
 card_actions_3593:
   id: 3960
+  card_id: 3673
+  card_act_id: 106454
+  super_action_id:
+  action_type: 0
+  draft: 0
+  comment:
+card_actions_3594:
+  id: 3961
+  card_id: 3675
+  card_act_id: 106455
+  super_action_id:
+  action_type: 0
+  draft: 0
+  comment:
+card_actions_3595:
+  id: 3962
+  card_id: 3676
+  card_act_id: 106456
+  super_action_id:
+  action_type: 0
+  draft: 0
+  comment:
+card_actions_3596:
+  id: 3963
+  card_id: 3678
+  card_act_id: 106457
+  super_action_id:
+  action_type: 0
+  draft: 0
+  comment:
+card_actions_3597:
+  id: 3964
   card_id: 292
-  card_act_id: 106460
+  card_act_id: 106458
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_3598:
+  id: 3965
+  card_id: 313
+  card_act_id: 106459
   super_action_id:
   action_type: 1
   draft: 0

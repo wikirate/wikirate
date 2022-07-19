@@ -11,6 +11,11 @@ def query_hash
   { metric_id: ids }
 end
 
+# act like list not search
+def item_cards *args
+  standard_item_cards(*args)
+end
+
 format :html do
   view :titled_content do
     render_filtered_content

@@ -5,7 +5,7 @@ include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::CommonFilters
 
-def target_type_id
+def item_type_id
   SourceID
 end
 
@@ -31,6 +31,12 @@ format do
   def filter_map
     %i[wikirate_topic report_type year wikirate_link company_name]
       .unshift key: :wikirate_title, open: true
+  end
+end
+
+format :csv do
+  view :titles do
+    super() + ["Title", "Company", "Year", "Report Type", "Original Link"]
   end
 end
 

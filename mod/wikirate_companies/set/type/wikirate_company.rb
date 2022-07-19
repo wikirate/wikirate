@@ -129,7 +129,7 @@ end
 
 # DEPRECATED.  +answer csv replaces following:
 format :csv do
-  view :core do
-    Answer.csv_title + card.answers.map(&:csv_line).join
+  view :titled do
+    field_nest :metric_answer, view: :titled
   end
 end

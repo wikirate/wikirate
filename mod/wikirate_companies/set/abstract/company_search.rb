@@ -10,7 +10,7 @@ def bookmark_type
   :wikirate_company
 end
 
-def target_type_id
+def item_type_id
   WikirateCompanyID
 end
 
@@ -31,6 +31,12 @@ format do
 
   def sort_options
     { "Most Answers": :answer, "Most Metrics": :metric }.merge super
+  end
+end
+
+format :csv do
+  view :titles do
+    super() << "Headquarters"
   end
 end
 

@@ -1,0 +1,13 @@
+.btn-group.my-3
+  %a.btn.btn-primary{ href: default_export_link_path }
+    //#, download: export_filename
+    // handled in header, but still might be nice to have if testing issues can
+    // be resolved
+    = fa_icon :download
+    %span.ms-2
+      Export
+  - class_up 'dropdown-toggle-split', "btn btn-primary text-white"
+  = split_dropdown_button_toggle
+  .dropdown-menu
+    = render_export_panel
+    //= export_modal_link fa_icon("ellipsis-h"), class: "btn btn-primary"
