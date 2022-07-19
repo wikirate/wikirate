@@ -6116,7 +6116,6 @@ cards_292:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
-    mod: ticket+*script
   search_content: |-
     mod: format+*script
     mod: list+*script
@@ -6144,7 +6143,6 @@ cards_292:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
-    mod: ticket+*script
 cards_293:
   id: 293
   name: JavaScript
@@ -6619,7 +6617,6 @@ cards_313:
     mod: filter+*style
     mod: bookmarks+*style
     mod: comment+*style
-    mod: export+*style
     mod: date+*style
     mod: deckorate search+*style
     mod: follow+*style
@@ -6643,7 +6640,6 @@ cards_313:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
-    mod: ticket+*style
   search_content: |-
     mod: format+*style
     mod: list+*style
@@ -6661,7 +6657,6 @@ cards_313:
     mod: filter+*style
     mod: bookmarks+*style
     mod: comment+*style
-    mod: export+*style
     mod: date+*style
     mod: deckorate search+*style
     mod: follow+*style
@@ -6685,7 +6680,6 @@ cards_313:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
-    mod: ticket+*style
 cards_314:
   id: 314
   name: Local style folder group
@@ -9988,9 +9982,9 @@ cards_479:
   right_id:
   current_revision_id:
   created_at: 2022-06-14 18:37:10.000000000 Z
-  updated_at: 2022-06-30 18:57:21.000000000 Z
+  updated_at: 2022-07-19 01:39:53.000000000 Z
   creator_id: 1
-  updater_id: 191
+  updater_id: 1
   read_rule_class: "*self"
   read_rule_id: 482
   references_expired:
@@ -74611,7 +74605,7 @@ cards_3633:
   right_id: 2459
   current_revision_id:
   created_at: 2022-06-24 19:50:06.000000000 Z
-  updated_at: 2022-06-24 19:50:06.000000000 Z
+  updated_at: 2022-07-19 01:39:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -74619,8 +74613,8 @@ cards_3633:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: '[{"metric_id":2975,"year":1977,"value":{"from":30}}]'
-  search_content: '[{"metric_id":2975,"year":1977,"value":{"from":30}}]'
+  db_content: ''
+  search_content: ''
 cards_3634:
   id: 3635
   name:
@@ -74630,7 +74624,7 @@ cards_3634:
   right_id: 700
   current_revision_id:
   created_at: 2022-06-24 19:50:06.000000000 Z
-  updated_at: 2022-06-24 19:50:06.000000000 Z
+  updated_at: 2022-07-19 01:39:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -74638,14 +74632,8 @@ cards_3634:
   references_expired:
   trash: 0
   type_id: 4
-  db_content: |-
-    ~2870
-    ~2877
-    ~2880
-  search_content: |-
-    ~2870
-    ~2877
-    ~2880
+  db_content: ''
+  search_content: ''
 cards_3635:
   id: 3636
   name: Googliest
