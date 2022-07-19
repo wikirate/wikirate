@@ -59,6 +59,7 @@ PATH
   specs:
     decko-cap (0.1)
       airbrussh
+      bcrypt_pbkdf
       capistrano
       capistrano-bundler
       capistrano-git-with-submodules (~> 2.0)
@@ -365,6 +366,7 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     ansi (1.5.0)
     ast (2.4.2)
+    bcrypt_pbkdf (1.1.0)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
