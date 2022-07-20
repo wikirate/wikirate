@@ -80,4 +80,10 @@ format :html do
   def type_link_icon
     mapped_icon_tag @type_card.codename
   end
+
+  def labeled_fields
+    wrap_with :div, class: "labeled-fields" do
+      Array.wrap(yield).join "\n"
+    end
+  end
 end

@@ -33,15 +33,16 @@ format :html do
 
   # shared with bar bottom
   view :details do
-    wrap_with :div, class: "dataset-details" do
-      [
-        data_subset_detail,
-        labeled_field(:year, :name, title: "Years", unknown: :blank, separator: ", "),
-        labeled_field(:wikirate_topic, :link, title: "Topics"),
-        labeled_field(:project, :thumbnail, title: "Projects"),
-        field_nest(:description)
-      ]
-    end
+    [
+      labeled_fields do
+        [
+          labeled_field(:year, :name, title: "Years", unknown: :blank, separator: ", "),
+          labeled_field(:wikirate_topic, :link, title: "Topics"),
+          labeled_field(:project, :thumbnail, title: "Projects")
+        ]
+      end,
+      field_nest(:description)
+    ]
   end
 
   def copied_dataset_fields
