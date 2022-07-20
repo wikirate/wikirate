@@ -60,10 +60,14 @@ format :html do
     wrap_with :div, class: "project-details" do
       [
         nest(card.dataset_card, view: :overall_progress_box),
-        labeled_field(:dataset, :thumbnail),
-        labeled_field(:organizer, :thumbnail),
-        labeled_field(:wikirate_status, :name),
-        default_unpublished,
+        labeled_fields do
+          [
+            labeled_field(:dataset, :thumbnail),
+            labeled_field(:organizer, :thumbnail),
+            labeled_field(:wikirate_status, :name),
+            default_unpublished
+          ]
+        end,
         field_nest(:description, view: :titled),
         field_nest(:conversation, view: :titled)
       ]

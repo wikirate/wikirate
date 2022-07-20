@@ -35,7 +35,7 @@ format :html do
   end
 
   view :metric_properties do
-    wrap_with :div, class: "metric-properties" do
+    wrap_with :div, class: "metric-properties labeled-fields" do
       table_properties.map do |field, label|
         if respond_to? "#{field}_property"
           send "#{field}_property", label
