@@ -28,14 +28,6 @@ format do
   end
 end
 
-format :json do
-  def page_details obj
-    super(obj).tap do |obj|
-      obj[:license] = render_license if obj.is_a? Hash
-    end
-  end
-end
-
 format :csv do
   def metadata_hash
     { url: request_url, license: render_license, time: Time.now.to_s }

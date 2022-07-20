@@ -25,6 +25,12 @@ format :json do
   view :detailed do
     render_molecule
   end
+
+  def page_details obj
+    super(obj).tap do |obj|
+      obj[:license] = render_license if card.known? && obj.is_a?(Hash)
+    end
+  end
 end
 
 format :html do
