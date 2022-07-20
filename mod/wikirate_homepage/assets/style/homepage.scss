@@ -51,7 +51,7 @@
 
 .wikirate-logo-title {
   font-weight: normal;
-  font-size: 3.5rem;
+  font-size: 3rem;
   color: $white;
 }
 
@@ -66,13 +66,13 @@
   }
 }
 
-.banner-image{
-  padding: 15px;
-}
-.banner-image img{
-  max-width: 100%;
-  max-height: 110px;
-  max-height: 12vh;
+.banner-image {
+  padding: 15px 15px 5px;
+  img {
+    max-width: 100%;
+    max-height: 12vh;
+    margin-top: 30px;
+  }
 }
 .banner-buttons .btn>i {
   float: right;
