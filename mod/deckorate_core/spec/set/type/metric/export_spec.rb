@@ -36,18 +36,18 @@ RSpec.describe Card::Set::Type::Metric::Export do
   end
 
   describe "CsvFormat" do
-    specify "view: header" do
-      expect_view(:header, format: :csv)
-        .to eq("Questions,Metric Type,Metric Designer,Metric Title,Scorer,Formula," \
-               "Variables,Rubric,Topic,Unpublished,About,Methodology,Value Type,Unit," \
-               "Range,Hybrid,Inverse Title,Value Options,Report Type,Research Policy," \
-               "Year,Company Group\n")
-    end
+    # specify "view: header" do
+    #   expect_view(:header, format: :csv)
+    #     .to eq("Questions,Metric Type,Metric Designer,Metric Title,Scorer,Formula," \
+    #            "Variables,Rubric,Topic,Unpublished,About,Methodology,Value Type,Unit," \
+    #            "Range,Hybrid,Inverse Title,Value Options,Report Type,Research Policy," \
+    #            "Year,Company Group\n")
+    # end
 
-    specify "view: line" do
-      expect_view(:line, format: :csv, card: metric)
-        .to eq(",Researched,Joe User,researched number 2,,,,,,,,,Number," \
-               ",,,,,,Community Assessed,,\n")
+    specify "view: row" do
+      expect_view(:row, format: :csv, card: metric)
+        .to include("http://wikirate.org/~#{metric.id}", "Researched", "Joe User",
+                    "researched number 2", "Number", "Community Assessed")
     end
   end
 end

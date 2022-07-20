@@ -72,18 +72,4 @@ format :html do
   def quick_filter_list
     bookmark_quick_filter + company_group_quick_filters + dataset_quick_filters
   end
-
-  # def add_relation_link
-  #   link_to_card :research_page, "Add relation",
-  #                class: "slotter btn btn-sm btn-primary",
-  #                path: { view: :add_relation,
-  #                        metric: metric,
-  #                        company: company,
-  #                        year: year,
-  #                        related_company: "" }
-  # end
-
-  def export_formats
-    %i[csv json]
-  end
 end

@@ -8,18 +8,39 @@ end
 
 format :csv do
   view :header do
-    [render_metadata, render_titles].join
+    with_metadata { [render_titles] }
   end
 
   # for override
-  view :titles, :header, mod: All::Csv::CsvFormat
-  view(:metadata) { "" }
+  view :titles do
+    %w[Link Name ID]
+  end
+end
+
+format :json do
+  view :titled do
+    render_atom
+  end
+
+  view :detailed do
+    render_molecule
+  end
+
+  def page_details obj
+    super(obj).tap do |obj|
+      obj[:license] = render_license if card.known? && obj.is_a?(Hash)
+    end
+  end
 end
 
 format :html do
   view :export_panel, cache: :never, template: :haml, wrap: :slot
 
   view :export_button, cache: :never, template: :haml
+
+  def export_mark
+    card.name
+  end
 
   def export_limit_options
     options = EXPORT_LIMIT_OPTIONS.map { |num|  export_limit_option_label num }
@@ -37,6 +58,10 @@ format :html do
   def export_item_limit_label
     type_name = card.item_type_name
     type_name.present? ? type_name&.vary(:plural) : "Items"
+  end
+
+  def export_views
+    :titled
   end
 
   private
