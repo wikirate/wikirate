@@ -92,8 +92,7 @@ format :html do
   end
 
   view :details do
-    [organizer_detail,
-     topic_detail,
+    [labeled_fields { [organizer_detail, topic_detail] },
      field_nest(:description, view: :titled),
      field_nest(:conversation, items: { view: :link })]
   end

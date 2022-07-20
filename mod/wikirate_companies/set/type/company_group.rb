@@ -49,7 +49,7 @@ format :html do
 
   view :details do
     [
-      labeled_field(:wikirate_topic, :link, title: "Topics"),
+      labeled_fields { labeled_field(:wikirate_topic, :link, title: "Topics") },
       field_nest(:specification, view: :titled),
       field_nest(:about, view: :titled),
       field_nest(:discussion, view: :titled)

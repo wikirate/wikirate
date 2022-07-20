@@ -96,7 +96,7 @@ RSpec.describe Card::Set::MetricType::Researched do
   describe "details tab" do
     it "has metric properties" do
       expect(metric.format.render_details_tab).to(
-        have_tag("div.metric-properties") do
+        have_tag("div.labeled-fields") do
           with_tag "div.RIGHT-topic" do
             with_tag "div.label", text: /Topics/
             with_tag "div.labeled-content", text: /Force/
