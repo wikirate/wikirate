@@ -110,11 +110,10 @@ end
 
 format :csv do
   BASIC_COLUMNS = %i[question metric_type metric_designer metric_title
-                     value_type value_options research_policy]
+                     value_type value_options unit research_policy]
 
-  DETAILED_COLUMNS = %i[about methodology wikirate_topic unpublished scorer
-                        formula unit range
-                        hybrid inverse_title report_type year company_group]
+  DETAILED_COLUMNS = %i[about methodology wikirate_topic unpublished scorer formula
+                        range hybrid inverse_title report_type year company_group]
 
   view :titles do
     basic = headers(BASIC_COLUMNS).unshift "Metric Link"
