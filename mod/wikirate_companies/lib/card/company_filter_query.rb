@@ -72,7 +72,7 @@ class Card
           bits = []
           add_numeric_value_subclause bits, :from, ">"
           add_numeric_value_subclause bits, :to, "<"
-          "(#{bits.join ' AND '})"
+          bits.present? ? "(#{bits.join ' AND '})" : ""
         end
 
         def add_numeric_value_subclause array, word, sign
