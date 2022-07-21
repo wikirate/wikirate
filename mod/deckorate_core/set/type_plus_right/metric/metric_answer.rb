@@ -77,7 +77,6 @@ format :html do
     voo.items[:hide] = :metric_thumbnail
   end
 
-
   def export_mark
     return super unless metric_card.relationship?
 

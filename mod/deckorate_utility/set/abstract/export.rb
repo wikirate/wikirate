@@ -27,8 +27,8 @@ format :json do
   end
 
   def page_details obj
-    super(obj).tap do |obj|
-      obj[:license] = render_license if card.known? && obj.is_a?(Hash)
+    super.tap do |hash|
+      hash[:license] = render_license if card.known? && hash.is_a?(Hash)
     end
   end
 end

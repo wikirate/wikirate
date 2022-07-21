@@ -39,6 +39,6 @@ end
 format :csv do
   view :row do
     methods = %i[wikirate_title wikirate_company year report_type wikirate_link]
-    super() + (methods.map { |m| card.send m})
+    super() + (methods.map { |m| card.send m })
   end
 end

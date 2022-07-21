@@ -13,7 +13,7 @@ end
 format :csv do
   view :titles do
     ["Researcher Name"] +
-      CONTRIBUTION_CATEGORY_HEADER[1..-1].map { |action| "Answers #{action}"}
+      CONTRIBUTION_CATEGORY_HEADER[1..-1].map { |action| "Answers #{action}" }
   end
 
   view :core do

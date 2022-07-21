@@ -83,7 +83,7 @@ format :csv do
 
   view :row do
     basic = cell_values(Abstract::MetricSearch::BASIC_COLUMNS)
-              .unshift card_url("~#{card.id}")
+            .unshift card_url("~#{card.id}")
     return basic unless detailed?
 
     basic + cell_values(Abstract::MetricSearch::DETAILED_COLUMNS)
@@ -96,9 +96,13 @@ format :csv do
   end
 
   def cell_value key
-    method = COLUMN_METHODS[key]
-    value = method ? send(method, key) : card.try(key)
+    value = raw_cell_value key
     value.blank? ? nil : value
+  end
+
+  def raw_cell_value key
+    method = COLUMN_METHODS[key]
+    method ? send(method, key) : card.try(key)
   end
 
   def semicolon_separated_values column
