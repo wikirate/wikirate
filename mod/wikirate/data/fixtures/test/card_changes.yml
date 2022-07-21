@@ -505,38 +505,7 @@ card_changes_092:
   value: '288'
 card_changes_093:
   id: 93
-  card_action_id: 3960
-  field: 2
-  value: |-
-    mod: format+*script
-    mod: list+*script
-    mod: search+*script
-    mod: rules+*script
-    mod: edit+*script
-    mod: carrierwave+*script
-    mod: ace editor+*script
-    mod: bar and box+*script
-    mod: bootstrap+*script
-    mod: filter+*script
-    mod: tabs+*script
-    mod: date+*script
-    mod: deckorate search+*script
-    mod: follow+*script
-    mod: layout+*script
-    mod: recaptcha+*script
-    mod: tinymce editor+*script
-    mod: deckorate core+*script
-    mod: deckorate research+*script
-    mod: deckorate import+*script
-    mod: deckorate calculations+*script
-    mod: wikirate companies+*script
-    mod: wikirate homepage+*script
-    mod: wikirate+*script
-    mod: tasks+*script
-    mod: vega+*script
-card_changes_094:
-  id: 94
-  card_action_id: 3965
+  card_action_id: 3964
   field: 2
   value: |-
     mod: format+*script
@@ -566,18 +535,18 @@ card_changes_094:
     mod: tasks+*script
     mod: vega+*script
     mod: ticket+*script
-card_changes_095:
-  id: 95
+card_changes_094:
+  id: 94
   card_action_id: 2893
   field: 0
   value: 'style: mods'
-card_changes_096:
-  id: 96
+card_changes_095:
+  id: 95
   card_action_id: 2893
   field: 1
   value: '4'
-card_changes_097:
-  id: 97
+card_changes_096:
+  id: 96
   card_action_id: 2893
   field: 2
   value: |-
@@ -620,24 +589,24 @@ card_changes_097:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
-card_changes_098:
-  id: 98
+card_changes_097:
+  id: 97
   card_action_id: 2893
   field: 3
   value: f
-card_changes_099:
-  id: 99
+card_changes_098:
+  id: 98
   card_action_id: 2893
   field: 4
   value:
-card_changes_100:
-  id: 100
+card_changes_099:
+  id: 99
   card_action_id: 2893
   field: 5
   value:
-card_changes_101:
-  id: 101
-  card_action_id: 3966
+card_changes_100:
+  id: 100
+  card_action_id: 3965
   field: 2
   value: |-
     mod: format+*style

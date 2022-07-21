@@ -80,7 +80,12 @@ format do
 end
 
 format :csv do
+  view :titles do
+    Answer.csv_titles detailed?
+  end
+
   view :core do
-    Answer.csv_title + lookup_relation.map(&:csv_line).join
+    detailed = detailed?
+    lookup_relation.map { |row| row.csv_line detailed }
   end
 end

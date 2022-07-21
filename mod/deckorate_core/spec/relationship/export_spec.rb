@@ -7,6 +7,6 @@ RSpec.describe Relationship::Export do
   #   subject_company_name, object_company_name, year, value
   it "renders csv line" do
     expect(relationship_answer.lookup.csv_line)
-      .to match(/\d+,Jedi\+more evil,Death Star,SPECTRE,1977,yes/)
+      .to include("Jedi+more evil", "Death Star", "SPECTRE", 1977, "yes")
   end
 end
