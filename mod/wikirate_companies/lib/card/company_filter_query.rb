@@ -70,9 +70,15 @@ class Card
 
         def numeric_value_clause
           bits = []
-          bits << safe_clause("numeric_value > ?", @value[:from]) if @value[:from]
-          bits << safe_clause("numeric_value < ?", @value[:to]) if @value[:to]
-          "(#{bits.join ' AND '})"
+          add_numeric_value_subclause bits, :from, ">"
+          add_numeric_value_subclause bits, :to, "<"
+          bits.present? ? "(#{bits.join ' AND '})" : ""
+        end
+
+        def add_numeric_value_subclause array, word, sign
+          return unless @value[word].present?
+
+          array << safe_clause("numeric_value #{sign} ?", @value[word])
         end
 
         def category_value_clause

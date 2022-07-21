@@ -28,7 +28,7 @@ end
 def new_constraint constraint
   metric, year, value, group = CSV.parse_line(constraint)
   value = JSON.parse value if value
-  { metric_id: metric.card_id, year: year, value: value, group: group }
+  { metric_id: metric.card_id, year: year, value: value, related_company_group: group }
 end
 
 Card.search(left: { type: :company_group }, right: :specification).each do |spec|

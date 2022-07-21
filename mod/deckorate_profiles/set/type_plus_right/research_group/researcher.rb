@@ -37,6 +37,13 @@ format do
     CONTRIBUTION_CATEGORIES.map do |category|
       card.left.contribution_count member.name, :metric_answer, category
     end
+  rescue StandardError => e
+    Card::Error.report e, member
+    count_errors
+  end
+
+  def count_errors
+    CONTRIBUTION_CATEGORIES.size.times.with_object([]) { |_num, arr| arr << "ERROR" }
   end
 end
 
