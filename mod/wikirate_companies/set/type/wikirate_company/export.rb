@@ -30,3 +30,9 @@ format :json do
     end
   end
 end
+
+format :csv do
+  view :row do
+    super() << card.headquarters
+  end
+end

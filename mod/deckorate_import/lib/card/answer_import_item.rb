@@ -58,7 +58,7 @@ class Card
       if status.to_sym == :success && (card = Card[cardid])
         csv_line_for_card card
       else
-        CSV.generate_line(CSV_KEYS.map { |field| try field })
+        CSV_KEYS.map { |field| try field }
       end
     end
 
@@ -72,7 +72,7 @@ class Card
       end
 
       def export_csv_header
-        Answer.csv_title
+        Answer.csv_titles
       end
 
       def wikirate_company_suggestion_filter_mark

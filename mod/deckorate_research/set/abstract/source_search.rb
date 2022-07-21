@@ -34,6 +34,12 @@ format do
   end
 end
 
+format :csv do
+  view :titles do
+    super() + ["Title", "Company", "Year", "Report Type", "Original Link"]
+  end
+end
+
 format :html do
   {
     wikirate_title: :text,
