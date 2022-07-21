@@ -61,7 +61,9 @@ def standardize_content content
 end
 
 def content_from_params
-  Env.params.dig(:filter, :company_answer)&.map { |c| Env.hash c }
+  cont = Env.params.dig :filter, :company_answer
+  cont = cont.values if cont && !cont.is_a?(Array)
+  cont&.map { |c| Env.hash c }
 end
 
 format do

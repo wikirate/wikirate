@@ -19,7 +19,7 @@ end
 
 format :json do
   view :titled do
-    render_atom
+    render_molecule
   end
 
   view :detailed do
