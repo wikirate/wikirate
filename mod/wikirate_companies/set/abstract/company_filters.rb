@@ -32,7 +32,8 @@ format :html do
   # value shown on closer badge for company answer filter
   def filter_company_answer_closer_value constraints
     Array.wrap(constraints).map do |c|
-      bits = closer_constraint_bits c[:metric_id].to_i, c[:value], c[:group], c[:year]
+      bits = closer_constraint_bits c[:metric_id].to_i, c[:value],
+                                    c[:related_company_group], c[:year]
       bits.compact.reject { |i| i == false }.join " "
     end.join ", "
   end
@@ -54,7 +55,7 @@ format :html do
       metric_id.card&.metric_title,
       (year.present? && "(#{year})"),
       (value.present? && filter_value_closer_value(value)),
-      (group.present? && group)
+      (group.present? && "[#{group}]")
     ]
   end
 end

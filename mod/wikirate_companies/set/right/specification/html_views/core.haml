@@ -14,8 +14,8 @@
           = constraint[:year]
         %td
           = pretty_value_constraint constraint[:value]
-          - if constraint[:group]
+          - if constraint[:related_company_group]
             .related-group-constraint
               %label
                 Related:
-              = link_to_card constraint[:group]
+              = link_to_card constraint[:related_company_group]
