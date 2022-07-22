@@ -26,11 +26,15 @@ format do
   def rate_subjects
     @wikirate_subjects ||= rate_subject.pluralize
   end
+
+  def detailed?
+    voo.explicit_show? :detailed_export
+  end
 end
 
 format :csv do
   def metadata_hash
-    { url: request_url, license: render_license, time: Time.now.to_s }
+    { url: request_url, license: render_license, time: Time.now.utc.to_s }
   end
 
   def with_metadata
@@ -42,10 +46,6 @@ format :csv do
     # end
     metadata_rows = (metadata_hash.values << "").map { |v| ["# #{v}".strip] }
     metadata_rows + yield
-  end
-
-  def detailed?
-    voo.explicit_show? :detailed_export
   end
 
   view :row do

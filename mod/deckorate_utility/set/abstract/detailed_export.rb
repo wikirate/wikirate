@@ -32,6 +32,7 @@ format :csv do
   end
 
   view :core do
-    item_cards.map { |item_card| nest item_card, show: :detailed_export }
+    args = detailed? ? { show: :detailed_export } : {}
+    item_cards.map { |item_card| nest item_card, args }
   end
 end
