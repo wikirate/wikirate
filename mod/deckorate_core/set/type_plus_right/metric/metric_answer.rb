@@ -40,7 +40,7 @@ format do
   delegate :metric_card, to: :card
 
   def export_title
-    metric_card.metric_title.to_name.url_key
+    "#{metric_card.metric_title.to_name.url_key}+Answer"
   end
 
   def secondary_sort_hash
@@ -80,7 +80,7 @@ format :html do
   def export_mark
     return super unless metric_card.relationship?
 
-    { Answers: super, Relationships: metric_card.relationship_answer_card.name }
+    { Relationships: metric_card.relationship_answer_card.name, Answers: super }
   end
 
   # def relationship_export_links
