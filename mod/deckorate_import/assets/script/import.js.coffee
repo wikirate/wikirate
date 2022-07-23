@@ -33,18 +33,18 @@ $(document).ready ->
     s.slotReload(s.slotUrl() + "&tab=" + current_tab)
 
   # show/hide mapped items
-  $('body').on 'click', "._toggle-mapping-vis", (e) ->
-    link = $(this)
-    name = link.find("._mapping-vis-name")
-    mapped = closestImportTable(link).find(".mapped-import-attrib")
-    if name.text() == "Hide"
-      mapped.hide()
-      mapped.find("[name=importMapItem]").prop "checked", false
-      name.text "Show"
-    else
-      mapped.show()
-      name.text "Hide"
-    e.preventDefault
+#  $('body').on 'click', "._toggle-mapping-vis", (e) ->
+#    link = $(this)
+#    name = link.find("._mapping-vis-name")
+#    mapped = closestImportTable(link).find(".mapped-import-attrib")
+#    if name.text() == "Hide"
+#      mapped.hide()
+#      mapped.find("[name=importMapItem]").prop "checked", false
+#      name.text "Show"
+#    else
+#      mapped.show()
+#      name.text "Hide"
+#    e.preventDefault
 
   # reset status tab so that it updates when navigating there.
   $('body').on 'click', '._save-mapping', () ->

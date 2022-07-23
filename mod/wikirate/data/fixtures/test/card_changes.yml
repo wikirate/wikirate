@@ -650,3 +650,50 @@ card_changes_100:
     mod: tasks+*style
     mod: vega+*style
     mod: ticket+*style
+card_changes_101:
+  id: 101
+  card_action_id: 3968
+  field: 2
+  value: |-
+    mod: format+*style
+    mod: list+*style
+    mod: search+*style
+    mod: rules+*style
+    mod: permissions+*style
+    mod: account+*style
+    mod: edit+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
+    mod: style+*style
+    mod: bar and box+*style
+    mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
+    mod: export+*style
+    mod: csv import+*style
+    mod: date+*style
+    mod: deckorate search+*style
+    mod: follow+*style
+    mod: help+*style
+    mod: layout+*style
+    mod: tinymce editor+*style
+    mod: thumbnail+*style
+    mod: guides+*style
+    mod: deckorate utility+*style
+    mod: deckorate layout+*style
+    mod: topics+*style
+    mod: deckorate core+*style
+    mod: deckorate research+*style
+    mod: deckorate import+*style
+    mod: deckorate calculations+*style
+    mod: deckorate datasets+*style
+    mod: deckorate profiles+*style
+    mod: wikirate companies+*style
+    mod: wikirate homepage+*style
+    mod: wikirate+*style
+    mod: badges+*style
+    mod: tasks+*style
+    mod: vega+*style
+    mod: ticket+*style

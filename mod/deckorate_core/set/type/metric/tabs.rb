@@ -4,10 +4,6 @@ format :html do
     %i[metric_answer calculation dataset details]
   end
 
-  view :tabs do
-    super()
-  end
-
   view :wikirate_topic_tab do
     field_nest :wikirate_topic
   end
