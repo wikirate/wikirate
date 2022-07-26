@@ -20,7 +20,7 @@ def reporting spec
   puts updating.green
   yield
 rescue StandardError => e
-  puts "ERROR while #{updating}}".red
+  puts "ERROR while #{updating}".red
   puts e.message
   puts e.backtrace[0..10].join("\n")
 end
