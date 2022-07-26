@@ -15,7 +15,7 @@ format :html do
   end
 
   def tab_options
-    { import_map: { label: "Step 1: Mapping" },
+    { import_map: { label: "Step 1: Matching" },
       import_status: { label: "Step 2: Importing" } }
   end
 
