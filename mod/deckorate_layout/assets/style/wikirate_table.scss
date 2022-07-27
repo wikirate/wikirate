@@ -7,7 +7,7 @@
 }
 
 .table-condensed {
-  margin-bottom: 10px;
+  margin-bottom: 1em;
   > thead, > tbody, > tfoot {
     > tr, > th {
       padding: 4px;
@@ -17,7 +17,7 @@
 
 .table  {
   font-style: normal;
-  margin-bottom: 20px;
+  margin-bottom: 2em;
   border: 1px solid $border-color;
   thead,tbody,tfoot {
     > tr > th, td {
@@ -33,6 +33,9 @@
   thead > tr > {
     th, td {
       font-style: normal;
+      font-weight: normal;
+      background-color: $gray-200;
+      color: $gray-600;
       border-bottom: 1px solid $border-color;
     }
   }
@@ -54,9 +57,6 @@ table.wikirate-table, .table.wikirate-table {
 
   td {
     padding: 1em;
-    &.in-file {
-      width: 33%;
-    }
     border-bottom: 1px dotted $gray-200;
   }
 
