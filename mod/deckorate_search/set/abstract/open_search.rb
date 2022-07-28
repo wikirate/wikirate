@@ -21,8 +21,6 @@ format do
     query_params[:type].present? && query_params[:type]
   end
 
-  private
-
   # Retrieves results for main search results page
   # Query is based on environmental parameters
   # @return [Array] list of card objects
@@ -47,6 +45,8 @@ format do
                                   size: limit,
                                   index: os_search_index
   end
+
+  private
 
   def rescuing_open_search failure_result
     yield
