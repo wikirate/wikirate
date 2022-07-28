@@ -33,13 +33,19 @@ format :html do
   def os_term_match
     bool = yield
     bool[:minimum_should_match] =  1
-    if filtered_name.present?
-      bool[:should] = [{ match: { name: filtered_name } },
-                       { match_phrase_prefix: { name: filtered_name } }]
-    end
-    if filtered_headquarters.present?
-      bool[:filter] = { "match_phrase_prefix": { "headquarters": filtered_headquarters } }
-    end
+    os_company_name_match bool if filtered_name.present?
+    os_hq_match bool if filtered_headquarters.present?
+
+
+  end
+
+  def os_company_name_match bool
+    bool[:should] = [{ match: { name: filtered_name } },
+                     { match_phrase_prefix: { name: filtered_name } }]
+  end
+
+  def os_hq_match bool
+    bool[:filter] = { "match_phrase_prefix": { "headquarters": filtered_headquarters } }
   end
 
   def headquarters_options
