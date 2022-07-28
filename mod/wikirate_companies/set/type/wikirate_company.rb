@@ -126,10 +126,3 @@ def normalize_metric_arg args={}
 
   args[:metric_id] = metric.card_id
 end
-
-# DEPRECATED.  +answer csv replaces following:
-format :csv do
-  view :titled do
-    field_nest :metric_answer, view: :titled
-  end
-end
