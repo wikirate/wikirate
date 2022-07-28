@@ -18,26 +18,6 @@ def search parameters={}
   open_search_client.search parameters
 end
 
-format :json do
-  # Retrieves Open Search results for autocompletion in
-  # the main search box
-  # @return [Array] list of card names
-  # (overrides default Decko method)
-  def complete_or_match_search *_args
-    return [] unless search_keyword.present? && (options = autocomplete_options)
-
-    options.map { |result| result["_id"]&.to_i&.cardname }
-  end
-
-  private
-
-  def autocomplete_options
-    card.search(body: { suggest: suggestion_query })
-      &.dig("suggest", "autocomplete")
-      &.first&.dig "options"
-  end
-end
-
 format do
   # Retrieves results for main search results page
   # Query is based on environmental parameters
@@ -53,6 +33,10 @@ format do
   # (overrides default Decko method)
   def count_with_params
     os_search.dig "hits", "total", "value"
+  end
+
+  def type_param
+    query_params[:type].present? && query_params[:type]
   end
 
   private
@@ -91,20 +75,5 @@ format do
     return unless type_param.present?
 
     yield[:filter] = { term: { type_id: type_param.card_id } }
-  end
-
-  # suggest_query
-  def suggestion_query
-    { autocomplete: { prefix: search_keyword,
-                      completion: { field: "autocomplete_field",
-                                    contexts: { type_id: suggest_contexts } } } }
-  end
-
-  # constructs the context filtering clause for the suggest_query
-  # in case of multiple contexts we are favoring other contexts than source
-  def suggest_contexts
-    filter_type_ids.map do |type_id|
-      { context: type_id, boost: (type_id == :source.card_id ? 1 : 2) }
-    end
   end
 end
