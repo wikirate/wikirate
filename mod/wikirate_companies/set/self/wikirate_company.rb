@@ -13,10 +13,6 @@ format do
     "companies"
   end
 
-  def import_suggestions_search
-    os_search_returning_cards
-  end
-
   def filtered_name
     @filtered_name ||= params.dig :filter, :name
   end
@@ -54,5 +50,9 @@ format :html do
 
   def headquarters_options
     options_for_select [["--", ""]] + all_regions, params.dig(:filter, :headquarters)
+  end
+
+  def import_suggestions_search
+    os_search_returning_cards
   end
 end
