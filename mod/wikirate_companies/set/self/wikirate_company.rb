@@ -6,10 +6,6 @@ recount_trigger :type, :wikirate_company, on: [:create, :delete] do |_changed_ca
   Card[:wikirate_company]
 end
 
-def search parameters={}
-  parameters[:index] ||= "companies"
-end
-
 format :html do
   include Card::CompanyImportHelper
 
@@ -18,10 +14,12 @@ format :html do
   # override to use opensearch
   view :compact_filtered_content, template: :haml, wrap: :slot
 
+  def os_search_index
+    "companies"
+  end
+
   def import_suggestions_search
-    puts "company filter params: #{params[:filter]}"
-    Env.with_params
-    open_search_with_params
+    os_search_returning_cards
   end
 
   def filtered_name
@@ -42,10 +40,6 @@ format :html do
     if filtered_headquarters.present?
       bool[:filter] = { "match_phrase_prefix": { "headquarters": filtered_headquarters } }
     end
-  end
-
-  def open_search_with_params
-    search_with_params
   end
 
   def headquarters_options

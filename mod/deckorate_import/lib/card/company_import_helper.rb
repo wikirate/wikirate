@@ -3,7 +3,6 @@ class Card
   module CompanyImportHelper
     def wikirate_company_suggestion_filter name, import_manager
       hq = headquarters_in_file name.to_name, import_manager
-      puts "hq for #{name}: #{hq}"
       { name: name, headquarters: hq }
     end
 

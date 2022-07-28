@@ -8,43 +8,55 @@ def open_search_client
 end
 
 # Perform Open Search query
-# @param query [Hash] query hash
+# @param parameters [Hash] query hash
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
 # (overrides default Decko method)
-def search parameters={}
-  # puts "OPEN SEARCH PARAMS =\n#{parameters}".yellow
-  parameters[:index] ||= Cardio.config.open_search_index
+def os_search parameters={}
   open_search_client.search parameters
 end
 
 format do
-  # Retrieves results for main search results page
-  # Query is based on environmental parameters
-  # @return [Array] list of card objects
-  # (overrides default Decko method)
-  def search_with_params
-    os_search.dig("hits", "hits").map do |result|
-      result["_id"]&.to_i&.card
-    end
-  end
-
-  # @return [Integer]
-  # (overrides default Decko method)
-  def count_with_params
-    os_search.dig "hits", "total", "value"
-  end
-
   def type_param
     query_params[:type].present? && query_params[:type]
   end
 
   private
 
-  def os_search
-    @os_search ||= card.search body: { query: { bool: os_query } },
-                               from: offset,
-                               size: limit
+  # Retrieves results for main search results page
+  # Query is based on environmental parameters
+  # @return [Array] list of card objects
+  # (overrides default Decko method)
+  def os_search_returning_cards
+    rescuing_open_search [] do
+      os_search_with_params.dig("hits", "hits").map do |result|
+        result["_id"]&.to_i&.card
+      end
+    end
+  end
+
+  def os_count_with_params
+    rescuing_open_search 0 do
+      os_search_with_params.dig "hits", "total", "value"
+    end
+  end
+
+  def os_search_with_params
+    @os_search ||= card.os_search body: { query: { bool: os_query } },
+                                  from: offset,
+                                  size: limit,
+                                  index: os_search_index
+  end
+
+  def rescuing_open_search failure_result
+    yield
+  rescue Faraday::ConnectionFailed
+    Rails.logger.info "OpenSearch connection failed"
+    failure_result
+  end
+
+  def os_search_index
+    Cardio.config.open_search_index
   end
 
   # Currently this query is shared by autocomplete and the main results.

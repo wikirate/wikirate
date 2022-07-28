@@ -3,6 +3,10 @@ TYPES = %i[wikirate_company wikirate_topic metric dataset project
 
 include_set Abstract::OpenSearch
 
+def search parameters={}
+  os_search parameters
+end
+
 format do
   def search_type_codenames
     TYPES
@@ -14,6 +18,16 @@ format do
 end
 
 format :html do
+  def search_with_params
+    os_search_returning_cards
+  end
+
+  # @return [Integer]
+  # (overrides default Decko method)
+  def count_with_params
+    os_count_with_params
+  end
+
   view :search_box, cache: :never do
     search_form do
       wrap_with :div, class: "input-group search-box-input-group" do
