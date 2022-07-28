@@ -39,6 +39,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
                                       subcards: { "+:open_corporates" => "C0806592",
                                                   "+:headquarters" => "us_ca" } },
                               success: { format: :json },
+                              confirmed: true,
                               api_key: api_key }
       expect_card("new company")
         .to exist
