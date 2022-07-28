@@ -1,0 +1,10 @@
+%h1
+  Confirmation Required
+.lead
+  = confirmation_message
+%h2
+  Potential Duplicates
+%ul
+  - potential_duplicates.each do |dupl|
+    %li
+      = link_to_card dupl

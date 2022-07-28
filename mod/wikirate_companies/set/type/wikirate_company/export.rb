@@ -1,4 +1,6 @@
 format :json do
+
+
   NESTED_FIELD_CODENAMES =
     %i[wikipedia open_corporates alias headquarters oar_id sec_cik].freeze
 
@@ -34,5 +36,10 @@ end
 format :csv do
   view :row do
     super() << card.headquarters
+  end
+
+  # DEPRECATED.  +answer csv replaces following:
+  view :titled do
+    field_nest :metric_answer, view: :titled
   end
 end
