@@ -126,5 +126,3 @@ def normalize_metric_arg args={}
 
   args[:metric_id] = metric.card_id
 end
-
-

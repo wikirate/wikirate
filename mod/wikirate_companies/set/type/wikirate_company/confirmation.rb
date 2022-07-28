@@ -1,7 +1,10 @@
-
-class Error::ConfirmationRequired < Error::UserError
-  self.status_code = 200
-  self.view = :confirmation_required
+class Error
+  # special error class for confirmation requirement
+  # (not an error response, but otherwise follows the error pattern)
+  class ConfirmationRequired < Error
+    self.status_code = 200
+    self.view = :confirmation_required
+  end
 end
 
 event :require_confirmation, :validate, on: :create, when: :require_confirmation? do

@@ -12,8 +12,7 @@ Decko::RestSpecHelper.describe_api do
                 subcards: { "+:open_corporates" => "1234567",
                             "+:headquarters" => "oc_qa" } },
         success: { format: "json" },
-        api_key: api_key
-      }
+        api_key: api_key }
     end
   end
 
