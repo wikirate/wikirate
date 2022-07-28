@@ -1,14 +1,13 @@
 include_set Abstract::Import
-include_set Abstract::Header
-include_set Abstract::Tabs
+include_set Abstract::DeckorateTabbed
 
 format :html do
-  def layout_name_from_rule
-    :deckorate_one_full_column_layout
+  def header_text
+    download_link
   end
 
-  def header_text
-    [download_link, render_type_link]
+  def layout_name_from_rule
+    :deckorate_tabbed_layout
   end
 
   def tab_list
@@ -16,15 +15,15 @@ format :html do
   end
 
   def tab_options
-    { import_map: { label: "Step 1: Mapping" },
+    { import_map: { label: "Step 1: Matching" },
       import_status: { label: "Step 2: Importing" } }
   end
 
-  view :core do
-    wrap_with :div, class: "nodblclick import-core _import-core" do
-      [render_type_link, download_link, render_tabs]
-    end
-  end
+  # view :core do
+  #   wrap_with :div, class: "nodblclick import-core _import-core" do
+  #     [render_type_link, download_link, render_tabs]
+  #   end
+  # end
 
   view :import_map_tab do
     field_nest :import_map

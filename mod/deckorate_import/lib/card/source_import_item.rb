@@ -1,7 +1,10 @@
 class Card
   # create a source described by a row in a csv file
   class SourceImportItem < ImportItem
-    @columns = { wikirate_company: { map: true, separator: ";", auto_add: true },
+    extend CompanyImportHelper
+
+    @columns = { wikirate_company: { map: true, separator: ";",
+                                     auto_add: true, suggest: true },
                  year: { map: true },
                  report_type: { optional: true }, # FIXME: map after FTI imports finished
                  wikirate_link: {},
@@ -17,10 +20,6 @@ class Card
     def detect_existing
       results = Card::Source.search_by_url wikirate_link
       results.first&.id
-    end
-
-    def self.wikirate_company_suggestion_filter_mark
-      "Company"
     end
   end
 end
