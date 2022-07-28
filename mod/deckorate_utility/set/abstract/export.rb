@@ -29,7 +29,14 @@ format :json do
   def page_details obj
     super.tap do |hash|
       hash[:license] = render_license if card.known? && hash.is_a?(Hash)
+      cache_url hash
     end
+  end
+
+  def cache_url hash
+    return unless ENV["CACHE_JSON"]
+
+    hash[:url] = "/cached/#{card.name.url_key}.json"
   end
 end
 

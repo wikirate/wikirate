@@ -1,13 +1,16 @@
 class Card
   # Specifies the structure of a import item for an answer import.
   class AnswerImportItem < ImportItem
-    @columns = { metric: { map: true },
-                 wikirate_company: { map: true, auto_add: true },
+    extend CompanyImportHelper
+
+    @columns = { metric: { map: true, suggest: true },
+                 wikirate_company: { map: true, auto_add: true, suggest: true },
                  year: { map: true },
                  value: {},
-                 source: { map: true, separator: "; ", auto_add: true },
+                 source: { map: true, separator: "; ", auto_add: true, suggest: true },
                  unpublished: { optional: true },
-                 comment: { optional: true } }
+                 comment: { optional: true },
+                 headquarters: { optional: true } }
 
     CSV_KEYS = %i[answer_id answer_link metric wikirate_company year value
                   source_page_url source source_count comment].freeze
@@ -75,20 +78,8 @@ class Card
         Answer.csv_titles
       end
 
-      def wikirate_company_suggestion_filter_mark
-        "Company"
-      end
-
-      def metric_suggestion_filter_mark
-        "Metric"
-      end
-
-      def source_suggestion_filter_mark
-        "Source"
-      end
-
-      def source_suggestion_filter_key
-        :wikirate_link
+      def source_suggestion_filter name, _import_manager
+        { wikirate_link: name }
       end
     end
   end

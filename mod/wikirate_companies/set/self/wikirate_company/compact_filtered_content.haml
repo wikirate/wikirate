@@ -1,0 +1,17 @@
+.mb-5.w-100.nodblclick
+  %form.slotter{ action: "Company/compact_filtered_content",
+                 method: "get",
+                 "data-remote": true }
+    .mb-3
+      %label.form-label Company Name
+      %input._submit-after-typing.form-control{ name: "filter[name]",
+                                                value: params.dig(:filter, :name) }
+    .mb-1
+      %label.form-label Company Headquarters Region
+      %select._submit-on-change.form-control{ name: "filter[headqu]" }
+        = headquarters_options
+
+
+.card-list.card-list-thumbnail.search-result-list
+  - open_search_with_params.each do |item_card|
+    = card_list_item item_card
