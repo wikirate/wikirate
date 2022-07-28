@@ -9,10 +9,8 @@ class Card
 
     def headquarters_in_file name, import_manager
       import_manager.each_item do |_index, item|
-        next unless item[:wikirate_company].to_name == name
-
         hq = item[:headquarters]
-        return hq if hq.present?
+        return hq if hq.present? && item[:wikirate_company].to_name == name
       end
       nil
     end
