@@ -17,13 +17,6 @@ format :html do
     end
   end
 
-  # TODO: remove after import upgrade
-  layout :deckorate_one_full_column_layout, view: :titled do
-    deckorate_layout "deckorate-one-full-column-layout px-2" do
-      layout_nest
-    end
-  end
-
   layout :deckorate_jumbotron_layout, view: :page do
     deckorate_layout "deckorate-jumbotron-layout nodblclick" do
       [haml(:jumbotron_header),

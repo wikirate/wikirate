@@ -505,7 +505,7 @@ card_changes_092:
   value: '288'
 card_changes_093:
   id: 93
-  card_action_id: 3964
+  card_action_id: 3966
   field: 2
   value: |-
     mod: format+*script
@@ -519,6 +519,7 @@ card_changes_093:
     mod: bootstrap+*script
     mod: filter+*script
     mod: tabs+*script
+    mod: csv import+*script
     mod: date+*script
     mod: deckorate search+*script
     mod: follow+*script
@@ -527,7 +528,6 @@ card_changes_093:
     mod: tinymce editor+*script
     mod: deckorate core+*script
     mod: deckorate research+*script
-    mod: deckorate import+*script
     mod: deckorate calculations+*script
     mod: wikirate companies+*script
     mod: wikirate homepage+*script
@@ -606,7 +606,7 @@ card_changes_099:
   value:
 card_changes_100:
   id: 100
-  card_action_id: 3965
+  card_action_id: 3967
   field: 2
   value: |-
     mod: format+*style
@@ -626,6 +626,7 @@ card_changes_100:
     mod: bookmarks+*style
     mod: comment+*style
     mod: export+*style
+    mod: csv import+*style
     mod: date+*style
     mod: deckorate search+*style
     mod: follow+*style
