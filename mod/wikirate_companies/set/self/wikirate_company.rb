@@ -35,8 +35,6 @@ format :html do
     bool[:minimum_should_match] =  1
     os_company_name_match bool if filtered_name.present?
     os_hq_match bool if filtered_headquarters.present?
-
-
   end
 
   def os_company_name_match bool
