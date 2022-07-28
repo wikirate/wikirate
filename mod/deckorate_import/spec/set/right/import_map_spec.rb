@@ -10,17 +10,17 @@ RSpec.describe Card::Set::Right::ImportMap do
   describe "HtmlFormat" do
     describe "#map_ui" do
       it "escapes square brackets" do
-        expect(format_subject.map_ui(:wikirate_company, "Goo[gle]"))
+        expect(format_subject.map_table(:wikirate_company))
           .to have_tag("input._import-mapping", with: {
-                         name: "mapping[wikirate_company][Goo%5Bgle%5D]",
+                         name: "mapping[wikirate_company][Google]",
                          form: "mappingForm"
                        })
       end
 
       it "escapes spaces correctly" do
-        expect(format_subject.map_ui(:wikirate_company, "A B C"))
+        expect(format_subject.map_table(:wikirate_company))
           .to have_tag("input._import-mapping", with: {
-                         name: "mapping[wikirate_company][A+B+C]"
+                         name: "mapping[wikirate_company][New+Company]"
                        })
       end
     end
