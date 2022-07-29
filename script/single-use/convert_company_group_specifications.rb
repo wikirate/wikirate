@@ -28,6 +28,7 @@ end
 def new_constraint constraint
   metric, year, value, group = CSV.parse_line(constraint)
   value = JSON.parse value if value
+  metric = "Walk Free" if metric == "Walk Free Foundation"
   { metric_id: metric.card_id, year: year, value: value, related_company_group: group }
 end
 

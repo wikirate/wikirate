@@ -46,7 +46,7 @@ format :html do
   before(:filtered_content) { voo.items[:view] = :box }
 
   # override to use opensearch
-  view :compact_filtered_content, template: :haml, wrap: :slot
+  view :compact_filtered_content, template: :haml, wrap: :slot, cache: :never
 
   def headquarters_options
     options_for_select [["--", ""]] + all_regions, params.dig(:filter, :headquarters)
