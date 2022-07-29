@@ -6,20 +6,11 @@ recount_trigger :type, :wikirate_company, on: [:create, :delete] do |_changed_ca
   Card[:wikirate_company]
 end
 
-format :html do
+format do
   include Card::CompanyImportHelper
-
-  before(:filtered_content) { voo.items[:view] = :box }
-
-  # override to use opensearch
-  view :compact_filtered_content, template: :haml, wrap: :slot
 
   def os_search_index
     "companies"
-  end
-
-  def import_suggestions_search
-    os_search_returning_cards
   end
 
   def filtered_name
@@ -35,8 +26,6 @@ format :html do
     bool[:minimum_should_match] =  1
     os_company_name_match bool if filtered_name.present?
     os_hq_match bool if filtered_headquarters.present?
-
-
   end
 
   def os_company_name_match bool
@@ -48,11 +37,22 @@ format :html do
     bool[:filter] = { "match_phrase_prefix": { "headquarters": filtered_headquarters } }
   end
 
+  def all_regions
+    Card.search type: :region, limit: 0, return: :name, sort: :name
+  end
+end
+
+format :html do
+  before(:filtered_content) { voo.items[:view] = :box }
+
+  # override to use opensearch
+  view :compact_filtered_content, template: :haml, wrap: :slot
+
   def headquarters_options
     options_for_select [["--", ""]] + all_regions, params.dig(:filter, :headquarters)
   end
 
-  def all_regions
-    Card.search type: :region, limit: 0, return: :name, sort: :name
+  def import_suggestions_search
+    os_search_returning_cards
   end
 end
