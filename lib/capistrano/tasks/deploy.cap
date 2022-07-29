@@ -1,5 +1,5 @@
 namespace :deploy do
-  before :starting, :confirm do
+  before :stop_delayed_jobs, :confirm do
     next unless fetch(:stage) == :production
     puts deploy_warning
     ask :answer, "Are you sure the current version is correct, " \
