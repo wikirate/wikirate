@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 require_relative "../../../mod/csv_import/lib/import_item"
 
 # import company wikipedia mappings

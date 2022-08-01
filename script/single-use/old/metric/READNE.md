@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 This folders should contain all the scripts needed to extract metric value for import.
 
 The main four scripts:

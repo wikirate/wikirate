@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 Card::Env[:protocol] = "http://"
 Card::Env[:host] = "http://wikirate.org"

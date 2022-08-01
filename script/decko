@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # This command will automatically be run when you run "rails" with Rails 3 gems installed from the root of your application.
 
 APP_PATH = File.expand_path("../../config/application",  __FILE__)

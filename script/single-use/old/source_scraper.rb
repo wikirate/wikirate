@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # This takes answer csv imports as inputs,
 # cleans up the urls in the source field,
 # and outputs a source import csv file.

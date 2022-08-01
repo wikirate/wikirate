@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # -*- encoding : utf-8 -*-
 
 require File.expand_path("../../config/environment",  __FILE__)
