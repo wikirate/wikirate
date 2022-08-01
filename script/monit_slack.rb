@@ -1,5 +1,9 @@
 #!/usr/bin/ruby
 
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 require 'net/https'
 require 'json'
 

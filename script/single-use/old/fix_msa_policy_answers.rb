@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # ENV["RAILS_ENV"] = "staging"
 
 # ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../../Gemfile")

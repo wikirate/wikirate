@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 # used to run rspec in RubyMine
 
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ARGV.insert 0, "rspec", "--no-simplecov", "--",
             "--default-path=./vendor/decko"
 

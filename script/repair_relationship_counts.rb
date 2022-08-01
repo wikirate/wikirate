@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # for use in the console
 
 metric_type_ids = [Card::RelationshipID, Card::InverseRelationshipID]

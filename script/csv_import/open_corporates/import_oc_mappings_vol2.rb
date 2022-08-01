@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 require_relative "../../../config/environment"
 require_relative "open_corporates_import_item_only_headquarters"
 require_relative "../../../mod/csv_import/lib/import_manager/script_import_manager.rb"

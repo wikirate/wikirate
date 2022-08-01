@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 require File.expand_path("../../config/environment",  __FILE__)
 require "byebug"
 Card::Auth.as_bot

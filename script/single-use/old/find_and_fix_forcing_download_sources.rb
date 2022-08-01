@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 WikiRate info@wikirate.org
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 require File.expand_path("../../config/environment",  __FILE__)
 Card::Auth.as_bot do
   Card.create! name: "*upload max", type_id: Card::PhraseID, content: "20" unless Card.exists?"*upload max"
