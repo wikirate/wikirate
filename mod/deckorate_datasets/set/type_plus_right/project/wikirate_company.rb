@@ -41,8 +41,4 @@ format :html do
   def dataset_quick_filters
     []
   end
-
-  def export_formats
-    []
-  end
 end
