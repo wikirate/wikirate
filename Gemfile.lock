@@ -28,6 +28,8 @@ PATH
       card
       card-mod-bootstrap
       card-mod-search
+    card-mod-flag (0.1)
+      card
     card-mod-fulltext (0.1)
       card
     card-mod-google_analytics (0.14)
@@ -885,6 +887,7 @@ DEPENDENCIES
   card-mod-defaults!
   card-mod-delayed_job!
   card-mod-filter!
+  card-mod-flag!
   card-mod-fulltext!
   card-mod-google_analytics!
   card-mod-graphql!
@@ -911,7 +914,6 @@ DEPENDENCIES
   link_thumbnailer
   mysql2 (> 0.4)
   open_uri_redirections
-  parallel (!= 1.20.2)
   pdfkit
   pivotal-tracker
   pluck_all
