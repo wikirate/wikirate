@@ -20,3 +20,16 @@
   :codename: :wikirate_tag
 - :name: Title
   :codename: :wikirate_title
+
+- :name: Wrong Year
+  :type: :flag_type
+  :fields:
+    :description: Answer is not associated with the year described by the source.
+- :name: Wrong Company
+  :type: :flag_type
+  :fields:
+    :description: Answer is not associated with the company described by the source.
+- :name: Wrong Value
+  :type: :flag_type
+  :fields:
+    :description: Answer's value is incorrect and/or not supported by source
