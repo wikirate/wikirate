@@ -71,11 +71,6 @@ def checkers
   cb.checkers.join ", " if cb&.checked?
 end
 
-def check_requester
-  cb = checked_by_card
-  cb.check_requester if cb&.check_requested?
-end
-
 def comments
   return unless (comment_card = fetch :discussion)
 
