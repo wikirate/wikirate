@@ -476,9 +476,6 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    debase (2.3.5)
-      debase-ruby_core_source (~> 0.10.14)
-    debase-ruby_core_source (0.10.16)
     debug_inspector (1.1.0)
     delayed_job (4.1.10)
       activesupport (>= 3.0, < 8.0)
@@ -902,7 +899,6 @@ DEPENDENCIES
   company-mapping
   curb
   dalli
-  debase
   decko!
   decko-cap!
   decko-cucumber!
