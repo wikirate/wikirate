@@ -95,7 +95,6 @@ group :test, :development do
   gem "debase"
   gem "decko-spring", path: "./vendor/decko/support"
   gem "puma"                         # local webserver
-  gem "ruby-debug-ide"
 end
 
 group :profile do

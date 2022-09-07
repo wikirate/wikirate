@@ -773,8 +773,6 @@ GEM
       parser (>= 3.1.1.0)
     rubocop-rspec (2.12.1)
       rubocop (~> 1.31)
-    ruby-debug-ide (2.3.5)
-      debase (~> 2.3.5)
     ruby-jmeter (3.1.08)
       nokogiri
       rest-client
@@ -924,7 +922,6 @@ DEPENDENCIES
   rack-cors
   rack-test (!= 2.0.0)
   roo
-  ruby-debug-ide
   ruby-jmeter
   savanna-outliers
   statistics2
