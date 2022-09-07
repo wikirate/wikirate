@@ -108,6 +108,7 @@ PATH
       card-mod-permissions (= 0.14.2)
       carrierwave (~> 2.2)
       mini_magick (~> 4.2)
+      ssrf_filter (~> 1.0.7)
     card-mod-collection (0.14.2)
       card (= 1.104.2)
     card-mod-comment (0.14.2)
@@ -475,8 +476,8 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    debase (3.0.0.beta.2)
-      debase-ruby_core_source (~> 0.10.15)
+    debase (2.3.5)
+      debase-ruby_core_source (~> 0.10.14)
     debase-ruby_core_source (0.10.16)
     debug_inspector (1.1.0)
     delayed_job (4.1.10)
@@ -624,8 +625,6 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (8.10.0)
     nio4r (2.5.8)
-    nokogiri (1.13.8-arm64-darwin)
-      racc (~> 1.4)
     nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.13.8-x86_64-linux)
@@ -774,8 +773,8 @@ GEM
       parser (>= 3.1.1.0)
     rubocop-rspec (2.12.1)
       rubocop (~> 1.31)
-    ruby-debug-ide (3.0.0.beta.2)
-      debase (~> 3.0.0.beta.2)
+    ruby-debug-ide (2.3.5)
+      debase (~> 2.3.5)
     ruby-jmeter (3.1.08)
       nokogiri
       rest-client
@@ -831,7 +830,7 @@ GEM
     sshkit (1.21.3)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    ssrf_filter (1.1.1)
+    ssrf_filter (1.0.8)
     staccato (0.5.3)
     statistics2 (0.54)
     sys-uname (1.2.2)
@@ -876,9 +875,7 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
-  arm64-darwin-21
   x86_64-darwin-20
-  x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
