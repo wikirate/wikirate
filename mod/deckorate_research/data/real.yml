@@ -10,8 +10,6 @@
   :codename: :wikirate_website
 - :name: checked by
   :codename: :checked_by
-- :name: check requested by
-  :codename: :check_requested_by
 - :name: request
   :codename: :request
 - :name: Link

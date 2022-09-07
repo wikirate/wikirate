@@ -23,6 +23,7 @@ else
     gem "card-mod-counts"
     gem "card-mod-csv_import"
     gem "card-mod-filter"
+    gem "card-mod-flag"
     gem "card-mod-fulltext"
     gem "card-mod-google_analytics"
     gem "card-mod-graphql"
@@ -33,7 +34,6 @@ else
     gem "card-mod-pdfjs"
     gem "card-mod-solid_cache"
     gem "card-mod-thumbnail"
-    gem "card-mod-flag"
   end
 
   path "./vendor/decko/support" do
@@ -92,8 +92,10 @@ end
 gem "timecop", group: %i[test cucumber] # date/time manipulation in tests
 
 group :test, :development do
+  gem "debase"
   gem "decko-spring", path: "./vendor/decko/support"
   gem "puma"                         # local webserver
+  gem "ruby-debug-ide"
 end
 
 group :profile do
