@@ -1,3 +1,7 @@
+def open_flags
+  42
+end
+
 format :html do
   view :flags do
     flags
