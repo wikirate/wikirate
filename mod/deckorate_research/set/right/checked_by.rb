@@ -43,9 +43,8 @@ def checked?
   checkers.present?
 end
 
-# FIXME
 def flagged?
-  items.first == "request"
+  (flag_count = lookup&.open_flags).present? && flag_count > 0
 end
 
 def checkers
