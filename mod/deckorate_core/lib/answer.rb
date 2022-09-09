@@ -24,8 +24,9 @@ class Answer < Cardio::Record
   attr_writer :card
 
   fetcher :metric_id, :company_id, :record_id, :source_count, :source_url, :imported,
-          :value, :numeric_value, :checkers, :check_requester,
-          :comments, :verification, :unpublished
+          :value, :numeric_value, :checkers, :comments, :verification, :unpublished
+
+  define_fetch_method :open_flags, :count_open_flags
 
   def card
     return @card if @card

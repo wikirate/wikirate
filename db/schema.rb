@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2021_11_28_040849) do
     t.boolean "imported"
     t.boolean "latest"
     t.string "checkers"
-    t.string "check_requester"
     t.integer "creator_id", null: false
     t.integer "editor_id"
     t.datetime "created_at"
@@ -35,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_11_28_040849) do
     t.string "comments", limit: 1024
     t.integer "verification"
     t.boolean "unpublished"
+    t.integer "open_flags"
     t.index ["answer_id"], name: "answer_id_index", unique: true
     t.index ["company_id"], name: "company_id_index"
     t.index ["metric_id", "company_id", "year"], name: "index_answers_on_metric_id_and_company_id_and_year", unique: true

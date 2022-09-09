@@ -66,7 +66,7 @@ def history_card_ids
 end
 
 def field_card_ids
-  [:value, :checked_by, :source, :check_requested_by].map do |field|
+  %i[value checked_by source].map do |field|
     fetch(field, skip_virtual: true, skip_modules: true)&.id
   end.compact
 end
