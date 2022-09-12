@@ -23,6 +23,7 @@ else
     gem "card-mod-counts"
     gem "card-mod-csv_import"
     gem "card-mod-filter"
+    gem "card-mod-flag"
     gem "card-mod-fulltext"
     gem "card-mod-google_analytics"
     gem "card-mod-graphql"
@@ -47,9 +48,6 @@ else
 
   gem "decko-cap", path: "./vendor/decko-cap", group: :development
 end
-
-gem "parallel", "!= 1.20.2"          # 1.20.2 was removed (?!)
-# can remove this from gemfile once newer version is available
 
 # DATABASE
 gem "mysql2", "> 0.4"
@@ -94,8 +92,10 @@ end
 gem "timecop", group: %i[test cucumber] # date/time manipulation in tests
 
 group :test, :development do
+  # gem "debase"
   gem "decko-spring", path: "./vendor/decko/support"
   gem "puma"                         # local webserver
+  # gem "ruby-debug-ide"
 end
 
 group :profile do
