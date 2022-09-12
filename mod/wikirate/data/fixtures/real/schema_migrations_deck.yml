@@ -41,3 +41,5 @@ schema_migrations_deck_020:
   version: '20210524204353'
 schema_migrations_deck_021:
   version: '20210531204619'
+schema_migrations_deck_022:
+  version: '20220902162520'
