@@ -23,13 +23,6 @@ end
 
 format :html do
   def edit_fields
-    [
-      value_field_card_and_options,
-      check_request_field_card_and_options
-    ]
-  end
-
-  def check_request_base
-    card.left(new: { type_id: Card::RelationshipAnswerID })
+    [value_field_card_and_options]
   end
 end
