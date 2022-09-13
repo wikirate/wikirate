@@ -1,4 +1,6 @@
 RSpec.describe Card::Set::TypePlusRight::MetricAnswer::CheckedBy do
+  include Cardio::Mod::FlagSpecHelper
+
   let(:researched_card) { Card["Jedi+deadliness+Death_Star+1977"] }
   let(:researched_card_2) { Card["Jedi+disturbances in the force+Death_Star+1977"] }
   let(:wikirating_card) { Card.fetch "Jedi+darkness_rating+Death_Star+1977" }
@@ -12,9 +14,9 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::CheckedBy do
       expect(wikirating_card.answer.verification).to eq(level(:community_added))
     end
 
-    context "when one (not all) dependee researched card's verification changes" do
+    context "when a dependee researched card's verification changes" do
       it "lowers to 0 (flagged) if flagged" do
-        researched_card.checked_by_card.update! content: "request"
+        flag_subject researched_card.name
         expect(researched_card.answer.verification).to eq(level(:flagged))
         expect(wikirating_card.answer.verification).to eq(level(:flagged))
       end

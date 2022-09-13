@@ -1,16 +1,9 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Type::Flag do
-  let(:answer) { sample_answer }
+  include Cardio::Mod::FlagSpecHelper
 
-  def flag_answer status="open"
-    Card.create! type: :flag, fields: {
-      subject: answer.name,
-      status: status,
-      flag_type: "Other Problem",
-      discussion: "me like cookie. you?"
-    }
-  end
+  let(:answer) { sample_answer }
 
   describe "lookup for flagged answer" do
     # note, much of the relevant lookup code is in card-mod-flag, which is appropriate,
@@ -22,7 +15,7 @@ RSpec.describe Card::Set::Type::Flag do
         expect(answer.lookup.verification).to eq(1)
         expect(answer.lookup.open_flags).to eq(0)
 
-        flag_answer
+        flag_subject answer.name
 
         expect(answer.lookup.verification).to eq(0)
         expect(answer.lookup.open_flags).to eq(1)
