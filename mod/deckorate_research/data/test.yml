@@ -5,3 +5,10 @@
 - sources
 - answers
 - relationship_answers
+
+- :type: :flag
+  :fields:
+    :status: open
+    :subject: Fred+dinosaurlabor+Death Star+2010
+    :flag_type: Wrong Value
+    :discussion: Dinosaur labor in 2010?! I yabba dabba doubt it.

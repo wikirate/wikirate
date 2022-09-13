@@ -1,3 +1,7 @@
+include_set Abstract::Flaggable
+
+delegate :open_flags, to: :lookup
+
 format :html do
   view :flags do
     flags
