@@ -8,7 +8,6 @@ include_set Abstract::Lookup
 include_set Abstract::LookupEvents
 
 card_accessor :checked_by, type: :list
-card_accessor :check_requested_by, type: :pointer
 card_accessor :source, type: :list
 
 require_field :value
