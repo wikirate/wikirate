@@ -1,1 +1,1 @@
-# TODO event to remove confirmation
+# TODO: event to remove confirmation

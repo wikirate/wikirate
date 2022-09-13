@@ -5,8 +5,7 @@ include_set Abstract::CompanySearch
 def cql_content
   {
     type: :wikirate_company,
-    referred_to_by: dataset_name&.field(:wikirate_company),
-    append: project_name
+    referred_to_by: dataset_name&.field(:wikirate_company)
   }
 end
 
@@ -31,6 +30,10 @@ end
 format :html do
   before :core do
     voo.items[:view] = :bar if card.researchable_metrics?
+  end
+
+  def search_params
+    super.merge append: card.project_name
   end
 
   def default_item_view

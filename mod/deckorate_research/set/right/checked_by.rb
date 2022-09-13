@@ -44,7 +44,7 @@ def checked?
 end
 
 def flagged?
-  (flag_count = lookup&.open_flags).present? && flag_count > 0
+  (flag_count = lookup&.open_flags).present? && flag_count.positive?
 end
 
 def checkers

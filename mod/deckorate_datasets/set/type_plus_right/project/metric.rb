@@ -10,22 +10,30 @@ format do
     :metric_title
   end
 
-  def search_with_params
-    return [] unless card.dataset_name.present?
+  def name_search
+    card.search query: query, return: :name
+  end
 
-    @search_with_params ||= card.search(query: query, return: :name).map do |metric_name|
-      Card.fetch metric_name.field(card.project_name)
-    end
+  def search_with_params
+    with_dataset { name_search }
+  end
+
+  def with_dataset
+    card.dataset_name.present? ? yield : []
   end
 end
 
 format :html do
-  # don't add quick filters for other datasets
-  def dataset_quick_filters
-    []
+  def search_with_params
+    @search_with_params ||= with_dataset do
+      name_search.map do |metric_name|
+        Card.fetch metric_name.field(card.project_name)
+      end
+    end
   end
 
-  def export_formats
+  # don't add quick filters for other datasets
+  def dataset_quick_filters
     []
   end
 end
