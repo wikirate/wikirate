@@ -35,7 +35,6 @@
   - Death Star
   - '2010'
   :type: :metric_answer
-  :time: 2053080000 # HAPPY_BIRTHDAY - 2.weeks
   :fields:
     :value: 'yes'
     :source: Source-000000001

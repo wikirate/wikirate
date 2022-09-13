@@ -250,8 +250,7 @@ RSpec.describe Card::AnswerQuery do
         # researched answers, which meant timecop affect the calculation times
         expect(filter_by({ updated: :month, metric_type: "Researched" },
                          latest: false, parts: 1))
-          .to eq ["dinosaurlabor", "disturbances in the Force",
-                  "disturbances in the Force", "disturbances in the Force"]
+          .to eq(["disturbances in the Force"] * 3)
       end
     end
 
