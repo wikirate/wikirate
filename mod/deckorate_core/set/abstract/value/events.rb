@@ -18,6 +18,12 @@ event :check_length, :validate, on: :save, changed: :content do
   errors.add :value, "too long (not more than 1000 characters)" if value.size >= 1000
 end
 
+event :reset_double_check, :validate, on: :update, changed: :content do
+  full_trait_name = name.left_name.field_name :checked_by
+  next unless Card.real?(full_trait_name) && !subcard?(full_trait_name)
+  subcard full_trait_name, content: ""
+end
+
 event :monitor_hybridness, :integrate, on: %i[create delete], when: :calculated? do
   metric_card.deep_answer_update company_id: company_id, year: year
 end
