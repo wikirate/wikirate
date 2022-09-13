@@ -5,7 +5,6 @@ include_set Abstract::Lookup
 attr_writer :answer
 
 card_accessor :checked_by, type: :list
-card_accessor :check_requested_by, type: :pointer
 card_accessor :source, type: :list
 
 event :delete_answer_lookup, :finalize, on: :delete do
@@ -69,11 +68,6 @@ end
 def checkers
   cb = checked_by_card
   cb.checkers.join ", " if cb&.checked?
-end
-
-def check_requester
-  cb = checked_by_card
-  cb.check_requester if cb&.check_requested?
 end
 
 def comments

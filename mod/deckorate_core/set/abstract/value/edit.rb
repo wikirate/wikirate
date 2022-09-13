@@ -13,13 +13,4 @@ format :html do
   def unknown_checkbox
     haml :unknown_checkbox
   end
-
-  def check_request_field_card_and_options
-    return if card.metric_card&.designer_assessed?
-    [check_request_base.fetch(:checked_by, new: {}), { hide: :title }]
-  end
-
-  def check_request_base
-    card.left new: {}
-  end
 end
