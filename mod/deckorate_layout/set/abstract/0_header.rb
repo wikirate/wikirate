@@ -33,9 +33,7 @@ format :html do
   end
 
   def header_list_items
-    {
-      "WikiRate ID": link_to(card.id, href: "/~#{card.id}")
-    }
+    card.new? ? {} : { "WikiRate ID": link_to(card.id, href: "/~#{card.id}") }
   end
 
   view :shared_header do

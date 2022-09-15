@@ -2,7 +2,12 @@
   = render_read_form
   = render_flash
   .button-form-group.d-flex.justify-content-between
-    = link_to_view :edit_inline, "Edit Answer",
-                   class: "btn btn-outline-secondary btn-research _edit-answer-button",
-                   data: { "disable-with": "Loading..." }
+    - class_up "flag-button", "btn-lg"
+    .pe-2
+      = link_to_view :edit_inline, "Edit Answer",
+                     class: "btn btn-outline-secondary btn-lg _edit-answer-button",
+                     data: { "disable-with": "Loading..." }
+
+    .pe-2
+      = render_flag_button
     = field_nest :checked_by, view: :content

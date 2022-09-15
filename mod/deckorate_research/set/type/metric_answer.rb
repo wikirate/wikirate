@@ -31,8 +31,8 @@ format :html do
     modal_link "Flag!",
                path: { mark: :flag,
                        action: :new,
-                       card: { fields: { ":subject": "~#{card.id}" } } },
-               class: "btn btn btn-outline-danger"
+                       card: { fields: { ":subject": card.name } } },
+               class: "btn btn-outline-danger #{classy 'flag-button'}"
   end
 
   view :edit_inline do
@@ -63,15 +63,15 @@ format :html do
 
   def cancel_answer_button
     link_to_view :read_form_with_button, "Cancel",
-                 class: "btn btn-outline-secondary btn-research btn-sm"
+                 class: "btn btn-outline-secondary btn-lg btn-sm"
   end
 
   def delete_button
-    super class: "btn-research" if card.ok? :delete
+    super class: "btn-lg" if card.ok? :delete
   end
 
   def submit_answer_button
-    standard_save_button text: "Submit Answer", class: "btn-research"
+    standard_save_button text: "Submit Answer", class: "btn-lg"
   end
 
   def edit_fields

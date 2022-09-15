@@ -59,7 +59,7 @@ input.short-input[type=text] {
 .research-layout .tab-pane-answer_phase .card-form, .read_form_with_button-view {
 
   .button-form-group {
-    margin-left: calc(30% + 2rem);
+    margin-left: calc(30%);
   }
 
   .go_to_sources {
@@ -140,9 +140,6 @@ input.short-input[type=text] {
     &:hover {
       @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
     }
-  }
-  .btn-research {
-    padding: 1em 2em;
   }
   .source-selector-header {
     background-color: $gray-300;

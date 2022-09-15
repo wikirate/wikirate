@@ -4,7 +4,7 @@
       %h2.m-0 Source viewer
       .source-selector-buttons.d-flex.align-items-center
         - if voo.show? :select_source_button
-          %a#_select_source.btn.btn-primary.btn-research{ href: "#", data: source_data }
+          %a#_select_source.btn.btn-lg.btn-primary{ href: "#", data: source_data }
             Select source
         .TYPE-source.ms-3
           = nest current_source, view: :bar_menu

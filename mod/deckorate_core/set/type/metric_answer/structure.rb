@@ -6,21 +6,30 @@ end
 
 format :html do
   def tab_list
-    %i[details flag record calculations]
+    %i[basics flag record calculations].tap do |list|
+      list << :inputs if card.calculated?
+    end
   end
 
   def tab_options
     {
       record: { count: card.record_answers_card.count, label: "Years" },
-      calculations: { count: card.direct_dependee_answers.count }
+      calculations: { count: card.depender_answers.count },
+      inputs: { count: card.dependee_answers.count }
     }
   end
 
   def read_field_configs
-    [[metric_card.question_card.name, { title: "Question" }]] + super
+    [[metric_card.question_card.name, { title: "Question" }]] +
+      (card.researched? ? super : calculated_read_field_configs(super))
   end
 
-  view :details_tab do
+  def calculated_read_field_configs conf
+    title = calculation_overridden? ? "Overridden Answer" : "Formula"
+    [conf[0], [card.name, { title: title }]] + conf[2..-1]
+  end
+
+  view :basics_tab do
     render_read_form
   end
 
@@ -37,7 +46,11 @@ format :html do
   end
 
   view :calculations_tab do
-    card.direct_dependee_answers.map { |a| nest a, view: :bar }
+    card.depender_answers.map { |a| nest a, view: :bar }
+  end
+
+  view :inputs_tab do
+    card.dependee_answers.map { |a| nest a, view: :bar }
   end
 
   def header_list_items

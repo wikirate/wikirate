@@ -177,10 +177,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
     end
 
     it "shows overridden value" do
-      is_expected.to have_tag "div" do
-        with_tag :h5, "Overridden answer"
-        with_tag "span.metric-value", /0\.13/
-      end
+      is_expected.to have_tag "div.overridden-answer.metric-value", /0\.13/
     end
 
     it "links to input value" do
@@ -196,10 +193,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
     end
 
     it "shows overridden value" do
-      is_expected.to have_tag "div.overridden-answer" do
-        with_tag "h5", "Overridden answer"
-        with_tag "span.metric-value", /5/
-      end
+      is_expected.to have_tag "div.overridden-answer.metric-value", /5/
     end
 
     it "shows table of ancestors" do
