@@ -32,7 +32,7 @@ format :html do
                path: { mark: :flag,
                        action: :new,
                        card: { fields: { ":subject": "~#{card.id}" } } },
-               class: "btn btn-lg btn-outline-danger"
+               class: "btn btn btn-outline-danger"
   end
 
   view :edit_inline do
