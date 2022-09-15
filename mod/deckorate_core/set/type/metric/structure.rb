@@ -9,7 +9,7 @@ format :html do
     render_question
   end
 
-  def header_middle_items
+  def header_list_items
     super.merge Designer: link_to_card(card.metric_designer),
                 "Metric Type": card.metric_type
   end
