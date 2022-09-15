@@ -3,13 +3,13 @@ class Answer
     { name: :flagged, icon: :flag,
       title: "Flagged" },
     { name: :community_added, klass: :community,
-      title: "Unverified - Added by Community" },
+      title: "Unconfirmed - Added by Community" },
     { name: :steward_added, klass: :steward,
-      title: "Unverified - Added by Steward" },
+      title: "Unconfirmed - Added by Steward" },
     { name: :community_verified, klass: :community, icon: "check-circle",
-      title: "Verified by Community" },
+      title: "Confirmed by Community" },
     { name: :steward_verified, klass: :steward, icon: "check-circle",
-      title: "Verified by Steward" }
+      title: "Confirmed by Steward" }
   ].freeze
 
   UNKNOWN = "Unknown".freeze

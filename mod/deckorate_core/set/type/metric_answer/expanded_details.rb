@@ -23,14 +23,6 @@ format :html do
     wrap_with(:div, class: "alert alert-warning my-3") { "Unpublished" } + yield
   end
 
-  def expanded_data_details_view
-    if voo.root.ok_view == :metric_details_sidebar
-      :metric_details_sidebar
-    else
-      :details_sidebar
-    end
-  end
-
   def details_type
     card.calculated? && researched_value? ? :researched : card.metric_type
   end
