@@ -1,4 +1,3 @@
-include_set Abstract::ExpandedResearchedDetails
 include_set Abstract::Table
 include_set Abstract::Paging
 
@@ -25,17 +24,7 @@ format :html do
   view :expanded_formula_details, unknown: true, cache: :never do
     wrap_with :div, [answer_details_table, calculation_details]
   end
-
-  # ~~~~~~~ RELATIONSHIP AND INVERSE RELATIONSHIP DETAILS
-
-  view :expanded_relationship_details do
-    field_nest :relationship_answer, view: :filtered_content
-  end
-
-  view :expanded_inverse_relationship_details do
-    render :expanded_relationship_details
-  end
-
+  
   # ~~~~~~~~~ DESCENDANT DETAILS
 
   view :expanded_descendant_details do

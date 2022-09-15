@@ -8,6 +8,7 @@ format :html do
   def tab_list
     %i[basics flag record calculations].tap do |list|
       list << :inputs if card.calculated?
+      list.insert 1, :relationship_answer if card.relationship?
     end
   end
 
@@ -15,18 +16,39 @@ format :html do
     {
       record: { count: card.record_answers_card.count, label: "Years" },
       calculations: { count: card.depender_answers.count },
-      inputs: { count: card.dependee_answers.count }
+      inputs: { count: card.dependee_answers.count },
+      relationship_answer: { count: relationship_count, label: "Relationships" }
     }
+  end
+
+  def relationship_count
+    return 0 unless card.relationship?
+
+    card.fetch(:relationship_answer).format.relationships.count
   end
 
   def read_field_configs
     [[metric_card.question_card.name, { title: "Question" }]] +
-      (card.researched? ? super : calculated_read_field_configs(super))
+      if card.researched? && !card.relationship?
+        super
+      else
+        replacing_source_field super do
+          if card.relationship?
+            nil
+          else
+            calculated_read_field_configs
+          end
+        end
+      end
   end
 
-  def calculated_read_field_configs conf
+  def calculated_read_field_config
     title = calculation_overridden? ? "Overridden Answer" : "Formula"
-    [conf[0], [card.name, { title: title }]] + conf[2..-1]
+    [card.name, { title: title }]
+  end
+
+  def replacing_source_field conf
+    ([conf[0], yield] + conf[2..-1]).compact
   end
 
   view :basics_tab do
@@ -51,6 +73,10 @@ format :html do
 
   view :inputs_tab do
     card.dependee_answers.map { |a| nest a, view: :bar }
+  end
+
+  view :relationship_answer_tab do
+    field_nest :relationship_answer, view: :filtered_content
   end
 
   def header_list_items
