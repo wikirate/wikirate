@@ -17,8 +17,22 @@ event :flash_success_message, :finalize, on: :create do
 end
 
 format :html do
+  view :header_middle, template: :haml
+
+  view :header_right do
+    render_flag_button
+  end
+
   view :research_button, unknown: true do
-    record_card.format.research_button year_name
+    record_card.format.research_button year_name, (card.real? ? :answer_phase : nil)
+  end
+
+  view :flag_button do
+    modal_link "Flag!",
+               path: { mark: :flag,
+                       action: :new,
+                       card: { fields: { ":subject": "~#{card.id}" } } },
+               class: "btn btn-lg btn-outline-danger"
   end
 
   view :edit_inline do
@@ -78,8 +92,7 @@ format :html do
       [:source, title: "Source",
                 input_type: :removable_content,
                 view: :removable_content],
-      [:discussion, title: "Comments", show: :comment_box],
-      [:checked_by, title: "Checks"]
+      [:discussion, title: "Comments", show: :comment_box]
     ]
   end
 
