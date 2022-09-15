@@ -115,6 +115,7 @@ format :csv do
   DETAILED_COLUMNS = %i[about methodology wikirate_topic unpublished scorer formula
                         range hybrid inverse_title report_type year company_group].freeze
 
+  # TODO: move to metric class, mirroring answer pattern.  Then use that in metric import.
   view :titles do
     basic = headers(BASIC_COLUMNS).unshift "Metric Link"
     return basic unless detailed?

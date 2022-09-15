@@ -5,8 +5,8 @@ describe "research page from answer", ->
     cy.get("._research_answer_button").click()
 
 
-    # year is already selected.  go to answer tab
-    cy.contains("Select year").scrollIntoView().click()
+    #    # year is already selected.  go to answer tab
+    #    cy.contains("Select year").scrollIntoView().click()
 
     # check the breadcrumb
     crumb = cy.get ".answer-breadcrumb"

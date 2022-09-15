@@ -1,0 +1,7 @@
+.header-list.w-100
+  - header_list_items.each do |label, text|
+    .header-list-item.d-flex
+      %label
+        = "#{label}:"
+      %span.ps-2
+        = text

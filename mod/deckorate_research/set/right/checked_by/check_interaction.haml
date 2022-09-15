@@ -1,5 +1,5 @@
-.checked-by-action.pt-4
+.checked-by-action.ms-2
   - if user_checked?
-    = check_button "Uncheck", :drop_check
+    = check_button "Un-confirm Answer", :drop_check
   - else
-    = check_button "I checked this answer", :add_check
+    = check_button "Confirm Answer", :add_check
