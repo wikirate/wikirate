@@ -47,8 +47,12 @@ format :html do
     super + %i[imported verification]
   end
 
+  def verification_hash
+    Answer::VERIFICATION_LEVELS[(card.answer.verification || 1)]
+  end
+
   def verification_flag
-    h = Answer::VERIFICATION_LEVELS[(card.answer.verification || 1)]
+    h = verification_hash
     return "" unless (icon = h[:icon])
 
     fa_icon icon, title: h[:title], class: "verification-#{h[:klass] || h[:name]}"

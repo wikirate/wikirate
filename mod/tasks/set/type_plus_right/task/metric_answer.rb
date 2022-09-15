@@ -13,8 +13,4 @@ format :html do
   def show_chart?
     false
   end
-
-  def details_view
-    :details_sidebar
-  end
 end

@@ -1,12 +1,12 @@
-.checked-by-core
+.checked-by-core.d-flex.align-items-center
   .checked-by-status
     - link_text = capture_haml do
-      Community members who have verified that the
+      Community members who have confirmed that the
       %strong answer accurately represents its source
       since it was #{verb}.
     .checkers-list.d-flex.align-items-center
       - count = checker_count
-      = labeled_badge count, "Checker".pluralize(count)
+      = labeled_badge count, "Confirmation".pluralize(count)
       = popover_link link_text
       .d-inline.ms-3
         = checkers_list

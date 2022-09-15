@@ -1,3 +1,11 @@
+.TYPE-answer.rich-header {
+  .header-middle, .header-right {
+    justify-content: start;
+  }
+  .header-middle .verification-icon {
+    font-size: 1.8rem;
+  }
+}
 
 input.short-input[type=text] {
   display: inline-block;
@@ -8,51 +16,52 @@ input.short-input[type=text] {
   font-size: 1.25rem;
 }
 
-
-
 .research-year-option {
   padding: 1em;
   font-size: 1.1em;
   border-bottom: 1px solid $gray-300;
 }
 
+.read-form-group {
+  display: flex;
+  margin: 1rem 0;
 
-.research-layout .tab-pane-answer_phase .card-form, .read_form_with_button-view {
-  .form-group {
-    display: flex;
-    > label {
-      .card-title {
-        font-size: 2rem;
-      }
-      width: 30%;
-      padding: 0 2rem;
-    }
-    > .content-editor, .read-formgroup-content {
-      width: 70%;
-      padding: 2rem;
-      ul.pointer-radio-list {
-        padding: 0;
-        li.pointer-radio {
-          padding: 0.2rem 0;
-          label {
-            margin-left: 1rem;
-          }
+  > label {
+    width: 30%;
+    padding: 1rem;
+  }
+  > .content-editor, .read-formgroup-content {
+    width: 70%;
+    padding: 1rem;
+    ul.pointer-radio-list {
+      padding: 0;
+      li.pointer-radio {
+        padding: 0.2rem 0;
+        label {
+          margin-left: 1rem;
         }
       }
     }
   }
+
   .read-formgroup-content {
     background-color: $gray-100;
-    .bar-body {
+    .bar {
       background-color: $white;
     }
   }
-  .button-form-group {
-    margin-left: calc(30% + 2rem);
-  }
+
   .comment-buttons {
     text-align: right;
   }
+}
+
+.research-layout .tab-pane-answer_phase .card-form, .read_form_with_button-view {
+
+  .button-form-group {
+    margin-left: calc(30% + 2rem);
+  }
+
   .go_to_sources {
     display: inline;
   }
@@ -60,6 +69,15 @@ input.short-input[type=text] {
 .go_to_sources, .answer-success-in-project {
   display: none;
 }
+
+
+
+
+
+
+
+
+
 .progress {
   border-radius: 10px;
 }
