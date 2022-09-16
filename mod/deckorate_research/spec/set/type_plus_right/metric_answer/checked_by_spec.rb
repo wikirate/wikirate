@@ -37,4 +37,14 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::CheckedBy do
       end
     end
   end
+
+  describe "research verification" do
+    it "removes checker when flagged" do
+      check_answer researched_card
+      expect(researched_card.checked_by_card.first_name).to eq("Joe User")
+
+      flag_subject researched_card.name
+      expect(researched_card.checked_by_card.first_name).to be_blank
+    end
+  end
 end

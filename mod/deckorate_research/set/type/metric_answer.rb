@@ -17,8 +17,22 @@ event :flash_success_message, :finalize, on: :create do
 end
 
 format :html do
+  view :header_middle, template: :haml
+
+  view :header_right do
+    render_flag_button
+  end
+
   view :research_button, unknown: true do
-    record_card.format.research_button year_name
+    record_card.format.research_button year_name, (card.real? ? :answer_phase : nil)
+  end
+
+  view :flag_button do
+    modal_link "Flag!",
+               path: { mark: :flag,
+                       action: :new,
+                       card: { fields: { ":subject": card.name } } },
+               class: "btn btn-outline-danger #{classy 'flag-button'}"
   end
 
   view :edit_inline do
@@ -49,15 +63,15 @@ format :html do
 
   def cancel_answer_button
     link_to_view :read_form_with_button, "Cancel",
-                 class: "btn btn-outline-secondary btn-research btn-sm"
+                 class: "btn btn-outline-secondary btn-lg btn-sm"
   end
 
   def delete_button
-    super class: "btn-research" if card.ok? :delete
+    super class: "btn-lg" if card.ok? :delete
   end
 
   def submit_answer_button
-    standard_save_button text: "Submit Answer", class: "btn-research"
+    standard_save_button text: "Submit Answer", class: "btn-lg"
   end
 
   def edit_fields
@@ -78,8 +92,7 @@ format :html do
       [:source, title: "Source",
                 input_type: :removable_content,
                 view: :removable_content],
-      [:discussion, title: "Comments", show: :comment_box],
-      [:checked_by, title: "Checks"]
+      [:discussion, title: "Comments", show: :comment_box]
     ]
   end
 

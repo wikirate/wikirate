@@ -1,3 +1,5 @@
+include_set Abstract::DeckorateTabbed
+
 format do
   delegate :metric_designer_card, to: :metric_card
 
@@ -7,6 +9,18 @@ format do
 end
 
 format :html do
+  view :basics_tab do
+    render_read_form
+  end
+
+  view :header_left do
+    render_header_list
+  end
+
+  view :header_middle do
+    ""
+  end
+
   bar_cols 8, 1, 3
 
   view :bar_right, template: :haml

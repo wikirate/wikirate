@@ -14,10 +14,6 @@ format :html do
     end
   end
 
-  view :core do
-    render_expanded_details
-  end
-
   view :content_formgroup do
     card.field :year, content: card.year
     card.field :related_company, content: card.related_company
@@ -30,10 +26,6 @@ format :html do
 
   view :inverse_company_name do
     nest card.company_card, view: :thumbnail
-  end
-
-  view :expanded_details do
-    _render :expanded_researched_details
   end
 
   def credit_details
