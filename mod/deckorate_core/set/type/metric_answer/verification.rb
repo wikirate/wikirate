@@ -43,7 +43,7 @@ def update_verification
 end
 
 format :html do
-  def flag_names
+  def marker_names
     super + %i[imported verification]
   end
 
@@ -51,14 +51,14 @@ format :html do
     Answer::VERIFICATION_LEVELS[(card.answer.verification || 1)]
   end
 
-  def verification_flag
+  def verification_marker
     h = verification_hash
     return "" unless (icon = h[:icon])
 
     fa_icon icon, title: h[:title], class: "verification-#{h[:klass] || h[:name]}"
   end
 
-  def imported_flag
+  def imported_marker
     card.imported? ? icon_tag("upload", library: :font_awesome, title: "imported") : ""
   end
 end

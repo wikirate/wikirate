@@ -75,7 +75,7 @@ format :html do
   end
 
   def edit_fields
-    standard_edit_fields + [year_field, unpublished_field].compact
+    super + [year_field, unpublished_field].compact
   end
 
   def year_field
@@ -84,16 +84,6 @@ format :html do
 
   def unpublished_field
     [:unpublished, title: "Unpublished"] if card.unpublished_option?
-  end
-
-  def standard_edit_fields
-    [
-      [card.value_card, title: "Answer"],
-      [:source, title: "Source",
-                input_type: :removable_content,
-                view: :removable_content],
-      [:discussion, title: "Comments", show: :comment_box]
-    ]
   end
 
   def success_alert

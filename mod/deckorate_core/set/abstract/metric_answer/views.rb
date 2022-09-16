@@ -27,22 +27,22 @@ format :html do
   view :year_and_value_pretty, unknown: true, template: :haml
 
   view :bar_middle do
-    render_flags
+    render_markers
   end
 
   view :metric_thumbnail do
     nest card.metric_card, view: :thumbnail # , hide: :thumbnail_subtitle
   end
 
-  # prominent value, less prominent year, legend, and flags
+  # prominent value, less prominent year, legend, and markers
   view :concise, unknown: true do
     handle_unknowns { haml :concise }
   end
 
-  view :value_and_flags, unknown: true do
-    wrap_with :div, class: "value-and-flags" do
+  view :value_and_markers, unknown: true do
+    wrap_with :div, class: "value-and-markers" do
       handle_unknowns do
-        [nest(card.value_card, view: :pretty), render_flags]
+        [nest(card.value_card, view: :pretty), render_markers]
       end
     end
   end
@@ -79,6 +79,24 @@ format :html do
       link_to_card card.company_card, card.answer.company, class: "inherit-anchor"
     @metric_image = nest metric_designer_card.try(:image_card), size: :small
     @metric_question = nest card.answer.metric, view: :title_and_question_compact
+  end
+
+  def edit_fields
+    [
+      [card.value_card, title: "Answer"],
+      [:source, title: "Source",
+       input_type: :removable_content,
+       view: :removable_content],
+      [:discussion, title: "Comments", show: :comment_box]
+    ]
+  end
+
+  def header_list_items
+    metric = card.metric_card
+    super.merge(
+      "Metric Designer": link_to_card(metric.metric_designer),
+      "Metric Title": link_to_card(metric, metric.metric_title)
+    )
   end
 
   def handle_unknowns

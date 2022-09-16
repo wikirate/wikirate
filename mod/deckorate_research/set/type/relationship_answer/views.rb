@@ -6,6 +6,10 @@ format do
 end
 
 format :html do
+  def tab_list
+    [:basics]
+  end
+
   view :bar_left do
     wrap_with :div, class: "d-block" do
       [company_thumbnail(card.company, hide: :thumbnail_subtitle),
@@ -39,6 +43,14 @@ format :html do
 
   def default_research_params
     super.merge related_company: card.related_company
+  end
+
+  def header_list_items
+    super.merge(
+      "Subject Company": link_to_card(card.company_card),
+      "Object Company": link_to_card(card.related_company_card),
+      "Year": card.year
+    )
   end
 end
 

@@ -70,15 +70,13 @@ format :html do
   end
 
   def header_list_items
-    metric = card.metric_card
     super.merge(
-      "Metric Designer": link_to_card(metric.metric_designer),
-      "Metric Title": link_to_card(metric, metric.metric_title),
       "Company": link_to_card(card.company_card),
       "Year": card.year
     )
   end
 
+  # remove link to Answer Dashboard for now
   def breadcrumb_items
     super.tap { |i| i.slice! 1 }
   end
