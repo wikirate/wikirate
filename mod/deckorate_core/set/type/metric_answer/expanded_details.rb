@@ -24,7 +24,7 @@ format :html do
   view :expanded_formula_details, unknown: true, cache: :never do
     wrap_with :div, [answer_details_table, calculation_details]
   end
-  
+
   # ~~~~~~~~~ DESCENDANT DETAILS
 
   view :expanded_descendant_details do

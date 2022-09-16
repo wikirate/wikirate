@@ -20,7 +20,7 @@ format :html do
   # @param text [String] linktext
   # @param flag [Symbol] :check or :uncheck
   def check_button text, trigger
-    link_to text, class: "btn btn-primary btn-lg slotter",
+    link_to text, class: "btn btn-outline-primary btn-lg slotter",
                   remote: true, rel: "nofollow",
                   data: { "disable-with": "Updating..." },
                   href: path(action: :update, card: { trigger: trigger })

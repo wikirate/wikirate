@@ -14,10 +14,6 @@ format :html do
     end
   end
 
-  view :core do
-    render_expanded_details
-  end
-
   view :content_formgroup do
     card.field :year, content: card.year
     card.field :related_company, content: card.related_company
