@@ -1,15 +1,13 @@
-include_set Abstract::DeckorateTabbed
-
 def record_answers_card
   record_card.metric_answer_card
 end
 
 format :html do
   def tab_list
-    %i[basics flag record calculations].tap do |list|
-      list << :inputs if card.calculated?
-      list.insert 1, :relationship_answer if card.relationship?
-    end
+    list = %i[basics flag record calculations]
+    list << :inputs if card.calculated?
+    list.insert 1, :relationship_answer if card.relationship?
+    list
   end
 
   def tab_options
@@ -19,44 +17,6 @@ format :html do
       inputs: { count: card.dependee_answers.count },
       relationship_answer: { count: relationship_count, label: "Relationships" }
     }
-  end
-
-  def relationship_count
-    return 0 unless card.relationship?
-
-    card.fetch(:relationship_answer).format.relationships.count
-  end
-
-  def read_field_configs
-    [[metric_card.question_card.name, { title: "Question" }]] +
-      if card.researched? && !card.relationship?
-        super
-      else
-        replacing_source_field super do
-          if card.relationship?
-            nil
-          else
-            calculated_read_field_configs
-          end
-        end
-      end
-  end
-
-  def calculated_read_field_config
-    title = calculation_overridden? ? "Overridden Answer" : "Formula"
-    [card.name, { title: title }]
-  end
-
-  def replacing_source_field conf
-    ([conf[0], yield] + conf[2..-1]).compact
-  end
-
-  view :basics_tab do
-    render_read_form
-  end
-
-  view :header_left do
-    render_header_list
   end
 
   view :flag_tab do
@@ -77,6 +37,36 @@ format :html do
 
   view :relationship_answer_tab do
     field_nest :relationship_answer, view: :filtered_content
+  end
+
+  def relationship_count
+    return 0 unless card.relationship?
+
+    card.fetch(:relationship_answer).format.relationships.count
+  end
+
+  def read_field_configs
+    [[metric_card.question_card.name, { title: "Question" }]] +
+      if card.researched? && !card.relationship?
+        edit_field_configs
+      else
+        advanced_read_field_configs
+      end
+  end
+
+  def advanced_read_field_configs
+    replacing_source_field edit_field_configs do
+      card.relationship? ? nil : calculated_read_field_configs
+    end
+  end
+
+  def calculated_read_field_config
+    title = calculation_overridden? ? "Overridden Answer" : "Formula"
+    [card.name, { title: title }]
+  end
+
+  def replacing_source_field conf
+    ([conf[0], yield] + conf[2..-1]).compact
   end
 
   def header_list_items

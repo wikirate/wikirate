@@ -128,23 +128,6 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
     end
   end
 
-  describe "view: expanded_relationship_details" do
-    context "when inverse relationship" do
-      let :card_subject do
-        Card["Commons+Supplier_of+Los_Pollos_Hermanos+2000"]
-      end
-
-      specify do
-        expect_view(:expanded_relationship_details)
-          .to have_tag("div.card-list-bar") do
-          with_tag("span.card-title", "SPECTRE")
-          with_tag("span.metric-value", /Tier 1 Supplier/)
-          without_tag("button.fa-caret-down")
-        end
-      end
-    end
-  end
-
   describe "view: expanded_descendant_details" do
     subject do
       fetch_answer("Joe User+descendant 1+Sony Corporation+2014")

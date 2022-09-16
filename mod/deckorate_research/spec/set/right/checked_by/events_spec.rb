@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Right::CheckedBy::Views do
+RSpec.describe Card::Set::Right::CheckedBy::Events do
   let(:flagged_answer) { ["Fred", "dinosaurlabor", "Death Star", "2010"].card }
 
   describe "#close_flags" do
