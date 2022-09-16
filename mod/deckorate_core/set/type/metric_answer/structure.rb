@@ -56,7 +56,7 @@ format :html do
 
   def advanced_read_field_configs
     replacing_source_field edit_field_configs do
-      card.relationship? ? nil : calculated_read_field_configs
+      card.relationship? ? nil : calculated_read_field_config
     end
   end
 
