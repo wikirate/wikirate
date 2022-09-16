@@ -1,14 +1,16 @@
-.checked-by-core
-  .checked-by-status
-    - link_text = capture_haml do
-      Community members who have verified that the
-      %strong answer accurately represents its source
-      since it was #{verb}.
+- link_text = capture_haml do
+  Community members who have confirmed that the
+  %strong answer accurately represents its source
+  since it was #{verb}.
+
+- count = checker_count
+
+.checked-by-core.d-flex.flex-column.align-items-end
+  = render_check_interaction if allowed_to_check?
+  .checked-by-status.pt-3
     .checkers-list.d-flex.align-items-center
-      - count = checker_count
-      = labeled_badge count, "Checker".pluralize(count)
+      = labeled_badge count, "Confirmation".pluralize(count)
       = popover_link link_text
       .d-inline.ms-3
         = checkers_list
 
-  = render_check_interaction if allowed_to_check?
