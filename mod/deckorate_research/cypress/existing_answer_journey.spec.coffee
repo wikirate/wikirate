@@ -2,7 +2,7 @@ describe "research page from answer", ->
   specify "existing answer journey", ->
     cy.login "sample@user.com", "sample_pass"
     cy.visit "Jedi+cost_of_planets_destroyed+Death_Star+1977"
-    cy.get("._research_answer_button").click()
+    cy.get("._research_answer_button").invoke('removeAttr', 'target').click()
 
 
     #    # year is already selected.  go to answer tab
