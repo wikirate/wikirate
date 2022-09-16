@@ -85,8 +85,8 @@ format :html do
     [
       [card.value_card, title: "Answer"],
       [:source, title: "Source",
-       input_type: :removable_content,
-       view: :removable_content],
+                input_type: :removable_content,
+                view: :removable_content],
       [:discussion, title: "Comments", show: :comment_box]
     ]
   end

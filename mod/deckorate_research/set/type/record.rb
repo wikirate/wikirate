@@ -18,6 +18,7 @@ format :html do
   def contextualizing_research_button
     return "" unless card.metric_card.researchable?
 
-    yield(card.new? ? "Research" : "Review")
+    text = card.new? ? "Research" : "Review"
+    yield text
   end
 end

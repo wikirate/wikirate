@@ -62,7 +62,7 @@ format :html do
 
   def calculated_read_field_config
     title = calculation_overridden? ? "Overridden Answer" : "Formula"
-    [card.name, { title: title }]
+    [card.name, title: title]
   end
 
   def replacing_source_field conf
