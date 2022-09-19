@@ -24,4 +24,4 @@ ids = Card.search right: { codename: "cached_count" }, content: "0",
 Card.where(id: ids).update_all trash: true
 
 puts "empty trash"
-Card.empty_trash
+Cardio::Utils.empty_trash

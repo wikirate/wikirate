@@ -30,7 +30,7 @@ end
 puts "cleaning up trash"
 
 Card::Cache.reset_all
-Card.empty_trash
+Cardio::Utils.empty_trash
 
 csv.each do |r|
   next unless (t = fetch r["id"])
