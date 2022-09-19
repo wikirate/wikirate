@@ -6,10 +6,6 @@ format :html do
     download_link
   end
 
-  def layout_name_from_rule
-    :deckorate_tabbed_layout
-  end
-
   def tab_list
     %i[import_map import_status]
   end

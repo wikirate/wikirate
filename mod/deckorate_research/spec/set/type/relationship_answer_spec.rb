@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
 
   check_html_views_for_errors
 
-  %w[Views Flags].each do |subdir|
+  %w[Views Markers].each do |subdir|
     abstract_answer_views =
       Card::Set::Format::AbstractFormat::ViewDefinition.views[
         Card::Set::Abstract::MetricAnswer.const_get(subdir).const_get("HtmlFormat")
