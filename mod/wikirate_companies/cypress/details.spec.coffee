@@ -25,7 +25,7 @@ describe "expanding details on company pages", ->
     cy.get("._modal-slot").should "not.contain", "Sources"
 
     # expand details of raw value
-    cy.get("._modal-slot").within () ->
+    cy.get("._modal-slot:visible").within () ->
       cy.contains("100").click()
     cy.get("._modal-slot").should "not.contain", "Scored Metric"
     cy.contains "Sources"
@@ -33,14 +33,14 @@ describe "expanding details on company pages", ->
 
     # close raw value
     cy.wait 400 # let modal transition finish
-    cy.get("._modal-menu ._close-modal").click()
+    cy.get("._modal-menu:visible ._close-modal").click()
     cy.contains "Scored Metric"
     cy.get("._modal-slot").should "not.contain", "disturbance"
     cy.get("._modal-slot").should "not.contain", "Sources"
 
     # close score
     cy.wait 400 # let modal transition finish
-    cy.get("._modal-menu ._close-modal").click()
+    cy.get("._modal-menu:visible ._close-modal").click()
     cy.get("._modal-slot").should "not.contain", "Scored Metric"
     cy.contains "deadliness"
     cy.contains "disturbance"
