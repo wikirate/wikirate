@@ -39,7 +39,7 @@
     }
   }
 
-  .header-middle-list, .header-right {
+  .header-middle, .header-right {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -50,10 +50,10 @@
   .header-middle {
     padding-left: 2rem;
     border-left: 3px solid $border-color;
-    label {
-      min-width: 30%;
-      font-weight: bold;
-    }
+  }
+  .header-list label {
+    min-width: 33%;
+    font-weight: bold;
   }
   .header-right {
     align-items: end;

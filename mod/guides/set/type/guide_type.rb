@@ -1,12 +1,9 @@
 include_set Abstract::Jumbotron
+include_set Abstract::Header
 
 card_accessor :body
 
 format :html do
-  def layout_name_from_rule
-    :deckorate_jumbotron_layout
-  end
-
   before(:content_formgroups) { voo.edit_structure = %i[description body] }
 
   view :box_middle do
@@ -25,11 +22,11 @@ format :html do
     haml :guide_paging, guide_names: guide_names, current_index: current_index
   end
 
-  view :breadcrumbs do
-    breadcrumb [link_to("Home", href: "/"),
-                link_to_card(:guide_type, "Guides"),
-                card.name]
-  end
+  # view :breadcrumbs do
+  #   breadcrumb [link_to("Home", href: "/"),
+  #               link_to_card(:guide_type, "Guides"),
+  #               card.name]
+  # end
 
   def guide_list_card
     Card[%i[guide_type list]]
