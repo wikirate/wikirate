@@ -72,4 +72,8 @@ format :html do
   def quick_filter_list
     bookmark_quick_filter + company_group_quick_filters + dataset_quick_filters
   end
+
+  before :filtered_results do
+    class_up "card-slot", "_card-link-modal"
+  end
 end

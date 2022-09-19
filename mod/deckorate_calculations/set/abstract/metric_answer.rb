@@ -1,22 +1,22 @@
-def flag_names
+def marker_names
   super << :calculated
 end
 
-def calculated_flag
+def calculated_marker
   if !card.calculated?
     ""
   elsif card.researched_value?
-    overridden_flag_icon
+    overridden_marker_icon
   else
-    calculated_flag_icon
+    calculated_marker_icon
   end
 end
 
-def calculated_flag_icon
+def calculated_marker_icon
   fa_icon :calculator, title: "Calculated answer", class: "text-success"
 end
 
-def overridden_flag_icon
+def overridden_marker_icon
   wrap_with :span, class: "overridden-icon", title: "Overridden calculated answer" do
     [fa_icon(:user), fa_icon(:calculator, class: "text-danger")]
   end

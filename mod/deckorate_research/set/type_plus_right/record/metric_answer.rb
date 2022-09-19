@@ -26,10 +26,6 @@ format :html do
     [answer_sort_links]
   end
 
-  def details_view
-    :details_sidebar
-  end
-
   def quick_filter_list
     []
   end
