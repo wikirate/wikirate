@@ -6,7 +6,7 @@ Feature: Double check
     When I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Review"
     And I click on "Confirm Answer"
-    And I go to new tab
+    And I switch to new tab
     And I wait for ajax response
     Then I should see "Please log in"
 
@@ -15,8 +15,8 @@ Feature: Double check
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Review"
     Then I should see "0 Confirmations"
+    And I switch to new tab
     And I click on "Confirm Answer"
-    And I go to new tab
     Then I should see "1 Confirmation"
     And I should see "Joe User"
     And I should see "Unconfirm"
@@ -25,7 +25,7 @@ Feature: Double check
     And I wait a sec
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Review"
-    And I go to new tab
+    And I switch to new tab
     Then I should see "1 Confirmation"
     And I should see "Joe User"
     When I click on "Confirm Answer"
@@ -34,7 +34,7 @@ Feature: Double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Review"
-    And I go to new tab
+    And I switch to new tab
     And I click on "Unconfirm"
     Then I should see "1 Confirmation"
     And I should see "Joe Admin"
@@ -44,7 +44,7 @@ Feature: Double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Review"
-    And I go to new tab
+    And I switch to new tab
     When I click on "Confirm Answer"
     And I wait for ajax response
     Then I should see "1 Confirmation"

@@ -59,7 +59,7 @@ When(/^I click on "([^"]*)" in the offcanvas$/) do |link|
   end
 end
 
-When(/^I go to new tab$/) do
+When(/^I switch to new tab$/) do
   browser = page.driver.browser
   browser.switch_to.window browser.window_handles.last
 end
