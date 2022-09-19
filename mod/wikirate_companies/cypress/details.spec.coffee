@@ -33,14 +33,14 @@ describe "expanding details on company pages", ->
 
     # close raw value
     cy.wait 400 # let modal transition finish
-    cy.get("._modal-menu:visible ._close-modal").click()
+    cy.get("._close-modal:visible").first().click()
     cy.contains "Scored Metric"
     cy.get("._modal-slot").should "not.contain", "disturbance"
     cy.get("._modal-slot").should "not.contain", "Sources"
 
     # close score
     cy.wait 400 # let modal transition finish
-    cy.get("._modal-menu:visible ._close-modal").click()
+    cy.get("._close-modal:visible").first().click()
     cy.get("._modal-slot").should "not.contain", "Scored Metric"
     cy.contains "deadliness"
     cy.contains "disturbance"
