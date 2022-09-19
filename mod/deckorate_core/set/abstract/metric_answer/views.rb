@@ -23,7 +23,10 @@ format :html do
 
   bar_cols 8, 1, 3
 
-  view :bar_right, template: :haml
+  view :bar_right, unknown: true do
+    handle_unknowns { haml :bar_right }
+  end
+
   view :year_and_value_pretty, unknown: true, template: :haml
 
   view :bar_middle do
