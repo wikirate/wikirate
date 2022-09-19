@@ -135,4 +135,4 @@ end
 delete_overwritten_import_actions import_delete_actions
 delete_overwritten_import_actions old_admin_actions
 
-Card.empty_trash
+Cardio::Utils.empty_trash

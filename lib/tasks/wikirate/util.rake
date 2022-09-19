@@ -31,12 +31,12 @@ namespace :wikirate do
     #     end
     #   end
     #   puts "empty trash"
-    #   Card.empty_trash
+    #   Cardio::Utils.empty_trash
     # end
 
     desc "delete all cards that are marked as trash"
     task "empty_trash" => :environment do
-      Card.empty_trash
+      Cardio::Utils.empty_trash
     end
   end
 end

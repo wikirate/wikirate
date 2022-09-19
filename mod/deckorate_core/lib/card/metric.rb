@@ -22,7 +22,7 @@ class Card::Metric
     def create_relationship_answer value, args
       value.each do |company, relationship_value|
         @metric.create_answer args.merge(related_company: company,
-                                        value: relationship_value)
+                                         value: relationship_value)
       end
     end
 

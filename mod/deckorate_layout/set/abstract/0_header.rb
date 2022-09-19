@@ -10,7 +10,11 @@ format :html do
     header_left
   end
 
-  view :header_middle, template: :haml
+  view :header_middle do
+    render_header_list
+  end
+
+  view :header_list, template: :haml
 
   view :header_right do
     ""
@@ -28,10 +32,8 @@ format :html do
     ""
   end
 
-  def header_middle_items
-    {
-      "WikiRate ID": link_to(card.id, href: "/~#{card.id}")
-    }
+  def header_list_items
+    card.new? ? {} : { "WikiRate ID": link_to(card.id, href: "/~#{card.id}") }
   end
 
   view :shared_header do
@@ -39,10 +41,15 @@ format :html do
   end
 
   view :breadcrumbs do
+    breadcrumb breadcrumb_items
+  end
+
+  def breadcrumb_items
     type = card.type_card
-    items = [link_to("Home", href: "/"),
-             link_to_card(type, type.name.vary(:plural)),
-             render_name]
-    breadcrumb items
+    [
+      link_to("Home", href: "/"),
+      link_to_card(type, type.name.vary(:plural)),
+      render_name
+    ]
   end
 end
