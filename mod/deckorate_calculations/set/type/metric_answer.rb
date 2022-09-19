@@ -26,3 +26,11 @@ def each_depender_answer
     yield answer if answer.present?
   end
 end
+
+def depender_answers
+  [].tap do |answers|
+    each_depender_answer do |answer|
+      answers << answer
+    end
+  end
+end

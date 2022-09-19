@@ -6,16 +6,16 @@ format do
 end
 
 format :html do
+  def tab_list
+    [:basics]
+  end
+
   view :bar_left do
     wrap_with :div, class: "d-block" do
       [company_thumbnail(card.company, hide: :thumbnail_subtitle),
        company_thumbnail(card.related_company, hide: :thumbnail_subtitle),
        render_metric_thumbnail]
     end
-  end
-
-  view :core do
-    render_expanded_details
   end
 
   view :content_formgroup do
@@ -32,10 +32,6 @@ format :html do
     nest card.company_card, view: :thumbnail
   end
 
-  view :expanded_details do
-    _render :expanded_researched_details
-  end
-
   def credit_details
     wrap_with :div, class: "d-flex" do
       [
@@ -47,6 +43,14 @@ format :html do
 
   def default_research_params
     super.merge related_company: card.related_company
+  end
+
+  def header_list_items
+    super.merge(
+      "Subject Company": link_to_card(card.company_card),
+      "Object Company": link_to_card(card.related_company_card),
+      "Year": card.year
+    )
   end
 end
 

@@ -2,7 +2,7 @@ format :html do
   delegate :answer, :allowed_to_check?, :checked?, :user_checked?,
            :checkers, :check_requester, :user, :checker_count, to: :card
 
-  view :core, template: :haml
+  view(:core) { card_form(:update) { haml :core } }
   view :check_interaction, cache: :never, template: :haml
 
   def input_type
@@ -20,7 +20,7 @@ format :html do
   # @param text [String] linktext
   # @param flag [Symbol] :check or :uncheck
   def check_button text, trigger
-    link_to text, class: "btn btn-outline-secondary btn-research slotter",
+    link_to text, class: "btn btn-outline-primary btn-lg slotter",
                   remote: true, rel: "nofollow",
                   data: { "disable-with": "Updating..." },
                   href: path(action: :update, card: { trigger: trigger })
