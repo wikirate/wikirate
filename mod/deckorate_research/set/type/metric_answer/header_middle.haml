@@ -1,0 +1,11 @@
+.d-flex.flex-column.justify-content-start
+  - if card.researchable?
+    .pb-3
+      = render_research_button
+  .current-verification
+    %label
+      Current:
+    %strong.ps-2
+      = verification_hash[:title]
+  .pt-1.verification-icon
+    = verification_marker
