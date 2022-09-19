@@ -20,6 +20,6 @@ Card.where("name like '%\\\\+%' and left_id is null and trash is false")
   end
 end
 
-Card.empty_trash
+Cardio::Utils.empty_trash
 
 puts "done."

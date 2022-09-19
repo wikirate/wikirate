@@ -7,7 +7,7 @@ format :html do
     end
   end
 
-  view :flag, unknown: :blank do
+  view :marker, unknown: :blank do
     return "" unless card.content.present?
 
     fa_icon :comments, title: "Has comments"

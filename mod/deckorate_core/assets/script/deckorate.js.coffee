@@ -8,7 +8,7 @@ $(window).ready ->
     #  history.replaceState(slot_id: id, "")
     history.pushState(slot_id: id, url: this.href, "", location.href);
 
-  # TODO: consider moving all above to decko
+  # TODO: consider moving above to decko
 
   $(".new-metric").on "click", ".metric-type-list .box", (e) ->
     params =
