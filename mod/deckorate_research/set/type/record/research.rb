@@ -46,7 +46,7 @@ format :html do
   end
 
   def default_research_tab
-    params[:tab]&.to_sym || :question_phase
+    params[:tab].present? ? params[:tab].to_sym : :question_phase
   end
 
   view :research, cache: :never do

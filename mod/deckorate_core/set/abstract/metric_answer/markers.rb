@@ -3,26 +3,26 @@ include_set Abstract::Flaggable
 delegate :open_flags, to: :lookup
 
 format :html do
-  view :flags do
-    flags
+  view :markers do
+    markers
   end
 
-  view :small_flags do
-    flags.map { |flag| "<small>#{flag}</small>" }
+  view :small_markers do
+    markers.map { |marker| "<small>#{marker}</small>" }
   end
 
-  def flag_names
+  def marker_names
     [:comment]
   end
 
-  def flags
-    flag_names.map { |flag_name| send "#{flag_name}_flag" }
+  def markers
+    marker_names.map { |marker_name| send "#{marker_name}_marker" }
   end
 
-  def comment_flag
+  def comment_marker
     # the following will work once relationships have answer lookups
     # return "" unless card.lookup&.comments&.present?
     # fa_icon :comment, title: "Has comments"
-    field_nest :discussion, view: :flag
+    field_nest :discussion, view: :marker
   end
 end
