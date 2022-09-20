@@ -76,8 +76,8 @@ format :html do
     )
   end
 
-  # remove link to Answer Dashboard for now
-  def breadcrumb_items
-    super.tap { |i| i.slice! 1 }
-  end
+  # # remove link to Answer Dashboard for now
+  # def breadcrumb_items
+  #   super.tap { |i| i.slice! 1 }
+  # end
 end
