@@ -9,22 +9,12 @@ format do
 end
 
 format :html do
-  view :details_tab, wrap: :slot, template: :haml
-
   def header_title
     haml :header_title
   end
 
   def header_text
     haml :header_text
-  end
-
-  view :header_right do
-    if card.unpublished?
-      wrap_with :div, class: "alert alert-warning" do
-        "Unpublished"
-      end
-    end
   end
 
   bar_cols 8, 1, 3

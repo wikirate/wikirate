@@ -20,6 +20,16 @@ format :html do
     }
   end
 
+  view :header_right do
+    if card.unpublished?
+      wrap_with :div, class: "alert alert-warning" do
+        "Unpublished"
+      end
+    end
+  end
+
+  view :details_tab, wrap: :slot, template: :haml
+
   view :contributions_tab do
     render_history
   end

@@ -7,7 +7,11 @@ end
 
 format :html do
   def tab_list
-    [:basics]
+    [:details]
+  end
+
+  view :details_tab do
+    render_read_form
   end
 
   view :bar_left do
