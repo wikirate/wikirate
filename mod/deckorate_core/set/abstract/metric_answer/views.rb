@@ -9,28 +9,37 @@ format do
 end
 
 format :html do
-  view :basics_tab do
-    render_read_form
+  view :details_tab, wrap: :slot, template: :haml
+
+  def header_title
+    haml :header_title
   end
 
-  view :header_left do
-    render_header_list
+  def header_text
+    haml :header_text
   end
 
-  view :header_middle do
-    ""
+  view :header_right do
+    if card.unpublished?
+      wrap_with :div, class: "alert alert-warning" do
+        "Unpublished"
+      end
+    end
   end
 
   bar_cols 8, 1, 3
 
-  view :bar_right, template: :haml
+  view :bar_right, unknown: true do
+    handle_unknowns { haml :bar_right }
+  end
+
   view :year_and_value_pretty, unknown: true, template: :haml
 
   view :bar_middle do
     render_markers
   end
 
-  view :metric_thumbnail do
+  view :metric_thumbnail, unknown: true do
     nest card.metric_card, view: :thumbnail # , hide: :thumbnail_subtitle
   end
 
@@ -84,11 +93,19 @@ format :html do
   def edit_fields
     [
       [card.value_card, title: "Answer"],
-      [:source, title: "Source",
-                input_type: :removable_content,
-                view: :removable_content],
-      [:discussion, title: "Comments", show: :comment_box]
+      source_field_config,
+      discussion_field_config
     ]
+  end
+
+  def source_field_config
+    normalized_edit_field_config :source, title: "Source",
+                                          input_type: :removable_content,
+                                          view: :removable_content
+  end
+
+  def discussion_field_config
+    normalized_edit_field_config :discussion, title: "Comments", show: :comment_box
   end
 
   def header_list_items
