@@ -33,7 +33,7 @@ format :html do
     render_markers
   end
 
-  view :metric_thumbnail do
+  view :metric_thumbnail, unknown: true do
     nest card.metric_card, view: :thumbnail # , hide: :thumbnail_subtitle
   end
 
