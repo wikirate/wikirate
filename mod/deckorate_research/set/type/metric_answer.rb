@@ -1,6 +1,8 @@
 # couldn't get this to work by adding it to abstract metric answer :(
 include_set Abstract::DesignerPermissions
 
+card_accessor :flag
+
 # this has to be on a type set for field events to work
 require_field :value, when: :value_required?
 require_field :source, when: :source_required?
@@ -17,14 +19,10 @@ event :flash_success_message, :finalize, on: :create do
 end
 
 format :html do
-  view :header_middle, template: :haml
-
-  view :header_right do
-    render_flag_button
-  end
-
   view :research_button, unknown: true do
-    record_card.format.research_button year_name, (card.real? ? :answer_phase : nil)
+    tab = card.real? ? :answer_phase : nil
+    text = card.new? ? "Research" : "Review"
+    research_button tab: tab, text: text
   end
 
   view :flag_button do
@@ -55,10 +53,17 @@ format :html do
     end
   end
 
+  view :verification, template: :haml
+
   view :read_form_with_button, wrap: :slot, template: :haml
 
   view :new do
-    "Answers are created via the Research Page."
+    research_page_link = research_button text: 'Research Page'
+    "Answers are created via the #{research_page_link}."
+  end
+
+  def research_button tab: nil, text: "Research Page"
+    record_card.format.research_button year: year_name, tab: tab, text: text
   end
 
   def cancel_answer_button
