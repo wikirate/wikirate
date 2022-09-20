@@ -24,7 +24,9 @@ format :html do
   end
 
   view :research_button, unknown: true do
-    record_card.format.research_button year_name, (card.real? ? :answer_phase : nil)
+    tab = card.real? ? :answer_phase : nil
+    text = card.new? ? "Research" : "Review"
+    record_card.format.research_button year: year_name, tab: tab, text: text
   end
 
   view :flag_button do

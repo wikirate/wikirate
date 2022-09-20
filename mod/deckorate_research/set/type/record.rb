@@ -5,17 +5,13 @@ format :html do
     research_button
   end
 
-  def research_button year=nil, tab=nil
+  def research_button year: nil, tab: nil, text: "Research"
     return "" unless card.metric_card.researchable?
 
-    link_to_card card, research_button_text,
+    link_to_card card, text,
                  class: "btn btn-secondary _research_answer_button _over-card-link",
                  path: { view: :research, year: year, tab: tab },
                  target: "_research_page",
                  title: "Research/Review answers for this company and metric"
-  end
-
-  def research_button_text
-    card.new? ? "Research" : "Review"
   end
 end
