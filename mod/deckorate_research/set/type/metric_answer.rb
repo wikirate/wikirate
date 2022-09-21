@@ -58,7 +58,7 @@ format :html do
   view :read_form_with_button, wrap: :slot, template: :haml
 
   view :new do
-    research_page_link = research_button text: 'Research Page'
+    research_page_link = research_button text: "Research Page"
     "Answers are created via the #{research_page_link}."
   end
 
