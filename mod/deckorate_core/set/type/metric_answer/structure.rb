@@ -77,7 +77,7 @@ format :html do
     [[flag_card, title: "Flags", items:  { view: :accordion_bar }]]
   end
 
-  def calculated_read_field_config
+  def calculated_read_field_configs
     title = calculation_overridden? ? "Overridden Answer" : "Formula"
     [card.name, title: title]
   end
