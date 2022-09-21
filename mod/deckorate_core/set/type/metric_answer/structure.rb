@@ -4,14 +4,15 @@ end
 
 format :html do
   def tab_list
-    list = %i[basics flag record calculations]
-    list << :inputs if card.calculated?
+    list = %i[details record calculations]
+    list << (card.calculated? ? :inputs : :contributions)
     list.insert 1, :relationship_answer if card.relationship?
     list
   end
 
   def tab_options
     {
+      contributions: { label: "Contributions" },
       record: { count: card.record_answers_card.count, label: "Years" },
       calculations: { count: card.depender_answers.count },
       inputs: { count: card.dependee_answers.count },
@@ -19,8 +20,18 @@ format :html do
     }
   end
 
-  view :flag_tab do
-    field_nest :flag, items: { view: :accordion_bar }
+  view :header_right do
+    if card.unpublished?
+      wrap_with :div, class: "alert alert-warning" do
+        "Unpublished"
+      end
+    end
+  end
+
+  view :details_tab, wrap: :slot, template: :haml
+
+  view :contributions_tab do
+    render_history
   end
 
   view :record_tab do
@@ -46,38 +57,36 @@ format :html do
   end
 
   def read_field_configs
-    [[metric_card.question_card.name, { title: "Question" }]] +
-      if card.researched? && !card.relationship?
-        edit_field_configs
-      else
-        advanced_read_field_configs
-      end
+    flag_field_configs + special_field_configs + [discussion_field_config]
   end
 
-  def advanced_read_field_configs
-    replacing_source_field edit_field_configs do
-      card.relationship? ? nil : calculated_read_field_config
+  def special_field_configs
+    if card.relationship?
+      []
+    elsif card.researched?
+      [source_field_config]
+    else
+      calculated_read_field_configs
     end
   end
 
-  def calculated_read_field_config
-    title = calculation_overridden? ? "Overridden Answer" : "Formula"
-    [card.name, title: title]
+  def flag_field_configs
+    flag_card = card.flag_card
+    return [] unless flag_card.count.positive?
+
+    [[flag_card, title: "Flags", items:  { view: :accordion_bar }]]
   end
 
-  def replacing_source_field conf
-    ([conf[0], yield] + conf[2..-1]).compact
+  def calculated_read_field_configs
+    title = calculation_overridden? ? "Overridden Answer" : "Formula"
+    [card.name, title: title]
   end
 
   def header_list_items
     super.merge(
       "Company": link_to_card(card.company_card),
-      "Year": card.year
+      "Year": card.year,
+      "Status": render_verification
     )
-  end
-
-  # remove link to Answer Dashboard for now
-  def breadcrumb_items
-    super.tap { |i| i.slice! 1 }
   end
 end
