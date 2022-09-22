@@ -1,5 +1,5 @@
 .d-flex.justify-content-between.pb-5
-  = field_nest :value, view: :credit
+  = nest card.value_card, view: :credit
   .d-flex.justify-content-end
     .ps-5
       = render_research_button

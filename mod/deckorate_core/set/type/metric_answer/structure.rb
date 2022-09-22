@@ -79,7 +79,7 @@ format :html do
 
   def calculated_read_field_configs
     title = calculation_overridden? ? "Overridden Answer" : "Formula"
-    [card.name, title: title]
+    [[card.name, title: title]]
   end
 
   def header_list_items
