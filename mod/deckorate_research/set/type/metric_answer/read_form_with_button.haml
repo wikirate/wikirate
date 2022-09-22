@@ -1,4 +1,17 @@
 .answer-read-form
+  .form-group.read-form-group
+    %label
+      Question
+    .read-formgroup-content
+      = nest card.metric_card.question_card, view: :core
+
+  .form-group.read-form-group
+    %label
+      Answer
+    .read-formgroup-content
+      = field_nest :value, view: :core
+      = field_nest :value, view: :credit
+
   = render_read_form
   = render_flash
   .button-form-group.d-flex.justify-content-between
