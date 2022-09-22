@@ -31,10 +31,9 @@ format :html do
     end
   end
 
-  view :credit do
-    return unless card.real?
+  view :credit, unknown: true do
     wrap_with :div, class: "credit text-muted text-end" do
-      [credit_verb, credit_date, credit_whom].join " "
+      card.new? ? "" : [credit_verb, credit_date, credit_whom].join(" ")
     end
   end
 

@@ -23,7 +23,7 @@ class Card
 
     RESEARCHED_ANSWERS_ONLY =
       %i[value numeric_value updated check source calculated
-         related_company_group published].freeze
+         related_company_group].freeze
 
     class << self
       # instantiates AllAnswerQuery object for searches that can return
