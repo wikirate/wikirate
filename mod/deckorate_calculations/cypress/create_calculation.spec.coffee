@@ -60,6 +60,8 @@ describe "metric creation", ->
         setValue "friendliness + 1"
 
       # click to save as metric
+
+      cy.wait 100
       cy.contains("Save as Metric").click()
 
       # add a name and save

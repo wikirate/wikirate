@@ -1,14 +1,20 @@
-.TYPE-answer.bar {
-  .bar-left > {
-    div > div {
-      padding: 0 0.5em;
+.TYPE-answer {
+  &.rich-header .media-body {
+    width: 100%;
+  }
 
-      &.thumbnail {
-        width: 42%;
+  &.bar {
+    .bar-left > {
+      div > div {
+        padding: 0 0.5em;
+
+        &.thumbnail {
+          width: 42%;
+        }
       }
-    }
-    .one-thumb-answer > .thumbnail {
-      width: 84%;
+      .one-thumb-answer > .thumbnail {
+        width: 84%;
+      }
     }
   }
 }
