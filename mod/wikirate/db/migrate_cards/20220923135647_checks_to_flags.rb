@@ -7,10 +7,8 @@ class ChecksToFlags < Cardio::Migration
   def up
     each_check_request do |answer, checked_by|
       if answer.value_card.unknown_value?
-        puts "answer unknown!".yellow
         delete_card checked_by
       elsif answer.discussion.present?
-        puts "answer has discussion".yellow
         add_flag answer, checked_by
         delete_card checked_by
       else
@@ -39,7 +37,7 @@ class ChecksToFlags < Cardio::Migration
   def delete_card checked_by
     puts "deleting #{checked_by.name}".blue
     Card::Auth.signin "Ethan McCutchen"
-    # checked_by.delete!
+    checked_by.delete!
   rescue StandardError => e
     puts "Error deleting #{checked_by.name}: #{e.message}".red
   end
