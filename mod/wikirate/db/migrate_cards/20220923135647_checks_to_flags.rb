@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 require "timecop"
+require "colorize"
 
 class ChecksToFlags < Cardio::Migration
   def up
@@ -17,6 +18,7 @@ class ChecksToFlags < Cardio::Migration
   private
 
   def add_flag answer, checked_by
+    puts "flagging #{answer.name}".green
     with_request_context checked_by do
       Card.create! type: :flag,
                    fields: {
@@ -25,11 +27,16 @@ class ChecksToFlags < Cardio::Migration
                      subject: answer.name
                    }
     end
+  rescue StandardError => e
+    puts "Error flagging #{answer.name}: #{e.message}".red
   end
 
   def delete_card checked_by
+    puts "deleting #{checked_by.name}".blue
     Card::Auth.signin "Ethan McCutchen"
     checked_by.delete!
+  rescue StandardError => e
+    puts "Error deleting #{checked_by.name}: #{e.message}".red
   end
 
   def with_request_context checked_by, &block
