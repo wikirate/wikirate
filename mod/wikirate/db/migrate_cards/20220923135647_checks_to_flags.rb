@@ -51,7 +51,7 @@ class ChecksToFlags < Cardio::Migration
 
   # note: check requests on an answer set the content of its +checked_by card to "request"
   def each_check_request
-    Card.where(right_id: Card::CheckedById).limit(100).find_each do |checked_by|
+    Card.where(right_id: Card::CheckedByID).limit(100).find_each do |checked_by|
       checked_by.include_set_modules
       answer = checked_by.left
       next unless answer.type_code == :metric_answer
