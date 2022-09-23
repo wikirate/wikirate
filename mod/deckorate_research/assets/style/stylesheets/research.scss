@@ -2,9 +2,6 @@
   .header-middle, .header-right {
     justify-content: start;
   }
-  .header-middle .verification-icon {
-    font-size: 1.8rem;
-  }
 }
 
 input.short-input[type=text] {
@@ -22,11 +19,12 @@ input.short-input[type=text] {
   border-bottom: 1px solid $gray-300;
 }
 
-.read-form-group {
+.research-layout .tab-pane-answer_phase .card-form .form-group, .read-form-group {
   display: flex;
   margin: 1rem 0;
 
   > label {
+    font-size: 1.5rem;
     width: 30%;
     padding: 1rem;
   }
