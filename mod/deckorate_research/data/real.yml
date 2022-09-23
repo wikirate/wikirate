@@ -31,3 +31,7 @@
   :type: :flag_type
   :fields:
     :description: Answer's value is incorrect and/or not supported by source
+
+- :name: Answers with check requests
+  :type: :search_type
+  :content: '{ "type": "Answer", "right_plus": ["checked_by", { "eq": "request" }] }'
