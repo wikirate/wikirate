@@ -13,13 +13,14 @@ class ChecksToFlags < Cardio::Migration
         delete_card checked_by
       end
     end
+    raise "dont do it"
   end
 
   private
 
   def add_flag answer, checked_by
-    puts "flagging #{answer.name}".green
     with_request_context checked_by do
+      puts "flagging #{answer.name}".green
       Card.create! type: :flag,
                    fields: {
                      flag_type: "Wrong Value",
@@ -34,7 +35,7 @@ class ChecksToFlags < Cardio::Migration
   def delete_card checked_by
     puts "deleting #{checked_by.name}".blue
     Card::Auth.signin "Ethan McCutchen"
-    checked_by.delete!
+    # checked_by.delete!
   rescue StandardError => e
     puts "Error deleting #{checked_by.name}: #{e.message}".red
   end
@@ -46,7 +47,7 @@ class ChecksToFlags < Cardio::Migration
 
   # note: check requests on an answer set the content of its +checked_by card to "request"
   def each_check_request
-    Card.search left: { type: "Answer" }, right: :checked_by, eq: "request" do |checked_by|
+    Card.search left: { type: "Answer" }, right: :checked_by, eq: "request", limit: 100 do |checked_by|
       yield checked_by.left, checked_by
     end
   end
