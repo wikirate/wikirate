@@ -23,12 +23,12 @@
     - :checked_by
   :user: Joe User
   :trigger: :add_check
-- :name:
-    - Joe User+big single+Sony Corporation
-    - '2003'
-    - :checked_by
-  :user: Joe User
-  :content: request
+#- :name:
+#    - Joe User+big single+Sony Corporation
+#    - '2003'
+#    - :checked_by
+#  :user: Joe User
+#  :content: request
 - :name:
     - Joe User+big single+Sony Corporation
     - '2009'
