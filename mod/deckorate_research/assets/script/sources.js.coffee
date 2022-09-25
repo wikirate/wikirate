@@ -1,7 +1,7 @@
 
 $(document).ready ->
   # toggle download and url ui
-  $('body').on 'click', ".toggle-source-option", ->
+  $('body').on 'click', "._toggle-source-option", ->
     $('.download-option input').val("")
     $('.source-option').show()
     $(this).closest('.source-option').hide()
