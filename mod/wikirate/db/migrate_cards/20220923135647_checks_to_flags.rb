@@ -15,7 +15,6 @@ class ChecksToFlags < Cardio::Migration
         puts "answer has NO discussion".yellow
       end
     end
-    raise "dont do it"
   end
 
   private
