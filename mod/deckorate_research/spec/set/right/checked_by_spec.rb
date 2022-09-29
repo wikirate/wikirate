@@ -25,7 +25,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
     end
   end
 
-  context "checked card" do
+  context "with checked card" do
     let(:answer_card) { Card["Joe User+big single+Sony Corporation+2005"] }
 
     it "is confirmed to be checked" do
