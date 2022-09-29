@@ -50,6 +50,10 @@ format :html do
     field_nest :relationship_answer, view: :filtered_content
   end
 
+  view :read_form, cache: :never do
+    super()
+  end
+
   def relationship_count
     return 0 unless card.relationship?
 
