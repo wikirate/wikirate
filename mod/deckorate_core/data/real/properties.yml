@@ -4,7 +4,9 @@
   :fields:
     :right:
       :fields:
-        :content: '{ "right_plus": ":account" }'
+        :content_options:
+          :type: :search_type
+          :content: '{ "right_plus": ":account" }'
 - :name: value options
   :codename: :value_options
 - :name: unit
