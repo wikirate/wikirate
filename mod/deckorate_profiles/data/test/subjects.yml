@@ -16,7 +16,9 @@
 - :name: updated company
   :content: updated
   :user: Joe User
+  :conflict: override
 - :name: discussed company
   :user: Joe User
+  :conflict: override
   :fields:
     :discussion: comment

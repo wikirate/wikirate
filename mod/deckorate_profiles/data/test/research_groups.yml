@@ -16,7 +16,9 @@
 - :name: updated research group
   :content: updated
   :user: Joe User
+  :conflict: override
 - :name: discussed research group
   :user: Joe User
+  :conflict: override
   :fields:
     :discussion: comment
