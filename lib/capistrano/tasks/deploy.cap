@@ -10,11 +10,18 @@ namespace :deploy do
   end
 
   def deploy_warning
+    url = fetch(:repo_url)
     warning_wrap "You are about to deploy the branch",
-                 fetch(:branch),
-                 "from #{fetch(:repo_url)}",
-                 commit_info,
-                 "to production"
+                 fetch(:branch), "from #{url}", commit_info(url), "to production"
+  end
+
+  def commit_info url
+    commit = latest_commit
+    ["with latest commit #{commit["sha"][0..5]}",
+     "\"#{commit["commit"]["message"].split("\n").first}\"",
+     "by #{commit.dig("commit", "author", "name")}"]
+  rescue StandardError => e
+    ["(failed to fetch info about latest commit from #{url})", e.message]
   end
 
   after :finishing, :cleanup do
