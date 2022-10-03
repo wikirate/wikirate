@@ -16,8 +16,10 @@
 - :name: updated topic
   :content: updated
   :user: Joe User
+  :conflict: override
 - :name: discussed topic
   :user: Joe User
+  :conflict: override
   :fields:
     :discussion: comment
 
