@@ -4,24 +4,28 @@
     - '2010'
     - :value
   :user: Joe User
+  :conflict: override
   :content: '4'
 - :name:
     - Joe User+big single+Sony Corporation
     - '2008'
     - :value
   :user: Joe User
+  :conflict: override
   :content: '5'
 - :name:
     - Joe User+big single+Sony Corporation
     - '2007'
     - :discussion
   :user: Joe User
+  :conflict: override
   :content: comment
 - :name:
     - Joe User+big single+Sony Corporation
     - '2005'
     - :checked_by
   :user: Joe User
+  :conflict: override
   :trigger: :add_check
 #- :name:
 #    - Joe User+big single+Sony Corporation
@@ -34,22 +38,26 @@
     - '2009'
     - :value
   :user: Joe Admin
+  :conflict: override
   :content: '5'
 - :name:
     - Joe User+big single+Sony Corporation
     - '2008'
     - :value
   :user: Joe Admin
+  :conflict: override
   :content: '6'
 - :name:
     - Joe User+big single+Sony Corporation
     - '2006'
     - :discussion
   :user: Joe Admin
+  :conflict: override
   :content: 'content'
 - :name:
     - Joe User+big single+Sony Corporation
     - '2004'
     - :checked_by
   :user: Joe Admin
+  :conflict: override
   :trigger: :add_check
