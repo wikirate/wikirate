@@ -308,3 +308,203 @@ card_changes_057:
   value: |-
     Jedi+disturbances in the Force+Death Star+1990
     Fred+dinosaurlabor+Death Star+2010
+card_changes_058:
+  id: 58
+  card_action_id: 9230
+  field: 0
+  value:
+card_changes_059:
+  id: 59
+  card_action_id: 9230
+  field: 1
+  value: '282'
+card_changes_060:
+  id: 60
+  card_action_id: 9230
+  field: 2
+  value: "~3090/9230.pdf"
+card_changes_061:
+  id: 61
+  card_action_id: 9230
+  field: 3
+  value: f
+card_changes_062:
+  id: 62
+  card_action_id: 9230
+  field: 4
+  value: '3084'
+card_changes_063:
+  id: 63
+  card_action_id: 9230
+  field: 5
+  value: '282'
+card_changes_064:
+  id: 64
+  card_action_id: 10265
+  field: 2
+  value: "~3090/10265.pdf"
+card_changes_065:
+  id: 65
+  card_action_id: 9240
+  field: 0
+  value:
+card_changes_066:
+  id: 66
+  card_action_id: 9240
+  field: 1
+  value: '282'
+card_changes_067:
+  id: 67
+  card_action_id: 9240
+  field: 2
+  value: "~3099/9240.pdf"
+card_changes_068:
+  id: 68
+  card_action_id: 9240
+  field: 3
+  value: f
+card_changes_069:
+  id: 69
+  card_action_id: 9240
+  field: 4
+  value: '3093'
+card_changes_070:
+  id: 70
+  card_action_id: 9240
+  field: 5
+  value: '282'
+card_changes_071:
+  id: 71
+  card_action_id: 10273
+  field: 2
+  value: "~3099/10273.pdf"
+card_changes_072:
+  id: 72
+  card_action_id: 9247
+  field: 0
+  value:
+card_changes_073:
+  id: 73
+  card_action_id: 9247
+  field: 1
+  value: '282'
+card_changes_074:
+  id: 74
+  card_action_id: 9247
+  field: 2
+  value: "~3105/9247.pdf"
+card_changes_075:
+  id: 75
+  card_action_id: 9247
+  field: 3
+  value: f
+card_changes_076:
+  id: 76
+  card_action_id: 9247
+  field: 4
+  value: '3101'
+card_changes_077:
+  id: 77
+  card_action_id: 9247
+  field: 5
+  value: '282'
+card_changes_078:
+  id: 78
+  card_action_id: 10279
+  field: 2
+  value: "~3105/10279.pdf"
+card_changes_079:
+  id: 79
+  card_action_id: 10286
+  field: 2
+  value: |-
+    1977
+    1990
+    2000
+    2001
+    2003
+    2004
+    2005
+    2008
+card_changes_080:
+  id: 80
+  card_action_id: 9257
+  field: 0
+  value:
+card_changes_081:
+  id: 81
+  card_action_id: 9257
+  field: 1
+  value: '282'
+card_changes_082:
+  id: 82
+  card_action_id: 9257
+  field: 2
+  value: "~3114/9257.pdf"
+card_changes_083:
+  id: 83
+  card_action_id: 9257
+  field: 3
+  value: f
+card_changes_084:
+  id: 84
+  card_action_id: 9257
+  field: 4
+  value: '3107'
+card_changes_085:
+  id: 85
+  card_action_id: 9257
+  field: 5
+  value: '282'
+card_changes_086:
+  id: 86
+  card_action_id: 10288
+  field: 2
+  value: "~3114/10288.pdf"
+card_changes_087:
+  id: 87
+  card_action_id: 9266
+  field: 0
+  value:
+card_changes_088:
+  id: 88
+  card_action_id: 9266
+  field: 1
+  value: '282'
+card_changes_089:
+  id: 89
+  card_action_id: 9266
+  field: 2
+  value: "~3122/9266.pdf"
+card_changes_090:
+  id: 90
+  card_action_id: 9266
+  field: 3
+  value: f
+card_changes_091:
+  id: 91
+  card_action_id: 9266
+  field: 4
+  value: '3117'
+card_changes_092:
+  id: 92
+  card_action_id: 9266
+  field: 5
+  value: '282'
+card_changes_093:
+  id: 93
+  card_action_id: 10296
+  field: 2
+  value: "~3122/10296.pdf"
+card_changes_094:
+  id: 94
+  card_action_id: 10765
+  field: 2
+  value: ''
+card_changes_095:
+  id: 95
+  card_action_id: 10773
+  field: 2
+  value: |-
+    Jedi+disturbances in the Force+Death Star+1990
+    Fred+dinosaurlabor+Death Star+2010
