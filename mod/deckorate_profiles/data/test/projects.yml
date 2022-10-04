@@ -34,12 +34,15 @@
 - :name: organized project
   :user: Joe User
   :type: :project
+  :conflict: override
   :fields:
     :organizer: Joe User
 - :name: updated project
   :content: updated
+  :conflict: override
   :user: Joe User
 - :name: discussed project
+  :conflict: override
   :user: Joe User
   :fields:
     :discussion: comment

@@ -9,6 +9,7 @@
     - Joe Admin
     - :bookmarks
   :type: :list
+  :conflict: :defer
   :content: |-
     Jedi+disturbances in the Force
     Jedi+Victims by Employees

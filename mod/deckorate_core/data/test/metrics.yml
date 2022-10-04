@@ -54,6 +54,7 @@
     - Joe User
     - small single
   :type: :metric
+  :conflict: :defer
   :fields:
     :value_type: Category
     :metric_type: Researched

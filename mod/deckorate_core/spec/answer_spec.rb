@@ -141,7 +141,7 @@ RSpec.describe Answer do
     end
 
     it "updates policy" do
-      create_or_update [metric, :research_policy], content: "[[Community Assessed]]"
+      Card.create! name: [metric, :research_policy], content: "[[Community Assessed]]"
       expect(answer.metric.policy_id).to eq "Community Assessed".card_id
     end
 
