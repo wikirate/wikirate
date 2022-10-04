@@ -87,5 +87,3 @@ schema_migrations_deck_cards_043:
   version: '20210726154058'
 schema_migrations_deck_cards_044:
   version: '20210826200444'
-schema_migrations_deck_cards_045:
-  version: '20220923135647'
