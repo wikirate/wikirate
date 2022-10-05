@@ -4,6 +4,7 @@
   :type: :source
   :codename: :opera_source
   :time: "+172800"
+  :conflict: defer
   :fields:
     :wikirate_company: |-
       Slate_Rock_and_Gravel_Company
@@ -46,6 +47,7 @@
   :type: :source
   :codename: :space_opera_source
   :time: "+86400"
+  :conflict: defer
   :fields:
     :wikirate_topic: Force
     :wikirate_company: Death Star
@@ -59,6 +61,7 @@
   :skip: requirements
   :type: :source
   :codename: :apple_source
+  :conflict: defer
   :fields:
     :wikirate_title: Apple
     :description: What is an apple?
@@ -68,6 +71,7 @@
 - :name: Source-000000004
   :type: :source
   :codename: :star_wars_source
+  :conflict: defer
   :fields:
     :wikirate_topic: Force
     :wikirate_company: |-
@@ -98,6 +102,7 @@
   :skip: requirements
   :type: :source
   :codename: :darth_vader_source
+  :conflict: defer
   :fields:
     :wikirate_topic: Force
     :wikirate_company: Death Star
