@@ -80,13 +80,13 @@ answers_004:
   year: 2010
   value: 'yes'
   numeric_value:
-  updated_at: 2022-10-04 00:48:42.000000000 Z
+  updated_at: 2022-10-05 17:41:38.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:40.000000000 Z
+  created_at: 2022-10-05 17:40:37.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -104,13 +104,13 @@ answers_005:
   year: 2000
   value: Mountain View
   numeric_value:
-  updated_at: 2022-10-04 00:47:41.000000000 Z
+  updated_at: 2022-10-05 17:40:38.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:41.000000000 Z
+  created_at: 2022-10-05 17:40:38.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -128,13 +128,13 @@ answers_006:
   year: 1977
   value: Alderaan
   numeric_value:
-  updated_at: 2022-10-04 00:47:42.000000000 Z
+  updated_at: 2022-10-05 17:40:38.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:42.000000000 Z
+  created_at: 2022-10-05 17:40:38.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -152,13 +152,13 @@ answers_007:
   year: 1977
   value: Baker Street, London
   numeric_value:
-  updated_at: 2022-10-04 00:47:42.000000000 Z
+  updated_at: 2022-10-05 17:40:39.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:42.000000000 Z
+  created_at: 2022-10-05 17:40:39.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -176,13 +176,13 @@ answers_008:
   year: 2003
   value: '3'
   numeric_value:
-  updated_at: 2022-10-04 00:47:43.000000000 Z
+  updated_at: 2022-10-05 17:40:40.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id:
-  created_at: 2022-10-04 00:47:43.000000000 Z
+  created_at: 2022-10-05 17:40:40.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -200,13 +200,13 @@ answers_009:
   year: 2004
   value: '4'
   numeric_value:
-  updated_at: 2022-10-04 00:49:18.000000000 Z
+  updated_at: 2022-10-05 17:42:07.000000000 Z
   imported: 0
   latest: 0
   checkers: Joe Admin
   creator_id: 2597
   editor_id:
-  created_at: 2022-10-04 00:47:44.000000000 Z
+  created_at: 2022-10-05 17:40:41.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -224,13 +224,13 @@ answers_010:
   year: 2005
   value: '5'
   numeric_value:
-  updated_at: 2022-10-04 00:49:16.000000000 Z
+  updated_at: 2022-10-05 17:42:06.000000000 Z
   imported: 0
   latest: 0
   checkers: Joe User
   creator_id: 2597
   editor_id:
-  created_at: 2022-10-04 00:47:45.000000000 Z
+  created_at: 2022-10-05 17:40:42.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -248,13 +248,13 @@ answers_011:
   year: 2006
   value: '6'
   numeric_value:
-  updated_at: 2022-10-04 00:49:17.000000000 Z
+  updated_at: 2022-10-05 17:42:07.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id:
-  created_at: 2022-10-04 00:47:46.000000000 Z
+  created_at: 2022-10-05 17:40:43.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -272,13 +272,13 @@ answers_012:
   year: 2007
   value: '7'
   numeric_value:
-  updated_at: 2022-10-04 00:49:16.000000000 Z
+  updated_at: 2022-10-05 17:42:06.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id:
-  created_at: 2022-10-04 00:47:47.000000000 Z
+  created_at: 2022-10-05 17:40:43.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -296,13 +296,13 @@ answers_013:
   year: 2008
   value: '6'
   numeric_value:
-  updated_at: 2022-10-04 00:49:17.000000000 Z
+  updated_at: 2022-10-05 17:42:07.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 2591
-  created_at: 2022-10-04 00:47:48.000000000 Z
+  created_at: 2022-10-05 17:40:44.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -320,13 +320,13 @@ answers_014:
   year: 2009
   value: '5'
   numeric_value:
-  updated_at: 2022-10-04 00:49:16.000000000 Z
+  updated_at: 2022-10-05 17:42:06.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id: 2591
-  created_at: 2022-10-04 00:47:48.000000000 Z
+  created_at: 2022-10-05 17:40:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -344,13 +344,13 @@ answers_015:
   year: 2010
   value: '4'
   numeric_value:
-  updated_at: 2022-10-04 00:49:15.000000000 Z
+  updated_at: 2022-10-05 17:42:05.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:47:49.000000000 Z
+  created_at: 2022-10-05 17:40:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -368,13 +368,13 @@ answers_016:
   year: 2010
   value: '1'
   numeric_value:
-  updated_at: 2022-10-04 00:47:50.000000000 Z
+  updated_at: 2022-10-05 17:40:49.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:50.000000000 Z
+  created_at: 2022-10-05 17:40:49.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -392,13 +392,13 @@ answers_017:
   year: 2010
   value: 1, 2
   numeric_value:
-  updated_at: 2022-10-04 00:47:51.000000000 Z
+  updated_at: 2022-10-05 17:40:49.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:51.000000000 Z
+  created_at: 2022-10-05 17:40:49.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -416,13 +416,13 @@ answers_018:
   year: 2010
   value: 1, 2
   numeric_value:
-  updated_at: 2022-10-04 00:47:52.000000000 Z
+  updated_at: 2022-10-05 17:40:50.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:52.000000000 Z
+  created_at: 2022-10-05 17:40:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -440,13 +440,13 @@ answers_019:
   year: 1977
   value: '77'
   numeric_value: !ruby/object:BigDecimal 18:0.77e2
-  updated_at: 2022-10-04 00:47:53.000000000 Z
+  updated_at: 2022-10-05 17:40:51.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:53.000000000 Z
+  created_at: 2022-10-05 17:40:51.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -464,13 +464,13 @@ answers_020:
   year: 2015
   value: '15'
   numeric_value: !ruby/object:BigDecimal 18:0.15e2
-  updated_at: 2022-10-04 00:47:53.000000000 Z
+  updated_at: 2022-10-05 17:40:51.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:53.000000000 Z
+  created_at: 2022-10-05 17:40:51.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -488,13 +488,13 @@ answers_021:
   year: 2014
   value: '14'
   numeric_value: !ruby/object:BigDecimal 18:0.14e2
-  updated_at: 2022-10-04 00:47:54.000000000 Z
+  updated_at: 2022-10-05 17:40:52.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:54.000000000 Z
+  created_at: 2022-10-05 17:40:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -512,13 +512,13 @@ answers_022:
   year: 2013
   value: '13'
   numeric_value: !ruby/object:BigDecimal 18:0.13e2
-  updated_at: 2022-10-04 00:47:55.000000000 Z
+  updated_at: 2022-10-05 17:40:53.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:55.000000000 Z
+  created_at: 2022-10-05 17:40:53.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -536,13 +536,13 @@ answers_023:
   year: 2012
   value: '12'
   numeric_value: !ruby/object:BigDecimal 18:0.12e2
-  updated_at: 2022-10-04 00:47:55.000000000 Z
+  updated_at: 2022-10-05 17:40:53.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:55.000000000 Z
+  created_at: 2022-10-05 17:40:53.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -560,13 +560,13 @@ answers_024:
   year: 2011
   value: '11'
   numeric_value: !ruby/object:BigDecimal 18:0.11e2
-  updated_at: 2022-10-04 00:47:56.000000000 Z
+  updated_at: 2022-10-05 17:40:54.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:56.000000000 Z
+  created_at: 2022-10-05 17:40:54.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -584,13 +584,13 @@ answers_025:
   year: 2010
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:47:57.000000000 Z
+  updated_at: 2022-10-05 17:40:55.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:57.000000000 Z
+  created_at: 2022-10-05 17:40:55.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -608,13 +608,13 @@ answers_026:
   year: 2002
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:47:57.000000000 Z
+  updated_at: 2022-10-05 17:40:55.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:57.000000000 Z
+  created_at: 2022-10-05 17:40:55.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -632,13 +632,13 @@ answers_027:
   year: 2001
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:47:58.000000000 Z
+  updated_at: 2022-10-05 17:40:56.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:58.000000000 Z
+  created_at: 2022-10-05 17:40:56.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -656,13 +656,13 @@ answers_028:
   year: 2000
   value: '0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
-  updated_at: 2022-10-04 00:47:59.000000000 Z
+  updated_at: 2022-10-05 17:40:56.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:47:59.000000000 Z
+  created_at: 2022-10-05 17:40:56.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -680,13 +680,13 @@ answers_029:
   year: 2014
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:00.000000000 Z
+  updated_at: 2022-10-05 17:40:57.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:00.000000000 Z
+  created_at: 2022-10-05 17:40:57.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -704,13 +704,13 @@ answers_030:
   year: 2015
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:00.000000000 Z
+  updated_at: 2022-10-05 17:40:58.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:00.000000000 Z
+  created_at: 2022-10-05 17:40:58.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -728,13 +728,13 @@ answers_031:
   year: 2014
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:01.000000000 Z
+  updated_at: 2022-10-05 17:40:59.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:01.000000000 Z
+  created_at: 2022-10-05 17:40:59.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -752,13 +752,13 @@ answers_032:
   year: 2015
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:01.000000000 Z
+  updated_at: 2022-10-05 17:40:59.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:01.000000000 Z
+  created_at: 2022-10-05 17:40:59.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -776,13 +776,13 @@ answers_033:
   year: 2014
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
-  updated_at: 2022-10-04 00:48:02.000000000 Z
+  updated_at: 2022-10-05 17:41:00.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:02.000000000 Z
+  created_at: 2022-10-05 17:41:00.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -800,13 +800,13 @@ answers_034:
   year: 2002
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
-  updated_at: 2022-10-04 00:48:03.000000000 Z
+  updated_at: 2022-10-05 17:41:01.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:03.000000000 Z
+  created_at: 2022-10-05 17:41:01.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -824,13 +824,13 @@ answers_035:
   year: 2015
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
-  updated_at: 2022-10-04 00:48:03.000000000 Z
+  updated_at: 2022-10-05 17:41:01.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:03.000000000 Z
+  created_at: 2022-10-05 17:41:01.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -848,13 +848,13 @@ answers_036:
   year: 1977
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
-  updated_at: 2022-10-04 00:48:04.000000000 Z
+  updated_at: 2022-10-05 17:41:02.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:04.000000000 Z
+  created_at: 2022-10-05 17:41:02.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -872,13 +872,13 @@ answers_037:
   year: 2014
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:05.000000000 Z
+  updated_at: 2022-10-05 17:41:03.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:05.000000000 Z
+  created_at: 2022-10-05 17:41:03.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -896,13 +896,13 @@ answers_038:
   year: 2015
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
-  updated_at: 2022-10-04 00:48:05.000000000 Z
+  updated_at: 2022-10-05 17:41:03.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:05.000000000 Z
+  created_at: 2022-10-05 17:41:03.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -920,13 +920,13 @@ answers_039:
   year: 2014
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:06.000000000 Z
+  updated_at: 2022-10-05 17:41:05.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:06.000000000 Z
+  created_at: 2022-10-05 17:41:05.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -944,13 +944,13 @@ answers_040:
   year: 1977
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:48:07.000000000 Z
+  updated_at: 2022-10-05 17:41:06.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:07.000000000 Z
+  created_at: 2022-10-05 17:41:06.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -968,13 +968,13 @@ answers_041:
   year: 1977
   value: "-0.01"
   numeric_value: !ruby/object:BigDecimal 18:-0.1e-1
-  updated_at: 2022-10-04 00:48:07.000000000 Z
+  updated_at: 2022-10-05 17:41:06.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:07.000000000 Z
+  created_at: 2022-10-05 17:41:06.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -992,13 +992,13 @@ answers_042:
   year: 1977
   value: '0.001'
   numeric_value: !ruby/object:BigDecimal 18:0.1e-2
-  updated_at: 2022-10-04 00:48:08.000000000 Z
+  updated_at: 2022-10-05 17:41:07.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:08.000000000 Z
+  created_at: 2022-10-05 17:41:07.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1016,13 +1016,13 @@ answers_043:
   year: 1977
   value: '0.002'
   numeric_value: !ruby/object:BigDecimal 18:0.2e-2
-  updated_at: 2022-10-04 00:48:09.000000000 Z
+  updated_at: 2022-10-05 17:41:08.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:09.000000000 Z
+  created_at: 2022-10-05 17:41:08.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1040,13 +1040,13 @@ answers_044:
   year: 1977
   value: '0.31'
   numeric_value: !ruby/object:BigDecimal 18:0.31e0
-  updated_at: 2022-10-04 00:48:09.000000000 Z
+  updated_at: 2022-10-05 17:41:08.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:09.000000000 Z
+  created_at: 2022-10-05 17:41:08.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1064,13 +1064,13 @@ answers_045:
   year: 1977
   value: '5.3'
   numeric_value: !ruby/object:BigDecimal 18:0.53e1
-  updated_at: 2022-10-04 00:48:10.000000000 Z
+  updated_at: 2022-10-05 17:41:09.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:10.000000000 Z
+  created_at: 2022-10-05 17:41:09.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1088,13 +1088,13 @@ answers_046:
   year: 1977
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:48:11.000000000 Z
+  updated_at: 2022-10-05 17:41:09.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:11.000000000 Z
+  created_at: 2022-10-05 17:41:09.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1112,13 +1112,13 @@ answers_047:
   year: 2005
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:12.000000000 Z
+  updated_at: 2022-10-05 17:41:10.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:12.000000000 Z
+  created_at: 2022-10-05 17:41:10.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1136,13 +1136,13 @@ answers_048:
   year: 2004
   value: '9'
   numeric_value: !ruby/object:BigDecimal 18:0.9e1
-  updated_at: 2022-10-04 00:48:12.000000000 Z
+  updated_at: 2022-10-05 17:41:11.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:12.000000000 Z
+  created_at: 2022-10-05 17:41:11.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1160,13 +1160,13 @@ answers_049:
   year: 2003
   value: '8'
   numeric_value: !ruby/object:BigDecimal 18:0.8e1
-  updated_at: 2022-10-04 00:48:13.000000000 Z
+  updated_at: 2022-10-05 17:41:11.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:13.000000000 Z
+  created_at: 2022-10-05 17:41:11.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1184,13 +1184,13 @@ answers_050:
   year: 1977
   value: '20'
   numeric_value: !ruby/object:BigDecimal 18:0.2e2
-  updated_at: 2022-10-04 00:48:13.000000000 Z
+  updated_at: 2022-10-05 17:41:12.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:13.000000000 Z
+  created_at: 2022-10-05 17:41:12.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1208,13 +1208,13 @@ answers_051:
   year: 1977
   value: '40'
   numeric_value: !ruby/object:BigDecimal 18:0.4e2
-  updated_at: 2022-10-04 00:48:14.000000000 Z
+  updated_at: 2022-10-05 17:41:13.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:14.000000000 Z
+  created_at: 2022-10-05 17:41:13.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1232,13 +1232,13 @@ answers_052:
   year: 1977
   value: '50'
   numeric_value: !ruby/object:BigDecimal 18:0.5e2
-  updated_at: 2022-10-04 00:48:16.000000000 Z
+  updated_at: 2022-10-05 17:41:13.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:16.000000000 Z
+  created_at: 2022-10-05 17:41:13.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1256,13 +1256,13 @@ answers_053:
   year: 1977
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
-  updated_at: 2022-10-04 00:48:16.000000000 Z
+  updated_at: 2022-10-05 17:41:14.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:16.000000000 Z
+  created_at: 2022-10-05 17:41:14.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1280,13 +1280,13 @@ answers_054:
   year: 1977
   value: '200'
   numeric_value: !ruby/object:BigDecimal 18:0.2e3
-  updated_at: 2022-10-04 00:48:17.000000000 Z
+  updated_at: 2022-10-05 17:41:15.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:17.000000000 Z
+  created_at: 2022-10-05 17:41:15.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1304,13 +1304,13 @@ answers_055:
   year: 1977
   value: Darth Sidious
   numeric_value:
-  updated_at: 2022-10-04 00:48:18.000000000 Z
+  updated_at: 2022-10-05 17:41:16.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:18.000000000 Z
+  created_at: 2022-10-05 17:41:16.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1328,13 +1328,13 @@ answers_056:
   year: 2000
   value: 'yes'
   numeric_value:
-  updated_at: 2022-10-04 00:48:18.000000000 Z
+  updated_at: 2022-10-05 17:41:16.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:18.000000000 Z
+  created_at: 2022-10-05 17:41:16.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1352,13 +1352,13 @@ answers_057:
   year: 1977
   value: 'no'
   numeric_value:
-  updated_at: 2022-10-04 00:48:19.000000000 Z
+  updated_at: 2022-10-05 17:41:17.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:19.000000000 Z
+  created_at: 2022-10-05 17:41:17.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1376,13 +1376,13 @@ answers_058:
   year: 2000
   value: 'no'
   numeric_value:
-  updated_at: 2022-10-04 00:48:20.000000000 Z
+  updated_at: 2022-10-05 17:41:18.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:20.000000000 Z
+  created_at: 2022-10-05 17:41:18.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1400,13 +1400,13 @@ answers_059:
   year: 1977
   value: 'no'
   numeric_value:
-  updated_at: 2022-10-04 00:48:21.000000000 Z
+  updated_at: 2022-10-05 17:41:18.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:21.000000000 Z
+  created_at: 2022-10-05 17:41:18.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1424,13 +1424,13 @@ answers_060:
   year: 2000
   value: 'yes'
   numeric_value:
-  updated_at: 2022-10-04 00:48:22.000000000 Z
+  updated_at: 2022-10-05 17:41:19.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:22.000000000 Z
+  created_at: 2022-10-05 17:41:19.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1448,13 +1448,13 @@ answers_061:
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2022-10-04 00:48:22.000000000 Z
+  updated_at: 2022-10-05 17:41:20.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:22.000000000 Z
+  created_at: 2022-10-05 17:41:20.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1472,13 +1472,13 @@ answers_062:
   year: 2000
   value: 'no'
   numeric_value:
-  updated_at: 2022-10-04 00:48:23.000000000 Z
+  updated_at: 2022-10-05 17:41:20.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:23.000000000 Z
+  created_at: 2022-10-05 17:41:20.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1496,13 +1496,13 @@ answers_063:
   year: 2005
   value: 'no'
   numeric_value:
-  updated_at: 2022-10-04 00:48:24.000000000 Z
+  updated_at: 2022-10-05 17:41:21.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:24.000000000 Z
+  created_at: 2022-10-05 17:41:21.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1520,13 +1520,13 @@ answers_064:
   year: 1977
   value: 'no'
   numeric_value:
-  updated_at: 2022-10-04 00:48:24.000000000 Z
+  updated_at: 2022-10-05 17:41:22.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:24.000000000 Z
+  created_at: 2022-10-05 17:41:22.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1544,13 +1544,13 @@ answers_065:
   year: 2006
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:48:25.000000000 Z
+  updated_at: 2022-10-05 17:41:22.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:25.000000000 Z
+  created_at: 2022-10-05 17:41:22.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1568,13 +1568,13 @@ answers_066:
   year: 2000
   value: 'yes'
   numeric_value:
-  updated_at: 2022-10-04 00:48:26.000000000 Z
+  updated_at: 2022-10-05 17:41:23.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:26.000000000 Z
+  created_at: 2022-10-05 17:41:23.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1592,13 +1592,13 @@ answers_067:
   year: 1977
   value: 'no'
   numeric_value:
-  updated_at: 2022-10-04 00:48:26.000000000 Z
+  updated_at: 2022-10-05 17:41:24.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:26.000000000 Z
+  created_at: 2022-10-05 17:41:24.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1616,13 +1616,13 @@ answers_068:
   year: 2001
   value: 'yes'
   numeric_value:
-  updated_at: 2022-10-04 00:48:27.000000000 Z
+  updated_at: 2022-10-05 17:41:25.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:27.000000000 Z
+  created_at: 2022-10-05 17:41:25.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1640,13 +1640,13 @@ answers_069:
   year: 2000
   value: 'yes'
   numeric_value:
-  updated_at: 2022-10-04 00:48:27.000000000 Z
+  updated_at: 2022-10-05 17:41:25.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:27.000000000 Z
+  created_at: 2022-10-05 17:41:25.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1664,13 +1664,13 @@ answers_070:
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2022-10-04 00:48:28.000000000 Z
+  updated_at: 2022-10-05 17:41:26.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:28.000000000 Z
+  created_at: 2022-10-05 17:41:26.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -1688,13 +1688,13 @@ answers_071:
   year: 2000
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:37.000000000 Z
+  updated_at: 2022-10-05 17:41:33.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:29.000000000 Z
+  created_at: 2022-10-05 17:41:27.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1712,13 +1712,13 @@ answers_072:
   year: 2000
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:29.000000000 Z
+  updated_at: 2022-10-05 17:41:27.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:29.000000000 Z
+  created_at: 2022-10-05 17:41:27.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1736,13 +1736,13 @@ answers_073:
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:31.000000000 Z
+  updated_at: 2022-10-05 17:41:28.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:31.000000000 Z
+  created_at: 2022-10-05 17:41:28.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1760,13 +1760,13 @@ answers_074:
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:36.000000000 Z
+  updated_at: 2022-10-05 17:41:32.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:31.000000000 Z
+  created_at: 2022-10-05 17:41:28.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1784,13 +1784,13 @@ answers_075:
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:33.000000000 Z
+  updated_at: 2022-10-05 17:41:30.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:33.000000000 Z
+  created_at: 2022-10-05 17:41:30.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1808,13 +1808,13 @@ answers_076:
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:33.000000000 Z
+  updated_at: 2022-10-05 17:41:30.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:33.000000000 Z
+  created_at: 2022-10-05 17:41:30.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1832,13 +1832,13 @@ answers_077:
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:35.000000000 Z
+  updated_at: 2022-10-05 17:41:32.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:35.000000000 Z
+  created_at: 2022-10-05 17:41:32.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1856,13 +1856,13 @@ answers_078:
   year: 2000
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:37.000000000 Z
+  updated_at: 2022-10-05 17:41:33.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:37.000000000 Z
+  created_at: 2022-10-05 17:41:33.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1880,13 +1880,13 @@ answers_079:
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:40.000000000 Z
+  updated_at: 2022-10-05 17:41:36.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:38.000000000 Z
+  created_at: 2022-10-05 17:41:34.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1904,13 +1904,13 @@ answers_080:
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:41.000000000 Z
+  updated_at: 2022-10-05 17:41:37.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:38.000000000 Z
+  created_at: 2022-10-05 17:41:34.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1928,13 +1928,13 @@ answers_081:
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:39.000000000 Z
+  updated_at: 2022-10-05 17:41:36.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:39.000000000 Z
+  created_at: 2022-10-05 17:41:36.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1952,13 +1952,13 @@ answers_082:
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:41.000000000 Z
+  updated_at: 2022-10-05 17:41:37.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:48:41.000000000 Z
+  created_at: 2022-10-05 17:41:37.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 0
@@ -1976,13 +1976,13 @@ answers_083:
   year: 2014
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:49.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:49.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2000,13 +2000,13 @@ answers_084:
   year: 2014
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
-  updated_at: 2022-10-04 00:48:49.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:49.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2024,13 +2024,13 @@ answers_085:
   year: 2015
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:49.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:49.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2048,13 +2048,13 @@ answers_086:
   year: 2015
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
-  updated_at: 2022-10-04 00:48:49.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:49.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2072,13 +2072,13 @@ answers_087:
   year: 1977
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
-  updated_at: 2022-10-04 00:48:49.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:49.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2096,13 +2096,13 @@ answers_088:
   year: 2002
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
-  updated_at: 2022-10-04 00:48:49.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:49.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2120,13 +2120,13 @@ answers_089:
   year: 1977
   value: '77'
   numeric_value: !ruby/object:BigDecimal 18:0.77e2
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2144,13 +2144,13 @@ answers_090:
   year: 2000
   value: '0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2168,13 +2168,13 @@ answers_091:
   year: 2001
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2192,13 +2192,13 @@ answers_092:
   year: 2002
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2216,13 +2216,13 @@ answers_093:
   year: 2010
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2240,13 +2240,13 @@ answers_094:
   year: 2011
   value: '11'
   numeric_value: !ruby/object:BigDecimal 18:0.11e2
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2264,13 +2264,13 @@ answers_095:
   year: 2012
   value: '12'
   numeric_value: !ruby/object:BigDecimal 18:0.12e2
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2288,13 +2288,13 @@ answers_096:
   year: 2013
   value: '13'
   numeric_value: !ruby/object:BigDecimal 18:0.13e2
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2312,13 +2312,13 @@ answers_097:
   year: 2014
   value: '14'
   numeric_value: !ruby/object:BigDecimal 18:0.14e2
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2336,13 +2336,13 @@ answers_098:
   year: 2014
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2360,13 +2360,13 @@ answers_099:
   year: 2014
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2384,13 +2384,13 @@ answers_100:
   year: 2015
   value: '15'
   numeric_value: !ruby/object:BigDecimal 18:0.15e2
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2408,13 +2408,13 @@ answers_101:
   year: 2015
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:45.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:45.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2432,13 +2432,13 @@ answers_102:
   year: 2014
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:46.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:46.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2456,13 +2456,13 @@ answers_103:
   year: 2014
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:46.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:46.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2480,13 +2480,13 @@ answers_104:
   year: 2015
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:46.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:46.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2504,13 +2504,13 @@ answers_105:
   year: 2015
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:46.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:46.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2528,13 +2528,13 @@ answers_106:
   year: 1977
   value: '1000'
   numeric_value: !ruby/object:BigDecimal 18:0.1e4
-  updated_at: 2022-10-04 00:49:11.000000000 Z
+  updated_at: 2022-10-05 17:42:03.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:49:11.000000000 Z
+  created_at: 2022-10-05 17:42:03.000000000 Z
   overridden_value: '5'
   calculating: 0
   source_count: 1
@@ -2552,13 +2552,13 @@ answers_107:
   year: 2002
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
-  updated_at: 2022-10-04 00:48:50.000000000 Z
+  updated_at: 2022-10-05 17:41:46.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:50.000000000 Z
+  created_at: 2022-10-05 17:41:46.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2576,13 +2576,13 @@ answers_108:
   year: 1977
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2600,13 +2600,13 @@ answers_109:
   year: 1977
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2624,13 +2624,13 @@ answers_110:
   year: 1977
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2648,13 +2648,13 @@ answers_111:
   year: 1990
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2672,13 +2672,13 @@ answers_112:
   year: 1991
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2696,13 +2696,13 @@ answers_113:
   year: 1992
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2720,13 +2720,13 @@ answers_114:
   year: 2000
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2744,13 +2744,13 @@ answers_115:
   year: 2000
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2768,13 +2768,13 @@ answers_116:
   year: 2000
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2792,13 +2792,13 @@ answers_117:
   year: 2001
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2816,13 +2816,13 @@ answers_118:
   year: 2005
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2840,13 +2840,13 @@ answers_119:
   year: 2006
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
-  updated_at: 2022-10-04 00:48:51.000000000 Z
+  updated_at: 2022-10-05 17:41:47.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 2597
   editor_id: 2597
-  created_at: 2022-10-04 00:48:51.000000000 Z
+  created_at: 2022-10-05 17:41:47.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2864,13 +2864,13 @@ answers_120:
   year: 1977
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
-  updated_at: 2022-10-04 00:48:53.000000000 Z
+  updated_at: 2022-10-05 17:41:48.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:53.000000000 Z
+  created_at: 2022-10-05 17:41:48.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2888,13 +2888,13 @@ answers_121:
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:53.000000000 Z
+  updated_at: 2022-10-05 17:41:48.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:53.000000000 Z
+  created_at: 2022-10-05 17:41:48.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2912,13 +2912,13 @@ answers_122:
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:53.000000000 Z
+  updated_at: 2022-10-05 17:41:48.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:53.000000000 Z
+  created_at: 2022-10-05 17:41:48.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2936,13 +2936,13 @@ answers_123:
   year: 1977
   value: '2.5'
   numeric_value: !ruby/object:BigDecimal 18:0.25e1
-  updated_at: 2022-10-04 00:48:53.000000000 Z
+  updated_at: 2022-10-05 17:41:48.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:53.000000000 Z
+  created_at: 2022-10-05 17:41:48.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2960,13 +2960,13 @@ answers_124:
   year: 1977
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:48:53.000000000 Z
+  updated_at: 2022-10-05 17:41:48.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:53.000000000 Z
+  created_at: 2022-10-05 17:41:48.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -2984,13 +2984,13 @@ answers_125:
   year: 2003
   value: '0.4'
   numeric_value: !ruby/object:BigDecimal 18:0.4e0
-  updated_at: 2022-10-04 00:48:53.000000000 Z
+  updated_at: 2022-10-05 17:41:48.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:53.000000000 Z
+  created_at: 2022-10-05 17:41:48.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3008,13 +3008,13 @@ answers_126:
   year: 2004
   value: '0.45'
   numeric_value: !ruby/object:BigDecimal 18:0.45e0
-  updated_at: 2022-10-04 00:48:53.000000000 Z
+  updated_at: 2022-10-05 17:41:48.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:53.000000000 Z
+  created_at: 2022-10-05 17:41:48.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3032,13 +3032,13 @@ answers_127:
   year: 2005
   value: '0.5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e0
-  updated_at: 2022-10-04 00:48:53.000000000 Z
+  updated_at: 2022-10-05 17:41:48.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:53.000000000 Z
+  created_at: 2022-10-05 17:41:48.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3056,13 +3056,13 @@ answers_128:
   year: 1977
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:54.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:54.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3080,13 +3080,13 @@ answers_129:
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
-  updated_at: 2022-10-04 00:48:54.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:54.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3104,13 +3104,13 @@ answers_130:
   year: 1977
   value: '4'
   numeric_value: !ruby/object:BigDecimal 18:0.4e1
-  updated_at: 2022-10-04 00:48:54.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:54.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3128,13 +3128,13 @@ answers_131:
   year: 1977
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
-  updated_at: 2022-10-04 00:48:54.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:54.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3152,13 +3152,13 @@ answers_132:
   year: 1977
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:48:54.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:54.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3176,13 +3176,13 @@ answers_133:
   year: 2003
   value: '0.8'
   numeric_value: !ruby/object:BigDecimal 18:0.8e0
-  updated_at: 2022-10-04 00:48:54.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:54.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3200,13 +3200,13 @@ answers_134:
   year: 2004
   value: '0.9'
   numeric_value: !ruby/object:BigDecimal 18:0.9e0
-  updated_at: 2022-10-04 00:48:54.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:54.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3224,13 +3224,13 @@ answers_135:
   year: 2005
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
-  updated_at: 2022-10-04 00:48:54.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:54.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3248,13 +3248,13 @@ answers_136:
   year: 1977
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
-  updated_at: 2022-10-04 00:48:55.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:55.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3272,13 +3272,13 @@ answers_137:
   year: 1977
   value: '1.2'
   numeric_value: !ruby/object:BigDecimal 18:0.12e1
-  updated_at: 2022-10-04 00:48:55.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:55.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3296,13 +3296,13 @@ answers_138:
   year: 2005
   value: '0.6'
   numeric_value: !ruby/object:BigDecimal 18:0.6e0
-  updated_at: 2022-10-04 00:48:55.000000000 Z
+  updated_at: 2022-10-05 17:41:50.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:55.000000000 Z
+  created_at: 2022-10-05 17:41:50.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3320,13 +3320,13 @@ answers_139:
   year: 1977
   value: '97'
   numeric_value: !ruby/object:BigDecimal 18:0.97e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3344,13 +3344,13 @@ answers_140:
   year: 2000
   value: '20'
   numeric_value: !ruby/object:BigDecimal 18:0.2e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3368,13 +3368,13 @@ answers_141:
   year: 2001
   value: '30'
   numeric_value: !ruby/object:BigDecimal 18:0.3e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3392,13 +3392,13 @@ answers_142:
   year: 2002
   value: '30'
   numeric_value: !ruby/object:BigDecimal 18:0.3e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3416,13 +3416,13 @@ answers_143:
   year: 2010
   value: '30'
   numeric_value: !ruby/object:BigDecimal 18:0.3e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3440,13 +3440,13 @@ answers_144:
   year: 2011
   value: '31'
   numeric_value: !ruby/object:BigDecimal 18:0.31e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3464,13 +3464,13 @@ answers_145:
   year: 2012
   value: '32'
   numeric_value: !ruby/object:BigDecimal 18:0.32e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3488,13 +3488,13 @@ answers_146:
   year: 2013
   value: '33'
   numeric_value: !ruby/object:BigDecimal 18:0.33e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3512,13 +3512,13 @@ answers_147:
   year: 2014
   value: '34'
   numeric_value: !ruby/object:BigDecimal 18:0.34e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3536,13 +3536,13 @@ answers_148:
   year: 2015
   value: '35'
   numeric_value: !ruby/object:BigDecimal 18:0.35e2
-  updated_at: 2022-10-04 00:48:56.000000000 Z
+  updated_at: 2022-10-05 17:41:52.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:56.000000000 Z
+  created_at: 2022-10-05 17:41:52.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3560,13 +3560,13 @@ answers_149:
   year: 2005
   value: '19'
   numeric_value: !ruby/object:BigDecimal 18:0.19e2
-  updated_at: 2022-10-04 00:48:58.000000000 Z
+  updated_at: 2022-10-05 17:41:53.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:58.000000000 Z
+  created_at: 2022-10-05 17:41:53.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3584,13 +3584,13 @@ answers_150:
   year: 2004
   value: '17'
   numeric_value: !ruby/object:BigDecimal 18:0.17e2
-  updated_at: 2022-10-04 00:48:58.000000000 Z
+  updated_at: 2022-10-05 17:41:53.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:48:58.000000000 Z
+  created_at: 2022-10-05 17:41:53.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3608,13 +3608,13 @@ answers_151:
   year: 2005
   value: '27'
   numeric_value: !ruby/object:BigDecimal 18:0.27e2
-  updated_at: 2022-10-04 00:49:00.000000000 Z
+  updated_at: 2022-10-05 17:41:55.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:00.000000000 Z
+  created_at: 2022-10-05 17:41:55.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3632,13 +3632,13 @@ answers_152:
   year: 1977
   value: '0.01'
   numeric_value: !ruby/object:BigDecimal 18:0.1e-1
-  updated_at: 2022-10-04 00:49:02.000000000 Z
+  updated_at: 2022-10-05 17:41:56.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:02.000000000 Z
+  created_at: 2022-10-05 17:41:56.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3656,13 +3656,13 @@ answers_153:
   year: 1977
   value: '0.05'
   numeric_value: !ruby/object:BigDecimal 18:0.5e-1
-  updated_at: 2022-10-04 00:49:02.000000000 Z
+  updated_at: 2022-10-05 17:41:56.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:02.000000000 Z
+  created_at: 2022-10-05 17:41:56.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3680,13 +3680,13 @@ answers_154:
   year: 1977
   value: '0.025'
   numeric_value: !ruby/object:BigDecimal 18:0.25e-1
-  updated_at: 2022-10-04 00:49:02.000000000 Z
+  updated_at: 2022-10-05 17:41:56.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:02.000000000 Z
+  created_at: 2022-10-05 17:41:56.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3704,13 +3704,13 @@ answers_155:
   year: 1977
   value: '0.02'
   numeric_value: !ruby/object:BigDecimal 18:0.2e-1
-  updated_at: 2022-10-04 00:49:02.000000000 Z
+  updated_at: 2022-10-05 17:41:56.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:02.000000000 Z
+  created_at: 2022-10-05 17:41:56.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3728,13 +3728,13 @@ answers_156:
   year: 1977
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:49:02.000000000 Z
+  updated_at: 2022-10-05 17:41:56.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:02.000000000 Z
+  created_at: 2022-10-05 17:41:56.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3752,13 +3752,13 @@ answers_157:
   year: 2003
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
-  updated_at: 2022-10-04 00:49:09.000000000 Z
+  updated_at: 2022-10-05 17:42:01.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:49:09.000000000 Z
+  created_at: 2022-10-05 17:42:01.000000000 Z
   overridden_value: '0.125'
   calculating: 0
   source_count: 1
@@ -3776,13 +3776,13 @@ answers_158:
   year: 2004
   value: '0.1111111111111111'
   numeric_value: !ruby/object:BigDecimal 18:0.11111e0
-  updated_at: 2022-10-04 00:49:02.000000000 Z
+  updated_at: 2022-10-05 17:41:56.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:02.000000000 Z
+  created_at: 2022-10-05 17:41:56.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3800,13 +3800,13 @@ answers_159:
   year: 2005
   value: '0.1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e0
-  updated_at: 2022-10-04 00:49:02.000000000 Z
+  updated_at: 2022-10-05 17:41:56.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:02.000000000 Z
+  created_at: 2022-10-05 17:41:56.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3824,13 +3824,13 @@ answers_160:
   year: 1977
   value: '0.02'
   numeric_value: !ruby/object:BigDecimal 18:0.2e-1
-  updated_at: 2022-10-04 00:49:04.000000000 Z
+  updated_at: 2022-10-05 17:41:57.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:04.000000000 Z
+  created_at: 2022-10-05 17:41:57.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3848,13 +3848,13 @@ answers_161:
   year: 1977
   value: '0.05'
   numeric_value: !ruby/object:BigDecimal 18:0.5e-1
-  updated_at: 2022-10-04 00:49:04.000000000 Z
+  updated_at: 2022-10-05 17:41:57.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:04.000000000 Z
+  created_at: 2022-10-05 17:41:57.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3872,13 +3872,13 @@ answers_162:
   year: 1977
   value: '0.04'
   numeric_value: !ruby/object:BigDecimal 18:0.4e-1
-  updated_at: 2022-10-04 00:49:04.000000000 Z
+  updated_at: 2022-10-05 17:41:57.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:04.000000000 Z
+  created_at: 2022-10-05 17:41:57.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3896,13 +3896,13 @@ answers_163:
   year: 1977
   value: Unknown
   numeric_value:
-  updated_at: 2022-10-04 00:49:04.000000000 Z
+  updated_at: 2022-10-05 17:41:57.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:04.000000000 Z
+  created_at: 2022-10-05 17:41:57.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3920,13 +3920,13 @@ answers_164:
   year: 1977
   value: '0.1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e0
-  updated_at: 2022-10-04 00:49:10.000000000 Z
+  updated_at: 2022-10-05 17:42:02.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:10.000000000 Z
+  created_at: 2022-10-05 17:42:02.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3944,13 +3944,13 @@ answers_165:
   year: 2003
   value: '200'
   numeric_value: !ruby/object:BigDecimal 18:0.2e3
-  updated_at: 2022-10-04 00:49:10.000000000 Z
+  updated_at: 2022-10-05 17:42:02.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:10.000000000 Z
+  created_at: 2022-10-05 17:42:02.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3968,13 +3968,13 @@ answers_166:
   year: 2004
   value: '0.2222222222222222'
   numeric_value: !ruby/object:BigDecimal 18:0.22222e0
-  updated_at: 2022-10-04 00:49:10.000000000 Z
+  updated_at: 2022-10-05 17:42:02.000000000 Z
   imported: 0
   latest: 0
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:10.000000000 Z
+  created_at: 2022-10-05 17:42:02.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -3992,13 +3992,13 @@ answers_167:
   year: 2005
   value: '0.2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e0
-  updated_at: 2022-10-04 00:49:10.000000000 Z
+  updated_at: 2022-10-05 17:42:02.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:10.000000000 Z
+  created_at: 2022-10-05 17:42:02.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -4016,13 +4016,13 @@ answers_168:
   year: 2019
   value: A
   numeric_value:
-  updated_at: 2022-10-04 00:49:28.000000000 Z
+  updated_at: 2022-10-05 17:42:16.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:49:28.000000000 Z
+  created_at: 2022-10-05 17:42:16.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -4040,13 +4040,13 @@ answers_169:
   year: 2019
   value: A
   numeric_value:
-  updated_at: 2022-10-04 00:49:29.000000000 Z
+  updated_at: 2022-10-05 17:42:17.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id:
-  created_at: 2022-10-04 00:49:29.000000000 Z
+  created_at: 2022-10-05 17:42:17.000000000 Z
   overridden_value:
   calculating: 0
   source_count: 1
@@ -4064,13 +4064,13 @@ answers_170:
   year: 2019
   value: California (United States)
   numeric_value:
-  updated_at: 2022-10-04 00:49:29.000000000 Z
+  updated_at: 2022-10-05 17:42:18.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:29.000000000 Z
+  created_at: 2022-10-05 17:42:18.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -4088,13 +4088,13 @@ answers_171:
   year: 2019
   value: Americas
   numeric_value:
-  updated_at: 2022-10-04 00:49:30.000000000 Z
+  updated_at: 2022-10-05 17:42:18.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:30.000000000 Z
+  created_at: 2022-10-05 17:42:18.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
@@ -4112,13 +4112,13 @@ answers_172:
   year: 2019
   value: United States
   numeric_value:
-  updated_at: 2022-10-04 00:49:30.000000000 Z
+  updated_at: 2022-10-05 17:42:18.000000000 Z
   imported: 0
   latest: 1
   checkers:
   creator_id: 1
   editor_id: 1
-  created_at: 2022-10-04 00:49:30.000000000 Z
+  created_at: 2022-10-05 17:42:18.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
