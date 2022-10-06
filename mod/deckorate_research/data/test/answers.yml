@@ -121,7 +121,7 @@
   - Sony Corporation
   - '2008'
   :type: :metric_answer
-  :user: Joe User
+  # :user: Joe User
   :fields:
     :value: '8'
     :source: Source-000000001

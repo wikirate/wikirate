@@ -77,8 +77,8 @@ format :html do
   def hash_value_closer_value value
     [
       ("> #{value[:from]}" if value[:from]),
-      ("> #{value[:to]}" if value[:to])
-    ].join ", "
+      ("< #{value[:to]}" if value[:to])
+    ].compact.join ", "
   end
 
   def standard_verification_options

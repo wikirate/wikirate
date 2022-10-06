@@ -5,6 +5,14 @@ format :html do
     voo.edit_structure = form_fields
   end
 
+  def new_form_opts
+    super.tap do |opts|
+      if params[:layout] == "modal"
+        opts.merge! "data-slotter-mode": "update-origin", class: "_close-modal"
+      end
+    end
+  end
+
   def form_fields
     flds = %i[wikirate_title report_type wikirate_company year description]
     if card.new?
