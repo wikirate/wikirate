@@ -6,9 +6,9 @@ RSpec.describe Card::Set::Self::MetricAnswer, "metric answer report queries" do
   describe "created query" do
     include_context "report query", :metric_answer, :created
     variants checked_by_others: answer(2004),
-             updated_by_others: [answer(2008), answer(2009)],
+             updated_by_others: [answer(2009)],
              discussed_by_others: answer(2006),
-             all: 8
+             all: 7
   end
 
   describe "updated query" do

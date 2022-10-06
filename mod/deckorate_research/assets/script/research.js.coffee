@@ -69,9 +69,10 @@ $(document).ready ->
 
   # open pdf preview when clicking on source box/bar
   $('.research-layout #main').on 'click', ".TYPE-source.box, .TYPE-source.bar", (e) ->
-    toPhase "source", e
-    openPdf $(this).data("cardName")
-    e.stopPropagation()
+    unless $(this).data("skip") == "on" # see _over-card-link mechanism
+      toPhase "source", e
+      openPdf $(this).data("cardName")
+      e.stopPropagation()
 
   # remove source item from answer page
   $('body').on 'click', '._remove-removable', ->

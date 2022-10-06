@@ -35,7 +35,7 @@ format :html do
       bits = closer_constraint_bits c[:metric_id].to_i, c[:value],
                                     c[:related_company_group], c[:year]
       bits.compact.reject { |i| i == false }.join " "
-    end.join ", "
+    end.compact.join ", "
   end
 
   # fixes handling of certain requests that use $.params(json) and send the company

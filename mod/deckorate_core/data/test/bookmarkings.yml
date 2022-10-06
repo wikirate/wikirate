@@ -3,6 +3,7 @@
     - Joe User
     - :bookmarks
   :type: :list
+  :conflict: defer
   :content: |-
     Jedi+disturbances in the Force
 - :name:
