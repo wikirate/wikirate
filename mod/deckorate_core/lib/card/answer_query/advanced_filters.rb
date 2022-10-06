@@ -5,7 +5,7 @@ class Card
       def company_answer_query value
         Array.wrap(value).each_with_index do |constraint, index|
           table = "co_ans#{index}"
-          @joins << company_answer_join(table)
+          @joins += company_answer_join(table)
           @conditions << CompanyFilterQuery.company_answer_condition(table, constraint)
         end
       end

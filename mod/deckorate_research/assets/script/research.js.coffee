@@ -95,7 +95,6 @@ $(document).ready ->
       demandYear e
     else
       appendToDataUrl $(this),
-#         filter: { year: selectedYear }
         year: selectedYear()
         source: selectedSource()
 
