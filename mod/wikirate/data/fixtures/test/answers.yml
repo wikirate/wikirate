@@ -80,7 +80,7 @@ answers_004:
   year: 2010
   value: 'yes'
   numeric_value:
-  updated_at: 2022-10-05 17:41:38.000000000 Z
+  updated_at: 2022-10-06 17:03:41.000000000 Z
   imported: 0
   latest: 1
   checkers:
@@ -94,7 +94,7 @@ answers_004:
   comments:
   verification: 0
   unpublished: 0
-  open_flags: 1
+  open_flags: 2
 answers_005:
   id: 5
   answer_id: 3144
@@ -296,7 +296,7 @@ answers_013:
   year: 2008
   value: '6'
   numeric_value:
-  updated_at: 2022-10-05 17:42:07.000000000 Z
+  updated_at: 2022-10-06 17:03:43.000000000 Z
   imported: 0
   latest: 0
   checkers:
