@@ -6,7 +6,8 @@
 - answers
 - relationship_answers
 
-- :type: :flag
+- :name: Flag 0000001
+  :type: :flag
   :fields:
     :status: open
     :subject: Fred+dinosaurlabor+Death Star+2010

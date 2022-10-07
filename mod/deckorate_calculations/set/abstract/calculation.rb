@@ -1,5 +1,3 @@
-card_accessor :metric_variables # deprecated
-
 def calculator variant=:standard
   calculator_class.new input_array(variant),
                        formula: formula,
