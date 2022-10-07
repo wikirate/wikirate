@@ -16,6 +16,7 @@
                      path: { mark: :source,
                              action: :new,
                              slot: { hide: :cancel_button } },
-                     data: { source_fields: card.source_card.format.new_source_defaults },
+                     data: { source_fields: card.source_card.format.new_source_defaults,
+                             "slot-selector": ".RIGHT-source.filtered_results-view" },
                      class: "_add_source_modal_link btn btn-lg btn-primary",
                      size: :xl

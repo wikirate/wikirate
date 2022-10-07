@@ -31,8 +31,8 @@ format :html do
   end
 
   def spreadsheet_preview
-    "Previews for spreadsheets and CSVs are coming soon. " \
-    "Go to the Details tab and click \"Download\" to access the source file."
+    "Previews for spreadsheets and CSVs are coming soon. " +
+      link_to("Download original.", href: card.file_url, target: "_blank")
   end
 
   def pdf_preview

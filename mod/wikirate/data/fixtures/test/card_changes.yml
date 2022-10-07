@@ -521,3 +521,23 @@ card_changes_100:
   card_action_id: 9962
   field: 2
   value: updated
+card_changes_101:
+  id: 101
+  card_action_id: 10318
+  field: 2
+  value: '8'
+card_changes_102:
+  id: 102
+  card_action_id: 10748
+  field: 2
+  value: '6'
+card_changes_103:
+  id: 103
+  card_action_id: 11100
+  field: 2
+  value: '8'
+card_changes_104:
+  id: 104
+  card_action_id: 11514
+  field: 2
+  value: '6'
