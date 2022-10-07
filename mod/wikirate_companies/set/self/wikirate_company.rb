@@ -40,6 +40,14 @@ format do
   def all_regions
     Card.search type: :region, limit: 0, return: :name, sort: :name
   end
+
+  def os_search_returning_cards
+    super.tap do |cardlist|
+      if (exact_match = filtered_name&.card) && !cardlist.include?(exact_match)
+        cardlist.unshift exact_match
+      end
+    end
+  end
 end
 
 format :html do

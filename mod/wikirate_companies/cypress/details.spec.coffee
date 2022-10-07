@@ -40,7 +40,8 @@ describe "expanding details on company pages", ->
 
     # close score
     cy.wait 400 # let modal transition finish
-    cy.get("._close-modal:visible").first().click()
+
+    cy.get("._close-modal").first().click()
     cy.get("._modal-slot").should "not.contain", "Scored Metric"
     cy.contains "deadliness"
     cy.contains "disturbance"

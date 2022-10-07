@@ -60,6 +60,10 @@ format :html do
     super()
   end
 
+  view :modal_footer do
+    ""
+  end
+
   # TODO: refactor away
   view :menued do
     render_titled hide: [:title, :toggle], show: :menu
