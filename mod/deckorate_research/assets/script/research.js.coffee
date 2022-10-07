@@ -71,8 +71,8 @@ $(document).ready ->
   $('.research-layout #main').on 'click', ".TYPE-source.box, .TYPE-source.bar", (e) ->
     unless $(this).data("skip") == "on" # see _over-card-link mechanism
       toPhase "source", e
-      openPdf $(this).data("cardName")
       e.stopPropagation()
+      openPdf $(this).data("cardName")
 
   # remove source item from answer page
   $('body').on 'click', '._remove-removable', ->
@@ -110,7 +110,7 @@ $(document).ready ->
     $("._methodology-button").click()
 
 closeSourceModal = (el)->
-  el.closest("._modal-slot").find("._close-modal").trigger "click"
+  bootstrap.Modal.getInstance(el.closest("._modal-slot")).hide()
 
 appendToUrl = (url, params) ->
   url + "&" + $.param(params)
@@ -191,15 +191,25 @@ researchPath = (view)->
   decko.path path + "/" + view
 
 openPdf = (sourceMark) ->
-  el = $(".source_phase-view")
-  if el[0] && sourceMark != selectedSource
-    params = { source: sourceMark }
-    if citedSources().toArray().includes(sourceMark)
-      params["slot"] = { hide: "select_source_button" }
-    url = researchPath("source_selector") + "?" + $.param(params)
-    el.addClass "slotter"
-    el[0].href = url
-    $.rails.handleRemote el
+  whenAvailable ".source_phase-view", ->
+    el = $(".source_phase-view")
+    if sourceMark != selectedSource
+      params = { source: sourceMark }
+      if citedSources().toArray().includes(sourceMark)
+        params["slot"] = { hide: "select_source_button" }
+      url = researchPath("source_selector") + "?" + $.param(params)
+      el.addClass "slotter"
+      el[0].href = url
+      $.rails.handleRemote el
+
+whenAvailable = (selector, callback, maxTimes = 100) ->
+  if jQuery(selector).length
+    callback()
+  else if maxTimes == false || maxTimes > 0
+    (maxTimes != false) && maxTimes--
+    setTimeout ->
+        waitForEl selector, callback, maxTimes
+      , 100
 
 deckorate.tabPhase = tabPhase
 
