@@ -173,7 +173,7 @@
     - Commons
     - Industry
   :type: :metric
-  :codename: :commons_industry
+  :codename: commons_industry
   :fields:
     :value_type: Multi-Category
     :hybrid: '1'
@@ -186,7 +186,7 @@
     - Core
     - Headquarters Location
   :type: :metric
-  :codename: :core_headquarters_location
+  :codename: core_headquarters_location
   :fields:
     :value_type: Category
     :metric_type: Formula
@@ -552,13 +552,13 @@
 
 - :name: Company Category
   :type: :metric_title
-  :codename: :company_category
+  :codename: company_category
 
 - :name:
     - Commons
     - :company_category
   :type: :metric
-  :codename: :commons_company_category
+  :codename: commons_company_category
   :fields:
     :value_type: Multi-Category
     :metric_type: Formula

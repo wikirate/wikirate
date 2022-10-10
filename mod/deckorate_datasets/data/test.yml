@@ -44,7 +44,7 @@
 # Featured
 
 - :name: Featured
-  :codename: :featured
+  :codename: featured
 
 - :name:
     - :dataset
