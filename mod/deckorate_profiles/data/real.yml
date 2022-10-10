@@ -1,17 +1,17 @@
 ---
 - :name: Profile Type
-  :codename: :profile_type
+  :codename: profile_type
 - :name: Research Group
   :type: :cardtype
-  :codename: :research_group
+  :codename: research_group
 - :name: Research Policy
   :type: :cardtype
-  :codename: :research_policy
+  :codename: research_policy
 - :name: activity
-  :codename: :activity
+  :codename: activity
 - :name: report search
-  :codename: :report_search
+  :codename: report_search
 - :name: Metrics Designed
-  :codename: :metrics_designed
+  :codename: metrics_designed
 - :name: Projects Organized
-  :codename: :projects_organized
+  :codename: projects_organized
