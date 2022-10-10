@@ -1,13 +1,13 @@
 ---
 - :name: Answer Import
   :type: :cardtype
-  :codename: :answer_import
+  :codename: answer_import
 - :name: Relationship Import
   :type: :cardtype
-  :codename: :relationship_import
+  :codename: relationship_import
 - :name: Source Import
   :type: :cardtype
-  :codename: :source_import
+  :codename: source_import
 - :name: Metric Import
   :type: :cardtype
-  :codename: :metric_import
+  :codename: metric_import

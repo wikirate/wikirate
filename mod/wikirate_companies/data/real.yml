@@ -1,36 +1,36 @@
 ---
 - :name: Company Group
   :type: :cardtype
-  :codename: :company_group
+  :codename: company_group
 - :name: Specification
-  :codename: :specification
+  :codename: specification
 
 - :name: Jurisdiction
   :type: :cardtype
-  :codename: :jurisdiction
+  :codename: jurisdiction
 - :name: OAR id
-  :codename: :oar_id
+  :codename: oar_id
 - :name: SEC CIK
-  :codename: :sec_cik
+  :codename: sec_cik
 - :name: OpenCorporates
   :type: :research_group
-  :codename: :open_corporates
+  :codename: open_corporates
 - :name: Incorporation
-  :codename: :incorporation
+  :codename: incorporation
 - :name: Wikipedia
   :type: :wikirate_company
-  :codename: :wikipedia
+  :codename: wikipedia
 - :name: company search
-  :codename: :company_search
+  :codename: company_search
 - :name: Country
   :type: :metric_title
-  :codename: :country
+  :codename: country
 - :name: Country code
-  :codename: :country_code
+  :codename: country_code
 - :name: ILO Region
   :type: :metric_title
-  :codename: :ilo_region
+  :codename: ilo_region
 - :name: Headquarters
-  :codename: :headquarters
+  :codename: headquarters
 
 - regions
