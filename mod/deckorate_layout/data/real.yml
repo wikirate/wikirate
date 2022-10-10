@@ -1,5 +1,6 @@
 - :name:
     - :all
     - :layout
+  :conflict: override
   :content:
     deckorate_layout
