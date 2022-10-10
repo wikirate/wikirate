@@ -1,35 +1,35 @@
 ---
 - :name: Calculation
-  :codename: :calculation
+  :codename: calculation
 - :name: Yearly Variable
   :type: :cardtype
-  :codename: :yearly_variable
+  :codename: yearly_variable
 - :name: Yearly Value
   :type: :cardtype
-  :codename: :yearly_value
+  :codename: yearly_value
 - :name: Yearly Answer
   :type: :cardtype
-  :codename: :yearly_answer
+  :codename: yearly_answer
 
 - :name: overridden value
-  :codename: :overridden_value
+  :codename: overridden_value
 - :name: hybrid
-  :codename: :hybrid
+  :codename: hybrid
 - :name: Rubric
-  :codename: :rubric
+  :codename: rubric
 
 - :name: Formula
   :type: :metric_type_type
-  :codename: :formula
+  :codename: formula
 - :name: WikiRating
   :type: :metric_type_type
-  :codename: :wiki_rating
+  :codename: wiki_rating
 - :name: Score
   :type: :metric_type_type
-  :codename: :score
+  :codename: score
 - :name: Descendant
   :type: :metric_type_type
-  :codename: :descendant
+  :codename: descendant
 
 # override rstar rule
 - :name:

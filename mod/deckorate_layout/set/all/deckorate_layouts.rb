@@ -1,6 +1,6 @@
 format :html do
-  def layout_name_from_rule
-    :deckorate_layout
+  view :page do
+    render_core
   end
 
   layout :deckorate_layout, view: :titled do

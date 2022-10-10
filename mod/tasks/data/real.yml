@@ -1,8 +1,8 @@
 ---
 - :name: Task
   :type: :cardtype
-  :codename: :task
+  :codename: task
 - :name: How To
-  :codename: :how_to
+  :codename: how_to
 - :name: Why
-  :codename: :why
+  :codename: why
