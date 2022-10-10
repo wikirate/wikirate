@@ -1,4 +1,4 @@
 ---
 - :name: Conversation
   :type: :cardtype
-  :codename: :conversation
+  :codename: conversation
