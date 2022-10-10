@@ -207,9 +207,7 @@ whenAvailable = (selector, callback, maxTimes = 100) ->
     callback()
   else if maxTimes == false || maxTimes > 0
     (maxTimes != false) && maxTimes--
-    setTimeout ->
-        waitForEl selector, callback, maxTimes
-      , 100
+    setTimeout -> whenAvailable(selector, callback, maxTimes), 100
 
 deckorate.tabPhase = tabPhase
 
