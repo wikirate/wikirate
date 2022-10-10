@@ -1,19 +1,19 @@
 ---
 - :name: inverse
-  :codename: :inverse
+  :codename: inverse
 - :name: Inverse Relationship
   :type: :metric_type_type
-  :codename: :inverse_relationship
+  :codename: inverse_relationship
 - :name: inverse title
-  :codename: :inverse_title
+  :codename: inverse_title
 - :name: Relationship
   :type: :metric_type_type
-  :codename: :relationship
+  :codename: relationship
 - :name: Relationship Answer
   :type: :cardtype
-  :codename: :relationship_answer
+  :codename: relationship_answer
 - :name: related company
-  :codename: :related_company
+  :codename: related_company
 
 - :name:
     - :inverse

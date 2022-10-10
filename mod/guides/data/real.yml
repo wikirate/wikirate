@@ -1,7 +1,7 @@
 ---
 - :name: Guide
   :type: :cardtype
-  :codename: :guide_type
+  :codename: guide_type
 - :name: Reference
   :type: :cardtype
-  :codename: :reference
+  :codename: reference

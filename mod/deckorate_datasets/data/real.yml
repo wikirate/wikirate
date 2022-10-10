@@ -13,8 +13,8 @@
   :type: :cardtype
 - :name: Status
   :type: :cardtype
-  :codename: :wikirate_status
+  :codename: wikirate_status
 - :name: Data Subset
-  :codename: :data_subset
+  :codename: data_subset
 - :name: Parent
-  :codename: :parent
+  :codename: parent

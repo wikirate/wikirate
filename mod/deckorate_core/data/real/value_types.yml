@@ -1,7 +1,7 @@
 ---
 - :name: value type
   :type: :list
-  :codename: :value_type
+  :codename: value_type
   :content: |-
     Number
     Money
@@ -11,36 +11,36 @@
 
 - :name: NumberValue
   :type: :cardtype
-  :codename: :number_value
+  :codename: number_value
 - :name: MoneyValue
   :type: :cardtype
-  :codename: :money_value
+  :codename: money_value
 - :name: CategoryValue
   :type: :cardtype
-  :codename: :category_value
+  :codename: category_value
 - :name: MultiCategoryValue
   :type: :cardtype
-  :codename: :multi_category_value
+  :codename: multi_category_value
 - :name: FreeTextValue
   :type: :cardtype
-  :codename: :free_text_value
+  :codename: free_text_value
 
 - :name: Number
   :type: :cardtype
-  :codename: :number
+  :codename: number
 - :name: Money
-  :codename: :money
+  :codename: money
 - :name: Category
   :type: :pointer
-  :codename: :category
+  :codename: category
   :content: |-
     Yes
     No
     Unknown
 - :name: Multi-Category
-  :codename: :multi_category
+  :codename: multi_category
 - :name: Free Text
-  :codename: :free_text
+  :codename: free_text
 
 
 - :name:

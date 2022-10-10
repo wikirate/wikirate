@@ -1,10 +1,10 @@
 ---
 - :name: Topic
   :type: :cardtype
-  :codename: :wikirate_topic
+  :codename: wikirate_topic
 - :name: subtopic
-  :codename: :subtopic
+  :codename: subtopic
 - :name: supertopic
-  :codename: :supertopic
+  :codename: supertopic
 - :name: Overview
-  :codename: :general_overview
+  :codename: general_overview

@@ -1,98 +1,98 @@
 ---
 # move this!!
 - :name: Home
-  :codename: :homepage
+  :codename: homepage
 - :name: Badge
   :type: :cardtype
-  :codename: :badge
+  :codename: badge
 - badges
 - :name: Badges earned
-  :codename: :badges_earned
+  :codename: badges_earned
 - :name: project badge
-  :codename: :project_badge
+  :codename: project_badge
 - :name: company badge
-  :codename: :company_badge
+  :codename: company_badge
 - :name: designer badge
-  :codename: :designer_badge
+  :codename: designer_badge
 
 
 
 - :name: Details
-  :codename: :details
+  :codename: details
 - :name: Organizer
-  :codename: :organizer
+  :codename: organizer
 
 # Cardtypes
 - :name: Metric Title
   :type: :cardtype
-  :codename: :metric_title
+  :codename: metric_title
 - :name: Answer
   :type: :cardtype
-  :codename: :metric_answer
+  :codename: metric_answer
 - :name: Metric type
   :type: :cardtype
-  :codename: :metric_type_type
+  :codename: metric_type_type
 - :name: Relationship Answer
   :type: :cardtype
-  :codename: :relationship_answer
+  :codename: relationship_answer
 - :name: Year
   :type: :cardtype
-  :codename: :year
+  :codename: year
 - :name: Company
   :type: :cardtype
-  :codename: :wikirate_company
+  :codename: wikirate_company
 - :name: Record
   :type: :cardtype
-  :codename: :record
+  :codename: record
 - :name: Metric
   :type: :cardtype
-  :codename: :metric
+  :codename: metric
 # misc
 - :name: values
-  :codename: :value
+  :codename: value
 - :name: Unknown
-  :codename: :unknown
+  :codename: unknown
 - :name: Researched
   :type: :metric_type_type
-  :codename: :researched
+  :codename: researched
 - :name: unpublished
-  :codename: :unpublished
+  :codename: unpublished
 
 
 # (duplicate)
 - :name: Wikipedia
-  :codename: :wikipedia
+  :codename: wikipedia
 # can't create company without wikipedia, so this can't be a company yet
 - :name: hybrid
-  :codename: :hybrid
+  :codename: hybrid
 - :name: Company Group
   :type: :cardtype
-  :codename: :company_group
+  :codename: company_group
 - :name: Research Policy
   :type: :cardtype
-  :codename: :research_policy
+  :codename: research_policy
 - :name: Report Type
   :type: :cardtype
-  :codename: :report_type
+  :codename: report_type
 - :name: Designer Assessed
   :type: :research_policy
 - :name: Community Assessed
   :type: :research_policy
 - :name: Headquarters
-  :codename: :headquarters
+  :codename: headquarters
 - :name: OpenCorporates Jurisdiction key
-  :codename: :oc_jurisdiction_key
+  :codename: oc_jurisdiction_key
 - :name: Region
   :type: :cardtype
-  :codename: :region
+  :codename: region
 - :name: Country
   :type: :metric_title
-  :codename: :country
+  :codename: country
 - :name: Country code
-  :codename: :country_code
+  :codename: country_code
 - :name: ILO Region
   :type: :metric_title
-  :codename: :ilo_region
+  :codename: ilo_region
 
 - regions
 - value_types
