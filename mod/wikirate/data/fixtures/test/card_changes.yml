@@ -541,3 +541,13 @@ card_changes_104:
   card_action_id: 11514
   field: 2
   value: '6'
+card_changes_105:
+  id: 105
+  card_action_id: 11866
+  field: 2
+  value: '8'
+card_changes_106:
+  id: 106
+  card_action_id: 12280
+  field: 2
+  value: '6'

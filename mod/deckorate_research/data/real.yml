@@ -1,23 +1,23 @@
 ---
 - :name: Report Type
   :type: :cardtype
-  :codename: :report_type
+  :codename: report_type
 - :name: Source
   :type: :cardtype
-  :codename: :source
+  :codename: source
 - :name: Website
   :type: :cardtype
-  :codename: :wikirate_website
+  :codename: wikirate_website
 - :name: checked by
-  :codename: :checked_by
+  :codename: checked_by
 - :name: request
-  :codename: :request
+  :codename: request
 - :name: Link
-  :codename: :wikirate_link
+  :codename: wikirate_link
 - :name: Tag
-  :codename: :wikirate_tag
+  :codename: wikirate_tag
 - :name: Title
-  :codename: :wikirate_title
+  :codename: wikirate_title
 
 - :name: Wrong Year
   :type: :flag_type

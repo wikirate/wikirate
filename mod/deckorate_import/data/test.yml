@@ -1,16 +1,16 @@
 ---
 - :name: answer import test
   :type: :answer_import
-  :codename: :answer_import_test
+  :codename: answer_import_test
   :storage_type: :coded
   :answer_import: answer_import_test/answer_import.csv
 - :name: relationship import test
   :type: :relationship_import
-  :codename: :relationship_import_test
+  :codename: relationship_import_test
   :storage_type: :coded
   :relationship_import: relationship_import_test/relationship_import.csv
 - :name: source import test
   :type: :source_import
-  :codename: :source_import_test
+  :codename: source_import_test
   :storage_type: :coded
   :source_import: source_import_test/source_import.csv

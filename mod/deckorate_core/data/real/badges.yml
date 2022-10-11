@@ -1,88 +1,88 @@
 ---
 - :name: Metric Bookmarker
   :type: :badge
-  :codename: :metric_bookmarker
+  :codename: metric_bookmarker
 - :name: Research Pro
   :type: :badge
-  :codename: :research_pro
+  :codename: research_pro
 - :name: Research Master
   :type: :badge
-  :codename: :research_master
+  :codename: research_master
 - :name: Checker
   :type: :badge
-  :codename: :checker
+  :codename: checker
 - :name: Check Pro
   :type: :badge
-  :codename: :check_pro
+  :codename: check_pro
 - :name: Check Mate
   :type: :badge
-  :codename: :check_mate
+  :codename: check_mate
 - :name: Answer Advancer
   :type: :badge
-  :codename: :answer_advancer
+  :codename: answer_advancer
 - :name: Answer Enhancer
   :type: :badge
-  :codename: :answer_enhancer
+  :codename: answer_enhancer
 - :name: Answer Chancer
   :type: :badge
-  :codename: :answer_chancer
+  :codename: answer_chancer
 - :name: Commentator
   :type: :badge
-  :codename: :commentator
+  :codename: commentator
 - :name: Commentary Team
   :type: :badge
-  :codename: :commentary_team
+  :codename: commentary_team
 - :name: Expert Commentary
   :type: :badge
-  :codename: :expert_commentary
+  :codename: expert_commentary
 - :name: Researcher
   :type: :badge
-  :codename: :researcher
+  :codename: researcher
 - :name: Metric Critic
   :type: :badge
-  :codename: :metric_critic
+  :codename: metric_critic
 - :name: Metric Connoisseur
   :type: :badge
-  :codename: :metric_connoisseur
+  :codename: metric_connoisseur
 - :name: Project Q&#38;A
   :type: :badge
-  :codename: :project_q_a
+  :codename: project_q_a
 - :name: Project Launcher
   :type: :badge
-  :codename: :project_launcher
+  :codename: project_launcher
 - :name: Inside Source
   :type: :badge
-  :codename: :inside_source
+  :codename: inside_source
 - :name: A Cite to Behold
   :type: :badge
-  :codename: :a_cite_to_behold
+  :codename: a_cite_to_behold
 - :name: A Source of Inspiration
   :type: :badge
-  :codename: :a_source_of_inspiration
+  :codename: a_source_of_inspiration
 - :name: Company Register
   :type: :badge
-  :codename: :company_register
+  :codename: company_register
 - :name: The Company Store
   :type: :badge
-  :codename: :the_company_store
+  :codename: the_company_store
 - :name: Companies (in the) House
   :type: :badge
-  :codename: :companies_in_the_house
+  :codename: companies_in_the_house
 - :name: Logo Adder
   :type: :badge
-  :codename: :logo_adder
+  :codename: logo_adder
 - :name: How Lo can you Go
   :type: :badge
-  :codename: :how_lo_can_you_go
+  :codename: how_lo_can_you_go
 - :name: Logo and Behold
   :type: :badge
-  :codename: :logo_and_behold
+  :codename: logo_and_behold
 - :name: Metric Creator
   :type: :badge
-  :codename: :metric_creator
+  :codename: metric_creator
 - :name: Metric Tonnes
   :type: :badge
-  :codename: :metric_tonnes
+  :codename: metric_tonnes
 - :name: Research Agenda-Setter
   :type: :badge
-  :codename: :research_agenda_setter
+  :codename: research_agenda_setter

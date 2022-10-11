@@ -3,4 +3,4 @@
   :type: :cardtype
   :codename: ticket
 - :name: status list
-  :codename: :status_list
+  :codename: status_list

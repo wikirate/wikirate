@@ -1,5 +1,5 @@
 - :name: Post
   :type: :cardtype
-  :codename: :post
+  :codename: post
 - :name: Body
-  :codename: :body
+  :codename: body

@@ -1,6 +1,6 @@
 ---
 - :name: WikiRate Team
-  :codename: :wikirate_team
+  :codename: wikirate_team
   :type: :role
 
 - :name:
@@ -12,18 +12,18 @@
 
 - :name: wikirate footer
   :type: :html
-  :codename: :wikirate_footer
+  :codename: wikirate_footer
 
 - :name: wikirate license
   :type: :html
-  :codename: :wikirate_license
+  :codename: wikirate_license
 
 - :name: nav bar
-  :codename: :nav_bar
+  :codename: nav_bar
 
 - :name: nav menu
   :type: :basic
-  :codename: :nav_menu
+  :codename: nav_menu
   :content: |
     About
     [[:wikirate_platform | Platform]]
@@ -38,33 +38,33 @@
     [[Ticket|Report Issue]]
 
 - :name: Platform
-  :codename: :wikirate_platform
+  :codename: wikirate_platform
 
 - :name: WikiRate Community
-  :codename: :wikirate_community
+  :codename: wikirate_community
 
 - :name: WikiRate Impact
-  :codename: :wikirate_impact
+  :codename: wikirate_impact
 
 - :name: Data
-  :codename: :wikirate_data
+  :codename: wikirate_data
 
 - :name: Contact Us
-  :codename: :contact_us
+  :codename: contact_us
 
 - :name: Output
-  :codename: :output
+  :codename: output
   :type: :cardtype
 
 - :name: output type
-  :codename: :output_type
+  :codename: output_type
 
 - :name: Testimonial
-  :codename: :testimonial
+  :codename: testimonial
   :type: :cardtype
 
 - :name: Blurb
-  :codename: :blurb
+  :codename: blurb
   :type: :cardtype
   :fields:
     :type:
@@ -72,11 +72,11 @@
         :autoname: Blurb 0001
 
 - :name: newsletter signup
-  :codename: :newsletter_signup
+  :codename: newsletter_signup
 
 - :name: wikirate skin
   :type: :bootswatch_skin
-  :codename: :wikirate_skin
+  :codename: wikirate_skin
   :fields:
     :stylesheets: ""
     :colors: |

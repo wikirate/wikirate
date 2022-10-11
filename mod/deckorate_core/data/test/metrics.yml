@@ -1,12 +1,12 @@
 ---
 - :name: Research Group
   :type: :cardtype
-  :codename: :research_group
+  :codename: research_group
 - :name: Jedi
   :type: :research_group
 - :name: OpenCorporates
   :type: :research_group
-  :codename: :open_corporates
+  :codename: open_corporates
 - :name: Commons
   :type: :research_group
 - :name: Core
