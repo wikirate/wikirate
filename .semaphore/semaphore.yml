@@ -62,7 +62,7 @@ blocks:
       jobs:
         - name: RSpec
           commands:
-            - be decko rspec -s --format RspecJunitFormatter --out junit.xml --format documentation
+            - be decko rspec -s -- --format RspecJunitFormatter --out junit.xml --format documentation
       epilogue:
         on_pass:
           commands:
