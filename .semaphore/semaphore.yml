@@ -12,6 +12,9 @@ global_job_config:
       value: test
     - name: TMPSETS
       value: "true"
+  secrets:
+    - name: s3-credentials
+    - name: code-climate
   prologue:
     commands:
       # INSTALL WIKIRATE CODE AND DEPENDENCIES
@@ -27,7 +30,7 @@ global_job_config:
       # INSTALL CODE CLIMATE REPORTER
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
-
+cd
       # TWEAK ENVIRONMENTAL VARIABLES
       # ...that are too complex for the env_vars config.
 
