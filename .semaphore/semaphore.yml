@@ -30,7 +30,7 @@ global_job_config:
       # INSTALL CODE CLIMATE REPORTER
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
-cd
+
       # TWEAK ENVIRONMENTAL VARIABLES
       # ...that are too complex for the env_vars config.
 
@@ -65,7 +65,7 @@ blocks:
       jobs:
         - name: RSpec
           commands:
-            - be decko rspec -s -- --format RspecJunitFormatter --out junit.xml --format documentation
+            - be decko rspec -s -- --format RspecJunitFormatter --out junit.xml --format documentation mod/wikirate/spec/set/self/account_links_spec.rb
       epilogue:
         on_pass:
           commands:
@@ -75,34 +75,34 @@ blocks:
           commands:
             - test-results publish junit.xml
 
-  - name: Integration Tests
-    task:
-      secrets:
-        - name: wikirate-cypress
-      prologue:
-        commands:
-          - cache restore bundle-config
-          - cache restore gems-$(checksum Gemfile.lock)
-          - be decko setup
-
-      jobs:
-        - name: Cucumber
-          commands:
-            - RAILS_ENV=cucumber bundle exec decko cucumber -- --format pretty --format junit --out /home/semaphore/reports
-
-        - name: Cypress
-          commands:
-            - RAILS_ENV=cypress bundle exec decko server -p 5002 &
-            - nvm use 12.18.2
-            - yarn install
-            - yarn run cypress run --record --reporter junit --reporter-options "mochaFile=/home/semaphore/reports/cypress-output-[hash].xml"
-
-      epilogue:
-        always:
-          commands:
-            - test-results publish /home/semaphore/reports/*.xml
-            - ./cc-test-reporter format-coverage --output "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" -t simplecov
-            - aws s3 cp "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" $S3_PATH
+#  - name: Integration Tests
+#    task:
+#      secrets:
+#        - name: wikirate-cypress
+#      prologue:
+#        commands:
+#          - cache restore bundle-config
+#          - cache restore gems-$(checksum Gemfile.lock)
+#          - be decko setup
+#
+#      jobs:
+#        - name: Cucumber
+#          commands:
+#            - RAILS_ENV=cucumber bundle exec decko cucumber -- --format pretty --format junit --out /home/semaphore/reports
+#
+#        - name: Cypress
+#          commands:
+#            - RAILS_ENV=cypress bundle exec decko server -p 5002 &
+#            - nvm use 12.18.2
+#            - yarn install
+#            - yarn run cypress run --record --reporter junit --reporter-options "mochaFile=/home/semaphore/reports/cypress-output-[hash].xml"
+#
+#      epilogue:
+#        always:
+#          commands:
+#            - test-results publish /home/semaphore/reports/*.xml
+#            - ./cc-test-reporter format-coverage --output "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" -t simplecov
+#            - aws s3 cp "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" $S3_PATH
 
   # NOTE: the code climate reporting cannot be handled in after_pipeline, because
   # after_pipeline does not make secrets available - efm 2022-10-12
