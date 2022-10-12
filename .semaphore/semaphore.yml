@@ -14,7 +14,7 @@ global_job_config:
       value: "true"
   secrets:
     - name: s3-credentials
-    - name: code-climate
+    - name: code-climate-wikirate
   prologue:
     commands:
       # INSTALL WIKIRATE CODE AND DEPENDENCIES
