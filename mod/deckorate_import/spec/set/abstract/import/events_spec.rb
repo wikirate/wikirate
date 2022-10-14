@@ -49,17 +49,17 @@ RSpec.describe Card::Set::Abstract::Import::Events do
 
     context "when item has failed previously" do
       it "imports valid rows even after a failure" do
-        expect(import_status_for(8, import_indeces: [1, 8])).to eq(:success)
+        expect(import_status_for(8, import_indices: [1, 8])).to eq(:success)
       end
     end
   end
 
   private
 
-  def import_status_for status_index, import_indeces: nil, work_off: true
+  def import_status_for status_index, import_indices: nil, work_off: true
     Delayed::Worker.delay_jobs = true
-    import_indeces ||= [status_index]
-    importing_items(*import_indeces, work_off) { old_file_card.update({}) }
+    import_indices ||= [status_index]
+    importing_items(*import_indices, work_off) { old_file_card.update({}) }
     refreshed_status.item_hash(status_index)[:status]
   end
 
@@ -67,8 +67,8 @@ RSpec.describe Card::Set::Abstract::Import::Events do
     old_file_card.import_status_card.refresh(true).status
   end
 
-  def importing_items *indeces, work_off
-    row_hash = indeces.each_with_object({}) { |i, h| h[i] = true }
+  def importing_items *indices, work_off
+    row_hash = indices.each_with_object({}) { |i, h| h[i] = true }
     Card::Env.with_params import_rows: row_hash do
       yield
       Delayed::Worker.new.work_off if work_off
