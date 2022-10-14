@@ -1,7 +1,5 @@
-require_relative "import_item_spec_helper"
-
 RSpec.describe Card::RelationshipImportItem do
-  include Card::ImportItemSpecHelper
+  include Cardio::ImportItemSpecHelper
 
   let :default_item_hash do
     {
