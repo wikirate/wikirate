@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # used to run rspec in RubyMine
 
-ARGV.insert 0, "rspec", "--no-simplecov", "--",
+ARGV.insert 0, "rspec", "--",
             "--default-path=./vendor/decko"
 
 APP_PATH = File.expand_path("../../config/application",  __FILE__)
