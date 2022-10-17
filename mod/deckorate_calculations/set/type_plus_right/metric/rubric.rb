@@ -58,7 +58,7 @@ format :html do
     end
   end
 
-  # @param [Array] table_content 2-dimensional array with the data for the
+  # @param table_content [Array] 2-dimensional array with the data for the
   # table; first row is the header
   def table_editor table_content, header=nil
     table(table_content, class: "pairs-editor", header: header) +

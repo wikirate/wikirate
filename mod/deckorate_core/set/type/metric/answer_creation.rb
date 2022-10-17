@@ -7,7 +7,7 @@ def create_answers test_source=false, &block
   Card::Metric::AnswerCreator.new(self, test_source, &block).add_answers
 end
 
-# @param [Hash] args
+# @param args [Hash]
 # @option args [String] :company
 # @option args [String] :year
 # @option args [String] :value
