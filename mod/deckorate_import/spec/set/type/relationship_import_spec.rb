@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::Type::RelationshipImport do
-  # below refer to the post-processing indeces of the import csv
+  # below refer to the post-processing indices of the import csv
   # (note: subtract 2 from line number in relationship_import.csv
   # 1 for 0-based array indexing, 1 for the header)
   INDECES = {
@@ -11,7 +11,7 @@ RSpec.describe Card::Set::Type::RelationshipImport do
     Card["relationship import test"]
   end
 
-  def import_indeces key
+  def import_indices key
     row_params = INDECES[key].each_with_object({}) { |i, h| h[i] = true }
     Card::Env.with_params(import_rows: row_params) do
       with_delayed_jobs do
@@ -36,7 +36,7 @@ RSpec.describe Card::Set::Type::RelationshipImport do
     end
 
     it "correctly updates counts for answers with multiple relationships" do
-      import_indeces :known
+      import_indices :known
 
       check_relationship_answer_cards
       expect(Card[answer_name].value).to eq("2")
@@ -69,7 +69,7 @@ RSpec.describe Card::Set::Type::RelationshipImport do
         card_subject.import_map_card.update!({})
       end
 
-      import_indeces :unknown
+      import_indices :unknown
       check_relationship_answer_cards
       expect(Card[answer_name].value).to eq("3")
       expect(Card["Jedi+less evil+SPECTRE+2017"].value).to eq("1")

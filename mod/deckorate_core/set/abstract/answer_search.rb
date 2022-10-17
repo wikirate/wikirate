@@ -4,6 +4,7 @@ include_set Abstract::DeckorateFiltering
 include_set Abstract::MetricSearch
 include_set Abstract::LookupSearch
 include_set Abstract::AnswerFilters
+include_set Abstract::ProgressBar
 
 def item_type_id
   MetricAnswerID

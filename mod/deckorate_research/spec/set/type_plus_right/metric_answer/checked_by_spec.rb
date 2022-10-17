@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::TypePlusRight::MetricAnswer::CheckedBy do
-  include Cardio::Mod::FlagSpecHelper
+  include Cardio::FlagSpecHelper
 
   let(:researched_card) { Card["Jedi+deadliness+Death_Star+1977"] }
   let(:researched_card_2) { Card["Jedi+disturbances in the force+Death_Star+1977"] }

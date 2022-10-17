@@ -1,3 +1,5 @@
+include_set Abstract::ProgressBar
+
 # for this to work, you have to define at a minimum:
 #
 # 1. #num_possible returning the total number of answers/records in the problem space
