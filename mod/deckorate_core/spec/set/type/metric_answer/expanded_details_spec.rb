@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   end
 
   def expanded_details answer_name, metric_type
-    fetch_answer(answer_name).format.render "expanded_#{metric_type}_details".to_sym
+    fetch_answer(answer_name).format.send "expanded_#{metric_type}_details"
   end
 
   describe "view: expanded_formula_details" do

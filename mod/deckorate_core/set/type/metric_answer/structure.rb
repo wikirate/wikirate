@@ -47,6 +47,8 @@ format :html do
   end
 
   view :relationship_answer_tab do
+    return "" unless card.relationship?
+
     field_nest :relationship_answer, view: :filtered_content
   end
 
