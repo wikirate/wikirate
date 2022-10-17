@@ -1,8 +1,36 @@
 RSpec.describe Card::Set::Type::MetricAnswer do
 
-  def card_subject
-    sample_answer
+  describe "answers by value type" do
+    def card_subject
+      sample_answer value_type
+    end
+
+    Wikirate::Samples::METRIC_NAMES.each_key do |value_type|
+      context "with #{value_type} answer" do
+        let(:value_type) { value_type }
+
+        check_html_views_for_errors
+        check_html_views_for_errors [:page]
+      end
+    end
   end
 
-  check_html_views_for_errors
+  describe "answers by value type" do
+    def card_subject
+      subject_with_metric_type
+    end
+
+    {
+      # score: "Jedi+disturbances in the Force+Joe User+Death Star+1977",
+      wikirating: "Jedi+deadliness+Death_Star+1977",
+      formula: "Jedi+friendliness+Death Star+1977"
+    }.each do |metric_type, answer_name|
+      context "with #{metric_type} answer" do
+        let(:subject_with_metric_type) { answer_name.card }
+
+        check_html_views_for_errors
+        check_html_views_for_errors [:page]
+      end
+    end
+  end
 end

@@ -4,7 +4,7 @@ class Calculate
     module ShowWork
       # All the inputs for a given answer (the calculator implies the metric)
       # @param [Integer, String, Card] company (any company mark)
-      # @param [String] year four-digit year
+      # @param year [String] four-digit year
       # @return [Array] [[metric_card_1, value_1, year_options_1], [metric_card2...], ...]
       def inputs_for company, year
         values = Array.wrap uncast_input.input_for(company, year)

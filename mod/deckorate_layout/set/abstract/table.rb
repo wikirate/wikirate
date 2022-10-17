@@ -6,7 +6,7 @@ format :html do
   #                      whose html format reponds to :search_result
   # @param [Array<Symbol>] cell_views one view for every column. Is rendered
   #   for every row card
-  # @param [Hash] opts add additional classes and other attributes to your table
+  # @param opts [Hash] add additional classes and other attributes to your table
   # @option opts [Array<String>] :header an array with a header for every column
   # @option opts [Hash] :td html options for the td tags. You can pass an array
   #   to :classes to assign to every column a html class.
