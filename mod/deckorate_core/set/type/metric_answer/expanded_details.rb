@@ -11,27 +11,30 @@ format :html do
   view :expanded_details do
     with_overrides do
       wrap_with :div, class: "details-content" do
-        render :"expanded_#{card.metric_type}_details"
+        send :"expanded_#{card.metric_type}_details"
       end
     end
   end
 
   view :core, :expanded_details
 
+  def expanded_researched_details
+    "" # placeholder so core view won't break
+  end
+
   # ~~~~~ FORMULA DETAILS
 
-  # don't cache; view depends on formula card
-  view :expanded_formula_details, unknown: true, cache: :never do
+  def expanded_formula_details
     wrap_with :div, [answer_details_table, calculation_details]
   end
 
   # ~~~~~~~~~ DESCENDANT DETAILS
 
-  view :expanded_descendant_details do
+  def expanded_descendant_details
     answer_details_table
   end
 
-  view :expanded_score_details, cache: :never do
+  def expanded_score_details
     if metric_card.categorical?
       category_score_table_and_formula
     else
@@ -39,7 +42,7 @@ format :html do
     end
   end
 
-  view :expanded_wiki_rating_details, cache: :never do
+  def expanded_wiki_rating_details
     wrap_with :div do
       [
         answer_details_table,
