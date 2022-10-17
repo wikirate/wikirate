@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   end
 
   def expanded_details answer_name, metric_type
-    fetch_answer(answer_name).format.render "expanded_#{metric_type}_details".to_sym
+    fetch_answer(answer_name).format.send "expanded_#{metric_type}_details"
   end
 
   describe "view: expanded_formula_details" do
@@ -85,7 +85,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   describe "view: expanded_score_details" do
     subject do
       fetch_answer("Jedi+deadliness+Joe User+Death Star+1977")
-        .format.render :expanded_score_details
+        .format.expanded_score_details
     end
 
     specify do
@@ -106,7 +106,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   describe "view: expanded_wiki_rating_details" do
     subject do
       fetch_answer("Jedi+darkness rating+Death Star+1977")
-        .format.render :expanded_wiki_rating_details
+        .format.expanded_wiki_rating_details
     end
 
     specify do
@@ -131,7 +131,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   describe "view: expanded_descendant_details" do
     subject do
       fetch_answer("Joe User+descendant 1+Sony Corporation+2014")
-        .format.render :expanded_descendant_details
+        .format.expanded_descendant_details
     end
 
     def ancestor_row binding, num, rank
