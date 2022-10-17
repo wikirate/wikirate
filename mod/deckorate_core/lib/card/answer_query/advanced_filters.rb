@@ -2,6 +2,9 @@ class Card
   class AnswerQuery
     # conditions and condition support methods for non-standard fields.
     module AdvancedFilters
+      # @param value [Hash]
+      #
+
       def company_answer_query value
         Array.wrap(value).each_with_index do |constraint, index|
           table = "co_ans#{index}"
