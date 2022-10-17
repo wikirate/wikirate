@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::AnswerImport do
     let(:status) { import_card.import_status_card.status }
 
     def import_ready_items
-      import_card.import! status.status_indeces(:ready)
+      import_card.import! status.status_indices(:ready)
     end
 
     it "imports specified rows" do
@@ -22,7 +22,7 @@ RSpec.describe Card::Set::Type::AnswerImport do
     # FIXME: I think this one isn't getting marked because it already exists?
     xit "marks value in answer table as imported" do
       import_ready_items
-      answer_id = status.item_hash(status.status_indeces(:imported).first)[:id]
+      answer_id = status.item_hash(status.status_indices(:imported).first)[:id]
       answer = Answer.for_card(answer_id)
       expect(answer.imported).to eq true
     end

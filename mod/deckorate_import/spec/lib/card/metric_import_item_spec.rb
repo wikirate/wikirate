@@ -1,7 +1,5 @@
-require_relative "import_item_spec_helper"
-
 RSpec.describe Card::MetricImportItem do
-  include Card::ImportItemSpecHelper
+  include Cardio::ImportItemSpecHelper
 
   let(:metric_name) { "Joe User+Policities" }
 
