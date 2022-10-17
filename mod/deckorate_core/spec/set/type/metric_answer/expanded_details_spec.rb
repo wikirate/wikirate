@@ -82,7 +82,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
     end
   end
 
-  describe "view: expanded_score_details" do
+  describe "#expanded_score_details" do
     subject do
       fetch_answer("Jedi+deadliness+Joe User+Death Star+1977")
         .format.expanded_score_details
@@ -103,7 +103,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
     end
   end
 
-  describe "view: expanded_wiki_rating_details" do
+  describe "#expanded_wiki_rating_details" do
     subject do
       fetch_answer("Jedi+darkness rating+Death Star+1977")
         .format.expanded_wiki_rating_details
@@ -128,7 +128,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
     end
   end
 
-  describe "view: expanded_descendant_details" do
+  describe "expanded_descendant_details" do
     subject do
       fetch_answer("Joe User+descendant 1+Sony Corporation+2014")
         .format.expanded_descendant_details

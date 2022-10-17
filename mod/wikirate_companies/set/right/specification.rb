@@ -114,10 +114,5 @@ end
 
 def ensure_metric_id constraint
   metric = constraint[:metric_id]
-  constraint[:metric_id] =
-    if metric.number?
-      metric.to_i
-    else
-      metric.card_id
-    end
+  constraint[:metric_id] = metric.number? ? metric.to_i : metric.card_id
 end

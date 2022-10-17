@@ -38,7 +38,7 @@ format :html do
     if metric_card.categorical?
       category_score_table_and_formula
     else
-      [answer_details_table("FormulaScore"), calculation_details]
+      output [answer_details_table("FormulaScore"), calculation_details]
     end
   end
 
