@@ -23,8 +23,8 @@ format :html do
     company_name.field project_name
   end
 
-  view :company_header, template: :haml
-  view :metric_header, template: :haml
+  view :company_header, template: :haml, cache: :never
+  view :metric_header, template: :haml, cache: :never
   view :metric_option, template: :haml
   view :research_years, template: :haml, cache: :never
 
