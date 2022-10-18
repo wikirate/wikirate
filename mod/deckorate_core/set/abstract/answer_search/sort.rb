@@ -88,8 +88,8 @@ end
 #               class: "#{css_class} table-sort-link table-sort-by-#{key}"
 #   end
 #
-#   # @param [String] text link text
-#   # @param [Hash] args sort args
+#   # @param text [String] link text
+#   # @param args [Hash] sort args
 #   # @option args [String] :sort_by
 #   # @option args [String] :order
 #   # @option args [String] :class additional css class
