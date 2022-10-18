@@ -4,8 +4,8 @@ RSpec.describe Card::AnswerQuery do
                        "small multi", "small single", "Address"].freeze
 
   let(:company) { Card[@company_name || "Death_Star"] }
-  let(:all_metrics) { Card.search type_id: Card::MetricID, return: :name }
-  let(:all_metric_titles) { titles_of all_metrics }
+  let(:all_metrics) { Card.search type: :metric, return: :name }
+  let(:all_metric_titles) { all_metrics.map { |n| n.to_name[1].to_name } }
 
   let(:researched_metric_keys) do
     ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
@@ -47,6 +47,15 @@ RSpec.describe Card::AnswerQuery do
     ]
   end
 
+  let(:filter_class) { described_class }
+  let(:default_filters) { { company_id: company.id, year: :latest } }
+  let(:default_sort) { { metric_title: :asc } }
+  let(:result_parts) { [1, -1] }
+
+  def altered_results
+    yield.map { |r| Card::Name[Array.wrap(result_parts).map { |p| r.name.parts[p] }] }
+  end
+
   def unanswers year=Time.now.year
     with_year unresearched_metric_keys, year
   end
@@ -55,22 +64,9 @@ RSpec.describe Card::AnswerQuery do
     Array(list).map { |name| "#{name}+#{year}" }
   end
 
-  def titles_of metric_names
-    metric_names.map { |n| n.to_name[1].to_name }
-  end
-
   # @return [Array] of metric_title(+scorer)+year strings
-  def filter_by filter, latest: true, parts: nil
-    filter.reverse_merge! year: :latest if latest
-    short_answers run_query(filter, metric_title: :asc), parts: parts
-  end
-
-  # @return [Array] of strings, by default: metric_title+year
-  def short_answers list, parts: nil
-    parts ||= [1, -1]
-    list.map do |a|
-      Card::Name[Array.wrap(parts).map { |p| a.name.parts[p] }]
-    end
+  def filter_by filter
+    altered_results { run_query filter, default_sort }
   end
 
   # @return [Array] of answer cards
@@ -81,31 +77,31 @@ RSpec.describe Card::AnswerQuery do
   end
 
   def run_query filter, sort
-    described_class.new(filter.merge(company_id: company.id), sort).run
+    filter_class.new(default_filters.merge(filter), sort).run
   end
 
   context "with single filter condition" do
     context "with keyword" do
       it "finds exact match" do
-        expect(filter_by({ metric_name: "disturbances in the Force" }))
+        expect(filter_by(metric_name: "disturbances in the Force"))
           .to eq with_year(["disturbances in the Force",
                             "disturbances in the Force"], 2001)
       end
 
       it "finds partial match" do
-        expect(filter_by({ metric_name: "dead" }))
+        expect(filter_by(metric_name: "dead"))
           .to eq with_year(%w[deadliness deadliness deadliness], 1977)
       end
 
       it "ignores case" do
-        expect(filter_by({ metric_name: "DeAd" }))
+        expect(filter_by(metric_name: "DeAd"))
           .to eq with_year(%w[deadliness deadliness deadliness], 1977)
       end
     end
 
     context "with year" do
       it "finds exact match" do
-        expect(filter_by({ year: "2000" }))
+        expect(filter_by(year: "2000"))
           .to eq with_year(["dinosaurlabor", "disturbances in the Force",
                             "disturbances in the Force"], 2000)
       end
@@ -113,33 +109,33 @@ RSpec.describe Card::AnswerQuery do
 
     context "with research policy" do
       it "finds exact match" do
-        expect(filter_by({ research_policy: "Designer Assessed" }))
+        expect(filter_by(research_policy: "Designer Assessed"))
           .to eq ["dinosaurlabor+2010"]
       end
     end
 
     context "with metric type" do
       it "finds formulas" do
-        expect(filter_by({ metric_type: "Formula" }))
+        expect(filter_by metric_type: "Formula")
           .to eq ["Company Category+2019", "double friendliness+1977",
                   "friendliness+1977", "know the unknowns+1977"]
       end
 
       it "finds scores" do
-        expect(filter_by({ metric_type: "Score" }, parts: 1))
-          .to eq ["deadliness", "deadliness", "disturbances in the Force"]
+        expect(filter_by metric_type: "Score")
+          .to eq ["deadliness+1977", "deadliness+1977", "disturbances in the Force+2001"]
       end
 
       it "finds wikiratings" do
-        expect(filter_by({ metric_type: "WikiRating" })).to eq ["darkness rating+1977"]
+        expect(filter_by(metric_type: "WikiRating")).to eq ["darkness rating+1977"]
       end
 
       it "finds researched" do
-        expect(filter_by({ metric_type: "Researched" })).to contain_exactly(*researched)
+        expect(filter_by(metric_type: "Researched")).to contain_exactly(*researched)
       end
 
       it "finds combinations" do
-        expect(filter_by({ metric_type: %w[Score Formula] }))
+        expect(filter_by(metric_type: %w[Score Formula]))
           .to eq ["Company Category+2019", "deadliness+1977", "deadliness+1977",
                   "disturbances in the Force+2001", "double friendliness+1977",
                   "friendliness+1977", "know the unknowns+1977"]
@@ -148,7 +144,7 @@ RSpec.describe Card::AnswerQuery do
 
     context "with value type" do
       it "finds category metrics" do
-        expect(filter_by({ value_type: "Category" }))
+        expect(filter_by(value_type: "Category"))
           .to eq(["dinosaurlabor+2010",
                   "disturbances in the Force+2001",
                   "more evil+1977"])
@@ -157,7 +153,7 @@ RSpec.describe Card::AnswerQuery do
 
     context "with calculated" do
       it "finds calculated answers" do
-        expect(filter_by({ calculated: :calculated }))
+        expect(filter_by(calculated: :calculated))
           .to eq(["darkness rating+1977",
                   "deadliness+1977",
                   "deadliness+1977",
@@ -172,13 +168,13 @@ RSpec.describe Card::AnswerQuery do
 
     context "with topic" do
       it "finds exact match" do
-        expect(filter_by({ topic: "Force" })).to eq ["disturbances in the Force+2001"]
+        expect(filter_by(topic: "Force")).to eq ["disturbances in the Force+2001"]
       end
     end
 
     context "with bookmark" do
       it "finds bookmarked" do
-        expect(filter_by({ bookmark: :bookmark }))
+        expect(filter_by(bookmark: :bookmark))
           .to eq ["disturbances in the Force+2001"]
       end
 
@@ -186,7 +182,7 @@ RSpec.describe Card::AnswerQuery do
         latest = latest_answers
         marked = "disturbances in the Force+2001"
         latest.slice! latest.index(marked)
-        expect(filter_by({ bookmark: :nobookmark })).to eq(latest)
+        expect(filter_by(bookmark: :nobookmark)).to eq(latest)
       end
     end
 
@@ -204,12 +200,12 @@ RSpec.describe Card::AnswerQuery do
 
       context "when :none" do
         it "finds not researched" do
-          expect(filter_by({ status: :none })).to contain_exactly(*unanswers)
+          expect(filter_by(status: :none)).to contain_exactly(*unanswers)
         end
       end
 
       it "finds all values" do
-        filtered = filter_by({ status: :all })
+        filtered = filter_by(status: :all)
         expect(filtered).to include(*answers)
         expect(filtered.size)
           .to eq Card.search(type_id: Card::MetricID, return: :count)
@@ -217,13 +213,13 @@ RSpec.describe Card::AnswerQuery do
 
       it "finds unknown values" do
         @company_name = "Samsung"
-        expect(filter_by({ status: :unknown }))
+        expect(filter_by(status: :unknown))
           .to eq unknown_answers
       end
 
       it "finds known values" do
         @company_name = "Samsung"
-        all_known = filter_by({ status: :known }).all? do |a|
+        all_known = filter_by(status: :known).all? do |a|
           a.s.include?("researched number") || a.s.include?("descendant")
         end
         expect(all_known).to be_truthy
@@ -234,13 +230,15 @@ RSpec.describe Card::AnswerQuery do
       before { Timecop.freeze Wikirate::HAPPY_BIRTHDAY }
       after { Timecop.return }
 
+      let(:result_parts) { 1 }
+      let(:default_filters) { { company_id: company.id } }
+
       it "finds today's edits" do
-        expect(filter_by({ updated: :today }, latest: false))
-          .to eq ["disturbances in the Force+1990"]
+        expect(filter_by updated: :today).to eq ["disturbances in the Force"]
       end
 
       it "finds this week's edits" do
-        expect(filter_by({ updated: :week }, latest: false, parts: 1))
+        expect(filter_by updated: :week)
           .to eq ["disturbances in the Force", "disturbances in the Force"]
       end
 
@@ -248,21 +246,20 @@ RSpec.describe Card::AnswerQuery do
         # I added 'metric_type: "Researched"' because the new yaml loading
         # made it so that calculated metrics, including scores, were created before the
         # researched answers, which meant timecop affect the calculation times
-        expect(filter_by({ updated: :month, metric_type: "Researched" },
-                         latest: false, parts: 1))
+        expect(filter_by(updated: :month, metric_type: "Researched"))
           .to eq(["disturbances in the Force"] * 3)
       end
     end
 
     context "with invalid filter key" do
       it "doesn't matter" do
-        expect(filter_by({ not_a_filter: "Death" })).to contain_exactly(*latest_answers)
+        expect(filter_by(not_a_filter: "Death")).to contain_exactly(*latest_answers)
       end
     end
 
     context "with dataset" do
       it "finds exact match" do
-        expect(filter_by({ dataset: "Evil Dataset" }))
+        expect(filter_by(dataset: "Evil Dataset"))
           .to eq ["disturbances in the Force+2001"]
       end
     end
@@ -282,61 +279,61 @@ RSpec.describe Card::AnswerQuery do
           2001
         )
         nr2001.delete "disturbances in the Force+2001"
-        filtered = filter_by({ status: :none, year: "2001" })
+        filtered = filter_by(status: :none, year: "2001")
         expect(filtered)
           .to contain_exactly(*nr2001)
       end
 
       it "... keyword" do
-        expect(filter_by({ status: :none, metric_name: "number 2" }))
+        expect(filter_by(status: :none, metric_name: "number 2"))
           .to contain_exactly(*with_year(["researched number 2"]))
       end
 
       it "... dataset" do
-        expect(filter_by({ status: :none, dataset: "Evil Dataset" }))
+        expect(filter_by(status: :none, dataset: "Evil Dataset"))
           .to contain_exactly(*with_year(["researched number 2"]))
       end
 
       it "... metric_type" do
-        expect(filter_by({ status: :none, metric_type: "Researched" }))
+        expect(filter_by(status: :none, metric_type: "Researched"))
           .to contain_exactly(*with_year(RESEARCHED_TITLES))
       end
 
       it "... policy and year" do
-        expect(filter_by({ status: :none,
-                           research_policy: "Designer Assessed",
-                           year: "2001" }))
+        expect(filter_by(status: :none,
+                         research_policy: "Designer Assessed",
+                         year: "2001"))
           .to eq ["dinosaurlabor+2001", "Industry Class+2001", "researched number 3+2001"]
       end
     end
 
     context "with filter for all values and ..." do
       it "... dataset" do
-        expect(filter_by({ status: :all, dataset: "Evil Dataset" }))
+        expect(filter_by(status: :all, dataset: "Evil Dataset"))
           .to contain_exactly("disturbances in the Force+2001",
                               *with_year("researched number 2"))
       end
 
       it "... year" do
-        expect(filter_by({ status: :all, year: "2001" }))
+        expect(filter_by(status: :all, year: "2001"))
           .to contain_exactly(*with_year(all_metric_titles, 2001))
       end
 
       it "... policy and year" do
-        expect(filter_by({ status: :all,
-                           research_policy: "Designer Assessed",
-                           year: "2001" }))
+        expect(filter_by(status: :all,
+                         research_policy: "Designer Assessed",
+                         year: "2001"))
           .to eq ["dinosaurlabor+2001", "Industry Class+2001", "researched number 3+2001"]
       end
 
       it "... metric_type" do
-        expect(filter_by({ status: :all, metric_type: "Researched" }))
+        expect(filter_by(status: :all, metric_type: "Researched"))
           .to contain_exactly(*(with_year(RESEARCHED_TITLES) + researched))
       end
     end
 
     it "policy and bookmark" do
-      expect(filter_by({ policy: "Evil Dataset", bookmark: :bookmark }))
+      expect(filter_by(policy: "Evil Dataset", bookmark: :bookmark))
         .to eq(["disturbances in the Force+2001"])
     end
 
@@ -390,7 +387,7 @@ RSpec.describe Card::AnswerQuery do
     end
 
     it "sorts by bookmarkers" do
-      actual = short_answers sort_by(:metric_bookmarkers, sort_dir: :desc)
+      actual = altered_results { sort_by :metric_bookmarkers, sort_dir: :desc }
       expected = latest_answers_by_bookmarks
 
       bookmarked = (0..1)

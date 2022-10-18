@@ -7,7 +7,6 @@ class Card
       # @option value [String] year
       # @option value [Cardish] related_company_group
       # @option value [String, Hash] value
-
       def company_answer_query value
         Array.wrap(value).each_with_index do |constraint, index|
           table = "co_ans#{index}"
@@ -16,9 +15,9 @@ class Card
         end
       end
 
-
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
-      # TODO: delete the following after 
+
+      # TODO: delete the following after fashionchecker change is deployed
       def answer_query value
         return unless (metric_id = value[:metric_id]&.to_i)
         exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
@@ -27,7 +26,6 @@ class Card
         @values << metric_id
       end
 
-      #
       # This is ultimately a company restriction, limiting the answers to the
       # companies related to another by a given relationship metric
       #
