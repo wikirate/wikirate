@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Type::Flag do
-  include Cardio::Mod::FlagSpecHelper
+  include Cardio::FlagSpecHelper
 
   let(:answer) { sample_answer }
 

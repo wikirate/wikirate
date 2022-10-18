@@ -2,6 +2,12 @@ class Card
   class AnswerQuery
     # conditions and condition support methods for non-standard fields.
     module AdvancedFilters
+      # @param value [Hash]
+      # @option value [Integer] metric_id
+      # @option value [String] year
+      # @option value [Cardish] related_company_group
+      # @option value [String, Hash] value
+
       def company_answer_query value
         Array.wrap(value).each_with_index do |constraint, index|
           table = "co_ans#{index}"

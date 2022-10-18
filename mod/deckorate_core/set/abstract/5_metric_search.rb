@@ -108,13 +108,13 @@ format :html do
   end
 end
 
+BASIC_COLUMNS = %i[question metric_type metric_designer metric_title
+                   value_type value_options unit research_policy].freeze
+
+DETAILED_COLUMNS = %i[about methodology wikirate_topic unpublished scorer formula
+                      range hybrid inverse_title report_type year company_group].freeze
+
 format :csv do
-  BASIC_COLUMNS = %i[question metric_type metric_designer metric_title
-                     value_type value_options unit research_policy].freeze
-
-  DETAILED_COLUMNS = %i[about methodology wikirate_topic unpublished scorer formula
-                        range hybrid inverse_title report_type year company_group].freeze
-
   # TODO: move to metric class, mirroring answer pattern.  Then use that in metric import.
   view :titles do
     basic = headers(BASIC_COLUMNS).unshift "Metric Link"
