@@ -20,8 +20,8 @@ class Calculate
         @replace_policy = block
       end
 
-      # @param [String] formula the formula to translate
-      # @param [Integer] offset were we are in the original formula.
+      # @param formula [String] the formula to translate
+      # @param offset [Integer] were we are in the original formula.
       #   only used for error messages
       # @return [String] Wolframesque functions calls in formula replaced
       #   with ruby method calls
