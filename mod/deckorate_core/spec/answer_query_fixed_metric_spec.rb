@@ -8,14 +8,13 @@ RSpec.describe Card::AnswerQuery do
                     "Slate Rock and Gravel Company+2006",
                     "SPECTRE+2000"].freeze
 
-  let(:metric) { Card[@metric_name || "Jedi+disturbances in the Force"] }
-  let(:all_companies) { Card.search type_id: Card::WikirateCompanyID, return: :name }
+  let(:metric_name) { "Jedi+disturbances in the Force" }
+  let(:metric_id) { metric_name.card_id }
+  let(:all_companies) { Card.search type: :wikirate_company, return: :name }
   let(:answer_parts) { [-2, -1] }
   let(:default_sort) { {} }
 
-  let(:default_filters) do
-    { metric_id: metric.id, year: :latest }
-  end
+  let(:default_filters) { { metric_id: metric_id, year: :latest } }
 
   let :missing_companies do
     latest_answer_keys = ::Set.new(LATEST_ANSWERS.map { |n| n.to_name.left_name.key })
@@ -25,16 +24,6 @@ RSpec.describe Card::AnswerQuery do
   # @return [Array] of company+year strings
   def missing_answers year=Time.now.year
     with_year missing_companies, year
-  end
-
-  # @return [Array] of company+year strings
-  def with_year list, year=Time.now.year
-    Array(list).map { |name| "#{name}+#{year}" }
-  end
-
-  # @return [Array] of company+year strings
-  def sort_by sort_by, sort_dir="asc"
-    altered_results { run_query({ year: :latest }, sort_by => sort_dir) }
   end
 
   context "with single filter condition" do
@@ -49,8 +38,7 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "ignores case" do
-        expect(search(company_name: "death"))
-          .to eq ["Death Star+2001"]
+        expect(search(company_name: "death")).to eq ["Death Star+2001"]
       end
     end
 
@@ -70,16 +58,18 @@ RSpec.describe Card::AnswerQuery do
     end
 
     context "with relationship metric" do
+      let(:metric_name) { "Commons+Supplied by" }
+
       it "finds companies by related company group" do
-        @metric_name = "Commons+Supplied by"
         expect(search(related_company_group: "Googliest"))
           .to eq(["SPECTRE+2000"])
       end
     end
 
     context "with inverse relationship metric" do
+      let(:metric_name) { "Commons+Supplier of" }
+
       it "finds companies by related company group" do
-        @metric_name = "Commons+Supplier of"
         expect(search(related_company_group: "Deadliest"))
           .to eq(["Los Pollos Hermanos+2000", "Google LLC+2000"])
       end
@@ -148,15 +138,12 @@ RSpec.describe Card::AnswerQuery do
       end
 
       it "... company_category" do
-        expect(search(status: :none,
-                         company_category: "A"))
+        expect(search(status: :none, company_category: "A"))
           .to eq []
       end
 
       it "... company_category and year" do
-        expect(search(status: :none,
-                         company_category: "A",
-                         year: "2001"))
+        expect(search(status: :none, company_category: "A", year: "2001"))
           .to eq ["SPECTRE+2001"]
       end
     end
@@ -186,63 +173,23 @@ RSpec.describe Card::AnswerQuery do
         .to eq(["Death Star+2001", "SPECTRE+2000"])
     end
     it "year and company_category" do
-      expect(search(year: "1977",
-                       company_category: "A"))
+      expect(search(year: "1977", company_category: "A"))
         .to eq(with_year("Death Star", 1977))
     end
     it "all in" do
       Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
         expect(search(year: "1990",
-                         company_category: "A",
-                         dataset: "Evil Dataset",
-                         updated: :today,
-                         name: "star"))
+                      company_category: "A",
+                      dataset: "Evil Dataset",
+                      updated: :today,
+                      name: "star"))
           .to eq(with_year("Death Star", 1990))
       end
     end
   end
 
-  context "with sort conditions" do
-    it "sorts by company name (asc)" do
-      expect(sort_by(:company_name)).to eq(LATEST_ANSWERS)
-    end
-
-    it "sorts by company name (desc)" do
-      expect(sort_by(:company_name, "desc"))
-        .to eq(LATEST_ANSWERS.reverse)
-    end
-
-    it "sorts categories by value" do
-      res = sort_by(:value)
-      yes_index = res.index "Death Star+2001"
-      no_index = res.index "Slate Rock and Gravel Company+2006"
-      expect(no_index).to be < yes_index
-    end
-
-    it "sorts numerics by value" do
-      @metric_name = "Jedi+deadliness"
-      expect(sort_by(:value))
-        .to eq(["Samsung+1977",
-                "Slate Rock and Gravel Company+2005",
-                "Los Pollos Hermanos+1977",
-                "SPECTRE+1977",
-                "Death Star+1977"])
-    end
-
-    it "sorts floats by value" do
-      @metric_name = "Jedi+Victims by Employees"
-      expect(sort_by(:value))
-        .to eq(with_year(["Samsung",
-                          "Slate Rock and Gravel Company",
-                          "Monster Inc",
-                          "Los Pollos Hermanos",
-                          "Death Star",
-                          "SPECTRE"], 1977))
-    end
-  end
-
   context "with multi-category metric" do
-    let(:metric) { Card["Joe_User+big_multi"] }
+    let(:metric_name) { "Joe_User+big_multi" }
 
     it "handles value arrays" do
       expect(search(value: ["1"])).to eq(["Sony Corporation+2010"])

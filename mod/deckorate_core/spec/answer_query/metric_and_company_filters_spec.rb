@@ -44,10 +44,6 @@ RSpec.describe Card::AnswerQuery do
     with_year unresearched_metric_keys, year
   end
 
-  def with_year list, year=Time.now.year
-    Array(list).map { |name| "#{name}+#{year}" }
-  end
-
   context "with single filter condition" do
     context "with keyword" do
       it "finds exact match" do
@@ -309,18 +305,16 @@ RSpec.describe Card::AnswerQuery do
 
     it "year and industry" do
       Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
-        expect(search({ year: "1991", topic: "Force",
-                        bookmark: :bookmark, updated: :week }))
+        expect(search(year: "1991", topic: "Force", bookmark: :bookmark, updated: :week))
           .to eq(with_year("disturbances in the Force", 1991))
       end
     end
 
     it "all in" do
       Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
-        expect(search({ year: "1992", topic: "Force", bookmark: :bookmark,
-                        updated: :month, dataset: "Evil Dataset",
-                        research_policy: "Community Assessed", name: "in the",
-                        metric_type: "Researched" }))
+        expect(search(year: "1992", topic: "Force", bookmark: :bookmark, updated: :month,
+                      dataset: "Evil Dataset", research_policy: "Community Assessed",
+                      name: "in the", metric_type: "Researched"))
           .to eq(with_year("disturbances in the Force", 1992))
       end
     end

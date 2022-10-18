@@ -8,14 +8,14 @@ RSpec.describe Card::AnswerQuery::AdvancedFilters do
 
   describe "#company_answer_query" do
     it "finds companies with metric" do
-      expect(search company_answer: { metric_id: "Joe User+RM".card_id })
+      expect(search(company_answer: { metric_id: "Joe User+RM".card_id }))
         .to eq(["Death Star"])
     end
   end
 
   describe "#answer_query" do
     it "finds companies with metric" do
-      expect(search answer: { metric_id: "Joe User+RM".card_id })
+      expect(search(answer: { metric_id: "Joe User+RM".card_id }))
         .to eq(["Death Star"])
     end
   end
