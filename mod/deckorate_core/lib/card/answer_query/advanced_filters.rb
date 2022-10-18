@@ -16,12 +16,9 @@ class Card
         end
       end
 
+
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
-      #
-      # This is ultimately a company restriction, limiting the answers to the
-      # companies with an answer for another metric.
-      #
-      # will also need to support year and value constraints
+      # TODO: delete the following after 
       def answer_query value
         return unless (metric_id = value[:metric_id]&.to_i)
         exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
@@ -30,7 +27,6 @@ class Card
         @values << metric_id
       end
 
-      # EXPERIMENTAL. used by fashionchecker but otherwise not public
       #
       # This is ultimately a company restriction, limiting the answers to the
       # companies related to another by a given relationship metric
