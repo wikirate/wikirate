@@ -1,48 +1,49 @@
 RSpec.describe Card::AnswerQuery::AnswerFilters do
+  include_context "answer query"
+
   describe "#published_query" do
-    def results query={}
-      Card::AnswerQuery.new(query.merge(metric_id: answer.metric_id)).run
-    end
+    let(:default_filters) { { metric_id: answer.card.metric_id } }
+    let(:answer) { answer_name.card }
 
     context "when user is not steward" do
-      let(:answer) { Card["Jedi+deadliness+Death_Star+1977"] }
+      let(:answer_name) { "Jedi+deadliness+Death_Star+1977" }
 
       it "implicitly finds answers.unpublished = nil" do
-        expect(results).to include(answer)
+        expect(search).to include(answer_name)
       end
 
       it "implicitly finds answers.unpublished = false" do
         answer.unpublished_card.update! content: 0
-        expect(results).to include(answer)
+        expect(search).to include(answer_name)
       end
 
       it "implicitly does not find answers.unpublished = true" do
         answer.unpublished_card.update! content: 1
-        expect(results).not_to include(answer)
+        expect(search).not_to include(answer_name)
       end
 
       it "finds no answers when looking for unpublished" do
         answer.unpublished_card.update! content: 1
-        expect(results(published: "false")).to be_empty
+        expect(search(published: "false")).to be_empty
       end
     end
 
     context "when user is steward" do
-      let(:answer) { Card["Joe User+RM+Apple Inc+2015"] }
+      let(:answer_name) { "Joe User+RM+Apple Inc+2015" }
 
       it "implicitly does not find answers.unpublished = true" do
         answer.unpublished_card.update! content: 1
-        expect(results).not_to include(answer)
+        expect(search).not_to include(answer_name)
       end
 
       it "finds stewarded unpublished answer when looking for unpublished" do
         answer.unpublished_card.update! content: 1
-        expect(results(published: "false").first).to eq(answer)
+        expect(search(published: "false").first).to eq(answer_name)
       end
 
       it "finds stewarded unpublished answer when looking for all" do
         answer.unpublished_card.update! content: 1
-        expect(results(published: :all)).to include(answer)
+        expect(search(published: :all)).to include(answer_name)
       end
     end
   end
