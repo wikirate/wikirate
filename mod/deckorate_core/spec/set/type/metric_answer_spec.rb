@@ -15,18 +15,19 @@ RSpec.describe Card::Set::Type::MetricAnswer do
     end
   end
 
-  describe "answers by value type" do
+  describe "answers by metric type" do
     def card_subject
       subject_with_metric_type
     end
 
     {
-      # score: "Jedi+disturbances in the Force+Joe User+Death Star+1977",
+      score: "Jedi+disturbances in the Force+Joe User+Death Star+1977",
       wikirating: "Jedi+deadliness+Death_Star+1977",
-      formula: "Jedi+friendliness+Death Star+1977"
+      formula: "Jedi+friendliness+Death Star+1977",
+      relationship: "Jedi+more evil+Death Star+1977"
     }.each do |metric_type, answer_name|
       context "with #{metric_type} answer" do
-        let(:subject_with_metric_type) { answer_name.card }
+        let(:subject_with_metric_type) { Card.fetch answer_name }
 
         check_html_views_for_errors
         check_html_views_for_errors [:page]

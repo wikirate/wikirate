@@ -22,6 +22,14 @@ format :html do
     "" # placeholder so core view won't break
   end
 
+  def expanded_relationship_details
+    "" # placeholder so core view won't break
+  end
+
+  def expanded_inverse_relationship_details
+    "" # placeholder so core view won't break
+  end
+
   # ~~~~~ FORMULA DETAILS
 
   def expanded_formula_details
