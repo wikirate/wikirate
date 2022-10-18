@@ -1,7 +1,6 @@
 
 if (ENV["CARD_LOAD_STRATEGY"] == "tmp_files") && ENV["CARD_NO_COVERAGE"] != "true"
   SimpleCov.start do
-    add_filter "tmp/set/core"
     add_filter "tmp/set/gem"
     add_filter "tmp/set_pattern"
     add_filter "vendor"
