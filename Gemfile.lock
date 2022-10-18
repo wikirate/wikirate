@@ -650,7 +650,7 @@ GEM
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
-    pdfkit (0.8.7)
+    pdfkit (0.8.7.1)
     pivotal-tracker (0.5.13)
       builder
       crack
@@ -771,7 +771,7 @@ GEM
       rubocop-ast (>= 1.20.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.21.0)
+    rubocop-ast (1.22.0)
       parser (>= 3.1.1.0)
     rubocop-rspec (2.13.2)
       rubocop (~> 1.33)
