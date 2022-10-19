@@ -24,4 +24,18 @@ RSpec.describe Card::AnswerQuery::ValueFilters do
       expect(all_known).to be_truthy
     end
   end
+
+  describe "#value_query" do
+    let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
+    let(:answer_parts) { [-2, -1] }
+    let(:default_sort) { {} }
+
+    context "with multi-category metric" do
+      let(:metric_name) { "Joe_User+big_multi" }
+
+      specify do
+        expect(search(value: ["1"])).to eq(["Sony Corporation+2010"])
+      end
+    end
+  end
 end

@@ -38,7 +38,9 @@ RSpec.describe Card::AnswerQuery::MetricAndCompanyFilters do
 
         it "finds scores" do
           expect(search(metric_type: "Score"))
-            .to eq ["deadliness+1977", "deadliness+1977", "disturbances in the Force+2001"]
+            .to eq ["deadliness+1977",
+                    "deadliness+1977",
+                    "disturbances in the Force+2001"]
         end
 
         it "finds wikiratings" do
@@ -102,12 +104,11 @@ RSpec.describe Card::AnswerQuery::MetricAndCompanyFilters do
 
   context "with fixed metric" do
     let(:metric_name) { "Jedi+disturbances in the Force" }
-    let(:metric_id) { metric_name.card_id }
-    let(:default_filters) { { metric_id: metric_id, year: :latest } }
+    let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
     let(:answer_parts) { [-2, -1] }
     let(:default_sort) { {} }
 
-    describe "#company_name" do
+    describe "#company_name_query" do
       it "finds exact match" do
         expect(search(company_name: "Death")).to eq ["Death Star+2001"]
       end
@@ -121,6 +122,15 @@ RSpec.describe Card::AnswerQuery::MetricAndCompanyFilters do
         expect(search(company_name: "death")).to eq ["Death Star+2001"]
       end
     end
+
+    specify "#dataset_query" do
+      expect(search(dataset: "Evil Dataset").sort)
+        .to eq ["Death Star+2001", "SPECTRE+2000"]
+    end
+
+    specify "#company_category_query" do
+      expect(search(company_category: "A").sort)
+        .to eq ["Death Star+2001", "SPECTRE+2000"]
+    end
   end
 end
-

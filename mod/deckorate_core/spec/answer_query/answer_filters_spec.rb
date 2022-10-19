@@ -58,6 +58,40 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
     end
   end
 
+  context "with fixed metric" do
+    let(:metric_name) { "Jedi+disturbances in the Force" }
+    let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
+    let(:answer_parts) { [-2, -1] }
+    let(:default_sort) { {} }
+
+    describe "#year_query" do
+      specify do
+        expect(search(year: "2000"))
+          .to eq with_year(["Death Star", "Monster Inc",  "SPECTRE"], 2000)
+      end
+    end
+
+    describe "#updated_query" do
+      before { Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) }
+      after { Timecop.return }
+
+      it "finds today's edits" do
+        expect(search(updated: :today, year: nil)).to eq(["Death Star+1990"])
+      end
+
+      it "finds this week's edits" do
+        expect(search(updated: :week, year: nil))
+          .to eq ["Death Star+1990", "Death Star+1991"]
+      end
+
+      it "finds this months's edits" do
+        # wrong only one company
+        expect(search(updated: :month, year: nil))
+          .to eq ["Death Star+1990", "Death Star+1991", "Death Star+1992"]
+      end
+    end
+  end
+
   describe "#published_query" do
     let(:default_filters) { { metric_id: answer.card.metric_id } }
     let(:answer) { answer_name.card }
