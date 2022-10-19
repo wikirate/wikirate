@@ -38,14 +38,6 @@ format :html do
     handle_unknowns { haml :concise }
   end
 
-  view :value_and_markers, unknown: true do
-    wrap_with :div, class: "value-and-markers" do
-      handle_unknowns do
-        [nest(card.value_card, view: :pretty), render_markers]
-      end
-    end
-  end
-
   view :year_and_icon do
     wrap_with :span, class: "answer-year" do
       "#{mapped_icon_tag :year} #{card.year}"
