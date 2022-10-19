@@ -59,8 +59,10 @@ RSpec.describe Card::AllAnswerQuery do
       end
 
       specify "metric_type" do
-        answers = with_year(researched_titles) + researched_death_star_answers
-        expect(search(status: :all, metric_type: "Researched")).to contain_exactly(*answers)
+        expect(search(status: :all, metric_type: "Researched"))
+          .to contain_exactly(
+                *(with_year(researched_titles) + researched_death_star_answers)
+              )
       end
     end
 
@@ -115,7 +117,6 @@ RSpec.describe Card::AllAnswerQuery do
     let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
     let(:answer_parts) { [-2, -1] }
     let(:default_sort) { {} }
-
 
     context "with status :all" do
       it "finds existing and non-existing values" do
