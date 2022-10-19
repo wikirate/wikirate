@@ -1,8 +1,110 @@
 RSpec.describe Card::AllAnswerQuery do
-  describe "#updated_by_query" do
-    it "finds records updated by single user" do
-      # puts described_class.new(updater: "Joe_User").main_query.to_sql
-      expect(described_class.new(updater: "Joe_User").main_query.count).to eq(8)
+  include_context "answer query"
+
+  let(:default_filters) { { company_id: company_name.card_id, year: :latest } }
+  let(:answer_parts) { [1, -1] } # metric and year
+  let(:company_name) { "Death_Star" }
+
+  let(:all_metrics) { Card.search type: :metric, return: :name }
+  let(:all_metric_titles) { all_metrics.map { |n| n.to_name[1].to_name } }
+
+  let :researched_titles do
+    ["Industry Class", "Sector Industry", "Weapons", "big multi", "big single",
+     "researched number 2", "researched number 3", "small multi", "small single",
+     "Address"]
+  end
+
+  let(:researched_metric_keys) do
+    ::Set.new(latest_death_star_answers.map { |n| n.to_name.left_name.key })
+  end
+
+  let :unresearched_metric_keys do
+    all_metric_titles.reject { |n| researched_metric_keys.include? n.key }.sort
+  end
+
+  def unanswers year=Time.now.year
+    with_year unresearched_metric_keys, year
+  end
+
+  context "with status :all" do
+    let :all_answers do
+      latest_answers + with_year(["researched number 2", "researched number 3",
+                                  "small multi", "small single"])
+    end
+
+    it "finds all values" do
+      filtered = search(status: :all)
+      expect(filtered).to include(*latest_death_star_answers)
+      expect(filtered.size)
+        .to eq Card.search(type: :metric, return: :count)
+    end
+
+    specify "and dataset" do
+      expect(search(status: :all, dataset: "Evil Dataset"))
+        .to contain_exactly("disturbances in the Force+2001",
+                            *with_year("researched number 2"))
+    end
+
+    specify "and year" do
+      expect(search(status: :all, year: "2001"))
+        .to contain_exactly(*with_year(all_metric_titles, 2001))
+    end
+
+    specify "and policy and year" do
+      expect(search(status: :all,
+                    research_policy: "Designer Assessed",
+                    year: "2001"))
+        .to eq ["dinosaurlabor+2001", "Industry Class+2001", "researched number 3+2001"]
+    end
+
+    specify "metric_type" do
+      answers = with_year(researched_titles) + researched_death_star_answers
+      expect(search(status: :all, metric_type: "Researched")).to contain_exactly(*answers)
+    end
+  end
+
+  context "with status :none" do
+    it "finds not researched" do
+      expect(search(status: :none)).to contain_exactly(*unanswers)
+    end
+
+    specify "and year" do
+      nr2001 = unanswers(2001) + with_year(
+        ["Victims by Employees", "cost of planets destroyed",
+         "darkness rating", "deadliness", "deadliness",
+         "deadliness", "dinosaurlabor", "friendliness",
+         "Sith Lord in Charge", "descendant 1", "descendant 2",
+         "descendant hybrid", "Company Category",
+         "RM", "researched number 1", "know the unknowns",
+         "more evil", "double friendliness"],
+        2001
+      )
+      nr2001.delete "disturbances in the Force+2001"
+      filtered = search(status: :none, year: "2001")
+      expect(filtered)
+        .to contain_exactly(*nr2001)
+    end
+
+    specify "and keyword" do
+      expect(search(status: :none, metric_name: "number 2"))
+        .to contain_exactly(*with_year(["researched number 2"]))
+    end
+
+    specify "and dataset" do
+      expect(search(status: :none, dataset: "Evil Dataset"))
+        .to contain_exactly(*with_year(["researched number 2"]))
+    end
+
+    specify "and metric_type" do
+      expect(search(status: :none, metric_type: "Researched"))
+        .to contain_exactly(*with_year(researched_titles))
+    end
+
+    specify "and policy and year" do
+      expect(search(status: :none,
+                    research_policy: "Designer Assessed",
+                    year: "2001"))
+        .to eq ["dinosaurlabor+2001", "Industry Class+2001", "researched number 3+2001"]
     end
   end
 end
