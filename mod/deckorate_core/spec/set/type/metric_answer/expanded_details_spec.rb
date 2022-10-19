@@ -16,9 +16,14 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       /#{Regexp.escape formatted}/
     end
 
+    def expect_formula_table metric, formula, &block
+      table = expanded_details metric, :formula
+      expect(table).to have_tag("table", &block)
+      expect(table).to have_tag "div.formula-content", text: "= #{formula}"
+    end
+
     specify do
-      table = expanded_details "Jedi+friendliness+Death Star+1977", :formula
-      expect(table).to have_tag "table" do
+      expect_formula_table "Jedi+friendliness+Death Star+1977", "1 / m1" do
         with_tag "th", text: "Metric"
         with_tag "th", text: "Value"
         with_tag "th", text: "Year"
@@ -31,14 +36,10 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         end
         with_tag "td", text: "1977"
       end
-
-      expect(table).to have_tag "div.formula-content", text: "= 1 / m1"
     end
 
     example "not_researched and unknown options" do
-      answer = "Jedi+know_the_unknowns+Apple Inc+2001"
-      table = expanded_details answer, :formula
-      expect(table).to have_tag "table" do
+      expect_formula_table "Jedi+know_the_unknowns+Apple Inc+2001", "m1 + m2" do
         with_tag("td") { with_tag "a", text: "RM" }
         with_tag("td") { with_tag "a.metric-value", text: "Unknown" }
         with_tag "td", text: "2001"
@@ -46,14 +47,11 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag("td") { with_tag "a.metric-value", text: "No value" }
         with_tag "td", text: "2001"
       end
-
-      expect(table).to have_tag "div.formula-content", text: "= m1 + m2"
     end
 
     example "year argument" do
-      answer = "Jedi+deadlier+Slate Rock and Gravel Company+2004"
-      table = expanded_details answer, :formula
-      expect(table).to have_tag "table" do
+      expect_formula_table "Jedi+deadlier+Slate Rock and Gravel Company+2004",
+                           "m1 + m2" do
         with_tag("td") { with_tag "a", text: "deadliness" }
         with_tag("td") { with_tag "a.metric-value", text: "9" }
         with_tag "td", text: "2004"
@@ -61,8 +59,6 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag("td") { with_tag "span.metric-value", text: "8" }
         with_tag "td", text: "-1"
       end
-
-      expect(table).to have_tag "div.formula-content", text: "= m1 + m2"
     end
 
     example "year range" do

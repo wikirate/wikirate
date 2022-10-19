@@ -61,8 +61,8 @@ RSpec.describe Card::AllAnswerQuery do
       specify "metric_type" do
         expect(search(status: :all, metric_type: "Researched"))
           .to contain_exactly(
-                *(with_year(researched_titles) + researched_death_star_answers)
-              )
+            *(with_year(researched_titles) + researched_death_star_answers)
+          )
       end
     end
 
