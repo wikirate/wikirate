@@ -24,6 +24,8 @@ class Card
         end
       end
 
+      private
+
       def category_query array
         if metric_card&.multi_categorical?
           multi_category_query array
