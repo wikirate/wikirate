@@ -39,9 +39,6 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
       before { Timecop.freeze Wikirate::HAPPY_BIRTHDAY }
       after { Timecop.return }
 
-      let(:answer_parts) { [1] }
-      let(:default_filters) { { company_id: company_name.card_id } }
-
       it "finds today's edits" do
         expect(search(updated: :today)).to eq ["disturbances in the Force"]
       end
