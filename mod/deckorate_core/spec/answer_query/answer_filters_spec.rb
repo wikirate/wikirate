@@ -1,6 +1,66 @@
 RSpec.describe Card::AnswerQuery::AnswerFilters do
   include_context "answer query"
 
+  context "with fixed company" do
+    let(:default_filters) { { company_id: company_name.card_id, year: :latest } }
+    let(:answer_parts) { [1, -1] } # metric and year
+    let(:company_name) { "Death_Star" }
+
+    specify "#year_query" do
+      expect(search(year: "2000"))
+        .to eq with_year(["dinosaurlabor", "disturbances in the Force",
+                          "disturbances in the Force"], 2000)
+    end
+
+    specify "#calculated_query" do
+      expect(search(calculated: :calculated))
+        .to eq(["darkness rating+1977",
+                "deadliness+1977",
+                "deadliness+1977",
+                "descendant 1+1977",
+                "descendant 2+1977",
+                "disturbances in the Force+2001",
+                "double friendliness+1977",
+                "friendliness+1977",
+                "know the unknowns+1977"])
+    end
+
+    describe "#updated_by_query" do
+      it "finds records updated by single user" do
+        # puts described_class.new(updater: "Joe_User").main_query.to_sql
+        expect(filter_class.new(updater: "Joe_User").main_query.count).to eq(8)
+      end
+    end
+
+    describe "#updated_query" do
+      let(:answer_parts) { [1] }
+      let(:default_filters) { { company_id: company_name.card_id } }
+
+      before { Timecop.freeze Wikirate::HAPPY_BIRTHDAY }
+      after { Timecop.return }
+
+      let(:answer_parts) { [1] }
+      let(:default_filters) { { company_id: company_name.card_id } }
+
+      it "finds today's edits" do
+        expect(search(updated: :today)).to eq ["disturbances in the Force"]
+      end
+
+      it "finds this week's edits" do
+        expect(search(updated: :week))
+          .to eq ["disturbances in the Force", "disturbances in the Force"]
+      end
+
+      it "finds this months's edits" do
+        # I added 'metric_type: "Researched"' because the new yaml loading
+        # made it so that calculated metrics, including scores, were created before the
+        # researched answers, which meant timecop affect the calculation times
+        expect(search(updated: :month, metric_type: "Researched"))
+          .to eq(["disturbances in the Force"] * 3)
+      end
+    end
+  end
+
   describe "#published_query" do
     let(:default_filters) { { metric_id: answer.card.metric_id } }
     let(:answer) { answer_name.card }

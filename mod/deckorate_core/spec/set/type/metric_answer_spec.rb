@@ -1,5 +1,4 @@
 RSpec.describe Card::Set::Type::MetricAnswer do
-
   describe "answers by value type" do
     def card_subject
       sample_answer value_type
@@ -10,7 +9,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
         let(:value_type) { value_type }
 
         check_html_views_for_errors
-        check_html_views_for_errors [:page]
+        check_html_views_for_errors %i[bar page concise]
       end
     end
   end
