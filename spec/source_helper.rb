@@ -3,8 +3,8 @@ module Wikirate
   module SourceHelper
     DEFAULT_SOURCE_URL = "http://www.google.com/?q=wikirate".freeze
 
-    def create_source *args
-      Card::Auth.as_bot { new_source(*args).tap(&:save!) }
+    def create_source file_or_url, fields: {}
+      Card::Auth.as_bot { new_source(file_or_url, fields: fields).tap(&:save!) }
     end
 
     def new_source file_or_url, fields: {}

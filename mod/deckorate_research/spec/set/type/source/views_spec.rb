@@ -62,8 +62,7 @@ RSpec.describe Card::Set::Type::Source::Views do
         @result = @existing_source.format._render_preview
       end
       it "wraps plain text in a <pre> tag" do
-        expect(@result)
-          .to have_tag("pre.text-source-preview", text: /Wiki Integration/)
+        expect(@result).to have_tag("pre.text-source-preview", text: /Wiki Integration/)
       end
     end
 
