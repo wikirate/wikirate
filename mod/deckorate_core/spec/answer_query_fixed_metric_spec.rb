@@ -27,21 +27,6 @@ RSpec.describe Card::AnswerQuery do
   end
 
   context "with single filter condition" do
-    context "with keyword" do
-      it "finds exact match" do
-        expect(search(company_name: "Death")).to eq ["Death Star+2001"]
-      end
-
-      it "finds partial match" do
-        expect(search(company_name: "at").sort)
-          .to eq ["Death Star+2001", "Slate Rock and Gravel Company+2006"]
-      end
-
-      it "ignores case" do
-        expect(search(company_name: "death")).to eq ["Death Star+2001"]
-      end
-    end
-
     it "finds exact match by year" do
       expect(search(year: "2000"))
         .to eq with_year(["Death Star", "Monster Inc",  "SPECTRE"], 2000)
