@@ -16,28 +16,25 @@ RSpec.describe Card::AnswerQuery::Sorting do
     let :latest_answers_by_bookmarks do
       [
         "disturbances in the Force+2001", "Victims by Employees+1977",
-        "Sith Lord in Charge+1977", "dinosaurlabor+2010", "cost of planets destroyed+1977",
-        "friendliness+1977", "deadliness+1977", "deadliness+1977",
-        "disturbances in the Force+2001", "darkness rating+1977", "descendant 1+1977",
-        "descendant 2+1977", "descendant hybrid+1977", "double friendliness+1977",
-        "researched number 1+1977", "know the unknowns+1977",
+        "Sith Lord in Charge+1977", "dinosaurlabor+2010",
+        "cost of planets destroyed+1977", "friendliness+1977", "deadliness+1977",
+        "deadliness+1977", "disturbances in the Force+2001", "darkness rating+1977",
+        "descendant 1+1977", "descendant 2+1977", "descendant hybrid+1977",
+        "double friendliness+1977", "researched number 1+1977", "know the unknowns+1977",
         "more evil+1977", "RM+1977", "deadliness+1977", "Company Category+2019"
       ]
-    end
-
-    def sort_designers dir
-      sort_by(:metric_designer, sort_dir: dir)# .map { |a| a.name.parts.first }.uniq
     end
 
     context "sorting by designer name" do
       let(:answer_parts) { [0] }
 
       it "(asc)" do
-        expect(sort_designers(:asc).uniq).to eq(sorted_designer)
+        expect(sort_by(:metric_designer, sort_dir: :asc).uniq).to eq(sorted_designer)
       end
 
       it "sorts by designer name (desc)" do
-        expect(sort_designers(:desc).uniq).to eq(sorted_designer.reverse)
+        expect(sort_by(:metric_designer, sort_dir: :desc).uniq)
+          .to eq(sorted_designer.reverse)
       end
     end
 

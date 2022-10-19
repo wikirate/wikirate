@@ -45,21 +45,31 @@ class Card
         company_filter_query :categories, :category_condition, value
       end
 
+      def metric_name_query value
+        @joins << :metric
+        restrict_by_cql :title, :title_id,
+                        name: [:match, value],
+                        left_plus: [{}, { type_id: Card::MetricID }]
+      end
+
       def company_filter_query table, condition_method, value
         company_answer_join table
         @conditions << CompanyFilterQuery.send(condition_method)
         @values << Array.wrap(value)
       end
 
-      def company_answer_join table
-        @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
+      def company_card
+        single_company? ? (@company_card ||= Card[@filter_args[:company_id]]) : return
       end
 
-      def metric_name_query value
-        @joins << :metric
-        restrict_by_cql :title, :title_id,
-                        name: [:match, value],
-                        left_plus: [{}, { type_id: Card::MetricID }]
+      def metric_card
+        single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
+      end
+
+      private
+
+      def company_answer_join table
+        @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
       end
 
       # SUPPORT METHODS
@@ -77,14 +87,6 @@ class Card
 
       def multi_company
         single_company? ? return : yield
-      end
-
-      def company_card
-        single_company? ? (@company_card ||= Card[@filter_args[:company_id]]) : return
-      end
-
-      def metric_card
-        single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
       def filter_table field

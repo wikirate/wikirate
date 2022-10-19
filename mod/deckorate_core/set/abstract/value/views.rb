@@ -41,29 +41,10 @@ format :html do
     render_core
   end
 
-  # do not link to the relationship answer counts that comprise the "value" of
-  # relationship metric answers.
-  before :pretty_link do
-    voo.hide! :link if card.relationship_count_value?
-  end
-
-  view :pretty_link, unknown: true do
-    voo.show :link
-    wrap_with :span, class: "metric-value", title: card.content do
-      pretty_link beautify(pretty_value)
-    end
-  end
-
   private
 
   def methodology_link
     link_to "Methodology", path: "#", class: "_methodology-link"
-  end
-
-  def pretty_link text
-    return text if voo.hide? :link
-
-    modal_link text, path: { mark: card.name }, target: "_blank"
   end
 
   def pretty_span_args
