@@ -1,24 +1,4 @@
 RSpec.describe Card::Metric do
-  let :formula_metric do
-    researched_metrics
-    described_class.create name: "Jedi+friendliness",
-                           type: :formula,
-                           formula: "1/{{Jedi+darksidiness}}"
-  end
-
-  let :score_metrics do
-    researched_metrics
-    described_class.create name: "Jedi+strength in the Force+Joe Camel",
-                           type: :score,
-                           rubric: { yes: 10, no: 0 }
-    described_class.create name: "Jedi+darksidiness+Joe User",
-                           type: :score,
-                           formula: "{{Jedi+darksidiness}}/10"
-    described_class.create name: "Jedi+darksidiness+Joe Camel",
-                           type: :score,
-                           formula: "{{Jedi+darksidiness}}/20"
-  end
-
   let :researched_metrics do
     sample_source_name = sample_source.name
     described_class.create name: "Jedi+strength in the Force",
@@ -30,16 +10,6 @@ RSpec.describe Card::Metric do
     described_class.create name: "Jedi+darksidiness" do
       Death_Star "1977" => { value: 100, source: sample_source_name }
     end
-  end
-
-  let :wikirate_rating_metric do
-    score_metrics
-    described_class.create(
-      name: "Jedi+darkness rating",
-      type: :wiki_rating,
-      formula: "({{Jedi+darksidiness+Joe User}}+" \
-               "{{Jedi+strength in the Force+Joe Camel}})/2"
-    )
   end
 
   describe "#create" do
