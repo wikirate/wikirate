@@ -7,10 +7,6 @@ format :html do
     markers
   end
 
-  view :small_markers do
-    markers.map { |marker| "<small>#{marker}</small>" }
-  end
-
   def marker_names
     [:comment]
   end

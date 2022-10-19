@@ -15,6 +15,11 @@ class Card
         end
       end
 
+      def related_company_group_query company_group
+        restrict_to_ids :answer_id,
+                        Relationship.answer_ids_for(metric_card, company_group)
+      end
+
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
 
       # TODO: delete the following after fashionchecker change is deployed

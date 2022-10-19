@@ -8,7 +8,6 @@ class Card
     include ValueFilters
     include MetricAndCompanyFilters
     include OutlierFilter
-    include RelationshipFilters
 
     self.card_id_map = {
       research_policy: :policy_id,
