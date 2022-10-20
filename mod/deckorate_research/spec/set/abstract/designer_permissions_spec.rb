@@ -43,7 +43,6 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
     end
   end
 
-
   def self.test_field_permissions base_type, field_list
     field_list.each do |field|
       context "with #{base_type}+#{field}" do
