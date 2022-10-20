@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::WikirateTopic do
     Card["Force"]
   end
 
-  check_html_views_for_errors
+  check_views_for_errors
 
   describe "view: bar_left" do
     it "has topic title" do

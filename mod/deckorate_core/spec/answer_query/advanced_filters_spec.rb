@@ -1,7 +1,7 @@
 RSpec.describe Card::AnswerQuery::AdvancedFilters do
   include_context "answer query"
 
-  let(:answer_parts) { [2] } # return company names
+  let(:answer_parts) { [-2] } # return company names
   let(:metric_name) { "Jedi+disturbances in the Force" }
   let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
 
@@ -12,12 +12,12 @@ RSpec.describe Card::AnswerQuery::AdvancedFilters do
     end
   end
 
-  describe "#answer_query" do
-    it "finds companies with metric" do
-      expect(search(answer: { metric_id: "Joe User+RM".card_id }))
-        .to eq(["Death Star"])
-    end
-  end
+  # describe "#answer_query" do
+  #   it "finds companies with metric" do
+  #     expect(search(answer: { metric_id: "Joe User+RM".card_id }))
+  #       .to eq(["Death Star"])
+  #   end
+  # end
 
   describe "#related_company_group_query" do
     context "with relationship metric" do
@@ -36,6 +36,16 @@ RSpec.describe Card::AnswerQuery::AdvancedFilters do
         expect(search(related_company_group: "Deadliest"))
           .to eq(["Los Pollos Hermanos", "Google LLC"])
       end
+    end
+  end
+
+  describe "#relationship_query" do
+    let(:default_filters) { { year: :latest } }
+
+    specify do
+      expect(search(relationship: { metric_id: "Commons+Supplier of".card_id,
+                                    company_id: "Spectre".card_id }).sort.uniq)
+        .to eq(["Google LLC", "Los Pollos Hermanos"])
     end
   end
 end

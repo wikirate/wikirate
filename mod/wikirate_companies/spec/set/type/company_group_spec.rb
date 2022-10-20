@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Type::CompanyGroup do
     Card["Deadliest"]
   end
 
-  check_html_views_for_errors
+  check_views_for_errors
 
   # Both SPECTRE and Monster Inc have Supplied By answers,
   # but only SPECTRE is supplied by Google LLC (the sole member of the Googliest Group)

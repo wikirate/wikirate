@@ -17,7 +17,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
     company.fetch :metric_answer
   end
 
-  check_html_views_for_errors
+  check_views_for_errors
 
   describe "#count" do
     it "counts all answers (regardless of year)" do

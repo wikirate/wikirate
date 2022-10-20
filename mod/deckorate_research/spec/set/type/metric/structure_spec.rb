@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::Metric::Structure do
     Card["Jedi+disturbances in the Force"]
   end
 
-  check_html_views_for_errors
+  check_views_for_errors
 
   describe "view: bar_left" do
     it "has metric title" do

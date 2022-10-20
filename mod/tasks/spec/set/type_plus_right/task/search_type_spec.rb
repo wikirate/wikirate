@@ -7,5 +7,5 @@ RSpec.describe Card::Set::TypePlusRight::Task::SearchType do
     expect(card_subject.filter_search_name).to eq("Add a Company Logo+Company")
   end
 
-  check_html_views_for_errors
+  check_views_for_errors
 end
