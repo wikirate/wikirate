@@ -3,5 +3,5 @@ RSpec.describe Card::Set::Type::MetricAnswer do
     sample_answer :category
   end
 
-  check_views_for_errors :json, %i[answer_list vega]
+  check_views_for_errors format: :json, views: %i[answer_list vega]
 end

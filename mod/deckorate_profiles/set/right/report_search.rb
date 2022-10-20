@@ -14,6 +14,10 @@
 attr_writer :variant
 assign_type :search_type
 
+def virtual?
+  new?
+end
+
 def user_plus_cardtype_name
   @user_plus_cardtype_name ||=
     research_group? ? name.left_name.left_name : name.left_name

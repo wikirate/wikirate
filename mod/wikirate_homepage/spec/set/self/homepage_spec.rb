@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Self::Homepage, type: :controller do
+  check_html_views_for_errors :core
+
   let(:golden_master) do
     ::File.read(File.expand_path("../homepage.html", __FILE__))
   end
