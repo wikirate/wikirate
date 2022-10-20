@@ -33,8 +33,11 @@ RSpec.describe Card::Set::LtypeRtype::User::Cardtype do
         end
       end
 
-      check_views_for_errors views: [:contribution_report],
-                             params: { report_tab: :created }
+      example "with current_tab" do
+        Card::Env.with_params report_tab: :created do
+          expect_view(:contribution_report).to lack_errors
+        end
+      end
     end
   end
 end
