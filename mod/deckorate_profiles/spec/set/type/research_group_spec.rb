@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::ResearchGroup do
     "Jedi".card
   end
 
-  check_html_views_for_errors
+  check_views_for_errors
 
   specify "view :bar" do
     expect_view(:bar).to have_tag "div.bar" do

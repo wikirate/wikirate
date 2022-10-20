@@ -9,7 +9,7 @@ RSpec.describe Card::Set::Type::Source do
     sample_source
   end
 
-  check_html_views_for_errors
+  check_views_for_errors
 
   describe "while creating a Source" do
     before do

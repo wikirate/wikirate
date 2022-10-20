@@ -83,16 +83,6 @@ format :html do
     { Relationships: metric_card.relationship_answer_card.name, Answers: super }
   end
 
-  # def relationship_export_links
-  #   metric_card.relationship_answer_card.format(:html).export_format_links
-  # end
-  #
-  # def wrap_export_links label, links
-  #   wrap_with :div, class: "#{label.downcase}-export-links py-1" do
-  #     "#{label} Export: #{links}"
-  #   end
-  # end
-
   def show_metric_count?
     false
   end

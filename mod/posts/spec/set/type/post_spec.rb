@@ -9,7 +9,7 @@ RSpec.describe Card::Set::Type::Post do
 
     # let(:card_subject) { post }
 
-    check_html_views_for_errors
+    check_views_for_errors
 
     specify "view mini_bar" do
       expect_view(:mini_bar).to have_tag "div.bar" do
