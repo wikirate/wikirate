@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Type::ResearchGroup do
   def card_subject
-    Card["Jedi"]
+    "Jedi".card
   end
 
   check_html_views_for_errors
