@@ -5,7 +5,7 @@ def num_policies
   count = { designer: 0, community: 0 }
   metric_card.item_cards.each do |metric|
     policy = metric.try :research_policy
-    tally_policy policy if policy
+    tally_policy policy, count if policy
   end
   [count[:designer], count[:community]]
 end

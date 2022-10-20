@@ -1,4 +1,6 @@
 RSpec.describe Card::Set::Self::Dataset do
+  check_views_for_errors :csv
+
   def card_subject
     :dataset.card
   end
