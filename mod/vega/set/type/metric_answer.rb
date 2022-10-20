@@ -10,9 +10,10 @@ format :json do
                   layout: { height: 80, width: 200, max_ticks: 5, padding: 2 }
   end
 
-  # def sort_hash
-  #   { sort_by: :year }
-  # end
+  # simulate filtering to keep charts from breaking
+  def filter_hash
+    {}
+  end
 
   view :answer_list, cache: :never do
     chart_query.lookup_relation.map(&:compact_json)
