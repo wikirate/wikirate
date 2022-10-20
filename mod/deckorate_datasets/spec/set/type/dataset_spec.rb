@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Type::Dataset do
   let(:dataset) { card_subject }
 
   context "with no year" do
-    check_html_views_for_errors
+    check_views_for_errors
 
     it "has no year" do
       expect(card_subject.years).to eq([])

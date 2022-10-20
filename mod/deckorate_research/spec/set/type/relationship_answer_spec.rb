@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
     Card["Commons+Supplied by+Monster_Inc+1977+Los_Pollos_Hermanos"]
   end
 
-  check_html_views_for_errors
+  check_views_for_errors
 
   %w[Views Markers].each do |subdir|
     abstract_answer_views =
@@ -11,7 +11,6 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
         Card::Set::Abstract::MetricAnswer.const_get(subdir).const_get("HtmlFormat")
       ].keys
     include_context_for abstract_answer_views, "view without errors"
-    include_context_for abstract_answer_views, "view with valid html"
   end
 
   let(:year) { "1977" }

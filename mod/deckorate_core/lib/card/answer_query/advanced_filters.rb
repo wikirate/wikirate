@@ -2,7 +2,9 @@ class Card
   class AnswerQuery
     # conditions and condition support methods for non-standard fields.
     module AdvancedFilters
-      # @param value [Hash]
+      # filter for companies with answers that meet the criteria
+      # @param value [Hash (or Array of Hashes)] each hash represents one constraint.
+      #   companies much match all constraints.
       # @option value [Integer] metric_id
       # @option value [String] year
       # @option value [Cardish] related_company_group
@@ -15,26 +17,38 @@ class Card
         end
       end
 
+      # filter for companies related to the group set in this value
       def related_company_group_query company_group
+        return unless single_metric?
+
         restrict_to_ids :answer_id,
                         Relationship.answer_ids_for(metric_card, company_group)
       end
 
+      # # TODO: delete the following after confirming fashionchecker works without it
+      #
+      # def answer_query value
+      #   return unless (metric_id = value[:metric_id]&.to_i)
+      #   exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
+      #     "AND a2.metric_id = ?"
+      #   @conditions << "EXISTS (#{exists})"
+      #   @values << metric_id
+      # end
+
+
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
 
-      # TODO: delete the following after fashionchecker change is deployed
-      def answer_query value
-        return unless (metric_id = value[:metric_id]&.to_i)
-        exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
-          "AND a2.metric_id = ?"
-        @conditions << "EXISTS (#{exists})"
-        @values << metric_id
-      end
+      # TODO: extend company_answer api to include this
 
       # This is ultimately a company restriction, limiting the answers to the
       # companies related to another by a given relationship metric
       #
       # will also need to support year and value constraints
+
+      # filter for companies related to a given company by a given metric
+      # @param value [Hash]
+      # @option value [Integer] metric_id (REQUIRED)
+      # @option value [Integer] company_id
       def relationship_query value
         metric_id = value[:metric_id]&.to_i
         company_id = value[:company_id]

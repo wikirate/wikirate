@@ -8,8 +8,8 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       context "with #{value_type} answer" do
         let(:value_type) { value_type }
 
-        check_html_views_for_errors
-        check_html_views_for_errors %i[bar page concise]
+        check_views_for_errors
+        check_views_for_errors views: %i[bar page concise]
       end
     end
   end
@@ -28,8 +28,8 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       context "with #{metric_type} answer" do
         let(:subject_with_metric_type) { Card.fetch answer_name }
 
-        check_html_views_for_errors
-        check_html_views_for_errors [:page]
+        check_views_for_errors
+        check_views_for_errors views: [:page]
       end
     end
   end

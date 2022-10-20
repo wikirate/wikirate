@@ -5,7 +5,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
     Card["Jedi+deadliness+Joe User+formula"]
   end
 
-  check_html_views_for_errors
+  check_views_for_errors
 
   it "show input options in table" do
     expect_view(:titled, card: "Jedi+deadliness average+formula")
