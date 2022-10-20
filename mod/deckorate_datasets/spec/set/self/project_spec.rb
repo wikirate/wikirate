@@ -1,10 +1,6 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Self::Project do
-  def card_subject
-    :project.card
-  end
-
   let(:format) { format_subject :base }
 
   describe "filter_cql" do
