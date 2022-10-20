@@ -1,15 +1,9 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Abstract::DesignerPermissions do
-  METRIC_NAME = "Joe User+researched number 3".freeze
-  ANSWER_NAME = "#{METRIC_NAME}+Samsung+2014".freeze
-
-  RESTRICTED_METRIC_FIELDS = %i[value_type research_policy unit range value_options
-                                report_type question about methodology].freeze
-  RESTRICTED_ANSWER_FIELDS = %i[value source].freeze
-
-  let(:metric) { Card[METRIC_NAME] }
-  let(:answer) { Card[ANSWER_NAME] }
+  let(:metric_name) { "Joe User+researched number 3" }
+  let(:metric) { metric_name.card }
+  let(:answer) { "#{metric_name}+Samsung+2014".card }
 
   def designer_can action, card
     Card::Auth.as "Joe User" do
@@ -37,22 +31,6 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
     end
   end
 
-  describe "metric fields" do
-    def metric_field_card name
-      metric.fetch name, new: {}
-    end
-
-    RESTRICTED_METRIC_FIELDS.each do |field|
-      specify "designer can update metric field: #{field}" do
-        designer_can :update, metric_field_card(field)
-      end
-
-      specify "nondesigner can't update metric field: #{field}" do
-        nondesigner_cant :update, metric_field_card(field)
-      end
-    end
-  end
-
   describe "answers" do
     %i[create update delete].each do |action|
       specify "designer can #{action} answer" do
@@ -65,19 +43,24 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
     end
   end
 
-  describe "answer fields" do
-    def answer_field_card name
-      answer.fetch name, new: {}
-    end
 
-    RESTRICTED_ANSWER_FIELDS.each do |field|
-      specify "designer can update answer field: #{field}" do
-        designer_can :update, answer_field_card(field)
-      end
+  def self.test_field_permissions base_type, field_list
+    field_list.each do |field|
+      context "with #{base_type}+#{field}" do
+        let(:field_card) { send(base_type).fetch field, new: {} }
 
-      specify "nondesigner can't update answer field: #{field}" do
-        nondesigner_cant :update, answer_field_card(field)
+        specify "designer can update metric field: #{field}" do
+          designer_can :update, field_card
+        end
+
+        specify "nondesigner can't update metric field: #{field}" do
+          nondesigner_cant :update, field_card
+        end
       end
     end
   end
+
+  test_field_permissions :metric, %i[value_type research_policy unit range value_options
+                                     report_type question about methodology]
+  test_field_permissions :answer, %i[value source]
 end
