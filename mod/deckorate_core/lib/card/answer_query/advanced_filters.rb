@@ -29,22 +29,21 @@ class Card
       #
       # def answer_query value
       #   return unless (metric_id = value[:metric_id]&.to_i)
-      #   exists = "SELECT * from answers AS a2 WHERE answers.company_id = a2.company_id " \
+      #   exists = "SELECT * from answers AS a2 " \
+      #     "WHERE answers.company_id = a2.company_id " \
       #     "AND a2.metric_id = ?"
       #   @conditions << "EXISTS (#{exists})"
       #   @values << metric_id
       # end
 
-
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
-
       # TODO: extend company_answer api to include this
-
+      #
       # This is ultimately a company restriction, limiting the answers to the
       # companies related to another by a given relationship metric
       #
       # will also need to support year and value constraints
-
+      #
       # filter for companies related to a given company by a given metric
       # @param value [Hash]
       # @option value [Integer] metric_id (REQUIRED)
