@@ -91,14 +91,6 @@ Then(/^I expect element "([^"]*)" exists$/) do |selector|
   expect(page).to have_css(selector)
 end
 
-When(/^(?:|I )solocomplete "([^"]*)" within "([^"]*)"$/) do |value, scope|
-  within(scope) do
-    find(".chosen-single").click
-    find(".chosen-search input").set value
-    find(".chosen-results li").click
-  end
-end
-
 When(/^I edit card "([^"]*)"$/) do |cardname|
   visit "/card/edit/#{cardname.to_name.url_key}"
 end
