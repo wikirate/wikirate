@@ -7,7 +7,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::RelationshipAnswer do
   check_views_for_errors views: %i[titled detailed], format: :csv
   check_views_for_errors views: %i[titled detailed], format: :json
 
-  context "filtering for year and company group (as fashionchecker does)" do
+  context "when filtering for year and company group (as fashionchecker does)" do
     def json_no_errors_with_filter filter
       Card::Env.with_params filter: filter do
         expect_view(:molecule, format: :json).to lack_errors
