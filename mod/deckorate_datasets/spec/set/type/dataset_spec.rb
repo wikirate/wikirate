@@ -7,8 +7,11 @@ RSpec.describe Card::Set::Type::Dataset do
 
   let(:dataset) { card_subject }
 
+  check_views_for_errors
+  check_views_for_errors format: :csv, views: %i[titled import_template]
+  check_views_for_errors format: :json, views: %i[molecule]
+
   context "with no year" do
-    check_views_for_errors
 
     it "has no year" do
       expect(card_subject.years).to eq([])
