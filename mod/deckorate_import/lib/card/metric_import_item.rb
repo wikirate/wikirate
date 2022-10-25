@@ -92,6 +92,10 @@ class Card
 
     private
 
+    def to_html value
+      value.gsub "\n", "<br>\n"
+    end
+
     def metric_name r
       name_parts = [r.delete(:metric_designer), r.delete(:metric_title)]
       scorer = r.delete(:scorer)
