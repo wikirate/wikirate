@@ -1,10 +1,14 @@
 require_relative "../../../lib/open_corporates/mapping_api"
 
 RSpec.describe OpenCorporates::MappingApi do
-  xit "new company with wikipedia entry" do
-    company = create "test company", type: :wikirate_company,
-                                     fields: { wikipedia: "Apple_Inc" }
-    expect(company.open_corporates).to eq "C0806592"
+  it "new company with wikipedia entry" do
+    allow(described_class)
+      .to receive(:json_response) do
+        { company_number: "C0806592",
+          incorporation_jurisdiction_code: "code1",
+          jurisdiction_code: "code2" }.to_json
+      end
+    expect(described_class.fetch_oc_company_number({}).company_number).to eq "C0806592"
   end
 
   xit "new company with headquarters entry" do

@@ -27,7 +27,6 @@ format :html do
                                id: id, class: 'pointer-radio-button'}
             #{radio_label option_name}
           </label>
-          #{radio_description option_name}
         </li>
       HTML
     end.join("\n")
@@ -39,9 +38,9 @@ format :html do
     ((o_card = Card.fetch(option_name)) && o_card.label) || option_name
   end
 
-  def radio_description option_name
-    description = pointer_option_description option_name
-    return unless description
-    "<div class=\"radio-option-description\">#{description}</div>"
-  end
+  # def radio_description option_name
+  #   description = pointer_option_description option_name
+  #   return unless description
+  #   "<div class=\"radio-option-description\">#{description}</div>"
+  # end
 end

@@ -9,7 +9,15 @@ RSpec.describe Card::Set::Type::Source do
     sample_source
   end
 
-  check_views_for_errors
+  check_views_for_errors views: views(:html).push(:tabs)
+
+  context "when new source" do
+    def card_subject
+      Card.new type: :source
+    end
+
+    check_views_for_errors views: :new
+  end
 
   describe "while creating a Source" do
     before do

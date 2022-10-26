@@ -3,5 +3,5 @@ RSpec.describe Card::Set::Type::User do
     Card["Joe Camel"]
   end
 
-  check_views_for_errors
+  check_views_for_errors views: views(:html).push(:tabs)
 end
