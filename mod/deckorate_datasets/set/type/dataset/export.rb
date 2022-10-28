@@ -12,8 +12,8 @@ end
 
 def tally_policy policy, count
   policy_type = case policy
-                when "[[Designer Assessed]]"  then :designer
-                when "[[Community Assessed]]" then :community
+                when /^designer/i  then :designer
+                when /^community/i then :community
                 end
   count[policy_type] += 1 if policy_type
 end
@@ -30,15 +30,18 @@ format :csv do
   end
 
   view :import_template do
-    card.companies.map do |company|
-      card.metrics.map do |metric|
-        import_record_lines metric, company
-      end
-    end.flatten.join
+    (
+      [CSV.generate_line(Card::AnswerImportItem.headers)] +
+        card.companies.map do |company|
+          card.metrics.map do |metric|
+            import_record_lines metric, company
+          end
+        end
+    ).join
   end
 
   def import_record_lines metric, company
-    if card.years
+    if card.years.present?
       card.years.map { |year| import_answer_line metric, company, year }
     else
       import_answer_line metric, company, ""
@@ -46,7 +49,7 @@ format :csv do
   end
 
   def import_answer_line metric, company, year
-    CSV.generate_line [metric, company, year, "", "", ""]
+    CSV.generate_line [metric, company, year, "", "", "", "", ""]
   end
 end
 
