@@ -1,5 +1,6 @@
 RSpec.describe Card::Set::Self::Dataset do
-  check_views_for_errors format: :csv
+  check_views_for_errors
+  check_views_for_errors format: :csv, views: views(:csv).push(:titled)
 
   describe "view core" do
     it "has a description card" do

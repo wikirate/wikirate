@@ -5,19 +5,18 @@ format :html do
 end
 
 format :csv do
-  def title_row
-    CSV.generate_line ["DATA SET", "METRICS", "COMPANIES", "ANSWERS",
-                       "USERS", "COMMUNITY-ASSESSED", "DESIGNER-ASSESSED", "CREATED AT"]
+  view :header do
+    [["DATA SET", "METRICS", "COMPANIES", "ANSWERS",
+      "USERS", "COMMUNITY-ASSESSED", "DESIGNER-ASSESSED", "CREATED AT"]]
   end
 
   view :core do
-    total = [0, 0, 0]
+    total = [0, 0, 0, 0, 0, 0]
     Card.search(type_id: card.id).map do |pc|
-      cnts = [pc.num_metrics, pc.num_companies, pc.num_answers, pc.num_users]
-      3.times do |i|
-        total[i] += cnts[i]
+      ([pc.name, pc.num_metrics, pc.num_companies, pc.num_answers, pc.num_users] +
+        pc.num_policies + [pc.created_at]).tap do |counts|
+        6.times { |i| total[i] += counts[i + 1] }
       end
-      CSV.generate_line([pc.name] + cnts + pc.num_policies + [pc.created_at])
-    end.unshift(title_row).push(CSV.generate_line(["TOTAL"] + total)).join
+    end.push(["TOTAL"] + total)
   end
 end
