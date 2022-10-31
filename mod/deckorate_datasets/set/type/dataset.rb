@@ -34,27 +34,27 @@ def where_record
 end
 
 def company_ids
-  @company_ids ||= wikirate_company_card.valid_item_ids
+  @company_ids ||= wikirate_company_card.item_ids
 end
 
 def metric_ids
-  @metric_ids ||= metric_card.valid_item_ids
+  @metric_ids ||= metric_card.item_ids
 end
 
 def year_ids
-  @year_ids ||= year_card.valid_item_ids
+  @year_ids ||= year_card.item_ids
 end
 
 def metrics
-  @metrics ||= metric_card.valid_item_names
+  @metrics ||= metric_card.item_names
 end
 
 def companies
-  @companies ||= wikirate_company_card.valid_item_names
+  @companies ||= wikirate_company_card.item_names
 end
 
 def years
-  @years ||= year_card.valid_item_names
+  @years ||= year_card.item_names
 end
 
 def years?
