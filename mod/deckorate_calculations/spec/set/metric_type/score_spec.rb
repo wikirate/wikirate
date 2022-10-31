@@ -8,6 +8,7 @@ RSpec.describe Card::Set::MetricType::Score do
   let(:score_formula) { "answer * 2" }
   let(:formula_type) { :formula }
 
+  # TODO: stop creating this score over and over. move to test data
   let :score do
     Card::Auth.as_bot do
       create_metric name: score_name, type: :score, formula_type => score_formula
@@ -25,6 +26,12 @@ RSpec.describe Card::Set::MetricType::Score do
       year: year
     ).take
   end
+
+  def card_subject
+    score
+  end
+
+  check_views_for_errors views: views(:html).push(:metric_properties) - [:select]
 
   describe "score for numerical metric" do
     context "when created with formula" do

@@ -11,7 +11,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateTopic::Subtopic do
       pointer = subtopic_pointer
       pointer.add_item "Death Star"
       pointer.save
-      expect(pointer.errors[:content]).to include("invalid subtopic: Death Star")
+      expect(pointer.errors[:content].first).to match(/invalid type: Company/)
     end
 
     it "triggers updates to subtopic referers", as_bot: true do
