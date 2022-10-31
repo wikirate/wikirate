@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# SPDX-FileCopyrightText: 2014 2014 Laureen van Breen, <laureen@wikirate.org> et al.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # This command will be run when you use `card` from within your deck.
 
 APP_PATH = File.expand_path("../config/application", __dir__)

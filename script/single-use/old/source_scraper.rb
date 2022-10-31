@@ -1,4 +1,9 @@
+
 #!/usr/bin/env ruby
+
+# SPDX-FileCopyrightText: 2014 2014 Laureen van Breen, <laureen@wikirate.org> et al.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 # This takes answer csv imports as inputs,
 # cleans up the urls in the source field,

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2014 2014 Laureen van Breen, <laureen@wikirate.org> et al.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 require_relative "../../../mod/csv_import/lib/import_item.rb"
 require_relative "../../../mod/csv_import/lib/csv_file.rb"
 

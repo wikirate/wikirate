@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2014 2014 Laureen van Breen, <laureen@wikirate.org> et al.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # project and dataset names got screwed up on the live site after the add_dataset
 # migration (presumably due to some issues that led to the deployment script being
 # run multiple times).

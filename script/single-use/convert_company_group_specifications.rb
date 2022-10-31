@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2014 2014 Laureen van Breen, <laureen@wikirate.org> et al.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # -*- encoding : utf-8 -*-
 
 require File.expand_path "../../../config/environment", __FILE__
