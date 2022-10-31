@@ -69,7 +69,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
     end
   end
 
-  describe "inapplicable_metrics" do
+  describe "#inapplicable_metric_ids" do
     let(:metric) { Card["Jedi+cost of planets destroyed"] }
 
     before do
@@ -92,24 +92,23 @@ RSpec.describe Card::Set::Type::WikirateCompany do
   # Cannot replicate locally, but you can see the issue by running just these tests
   # on semaphore and uncommenting the `puts` in
   # mod/wikirate_companies/spec/support/spec_helper.rb
-  xdescribe "fulltext_match: value" do
-    subject do
-      Card::Query.run @query.reverse_merge(return: :name, sort_by: :name)
+  describe "fulltext_match: value" do
+    def expect_query query
+      expect Card::Query.run query.reverse_merge(return: :name, sort_by: :name)
     end
 
     it "matches on search_content" do
-      @query = { fulltext_match: "Alphabet", type: "Company" }
-      is_expected.to eq(["Google LLC"])
+      expect_query(fulltext_match: "Alphabet", type: "Company").to eq(["Google LLC"])
     end
 
     it "doesn't allow word fragments" do
-      @query = { fulltext_match: "gle i", type: "Company" }
-      is_expected.to eq([])
+      expect_query(fulltext_match: "gle i", type: "Company")
+        .to eq([])
     end
 
     it "switches to sql regexp if preceeded by a ~" do
-      @query = { fulltext_match: "~ gle i", type: "Company" }
-      is_expected.to eq(["Google Inc."])
+      expect_query(fulltext_match: "~ gle i", type: "Company")
+        is_expected.to eq(["Google Inc."])
     end
   end
 end
