@@ -1,9 +1,5 @@
-event :validate_subtopics, :validate, on: :save do
-  added_item_names.each do |subtopic|
-    next if Card[subtopic]&.type_id == WikirateTopicID
-
-    errors.add :content, "invalid subtopic: #{subtopic}"
-  end
+def ok_item_types
+  :wikirate_topic
 end
 
 event :update_supertopic_tags, :prepare_to_store, on: :save do

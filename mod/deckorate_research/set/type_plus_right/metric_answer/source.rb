@@ -4,6 +4,10 @@ include_set Abstract::LookupField
 include_set Abstract::PublishableField
 include_set Abstract::Citation
 
+def ok_item_types
+  :source
+end
+
 def lookup_columns
   %i[source_count source_url]
 end

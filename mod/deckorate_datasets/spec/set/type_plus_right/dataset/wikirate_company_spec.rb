@@ -18,6 +18,5 @@ RSpec.describe Card::Set::TypePlusRight::Dataset::WikirateCompany do
     expect(card_subject.references_out.map(&:referee_id))
       .to include(company_id)
       .and not_include(alias_id)
-
   end
 end

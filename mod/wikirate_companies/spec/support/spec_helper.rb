@@ -17,6 +17,10 @@ RSpec.configure do |config|
   config.before do
     # TODO: do not remove the following before resolving the testing issue in
     # mod/wikirate_companies/spec/set/type/wikirate_company_spec.rb
-    puts "spectracular: #{Card["Jedi+disturbances in the Force+SPECTRE+2000"]&.name}"
+    # puts "spectracular: #{Card['Jedi+disturbances in the Force+SPECTRE+2000']&.name}"
+    #
+    # I can't reproduce this any more. Leaving for a little while longer just in case,
+    # but we can delete if problems don't resurface soon
+    # efm 2022-10-31
   end
 end
