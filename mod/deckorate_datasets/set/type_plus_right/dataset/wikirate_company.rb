@@ -6,10 +6,6 @@ include_set Abstract::FilterableList # must come after CompanySearch to override
 include_set Abstract::DatasetScope
 include_set Abstract::IdPointer
 
-def item_cards_for_validation
-  item_cards.sort_by(&:key)
-end
-
 format :html do
   view :titled_content do
     render_filtered_content
