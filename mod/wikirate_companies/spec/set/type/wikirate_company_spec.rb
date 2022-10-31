@@ -94,7 +94,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
   # mod/wikirate_companies/spec/support/spec_helper.rb
   describe "fulltext_match: value" do
     def expect_query query
-      expect Card::Query.run query.reverse_merge(return: :name, sort_by: :name)
+      expect Card::Query.run(query.reverse_merge(return: :name, sort_by: :name))
     end
 
     it "matches on search_content" do
@@ -107,8 +107,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
     end
 
     it "switches to sql regexp if preceeded by a ~" do
-      expect_query(fulltext_match: "~ gle i", type: "Company")
-        is_expected.to eq(["Google Inc."])
+      expect_query(fulltext_match: "~ gle i", type: "Company").to eq(["Google Inc."])
     end
   end
 end

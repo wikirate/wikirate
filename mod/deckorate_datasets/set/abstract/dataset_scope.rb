@@ -3,6 +3,10 @@ include_set Abstract::ListCachedCount
 # module for dataset-scope-defining cards
 # (+company, +metric, and +year on datasets)
 
+def item_names _args={}
+  super.sort_by(&:key)
+end
+
 # eg +:metric must contain only :metric
 def ok_item_types
   right_id
