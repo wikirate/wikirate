@@ -68,7 +68,7 @@ class Card
     end
 
     def validate_value_type value
-      value_type_codes.include? value&.to_name&.code
+      value_type_codes.include? value&.to_name&.codename
     end
 
     def normalize_methodology value

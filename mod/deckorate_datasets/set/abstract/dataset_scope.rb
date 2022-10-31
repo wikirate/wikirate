@@ -3,6 +3,15 @@ include_set Abstract::ListCachedCount
 # module for dataset-scope-defining cards
 # (+company, +metric, and +year on datasets)
 
+def item_names _args={}
+  super.sort_by(&:key)
+end
+
+# eg +:metric must contain only :metric
+def ok_item_types
+  right_id
+end
+
 # @return [Card::Name]
 def dataset_name
   name.left_name
@@ -12,28 +21,8 @@ def dataset_card
   left
 end
 
-# only returns items with the correct type
-def valid_item_cards
-  @valid_item_cards ||= item_cards_for_validation.select do |item|
-    item.type_id == right_id
-  end
-end
-
-def valid_item_names
-  valid_item_cards.map(&:name)
-end
-
-def valid_item_ids
-  valid_item_cards.map(&:id)
-end
-
 def num
-  valid_item_cards.size
-end
-
-# overridable method (eg to change sort order)
-def item_cards_for_validation
-  item_cards
+  item_cards.size
 end
 
 def hereditary_field?
