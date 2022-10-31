@@ -6,10 +6,6 @@ def hereditary_field?
   false
 end
 
-def item_cards_for_validation
-  item_cards.sort_by(&:name).reverse
-end
-
 format :html do
   def input_type
     :multiselect
