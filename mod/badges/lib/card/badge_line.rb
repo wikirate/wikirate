@@ -89,7 +89,7 @@ class Card
 
     def badge mark
       # FIXME: this is a temporary solution so we can keep supporting name arguments
-      @badge[mark] || @badge.fetch(mark.to_name.code) do
+      @badge[mark] || @badge.fetch(mark.to_name.codename) do
         raise ArgumentError, "badge #{mark} doesn't exist"
       end
     end

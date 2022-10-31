@@ -1,6 +1,10 @@
 # cache # of topics metric (=_left) is tagged with
 include_set Abstract::CachedCount
 
+def ok_item_types
+  :wikirate_topic
+end
+
 def recount
   item_names.size
 end

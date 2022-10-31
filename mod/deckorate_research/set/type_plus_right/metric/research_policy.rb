@@ -4,6 +4,10 @@ include_set Abstract::PublishableField
 include_set Abstract::SingleItem
 include_set Abstract::LookupField
 
+def ok_item_types
+  :research_policy
+end
+
 def lookup_columns
   :policy_id
 end
