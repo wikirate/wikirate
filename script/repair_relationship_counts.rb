@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2014 2014 Laureen van Breen, <laureen@wikirate.org> et al.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # for use in the console
 
 metric_type_ids = [Card::RelationshipID, Card::InverseRelationshipID]
