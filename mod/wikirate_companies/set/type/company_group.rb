@@ -32,7 +32,8 @@ format :html do
   mini_bar_cols 7, 5
 
   before :content_formgroups do
-    voo.edit_structure = %i[image specification wikirate_company about discussion]
+    voo.edit_structure =
+      %i[image wikirate_topic specification wikirate_company about discussion]
   end
 
   def tab_list
