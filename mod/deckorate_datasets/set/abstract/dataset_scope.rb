@@ -53,7 +53,7 @@ def relative_dataset_field relative_dataset
 end
 
 def union_with_parent_field
-  parent_field.item_names | item_names
+  parent_field.item_ids | item_ids
 end
 
 def data_subset_item_ids
