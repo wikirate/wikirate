@@ -50,7 +50,7 @@ end
 format :html do
   delegate :ok_to_join?, :current_user_is_member?, to: :card
 
-  view :overview, unknown: true, wrap: :slot, template: :haml
+  view :overview, unknown: true, wrap: :slot, template: :haml, cache: :never
 
   view :contributions, unknown: true, cache: :never do
     return "" unless card.count.positive?

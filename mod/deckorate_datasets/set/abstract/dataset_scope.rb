@@ -53,12 +53,12 @@ def relative_dataset_field relative_dataset
 end
 
 def union_with_parent_field
-  parent_field.item_names | item_names
+  parent_field.item_ids | item_ids
 end
 
-def data_subset_item_names
+def data_subset_item_ids
   dataset_card.data_subset_card.item_cards.map do |data_subset|
-    relative_dataset_field(data_subset).item_names
+    relative_dataset_field(data_subset).item_ids
   end.flatten.uniq
 end
 
@@ -67,23 +67,20 @@ event :add_items_to_parent_dataset, :integrate, on: :save do
   subcard parent_field.name, content: union_with_parent_field.to_pointer_content
 end
 
-def missing_data_subset_item_names
-  data_subset_item_names.select do |name|
-    !item_names.include? name
-  end
+def missing_data_subset_item_ids
+  data_subset_item_ids - item_ids
 end
 
 event :validate_all_data_subset_items_present, :validate, on: :update do
-  return unless hereditary_field?
-  missing_names = missing_data_subset_item_names
-  return unless missing_names.present?
+  return unless hereditary_field? && (missing_ids = missing_data_subset_item_ids).present?
+  missing_names = missing_ids.map(&:cardname)
 
   errors.add :content, "The following are still associated with data_subsets " \
                        "and cannot be removed: #{missing_names.join ', '}"
 end
 
 event :prevent_deletion_if_data_subset_items_present, :validate, on: :delete do
-  return unless hereditary_field? && data_subset_item_names.present?
+  return unless hereditary_field? && data_subset_item_ids.present?
 
   errors.add :content, "This card cannot be deleted, because there are data_subsets " \
                        "with at least one #{scope_code.cardname}"
