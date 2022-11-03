@@ -1,4 +1,4 @@
-include_set Abstract::Pointer
+include_set Abstract::List
 include_set Abstract::Value
 
 event :validate_valid_categories, :validate, on: :save do

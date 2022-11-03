@@ -3,7 +3,7 @@
 
 include_set Abstract::MetricSearch
 include_set Abstract::DatasetScope
-include_set Abstract::IdPointer
+include_set Abstract::IdList
 
 def query_hash
   ids = item_ids

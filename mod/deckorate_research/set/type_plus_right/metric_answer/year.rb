@@ -1,5 +1,5 @@
 # not to be stored - year is in name
-include_set Abstract::Pointer
+include_set Abstract::List
 
 event :do_not_save_year, :validate, on: :save do
   abort :success
