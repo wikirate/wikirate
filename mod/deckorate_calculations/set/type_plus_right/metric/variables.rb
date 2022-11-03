@@ -32,9 +32,8 @@ event :validate_variables, :validate, on: :save, changed: :content do
   end
 end
 
-def check_json_syntax
+event :variables_content_prep, :prepare_to_validate, on: :save do
   self.content = content # trigger standardization
-  super
 end
 
 def standardize_content content
@@ -100,7 +99,7 @@ format :html do
     if score?
       score_input
     else
-      card.check_json_syntax
+      self.content = content # trigger standardization
       super()
     end
   end
