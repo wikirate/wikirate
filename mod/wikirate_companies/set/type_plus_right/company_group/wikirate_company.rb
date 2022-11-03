@@ -1,6 +1,6 @@
 # cache # of companies in this group
 include_set Abstract::ListCachedCount
-include_set Abstract::IdPointer
+include_set Abstract::IdList
 
 delegate :specification_card, to: :left
 delegate :explicit?, :implicit?, to: :specification_card

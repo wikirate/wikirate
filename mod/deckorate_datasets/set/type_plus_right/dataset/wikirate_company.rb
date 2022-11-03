@@ -4,7 +4,7 @@
 include_set Abstract::CompanySearch
 include_set Abstract::FilterableList # must come after CompanySearch to override cql
 include_set Abstract::DatasetScope
-include_set Abstract::IdPointer
+include_set Abstract::IdList
 
 format :html do
   view :titled_content do

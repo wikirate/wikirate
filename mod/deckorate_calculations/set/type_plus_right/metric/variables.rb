@@ -18,8 +18,8 @@
 #  Note: Scores do not maintain variable cards, because the only variable is the
 #  metric being scored (which can be inferred from the left_id)
 
-include_set Abstract::Pointer
-include_set Abstract::IdPointer
+include_set Abstract::List
+include_set Abstract::IdList
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CalcTrigger
 
