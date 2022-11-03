@@ -32,9 +32,8 @@ event :validate_variables, :validate, on: :save, changed: :content do
   end
 end
 
-def check_json_syntax
+event :variables_content_prep, :prepare_to_validate, on: :save do
   self.content = content # trigger standardization
-  super
 end
 
 def standardize_content content
@@ -60,6 +59,10 @@ end
 
 def input_array
   (content.present? ? parse_content : [])
+end
+
+def unique_items?
+  metric_type_codename != :formula
 end
 
 private
@@ -96,7 +99,7 @@ format :html do
     if score?
       score_input
     else
-      card.check_json_syntax
+      self.content = content # trigger standardization
       super()
     end
   end
@@ -134,10 +137,6 @@ format :html do
 
   def custom_variable_input template
     with_nest_mode(:normal) { haml template }
-  end
-
-  def filtered_item_duplicable
-    metric_type_codename == :formula
   end
 
   # hacky. prevents new form from treating +variables as a subcard of +formula
