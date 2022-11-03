@@ -25,7 +25,7 @@ class Calculate
       update_overridden_calculations overridden
     end
   ensure
-    update_latest
+    metric.update_latest @company_id
   end
 
   private
@@ -65,23 +65,6 @@ class Calculate
                                 .each_with_object({}) do |(c, y), h|
       h["#{c}-#{y}"] = true
     end
-  end
-
-  def update_latest
-    latest_rel.pluck(:id).each_slice(25_000) do |ids|
-      Answer.where("id in (#{ids.join ', '})").update_all latest: true
-    end
-  end
-
-  def latest_rel
-    answers.where <<-SQL
-      NOT EXISTS (
-        SELECT * FROM answers a1
-        WHERE a1.metric_id = answers.metric_id
-        AND a1.company_id = answers.company_id
-        AND a1.year > answers.year
-      )
-    SQL
   end
 
   def results

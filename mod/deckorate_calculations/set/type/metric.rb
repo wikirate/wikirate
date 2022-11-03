@@ -67,6 +67,27 @@ def formula_metrics
     Card.search type: :metric, right_plus: [:variables, { refer_to: id }]
 end
 
+def update_latest company_id=nil
+  rel = company_id ? answers.where(company_id: company_id) : answers
+  rel.update_all latest: false
+  latest_rel(rel).pluck(:id).each_slice(25_000) do |ids|
+    Answer.where("id in (#{ids.join ', '})").update_all latest: true
+  end
+end
+
+private
+
+def latest_rel rel
+  rel.where <<-SQL
+      NOT EXISTS (
+        SELECT * FROM answers a1
+        WHERE a1.metric_id = answers.metric_id
+        AND a1.company_id = answers.company_id
+        AND a1.year > answers.year
+      )
+  SQL
+end
+
 format :html do
   view :calculation_tab do
     [calculations_list, haml(:new_calculation_links)]
