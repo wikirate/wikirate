@@ -24,6 +24,7 @@ class Calculate
       insert_calculations not_overridden
       update_overridden_calculations overridden
     end
+  ensure
     update_latest
   end
 
