@@ -62,6 +62,10 @@ def input_array
   (content.present? ? parse_content : [])
 end
 
+def unique_items?
+  metric_type_codename != :formula
+end
+
 private
 
 def content_to_hash_list content
@@ -134,10 +138,6 @@ format :html do
 
   def custom_variable_input template
     with_nest_mode(:normal) { haml template }
-  end
-
-  def filtered_item_duplicable
-    metric_type_codename == :formula
   end
 
   # hacky. prevents new form from treating +variables as a subcard of +formula
