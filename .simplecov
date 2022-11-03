@@ -6,7 +6,7 @@ if (ENV["CARD_LOAD_STRATEGY"] == "tmp_files") && ENV["CARD_NO_COVERAGE"] != "tru
     add_filter "vendor"
 
     def add_mod_groups dir_pattern
-      Dir[dir_pattern].each do |path|
+      Dir[dir_pattern].sort.each do |path|
         modname = File.basename path
         next if modname == "recycling"
         add_group "Mod: #{modname}", %r{(mod/|mod\d{3}-)#{modname}}
