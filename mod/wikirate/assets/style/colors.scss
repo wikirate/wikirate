@@ -1,3 +1,44 @@
+/*----------- WikiRate Scores ---------*/
+// Note: to change these colors you will typically want to edit the +:variables
+// card on the active skin.  See note in 01_variables.scss in deckorate_core mod
+
+$score-colors: (
+        "0": $red,
+        "1": #EA5C43,
+        "2": $orange,
+        "3": #F7923D,
+        "4": $yellow-orange,
+        "5": $yellow,
+        "6": #BFCA4B,
+        "7": $green,
+        "8": #65a300,
+        "9": $teal
+) !default;
+
+/*----------- Official SDG colors ---------*/
+
+$sdg-colors: (
+  sdg1: #E5243B,
+  sdg2: #DDA63A,
+  sdg3: #4C9F38,
+  sdg4: #C5192D,
+  sdg5: #FF3A21,
+  sdg6: #26BDE2,
+  sdg7: #FCC30B,
+  sdg8: #A21942,
+  sdg9: #FD6925,
+  sdg10: #DD1367,
+  sdg11: #FD9D24,
+  sdg12: #BF8B2E,
+  sdg13: #3F7E44,
+  sdg14: #0A97D9,
+  sdg15: #56C02B,
+  sdg16: #00689D,
+  sdg17: #19486A
+) !default;
+
+
+
 // set consistent colors for a group of bars/boxes
 @mixin barbox($color) {
   &.bar {

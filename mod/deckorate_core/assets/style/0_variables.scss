@@ -1,0 +1,31 @@
+// NOTE: most DeckoRate sites (including WikiRate) will choose to override the
+// variables set here in the +:variables card on the bootswatch skin.  However, it
+// is important that these are set here (with !default to be overridable) so that
+// Skins without that :variables card will still work (and not cause problems with
+// upgrades)
+
+/*----------- DeckoRate Categories ---------*/
+
+$yellow-orange: #F7B13D !default;
+$company-color: $yellow !default;
+$company-group-color: $company-color !default;
+$metric-color: $orange !default;
+$answer-color: $gray-600 !default;
+$record-color: $answer-color !default;
+$topic-color: $teal !default;
+$source-color: $green !default;
+$user-color: $green !default;
+$research-group-color: $green !default;
+$project-color: $yellow-orange !default;
+$dataset-color: $yellow-orange !default;
+$year-color: $yellow !default;
+
+/*----------- Other WikiRate-specific variables ---------*/
+
+$verification-flag-color: $red !default;
+$top-bar-anchor-color: $primary !default;
+
+// badge levels
+$gold: gold !default;
+$silver: silver !default;
+$bronze: #cd7f32 !default;
