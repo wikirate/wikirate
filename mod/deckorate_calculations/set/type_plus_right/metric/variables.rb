@@ -99,7 +99,7 @@ format :html do
     if score?
       score_input
     else
-      self.content = content # trigger standardization
+      card.content = card.content # trigger standardization
       super()
     end
   end
