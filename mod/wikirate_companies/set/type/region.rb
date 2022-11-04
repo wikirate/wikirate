@@ -1,3 +1,5 @@
+include_set Abstract::Delist
+
 card_accessor :country, type: :pointer
 
 def oc_code
