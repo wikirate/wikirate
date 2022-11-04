@@ -1,5 +1,9 @@
 include_set Abstract::CompanyField
 
+def ok_item_types
+  :region
+end
+
 event :standardize_jurisdiction_codes, :prepare_to_validate, on: :save do
   return if oc_code # already standardized
 
