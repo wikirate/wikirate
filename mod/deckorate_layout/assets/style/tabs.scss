@@ -1,3 +1,8 @@
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
 
 .nav-tabs {
   border-bottom: 4px solid $border-color;

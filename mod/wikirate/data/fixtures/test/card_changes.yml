@@ -867,6 +867,373 @@ card_changes_158:
   value:
 card_changes_159:
   id: 167
-  card_action_id: 14769
+  card_action_id: 14770
   field: 3
   value: t
+card_changes_160:
+  id: 168
+  card_action_id: 15149
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_161:
+  id: 169
+  card_action_id: 15214
+  field: 0
+  value: parent
+card_changes_162:
+  id: 170
+  card_action_id: 3767
+  field: 0
+  value:
+card_changes_163:
+  id: 171
+  card_action_id: 3767
+  field: 1
+  value: '55'
+card_changes_164:
+  id: 172
+  card_action_id: 3767
+  field: 2
+  value: wikirate skin
+card_changes_165:
+  id: 173
+  card_action_id: 3767
+  field: 3
+  value: f
+card_changes_166:
+  id: 174
+  card_action_id: 3767
+  field: 4
+  value: '7'
+card_changes_167:
+  id: 175
+  card_action_id: 3767
+  field: 5
+  value: '344'
+card_changes_168:
+  id: 176
+  card_action_id: 15261
+  field: 1
+  value: '4'
+card_changes_169:
+  id: 177
+  card_action_id: 15261
+  field: 2
+  value: yeti skin
+card_changes_170:
+  id: 178
+  card_action_id: 15368
+  field: 2
+  value: Default Layout
+card_changes_171:
+  id: 179
+  card_action_id: 15436
+  field: 2
+  value: deckorate_layout
+card_changes_172:
+  id: 180
+  card_action_id: 17377
+  field: 2
+  value: '8'
+card_changes_173:
+  id: 181
+  card_action_id: 17810
+  field: 0
+  value: Parent
+card_changes_174:
+  id: 182
+  card_action_id: 17840
+  field: 2
+  value: '6'
+card_changes_175:
+  id: 183
+  card_action_id: 17890
+  field: 2
+  value: ":logo/wikirate_homepage.png"
+card_changes_176:
+  id: 184
+  card_action_id: 3763
+  field: 0
+  value:
+card_changes_177:
+  id: 185
+  card_action_id: 3763
+  field: 1
+  value: '332'
+card_changes_178:
+  id: 186
+  card_action_id: 3763
+  field: 2
+  value: |
+    $blue: #0dcaf0 !default;
+    $purple: #484c9d !default;
+    $red: #dd4549 !default;
+    $orange: #f7733d !default;
+    $yellow: #f7bd1d !default;
+    $green: #7ac774 !default;
+    $teal: #09ab90 !default;
+    $black: #1d1e3f !default;
+    $white: #ffffff !default;
+
+    $gray-100: #f7f7f8 !default;
+    $gray-200: #e9ecef !default;
+    $gray-300: #dee2e6 !default;
+    $gray-400: #ced4da !default;
+    $gray-500: #adb5bd !default;
+    $gray-600: #6c757d !default;
+    $gray-700: #495057 !default;
+    $gray-800: #343a40 !default;
+    $gray-900: #34343b !default;
+
+    $primary: $purple !default;
+    $secondary: $gray-600 !default;
+    $success: $teal !default;
+    $info: $purple !default;
+    $warning: $orange !default;
+    $danger: $red !default;
+    $light: $gray-100 !default;
+    $dark: $black !default;
+    $body-bg: $white !default;
+    $body-color: $gray-900 !default;
+card_changes_179:
+  id: 187
+  card_action_id: 3763
+  field: 3
+  value: f
+card_changes_180:
+  id: 188
+  card_action_id: 3763
+  field: 4
+  value: '2493'
+card_changes_181:
+  id: 189
+  card_action_id: 3763
+  field: 5
+  value: '352'
+card_changes_182:
+  id: 190
+  card_action_id: 17922
+  field: 2
+  value: |
+    $blue: #0dcaf0 !default;
+    $purple: #484c9d !default;
+    $red: #d12e32 !default;
+    $orange: #f7733d !default;
+    $yellow: #f7bd1d !default;
+    $green: #7ac774 !default;
+    $teal: #09ab90 !default;
+    $black: #1d1e3f !default;
+    $white: #ffffff !default;
+
+    $gray-100: #f7f7f8 !default;
+    $gray-200: #e9ecef !default;
+    $gray-300: #dee2e6 !default;
+    $gray-400: #ced4da !default;
+    $gray-500: #adb5bd !default;
+    $gray-600: #6c757d !default;
+    $gray-700: #495057 !default;
+    $gray-800: #343a40 !default;
+    $gray-900: #34343b !default;
+
+    $primary: $purple !default;
+    $secondary: $gray-600 !default;
+    $success: $teal !default;
+    $info: $purple !default;
+    $warning: $orange !default;
+    $danger: $red !default;
+    $light: $gray-100 !default;
+    $dark: $black !default;
+    $body-bg: $white !default;
+    $body-color: $gray-900 !default;
+card_changes_183:
+  id: 191
+  card_action_id: 3764
+  field: 0
+  value:
+card_changes_184:
+  id: 192
+  card_action_id: 3764
+  field: 1
+  value: '332'
+card_changes_185:
+  id: 193
+  card_action_id: 3764
+  field: 2
+  value: |
+    /*----------- WikiRate Categories ---------*/
+
+    // not standard bootstrap color variable
+    $yellow-orange: #F7B13D;
+
+    $company-color: $yellow;
+    $company-group-color: $company-color;
+    $metric-color: $orange;
+    $answer-color: $gray-600;
+    $record-color: $answer-color;
+    $topic-color: $teal;
+    $source-color: $green;
+    $user-color: $green;
+    $research-group-color: $green;
+    $project-color: $yellow-orange;
+    $dataset-color: $yellow-orange;
+    $year-color: $yellow;
+
+    /*----------- WikiRate Scores ---------*/
+
+    $score-colors: (
+      "0": $red,
+      "1": #EA5C43,
+      "2": $orange,
+      "3": #F7923D,
+      "4": $yellow-orange,
+      "5": $yellow,
+      "6": #BFCA4B,
+      "7": $green,
+      "8": #65a300,
+      "9": $teal
+    );
+
+    /*----------- Other WikiRate-specific variables ---------*/
+
+    $verification-flag-color: $red;
+    $top-bar-anchor-color: $primary;
+
+    // badge levels
+    $gold: gold;
+    $silver: silver;
+    $bronze: #cd7f32;
+
+    //----------- Bootstrap Overrides ---------
+
+    $border-color: $gray-200;
+    $table-group-separator-color: $gray-200;
+
+    $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
+    $box-shadow: 0 10px 20px 0 rgba($dark, .2);
+    $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
+
+    // NOTE: scroll-behavior: smooth breaks cypress tests
+    $enable-smooth-scroll: false;
+
+    /*----------- Official SDG colors ---------*/
+
+    $sdg-colors: (
+      sdg1: #E5243B,
+      sdg2: #DDA63A,
+      sdg3: #4C9F38,
+      sdg4: #C5192D,
+      sdg5: #FF3A21,
+      sdg6: #26BDE2,
+      sdg7: #FCC30B,
+      sdg8: #A21942,
+      sdg9: #FD6925,
+      sdg10: #DD1367,
+      sdg11: #FD9D24,
+      sdg12: #BF8B2E,
+      sdg13: #3F7E44,
+      sdg14: #0A97D9,
+      sdg15: #56C02B,
+      sdg16: #00689D,
+      sdg17: #19486A
+    );
+
+
+    /*----------- Mixins ---------*/
+
+    @mixin ellipsis() {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @mixin opacity($opacity) {
+      opacity: $opacity;
+      $opacity-ie: $opacity * 100;
+      filter: alpha(opacity=$opacity-ie); //IE8
+    }
+card_changes_186:
+  id: 194
+  card_action_id: 3764
+  field: 3
+  value: f
+card_changes_187:
+  id: 195
+  card_action_id: 3764
+  field: 4
+  value: '2493'
+card_changes_188:
+  id: 196
+  card_action_id: 3764
+  field: 5
+  value: '350'
+card_changes_189:
+  id: 197
+  card_action_id: 17923
+  field: 2
+  value: |
+    // NOTE: standard bootstrap color variables should be changed not
+    // here but in the +:color card
+
+    /*----------- WikiRate Categories ---------*/
+
+    $yellow-orange: #F7B13D;
+
+    $company-color: $yellow;
+    $company-group-color: $company-color;
+    $metric-color: $orange;
+    $answer-color: $gray-600;
+    $record-color: $answer-color;
+    $topic-color: $teal;
+    $source-color: $green;
+    $user-color: $green;
+    $research-group-color: $green;
+    $project-color: $yellow-orange;
+    $dataset-color: $yellow-orange;
+    $year-color: $yellow;
+
+    /*----------- WikiRate Scores ---------*/
+
+    $score-colors: (
+      "0": $red,
+      "1": #EA5C43,
+      "2": $orange,
+      "3": #F7923D,
+      "4": $yellow-orange,
+      "5": $yellow,
+      "6": #BFCA4B,
+      "7": $green,
+      "8": #65a300,
+      "9": $teal
+    );
+
+    /*----------- Other WikiRate-specific variables ---------*/
+
+    $verification-flag-color: $red;
+    $top-bar-anchor-color: $primary;
+
+    // badge levels
+    $gold: gold;
+    $silver: silver;
+    $bronze: #cd7f32;
+
+    //----------- Bootstrap Overrides ---------
+
+    $border-color: $gray-200;
+    $table-group-separator-color: $gray-200;
+
+    $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
+    $box-shadow: 0 10px 20px 0 rgba($dark, .2);
+    $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
+
+    // NOTE: scroll-behavior: smooth breaks cypress tests
+    $enable-smooth-scroll: false;
+card_changes_190:
+  id: 198
+  card_action_id: 17926
+  field: 1
+  value: '55'
+card_changes_191:
+  id: 199
+  card_action_id: 17926
+  field: 2
+  value: wikirate skin

@@ -1,8 +1,11 @@
-// TODO: refactor these away
-// Most variables, mixins, and functions have been moved to wikirate_skin+variables.
-// The following two mixins were NOT moved over because there are existing bootstrap
-// mixins with the same name.  They
-//
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+// The following mixins override existing bootstrap mixins with the same name.
 
 @mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
   @if ($inset != "") {
