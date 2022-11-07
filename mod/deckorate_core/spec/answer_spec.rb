@@ -135,12 +135,12 @@ RSpec.describe Answer do
 
       it "updates latest when card is no longer latest" do
         expect(new_latest(2015, 2000)).to be_falsey
-        expect(latest_for_year 2002).to be_truthy
+        expect(latest_for_year(2002)).to be_truthy
       end
 
       it "updates latest when card is newly latest" do
         expect(new_latest(2002, 2020)).to be_truthy
-        expect(latest_for_year 2015).to be_falsey
+        expect(latest_for_year(2015)).to be_falsey
       end
     end
 

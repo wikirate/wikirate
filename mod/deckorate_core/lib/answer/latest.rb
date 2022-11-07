@@ -35,9 +35,8 @@ class Answer
     end
 
     def latest_to_true year=nil
-      return unless (year ||= latest_year_in_db)
-
-      latest_context.where(year: year, latest: false).update_all latest: true
+      year ||= latest_year_in_db
+      latest_context.where(year: year, latest: false).update_all latest: true if year
     end
   end
 end
