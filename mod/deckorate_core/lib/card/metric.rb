@@ -1,4 +1,5 @@
 class Card::Metric
+  # TODO: make this more explicitly a test-only API
   class AnswerCreator
     def initialize metric=nil, test_source=false, &answers_block
       @metric = metric

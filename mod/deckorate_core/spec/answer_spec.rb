@@ -109,19 +109,38 @@ RSpec.describe Answer do
       expect(answer.metric_name).to eq "Joe User+invented"
     end
 
-    it "updates year" do
-      update answer_name, name: "Joe User+RM+Apple_Inc+1999"
-      expect(answer.year).to eq 1999
-    end
-
     context "when year changes" do
+      # record has answers for 2002 and 2015
+      let(:record_name) { "Joe User+researched number 1+Apple Inc" }
+
+      it "updates year" do
+        update answer_name, name: "Joe User+RM+Apple_Inc+1999"
+        expect(answer.year).to eq 1999
+      end
+
+      def new_latest old_year, new_year
+        old_name = [record_name, old_year.to_s].cardname
+        new_name = [record_name, new_year.to_s].cardname
+        update old_name, name: new_name
+        described_class.for_card(new_name.card_id).latest
+      end
+
+      def latest_for_year year
+        described_class.for_card([record_name, year.to_s].card_id).latest
+      end
+
       it "doesn't change latest if still latest" do
-        name = "Joe User+researched number 1+Apple Inc+2015"
-        new_name = "Joe User+researched number 1+Apple Inc+2014"
-        update name, name: new_name
-        answer_id = new_name.card_id
-        answer = described_class.for_card answer_id
-        expect(answer.latest).to eq true
+        expect(new_latest(2015, 2014)).to be_truthy
+      end
+
+      it "updates latest when card is no longer latest" do
+        expect(new_latest(2015, 2000)).to be_falsey
+        expect(latest_for_year 2002).to be_truthy
+      end
+
+      it "updates latest when card is newly latest" do
+        expect(new_latest(2002, 2020)).to be_truthy
+        expect(latest_for_year 2015).to be_falsey
       end
     end
 
