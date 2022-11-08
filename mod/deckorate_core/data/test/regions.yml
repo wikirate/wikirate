@@ -2341,11 +2341,6 @@
     :oc_jurisdiction_key: us_wy
     :ilo_region: Americas
     :country: United States
-- :name: Headquarters value (jurisdiction)
-  :type: :region
-  :fields:
-    :ilo_region: ILO Region
-    :country: core+country value
 - :name: Laos
   :type: :region
   :fields:
