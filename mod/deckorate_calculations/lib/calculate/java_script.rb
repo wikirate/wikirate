@@ -29,6 +29,8 @@ class Calculate
       File.read File.expand_path("../../../../#{path_in_mod}", __FILE__)
     end
 
+    # regenerate with https://wikirate.org/region/lookup.json
+    #
     # FIXME: should not be in this mod!!
     def region_json
       file_content = read_file_in_mod "wikirate_companies/public/region.json"

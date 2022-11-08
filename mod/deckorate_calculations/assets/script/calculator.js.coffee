@@ -19,7 +19,6 @@ deckorate.calculator =
 
   anyKnown: (list) -> list.find isKnown
 
-
 _calculateAll = (obj) ->
   r = {}
   for key, val of obj
