@@ -3,7 +3,6 @@ class Answer < Cardio::Record
   @card_column = :answer_id
 
   include LookupTable
-  include LookupTable::Latest
 
   extend AnswerClassMethods
 
@@ -11,6 +10,7 @@ class Answer < Cardio::Record
   include Validations
   include EntryFetch
   include Export
+  include Latest
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
@@ -53,13 +53,6 @@ class Answer < Cardio::Record
 
   def updater_id
     editor_id || creator_id
-  end
-
-  # other answers in same record
-  def latest_context
-    self.company_id ||= fetch_company_id
-    self.metric_id ||= fetch_metric_id
-    Answer.where(company_id: company_id, metric_id: metric_id).where.not(id: id)
   end
 
   private
