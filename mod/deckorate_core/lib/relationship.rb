@@ -3,25 +3,17 @@ class Relationship < Cardio::Record
   @card_column = :relationship_id
 
   include LookupTable
-  include LookupTable::Latest
+
   include EntryFetch
   include Export
 
   extend FilterHelper
 
-  after_destroy :latest_to_true
   delegate :company_id, :designer_id, :title_id, to: :answer
   fetcher :answer_id, :value, :numeric_value, :imported
 
   def card_query
     { type_id: Card::RelationshipAnswerID, trash: false }
-  end
-
-  # other relationships in same record
-  def latest_context
-    Relationship
-      .where(subject_company_id: subject_company_id, metric_id: metric_id)
-      .where.not(id: id)
   end
 
   def company_key
