@@ -20,7 +20,8 @@ global_job_config:
       # INSTALL WIKIRATE CODE AND DEPENDENCIES
       - checkout
       - sem-version ruby 2.7.3
-      - git submodule update --init --recursive
+      # save time by skipping decko copy in card-mods
+      - git -c submodule."vendor/card-mods/.semaphore/decko".update=none submodule update --init --recursive
       - sem-service start mysql 8.0
       - cp -R config/sample/* config/
 

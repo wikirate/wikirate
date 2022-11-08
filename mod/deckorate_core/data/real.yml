@@ -94,7 +94,6 @@
   :type: :metric_title
   :codename: ilo_region
 
-- regions
 - value_types
 - properties
 - relationships

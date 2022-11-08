@@ -46,10 +46,8 @@ class Relationship
     # note: latest flag indicates that relationship is part of latest answer,
     # NOT that relationship is the latest response for a given subject/object pair
     def fetch_latest
-      return true unless (latest_year = latest_year_in_db)
-
-      @new_latest = (latest_year < fetch_year)
-      latest_year <= fetch_year
+      l = answer.latest
+      l.nil? ? answer.fetch_latest : l
     end
   end
 end
