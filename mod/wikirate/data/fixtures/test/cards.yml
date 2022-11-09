@@ -5763,7 +5763,7 @@ cards_288:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:51:31.000000000 Z
-  updated_at: 2022-11-04 16:03:45.000000000 Z
+  updated_at: 2022-11-09 20:41:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -7249,7 +7249,7 @@ cards_353:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:51:36.000000000 Z
-  updated_at: 2022-11-04 16:03:42.000000000 Z
+  updated_at: 2022-11-09 20:41:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -8924,7 +8924,7 @@ cards_441:
   right_id: 344
   current_revision_id:
   created_at: 2022-09-30 15:52:53.000000000 Z
-  updated_at: 2022-11-04 16:03:49.000000000 Z
+  updated_at: 2022-11-09 20:41:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8943,7 +8943,7 @@ cards_442:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:52:53.000000000 Z
-  updated_at: 2022-11-04 16:04:35.000000000 Z
+  updated_at: 2022-11-09 20:42:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8952,7 +8952,7 @@ cards_442:
   trash: 0
   type_id: 282
   db_content: ":all_style_asset_output/wikirate.css"
-  search_content: "~442/1667577872.css"
+  search_content: "~442/1668026523.css"
 cards_443:
   id: 443
   name: discussion
@@ -9683,7 +9683,7 @@ cards_479:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:56.000000000 Z
-  updated_at: 2022-11-04 16:03:49.000000000 Z
+  updated_at: 2022-11-09 20:41:13.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -10066,7 +10066,7 @@ cards_497:
   right_id: 490
   current_revision_id:
   created_at: 2022-09-30 15:52:57.000000000 Z
-  updated_at: 2022-11-04 16:03:01.000000000 Z
+  updated_at: 2022-11-09 20:40:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -10144,7 +10144,7 @@ cards_501:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2022-11-04 16:03:45.000000000 Z
+  updated_at: 2022-11-09 20:41:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -10269,7 +10269,7 @@ cards_506:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2022-11-04 16:03:45.000000000 Z
+  updated_at: 2022-11-09 20:41:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10297,7 +10297,7 @@ cards_507:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2022-11-04 16:03:45.000000000 Z
+  updated_at: 2022-11-09 20:41:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10325,7 +10325,7 @@ cards_508:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2022-11-04 16:03:45.000000000 Z
+  updated_at: 2022-11-09 20:41:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10353,7 +10353,7 @@ cards_509:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2022-11-04 16:03:45.000000000 Z
+  updated_at: 2022-11-09 20:41:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10383,7 +10383,7 @@ cards_510:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2022-11-04 16:03:45.000000000 Z
+  updated_at: 2022-11-09 20:41:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10557,7 +10557,7 @@ cards_518:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:59.000000000 Z
-  updated_at: 2022-11-04 16:03:01.000000000 Z
+  updated_at: 2022-11-09 20:40:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10726,7 +10726,7 @@ cards_526:
   right_id: 524
   current_revision_id:
   created_at: 2022-09-30 15:53:01.000000000 Z
-  updated_at: 2022-11-04 16:03:45.000000000 Z
+  updated_at: 2022-11-09 20:41:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11199,7 +11199,7 @@ cards_542:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:04.000000000 Z
-  updated_at: 2022-11-04 16:04:32.000000000 Z
+  updated_at: 2022-11-09 20:42:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11208,7 +11208,7 @@ cards_542:
   trash: 0
   type_id: 282
   db_content: ":mod_format_script_asset_output/format.js"
-  search_content: "~542/1667577841.js"
+  search_content: "~542/format.js"
 cards_543:
   id: 543
   name:
@@ -11275,7 +11275,7 @@ cards_546:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:05.000000000 Z
-  updated_at: 2022-11-04 16:04:32.000000000 Z
+  updated_at: 2022-11-09 20:42:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11284,7 +11284,7 @@ cards_546:
   trash: 0
   type_id: 282
   db_content: ":mod_list_script_asset_output/list.js"
-  search_content: "~546/1667577842.js"
+  search_content: "~546/list.js"
 cards_547:
   id: 547
   name:
@@ -11446,7 +11446,7 @@ cards_555:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:06.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11455,7 +11455,7 @@ cards_555:
   trash: 0
   type_id: 282
   db_content: ":mod_search_script_asset_output/search.js"
-  search_content: "~555/1667577842.js"
+  search_content: "~555/search.js"
 cards_556:
   id: 556
   name:
@@ -11522,7 +11522,7 @@ cards_559:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:06.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11531,7 +11531,7 @@ cards_559:
   trash: 0
   type_id: 282
   db_content: ":mod_rules_script_asset_output/rules.js"
-  search_content: "~559/1667577843.js"
+  search_content: "~559/rules.js"
 cards_560:
   id: 560
   name:
@@ -11598,7 +11598,7 @@ cards_563:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:07.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11607,7 +11607,7 @@ cards_563:
   trash: 0
   type_id: 282
   db_content: ":mod_edit_script_asset_output/edit.js"
-  search_content: "~563/1667577845.js"
+  search_content: "~563/edit.js"
 cards_564:
   id: 564
   name:
@@ -11788,7 +11788,7 @@ cards_573:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:08.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11797,7 +11797,7 @@ cards_573:
   trash: 0
   type_id: 282
   db_content: ":mod_carrierwave_script_asset_output/carrierwave.js"
-  search_content: "~573/1667577845.js"
+  search_content: "~573/carrierwave.js"
 cards_574:
   id: 574
   name:
@@ -11921,7 +11921,7 @@ cards_580:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:09.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11930,7 +11930,7 @@ cards_580:
   trash: 0
   type_id: 282
   db_content: ":mod_ace_editor_script_asset_output/ace_editor.js"
-  search_content: "~580/1667577846.js"
+  search_content: "~580/ace_editor.js"
 cards_581:
   id: 581
   name: 'mod: api key'
@@ -12054,7 +12054,7 @@ cards_587:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:10.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12063,7 +12063,7 @@ cards_587:
   trash: 0
   type_id: 282
   db_content: ":mod_bar_and_box_script_asset_output/bar_and_box.js"
-  search_content: "~587/1667577846.js"
+  search_content: "~587/bar_and_box.js"
 cards_588:
   id: 588
   name:
@@ -12130,7 +12130,7 @@ cards_591:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:10.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12139,7 +12139,7 @@ cards_591:
   trash: 0
   type_id: 282
   db_content: ":mod_bootstrap_script_asset_output/bootstrap.js"
-  search_content: "~591/1667577849.js"
+  search_content: "~591/bootstrap.js"
 cards_592:
   id: 592
   name:
@@ -12244,7 +12244,7 @@ cards_597:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:11.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12253,7 +12253,7 @@ cards_597:
   trash: 0
   type_id: 282
   db_content: ":mod_date_script_asset_output/date.js"
-  search_content: "~597/1667577851.js"
+  search_content: "~597/date.js"
 cards_598:
   id: 598
   name:
@@ -12339,7 +12339,7 @@ cards_602:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:12.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12348,7 +12348,7 @@ cards_602:
   trash: 0
   type_id: 282
   db_content: ":mod_follow_script_asset_output/follow.js"
-  search_content: "~602/1667577852.js"
+  search_content: "~602/follow.js"
 cards_603:
   id: 603
   name:
@@ -12434,7 +12434,7 @@ cards_607:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:12.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12443,7 +12443,7 @@ cards_607:
   trash: 0
   type_id: 282
   db_content: ":mod_tabs_script_asset_output/tabs.js"
-  search_content: "~607/1667577852.js"
+  search_content: "~607/tabs.js"
 cards_608:
   id: 608
   name: 'mod: layout'
@@ -12491,7 +12491,7 @@ cards_610:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:13.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12500,7 +12500,7 @@ cards_610:
   trash: 0
   type_id: 282
   db_content: ":mod_layout_script_asset_output/layout.js"
-  search_content: "~610/1667577853.js"
+  search_content: "~610/layout.js"
 cards_611:
   id: 611
   name:
@@ -12567,7 +12567,7 @@ cards_614:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:13.000000000 Z
-  updated_at: 2022-11-04 16:04:33.000000000 Z
+  updated_at: 2022-11-09 20:42:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12576,7 +12576,7 @@ cards_614:
   trash: 0
   type_id: 282
   db_content: ":mod_recaptcha_script_asset_output/recaptcha.js"
-  search_content: "~614/1667577853.js"
+  search_content: "~614/recaptcha.js"
 cards_615:
   id: 615
   name: 'mod: tinymce editor'
@@ -12624,7 +12624,7 @@ cards_617:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:14.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12633,7 +12633,7 @@ cards_617:
   trash: 0
   type_id: 282
   db_content: ":mod_tinymce_editor_script_asset_output/tinymce_editor.js"
-  search_content: "~617/1667577859.js"
+  search_content: "~617/tinymce_editor.js"
 cards_618:
   id: 618
   name:
@@ -49173,7 +49173,7 @@ cards_2504:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:14.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49182,7 +49182,7 @@ cards_2504:
   trash: 0
   type_id: 282
   db_content: ":mod_filter_script_asset_output/filter.js"
-  search_content: "~2505/1667577861.js"
+  search_content: "~2505/1668026512.js"
 cards_2505:
   id: 2506
   name:
@@ -49344,7 +49344,7 @@ cards_2513:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:15.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49353,7 +49353,7 @@ cards_2513:
   trash: 0
   type_id: 282
   db_content: ":mod_csv_import_script_asset_output/csv_import.js"
-  search_content: "~2514/1667577862.js"
+  search_content: "~2514/csv_import.js"
 cards_2514:
   id: 2515
   name:
@@ -49420,7 +49420,7 @@ cards_2517:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:16.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49429,7 +49429,7 @@ cards_2517:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_search_script_asset_output/deckorate_search.js"
-  search_content: "~2518/1667577862.js"
+  search_content: "~2518/deckorate_search.js"
 cards_2518:
   id: 2519
   name:
@@ -49496,7 +49496,7 @@ cards_2521:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:16.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49952,7 +49952,7 @@ cards_2545:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:19.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49961,7 +49961,7 @@ cards_2545:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_core_script_asset_output/deckorate_core.js"
-  search_content: "~2546/1667577863.js"
+  search_content: "~2546/deckorate_core.js"
 cards_2546:
   id: 2547
   name:
@@ -50028,7 +50028,7 @@ cards_2549:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:20.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50037,7 +50037,7 @@ cards_2549:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_research_script_asset_output/deckorate_research.js"
-  search_content: "~2550/1667577865.js"
+  search_content: "~2550/deckorate_research.js"
 cards_2550:
   id: 2551
   name:
@@ -50123,7 +50123,7 @@ cards_2554:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:21.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50132,7 +50132,7 @@ cards_2554:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_calculations_script_asset_output/deckorate_calculations.js"
-  search_content: "~2555/1667577869.js"
+  search_content: "~2555/deckorate_calculations.js"
 cards_2555:
   id: 2556
   name:
@@ -50294,7 +50294,7 @@ cards_2563:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:22.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50303,7 +50303,7 @@ cards_2563:
   trash: 0
   type_id: 282
   db_content: ":mod_wikirate_companies_script_asset_output/wikirate_companies.js"
-  search_content: "~2564/1667577869.js"
+  search_content: "~2564/wikirate_companies.js"
 cards_2564:
   id: 2565
   name:
@@ -50370,7 +50370,7 @@ cards_2567:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:23.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50379,7 +50379,7 @@ cards_2567:
   trash: 0
   type_id: 282
   db_content: ":mod_wikirate_homepage_script_asset_output/wikirate_homepage.js"
-  search_content: "~2568/1667577870.js"
+  search_content: "~2568/wikirate_homepage.js"
 cards_2568:
   id: 2569
   name:
@@ -50446,7 +50446,7 @@ cards_2571:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:24.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50455,7 +50455,7 @@ cards_2571:
   trash: 0
   type_id: 282
   db_content: ":mod_wikirate_script_asset_output/wikirate.js"
-  search_content: "~2572/1667577871.js"
+  search_content: "~2572/wikirate.js"
 cards_2572:
   id: 2573
   name:
@@ -50560,7 +50560,7 @@ cards_2577:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:24.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50569,7 +50569,7 @@ cards_2577:
   trash: 0
   type_id: 282
   db_content: ":mod_tasks_script_asset_output/tasks.js"
-  search_content: "~2578/1667577872.js"
+  search_content: "~2578/tasks.js"
 cards_2578:
   id: 2579
   name:
@@ -50636,7 +50636,7 @@ cards_2581:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:25.000000000 Z
-  updated_at: 2022-11-04 16:04:34.000000000 Z
+  updated_at: 2022-11-09 20:42:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50645,7 +50645,7 @@ cards_2581:
   trash: 0
   type_id: 282
   db_content: ":mod_vega_script_asset_output/vega.js"
-  search_content: "~2582/1667577872.js"
+  search_content: "~2582/vega.js"
 cards_2582:
   id: 2583
   name:
@@ -50712,7 +50712,7 @@ cards_2585:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:25.000000000 Z
-  updated_at: 2022-11-04 16:04:35.000000000 Z
+  updated_at: 2022-11-09 20:42:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -54023,7 +54023,7 @@ cards_2749:
   right_id: 296
   current_revision_id:
   created_at: 2022-11-04 15:42:00.000000000 Z
-  updated_at: 2022-11-04 16:03:53.000000000 Z
+  updated_at: 2022-11-09 20:41:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -54031,8 +54031,8 @@ cards_2749:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: "~2754/1667577833.css"
-  search_content: "~2754/1667577833.css"
+  db_content: "~2754/1668026484.css"
+  search_content: "~2754/1668026484.css"
 cards_2750:
   id: 2755
   name: old custom css
@@ -63357,7 +63357,7 @@ cards_3183:
   right_id: 703
   current_revision_id:
   created_at: 2022-11-04 15:43:05.000000000 Z
-  updated_at: 2022-11-04 16:03:43.000000000 Z
+  updated_at: 2022-11-09 20:41:05.000000000 Z
   creator_id: 1
   updater_id: 2592
   read_rule_class: "*all plus"
@@ -73432,12 +73432,12 @@ cards_3589:
   id: 3594
   name:
   key:
-  codename:
+  codename: core_country
   left_id: 2930
   right_id: 717
   current_revision_id:
   created_at: 2022-11-04 15:44:23.000000000 Z
-  updated_at: 2022-11-04 15:44:23.000000000 Z
+  updated_at: 2022-11-08 20:56:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -73475,7 +73475,7 @@ cards_3591:
   right_id: 2400
   current_revision_id:
   created_at: 2022-11-04 15:44:23.000000000 Z
-  updated_at: 2022-11-04 15:44:23.000000000 Z
+  updated_at: 2022-11-09 20:41:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -73483,8 +73483,8 @@ cards_3591:
   references_expired:
   trash: 0
   type_id: 55
-  db_content: Formula
-  search_content: Formula
+  db_content: Researched
+  search_content: Researched
 cards_3592:
   id: 3597
   name:
@@ -73532,7 +73532,7 @@ cards_3594:
   right_id: 2397
   current_revision_id:
   created_at: 2022-11-04 15:44:23.000000000 Z
-  updated_at: 2022-11-04 15:44:23.000000000 Z
+  updated_at: 2022-11-09 20:41:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -73544,14 +73544,15 @@ cards_3594:
     Afghanistan
     Albania
     Algeria
+    American Samoa
     Andorra
     Angola
-    Anguilla (United Kingdom)
+    Anguilla
     Antarctica
     Antigua and Barbuda
     Argentina
     Armenia
-    Aruba (Netherlands)
+    Aruba
     Australia
     Austria
     Azerbaijan
@@ -73563,15 +73564,16 @@ cards_3594:
     Belgium
     Belize
     Benin
-    Bermuda (United Kingdom)
+    Bermuda
     Bhutan
     Bolivia
-    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bonaire, Sint Eustatius and Saba
     Bosnia and Herzegovina
     Botswana
+    Bouvet Island
     Brazil
-    British Indian Ocean Territory  (United Kingdom)
-    British Virgin Islands (United Kingdom)
+    British Indian Ocean Territory
+    British Virgin Islands
     Brunei Darussalam
     Bulgaria
     Burkina Faso
@@ -73580,13 +73582,13 @@ cards_3594:
     Cameroon
     Canada
     Cape Verde
-    Cayman Islands  (United Kingdom)
+    Cayman Islands
     Central African Republic
     Chad
     Chile
     China
-    Christmas Island (Australia)
-    Cocos (Keeling) Islands (Australia)
+    Christmas Island
+    Cocos (Keeling) Islands
     Colombia
     Comoros
     Congo
@@ -73594,7 +73596,7 @@ cards_3594:
     Costa Rica
     Croatia
     Cuba
-    Curaçao (Netherlands)
+    Curaçao
     Cyprus
     Czech Republic
     Côte d'Ivoire
@@ -73610,32 +73612,32 @@ cards_3594:
     Eritrea
     Estonia
     Ethiopia
-    Falkland Islands (Malvinas) (United Kingdom)
-    Faroe Islands (Denmark)
+    Falkland Islands (Malvinas)
+    Faroe Islands
     Fiji
     Finland
     France
-    French Guiana (France)
-    French Polynesia (France)
-    French Southern Territories (France)
+    French Guiana
+    French Polynesia
+    French Southern Territories
     Gabon
     Gambia
     Georgia
     Germany
     Ghana
-    Gibraltar (United Kingdom)
+    Gibraltar
     Greece
     Greenland
     Grenada
-    Guadeloupe (France)
-    Guam (United States)
+    Guadeloupe
+    Guam
     Guatemala
-    Guernsey (United Kingdom)
+    Guernsey
     Guinea
     Guinea-Bissau
     Guyana
     Haiti
-    Heard Island and McDonald Islands (Australia)
+    Heard Island and McDonald Islands
     Holy See (Vatican City State)
     Honduras
     Hong Kong
@@ -73646,12 +73648,12 @@ cards_3594:
     Iran
     Iraq
     Ireland
-    Isle of Man (United Kingdom)
+    Isle of Man
     Israel
     Italy
     Jamaica
     Japan
-    Jersey (United Kingdom)
+    Jersey
     Jordan
     Kazakhstan
     Kenya
@@ -73661,6 +73663,7 @@ cards_3594:
     Kosovo
     Kuwait
     Kyrgyzstan
+    Lao People's Democratic Republic
     Laos
     Latvia
     Lebanon
@@ -73677,18 +73680,18 @@ cards_3594:
     Maldives
     Mali
     Malta
-    Marshall Islands (United States)
-    Martinique (France)
+    Marshall Islands
+    Martinique
     Mauritania
     Mauritius
-    Mayotte (France)
+    Mayotte
     Mexico
     Micronesia, Federated States of
     Moldova
     Monaco
     Mongolia
     Montenegro
-    Montserrat (United Kingdom)
+    Montserrat
     Morocco
     Mozambique
     Myanmar
@@ -73696,14 +73699,15 @@ cards_3594:
     Nauru
     Nepal
     Netherlands
-    New Caledonia (France)
+    New Caledonia
     New Zealand
     Nicaragua
     Niger
     Nigeria
     Niue
-    Norfolk Island (Australia)
+    Norfolk Island
     North Macedonia
+    Northern Mariana Islands
     Norway
     Oman
     Pakistan
@@ -73714,21 +73718,21 @@ cards_3594:
     Paraguay
     Peru
     Philippines
-    Pitcairn (United Kingdom)
+    Pitcairn
     Poland
     Portugal
-    Puerto Rico (United States)
+    Puerto Rico
     Qatar
     Romania
     Russia
     Rwanda
-    Réunion (France)
-    Saint Barthélemy (France)
-    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
     Saint Kitts and Nevis
     Saint Lucia
-    Saint Martin (French part) (France)
-    Saint Pierre and Miquelon (France)
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
     Saint Vincent and the Grenadines
     Samoa
     San Marino
@@ -73739,23 +73743,24 @@ cards_3594:
     Seychelles
     Sierra Leone
     Singapore
-    Sint Maarten (Dutch part) (Netherlands)
+    Sint Maarten (Dutch part)
     Slovakia
     Slovenia
     Solomon Islands
     Somalia
     South Africa
-    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Georgia and the South Sandwich Islands
     South Sudan
     Spain
     Sri Lanka
     Sudan
     Suriname
+    Svalbard and Jan Mayen
     Swaziland
     Sweden
     Switzerland
     Syrian Arab Republic
-    Taiwan, Province of China
+    Taiwan
     Tajikistan
     Tanzania
     Thailand
@@ -73767,36 +73772,39 @@ cards_3594:
     Tunisia
     Turkey
     Turkmenistan
-    Turks and Caicos Islands (United Kingdom)
+    Turks and Caicos Islands
     Tuvalu
-    U.S. Virgin Islands (United States)
+    U.S. Virgin Islands
     Uganda
     Ukraine
     United Arab Emirates
     United Kingdom
     United States
+    United States Minor Outlying Islands
     Uruguay
     Uzbekistan
     Vanuatu
     Venezuela
     Vietnam
-    Wallis and Futuna (France)
+    Wallis and Futuna
     Western Sahara
     Yemen
     Zambia
     Zimbabwe
+    Åland Islands
   search_content: |-
     Afghanistan
     Albania
     Algeria
+    American Samoa
     Andorra
     Angola
-    Anguilla (United Kingdom)
+    Anguilla
     Antarctica
     Antigua and Barbuda
     Argentina
     Armenia
-    Aruba (Netherlands)
+    Aruba
     Australia
     Austria
     Azerbaijan
@@ -73808,15 +73816,16 @@ cards_3594:
     Belgium
     Belize
     Benin
-    Bermuda (United Kingdom)
+    Bermuda
     Bhutan
     Bolivia
-    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bonaire, Sint Eustatius and Saba
     Bosnia and Herzegovina
     Botswana
+    Bouvet Island
     Brazil
-    British Indian Ocean Territory  (United Kingdom)
-    British Virgin Islands (United Kingdom)
+    British Indian Ocean Territory
+    British Virgin Islands
     Brunei Darussalam
     Bulgaria
     Burkina Faso
@@ -73825,13 +73834,13 @@ cards_3594:
     Cameroon
     Canada
     Cape Verde
-    Cayman Islands  (United Kingdom)
+    Cayman Islands
     Central African Republic
     Chad
     Chile
     China
-    Christmas Island (Australia)
-    Cocos (Keeling) Islands (Australia)
+    Christmas Island
+    Cocos (Keeling) Islands
     Colombia
     Comoros
     Congo
@@ -73839,7 +73848,7 @@ cards_3594:
     Costa Rica
     Croatia
     Cuba
-    Curaçao (Netherlands)
+    Curaçao
     Cyprus
     Czech Republic
     Côte d'Ivoire
@@ -73855,32 +73864,32 @@ cards_3594:
     Eritrea
     Estonia
     Ethiopia
-    Falkland Islands (Malvinas) (United Kingdom)
-    Faroe Islands (Denmark)
+    Falkland Islands (Malvinas)
+    Faroe Islands
     Fiji
     Finland
     France
-    French Guiana (France)
-    French Polynesia (France)
-    French Southern Territories (France)
+    French Guiana
+    French Polynesia
+    French Southern Territories
     Gabon
     Gambia
     Georgia
     Germany
     Ghana
-    Gibraltar (United Kingdom)
+    Gibraltar
     Greece
     Greenland
     Grenada
-    Guadeloupe (France)
-    Guam (United States)
+    Guadeloupe
+    Guam
     Guatemala
-    Guernsey (United Kingdom)
+    Guernsey
     Guinea
     Guinea-Bissau
     Guyana
     Haiti
-    Heard Island and McDonald Islands (Australia)
+    Heard Island and McDonald Islands
     Holy See (Vatican City State)
     Honduras
     Hong Kong
@@ -73891,12 +73900,12 @@ cards_3594:
     Iran
     Iraq
     Ireland
-    Isle of Man (United Kingdom)
+    Isle of Man
     Israel
     Italy
     Jamaica
     Japan
-    Jersey (United Kingdom)
+    Jersey
     Jordan
     Kazakhstan
     Kenya
@@ -73906,6 +73915,7 @@ cards_3594:
     Kosovo
     Kuwait
     Kyrgyzstan
+    Lao People's Democratic Republic
     Laos
     Latvia
     Lebanon
@@ -73922,18 +73932,18 @@ cards_3594:
     Maldives
     Mali
     Malta
-    Marshall Islands (United States)
-    Martinique (France)
+    Marshall Islands
+    Martinique
     Mauritania
     Mauritius
-    Mayotte (France)
+    Mayotte
     Mexico
     Micronesia, Federated States of
     Moldova
     Monaco
     Mongolia
     Montenegro
-    Montserrat (United Kingdom)
+    Montserrat
     Morocco
     Mozambique
     Myanmar
@@ -73941,14 +73951,15 @@ cards_3594:
     Nauru
     Nepal
     Netherlands
-    New Caledonia (France)
+    New Caledonia
     New Zealand
     Nicaragua
     Niger
     Nigeria
     Niue
-    Norfolk Island (Australia)
+    Norfolk Island
     North Macedonia
+    Northern Mariana Islands
     Norway
     Oman
     Pakistan
@@ -73959,21 +73970,21 @@ cards_3594:
     Paraguay
     Peru
     Philippines
-    Pitcairn (United Kingdom)
+    Pitcairn
     Poland
     Portugal
-    Puerto Rico (United States)
+    Puerto Rico
     Qatar
     Romania
     Russia
     Rwanda
-    Réunion (France)
-    Saint Barthélemy (France)
-    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
     Saint Kitts and Nevis
     Saint Lucia
-    Saint Martin (French part) (France)
-    Saint Pierre and Miquelon (France)
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
     Saint Vincent and the Grenadines
     Samoa
     San Marino
@@ -73984,23 +73995,24 @@ cards_3594:
     Seychelles
     Sierra Leone
     Singapore
-    Sint Maarten (Dutch part) (Netherlands)
+    Sint Maarten (Dutch part)
     Slovakia
     Slovenia
     Solomon Islands
     Somalia
     South Africa
-    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Georgia and the South Sandwich Islands
     South Sudan
     Spain
     Sri Lanka
     Sudan
     Suriname
+    Svalbard and Jan Mayen
     Swaziland
     Sweden
     Switzerland
     Syrian Arab Republic
-    Taiwan, Province of China
+    Taiwan
     Tajikistan
     Tanzania
     Thailand
@@ -74012,24 +74024,26 @@ cards_3594:
     Tunisia
     Turkey
     Turkmenistan
-    Turks and Caicos Islands (United Kingdom)
+    Turks and Caicos Islands
     Tuvalu
-    U.S. Virgin Islands (United States)
+    U.S. Virgin Islands
     Uganda
     Ukraine
     United Arab Emirates
     United Kingdom
     United States
+    United States Minor Outlying Islands
     Uruguay
     Uzbekistan
     Vanuatu
     Venezuela
     Vietnam
-    Wallis and Futuna (France)
+    Wallis and Futuna
     Western Sahara
     Yemen
     Zambia
     Zimbabwe
+    Åland Islands
 cards_3595:
   id: 3600
   name:

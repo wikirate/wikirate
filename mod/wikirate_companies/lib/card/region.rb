@@ -5,7 +5,7 @@ class Card
     class << self
       # @return [Array] list of country name strings
       def countries
-        @countries ||= lookup_val(:country).values.uniq.sort
+        lookup_val(:country).values.uniq.sort
       end
 
       # @return [Hash] in the form { region_id1 => field val } for all regions
