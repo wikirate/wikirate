@@ -41,7 +41,7 @@ format :html do
   end
 
   def filter_country_options
-    Card::Region.countries
+    :core_country.card.value_options_card.item_names
   end
 
   def filter_published_options
