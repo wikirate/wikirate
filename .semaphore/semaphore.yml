@@ -20,8 +20,6 @@ global_job_config:
       # INSTALL WIKIRATE CODE AND DEPENDENCIES
       - checkout
       - sem-version ruby 2.7.3
-      - git submodule update --init --depth=1
-      - mv vendor/card-mods/.semaphore /tmp
       - git submodule update --init --recursive --depth=1
       - sem-service start mysql 8.0
       - cp -R config/sample/* config/
