@@ -4,7 +4,6 @@ def ok_item_types
   :region
 end
 
-
 event :standardize_region_name, :validate, on: :save, after: :validate_item_type do
   self.content = first_id.cardname
 end
