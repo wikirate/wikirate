@@ -1,7 +1,7 @@
 
 class << self
   def member_ids
-    %i[wikirate_team members].card.item_ids
+    @member_ids ||= %i[wikirate_team members]&.card&.item_ids || []
   end
 
   def member?
