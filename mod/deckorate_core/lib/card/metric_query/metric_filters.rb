@@ -36,7 +36,7 @@ class Card
 
       # WikiRate team members are stewards of all metrics
       def stewards_all?
-        Card::Auth.current.stewards_all?
+        Auth.always_ok? || Auth.current.stewards_all?
       end
 
       def published_condition

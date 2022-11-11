@@ -1,8 +1,7 @@
 
 class << self
   def member_ids
-    @member_ids ||= Card.search return: :id,
-                                right_plus: [:roles, refer_to: WikirateTeamID]
+    %i[wikirate_team members].card.item_ids
   end
 
   def member?

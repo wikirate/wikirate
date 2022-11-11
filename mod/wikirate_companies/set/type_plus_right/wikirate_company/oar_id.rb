@@ -4,7 +4,7 @@ OPENSTREETMAP_URL =
   "https://www.openstreetmap.org/?mlon=%<longitude>s&mlat=%<latitude>s&zoom=25".freeze
 
 def excerpt_host
-  "openapparel.org"
+  "opensupplyhub.org"
 end
 
 def excerpt_path
