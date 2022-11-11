@@ -23,6 +23,10 @@ def excerpt_authorization
   { "Authorization" => "Token #{api_key}" }
 end
 
+def api_key
+  Card.config.try(:oar_id_api_key) || raise("OAR API key not found")
+end
+
 format :html do
   def excerpt_body
     excerpt_table
