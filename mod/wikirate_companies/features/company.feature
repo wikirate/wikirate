@@ -14,7 +14,7 @@ Feature: company feature
     Then I click on "Details"
     And I should see "Wikipedia"
     And I wait for ajax response
-    Then I should see "mobile space"
+    Then I should see "space station"
 
   Scenario: Filter by metric
     When I click on "All Filters"
