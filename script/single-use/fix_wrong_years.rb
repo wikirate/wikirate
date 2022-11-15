@@ -4,7 +4,7 @@ Card::Auth.signin "Ethan McCutchen"
 
 require "csv"
 
-FILENAME = File.expand_path "script/single-use/data/wrong_year2.csv"
+FILENAME = File.expand_path "script/single-use/data/wrong_year3.csv"
 
 # For correcting answer years
 module AnswerFixer
