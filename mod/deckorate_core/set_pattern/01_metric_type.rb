@@ -1,7 +1,7 @@
 DEFAULT_METRIC_TYPE = "Researched".freeze
 
 @@options = {
-  junction_only: true,
+  compound_only: true,
   index: 3,
   anchor_parts_count: 1
 }

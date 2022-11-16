@@ -138,8 +138,8 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
 
     def formula unknown:
-      var = variables.first.merge  year: "2000..0", unknown: unknown
-      create_formula "numKnown m1", [var]
+      var = variables.first.merge year: "2000..0", unknown: unknown
+      create_formula "numKnown [m1].flat()", [var]
     end
 
     example "unknown option no_result" do
