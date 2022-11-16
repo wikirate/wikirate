@@ -1,0 +1,13 @@
+%h3
+  = certificate badge_level
+  = badge_level
+  badge
+%p
+  = render_description
+
+%h4
+  Awarded to
+  = awarded_count
+  users
+
+= field_nest :user, items: { view: :bar }
