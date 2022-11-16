@@ -15,7 +15,7 @@ deckorate.calculator =
 
   isKnown: (answer) -> answer != "Unknown"
 
-  numKnown: (list) -> formulajs.COUNTIF list, "<>Unknown" # list.filter(isKnown).length
+  numKnown: (list) -> list.filter(isKnown).length
 
   anyKnown: (list) -> list.find isKnown
 
