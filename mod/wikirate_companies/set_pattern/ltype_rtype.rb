@@ -1,5 +1,5 @@
 @@options = {
-  junction_only: true,
+  compound_only: true,
   assigns_type: true,
   index: 4,
   anchor_parts_count: 2
