@@ -2,16 +2,9 @@ include_set Abstract::Certificate
 include Comparable
 
 format :html do
-  delegate :badge_level, :threshold, :awarded_to, :awarded_count, to: :card
+  delegate :badge_level, :threshold, :awarded_count, to: :card
 
-  view :core do
-    <<-HTML
-      <h3>#{certificate(badge_level)} #{badge_level} badge</h3>
-      #{_render_description}
-      <h4>Awarded to #{awarded_count} users</h4>
-      #{awarded_to_list}
-    HTML
-  end
+  view :core, template: :haml
 
   view :description do
     "Awarded for #{valued_action} #{humanized_threshold}."
@@ -56,17 +49,6 @@ format :html do
       "#{threshold} #{valued_object.pluralize}"
     end
   end
-
-  def awarded_to_list
-    voo.show! :thumbnail_link
-    user_list = awarded_to.map { |ca| nest(ca, view: :thumbnail) }
-    list_group user_list
-  end
-end
-
-def awarded_to
-  Card.search right_plus: [:badges_earned, { refer_to: id }],
-              return: "_left", sort_by: :name
 end
 
 def awarded_count
