@@ -22,16 +22,21 @@ class Calculate
 
             # year => [Answer]
             def answer_list company_id
-              each_input_answer answer_relation(company_id), [] do |input_answer, array|
+              rel = related_answer_rel company_id
+              each_input_answer rel, [] do |input_answer, array|
                 array << input_answer
               end
             end
 
             # used for CompanyOption
-            def answer_relation company_id
-              Answer.where metric_id: input_card.id,
-                           company_id: inverse_company_ids(company_id)
+            def related_answer_rel company_id
+              query = { metric_id: input_card.id,
+                        company_id: inverse_company_ids(company_id) }
+              query[:year] = search_space.years if restrict_years_in_query?
+              Answer.where query
             end
+
+
 
             def inverse_company_ids company_id
               relationship_metric.inverse_company_ids company: company_id, latest: true

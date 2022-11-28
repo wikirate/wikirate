@@ -9,7 +9,7 @@ class Calculate
         # Case 2: explicit company list
         #   company:"Death Star", "SPECTRE"}}
         # Case 2: related companies
-        #   {{Jedi+deadliness|company:Jedi+more evil=yes]}}
+        #   company: Jedi+more evil
 
         module CompanyOption
           extend AddValidationChecks
