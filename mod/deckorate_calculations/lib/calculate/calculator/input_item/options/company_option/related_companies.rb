@@ -29,10 +29,12 @@ class Calculate
 
             # used for CompanyOption
             def answer_relation company_id
-              Answer.where(
-                metric_id: input_card.id,
-                company_id: relationship_metric.inverse_company_ids(company: company_id)
-              )
+              Answer.where metric_id: input_card.id,
+                           company_id: inverse_company_ids(company_id)
+            end
+
+            def inverse_company_ids company_id
+              relationship_metric.inverse_company_ids company: company_id, latest: true
             end
 
             def relationship_metric
