@@ -10,7 +10,8 @@ class Calculate
         #   company: "Deadliest"
         # Case 2: related companies (answer output company is subject, inputs are objects)
         #   company: "Jedi+more evil"
-
+        #
+        # TODO: store company ids, not names!
         module CompanyOption
           extend AddValidationChecks
 

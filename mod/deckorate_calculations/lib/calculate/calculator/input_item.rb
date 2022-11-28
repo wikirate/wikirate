@@ -1,6 +1,6 @@
 class Calculate
   class Calculator
-    # {InputItem} represents a nested metric in a formula.
+    # Each {InputItem} represents a nested metric in a formula.
     # For example "{{Jedi+friendliness|year: -1}}" in the formula
     # "{{Jedi+friendliness|year: -1}} + 10 / {{Jedi+deadliness}}"
     #
