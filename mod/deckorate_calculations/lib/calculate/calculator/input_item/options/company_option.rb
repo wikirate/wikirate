@@ -4,15 +4,13 @@ class Calculate
       module Options
         # Handle company options for input items of formulas
         # Examples:
-        # Case 1a: explicit company
-        #   {{Jedi+deadliness|company:"Death Star"}}
-        # Case 1b: explicit company list
-        #   {{Jedi+deadliness|company:"Death Star", "SPECTRE"}}
-        # Case 2: related companies
-        #   {{Jedi+deadliness|company:Related[Jedi+more evil=yes]}}
-        #   {{Jedi+deadliness|company:Related[Jedi+more evil>=6]}}
-        #   {{Jedi+deadliness|company:Related[Jedi+more evil>=6 &&
-        #                                   Commons+Supplied by=Tier 1 Supplier]}}
+        # Case 1: explicit company
+        #   company: "Death Star"
+        # Case 2: explicit company group
+        #   company: "Deadliest"
+        # Case 2: related companies (answer output company is subject, inputs are objects)
+        #   company: "Jedi+more evil"
+
         module CompanyOption
           extend AddValidationChecks
 

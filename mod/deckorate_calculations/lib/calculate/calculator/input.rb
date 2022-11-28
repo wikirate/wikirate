@@ -11,7 +11,7 @@ class Calculate
       attr_reader :input_list, :result_cache
       delegate :no_mandatories?, :validate, to: :input_list
 
-      # @param input_array [Array] input_array
+      # @param input_array [Array of Hashes] input_array
       # @param input_cast [Proc] a block that is called for every input value
       def initialize input_array, &input_cast
         @input_cast = input_cast
