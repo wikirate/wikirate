@@ -5,11 +5,11 @@ class Calculate
         # Handle company options for input items of formulas
         # Examples:
         # Case 1: explicit company
-        #   company:"Death Star"
-        # Case 2: explicit company list
-        #   company:"Death Star", "SPECTRE"}}
-        # Case 2: related companies
-        #   company: Jedi+more evil
+        #   company: "Death Star"
+        # Case 2: explicit company group
+        #   company: "Deadliest"
+        # Case 2: related companies (answer output company is subject, inputs are objects)
+        #   company: "Jedi+more evil"
 
         module CompanyOption
           extend AddValidationChecks
