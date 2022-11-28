@@ -41,8 +41,8 @@ class Calculate
 
         def answer_query
           query = { metric_id: input_card.id }
-          query[:year] = search_space.years if restrict_years_in_query?
           query[:company_id] = search_space.company_ids if search_space.company_ids?
+          query[:year] = search_space.years if restrict_years_in_query?
           query
         end
 
