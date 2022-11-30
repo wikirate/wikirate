@@ -108,7 +108,7 @@ RSpec.describe Calculate::Calculator::InputItem do
 
       context "blah" do
         let(:mark) { "Joe User+RM" }
-        example "metric with related company option" do
+        example "inverse metric with related company option" do
           expect(answer_value_hash(spectre, nil, company: "Jedi+less evil"))
             .to eq(1977 => %w[77])
         end

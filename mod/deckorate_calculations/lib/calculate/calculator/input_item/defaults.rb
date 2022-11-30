@@ -31,12 +31,8 @@ class Calculate
         def year_value_pairs_by_company
           each_input_answer answers, {} do |input_answer, hash|
             company_hash = hash[input_answer.company_id] ||= {}
-            company_hash[input_answer.year] = final_input_answer(input_answer)
+            company_hash[input_answer.year] = input_answer
           end
-        end
-
-        def final_input_answer input_answer
-          input_answer
         end
 
         def restrict_years_in_query?
