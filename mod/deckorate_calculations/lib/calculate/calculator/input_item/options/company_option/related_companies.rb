@@ -8,8 +8,14 @@ class Calculate
           module RelatedCompanies
             # answers can be calculated for any company/year for which there exists
             # an answer to a company related by the relationship metric.
+
+            # @return Hash
+            # keys are company ids, values are Hashes, each of which has
+            # year as a key and InputAnswer object as a value
             def year_value_pairs_by_company
-              object_answers = super # answers for object companies
+              object_answers = super
+              # answers for object companies (same hash representation as result)
+
               relationship_hash.each_with_object({}) do |(subject_id, object_id_list), h|
                 obj_answers = object_id_list.map { |id| object_answers[id] }.compact
                 next unless obj_answers.present?
