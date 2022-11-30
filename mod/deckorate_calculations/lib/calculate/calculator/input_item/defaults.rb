@@ -28,6 +28,9 @@ class Calculate
           year_value_hash[year]
         end
 
+        # @return Hash
+        # keys are company ids, values are Hashes, each of which has
+        # year as a key and InputAnswer object as a value
         def year_value_pairs_by_company
           each_input_answer answers, {} do |input_answer, hash|
             company_hash = hash[input_answer.company_id] ||= {}
