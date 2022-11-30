@@ -106,6 +106,14 @@ RSpec.describe Calculate::Calculator::InputItem do
           .to eq(1977 => %w[40 50])
       end
 
+      context "blah" do
+        let(:mark) { "Joe User+RM" }
+        example "inverse metric with related company option" do
+          expect(answer_value_hash(spectre, nil, company: "Jedi+less evil"))
+            .to eq(1977 => %w[77])
+        end
+      end
+
       example "metric with company and year options" do
         expect(answer_value_hash(death_star, nil, year: "-1", company: "Jedi+more evil"))
           .to eq(1978 => %w[40 50])
