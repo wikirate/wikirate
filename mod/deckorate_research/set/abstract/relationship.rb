@@ -34,6 +34,7 @@ end
 # @return [Hash] keys are subject company ids,
 #   values are lists of object company ids
 def related_companies_hash args={}
+  normalize_company_arg company_id_field, args
   relationships(args).each_with_object({}) do |rel, hash|
     key = rel.send company_id_field
     hash[key] ||= []

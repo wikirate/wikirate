@@ -31,7 +31,7 @@ class Calculate
             #   are always based on the latest year
             def relationship_hash
               args = { latest: true }
-              args[:company_id] = search_space.company_ids if search_space.company_ids?
+              args[:company] = search_space.company_ids if search_space.company_ids?
               relationship_metric.related_companies_hash args
             end
 

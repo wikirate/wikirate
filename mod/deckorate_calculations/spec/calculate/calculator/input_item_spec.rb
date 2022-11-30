@@ -106,8 +106,11 @@ RSpec.describe Calculate::Calculator::InputItem do
           .to eq(1977 => %w[40 50])
       end
 
-      context "blah" do
+      context "when subject company does not have answer" do
+        # there was previously an issue where answers seemed to be working because
+        # Death Star had an answer for
         let(:mark) { "Joe User+RM" }
+
         example "inverse metric with related company option" do
           expect(answer_value_hash(spectre, nil, company: "Jedi+less evil"))
             .to eq(1977 => %w[77])
