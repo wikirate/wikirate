@@ -23,7 +23,20 @@ class Calculate
               end
             end
 
+            # must be overwritten, because "answers" does not filter by company
+            # (see #answer_query)
+            def answers_for company_id, year
+              @search_space = SearchSpace.new company_id, year
+              Answer.where answer_query.merge(company_id: relationship_hash[company_id])
+            end
+
             private
+
+            # do not restrict the object answer query based on the company_id restriction,
+            # which is intended for the answer's subject company
+            def answer_query
+              super.tap { |h| h.delete :company_id }
+            end
 
             # the card for the metric specified in the country option
             def relationship_metric
@@ -63,12 +76,6 @@ class Calculate
                   subj_hash[year] << answer
                 end
               end
-            end
-
-            # do not restrict the object answer query based on the company_id restriction,
-            # which is intended for the answer's subject company
-            def answer_query
-              super.tap { |h| h.delete :company_id }
             end
           end
         end
