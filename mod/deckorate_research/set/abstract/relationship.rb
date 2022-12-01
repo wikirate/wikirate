@@ -31,6 +31,17 @@ def relationships args={}
   ::Relationship.where args
 end
 
+# @return [Hash] keys are subject company ids,
+#   values are lists of object company ids
+def related_companies_hash args={}
+  normalize_company_arg company_id_field, args
+  relationships(args).each_with_object({}) do |rel, hash|
+    key = rel.send company_id_field
+    hash[key] ||= []
+    hash[key] << rel.send(inverse_company_id_field)
+  end
+end
+
 # @return [Array] of Integers
 def inverse_company_ids args={}
   normalize_company_arg company_id_field, args
