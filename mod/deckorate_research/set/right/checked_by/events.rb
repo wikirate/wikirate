@@ -1,3 +1,6 @@
+# TODO: make sure answer card's cache gets cleared and verification view gets
+# updated immediately
+
 event :add_check, :prepare_to_store, on: :save, trigger: :required do
   add_item user.name
   close_flags
