@@ -5,7 +5,7 @@ RSpec.describe Card::Set::LtypeRtype::User::Cardtype do
     end
 
     def report_url report
-      "/#{card_subject.name.url_key}?report_tab=#{report}&view=contribution_report"
+      "/#{card_subject.name.url_key}/contribution_report?report_tab=#{report}"
     end
 
     describe "view: contribution_report" do
