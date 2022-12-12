@@ -113,7 +113,9 @@ closeSourceModal = (el)->
   bootstrap.Modal.getInstance(el.closest("._modal-slot")).hide()
 
 appendToUrl = (url, params) ->
-  url + "&" + $.param(params)
+  # use decko.path?
+  joiner = url.match(/\?/) && "&" || "?"
+  url + joiner + $.param(params)
 
 appendToDataUrl = (link, params) ->
   url = initialUrl link, link.data("url")
