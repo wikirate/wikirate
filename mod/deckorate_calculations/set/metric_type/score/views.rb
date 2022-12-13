@@ -98,7 +98,7 @@ format :html do
     end
   end
 
-  def autocomplete_name
+  def autocomplete_label
     super + "<small>#{fixed_thumbnail_subtitle}</small>"
   end
 end

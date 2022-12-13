@@ -4,7 +4,7 @@ TYPES = %i[wikirate_company wikirate_topic metric dataset project
 include_set Abstract::OpenSearch
 
 def search parameters={}
-  os_search parameters
+  os_search? ? os_search(parameters) : super
 end
 
 format do
@@ -19,13 +19,13 @@ end
 
 format :html do
   def search_with_params
-    os_search_returning_cards
+    os_search? ? os_search_returning_cards : super
   end
 
   # @return [Integer]
   # (overrides default Decko method)
   def count_with_params
-    os_count_with_params
+    os_search? ? os_count_with_params : super
   end
 
   view :search_box, cache: :never do
@@ -59,6 +59,10 @@ format :html do
                  class: "mx-2 my-1 badge " \
                         "bg-#{typename.present? ? typename.key : 'secondary'}"
   end
+
+  def search_item term
+    haml :search_item, term: term
+  end
 end
 
 format :json do
@@ -70,7 +74,8 @@ format :json do
   # the main search box
   # @return [Array] list of card names
   # (overrides default Decko method)
-  def complete_or_match_search *_args
+  def complete_or_match_search *args
+    return super(**(args.first)) unless os_search?
     return [] unless search_keyword.present? && (options = autocomplete_options)
 
     options.map { |result| result["_id"]&.to_i&.cardname }
