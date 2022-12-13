@@ -63,7 +63,7 @@ end
 
 format :json do
   view :search_box_complete, cache: :never do
-    search_box_items :search_item, :goto_items
+    search_box_items :goto_items, :search_item
   end
 
   # Retrieves Open Search results for autocompletion in
