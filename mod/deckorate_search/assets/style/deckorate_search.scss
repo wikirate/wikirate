@@ -2,7 +2,8 @@
   flex-wrap: nowrap;
 
   .search-box-select-type {
-    flex: 1 0 130px !important;
+    flex: 1 0 auto !important;
+    width: auto;
 
     // we're using this select like the label of an input group (which is not
     // standard bootstrap procedure). Evidently labels are called "addons" in
