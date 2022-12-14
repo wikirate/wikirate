@@ -43,7 +43,7 @@ format :html do
 
   view :compact, template: :haml
 
-  def autocomplete_label
+  def autocomplete_name
     title_text
   end
 
