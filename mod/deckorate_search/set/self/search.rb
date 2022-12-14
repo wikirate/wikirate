@@ -75,13 +75,17 @@ format :json do
   # @return [Array] list of card names
   # (overrides default Decko method)
   def complete_or_match_search *args
-    return super(**(args.first)) unless os_search?
+    return super **(args.first) unless os_search?
     return [] unless search_keyword.present? && (options = autocomplete_options)
 
-    options.map { |result| result["_id"]&.to_i&.cardname }
+    cardnames_from_os_results options
   end
 
   private
+
+  def cardnames_from_os_results results
+    results.map { |result| result["_id"]&.to_i&.cardname }
+  end
 
   def autocomplete_options
     card.search(body: { suggest: suggestion_query })

@@ -4,7 +4,7 @@ require "colorize"
 # Open Search client object
 # note: options configured in config/application.rb
 def open_search_client
-  ::OpenSearch::Client.new
+  ::OpenSearch::Client.new os_options
 end
 
 # Perform Open Search query
