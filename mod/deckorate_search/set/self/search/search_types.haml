@@ -2,7 +2,7 @@
   .search-type-links.d-flex.align-items-center
     Search within:
     - if type_param
-      = link_to_type "", "All Types"
+      = link_to_type "", "All Categories"
     - else
       - search_type_codenames.each do |typecode|
         = link_to_type typecode
