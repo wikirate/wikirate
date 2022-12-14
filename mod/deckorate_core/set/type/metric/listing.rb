@@ -62,7 +62,7 @@ format :html do
     render_thumbnail_image
   end
 
-  def autocomplete_label
+  def autocomplete_name
     card.metric_title
   end
 end

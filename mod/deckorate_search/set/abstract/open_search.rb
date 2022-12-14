@@ -4,7 +4,7 @@ require "colorize"
 # Open Search client object
 # note: options configured in config/application.rb
 def open_search_client
-  ::OpenSearch::Client.new Cardio.config.open_search_options
+  ::OpenSearch::Client.new os_options
 end
 
 # Perform Open Search query
@@ -16,7 +16,17 @@ def os_search parameters={}
   open_search_client.search parameters
 end
 
+def os_options
+  Cardio.config.open_search_options
+end
+
+def os_search?
+  os_options.present?
+end
+
 format do
+  delegate :os_search?, to: :card
+
   def type_param
     query_params[:type].present? && query_params[:type]
   end
