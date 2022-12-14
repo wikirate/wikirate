@@ -48,8 +48,8 @@ format :html do
   end
 
   def type_options
-    options_for_select [["All Categories", ""],["--------------","hr"]] +
-                         TYPES.map(&:cardname),
+    options_for_select [["All Categories", ""],
+                        ["--------------", "hr"]] + TYPES.map(&:cardname),
                        selected: query_params[:type],
                        disabled: :hr
   end
@@ -77,15 +77,16 @@ format :json do
   # @return [Array] list of card names
   # (overrides default Decko method)
   def complete_or_match_search *args
-    return super **(args.first) unless os_search?
-    return [] unless search_keyword.present? && (options = autocomplete_options)
+    return super(**args.first) unless os_search?
 
-    cardnames_from_os_results options
+    cardnames_from_os_results autocomplete_options
   end
 
   private
 
   def cardnames_from_os_results results
+    return [] unless search_keyword.present?
+
     results.map { |result| result["_id"]&.to_i&.cardname }
   end
 
