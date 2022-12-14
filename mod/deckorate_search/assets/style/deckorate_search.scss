@@ -22,3 +22,7 @@
   }
 }
 
+.ui-menu-item:has(.autocomplete-item-search) {
+  margin: 0 1em;
+  border-top: 1px solid $gray-100;
+}
