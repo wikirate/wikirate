@@ -99,6 +99,6 @@ format :html do
   end
 
   def autocomplete_label
-    super + "<small>#{fixed_thumbnail_subtitle}</small>"
+    raw(super + "<small>#{fixed_thumbnail_subtitle}</small>")
   end
 end

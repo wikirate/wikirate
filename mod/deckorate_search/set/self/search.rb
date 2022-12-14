@@ -48,8 +48,10 @@ format :html do
   end
 
   def type_options
-    options_for_select [["All Categories", ""]] + TYPES.map(&:cardname),
-                       query_params[:type]
+    options_for_select [["All Categories", ""],["--------------","hr"]] +
+                         TYPES.map(&:cardname),
+                       selected: query_params[:type],
+                       disabled: :hr
   end
 
   def link_to_type typecode, text=nil
