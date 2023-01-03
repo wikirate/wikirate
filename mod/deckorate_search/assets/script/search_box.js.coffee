@@ -31,10 +31,11 @@ $.extend decko.searchBox.prototype,
   updatePlaceholder: ->
     type = @selectedType()
     @box.attr "placeholder",
-      if type == ""
-        "Search within companies, data sets, and more..."
-      else
-        "Search for " + type
+      "Search for " +
+        if type == ""
+          "companies, data sets, and more..."
+        else
+           type
 
 submitIfKeyword = ->
   sb = searchBox()
