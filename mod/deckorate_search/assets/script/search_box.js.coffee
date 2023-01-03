@@ -9,6 +9,11 @@ $(window).ready ->
     submitIfKeyword() || browseType()
     e.preventDefault()
 
+  $("body").on "submit", ".search-box-form", (e) ->
+    if !searchBox().keyword()
+      e.preventDefault()
+      browseType()
+
   searchBox().updateType()
 
 $.extend decko.searchBox.prototype,
