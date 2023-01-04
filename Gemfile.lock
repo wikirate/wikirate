@@ -481,7 +481,6 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    date (3.3.3)
     debug_inspector (1.1.0)
     delayed_job (4.1.11)
       activesupport (>= 3.0, < 8.0)
@@ -603,11 +602,8 @@ GEM
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.8.0)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
-      net-imap
-      net-pop
-      net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
@@ -624,17 +620,8 @@ GEM
     mysql2 (0.5.4)
     net-http-persistent (4.0.1)
       connection_pool (~> 2.2)
-    net-imap (0.3.4)
-      date
-      net-protocol
-    net-pop (0.1.2)
-      net-protocol
-    net-protocol (0.2.1)
-      timeout
     net-scp (4.0.0)
       net-ssh (>= 2.6.5, < 8.0.0)
-    net-smtp (0.3.3)
-      net-protocol
     net-ssh (7.0.1)
     net_http_timeout_errors (0.3.5)
     netrc (0.11.0)
@@ -815,7 +802,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sexp_processor (4.16.1)
-    simplecov (0.22.0)
+    simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -853,7 +840,6 @@ GEM
     thor (1.2.1)
     tilt (2.0.11)
     timecop (0.9.6)
-    timeout (0.3.1)
     typhoeus (1.4.0)
       ethon (>= 0.9.0)
     tzinfo (2.0.5)
@@ -927,6 +913,7 @@ DEPENDENCIES
   descriptive_statistics
   fog-aws
   link_thumbnailer
+  mail (!= 2.8.0)
   mysql2 (> 0.4)
   open_uri_redirections
   pdfkit
@@ -938,6 +925,7 @@ DEPENDENCIES
   roo
   ruby-jmeter
   savanna-outliers
+  simplecov (!= 0.22.0)
   statistics2
   timecop
   wbench
