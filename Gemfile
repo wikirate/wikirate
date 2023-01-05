@@ -94,7 +94,7 @@ gem "timecop", group: %i[test cucumber] # date/time manipulation in tests
 group :test, :development do
   # gem "debase"
   gem "decko-spring", path: "./vendor/decko/support"
-  gem "puma"                         # local webserver
+  gem "puma", "~>5.6"                         # local webserver
   # gem "ruby-debug-ide"
 end
 
