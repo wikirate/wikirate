@@ -9,6 +9,11 @@ $(window).ready ->
     submitIfKeyword() || browseType()
     e.preventDefault()
 
+  $("body").on "submit", ".search-box-form", (e) ->
+    if !searchBox().keyword()
+      e.preventDefault()
+      browseType()
+
   searchBox().updateType()
 
 $.extend decko.searchBox.prototype,
@@ -31,10 +36,11 @@ $.extend decko.searchBox.prototype,
   updatePlaceholder: ->
     type = @selectedType()
     @box.attr "placeholder",
-      if type == ""
-        "Search within companies, data sets, and more..."
-      else
-        "Search for " + type
+      "Search for " +
+        if type == ""
+          "companies, data sets, and more..."
+        else
+           type
 
 submitIfKeyword = ->
   sb = searchBox()
