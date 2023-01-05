@@ -94,7 +94,7 @@ gem "timecop", group: %i[test cucumber] # date/time manipulation in tests
 group :test, :development do
   # gem "debase"
   gem "decko-spring", path: "./vendor/decko/support"
-  gem "puma"                         # local webserver
+  gem "puma", "~>5.6"                         # local webserver
   # gem "ruby-debug-ide"
 end
 
@@ -104,4 +104,7 @@ group :profile do
   gem "wbench"                       # Benchmarking web requests
 end
 
-gem "rack-test", "!=2.0.0" # remove me soon (2.0.0 breaks things on semaphore)
+# remove me soon
+gem "rack-test", "!=2.0.0" #  (2.0.0 breaks things on semaphore)
+gem "mail", "!=2.8.0"
+gem "simplecov", "!=0.22.0"
