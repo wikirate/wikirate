@@ -1,10 +1,12 @@
 class Card
   # This class provides an interface to import relationship answers
   class RelationshipImportItem < AnswerImportItem
-    @columns = { metric: { map: true },
-                 subject_company: { map: true, type: :wikirate_company,
+    extend CompanyImportHelper
+
+    @columns = { metric: { map: true, suggest: true },
+                 subject_company: { map: true, type: :wikirate_company, suggest: true,
                                     auto_add: true, alias: "Company" },
-                 object_company: { map: true, type: :wikirate_company,
+                 object_company: { map: true, type: :wikirate_company, suggest: true,
                                    auto_add: true, alias: "Related Company" },
                  year: { map: true },
                  value: {},
