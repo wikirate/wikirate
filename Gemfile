@@ -94,7 +94,7 @@ gem "timecop", group: %i[test cucumber] # date/time manipulation in tests
 group :test, :development do
   # gem "debase"
   gem "decko-spring", path: "./vendor/decko/support"
-  gem "puma", "~>5.6"                         # local webserver
+  gem "puma", "~>5.6"                   # local webserver (6.x broke semaphore )
   # gem "ruby-debug-ide"
 end
 
@@ -105,6 +105,6 @@ group :profile do
 end
 
 # remove me soon
-gem "rack-test", "!=2.0.0" #  (2.0.0 breaks things on semaphore)
-gem "mail", "!=2.8.0"
-gem "simplecov", "!=0.22.0"
+gem "mail", "!=2.8.0"       # broke staging
+gem "rack-test", "!=2.0.0"  # (2.0.0 breaks things on semaphore)
+gem "simplecov", "!=0.22.0" # broke semaphore
