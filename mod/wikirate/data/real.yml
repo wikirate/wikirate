@@ -89,7 +89,7 @@
       $teal: #09ab90 !default;
       $black: #1d1e3f !default;
       $white: #ffffff !default;
-      
+
       $gray-100: #f7f7f8 !default;
       $gray-200: #e9ecef !default;
       $gray-300: #dee2e6 !default;
@@ -99,7 +99,7 @@
       $gray-700: #495057 !default;
       $gray-800: #343a40 !default;
       $gray-900: #34343b !default;
-      
+
       $primary: $purple !default;
       $secondary: $gray-600 !default;
       $success: $teal !default;
@@ -117,7 +117,7 @@
       /*----------- WikiRate Categories ---------*/
 
       $yellow-orange: #F7B13D;
-      
+
       $company-color: $yellow;
       $company-group-color: $company-color;
       $metric-color: $orange;
@@ -130,7 +130,7 @@
       $project-color: $yellow-orange;
       $dataset-color: $yellow-orange;
       $year-color: $yellow;
-      
+
       /*----------- WikiRate Scores ---------*/
 
       $score-colors: (
@@ -145,26 +145,26 @@
         "8": #65a300,
         "9": $teal
       );
-      
+
       /*----------- Other WikiRate-specific variables ---------*/
-      
+
       $verification-flag-color: $red;
       $top-bar-anchor-color: $primary;
-      
+
       // badge levels
       $gold: gold;
       $silver: silver;
       $bronze: #cd7f32;
-      
+
       //----------- Bootstrap Overrides ---------
-      
+
       $border-color: $gray-200;
       $table-group-separator-color: $gray-200;
-      
+
       $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
       $box-shadow: 0 10px 20px 0 rgba($dark, .2);
-      $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
-      
+      $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);!!
+
       // NOTE: scroll-behavior: smooth breaks cypress tests
       $enable-smooth-scroll: false;
 
@@ -173,3 +173,8 @@
     - :style
   :type: :pointer
   :content: wikirate skin
+
+- :name: Home
+  :type: :html
+  :codename: homepage
+

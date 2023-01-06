@@ -14,6 +14,9 @@ $(window).ready ->
       e.preventDefault()
       browseType()
 
+  $("body").on "keypress", ".search-box-form .search-box-select-type", (e) ->
+    $(this).closest("form").submit() if e.which = 13 # Enter key
+
   searchBox().updateType()
 
 $.extend decko.searchBox.prototype,

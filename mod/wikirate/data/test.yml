@@ -1,0 +1,13 @@
+---
+
+# updating with fields here to trigger geography calculations
+- :name: Google LLC
+  :type: :wikirate_company
+  :fields:
+    :about: don't be evil
+    :headquarters: California (United States)
+    :incorporation: Delaware (United States)
+    :open_corporates: 201727810678
+    :alias:
+      - Google
+      - Alphabet
