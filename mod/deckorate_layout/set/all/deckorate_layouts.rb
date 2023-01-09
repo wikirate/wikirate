@@ -4,32 +4,36 @@ format :html do
   end
 
   layout :deckorate_layout, view: :titled do
-    deckorate_layout "deckorate-standard-layout" do
+    deckorate_layout :standard do
       wrap_with(:main, class: "container") { layout_nest }
     end
+  end
+
+  layout :deckorate_minimal_layout, view: :core do
+    deckorate_layout(:minimal, navbar: false) { layout_nest }
   end
 
   # Used on pages with tabs
   # note: page view
   layout :deckorate_tabbed_layout, view: :page do
-    deckorate_layout "deckorate-tabbed-layout" do
+    deckorate_layout :tabbed do
       wrap_with(:main, class: "container") { layout_nest }
     end
   end
 
   layout :deckorate_jumbotron_layout, view: :page do
-    deckorate_layout "deckorate-jumbotron-layout nodblclick" do
+    deckorate_layout :jumbotron, extra_class: "nodblclick" do
       [haml(:jumbotron_header),
        wrap_with(:div, class: "container py-3") { layout_nest }]
     end
   end
 
   # FIXME: codify conversion snippet handling
-  def deckorate_layout body_class
-    body_tag "deckorate-layout #{body_class}" do
-      output [nest(:nav_bar, view: :core),
+  def deckorate_layout klass, navbar: true, extra_class: ""
+    body_tag "deckorate-layout deckorate-#{klass}-layout #{extra_class}" do
+      output [(nest(:nav_bar, view: :core) if navbar),
               yield,
-              nest(:wikirate_footer, view: :content),
+              nest(:wikirate_footer, view: :core),
               haml(:ajax_loader_anime),
               nest("_main+google analytics conversion snippet", view: :core)]
     end
