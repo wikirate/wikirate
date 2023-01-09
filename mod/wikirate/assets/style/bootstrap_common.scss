@@ -10,9 +10,9 @@
   }
 }
 
-.btn {
-  -webkit-appearance: none !important;
-}
+//.btn {
+//  -webkit-appearance: none !important;
+//}
 
 
 //Common adjustments
@@ -39,7 +39,6 @@
   }
 
 }
-
 
 .alert {
   border-radius: 0;
@@ -132,24 +131,6 @@ ul.horizontal > li {
   margin-right: 5px;
 }
 
-
-a.no-decoration {
-  text-decoration: none !important;
-
-  :hover {
-    text-decoration: none !important;
-    color: inherit !important;
-  }
-}
-
-
-.prosemirror-editor{
-  border: 1px solid #ccc;
-  padding: 5px;
-  @include box-shadow(0,1px,1px,rgba(0,0,0,0.075), inset);
-}
-
-
 .conflict-view,
 .history-view > .d0-card-content,
 #tinymce {
@@ -159,10 +140,19 @@ a.no-decoration {
 
 //popover
 
-.popover-body {
-  overflow-y: auto;
-  max-height: 200px;
+.popover {
+  max-width: 100%;
+  h3.popover-header {
+    margin-top: 0 !important;
+    font-size: 1.1rem !important;
+  }
+  .popover-body {
+    overflow-y: auto;
+    max-height: 200px;
+    padding-bottom: 1.5em !important;
+  }
 }
+
 
 //global transitions for smooth links
 $transition-speed: 0.08s;

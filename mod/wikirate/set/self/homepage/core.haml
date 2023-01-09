@@ -1,4 +1,34 @@
-#homepage-core.nodblclick
-  .m-0
-    = render_top_banner
-  = render_footer
+#homepage
+  %section.container.p-5
+    .d-flex
+      = nest :logo
+      .account-info-bar
+      = nest :account_links, view: :core
+  .container-fluid.bg-light
+    %section.container.p-5
+      %h1 Empowering people with open ESG data
+      .lead Sustainability data across 128,000+ companies and over 3 million data points.
+      .py-5
+        = nest :search, view: :search_box
+      .home-search-suggestions
+        Popular topics
+  .container-fluid.p-3
+    (types)
+  .container-fluid.bg-light
+    %section.container.p-5
+      (counts)
+  %section.container.p-5
+    %h1 Get involved
+    .lead There's way more to do than we can do without you:
+    .p-5
+      (slider)
+  .container-fluid.bg-light
+    %section.container.p-5
+      %h1 Trending benchmarks
+      .lead Delta, delta, delta, can I help ya, help ya, help ya?
+  %section.container.p-5
+    .text-center
+      %h1 Our designers
+      .lead Contributors like these pose the questions that WikiRate seeks to answer.
+      .p-5
+        (images/names)
