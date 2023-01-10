@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, h6 {
+  color: $primary;
+}
+
 /*----------- WikiRate Scores ---------*/
 // Note: to change these colors you will typically want to edit the +:variables
 // card on the active skin.  See note in 01_variables.scss in deckorate_core mod
@@ -17,25 +21,25 @@ $score-colors: (
 
 /*----------- Official SDG colors ---------*/
 
-$sdg-colors: (
-  sdg1: #E5243B,
-  sdg2: #DDA63A,
-  sdg3: #4C9F38,
-  sdg4: #C5192D,
-  sdg5: #FF3A21,
-  sdg6: #26BDE2,
-  sdg7: #FCC30B,
-  sdg8: #A21942,
-  sdg9: #FD6925,
-  sdg10: #DD1367,
-  sdg11: #FD9D24,
-  sdg12: #BF8B2E,
-  sdg13: #3F7E44,
-  sdg14: #0A97D9,
-  sdg15: #56C02B,
-  sdg16: #00689D,
-  sdg17: #19486A
-) !default;
+//$sdg-colors: (
+//  sdg1: #E5243B,
+//  sdg2: #DDA63A,
+//  sdg3: #4C9F38,
+//  sdg4: #C5192D,
+//  sdg5: #FF3A21,
+//  sdg6: #26BDE2,
+//  sdg7: #FCC30B,
+//  sdg8: #A21942,
+//  sdg9: #FD6925,
+//  sdg10: #DD1367,
+//  sdg11: #FD9D24,
+//  sdg12: #BF8B2E,
+//  sdg13: #3F7E44,
+//  sdg14: #0A97D9,
+//  sdg15: #56C02B,
+//  sdg16: #00689D,
+//  sdg17: #19486A
+//) !default;
 
 
 
@@ -319,6 +323,38 @@ $colorMap: (
 }
 .verification-flagged {
   color: $verification-flag-color;
+}
+
+.bg-light-purple {
+  background: $purple-100;
+}
+
+.btn-purple {
+  background: $purple;
+  color: white;
+  box-shadow: $box-shadow;
+
+  padding: 0.7rem 2rem;
+  min-width: 165px;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  &:hover {
+    background: $purple-600;
+    color: white;
+  }
+  &:active {
+    box-shadow: $box-shadow-lg;
+    color: $purple;
+    background: $gray-200;
+  }
+  &:focus {
+    background: $gray-200;
+    color: $gray-800;
+    border: 3px solid $gray-800;
+  }
 }
 
 
