@@ -4,8 +4,8 @@
     - if type_param
       = link_to_type "", "All Categories"
     - else
-      - search_type_codenames.each do |typecode|
-        = link_to_type typecode
+      - featured_type_names.each do |type|
+        = link_to_type type
 
   - if type_param
     .advanced-filter-link.text-nowrap

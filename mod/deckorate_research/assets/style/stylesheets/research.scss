@@ -68,13 +68,9 @@ input.short-input[type=text] {
   display: none;
 }
 
-
-
-
-
-
-
-
+.metric-header {
+  border-top: 3px solid $metric-color;
+}
 
 .progress {
   border-radius: 10px;

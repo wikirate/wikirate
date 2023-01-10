@@ -8,12 +8,16 @@ def search parameters={}
 end
 
 format do
-  def search_type_codenames
-    TYPES
+  def featured_type_list
+    %i[cardtype featured].card
   end
 
   def filter_type_ids
-    type_param ? [type_param.card_id] : search_type_codenames.map(&:card_id)
+    type_param ? [type_param.card_id] : featured_type_list.item_ids
+  end
+
+  def featured_type_names
+    featured_type_list.item_names.map { |n| n.vary :plural }
   end
 end
 
@@ -49,7 +53,7 @@ format :html do
 
   def type_options
     options_for_select [["All Categories", ""],
-                        ["--------------", "hr"]] + TYPES.map(&:cardname),
+                        ["--------------", "hr"]] + featured_type_names,
                        selected: query_params[:type],
                        disabled: :hr
   end

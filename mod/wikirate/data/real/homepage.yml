@@ -1,0 +1,14 @@
+- :name:
+    - :cardtype
+    - :featured
+  :type: :list
+  :content: |
+    Company
+    Company Group
+    Research Group
+    Topic
+    Project
+    Data Set
+    Metric
+    Source
+    

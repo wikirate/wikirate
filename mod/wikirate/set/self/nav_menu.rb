@@ -1,3 +1,5 @@
+include_set Abstract::CodeContent
+
 format :html do
   view :core do
     dropdown_button(fa_icon(:bars)) { dropdown_items.compact }
