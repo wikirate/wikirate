@@ -23,7 +23,7 @@ format :json do
   end
 
   view :detailed do
-    render_molecule
+    render_molecule items: { view: :molecule }
   end
 
   def page_details obj

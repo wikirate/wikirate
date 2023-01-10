@@ -1,4 +1,6 @@
 ---
+- homepage
+
 - :name: WikiRate Team
   :codename: wikirate_team
   :type: :role

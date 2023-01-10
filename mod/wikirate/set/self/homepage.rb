@@ -1,3 +1,5 @@
+include_set Abstract::CodeContent
+
 # include_set Abstract::SolidCache, cached_format: :html
 #
 # cache_expire_trigger Card::Set::All::Base do |_changed_card|

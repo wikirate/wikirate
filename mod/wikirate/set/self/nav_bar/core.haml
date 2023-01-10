@@ -15,3 +15,5 @@
 
       .top-nav-search.search-box-nav
         = nest :search, view: :search_box
+.container-fluid.p-3
+  = nest %i[cardtype featured], items: { view: :text_with_image, variant: :plural }
