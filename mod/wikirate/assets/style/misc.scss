@@ -38,13 +38,8 @@
   }
 }
 
-.popover {
-  max-width: 100%;
-  h3.popover-header {
-    margin-top: 0 !important;
-    font-size: 1.1rem !important;
-  }
-  .popover-body {
-    padding-bottom: 1.5em !important;
-  }
+.newsletter-input {
+  font-family: FontAwesome, sans-serif;
+  width: 20rem;
+  max-width: 60%;
 }

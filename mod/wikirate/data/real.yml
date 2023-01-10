@@ -1,4 +1,6 @@
 ---
+- homepage
+
 - :name: WikiRate Team
   :codename: wikirate_team
   :type: :role
@@ -163,7 +165,7 @@
 
       $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
       $box-shadow: 0 10px 20px 0 rgba($dark, .2);
-      $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);!!
+      $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
 
       // NOTE: scroll-behavior: smooth breaks cypress tests
       $enable-smooth-scroll: false;

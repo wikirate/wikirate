@@ -22,3 +22,27 @@
 .flag-details i {
   margin-right: 1em;
 }
+
+.year-and-value-pretty .image-box {
+  margin-right: 20px;
+}
+
+.year-icon-cal.image-box  {
+  position: relative;
+  margin-right: 0;
+  i {
+    font-size: 1.5em;
+    position: relative;
+    bottom: 0.5em;
+  }
+  .icon-cal-text {
+    position: absolute;
+    bottom: 5%;
+    font-size: 1.15em;
+    font-weight: bold;
+  }
+}
+
+.concise-answer .year-icon-cal {
+  font-size: 0.7rem;
+}

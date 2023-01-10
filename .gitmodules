@@ -5,18 +5,9 @@
 [submodule "vendor/card-mods"]
 	path = vendor/card-mods
 	url = https://github.com/decko-commons/card-mods
-[submodule "mod/wikirate_assets/vendor/readmore"]
-	path = mod/wikirate_assets/vendor/readmore
-	url = https://github.com/jedfoster/Readmore.js
-[submodule "mod/wikirate_homepage/vendor/slick"]
-	path = mod/wikirate_homepage/vendor/slick
-	url = https://github.com/kenwheeler/slick
-[submodule "mod/wikirate_homepage/vendor/wodry"]
-	path = mod/wikirate_homepage/vendor/wodry
-	url = https://github.com/srivig/wodry
-[submodule "mod/wikirate_homepage/vendor/countUp"]
-	path = mod/wikirate_homepage/vendor/countUp
-	url = https://github.com/inorganik/countUp.js
 [submodule "vendor/decko-cap"]
 	path = vendor/decko-cap
 	url = https://github.com/decko-commons/decko-cap
+[submodule "mod/wikirate/vendor/slick"]
+	path = mod/wikirate/vendor/slick
+	url = https://github.com/kenwheeler/slick.git
