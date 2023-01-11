@@ -1,13 +1,13 @@
 # default is material
 
 ICON_MAP = {
-  wikirate_company: [:building, { library: :font_awesome }],
-  wikirate_topic: :widgets,
-  company_group: [:city, { library: :font_awesome }], # city not available in 4.7
-  project: [:flask, { library: :font_awesome }],
-  dataset: [:database, { library: :font_awesome }],
-  data_subset: [:database, { library: :font_awesome }],
-  metric: ["ruler-combined", { library: :font_awesome }],
+  wikirate_company: [:company, { library: :svg }],
+  wikirate_topic: [:topic, { library: :svg }],
+  company_group: [:company_group, { library: :svg }], # city not available in 4.7
+  project: [:project, { library: :svg }],
+  dataset: [:dataset, { library: :svg }],
+  data_subset: [:dataset, { library: :svg }],
+  metric: [:metric, { library: :svg }],
   record: ["bar-chart", { library: :font_awesome }],
   metric_answer: ["clipboard-check", { library: :font_awesome }],
   researcher: [:user, { library: :font_awesome }],
@@ -17,14 +17,14 @@ ICON_MAP = {
   bookmark: [:bookmark, { library: :font_awesome }],
   bookmarks: [:bookmark, { library: :font_awesome }],
   details: ["info-circle", { library: :font_awesome }],
-  source: ["globe-africa", { library: :font_awesome }],
+  source: [:source, { library: :svg }],
   preview: ["file-pdf", { library: :font_awesome }],
   score: :adjust,
   answer_import: :input,
   metric_import: :input,
   calculation: [:calculator, { library: :font_awesome }],
   year: [:"calendar-alt", { library: :font_awesome }],
-  research_group: [:users, { library: :font_awesome }],
+  research_group: [:research_group, { library: :svg }],
   contributions: [:plug, { library: :font_awesome }],
   activity: :directions_run,
   community_assessed: [:unlock, { library: :font_awesome }],
@@ -47,5 +47,9 @@ format :html do
   def icon_labeled_field field, item_view=:name, opts={}
     field_nest field, opts.merge(view: :labeled,
                                  items: (opts[:items] || {}).merge(view: item_view))
+  end
+
+  def svg_icon_tag _icon, _opts={}
+    "not implemented"
   end
 end

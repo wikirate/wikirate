@@ -1,6 +1,6 @@
 include_set Abstract::DeckorateFiltering
 include_set Abstract::SearchViews
-include_set Abstract::Media
+include_set Abstract::Thumbnail
 
 def item_type_id
   id
@@ -19,9 +19,5 @@ format :html do
 
   view :add_button do
     add_link modal: false, class: "btn btn-lg btn-primary"
-  end
-
-  view :text_with_image do
-    text_with_image
   end
 end

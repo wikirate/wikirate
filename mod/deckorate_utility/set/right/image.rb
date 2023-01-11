@@ -1,11 +1,12 @@
 format :html do
   def unknown_image_icon
-    return unless (code = card.left&.type_code)
+    l = card.left
+    return unless (code = l&.codename || l&.type_code)
 
     mapped_icon_tag code
   end
 
-  view :core do
+  view :core, unknown: true do
     return super() if card.known?
 
     unknown_image_icon || ""
