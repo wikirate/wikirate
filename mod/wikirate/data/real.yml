@@ -79,6 +79,7 @@
 - :name: wikirate skin
   :type: :bootswatch_skin
   :codename: wikirate_skin
+  :conflict: override
   :fields:
     :stylesheets: ""
     :colors: |
@@ -166,10 +167,33 @@
       $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
       $box-shadow: 0 10px 20px 0 rgba($dark, .2);
       $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
-
+      
+      $border-radius-lg: 0.5rem;
+      $btn-border-radius-lg: 50rem;
+      $form-select-border-radius: 50rem;
+      $form-select-border-radius-lg: 50rem;
+      
       // NOTE: scroll-behavior: smooth breaks cypress tests
       $enable-smooth-scroll: false;
+      $input-border-radius: 50rem;
 
+      //----------- Slick Overrides ---------
+
+      $slick-font-path: "https://wikirate.org/mod/wikirate/slick_fonts/";
+      $slick-loader-path: "https://wikirate.org/mod/wikirate/";
+      $slick-arrow-color: $primary;
+
+
+      //------------ transitions for smooth links
+      
+      $transition-speed: 0.08s;
+      a {
+        -webkit-transition: all $transition-speed ease;
+        -moz-transition:    all $transition-speed ease;
+        -ms-transition:     all $transition-speed ease;
+        -o-transition:      all $transition-speed ease;
+        transition:         all $transition-speed ease;
+      }
 - :name:
     - :all
     - :style

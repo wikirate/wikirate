@@ -16,7 +16,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
     expect_view(:thumbnail).to have_tag("div.image-box") do
       with_tag "div.image-box.small" do
         with_tag "a.known-card" do
-          with_tag "i.fa-building"
+          with_tag "img"
         end
       end
     end
