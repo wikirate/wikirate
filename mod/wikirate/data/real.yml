@@ -175,11 +175,12 @@
       
       // NOTE: scroll-behavior: smooth breaks cypress tests
       $enable-smooth-scroll: false;
+      $input-border-radius: 50rem;
 
       //----------- Slick Overrides ---------
 
-      $slick-font-path: "/mod/wikirate/slick_fonts/";
-      $slick-loader-path: "/mod/wikirate/";
+      $slick-font-path: "https://wikirate.org/mod/wikirate/slick_fonts/";
+      $slick-loader-path: "https://wikirate.org/mod/wikirate/";
       $slick-arrow-color: $primary;
 
 
