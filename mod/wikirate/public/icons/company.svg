@@ -1,0 +1,12 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Companies">
+<g id="Vector">
+<path d="M17 5H15V3H17C18.1046 3 19 3.89543 19 5V19C19 20.1046 18.1046 21 17 21H15V19H17V5Z" fill="#1D1E3F"/>
+<path d="M7 19H9V21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H9V5H7V19Z" fill="#1D1E3F"/>
+</g>
+<rect id="Rectangle 20" x="9" y="12" width="2" height="2" rx="0.5" fill="#1D1E3F"/>
+<rect id="Rectangle 21" x="9" y="8" width="2" height="2" rx="0.5" fill="#1D1E3F"/>
+<rect id="Rectangle 22" x="13" y="12" width="2" height="2" rx="0.5" fill="#1D1E3F"/>
+<rect id="Rectangle 23" x="13" y="8" width="2" height="2" rx="0.5" fill="#1D1E3F"/>
+</g>
+</svg>

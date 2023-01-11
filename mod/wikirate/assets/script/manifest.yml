@@ -1,0 +1,5 @@
+wikirate:
+  items:
+    - anime.min.js
+    - wikirate_common.js.coffee
+    - ../../vendor/slick/slick/slick.min.js
