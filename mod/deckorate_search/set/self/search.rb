@@ -40,6 +40,11 @@ format :html do
     end
   end
 
+  before :title do
+    scope = type_param.present? ? h(type_param) : "all data"
+    voo.title = "Search within #{scope}"
+  end
+
   view :search_types, template: :haml, cache: :never
 
   view :core do
