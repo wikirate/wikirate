@@ -1,0 +1,11 @@
+wikirate:
+  items:
+    - bars_and_boxes.scss
+    - bootstrap_common.scss
+    - bootstrap_table.scss
+    - colors.scss
+    - homepage.scss
+    - navbar.scss
+    - misc.scss
+    - ../../vendor/slick/slick/slick.scss
+    - ../../vendor/slick/slick/slick-theme.scss
