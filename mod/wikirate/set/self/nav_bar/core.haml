@@ -1,4 +1,4 @@
-%nav#top-navbar.navbar.bg-white
+%nav#top-navbar.navbar.bg-white.nodblclick
   .container
     .navbar-container
       .navbar-brand
@@ -15,5 +15,20 @@
 
       .top-nav-search.search-box-nav
         = nest :search, view: :search_box
-.container-fluid.p-3
-  = nest %i[cardtype featured], items: { view: :text_with_image, variant: :plural }
+%section.container.sub-navbar.px-5.nodblclick{ data: {
+    "slick-selector": ".card-list-thumbnail",
+    slick: { infinite: false,
+             slidesToShow: 8,
+             arrows: false,
+             variableWidth: true,
+             slidesToScroll: 1,
+             responsive: [
+               { breakpoint: "1200", settings: { slidesToShow: 6, arrows: true } },
+               { breakpoint: "992",  settings: { slidesToShow: 4, arrows: true } },
+               { breakpoint: "768",  settings: { slidesToShow: 3, arrows: true } },
+               { breakpoint: "576",  settings: { slidesToShow: 2, arrows: true } }
+             ]}.to_json
+  } }
+  = nest %i[cardtype featured], items: { view: :thumbnail, variant: :plural }
+
+

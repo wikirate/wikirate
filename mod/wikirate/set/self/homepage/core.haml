@@ -1,4 +1,4 @@
-#homepage
+#homepage.nodblclick
   %section.container.p-3
     .d-flex.justify-content-between
       = nest :logo
@@ -13,22 +13,42 @@
             .top-nav-burger
               = nest :nav_menu, view: :core
 
-  .container-fluid.bg-light
-    %section.container.p-5
+  // SEARCH SECTION
+
+  %section.container-fluid.bg-light
+    .container.p-5
       %h1 Empowering people with open ESG data
       .lead Sustainability data across 128,000+ companies and over 3 million data points.
       .py-5
         = nest :search, view: :search_box
       .home-search-suggestions
-        Popular topics
-  .container-fluid.p-3
-    = nest %i[cardtype featured], items: { view: :text_with_image, variant: :plural }
-  .container-fluid.bg-light
-    %section.container.p-5
+        Popular searches:
+
+  // TYPE LINK SECTION
+
+  %section.type-links-section.container-fluid.p-3.px-5{ data: {
+    "slick-selector": ".card-list-thumbnail",
+    slick: { infinite: false,
+             slidesToShow: 8,
+             arrows: false,
+             slidesToScroll: 1,
+             responsive: [
+               { breakpoint: "1200", settings: { slidesToShow: 7, arrows: true } },
+               { breakpoint: "992",  settings: { slidesToShow: 5, arrows: true } },
+               { breakpoint: "768",  settings: { slidesToShow: 4, arrows: true } },
+               { breakpoint: "576",  settings: { slidesToShow: 2, arrows: true } }
+             ]}.to_json
+  } }
+    = nest %i[cardtype featured],
+           items: { view: :thumbnail, variant: :plural, size: :medium }
+
+
+  %section.container-fluid.bg-light
+    .container.p-5
       (counts)
   %section.container.p-5
     %h1 Get involved
-    .lead There's way more to do than we can do without you:
+    .lead There's more to do than can be done without you:
     .p-5
       (slider)
   .container-fluid.bg-light
