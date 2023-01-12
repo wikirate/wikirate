@@ -19,7 +19,6 @@ format :html do
     end
   end
 
-
   # Used on pages with tabs
   # note: page view
   layout :deckorate_tabbed_layout, view: :page do
