@@ -1,12 +1,13 @@
-include_set Abstract::Jumbotron
+include_set Abstract::FluidLayout
+
 
 format :html do
   def edit_fields
     %i[description general_overview]
   end
 
-  before :page do
-    voo.title = "Impact"
+  def breadcrumb_title
+    "Our Impact"
   end
 
   view :page, template: :haml

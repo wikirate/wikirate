@@ -1,12 +1,12 @@
-include_set Abstract::Jumbotron
+include_set Abstract::FluidLayout
 
 format :html do
   def edit_fields
     %i[description general_overview blurb]
   end
 
-  before :page do
-    voo.title = "Community"
+  def breadcrumb_title
+    "Our Community"
   end
 
   view :page, template: :haml
