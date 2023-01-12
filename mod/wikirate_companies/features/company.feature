@@ -7,9 +7,9 @@ Feature: company feature
 
   Scenario: Browse through tabs
     Then I should see "disturbances in the Force"
-    Then I click on "Data Sets"
+    Then I click "Data Sets" within ".nav-tabs"
     And I should see "Evil Dataset"
-    Then I click on "Sources"
+    Then I click "Sources" within ".nav-tabs"
     And I should see "thereaderwiki.com"
     Then I click on "Details"
     And I should see "Wikipedia"
