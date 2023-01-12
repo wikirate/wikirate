@@ -1,4 +1,5 @@
 include_set Abstract::Media
+include_set Abstract::Breadcrumbs
 
 format :html do
   view :rich_header, cache: :never, template: :haml do
@@ -38,18 +39,5 @@ format :html do
 
   view :shared_header do
     header_left
-  end
-
-  view :breadcrumbs do
-    breadcrumb breadcrumb_items
-  end
-
-  def breadcrumb_items
-    type = card.type_card
-    [
-      link_to("Home", href: "/"),
-      link_to_card(type, type.name.vary(:plural)),
-      render_name
-    ]
   end
 end

@@ -150,12 +150,12 @@ $colorMap: (
 ); // border color for bars and boxes
 
 @each $type, $color in $colorMap {
-  .TYPE-#{$type}.rich-header {
-    // border-top: 5px solid $color;
-    a {
-      color: $color !important;
-    }
-  }
+  //.TYPE-#{$type}.rich-header {
+  //  // border-top: 5px solid $color;
+  //  a {
+  //    color: $color !important;
+  //  }
+  //}
 
   .TYPE-#{$type} {
     @include barbox($color);
@@ -207,9 +207,9 @@ $colorMap: (
     }
   }
 
-  #main > .SELF-#{$type}.titled-view > .d0-card-header > h1 {
-    color: $color;
-  }
+  //#main > .SELF-#{$type}.titled-view > .d0-card-header > h1 {
+  //  color: $color;
+  //}
 }
 
 .LTYPE_RTYPE-topic-company {
