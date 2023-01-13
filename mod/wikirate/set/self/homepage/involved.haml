@@ -1,0 +1,24 @@
+.homepage-involved
+  = section_header "Get involved",
+    lead: "There's more to do than can be done without you!",
+    buttons: render_nav_arrows
+    
+  .py-5
+    .homepage-involved-cards{ data: {
+      slick: { #infinite: false,
+               centerMode: true,
+               slidesToShow: 3,
+               prevArrow: ".homepage-involved .wr-prev",
+               nextArrow: ".homepage-involved .wr-next",
+               responsive: [
+                 { breakpoint: "992", settings: { slidesToShow: 2 } },
+                 { breakpoint: "768",  settings: { slidesToShow: 1 } }
+               ]}.to_json
+    } }
+      - involved_links.each do |title, url|
+        %a{ href: url }
+          .card.nav-card
+            %h3.card-title
+              = title
+            .text-end
+

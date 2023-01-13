@@ -73,3 +73,11 @@ format do
     "@WikiRate"
   end
 end
+
+format :html do
+  def section_header title, lead: nil, buttons: nil
+    haml :section_header, title: title, lead: lead, buttons: buttons
+  end
+
+  view :nav_arrows, template: :haml
+end

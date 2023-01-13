@@ -3,12 +3,11 @@
 %section.container-fluid.bg-light
   .container.p-5.py-3
     = render_breadcrumbs
-    .py-5.d-flex.flex-wrap.justify-content-between
-      .w-75.lead
-        %h1 Let's make companies better, together
-      .text-end
+    .py-5
+      - buttons = capture_haml do
         %a.btn.btn-lg.btn-primary{ href: "/new/:signup" }
           Join Us
+      = section_header "Let's make companies better, together", buttons: buttons
 
 %section.container.p-5
   (vision/mission)
