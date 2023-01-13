@@ -15,8 +15,17 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[core].each do |view|
+  %i[core involved counts benchmarks].each do |view|
     view view, template: :haml
+  end
+
+  def involved_links
+    {
+      "Join a project": "/:project",
+      "Find our latest events": "",
+      "Host your own project": "/new/:project",
+      "Sign up": "/new/:signup"
+    }
   end
 
   def edit_fields
