@@ -1,14 +1,37 @@
-%section.p-5
-  = field_nest :general_overview, view: :content
-%section.p-5
-  = field_nest :blurb, view: :content, items: { view: :stack }
--#%section.bg-light.p-5
--#  %h2 Community in Numbers
--#  \...
--#%section.p-5
--#  %h2 Community Stories
--#  \...
--#%section.p-5
--#  %h2 Community Members
--#  \...
+%section.container-fluid.bg-light
+  .container.p-5.py-3
+    = render_breadcrumbs
+    .py-5.d-flex.flex-wrap.justify-content-between
+      .w-75
+        %h1 Let's tackle global challenges together
+        .lead
+          We collaboratively assess and engage companies to tackle global
+          challenges and improve people's lives. Anyone can join,
+          and anyone can use our data.
+      //= field_nest :general_overview, view: :content
+
+      .text-end
+        %a.btn.btn-lg.btn-primary{ href: "/new/:signup" }
+          Join Us
+
+%section.container.p-5
+  (counts)
+
+%section.container-fluid.bg-light
+  .container.p-5
+    %h2 Ready to drive change?
+    .lead
+      The challenges we face are too big to tackle alone.
+
+    .p-5
+      (boxes)
+    // = field_nest :blurb, view: :content, items: { view: :stack }
+
+%section.container.p-5
+  %h2 Our Members of the Month
+  .lead
+    Showcasing the community
+
+  (members)
+
 = nest :contact_us, view: :section

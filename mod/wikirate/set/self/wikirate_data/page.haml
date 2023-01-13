@@ -1,17 +1,41 @@
-%section.p-5
-  = field_nest :general_overview, view: :content
-%section.p-5
-  %h2
-    What makes our data so
-    %strong special?
-  = field_nest :blurb, view: :core, items: { view: :stack }
-  .p-3.text-center
-    %a.btn.btn-primary{ href: "/Use_our_Api" }
-      Use our API
-%section.bg-light.p-5
-  %h2
-    What makes our data so
-    %strong reliable?
-  = field_nest :list, view: :core, items: { view: :stack }
+%section.container-fluid.bg-light
+  .container.p-5.py-3
+    = render_breadcrumbs
+    .py-5.d-flex.flex-wrap.justify-content-between
+      .w-50
+        %h1 The largest open registry of corporate sustainability data in the world
+        .lead
+          WikiRate has public data on companies from all sectors, covering their
+          environmental, social, and governance performance
+      .text-end
+        %a.btn.btn-lg.btn-primary{ href: "/Use_our_Api" }
+          Use our API
 
-= nest :contact_us, view: :section
+
+%section.p-5.container.text-center
+  .w-50.d-inline-block
+    %h2
+      What makes our data so special?
+    .lead
+      The data on WikiRate is open and free for all, because we believe sharing
+      knowledge is the only way to improve decision-making at large.
+  = field_nest :blurb, view: :core, items: { view: :stack }
+
+%section.container-fluid.bg-light
+  .container.p-5
+    %h2
+      What makes our data so reliable?
+    .lead
+      Everyone's way in to corporate sustainability data...
+    = field_nest :list, view: :core, items: { view: :stack }
+
+%section.container.p-5
+  .bg-light.p-5.d-flex.flex-wrap.justify-content-between
+    .w-50
+      %h2 Start using our data today
+      .lead
+        Are you using WikiRate data and want to share...
+    .text-end
+      %a.btn.btn-lg.btn-primary{ href: "/Use_our_Api" }
+        Use our API
+

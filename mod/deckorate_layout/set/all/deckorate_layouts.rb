@@ -13,6 +13,12 @@ format :html do
     deckorate_layout(:minimal, navbar: false) { layout_nest }
   end
 
+  layout :deckorate_fluid_layout, view: :page do
+    deckorate_layout :fluid do
+      wrap_with(:main) { layout_nest }
+    end
+  end
+
   # Used on pages with tabs
   # note: page view
   layout :deckorate_tabbed_layout, view: :page do

@@ -1,7 +1,32 @@
-%section.p-5
-  = field_nest :general_overview, view: :content
-%section.bg-light.p-5.card-menu-hoverspace
-  %h2
-    Free tools for taking action
-  = field_nest :blurb, view: :content, items: { view: :stack }
+//.card-menu-hoverspace
+
+%section.container-fluid.bg-light
+  .container.p-5.py-3
+    = render_breadcrumbs
+    .py-5.d-flex.flex-wrap.justify-content-between
+      .w-75.lead
+        %h1 Let's make companies better, together
+      .text-end
+        %a.btn.btn-lg.btn-primary{ href: "/new/:signup" }
+          Join Us
+
+%section.container.p-5
+  (vision/mission)
+
+%section.container-fluid.bg-light
+  .container.p-5
+    %h2
+      Free tools for taking action
+    = field_nest :blurb, view: :content, items: { view: :stack }
+
+%section.container.p-5.text-center
+  .d-inline-block.w-75.text-start
+    %h2 Our Story
+    (our story)
+
+%section.container-fluid.bg-light
+  .container.p-5
+    %h2 Our Values
+    (values blurbs)
+
 = nest :contact_us, view: :section
