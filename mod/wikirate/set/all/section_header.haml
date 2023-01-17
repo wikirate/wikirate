@@ -1,0 +1,14 @@
+.wikirate-section-header.d-flex.flex-wrap.justify-content-between
+  - title_and_lead = capture_haml do
+    %h1
+      = title
+    - if lead
+      .lead
+        = lead
+  - if buttons
+    .w-75
+      = title_and_lead
+    .text-end
+      = buttons
+  - else
+    = title_and_lead

@@ -168,16 +168,20 @@
       $box-shadow: 0 10px 20px 0 rgba($dark, .2);
       $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
       
-      $border-radius-lg: 0.5rem;
-      $btn-border-radius-lg: 50rem;
-      $form-select-border-radius: 50rem;
-      $form-select-border-radius-lg: 50rem;
+      $btn-border-radius-lg: 50.1rem;
+      $form-select-border-radius: 50.2rem;
+      $form-select-border-radius-lg: 50.3rem;
+      $input-border-radius: 50.4rem;
       
       // NOTE: scroll-behavior: smooth breaks cypress tests
       $enable-smooth-scroll: false;
-      $input-border-radius: 50rem;
+      
+      $input-btn-padding-x: 1rem;
+      $input-btn-padding-x-sm: 0.5rem;
+      $input-btn-padding-x-lg: 2rem;
+  
 
-      //----------- Slick Overrides ---------
+  //----------- Slick Overrides ---------
 
       $slick-font-path: "https://dev.wikirate.org/mod/wikirate/slick_fonts/";
       $slick-loader-path: "https://dev.wikirate.org/mod/wikirate/";

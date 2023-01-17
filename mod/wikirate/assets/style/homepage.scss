@@ -12,9 +12,19 @@
       border: 1px solid $gray-400;
     }
   }
-  //section: padding 1em;
 }
 
+.nav-card {
+  padding: 1.5rem;
+  background: $light;
+  .card-title {
+    color: $gray-700;
+  }
+  box-shadow: $box-shadow;
+  border: 0;
+  min-height: 300px;
+  margin: 1.5rem;
+}
 
 
 //
