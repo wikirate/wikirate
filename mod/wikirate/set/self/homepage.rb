@@ -36,8 +36,4 @@ format :html do
   def count_categories
     %i[wikirate_company metric metric_answer source]
   end
-
-  def designers
-
-  end
 end
