@@ -26,7 +26,7 @@
 
   // TYPE LINK SECTION
 
-  %section.type-links-section.container-fluid.p-3.px-5{ data: {
+  %section#homepage-type-links-section.container-fluid.p-3.px-5{ data: {
     "slick-selector": ".card-list-thumbnail",
     slick: { infinite: false,
              slidesToShow: 8,
@@ -45,7 +45,7 @@
 
   %section.container-fluid.bg-light
     .container.p-5
-      (counts)
+      = render_counts
   %section.container.p-5
     = render_involved
 
@@ -54,9 +54,12 @@
     %section.container.p-5
       %h1 Trending benchmarks
       .lead Delta, delta, delta, can I help ya, help ya, help ya?
-  %section.container.p-5
-    .text-center
-      %h1 Our designers
-      .lead Contributors like these pose the questions that WikiRate seeks to answer.
-      .p-5
-        (images/names)
+
+  %section#homepage-designer-section.container.p-5.text-center
+    %h1 Our designers
+    .lead Contributors like these pose the questions that WikiRate seeks to answer.
+    .row.py-5
+      - %i[designer featured].card.item_cards.each do |designer|
+        .col-2
+          = nest designer, view: :thumbnail, size: :medium
+
