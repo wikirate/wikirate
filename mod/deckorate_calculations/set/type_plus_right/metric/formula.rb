@@ -17,10 +17,6 @@ def asset_inputter?
   false
 end
 
-def content= *args
-  super
-end
-
 format :html do
   delegate :score?, to: :card
 
