@@ -13,6 +13,14 @@ event :validate_formula, :validate, changed: :content do
   end
 end
 
+def asset_inputter?
+  false
+end
+
+def content= *args
+  super
+end
+
 format :html do
   delegate :score?, to: :card
 

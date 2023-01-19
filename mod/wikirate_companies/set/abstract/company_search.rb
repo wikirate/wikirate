@@ -32,6 +32,10 @@ format do
   def sort_options
     { "Most Answers": :answer, "Most Metrics": :metric }.merge super
   end
+
+  def filter_map
+    shared_company_filter_map.unshift key: :name, label: "Company Name", open: true
+  end
 end
 
 format :csv do
@@ -41,10 +45,6 @@ format :csv do
 end
 
 format :html do
-  def filter_map
-    shared_company_filter_map.unshift key: :name, label: "Company Name", open: true
-  end
-
   def default_sort_option
     "answer"
   end
