@@ -29,6 +29,11 @@ format :html do
   end
 
   def edit_fields
-    []
+    count_categories.map { |c| [[c, :header], { absolute: true }] } <<
+      [%i[designer featured], { absolute: true }]
+  end
+
+  def count_categories
+    %i[wikirate_company metric metric_answer source]
   end
 end

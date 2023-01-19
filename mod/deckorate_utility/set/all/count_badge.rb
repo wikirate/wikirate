@@ -6,10 +6,6 @@ format do
 end
 
 format :html do
-  view :count, cache: :never do
-    count
-  end
-
   view :count_badge_label do
     responsive_count_badge_label || simple_count_badge_label
   end

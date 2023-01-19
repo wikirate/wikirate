@@ -1,10 +1,13 @@
 
 #homepage {
-  section.type-links-section {
+  section#homepage-type-links-section, #homepage-designer-section {
     .thumbnail {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      .thumbnail-text {
+        text-align: center;
+      }
     }
     .image-box {
       margin-bottom: 1em;
