@@ -43,20 +43,19 @@
            items: { view: :thumbnail, variant: :plural, size: :medium }
 
 
-  %section.container-fluid.bg-light
+  %section#homepage-counts-section.container-fluid.bg-light
     .container.p-5
       = render_counts
-  %section.container.p-5
+
+  %section#homepage-involved-section.container.p-5
     = render_involved
 
-
-  .container-fluid.bg-light
-    %section.container.p-5
-      %h1 Trending benchmarks
-      .lead Delta, delta, delta, can I help ya, help ya, help ya?
+  %section#homepage-delta-section.container-fluid.bg-light
+    .container.p-5
+      = render_delta
 
   %section#homepage-designer-section.container.p-5.text-center
-    %h1 Our designers
+    %h1 Our metric designers
     .lead Contributors like these pose the questions that WikiRate seeks to answer.
     .row.py-5
       - %i[designer featured].card.item_cards.each do |designer|

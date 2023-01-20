@@ -1,6 +1,8 @@
 
 #homepage {
-  section#homepage-type-links-section, #homepage-designer-section {
+  section#homepage-type-links-section,
+  section#homepage-delta-section,
+  section#homepage-designer-section {
     .thumbnail {
       flex-direction: column;
       justify-content: center;
@@ -14,6 +16,9 @@
       margin-right: 0;
       border: 1px solid $gray-400;
     }
+  }
+  section#homepage-delta-section .card {
+    height: 100%;
   }
 }
 
