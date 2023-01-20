@@ -43,10 +43,12 @@ format :html do
   # end
 
   def delta_metric_card
-    %i[homepage metric].card.first_card
+    %i[homepage metric].card&.first_card
   end
 
   def delta_answers
-    delta_metric_card.metric_answer_card.search limit: 6
+    return [] unless (metric = delta_metric_card)
+
+    metric.metric_answer_card.search limit: 6
   end
 end

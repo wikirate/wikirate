@@ -13,7 +13,7 @@
             %i.fas.fa-arrow-right
           .pb-2.small.text-center
             - sign = answer.numeric_value < 0 ? "" : "+"
-            = "#{sign}#{answer.value}"
+            = "#{sign}#{number_with_precision answer.value, precision: 2}"
             from previous year
         .delta-company.pt-3
           = nest answer.company, view: :thumbnail
