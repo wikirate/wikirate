@@ -15,7 +15,7 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[core involved counts benchmarks].each do |view|
+  %i[core involved counts benchmarks delta].each do |view|
     view view, template: :haml
   end
 
@@ -29,11 +29,24 @@ format :html do
   end
 
   def edit_fields
-    count_categories.map { |c| [[c, :header], { absolute: true }] } <<
-      [%i[designer featured], { absolute: true }]
+    count_categories.map { |c| [[c, :header], { absolute: true }] } +
+      [[%i[designer featured], { absolute: true }],
+       :metric]
   end
 
   def count_categories
     %i[wikirate_company metric metric_answer source]
+  end
+
+  # def benchmark_metric_card
+  #   delta_metric_card.variables_card.first_card
+  # end
+
+  def delta_metric_card
+    %i[homepage metric].card.first_card
+  end
+
+  def delta_answers
+    delta_metric_card.metric_answer_card.search limit: 6
   end
 end
