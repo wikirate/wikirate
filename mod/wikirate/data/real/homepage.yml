@@ -12,3 +12,7 @@
     Metric
     Source
     
+- :name:
+    - :homepage
+    - :metric
+  :type: :pointer
