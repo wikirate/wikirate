@@ -17,8 +17,9 @@
     } }
       - involved_links.each do |title, url|
         %a{ href: url }
-          .card.nav-card
+          .card.nav-card.justify-content-between
             %h3.card-title
               = title
             .text-end
+              %i.fas.fa-arrow-right
 

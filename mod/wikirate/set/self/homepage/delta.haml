@@ -1,0 +1,19 @@
+%h1 Trending benchmarks
+.lead.pb-5 Delta, delta, delta, can I help ya, help ya, help ya?
+.row.py-4
+  - delta_answers.each do |answer|
+    - benchmark_answer = answer.direct_dependee_answers.first
+    - height_reduction = (10 - benchmark_answer.numeric_value) * 4
+    .col-2{ style: "padding-top: #{height_reduction}px" }
+      .card.bg-white.p-4.justify-content-between
+        .delta-values
+          .pb-3
+            = nest benchmark_answer.value_card, view: :core
+          .py-2
+            %i.fas.fa-arrow-right
+          .pb-2.small.text-center
+            - sign = answer.numeric_value < 0 ? "" : "+"
+            = "#{sign}#{answer.value}"
+            from previous year
+        .delta-company.pt-3
+          = nest answer.company, view: :thumbnail
