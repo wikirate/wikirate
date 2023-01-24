@@ -16,3 +16,8 @@
     - :homepage
     - :metric
   :type: :pointer
+
+- :name:
+    - :search
+    - :featured
+  :type: :list
