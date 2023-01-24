@@ -15,7 +15,7 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[core involved counts benchmarks delta].each do |view|
+  %i[core involved counts benchmarks delta search].each do |view|
     view view, template: :haml
   end
 
@@ -31,6 +31,7 @@ format :html do
   def edit_fields
     count_categories.map { |c| [[c, :header], { absolute: true }] } +
       [[%i[designer featured], { absolute: true }],
+       [%i[search featured], { absolute: true }],
        :metric]
   end
 
