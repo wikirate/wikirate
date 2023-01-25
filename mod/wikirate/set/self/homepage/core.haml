@@ -18,12 +18,7 @@
 
   %section.container-fluid.bg-light
     .container.p-5
-      %h1 Empowering people with open ESG data
-      .lead Sustainability data across 128,000+ companies and over 3 million data points.
-      .py-5
-        = nest :search, view: :search_box
-      .home-search-suggestions
-        Popular searches:
+      = render_search
 
   // TYPE LINK SECTION
 

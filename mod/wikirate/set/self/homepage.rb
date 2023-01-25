@@ -15,7 +15,7 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[core involved counts benchmarks delta].each do |view|
+  %i[core involved counts benchmarks delta search].each do |view|
     view view, template: :haml
   end
 
@@ -31,6 +31,7 @@ format :html do
   def edit_fields
     count_categories.map { |c| [[c, :header], { absolute: true }] } +
       [[%i[designer featured], { absolute: true }],
+       [%i[search featured], { absolute: true }],
        :metric]
   end
 
@@ -49,6 +50,6 @@ format :html do
   def delta_answers
     return [] unless (metric = delta_metric_card)
 
-    metric.metric_answer_card.search limit: 6
+    metric.metric_answer_card.search limit: 10
   end
 end

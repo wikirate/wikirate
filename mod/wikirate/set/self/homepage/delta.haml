@@ -1,10 +1,23 @@
-%h1 Trending benchmarks
-.lead.pb-5 Delta, delta, delta, can I help ya, help ya, help ya?
-.row.py-4
+
+= section_header "Trending benchmarks",
+  lead: "Delta, delta, delta, can I help ya, help ya, help ya?",
+  buttons: render_nav_arrows
+
+.homepage-delta-cards.py-4.pt-5{ data: {
+  slick: {
+    infinite: false,
+    slidesToShow: 6,
+    prevArrow: "#homepage-delta-section .wr-prev",
+    nextArrow: "#homepage-delta-section .wr-next",
+    responsive: [
+      { breakpoint: "992", settings: { slidesToShow: 4 } },
+      { breakpoint: "768",  settings: { slidesToShow: 2 } }
+    ]}.to_json
+} }
   - delta_answers.each do |answer|
     - benchmark_answer = answer.direct_dependee_answers.first
     - height_reduction = (10 - benchmark_answer.numeric_value) * 4
-    .col-2{ style: "padding-top: #{height_reduction}px" }
+    .h-100.px-3{ style: "padding-top: #{height_reduction}px" }
       .card.bg-white.p-4.justify-content-between
         .delta-values
           .pb-3
