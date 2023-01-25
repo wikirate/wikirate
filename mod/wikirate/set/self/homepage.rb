@@ -50,6 +50,6 @@ format :html do
   def delta_answers
     return [] unless (metric = delta_metric_card)
 
-    metric.metric_answer_card.search limit: 6
+    metric.metric_answer_card.search limit: 10
   end
 end
