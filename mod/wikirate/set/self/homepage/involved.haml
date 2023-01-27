@@ -1,7 +1,6 @@
 .homepage-involved
-  = section_header "Get involved",
-    lead: "There's more to do than can be done without you!",
-    buttons: render_nav_arrows
+  = section_header :homepage_involved_heading do
+    - render_nav_arrows
     
   .py-5
     .homepage-involved-cards{ data: {
