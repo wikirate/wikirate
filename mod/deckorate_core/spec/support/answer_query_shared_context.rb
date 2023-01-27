@@ -9,6 +9,7 @@ RSpec.shared_context "answer query" do
       "Company Category+2019", "cost of planets destroyed+1977", "darkness rating+1977",
       "deadliness+1977", "deadliness+1977", "deadliness+1977", "descendant 1+1977",
       "descendant 2+1977", "descendant hybrid+1977", "dinosaurlabor+2010",
+      "disturbance delta",
       "disturbances in the Force+2001", "disturbances in the Force+2001",
       "double friendliness+1977", "friendliness+1977", "know the unknowns+1977",
       "more evil+1977", "researched number 1+1977", "RM+1977", "Sith Lord in Charge+1977",
