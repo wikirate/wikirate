@@ -1,10 +1,11 @@
 card_accessor :image
 card_accessor :title, type: :phrase
+card_accessor :uri, type: :phrase
 card_accessor :body
 
 format :html do
   def edit_fields
-    %i[image title body]
+    %i[image title uri body]
   end
 
   view :core do
@@ -25,4 +26,6 @@ format :html do
   end
 
   view :stack, template: :haml, wrap: :slot
+  view :head_and_lead, template: :haml
+  view :image_left_text_right, template: :haml
 end

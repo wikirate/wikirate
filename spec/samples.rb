@@ -2,7 +2,7 @@
 module Wikirate
   # sample data for use in tests
   module Samples
-    METRIC_COUNT = 20
+    METRIC_COUNT = 21
 
     METRIC_NAMES = {
       free_text: "Jedi+Sith Lord in Charge",

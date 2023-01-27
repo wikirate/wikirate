@@ -4,28 +4,14 @@
   .container.p-5.py-3
     = render_breadcrumbs
     .py-5
-      - buttons = capture_haml do
-        %a.btn.btn-lg.btn-primary{ href: "/new/:signup" }
-          Join Us
-      = section_header "Let's make companies better, together", buttons: buttons
+      = section_header :platform_main_heading do
+        - capture_haml do
+          %a.btn.btn-lg.btn-primary{ href: "/new/:signup" }
+            Join Us
 
 %section.container.p-5
-  .row
-    .col-4.p-4.text-end
-      (img)
-    .col-8.p-4
-      %h2 Our Vision
-      .py-1
-        A world in which everyone can understand and shape company impacts.
-
-  .row
-    .col-4.p-4.text-end
-      (img)
-    .col-8.p-4
-      %h2 Our Mission
-      .py-1
-        Our mission is to empower better decision making
-        and help tackle the world’s challenges with open data.
+  = nest :platform_vision, view: :image_left_text_right
+  = nest :platform_mission, view: :image_left_text_right
 
 
 %section.container-fluid.bg-light

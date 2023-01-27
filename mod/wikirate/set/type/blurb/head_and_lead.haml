@@ -1,0 +1,5 @@
+%h1
+  = field_nest :title, view: :core
+- if card.fetch :body
+  .lead
+    = field_nest :body, view: :core
