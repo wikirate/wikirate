@@ -1,9 +1,0 @@
-.row
-  - count_categories.each do |cat|
-    .col-3.text-center
-      %h2
-        = nest cat, view: :count
-      .py-1
-        = link_to_card cat, cat.card.name.vary(:plural)
-      .count-description
-        = nest [cat, :header], view: :core
