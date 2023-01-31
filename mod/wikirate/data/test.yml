@@ -22,3 +22,37 @@
     - Core
     - ISIC
     - Clean Clothes Campaign
+
+- :name:
+    - Jedi
+    - disturbance delta
+  :type: :metric
+  :fields:
+    :value_type: Number
+    :metric_type: Formula
+    :variables: |-
+      [ 
+        { 
+          "metric" : "Jedi+disturbances_in_the_Force+Joe_User",
+          "name" : "sturb"
+        },
+        { 
+          "metric" : "Jedi+disturbances_in_the_Force+Joe_User",
+          "name" : "previous_sturb",
+          "year" : "-1"
+        }
+      ]
+    :formula: sturb - previous_sturb
+
+- :name:
+    - :homepage
+    - :metric
+  :content: Jedi+disturbance delta
+
+- :name:
+    - :search
+    - :featured
+  :content:
+    - Death
+    - friendliness
+    - Hermanos

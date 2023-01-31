@@ -15,7 +15,7 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[core involved counts benchmarks].each do |view|
+  %i[core search type_links involved numbers delta designers].each do |view|
     view view, template: :haml
   end
 
@@ -29,11 +29,31 @@ format :html do
   end
 
   def edit_fields
-    count_categories.map { |c| [[c, :header], { absolute: true }] } <<
-      [%i[designer featured], { absolute: true }]
+    absolutize_edit_fields [
+      :homepage_search_heading,
+      %i[search featured],
+      %i[cardtype featured]
+    ] + count_categories.map { |c| [c, :header] } + [
+      :homepage_involved_heading,
+      :homepage_delta_heading,
+      %i[homepage metric],
+      :homepage_designers_heading,
+      %i[designer featured]
+    ]
   end
 
   def count_categories
     %i[wikirate_company metric metric_answer source]
+  end
+
+  def delta_metric_card
+    %i[homepage metric].card&.first_card
+  end
+
+  def delta_answers
+    return [] unless (metric = delta_metric_card)
+
+    ma = metric.metric_answer_card
+    AnswerQuery.new(ma.query_hash.merge(latest:true), { random: "" }, limit: 10).run
   end
 end
