@@ -8,7 +8,7 @@ counts_002:
   id: 2
   left_id: 702
   right_id: -1
-  value: 45
+  value: 46
 counts_003:
   id: 3
   left_id: 2977
@@ -113,7 +113,7 @@ counts_023:
   id: 23
   left_id: 2905
   right_id: 702
-  value: 20
+  value: 21
 counts_024:
   id: 24
   left_id: 696
@@ -123,7 +123,7 @@ counts_025:
   id: 25
   left_id: 2905
   right_id: 696
-  value: 32
+  value: 35
 counts_026:
   id: 26
   left_id: 2905
@@ -413,12 +413,12 @@ counts_083:
   id: 83
   left_id: 2910
   right_id: 702
-  value: 12
+  value: 13
 counts_084:
   id: 84
   left_id: 2910
   right_id: 696
-  value: 34
+  value: 35
 counts_085:
   id: 85
   left_id: 2910
@@ -859,3 +859,13 @@ counts_172:
   left_id: 3578
   right_id: 700
   value: 1
+counts_173:
+  id: 173
+  left_id: 3747
+  right_id: 696
+  value: 4
+counts_174:
+  id: 174
+  left_id: 3747
+  right_id: 700
+  value: 2

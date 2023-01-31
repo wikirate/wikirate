@@ -1,7 +1,7 @@
 class << self
   def always_ids
     @always_ids ||= Card.search(
-      right_plus: [:roles, refer_to: [:in, WikirateTeamID, StewardID]],
+      referred_to_by: { left_id: [:in, WikirateTeamID, StewardID], right: :members},
       return: :id
     )
   end

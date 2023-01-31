@@ -32,8 +32,11 @@ RSpec.describe Card::AnswerQuery::MetricAndCompanyFilters do
       context "when metric type" do
         it "finds formulas" do
           expect(search(metric_type: "Formula"))
-            .to eq ["Company Category+2019", "double friendliness+1977",
-                    "friendliness+1977", "know the unknowns+1977"]
+            .to eq ["Company Category+2019",
+                    "disturbance delta+2001",
+                    "double friendliness+1977",
+                    "friendliness+1977",
+                    "know the unknowns+1977"]
         end
 
         it "finds scores" do
@@ -55,6 +58,7 @@ RSpec.describe Card::AnswerQuery::MetricAndCompanyFilters do
         it "finds combinations" do
           expect(search(metric_type: %w[Score Formula]))
             .to eq ["Company Category+2019", "deadliness+1977", "deadliness+1977",
+                    "disturbance delta+2001",
                     "disturbances in the Force+2001", "double friendliness+1977",
                     "friendliness+1977", "know the unknowns+1977"]
         end
