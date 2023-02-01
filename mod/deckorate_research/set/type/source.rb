@@ -22,7 +22,7 @@ def link_url
   wikirate_link_card&.content
 end
 
-def export_content
+def pod_content
   nil
 end
 
