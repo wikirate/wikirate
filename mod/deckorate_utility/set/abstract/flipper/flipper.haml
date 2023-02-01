@@ -1,5 +1,7 @@
-.flip-card
+-#.flipper
+.flip-card._flip-card
   .card-face
     %h2
       = field_nest :title, view: :core
   .card-face.back
+    = field_nest :body, view: :core

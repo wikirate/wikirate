@@ -1,3 +1,5 @@
+include_set Abstract::Flipper
+
 card_accessor :image
 card_accessor :title, type: :phrase
 card_accessor :uri, type: :phrase
@@ -28,5 +30,4 @@ format :html do
   view :stack, template: :haml, wrap: :slot
   view :head_and_lead, template: :haml
   view :image_left_text_right, template: :haml
-  view :flip_card, template: :haml
 end
