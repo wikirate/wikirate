@@ -17,6 +17,11 @@ $(window).ready ->
   $("body").on "keypress", ".search-box-form .search-box-select-type", (e) ->
     $(this).closest("form").submit() if e.which = 13 # Enter key
 
+  $("body").on "click", "._hot-keyword", (e) ->
+    sb = searchBox()
+    sb.keywordBox().val $(this).html()
+    sb.form().submit()
+
   searchBox().updateType()
 
 $.extend decko.searchBox.prototype,
