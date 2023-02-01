@@ -54,6 +54,6 @@ format :html do
     return [] unless (metric = delta_metric_card)
 
     ma = metric.metric_answer_card
-    AnswerQuery.new(ma.query_hash.merge(latest:true), { random: "" }, limit: 10).run
+    AnswerQuery.new(ma.query_hash.merge(latest: true), { random: "" }, limit: 10).run
   end
 end
