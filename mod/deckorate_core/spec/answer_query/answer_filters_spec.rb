@@ -19,6 +19,7 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
                 "deadliness+1977",
                 "descendant 1+1977",
                 "descendant 2+1977",
+                "disturbance delta+2001",
                 "disturbances in the Force+2001",
                 "double friendliness+1977",
                 "friendliness+1977",

@@ -17,8 +17,21 @@
       border: 1px solid $gray-400;
     }
   }
-  section#homepage-delta-section .card {
+}
+
+.homepage-delta-cards {
+  .card {
     height: 100%;
+  }
+  .slick-track {
+    display: flex;
+    align-items: stretch;
+  }
+  .slick-slide {
+    height: auto;
+    > div {
+      height: 100%;
+    }
   }
 }
 
