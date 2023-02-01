@@ -539,3 +539,15 @@ metrics_045:
   unit: ''
   hybrid: 0
   unpublished: 0
+metrics_046:
+  id: 46
+  metric_id: 3747
+  designer_id: 2928
+  title_id: 3746
+  scorer_id:
+  metric_type_id: 2438
+  value_type_id: 35
+  policy_id: 713
+  unit: ''
+  hybrid: 0
+  unpublished: 0
