@@ -1,36 +1,54 @@
 ---
 - :type: :blurb
+  :codename: collect_blurb
   :fields:
     :title: Collect
     :body: "<p>Systematically gather environmental, social and governance data that
       you think is important. Commitments, actions and impacts can be recorded to
       keep track of specific companies or an entire sector.</p>"
 - :type: :blurb
+  :codename: collaborate_blurb
   :fields:
     :title: Collaborate
     :body: "<p>Join or start research projects with like-minded people from the WikiRate
       community. Measure your collective progress, seek advice or simply stay in contact
       about what’s important to you.</p>"
 - :type: :blurb
+  :codename: analyze_blurb
   :fields:
     :title: Analyze
     :body: "<p>Make standardize comparisons, monitor progress toward future targets,
       rate companies, or set up multi-tiered benchmarks.</p>"
 - :type: :blurb
+  :codename: map_blurb
   :fields:
     :title: Map
     :body: "<p>Companies do not operate in isolation. Map them to their business relations
       like suppliers and investors to get a sense of how corporate networks function
       and can be leveraged.</p>"
 - :type: :blurb
+  :codename: share_blurb
   :fields:
     :title: Share
     :body: "<p>Already have a pristine Data Set? Use the import tool or API to add
       your data in bulk to the platform. From there, it can be combined with other
       datasets or feed into live dashboards and tools that visualize your findings.</p>"
 - :type: :blurb
+  :codename: extract_blurb
   :fields:
     :title: Extract
     :body: "<p>Explore the data made available by WikiRate’s community. Find what
       you are looking for? Download unlimited Data Sets or connect via the API for
       regular automated queries to make sure you always have the latest.</p>"
+
+- :name:
+    - :wikirate_platform
+    - :blurb
+  :type: :list
+  :content:
+    - :collect_blurb
+    - :collaborate_blurb
+    - :analyze_blurb
+    - :map_blurb
+    - :share_blurb
+    - :extract_blurb
