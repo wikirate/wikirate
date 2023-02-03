@@ -75,9 +75,14 @@ format do
 end
 
 format :html do
-  def section_header title, lead: nil, buttons: nil
-    haml :section_header, title: title, lead: lead, buttons: buttons
+  view :nav_arrows, template: :haml
+
+  def section_header blurb
+    right_side = block_given? ? yield : nil
+    haml :section_header, blurb: blurb, right_side: right_side
   end
 
-  view :nav_arrows, template: :haml
+  def absolutize_edit_fields fields
+    fields.map { |cardname| [cardname, { absolute: true }] }
+  end
 end
