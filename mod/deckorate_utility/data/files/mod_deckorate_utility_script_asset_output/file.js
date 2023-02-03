@@ -1,2 +1,2 @@
 // flip.js.coffee
-(function(){$("body").on("click",".flip-card",function(){return $(this).toggleClass("flipped")})}).call(this);
+(function(){$(document).ready(function(){return $("body").on("click","._flip-card",function(){return $(this).toggleClass("flipped")})})}).call(this);
