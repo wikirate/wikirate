@@ -56,7 +56,7 @@ blocks:
           - cache store bundle-config .bundle
           - ./cc-test-reporter before-build
 
-          - nvm use 12.18.2
+          # - nvm use 12.18.2
           - be decko setup
 
       env_vars:
