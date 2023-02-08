@@ -21,7 +21,8 @@ RSpec.describe Card::AnswerQuery::Sorting do
         "deadliness+1977", "disturbances in the Force+2001", "darkness rating+1977",
         "descendant 1+1977", "descendant 2+1977", "descendant hybrid+1977",
         "double friendliness+1977", "researched number 1+1977", "know the unknowns+1977",
-        "more evil+1977", "RM+1977", "deadliness+1977", "Company Category+2019"
+        "more evil+1977", "RM+1977", "deadliness+1977", "Company Category+2019",
+        "disturbance delta+2001"
       ]
     end
 
@@ -48,7 +49,7 @@ RSpec.describe Card::AnswerQuery::Sorting do
            "researched number 1", "Victims by Employees"].map do |t|
             sorted.index(t)
           end
-        expect(indices).to eq [1, 2, 3, 16, 19]
+        expect(indices).to eq [1, 2, 3, 17, 20]
       end
     end
 
