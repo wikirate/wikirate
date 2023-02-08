@@ -1,0 +1,1 @@
+view :flipper, template: :haml

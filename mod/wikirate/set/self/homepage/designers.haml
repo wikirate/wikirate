@@ -1,0 +1,5 @@
+= section_header :homepage_designers_heading
+.row.py-5
+  - %i[designer featured].card.item_cards.each do |designer|
+    .col-2
+      = nest designer, view: :thumbnail, size: :medium
