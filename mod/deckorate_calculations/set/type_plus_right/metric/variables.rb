@@ -53,7 +53,7 @@ def hash_list
   parse_content.map(&:symbolize_keys!)
 end
 
-def export_content
+def pod_content
   db_content
 end
 

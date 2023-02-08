@@ -1,5 +1,7 @@
 ---
 
+- blurbs
+
 # updating with fields here to trigger geography calculations
 - :name: Google LLC
   :type: :wikirate_company
@@ -49,3 +51,10 @@
     - :metric
   :content: Jedi+disturbance delta
 
+- :name:
+    - :search
+    - :featured
+  :content:
+    - Death
+    - friendliness
+    - Hermanos
