@@ -12,10 +12,11 @@ describe 'Formula editor', ->
       .click()
     cy.get("._filter-container [name='filter[name]']")
       .type("disturb{enter}", force: true)
+    cy.wait 200
     cy.get("._search-checkbox-list")
       .should("contain", "Research")
       .should("contain", "Scored by")
-      .should("not.contain", "Formula")
+      .should("not.contain", "Relationship")
     cy.get("input#Jedi_disturbances_in_the_Force").click()
     cy.get("._add-selected").click()
 
@@ -132,28 +133,3 @@ describe 'Formula editor', ->
       .type "{backspace}agic", force: true
 
     cy.get("._formula-editor").should "contain", "magic"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

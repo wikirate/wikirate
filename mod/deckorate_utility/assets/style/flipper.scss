@@ -1,0 +1,38 @@
+
+.card-list-flipper {
+  display: flex;
+  flex-wrap: wrap;
+
+  .item-flipper {
+    display: flex;
+    width: 33%;
+    height: 200px;
+    perspective: 600px;
+    padding: 1%;
+  }
+}
+
+.flip-card {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  background: white;
+  position: relative;
+
+  .card-face {
+    padding: 1em;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    &.back {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.flipped {
+    transform: rotateY(180deg);
+  }
+}

@@ -2,7 +2,9 @@ include_set Abstract::FluidLayout
 
 format :html do
   def edit_fields
-    %i[description general_overview blurb]
+    absolutize_edit_fields %i[platform_main_heading
+                              platform_vision
+                              platform_mission]
   end
 
   def breadcrumb_title
