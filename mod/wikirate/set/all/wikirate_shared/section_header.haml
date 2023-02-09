@@ -1,0 +1,9 @@
+- head_and_lead = nest blurb, view: :head_and_lead
+- if right_side
+  .wikirate-section-header.d-flex.flex-wrap.justify-content-between
+    .w-75
+      = head_and_lead
+    .text-end
+      = right_side
+- else
+  = head_and_lead

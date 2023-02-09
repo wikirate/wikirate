@@ -296,7 +296,7 @@ answers_013:
   year: 2008
   value: '6'
   numeric_value:
-  updated_at: 2023-01-18 01:56:17.000000000 Z
+  updated_at: 2023-02-09 15:46:47.000000000 Z
   imported: 0
   latest: 0
   checkers:
@@ -4119,6 +4119,102 @@ answers_172:
   creator_id: 1
   editor_id: 1
   created_at: 2022-11-04 15:44:44.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+answers_173:
+  id: 178
+  answer_id:
+  metric_id: 3747
+  company_id: 2905
+  record_id:
+  year: 1991
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2023-01-27 18:52:06.000000000 Z
+  imported: 0
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2023-01-27 18:52:06.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+answers_174:
+  id: 179
+  answer_id:
+  metric_id: 3747
+  company_id: 2905
+  record_id:
+  year: 1992
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2023-01-27 18:52:06.000000000 Z
+  imported: 0
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2023-01-27 18:52:06.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+answers_175:
+  id: 180
+  answer_id:
+  metric_id: 3747
+  company_id: 2905
+  record_id:
+  year: 2001
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2023-01-27 18:52:06.000000000 Z
+  imported: 0
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2023-01-27 18:52:06.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+answers_176:
+  id: 181
+  answer_id:
+  metric_id: 3747
+  company_id: 2910
+  record_id:
+  year: 2006
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2023-01-27 18:52:06.000000000 Z
+  imported: 0
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2023-01-27 18:52:06.000000000 Z
   overridden_value:
   calculating: 0
   source_count:
