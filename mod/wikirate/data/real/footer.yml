@@ -1,0 +1,25 @@
+- :name: footer licensing list
+  :codename: footer_licensing_list
+  :type: :link_list
+  :content: |
+    [[Citations Guideline]]
+    [[CC BY 4.0]]
+    [[CC BY-SA 4.0]]
+
+- :name: footer policies list
+  :codename: footer_policies_list
+  :type: :link_list
+  :content: |
+    [[Code of Conduct]]
+    [[CoC for Vendors and Contractors]]
+    [[Diversity & Safeguarding Policy]]
+    [[Donation & Grant Policy]]
+    [[Whistleblowing Policy]]
+
+- :name: footer legal list
+  :codename: footer_legal_list
+  :type: :link_list
+  :content: |
+    [[Privacy Policy]]
+    [[Disclaimers]]
+    [[Impress]]

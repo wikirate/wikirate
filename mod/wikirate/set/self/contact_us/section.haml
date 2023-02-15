@@ -17,7 +17,4 @@
         %h5.card-subtitle.mt-4.py-2
           Follow
         .list-group
-          - secondary_menus["Social"].each do |item|
-            %a.list-group-item{ href: menu_item_ref(item) }
-              = fa_icon item.downcase, brand: true, class: "me-2"
-              = item
+          - secondary_menus["Social"]

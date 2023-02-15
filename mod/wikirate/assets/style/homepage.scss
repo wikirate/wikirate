@@ -9,13 +9,32 @@
       align-items: center;
       .thumbnail-text {
         text-align: center;
+        a {
+          color: $gray-600 !important;
+        }
       }
     }
     .image-box {
       margin-bottom: 1em;
       margin-right: 0;
-      border: 1px solid $gray-400;
+      border: none
     }
+  }
+  #homepage-search-section {
+    .search-box-input-group {
+      height: 60px;
+      select {
+        color: $blue;
+        font-weight: 600;
+        padding-left: 2em;
+      }
+    }
+  }
+  .large-icon  i {
+    font-size: 4rem;
+  }
+  .count-description {
+    color: $gray-600 !important;
   }
 }
 
@@ -33,6 +52,17 @@
       height: 100%;
     }
   }
+  .delta-score .score-color {
+    font-size: 1.6em;
+    height: 1em;
+    display: inline-block;
+  }
+  .delta-company .thumbnail {
+    align-items: start !important;
+    .thumbnail-title {
+      text-align: left;
+    }
+  }
 }
 
 .nav-card {
@@ -46,37 +76,3 @@
   min-height: 300px;
   margin: 1.5rem;
 }
-
-
-//
-//footer.homepage-footer {
-//  ul {
-//    padding-left: 0;
-//    list-style: none;
-//    a {
-//      color: $gray-600;
-//    }
-//    li {
-//      padding: 5px 0;
-//    }
-//  }
-//  i {
-//    min-width: 16px;
-//  }
-//  img {
-//    max-width: 100%;
-//  }
-//}
-//
-//
-//.footer-section {
-//  width: 20%;
-//  text-align: center;
-//  min-width: 150px;
-//  padding: 1em;
-//  justify-content: center;
-//
-//  img {
-//    max-height: 180px
-//  }
-//}
