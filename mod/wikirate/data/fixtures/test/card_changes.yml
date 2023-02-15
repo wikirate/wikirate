@@ -12059,3 +12059,795 @@ card_changes_532:
   card_action_id: 71558
   field: 2
   value: wikirate skin
+card_changes_533:
+  id: 541
+  card_action_id: 71980
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_534:
+  id: 542
+  card_action_id: 72045
+  field: 0
+  value: parent
+card_changes_535:
+  id: 543
+  card_action_id: 72092
+  field: 1
+  value: '4'
+card_changes_536:
+  id: 544
+  card_action_id: 72092
+  field: 2
+  value: yeti skin
+card_changes_537:
+  id: 545
+  card_action_id: 72196
+  field: 2
+  value: Default Layout
+card_changes_538:
+  id: 546
+  card_action_id: 72264
+  field: 2
+  value: deckorate_layout
+card_changes_539:
+  id: 547
+  card_action_id: 74202
+  field: 2
+  value: '8'
+card_changes_540:
+  id: 548
+  card_action_id: 74604
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_541:
+  id: 549
+  card_action_id: 74620
+  field: 0
+  value: Parent
+card_changes_542:
+  id: 550
+  card_action_id: 74650
+  field: 2
+  value: '6'
+card_changes_543:
+  id: 551
+  card_action_id: 74681
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_544:
+  id: 552
+  card_action_id: 74720
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_545:
+  id: 553
+  card_action_id: 74740
+  field: 2
+  value: |
+    $blue: #2D2374 !default;
+    $purple: #484c9d !default;
+    $red: #912e06 !default;
+    $orange: #f7733d !default;
+    $yellow: #f7bd1d !default;
+    $green: #034E42 !default;
+    $teal: #09ab90 !default;
+    $black: #1d1e3f !default;
+    $white: #ffffff !default;
+
+    $gray-100: #f7f7f8 !default;
+    $gray-200: #e9ecef !default;
+    $gray-300: #dee2e6 !default;
+    $gray-400: #ced4da !default;
+    $gray-500: #adb5bd !default;
+    $gray-600: #6c757d !default;
+    $gray-700: #495057 !default;
+    $gray-800: #343a40 !default;
+    $gray-900: #34343b !default;
+
+    $primary: $purple !default;
+    $secondary: $gray-600 !default;
+    $success: $teal !default;
+    $info: $purple !default;
+    $warning: $orange !default;
+    $danger: $red !default;
+    $light: $gray-100 !default;
+    $dark: $black !default;
+    $body-bg: $white !default;
+    $body-color: $gray-900 !default;
+card_changes_546:
+  id: 554
+  card_action_id: 74741
+  field: 2
+  value: |
+    // NOTE: standard bootstrap color variables should be changed not
+    // here but in the +:color card
+
+    /*----------- WikiRate Categories ---------*/
+
+    $yellow-orange: #F7B13D;
+
+    $company-color: $purple;
+    $company-group-color: $company-color;
+    $metric-color: $green;
+    $answer-color: $metric-color;
+    $record-color: $metric-color;
+    $topic-color: $red;
+    $source-color: $metric-color;
+    $user-color: $green;
+    $research-group-color: $company-color;
+    $project-color: $topic-color;
+    $dataset-color: $topic-color;
+    $year-color: $yellow;
+
+    /*----------- WikiRate Scores ---------*/
+
+    $score-colors: (
+      "0": $red,
+      "1": #EA5C43,
+      "2": $orange,
+      "3": #F7923D,
+      "4": $yellow-orange,
+      "5": $yellow,
+      "6": #BFCA4B,
+      "7": $green,
+      "8": #65a300,
+      "9": $teal
+    );
+
+    /*----------- Other WikiRate-specific variables ---------*/
+
+    $verification-flag-color: $red;
+    $top-bar-anchor-color: $primary;
+
+    // badge levels
+    $gold: gold;
+    $silver: silver;
+    $bronze: #cd7f32;
+
+    //----------- Bootstrap Overrides ---------
+
+    $border-color: $gray-200;
+    $table-group-separator-color: $gray-200;
+
+    $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
+    $box-shadow: 0 10px 20px 0 rgba($dark, .2);
+    $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
+
+    $btn-border-radius-lg: 50.1rem;
+    $form-select-border-radius: 50.2rem;
+    $form-select-border-radius-lg: 50.3rem;
+    $input-border-radius: 50.4rem;
+
+    // NOTE: scroll-behavior: smooth breaks cypress tests
+    $enable-smooth-scroll: false;
+
+    $input-btn-padding-x: 1rem;
+    $input-btn-padding-x-sm: 0.5rem;
+    $input-btn-padding-x-lg: 2rem;
+
+    //----------- Slick Overrides ---------
+
+    $slick-font-path: "https://dev.wikirate.org/mod/wikirate/slick_fonts/";
+    $slick-loader-path: "https://dev.wikirate.org/mod/wikirate/";
+    $slick-arrow-color: $primary;
+
+    //------------ transitions for smooth links
+
+    $transition-speed: 0.08s;
+    a {
+      -webkit-transition: all $transition-speed ease;
+      -moz-transition:    all $transition-speed ease;
+      -ms-transition:     all $transition-speed ease;
+      -o-transition:      all $transition-speed ease;
+      transition:         all $transition-speed ease;
+    }
+card_changes_547:
+  id: 555
+  card_action_id: 74744
+  field: 1
+  value: '55'
+card_changes_548:
+  id: 556
+  card_action_id: 74744
+  field: 2
+  value: wikirate skin
+card_changes_549:
+  id: 557
+  card_action_id: 3839
+  field: 0
+  value:
+card_changes_550:
+  id: 558
+  card_action_id: 3839
+  field: 1
+  value: '4'
+card_changes_551:
+  id: 559
+  card_action_id: 3839
+  field: 2
+  value: ''
+card_changes_552:
+  id: 560
+  card_action_id: 3839
+  field: 3
+  value: f
+card_changes_553:
+  id: 561
+  card_action_id: 3839
+  field: 4
+  value: '2566'
+card_changes_554:
+  id: 562
+  card_action_id: 3839
+  field: 5
+  value: '344'
+card_changes_555:
+  id: 563
+  card_action_id: 74788
+  field: 3
+  value: t
+card_changes_556:
+  id: 564
+  card_action_id: 3838
+  field: 0
+  value:
+card_changes_557:
+  id: 565
+  card_action_id: 3838
+  field: 1
+  value: '4'
+card_changes_558:
+  id: 566
+  card_action_id: 3838
+  field: 2
+  value: ''
+card_changes_559:
+  id: 567
+  card_action_id: 3838
+  field: 3
+  value: f
+card_changes_560:
+  id: 568
+  card_action_id: 3838
+  field: 4
+  value: '2566'
+card_changes_561:
+  id: 569
+  card_action_id: 3838
+  field: 5
+  value: '298'
+card_changes_562:
+  id: 570
+  card_action_id: 74789
+  field: 3
+  value: t
+card_changes_563:
+  id: 571
+  card_action_id: 3837
+  field: 0
+  value: 'mod: wikirate homepage'
+card_changes_564:
+  id: 572
+  card_action_id: 3837
+  field: 1
+  value: '15'
+card_changes_565:
+  id: 573
+  card_action_id: 3837
+  field: 2
+  value: ''
+card_changes_566:
+  id: 574
+  card_action_id: 3837
+  field: 3
+  value: f
+card_changes_567:
+  id: 575
+  card_action_id: 3837
+  field: 4
+  value:
+card_changes_568:
+  id: 576
+  card_action_id: 3837
+  field: 5
+  value:
+card_changes_569:
+  id: 577
+  card_action_id: 74790
+  field: 3
+  value: t
