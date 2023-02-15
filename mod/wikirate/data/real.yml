@@ -6,6 +6,7 @@
   :codename: logo
   :image: logo.png
   :storage_type: :coded
+  :conflict: override
 
 - :name: WikiRate Team
   :codename: wikirate_team

@@ -3,11 +3,11 @@
   font-family: 'icomoon';
   font-style: normal;
   font-weight: normal;
-  src:  url('/mod/wikirate/wr-fonts/icomoon.eot?5br5gf');
-  src:  url('/mod/wikirate/wr-fonts/icomoon.eot?5br5gf#iefix') format('embedded-opentype'),
-    url('/mod/wikirate/wr-fonts/icomoon.ttf?5br5gf') format('truetype'),
-    url('/mod/wikirate/wr-fonts/icomoon.woff?5br5gf') format('woff'),
-    url('/mod/wikirate/wr-fonts/icomoon.svg?5br5gf#icomoon') format('svg');
+  src:  url('[[/mod/wikirate/wr-fonts/icomoon.eot?5br5gf]]');
+  src:  url('[[/mod/wikirate/wr-fonts/icomoon.eot?5br5gf#iefix]]') format('embedded-opentype'),
+    url('[[/mod/wikirate/wr-fonts/icomoon.ttf?5br5gf]]') format('truetype'),
+    url('[[/mod/wikirate/wr-fonts/icomoon.woff?5br5gf]]') format('woff'),
+    url('[[/mod/wikirate/wr-fonts/icomoon.svg?5br5gf#icomoon]]') format('svg');
 }
 
 .wr-icon {
@@ -21,8 +21,8 @@
   speak: never;
 
   /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 .wr-icon-topic:before {
