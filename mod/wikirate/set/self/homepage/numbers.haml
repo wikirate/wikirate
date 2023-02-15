@@ -1,7 +1,9 @@
-.row
+.row.py-4
   - count_categories.each do |cat|
     .col-3.text-center
-      %h2
+      .text-primary.p-3.large-icon
+        = wikirate_icon_tag cat.cardname.downcase
+      %h1
         = nest cat, view: :count
       .py-1
         = link_to_card cat, cat.card.name.vary(:plural)

@@ -19,13 +19,16 @@
     .h-100.px-3{ style: "padding-top: #{height_reduction}px" }
       .card.bg-white.p-4.justify-content-between
         .delta-values
-          .pb-3
+          .delta-score
             = nest benchmark_answer.value_card, view: :core
           .py-2
             %i.fas.fa-arrow-right
-          .pb-2.small.text-center
+          .pb-2.small
             - sign = answer.numeric_value < 0 ? "" : "+"
             = "#{sign}#{number_with_precision answer.value, precision: 2}"
-            from previous year
+          .pb-2.small
+            = answer.year.to_i - 1
+            vs
+            = answer.year
         .delta-company.pt-3
           = nest answer.company, view: :thumbnail

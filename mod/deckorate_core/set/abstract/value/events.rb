@@ -14,9 +14,9 @@ event :no_left_name_change, :prepare_to_validate, on: :update, changed: :name do
                     "Change #{name_was.to_name.left} instead"
 end
 
-event :check_length, :validate, on: :save, changed: :content do
-  errors.add :value, "too long (not more than 1000 characters)" if value.size >= 1000
-end
+# event :check_length, :validate, on: :save, changed: :content do
+#   errors.add :value, "too long (not more than 1000 characters)" if value.size >= 1000
+# end
 
 event :reset_double_check, :validate, on: :update, changed: :content do
   full_trait_name = name.left_name.field_name :checked_by
