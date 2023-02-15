@@ -1,5 +1,6 @@
 h1, h2, h3, h4, h5, h6 {
-  color: $primary;
+  color: $blue;
+  font-weight: 500;
 }
 
 /*----------- WikiRate Scores ---------*/
@@ -210,6 +211,15 @@ $colorMap: (
   //#main > .SELF-#{$type}.titled-view > .d0-card-header > h1 {
   //  color: $color;
   //}
+
+  .SELF-#{$type}, .TYPE-#{$type} {
+    &.thumbnail .image-box {
+      background-color: rgba($color, 0.15);
+      i {
+        color: $color;
+      }
+    }
+  }
 }
 
 .LTYPE_RTYPE-topic-company {
