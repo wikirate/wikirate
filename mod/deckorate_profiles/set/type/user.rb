@@ -8,6 +8,9 @@ include_set Abstract::ProfileType
 CONTRIBUTION_TYPES = %i[metric_answer metric wikirate_company project
                         source wikirate_topic research_group].freeze
 
+card_reader :projects_organized, type: :search_type
+card_reader :metrics_designed, type: :search_type
+
 format :html do
   delegate :badge_count, to: :card
 

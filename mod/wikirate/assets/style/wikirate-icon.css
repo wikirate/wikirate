@@ -11,10 +11,6 @@
 }
 
 .wr-icon {
-  /* Better Font Rendering =========== */
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   font-style: normal;
@@ -23,6 +19,10 @@
   font-weight: normal;
   line-height: 1;
   speak: never;
+
+  /* Better Font Rendering =========== */
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 .wr-icon-topic:before {

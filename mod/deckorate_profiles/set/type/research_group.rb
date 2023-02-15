@@ -8,6 +8,8 @@ card_accessor :researcher, type: :list
 card_accessor :project, type: :search_type
 card_accessor :metric, type: :search_type
 card_accessor :wikirate_topic, type: :list
+card_reader :metrics_designed, type: :search_type
+card_reader :projects_organized, type: :search_type
 
 def report_card member, cardtype, variant
   rcard = Card.new name: [member, cardtype, name, :report_search]
