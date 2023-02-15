@@ -52,6 +52,17 @@
       height: 100%;
     }
   }
+  .delta-score .score-color {
+    font-size: 1.6em;
+    height: 1em;
+    display: inline-block;
+  }
+  .delta-company .thumbnail {
+    align-items: start !important;
+    .thumbnail-title {
+      text-align: left;
+    }
+  }
 }
 
 .nav-card {

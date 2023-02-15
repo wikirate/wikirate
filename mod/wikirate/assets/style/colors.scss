@@ -212,11 +212,14 @@ $colorMap: (
   //  color: $color;
   //}
 
-  .SELF-#{$type}, .TYPE-#{$type} {
-    &.thumbnail .image-box {
-      background-color: rgba($color, 0.15);
-      i {
-        color: $color;
+  #homepage {
+    .SELF-#{$type}, .TYPE-#{$type} {
+      &.thumbnail .image-box {
+        background-color: rgba($color, 0.15);
+
+        i {
+          color: $color;
+        }
       }
     }
   }
@@ -311,15 +314,7 @@ $colorMap: (
 
 @each $score, $color in $score-colors {
   .score-color-#{$score} {
-    background-color: $color;
-  }
-  .details-toggle {
-    .score-color-#{$score} {
-      background-color: rgba($color, 0.75);
-    }
-    &:hover .score-color-#{$score} {
-      background-color: $color;
-    }
+    color: $color;
   }
 }
 
