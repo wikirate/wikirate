@@ -1,36 +1,25 @@
 #homepage.nodblclick
-  %section.container.p-3
-    .d-flex.justify-content-between
-      %a{ href: "/" }
-        = nest :logo
-      %nav#top-navbar.navbar.bg-white
-        .navbar-container
-          .top-nav-links
-            .top-nav-account
-              - class_up "signin-link", "btn btn-primary"
-              %ul.navbar-nav
-                %li.nav-item
-                = nest :account_links, view: :core
-            .top-nav-burger
-              = nest :nav_menu, view: :core
+
+  %section.container.px-5.p-2
+    = render_menu
 
   // SEARCH SECTION
 
-  %section.container-fluid.bg-light
+  %section#homepage-search-section.container-fluid
     .container.p-5
       = render_search
 
   // TYPE LINK SECTION
 
-  %section#homepage-type-links-section.container-fluid.p-3
+  %section#homepage-type-links-section.container-fluid.p-5
     = render_type_links
 
-  %section#homepage-numbers-section.container-fluid.bg-light
+  %section#homepage-numbers-section.container-fluid.bd-purple-100
     .container.p-5
-      = render_numbers
+      = render_involved
 
   %section#homepage-involved-section.container.p-5
-    = render_involved
+    = render_numbers
 
   %section#homepage-delta-section.container-fluid.bg-light
     .container.p-5

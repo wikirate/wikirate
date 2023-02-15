@@ -1,5 +1,6 @@
 h1, h2, h3, h4, h5, h6 {
-  color: $primary;
+  color: $blue;
+  font-weight: 500;
 }
 
 /*----------- WikiRate Scores ---------*/
@@ -210,6 +211,18 @@ $colorMap: (
   //#main > .SELF-#{$type}.titled-view > .d0-card-header > h1 {
   //  color: $color;
   //}
+
+  #homepage {
+    .SELF-#{$type}, .TYPE-#{$type} {
+      &.thumbnail .image-box {
+        background-color: rgba($color, 0.15);
+
+        i {
+          color: $color;
+        }
+      }
+    }
+  }
 }
 
 .LTYPE_RTYPE-topic-company {
@@ -301,15 +314,7 @@ $colorMap: (
 
 @each $score, $color in $score-colors {
   .score-color-#{$score} {
-    background-color: $color;
-  }
-  .details-toggle {
-    .score-color-#{$score} {
-      background-color: rgba($color, 0.75);
-    }
-    &:hover .score-color-#{$score} {
-      background-color: $color;
-    }
+    color: $color;
   }
 }
 
@@ -322,10 +327,6 @@ $colorMap: (
 }
 .verification-flagged {
   color: $verification-flag-color;
-}
-
-.bg-light-purple {
-  background: $purple-100;
 }
 
 .btn-purple {
