@@ -72,3 +72,16 @@ ul.horizontal > li {
   }
 }
 
+// following copied from
+// vendor/decko/mod/bootstrap/vendor/bootstrap/site/assets/scss/_colors.scss
+
+.bd-purple-100 { color: color-contrast($purple-100); background-color: $purple-100; }
+.bd-purple-200 { color: color-contrast($purple-200); background-color: $purple-200; }
+.bd-purple-300 { color: color-contrast($purple-300); background-color: $purple-300; }
+.bd-purple-400 { color: color-contrast($purple-400); background-color: $purple-400; }
+.bd-purple-500 { color: color-contrast($purple-500); background-color: $purple-500; }
+.bd-purple-600 { color: color-contrast($purple-600); background-color: $purple-600; }
+.bd-purple-700 { color: color-contrast($purple-700); background-color: $purple-700; }
+.bd-purple-800 { color: color-contrast($purple-800); background-color: $purple-800; }
+.bd-purple-900 { color: color-contrast($purple-900); background-color: $purple-900; }
+

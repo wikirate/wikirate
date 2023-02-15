@@ -1,5 +1,5 @@
 format :html do
-  def svg_icon_tag icon, _opts={}
-    image_tag "/mod/wikirate/icons/#{icon}.svg", class: "svg-icon"
+  def wikirate_icon_tag icon, _opts={}
+    %(<i class="wr-icon wr-icon-#{icon}"></i>)
   end
 end

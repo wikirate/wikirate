@@ -1,0 +1,14 @@
+
+.d-flex.justify-content-between
+  %a{ href: "/" }
+    = nest :logo
+  %nav#top-navbar.navbar.bg-white
+    .navbar-container
+      .top-nav-links
+        .top-nav-account
+          - class_up "signin-link", "btn btn-primary"
+          %ul.navbar-nav
+            %li.nav-item
+            = nest :account_links, view: :core
+        .top-nav-burger
+          = nest :nav_menu, view: :core

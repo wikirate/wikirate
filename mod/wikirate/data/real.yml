@@ -1,6 +1,12 @@
 ---
 - homepage
 
+- :name: "*logo"
+  :type: :image
+  :codename: logo
+  :image: logo.png
+  :storage_type: :coded
+
 - :name: WikiRate Team
   :codename: wikirate_team
   :type: :role
@@ -83,12 +89,12 @@
   :fields:
     :stylesheets: ""
     :colors: |
-      $blue: #0dcaf0 !default;
+      $blue: #2D2374 !default;
       $purple: #484c9d !default;
-      $red: #d12e32 !default;
+      $red: #912e06 !default;
       $orange: #f7733d !default;
       $yellow: #f7bd1d !default;
-      $green: #7ac774 !default;
+      $green: #034E42 !default;
       $teal: #09ab90 !default;
       $black: #1d1e3f !default;
       $white: #ffffff !default;
@@ -121,17 +127,17 @@
 
       $yellow-orange: #F7B13D;
 
-      $company-color: $yellow;
+      $company-color: $purple;
       $company-group-color: $company-color;
-      $metric-color: $orange;
-      $answer-color: $gray-600;
-      $record-color: $answer-color;
-      $topic-color: $teal;
-      $source-color: $green;
+      $metric-color: $green;
+      $answer-color: $metric-color;
+      $record-color: $metric-color;
+      $topic-color: $red;
+      $source-color: $metric-color;
       $user-color: $green;
-      $research-group-color: $green;
-      $project-color: $yellow-orange;
-      $dataset-color: $yellow-orange;
+      $research-group-color: $company-color;
+      $project-color: $topic-color;
+      $dataset-color: $topic-color;
       $year-color: $yellow;
 
       /*----------- WikiRate Scores ---------*/
@@ -185,7 +191,6 @@
       $slick-font-path: "https://dev.wikirate.org/mod/wikirate/slick_fonts/";
       $slick-loader-path: "https://dev.wikirate.org/mod/wikirate/";
       $slick-arrow-color: $primary;
-
 
       //------------ transitions for smooth links
       

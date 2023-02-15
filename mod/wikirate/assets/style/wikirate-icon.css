@@ -1,0 +1,51 @@
+@font-face {
+  font-display: block;
+  font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  src:  url('/mod/wikirate/wr-fonts/icomoon.eot?5br5gf');
+  src:  url('/mod/wikirate/wr-fonts/icomoon.eot?5br5gf#iefix') format('embedded-opentype'),
+    url('/mod/wikirate/wr-fonts/icomoon.ttf?5br5gf') format('truetype'),
+    url('/mod/wikirate/wr-fonts/icomoon.woff?5br5gf') format('woff'),
+    url('/mod/wikirate/wr-fonts/icomoon.svg?5br5gf#icomoon') format('svg');
+}
+
+.wr-icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  font-style: normal;
+  text-transform: none;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak: never;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wr-icon-topic:before {
+  content: "\e900";
+}
+.wr-icon-source:before {
+  content: "\e901";
+}
+.wr-icon-research_group:before {
+  content: "\e902";
+}
+.wr-icon-project:before {
+  content: "\e903";
+}
+.wr-icon-metric:before {
+  content: "\e904";
+}
+.wr-icon-dataset:before {
+  content: "\e905";
+}
+.wr-icon-company_group:before {
+  content: "\e906";
+}
+.wr-icon-company:before {
+  content: "\e907";
+}
