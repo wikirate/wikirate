@@ -9,12 +9,15 @@
       align-items: center;
       .thumbnail-text {
         text-align: center;
+        a {
+          color: $gray-600 !important;
+        }
       }
     }
     .image-box {
       margin-bottom: 1em;
       margin-right: 0;
-      border: 1px solid $gray-400;
+      border: none
     }
   }
   #homepage-search-section {
@@ -26,6 +29,12 @@
         padding-left: 2em;
       }
     }
+  }
+  .large-icon  i {
+    font-size: 4rem;
+  }
+  .count-description {
+    color: $gray-600 !important;
   }
 }
 

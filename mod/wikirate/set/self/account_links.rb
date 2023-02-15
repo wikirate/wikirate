@@ -6,4 +6,12 @@ format :html do
   def can_disable_roles?
     false
   end
+
+  # view :my_card do
+  #   "woot"
+  # end
+
+  # view :sign_in do
+  #   "what?"
+  # end
 end
