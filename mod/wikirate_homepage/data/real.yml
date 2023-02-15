@@ -1,5 +1,0 @@
-- :name: "*logo"
-  :type: :image
-  :codename: logo
-  :image: logo.png
-  :storage_type: :coded

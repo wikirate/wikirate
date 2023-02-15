@@ -7,5 +7,6 @@ wikirate:
     - homepage.scss
     - navbar.scss
     - misc.scss
+    - wikirate-icon.css
     - ../../vendor/slick/slick/slick.scss
     - ../../vendor/slick/slick/slick-theme.scss

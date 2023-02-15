@@ -27,7 +27,6 @@ mod "deckorate_profiles"
 
 ## WikiRate mods
 mod "wikirate_companies"
-mod "wikirate_homepage"
 mod "wikirate"
 
 # extract wikirate code, clean, and move to card-mods
