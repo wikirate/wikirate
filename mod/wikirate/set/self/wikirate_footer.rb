@@ -6,7 +6,7 @@ format :html do
       "Facebook" => "https://www.facebook.com/wikirate/",
       "Twitter" => "https://twitter.com/WikiRate",
       "Instagram" => "https://www.instagram.com/wikirate/",
-      "LinkedIn" => "https://www.linkedin.com/company/wikirate",
+      "LinkedIn" => "https://www.linkedin.com/company/wikirate"
     }
   end
 end
