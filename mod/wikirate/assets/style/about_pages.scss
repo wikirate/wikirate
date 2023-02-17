@@ -33,6 +33,15 @@
   background-image: url([[/mod/wikirate/backgrounds/banner_data.png]]);
 }
 
+.fancy-counts {
+  .large-icon  i {
+    font-size: 4rem;
+  }
+  .count-description {
+    color: $gray-600 !important;
+  }
+}
+
 /*--- blurbs */
 
 .card-list-stack {

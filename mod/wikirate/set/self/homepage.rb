@@ -1,4 +1,5 @@
 include_set Abstract::CodeContent
+include_set Abstract::FancyCounts
 
 # include_set Abstract::SolidCache, cached_format: :html
 #
@@ -15,7 +16,7 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[menu core search type_links involved numbers delta designers].each do |view|
+  %i[menu core search type_links involved delta designers].each do |view|
     view view, template: :haml
   end
 

@@ -1,7 +1,4 @@
 ---
-- :name: material_icon
-  :codename: material_icon
-
 - homepage
 - footer
 - blurbs
@@ -221,6 +218,11 @@
 
 - :name:
     - :designer
+    - :featured
+  :type: :list
+
+- :name:
+    - :account
     - :featured
   :type: :list
 
