@@ -25,7 +25,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.wr-icon-topic:before {
+.wr-icon-wikirate_topic:before {
   content: "\e900";
 }
 .wr-icon-source:before {
@@ -46,6 +46,6 @@
 .wr-icon-company_group:before {
   content: "\e906";
 }
-.wr-icon-company:before {
+.wr-icon-wikirate_company:before {
   content: "\e907";
 }
