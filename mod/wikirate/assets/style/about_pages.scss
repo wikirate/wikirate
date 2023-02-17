@@ -1,0 +1,30 @@
+#about-wikirate-header {
+  height: 360px;
+  background-image: url([[/mod/wikirate/backgrounds/header_about_wikirate.png]]);
+  .wikirate-section-header {
+    padding-top: 10%
+  }
+}
+
+#our-story-section {
+  height: 360px;
+  background-image: url([[/mod/wikirate/backgrounds/bg_about_story.png]]);
+}
+
+/*--- blurbs */
+
+.card-list-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1.5em 0 !important;
+}
+
+.item-stack {
+  width: 30%;
+  margin: 1% !important;
+}
+
+.bg-light-purple {
+  background: $purple-100;
+}

@@ -1,7 +1,5 @@
 ---
 
-- blurbs
-
 # updating with fields here to trigger geography calculations
 - :name: Google LLC
   :type: :wikirate_company
