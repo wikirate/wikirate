@@ -19,9 +19,8 @@ end
 format :html do
   view :nav_arrows, template: :haml
 
-  def section_header blurb
-    right_side = block_given? ? yield : nil
-    haml :section_header, blurb: blurb, right_side: right_side
+  def section_header blurb, button={}
+    haml :section_header, blurb: blurb, button: button, yielded: (yield if block_given?)
   end
 
   def absolutize_edit_fields fields

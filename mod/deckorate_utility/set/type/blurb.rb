@@ -37,4 +37,6 @@ format :html do
 
   view :flipper_title, template: :haml
   view :flipper_body, template: :haml
+
+  view :action_card, template: :haml
 end

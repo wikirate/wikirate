@@ -3,6 +3,8 @@
 - :name: material_icon
   :codename: material_icon
 
+
+
 - :type: :blurb
   :codename: collect_blurb
   :fields:
@@ -77,27 +79,266 @@
       Sharing the data freely means everyone can get more informed and be the change 
       they want to see.
 
-- :name: Our Story
-  :codename: our_story
-  :content: |
-    <p>
-      WikiRate is an open data platform powered by a diverse community that collects, 
-      analyzes and shares data on company commitments, actions and impacts on people and 
-      the planet.
-    </p>
+- :type: :blurb
+  :codename: homepage_search_heading
+  :fields:
+    :title: Empowering people with open ESG data
+    :body: Sustainability data across 128,000+ companies and over 3 million data points.
 
-    <p>
-      As company stakeholders we all have avenues to influence corporate behavior. It
-      might be taking more informed consumption, investment, employment, or governance 
-      decisions. It might be writing a compelling academic paper, running an advocacy 
-      campaign, or submitting a proposal for legislative reform. No matter what our road 
-      to impact is, the data is our shared beginning.
-    </p>
+- :type: :blurb
+  :codename: homepage_involved_heading
+  :fields:
+    :title: Get involved
+    :body: There's more to do than can be done without you!
 
-    <p>Learn more about The Wikirate Project e.V., the organization behind WikiRate.</p>
+- :type: :blurb
+  :codename: homepage_delta_heading
+  :fields:
+    :title: Trending benchmarks
+    :body: Delta, delta, delta, can I help ya, help ya, help ya?
+
+- :type: :blurb
+  :codename: homepage_designers_heading
+  :fields:
+    :title: Our metric designers
+    :body: They pose the questions that WikiRate seeks to answer.
+
+- :type: :blurb
+  :codename: platform_main_heading
+  :fields:
+    :title: Let's make companies better, together
+
+- :type: :blurb
+  :codename: platform_vision
+  :fields:
+    :title: Our Vision
+    :body: A world in which everyone can understand and shape company impacts.
+
+- :type: :blurb
+  :codename: platform_mission
+  :fields:
+    :title: Our Mission
+    :body:
+      Our mission is to empower better decision making
+      and help tackle the world’s challenges with open data.
+
+- :type: :blurb
+  :codename: data_main_heading
+  :fields:
+    :title: The largest open registry of corporate sustainability data in the world
+    :body: |
+      WikiRate has public data on companies from all sectors, covering their
+      environmental, social, and governance performance
+
+- :type: :blurb
+  :codename: data_special
+  :fields:
+    :title: What makes our data so special?
+    :body: |
+      The data on WikiRate is open and free for all, because we believe sharing
+      knowledge is the only way to improve decision-making at large.
+
+- :type: :blurb
+  :codename: data_reliable
+  :fields:
+    :title: What makes our data so reliable?
+    :body: Everyone's way in to corporate sustainability data...
+
+- :type: :blurb
+  :codename: data_usage
+  :fields:
+    :title: Start using our data today
+    :body: Are you using WikiRate data and want to share...
+
+- :type: :blurb
+  :codename: data_special1
+  :fields:
+    :title: Open
+    :body: |
+      Licensed under CC BY 4.0 the data can be accessed, used and shared by anyone. 
+      The only requirement: attribution.
+
+- :type: :blurb
+  :codename: data_special2
+  :fields:
+    :title: Free
+    :body: |
+      There are no costs, ever, for using the data. We are all impacted by companies.
+      Sharing the data freely means everyone can get more informed and be the change 
+      they want to see.
+
+- :type: :blurb
+  :codename: data_special3
+  :fields:
+    :title: Diverse
+    :body: |
+      Unlike other data providers, we host data from any public source 
+      (not just self-reported company data). This means more nuanced insights on 
+      company impacts.
+
+
+- :type: :blurb
+  :codename: data_reliable1
+  :fields:
+    :title: Transparency
+    :material_icon: share
+    :body: |
+      Full clarity on where the data comes from, when and by whom it was added, and
+      what methodology was used to make sense of it.
+    
+
+- :type: :blurb
+  :codename: data_reliable2
+  :fields:
+    :title: Collaboration
+    :material_icon: people
+    :body: |
+      Open access means more eyes on the data. It allows anomalies and errors to be 
+      found faster, creating better data quality for everyone.
+
+
+- :type: :blurb
+  :codename: data_reliable3
+  :fields:
+    :title: Verification
+    :material_icon: multiline_chart
+    :body: |
+      A multi-tiered verification system to indicate at what stage of the production 
+      pipeline the data is and the level of assurance given.
+
+- :type: :blurb
+  :codename: data_reliable4
+  :fields:
+    :title: Identifiers
+    :material_icon: storage
+    :body: |
+      Every company, metric, and answer is stored under a unique WikiRate ID. This
+      means data quality can be improved without losing track.
+
+- :type: :blurb
+  :codename: main_impact_heading
+  :fields:
+    :title: Open data is not the ultimate goal. It is a means to an end.
+    :body: |
+      WikiRate data is used in diverse projects to help address the world's social
+      and environmental challenges
+
+- :type: :blurb
+  :codename: contribute_heading
+  :fields:
+    :title: Contribute your project
+    :body: |
+      Are you using WikiRate data and want to share your work with the community? 
+      Let us help you showcase your work.
+
+- :type: :blurb
+  :codename: main_community_heading
+  :fields:
+    :title: Let's tackle global challenges together
+    :body: |
+      We collaboratively assess and engage companies to tackle global challenges and 
+      improve people's lives. Anyone can join, and anyone can use our data.
+
+- :type: :blurb
+  :codename: community_action_heading
+  :fields:
+    :title: Ready to drive change?
+    :body: The challenges we face are too big to tackle alone.
+
+- :type: :blurb
+  :codename: community_member_heading
+  :fields:
+    :title: Our most faithful contributors
+    :body: Our valued community members, we are more than proud of collaborating together.
+
+- :type: :blurb
+  :codename: community_action1
+  :fields:
+    :title: Become a data contributor
+    :body: |
+      Really short descriptive text of about fifty to maximum one hundred and 
+      fifty characters.
+
+- :type: :blurb
+  :codename: community_action2
+  :fields:
+    :title: Organize a project
+    :uri: "/:project"
+    :body: |
+      Really short descriptive text of about fifty to maximum one hundred and 
+      fifty characters.
+
+- :type: :blurb
+  :codename: community_action3
+  :fields:
+    :title: Add to your own dataset
+    :uri: "/:dataset"
+    :body: |
+      Really short descriptive text of about fifty to maximum one hundred and 
+      fifty characters.
+
+- :type: :blurb
+  :codename: community_action4
+  :fields:
+    :title: Use our API
+    :uri: "/Use_our_API"
+    :body: |
+      Really short descriptive text of about fifty to maximum one hundred and 
+      fifty characters.
+
+- :type: :blurb
+  :codename: homepage_action1
+  :fields:
+    :title: Sign up now
+    :uri: "/new/:signup"
+    :body: | 
+      You, too, can hold companies accountable for their commitments to impacts 
+      on us and the environment.
+
+- :type: :blurb
+  :codename: homepage_action2
+  :fields:
+    :title: Join our upcoming open data event
+    :uri:
+    :body: |
+      Meet, Learn, and Connect on real-world projects using open data to make 
+      the world more sustainable and equitable.
+
+- :type: :blurb
+  :codename: homepage_action3
+  :fields:
+    :title: Become a data contributor
+    :uri:
+    :body: |
+      Learn about how you as a contributor can collectively gather evidence that 
+      challenges the status quo of sustainability reporting.
+
+- :type: :blurb
+  :codename: homepage_action4
+  :fields:
+    :title: Join a project
+    :uri: "/:project"
+    :body: Find out real-world projects you can dive straight into.
+
+- :type: :blurb
+  :codename: homepage_action5
+  :fields:
+    :title: Become an academic partner
+    :uri:
+    :body: |
+      Learn about how to teach students about corporate sustainability reporting 
+      with a hands-on research project.
+
+- :type: :blurb
+  :codename: homepage_action6
+  :fields:
+    :title: Let’s set up a project together
+    :uri: "/new/:project"
+    :body: Get in touch with the WikiRate team to set up a project.
 
 
 
+# BLURB LISTS
 
 - :name:
     - :value
@@ -107,7 +348,6 @@
     - :values_blurb1
     - :values_blurb2
     - :values_blurb3
-
 
 - :name:
     - :wikirate_platform
@@ -120,3 +360,44 @@
     - :map_blurb
     - :share_blurb
     - :extract_blurb
+
+- :name:
+    - :wikirate_data
+    - :blurb
+  :type: :list
+  :content:
+    - :data_special1
+    - :data_special2
+    - :data_special3
+
+- :name:
+    - :wikirate_data
+    - :list
+  :type: :list
+  :content:
+    - :data_reliable1
+    - :data_reliable2
+    - :data_reliable3
+    - :data_reliable4
+
+- :name:
+    - :wikirate_community
+    - :blurb
+  :type: :list
+  :content:
+    - :community_action1
+    - :community_action2
+    - :community_action3
+    - :community_action4
+
+- :name:
+    - :homepage
+    - :blurb
+  :type: :list
+  :content:
+    - :homepage_action1
+    - :homepage_action2
+    - :homepage_action3
+    - :homepage_action4
+    - :homepage_action5
+    - :homepage_action6
