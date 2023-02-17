@@ -1,12 +1,12 @@
-%section.contact-us
-  .d-flex.justify-content-around.my-4
-    .card.m-2.ms-0
+%section.contact-us.container
+  .d-flex.justify-content-around.p-5
+    .card.bg-primary.text-white
       .card-body
-        %h4.card-title
+        %h4.card-title.text-white
           Get email updates
         = nest :newsletter_signup, view: :core
 
-    .card.m-2.me-0
+    .card.bg-light-purple
       .card-body
         %h4.card-title
           Contact a Human
@@ -17,4 +17,6 @@
         %h5.card-subtitle.mt-4.py-2
           Follow
         .list-group
-          - secondary_menus["Social"]
+          - social_media_links.each do |platform, url|
+            %a.list-group-item{ href: url }
+              = fa_icon platform.downcase, brand: true, class: "me-2"

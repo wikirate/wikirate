@@ -1,8 +1,13 @@
 ---
+
+- :name: material_icon
+  :codename: material_icon
+
 - :type: :blurb
   :codename: collect_blurb
   :fields:
     :title: Collect
+    :material_icon: storage
     :body: "<p>Systematically gather environmental, social and governance data that
       you think is important. Commitments, actions and impacts can be recorded to
       keep track of specific companies or an entire sector.</p>"
@@ -10,6 +15,7 @@
   :codename: collaborate_blurb
   :fields:
     :title: Collaborate
+    :material_icon: people
     :body: "<p>Join or start research projects with like-minded people from the WikiRate
       community. Measure your collective progress, seek advice or simply stay in contact
       about what’s important to you.</p>"
@@ -17,12 +23,14 @@
   :codename: analyze_blurb
   :fields:
     :title: Analyze
+    :material_icon: multiline_chart
     :body: "<p>Make standardize comparisons, monitor progress toward future targets,
       rate companies, or set up multi-tiered benchmarks.</p>"
 - :type: :blurb
   :codename: map_blurb
   :fields:
     :title: Map
+    :material_icon: map
     :body: "<p>Companies do not operate in isolation. Map them to their business relations
       like suppliers and investors to get a sense of how corporate networks function
       and can be leveraged.</p>"
@@ -30,6 +38,7 @@
   :codename: share_blurb
   :fields:
     :title: Share
+    :material_icon: share
     :body: "<p>Already have a pristine Data Set? Use the import tool or API to add
       your data in bulk to the platform. From there, it can be combined with other
       datasets or feed into live dashboards and tools that visualize your findings.</p>"
@@ -37,9 +46,68 @@
   :codename: extract_blurb
   :fields:
     :title: Extract
+    :material_icon: grade
     :body: "<p>Explore the data made available by WikiRate’s community. Find what
       you are looking for? Download unlimited Data Sets or connect via the API for
       regular automated queries to make sure you always have the latest.</p>"
+
+- :type: :blurb
+  :codename: values_blurb1
+  :fields:
+    :title: People-powered
+    :body: | 
+      Licensed under CC BY 4.0 the data can be accessed, used and shared by anyone. 
+      The only requirement: attribution.
+
+- :type: :blurb
+  :codename: values_blurb2
+  :fields:
+    :title: Collaborative
+    :body: |
+      There are no costs, ever, for using the data. We are all impacted by companies.
+      Sharing the data freely means everyone can get more informed and be the change 
+      they want to see.
+
+- :type: :blurb
+  :codename: values_blurb3
+  :fields:
+    :title: Transparent
+    :body: |
+      There are no costs, ever, for using the data. We are all impacted by companies. 
+      Sharing the data freely means everyone can get more informed and be the change 
+      they want to see.
+
+- :name: Our Story
+  :codename: our_story
+  :content: |
+    <p>
+      WikiRate is an open data platform powered by a diverse community that collects, 
+      analyzes and shares data on company commitments, actions and impacts on people and 
+      the planet.
+    </p>
+
+    <p>
+      As company stakeholders we all have avenues to influence corporate behavior. It
+      might be taking more informed consumption, investment, employment, or governance 
+      decisions. It might be writing a compelling academic paper, running an advocacy 
+      campaign, or submitting a proposal for legislative reform. No matter what our road 
+      to impact is, the data is our shared beginning.
+    </p>
+
+    <p>Learn more about The Wikirate Project e.V., the organization behind WikiRate.</p>
+
+
+
+
+- :name:
+    - :value
+    - :blurb
+  :type: :list
+  :content:
+    - :values_blurb1
+    - :values_blurb2
+    - :values_blurb3
+
 
 - :name:
     - :wikirate_platform

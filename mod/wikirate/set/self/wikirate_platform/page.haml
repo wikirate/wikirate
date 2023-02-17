@@ -1,18 +1,17 @@
 //.card-menu-hoverspace
 
-%section.container-fluid.bg-light
+%section#about-wikirate-header.container-fluid.bg-light
   .container.p-5.py-3
     = render_breadcrumbs
-    .py-5
-      = section_header :platform_main_heading do
-        - capture_haml do
-          %a.btn.btn-lg.btn-primary{ href: "/new/:signup" }
-            Join Us
+
+    = section_header :platform_main_heading do
+      - capture_haml do
+        %a.btn.btn-lg.btn-primary{ href: "/new/:signup" }
+          Join Us
 
 %section.container.p-5
   = nest :platform_vision, view: :image_left_text_right
   = nest :platform_mission, view: :image_left_text_right
-
 
 %section.container-fluid.bg-light
   .container.p-5
@@ -20,14 +19,13 @@
       Free tools for taking action
     = field_nest :blurb, view: :content, items: { view: :flipper }
 
-%section.container.p-5.text-center
-  .d-inline-block.w-75.text-start
-    %h2 Our Story
-    (our story)
+%section#our-values-section.container.p-5
+  = nest %i[value blurb], view: :titled, title: "Our Values", items: { view: :stack }
 
-%section.container-fluid.bg-light
+%section#our-story-section.container-fluid.text-center
   .container.p-5
-    %h2 Our Values
-    (values blurbs)
+    .d-inline-block.w-75.text-start
+      = nest :our_story, view: :titled
+
 
 = nest :contact_us, view: :section

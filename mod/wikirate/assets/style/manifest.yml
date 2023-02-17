@@ -6,6 +6,7 @@ wikirate:
     - colors.scss
     - homepage.scss
     - footer.scss
+    - about_pages.scss
     - navbar.scss
     - misc.scss
     - wikirate-icon.css
