@@ -1,14 +1,36 @@
-#about-wikirate-header {
+.header-with-bg {
   height: 360px;
+  .wikirate-section-header {
+    padding-top: 5%
+  }
+}
+
+#about-wikirate-header {
   background-image: url([[/mod/wikirate/backgrounds/header_about_wikirate.png]]);
   .wikirate-section-header {
     padding-top: 10%
   }
 }
 
+#about-data-header {
+  background-image: url([[/mod/wikirate/backgrounds/header_data.png]]);
+
+}
+
+#about-impact-header {
+  background-image: url([[/mod/wikirate/backgrounds/header_impact.png]]);
+}
+
+#about-community-header {
+  background-image: url([[/mod/wikirate/backgrounds/header_community.png]]);
+}
+
 #our-story-section {
-  height: 360px;
   background-image: url([[/mod/wikirate/backgrounds/bg_about_story.png]]);
+}
+
+#reliable-data-header {
+  background-image: url([[/mod/wikirate/backgrounds/banner_data.png]]);
 }
 
 /*--- blurbs */
@@ -27,4 +49,9 @@
 
 .bg-light-purple {
   background: $purple-100;
+}
+
+.wikirate-section-header-right {
+  display: flex;
+  align-items: center;
 }

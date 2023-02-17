@@ -1,13 +1,9 @@
 //.card-menu-hoverspace
 
-%section#about-wikirate-header.container-fluid.bg-light
+%section#about-wikirate-header.container-fluid.bg-light.header-with-bg
   .container.p-5.py-3
     = render_breadcrumbs
-
-    = section_header :platform_main_heading do
-      - capture_haml do
-        %a.btn.btn-lg.btn-primary{ href: "/new/:signup" }
-          Join Us
+    = section_header :platform_main_heading, url: "/new/:signup", text: "Join us"
 
 %section.container.p-5
   = nest :platform_vision, view: :image_left_text_right
@@ -22,7 +18,7 @@
 %section#our-values-section.container.p-5
   = nest %i[value blurb], view: :titled, title: "Our Values", items: { view: :stack }
 
-%section#our-story-section.container-fluid.text-center
+%section#our-story-section.container-fluid.text-center.header-with-bg
   .container.p-5
     .d-inline-block.w-75.text-start
       = nest :our_story, view: :titled
