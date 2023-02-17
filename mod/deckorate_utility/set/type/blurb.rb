@@ -10,6 +10,10 @@ format :html do
     %i[image title uri body]
   end
 
+  def blurb_icon
+    material_icon_tag card.fetch(:material_icon)&.content
+  end
+
   view :core do
     render_box
   end
@@ -30,4 +34,7 @@ format :html do
   view :stack, template: :haml, wrap: :slot
   view :head_and_lead, template: :haml
   view :image_left_text_right, template: :haml
+
+  view :flipper_title, template: :haml
+  view :flipper_body, template: :haml
 end

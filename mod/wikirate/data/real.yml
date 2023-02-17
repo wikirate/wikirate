@@ -1,6 +1,7 @@
 ---
 - homepage
 - footer
+- blurbs
 
 - :name: "*logo"
   :type: :image
@@ -176,7 +177,8 @@
       $box-shadow: 0 10px 20px 0 rgba($dark, .2);
       $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
       
-      $btn-border-radius: 50.1rem;
+      $btn-border-radius: 49.9rem;
+      $btn-border-radius-lg: 50.1rem;
       $form-select-border-radius: 50.2rem;
       $form-select-border-radius-lg: 50.3rem;
       $input-border-radius: 50.4rem;

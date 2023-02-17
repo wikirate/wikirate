@@ -36,3 +36,19 @@
     transform: rotateY(180deg);
   }
 }
+
+.flipper-title {
+  padding-top: 40px;
+  align-items: center;
+  .flipper-title-icon {
+    text-align: center;
+    i {
+      font-size: 4em;
+      color: $orange;
+    }
+  }
+  .flipper-title-text {
+    font-size: 1.7em;
+    color: $purple;
+  }
+}
