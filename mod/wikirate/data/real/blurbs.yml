@@ -344,6 +344,7 @@
     - :value
     - :blurb
   :type: :list
+  :conflict: override
   :content:
     - :values_blurb1
     - :values_blurb2
@@ -353,6 +354,7 @@
     - :wikirate_platform
     - :blurb
   :type: :list
+  :conflict: override
   :content:
     - :collect_blurb
     - :collaborate_blurb
@@ -365,6 +367,7 @@
     - :wikirate_data
     - :blurb
   :type: :list
+  :conflict: override
   :content:
     - :data_special1
     - :data_special2
@@ -374,6 +377,7 @@
     - :wikirate_data
     - :list
   :type: :list
+  :conflict: override
   :content:
     - :data_reliable1
     - :data_reliable2
@@ -384,6 +388,7 @@
     - :wikirate_community
     - :blurb
   :type: :list
+  :conflict: override
   :content:
     - :community_action1
     - :community_action2
@@ -394,6 +399,7 @@
     - :homepage
     - :blurb
   :type: :list
+  :conflict: override
   :content:
     - :homepage_action1
     - :homepage_action2
