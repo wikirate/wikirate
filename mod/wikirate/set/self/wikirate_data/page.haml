@@ -1,41 +1,25 @@
-%section.container-fluid.bg-light
+- api_button = {  url: "/Use_our_Api", text: "Use our API" }
+
+%section#about-data-header.container-fluid.bg-light.header-with-bg
   .container.p-5.py-3
     = render_breadcrumbs
-    .row
-      .col
-        %h1 The largest open registry of corporate sustainability data in the world
-        .lead
-          WikiRate has public data on companies from all sectors, covering their
-          environmental, social, and governance performance
-      .text-end
-        %a.btn.btn-lg.btn-primary{ href: "/Use_our_Api" }
-          Use our API
-
+    = section_header :data_main_heading, api_button
 
 %section.p-5.container.text-center
-  .w-50.d-inline-block
-    %h2
-      What makes our data so special?
-    .lead
-      The data on WikiRate is open and free for all, because we believe sharing
-      knowledge is the only way to improve decision-making at large.
+  .w-75.d-inline-block
+    = section_header :data_special
   = field_nest :blurb, view: :core, items: { view: :stack }
 
 %section.container-fluid.bg-light
   .container.p-5
-    %h2
-      What makes our data so reliable?
-    .lead
-      Everyone's way in to corporate sustainability data...
-    = field_nest :list, view: :core, items: { view: :stack }
+    .row
+      .col-4
+        = section_header :data_reliable
+      .col-8.two-flippers.teal-flippers
+        = field_nest :list, view: :core, items: { view: :flipper }
 
 %section.container.p-5
-  .bg-light.p-5.d-flex.flex-wrap.justify-content-between
-    .w-50
-      %h2 Start using our data today
-      .lead
-        Are you using WikiRate data and want to share...
-    .text-end
-      %a.btn.btn-lg.btn-primary{ href: "/Use_our_Api" }
-        Use our API
+  #reliable-data-header.my-5.p-5
+    .p-5
+      = section_header :data_usage, api_button
 

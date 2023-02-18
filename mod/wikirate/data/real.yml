@@ -220,3 +220,30 @@
     - :designer
     - :featured
   :type: :list
+
+- :name:
+    - :account
+    - :featured
+  :type: :list
+
+- :name: Our Story
+  :codename: our_story
+  :content: |
+    <p>
+      WikiRate is an open data platform powered by a diverse community that collects, 
+      analyzes and shares data on company commitments, actions and impacts on people and 
+      the planet.
+    </p>
+
+    <p>
+      As company stakeholders we all have avenues to influence corporate behavior. It
+      might be taking more informed consumption, investment, employment, or governance 
+      decisions. It might be writing a compelling academic paper, running an advocacy 
+      campaign, or submitting a proposal for legislative reform. No matter what our road 
+      to impact is, the data is our shared beginning.
+    </p>
+
+    <p>Learn more about The Wikirate Project e.V., the organization behind WikiRate.</p>
+
+
+

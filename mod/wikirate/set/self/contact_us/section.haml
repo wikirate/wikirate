@@ -1,22 +1,24 @@
-%section.contact-us.container
-  .d-flex.justify-content-around.p-5
-    .card.bg-primary.text-white
-      .card-body
-        %h4.card-title.text-white
-          Get email updates
-        = nest :newsletter_signup, view: :core
+%section.contact-us.container.p-5
+  .row
+    .col-6.d-flex
+      .card.bg-primary.text-white.w-100
+        .card-body
+          %h4.card-title.text-white
+            Get email updates
+          = nest :newsletter_signup, view: :core
 
-    .card.bg-light-purple
-      .card-body
-        %h4.card-title
-          Contact a Human
-        .card-text
-          %a{ href: "https://wikirateproject.org/Contact_Us" }
-            Contact
-          the folks at The WikiRate Project eV.
-        %h5.card-subtitle.mt-4.py-2
-          Follow
-        .list-group
-          - social_media_links.each do |platform, url|
-            %a.list-group-item{ href: url }
-              = fa_icon platform.downcase, brand: true, class: "me-2"
+    .col-6.d-flex
+      .card.bg-light-purple.w-100
+        .card-body
+          %h4.card-title
+            Contact a Human
+          .card-text
+            %a{ href: "https://wikirateproject.org/Contact_Us" }
+              Contact
+            the folks at The WikiRate Project eV.
+          %h5.card-subtitle.mt-4.py-2
+            Follow
+          .list-group
+            - social_media_links.each do |platform, url|
+              %a.list-group-item{ href: url }
+                = fa_icon platform.downcase, brand: true, class: "me-2"

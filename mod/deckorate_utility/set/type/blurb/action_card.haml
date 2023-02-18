@@ -1,0 +1,8 @@
+%a{ href: card.uri }
+  .card.nav-card.justify-content-between
+    %h3.card-title
+      = field_nest :title, view: :core
+    .card-body
+      = field_nest :body, view: :core
+    .text-end
+      %i.fas.fa-arrow-right
