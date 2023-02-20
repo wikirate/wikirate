@@ -1,6 +1,11 @@
 include_set Abstract::FluidLayout
+include_set Abstract::FancyCounts
 
 format :html do
+  def count_categories
+    %i[research_group project]
+  end
+
   def edit_fields
     %i[description general_overview blurb]
   end
