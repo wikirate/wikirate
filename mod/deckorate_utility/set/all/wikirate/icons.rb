@@ -1,8 +1,8 @@
 # default is material
 
 ICON_MAP = {
-  wikirate_company: [:company, { library: :wikirate }],
-  wikirate_topic: [:topic, { library: :wikirate }],
+  wikirate_company: [:wikirate_company, { library: :wikirate }],
+  wikirate_topic: [:wikirate_topic, { library: :wikirate }],
   company_group: [:company_group, { library: :wikirate }], # city not available in 4.7
   project: [:project, { library: :wikirate }],
   dataset: [:dataset, { library: :wikirate }],
