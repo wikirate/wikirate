@@ -160,6 +160,30 @@
 
       /*----------- Other WikiRate-specific variables ---------*/
 
+      $light-purple:  #EDEBF9;
+      $light-purple-1: #fbfafe;
+      $light-purple-2: #dfdcf4;
+      $light-purple-3: #d2cdf0;
+      
+      $light-teal: #e4f6f3
+      
+      
+      //      Teal            #09AB90
+      //      Light Teal        #e4f6f3
+      //      Shade 1        #f3fbfa
+      //      Shade 2        #d5f1ec
+      //      Shade 3        #c7ece6
+      //      
+      //      Red-O        #F7733D       
+      //      Light Red-O    #FAEFEA
+      //      Shade 1        #fefbfa
+      //      Shade 3        #f6e3da
+      //      Shade 4        #f2d7ca
+      //      Gradient Purple
+      //      #6B5CD8
+      //      #7F73D5
+      
+      
       $verification-flag-color: $red;
       $top-bar-anchor-color: $primary;
 
@@ -176,6 +200,8 @@
       $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
       $box-shadow: 0 10px 20px 0 rgba($dark, .2);
       $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
+      
+      $bg-primary:
       
       $btn-border-radius: 49.9rem;
       $btn-border-radius-lg: 50.1rem;

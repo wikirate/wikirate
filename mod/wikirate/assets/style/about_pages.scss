@@ -42,6 +42,25 @@
   }
 }
 
+.vertical-thumbnails {
+  .thumbnail {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .thumbnail-text {
+      text-align: center;
+      a {
+        color: $gray-600 !important;
+      }
+    }
+  }
+  .image-box {
+    margin-bottom: 1em;
+    margin-right: 0;
+    border: none
+  }
+}
+
 /*--- blurbs */
 
 .card-list-stack {
@@ -63,4 +82,32 @@
 .wikirate-section-header-right {
   display: flex;
   align-items: center;
+}
+
+.TYPE-output.box {
+  border-top: 1px;
+  .box-top {
+    height: 150px;
+    max-height: 150px;
+    background-position: center;
+  }
+  .box-middle {
+    display: block;
+  }
+  .box-bottom {
+    border: none;
+    background: white;
+    .thumbnail {
+      align-items: center
+    }
+  }
+
+}
+
+.btn-primary {
+  background-color: $purple;
+}
+.badge-purple {
+  color: $purple;
+  background-color: #EDEBF9;
 }

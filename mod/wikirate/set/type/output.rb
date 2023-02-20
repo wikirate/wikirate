@@ -4,15 +4,15 @@ card_accessor :uri, type: :uri
 card_accessor :file, type: :file
 
 card_accessor :year, type: :phrase
+card_accessor :wikirate_company, type: :pointer
 
 format :html do
   def edit_fields
     %i[image output_type uri file year description]
   end
 
-  view :box_middle do
-    field_nest :image, view: :content
-  end
+  view :box_top, template: :haml
+  view :box_middle, template: :haml
 
   view :box_bottom, template: :haml
   view :core, template: :haml

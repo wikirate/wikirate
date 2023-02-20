@@ -4,7 +4,7 @@
     = section_header :main_impact_heading, url: "/new/Project", text: "Add Project"
 
 %section.p-5.container
-  = nest Card.fetch([:output, :type, :by_update]), view: :core, items: { view: :box }
+  = nest Card.fetch([:output, :type, :by_update]), view: :content, items: { view: :box }
 
 %section.container-fluid
   .container.p-5
