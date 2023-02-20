@@ -1,4 +1,4 @@
 .d-flex.justify-content-between.w-100
-  .badge.bg-secondary
-    = field_nest :output_type, view: :content, items: { view: :name }
+  .d-flex
+    = field_nest :wikirate_company, view: :core, items: { view: :thumbnail_no_link }
   = render_bar_menu

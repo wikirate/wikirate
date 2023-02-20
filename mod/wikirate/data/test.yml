@@ -56,3 +56,28 @@
     - Death
     - friendliness
     - Hermanos
+
+- :name:
+    - :account
+    - :featured
+  :content:
+    - Joe User
+    - Joe Camel
+
+- :name: Fashion Checker
+  :type: :output
+  :fields:
+    :output_type: dashboard
+    :uri: https://fashionchecker.org/
+    :date: 2020
+
+    :image:
+      :image: fashion_checker.png
+    :title: Fashion Checker Title
+    :wikirate_company: Death Star
+    :description: |
+      <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
+      <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">WikiRate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+      <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
+      <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>
+      

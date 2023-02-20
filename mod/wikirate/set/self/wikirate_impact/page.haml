@@ -1,30 +1,12 @@
-%section.container-fluid.bg-light
+%section#about-impact-header.container-fluid.header-with-bg
   .container.p-5.py-3
     = render_breadcrumbs
-    .py-5.d-flex.flex-wrap.justify-content-between
-      .w-50
-        %h1
-          Open data is not the ultimate goal.
-          It is a means to an end.
-        .lead
-          WikiRate data is used in diverse projects to help address the world's social
-          and environmental challenges
-      //= field_nest :general_overview, view: :content
-
-      .text-end
-        %a.btn.btn-lg.btn-primary{ href: "/new/Project" }
-          Add Project
+    = section_header :main_impact_heading, url: "/new/Project", text: "Add Project"
 
 %section.p-5.container
-  = nest Card.fetch([:output, :type, :by_update]), view: :core, items: { view: :box }
+  = nest Card.fetch([:output, :type, :by_update]), view: :content, items: { view: :box }
 
-%section.container-fluid.bg-light.p-5
+%section.container-fluid
   .container.p-5
-    .bg-light.p-5.d-flex.flex-wrap.justify-content-between
-      .w-50
-        %h2 Contribute your project
-        .lead
-          Are you using WikiRate data and want to share...
-      .text-end
-        %a.btn.btn-lg.btn-primary{ href: "/Use_our_Api" }
-          Get in touch
+    .border.border-light.p-5
+      = section_header :contribute_heading, url: "/Contact_WikiRate", text: "Get in touch"

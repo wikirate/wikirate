@@ -11,7 +11,7 @@
 
   // TYPE LINK SECTION
 
-  %section#homepage-type-links-section.container-fluid.p-5
+  %section#homepage-type-links-section.container-fluid.vertical-thumbnails.p-5
     = render_type_links
 
   %section#homepage-numbers-section.container-fluid.bd-purple-100
@@ -19,11 +19,11 @@
       = render_involved
 
   %section#homepage-involved-section.container.p-5
-    = render_numbers
+    = render_fancy_counts
 
-  %section#homepage-delta-section.container-fluid.bg-light
+  %section#homepage-delta-section.vertical-thumbnails.container-fluid.bg-light
     .container.p-5
       = render_delta
 
-  %section#homepage-designer-section.container.p-5.text-center
+  %section#homepage-designer-section.vertical-thumbnails.container.p-5.text-center
     = render_designers

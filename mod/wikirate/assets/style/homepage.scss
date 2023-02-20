@@ -1,25 +1,5 @@
 
 #homepage {
-  section#homepage-type-links-section,
-  section#homepage-delta-section,
-  section#homepage-designer-section {
-    .thumbnail {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .thumbnail-text {
-        text-align: center;
-        a {
-          color: $gray-600 !important;
-        }
-      }
-    }
-    .image-box {
-      margin-bottom: 1em;
-      margin-right: 0;
-      border: none
-    }
-  }
   #homepage-search-section {
     .search-box-input-group {
       height: 60px;
@@ -29,12 +9,6 @@
         padding-left: 2em;
       }
     }
-  }
-  .large-icon  i {
-    font-size: 4rem;
-  }
-  .count-description {
-    color: $gray-600 !important;
   }
 }
 

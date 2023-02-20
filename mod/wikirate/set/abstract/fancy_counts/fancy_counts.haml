@@ -1,0 +1,11 @@
+.fancy-counts.row.py-4
+  - count_categories.each do |cat|
+    .col-3.text-center
+      .text-primary.p-3.large-icon
+        = wikirate_icon_tag cat
+      %h1
+        = nest cat, view: :count
+      .py-1
+        = link_to_card cat, cat.card.name.vary(:plural)
+      .count-description
+        = nest [cat, :header], view: :core

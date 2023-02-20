@@ -1,37 +1,36 @@
-%section.container-fluid.bg-light
+%section#about-community-header.container-fluid.header-with-bg
   .container.p-5.py-3
     = render_breadcrumbs
-    .py-5.d-flex.flex-wrap.justify-content-between
-      .w-75
-        %h1 Let's tackle global challenges together
-        .lead
-          We collaboratively assess and engage companies to tackle global
-          challenges and improve people's lives. Anyone can join,
-          and anyone can use our data.
-      //= field_nest :general_overview, view: :content
-
-      .text-end
-        %a.btn.btn-lg.btn-primary{ href: "/new/:signup" }
-          Join Us
+    = section_header :main_community_heading, url: "/new/:signup", text: "Join Us"
 
 %section.container.p-5
-  (counts)
+  = render_fancy_counts
 
 %section.container-fluid.bg-light
-  .container.p-5
-    %h2 Ready to drive change?
-    .lead
-      The challenges we face are too big to tackle alone.
+  .container.p-5.community-actions
+    = section_header :community_action_heading do
+      - render_nav_arrows
+    .py-5
+      .community-action-cards{ data: {
+        slick: { #infinite: false,
+                 centerMode: true,
+                 slidesToShow: 3,
+                 prevArrow: ".community-actions .wr-prev",
+                 nextArrow: ".community-actions .wr-next",
+                 responsive: [
+                   { breakpoint: "992", settings: { slidesToShow: 2 } },
+                   { breakpoint: "768",  settings: { slidesToShow: 1 } }
+                 ]}.to_json
+      } }
+        - %i[wikirate_community blurb].card.item_cards.each do |blurb|
+          = nest blurb, view: :action_card
 
-    .p-5
-      (boxes)
-    // = field_nest :blurb, view: :content, items: { view: :stack }
 
-%section.container.p-5
-  %h2 Our Members of the Month
-  .lead
-    Showcasing the community
-
-  (members)
+%section#about-community-members.container.vertical-thumbnails.p-5.vertical
+  = section_header :community_member_heading
+  .row.py-5
+    - %i[account featured].card.item_cards.each do |designer|
+      .col-2
+        = nest designer, view: :thumbnail, size: :medium
 
 = nest :contact_us, view: :section
