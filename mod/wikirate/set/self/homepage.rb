@@ -1,5 +1,6 @@
 include_set Abstract::CodeContent
 include_set Abstract::FancyCounts
+include_set Abstract::AboutPages
 
 # include_set Abstract::SolidCache, cached_format: :html
 #
