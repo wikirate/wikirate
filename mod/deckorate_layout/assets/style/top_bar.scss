@@ -1,5 +1,4 @@
 
-
 /*----------- Top bar ---------*/
 #top-navbar {
   .navbar-brand img {
@@ -22,11 +21,13 @@
 
     .top-nav-account {
       white-space: nowrap;
-      padding: 0 2em 0 1em;
     }
 
     .top-nav-burger {
       font-size: 1.4em;
+      button {
+        padding: 0.4rem 0.7rem;
+      }
 
       // no caret
       .dropdown-toggle:after {
@@ -65,8 +66,3 @@
     }
   }
 }
-
-
-
-
-
