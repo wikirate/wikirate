@@ -1,4 +1,5 @@
 include_set Abstract::FluidLayout
+include_set Abstract::AboutPages
 
 format :html do
   def edit_fields
