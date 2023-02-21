@@ -21,6 +21,9 @@
 
     .top-nav-account {
       white-space: nowrap;
+      .image-box img {
+        padding: 0;
+      }
     }
 
     .top-nav-burger {

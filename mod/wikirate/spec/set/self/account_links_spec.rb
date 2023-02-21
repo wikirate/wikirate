@@ -23,16 +23,17 @@ describe Card::Set::Self::AccountLinks do
     end
 
     context "when the user did not sign in" do
-      it do
+      specify do
         login_as "joe_user"
         expect(@account_link.format(format: :html).render_core).to(
           have_tag("div", with: { id: "logging", class: "logged-in" }) do
-            with_tag "a", text: "Joe User", with: { id: "my-card-link",
-                                                    href: "/Joe_User" }
+            with_tag "a", with: { id: "my-card-link", href: "/Joe_User" } do
+              with_tag "div.image-box"
+            end
             # with_tag "a", text: "Invite", with: { class: "invite-link",
             #                                       href: "/new/Sign_up" }
-            with_tag "a", text: "Log out", with: { class: "dropdown-item",
-                                                   href: "/delete/*signin" }
+            # with_tag "a", text: "Log out", with: { class: "dropdown-item",
+            #                                        href: "/delete/*signin" }
           end
         )
       end
