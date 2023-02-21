@@ -1,5 +1,6 @@
 include_set Abstract::FluidLayout
 include_set Abstract::FancyCounts
+include_set Abstract::AboutPages
 
 format :html do
   def count_categories
