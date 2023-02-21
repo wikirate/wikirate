@@ -3,7 +3,7 @@ include_set Abstract::AboutPages
 
 format :html do
   def edit_fields
-    %i[description general_overview]
+    absolutize_edit_fields %i[main_impact_heading contribute_heading]
   end
 
   def breadcrumb_title
