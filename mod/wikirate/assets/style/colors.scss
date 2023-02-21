@@ -357,6 +357,24 @@ $colorMap: (
   }
 }
 
+$light-purple:  #EDEBF9 !default;
+$light-purple-1: #fbfafe !default;
+$light-purple-2: #dfdcf4 !default;
+$light-purple-3: #d2cdf0 !default;
+
+$purple-grad-1: #6B5CD8 !default;
+$purple-grad-2: #7F73D5 !default;
+
+$light-teal: #e4f6f3 !default;
+
+.btn-primary {
+  background-color: $purple-grad-1;
+}
+
+.badge-purple {
+  color: $purple;
+  background-color: $light-purple;
+}
 
 // TODO: get rid of these; use more standard bootstrap classes.
 // light colors
