@@ -216,8 +216,8 @@
 
       //----------- Slick Overrides ---------
 
-      $slick-font-path: "https://dev.wikirate.org/mod/wikirate/slick_fonts/";
-      $slick-loader-path: "https://dev.wikirate.org/mod/wikirate/";
+      $slick-font-path: "[[/mod/wikirate/slick_fonts/]]";
+      $slick-loader-path: "[[/mod/wikirate/]]";
       $slick-arrow-color: $primary;
 
       //------------ transitions for smooth links
