@@ -20,7 +20,7 @@
                  responsive: [
                    { breakpoint: "992", settings: { slidesToShow: 2 } },
                    { breakpoint: "768",  settings: { slidesToShow: 1 } }
-                 ]}.to_json
+                 ] }.to_json
       } }
         - %i[wikirate_community blurb].card.item_cards.each do |blurb|
           = nest blurb, view: :action_card

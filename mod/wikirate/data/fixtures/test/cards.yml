@@ -5775,7 +5775,7 @@ cards_288:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:51:31.000000000 Z
-  updated_at: 2023-02-20 16:36:28.000000000 Z
+  updated_at: 2023-02-21 18:07:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -7249,7 +7249,7 @@ cards_353:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:51:36.000000000 Z
-  updated_at: 2023-02-20 16:36:26.000000000 Z
+  updated_at: 2023-02-21 18:07:49.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -8924,7 +8924,7 @@ cards_441:
   right_id: 344
   current_revision_id:
   created_at: 2022-09-30 15:52:53.000000000 Z
-  updated_at: 2023-02-20 16:36:28.000000000 Z
+  updated_at: 2023-02-21 18:07:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8943,7 +8943,7 @@ cards_442:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:52:53.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8952,7 +8952,7 @@ cards_442:
   trash: 0
   type_id: 282
   db_content: ":all_style_asset_output/wikirate.css"
-  search_content: "~442/1676911016.css"
+  search_content: "~442/1677002903.css"
 cards_443:
   id: 443
   name: discussion
@@ -9683,7 +9683,7 @@ cards_479:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:56.000000000 Z
-  updated_at: 2023-02-20 16:36:30.000000000 Z
+  updated_at: 2023-02-21 18:07:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -10066,7 +10066,7 @@ cards_497:
   right_id: 490
   current_revision_id:
   created_at: 2022-09-30 15:52:57.000000000 Z
-  updated_at: 2023-02-20 16:36:11.000000000 Z
+  updated_at: 2023-02-21 18:07:33.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -10144,7 +10144,7 @@ cards_501:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-02-20 16:36:28.000000000 Z
+  updated_at: 2023-02-21 18:07:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -10269,7 +10269,7 @@ cards_506:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-02-20 16:36:28.000000000 Z
+  updated_at: 2023-02-21 18:07:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10297,7 +10297,7 @@ cards_507:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-02-20 16:36:28.000000000 Z
+  updated_at: 2023-02-21 18:07:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10325,7 +10325,7 @@ cards_508:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-02-20 16:36:28.000000000 Z
+  updated_at: 2023-02-21 18:07:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10353,7 +10353,7 @@ cards_509:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-02-20 16:36:28.000000000 Z
+  updated_at: 2023-02-21 18:07:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10383,7 +10383,7 @@ cards_510:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-02-20 16:36:28.000000000 Z
+  updated_at: 2023-02-21 18:07:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10557,7 +10557,7 @@ cards_518:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:59.000000000 Z
-  updated_at: 2023-02-20 16:36:11.000000000 Z
+  updated_at: 2023-02-21 18:07:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10726,7 +10726,7 @@ cards_526:
   right_id: 524
   current_revision_id:
   created_at: 2022-09-30 15:53:01.000000000 Z
-  updated_at: 2023-02-20 16:36:28.000000000 Z
+  updated_at: 2023-02-21 18:07:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11199,7 +11199,7 @@ cards_542:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:04.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11275,7 +11275,7 @@ cards_546:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:05.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11446,7 +11446,7 @@ cards_555:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:06.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11522,7 +11522,7 @@ cards_559:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:06.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11598,7 +11598,7 @@ cards_563:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:07.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11788,7 +11788,7 @@ cards_573:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:08.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11921,7 +11921,7 @@ cards_580:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:09.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12054,7 +12054,7 @@ cards_587:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:10.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12130,7 +12130,7 @@ cards_591:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:10.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12244,7 +12244,7 @@ cards_597:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:11.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12339,7 +12339,7 @@ cards_602:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:12.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12434,7 +12434,7 @@ cards_607:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:12.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12491,7 +12491,7 @@ cards_610:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:13.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12567,7 +12567,7 @@ cards_614:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:13.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12624,7 +12624,7 @@ cards_617:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:14.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -48902,7 +48902,7 @@ cards_2494:
   right_id: 350
   current_revision_id:
   created_at: 2022-10-03 16:34:05.000000000 Z
-  updated_at: 2023-02-20 16:34:09.000000000 Z
+  updated_at: 2023-02-21 18:07:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -48910,90 +48910,37 @@ cards_2494:
   references_expired:
   trash: 0
   type_id: 332
-  db_content: |
-    // NOTE: standard bootstrap color variables should be changed not
-    // here but in the +:color card
-
-    /*----------- WikiRate Categories ---------*/
-
-    $yellow-orange: #F7B13D;
-
-    $company-color: $purple;
-    $company-group-color: $company-color;
-    $metric-color: $green;
-    $answer-color: $metric-color;
-    $record-color: $metric-color;
-    $topic-color: $red;
-    $source-color: $metric-color;
-    $user-color: $green;
-    $research-group-color: $company-color;
-    $project-color: $topic-color;
-    $dataset-color: $topic-color;
-    $year-color: $yellow;
-
-    /*----------- WikiRate Scores ---------*/
-
-    $score-colors: (
-      "0": $red,
-      "1": #EA5C43,
-      "2": $orange,
-      "3": #F7923D,
-      "4": $yellow-orange,
-      "5": $yellow,
-      "6": #BFCA4B,
-      "7": $green,
-      "8": #65a300,
-      "9": $teal
-    );
-
-    /*----------- Other WikiRate-specific variables ---------*/
-
-    $verification-flag-color: $red;
-    $top-bar-anchor-color: $primary;
-
-    // badge levels
-    $gold: gold;
-    $silver: silver;
-    $bronze: #cd7f32;
-
-    //----------- Bootstrap Overrides ---------
-
-    $border-color: $gray-200;
-    $table-group-separator-color: $gray-200;
-
-    $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
-    $box-shadow: 0 10px 20px 0 rgba($dark, .2);
-    $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
-
-    $btn-border-radius: 49.9rem;
-    $btn-border-radius-lg: 50.1rem;
-    $form-select-border-radius: 50.2rem;
-    $form-select-border-radius-lg: 50.3rem;
-    $input-border-radius: 50.4rem;
-
-    // NOTE: scroll-behavior: smooth breaks cypress tests
-    $enable-smooth-scroll: false;
-
-    $input-btn-padding-x: 1rem;
-    $input-btn-padding-x-sm: 0.5rem;
-    $input-btn-padding-x-lg: 2rem;
-
-    //----------- Slick Overrides ---------
-
-    $slick-font-path: "https://dev.wikirate.org/mod/wikirate/slick_fonts/";
-    $slick-loader-path: "https://dev.wikirate.org/mod/wikirate/";
-    $slick-arrow-color: $primary;
-
-    //------------ transitions for smooth links
-
-    $transition-speed: 0.08s;
-    a {
-      -webkit-transition: all $transition-speed ease;
-      -moz-transition:    all $transition-speed ease;
-      -ms-transition:     all $transition-speed ease;
-      -o-transition:      all $transition-speed ease;
-      transition:         all $transition-speed ease;
-    }
+  db_content: "// NOTE: standard bootstrap color variables should be changed not\n//
+    here but in the +:color card\n\n/*----------- WikiRate Categories ---------*/\n\n$yellow-orange:
+    #F7B13D;\n\n$company-color: $purple;\n$company-group-color: $company-color;\n$metric-color:
+    $green;\n$answer-color: $metric-color;\n$record-color: $metric-color;\n$topic-color:
+    $red;\n$source-color: $metric-color;\n$user-color: $green;\n$research-group-color:
+    $company-color;\n$project-color: $topic-color;\n$dataset-color: $topic-color;\n$year-color:
+    $yellow;\n\n/*----------- WikiRate Scores ---------*/\n\n$score-colors: (\n  \"0\":
+    $red,\n  \"1\": #EA5C43,\n  \"2\": $orange,\n  \"3\": #F7923D,\n  \"4\": $yellow-orange,\n
+    \ \"5\": $yellow,\n  \"6\": #BFCA4B,\n  \"7\": $green,\n  \"8\": #65a300,\n  \"9\":
+    $teal\n);\n\n/*----------- Other WikiRate-specific variables ---------*/\n\n$light-purple:
+    \ #EDEBF9;\n$light-purple-1: #fbfafe;\n$light-purple-2: #dfdcf4;\n$light-purple-3:
+    #d2cdf0;\n\n$purple-grad-1: #6B5CD8;\n$purple-grad-2: #7F73D5;\n\n$light-teal:
+    #e4f6f3;\n\n\n//      Teal            #09AB90\n//      Light Teal        #e4f6f3\n//
+    \     Shade 1        #f3fbfa\n//      Shade 2        #d5f1ec\n//      Shade 3
+    \       #c7ece6\n//      \n//      Red-O        #F7733D       \n//      Light
+    Red-O    #FAEFEA\n//      Shade 1        #fefbfa\n//      Shade 3        #f6e3da\n//
+    \     Shade 4        #f2d7ca\n\n\n$verification-flag-color: $red;\n$top-bar-anchor-color:
+    $primary;\n\n// badge levels\n$gold: gold;\n$silver: silver;\n$bronze: #cd7f32;\n\n//-----------
+    Bootstrap Overrides ---------\n\n$border-color: $gray-200;\n$table-group-separator-color:
+    $gray-200;\n\n$box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);\n$box-shadow: 0 10px
+    20px 0 rgba($dark, .2);\n$box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);\n      \n$btn-border-radius:
+    49.9rem;\n$btn-border-radius-lg: 50.1rem;\n$form-select-border-radius: 50.2rem;\n$form-select-border-radius-lg:
+    50.3rem;\n$input-border-radius: 50.4rem;\n\n// NOTE: scroll-behavior: smooth breaks
+    cypress tests\n$enable-smooth-scroll: false;\n\n$input-btn-padding-x: 1rem;\n$input-btn-padding-x-sm:
+    0.5rem;\n$input-btn-padding-x-lg: 2rem;\n\n//----------- Slick Overrides ---------\n\n$slick-font-path:
+    \"[[/mod/wikirate/slick_fonts/]]\";\n$slick-loader-path: \"[[/mod/wikirate/]]\";\n$slick-arrow-color:
+    $primary;\n\n//------------ transitions for smooth links\n\n$transition-speed:
+    0.08s;\na {\n  -webkit-transition: all $transition-speed ease;\n  -moz-transition:
+    \   all $transition-speed ease;\n  -ms-transition:     all $transition-speed ease;\n
+    \ -o-transition:      all $transition-speed ease;\n  transition:         all $transition-speed
+    ease;\n}\n"
   search_content: ''
 cards_2495:
   id: 2496
@@ -49200,7 +49147,7 @@ cards_2504:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:14.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49371,7 +49318,7 @@ cards_2513:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:15.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49447,7 +49394,7 @@ cards_2517:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:16.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49523,7 +49470,7 @@ cards_2521:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:16.000000000 Z
-  updated_at: 2023-02-20 16:36:56.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49979,7 +49926,7 @@ cards_2545:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:19.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50055,7 +50002,7 @@ cards_2549:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:20.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50150,7 +50097,7 @@ cards_2554:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:21.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50321,7 +50268,7 @@ cards_2563:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:22.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50473,7 +50420,7 @@ cards_2571:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:24.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50587,7 +50534,7 @@ cards_2577:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:24.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50663,7 +50610,7 @@ cards_2581:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:25.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50739,7 +50686,7 @@ cards_2585:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:25.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -54050,7 +53997,7 @@ cards_2749:
   right_id: 296
   current_revision_id:
   created_at: 2022-11-04 15:42:00.000000000 Z
-  updated_at: 2023-02-20 16:36:37.000000000 Z
+  updated_at: 2023-02-21 18:08:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -54058,8 +54005,8 @@ cards_2749:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: "~2754/1676910997.css"
-  search_content: "~2754/1676910997.css"
+  db_content: "~2754/1677002883.css"
+  search_content: "~2754/1677002883.css"
 cards_2750:
   id: 2755
   name: old custom css
@@ -63384,7 +63331,7 @@ cards_3183:
   right_id: 703
   current_revision_id:
   created_at: 2022-11-04 15:43:05.000000000 Z
-  updated_at: 2023-02-20 16:36:26.000000000 Z
+  updated_at: 2023-02-21 18:07:49.000000000 Z
   creator_id: 1
   updater_id: 2592
   read_rule_class: "*all plus"
@@ -73559,7 +73506,7 @@ cards_3594:
   right_id: 2397
   current_revision_id:
   created_at: 2022-11-04 15:44:23.000000000 Z
-  updated_at: 2023-02-20 16:36:26.000000000 Z
+  updated_at: 2023-02-21 18:07:50.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -77227,7 +77174,7 @@ cards_3750:
   right_id: 296
   current_revision_id:
   created_at: 2023-02-01 13:45:21.000000000 Z
-  updated_at: 2023-02-20 16:36:57.000000000 Z
+  updated_at: 2023-02-21 18:08:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -79899,7 +79846,7 @@ cards_3882:
   right_id: 3621
   current_revision_id:
   created_at: 2023-02-20 16:34:11.000000000 Z
-  updated_at: 2023-02-20 16:34:11.000000000 Z
+  updated_at: 2023-02-20 22:09:41.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -79907,8 +79854,12 @@ cards_3882:
   references_expired:
   trash: 0
   type_id: 4
-  db_content: ''
-  search_content: ''
+  db_content: |-
+    Joe User
+    Joe Camel
+  search_content: |-
+    Joe User
+    Joe Camel
 cards_3883:
   id: 3888
   name: Our Story
@@ -79944,3 +79895,163 @@ cards_3883:
     a proposal for legislative reform. No matter what our road \n  to impact is, the
     data is our shared beginning.\n\n\nLearn more about The Wikirate Project e.V.,
     the organization behind WikiRate.\n"
+cards_3884:
+  id: 3889
+  name: Fashion Checker
+  key: fashion_checker
+  codename:
+  left_id:
+  right_id:
+  current_revision_id:
+  created_at: 2023-02-20 22:09:41.000000000 Z
+  updated_at: 2023-02-20 22:09:41.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2486
+  db_content: ''
+  search_content: ''
+cards_3885:
+  id: 3890
+  name:
+  key:
+  codename:
+  left_id: 3889
+  right_id: 2487
+  current_revision_id:
+  created_at: 2023-02-20 22:09:41.000000000 Z
+  updated_at: 2023-02-20 22:09:41.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 55
+  db_content: dashboard
+  search_content: dashboard
+cards_3886:
+  id: 3891
+  name:
+  key:
+  codename:
+  left_id: 3889
+  right_id: 45
+  current_revision_id:
+  created_at: 2023-02-20 22:09:41.000000000 Z
+  updated_at: 2023-02-20 22:09:41.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 45
+  db_content: https://fashionchecker.org/
+  search_content: https://fashionchecker.org/
+cards_3887:
+  id: 3892
+  name:
+  key:
+  codename:
+  left_id: 3889
+  right_id: 444
+  current_revision_id:
+  created_at: 2023-02-20 22:09:41.000000000 Z
+  updated_at: 2023-02-20 22:09:41.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: '2020'
+  search_content: '2020'
+cards_3888:
+  id: 3893
+  name:
+  key:
+  codename:
+  left_id: 3889
+  right_id: 284
+  current_revision_id:
+  created_at: 2023-02-20 22:09:41.000000000 Z
+  updated_at: 2023-02-21 18:07:57.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 284
+  db_content: "~3893/91358.png"
+  search_content: "~3893/91358.png"
+cards_3889:
+  id: 3894
+  name:
+  key:
+  codename:
+  left_id: 3889
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-02-20 22:09:41.000000000 Z
+  updated_at: 2023-02-20 22:09:41.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: Fashion Checker Title
+  search_content: Fashion Checker Title
+cards_3890:
+  id: 3895
+  name:
+  key:
+  codename:
+  left_id: 3889
+  right_id: 700
+  current_revision_id:
+  created_at: 2023-02-20 22:09:41.000000000 Z
+  updated_at: 2023-02-20 22:09:41.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 55
+  db_content: Death Star
+  search_content: Death Star
+cards_3891:
+  id: 3896
+  name:
+  key:
+  codename:
+  left_id: 3889
+  right_id: 12
+  current_revision_id:
+  created_at: 2023-02-20 22:09:41.000000000 Z
+  updated_at: 2023-02-20 22:09:41.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: |
+    <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
+    <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">WikiRate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+    <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
+    <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>
+  search_content: |
+    Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.
+    The project is coordinated by Clean Clothes Campaign in partnership with Semcon, WageIndicator and WikiRate. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.
+    Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.
+    The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.
