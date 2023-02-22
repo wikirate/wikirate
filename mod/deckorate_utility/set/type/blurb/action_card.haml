@@ -1,8 +1,10 @@
-%a{ href: card.uri }
-  .card.nav-card.justify-content-between
-    %h3.card-title
-      = field_nest :title, view: :core
+- card_link_data = wrap_data.merge card_link_url: card.uri
+.action-card
+  .card.justify-content-between._card-link.nodblclick{ data: card_link_data }
     .card-body
-      = field_nest :body, view: :core
+      %h4.card-title
+        = field_nest :title, view: :core
+      .py-3
+        = field_nest :body, view: :core
     .text-end
       %i.fas.fa-arrow-right

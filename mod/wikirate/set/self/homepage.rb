@@ -1,5 +1,6 @@
 include_set Abstract::CodeContent
 include_set Abstract::FancyCounts
+include_set Abstract::AboutPages
 
 # include_set Abstract::SolidCache, cached_format: :html
 #
@@ -49,6 +50,16 @@ format :html do
 
   def delta_metric_card
     %i[homepage metric].card&.first_card
+  end
+
+  def trending value
+    if value.negative?
+      { sign: "-", direction: "down" }
+    elsif value.zero?
+      { sign: "", direction: "flat" }
+    else
+      { sign: "+", direction: "up" }
+    end
   end
 
   def delta_answers

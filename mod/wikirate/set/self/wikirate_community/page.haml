@@ -6,8 +6,8 @@
 %section.container.p-5
   = render_fancy_counts
 
-%section.container-fluid.bg-light
-  .container.p-5.community-actions
+%section#community-actions.container-fluid.bg-light
+  .container.p-5
     = section_header :community_action_heading do
       - render_nav_arrows
     .py-5
@@ -15,12 +15,12 @@
         slick: { #infinite: false,
                  centerMode: true,
                  slidesToShow: 3,
-                 prevArrow: ".community-actions .wr-prev",
-                 nextArrow: ".community-actions .wr-next",
+                 prevArrow: "#community-actions .wr-prev",
+                 nextArrow: "#community-actions .wr-next",
                  responsive: [
                    { breakpoint: "992", settings: { slidesToShow: 2 } },
                    { breakpoint: "768",  settings: { slidesToShow: 1 } }
-                 ]}.to_json
+                 ] }.to_json
       } }
         - %i[wikirate_community blurb].card.item_cards.each do |blurb|
           = nest blurb, view: :action_card
