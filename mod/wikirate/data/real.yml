@@ -48,13 +48,14 @@
     [[:recent|Recent Changes]]
     [[Ticket|Report Issue]]
 
-- :name: Platform
+- :name: About
   :codename: wikirate_platform
+  :conflict: override
 
 - :name: WikiRate Community
   :codename: wikirate_community
 
-- :name: WikiRate Impact
+- :name: Impact
   :codename: wikirate_impact
 
 - :name: Data

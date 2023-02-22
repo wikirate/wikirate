@@ -10,7 +10,7 @@ format :html do
   end
 
   def count_categories
-    %i[designer research_group project]
+    %i[account designer research_group project]
   end
 
   def breadcrumb_title

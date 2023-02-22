@@ -52,6 +52,16 @@ format :html do
     %i[homepage metric].card&.first_card
   end
 
+  def trending value
+    if value.negative?
+      { sign: "-", direction: "down" }
+    elsif value.zero?
+      { sign: "", direction: "flat" }
+    else
+      { sign: "+", direction: "up" }
+    end
+  end
+
   def delta_answers
     return [] unless (metric = delta_metric_card)
 

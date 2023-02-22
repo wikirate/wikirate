@@ -101,5 +101,55 @@
       align-items: center
     }
   }
-
 }
+
+.action-card .card {
+  padding: 1rem;
+  background: $light;
+  box-shadow: $box-shadow;
+  border: 0;
+  min-height: 300px;
+  margin: 1.5rem;
+  &:hover {
+    h4, %i {
+      color: $white !important;
+    }
+    color: $white;
+    cursor: pointer;
+    background-color: $purple-grad-1;
+  }
+}
+
+button.wr-arrow {
+  color: $purple-grad-1;
+  background-color: $white;
+  font-size: x-large;
+  margin-left: 0.8em;
+  padding: 0.2em 0.45em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: $purple-grad-1;
+    color: $white;
+  }
+}
+#community-actions {
+  .action-card .card {
+    h4 {
+      color: $orange;
+    }
+
+    &:hover {
+      background-color: $orange;
+    }
+  }
+  button.wr-arrow {
+    color: $orange;
+    &:hover {
+      background-color: $orange;
+    }
+  }
+}
+
+
