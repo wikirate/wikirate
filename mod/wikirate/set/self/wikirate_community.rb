@@ -1,13 +1,16 @@
 include_set Abstract::FluidLayout
 include_set Abstract::FancyCounts
+include_set Abstract::AboutPages
 
 format :html do
-  def count_categories
-    %i[research_group project]
+  def edit_fields
+    absolutize_edit_fields %i[main_community_heading community_action_heading] +
+                           %i[wikirate_community blurb].card.item_names +
+                           [:community_member_heading, [:account, :featured]]
   end
 
-  def edit_fields
-    %i[description general_overview blurb]
+  def count_categories
+    %i[account designer research_group project]
   end
 
   def breadcrumb_title

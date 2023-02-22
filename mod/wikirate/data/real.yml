@@ -48,13 +48,14 @@
     [[:recent|Recent Changes]]
     [[Ticket|Report Issue]]
 
-- :name: Platform
+- :name: About
   :codename: wikirate_platform
+  :conflict: override
 
 - :name: WikiRate Community
   :codename: wikirate_community
 
-- :name: WikiRate Impact
+- :name: Impact
   :codename: wikirate_impact
 
 - :name: Data
@@ -165,7 +166,10 @@
       $light-purple-2: #dfdcf4;
       $light-purple-3: #d2cdf0;
       
-      $light-teal: #e4f6f3
+      $purple-grad-1: #6B5CD8;
+      $purple-grad-2: #7F73D5;
+      
+      $light-teal: #e4f6f3;
       
       
       //      Teal            #09AB90
@@ -179,9 +183,6 @@
       //      Shade 1        #fefbfa
       //      Shade 3        #f6e3da
       //      Shade 4        #f2d7ca
-      //      Gradient Purple
-      //      #6B5CD8
-      //      #7F73D5
       
       
       $verification-flag-color: $red;
@@ -200,9 +201,7 @@
       $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
       $box-shadow: 0 10px 20px 0 rgba($dark, .2);
       $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
-      
-      $bg-primary:
-      
+            
       $btn-border-radius: 49.9rem;
       $btn-border-radius-lg: 50.1rem;
       $form-select-border-radius: 50.2rem;
@@ -218,8 +217,8 @@
 
       //----------- Slick Overrides ---------
 
-      $slick-font-path: "https://dev.wikirate.org/mod/wikirate/slick_fonts/";
-      $slick-loader-path: "https://dev.wikirate.org/mod/wikirate/";
+      $slick-font-path: "[[/mod/wikirate/slick_fonts/]]";
+      $slick-loader-path: "[[/mod/wikirate/]]";
       $slick-arrow-color: $primary;
 
       //------------ transitions for smooth links
