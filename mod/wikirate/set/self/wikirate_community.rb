@@ -5,12 +5,12 @@ include_set Abstract::AboutPages
 format :html do
   def edit_fields
     absolutize_edit_fields %i[main_community_heading community_action_heading] +
-                             %i[wikirate_community blurb].card.item_names +
-                             [:community_member_heading, [:account, :featured]]
+                           %i[wikirate_community blurb].card.item_names +
+                           [:community_member_heading, [:account, :featured]]
   end
 
   def count_categories
-    %i[research_group project]
+    %i[designer research_group project]
   end
 
   def breadcrumb_title
