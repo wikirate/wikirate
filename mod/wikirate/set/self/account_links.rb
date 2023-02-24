@@ -7,11 +7,7 @@ format :html do
     false
   end
 
-  # view :my_card do
-  #   "woot"
-  # end
-
-  # view :sign_in do
-  #   "what?"
-  # end
+  view :my_card do
+    link_to_mycard nest(Auth.current_card, view: :thumbnail_image, hide: :thumbnail_link)
+  end
 end

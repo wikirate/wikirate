@@ -10,22 +10,22 @@
     nextArrow: "#homepage-delta-section .wr-next",
     responsive: [
       { breakpoint: "992", settings: { slidesToShow: 4 } },
-      { breakpoint: "768",  settings: { slidesToShow: 2 } }
+      { breakpoint: "768", settings: { slidesToShow: 2 } }
     ]}.to_json
 } }
   - delta_answers.each do |answer|
     - benchmark_answer = answer.direct_dependee_answers.first
     - height_reduction = (10 - benchmark_answer.numeric_value) * 4
+    - trend = trending answer.numeric_value
     .h-100.px-3{ style: "padding-top: #{height_reduction}px" }
-      .card.bg-white.p-4.justify-content-between
+      .card.bg-white.p-3.justify-content-between
         .delta-values
           .delta-score
             = nest benchmark_answer.value_card, view: :core
-          .py-2
-            %i.fas.fa-arrow-right
-          .pb-2.small
-            - sign = answer.numeric_value < 0 ? "" : "+"
-            = "#{sign}#{number_with_precision answer.value, precision: 2}"
+          .py-2.small
+            .answer-trending{ class: "answer-trending-#{trend[:direction]}"}
+              =# material_icon "trending-#{trend[:direction]}"
+              = "#{trend[:sign]}#{number_with_precision answer.value, precision: 2}"
           .pb-2.small
             = answer.year.to_i - 1
             vs
