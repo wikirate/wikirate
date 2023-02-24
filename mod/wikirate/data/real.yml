@@ -37,10 +37,10 @@
   :codename: nav_menu
   :content: |
     About
-    [[:wikirate_platform | About WikiRate]]
-    [[:wikirate_data | Data]]
-    [[:wikirate_community | Community]]
-    [[:wikirate_impact | Impact]]
+    [[/about | About WikiRate]]
+    [[/data | Data]]
+    [[/community | Community]]
+    [[/impact | Impact]]
     Resources
     [[Use the API|API]]
     [[Guides]]
@@ -52,7 +52,7 @@
   :codename: wikirate_platform
   :conflict: override
 
-- :name: WikiRate Community
+- :name: Community
   :codename: wikirate_community
 
 - :name: Impact
