@@ -22,8 +22,7 @@ format do
   end
 
   def sort_options
-    { "Recently Added": :create,
-      "Alphabetical": :name }
+    {}
   end
 end
 
@@ -48,6 +47,7 @@ format :html do
   end
 end
 
+# class for managing custom filters for outputs
 class OutputFilterQuery < Card::FilterQuery
   def output_type_cql value
     return unless value.present?

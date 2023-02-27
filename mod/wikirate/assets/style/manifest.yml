@@ -1,3 +1,7 @@
+remote:
+  items:
+    - src: https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined
+
 wikirate:
   items:
     - bars_and_boxes.scss

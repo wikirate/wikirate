@@ -69,7 +69,6 @@ format :json do
   def json_field_link fieldcode
     link_to_card(card.field(fieldcode), nil, path: { format: :json })
   end
-
 end
 
 format :html do
