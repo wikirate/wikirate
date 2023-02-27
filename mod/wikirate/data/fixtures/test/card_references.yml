@@ -17661,1897 +17661,1939 @@ card_references_2523:
   ref_type: L
   is_present:
 card_references_2524:
-  id: 3869
+  id: 4404
   referer_id: 497
   referee_key: deckorate_layout
   referee_id:
   ref_type: L
   is_present:
 card_references_2525:
-  id: 4115
+  id: 4650
   referer_id: 3190
   referee_key: '6'
   referee_id:
   ref_type: L
   is_present:
 card_references_2526:
-  id: 4116
+  id: 4651
   referer_id: 3601
   referee_key: afghanistan
   referee_id: 1885
   ref_type: L
   is_present:
 card_references_2527:
-  id: 4117
+  id: 4652
   referer_id: 3601
   referee_key: albanium
   referee_id: 1860
   ref_type: L
   is_present:
 card_references_2528:
-  id: 4118
+  id: 4653
   referer_id: 3601
   referee_key: algerium
   referee_id: 1925
   ref_type: L
   is_present:
 card_references_2529:
-  id: 4119
+  id: 4654
   referer_id: 3601
   referee_key: american_samoa
   referee_id: 1930
   ref_type: L
   is_present:
 card_references_2530:
-  id: 4120
+  id: 4655
   referer_id: 3601
   referee_key: andorra
   referee_id: 1940
   ref_type: L
   is_present:
 card_references_2531:
-  id: 4121
+  id: 4656
   referer_id: 3601
   referee_key: angola
   referee_id: 1935
   ref_type: L
   is_present:
 card_references_2532:
-  id: 4122
+  id: 4657
   referer_id: 3601
   referee_key: anguilla
   referee_id: 1785
   ref_type: L
   is_present:
 card_references_2533:
-  id: 4123
+  id: 4658
   referer_id: 3601
   referee_key: antarctica
   referee_id: 1775
   ref_type: L
   is_present:
 card_references_2534:
-  id: 4124
+  id: 4659
   referer_id: 3601
   referee_key: antigua_and_barbuda
   referee_id: 1780
   ref_type: L
   is_present:
 card_references_2535:
-  id: 4125
+  id: 4660
   referer_id: 3601
   referee_key: argentina
   referee_id: 1875
   ref_type: L
   is_present:
 card_references_2536:
-  id: 4126
+  id: 4661
   referer_id: 3601
   referee_key: armenium
   referee_id: 1880
   ref_type: L
   is_present:
 card_references_2537:
-  id: 4127
+  id: 4662
   referer_id: 3601
   referee_key: aruba
   referee_id: 1910
   ref_type: L
   is_present:
 card_references_2538:
-  id: 4128
+  id: 4663
   referer_id: 3601
   referee_key: australium
   referee_id: 1905
   ref_type: L
   is_present:
 card_references_2539:
-  id: 4129
+  id: 4664
   referer_id: 3601
   referee_key: austrium
   referee_id: 1870
   ref_type: L
   is_present:
 card_references_2540:
-  id: 4130
+  id: 4665
   referer_id: 3601
   referee_key: azerbaijan
   referee_id: 1920
   ref_type: L
   is_present:
 card_references_2541:
-  id: 4131
+  id: 4666
   referer_id: 3601
   referee_key: bahama
   referee_id: 1890
   ref_type: L
   is_present:
 card_references_2542:
-  id: 4132
+  id: 4667
   referer_id: 3601
   referee_key: bahrain
   referee_id: 1895
   ref_type: L
   is_present:
 card_references_2543:
-  id: 4133
+  id: 4668
   referer_id: 3601
   referee_key: bangladesh
   referee_id: 1900
   ref_type: L
   is_present:
 card_references_2544:
-  id: 4134
+  id: 4669
   referer_id: 3601
   referee_key: barbado
   referee_id: 1865
   ref_type: L
   is_present:
 card_references_2545:
-  id: 4135
+  id: 4670
   referer_id: 3601
   referee_key: belaru
   referee_id: 1790
   ref_type: L
   is_present:
 card_references_2546:
-  id: 4136
+  id: 4671
   referer_id: 3601
   referee_key: belgium
   referee_id: 1765
   ref_type: L
   is_present:
 card_references_2547:
-  id: 4137
+  id: 4672
   referer_id: 3601
   referee_key: belize
   referee_id: 1795
   ref_type: L
   is_present:
 card_references_2548:
-  id: 4138
+  id: 4673
   referer_id: 3601
   referee_key: benin
   referee_id: 1800
   ref_type: L
   is_present:
 card_references_2549:
-  id: 4139
+  id: 4674
   referer_id: 3601
   referee_key: bermuda
   referee_id: 1805
   ref_type: L
   is_present:
 card_references_2550:
-  id: 4140
+  id: 4675
   referer_id: 3601
   referee_key: bhutan
   referee_id: 1845
   ref_type: L
   is_present:
 card_references_2551:
-  id: 4141
+  id: 4676
   referer_id: 3601
   referee_key: bolivium
   referee_id: 1810
   ref_type: L
   is_present:
 card_references_2552:
-  id: 4142
+  id: 4677
   referer_id: 3601
   referee_key: bonaire_sint_eustatiu_and_saba
   referee_id: 1815
   ref_type: L
   is_present:
 card_references_2553:
-  id: 4143
+  id: 4678
   referer_id: 3601
   referee_key: bosnium_and_herzegovina
   referee_id: 1770
   ref_type: L
   is_present:
 card_references_2554:
-  id: 4144
+  id: 4679
   referer_id: 3601
   referee_key: botswana
   referee_id: 1855
   ref_type: L
   is_present:
 card_references_2555:
-  id: 4145
+  id: 4680
   referer_id: 3601
   referee_key: bouvet_island
   referee_id: 1850
   ref_type: L
   is_present:
 card_references_2556:
-  id: 4146
+  id: 4681
   referer_id: 3601
   referee_key: brazil
   referee_id: 1840
   ref_type: L
   is_present:
 card_references_2557:
-  id: 4147
+  id: 4682
   referer_id: 3601
   referee_key: british_indian_ocean_territory
   referee_id: 1825
   ref_type: L
   is_present:
 card_references_2558:
-  id: 4148
+  id: 4683
   referer_id: 3601
   referee_key: british_virgin_island
   referee_id: 1820
   ref_type: L
   is_present:
 card_references_2559:
-  id: 4149
+  id: 4684
   referer_id: 3601
   referee_key: brunei_darussalam
   referee_id: 1680
   ref_type: L
   is_present:
 card_references_2560:
-  id: 4150
+  id: 4685
   referer_id: 3601
   referee_key: bulgarium
   referee_id: 1690
   ref_type: L
   is_present:
 card_references_2561:
-  id: 4151
+  id: 4686
   referer_id: 3601
   referee_key: burkina_faso
   referee_id: 1685
   ref_type: L
   is_present:
 card_references_2562:
-  id: 4152
+  id: 4687
   referer_id: 3601
   referee_key: burundi
   referee_id: 1675
   ref_type: L
   is_present:
 card_references_2563:
-  id: 4153
+  id: 4688
   referer_id: 3601
   referee_key: cambodium
   referee_id: 1760
   ref_type: L
   is_present:
 card_references_2564:
-  id: 4154
+  id: 4689
   referer_id: 3601
   referee_key: cameroon
   referee_id: 1715
   ref_type: L
   is_present:
 card_references_2565:
-  id: 4155
+  id: 4690
   referer_id: 3601
   referee_key: canada
   referee_id: 1670
   ref_type: L
   is_present:
 card_references_2566:
-  id: 4156
+  id: 4691
   referer_id: 3601
   referee_key: cape_verde
   referee_id: 1750
   ref_type: L
   is_present:
 card_references_2567:
-  id: 4157
+  id: 4692
   referer_id: 3601
   referee_key: cayman_island
   referee_id: 1730
   ref_type: L
   is_present:
 card_references_2568:
-  id: 4158
+  id: 4693
   referer_id: 3601
   referee_key: central_african_republic
   referee_id: 1725
   ref_type: L
   is_present:
 card_references_2569:
-  id: 4159
+  id: 4694
   referer_id: 3601
   referee_key: chad
   referee_id: 1755
   ref_type: L
   is_present:
 card_references_2570:
-  id: 4160
+  id: 4695
   referer_id: 3601
   referee_key: chile
   referee_id: 1710
   ref_type: L
   is_present:
 card_references_2571:
-  id: 4161
+  id: 4696
   referer_id: 3601
   referee_key: china
   referee_id: 1705
   ref_type: L
   is_present:
 card_references_2572:
-  id: 4162
+  id: 4697
   referer_id: 3601
   referee_key: christma_island
   referee_id: 1830
   ref_type: L
   is_present:
 card_references_2573:
-  id: 4163
+  id: 4698
   referer_id: 3601
   referee_key: coco_keeling_island
   referee_id: 1835
   ref_type: L
   is_present:
 card_references_2574:
-  id: 4164
+  id: 4699
   referer_id: 3601
   referee_key: colombium
   referee_id: 1590
   ref_type: L
   is_present:
 card_references_2575:
-  id: 4165
+  id: 4700
   referer_id: 3601
   referee_key: comoro
   referee_id: 1665
   ref_type: L
   is_present:
 card_references_2576:
-  id: 4166
+  id: 4701
   referer_id: 3601
   referee_key: congo
   referee_id: 1575
   ref_type: L
   is_present:
 card_references_2577:
-  id: 4167
+  id: 4702
   referer_id: 3601
   referee_key: cook_island
   referee_id: 1570
   ref_type: L
   is_present:
 card_references_2578:
-  id: 4168
+  id: 4703
   referer_id: 3601
   referee_key: costum_rica
   referee_id: 1595
   ref_type: L
   is_present:
 card_references_2579:
-  id: 4169
+  id: 4704
   referer_id: 3601
   referee_key: croatium
   referee_id: 1650
   ref_type: L
   is_present:
 card_references_2580:
-  id: 4170
+  id: 4705
   referer_id: 3601
   referee_key: cuba
   referee_id: 1745
   ref_type: L
   is_present:
 card_references_2581:
-  id: 4171
+  id: 4706
   referer_id: 3601
   referee_key: curaçao
   referee_id: 1695
   ref_type: L
   is_present:
 card_references_2582:
-  id: 4172
+  id: 4707
   referer_id: 3601
   referee_key: cypru
   referee_id: 1700
   ref_type: L
   is_present:
 card_references_2583:
-  id: 4173
+  id: 4708
   referer_id: 3601
   referee_key: czech_republic
   referee_id: 1740
   ref_type: L
   is_present:
 card_references_2584:
-  id: 4174
+  id: 4709
   referer_id: 3601
   referee_key: côte_d_ivoire
   referee_id: 1600
   ref_type: L
   is_present:
 card_references_2585:
-  id: 4175
+  id: 4710
   referer_id: 3601
   referee_key: democratic_republic_of_the_congo
   referee_id: 1720
   ref_type: L
   is_present:
 card_references_2586:
-  id: 4176
+  id: 4711
   referer_id: 3601
   referee_key: denmark
   referee_id: 1735
   ref_type: L
   is_present:
 card_references_2587:
-  id: 4177
+  id: 4712
   referer_id: 3601
   referee_key: djibouti
   referee_id: 1495
   ref_type: L
   is_present:
 card_references_2588:
-  id: 4178
+  id: 4713
   referer_id: 3601
   referee_key: dominica
   referee_id: 1585
   ref_type: L
   is_present:
 card_references_2589:
-  id: 4179
+  id: 4714
   referer_id: 3601
   referee_key: dominican_republic
   referee_id: 1580
   ref_type: L
   is_present:
 card_references_2590:
-  id: 4180
+  id: 4715
   referer_id: 3601
   referee_key: ecuador
   referee_id: 1610
   ref_type: L
   is_present:
 card_references_2591:
-  id: 4181
+  id: 4716
   referer_id: 3601
   referee_key: egypt
   referee_id: 1620
   ref_type: L
   is_present:
 card_references_2592:
-  id: 4182
+  id: 4717
   referer_id: 3601
   referee_key: el_salvador
   referee_id: 1660
   ref_type: L
   is_present:
 card_references_2593:
-  id: 4183
+  id: 4718
   referer_id: 3601
   referee_key: equatorial_guinea
   referee_id: 1655
   ref_type: L
   is_present:
 card_references_2594:
-  id: 4184
+  id: 4719
   referer_id: 3601
   referee_key: eritrea
   referee_id: 1625
   ref_type: L
   is_present:
 card_references_2595:
-  id: 4185
+  id: 4720
   referer_id: 3601
   referee_key: estonium
   referee_id: 1615
   ref_type: L
   is_present:
 card_references_2596:
-  id: 4186
+  id: 4721
   referer_id: 3601
   referee_key: ethiopium
   referee_id: 1630
   ref_type: L
   is_present:
 card_references_2597:
-  id: 4187
+  id: 4722
   referer_id: 3601
   referee_key: falkland_island_malvina
   referee_id: 1645
   ref_type: L
   is_present:
 card_references_2598:
-  id: 4188
+  id: 4723
   referer_id: 3601
   referee_key: faroe_island
   referee_id: 1605
   ref_type: L
   is_present:
 card_references_2599:
-  id: 4189
+  id: 4724
   referer_id: 3601
   referee_key: fiji
   referee_id: 1640
   ref_type: L
   is_present:
 card_references_2600:
-  id: 4190
+  id: 4725
   referer_id: 3601
   referee_key: finland
   referee_id: 1635
   ref_type: L
   is_present:
 card_references_2601:
-  id: 4191
+  id: 4726
   referer_id: 3601
   referee_key: france
   referee_id: 1480
   ref_type: L
   is_present:
 card_references_2602:
-  id: 4192
+  id: 4727
   referer_id: 3601
   referee_key: french_guiana
   referee_id: 1475
   ref_type: L
   is_present:
 card_references_2603:
-  id: 4193
+  id: 4728
   referer_id: 3601
   referee_key: french_polynesium
   referee_id: 1550
   ref_type: L
   is_present:
 card_references_2604:
-  id: 4194
+  id: 4729
   referer_id: 3601
   referee_key: french_southern_territory
   referee_id: 1545
   ref_type: L
   is_present:
 card_references_2605:
-  id: 4195
+  id: 4730
   referer_id: 3601
   referee_key: gabon
   referee_id: 1485
   ref_type: L
   is_present:
 card_references_2606:
-  id: 4196
+  id: 4731
   referer_id: 3601
   referee_key: gambium
   referee_id: 1540
   ref_type: L
   is_present:
 card_references_2607:
-  id: 4197
+  id: 4732
   referer_id: 3601
   referee_key: georgium
   referee_id: 1515
   ref_type: L
   is_present:
 card_references_2608:
-  id: 4198
+  id: 4733
   referer_id: 3601
   referee_key: germany
   referee_id: 1490
   ref_type: L
   is_present:
 card_references_2609:
-  id: 4199
+  id: 4734
   referer_id: 3601
   referee_key: ghana
   referee_id: 1505
   ref_type: L
   is_present:
 card_references_2610:
-  id: 4200
+  id: 4735
   referer_id: 3601
   referee_key: gibraltar
   referee_id: 1530
   ref_type: L
   is_present:
 card_references_2611:
-  id: 4201
+  id: 4736
   referer_id: 3601
   referee_key: greece
   referee_id: 1565
   ref_type: L
   is_present:
 card_references_2612:
-  id: 4202
+  id: 4737
   referer_id: 3601
   referee_key: greenland
   referee_id: 1535
   ref_type: L
   is_present:
 card_references_2613:
-  id: 4203
+  id: 4738
   referer_id: 3601
   referee_key: grenada
   referee_id: 1510
   ref_type: L
   is_present:
 card_references_2614:
-  id: 4204
+  id: 4739
   referer_id: 3601
   referee_key: guadeloupe
   referee_id: 1390
   ref_type: L
   is_present:
 card_references_2615:
-  id: 4205
+  id: 4740
   referer_id: 3601
   referee_key: guam
   referee_id: 1380
   ref_type: L
   is_present:
 card_references_2616:
-  id: 4206
+  id: 4741
   referer_id: 3601
   referee_key: guatemala
   referee_id: 1420
   ref_type: L
   is_present:
 card_references_2617:
-  id: 4207
+  id: 4742
   referer_id: 3601
   referee_key: guernsey
   referee_id: 1395
   ref_type: L
   is_present:
 card_references_2618:
-  id: 4208
+  id: 4743
   referer_id: 3601
   referee_key: guinea
   referee_id: 1500
   ref_type: L
   is_present:
 card_references_2619:
-  id: 4209
+  id: 4744
   referer_id: 3601
   referee_key: guinea_bissau
   referee_id: 1520
   ref_type: L
   is_present:
 card_references_2620:
-  id: 4210
+  id: 4745
   referer_id: 3601
   referee_key: guyana
   referee_id: 1525
   ref_type: L
   is_present:
 card_references_2621:
-  id: 4211
+  id: 4746
   referer_id: 3601
   referee_key: haiti
   referee_id: 1555
   ref_type: L
   is_present:
 card_references_2622:
-  id: 4212
+  id: 4747
   referer_id: 3601
   referee_key: heard_island_and_mc_donald_island
   referee_id: 1560
   ref_type: L
   is_present:
 card_references_2623:
-  id: 4213
+  id: 4748
   referer_id: 3601
   referee_key: holy_see_vatican_city_state
   referee_id: 1450
   ref_type: L
   is_present:
 card_references_2624:
-  id: 4214
+  id: 4749
   referer_id: 3601
   referee_key: hondura
   referee_id: 1415
   ref_type: L
   is_present:
 card_references_2625:
-  id: 4215
+  id: 4750
   referer_id: 3601
   referee_key: hong_kong
   referee_id: 1385
   ref_type: L
   is_present:
 card_references_2626:
-  id: 4216
+  id: 4751
   referer_id: 3601
   referee_key: hungary
   referee_id: 1410
   ref_type: L
   is_present:
 card_references_2627:
-  id: 4217
+  id: 4752
   referer_id: 3601
   referee_key: iceland
   referee_id: 1445
   ref_type: L
   is_present:
 card_references_2628:
-  id: 4218
+  id: 4753
   referer_id: 3601
   referee_key: indium
   referee_id: 1400
   ref_type: L
   is_present:
 card_references_2629:
-  id: 4219
+  id: 4754
   referer_id: 3601
   referee_key: indonesium
   referee_id: 1405
   ref_type: L
   is_present:
 card_references_2630:
-  id: 4220
+  id: 4755
   referer_id: 3601
   referee_key: iran
   referee_id: 1440
   ref_type: L
   is_present:
 card_references_2631:
-  id: 4221
+  id: 4756
   referer_id: 3601
   referee_key: iraq
   referee_id: 1435
   ref_type: L
   is_present:
 card_references_2632:
-  id: 4222
+  id: 4757
   referer_id: 3601
   referee_key: ireland
   referee_id: 1300
   ref_type: L
   is_present:
 card_references_2633:
-  id: 4223
+  id: 4758
   referer_id: 3601
   referee_key: isle_of_man
   referee_id: 1295
   ref_type: L
   is_present:
 card_references_2634:
-  id: 4224
+  id: 4759
   referer_id: 3601
   referee_key: israel
   referee_id: 1290
   ref_type: L
   is_present:
 card_references_2635:
-  id: 4225
+  id: 4760
   referer_id: 3601
   referee_key: italy
   referee_id: 1325
   ref_type: L
   is_present:
 card_references_2636:
-  id: 4226
+  id: 4761
   referer_id: 3601
   referee_key: jamaica
   referee_id: 1285
   ref_type: L
   is_present:
 card_references_2637:
-  id: 4227
+  id: 4762
   referer_id: 3601
   referee_key: japan
   referee_id: 1470
   ref_type: L
   is_present:
 card_references_2638:
-  id: 4228
+  id: 4763
   referer_id: 3601
   referee_key: jersey
   referee_id: 1430
   ref_type: L
   is_present:
 card_references_2639:
-  id: 4229
+  id: 4764
   referer_id: 3601
   referee_key: jordan
   referee_id: 1425
   ref_type: L
   is_present:
 card_references_2640:
-  id: 4230
+  id: 4765
   referer_id: 3601
   referee_key: kazakhstan
   referee_id: 1460
   ref_type: L
   is_present:
 card_references_2641:
-  id: 4231
+  id: 4766
   referer_id: 3601
   referee_key: kenya
   referee_id: 1465
   ref_type: L
   is_present:
 card_references_2642:
-  id: 4232
+  id: 4767
   referer_id: 3601
   referee_key: kiribati
   referee_id: 1455
   ref_type: L
   is_present:
 card_references_2643:
-  id: 4233
+  id: 4768
   referer_id: 3601
   referee_key: korea_democratic_person_s_republic_of
   referee_id: 1305
   ref_type: L
   is_present:
 card_references_2644:
-  id: 4234
+  id: 4769
   referer_id: 3601
   referee_key: korea_republic_of
   referee_id: 1310
   ref_type: L
   is_present:
 card_references_2645:
-  id: 4235
+  id: 4770
   referer_id: 3601
   referee_key: kosovo
   referee_id: 1355
   ref_type: L
   is_present:
 card_references_2646:
-  id: 4236
+  id: 4771
   referer_id: 3601
   referee_key: kuwait
   referee_id: 1315
   ref_type: L
   is_present:
 card_references_2647:
-  id: 4237
+  id: 4772
   referer_id: 3601
   referee_key: kyrgyzstan
   referee_id: 1320
   ref_type: L
   is_present:
 card_references_2648:
-  id: 4238
+  id: 4773
   referer_id: 3601
   referee_key: lao_person_s_democratic_republic
   referee_id: 1951
   ref_type: L
   is_present:
 card_references_2649:
-  id: 4239
+  id: 4774
   referer_id: 3601
   referee_key: lao
   referee_id: 2365
   ref_type: L
   is_present:
 card_references_2650:
-  id: 4240
+  id: 4775
   referer_id: 3601
   referee_key: latvium
   referee_id: 1370
   ref_type: L
   is_present:
 card_references_2651:
-  id: 4241
+  id: 4776
   referer_id: 3601
   referee_key: lebanon
   referee_id: 1345
   ref_type: L
   is_present:
 card_references_2652:
-  id: 4242
+  id: 4777
   referer_id: 3601
   referee_key: lesotho
   referee_id: 1335
   ref_type: L
   is_present:
 card_references_2653:
-  id: 4243
+  id: 4778
   referer_id: 3601
   referee_key: liberium
   referee_id: 1330
   ref_type: L
   is_present:
 card_references_2654:
-  id: 4244
+  id: 4779
   referer_id: 3601
   referee_key: libya
   referee_id: 1375
   ref_type: L
   is_present:
 card_references_2655:
-  id: 4245
+  id: 4780
   referer_id: 3601
   referee_key: liechtenstein
   referee_id: 1350
   ref_type: L
   is_present:
 card_references_2656:
-  id: 4246
+  id: 4781
   referer_id: 3601
   referee_key: lithuanium
   referee_id: 1340
   ref_type: L
   is_present:
 card_references_2657:
-  id: 4247
+  id: 4782
   referer_id: 3601
   referee_key: luxembourg
   referee_id: 1205
   ref_type: L
   is_present:
 card_references_2658:
-  id: 4248
+  id: 4783
   referer_id: 3601
   referee_key: macao
   referee_id: 1265
   ref_type: L
   is_present:
 card_references_2659:
-  id: 4249
+  id: 4784
   referer_id: 3601
   referee_key: madagascar
   referee_id: 1245
   ref_type: L
   is_present:
 card_references_2660:
-  id: 4250
+  id: 4785
   referer_id: 3601
   referee_key: malawi
   referee_id: 1255
   ref_type: L
   is_present:
 card_references_2661:
-  id: 4251
+  id: 4786
   referer_id: 3601
   referee_key: malaysium
   referee_id: 1280
   ref_type: L
   is_present:
 card_references_2662:
-  id: 4252
+  id: 4787
   referer_id: 3601
   referee_key: maldife
   referee_id: 1235
   ref_type: L
   is_present:
 card_references_2663:
-  id: 4253
+  id: 4788
   referer_id: 3601
   referee_key: mali
   referee_id: 1240
   ref_type: L
   is_present:
 card_references_2664:
-  id: 4254
+  id: 4789
   referer_id: 3601
   referee_key: maltum
   referee_id: 1360
   ref_type: L
   is_present:
 card_references_2665:
-  id: 4255
+  id: 4790
   referer_id: 3601
   referee_key: marshall_island
   referee_id: 1365
   ref_type: L
   is_present:
 card_references_2666:
-  id: 4256
+  id: 4791
   referer_id: 3601
   referee_key: martinique
   referee_id: 1215
   ref_type: L
   is_present:
 card_references_2667:
-  id: 4257
+  id: 4792
   referer_id: 3601
   referee_key: mauritanium
   referee_id: 1220
   ref_type: L
   is_present:
 card_references_2668:
-  id: 4258
+  id: 4793
   referer_id: 3601
   referee_key: mauritiu
   referee_id: 1230
   ref_type: L
   is_present:
 card_references_2669:
-  id: 4259
+  id: 4794
   referer_id: 3601
   referee_key: mayotte
   referee_id: 1270
   ref_type: L
   is_present:
 card_references_2670:
-  id: 4260
+  id: 4795
   referer_id: 3601
   referee_key: mexico
   referee_id: 1250
   ref_type: L
   is_present:
 card_references_2671:
-  id: 4261
+  id: 4796
   referer_id: 3601
   referee_key: micronesium_federated_state_of
   referee_id: 1210
   ref_type: L
   is_present:
 card_references_2672:
-  id: 4262
+  id: 4797
   referer_id: 3601
   referee_key: moldova
   referee_id: 1195
   ref_type: L
   is_present:
 card_references_2673:
-  id: 4263
+  id: 4798
   referer_id: 3601
   referee_key: monaco
   referee_id: 1190
   ref_type: L
   is_present:
 card_references_2674:
-  id: 4264
+  id: 4799
   referer_id: 3601
   referee_key: mongolium
   referee_id: 1110
   ref_type: L
   is_present:
 card_references_2675:
-  id: 4265
+  id: 4800
   referer_id: 3601
   referee_key: montenegro
   referee_id: 1120
   ref_type: L
   is_present:
 card_references_2676:
-  id: 4266
+  id: 4801
   referer_id: 3601
   referee_key: montserrat
   referee_id: 1225
   ref_type: L
   is_present:
 card_references_2677:
-  id: 4267
+  id: 4802
   referer_id: 3601
   referee_key: morocco
   referee_id: 1200
   ref_type: L
   is_present:
 card_references_2678:
-  id: 4268
+  id: 4803
   referer_id: 3601
   referee_key: mozambique
   referee_id: 1275
   ref_type: L
   is_present:
 card_references_2679:
-  id: 4269
+  id: 4804
   referer_id: 3601
   referee_key: myanmar
   referee_id: 1260
   ref_type: L
   is_present:
 card_references_2680:
-  id: 4270
+  id: 4805
   referer_id: 3601
   referee_key: namibium
   referee_id: 1140
   ref_type: L
   is_present:
 card_references_2681:
-  id: 4271
+  id: 4806
   referer_id: 3601
   referee_key: nauru
   referee_id: 1160
   ref_type: L
   is_present:
 card_references_2682:
-  id: 4272
+  id: 4807
   referer_id: 3601
   referee_key: nepal
   referee_id: 1170
   ref_type: L
   is_present:
 card_references_2683:
-  id: 4273
+  id: 4808
   referer_id: 3601
   referee_key: netherland
   referee_id: 1125
   ref_type: L
   is_present:
 card_references_2684:
-  id: 4274
+  id: 4809
   referer_id: 3601
   referee_key: new_caledonium
   referee_id: 1145
   ref_type: L
   is_present:
 card_references_2685:
-  id: 4275
+  id: 4810
   referer_id: 3601
   referee_key: new_zealand
   referee_id: 1155
   ref_type: L
   is_present:
 card_references_2686:
-  id: 4276
+  id: 4811
   referer_id: 3601
   referee_key: nicaragua
   referee_id: 1175
   ref_type: L
   is_present:
 card_references_2687:
-  id: 4277
+  id: 4812
   referer_id: 3601
   referee_key: niger
   referee_id: 1150
   ref_type: L
   is_present:
 card_references_2688:
-  id: 4278
+  id: 4813
   referer_id: 3601
   referee_key: nigerium
   referee_id: 1135
   ref_type: L
   is_present:
 card_references_2689:
-  id: 4279
+  id: 4814
   referer_id: 3601
   referee_key: niue
   referee_id: 1165
   ref_type: L
   is_present:
 card_references_2690:
-  id: 4280
+  id: 4815
   referer_id: 3601
   referee_key: norfolk_island
   referee_id: 1105
   ref_type: L
   is_present:
 card_references_2691:
-  id: 4281
+  id: 4816
   referer_id: 3601
   referee_key: north_macedonium
   referee_id: 2368
   ref_type: L
   is_present:
 card_references_2692:
-  id: 4282
+  id: 4817
   referer_id: 3601
   referee_key: northern_mariana_island
   referee_id: 1115
   ref_type: L
   is_present:
 card_references_2693:
-  id: 4283
+  id: 4818
   referer_id: 3601
   referee_key: norway
   referee_id: 1130
   ref_type: L
   is_present:
 card_references_2694:
-  id: 4284
+  id: 4819
   referer_id: 3601
   referee_key: oman
   referee_id: 1055
   ref_type: L
   is_present:
 card_references_2695:
-  id: 4285
+  id: 4820
   referer_id: 3601
   referee_key: pakistan
   referee_id: 1040
   ref_type: L
   is_present:
 card_references_2696:
-  id: 4286
+  id: 4821
   referer_id: 3601
   referee_key: palau
   referee_id: 1060
   ref_type: L
   is_present:
 card_references_2697:
-  id: 4287
+  id: 4822
   referer_id: 3601
   referee_key: palestinian_territory
   referee_id: 1080
   ref_type: L
   is_present:
 card_references_2698:
-  id: 4288
+  id: 4823
   referer_id: 3601
   referee_key: panama
   referee_id: 1020
   ref_type: L
   is_present:
 card_references_2699:
-  id: 4289
+  id: 4824
   referer_id: 3601
   referee_key: papua_new_guinea
   referee_id: 1045
   ref_type: L
   is_present:
 card_references_2700:
-  id: 4290
+  id: 4825
   referer_id: 3601
   referee_key: paraguay
   referee_id: 1065
   ref_type: L
   is_present:
 card_references_2701:
-  id: 4291
+  id: 4826
   referer_id: 3601
   referee_key: peru
   referee_id: 1050
   ref_type: L
   is_present:
 card_references_2702:
-  id: 4292
+  id: 4827
   referer_id: 3601
   referee_key: philippine
   referee_id: 1185
   ref_type: L
   is_present:
 card_references_2703:
-  id: 4293
+  id: 4828
   referer_id: 3601
   referee_key: pitcairn
   referee_id: 1180
   ref_type: L
   is_present:
 card_references_2704:
-  id: 4294
+  id: 4829
   referer_id: 3601
   referee_key: poland
   referee_id: 1035
   ref_type: L
   is_present:
 card_references_2705:
-  id: 4295
+  id: 4830
   referer_id: 3601
   referee_key: portugal
   referee_id: 1030
   ref_type: L
   is_present:
 card_references_2706:
-  id: 4296
+  id: 4831
   referer_id: 3601
   referee_key: puerto_rico
   referee_id: 1075
   ref_type: L
   is_present:
 card_references_2707:
-  id: 4297
+  id: 4832
   referer_id: 3601
   referee_key: qatar
   referee_id: 1070
   ref_type: L
   is_present:
 card_references_2708:
-  id: 4298
+  id: 4833
   referer_id: 3601
   referee_key: romanium
   referee_id: 1100
   ref_type: L
   is_present:
 card_references_2709:
-  id: 4299
+  id: 4834
   referer_id: 3601
   referee_key: russium
   referee_id: 1090
   ref_type: L
   is_present:
 card_references_2710:
-  id: 4300
+  id: 4835
   referer_id: 3601
   referee_key: rwanda
   referee_id: 1085
   ref_type: L
   is_present:
 card_references_2711:
-  id: 4301
+  id: 4836
   referer_id: 3601
   referee_key: réunion
   referee_id: 1095
   ref_type: L
   is_present:
 card_references_2712:
-  id: 4302
+  id: 4837
   referer_id: 3601
   referee_key: saint_barthélemy
   referee_id: 1025
   ref_type: L
   is_present:
 card_references_2713:
-  id: 4303
+  id: 4838
   referer_id: 3601
   referee_key: saint_helena_ascension_and_tristan_da_cunha
   referee_id: 955
   ref_type: L
   is_present:
 card_references_2714:
-  id: 4304
+  id: 4839
   referer_id: 3601
   referee_key: saint_kitt_and_nevi
   referee_id: 945
   ref_type: L
   is_present:
 card_references_2715:
-  id: 4305
+  id: 4840
   referer_id: 3601
   referee_key: saint_lucium
   referee_id: 940
   ref_type: L
   is_present:
 card_references_2716:
-  id: 4306
+  id: 4841
   referer_id: 3601
   referee_key: saint_martin_french_part
   referee_id: 935
   ref_type: L
   is_present:
 card_references_2717:
-  id: 4307
+  id: 4842
   referer_id: 3601
   referee_key: saint_pierre_and_miquelon
   referee_id: 930
   ref_type: L
   is_present:
 card_references_2718:
-  id: 4308
+  id: 4843
   referer_id: 3601
   referee_key: saint_vincent_and_the_grenadine
   referee_id: 1010
   ref_type: L
   is_present:
 card_references_2719:
-  id: 4309
+  id: 4844
   referer_id: 3601
   referee_key: samoa
   referee_id: 1015
   ref_type: L
   is_present:
 card_references_2720:
-  id: 4310
+  id: 4845
   referer_id: 3601
   referee_key: san_marino
   referee_id: 990
   ref_type: L
   is_present:
 card_references_2721:
-  id: 4311
+  id: 4846
   referer_id: 3601
   referee_key: sao_tome_and_principe
   referee_id: 985
   ref_type: L
   is_present:
 card_references_2722:
-  id: 4312
+  id: 4847
   referer_id: 3601
   referee_key: saudi_arabium
   referee_id: 970
   ref_type: L
   is_present:
 card_references_2723:
-  id: 4313
+  id: 4848
   referer_id: 3601
   referee_key: senegal
   referee_id: 995
   ref_type: L
   is_present:
 card_references_2724:
-  id: 4314
+  id: 4849
   referer_id: 3601
   referee_key: serbium
   referee_id: 975
   ref_type: L
   is_present:
 card_references_2725:
-  id: 4315
+  id: 4850
   referer_id: 3601
   referee_key: seychelle
   referee_id: 965
   ref_type: L
   is_present:
 card_references_2726:
-  id: 4316
+  id: 4851
   referer_id: 3601
   referee_key: sierra_leone
   referee_id: 855
   ref_type: L
   is_present:
 card_references_2727:
-  id: 4317
+  id: 4852
   referer_id: 3601
   referee_key: singapore
   referee_id: 865
   ref_type: L
   is_present:
 card_references_2728:
-  id: 4318
+  id: 4853
   referer_id: 3601
   referee_key: sint_maarten_dutch_part
   referee_id: 890
   ref_type: L
   is_present:
 card_references_2729:
-  id: 4319
+  id: 4854
   referer_id: 3601
   referee_key: slovakium
   referee_id: 1000
   ref_type: L
   is_present:
 card_references_2730:
-  id: 4320
+  id: 4855
   referer_id: 3601
   referee_key: slovenium
   referee_id: 950
   ref_type: L
   is_present:
 card_references_2731:
-  id: 4321
+  id: 4856
   referer_id: 3601
   referee_key: solomon_island
   referee_id: 960
   ref_type: L
   is_present:
 card_references_2732:
-  id: 4322
+  id: 4857
   referer_id: 3601
   referee_key: somalium
   referee_id: 980
   ref_type: L
   is_present:
 card_references_2733:
-  id: 4323
+  id: 4858
   referer_id: 3601
   referee_key: south_africa
   referee_id: 1005
   ref_type: L
   is_present:
 card_references_2734:
-  id: 4324
+  id: 4859
   referer_id: 3601
   referee_key: south_georgium_and_the_south_sandwich_island
   referee_id: 840
   ref_type: L
   is_present:
 card_references_2735:
-  id: 4325
+  id: 4860
   referer_id: 3601
   referee_key: south_sudan
   referee_id: 910
   ref_type: L
   is_present:
 card_references_2736:
-  id: 4326
+  id: 4861
   referer_id: 3601
   referee_key: spain
   referee_id: 845
   ref_type: L
   is_present:
 card_references_2737:
-  id: 4327
+  id: 4862
   referer_id: 3601
   referee_key: sri_lanka
   referee_id: 880
   ref_type: L
   is_present:
 card_references_2738:
-  id: 4328
+  id: 4863
   referer_id: 3601
   referee_key: sudan
   referee_id: 875
   ref_type: L
   is_present:
 card_references_2739:
-  id: 4329
+  id: 4864
   referer_id: 3601
   referee_key: suriname
   referee_id: 905
   ref_type: L
   is_present:
 card_references_2740:
-  id: 4330
+  id: 4865
   referer_id: 3601
   referee_key: svalbard_and_jan_mayen
   referee_id: 860
   ref_type: L
   is_present:
 card_references_2741:
-  id: 4331
+  id: 4866
   referer_id: 3601
   referee_key: swaziland
   referee_id: 900
   ref_type: L
   is_present:
 card_references_2742:
-  id: 4332
+  id: 4867
   referer_id: 3601
   referee_key: sweden
   referee_id: 870
   ref_type: L
   is_present:
 card_references_2743:
-  id: 4333
+  id: 4868
   referer_id: 3601
   referee_key: switzerland
   referee_id: 850
   ref_type: L
   is_present:
 card_references_2744:
-  id: 4334
+  id: 4869
   referer_id: 3601
   referee_key: syrian_arab_republic
   referee_id: 895
   ref_type: L
   is_present:
 card_references_2745:
-  id: 4335
+  id: 4870
   referer_id: 3601
   referee_key: taiwan
   referee_id:
   ref_type: L
   is_present:
 card_references_2746:
-  id: 4336
+  id: 4871
   referer_id: 3601
   referee_key: tajikistan
   referee_id: 885
   ref_type: L
   is_present:
 card_references_2747:
-  id: 4337
+  id: 4872
   referer_id: 3601
   referee_key: tanzanium
   referee_id: 920
   ref_type: L
   is_present:
 card_references_2748:
-  id: 4338
+  id: 4873
   referer_id: 3601
   referee_key: thailand
   referee_id: 775
   ref_type: L
   is_present:
 card_references_2749:
-  id: 4339
+  id: 4874
   referer_id: 3601
   referee_key: timor_leste
   referee_id: 815
   ref_type: L
   is_present:
 card_references_2750:
-  id: 4340
+  id: 4875
   referer_id: 3601
   referee_key: togo
   referee_id: 785
   ref_type: L
   is_present:
 card_references_2751:
-  id: 4341
+  id: 4876
   referer_id: 3601
   referee_key: tokelau
   referee_id: 810
   ref_type: L
   is_present:
 card_references_2752:
-  id: 4342
+  id: 4877
   referer_id: 3601
   referee_key: tonga
   referee_id: 770
   ref_type: L
   is_present:
 card_references_2753:
-  id: 4343
+  id: 4878
   referer_id: 3601
   referee_key: trinidad_and_tobago
   referee_id: 795
   ref_type: L
   is_present:
 card_references_2754:
-  id: 4344
+  id: 4879
   referer_id: 3601
   referee_key: tunisium
   referee_id: 765
   ref_type: L
   is_present:
 card_references_2755:
-  id: 4345
+  id: 4880
   referer_id: 3601
   referee_key: turkey
   referee_id: 805
   ref_type: L
   is_present:
 card_references_2756:
-  id: 4346
+  id: 4881
   referer_id: 3601
   referee_key: turkmenistan
   referee_id: 760
   ref_type: L
   is_present:
 card_references_2757:
-  id: 4347
+  id: 4882
   referer_id: 3601
   referee_key: turk_and_caico_island
   referee_id: 780
   ref_type: L
   is_present:
 card_references_2758:
-  id: 4348
+  id: 4883
   referer_id: 3601
   referee_key: tuvalu
   referee_id: 800
   ref_type: L
   is_present:
 card_references_2759:
-  id: 4349
+  id: 4884
   referer_id: 3601
   referee_key: u_s_virgin_island
   referee_id: 915
   ref_type: L
   is_present:
 card_references_2760:
-  id: 4350
+  id: 4885
   referer_id: 3601
   referee_key: uganda
   referee_id: 750
   ref_type: L
   is_present:
 card_references_2761:
-  id: 4351
+  id: 4886
   referer_id: 3601
   referee_key: ukraine
   referee_id: 755
   ref_type: L
   is_present:
 card_references_2762:
-  id: 4352
+  id: 4887
   referer_id: 3601
   referee_key: united_arab_emirate
   referee_id: 2378
   ref_type: L
   is_present:
 card_references_2763:
-  id: 4353
+  id: 4888
   referer_id: 3601
   referee_key: united_kingdom
   referee_id: 720
   ref_type: L
   is_present:
 card_references_2764:
-  id: 4354
+  id: 4889
   referer_id: 3601
   referee_key: united_state
   referee_id: 2381
   ref_type: L
   is_present:
 card_references_2765:
-  id: 4355
+  id: 4890
   referer_id: 3601
   referee_key: united_state_minor_outlying_island
   referee_id: 790
   ref_type: L
   is_present:
 card_references_2766:
-  id: 4356
+  id: 4891
   referer_id: 3601
   referee_key: uruguay
   referee_id: 835
   ref_type: L
   is_present:
 card_references_2767:
-  id: 4357
+  id: 4892
   referer_id: 3601
   referee_key: uzbekistan
   referee_id: 820
   ref_type: L
   is_present:
 card_references_2768:
-  id: 4358
+  id: 4893
   referer_id: 3601
   referee_key: vanuatu
   referee_id: 830
   ref_type: L
   is_present:
 card_references_2769:
-  id: 4359
+  id: 4894
   referer_id: 3601
   referee_key: venezuela
   referee_id: 825
   ref_type: L
   is_present:
 card_references_2770:
-  id: 4360
+  id: 4895
   referer_id: 3601
   referee_key: vietnam
   referee_id: 2375
   ref_type: L
   is_present:
 card_references_2771:
-  id: 4361
+  id: 4896
   referer_id: 3601
   referee_key: walli_and_futuna
   referee_id: 745
   ref_type: L
   is_present:
 card_references_2772:
-  id: 4362
+  id: 4897
   referer_id: 3601
   referee_key: western_sahara
   referee_id: 725
   ref_type: L
   is_present:
 card_references_2773:
-  id: 4363
+  id: 4898
   referer_id: 3601
   referee_key: yeman
   referee_id: 740
   ref_type: L
   is_present:
 card_references_2774:
-  id: 4364
+  id: 4899
   referer_id: 3601
   referee_key: zambium
   referee_id: 730
   ref_type: L
   is_present:
 card_references_2775:
-  id: 4365
+  id: 4900
   referer_id: 3601
   referee_key: zimbabwe
   referee_id: 735
   ref_type: L
   is_present:
 card_references_2776:
-  id: 4366
+  id: 4901
   referer_id: 3601
   referee_key: åland_island
   referee_id: 1915
   ref_type: L
   is_present:
 card_references_2777:
-  id: 4367
+  id: 4902
+  referer_id: 3889
+  referee_key: blurb_0001
+  referee_id: 3694
+  ref_type: L
+  is_present:
+card_references_2778:
+  id: 4903
+  referer_id: 3889
+  referee_key: blurb_0002
+  referee_id: 3698
+  ref_type: L
+  is_present:
+card_references_2779:
+  id: 4904
+  referer_id: 3889
+  referee_key: blurb_0003
+  referee_id: 3702
+  ref_type: L
+  is_present:
+card_references_2780:
+  id: 4905
+  referer_id: 3889
+  referee_key: blurb_0004
+  referee_id: 3706
+  ref_type: L
+  is_present:
+card_references_2781:
+  id: 4906
+  referer_id: 3889
+  referee_key: blurb_0005
+  referee_id: 3710
+  ref_type: L
+  is_present:
+card_references_2782:
+  id: 4907
+  referer_id: 3889
+  referee_key: blurb_0006
+  referee_id: 3714
+  ref_type: L
+  is_present:
+card_references_2783:
+  id: 4908
   referer_id: 441
   referee_key: wikirate_skin
   referee_id: 2493
   ref_type: L
   is_present:
-card_references_2778:
-  id: 4368
+card_references_2784:
+  id: 4909
   referer_id: 479
   referee_key: "*style"
   referee_id: 344
   ref_type: L
   is_present:
-card_references_2779:
-  id: 4369
+card_references_2785:
+  id: 4910
   referer_id: 479
   referee_key: "*layout"
   referee_id: 490
   ref_type: L
   is_present:
-card_references_2780:
-  id: 4370
+card_references_2786:
+  id: 4911
   referer_id: 479
   referee_key: "*script"
   referee_id: 298
   ref_type: L
   is_present:
-card_references_2781:
-  id: 4371
+card_references_2787:
+  id: 4912
   referer_id: 479
   referee_key: "*autoname"
   referee_id: 17
   ref_type: L
   is_present:
-card_references_2782:
-  id: 4372
+card_references_2788:
+  id: 4913
   referer_id: 479
   referee_key: "*read"
   referee_id: 9
   ref_type: L
   is_present:
-card_references_2783:
-  id: 4373
+card_references_2789:
+  id: 4914
   referer_id: 479
   referee_key: "*follow"
   referee_id: 451
   ref_type: L
   is_present:
-card_references_2784:
-  id: 4374
+card_references_2790:
+  id: 4915
   referer_id: 479
   referee_key: "*follow_field"
   referee_id: 460
   ref_type: L
   is_present:
-card_references_2785:
-  id: 4375
+card_references_2791:
+  id: 4916
   referer_id: 479
   referee_key: "*default"
   referee_id: 8
   ref_type: L
   is_present:
-card_references_2786:
-  id: 4376
+card_references_2792:
+  id: 4917
   referer_id: 479
   referee_key: "*content_option"
   referee_id: 59
   ref_type: L
   is_present:
-card_references_2787:
-  id: 4377
+card_references_2793:
+  id: 4918
   referer_id: 479
   referee_key: "*update"
   referee_id: 66
   ref_type: L
   is_present:
-card_references_2788:
-  id: 4378
+card_references_2794:
+  id: 4919
   referer_id: 479
   referee_key: "*create"
   referee_id: 65
   ref_type: L
   is_present:
-card_references_2789:
-  id: 4379
+card_references_2795:
+  id: 4920
   referer_id: 479
   referee_key: "*structure"
   referee_id: 28
   ref_type: L
   is_present:
-card_references_2790:
-  id: 4380
+card_references_2796:
+  id: 4921
   referer_id: 479
   referee_key: "*thank"
   referee_id: 279
   ref_type: L
   is_present:
-card_references_2791:
-  id: 4381
+card_references_2797:
+  id: 4922
   referer_id: 479
   referee_key: "*head"
   referee_id: 46
   ref_type: L
   is_present:
-card_references_2792:
-  id: 4382
+card_references_2798:
+  id: 4923
   referer_id: 479
   referee_key: "*delete"
   referee_id: 67
   ref_type: L
   is_present:
-card_references_2793:
-  id: 4383
+card_references_2799:
+  id: 4924
   referer_id: 479
   referee_key: "*captcha"
   referee_id: 511
   ref_type: L
   is_present:
-card_references_2794:
-  id: 4384
+card_references_2800:
+  id: 4925
   referer_id: 479
   referee_key: "*input_type"
   referee_id: 148
