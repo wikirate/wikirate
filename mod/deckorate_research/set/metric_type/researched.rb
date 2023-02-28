@@ -21,7 +21,7 @@ format :html do
   end
 
   def research_policy_icon
-    mapped_icon_tag research_policy.tr(" ", "_").to_sym
+    icon_tag research_policy.tr(" ", "_").to_sym
   end
 
   def research_policy_icon_link

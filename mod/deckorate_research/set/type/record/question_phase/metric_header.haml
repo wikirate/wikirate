@@ -1,7 +1,7 @@
 %a#metric-header
 - if multi_metric?
-  .d-flex.justify-content-between
-    .metric-project-research.row.align-items-center
+  .row
+    .col-10.metric-project-research.row.align-items-center
       .col-1.h2
         = link_to_metric :prev, "Previous Question", metric_index - 1, angle(:left)
       .col-10
@@ -14,7 +14,7 @@
       .col-1.h2
         = link_to_metric :next, "Next Question", metric_index + 1, angle(:right)
 
-    .p-2
+    .col-2.p-2
       = modal_link "All metrics",
                    path: { mark: company_project_mark, view: :metrics_overview },
                    class: "_ btn btn-lg btn-outline-secondary _all_metrics_button"
