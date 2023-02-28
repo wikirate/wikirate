@@ -40,7 +40,7 @@ format :html do
 
   view :year_and_icon do
     wrap_with :span, class: "answer-year" do
-      "#{mapped_icon_tag :year} #{card.year}"
+      "#{icon_tag :year} #{card.year}"
     end
   end
 

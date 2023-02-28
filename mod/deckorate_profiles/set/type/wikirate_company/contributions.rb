@@ -42,7 +42,7 @@ format :html do
 
   def switch_to text, icon, val, title
     text = wrap_with :div, class: "text-secondary" do
-      "#{mapped_icon_tag icon} See #{text}"
+      "#{icon_tag icon} See #{text}"
     end
     link_to_card card, text,
                  class: "company-switch", title: title, path: { contrib: val }
@@ -53,7 +53,7 @@ format :html do
   end
 
   def type_link_icon
-    mapped_icon_tag(contrib_page? ? :user : :wikirate_company)
+    icon_tag(contrib_page? ? :user : :wikirate_company)
   end
 
   def contribs_made?
