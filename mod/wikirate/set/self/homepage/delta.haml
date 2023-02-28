@@ -24,7 +24,7 @@
             = nest benchmark_answer.value_card, view: :core
           .py-2.small
             .answer-trending{ class: "answer-trending-#{trend[:direction]}"}
-              = material_icon_tag "trending_#{trend[:direction]}"
+              = icon_tag "trending_#{trend[:direction]}"
               = "#{trend[:sign]}#{number_with_precision answer.value, precision: 2}"
           .pb-2.small
             = answer.year.to_i - 1
