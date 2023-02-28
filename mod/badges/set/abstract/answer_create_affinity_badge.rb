@@ -37,14 +37,14 @@ format :html do
       wrap_with :div, class: "affinity-badge-container" do
         [
           "<div class='affinity-line'></div><hr/>",
-          certificate(badge_level)
+          badge_icon(badge_level)
         ]
       end
     end
   end
 
   view :name_with_certificate do
-    "#{certificate(badge_level)} <strong>#{affinity}</strong> #{badge}"
+    "#{badge_icon(badge_level)} <strong>#{affinity}</strong> #{badge}"
   end
 end
 
