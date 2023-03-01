@@ -14,12 +14,12 @@ format :html do
   end
 
   def calculated_marker_icon
-    fa_icon :calculator, title: "Calculated answer", class: "text-success"
+    icon_tag :calculator, title: "Calculated answer", class: "text-success"
   end
 
   def overridden_marker_icon
     wrap_with :span, class: "overridden-icon", title: "Overridden calculated answer" do
-      [fa_icon(:user), fa_icon(:calculator, class: "text-danger")]
+      [icon_tag(:user), icon_tag(:calculator, class: "text-danger")]
     end
   end
 end

@@ -18,11 +18,13 @@ shared_examples "badge card" do |name, level, threshold|
       subject { render_view :level, name: name }
 
       it "has fontawesome" do
-        is_expected.to have_tag "i.fa-certificate"
+        is_expected.to have_tag "div.badge-certificate"
       end
 
       it "has correct level class" do
-        is_expected.to have_tag "i.fa-certificate.#{level}"
+        is_expected.to have_tag("div.badge-certificate") do
+          with_tag "i.#{level}"
+        end
       end
     end
   end

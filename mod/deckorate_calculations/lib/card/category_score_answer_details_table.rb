@@ -3,7 +3,7 @@ class Card
   class CategoryScoreAnswerDetailsTable < AbstractAnswerDetailsTable
     @columns = ["Scored Option", "Value"]
 
-    ICON_MAP = { true => "check-circle", false => "circle" }.freeze
+    ICON_MAP = { true => "check_circle", false => "circle" }.freeze
 
     def table_rows
       rubric_hash.map do |option, value|
@@ -17,7 +17,7 @@ class Card
 
     def icon_tag checked
       @icon_tags ||= {}
-      @icon_tags[checked] ||= @format.fa_icon ICON_MAP[checked]
+      @icon_tags[checked] ||= @format.icon_tag ICON_MAP[checked]
     end
 
     def checked_options

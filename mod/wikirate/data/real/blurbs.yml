@@ -148,7 +148,9 @@
   :codename: data_usage
   :fields:
     :title: Start using our data today
-    :body: Are you using WikiRate data and want to share...
+    :body: |
+      You can download data from any page on WikiRate or use our API to 
+      extract data in bulk.
 
 - :type: :blurb
   :codename: data_special1
@@ -351,7 +353,7 @@
     - :values_blurb3
 
 - :name:
-    - :wikirate_platform
+    - :about
     - :blurb
   :type: :list
   :conflict: override
