@@ -3,5 +3,5 @@ def count
 end
 
 def count_label
-  "Metric Designers"
+  "Metric designers"
 end
