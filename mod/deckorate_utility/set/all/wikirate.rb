@@ -82,7 +82,7 @@ format :html do
   end
 
   def type_link_icon
-    mapped_icon_tag @type_card.codename
+    icon_tag @type_card.codename
   end
 
   def labeled_fields

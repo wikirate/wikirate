@@ -56,13 +56,18 @@ end
 format :json do
   # note: if this returned answer objects, it would put answer ids (not card ids) in the
   # json results
-  def item_cards
-    card.answers.map(&:card)
-  end
+  # def item_cards
+  #   card.answers.map(&:card)
+  # end
 
   def molecule
-    super().merge metrics: field_nest(:metric),
-                  companies: field_nest(:wikirate_company)
+    super().merge answers_url: json_field_link(:metric_answer),
+                  metrics_url: json_field_link(:metric),
+                  companies_url: json_field_link(:wikirate_company)
+  end
+
+  def json_field_link fieldcode
+    link_to_card(card.field(fieldcode), nil, path: { format: :json })
   end
 end
 

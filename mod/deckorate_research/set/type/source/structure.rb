@@ -47,7 +47,7 @@ format :html do
 
   def original_link
     return unless card.link_url.present?
-    link_with_icon card.link_url, "external-link-square-alt", "original"
+    link_with_icon card.link_url, :new_window, "original"
   end
 
   def download_link
@@ -55,7 +55,7 @@ format :html do
   end
 
   def link_with_icon url, icon, title
-    text = "#{fa_icon icon} #{title}"
+    text = "#{icon_tag icon} #{title}"
     link_to text, href: url, target: "_blank"
   end
 end

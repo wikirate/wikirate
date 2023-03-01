@@ -38,7 +38,7 @@ format :html do
   end
 
   before :header do
-    voo.title = "Answer Dashboard #{mapped_icon_tag :dashboard}"
+    voo.title = "Answer Dashboard #{icon_tag :dashboard}"
     voo.variant = nil
   end
 
