@@ -46,4 +46,24 @@
     .text-center.py-3
       = render_nav_arrows
 
-= nest :contact_us, view: :section
+%section.contact-us.container.p-5
+  .row
+    .col-6.d-flex
+      .card.bg-light-purple.w-100
+        .card-body
+          %h4.card-title
+            Check out the latest contribution opportunities
+
+          %a
+            Learn More
+            = icon_tag :next
+    .col-6.d-flex
+      .card.bg-white.w-100
+        .card-body
+          %h4.card-title
+            Stay up to date on the latest community and platform developments
+
+          %a
+            Subscribe
+            = icon_tag :next
+

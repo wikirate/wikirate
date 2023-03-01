@@ -35,8 +35,8 @@ format :html do
       :homepage_search_heading,
       %i[search featured],
       %i[cardtype featured],
-      %i[homepage blurb]
-    ] + count_categories.map { |c| [c, :header] } + [
+      %i[homepage blurb],
+      # ] + count_categories.map { |c| [c, :header] } + [
       :homepage_involved_heading,
       :homepage_delta_heading,
       %i[homepage metric],
