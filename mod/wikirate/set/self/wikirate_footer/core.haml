@@ -23,5 +23,5 @@
         .py-3.social-links.ms-2
           - social_media_links.each do |platform, url|
             %a{ href: url }
-              = fa_icon platform.downcase, brand: true, class: "me-2"
+              = icon_tag platform.downcase, brand: true, class: "me-2"
 

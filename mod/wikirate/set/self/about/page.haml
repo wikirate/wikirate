@@ -24,4 +24,26 @@
       = nest :our_story, view: :titled
 
 
-= nest :contact_us, view: :section
+%section.contact-us.container.p-5
+  .row
+    .col-6.d-flex
+      .card.bg-primary.text-white.w-100
+        .card-body
+          %h4.card-title.text-white
+            Partner with WikiRate International
+          %p.pb-5
+            Check out the ways in which the WikiRate team can help you
+
+          %a.text-white
+            Learn More
+            = icon_tag :next
+    .col-6.d-flex
+      .card.bg-light-purple.w-100
+        .card-body
+          %h4.card-title
+            Talk to a human
+
+          %a
+            Get in Touch
+            = icon_tag :next
+

@@ -3,5 +3,5 @@ def count
 end
 
 def count_label
-  "Data Contributors"
+  "Data contributors"
 end
