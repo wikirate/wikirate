@@ -2,7 +2,7 @@ include_set Abstract::CodeContent
 
 format :html do
   view :core do
-    dropdown_button(fa_icon(:bars)) { dropdown_items.compact }
+    dropdown_button(icon_tag(:nav_menu)) { dropdown_items.compact }
   end
 
   private

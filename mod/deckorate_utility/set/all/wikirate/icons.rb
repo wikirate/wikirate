@@ -1,55 +1,72 @@
-# default is material
-
-ICON_MAP = {
-  wikirate_company: [:wikirate_company, { library: :wikirate }],
-  wikirate_topic: [:wikirate_topic, { library: :wikirate }],
-  company_group: [:company_group, { library: :wikirate }], # city not available in 4.7
-  project: [:project, { library: :wikirate }],
-  dataset: [:dataset, { library: :wikirate }],
-  data_subset: [:dataset, { library: :wikirate }],
-  metric: [:metric, { library: :wikirate }],
-  record: ["bar-chart", { library: :font_awesome }],
-  metric_answer: ["clipboard-check", { library: :font_awesome }],
-  researcher: [:user, { library: :font_awesome }],
-  user: [:user, { library: :font_awesome }],
-  simple_account: [:user, { library: :font_awesome }],
+basket[:icons][:material].merge!(
   post: :insert_comment,
-  bookmark: [:bookmark, { library: :font_awesome }],
-  bookmarks: [:bookmark, { library: :font_awesome }],
-  details: ["info-circle", { library: :font_awesome }],
-  source: [:source, { library: :wikirate }],
-  preview: ["file-pdf", { library: :font_awesome }],
   score: :adjust,
   answer_import: :input,
   metric_import: :input,
-  calculation: [:calculator, { library: :font_awesome }],
-  year: [:"calendar-alt", { library: :font_awesome }],
-  research_group: [:research_group, { library: :wikirate }],
-  contributions: [:plug, { library: :font_awesome }],
   activity: :directions_run,
-  community_assessed: [:unlock, { library: :font_awesome }],
-  designer_assessed: [:lock, { library: :font_awesome }],
-  dashboard: ["tachometer-alt", { library: :font_awesome }],
-  task: [:tasks, { library: :font_awesome }]
-}.freeze
+  record: :bar_chart,
+  metric_answer: :inventory,
+  researcher: :person,
+  user: :person,
+  simple_account: :person,
+  bookmark: :bookmark,
+  bookmarks: :bookmark,
+  details: :info,
+  preview: :picture_as_pdf,
+  calculation: :calculate,
+  year: :calendar_today,
+  contributions: :power,
+  community_assessed: :lock_open,
+  designer_assessed: :lock,
+  dashboard: :speed,
+  task: :task,
+  badge: :emoji_events,
+  comment: :comment,
+  nav_menu: :menu,
+  flagged: :flag,
+  community_verified: :check_circle,
+  steward_verified: :check_circle,
+  download: :file_download,
+  greater_than: :chevron_right,
+  less_than: :chevron_left,
+  check: :check,
+  more: :more_horiz,
+  circle: :circle
+)
+
+basket[:icons][:font_awesome].merge!(
+  metric_answer: "clipboard-check",
+  researcher: :user,
+  user: :user,
+  simple_account: :user,
+  bookmark: :bookmark,
+  bookmarks: :bookmark,
+  details: "info-circle",
+  preview: "file-pdf",
+  calculation: :calculator,
+  year: "calendar-alt",
+  contributions: :plug,
+  community_assessed: :unlock,
+  designer_assessed: :lock,
+  dashboard: "tachometer-alt",
+  task: :tasks,
+  badge: :certificate,
+  nav_menu: :bars,
+  comment: :comments,
+  flagged: :flag,
+  community_verified: "check-circle",
+  steward_verified: "check-circle",
+  download: :download,
+  check: :check,
+  more: "ellipsis-h",
+  circle: :circle,
+  greater_than: "chevron-right",
+  less_than: "chevron-left"
+)
 
 format :html do
-  def icon_map key
-    val = ICON_MAP[key]
-    val.is_a?(Array) ? val.map(&:clone) : val
-  end
-
-  def mapped_icon_tag key
-    return unless key.present? && (icon_args = icon_map(key))
-    icon_tag(*Array.wrap(icon_args))
-  end
-
   def icon_labeled_field field, item_view=:name, opts={}
     field_nest field, opts.merge(view: :labeled,
                                  items: (opts[:items] || {}).merge(view: item_view))
-  end
-
-  def wikirate_icon_tag _icon, _opts={}
-    "not implemented"
   end
 end

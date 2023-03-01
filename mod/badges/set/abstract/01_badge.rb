@@ -12,16 +12,16 @@ format :html do
 
   view :level do
     wrap_with :div, class: "badge-certificate" do
-      certificate(badge_level)
+      badge_icon(badge_level)
     end
   end
 
   view :name_with_certificate do
-    "#{certificate(badge_level)} #{card.name}"
+    "#{badge_icon(badge_level)} #{card.name}"
   end
 
   view :link_with_certificate do
-    "#{certificate(badge_level)} #{_render_link}"
+    "#{badge_icon(badge_level)} #{_render_link}"
   end
 
   view :badge, unknown: true do

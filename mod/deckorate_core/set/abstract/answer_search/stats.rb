@@ -148,7 +148,7 @@ format :html do
 
   def answer_count_badge_label codename, count
     simple_label = badge_label(codename).vary("capitalize").pluralize count
-    if (icon = mapped_icon_tag codename)
+    if (icon = icon_tag codename)
       responsive_count_badge_label icon_tag: icon, simple_label: simple_label
     else
       simple_label

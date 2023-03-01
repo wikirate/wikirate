@@ -126,7 +126,7 @@ format :html do
   end
 
   def toggle_icon
-    current_tab ? fa_icon("chevron-down") : fa_icon("chevron-right")
+    icon_tag(current_tab ? :expand : :collapse)
   end
 
   def toggle_action

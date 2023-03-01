@@ -10,6 +10,6 @@
     - if (current_index + 1) < guide_names.size
       - nexxt = guide_names[current_index + 1]
       - link_text = capture_haml do
-        %i.fas.fa-arrow-right
+        = icon_tag :next
         = nexxt
       = link_to_card nexxt, link_text

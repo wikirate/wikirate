@@ -41,10 +41,6 @@ format :html do
     voo.hide :menu
   end
 
-  def angle dir
-    fa_icon "angle-#{dir}", class: "text-secondary"
-  end
-
   def multi_company?
     dataset_card && dataset_card.num_companies > 1
   end

@@ -53,9 +53,11 @@ format :html do
 
   def verification_marker
     h = verification_hash
-    return "" unless (icon = h[:icon])
+    verification = h[:name]
+    return "" unless basket[:icons][:material][verification]
 
-    fa_icon icon, title: h[:title], class: "verification-#{h[:klass] || h[:name]}"
+    icon_tag verification, title: h[:title],
+                           class: "verification-#{h[:klass] || verification}"
   end
 
   def imported_marker
