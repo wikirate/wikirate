@@ -37,10 +37,10 @@
   :codename: nav_menu
   :content: |
     About
-    [[:wikirate_platform | About WikiRate]]
-    [[:wikirate_data | Data]]
-    [[:wikirate_community | Community]]
-    [[:wikirate_impact | Impact]]
+    [[/about | About WikiRate]]
+    [[/data | Data]]
+    [[/community | Community]]
+    [[/impact | Impact]]
     Resources
     [[Use the API|API]]
     [[Guides]]
@@ -48,11 +48,7 @@
     [[:recent|Recent Changes]]
     [[Ticket|Report Issue]]
 
-- :name: About
-  :codename: wikirate_platform
-  :conflict: override
-
-- :name: WikiRate Community
+- :name: Community
   :codename: wikirate_community
 
 - :name: Impact
@@ -207,6 +203,10 @@
       $form-select-border-radius: 50.2rem;
       $form-select-border-radius-lg: 50.3rem;
       $input-border-radius: 50.4rem;
+      
+      $s2bs5-border-radius: .25rem;
+      $s2bs5-border-radius-sm: .25rem;
+      $s2bs5-border-radius-lg: .25rem;
       
       // NOTE: scroll-behavior: smooth breaks cypress tests
       $enable-smooth-scroll: false;

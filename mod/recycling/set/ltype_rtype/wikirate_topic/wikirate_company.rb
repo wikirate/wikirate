@@ -32,12 +32,12 @@ format :html do
 
   def answer_count_badge
     labeled_badge number_with_delimiter(answer_count),
-                  mapped_icon_tag(:metric_answer),
+                  icon_tag(:metric_answer),
                   klass: "RIGHT-answer", title: "Answers"
   end
 
   def metric_count_badge
-    labeled_badge topic_metric.count, mapped_icon_tag(:metric),
+    labeled_badge topic_metric.count, icon_tag(:metric),
                   klass: "RIGHT-metric", title: "Metrics"
   end
 
