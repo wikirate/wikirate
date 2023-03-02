@@ -1,27 +1,22 @@
-%footer#wikirate-footer.container-fluid.bg-primary.nodblclick
+%footer#wikirate-footer.container-fluid.bg-light.nodblclick
   .container.p-5
     .row.footer-link-lists
-      .col-3
+      .col-4.p-3.ps-0
         = nest :logo
         %p.py-2
           WikiRate is an initiative of
           WikiRate International eV
-        %p.py-2
-          Powered by
-          = link_to "Decko", href: "https://decko.org"
 
-      - %w[licensing policies legal].each do |section|
 
-        .col-3.p-3
+      - %w[legal contact].each do |section|
+
+        .footer-link-list.col-4.p-3
           = nest :"footer_#{section}_list", view: :titled, title: section, hide: :menu
 
+    %hr
     .row.footer-footer
-      .col-9
-        .py-3.wikirate-license.me-2
-          = nest :wikirate_license, view: :core
-      .col-3
-        .py-3.social-links.ms-2
-          - social_media_links.each do |platform, url|
-            %a{ href: url }
-              = icon_tag platform.downcase, brand: true, class: "me-2"
+      %p.py-2
+        Powered by
+        = link_to "Decko", href: "https://decko.org"
+
 
