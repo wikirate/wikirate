@@ -5,11 +5,10 @@
       = nest designer, view: :thumbnail, size: :medium
       .py-3.small
         .homepage-metrics-designed
-          //With
-          = designer.metrics_designed_card.count
-          metrics designed
-        - if (pcount = designer.projects_organized_card.count) > 0
-          .homepage-projects-organized
-            //And
-            = pcount
-            projects organized
+          = count = designer.metrics_designed_card.count
+          = "metric".pluralize count
+        -# - if (pcount = designer.projects_organized_card.count) > 0
+        -#   .homepage-projects-organized
+        -#     //And
+        -#     = pcount
+        -#     projects organized

@@ -4,9 +4,9 @@
     
   .py-5
     .homepage-involved-cards{ data: {
-      slick: { #infinite: false,
-               centerMode: true,
-               slidesToShow: 3,
+      slick: { infinite: false,
+               #centerMode: true,
+               slidesToShow: 3.5,
                prevArrow: ".homepage-involved .wr-prev",
                nextArrow: ".homepage-involved .wr-next",
                responsive: [
@@ -16,5 +16,3 @@
     } }
       - %i[homepage blurb].card.item_cards.each do |blurb|
         = nest blurb, view: :action_card
-
-

@@ -148,7 +148,9 @@
   :codename: data_usage
   :fields:
     :title: Start using our data today
-    :body: Are you using WikiRate data and want to share...
+    :body: |
+      You can download data from any page on WikiRate or use our API to 
+      extract data in bulk.
 
 - :type: :blurb
   :codename: data_special1
@@ -292,17 +294,17 @@
     :title: Sign up now
     :uri: "/new/:signup"
     :body: | 
-      You, too, can hold companies accountable for their commitments to impacts 
-      on us and the environment.
+      You, too, can hold companies accountable for their commitments and impacts 
+      on people and the planet.
 
 - :type: :blurb
   :codename: homepage_action2
   :fields:
-    :title: Join our upcoming open data event
-    :uri:
+    :title: Join an upcoming event
+    :uri: https://www.wikirateproject.org/events
     :body: |
-      Meet, Learn, and Connect on real-world projects using open data to make 
-      the world more sustainable and equitable.
+      Meet, learn, and connect on real-world projects that use open data to make the 
+      world more sustainable and equitable.
 
 - :type: :blurb
   :codename: homepage_action3
@@ -310,31 +312,61 @@
     :title: Become a data contributor
     :uri:
     :body: |
-      Learn about how you as a contributor can collectively gather evidence that 
-      challenges the status quo of sustainability reporting.
+      Learn how you can contribute and help gather evidence that challenges the status 
+      quo of sustainability reporting
 
 - :type: :blurb
   :codename: homepage_action4
   :fields:
-    :title: Join a project
-    :uri: "/:project"
-    :body: Find out real-world projects you can dive straight into.
+    :title: Let’s set up a project together
+    :uri: "https://wikirateproject.org/Contact_Us"
+    :body: Get in touch with the WikiRate team to set up a project.
 
 - :type: :blurb
   :codename: homepage_action5
   :fields:
-    :title: Become an academic partner
-    :uri:
+    :title: Add your dataset
+    :uri: https://wikirate.org/Import_Answers
     :body: |
-      Learn about how to teach students about corporate sustainability reporting 
-      with a hands-on research project.
+      Learn how to make your data available for others to use and build on by 
+      archiving it on the platform.
 
 - :type: :blurb
   :codename: homepage_action6
   :fields:
-    :title: Let’s set up a project together
-    :uri: "/new/:project"
-    :body: Get in touch with the WikiRate team to set up a project.
+    :title: Use our API
+    :uri:  https://wikirate.org/Use_the_API
+    :body: |
+      Check out how you can access WikiRate data programmatically using our powerful 
+      REST API.
+
+- :type: :blurb
+  :codename: community_cta
+  :fields:
+    :title: Check out the latest contribution opportunities
+    :uri: https://express.adobe.com/page/o6z9GKWQ6z6lT/
+    :body: Cannot wait to get involved? Explore the latest projects that could really use your help.
+
+- :type: :blurb
+  :codename: about_cta
+  :fields:
+    :title: Partner with WikiRate International
+    :uri: https://wikirateproject.org/About_Us
+    :body: Check out the ways in which the WikiRate team can help you
+
+- :type: :blurb
+  :codename: contact_cta1
+  :fields:
+    :title: Talk to a human
+    :uri: https://wikirateproject.org/Contact_Us
+    :body: Contact us at WikiRate International
+
+- :type: :blurb
+  :codename: contact_cta2
+  :fields:
+    :title: Get email updates on the latest community and platform developments
+    :uri: https://wikirate.us7.list-manage.com/subscribe/post?u=be57db47b40c6b1c7e9ef0b36&id=1354650004
+    :body: Subscribe for updates
 
 
 
@@ -351,7 +383,7 @@
     - :values_blurb3
 
 - :name:
-    - :wikirate_platform
+    - :about
     - :blurb
   :type: :list
   :conflict: override

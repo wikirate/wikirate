@@ -50,7 +50,7 @@
     .thumbnail-text {
       text-align: center;
       a {
-        color: $gray-600 !important;
+        color: inherit !important;
       }
     }
   }
@@ -104,8 +104,11 @@
 }
 
 .action-card .card {
+  h4 {
+    color: $purple-grad-1;
+  }
   padding: 1rem;
-  background: $light;
+  background: $white;
   box-shadow: $box-shadow;
   border: 0;
   min-height: 300px;
@@ -121,16 +124,16 @@
 }
 
 button.wr-arrow {
-  color: $purple-grad-1;
+  color: $purple;
   background-color: $white;
   font-size: x-large;
   margin-left: 0.8em;
-  padding: 0.2em 0.45em;
+  padding: 0.2em;
   display: flex;
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: $purple-grad-1;
+    background-color: $purple;
     color: $white;
   }
 }

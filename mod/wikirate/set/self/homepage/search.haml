@@ -1,8 +1,9 @@
-= section_header :homepage_search_heading
-.py-5
-  = nest :search, view: :search_box
-.home-search-suggestions
-  Hot searches:
-  - %i[search featured].card.item_names.each do |keyword|
-    %a._hot-keyword.btn.btn-outline-primary.mx-2
-      = keyword
+.w-75.mx-auto.text-center
+  = section_header :homepage_search_heading
+  .py-5
+    = nest :search, view: :search_box
+  .home-search-suggestions
+    Popular searches:
+    - %i[search featured].card.item_names.each do |keyword|
+      %a._hot-keyword.btn.btn-outline-primary.mx-2
+        = keyword

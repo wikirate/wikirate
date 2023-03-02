@@ -12,6 +12,6 @@
       - type = type_param.cardname
       - path_opts = { mark: type, query: { type: type } }
       - path_opts[:filter] = { name: search_keyword } if search_keyword
-      = link_to "Browse and Filter #{type.vary :plural} #{fa_icon 'arrow-right'}",
+      = link_to "Browse and Filter #{type.vary :plural} #{icon_tag :forward}",
                 path: path_opts
 

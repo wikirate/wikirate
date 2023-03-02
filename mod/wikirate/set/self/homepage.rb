@@ -34,8 +34,9 @@ format :html do
     absolutize_edit_fields [
       :homepage_search_heading,
       %i[search featured],
-      %i[cardtype featured]
-    ] + count_categories.map { |c| [c, :header] } + [
+      %i[cardtype featured],
+      %i[homepage blurb],
+      # ] + count_categories.map { |c| [c, :header] } + [
       :homepage_involved_heading,
       :homepage_delta_heading,
       %i[homepage metric],
