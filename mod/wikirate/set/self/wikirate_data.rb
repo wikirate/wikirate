@@ -7,7 +7,6 @@ format :html do
                            %i[wikirate_data list].card.item_names +
                            %i[wikirate_data blurb].card.item_names +
                            [:data_usage]
-
   end
 
   view :page, template: :haml
