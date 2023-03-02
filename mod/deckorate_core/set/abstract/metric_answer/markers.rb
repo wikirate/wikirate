@@ -16,7 +16,6 @@ format :html do
   def comment_marker
     # the following will work once relationships have answer lookups
     # return "" unless card.lookup&.comments&.present?
-    # fa_icon :comment, title: "Has comments"
     field_nest :discussion, view: :marker
   end
 end
