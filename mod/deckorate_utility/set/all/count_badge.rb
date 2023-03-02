@@ -25,7 +25,7 @@ format :html do
   def count_badge_icon
     return unless card.codename
 
-    mapped_icon_tag card.codename
+    icon_tag card.codename
   end
 
   def simple_count_badge_label

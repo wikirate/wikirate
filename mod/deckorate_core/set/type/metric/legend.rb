@@ -41,7 +41,7 @@ format :html do
 
   def category_legend
     wrap_with :span, class: "small", title: "value options" do
-      [fa_icon("list"), limited_category_legend_options].flatten.compact.join " "
+      [icon_tag(:list), limited_category_legend_options].flatten.compact.join " "
     end
   end
 

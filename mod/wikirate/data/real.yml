@@ -1,274 +1,275 @@
 ---
-- homepage
-- footer
 - blurbs
 
-- :name: "*logo"
-  :type: :image
-  :codename: logo
-  :image: logo.png
-  :storage_type: :coded
-  :conflict: override
-
-- :name: WikiRate Team
-  :codename: wikirate_team
-  :type: :role
-
-- :name:
-    - :metric
-    - :type
-    - :delete
-  :type: :list
-  :content: Wikirate Team
-
-- :name: wikirate footer
-  :type: :html
-  :codename: wikirate_footer
-
-- :name: wikirate license
-  :type: :html
-  :codename: wikirate_license
-
-- :name: nav bar
-  :codename: nav_bar
-
-- :name: nav menu
-  :type: :basic
-  :codename: nav_menu
-  :content: |
-    About
-    [[:wikirate_platform | About WikiRate]]
-    [[:wikirate_data | Data]]
-    [[:wikirate_community | Community]]
-    [[:wikirate_impact | Impact]]
-    Resources
-    [[Use the API|API]]
-    [[Guides]]
-    [[FAQ]]
-    [[:recent|Recent Changes]]
-    [[Ticket|Report Issue]]
-
-- :name: About
-  :codename: wikirate_platform
-  :conflict: override
-
-- :name: WikiRate Community
-  :codename: wikirate_community
-
-- :name: Impact
-  :codename: wikirate_impact
-
-- :name: Data
-  :codename: wikirate_data
-
-- :name: Contact Us
-  :codename: contact_us
-
-- :name: Output
-  :codename: output
-  :type: :cardtype
-
-- :name: output type
-  :codename: output_type
-
-- :name: Testimonial
-  :codename: testimonial
-  :type: :cardtype
-
-- :name: Blurb
-  :codename: blurb
-  :type: :cardtype
-  :fields:
-    :type:
-      :fields:
-        :autoname: Blurb 0001
-
-- :name: newsletter signup
-  :codename: newsletter_signup
-
-- :name: wikirate skin
-  :type: :bootswatch_skin
-  :codename: wikirate_skin
-  :conflict: override
-  :fields:
-    :stylesheets: ""
-    :colors: |
-      $blue: #2D2374 !default;
-      $purple: #484c9d !default;
-      $red: #912e06 !default;
-      $orange: #f7733d !default;
-      $yellow: #f7bd1d !default;
-      $green: #034E42 !default;
-      $teal: #09ab90 !default;
-      $black: #1d1e3f !default;
-      $white: #ffffff !default;
-
-      $gray-100: #f7f7f8 !default;
-      $gray-200: #e9ecef !default;
-      $gray-300: #dee2e6 !default;
-      $gray-400: #ced4da !default;
-      $gray-500: #adb5bd !default;
-      $gray-600: #6c757d !default;
-      $gray-700: #495057 !default;
-      $gray-800: #343a40 !default;
-      $gray-900: #34343b !default;
-
-      $primary: $purple !default;
-      $secondary: $gray-600 !default;
-      $success: $teal !default;
-      $info: $purple !default;
-      $warning: $orange !default;
-      $danger: $red !default;
-      $light: $gray-100 !default;
-      $dark: $black !default;
-      $body-bg: $white !default;
-      $body-color: $gray-900 !default;
-    :variables: |
-      // NOTE: standard bootstrap color variables should be changed not
-      // here but in the +:color card
-
-      /*----------- WikiRate Categories ---------*/
-
-      $yellow-orange: #F7B13D;
-
-      $company-color: $purple;
-      $company-group-color: $company-color;
-      $metric-color: $green;
-      $answer-color: $metric-color;
-      $record-color: $metric-color;
-      $topic-color: $red;
-      $source-color: $metric-color;
-      $user-color: $green;
-      $research-group-color: $company-color;
-      $project-color: $topic-color;
-      $dataset-color: $topic-color;
-      $year-color: $yellow;
-
-      /*----------- WikiRate Scores ---------*/
-
-      $score-colors: (
-        "0": $red,
-        "1": #EA5C43,
-        "2": $orange,
-        "3": #F7923D,
-        "4": $yellow-orange,
-        "5": $yellow,
-        "6": #BFCA4B,
-        "7": $green,
-        "8": #65a300,
-        "9": $teal
-      );
-
-      /*----------- Other WikiRate-specific variables ---------*/
-
-      $light-purple:  #EDEBF9;
-      $light-purple-1: #fbfafe;
-      $light-purple-2: #dfdcf4;
-      $light-purple-3: #d2cdf0;
-      
-      $purple-grad-1: #6B5CD8;
-      $purple-grad-2: #7F73D5;
-      
-      $light-teal: #e4f6f3;
-      
-      
-      //      Teal            #09AB90
-      //      Light Teal        #e4f6f3
-      //      Shade 1        #f3fbfa
-      //      Shade 2        #d5f1ec
-      //      Shade 3        #c7ece6
-      //      
-      //      Red-O        #F7733D       
-      //      Light Red-O    #FAEFEA
-      //      Shade 1        #fefbfa
-      //      Shade 3        #f6e3da
-      //      Shade 4        #f2d7ca
-      
-      
-      $verification-flag-color: $red;
-      $top-bar-anchor-color: $primary;
-
-      // badge levels
-      $gold: gold;
-      $silver: silver;
-      $bronze: #cd7f32;
-
-      //----------- Bootstrap Overrides ---------
-
-      $border-color: $gray-200;
-      $table-group-separator-color: $gray-200;
-
-      $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
-      $box-shadow: 0 10px 20px 0 rgba($dark, .2);
-      $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
-            
-      $btn-border-radius: 49.9rem;
-      $btn-border-radius-lg: 50.1rem;
-      $form-select-border-radius: 50.2rem;
-      $form-select-border-radius-lg: 50.3rem;
-      $input-border-radius: 50.4rem;
-      
-      // NOTE: scroll-behavior: smooth breaks cypress tests
-      $enable-smooth-scroll: false;
-      
-      $input-btn-padding-x: 1rem;
-      $input-btn-padding-x-sm: 0.5rem;
-      $input-btn-padding-x-lg: 2rem;
-
-      //----------- Slick Overrides ---------
-
-      $slick-font-path: "[[/mod/wikirate/slick_fonts/]]";
-      $slick-loader-path: "[[/mod/wikirate/]]";
-      $slick-arrow-color: $primary;
-
-      //------------ transitions for smooth links
-      
-      $transition-speed: 0.08s;
-      a {
-        -webkit-transition: all $transition-speed ease;
-        -moz-transition:    all $transition-speed ease;
-        -ms-transition:     all $transition-speed ease;
-        -o-transition:      all $transition-speed ease;
-        transition:         all $transition-speed ease;
-      }
-- :name:
-    - :all
-    - :style
-  :type: :pointer
-  :content: wikirate skin
-
-- :name: Home
-  :type: :html
-  :codename: homepage
-
-- :name:
-    - :designer
-    - :featured
-  :type: :list
-
-- :name:
-    - :account
-    - :featured
-  :type: :list
-
-- :name: Our Story
-  :codename: our_story
-  :content: |
-    <p>
-      WikiRate is an open data platform powered by a diverse community that collects, 
-      analyzes and shares data on company commitments, actions and impacts on people and 
-      the planet.
-    </p>
-
-    <p>
-      As company stakeholders we all have avenues to influence corporate behavior. It
-      might be taking more informed consumption, investment, employment, or governance 
-      decisions. It might be writing a compelling academic paper, running an advocacy 
-      campaign, or submitting a proposal for legislative reform. No matter what our road 
-      to impact is, the data is our shared beginning.
-    </p>
-
-    <p>Learn more about The Wikirate Project e.V., the organization behind WikiRate.</p>
-
-
+#- homepage
+#- footer
+#
+#- :name: "*logo"
+#  :type: :image
+#  :codename: logo
+#  :image: logo.png
+#  :storage_type: :coded
+#  :conflict: override
+#
+#- :name: WikiRate Team
+#  :codename: wikirate_team
+#  :type: :role
+#
+#- :name:
+#    - :metric
+#    - :type
+#    - :delete
+#  :type: :list
+#  :content: Wikirate Team
+#
+#- :name: wikirate footer
+#  :type: :html
+#  :codename: wikirate_footer
+#
+#- :name: wikirate license
+#  :type: :html
+#  :codename: wikirate_license
+#
+#- :name: nav bar
+#  :codename: nav_bar
+#
+#- :name: nav menu
+#  :type: :basic
+#  :codename: nav_menu
+#  :content: |
+#    About
+#    [[/about | About WikiRate]]
+#    [[/data | Data]]
+#    [[/community | Community]]
+#    [[/impact | Impact]]
+#    Resources
+#    [[Use the API|API]]
+#    [[Guides]]
+#    [[FAQ]]
+#    [[:recent|Recent Changes]]
+#    [[Ticket|Report Issue]]
+#
+#- :name: Community
+#  :codename: wikirate_community
+#
+#- :name: Impact
+#  :codename: wikirate_impact
+#
+#- :name: Data
+#  :codename: wikirate_data
+#
+#- :name: Contact Us
+#  :codename: contact_us
+#
+#- :name: Output
+#  :codename: output
+#  :type: :cardtype
+#
+#- :name: output type
+#  :codename: output_type
+#
+#- :name: Testimonial
+#  :codename: testimonial
+#  :type: :cardtype
+#
+#- :name: Blurb
+#  :codename: blurb
+#  :type: :cardtype
+#  :fields:
+#    :type:
+#      :fields:
+#        :autoname: Blurb 0001
+#
+#- :name: newsletter signup
+#  :codename: newsletter_signup
+#
+#- :name: wikirate skin
+#  :type: :bootswatch_skin
+#  :codename: wikirate_skin
+#  :conflict: override
+#  :fields:
+#    :stylesheets: ""
+#    :colors: |
+#      $blue: #2D2374 !default;
+#      $purple: #484c9d !default;
+#      $red: #912e06 !default;
+#      $orange: #f7733d !default;
+#      $yellow: #f7bd1d !default;
+#      $green: #034E42 !default;
+#      $teal: #09ab90 !default;
+#      $black: #1d1e3f !default;
+#      $white: #ffffff !default;
+#
+#      $gray-100: #f7f7f8 !default;
+#      $gray-200: #e9ecef !default;
+#      $gray-300: #dee2e6 !default;
+#      $gray-400: #ced4da !default;
+#      $gray-500: #adb5bd !default;
+#      $gray-600: #6c757d !default;
+#      $gray-700: #495057 !default;
+#      $gray-800: #343a40 !default;
+#      $gray-900: #34343b !default;
+#
+#      $primary: $purple !default;
+#      $secondary: $gray-600 !default;
+#      $success: $teal !default;
+#      $info: $purple !default;
+#      $warning: $orange !default;
+#      $danger: $red !default;
+#      $light: $gray-100 !default;
+#      $dark: $black !default;
+#      $body-bg: $white !default;
+#      $body-color: $gray-900 !default;
+#    :variables: |
+#      // NOTE: standard bootstrap color variables should be changed not
+#      // here but in the +:color card
+#
+#      /*----------- WikiRate Categories ---------*/
+#
+#      $yellow-orange: #F7B13D;
+#
+#      $company-color: $purple;
+#      $company-group-color: $company-color;
+#      $metric-color: $green;
+#      $answer-color: $metric-color;
+#      $record-color: $metric-color;
+#      $topic-color: $red;
+#      $source-color: $metric-color;
+#      $user-color: $green;
+#      $research-group-color: $company-color;
+#      $project-color: $topic-color;
+#      $dataset-color: $topic-color;
+#      $year-color: $yellow;
+#
+#      /*----------- WikiRate Scores ---------*/
+#
+#      $score-colors: (
+#        "0": $red,
+#        "1": #EA5C43,
+#        "2": $orange,
+#        "3": #F7923D,
+#        "4": $yellow-orange,
+#        "5": $yellow,
+#        "6": #BFCA4B,
+#        "7": $green,
+#        "8": #65a300,
+#        "9": $teal
+#      );
+#
+#      /*----------- Other WikiRate-specific variables ---------*/
+#
+#      $light-purple:  #EDEBF9;
+#      $light-purple-1: #fbfafe;
+#      $light-purple-2: #dfdcf4;
+#      $light-purple-3: #d2cdf0;
+#
+#      $purple-grad-1: #6B5CD8;
+#      $purple-grad-2: #7F73D5;
+#
+#      $light-teal: #e4f6f3;
+#
+#
+#      //      Teal            #09AB90
+#      //      Light Teal        #e4f6f3
+#      //      Shade 1        #f3fbfa
+#      //      Shade 2        #d5f1ec
+#      //      Shade 3        #c7ece6
+#      //
+#      //      Red-O        #F7733D
+#      //      Light Red-O    #FAEFEA
+#      //      Shade 1        #fefbfa
+#      //      Shade 3        #f6e3da
+#      //      Shade 4        #f2d7ca
+#
+#
+#      $verification-flag-color: $red;
+#      $top-bar-anchor-color: $primary;
+#
+#      // badge levels
+#      $gold: gold;
+#      $silver: silver;
+#      $bronze: #cd7f32;
+#
+#      //----------- Bootstrap Overrides ---------
+#
+#      $border-color: $gray-200;
+#      $table-group-separator-color: $gray-200;
+#
+#      $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
+#      $box-shadow: 0 10px 20px 0 rgba($dark, .2);
+#      $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
+#
+#      $btn-border-radius: 49.9rem;
+#      $btn-border-radius-lg: 50.1rem;
+#      $form-select-border-radius: 50.2rem;
+#      $form-select-border-radius-lg: 50.3rem;
+#      $input-border-radius: 50.4rem;
+#
+#      $s2bs5-border-radius: .25rem;
+#      $s2bs5-border-radius-sm: .25rem;
+#      $s2bs5-border-radius-lg: .25rem;
+#
+#      // NOTE: scroll-behavior: smooth breaks cypress tests
+#      $enable-smooth-scroll: false;
+#
+#      $input-btn-padding-x: 1rem;
+#      $input-btn-padding-x-sm: 0.5rem;
+#      $input-btn-padding-x-lg: 2rem;
+#
+#      //----------- Slick Overrides ---------
+#
+#      $slick-font-path: "[[/mod/wikirate/slick_fonts/]]";
+#      $slick-loader-path: "[[/mod/wikirate/]]";
+#      $slick-arrow-color: $primary;
+#
+#      //------------ transitions for smooth links
+#
+#      $transition-speed: 0.08s;
+#      a {
+#        -webkit-transition: all $transition-speed ease;
+#        -moz-transition:    all $transition-speed ease;
+#        -ms-transition:     all $transition-speed ease;
+#        -o-transition:      all $transition-speed ease;
+#        transition:         all $transition-speed ease;
+#      }
+#- :name:
+#    - :all
+#    - :style
+#  :type: :pointer
+#  :content: wikirate skin
+#
+#- :name: Home
+#  :type: :html
+#  :codename: homepage
+#
+#- :name:
+#    - :designer
+#    - :featured
+#  :type: :list
+#
+#- :name:
+#    - :account
+#    - :featured
+#  :type: :list
+#
+#- :name: Our Story
+#  :codename: our_story
+#  :content: |
+#    <p>
+#      WikiRate is an open data platform powered by a diverse community that collects,
+#      analyzes and shares data on company commitments, actions and impacts on people and
+#      the planet.
+#    </p>
+#
+#    <p>
+#      As company stakeholders we all have avenues to influence corporate behavior. It
+#      might be taking more informed consumption, investment, employment, or governance
+#      decisions. It might be writing a compelling academic paper, running an advocacy
+#      campaign, or submitting a proposal for legislative reform. No matter what our road
+#      to impact is, the data is our shared beginning.
+#    </p>
+#
+#    <p>Learn more about The Wikirate Project e.V., the organization behind WikiRate.</p>
+#
+#
 
