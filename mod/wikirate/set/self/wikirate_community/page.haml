@@ -28,9 +28,42 @@
 
 %section#about-community-members.container.vertical-thumbnails.p-5.vertical
   = section_header :community_member_heading
-  .row.py-5
-    - %i[account featured].card.item_cards.each do |designer|
-      .col-2
-        = nest designer, view: :thumbnail, size: :medium
+  .py-5
+    .community-action-cards{ data: {
+        slick: { #infinite: false,
+                 centerMode: true,
+                 slidesToShow: 3,
+                 prevArrow: "#about-community-members .wr-prev",
+                 nextArrow: "#about-community-members .wr-next",
+                 responsive: [
+                   { breakpoint: "992", settings: { slidesToShow: 5 } },
+                   { breakpoint: "768",  settings: { slidesToShow: 3 } }
+                 ] }.to_json
+      } }
+      - %i[account featured].card.item_cards.each do |designer|
+        .featured-member
+          = nest designer, view: :thumbnail, size: :medium
+    .text-center.py-3
+      = render_nav_arrows
 
-= nest :contact_us, view: :section
+%section.contact-us.container.p-5
+  .row
+    .col-6.d-flex
+      .card.bg-light-purple.w-100
+        .card-body
+          %h4.card-title
+            Check out the latest contribution opportunities
+
+          %a
+            Learn More
+            = icon_tag :forward
+    .col-6.d-flex
+      .card.bg-white.w-100
+        .card-body
+          %h4.card-title
+            Stay up to date on the latest community and platform developments
+
+          %a
+            Subscribe
+            = icon_tag :forward
+

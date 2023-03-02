@@ -1,7 +1,12 @@
 #wikirate-footer {
-  color: $white;
-  h2, a {
-    color: $white !important;
+  .footer-link-list {
+    h2 {
+      font-size: 1em;
+      text-transform: uppercase;
+    }
+    h2, a {
+      color: inherit !important;
+    }
   }
   h2 {
     text-transform: uppercase;
