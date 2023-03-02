@@ -1,9 +1,7 @@
-- api_button = {  url: "/Use_our_Api", text: "Use our API" }
-
 %section#about-data-header.container-fluid.bg-light.header-with-bg
   .container.p-5.py-3
     = render_breadcrumbs
-    = section_header :data_main_heading, api_button
+    = section_header :data_main_heading, url: "/Use_our_Api", text: "Use our API"
 
 %section.p-5.container.text-center
   .w-75.d-inline-block
@@ -19,7 +17,7 @@
         = field_nest :list, view: :core, items: { view: :flipper }
 
 %section.container.p-5
-  #reliable-data-header.my-5.p-5
+  #reliable-data-header.my-5.p-4
     .p-5
-      = section_header :data_usage, api_button
+      = section_header :data_usage, url: "/Exporting_Answers", text: "Export Guide"
 

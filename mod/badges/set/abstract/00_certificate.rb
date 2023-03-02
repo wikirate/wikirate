@@ -1,6 +1,6 @@
 format :html do
-  def certificate level
-    fa_icon :certificate, level
+  def badge_icon level
+    icon_tag :badge, level
   end
 
   view :count, unknown: true do
@@ -13,6 +13,6 @@ format :html do
   end
 
   def level_count level
-    "#{certificate(level)} #{badge_count(level)}"
+    "#{badge_icon(level)} #{badge_count(level)}"
   end
 end

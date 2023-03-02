@@ -37,10 +37,10 @@
   :codename: nav_menu
   :content: |
     About
-    [[:wikirate_platform | About WikiRate]]
-    [[:wikirate_data | Data]]
-    [[:wikirate_community | Community]]
-    [[:wikirate_impact | Impact]]
+    [[/about | About WikiRate]]
+    [[/data | Data]]
+    [[/community | Community]]
+    [[/impact | Impact]]
     Resources
     [[Use the API|API]]
     [[Guides]]
@@ -48,11 +48,7 @@
     [[:recent|Recent Changes]]
     [[Ticket|Report Issue]]
 
-- :name: About
-  :codename: wikirate_platform
-  :conflict: override
-
-- :name: WikiRate Community
+- :name: Community
   :codename: wikirate_community
 
 - :name: Impact
@@ -165,26 +161,26 @@
       $light-purple-1: #fbfafe;
       $light-purple-2: #dfdcf4;
       $light-purple-3: #d2cdf0;
-      
+
       $purple-grad-1: #6B5CD8;
       $purple-grad-2: #7F73D5;
-      
+
       $light-teal: #e4f6f3;
-      
-      
+
+
       //      Teal            #09AB90
       //      Light Teal        #e4f6f3
       //      Shade 1        #f3fbfa
       //      Shade 2        #d5f1ec
       //      Shade 3        #c7ece6
-      //      
-      //      Red-O        #F7733D       
+      //
+      //      Red-O        #F7733D
       //      Light Red-O    #FAEFEA
       //      Shade 1        #fefbfa
       //      Shade 3        #f6e3da
       //      Shade 4        #f2d7ca
-      
-      
+
+
       $verification-flag-color: $red;
       $top-bar-anchor-color: $primary;
 
@@ -201,16 +197,20 @@
       $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
       $box-shadow: 0 10px 20px 0 rgba($dark, .2);
       $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
-            
+
       $btn-border-radius: 49.9rem;
       $btn-border-radius-lg: 50.1rem;
       $form-select-border-radius: 50.2rem;
       $form-select-border-radius-lg: 50.3rem;
       $input-border-radius: 50.4rem;
-      
+
+      $s2bs5-border-radius: .25rem;
+      $s2bs5-border-radius-sm: .25rem;
+      $s2bs5-border-radius-lg: .25rem;
+
       // NOTE: scroll-behavior: smooth breaks cypress tests
       $enable-smooth-scroll: false;
-      
+
       $input-btn-padding-x: 1rem;
       $input-btn-padding-x-sm: 0.5rem;
       $input-btn-padding-x-lg: 2rem;
@@ -222,7 +222,7 @@
       $slick-arrow-color: $primary;
 
       //------------ transitions for smooth links
-      
+
       $transition-speed: 0.08s;
       a {
         -webkit-transition: all $transition-speed ease;
@@ -255,16 +255,16 @@
   :codename: our_story
   :content: |
     <p>
-      WikiRate is an open data platform powered by a diverse community that collects, 
-      analyzes and shares data on company commitments, actions and impacts on people and 
+      WikiRate is an open data platform powered by a diverse community that collects,
+      analyzes and shares data on company commitments, actions and impacts on people and
       the planet.
     </p>
 
     <p>
       As company stakeholders we all have avenues to influence corporate behavior. It
-      might be taking more informed consumption, investment, employment, or governance 
-      decisions. It might be writing a compelling academic paper, running an advocacy 
-      campaign, or submitting a proposal for legislative reform. No matter what our road 
+      might be taking more informed consumption, investment, employment, or governance
+      decisions. It might be writing a compelling academic paper, running an advocacy
+      campaign, or submitting a proposal for legislative reform. No matter what our road
       to impact is, the data is our shared beginning.
     </p>
 

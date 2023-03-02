@@ -173,14 +173,14 @@ Then(/^I should not see a "(.*)" icon$/) do |icon|
   expect(page.body).to_not have_tag "i.fa-#{ICONS[icon]}"
 end
 
-When(/^I click the drop down button$/) do
-  find(".fa-caret-right").click
-end
-
-When(/^I click the drop down button for "(.*)"$/) do |text|
-  find("td", text: text).find(:xpath, "..")
-                        .find(".fa-caret-right").click
-end
+# When(/^I click the drop down button$/) do
+#   find(".fa-caret-right").click
+# end
+#
+# When(/^I click the drop down button for "(.*)"$/) do |text|
+#   find("td", text: text).find(:xpath, "..")
+#                         .find(".fa-caret-right").click
+# end
 
 Then(/^I should see a prompt to add "(.+)"$/) do |value|
   expect(page.body).to have_tag ".unknown-link" do
