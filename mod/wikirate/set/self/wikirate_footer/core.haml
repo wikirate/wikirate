@@ -1,17 +1,18 @@
 %footer#wikirate-footer.container-fluid.bg-light.nodblclick
   .container.p-5
-    .row.footer-link-lists
-      .col-4.p-3.ps-0
+    .row.footer-link-lists.mb-5
+      .col-4
         = nest :logo
-        %p.py-2
+        %p.py-2.pe-5
           WikiRate is an initiative of
           WikiRate International eV
 
 
       - %w[legal contact].each do |section|
 
-        .footer-link-list.col-4.p-3
-          = nest :"footer_#{section}_list", view: :titled, title: section, hide: :menu
+        .footer-link-list.col-4
+          .p-3
+            = nest :"footer_#{section}_list", view: :titled, title: section, hide: :menu
 
     %hr
     .row.footer-footer

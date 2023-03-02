@@ -3,7 +3,7 @@
     - if current_index > 0
       - previous = guide_names[current_index - 1]
       - link_text = capture_haml do
-        %i.fas.fa-arrow-left
+        = icon_tag :previous
         = previous
       = link_to_card previous, link_text
   .next-guide

@@ -61,7 +61,7 @@ changeYearInMetricLinks = (year)->
   $("._research-metric-link").each ->
     link = $(this)
     url = new URL(link.prop("href"))
-    url.searchParams.set "year", "2020"
+    url.searchParams.set "year", year
     link.prop "href", url.toString()
 
 changeHiddenName = (nameField, year) ->

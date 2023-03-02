@@ -128,14 +128,14 @@
       $yellow-orange: #F7B13D;
 
       $company-color: $purple;
-      $company-group-color: $company-color;
-      $metric-color: $green;
+      $company-group-color: $red;
+      $metric-color: $purple;
       $answer-color: $metric-color;
       $record-color: $metric-color;
-      $topic-color: $red;
+      $topic-color: $green;
       $source-color: $metric-color;
       $user-color: $green;
-      $research-group-color: $company-color;
+      $research-group-color: $purple;
       $project-color: $topic-color;
       $dataset-color: $topic-color;
       $year-color: $yellow;

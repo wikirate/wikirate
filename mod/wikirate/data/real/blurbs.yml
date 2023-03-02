@@ -340,36 +340,33 @@
       Check out how you can access WikiRate data programmatically using our powerful 
       REST API.
 
+- :type: :blurb
+  :codename: community_cta
+  :fields:
+    :title: Check out the latest contribution opportunities
+    :uri: https://express.adobe.com/page/o6z9GKWQ6z6lT/
+    :body: Cannot wait to get involved? Explore the latest projects that could really use your help.
 
-#- :type: :blurb
-#  :codename: about_cta1
-#  :fields:
-#    :title: Partner with WikiRate International
-#    :uri:
-#    :body: Check out the ways in which the WikiRate team can help you
-#
-#- :type: :blurb
-#  :codename: about_cta2
-#  :fields:
-#    :title: Talk to a human
-#    :uri:
-#    :body: Contact us on WikiRate International
-#
-#- :type: :blurb
-#  :codename: community_cta1
-#  :fields:
-#    :title: Check out the latest contribution opportunities
-#    :uri:
-#    :body:
-#
-#- :type: :blurb
-#  :codename: community_cta2
-#  :fields:
-#    :title:
-#    :uri:
-#    :body:
+- :type: :blurb
+  :codename: about_cta
+  :fields:
+    :title: Partner with WikiRate International
+    :uri: https://wikirateproject.org/About_Us
+    :body: Check out the ways in which the WikiRate team can help you
 
+- :type: :blurb
+  :codename: contact_cta1
+  :fields:
+    :title: Talk to a human
+    :uri: https://wikirateproject.org/Contact_Us
+    :body: Contact us at WikiRate International
 
+- :type: :blurb
+  :codename: contact_cta2
+  :fields:
+    :title: Get email updates on the latest community and platform developments
+    :uri: https://wikirate.us7.list-manage.com/subscribe/post?u=be57db47b40c6b1c7e9ef0b36&id=1354650004
+    :body: Subscribe for updates
 
 
 

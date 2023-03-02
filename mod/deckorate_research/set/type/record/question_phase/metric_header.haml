@@ -2,16 +2,16 @@
 - if multi_metric?
   .row
     .col-10.metric-project-research.row.align-items-center
-      .col-1.h2
+      .col-2.h2
         = link_to_metric :prev, "Previous Question", metric_index - 1, icon_tag(:previous)
-      .col-10
+      .col-8
         = render_metric_option
         %label.text-secondary.py-3
           Question
           = metric_index + 1
           \/
           = metric_ids.size
-      .col-1.h2
+      .col-2.h2
         = link_to_metric :next, "Next Question", metric_index + 1, icon_tag(:next)
 
     .col-2.p-2
