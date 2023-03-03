@@ -343,6 +343,7 @@
 - :type: :blurb
   :codename: community_cta
   :fields:
+    :material_icon: volunteer_activism
     :title: Check out the latest contribution opportunities
     :uri: https://express.adobe.com/page/o6z9GKWQ6z6lT/
     :body: Cannot wait to get involved? Explore the latest projects that could really use your help.
@@ -350,6 +351,7 @@
 - :type: :blurb
   :codename: about_cta
   :fields:
+    :material_icon: handshake
     :title: Partner with WikiRate International
     :uri: https://wikirateproject.org/About_Us
     :body: Check out the ways in which the WikiRate team can help you
