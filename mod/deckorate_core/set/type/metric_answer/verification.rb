@@ -61,6 +61,6 @@ format :html do
   end
 
   def imported_marker
-    card.imported? ? icon_tag("upload", library: :font_awesome, title: "imported") : ""
+    card.imported? ? icon_tag(:upload, title: "imported") : ""
   end
 end

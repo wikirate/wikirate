@@ -39,6 +39,23 @@
   &.flipped {
     transform: rotateY(180deg);
   }
+
+  i.material-icons {
+    font-size: 4em;
+    color: $orange;
+  }
+
+  .faint-icon {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    opacity: 0.3;
+    bottom: 5px;
+    right: 2em;
+    overflow: hidden;
+    z-index: -1;
+  }
 }
 
 .flipper-title {
@@ -52,12 +69,8 @@
 
 .flipper-title-icon {
   text-align: center;
-  i {
-    font-size: 4em;
-    color: $orange;
-  }
 }
 
-.teal-flippers .flipper-title-icon i {
+.teal-flippers i.material-icons {
   color: $teal;
 }

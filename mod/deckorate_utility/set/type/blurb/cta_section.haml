@@ -1,8 +1,8 @@
 - body = field_nest :body, view: :core
 .cta-top
-  - if card.fetch :material_icon
+  - if card.fetch :icon
     .blurb-icon
-      = blurb_icon
+      = field_nest :icon, view: :core
   %h4.py-3.pt-4.card-title
     = field_nest :title, view: :core
   - if voo.title

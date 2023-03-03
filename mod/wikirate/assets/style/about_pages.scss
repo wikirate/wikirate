@@ -157,7 +157,6 @@ button.wr-arrow {
 
 .blurb-icon {
   background: $light;
-  display: inline-block;
   padding: 1em;
   border-radius: 50rem;
   width: 64px;
@@ -196,4 +195,23 @@ button.wr-arrow {
   h4, a, i, & {
     color: $white !important;
   }
+}
+
+.icon-left-text-right .blurb-icon {
+  color: white;
+  background-color: $purple-grad-1;
+  height: 5.2em;
+  width: 5.2em;
+  i {
+    font-size: 2.5em;
+  }
+}
+#our-values-section .blurb-stack .blurb-icon {
+  color: $teal;
+  background-color: $light-teal;
+}
+
+#special-data .blurb-stack .blurb-icon {
+  color: $purple;
+  background-color: $light-purple;
 }
