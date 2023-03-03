@@ -155,4 +155,63 @@ button.wr-arrow {
   }
 }
 
+.blurb-icon {
+  background: $light;
+  padding: 1em;
+  border-radius: 50rem;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.cta-card {
+  background-color: $light-purple;
+  .blurb-icon {
+    background-color: $white;
+  }
+  a, i {
+    color: $purple-grad-1 !important;
+    font-weight: bold;
+  }
+}
+
+#community-ctas .contact-cta-card {
+  background-color: $white;
+  .blurb-icon {
+    background-color: $light-purple;
+  }
+}
+
+#about-cta .cta-card {
+  background-color: $blue;
+  .blurb-icon {
+    background-color: $light-purple;
+    i {
+      color: $purple-grad-1 !important;
+    }
+  }
+  h4, a, i, & {
+    color: $white !important;
+  }
+}
+
+.icon-left-text-right .blurb-icon {
+  color: white;
+  background-color: $purple-grad-1;
+  height: 5.2em;
+  width: 5.2em;
+  i {
+    font-size: 2.5em;
+  }
+}
+#our-values-section .blurb-stack .blurb-icon {
+  color: $teal;
+  background-color: $light-teal;
+}
+
+#special-data .blurb-stack .blurb-icon {
+  color: $purple;
+  background-color: $light-purple;
+}

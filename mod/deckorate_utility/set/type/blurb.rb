@@ -1,17 +1,13 @@
 include_set Abstract::Flipper
 
-card_accessor :image
+card_accessor :icon, type: :phrase
 card_accessor :title, type: :phrase
 card_accessor :uri, type: :phrase
 card_accessor :body
 
 format :html do
   def edit_fields
-    %i[image title uri body]
-  end
-
-  def blurb_icon
-    material_icon_tag card.fetch(:material_icon)&.content
+    %i[icon title uri body]
   end
 
   view :core do
@@ -23,20 +19,22 @@ format :html do
   end
 
   view :box_middle do
-    field_nest :image, view: :core
+    field_nest :icon, view: :core
   end
 
   view :bar_left do
-    [field_nest(:image, view: :core, size: :small),
+    [field_nest(:right, view: :core, size: :small),
      field_nest(:title, view: :core)]
   end
 
   view :stack, template: :haml, wrap: :slot
   view :head_and_lead, template: :haml
-  view :image_left_text_right, template: :haml
+  view :icon_left_text_right, template: :haml
 
   view :flipper_title, template: :haml
   view :flipper_body, template: :haml
 
   view :action_card, template: :haml
+  view :cta, template: :haml
+  view :cta_section, template: :haml
 end
