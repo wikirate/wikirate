@@ -135,7 +135,7 @@
       $topic-color: $green;
       $source-color: $metric-color;
       $user-color: $green;
-      $research-group-color: $purple;
+      $research-group-color: $red;
       $project-color: $topic-color;
       $dataset-color: $topic-color;
       $year-color: $yellow;

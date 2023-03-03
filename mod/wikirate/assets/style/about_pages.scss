@@ -167,4 +167,33 @@ button.wr-arrow {
   justify-content: center;
 }
 
+.cta-card {
+  background-color: $light-purple;
+  .blurb-icon {
+    background-color: $white;
+  }
+  a, i {
+    color: $purple-grad-1 !important;
+    font-weight: bold;
+  }
+}
 
+#community-ctas .contact-cta-card {
+  background-color: $white;
+  .blurb-icon {
+    background-color: $light-purple;
+  }
+}
+
+#about-cta .cta-card {
+  background-color: $blue;
+  .blurb-icon {
+    background-color: $light-purple;
+    i {
+      color: $purple-grad-1 !important;
+    }
+  }
+  h4, a, i, & {
+    color: $white !important;
+  }
+}
