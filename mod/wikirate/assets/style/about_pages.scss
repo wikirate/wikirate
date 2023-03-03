@@ -155,4 +155,16 @@ button.wr-arrow {
   }
 }
 
+.blurb-icon {
+  background: $light;
+  display: inline-block;
+  padding: 1em;
+  border-radius: 50rem;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 

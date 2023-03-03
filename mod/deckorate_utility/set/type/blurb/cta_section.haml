@@ -1,0 +1,14 @@
+- body = field_nest :body, view: :core
+.cta-top
+  - if card.fetch :material_icon
+    .blurb-icon
+      = blurb_icon
+  %h4.py-3.pt-4.card-title
+    = field_nest :title, view: :core
+  - if voo.title
+    %p.pb-3
+      = body
+
+%a.text-end{ href: card.uri }
+  = voo.title || body
+  = icon_tag :forward
