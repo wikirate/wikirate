@@ -132,10 +132,10 @@
       $metric-color: $purple;
       $answer-color: $metric-color;
       $record-color: $metric-color;
-      $topic-color: $green;
+      $topic-color: $teal;
       $source-color: $metric-color;
-      $user-color: $green;
-      $research-group-color: $purple;
+      $user-color: $teal;
+      $research-group-color: $red;
       $project-color: $topic-color;
       $dataset-color: $topic-color;
       $year-color: $yellow;
@@ -166,6 +166,7 @@
       $purple-grad-2: #7F73D5;
 
       $light-teal: #e4f6f3;
+      $light-red: #FAEFEA;
 
 
       //      Teal            #09AB90

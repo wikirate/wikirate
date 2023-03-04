@@ -1,24 +1,9 @@
-%section.contact-us.container.p-5
-  .row
-    .col-6.d-flex
-      .card.bg-primary.text-white.w-100
-        .card-body
-          %h4.card-title.text-white
-            Get email updates
-          = nest :newsletter_signup, view: :core
+.contact-cta-card.cta-card.card.w-100
+  .card-body.d-flex.flex-column.justify-content-between
+    .pb-1
+      .blurb-icon
+        = icon_tag :mail
+    = nest :contact_cta1, view: :cta_section
+    .pb-2 &nbsp;
+    = nest :contact_cta2, view: :cta_section
 
-    .col-6.d-flex
-      .card.bg-light-purple.w-100
-        .card-body
-          %h4.card-title
-            Contact a Human
-          .card-text
-            %a{ href: "https://wikirateproject.org/Contact_Us" }
-              Contact
-            the folks at The WikiRate Project eV.
-          %h5.card-subtitle.mt-4.py-2
-            Follow
-          .list-group
-            - social_media_links.each do |platform, url|
-              %a.list-group-item{ href: url }
-                = icon_tag platform.downcase, brand: true, class: "me-2"

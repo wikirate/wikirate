@@ -27,6 +27,7 @@ basket[:icons][:material].merge!(
   community_verified: :check_circle,
   steward_verified: :check_circle,
   download: :file_download,
+  upload: :file_upload,
   greater_than: :chevron_right,
   less_than: :chevron_left,
   check: :check,
@@ -57,6 +58,7 @@ basket[:icons][:font_awesome].merge!(
   community_verified: "check-circle",
   steward_verified: "check-circle",
   download: :download,
+  upload: :upload,
   check: :check,
   more: "ellipsis-h",
   circle: :circle,
@@ -65,6 +67,10 @@ basket[:icons][:font_awesome].merge!(
 )
 
 format :html do
+  def icon_libraries
+    %i[wikirate material]
+  end
+
   def icon_labeled_field field, item_view=:name, opts={}
     field_nest field, opts.merge(view: :labeled,
                                  items: (opts[:items] || {}).merge(view: item_view))
