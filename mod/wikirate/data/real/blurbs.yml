@@ -1,15 +1,13 @@
 ---
 
-- :name: material_icon
-  :codename: material_icon
-
-
+- :name: icon
+  :codename: icon
 
 - :type: :blurb
   :codename: collect_blurb
   :fields:
     :title: Collect
-    :material_icon: storage
+    :icon: storage
     :body: "<p>Systematically gather environmental, social and governance data that
       you think is important. Commitments, actions and impacts can be recorded to
       keep track of specific companies or an entire sector.</p>"
@@ -17,7 +15,7 @@
   :codename: collaborate_blurb
   :fields:
     :title: Collaborate
-    :material_icon: people
+    :icon: people
     :body: "<p>Join or start research projects with like-minded people from the WikiRate
       community. Measure your collective progress, seek advice or simply stay in contact
       about what’s important to you.</p>"
@@ -25,14 +23,14 @@
   :codename: analyze_blurb
   :fields:
     :title: Analyze
-    :material_icon: multiline_chart
+    :icon: multiline_chart
     :body: "<p>Make standardize comparisons, monitor progress toward future targets,
       rate companies, or set up multi-tiered benchmarks.</p>"
 - :type: :blurb
   :codename: map_blurb
   :fields:
     :title: Map
-    :material_icon: map
+    :icon: map
     :body: "<p>Companies do not operate in isolation. Map them to their business relations
       like suppliers and investors to get a sense of how corporate networks function
       and can be leveraged.</p>"
@@ -40,7 +38,7 @@
   :codename: share_blurb
   :fields:
     :title: Share
-    :material_icon: share
+    :icon: share
     :body: "<p>Already have a pristine Data Set? Use the import tool or API to add
       your data in bulk to the platform. From there, it can be combined with other
       datasets or feed into live dashboards and tools that visualize your findings.</p>"
@@ -48,7 +46,7 @@
   :codename: extract_blurb
   :fields:
     :title: Extract
-    :material_icon: grade
+    :icon: grade
     :body: "<p>Explore the data made available by WikiRate’s community. Find what
       you are looking for? Download unlimited Data Sets or connect via the API for
       regular automated queries to make sure you always have the latest.</p>"
@@ -57,6 +55,7 @@
   :codename: values_blurb1
   :fields:
     :title: People-powered
+    :icon: diamond
     :body: | 
       Licensed under CC BY 4.0 the data can be accessed, used and shared by anyone. 
       The only requirement: attribution.
@@ -65,6 +64,7 @@
   :codename: values_blurb2
   :fields:
     :title: Collaborative
+    :icon: diamond
     :body: |
       There are no costs, ever, for using the data. We are all impacted by companies.
       Sharing the data freely means everyone can get more informed and be the change 
@@ -74,6 +74,7 @@
   :codename: values_blurb3
   :fields:
     :title: Transparent
+    :icon: diamond
     :body: |
       There are no costs, ever, for using the data. We are all impacted by companies. 
       Sharing the data freely means everyone can get more informed and be the change 
@@ -111,12 +112,14 @@
 - :type: :blurb
   :codename: platform_vision
   :fields:
+    :icon: visibility
     :title: Our Vision
     :body: A world in which everyone can understand and shape company impacts.
 
 - :type: :blurb
   :codename: platform_mission
   :fields:
+    :icon: rocket_launch
     :title: Our Mission
     :body:
       Our mission is to empower better decision making
@@ -156,6 +159,7 @@
   :codename: data_special1
   :fields:
     :title: Open
+    :icon: diamond
     :body: |
       Licensed under CC BY 4.0 the data can be accessed, used and shared by anyone. 
       The only requirement: attribution.
@@ -164,6 +168,7 @@
   :codename: data_special2
   :fields:
     :title: Free
+    :icon: diamond
     :body: |
       There are no costs, ever, for using the data. We are all impacted by companies.
       Sharing the data freely means everyone can get more informed and be the change 
@@ -173,6 +178,7 @@
   :codename: data_special3
   :fields:
     :title: Diverse
+    :icon: diamond
     :body: |
       Unlike other data providers, we host data from any public source 
       (not just self-reported company data). This means more nuanced insights on 
@@ -183,7 +189,7 @@
   :codename: data_reliable1
   :fields:
     :title: Transparency
-    :material_icon: share
+    :icon: share
     :body: |
       Full clarity on where the data comes from, when and by whom it was added, and
       what methodology was used to make sense of it.
@@ -193,7 +199,7 @@
   :codename: data_reliable2
   :fields:
     :title: Collaboration
-    :material_icon: people
+    :icon: people
     :body: |
       Open access means more eyes on the data. It allows anomalies and errors to be 
       found faster, creating better data quality for everyone.
@@ -203,7 +209,7 @@
   :codename: data_reliable3
   :fields:
     :title: Verification
-    :material_icon: multiline_chart
+    :icon: multiline_chart
     :body: |
       A multi-tiered verification system to indicate at what stage of the production 
       pipeline the data is and the level of assurance given.
@@ -212,7 +218,7 @@
   :codename: data_reliable4
   :fields:
     :title: Identifiers
-    :material_icon: storage
+    :icon: storage
     :body: |
       Every company, metric, and answer is stored under a unique WikiRate ID. This
       means data quality can be improved without losing track.
@@ -343,6 +349,7 @@
 - :type: :blurb
   :codename: community_cta
   :fields:
+    :icon: volunteer_activism
     :title: Check out the latest contribution opportunities
     :uri: https://express.adobe.com/page/o6z9GKWQ6z6lT/
     :body: Cannot wait to get involved? Explore the latest projects that could really use your help.
@@ -350,6 +357,7 @@
 - :type: :blurb
   :codename: about_cta
   :fields:
+    :icon: handshake
     :title: Partner with WikiRate International
     :uri: https://wikirateproject.org/About_Us
     :body: Check out the ways in which the WikiRate team can help you

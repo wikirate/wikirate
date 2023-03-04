@@ -3,7 +3,7 @@ format :html do
     l = card.left
     return unless (code = l&.codename || l&.type_code)
 
-    icon_tag code, library: :wikirate
+    icon_tag code
   end
 
   view :core, unknown: true do

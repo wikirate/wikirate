@@ -6,8 +6,8 @@
     = section_header :platform_main_heading, url: "/new/:signup", text: "Join us"
 
 %section.container.p-5
-  = nest :platform_vision, view: :image_left_text_right
-  = nest :platform_mission, view: :image_left_text_right
+  = nest :platform_vision, view: :icon_left_text_right
+  = nest :platform_mission, view: :icon_left_text_right
 
 %section.container-fluid.bg-light
   .container.p-5
@@ -24,26 +24,9 @@
       = nest :our_story, view: :titled
 
 
-%section.contact-us.container.p-5
+%section#about-ctas.container.p-5
   .row
+    #about-cta.col-6.d-flex
+      = nest :about_cta, view: :cta, title: "Explore contribution opportunities"
     .col-6.d-flex
-      .card.bg-primary.text-white.w-100
-        .card-body
-          %h4.card-title.text-white
-            Partner with WikiRate International
-          %p.pb-5
-            Check out the ways in which the WikiRate team can help you
-
-          %a.text-white
-            Learn More
-            = icon_tag :forward
-    .col-6.d-flex
-      .card.bg-light-purple.w-100
-        .card-body
-          %h4.card-title
-            Talk to a human
-
-          %a
-            Get in Touch
-            = icon_tag :forward
-
+      = nest :contact_us, view: :section
