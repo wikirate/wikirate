@@ -36,6 +36,9 @@
 .fancy-counts {
   .large-icon  i {
     font-size: 4rem;
+    &.material-icons {
+      padding: 0.25rem;
+    }
   }
   .count-description {
     color: $gray-600 !important;
