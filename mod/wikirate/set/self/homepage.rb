@@ -1,7 +1,7 @@
 include_set Abstract::CodeContent
 include_set Abstract::FancyCounts
 include_set Abstract::AboutPages
-include_set Abstract::MetricSlider
+include_set Abstract::CompanySlider
 
 # include_set Abstract::SolidCache, cached_format: :html
 #
@@ -18,7 +18,7 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[menu core search type_links involved delta designers].each do |view|
+  %i[menu core search type_links involved delta].each do |view|
     view view, template: :haml
   end
 
@@ -70,8 +70,13 @@ format :html do
     end
   end
 
-  def metrics_for_slide
+  def companies_for_slider
     %i[designer featured].card.item_cards
+  end
+
+  def company_detail company
+    count = company.metrics_designed_card.count
+    "#{count} #{:metric.cardname.pluralize count}"
   end
 
   def delta_answers

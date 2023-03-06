@@ -248,6 +248,11 @@
   :type: :list
 
 - :name:
+    - :organizer
+    - :featured
+  :type: :list
+
+- :name:
     - :account
     - :featured
   :type: :list

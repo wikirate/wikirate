@@ -24,6 +24,13 @@
     - Clean Clothes Campaign
 
 - :name:
+    - :organizer
+    - :featured
+  :content:
+    - Jedi
+    - Joe User
+
+- :name:
     - Jedi
     - disturbance delta
   :type: :metric

@@ -23,5 +23,7 @@
     .container.p-5
       = render_delta
 
-  %section#homepage-designer-section.vertical-thumbnails.container.p-5.text-center
-    = render_designers
+  %section#homepage-designer-section.container.p-5.text-center
+    = section_header :homepage_designers_heading
+    = render :company_slider
+

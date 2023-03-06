@@ -37,7 +37,7 @@
   .large-icon  i {
     font-size: 4rem;
     &.material-icons {
-      padding: 0.25rem;
+      padding: 1rem;
     }
   }
   .count-description {
@@ -247,12 +247,12 @@
   background-color: $gray-100;
 }
 
-.metric-slides {
-  .metric-slide-detail, .thumbnail-text {
+.company-slides {
+  .company-slide-detail, .thumbnail-text {
     display: none;
   }
   .slick-center {
-    .metric-slide-detail, .thumbnail-text {
+    .company-slide-detail, .thumbnail-text {
       display: block;
     }
   }
