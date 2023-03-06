@@ -1,10 +1,11 @@
 format do
   def social_media_links
     {
-      "Facebook" => "https://www.facebook.com/wikirate/",
+      "GitHub" => "https://github.com/wikirate/wikirate",
+      "LinkedIn" => "https://www.linkedin.com/company/wikirate",
       "Twitter" => "https://twitter.com/WikiRate",
-      "Instagram" => "https://www.instagram.com/wikirate/",
-      "LinkedIn" => "https://www.linkedin.com/company/wikirate"
+      "Facebook" => "https://www.facebook.com/wikirate/",
+      "Instagram" => "https://www.instagram.com/wikirate/"
     }
   end
 end

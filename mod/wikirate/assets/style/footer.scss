@@ -1,12 +1,10 @@
 #wikirate-footer {
-  .footer-link-list {
-    h2 {
-      font-size: 1em;
-      text-transform: uppercase;
-    }
-    h2, a {
-      color: inherit !important;
-    }
+  h2 {
+    font-size: 1em;
+    text-transform: uppercase;
+  }
+  h2, .footer-link-list a {
+    color: inherit !important;
   }
   h2 {
     text-transform: uppercase;
@@ -19,5 +17,8 @@
   .TYPE-link_list a {
     display: block;
     padding-top: 2px;
+  }
+  .decko-credit svg {
+    max-height: 1.5em;
   }
 }
