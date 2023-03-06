@@ -65,7 +65,7 @@ basket[:icons][:font_awesome].merge!(
   more: "ellipsis-h",
   circle: :circle,
   greater_than: "chevron-right",
-  less_than: "chevron-left",
+  less_than: "chevron-left"
 )
 
 format :html do

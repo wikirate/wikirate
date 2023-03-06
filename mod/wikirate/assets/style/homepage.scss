@@ -9,6 +9,16 @@
         padding-left: 2em;
       }
     }
+    height: 450px;
+    overflow: hidden;
+
+    video {
+    }
+    .front-of-video {
+      top: 0;
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)); //, url(Sequenz 01.png);
+      height: 100%;
+    }
   }
 }
 
