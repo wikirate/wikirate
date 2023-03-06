@@ -23,7 +23,7 @@ format :html do
   end
 
   view :bar_left do
-    [field_nest(:right, view: :core, size: :small),
+    [field_nest(:icon, view: :core),
      field_nest(:title, view: :core)]
   end
 

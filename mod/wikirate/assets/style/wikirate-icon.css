@@ -24,27 +24,28 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.wr-icon-wikirate_topic:before {
+.wr-icon-company_group:before {
   content: "\e900";
 }
-.wr-icon-source:before {
+.wr-icon-dataset:before {
   content: "\e901";
 }
-.wr-icon-research_group:before {
+.wr-icon-metric_answer:before {
   content: "\e902";
 }
-.wr-icon-project:before {
+.wr-icon-metric:before {
   content: "\e903";
 }
-.wr-icon-metric:before {
+.wr-icon-project:before {
   content: "\e904";
 }
-.wr-icon-dataset:before {
+.wr-icon-research_group:before {
   content: "\e905";
 }
-.wr-icon-company_group:before {
+.wr-icon-source:before {
   content: "\e906";
 }
 .wr-icon-wikirate_company:before {
   content: "\e907";
 }
+

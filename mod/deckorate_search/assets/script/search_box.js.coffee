@@ -19,7 +19,7 @@ $(window).ready ->
 
   $("body").on "click", "._hot-keyword", (e) ->
     sb = searchBox()
-    sb.keywordBox().val $(this).html()
+    sb.keywordBox().val $(this).text()
     sb.form().submit()
 
   searchBox().updateType()
