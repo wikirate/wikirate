@@ -126,7 +126,7 @@
   }
 }
 
-button.wr-arrow {
+.btn.wr-arrow {
   color: $purple;
   background-color: $white;
   font-size: x-large;
@@ -150,7 +150,7 @@ button.wr-arrow {
       background-color: $orange;
     }
   }
-  button.wr-arrow {
+  .btn.wr-arrow {
     color: $orange;
     &:hover {
       background-color: $orange;
