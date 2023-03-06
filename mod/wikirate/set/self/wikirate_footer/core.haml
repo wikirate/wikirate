@@ -7,17 +7,31 @@
           WikiRate is an initiative of
           WikiRate International eV
 
+      .col-4
+        .footer-link-list.p-2
+          = nest :"footer_legal_list", view: :titled, title: "legal", hide: :menu
+      .col-4
+        .footer-link-list.p-2
+          = nest :"footer_contact_list", view: :titled, title: "contact", hide: :menu
 
-      - %w[legal contact].each do |section|
+        .p-2
+          %h2 follow us
+          - social_media_links.each do |social, url|
+            = link_to font_awesome_icon_tag(social.downcase, brand:true),
+                      href: url, class: "pe-2", title: social
 
-        .footer-link-list.col-4
-          .p-3
-            = nest :"footer_#{section}_list", view: :titled, title: section, hide: :menu
+
 
     %hr
-    .row.footer-footer
-      %p.py-2
+    .footer-footer.d-flex.justify-content-between.py-2.small
+      .decko-credit.me-3.text-nowrap
+        = link_to nest(:decko_logo, view: :core), href: "https://decko.org"
         Powered by
         = link_to "Decko", href: "https://decko.org"
-
-
+      .wikirate-licensing.mb-3
+        WikiRate's content is licensed under
+        %a{ href: "https://creativecommons.org/licenses/by/4.0/" }
+          CC BY 4.0
+        and WikiRate's database infrastructure is licensed under
+        %a{ href: "https://creativecommons.org/licenses/by-sa/4.0/" }
+          CC BY-SA 4.0
