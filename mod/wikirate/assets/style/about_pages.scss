@@ -218,3 +218,24 @@ button.wr-arrow {
   color: $purple;
   background-color: $light-purple;
 }
+
+.action-card {
+  height: 25em;
+  > .card {
+    height: 85%;
+  }
+}
+
+.answer-trending {
+  padding: 0.2em 0.5em;
+  border-radius: 0.3rem;
+}
+.answer-trending-down {
+  background-color: $light-red;
+}
+.answer-trending-up {
+  background-color: $light-teal;
+}
+.answer-trending-flat {
+  background-color: $gray-100;
+}
