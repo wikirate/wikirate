@@ -1,6 +1,7 @@
 include_set Abstract::CodeContent
 include_set Abstract::FancyCounts
 include_set Abstract::AboutPages
+include_set Abstract::MetricSlider
 
 # include_set Abstract::SolidCache, cached_format: :html
 #
@@ -67,6 +68,10 @@ format :html do
     else
       { sign: "+", direction: "up" }
     end
+  end
+
+  def metrics_for_slide
+    %i[designer featured].card.item_cards
   end
 
   def delta_answers
