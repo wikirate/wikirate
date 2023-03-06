@@ -36,17 +36,17 @@
   :type: :basic
   :codename: nav_menu
   :content: |
-    About
+    RESOURCES
+    [[/guides | Guides]]
+    [[/use_the_API | API]]
+    [[/faq | FAQ]]
+    [[/:recent | Recent Changes]]
+    [[/ticket | Report Issue]]
+    ABOUT
     [[/about | About WikiRate]]
     [[/data | Data]]
     [[/community | Community]]
     [[/impact | Impact]]
-    Resources
-    [[Use the API|API]]
-    [[Guides]]
-    [[FAQ]]
-    [[:recent|Recent Changes]]
-    [[Ticket|Report Issue]]
 
 - :name: Community
   :codename: wikirate_community

@@ -50,9 +50,9 @@ format do
     nil
   end
 
-  def default_limit
-    Auth.signed_in? ? 5000 : 500
-  end
+  # def default_limit
+  #   Auth.signed_in? ? 5000 : 500
+  # end
 
   private
 
