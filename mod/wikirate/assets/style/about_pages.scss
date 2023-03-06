@@ -1,14 +1,14 @@
 .header-with-bg {
   height: 360px;
   .wikirate-section-header {
-    padding-top: 5%
+    padding-top: 5%;
   }
 }
 
 #about-wikirate-header {
   background-image: url([[/mod/wikirate/backgrounds/header_about_wikirate.png]]);
   .wikirate-section-header {
-    padding-top: 10%
+    padding-top: 8%;
   }
 }
 
@@ -36,6 +36,9 @@
 .fancy-counts {
   .large-icon  i {
     font-size: 4rem;
+    &.material-icons {
+      padding: 0.25rem;
+    }
   }
   .count-description {
     color: $gray-600 !important;
@@ -214,4 +217,25 @@ button.wr-arrow {
 #special-data .blurb-stack .blurb-icon {
   color: $purple;
   background-color: $light-purple;
+}
+
+.action-card {
+  height: 25em;
+  > .card {
+    height: 85%;
+  }
+}
+
+.answer-trending {
+  padding: 0.2em 0.5em;
+  border-radius: 0.3rem;
+}
+.answer-trending-down {
+  background-color: $light-red;
+}
+.answer-trending-up {
+  background-color: $light-teal;
+}
+.answer-trending-flat {
+  background-color: $gray-100;
 }

@@ -32,7 +32,9 @@ basket[:icons][:material].merge!(
   less_than: :chevron_left,
   check: :check,
   more: :more_horiz,
-  circle: :circle
+  circle: :circle,
+  account: :volunteer_activism,
+  designer: :design_services
 )
 
 basket[:icons][:font_awesome].merge!(
@@ -63,7 +65,7 @@ basket[:icons][:font_awesome].merge!(
   more: "ellipsis-h",
   circle: :circle,
   greater_than: "chevron-right",
-  less_than: "chevron-left"
+  less_than: "chevron-left",
 )
 
 format :html do
