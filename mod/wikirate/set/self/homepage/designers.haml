@@ -1,14 +1,26 @@
 = section_header :homepage_designers_heading
-.row.py-5
-  - %i[designer featured].card.item_cards.each do |designer|
-    .col-2
-      = nest designer, view: :thumbnail, size: :medium
-      .py-3.small
-        .homepage-metrics-designed
+.metric-slides.row.pt-5
+  .designer-slides{ data: {
+    slick: { infinite: true,
+             centerMode: true,
+             slidesToShow: 5,
+             prevArrow: ".metric-slides .wr-prev",
+             nextArrow: ".metric-slides .wr-next",
+             responsive: [
+               { breakpoint: "992", settings: { slidesToShow: 3 } },
+               { breakpoint: "768",  settings: { slidesToShow: 2 } }
+             ]}.to_json
+    } }
+    - %i[designer featured].card.item_cards.each do |designer|
+      .col-2
+        = nest designer, view: :thumbnail, size: :medium
+        .metric-slide-detail.py-3.small
           = count = designer.metrics_designed_card.count
           = "metric".pluralize count
-        -# - if (pcount = designer.projects_organized_card.count) > 0
-        -#   .homepage-projects-organized
-        -#     //And
-        -#     = pcount
-        -#     projects organized
+          -# - if (pcount = designer.projects_organized_card.count) > 0
+          -#   .homepage-projects-organized
+          -#     //And
+          -#     = pcount
+          -#     projects organized
+  .d-flex.justify-content-center.pt-4
+    = render_nav_arrows
