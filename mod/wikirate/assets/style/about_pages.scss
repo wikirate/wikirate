@@ -1,14 +1,14 @@
 .header-with-bg {
   height: 360px;
   .wikirate-section-header {
-    padding-top: 5%
+    padding-top: 5%;
   }
 }
 
 #about-wikirate-header {
   background-image: url([[/mod/wikirate/backgrounds/header_about_wikirate.png]]);
   .wikirate-section-header {
-    padding-top: 10%
+    padding-top: 8%;
   }
 }
 
@@ -29,13 +29,16 @@
   background-image: url([[/mod/wikirate/backgrounds/bg_about_story.png]]);
 }
 
-#reliable-data-header {
-  background-image: url([[/mod/wikirate/backgrounds/banner_data.png]]);
+#wikirate-data-today {
+  background: $light-teal;
 }
 
 .fancy-counts {
   .large-icon  i {
     font-size: 4rem;
+    &.material-icons {
+      padding: 1rem;
+    }
   }
   .count-description {
     color: $gray-600 !important;
@@ -123,7 +126,7 @@
   }
 }
 
-button.wr-arrow {
+.btn.wr-arrow {
   color: $purple;
   background-color: $white;
   font-size: x-large;
@@ -136,7 +139,12 @@ button.wr-arrow {
     background-color: $purple;
     color: $white;
   }
+  box-shadow: $box-shadow
 }
+.justify-content-center .wr-arrow {
+  margin: 0.4em;
+}
+
 #community-actions {
   .action-card .card {
     h4 {
@@ -147,7 +155,7 @@ button.wr-arrow {
       background-color: $orange;
     }
   }
-  button.wr-arrow {
+  .btn.wr-arrow {
     color: $orange;
     &:hover {
       background-color: $orange;
@@ -214,4 +222,38 @@ button.wr-arrow {
 #special-data .blurb-stack .blurb-icon {
   color: $purple;
   background-color: $light-purple;
+}
+
+.action-card {
+  height: 25em;
+  > .card {
+    height: 85%;
+  }
+}
+
+.answer-trending {
+  padding: 0.2em 0.5em;
+  border-radius: 0.3rem;
+}
+.answer-trending-down {
+  background-color: $light-red;
+  color: $red;
+}
+.answer-trending-up {
+  background-color: $light-teal;
+  color: $teal;
+}
+.answer-trending-flat {
+  background-color: $gray-100;
+}
+
+.company-slides {
+  .company-slide-detail, .thumbnail-text {
+    display: none;
+  }
+  .slick-center {
+    .company-slide-detail, .thumbnail-text {
+      display: block;
+    }
+  }
 }
