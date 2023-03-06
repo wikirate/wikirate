@@ -21,6 +21,12 @@ format :html do
     view view, template: :haml
   end
 
+  view :delta, template: :haml, wrap: :slot
+
+  view :shuffle_button do
+    link_to_view :delta, icon_tag(:shuffle), class: "btn wr-arrow"
+  end
+
   def involved_links
     {
       "Join a project": "/:project",

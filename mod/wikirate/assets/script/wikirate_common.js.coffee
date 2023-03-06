@@ -21,25 +21,28 @@ decko.slot.ready (slot) ->
     source: '/Companies+*right+*content_options.json?view=name_match'
     minLength: 2
 
+  slot.find("[data-slick]").each -> loadSlick($(this))
+
+
+
 # ~~~~~~~~~~~~~~ slick carousel config
 
 # data-slick should contain json slick config object
 # will look for data-slick-selector, if present, within element
-$(document).ready ->
-  $("[data-slick]").each ->
-    el = $(this)
-    config = el.data "slick"
-    selector = el.data "slick-selector"
-    slickEl = selector && el.find(selector) || el
-    slickEl.slick config
-
-
+loadSlick = (el)->
+  return if el.find(".slick-track").length > 0 #already loaded
+  config = el.data "slick"
+  selector = el.data "slick-selector"
+  slickEl = selector && el.find(selector) || el
+  slickEl.slick config
 # ~~~~~~~~~~~~~~ AJAX Loader anime
 
 # show loader after submitting filter form
 $(document).ready ->
   $('body').on "submit", "._filter-form", ->
     loader($(this).slot(), false).prepend()
+
+  $("[data-slick]").each -> loadSlick($(this))
 
 ajaxLoader =
   head: '#ajax_loader'
