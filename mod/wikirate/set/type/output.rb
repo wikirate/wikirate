@@ -4,7 +4,7 @@ card_accessor :uri, type: :uri
 card_accessor :file, type: :file
 card_accessor :output_type, type: :pointer
 
-card_accessor :year, type: :phrase
+card_accessor :date, type: :date
 card_accessor :wikirate_company, type: :pointer
 
 format :html do

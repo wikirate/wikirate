@@ -1,5 +1,5 @@
 def count
-  Auth.as_bot { Card.search right: :account, return: :count }
+  Card::Act.select(:actor_id).distinct.count
 end
 
 def count_label
