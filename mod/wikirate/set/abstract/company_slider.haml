@@ -1,0 +1,19 @@
+.company-slides.vertical-thumbnails.pt-5.text-center
+  .designer-slides{ data: {
+    slick: { infinite: true,
+             centerMode: true,
+             slidesToShow: 5,
+             prevArrow: ".company-slides .wr-prev",
+             nextArrow: ".company-slides .wr-next",
+             responsive: [
+               { breakpoint: "992", settings: { slidesToShow: 3 } },
+               { breakpoint: "768",  settings: { slidesToShow: 2 } }
+             ]}.to_json
+    } }
+    - companies_for_slider.each do |company|
+      .d-flex.flex-column
+        = nest company, view: :thumbnail, size: :medium
+        .company-slide-detail.py-3.small
+          = company_detail company
+  .d-flex.justify-content-center.pt-4
+    = render_nav_arrows

@@ -25,6 +25,15 @@
         - %i[wikirate_community blurb].card.item_cards.each do |blurb|
           = nest blurb, view: :action_card
 
+%section#project-organizers.container.p-5.text-center
+  = section_header :project_organizer_heading
+  = render :company_slider
+
+%section#community-actions.container-fluid.bg-light
+  .container.p-5
+
+    %h2 Community Stories
+    (coming soon)
 
 -# %section#about-community-members.container.vertical-thumbnails.p-5.vertical
 -#   = section_header :community_member_heading

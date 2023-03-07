@@ -376,7 +376,13 @@
     :uri: https://wikirate.us7.list-manage.com/subscribe/post?u=be57db47b40c6b1c7e9ef0b36&id=1354650004
     :body: Subscribe for updates
 
-
+- :type: :blurb
+  :codename: project_organizer_heading
+  :fields:
+    :title: Project Organizers
+    :body: |
+      Individuals or organizations coordinating a collaborative assessment of companies 
+      on a topic relevant for their work, research, or everyday life.
 
 # BLURB LISTS
 

@@ -22,9 +22,9 @@ format do
     { name: "" }
   end
 
-  def default_limit
-    Auth.signed_in? ? 5000 : 500
-  end
+  # def default_limit
+  #   Auth.signed_in? ? 5000 : 500
+  # end
 
   def default_sort_option
     :bookmarkers
