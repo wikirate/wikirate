@@ -2,6 +2,8 @@ TYPES = %i[wikirate_company wikirate_topic metric dataset project
            source research_group company_group].freeze
 
 include_set Abstract::OpenSearch
+include_set Abstract::Breadcrumbs
+include_set Abstract::FluidLayout
 
 def search parameters={}
   os_search? ? os_search(parameters) : super
@@ -22,15 +24,14 @@ format do
 end
 
 format :html do
-  def search_with_params
-    os_search? ? os_search_returning_cards : super
+  before :title do
+    scope = type_param.present? ? h(type_param) : "all data"
+    voo.title = "Search within #{scope}"
   end
 
-  # @return [Integer]
-  # (overrides default Decko method)
-  def count_with_params
-    os_search? ? os_count_with_params : super
-  end
+  view :page, template: :haml
+  view :search_types, template: :haml, cache: :never
+  view :titled_content, template: :haml
 
   view :search_box, cache: :never do
     search_form do
@@ -40,16 +41,18 @@ format :html do
     end
   end
 
-  before :title do
-    scope = type_param.present? ? h(type_param) : "all data"
-    voo.title = "Search within #{scope}"
+  def breadcrumb_items
+    [link_to("Home", href: "/"), "Search Results"]
   end
 
-  view :search_types, template: :haml, cache: :never
+  def search_with_params
+    os_search? ? os_search_returning_cards : super
+  end
 
-  view :core do
-    voo.items = { view: :result_bar }
-    [render_search_types, render_results_for_keyword, super()]
+  # @return [Integer]
+  # (overrides default Decko method)
+  def count_with_params
+    os_search? ? os_count_with_params : super
   end
 
   def select_type_tag
@@ -63,12 +66,17 @@ format :html do
                        disabled: :hr
   end
 
-  def link_to_type typecode, text=nil
+  def link_to_type typecode, text: nil
     typename = typecode.cardname
-    link_to_card :search, (text || typename&.vary(:plural)),
+
+    link_to_card :search, (text || "#{icon_tag typecode} #{typename&.vary :plural}"),
                  path: { query: { type: typename, keyword: search_keyword } },
-                 class: "mx-2 my-1 badge " \
-                        "bg-#{typename.present? ? typename.key : 'secondary'}"
+                 class: "me-3 my-1 badge filter-chip " \
+                        "bg-#{typename.present? ? typename.key : 'secondary'}-outline"
+  end
+
+  def link_without_type text, args={}
+    link_to_card :search, text, args.merge(path: { query: { keyword: search_keyword } })
   end
 
   def search_item term
