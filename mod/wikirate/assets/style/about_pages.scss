@@ -90,9 +90,10 @@
 .TYPE-output.box {
   border-top: 1px;
   .box-top {
-    height: 150px;
-    max-height: 150px;
-    background-position: center;
+    width: 320px;
+    max-width: 320px;
+    max-height: 180px;
+    padding: 0;
   }
   .box-middle {
     display: block;

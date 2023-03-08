@@ -1,6 +1,6 @@
 wikirate:
   items:
     - anime.min.js
-    - output.js.coffee
+#    - output.js.coffee
     - wikirate_common.js.coffee
     - ../../vendor/slick/slick/slick.min.js
