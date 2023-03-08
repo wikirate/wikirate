@@ -4,7 +4,13 @@ format :html do
   }
   LINK_TEXT = {
     homepage_action2: "Come meet us",
-    homepage_action4: "Get in touch"
+    homepage_action4: "Get in touch",
+    community_action1: "Join the conversation",
+    community_action2: "Become a steward",
+    community_action3: "Subscribe for updates",
+    community_action4: "Join the Slack community",
+    community_action5: "Get in touch",
+    community_action6: "Subscribe",
   }
 
   view :action_card, template: :haml

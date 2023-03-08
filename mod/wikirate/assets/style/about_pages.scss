@@ -109,7 +109,7 @@
 .action-card {
   height: 26em;
   .card {
-    h4, a {
+    h5, a {
       color: $purple-grad-1;
     }
     padding: 1rem;
@@ -120,7 +120,7 @@
     min-height: 300px;
     margin: 1.5rem;
     &:hover {
-      h4, %i, a {
+      h5, %i, a {
         color: $white !important;
       }
       color: $white;
@@ -132,7 +132,7 @@
 
 #community-actions {
   .action-card .card {
-    h4, a {
+    h5, a {
       color: $orange;
     }
 
