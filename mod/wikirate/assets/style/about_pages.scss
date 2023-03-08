@@ -107,8 +107,8 @@
 }
 
 .action-card .card {
-  h4 {
-    color: $purple-grad-1;
+  h4, a {
+    color: $purple-grad-1 !important;
   }
   padding: 1rem;
   background: $white;
@@ -117,11 +117,11 @@
   min-height: 300px;
   margin: 1.5rem;
   &:hover {
-    h4, %i {
+    h4, %i, a {
       color: $white !important;
     }
     color: $white;
-    cursor: pointer;
+    //cursor: pointer;
     background-color: $purple-grad-1;
   }
 }

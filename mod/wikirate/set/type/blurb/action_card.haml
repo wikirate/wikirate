@@ -1,0 +1,10 @@
+-# - card_link_data = wrap_data.merge card_link_url: card.uri
+.action-card
+  .card.justify-content-between.nodblclick{ data: wrap_data }
+    .card-body
+      %h4.card-title
+        = field_nest :title, view: :core
+      .py-3
+        = field_nest :body, view: :core
+    .d-flex.justify-content-end
+      = button_or_link
