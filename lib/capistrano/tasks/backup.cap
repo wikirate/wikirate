@@ -52,7 +52,7 @@ namespace :backup do
   # refresh db from production backup (unzip first!)
   task :refresh do
     raise "no refreshing production!!!" if fetch(:stage) == :production
-    ask :database, "what should the new/refreshed database be called?"
+    ask :database, "what should the refreshed database be called?"
     # invoke "backup:unzip"
     database = fetch :database
     on roles(:db) do
