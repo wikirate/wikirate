@@ -205,6 +205,18 @@ $lightMap: (
     color: $white !important;
   }
 
+  .bg-#{$type}-outline {
+    color: $color !important;
+    background-color: $white !important;
+    border: 1px solid $color;
+
+  }
+
+  .bg-#{$type}-light {
+    color: $color !important;
+    background-color: map-get($lightMap, $color);
+  }
+
   .top-border-#{$type} {
     border-top: 3px solid $color;
   }

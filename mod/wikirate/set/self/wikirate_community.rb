@@ -9,8 +9,13 @@ format :html do
   def edit_fields
     absolutize_edit_fields %i[main_community_heading community_action_heading] +
                            %i[wikirate_community blurb].card.item_names +
-                           [:community_member_heading, [:account, :featured]] +
-                           %i[community_cta contact_cta1 contact_cta2]
+                           [:community_member_heading,
+                            # %i[account featured],
+                            %i[organizer featured],
+                            :project_organizer_heading,
+                            :community_cta,
+                            :contact_cta1,
+                            :contact_cta2]
   end
 
   def count_categories
