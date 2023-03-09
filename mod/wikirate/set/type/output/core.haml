@@ -7,6 +7,7 @@
     = field_nest :uri, view: :labeled, title: "URI"
     = field_nest :file, view: :labeled, title: "file"
     = field_nest :year, view: :labeled, title: "year"
-    = field_nest :wikirate_company, view: :labeled, title: "organization"
+    = field_nest :wikirate_company, view: :labeled, title: "organization",
+                                    items: { view: :thumbnail }
 .my-5
   = field_nest :description, title: "Description"
