@@ -1,7 +1,7 @@
 format :html do
   BUTTON_TEXT = {
     homepage_action1: "Sign up"
-  }
+  }.freeze
   LINK_TEXT = {
     homepage_action2: "Come meet us",
     homepage_action4: "Get in touch",
@@ -10,8 +10,8 @@ format :html do
     community_action3: "Subscribe for updates",
     community_action4: "Join the Slack community",
     community_action5: "Get in touch",
-    community_action6: "Subscribe",
-  }
+    community_action6: "Subscribe"
+  }.freeze
 
   view :action_card, template: :haml
   view :cta, template: :haml

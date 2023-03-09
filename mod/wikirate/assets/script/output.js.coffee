@@ -1,9 +1,13 @@
-decko.slot.ready (slot) ->
-  $.each slot.find(".TYPE-output.box"), ->
-    initBoxImage $(this)
+$(document).ready ->
+# toggle download and url ui
+  $('body').on 'click', "._output-filter-option", (e) ->
+    e.preventDefault()
+    option = $(this).data "option"
+    restrictTo [option]
 
-initBoxImage = (box) ->
-  top = box.find ".box-top"
-  src = top.find("._image_holder").data("image-href")
-  # debugger
-  top.attr "style", "background-image: url('#{src}')"
+
+
+
+restrictTo = (types) ->
+  url = decko.path "impact" + "?" + $.param(filter: { output_type: types })
+  window.location = url

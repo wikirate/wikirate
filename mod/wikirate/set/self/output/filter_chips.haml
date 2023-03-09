@@ -1,0 +1,16 @@
+- shared_classes = "me-3 my-1 badge filter-chip"
+._output-filter-chips.d-flex.align-items-center
+  - filter_output_type_options.each do |option|
+    - if option_selected? option
+      %span.bg-metric-light{ class: shared_classes }
+        = option.capitalize
+        %a._remove-output-filter-link.remove-filter-link.ms-1
+          = icon_tag :remove
+    - else
+      %a._output-filter-option.bg-metric-outline{ href: "", class: shared_classes, data: { option: option } }
+        = option.capitalize
+
+  - if selected_output_types.present?
+    %small
+      %a{ href: :wikirate_impact.cardname.url_key }
+        Clear All
