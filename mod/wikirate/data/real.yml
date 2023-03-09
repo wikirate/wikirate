@@ -2,6 +2,7 @@
 - homepage
 - footer
 - blurbs
+- quotes
 
 - :name: "*logo"
   :type: :image

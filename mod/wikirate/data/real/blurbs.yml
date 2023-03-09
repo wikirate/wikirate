@@ -401,6 +401,16 @@
       Individuals or organizations coordinating a collaborative assessment of companies 
       on a topic relevant for their work, research, or everyday life.
 
+- :type: :blurb
+  :codename: policies_heading
+  :fields:
+    :title: How we operate
+    :body: | 
+      Our policy and guidelines provide support and safeguard our organization, staff, 
+      partners, third parties and the environment. Their purpose is to build a mutual 
+      understanding of how WikiRate International and its affiliates operate."
+
+
 # BLURB LISTS
 
 - :name:

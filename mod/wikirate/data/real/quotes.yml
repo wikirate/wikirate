@@ -1,0 +1,37 @@
+- :name: Endorsement by Paul Roeland, CCC
+  :type: :quote
+  :codename: paul_roeland_quote
+  :fields:
+    :quotee: Paul Roeland
+    :job_title: Transparency Lead, Clean Clothes Campaign
+    :quote: |
+      WikiRate provides an essential open data infrastructure for supply chain 
+      transparency. Their system made it possible to connect data reported by brands and 
+      workers in one dynamic tool: Fashion Checker. Through this flexible and engaging 
+      structure, we were able to make a complex dataset on supply chain wages accessible 
+      and useful to a broad audience of consumers, journalists, advocacy organizations, 
+      and workers themselves.
+
+    :detailed_quote: |
+
+- :name: Endorsement by AMD Berlin Student
+  :type: :quote
+  :codename: amd_student_quote
+  :fields:
+    :quotee:
+    :job_title: Student of AMD Berlin
+    :quote: |
+      Our collaborative project was a great opportunity to further develop our research 
+      skills which in turn allowed us to be more critical and analytical of fashion 
+      labels. Working with WikiRate made us understand the importance of finding the 
+      right and accurate information that backs up or contradicts the image that a 
+      fashion label is trying to portray
+    :detailed_quote:
+
+- :name:
+    - :wikirate_community
+    - :quote
+  :type: :list
+  :content:
+    - :paul_roeland_quote
+    - :amd_student_quote

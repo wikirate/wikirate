@@ -33,7 +33,17 @@
   .container.p-5
 
     %h2 Community Stories
-    (coming soon)
+    .community-quotes{ data: {
+       slick: { #infinite: false,
+                 centerMode: true,
+                 slidesToShow: 2,
+                 responsive: [
+                   { breakpoint: "992", settings: { slidesToShow: 1 } }
+                 ]}.to_json
+      } }
+      - %i[wikirate_community quote].card.item_cards.each do |endorsement|
+        = nest endorsement, view: :endorsement
+
 
 -# %section#about-community-members.container.vertical-thumbnails.p-5.vertical
 -#   = section_header :community_member_heading
