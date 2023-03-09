@@ -33,8 +33,4 @@ format :html do
 
   view :flipper_title, template: :haml
   view :flipper_body, template: :haml
-
-  view :action_card, template: :haml
-  view :cta, template: :haml
-  view :cta_section, template: :haml
 end

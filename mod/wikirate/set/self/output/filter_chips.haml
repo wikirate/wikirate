@@ -1,0 +1,17 @@
+- chip_classes = { class: "me-3 my-1 badge filter-chip" }
+._output-filter-chips.d-flex.align-items-center
+  - filter_output_type_options.each do |option|
+    - data_attr = { data: { option: option } }
+    - if option_selected? option
+      %span._current-output-filter.bg-metric-light{ data_attr, chip_classes }
+        = option.capitalize
+        %a._remove-output-filter.remove-filter-link.ms-1{ data_attr, href: "" }
+          = icon_tag :remove
+    - else
+      %a._output-filter-option.bg-metric-outline{ data_attr, chip_classes, href: "" }
+        = option.capitalize
+
+  - if selected_output_types.present?
+    %small
+      %a{ href: :wikirate_impact.cardname.url_key }
+        Clear All
