@@ -258,6 +258,15 @@
     - :featured
   :type: :list
 
+- :name:
+    - :policy
+    - :description
+  :content: |
+    Our policy and guidelines provide support and safeguard our organization, staff, 
+    partners, third parties and the environment. Their purpose is to build a mutual 
+    understanding of how WikiRate International and its affiliates operate."
+
+
 - :name: Our Story
   :codename: our_story
   :content: |
