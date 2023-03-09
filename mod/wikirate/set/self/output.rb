@@ -1,5 +1,7 @@
 include_set Abstract::Search
 
+OUTPUT_TYPE_OPTIONS = %w[publication dashboard].freeze
+
 def item_type_id
   OutputID
 end
@@ -27,30 +29,44 @@ format do
 end
 
 format :html do
-  def export_formats
-    []
-  end
+  view :filter_chips, template: :haml, cache: :never
 
-  def filter_output_type_type
-    :radio
-  end
-
-  def quick_filter_list
-    filter_output_type_options.map do |otype|
-      { output_type: otype }
-    end
-  end
-
-  # FIXME: duplicate of right/output_type
   def filter_output_type_options
-    %w[publication dashboard]
+    OUTPUT_TYPE_OPTIONS
   end
+
+  def selected_output_types
+    filter_hash[:output_type]
+  end
+
+  def option_selected? option
+    Array.wrap(selected_output_types).include? option
+  end
+
+  # following not used yet...
+
+  # def export_formats
+  #   []
+  # end
+  #
+  # def filter_output_type_type
+  #   :radio
+  # end
+  #
+  # def quick_filter_list
+  #   filter_output_type_options.map do |otype|
+  #     { output_type: otype }
+  #   end
+  # end
+  #
 end
 
 # class for managing custom filters for outputs
 class OutputFilterQuery < Card::FilterQuery
   def output_type_cql value
     return unless value.present?
-    add_to_cql :right_plus, [OutputTypeID, { refer_to: value }]
+
+    value = [:in] + value if value.is_a? Array
+    add_to_cql :right_plus, [:output_type, { refer_to: value }]
   end
 end
