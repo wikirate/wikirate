@@ -65,7 +65,7 @@ end
 class OutputFilterQuery < Card::FilterQuery
   def output_type_cql value
     return unless value.present?
-    
+
     value = [:in] + value if value.is_a? Array
     add_to_cql :right_plus, [:output_type, { refer_to: value }]
   end
