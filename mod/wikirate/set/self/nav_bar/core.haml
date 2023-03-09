@@ -2,7 +2,8 @@
   .container
     .navbar-container
       .navbar-brand
-        = link_to nest(:logo, view: :core, size: :original), href: "/"
+        %a.full-wr-logo{ href: "/" }
+          %img{ src: "/mod/wikirate/logos/wr_logo_full.svg" }
 
       .top-nav-links
         .top-nav-account

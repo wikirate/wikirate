@@ -4,7 +4,7 @@
       .d-inline-block.me-3.my-1.badge.filter-chip.text-nowrap{ class: "bg-#{type.key}-light" }
         = icon_tag type.codename
         = type.name.vary :plural
-        = link_without_type icon_tag(:remove), class: "remove-filter-link mx-2"
+        = link_without_type icon_tag(:remove), class: "remove-filter-link ms-1"
       = link_without_type "Clear category filter"
     - else
       -# .py-1{ data: {

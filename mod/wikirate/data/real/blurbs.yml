@@ -295,6 +295,23 @@
       fifty characters.
 
 - :type: :blurb
+  :codename: community_action5
+  :fields:
+    :title: Become a steward
+    :uri: "https://lotr.fandom.com/wiki/Denethor_II"
+    :body: |
+      But not like the one in LoTR. He sucked.
+
+- :type: :blurb
+  :codename: community_action6
+  :fields:
+    :title: Subscribe for updates
+    :uri: "https://www.google.com/url?q=https://wikirate.us7.list-manage.com/subscribe/post?u%3Dbe57db47b40c6b1c7e9ef0b36%26id%3D1354650004&sa=D&source=docs&ust=1678294845108552&usg=AOvVaw0nkvJbGmeOiIS0FK9IuiVt"
+    :body: |
+      Stay up to date on the latest community and platform developments by subscribing 
+      to our newsletter.
+
+- :type: :blurb
   :codename: homepage_action1
   :fields:
     :title: Sign up now
@@ -440,6 +457,8 @@
     - :community_action2
     - :community_action3
     - :community_action4
+    - :community_action5
+    - :community_action6
 
 - :name:
     - :homepage
