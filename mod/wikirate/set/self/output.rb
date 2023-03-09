@@ -6,13 +6,14 @@ def item_type_id
   OutputID
 end
 
+# needed to avoid name sorting
+def cql_content
+  { type_id: id }
+end
+
 format do
   def filter_class
     OutputFilterQuery
-  end
-
-  def default_sort_option
-    "create"
   end
 
   def filter_map
@@ -23,8 +24,8 @@ format do
     { output_type: "" }
   end
 
-  def sort_options
-    {}
+  def sort_cql
+    { sort: { right: :date.cardname, return: :db_content }, dir: "desc" }
   end
 end
 

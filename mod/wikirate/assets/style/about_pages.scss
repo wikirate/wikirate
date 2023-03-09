@@ -89,12 +89,14 @@
 
 .TYPE-output.box {
   width: 360px;
+  height: 420px;
   .box-top {
     padding: 0;
     max-width: 360px;
     max-height: 202px;
   }
   .box-middle {
+    min-height: auto;
     display: block;
   }
   .box-bottom {
