@@ -1,3 +1,6 @@
+# TODO - move this to card mods
+# (note: it won't work in wikirate_shared, because it needs to be available to deckorate
+# mods)
 format :html do
   view :breadcrumbs do
     breadcrumb breadcrumb_items
