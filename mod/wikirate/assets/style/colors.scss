@@ -233,8 +233,13 @@ $lightMap: (
 
   .bar, .box {
     &:hover .RIGHT-#{$type} {
-      &.labeled-badge .badge {
-        background-color: $color !important;
+      &.labeled-badge {
+        label {
+          color: $color
+        }
+        .badge {
+          background-color: $color !important;
+        }
       }
     }
   }
