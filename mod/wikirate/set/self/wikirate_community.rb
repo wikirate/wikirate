@@ -24,7 +24,7 @@ format :html do
   end
 
   def breadcrumb_title
-    "Our Community"
+    "Community"
   end
 
   def companies_for_slider

@@ -12,6 +12,6 @@ format :html do
   view :page, template: :haml
 
   def breadcrumb_title
-    "Our Data"
+    "Data"
   end
 end
