@@ -13,6 +13,7 @@ format :html do
                             # %i[account featured],
                             %i[organizer featured],
                             :project_organizer_heading,
+                            %i[wikirate_community quote],
                             :community_cta,
                             :contact_cta1,
                             :contact_cta2]
