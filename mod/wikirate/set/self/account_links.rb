@@ -7,7 +7,12 @@ format :html do
     false
   end
 
-  view :my_card do
-    link_to_mycard nest(Auth.current_card, view: :thumbnail_image, hide: :thumbnail_link)
+  def account_dropdown_label
+    nest Auth.current_card, view: :thumbnail_image, hide: :thumbnail_link
+  end
+
+  def account_dropdown_items
+    [[Auth.current, "Profile"],
+     [:signin, t("account_sign_out"), { path: { action: :delete } }]]
   end
 end
