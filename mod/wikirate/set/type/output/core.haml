@@ -5,8 +5,8 @@
     = field_nest :output_type, view: :labeled, title: "type", items: { view: :name }
     = field_nest :uri, view: :labeled, title: "URI"
     = field_nest :file, view: :labeled, title: "file"
-    = field_nest :year, view: :labeled, title: "year"
+    = field_nest :year, view: :labeled, title: "year", items: { view: :name }
     = field_nest :wikirate_company, view: :labeled, title: "organization",
-                                    items: { view: :thumbnail }
+                                    items: { view: :thumbnail_no_subtitle }
 .my-5
   = field_nest :description, title: "Description"
