@@ -12,7 +12,8 @@ format :html do
   end
 
   def account_dropdown_items
-    [[Auth.current, "Profile"],
+    [[Auth.current, "View profile"],
+     [Auth.current, "Account settings", { path: { tab: :simple_account } }],
      [:signin, t("account_sign_out"), { path: { action: :delete } }]]
   end
 end
