@@ -244,7 +244,7 @@ $lightMap: (
   //}
 
   #homepage {
-    .SELF-#{$type}, .TYPE-#{$type} {
+    .SELF-#{$type} { // , .TYPE-#{$type} {
       &.thumbnail .image-box {
         background-color: map-get($lightMap, $color);
         i {
