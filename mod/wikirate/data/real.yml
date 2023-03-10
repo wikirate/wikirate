@@ -258,6 +258,9 @@
     - :featured
   :type: :list
 
+- :name: Wikirate Policies
+  :codename: policy
+
 - :name:
     - :policy
     - :description
