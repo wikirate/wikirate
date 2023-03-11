@@ -233,8 +233,13 @@ $lightMap: (
 
   .bar, .box {
     &:hover .RIGHT-#{$type} {
-      &.labeled-badge .badge {
-        background-color: $color !important;
+      &.labeled-badge {
+        label {
+          color: $color
+        }
+        .badge {
+          background-color: $color !important;
+        }
       }
     }
   }
@@ -244,7 +249,7 @@ $lightMap: (
   //}
 
   #homepage {
-    .SELF-#{$type}, .TYPE-#{$type} {
+    .SELF-#{$type} { // , .TYPE-#{$type} {
       &.thumbnail .image-box {
         background-color: map-get($lightMap, $color);
         i {

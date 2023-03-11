@@ -7,7 +7,7 @@ format :html do
   end
 
   def breadcrumb_title
-    "Our Impact"
+    "Impact"
   end
 
   view :page, template: :haml
