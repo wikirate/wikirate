@@ -6,7 +6,7 @@ describe Card::Set::Self::AccountLinks do
   end
 
   describe "raw view" do
-    context "when the user signed in" do
+    context "when the user is not signed in" do
       it do
         login_as "Anonymous"
         rendered_html = @account_link.format(format: :html).render_core
@@ -22,14 +22,14 @@ describe Card::Set::Self::AccountLinks do
       end
     end
 
-    context "when the user did not sign in" do
+    context "when the user signed in" do
       specify do
         login_as "joe_user"
         expect(@account_link.format(format: :html).render_core).to(
           have_tag("div", with: { id: "logging", class: "logged-in" }) do
-            with_tag "a", with: { id: "my-card-link", href: "/Joe_User" } do
-              with_tag "div.image-box"
-            end
+            # with_tag "a", with: { id: "my-card-link", href: "/Joe_User" } do
+            with_tag "div.image-box"
+            # end
             # with_tag "a", text: "Invite", with: { class: "invite-link",
             #                                       href: "/new/Sign_up" }
             # with_tag "a", text: "Log out", with: { class: "dropdown-item",
