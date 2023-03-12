@@ -24,6 +24,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
+
 .wr-icon-company_group:before {
   content: "\e900";
 }
@@ -47,5 +48,8 @@
 }
 .wr-icon-wikirate_company:before {
   content: "\e907";
+}
+.wr-icon-wikirate_topic:before {
+  content: "\e908";
 }
 

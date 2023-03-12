@@ -15,9 +15,9 @@
 } }
   - delta_answers.each do |answer|
     - benchmark_answer = answer.direct_dependee_answers.first
-    - height_reduction = (10 - benchmark_answer.numeric_value) * 12
+    - height_reduction = 10 + (10 - benchmark_answer.numeric_value) * 12
     - trend = trending answer.numeric_value
-    .h-100.px-2{ style: "padding-top: #{height_reduction}px" }
+    .h-100.px-2.pb-5{ style: "padding-top: #{height_reduction}px" }
       .card.bg-white.p-3.justify-content-between
         .delta-values
           .delta-score

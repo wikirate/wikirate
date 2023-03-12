@@ -1,7 +1,7 @@
 assign_type :pointer
 
 def option_names
-  Self::Output::OUTPUT_TYPE_OPTIONS
+  Card::Set::Self::Output::OUTPUT_TYPE_OPTIONS
 end
 
 format :html do

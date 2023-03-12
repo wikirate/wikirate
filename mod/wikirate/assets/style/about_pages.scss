@@ -29,6 +29,13 @@
   background-image: url([[/mod/wikirate/backgrounds/bg_about_story.png]]);
 }
 
+#our-values-section {
+  .d0-card-header-title {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 #wikirate-data-today {
   background: $light-teal;
 }
@@ -89,7 +96,7 @@
 
 .TYPE-output.box {
   width: 360px;
-  height: 420px;
+  height: 450px;
   .box-top {
     padding: 0;
     max-width: 360px;
@@ -116,11 +123,10 @@
     }
     padding: 1rem;
     background: $white;
-    box-shadow: $box-shadow;
     border: 0;
     height: 85%;
     min-height: 300px;
-    margin: 1.5rem;
+    margin: 1em;
     &:hover {
       h5, %i, a {
         color: $white !important;
@@ -129,6 +135,13 @@
       //cursor: pointer;
       background-color: $purple-grad-1;
     }
+  }
+}
+
+.cta-card, .action-card .card, .endorsement-summary {
+  box-shadow: $box-shadow-sm;
+  &:hover {
+    box-shadow: $box-shadow-lg;
   }
 }
 
