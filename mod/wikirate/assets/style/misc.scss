@@ -6,9 +6,12 @@ main > #main > .titled-view > .d0-card-header {
   width: 9.5em;
 }
 
-a.btn:hover, a.btn:focus {
+a:focus, a:hover {
   text-decoration: none;
 }
+//a.btn:hover, a.btn:focus {
+//  text-decoration: none;
+//}
 
 textarea.form-control {
   border-radius: 0.5rem;
