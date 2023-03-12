@@ -1,8 +1,13 @@
 
+
 #homepage {
   #homepage-search-section {
-    height: 450px;
+    height: 520px;
     overflow: hidden;
+
+    video {
+      min-width: 100%
+    }
 
     .front-of-video {
       top: 0;
@@ -19,11 +24,21 @@
       }
     }
   }
+  .TYPE-company, .TYPE-research_group, .TYPE-user {
+    .image-box {
+      background-color: inherit;
+      border-radius: 0;
+      padding: 0;
+    }
+  }
 }
-
 .homepage-delta-cards {
   .card {
     height: 100%;
+    box-shadow: $box-shadow-sm;
+    &:hover {
+      box-shadow: $box-shadow-lg;
+    }
   }
   .slick-track {
     display: flex;

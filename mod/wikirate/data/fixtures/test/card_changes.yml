@@ -8421,3 +8421,4777 @@ card_changes_518:
   card_action_id: 47277
   field: 2
   value: "~3859/47277.png"
+card_changes_519:
+  id: 519
+  card_action_id: 47668
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_520:
+  id: 520
+  card_action_id: 47736
+  field: 0
+  value: parent
+card_changes_521:
+  id: 521
+  card_action_id: 47783
+  field: 1
+  value: '4'
+card_changes_522:
+  id: 522
+  card_action_id: 47783
+  field: 2
+  value: yeti skin
+card_changes_523:
+  id: 523
+  card_action_id: 47886
+  field: 2
+  value: Default Layout
+card_changes_524:
+  id: 524
+  card_action_id: 47954
+  field: 2
+  value: deckorate_layout
+card_changes_525:
+  id: 525
+  card_action_id: 50289
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_526:
+  id: 526
+  card_action_id: 50305
+  field: 0
+  value: Parent
+card_changes_527:
+  id: 527
+  card_action_id: 50377
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_528:
+  id: 528
+  card_action_id: 17284
+  field: 0
+  value:
+card_changes_529:
+  id: 529
+  card_action_id: 17284
+  field: 1
+  value: '4'
+card_changes_530:
+  id: 530
+  card_action_id: 17284
+  field: 2
+  value: |-
+    Blurb 0033
+    Blurb 0034
+    Blurb 0035
+    Blurb 0036
+card_changes_531:
+  id: 531
+  card_action_id: 17284
+  field: 3
+  value: f
+card_changes_532:
+  id: 532
+  card_action_id: 17284
+  field: 4
+  value: '2482'
+card_changes_533:
+  id: 533
+  card_action_id: 17284
+  field: 5
+  value: '2489'
+card_changes_534:
+  id: 534
+  card_action_id: 50586
+  field: 2
+  value: |-
+    Blurb 0033
+    Blurb 0034
+    Blurb 0035
+    Blurb 0036
+    Blurb 0048
+    Blurb 0049
+card_changes_535:
+  id: 535
+  card_action_id: 50589
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_536:
+  id: 536
+  card_action_id: 50596
+  field: 2
+  value: |
+    RESOURCES
+    [[/guides | Guides]]
+    [[/use_the_API | API]]
+    [[/faq | FAQ]]
+    [[/:recent | Recent Changes]]
+    [[/ticket | Report Issue]]
+    ABOUT
+    [[/about | About WikiRate]]
+    [[/community | Community]]
+    [[/data | Data]]
+    [[/impact | Impact]]
+card_changes_537:
+  id: 537
+  card_action_id: 50613
+  field: 1
+  value: '55'
+card_changes_538:
+  id: 538
+  card_action_id: 50613
+  field: 2
+  value: wikirate skin
+card_changes_539:
+  id: 539
+  card_action_id: 50639
+  field: 2
+  value: "~3859/50639.png"
+card_changes_540:
+  id: 540
+  card_action_id: 50654
+  field: 2
+  value: |-
+    mod: format+*script
+    mod: list+*script
+    mod: search+*script
+    mod: rules+*script
+    mod: edit+*script
+    mod: carrierwave+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: csv import+*script
+    mod: deckorate search+*script
+    mod: follow+*script
+    mod: layout+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate utility+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate+*script
+    mod: tasks+*script
+    mod: vega+*script
+    mod: ticket+*script
+card_changes_541:
+  id: 541
+  card_action_id: 50655
+  field: 2
+  value: |-
+    mod: format+*style
+    mod: list+*style
+    mod: permissions+*style
+    mod: help+*style
+    mod: search+*style
+    mod: rules+*style
+    mod: edit+*style
+    mod: account+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
+    mod: style+*style
+    mod: bar and box+*style
+    mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
+    mod: csv import+*style
+    mod: deckorate search+*style
+    mod: follow+*style
+    mod: layout+*style
+    mod: tinymce editor+*style
+    mod: thumbnail+*style
+    mod: guides+*style
+    mod: deckorate utility+*style
+    mod: deckorate layout+*style
+    mod: topics+*style
+    mod: deckorate core+*style
+    mod: deckorate research+*style
+    mod: deckorate calculations+*style
+    mod: deckorate datasets+*style
+    mod: deckorate profiles+*style
+    mod: wikirate shared+*style
+    mod: wikirate companies+*style
+    mod: wikirate+*style
+    mod: badges+*style
+    mod: tasks+*style
+    mod: vega+*style
+    mod: ticket+*style
+card_changes_542:
+  id: 542
+  card_action_id: 51034
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_543:
+  id: 543
+  card_action_id: 51102
+  field: 0
+  value: parent
+card_changes_544:
+  id: 544
+  card_action_id: 51149
+  field: 1
+  value: '4'
+card_changes_545:
+  id: 545
+  card_action_id: 51149
+  field: 2
+  value: yeti skin
+card_changes_546:
+  id: 546
+  card_action_id: 51252
+  field: 2
+  value: Default Layout
+card_changes_547:
+  id: 547
+  card_action_id: 51320
+  field: 2
+  value: deckorate_layout
+card_changes_548:
+  id: 548
+  card_action_id: 53655
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_549:
+  id: 549
+  card_action_id: 53671
+  field: 0
+  value: Parent
+card_changes_550:
+  id: 550
+  card_action_id: 53737
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_551:
+  id: 551
+  card_action_id: 53958
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_552:
+  id: 552
+  card_action_id: 53980
+  field: 1
+  value: '55'
+card_changes_553:
+  id: 553
+  card_action_id: 53980
+  field: 2
+  value: wikirate skin
+card_changes_554:
+  id: 554
+  card_action_id: 50360
+  field: 0
+  value: Policy
+card_changes_555:
+  id: 555
+  card_action_id: 50360
+  field: 1
+  value: '3'
+card_changes_556:
+  id: 556
+  card_action_id: 50360
+  field: 2
+  value: |
+    {{+:description|content}}
+    {{_|add_button}}{{_|configure_button}}
+    {{+:type+:by_name|content}}
+card_changes_557:
+  id: 557
+  card_action_id: 50360
+  field: 3
+  value: f
+card_changes_558:
+  id: 558
+  card_action_id: 50360
+  field: 4
+  value:
+card_changes_559:
+  id: 559
+  card_action_id: 50360
+  field: 5
+  value:
+card_changes_560:
+  id: 560
+  card_action_id: 53986
+  field: 0
+  value: Wikirate Policies
+card_changes_561:
+  id: 561
+  card_action_id: 54010
+  field: 2
+  value: "~3859/54010.png"
+card_changes_562:
+  id: 562
+  card_action_id: 54401
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_563:
+  id: 563
+  card_action_id: 54469
+  field: 0
+  value: parent
+card_changes_564:
+  id: 564
+  card_action_id: 54516
+  field: 1
+  value: '4'
+card_changes_565:
+  id: 565
+  card_action_id: 54516
+  field: 2
+  value: yeti skin
+card_changes_566:
+  id: 566
+  card_action_id: 54619
+  field: 2
+  value: Default Layout
+card_changes_567:
+  id: 567
+  card_action_id: 54687
+  field: 2
+  value: deckorate_layout
+card_changes_568:
+  id: 568
+  card_action_id: 57022
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_569:
+  id: 569
+  card_action_id: 57038
+  field: 0
+  value: Parent
+card_changes_570:
+  id: 570
+  card_action_id: 57089
+  field: 0
+  value: Policy
+card_changes_571:
+  id: 571
+  card_action_id: 57105
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_572:
+  id: 572
+  card_action_id: 57125
+  field: 2
+  value: |
+    [[Policies]]
+    [[Licensing]]
+    [[Disclaimers]]
+    [[Privacy and Cookies Statement]]
+    [[Impressum]]
+card_changes_573:
+  id: 573
+  card_action_id: 17162
+  field: 0
+  value:
+card_changes_574:
+  id: 574
+  card_action_id: 17162
+  field: 1
+  value: '43'
+card_changes_575:
+  id: 575
+  card_action_id: 17162
+  field: 2
+  value: The largest open registry of corporate sustainability data in the world
+card_changes_576:
+  id: 576
+  card_action_id: 17162
+  field: 3
+  value: f
+card_changes_577:
+  id: 577
+  card_action_id: 17162
+  field: 4
+  value: '3747'
+card_changes_578:
+  id: 578
+  card_action_id: 17162
+  field: 5
+  value: '50'
+card_changes_579:
+  id: 579
+  card_action_id: 57296
+  field: 2
+  value: Empowering people with open ESG data
+card_changes_580:
+  id: 580
+  card_action_id: 17163
+  field: 0
+  value:
+card_changes_581:
+  id: 581
+  card_action_id: 17163
+  field: 1
+  value: '2'
+card_changes_582:
+  id: 582
+  card_action_id: 17163
+  field: 2
+  value: |
+    WikiRate has public data on companies from all sectors, covering their
+    environmental, social, and governance performance
+card_changes_583:
+  id: 583
+  card_action_id: 17163
+  field: 3
+  value: f
+card_changes_584:
+  id: 584
+  card_action_id: 17163
+  field: 4
+  value: '3747'
+card_changes_585:
+  id: 585
+  card_action_id: 17163
+  field: 5
+  value: '649'
+card_changes_586:
+  id: 586
+  card_action_id: 57297
+  field: 2
+  value: 4 million+ sustainability data points across 100,000+ companies
+card_changes_587:
+  id: 587
+  card_action_id: 17166
+  field: 0
+  value:
+card_changes_588:
+  id: 588
+  card_action_id: 17166
+  field: 1
+  value: '43'
+card_changes_589:
+  id: 589
+  card_action_id: 17166
+  field: 2
+  value: What makes our data so special?
+card_changes_590:
+  id: 590
+  card_action_id: 17166
+  field: 3
+  value: f
+card_changes_591:
+  id: 591
+  card_action_id: 17166
+  field: 4
+  value: '3750'
+card_changes_592:
+  id: 592
+  card_action_id: 17166
+  field: 5
+  value: '50'
+card_changes_593:
+  id: 593
+  card_action_id: 57300
+  field: 2
+  value: Get involved
+card_changes_594:
+  id: 594
+  card_action_id: 17167
+  field: 0
+  value:
+card_changes_595:
+  id: 595
+  card_action_id: 17167
+  field: 1
+  value: '2'
+card_changes_596:
+  id: 596
+  card_action_id: 17167
+  field: 2
+  value: |
+    The data on WikiRate is open and free for all, because we believe sharing
+    knowledge is the only way to improve decision-making at large.
+card_changes_597:
+  id: 597
+  card_action_id: 17167
+  field: 3
+  value: f
+card_changes_598:
+  id: 598
+  card_action_id: 17167
+  field: 4
+  value: '3750'
+card_changes_599:
+  id: 599
+  card_action_id: 17167
+  field: 5
+  value: '649'
+card_changes_600:
+  id: 600
+  card_action_id: 57301
+  field: 2
+  value: WikiRate is powered by a passionate community of individuals and organizations
+    who are using open data to build a more sustainable future. Join us today!
+card_changes_601:
+  id: 601
+  card_action_id: 17170
+  field: 0
+  value:
+card_changes_602:
+  id: 602
+  card_action_id: 17170
+  field: 1
+  value: '43'
+card_changes_603:
+  id: 603
+  card_action_id: 17170
+  field: 2
+  value: What makes our data so reliable?
+card_changes_604:
+  id: 604
+  card_action_id: 17170
+  field: 3
+  value: f
+card_changes_605:
+  id: 605
+  card_action_id: 17170
+  field: 4
+  value: '3753'
+card_changes_606:
+  id: 606
+  card_action_id: 17170
+  field: 5
+  value: '50'
+card_changes_607:
+  id: 607
+  card_action_id: 57304
+  field: 2
+  value: Trending ratings
+card_changes_608:
+  id: 608
+  card_action_id: 17171
+  field: 0
+  value:
+card_changes_609:
+  id: 609
+  card_action_id: 17171
+  field: 1
+  value: '2'
+card_changes_610:
+  id: 610
+  card_action_id: 17171
+  field: 2
+  value: Everyone's way in to corporate sustainability data...
+card_changes_611:
+  id: 611
+  card_action_id: 17171
+  field: 3
+  value: f
+card_changes_612:
+  id: 612
+  card_action_id: 17171
+  field: 4
+  value: '3753'
+card_changes_613:
+  id: 613
+  card_action_id: 17171
+  field: 5
+  value: '649'
+card_changes_614:
+  id: 614
+  card_action_id: 57305
+  field: 2
+  value: Designed by the [[https://wikirate.org/Apparel_Research_Group|Apparel Research
+    Group]] this [[https://wikirate.org/Apparel_Research_Group+ESG_Disclosure_Rate|ESG
+    Disclosure Rating]] assesses 35+ apparel companies on how transparent they are
+    about their sustainability policies and practices.
+card_changes_615:
+  id: 615
+  card_action_id: 17174
+  field: 0
+  value:
+card_changes_616:
+  id: 616
+  card_action_id: 17174
+  field: 1
+  value: '43'
+card_changes_617:
+  id: 617
+  card_action_id: 17174
+  field: 2
+  value: Start using our data today
+card_changes_618:
+  id: 618
+  card_action_id: 17174
+  field: 3
+  value: f
+card_changes_619:
+  id: 619
+  card_action_id: 17174
+  field: 4
+  value: '3756'
+card_changes_620:
+  id: 620
+  card_action_id: 17174
+  field: 5
+  value: '50'
+card_changes_621:
+  id: 621
+  card_action_id: 57308
+  field: 2
+  value: Metric designers
+card_changes_622:
+  id: 622
+  card_action_id: 57309
+  field: 2
+  value: Those who have developed metrics and methodologies to measure company performance
+    and generate standardized datasets.
+card_changes_623:
+  id: 623
+  card_action_id: 17178
+  field: 0
+  value:
+card_changes_624:
+  id: 624
+  card_action_id: 17178
+  field: 1
+  value: '43'
+card_changes_625:
+  id: 625
+  card_action_id: 17178
+  field: 2
+  value: Open
+card_changes_626:
+  id: 626
+  card_action_id: 17178
+  field: 3
+  value: f
+card_changes_627:
+  id: 627
+  card_action_id: 17178
+  field: 4
+  value: '3759'
+card_changes_628:
+  id: 628
+  card_action_id: 17178
+  field: 5
+  value: '50'
+card_changes_629:
+  id: 629
+  card_action_id: 57312
+  field: 2
+  value: Let's make companies better, together
+card_changes_630:
+  id: 630
+  card_action_id: 17182
+  field: 0
+  value:
+card_changes_631:
+  id: 631
+  card_action_id: 17182
+  field: 1
+  value: '43'
+card_changes_632:
+  id: 632
+  card_action_id: 17182
+  field: 2
+  value: Free
+card_changes_633:
+  id: 633
+  card_action_id: 17182
+  field: 3
+  value: f
+card_changes_634:
+  id: 634
+  card_action_id: 17182
+  field: 4
+  value: '3762'
+card_changes_635:
+  id: 635
+  card_action_id: 17182
+  field: 5
+  value: '50'
+card_changes_636:
+  id: 636
+  card_action_id: 57315
+  field: 2
+  value: Our Vision
+card_changes_637:
+  id: 637
+  card_action_id: 17183
+  field: 0
+  value:
+card_changes_638:
+  id: 638
+  card_action_id: 17183
+  field: 1
+  value: '2'
+card_changes_639:
+  id: 639
+  card_action_id: 17183
+  field: 2
+  value: "There are no costs, ever, for using the data. We are all impacted by companies.\nSharing
+    the data freely means everyone can get more informed and be the change \nthey
+    want to see.\n"
+card_changes_640:
+  id: 640
+  card_action_id: 17183
+  field: 3
+  value: f
+card_changes_641:
+  id: 641
+  card_action_id: 17183
+  field: 4
+  value: '3762'
+card_changes_642:
+  id: 642
+  card_action_id: 17183
+  field: 5
+  value: '649'
+card_changes_643:
+  id: 643
+  card_action_id: 57316
+  field: 2
+  value: A world in which everyone can understand and shape company impacts.
+card_changes_644:
+  id: 644
+  card_action_id: 40450
+  field: 0
+  value:
+card_changes_645:
+  id: 645
+  card_action_id: 40450
+  field: 1
+  value: '43'
+card_changes_646:
+  id: 646
+  card_action_id: 40450
+  field: 2
+  value: diamond
+card_changes_647:
+  id: 647
+  card_action_id: 40450
+  field: 3
+  value: f
+card_changes_648:
+  id: 648
+  card_action_id: 40450
+  field: 4
+  value: '3762'
+card_changes_649:
+  id: 649
+  card_action_id: 40450
+  field: 5
+  value: '3909'
+card_changes_650:
+  id: 650
+  card_action_id: 57317
+  field: 2
+  value: visibility
+card_changes_651:
+  id: 651
+  card_action_id: 17186
+  field: 0
+  value:
+card_changes_652:
+  id: 652
+  card_action_id: 17186
+  field: 1
+  value: '43'
+card_changes_653:
+  id: 653
+  card_action_id: 17186
+  field: 2
+  value: Diverse
+card_changes_654:
+  id: 654
+  card_action_id: 17186
+  field: 3
+  value: f
+card_changes_655:
+  id: 655
+  card_action_id: 17186
+  field: 4
+  value: '3765'
+card_changes_656:
+  id: 656
+  card_action_id: 17186
+  field: 5
+  value: '50'
+card_changes_657:
+  id: 657
+  card_action_id: 57320
+  field: 2
+  value: Our Mission
+card_changes_658:
+  id: 658
+  card_action_id: 17187
+  field: 0
+  value:
+card_changes_659:
+  id: 659
+  card_action_id: 17187
+  field: 1
+  value: '2'
+card_changes_660:
+  id: 660
+  card_action_id: 17187
+  field: 2
+  value: "Unlike other data providers, we host data from any public source \n(not
+    just self-reported company data). This means more nuanced insights on \ncompany
+    impacts.\n"
+card_changes_661:
+  id: 661
+  card_action_id: 17187
+  field: 3
+  value: f
+card_changes_662:
+  id: 662
+  card_action_id: 17187
+  field: 4
+  value: '3765'
+card_changes_663:
+  id: 663
+  card_action_id: 17187
+  field: 5
+  value: '649'
+card_changes_664:
+  id: 664
+  card_action_id: 57321
+  field: 2
+  value: To empower better decision making and help tackle the world’s challenges
+    with open data.
+card_changes_665:
+  id: 665
+  card_action_id: 40455
+  field: 0
+  value:
+card_changes_666:
+  id: 666
+  card_action_id: 40455
+  field: 1
+  value: '43'
+card_changes_667:
+  id: 667
+  card_action_id: 40455
+  field: 2
+  value: diamond
+card_changes_668:
+  id: 668
+  card_action_id: 40455
+  field: 3
+  value: f
+card_changes_669:
+  id: 669
+  card_action_id: 40455
+  field: 4
+  value: '3765'
+card_changes_670:
+  id: 670
+  card_action_id: 40455
+  field: 5
+  value: '3909'
+card_changes_671:
+  id: 671
+  card_action_id: 57322
+  field: 2
+  value: rocket_launch
+card_changes_672:
+  id: 672
+  card_action_id: 17190
+  field: 0
+  value:
+card_changes_673:
+  id: 673
+  card_action_id: 17190
+  field: 1
+  value: '43'
+card_changes_674:
+  id: 674
+  card_action_id: 17190
+  field: 2
+  value: Transparency
+card_changes_675:
+  id: 675
+  card_action_id: 17190
+  field: 3
+  value: f
+card_changes_676:
+  id: 676
+  card_action_id: 17190
+  field: 4
+  value: '3768'
+card_changes_677:
+  id: 677
+  card_action_id: 17190
+  field: 5
+  value: '50'
+card_changes_678:
+  id: 678
+  card_action_id: 57325
+  field: 2
+  value: Collect
+card_changes_679:
+  id: 679
+  card_action_id: 17192
+  field: 0
+  value:
+card_changes_680:
+  id: 680
+  card_action_id: 17192
+  field: 1
+  value: '2'
+card_changes_681:
+  id: 681
+  card_action_id: 17192
+  field: 2
+  value: |
+    Full clarity on where the data comes from, when and by whom it was added, and
+    what methodology was used to make sense of it.
+card_changes_682:
+  id: 682
+  card_action_id: 17192
+  field: 3
+  value: f
+card_changes_683:
+  id: 683
+  card_action_id: 17192
+  field: 4
+  value: '3768'
+card_changes_684:
+  id: 684
+  card_action_id: 17192
+  field: 5
+  value: '649'
+card_changes_685:
+  id: 685
+  card_action_id: 57326
+  field: 2
+  value: Systematically gather environmental, social and governance data that you
+    think is important. Commitments, actions and impacts can be recorded to keep track
+    of specific companies or entire sectors.
+card_changes_686:
+  id: 686
+  card_action_id: 37116
+  field: 0
+  value:
+card_changes_687:
+  id: 687
+  card_action_id: 37116
+  field: 1
+  value: '43'
+card_changes_688:
+  id: 688
+  card_action_id: 37116
+  field: 2
+  value: share
+card_changes_689:
+  id: 689
+  card_action_id: 37116
+  field: 3
+  value: f
+card_changes_690:
+  id: 690
+  card_action_id: 37116
+  field: 4
+  value: '3768'
+card_changes_691:
+  id: 691
+  card_action_id: 37116
+  field: 5
+  value: '3909'
+card_changes_692:
+  id: 692
+  card_action_id: 57327
+  field: 2
+  value: storage
+card_changes_693:
+  id: 693
+  card_action_id: 17195
+  field: 0
+  value:
+card_changes_694:
+  id: 694
+  card_action_id: 17195
+  field: 1
+  value: '43'
+card_changes_695:
+  id: 695
+  card_action_id: 17195
+  field: 2
+  value: Collaboration
+card_changes_696:
+  id: 696
+  card_action_id: 17195
+  field: 3
+  value: f
+card_changes_697:
+  id: 697
+  card_action_id: 17195
+  field: 4
+  value: '3772'
+card_changes_698:
+  id: 698
+  card_action_id: 17195
+  field: 5
+  value: '50'
+card_changes_699:
+  id: 699
+  card_action_id: 57330
+  field: 2
+  value: Collaborate
+card_changes_700:
+  id: 700
+  card_action_id: 17197
+  field: 0
+  value:
+card_changes_701:
+  id: 701
+  card_action_id: 17197
+  field: 1
+  value: '2'
+card_changes_702:
+  id: 702
+  card_action_id: 17197
+  field: 2
+  value: "Open access means more eyes on the data. It allows anomalies and errors
+    to be \nfound faster, creating better data quality for everyone.\n"
+card_changes_703:
+  id: 703
+  card_action_id: 17197
+  field: 3
+  value: f
+card_changes_704:
+  id: 704
+  card_action_id: 17197
+  field: 4
+  value: '3772'
+card_changes_705:
+  id: 705
+  card_action_id: 17197
+  field: 5
+  value: '649'
+card_changes_706:
+  id: 706
+  card_action_id: 57331
+  field: 2
+  value: Join or start research projects with like-minded people from the WikiRate
+    community. Measure your collective progress, seek advice or simply stay in contact
+    about what’s important to you.
+card_changes_707:
+  id: 707
+  card_action_id: 17200
+  field: 0
+  value:
+card_changes_708:
+  id: 708
+  card_action_id: 17200
+  field: 1
+  value: '43'
+card_changes_709:
+  id: 709
+  card_action_id: 17200
+  field: 2
+  value: Verification
+card_changes_710:
+  id: 710
+  card_action_id: 17200
+  field: 3
+  value: f
+card_changes_711:
+  id: 711
+  card_action_id: 17200
+  field: 4
+  value: '3776'
+card_changes_712:
+  id: 712
+  card_action_id: 17200
+  field: 5
+  value: '50'
+card_changes_713:
+  id: 713
+  card_action_id: 57335
+  field: 2
+  value: Analyze
+card_changes_714:
+  id: 714
+  card_action_id: 17202
+  field: 0
+  value:
+card_changes_715:
+  id: 715
+  card_action_id: 17202
+  field: 1
+  value: '2'
+card_changes_716:
+  id: 716
+  card_action_id: 17202
+  field: 2
+  value: "A multi-tiered verification system to indicate at what stage of the production
+    \npipeline the data is and the level of assurance given.\n"
+card_changes_717:
+  id: 717
+  card_action_id: 17202
+  field: 3
+  value: f
+card_changes_718:
+  id: 718
+  card_action_id: 17202
+  field: 4
+  value: '3776'
+card_changes_719:
+  id: 719
+  card_action_id: 17202
+  field: 5
+  value: '649'
+card_changes_720:
+  id: 720
+  card_action_id: 57336
+  field: 2
+  value: Make standardize comparisons, monitor progress toward future targets, rate
+    companies, or set up multi-tiered benchmarks.
+card_changes_721:
+  id: 721
+  card_action_id: 17205
+  field: 0
+  value:
+card_changes_722:
+  id: 722
+  card_action_id: 17205
+  field: 1
+  value: '43'
+card_changes_723:
+  id: 723
+  card_action_id: 17205
+  field: 2
+  value: Identifiers
+card_changes_724:
+  id: 724
+  card_action_id: 17205
+  field: 3
+  value: f
+card_changes_725:
+  id: 725
+  card_action_id: 17205
+  field: 4
+  value: '3780'
+card_changes_726:
+  id: 726
+  card_action_id: 17205
+  field: 5
+  value: '50'
+card_changes_727:
+  id: 727
+  card_action_id: 57340
+  field: 2
+  value: Map
+card_changes_728:
+  id: 728
+  card_action_id: 17207
+  field: 0
+  value:
+card_changes_729:
+  id: 729
+  card_action_id: 17207
+  field: 1
+  value: '2'
+card_changes_730:
+  id: 730
+  card_action_id: 17207
+  field: 2
+  value: |
+    Every company, metric, and answer is stored under a unique WikiRate ID. This
+    means data quality can be improved without losing track.
+card_changes_731:
+  id: 731
+  card_action_id: 17207
+  field: 3
+  value: f
+card_changes_732:
+  id: 732
+  card_action_id: 17207
+  field: 4
+  value: '3780'
+card_changes_733:
+  id: 733
+  card_action_id: 17207
+  field: 5
+  value: '649'
+card_changes_734:
+  id: 734
+  card_action_id: 57341
+  field: 2
+  value: Companies do not operate in isolation. Map them to their business relations
+    like suppliers and investors to get a sense of how corporate networks function
+    and can be leveraged.
+card_changes_735:
+  id: 735
+  card_action_id: 37131
+  field: 0
+  value:
+card_changes_736:
+  id: 736
+  card_action_id: 37131
+  field: 1
+  value: '43'
+card_changes_737:
+  id: 737
+  card_action_id: 37131
+  field: 2
+  value: storage
+card_changes_738:
+  id: 738
+  card_action_id: 37131
+  field: 3
+  value: f
+card_changes_739:
+  id: 739
+  card_action_id: 37131
+  field: 4
+  value: '3780'
+card_changes_740:
+  id: 740
+  card_action_id: 37131
+  field: 5
+  value: '3909'
+card_changes_741:
+  id: 741
+  card_action_id: 57342
+  field: 2
+  value: map
+card_changes_742:
+  id: 742
+  card_action_id: 17210
+  field: 0
+  value:
+card_changes_743:
+  id: 743
+  card_action_id: 17210
+  field: 1
+  value: '43'
+card_changes_744:
+  id: 744
+  card_action_id: 17210
+  field: 2
+  value: Open data is not the ultimate goal. It is a means to an end.
+card_changes_745:
+  id: 745
+  card_action_id: 17210
+  field: 3
+  value: f
+card_changes_746:
+  id: 746
+  card_action_id: 17210
+  field: 4
+  value: '3784'
+card_changes_747:
+  id: 747
+  card_action_id: 17210
+  field: 5
+  value: '50'
+card_changes_748:
+  id: 748
+  card_action_id: 57345
+  field: 2
+  value: Share
+card_changes_749:
+  id: 749
+  card_action_id: 17211
+  field: 0
+  value:
+card_changes_750:
+  id: 750
+  card_action_id: 17211
+  field: 1
+  value: '2'
+card_changes_751:
+  id: 751
+  card_action_id: 17211
+  field: 2
+  value: |
+    WikiRate data is used in diverse projects to help address the world's social
+    and environmental challenges
+card_changes_752:
+  id: 752
+  card_action_id: 17211
+  field: 3
+  value: f
+card_changes_753:
+  id: 753
+  card_action_id: 17211
+  field: 4
+  value: '3784'
+card_changes_754:
+  id: 754
+  card_action_id: 17211
+  field: 5
+  value: '649'
+card_changes_755:
+  id: 755
+  card_action_id: 57346
+  field: 2
+  value: Already have a pristine Data Set? Use the import tool or API to add your
+    data in bulk to the platform. From there, it can be combined with other datasets
+    or feed into live dashboards and tools that visualize your findings.
+card_changes_756:
+  id: 756
+  card_action_id: 17214
+  field: 0
+  value:
+card_changes_757:
+  id: 757
+  card_action_id: 17214
+  field: 1
+  value: '43'
+card_changes_758:
+  id: 758
+  card_action_id: 17214
+  field: 2
+  value: Contribute your project
+card_changes_759:
+  id: 759
+  card_action_id: 17214
+  field: 3
+  value: f
+card_changes_760:
+  id: 760
+  card_action_id: 17214
+  field: 4
+  value: '3787'
+card_changes_761:
+  id: 761
+  card_action_id: 17214
+  field: 5
+  value: '50'
+card_changes_762:
+  id: 762
+  card_action_id: 57350
+  field: 2
+  value: Extract
+card_changes_763:
+  id: 763
+  card_action_id: 17215
+  field: 0
+  value:
+card_changes_764:
+  id: 764
+  card_action_id: 17215
+  field: 1
+  value: '2'
+card_changes_765:
+  id: 765
+  card_action_id: 17215
+  field: 2
+  value: "Are you using WikiRate data and want to share your work with the community?
+    \nLet us help you showcase your work.\n"
+card_changes_766:
+  id: 766
+  card_action_id: 17215
+  field: 3
+  value: f
+card_changes_767:
+  id: 767
+  card_action_id: 17215
+  field: 4
+  value: '3787'
+card_changes_768:
+  id: 768
+  card_action_id: 17215
+  field: 5
+  value: '649'
+card_changes_769:
+  id: 769
+  card_action_id: 57351
+  field: 2
+  value: Explore the data made available by WikiRate’s community. Find what you are
+    looking for? Download unlimited Data Sets or connect via the API for regular automated
+    queries to make sure you always have the latest.
+card_changes_770:
+  id: 770
+  card_action_id: 17218
+  field: 0
+  value:
+card_changes_771:
+  id: 771
+  card_action_id: 17218
+  field: 1
+  value: '43'
+card_changes_772:
+  id: 772
+  card_action_id: 17218
+  field: 2
+  value: Let's tackle global challenges together
+card_changes_773:
+  id: 773
+  card_action_id: 17218
+  field: 3
+  value: f
+card_changes_774:
+  id: 774
+  card_action_id: 17218
+  field: 4
+  value: '3790'
+card_changes_775:
+  id: 775
+  card_action_id: 17218
+  field: 5
+  value: '50'
+card_changes_776:
+  id: 776
+  card_action_id: 57355
+  field: 2
+  value: People-powered
+card_changes_777:
+  id: 777
+  card_action_id: 17219
+  field: 0
+  value:
+card_changes_778:
+  id: 778
+  card_action_id: 17219
+  field: 1
+  value: '2'
+card_changes_779:
+  id: 779
+  card_action_id: 17219
+  field: 2
+  value: "We collaboratively assess and engage companies to tackle global challenges
+    and \nimprove people's lives. Anyone can join, and anyone can use our data.\n"
+card_changes_780:
+  id: 780
+  card_action_id: 17219
+  field: 3
+  value: f
+card_changes_781:
+  id: 781
+  card_action_id: 17219
+  field: 4
+  value: '3790'
+card_changes_782:
+  id: 782
+  card_action_id: 17219
+  field: 5
+  value: '649'
+card_changes_783:
+  id: 783
+  card_action_id: 57356
+  field: 2
+  value: Democratizing the ESG space, WikiRate is a tool for everyone. Get involved
+    and help shape the future.
+card_changes_784:
+  id: 784
+  card_action_id: 17222
+  field: 0
+  value:
+card_changes_785:
+  id: 785
+  card_action_id: 17222
+  field: 1
+  value: '43'
+card_changes_786:
+  id: 786
+  card_action_id: 17222
+  field: 2
+  value: Ready to drive change?
+card_changes_787:
+  id: 787
+  card_action_id: 17222
+  field: 3
+  value: f
+card_changes_788:
+  id: 788
+  card_action_id: 17222
+  field: 4
+  value: '3793'
+card_changes_789:
+  id: 789
+  card_action_id: 17222
+  field: 5
+  value: '50'
+card_changes_790:
+  id: 790
+  card_action_id: 57360
+  field: 2
+  value: Collaborative
+card_changes_791:
+  id: 791
+  card_action_id: 17223
+  field: 0
+  value:
+card_changes_792:
+  id: 792
+  card_action_id: 17223
+  field: 1
+  value: '2'
+card_changes_793:
+  id: 793
+  card_action_id: 17223
+  field: 2
+  value: The challenges we face are too big to tackle alone.
+card_changes_794:
+  id: 794
+  card_action_id: 17223
+  field: 3
+  value: f
+card_changes_795:
+  id: 795
+  card_action_id: 17223
+  field: 4
+  value: '3793'
+card_changes_796:
+  id: 796
+  card_action_id: 17223
+  field: 5
+  value: '649'
+card_changes_797:
+  id: 797
+  card_action_id: 57361
+  field: 2
+  value: The challenges we face are too big to tackle alone and time is of the essence.
+    We work together and build on each other’s work.
+card_changes_798:
+  id: 798
+  card_action_id: 17226
+  field: 0
+  value:
+card_changes_799:
+  id: 799
+  card_action_id: 17226
+  field: 1
+  value: '43'
+card_changes_800:
+  id: 800
+  card_action_id: 17226
+  field: 2
+  value: Our most faithful contributors
+card_changes_801:
+  id: 801
+  card_action_id: 17226
+  field: 3
+  value: f
+card_changes_802:
+  id: 802
+  card_action_id: 17226
+  field: 4
+  value: '3796'
+card_changes_803:
+  id: 803
+  card_action_id: 17226
+  field: 5
+  value: '50'
+card_changes_804:
+  id: 804
+  card_action_id: 57365
+  field: 2
+  value: Transparent
+card_changes_805:
+  id: 805
+  card_action_id: 17227
+  field: 0
+  value:
+card_changes_806:
+  id: 806
+  card_action_id: 17227
+  field: 1
+  value: '2'
+card_changes_807:
+  id: 807
+  card_action_id: 17227
+  field: 2
+  value: Our valued community members, we are more than proud of collaborating together.
+card_changes_808:
+  id: 808
+  card_action_id: 17227
+  field: 3
+  value: f
+card_changes_809:
+  id: 809
+  card_action_id: 17227
+  field: 4
+  value: '3796'
+card_changes_810:
+  id: 810
+  card_action_id: 17227
+  field: 5
+  value: '649'
+card_changes_811:
+  id: 811
+  card_action_id: 57366
+  field: 2
+  value: Open principles govern the data, the technology and the community.
+card_changes_812:
+  id: 812
+  card_action_id: 17230
+  field: 0
+  value:
+card_changes_813:
+  id: 813
+  card_action_id: 17230
+  field: 1
+  value: '43'
+card_changes_814:
+  id: 814
+  card_action_id: 17230
+  field: 2
+  value: Become a data contributor
+card_changes_815:
+  id: 815
+  card_action_id: 17230
+  field: 3
+  value: f
+card_changes_816:
+  id: 816
+  card_action_id: 17230
+  field: 4
+  value: '3799'
+card_changes_817:
+  id: 817
+  card_action_id: 17230
+  field: 5
+  value: '50'
+card_changes_818:
+  id: 818
+  card_action_id: 57370
+  field: 2
+  value: The largest open registry of corporate sustainability data in the world
+card_changes_819:
+  id: 819
+  card_action_id: 17231
+  field: 0
+  value:
+card_changes_820:
+  id: 820
+  card_action_id: 17231
+  field: 1
+  value: '2'
+card_changes_821:
+  id: 821
+  card_action_id: 17231
+  field: 2
+  value: "Really short descriptive text of about fifty to maximum one hundred and
+    \nfifty characters.\n"
+card_changes_822:
+  id: 822
+  card_action_id: 17231
+  field: 3
+  value: f
+card_changes_823:
+  id: 823
+  card_action_id: 17231
+  field: 4
+  value: '3799'
+card_changes_824:
+  id: 824
+  card_action_id: 17231
+  field: 5
+  value: '649'
+card_changes_825:
+  id: 825
+  card_action_id: 57371
+  field: 2
+  value: WikiRate has public data on companies from all sectors, covering their environmental,
+    social, and governance performance.
+card_changes_826:
+  id: 826
+  card_action_id: 17234
+  field: 0
+  value:
+card_changes_827:
+  id: 827
+  card_action_id: 17234
+  field: 1
+  value: '43'
+card_changes_828:
+  id: 828
+  card_action_id: 17234
+  field: 2
+  value: Organize a project
+card_changes_829:
+  id: 829
+  card_action_id: 17234
+  field: 3
+  value: f
+card_changes_830:
+  id: 830
+  card_action_id: 17234
+  field: 4
+  value: '3802'
+card_changes_831:
+  id: 831
+  card_action_id: 17234
+  field: 5
+  value: '50'
+card_changes_832:
+  id: 832
+  card_action_id: 57374
+  field: 2
+  value: What makes our data so special?
+card_changes_833:
+  id: 833
+  card_action_id: 17236
+  field: 0
+  value:
+card_changes_834:
+  id: 834
+  card_action_id: 17236
+  field: 1
+  value: '2'
+card_changes_835:
+  id: 835
+  card_action_id: 17236
+  field: 2
+  value: "Really short descriptive text of about fifty to maximum one hundred and
+    \nfifty characters.\n"
+card_changes_836:
+  id: 836
+  card_action_id: 17236
+  field: 3
+  value: f
+card_changes_837:
+  id: 837
+  card_action_id: 17236
+  field: 4
+  value: '3802'
+card_changes_838:
+  id: 838
+  card_action_id: 17236
+  field: 5
+  value: '649'
+card_changes_839:
+  id: 839
+  card_action_id: 57375
+  field: 2
+  value: The data on WikiRate is open and free for all, because we believe sharing
+    knowledge is the only way to improve decision-making at a global scale.
+card_changes_840:
+  id: 840
+  card_action_id: 17239
+  field: 0
+  value:
+card_changes_841:
+  id: 841
+  card_action_id: 17239
+  field: 1
+  value: '43'
+card_changes_842:
+  id: 842
+  card_action_id: 17239
+  field: 2
+  value: Add to your own dataset
+card_changes_843:
+  id: 843
+  card_action_id: 17239
+  field: 3
+  value: f
+card_changes_844:
+  id: 844
+  card_action_id: 17239
+  field: 4
+  value: '3806'
+card_changes_845:
+  id: 845
+  card_action_id: 17239
+  field: 5
+  value: '50'
+card_changes_846:
+  id: 846
+  card_action_id: 57378
+  field: 2
+  value: Why is our data so reliable?
+card_changes_847:
+  id: 847
+  card_action_id: 17241
+  field: 0
+  value:
+card_changes_848:
+  id: 848
+  card_action_id: 17241
+  field: 1
+  value: '2'
+card_changes_849:
+  id: 849
+  card_action_id: 17241
+  field: 2
+  value: "Really short descriptive text of about fifty to maximum one hundred and
+    \nfifty characters.\n"
+card_changes_850:
+  id: 850
+  card_action_id: 17241
+  field: 3
+  value: f
+card_changes_851:
+  id: 851
+  card_action_id: 17241
+  field: 4
+  value: '3806'
+card_changes_852:
+  id: 852
+  card_action_id: 17241
+  field: 5
+  value: '649'
+card_changes_853:
+  id: 853
+  card_action_id: 57379
+  field: 2
+  value: Many of our datasets come from expert organizations and are already verified.
+    For data added by the community through collaborative research projects, different
+    mechanisms are in place to ensure its accuracy.
+card_changes_854:
+  id: 854
+  card_action_id: 17244
+  field: 0
+  value:
+card_changes_855:
+  id: 855
+  card_action_id: 17244
+  field: 1
+  value: '43'
+card_changes_856:
+  id: 856
+  card_action_id: 17244
+  field: 2
+  value: Use our API
+card_changes_857:
+  id: 857
+  card_action_id: 17244
+  field: 3
+  value: f
+card_changes_858:
+  id: 858
+  card_action_id: 17244
+  field: 4
+  value: '3810'
+card_changes_859:
+  id: 859
+  card_action_id: 17244
+  field: 5
+  value: '50'
+card_changes_860:
+  id: 860
+  card_action_id: 57382
+  field: 2
+  value: Start using our data today
+card_changes_861:
+  id: 861
+  card_action_id: 17246
+  field: 0
+  value:
+card_changes_862:
+  id: 862
+  card_action_id: 17246
+  field: 1
+  value: '2'
+card_changes_863:
+  id: 863
+  card_action_id: 17246
+  field: 2
+  value: "Really short descriptive text of about fifty to maximum one hundred and
+    \nfifty characters.\n"
+card_changes_864:
+  id: 864
+  card_action_id: 17246
+  field: 3
+  value: f
+card_changes_865:
+  id: 865
+  card_action_id: 17246
+  field: 4
+  value: '3810'
+card_changes_866:
+  id: 866
+  card_action_id: 17246
+  field: 5
+  value: '649'
+card_changes_867:
+  id: 867
+  card_action_id: 57383
+  field: 2
+  value: You can download data from any page on WikiRate or use our API to extract
+    data in bulk.
+card_changes_868:
+  id: 868
+  card_action_id: 17249
+  field: 0
+  value:
+card_changes_869:
+  id: 869
+  card_action_id: 17249
+  field: 1
+  value: '43'
+card_changes_870:
+  id: 870
+  card_action_id: 17249
+  field: 2
+  value: Sign up now
+card_changes_871:
+  id: 871
+  card_action_id: 17249
+  field: 3
+  value: f
+card_changes_872:
+  id: 872
+  card_action_id: 17249
+  field: 4
+  value: '3814'
+card_changes_873:
+  id: 873
+  card_action_id: 17249
+  field: 5
+  value: '50'
+card_changes_874:
+  id: 874
+  card_action_id: 57386
+  field: 2
+  value: Open
+card_changes_875:
+  id: 875
+  card_action_id: 57387
+  field: 2
+  value: 'Licensed under CC BY 4.0 the data can be accessed, used and shared by anyone.
+    The only requirement: attribution.'
+card_changes_876:
+  id: 876
+  card_action_id: 57391
+  field: 2
+  value: Free
+card_changes_877:
+  id: 877
+  card_action_id: 57392
+  field: 2
+  value: We are all impacted by companies. Sharing the data freely means everyone
+    can get more informed and be the change they want to see.
+card_changes_878:
+  id: 878
+  card_action_id: 17258
+  field: 0
+  value:
+card_changes_879:
+  id: 879
+  card_action_id: 17258
+  field: 1
+  value: '43'
+card_changes_880:
+  id: 880
+  card_action_id: 17258
+  field: 2
+  value: Become a data contributor
+card_changes_881:
+  id: 881
+  card_action_id: 17258
+  field: 3
+  value: f
+card_changes_882:
+  id: 882
+  card_action_id: 17258
+  field: 4
+  value: '3821'
+card_changes_883:
+  id: 883
+  card_action_id: 17258
+  field: 5
+  value: '50'
+card_changes_884:
+  id: 884
+  card_action_id: 57396
+  field: 2
+  value: Diverse
+card_changes_885:
+  id: 885
+  card_action_id: 57397
+  field: 2
+  value: We host data from any public source (not just self-reported company data).
+    This means more nuanced insights on company actions and impacts.
+card_changes_886:
+  id: 886
+  card_action_id: 57401
+  field: 2
+  value: Transparency
+card_changes_887:
+  id: 887
+  card_action_id: 57402
+  field: 2
+  value: Full clarity on where the data comes from (down to archived copies of the
+    original source), when and by whom it was added, and what methodology was used
+    to make sense of it.
+card_changes_888:
+  id: 888
+  card_action_id: 57406
+  field: 2
+  value: Collaboration
+card_changes_889:
+  id: 889
+  card_action_id: 57407
+  field: 2
+  value: Open access means more eyes on the data. It allows anomalies and errors to
+    be found faster, creating better data quality for everyone.
+card_changes_890:
+  id: 890
+  card_action_id: 57411
+  field: 2
+  value: Verification
+card_changes_891:
+  id: 891
+  card_action_id: 57412
+  field: 2
+  value: A multi-tiered verification system to indicate at what stage of the production
+    pipeline the data is and the level of assurance given.
+card_changes_892:
+  id: 892
+  card_action_id: 30528
+  field: 0
+  value:
+card_changes_893:
+  id: 893
+  card_action_id: 30528
+  field: 1
+  value: '43'
+card_changes_894:
+  id: 894
+  card_action_id: 30528
+  field: 2
+  value: Check out the latest contribution opportunities
+card_changes_895:
+  id: 895
+  card_action_id: 30528
+  field: 3
+  value: f
+card_changes_896:
+  id: 896
+  card_action_id: 30528
+  field: 4
+  value: '3892'
+card_changes_897:
+  id: 897
+  card_action_id: 30528
+  field: 5
+  value: '50'
+card_changes_898:
+  id: 898
+  card_action_id: 57416
+  field: 2
+  value: Identifiers
+card_changes_899:
+  id: 899
+  card_action_id: 30530
+  field: 0
+  value:
+card_changes_900:
+  id: 900
+  card_action_id: 30530
+  field: 1
+  value: '2'
+card_changes_901:
+  id: 901
+  card_action_id: 30530
+  field: 2
+  value: Cannot wait to get involved? Explore the latest projects that could really
+    use your help.
+card_changes_902:
+  id: 902
+  card_action_id: 30530
+  field: 3
+  value: f
+card_changes_903:
+  id: 903
+  card_action_id: 30530
+  field: 4
+  value: '3892'
+card_changes_904:
+  id: 904
+  card_action_id: 30530
+  field: 5
+  value: '649'
+card_changes_905:
+  id: 905
+  card_action_id: 57417
+  field: 2
+  value: Every company, metric, and answer is stored under a unique WikiRate ID. This
+    means data quality can be improved without losing track of an evolving data point.
+card_changes_906:
+  id: 906
+  card_action_id: 37188
+  field: 0
+  value:
+card_changes_907:
+  id: 907
+  card_action_id: 37188
+  field: 1
+  value: '43'
+card_changes_908:
+  id: 908
+  card_action_id: 37188
+  field: 2
+  value: volunteer_activism
+card_changes_909:
+  id: 909
+  card_action_id: 37188
+  field: 3
+  value: f
+card_changes_910:
+  id: 910
+  card_action_id: 37188
+  field: 4
+  value: '3892'
+card_changes_911:
+  id: 911
+  card_action_id: 37188
+  field: 5
+  value: '3909'
+card_changes_912:
+  id: 912
+  card_action_id: 57418
+  field: 2
+  value: storage
+card_changes_913:
+  id: 913
+  card_action_id: 30533
+  field: 0
+  value:
+card_changes_914:
+  id: 914
+  card_action_id: 30533
+  field: 1
+  value: '43'
+card_changes_915:
+  id: 915
+  card_action_id: 30533
+  field: 2
+  value: Partner with WikiRate International
+card_changes_916:
+  id: 916
+  card_action_id: 30533
+  field: 3
+  value: f
+card_changes_917:
+  id: 917
+  card_action_id: 30533
+  field: 4
+  value: '3896'
+card_changes_918:
+  id: 918
+  card_action_id: 30533
+  field: 5
+  value: '50'
+card_changes_919:
+  id: 919
+  card_action_id: 57421
+  field: 2
+  value: Open data is not the ultimate goal. It is a means to an end.
+card_changes_920:
+  id: 920
+  card_action_id: 30535
+  field: 0
+  value:
+card_changes_921:
+  id: 921
+  card_action_id: 30535
+  field: 1
+  value: '2'
+card_changes_922:
+  id: 922
+  card_action_id: 30535
+  field: 2
+  value: Check out the ways in which the WikiRate team can help you
+card_changes_923:
+  id: 923
+  card_action_id: 30535
+  field: 3
+  value: f
+card_changes_924:
+  id: 924
+  card_action_id: 30535
+  field: 4
+  value: '3896'
+card_changes_925:
+  id: 925
+  card_action_id: 30535
+  field: 5
+  value: '649'
+card_changes_926:
+  id: 926
+  card_action_id: 57422
+  field: 2
+  value: Explore how WikiRate data and tools are used to help address the world’s
+    social and environmental challenges.
+card_changes_927:
+  id: 927
+  card_action_id: 30538
+  field: 0
+  value:
+card_changes_928:
+  id: 928
+  card_action_id: 30538
+  field: 1
+  value: '43'
+card_changes_929:
+  id: 929
+  card_action_id: 30538
+  field: 2
+  value: Talk to a human
+card_changes_930:
+  id: 930
+  card_action_id: 30538
+  field: 3
+  value: f
+card_changes_931:
+  id: 931
+  card_action_id: 30538
+  field: 4
+  value: '3900'
+card_changes_932:
+  id: 932
+  card_action_id: 30538
+  field: 5
+  value: '50'
+card_changes_933:
+  id: 933
+  card_action_id: 57425
+  field: 2
+  value: Share your impact
+card_changes_934:
+  id: 934
+  card_action_id: 30540
+  field: 0
+  value:
+card_changes_935:
+  id: 935
+  card_action_id: 30540
+  field: 1
+  value: '2'
+card_changes_936:
+  id: 936
+  card_action_id: 30540
+  field: 2
+  value: Contact us at WikiRate International
+card_changes_937:
+  id: 937
+  card_action_id: 30540
+  field: 3
+  value: f
+card_changes_938:
+  id: 938
+  card_action_id: 30540
+  field: 4
+  value: '3900'
+card_changes_939:
+  id: 939
+  card_action_id: 30540
+  field: 5
+  value: '649'
+card_changes_940:
+  id: 940
+  card_action_id: 57426
+  field: 2
+  value: Are you using WikiRate data and want to share your work with the community?
+    Let us help you showcase your work.
+card_changes_941:
+  id: 941
+  card_action_id: 30543
+  field: 0
+  value:
+card_changes_942:
+  id: 942
+  card_action_id: 30543
+  field: 1
+  value: '43'
+card_changes_943:
+  id: 943
+  card_action_id: 30543
+  field: 2
+  value: Get email updates on the latest community and platform developments
+card_changes_944:
+  id: 944
+  card_action_id: 30543
+  field: 3
+  value: f
+card_changes_945:
+  id: 945
+  card_action_id: 30543
+  field: 4
+  value: '3904'
+card_changes_946:
+  id: 946
+  card_action_id: 30543
+  field: 5
+  value: '50'
+card_changes_947:
+  id: 947
+  card_action_id: 57429
+  field: 2
+  value: Let's tackle global challenges together
+card_changes_948:
+  id: 948
+  card_action_id: 30545
+  field: 0
+  value:
+card_changes_949:
+  id: 949
+  card_action_id: 30545
+  field: 1
+  value: '2'
+card_changes_950:
+  id: 950
+  card_action_id: 30545
+  field: 2
+  value: Subscribe for updates
+card_changes_951:
+  id: 951
+  card_action_id: 30545
+  field: 3
+  value: f
+card_changes_952:
+  id: 952
+  card_action_id: 30545
+  field: 4
+  value: '3904'
+card_changes_953:
+  id: 953
+  card_action_id: 30545
+  field: 5
+  value: '649'
+card_changes_954:
+  id: 954
+  card_action_id: 57430
+  field: 2
+  value: The community collaboratively assesses and encourages companies to tackle
+    global challenges and improve people's lives. Anyone can join, and anyone can
+    use our data.
+card_changes_955:
+  id: 955
+  card_action_id: 47216
+  field: 0
+  value:
+card_changes_956:
+  id: 956
+  card_action_id: 47216
+  field: 1
+  value: '43'
+card_changes_957:
+  id: 957
+  card_action_id: 47216
+  field: 2
+  value: Project Organizers
+card_changes_958:
+  id: 958
+  card_action_id: 47216
+  field: 3
+  value: f
+card_changes_959:
+  id: 959
+  card_action_id: 47216
+  field: 4
+  value: '3933'
+card_changes_960:
+  id: 960
+  card_action_id: 47216
+  field: 5
+  value: '50'
+card_changes_961:
+  id: 961
+  card_action_id: 57433
+  field: 2
+  value: Ready to drive change?
+card_changes_962:
+  id: 962
+  card_action_id: 47217
+  field: 0
+  value:
+card_changes_963:
+  id: 963
+  card_action_id: 47217
+  field: 1
+  value: '2'
+card_changes_964:
+  id: 964
+  card_action_id: 47217
+  field: 2
+  value: "Individuals or organizations coordinating a collaborative assessment of
+    companies \non a topic relevant for their work, research, or everyday life.\n"
+card_changes_965:
+  id: 965
+  card_action_id: 47217
+  field: 3
+  value: f
+card_changes_966:
+  id: 966
+  card_action_id: 47217
+  field: 4
+  value: '3933'
+card_changes_967:
+  id: 967
+  card_action_id: 47217
+  field: 5
+  value: '649'
+card_changes_968:
+  id: 968
+  card_action_id: 57434
+  field: 2
+  value: The challenges we face are too big to tackle alone. Collaborative action
+    is the way forward.
+card_changes_969:
+  id: 969
+  card_action_id: 50528
+  field: 0
+  value:
+card_changes_970:
+  id: 970
+  card_action_id: 50528
+  field: 1
+  value: '43'
+card_changes_971:
+  id: 971
+  card_action_id: 50528
+  field: 2
+  value: Become a steward
+card_changes_972:
+  id: 972
+  card_action_id: 50528
+  field: 3
+  value: f
+card_changes_973:
+  id: 973
+  card_action_id: 50528
+  field: 4
+  value: '3943'
+card_changes_974:
+  id: 974
+  card_action_id: 50528
+  field: 5
+  value: '50'
+card_changes_975:
+  id: 975
+  card_action_id: 57437
+  field: 2
+  value: Members of the month
+card_changes_976:
+  id: 976
+  card_action_id: 50530
+  field: 0
+  value:
+card_changes_977:
+  id: 977
+  card_action_id: 50530
+  field: 1
+  value: '2'
+card_changes_978:
+  id: 978
+  card_action_id: 50530
+  field: 2
+  value: 'But not like the one in LoTR. He sucked.
+
+    '
+card_changes_979:
+  id: 979
+  card_action_id: 50530
+  field: 3
+  value: f
+card_changes_980:
+  id: 980
+  card_action_id: 50530
+  field: 4
+  value: '3943'
+card_changes_981:
+  id: 981
+  card_action_id: 50530
+  field: 5
+  value: '649'
+card_changes_982:
+  id: 982
+  card_action_id: 57438
+  field: 2
+  value: Our valued community members, we are more than proud of collaborating together.
+card_changes_983:
+  id: 983
+  card_action_id: 50533
+  field: 0
+  value:
+card_changes_984:
+  id: 984
+  card_action_id: 50533
+  field: 1
+  value: '43'
+card_changes_985:
+  id: 985
+  card_action_id: 50533
+  field: 2
+  value: Subscribe for updates
+card_changes_986:
+  id: 986
+  card_action_id: 50533
+  field: 3
+  value: f
+card_changes_987:
+  id: 987
+  card_action_id: 50533
+  field: 4
+  value: '3947'
+card_changes_988:
+  id: 988
+  card_action_id: 50533
+  field: 5
+  value: '50'
+card_changes_989:
+  id: 989
+  card_action_id: 57441
+  field: 2
+  value: Become a data contributor
+card_changes_990:
+  id: 990
+  card_action_id: 50534
+  field: 0
+  value:
+card_changes_991:
+  id: 991
+  card_action_id: 50534
+  field: 1
+  value: '43'
+card_changes_992:
+  id: 992
+  card_action_id: 50534
+  field: 2
+  value: https://www.google.com/url?q=https://wikirate.us7.list-manage.com/subscribe/post?u%3Dbe57db47b40c6b1c7e9ef0b36%26id%3D1354650004&sa=D&source=docs&ust=1678294845108552&usg=AOvVaw0nkvJbGmeOiIS0FK9IuiVt
+card_changes_993:
+  id: 993
+  card_action_id: 50534
+  field: 3
+  value: f
+card_changes_994:
+  id: 994
+  card_action_id: 50534
+  field: 4
+  value: '3947'
+card_changes_995:
+  id: 995
+  card_action_id: 50534
+  field: 5
+  value: '45'
+card_changes_996:
+  id: 996
+  card_action_id: 57442
+  field: 2
+  value: https://express.adobe.com/page/o6z9GKWQ6z6lT/
+card_changes_997:
+  id: 997
+  card_action_id: 50535
+  field: 0
+  value:
+card_changes_998:
+  id: 998
+  card_action_id: 50535
+  field: 1
+  value: '2'
+card_changes_999:
+  id: 999
+  card_action_id: 50535
+  field: 2
+  value: "Stay up to date on the latest community and platform developments by subscribing
+    \nto our newsletter.\n"
+card_changes_1000:
+  id: 1000
+  card_action_id: 50535
+  field: 3
+  value: f
+card_changes_1001:
+  id: 1001
+  card_action_id: 50535
+  field: 4
+  value: '3947'
+card_changes_1002:
+  id: 1002
+  card_action_id: 50535
+  field: 5
+  value: '649'
+card_changes_1003:
+  id: 1003
+  card_action_id: 57443
+  field: 2
+  value: Learn how you can contribute and help gather evidence that challenges the
+    status quo of sustainability reporting.
+card_changes_1004:
+  id: 1004
+  card_action_id: 17237
+  field: 0
+  value: Blurb 0034
+card_changes_1005:
+  id: 1005
+  card_action_id: 17237
+  field: 1
+  value: '2489'
+card_changes_1006:
+  id: 1006
+  card_action_id: 17237
+  field: 2
+  value: ''
+card_changes_1007:
+  id: 1007
+  card_action_id: 17237
+  field: 3
+  value: f
+card_changes_1008:
+  id: 1008
+  card_action_id: 17237
+  field: 4
+  value:
+card_changes_1009:
+  id: 1009
+  card_action_id: 17237
+  field: 5
+  value:
+card_changes_1010:
+  id: 1010
+  card_action_id: 57449
+  field: 0
+  value: Blurb 0050
+card_changes_1011:
+  id: 1011
+  card_action_id: 17242
+  field: 0
+  value: Blurb 0035
+card_changes_1012:
+  id: 1012
+  card_action_id: 17242
+  field: 1
+  value: '2489'
+card_changes_1013:
+  id: 1013
+  card_action_id: 17242
+  field: 2
+  value: ''
+card_changes_1014:
+  id: 1014
+  card_action_id: 17242
+  field: 3
+  value: f
+card_changes_1015:
+  id: 1015
+  card_action_id: 17242
+  field: 4
+  value:
+card_changes_1016:
+  id: 1016
+  card_action_id: 17242
+  field: 5
+  value:
+card_changes_1017:
+  id: 1017
+  card_action_id: 57454
+  field: 0
+  value: Blurb 0051
+card_changes_1018:
+  id: 1018
+  card_action_id: 17247
+  field: 0
+  value: Blurb 0036
+card_changes_1019:
+  id: 1019
+  card_action_id: 17247
+  field: 1
+  value: '2489'
+card_changes_1020:
+  id: 1020
+  card_action_id: 17247
+  field: 2
+  value: ''
+card_changes_1021:
+  id: 1021
+  card_action_id: 17247
+  field: 3
+  value: f
+card_changes_1022:
+  id: 1022
+  card_action_id: 17247
+  field: 4
+  value:
+card_changes_1023:
+  id: 1023
+  card_action_id: 17247
+  field: 5
+  value:
+card_changes_1024:
+  id: 1024
+  card_action_id: 57458
+  field: 0
+  value: Blurb 0052
+card_changes_1025:
+  id: 1025
+  card_action_id: 17252
+  field: 0
+  value: Blurb 0037
+card_changes_1026:
+  id: 1026
+  card_action_id: 17252
+  field: 1
+  value: '2489'
+card_changes_1027:
+  id: 1027
+  card_action_id: 17252
+  field: 2
+  value: ''
+card_changes_1028:
+  id: 1028
+  card_action_id: 17252
+  field: 3
+  value: f
+card_changes_1029:
+  id: 1029
+  card_action_id: 17252
+  field: 4
+  value:
+card_changes_1030:
+  id: 1030
+  card_action_id: 17252
+  field: 5
+  value:
+card_changes_1031:
+  id: 1031
+  card_action_id: 57463
+  field: 0
+  value: Blurb 0053
+card_changes_1032:
+  id: 1032
+  card_action_id: 17256
+  field: 0
+  value: Blurb 0038
+card_changes_1033:
+  id: 1033
+  card_action_id: 17256
+  field: 1
+  value: '2489'
+card_changes_1034:
+  id: 1034
+  card_action_id: 17256
+  field: 2
+  value: ''
+card_changes_1035:
+  id: 1035
+  card_action_id: 17256
+  field: 3
+  value: f
+card_changes_1036:
+  id: 1036
+  card_action_id: 17256
+  field: 4
+  value:
+card_changes_1037:
+  id: 1037
+  card_action_id: 17256
+  field: 5
+  value:
+card_changes_1038:
+  id: 1038
+  card_action_id: 57468
+  field: 0
+  value: Blurb 0054
+card_changes_1039:
+  id: 1039
+  card_action_id: 17260
+  field: 0
+  value: Blurb 0039
+card_changes_1040:
+  id: 1040
+  card_action_id: 17260
+  field: 1
+  value: '2489'
+card_changes_1041:
+  id: 1041
+  card_action_id: 17260
+  field: 2
+  value: ''
+card_changes_1042:
+  id: 1042
+  card_action_id: 17260
+  field: 3
+  value: f
+card_changes_1043:
+  id: 1043
+  card_action_id: 17260
+  field: 4
+  value:
+card_changes_1044:
+  id: 1044
+  card_action_id: 17260
+  field: 5
+  value:
+card_changes_1045:
+  id: 1045
+  card_action_id: 57473
+  field: 0
+  value: Blurb 0055
+card_changes_1046:
+  id: 1046
+  card_action_id: 17265
+  field: 0
+  value: Blurb 0040
+card_changes_1047:
+  id: 1047
+  card_action_id: 17265
+  field: 1
+  value: '2489'
+card_changes_1048:
+  id: 1048
+  card_action_id: 17265
+  field: 2
+  value: ''
+card_changes_1049:
+  id: 1049
+  card_action_id: 17265
+  field: 3
+  value: f
+card_changes_1050:
+  id: 1050
+  card_action_id: 17265
+  field: 4
+  value:
+card_changes_1051:
+  id: 1051
+  card_action_id: 17265
+  field: 5
+  value:
+card_changes_1052:
+  id: 1052
+  card_action_id: 57478
+  field: 0
+  value: Blurb 0056
+card_changes_1053:
+  id: 1053
+  card_action_id: 17269
+  field: 0
+  value: Blurb 0041
+card_changes_1054:
+  id: 1054
+  card_action_id: 17269
+  field: 1
+  value: '2489'
+card_changes_1055:
+  id: 1055
+  card_action_id: 17269
+  field: 2
+  value: ''
+card_changes_1056:
+  id: 1056
+  card_action_id: 17269
+  field: 3
+  value: f
+card_changes_1057:
+  id: 1057
+  card_action_id: 17269
+  field: 4
+  value:
+card_changes_1058:
+  id: 1058
+  card_action_id: 17269
+  field: 5
+  value:
+card_changes_1059:
+  id: 1059
+  card_action_id: 57483
+  field: 0
+  value: Blurb 0057
+card_changes_1060:
+  id: 1060
+  card_action_id: 17274
+  field: 0
+  value: Blurb 0042
+card_changes_1061:
+  id: 1061
+  card_action_id: 17274
+  field: 1
+  value: '2489'
+card_changes_1062:
+  id: 1062
+  card_action_id: 17274
+  field: 2
+  value: ''
+card_changes_1063:
+  id: 1063
+  card_action_id: 17274
+  field: 3
+  value: f
+card_changes_1064:
+  id: 1064
+  card_action_id: 17274
+  field: 4
+  value:
+card_changes_1065:
+  id: 1065
+  card_action_id: 17274
+  field: 5
+  value:
+card_changes_1066:
+  id: 1066
+  card_action_id: 57488
+  field: 0
+  value: Blurb 0058
+card_changes_1067:
+  id: 1067
+  card_action_id: 30531
+  field: 0
+  value: Blurb 0043
+card_changes_1068:
+  id: 1068
+  card_action_id: 30531
+  field: 1
+  value: '2489'
+card_changes_1069:
+  id: 1069
+  card_action_id: 30531
+  field: 2
+  value: ''
+card_changes_1070:
+  id: 1070
+  card_action_id: 30531
+  field: 3
+  value: f
+card_changes_1071:
+  id: 1071
+  card_action_id: 30531
+  field: 4
+  value:
+card_changes_1072:
+  id: 1072
+  card_action_id: 30531
+  field: 5
+  value:
+card_changes_1073:
+  id: 1073
+  card_action_id: 57494
+  field: 0
+  value: Blurb 0059
+card_changes_1074:
+  id: 1074
+  card_action_id: 30536
+  field: 0
+  value: Blurb 0044
+card_changes_1075:
+  id: 1075
+  card_action_id: 30536
+  field: 1
+  value: '2489'
+card_changes_1076:
+  id: 1076
+  card_action_id: 30536
+  field: 2
+  value: ''
+card_changes_1077:
+  id: 1077
+  card_action_id: 30536
+  field: 3
+  value: f
+card_changes_1078:
+  id: 1078
+  card_action_id: 30536
+  field: 4
+  value:
+card_changes_1079:
+  id: 1079
+  card_action_id: 30536
+  field: 5
+  value:
+card_changes_1080:
+  id: 1080
+  card_action_id: 57500
+  field: 0
+  value: Blurb 0060
+card_changes_1081:
+  id: 1081
+  card_action_id: 30541
+  field: 0
+  value: Blurb 0045
+card_changes_1082:
+  id: 1082
+  card_action_id: 30541
+  field: 1
+  value: '2489'
+card_changes_1083:
+  id: 1083
+  card_action_id: 30541
+  field: 2
+  value: ''
+card_changes_1084:
+  id: 1084
+  card_action_id: 30541
+  field: 3
+  value: f
+card_changes_1085:
+  id: 1085
+  card_action_id: 30541
+  field: 4
+  value:
+card_changes_1086:
+  id: 1086
+  card_action_id: 30541
+  field: 5
+  value:
+card_changes_1087:
+  id: 1087
+  card_action_id: 57505
+  field: 0
+  value: Blurb 0061
+card_changes_1088:
+  id: 1088
+  card_action_id: 30546
+  field: 0
+  value: Blurb 0046
+card_changes_1089:
+  id: 1089
+  card_action_id: 30546
+  field: 1
+  value: '2489'
+card_changes_1090:
+  id: 1090
+  card_action_id: 30546
+  field: 2
+  value: ''
+card_changes_1091:
+  id: 1091
+  card_action_id: 30546
+  field: 3
+  value: f
+card_changes_1092:
+  id: 1092
+  card_action_id: 30546
+  field: 4
+  value:
+card_changes_1093:
+  id: 1093
+  card_action_id: 30546
+  field: 5
+  value:
+card_changes_1094:
+  id: 1094
+  card_action_id: 57510
+  field: 0
+  value: Blurb 0062
+card_changes_1095:
+  id: 1095
+  card_action_id: 47218
+  field: 0
+  value: Blurb 0047
+card_changes_1096:
+  id: 1096
+  card_action_id: 47218
+  field: 1
+  value: '2489'
+card_changes_1097:
+  id: 1097
+  card_action_id: 47218
+  field: 2
+  value: ''
+card_changes_1098:
+  id: 1098
+  card_action_id: 47218
+  field: 3
+  value: f
+card_changes_1099:
+  id: 1099
+  card_action_id: 47218
+  field: 4
+  value:
+card_changes_1100:
+  id: 1100
+  card_action_id: 47218
+  field: 5
+  value:
+card_changes_1101:
+  id: 1101
+  card_action_id: 57514
+  field: 0
+  value: Blurb 0063
+card_changes_1102:
+  id: 1102
+  card_action_id: 50531
+  field: 0
+  value: Blurb 0048
+card_changes_1103:
+  id: 1103
+  card_action_id: 50531
+  field: 1
+  value: '2489'
+card_changes_1104:
+  id: 1104
+  card_action_id: 50531
+  field: 2
+  value: ''
+card_changes_1105:
+  id: 1105
+  card_action_id: 50531
+  field: 3
+  value: f
+card_changes_1106:
+  id: 1106
+  card_action_id: 50531
+  field: 4
+  value:
+card_changes_1107:
+  id: 1107
+  card_action_id: 50531
+  field: 5
+  value:
+card_changes_1108:
+  id: 1108
+  card_action_id: 57519
+  field: 0
+  value: Blurb 0064
+card_changes_1109:
+  id: 1109
+  card_action_id: 50536
+  field: 0
+  value: Blurb 0049
+card_changes_1110:
+  id: 1110
+  card_action_id: 50536
+  field: 1
+  value: '2489'
+card_changes_1111:
+  id: 1111
+  card_action_id: 50536
+  field: 2
+  value: ''
+card_changes_1112:
+  id: 1112
+  card_action_id: 50536
+  field: 3
+  value: f
+card_changes_1113:
+  id: 1113
+  card_action_id: 50536
+  field: 4
+  value:
+card_changes_1114:
+  id: 1114
+  card_action_id: 50536
+  field: 5
+  value:
+card_changes_1115:
+  id: 1115
+  card_action_id: 57524
+  field: 0
+  value: Blurb 0065
+card_changes_1116:
+  id: 1116
+  card_action_id: 57532
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_1117:
+  id: 1117
+  card_action_id: 57550
+  field: 2
+  value: |
+    // NOTE: standard bootstrap color variables should be changed not
+    // here but in the +:color card
+
+    /*----------- WikiRate Categories ---------*/
+
+    $yellow-orange: #F7B13D;
+
+    $company-color: $purple;
+    $company-group-color: $red;
+    $metric-color: $purple;
+    $answer-color: $metric-color;
+    $record-color: $metric-color;
+    $topic-color: $teal;
+    $source-color: $metric-color;
+    $user-color: $teal;
+    $research-group-color: $red;
+    $project-color: $topic-color;
+    $dataset-color: $topic-color;
+    $year-color: $yellow;
+
+    /*----------- WikiRate Scores ---------*/
+
+    $score-colors: (
+      "0": $red,
+      "1": #EA5C43,
+      "2": $orange,
+      "3": #F7923D,
+      "4": $yellow-orange,
+      "5": $yellow,
+      "6": #BFCA4B,
+      "7": $green,
+      "8": #65a300,
+      "9": $teal
+    );
+
+    /*----------- Other WikiRate-specific variables ---------*/
+
+    $light-purple:  #EDEBF9;
+    $light-purple-1: #fbfafe;
+    $light-purple-2: #dfdcf4;
+    $light-purple-3: #d2cdf0;
+
+    $purple-grad-1: #6B5CD8;
+    $purple-grad-2: #7F73D5;
+
+    $light-teal: #e4f6f3;
+    $light-red: #FAEFEA;
+
+
+    //      Teal            #09AB90
+    //      Light Teal        #e4f6f3
+    //      Shade 1        #f3fbfa
+    //      Shade 2        #d5f1ec
+    //      Shade 3        #c7ece6
+    //
+    //      Red-O        #F7733D
+    //      Light Red-O    #FAEFEA
+    //      Shade 1        #fefbfa
+    //      Shade 3        #f6e3da
+    //      Shade 4        #f2d7ca
+
+
+    $verification-flag-color: $red;
+    $top-bar-anchor-color: $primary;
+
+    // badge levels
+    $gold: gold;
+    $silver: silver;
+    $bronze: #cd7f32;
+
+    //----------- Bootstrap Overrides ---------
+
+    $border-color: $gray-200;
+    $table-group-separator-color: $gray-200;
+
+    $box-shadow-sm: 0 5px 10px 0 rgba($dark, .08);
+    $box-shadow: 0 10px 20px 0 rgba($dark, .2);
+    $box-shadow-lg: 0 15px 50px 0 rgba($dark, .3);
+
+    $btn-border-radius: 49.9rem;
+    $btn-border-radius-lg: 50.1rem;
+    $form-select-border-radius: 50.2rem;
+    $form-select-border-radius-lg: 50.3rem;
+    $input-border-radius: 50.4rem;
+
+    $s2bs5-border-radius: .25rem;
+    $s2bs5-border-radius-sm: .25rem;
+    $s2bs5-border-radius-lg: .25rem;
+
+    // NOTE: scroll-behavior: smooth breaks cypress tests
+    $enable-smooth-scroll: false;
+
+    $input-btn-padding-x: 1rem;
+    $input-btn-padding-x-sm: 0.5rem;
+    $input-btn-padding-x-lg: 2rem;
+
+    //----------- Slick Overrides ---------
+
+    $slick-font-path: "[[/mod/wikirate/slick_fonts/]]";
+    $slick-loader-path: "[[/mod/wikirate/]]";
+    $slick-arrow-color: $primary;
+
+    $transition-base:             all .3s ease-in-out;
+    $transition-fade:             opacity .3s linear;
+
+    //------------ transitions for smooth links
+
+    $transition-speed: 0.08s;
+    a {
+      -webkit-transition: all $transition-speed ease;
+      -moz-transition:    all $transition-speed ease;
+      -ms-transition:     all $transition-speed ease;
+      -o-transition:      all $transition-speed ease;
+      transition:         all $transition-speed ease;
+    }
+card_changes_1118:
+  id: 1118
+  card_action_id: 57553
+  field: 1
+  value: '55'
+card_changes_1119:
+  id: 1119
+  card_action_id: 57553
+  field: 2
+  value: wikirate skin
+card_changes_1120:
+  id: 1120
+  card_action_id: 57559
+  field: 0
+  value: Wikirate Policies
+card_changes_1121:
+  id: 1121
+  card_action_id: 57582
+  field: 2
+  value: "~3859/57582.png"

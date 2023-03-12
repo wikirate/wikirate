@@ -1,11 +1,11 @@
 %section#homepage-search-section.position-relative
   .video-container.w-100
-    %video.w-100{ id: "home-video", preload: "", autoplay: "", muted: "", playsinline:"", loop: "" }
+    %video{ id: "home-video", preload: "", autoplay: "", muted: "", playsinline:"", loop: "" }
       %source{ src: "mod/wikirate/homepage_bg_video.mp4" }
     .front-of-video.container-fluid.position-absolute
       .container.p-5
         .w-75.mx-auto.text-center
-          = section_header :homepage_search_heading
+          = section_header :homepage_search_heading, header_size: :h1
           .py-5
             = nest :search, view: :search_box
           .home-search-suggestions

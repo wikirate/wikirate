@@ -26,6 +26,7 @@ mod "deckorate_profiles"
 # mod "deckorate" # (wrapper) # TODO
 
 ## WikiRate mods
+mod "wikirate_shared", path: "./vendor/wikirateproject/mod/wikirate_shared"
 mod "wikirate_companies"
 mod "wikirate"
 

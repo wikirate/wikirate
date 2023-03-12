@@ -1,0 +1,69 @@
+- :name:
+    - :value
+    - :blurb
+  :type: :list
+  :conflict: override
+  :content:
+    - :values_blurb1
+    - :values_blurb2
+    - :values_blurb3
+
+- :name:
+    - :about
+    - :blurb
+  :type: :list
+  :conflict: override
+  :content:
+    - :collect_blurb
+    - :collaborate_blurb
+    - :analyze_blurb
+    - :map_blurb
+    - :share_blurb
+    - :extract_blurb
+
+- :name:
+    - :wikirate_data
+    - :blurb
+  :type: :list
+  :conflict: override
+  :content:
+    - :data_special1
+    - :data_special2
+    - :data_special3
+
+- :name:
+    - :wikirate_data
+    - :list
+  :type: :list
+  :conflict: override
+  :content:
+    - :data_reliable1
+    - :data_reliable2
+    - :data_reliable3
+    - :data_reliable4
+
+- :name:
+    - :wikirate_community
+    - :blurb
+  :type: :list
+  :conflict: override
+  :content:
+    - :community_action1
+    - :community_action2
+    - :community_action3
+    - :community_action4
+    - :community_action5
+    - :community_action6
+
+- :name:
+    - :homepage
+    - :blurb
+  :type: :list
+  :conflict: override
+  :content:
+    - :homepage_action1
+    - :homepage_action2
+    - :homepage_action3
+    - :homepage_action4
+    - :homepage_action5
+    - :homepage_action6
