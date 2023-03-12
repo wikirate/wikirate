@@ -62,7 +62,7 @@ format :html do
 
   def trending value
     if value.negative?
-      { sign: "-", direction: "down" }
+      { sign: "", direction: "down" }
     elsif value.zero?
       { sign: "", direction: "flat" }
     else

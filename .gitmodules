@@ -11,3 +11,7 @@
 [submodule "mod/wikirate/vendor/slick"]
 	path = mod/wikirate/vendor/slick
 	url = https://github.com/kenwheeler/slick.git
+[submodule "vendor/wikirateproject"]
+	path = vendor/wikirateproject
+	url = https://github.com/wikirate/wikirateproject.git
+  depth = 2
