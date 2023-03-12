@@ -1,474 +1,379 @@
 ---
-
-- :name: icon
-  :codename: icon
-
-- :type: :blurb
-  :codename: collect_blurb
+- :name: Blurb 0017
+  :type: :blurb
+  :codename: :homepage_search_heading
+  :fields:
+    :title: Empowering people with open ESG data
+    :body: "<p>4 million+ sustainability data points across 100,000+ companies</p>"
+- :name: Blurb 0018
+  :type: :blurb
+  :codename: :homepage_involved_heading
+  :fields:
+    :title: Get involved
+    :body: "<p>WikiRate is powered by a passionate community of individuals and organizations
+      who are using open data to build a more sustainable future. Join us today!</p>"
+- :name: Blurb 0019
+  :type: :blurb
+  :codename: :homepage_delta_heading
+  :fields:
+    :title: Trending ratings
+    :body: "<p>Designed by the [[https://wikirate.org/Apparel_Research_Group|Apparel
+      Research Group]] this [[https://wikirate.org/Apparel_Research_Group+ESG_Disclosure_Rate|ESG
+      Disclosure Rating]] assesses 35+ apparel companies on how transparent they are
+      about their sustainability policies and practices.</p>"
+- :name: Blurb 0020
+  :type: :blurb
+  :codename: :homepage_designers_heading
+  :fields:
+    :title: Metric designers
+    :body: "<p>Those who have developed metrics and methodologies to measure company
+      performance and generate standardized datasets.</p>"
+- :name: Blurb 0021
+  :type: :blurb
+  :codename: :platform_main_heading
+  :fields:
+    :title: Let's make companies better, together
+- :name: Blurb 0022
+  :type: :blurb
+  :codename: :platform_vision
+  :fields:
+    :title: Our Vision
+    :body: "<p>A world in which everyone can understand and shape company impacts.</p>"
+    :icon: visibility
+- :name: Blurb 0023
+  :type: :blurb
+  :codename: :platform_mission
+  :fields:
+    :title: Our Mission
+    :body: "<p>To empower better decision making and help tackle the world’s challenges
+      with open data.</p>"
+    :icon: rocket_launch
+- :name: Blurb 0024
+  :type: :blurb
+  :codename: :collect_blurb
   :fields:
     :title: Collect
-    :icon: storage
     :body: "<p>Systematically gather environmental, social and governance data that
       you think is important. Commitments, actions and impacts can be recorded to
-      keep track of specific companies or an entire sector.</p>"
-- :type: :blurb
-  :codename: collaborate_blurb
+      keep track of specific companies or entire sectors.</p>"
+    :icon: storage
+- :name: Blurb 0025
+  :type: :blurb
+  :codename: :collaborate_blurb
   :fields:
     :title: Collaborate
-    :icon: people
     :body: "<p>Join or start research projects with like-minded people from the WikiRate
       community. Measure your collective progress, seek advice or simply stay in contact
       about what’s important to you.</p>"
-- :type: :blurb
-  :codename: analyze_blurb
+    :icon: people
+- :name: Blurb 0026
+  :type: :blurb
+  :codename: :analyze_blurb
   :fields:
     :title: Analyze
-    :icon: multiline_chart
     :body: "<p>Make standardize comparisons, monitor progress toward future targets,
       rate companies, or set up multi-tiered benchmarks.</p>"
-- :type: :blurb
-  :codename: map_blurb
+    :icon: multiline_chart
+- :name: Blurb 0027
+  :type: :blurb
+  :codename: :map_blurb
   :fields:
     :title: Map
-    :icon: map
     :body: "<p>Companies do not operate in isolation. Map them to their business relations
       like suppliers and investors to get a sense of how corporate networks function
       and can be leveraged.</p>"
-- :type: :blurb
-  :codename: share_blurb
+    :icon: map
+- :name: Blurb 0028
+  :type: :blurb
+  :codename: :share_blurb
   :fields:
     :title: Share
-    :icon: share
     :body: "<p>Already have a pristine Data Set? Use the import tool or API to add
       your data in bulk to the platform. From there, it can be combined with other
       datasets or feed into live dashboards and tools that visualize your findings.</p>"
-- :type: :blurb
-  :codename: extract_blurb
+    :icon: share
+- :name: Blurb 0029
+  :type: :blurb
+  :codename: :extract_blurb
   :fields:
     :title: Extract
-    :icon: grade
     :body: "<p>Explore the data made available by WikiRate’s community. Find what
       you are looking for? Download unlimited Data Sets or connect via the API for
       regular automated queries to make sure you always have the latest.</p>"
-
-- :type: :blurb
-  :codename: values_blurb1
+    :icon: grade
+- :name: Blurb 0030
+  :type: :blurb
+  :codename: :values_blurb1
   :fields:
     :title: People-powered
+    :body: "<p>Democratizing the ESG space, WikiRate is a tool for everyone. Get involved
+      and help shape the future.</p>"
     :icon: diamond
-    :body: | 
-      Licensed under CC BY 4.0 the data can be accessed, used and shared by anyone. 
-      The only requirement: attribution.
-
-- :type: :blurb
-  :codename: values_blurb2
+- :name: Blurb 0031
+  :type: :blurb
+  :codename: :values_blurb2
   :fields:
     :title: Collaborative
+    :body: "<p>The challenges we face are too big to tackle alone and time is of the
+      essence. We work together and build on each other’s work.</p>"
     :icon: diamond
-    :body: |
-      There are no costs, ever, for using the data. We are all impacted by companies.
-      Sharing the data freely means everyone can get more informed and be the change 
-      they want to see.
-
-- :type: :blurb
-  :codename: values_blurb3
+- :name: Blurb 0032
+  :type: :blurb
+  :codename: :values_blurb3
   :fields:
     :title: Transparent
+    :body: "<p>Open principles govern the data, the technology and the community.</p>"
     :icon: diamond
-    :body: |
-      There are no costs, ever, for using the data. We are all impacted by companies. 
-      Sharing the data freely means everyone can get more informed and be the change 
-      they want to see.
-
-- :type: :blurb
-  :codename: homepage_search_heading
-  :fields:
-    :title: Empowering people with open ESG data
-    :body: Sustainability data across 128,000+ companies and over 3 million data points.
-
-- :type: :blurb
-  :codename: homepage_involved_heading
-  :fields:
-    :title: Get involved
-    :body: There's more to do than can be done without you!
-
-- :type: :blurb
-  :codename: homepage_delta_heading
-  :fields:
-    :title: Trending benchmarks
-    :body: Delta, delta, delta, can I help ya, help ya, help ya?
-
-- :type: :blurb
-  :codename: homepage_designers_heading
-  :fields:
-    :title: Our metric designers
-    :body: They pose the questions that WikiRate seeks to answer.
-
-- :type: :blurb
-  :codename: platform_main_heading
-  :fields:
-    :title: Let's make companies better, together
-
-- :type: :blurb
-  :codename: platform_vision
-  :fields:
-    :icon: visibility
-    :title: Our Vision
-    :body: A world in which everyone can understand and shape company impacts.
-
-- :type: :blurb
-  :codename: platform_mission
-  :fields:
-    :icon: rocket_launch
-    :title: Our Mission
-    :body:
-      Our mission is to empower better decision making
-      and help tackle the world’s challenges with open data.
-
-- :type: :blurb
-  :codename: data_main_heading
+- :name: Blurb 0033
+  :type: :blurb
+  :codename: :data_main_heading
   :fields:
     :title: The largest open registry of corporate sustainability data in the world
-    :body: |
-      WikiRate has public data on companies from all sectors, covering their
-      environmental, social, and governance performance
-
-- :type: :blurb
-  :codename: data_special
+    :body: "<p>WikiRate has public data on companies from all sectors, covering their
+      environmental, social, and governance performance.</p>"
+- :name: Blurb 0034
+  :type: :blurb
+  :codename: :data_special
   :fields:
     :title: What makes our data so special?
-    :body: |
-      The data on WikiRate is open and free for all, because we believe sharing
-      knowledge is the only way to improve decision-making at large.
-
-- :type: :blurb
-  :codename: data_reliable
+    :body: "<p>The data on WikiRate is open and free for all, because we believe sharing
+      knowledge is the only way to improve decision-making at a global scale.</p>"
+- :name: Blurb 0035
+  :type: :blurb
+  :codename: :data_reliable
   :fields:
-    :title: What makes our data so reliable?
-    :body: Everyone's way in to corporate sustainability data...
-
-- :type: :blurb
-  :codename: data_usage
+    :title: Why is our data so reliable?
+    :body: "<p>Many of our datasets come from expert organizations and are already
+      verified. For data added by the community through collaborative research projects,
+      different mechanisms are in place to ensure its accuracy.</p>"
+- :name: Blurb 0036
+  :type: :blurb
+  :codename: :data_usage
   :fields:
     :title: Start using our data today
-    :body: |
-      You can download data from any page on WikiRate or use our API to 
-      extract data in bulk.
-
-- :type: :blurb
-  :codename: data_special1
+    :body: "<p>You can download data from any page on WikiRate or use our API to extract
+      data in bulk.</p>"
+- :name: Blurb 0037
+  :type: :blurb
+  :codename: :data_special1
   :fields:
     :title: Open
+    :body: "<p>Licensed under CC BY 4.0 the data can be accessed, used and shared
+      by anyone. The only requirement: attribution.</p>"
     :icon: diamond
-    :body: |
-      Licensed under CC BY 4.0 the data can be accessed, used and shared by anyone. 
-      The only requirement: attribution.
-
-- :type: :blurb
-  :codename: data_special2
+- :name: Blurb 0038
+  :type: :blurb
+  :codename: :data_special2
   :fields:
     :title: Free
+    :body: "<p>We are all impacted by companies. Sharing the data freely means everyone
+      can get more informed and be the change they want to see.</p>"
     :icon: diamond
-    :body: |
-      There are no costs, ever, for using the data. We are all impacted by companies.
-      Sharing the data freely means everyone can get more informed and be the change 
-      they want to see.
-
-- :type: :blurb
-  :codename: data_special3
+- :name: Blurb 0039
+  :type: :blurb
+  :codename: :data_special3
   :fields:
     :title: Diverse
+    :body: "<p>We host data from any public source (not just self-reported company
+      data). This means more nuanced insights on company actions and impacts.</p>"
     :icon: diamond
-    :body: |
-      Unlike other data providers, we host data from any public source 
-      (not just self-reported company data). This means more nuanced insights on 
-      company impacts.
-
-
-- :type: :blurb
-  :codename: data_reliable1
+- :name: Blurb 0040
+  :type: :blurb
+  :codename: :data_reliable1
   :fields:
     :title: Transparency
+    :body: "<p>Full clarity on where the data comes from (down to archived copies
+      of the original source), when and by whom it was added, and what methodology
+      was used to make sense of it.</p>"
     :icon: share
-    :body: |
-      Full clarity on where the data comes from, when and by whom it was added, and
-      what methodology was used to make sense of it.
-    
-
-- :type: :blurb
-  :codename: data_reliable2
+- :name: Blurb 0041
+  :type: :blurb
+  :codename: :data_reliable2
   :fields:
     :title: Collaboration
+    :body: "<p>Open access means more eyes on the data. It allows anomalies and errors
+      to be found faster, creating better data quality for everyone.</p>"
     :icon: people
-    :body: |
-      Open access means more eyes on the data. It allows anomalies and errors to be 
-      found faster, creating better data quality for everyone.
-
-
-- :type: :blurb
-  :codename: data_reliable3
+- :name: Blurb 0042
+  :type: :blurb
+  :codename: :data_reliable3
   :fields:
     :title: Verification
+    :body: "<p>A multi-tiered verification system to indicate at what stage of the
+      production pipeline the data is and the level of assurance given.</p>"
     :icon: multiline_chart
-    :body: |
-      A multi-tiered verification system to indicate at what stage of the production 
-      pipeline the data is and the level of assurance given.
-
-- :type: :blurb
-  :codename: data_reliable4
+- :name: Blurb 0043
+  :type: :blurb
+  :codename: :data_reliable4
   :fields:
     :title: Identifiers
+    :body: "<p>Every company, metric, and answer is stored under a unique WikiRate
+      ID. This means data quality can be improved without losing track of an evolving
+      data point.</p>"
     :icon: storage
-    :body: |
-      Every company, metric, and answer is stored under a unique WikiRate ID. This
-      means data quality can be improved without losing track.
-
-- :type: :blurb
-  :codename: main_impact_heading
+- :name: Blurb 0044
+  :type: :blurb
+  :codename: :main_impact_heading
   :fields:
     :title: Open data is not the ultimate goal. It is a means to an end.
-    :body: |
-      WikiRate data is used in diverse projects to help address the world's social
-      and environmental challenges
-
-- :type: :blurb
-  :codename: contribute_heading
+    :body: "<p><span>Explore how WikiRate data and tools are used to help address
+      the world’s social and environmental challenges.</span></p>"
+- :name: Blurb 0045
+  :type: :blurb
+  :codename: :contribute_heading
   :fields:
-    :title: Contribute your project
-    :body: |
-      Are you using WikiRate data and want to share your work with the community? 
-      Let us help you showcase your work.
-
-- :type: :blurb
-  :codename: main_community_heading
+    :title: Share your impact
+    :body: "<p> </p>\r\n<p>Are you using WikiRate data and want to share your work
+      with the community? Let us help you showcase your work.</p>"
+- :name: Blurb 0046
+  :type: :blurb
+  :codename: :main_community_heading
   :fields:
     :title: Let's tackle global challenges together
-    :body: |
-      We collaboratively assess and engage companies to tackle global challenges and 
-      improve people's lives. Anyone can join, and anyone can use our data.
-
-- :type: :blurb
-  :codename: community_action_heading
+    :body: "<p>The community collaboratively assesses and encourages companies to
+      tackle global challenges and improve people's lives. Anyone can join, and anyone
+      can use our data.</p>"
+- :name: Blurb 0047
+  :type: :blurb
+  :codename: :community_action_heading
   :fields:
     :title: Ready to drive change?
-    :body: The challenges we face are too big to tackle alone.
-
-- :type: :blurb
-  :codename: community_member_heading
+    :body: "<p> </p>\r\n<p>The challenges we face are too big to tackle alone. Collaborative
+      action is the way forward.</p>"
+- :name: Blurb 0048
+  :type: :blurb
+  :codename: :community_member_heading
   :fields:
-    :title: Our most faithful contributors
-    :body: Our valued community members, we are more than proud of collaborating together.
-
-- :type: :blurb
-  :codename: community_action1
+    :title: Members of the month
+    :body: "<p>Our valued community members, we are more than proud of collaborating
+      together.</p>"
+- :name: Blurb 0049
+  :type: :blurb
+  :codename: :community_action1
   :fields:
     :title: Become a data contributor
-    :body: |
-      Really short descriptive text of about fifty to maximum one hundred and 
-      fifty characters.
-
-- :type: :blurb
-  :codename: community_action2
+    :uri: https://express.adobe.com/page/o6z9GKWQ6z6lT/
+    :body: "<p>Learn how you can contribute and help gather evidence that challenges
+      the status quo of sustainability reporting.</p>"
+- :name: Blurb 0050
+  :type: :blurb
+  :codename: :community_action2
   :fields:
-    :title: Organize a project
-    :uri: "/:project"
-    :body: |
-      Really short descriptive text of about fifty to maximum one hundred and 
-      fifty characters.
-
-- :type: :blurb
-  :codename: community_action3
+    :title: Let’s set up a project together
+    :uri: https://wikirateproject.org/Contact_Us
+    :body: "<p>Get in touch with the WikiRate team to set up a project.</p>"
+- :name: Blurb 0051
+  :type: :blurb
+  :codename: :community_action3
   :fields:
-    :title: Add to your own dataset
-    :uri: "/:dataset"
-    :body: |
-      Really short descriptive text of about fifty to maximum one hundred and 
-      fifty characters.
-
-- :type: :blurb
-  :codename: community_action4
+    :title: Teach students about sustainability reporting
+    :uri: https://mailchi.mp/wikirate/academic-open-call-engagement
+    :body: "<p>Learn how you can use WikiRate’s tools to teach students about corporate
+      sustainability reporting with hands-on research projects.</p>"
+- :name: Blurb 0052
+  :type: :blurb
+  :codename: :community_action4
   :fields:
-    :title: Use our API
-    :uri: "/Use_our_API"
-    :body: |
-      Really short descriptive text of about fifty to maximum one hundred and 
-      fifty characters.
-
-- :type: :blurb
-  :codename: community_action5
-  :fields:
-    :title: Become a steward
-    :uri: "https://lotr.fandom.com/wiki/Denethor_II"
-    :body: |
-      But not like the one in LoTR. He sucked.
-
-- :type: :blurb
-  :codename: community_action6
-  :fields:
-    :title: Subscribe for updates
-    :uri: "https://www.google.com/url?q=https://wikirate.us7.list-manage.com/subscribe/post?u%3Dbe57db47b40c6b1c7e9ef0b36%26id%3D1354650004&sa=D&source=docs&ust=1678294845108552&usg=AOvVaw0nkvJbGmeOiIS0FK9IuiVt"
-    :body: |
-      Stay up to date on the latest community and platform developments by subscribing 
-      to our newsletter.
-
-- :type: :blurb
-  :codename: homepage_action1
+    :title: Join the conversation
+    :body: "<p>Stay connected, learn and troubleshoot on WikiRate’s community Slack
+      channel.</p>"
+- :name: Blurb 0053
+  :type: :blurb
+  :codename: :homepage_action1
   :fields:
     :title: Sign up now
     :uri: "/new/:signup"
-    :body: | 
-      You, too, can hold companies accountable for their commitments and impacts 
-      on people and the planet.
-
-- :type: :blurb
-  :codename: homepage_action2
+    :body: "You, too, can hold companies accountable for their commitments and impacts
+      \non people and the planet.\n"
+- :name: Blurb 0054
+  :type: :blurb
+  :codename: :homepage_action2
   :fields:
     :title: Join an upcoming event
     :uri: https://www.wikirateproject.org/events
-    :body: |
-      Meet, learn, and connect on real-world projects that use open data to make the 
-      world more sustainable and equitable.
-
-- :type: :blurb
-  :codename: homepage_action3
+    :body: "Meet, learn, and connect on real-world projects that use open data to
+      make the \nworld more sustainable and equitable.\n"
+- :name: Blurb 0055
+  :type: :blurb
+  :codename: :homepage_action3
   :fields:
     :title: Become a data contributor
-    :uri:
-    :body: |
-      Learn how you can contribute and help gather evidence that challenges the status 
-      quo of sustainability reporting
-
-- :type: :blurb
-  :codename: homepage_action4
+    :uri: https://express.adobe.com/page/o6z9GKWQ6z6lT/
+    :body: "<p>Learn how you can contribute and help gather evidence that challenges
+      the status quo of sustainability reporting</p>"
+- :name: Blurb 0056
+  :type: :blurb
+  :codename: :homepage_action4
   :fields:
     :title: Let’s set up a project together
-    :uri: "https://wikirateproject.org/Contact_Us"
+    :uri: https://wikirateproject.org/Contact_Us
     :body: Get in touch with the WikiRate team to set up a project.
-
-- :type: :blurb
-  :codename: homepage_action5
+- :name: Blurb 0057
+  :type: :blurb
+  :codename: :homepage_action5
   :fields:
     :title: Add your dataset
     :uri: https://wikirate.org/Import_Answers
-    :body: |
-      Learn how to make your data available for others to use and build on by 
-      archiving it on the platform.
-
-- :type: :blurb
-  :codename: homepage_action6
+    :body: "Learn how to make your data available for others to use and build on by
+      \narchiving it on the platform.\n"
+- :name: Blurb 0058
+  :type: :blurb
+  :codename: :homepage_action6
   :fields:
     :title: Use our API
-    :uri:  https://wikirate.org/Use_the_API
-    :body: |
-      Check out how you can access WikiRate data programmatically using our powerful 
-      REST API.
-
-- :type: :blurb
-  :codename: community_cta
+    :uri: https://wikirate.org/Use_the_API
+    :body: "Check out how you can access WikiRate data programmatically using our
+      powerful \nREST API.\n"
+- :name: Blurb 0059
+  :type: :blurb
+  :codename: :community_cta
   :fields:
-    :icon: volunteer_activism
     :title: Check out the latest contribution opportunities
     :uri: https://express.adobe.com/page/o6z9GKWQ6z6lT/
-    :body: Cannot wait to get involved? Explore the latest projects that could really use your help.
-
-- :type: :blurb
-  :codename: about_cta
+    :body: Cannot wait to get involved? Explore the latest projects that could really
+      use your help.
+    :icon: volunteer_activism
+- :name: Blurb 0060
+  :type: :blurb
+  :codename: :about_cta
   :fields:
-    :icon: handshake
     :title: Partner with WikiRate International
     :uri: https://wikirateproject.org/About_Us
-    :body: Check out the ways in which the WikiRate team can help you
-
-- :type: :blurb
-  :codename: contact_cta1
+    :body: "<p>Check out the ways in which the WikiRate team can help you</p>"
+    :icon: handshake
+- :name: Blurb 0061
+  :type: :blurb
+  :codename: :contact_cta1
   :fields:
     :title: Talk to a human
     :uri: https://wikirateproject.org/Contact_Us
-    :body: Contact us at WikiRate International
-
-- :type: :blurb
-  :codename: contact_cta2
+    :body: "<p>Contact us at WikiRate International</p>"
+- :name: Blurb 0062
+  :type: :blurb
+  :codename: :contact_cta2
   :fields:
     :title: Get email updates on the latest community and platform developments
     :uri: https://wikirate.us7.list-manage.com/subscribe/post?u=be57db47b40c6b1c7e9ef0b36&id=1354650004
-    :body: Subscribe for updates
-
-- :type: :blurb
-  :codename: project_organizer_heading
+    :body: "<p>Subscribe for updates</p>"
+- :name: Blurb 0063
+  :type: :blurb
+  :codename: :project_organizer_heading
   :fields:
     :title: Project Organizers
-    :body: |
-      Individuals or organizations coordinating a collaborative assessment of companies 
-      on a topic relevant for their work, research, or everyday life.
-
-# BLURB LISTS
-
-- :name:
-    - :value
-    - :blurb
-  :type: :list
-  :conflict: override
-  :content:
-    - :values_blurb1
-    - :values_blurb2
-    - :values_blurb3
-
-- :name:
-    - :about
-    - :blurb
-  :type: :list
-  :conflict: override
-  :content:
-    - :collect_blurb
-    - :collaborate_blurb
-    - :analyze_blurb
-    - :map_blurb
-    - :share_blurb
-    - :extract_blurb
-
-- :name:
-    - :wikirate_data
-    - :blurb
-  :type: :list
-  :conflict: override
-  :content:
-    - :data_special1
-    - :data_special2
-    - :data_special3
-
-- :name:
-    - :wikirate_data
-    - :list
-  :type: :list
-  :conflict: override
-  :content:
-    - :data_reliable1
-    - :data_reliable2
-    - :data_reliable3
-    - :data_reliable4
-
-- :name:
-    - :wikirate_community
-    - :blurb
-  :type: :list
-  :conflict: override
-  :content:
-    - :community_action1
-    - :community_action2
-    - :community_action3
-    - :community_action4
-    - :community_action5
-    - :community_action6
-
-- :name:
-    - :homepage
-    - :blurb
-  :type: :list
-  :conflict: override
-  :content:
-    - :homepage_action1
-    - :homepage_action2
-    - :homepage_action3
-    - :homepage_action4
-    - :homepage_action5
-    - :homepage_action6
+    :body: "Individuals or organizations coordinating a collaborative assessment of
+      companies \non a topic relevant for their work, research, or everyday life.\n"
+- :name: Blurb 0064
+  :type: :blurb
+  :codename: :community_action5
+  :fields:
+    :title: Become a steward
+    :uri: https://lotr.fandom.com/wiki/Denethor_II
+    :body: But not like the one in LoTR. He sucked.
+- :name: Blurb 0065
+  :type: :blurb
+  :codename: :community_action6
+  :fields:
+    :title: Subscribe for updates
+    :uri: https://www.google.com/url?q=https://wikirate.us7.list-manage.com/subscribe/post?u%3Dbe57db47b40c6b1c7e9ef0b36%26id%3D1354650004&sa=D&source=docs&ust=1678294845108552&usg=AOvVaw0nkvJbGmeOiIS0FK9IuiVt
+    :body: "Stay up to date on the latest community and platform developments by subscribing
+      \nto our newsletter.\n"
