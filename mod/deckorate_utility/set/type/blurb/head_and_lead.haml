@@ -1,4 +1,4 @@
-= content_tag voo.size do
+= content_tag(voo.size || :h2) do
   - field_nest :title, view: :core
 - if card.fetch :body
   .lead
