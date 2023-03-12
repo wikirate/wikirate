@@ -1,7 +1,23 @@
 ---
 - homepage
 - footer
-- blurbs
+- quotes
+- outputs # be rake card:sow -- -o -c '{"type":"Output"}' -t :description,:uri,:output_type,:date,:wikirate_company,:file,:image
+
+- :name: Blurb
+  :codename: blurb
+  :type: :cardtype
+  :fields:
+    :type:
+      :fields:
+        :autoname: Blurb 0001
+
+- :name: icon
+  :codename: icon
+
+- blurbs # be rake card:sow -- -o -c '{"type":"Blurb"}' -t :title,uri,body,icon
+- blurblists
+
 
 - :name: "*logo"
   :type: :image
@@ -70,14 +86,6 @@
 - :name: Testimonial
   :codename: testimonial
   :type: :cardtype
-
-- :name: Blurb
-  :codename: blurb
-  :type: :cardtype
-  :fields:
-    :type:
-      :fields:
-        :autoname: Blurb 0001
 
 - :name: newsletter signup
   :codename: newsletter_signup
@@ -256,6 +264,18 @@
     - :account
     - :featured
   :type: :list
+
+- :name: Wikirate Policies
+  :codename: policy
+
+- :name:
+    - :policy
+    - :description
+  :content: |
+    Our policy and guidelines provide support and safeguard our organization, staff, 
+    partners, third parties and the environment. Their purpose is to build a mutual 
+    understanding of how WikiRate International and its affiliates operate."
+
 
 - :name: Our Story
   :codename: our_story
