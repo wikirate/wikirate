@@ -8,24 +8,17 @@
 }
 
 .labeled-badge {
-  display: inline-block;
-  text-align: center;
-  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1em;
+  color: $text-muted;
   label {
     margin: 0;
     padding: 0 0.33rem;
     .count-badge-label-icon {
       display: none;
     }
-  }
-}
-
-.bar .labeled-badge {
-  span {
-    font-size: 0.6em;
-  }
-  label {
-    font-size: 0.8em;
   }
 }
 
@@ -41,11 +34,9 @@
 
 @mixin badge-icons() {
   .labeled-badge {
-    padding-left: 0.5em;
     label {
       .count-badge-label-icon {
         display: block !important;
-        width: 22px;
       }
 
       .count-badge-label-text {
@@ -69,8 +60,13 @@
     align-items: center;
   }
 
-  .bookmark-toggle {
-    margin-left: 2em;
+  .labeled-badge, .bookmark-toggle {
+    margin-left: 1em;
+  }
+  .labeled-badge {
+    span {
+      font-size: 0.6em;
+    }
   }
 }
 
