@@ -3,7 +3,8 @@
 %section#about-wikirate-header.container-fluid.bg-light.header-with-bg
   .container.p-5.py-3
     = render_breadcrumbs
-    = section_header :platform_main_heading, url: "/new/:signup", text: "Join us"
+    = section_header :platform_main_heading, button: { url: "/new/:signup",
+                                                       text: "Join us" }
 
 %section.container.p-5.d-flex.justify-content-center
   .p-4.w-50

@@ -1,7 +1,9 @@
 %section#about-impact-header.container-fluid.header-with-bg
   .container.p-5.py-3
     = render_breadcrumbs
-    = section_header :main_impact_heading, url: "/new/Project", text: "Add Project"
+    = section_header :main_impact_heading, header_size: :h1,
+                                           button: { url: "/new/Project",
+                                                     text: "Add Project" }
 
 %section.p-5.container
   .py-3
@@ -11,4 +13,5 @@
 %section.container-fluid
   .container.p-5
     .border.border-light.p-5
-      = section_header :contribute_heading, url: "/Contact_WikiRate", text: "Get in touch"
+      = section_header :contribute_heading, button: { url: "/Contact_WikiRate",
+                                                      text: "Get in touch" }

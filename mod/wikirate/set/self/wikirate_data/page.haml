@@ -1,7 +1,9 @@
 %section#about-data-header.container-fluid.bg-light.header-with-bg
   .container.p-5.py-3
     = render_breadcrumbs
-    = section_header :data_main_heading, url: "/Use_our_Api", text: "Use our API"
+    = section_header :data_main_heading, button: { url: "/Use_our_Api",
+                                                   text: "Use our API" },
+                                         header_size: :h1
 
 %section#special-data.p-5.container.text-center
   .w-75.d-inline-block
@@ -19,5 +21,6 @@
 %section.container.p-5
   #wikirate-data-today.my-5.p-4
     .p-5
-      = section_header :data_usage, url: "/Exporting_Answers", text: "Export Guide"
+      = section_header :data_usage, button: { url: "/Exporting_Answers",
+                                              text: "Export Guide" }
 

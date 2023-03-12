@@ -5,7 +5,7 @@
     .front-of-video.container-fluid.position-absolute
       .container.p-5
         .w-75.mx-auto.text-center
-          = section_header :homepage_search_heading
+          = section_header :homepage_search_heading, header_size: :h1
           .py-5
             = nest :search, view: :search_box
           .home-search-suggestions
