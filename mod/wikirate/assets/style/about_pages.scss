@@ -123,7 +123,6 @@
     }
     padding: 1rem;
     background: $white;
-    box-shadow: $box-shadow;
     border: 0;
     height: 85%;
     min-height: 300px;
@@ -136,6 +135,13 @@
       //cursor: pointer;
       background-color: $purple-grad-1;
     }
+  }
+}
+
+.cta-card, .action-card .card, .endorsement-summary {
+  box-shadow: $box-shadow-sm;
+  &:hover {
+    box-shadow: $box-shadow-lg;
   }
 }
 

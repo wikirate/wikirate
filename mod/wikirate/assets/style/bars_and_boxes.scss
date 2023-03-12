@@ -81,10 +81,6 @@
   color: inherit;
 }
 
-a.box-item {
-  text-decoration: none;
-}
-
 .box-bottom {
   @include badge-icons();
 }

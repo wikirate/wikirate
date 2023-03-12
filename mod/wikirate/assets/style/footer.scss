@@ -1,3 +1,12 @@
+$social-colors: (
+  "github": #24292F,
+  "medium": #000000,
+  "linkedin": #0a66c2,
+  "twitter": #1D9BF0,
+  "facebook": #1877F2,
+  "instagram": #FF0069
+) !default;
+
 #wikirate-footer {
   h2 {
     font-size: 1em;
@@ -27,3 +36,10 @@
     max-width: 4em;
   }
 }
+
+@each $platform, $color in $social-colors {
+  a:hover .fa-#{$platform} {
+    color: $color;
+  }
+}
+

@@ -1,4 +1,5 @@
 
+
 #homepage {
   #homepage-search-section {
     height: 520px;
@@ -34,6 +35,10 @@
 .homepage-delta-cards {
   .card {
     height: 100%;
+    box-shadow: $box-shadow-sm;
+    &:hover {
+      box-shadow: $box-shadow-lg;
+    }
   }
   .slick-track {
     display: flex;

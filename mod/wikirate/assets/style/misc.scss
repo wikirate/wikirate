@@ -2,6 +2,10 @@ main > #main > .titled-view > .d0-card-header {
   padding: 1.5em 0 2em 0;
 }
 
+.card, button, a, .bar, i, .btn {
+  transition: .3s
+}
+
 .full-wr-logo img {
   width: 9.5em;
 }

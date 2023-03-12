@@ -1,5 +1,5 @@
 .lead {
-  font-weight: 500;
+  font-weight: 400;
 }
 // Bootstrap Tweak
 .media-body {
@@ -12,6 +12,24 @@
     display: inline;
     padding: 0;
   }
+}
+
+.btn-outline-primary, .btn-outline-secondary {
+  opacity: .6;
+  &:hover {
+    opacity: 1;
+    background: inherit;
+  }
+}
+
+.btn-outline-primary:hover {
+  color: $primary;
+  border-color: $primary;
+}
+
+.btn-outline-secondary:hover {
+  color: $secondary;
+  border-color: $secondary;
 }
 
 .credit .search-result-list {

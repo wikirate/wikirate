@@ -24,7 +24,11 @@
   cursor: pointer;
   background: white;
   position: relative;
+  box-shadow: $box-shadow-sm;
+  &:hover {
+    box-shadow: $box-shadow-lg;
 
+  }
   .card-face {
     padding: 1em;
     position: absolute;

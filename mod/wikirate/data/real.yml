@@ -230,6 +230,9 @@
       $slick-loader-path: "[[/mod/wikirate/]]";
       $slick-arrow-color: $primary;
 
+      $transition-base:             all .3s ease-in-out;
+      $transition-fade:             opacity .3s linear;
+
       //------------ transitions for smooth links
 
       $transition-speed: 0.08s;
