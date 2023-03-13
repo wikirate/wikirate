@@ -6,30 +6,29 @@
     = section_header :platform_main_heading, button: { url: "/new/:signup",
                                                        text: "Join us" }
 
-%section.container.p-5.d-flex.justify-content-center
-  .p-4.w-50
+%section.container.py-5.d-flex.justify-content-center
+  .py-4.w-50
     = nest :platform_vision, view: :icon_left_text_right
     = nest :platform_mission, view: :icon_left_text_right
 
-%section.container-fluid.bg-light.p-5
-  .container.p-3
-    %h2.py-4
+%section.container-fluid.bg-light.py-5
+  .container.py-5.pt-3
+    %h2.py-5
       Free tools for taking action
     = field_nest :blurb, view: :content, items: { view: :flipper }
 
-%section#our-values-section.container.p-5
-  .p-4
+%section#our-values-section.container.py-5
+  .py-4.text-center
     = nest %i[value blurb], view: :titled, title: "Our Values", items: { view: :stack }
 
-%section#our-story-section.container-fluid.text-center.p-4
-  .container.p-5
-    .d-inline-block.w-75.text-start.p-4
+%section#our-story-section.container-fluid.text-center.py-4
+  .container.py-5
+    .d-inline-block.w-66.text-start.p-3
       = nest :our_story, view: :titled
 
-
-%section#about-ctas.container.p-5
-  .row.p-4
+%section#about-ctas.container.py-5
+  .row.py-5
     #about-cta.col-6.d-flex
-      = nest :about_cta, view: :cta, title: "Explore contribution opportunities"
+      = nest :about_cta, view: :cta, title: "Learn more about our services"
     .col-6.d-flex
       = nest :contact_us, view: :section

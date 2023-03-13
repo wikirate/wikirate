@@ -1,5 +1,5 @@
 #homepage.nodblclick
-  %section.container.px-5.p-2
+  %section.container.px-5.py-2
     = render_menu
 
   // SEARCH SECTION
@@ -8,21 +8,22 @@
 
   // TYPE LINK SECTION
 
-  %section#homepage-type-links-section.container-fluid.vertical-thumbnails.p-5
+  %section#homepage-type-links-section.container-fluid.vertical-thumbnails.py-5
     = render_type_links
 
   %section#homepage-involved-section.container-fluid.bg-light
-    .container.p-5
+    .container.py-5
       = render_involved
 
-  %section#homepage-numbers-section.container.p-5
+  %section#homepage-numbers-section.container.py-5
     = render_fancy_counts
 
-  %section#homepage-delta-section.vertical-thumbnails.container-fluid.bg-light
-    .container.p-5
+  %section#homepage-delta-section.vertical-thumbnails.container-fluid.bg-light.pt-5.pb-3
+    .container.py-5
       = render_delta
 
-  %section#homepage-designer-section.container.p-5.text-center
-    = section_header :homepage_designers_heading
-    = render :company_slider
+  %section#homepage-designer-section.container.py-5.d-flex.justify-content-center
+    .py-5.w-50.text-center
+      = section_header :homepage_designers_heading
+      = render :company_slider
 
