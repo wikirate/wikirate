@@ -8,8 +8,8 @@
 %section.container.p-5
   = render_fancy_counts
 
-%section#community-actions.container-fluid.bg-light
-  .container.p-5
+%section#community-actions.container-fluid.bg-light.py-5
+  .container.pt-5
     = section_header :community_action_heading do
       - render_nav_arrows
     .py-5
@@ -28,11 +28,13 @@
           = nest blurb, view: :action_card
 
 %section#project-organizers.container.p-5.text-center
-  = section_header :project_organizer_heading
+  .pt-5.pb-3.d-flex.d-flex.justify-content-center
+    .w-50
+      = section_header :project_organizer_heading
   = render :company_slider
 
-%section#community-actions.container-fluid.bg-light
-  .container.p-5
+%section#community-actions.container-fluid.bg-light.py-5
+  .container.py-5
 
     %h2 Community Stories
     .community-quotes{ data: {
@@ -67,8 +69,8 @@
 -#     .text-center.py-3
 -#       = render_nav_arrows
 
-%section#community-ctas.container.p-5
-  .row
+%section#community-ctas.container.py-5
+  .row.py-5
     .col-6.d-flex
       = nest :community_cta, view: :cta, title: "Learn more about our services"
     .col-6.d-flex

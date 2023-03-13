@@ -5,13 +5,13 @@
                                                    text: "Use our API" },
                                          header_size: :h1
 
-%section#special-data.p-5.container.text-center
-  .w-75.d-inline-block
+%section#special-data.py-5.container.text-center
+  .w-50.d-inline-block.pt-5.pb-3
     = section_header :data_special
   = field_nest :blurb, view: :core, items: { view: :stack }
 
-%section#reliable-data.container-fluid.bg-light
-  .container.p-5
+%section#reliable-data.container-fluid.bg-light.py-5
+  .container.py-5
     .row
       .col-4
         = section_header :data_reliable
