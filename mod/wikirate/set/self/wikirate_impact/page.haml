@@ -10,8 +10,8 @@
     = nest :output, view: :filter_chips
   = nest :output, view: :content, items: { view: :box }
 
-%section.container-fluid
+%section.container-fluid.p-5
   .container.p-5
-    .border.border-light.p-5
+    #impact-card.card.p-5
       = section_header :contribute_heading, button: { url: "/Contact_WikiRate",
                                                       text: "Get in touch" }
