@@ -18,12 +18,12 @@
     = field_nest :blurb, view: :content, items: { view: :flipper }
 
 %section#our-values-section.container.py-5
-  .py-4
+  .py-4.text-center
     = nest %i[value blurb], view: :titled, title: "Our Values", items: { view: :stack }
 
 %section#our-story-section.container-fluid.text-center.py-4
   .container.py-5
-    .d-inline-block.w-75.text-start.py-4
+    .d-inline-block.w-66.text-start.p-3
       = nest :our_story, view: :titled
 
 %section#about-ctas.container.py-5
