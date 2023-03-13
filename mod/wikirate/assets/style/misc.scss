@@ -8,6 +8,7 @@ main > #main > .titled-view > .d0-card-header {
 
 .full-wr-logo img {
   width: 9.5em;
+  max-height: 2.25em;
 }
 
 a:focus, a:hover {
@@ -109,11 +110,6 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   br {
     display: none;
   }
-}
-
-
-#main > .TYPE-cardtype.titled-view {
-  margin-top: 3em;
 }
 
 .lead strong {

@@ -5774,7 +5774,7 @@ cards_288:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:51:31.000000000 Z
-  updated_at: 2023-03-12 17:50:51.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -6102,7 +6102,7 @@ cards_302:
   right_id: 298
   current_revision_id:
   created_at: 2022-09-30 15:51:33.000000000 Z
-  updated_at: 2023-03-09 19:08:28.000000000 Z
+  updated_at: 2023-03-12 23:47:13.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -6136,7 +6136,6 @@ cards_302:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
-    mod: ticket+*script
   search_content: |-
     mod: format+*script
     mod: list+*script
@@ -6163,7 +6162,6 @@ cards_302:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
-    mod: ticket+*script
 cards_303:
   id: 303
   name: JavaScript
@@ -6583,7 +6581,7 @@ cards_323:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:51:34.000000000 Z
-  updated_at: 2023-03-09 19:08:28.000000000 Z
+  updated_at: 2023-03-12 23:47:13.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -6630,7 +6628,6 @@ cards_323:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
-    mod: ticket+*style
   search_content: |-
     mod: format+*style
     mod: list+*style
@@ -6670,7 +6667,6 @@ cards_323:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
-    mod: ticket+*style
 cards_324:
   id: 324
   name: Local style folder group
@@ -7250,7 +7246,7 @@ cards_353:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:51:36.000000000 Z
-  updated_at: 2023-03-12 17:50:28.000000000 Z
+  updated_at: 2023-03-12 23:46:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -8925,7 +8921,7 @@ cards_441:
   right_id: 344
   current_revision_id:
   created_at: 2022-09-30 15:52:53.000000000 Z
-  updated_at: 2023-03-12 17:51:01.000000000 Z
+  updated_at: 2023-03-12 23:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8944,7 +8940,7 @@ cards_442:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:52:53.000000000 Z
-  updated_at: 2023-03-12 17:52:10.000000000 Z
+  updated_at: 2023-03-12 23:48:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8953,7 +8949,7 @@ cards_442:
   trash: 0
   type_id: 282
   db_content: ":all_style_asset_output/wikirate.css"
-  search_content: "~442/1678643527.css"
+  search_content: "(s3_staging_bucket)/442/1678664887.css"
 cards_443:
   id: 443
   name: discussion
@@ -9684,7 +9680,7 @@ cards_479:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:56.000000000 Z
-  updated_at: 2023-03-12 17:51:01.000000000 Z
+  updated_at: 2023-03-12 23:47:13.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -9693,9 +9689,9 @@ cards_479:
   trash: 0
   type_id: 2
   db_content: |-
+    *script
     *style
     *layout
-    *script
     *autoname
     *read
     *follow
@@ -9711,9 +9707,9 @@ cards_479:
     *captcha
     *input type
   search_content: |-
+    *script
     *style
     *layout
-    *script
     *autoname
     *read
     *follow
@@ -10067,7 +10063,7 @@ cards_497:
   right_id: 490
   current_revision_id:
   created_at: 2022-09-30 15:52:57.000000000 Z
-  updated_at: 2023-03-12 17:49:44.000000000 Z
+  updated_at: 2023-03-12 23:46:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -10145,7 +10141,7 @@ cards_501:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-03-12 17:50:51.000000000 Z
+  updated_at: 2023-03-12 23:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -10270,7 +10266,7 @@ cards_506:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-03-12 17:50:51.000000000 Z
+  updated_at: 2023-03-12 23:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10298,7 +10294,7 @@ cards_507:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-03-12 17:50:51.000000000 Z
+  updated_at: 2023-03-12 23:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10326,7 +10322,7 @@ cards_508:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-03-12 17:50:51.000000000 Z
+  updated_at: 2023-03-12 23:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10354,7 +10350,7 @@ cards_509:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-03-12 17:50:51.000000000 Z
+  updated_at: 2023-03-12 23:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10384,7 +10380,7 @@ cards_510:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:58.000000000 Z
-  updated_at: 2023-03-12 17:50:51.000000000 Z
+  updated_at: 2023-03-12 23:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10558,7 +10554,7 @@ cards_518:
   right_id:
   current_revision_id:
   created_at: 2022-09-30 15:52:59.000000000 Z
-  updated_at: 2023-03-12 17:49:46.000000000 Z
+  updated_at: 2023-03-12 23:46:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10727,7 +10723,7 @@ cards_526:
   right_id: 524
   current_revision_id:
   created_at: 2022-09-30 15:53:01.000000000 Z
-  updated_at: 2023-03-12 17:50:51.000000000 Z
+  updated_at: 2023-03-12 23:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11181,7 +11177,7 @@ cards_541:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:04.000000000 Z
-  updated_at: 2023-03-12 17:52:07.000000000 Z
+  updated_at: 2023-03-12 23:48:09.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11190,7 +11186,7 @@ cards_541:
   trash: 0
   type_id: 282
   db_content: ":mod_format_script_asset_output/format.js"
-  search_content: "~542/format.js"
+  search_content: "(s3_staging_bucket)/542/format.js"
 cards_542:
   id: 543
   name:
@@ -11257,7 +11253,7 @@ cards_545:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:05.000000000 Z
-  updated_at: 2023-03-12 17:52:07.000000000 Z
+  updated_at: 2023-03-12 23:48:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11266,7 +11262,7 @@ cards_545:
   trash: 0
   type_id: 282
   db_content: ":mod_list_script_asset_output/list.js"
-  search_content: "~546/list.js"
+  search_content: "(s3_staging_bucket)/546/list.js"
 cards_546:
   id: 547
   name:
@@ -11428,7 +11424,7 @@ cards_554:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:06.000000000 Z
-  updated_at: 2023-03-12 17:52:07.000000000 Z
+  updated_at: 2023-03-12 23:48:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11437,7 +11433,7 @@ cards_554:
   trash: 0
   type_id: 282
   db_content: ":mod_search_script_asset_output/search.js"
-  search_content: "~555/search.js"
+  search_content: "(s3_staging_bucket)/555/search.js"
 cards_555:
   id: 556
   name:
@@ -11504,7 +11500,7 @@ cards_558:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:06.000000000 Z
-  updated_at: 2023-03-12 17:52:07.000000000 Z
+  updated_at: 2023-03-12 23:48:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11513,7 +11509,7 @@ cards_558:
   trash: 0
   type_id: 282
   db_content: ":mod_rules_script_asset_output/rules.js"
-  search_content: "~559/rules.js"
+  search_content: "(s3_staging_bucket)/559/rules.js"
 cards_559:
   id: 560
   name:
@@ -11580,7 +11576,7 @@ cards_562:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:07.000000000 Z
-  updated_at: 2023-03-12 17:52:07.000000000 Z
+  updated_at: 2023-03-12 23:48:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11589,7 +11585,7 @@ cards_562:
   trash: 0
   type_id: 282
   db_content: ":mod_edit_script_asset_output/edit.js"
-  search_content: "~563/edit.js"
+  search_content: "(s3_staging_bucket)/563/edit.js"
 cards_563:
   id: 564
   name:
@@ -11770,7 +11766,7 @@ cards_572:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:08.000000000 Z
-  updated_at: 2023-03-12 17:52:07.000000000 Z
+  updated_at: 2023-03-12 23:48:13.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11779,7 +11775,7 @@ cards_572:
   trash: 0
   type_id: 282
   db_content: ":mod_carrierwave_script_asset_output/carrierwave.js"
-  search_content: "~573/carrierwave.js"
+  search_content: "(s3_staging_bucket)/573/carrierwave.js"
 cards_573:
   id: 574
   name:
@@ -11903,7 +11899,7 @@ cards_579:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:09.000000000 Z
-  updated_at: 2023-03-12 17:52:07.000000000 Z
+  updated_at: 2023-03-12 23:48:14.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11912,7 +11908,7 @@ cards_579:
   trash: 0
   type_id: 282
   db_content: ":mod_ace_editor_script_asset_output/ace_editor.js"
-  search_content: "~580/ace_editor.js"
+  search_content: "(s3_staging_bucket)/580/ace_editor.js"
 cards_580:
   id: 581
   name: 'mod: api key'
@@ -12036,7 +12032,7 @@ cards_586:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:10.000000000 Z
-  updated_at: 2023-03-12 17:52:07.000000000 Z
+  updated_at: 2023-03-12 23:48:14.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12045,7 +12041,7 @@ cards_586:
   trash: 0
   type_id: 282
   db_content: ":mod_bar_and_box_script_asset_output/bar_and_box.js"
-  search_content: "~587/bar_and_box.js"
+  search_content: "(s3_staging_bucket)/587/bar_and_box.js"
 cards_587:
   id: 588
   name:
@@ -12112,7 +12108,7 @@ cards_590:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:10.000000000 Z
-  updated_at: 2023-03-12 17:52:07.000000000 Z
+  updated_at: 2023-03-12 23:48:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12121,7 +12117,7 @@ cards_590:
   trash: 0
   type_id: 282
   db_content: ":mod_bootstrap_script_asset_output/bootstrap.js"
-  search_content: "~591/bootstrap.js"
+  search_content: "(s3_staging_bucket)/591/bootstrap.js"
 cards_591:
   id: 592
   name:
@@ -12226,7 +12222,7 @@ cards_596:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:11.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12235,7 +12231,7 @@ cards_596:
   trash: 0
   type_id: 282
   db_content: ":mod_date_script_asset_output/date.js"
-  search_content: "~597/date.js"
+  search_content: "(s3_staging_bucket)/597/date.js"
 cards_597:
   id: 598
   name:
@@ -12321,7 +12317,7 @@ cards_601:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:12.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12330,7 +12326,7 @@ cards_601:
   trash: 0
   type_id: 282
   db_content: ":mod_follow_script_asset_output/follow.js"
-  search_content: "~602/follow.js"
+  search_content: "(s3_staging_bucket)/602/follow.js"
 cards_602:
   id: 603
   name:
@@ -12416,7 +12412,7 @@ cards_606:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:12.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12425,7 +12421,7 @@ cards_606:
   trash: 0
   type_id: 282
   db_content: ":mod_tabs_script_asset_output/tabs.js"
-  search_content: "~607/tabs.js"
+  search_content: "(s3_staging_bucket)/607/tabs.js"
 cards_607:
   id: 608
   name: 'mod: layout'
@@ -12473,7 +12469,7 @@ cards_609:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:13.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12482,7 +12478,7 @@ cards_609:
   trash: 0
   type_id: 282
   db_content: ":mod_layout_script_asset_output/layout.js"
-  search_content: "~610/layout.js"
+  search_content: "(s3_staging_bucket)/610/layout.js"
 cards_610:
   id: 611
   name:
@@ -12549,7 +12545,7 @@ cards_613:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:13.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12558,7 +12554,7 @@ cards_613:
   trash: 0
   type_id: 282
   db_content: ":mod_recaptcha_script_asset_output/recaptcha.js"
-  search_content: "~614/recaptcha.js"
+  search_content: "(s3_staging_bucket)/614/recaptcha.js"
 cards_614:
   id: 615
   name: 'mod: tinymce editor'
@@ -12606,7 +12602,7 @@ cards_616:
   right_id: 296
   current_revision_id:
   created_at: 2022-09-30 15:53:14.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:19.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12615,7 +12611,7 @@ cards_616:
   trash: 0
   type_id: 282
   db_content: ":mod_tinymce_editor_script_asset_output/tinymce_editor.js"
-  search_content: "~617/tinymce_editor.js"
+  search_content: "(s3_staging_bucket)/617/tinymce_editor.js"
 cards_617:
   id: 618
   name:
@@ -49214,7 +49210,7 @@ cards_2503:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:14.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:19.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49223,7 +49219,7 @@ cards_2503:
   trash: 0
   type_id: 282
   db_content: ":mod_filter_script_asset_output/filter.js"
-  search_content: "~2505/1678643513.js"
+  search_content: "(s3_staging_bucket)/2505/filter.js"
 cards_2504:
   id: 2506
   name:
@@ -49385,7 +49381,7 @@ cards_2512:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:15.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49394,7 +49390,7 @@ cards_2512:
   trash: 0
   type_id: 282
   db_content: ":mod_csv_import_script_asset_output/csv_import.js"
-  search_content: "~2514/csv_import.js"
+  search_content: "(s3_staging_bucket)/2514/csv_import.js"
 cards_2513:
   id: 2515
   name:
@@ -49461,7 +49457,7 @@ cards_2516:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:16.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49470,7 +49466,7 @@ cards_2516:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_search_script_asset_output/deckorate_search.js"
-  search_content: "~2518/deckorate_search.js"
+  search_content: "(s3_staging_bucket)/2518/deckorate_search.js"
 cards_2517:
   id: 2519
   name:
@@ -49537,7 +49533,7 @@ cards_2520:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:16.000000000 Z
-  updated_at: 2023-03-12 17:52:08.000000000 Z
+  updated_at: 2023-03-12 23:48:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -49546,7 +49542,7 @@ cards_2520:
   trash: 0
   type_id: 282
   db_content: ":mod_flag_script_asset_output/flag.js"
-  search_content: "~2522/flag.js"
+  search_content: "(s3_staging_bucket)/2522/flag.js"
 cards_2521:
   id: 2523
   name:
@@ -49993,7 +49989,7 @@ cards_2544:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:19.000000000 Z
-  updated_at: 2023-03-12 17:52:09.000000000 Z
+  updated_at: 2023-03-12 23:48:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50002,7 +49998,7 @@ cards_2544:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_core_script_asset_output/deckorate_core.js"
-  search_content: "~2546/deckorate_core.js"
+  search_content: "(s3_staging_bucket)/2546/deckorate_core.js"
 cards_2545:
   id: 2547
   name:
@@ -50069,7 +50065,7 @@ cards_2548:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:20.000000000 Z
-  updated_at: 2023-03-12 17:52:09.000000000 Z
+  updated_at: 2023-03-12 23:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50078,7 +50074,7 @@ cards_2548:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_research_script_asset_output/deckorate_research.js"
-  search_content: "~2550/deckorate_research.js"
+  search_content: "(s3_staging_bucket)/2550/deckorate_research.js"
 cards_2549:
   id: 2551
   name:
@@ -50164,7 +50160,7 @@ cards_2553:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:21.000000000 Z
-  updated_at: 2023-03-12 17:52:09.000000000 Z
+  updated_at: 2023-03-12 23:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50173,7 +50169,7 @@ cards_2553:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_calculations_script_asset_output/deckorate_calculations.js"
-  search_content: "~2555/deckorate_calculations.js"
+  search_content: "(s3_staging_bucket)/2555/deckorate_calculations.js"
 cards_2554:
   id: 2556
   name:
@@ -50335,7 +50331,7 @@ cards_2562:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:22.000000000 Z
-  updated_at: 2023-03-12 17:52:09.000000000 Z
+  updated_at: 2023-03-12 23:48:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50344,7 +50340,7 @@ cards_2562:
   trash: 0
   type_id: 282
   db_content: ":mod_wikirate_companies_script_asset_output/wikirate_companies.js"
-  search_content: "~2564/wikirate_companies.js"
+  search_content: "(s3_staging_bucket)/2564/wikirate_companies.js"
 cards_2563:
   id: 2565
   name:
@@ -50487,7 +50483,7 @@ cards_2570:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:24.000000000 Z
-  updated_at: 2023-03-12 17:52:09.000000000 Z
+  updated_at: 2023-03-12 23:48:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50496,7 +50492,7 @@ cards_2570:
   trash: 0
   type_id: 282
   db_content: ":mod_wikirate_script_asset_output/wikirate.js"
-  search_content: "~2572/wikirate.js"
+  search_content: "(s3_staging_bucket)/2572/wikirate.js"
 cards_2571:
   id: 2573
   name:
@@ -50601,7 +50597,7 @@ cards_2576:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:24.000000000 Z
-  updated_at: 2023-03-12 17:52:09.000000000 Z
+  updated_at: 2023-03-12 23:48:25.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50610,7 +50606,7 @@ cards_2576:
   trash: 0
   type_id: 282
   db_content: ":mod_tasks_script_asset_output/tasks.js"
-  search_content: "~2578/tasks.js"
+  search_content: "(s3_staging_bucket)/2578/tasks.js"
 cards_2577:
   id: 2579
   name:
@@ -50677,7 +50673,7 @@ cards_2580:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:25.000000000 Z
-  updated_at: 2023-03-12 17:52:09.000000000 Z
+  updated_at: 2023-03-12 23:48:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50686,7 +50682,7 @@ cards_2580:
   trash: 0
   type_id: 282
   db_content: ":mod_vega_script_asset_output/vega.js"
-  search_content: "~2582/vega.js"
+  search_content: "(s3_staging_bucket)/2582/vega.js"
 cards_2581:
   id: 2583
   name:
@@ -50753,7 +50749,7 @@ cards_2584:
   right_id: 296
   current_revision_id:
   created_at: 2022-10-03 16:34:25.000000000 Z
-  updated_at: 2023-03-12 17:52:09.000000000 Z
+  updated_at: 2023-03-12 23:48:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -50762,7 +50758,7 @@ cards_2584:
   trash: 0
   type_id: 282
   db_content: ":mod_ticket_script_asset_output/ticket.js"
-  search_content: "~2586/ticket.js"
+  search_content: "(s3_staging_bucket)/2586/ticket.js"
 cards_2585:
   id: 2587
   name:
@@ -54140,7 +54136,7 @@ cards_2752:
   right_id: 296
   current_revision_id:
   created_at: 2023-03-01 01:29:34.000000000 Z
-  updated_at: 2023-03-12 17:51:29.000000000 Z
+  updated_at: 2023-03-12 23:47:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -54148,8 +54144,8 @@ cards_2752:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: "~2754/1678643489.css"
-  search_content: "~2754/1678643489.css"
+  db_content: "~2754/1678664842.css"
+  search_content: "~2754/1678664842.css"
 cards_2753:
   id: 2755
   name: old custom css
@@ -73687,7 +73683,7 @@ cards_3599:
   right_id: 2397
   current_revision_id:
   created_at: 2023-03-01 01:31:47.000000000 Z
-  updated_at: 2023-03-12 17:50:30.000000000 Z
+  updated_at: 2023-03-12 23:46:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -75984,7 +75980,7 @@ cards_3690:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:07.000000000 Z
-  updated_at: 2023-03-12 17:50:32.000000000 Z
+  updated_at: 2023-03-12 23:46:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77125,14 +77121,14 @@ cards_3747:
   search_content: 4 million+ sustainability data points across 100,000+ companies
 cards_3748:
   id: 3750
-  name: Blurb 0018
-  key: blurb_0018
+  name: Blurb 0034
+  key: blurb_0034
   codename: data_special
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:09.000000000 Z
-  updated_at: 2023-03-01 01:32:09.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77185,14 +77181,14 @@ cards_3750:
     us today!
 cards_3751:
   id: 3753
-  name: Blurb 0019
-  key: blurb_0019
+  name: Blurb 0035
+  key: blurb_0035
   codename: data_reliable
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:09.000000000 Z
-  updated_at: 2023-03-01 01:32:09.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77248,14 +77244,14 @@ cards_3753:
     about their sustainability policies and practices.
 cards_3754:
   id: 3756
-  name: Blurb 0020
-  key: blurb_0020
+  name: Blurb 0036
+  key: blurb_0036
   codename: data_usage
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:09.000000000 Z
-  updated_at: 2023-03-01 01:32:09.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77307,14 +77303,14 @@ cards_3756:
     performance and generate standardized datasets.
 cards_3757:
   id: 3759
-  name: Blurb 0021
-  key: blurb_0021
+  name: Blurb 0037
+  key: blurb_0037
   codename: data_special1
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:09.000000000 Z
-  updated_at: 2023-03-01 01:32:09.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77366,14 +77362,14 @@ cards_3759:
     by anyone. \nThe only requirement: attribution.\n"
 cards_3760:
   id: 3762
-  name: Blurb 0022
-  key: blurb_0022
+  name: Blurb 0038
+  key: blurb_0038
   codename: data_special2
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:09.000000000 Z
-  updated_at: 2023-03-01 01:32:09.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77423,14 +77419,14 @@ cards_3762:
   search_content: A world in which everyone can understand and shape company impacts.
 cards_3763:
   id: 3765
-  name: Blurb 0023
-  key: blurb_0023
+  name: Blurb 0039
+  key: blurb_0039
   codename: data_special3
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:09.000000000 Z
-  updated_at: 2023-03-01 01:32:09.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77482,14 +77478,14 @@ cards_3765:
     with open data.
 cards_3766:
   id: 3768
-  name: Blurb 0024
-  key: blurb_0024
+  name: Blurb 0040
+  key: blurb_0040
   codename: data_reliable1
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:09.000000000 Z
-  updated_at: 2023-03-01 01:32:09.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77562,14 +77558,14 @@ cards_3769:
     to keep track of specific companies or entire sectors.
 cards_3770:
   id: 3772
-  name: Blurb 0025
-  key: blurb_0025
+  name: Blurb 0041
+  key: blurb_0041
   codename: data_reliable2
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:09.000000000 Z
-  updated_at: 2023-03-01 01:32:09.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77642,14 +77638,14 @@ cards_3773:
     in contact about what’s important to you.
 cards_3774:
   id: 3776
-  name: Blurb 0026
-  key: blurb_0026
+  name: Blurb 0042
+  key: blurb_0042
   codename: data_reliable3
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-01 01:32:10.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77720,14 +77716,14 @@ cards_3777:
     rate companies, or set up multi-tiered benchmarks.
 cards_3778:
   id: 3780
-  name: Blurb 0027
-  key: blurb_0027
+  name: Blurb 0043
+  key: blurb_0043
   codename: data_reliable4
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-01 01:32:10.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77800,14 +77796,14 @@ cards_3781:
     function and can be leveraged.
 cards_3782:
   id: 3784
-  name: Blurb 0028
-  key: blurb_0028
+  name: Blurb 0044
+  key: blurb_0044
   codename: main_impact_heading
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-01 01:32:10.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77861,14 +77857,14 @@ cards_3784:
     datasets or feed into live dashboards and tools that visualize your findings.
 cards_3785:
   id: 3787
-  name: Blurb 0029
-  key: blurb_0029
+  name: Blurb 0045
+  key: blurb_0045
   codename: contribute_heading
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-01 01:32:10.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77922,14 +77918,14 @@ cards_3787:
     automated queries to make sure you always have the latest.
 cards_3788:
   id: 3790
-  name: Blurb 0030
-  key: blurb_0030
+  name: Blurb 0046
+  key: blurb_0046
   codename: main_community_heading
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-01 01:32:10.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -77981,14 +77977,14 @@ cards_3790:
     involved and help shape the future.
 cards_3791:
   id: 3793
-  name: Blurb 0031
-  key: blurb_0031
+  name: Blurb 0047
+  key: blurb_0047
   codename: community_action_heading
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-01 01:32:10.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -78040,14 +78036,14 @@ cards_3793:
     the essence. We work together and build on each other’s work.
 cards_3794:
   id: 3796
-  name: Blurb 0032
-  key: blurb_0032
+  name: Blurb 0048
+  key: blurb_0048
   codename: community_member_heading
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-01 01:32:10.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -78097,14 +78093,14 @@ cards_3796:
   search_content: Open principles govern the data, the technology and the community.
 cards_3797:
   id: 3799
-  name: Blurb 0033
-  key: blurb_0033
+  name: Blurb 0049
+  key: blurb_0049
   codename: community_action1
   left_id:
   right_id:
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-01 01:32:10.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -78183,7 +78179,7 @@ cards_3801:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78191,8 +78187,8 @@ cards_3801:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: What makes our data so special?
-  search_content: What makes our data so special?
+  db_content: Let’s set up a project together
+  search_content: Let’s set up a project together
 cards_3802:
   id: 3804
   name:
@@ -78202,7 +78198,7 @@ cards_3802:
   right_id: 45
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-01 01:32:10.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78210,8 +78206,8 @@ cards_3802:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: "/:project"
-  search_content: "/:project"
+  db_content: https://wikirateproject.org/Contact_Us
+  search_content: https://wikirateproject.org/Contact_Us
 cards_3803:
   id: 3805
   name:
@@ -78221,7 +78217,7 @@ cards_3803:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-01 01:32:10.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78229,10 +78225,8 @@ cards_3803:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: The data on WikiRate is open and free for all, because we believe sharing
-    knowledge is the only way to improve decision-making at a global scale.
-  search_content: The data on WikiRate is open and free for all, because we believe
-    sharing knowledge is the only way to improve decision-making at a global scale.
+  db_content: Get in touch with the WikiRate team to set up a project.
+  search_content: Get in touch with the WikiRate team to set up a project.
 cards_3804:
   id: 3806
   name: Blurb 0051
@@ -78261,7 +78255,7 @@ cards_3805:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78269,8 +78263,8 @@ cards_3805:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Why is our data so reliable?
-  search_content: Why is our data so reliable?
+  db_content: Teach students about sustainability reporting
+  search_content: Teach students about sustainability reporting
 cards_3806:
   id: 3808
   name:
@@ -78280,7 +78274,7 @@ cards_3806:
   right_id: 45
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-01 01:32:11.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78288,8 +78282,8 @@ cards_3806:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: "/:dataset"
-  search_content: "/:dataset"
+  db_content: https://mailchi.mp/wikirate/academic-open-call-engagement
+  search_content: https://mailchi.mp/wikirate/academic-open-call-engagement
 cards_3807:
   id: 3809
   name:
@@ -78299,7 +78293,7 @@ cards_3807:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78307,12 +78301,10 @@ cards_3807:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: Many of our datasets come from expert organizations and are already
-    verified. For data added by the community through collaborative research projects,
-    different mechanisms are in place to ensure its accuracy.
-  search_content: Many of our datasets come from expert organizations and are already
-    verified. For data added by the community through collaborative research projects,
-    different mechanisms are in place to ensure its accuracy.
+  db_content: Learn how you can use WikiRate’s tools to teach students about corporate
+    sustainability reporting with hands-on research projects.
+  search_content: Learn how you can use WikiRate’s tools to teach students about corporate
+    sustainability reporting with hands-on research projects.
 cards_3808:
   id: 3810
   name: Blurb 0052
@@ -78341,7 +78333,7 @@ cards_3809:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78349,8 +78341,8 @@ cards_3809:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Start using our data today
-  search_content: Start using our data today
+  db_content: Join the conversation
+  search_content: Join the conversation
 cards_3810:
   id: 3812
   name:
@@ -78379,7 +78371,7 @@ cards_3811:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78387,10 +78379,10 @@ cards_3811:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: You can download data from any page on WikiRate or use our API to extract
-    data in bulk.
-  search_content: You can download data from any page on WikiRate or use our API to
-    extract data in bulk.
+  db_content: Stay connected, learn and troubleshoot on WikiRate’s community Slack
+    channel.
+  search_content: Stay connected, learn and troubleshoot on WikiRate’s community Slack
+    channel.
 cards_3812:
   id: 3814
   name: Blurb 0053
@@ -78419,7 +78411,7 @@ cards_3813:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78427,8 +78419,8 @@ cards_3813:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Open
-  search_content: Open
+  db_content: Sign up now
+  search_content: Sign up now
 cards_3814:
   id: 3816
   name:
@@ -78457,7 +78449,7 @@ cards_3815:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78465,10 +78457,10 @@ cards_3815:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: 'Licensed under CC BY 4.0 the data can be accessed, used and shared
-    by anyone. The only requirement: attribution.'
-  search_content: 'Licensed under CC BY 4.0 the data can be accessed, used and shared
-    by anyone. The only requirement: attribution.'
+  db_content: You, too, can hold companies accountable for their commitments and impacts
+    on people and the planet.
+  search_content: You, too, can hold companies accountable for their commitments and
+    impacts on people and the planet.
 cards_3816:
   id: 3818
   name: Blurb 0054
@@ -78497,7 +78489,7 @@ cards_3817:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78505,8 +78497,8 @@ cards_3817:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Free
-  search_content: Free
+  db_content: Join an upcoming event
+  search_content: Join an upcoming event
 cards_3818:
   id: 3820
   name:
@@ -78516,7 +78508,7 @@ cards_3818:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78524,10 +78516,10 @@ cards_3818:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: We are all impacted by companies. Sharing the data freely means everyone
-    can get more informed and be the change they want to see.
-  search_content: We are all impacted by companies. Sharing the data freely means
-    everyone can get more informed and be the change they want to see.
+  db_content: Meet, learn, and connect on real-world projects that use open data to
+    make the world more sustainable and equitable.
+  search_content: Meet, learn, and connect on real-world projects that use open data
+    to make the world more sustainable and equitable.
 cards_3819:
   id: 3821
   name: Blurb 0055
@@ -78556,7 +78548,7 @@ cards_3820:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78564,8 +78556,8 @@ cards_3820:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Diverse
-  search_content: Diverse
+  db_content: Become a data contributor
+  search_content: Become a data contributor
 cards_3821:
   id: 3823
   name:
@@ -78575,7 +78567,7 @@ cards_3821:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78583,10 +78575,10 @@ cards_3821:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: We host data from any public source (not just self-reported company
-    data). This means more nuanced insights on company actions and impacts.
-  search_content: We host data from any public source (not just self-reported company
-    data). This means more nuanced insights on company actions and impacts.
+  db_content: Learn how you can contribute and help gather evidence that challenges
+    the status quo of sustainability reporting
+  search_content: Learn how you can contribute and help gather evidence that challenges
+    the status quo of sustainability reporting
 cards_3822:
   id: 3824
   name: Blurb 0056
@@ -78615,7 +78607,7 @@ cards_3823:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78623,8 +78615,8 @@ cards_3823:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Transparency
-  search_content: Transparency
+  db_content: Let’s set up a project together
+  search_content: Let’s set up a project together
 cards_3824:
   id: 3826
   name:
@@ -78653,7 +78645,7 @@ cards_3825:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:45.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78661,12 +78653,8 @@ cards_3825:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: Full clarity on where the data comes from (down to archived copies of
-    the original source), when and by whom it was added, and what methodology was
-    used to make sense of it.
-  search_content: Full clarity on where the data comes from (down to archived copies
-    of the original source), when and by whom it was added, and what methodology was
-    used to make sense of it.
+  db_content: Get in touch with the WikiRate team to set up a project.
+  search_content: Get in touch with the WikiRate team to set up a project.
 cards_3826:
   id: 3828
   name: Blurb 0057
@@ -78695,7 +78683,7 @@ cards_3827:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78703,8 +78691,8 @@ cards_3827:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Collaboration
-  search_content: Collaboration
+  db_content: Add your dataset
+  search_content: Add your dataset
 cards_3828:
   id: 3830
   name:
@@ -78714,7 +78702,7 @@ cards_3828:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78722,10 +78710,10 @@ cards_3828:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: Open access means more eyes on the data. It allows anomalies and errors
-    to be found faster, creating better data quality for everyone.
-  search_content: Open access means more eyes on the data. It allows anomalies and
-    errors to be found faster, creating better data quality for everyone.
+  db_content: Learn how to make your data available for others to use and build on
+    by archiving it on the platform.
+  search_content: Learn how to make your data available for others to use and build
+    on by archiving it on the platform.
 cards_3829:
   id: 3831
   name: Blurb 0058
@@ -78754,7 +78742,7 @@ cards_3830:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78762,8 +78750,8 @@ cards_3830:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Verification
-  search_content: Verification
+  db_content: Use our API
+  search_content: Use our API
 cards_3831:
   id: 3833
   name:
@@ -78792,7 +78780,7 @@ cards_3832:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-01 01:32:11.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -78800,10 +78788,10 @@ cards_3832:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: A multi-tiered verification system to indicate at what stage of the
-    production pipeline the data is and the level of assurance given.
-  search_content: A multi-tiered verification system to indicate at what stage of
-    the production pipeline the data is and the level of assurance given.
+  db_content: Check out how you can access WikiRate data programmatically using our
+    powerful REST API.
+  search_content: Check out how you can access WikiRate data programmatically using
+    our powerful REST API.
 cards_3833:
   id: 3835
   name:
@@ -78878,9 +78866,9 @@ cards_3835:
   trash: 0
   type_id: 4
   db_content: |-
-    Blurb 0021
-    Blurb 0022
-    Blurb 0023
+    Blurb 0037
+    Blurb 0038
+    Blurb 0039
   search_content: |-
     Blurb 0021
     Blurb 0022
@@ -78903,10 +78891,10 @@ cards_3836:
   trash: 0
   type_id: 4
   db_content: |-
-    Blurb 0024
-    Blurb 0025
-    Blurb 0026
-    Blurb 0027
+    Blurb 0040
+    Blurb 0041
+    Blurb 0042
+    Blurb 0043
   search_content: |-
     Blurb 0024
     Blurb 0025
@@ -78930,7 +78918,7 @@ cards_3837:
   trash: 0
   type_id: 4
   db_content: |-
-    Blurb 0033
+    Blurb 0049
     Blurb 0050
     Blurb 0051
     Blurb 0052
@@ -79375,7 +79363,7 @@ cards_3857:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-01 01:32:28.000000000 Z
-  updated_at: 2023-03-12 17:51:02.000000000 Z
+  updated_at: 2023-03-12 23:47:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -79383,8 +79371,8 @@ cards_3857:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: "~3859/57582.png"
-  search_content: "~3859/57582.png"
+  db_content: "(s3_staging_bucket)/3859/61137.png"
+  search_content: "(s3_staging_bucket)/3859/61137.png"
 cards_3858:
   id: 3860
   name:
@@ -79413,7 +79401,7 @@ cards_3859:
   right_id: 700
   current_revision_id:
   created_at: 2023-03-01 01:32:28.000000000 Z
-  updated_at: 2023-03-01 01:32:28.000000000 Z
+  updated_at: 2023-03-12 23:47:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -79432,7 +79420,7 @@ cards_3860:
   right_id: 12
   current_revision_id:
   created_at: 2023-03-01 01:32:28.000000000 Z
-  updated_at: 2023-03-01 01:32:28.000000000 Z
+  updated_at: 2023-03-12 23:47:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -79890,7 +79878,7 @@ cards_3878:
   right_id: 296
   current_revision_id:
   created_at: 2023-03-01 01:32:40.000000000 Z
-  updated_at: 2023-03-12 17:52:09.000000000 Z
+  updated_at: 2023-03-12 23:48:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -79899,7 +79887,7 @@ cards_3878:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_utility_script_asset_output/deckorate_utility.js"
-  search_content: "~3880/deckorate_utility.js"
+  search_content: "(s3_staging_bucket)/3880/deckorate_utility.js"
 cards_3879:
   id: 3881
   name:
@@ -80141,7 +80129,7 @@ cards_3891:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-02 19:23:08.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80149,8 +80137,8 @@ cards_3891:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Identifiers
-  search_content: Identifiers
+  db_content: Check out the latest contribution opportunities
+  search_content: Check out the latest contribution opportunities
 cards_3892:
   id: 3894
   name:
@@ -80179,7 +80167,7 @@ cards_3893:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-02 19:23:08.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80187,12 +80175,10 @@ cards_3893:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: Every company, metric, and answer is stored under a unique WikiRate
-    ID. This means data quality can be improved without losing track of an evolving
-    data point.
-  search_content: Every company, metric, and answer is stored under a unique WikiRate
-    ID. This means data quality can be improved without losing track of an evolving
-    data point.
+  db_content: Cannot wait to get involved? Explore the latest projects that could
+    really use your help.
+  search_content: Cannot wait to get involved? Explore the latest projects that could
+    really use your help.
 cards_3894:
   id: 3896
   name: Blurb 0060
@@ -80221,7 +80207,7 @@ cards_3895:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-02 19:23:08.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80229,8 +80215,8 @@ cards_3895:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Open data is not the ultimate goal. It is a means to an end.
-  search_content: Open data is not the ultimate goal. It is a means to an end.
+  db_content: Partner with WikiRate International
+  search_content: Partner with WikiRate International
 cards_3896:
   id: 3898
   name:
@@ -80259,7 +80245,7 @@ cards_3897:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-02 19:23:08.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80267,10 +80253,8 @@ cards_3897:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: Explore how WikiRate data and tools are used to help address the world’s
-    social and environmental challenges.
-  search_content: Explore how WikiRate data and tools are used to help address the
-    world’s social and environmental challenges.
+  db_content: Check out the ways in which the WikiRate team can help you
+  search_content: Check out the ways in which the WikiRate team can help you
 cards_3898:
   id: 3900
   name: Blurb 0061
@@ -80299,7 +80283,7 @@ cards_3899:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-02 19:23:08.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80307,8 +80291,8 @@ cards_3899:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Share your impact
-  search_content: Share your impact
+  db_content: Talk to a human
+  search_content: Talk to a human
 cards_3900:
   id: 3902
   name:
@@ -80337,7 +80321,7 @@ cards_3901:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-02 19:23:08.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80345,10 +80329,8 @@ cards_3901:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: Are you using WikiRate data and want to share your work with the community?
-    Let us help you showcase your work.
-  search_content: Are you using WikiRate data and want to share your work with the
-    community? Let us help you showcase your work.
+  db_content: Contact us at WikiRate International
+  search_content: Contact us at WikiRate International
 cards_3902:
   id: 3904
   name: Blurb 0062
@@ -80377,7 +80359,7 @@ cards_3903:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-02 19:23:08.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80385,8 +80367,8 @@ cards_3903:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Let's tackle global challenges together
-  search_content: Let's tackle global challenges together
+  db_content: Get email updates on the latest community and platform developments
+  search_content: Get email updates on the latest community and platform developments
 cards_3904:
   id: 3906
   name:
@@ -80415,7 +80397,7 @@ cards_3905:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-02 19:23:08.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80423,12 +80405,8 @@ cards_3905:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: The community collaboratively assesses and encourages companies to tackle
-    global challenges and improve people's lives. Anyone can join, and anyone can
-    use our data.
-  search_content: The community collaboratively assesses and encourages companies
-    to tackle global challenges and improve people's lives. Anyone can join, and anyone
-    can use our data.
+  db_content: Subscribe for updates
+  search_content: Subscribe for updates
 cards_3906:
   id: 3908
   name:
@@ -80685,7 +80663,7 @@ cards_3919:
   right_id: 3909
   current_revision_id:
   created_at: 2023-03-03 18:34:24.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80693,8 +80671,8 @@ cards_3919:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: storage
-  search_content: storage
+  db_content: volunteer_activism
+  search_content: volunteer_activism
 cards_3920:
   id: 3922
   name:
@@ -80932,7 +80910,7 @@ cards_3932:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-06 22:07:38.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80940,8 +80918,8 @@ cards_3932:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Ready to drive change?
-  search_content: Ready to drive change?
+  db_content: Project Organizers
+  search_content: Project Organizers
 cards_3933:
   id: 3935
   name:
@@ -80951,7 +80929,7 @@ cards_3933:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-06 22:07:38.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -80959,10 +80937,10 @@ cards_3933:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: The challenges we face are too big to tackle alone. Collaborative action
-    is the way forward.
-  search_content: The challenges we face are too big to tackle alone. Collaborative
-    action is the way forward.
+  db_content: Individuals or organizations coordinating a collaborative assessment
+    of companies on a topic relevant for their work, research, or everyday life.
+  search_content: Individuals or organizations coordinating a collaborative assessment
+    of companies on a topic relevant for their work, research, or everyday life.
 cards_3934:
   id: 3936
   name:
@@ -81082,7 +81060,7 @@ cards_3939:
   right_id:
   current_revision_id:
   created_at: 2023-03-09 19:08:14.000000000 Z
-  updated_at: 2023-03-12 17:51:01.000000000 Z
+  updated_at: 2023-03-12 23:47:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -81150,7 +81128,7 @@ cards_3942:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-09 19:08:17.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81158,8 +81136,8 @@ cards_3942:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Members of the month
-  search_content: Members of the month
+  db_content: Become a steward
+  search_content: Become a steward
 cards_3943:
   id: 3945
   name:
@@ -81188,7 +81166,7 @@ cards_3944:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-09 19:08:17.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81196,10 +81174,8 @@ cards_3944:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: Our valued community members, we are more than proud of collaborating
-    together.
-  search_content: Our valued community members, we are more than proud of collaborating
-    together.
+  db_content: But not like the one in LoTR. He sucked.
+  search_content: But not like the one in LoTR. He sucked.
 cards_3945:
   id: 3947
   name: Blurb 0065
@@ -81228,7 +81204,7 @@ cards_3946:
   right_id: 50
   current_revision_id:
   created_at: 2023-03-09 19:08:18.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81236,8 +81212,8 @@ cards_3946:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Become a data contributor
-  search_content: Become a data contributor
+  db_content: Subscribe for updates
+  search_content: Subscribe for updates
 cards_3947:
   id: 3949
   name:
@@ -81247,7 +81223,7 @@ cards_3947:
   right_id: 45
   current_revision_id:
   created_at: 2023-03-09 19:08:18.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81255,8 +81231,8 @@ cards_3947:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: https://express.adobe.com/page/o6z9GKWQ6z6lT/
-  search_content: https://express.adobe.com/page/o6z9GKWQ6z6lT/
+  db_content: https://www.google.com/url?q=https://wikirate.us7.list-manage.com/subscribe/post?u%3Dbe57db47b40c6b1c7e9ef0b36%26id%3D1354650004&sa=D&source=docs&ust=1678294845108552&usg=AOvVaw0nkvJbGmeOiIS0FK9IuiVt
+  search_content: https://www.google.com/url?q=https://wikirate.us7.list-manage.com/subscribe/post?u%3Dbe57db47b40c6b1c7e9ef0b36%26id%3D1354650004&amp;sa=D&amp;source=docs&amp;ust=1678294845108552&amp;usg=AOvVaw0nkvJbGmeOiIS0FK9IuiVt
 cards_3948:
   id: 3950
   name:
@@ -81266,7 +81242,7 @@ cards_3948:
   right_id: 649
   current_revision_id:
   created_at: 2023-03-09 19:08:18.000000000 Z
-  updated_at: 2023-03-12 17:50:46.000000000 Z
+  updated_at: 2023-03-12 23:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81274,10 +81250,10 @@ cards_3948:
   references_expired:
   trash: 0
   type_id: 2
-  db_content: Learn how you can contribute and help gather evidence that challenges
-    the status quo of sustainability reporting.
-  search_content: Learn how you can contribute and help gather evidence that challenges
-    the status quo of sustainability reporting.
+  db_content: Stay up to date on the latest community and platform developments by
+    subscribing to our newsletter.
+  search_content: Stay up to date on the latest community and platform developments
+    by subscribing to our newsletter.
 cards_3949:
   id: 3951
   name: 'mod: wikirate shared'
@@ -81645,7 +81621,7 @@ cards_3965:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:32.000000000 Z
-  updated_at: 2023-03-12 17:50:32.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81653,7 +81629,7 @@ cards_3965:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/3967/60720.png"
   search_content: "(s3_live_bucket)/13009489/40066653.png"
 cards_3966:
   id: 3968
@@ -81794,7 +81770,7 @@ cards_3971:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:34.000000000 Z
-  updated_at: 2023-03-12 17:50:34.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81802,7 +81778,7 @@ cards_3971:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/3973/60727.pdf"
   search_content: "(s3_live_bucket)/13009496/33519894.pdf"
 cards_3972:
   id: 3974
@@ -81813,7 +81789,7 @@ cards_3972:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:34.000000000 Z
-  updated_at: 2023-03-12 17:50:34.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81821,7 +81797,7 @@ cards_3972:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/3974/60728.png"
   search_content: "(s3_live_bucket)/13009495/40065491.png"
 cards_3973:
   id: 3975
@@ -81962,7 +81938,7 @@ cards_3978:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:34.000000000 Z
-  updated_at: 2023-03-12 17:50:34.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81970,7 +81946,7 @@ cards_3978:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/3980/60735.pdf"
   search_content: "(s3_live_bucket)/13009501/33519905.pdf"
 cards_3979:
   id: 3981
@@ -81981,7 +81957,7 @@ cards_3979:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:34.000000000 Z
-  updated_at: 2023-03-12 17:50:34.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81989,7 +81965,7 @@ cards_3979:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/3981/60736.png"
   search_content: "(s3_live_bucket)/13009498/40066741.png"
 cards_3980:
   id: 3982
@@ -82110,7 +82086,7 @@ cards_3985:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:35.000000000 Z
-  updated_at: 2023-03-12 17:50:35.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82118,7 +82094,7 @@ cards_3985:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/3987/60743.pdf"
   search_content: "(s3_live_bucket)/13009508/33519914.pdf"
 cards_3986:
   id: 3988
@@ -82129,7 +82105,7 @@ cards_3986:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:35.000000000 Z
-  updated_at: 2023-03-12 17:50:35.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82137,7 +82113,7 @@ cards_3986:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/3988/60744.png"
   search_content: "(s3_live_bucket)/13009505/40066749.png"
 cards_3987:
   id: 3989
@@ -82264,7 +82240,7 @@ cards_3992:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:35.000000000 Z
-  updated_at: 2023-03-12 17:50:35.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82272,7 +82248,7 @@ cards_3992:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/3994/60751.pdf"
   search_content: "(s3_live_bucket)/13009515/33519926.pdf"
 cards_3993:
   id: 3995
@@ -82283,7 +82259,7 @@ cards_3993:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:35.000000000 Z
-  updated_at: 2023-03-12 17:50:35.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82291,7 +82267,7 @@ cards_3993:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/3995/60752.png"
   search_content: "(s3_live_bucket)/13009512/40066661.png"
 cards_3994:
   id: 3996
@@ -82421,7 +82397,7 @@ cards_3999:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:35.000000000 Z
-  updated_at: 2023-03-12 17:50:35.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82429,7 +82405,7 @@ cards_3999:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4001/60759.png"
   search_content: "(s3_live_bucket)/13009714/40066733.png"
 cards_4000:
   id: 4002
@@ -82554,7 +82530,7 @@ cards_4005:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:36.000000000 Z
-  updated_at: 2023-03-12 17:50:36.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82562,7 +82538,7 @@ cards_4005:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/4007/60766.pdf"
   search_content: "(s3_live_bucket)/13009652/33520592.pdf"
 cards_4006:
   id: 4008
@@ -82573,7 +82549,7 @@ cards_4006:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:36.000000000 Z
-  updated_at: 2023-03-12 17:50:36.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82581,7 +82557,7 @@ cards_4006:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4008/60767.png"
   search_content: "(s3_live_bucket)/13009709/40068507.png"
 cards_4007:
   id: 4009
@@ -82685,7 +82661,7 @@ cards_4011:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:36.000000000 Z
-  updated_at: 2023-03-12 17:50:36.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82693,7 +82669,7 @@ cards_4011:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/4013/60773.pdf"
   search_content: "(s3_live_bucket)/13009656/33520611.pdf"
 cards_4012:
   id: 4014
@@ -82704,7 +82680,7 @@ cards_4012:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:36.000000000 Z
-  updated_at: 2023-03-12 17:50:36.000000000 Z
+  updated_at: 2023-03-12 23:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82712,7 +82688,7 @@ cards_4012:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4014/60774.png"
   search_content: "(s3_live_bucket)/13009717/40068490.png"
 cards_4013:
   id: 4015
@@ -82854,7 +82830,7 @@ cards_4018:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:37.000000000 Z
-  updated_at: 2023-03-12 17:50:37.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82862,7 +82838,7 @@ cards_4018:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/4020/60781.pdf"
   search_content: "(s3_live_bucket)/13009662/33520628.pdf"
 cards_4019:
   id: 4021
@@ -82873,7 +82849,7 @@ cards_4019:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:37.000000000 Z
-  updated_at: 2023-03-12 17:50:37.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -82881,7 +82857,7 @@ cards_4019:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4021/60782.png"
   search_content: "(s3_live_bucket)/13009711/40066717.png"
 cards_4020:
   id: 4022
@@ -83018,7 +82994,7 @@ cards_4025:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:37.000000000 Z
-  updated_at: 2023-03-12 17:50:37.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83026,7 +83002,7 @@ cards_4025:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/4027/60789.pdf"
   search_content: "(s3_live_bucket)/13009668/33520645.pdf"
 cards_4026:
   id: 4028
@@ -83037,7 +83013,7 @@ cards_4026:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:37.000000000 Z
-  updated_at: 2023-03-12 17:50:37.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83045,7 +83021,7 @@ cards_4026:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4028/60790.png"
   search_content: "(s3_live_bucket)/13009707/40066709.png"
 cards_4027:
   id: 4029
@@ -83184,7 +83160,7 @@ cards_4032:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:38.000000000 Z
-  updated_at: 2023-03-12 17:50:38.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83192,7 +83168,7 @@ cards_4032:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/4034/60797.pdf"
   search_content: "(s3_live_bucket)/13009674/33520667.pdf"
 cards_4033:
   id: 4035
@@ -83203,7 +83179,7 @@ cards_4033:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:38.000000000 Z
-  updated_at: 2023-03-12 17:50:38.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83211,7 +83187,7 @@ cards_4033:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4035/60798.png"
   search_content: "(s3_live_bucket)/13009722/40066701.png"
 cards_4034:
   id: 4036
@@ -83383,7 +83359,7 @@ cards_4039:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:38.000000000 Z
-  updated_at: 2023-03-12 17:50:38.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83391,7 +83367,7 @@ cards_4039:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4041/60805.png"
   search_content: "(s3_live_bucket)/13009708/40066637.png"
 cards_4040:
   id: 4042
@@ -83520,7 +83496,7 @@ cards_4045:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:39.000000000 Z
-  updated_at: 2023-03-12 17:50:39.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83528,7 +83504,7 @@ cards_4045:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/4047/60812.png"
   search_content: "(s3_live_bucket)/13009712/33520951.png"
 cards_4046:
   id: 4048
@@ -83539,7 +83515,7 @@ cards_4046:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:39.000000000 Z
-  updated_at: 2023-03-12 17:50:39.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83547,7 +83523,7 @@ cards_4046:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4048/60813.png"
   search_content: "(s3_live_bucket)/13009713/40066693.png"
 cards_4047:
   id: 4049
@@ -83673,7 +83649,7 @@ cards_4052:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:39.000000000 Z
-  updated_at: 2023-03-12 17:50:39.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83681,7 +83657,7 @@ cards_4052:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/4054/60820.pdf"
   search_content: "(s3_live_bucket)/13009689/33520738.pdf"
 cards_4053:
   id: 4055
@@ -83692,7 +83668,7 @@ cards_4053:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:39.000000000 Z
-  updated_at: 2023-03-12 17:50:39.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83700,7 +83676,7 @@ cards_4053:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4055/60821.png"
   search_content: "(s3_live_bucket)/13009715/40066685.png"
 cards_4054:
   id: 4056
@@ -83821,7 +83797,7 @@ cards_4058:
   right_id: 282
   current_revision_id:
   created_at: 2023-03-12 17:50:40.000000000 Z
-  updated_at: 2023-03-12 17:50:40.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83829,7 +83805,7 @@ cards_4058:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ''
+  db_content: "(s3_live_bucket)/4060/60827.pdf"
   search_content: "(s3_live_bucket)/13009694/33520754.pdf"
 cards_4059:
   id: 4061
@@ -83840,7 +83816,7 @@ cards_4059:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:40.000000000 Z
-  updated_at: 2023-03-12 17:50:40.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83848,7 +83824,7 @@ cards_4059:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4061/60828.png"
   search_content: "(s3_live_bucket)/13009716/40066677.png"
 cards_4060:
   id: 4062
@@ -83969,7 +83945,7 @@ cards_4065:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:41.000000000 Z
-  updated_at: 2023-03-12 17:50:41.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -83977,7 +83953,7 @@ cards_4065:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4067/60835.png"
   search_content: "(s3_live_bucket)/13009710/40066629.png"
 cards_4066:
   id: 4068
@@ -84105,7 +84081,7 @@ cards_4071:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:41.000000000 Z
-  updated_at: 2023-03-12 17:50:41.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -84113,7 +84089,7 @@ cards_4071:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4073/60842.png"
   search_content: "(s3_live_bucket)/13009721/40066669.png"
 cards_4072:
   id: 4074
@@ -84229,7 +84205,7 @@ cards_4077:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:42.000000000 Z
-  updated_at: 2023-03-12 17:50:42.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -84237,7 +84213,7 @@ cards_4077:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4079/60849.png"
   search_content: "(s3_live_bucket)/13012031/40066621.png"
 cards_4078:
   id: 4080
@@ -84365,7 +84341,7 @@ cards_4083:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:42.000000000 Z
-  updated_at: 2023-03-12 17:50:42.000000000 Z
+  updated_at: 2023-03-12 23:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -84373,7 +84349,7 @@ cards_4083:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4085/60856.png"
   search_content: "(s3_live_bucket)/13175774/40066613.png"
 cards_4084:
   id: 4086
@@ -84507,7 +84483,7 @@ cards_4089:
   right_id: 284
   current_revision_id:
   created_at: 2023-03-12 17:50:42.000000000 Z
-  updated_at: 2023-03-12 17:50:42.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -84515,7 +84491,7 @@ cards_4089:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: ''
+  db_content: "(s3_live_bucket)/4091/60863.png"
   search_content: "(s3_live_bucket)/14494890/40068498.png"
 cards_4090:
   id: 4092
@@ -85658,3 +85634,803 @@ cards_4148:
     subscribing to our newsletter.
   search_content: Stay up to date on the latest community and platform developments
     by subscribing to our newsletter.
+cards_4149:
+  id: 4151
+  name:
+  key:
+  codename:
+  left_id: 3750
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: What makes our data so special?
+  search_content: What makes our data so special?
+cards_4150:
+  id: 4152
+  name:
+  key:
+  codename:
+  left_id: 3750
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: The data on WikiRate is open and free for all, because we believe sharing
+    knowledge is the only way to improve decision-making at a global scale.
+  search_content: The data on WikiRate is open and free for all, because we believe
+    sharing knowledge is the only way to improve decision-making at a global scale.
+cards_4151:
+  id: 4153
+  name:
+  key:
+  codename:
+  left_id: 3753
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Why is our data so reliable?
+  search_content: Why is our data so reliable?
+cards_4152:
+  id: 4154
+  name:
+  key:
+  codename:
+  left_id: 3753
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: Many of our datasets come from expert organizations and are already
+    verified. For data added by the community through collaborative research projects,
+    different mechanisms are in place to ensure its accuracy.
+  search_content: Many of our datasets come from expert organizations and are already
+    verified. For data added by the community through collaborative research projects,
+    different mechanisms are in place to ensure its accuracy.
+cards_4153:
+  id: 4155
+  name:
+  key:
+  codename:
+  left_id: 3756
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Start using our data today
+  search_content: Start using our data today
+cards_4154:
+  id: 4156
+  name:
+  key:
+  codename:
+  left_id: 3756
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: You can download data from any page on WikiRate or use our API to extract
+    data in bulk.
+  search_content: You can download data from any page on WikiRate or use our API to
+    extract data in bulk.
+cards_4155:
+  id: 4157
+  name:
+  key:
+  codename:
+  left_id: 3759
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Open
+  search_content: Open
+cards_4156:
+  id: 4158
+  name:
+  key:
+  codename:
+  left_id: 3759
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: 'Licensed under CC BY 4.0 the data can be accessed, used and shared
+    by anyone. The only requirement: attribution.'
+  search_content: 'Licensed under CC BY 4.0 the data can be accessed, used and shared
+    by anyone. The only requirement: attribution.'
+cards_4157:
+  id: 4159
+  name:
+  key:
+  codename:
+  left_id: 3759
+  right_id: 3909
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: diamond
+  search_content: diamond
+cards_4158:
+  id: 4160
+  name:
+  key:
+  codename:
+  left_id: 3762
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Free
+  search_content: Free
+cards_4159:
+  id: 4161
+  name:
+  key:
+  codename:
+  left_id: 3762
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: We are all impacted by companies. Sharing the data freely means everyone
+    can get more informed and be the change they want to see.
+  search_content: We are all impacted by companies. Sharing the data freely means
+    everyone can get more informed and be the change they want to see.
+cards_4160:
+  id: 4162
+  name:
+  key:
+  codename:
+  left_id: 3762
+  right_id: 3909
+  current_revision_id:
+  created_at: 2023-03-12 23:46:58.000000000 Z
+  updated_at: 2023-03-12 23:46:58.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: diamond
+  search_content: diamond
+cards_4161:
+  id: 4163
+  name:
+  key:
+  codename:
+  left_id: 3765
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Diverse
+  search_content: Diverse
+cards_4162:
+  id: 4164
+  name:
+  key:
+  codename:
+  left_id: 3765
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: We host data from any public source (not just self-reported company
+    data). This means more nuanced insights on company actions and impacts.
+  search_content: We host data from any public source (not just self-reported company
+    data). This means more nuanced insights on company actions and impacts.
+cards_4163:
+  id: 4165
+  name:
+  key:
+  codename:
+  left_id: 3765
+  right_id: 3909
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: diamond
+  search_content: diamond
+cards_4164:
+  id: 4166
+  name:
+  key:
+  codename:
+  left_id: 3768
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Transparency
+  search_content: Transparency
+cards_4165:
+  id: 4167
+  name:
+  key:
+  codename:
+  left_id: 3768
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: Full clarity on where the data comes from (down to archived copies of
+    the original source), when and by whom it was added, and what methodology was
+    used to make sense of it.
+  search_content: Full clarity on where the data comes from (down to archived copies
+    of the original source), when and by whom it was added, and what methodology was
+    used to make sense of it.
+cards_4166:
+  id: 4168
+  name:
+  key:
+  codename:
+  left_id: 3768
+  right_id: 3909
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: share
+  search_content: share
+cards_4167:
+  id: 4169
+  name:
+  key:
+  codename:
+  left_id: 3772
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Collaboration
+  search_content: Collaboration
+cards_4168:
+  id: 4170
+  name:
+  key:
+  codename:
+  left_id: 3772
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: Open access means more eyes on the data. It allows anomalies and errors
+    to be found faster, creating better data quality for everyone.
+  search_content: Open access means more eyes on the data. It allows anomalies and
+    errors to be found faster, creating better data quality for everyone.
+cards_4169:
+  id: 4171
+  name:
+  key:
+  codename:
+  left_id: 3772
+  right_id: 3909
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: people
+  search_content: people
+cards_4170:
+  id: 4172
+  name:
+  key:
+  codename:
+  left_id: 3776
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Verification
+  search_content: Verification
+cards_4171:
+  id: 4173
+  name:
+  key:
+  codename:
+  left_id: 3776
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: A multi-tiered verification system to indicate at what stage of the
+    production pipeline the data is and the level of assurance given.
+  search_content: A multi-tiered verification system to indicate at what stage of
+    the production pipeline the data is and the level of assurance given.
+cards_4172:
+  id: 4174
+  name:
+  key:
+  codename:
+  left_id: 3776
+  right_id: 3909
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: multiline_chart
+  search_content: multiline_chart
+cards_4173:
+  id: 4175
+  name:
+  key:
+  codename:
+  left_id: 3780
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Identifiers
+  search_content: Identifiers
+cards_4174:
+  id: 4176
+  name:
+  key:
+  codename:
+  left_id: 3780
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: Every company, metric, and answer is stored under a unique WikiRate
+    ID. This means data quality can be improved without losing track of an evolving
+    data point.
+  search_content: Every company, metric, and answer is stored under a unique WikiRate
+    ID. This means data quality can be improved without losing track of an evolving
+    data point.
+cards_4175:
+  id: 4177
+  name:
+  key:
+  codename:
+  left_id: 3780
+  right_id: 3909
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: storage
+  search_content: storage
+cards_4176:
+  id: 4178
+  name:
+  key:
+  codename:
+  left_id: 3784
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Open data is not the ultimate goal. It is a means to an end.
+  search_content: Open data is not the ultimate goal. It is a means to an end.
+cards_4177:
+  id: 4179
+  name:
+  key:
+  codename:
+  left_id: 3784
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: Explore how WikiRate data and tools are used to help address the world’s
+    social and environmental challenges.
+  search_content: Explore how WikiRate data and tools are used to help address the
+    world’s social and environmental challenges.
+cards_4178:
+  id: 4180
+  name:
+  key:
+  codename:
+  left_id: 3787
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Share your impact
+  search_content: Share your impact
+cards_4179:
+  id: 4181
+  name:
+  key:
+  codename:
+  left_id: 3787
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: Are you using WikiRate data and want to share your work with the community?
+    Let us help you showcase your work.
+  search_content: Are you using WikiRate data and want to share your work with the
+    community? Let us help you showcase your work.
+cards_4180:
+  id: 4182
+  name:
+  key:
+  codename:
+  left_id: 3790
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Let's tackle global challenges together
+  search_content: Let's tackle global challenges together
+cards_4181:
+  id: 4183
+  name:
+  key:
+  codename:
+  left_id: 3790
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: The community collaboratively assesses and encourages companies to tackle
+    global challenges and improve people's lives. Anyone can join, and anyone can
+    use our data.
+  search_content: The community collaboratively assesses and encourages companies
+    to tackle global challenges and improve people's lives. Anyone can join, and anyone
+    can use our data.
+cards_4182:
+  id: 4184
+  name:
+  key:
+  codename:
+  left_id: 3793
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Ready to drive change?
+  search_content: Ready to drive change?
+cards_4183:
+  id: 4185
+  name:
+  key:
+  codename:
+  left_id: 3793
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: The challenges we face are too big to tackle alone. Collaborative action
+    is the way forward.
+  search_content: The challenges we face are too big to tackle alone. Collaborative
+    action is the way forward.
+cards_4184:
+  id: 4186
+  name:
+  key:
+  codename:
+  left_id: 3796
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Members of the month
+  search_content: Members of the month
+cards_4185:
+  id: 4187
+  name:
+  key:
+  codename:
+  left_id: 3796
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: Our valued community members, we are more than proud of collaborating
+    together.
+  search_content: Our valued community members, we are more than proud of collaborating
+    together.
+cards_4186:
+  id: 4188
+  name:
+  key:
+  codename:
+  left_id: 3799
+  right_id: 50
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: Become a data contributor
+  search_content: Become a data contributor
+cards_4187:
+  id: 4189
+  name:
+  key:
+  codename:
+  left_id: 3799
+  right_id: 45
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 43
+  db_content: https://express.adobe.com/page/o6z9GKWQ6z6lT/
+  search_content: https://express.adobe.com/page/o6z9GKWQ6z6lT/
+cards_4188:
+  id: 4190
+  name:
+  key:
+  codename:
+  left_id: 3799
+  right_id: 649
+  current_revision_id:
+  created_at: 2023-03-12 23:46:59.000000000 Z
+  updated_at: 2023-03-12 23:46:59.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
+  db_content: Learn how you can contribute and help gather evidence that challenges
+    the status quo of sustainability reporting.
+  search_content: Learn how you can contribute and help gather evidence that challenges
+    the status quo of sustainability reporting.

@@ -138,7 +138,7 @@
   }
 }
 
-.cta-card, .action-card .card, .endorsement-summary {
+#impact-card, .cta-card, .action-card .card, .endorsement-summary {
   box-shadow: $box-shadow-sm;
   &:hover {
     box-shadow: $box-shadow-lg;
@@ -228,10 +228,10 @@
 .icon-left-text-right .blurb-icon {
   color: white;
   background-color: $purple-grad-1;
-  height: 5.2em;
-  width: 5.2em;
+  height: 7.5em;
+  width: 7.5em;
   i {
-    font-size: 2.5em;
+    font-size: 3.5em;
   }
 }
 #our-values-section .blurb-stack .blurb-icon {

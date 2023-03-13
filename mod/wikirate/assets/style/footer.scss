@@ -34,6 +34,9 @@ $social-colors: (
   .logo-link {
     display: block;
     max-width: 4em;
+    img {
+      max-height: 2.25em
+    }
   }
 }
 
