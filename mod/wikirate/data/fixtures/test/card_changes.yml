@@ -13195,3 +13195,2688 @@ card_changes_1121:
   card_action_id: 57582
   field: 2
   value: "~3859/57582.png"
+card_changes_1122:
+  id: 1122
+  card_action_id: 57973
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_1123:
+  id: 1123
+  card_action_id: 58041
+  field: 0
+  value: parent
+card_changes_1124:
+  id: 1124
+  card_action_id: 58088
+  field: 1
+  value: '4'
+card_changes_1125:
+  id: 1125
+  card_action_id: 58088
+  field: 2
+  value: yeti skin
+card_changes_1126:
+  id: 1126
+  card_action_id: 58191
+  field: 2
+  value: Default Layout
+card_changes_1127:
+  id: 1127
+  card_action_id: 58259
+  field: 2
+  value: deckorate_layout
+card_changes_1128:
+  id: 1128
+  card_action_id: 60594
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_1129:
+  id: 1129
+  card_action_id: 60610
+  field: 0
+  value: Parent
+card_changes_1130:
+  id: 1130
+  card_action_id: 60661
+  field: 0
+  value: Policy
+card_changes_1131:
+  id: 1131
+  card_action_id: 60677
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_1132:
+  id: 1132
+  card_action_id: 60697
+  field: 2
+  value: |
+    [[Policies]]
+    [[Licensing]]
+    [[Disclaimers]]
+    [[Privacy and Cookies Statement]]
+    [[Impressum]]
+card_changes_1133:
+  id: 1133
+  card_action_id: 17353
+  field: 0
+  value:
+card_changes_1134:
+  id: 1134
+  card_action_id: 17353
+  field: 1
+  value: '2'
+card_changes_1135:
+  id: 1135
+  card_action_id: 17353
+  field: 2
+  value: |
+    <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
+    <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">WikiRate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+    <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
+    <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>
+card_changes_1136:
+  id: 1136
+  card_action_id: 17353
+  field: 3
+  value: f
+card_changes_1137:
+  id: 1137
+  card_action_id: 17353
+  field: 4
+  value: '3855'
+card_changes_1138:
+  id: 1138
+  card_action_id: 17353
+  field: 5
+  value: '12'
+card_changes_1139:
+  id: 1139
+  card_action_id: 60709
+  field: 2
+  value: "<p>Fashion Checker is a data tool that connects the dots between brand commitments
+    on living wages and the reality for workers on the ground.</p>\r\n<p>The project
+    is coordinated by <a href=\"https://cleanclothes.org/\">Clean Clothes Campaign</a> in
+    partnership with <a href=\"https://semcon.com/\">Semcon</a>, <a href=\"https://wageindicator.org/\">WageIndicator</a> and <a
+    href=\"/\">WikiRate</a>. The campaign seeks to make brands accountable for their
+    promises on living wages and invites the public in to explore the data.</p>\r\n<p>Through
+    the tool you can explore how companies score on currently paying their workers
+    a living wage, the transparency of their supply chain and their commitments to
+    paying workers a living wage in the future.</p>\r\n<p>The tool also pulls in data
+    on the company’s supply chain including gender breakdowns of workers, the actual
+    to minimum wage pay gap and collective bargaining agreements.</p>"
+card_changes_1140:
+  id: 1140
+  card_action_id: 17352
+  field: 0
+  value:
+card_changes_1141:
+  id: 1141
+  card_action_id: 17352
+  field: 1
+  value: '55'
+card_changes_1142:
+  id: 1142
+  card_action_id: 17352
+  field: 2
+  value: Death Star
+card_changes_1143:
+  id: 1143
+  card_action_id: 17352
+  field: 3
+  value: f
+card_changes_1144:
+  id: 1144
+  card_action_id: 17352
+  field: 4
+  value: '3855'
+card_changes_1145:
+  id: 1145
+  card_action_id: 17352
+  field: 5
+  value: '700'
+card_changes_1146:
+  id: 1146
+  card_action_id: 60712
+  field: 2
+  value: Clean Clothes Campaign
+card_changes_1147:
+  id: 1147
+  card_action_id: 60713
+  field: 2
+  value: "(s3_live_bucket)/3859/60713.png"
+card_changes_1148:
+  id: 1148
+  card_action_id: 57147
+  field: 0
+  value:
+card_changes_1149:
+  id: 1149
+  card_action_id: 57147
+  field: 1
+  value: '284'
+card_changes_1150:
+  id: 1150
+  card_action_id: 57147
+  field: 2
+  value: ''
+card_changes_1151:
+  id: 1151
+  card_action_id: 57147
+  field: 3
+  value: f
+card_changes_1152:
+  id: 1152
+  card_action_id: 57147
+  field: 4
+  value: '3962'
+card_changes_1153:
+  id: 1153
+  card_action_id: 57147
+  field: 5
+  value: '284'
+card_changes_1154:
+  id: 1154
+  card_action_id: 60720
+  field: 2
+  value: "(s3_live_bucket)/3967/60720.png"
+card_changes_1155:
+  id: 1155
+  card_action_id: 57154
+  field: 0
+  value:
+card_changes_1156:
+  id: 1156
+  card_action_id: 57154
+  field: 1
+  value: '282'
+card_changes_1157:
+  id: 1157
+  card_action_id: 57154
+  field: 2
+  value: ''
+card_changes_1158:
+  id: 1158
+  card_action_id: 57154
+  field: 3
+  value: f
+card_changes_1159:
+  id: 1159
+  card_action_id: 57154
+  field: 4
+  value: '3968'
+card_changes_1160:
+  id: 1160
+  card_action_id: 57154
+  field: 5
+  value: '282'
+card_changes_1161:
+  id: 1161
+  card_action_id: 60727
+  field: 2
+  value: "(s3_live_bucket)/3973/60727.pdf"
+card_changes_1162:
+  id: 1162
+  card_action_id: 57155
+  field: 0
+  value:
+card_changes_1163:
+  id: 1163
+  card_action_id: 57155
+  field: 1
+  value: '284'
+card_changes_1164:
+  id: 1164
+  card_action_id: 57155
+  field: 2
+  value: ''
+card_changes_1165:
+  id: 1165
+  card_action_id: 57155
+  field: 3
+  value: f
+card_changes_1166:
+  id: 1166
+  card_action_id: 57155
+  field: 4
+  value: '3968'
+card_changes_1167:
+  id: 1167
+  card_action_id: 57155
+  field: 5
+  value: '284'
+card_changes_1168:
+  id: 1168
+  card_action_id: 60728
+  field: 2
+  value: "(s3_live_bucket)/3974/60728.png"
+card_changes_1169:
+  id: 1169
+  card_action_id: 57162
+  field: 0
+  value:
+card_changes_1170:
+  id: 1170
+  card_action_id: 57162
+  field: 1
+  value: '282'
+card_changes_1171:
+  id: 1171
+  card_action_id: 57162
+  field: 2
+  value: ''
+card_changes_1172:
+  id: 1172
+  card_action_id: 57162
+  field: 3
+  value: f
+card_changes_1173:
+  id: 1173
+  card_action_id: 57162
+  field: 4
+  value: '3975'
+card_changes_1174:
+  id: 1174
+  card_action_id: 57162
+  field: 5
+  value: '282'
+card_changes_1175:
+  id: 1175
+  card_action_id: 60735
+  field: 2
+  value: "(s3_live_bucket)/3980/60735.pdf"
+card_changes_1176:
+  id: 1176
+  card_action_id: 57163
+  field: 0
+  value:
+card_changes_1177:
+  id: 1177
+  card_action_id: 57163
+  field: 1
+  value: '284'
+card_changes_1178:
+  id: 1178
+  card_action_id: 57163
+  field: 2
+  value: ''
+card_changes_1179:
+  id: 1179
+  card_action_id: 57163
+  field: 3
+  value: f
+card_changes_1180:
+  id: 1180
+  card_action_id: 57163
+  field: 4
+  value: '3975'
+card_changes_1181:
+  id: 1181
+  card_action_id: 57163
+  field: 5
+  value: '284'
+card_changes_1182:
+  id: 1182
+  card_action_id: 60736
+  field: 2
+  value: "(s3_live_bucket)/3981/60736.png"
+card_changes_1183:
+  id: 1183
+  card_action_id: 57170
+  field: 0
+  value:
+card_changes_1184:
+  id: 1184
+  card_action_id: 57170
+  field: 1
+  value: '282'
+card_changes_1185:
+  id: 1185
+  card_action_id: 57170
+  field: 2
+  value: ''
+card_changes_1186:
+  id: 1186
+  card_action_id: 57170
+  field: 3
+  value: f
+card_changes_1187:
+  id: 1187
+  card_action_id: 57170
+  field: 4
+  value: '3982'
+card_changes_1188:
+  id: 1188
+  card_action_id: 57170
+  field: 5
+  value: '282'
+card_changes_1189:
+  id: 1189
+  card_action_id: 60743
+  field: 2
+  value: "(s3_live_bucket)/3987/60743.pdf"
+card_changes_1190:
+  id: 1190
+  card_action_id: 57171
+  field: 0
+  value:
+card_changes_1191:
+  id: 1191
+  card_action_id: 57171
+  field: 1
+  value: '284'
+card_changes_1192:
+  id: 1192
+  card_action_id: 57171
+  field: 2
+  value: ''
+card_changes_1193:
+  id: 1193
+  card_action_id: 57171
+  field: 3
+  value: f
+card_changes_1194:
+  id: 1194
+  card_action_id: 57171
+  field: 4
+  value: '3982'
+card_changes_1195:
+  id: 1195
+  card_action_id: 57171
+  field: 5
+  value: '284'
+card_changes_1196:
+  id: 1196
+  card_action_id: 60744
+  field: 2
+  value: "(s3_live_bucket)/3988/60744.png"
+card_changes_1197:
+  id: 1197
+  card_action_id: 57178
+  field: 0
+  value:
+card_changes_1198:
+  id: 1198
+  card_action_id: 57178
+  field: 1
+  value: '282'
+card_changes_1199:
+  id: 1199
+  card_action_id: 57178
+  field: 2
+  value: ''
+card_changes_1200:
+  id: 1200
+  card_action_id: 57178
+  field: 3
+  value: f
+card_changes_1201:
+  id: 1201
+  card_action_id: 57178
+  field: 4
+  value: '3989'
+card_changes_1202:
+  id: 1202
+  card_action_id: 57178
+  field: 5
+  value: '282'
+card_changes_1203:
+  id: 1203
+  card_action_id: 60751
+  field: 2
+  value: "(s3_live_bucket)/3994/60751.pdf"
+card_changes_1204:
+  id: 1204
+  card_action_id: 57179
+  field: 0
+  value:
+card_changes_1205:
+  id: 1205
+  card_action_id: 57179
+  field: 1
+  value: '284'
+card_changes_1206:
+  id: 1206
+  card_action_id: 57179
+  field: 2
+  value: ''
+card_changes_1207:
+  id: 1207
+  card_action_id: 57179
+  field: 3
+  value: f
+card_changes_1208:
+  id: 1208
+  card_action_id: 57179
+  field: 4
+  value: '3989'
+card_changes_1209:
+  id: 1209
+  card_action_id: 57179
+  field: 5
+  value: '284'
+card_changes_1210:
+  id: 1210
+  card_action_id: 60752
+  field: 2
+  value: "(s3_live_bucket)/3995/60752.png"
+card_changes_1211:
+  id: 1211
+  card_action_id: 57186
+  field: 0
+  value:
+card_changes_1212:
+  id: 1212
+  card_action_id: 57186
+  field: 1
+  value: '284'
+card_changes_1213:
+  id: 1213
+  card_action_id: 57186
+  field: 2
+  value: ''
+card_changes_1214:
+  id: 1214
+  card_action_id: 57186
+  field: 3
+  value: f
+card_changes_1215:
+  id: 1215
+  card_action_id: 57186
+  field: 4
+  value: '3996'
+card_changes_1216:
+  id: 1216
+  card_action_id: 57186
+  field: 5
+  value: '284'
+card_changes_1217:
+  id: 1217
+  card_action_id: 60759
+  field: 2
+  value: "(s3_live_bucket)/4001/60759.png"
+card_changes_1218:
+  id: 1218
+  card_action_id: 57193
+  field: 0
+  value:
+card_changes_1219:
+  id: 1219
+  card_action_id: 57193
+  field: 1
+  value: '282'
+card_changes_1220:
+  id: 1220
+  card_action_id: 57193
+  field: 2
+  value: ''
+card_changes_1221:
+  id: 1221
+  card_action_id: 57193
+  field: 3
+  value: f
+card_changes_1222:
+  id: 1222
+  card_action_id: 57193
+  field: 4
+  value: '4002'
+card_changes_1223:
+  id: 1223
+  card_action_id: 57193
+  field: 5
+  value: '282'
+card_changes_1224:
+  id: 1224
+  card_action_id: 60766
+  field: 2
+  value: "(s3_live_bucket)/4007/60766.pdf"
+card_changes_1225:
+  id: 1225
+  card_action_id: 57194
+  field: 0
+  value:
+card_changes_1226:
+  id: 1226
+  card_action_id: 57194
+  field: 1
+  value: '284'
+card_changes_1227:
+  id: 1227
+  card_action_id: 57194
+  field: 2
+  value: ''
+card_changes_1228:
+  id: 1228
+  card_action_id: 57194
+  field: 3
+  value: f
+card_changes_1229:
+  id: 1229
+  card_action_id: 57194
+  field: 4
+  value: '4002'
+card_changes_1230:
+  id: 1230
+  card_action_id: 57194
+  field: 5
+  value: '284'
+card_changes_1231:
+  id: 1231
+  card_action_id: 60767
+  field: 2
+  value: "(s3_live_bucket)/4008/60767.png"
+card_changes_1232:
+  id: 1232
+  card_action_id: 57200
+  field: 0
+  value:
+card_changes_1233:
+  id: 1233
+  card_action_id: 57200
+  field: 1
+  value: '282'
+card_changes_1234:
+  id: 1234
+  card_action_id: 57200
+  field: 2
+  value: ''
+card_changes_1235:
+  id: 1235
+  card_action_id: 57200
+  field: 3
+  value: f
+card_changes_1236:
+  id: 1236
+  card_action_id: 57200
+  field: 4
+  value: '4009'
+card_changes_1237:
+  id: 1237
+  card_action_id: 57200
+  field: 5
+  value: '282'
+card_changes_1238:
+  id: 1238
+  card_action_id: 60773
+  field: 2
+  value: "(s3_live_bucket)/4013/60773.pdf"
+card_changes_1239:
+  id: 1239
+  card_action_id: 57201
+  field: 0
+  value:
+card_changes_1240:
+  id: 1240
+  card_action_id: 57201
+  field: 1
+  value: '284'
+card_changes_1241:
+  id: 1241
+  card_action_id: 57201
+  field: 2
+  value: ''
+card_changes_1242:
+  id: 1242
+  card_action_id: 57201
+  field: 3
+  value: f
+card_changes_1243:
+  id: 1243
+  card_action_id: 57201
+  field: 4
+  value: '4009'
+card_changes_1244:
+  id: 1244
+  card_action_id: 57201
+  field: 5
+  value: '284'
+card_changes_1245:
+  id: 1245
+  card_action_id: 60774
+  field: 2
+  value: "(s3_live_bucket)/4014/60774.png"
+card_changes_1246:
+  id: 1246
+  card_action_id: 57208
+  field: 0
+  value:
+card_changes_1247:
+  id: 1247
+  card_action_id: 57208
+  field: 1
+  value: '282'
+card_changes_1248:
+  id: 1248
+  card_action_id: 57208
+  field: 2
+  value: ''
+card_changes_1249:
+  id: 1249
+  card_action_id: 57208
+  field: 3
+  value: f
+card_changes_1250:
+  id: 1250
+  card_action_id: 57208
+  field: 4
+  value: '4015'
+card_changes_1251:
+  id: 1251
+  card_action_id: 57208
+  field: 5
+  value: '282'
+card_changes_1252:
+  id: 1252
+  card_action_id: 60781
+  field: 2
+  value: "(s3_live_bucket)/4020/60781.pdf"
+card_changes_1253:
+  id: 1253
+  card_action_id: 57209
+  field: 0
+  value:
+card_changes_1254:
+  id: 1254
+  card_action_id: 57209
+  field: 1
+  value: '284'
+card_changes_1255:
+  id: 1255
+  card_action_id: 57209
+  field: 2
+  value: ''
+card_changes_1256:
+  id: 1256
+  card_action_id: 57209
+  field: 3
+  value: f
+card_changes_1257:
+  id: 1257
+  card_action_id: 57209
+  field: 4
+  value: '4015'
+card_changes_1258:
+  id: 1258
+  card_action_id: 57209
+  field: 5
+  value: '284'
+card_changes_1259:
+  id: 1259
+  card_action_id: 60782
+  field: 2
+  value: "(s3_live_bucket)/4021/60782.png"
+card_changes_1260:
+  id: 1260
+  card_action_id: 57216
+  field: 0
+  value:
+card_changes_1261:
+  id: 1261
+  card_action_id: 57216
+  field: 1
+  value: '282'
+card_changes_1262:
+  id: 1262
+  card_action_id: 57216
+  field: 2
+  value: ''
+card_changes_1263:
+  id: 1263
+  card_action_id: 57216
+  field: 3
+  value: f
+card_changes_1264:
+  id: 1264
+  card_action_id: 57216
+  field: 4
+  value: '4022'
+card_changes_1265:
+  id: 1265
+  card_action_id: 57216
+  field: 5
+  value: '282'
+card_changes_1266:
+  id: 1266
+  card_action_id: 60789
+  field: 2
+  value: "(s3_live_bucket)/4027/60789.pdf"
+card_changes_1267:
+  id: 1267
+  card_action_id: 57217
+  field: 0
+  value:
+card_changes_1268:
+  id: 1268
+  card_action_id: 57217
+  field: 1
+  value: '284'
+card_changes_1269:
+  id: 1269
+  card_action_id: 57217
+  field: 2
+  value: ''
+card_changes_1270:
+  id: 1270
+  card_action_id: 57217
+  field: 3
+  value: f
+card_changes_1271:
+  id: 1271
+  card_action_id: 57217
+  field: 4
+  value: '4022'
+card_changes_1272:
+  id: 1272
+  card_action_id: 57217
+  field: 5
+  value: '284'
+card_changes_1273:
+  id: 1273
+  card_action_id: 60790
+  field: 2
+  value: "(s3_live_bucket)/4028/60790.png"
+card_changes_1274:
+  id: 1274
+  card_action_id: 57224
+  field: 0
+  value:
+card_changes_1275:
+  id: 1275
+  card_action_id: 57224
+  field: 1
+  value: '282'
+card_changes_1276:
+  id: 1276
+  card_action_id: 57224
+  field: 2
+  value: ''
+card_changes_1277:
+  id: 1277
+  card_action_id: 57224
+  field: 3
+  value: f
+card_changes_1278:
+  id: 1278
+  card_action_id: 57224
+  field: 4
+  value: '4029'
+card_changes_1279:
+  id: 1279
+  card_action_id: 57224
+  field: 5
+  value: '282'
+card_changes_1280:
+  id: 1280
+  card_action_id: 60797
+  field: 2
+  value: "(s3_live_bucket)/4034/60797.pdf"
+card_changes_1281:
+  id: 1281
+  card_action_id: 57225
+  field: 0
+  value:
+card_changes_1282:
+  id: 1282
+  card_action_id: 57225
+  field: 1
+  value: '284'
+card_changes_1283:
+  id: 1283
+  card_action_id: 57225
+  field: 2
+  value: ''
+card_changes_1284:
+  id: 1284
+  card_action_id: 57225
+  field: 3
+  value: f
+card_changes_1285:
+  id: 1285
+  card_action_id: 57225
+  field: 4
+  value: '4029'
+card_changes_1286:
+  id: 1286
+  card_action_id: 57225
+  field: 5
+  value: '284'
+card_changes_1287:
+  id: 1287
+  card_action_id: 60798
+  field: 2
+  value: "(s3_live_bucket)/4035/60798.png"
+card_changes_1288:
+  id: 1288
+  card_action_id: 57232
+  field: 0
+  value:
+card_changes_1289:
+  id: 1289
+  card_action_id: 57232
+  field: 1
+  value: '284'
+card_changes_1290:
+  id: 1290
+  card_action_id: 57232
+  field: 2
+  value: ''
+card_changes_1291:
+  id: 1291
+  card_action_id: 57232
+  field: 3
+  value: f
+card_changes_1292:
+  id: 1292
+  card_action_id: 57232
+  field: 4
+  value: '4036'
+card_changes_1293:
+  id: 1293
+  card_action_id: 57232
+  field: 5
+  value: '284'
+card_changes_1294:
+  id: 1294
+  card_action_id: 60805
+  field: 2
+  value: "(s3_live_bucket)/4041/60805.png"
+card_changes_1295:
+  id: 1295
+  card_action_id: 57239
+  field: 0
+  value:
+card_changes_1296:
+  id: 1296
+  card_action_id: 57239
+  field: 1
+  value: '282'
+card_changes_1297:
+  id: 1297
+  card_action_id: 57239
+  field: 2
+  value: ''
+card_changes_1298:
+  id: 1298
+  card_action_id: 57239
+  field: 3
+  value: f
+card_changes_1299:
+  id: 1299
+  card_action_id: 57239
+  field: 4
+  value: '4042'
+card_changes_1300:
+  id: 1300
+  card_action_id: 57239
+  field: 5
+  value: '282'
+card_changes_1301:
+  id: 1301
+  card_action_id: 60812
+  field: 2
+  value: "(s3_live_bucket)/4047/60812.png"
+card_changes_1302:
+  id: 1302
+  card_action_id: 57240
+  field: 0
+  value:
+card_changes_1303:
+  id: 1303
+  card_action_id: 57240
+  field: 1
+  value: '284'
+card_changes_1304:
+  id: 1304
+  card_action_id: 57240
+  field: 2
+  value: ''
+card_changes_1305:
+  id: 1305
+  card_action_id: 57240
+  field: 3
+  value: f
+card_changes_1306:
+  id: 1306
+  card_action_id: 57240
+  field: 4
+  value: '4042'
+card_changes_1307:
+  id: 1307
+  card_action_id: 57240
+  field: 5
+  value: '284'
+card_changes_1308:
+  id: 1308
+  card_action_id: 60813
+  field: 2
+  value: "(s3_live_bucket)/4048/60813.png"
+card_changes_1309:
+  id: 1309
+  card_action_id: 57247
+  field: 0
+  value:
+card_changes_1310:
+  id: 1310
+  card_action_id: 57247
+  field: 1
+  value: '282'
+card_changes_1311:
+  id: 1311
+  card_action_id: 57247
+  field: 2
+  value: ''
+card_changes_1312:
+  id: 1312
+  card_action_id: 57247
+  field: 3
+  value: f
+card_changes_1313:
+  id: 1313
+  card_action_id: 57247
+  field: 4
+  value: '4049'
+card_changes_1314:
+  id: 1314
+  card_action_id: 57247
+  field: 5
+  value: '282'
+card_changes_1315:
+  id: 1315
+  card_action_id: 60820
+  field: 2
+  value: "(s3_live_bucket)/4054/60820.pdf"
+card_changes_1316:
+  id: 1316
+  card_action_id: 57248
+  field: 0
+  value:
+card_changes_1317:
+  id: 1317
+  card_action_id: 57248
+  field: 1
+  value: '284'
+card_changes_1318:
+  id: 1318
+  card_action_id: 57248
+  field: 2
+  value: ''
+card_changes_1319:
+  id: 1319
+  card_action_id: 57248
+  field: 3
+  value: f
+card_changes_1320:
+  id: 1320
+  card_action_id: 57248
+  field: 4
+  value: '4049'
+card_changes_1321:
+  id: 1321
+  card_action_id: 57248
+  field: 5
+  value: '284'
+card_changes_1322:
+  id: 1322
+  card_action_id: 60821
+  field: 2
+  value: "(s3_live_bucket)/4055/60821.png"
+card_changes_1323:
+  id: 1323
+  card_action_id: 57254
+  field: 0
+  value:
+card_changes_1324:
+  id: 1324
+  card_action_id: 57254
+  field: 1
+  value: '282'
+card_changes_1325:
+  id: 1325
+  card_action_id: 57254
+  field: 2
+  value: ''
+card_changes_1326:
+  id: 1326
+  card_action_id: 57254
+  field: 3
+  value: f
+card_changes_1327:
+  id: 1327
+  card_action_id: 57254
+  field: 4
+  value: '4056'
+card_changes_1328:
+  id: 1328
+  card_action_id: 57254
+  field: 5
+  value: '282'
+card_changes_1329:
+  id: 1329
+  card_action_id: 60827
+  field: 2
+  value: "(s3_live_bucket)/4060/60827.pdf"
+card_changes_1330:
+  id: 1330
+  card_action_id: 57255
+  field: 0
+  value:
+card_changes_1331:
+  id: 1331
+  card_action_id: 57255
+  field: 1
+  value: '284'
+card_changes_1332:
+  id: 1332
+  card_action_id: 57255
+  field: 2
+  value: ''
+card_changes_1333:
+  id: 1333
+  card_action_id: 57255
+  field: 3
+  value: f
+card_changes_1334:
+  id: 1334
+  card_action_id: 57255
+  field: 4
+  value: '4056'
+card_changes_1335:
+  id: 1335
+  card_action_id: 57255
+  field: 5
+  value: '284'
+card_changes_1336:
+  id: 1336
+  card_action_id: 60828
+  field: 2
+  value: "(s3_live_bucket)/4061/60828.png"
+card_changes_1337:
+  id: 1337
+  card_action_id: 57262
+  field: 0
+  value:
+card_changes_1338:
+  id: 1338
+  card_action_id: 57262
+  field: 1
+  value: '284'
+card_changes_1339:
+  id: 1339
+  card_action_id: 57262
+  field: 2
+  value: ''
+card_changes_1340:
+  id: 1340
+  card_action_id: 57262
+  field: 3
+  value: f
+card_changes_1341:
+  id: 1341
+  card_action_id: 57262
+  field: 4
+  value: '4062'
+card_changes_1342:
+  id: 1342
+  card_action_id: 57262
+  field: 5
+  value: '284'
+card_changes_1343:
+  id: 1343
+  card_action_id: 60835
+  field: 2
+  value: "(s3_live_bucket)/4067/60835.png"
+card_changes_1344:
+  id: 1344
+  card_action_id: 57269
+  field: 0
+  value:
+card_changes_1345:
+  id: 1345
+  card_action_id: 57269
+  field: 1
+  value: '284'
+card_changes_1346:
+  id: 1346
+  card_action_id: 57269
+  field: 2
+  value: ''
+card_changes_1347:
+  id: 1347
+  card_action_id: 57269
+  field: 3
+  value: f
+card_changes_1348:
+  id: 1348
+  card_action_id: 57269
+  field: 4
+  value: '4068'
+card_changes_1349:
+  id: 1349
+  card_action_id: 57269
+  field: 5
+  value: '284'
+card_changes_1350:
+  id: 1350
+  card_action_id: 60842
+  field: 2
+  value: "(s3_live_bucket)/4073/60842.png"
+card_changes_1351:
+  id: 1351
+  card_action_id: 57276
+  field: 0
+  value:
+card_changes_1352:
+  id: 1352
+  card_action_id: 57276
+  field: 1
+  value: '284'
+card_changes_1353:
+  id: 1353
+  card_action_id: 57276
+  field: 2
+  value: ''
+card_changes_1354:
+  id: 1354
+  card_action_id: 57276
+  field: 3
+  value: f
+card_changes_1355:
+  id: 1355
+  card_action_id: 57276
+  field: 4
+  value: '4074'
+card_changes_1356:
+  id: 1356
+  card_action_id: 57276
+  field: 5
+  value: '284'
+card_changes_1357:
+  id: 1357
+  card_action_id: 60849
+  field: 2
+  value: "(s3_live_bucket)/4079/60849.png"
+card_changes_1358:
+  id: 1358
+  card_action_id: 57283
+  field: 0
+  value:
+card_changes_1359:
+  id: 1359
+  card_action_id: 57283
+  field: 1
+  value: '284'
+card_changes_1360:
+  id: 1360
+  card_action_id: 57283
+  field: 2
+  value: ''
+card_changes_1361:
+  id: 1361
+  card_action_id: 57283
+  field: 3
+  value: f
+card_changes_1362:
+  id: 1362
+  card_action_id: 57283
+  field: 4
+  value: '4080'
+card_changes_1363:
+  id: 1363
+  card_action_id: 57283
+  field: 5
+  value: '284'
+card_changes_1364:
+  id: 1364
+  card_action_id: 60856
+  field: 2
+  value: "(s3_live_bucket)/4085/60856.png"
+card_changes_1365:
+  id: 1365
+  card_action_id: 57290
+  field: 0
+  value:
+card_changes_1366:
+  id: 1366
+  card_action_id: 57290
+  field: 1
+  value: '284'
+card_changes_1367:
+  id: 1367
+  card_action_id: 57290
+  field: 2
+  value: ''
+card_changes_1368:
+  id: 1368
+  card_action_id: 57290
+  field: 3
+  value: f
+card_changes_1369:
+  id: 1369
+  card_action_id: 57290
+  field: 4
+  value: '4086'
+card_changes_1370:
+  id: 1370
+  card_action_id: 57290
+  field: 5
+  value: '284'
+card_changes_1371:
+  id: 1371
+  card_action_id: 60863
+  field: 2
+  value: "(s3_live_bucket)/4091/60863.png"
+card_changes_1372:
+  id: 1372
+  card_action_id: 17168
+  field: 0
+  value: Blurb 0018
+card_changes_1373:
+  id: 1373
+  card_action_id: 17168
+  field: 1
+  value: '2489'
+card_changes_1374:
+  id: 1374
+  card_action_id: 17168
+  field: 2
+  value: ''
+card_changes_1375:
+  id: 1375
+  card_action_id: 17168
+  field: 3
+  value: f
+card_changes_1376:
+  id: 1376
+  card_action_id: 17168
+  field: 4
+  value:
+card_changes_1377:
+  id: 1377
+  card_action_id: 17168
+  field: 5
+  value:
+card_changes_1378:
+  id: 1378
+  card_action_id: 60932
+  field: 0
+  value: Blurb 0034
+card_changes_1379:
+  id: 1379
+  card_action_id: 17172
+  field: 0
+  value: Blurb 0019
+card_changes_1380:
+  id: 1380
+  card_action_id: 17172
+  field: 1
+  value: '2489'
+card_changes_1381:
+  id: 1381
+  card_action_id: 17172
+  field: 2
+  value: ''
+card_changes_1382:
+  id: 1382
+  card_action_id: 17172
+  field: 3
+  value: f
+card_changes_1383:
+  id: 1383
+  card_action_id: 17172
+  field: 4
+  value:
+card_changes_1384:
+  id: 1384
+  card_action_id: 17172
+  field: 5
+  value:
+card_changes_1385:
+  id: 1385
+  card_action_id: 60936
+  field: 0
+  value: Blurb 0035
+card_changes_1386:
+  id: 1386
+  card_action_id: 17176
+  field: 0
+  value: Blurb 0020
+card_changes_1387:
+  id: 1387
+  card_action_id: 17176
+  field: 1
+  value: '2489'
+card_changes_1388:
+  id: 1388
+  card_action_id: 17176
+  field: 2
+  value: ''
+card_changes_1389:
+  id: 1389
+  card_action_id: 17176
+  field: 3
+  value: f
+card_changes_1390:
+  id: 1390
+  card_action_id: 17176
+  field: 4
+  value:
+card_changes_1391:
+  id: 1391
+  card_action_id: 17176
+  field: 5
+  value:
+card_changes_1392:
+  id: 1392
+  card_action_id: 60940
+  field: 0
+  value: Blurb 0036
+card_changes_1393:
+  id: 1393
+  card_action_id: 17180
+  field: 0
+  value: Blurb 0021
+card_changes_1394:
+  id: 1394
+  card_action_id: 17180
+  field: 1
+  value: '2489'
+card_changes_1395:
+  id: 1395
+  card_action_id: 17180
+  field: 2
+  value: ''
+card_changes_1396:
+  id: 1396
+  card_action_id: 17180
+  field: 3
+  value: f
+card_changes_1397:
+  id: 1397
+  card_action_id: 17180
+  field: 4
+  value:
+card_changes_1398:
+  id: 1398
+  card_action_id: 17180
+  field: 5
+  value:
+card_changes_1399:
+  id: 1399
+  card_action_id: 60945
+  field: 0
+  value: Blurb 0037
+card_changes_1400:
+  id: 1400
+  card_action_id: 17184
+  field: 0
+  value: Blurb 0022
+card_changes_1401:
+  id: 1401
+  card_action_id: 17184
+  field: 1
+  value: '2489'
+card_changes_1402:
+  id: 1402
+  card_action_id: 17184
+  field: 2
+  value: ''
+card_changes_1403:
+  id: 1403
+  card_action_id: 17184
+  field: 3
+  value: f
+card_changes_1404:
+  id: 1404
+  card_action_id: 17184
+  field: 4
+  value:
+card_changes_1405:
+  id: 1405
+  card_action_id: 17184
+  field: 5
+  value:
+card_changes_1406:
+  id: 1406
+  card_action_id: 60950
+  field: 0
+  value: Blurb 0038
+card_changes_1407:
+  id: 1407
+  card_action_id: 17188
+  field: 0
+  value: Blurb 0023
+card_changes_1408:
+  id: 1408
+  card_action_id: 17188
+  field: 1
+  value: '2489'
+card_changes_1409:
+  id: 1409
+  card_action_id: 17188
+  field: 2
+  value: ''
+card_changes_1410:
+  id: 1410
+  card_action_id: 17188
+  field: 3
+  value: f
+card_changes_1411:
+  id: 1411
+  card_action_id: 17188
+  field: 4
+  value:
+card_changes_1412:
+  id: 1412
+  card_action_id: 17188
+  field: 5
+  value:
+card_changes_1413:
+  id: 1413
+  card_action_id: 60955
+  field: 0
+  value: Blurb 0039
+card_changes_1414:
+  id: 1414
+  card_action_id: 17193
+  field: 0
+  value: Blurb 0024
+card_changes_1415:
+  id: 1415
+  card_action_id: 17193
+  field: 1
+  value: '2489'
+card_changes_1416:
+  id: 1416
+  card_action_id: 17193
+  field: 2
+  value: ''
+card_changes_1417:
+  id: 1417
+  card_action_id: 17193
+  field: 3
+  value: f
+card_changes_1418:
+  id: 1418
+  card_action_id: 17193
+  field: 4
+  value:
+card_changes_1419:
+  id: 1419
+  card_action_id: 17193
+  field: 5
+  value:
+card_changes_1420:
+  id: 1420
+  card_action_id: 60960
+  field: 0
+  value: Blurb 0040
+card_changes_1421:
+  id: 1421
+  card_action_id: 17198
+  field: 0
+  value: Blurb 0025
+card_changes_1422:
+  id: 1422
+  card_action_id: 17198
+  field: 1
+  value: '2489'
+card_changes_1423:
+  id: 1423
+  card_action_id: 17198
+  field: 2
+  value: ''
+card_changes_1424:
+  id: 1424
+  card_action_id: 17198
+  field: 3
+  value: f
+card_changes_1425:
+  id: 1425
+  card_action_id: 17198
+  field: 4
+  value:
+card_changes_1426:
+  id: 1426
+  card_action_id: 17198
+  field: 5
+  value:
+card_changes_1427:
+  id: 1427
+  card_action_id: 60965
+  field: 0
+  value: Blurb 0041
+card_changes_1428:
+  id: 1428
+  card_action_id: 17203
+  field: 0
+  value: Blurb 0026
+card_changes_1429:
+  id: 1429
+  card_action_id: 17203
+  field: 1
+  value: '2489'
+card_changes_1430:
+  id: 1430
+  card_action_id: 17203
+  field: 2
+  value: ''
+card_changes_1431:
+  id: 1431
+  card_action_id: 17203
+  field: 3
+  value: f
+card_changes_1432:
+  id: 1432
+  card_action_id: 17203
+  field: 4
+  value:
+card_changes_1433:
+  id: 1433
+  card_action_id: 17203
+  field: 5
+  value:
+card_changes_1434:
+  id: 1434
+  card_action_id: 60970
+  field: 0
+  value: Blurb 0042
+card_changes_1435:
+  id: 1435
+  card_action_id: 17208
+  field: 0
+  value: Blurb 0027
+card_changes_1436:
+  id: 1436
+  card_action_id: 17208
+  field: 1
+  value: '2489'
+card_changes_1437:
+  id: 1437
+  card_action_id: 17208
+  field: 2
+  value: ''
+card_changes_1438:
+  id: 1438
+  card_action_id: 17208
+  field: 3
+  value: f
+card_changes_1439:
+  id: 1439
+  card_action_id: 17208
+  field: 4
+  value:
+card_changes_1440:
+  id: 1440
+  card_action_id: 17208
+  field: 5
+  value:
+card_changes_1441:
+  id: 1441
+  card_action_id: 60975
+  field: 0
+  value: Blurb 0043
+card_changes_1442:
+  id: 1442
+  card_action_id: 17212
+  field: 0
+  value: Blurb 0028
+card_changes_1443:
+  id: 1443
+  card_action_id: 17212
+  field: 1
+  value: '2489'
+card_changes_1444:
+  id: 1444
+  card_action_id: 17212
+  field: 2
+  value: ''
+card_changes_1445:
+  id: 1445
+  card_action_id: 17212
+  field: 3
+  value: f
+card_changes_1446:
+  id: 1446
+  card_action_id: 17212
+  field: 4
+  value:
+card_changes_1447:
+  id: 1447
+  card_action_id: 17212
+  field: 5
+  value:
+card_changes_1448:
+  id: 1448
+  card_action_id: 60979
+  field: 0
+  value: Blurb 0044
+card_changes_1449:
+  id: 1449
+  card_action_id: 17216
+  field: 0
+  value: Blurb 0029
+card_changes_1450:
+  id: 1450
+  card_action_id: 17216
+  field: 1
+  value: '2489'
+card_changes_1451:
+  id: 1451
+  card_action_id: 17216
+  field: 2
+  value: ''
+card_changes_1452:
+  id: 1452
+  card_action_id: 17216
+  field: 3
+  value: f
+card_changes_1453:
+  id: 1453
+  card_action_id: 17216
+  field: 4
+  value:
+card_changes_1454:
+  id: 1454
+  card_action_id: 17216
+  field: 5
+  value:
+card_changes_1455:
+  id: 1455
+  card_action_id: 60983
+  field: 0
+  value: Blurb 0045
+card_changes_1456:
+  id: 1456
+  card_action_id: 17220
+  field: 0
+  value: Blurb 0030
+card_changes_1457:
+  id: 1457
+  card_action_id: 17220
+  field: 1
+  value: '2489'
+card_changes_1458:
+  id: 1458
+  card_action_id: 17220
+  field: 2
+  value: ''
+card_changes_1459:
+  id: 1459
+  card_action_id: 17220
+  field: 3
+  value: f
+card_changes_1460:
+  id: 1460
+  card_action_id: 17220
+  field: 4
+  value:
+card_changes_1461:
+  id: 1461
+  card_action_id: 17220
+  field: 5
+  value:
+card_changes_1462:
+  id: 1462
+  card_action_id: 60987
+  field: 0
+  value: Blurb 0046
+card_changes_1463:
+  id: 1463
+  card_action_id: 17224
+  field: 0
+  value: Blurb 0031
+card_changes_1464:
+  id: 1464
+  card_action_id: 17224
+  field: 1
+  value: '2489'
+card_changes_1465:
+  id: 1465
+  card_action_id: 17224
+  field: 2
+  value: ''
+card_changes_1466:
+  id: 1466
+  card_action_id: 17224
+  field: 3
+  value: f
+card_changes_1467:
+  id: 1467
+  card_action_id: 17224
+  field: 4
+  value:
+card_changes_1468:
+  id: 1468
+  card_action_id: 17224
+  field: 5
+  value:
+card_changes_1469:
+  id: 1469
+  card_action_id: 60991
+  field: 0
+  value: Blurb 0047
+card_changes_1470:
+  id: 1470
+  card_action_id: 17228
+  field: 0
+  value: Blurb 0032
+card_changes_1471:
+  id: 1471
+  card_action_id: 17228
+  field: 1
+  value: '2489'
+card_changes_1472:
+  id: 1472
+  card_action_id: 17228
+  field: 2
+  value: ''
+card_changes_1473:
+  id: 1473
+  card_action_id: 17228
+  field: 3
+  value: f
+card_changes_1474:
+  id: 1474
+  card_action_id: 17228
+  field: 4
+  value:
+card_changes_1475:
+  id: 1475
+  card_action_id: 17228
+  field: 5
+  value:
+card_changes_1476:
+  id: 1476
+  card_action_id: 60995
+  field: 0
+  value: Blurb 0048
+card_changes_1477:
+  id: 1477
+  card_action_id: 17232
+  field: 0
+  value: Blurb 0033
+card_changes_1478:
+  id: 1478
+  card_action_id: 17232
+  field: 1
+  value: '2489'
+card_changes_1479:
+  id: 1479
+  card_action_id: 17232
+  field: 2
+  value: ''
+card_changes_1480:
+  id: 1480
+  card_action_id: 17232
+  field: 3
+  value: f
+card_changes_1481:
+  id: 1481
+  card_action_id: 17232
+  field: 4
+  value:
+card_changes_1482:
+  id: 1482
+  card_action_id: 17232
+  field: 5
+  value:
+card_changes_1483:
+  id: 1483
+  card_action_id: 61000
+  field: 0
+  value: Blurb 0049
+card_changes_1484:
+  id: 1484
+  card_action_id: 61002
+  field: 2
+  value: Let’s set up a project together
+card_changes_1485:
+  id: 1485
+  card_action_id: 17235
+  field: 0
+  value:
+card_changes_1486:
+  id: 1486
+  card_action_id: 17235
+  field: 1
+  value: '43'
+card_changes_1487:
+  id: 1487
+  card_action_id: 17235
+  field: 2
+  value: "/:project"
+card_changes_1488:
+  id: 1488
+  card_action_id: 17235
+  field: 3
+  value: f
+card_changes_1489:
+  id: 1489
+  card_action_id: 17235
+  field: 4
+  value: '3802'
+card_changes_1490:
+  id: 1490
+  card_action_id: 17235
+  field: 5
+  value: '45'
+card_changes_1491:
+  id: 1491
+  card_action_id: 61003
+  field: 2
+  value: https://wikirateproject.org/Contact_Us
+card_changes_1492:
+  id: 1492
+  card_action_id: 61004
+  field: 2
+  value: Get in touch with the WikiRate team to set up a project.
+card_changes_1493:
+  id: 1493
+  card_action_id: 61007
+  field: 2
+  value: Teach students about sustainability reporting
+card_changes_1494:
+  id: 1494
+  card_action_id: 17240
+  field: 0
+  value:
+card_changes_1495:
+  id: 1495
+  card_action_id: 17240
+  field: 1
+  value: '43'
+card_changes_1496:
+  id: 1496
+  card_action_id: 17240
+  field: 2
+  value: "/:dataset"
+card_changes_1497:
+  id: 1497
+  card_action_id: 17240
+  field: 3
+  value: f
+card_changes_1498:
+  id: 1498
+  card_action_id: 17240
+  field: 4
+  value: '3806'
+card_changes_1499:
+  id: 1499
+  card_action_id: 17240
+  field: 5
+  value: '45'
+card_changes_1500:
+  id: 1500
+  card_action_id: 61008
+  field: 2
+  value: https://mailchi.mp/wikirate/academic-open-call-engagement
+card_changes_1501:
+  id: 1501
+  card_action_id: 61009
+  field: 2
+  value: Learn how you can use WikiRate’s tools to teach students about corporate
+    sustainability reporting with hands-on research projects.
+card_changes_1502:
+  id: 1502
+  card_action_id: 61012
+  field: 2
+  value: Join the conversation
+card_changes_1503:
+  id: 1503
+  card_action_id: 61013
+  field: 2
+  value: Stay connected, learn and troubleshoot on WikiRate’s community Slack channel.
+card_changes_1504:
+  id: 1504
+  card_action_id: 61016
+  field: 2
+  value: Sign up now
+card_changes_1505:
+  id: 1505
+  card_action_id: 61018
+  field: 2
+  value: You, too, can hold companies accountable for their commitments and impacts
+    on people and the planet.
+card_changes_1506:
+  id: 1506
+  card_action_id: 61021
+  field: 2
+  value: Join an upcoming event
+card_changes_1507:
+  id: 1507
+  card_action_id: 61023
+  field: 2
+  value: Meet, learn, and connect on real-world projects that use open data to make
+    the world more sustainable and equitable.
+card_changes_1508:
+  id: 1508
+  card_action_id: 61026
+  field: 2
+  value: Become a data contributor
+card_changes_1509:
+  id: 1509
+  card_action_id: 61028
+  field: 2
+  value: Learn how you can contribute and help gather evidence that challenges the
+    status quo of sustainability reporting
+card_changes_1510:
+  id: 1510
+  card_action_id: 61031
+  field: 2
+  value: Let’s set up a project together
+card_changes_1511:
+  id: 1511
+  card_action_id: 61033
+  field: 2
+  value: Get in touch with the WikiRate team to set up a project.
+card_changes_1512:
+  id: 1512
+  card_action_id: 61036
+  field: 2
+  value: Add your dataset
+card_changes_1513:
+  id: 1513
+  card_action_id: 61038
+  field: 2
+  value: Learn how to make your data available for others to use and build on by archiving
+    it on the platform.
+card_changes_1514:
+  id: 1514
+  card_action_id: 61041
+  field: 2
+  value: Use our API
+card_changes_1515:
+  id: 1515
+  card_action_id: 61043
+  field: 2
+  value: Check out how you can access WikiRate data programmatically using our powerful
+    REST API.
+card_changes_1516:
+  id: 1516
+  card_action_id: 61046
+  field: 2
+  value: Check out the latest contribution opportunities
+card_changes_1517:
+  id: 1517
+  card_action_id: 61048
+  field: 2
+  value: Cannot wait to get involved? Explore the latest projects that could really
+    use your help.
+card_changes_1518:
+  id: 1518
+  card_action_id: 61049
+  field: 2
+  value: volunteer_activism
+card_changes_1519:
+  id: 1519
+  card_action_id: 61052
+  field: 2
+  value: Partner with WikiRate International
+card_changes_1520:
+  id: 1520
+  card_action_id: 61054
+  field: 2
+  value: Check out the ways in which the WikiRate team can help you
+card_changes_1521:
+  id: 1521
+  card_action_id: 61058
+  field: 2
+  value: Talk to a human
+card_changes_1522:
+  id: 1522
+  card_action_id: 61060
+  field: 2
+  value: Contact us at WikiRate International
+card_changes_1523:
+  id: 1523
+  card_action_id: 61063
+  field: 2
+  value: Get email updates on the latest community and platform developments
+card_changes_1524:
+  id: 1524
+  card_action_id: 61065
+  field: 2
+  value: Subscribe for updates
+card_changes_1525:
+  id: 1525
+  card_action_id: 61068
+  field: 2
+  value: Project Organizers
+card_changes_1526:
+  id: 1526
+  card_action_id: 61069
+  field: 2
+  value: Individuals or organizations coordinating a collaborative assessment of companies
+    on a topic relevant for their work, research, or everyday life.
+card_changes_1527:
+  id: 1527
+  card_action_id: 61072
+  field: 2
+  value: Become a steward
+card_changes_1528:
+  id: 1528
+  card_action_id: 61074
+  field: 2
+  value: But not like the one in LoTR. He sucked.
+card_changes_1529:
+  id: 1529
+  card_action_id: 61077
+  field: 2
+  value: Subscribe for updates
+card_changes_1530:
+  id: 1530
+  card_action_id: 61078
+  field: 2
+  value: https://www.google.com/url?q=https://wikirate.us7.list-manage.com/subscribe/post?u%3Dbe57db47b40c6b1c7e9ef0b36%26id%3D1354650004&sa=D&source=docs&ust=1678294845108552&usg=AOvVaw0nkvJbGmeOiIS0FK9IuiVt
+card_changes_1531:
+  id: 1531
+  card_action_id: 61079
+  field: 2
+  value: Stay up to date on the latest community and platform developments by subscribing
+    to our newsletter.
+card_changes_1532:
+  id: 1532
+  card_action_id: 61088
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_1533:
+  id: 1533
+  card_action_id: 61108
+  field: 1
+  value: '55'
+card_changes_1534:
+  id: 1534
+  card_action_id: 61108
+  field: 2
+  value: wikirate skin
+card_changes_1535:
+  id: 1535
+  card_action_id: 61114
+  field: 0
+  value: Wikirate Policies
+card_changes_1536:
+  id: 1536
+  card_action_id: 61137
+  field: 2
+  value: "(s3_staging_bucket)/3859/61137.png"
+card_changes_1537:
+  id: 1537
+  card_action_id: 61139
+  field: 2
+  value: Death Star
+card_changes_1538:
+  id: 1538
+  card_action_id: 61140
+  field: 2
+  value: |
+    <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
+    <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">WikiRate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+    <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
+    <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>
+card_changes_1539:
+  id: 1539
+  card_action_id: 61150
+  field: 2
+  value: |-
+    mod: format+*script
+    mod: list+*script
+    mod: search+*script
+    mod: rules+*script
+    mod: edit+*script
+    mod: carrierwave+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: csv import+*script
+    mod: deckorate search+*script
+    mod: follow+*script
+    mod: layout+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate utility+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate calculations+*script
+    mod: wikirate companies+*script
+    mod: wikirate+*script
+    mod: tasks+*script
+    mod: vega+*script
+card_changes_1540:
+  id: 1540
+  card_action_id: 61151
+  field: 2
+  value: |-
+    mod: format+*style
+    mod: list+*style
+    mod: permissions+*style
+    mod: help+*style
+    mod: search+*style
+    mod: rules+*style
+    mod: edit+*style
+    mod: account+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
+    mod: style+*style
+    mod: bar and box+*style
+    mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
+    mod: csv import+*style
+    mod: deckorate search+*style
+    mod: follow+*style
+    mod: layout+*style
+    mod: tinymce editor+*style
+    mod: thumbnail+*style
+    mod: guides+*style
+    mod: deckorate utility+*style
+    mod: deckorate layout+*style
+    mod: topics+*style
+    mod: deckorate core+*style
+    mod: deckorate research+*style
+    mod: deckorate calculations+*style
+    mod: deckorate datasets+*style
+    mod: deckorate profiles+*style
+    mod: wikirate shared+*style
+    mod: wikirate companies+*style
+    mod: wikirate+*style
+    mod: badges+*style
+    mod: tasks+*style
+    mod: vega+*style
