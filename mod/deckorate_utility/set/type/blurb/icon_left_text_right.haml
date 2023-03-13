@@ -1,9 +1,9 @@
-.icon-left-text-right.row
+.icon-left-text-right.row.py-2
   .col-4.p-4.d-flex.justify-content-end.pe-4
     .blurb-icon
       = field_nest :icon, view: :core
   .col-8.p-4
     %h2
       = field_nest :title, view: :core
-    .py-1
+    .lead.py-1
       = field_nest :body, view: :core
