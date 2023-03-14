@@ -1,6 +1,6 @@
 def cql_content
   {
-    type_id: :project,                                 # find projects
+    type: :project,                                 # find projects
     right_plus: [
       :organizer,                                      # whose organizer
       refer_to: {
