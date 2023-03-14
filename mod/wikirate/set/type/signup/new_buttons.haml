@@ -1,8 +1,8 @@
 .py-4.small.text-center
   By clicking "Sign up" you agree to our
-  Terms of Use,
-  Privacy Policy, and
-  Cookie Policy
+  = link_to_card("Terms of Use", nil, target: "_policy") + ","
+  = link_to_card("Privacy Policy", nil, target: "_policy") + ", and"
+  = link_to_card("Cookie Policy", nil, target: "_policy")
 
 .py-2
   = standard_create_button text: "Sign up"
