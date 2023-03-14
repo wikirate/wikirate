@@ -7,7 +7,7 @@ format :html do
     homepage_action4: "Get in touch",
     community_action1: "Join the conversation",
     community_action2: "Get in touch",
-    community_action3: "Subscribe for updates",
+    # community_action3: "Subscribe for updates",
     community_action4: "Join the Slack community",
     community_action5: "Get in touch",
     community_action6: "Subscribe"
@@ -30,6 +30,7 @@ format :html do
   def action_link text, klass=nil
     link_to "#{text} <span class='ms-2'>#{icon_tag :forward}</span>",
             href: card.uri,
+            target: (card.uri.match?(/^http/) ? "_external" : ""),
             class: "d-flex #{klass}"
   end
 end
