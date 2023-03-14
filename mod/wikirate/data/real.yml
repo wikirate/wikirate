@@ -57,7 +57,7 @@
     [[/guides | Guides]]
     [[/use_the_API | API]]
     [[/faq | FAQ]]
-    [[/:recent | Recent Changes]]
+    [[:recent | Recent Changes]]
     [[/ticket | Report Issue]]
     ABOUT
     [[/about | About WikiRate]]
@@ -157,10 +157,9 @@
     - :policy
     - :description
   :content: |
-    Our policy and guidelines provide support and safeguard our organization, staff, 
-    partners, third parties and the environment. Their purpose is to build a mutual 
-    understanding of how WikiRate International and its affiliates operate."
-
+    Our policies and guidelines provide support and safeguard our community and 
+    organization. They make explicit what being a part of the WikiRate community is all
+    about.
 
 - :name: Our Story
   :codename: our_story

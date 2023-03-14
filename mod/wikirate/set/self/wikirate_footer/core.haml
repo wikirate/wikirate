@@ -1,6 +1,6 @@
 %footer#wikirate-footer.container-fluid.bg-light.nodblclick
   .container.p-5
-    .row.footer-link-lists.mb-5
+    .row.footer-link-lists.mb-4
       .col-4
         %a.pb-2.logo-link.logo-symbol-link{ href: "/" }
           %img{ src: "/mod/wikirate/logos/wr_logo_symbol.svg" }
@@ -16,7 +16,7 @@
         .footer-link-list.p-2
           = nest :"footer_contact_list", view: :titled, title: "contact", hide: :menu
 
-        .p-2
+        .p-2.pt-4
           %h2 follow us
           - social_media_links.each do |social, url|
             = link_to font_awesome_icon_tag(social.downcase, brand:true),
