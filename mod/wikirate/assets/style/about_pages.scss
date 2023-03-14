@@ -141,7 +141,7 @@
 #impact-card, .cta-card, .action-card .card, .endorsement-summary {
   box-shadow: $box-shadow-sm;
   &:hover {
-    box-shadow: $box-shadow-lg;
+    box-shadow: $box-shadow;
   }
 }
 
@@ -173,11 +173,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: $box-shadow-sm;
   &:hover {
+    box-shadow: $box-shadow;
     background-color: $purple;
     color: $white;
   }
-  box-shadow: $box-shadow
 }
 .justify-content-center .wr-arrow {
   margin: 0.4em;
