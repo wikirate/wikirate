@@ -1,6 +1,4 @@
 ---
-- :name: Profile Type
-  :codename: profile_type
 - :name: Research Group
   :type: :cardtype
   :codename: research_group
