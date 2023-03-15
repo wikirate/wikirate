@@ -1,3 +1,3 @@
 view :core do
-  icon_tag card.content
+  material_symbol_tag card.content
 end
