@@ -129,7 +129,7 @@ successfully.
 
 ### 4. Add configurations
 
-Each copy of the WikiRate site can have different configuration options for its own 
+Each copy of the Wikirate site can have different configuration options for its own 
 purposes. The production site, for example, is configured to store files and images
 on the cloud, but by default your local test site will just store files locally.
 Since the main config files are not shared (and often contain private credentials),

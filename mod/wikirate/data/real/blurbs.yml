@@ -62,7 +62,7 @@
   :codename: :collaborate_blurb
   :fields:
     :title: Collaborate
-    :body: "Join or start research projects with like-minded people from the WikiRate
+    :body: "Join or start research projects with like-minded people from the Wikirate
       community. Measure your collective progress, seek advice or simply stay in contact
       about what’s important to you."
     :icon: people
@@ -261,7 +261,7 @@
   :fields:
     :title: Let’s set up a project together
     :uri: https://wikirateproject.org/Contact_Us
-    :body: "Get in touch with the WikiRate team to set up a project."
+    :body: "Get in touch with the Wikirate team to set up a project."
 - :name: Blurb 0051
   :type: :blurb
   :codename: :community_action3
@@ -307,7 +307,7 @@
   :fields:
     :title: Let’s set up a project together
     :uri: https://wikirateproject.org/Contact_Us
-    :body: Get in touch with the WikiRate team to set up a project.
+    :body: Get in touch with the Wikirate team to set up a project.
 - :name: Blurb 0057
   :type: :blurb
   :codename: :homepage_action5
@@ -337,9 +337,9 @@
   :type: :blurb
   :codename: :about_cta
   :fields:
-    :title: Partner with WikiRate International
+    :title: Partner with Wikirate International
     :uri: https://wikirateproject.org/About_Us
-    :body: "Check out the ways in which the WikiRate team can help you"
+    :body: "Check out the ways in which the Wikirate team can help you"
     :icon: handshake
 - :name: Blurb 0061
   :type: :blurb
@@ -347,7 +347,7 @@
   :fields:
     :title: Talk to a human
     :uri: https://wikirateproject.org/Contact_Us
-    :body: "Contact us at WikiRate International"
+    :body: "Contact us at Wikirate International"
 - :name: Blurb 0062
   :type: :blurb
   :codename: :contact_cta2

@@ -272,3 +272,14 @@
     }
   }
 }
+
+.company-slides {
+  .image-box {
+    background-color: inherit;
+    border-radius: 0;
+    padding: 0;
+    img {
+      padding: 0;
+    }
+  }
+}
