@@ -1,22 +1,22 @@
 %footer#wikirate-footer.container-fluid.bg-light.nodblclick
   .container.p-5
-    .row.footer-link-lists.mb-5
-      .col-4
+    .row.footer-link-lists.mb-4
+      .col-12.col-sm-4
         %a.pb-2.logo-link.logo-symbol-link{ href: "/" }
           %img{ src: "/mod/wikirate/logos/wr_logo_symbol.svg" }
 
         %p.py-2.pe-5
-          WikiRate is an initiative of
-          WikiRate International eV
+          Wikirate is an initiative of
+          Wikirate International eV
 
-      .col-4
+      .col-6.col-sm-4
         .footer-link-list.p-2
           = nest :"footer_legal_list", view: :titled, title: "legal", hide: :menu
-      .col-4
+      .col-6.col-sm-4
         .footer-link-list.p-2
           = nest :"footer_contact_list", view: :titled, title: "contact", hide: :menu
 
-        .p-2
+        .p-2.pt-4
           %h2 follow us
           - social_media_links.each do |social, url|
             = link_to font_awesome_icon_tag(social.downcase, brand:true),
@@ -24,15 +24,18 @@
 
     %hr
 
-    .footer-footer.d-flex.justify-content-between.py-2.small
-      .decko-credit.me-3.text-nowrap
-        = link_to nest(:decko_logo, view: :core), href: "https://decko.org"
-        Powered by
-        = link_to "Decko", href: "https://decko.org"
-      .wikirate-licensing.mb-3
-        WikiRate's content is licensed under
+
+    .footer-footer.small.row
+      .col-12.col-md-3.decko-credit
+        .d-flex.pb-3
+          = link_to nest(:decko_logo, view: :core), href: "https://decko.org"
+          %label
+            Powered by
+            = link_to "Decko", href: "https://decko.org"
+      .col-12.col-md-9.wikirate-licensing.text-end.pb-3
+        Wikirate's content is licensed under
         %a{ href: "https://creativecommons.org/licenses/by/4.0/" }
-          CC BY 4.0
-        and WikiRate's database infrastructure is licensed under
+          CC BY 4.0,
+        and Wikirate's database infrastructure is licensed under
         %a{ href: "https://creativecommons.org/licenses/by-sa/4.0/" }
-          CC BY-SA 4.0
+          CC BY-SA 4.0.
