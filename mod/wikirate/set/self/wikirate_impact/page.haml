@@ -2,13 +2,13 @@
   .container.p-5.py-3
     = render_breadcrumbs
     = section_header :main_impact_heading, header_size: :h1,
-                                           button: { url: "/new/Project",
-                                                     text: "Add Project" }
+                                           button: { url: "/Contact_WikiRate",
+                                                     text: "Add your work" }
 
 %section.p-5.container
   .py-3
     = nest :output, view: :filter_chips
-  = nest :output, view: :content, items: { view: :box }
+  = nest :output, view: :content, hide: :menu, items: { view: :box }
 
 %section.container-fluid.p-5
   .container.p-5

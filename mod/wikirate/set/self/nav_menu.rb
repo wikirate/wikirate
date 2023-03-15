@@ -1,8 +1,8 @@
-include_set Abstract::CodeContent
-
 format :html do
   view :core do
-    dropdown_button(icon_tag(:nav_menu)) { dropdown_items.compact }
+    dropdown_button icon_tag(:nav_menu), title: "Navigation Menu" do
+      dropdown_items.compact
+    end
   end
 
   private
