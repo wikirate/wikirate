@@ -1,0 +1,12 @@
+.py-4.small.text-center
+  By clicking "Sign up" you agree to our
+  = link_to_card("Terms of Use", nil, target: "_policy") + ","
+  = link_to_card("Privacy Policy", nil, target: "_policy") + ", and"
+  = link_to_card("Cookie Policy", nil, target: "_policy")
+
+.py-2
+  = standard_create_button text: "Sign up"
+.py-2.text-center
+  = link_to_card :signin, "Already a Wikirate member? Log in"
+.py-2
+  .card-notice

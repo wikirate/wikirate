@@ -37,7 +37,7 @@ format :html do
   end
 
   def switch_to_contrib
-    switch_to "Contributions", :user, "Y", "Content contributions to WikiRate.org"
+    switch_to "Contributions", :user, "Y", "Content contributions to Wikirate.org"
   end
 
   def switch_to text, icon, val, title
