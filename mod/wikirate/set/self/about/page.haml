@@ -3,7 +3,8 @@
 %section#about-wikirate-header.container-fluid.bg-light.header-with-bg
   .container.p-5.py-3
     = render_breadcrumbs
-    = section_header :platform_main_heading, button: { url: "/new/:signup",
+    = section_header :platform_main_heading, header_size: :h1,
+                                             button: { url: "/new/:signup",
                                                        text: "Join us" }
 
 %section.container.py-5.d-flex.justify-content-center
@@ -19,7 +20,7 @@
 
 %section#our-values-section.container.py-5
   .py-4.text-center
-    = nest %i[value blurb], view: :titled, title: "Our Values", items: { view: :stack }
+    = nest %i[value blurb], view: :titled, title: "Our values", items: { view: :stack }
 
 %section#our-story-section.container-fluid.text-center.py-4
   .container.py-5

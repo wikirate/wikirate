@@ -2,15 +2,15 @@
   :codename: footer_legal_list
   :type: :link_list
   :content: |
-    [[Policies]]
+    [[:policy|Policies]]
     [[Licensing]]
     [[Disclaimers]]
-    [[Privacy and Cookies Statement]]
-    [[Impressum]]
+    [[Privacy_Policy|Privacy]]
+    [[http://wikirate-intl.org/Impressum|Impressum]]
 
 - :name: footer contact list
   :codename: footer_contact_list
   :type: :link_list
   :content: |
-    [[Contact us on WikiRate International]]
+    [[Contact us on Wikirate International]]
     [[Subscribe for Updates]]
