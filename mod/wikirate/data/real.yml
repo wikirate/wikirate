@@ -95,14 +95,16 @@
   :codename: homepage
 
 - :name:
-    - :designer
-    - :featured
-  :type: :list
-
-- :name:
     - :organizer
     - :featured
   :type: :list
+  :content: |-
+    Walk Free
+    University of Connecticut
+    MANA
+    AMD Akademie Mode & Design Berlin
+    Oxfam India
+    Columbia University - School of International & Public Affairs
 
 - :name:
     - :account
@@ -149,8 +151,6 @@
             - Media
             - Student
             - Trade Union
-
-
 
 - :name: Wikirate Policies
   :codename: policy
