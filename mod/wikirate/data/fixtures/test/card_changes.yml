@@ -17578,3 +17578,2685 @@ card_changes_1757:
     mod: tasks+*style
     mod: vega+*style
     mod: ticket+*style
+card_changes_1758:
+  id: 1758
+  card_action_id: 65103
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_1759:
+  id: 1759
+  card_action_id: 65171
+  field: 0
+  value: parent
+card_changes_1760:
+  id: 1760
+  card_action_id: 65218
+  field: 1
+  value: '4'
+card_changes_1761:
+  id: 1761
+  card_action_id: 65218
+  field: 2
+  value: yeti skin
+card_changes_1762:
+  id: 1762
+  card_action_id: 65321
+  field: 2
+  value: Default Layout
+card_changes_1763:
+  id: 1763
+  card_action_id: 65389
+  field: 2
+  value: deckorate_layout
+card_changes_1764:
+  id: 1764
+  card_action_id: 67724
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_1765:
+  id: 1765
+  card_action_id: 67740
+  field: 0
+  value: Parent
+card_changes_1766:
+  id: 1766
+  card_action_id: 67790
+  field: 0
+  value: Policy
+card_changes_1767:
+  id: 1767
+  card_action_id: 67807
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_1768:
+  id: 1768
+  card_action_id: 67827
+  field: 2
+  value: |
+    [[:policy|Policies]]
+    [[Licensing]]
+    [[Disclaimers]]
+    [[Privacy_Policy|Privacy]]
+    [[http://wikirate-intl.org/Impressum|Impressum]]
+card_changes_1769:
+  id: 1769
+  card_action_id: 67829
+  field: 2
+  value: |
+    [[Contact us on Wikirate International]]
+    [[Subscribe for Updates]]
+card_changes_1770:
+  id: 1770
+  card_action_id: 53948
+  field: 0
+  value:
+card_changes_1771:
+  id: 1771
+  card_action_id: 53948
+  field: 1
+  value: '39'
+card_changes_1772:
+  id: 1772
+  card_action_id: 53948
+  field: 2
+  value: "WikiRate provides an essential open data infrastructure for supply chain
+    \ntransparency. Their system made it possible to connect data reported by brands
+    and \nworkers in one dynamic tool: Fashion Checker. Through this flexible and
+    engaging \nstructure, we were able to make a complex dataset on supply chain wages
+    accessible \nand useful to a broad audience of consumers, journalists, advocacy
+    organizations, \nand workers themselves.\n"
+card_changes_1773:
+  id: 1773
+  card_action_id: 53948
+  field: 3
+  value: f
+card_changes_1774:
+  id: 1774
+  card_action_id: 53948
+  field: 4
+  value: '3953'
+card_changes_1775:
+  id: 1775
+  card_action_id: 53948
+  field: 5
+  value: '3937'
+card_changes_1776:
+  id: 1776
+  card_action_id: 67832
+  field: 2
+  value: "WikiRate provides an essential open data infrastructure for supply chain
+    \r\ntransparency. Their system made it possible to connect data reported by brands
+    and \r\nworkers in one dynamic tool: Fashion Checker. Through this flexible and
+    engaging \r\nstructure, we were able to make a complex dataset on supply chain
+    wages accessible \r\nand useful to a broad audience of consumers, journalists,
+    advocacy organizations, \r\nand workers themselves.\r\n"
+card_changes_1777:
+  id: 1777
+  card_action_id: 53953
+  field: 0
+  value:
+card_changes_1778:
+  id: 1778
+  card_action_id: 53953
+  field: 1
+  value: '39'
+card_changes_1779:
+  id: 1779
+  card_action_id: 53953
+  field: 2
+  value: "Our collaborative project was a great opportunity to further develop our
+    research \nskills which in turn allowed us to be more critical and analytical
+    of fashion \nlabels. Working with WikiRate made us understand the importance of
+    finding the \nright and accurate information that backs up or contradicts the
+    image that a \nfashion label is trying to portray\n"
+card_changes_1780:
+  id: 1780
+  card_action_id: 53953
+  field: 3
+  value: f
+card_changes_1781:
+  id: 1781
+  card_action_id: 53953
+  field: 4
+  value: '3957'
+card_changes_1782:
+  id: 1782
+  card_action_id: 53953
+  field: 5
+  value: '3937'
+card_changes_1783:
+  id: 1783
+  card_action_id: 67838
+  field: 2
+  value: "Our collaborative project was a great opportunity to further develop our
+    research \r\nskills which in turn allowed us to be more critical and analytical
+    of fashion \r\nlabels. Working with WikiRate made us understand the importance
+    of finding the \r\nright and accurate information that backs up or contradicts
+    the image that a \r\nfashion label is trying to portray\r\n"
+card_changes_1784:
+  id: 1784
+  card_action_id: 67853
+  field: 2
+  value: "<p>Fashion Checker is a data tool that connects the dots between brand commitments
+    on living wages and the reality for workers on the ground.</p>\r\n<p>The project
+    is coordinated by <a href=\"https://cleanclothes.org/\">Clean Clothes Campaign</a>
+    in partnership with <a href=\"https://semcon.com/\">Semcon</a>, <a href=\"https://wageindicator.org/\">WageIndicator</a>
+    and <a href=\"/\">WikiRate</a>. The campaign seeks to make brands accountable
+    for their promises on living wages and invites the public in to explore the data.</p>\r\n<p>Through
+    the tool you can explore how companies score on currently paying their workers
+    a living wage, the transparency of their supply chain and their commitments to
+    paying workers a living wage in the future.</p>\r\n<p>The tool also pulls in data
+    on the company’s supply chain including gender breakdowns of workers, the actual
+    to minimum wage pay gap and collective bargaining agreements.</p>"
+card_changes_1785:
+  id: 1785
+  card_action_id: 17349
+  field: 0
+  value:
+card_changes_1786:
+  id: 1786
+  card_action_id: 17349
+  field: 1
+  value: '2'
+card_changes_1787:
+  id: 1787
+  card_action_id: 17349
+  field: 2
+  value: '2020'
+card_changes_1788:
+  id: 1788
+  card_action_id: 17349
+  field: 3
+  value: f
+card_changes_1789:
+  id: 1789
+  card_action_id: 17349
+  field: 4
+  value: '3855'
+card_changes_1790:
+  id: 1790
+  card_action_id: 17349
+  field: 5
+  value: '444'
+card_changes_1791:
+  id: 1791
+  card_action_id: 67856
+  field: 2
+  value: '2021-09-20'
+card_changes_1792:
+  id: 1792
+  card_action_id: 67857
+  field: 2
+  value: Clean Clothes Campaign
+card_changes_1793:
+  id: 1793
+  card_action_id: 67858
+  field: 2
+  value: "(s3_live_bucket)/3859/67858.png"
+card_changes_1794:
+  id: 1794
+  card_action_id: 57143
+  field: 0
+  value:
+card_changes_1795:
+  id: 1795
+  card_action_id: 57143
+  field: 1
+  value: '2'
+card_changes_1796:
+  id: 1796
+  card_action_id: 57143
+  field: 2
+  value: "<div><strong>About</strong></div>\r\n<p> </p>\r\n<div>\r\n<p>The Apparel
+    100 is a series of interactive maps and data visualizations using new and existing
+    information on the largest 100 Apparel companies' supply chain transparency and
+    Environmental, Social, and Governance (ESG) data.</p>\r\n<p>The report website
+    holds the largest open data set about the apparel industry, containing over 30,000
+    data points. It gives a snapshot of efforts by the apparel industry's largest
+    companies to disclose information about their suppliers and ESG performance. </p>\r\n<p>WikiRate's
+    researchers have also visualized data on 30 companies' supplier disclosures out
+    of the 100 companies. In the most recent disclosures, these 30 companies were
+    supplied by 14,610 different suppliers.</p>\r\n<p><strong>The apparel sector snapshot
+    reveals</strong>:</p>\r\n<ul>\r\n<li>Nearly a third of the top 100 don't publish
+    a recent report with sustainability information.</li>\r\n<li>On average, the top
+    100 apparel companies share less than half of key environmental, social and governance
+    indicators, suggested by WikiRate's methodology.</li>\r\n<li>The number of the
+    top 100 apparel companies reporting their suppliers more than doubled from 10
+    to 23 between 2017 and 2020.</li>\r\n</ul>\r\n</div>"
+card_changes_1797:
+  id: 1797
+  card_action_id: 57143
+  field: 3
+  value: f
+card_changes_1798:
+  id: 1798
+  card_action_id: 57143
+  field: 4
+  value: '3962'
+card_changes_1799:
+  id: 1799
+  card_action_id: 57143
+  field: 5
+  value: '12'
+card_changes_1800:
+  id: 1800
+  card_action_id: 67861
+  field: 2
+  value: "<div><strong>About</strong></div>\r\n<p> </p>\r\n<div>\r\n<p>The Apparel
+    100 is a series of interactive maps and data visualizations using new and existing
+    information on the largest 100 Apparel companies' supply chain transparency and
+    Environmental, Social, and Governance (ESG) data.</p>\r\n<p>The report website
+    holds the largest open data set about the apparel industry, containing over 30,000
+    data points. It gives a snapshot of efforts by the apparel industry's largest
+    companies to disclose information about their suppliers and ESG performance. </p>\r\n<p>WikiRate's
+    researchers have also visualized data on 30 companies' supplier disclosures out
+    of the 100 companies. In the most recent disclosures, these 30 companies were
+    supplied by 14,610 different suppliers.</p>\r\n<p><strong>The apparel sector snapshot
+    reveals</strong>:</p>\r\n<ul>\r\n<li>Nearly a third of the top 100 don't publish
+    a recent report with sustainability information.</li>\r\n<li>On average, the top
+    100 apparel companies share less than half of key environmental, social and governance
+    indicators, suggested by WikiRate's methodology.</li>\r\n<li>The number of the
+    top 100 apparel companies reporting their suppliers more than doubled from 10
+    to 23 between 2017 and 2020.</li>\r\n</ul>\r\n</div>"
+card_changes_1801:
+  id: 1801
+  card_action_id: 57150
+  field: 0
+  value:
+card_changes_1802:
+  id: 1802
+  card_action_id: 57150
+  field: 1
+  value: '2'
+card_changes_1803:
+  id: 1803
+  card_action_id: 57150
+  field: 2
+  value: "<div>\r\n<p>From raw materials to manufacturing, labour exploitation and
+    modern slavery are rife in global garment supply chains. Workers in the industry
+    are vulnerable to forced labour, wage theft, hazardous conditions, illegal overtime,
+    and more. With garment supply chains often operating in locations where laws protecting
+    human rights do not exist, are weak, or are not enforced by local authorities,
+    companies’ own responsibilities to eradicate modern slavery from their supply
+    chains become ever more important.</p>\r\n</div>\r\n<div>\r\n<p>Legislation such
+    as Modern Slavery Acts (MSA), place obligations on companies in all sectors to
+    report on how they are addressing the risks of modern slavery in their direct
+    operations and supply chains.</p>\r\n</div>\r\n<div>\r\n<p>To gain an understanding
+    of how the garment industry is upholding these obligations, <a href=\"https://www.walkfree.org/\"
+    target=\"_blank\">Walk Free</a> and <a href=\"/\" target=\"_blank\">WikiRate</a> have
+    assessed the statements of the largest garment companies reporting under the UK
+    and Australian MSAs. This report provides a snapshot of their level of disclosure
+    of modern slavery risks, identifies good practice, and highlights gaps in reporting
+    quality.</p>\r\n<h2>In the media:</h2>\r\n<ul>\r\n<li><a href=\"https://sustainablebrands.com/read/supply-chain/new-platform-to-help-apparel-brands-illuminate-darkest-corners-of-supply-chains\"
+    target=\"_blank\">New Platform to Help Apparel Brands Illuminate Darkest Corners
+    of Supply Chains</a></li>\r\n<li><a href=\"https://www.russh.com/walk-free-modern-slavery-report-australia-uk-garment-industry/\"
+    target=\"_blank\">A recent report from Walk Free shows that the Australian garment
+    industry is failing to take modern slavery seriously</a>.</li>\r\n</ul>\r\n</div>"
+card_changes_1804:
+  id: 1804
+  card_action_id: 57150
+  field: 3
+  value: f
+card_changes_1805:
+  id: 1805
+  card_action_id: 57150
+  field: 4
+  value: '3968'
+card_changes_1806:
+  id: 1806
+  card_action_id: 57150
+  field: 5
+  value: '12'
+card_changes_1807:
+  id: 1807
+  card_action_id: 67869
+  field: 2
+  value: "<div>\r\n<p>From raw materials to manufacturing, labour exploitation and
+    modern slavery are rife in global garment supply chains. Workers in the industry
+    are vulnerable to forced labour, wage theft, hazardous conditions, illegal overtime,
+    and more. With garment supply chains often operating in locations where laws protecting
+    human rights do not exist, are weak, or are not enforced by local authorities,
+    companies’ own responsibilities to eradicate modern slavery from their supply
+    chains become ever more important.</p>\r\n</div>\r\n<div>\r\n<p>Legislation such
+    as Modern Slavery Acts (MSA), place obligations on companies in all sectors to
+    report on how they are addressing the risks of modern slavery in their direct
+    operations and supply chains.</p>\r\n</div>\r\n<div>\r\n<p>To gain an understanding
+    of how the garment industry is upholding these obligations, <a href=\"https://www.walkfree.org/\"
+    target=\"_blank\">Walk Free</a> and <a href=\"/\" target=\"_blank\">WikiRate</a>
+    have assessed the statements of the largest garment companies reporting under
+    the UK and Australian MSAs. This report provides a snapshot of their level of
+    disclosure of modern slavery risks, identifies good practice, and highlights gaps
+    in reporting quality.</p>\r\n<h2>In the media:</h2>\r\n<ul>\r\n<li><a href=\"https://sustainablebrands.com/read/supply-chain/new-platform-to-help-apparel-brands-illuminate-darkest-corners-of-supply-chains\"
+    target=\"_blank\">New Platform to Help Apparel Brands Illuminate Darkest Corners
+    of Supply Chains</a></li>\r\n<li><a href=\"https://www.russh.com/walk-free-modern-slavery-report-australia-uk-garment-industry/\"
+    target=\"_blank\">A recent report from Walk Free shows that the Australian garment
+    industry is failing to take modern slavery seriously</a>.</li>\r\n</ul>\r\n</div>"
+card_changes_1808:
+  id: 1808
+  card_action_id: 57158
+  field: 0
+  value:
+card_changes_1809:
+  id: 1809
+  card_action_id: 57158
+  field: 1
+  value: '2'
+card_changes_1810:
+  id: 1810
+  card_action_id: 57158
+  field: 2
+  value: "<p><strong>About</strong></p>\r\n<p>The report presents the findings of
+    a benchmarking study of implementation of the OECD Due Diligence Guidance for
+    Responsible Supply Chains of Minerals from Conflict-Affected and High-Risk Areas
+    (“Minerals Guidance”) by a global sample of companies producing, trading and sourcing
+    minerals or metals based on their public disclosures. The study provides evidence of
+    the Minerals Guidance’s role as the keystone in an emerging global architecture
+    for responsible business conduct in mineral supply chains, with a significant
+    expansion in its uptake between 2014 and 2018.</p>\r\n<p>The study also reveals
+    major shortcomings in disclosure related to implementation, especially on how
+    companies use due diligence practically to identify and mitigate risks. In part, this
+    suggests growing pains as companies move beyond compliance-based approaches typically
+    focussed on risks to the company, to a due diligence framework that emphasizes progressive
+    improvement to address adversempacts external to the company, including through responsible
+    engagement in complex operating environments.</p>\r\n<hr>\r\n<p>This document
+    was prepared by the <strong>OECD Secretariat</strong> and <strong>WikiRate</strong> using
+    qualitative and quantitative research methods, to analyse <strong>publicly accessible
+    information</strong> including annual reports, policies, public audit reports,
+    website content and supplier engagement documents to assess disclosure for <strong>2014</strong> and <strong>2018</strong> of
+    a sample of <strong>503 companies</strong>.</p>"
+card_changes_1811:
+  id: 1811
+  card_action_id: 57158
+  field: 3
+  value: f
+card_changes_1812:
+  id: 1812
+  card_action_id: 57158
+  field: 4
+  value: '3975'
+card_changes_1813:
+  id: 1813
+  card_action_id: 57158
+  field: 5
+  value: '12'
+card_changes_1814:
+  id: 1814
+  card_action_id: 67878
+  field: 2
+  value: "<p><strong>About</strong></p>\r\n<p>The report presents the findings of
+    a benchmarking study of implementation of the OECD Due Diligence Guidance for
+    Responsible Supply Chains of Minerals from Conflict-Affected and High-Risk Areas
+    (“Minerals Guidance”) by a global sample of companies producing, trading and sourcing
+    minerals or metals based on their public disclosures. The study provides evidence
+    of the Minerals Guidance’s role as the keystone in an emerging global architecture
+    for responsible business conduct in mineral supply chains, with a significant
+    expansion in its uptake between 2014 and 2018.</p>\r\n<p>The study also reveals
+    major shortcomings in disclosure related to implementation, especially on how
+    companies use due diligence practically to identify and mitigate risks. In part,
+    this suggests growing pains as companies move beyond compliance-based approaches
+    typically focussed on risks to the company, to a due diligence framework that
+    emphasizes progressive improvement to address adversempacts external to the company,
+    including through responsible engagement in complex operating environments.</p>\r\n<hr>\r\n<p>This
+    document was prepared by the <strong>OECD Secretariat</strong> and <strong>WikiRate</strong>
+    using qualitative and quantitative research methods, to analyse <strong>publicly
+    accessible information</strong> including annual reports, policies, public audit
+    reports, website content and supplier engagement documents to assess disclosure
+    for <strong>2014</strong> and <strong>2018</strong> of a sample of <strong>503
+    companies</strong>.</p>"
+card_changes_1815:
+  id: 1815
+  card_action_id: 57166
+  field: 0
+  value:
+card_changes_1816:
+  id: 1816
+  card_action_id: 57166
+  field: 1
+  value: '2'
+card_changes_1817:
+  id: 1817
+  card_action_id: 57166
+  field: 2
+  value: "<p>This report is the product of a research project commissioned by <a href=\"https://humanityunited.org/\">Humanity
+    United</a> and conducted by <a href=\"http://wikirate.org/\">WikiRate</a> to scope
+    out the opportunities and challenges involved in building an open and integrated
+    data ecosystem for labor rights in supply chains.</p>\r\n<p>Turning to organizations
+    working with labor and supply chain data, as well as their funders, the report
+    identifies the technical and data challenges facing organizations in this space
+    and compiles recommendations for more and better data sharing in the future. The
+    research builds on the work of many organizations and data practitioners working
+    to open up data worldwide.</p>"
+card_changes_1818:
+  id: 1818
+  card_action_id: 57166
+  field: 3
+  value: f
+card_changes_1819:
+  id: 1819
+  card_action_id: 57166
+  field: 4
+  value: '3982'
+card_changes_1820:
+  id: 1820
+  card_action_id: 57166
+  field: 5
+  value: '12'
+card_changes_1821:
+  id: 1821
+  card_action_id: 67887
+  field: 2
+  value: "<p>This report is the product of a research project commissioned by <a href=\"https://humanityunited.org/\">Humanity
+    United</a> and conducted by <a href=\"http://wikirate.org/\">WikiRate</a> to scope
+    out the opportunities and challenges involved in building an open and integrated
+    data ecosystem for labor rights in supply chains.</p>\r\n<p>Turning to organizations
+    working with labor and supply chain data, as well as their funders, the report
+    identifies the technical and data challenges facing organizations in this space
+    and compiles recommendations for more and better data sharing in the future. The
+    research builds on the work of many organizations and data practitioners working
+    to open up data worldwide.</p>"
+card_changes_1822:
+  id: 1822
+  card_action_id: 57174
+  field: 0
+  value:
+card_changes_1823:
+  id: 1823
+  card_action_id: 57174
+  field: 1
+  value: '2'
+card_changes_1824:
+  id: 1824
+  card_action_id: 57174
+  field: 2
+  value: "<div>\r\n<div>Artificial Intelligence offers a real opportunity to scale
+    our efforts to eradicate modern slavery. One opportunity is the use of AI to ‘read’
+    the statements produced under mandatory reporting requirements, such as the UK
+    and Australian Modern Slavery Acts, in order to improve transparency.</div>\r\n<div> </div>\r\n</div>\r\n<div>\r\n<div>Reflecting
+    the initial phase of the Artificial Intelligence Against Modern Slavery (AIMS)
+    project, <a href=\"https://www.walkfree.org/\">Walk Free</a>, in collaboration
+    with <a href=\"https://thefuturesociety.org/\">The Future Society</a>, <a href=\"/\">WikiRate</a>,
+    and the <a href=\"https://www.business-humanrights.org/en/\">Business &amp; Human
+    Rights Resource Centre</a> have published a paper on digital insights into modern
+    slavery reporting, which discusses the challenges and opportunities of machine
+    readability in this area.</div>\r\n<div> </div>\r\n<div>See the Walk Free site
+    for a <a href=\"https://www.walkfree.org/reports/digital-insights-into-modern-slavery-reporting/\">summary</a> of
+    the key finding and recommendations.</div>\r\n</div>"
+card_changes_1825:
+  id: 1825
+  card_action_id: 57174
+  field: 3
+  value: f
+card_changes_1826:
+  id: 1826
+  card_action_id: 57174
+  field: 4
+  value: '3989'
+card_changes_1827:
+  id: 1827
+  card_action_id: 57174
+  field: 5
+  value: '12'
+card_changes_1828:
+  id: 1828
+  card_action_id: 67896
+  field: 2
+  value: "<div>\r\n<div>Artificial Intelligence offers a real opportunity to scale
+    our efforts to eradicate modern slavery. One opportunity is the use of AI to ‘read’
+    the statements produced under mandatory reporting requirements, such as the UK
+    and Australian Modern Slavery Acts, in order to improve transparency.</div>\r\n<div>
+    </div>\r\n</div>\r\n<div>\r\n<div>Reflecting the initial phase of the Artificial
+    Intelligence Against Modern Slavery (AIMS) project, <a href=\"https://www.walkfree.org/\">Walk
+    Free</a>, in collaboration with <a href=\"https://thefuturesociety.org/\">The
+    Future Society</a>, <a href=\"/\">WikiRate</a>, and the <a href=\"https://www.business-humanrights.org/en/\">Business
+    &amp; Human Rights Resource Centre</a> have published a paper on digital insights
+    into modern slavery reporting, which discusses the challenges and opportunities
+    of machine readability in this area.</div>\r\n<div> </div>\r\n<div>See the Walk
+    Free site for a <a href=\"https://www.walkfree.org/reports/digital-insights-into-modern-slavery-reporting/\">summary</a>
+    of the key finding and recommendations.</div>\r\n</div>"
+card_changes_1829:
+  id: 1829
+  card_action_id: 57182
+  field: 0
+  value:
+card_changes_1830:
+  id: 1830
+  card_action_id: 57182
+  field: 1
+  value: '2'
+card_changes_1831:
+  id: 1831
+  card_action_id: 57182
+  field: 2
+  value: "<p><strong>About </strong></p>\r\n<div>\r\n<p style=\"text-align: justify;\">The
+    Disclosure and Reporting Against the Sustainable Development Goals report is part
+    of this joint project between WikiRate, PRME and the University of Wollongong,
+    which looks at a case study of thirty-seven companies researched by forty University
+    of Wollongong students who, as part of their coursework, collected SDG data on
+    a subset of company-members of the Corporate Action Group (CAG). The purpose of
+    the analysis was to (1) discover what kinds of barriers prevent researchers from
+    collecting accurate data on company sustainability performance, and (2) investigate
+    disclosure rates of CAG companies on key topics connected to the SDGs. The report
+    includes key findings and recommendations.</p>\r\n<p style=\"text-align: justify;\"><strong>Authors</strong></p>\r\n<ul>\r\n<li
+    style=\"text-align: justify;\">Theresa Heithaus,WikiRate e.V.</li>\r\n<li style=\"text-align:
+    justify;\">Richard Mills,University of Cambridge</li>\r\n<li style=\"text-align:
+    justify;\">Stephanie Perkiss,University of Wollongong</li>\r\n<li style=\"text-align:
+    justify;\">Principles for Responsible Management Education</li>\r\n</ul>\r\n</div>"
+card_changes_1832:
+  id: 1832
+  card_action_id: 57182
+  field: 3
+  value: f
+card_changes_1833:
+  id: 1833
+  card_action_id: 57182
+  field: 4
+  value: '3996'
+card_changes_1834:
+  id: 1834
+  card_action_id: 57182
+  field: 5
+  value: '12'
+card_changes_1835:
+  id: 1835
+  card_action_id: 67905
+  field: 2
+  value: "<p><strong>About </strong></p>\r\n<div>\r\n<p>The Disclosure and Reporting
+    Against the Sustainable Development Goals report is part of this joint project
+    between WikiRate, PRME and the University of Wollongong, which looks at a case
+    study of thirty-seven companies researched by forty University of Wollongong students
+    who, as part of their coursework, collected SDG data on a subset of company-members
+    of the Corporate Action Group (CAG). The purpose of the analysis was to (1) discover
+    what kinds of barriers prevent researchers from collecting accurate data on company
+    sustainability performance, and (2) investigate disclosure rates of CAG companies
+    on key topics connected to the SDGs. The report includes key findings and recommendations.</p>\r\n<p
+    style=\"text-align: justify;\"><strong>Authors</strong></p>\r\n<ul>\r\n<li style=\"text-align:
+    justify;\">Theresa Heithaus,WikiRate e.V.</li>\r\n<li style=\"text-align: justify;\">Richard
+    Mills,University of Cambridge</li>\r\n<li style=\"text-align: justify;\">Stephanie
+    Perkiss,University of Wollongong</li>\r\n<li style=\"text-align: justify;\">Principles
+    for Responsible Management Education</li>\r\n</ul>\r\n</div>"
+card_changes_1836:
+  id: 1836
+  card_action_id: 57189
+  field: 0
+  value:
+card_changes_1837:
+  id: 1837
+  card_action_id: 57189
+  field: 1
+  value: '2'
+card_changes_1838:
+  id: 1838
+  card_action_id: 57189
+  field: 2
+  value: "<p><strong>About</strong></p>\r\n<p><span style=\"font-size: 12pt;\">Documenting
+    the impact of new legislative acts is an indispensable tool for improving the
+    effectiveness of this legislation and advancing business practice. This is why
+    the Walk Free Foundation and WikiRate partnered in 2016 to assess the modern slavery
+    statements produced as a result of the 2015 UK Modern Slavery Act. With the publication
+    of the project’s initial findings, we hope to move beyond compliance, providing
+    an analysis of the content of the statements being produced, as well as drawing
+    attention to both promising, and less promising, business practice. In doing so,
+    we can both unlock the content of these statements and provide others with the
+    metrics we have developed to assess business activities to combat modern slavery.
+    </span></p>"
+card_changes_1839:
+  id: 1839
+  card_action_id: 57189
+  field: 3
+  value: f
+card_changes_1840:
+  id: 1840
+  card_action_id: 57189
+  field: 4
+  value: '4002'
+card_changes_1841:
+  id: 1841
+  card_action_id: 57189
+  field: 5
+  value: '12'
+card_changes_1842:
+  id: 1842
+  card_action_id: 67913
+  field: 2
+  value: "<p><strong>About</strong></p>\r\n<p><span>Documenting the impact of new
+    legislative acts is an indispensable tool for improving the effectiveness of this
+    legislation and advancing business practice. This is why the Walk Free Foundation
+    and WikiRate partnered in 2016 to assess the modern slavery statements produced
+    as a result of the 2015 UK Modern Slavery Act. With the publication of the project’s
+    initial findings, we hope to move beyond compliance, providing an analysis of
+    the content of the statements being produced, as well as drawing attention to
+    both promising, and less promising, business practice. In doing so, we can both
+    unlock the content of these statements and provide others with the metrics we
+    have developed to assess business activities to combat modern slavery. </span></p>"
+card_changes_1843:
+  id: 1843
+  card_action_id: 57204
+  field: 0
+  value:
+card_changes_1844:
+  id: 1844
+  card_action_id: 57204
+  field: 1
+  value: '2'
+card_changes_1845:
+  id: 1845
+  card_action_id: 57204
+  field: 2
+  value: "<p><strong>Abstract</strong>:</p>\r\n<p style=\"padding-left: 40px;\">Since
+    the end of the 20th century, the role of private multinational enterprises (MNEs)
+    has been recognized as critical in implementing increased sustainable production
+    and consumption patterns. Particularly after the creation of the Sustainable Development
+    Goals (SDGs) and the Agenda 2030, this role has increased. In this sense, this
+    paper aims to analyze the measures and actions taken by companies in their contribution
+    to the achievement of the SDG 12. Through the identification of more than 52 metrics
+    in sustainability reports of 854 firms, findings suggest that direct greenhouse
+    gas emissions and indirect greenhouse gas emissions are the most often reported
+    corporate metrics to measure their impact on specific SDGs. This reveals the importance
+    of sustainability actions in emerging market firms as a mechanism to gain legitimacy
+    when operating in foreign markets and as an opportunity to create more sustainable
+    production models.</p>\r\n<p><strong>Authors</strong>: Ana Maria Gomez-Trujillo,
+    Juan Velez-Ocampo, Sergio A. Castrillon-Orrego, Alejandro Alvarez-Vanegas, Eva
+    Cristina Manotas</p>\r\n<p><strong>Orinally published in </strong>[[https://publicaciones.eafit.edu.co/index.php/administer/issue/view/603|AD-Minister]]
+    No. 38 (2021). AD-Minister is an interdisciplinary, international, biannual and
+    peer-reviewed academic journal and we publish scientific papers resulted of empirical
+    evidence and that contribute to understanding the management of companies in emerging
+    economies and markets.</p>\r\n<p><a href=\"https://publicaciones.eafit.edu.co\">https://publicaciones.eafit.edu.co</a></p>"
+card_changes_1846:
+  id: 1846
+  card_action_id: 57204
+  field: 3
+  value: f
+card_changes_1847:
+  id: 1847
+  card_action_id: 57204
+  field: 4
+  value: '4015'
+card_changes_1848:
+  id: 1848
+  card_action_id: 57204
+  field: 5
+  value: '12'
+card_changes_1849:
+  id: 1849
+  card_action_id: 67930
+  field: 2
+  value: "<p><strong>Abstract</strong>:</p>\r\n<p>Since the end of the 20th century,
+    the role of private multinational enterprises (MNEs) has been recognized as critical
+    in implementing increased sustainable production and consumption patterns. Particularly
+    after the creation of the Sustainable Development Goals (SDGs) and the Agenda
+    2030, this role has increased. In this sense, this paper aims to analyze the measures
+    and actions taken by companies in their contribution to the achievement of the
+    SDG 12. Through the identification of more than 52 metrics in sustainability reports
+    of 854 firms, findings suggest that direct greenhouse gas emissions and indirect
+    greenhouse gas emissions are the most often reported corporate metrics to measure
+    their impact on specific SDGs. This reveals the importance of sustainability actions
+    in emerging market firms as a mechanism to gain legitimacy when operating in foreign
+    markets and as an opportunity to create more sustainable production models.</p>\r\n<p><strong>Authors</strong>:
+    Ana Maria Gomez-Trujillo, Juan Velez-Ocampo, Sergio A. Castrillon-Orrego, Alejandro
+    Alvarez-Vanegas, Eva Cristina Manotas</p>\r\n<p><strong>Orinally published in
+    </strong>[[https://publicaciones.eafit.edu.co/index.php/administer/issue/view/603|AD-Minister]]
+    No. 38 (2021). AD-Minister is an interdisciplinary, international, biannual and
+    peer-reviewed academic journal and we publish scientific papers resulted of empirical
+    evidence and that contribute to understanding the management of companies in emerging
+    economies and markets.</p>\r\n<p><a href=\"https://publicaciones.eafit.edu.co\">https://publicaciones.eafit.edu.co</a></p>"
+card_changes_1850:
+  id: 1850
+  card_action_id: 57212
+  field: 0
+  value:
+card_changes_1851:
+  id: 1851
+  card_action_id: 57212
+  field: 1
+  value: '2'
+card_changes_1852:
+  id: 1852
+  card_action_id: 57212
+  field: 2
+  value: "<div>\r\n<div>\r\n<div><strong>About</strong></div>\r\n<div> </div>\r\n<div>Modern
+    slavery represents a tragic market failure, where some companies maintain competitive
+    advantage and large profits through unethical and unsustainable business practices
+    that rely on the exploitation of approximately 16 million workers worldwide.</div>\r\n<div> </div>\r\n</div>\r\n</div>\r\n<div>\r\n<div>\r\n<div>The
+    finance sector has not been subject to the same level of scrutiny as sectors that
+    are high-risk for labour exploitation. But financial actors, and asset managers
+    in particular, have the leverage, and increasingly the responsibility, to push
+    for better human and labour rights practices by companies within their portfolios.</div>\r\n<div> </div>\r\n</div>\r\n</div>\r\n<div>\r\n<div>\r\n<div>In
+    partnership with <a href=\"https://www.walkfree.org/\">Walk Free</a> and the <a
+    href=\"https://www.business-humanrights.org/en/\">Business &amp; Human Rights
+    Resource Centre</a> we have assessed the statements produced by 79 asset managers
+    required to report under the UK Modern Slavery Act. This is to understand the
+    level of awareness of modern slavery risks, to identify good practice, and highlight
+    gaps in reporting by asset managers.</div>\r\n<div> </div>\r\n<div>The assessment
+    of statements featured in this report is available on <a href=\"/Top_UK_MSA_Asset_Managers\">WikiRate</a>,
+    and can be explored and downloaded through the <a href=\"https://widgets.wikirate.org/walkfree/\">visualization
+    dashboard</a>.</div>\r\n</div>\r\n</div>"
+card_changes_1853:
+  id: 1853
+  card_action_id: 57212
+  field: 3
+  value: f
+card_changes_1854:
+  id: 1854
+  card_action_id: 57212
+  field: 4
+  value: '4022'
+card_changes_1855:
+  id: 1855
+  card_action_id: 57212
+  field: 5
+  value: '12'
+card_changes_1856:
+  id: 1856
+  card_action_id: 67939
+  field: 2
+  value: "<div>\r\n<div>\r\n<div><strong>About</strong></div>\r\n<div> </div>\r\n<div>Modern
+    slavery represents a tragic market failure, where some companies maintain competitive
+    advantage and large profits through unethical and unsustainable business practices
+    that rely on the exploitation of approximately 16 million workers worldwide.</div>\r\n<div>
+    </div>\r\n</div>\r\n</div>\r\n<div>\r\n<div>\r\n<div>The finance sector has not
+    been subject to the same level of scrutiny as sectors that are high-risk for labour
+    exploitation. But financial actors, and asset managers in particular, have the
+    leverage, and increasingly the responsibility, to push for better human and labour
+    rights practices by companies within their portfolios.</div>\r\n<div> </div>\r\n</div>\r\n</div>\r\n<div>\r\n<div>\r\n<div>In
+    partnership with <a href=\"https://www.walkfree.org/\">Walk Free</a> and the <a
+    href=\"https://www.business-humanrights.org/en/\">Business &amp; Human Rights
+    Resource Centre</a> we have assessed the statements produced by 79 asset managers
+    required to report under the UK Modern Slavery Act. This is to understand the
+    level of awareness of modern slavery risks, to identify good practice, and highlight
+    gaps in reporting by asset managers.</div>\r\n<div> </div>\r\n<div>The assessment
+    of statements featured in this report is available on <a href=\"/Top_UK_MSA_Asset_Managers\">WikiRate</a>,
+    and can be explored and downloaded through the <a href=\"https://widgets.wikirate.org/walkfree/\">visualization
+    dashboard</a>.</div>\r\n</div>\r\n</div>"
+card_changes_1857:
+  id: 1857
+  card_action_id: 57220
+  field: 0
+  value:
+card_changes_1858:
+  id: 1858
+  card_action_id: 57220
+  field: 1
+  value: '2'
+card_changes_1859:
+  id: 1859
+  card_action_id: 57220
+  field: 2
+  value: "<p><strong>About</strong></p>\r\n<p>This paper considers an alternative
+    way of gathering and evaluating information on corporate social responsibility
+    (CSR) and the actions taken towards sustainable development. Social accounting
+    theory is currently limited in conceptualising external accounts that sit outside
+    the description of silent or shadow accounts. With the emergence of technological
+    platforms that enable CSR information to be collectively located, new models of
+    stakeholder engagement are growing using the wisdom of the crowd for information
+    collation and analyses. This paper outlines a crowdsourced platform, WikiRate,
+    which aims to both empower corporate transparency surrounding the Sustainable
+    Development Goals and assist in multidimensional stakeholder participation and
+    decision making. Existing theoretical characterisations of external accounts are
+    used as a way of understanding the WikiRate engagement model and more broadly
+    its relationship with social accounting. Through analysis and theoretical development,
+    this research has implications for imagining and exploring new social accountings
+    and social accountants that can lead to emancipatory change. ‘Spotlight accounting’
+    is introduced as a process that illuminates global organisational transparency
+    and sustainability through crowdsourcing by independent stakeholders.</p>"
+card_changes_1860:
+  id: 1860
+  card_action_id: 57220
+  field: 3
+  value: f
+card_changes_1861:
+  id: 1861
+  card_action_id: 57220
+  field: 4
+  value: '4029'
+card_changes_1862:
+  id: 1862
+  card_action_id: 57220
+  field: 5
+  value: '12'
+card_changes_1863:
+  id: 1863
+  card_action_id: 67948
+  field: 2
+  value: "<p><strong>About</strong></p>\r\n<p>This paper considers an alternative
+    way of gathering and evaluating information on corporate social responsibility
+    (CSR) and the actions taken towards sustainable development. Social accounting
+    theory is currently limited in conceptualising external accounts that sit outside
+    the description of silent or shadow accounts. With the emergence of technological
+    platforms that enable CSR information to be collectively located, new models of
+    stakeholder engagement are growing using the wisdom of the crowd for information
+    collation and analyses. This paper outlines a crowdsourced platform, WikiRate,
+    which aims to both empower corporate transparency surrounding the Sustainable
+    Development Goals and assist in multidimensional stakeholder participation and
+    decision making. Existing theoretical characterisations of external accounts are
+    used as a way of understanding the Wikirate engagement model and more broadly
+    its relationship with social accounting. Through analysis and theoretical development,
+    this research has implications for imagining and exploring new social accountings
+    and social accountants that can lead to emancipatory change. ‘Spotlight accounting’
+    is introduced as a process that illuminates global organisational transparency
+    and sustainability through crowdsourcing by independent stakeholders.</p>"
+card_changes_1864:
+  id: 1864
+  card_action_id: 57228
+  field: 0
+  value:
+card_changes_1865:
+  id: 1865
+  card_action_id: 57228
+  field: 1
+  value: '2'
+card_changes_1866:
+  id: 1866
+  card_action_id: 57228
+  field: 2
+  value: "<p><strong>About</strong></p>\r\n<p>The travel and tourism industry continues
+    to see uninterrupted growth, with more people than ever before travelling for
+    work or leisure to a broader range of destinations. Yet this growth brings with
+    it a greater risk of modern slavery.</p>\r\n<p>There is a high-risk of exploitation
+    within the hotel sector due to its vulnerable workforce, complex supply chains
+    with little transparency, and limited oversight from brands and multinational
+    hotel companies as a result of extensive franchising. In the franchising model,
+    hotel brands lend their name and customer care standards to third parties, but
+    usually stipulate far less about the standards they expect for the employment
+    of workers, even in countries where abuse is endemic.</p>\r\n<p>To assess how
+    the hotel sector is responding to these risks, this report reviews the statements
+    produced by 71 hotel companies under the UK Modern Slavery Act, which requires
+    companies with a turnover of £36 million to release annual statements on their
+    anti-slavery efforts. We looked at whether the statements meet the Act’s minimum
+    requirements, but also if they go “beyond compliance” with effective responses
+    to modern slavery risks — including sexual exploitation, forced labour, and the
+    poor treatment of migrant workers.</p>\r\n<p>The assessment of statements featured
+    in this report is available on <a href=\"/Australian_National_University_UK_Modern_Slavery_Act_Research_2019\">WikiRate</a>,
+    and was a collaboration with <a href=\"https://www.minderoo.com.au/walk-free/\">Walk
+    Free</a>, <a href=\"https://www.business-humanrights.org/\">Business &amp; Human
+    Rights Resource Centre</a>, and the <a href=\"https://law.anu.edu.au/\">Australian
+    National University</a>.</p>\r\n<h5 style=\"font-family: Roboto, 'Helvetica Neue',
+    Helvetica, Arial, sans-serif; color: #495057;\">In the Media</h5>\r\n<ul>\r\n<li>\r\n<p><a
+    href=\"https://www.theguardian.com/global-development/2019/nov/22/british-hotels-accused-of-lack-of-effort-on-forced-labour-and-sexual-exploitation\">British
+    hotels accused of 'lack of effort' on forced labour and sexual exploitation.</a>-
+    <em>The Guardian </em></p>\r\n</li>\r\n<li>\r\n<p>[[https://www.ft.com/content/5d7f8314-0b17-11ea-b2d6-9bf4d1957a67
+    | Moral Money: A warning shot for investors on fossil fuels]].- <em>Financial
+    Times</em></p>\r\n</li>\r\n<li>\r\n<p><a href=\"http://news.trust.org/item/20191120145934-qyh04/\">Major
+    UK hotels found failing to combat threat of modern slavery.</a>- <em>Thompson
+    Reuters</em></p>\r\n</li>\r\n<li>\r\n<p><a href=\"https://www.personneltoday.com/hr/hotel-sector-failing-to-protect-vulnerable-workforce-from-modern-slavery/\">Hotel
+    sector failing to protect ‘vulnerable workforce’ from modern slavery.</a><em>
+    - Personnel Today</em></p>\r\n</li>\r\n<li>\r\n<p><a href=\"https://www.sightmagazine.com.au/news/14011-major-uk-hotels-found-failing-to-combat-threat-of-modern-slavery\">Major
+    UK hotels found failing to combat threat of modern slavery</a>.- <em>Sight Magazine
+    </em></p>\r\n</li>\r\n</ul>\r\n<h5>Company updates</h5>\r\n<p><em>Since producing
+    the report, we have received the following updates and clarifications.</em></p>\r\n<p>Accor
+    UK Business &amp; Leisure Hotels Limited confirmed it has a modern slavery statement
+    available <a href=\"https://d1550xk4f2usak.cloudfront.net/wp-content/uploads/2017/12/01082953/Modern-Slavery-statement-signatures.pdf\">here</a>.</p>\r\n<p>Four
+    Seasons Hotels confirmed it has a modern slavery statement available <a href=\"https://www.fourseasons.com/modern-slavery-act/\">here</a>.</p>"
+card_changes_1867:
+  id: 1867
+  card_action_id: 57228
+  field: 3
+  value: f
+card_changes_1868:
+  id: 1868
+  card_action_id: 57228
+  field: 4
+  value: '4036'
+card_changes_1869:
+  id: 1869
+  card_action_id: 57228
+  field: 5
+  value: '12'
+card_changes_1870:
+  id: 1870
+  card_action_id: 67957
+  field: 2
+  value: "<p><strong>About</strong></p>\r\n<p>The travel and tourism industry continues
+    to see uninterrupted growth, with more people than ever before travelling for
+    work or leisure to a broader range of destinations. Yet this growth brings with
+    it a greater risk of modern slavery.</p>\r\n<p>There is a high-risk of exploitation
+    within the hotel sector due to its vulnerable workforce, complex supply chains
+    with little transparency, and limited oversight from brands and multinational
+    hotel companies as a result of extensive franchising. In the franchising model,
+    hotel brands lend their name and customer care standards to third parties, but
+    usually stipulate far less about the standards they expect for the employment
+    of workers, even in countries where abuse is endemic.</p>\r\n<p>To assess how
+    the hotel sector is responding to these risks, this report reviews the statements
+    produced by 71 hotel companies under the UK Modern Slavery Act, which requires
+    companies with a turnover of £36 million to release annual statements on their
+    anti-slavery efforts. We looked at whether the statements meet the Act’s minimum
+    requirements, but also if they go “beyond compliance” with effective responses
+    to modern slavery risks — including sexual exploitation, forced labour, and the
+    poor treatment of migrant workers.</p>\r\n<p>The assessment of statements featured
+    in this report is available on <a href=\"/Australian_National_University_UK_Modern_Slavery_Act_Research_2019\">WikiRate</a>,
+    and was a collaboration with <a href=\"https://www.minderoo.com.au/walk-free/\">Walk
+    Free</a>, <a href=\"https://www.business-humanrights.org/\">Business &amp; Human
+    Rights Resource Centre</a>, and the <a href=\"https://law.anu.edu.au/\">Australian
+    National University</a>.</p>\r\n<h5>In the Media</h5>\r\n<ul>\r\n<li>\r\n<p><a
+    href=\"https://www.theguardian.com/global-development/2019/nov/22/british-hotels-accused-of-lack-of-effort-on-forced-labour-and-sexual-exploitation\">British
+    hotels accused of 'lack of effort' on forced labour and sexual exploitation.</a>-
+    <em>The Guardian </em></p>\r\n</li>\r\n<li>\r\n<p>[[https://www.ft.com/content/5d7f8314-0b17-11ea-b2d6-9bf4d1957a67
+    | Moral Money: A warning shot for investors on fossil fuels]].- <em>Financial
+    Times</em></p>\r\n</li>\r\n<li>\r\n<p><a href=\"http://news.trust.org/item/20191120145934-qyh04/\">Major
+    UK hotels found failing to combat threat of modern slavery.</a>- <em>Thompson
+    Reuters</em></p>\r\n</li>\r\n<li>\r\n<p><a href=\"https://www.personneltoday.com/hr/hotel-sector-failing-to-protect-vulnerable-workforce-from-modern-slavery/\">Hotel
+    sector failing to protect ‘vulnerable workforce’ from modern slavery.</a><em>
+    - Personnel Today</em></p>\r\n</li>\r\n<li>\r\n<p><a href=\"https://www.sightmagazine.com.au/news/14011-major-uk-hotels-found-failing-to-combat-threat-of-modern-slavery\">Major
+    UK hotels found failing to combat threat of modern slavery</a>.- <em>Sight Magazine
+    </em></p>\r\n</li>\r\n</ul>\r\n<h5>Company updates</h5>\r\n<p><em>Since producing
+    the report, we have received the following updates and clarifications.</em></p>\r\n<p>Accor
+    UK Business &amp; Leisure Hotels Limited confirmed it has a modern slavery statement
+    available <a href=\"https://d1550xk4f2usak.cloudfront.net/wp-content/uploads/2017/12/01082953/Modern-Slavery-statement-signatures.pdf\">here</a>.</p>\r\n<p>Four
+    Seasons Hotels confirmed it has a modern slavery statement available <a href=\"https://www.fourseasons.com/modern-slavery-act/\">here</a>.</p>"
+card_changes_1871:
+  id: 1871
+  card_action_id: 57243
+  field: 0
+  value:
+card_changes_1872:
+  id: 1872
+  card_action_id: 57243
+  field: 1
+  value: '2'
+card_changes_1873:
+  id: 1873
+  card_action_id: 57243
+  field: 2
+  value: "<p>The WikiRate Student Engagement Report is the product of a year-long
+    international collaboration across eight countries.  The research was initiated
+    to explore the multiple ways the WikiRate Student Engagement Project was being
+    implemented in higher education institutions in diverse classrooms around the
+    world. <br><br>The report features seven international case studies from professors/coordinators
+    who have implemented WikiRate in their subjects/units. Through the case studies
+    presented, the report aims to highlight the various applications of the WikiRate
+    Student Engagement Project to specific pedagogical contexts.<br><br>Common across
+    all of the case studies is how the embedment of WikiRate has enabled the facilitation
+    of experiential learning as students participate in real-world, practical experiences,
+    researching, inputting and analyzing organizational data.</p>"
+card_changes_1874:
+  id: 1874
+  card_action_id: 57243
+  field: 3
+  value: f
+card_changes_1875:
+  id: 1875
+  card_action_id: 57243
+  field: 4
+  value: '4049'
+card_changes_1876:
+  id: 1876
+  card_action_id: 57243
+  field: 5
+  value: '12'
+card_changes_1877:
+  id: 1877
+  card_action_id: 67974
+  field: 2
+  value: "<p>The WikiRate Student Engagement Report is the product of a year-long
+    international collaboration across eight countries.  The research was initiated
+    to explore the multiple ways the Wikirate Student Engagement Project was being
+    implemented in higher education institutions in diverse classrooms around the
+    world. <br><br>The report features seven international case studies from professors/coordinators
+    who have implemented WikiRate in their subjects/units. Through the case studies
+    presented, the report aims to highlight the various applications of the Wikirate
+    Student Engagement Project to specific pedagogical contexts.<br><br>Common across
+    all of the case studies is how the embedment of WikiRate has enabled the facilitation
+    of experiential learning as students participate in real-world, practical experiences,
+    researching, inputting and analyzing organizational data.</p>"
+card_changes_1878:
+  id: 1878
+  card_action_id: 57251
+  field: 0
+  value:
+card_changes_1879:
+  id: 1879
+  card_action_id: 57251
+  field: 1
+  value: '2'
+card_changes_1880:
+  id: 1880
+  card_action_id: 57251
+  field: 2
+  value: "<div>\r\n<p style=\"text-align: justify;\">The pilot project <strong><em>Business
+    Contribution to the SDGs — A Student Assessment</em></strong> is a partnership
+    of the Principles for Responsible Management Education (PRME) initiative, the
+    WikiRate Project e.V. (WikiRate), the UN Global Compact, and the Bertelsmann Stiftung.
+    The aims of the pilot stage of the project were to:</p>\r\n<p style=\"padding-left:
+    30px; text-align: justify;\">1. Embed the 2030 Agenda and its Sustainable Development
+    Goals (SDGs) in the minds of the next generation of business leaders through active
+    research and analysis, promoting engagement and familiarity with companies’ reporting
+    outputs<br>2. Seek structured ways of tracking company performance towards the
+    SDGs and the UN Global Compact’s Ten Principles, testing a broad selection of
+    metrics of performance from standards like the Global Reporting Initiative and
+    UN Global Compact’s Poverty Footprint.</p>\r\n<p style=\"text-align: justify;\">The
+    pilot included 9 higher education institutions, with 13 professors in 7 countries
+    across 5 continents, engaging 950 students and generating over 20,000 data points
+    on corporate sustainability performance. Student participants with different levels
+    of education, from first year undergraduates through master’s students, generated
+    data through researching corporate sustainability and annual reports of Global
+    Compact participants submitted as Communication on Progress reports (COPs), and
+    added it to the WikiRate platform.</p>\r\n</div>"
+card_changes_1881:
+  id: 1881
+  card_action_id: 57251
+  field: 3
+  value: f
+card_changes_1882:
+  id: 1882
+  card_action_id: 57251
+  field: 4
+  value: '4056'
+card_changes_1883:
+  id: 1883
+  card_action_id: 57251
+  field: 5
+  value: '12'
+card_changes_1884:
+  id: 1884
+  card_action_id: 67983
+  field: 2
+  value: "<div>\r\n<p style=\"text-align: justify;\">The pilot project <strong><em>Business
+    Contribution to the SDGs — A Student Assessment</em></strong> is a partnership
+    of the Principles for Responsible Management Education (PRME) initiative, the
+    WikiRate Project e.V. (WikiRate), the UN Global Compact, and the Bertelsmann Stiftung.
+    The aims of the pilot stage of the project were to:</p>\r\n<p>1. Embed the 2030
+    Agenda and its Sustainable Development Goals (SDGs) in the minds of the next generation
+    of business leaders through active research and analysis, promoting engagement
+    and familiarity with companies’ reporting outputs<br>2. Seek structured ways of
+    tracking company performance towards the SDGs and the UN Global Compact’s Ten
+    Principles, testing a broad selection of metrics of performance from standards
+    like the Global Reporting Initiative and UN Global Compact’s Poverty Footprint.</p>\r\n<p
+    style=\"text-align: justify;\">The pilot included 9 higher education institutions,
+    with 13 professors in 7 countries across 5 continents, engaging 950 students and
+    generating over 20,000 data points on corporate sustainability performance. Student
+    participants with different levels of education, from first year undergraduates
+    through master’s students, generated data through researching corporate sustainability
+    and annual reports of Global Compact participants submitted as Communication on
+    Progress reports (COPs), and added it to the Wikirate platform.</p>\r\n</div>"
+card_changes_1885:
+  id: 1885
+  card_action_id: 57279
+  field: 0
+  value:
+card_changes_1886:
+  id: 1886
+  card_action_id: 57279
+  field: 1
+  value: '2'
+card_changes_1887:
+  id: 1887
+  card_action_id: 57279
+  field: 2
+  value: "<p>The Fashion Facility Checker is part of the <a href=\"https://fashionchecker.org/\"
+    target=\"_blank\">Fashion Checker</a> - a <a href=\"https://cleanclothes.org/\"
+    target=\"_blank\">Clean Clothes Campaign</a> project which shines a light on wages
+    in apparel supply chains.</p>\r\n<p>The Facility Checker is completely free and
+    open for anyone to use.</p>\r\n<p>Users can search and discover what information
+    is available about wages, living wage gaps, workforce composition and supply chain
+    relationships in apparel facilities.</p>\r\n<p>The data in this tool is available
+    on the WikiRate platform under a <a href=\"https://creativecommons.org/licenses/by/4.0/\"
+    target=\"_blank\">Creative Commons - Attribution 4.0 International License</a>.
+    The tool includes data collected by Clean Clothes Campaign, Fashion Revolution,
+    the Open Apparel Registry and WikiRate.</p>\r\n<p>The Facility Checker has been
+    developed and is maintained by WikiRate. The search interface can be embedded
+    on external websites <a href=\"https://staging.facilitychecker.wikirate.org/home?view=widget\"
+    target=\"_blank\">using this link</a>.</p>"
+card_changes_1888:
+  id: 1888
+  card_action_id: 57279
+  field: 3
+  value: f
+card_changes_1889:
+  id: 1889
+  card_action_id: 57279
+  field: 4
+  value: '4080'
+card_changes_1890:
+  id: 1890
+  card_action_id: 57279
+  field: 5
+  value: '12'
+card_changes_1891:
+  id: 1891
+  card_action_id: 68015
+  field: 2
+  value: "<p>The Fashion Facility Checker is part of the <a href=\"https://fashionchecker.org/\"
+    target=\"_blank\">Fashion Checker</a> - a <a href=\"https://cleanclothes.org/\"
+    target=\"_blank\">Clean Clothes Campaign</a> project which shines a light on wages
+    in apparel supply chains.</p>\r\n<p>The Facility Checker is completely free and
+    open for anyone to use.</p>\r\n<p>Users can search and discover what information
+    is available about wages, living wage gaps, workforce composition and supply chain
+    relationships in apparel facilities.</p>\r\n<p>The data in this tool is available
+    on the Wikirate platform under a <a href=\"https://creativecommons.org/licenses/by/4.0/\"
+    target=\"_blank\">Creative Commons - Attribution 4.0 International License</a>.
+    The tool includes data collected by Clean Clothes Campaign, Fashion Revolution,
+    the Open Apparel Registry and WikiRate.</p>\r\n<p>The Facility Checker has been
+    developed and is maintained by WikiRate. The search interface can be embedded
+    on external websites <a href=\"https://staging.facilitychecker.wikirate.org/home?view=widget\"
+    target=\"_blank\">using this link</a>.</p>"
+card_changes_1892:
+  id: 1892
+  card_action_id: 57286
+  field: 0
+  value:
+card_changes_1893:
+  id: 1893
+  card_action_id: 57286
+  field: 1
+  value: '2'
+card_changes_1894:
+  id: 1894
+  card_action_id: 57286
+  field: 2
+  value: "<p>Thirteen million workers who toil on tea plantations have suffered from
+    endemic human rights abuses while the tea companies they pick for - some of the
+    world’s largest and most profitable companies - have evaded responsibility for
+    their supply chain workers and kept their supply chains hidden. Without supply
+    chain transparency, workers don’t know where the tea they pick goes and remediation
+    for abuses from forced labour to gender-based violence stop at the estate instead
+    of going up the chain to where most of the value lies.</p>\r\n<p>The Business
+    &amp; Human Rights Resource Centre addressed this gap by approaching 65 companies
+    with a request for them to disclose the estates and bought-leaf factories that
+    they source their tea from, to be held centrally in the first Tea Transparency
+    Tracker. There are over 3100 estates and factories linked to 20 companies within
+    the Tracker, and all disclosed supplier data is also available under a Creative
+    Commons licence via WikiRate. <span style=\"color: var(--bs-body-color); font-size:
+    1rem; font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">As
+    part of this project, WikiRate produced an interactive map showing tea supply
+    chain locations per country. </span></p>"
+card_changes_1895:
+  id: 1895
+  card_action_id: 57286
+  field: 3
+  value: f
+card_changes_1896:
+  id: 1896
+  card_action_id: 57286
+  field: 4
+  value: '4086'
+card_changes_1897:
+  id: 1897
+  card_action_id: 57286
+  field: 5
+  value: '12'
+card_changes_1898:
+  id: 1898
+  card_action_id: 68023
+  field: 2
+  value: "<p>Thirteen million workers who toil on tea plantations have suffered from
+    endemic human rights abuses while the tea companies they pick for - some of the
+    world’s largest and most profitable companies - have evaded responsibility for
+    their supply chain workers and kept their supply chains hidden. Without supply
+    chain transparency, workers don’t know where the tea they pick goes and remediation
+    for abuses from forced labour to gender-based violence stop at the estate instead
+    of going up the chain to where most of the value lies.</p>\r\n<p>The Business
+    &amp; Human Rights Resource Centre addressed this gap by approaching 65 companies
+    with a request for them to disclose the estates and bought-leaf factories that
+    they source their tea from, to be held centrally in the first Tea Transparency
+    Tracker. There are over 3100 estates and factories linked to 20 companies within
+    the Tracker, and all disclosed supplier data is also available under a Creative
+    Commons licence via WikiRate. <span>As part of this project, WikiRate produced
+    an interactive map showing tea supply chain locations per country. </span></p>"
+card_changes_1899:
+  id: 1899
+  card_action_id: 68069
+  field: 1
+  value: '55'
+card_changes_1900:
+  id: 1900
+  card_action_id: 68069
+  field: 2
+  value: wikirate skin
+card_changes_1901:
+  id: 1901
+  card_action_id: 17136
+  field: 0
+  value:
+card_changes_1902:
+  id: 1902
+  card_action_id: 17136
+  field: 1
+  value: '2'
+card_changes_1903:
+  id: 1903
+  card_action_id: 17136
+  field: 2
+  value: Sustainability data across 128,000+ companies and over 3 million data points.
+card_changes_1904:
+  id: 1904
+  card_action_id: 17136
+  field: 3
+  value: f
+card_changes_1905:
+  id: 1905
+  card_action_id: 17136
+  field: 4
+  value: '3727'
+card_changes_1906:
+  id: 1906
+  card_action_id: 17136
+  field: 5
+  value: '649'
+card_changes_1907:
+  id: 1907
+  card_action_id: 68075
+  field: 2
+  value: 4 million+ sustainability data points across 100,000+ companies
+card_changes_1908:
+  id: 1908
+  card_action_id: 17140
+  field: 0
+  value:
+card_changes_1909:
+  id: 1909
+  card_action_id: 17140
+  field: 1
+  value: '2'
+card_changes_1910:
+  id: 1910
+  card_action_id: 17140
+  field: 2
+  value: There's more to do than can be done without you!
+card_changes_1911:
+  id: 1911
+  card_action_id: 17140
+  field: 3
+  value: f
+card_changes_1912:
+  id: 1912
+  card_action_id: 17140
+  field: 4
+  value: '3730'
+card_changes_1913:
+  id: 1913
+  card_action_id: 17140
+  field: 5
+  value: '649'
+card_changes_1914:
+  id: 1914
+  card_action_id: 68079
+  field: 2
+  value: WikiRate is powered by a passionate community of individuals and organizations
+    who are using open data to build a more sustainable future. Join us today!
+card_changes_1915:
+  id: 1915
+  card_action_id: 17143
+  field: 0
+  value:
+card_changes_1916:
+  id: 1916
+  card_action_id: 17143
+  field: 1
+  value: '43'
+card_changes_1917:
+  id: 1917
+  card_action_id: 17143
+  field: 2
+  value: Trending benchmarks
+card_changes_1918:
+  id: 1918
+  card_action_id: 17143
+  field: 3
+  value: f
+card_changes_1919:
+  id: 1919
+  card_action_id: 17143
+  field: 4
+  value: '3733'
+card_changes_1920:
+  id: 1920
+  card_action_id: 17143
+  field: 5
+  value: '50'
+card_changes_1921:
+  id: 1921
+  card_action_id: 68082
+  field: 2
+  value: Trending ratings
+card_changes_1922:
+  id: 1922
+  card_action_id: 17144
+  field: 0
+  value:
+card_changes_1923:
+  id: 1923
+  card_action_id: 17144
+  field: 1
+  value: '2'
+card_changes_1924:
+  id: 1924
+  card_action_id: 17144
+  field: 2
+  value: Delta, delta, delta, can I help ya, help ya, help ya?
+card_changes_1925:
+  id: 1925
+  card_action_id: 17144
+  field: 3
+  value: f
+card_changes_1926:
+  id: 1926
+  card_action_id: 17144
+  field: 4
+  value: '3733'
+card_changes_1927:
+  id: 1927
+  card_action_id: 17144
+  field: 5
+  value: '649'
+card_changes_1928:
+  id: 1928
+  card_action_id: 68083
+  field: 2
+  value: Designed by the [[https://wikirate.org/Apparel_Research_Group|Apparel Research
+    Group]] this [[https://wikirate.org/Apparel_Research_Group+ESG_Disclosure_Rate|ESG
+    Disclosure Rating]] assesses 35+ apparel companies on how transparent they are
+    about their sustainability policies and practices.
+card_changes_1929:
+  id: 1929
+  card_action_id: 17147
+  field: 0
+  value:
+card_changes_1930:
+  id: 1930
+  card_action_id: 17147
+  field: 1
+  value: '43'
+card_changes_1931:
+  id: 1931
+  card_action_id: 17147
+  field: 2
+  value: Our metric designers
+card_changes_1932:
+  id: 1932
+  card_action_id: 17147
+  field: 3
+  value: f
+card_changes_1933:
+  id: 1933
+  card_action_id: 17147
+  field: 4
+  value: '3736'
+card_changes_1934:
+  id: 1934
+  card_action_id: 17147
+  field: 5
+  value: '50'
+card_changes_1935:
+  id: 1935
+  card_action_id: 68086
+  field: 2
+  value: Metric designers
+card_changes_1936:
+  id: 1936
+  card_action_id: 17148
+  field: 0
+  value:
+card_changes_1937:
+  id: 1937
+  card_action_id: 17148
+  field: 1
+  value: '2'
+card_changes_1938:
+  id: 1938
+  card_action_id: 17148
+  field: 2
+  value: They pose the questions that WikiRate seeks to answer.
+card_changes_1939:
+  id: 1939
+  card_action_id: 17148
+  field: 3
+  value: f
+card_changes_1940:
+  id: 1940
+  card_action_id: 17148
+  field: 4
+  value: '3736'
+card_changes_1941:
+  id: 1941
+  card_action_id: 17148
+  field: 5
+  value: '649'
+card_changes_1942:
+  id: 1942
+  card_action_id: 68087
+  field: 2
+  value: Those who have developed metrics and methodologies to measure company performance
+    and generate standardized datasets.
+card_changes_1943:
+  id: 1943
+  card_action_id: 17154
+  field: 0
+  value:
+card_changes_1944:
+  id: 1944
+  card_action_id: 17154
+  field: 1
+  value: '43'
+card_changes_1945:
+  id: 1945
+  card_action_id: 17154
+  field: 2
+  value: Our Vision
+card_changes_1946:
+  id: 1946
+  card_action_id: 17154
+  field: 3
+  value: f
+card_changes_1947:
+  id: 1947
+  card_action_id: 17154
+  field: 4
+  value: '3741'
+card_changes_1948:
+  id: 1948
+  card_action_id: 17154
+  field: 5
+  value: '50'
+card_changes_1949:
+  id: 1949
+  card_action_id: 68092
+  field: 2
+  value: Our vision
+card_changes_1950:
+  id: 1950
+  card_action_id: 17158
+  field: 0
+  value:
+card_changes_1951:
+  id: 1951
+  card_action_id: 17158
+  field: 1
+  value: '43'
+card_changes_1952:
+  id: 1952
+  card_action_id: 17158
+  field: 2
+  value: Our Mission
+card_changes_1953:
+  id: 1953
+  card_action_id: 17158
+  field: 3
+  value: f
+card_changes_1954:
+  id: 1954
+  card_action_id: 17158
+  field: 4
+  value: '3744'
+card_changes_1955:
+  id: 1955
+  card_action_id: 17158
+  field: 5
+  value: '50'
+card_changes_1956:
+  id: 1956
+  card_action_id: 68097
+  field: 2
+  value: Our mission
+card_changes_1957:
+  id: 1957
+  card_action_id: 17159
+  field: 0
+  value:
+card_changes_1958:
+  id: 1958
+  card_action_id: 17159
+  field: 1
+  value: '2'
+card_changes_1959:
+  id: 1959
+  card_action_id: 17159
+  field: 2
+  value: Our mission is to empower better decision making and help tackle the world’s
+    challenges with open data.
+card_changes_1960:
+  id: 1960
+  card_action_id: 17159
+  field: 3
+  value: f
+card_changes_1961:
+  id: 1961
+  card_action_id: 17159
+  field: 4
+  value: '3744'
+card_changes_1962:
+  id: 1962
+  card_action_id: 17159
+  field: 5
+  value: '649'
+card_changes_1963:
+  id: 1963
+  card_action_id: 68098
+  field: 2
+  value: To empower better decision making and help tackle the world’s challenges
+    with open data.
+card_changes_1964:
+  id: 1964
+  card_action_id: 17095
+  field: 0
+  value:
+card_changes_1965:
+  id: 1965
+  card_action_id: 17095
+  field: 1
+  value: '2'
+card_changes_1966:
+  id: 1966
+  card_action_id: 17095
+  field: 2
+  value: "<p>Systematically gather environmental, social and governance data that
+    you think is important. Commitments, actions and impacts can be recorded to keep
+    track of specific companies or an entire sector.</p>"
+card_changes_1967:
+  id: 1967
+  card_action_id: 17095
+  field: 3
+  value: f
+card_changes_1968:
+  id: 1968
+  card_action_id: 17095
+  field: 4
+  value: '3694'
+card_changes_1969:
+  id: 1969
+  card_action_id: 17095
+  field: 5
+  value: '649'
+card_changes_1970:
+  id: 1970
+  card_action_id: 68103
+  field: 2
+  value: Systematically gather environmental, social and governance data that you
+    think is important. Commitments, actions and impacts can be recorded to keep track
+    of specific companies or entire sectors.
+card_changes_1971:
+  id: 1971
+  card_action_id: 17100
+  field: 0
+  value:
+card_changes_1972:
+  id: 1972
+  card_action_id: 17100
+  field: 1
+  value: '2'
+card_changes_1973:
+  id: 1973
+  card_action_id: 17100
+  field: 2
+  value: "<p>Join or start research projects with like-minded people from the WikiRate
+    community. Measure your collective progress, seek advice or simply stay in contact
+    about what’s important to you.</p>"
+card_changes_1974:
+  id: 1974
+  card_action_id: 17100
+  field: 3
+  value: f
+card_changes_1975:
+  id: 1975
+  card_action_id: 17100
+  field: 4
+  value: '3698'
+card_changes_1976:
+  id: 1976
+  card_action_id: 17100
+  field: 5
+  value: '649'
+card_changes_1977:
+  id: 1977
+  card_action_id: 68108
+  field: 2
+  value: Join or start research projects with like-minded people from the WikiRate
+    community. Measure your collective progress, seek advice or simply stay in contact
+    about what’s important to you.
+card_changes_1978:
+  id: 1978
+  card_action_id: 17105
+  field: 0
+  value:
+card_changes_1979:
+  id: 1979
+  card_action_id: 17105
+  field: 1
+  value: '2'
+card_changes_1980:
+  id: 1980
+  card_action_id: 17105
+  field: 2
+  value: "<p>Make standardize comparisons, monitor progress toward future targets,
+    rate companies, or set up multi-tiered benchmarks.</p>"
+card_changes_1981:
+  id: 1981
+  card_action_id: 17105
+  field: 3
+  value: f
+card_changes_1982:
+  id: 1982
+  card_action_id: 17105
+  field: 4
+  value: '3702'
+card_changes_1983:
+  id: 1983
+  card_action_id: 17105
+  field: 5
+  value: '649'
+card_changes_1984:
+  id: 1984
+  card_action_id: 68113
+  field: 2
+  value: Make standardize comparisons, monitor progress toward future targets, rate
+    companies, or set up multi-tiered benchmarks.
+card_changes_1985:
+  id: 1985
+  card_action_id: 17110
+  field: 0
+  value:
+card_changes_1986:
+  id: 1986
+  card_action_id: 17110
+  field: 1
+  value: '2'
+card_changes_1987:
+  id: 1987
+  card_action_id: 17110
+  field: 2
+  value: "<p>Companies do not operate in isolation. Map them to their business relations
+    like suppliers and investors to get a sense of how corporate networks function
+    and can be leveraged.</p>"
+card_changes_1988:
+  id: 1988
+  card_action_id: 17110
+  field: 3
+  value: f
+card_changes_1989:
+  id: 1989
+  card_action_id: 17110
+  field: 4
+  value: '3706'
+card_changes_1990:
+  id: 1990
+  card_action_id: 17110
+  field: 5
+  value: '649'
+card_changes_1991:
+  id: 1991
+  card_action_id: 68118
+  field: 2
+  value: Companies do not operate in isolation. Map them to their business relations
+    like suppliers and investors to get a sense of how corporate networks function
+    and can be leveraged.
+card_changes_1992:
+  id: 1992
+  card_action_id: 17115
+  field: 0
+  value:
+card_changes_1993:
+  id: 1993
+  card_action_id: 17115
+  field: 1
+  value: '2'
+card_changes_1994:
+  id: 1994
+  card_action_id: 17115
+  field: 2
+  value: "<p>Already have a pristine Data Set? Use the import tool or API to add your
+    data in bulk to the platform. From there, it can be combined with other datasets
+    or feed into live dashboards and tools that visualize your findings.</p>"
+card_changes_1995:
+  id: 1995
+  card_action_id: 17115
+  field: 3
+  value: f
+card_changes_1996:
+  id: 1996
+  card_action_id: 17115
+  field: 4
+  value: '3710'
+card_changes_1997:
+  id: 1997
+  card_action_id: 17115
+  field: 5
+  value: '649'
+card_changes_1998:
+  id: 1998
+  card_action_id: 68123
+  field: 2
+  value: Already have a pristine Data Set? Use the import tool or API to add your
+    data in bulk to the platform. From there, it can be combined with other datasets
+    or feed into live dashboards and tools that visualize your findings.
+card_changes_1999:
+  id: 1999
+  card_action_id: 17120
+  field: 0
+  value:
+card_changes_2000:
+  id: 2000
+  card_action_id: 17120
+  field: 1
+  value: '2'
+card_changes_2001:
+  id: 2001
+  card_action_id: 17120
+  field: 2
+  value: "<p>Explore the data made available by WikiRate’s community. Find what you
+    are looking for? Download unlimited Data Sets or connect via the API for regular
+    automated queries to make sure you always have the latest.</p>"
+card_changes_2002:
+  id: 2002
+  card_action_id: 17120
+  field: 3
+  value: f
+card_changes_2003:
+  id: 2003
+  card_action_id: 17120
+  field: 4
+  value: '3714'
+card_changes_2004:
+  id: 2004
+  card_action_id: 17120
+  field: 5
+  value: '649'
+card_changes_2005:
+  id: 2005
+  card_action_id: 68128
+  field: 2
+  value: Explore the data made available by WikiRate’s community. Find what you are
+    looking for? Download unlimited Data Sets or connect via the API for regular automated
+    queries to make sure you always have the latest.
+card_changes_2006:
+  id: 2006
+  card_action_id: 17124
+  field: 0
+  value:
+card_changes_2007:
+  id: 2007
+  card_action_id: 17124
+  field: 1
+  value: '2'
+card_changes_2008:
+  id: 2008
+  card_action_id: 17124
+  field: 2
+  value: "Licensed under CC BY 4.0 the data can be accessed, used and shared by anyone.
+    \nThe only requirement: attribution.\n"
+card_changes_2009:
+  id: 2009
+  card_action_id: 17124
+  field: 3
+  value: f
+card_changes_2010:
+  id: 2010
+  card_action_id: 17124
+  field: 4
+  value: '3718'
+card_changes_2011:
+  id: 2011
+  card_action_id: 17124
+  field: 5
+  value: '649'
+card_changes_2012:
+  id: 2012
+  card_action_id: 68133
+  field: 2
+  value: Democratizing the ESG space, WikiRate is a tool for everyone. Get involved
+    and help shape the future.
+card_changes_2013:
+  id: 2013
+  card_action_id: 40395
+  field: 0
+  value:
+card_changes_2014:
+  id: 2014
+  card_action_id: 40395
+  field: 1
+  value: '43'
+card_changes_2015:
+  id: 2015
+  card_action_id: 40395
+  field: 2
+  value: diamond
+card_changes_2016:
+  id: 2016
+  card_action_id: 40395
+  field: 3
+  value: f
+card_changes_2017:
+  id: 2017
+  card_action_id: 40395
+  field: 4
+  value: '3718'
+card_changes_2018:
+  id: 2018
+  card_action_id: 40395
+  field: 5
+  value: '3909'
+card_changes_2019:
+  id: 2019
+  card_action_id: 68134
+  field: 2
+  value: group
+card_changes_2020:
+  id: 2020
+  card_action_id: 17128
+  field: 0
+  value:
+card_changes_2021:
+  id: 2021
+  card_action_id: 17128
+  field: 1
+  value: '2'
+card_changes_2022:
+  id: 2022
+  card_action_id: 17128
+  field: 2
+  value: "There are no costs, ever, for using the data. We are all impacted by companies.\nSharing
+    the data freely means everyone can get more informed and be the change \nthey
+    want to see.\n"
+card_changes_2023:
+  id: 2023
+  card_action_id: 17128
+  field: 3
+  value: f
+card_changes_2024:
+  id: 2024
+  card_action_id: 17128
+  field: 4
+  value: '3721'
+card_changes_2025:
+  id: 2025
+  card_action_id: 17128
+  field: 5
+  value: '649'
+card_changes_2026:
+  id: 2026
+  card_action_id: 68138
+  field: 2
+  value: The challenges we face are too big to tackle alone and time is of the essence.
+    We work together and build on each other’s work.
+card_changes_2027:
+  id: 2027
+  card_action_id: 40400
+  field: 0
+  value:
+card_changes_2028:
+  id: 2028
+  card_action_id: 40400
+  field: 1
+  value: '43'
+card_changes_2029:
+  id: 2029
+  card_action_id: 40400
+  field: 2
+  value: diamond
+card_changes_2030:
+  id: 2030
+  card_action_id: 40400
+  field: 3
+  value: f
+card_changes_2031:
+  id: 2031
+  card_action_id: 40400
+  field: 4
+  value: '3721'
+card_changes_2032:
+  id: 2032
+  card_action_id: 40400
+  field: 5
+  value: '3909'
+card_changes_2033:
+  id: 2033
+  card_action_id: 68139
+  field: 2
+  value: handshake
+card_changes_2034:
+  id: 2034
+  card_action_id: 17132
+  field: 0
+  value:
+card_changes_2035:
+  id: 2035
+  card_action_id: 17132
+  field: 1
+  value: '2'
+card_changes_2036:
+  id: 2036
+  card_action_id: 17132
+  field: 2
+  value: "There are no costs, ever, for using the data. We are all impacted by companies.
+    \nSharing the data freely means everyone can get more informed and be the change
+    \nthey want to see.\n"
+card_changes_2037:
+  id: 2037
+  card_action_id: 17132
+  field: 3
+  value: f
+card_changes_2038:
+  id: 2038
+  card_action_id: 17132
+  field: 4
+  value: '3724'
+card_changes_2039:
+  id: 2039
+  card_action_id: 17132
+  field: 5
+  value: '649'
+card_changes_2040:
+  id: 2040
+  card_action_id: 68143
+  field: 2
+  value: Open principles govern the data, the technology and the community.
+card_changes_2041:
+  id: 2041
+  card_action_id: 40405
+  field: 0
+  value:
+card_changes_2042:
+  id: 2042
+  card_action_id: 40405
+  field: 1
+  value: '43'
+card_changes_2043:
+  id: 2043
+  card_action_id: 40405
+  field: 2
+  value: diamond
+card_changes_2044:
+  id: 2044
+  card_action_id: 40405
+  field: 3
+  value: f
+card_changes_2045:
+  id: 2045
+  card_action_id: 40405
+  field: 4
+  value: '3724'
+card_changes_2046:
+  id: 2046
+  card_action_id: 40405
+  field: 5
+  value: '3909'
+card_changes_2047:
+  id: 2047
+  card_action_id: 68144
+  field: 2
+  value: emoji_objects
+card_changes_2048:
+  id: 2048
+  card_action_id: 68147
+  field: 2
+  value: The largest open registry of corporate sustainability data in the world
+card_changes_2049:
+  id: 2049
+  card_action_id: 68148
+  field: 2
+  value: WikiRate has public data on companies from all sectors, covering their environmental,
+    social, and governance performance.
+card_changes_2050:
+  id: 2050
+  card_action_id: 40445
+  field: 0
+  value:
+card_changes_2051:
+  id: 2051
+  card_action_id: 40445
+  field: 1
+  value: '43'
+card_changes_2052:
+  id: 2052
+  card_action_id: 40445
+  field: 2
+  value: diamond
+card_changes_2053:
+  id: 2053
+  card_action_id: 40445
+  field: 3
+  value: f
+card_changes_2054:
+  id: 2054
+  card_action_id: 40445
+  field: 4
+  value: '3759'
+card_changes_2055:
+  id: 2055
+  card_action_id: 40445
+  field: 5
+  value: '3909'
+card_changes_2056:
+  id: 2056
+  card_action_id: 68162
+  field: 2
+  value: lock_open
+card_changes_2057:
+  id: 2057
+  card_action_id: 68167
+  field: 2
+  value: savings
+card_changes_2058:
+  id: 2058
+  card_action_id: 68172
+  field: 2
+  value: interests
+card_changes_2059:
+  id: 2059
+  card_action_id: 17245
+  field: 0
+  value:
+card_changes_2060:
+  id: 2060
+  card_action_id: 17245
+  field: 1
+  value: '43'
+card_changes_2061:
+  id: 2061
+  card_action_id: 17245
+  field: 2
+  value: "/Use_our_API"
+card_changes_2062:
+  id: 2062
+  card_action_id: 17245
+  field: 3
+  value: f
+card_changes_2063:
+  id: 2063
+  card_action_id: 17245
+  field: 4
+  value: '3810'
+card_changes_2064:
+  id: 2064
+  card_action_id: 17245
+  field: 5
+  value: '45'
+card_changes_2065:
+  id: 2065
+  card_action_id: 68219
+  field: 2
+  value: https://docs.google.com/forms/d/e/1FAIpQLSfbFvu_2hXWc8kouNz8ZCkwnfBrVNKP7p7HJuc8YHL_6oXNgQ/viewform
+card_changes_2066:
+  id: 2066
+  card_action_id: 68237
+  field: 2
+  value: Get in touch with the Wikirate team to set up a project.
+card_changes_2067:
+  id: 2067
+  card_action_id: 68262
+  field: 2
+  value: Get email updates on the latest developments
+card_changes_2068:
+  id: 2068
+  card_action_id: 68267
+  field: 2
+  value: Project organizers
+card_changes_2069:
+  id: 2069
+  card_action_id: 50529
+  field: 0
+  value:
+card_changes_2070:
+  id: 2070
+  card_action_id: 50529
+  field: 1
+  value: '43'
+card_changes_2071:
+  id: 2071
+  card_action_id: 50529
+  field: 2
+  value: https://lotr.fandom.com/wiki/Denethor_II
+card_changes_2072:
+  id: 2072
+  card_action_id: 50529
+  field: 3
+  value: f
+card_changes_2073:
+  id: 2073
+  card_action_id: 50529
+  field: 4
+  value: '3943'
+card_changes_2074:
+  id: 2074
+  card_action_id: 50529
+  field: 5
+  value: '45'
+card_changes_2075:
+  id: 2075
+  card_action_id: 68272
+  field: 2
+  value: https://wikirate-intl.org/Contact_Us
+card_changes_2076:
+  id: 2076
+  card_action_id: 68273
+  field: 2
+  value: Learn how you can set up and coordinate your own research projects on WikiRate.
+    Get in touch with the WikiRate team to find out about the next steward training.
+card_changes_2077:
+  id: 2077
+  card_action_id: 68286
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_2078:
+  id: 2078
+  card_action_id: 68317
+  field: 0
+  value: Wikirate Policies
+card_changes_2079:
+  id: 2079
+  card_action_id: 68319
+  field: 2
+  value: "Our policies and guidelines provide support and safeguard our community
+    and \norganization. They make explicit what being a part of the Wikirate community
+    is all\nabout.\n"
+card_changes_2080:
+  id: 2080
+  card_action_id: 68322
+  field: 0
+  value: Our story
+card_changes_2081:
+  id: 2081
+  card_action_id: 68342
+  field: 2
+  value: '2020'
+card_changes_2082:
+  id: 2082
+  card_action_id: 68343
+  field: 2
+  value: "(s3_staging_bucket)/3859/68343.png"
+card_changes_2083:
+  id: 2083
+  card_action_id: 68345
+  field: 2
+  value: Death Star
+card_changes_2084:
+  id: 2084
+  card_action_id: 68346
+  field: 2
+  value: |
+    <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
+    <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">WikiRate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+    <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
+    <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>

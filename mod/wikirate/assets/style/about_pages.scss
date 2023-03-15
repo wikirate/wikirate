@@ -83,6 +83,13 @@
 .item-stack {
   width: 30%;
   margin: 1% !important;
+  .blurb-icon {
+    width: 80px;
+    height: 80px;
+    i {
+      font-size: 40px;
+    }
+  }
 }
 
 .bg-light-purple {
