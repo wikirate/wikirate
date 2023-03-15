@@ -43,7 +43,7 @@
 .fancy-counts {
   .large-icon  i {
     font-size: 4rem;
-    &.material-icons {
+    &.material-icons, &.material-symbols-round {
       padding: 1rem;
     }
   }
@@ -83,6 +83,13 @@
 .item-stack {
   width: 30%;
   margin: 1% !important;
+  .blurb-icon {
+    width: 80px;
+    height: 80px;
+    i {
+      font-size: 40px;
+    }
+  }
 }
 
 .bg-light-purple {
@@ -141,7 +148,7 @@
 #impact-card, .cta-card, .action-card .card, .endorsement-summary {
   box-shadow: $box-shadow-sm;
   &:hover {
-    box-shadow: $box-shadow-lg;
+    box-shadow: $box-shadow;
   }
 }
 
@@ -158,6 +165,7 @@
   .btn.wr-arrow {
     color: $orange;
     &:hover {
+      color: $white;
       background-color: $orange;
     }
   }
@@ -173,11 +181,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: $box-shadow-sm;
   &:hover {
+    box-shadow: $box-shadow;
     background-color: $purple;
     color: $white;
   }
-  box-shadow: $box-shadow
 }
 .justify-content-center .wr-arrow {
   margin: 0.4em;
@@ -267,6 +276,17 @@
   .slick-center {
     .company-slide-detail, .thumbnail-text {
       display: block;
+    }
+  }
+}
+
+.company-slides {
+  .image-box {
+    background-color: inherit;
+    border-radius: 0;
+    padding: 0;
+    img {
+      padding: 0;
     }
   }
 }

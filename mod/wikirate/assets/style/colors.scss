@@ -367,7 +367,7 @@ $lightMap: (
 .btn-purple {
   background: $purple;
   color: white;
-  box-shadow: $box-shadow;
+  box-shadow: $box-shadow-sm;
 
   padding: 0.7rem 2rem;
   min-width: 165px;
@@ -381,7 +381,7 @@ $lightMap: (
     color: white;
   }
   &:active {
-    box-shadow: $box-shadow-lg;
+    box-shadow: $box-shadow;
     color: $purple;
     background: $gray-200;
   }
