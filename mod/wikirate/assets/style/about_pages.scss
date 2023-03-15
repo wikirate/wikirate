@@ -43,7 +43,7 @@
 .fancy-counts {
   .large-icon  i {
     font-size: 4rem;
-    &.material-icons {
+    &.material-icons, &.material-symbols-round {
       padding: 1rem;
     }
   }
