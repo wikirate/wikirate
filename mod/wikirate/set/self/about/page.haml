@@ -20,12 +20,13 @@
 
 %section#our-values-section.container.py-5
   .py-4.text-center
-    = nest %i[value blurb], view: :titled, title: "Our values", items: { view: :stack }
+    = nest %i[value blurb], view: :titled, hide: :menu, title: "Our values",
+                            items: { view: :stack }
 
 %section#our-story-section.container-fluid.text-center.py-4
   .container.py-5
     .d-inline-block.w-66.text-start.p-3
-      = nest :our_story, view: :titled
+      = nest :our_story, view: :titled, hide: :menu
 
 %section#about-ctas.container.py-5
   .row.py-5
