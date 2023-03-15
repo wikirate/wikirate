@@ -37,6 +37,11 @@ $social-colors: (
       max-height: 2.25rem
     }
   }
+  @include media-breakpoint-up(md) {
+    .wikirate-licensing {
+      text-align: end;
+    }
+  }
 }
 
 @each $platform, $color in $social-colors {
