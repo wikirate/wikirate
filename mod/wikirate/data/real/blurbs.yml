@@ -37,14 +37,14 @@
   :type: :blurb
   :codename: :platform_vision
   :fields:
-    :title: Our Vision
+    :title: Our vision
     :body: "A world in which everyone can understand and shape company impacts."
     :icon: visibility
 - :name: Blurb 0023
   :type: :blurb
   :codename: :platform_mission
   :fields:
-    :title: Our Mission
+    :title: Our mission
     :body: "To empower better decision making and help tackle the world’s challenges
       with open data."
     :icon: rocket_launch
@@ -62,7 +62,7 @@
   :codename: :collaborate_blurb
   :fields:
     :title: Collaborate
-    :body: "Join or start research projects with like-minded people from the Wikirate
+    :body: "Join or start research projects with like-minded people from the WikiRate
       community. Measure your collective progress, seek advice or simply stay in contact
       about what’s important to you."
     :icon: people
@@ -108,7 +108,7 @@
     :title: People-powered
     :body: "Democratizing the ESG space, WikiRate is a tool for everyone. Get involved
       and help shape the future."
-    :icon: diamond
+    :icon: group
 - :name: Blurb 0031
   :type: :blurb
   :codename: :values_blurb2
@@ -116,14 +116,14 @@
     :title: Collaborative
     :body: "The challenges we face are too big to tackle alone and time is of the
       essence. We work together and build on each other’s work."
-    :icon: diamond
+    :icon: handshake
 - :name: Blurb 0032
   :type: :blurb
   :codename: :values_blurb3
   :fields:
     :title: Transparent
     :body: "Open principles govern the data, the technology and the community."
-    :icon: diamond
+    :icon: emoji_objects
 - :name: Blurb 0033
   :type: :blurb
   :codename: :data_main_heading
@@ -143,9 +143,9 @@
   :codename: :data_reliable
   :fields:
     :title: Why is our data so reliable?
-    :body: "Many of our datasets come from expert organizations and are already
-      verified. For data added by the community through collaborative research projects,
-      different mechanisms are in place to ensure its accuracy."
+    :body: "Many of our datasets come from expert organizations and
+      are already verified. For data added by the community through collaborative
+      research projects, different mechanisms are in place to ensure its accuracy."
 - :name: Blurb 0036
   :type: :blurb
   :codename: :data_usage
@@ -160,7 +160,7 @@
     :title: Open
     :body: "Licensed under CC BY 4.0 the data can be accessed, used and shared
       by anyone. The only requirement: attribution."
-    :icon: diamond
+    :icon: lock_open
 - :name: Blurb 0038
   :type: :blurb
   :codename: :data_special2
@@ -168,7 +168,7 @@
     :title: Free
     :body: "We are all impacted by companies. Sharing the data freely means everyone
       can get more informed and be the change they want to see."
-    :icon: diamond
+    :icon: savings
 - :name: Blurb 0039
   :type: :blurb
   :codename: :data_special3
@@ -176,7 +176,7 @@
     :title: Diverse
     :body: "We host data from any public source (not just self-reported company
       data). This means more nuanced insights on company actions and impacts."
-    :icon: diamond
+    :icon: interests
 - :name: Blurb 0040
   :type: :blurb
   :codename: :data_reliable1
@@ -261,7 +261,7 @@
   :fields:
     :title: Let’s set up a project together
     :uri: https://wikirateproject.org/Contact_Us
-    :body: "Get in touch with the Wikirate team to set up a project."
+    :body: "Get in touch with the WikiRate team to set up a project."
 - :name: Blurb 0051
   :type: :blurb
   :codename: :community_action3
@@ -275,6 +275,7 @@
   :codename: :community_action4
   :fields:
     :title: Join the conversation
+    :uri: https://docs.google.com/forms/d/e/1FAIpQLSfbFvu_2hXWc8kouNz8ZCkwnfBrVNKP7p7HJuc8YHL_6oXNgQ/viewform
     :body: "Stay connected, learn and troubleshoot on WikiRate’s community Slack
       channel."
 - :name: Blurb 0053
@@ -283,16 +284,16 @@
   :fields:
     :title: Sign up now
     :uri: "/new/:signup"
-    :body: "You, too, can hold companies accountable for their commitments and impacts
-      on people and the planet."
+    :body: You, too, can hold companies accountable for their commitments and impacts
+      on people and the planet.
 - :name: Blurb 0054
   :type: :blurb
   :codename: :homepage_action2
   :fields:
     :title: Join an upcoming event
     :uri: https://www.wikirateproject.org/events
-    :body: "Meet, learn, and connect on real-world projects that use open data to
-      make the world more sustainable and equitable."
+    :body: Meet, learn, and connect on real-world projects that use open data to make
+      the world more sustainable and equitable.
 - :name: Blurb 0055
   :type: :blurb
   :codename: :homepage_action3
@@ -314,32 +315,32 @@
   :fields:
     :title: Add your dataset
     :uri: https://wikirate.org/Import_Answers
-    :body: "Learn how to make your data available for others to use and build on by
-      archiving it on the platform."
+    :body: Learn how to make your data available for others to use and build on by
+      archiving it on the platform.
 - :name: Blurb 0058
   :type: :blurb
   :codename: :homepage_action6
   :fields:
     :title: Use our API
     :uri: https://wikirate.org/Use_the_API
-    :body: "Check out how you can access WikiRate data programmatically using our
-      powerful REST API."
+    :body: Check out how you can access WikiRate data programmatically using our powerful
+      REST API.
 - :name: Blurb 0059
   :type: :blurb
   :codename: :community_cta
   :fields:
     :title: Check out the latest contribution opportunities
     :uri: https://express.adobe.com/page/o6z9GKWQ6z6lT/
-    :body: Cannot wait to get involved? Explore the latest projects that could really
-      use your help.
+    :body: "Cannot wait to get involved? Explore the latest projects that could
+      really use your help."
     :icon: volunteer_activism
 - :name: Blurb 0060
   :type: :blurb
   :codename: :about_cta
   :fields:
-    :title: Partner with Wikirate International
+    :title: Partner with WikiRate International
     :uri: https://wikirateproject.org/About_Us
-    :body: "Check out the ways in which the Wikirate team can help you"
+    :body: "Check out the ways in which the WikiRate team can help you"
     :icon: handshake
 - :name: Blurb 0061
   :type: :blurb
@@ -347,33 +348,35 @@
   :fields:
     :title: Talk to a human
     :uri: https://wikirateproject.org/Contact_Us
-    :body: "Contact us at Wikirate International"
+    :body: "Contact us at WikiRate International"
 - :name: Blurb 0062
   :type: :blurb
   :codename: :contact_cta2
   :fields:
-    :title: Get email updates on the latest community and platform developments
+    :title: Get email updates on the latest developments
     :uri: https://wikirate.us7.list-manage.com/subscribe/post?u=be57db47b40c6b1c7e9ef0b36&id=1354650004
     :body: "Subscribe for updates"
 - :name: Blurb 0063
   :type: :blurb
   :codename: :project_organizer_heading
   :fields:
-    :title: Project Organizers
-    :body: "Individuals or organizations coordinating a collaborative assessment of
-      companies on a topic relevant for their work, research, or everyday life."
+    :title: Project organizers
+    :body: "Individuals or organizations coordinating a collaborative assessment
+      of companies on a topic relevant for their work, research, or everyday life."
 - :name: Blurb 0064
   :type: :blurb
   :codename: :community_action5
   :fields:
     :title: Become a steward
     :uri: https://lotr.fandom.com/wiki/Denethor_II
-    :body: But not like the one in LoTR. He sucked.
+    :body: "Learn how you can set up and coordinate your own research projects
+      on WikiRate. Get in touch with the WikiRate team to find out about the next
+      steward training."
 - :name: Blurb 0065
   :type: :blurb
   :codename: :community_action6
   :fields:
     :title: Subscribe for updates
     :uri: https://www.google.com/url?q=https://wikirate.us7.list-manage.com/subscribe/post?u%3Dbe57db47b40c6b1c7e9ef0b36%26id%3D1354650004&sa=D&source=docs&ust=1678294845108552&usg=AOvVaw0nkvJbGmeOiIS0FK9IuiVt
-    :body: "Stay up to date on the latest community and platform developments by subscribing
-      to our newsletter."
+    :body: "Stay up to date on the latest community and platform developments by
+      subscribing to our newsletter."
