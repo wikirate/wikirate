@@ -7,7 +7,7 @@
     :stylesheets: ""
     :colors: |
       $blue: #2D2374 !default;
-      $purple: #484c9d !default;
+      $purple: #7164D0 !default;
       $red: #912e06 !default;
       $orange: #f7733d !default;
       $yellow: #f7bd1d !default;
@@ -27,13 +27,13 @@
       $gray-900: #34343b !default;
 
       $primary: $purple !default;
-      $secondary: $gray-600 !default;
+      $secondary: #6b6b7a !default;
       $success: $teal !default;
       $info: $purple !default;
       $warning: $orange !default;
-      $danger: $red !default;
+      $danger: #DD4549 !default;
       $light: $gray-100 !default;
-      $dark: $black !default;
+      $dark: $blue !default;
       $body-bg: $white !default;
       $body-color: $gray-900 !default;
     :variables: |
@@ -61,7 +61,7 @@
 
       $score-colors: (
         "0": $red,
-        "1": #EA5C43,
+        "1": $danger,
         "2": $orange,
         "3": #F7923D,
         "4": $yellow-orange,
