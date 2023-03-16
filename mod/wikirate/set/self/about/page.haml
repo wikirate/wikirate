@@ -20,8 +20,11 @@
 
 %section#our-values-section.container.py-5
   .py-4.text-center
-    = nest %i[value blurb], view: :titled, hide: :menu, title: "Our values",
-                            items: { view: :stack }
+    %h2.py-3 Our values
+    .row.justify-content-center
+      - %i[value blurb].card.item_cards.each do |blurb|
+        .col-12.col-sm-6.col-md-4.p-3
+          = nest blurb, view: :stack
 
 %section#our-story-section.container-fluid.text-center.py-4
   .container.py-5
