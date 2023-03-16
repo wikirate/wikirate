@@ -10,6 +10,10 @@
       %h1
         = nest cat, view: :count
       .py-1
-        = link_to_card cat, count_label(cat)
+        - if %i[account designer].member? cat
+          %a
+            = count_label cat
+        - else
+          = link_to_card cat, count_label(cat)
       -# .count-description
       -#   = nest [cat, :header], view: :core

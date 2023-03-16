@@ -226,7 +226,7 @@
   :codename: :community_action2
   :fields:
     :title: Let’s set up a project together
-    :uri: https://wikirateproject.org/Contact_Us
+    :uri: https://wikirate-intl.org/Contact_Us
     :body: "Get in touch with the WikiRate team to set up a project."
 - :type: :blurb
   :codename: :community_action3
@@ -253,7 +253,7 @@
   :codename: :homepage_action2
   :fields:
     :title: Join an upcoming event
-    :uri: https://www.wikirateproject.org/events
+    :uri: https://www.wikirate-intl.org/events
     :body: Meet, learn, and connect on real-world projects that use open data to make
       the world more sustainable and equitable.
 - :type: :blurb
@@ -267,7 +267,7 @@
   :codename: :homepage_action4
   :fields:
     :title: Let’s set up a project together
-    :uri: https://wikirateproject.org/Contact_Us
+    :uri: https://wikirate-intl.org/Contact_Us
     :body: Get in touch with the Wikirate team to set up a project.
 - :type: :blurb
   :codename: :homepage_action5
@@ -295,14 +295,14 @@
   :codename: :about_cta
   :fields:
     :title: Partner with WikiRate International
-    :uri: https://wikirateproject.org/About_Us
+    :uri: https://wikirate-intl.org/Our_work
     :body: "Check out the ways in which the WikiRate team can help you"
     :icon: handshake
 - :type: :blurb
   :codename: :contact_cta1
   :fields:
     :title: Talk to a human
-    :uri: https://wikirateproject.org/Contact_Us
+    :uri: https://wikirate-intl.org/Contact_Us
     :body: "Contact us at WikiRate International"
 - :type: :blurb
   :codename: :contact_cta2

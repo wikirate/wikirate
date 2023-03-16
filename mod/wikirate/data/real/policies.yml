@@ -3,13 +3,13 @@
   :type: :policy
   :content: "<p>The citation page is work in progress. This page will facilitate proper
     citation of authors of any data set you want to use. If you have any comments,
-    questions or suggestions please do not hesitate to [[https://wikirateproject.org/Contact_us|contact
+    questions or suggestions please do not hesitate to [[https://wikirate-intl.org/Contact_us|contact
     us]].</p>"
   :fields:
     :description: "<p>How to appropriately attribute and cite the data hosted on WikiRate.</p>"
     :fulltext: "<p>The citation page is work in progress. This page will facilitate
       proper citation of authors of any data set you want to use. If you have any
-      comments, questions or suggestions please do not hesitate to [[https://wikirateproject.org/Contact_us|contact
+      comments, questions or suggestions please do not hesitate to [[https://wikirate-intl.org/Contact_us|contact
       us]].</p>"
 - :name: Community Guidelines
   :type: :policy
