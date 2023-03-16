@@ -77,4 +77,9 @@ format :html do
     field_nest field, opts.merge(view: :labeled,
                                  items: (opts[:items] || {}).merge(view: item_view))
   end
+
+  def material_symbol_tag symbol, opts={}
+    add_class opts, "material-symbols-round"
+    wrap_with :i, symbol, opts
+  end
 end

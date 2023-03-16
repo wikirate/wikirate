@@ -2,13 +2,13 @@
 openapi: 3.0.0
 info:
   description: |-
-    API to access WikiRate's data. To get the JSON responses as described below, you can (1) set the http access header to `application/json` in your request, (2) append `.json` to the request urls, or (3) add `format=json` to the query params.
+    API to access Wikirate's data. To get the JSON responses as described below, you can (1) set the http access header to `application/json` in your request, (2) append `.json` to the request urls, or (3) add `format=json` to the query params.
 
-      WikiRate is built with Decko, and is thus constructed from _cards_. Everything in Decko is a card, including images, accounts, searches, fields, etc. So every request for a webpage on WikiRate.org or via its REST API is for a _card_.
+      Wikirate is built with Decko, and is thus constructed from _cards_. Everything in Decko is a card, including images, accounts, searches, fields, etc. So every request for a webpage on Wikirate.org or via its REST API is for a _card_.
 
-      The documentation below is divided into generic Decko card documentation (under `Decko`) and more WikiRate-specific cardtypes (under `WikiRate`).
+      The documentation below is divided into generic Decko card documentation (under `Decko`) and more Wikirate-specific cardtypes (under `Wikirate`).
   version: 0.20.2
-  title: WikiRate API
+  title: Wikirate API
   contact:
     email: info@decko.org
   license:
@@ -17,11 +17,11 @@ info:
 tags:
 - name: Decko
   description: |-
-    "Cards" are the building blocks of Decko (and thus WikiRate). All requests
+    "Cards" are the building blocks of Decko (and thus Wikirate). All requests
     are CRUD operations on cards.
-- name: WikiRate
+- name: Wikirate
   description: |-
-    RESTful Decko api calls can be made with any card on WikiRate. The
+    RESTful Decko api calls can be made with any card on Wikirate. The
     following examples feature some customized JSON views.
 paths:
   "/{mark}":
@@ -90,7 +90,7 @@ paths:
   "/Company":
     get:
       tags:
-      - WikiRate
+      - Wikirate
       summary: company index (cardtype) card
       description: |-
         The card 'Company' is a Cardtype card; all companies have this type.
@@ -114,7 +114,7 @@ paths:
                     example: Company
                   url:
                     type: string
-                    example: https://wikirate.org/Company.json
+                    example: https://Wikirate.org/Company.json
                   type:
                     "$ref": "#/components/schemas/nucleus%20view"
                   codename:
@@ -122,7 +122,7 @@ paths:
                     example: company
                   html_url:
                     type: string
-                    example: https://wikirate.org/Company
+                    example: https://Wikirate.org/Company
                   links:
                     type: array
                     items:
@@ -137,7 +137,7 @@ paths:
   "/{company}":
     get:
       tags:
-      - WikiRate
+      - Wikirate
       summary: a company
       description: |-
         Basic company details. Answers for this company can be found via its
@@ -161,7 +161,7 @@ paths:
                     example: Apple Inc
                   url:
                     type: string
-                    example: https://wikirate.org/Apple_Inc.json
+                    example: https://Wikirate.org/Apple_Inc.json
                   type:
                     "$ref": "#/components/schemas/nucleus%20view"
                   wikipedia:
@@ -185,18 +185,18 @@ paths:
                     - California (United States)
                   answers_url:
                     type: string
-                    example: https://wikirate.org/Apple_Inc+answers.json
+                    example: https://Wikirate.org/Apple_Inc+answers.json
         404:
           "$ref": "#/components/responses/404"
   "/{company}+Answer":
     get:
       tags:
-      - WikiRate
+      - Wikirate
       summary: Answers for company
       description: |-
         Answer names follow the pattern `{Metric}+{Company}+{Year}`.
 
-        Note that request URLS can be generated on company pages on WikiRate.org.
+        Note that request URLS can be generated on company pages on Wikirate.org.
       operationId: read9
       parameters:
       - "$ref": "#/components/parameters/company"
@@ -209,7 +209,7 @@ paths:
   "/Metric":
     get:
       tags:
-      - WikiRate
+      - Wikirate
       summary: metric index (cardtype) card
       description: |-
         All metrics have this type. Includes a paged list of all metrics
@@ -230,10 +230,10 @@ paths:
                     example: Metric
                   url:
                     type: string
-                    example: https://wikirate.org/Metric.json
+                    example: https://Wikirate.org/Metric.json
                   html_url:
                     type: string
-                    example: https://wikirate.org/Metric
+                    example: https://Wikirate.org/Metric
                   type:
                     "$ref": "#/components/schemas/nucleus%20view"
                   codename:
@@ -247,7 +247,7 @@ paths:
   "/{metric}":
     get:
       tags:
-      - WikiRate
+      - Wikirate
       summary: a metric
       description: Basic metric details. Answers for this metric can be found via
         its `answers_url`.
@@ -264,12 +264,12 @@ paths:
   "/{metric}+Answer":
     get:
       tags:
-      - WikiRate
+      - Wikirate
       summary: Answers for metric
       description: |-
         Answer names follow the pattern `{Metric}+{Company}+{Year}`.
 
-        Note that request URLS can be generated on metric pages on WikiRate.org.
+        Note that request URLS can be generated on metric pages on Wikirate.org.
       operationId: read12
       parameters:
       - "$ref": "#/components/parameters/metric"
@@ -282,7 +282,7 @@ paths:
   "/{metric}+{company}":
     get:
       tags:
-      - WikiRate
+      - Wikirate
       summary: A record for a metric/company
       description: A record contains all of a company's answers to a given metric
         (for all years). Answers are included under `items`.
@@ -300,7 +300,7 @@ paths:
   "/{metric}+{company}+{year}":
     put:
       tags:
-      - WikiRate
+      - Wikirate
       summary: update an answer card
       description: Update the answer for a specific metric company and year.
       parameters:
@@ -315,7 +315,7 @@ paths:
           "$ref": "#/components/responses/404"
     get:
       tags:
-      - WikiRate
+      - Wikirate
       summary: An answer for a metric/company/year
       description: An answer includes a value and various bits of metadata, including
         sources, discussions, and verification. For relationship metrics, it also
@@ -335,7 +335,7 @@ paths:
   "/{metric}+{company}+{year}+{company}":
     get:
       tags:
-      - WikiRate
+      - Wikirate
       summary: company-to-company relationship answer
       description: Relationship metrics ask questions about relationships between
         companies. Each answer to these metrics is comprised of one or more relationship
@@ -355,7 +355,7 @@ paths:
   "/ #card[type]=Company":
     post:
       tags:
-      - WikiRate
+      - Wikirate
       summary: create a company card
       description: 'Create a new company card. Alternative: a GET request with /card/create'
       parameters:
@@ -367,7 +367,7 @@ paths:
   "/ #card[type]=Answer":
     post:
       tags:
-      - WikiRate
+      - Wikirate
       summary: create an answer card
       description: Create a new answer to a specified metric, company, and year.
       parameters:
@@ -379,7 +379,7 @@ paths:
   "/ #card[type]=Source":
     post:
       tags:
-      - WikiRate
+      - Wikirate
       summary: create an Source card
       description: Create a source record that can be cited by answers.
       parameters:
@@ -392,11 +392,11 @@ externalDocs:
   url: http://decko.org
 servers:
 - description: SwaggerHub API Auto Mocking
-  url: https://virtserver.swaggerhub.com/Decko/WikiRate/0.6
+  url: https://virtserver.swaggerhub.com/Decko/Wikirate/0.6
 - description: live server
-  url: https://wikirate.org
+  url: https://Wikirate.org
 - description: staging server
-  url: https://staging.wikirate.org
+  url: https://staging.Wikirate.org
 components:
   parameters:
     cardmark:
@@ -604,10 +604,10 @@ components:
         - **+company**: a newline-separated list of companies to which the source applies
         - **+year**: a newline-separated list of years to which the the source applies
         - **+report type**: a newline-separate list of report types to which the source
-          applies.  (See http://wikirate.org/Report_Type
+          applies.  (See http://Wikirate.org/Report_Type
 
         The above requirements are extremely helpful in making the sources usable via
-        WikiRate's research pages.  However, if you plan to use the sources immediately
+        Wikirate's research pages.  However, if you plan to use the sources immediately
         in a citation (eg via uploads or API calls), you may avoid the requirements using
         `card[skip]=requirements`.
 
@@ -699,7 +699,7 @@ components:
           example: Apple Inc
         url:
           type: string
-          example: https://wikirate.org/Apple_Inc.json
+          example: https://Wikirate.org/Apple_Inc.json
         type:
           type: string
           example: Company
@@ -733,7 +733,7 @@ components:
           example: PayScale+CEO to Worker pay
         url:
           type: string
-          example: https://wikirate.org/PayScale+CEO_to_Worker_pay.json
+          example: https://Wikirate.org/PayScale+CEO_to_Worker_pay.json
         type:
           type: string
           example: Metric
@@ -745,7 +745,7 @@ components:
           example: CEO to Worker pay
         answers_url:
           type: string
-          example: https://wikirate.org/PayScale+CEO_to_Worker_pay+answer.json
+          example: https://Wikirate.org/PayScale+CEO_to_Worker_pay+answer.json
         ancestors:
           type: array
           items:
@@ -785,10 +785,10 @@ components:
           example: PayScale+CEO to Worker pay+Apple Inc.
         url:
           type: string
-          example: https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json
+          example: https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json
         html_url:
           type: string
-          example: https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc
+          example: https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc
         type:
           type: string
           example: Record
@@ -812,10 +812,10 @@ components:
           example: PayScale+CEO to Worker pay+Apple Inc.+2013
         url:
           type: string
-          example: https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc+2013.json
+          example: https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc+2013.json
         html_url:
           type: string
-          example: https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc+2013
+          example: https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc+2013
         type:
           type: string
           example: Answer
@@ -833,7 +833,7 @@ components:
           example: '43'
         record_url:
           type: string
-          example: https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json
+          example: https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json
         items:
           description: If the metric is a relationship metric then all relationships
             to other companies for the given company are listed here.
@@ -855,10 +855,10 @@ components:
           example: Commons+Supplied By+The Walt Disney Company+2016+Fastmaker LLC
         url:
           type: string
-          example: https://wikirate.org/Commons+Supplied_By+The_Walt_Disney_Company+2016+Fastmaker_LLC.json
+          example: https://Wikirate.org/Commons+Supplied_By+The_Walt_Disney_Company+2016+Fastmaker_LLC.json
         html_url:
           type: string
-          example: https://wikirate.org/Commons+Supplied_By+The_Walt_Disney_Company+2016+Fastmaker_LLC
+          example: https://Wikirate.org/Commons+Supplied_By+The_Walt_Disney_Company+2016+Fastmaker_LLC
         type:
           type: string
           example: Relationship Answer

@@ -6,3 +6,26 @@
 //    max-width: 400px;
 //  }
 //}
+
+.TYPE-sign_up.new-view {
+  display: flex;
+  padding: 1.5em;
+  margin: 1em 1em 2em 1em;
+  justify-content: center;
+
+  .d0-card-frame {
+    width: 400px;
+    max-width: 400px;
+    > .d0-card-body {
+      display: flex;
+      justify-content: center;
+      > .card-form {
+      }
+    }
+    button {
+      width: 100%
+    }
+  }
+}
+
+

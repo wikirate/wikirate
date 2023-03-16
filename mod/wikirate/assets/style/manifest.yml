@@ -1,3 +1,8 @@
+remote:
+  items:
+    - src: https://fonts.googleapis.com/css2?family=Material+Symbols+Round
+      # see https://stackoverflow.com/questions/50303454/how-to-use-the-new-material-design-icon-themes-outlined-rounded-two-tone-and
+
 wikirate:
   items:
     - bars_and_boxes.scss
