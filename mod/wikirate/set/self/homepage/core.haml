@@ -22,8 +22,9 @@
     .container.py-5
       = render_delta
 
-  %section#homepage-designer-section.container.py-5.d-flex.justify-content-center
-    .py-5.w-50.text-center
-      = section_header :homepage_designers_heading
+  %section#homepage-designer-section.container.py-5
+    .d-flex.justify-content-center.py-5
+      .w-50.text-center
+        = section_header :homepage_designers_heading
+    .w-100
       = render :company_slider
-

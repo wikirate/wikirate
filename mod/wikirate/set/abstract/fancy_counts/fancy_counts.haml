@@ -1,11 +1,19 @@
-.fancy-counts.row.py-4
+.fancy-counts.row.py-3
   - count_categories.each do |cat|
-    .col-3.text-center
+    .col-sm-3.col-6.text-center.p-3
       .text-primary.large-icon
-        = icon_tag cat
+        - library, icon = icon_lookup cat
+        - if library == :wikirate
+          = icon_tag icon
+        - else
+          = material_symbol_tag icon
       %h1
         = nest cat, view: :count
       .py-1
-        = link_to_card cat, count_label(cat)
+        - if %i[account designer].member? cat
+          %a
+            = count_label cat
+        - else
+          = link_to_card cat, count_label(cat)
       -# .count-description
       -#   = nest [cat, :header], view: :core
