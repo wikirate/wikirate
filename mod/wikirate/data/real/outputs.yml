@@ -1,7 +1,6 @@
 ---
 - :name: Fashion Checker
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p>Fashion Checker is a data tool that connects the dots between
       brand commitments on living wages and the reality for workers on the ground.</p>\r\n<p>The
@@ -19,10 +18,10 @@
     :output_type: dashboard
     :date: '2021-09-20'
     :wikirate_company: Clean Clothes Campaign
-    :image: "(s3_live_bucket)/13009483/40063264.png"
+
+
 - :name: Apparel 100
   :type: :output
-  :conflict: override
   :fields:
     :description: "<div><strong>About</strong></div>\r\n<p> </p>\r\n<div>\r\n<p>The
       Apparel 100 is a series of interactive maps and data visualizations using new
@@ -44,10 +43,10 @@
     :output_type: dashboard
     :date: '2021-11-03'
     :wikirate_company: The WikiRate Project e.V.
-    :image: "(s3_live_bucket)/13009489/40066653.png"
+
+
 - :name: Beyond Compliance in the Garment Industry
   :type: :output
-  :conflict: override
   :fields:
     :description: "<div>\r\n<p>From raw materials to manufacturing, labour exploitation
       and modern slavery are rife in global garment supply chains. Workers in the
@@ -73,11 +72,12 @@
     :output_type: publication
     :date: '2022-02-22'
     :wikirate_company: Walk Free
-    :file: "(s3_live_bucket)/13009496/33519894.pdf"
-    :image: "(s3_live_bucket)/13009495/40065491.png"
+
+
+
+
 - :name: Assessing company reporting on mineral supply chain due diligence
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p><strong>About</strong></p>\r\n<p>The report presents the findings
       of a benchmarking study of implementation of the OECD Due Diligence Guidance
@@ -102,11 +102,12 @@
     :output_type: publication
     :date: '2022-07-04'
     :wikirate_company: Organisation for Economic Cooperation & Development (OECD)
-    :file: "(s3_live_bucket)/13009501/33519905.pdf"
-    :image: "(s3_live_bucket)/13009498/40066741.png"
+
+
+
+
 - :name: Envisioning an Integrated and Open Labor Data Ecosystem
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p>This report is the product of a research project commissioned
       by <a href=\"https://humanityunited.org/\">Humanity United</a> and conducted
@@ -122,11 +123,12 @@
     :output_type: publication
     :date: '2021-09-07'
     :wikirate_company: The WikiRate Project e.V.
-    :file: "(s3_live_bucket)/13009508/33519914.pdf"
-    :image: "(s3_live_bucket)/13009505/40066749.png"
+
+
+
+
 - :name: Digital Insights into Modern Slavery Reporting
   :type: :output
-  :conflict: override
   :fields:
     :description: "<div>\r\n<div>Artificial Intelligence offers a real opportunity
       to scale our efforts to eradicate modern slavery. One opportunity is the use
@@ -145,12 +147,13 @@
     :output_type: publication
     :date: '2021-06-22'
     :wikirate_company: Walk Free
-    :file: "(s3_live_bucket)/13009515/33519926.pdf"
-    :image: "(s3_live_bucket)/13009512/40066661.png"
+
+
+
+
 - :name: 'Disclosure and Reporting Against the Sustainable Development Goals: Connecting
     New Stakeholders to Sustainability Data'
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p><strong>About </strong></p>\r\n<div>\r\n<p >The Disclosure and Reporting Against the Sustainable Development
       Goals report is part of this joint project between WikiRate, PRME and the University
@@ -170,10 +173,10 @@
     :output_type: publication
     :date: '2018-11-01'
     :wikirate_company: Principles for Responsible Management Education (PRME)
-    :image: "(s3_live_bucket)/13009714/40066733.png"
+
+
 - :name: 'Beyond Compliance: The Modern Slavery Act Research Project'
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p><strong>About</strong></p>\r\n<p><span>Documenting
       the impact of new legislative acts is an indispensable tool for improving the
@@ -190,12 +193,13 @@
     :output_type: publication
     :date: '2018-08-17'
     :wikirate_company: Walk Free
-    :file: "(s3_live_bucket)/13009652/33520592.pdf"
-    :image: "(s3_live_bucket)/13009709/40068507.png"
+
+
+
+
 - :name: WikiRate.org – Leveraging collective awareness to understand companies’ environmental,
     social and governance performance
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p><strong>About</strong></p>\r\n<p>WikiRate is a Collective Awareness
       Platform for Sustainability and Social Innovation (CAPS) project with the aim
@@ -209,12 +213,13 @@
     :output_type: publication
     :date: '2016-09-01'
     :wikirate_company: University of Cambridge
-    :file: "(s3_live_bucket)/13009656/33520611.pdf"
-    :image: "(s3_live_bucket)/13009717/40068490.png"
+
+
+
+
 - :name: 'Responsible patterns of production and consumption: The race for the achievement
     of SDGs in emerging markets'
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p><strong>Abstract</strong>:</p>\r\n<p>Since
       the end of the 20th century, the role of private multinational enterprises (MNEs)
@@ -240,12 +245,13 @@
     :output_type: publication
     :date: '2021-06-30'
     :wikirate_company: Universidad EAFIT
-    :file: "(s3_live_bucket)/13009662/33520628.pdf"
-    :image: "(s3_live_bucket)/13009711/40066717.png"
+
+
+
+
 - :name: 'Beyond Compliance in the Finance Sector: A review of statements produced
     by asset managers under the UK Modern Slavery Act'
   :type: :output
-  :conflict: override
   :fields:
     :description: "<div>\r\n<div>\r\n<div><strong>About</strong></div>\r\n<div> </div>\r\n<div>Modern
       slavery represents a tragic market failure, where some companies maintain competitive
@@ -269,12 +275,13 @@
     :output_type: publication
     :date: '2021-03-18'
     :wikirate_company: Walk Free
-    :file: "(s3_live_bucket)/13009668/33520645.pdf"
-    :image: "(s3_live_bucket)/13009707/40066709.png"
+
+
+
+
 - :name: 'Crowdsourcing Corporate Transparency through Social Accounting: Conceptualising
     the ‘Spotlight Account’'
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p><strong>About</strong></p>\r\n<p>This paper considers an alternative
       way of gathering and evaluating information on corporate social responsibility
@@ -297,12 +304,13 @@
     :output_type: publication
     :date: '2019-03-14'
     :wikirate_company: University of Wollongong
-    :file: "(s3_live_bucket)/13009674/33520667.pdf"
-    :image: "(s3_live_bucket)/13009722/40066701.png"
+
+
+
+
 - :name: 'Beyond Compliance in the Hotel Sector: A Review of UK Modern Slavery Act
     Statements'
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p><strong>About</strong></p>\r\n<p>The travel and tourism industry
       continues to see uninterrupted growth, with more people than ever before travelling
@@ -345,10 +353,10 @@
     :output_type: publication
     :date: '2019-11-21'
     :wikirate_company: Walk Free
-    :image: "(s3_live_bucket)/13009708/40066637.png"
+
+
 - :name: Responsible Management Education. The PRME Global Movement
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p>Author: Matthew Twigg</p>\r\n<p>The book focuses on advancing
       sustainable development into education, research and partnerships at higher
@@ -368,11 +376,12 @@
     :output_type: publication
     :date: '2021-12-17'
     :wikirate_company: Principles for Responsible Management Education (PRME)
-    :file: "(s3_live_bucket)/13009712/33520951.png"
-    :image: "(s3_live_bucket)/13009713/40066693.png"
+
+
+
+
 - :name: 'WikiRate Student Engagement Report: International Case Studies'
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p>The WikiRate Student Engagement Report is the product of a year-long
       international collaboration across eight countries.  The research was initiated
@@ -389,11 +398,12 @@
     :output_type: publication
     :date: '2018-11-01'
     :wikirate_company: University of Wollongong
-    :file: "(s3_live_bucket)/13009689/33520738.pdf"
-    :image: "(s3_live_bucket)/13009715/40066685.png"
+
+
+
+
 - :name: 'Final Pilot Report: Business Contribution to the SDGs — A Student Assessment'
   :type: :output
-  :conflict: override
   :fields:
     :description: "<div>\r\n<p style=\"text-align: justify;\">The pilot project <strong><em>Business
       Contribution to the SDGs — A Student Assessment</em></strong> is a partnership
@@ -417,11 +427,12 @@
     :output_type: publication
     :date: '2017-11-01'
     :wikirate_company: Principles for Responsible Management Education (PRME)
-    :file: "(s3_live_bucket)/13009694/33520754.pdf"
-    :image: "(s3_live_bucket)/13009716/40066677.png"
+
+
+
+
 - :name: 'Global Slavery Index 2018: WikiRate contribution to 12 Country Studies'
   :type: :output
-  :conflict: override
   :fields:
     :description: "<div>\r\n<div>\r\n<p style=\"text-align: justify;\">Alongside country
       level data on modern slavery, the <strong>2018 Global Slavery Index</strong>
@@ -437,11 +448,11 @@
     :output_type: publication
     :date: '2018-07-19'
     :wikirate_company: Walk Free
-    :image: "(s3_live_bucket)/13009710/40066629.png"
+
+
 - :name: An Exploration of Student Learning for Sustainability through the WikiRate
     Student Engagement Project
   :type: :output
-  :conflict: override
   :fields:
     :description: "<div>\r\n<p><strong>About</strong></p>\r\n<ul>\r\n<li>WikiRate
       is a pedagogical innovation that develops knowledge, skills and attitudes (KSA)
@@ -459,10 +470,10 @@
     :output_type: publication
     :date: '2019-11-01'
     :wikirate_company: Glasgow Caledonian University
-    :image: "(s3_live_bucket)/13009721/40066669.png"
+
+
 - :name: Beyond Compliance Data Dashboard
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p>The Beyond Compliance Data Dashboard shines a light on business
       reporting under modern slavery legislation. Only with transparency can we understand
@@ -474,10 +485,10 @@
     :output_type: dashboard
     :date: '2023-02-01'
     :wikirate_company: Walk Free
-    :image: "(s3_live_bucket)/13012031/40066621.png"
+
+
 - :name: Facility Checker
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p>The Fashion Facility Checker is part of the <a href=\"https://fashionchecker.org/\"
       target=\"_blank\">Fashion Checker</a> - a <a href=\"https://cleanclothes.org/\"
@@ -497,10 +508,10 @@
     :output_type: dashboard
     :date: '2022-07-05'
     :wikirate_company: Clean Clothes Campaign
-    :image: "(s3_live_bucket)/13175774/40066613.png"
+
+
 - :name: Tea Supply Chain Tracker
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p>Thirteen million workers who toil on tea plantations have suffered
       from endemic human rights abuses while the tea companies they pick for - some
@@ -521,11 +532,11 @@
     :output_type: dashboard
     :date: '2021-12-07'
     :wikirate_company: Business & Human Rights Resource Centre
-    :image: "(s3_live_bucket)/14494890/40068498.png"
+
+
 - :name: Wikirate.org – Leveraging collective awareness to understand companies’ environmental,
     social and governance performance
   :type: :output
-  :conflict: override
   :fields:
     :description: "<p><strong>About</strong></p>\r\n<p>WikiRate is a Collective Awareness
       Platform for Sustainability and Social Innovation (CAPS) project with the aim
@@ -538,12 +549,13 @@
       and some early examples of its use.</p>"
     :output_type: publication
     :wikirate_company: University of Cambridge
-    :file: "(s3_live_bucket)/13009656/33520611.pdf"
-    :image: "(s3_live_bucket)/13009717/40068490.png"
+
+
+
+
 - :name: An Exploration of Student Learning for Sustainability through the Wikirate
     Student Engagement Project
   :type: :output
-  :conflict: override
   :fields:
     :description: "<div>\r\n<p><strong>About</strong></p>\r\n<ul>\r\n<li>WikiRate
       is a pedagogical innovation that develops knowledge, skills and attitudes (KSA)
@@ -560,4 +572,4 @@
     :uri: https://www.researchgate.net/publication/336960581_An_exploration_of_student_learning_for_sustainability_through_the_WikiRate_student_engagement_project
     :output_type: publication
     :wikirate_company: Glasgow Caledonian University
-    :image: "(s3_live_bucket)/13009721/40066669.png"
+
