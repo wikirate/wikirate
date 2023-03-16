@@ -1,37 +1,50 @@
+---
 - :name: Endorsement by Paul Roeland, CCC
   :type: :quote
-  :codename: paul_roeland_quote
+  :codename: :paul_roeland_quote
   :fields:
-    :quotee: Paul Roeland
+    :image: "(s3_live_bucket)/14494934/40083093.png"
+    :quote: "WikiRate provides an essential open data infrastructure for supply chain
+      \r\ntransparency. Their system made it possible to connect data reported by
+      brands and \r\nworkers in one dynamic tool: Fashion Checker. Through this flexible
+      and engaging \r\nstructure, we were able to make a complex dataset on supply
+      chain wages accessible \r\nand useful to a broad audience of consumers, journalists,
+      advocacy organizations, \r\nand workers themselves.\r\n"
     :job_title: Transparency Lead, Clean Clothes Campaign
-    :quote: |
-      WikiRate provides an essential open data infrastructure for supply chain 
-      transparency. Their system made it possible to connect data reported by brands and 
-      workers in one dynamic tool: Fashion Checker. Through this flexible and engaging 
-      structure, we were able to make a complex dataset on supply chain wages accessible 
-      and useful to a broad audience of consumers, journalists, advocacy organizations, 
-      and workers themselves.
-
-    :detailed_quote: |
-
+    :quotee: Paul Roeland
 - :name: Endorsement by AMD Berlin Student
   :type: :quote
-  :codename: amd_student_quote
+  :codename: :amd_student_quote
   :fields:
-    :quotee:
+    :image: "(s3_live_bucket)/14494933/40080858.jpeg"
+    :quote: "Our collaborative project was a great opportunity to further develop
+      our research \r\nskills which in turn allowed us to be more critical and analytical
+      of fashion \r\nlabels. Working with WikiRate made us understand the importance
+      of finding the \r\nright and accurate information that backs up or contradicts
+      the image that a \r\nfashion label is trying to portray\r\n"
     :job_title: Student of AMD Berlin
-    :quote: |
-      Our collaborative project was a great opportunity to further develop our research 
-      skills which in turn allowed us to be more critical and analytical of fashion 
-      labels. Working with WikiRate made us understand the importance of finding the 
-      right and accurate information that backs up or contradicts the image that a 
-      fashion label is trying to portray
-    :detailed_quote:
-
-- :name:
-    - :wikirate_community
-    - :quote
-  :type: :list
-  :content:
-    - :paul_roeland_quote
-    - :amd_student_quote
+- :name: Endorsement by Hannah Jun, Ewha Womans University
+  :type: :quote
+  :fields:
+    :quote: There are many creative ways to incorporate the WikiRate platform, particularly
+      for business-related courses. While my course was project-based, WikiRate data
+      can just as easily be used for writing-intensive courses for company-, industry-
+      or geography-based analyses. The platform is free to use, and the WikiRate staff
+      does a tremendous job addressing student queries. I highly recommend utilizing
+      the WikiRate platform to enhance the learning experience at undergraduate and
+      graduate levels.
+    :job_title: Professor, Ewha Womans University, Korea
+    :quotee: Hannah Jun
+- :name: Endorsement by Hannah Roberts, volunteer
+  :type: :quote
+  :fields:
+    :image: "(s3_live_bucket)/14494932/40080851.jpeg"
+    :quote: I loved right away that WikiRate is community-driven and brings together
+      students, professionals, and data lovers from all stages of life and all over
+      the world. I had been working on questions of corporate sustainability for a
+      number of years, and WikiRate's approach showed me a new perspective to many
+      questions around companies' performance on the issues I care about. The WikiRate
+      community is simply amazing and I've met a lot of great individuals through
+      being involved.
+    :job_title: independent contributor
+    :quotee: Hannah Roberts

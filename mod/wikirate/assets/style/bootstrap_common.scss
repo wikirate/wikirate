@@ -14,22 +14,26 @@
   }
 }
 
-.btn-outline-primary, .btn-outline-secondary {
-  opacity: .6;
+$border-purple: #a8a0e2;
+
+.btn-outline-primary {
+  color: $primary;
+  border-color: $border-purple;
   &:hover {
-    opacity: 1;
     background: inherit;
+    color: $primary;
+    border-color: $primary;
   }
 }
 
-.btn-outline-primary:hover {
-  color: $primary;
-  border-color: $primary;
-}
-
-.btn-outline-secondary:hover {
+.btn-outline-secondary {
   color: $secondary;
-  border-color: $secondary;
+  border-color: $gray-200;
+  &:hover {
+    background: inherit;
+    color: $secondary;
+    border-color: $secondary;
+  }
 }
 
 .credit .search-result-list {

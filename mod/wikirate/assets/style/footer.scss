@@ -20,14 +20,13 @@ $social-colors: (
     font-size: 1em;
     margin-bottom: 1em;
   }
-  .footer-footer > div > div {
-    border-top: 1px solid $gray-100;
-  }
-  .TYPE-link_list a {
+
+  .footer-link-list a {
     display: block;
     padding-top: 2px;
   }
   .decko-credit svg {
+    min-width: 2em;
     max-height: 2em;
     margin-right: 1em;
   }
@@ -35,7 +34,12 @@ $social-colors: (
     display: block;
     max-width: 4em;
     img {
-      max-height: 2.25em
+      max-height: 2.125rem
+    }
+  }
+  @include media-breakpoint-up(md) {
+    .wikirate-licensing {
+      text-align: end;
     }
   }
 }

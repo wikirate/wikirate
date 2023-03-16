@@ -6,9 +6,12 @@
                                          header_size: :h1
 
 %section#special-data.py-5.container.text-center
-  .w-50.d-inline-block.pt-5.pb-3
+  .w-50.d-inline-block.pt-5.pb-4
     = section_header :data_special
-  = field_nest :blurb, view: :core, items: { view: :stack }
+  .row.justify-content-center
+    - %i[wikirate_data blurb].card.item_cards.each do |blurb|
+      .col-12.col-sm-6.col-md-4.p-3
+        = nest blurb, view: :stack
 
 %section#reliable-data.container-fluid.bg-light.py-5
   .container.py-5
