@@ -290,3 +290,11 @@
     }
   }
 }
+
+.community-quotes {
+  .slick-track, .slick-slide, .slick-slide > div, .endorsement-summary {
+    display: flex !important;
+    align-items: stretch;
+    height: auto;
+  }
+}
