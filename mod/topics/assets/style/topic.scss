@@ -3,8 +3,12 @@
   text-align: center;
 }
 
-.TYPE-topic.box .box-middle {
-  text-align: center;
+.TYPE-topic {
+  &.box .box-middle {
+    text-align: center;
+  }
+
+  &.page-view .image-box img {
+    padding: 0;
+  }
 }
-
-
