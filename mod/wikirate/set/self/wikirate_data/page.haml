@@ -16,10 +16,17 @@
 %section#reliable-data.container-fluid.bg-light.py-5
   .container.py-5
     .row
-      .col-4
-        = section_header :data_reliable
-      .col-8.two-flippers.teal-flippers
-        = field_nest :list, view: :core, items: { view: :flipper }
+      .col-12.col-lg-4
+        .mb-3
+          = section_header :data_reliable
+      .teal-flippers.col-12.col-lg-8
+        .row.justify-content-center
+          - %i[wikirate_data list].card.item_cards.each do |blurb|
+            .card-list-flipper.col-12.col-sm-6
+              .item-flipper.py-3
+                = nest blurb, view: :flipper
+
+        -# = field_nest :list, view: :core, items: { view: :flipper }
 
 %section.container.p-5
   #wikirate-data-today.my-5.p-4

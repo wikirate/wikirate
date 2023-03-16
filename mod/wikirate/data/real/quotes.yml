@@ -3,7 +3,6 @@
   :type: :quote
   :codename: :paul_roeland_quote
   :fields:
-    :image: "(s3_live_bucket)/14494934/40083093.png"
     :quote: "WikiRate provides an essential open data infrastructure for supply chain
       \r\ntransparency. Their system made it possible to connect data reported by
       brands and \r\nworkers in one dynamic tool: Fashion Checker. Through this flexible
@@ -16,7 +15,6 @@
   :type: :quote
   :codename: :amd_student_quote
   :fields:
-    :image: "(s3_live_bucket)/14494933/40080858.jpeg"
     :quote: "Our collaborative project was a great opportunity to further develop
       our research \r\nskills which in turn allowed us to be more critical and analytical
       of fashion \r\nlabels. Working with WikiRate made us understand the importance
@@ -38,7 +36,6 @@
 - :name: Endorsement by Hannah Roberts, volunteer
   :type: :quote
   :fields:
-    :image: "(s3_live_bucket)/14494932/40080851.jpeg"
     :quote: I loved right away that WikiRate is community-driven and brings together
       students, professionals, and data lovers from all stages of life and all over
       the world. I had been working on questions of corporate sustainability for a

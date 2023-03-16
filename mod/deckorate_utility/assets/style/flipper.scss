@@ -5,15 +5,10 @@
 
   .item-flipper {
     display: flex;
-    width: 33%;
     height: 200px;
     perspective: 600px;
-    padding: 1%;
+    width: 100%;
   }
-}
-
-.two-flippers .card-list-flipper .item-flipper {
-  width: 50%;
 }
 
 .flip-card {
@@ -45,12 +40,12 @@
     transform: rotateY(180deg);
   }
 
-  .flipper-title-icon i {
+  .flipper-icon i {
     font-size: 4em;
     color: $orange;
   }
 
-  .faint-icon {
+  .flipper-faint-icon {
     position: absolute;
     display: flex;
     justify-content: flex-end;
@@ -76,6 +71,6 @@
   text-align: center;
 }
 
-.teal-flippers .flipper-title-icon i {
+.teal-flippers .flipper-icon i {
   color: $teal;
 }
