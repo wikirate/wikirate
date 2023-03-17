@@ -16,7 +16,12 @@
   .container.py-5.pt-3
     %h2.py-5
       Free tools for taking action
-    = field_nest :blurb, view: :content, items: { view: :flipper }
+    .row.justify-content-center
+      - %i[about blurb].card.item_cards.each do |blurb|
+        .card-list-flipper.col-12.col-sm-6.col-md-4
+          .item-flipper.py-3
+            = nest blurb, view: :flipper
+
 
 %section#our-values-section.container.py-5
   .py-4.text-center
