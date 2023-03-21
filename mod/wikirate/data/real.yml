@@ -190,3 +190,13 @@
     Endorsement by AMD Berlin Student
     Endorsement by Hannah Jun, Ewha Womans University
     Endorsement by Hannah Roberts, volunteer
+
+- :name: footer legal list
+  :type: :html
+  :codename: :footer_legal_list
+  :content: |
+    [[Wikirate Policies|Policies]]
+    [[Licensing]]
+    [[Disclaimers]]
+    [[Privacy_Policy|Privacy]]
+    <a href=\"https://wikirate-intl.org/Impressum\" target=\"_intl\">Impressum</a>
