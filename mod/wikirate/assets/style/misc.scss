@@ -2,6 +2,14 @@ main > #main > .titled-view > .d0-card-header {
   margin: 1.5em 0 2em 0;
 }
 
+h1 {
+  margin-bottom: 1rem;
+}
+
+.d0-card-header h1 {
+  margin-bottom: 0.5rem;
+}
+
 .card, button, a, .bar, i, .btn {
   transition: .3s
 }
