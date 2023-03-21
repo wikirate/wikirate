@@ -14,6 +14,7 @@ $social-colors: (
   }
   h2, .footer-link-list a {
     color: inherit !important;
+    min-height: 2.5em;
   }
   h2 {
     text-transform: uppercase;
@@ -42,7 +43,14 @@ $social-colors: (
       text-align: end;
     }
   }
+
+  #footer-social-media-links {
+    i {
+      font-size: 1.5em;
+    }
+  }
 }
+
 
 @each $platform, $color in $social-colors {
   a:hover .fa-#{$platform} {
