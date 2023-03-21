@@ -8,22 +8,24 @@ format :html do
   private
 
   def dropdown_items
-    content_object.chunks.map do |item|
-      case item
-      when String
-        dropdown_string_item item
-      when ::Card::Content::Chunk::Link
-        dropdown_link_item item
-      end
-    end
+    [
+      dropdown_header("RESOURCES"),
+      dropdown_link("Guides", "/guides"),
+      dropdown_link("API", "/use_the_API"),
+      dropdown_link("FAQ", "/faq"),
+      dropdown_link("Recent Changes", "/:recent"),
+      dropdown_link("Report Issue", "/ticket"),
+      "<hr/>",
+      dropdown_header("ABOUT"),
+      dropdown_link("About Wikirate", "/about"),
+      dropdown_link("Community", "/community"),
+      dropdown_link("Data", "/data"),
+      dropdown_link("Impact", "/impact"),
+
+    ]
   end
 
-  def dropdown_string_item item
-    item.strip!
-    dropdown_header item if item.present?
-  end
-
-  def dropdown_link_item item
-    [item.link_target, item.link_text]
+  def dropdown_link text, uri
+    link_to text, path: uri, class: "dropdown-item"
   end
 end

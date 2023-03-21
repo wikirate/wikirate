@@ -49,22 +49,6 @@
 - :name: nav bar
   :codename: nav_bar
 
-- :name: nav menu
-  :type: :basic
-  :codename: nav_menu
-  :content: |
-    RESOURCES
-    [[/guides | Guides]]
-    [[/use_the_API | API]]
-    [[/faq | FAQ]]
-    [[:recent | Recent Changes]]
-    [[/ticket | Report Issue]]
-    ABOUT
-    [[/about | About WikiRate]]
-    [[/community | Community]]
-    [[/data | Data]]
-    [[/impact | Impact]]
-
 - :name: Community
   :codename: wikirate_community
 

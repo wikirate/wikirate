@@ -12,10 +12,10 @@
           is an open data platform powered by its community.
 
       .col-6.col-sm-4
-        .footer-link-list.p-2
+        .footer-link-list.py-2
           = nest :"footer_legal_list", view: :titled, title: "legal", hide: :menu
       .col-6.col-sm-4
-        .footer-link-list.p-2
+        .footer-link-list.py-2
           %h2 contact
           %a{ href: "https://wikirate-intl.org/Contact_us", target: "_intl" }
             Contact us on WikiRate international
@@ -23,7 +23,7 @@
                target: "_intl" }
             Subscribe for Updates
 
-        #footer-social-media-links.p-2.pt-4
+        #footer-social-media-links.pb-2.pt-4
           %h2 follow us
           .d-flex.justify-content-between
             - social_media_links.each do |social, url|
