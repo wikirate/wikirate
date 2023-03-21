@@ -1,5 +1,15 @@
-main > #main > .titled-view > .d0-card-header {
-  margin: 1.5em 0 2em 0;
+#main {
+  > .titled-view > .d0-card-header {
+    margin: 1.5em 0 2em 0;
+    .card-menu {
+      background: $white;
+      padding: 0 0 0.5em 0.5em;
+      border-radius: 5px;
+    }
+  }
+  > .TYPE-output > .d0-card-header > h1 .card-title {
+    font-size: 0.7em;
+  }
 }
 
 h1 {
