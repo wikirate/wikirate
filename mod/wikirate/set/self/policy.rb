@@ -1,7 +1,10 @@
 include_set Abstract::Jumbotron
+include_set Abstract::SectionHeader
 
 format :html do
-  view :page do
-    nest %i[policy type by_name], view: :core, items: { view: :box }
+  before :page do
+    voo.title = "A mutual understanding of how we act"
   end
+
+  view :page, template: :haml
 end

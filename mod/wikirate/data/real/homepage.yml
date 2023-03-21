@@ -12,18 +12,18 @@
     Research Group
     Company Group
 
-- :name:
-    - Ethan McCutchen
-    - test delta
-  :type: :metric
-  :fields:
-    :value_type: Number
-    :research_policy: Community Assessed
-    :formula: rate - previous_rate
-    :metric_type: Formula
-    :variables: '[{"metric":"~8085834","name":"rate"},{"year":"-1","metric":"~8085834","name":"previous_rate"}]'
-    :hybrid: '0'
-    :unpublished: '0'
+#- :name:
+#    - Ethan McCutchen
+#    - test delta
+#  :type: :metric
+#  :fields:
+#    :value_type: Number
+#    :research_policy: Community Assessed
+#    :formula: rate - previous_rate
+#    :metric_type: Formula
+#    :variables: '[{"metric":"~8085834","name":"rate"},{"year":"-1","metric":"~8085834","name":"previous_rate"}]'
+#    :hybrid: '0'
+#    :unpublished: '0'
 
 - :name:
     - :homepage
