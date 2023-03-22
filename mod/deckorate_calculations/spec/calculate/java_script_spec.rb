@@ -21,9 +21,9 @@ RSpec.describe Calculate::JavaScript do
       throw new Error("formula run on unknown value!") if m2 == undefined
       m1 + m2
     FORMULA
-    calc = calculator(formula,
+    calc = calculator formula,
                       { metric: "Joe User+RM", name: "m1" },
-                      { metric: "Jedi+know the unknowns", name: "m2" })
+                      { metric: "Jedi+know the unknowns", name: "m2" }
 
     expect(calc.result.map(&:value)).to include("Unknown")
     expect(calc.detect_errors).to be_empty

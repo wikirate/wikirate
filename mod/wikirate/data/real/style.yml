@@ -31,7 +31,7 @@
       $success: $teal !default;
       $info: $purple !default;
       $warning: $orange !default;
-      $danger: #DD4549 !default;
+      $danger: $red !default;
       $light: $gray-100 !default;
       $dark: $blue !default;
       $body-bg: $white !default;
