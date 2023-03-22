@@ -78,8 +78,8 @@
     :uri: https://fashionchecker.org/
     :date: 2020
 
-    :image:
-      :image: fashion_checker.png
+#    :image:
+#      :image: fashion_checker.png
     :title: Fashion Checker Title
     :wikirate_company: Death Star
     :description: |
