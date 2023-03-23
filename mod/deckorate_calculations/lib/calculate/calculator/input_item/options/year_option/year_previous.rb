@@ -3,6 +3,9 @@ class Calculate
     class InputItem
       module Options
         module YearOption
+          # Handles the "previous" year option
+          # Example:
+          #    year: previous # use the last answer before the current year
           module YearPrevious
             def process_year_option
               :previous

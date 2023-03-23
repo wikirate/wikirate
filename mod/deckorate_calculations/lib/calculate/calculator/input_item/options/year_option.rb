@@ -12,6 +12,15 @@ class Calculate
         #    year: latest
         #    year: all
         module YearOption
+          EXTENSIONS = {
+            /^[-+]?\d+$/                => YearSingle,
+            /^[-+]?[\d\s]+,[-+\d\s,]+$/ => YearList,
+            /[-+]?\d+\.\.[-+]?\d+$/     => YearRange,
+            /^all$/                     => YearAll,
+            /^latest$/                  => YearLatest,
+            /^prev(ious)?$/             => YearPrevious
+          }.freeze
+
           extend AddValidationChecks
           add_validation_checks :check_year_option
 
@@ -75,7 +84,6 @@ class Calculate
 
           private
 
-
           def apply_symbol_year_option_all answer_hash, year
             consolidated_input_answer answer_hash.values, year
           end
@@ -102,13 +110,10 @@ class Calculate
           end
 
           def interpret_year_option
-            case year_option
-            when /^[-+]?\d+$/                then extend YearSingle
-            when /^[-+]?[\d\s]+,[-+\d\s,]+$/ then extend YearList
-            when /[-+]?\d+\.\.[-+]?\d+$/     then extend YearRange
-            when /^all$/                     then extend YearAll
-            when /^latest$/                  then extend YearLatest
-            when /^prev(ious)?$/             then extend YearPrevious
+            EXTENSIONS.each do |regexp, modul|
+              next unless year_option.match? regexp
+              extend modul
+              return
             end
           end
         end

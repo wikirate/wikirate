@@ -20,8 +20,7 @@ format :html do
       dropdown_link("About Wikirate", "/about"),
       dropdown_link("Community", "/community"),
       dropdown_link("Data", "/data"),
-      dropdown_link("Impact", "/impact"),
-
+      dropdown_link("Impact", "/impact")
     ]
   end
 
