@@ -16,6 +16,19 @@ RSpec.describe Calculate::JavaScript do
       .to include(have_attributes(year: 2000, company_id: death_star_id, value: 20.0))
   end
 
+  example "formula handling unknowns" do
+    formula = <<~FORMULA.strip_heredoc
+      throw new Error("formula run on unknown value!") if m2 == undefined
+      m1 + m2
+    FORMULA
+    calc = calculator formula,
+                      { metric: "Joe User+RM", name: "m1" },
+                      { metric: "Jedi+know the unknowns", name: "m2" }
+
+    expect(calc.result.map(&:value)).to include("Unknown")
+    expect(calc.detect_errors).to be_empty
+  end
+
   example "formula with explicit unknowns" do
     formula = <<~FORMULA.strip_heredoc
       researched = [m1, m2].filter (val) ->  val != "-1"

@@ -81,7 +81,7 @@ class Calculate
     end
 
     def result_value input_values, company, year
-      return "Unknown" if input_values.first == :unknown
+      return "Unknown" if result_is_unknown? input_values
       result = compute input_values, company, year
       normalize_value result if result
     end
@@ -89,11 +89,24 @@ class Calculate
     def input_values
       each_answer do |input_answers, company, year|
         values = input_answers&.map { |a| a&.value }
+        next if result_is_unknown? values
         yield values, company, year
       end
     end
 
+    def raw_input_values
+      [].tap do |list|
+        each_answer do |input_answers, _company, _year|
+          list << input_answers&.map { |a| a&.value }
+        end
+      end
+    end
+
     protected
+
+    def result_is_unknown? input_values
+      input_values.first == :unknown
+    end
 
     def normalize_value value
       @normalizer ? @normalizer.call(value) : value

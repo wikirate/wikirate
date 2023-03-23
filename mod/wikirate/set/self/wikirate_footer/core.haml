@@ -1,20 +1,21 @@
 %footer#wikirate-footer.container-fluid.bg-light.nodblclick
   .container.p-5
-    .row.footer-link-lists.mb-4
+    .row.footer-link-lists.mb-4.py-5
       .col-12.col-sm-4
         %a.pb-2.logo-link.logo-symbol-link{ href: "/" }
           %img{ src: "/mod/wikirate/logos/wr_logo_symbol.svg" }
 
         %p.py-2.pe-5
-          Wikirate is an initiative of
+          Wikirate, an initiative of
           %a{ href: "https://wikirate-intl.org", target: "_intl" }>
-            Wikirate International eV.
+            Wikirate International e.V.,
+          is an open data platform powered by its community.
 
       .col-6.col-sm-4
-        .footer-link-list.p-2
+        .footer-link-list.py-2
           = nest :"footer_legal_list", view: :titled, title: "legal", hide: :menu
       .col-6.col-sm-4
-        .footer-link-list.p-2
+        .footer-link-list.py-2
           %h2 contact
           %a{ href: "https://wikirate-intl.org/Contact_us", target: "_intl" }
             Contact us on WikiRate international
@@ -22,22 +23,23 @@
                target: "_intl" }
             Subscribe for Updates
 
-        .p-2.pt-4
+        #footer-social-media-links.pb-2.pt-4
           %h2 follow us
-          - social_media_links.each do |social, url|
-            = link_to font_awesome_icon_tag(social.downcase, brand:true),
-                      href: url, class: "pe-2", title: social
+          .d-flex.justify-content-between
+            - social_media_links.each do |social, url|
+              = link_to font_awesome_icon_tag(social.downcase, brand:true),
+                        href: url, title: social
 
     %hr
 
     .footer-footer.small.row
-      .decko-credit.col-12.col-md-3
+      .decko-credit.col-12.col-md-4
         .d-flex.pb-3
           = link_to nest(:decko_logo, view: :core), href: "https://decko.org"
           %label
-            Powered by
+            We're on
             = link_to "Decko", href: "https://decko.org"
-      .wikirate-licensing.col-12.col-md-9.pb-3
+      .wikirate-licensing.col-12.col-md-8.pb-3
         Wikirate's content is licensed under
         %a{ href: "https://creativecommons.org/licenses/by/4.0/" }
           CC BY 4.0,
