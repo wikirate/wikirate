@@ -174,3 +174,12 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   width: 20rem;
   max-width: 60%;
 }
+
+.company-switch .badge {
+  color: $blue;
+  background-color: $gray-100;
+  // border-radius: 1em;
+  font-weight: normal;
+  font-size: 1rem;
+  padding: 0.2em 1.2em;
+}
