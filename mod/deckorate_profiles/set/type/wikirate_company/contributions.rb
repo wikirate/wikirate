@@ -27,22 +27,22 @@ format :html do
   end
 
   view :contrib_switch, cache: :never do
-    return "" unless contribs_made?
+    # return "" unless contribs_made?
 
     contrib_page? ? switch_to_performance : switch_to_contrib
   end
 
   def switch_to_performance
-    switch_to "Performance", :wikirate_company, "N", "Company performance profile"
+    switch_to "performance", "N", "Company performance profile"
   end
 
   def switch_to_contrib
-    switch_to "Contributions", :user, "Y", "Content contributions to Wikirate.org"
+    switch_to "contributions", "Y", "Content contributions to Wikirate.org"
   end
 
-  def switch_to text, icon, val, title
-    text = wrap_with :div, class: "text-secondary" do
-      "#{icon_tag icon} See #{text}"
+  def switch_to text, val, title
+    text = wrap_with :div, class: "badge badge-purple" do
+      "View #{text} profile"
     end
     link_to_card card, text,
                  class: "company-switch", title: title, path: { contrib: val }

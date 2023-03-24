@@ -18,6 +18,18 @@ section.sub-navbar {
   border-bottom: 1px solid $gray-200;
 }
 
-.top-nav-burger button {
-  border: none;
+.top-nav-burger {
+  button {
+    border: none;
+  }
+  .dropdown-menu {
+    min-width: 14rem;
+  }
+  h6 .dropdown-header {
+    color: #9393a0;
+    letter-spacing: .2em;
+  }
+  hr {
+    margin: 1em;
+  }
 }

@@ -19,6 +19,20 @@ class Calculate
               @offsets.empty? ? @fixed : year_option_list_proc(list)
             end
 
+            # @return an array of years for which values can be calculated out of
+            #   the given list of years
+            def translate_years years
+              if @offsets.empty?
+                translated_years_without_offsets years
+              elsif not_all_fixed_years_present? years
+                []
+              else
+                translate_nonstandard_years years
+              end
+            end
+
+            private
+
             def process_year_option_list list
               list.each do |y|
                 year?(y) ? @fixed << y : @offsets << y
@@ -34,18 +48,6 @@ class Calculate
                     year + year_offset
                   end
                 end
-              end
-            end
-
-            # @return an array of years for which values can be calculated out of
-            #   the given list of years
-            def translate_years years
-              if @offsets.empty?
-                translated_years_without_offsets years
-              elsif not_all_fixed_years_present? years
-                []
-              else
-                translate_nonstandard_years years
               end
             end
 
