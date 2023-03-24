@@ -15,6 +15,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
+a:visited, a:hover {
+  color: $blue;
+}
+
+
+
+
 /*----------- WikiRate Scores ---------*/
 // Note: to change these colors you will typically want to edit the +:variables
 // card on the active skin.  See note in 01_variables.scss in deckorate_core mod

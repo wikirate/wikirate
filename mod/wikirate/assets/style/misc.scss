@@ -12,6 +12,13 @@
   }
 }
 
+.d0-card-content, p, .text-content {
+  a, a:hover, a:focus {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
 h1 {
   margin-bottom: 1rem;
 }
