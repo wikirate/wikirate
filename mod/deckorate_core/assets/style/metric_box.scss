@@ -11,12 +11,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .image-box.small {
-        min-width: 25px;
-        min-height: 25px;
-        width: 25px;
-        height: 25px;
-      }
       .thumbnail-subtitle {
         font-size: 0.8em;
         color: $text-muted;

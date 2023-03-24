@@ -12,6 +12,15 @@ class Calculate
         #    year: latest
         #    year: all
         module YearOption
+          EXTENSIONS = {
+            /^[-+]?\d+$/                => YearSingle,
+            /^[-+]?[\d\s]+,[-+\d\s,]+$/ => YearList,
+            /[-+]?\d+\.\.[-+]?\d+$/     => YearRange,
+            /^all$/                     => YearAll,
+            /^latest$/                  => YearLatest,
+            /^prev(ious)?$/             => YearPrevious
+          }.freeze
+
           extend AddValidationChecks
           add_validation_checks :check_year_option
 
@@ -66,14 +75,7 @@ class Calculate
           end
 
           def apply_symbol_year_option answer_hash, ip, year
-            case ip
-            when :all
-              consolidated_input_answer answer_hash.values, year
-            when :latest
-              answer_hash[answer_hash.keys.max]
-            else
-              raise Card::Error, "unknown year Symbol: #{ip}"
-            end
+            send :"apply_symbol_year_option_#{ip}", answer_hash, year
           end
 
           def restrict_years_in_query?
@@ -81,6 +83,21 @@ class Calculate
           end
 
           private
+
+          def apply_symbol_year_option_all answer_hash, year
+            consolidated_input_answer answer_hash.values, year
+          end
+
+          def apply_symbol_year_option_latest answer_hash, _year
+            answer_hash[answer_hash.keys.max]
+          end
+
+          def apply_symbol_year_option_previous answer_hash, year
+            years = answer_hash.keys.sort
+            return unless (index = years.index year) && (previous_year = years[index - 1])
+
+            answer_hash[previous_year]
+          end
 
           def all_years
             @all_years ||= Card::Set::Type::Year.all_years.map(&:to_i).tap do |a|
@@ -93,13 +110,12 @@ class Calculate
           end
 
           def interpret_year_option
-            case year_option
-            when /^[-+]?\d+$/ then extend YearSingle
-            when /^[-+]?[\d\s]+,[-+\d\s,]+$/ then extend YearList
-            when /[-+]?\d+\.\.[-+]?\d+$/ then extend YearRange
-            when /^all$/ then extend YearAll
-            when /^latest$/ then extend YearLatest
+            EXTENSIONS.each do |regexp, modul|
+              next unless year_option.match? regexp
+              extend modul
+              return true
             end
+            false
           end
         end
       end

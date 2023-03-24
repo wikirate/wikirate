@@ -20,6 +20,12 @@
 # - blurbs # be rake card:sow -- -o -c '{"type":"Blurb"}' -t :title,uri,body,icon
 - blurblists
 
+- :type: :blurb
+  :codename: :policy_cta
+  :fields:
+    :title: Help define how we act
+    :body: Any questions or suggestions? We would love to hear from you.
+    :uri: https://wikirate-intl.org/Contact_Us
 
 - :name: "*logo"
   :type: :image
@@ -48,22 +54,6 @@
 
 - :name: nav bar
   :codename: nav_bar
-
-- :name: nav menu
-  :type: :basic
-  :codename: nav_menu
-  :content: |
-    RESOURCES
-    [[/guides | Guides]]
-    [[/use_the_API | API]]
-    [[/faq | FAQ]]
-    [[:recent | Recent Changes]]
-    [[/ticket | Report Issue]]
-    ABOUT
-    [[/about | About WikiRate]]
-    [[/community | Community]]
-    [[/data | Data]]
-    [[/impact | Impact]]
 
 - :name: Community
   :codename: wikirate_community
@@ -190,3 +180,13 @@
     Endorsement by AMD Berlin Student
     Endorsement by Hannah Jun, Ewha Womans University
     Endorsement by Hannah Roberts, volunteer
+
+- :name: footer legal list
+  :type: :html
+  :codename: :footer_legal_list
+  :content: |
+    [[Wikirate Policies|Policies]]
+    [[Licensing]]
+    [[Disclaimers]]
+    [[Privacy_Policy|Privacy]]
+    <a href=\"https://wikirate-intl.org/Impressum\" target=\"_intl\">Impressum</a>

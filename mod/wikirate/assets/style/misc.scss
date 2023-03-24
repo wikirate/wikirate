@@ -1,5 +1,23 @@
-main > #main > .titled-view > .d0-card-header {
-  margin: 1.5em 0 2em 0;
+#main {
+  > .titled-view > .d0-card-header {
+    margin: 1.5em 0 2em 0;
+    .card-menu {
+      background: $white;
+      padding: 0 0 0.5em 0.5em;
+      border-radius: 5px;
+    }
+  }
+  > .TYPE-output > .d0-card-header > h1 .card-title {
+    font-size: 0.7em;
+  }
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+.d0-card-header h1 {
+  margin-bottom: 0.5rem;
 }
 
 .card, button, a, .bar, i, .btn {
@@ -155,4 +173,13 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   font-family: FontAwesome, sans-serif;
   width: 20rem;
   max-width: 60%;
+}
+
+.company-switch .badge {
+  color: $blue;
+  background-color: $gray-100;
+  // border-radius: 1em;
+  font-weight: normal;
+  font-size: 1rem;
+  padding: 0.2em 1.2em;
 }

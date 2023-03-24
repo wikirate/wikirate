@@ -1,10 +1,10 @@
 shared_context "with calculator stub" do
   def calculator formula, *inputs
-    Calculate::Calculator.new normalized_inputs(inputs), formula: formula
+    described_class.new normalized_inputs(inputs), formula: formula
   end
 
   def calculate formula, *inputs
-    described_class.new(normalized_inputs(inputs), formula: formula).result
+    calculator(formula, *inputs).result
   end
 
   def normalized_inputs inputs

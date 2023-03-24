@@ -22,6 +22,12 @@
   /* Better Font Rendering =========== */
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+
+  /* added to make more like material */
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1;
+  vertical-align: sub;
 }
 
 
