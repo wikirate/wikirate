@@ -59,6 +59,12 @@ RSpec.describe Calculate::Calculator::InputItem do
           expect(answer_for(death_star, nil, year: "1977, 2000").values.map(&:value).uniq)
             .to eq [%w[yes yes]]
         end
+
+        # for monster inc, 2000 is yes, 1977 is no
+        example "previous year" do
+          answer = answer_for "Monster Inc".card_id, 2000, year: "previous"
+          expect(answer.value).to eq "no"
+        end
       end
 
       context "with researched" do

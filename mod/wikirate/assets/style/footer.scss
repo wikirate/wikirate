@@ -14,16 +14,16 @@ $social-colors: (
   }
   h2, .footer-link-list a {
     color: inherit !important;
+    min-height: 2.5em;
   }
   h2 {
     text-transform: uppercase;
     font-size: 1em;
-    margin-bottom: 1em;
   }
 
   .footer-link-list a {
     display: block;
-    padding-top: 2px;
+    padding: 2px 0;
   }
   .decko-credit svg {
     min-width: 2em;
@@ -42,7 +42,14 @@ $social-colors: (
       text-align: end;
     }
   }
+
+  #footer-social-media-links {
+    i {
+      font-size: 1.5em;
+    }
+  }
 }
+
 
 @each $platform, $color in $social-colors {
   a:hover .fa-#{$platform} {
