@@ -113,8 +113,9 @@ class Calculate
             EXTENSIONS.each do |regexp, modul|
               next unless year_option.match? regexp
               extend modul
-              return
+              return true
             end
+            false
           end
         end
       end
