@@ -13,11 +13,20 @@
 }
 
 .d0-card-content, p, .text-content {
-  a, a:hover, a:focus {
+  a:not(.btn), a:hover:not(.btn), a:focus:not(.btn) {
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 }
+.sub-navbar, .header-top-row, .box, .bar {
+  a, a:hover, a:focus {
+    text-decoration: none !important;
+  }
+}
+a.unknown-link {
+  text-decoration: none !important;
+}
+
 
 h1 {
   margin-bottom: 1rem;
