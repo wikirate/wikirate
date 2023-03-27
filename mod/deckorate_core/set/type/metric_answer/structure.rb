@@ -36,7 +36,7 @@ format :html do
   view :details_tab, wrap: :slot, template: :haml
 
   view :contributions_tab do
-    render_history
+    render_relative_history
   end
 
   view :record_tab do
