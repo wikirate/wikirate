@@ -10,7 +10,28 @@
   > .TYPE-output > .d0-card-header > h1 .card-title {
     font-size: 0.7em;
   }
+
+  > .card-slot > .d0-card-frame {
+    margin-top: 1.5em;
+  }
 }
+
+.d0-card-content, p, .text-content {
+  a:not(.btn), a:hover:not(.btn), a:focus:not(.btn) {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+.sub-navbar, .header-top-row, .paging, .box, .bar, .nav-item, .breadcrumb,
+.header-list, .credit, .button-form-group {
+  a, a:hover, a:focus {
+    text-decoration: none !important;
+  }
+}
+a.unknown-link {
+  text-decoration: none !important;
+}
+
 
 h1 {
   margin-bottom: 1rem;
