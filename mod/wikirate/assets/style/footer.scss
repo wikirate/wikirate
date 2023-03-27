@@ -15,6 +15,10 @@ $social-colors: (
   h2, .footer-link-list a {
     color: inherit !important;
     min-height: 2.5em;
+    text-decoration: none !important;
+    &:hover {
+      color: $purple !important;
+    }
   }
   h2 {
     text-transform: uppercase;
