@@ -73,6 +73,7 @@ class SourceFilterQuery < WikirateFilterQuery
   end
 
   def report_type_cql value
+    value = [:in] + Array.wrap(value)
     add_to_cql :right_plus, [ReportTypeID, { refer_to: value }]
   end
 
