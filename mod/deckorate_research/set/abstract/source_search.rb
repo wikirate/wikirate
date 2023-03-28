@@ -44,7 +44,7 @@ format :html do
   {
     wikirate_title: :text,
     wikirate_link: :text,
-    report_type: :radio
+    report_type: :check
   }.each do |filter_key, filter_type|
     define_method("filter_#{filter_key}_type") { filter_type }
   end

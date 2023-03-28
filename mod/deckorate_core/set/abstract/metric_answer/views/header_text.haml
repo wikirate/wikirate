@@ -2,3 +2,5 @@
   %strong Answer:
 .alert.alert-primary
   = nest card.value_card, view: :pretty
+.text-muted.small{ title: card.format(:text).render_legend }
+  = render_legend

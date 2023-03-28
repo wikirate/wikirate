@@ -41,7 +41,7 @@ decko.slot.ready (slot) ->
     btn = $("._next-question-button")
     if btn.length && slot.find("._edit-answer-button").length
       btn = btn.clone()
-      slot.find(".button-form-group").append btn
+      slot.find("._research-buttons").append btn
 
 $(document).ready ->
   $("body").on "click", "#_select_year", (e) ->
