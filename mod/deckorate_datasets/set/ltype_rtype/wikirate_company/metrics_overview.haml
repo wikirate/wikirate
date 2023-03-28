@@ -14,4 +14,4 @@
         .record-answers.d-flex.justify-content-center
           .w-75
             - record_answers(record_name).each do |answer|
-              = nest answer, view: :research_option # , hide: :legend
+              = nest answer, view: :research_option, hide: :legend
