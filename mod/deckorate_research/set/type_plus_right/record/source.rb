@@ -15,7 +15,7 @@ format :html do
   end
 
   def report_type
-    metric_card.report_type_card.first_name
+    metric_card.report_type_card.item_names
   end
 
   def company_name
