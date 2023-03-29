@@ -10,17 +10,19 @@
       Answer
     .read-formgroup-content
       = field_nest :value, view: :core
+      .text-muted.small{ title: card.format(:text).render_legend }
+        = render_legend
       = field_nest :value, view: :credit
 
   = render_read_form
   = render_flash
-  .button-form-group.d-flex.justify-content-between
+  .research-buttons.button-form-group.d-flex.justify-content-between
     - class_up "flag-button", "btn-lg"
-    .pe-2
+    ._research-buttons.pe-2
       = link_to_view :edit_inline, "Edit Answer",
-                     class: "btn btn-outline-secondary btn-lg _edit-answer-button",
+                     class: "btn btn-outline-secondary btn-lg _edit-answer-button mb-4",
                      data: { "disable-with": "Loading..." }
 
-    .pe-2
+    ._verification-buttons.text-end.ps-2
       = render_flag_button
-    = field_nest :checked_by, view: :content
+      = field_nest :checked_by, view: :content

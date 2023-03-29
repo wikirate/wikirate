@@ -28,7 +28,7 @@ format :html do
   view :metric_option, template: :haml
   view :research_years, template: :haml, cache: :never
 
-  view :question_phase, template: :haml, wrap: :slot
+  view :question_phase, template: :haml, wrap: :slot, cache: :never
   view :methodology, template: :haml, wrap: :research_overlay do
     voo.hide :overlay_title
   end
