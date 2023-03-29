@@ -1,6 +1,7 @@
 ._metric-selector.metric-selector.form-control
   = modal_link (metric&.name || "Choose Metric"),
                class: "_selectable-filter-link",
+               size: :large,
                path: { mark: :metric,
                        view: :selectable_filtered_content,
                        slot: { items: { view: :bar } } }

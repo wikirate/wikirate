@@ -17,7 +17,8 @@
     .col-2.p-2
       = modal_link "All metrics",
                    path: { mark: company_project_mark, view: :metrics_overview },
-                   class: "_ btn btn-lg btn-outline-secondary _all_metrics_button"
+                   class: "_ btn btn-lg btn-outline-secondary _all_metrics_button",
+                   size: :large
 
 - else
   = render_metric_option

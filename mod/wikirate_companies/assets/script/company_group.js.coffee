@@ -24,7 +24,7 @@ $(window).ready ->
   $("body").on "decko.item.added", "._constraint-list-editor li", ->
     metric_link = $(this).find(".constraint-metric a")
     metric_link.text "Choose Metric"
-    $(this).find(".constraint-value").children(":not(.input-group-text)").remove()
+    $(this).find(".constraint-value .card-slot").children().remove()
     constraintDisabled metric_link, true
 
 

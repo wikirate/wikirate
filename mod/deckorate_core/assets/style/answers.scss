@@ -30,19 +30,26 @@
 .year-icon-cal.image-box  {
   position: relative;
   margin-right: 0;
+  background: inherit;
+  border: none;
+  border-radius: 0;
   i {
-    font-size: 1.5em;
+    font-size: 3.5rem;
     position: relative;
-    bottom: 0.5em;
+    color: $gray-400;
   }
   .icon-cal-text {
     position: absolute;
-    bottom: 5%;
-    font-size: 1.15em;
+    bottom: 15px;
+    font-size: 0.85rem;
+    color: $gray-600;
     font-weight: bold;
   }
 }
 
-.concise-answer .year-icon-cal {
-  font-size: 0.7rem;
+.record-answers .concise-answer {
+  border-bottom: 1px solid $gray-200;
+  margin: 0.5em 0;
 }
+
+
