@@ -9,7 +9,7 @@ card_accessor :wikirate_company, type: :pointer
 
 format :html do
   def edit_fields
-    %i[image output_type uri file date description]
+    %i[image output_type uri file date description wikirate_company]
   end
 
   view :box_top, template: :haml

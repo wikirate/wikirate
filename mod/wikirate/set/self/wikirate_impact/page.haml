@@ -8,8 +8,7 @@
 
 %section.p-5.container
   .py-3
-    = nest :output, view: :filter_chips
-  = nest :output, view: :content, hide: :menu, items: { view: :box }
+    = nest :output, view: :filtered_content, hide: :menu, items: { view: :box }
 
 %section.container-fluid.p-5
   .container.p-5

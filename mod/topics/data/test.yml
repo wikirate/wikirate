@@ -15,6 +15,9 @@
 - :name: Energy
   :type: :wikirate_topic
 
+- :name: Featured
+  :codename: featured
+
 - :name:
     - :wikirate_topic
     - :featured

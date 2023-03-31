@@ -11,6 +11,16 @@
     border: 1px solid $border-color;
     background-color: $border-color;
   }
+  .btn.pointer-item-delete {
+    padding: 0;
+    border-radius: 0;
+  }
+  .form-control {
+    border-radius: 0;
+  }
+  a {
+    text-decoration: none !important;
+  }
 }
 
 .constraint-editor {
