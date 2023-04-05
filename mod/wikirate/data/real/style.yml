@@ -8,7 +8,7 @@
     :colors: |
       $blue: #2D2374 !default;
       $purple: #7164D0 !default;
-      $red: #E44D4A !default;
+      $red: #DF2B28 !default;
       $orange: #f7733d !default;
       $yellow: #F7D03D !default;
       $green: #7AC774 !default;
