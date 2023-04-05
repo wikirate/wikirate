@@ -8,10 +8,10 @@
     :colors: |
       $blue: #2D2374 !default;
       $purple: #7164D0 !default;
-      $red: #912e06 !default;
+      $red: #E44D4A !default;
       $orange: #f7733d !default;
-      $yellow: #f7bd1d !default;
-      $green: #034E42 !default;
+      $yellow: #F7D03D !default;
+      $green: #7AC774 !default;
       $teal: #09ab90 !default;
       $black: #1d1e3f !default;
       $white: #ffffff !default;
@@ -61,14 +61,14 @@
 
       $score-colors: (
         "0": $red,
-        "1": $danger,
+        "1": #EF5A45,
         "2": $orange,
         "3": #F7923D,
         "4": $yellow-orange,
         "5": $yellow,
         "6": #BFCA4B,
         "7": $green,
-        "8": #65a300,
+        "8": #4DBE85,
         "9": $teal
       );
 
