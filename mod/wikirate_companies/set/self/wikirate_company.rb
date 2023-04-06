@@ -43,7 +43,9 @@ format do
 
   def os_search_returning_cards
     super.tap do |cardlist|
-      if (exact_match = filtered_name&.card) && !cardlist.include?(exact_match)
+      if (exact_match = filtered_name&.card) &&
+         !cardlist.include?(exact_match) &&
+         (exact_match.type_code == :wikirate_company)
         cardlist.unshift exact_match
       end
     end
