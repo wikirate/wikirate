@@ -6,6 +6,8 @@ class Card
       { name: name, headquarters: hq }
     end
 
+    private
+
     def headquarters_in_file name, import_manager
       import_manager.each_item do |_index, item|
         hq = item[:headquarters]
