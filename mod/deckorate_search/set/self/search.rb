@@ -99,6 +99,10 @@ format :json do
     cardnames_from_os_results autocomplete_options
   end
 
+  def go_to_exact_match? exact
+    exact.known? && TYPES.include?(exact.type_code)
+  end
+
   private
 
   def cardnames_from_os_results results
