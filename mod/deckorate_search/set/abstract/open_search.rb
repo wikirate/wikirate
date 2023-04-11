@@ -39,7 +39,7 @@ format do
     rescuing_open_search [] do
       os_search_with_params.dig("hits", "hits").map do |result|
         result["_id"]&.to_i&.card
-      end
+      end.compact
     end
   end
 
