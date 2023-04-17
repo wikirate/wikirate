@@ -2,6 +2,12 @@
   font-weight: 400;
 }
 
+@include media-breakpoint-down(sm) {
+  .lead {
+    font-size: 1rem;
+  }
+}
+
 // Bootstrap Tweak
 .media-body {
   width: inherit;
