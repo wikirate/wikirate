@@ -8,7 +8,7 @@
                                                        text: "Join us" }
 
 %section.container.py-5.d-flex.justify-content-center
-  .py-4.w-50
+  .py-4.w-lg-66
     = nest :platform_vision, view: :icon_left_text_right
     = nest :platform_mission, view: :icon_left_text_right
 
@@ -18,7 +18,7 @@
       Free tools for taking action
     .row.justify-content-center
       - %i[about blurb].card.item_cards.each do |blurb|
-        .card-list-flipper.col-12.col-sm-6.col-md-4
+        .card-list-flipper.col-12.col-sm-6.col-xl-4
           .item-flipper.py-3
             = nest blurb, view: :flipper
 
@@ -33,12 +33,12 @@
 
 %section#our-story-section.container-fluid.text-center.py-4
   .container.py-5
-    .d-inline-block.w-66.text-start.p-3
+    .d-inline-block.w-lg-66.text-start.p-3
       = nest :our_story, view: :titled, hide: :menu
 
 %section#about-ctas.container.py-5
-  .row.py-5
-    #about-cta.col-6.d-flex
+  .row.py-4
+    #about-cta.col-12.col-md-6.d-flex.my-3
       = nest :about_cta, view: :cta, title: "Learn more about our services"
-    .col-6.d-flex
+    .col-12.col-md-6.d-flex.my-3
       = nest :contact_us, view: :section
