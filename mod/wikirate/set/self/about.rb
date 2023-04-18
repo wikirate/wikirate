@@ -10,7 +10,7 @@ format :html do
   end
 
   def breadcrumb_title
-    "About WikiRate"
+    "About Wikirate"
   end
 
   view :page, template: :haml

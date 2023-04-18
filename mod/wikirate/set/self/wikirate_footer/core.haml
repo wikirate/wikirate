@@ -13,12 +13,17 @@
 
       .col-6.col-sm-4
         .footer-link-list.py-2
-          = nest :"footer_legal_list", view: :titled, title: "legal", hide: :menu
+          %h2 legal
+          - footer_legal_link_list.each do |text, dest|
+            - if dest.match?(/^http/)
+              = link_to text, href: dest, title: text, target: "_legal"
+            - else
+              = link_to_card dest, text
       .col-6.col-sm-4
         .footer-link-list.py-2
           %h2 contact
           %a{ href: "https://wikirate-intl.org/Contact_us", target: "_intl" }
-            Contact us on WikiRate international
+            Contact us on Wikirate international
           %a{ href: "https://wikirate.us7.list-manage.com/subscribe/post?u=be57db47b40c6b1c7e9ef0b36&id=1354650004",
                target: "_intl" }
             Subscribe for Updates
@@ -28,21 +33,22 @@
           .d-flex.justify-content-between
             - social_media_links.each do |social, url|
               = link_to font_awesome_icon_tag(social.downcase, brand:true),
-                        href: url, title: social
+                        href: url, title: social, target: "_social"
 
     %hr
 
-    .footer-footer.small.row
+    .footer-footer.small.row.text-content
       .decko-credit.col-12.col-md-4
         .d-flex.pb-3
-          = link_to nest(:decko_logo, view: :core), href: "https://decko.org"
+          = link_to nest(:decko_logo, view: :core),
+                    href: "https://decko.org", target: "_decko"
           %label
             We're on
-            = link_to "Decko", href: "https://decko.org"
+            = link_to "Decko", href: "https://decko.org", target: "_decko"
       .wikirate-licensing.col-12.col-md-8.pb-3
         Wikirate's content is licensed under
-        %a{ href: "https://creativecommons.org/licenses/by/4.0/" }
+        %a{ href: "https://creativecommons.org/licenses/by/4.0/", target: "_legal" }
           CC BY 4.0,
         and Wikirate's database infrastructure is licensed under
-        %a{ href: "https://creativecommons.org/licenses/by-sa/4.0/" }
+        %a{ href: "https://creativecommons.org/licenses/by-sa/4.0/", target: "_legal" }
           CC BY-SA 4.0.
