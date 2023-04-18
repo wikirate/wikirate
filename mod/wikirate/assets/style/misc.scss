@@ -68,8 +68,13 @@ textarea.form-control {
   //}
 }
 
-.w-66 {
-  width: 66.6%;
+@include media-breakpoint-up(lg) {
+  .w-lg-66 {
+    width: 66.6%;
+  }
+  .w-lg-75 {
+    width: 75%;
+  }
 }
 
 /*Common Classes*/
