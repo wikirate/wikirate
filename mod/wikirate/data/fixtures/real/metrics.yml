@@ -1,1 +1,13 @@
---- {}
+---
+metrics_001:
+  id: 1
+  metric_id: 2605
+  designer_id:
+  title_id: 717
+  scorer_id:
+  metric_type_id: 705
+  value_type_id: 2393
+  policy_id: 713
+  unit: ''
+  hybrid: 0
+  unpublished: 0
