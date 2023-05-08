@@ -28,9 +28,9 @@ format :html do
   private
 
   def action_link text, klass=nil
-    link_to "#{text} <span class='ms-2'>#{icon_tag :forward}</span>",
+    link_to "#{text} <span class='ms-2'>#{icon_tag :long_forward}</span>",
             href: card.uri,
             target: (card.uri.match?(/^http/) ? "_external" : ""),
-            class: "d-flex #{klass}"
+            class: "action-link d-flex #{klass}"
   end
 end

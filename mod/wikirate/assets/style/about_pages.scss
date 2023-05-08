@@ -36,6 +36,22 @@
   }
 }
 
+.wikirate-section-header {
+  a.btn {
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+    box-shadow: 0 5px 10px 0 rgba(45,35,116,0.2);
+    &:hover {
+      box-shadow: $box-shadow-sm;
+    }
+    background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
+    padding: 0.8rem 2rem !important;
+    min-width: 160px;
+  }
+}
+
+
 #wikirate-data-today {
   background: $light-teal;
 }
@@ -126,6 +142,12 @@
     h5, a {
       color: $purple-grad-1;
     }
+    .action-link {
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+      padding: 0.4rem 1.4rem;
+    }
     padding: 1rem;
     background: $white;
     border: 0;
@@ -139,7 +161,13 @@
       color: $white;
       //cursor: pointer;
       background-color: $purple-grad-1;
+      .btn.action-link {
+        border: 1.4px solid transparent;
+      }
     }
+  }
+  .action-card-footer {
+    padding: 1em;
   }
 }
 
@@ -160,31 +188,34 @@
       background-color: $orange;
     }
   }
-  .btn.wr-arrow {
+  .wr-arrow {
     color: $orange;
-    &:hover {
-      color: $white;
-      background-color: $orange;
-    }
+    //&:hover {
+    //  color: $white;
+    //  background-color: $orange;
+    //}
   }
 }
 
 
-.btn.wr-arrow {
-  color: $purple;
-  background-color: $white;
+.wr-arrow {
+  color: $blue;
+  //background-color: $white;
   font-size: x-large;
   margin-left: 0.8em;
   padding: 0.2em;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: $box-shadow-sm;
   &:hover {
-    box-shadow: $box-shadow;
-    background-color: $purple;
-    color: $white;
+    cursor: pointer;
   }
+  //box-shadow: $box-shadow-sm;
+  //&:hover {
+  //  box-shadow: $box-shadow;
+  //  background-color: $purple;
+  //  color: $white;
+  //}
 }
 .justify-content-center .wr-arrow {
   margin: 0.4em;
