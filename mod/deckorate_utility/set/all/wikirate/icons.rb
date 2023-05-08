@@ -34,8 +34,7 @@ basket[:icons][:material].merge!(
   more: :more_horiz,
   circle: :circle,
   account: :volunteer_activism,
-  designer: :design_services,
-  long_forward: :east
+  designer: :design_services
 )
 
 basket[:icons][:font_awesome].merge!(

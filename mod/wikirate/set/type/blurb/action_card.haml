@@ -1,6 +1,6 @@
--# - card_link_data = wrap_data.merge card_link_url: card.uri
+- card_link_data = wrap_data.merge card_link_url: card.uri
 .action-card
-  .card.justify-content-between.nodblclick{ data: wrap_data }
+  .card.justify-content-between.nodblclick._card-link{ data: card_link_data }
     .card-body
       %h5.card-title
         = field_nest :title, view: :core
