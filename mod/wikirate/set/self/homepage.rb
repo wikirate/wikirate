@@ -25,7 +25,7 @@ format :html do
   view :delta, template: :haml, wrap: :slot
 
   view :shuffle_button do
-    link_to_view :delta, icon_tag(:shuffle), class: "btn wr-arrow"
+    link_to_view :delta, material_symbol_tag(:shuffle), class: "wr-arrow"
   end
 
   def involved_links
