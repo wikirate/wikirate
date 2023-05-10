@@ -37,14 +37,10 @@
 }
 
 .wikirate-section-header {
-  a.btn {
+  a.btn-primary {
     font-size: 1rem;
     letter-spacing: 0.3px;
     font-weight: 500;
-    box-shadow: 0 5px 10px 0 rgba(45,35,116,0.2);
-    &:hover {
-      box-shadow: $box-shadow-sm;
-    }
     background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
     padding: 0.8rem 2rem !important;
     min-width: 160px;
@@ -193,13 +189,12 @@
   }
   .wr-arrow {
     color: $orange;
-    //&:hover {
-    //  color: $white;
-    //  background-color: $orange;
-    //}
+    &:hover {
+      color: $white;
+      background-color: $orange;
+    }
   }
 }
-
 
 .wr-arrow {
   color: $blue;
@@ -207,19 +202,24 @@
   font-size: x-large;
   margin-left: 0.8em;
   padding: 0.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   &:hover {
     cursor: pointer;
   }
-  //box-shadow: $box-shadow-sm;
-  //&:hover {
-  //  box-shadow: $box-shadow;
-  //  background-color: $purple;
-  //  color: $white;
-  //}
+  &.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $box-shadow-sm;
+    transition: background-color 0.8s ease;
+    &:hover {
+      box-shadow: $box-shadow;
+      background-color: $purple;
+      color: $white;
+    }
+  }
 }
+
+
 .justify-content-center .wr-arrow {
   margin: 0.4em;
 }

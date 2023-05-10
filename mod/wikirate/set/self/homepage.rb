@@ -25,7 +25,7 @@ format :html do
   view :delta, template: :haml, wrap: :slot
 
   view :shuffle_button do
-    link_to_view :delta, material_symbol_tag(:shuffle), class: "wr-arrow"
+    link_to_view :delta, material_symbol_tag(:shuffle), class: "btn wr-arrow"
   end
 
   def involved_links
@@ -39,6 +39,7 @@ format :html do
 
   def edit_fields
     absolutize_edit_fields [
+      :alert_banner,
       :homepage_search_heading,
       %i[search featured],
       %i[cardtype featured],
