@@ -60,6 +60,9 @@
   .count-description {
     color: $gray-600 !important;
   }
+  h1, a {
+    color: $primary !important;
+  }
 }
 
 .vertical-thumbnails {
