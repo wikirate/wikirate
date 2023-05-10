@@ -1,5 +1,10 @@
 #homepage.nodblclick
-  %section.container.px-5.py-2
+  - if :alert_banner.card.content.strip.present?
+    %section#homepage-alert.container-fluid.bg-dark
+      .container.text-white.text-center.p-2
+        = nest :alert_banner, view: :core
+
+  %section#homepage-menu.container.p-5
     = render_menu
 
   // SEARCH SECTION
