@@ -27,3 +27,20 @@
 .navbar-brand input.search-box {
   font-size: 0.875rem;
 }
+
+@media screen and (max-width: 576px){
+
+  #top-navbar .top-nav-search {
+    padding: 1em 0 0em;
+
+    .form-select {
+      font-size: .875rem;
+      padding: 0.375rem 1.5rem 0.375rem 1rem;
+    }
+
+    .form-control {
+      font-size: .875rem;
+      border-right-style: none;
+    }
+  }
+}
