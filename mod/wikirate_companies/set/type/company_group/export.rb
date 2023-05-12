@@ -2,7 +2,7 @@ format :json do
   KEYMAP = { wikirate_company: :companies, specification: :specification }.freeze
 
   def atom
-    nucleus.merge fields_with_view(:content)
+    super.merge fields_with_view(:content)
   end
 
   def molecule
@@ -13,5 +13,11 @@ format :json do
     %i[specification wikirate_company].each_with_object({}) do |codename, hash|
       hash[KEYMAP[codename]] = field_nest codename, view: view
     end
+  end
+
+  private
+
+  def atom_content?
+    false
   end
 end
