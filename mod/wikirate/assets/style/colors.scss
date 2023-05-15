@@ -399,6 +399,10 @@ $lightMap: (
 
 .btn-primary {
   background-color: $purple-grad-1;
+  box-shadow: $box-shadow-sm;
+  &:hover {
+    box-shadow: $box-shadow;
+  }
 }
 
 .badge-purple {

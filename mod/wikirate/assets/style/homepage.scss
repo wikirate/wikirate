@@ -53,6 +53,10 @@ animation bg-pan-right
   }
 }
 
+#homepage-alert a {
+  color: $white !important;
+  font-weight: bold;
+}
 
 .homepage-delta-cards {
   .card {
@@ -91,3 +95,32 @@ animation bg-pan-right
 }
 
 
+#homepage-search-container > div {
+  width: 75%
+}
+
+@media screen and (max-width: 576px){
+  #homepage-search-section {
+    #homepage-search-container > div {
+      width: 90%
+    }
+
+    .search-box-input-group {
+      height: 56px;
+
+      select {
+        padding-left: 1.5em;
+        font-size: 0.875rem;
+      }
+
+      .form-select {
+        padding: 0.375rem 1.5rem 0.375rem 1rem;
+      }
+
+      .form-control {
+        font-size: .875rem;
+        border-right-style: none;
+      }
+    }
+  }
+}
