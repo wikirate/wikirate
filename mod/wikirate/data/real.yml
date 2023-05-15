@@ -181,3 +181,11 @@
     Endorsement by AMD Berlin Student
     Endorsement by Hannah Jun, Ewha Womans University
     Endorsement by Hannah Roberts, volunteer
+
+- :name: alert banner
+  :codename: alert_banner
+  :content: |
+    Need some help? Join our  
+    [[https://www.meetup.com/open-data-for-good/events/293019188/ |
+    online community troubleshooting event]]
+    on 8 May, 17h CEST.

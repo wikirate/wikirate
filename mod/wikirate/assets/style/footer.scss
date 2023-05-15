@@ -13,21 +13,20 @@ $social-colors: (
     text-transform: uppercase;
   }
   h2, .footer-link-list a {
-    color: inherit !important;
     min-height: 2.5em;
     text-decoration: none !important;
-    &:hover {
-      color: $purple !important;
-    }
   }
   h2 {
+    color: inherit !important;
     text-transform: uppercase;
     font-size: 1em;
   }
-
   .footer-link-list a {
     display: block;
     padding: 2px 0;
+    &:hover {
+      color: $purple !important;
+    }
   }
   .decko-credit svg {
     min-width: 2em;
@@ -50,6 +49,7 @@ $social-colors: (
   #footer-social-media-links {
     i {
       font-size: 1.5em;
+      color: $blue;
     }
   }
 }
