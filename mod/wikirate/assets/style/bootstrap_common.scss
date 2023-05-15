@@ -103,6 +103,17 @@ ul.horizontal > li {
   }
 }
 
+.btn-primary {
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
+  padding: 0.8rem 2rem !important;
+}
+.btn-primary:not(.dropdown-toggle) {
+  min-width: 160px;
+}
+
 // following copied from
 // vendor/decko/mod/bootstrap/vendor/bootstrap/site/assets/scss/_colors.scss
 
