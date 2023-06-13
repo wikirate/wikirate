@@ -67,3 +67,49 @@ schema_migrations_033:
   version: '20211128040849'
 schema_migrations_034:
   version: '20221031182227'
+schema_migrations_deck_001:
+  version: '20161005120801'
+schema_migrations_deck_002:
+  version: '20170118180006'
+schema_migrations_deck_003:
+  version: '20170210153241'
+schema_migrations_deck_004:
+  version: '20170303130557'
+schema_migrations_deck_005:
+  version: '20170330102819'
+schema_migrations_deck_006:
+  version: '20170524163430'
+schema_migrations_deck_007:
+  version: '20170524163436'
+schema_migrations_deck_008:
+  version: '20180529102124'
+schema_migrations_deck_009:
+  version: '20180918185656'
+schema_migrations_deck_010:
+  version: '20181113104340'
+schema_migrations_deck_011:
+  version: '20190107215627'
+schema_migrations_deck_012:
+  version: '20190208140347'
+schema_migrations_deck_013:
+  version: '20200225183147'
+schema_migrations_deck_014:
+  version: '20200302171011'
+schema_migrations_deck_015:
+  version: '20200508140747'
+schema_migrations_deck_016:
+  version: '20200805195617'
+schema_migrations_deck_017:
+  version: '20201216040253'
+schema_migrations_deck_018:
+  version: '20210203185819'
+schema_migrations_deck_019:
+  version: '20210212184540'
+schema_migrations_deck_020:
+  version: '20210524204353'
+schema_migrations_deck_021:
+  version: '20210531204619'
+schema_migrations_deck_022:
+  version: '20220902162520'
+schema_migrations_deck_023:
+  version: '20230321233933'
