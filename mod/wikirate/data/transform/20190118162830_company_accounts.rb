@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class CompanyAccounts < Cardio::Migration::Transform  def up
+class CompanyAccounts < Cardio::Migration::Transform
+  def up
     ensure_card %i[wikirate_company type accountable], content: "1"
     create_account_card
     only_wikirate_team_can :create

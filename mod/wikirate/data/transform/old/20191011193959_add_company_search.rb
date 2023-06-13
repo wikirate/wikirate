@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class AddCompanySearch < Cardio::Migration::Transform  def up
+class AddCompanySearch < Cardio::Migration::Transform
+  def up
     update_card "specification", name: "Specification"
     ensure_card %i[company_search right default],
                 type_id: Card::SearchTypeID

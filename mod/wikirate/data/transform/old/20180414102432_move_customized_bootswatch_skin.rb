@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class MoveCustomizedBootswatchSkin < Cardio::Migration::Transform  WIKIRATE_VARIABLES = <<-SCSS.strip_heredoc
+class MoveCustomizedBootswatchSkin < Cardio::Migration::Transform
+  WIKIRATE_VARIABLES = <<-SCSS.strip_heredoc
     $teal: #03998d !default;
     $primary: $teal !default;
   SCSS

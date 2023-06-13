@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class ConvertCurrencyToUnit < Cardio::Migration::Transform  UNITS = { /^\$$/ => "USD", /US Dollars/ => "USD" }
+class ConvertCurrencyToUnit < Cardio::Migration::Transform
+  UNITS = { /^\$$/ => "USD", /US Dollars/ => "USD" }
 
   def up
     Card.search type: "Metric", right_plus: "currency" do |metric|

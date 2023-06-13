@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class RegionFields < Cardio::Migration::Transform  TYPE_MAP = { "Country" => :pointer, "Country code" => :phrase }.freeze
+class RegionFields < Cardio::Migration::Transform
+  TYPE_MAP = { "Country" => :pointer, "Country code" => :phrase }.freeze
 
   def up
     add_code_cards

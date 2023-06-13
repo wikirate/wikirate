@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class NewHomepageCodenames < Cardio::Migration::Transform  def up
+class NewHomepageCodenames < Cardio::Migration::Transform
+  def up
     %w[companies projects topics answers].each do |type|
       feature_list_card type
     end

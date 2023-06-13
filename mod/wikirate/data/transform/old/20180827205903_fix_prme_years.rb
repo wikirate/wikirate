@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class FixPrmeYears < Cardio::Migration::Transform  def up
+class FixPrmeYears < Cardio::Migration::Transform
+  def up
     repair_answers_without_latest
     conflicts = []
     each_broken_answer_id do |answer_id|

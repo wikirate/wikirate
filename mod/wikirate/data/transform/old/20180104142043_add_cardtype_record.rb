@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class AddCardtypeRecord < Cardio::Migration::Transform  def up
+class AddCardtypeRecord < Cardio::Migration::Transform
+  def up
     type_to_record left: { type_id: Card::MetricID },
                    right: { type_id: Card::WikirateCompanyID }
     type_to_record left: { type_id: Card::RecordID }, right: { type_id: Card::UserID }

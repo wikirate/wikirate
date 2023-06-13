@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class AddWidgetCodenames < Cardio::Migration::Transform  def up
+class AddWidgetCodenames < Cardio::Migration::Transform
+  def up
     widget_cards = { commons_supplier_of: "Commons+Supplier of",
                      company_address: "Clean_Clothes_Campaign+Address" }
 

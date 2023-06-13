@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class CorrectAnswerTypes < Cardio::Migration::Transform  def up
+class CorrectAnswerTypes < Cardio::Migration::Transform
+  def up
     update_type :answer, Card::MetricAnswerID
     update_type :relationship, Card::RelationshipAnswerID
   end

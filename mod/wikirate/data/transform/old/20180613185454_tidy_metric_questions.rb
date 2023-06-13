@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class TidyMetricQuestions < Cardio::Migration::Transform  def up
+class TidyMetricQuestions < Cardio::Migration::Transform
+  def up
     Card.search left: { type_id: Card::MetricID }, right_id: Card::QuestionID do |card|
       next if card.type_id == Card::PlainTextID
       card.update!(

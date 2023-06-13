@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class RemoveDuplicateAnswers < Cardio::Migration::Transform  def up
+class RemoveDuplicateAnswers < Cardio::Migration::Transform
+  def up
     duplicates.each do |dup|
       wipe_duplicate dup
       if researched?(dup)

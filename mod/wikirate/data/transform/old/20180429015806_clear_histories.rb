@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class ClearHistories < Cardio::Migration::Transform  def up
+class ClearHistories < Cardio::Migration::Transform
+  def up
     %i[vote_count upvote_count downvote_count upvotes downvotes badges_earned
        solid_cache token autoname machine_input machine_output].each do |codename|
       Card.search right_id: Card::Codename.id(codename) do |card|

@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class FixCheckersInAnswersTable < Cardio::Migration::Transform  def up
+class FixCheckersInAnswersTable < Cardio::Migration::Transform
+  def up
     Card.where(right_id: Card::CheckedByID).find_each do |checked_by|
       answer_card = checked_by.left
       next unless answer_card&.type_id == Card::MetricAnswerID

@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class ImportValueTypeCardtypes < Cardio::Migration::Transform  def up
+class ImportValueTypeCardtypes < Cardio::Migration::Transform
+  def up
     fix_bad_test_data
     fix_record_types
     fix_answer_types

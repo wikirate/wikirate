@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class UpgradeResearchGroups < Cardio::Migration::Transform  def up
+class UpgradeResearchGroups < Cardio::Migration::Transform
+  def up
     # changes conversation cards from having +project fields to having +tag fields
     # (generalizing them)
     Card.fetch("Conversation+Project+*type_plus_right")

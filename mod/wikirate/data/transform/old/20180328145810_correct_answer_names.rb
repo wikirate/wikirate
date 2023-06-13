@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class CorrectAnswerNames < Cardio::Migration::Transform  disable_ddl_transaction!
+class CorrectAnswerNames < Cardio::Migration::Transform
+  disable_ddl_transaction!
 
   def up
     Answer.in_batches do |answers|

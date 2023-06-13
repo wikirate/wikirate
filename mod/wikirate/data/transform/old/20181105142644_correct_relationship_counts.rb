@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class CorrectRelationshipCounts < Cardio::Migration::Transform  disable_ddl_transaction!
+class CorrectRelationshipCounts < Cardio::Migration::Transform
+  disable_ddl_transaction!
 
   def up
     answers = ::Set.new

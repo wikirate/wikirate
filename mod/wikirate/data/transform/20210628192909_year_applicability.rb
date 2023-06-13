@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class YearApplicability < Cardio::Migration::Transform  def up
+class YearApplicability < Cardio::Migration::Transform
+  def up
     clean_up_list_card
 
     # TODO: move to core?

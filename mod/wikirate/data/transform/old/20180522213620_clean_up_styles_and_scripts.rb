@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-class CleanUpStylesAndScripts < Cardio::Migration::Transform  def up
+class CleanUpStylesAndScripts < Cardio::Migration::Transform
+  def up
     delete_card "slick js"
     delete_card "script: fake loader"
     delete_card "script: old libraries"
