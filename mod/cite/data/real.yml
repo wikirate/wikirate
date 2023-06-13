@@ -1,0 +1,10 @@
+- :name: Reference
+  :type: :cardtype
+  :codename: reference
+  :fields:
+    :type:
+      :fields:
+        :autoname: Blurb 0001
+
+- :name: referrers
+  :codename: referrers
