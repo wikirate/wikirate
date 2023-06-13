@@ -24,15 +24,6 @@ format :html do
 
   view :title_and_question, template: :haml
 
-  # TODO: fix homepage and get rid of this!
-  view :title_and_question_compact do
-    link = link_to_card card, card.metric_title, class: "inherit-anchor"
-    wrap_with :div, class: "bg-white" do
-      [wrap_with(:div, link, class: "metric-color fw-bold"),
-       render_question]
-    end
-  end
-
   view :question do
     field_nest :question, view: :content, unknown: :blank
   end
