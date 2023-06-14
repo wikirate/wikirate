@@ -18,9 +18,9 @@ ratings:
 exclude_paths:
 - vendor/**/*
 - mod/*/{data/files,public,vendor}/**/*
+- mod/*/data/{transform,schema}/**/*
 - mod/**/lib/javascript/**/*.js
 - mod/**/*.min.css
 - test/**/*
-- db/**/*
 - script/single-use/**/*
 - mod/deckorate_research/assets/script/jpages.js
