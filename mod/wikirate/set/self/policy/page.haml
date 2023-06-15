@@ -1,8 +1,10 @@
 %section.container-fluid.bg-light
-  .container.p-5.py-3
+  .container.p-5.pt-3
     = render_breadcrumbs
-    %h1.py-5
+    %h1.pt-4.pb-3
       = render_title
+    .lead
+      = nest %i[policy description], view: :content
 
 %section.container.py-5.d-flex.justify-content-center
   = nest %i[policy type by_name], view: :core, items: { view: :box }
@@ -16,7 +18,8 @@
           policies and guidelines for WikiRate International e.V.
 
 %section.container.py-5
-  .py-5
-    = section_header :policy_cta,
-                     button: { url: "https://wikirate-intl.org/Contact_us",
-                               text: "Get in touch", target: "_intl" }
+  .p-5
+    #policy-card.card.p-5
+      = section_header :policy_cta,
+                       button: { url: "https://wikirate-intl.org/Contact_us",
+                                 text: "Get in touch", target: "_intl" }
