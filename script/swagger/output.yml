@@ -7,7 +7,7 @@ info:
       Wikirate is built with Decko, and is thus constructed from _cards_. Everything in Decko is a card, including images, accounts, searches, fields, etc. So every request for a webpage on Wikirate.org or via its REST API is for a _card_.
 
       The documentation below is divided into generic Decko card documentation (under `Decko`) and more Wikirate-specific cardtypes (under `Wikirate`).
-  version: 0.20.2
+  version: 0.20.3
   title: Wikirate API
   contact:
     email: info@decko.org
@@ -356,7 +356,7 @@ paths:
     post:
       tags:
       - Wikirate
-      summary: create a company card
+      summary: create a Company card
       description: 'Create a new company card. Alternative: a GET request with /card/create'
       parameters:
       - "$ref": "#/components/parameters/company_card"
@@ -368,7 +368,7 @@ paths:
     post:
       tags:
       - Wikirate
-      summary: create an answer card
+      summary: create an Answer card
       description: Create a new answer to a specified metric, company, and year.
       parameters:
       - "$ref": "#/components/parameters/answer_name"
@@ -380,7 +380,7 @@ paths:
     post:
       tags:
       - Wikirate
-      summary: create an Source card
+      summary: create a Source card
       description: Create a source record that can be cited by answers.
       parameters:
       - "$ref": "#/components/parameters/source_subcards"
