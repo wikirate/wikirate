@@ -29,23 +29,11 @@ format :html do
   view :contrib_switch, cache: :never do
     # return "" unless contribs_made?
 
-    contrib_page? ? switch_to_performance : switch_to_contrib
-  end
-
-  def switch_to_performance
-    switch_to "performance", "N", "Company performance profile"
-  end
-
-  def switch_to_contrib
-    switch_to "contributions", "Y", "Content contributions to Wikirate.org"
-  end
-
-  def switch_to text, val, title
-    text = wrap_with :div, class: "badge badge-purple" do
-      "View #{text} profile"
+    if contrib_page?
+      label_for "contributions", "N"
+    else
+      label_for "performance", "Y"
     end
-    link_to_card card, text,
-                 class: "company-switch", title: title, path: { contrib: val }
   end
 
   def type_link_label
@@ -76,6 +64,16 @@ format :html do
   end
 
   private
+
+  def label_for text, val
+    text = wrap_with :div, class: "badge badge-purple" do
+      "#{text} profile"
+    end
+    link_to_card card, text,
+                 class: "company-switch",
+                 title: "Switch between performance and contribution profile.",
+                 path: { contrib: val }
+  end
 
   def contrib_page_from_params?
     param = Env.params[:contrib]
