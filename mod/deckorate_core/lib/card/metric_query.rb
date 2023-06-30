@@ -29,7 +29,7 @@ class Card
       "metrics"
     end
 
-    def name_query value
+    def filter_by_name value
       restrict_by_cql :title, "title_id",
                       name: [:match, value], left_plus: [{}, { type: :metric }]
     end
@@ -51,7 +51,7 @@ class Card
         metric_title: :title_id }
     end
 
-    def source_query value
+    def filter_by_source value
       subsql = AnswerQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
       @conditions << "metrics.metric_id in (#{subsql})"
     end

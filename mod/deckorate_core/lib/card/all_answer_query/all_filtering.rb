@@ -15,7 +15,7 @@ class Card
       }.freeze
 
       # TEMPORARY HACK.  replace with metric lookup
-      def metric_name_query value
+      def filter_by_metric_name value
         restrict_partner_ids matching_metric_ids(value)
       end
 
@@ -53,7 +53,7 @@ class Card
         @card_values << value
       end
 
-      def company_filter_query table, condition_method, value
+      def filter_by_company_filter table, condition_method, value
         @card_joins << "JOIN answers AS #{table} ON #{partner}.id = #{table}.company_id"
         add_card_condition CompanyFilterCql.send(condition_method), Array.wrap(value)
       end
