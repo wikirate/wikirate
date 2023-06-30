@@ -13,7 +13,7 @@ class Card
         Array.wrap(value).each_with_index do |constraint, index|
           table = "co_ans#{index}"
           @joins += company_answer_join(table)
-          @conditions << CompanyFilterQuery.company_answer_condition(table, constraint)
+          @conditions << CompanyFilterCql.company_answer_condition(table, constraint)
         end
       end
 

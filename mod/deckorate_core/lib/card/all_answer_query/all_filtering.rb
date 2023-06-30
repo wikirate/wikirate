@@ -5,8 +5,8 @@ class Card
     # that handling is in AnswerQuery::Filtering)
     module AllFiltering
       PARTNER_FILTER_QUERY = {
-        company: CompanyFilterQuery,
-        metric: MetricFilterQuery
+        company: CompanyFilterCql,
+        metric: MetricFilterCql
       }.freeze
 
       PARTNER_CQL_FILTERS = {
@@ -55,7 +55,7 @@ class Card
 
       def company_filter_query table, condition_method, value
         @card_joins << "JOIN answers AS #{table} ON #{partner}.id = #{table}.company_id"
-        add_card_condition CompanyFilterQuery.send(condition_method), Array.wrap(value)
+        add_card_condition CompanyFilterCql.send(condition_method), Array.wrap(value)
       end
 
       # map answer fields to partner card fields

@@ -54,7 +54,7 @@ class Card
 
       def company_filter_query table, condition_method, value
         company_answer_join table
-        @conditions << CompanyFilterQuery.send(condition_method)
+        @conditions << CompanyFilterCql.send(condition_method)
         @values << Array.wrap(value)
       end
 
