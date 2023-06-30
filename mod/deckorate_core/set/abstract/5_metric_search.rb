@@ -13,7 +13,7 @@ def item_type_id
   MetricID
 end
 
-def filter_class
+def query_class
   MetricQuery
 end
 

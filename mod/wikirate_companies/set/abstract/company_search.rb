@@ -14,12 +14,12 @@ def item_type_id
   WikirateCompanyID
 end
 
-def filter_class
-  CompanyFilterQuery
+def filter_cql_class
+  CompanyFilterCql
 end
 
 format do
-  delegate :filter_class, to: :card
+  delegate :filter_cql_class, to: :card
 
   def default_sort_option
     "id"
