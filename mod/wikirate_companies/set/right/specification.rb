@@ -47,7 +47,7 @@ end
 def implicit_item_names
   return [] unless implicit? && constraints.present?
 
-  CompanyFilterQuery # make sure company_answer attribute is loaded
+  CompanyFilterCql # make sure company_answer attribute is loaded
   Card.search company_answer: constraints, return: :name
 end
 

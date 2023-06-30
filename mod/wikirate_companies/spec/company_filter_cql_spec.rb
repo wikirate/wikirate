@@ -1,4 +1,4 @@
-RSpec.describe Card::CompanyFilterQuery do
+RSpec.describe Card::CompanyFilterCql do
   describe "CQL extensions" do
     specify "company_answer" do
       results = Card.search company_answer: [{ year: "latest",

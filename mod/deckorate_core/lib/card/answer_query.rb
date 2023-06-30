@@ -1,7 +1,7 @@
 class Card
   # Query lookup table for researched answers
   # (See #new for handling of not-researched)
-  class AnswerQuery < LookupFilterQuery
+  class AnswerQuery < LookupQuery
     include Sorting
     include AnswerFilters
     include AdvancedFilters
