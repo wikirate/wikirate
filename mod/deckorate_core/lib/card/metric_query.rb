@@ -1,6 +1,6 @@
 class Card
   # query metric lookup table
-  class MetricQuery < LookupFilterQuery
+  class MetricQuery < LookupQuery
     self.card_id_map = {
       designer: :designer_id,
       title: :title_id,
@@ -59,4 +59,4 @@ class Card
 end
 
 Metric.const_get("ActiveRecord_Relation")
-      .send :include, Card::LookupFilterQuery::ActiveRecordExtension
+      .send :include, Card::LookupQuery::ActiveRecordExtension
