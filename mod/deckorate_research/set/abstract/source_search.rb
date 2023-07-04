@@ -58,7 +58,7 @@ format :html do
   # end
 end
 
-# cql query to filter sources
+# cql for filtering sources
 class SourceFilterCql < WikirateFilterCql
   def wikirate_link_cql value
     matching_field WikirateLinkID, value

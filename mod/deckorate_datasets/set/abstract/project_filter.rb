@@ -45,7 +45,7 @@ format :html do
   end
 end
 
-# cql query to filter sources
+# cql for filtering projects
 class ProjectFilterCql < Card::FilterCql
   def wikirate_status_cql value
     return unless value.present?
