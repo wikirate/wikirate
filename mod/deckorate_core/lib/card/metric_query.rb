@@ -1,6 +1,6 @@
 class Card
   # query metric lookup table
-  class MetricQuery < LookupFilterQuery
+  class MetricQuery < LookupQuery
     self.card_id_map = {
       designer: :designer_id,
       title: :title_id,
@@ -29,7 +29,7 @@ class Card
       "metrics"
     end
 
-    def name_query value
+    def filter_by_name value
       restrict_by_cql :title, "title_id",
                       name: [:match, value], left_plus: [{}, { type: :metric }]
     end
@@ -51,7 +51,7 @@ class Card
         metric_title: :title_id }
     end
 
-    def source_query value
+    def filter_by_source value
       subsql = AnswerQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
       @conditions << "metrics.metric_id in (#{subsql})"
     end
@@ -59,4 +59,4 @@ class Card
 end
 
 Metric.const_get("ActiveRecord_Relation")
-      .send :include, Card::LookupFilterQuery::ActiveRecordExtension
+      .send :include, Card::LookupQuery::ActiveRecordExtension

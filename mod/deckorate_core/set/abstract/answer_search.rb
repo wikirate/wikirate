@@ -10,7 +10,7 @@ def item_type_id
   MetricAnswerID
 end
 
-def filter_class
+def query_class
   AnswerQuery
 end
 

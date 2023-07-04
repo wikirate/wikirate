@@ -1,5 +1,6 @@
 class Card
-  class CompanyFilterQuery < WikirateFilterQuery
+  # CQL for filtering companies
+  class CompanyFilterCql < WikirateFilterCql
     class << self
       def country_condition
         answer_condition :countries, :core_country
@@ -19,6 +20,7 @@ class Card
         "#{table}.metric_id = #{codename.card_id} AND #{table}.value IN (?)"
       end
 
+      # class for managing conditions that filter companies by their answers
       class AnswerCondition
         def initialize table, constraint
           @table = table
