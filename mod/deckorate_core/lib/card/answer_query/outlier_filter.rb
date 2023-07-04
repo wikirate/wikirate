@@ -2,7 +2,7 @@ class Card
   class AnswerQuery
     # filter for outliers
     module OutlierFilter
-      def outliers_query value
+      def filter_by_outliers value
         return unless single_metric?
 
         case value

@@ -3,13 +3,13 @@ class Card
     # filters based on year and children of the answer card
     # (as opposed to metric and company)
     module AnswerFilters
-      def updated_query value
+      def filter_by_updated value
         return unless (period = timeperiod value)
 
         filter :updated_at, Time.now - period, ">"
       end
 
-      def year_query value
+      def filter_by_year value
         return unless value.present?
 
         value = Array.wrap value
@@ -20,7 +20,7 @@ class Card
         end
       end
 
-      def verification_query value
+      def filter_by_verification value
         standard_verification_query(value) || non_standard_verification_query(value)
       end
 
@@ -30,7 +30,7 @@ class Card
                         right_plus: [CheckedByID, { refer_to: whom }]
       end
 
-      def updater_query value
+      def filter_by_updater value
         # I attempted to do this with AR syntax and got close, but it wouldn't do all the
         # string substitutions, so the SQL had ?'s in it.
         #
@@ -48,24 +48,24 @@ class Card
                       updater_ids(value)
       end
 
-      def calculated_query value
+      def filter_by_calculated value
         @conditions << calculated_condition(value.to_sym != :calculated)
       end
 
-      def source_query value
+      def filter_by_source value
         restrict_by_cql :source, :answer_id,
                         right: :source, refer_to: value, return: :left_id
       end
 
       private
 
-      def standard_verification_query value
+      def filter_by_standard_verification value
         return unless (index = Answer.verification_index value)
 
         filter :verification, index
       end
 
-      def non_standard_verification_query value
+      def filter_by_non_standard_verification value
         case value
         when "current_user"
           checked_by Auth.current_id

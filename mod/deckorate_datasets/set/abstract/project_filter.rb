@@ -9,8 +9,8 @@ def item_type_id
 end
 
 format do
-  def filter_class
-    ProjectFilterQuery
+  def filter_cql_class
+    ProjectFilterCql
   end
 
   def default_sort_option
@@ -45,8 +45,8 @@ format :html do
   end
 end
 
-# cql query to filter sources
-class ProjectFilterQuery < Card::FilterQuery
+# cql for filtering projects
+class ProjectFilterCql < Card::FilterCql
   def wikirate_status_cql value
     return unless value.present?
     add_to_cql :right_plus, [WikirateStatusID, { refer_to: value }]

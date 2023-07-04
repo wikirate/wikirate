@@ -14,8 +14,8 @@ def item_type_id
 end
 
 format do
-  def filter_class
-    Card::FilterQuery
+  def filter_cql_class
+    Card::FilterCql
   end
 
   def default_sort_option

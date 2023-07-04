@@ -4,7 +4,7 @@ class Card
     module ValueFilters
       # :exists/researched (known + unknown) is default case;
       # :all and :none are handled in AllQuery
-      def status_query value
+      def filter_by_status value
         case value.to_sym
         when :unknown
           filter :value, "Unknown"
@@ -13,7 +13,7 @@ class Card
         end
       end
 
-      def value_query value
+      def filter_by_value value
         case value
         when Array # category filters. eg ["option1", "option2"]
           value_query_category value

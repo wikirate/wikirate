@@ -10,8 +10,8 @@ def item_type_id
 end
 
 format do
-  def filter_class
-    SourceFilterQuery
+  def filter_cql_class
+    SourceFilterCql
   end
 
   def sort_cql
@@ -58,8 +58,8 @@ format :html do
   # end
 end
 
-# cql query to filter sources
-class SourceFilterQuery < WikirateFilterQuery
+# cql for filtering sources
+class SourceFilterCql < WikirateFilterCql
   def wikirate_link_cql value
     matching_field WikirateLinkID, value
   end
