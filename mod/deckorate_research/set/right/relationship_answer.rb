@@ -44,8 +44,8 @@ format do
     relation.limit(paging[:limit]).offset(paging[:offset])
   end
 
-  def filter_class
-    CompanyFilterQuery
+  def filter_cql_class
+    CompanyFilterCql
   end
 end
 

@@ -9,16 +9,16 @@ class Card
       # @option value [String] year
       # @option value [Cardish] related_company_group
       # @option value [String, Hash] value
-      def company_answer_query value
+      def filter_by_company_answer value
         Array.wrap(value).each_with_index do |constraint, index|
           table = "co_ans#{index}"
           @joins += company_answer_join(table)
-          @conditions << CompanyFilterQuery.company_answer_condition(table, constraint)
+          @conditions << CompanyFilterCql.company_answer_condition(table, constraint)
         end
       end
 
       # filter for companies related to the group set in this value
-      def related_company_group_query company_group
+      def filter_by_related_company_group company_group
         return unless single_metric?
 
         restrict_to_ids :answer_id,
@@ -27,7 +27,7 @@ class Card
 
       # # TODO: delete the following after confirming fashionchecker works without it
       #
-      # def answer_query value
+      # def filter_by_answer value
       #   return unless (metric_id = value[:metric_id]&.to_i)
       #   exists = "SELECT * from answers AS a2 " \
       #     "WHERE answers.company_id = a2.company_id " \
@@ -48,7 +48,7 @@ class Card
       # @param value [Hash]
       # @option value [Integer] metric_id (REQUIRED)
       # @option value [Integer] company_id
-      def relationship_query value
+      def filter_by_relationship value
         metric_id = value[:metric_id]&.to_i
         company_id = value[:company_id]
         return unless (m = metric_id&.card)

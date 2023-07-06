@@ -4,57 +4,57 @@ class Card
     module MetricAndCompanyFilters
       include MetricQuery::MetricFilters
 
-      def company_group_query value
+      def filter_by_company_group value
         multi_company do
           group_lists = Array.wrap(value).map { |v| [v, :wikirate_company].cardname }
           restrict_by_cql :groups, :company_id, referred_to_by: group_lists
         end
       end
 
-      def topic_query value
+      def filter_by_topic value
         multi_metric { super }
       end
-      alias_method :wikirate_topic_query, :topic_query
+      alias_method :filter_by_wikirate_topic, :filter_by_topic
 
-      def dataset_query value
+      def filter_by_dataset value
         multi_metric { dataset_restriction :metric_id, :metric, value }
         multi_company { dataset_restriction :company_id, :wikirate_company, value }
         dataset_year_restriction value
       end
 
       # EXPERIMENTAL. no public usage
-      def dataset_metric_query value
+      def filter_by_dataset_metric value
         dataset_restriction :metric_id, :metric, value
       end
 
-      def bookmark_query value
+      def filter_by_bookmark value
         field = single_metric? ? :company_id : :metric_id
         bookmark_restriction field, value
       end
 
-      def company_name_query value
+      def filter_by_company_name value
         restrict_by_cql :company_name, :company_id,
                         name: [:match, value], type: :wikirate_company
       end
 
-      def country_query value
-        company_filter_query :countries, :country_condition, value
+      def filter_by_country value
+        filter_by_company_filter :countries, :country_condition, value
       end
 
-      def company_category_query value
-        company_filter_query :categories, :category_condition, value
+      def filter_by_company_category value
+        filter_by_company_filter :categories, :category_condition, value
       end
 
-      def metric_name_query value
+      def filter_by_metric_name value
         @joins << :metric
         restrict_by_cql :title, :title_id,
                         name: [:match, value],
                         left_plus: [{}, { type_id: Card::MetricID }]
       end
 
-      def company_filter_query table, condition_method, value
+      def filter_by_company_filter table, condition_method, value
         company_answer_join table
-        @conditions << CompanyFilterQuery.send(condition_method)
+        @conditions << CompanyFilterCql.send(condition_method)
         @values << Array.wrap(value)
       end
 

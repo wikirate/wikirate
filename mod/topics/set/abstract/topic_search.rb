@@ -11,8 +11,8 @@ def bookmark_type
 end
 
 format do
-  def filter_class
-    TopicFilterQuery
+  def filter_cql_class
+    TopicFilterCql
   end
 
   def default_sort_option
@@ -32,8 +32,8 @@ format do
   end
 end
 
-# FilterQuery class for topic filtering
-class TopicFilterQuery < WikirateFilterQuery
+# FilterCql class for topic filtering
+class TopicFilterCql < WikirateFilterCql
   def metric_cql metric
     add_to_cql :referred_to_by, left: { name: metric }, right: "topic"
   end

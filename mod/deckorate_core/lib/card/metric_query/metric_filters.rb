@@ -2,24 +2,24 @@ class Card
   class MetricQuery
     # metric-related filters (also used by AnswerQuery)
     module MetricFilters
-      def topic_query value
+      def filter_by_topic value
         restrict_by_cql(
           :topic, :metric_id,
           right: :wikirate_topic, refer_to: ["in", value].flatten, return: :left_id
         )
       end
-      alias_method :wikirate_topic_query, :topic_query
+      alias_method :filter_by_wikirate_topic, :filter_by_topic
 
-      def dataset_query value
+      def filter_by_dataset value
         dataset_restriction :metric_id, :metric, value
       end
 
-      def bookmark_query value
+      def filter_by_bookmark value
         bookmark_restriction :metric_id, value
       end
 
       # note: :false and "false" work; false doesn't (can't survive #process_filter)
-      def published_query value
+      def filter_by_published value
         return if value.to_s == "all" && stewards_all?
         @conditions <<
           case value.to_s

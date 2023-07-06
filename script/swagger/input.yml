@@ -2,11 +2,18 @@ info:
   version: "0.20.3"
   title: 'Wikirate API'
   description: >-
-    API to access Wikirate's data. To get the JSON responses as described below, you can (1) set the http access header to `application/json` in your request, (2) append `.json` to the request urls, or (3) add `format=json` to the query params.
+    API to access Wikirate's data. To get the JSON responses as described below, you can:
+    
+      1. set the http access header to `application/json` in your request
+      2. append `.json` to your request urls, or 
+      3. add `format=json` to your query params.
 
-      Wikirate is built with Decko, and is thus constructed from _cards_. Everything in Decko is a card, including images, accounts, searches, fields, etc. So every request for a webpage on Wikirate.org or via its REST API is for a _card_.
+      Wikirate is built with Decko, and is thus constructed from _cards_. Everything 
+      in Decko is a card, including images, accounts, searches, fields, etc. So every 
+      request for a webpage on Wikirate.org or via its REST API is for a _card_.
 
-      The documentation below is divided into generic Decko card documentation (under `Decko`) and more Wikirate-specific cardtypes (under `Wikirate`).
+      The documentation below is divided into generic Decko card documentation 
+      (under `Decko`) and more Wikirate-specific cardtypes (under `Wikirate`).
 tags:
 - name: Decko
   description: |-
@@ -394,7 +401,7 @@ components:
       in: query
       required: false
       description: |-
-        Same filter options as GUI in RubyOnRails hash parameter style,
+        Same filter options as UI in RubyOnRails hash parameter style,
         eg `filter[status]=known`.
 
         - **status:** all, exists (researched), known, unknown, or none (not researched)

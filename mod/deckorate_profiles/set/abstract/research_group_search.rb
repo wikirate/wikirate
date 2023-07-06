@@ -12,8 +12,8 @@ def bookmark_type
 end
 
 format do
-  def filter_class
-    WikirateFilterQuery
+  def filter_cql_class
+    WikirateFilterCql
   end
 
   def sort_options

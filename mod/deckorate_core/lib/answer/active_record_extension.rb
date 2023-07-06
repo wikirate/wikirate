@@ -1,7 +1,7 @@
 class Answer
   # module extends the functionality of Answer lookup relations
   module ActiveRecordExtension
-    include Card::LookupFilterQuery::ActiveRecordExtension
+    include Card::LookupQuery::ActiveRecordExtension
 
     def answer_cards
       map(&:card).compact
