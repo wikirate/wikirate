@@ -2,26 +2,26 @@ module GraphQL
   module Types
     # Data Set type for GraphQL
     class Dataset < Card
-      field :companies, [Company], null: false
-      field :metrics, [Metric], null: false
+
       field :years, [Integer], null: false
       field :description, String, null: false
-      field :answers, [Answer], null: false
-
-      def companies
-        object.wikirate_company_card.item_cards
-      end
-
-      def metrics
-        object.metric_card.item_cards
-      end
+      subcardtype_field :company, Company, :wikirate_company
+      subcardtype_field :metric, Metric
+      subcardtype_field :answer, Answer, :metric_answer
 
       def years
         object.year_card.item_names.map(&:to_i)
       end
 
-      def answers
-        ::Card::AnswerQuery.new(dataset: object.name).lookup_relation.limit(10).all
+      def metrics limit: Card.default_limit, offset: Card.default_offset, **filter
+        filter[:dataset] = object.name
+        ::Card::MetricQuery.new(filter, {}, limit: limit, offset: offset).lookup_relation.all
+      end
+
+      def answers metric_id: nil, limit: Card.default_limit, offset: Card.default_offset, **filter
+        filter[:dataset] = object.name
+        filter[:metric_id] = metric_id if metric_id
+        ::Card::AnswerQuery.new(filter, {}, limit: limit, offset: offset).lookup_relation.all
       end
     end
   end
