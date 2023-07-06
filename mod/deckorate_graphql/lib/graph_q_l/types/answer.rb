@@ -8,7 +8,7 @@ module GraphQL
 
       field :value, String, null: false
       field :comments, String, null: true
-      field :sources, [Source], null: false
+      subcardtype_field :source, Company, :source
 
       field :relationships, [Relationship], null: false
 

@@ -2,16 +2,13 @@ module GraphQL
   module Types
     # Topic type for GraphQL
     class Topic < Card
-      field :metrics, [Metric], null: false
-      field :datasets, [Dataset], null: false
-      field :description, String, null: false
+      subcardtype_field :metric, Metric
+      subcardtype_field :dataset, Dataset
+      field :description, String, null: true
 
-      def metrics
-        referers(:metric, :wikirate_topic).map(&:lookup)
-      end
-
-      def datasets
-        referers :dataset, :wikirate_topic
+      def metrics limit: Card.default_limit, offset: Card.default_offset, **filter
+        filter[:wikirate_topic] = object.name
+        ::Card::MetricQuery.new(filter, {}, limit: limit, offset: offset).lookup_relation.all
       end
     end
   end
