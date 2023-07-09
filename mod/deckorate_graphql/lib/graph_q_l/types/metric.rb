@@ -5,6 +5,7 @@ module GraphQL
       field :designer, Card, null: false
       field :title, String, null: true
       field :question, String, null: true
+      field :metric_type, String, null: true
       field :about, String, null: true
       field :methodology, String, null: true
       field :research_policy, String, null: true
