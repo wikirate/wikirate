@@ -40,7 +40,25 @@ module GraphQL
             argument :offset, Integer, required: false
 
             codename.card.format.filter_keys.each do |filter|
-              argument filter, String, required: false
+              if filter == :country
+                argument filter, CountryFilterType, required: false
+              elsif filter == :value_type
+                argument filter, ValueFilterType, required: false
+              elsif filter == :research_policy
+                argument filter, ResearchPolicyFilterType, required: false
+              elsif filter == :metric_type
+                argument filter, MetricCategoryFilterType, required: false
+              elsif filter == :company_category
+                argument filter, CompanyCategoryFilterType, required: false
+              elsif filter == :company_group
+                argument filter, CompanyGroupFilterType, required: false
+              elsif filter == :designer
+                argument filter, MetricDesignerFilterType, required: false
+              elsif filter == :wikirate_topic
+                argument filter, TopicFilterType, required: false
+              else
+                argument filter, String, required: false
+              end
             end
           end
         end
