@@ -5,6 +5,7 @@ module GraphQL
       field :designer, Card, null: false
       field :title, String, null: true
       field :question, String, null: true
+      field :metric_type, String, null: true
       field :about, String, null: true
       field :methodology, String, null: true
       field :research_policy, String, null: true
@@ -12,13 +13,13 @@ module GraphQL
       field :range, String, null: true
       field :formula, String, null: true
       field :report_type, String, null: true
-      field :answers, [Answer], null: false
+      subcardtype_field :answer, Answer, :metric_answer
       field :relationships, [Relationship], null: true
       field :topics, [Topic], null: false
-      field :datasets, [Dataset], null: false
+      subcardtype_field :dataset, Dataset
 
       def id
-        object.metric_id
+        object.id
       end
 
       def title
@@ -29,8 +30,9 @@ module GraphQL
         object.designer_id.card
       end
 
-      def answers
-        ::Card::AnswerQuery.new({ metric_id: object.metric_id }, {}, limit: 10).run
+      def answers limit: Card.default_limit, offset: Card.default_offset, **filter
+        filter[:metric_id] = object.card_id
+        ::Card::AnswerQuery.new(filter, {}, limit: limit, offset: offset).lookup_relation.all
       end
 
       def relationships

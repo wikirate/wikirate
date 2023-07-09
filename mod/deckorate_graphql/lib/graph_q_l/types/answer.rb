@@ -5,10 +5,9 @@ module GraphQL
       field :year, Integer, null: false
       field :company, Company, null: false
       field :metric, Metric, null: false
-
-      field :value, String, null: false
+      field :value, AnswerValue, null: false
       field :comments, String, null: true
-      field :sources, [Source], null: false
+      subcardtype_field :source, Company, :source
 
       field :relationships, [Relationship], null: false
 

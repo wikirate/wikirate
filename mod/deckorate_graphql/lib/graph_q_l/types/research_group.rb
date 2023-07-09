@@ -1,15 +1,13 @@
 module GraphQL
   module Types
-    # CompanyGroup type for GraphQL
+    # ResearchGroup type for GraphQL
     class ResearchGroup < Card
-      # field :companies, [Company], null: false do
-      #   # argument :limit, Integer, required: false
-      #   # argument :offset, Integer, required: false
-      # end
-      #
-      # def companies
-      #   object.wikirate_company_card.item_cards # limit: limit, offset: offset
-      # end
+      subcardtype_field :metric, Metric
+      def metrics limit: Card.default_limit, offset: Card.default_offset, **filter
+        filter[:research_group] = object.name
+        ::Card::MetricQuery.new(filter, {}, limit: limit, offset: offset).lookup_relation.all
+      end
+
     end
   end
 end
