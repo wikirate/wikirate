@@ -1,7 +1,7 @@
 module GraphQL
   module Types
     # Metric type for GraphQL
-    class Metric < Card
+    class Metric < WikirateCard
       field :designer, Card, null: false
       field :title, String, null: true
       field :question, String, null: true
@@ -13,10 +13,10 @@ module GraphQL
       field :range, String, null: true
       field :formula, String, null: true
       field :report_type, String, null: true
-      subcardtype_field :answer, Answer, :metric_answer
+      lookup_field :answer, Answer, :metric_answer
       field :relationships, [Relationship], null: true
       field :topics, [Topic], null: false
-      subcardtype_field :dataset, Dataset
+      cardtype_field :dataset, Dataset
 
       def id
         object.id
@@ -31,8 +31,7 @@ module GraphQL
       end
 
       def answers limit: Card.default_limit, offset: Card.default_offset, **filter
-        filter[:metric_id] = object.card_id
-        ::Card::AnswerQuery.new(filter, {}, limit: limit, offset: offset).lookup_relation.all
+        object.card.format.query_class.new(filter, {}, limit: limit, offset: offset).lookup_relation.all
       end
 
       def relationships
