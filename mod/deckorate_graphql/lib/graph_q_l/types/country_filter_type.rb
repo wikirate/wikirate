@@ -1,9 +1,7 @@
 module GraphQL
   module Types
-    class CountryFilterType < BaseEnum
-      ::Card.fetch(:core_country).value_options_card.item_names.each do |option|
-        value I18n.transliterate(option.url_key), value: option
+    class CountryFilterType < FilterType
+      filter_option_values(:metric, "country")
       end
     end
-  end
 end

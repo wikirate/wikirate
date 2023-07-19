@@ -1,9 +1,7 @@
 module GraphQL
   module Types
-    class TopicFilterType < BaseEnum
-      ::Card.fetch(:wikirate_topic).item_cards.each do |topic|
-        value topic.card.name.url_key, value: topic.card.name
-      end
+    class TopicFilterType < FilterType
+      filter_option_values(:metric, "wikirate_topic")
     end
   end
 end
