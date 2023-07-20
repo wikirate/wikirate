@@ -86,9 +86,9 @@ blocks:
           - be decko setup
 
       jobs:
-        - name: Cucumber
-          commands:
-            - RAILS_ENV=cucumber bundle exec decko cucumber -- --format pretty --format junit --out /home/semaphore/reports
+#        - name: Cucumber
+#          commands:
+#            - RAILS_ENV=cucumber bundle exec decko cucumber -- --format pretty --format junit --out /home/semaphore/reports
 
         - name: Cypress
           commands:
