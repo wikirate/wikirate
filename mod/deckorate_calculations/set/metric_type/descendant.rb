@@ -6,6 +6,10 @@ def descendant?
   true
 end
 
+def ten_scale?
+  !direct_dependee_metrics.find { |m| !m.ten_scale? }
+end
+
 def calculator_class
   ::Calculate::Inheritance
 end
