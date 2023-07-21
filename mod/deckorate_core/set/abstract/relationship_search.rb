@@ -42,18 +42,18 @@ end
 
 format :json do
   view :answer_list, cache: :never do
-    lookup_relation.map(&:compact_json)
+    query.lookup_relation.map(&:compact_json)
   end
 end
 
 format :csv do
   view :titles do
-    Relationship.csv_titles detailed?
+    ::Relationship.csv_titles detailed?
   end
 
   view :core do
     detailed = detailed?
-    lookup_relation.map { |row| row.csv_line detailed }
+    query.lookup_relation.map { |row| row.csv_line detailed }
   end
 
   def default_limit
