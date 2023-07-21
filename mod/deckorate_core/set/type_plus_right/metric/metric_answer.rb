@@ -48,7 +48,7 @@ format do
   end
 
   def filter_map
-    map_without_key(super, :metric)
+    filter_map_without_keys(super, :metric)
       .tap { |arr| arr << :related_company_group if metric_card.relationship? }
   end
 

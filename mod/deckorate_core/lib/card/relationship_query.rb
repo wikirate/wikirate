@@ -5,7 +5,11 @@ class Card
     include AnswerQuery::ValueFilters
     include AnswerQuery::MetricAndCompanyFilters
 
-    self.simple_filters = ::Set.new(%i[company_id metric_id])
+    self.simple_filters = ::Set.new(
+      %i[subject_company_id object_company_id
+         metric_id inverse_metric_id
+         answer_id inverse_answer_id]
+    )
 
     def lookup_class
       ::Relationship
@@ -30,5 +34,6 @@ class Card
     end
   end
 end
+
 ::Relationship.const_get("ActiveRecord_Relation")
       .send :include, Card::LookupQuery::ActiveRecordExtension

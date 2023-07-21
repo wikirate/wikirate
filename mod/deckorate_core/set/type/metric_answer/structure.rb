@@ -64,7 +64,7 @@ format :html do
   def relationship_count
     return 0 unless card.relationship?
 
-    card.fetch(:relationship_answer).format.relationships.count
+    card.fetch(:relationship_answer).count
   end
 
   def read_field_configs

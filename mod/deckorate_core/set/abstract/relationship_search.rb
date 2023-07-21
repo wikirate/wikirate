@@ -6,6 +6,8 @@ include_set Abstract::DetailedExport
 include_set Abstract::MetricSearch
 include_set Abstract::AnswerFilters
 
+delegate :inverse?, to: :metric_card
+
 def item_type_id
   RelationshipAnswerID
 end
@@ -15,6 +17,8 @@ def query_class
 end
 
 format do
+  delegate :inverse?, to: :card
+
   def default_sort_option
     :updated_at
   end
@@ -32,5 +36,26 @@ format do
        type: :group,
        filters: [{ key: :value, open: true }, :updated] }
      ]
+  end
+end
+
+format :json do
+  view :answer_list, cache: :never do
+    lookup_relation.map(&:compact_json)
+  end
+end
+
+format :csv do
+  view :titles do
+    Relationship.csv_titles detailed?
+  end
+
+  view :core do
+    detailed = detailed?
+    lookup_relation.map { |row| row.csv_line detailed }
+  end
+
+  def default_limit
+    nil
   end
 end
