@@ -36,4 +36,4 @@ class Card
 end
 
 ::Relationship.const_get("ActiveRecord_Relation")
-      .send :include, Card::LookupQuery::ActiveRecordExtension
+              .send :include, Card::LookupQuery::ActiveRecordExtension
