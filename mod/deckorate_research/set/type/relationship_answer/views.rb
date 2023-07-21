@@ -14,13 +14,7 @@ format :html do
     render_read_form
   end
 
-  view :bar_left do
-    wrap_with :div, class: "d-block" do
-      [company_thumbnail(card.company, hide: :thumbnail_subtitle),
-       company_thumbnail(card.related_company, hide: :thumbnail_subtitle),
-       render_metric_thumbnail]
-    end
-  end
+  view :bar_left, template: :haml
 
   view :content_formgroup do
     card.field :year, content: card.year
