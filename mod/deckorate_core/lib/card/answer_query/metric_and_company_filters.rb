@@ -94,7 +94,7 @@ class Card
           @joins << :metric
           "metrics"
         else
-          "answers"
+          lookup_table
         end
       end
     end
