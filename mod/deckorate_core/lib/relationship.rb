@@ -12,6 +12,8 @@ class Relationship < Cardio::Record
   delegate :company_id, :designer_id, :title_id, to: :answer
   fetcher :answer_id, :value, :numeric_value, :imported
 
+  belongs_to :metric, primary_key: :metric_id
+
   def card_query
     { type_id: Card::RelationshipAnswerID, trash: false }
   end
