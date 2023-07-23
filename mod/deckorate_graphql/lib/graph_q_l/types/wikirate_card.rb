@@ -1,8 +1,9 @@
 module GraphQL
   module Types
     class WikirateCard < Card
+      include DeckorateSearch
       class << self
-        include WikirateFields
+        include DeckorateFields
       end
     end
   end
