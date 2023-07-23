@@ -1,6 +1,6 @@
 module GraphQL
   module Types
-    class MetricDesignerFilterType < FilterType
+    class DesignerFilterType < FilterType
       filter_option_values(:metric, "designer")
     end
   end
