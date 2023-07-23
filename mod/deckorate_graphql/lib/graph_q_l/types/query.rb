@@ -2,9 +2,10 @@ module GraphQL
   module Types
     # Root Query for GraphQL
     class Query < BaseObject
+      include DeckorateSearch
 
       class << self
-        include WikirateFields
+        include DeckorateFields
       end
 
       card_field :research_group, ResearchGroup
