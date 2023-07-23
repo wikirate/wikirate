@@ -1,6 +1,6 @@
 module GraphQL
   module Types
-    class MetricCategoryFilterType < FilterType
+    class MetricTypeFilterType < FilterType
       filter_option_values(:metric, "metric_type")
     end
   end
