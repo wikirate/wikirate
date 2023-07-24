@@ -36,7 +36,7 @@ format do
       { key: :metric_answer,
         type: :group,
         filters: [{ key: :value, open: true }, :updated] }
-     ]
+    ]
   end
 end
 
