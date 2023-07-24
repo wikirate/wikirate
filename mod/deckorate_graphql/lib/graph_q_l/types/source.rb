@@ -9,9 +9,9 @@ module GraphQL
 
       field :original_url, String, null: true
       field :file_url, String, null: true
-      lookup_field :metric, Metric
-      lookup_field :answer, Answer, :metric_answer
-      cardtype_field :company, Company, :wikirate_company
+      lookup_field :metric, Metric, nil, true
+      lookup_field :answer, Answer, :metric_answer, true
+      cardtype_field :company, Company, :wikirate_company, true
 
       field :relationships, [Relationship], null: false
 
