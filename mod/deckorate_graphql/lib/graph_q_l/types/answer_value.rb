@@ -1,18 +1,24 @@
 module GraphQL
   module Types
+    #@todo:write tests
     class AnswerValue < BaseScalar
       description "An answer value that can be either a string, an integer, a float or an array"
 
+      # self.coerce_input takes a GraphQL input and converts it into a Ruby value
       def self.coerce_input(input_value, context)
-        if input_value.is_a?(Float) or input_value.is_a?(Integer) or input_value.is_a?(BigDecimal) or input_value.is_a?(BigInt)
+        case input_value
+        when Float, Integer, BigDecimal, BigInt
           input_value
-        elsif input_value.to_s.include? ","
-          input_value.split(",")
         else
-          input_value
+          if input_value.to_s.include? ","
+            input_value.split(",")
+          else
+            input_value
+          end
         end
       end
 
+      # self.coerce_result takes the return value of a field and prepares it for the GraphQL response JSON
       def self.coerce_result(ruby_value, context)
         begin
           Integer(ruby_value) rescue
