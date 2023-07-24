@@ -12,7 +12,7 @@ end
 format do
   # TODO: make it so we can filter by other datasets
   def filter_map
-    map_without_key super, :dataset
+    filter_map_without_keys super, :dataset
   end
 end
 
