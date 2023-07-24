@@ -1,0 +1,10 @@
+.d-flex.row.w-100
+  .col-lg-1.col-2
+    .TYPE-year.color-on-hover
+      = card.year
+  .col-lg-3.col-10
+    = render_metric_thumbnail
+  .col-lg-4.col-6
+    = company_thumbnail(card.company, hide: :thumbnail_subtitle)
+  .col-lg-4.col-6
+    = company_thumbnail(card.related_company, hide: :thumbnail_subtitle)
