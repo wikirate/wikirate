@@ -13,7 +13,7 @@ module GraphQL
       field :range, String, null: true
       field :formula, String, null: true
       field :report_type, String, null: true
-      lookup_field :answer, Answer, :metric_answer
+      lookup_field :answer, Answer, :metric_answer, true
       field :relationships, [Relationship], null: true
       field :topics, [Topic], null: false
       cardtype_field :dataset, Dataset
@@ -28,10 +28,6 @@ module GraphQL
 
       def designer
         object.designer_id.card
-      end
-
-      def answers limit: Card.default_limit, offset: Card.default_offset, **filter
-        object.card.format.query_class.new(filter, {}, limit: limit, offset: offset).lookup_relation.all
       end
 
       def relationships
@@ -52,11 +48,6 @@ module GraphQL
         referers :dataset, :metric
       end
 
-      #   metric_type: metricType
-      #   value_options: [Category!]!
-      #   value_type: valueType
-      #   scores: [Metric]
-      #   calculations:[Metric!]!
     end
   end
 end
