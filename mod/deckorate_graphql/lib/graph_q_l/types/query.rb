@@ -3,10 +3,7 @@ module GraphQL
     # Root Query for GraphQL
     class Query < BaseObject
       include DeckorateSearch
-
-      class << self
-        include DeckorateFields
-      end
+      extend DeckorateFields
 
       card_field :research_group, ResearchGroup
       cardtype_field :research_group, ResearchGroup
