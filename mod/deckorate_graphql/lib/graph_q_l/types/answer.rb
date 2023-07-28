@@ -7,7 +7,7 @@ module GraphQL
       field :metric, Metric, null: false
       field :value, AnswerValue, null: false
       field :comments, String, null: true
-      cardtype_field :source, Source, :source
+      cardtype_field :source, Source, :source, true
 
       field :relationships, [Relationship], null: false
 
