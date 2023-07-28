@@ -2,15 +2,6 @@ module GraphQL
   module Types
     module DeckorateFields
 
-      ENUM_FILTERS = [:country,
-                      :value_type,
-                      :research_policy,
-                      :designer,
-                      :metric_type,
-                      :company_category,
-                      :company_group,
-                      :wikirate_topic].freeze
-
       def lookup_field fieldname, type, codename = nil, is_card = false
         codename ||= fieldname
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
@@ -52,12 +43,11 @@ module GraphQL
           argument :offset, Integer, required: false
 
           codename.card.format.filter_keys.each do |filter|
-            filter_type = ENUM_FILTERS.include?(filter) ? GraphQL::Types.const_get("#{filter.to_s.camelize}FilterType"): String
+            filter_type = GraphQL::Types.const_defined?("#{filter.to_s.camelize}FilterType") ? GraphQL::Types.const_get("#{filter.to_s.camelize}FilterType"): String
             argument filter, filter_type, required: false
           end
         end
       end
-
     end
   end
 end
