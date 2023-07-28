@@ -21,7 +21,12 @@ class Card
       end
 
       def filter_by_verification value
-        standard_verification_query(value) || non_standard_verification_query(value)
+        index = Answer.verification_index value
+        if index
+          filter :verification, index
+        else
+          filter_by_non_standard_verification value
+        end
       end
 
       def checked_by whom
@@ -58,12 +63,6 @@ class Card
       end
 
       private
-
-      def filter_by_standard_verification value
-        return unless (index = Answer.verification_index value)
-
-        filter :verification, index
-      end
 
       def filter_by_non_standard_verification value
         case value
