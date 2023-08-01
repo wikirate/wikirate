@@ -1,5 +1,4 @@
-# include_set Type::SearchType
-include_set Self::MetricAnswer
+include_set Abstract::FullAnswerSearch
 include_set Abstract::TaskFilter
 
 format do
