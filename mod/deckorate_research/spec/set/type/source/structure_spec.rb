@@ -25,7 +25,7 @@ RSpec.describe Card::Set::Type::Source::Structure do
       expect_source_link source.format.original_link,
                          "original",
                          source.fetch(:wikirate_link).content,
-                         "open_in_new"
+                         "close_fullscreen"
     end
   end
 end

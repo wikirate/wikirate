@@ -1,6 +1,6 @@
 include_set Abstract::IdList
 
-assign_type :pointer
+# assign_type :pointer
 
 def option_names
   %i[no_adaptation yes_adaptation].map(&:cardname)

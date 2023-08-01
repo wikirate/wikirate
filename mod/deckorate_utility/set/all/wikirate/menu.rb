@@ -8,4 +8,8 @@ format :html do
       board_link(text: "Advanced")
     ]
   end
+
+  def menu_items
+    [menu_edit_link, menu_board_link]
+  end
 end
