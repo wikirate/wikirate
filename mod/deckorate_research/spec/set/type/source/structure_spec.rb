@@ -14,7 +14,7 @@ RSpec.describe Card::Set::Type::Source::Structure do
   describe "#download_link" do
     it "renders link with download icon" do
       expect_source_link source.format.download_link,
-                         "download",
+                         "Download",
                          source.fetch(:file).file.url,
                          "file_download"
     end
@@ -23,7 +23,7 @@ RSpec.describe Card::Set::Type::Source::Structure do
   describe "#original_link" do
     it "renders link with external link icon" do
       expect_source_link source.format.original_link,
-                         "original",
+                         "Original",
                          source.fetch(:wikirate_link).content,
                          "close_fullscreen"
     end
