@@ -22,7 +22,7 @@
     text-underline-offset: 2px;
   }
 }
-.sub-navbar, .header-top-row, .paging, .box, .bar-body, .nav-item, .breadcrumb,
+.sub-navbar, .header-top-row, .paging, .box, .bar-body, .bar-menu, .nav-item, .breadcrumb,
 .header-list, .credit, .button-form-group {
   a, a:hover, a:focus {
     text-decoration: none !important;
@@ -30,6 +30,13 @@
 }
 a.unknown-link {
   text-decoration: none !important;
+}
+
+.bar-menu {
+  transition: 0;
+  a {
+    color: $gray-900 !important;
+  }
 }
 
 
