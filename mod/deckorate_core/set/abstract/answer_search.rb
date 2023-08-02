@@ -33,13 +33,6 @@ format do
     end
   end
 
-  def map_without_key map, key
-    map.reject do |item|
-      item_key = item.is_a?(Hash) ? item[:key] : item
-      item_key == key
-    end
-  end
-
   def filter_hash_from_params
     super.tap do |h|
       normalize_filter_hash h if h
