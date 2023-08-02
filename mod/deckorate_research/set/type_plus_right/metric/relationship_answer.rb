@@ -2,56 +2,39 @@
 # 1. exporting relationship answers on metric pages
 # 2. returning subbrands on fashionchecker (should probably use a different pattern)
 
+include_set Abstract::RelationshipSearch
 include_set Abstract::MetricChild, generation: 1
 
-def query
+def query_hash
   { metric_card.metric_lookup_field => metric_id }
 end
 
-def item_type_id
-  RelationshipAnswerID
+format :html do
+  def filter_map
+    filter_map_without_keys super, :metric
+  end
 end
 
 format do
-  # only handles subject company and year for now.
-  def relationship_query
-    card.query.tap do |query|
-      filter_by_companies query
-      filter_by_year query
+  # HACK! Following two methods are a workaround to keep company groups working
+  # (needed for fashionchecker)
+  # Long-term solution is to implement company group filtering in
+  # Abstract::RelationshipSearch
+  def filter_hash_from_params
+    super.tap do |h|
+      normalize_filter_hash h if h
     end
   end
 
-  def filter_map
-    %i[name company_group]
+  def normalize_filter_hash h
+    group = h.delete :company_group
+    company_ids = [group, :wikirate_company].card&.item_ids
+    h[company_field] = company_ids if company_ids.present?
   end
 
   private
 
-  def filter_by_year query
-    return unless (year_value = Env.params.dig :filter, :year)
-
-    query.merge! year_constraint(year_value)
-  end
-
-  def year_constraint year_value
-    if year_value.try(:to_sym) == :latest
-      { latest: true }
-    else
-      { year: year_value }
-    end
-  end
-
-  def filter_by_companies query
-    return unless company_ids.present?
-
-    query[company_field] = ["in"] + company_ids
-  end
-
   def company_field
     metric_card.inverse? ? :object_company_id : :subject_company_id
-  end
-
-  def company_ids
-    @company_ids ||= params[:filter] ? filtered_company_ids : []
   end
 end
