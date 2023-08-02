@@ -20,7 +20,7 @@ module GraphQL
       end
 
       def metric
-        object.metric_id.card.lookup
+        object.metric_id.card
       end
 
       def relationships
