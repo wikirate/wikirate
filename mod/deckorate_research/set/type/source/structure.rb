@@ -47,11 +47,11 @@ format :html do
 
   def original_link
     return unless card.link_url.present?
-    link_with_icon card.link_url, :new_window, "original"
+    link_with_icon card.link_url, :new_window, "Original"
   end
 
   def download_link
-    link_with_icon card.file_url, :download, "download"
+    link_with_icon card.file_url, :download, "Download"
   end
 
   def link_with_icon url, icon, title
