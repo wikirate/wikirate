@@ -19,6 +19,7 @@ mod "deckorate_import"
 mod "deckorate_calculations"
 mod "deckorate_datasets"
 mod "deckorate_graphql"
+mod "deckorate_attribution"
 # mod "deckorate_viz"  # TODO
 # mod "deckorate_search" # gemified
 mod "deckorate_profiles"
