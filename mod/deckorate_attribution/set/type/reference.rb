@@ -19,4 +19,9 @@ format :html do
       [:url, title: "URL"]
     ]
   end
+
+  view :bar_left, template: :haml
+  view :bar_right do
+    field_nest :url, view: :url_link
+  end
 end

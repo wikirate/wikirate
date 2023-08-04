@@ -1,7 +1,6 @@
 include_set Abstract::Thumbnail
 include_set Abstract::DeckorateTabbed
 include_set Abstract::Bookmarkable
-include_set Abstract::Attributable
 
 card_reader :wikirate_company, type: :list
 card_reader :metric, type: :list
