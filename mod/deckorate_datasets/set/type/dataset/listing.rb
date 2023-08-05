@@ -14,7 +14,7 @@ format :html do
   # end
 
   view :bar_right do
-    [count_badges(:metric, :wikirate_company, :data_subset), render_bookmark]
+    [count_badges(:metric, :wikirate_company, :data_subset, :reference), render_bookmark]
   end
 
   view :bar_bottom do
