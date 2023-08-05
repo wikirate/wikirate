@@ -30,7 +30,21 @@ format :html do
     icon_tag :attribution
   end
 
-  # view :new_attribution_button do
-  #
-  # end
+  view :attributions do
+    tabs "Rich Text" => { content: render_rich_text_attrib },
+         "Plain Text" => { content:  render_plain_text_attrib },
+         "HTML" => { content: render_html_attrib }
+  end
+
+  view :rich_text_attrib do
+    "rich text attribution"
+  end
+
+  view :plain_text_attrib do
+    "plain text attribution"
+  end
+
+  view :html_attrib do
+    "html attribution"
+  end
 end
