@@ -18,11 +18,11 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[menu core search type_links involved delta].each do |view|
+  %i[menu core search type_links involved].each do |view|
     view view, template: :haml
   end
 
-  view :delta, template: :haml, wrap: :slot
+  view :delta, template: :haml, wrap: :slot, cache: :never
 
   view :shuffle_button do
     link_to_view :delta, material_symbol_tag(:shuffle), class: "btn wr-arrow"
