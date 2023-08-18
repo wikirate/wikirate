@@ -1,0 +1,31 @@
+- :name: Reference
+  :type: :cardtype
+  :codename: reference
+  :fields:
+    :type:
+      :fields:
+        :autoname: Reference 0000001
+        :help:
+          <p><strong>Appropriate attribution</strong></p> 
+          <p>
+            This data is open to everyone and requires appropriate credit to be given 
+            to the community.
+          </p>
+
+- :name: referrers
+  :codename: referrers
+
+- :name: adaptation
+  :codename: adaptation
+
+- :name: "No, I use the original data"
+  :codename: no_adaptation
+
+- :name: "Yes, I modify or build upon the data"
+  :codename: yes_adaptation
+
+- :name: URL
+  :codename: url
+
+- :name: party
+  :codename: party
