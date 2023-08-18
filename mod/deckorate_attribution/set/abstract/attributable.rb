@@ -2,8 +2,7 @@ card_accessor :reference, type: :search_type
 
 format :html do
   def bar_menu_items
-    # super.insert 2, new_attribution_link(text: "Attribute")
-    super.insert 2, attribution_link(text: "Attribute")
+    super.insert 3, new_attribution_link(text: "Attribute")
   end
 
   def menu_items
