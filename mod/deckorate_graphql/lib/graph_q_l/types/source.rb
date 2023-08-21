@@ -11,7 +11,11 @@ module GraphQL
       field :file_url, String, null: true
       lookup_field :metric, Metric, nil, true
       lookup_field :answer, Answer, :metric_answer, true
-      cardtype_field :company, Company, :wikirate_company, true
+
+      # TODO: make companies filterable on sources
+      # (see mod/deckorate_research/set/type_plus_right/source/wikirate_company.rb)
+
+      # cardtype_field :company, Company, :wikirate_company, true
 
       field :relationships, [Relationship], null: false
 
