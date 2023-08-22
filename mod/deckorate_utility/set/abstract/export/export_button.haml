@@ -1,6 +1,6 @@
 - if export_formats.present?
   .btn-group.my-3
-    %a.btn.btn-primary{ href: default_export_link_path }
+    %a.btn.btn-primary{ href: default_export_link_path, "data-confirm": confirm_export }
       //#, download: export_filename
       // handled in header, but still might be nice to have if testing issues can
       // be resolved
@@ -8,6 +8,6 @@
       %span.ms-2
         Export
     - class_up 'dropdown-toggle-split', "btn btn-primary text-white"
-    = split_dropdown_button_toggle
+    = split_dropdown_button_toggle "data-confirm": confirm_export
     .dropdown-menu
       = render_export_panel
