@@ -36,7 +36,8 @@ basket[:icons][:material].merge!(
   account: :volunteer_activism,
   designer: :design_services,
   board: :build,
-  reference: :attribution
+  reference: :attribution,
+  history: :history
 )
 
 basket[:icons][:font_awesome].merge!(

@@ -45,13 +45,14 @@ format do
       "Most Bookmarked": :bookmarkers,
       "Most Companies": :company,
       "Most Answers": :answer,
+      "Most References": :reference,
       "Designer": :metric_designer,
       "Title": :metric_title
     }
   end
 
   def default_desc_sort_dir
-    ::Set.new %i[bookmarkers company answer]
+    ::Set.new %i[bookmarkers company answer reference]
   end
 end
 
