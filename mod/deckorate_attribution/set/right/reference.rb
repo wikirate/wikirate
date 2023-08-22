@@ -1,5 +1,6 @@
-include_set Abstract::VirtualSearch,
-            cql_content: { type: :reference, right_plus: [:subject, refer_to: "_left"] }
+include_set Abstract::ListRefCachedCount,
+            type_to_count: :reference,
+            list_field: :subject
 
 format :html do
   view :link_and_list, template: :haml
