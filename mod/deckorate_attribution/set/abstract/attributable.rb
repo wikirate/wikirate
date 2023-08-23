@@ -36,14 +36,19 @@ format :html do
   end
 
   view :rich_text_attrib do
-    "rich text attribution"
+    attribution_box { "rich text attribution" }
   end
 
   view :plain_text_attrib do
-    "plain text attribution"
+    attribution_box { "plain text attribution" }
   end
 
   view :html_attrib do
-    "html attribution"
+    attribution_box { "html attribution" }
+  end
+
+  # placeholder
+  def attribution_box
+    yield
   end
 end
