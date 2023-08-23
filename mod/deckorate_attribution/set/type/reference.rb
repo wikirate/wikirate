@@ -1,6 +1,6 @@
 
 card_accessor :adaptation, type: :pointer
-card_accessor :party, type: :phrase
+card_accessor :party, type: :list
 card_accessor :url, type: :uri
 card_accessor :wikirate_title, type: :phrase
 card_accessor :subject, type: :pointer
