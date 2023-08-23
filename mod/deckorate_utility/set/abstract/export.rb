@@ -71,6 +71,11 @@ format :html do
     :titled
   end
 
+  # for override
+  def confirm_export
+    nil
+  end
+
   private
 
   # localize

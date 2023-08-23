@@ -2,31 +2,31 @@ card_accessor :reference, type: :search_type
 
 format :html do
   def bar_menu_items
-    super.insert 3, new_attribution_link(text: "Attribute")
+    super.insert 3, attribution_link(text: "Attribute")
   end
 
   def menu_items
     super.unshift attribution_link
   end
 
-  def attribution_link text: ""
-    modal_link "#{attribution_icon} #{text}",
-               size: :large,
-               path: { mark: card.reference_card, view: :link_and_list }
+  def history_view
+    :history_and_references
   end
 
-  def new_attribution_link text: "", button: false
-    modal_link "#{attribution_icon} #{text}",
+  def attribution_link text: ""
+    # , button: false
+    modal_link "#{icon_tag :attribution} #{text}",
                size: :large,
-               class: ("btn btn-primary" if button),
+               # class: ("btn btn-primary" if button),
                path: { mark: :reference,
                        action: :new,
                        card: { fields: { ":subject": card.name,
                                          ":party": Auth.current_card&.name } } }
   end
 
-  def attribution_icon
-    icon_tag :attribution
+  view :history_and_references do
+    tabs "Contributions" => { content: render_history(hide: :title) },
+         "References" => { content: field_nest(:reference, view: :core) }
   end
 
   view :attributions do
