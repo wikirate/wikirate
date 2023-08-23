@@ -1,11 +1,11 @@
 .d-flex.align-items-center
   .p-2
     = icon_tag :attribution
-  .custom-text.p-2
+  .p-2.fw-bold
     %span
       = nest [:attribution_alert, :title], view: :core
-  .link-to-guide.p-2
+  .attribution-alert-link.text-decoration-underline.p-2
     %a.link{:href => "https://wikirate.org/Attribution_Guide"} How to attribute
-.d-flex.alert_message
+.d-flex.ms-auto.attribution-alert-message
   %p
     = nest [:attribution_alert, :body], view: :core

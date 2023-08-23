@@ -2,23 +2,11 @@
   display: none
 }
 
-.modal-header {
-  display: none;
-}
-
-.link-to-guide {
+.attribution-alert-link {
   font-size: small;
-  margin-left: auto!important;
-  text-decoration: underline;
+  margin-left: auto;
 }
 
-.custom-text {
-  font-weight: bold;
-}
-
-.alert_message {
-  align-self: center;
-  flex-direction: column;
-  margin-right: auto;
-  padding-left: 0.5rem;
+.attribution-alert-message {
+  padding-left: calc(1.5rem + 24px);
 }
