@@ -33,8 +33,8 @@ format :html do
     }
   end
 
-  view :new_buttons, wrap: :slot do
-    standard_save_button
+  view :new_buttons do
+    [wrap { standard_save_button }, haml(:attribution_form_bottom)]
   end
 
   view :attributions do
