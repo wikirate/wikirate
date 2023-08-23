@@ -4,6 +4,8 @@
   :fields:
     :type:
       :fields:
+        :create:
+          - :anyone
         :autoname: Reference 0000001
         :help:
           <p><strong>Appropriate attribution</strong></p> 
@@ -29,3 +31,9 @@
 
 - :name: party
   :codename: party
+
+- :name: attribution alert
+  :codename: attribution_alert
+  :fields:
+    :title: Applying Attribution
+    :body: Using this data requires appropriate attribution.
