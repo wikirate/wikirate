@@ -1,3 +1,11 @@
-= icon_tag :attribution
-= nest [:attribution_alert, :title], view: :core
-= nest [:attribution_alert, :body], view: :core
+.d-flex.align-items-center
+  .p-2
+    = icon_tag :attribution
+  .custom-text.p-2
+    %span
+      = nest [:attribution_alert, :title], view: :core
+  .link-to-guide.p-2
+    %a.link{:href => "https://wikirate.org/Attribution_Guide"} How to attribute
+.d-flex.alert_message
+  %p
+    = nest [:attribution_alert, :body], view: :core
