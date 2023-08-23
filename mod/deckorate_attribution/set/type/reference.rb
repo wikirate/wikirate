@@ -1,6 +1,6 @@
 
 card_accessor :adaptation, type: :pointer
-card_accessor :party, type: :phrase
+card_accessor :party, type: :list
 card_accessor :url, type: :uri
 card_accessor :wikirate_title, type: :phrase
 card_accessor :subject, type: :pointer
@@ -33,8 +33,8 @@ format :html do
     }
   end
 
-  view :new_buttons, wrap: :slot do
-    standard_save_button
+  view :new_buttons do
+    [wrap { standard_save_button }, haml(:attribution_form_bottom)]
   end
 
   view :attributions do

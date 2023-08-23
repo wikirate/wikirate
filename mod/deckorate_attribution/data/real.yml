@@ -19,6 +19,10 @@
 
 - :name: adaptation
   :codename: adaptation
+  :fields:
+    :right:
+      :fields:
+        :default: "No, I use the original data"
 
 - :name: "No, I use the original data"
   :codename: no_adaptation
