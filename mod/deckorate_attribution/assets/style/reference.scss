@@ -1,3 +1,24 @@
 .TYPE-reference .RIGHT-Xsubject.card-editor {
   display: none
 }
+
+.modal-header {
+  display: none;
+}
+
+.link-to-guide {
+  font-size: small;
+  margin-left: auto!important;
+  text-decoration: underline;
+}
+
+.custom-text {
+  font-weight: bold;
+}
+
+.alert_message {
+  align-self: center;
+  flex-direction: column;
+  margin-right: auto;
+  padding-left: 0.5rem;
+}
