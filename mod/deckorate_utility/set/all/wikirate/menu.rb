@@ -10,6 +10,16 @@ format :html do
   end
 
   def menu_items
-    [menu_edit_link, menu_board_link]
+    [history_link, menu_edit_link, menu_board_link]
+  end
+
+  def history_link text: ""
+    modal_link "#{icon_tag :history} #{text}",
+               size: :large,
+               path: { view: history_view, slot: { hide: :title } }
+  end
+
+  def history_view
+    :history
   end
 end

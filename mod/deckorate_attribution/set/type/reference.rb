@@ -5,6 +5,10 @@ card_accessor :url, type: :uri
 card_accessor :wikirate_title, type: :phrase
 card_accessor :subject, type: :pointer
 
+def ok_to_update
+  (Auth.current_id == creator_id) || Auth.current.stewards_all?
+end
+
 format :html do
   def edit_fields
     [
