@@ -13,7 +13,8 @@ format :html do
     :history_and_references
   end
 
-  def attribution_link text: "" # , button: false
+  def attribution_link text: ""
+    # , button: false
     modal_link "#{icon_tag :attribution} #{text}",
                size: :large,
                # class: ("btn btn-primary" if button),

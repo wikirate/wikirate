@@ -4,6 +4,8 @@
   :fields:
     :type:
       :fields:
+        :create:
+          - :anyone
         :autoname: Reference 0000001
         :help:
           <p><strong>Appropriate attribution</strong></p> 
