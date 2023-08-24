@@ -36,11 +36,11 @@ format :html do
   end
 
   view :rich_text_attrib do
-    attribution_box { "rich text attribution" }
+    attribution_box { render_attribution }
   end
 
   view :plain_text_attrib do
-    attribution_box { "plain text attribution" }
+    attribution_box { card.format(:text).render_attribution }
   end
 
   view :html_attrib do
@@ -50,5 +50,29 @@ format :html do
   # placeholder
   def attribution_box
     yield
+  end
+
+  view :att_wikirate do
+    link_to "Wikirate.org", href: "https://wikirate.org"
+  end
+
+  view :att_title do
+    render_title_link
+  end
+end
+
+format do
+  view :attribution do
+    [:wikirate, :title].map do |section|
+      render "att_#{section}"
+    end.join ", "
+  end
+
+  view :att_wikirate do
+    "Wikirate.org"
+  end
+
+  view :att_title do
+    "#{render_title} (#{render_id_url})"
   end
 end

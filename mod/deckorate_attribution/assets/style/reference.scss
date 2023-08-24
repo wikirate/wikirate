@@ -1,7 +1,11 @@
-.TYPE-reference .RIGHT-Xsubject.card-editor {
-  display: none
+.TYPE-reference {
+  .RIGHT-Xsubject.card-editor {
+    display: none
+  }
+  &.edit_type_row-view {
+    display: none;
+  }
 }
-
 .attribution-alert-link {
   font-size: small;
 }
