@@ -23,6 +23,12 @@ format :html do
     ]
   end
 
+  def raw_help_text
+    with_nest_mode :normal do
+      haml :attribution_message
+    end
+  end
+
   view :bar_left, template: :haml
 
   view :bar_right do

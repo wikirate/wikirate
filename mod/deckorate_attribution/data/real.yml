@@ -7,12 +7,6 @@
         :create:
           - :anyone
         :autoname: Reference 0000001
-        :help:
-          <p><strong>Appropriate attribution</strong></p> 
-          <p>
-            This data is open to everyone and requires appropriate credit to be given 
-            to the community.
-          </p>
 
 - :name: referrers
   :codename: referrers
