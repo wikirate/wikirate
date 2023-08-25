@@ -37,7 +37,7 @@ basket[:icons][:material].merge!(
   designer: :design_services,
   board: :build,
   reference: :attribution,
-  history: :history
+  history: :history,
   clipboard: :content_copy
 )
 
