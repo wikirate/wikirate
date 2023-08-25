@@ -36,14 +36,61 @@ format :html do
   end
 
   view :rich_text_attrib do
-    "rich text attribution"
+    attribution_box { render_attribution }
   end
 
   view :plain_text_attrib do
-    "plain text attribution"
+    attribution_box { card.format(:text).render_attribution }
   end
 
   view :html_attrib do
-    "html attribution"
+    attribution_box { h render_attribution }
+  end
+
+  # placeholder
+  def attribution_box
+    yield
+  end
+
+  view :att_wikirate do
+    link_to "Wikirate.org", href: "https://wikirate.org", target: "_blank"
+  end
+
+  def attribution_link text, url
+    link_to text, href: url, target: "_blank"
+  end
+end
+
+format do
+  view :attribution do
+    %i[wikirate title license].map do |section|
+      render "att_#{section}"
+    end.join ", "
+  end
+
+  view :att_wikirate do
+    "Wikirate.org"
+  end
+
+  view :att_title do
+    attribution_link card.name, render_id_url
+  end
+
+  view :att_license do
+    "licensed under #{attribution_link license_text, license_url}"
+  end
+
+  private
+
+  def attribution_link text, url
+    "#{text} (#{url})"
+  end
+
+  def license_url
+    "https://creativecommons.org/licenses/by/4.0"
+  end
+
+  def license_text
+    "CC BY-SA 4.0"
   end
 end

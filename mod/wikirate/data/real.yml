@@ -2,7 +2,6 @@
 - homepage
 - style
 
-
 - :name: Blurb
   :codename: blurb
   :type: :cardtype
@@ -14,12 +13,20 @@
 - :name: icon
   :codename: icon
 
+- :name: nav menu
+  :codename: nav_menu
+
+- :name: Community
+  :codename: wikirate_community
+
+- :name: Data
+  :codename: wikirate_data
+
 - blurblists
 
 - :name: Publication
   :conflict: :override
   :codename: publication
-
 
 - :type: :blurb
   :codename: :policy_cta
@@ -56,14 +63,8 @@
 - :name: nav bar
   :codename: nav_bar
 
-- :name: Community
-  :codename: wikirate_community
-
 - :name: Impact
   :codename: wikirate_impact
-
-- :name: Data
-  :codename: wikirate_data
 
 - :name: Contact Us
   :codename: contact_us

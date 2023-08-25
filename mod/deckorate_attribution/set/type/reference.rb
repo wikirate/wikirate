@@ -1,13 +1,16 @@
 
 card_accessor :adaptation, type: :pointer
-card_accessor :party, type: :phrase
+card_accessor :party, type: :list
 card_accessor :url, type: :uri
 card_accessor :wikirate_title, type: :phrase
 card_accessor :subject, type: :pointer
 
-def ok_to_update
-  (Auth.current_id == creator_id) || Auth.current.stewards_all?
-end
+require_field :subject
+require_field :adaptation
+
+# def ok_to_update
+#   (Auth.current_id == creator_id) || Auth.current.stewards_all?
+# end
 
 format :html do
   def edit_fields
@@ -33,11 +36,19 @@ format :html do
     }
   end
 
-  view :new_buttons, wrap: :slot do
-    standard_save_button
+  view :new_buttons do
+    [wrap { standard_save_button }, render_attribution_form_bottom]
   end
 
+  view :attribution_form_bottom, template: :haml
+
   view :attributions do
-    nest card.subject, view: :attributions
+    with_nest_mode :normal do
+      nest card.subject, view: :attributions
+    end
+  end
+
+  view :edit_buttons do
+    [render_attributions, super(), render_attribution_form_bottom]
   end
 end
