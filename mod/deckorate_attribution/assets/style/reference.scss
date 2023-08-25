@@ -1,12 +1,11 @@
-.TYPE-reference .RIGHT-Xsubject.card-editor {
-  display: none
+.modal-body .TYPE-reference {
+  .RIGHT-Xsubject.card-editor {
+    display: none
+  }
+  &.edit_type_row-view {
+    display: none !important;
+  }
 }
-
 .attribution-alert-link {
   font-size: small;
-  margin-left: auto;
-}
-
-.attribution-alert-message {
-  padding-left: calc(1.5rem + 24px);
 }

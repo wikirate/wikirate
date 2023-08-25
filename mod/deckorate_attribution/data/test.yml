@@ -1,0 +1,9 @@
+---
+- :name: Reference 0000001
+  :type: :reference
+  :fields:
+    :subject: Evil Dataset
+    :adaptation: Yes, I modify or build upon the data
+    :party: Joe User
+    :url: https://xkcd.com/2809/
+    :wikirate_title: My first Reference
