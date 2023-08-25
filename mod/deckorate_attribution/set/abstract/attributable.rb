@@ -64,7 +64,7 @@ format :html do
 
   view :history_and_references do
     tabs "Contributions" => { content: render_history(hide: :title) },
-         "References" => { content: field_nest(:reference, view: :core) }
+         "References" => { content: field_nest(:reference, view: :content) }
   end
 
   # placeholder
@@ -95,4 +95,3 @@ format :html do
     "licensed under #{link_to license_text, href: license_url}"
   end
 end
-

@@ -73,6 +73,16 @@ format :html do
       haml :attribution_message
     end
   end
+
+  before :bar do
+    voo.hide :bar_menu unless card.ok? :update
+  end
+
+  def bar_menu_items
+    class_up "edit-link", "_modal-page-link"
+
+    [edit_link(:edit, text: "Edit")]
+  end
 end
 
 format do
