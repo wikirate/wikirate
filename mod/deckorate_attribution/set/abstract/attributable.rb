@@ -44,7 +44,7 @@ format :html do
   end
 
   view :html_attrib do
-    attribution_box { "html attribution" }
+    attribution_box { h render_attribution }
   end
 
   # placeholder
@@ -53,17 +53,17 @@ format :html do
   end
 
   view :att_wikirate do
-    link_to "Wikirate.org", href: "https://wikirate.org"
+    link_to "Wikirate.org", href: "https://wikirate.org", target: "_blank"
   end
 
-  view :att_title do
-    render_title_link
+  def attribution_link text, url
+    link_to text, href: url, target: "_blank"
   end
 end
 
 format do
   view :attribution do
-    [:wikirate, :title].map do |section|
+    %i[wikirate title license].map do |section|
       render "att_#{section}"
     end.join ", "
   end
@@ -73,6 +73,24 @@ format do
   end
 
   view :att_title do
-    "#{render_title} (#{render_id_url})"
+    attribution_link card.name, render_id_url
+  end
+
+  view :att_license do
+    "licensed under #{attribution_link license_text, license_url}"
+  end
+
+  private
+
+  def attribution_link text, url
+    "#{text} (#{url})"
+  end
+
+  def license_url
+    "https://creativecommons.org/licenses/by/4.0"
+  end
+
+  def license_text
+    "CC BY-SA 4.0"
   end
 end
