@@ -1,6 +1,7 @@
 ---
 - :name: Reference 0000001
   :type: :reference
+  :user: Joe User
   :fields:
     :subject: Evil Dataset
     :adaptation: Yes, I modify or build upon the data
