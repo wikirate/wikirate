@@ -85,10 +85,6 @@ format :html do
     attribution_box { h render_attribution }
   end
 
-  def attribution_box
-    haml :attribution_box, content: yield
-  end
-
   view :att_wikirate do
     link_to "Wikirate.org", href: "https://wikirate.org", target: "_blank"
   end
