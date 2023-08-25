@@ -5,7 +5,7 @@ def stewards_any?
 end
 
 def stewards_all?
-  id&.in?(Set::Self::WikirateTeam.member_ids)
+  Auth.always_ok? || id&.in?(Set::Self::WikirateTeam.member_ids)
 end
 
 # note: does NOT return all metrics for WikiRate team members
