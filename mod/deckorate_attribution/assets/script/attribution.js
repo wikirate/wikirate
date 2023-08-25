@@ -1,10 +1,13 @@
-function myFunction() {
-    let copyText = document.getElementById("clipboard");
-  
-    copyText.select(); 
-    copyText.setSelectionRange(0, 99999); // For mobile devices
-  
-    navigator.clipboard.writeText(copyText.value);
-  
-    alert("Copied the text: " + copyText.value);
-  }
+$(document).ready(function() {
+  $(".copy-button").click(function() {
+    var clipboardContent = $("#clipboard").text();
+    
+    navigator.clipboard.writeText(clipboardContent)
+      .then(function() {
+        console.log("Text copied to clipboard: " + clipboardContent);
+      })
+      .catch(function(error) {
+        console.error("Copy to clipboard failed:", error);
+      });
+  });
+});
