@@ -8,3 +8,23 @@
     :party: Joe User
     :url: https://xkcd.com/2809/
     :wikirate_title: My first Reference
+
+- :name: Reference 0000002
+  :type: :reference
+  :user: Joe User
+  :fields:
+    :subject: Jedi+disturbances in the Force
+    :adaptation: No, I use the original data
+    :party: Joe User
+    :url: https://xkcd.com/2808/
+    :wikirate_title: My second Reference
+
+- :name: Reference 0000003
+  :type: :reference
+  :user: Joe User
+  :fields:
+    :subject: Joe_User+RM+Apple_Inc+2015
+    :adaptation: No, I use the original data
+    :party: Joe User
+    :url: https://xkcd.com/2807/
+    :wikirate_title: My third Reference
