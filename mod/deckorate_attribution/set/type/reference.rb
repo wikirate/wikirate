@@ -8,11 +8,56 @@ card_accessor :subject, type: :pointer
 require_field :subject
 require_field :adaptation
 
-# def ok_to_update
-#   (Auth.current_id == creator_id) || Auth.current.stewards_all?
-# end
+def ok_to_update
+  (Auth.current_id == creator_id) || Auth.current.stewards_all?
+end
 
 format :html do
+  view :bar_left, template: :haml
+  view :attribution_form_bottom, template: :haml
+
+  view :bar_right do
+    field_nest :url, view: :url_link
+  end
+
+  view :new_buttons do
+    [wrap { standard_save_button }, render_attribution_form_bottom]
+  end
+
+  view :edit_buttons do
+    [render_attributions, super(), render_attribution_form_bottom]
+  end
+
+  view :attributions do
+    tabs "Rich Text" => { content: render_rich_text_attrib },
+         "Plain Text" => { content:  render_plain_text_attrib },
+         "HTML" => { content: render_html_attrib }
+  end
+
+  view :rich_text_attrib do
+    attribution_box { render_attribute }
+  end
+
+  view :plain_text_attrib do
+    attribution_box { card.format(:text).render_attribute }
+  end
+
+  view :html_attrib do
+    attribution_box { h render_attribute }
+  end
+
+  # placeholder
+  def attribution_box
+    yield
+  end
+
+  def new_form_opts
+    {
+      "data-slot-selector": ".TYPE-reference.new_buttons-view",
+      success: { view: :attributions }
+    }
+  end
+
   def edit_fields
     [
       :subject,
@@ -28,33 +73,30 @@ format :html do
       haml :attribution_message
     end
   end
+end
 
-  view :bar_left, template: :haml
-
-  view :bar_right do
-    field_nest :url, view: :url_link
-  end
-
-  def new_form_opts
-    {
-      "data-slot-selector": ".TYPE-reference.new_buttons-view",
-      success: { view: :attributions }
-    }
-  end
-
-  view :new_buttons do
-    [wrap { standard_save_button }, render_attribution_form_bottom]
-  end
-
-  view :attribution_form_bottom, template: :haml
-
-  view :attributions do
+format do
+  view :attribute do
     with_nest_mode :normal do
-      nest card.subject, view: :attributions
+      %i[wikirate title adaptation license].map do |section|
+        attribution_section section
+      end.compact.join ", "
     end
   end
 
-  view :edit_buttons do
-    [render_attributions, super(), render_attribution_form_bottom]
+  def attribution_section section
+    if section == :adaptation
+      render_att_adaptation if adaptation?
+    else
+      nest card.subject, view: "att_#{section}"
+    end
+  end
+
+  def adaptation?
+    card.adaptation_card&.first_card&.codename == :yes_adaptation
+  end
+
+  view :att_adaptation do
+    "adapted by..."
   end
 end
