@@ -14,7 +14,7 @@ end
 
 format :html do
   view :bar_left, template: :haml
-  view :attribution_form_bottom, template: :haml
+  view :attribution_form_bottom, template: :haml, unknown: true
 
   view :bar_right do
     field_nest :url, view: :url_link
@@ -76,7 +76,7 @@ format :html do
 end
 
 format do
-  view :attribute do
+  view :attribute, cache: :never do
     with_nest_mode :normal do
       %i[wikirate title adaptation license].map do |section|
         attribution_section section
@@ -84,9 +84,18 @@ format do
     end
   end
 
+  view :att_adaptation do
+    return unless adaptation?
+
+    adapters = card.party_card.item_names
+    return "Adaptation" unless adapters.first.present?
+
+    "Adaptation by #{adapters.to_sentence}"
+  end
+
   def attribution_section section
     if section == :adaptation
-      render_att_adaptation if adaptation?
+      render_att_adaptation
     else
       nest card.subject, view: "att_#{section}"
     end
@@ -94,9 +103,5 @@ format do
 
   def adaptation?
     card.adaptation_card&.first_card&.codename == :yes_adaptation
-  end
-
-  view :att_adaptation do
-    "adapted by..."
   end
 end

@@ -8,6 +8,36 @@ def attribution_title
   name
 end
 
+format do
+  delegate :attribution_title, :attribution_authors, to: :card
+
+  view :att_wikirate do
+    "Wikirate.org"
+  end
+
+  view :att_title do
+    "'#{attribution_title}' (#{render_id_url}) by #{render_attribution_authorship}"
+  end
+
+  view :attribution_authorship do
+    attribution_authors.to_sentence
+  end
+
+  view :att_license do
+    "licensed under #{license_text} (#{license_url})"
+  end
+
+  private
+
+  def license_url
+    "https://creativecommons.org/licenses/by/4.0"
+  end
+
+  def license_text
+    "CC BY-SA 4.0"
+  end
+end
+
 format :html do
   def bar_menu_items
     super.insert 3, attribution_link(text: "Attribute")
@@ -83,32 +113,3 @@ format :html do
   end
 end
 
-format do
-  delegate :attribution_title, :attribution_authors, to: :card
-
-  view :att_wikirate do
-    "Wikirate.org"
-  end
-
-  view :att_title do
-    "'#{attribution_title}' (#{render_id_url}) by #{render_attribution_authorship}"
-  end
-
-  view :attribution_authorship do
-    attribution_authors.to_sentence
-  end
-
-  view :att_license do
-    "licensed under #{license_text} (#{license_url})"
-  end
-
-  private
-
-  def license_url
-    "https://creativecommons.org/licenses/by/4.0"
-  end
-
-  def license_text
-    "CC BY-SA 4.0"
-  end
-end
