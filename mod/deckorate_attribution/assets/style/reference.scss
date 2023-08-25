@@ -1,5 +1,11 @@
-.TYPE-reference .RIGHT-Xsubject.card-editor {
-  display: none;
+
+.modal-body .TYPE-reference {
+  .RIGHT-Xsubject.card-editor {
+    display: none
+  }
+  &.edit_type_row-view {
+    display: none !important;
+  }
 }
 
 .TYPE-reference .RIGHT-adaptation.card-editor {

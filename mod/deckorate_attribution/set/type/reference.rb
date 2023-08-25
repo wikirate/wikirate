@@ -43,10 +43,18 @@ format :html do
   end
 
   view :new_buttons do
-    [wrap { standard_save_button }, haml(:attribution_form_bottom)]
+    [wrap { standard_save_button }, render_attribution_form_bottom]
   end
 
+  view :attribution_form_bottom, template: :haml
+
   view :attributions do
-    nest card.subject, view: :attributions
+    with_nest_mode :normal do
+      nest card.subject, view: :attributions
+    end
+  end
+
+  view :edit_buttons do
+    [render_attributions, super(), render_attribution_form_bottom]
   end
 end
