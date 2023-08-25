@@ -26,9 +26,9 @@
       appearance: none;
       background-clip: padding-box;
       background-color: #fff;
-      border: 1px solid #ced4da;
+      border: 1px solid $gray-400;
       border-radius: 50.4rem;
-      color: #34343b;
+      color: $gray-900;
       flex: 1;
       font-size: 1rem;
       font-weight: 400;
@@ -39,10 +39,9 @@
       padding-left: 2.2rem;
       text-align: left;
       transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-
-    .form-check:last-child {
-      margin-right: 0;
+        &.form-check:last-child {
+          margin-right: 0;
+        }
     }
 
     .pointer-radio-list {
@@ -53,4 +52,23 @@
       width: 100%;
     }
   }
+}
+
+.clipboard {
+  border: 1px solid $gray-400;
+  a {
+    text-decoration: underline;
+  }
+}
+
+.copy-button {
+  background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
+  border: 1px solid transparent;
+  color:#fff;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out
 }
