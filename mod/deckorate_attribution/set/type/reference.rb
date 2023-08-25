@@ -84,6 +84,13 @@ format do
     end
   end
 
+  view :att_adaptation do
+    adapters = card.party_card.item_names
+    return "Adaptation" unless adapters.first.present?
+
+    "Adaptation by #{adapters.to_sentence}"
+  end
+
   def attribution_section section
     if section == :adaptation
       render_att_adaptation if adaptation?
@@ -94,9 +101,5 @@ format do
 
   def adaptation?
     card.adaptation_card&.first_card&.codename == :yes_adaptation
-  end
-
-  view :att_adaptation do
-    "adapted by..."
   end
 end
