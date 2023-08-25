@@ -1,0 +1,8 @@
+.d-flex
+  = icon_tag :attribution
+  .d-flex.ms-2.flex-column
+    .fw-bold.align-items-center
+      %span
+        = nest [:attribution_alert, :title], view: :core
+    %p.pt-2
+      This data is open to everyone and requires appropriate credit to be given to the community.
