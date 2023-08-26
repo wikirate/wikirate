@@ -1,7 +1,7 @@
-.jmm
+.attribution-bar-left
   .pb-2
     = field_nest :wikirate_title
-  .fw-normal.reference-creator.d-flex
+  .fw-normal.reference-creator.d-flex.align-items-center
     .me-1
       Created by
-    = field_nest :party
+    = field_nest :party, items: { view: :name }
