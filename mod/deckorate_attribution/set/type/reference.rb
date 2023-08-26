@@ -46,9 +46,8 @@ format :html do
     attribution_box { h render_attribute }
   end
 
-  # placeholder
   def attribution_box
-    yield
+    haml :attribution_box, content: yield
   end
 
   def new_form_opts
