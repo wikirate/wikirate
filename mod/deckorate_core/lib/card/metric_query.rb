@@ -12,7 +12,9 @@ class Card
     self.card_id_filters = ::Set.new(card_id_map.keys).freeze
     self.simple_filters = ::Set.new(card_id_map.values << :metric_id).freeze
 
-    SORT_BY_COUNT = { company: :wikirate_company, answer: :metric_answer }.freeze
+    SORT_BY_COUNT = { company: :wikirate_company,
+                      answer: :metric_answer,
+                      reference: :reference }.freeze
 
     include MetricFilters
 
