@@ -97,9 +97,9 @@ format do
     return unless adaptation?
 
     adapters = card.party_card.item_names
-    return "Adaptation" unless adapters.first.present?
+    return "adaptation" unless adapters.first.present?
 
-    "Adaptation by #{adapters.to_sentence}"
+    "adaptation by #{adapters.to_sentence}"
   end
 
   def attribution_section section

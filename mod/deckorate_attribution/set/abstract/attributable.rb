@@ -62,6 +62,9 @@ format :html do
                                          ":party": Auth.current_card&.name } } }
   end
 
+  view(:bar_menu, cache: :never) { super() }
+  # because attribution link has uncacheable content
+
   view :history_and_references do
     tabs "Contributions" => { content: render_history(hide: :title) },
          "References" => { content: field_nest(:reference, view: :content) }
