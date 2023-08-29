@@ -13,6 +13,8 @@ def ok_to_update
 end
 
 format :html do
+  bar_cols 6, 6
+  
   view :bar_left, template: :haml
   view :attribution_form_bottom, template: :haml, unknown: true
 
