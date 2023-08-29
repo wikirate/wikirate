@@ -42,7 +42,7 @@ format :html do
     attribution_box { card.format(:text).render_attribute }
   end
 
-  view :html_attrib do
+  view :html_attrib, cache: :never do
     attribution_box { h render_attribute }
   end
 
