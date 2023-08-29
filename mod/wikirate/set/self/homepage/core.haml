@@ -1,8 +1,11 @@
 #homepage.nodblclick
   - if :alert_banner.card.content.strip.present?
     %section#homepage-alert.container-fluid.bg-dark
-      .container.text-white.text-center.p-2
-        = nest :alert_banner, view: :core
+      .container.text-white.p-2
+        .d-flex.align-items-center.justify-content-center
+          = nest :alert_banner, view: :core
+          .button#close-alert-button
+          x
 
   %section#homepage-menu.container.px-5.py-2
     = render_menu
