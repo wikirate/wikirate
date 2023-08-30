@@ -36,7 +36,9 @@ basket[:icons][:material].merge!(
   account: :volunteer_activism,
   designer: :design_services,
   board: :build,
-  reference: :attribution
+  reference: :attribution,
+  history: :history,
+  clipboard: :content_copy
 )
 
 basket[:icons][:font_awesome].merge!(
@@ -68,7 +70,8 @@ basket[:icons][:font_awesome].merge!(
   circle: :circle,
   greater_than: "chevron-right",
   less_than: "chevron-left",
-  board: :wrench
+  board: :wrench,
+  clipboard: "copy"
 )
 
 format :html do

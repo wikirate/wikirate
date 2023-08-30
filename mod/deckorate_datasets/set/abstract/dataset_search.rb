@@ -37,7 +37,8 @@ format do
       "Alphabetical": :name,
       "Most Data Subsets": :data_subsets,
       "Most Metrics": :metric,
-      "Most Companies": :company }
+      "Most Companies": :company,
+      "Most References": :reference }
   end
 end
 
