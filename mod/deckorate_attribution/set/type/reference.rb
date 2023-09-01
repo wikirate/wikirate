@@ -9,6 +9,8 @@ require_field :subject
 require_field :adaptation
 
 def ok_to_update
+  return false unless Auth.signed_in?
+
   (Auth.current_id == creator_id) || Auth.current.stewards_all?
 end
 
