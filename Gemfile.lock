@@ -1,4 +1,10 @@
 PATH
+  remote: /Users/christina/code/card-mods
+  specs:
+    card-mod-blog (0.1)
+      card
+
+PATH
   remote: mod
   specs:
     card-mod-deckorate_search (0.1)
@@ -917,6 +923,7 @@ DEPENDENCIES
   addressable
   card!
   card-mod-alias!
+  card-mod-blog!
   card-mod-bookmarks!
   card-mod-counts!
   card-mod-csv_import!
