@@ -9,10 +9,14 @@ require_field :subject
 require_field :adaptation
 
 def ok_to_update
+  return false unless Auth.signed_in?
+
   (Auth.current_id == creator_id) || Auth.current.stewards_all?
 end
 
 format :html do
+  bar_cols 6, 6
+  
   view :bar_left, template: :haml
   view :attribution_form_bottom, template: :haml, unknown: true
 
@@ -42,7 +46,7 @@ format :html do
     attribution_box { card.format(:text).render_attribute }
   end
 
-  view :html_attrib do
+  view :html_attrib, cache: :never do
     attribution_box { h render_attribute }
   end
 
@@ -97,9 +101,9 @@ format do
     return unless adaptation?
 
     adapters = card.party_card.item_names
-    return "Adaptation" unless adapters.first.present?
+    return "adaptation" unless adapters.first.present?
 
-    "Adaptation by #{adapters.to_sentence}"
+    "adaptation by #{adapters.to_sentence}"
   end
 
   def attribution_section section
