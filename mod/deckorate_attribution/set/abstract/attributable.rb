@@ -93,7 +93,7 @@ format :html do
   end
 
   view :att_title do
-    "'#{link_to attribution_title, href: render_id_url, target: "_blank"}' " \
+    "'#{link_to attribution_title, href: render_id_url, target: '_blank'}' " \
       "by #{render_attribution_authorship}"
   end
 
@@ -108,6 +108,6 @@ format :html do
   end
 
   view :att_license do
-    "licensed under #{link_to license_text, href: license_url, target: "_blank"}"
+    "licensed under #{link_to license_text, href: license_url, target: '_blank'}"
   end
 end
