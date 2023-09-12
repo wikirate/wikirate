@@ -1,3 +1,74 @@
-.TYPE-reference .RIGHT-Xsubject.card-editor {
-  display: none
+
+// The subject and type edit field are hidden.
+// For now we're only hiding them in the modal to help with debugging
+// (On the site they should only be seen in the modal, but it's useful to have an
+// easy way to see the fields in development)
+.modal-body .TYPE-reference {
+  .RIGHT-Xsubject.card-editor {
+    display: none
+  }
+  &.edit_type_row-view {
+    display: none !important;
+  }
+}
+
+.TYPE-reference {
+  > .card-form > .tab-panel {
+    .nav-item {
+      width: 33%;
+      text-align: center;
+    }
+    padding-bottom: 2.5em;
+  }
+
+  .RIGHT-adaptation.card-editor {
+    .form-check {
+      appearance: none;
+      background-clip: padding-box;
+      background-color: #fff;
+      border: 1px solid $gray-400;
+      border-radius: 50.4rem;
+      color: $gray-900;
+      flex: 1;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      min-height: 1.5rem;
+      margin-right: 1rem;
+      padding: 0.375rem 1rem;
+      padding-left: 2.2rem;
+      text-align: left;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        &.form-check:last-child {
+          margin-right: 0;
+        }
+    }
+
+    .pointer-radio-list {
+      display: flex;
+      list-style: none;
+      justify-content: space-between;
+      padding: 0px;
+      width: 100%;
+    }
+  }
+}
+
+.clipboard {
+  border: 1px solid $gray-400;
+  a {
+    text-decoration: underline;
+  }
+}
+
+.copy-button {
+  background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
+  border: 1px solid transparent;
+  color:#fff;
+  cursor: pointer;
+  gap: 10px;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
 }

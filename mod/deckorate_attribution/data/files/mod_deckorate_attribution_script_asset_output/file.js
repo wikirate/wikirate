@@ -1,0 +1,2 @@
+// attribution.js.coffee
+(function(){$(window).ready(function(){return $("._export-button").on("click",function(){return $(this).closest("._attributable-export").find("._hidden-attribution-alert-link").trigger("click")})})}).call(this);

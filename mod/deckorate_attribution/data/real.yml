@@ -4,19 +4,19 @@
   :fields:
     :type:
       :fields:
+        :create:
+          - :anyone
         :autoname: Reference 0000001
-        :help:
-          <p><strong>Appropriate attribution</strong></p> 
-          <p>
-            This data is open to everyone and requires appropriate credit to be given 
-            to the community.
-          </p>
 
 - :name: referrers
   :codename: referrers
 
 - :name: adaptation
   :codename: adaptation
+  :fields:
+    :right:
+      :fields:
+        :default: "No, I use the original data"
 
 - :name: "No, I use the original data"
   :codename: no_adaptation
@@ -29,3 +29,10 @@
 
 - :name: party
   :codename: party
+
+- :name: attribution alert
+  :codename: attribution_alert
+  :fields:
+    :title: Applying Attribution
+    :body: Using this data requires appropriate attribution.
+
