@@ -109,6 +109,3 @@ end
 gem "mail", "!=2.8.0"       # broke staging
 gem "rack-test", "!=2.0.0"  # (2.0.0 breaks things on semaphore)
 gem "simplecov", "!=0.22.0" # broke semaphore
-
-# temporary for dev
-gem "card-mod-blog", path: "/Users/christina/code/card-mods"
