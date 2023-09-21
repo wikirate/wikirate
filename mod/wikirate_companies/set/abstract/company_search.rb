@@ -37,9 +37,9 @@ format do
     shared_company_filter_map.unshift key: :name, label: "Company Name", open: true
   end
 
-  def default_limit
-    Auth.signed_in? ? 5000 : 500
-  end
+  # def default_limit
+  #   Auth.signed_in? ? 5000 : 500
+  # end
 end
 
 format :csv do

@@ -56,7 +56,7 @@ format :csv do
     query.lookup_relation.map { |row| row.csv_line detailed }
   end
 
-  def default_limit
-    nil
-  end
+  # def default_limit
+  #   nil
+  # end
 end
