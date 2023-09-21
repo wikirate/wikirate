@@ -58,8 +58,7 @@ format :html do
                # class: ("btn btn-primary" if button),
                path: { mark: :reference,
                        action: :new,
-                       card: { fields: { ":subject": card.name,
-                                         ":party": Auth.current_card&.name } } }
+                       card: { fields: { ":subject": card.name } } }
   end
 
   view(:bar_menu, cache: :never) { super() }

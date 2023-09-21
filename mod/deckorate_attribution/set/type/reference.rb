@@ -7,11 +7,19 @@ card_accessor :subject, type: :pointer
 
 require_field :subject
 require_field :adaptation
+require_field :party, when: :party_required?
+
 
 def ok_to_update
   return false unless Auth.signed_in?
 
   (Auth.current_id == creator_id) || Auth.current.stewards_all?
+end
+
+private
+
+def party_required?
+  field(:adaptation).first_card&.codename == :yes_adaptation
 end
 
 format :html do
