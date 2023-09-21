@@ -1,10 +1,10 @@
 $ ->
   $("body").on "click", ".copy-button", ->
-    activeTab = $(this).closest(".tab-pane.active")
-    clipBoard = activeTab.find("._clipboard")
-    clipBoardContent = clipBoard.text()
-    navigator.clipboard.writeText(clipBoardContent)
+    content = $(this).closest(".tab-pane.active").find("._clipboard").html()
+    blob = new Blob([content], { type: "text/html" });
+    richTextInput = new ClipboardItem({ "text/html": blob });
+    navigator.clipboard.write([richTextInput])
       .then ->
-        console.log "Text copied to clipboard: #{clipBoardContent}"
+        console.log "Text copied to clipboard: #{content}"
       .catch (error) ->
         console.error "Copy to clipboard failed:", error
