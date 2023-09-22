@@ -125,6 +125,7 @@
       // $form-select-border-radius-lg: 50.3rem;
       // $input-border-radius: 50.4rem;
 
+      // NOTE: s2b5 = select2 bootstrap 5
       $s2bs5-border-radius: .25rem;
       $s2bs5-border-radius-sm: .25rem;
       $s2bs5-border-radius-lg: .25rem;
