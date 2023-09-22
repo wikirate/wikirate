@@ -34,7 +34,7 @@ format do
   end
 
   def license_text
-    "CC BY-SA 4.0"
+    "CC BY 4.0"
   end
 end
 
@@ -58,9 +58,11 @@ format :html do
                # class: ("btn btn-primary" if button),
                path: { mark: :reference,
                        action: :new,
-                       card: { fields: { ":subject": card.name,
-                                         ":party": Auth.current_card&.name } } }
+                       card: { fields: { ":subject": card.name } } }
   end
+
+  view(:bar_menu, cache: :never) { super() }
+  # because attribution link has uncacheable content
 
   view :history_and_references do
     tabs "Contributions" => { content: render_history(hide: :title) },
@@ -90,14 +92,14 @@ format :html do
   end
 
   view :att_title do
-    "'#{link_to attribution_title, href: render_id_url}' " \
+    "'#{link_to attribution_title, href: render_id_url, target: '_blank'}' " \
       "by #{render_attribution_authorship}"
   end
 
   view :attribution_authorship do
     attribution_authors.map do |author_name|
       if (author_id = author_name.card_id)
-        link_to author_name, href: card_url("~#{author_id}")
+        link_to author_name, href: card_url("~#{author_id}"), target: "_blank"
       else
         author_name
       end
@@ -105,6 +107,6 @@ format :html do
   end
 
   view :att_license do
-    "licensed under #{link_to license_text, href: license_url}"
+    "licensed under #{link_to license_text, href: license_url, target: '_blank'}"
   end
 end
