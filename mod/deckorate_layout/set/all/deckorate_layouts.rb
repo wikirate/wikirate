@@ -15,7 +15,7 @@ format :html do
 
   layout :deckorate_fluid_layout, view: :page do
     deckorate_layout :fluid do
-      wrap_with(:main) { layout_nest }
+      wrap_with(:main, class: "deckorate-fluid-main") { layout_nest }
     end
   end
 
