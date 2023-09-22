@@ -16,18 +16,6 @@ def designers_by_count
   ).rows
 end
 
-
-# def search _args
-#   designers_by_count.map do |designer_id, _count|
-#     designer_id.card
-#   end
-# end
-
 format :html do
   view :core, template: :haml
-  #
-  # def paging_needed?
-  #   false
-  # end
 end
-

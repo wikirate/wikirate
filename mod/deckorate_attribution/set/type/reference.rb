@@ -9,7 +9,6 @@ require_field :subject
 require_field :adaptation
 require_field :party, when: :party_required?
 
-
 def ok_to_update
   return false unless Auth.signed_in?
 
