@@ -1,0 +1,12 @@
+%table.table.no-decoration-links
+  %thead
+    %tr
+      %th Designer
+      %th Metrics Designed
+  %tbody
+    - card.designers_by_count.map do |designer_id, count|
+      %tr
+        %td
+          = nest designer_id, view: :thumbnail
+        %td
+          = link_to_card designer_id, count, path: { tab: :metric }
