@@ -61,12 +61,13 @@
   }
 }
 
-.copy-button {
-  background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
-  border: 1px solid transparent;
-  color:#fff;
+.copy-button.btn.btn-primary {
+  align-items: center;
+  border-radius: 0rem 0.25rem 0.25rem 0rem;
   cursor: pointer;
+  display: flex;
   gap: 10px;
+  justify-content: center;
   letter-spacing: 0.3px;
   line-height: 1.5;
   text-decoration: none;
