@@ -71,15 +71,6 @@
   }
 }
 
-.copy-button.btn.btn-primary {
-  align-items: center;
+.copy-button {
   border-radius: 0rem 0.25rem 0.25rem 0rem;
-  cursor: pointer;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  letter-spacing: 0.3px;
-  line-height: 1.5;
-  text-decoration: none;
-  transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
 }
