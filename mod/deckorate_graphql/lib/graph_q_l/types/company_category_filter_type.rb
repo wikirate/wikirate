@@ -8,3 +8,4 @@ module GraphQL
     end
   end
 end
+

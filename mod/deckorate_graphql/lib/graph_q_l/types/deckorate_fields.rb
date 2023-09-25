@@ -3,14 +3,11 @@ module GraphQL
     # Decorate Fields for GraphQL contains a number of functions
     # to facilitate the definition of different GraphQL types
     module DeckorateFields
-
       def lookup_field fieldname, type, codename = nil, is_card = false
         codename ||= fieldname
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         is_card ||= is_card
-
         plural_field plural_fieldname, codename, type
-
         define_method plural_fieldname do |limit: 10, offset: 0, **filter|
           lookup_search codename, limit, offset, is_card, filter
         end
@@ -26,7 +23,6 @@ module GraphQL
         codename ||= fieldname
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         plural_field plural_fieldname, codename, type
-
         define_method plural_fieldname do |limit: 10, offset: 0, **filter|
           card_search codename, limit, offset, is_card, filter
         end
