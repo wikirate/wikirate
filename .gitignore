@@ -15,7 +15,7 @@
 /coverage/*
 /backups
 /script/metric/data/*
-/.idea
+/.idea*
 spec/examples.txt
 /**/.DS_Store
 !/**/.gitkeep
