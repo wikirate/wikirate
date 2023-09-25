@@ -16,7 +16,7 @@ module GraphQL
       card_field :answer, Answer, :metric_answer
       lookup_field :answer, Answer, :metric_answer
       card_field :relationship, Relationship, :relationship_answer
-      cardtype_field :relationship, Relationship, :relationship_answer
+      lookup_field :relationship, Relationship, :relationship_answer
       card_field :topic, Topic, :wikirate_topic
       cardtype_field :topic, Topic, :wikirate_topic
       card_field :dataset, Dataset
@@ -24,9 +24,6 @@ module GraphQL
       card_field :source, Source
       cardtype_field :source, Source
 
-      def relationships limit: 10, offset: 0, **filter
-        ::Relationship.limit(limit).offset(offset).all
-      end
     end
   end
 end
