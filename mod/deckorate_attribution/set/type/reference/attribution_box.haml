@@ -1,7 +1,10 @@
 .d-flex.mb-3.align-items-stretch
   .p.clipboard.p-2.rounded-start.flex-fill#clipboard
     = content
-  .button.small.copy-button.p-3.rounded-end.fw-bold.align-middle.flex-fill.d-inline-flex.align-items-center
-    Copy
-    = icon_tag :clipboard
+  .button.small.copy-button.d-flex.p-2.rounded-end
+    .d-flex.align-items-center.fw-bold
+      .pe-1
+        Copy
+      = icon_tag :clipboard
+
 
