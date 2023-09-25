@@ -1,5 +1,7 @@
 module GraphQL
   module Types
+    # Decorate Fields for GraphQL contains a number of functions
+    # to facilitate the definition of different GraphQL types
     module DeckorateFields
 
       def lookup_field fieldname, type, codename = nil, is_card = false

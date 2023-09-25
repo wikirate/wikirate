@@ -1,5 +1,6 @@
 module GraphQL
   module Types
+    # Enum FilterType class
     class FilterType < BaseEnum
       class << self
         def card_name_values card_names

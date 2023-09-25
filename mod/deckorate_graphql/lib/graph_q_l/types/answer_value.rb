@@ -1,6 +1,6 @@
 module GraphQL
   module Types
-    #@todo:write tests
+    # AnswerValue for GraphQL
     class AnswerValue < BaseScalar
       description "An answer value that can be either a string, an integer, a float or an array"
 
