@@ -3,12 +3,22 @@
 // For now we're only hiding them in the modal to help with debugging
 // (On the site they should only be seen in the modal, but it's useful to have an
 // easy way to see the fields in development)
-.modal-body .TYPE-reference {
-  .RIGHT-Xsubject.card-editor {
-    display: none
+.modal-body {
+  .TYPE-reference {
+    .RIGHT-Xsubject.card-editor {
+      display: none
+    }
+
+    &.edit_type_row-view {
+      display: none !important;
+    }
   }
-  &.edit_type_row-view {
-    display: none !important;
+
+  > .TYPE-reference > .d0-card-frame {
+    border: none;
+    > .d0-card-body {
+      padding: 0;
+    }
   }
 }
 
@@ -27,7 +37,7 @@
       background-clip: padding-box;
       background-color: #fff;
       border: 1px solid $gray-400;
-      border-radius: 50.4rem;
+      border-radius: .25em;
       color: $gray-900;
       flex: 1;
       font-size: 1rem;
