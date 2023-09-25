@@ -12,7 +12,8 @@ module GraphQL
       end
 
       def lookup_search codename, limit, offset, is_card, filter
-        query_hash = is_card ? object.card.fetch(codename).query_hash.merge(filter) : filter
+        query_hash =
+          is_card ? object.card.fetch(codename).query_hash.merge(filter) : filter
         codename.card.query_class.new(
           query_hash, {},
           limit: limit,

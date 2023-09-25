@@ -28,7 +28,6 @@ module GraphQL
 
         Relationship.where(object.answer_lookup_field => object.id).limit(10).all
       end
-
     end
   end
 end
