@@ -342,20 +342,18 @@
   }
 }
 
-.deckorate-fluid-main section {
-  .btn-primary {
-    border-radius: 49.9rem;
-    font-size: 1rem;
-    letter-spacing: 0.3px;
-    font-weight: 500;
-    background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
+.deckorate-fluid-layout, .deckorate-minimal-layout {
+  #main section {
+    .btn {
+      border-radius: 49.9rem;
+    }
 
-    padding: 0.8rem 2rem !important;
+    .btn-primary {
+      padding: 0.8rem 2rem !important;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+      background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
+    }
   }
-
-  // .btn-sm.btn-secondary {
-  //  border-radius: 49.9rem;
-  //  padding: 0.2rem !important;
-  //  font-size: 0.9rem;
-  //}
 }
