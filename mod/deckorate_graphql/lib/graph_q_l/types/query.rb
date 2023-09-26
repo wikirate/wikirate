@@ -23,7 +23,6 @@ module GraphQL
       cardtype_field :dataset, Dataset
       card_field :source, Source
       cardtype_field :source, Source
-
     end
   end
 end

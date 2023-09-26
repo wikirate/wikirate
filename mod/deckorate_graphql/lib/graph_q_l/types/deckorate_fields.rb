@@ -41,7 +41,8 @@ module GraphQL
           argument :offset, Integer, required: false
 
           codename.card.format.filter_keys.each do |filter|
-            filter_type = GraphQL::Types.const_defined?("#{filter.to_s.camelize}FilterType") ? GraphQL::Types.const_get("#{filter.to_s.camelize}FilterType"): String
+            filter_type = GraphQL::Types.const_defined?("#{filter.to_s.camelize}FilterType") ?
+                            GraphQL::Types.const_get("#{filter.to_s.camelize}FilterType") : String
             argument filter, filter_type, required: false
           end
         end

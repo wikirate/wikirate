@@ -47,7 +47,6 @@ module GraphQL
       def datasets
         referers :dataset, :metric
       end
-
     end
   end
 end
