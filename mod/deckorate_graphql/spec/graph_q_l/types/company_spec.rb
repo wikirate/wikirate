@@ -20,10 +20,22 @@ RSpec.describe GraphQL::Types::Company do
     end
   end
 
-  # describe "company: logo_url field" do
-  #   it "returns String" do
-  #     query = query_string "Death Star", "logoUrl"
-  #     expect(result(query)["logoUrl"]).to be_a String
-  #   end
-  # end
+  describe "company: relationships field" do
+    it "returns relationship answers pertaining to the company" do
+      field = "relationships { objectCompany { name }, subjectCompany { name } }"
+      query = query_string "Death Star", field
+      results = result(query)
+      expect([
+               results["relationships"].first["objectCompany"]["name"],
+               results["relationships"].first["subjectCompany"]["name"]]
+      ).to include("Death Star")
+    end
+  end
+
+  describe "company: answers field filtered by year" do
+    it "returns answers only related to year 2010 pertaining to the company" do
+      query = query_string "Death Star", "answers (year: \"2010\"){ year }"
+      expect(result(query)["answers"].first["year"]).to eq(2010)
+    end
+  end
 end
