@@ -2,10 +2,11 @@ module GraphQL
   module Types
     # AnswerValue for GraphQL
     class AnswerValue < BaseScalar
-      # self.coerce_input takes a GraphQL input and converts it into a Ruby value
-      def self.coerce_input(input_value, _context)
+      # self.coerce_input takes a GraphQL input
+      # and converts it into a Ruby value
+      def self.coerce_input input_value, _context
         case input_value
-        when Float, Integer, BigDecimal, defined?(BigInt) && BigInt
+        when Float, Integer
           input_value
         when String
           input_value.include?(",") ? input_value.split(", ") : input_value
@@ -14,7 +15,8 @@ module GraphQL
         end
       end
 
-      # self.coerce_result takes the return value of a field and prepares it for the GraphQL response JSON
+      # self.coerce_result takes the return value of a field and
+      # prepares it for the GraphQL response JSON
       def self.coerce_result ruby_value, _context
         return Integer(ruby_value) if integer?(ruby_value)
         return Float(ruby_value) if float?(ruby_value)
