@@ -22,8 +22,8 @@ RSpec.describe GraphQL::Types::Company do
 
   describe "company: relationships field" do
     it "returns relationship answers pertaining to the company" do
-      query = query_string "Death Star",
-                           "relationships { objectCompany { name }, subjectCompany { name } }"
+      field = "relationships { objectCompany { name }, subjectCompany { name } }"
+      query = query_string "Death Star", field
       results = result(query)
       expect([results["relationships"].first["objectCompany"]["name"],
              results["relationships"].first["subjectCompany"]["name"]]).to include("Death Star")
