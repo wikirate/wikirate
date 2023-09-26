@@ -1,6 +1,6 @@
 #homepage.nodblclick
   - if :alert_banner.card.content.strip.present?
-    %section._homepage-alert.container-fluid.bg-dark
+    %section.homepage-alert._homepage-alert.container-fluid.bg-dark
       .d-flex.container.text-white.justify-content-between.align-items-center.px-5
         .container.text-center.p-2
           = nest :alert_banner, view: :core
