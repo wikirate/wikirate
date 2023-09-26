@@ -32,7 +32,7 @@ describe 'Formula editor', ->
       cy.get("._sample-value").should "have.value", '"no"'
 
     # updates answers
-    cy.get(".tab-li-Answers").click()
+    cy.get(".tab-li-answer").click()
     cy.get("._answer-board ._ab-total").should "have.text", "3"
 
     # remove row
@@ -58,7 +58,7 @@ describe 'Formula editor', ->
       .get("._edit-variable-options").should "be.hidden"
 
     # open Answers tab
-    cy.get(".tab-li-Answers").click()
+    cy.get(".tab-li-answer").click()
     cy.get "._answer-board ._ab-result-unknown-count"
       .should "have.text", "1"
       .should "not.be.hidden"

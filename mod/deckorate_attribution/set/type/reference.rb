@@ -7,25 +7,48 @@ card_accessor :subject, type: :pointer
 
 require_field :subject
 require_field :adaptation
+require_field :party, when: :party_required?
 
 def ok_to_update
+  return false unless Auth.signed_in?
+
   (Auth.current_id == creator_id) || Auth.current.stewards_all?
 end
 
+private
+
+def party_required?
+  field(:adaptation).first_card&.codename == :yes_adaptation
+end
+
 format :html do
+  bar_cols 6, 6
+
+  before :new do
+    voo.hide! :header
+  end
+
+  before :edit do
+    voo.title = attribution_message
+  end
+
   view :bar_left, template: :haml
-  view :attribution_form_bottom, template: :haml, unknown: true
+  view :modal_footer, template: :haml, unknown: true
+
+  view :modal_title do
+    attribution_message
+  end
 
   view :bar_right do
     field_nest :url, view: :url_link
   end
 
   view :new_buttons do
-    [wrap { standard_save_button }, render_attribution_form_bottom]
+    wrap { standard_save_button }
   end
 
   view :edit_buttons do
-    [render_attributions, super(), render_attribution_form_bottom]
+    [render_attributions, super()]
   end
 
   view :attributions do
@@ -42,7 +65,7 @@ format :html do
     attribution_box { card.format(:text).render_attribute }
   end
 
-  view :html_attrib do
+  view :html_attrib, cache: :never do
     attribution_box { h render_attribute }
   end
 
@@ -67,10 +90,15 @@ format :html do
     ]
   end
 
-  def raw_help_text
+  def attribution_message
     with_nest_mode :normal do
       haml :attribution_message
     end
+  end
+
+  # should be removable once help rule card is gone.
+  def raw_help_text
+    nil
   end
 
   before :bar do
@@ -97,9 +125,9 @@ format do
     return unless adaptation?
 
     adapters = card.party_card.item_names
-    return "Adaptation" unless adapters.first.present?
+    return "adaptation" unless adapters.first.present?
 
-    "Adaptation by #{adapters.to_sentence}"
+    "adaptation by #{adapters.to_sentence}"
   end
 
   def attribution_section section
