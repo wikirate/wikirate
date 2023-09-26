@@ -1,10 +1,15 @@
+copyRichOrPlainText = (text) ->
+  listener = (ev) ->
+    ev.originalEvent.clipboardData.setData('text/html', text)
+    ev.originalEvent.clipboardData.setData('text/plain', text)
+    ev.preventDefault()
+
+  $(document).on 'copy', listener
+  document.execCommand('copy')
+  $(document).off 'copy', listener
+
 $ ->
   $("body").on "click", ".copy-button", ->
     content = $(this).closest(".tab-pane.active").find("._clipboard").html()
-    blob = new Blob([content], { type: "text/html" });
-    richTextInput = new ClipboardItem({ "text/html": blob });
-    navigator.clipboard.write([richTextInput])
-      .then ->
-        console.log "Text copied to clipboard: #{content}"
-      .catch (error) ->
-        console.error "Copy to clipboard failed:", error
+    copyRichOrPlainText(content)
+    console.info "Text copied to clipboard: #{content}"
