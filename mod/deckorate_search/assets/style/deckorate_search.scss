@@ -5,6 +5,10 @@
     flex: 1 0 auto !important;
     width: auto;
   }
+
+  > select, .input-group-text {
+    border-radius: 49.9rem;
+  }
 }
 
 .ui-menu-item:has(.autocomplete-item-search) {
