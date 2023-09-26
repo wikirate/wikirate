@@ -3,7 +3,7 @@ module GraphQL
     # AnswerValue for GraphQL
     class AnswerValue < BaseScalar
       # self.coerce_input takes a GraphQL input and converts it into a Ruby value
-      def self.coerce_input(input_value, _context)
+      def self.coerce_input input_value, _context
         case input_value
         when Float, Integer, BigDecimal, defined?(BigInt) && BigInt
           input_value
@@ -15,51 +15,44 @@ module GraphQL
       end
 
       # self.coerce_result takes the return value of a field and prepares it for the GraphQL response JSON
-      def self.coerce_result(ruby_value, _context)
-        if integer? ruby_value
-          Integer(ruby_value)
-        elsif float? ruby_value
-          Float(ruby_value)
-        elsif big_int? ruby_value
-          BigInt(ruby_value)
-        elsif big_decimal? ruby_value
-          BigDecimal(ruby_value)
-        elsif ruby_value.to_s.include?(",")
-          ruby_value.split(", ")
-        else
-          ruby_value
-        end
+      def self.coerce_result ruby_value, _context
+        return Integer(ruby_value) if integer?(ruby_value)
+        return Float(ruby_value) if float?(ruby_value)
+        return BigInt(ruby_value) if big_int?(ruby_value)
+        return BigDecimal(ruby_value) if big_decimal?(ruby_value)
+        return ruby_value.split(", ") if ruby_value.is_a?(String) && ruby_value.include?(",")
+        ruby_value
       end
 
-      def self.integer?(value)
+      def self.integer? value
         begin
           Integer(value)
         rescue ArgumentError
           false
         end
+      end
 
-        def self.float?(value)
-          begin
-            Float(value)
-          rescue ArgumentError
-            false
-          end
+      def self.float? value
+        begin
+          Float(value)
+        rescue ArgumentError
+          false
         end
+      end
 
-        def self.big_int?(value)
-          begin
-            defined?(BigInt) && BigInt(value)
-          rescue ArgumentError
-            false
-          end
+      def self.big_int? value
+        begin
+          defined?(BigInt) && BigInt(value)
+        rescue ArgumentError
+          false
         end
+      end
 
-        def self.big_decimal?(value)
-          begin
-            defined?(BigDecimal) && BigDecimal(value)
-          rescue ArgumentError
-            false
-          end
+      def self.big_decimal? value
+        begin
+          defined?(BigDecimal) && BigDecimal(value)
+        rescue ArgumentError
+          false
         end
       end
     end
