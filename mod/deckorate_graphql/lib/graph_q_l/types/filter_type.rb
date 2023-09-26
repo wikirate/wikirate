@@ -5,6 +5,7 @@ module GraphQL
       class << self
         def card_name_values card_names
           card_names.each do |name|
+            name = name.first if name.is_a? Array
             name = name.to_name
             value I18n.transliterate(name.url_key), value: name
           end
