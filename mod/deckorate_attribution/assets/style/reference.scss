@@ -72,13 +72,5 @@
 }
 
 .copy-button {
-  background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
-  border: 1px solid transparent;
-  color:#fff;
-  cursor: pointer;
-  gap: 10px;
-  letter-spacing: 0.3px;
-  line-height: 1.5;
-  text-decoration: none;
-  transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+  border-radius: 0rem 0.25rem 0.25rem 0rem;
 }
