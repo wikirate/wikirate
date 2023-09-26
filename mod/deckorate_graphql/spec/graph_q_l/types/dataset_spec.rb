@@ -18,21 +18,21 @@ RSpec.describe GraphQL::Types::Dataset do
   describe "dataset: metrics field" do
     it "returns the metrics included in dataset" do
       query = query_string dataset_name, "metrics { id } "
-      expect(result(query)["metrics"].count).to be > 0
+      expect(result(query)["metrics"].count).to be_positive
     end
   end
 
   describe "dataset: companies field" do
     it "returns the companies included in dataset" do
       query = query_string dataset_name, "companies { id } "
-      expect(result(query)["companies"].count).to be > 0
+      expect(result(query)["companies"].count).to be_positive
     end
   end
 
   describe "dataset: answers field" do
     it "returns the answers included in dataset" do
       query = query_string dataset_name, "answers { id } "
-      expect(result(query)["answers"].count).to be > 0
+      expect(result(query)["answers"].count).to be_positive
     end
   end
 
