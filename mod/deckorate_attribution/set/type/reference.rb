@@ -40,7 +40,7 @@ format :html do
   end
 
   view :bar_right do
-    field_nest :url, view: :url_link
+    field_nest :url, view: :url_link, unknown: :blank
   end
 
   view :new_buttons do
