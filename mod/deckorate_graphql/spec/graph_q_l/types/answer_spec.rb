@@ -35,5 +35,4 @@ RSpec.describe GraphQL::Types::Answer do
       expect(result(query)["year"]).to eq(1990)
     end
   end
-
 end
