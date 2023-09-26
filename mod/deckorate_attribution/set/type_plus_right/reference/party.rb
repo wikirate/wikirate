@@ -6,7 +6,7 @@ format :html do
   end
 
   view :input, cache: :never do
-    card.content = Auth.current_card&.name unless card.content.present?
+    card.content = Auth.current_card&.name if Auth.signed_in? && card.content.blank?
     super()
   end
 end
