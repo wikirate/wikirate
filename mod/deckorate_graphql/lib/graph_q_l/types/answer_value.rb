@@ -3,7 +3,7 @@ module GraphQL
     # AnswerValue for GraphQL
     class AnswerValue < BaseScalar
       # self.coerce_input takes a GraphQL input and converts it into a Ruby value
-      def self.coerce_input input_value, _context
+      def self.coerce_input(input_value, _context)
         case input_value
         when Float, Integer, BigDecimal, defined?(BigInt) && BigInt
           input_value
@@ -18,42 +18,16 @@ module GraphQL
       def self.coerce_result ruby_value, _context
         return Integer(ruby_value) if integer?(ruby_value)
         return Float(ruby_value) if float?(ruby_value)
-        return BigInt(ruby_value) if big_int?(ruby_value)
-        return BigDecimal(ruby_value) if big_decimal?(ruby_value)
         return ruby_value.split(", ") if ruby_value.is_a?(String) && ruby_value.include?(",")
         ruby_value
       end
 
-      def self.integer? value
-        begin
-          Integer(value)
-        rescue ArgumentError
-          false
-        end
+      def self.integer?(value)
+        Integer(value) rescue false
       end
 
-      def self.float? value
-        begin
-          Float(value)
-        rescue ArgumentError
-          false
-        end
-      end
-
-      def self.big_int? value
-        begin
-          defined?(BigInt) && BigInt(value)
-        rescue ArgumentError
-          false
-        end
-      end
-
-      def self.big_decimal? value
-        begin
-          defined?(BigDecimal) && BigDecimal(value)
-        rescue ArgumentError
-          false
-        end
+      def self.float?(value)
+        Float(value) rescue false
       end
     end
   end
