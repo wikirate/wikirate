@@ -25,8 +25,8 @@ RSpec.describe GraphQL::Types::Company do
       query = query_string "Death Star",
                            "relationships { objectCompany { name }, subjectCompany { name } }"
       results = result(query)
-      expect([results['relationships'].first['objectCompany']['name'],
-             results['relationships'].first['subjectCompany']['name']]).to include("Death Star")
+      expect([results["relationships"].first["objectCompany"]["name"],
+             results["relationships"].first["subjectCompany"]["name"]]).to include("Death Star")
     end
   end
 
