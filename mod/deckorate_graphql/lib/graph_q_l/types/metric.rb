@@ -14,9 +14,8 @@ module GraphQL
       field :formula, String, null: true
       field :report_type, String, null: true
       lookup_field :answer, Answer, :metric_answer, true
-      field :relationships, [Relationship], null: true
       field :topics, [Topic], null: false
-      cardtype_field :dataset, Dataset
+      field :datasets, [Dataset], null: false
 
       def id
         object.id
@@ -28,12 +27,6 @@ module GraphQL
 
       def designer
         object.designer_id.card
-      end
-
-      def relationships
-        return unless object.relationship?
-
-        ::Relationship.where(object.metric_lookup_field => object.id).limit(10).all
       end
 
       def formula
