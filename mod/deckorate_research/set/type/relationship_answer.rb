@@ -11,7 +11,8 @@ card_accessor :source, type: :list
 
 require_field :value
 require_field :source, when: :source_required?
-delegate *%i[relationship_id inverse_metric_id subject_company_id object_company_id], to: :lookup
+delegate *%i[inverse_metric_id subject_company_id object_company_id], to: :lookup
+delegate :relationship_id, to: :lookup
 
 event :ensure_simple_answers, after: :prepare_left_and_right, on: :save do
   [answer_card, inverse_answer_card].each do |card|
