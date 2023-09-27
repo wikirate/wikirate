@@ -1,13 +1,12 @@
 module GraphQL
   module Types
     # Relationship type for GraphQL
-    class Relationship < Card
+    class Relationship < WikirateCard
       field :year, Integer, null: false
       field :subject_company, Company, null: false
       field :object_company, Company, null: false
       field :metric, Metric, null: false
       field :inverse_metric, Metric, null: false
-
       field :value, String, null: false
       field :sources, [Source], null: false
 
@@ -34,10 +33,6 @@ module GraphQL
       def sources
         object.source_card.item_cards
       end
-
-      # value(unit: String = undefined, currency: String = undefined): FlexibleValueType
-      # input_answers: [Answer]
-      # relationships: [Relationship!]
     end
   end
 end
