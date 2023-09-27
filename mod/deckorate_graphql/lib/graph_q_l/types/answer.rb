@@ -7,9 +7,7 @@ module GraphQL
       field :metric, Metric, null: false
       field :value, AnswerValue, null: false
       field :comments, String, null: true
-      cardtype_field :source, Source, :source, true
-
-      field :relationships, [Relationship], null: false
+      field :sources, [Source], null: true
 
       def id
         object.answer_id
@@ -23,10 +21,8 @@ module GraphQL
         object.metric_id.card
       end
 
-      def relationships
-        return unless object.relationship?
-
-        Relationship.where(object.answer_lookup_field => object.id).limit(10).all
+      def sources
+        object.source_card.item_cards
       end
     end
   end
