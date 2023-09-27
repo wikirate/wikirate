@@ -19,10 +19,15 @@ module GraphQL
         # self.coerce_result takes the return value of a field and
         # prepares it for the GraphQL response JSON
         def coerce_result ruby_value, _context
-          return Integer(ruby_value) if integer?(ruby_value)
-          return Float(ruby_value) if float?(ruby_value)
-          return ruby_value.split(", ") if ruby_value.is_a?(String) && ruby_value.include?(",")
-          ruby_value
+          if integer?(ruby_value)
+            Integer(ruby_value)
+          elsif float?(ruby_value)
+            Float(ruby_value)
+          elsif ruby_value.is_a?(String) && ruby_value.include?(",")
+            ruby_value.split(", ")
+          else
+            ruby_value
+          end
         end
 
         def integer? value
