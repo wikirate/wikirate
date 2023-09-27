@@ -1,14 +1,11 @@
 module GraphQL
   module Types
     # CompanyGroup type for GraphQL
-    class CompanyGroup < Card
-      field :companies, [Company], null: false do
-        # argument :limit, Integer, required: false
-        # argument :offset, Integer, required: false
-      end
+    class CompanyGroup < WikirateCard
+      field :companies, [Company], null: true
 
       def companies
-        object.wikirate_company_card.item_cards # limit: limit, offset: offset
+        object.wikirate_company_card.item_cards
       end
     end
   end
