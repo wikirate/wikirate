@@ -6,7 +6,6 @@ module GraphQL
       field :description, String, null: true
       field :report_type, String, null: true
       field :years, [Integer], null: true
-
       field :original_url, String, null: true
       field :file_url, String, null: true
       lookup_field :metric, Metric, nil, true
@@ -17,8 +16,6 @@ module GraphQL
 
       # cardtype_field :company, Company, :wikirate_company, true
 
-      field :relationships, [Relationship], null: false
-
       def title
         object.card.wikirate_title
       end
@@ -28,8 +25,8 @@ module GraphQL
         description.content if description.present?
       end
 
-      def relationships
-        referers(:relationship_answer, :source)&.map(&:lookup)
+      def years
+        object.year_card.item_names.map(&:to_i)
       end
 
       def original_url
