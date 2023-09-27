@@ -38,7 +38,8 @@ basket[:icons][:material].merge!(
   board: :build,
   reference: :attribution,
   history: :history,
-  clipboard: :content_copy
+  clipboard: :content_copy,
+  close: :close
 )
 
 basket[:icons][:font_awesome].merge!(
@@ -71,7 +72,8 @@ basket[:icons][:font_awesome].merge!(
   greater_than: "chevron-right",
   less_than: "chevron-left",
   board: :wrench,
-  clipboard: "copy"
+  clipboard: "copy",
+  close: "xmark"
 )
 
 format :html do
