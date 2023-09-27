@@ -1,4 +1,4 @@
 $ ->
-  if $('#homepage-alert').length
-    $('#close-alert-button').click ->
-      $('#homepage-alert').slideUp "slow"
+  if $('._homepage-alert').length
+    $('._close-alert-button').click ->
+      $('._homepage-alert').slideUp "slow"
