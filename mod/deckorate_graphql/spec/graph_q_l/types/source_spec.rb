@@ -22,6 +22,13 @@ RSpec.describe GraphQL::Types::Source do
     end
   end
 
+  describe "sources: years field" do
+    it "returns years linked with the source" do
+      query = query_string source_name, "years"
+      expect(result(query)["years"]).to include(1977)
+    end
+  end
+
   describe "sources: answers field" do
     it "returns answers linked with the source" do
       query = query_string source_name, "answers { metric { id } }"
