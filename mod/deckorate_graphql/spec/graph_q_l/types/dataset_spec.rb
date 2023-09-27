@@ -35,5 +35,4 @@ RSpec.describe GraphQL::Types::Dataset do
       expect(result(query)["answers"].count).to be_positive
     end
   end
-
 end
