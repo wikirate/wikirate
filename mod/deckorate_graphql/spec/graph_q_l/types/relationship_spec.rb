@@ -22,12 +22,19 @@ RSpec.describe GraphQL::Types::Relationship do
     end
   end
 
-  # describe "relationship: subject company field" do
-  #   it "returns String" do
-  #     query = query_string relationship_name, "subjectCompany { name }"
-  #     expect(result(query)["company"]["name"]).to eq("SPECTRE")
-  #   end
-  # end
+  describe "relationship: subject company field" do
+    it "returns String" do
+      query = query_string relationship_name, "subjectCompany { name }"
+      expect(result(query)["subjectCompany"]["name"]).to eq("SPECTRE")
+    end
+  end
+
+  describe "relationship: object company field" do
+    it "returns String" do
+      query = query_string relationship_name, "objectCompany { name }"
+      expect(result(query)["objectCompany"]["name"]).to eq("Google LLC")
+    end
+  end
 
   describe "relationship: year field" do
     it "returns the year" do
