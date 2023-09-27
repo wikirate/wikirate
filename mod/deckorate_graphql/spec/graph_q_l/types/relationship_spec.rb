@@ -35,5 +35,4 @@ RSpec.describe GraphQL::Types::Relationship do
       expect(result(query)["year"]).to eq(2000)
     end
   end
-
 end

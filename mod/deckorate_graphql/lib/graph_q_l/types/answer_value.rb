@@ -20,17 +20,15 @@ module GraphQL
       def self.coerce_result ruby_value, _context
         return Integer(ruby_value) if integer?(ruby_value)
         return Float(ruby_value) if float?(ruby_value)
-        if ruby_value.is_a?(String) && ruby_value.include?(",")
-          return ruby_value.split(", ")
-        else
-          ruby_value
-        end
+        return ruby_value.split(", ") if ruby_value.is_a?(String) and
+          ruby_value.include?(",")
+        ruby_value
       end
 
       def self.integer? value
         begin
           Integer(value)
-        rescue ArgumentError
+        rescue ArgumentError => e
           false
         end
       end
@@ -38,7 +36,7 @@ module GraphQL
       def self.float? value
         begin
           Float(value)
-        rescue ArgumentError
+        rescue ArgumentError => e
           false
         end
       end
