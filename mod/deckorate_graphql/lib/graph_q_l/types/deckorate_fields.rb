@@ -24,7 +24,7 @@ module GraphQL
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         plural_field plural_fieldname, codename, type
         define_method plural_fieldname do |limit: 10, offset: 0, **filter|
-          wikirate_card_search codename, is_card, filter, limit:limit, offset: offset
+          wikirate_card_search codename, is_card, filter, limit: limit, offset: offset
         end
       end
 
