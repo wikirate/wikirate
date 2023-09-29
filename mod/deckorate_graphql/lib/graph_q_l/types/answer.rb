@@ -1,7 +1,7 @@
 module GraphQL
   module Types
     # Answer type for GraphQL
-    class Answer < WikirateCard
+    class Answer < DeckorateCard
       field :year, Integer, null: false
       field :company, Company, null: false
       field :metric, Metric, null: false

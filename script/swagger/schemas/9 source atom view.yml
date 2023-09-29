@@ -1,0 +1,34 @@
+source_atom_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 14515544
+    name:
+      type: string
+      example: Source-000177944
+    url:
+      type: string
+      example: "https://wikirate.org/Source-000177944.json?view=atom"
+    type:
+      type: string
+      example: Source
+    file:
+      type: string
+      example: "https://dq06ugkuram52.cloudfront.net/files/14515549/40064674.pdf"
+    link:
+      type: string
+    report_type:
+      type: array
+      items:
+        type: string
+    title:
+      type: string
+      example: "Annual Report - Financial report"
+    year:
+      type: array
+      items:
+        type: string
+    requested_at:
+      type: string
+      example: "2023-09-19 13:32:39 UTC"
