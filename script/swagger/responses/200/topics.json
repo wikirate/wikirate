@@ -1,0 +1,229 @@
+{
+  "id": 1010,
+  "name": "Topic",
+  "type": {
+    "id": 5,
+    "name": "Cardtype",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Cardtype.json",
+    "codename": "cardtype"
+  },
+  "url": "https://wikirate.org/topics.json",
+  "codename": "wikirate_topic",
+  "items": [
+    {
+      "id": 39152,
+      "name": "Environment",
+      "type": "Topic",
+      "url": "https://wikirate.org/Environment.json",
+      "content": "",
+      "bookmarkers": 4,
+      "metrics": 558,
+      "datasets": 40
+    },
+    {
+      "id": 14427,
+      "name": "GRI",
+      "type": "Topic",
+      "url": "https://wikirate.org/GRI.json",
+      "content": "",
+      "bookmarkers": 8,
+      "metrics": 533,
+      "datasets": 66
+    },
+    {
+      "id": 801870,
+      "name": "Social",
+      "type": "Topic",
+      "url": "https://wikirate.org/Social.json",
+      "content": "",
+      "bookmarkers": 0,
+      "metrics": 470,
+      "datasets": 79
+    },
+    {
+      "id": 1099754,
+      "name": "SDG12: Responsible Consumption and Production",
+      "type": "Topic",
+      "url": "https://wikirate.org/SDG12_Responsible_Consumption_and_Production.json",
+      "content": "",
+      "bookmarkers": 3,
+      "metrics": 359,
+      "datasets": 20
+    },
+    {
+      "id": 2551732,
+      "name": "University Metrics",
+      "type": "Topic",
+      "url": "https://wikirate.org/University_Metrics.json",
+      "content": "",
+      "bookmarkers": 1,
+      "metrics": 275,
+      "datasets": 2
+    },
+    {
+      "id": 1172,
+      "name": "Human Rights",
+      "type": "Topic",
+      "url": "https://wikirate.org/Human_Rights.json",
+      "content": "",
+      "bookmarkers": 7,
+      "metrics": 254,
+      "datasets": 43
+    },
+    {
+      "id": 1232,
+      "name": "Supply Chain Transparency",
+      "type": "Topic",
+      "url": "https://wikirate.org/Supply_Chain_Transparency.json",
+      "content": "",
+      "bookmarkers": 6,
+      "metrics": 243,
+      "datasets": 64
+    },
+    {
+      "id": 1079430,
+      "name": "Corporate Accountability",
+      "type": "Topic",
+      "url": "https://wikirate.org/Corporate_Accountability.json",
+      "content": "",
+      "bookmarkers": 0,
+      "metrics": 219,
+      "datasets": 10
+    },
+    {
+      "id": 1226,
+      "name": "Transparency",
+      "type": "Topic",
+      "url": "https://wikirate.org/Transparency.json",
+      "content": "",
+      "bookmarkers": 3,
+      "metrics": 210,
+      "datasets": 16
+    },
+    {
+      "id": 614,
+      "name": "Supply Chain",
+      "type": "Topic",
+      "url": "https://wikirate.org/Supply_Chain.json",
+      "content": "",
+      "bookmarkers": 3,
+      "metrics": 201,
+      "datasets": 2
+    },
+    {
+      "id": 586,
+      "name": "Climate Change",
+      "type": "Topic",
+      "url": "https://wikirate.org/Climate_Change.json",
+      "content": "",
+      "bookmarkers": 8,
+      "metrics": 184,
+      "datasets": 13
+    },
+    {
+      "id": 800459,
+      "name": "Governance",
+      "type": "Topic",
+      "url": "https://wikirate.org/Governance.json",
+      "content": "",
+      "bookmarkers": 1,
+      "metrics": 178,
+      "datasets": 3
+    },
+    {
+      "id": 1104675,
+      "name": "SDG15: Life on Land",
+      "type": "Topic",
+      "url": "https://wikirate.org/SDG15_Life_on_Land.json",
+      "content": "",
+      "bookmarkers": 0,
+      "metrics": 171,
+      "datasets": 12
+    },
+    {
+      "id": 844758,
+      "name": "Emissions",
+      "type": "Topic",
+      "url": "https://wikirate.org/Emissions.json",
+      "content": "",
+      "bookmarkers": 3,
+      "metrics": 164,
+      "datasets": 7
+    },
+    {
+      "id": 1094784,
+      "name": "SDG8: Decent Work and Economic Growth",
+      "type": "Topic",
+      "url": "https://wikirate.org/SDG8_Decent_Work_and_Economic_Growth.json",
+      "content": "",
+      "bookmarkers": 0,
+      "metrics": 163,
+      "datasets": 53
+    },
+    {
+      "id": 818753,
+      "name": "Financial",
+      "type": "Topic",
+      "url": "https://wikirate.org/Financial.json",
+      "content": "",
+      "bookmarkers": 0,
+      "metrics": 161,
+      "datasets": 8
+    },
+    {
+      "id": 1198,
+      "name": "Waste Management",
+      "type": "Topic",
+      "url": "https://wikirate.org/Waste_Management.json",
+      "content": "",
+      "bookmarkers": 6,
+      "metrics": 154,
+      "datasets": 10
+    },
+    {
+      "id": 40491,
+      "name": "Annual Reporting",
+      "type": "Topic",
+      "url": "https://wikirate.org/Annual_Reporting.json",
+      "content": "",
+      "bookmarkers": 0,
+      "metrics": 145,
+      "datasets": 2
+    },
+    {
+      "id": 588,
+      "name": "Ecosystems Biodiversity",
+      "type": "Topic",
+      "url": "https://wikirate.org/Ecosystems_Biodiversity.json",
+      "content": "",
+      "bookmarkers": 4,
+      "metrics": 142,
+      "datasets": 3
+    },
+    {
+      "id": 1104669,
+      "name": "SDG13: Climate Action",
+      "type": "Topic",
+      "url": "https://wikirate.org/SDG13_Climate_Action.json",
+      "content": "",
+      "bookmarkers": 3,
+      "metrics": 140,
+      "datasets": 38
+    }
+  ],
+  "links": [
+
+  ],
+  "ancestors": [
+
+  ],
+  "html_url": "https://wikirate.org/Topic",
+  "created_at": "2012-04-17 22:33:44 UTC",
+  "updated_at": "2023-06-15 10:15:09 UTC",
+  "paging": {
+    "next": "https://wikirate.org/Topic.json?filter%5Bname%5D=&item=name&limit=20&offset=20"
+  },
+  "requested_at": "2023-09-21 12:20:48 UTC",
+  "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+}
