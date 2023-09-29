@@ -1,7 +1,7 @@
 module GraphQL
   module Types
     # CompanyGroup type for GraphQL
-    class CompanyGroup < WikirateCard
+    class CompanyGroup < DeckorateCard
       field :companies, [Company], null: true
 
       def companies

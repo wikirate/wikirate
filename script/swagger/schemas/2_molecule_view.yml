@@ -1,0 +1,29 @@
+molecule_view:
+  type: object
+  properties:
+      id:
+        type: integer
+      name:
+        type: string
+      url:
+        type: string
+      type:
+        "$ref": "#/components/schemas/nucleus_view"
+      codename:
+        type: string
+      content:
+        type: string
+      html_url:
+        type: string
+      items:
+        type: array
+        items:
+          "$ref": "#/components/schemas/atom_view"
+      links:
+        type: array
+        items:
+          type: string
+      ancestors:
+        type: array
+        items:
+          "$ref": "#/components/schemas/atom_view"
