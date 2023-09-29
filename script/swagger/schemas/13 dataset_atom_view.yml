@@ -1,4 +1,4 @@
-dataset_atom_view:
+data_set_atom_view:
   type: object
   properties:
     id:

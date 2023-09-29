@@ -1,6 +1,7 @@
 # Required Libraries
 require File.expand_path("../config/environment", __dir__)
 require_relative "swagger_helper"
+require "colorize"
 
 # Sign in with Card::Auth.signin
 Card::Auth.signin "Ethan McCutchen"
@@ -32,6 +33,8 @@ initialize_filter_parameters(parameters, wikirate_cardtypes)
 initialize_path_parameters(parameters, wikirate_cardtypes, cardname_description)
 
 wikirate_cardtypes.each do |cardtype|
+  puts "working on cardtype: #{cardtype}".green
+
   p = [{ "$ref" => "#/components/parameters/format" },
        { "$ref" => "#/components/parameters/limit" },
        { "$ref" => "#/components/parameters/offset" }]
@@ -42,15 +45,20 @@ wikirate_cardtypes.each do |cardtype|
   description = cardtype.card.fetch(:description)&.content
   plural_cardname = cardtype.card.name.to_s.to_name.vary(:plural).to_name.url_key
   cardtype_name = cardtype.card.name.url_key.downcase
+  example_json =
+    File.read "./script/swagger/responses/200/#{plural_cardname.downcase}.json"
+
   paths["/#{plural_cardname}"] = {
     "get" => {
       "tags" => ["Wikirate"],
-      "description" => description.nil? || description.empty? ? "No description available" : description,
+      "description" => description.nil? ||
+        description.empty? ? "No description available" : description,
       "security" => [{ "apiKey" => [] }],
       "parameters" => p,
       "responses" => {
         "200" => {
-          "description" => "paged list of all #{plural_cardname.downcase} under items in atom view.",
+          "description" =>
+            "paged list of all #{plural_cardname.downcase} under items in atom view.",
           "content" => {
             "application/json" => {
               "schema" => {
@@ -63,7 +71,7 @@ wikirate_cardtypes.each do |cardtype|
                   "items" => {
                     "type" => "array",
                     "items" => {
-                      "$ref" => "#/components/schemas/#{cardtype_name.downcase == "data_set" ? "dataset" : cardtype_name.downcase}_atom_view"
+                      "$ref" => "#/components/schemas/#{cardtype_name.downcase}_atom_view"
                     }
                   },
                   "links" => {
@@ -92,7 +100,7 @@ wikirate_cardtypes.each do |cardtype|
                   }
                 }
               },
-              "example" => JSON.parse(File.read("./script/swagger/responses/200/#{plural_cardname.downcase == "data_sets" ? "datasets" : plural_cardname.downcase}.json"))
+              "example" => JSON.parse(example_json)
             }
           }
         }
@@ -103,10 +111,15 @@ wikirate_cardtypes.each do |cardtype|
   if plural_cardname == "Answers"
     metric_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
     metric_answers_params.unshift({ "$ref" => "#/components/parameters/metric" })
-    paths["/{metric}+#{plural_cardname}"] = deep_copy paths["/#{plural_cardname}"]
-    paths["/{metric}+#{plural_cardname}"]["get"]["parameters"] = metric_answers_params
-    paths["/{metric}+#{plural_cardname}"]["get"]["description"] = "Returns the answers of the specified metric."
-    paths["/{metric}+#{plural_cardname}"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]["example"] = JSON.parse(File.read("./script/swagger/responses/200/Metric+Answers.json"))
+    fieldpaths = paths["/{metric}+#{plural_cardname}"] =
+      deep_copy paths["/#{plural_cardname}"]
+
+    fieldpaths["get"].merge!(
+      "parameters" => metric_answers_params,
+      "description" => "Returns the answers of the specified metric."
+    )
+    fieldpaths["get"]["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
+      JSON.parse(File.read("./script/swagger/responses/200/Metric+Answers.json"))
 
     company_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
     company_answers_params.unshift({ "$ref" => "#/components/parameters/company" })
@@ -132,8 +145,8 @@ wikirate_cardtypes.each do |cardtype|
           "description" => "default JSON molecule view of the card `#{cardtype_name}`",
           "content" => {
             "application/json" => {
-              "schema" => { "$ref" => "#/components/schemas/#{cardtype_name.downcase == "data_set" ? "dataset" : cardtype_name.downcase}_molecule_view" },
-              "example" => JSON.parse(File.read("./script/swagger/responses/200/#{cardtype_name.downcase == "data_set" ? "dataset" : cardtype_name.downcase}.json"))
+              "schema" => { "$ref" => "#/components/schemas/#{cardtype_name.downcase}_molecule_view" },
+              "example" => JSON.parse(File.read("./script/swagger/responses/200/#{cardtype_name.downcase}.json"))
             }
           }
         },
@@ -146,9 +159,7 @@ wikirate_cardtypes.each do |cardtype|
     }
   }
 
-  if cardtype == :record
-    next
-  end
+  next if cardtype == :record
 
   p = []
   if cardtype_name != "Source"
@@ -203,10 +214,12 @@ wikirate_cardtypes.each do |cardtype|
     "parameters" => p,
     "responses" => {
       "302" => {
-        "description" => "Successful non-idempotent requests redirect to idempotent GET requests"
+        "description" =>
+          "Successful non-idempotent requests redirect to idempotent GET requests"
       },
       "404" => {
-        "description" => "Not Found. The requested #{cardtype_name} card could not be found."
+        "description" =>
+          "Not Found. The requested #{cardtype_name} card could not be found."
       },
       "401" => {
         "description" => "Unauthorized"
@@ -233,7 +246,8 @@ wikirate_cardtypes.each do |cardtype|
       "parameters" => params,
       "responses" => {
         "302" => {
-          "description" => "Successful non-idempotent requests redirect to idempotent GET requests"
+          "description" =>
+            "Successful non-idempotent requests redirect to idempotent GET requests"
         },
         "401" => { "description" => "Unauthorized" },
         "500" => { "description" => "Internal Server Error" }

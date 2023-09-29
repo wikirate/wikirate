@@ -1,4 +1,4 @@
-dataset_molecule_view:
+data_set_molecule_view:
   type: object
   properties:
     id:
