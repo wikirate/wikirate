@@ -88,7 +88,7 @@ def fetch_cardname_descriptions
   cardname_description
 end
 
-def generate_swagger_spec input_schema, paths, parameters
+def fetch_schemas
   schemas = {}
 
   dir = Dir["./script/swagger/schemas/*"]
@@ -96,7 +96,10 @@ def generate_swagger_spec input_schema, paths, parameters
   schema_files.each do |f|
     schemas = schemas == {} ? YAML.load_file(f) : schemas.merge!(YAML.load_file(f))
   end
+  schemas
+end
 
+def generate_swagger_spec input_schema, paths, parameters
   swagger = {
     "openapi" => input_schema["openapi"],
     "info" => input_schema["info"],
@@ -107,7 +110,7 @@ def generate_swagger_spec input_schema, paths, parameters
     "components" => { "securitySchemes" => fetch_security_schemes,
                       "parameters" => parameters,
                       "responses" => input_schema["components"]["responses"],
-                      "schemas" => schemas }
+                      "schemas" => fetch_schemas }
   }
 
   File.open("./script/swagger/output_spec.yml", "w") do |file|
