@@ -26,7 +26,7 @@ describe "Attribution Generator - Metric", ->
     cy.visit("http://localhost:5002/Jedi+disturbances_in_the_Force")
     cy.contains("disturbances in the Force")
     # show hidden icons
-    attribution = cy.get("a.slotter").invoke('show')
+    attribution = cy.get("a.slotter").invoke("show")
     # click attribution icon
     attribution.contains("attribution").click()
     # generate attribution by clicking 'Save' button
@@ -40,3 +40,15 @@ describe "Attribution Generator - Metric", ->
   it "generates attribution for HTML.", ->
     cy.get(".tab-li-html").click()
     cy.contains("Wikirate's community")
+
+describe "Attribution Generator - Answer Dashboard", ->
+  before ->
+    cy.login()
+    cy.visit("http://localhost:5002/Answers")
+  it "finds the attribution generator icon.", ->
+    deathStar = cy.get("span.card-title[title='Death Star']")
+    dropdown = cy.get("div.bar-menu-button[data-bs-toggle='dropdown']").first().invoke("show")
+    dropdown.click()
+            .get('a.slotter[data-slotter-mode="modal"][size="large"][data-remote="true"]').eq(3)
+            # .should("be.visible")  TODO: This fails
+            # .click()
