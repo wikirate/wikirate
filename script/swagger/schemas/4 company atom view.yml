@@ -1,0 +1,34 @@
+company_atom_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1578
+    name:
+      type: string
+      example: Apple Inc
+    url:
+      type: string
+      example: https://wikirate.org/Apple_Inc.json
+    type:
+      type: string
+      example: Company
+    wikipedia:
+      type: string
+      example: Apple_Inc
+    open_corporates:
+      type: string
+      example: C0806592
+    aliases:
+      type: array
+      items:
+        type: string
+      example:
+        - Apple
+        - Apple Computer
+    headquarters:
+      type: array
+      items:
+        type: string
+      example:
+        - California (United States)
