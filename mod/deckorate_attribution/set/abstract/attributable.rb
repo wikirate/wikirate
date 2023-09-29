@@ -1,7 +1,7 @@
 card_accessor :reference, type: :search_type
 
 def attribution_authors
-  [creator.name]
+  [creator&.name]
 end
 
 def attribution_title
