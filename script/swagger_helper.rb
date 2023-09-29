@@ -118,31 +118,34 @@ def generate_swagger_spec input_schema, paths, parameters
   end
 end
 
-def initialize_filter_parameters parameters, wikirate_cardtypes
-  parameter_keys = []
+def fetch_filter_param_schema cardtype, filter
   excluded_option_filters = %i[year designer updated status dataset
                                company_group wikirate_topic country]
+  begin
+    enumerated_values = filter_option_values(cardtype, filter)
+    schema = enumerated_values.empty? || excluded_option_filters.include?(filter) ?
+               { "type" => "string" } :
+               { "type" => "string", "enum" => enumerated_values }
+  rescue ArgumentError
+    schema = { "type" => "string" }
+  end
+  schema
+end
+
+def initialize_filter_parameters parameters, wikirate_cardtypes
+  parameter_keys = []
+
   wikirate_cardtypes.each do |cardtype|
     cardtype.card.format.filter_keys.each do |i|
       parameter_key = "filter_by_#{i}"
       next if parameter_keys.include?(parameter_key)
-      begin
-        enumerated_values = filter_option_values(cardtype, i)
-        schema = enumerated_values.empty? || excluded_option_filters.include?(i) ?
-                   { "type" => "string" } :
-                   { "type" => "string", "enum" => enumerated_values }
-      rescue ArgumentError
-        schema = { "type" => "string" }
-      end
-
       parameters[parameter_key] = {
         "name" => "filter[#{i}][]",
         "in" => "query",
         "required" => false,
         "description" => "filter results by #{i}#{EXTRA_FILTER_HELP[i]}",
-        "schema" => schema
+        "schema" => fetch_filter_param_schema(cardtype, i)
       }
-
       parameter_keys << parameter_key
     end
   end
