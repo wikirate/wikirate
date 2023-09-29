@@ -123,9 +123,10 @@ def fetch_filter_param_schema cardtype, filter
                                company_group wikirate_topic country]
   begin
     enumerated_values = filter_option_values(cardtype, filter)
-    schema = enumerated_values.empty? || excluded_option_filters.include?(filter) ?
-               { "type" => "string" } :
-               { "type" => "string", "enum" => enumerated_values }
+    schema = { "type" => "string", "enum" => enumerated_values }
+    if enumerated_values.empty? || excluded_option_filters.include?(filter)
+      schema = { "type" => "string" }
+    end
   rescue ArgumentError
     schema = { "type" => "string" }
   end
