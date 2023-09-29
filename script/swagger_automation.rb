@@ -208,7 +208,6 @@ wikirate_cardtypes.each do |cardtype|
       enumerated_values = filter_option_values(cardtype, parameter)
       schema = { "type" => "string", "enum" => enumerated_values }
       schema = { "type" => "string" } if parameter == "year" || enumerated_values == []
-
     rescue ArgumentError
       schema = { "type" => "string" }
     end
