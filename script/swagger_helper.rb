@@ -33,16 +33,7 @@ def filter_option_values base_codename, filter_name
 end
 
 def fetch_wikirate_cardtypes
-  %i[wikirate_company
-   metric
-   metric_answer
-   relationship_answer
-   source
-   dataset
-   wikirate_topic
-   research_group
-   company_group
-   record]
+  %i[wikirate_company metric metric_answer relationship_answer source dataset wikirate_topic research_group company_group record]
 end
 
 def fetch_optional_subcards
@@ -85,9 +76,9 @@ def fetch_cardname_descriptions
       "with its numerical id in the form of `~INTEGER`",
     "The name of an answer follows the pattern `Metric+Company+Year`. " \
       "(Note, the name of a metric follows the pattern Designer+Title). " \
-      "Any piece of the name (or the entire name) can be substituted with its numerical " \
-      "id in the form of `~INTEGER`. Eg, if your metric's id is `867` and your " \
-      "company's id is `5309`, then you can address the answer as `~867+~5309+1981`",
+      "Any piece of the name (or the entire name) can be substituted with its " \
+      "numerical id in the form of `~INTEGER`. Eg, if your metric's id is `867` and " \
+      "your company's id is `5309`, then you can address the answer as `~867+~5309+1981`",
     "The name of a relationship answer follows the pattern " \
       "`Metric+Subject Company+Year+Object Company`. (Note, the name of a metric " \
       "follows the pattern Designer+Title). Any piece of the name (or the entire name) " \
@@ -182,7 +173,8 @@ def initialize_filter_parameters parameters, wikirate_cardtypes
           "in" => "query",
           "required" => false,
           "description" => "filter results by #{i}#{EXTRA_FILTER_HELP[i]}",
-          "schema" => schema }
+          "schema" => schema
+        }
       end
     end
   end

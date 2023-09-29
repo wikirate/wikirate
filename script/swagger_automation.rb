@@ -127,8 +127,8 @@ wikirate_cardtypes.each do |cardtype|
 
     company_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
     company_answers_params.unshift("$ref" => "#/components/parameters/company")
-    cfieldpaths = paths["/{company}+#{plural_cardname}"] =
-      deep_copy paths["/#{plural_cardname}"]
+    company_answers_path = "/{company}+#{plural_cardname}"
+    cfieldpaths = paths[company_answers_path] = deep_copy paths["/#{plural_cardname}"]
     cfieldget = cfieldpaths["get"]
     cfieldget["parameters"] = company_answers_params
     cfieldget["description"] = "Returns the answers of the specified company."
@@ -206,9 +206,11 @@ wikirate_cardtypes.each do |cardtype|
   optional_subcards[cardtype].each do |parameter|
     begin
       enumerated_values = filter_option_values(cardtype, parameter)
-      schema = parameter == "year" || enumerated_values == [] ?
-                 { "type" => "string" } :
-                 { "type" => "string", "enum" => enumerated_values }
+      if parameter == "year" or enumerated_values == []
+        schema = { "type" => "string" }
+      else
+        schema = { "type" => "string", "enum" => enumerated_values }
+      end
     rescue ArgumentError
       schema = { "type" => "string" }
     end
