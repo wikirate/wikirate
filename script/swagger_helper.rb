@@ -34,7 +34,7 @@ end
 
 def fetch_wikirate_cardtypes
   cardtypes = %i[wikirate_company metric metric_answer relationship_answer source
-  dataset wikirate_topic research_group company_group record]
+                 dataset wikirate_topic research_group company_group record]
   cardtypes
 end
 
