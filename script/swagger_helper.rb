@@ -3,17 +3,21 @@ require File.expand_path("../config/environment", __dir__)
 require "yaml"
 require "json"
 
-def deep_copy(hash)
-  Marshal.load(Marshal.dump(hash))
+EXTRA_FILTER_HELP = {
+  designer: ", available designers can be found [here](https://wikirate.org/:designer)"
+}
+
+def deep_copy hash
+  Marshal.load Marshal.dump(hash)
 end
 
 # Helper Method: Extract Prefix
-def extract_prefix(filename)
+def extract_prefix filename
   filename.match(/\d+/)[0].to_i
 end
 
 # Helper Method: Get Values for Card Names
-def card_name_values(card_names)
+def card_name_values card_names
   values = []
   card_names.each do |name|
     name = name.to_name
@@ -23,7 +27,7 @@ def card_name_values(card_names)
 end
 
 # Helper Method: Filter Option Values
-def filter_option_values(base_codename, filter_name)
+def filter_option_values base_codename, filter_name
   puts "filter_option_values(#{base_codename}, #{filter_name})".blue
   card_name_values(base_codename.card.format.send("filter_#{filter_name}_options"))
 end
@@ -64,16 +68,38 @@ end
 
 def get_cardname_descriptions
   descriptions = [
-    "Given the company name. The company name it can be also substituted with its numerical `~id`.",
-    "Given the source name. The source name it can be also substituted with its numerical `~id`.",
-    "The name of a metric follows the pattern `Designer+Title`. For example: Core+Address. Any piece of the name can be substituted with its numerical id in the form of `~INTEGER`",
-    "The name of an answer follows the pattern `Metric+Company+Year`. (Note, the name of a metric follows the pattern Designer+Title). Any piece of the name (or the entire name) can be substituted with its numerical id in the form of `~INTEGER`. Eg, if your metric's id is `867` and your company's id is `5309`, then you can address the answer as `~867+~5309+1981`",
-    "The name of a relationship answer follows the pattern `Metric+Subject Company+Year+Object Company`. (Note, the name of a metric follows the pattern Designer+Title). Any piece of the name (or the entire name) can be substituted with its numerical id in the form of `~INTEGER`. Eg, if your metric's id is `2929009`, the subject company's id is `49209`, the object company's id is `12230576` then you can address the answer as `~14561838+~49209+2022+~12230576`",
-    "Given the topic name. The topic name it can be also substituted with its numerical `~id`.",
-    "Given the research group name. The research group name it can be also substituted with its numerical `~id`.",
-    "Given the dataset name. The dataset name it can be also substituted with its numerical `~id`.",
-    "Given the company group. The company group name it can be also substituted with its numerical `~id`.",
-    "The name of a wikirate record follows the pattern `Metric+Company` and the metric the patter `Designer+Title`. For example: `US_Securities_and_Exchange_Commission+Assets+Microsoft_Corporation`. Any piece of the name can be substituted with its numerical id in the form of ~INTEGER."
+    "Given the company name. "\
+      "The company name it can be also substituted with its numerical `~id`.",
+    "Given the source name. "\
+      "The source name it can be also substituted with its numerical `~id`.",
+    "The name of a metric follows the pattern `Designer+Title`. "\
+      "For example: Core+Address. Any piece of the name can be substituted "\
+      "with its numerical id in the form of `~INTEGER`",
+    "The name of an answer follows the pattern `Metric+Company+Year`. "\
+      "(Note, the name of a metric follows the pattern Designer+Title). "\
+      "Any piece of the name (or the entire name) can be substituted with its numerical "\
+      "id in the form of `~INTEGER`. Eg, if your metric's id is `867` and your "\
+      "company's id is `5309`, then you can address the answer as `~867+~5309+1981`",
+    "The name of a relationship answer follows the pattern "\
+      "`Metric+Subject Company+Year+Object Company`. (Note, the name of a metric "\
+      "follows the pattern Designer+Title). Any piece of the name (or the entire name) "\
+      "can be substituted with its numerical id in the form of `~INTEGER`. "\
+      "Eg, if your metric's id is `2929009`, the subject company's id is `49209`, the "\
+      "object company's id is `12230576` then you can address the answer "\
+      "as `~14561838+~49209+2022+~12230576`",
+    "Given the topic name. "\
+      "The topic name it can be also substituted with its numerical `~id`.",
+    "Given the research group name. "\
+      "The research group name it can be also substituted with its numerical `~id`.",
+    "Given the dataset name. "\
+      "The dataset name it can be also substituted with its numerical `~id`.",
+    "Given the company group. "\
+      "The company group name it can be also substituted with its numerical `~id`.",
+    "The name of a wikirate record follows the pattern `Metric+Company` and the metric "\
+      "the pattern `Designer+Title`. For example: "\
+      "`US_Securities_and_Exchange_Commission+Assets+Microsoft_Corporation`. "\
+      "Any piece of the name can be substituted with its numerical id in the "\
+      "form of ~INTEGER."
   ]
 
   cardname_description = {}
@@ -145,11 +171,13 @@ def initialize_filter_parameters(parameters, wikirate_cardtypes)
           schema = { "type" => "string" }
         end
 
-        parameters["filter_by_#{i}"] = { "name" => "filter[#{i}][]",
-                                         "in" => "query",
-                                         "required" => false,
-                                         "description" => "filter results by #{i}#{i == :designer ? ', available designers can be found [here](https://wikirate.org/:designer)' : ''}",
-                                         "schema" => schema }
+        parameters["filter_by_#{i}"] = {
+          "name" => "filter[#{i}][]",
+          "in" => "query",
+          "required" => false,
+          "description" => "filter results by #{i}#{EXTRA_FILTER_HELP[i]}",
+          "schema" => schema
+        }
       end
     end
   end
