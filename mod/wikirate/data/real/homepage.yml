@@ -12,7 +12,7 @@
     Research Group
     Company Group
 
-#- :name:
+# - :name:
 #    - Ethan McCutchen
 #    - test delta
 #  :type: :metric
@@ -25,11 +25,11 @@
 #    :hybrid: '0'
 #    :unpublished: '0'
 
-- :name:
-    - :homepage
-    - :metric
-  :type: :pointer
-  :content: Ethan_McCutchen+test_delta
+# - :name:
+#     - :homepage
+#     - :metric
+#   :type: :pointer
+#   :content: Ethan_McCutchen+test_delta
 
 - :name:
     - :search
