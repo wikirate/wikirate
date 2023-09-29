@@ -115,14 +115,13 @@ wikirate_cardtypes.each do |cardtype|
 
     metric_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
     metric_answers_params.unshift("$ref" => "#/components/parameters/metric")
-    mfieldpaths = paths["/{metric}+#{plural_cardname}"] =
-      deep_copy paths["/#{plural_cardname}"]
+    mfieldpaths =
+      paths["/{metric}+#{plural_cardname}"] =
+        deep_copy paths["/#{plural_cardname}"]
 
     mfieldget = mfieldpaths["get"]
-    mfieldget.merge!(
-      "parameters" => metric_answers_params,
-      "description" => "Returns the answers of the specified metric."
-    )
+    mfieldget["parameters"] = metric_answers_params
+    mfieldget["description"] = "Returns the answers of the specified metric."
     mfieldget["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
       JSON.parse(File.read("./script/swagger/responses/200/Metric+Answers.json"))
 
@@ -131,10 +130,8 @@ wikirate_cardtypes.each do |cardtype|
     cfieldpaths = paths["/{company}+#{plural_cardname}"] =
       deep_copy paths["/#{plural_cardname}"]
     cfieldget = cfieldpaths["get"]
-    cfieldget.merge!(
-      "parameters" => company_answers_params,
-      "description" => "Returns the answers of the specified company."
-    )
+    cfieldget["parameters"] = company_answers_params
+    cfieldget["description"] = "Returns the answers of the specified company."
 
     cfieldget["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
       JSON.parse(File.read("./script/swagger/responses/200/Company+Answers.json"))
@@ -167,7 +164,10 @@ wikirate_cardtypes.each do |cardtype|
                   File.read(
                     "./script/swagger/responses/200/#{cardtype_name.downcase}.json"
                   )
-                ) } } },
+                )
+            }
+          }
+        },
         "404" => {
           "description" =>
             "Not Found. The requested `#{cardtype_name}` card could not be found."
@@ -206,12 +206,9 @@ wikirate_cardtypes.each do |cardtype|
   optional_subcards[cardtype].each do |parameter|
     begin
       enumerated_values = filter_option_values(cardtype, parameter)
-      if parameter == "year" || enumerated_values == []
-        schema = { "type" => "string" }
-      else
-        schema = { "type" => "string",
-                   "enum" => enumerated_values }
-      end
+      schema = parameter == "year" || enumerated_values == [] ?
+                 { "type" => "string" } :
+                 { "type" => "string", "enum" => enumerated_values }
     rescue ArgumentError
       schema = { "type" => "string" }
     end
