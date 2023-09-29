@@ -1,0 +1,72 @@
+{
+  "id": 1578,
+  "name": "Apple Inc.",
+  "type": {
+    "id": 651,
+    "name": "Company",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Company.json",
+    "codename": "wikirate_company"
+  },
+  "url": "https://wikirate.org/Apple_Inc.json",
+  "wikipedia": {
+    "id": 2725581,
+    "name": "Apple Inc.+Wikipedia",
+    "type": "Phrase",
+    "url": "https://wikirate.org/Apple_Inc+Wikipedia.json",
+    "content": "Apple Inc."
+  },
+  "open_corporates": {
+    "id": 2920109,
+    "name": "Apple Inc.+OpenCorporates",
+    "type": "Phrase",
+    "url": "https://wikirate.org/Apple_Inc+OpenCorporates.json",
+    "content": "0806592"
+  },
+  "alias": {
+    "id": 56653,
+    "name": "Apple Inc.+Alias",
+    "type": "Pointer",
+    "url": "https://wikirate.org/Apple_Inc+Alias.json",
+    "content": [
+      "Apple Inc.",
+      "Apple"
+    ]
+  },
+  "headquarters": {
+    "id": 2920110,
+    "name": "Apple Inc.+Headquarters",
+    "type": "Pointer",
+    "url": "https://wikirate.org/Apple_Inc+Headquarters.json",
+    "content": [
+      "California (United States)"
+    ]
+  },
+  "oar_id": {
+    "id": null,
+    "name": "Apple Inc.+OS ID",
+    "type": "Phrase",
+    "url": "https://wikirate.org/Apple_Inc+OS_ID.json?card%5Bname%5D=Apple+Inc.%2BOS+ID"
+  },
+  "sec_cik": {
+    "id": 6544038,
+    "name": "Apple Inc.+SEC CIK",
+    "type": "RichText",
+    "url": "https://wikirate.org/Apple_Inc+SEC_CIK.json",
+    "content": "0000320193"
+  },
+  "items": [
+
+  ],
+  "links": [
+
+  ],
+  "ancestors": [
+
+  ],
+  "html_url": "https://wikirate.org/Apple_Inc",
+  "created_at": "2012-05-04 20:32:03 UTC",
+  "updated_at": "2023-06-15 20:00:55 UTC",
+  "answers_url": "https://wikirate.org/Apple_Inc+Answer.json",
+  "requested_at": "2023-09-21 09:36:56 UTC"
+}
