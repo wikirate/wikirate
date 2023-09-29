@@ -33,8 +33,16 @@ def filter_option_values base_codename, filter_name
 end
 
 def fetch_wikirate_cardtypes
-  %i[wikirate_company metric metric_answer relationship_answer source
-   dataset wikirate_topic research_group company_group record]
+  %i[wikirate_company
+   metric
+   metric_answer
+   relationship_answer
+   source
+   dataset
+   wikirate_topic
+   research_group
+   company_group
+   record]
 end
 
 def fetch_optional_subcards
@@ -165,7 +173,7 @@ def initialize_filter_parameters parameters, wikirate_cardtypes
           if excluded_option_filters.include?(i) || enumerated_values == []
             schema = { "type" => "string" }
           end
-        rescue
+        rescue ArgumentError
           schema = { "type" => "string" }
         end
 
