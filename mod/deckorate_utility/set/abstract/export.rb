@@ -53,11 +53,15 @@ format :html do
     card.name
   end
 
+  def default_export_limit
+    card.format(:base).default_limit
+  end
+
   def export_limit_options
     options = EXPORT_LIMIT_OPTIONS.map { |num|  export_limit_option_label num }
     options_for_select options,
                        disabled: export_limit_options_disabled,
-                       selected: default_limit
+                       selected: default_export_limit
   end
 
   def export_modal_link text, opts={}
