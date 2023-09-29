@@ -116,22 +116,29 @@ wikirate_cardtypes.each do |cardtype|
 
     metric_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
     metric_answers_params.unshift({ "$ref" => "#/components/parameters/metric" })
-    fieldpaths = paths["/{metric}+#{plural_cardname}"] =
+    mfieldpaths = paths["/{metric}+#{plural_cardname}"] =
       deep_copy paths["/#{plural_cardname}"]
 
-    fieldpaths["get"].merge!(
+    mfieldget = mfieldpaths["get"]
+    mfieldget.merge!(
       "parameters" => metric_answers_params,
       "description" => "Returns the answers of the specified metric."
     )
-    fieldpaths["get"]["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
+    mfieldget["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
       JSON.parse(File.read("./script/swagger/responses/200/Metric+Answers.json"))
 
     company_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
     company_answers_params.unshift({ "$ref" => "#/components/parameters/company" })
-    paths["/{company}+#{plural_cardname}"] = deep_copy paths["/#{plural_cardname}"]
-    paths["/{company}+#{plural_cardname}"]["get"]["parameters"] = company_answers_params
-    paths["/{company}+#{plural_cardname}"]["get"]["description"] = "Returns the answers of the specified company."
-    paths["/{company}+#{plural_cardname}"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]["example"] = JSON.parse(File.read("./script/swagger/responses/200/Company+Answers.json"))
+    cfieldpaths = paths["/{company}+#{plural_cardname}"] =
+      deep_copy paths["/#{plural_cardname}"]
+    cfieldget = cfieldpaths["get"]
+    cfieldget.merge!(
+      "parameters" => company_answers_params,
+      "description" => "Returns the answers of the specified company."
+    )
+
+    cfieldget["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
+      JSON.parse(File.read("./script/swagger/responses/200/Company+Answers.json"))
 
   end
   article = vowels.include?(cardtype_name[0]) ? "an" : "a"
@@ -146,20 +153,28 @@ wikirate_cardtypes.each do |cardtype|
     "get" => {
       "tags" => ["Wikirate"],
       "summary" => "returns #{article} #{cardtype_name} given its name or wikirate id",
-      "description" => description.nil? || description.empty? ? "No description available" : description,
+      "description" => description.blank? ? "No description available" : description,
       "parameters" => p,
       "responses" => {
         "200" => {
           "description" => "default JSON molecule view of the card `#{cardtype_name}`",
           "content" => {
             "application/json" => {
-              "schema" => { "$ref" => "#/components/schemas/#{cardtype_name.downcase}_molecule_view" },
-              "example" => JSON.parse(File.read("./script/swagger/responses/200/#{cardtype_name.downcase}.json"))
+              "schema" => {
+                "$ref" => "#/components/schemas/#{cardtype_name.downcase}_molecule_view"
+              },
+              "example" =>
+                JSON.parse(
+                  File.read(
+                    "./script/swagger/responses/200/#{cardtype_name.downcase}.json"
+                  )
+                )
             }
           }
         },
         "404" => {
-          "description" => "Not Found. The requested `#{cardtype_name}` card could not be found."
+          "description" =>
+            "Not Found. The requested `#{cardtype_name}` card could not be found."
         },
         "401" => { "description" => "Unauthorized" },
         "500" => { "description" => "Internal Server Error" }
