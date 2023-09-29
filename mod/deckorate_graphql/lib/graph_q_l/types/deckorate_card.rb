@@ -1,7 +1,7 @@
 module GraphQL
   module Types
-    # WikirateCard extends Card
-    class WikirateCard < Card
+    # DeckorateCard extends Card
+    class DeckorateCard < Card
       include DeckorateSearch
       extend DeckorateFields
     end

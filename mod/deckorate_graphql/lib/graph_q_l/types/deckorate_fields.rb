@@ -1,6 +1,6 @@
 module GraphQL
   module Types
-    # Decorate Fields for GraphQL contains a number of functions
+    # Deckorate Fields for GraphQL contains a number of functions
     # to facilitate the definition of different GraphQL types
     module DeckorateFields
       def lookup_field fieldname, type, codename=nil, is_card=false
@@ -24,7 +24,7 @@ module GraphQL
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         plural_field plural_fieldname, codename, type
         define_method plural_fieldname do |limit: 10, offset: 0, **filter|
-          wikirate_card_search codename, is_card, filter, limit: limit, offset: offset
+          deckorate_card_search codename, is_card, filter, limit: limit, offset: offset
         end
       end
 
