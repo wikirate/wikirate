@@ -29,35 +29,36 @@ def filter_option_values(base_codename, filter_name)
 end
 
 def get_wikirate_cardtypes
-  [:wikirate_company, :metric, :metric_answer, :relationship_answer, :source,
-   :dataset, :wikirate_topic, :research_group, :company_group, :record]
+  %i[wikirate_company metric metric_answer relationship_answer source
+   dataset wikirate_topic research_group company_group record]
 end
 
 def get_optional_subcards
   {
-    :wikirate_company => Card::Set::Type::WikirateCompany::Export::NESTED_FIELD_CODENAMES,
-    :metric => %w[question about methodology unit topics value_options research_policy report_type],
-    :metric_answer => %w[comment unpublished],
-    :relationship_answer => %w[comment unpublished],
-    :source => %w[company report_type year file],
-    :wikirate_topic => %w[overview],
-    :research_group => %w[topics description organizer],
-    :dataset => %w[description topics year company metric parent],
-    :company_group => %w[topics about]
+    wikirate_company: Card::Set::Type::WikirateCompany::Export::NESTED_FIELD_CODENAMES,
+    metric: %w[question about methodology unit topics value_options research_policy
+               report_type],
+    metric_answer: %w[comment unpublished],
+    relationship_answer: %w[comment unpublished],
+    source: %w[company report_type year file],
+    wikirate_topic: %w[overview],
+    research_group: %w[topics description organizer],
+    dataset: %w[description topics year company metric parent],
+    company_group: %w[topics about]
   }
 end
 
 def get_required_subcards
   {
-    :wikirate_company => [],
-    :metric_answer => %w[value source],
-    :metric => %w[metric_type value_type],
-    :relationship_answer => %w[value source],
-    :source => %w[title link],
-    :dataset => [],
-    :wikirate_topic => [],
-    :research_group => [],
-    :company_group => []
+    wikirate_company: [],
+    metric_answer: %w[value source],
+    metric: %w[metric_type value_type],
+    relationship_answer: %w[value source],
+    source: %w[title link],
+    dataset: [],
+    wikirate_topic: [],
+    research_group: [],
+    company_group: []
   }
 end
 
@@ -127,8 +128,8 @@ end
 
 def initialize_filter_parameters(parameters, wikirate_cardtypes)
   parameter_keys = []
-  excluded_option_filters = [:year, :designer, :updated, :status, :dataset,
-                             :company_group, :wikirate_topic, :country]
+  excluded_option_filters = %i[year designer updated status dataset
+                               company_group wikirate_topic country]
   wikirate_cardtypes.each do |cardtype|
     cardtype.card.format.filter_keys.each do |i|
       if not parameter_keys.include?("filter_by_#{i}")
