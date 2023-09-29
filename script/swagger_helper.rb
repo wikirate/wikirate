@@ -126,7 +126,8 @@ end
 
 def initialize_filter_parameters(parameters, wikirate_cardtypes)
   parameter_keys = []
-
+  excluded_option_filters = [:year, :designer, :updated, :status, :dataset,
+                             :company_group, :wikirate_topic, :country]
   wikirate_cardtypes.each do |cardtype|
     cardtype.card.format.filter_keys.each do |i|
       if not parameter_keys.include?("filter_by_#{i}")
@@ -135,7 +136,7 @@ def initialize_filter_parameters(parameters, wikirate_cardtypes)
           enumerated_values = filter_option_values(cardtype, i)
           schema = { "type" => 'string',
                      "enum" => enumerated_values }
-          if [:year, :designer, :updated, :status].include?(i) || enumerated_values == []
+          if excluded_option_filters.include?(i) || enumerated_values == []
             schema = { "type" => 'string' }
           end
         rescue
