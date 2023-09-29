@@ -1,7 +1,7 @@
 module GraphQL
   module Types
     # Company type for GraphQL
-    class Company < WikirateCard
+    class Company < DeckorateCard
       lookup_field :answer, Answer, :metric_answer, true
       field :relationships, [Relationship],
             "relationships of which company is either subject or object", null: false
