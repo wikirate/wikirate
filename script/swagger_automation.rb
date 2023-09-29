@@ -13,14 +13,14 @@ vowels = %w[a e i o u]
 input_schema = YAML.load_file("./script/swagger/input_spec.yml")
 
 # List of Wikirate Card Types
-wikirate_cardtypes = wikirate_cardtypes()
+wikirate_cardtypes = fetch_wikirate_cardtypes
 
 # Descriptions for different wikirate cardtypes
-cardname_description = cardname_descriptions()
+cardname_description = fetch_cardname_descriptions
 
 # Required and Optional Subcards on create and updates of specific cardtypes
-required_subcards = required_subcards()
-optional_subcards = optional_subcards()
+required_subcards = fetch_required_subcards
+optional_subcards = fetch_optional_subcards
 
 # Extract Parameters from Input Schema
 parameters = input_schema["components"]["parameters"]
@@ -44,10 +44,7 @@ wikirate_cardtypes.each do |cardtype|
     p.append("$ref" => "#/components/parameters/filter_by_#{i}")
   end
 
-  description = cardtype.card.fetch(:description)&.content
-  if description.nil?
-    description = "No description available"
-  end
+  description = cardtype.card.fetch(:description)&.content || "No description available"
   plural_cardname = cardtype.card.name.to_s.to_name.vary(:plural).to_name.url_key
   cardtype_name = cardtype.card.name.url_key.downcase
   example_json =
@@ -177,7 +174,9 @@ wikirate_cardtypes.each do |cardtype|
         },
         "401" => { "description" => "Unauthorized" },
         "500" => { "description" => "Internal Server Error" }
-      } } }
+      }
+    }
+  }
 
   next if cardtype == :record
 
@@ -240,9 +239,9 @@ wikirate_cardtypes.each do |cardtype|
       "401" => {
         "description" => "Unauthorized"
       },
-      "500" => {
-        "description" => "Internal Server Error"
-      } } }
+      "500" => { "description" => "Internal Server Error" }
+    }
+  }
 
   params = deep_copy p
   params[0] = { "name" => "card[name]",
@@ -263,7 +262,10 @@ wikirate_cardtypes.each do |cardtype|
             "Successful non-idempotent requests redirect to idempotent GET requests"
         },
         "401" => { "description" => "Unauthorized" },
-        "500" => { "description" => "Internal Server Error" } } } }
+        "500" => { "description" => "Internal Server Error" }
+      }
+    }
+  }
 end
 
 generate_swagger_spec input_schema, paths, parameters
