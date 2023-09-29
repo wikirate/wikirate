@@ -1,0 +1,49 @@
+topic_molecule_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 39152
+    name:
+      type: string
+      example: "Environment"
+    url:
+      type: string
+      example: "https://wikirate.org/Environment.json"
+    content:
+      type: string
+      example: ""
+    type:
+      "$ref": "#/components/schemas/nucleus_view"
+    metrics:
+      type: integer
+      example: 558
+    datasets:
+      type: integer
+      example: 40
+    bookmarkers:
+      type: integer
+      example: 4
+    items:
+      type: array
+      items:
+        type: object
+    links:
+      type: array
+      items:
+        type: string
+    ancestors:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    html_url:
+      type: string
+    created_at:
+      type: string
+      example: "2015-02-03 09:54:13 UTC"
+    updated_at:
+      type: string
+      example: "2023-03-16 09:48:05 UTC"
+    requested_at:
+      type: string
+      example: "2023-09-21 10:27:16 UTC"
