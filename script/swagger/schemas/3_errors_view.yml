@@ -1,0 +1,11 @@
+errors_view:
+  type: object
+  properties:
+    error_status:
+      type: integer
+    errors:
+      type: object
+    url:
+      type: string
+    requested_at:
+      type: string

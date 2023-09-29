@@ -1,7 +1,7 @@
 module GraphQL
   module Types
     # Relationship type for GraphQL
-    class Relationship < WikirateCard
+    class Relationship < DeckorateCard
       field :year, Integer, null: false
       field :subject_company, Company, null: false
       field :object_company, Company, null: false
