@@ -24,6 +24,7 @@ end
 
 # Helper Method: Filter Option Values
 def filter_option_values(base_codename, filter_name)
+  puts "filter_option_values(#{base_codename}, #{filter_name})".blue
   card_name_values(base_codename.card.format.send("filter_#{filter_name}_options"))
 end
 
@@ -161,6 +162,10 @@ def initialize_path_parameters(parameters, wikirate_cardtypes, cardname_descript
         "required" => true,
         "description" => cardname_description[cardtype],
         "schema" => { "type" => "string",
-                      "example" => "#{::Card::fetch(cardtype).item_names[0].url_key}" } }
+                      "example" => "#{cardtype_example(cardtype)}" } }
   end
+end
+
+def cardtype_example cardtype
+  Card.search(type: cardtype, limit: 1).first.name.url_key
 end

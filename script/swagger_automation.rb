@@ -25,11 +25,13 @@ optional_subcards = get_optional_subcards
 # Extract Parameters from Input Schema
 parameters = input_schema["components"]["parameters"]
 
-# Extract Parameters from Input Schema
+# Extract Path from Input Schema
 paths = input_schema["paths"]
 
+puts "initialize filter parameters"
 initialize_filter_parameters(parameters, wikirate_cardtypes)
 
+puts "initialize path parameters"
 initialize_path_parameters(parameters, wikirate_cardtypes, cardname_description)
 
 wikirate_cardtypes.each do |cardtype|
@@ -48,6 +50,7 @@ wikirate_cardtypes.each do |cardtype|
   example_json =
     File.read "./script/swagger/responses/200/#{plural_cardname.downcase}.json"
 
+  puts "working on /#{plural_cardname} paths"
   paths["/#{plural_cardname}"] = {
     "get" => {
       "tags" => ["Wikirate"],
@@ -109,6 +112,8 @@ wikirate_cardtypes.each do |cardtype|
   }
 
   if plural_cardname == "Answers"
+    puts "working on special Answer paths"
+
     metric_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
     metric_answers_params.unshift({ "$ref" => "#/components/parameters/metric" })
     fieldpaths = paths["/{metric}+#{plural_cardname}"] =
@@ -129,11 +134,14 @@ wikirate_cardtypes.each do |cardtype|
     paths["/{company}+#{plural_cardname}"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]["example"] = JSON.parse(File.read("./script/swagger/responses/200/Company+Answers.json"))
 
   end
-  article = "a"
-  if vowels.include? cardtype_name[0]
-    article = "an"
-  end
-  p = [{ "$ref" => "#/components/parameters/#{cardtype_name}" }, { "$ref" => "#/components/parameters/format" }]
+  article = vowels.include?(cardtype_name[0]) ? "an" : "a"
+
+  p = [
+    { "$ref" => "#/components/parameters/#{cardtype_name}" },
+    { "$ref" => "#/components/parameters/format" }
+  ]
+
+  puts "working on /#{cardtype_name} paths"
   paths["/{#{cardtype_name}}"] = {
     "get" => {
       "tags" => ["Wikirate"],
