@@ -7,6 +7,8 @@ module GraphQL
           card_names.each do |name|
             name = name.first if name.is_a? Array
             name = name.to_name
+            # we exclude option values starting with numerical value
+            next if name.start_with?(/\d/)
             value I18n.transliterate(name.url_key), value: name
           end
         end
