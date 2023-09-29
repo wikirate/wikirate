@@ -32,12 +32,12 @@ def filter_option_values base_codename, filter_name
   card_name_values base_codename.card.format.filter_option_values(filter_name)
 end
 
-def get_wikirate_cardtypes
+def wikirate_cardtypes
   %i[wikirate_company metric metric_answer relationship_answer source
    dataset wikirate_topic research_group company_group record]
 end
 
-def get_optional_subcards
+def optional_subcards
   {
     wikirate_company: Card::Set::Type::WikirateCompany::Export::NESTED_FIELD_CODENAMES,
     metric: %w[question about methodology unit topics value_options research_policy
@@ -52,7 +52,7 @@ def get_optional_subcards
   }
 end
 
-def get_required_subcards
+def required_subcards
   {
     wikirate_company: [],
     metric_answer: %w[value source],
@@ -66,45 +66,45 @@ def get_required_subcards
   }
 end
 
-def get_cardname_descriptions
+def cardname_descriptions
   descriptions = [
-    "Given the company name. "\
+    "Given the company name. " \
       "The company name it can be also substituted with its numerical `~id`.",
-    "Given the source name. "\
+    "Given the source name. " \
       "The source name it can be also substituted with its numerical `~id`.",
-    "The name of a metric follows the pattern `Designer+Title`. "\
-      "For example: Core+Address. Any piece of the name can be substituted "\
+    "The name of a metric follows the pattern `Designer+Title`. " \
+      "For example: Core+Address. Any piece of the name can be substituted " \
       "with its numerical id in the form of `~INTEGER`",
-    "The name of an answer follows the pattern `Metric+Company+Year`. "\
-      "(Note, the name of a metric follows the pattern Designer+Title). "\
-      "Any piece of the name (or the entire name) can be substituted with its numerical "\
-      "id in the form of `~INTEGER`. Eg, if your metric's id is `867` and your "\
+    "The name of an answer follows the pattern `Metric+Company+Year`. " \
+      "(Note, the name of a metric follows the pattern Designer+Title). " \
+      "Any piece of the name (or the entire name) can be substituted with its numerical " \
+      "id in the form of `~INTEGER`. Eg, if your metric's id is `867` and your " \
       "company's id is `5309`, then you can address the answer as `~867+~5309+1981`",
-    "The name of a relationship answer follows the pattern "\
-      "`Metric+Subject Company+Year+Object Company`. (Note, the name of a metric "\
-      "follows the pattern Designer+Title). Any piece of the name (or the entire name) "\
-      "can be substituted with its numerical id in the form of `~INTEGER`. "\
-      "Eg, if your metric's id is `2929009`, the subject company's id is `49209`, the "\
-      "object company's id is `12230576` then you can address the answer "\
+    "The name of a relationship answer follows the pattern " \
+      "`Metric+Subject Company+Year+Object Company`. (Note, the name of a metric " \
+      "follows the pattern Designer+Title). Any piece of the name (or the entire name) " \
+      "can be substituted with its numerical id in the form of `~INTEGER`. " \
+      "Eg, if your metric's id is `2929009`, the subject company's id is `49209`, the " \
+      "object company's id is `12230576` then you can address the answer " \
       "as `~14561838+~49209+2022+~12230576`",
-    "Given the topic name. "\
+    "Given the topic name. " \
       "The topic name it can be also substituted with its numerical `~id`.",
-    "Given the research group name. "\
+    "Given the research group name. " \
       "The research group name it can be also substituted with its numerical `~id`.",
-    "Given the dataset name. "\
+    "Given the dataset name. " \
       "The dataset name it can be also substituted with its numerical `~id`.",
-    "Given the company group. "\
+    "Given the company group. " \
       "The company group name it can be also substituted with its numerical `~id`.",
-    "The name of a wikirate record follows the pattern `Metric+Company` and the metric "\
-      "the pattern `Designer+Title`. For example: "\
-      "`US_Securities_and_Exchange_Commission+Assets+Microsoft_Corporation`. "\
-      "Any piece of the name can be substituted with its numerical id in the "\
+    "The name of a wikirate record follows the pattern `Metric+Company` and the metric " \
+      "the pattern `Designer+Title`. For example: " \
+      "`US_Securities_and_Exchange_Commission+Assets+Microsoft_Corporation`. " \
+      "Any piece of the name can be substituted with its numerical id in the " \
       "form of ~INTEGER."
   ]
 
   cardname_description = {}
 
-  get_wikirate_cardtypes.each_with_index do |key, index|
+  wikirate_cardtypes.each_with_index do |key, index|
     cardname_description[key] = descriptions[index]
   end
   cardname_description
@@ -113,8 +113,8 @@ end
 def generate_swagger_spec input_schema, paths, parameters
   schemas = Hash.new
 
-  schema_files = Dir['./script/swagger/schemas/*'].sort_by {
-    |file| extract_prefix(File.basename(file))
+  schema_files = Dir['./script/swagger/schemas/*'].sort_by { |file|
+    extract_prefix(File.basename(file))
   }
   schema_files.each do |f|
     schema = YAML.load_file("#{f}")
@@ -143,9 +143,7 @@ def generate_swagger_spec input_schema, paths, parameters
     "components" => { "securitySchemes" => securitySchemes,
                       "parameters" => parameters,
                       "responses" => input_schema["components"]["responses"],
-                      "schemas" => schemas
-    }
-  }
+                      "schemas" => schemas } }
 
   File.open("./script/swagger/output_spec.yml", "w") do |file|
     file.write(swagger.to_yaml)
@@ -176,8 +174,7 @@ def initialize_filter_parameters(parameters, wikirate_cardtypes)
           "in" => "query",
           "required" => false,
           "description" => "filter results by #{i}#{EXTRA_FILTER_HELP[i]}",
-          "schema" => schema
-        }
+          "schema" => schema }
       end
     end
   end

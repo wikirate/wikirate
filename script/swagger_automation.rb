@@ -13,14 +13,14 @@ vowels = %w[a e i o u]
 input_schema = YAML.load_file("./script/swagger/input_spec.yml")
 
 # List of Wikirate Card Types
-wikirate_cardtypes = get_wikirate_cardtypes
+wikirate_cardtypes = wikirate_cardtypes()
 
 # Descriptions for different wikirate cardtypes
-cardname_description = get_cardname_descriptions
+cardname_description = cardname_descriptions()
 
 # Required and Optional Subcards on create and updates of specific cardtypes
-required_subcards = get_required_subcards
-optional_subcards = get_optional_subcards
+required_subcards = required_subcards()
+optional_subcards = optional_subcards()
 
 # Extract Parameters from Input Schema
 parameters = input_schema["components"]["parameters"]
@@ -45,6 +45,9 @@ wikirate_cardtypes.each do |cardtype|
   end
 
   description = cardtype.card.fetch(:description)&.content
+  if description.nil?
+    description = "No description available"
+  end
   plural_cardname = cardtype.card.name.to_s.to_name.vary(:plural).to_name.url_key
   cardtype_name = cardtype.card.name.url_key.downcase
   example_json =
@@ -54,8 +57,7 @@ wikirate_cardtypes.each do |cardtype|
   paths["/#{plural_cardname}"] = {
     "get" => {
       "tags" => ["Wikirate"],
-      "description" => description.nil? ||
-        description.empty? ? "No description available" : description,
+      "description" => description,
       "security" => [{ "apiKey" => [] }],
       "parameters" => p,
       "responses" => {
@@ -115,7 +117,7 @@ wikirate_cardtypes.each do |cardtype|
     puts "working on special Answer paths"
 
     metric_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
-    metric_answers_params.unshift({ "$ref" => "#/components/parameters/metric" })
+    metric_answers_params.unshift("$ref" => "#/components/parameters/metric")
     mfieldpaths = paths["/{metric}+#{plural_cardname}"] =
       deep_copy paths["/#{plural_cardname}"]
 
@@ -128,7 +130,7 @@ wikirate_cardtypes.each do |cardtype|
       JSON.parse(File.read("./script/swagger/responses/200/Metric+Answers.json"))
 
     company_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
-    company_answers_params.unshift({ "$ref" => "#/components/parameters/company" })
+    company_answers_params.unshift("$ref" => "#/components/parameters/company")
     cfieldpaths = paths["/{company}+#{plural_cardname}"] =
       deep_copy paths["/#{plural_cardname}"]
     cfieldget = cfieldpaths["get"]
@@ -168,30 +170,24 @@ wikirate_cardtypes.each do |cardtype|
                   File.read(
                     "./script/swagger/responses/200/#{cardtype_name.downcase}.json"
                   )
-                )
-            }
-          }
-        },
+                ) } } },
         "404" => {
           "description" =>
             "Not Found. The requested `#{cardtype_name}` card could not be found."
         },
         "401" => { "description" => "Unauthorized" },
         "500" => { "description" => "Internal Server Error" }
-      }
-    }
-  }
+      } } }
 
   next if cardtype == :record
 
   p = []
   if cardtype_name != "Source"
-    p.append({ "name" => "#{cardtype_name}",
-               "in" => "path",
-               "required" => true,
-               "description" => cardname_description[cardtype],
-               "schema" => { "type" => "string" }
-             })
+    p.append("name" => cardtype_name,
+             "in" => "path",
+             "required" => true,
+             "description" => cardname_description[cardtype],
+             "schema" => { "type" => "string" })
   end
 
   required_subcards[cardtype].each do |parameter|
@@ -199,34 +195,31 @@ wikirate_cardtypes.each do |cardtype|
       enumerated_values = filter_option_values(cardtype, parameter)
       schema = { "type" => "string",
                  "enum" => enumerated_values }
-    rescue
+    rescue ArgumentError
       schema = { "type" => "string" }
     end
-    p.append({
-               "name" => "card[subcard][+#{parameter}]",
-               "in" => "query",
-               "required" => true,
-               "schema" => schema
-             })
+    p.append("name" => "card[subcard][+#{parameter}]",
+             "in" => "query",
+             "required" => true,
+             "schema" => schema)
   end
 
   optional_subcards[cardtype].each do |parameter|
     begin
       enumerated_values = filter_option_values(cardtype, parameter)
-      schema = { "type" => "string",
-                 "enum" => enumerated_values }
       if parameter == "year" || enumerated_values == []
         schema = { "type" => "string" }
+      else
+        schema = { "type" => "string",
+                   "enum" => enumerated_values }
       end
-    rescue
+    rescue ArgumentError
       schema = { "type" => "string" }
     end
-    p.append({
-               "name" => "card[subcard][+#{parameter}]",
-               "in" => "query",
-               "required" => false,
-               "schema" => schema
-             })
+    p.append("name" => "card[subcard][+#{parameter}]",
+             "in" => "query",
+             "required" => false,
+             "schema" => schema)
   end
 
   paths["/{#{cardtype_name}}"]["put"] = {
@@ -249,17 +242,14 @@ wikirate_cardtypes.each do |cardtype|
       },
       "500" => {
         "description" => "Internal Server Error"
-      }
-    }
-  }
+      } } }
 
   params = deep_copy p
   params[0] = { "name" => "card[name]",
                 "in" => "query",
                 "required" => true,
                 "description" => cardname_description[cardtype],
-                "schema" => { "type" => "string" }
-  }
+                "schema" => { "type" => "string" } }
   paths["/type/#{cardtype_name}"] = {
     "post" => {
       "tags" => ["Wikirate"],
@@ -273,10 +263,7 @@ wikirate_cardtypes.each do |cardtype|
             "Successful non-idempotent requests redirect to idempotent GET requests"
         },
         "401" => { "description" => "Unauthorized" },
-        "500" => { "description" => "Internal Server Error" }
-      }
-    }
-  }
+        "500" => { "description" => "Internal Server Error" } } } }
 end
 
 generate_swagger_spec input_schema, paths, parameters
