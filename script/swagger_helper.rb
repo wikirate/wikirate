@@ -29,7 +29,7 @@ end
 # Helper Method: Filter Option Values
 def filter_option_values base_codename, filter_name
   puts "filter_option_values(#{base_codename}, #{filter_name})".blue
-  card_name_values(base_codename.card.format.send("filter_#{filter_name}_options"))
+  card_name_values base_codename.card.format.filter_option_values(filter_name)
 end
 
 def get_wikirate_cardtypes
