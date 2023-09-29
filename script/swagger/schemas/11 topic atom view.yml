@@ -1,0 +1,30 @@
+topic_atom_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 39152
+    name:
+      type: string
+      example: "Environment"
+    url:
+      type: string
+      example: "https://wikirate.org/Environment.json?view=atom"
+    content:
+      type: string
+      example: ""
+    type:
+      type: string
+      example: Topic
+    metrics:
+      type: integer
+      example: 558
+    datasets:
+      type: integer
+      example: 40
+    bookmarkers:
+      type: integer
+      example: 4
+    requested_at:
+      type: string
+      example: "2023-09-21 10:27:16 UTC"

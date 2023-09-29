@@ -1,0 +1,312 @@
+{
+  "id": null,
+  "name": "US Securities and Exchange Commission+Assets+Answers",
+  "type": {
+    "id": 30,
+    "name": "Search",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Search.json",
+    "codename": "search_type"
+  },
+  "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Answers.json",
+  "items": [
+    {
+      "id": 14282612,
+      "name": "US Securities and Exchange Commission+Assets+Microsoft Corporation+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Microsoft_Corporation+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Microsoft Corporation",
+      "year": 2022,
+      "value": "364840000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Microsoft_Corporation.json"
+    },
+    {
+      "id": 14165962,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2022,
+      "value": "352755000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 14282664,
+      "name": "US Securities and Exchange Commission+Assets+Procter & Gamble Co.+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Procter_Gamble_Co+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Procter & Gamble Co.",
+      "year": 2022,
+      "value": "117208000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Procter_Gamble_Co.json"
+    },
+    {
+      "id": 14282866,
+      "name": "US Securities and Exchange Commission+Assets+Cisco Systems+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Cisco_Systems+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Cisco Systems",
+      "year": 2022,
+      "value": "94002000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Cisco_Systems.json"
+    },
+    {
+      "id": 14283869,
+      "name": "US Securities and Exchange Commission+Assets+Visa+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Visa+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Visa",
+      "year": 2022,
+      "value": "85501000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Visa.json"
+    },
+    {
+      "id": 14283448,
+      "name": "US Securities and Exchange Commission+Assets+Raymond James Financial+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Raymond_James_Financial+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Raymond James Financial",
+      "year": 2022,
+      "value": "80951000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Raymond_James_Financial.json"
+    },
+    {
+      "id": 14282912,
+      "name": "US Securities and Exchange Commission+Assets+Micron Technology+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Micron_Technology+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Micron Technology",
+      "year": 2022,
+      "value": "66283000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Micron_Technology.json"
+    },
+    {
+      "id": 14284516,
+      "name": "US Securities and Exchange Commission+Assets+CostCo Wholesale Corp+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+CostCo_Wholesale_Corp+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "CostCo Wholesale Corp",
+      "year": 2022,
+      "value": "64166000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+CostCo_Wholesale_Corp.json"
+    },
+    {
+      "id": 14283967,
+      "name": "US Securities and Exchange Commission+Assets+Automatic Data+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Automatic_Data+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Automatic Data",
+      "year": 2022,
+      "value": "63068200000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Automatic_Data.json"
+    },
+    {
+      "id": 14292727,
+      "name": "US Securities and Exchange Commission+Assets+ADP Inc.+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+ADP_Inc+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "ADP Inc.",
+      "year": 2022,
+      "value": "63068200000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+ADP_Inc.json"
+    },
+    {
+      "id": 14283196,
+      "name": "US Securities and Exchange Commission+Assets+AmerisourceBergen+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+AmerisourceBergen+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "AmerisourceBergen",
+      "year": 2022,
+      "value": "56560616000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+AmerisourceBergen.json"
+    },
+    {
+      "id": 14284356,
+      "name": "US Securities and Exchange Commission+Assets+Becton, Dickinson+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Becton_Dickinson+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Becton, Dickinson",
+      "year": 2022,
+      "value": "52934000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Becton_Dickinson.json"
+    },
+    {
+      "id": 14284074,
+      "name": "US Securities and Exchange Commission+Assets+Analog Devices+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Analog_Devices+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Analog Devices",
+      "year": 2022,
+      "value": "50302350000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Analog_Devices.json"
+    },
+    {
+      "id": 14282820,
+      "name": "US Securities and Exchange Commission+Assets+Qualcomm+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Qualcomm+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Qualcomm",
+      "year": 2022,
+      "value": "49014000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Qualcomm.json"
+    },
+    {
+      "id": 14284117,
+      "name": "US Securities and Exchange Commission+Assets+Cardinal Health+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Cardinal_Health+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Cardinal Health",
+      "year": 2022,
+      "value": "43878000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Cardinal_Health.json"
+    },
+    {
+      "id": 14282719,
+      "name": "US Securities and Exchange Commission+Assets+Tyson Foods+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Tyson_Foods+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Tyson Foods",
+      "year": 2022,
+      "value": "36821000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Tyson_Foods.json"
+    },
+    {
+      "id": 14282965,
+      "name": "US Securities and Exchange Commission+Assets+Emerson Electric Company+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Emerson_Electric_Company+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Emerson Electric Company",
+      "year": 2022,
+      "value": "35672000000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Emerson_Electric_Company.json"
+    },
+    {
+      "id": 14284405,
+      "name": "US Securities and Exchange Commission+Assets+DR Horton+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+DR_Horton+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "DR Horton",
+      "year": 2022,
+      "value": "30351100000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+DR_Horton.json"
+    },
+    {
+      "id": 14283051,
+      "name": "US Securities and Exchange Commission+Assets+Franklin Resources+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Franklin_Resources+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Franklin Resources",
+      "year": 2022,
+      "value": "28060600000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Franklin_Resources.json"
+    },
+    {
+      "id": 14282774,
+      "name": "US Securities and Exchange Commission+Assets+Starbucks Corporation+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Starbucks_Corporation+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Starbucks Corporation",
+      "year": 2022,
+      "value": "27978400000",
+      "comments": null,
+      "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Starbucks_Corporation.json"
+    }
+  ],
+  "links": [
+
+  ],
+  "ancestors": [
+    {
+      "id": 3099594,
+      "name": "US Securities and Exchange Commission",
+      "type": "Company",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission.json"
+    },
+    {
+      "id": 46652,
+      "name": "Assets",
+      "type": "Metric Title",
+      "url": "https://wikirate.org/Assets.json"
+    },
+    {
+      "id": 43678,
+      "name": "Answer",
+      "type": "Cardtype",
+      "url": "https://wikirate.org/Answer.json",
+      "codename": "metric_answer"
+    },
+    {
+      "id": 1908858,
+      "name": "US Securities and Exchange Commission+Assets",
+      "type": "Metric",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets.json"
+    }
+  ],
+  "html_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Answers",
+  "created_at": null,
+  "updated_at": null,
+  "paging": {
+    "next": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Answers.json?filter%5Bcompany_name%5D=&item=name&limit=20&offset=20"
+  },
+  "requested_at": "2023-09-29 12:58:32 UTC",
+  "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+}

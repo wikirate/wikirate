@@ -1,0 +1,182 @@
+{
+  "id": 826615,
+  "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)",
+  "type": {
+    "id": 43576,
+    "name": "Metric",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Metric.json",
+    "codename": "metric"
+  },
+  "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a.json",
+  "designer": "Global Reporting Initiative",
+  "title": "Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)",
+  "question": {
+    "id": 826617,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Questions",
+    "type": "PlainText",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Questions.json",
+    "content": "What is the amount of greenhouse gas (GHG) emissions (in tonnes of CO2 equivalent) that the organization is directly responsible for?"
+  },
+  "metric_type": {
+    "id": 839765,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+*metric type",
+    "type": "Pointer",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+*metric_type.json",
+    "content": "Researched"
+  },
+  "about": {
+    "id": 826626,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+About",
+    "type": "RichText",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+About.json",
+    "content": "<p style=\"font-size: 15.2px;\">This metric is based on the Global Reporting Initiative (GRI) Standard Guidelines. </p>\r\n<p style=\"font-size: 15.2px;\"><span style=\"font-size: 15.2px;\">In 2018, the GRI G4 Sustainability Reporting Guidelines were superseded by the GRI Sustainability Reporting Standards (GRI standards).</span><span style=\"font-size: 15.2px;\"> For this metric, the code </span><span style=\"font-size: 15.2px;\"><span style=\"font-weight: bolder;\">G4-EN15-a is used in company reporting prior to 2018</span>, and the new </span><span style=\"font-size: 15.2px;\"><span style=\"font-weight: bolder;\">GRI 305-1</span> <span style=\"font-weight: bolder;\">code used in reporting from 2018 onwards</span>. The </span><span style=\"font-size: 15.2px;\">methodology for the former G4 standard for this metric can be found <a href=\"/Direct_greenhouse_gas_GHG_emissions_Scope_1_G4_EN15_a_Methodology\" target=\"_blank\">here</a>. </span></p>\r\n<p style=\"font-size: 15.2px;\">In the context of the GRI Standards, the environmental dimension of sustainability concerns an organization’s impacts on living and non-living natural systems, including land, air, water and ecosystems.</p>\r\n<p style=\"font-size: 15.2px;\"><a href=\"/Source_000089851\" target=\"_blank\">GRI 305</a> addresses emissions into air, which are the discharge of substances from a source into the atmosphere. Types of emissions include: greenhouse gas (GHG), ozone-depleting substances (ODS), and nitrogen oxides (NOX) and sulfur oxides (SOX), among other significant air emissions.</p>\r\n<p style=\"font-size: 15.2px;\">GHG emissions are a major contributor to climate change and are governed by the United Nations (UN) ‘Framework Convention on Climate Change’ and the subsequent UN ‘Kyoto Protocol’. This Standard covers the following GHGs:</p>\r\n<ul style=\"font-size: 15.2px;\">\r\n<li>Carbon dioxide (CO2)</li>\r\n<li>Methane (CH4)</li>\r\n<li>Nitrous oxide (N2O)</li>\r\n<li>Hydrofluorocarbons (HFCs)</li>\r\n<li>Perfluorocarbons (PFCs)</li>\r\n<li>Sulphur hexafluoride (SF6)</li>\r\n<li>Nitrogen trifluoride (NF3)</li>\r\n</ul>\r\n<p style=\"font-size: 15.2px;\">Some GHGs, including methane, are also air pollutants that have significant adverse impacts on ecosystems, air quality, agriculture, and human and animal health.</p>\r\n<p style=\"font-size: 15.2px;\">As a result, different national and international regulations and incentive systems, such as emissions trading, aim to control the volume and reward the reduction of GHG emissions.</p>\r\n<p style=\"font-size: 15.2px;\">The GHG Protocol has established a classification of GHG emissions called ‘Scope’: Scope 1, Scope 2 and Scope 3. The GHG emissions standard published by the International Organization for Standardization (ISO), ‘ISO 14064’, represents these classifications of Scope with the following terms:</p>\r\n<ul style=\"font-size: 15.2px;\">\r\n<li>Direct GHG emissions (<span style=\"font-weight: bolder;\">Scope 1</span>): GHG emissions from sources that are owned or controlled by an organization</li>\r\n<li>Energy indirect GHG emissions (<span style=\"font-weight: bolder;\">Scope 2</span>): GHG emissions that result from the generation of purchased or acquired electricity, heating, cooling, and steam consumed by an organization</li>\r\n<li>Other indirect GHG emissions (<span style=\"font-weight: bolder;\">Scope 3</span>): Indirect GHG emissions not included in energy indirect (Scope 2) GHG emissions that occur outside of the organization, including both upstream and downstream emissions</li>\r\n</ul>"
+  },
+  "methodology": {
+    "id": 826627,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+methodology",
+    "type": "RichText",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+methodology.json",
+    "content": "<p style=\"font-size: 15.2px;\">To answer this metric question you need identify the <strong>D</strong><span style=\"font-weight: bolder;\">irect GHG emissions (Scope 1)</span> of the organization for a specific year. Start by searching publicly available documents like Annual and CSR reports.  </p>\r\n<p style=\"font-size: 15.2px;\"><span style=\"font-weight: bolder;\">Keywords and search terms for this metric: </span>GHG, Greenhouse Gas Emissions, <span style=\"font-size: 15.2px;\">Scope 1, </span><span style=\"font-size: 15.2px;\">GRI, </span><span style=\"font-size: 15.2px;\">GRI Index, </span><span style=\"font-size: 15.2px;\">305-1, </span><span style=\"font-size: 15.2px;\">EN15</span></p>\r\n<p style=\"font-size: 15.2px;\"><span style=\"font-weight: bolder;\">Answers &amp; Calculations: </span>Once you have found the answer, make sure the unit of measurement fits to the question on WikiRate. <span style=\"font-size: 15.2px;\">If any calculations or unit conversions are done, include these in the Comments field alongside the </span><span style=\"font-size: 15.2px; font-weight: bolder;\">page number</span><span style=\"font-size: 15.2px;\"> where you found the answer.</span> Select the 'Unknown' answer box if the company has not published the data.</p>\r\n<p style=\"font-size: 15.2px;\"><span style=\"font-weight: bolder;\">Units: </span>Companies may report their GHG emissions in hundreds, thousands or millions of tonnes. <span style=\"font-weight: bolder;\">Make sure you check the unit of measurement and enter the full number into the answer field</span>.</p>\r\n<p style=\"font-size: 15.2px;\">E.g. If the company says '0.5 million tonnes CO2e' the answer should be entered on WikiRate as '500000 tonnes'<span style=\"font-size: 15.2px;\">.</span></p>\r\n<p style=\"font-size: 15.2px;\"><span style=\"font-size: 15.2px;\"><span style=\"font-size: 15.2px;\">For conversions, </span><a href=\"http://convertunits.com/\" target=\"_blank\" style=\"background-color: #ffffff; font-size: 15.2px;\">Convertunits.com</a><span style=\"font-size: 15.2px;\"> can be helpful.</span></span></p>"
+  },
+  "value_type": {
+    "id": 849614,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+value type",
+    "type": "Pointer",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+value_type.json",
+    "content": "Number"
+  },
+  "value_options": {
+    "id": 849615,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+value options",
+    "type": "Pointer",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+value_options.json",
+    "content": [
+      "Unknown"
+    ]
+  },
+  "report_type": {
+    "id": 843767,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Report Type",
+    "type": "Pointer",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Report_Type.json",
+    "content": "Corporate Social Responsibility Report"
+  },
+  "research_policy": {
+    "id": 826619,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Research Policy",
+    "type": "Pointer",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Research_Policy.json",
+    "content": "Community Assessed"
+  },
+  "unit": {
+    "id": 826618,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+unit",
+    "type": "Phrase",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+unit.json",
+    "content": " tonnes CO2 equivalent"
+  },
+  "range": {
+    "id": null,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Range",
+    "type": "Phrase",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Range.json?card%5Bname%5D=Global+Reporting+Initiative%2BDirect+greenhouse+gas+%28GHG%29+emissions+%28Scope+1%29%2C+GRI+305-1-a+%28formerly+G4-EN15-a%29%2BRange"
+  },
+  "hybrid": {
+    "id": null,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+hybrid",
+    "type": "Toggle",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+hybrid.json?card%5Bname%5D=Global+Reporting+Initiative%2BDirect+greenhouse+gas+%28GHG%29+emissions+%28Scope+1%29%2C+GRI+305-1-a+%28formerly+G4-EN15-a%29%2Bhybrid"
+  },
+  "topics": {
+    "id": 826616,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Topic",
+    "type": "Pointer",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Topic.json",
+    "content": [
+      "Climate Change",
+      "Emissions",
+      "Environment",
+      "G4-EN",
+      "G4-EN15",
+      "GRI",
+      "GRI 305: Emissions",
+      "GRI Standard",
+      "SDG12: Responsible Consumption and Production",
+      "SDG13: Climate Action",
+      "SDG14: Life Below Water",
+      "SDG15: Life on Land",
+      "SDG3: Good Health and Well-being",
+      "Pollution_Toxics"
+    ]
+  },
+  "scores": {
+    "id": null,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Score",
+    "type": "Search",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Score.json"
+  },
+  "formula": {
+    "id": null,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Formula",
+    "type": "CoffeeScript",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Formula.json?card%5Bname%5D=Global+Reporting+Initiative%2BDirect+greenhouse+gas+%28GHG%29+emissions+%28Scope+1%29%2C+GRI+305-1-a+%28formerly+G4-EN15-a%29%2BFormula"
+  },
+  "rubric": {
+    "id": null,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Rubric",
+    "type": "JSON",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Rubric.json?card%5Bname%5D=Global+Reporting+Initiative%2BDirect+greenhouse+gas+%28GHG%29+emissions+%28Scope+1%29%2C+GRI+305-1-a+%28formerly+G4-EN15-a%29%2BRubric"
+  },
+  "variables": {
+    "id": null,
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+*variables",
+    "type": "JSON",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+*variables.json?card%5Bname%5D=Global+Reporting+Initiative%2BDirect+greenhouse+gas+%28GHG%29+emissions+%28Scope+1%29%2C+GRI+305-1-a+%28formerly+G4-EN15-a%29%2B%2Avariables"
+  },
+  "answers": 4766,
+  "bookmarkers": 92,
+  "datasets": 136,
+  "companies": 1491,
+  "calculations": [
+    "https://wikirate.org/Richard_Mills+Combined_Scope_1_and_2_Greenhouse_Gas_emissions.json",
+    "https://wikirate.org/WikiRate_Calculated_Metric_Design_Group+Progress_Scope_1_Emissions.json",
+    "https://wikirate.org/WikiRate_SDG_Metric_design+Common_Environmental_Metrics_Reported.json",
+    "https://wikirate.org/Commons+Greenhouse_Gas_Emissions_Scope_1.json",
+    "https://wikirate.org/WikiRate_Calculated_Metric_Design_Group+Disclosure_rate_on_selected_social_and_environmental_metrics.json",
+    "https://wikirate.org/Richard_Mills+Greenhouse_gas_disclosure_rate_of_investees.json",
+    "https://wikirate.org/University_of_Sydney_SDG_Research_Group_2019+Emissions_and_Energy_Disclosure.json",
+    "https://wikirate.org/Nottingham_Trent_SDG_Summer_School_2019_Research_Group+Nottingham_Trent_SDG_Disclosure_Rate.json",
+    "https://wikirate.org/Ewha_Womans_University_Research_Group+Ewha_2020_SDG12_Disclosure_Rate.json",
+    "https://wikirate.org/University_of_Wollongong_Research_Group_2020+Wollongong_2020_Climate_Disclosure_Rate.json",
+    "https://wikirate.org/Higher_School_of_Economics_Research_Group_2020+From_Farm_to_Fork_2020_Disclosure_Rate.json",
+    "https://wikirate.org/Apparel_Research_Group+Emissions_Disclosure_Rate.json",
+    "https://wikirate.org/Laureen_van_Breen+Scope_1_GHG_over_number_of_employees.json",
+    "https://wikirate.org/Gershon_M_Bialer+CO2e_Intensity.json"
+  ],
+  "answers_url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Answer.json",
+  "items": [
+
+  ],
+  "links": [
+
+  ],
+  "ancestors": [
+    {
+      "id": 801162,
+      "name": "Global Reporting Initiative",
+      "type": "Company",
+      "url": "https://wikirate.org/Global_Reporting_Initiative.json"
+    },
+    {
+      "id": 836151,
+      "name": "Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)",
+      "type": "Metric Title",
+      "url": "https://wikirate.org/Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a.json"
+    }
+  ],
+  "html_url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a",
+  "created_at": "2016-03-07 19:05:56 UTC",
+  "updated_at": "2023-08-07 13:16:51 UTC",
+  "requested_at": "2023-09-21 12:49:48 UTC"
+}
