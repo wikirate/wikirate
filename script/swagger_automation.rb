@@ -1,6 +1,6 @@
 # Required Libraries
 require File.expand_path("../config/environment", __dir__)
-require_relative 'swagger_helper'
+require_relative "swagger_helper"
 
 # Sign in with Card::Auth.signin
 Card::Auth.signin "Ethan McCutchen"
@@ -63,7 +63,7 @@ wikirate_cardtypes.each do |cardtype|
                   "items" => {
                     "type" => "array",
                     "items" => {
-                      "$ref" => "#/components/schemas/#{cardtype_name.downcase == 'data_set' ? 'dataset' : cardtype_name.downcase}_atom_view"
+                      "$ref" => "#/components/schemas/#{cardtype_name.downcase == "data_set" ? "dataset" : cardtype_name.downcase}_atom_view"
                     }
                   },
                   "links" => {
@@ -92,7 +92,7 @@ wikirate_cardtypes.each do |cardtype|
                   }
                 }
               },
-              "example" => JSON.parse(File.read("./script/swagger/responses/200/#{plural_cardname.downcase == 'data_sets' ? 'datasets' : plural_cardname.downcase}.json"))
+              "example" => JSON.parse(File.read("./script/swagger/responses/200/#{plural_cardname.downcase == "data_sets" ? "datasets" : plural_cardname.downcase}.json"))
             }
           }
         }
@@ -132,8 +132,8 @@ wikirate_cardtypes.each do |cardtype|
           "description" => "default JSON molecule view of the card `#{cardtype_name}`",
           "content" => {
             "application/json" => {
-              "schema" => { "$ref" => "#/components/schemas/#{cardtype_name.downcase == 'data_set' ? 'dataset' : cardtype_name.downcase}_molecule_view" },
-              "example" => JSON.parse(File.read("./script/swagger/responses/200/#{cardtype_name.downcase == 'data_set' ? 'dataset' : cardtype_name.downcase}.json"))
+              "schema" => { "$ref" => "#/components/schemas/#{cardtype_name.downcase == "data_set" ? "dataset" : cardtype_name.downcase}_molecule_view" },
+              "example" => JSON.parse(File.read("./script/swagger/responses/200/#{cardtype_name.downcase == "data_set" ? "dataset" : cardtype_name.downcase}.json"))
             }
           }
         },
@@ -153,24 +153,24 @@ wikirate_cardtypes.each do |cardtype|
   p = []
   if cardtype_name != "Source"
     p.append({ "name" => "#{cardtype_name}",
-               "in" => 'path',
+               "in" => "path",
                "required" => true,
                "description" => cardname_description[cardtype],
-               "schema" => { "type" => 'string' }
+               "schema" => { "type" => "string" }
              })
   end
 
   required_subcards[cardtype].each do |parameter|
     begin
       enumerated_values = filter_option_values(cardtype, parameter)
-      schema = { "type" => 'string',
+      schema = { "type" => "string",
                  "enum" => enumerated_values }
     rescue
-      schema = { "type" => 'string' }
+      schema = { "type" => "string" }
     end
     p.append({
                "name" => "card[subcard][+#{parameter}]",
-               "in" => 'query',
+               "in" => "query",
                "required" => true,
                "schema" => schema
              })
@@ -179,17 +179,17 @@ wikirate_cardtypes.each do |cardtype|
   optional_subcards[cardtype].each do |parameter|
     begin
       enumerated_values = filter_option_values(cardtype, parameter)
-      schema = { "type" => 'string',
+      schema = { "type" => "string",
                  "enum" => enumerated_values }
       if parameter == "year" || enumerated_values == []
-        schema = { "type" => 'string' }
+        schema = { "type" => "string" }
       end
     rescue
-      schema = { "type" => 'string' }
+      schema = { "type" => "string" }
     end
     p.append({
                "name" => "card[subcard][+#{parameter}]",
-               "in" => 'query',
+               "in" => "query",
                "required" => false,
                "schema" => schema
              })
@@ -219,10 +219,10 @@ wikirate_cardtypes.each do |cardtype|
 
   params = deep_copy p
   params[0] = { "name" => "card[name]",
-                "in" => 'query',
+                "in" => "query",
                 "required" => true,
                 "description" => cardname_description[cardtype],
-                "schema" => { "type" => 'string' }
+                "schema" => { "type" => "string" }
   }
   paths["/type/#{cardtype_name}"] = {
     "post" => {

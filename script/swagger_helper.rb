@@ -1,7 +1,7 @@
 # Required Libraries
 require File.expand_path("../config/environment", __dir__)
-require 'yaml'
-require 'json'
+require "yaml"
+require "json"
 
 def deep_copy(hash)
   Marshal.load(Marshal.dump(hash))
@@ -134,17 +134,17 @@ def initialize_filter_parameters(parameters, wikirate_cardtypes)
         parameter_keys.append "filter_by_#{i}"
         begin
           enumerated_values = filter_option_values(cardtype, i)
-          schema = { "type" => 'string',
+          schema = { "type" => "string",
                      "enum" => enumerated_values }
           if excluded_option_filters.include?(i) || enumerated_values == []
-            schema = { "type" => 'string' }
+            schema = { "type" => "string" }
           end
         rescue
-          schema = { "type" => 'string' }
+          schema = { "type" => "string" }
         end
 
         parameters["filter_by_#{i}"] = { "name" => "filter[#{i}][]",
-                                         "in" => 'query',
+                                         "in" => "query",
                                          "required" => false,
                                          "description" => "filter results by #{i}#{i == :designer ? ', available designers can be found [here](https://wikirate.org/:designer)' : ''}",
                                          "schema" => schema }
@@ -160,7 +160,7 @@ def initialize_path_parameters(parameters, wikirate_cardtypes, cardname_descript
         "in" => 'path',
         "required" => true,
         "description" => cardname_description[cardtype],
-        "schema" => { "type" => 'string',
+        "schema" => { "type" => "string",
                       "example" => "#{::Card::fetch(cardtype).item_names[0].url_key}" } }
   end
 end
