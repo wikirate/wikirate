@@ -1,0 +1,26 @@
+{
+  "id": 3478301,
+  "name": "University of Wollongong ACCY111 Research Group 2018",
+  "type": {
+    "id": 2301582,
+    "name": "Research Group",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Research_Group.json",
+    "codename": "research_group"
+  },
+  "url": "https://wikirate.org/University_of_Wollongong_ACCY111_Research_Group_2018.json",
+  "content": "",
+  "items": [
+
+  ],
+  "links": [
+
+  ],
+  "ancestors": [
+
+  ],
+  "html_url": "https://wikirate.org/University_of_Wollongong_ACCY111_Research_Group_2018",
+  "created_at": "2018-04-13 11:34:01 UTC",
+  "updated_at": "2022-03-22 12:57:37 UTC",
+  "requested_at": "2023-09-21 09:43:20 UTC"
+}

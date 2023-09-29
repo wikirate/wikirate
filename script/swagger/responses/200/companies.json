@@ -1,0 +1,323 @@
+{
+  "id": 651,
+  "name": "Company",
+  "type": {
+    "id": 5,
+    "name": "Cardtype",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Cardtype.json",
+    "codename": "cardtype"
+  },
+  "url": "https://wikirate.org/companies.json",
+  "codename": "wikirate_company",
+  "items": [
+    {
+      "id": 637,
+      "name": "BP plc.",
+      "type": "Company",
+      "url": "https://wikirate.org/BP_plc.json",
+      "wikipedia": "BP",
+      "open_corporates": "00102498",
+      "alias": [
+        "BP",
+        "Bpost SA",
+        "BP INTERNATIONAL LIMITED"
+      ],
+      "headquarters": "United Kingdom",
+      "oar_id": null,
+      "sec_cik": "313807"
+    },
+    {
+      "id": 932,
+      "name": "Chevron Corporation",
+      "type": "Company",
+      "url": "https://wikirate.org/Chevron_Corporation.json",
+      "wikipedia": "Chevron Corporation",
+      "open_corporates": "0117531",
+      "alias": [
+        "Chevron",
+        "Chevron Corporation",
+        "Chevron Corp."
+      ],
+      "headquarters": "California (United States)",
+      "oar_id": null,
+      "sec_cik": "0000093410"
+    },
+    {
+      "id": 993,
+      "name": "Shell plc",
+      "type": "Company",
+      "url": "https://wikirate.org/Shell_plc.json",
+      "wikipedia": "Royal Dutch Shell",
+      "open_corporates": "04366849",
+      "alias": [
+        "Shell",
+        "Royal Dutch Shell plc. plc",
+        "royal dutch / shell",
+        "royal dutch / shell",
+        "Royal Dutch Shell plc",
+        "Royal Dutch / Shell (see Shell)"
+      ],
+      "headquarters": "United Kingdom",
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 1578,
+      "name": "Apple Inc.",
+      "type": "Company",
+      "url": "https://wikirate.org/Apple_Inc.json",
+      "wikipedia": "Apple Inc.",
+      "open_corporates": "0806592",
+      "alias": [
+        "Apple Inc.",
+        "Apple"
+      ],
+      "headquarters": "California (United States)",
+      "oar_id": null,
+      "sec_cik": "0000320193"
+    },
+    {
+      "id": 1797,
+      "name": "Samsung",
+      "type": "Company",
+      "url": "https://wikirate.org/Samsung.json",
+      "wikipedia": "Samsung Electronics",
+      "open_corporates": null,
+      "alias": [
+        "samsung electronics",
+        "Samsung"
+      ],
+      "headquarters": "Korea, Republic of",
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 2214,
+      "name": "PETA",
+      "type": "Company",
+      "url": "https://wikirate.org/PETA.json",
+      "wikipedia": "People for the Ethical Treatment of Animals",
+      "open_corporates": null,
+      "alias": [
+
+      ],
+      "headquarters": null,
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 2996,
+      "name": "New York Times Company",
+      "type": "Company",
+      "url": "https://wikirate.org/New_York_Times_Company.json",
+      "wikipedia": "The New York Times Company",
+      "open_corporates": "15772",
+      "alias": [
+
+      ],
+      "headquarters": "New York (United States)",
+      "oar_id": null,
+      "sec_cik": "0000071691"
+    },
+    {
+      "id": 3245,
+      "name": "Rank a brand",
+      "type": "Company",
+      "url": "https://wikirate.org/Rank_a_brand.json",
+      "wikipedia": null,
+      "open_corporates": null,
+      "alias": [
+
+      ],
+      "headquarters": null,
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3524,
+      "name": "Businessweek",
+      "type": "Company",
+      "url": "https://wikirate.org/Businessweek.json",
+      "wikipedia": "Bloomberg Businessweek",
+      "open_corporates": null,
+      "alias": [
+
+      ],
+      "headquarters": null,
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3528,
+      "name": "Sourcewatch",
+      "type": "Company",
+      "url": "https://wikirate.org/Sourcewatch.json",
+      "wikipedia": "Center for Media and Democracy",
+      "open_corporates": null,
+      "alias": [
+
+      ],
+      "headquarters": null,
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3529,
+      "name": "The Guardian",
+      "type": "Company",
+      "url": "https://wikirate.org/The_Guardian.json",
+      "wikipedia": "The Guardian",
+      "open_corporates": null,
+      "alias": [
+
+      ],
+      "headquarters": null,
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3531,
+      "name": "Triple Pundit",
+      "type": "Company",
+      "url": "https://wikirate.org/Triple_Pundit.json",
+      "wikipedia": null,
+      "open_corporates": null,
+      "alias": [
+
+      ],
+      "headquarters": null,
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3532,
+      "name": "CNET",
+      "type": "Company",
+      "url": "https://wikirate.org/CNET.json",
+      "wikipedia": "CNet Technology",
+      "open_corporates": null,
+      "alias": [
+
+      ],
+      "headquarters": "Taiwan",
+      "oar_id": null,
+      "sec_cik": "0001015577"
+    },
+    {
+      "id": 3534,
+      "name": "Huffington Post (THEHUFFINGTONPOST.COM, INC.)",
+      "type": "Company",
+      "url": "https://wikirate.org/Huffington_Post_THEHUFFINGTONPOST_COM_INC.json",
+      "wikipedia": "HuffPost",
+      "open_corporates": "3720974",
+      "alias": [
+
+      ],
+      "headquarters": "New York (United States)",
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3536,
+      "name": "Tech in Asia",
+      "type": "Company",
+      "url": "https://wikirate.org/Tech_in_Asia.json",
+      "wikipedia": "Tech in Asia",
+      "open_corporates": "201107225K",
+      "alias": [
+
+      ],
+      "headquarters": "Singapore",
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3540,
+      "name": "The Financial Times",
+      "type": "Company",
+      "url": "https://wikirate.org/The_Financial_Times.json",
+      "wikipedia": "Financial Times",
+      "open_corporates": "00227590",
+      "alias": [
+        "The Financial Times Limited"
+      ],
+      "headquarters": "United Kingdom",
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3557,
+      "name": "Multinational Monitor",
+      "type": "Company",
+      "url": "https://wikirate.org/Multinational_Monitor.json",
+      "wikipedia": "Multinational Monitor",
+      "open_corporates": null,
+      "alias": [
+
+      ],
+      "headquarters": null,
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3560,
+      "name": "Wikipedia",
+      "type": "Company",
+      "url": "https://wikirate.org/Wikipedia.json",
+      "codename": "wikipedia",
+      "wikipedia": "Wikipedia",
+      "open_corporates": null,
+      "alias": [
+
+      ],
+      "headquarters": null,
+      "oar_id": null,
+      "sec_cik": null
+    },
+    {
+      "id": 3577,
+      "name": "John Wiley Sons",
+      "type": "Company",
+      "url": "https://wikirate.org/John_Wiley_Sons.json",
+      "wikipedia": "Wiley (publisher)",
+      "open_corporates": "5112971011",
+      "alias": [
+        "WILEY JOHN & SONS INC.",
+        "JOHN WILEY & SONS LIMITED"
+      ],
+      "headquarters": "New Jersey (United States)",
+      "oar_id": null,
+      "sec_cik": "107140"
+    },
+    {
+      "id": 3898,
+      "name": "Total S.A.",
+      "type": "Company",
+      "url": "https://wikirate.org/Total_S_A.json",
+      "wikipedia": "Total S.A.",
+      "open_corporates": "542051180",
+      "alias": [
+        "Total SA",
+        "Total"
+      ],
+      "headquarters": "France",
+      "oar_id": null,
+      "sec_cik": null
+    }
+  ],
+  "links": [
+
+  ],
+  "ancestors": [
+
+  ],
+  "html_url": "https://wikirate.org/Company",
+  "created_at": "2012-03-14 21:04:07 UTC",
+  "updated_at": "2023-06-15 09:45:12 UTC",
+  "paging": {
+    "next": "https://wikirate.org/Company.json?filter%5Bname%5D=&item=name&limit=20&offset=20"
+  },
+  "requested_at": "2023-09-21 12:18:03 UTC",
+  "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+}
