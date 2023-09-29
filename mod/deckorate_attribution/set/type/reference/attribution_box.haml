@@ -1,10 +1,8 @@
 .d-flex.mb-3.align-items-stretch
   .p.clipboard._clipboard.p-2.rounded-start.flex-fill
     = content
-  .button.small.copy-button.d-flex.p-2.rounded-end
-    .d-flex.align-items-center.fw-bold
+  %button.copy-button._copy-button.btn.btn-primary{ type: "button", "data-bs-toggle": "button" }
+    .d-flex.fw-bold
       .pe-1
         Copy
       = icon_tag :clipboard
-
-
