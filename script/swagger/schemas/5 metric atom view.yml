@@ -1,0 +1,95 @@
+metric_atom_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 565926
+    name:
+      type: string
+      example: PayScale+CEO to Worker pay
+    url:
+      type: string
+      example: https://wikirate.org/PayScale+CEO_to_Worker_pay.json
+    type:
+      type: string
+      example: Metric
+    designer:
+      type: string
+      example: PayScale
+    title:
+      type: string
+      example: CEO to Worker pay
+    answers_url:
+      type: string
+      example: https://wikirate.org/PayScale+CEO_to_Worker_pay+answer.json
+    ancestors:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    metric_type:
+      type: string
+      example: Researched
+    about:
+      type: string
+      example: "This metric is based on the Global Reporting Initiative (GRI) Standard Guidelines."
+    methodology:
+      type: string
+      example: "To answer this metric question you need identify the Direct GHG emissions (Scope 1) of the organization for a specific year. Start by searching publicly available documents like Annual and CSR reports."
+    value_type:
+      type: string
+      example: Number
+    value_options:
+      type: array
+      items:
+        type: string
+      example:
+        - "Unknown"
+    report_type:
+      type: string
+      example: "Corporate Social Responsibility Report"
+    research_policy:
+      type: string
+      example:
+        "Community Assessed"
+    unit:
+      type: string
+      example: "tonnes CO2 equivalent"
+    range:
+      type: string
+    hybrid:
+      type: string
+      example: "no"
+    topics:
+      type: array
+      items:
+        type: "string"
+      example:
+      - "Climate Change"
+      - "Emissions"
+      - "Environment"
+    question:
+      type: string
+    scores:
+      type: array
+      items:
+        type: string
+    formula:
+      type: string
+    rubric:
+      type: string
+    variables:
+      type: string
+    answers:
+      type: integer
+    bookmarkers:
+      type: integer
+    datasets:
+      type: integer
+    companies:
+      type: integer
+    calculations:
+      type: array
+      items:
+        type: string
+    requested_at:
+      type: string

@@ -2,23 +2,31 @@ module GraphQL
   module Types
     # DeckorateSearch module facilitates card and lookup searches
     module DeckorateSearch
-      def wikirate_card_search codename, is_card, filter, limit: 10, offset: 0
-        cql = codename.card.format.filter_cql_class.new(filter).to_cql
-        search_base = is_card ? object.card.fetch(codename) : ::Card
-        cql[:limit] = limit
-        cql[:offset] = offset
-        cql[:type_id] = codename.card.id unless is_card
-        search_base.search cql
+      def deckorate_card_search codename, options
+        search_base = options[:is_card] ? object.card.fetch(codename) : ::Card
+        search_base.search fetch_cql(codename, options)
       end
 
-      def lookup_search codename, is_card, filter, limit: 10, offset: 0
-        query_hash =
-          is_card ? object.card.fetch(codename).query_hash.merge(filter) : filter
+      def lookup_search codename, options
+        query_hash = options[:filter]
+        if options[:is_card]
+          query_hash = object.card.fetch(codename).query_hash.merge(options[:filter])
+        end
         codename.card.query_class.new(
-          query_hash, {},
-          limit: limit,
-          offset: offset
+          query_hash, options[:sort],
+          limit: options[:limit],
+          offset: options[:offset]
         ).lookup_relation.all
+      end
+
+      def fetch_cql codename, options
+        cql = codename.card.format.filter_cql_class.new(options[:filter]).to_cql
+        cql[:limit] = options[:limit]
+        cql[:offset] = options[:offset]
+        cql[:type_id] = codename.card.id unless options[:is_card]
+        cql[:sort_by] = options[:sort_by]
+        cql[:dir] = options[:sort_dir]
+        cql
       end
     end
   end
