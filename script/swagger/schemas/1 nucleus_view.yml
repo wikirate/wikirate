@@ -1,0 +1,14 @@
+nucleus_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int32
+    name:
+      type: string
+    url:
+      type: string
+    type:
+      type: string
+    codename:
+      type: string
