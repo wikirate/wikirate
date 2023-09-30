@@ -33,7 +33,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
       subject { card_subject.format(:base).search_params }
 
       before do
-        add_filter :wikirate_topic, "Force"
+        add_filter :topic, "Force"
       end
 
       it "adds filters to right_plus_array" do
