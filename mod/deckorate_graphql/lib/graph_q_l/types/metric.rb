@@ -1,11 +1,13 @@
 module GraphQL
   module Types
     # Metric type for GraphQL
-    class Metric < WikirateCard
-      field :designer, Card, null: false
+    class Metric < DeckorateCard
+      field :designer, Card, null: true
       field :title, String, null: true
       field :question, String, null: true
       field :metric_type, String, null: true
+      field :value_type, String, null: true
+      field :value_options, [String], null: true
       field :about, String, null: true
       field :methodology, String, null: true
       field :research_policy, String, null: true
