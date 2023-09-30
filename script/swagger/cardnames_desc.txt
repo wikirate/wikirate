@@ -1,0 +1,10 @@
+Given the company name. The company name it can be also substituted with its numerical ~id.,
+Given the source name. The source name it can be also substituted with its numerical ~id.,
+The name of a metric follows the pattern Designer+Title. For example: Core+Address. Any piece of the name can be substituted with its numerical id in the form of ~INTEGER,
+The name of an answer follows the pattern Metric+Company+Year. (Note, the name of a metric follows the pattern Designer+Title). Any piece of the name (or the entire name) can be substituted with its numerical id in the form of ~INTEGER. Eg, if your metric's id is 867 and your company's id is 5309, then you can address the answer as ~867+~5309+1981,
+The name of a relationship answer follows the pattern Metric+Subject Company+Year+Object Company. (Note, the name of a metric follows the pattern Designer+Title). Any piece of the name (or the entire name) can be substituted with its numerical id in the form of ~INTEGER. Eg, if your metric's id is 2929009, the subject company's id is 49209, the object company's id is 12230576 then you can address the answer as ~14561838+~49209+2022+~12230576,
+Given the topic name. The topic name it can be also substituted with its numerical ~id.,
+Given the research group name. The research group name it can be also substituted with its numerical ~id.,
+Given the dataset name. The dataset name it can be also substituted with its numerical ~id.,
+Given the company group. The company group name it can be also substituted with its numerical ~id.,
+The name of a wikirate record follows the pattern Metric+Company and the metric the pattern Designer+Title. For example: US_Securities_and_Exchange_Commission+Assets+Microsoft_Corporation. Any piece of the name can be substituted with its numerical id in the form of ~INTEGER.

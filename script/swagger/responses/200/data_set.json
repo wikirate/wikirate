@@ -1,0 +1,30 @@
+{
+  "id": 8079639,
+  "name": "Apparel 100 Analysis",
+  "type": {
+    "id": 7926098,
+    "name": "Data Set",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Data_Set.json",
+    "codename": "dataset"
+  },
+  "url": "https://wikirate.org/Apparel_100_Analysis.json",
+  "content": "<h4>About</h4>\r\n<p>With a combined total market cap of over USD$ 1.22T in 2018, which is more than half of the global fashion industry, the apparel sector has tremendous potential for both negative and positive impacts on our planet and society.</p>\r\n<p>At the same time, the apparel sector has made significant steps in terms of transparency over the past decades. It is, in fact, one of the sectors that share comparatively a lot of sustainability data.</p>\r\n<p>However, given the sector size and worldwide impact, we know relatively little.</p>\r\n<p><strong>This dataset compiles new and existing information on the top 100 Apparel companies' supply chain transparency and ESG data</strong> and shows gaps in disclosure indicating where relevant sustainability information is missing.</p>\r\n<p>The data compiled aims to inform the work of human rights advocates, policymakers, and investors. It can also help companies improve their policies and practices.</p>\r\n<p>This dataset can be downloaded and used in your own analysis (see .csv and json links).</p>\r\n<p>For more information on the project, go to https://showcase.wikirate.org/</p>\r\n<h4>Methodology</h4>\r\n<p>The WikiRate.org platform is designed to enable an open data ecosystem that connects information from across expert organizations and individuals.</p>\r\n<p>The Apparel 100 research aggregates a broad set of data and indicators based on commonly used reporting standards like the Global Reporting Initiative and civil society research, like Fashion Revolution’s Fashion Transparency Index, that make their methodology and data open and transparent. </p>\r\n<p>The data is aggregated from research using public sources (corporate reporting and websites) and complemented through collaborations with research organizations, with methods including desk research, data scraping and API connections.</p>\r\n<p>The quality of the data has been checked for 80% of the desk-researched data. In addition, a subset of the top 100 apparel companies was contacted for data verification and updates, with 4 of the 29 contacted companies responding.</p>",
+  "items": [
+
+  ],
+  "links": [
+
+  ],
+  "ancestors": [
+
+  ],
+  "html_url": "https://wikirate.org/Apparel_100_Analysis",
+  "created_at": "2021-10-13 10:02:24 UTC",
+  "updated_at": "2023-09-05 18:45:26 UTC",
+  "answers_url": "https://wikirate.org/Apparel_100_Analysis+Answer.json",
+  "metrics_url": "https://wikirate.org/Apparel_100_Analysis+Metric.json",
+  "companies_url": "https://wikirate.org/Apparel_100_Analysis+Company.json",
+  "requested_at": "2023-09-21 09:38:52 UTC",
+  "license": "not specified"
+}

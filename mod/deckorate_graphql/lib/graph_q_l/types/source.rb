@@ -1,7 +1,7 @@
 module GraphQL
   module Types
     # Source type for GraphQL
-    class Source < WikirateCard
+    class Source < DeckorateCard
       field :title, String, null: true
       field :description, String, null: true
       field :report_type, String, null: true
