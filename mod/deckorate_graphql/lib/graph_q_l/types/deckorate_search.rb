@@ -8,12 +8,19 @@ module GraphQL
       end
 
       def lookup_search codename, options
+        sort = fetch_lookup_sort options[:filter]
         query_hash = fetch_query_hash codename, options
         codename.card.query_class.new(
-          query_hash, options[:sort],
+          query_hash, sort,
           limit: options[:limit],
           offset: options[:offset]
         ).lookup_relation.all
+      end
+
+      def fetch_lookup_sort filter
+        sort_by = filter[:sort_by].nil? ? :id : filter[:sort_by]
+        sort_dir = filter[:sort_dir].nil? ? :desc : filter[:sort_dir]
+        { sort_by => sort_dir }
       end
 
       def fetch_cql codename, options
@@ -27,6 +34,8 @@ module GraphQL
       end
 
       def fetch_query_hash codename, options
+        options[:filter].delete(:sort_dir)
+        options[:filter].delete(:sort_by)
         query_hash = options[:filter]
         if options[:is_card]
           query_hash = object.card.fetch(codename).query_hash.merge(options[:filter])

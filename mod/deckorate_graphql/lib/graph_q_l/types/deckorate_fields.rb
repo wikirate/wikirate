@@ -9,13 +9,7 @@ module GraphQL
         is_card ||= is_card
         plural_field plural_fieldname, codename, type
         define_method plural_fieldname do |limit: 10, offset: 0, **filter|
-          sort_by = filter[:sort_by].nil? ? :id : filter[:sort_by]
-          sort_dir = filter[:sort_dir].nil? ? :desc : filter[:sort_dir]
-          filter.delete(:sort_by)
-          filter.delete(:sort_dir)
-
-          options = { is_card: is_card, filter: filter, sort: { sort_by => sort_dir },
-                      limit: limit, offset: offset }
+          options = { is_card: is_card, filter: filter, limit: limit, offset: offset }
           lookup_search codename, options
         end
       end
