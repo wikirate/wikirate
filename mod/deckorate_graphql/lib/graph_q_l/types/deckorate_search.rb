@@ -28,7 +28,7 @@ module GraphQL
         build_cql codename, options, sort_by, sort_dir
       end
 
-      def extract_sort_options(filter)
+      def extract_sort_options filter
         sort_by = filter[:sort_by]
         sort_dir = filter[:sort_dir]
         filter.delete(:sort_dir)
