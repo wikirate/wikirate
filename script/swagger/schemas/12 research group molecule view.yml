@@ -1,0 +1,37 @@
+research_group_molecule_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 3478301
+    name:
+      type: string
+      example: "University of Wollongong ACCY111 Research Group 2018"
+    url:
+      type: string
+      example: "https://wikirate.org/University_of_Wollongong_ACCY111_Research_Group_2018.json?view=atom"
+    content:
+      type: string
+      example: ""
+    type:
+      "$ref": "#/components/schemas/nucleus_view"
+    links:
+      type: array
+      items:
+        type: string
+    ancestors:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    html_url:
+      type: string
+      example: "https://wikirate.org/University_of_Wollongong_ACCY111_Research_Group_2018"
+    created_at:
+      type: string
+      example: "2018-04-13 11:34:01 UTC"
+    updated_at:
+      type: string
+      example: "2022-03-22 12:57:37 UTC"
+    requested_at:
+      type: string
+      example: "2023-09-21 10:44:59 UTC"
