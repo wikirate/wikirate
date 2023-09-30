@@ -3,7 +3,7 @@ module GraphQL
     # Deckorate Fields for GraphQL contains a number of functions
     # to facilitate the definition of different GraphQL types
     module DeckorateFields
-      def lookup_field fieldname, type, codename = nil, is_card = false
+      def lookup_field fieldname, type, codename=nil, is_card=false
         codename ||= fieldname
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         is_card ||= is_card
@@ -14,21 +14,20 @@ module GraphQL
         end
       end
 
-      def card_field fieldname, type, codename = nil
+      def card_field fieldname, type, codename=nil
         codename ||= fieldname
         singular_field fieldname, type
         define_method(fieldname) { |**mark| ok_card codename, **mark }
       end
 
-      def cardtype_field fieldname, type, codename = nil, is_card = false
+      # sort_by: :name, sort_dir: :desc,
+      def cardtype_field fieldname, type, codename=nil, is_card=false
         codename ||= fieldname
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         plural_field plural_fieldname, codename, type
 
-        define_method plural_fieldname do |sort_by: :name, sort_dir: :desc, limit: 10, offset: 0, **filter|
-          options = { is_card: is_card, filter: filter, sort_dir: sort_dir,
-                      sort_by: sort_by, limit: limit, offset: offset }
-
+        define_method plural_fieldname do |limit: 10, offset: 0, **filter|
+          options = { is_card: is_card, filter: filter, limit: limit, offset: offset }
           deckorate_card_search codename, options
         end
       end

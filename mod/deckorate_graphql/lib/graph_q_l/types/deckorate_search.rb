@@ -24,12 +24,17 @@ module GraphQL
       end
 
       def fetch_cql codename, options
+        sort_by = options[:filter][:sort_by]
+        sort_dir = options[:filter][:sort_dir]
+        options[:filter].delete(:sort_dir)
+        options[:filter].delete(:sort_by)
+
         cql = codename.card.format.filter_cql_class.new(options[:filter]).to_cql
         cql[:limit] = options[:limit]
         cql[:offset] = options[:offset]
         cql[:type_id] = codename.card.id unless options[:is_card]
-        cql[:sort_by] = options[:sort_by]
-        cql[:dir] = options[:sort_dir]
+        cql[:sort_by] = sort_by
+        cql[:dir] = sort_dir
         cql
       end
 
