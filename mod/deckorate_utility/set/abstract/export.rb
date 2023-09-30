@@ -4,6 +4,10 @@ format do
   def export_filename
     "WikiRate-#{export_timestamp}-#{export_title}"
   end
+
+  def default_limit
+    Auth.signed_in? ? 5000 : 500
+  end
 end
 
 format :csv do
@@ -49,11 +53,15 @@ format :html do
     card.name
   end
 
+  def default_export_limit
+    card.format(:base).default_limit
+  end
+
   def export_limit_options
     options = EXPORT_LIMIT_OPTIONS.map { |num|  export_limit_option_label num }
     options_for_select options,
                        disabled: export_limit_options_disabled,
-                       selected: export_limit_option_selected
+                       selected: default_export_limit
   end
 
   def export_modal_link text, opts={}
@@ -71,6 +79,11 @@ format :html do
     :titled
   end
 
+  # for override
+  def confirm_export
+    nil
+  end
+
   private
 
   # localize
@@ -80,9 +93,5 @@ format :html do
 
   def export_limit_options_disabled
     Auth.signed_in? ? [] : [1000, 5000]
-  end
-
-  def export_limit_option_selected
-    Auth.signed_in? ? 5000 : 500
   end
 end

@@ -1,19 +1,20 @@
 module GraphQL
   module Types
     # Company type for GraphQL
-    class Company < Card
-      field :answers, [Answer], "answers to questions about company", null: false do
-        argument :metric, String, required: false
-      end
+    class Company < DeckorateCard
+      field :headquarters, String, null: true
+      field :wikipedia, String, null: true
+      field :open_corporates, String, null: true
+      field :sec_cik, String, null: true
+      field :os_id, String, null: true
+      lookup_field :answer, Answer, :metric_answer, true
       field :relationships, [Relationship],
-            "relationships of which company is either subject or object", null: false
+            "relationships of which company is either subject or object", null: true
       field :datasets, [Dataset], null: false
       field :logo_url, String, "url for company logo image", null: true
 
-      def answers metric: nil
-        query = { company_id: object.id }
-        query[:metric_id] = metric.card_id if metric
-        ::Card::AnswerQuery.new(query, {}, limit: 10).run
+      def os_id
+        object.card.oar_id
       end
 
       def relationships

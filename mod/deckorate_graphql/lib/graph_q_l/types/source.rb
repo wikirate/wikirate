@@ -1,23 +1,32 @@
 module GraphQL
   module Types
     # Source type for GraphQL
-    class Source < Card
+    class Source < DeckorateCard
       field :title, String, null: true
       field :description, String, null: true
       field :report_type, String, null: true
-      field :years, [Integer], null: false
-
+      field :years, [Integer], null: true
       field :original_url, String, null: true
       field :file_url, String, null: true
-      field :answers, [Answer], null: false
-      field :relationships, [Relationship], null: false
+      lookup_field :metric, Metric, nil, true
+      lookup_field :answer, Answer, :metric_answer, true
 
-      def relationships
-        referers(:relationship_answer, :source)&.map(&:lookup)
+      # TODO: make companies filterable on sources
+      # (see mod/deckorate_research/set/type_plus_right/source/wikirate_company.rb)
+
+      # cardtype_field :company, Company, :wikirate_company, true
+
+      def title
+        object.card.wikirate_title
       end
 
-      def answers
-        referers(:metric_answer, :source)&.map(&:lookup)
+      def description
+        description = object.card.fetch("description")
+        description.content if description.present?
+      end
+
+      def years
+        object.year_card.item_names.map(&:to_i)
       end
 
       def original_url
@@ -26,10 +35,3 @@ module GraphQL
     end
   end
 end
-
-# type Source implements WikiRateEntity{
-#   year: Int
-#   metrics: [Metric!]!
-#   report_type: [String!]!
-#   companies: [Company!]!
-# }

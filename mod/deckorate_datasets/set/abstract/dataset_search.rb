@@ -24,7 +24,7 @@ format do
   end
 
   def filter_map
-    %i[name bookmark wikirate_topic]
+    %i[name bookmark topic]
   end
 
   def default_filter_hash
@@ -37,7 +37,8 @@ format do
       "Alphabetical": :name,
       "Most Data Subsets": :data_subsets,
       "Most Metrics": :metric,
-      "Most Companies": :company }
+      "Most Companies": :company,
+      "Most References": :reference }
   end
 end
 

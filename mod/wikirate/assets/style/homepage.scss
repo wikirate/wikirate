@@ -53,10 +53,19 @@ animation bg-pan-right
   }
 }
 
-#homepage-alert a {
-  color: $white !important;
-  font-weight: bold;
+.homepage-alert {
+  a {
+    color: $white !important;
+    font-weight: bold;
+  }
+  i {
+    font-size: 20px;
+  }
+  p {
+    margin: 0;
+  }
 }
+  
 
 .homepage-delta-cards {
   .card {
@@ -123,4 +132,9 @@ animation bg-pan-right
       }
     }
   }
+}
+
+.close-alert-button {
+  cursor: pointer;
+  padding-right: 0.5rem;
 }

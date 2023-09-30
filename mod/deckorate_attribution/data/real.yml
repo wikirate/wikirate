@@ -1,0 +1,38 @@
+- :name: Reference
+  :type: :cardtype
+  :codename: reference
+  :fields:
+    :type:
+      :fields:
+        :create:
+          - :anyone
+        :autoname: Reference 0000001
+
+- :name: referrers
+  :codename: referrers
+
+- :name: adaptation
+  :codename: adaptation
+  :fields:
+    :right:
+      :fields:
+        :default: "No, I use the original data"
+
+- :name: "No, I use the original data"
+  :codename: no_adaptation
+
+- :name: "Yes, I modify or build upon the data"
+  :codename: yes_adaptation
+
+- :name: URL
+  :codename: url
+
+- :name: party
+  :codename: party
+
+- :name: attribution alert
+  :codename: attribution_alert
+  :fields:
+    :title: Applying Attribution
+    :body: Using this data requires appropriate attribution.
+
