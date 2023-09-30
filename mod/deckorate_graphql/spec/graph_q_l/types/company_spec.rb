@@ -20,6 +20,20 @@ RSpec.describe GraphQL::Types::Company do
     end
   end
 
+  describe "company: headquarters field" do
+    it "returns headquarters of company" do
+      query = query_string "Google LLC", "headquarters"
+      expect(result(query)["headquarters"]).to eq("California (United States)")
+    end
+  end
+
+  describe "company: wikipedia field" do
+    it "returns wikipedia page pertaining to the company" do
+      query = query_string "Death Star", "wikipedia"
+      expect(result(query)["wikipedia"]).to eq("Death Star")
+    end
+  end
+
   describe "company: relationships field" do
     it "returns relationship answers pertaining to the company" do
       field = "relationships { objectCompany { name }, subjectCompany { name } }"

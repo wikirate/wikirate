@@ -1,0 +1,24 @@
+data_set_atom_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 8543400
+    name:
+      type: string
+      example: "Tea Transparency Tracker"
+    url:
+      type: string
+      example: "https://wikirate.org/University_of_Wollongong_ACCY111_Research_Group_2018.json?view=atom"
+    content:
+      type: string
+      example: ""
+    type:
+      type: string
+      example: Data Set
+    requested_at:
+      type: string
+      example: "2023-09-21 10:27:16 UTC"
+    license:
+      type: string
+      example: "not specified"
