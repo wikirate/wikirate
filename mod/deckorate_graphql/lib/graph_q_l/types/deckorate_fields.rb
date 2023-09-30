@@ -3,32 +3,35 @@ module GraphQL
     # Deckorate Fields for GraphQL contains a number of functions
     # to facilitate the definition of different GraphQL types
     module DeckorateFields
-      def lookup_field fieldname, type, codename=nil, is_card=false
+      def lookup_field fieldname, type, codename = nil, is_card = false
         codename ||= fieldname
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         is_card ||= is_card
         plural_field plural_fieldname, codename, type
-        define_method plural_fieldname do
-        |sort_by: :id, sort_dir: :desc, limit: 10, offset: 0, **filter|
+        define_method plural_fieldname do |limit: 10, offset: 0, **filter|
+          sort_by = filter[:sort_by].nil? ? :id : filter[:sort_by]
+          sort_dir = filter[:sort_dir].nil? ? :desc : filter[:sort_dir]
+          filter.delete(:sort_by)
+          filter.delete(:sort_dir)
+
           options = { is_card: is_card, filter: filter, sort: { sort_by => sort_dir },
                       limit: limit, offset: offset }
           lookup_search codename, options
         end
       end
 
-      def card_field fieldname, type, codename=nil
+      def card_field fieldname, type, codename = nil
         codename ||= fieldname
         singular_field fieldname, type
         define_method(fieldname) { |**mark| ok_card codename, **mark }
       end
 
-      def cardtype_field fieldname, type, codename=nil, is_card=false
+      def cardtype_field fieldname, type, codename = nil, is_card = false
         codename ||= fieldname
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         plural_field plural_fieldname, codename, type
 
-        define_method plural_fieldname do
-        |sort_by: :name, sort_dir: :desc, limit: 10, offset: 0, **filter|
+        define_method plural_fieldname do |sort_by: :name, sort_dir: :desc, limit: 10, offset: 0, **filter|
           options = { is_card: is_card, filter: filter, sort_dir: sort_dir,
                       sort_by: sort_by, limit: limit, offset: offset }
 
