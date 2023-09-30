@@ -1,0 +1,45 @@
+company_molecule_view:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    url:
+      type: string
+    type:
+      "$ref" : "#/components/schemas/nucleus_view"
+    wikipedia:
+      "$ref" : "#/components/schemas/atom_view"
+    open_corporates:
+      "$ref" : "#/components/schemas/atom_view"
+    aliases:
+      "$ref" : "#/components/schemas/atom_view"
+    headquarters:
+      "$ref" : "#/components/schemas/atom_view"
+    oar_id:
+      "$ref" : "#/components/schemas/atom_view"
+    sec_cik:
+      "$ref" : "#/components/schemas/atom_view"
+    html_url:
+      type: string
+    items:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    links:
+      type: array
+      items:
+        type: string
+    ancestors:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    created_at:
+      type: string
+    updated_at:
+      type: string
+    answers_url:
+      type: string
+    requested_at:
+      type: string
