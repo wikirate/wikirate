@@ -28,4 +28,18 @@ RSpec.describe GraphQL::Types::Metric do
       expect(result(query)["title"]).to eq("disturbances in the Force")
     end
   end
+
+  describe "metric: valueType field" do
+    it "returns value type" do
+      query = query_string metric_name, "valueType"
+      expect(result(query)["valueType"]).to eq("Category")
+    end
+  end
+
+  describe "metric: valueOptions field" do
+    it "returns value options" do
+      query = query_string metric_name, "valueOptions"
+      expect(result(query)["valueOptions"]).to eq(%w[yes no])
+    end
+  end
 end
