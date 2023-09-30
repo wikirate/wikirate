@@ -1,0 +1,120 @@
+{
+  "id": 15544924,
+  "name": "Source-000190921",
+  "type": {
+    "id": 629,
+    "name": "Source",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Source.json",
+    "codename": "source"
+  },
+  "url": "https://wikirate.org/Source_000190921.json",
+  "file": {
+    "id": 15544925,
+    "name": "Source-000190921+File",
+    "type": "File",
+    "url": "https://wikirate.org/Source_000190921+File.json",
+    "content": "https://dq06ugkuram52.cloudfront.net/files/15544925/41682593.pdf"
+  },
+  "link": {
+    "id": 15544930,
+    "name": "Source-000190921+Link",
+    "type": "Phrase",
+    "url": "https://wikirate.org/Source_000190921+Link.json",
+    "content": "https://www.corficolombiana.com/documents/20123/0/informe-de-gestion-corficolombiana-2023-eng.pdf/66ef8ef9-e963-5b0f-d82c-f5dc28b7124e?t=1686949438241"
+  },
+  "report_type": {
+    "id": 15544927,
+    "name": "Source-000190921+Report Type",
+    "type": "List",
+    "url": "https://wikirate.org/Source_000190921+Report_Type.json",
+    "content": [
+      "Corporate Social Responsibility Report",
+      "Communication on Progress",
+      "Sustainability Report",
+      "Aggregate Data Report"
+    ]
+  },
+  "title": {
+    "id": 15544926,
+    "name": "Source-000190921+Title",
+    "type": "Phrase",
+    "url": "https://wikirate.org/Source_000190921+Title.json",
+    "content": "Corficolombiana Management and Sustainability Report 2022"
+  },
+  "year": {
+    "id": 15544929,
+    "name": "Source-000190921+Year",
+    "type": "List",
+    "url": "https://wikirate.org/Source_000190921+Year.json",
+    "content": [
+      "2022"
+    ]
+  },
+  "items": [
+
+  ],
+  "links": [
+
+  ],
+  "ancestors": [
+
+  ],
+  "html_url": "https://wikirate.org/Source_000190921",
+  "created_at": "2023-09-20 12:03:29 UTC",
+  "updated_at": "2023-09-20 12:03:29 UTC",
+  "description": {
+    "id": null,
+    "name": "Source-000190921+description",
+    "type": "RichText",
+    "url": "https://wikirate.org/Source_000190921+description.json?card%5Bname%5D=Source-000190921%2Bdescription"
+  },
+  "discussion": {
+    "id": null,
+    "name": "Source-000190921+Discussion",
+    "type": "RichText",
+    "url": "https://wikirate.org/Source_000190921+Discussion.json?card%5Bname%5D=Source-000190921%2BDiscussion"
+  },
+  "company": {
+    "id": 15544928,
+    "name": "Source-000190921+Company",
+    "type": "List",
+    "url": "https://wikirate.org/Source_000190921+Company.json",
+    "content": [
+      "Corficolombiana"
+    ]
+  },
+  "metric": {
+    "id": null,
+    "name": "Source-000190921+Metric",
+    "type": "List",
+    "url": "https://wikirate.org/Source_000190921+Metric.json",
+    "content": [
+      "Global Reporting Initiative+Rainwater collected directly and stored (G4-EN8-a)",
+      "Global Reporting Initiative+Injury rate, GRI 403-9-a (formerly G4-LA6-a)",
+      "Global Reporting Initiative+Permanent employees, GRI 102-8-a (formerly G4-10-a)",
+      "Global Reporting Initiative+Incidents of discrimination, GRI 406-1 (G4-HR3-a)",
+      "Global Reporting Initiative+Emissions of Ozone-Depleting Substances (ODS), GRI 305-6-a (formerly G4-EN20-a)",
+      "Global Reporting Initiative+Human Rights Impacts Grievances addressed (G4-HR12-b)",
+      "Global Reporting Initiative+Human Rights Impacts Resolved (G4-HR12-b)",
+      "Global Reporting Initiative+New employee hires, GRI 401-1 (G4-LA1-a)",
+      "Global Reporting Initiative+Employee turnover, GRI 401-1 (G4-LA1-b)",
+      "Global Reporting Initiative+Male employees, GRI 102-8-a (formerly G4-10-a)",
+      "Global Reporting Initiative+Female injury rate (G4-LA6-a)",
+      "Global Reporting Initiative+Full-time employees, GRI 102-8-c (formerly G4-10-b)",
+      "Global Reporting Initiative+Occupational Risk (G4-LA7)",
+      "Global Reporting Initiative+Habitats Protected or Restored G4-EN13-a",
+      "Poverty Footprint+Collective Bargaining in Value Chain",
+      "Poverty Footprint+Anti-Corruption Declaration",
+      "Core+Company Report Available",
+      "Global Reporting Initiative+Recycled Input Materials (%), GRI 301-2 (formerly G4-EN2)"
+    ]
+  },
+  "answer": {
+    "id": null,
+    "name": "Source-000190921+Answer",
+    "type": "Search",
+    "url": "https://wikirate.org/Source_000190921+Answer.json"
+  },
+  "requested_at": "2023-09-21 09:37:53 UTC"
+}

@@ -1,0 +1,81 @@
+metric_molecule_view:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    url:
+      type: string
+    type:
+      "$ref": "#/components/schemas/nucleus_view"
+    designer:
+      type: string
+    title:
+      type: string
+    question:
+      "$ref": "#/components/schemas/atom_view"
+    metric_type:
+      "$ref": "#/components/schemas/atom_view"
+    about:
+      "$ref": "#/components/schemas/atom_view"
+    methodology:
+      "$ref": "#/components/schemas/atom_view"
+    value_type:
+      "$ref": "#/components/schemas/atom_view"
+    value_options:
+      "$ref": "#/components/schemas/atom_view"
+    report_type:
+      "$ref": "#/components/schemas/atom_view"
+    research_policy:
+      "$ref": "#/components/schemas/atom_view"
+    unit:
+      "$ref": "#/components/schemas/atom_view"
+    range:
+      "$ref": "#/components/schemas/atom_view"
+    hybrid:
+      "$ref": "#/components/schemas/atom_view"
+    topics:
+      "$ref": "#/components/schemas/atom_view"
+    scores:
+      "$ref": "#/components/schemas/atom_view"
+    formula:
+      "$ref": "#/components/schemas/atom_view"
+    rubric:
+      "$ref": "#/components/schemas/atom_view"
+    variables:
+      "$ref": "#/components/schemas/atom_view"
+    answers:
+      type: integer
+    bookmarkers:
+      type: integer
+    datasets:
+      type: integer
+    companies:
+      type: integer
+    calculations:
+      type: array
+      items:
+        type: string
+    answers_url:
+      type: string
+    items:
+      type: array
+      items:
+        type: object
+    links:
+      type: array
+      items:
+        type: string
+    ancestors:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    html_url:
+      type: string
+    created_at:
+      type: string
+    updated_at:
+      type: string
+    requested_at:
+      type: string
