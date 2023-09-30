@@ -1,0 +1,44 @@
+company_group_molecule_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 5671631
+    name:
+      type: string
+      example: Apparel 100 Companies
+    url:
+      type: string
+      example: https://wikirate.org/Apparel_100_Companies.json
+    type:
+      "$ref": "#/components/schemas/nucleus_view"
+    content:
+      type: string
+    specification:
+      "$ref": "#/components/schemas/atom_view"
+    companies:
+      "$ref": "#/components/schemas/atom_view"
+    items:
+      type: array
+      items:
+        type: object
+    links:
+      type: array
+      items:
+        type: string
+    ancestors:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    html_url:
+      type: string
+      example: "https://wikirate.org/Apparel_100_Companies"
+    created_at:
+      type: string
+      example: "2020-01-31 16:07:08 UTC"
+    updated_at:
+      type: string
+      example: "2023-07-12 09:25:26 UTC"
+    requested_at:
+      type: string
+      example: "2023-09-21 10:23:02 UTC"
