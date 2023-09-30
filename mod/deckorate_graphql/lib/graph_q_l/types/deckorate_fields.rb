@@ -8,8 +8,8 @@ module GraphQL
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         is_card ||= is_card
         plural_field plural_fieldname, codename, type
-        define_method plural_fieldname do |sort_by: :id, sort_dir: :desc,
-                                           limit: 10, offset: 0, **filter|
+        define_method plural_fieldname do
+        |sort_by: :id, sort_dir: :desc, limit: 10, offset: 0, **filter|
           options = { is_card: is_card, filter: filter, sort: { sort_by => sort_dir },
                       limit: limit, offset: offset }
           lookup_search codename, options
@@ -27,8 +27,8 @@ module GraphQL
         plural_fieldname = fieldname.to_s.to_name.vary(:plural).to_sym
         plural_field plural_fieldname, codename, type
 
-        define_method plural_fieldname do |sort_by: :name, sort_dir: :desc,
-                                           limit: 10, offset: 0, **filter|
+        define_method plural_fieldname do
+        |sort_by: :name, sort_dir: :desc, limit: 10, offset: 0, **filter|
           options = { is_card: is_card, filter: filter, sort_dir: sort_dir,
                       sort_by: sort_by, limit: limit, offset: offset }
 
