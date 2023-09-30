@@ -1,0 +1,25 @@
+company_group_atom_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 5671631
+    name:
+      type: string
+      example: Apparel 100 Companies
+    url:
+      type: string
+      example: https://wikirate.org/Apparel_100_Companies.json
+    type:
+      type: string
+      example: Company Group
+    specification:
+      type: string
+      example: explicit
+    companies:
+      type: array
+      items:
+        type: string
+    requested_at:
+      type: string
+      example: "2023-09-21 08:32:48 UTC"

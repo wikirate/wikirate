@@ -1,0 +1,51 @@
+source_molecule_view:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    url:
+      type: string
+    type:
+      "$ref": "#/components/schemas/nucleus_view"
+    title:
+      "$ref": "#/components/schemas/atom_view"
+    file:
+      "$ref": "#/components/schemas/atom_view"
+    link:
+      "$ref": "#/components/schemas/atom_view"
+    report_type:
+      "$ref": "#/components/schemas/atom_view"
+    year:
+      "$ref": "#/components/schemas/atom_view"
+    description:
+      "$ref": "#/components/schemas/atom_view"
+    discussion:
+      "$ref": "#/components/schemas/atom_view"
+    company:
+      "$ref": "#/components/schemas/atom_view"
+    metric:
+      "$ref": "#/components/schemas/atom_view"
+    answer:
+      "$ref": "#/components/schemas/atom_view"
+    items:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    links:
+      type: array
+      items:
+        type: string
+    ancestors:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    html_url:
+      type: string
+    created_at:
+      type: string
+    updated_at:
+      type: string
+    requested_at:
+      type: string

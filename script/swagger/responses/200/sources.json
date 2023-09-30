@@ -1,0 +1,369 @@
+{
+  "id": 629,
+  "name": "Source",
+  "type": {
+    "id": 5,
+    "name": "Cardtype",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Cardtype.json",
+    "codename": "cardtype"
+  },
+  "url": "https://wikirate.org/sources.json",
+  "codename": "source",
+  "items": [
+    {
+      "id": 15545192,
+      "name": "Source-000190925",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190925.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15545193/41684200.pdf",
+      "link": "https://www.nab.com.au/content/dam/nabrwd/documents/pds/social-impact/nab-modern-slavery-statement-2022.pdf",
+      "report_type": [
+        "Modern Slavery Statement",
+        "Communication on Progress",
+        "Annual Report",
+        "Sustainability Report"
+      ],
+      "title": "NAB 2022 Modern Slavery and Human Trafficking Statement",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15545171,
+      "name": "Source-000190924",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190924.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15545172/41684174.xlsx",
+      "link": "https://www.nab.com.au/content/dam/nab/documents/reports/corporate/2022-sustainability-data-pack.xlsx",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Sustainability Report",
+        "Aggregate Data Report"
+      ],
+      "title": "National Australia Bank 2022 Sustainability Data Pack",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15545147,
+      "name": "Source-000190923",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190923.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15545148/41684148.pdf",
+      "link": "https://www.nab.com.au/content/dam/nab/documents/reports/corporate/2022-annual-report.pdf",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Communication on Progress",
+        "Sustainability Report",
+        "Annual Report",
+        "Aggregate Data Report"
+      ],
+      "title": "National Australia Bank 2022 Annual Report",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15545134,
+      "name": "Source-000190922",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190922.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15545135/41684133.pdf",
+      "link": "https://www.worley.com/~/media/Files/W/Worley-V3/documents/investor-relations/corporate-governance/2022/FY22%20Modern%20Slavery%20Statement_FINAL.pdf",
+      "report_type": [
+        "Modern Slavery Statement",
+        "Communication on Progress",
+        "Annual Report",
+        "Sustainability Report"
+      ],
+      "title": "Worley 2022 Modern Slavery Statement",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15544924,
+      "name": "Source-000190921",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190921.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544925/41682593.pdf",
+      "link": "https://www.corficolombiana.com/documents/20123/0/informe-de-gestion-corficolombiana-2023-eng.pdf/66ef8ef9-e963-5b0f-d82c-f5dc28b7124e?t=1686949438241",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Communication on Progress",
+        "Sustainability Report",
+        "Aggregate Data Report"
+      ],
+      "title": "Corficolombiana Management and Sustainability Report 2022",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15544791,
+      "name": "Source-000190920",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190920.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544792/41682458.pdf",
+      "link": "https://s1.q4cdn.com/050606653/files/doc_downloads/2023/02/Visa-Code-of-Business-Conduct-and-Ethics-2023-02.pdf",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Code of Conduct"
+      ],
+      "title": "VISA Code of Business Conduct and Ethics",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15544535,
+      "name": "Source-000190919",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190919.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544536/41681403.pdf",
+      "link": "https://www.benettongroup.com/site/assets/files/7902/integrated_report_2022_-_video.pdf",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Communication on Progress",
+        "Integrated Report"
+      ],
+      "title": "Benetton Group Integrated Report 2022",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15544523,
+      "name": "Source-000190918",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190918.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544524/41681388.pdf",
+      "link": "",
+      "report_type": [
+        "Company Website",
+        "Corporate Social Responsibility Report",
+        "Communication on Progress"
+      ],
+      "title": "Claire Homepage 2023",
+      "year": [
+        "2023"
+      ]
+    },
+    {
+      "id": 15544473,
+      "name": "Source-000190917",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190917.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544474/41681285.pdf",
+      "link": "https://pvh.com/-/media/Files/pvh/responsibility/PVH-CR-Report-2022.pdf",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Communication on Progress",
+        "Sustainability Report"
+      ],
+      "title": "PVH CR Report 2022",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15544424,
+      "name": "Source-000190916",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190916.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544425/41681055.pdf",
+      "link": "",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Communication on Progress",
+        "Sustainability Report"
+      ],
+      "title": "OVS Sustainability Report 2022",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15544413,
+      "name": "Source-000190915",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190915.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544414/41681033.pdf",
+      "link": "",
+      "report_type": [
+        "Company Website",
+        "Corporate Social Responsibility Report",
+        "Communication on Progress"
+      ],
+      "title": "Aeropostale Homepage 2023",
+      "year": [
+        "2023"
+      ]
+    },
+    {
+      "id": 15544401,
+      "name": "Source-000190914",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190914.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544402/41681020.pdf",
+      "link": "",
+      "report_type": [
+        "Company Website",
+        "Corporate Social Responsibility Report",
+        "Communication on Progress"
+      ],
+      "title": "Sustainability -Our Initiative and Goals - Quiksilver Homepage 2023",
+      "year": [
+        "2023"
+      ]
+    },
+    {
+      "id": 15544310,
+      "name": "Source-000190913",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190913.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544311/41680888.pdf",
+      "link": "https://www.mangofashiongroup.com/documents/20122/89449/Mango_Sustainability+Report+2022_EN.pdf/445cad6f-ebde-5aa5-ed34-96091ffea617?t=1685615351346",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Communication on Progress",
+        "Sustainability Report"
+      ],
+      "title": "Mango sustainability Report 2022",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15544298,
+      "name": "Source-000190912",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190912.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544299/41680876.pdf",
+      "link": "",
+      "report_type": [
+        "Company Website",
+        "Corporate Social Responsibility Report",
+        "Communication on Progress"
+      ],
+      "title": "ESG - Environmental, Social & Corporate Governance – Matalan Homepage 2023",
+      "year": [
+        "2023"
+      ]
+    },
+    {
+      "id": 15544265,
+      "name": "Source-000190911",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190911.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544266/41680821.pdf",
+      "link": "",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Communication on Progress",
+        "Sustainability Report",
+        "Aggregate Data Report"
+      ],
+      "title": "Caixa Bank Consolidated Management Report 2022",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15544160,
+      "name": "Source-000190910",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190910.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544161/41680371.pdf",
+      "link": "https://www.britishland.com/sites/british-land-corp/files/about-us/corporate-governance/policies/anti-bribery-and-corruption-policy-march-2023.pdf",
+      "report_type": [
+        "Corporate Social Responsibility Report"
+      ],
+      "title": "British Land Anti-Bribery and Corruption Policy",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15544005,
+      "name": "Source-000190909",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190909.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15544006/41680187.pdf",
+      "link": "https://media.elcompanies.com/files/e/estee-lauder-companies/universal/investors/corporate-governance/governance-principles/elc-code-of-conduct.pdf",
+      "report_type": [
+        "Code of Conduct",
+        "Corporate Social Responsibility Report"
+      ],
+      "title": "ELC Code of Conduct",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15543992,
+      "name": "Source-000190908",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190908.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15543993/41680172.pdf",
+      "link": "https://media.elcompanies.com/files/e/estee-lauder-companies/universal/our-commitments/supplier-code-of-conduct/2023/elc-supplier-code-of-conduct-us-english.pdf?_ga=2.14623998.832010935.1694780757-224394910.1694440541&_gl=1*u80rk2*_ga*MjI0Mzk0OTEwLjE2OTQ0NDA1NDE.*_ga_V9QZ4PSDRY*MTY5NDc4MDc1OC4yLjEuMTY5NDc4MDc5NC4yNC4wLjA.",
+      "report_type": [
+        "Code of Conduct",
+        "Corporate Social Responsibility Report"
+      ],
+      "title": "ELC Supplier Code of Conduct",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15543979,
+      "name": "Source-000190907",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190907.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15543980/41680158.aspx",
+      "link": "https://otp.tools.investis.com/clients/us/estee_lauder4/SEC/sec-show.aspx?FilingId=16037879&Cik=0001001250&Type=PDF&hasPdf=1",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Sustainability Report",
+        "Annual Report"
+      ],
+      "title": "Estée Lauder Annual Report 2022",
+      "year": [
+        "2022"
+      ]
+    },
+    {
+      "id": 15543127,
+      "name": "Source-000190906",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000190906.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/15543128/41679065.pdf",
+      "link": "https://www.shaftesburycapital.com/content/dam/shaftesbury/corporate/new-build/doucments/responsibility/policies/shaftesbury/Supplier%20code%20of%20conduct%202023.pdf",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Sustainability Report"
+      ],
+      "title": "Shaftesbury Supplier code of conduct",
+      "year": [
+        "2022"
+      ]
+    }
+  ],
+  "links": [
+
+  ],
+  "ancestors": [
+
+  ],
+  "html_url": "https://wikirate.org/Source",
+  "created_at": "2012-03-13 19:59:55 UTC",
+  "updated_at": "2023-06-15 10:13:22 UTC",
+  "paging": {
+    "next": "https://wikirate.org/Source.json?item=name&limit=20&offset=20"
+  },
+  "requested_at": "2023-09-21 12:20:30 UTC",
+  "license": "Creative Commons Attribution-ShareAlike 4.0 International License"
+}
