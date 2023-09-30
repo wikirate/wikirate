@@ -16,6 +16,7 @@ module GraphQL
       def os_id
         object.card.oar_id
       end
+
       def relationships
         ::Relationship.where(
           "subject_company_id = #{object.id} OR object_company_id = #{object.id}"
