@@ -14,7 +14,7 @@ module GraphQL
         end
 
         def filter_option_values base_codename, filter_name
-          options = base_codename.card.format.send("filter_#{filter_name}_options")
+          options = base_codename.card.filter_option_values filter_name
           card_name_values options.is_a?(Hash) ? options.values : options
         end
       end

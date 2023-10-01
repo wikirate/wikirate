@@ -29,13 +29,12 @@ end
 # Helper Method: Filter Option Values
 def filter_option_values base_codename, filter_name
   puts "filter_option_values(#{base_codename}, #{filter_name})".blue
-  card_name_values base_codename.card.format.filter_option_values(filter_name)
+  card_name_values base_codename.card.filter_option_values(filter_name)
 end
 
 def fetch_wikirate_cardtypes
-  cardtypes = %i[wikirate_company metric metric_answer relationship_answer source
-                 dataset wikirate_topic research_group company_group record]
-  cardtypes
+  %i[wikirate_company metric metric_answer relationship_answer source
+     dataset wikirate_topic research_group company_group record]
 end
 
 def fetch_optional_subcards
