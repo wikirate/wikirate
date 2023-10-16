@@ -37,4 +37,14 @@ RSpec.describe Card::MetricQuery do
     expect(run({}, bookmarkers: :desc)[0..1].map(&:name))
       .to eq(["Jedi+disturbances in the Force", "Jedi+Victims by Employees"])
   end
+
+  example "not ids" do
+    dif = "Jedi+disturbances in the Force"
+    expect(run(not_ids: dif.card_id, designer: "Jedi").map(&:name)).not_to include(dif)
+  end
+
+  example "not ids (array)" do
+    dif = "Jedi+disturbances in the Force"
+    expect(run(not_ids: [dif.card_id], designer: "Jedi").map(&:name)).not_to include(dif)
+  end
 end
