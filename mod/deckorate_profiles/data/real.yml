@@ -18,8 +18,14 @@
     - :research_group
     - :researcher
     - :type_plus_right
-  :fields:
-    :read:
-      - :wikirate_team
-    :update:
-      - :wikirate_team
+    - :read
+  :content:
+    - :wikirate_team
+
+- :name:
+    - :research_group
+    - :researcher
+    - :type_plus_right
+    - :update
+  :content:
+    - :wikirate_team
