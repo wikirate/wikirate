@@ -27,6 +27,10 @@ format do
     "licensed under #{license_text} (#{license_url})"
   end
 
+  view :license do
+    render_attribution
+  end
+
   private
 
   def license_url
