@@ -16,7 +16,7 @@ end
 
 format do
   view :license do
-    "Creative Commons Attribution-ShareAlike 4.0 International License"
+    "Wikirate.org, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0)"
   end
 
   def rate_subject
