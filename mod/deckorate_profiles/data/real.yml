@@ -13,3 +13,19 @@
   :codename: metrics_designed
 - :name: Projects Organized
   :codename: projects_organized
+
+- :name:
+    - :research_group
+    - :researcher
+    - :type_plus_right
+    - :read
+  :content:
+    - :wikirate_team
+
+- :name:
+    - :research_group
+    - :researcher
+    - :type_plus_right
+    - :update
+  :content:
+    - :wikirate_team
