@@ -111,8 +111,8 @@ format :html do
     [edit_link(:edit, text: "Edit")]
   end
 end
-
-format do
+# base format
+format do  
   view :attribute, cache: :never do
     with_nest_mode :normal do
       %i[wikirate title adaptation license].map do |section|
