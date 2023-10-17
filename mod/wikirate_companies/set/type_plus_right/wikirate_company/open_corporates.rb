@@ -15,6 +15,14 @@ end
 format :html do
   delegate :company_number, :jurisdiction_code, to: :card
 
+  view :core, async: true do
+    if skip_excerpt?
+      fallback_link
+    else
+      super()
+    end
+  end
+
   def oc
     @oc ||= ::OpenCorporates::Company.new jurisdiction_code, company_number
   end
@@ -32,6 +40,10 @@ format :html do
 
     @excerpt_error_message = oc_error_message
     false
+  end
+
+  def skip_excerpt?
+    oc_error_message.match? "Expired"
   end
 
   def oc_error_message
@@ -68,5 +80,15 @@ format :html do
     date = oc.incorporation_date
     return "" unless date
     "#{date.strftime '%-d %B %Y'} (#{time_ago_in_words(date)} ago)"
+  end
+
+  def fallback_link
+    return company_number unless jurisdiction_code
+
+    link_to company_number, href: fallback_url, target: "_blank"
+  end
+
+  def fallback_url
+    "https://opencorporates.com/companies/#{jurisdiction_code}/#{company_number}"
   end
 end
