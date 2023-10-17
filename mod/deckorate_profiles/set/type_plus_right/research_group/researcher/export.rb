@@ -1,8 +1,8 @@
 include_set Abstract::Export
 
-def ok_to_export?
-  Auth.always_ok? || as_wikirate_team? || Auth.as_id.in?(left.organizer_card.item_ids)
-end
+# def ok_to_export?
+#   Auth.always_ok? || as_wikirate_team? || Auth.as_id.in?(left.organizer_card.item_ids)
+# end
 
 format do
   def filter_and_sort_hash

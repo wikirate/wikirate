@@ -29,7 +29,7 @@ format do
   end
 
   def filter_map
-    %i[topic report_type year wikirate_link company_name]
+    %i[report_type year wikirate_link company_name]
       .unshift key: :wikirate_title, open: true
   end
 end
