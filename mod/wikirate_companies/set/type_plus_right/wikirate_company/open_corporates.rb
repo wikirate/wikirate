@@ -82,13 +82,11 @@ format :html do
     "#{date.strftime '%-d %B %Y'} (#{time_ago_in_words(date)} ago)"
   end
 
-
   def fallback_link
     return company_number unless jurisdiction_code
 
     link_to company_number, href: fallback_url, target: "_blank"
   end
-
 
   def fallback_url
     "https://opencorporates.com/companies/#{jurisdiction_code}/#{company_number}"
