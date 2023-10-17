@@ -18,12 +18,6 @@ def tally_policy policy, count
   count[policy_type] += 1 if policy_type
 end
 
-format do
-  view :license do
-    "not specified"
-  end
-end
-
 format :csv do
   view :titled do
     field_nest :metric_answer, view: :titled
