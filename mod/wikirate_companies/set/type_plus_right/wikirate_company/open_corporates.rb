@@ -43,7 +43,7 @@ format :html do
   end
 
   def skip_excerpt?
-    oc_error_message.match? "Expired"
+    oc_error_message&.match? "Expired"
   end
 
   def oc_error_message
