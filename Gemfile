@@ -75,6 +75,7 @@ gem "statistics2"                    # required by savanna-outliers
 # MISCELLANEOUS
 gem "company-mapping"                # Vasso's gem, written for WikiRate
 gem "rack-cors"                      # support for Cross-Origin Resource Sharing (CORS)
+gem 'net-imap', "0.3.7", require: false # can take this away once ruby version is higher
 
 group :live do
   gem "dalli"                        # Memcache
