@@ -33,13 +33,12 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
       subject { card_subject.format(:base).search_params }
 
       before do
-        add_filter :topic, "Force"
+        add_filter :year, "1977"
       end
 
       it "adds filters to right_plus_array" do
         is_expected.to include(
-          right_plus: [[:wikirate_topic, { refer_to: [:in, "Force"] }],
-                       right_plus_val]
+          right_plus: [[:year.card_id, { refer_to: "1977" }], right_plus_val]
         )
       end
     end

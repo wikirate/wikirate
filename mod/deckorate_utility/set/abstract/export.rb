@@ -47,7 +47,7 @@ end
 format :html do
   view :export_panel, cache: :never, template: :haml, wrap: :slot
 
-  view :export_button, cache: :never, template: :haml
+  view :export_button, cache: :never, template: :haml, denial: :blank
 
   def export_mark
     card.name
