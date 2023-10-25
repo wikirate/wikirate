@@ -44,14 +44,14 @@ RSpec.describe Card::Set::Type::Reference do
   end
 
   context "an answer." do
-    let(:card) {Card.fetch("Jedi+disturbances in the Force+Death Star+2001")}
-    it "does include Death Star in Rich Text." do
+    let(:card) {Card.fetch("Reference 0000004")}
+    it "does include company and year in Rich Text." do
       expect(card.format.render(:rich_text_attrib)).to match(/(Death Star, 2001)/)
     end
-    it "does include Death Star in Plain Text." do
+    it "does include company and year in Plain Text." do
       expect(card.format.render(:plain_text_attrib)).to match(/(Death Star, 2001)/)
     end
-    it "does include Death Star in HTML." do
+    it "does include company and year in HTML." do
       expect(card.format.render(:html_attrib)).to match(/(Death Star, 2001)/)
     end
   end
