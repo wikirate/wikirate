@@ -193,3 +193,4 @@
 
 - :name: Attribution Guide
   :codename: attribution_guide
+  :conflict: override
