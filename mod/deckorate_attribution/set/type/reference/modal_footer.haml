@@ -1,6 +1,4 @@
 .small.text-center.w-100
   Got a question? Learn more about
-  // FIXME: should be relative, codename-based url
-  - url = "https://wikirate.org/Attribution_Guide"
-  %a.link.text-decoration-underline.fw-bold{ href: url }
+  %a.link.text-decoration-underline.fw-bold{ href: path(mark: :attribution_guide) }
     how to attribute.
