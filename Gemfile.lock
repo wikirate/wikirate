@@ -8,52 +8,52 @@ PATH
 PATH
   remote: vendor/card-mods
   specs:
-    card-mod-alias (0.2)
+    card-mod-alias (0.15)
       card
-    card-mod-bookmarks (0.3)
+    card-mod-bookmarks (0.2)
       card
       card-mod-counts
-    card-mod-counts (0.3)
+    card-mod-counts (0.2)
       card
       card-mod-filter
       card-mod-search
-    card-mod-csv_import (0.2)
+    card-mod-csv_import (0.10)
       card
       card-mod-export
       card-mod-tabs
-    card-mod-export (0.3)
+    card-mod-export (0.2)
       card
       card-mod-search
-    card-mod-filter (0.3)
+    card-mod-filter (0.2)
       card
       card-mod-bootstrap
       card-mod-search
-    card-mod-flag (0.3)
+    card-mod-flag (0.2)
       card
-    card-mod-fulltext (0.3)
+    card-mod-fulltext (0.2)
       card
-    card-mod-google_analytics (0.2)
+    card-mod-google_analytics (0.16)
       card
       staccato (~> 0.5)
-    card-mod-graphql (0.2)
+    card-mod-graphql (0.1)
       card
       graphiql-rails (~> 1.7)
       graphql (~> 1.12.20)
       rack-cors
-    card-mod-lookup (0.4)
+    card-mod-lookup (0.3)
       card
       card-mod-filter
-    card-mod-new_relic (0.3)
+    card-mod-new_relic (0.2)
       card
       decko
       newrelic_rpm
-    card-mod-pdfjs (0.3)
+    card-mod-pdfjs (0.2)
       card
-    card-mod-social (0.3)
+    card-mod-social (0.2)
       card
-    card-mod-solid_cache (0.4)
+    card-mod-solid_cache (0.3)
       card
-    card-mod-thumbnail (0.2)
+    card-mod-thumbnail (0.1)
       card
       card-mod-bar_and_box
 
@@ -390,7 +390,7 @@ GEM
       rails (>= 3.1)
     break (0.40.0)
     builder (3.2.4)
-    capistrano (3.17.3)
+    capistrano (3.18.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -632,7 +632,7 @@ GEM
     mysql2 (0.5.5)
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
-    net-imap (0.4.1)
+    net-imap (0.4.2)
       date
       net-protocol
     net-pop (0.1.2)
@@ -753,7 +753,7 @@ GEM
     roo (2.10.0)
       nokogiri (~> 1)
       rubyzip (>= 1.3.0, < 3.0.0)
-    rouge (4.1.3)
+    rouge (4.2.0)
     rr (3.1.0)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
@@ -781,8 +781,7 @@ GEM
     rspec-support (3.12.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.57.1)
-      base64 (~> 0.1.1)
+    rubocop (1.57.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -793,7 +792,7 @@ GEM
       rubocop-ast (>= 1.28.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.29.0)
+    rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
     rubocop-capybara (2.19.0)
       rubocop (~> 1.41)
@@ -811,7 +810,7 @@ GEM
       ast
     ruby-prof (1.6.3)
     ruby-progressbar (1.13.0)
-    ruby-vips (2.1.4)
+    ruby-vips (2.2.0)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     ruby_parser (3.20.3)
@@ -865,7 +864,7 @@ GEM
     temple (0.10.3)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
-    thor (1.2.2)
+    thor (1.3.0)
     tilt (2.3.0)
     timecop (0.9.8)
     timeout (0.4.0)
