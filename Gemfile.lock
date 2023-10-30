@@ -8,52 +8,52 @@ PATH
 PATH
   remote: vendor/card-mods
   specs:
-    card-mod-alias (0.2)
+    card-mod-alias (0.15)
       card
-    card-mod-bookmarks (0.3)
+    card-mod-bookmarks (0.2)
       card
       card-mod-counts
-    card-mod-counts (0.3)
+    card-mod-counts (0.2)
       card
       card-mod-filter
       card-mod-search
-    card-mod-csv_import (0.2)
+    card-mod-csv_import (0.10)
       card
       card-mod-export
       card-mod-tabs
-    card-mod-export (0.3)
+    card-mod-export (0.2)
       card
       card-mod-search
-    card-mod-filter (0.3)
+    card-mod-filter (0.2)
       card
       card-mod-bootstrap
       card-mod-search
-    card-mod-flag (0.3)
+    card-mod-flag (0.2)
       card
-    card-mod-fulltext (0.3)
+    card-mod-fulltext (0.2)
       card
-    card-mod-google_analytics (0.2)
+    card-mod-google_analytics (0.16)
       card
       staccato (~> 0.5)
-    card-mod-graphql (0.2)
+    card-mod-graphql (0.1)
       card
       graphiql-rails (~> 1.7)
       graphql (~> 1.12.20)
       rack-cors
-    card-mod-lookup (0.4)
+    card-mod-lookup (0.3)
       card
       card-mod-filter
-    card-mod-new_relic (0.3)
+    card-mod-new_relic (0.2)
       card
       decko
       newrelic_rpm
-    card-mod-pdfjs (0.3)
+    card-mod-pdfjs (0.2)
       card
-    card-mod-social (0.3)
+    card-mod-social (0.2)
       card
-    card-mod-solid_cache (0.4)
+    card-mod-solid_cache (0.3)
       card
-    card-mod-thumbnail (0.2)
+    card-mod-thumbnail (0.1)
       card
       card-mod-bar_and_box
 
@@ -965,4 +965,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   2.4.18
+   2.4.6
