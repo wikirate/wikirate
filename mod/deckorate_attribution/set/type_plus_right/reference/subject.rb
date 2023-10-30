@@ -1,7 +1,1 @@
-def ok_to_create
-  true
-end
-
-def ok_to_update
-  true
-end
+delegate :ok_to_create, :ok_to_update, :ok_to_delete, to: :left

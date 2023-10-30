@@ -20,9 +20,3 @@ end
 def relationship_count_value?
   false
 end
-
-format :html do
-  def edit_fields
-    [value_field_card_and_options]
-  end
-end
