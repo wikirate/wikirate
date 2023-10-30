@@ -15,6 +15,10 @@ def ok_to_update
   (Auth.current_id == creator_id) || Auth.current.stewards_all?
 end
 
+def ok_to_delete
+  ok_to_update
+end
+
 private
 
 def party_required?
@@ -88,6 +92,12 @@ format :html do
       [:wikirate_title, title: "Title"],
       [:url, title: "URL"]
     ]
+  end
+
+  view :core do
+    edit_fields.map do |fld|
+      field_nest Array.wrap(fld).first, view: :titled
+    end
   end
 
   def attribution_message
