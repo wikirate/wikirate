@@ -16,7 +16,7 @@ format do
   end
 
   view :att_title do
-    "'#{attribution_title}' (#{render_id_url}) by #{render_attribution_authorship}"
+    "'#{attribution_title}' <#{render_id_url}> by #{render_attribution_authorship}"
   end
 
   view :attribution_authorship do
