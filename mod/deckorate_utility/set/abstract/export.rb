@@ -31,10 +31,7 @@ format :json do
   end
 
   def page_details obj
-    super.tap do |hash|
-      hash[:license] = render_license if card.known? && hash.is_a?(Hash)
-      cache_url hash
-    end
+    super.tap { |hash| cache_url hash }
   end
 
   def cache_url hash
