@@ -27,10 +27,6 @@ format do
     "licensed under #{license_text} (#{license_url})"
   end
 
-  view :license do
-    render_attribution
-  end
-
   private
 
   def license_url
@@ -71,24 +67,6 @@ format :html do
   view :history_and_references do
     tabs "Contributions" => { content: render_history(hide: :title) },
          "References" => { content: field_nest(:reference, view: :content) }
-  end
-
-  view :attributions do
-    tabs "Rich Text" => { content: render_rich_text_attrib },
-         "Plain Text" => { content:  render_plain_text_attrib },
-         "HTML" => { content: render_html_attrib }
-  end
-
-  view :rich_text_attrib do
-    attribution_box { render_attribution }
-  end
-
-  view :plain_text_attrib do
-    attribution_box { card.format(:text).render_attribution }
-  end
-
-  view :html_attrib do
-    attribution_box { h render_attribution }
   end
 
   view :att_wikirate do
