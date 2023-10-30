@@ -28,3 +28,13 @@
     :party: Joe User
     :url: https://xkcd.com/2807/
     :wikirate_title: My third Reference
+
+- :name: Reference 0000004
+  :type: :reference
+  :user: Joe User
+  :fields:
+    :subject: Jedi+disturbances in the Force+Death Star+2001
+    :adaptation: No, I use the original data
+    :party: Joe User
+    :url: https://xkcd.com/2806/
+    :wikirate_title: My fourth Reference
