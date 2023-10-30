@@ -15,10 +15,6 @@ def as_moderator?
 end
 
 format do
-  view :license do
-    "Wikirate.org, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0)"
-  end
-
   def rate_subject
     @wikirate_subject ||= Card.fetch_name(:wikirate_company)
   end
