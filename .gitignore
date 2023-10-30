@@ -22,3 +22,5 @@ spec/examples.txt
 /**/*.iml
 aws-secret.yml
 cypress/videos
+/.vscode
+.env
