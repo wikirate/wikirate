@@ -14,7 +14,7 @@ describe "Attribution Generator - Dataset", ->
     cy.contains("Wikirate.org, 'Evil Dataset' by Decko Bot, licensed under CC BY 4.0")
   it "generates attribution for Plain Text.", ->
     cy.get(".tab-li-plain_text").click()
-    cy.contains("Wikirate.org, 'Evil Dataset' (http://localhost:5002/~3644) by Decko Bot, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0)")
+    cy.contains("Wikirate.org, 'Evil Dataset' by Decko Bot, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0)")
   it "generates attribution for HTML.", ->
     cy.get(".tab-li-html").click()
     cy.contains('<a href="https://wikirate.org" target="_blank">Wikirate.org</a>, \'<a href="http://localhost:5002/~3644" target="_blank">Evil Dataset</a>\' by <a href="http://localhost:5002/~1" target="_blank">Decko Bot</a>, licensed under <a href="https://creativecommons.org/licenses/by/4.0" target="_blank">CC BY 4.0</a>')
