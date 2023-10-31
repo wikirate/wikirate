@@ -884,3 +884,8 @@ counts_177:
   left_id: 3251
   right_id: 788
   value: 1
+counts_178:
+  id: 178
+  left_id: 3420
+  right_id: 788
+  value: 1
