@@ -9149,343 +9149,336 @@ card_references_1307:
   ref_type: L
   is_present:
 card_references_1308:
-  id: 1776
-  referer_id: 496
-  referee_key: "*getting_started_link"
-  referee_id: 526
-  ref_type: L
-  is_present:
-card_references_1309:
-  id: 1777
-  referer_id: 496
-  referee_key: "*recent"
-  referee_id: 100
-  ref_type: L
-  is_present:
-card_references_1310:
-  id: 1778
-  referer_id: 495
-  referee_key: deckorate_layout
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1311:
   id: 1779
   referer_id: 973
   referee_key: wiki_rate_team
   referee_id: 646
   ref_type: L
   is_present:
-card_references_1312:
+card_references_1309:
   id: 1793
   referer_id: 974
   referee_key: wiki_rate_team
   referee_id: 646
   ref_type: L
   is_present:
-card_references_1313:
-  id: 1807
-  referer_id: 444
-  referee_key: wikirate_skin
-  referee_id: 829
-  ref_type: L
-  is_present:
-card_references_1314:
+card_references_1310:
   id: 1821
   referer_id: 976
   referee_key: mod_account+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1315:
+card_references_1311:
   id: 1822
   referer_id: 976
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
+card_references_1312:
+  id: 1893
+  referer_id: 496
+  referee_key: "*getting_started_link"
+  referee_id: 526
+  ref_type: L
+  is_present:
+card_references_1313:
+  id: 1894
+  referer_id: 496
+  referee_key: "*recent"
+  referee_id: 100
+  ref_type: L
+  is_present:
+card_references_1314:
+  id: 1895
+  referer_id: 495
+  referee_key: deckorate_layout
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1315:
+  id: 1896
+  referer_id: 444
+  referee_key: wikirate_skin
+  referee_id: 829
+  ref_type: L
+  is_present:
 card_references_1316:
-  id: 1823
+  id: 1910
   referer_id: 305
   referee_key: mod_format+*script
   referee_id: 538
   ref_type: L
   is_present:
 card_references_1317:
-  id: 1824
+  id: 1911
   referer_id: 305
   referee_key: mod_list+*script
   referee_id: 542
   ref_type: L
   is_present:
 card_references_1318:
-  id: 1825
+  id: 1912
   referer_id: 305
   referee_key: mod_search+*script
   referee_id: 551
   ref_type: L
   is_present:
 card_references_1319:
-  id: 1826
+  id: 1913
   referer_id: 305
   referee_key: mod_rule+*script
   referee_id: 555
   ref_type: L
   is_present:
 card_references_1320:
-  id: 1827
+  id: 1914
   referer_id: 305
   referee_key: mod_edit+*script
   referee_id: 559
   ref_type: L
   is_present:
 card_references_1321:
-  id: 1828
-  referer_id: 305
-  referee_key: mod_account+*script
-  referee_id: 976
-  ref_type: L
-  is_present:
-card_references_1322:
-  id: 1829
+  id: 1915
   referer_id: 305
   referee_key: mod_carrierwave+*script
   referee_id: 569
   ref_type: L
   is_present:
-card_references_1323:
-  id: 1830
+card_references_1322:
+  id: 1916
   referer_id: 305
   referee_key: mod_ace_editor+*script
   referee_id: 576
   ref_type: L
   is_present:
-card_references_1324:
-  id: 1831
+card_references_1323:
+  id: 1917
   referer_id: 305
   referee_key: mod_bar_and_box+*script
   referee_id: 583
   ref_type: L
   is_present:
-card_references_1325:
-  id: 1832
+card_references_1324:
+  id: 1918
   referer_id: 305
   referee_key: mod_bootstrap+*script
   referee_id: 587
   ref_type: L
   is_present:
-card_references_1326:
-  id: 1833
+card_references_1325:
+  id: 1919
   referer_id: 305
   referee_key: mod_filter+*script
   referee_id: 884
   ref_type: L
   is_present:
-card_references_1327:
-  id: 1834
+card_references_1326:
+  id: 1920
   referer_id: 305
   referee_key: mod_tab+*script
   referee_id: 600
   ref_type: L
   is_present:
-card_references_1328:
-  id: 1835
+card_references_1327:
+  id: 1921
   referer_id: 305
   referee_key: mod_csv_import+*script
   referee_id: 892
   ref_type: L
   is_present:
-card_references_1329:
-  id: 1836
+card_references_1328:
+  id: 1922
   referer_id: 305
   referee_key: mod_deckorate_search+*script
   referee_id: 896
   ref_type: L
   is_present:
-card_references_1330:
-  id: 1837
+card_references_1329:
+  id: 1923
   referer_id: 305
   referee_key: mod_follow+*script
   referee_id: 595
   ref_type: L
   is_present:
-card_references_1331:
-  id: 1838
+card_references_1330:
+  id: 1924
   referer_id: 305
   referee_key: mod_layout+*script
   referee_id: 603
   ref_type: L
   is_present:
-card_references_1332:
-  id: 1839
+card_references_1331:
+  id: 1925
   referer_id: 305
   referee_key: mod_recaptcha+*script
   referee_id: 607
   ref_type: L
   is_present:
-card_references_1333:
-  id: 1840
+card_references_1332:
+  id: 1926
   referer_id: 305
   referee_key: mod_tinymce_editor+*script
   referee_id: 610
   ref_type: L
   is_present:
-card_references_1334:
-  id: 1841
+card_references_1333:
+  id: 1927
   referer_id: 305
   referee_key: mod_deckorate_utility+*script
   referee_id: 915
   ref_type: L
   is_present:
-card_references_1335:
-  id: 1842
+card_references_1334:
+  id: 1928
   referer_id: 305
   referee_key: mod_deckorate_core+*script
   referee_id: 923
   ref_type: L
   is_present:
-card_references_1336:
-  id: 1843
+card_references_1335:
+  id: 1929
   referer_id: 305
   referee_key: mod_deckorate_research+*script
   referee_id: 927
   ref_type: L
   is_present:
-card_references_1337:
-  id: 1844
+card_references_1336:
+  id: 1930
   referer_id: 305
   referee_key: mod_deckorate_calculation+*script
   referee_id: 932
   ref_type: L
   is_present:
-card_references_1338:
-  id: 1845
+card_references_1337:
+  id: 1931
   referer_id: 305
   referee_key: mod_deckorate_attribution+*script
   referee_id: 939
   ref_type: L
   is_present:
-card_references_1339:
-  id: 1846
+card_references_1338:
+  id: 1932
   referer_id: 305
   referee_key: mod_wikirate_shared+*script
   referee_id: 945
   ref_type: L
   is_present:
-card_references_1340:
-  id: 1847
+card_references_1339:
+  id: 1933
   referer_id: 305
   referee_key: mod_wikirate_company+*script
   referee_id: 949
   ref_type: L
   is_present:
-card_references_1341:
-  id: 1848
+card_references_1340:
+  id: 1934
   referer_id: 305
   referee_key: mod_wikirate+*script
   referee_id: 953
   ref_type: L
   is_present:
-card_references_1342:
-  id: 1849
+card_references_1341:
+  id: 1935
   referer_id: 305
   referee_key: mod_task+*script
   referee_id: 959
   ref_type: L
   is_present:
-card_references_1343:
-  id: 1850
+card_references_1342:
+  id: 1936
   referer_id: 305
   referee_key: mod_vega+*script
   referee_id: 963
   ref_type: L
   is_present:
-card_references_1344:
-  id: 1851
+card_references_1343:
+  id: 1937
   referer_id: 481
   referee_key: "*script"
   referee_id: 301
   ref_type: L
   is_present:
-card_references_1345:
-  id: 1852
+card_references_1344:
+  id: 1938
   referer_id: 481
   referee_key: "*style"
   referee_id: 347
   ref_type: L
   is_present:
+card_references_1345:
+  id: 1939
+  referer_id: 481
+  referee_key: "*layout"
+  referee_id: 492
+  ref_type: L
+  is_present:
 card_references_1346:
-  id: 1853
+  id: 1940
   referer_id: 481
   referee_key: "*update"
   referee_id: 66
   ref_type: L
   is_present:
 card_references_1347:
-  id: 1854
+  id: 1941
   referer_id: 481
   referee_key: "*read"
   referee_id: 9
   ref_type: L
   is_present:
 card_references_1348:
-  id: 1855
-  referer_id: 481
-  referee_key: "*layout"
-  referee_id: 492
-  ref_type: L
-  is_present:
-card_references_1349:
-  id: 1856
+  id: 1942
   referer_id: 481
   referee_key: "*input_type"
   referee_id: 148
   ref_type: L
   is_present:
-card_references_1350:
-  id: 1857
+card_references_1349:
+  id: 1943
   referer_id: 481
   referee_key: "*default"
   referee_id: 8
   ref_type: L
   is_present:
-card_references_1351:
-  id: 1858
+card_references_1350:
+  id: 1944
   referer_id: 481
   referee_key: "*delete"
   referee_id: 67
   ref_type: L
   is_present:
-card_references_1352:
-  id: 1859
+card_references_1351:
+  id: 1945
   referer_id: 481
   referee_key: "*autoname"
   referee_id: 17
   ref_type: L
   is_present:
-card_references_1353:
-  id: 1860
+card_references_1352:
+  id: 1946
   referer_id: 481
   referee_key: "*create"
   referee_id: 65
   ref_type: L
   is_present:
-card_references_1354:
-  id: 1861
+card_references_1353:
+  id: 1947
   referer_id: 481
   referee_key: "*content_option"
   referee_id: 59
   ref_type: L
   is_present:
-card_references_1355:
-  id: 1862
+card_references_1354:
+  id: 1948
   referer_id: 481
   referee_key: "*structure"
   referee_id: 28
   ref_type: L
   is_present:
-card_references_1356:
-  id: 1863
+card_references_1355:
+  id: 1949
   referer_id: 481
   referee_key: "*captcha"
   referee_id: 512
