@@ -17,6 +17,13 @@ def direct_dependee_metrics
   []
 end
 
+def recalculate_dependees
+  return if researched?
+
+  direct_dependee_metrics.each(&:recalculate_dependees)
+  calculate_answers
+end
+
 # DEPENDERS = metrics that depend on me
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
