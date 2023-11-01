@@ -14,11 +14,8 @@
       .col-6.col-sm-4
         .footer-link-list.py-2
           %h2 legal
-          - footer_legal_link_list.each do |text, dest|
-            - if dest.match?(/^http/)
-              = link_to text, href: dest, title: text, target: "_legal"
-            - else
-              = link_to_card dest, text
+          - footer_legal_link_list.each do |link|
+            = link
       .col-6.col-sm-4
         .footer-link-list.py-2
           %h2 contact
@@ -46,9 +43,4 @@
             We're on
             = link_to "Decko", href: "https://decko.org", target: "_decko"
       .wikirate-licensing.col-12.col-md-8.pb-3
-        Wikirate's content is licensed under
-        %a{ href: "https://creativecommons.org/licenses/by/4.0/", target: "_legal" }
-          CC BY 4.0,
-        and Wikirate's database infrastructure is licensed under
-        %a{ href: "https://creativecommons.org/licenses/by-sa/4.0/", target: "_legal" }
-          CC BY-SA 4.0.
+        = nest :wikirate_license, view: :core
