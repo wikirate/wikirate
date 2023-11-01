@@ -1,7 +1,8 @@
 include_set Abstract::SocialMedia
 
-LEGAL_CODENAMES =
-  %i[community_guidelines privacy_policy terms_of_use disclaimers notice_and_take_down]
+LEGAL_CODENAMES = %i[
+  community_guidelines privacy_policy terms_of_use disclaimers notice_and_take_down
+].freeze
 
 format :html do
   view :core, template: :haml
