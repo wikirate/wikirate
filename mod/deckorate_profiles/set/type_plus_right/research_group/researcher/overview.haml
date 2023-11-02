@@ -4,5 +4,6 @@
   = render :manage_button
 .researcher-details
   = render :contributions
-  .py-4
-    = render :export_button
+  - if card.ok? :update
+    .py-4
+      = render :export_button
