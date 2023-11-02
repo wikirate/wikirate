@@ -20,6 +20,18 @@
   }
 }
 
+// guide images
+.TYPE_PLUS_RIGHT-guide-body {
+  img {
+    max-width: 100%;
+    max-height: auto;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1rem auto;
+    box-shadow: 0 5px 10px 0px rgba(45,35,116,0.12);
+  }
+}
 
 .wr-infobox {
   background: $gray-200;
