@@ -47,7 +47,7 @@ class Calculate
       # @param [Array<company_id>] company_id when given search only for answers for those
       #    companies
       # @param [Array<year>] year when given search only for answers for those years
-      def search_value_for result_space, company_id:, year:
+      def search_value_for result_space, company_id: nil, year: nil
         return search result_space if company_id.nil? && year.nil?
 
         @result_space = result_space
