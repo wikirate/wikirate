@@ -41,7 +41,7 @@ end
 def remote_file_url= url
   self.remote_file_request_header = { "User-Agent": PDF_REQUEST_AGENT }
   Timeout.timeout(DOWNLOAD_MAX_SECONDS) { super }
-rescue TimeoutError
+rescue Timeout::Error
   @download_timeout = true
 end
 
