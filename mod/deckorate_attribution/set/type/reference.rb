@@ -66,7 +66,7 @@ format :html do
   end
 
   view :plain_text_attrib do
-    attribution_box { card.format(:text).render_attribute }
+    attribution_box { h card.format(:text).render_attribute }
   end
 
   view :html_attrib, cache: :never do
