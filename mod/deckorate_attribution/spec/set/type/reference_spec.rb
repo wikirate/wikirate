@@ -26,7 +26,7 @@ RSpec.describe Card::Set::Type::Reference do
       expect_view(:rich_text_attrib).to match(/Wikirate's community/)
     end
     it "includes community credit in Plain Text." do
-      expect_view(:plain_text_attrib).to match(/Wikirate's community/)
+      expect_view(:plain_text_attrib).to match(/Wikirate&#39;s community/)
     end
     it "includes community credit in HTML." do
       expect_view(:html_attrib).to match(/Wikirate&#39;s community/)
