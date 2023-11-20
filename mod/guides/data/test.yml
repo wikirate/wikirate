@@ -4,5 +4,7 @@
 - :name: Force Guide
   :type: :guide_type
   :fields:
-    description: guided by guy dead
-    body: my body is a force
+    :description: guided by guy dead
+    :body: my body is a force {{Force Guide+:image|size:original}}
+    :image:
+      :image: guide_example.png

@@ -17,6 +17,18 @@ def direct_dependee_metrics
   []
 end
 
+# USE WITH CAUTION
+# This method works DOWN the dependency tree and recalculates answers. It's not a
+# typical pattern and was written as a bit of hail mary attempt to fix some confusing
+# results. But it can be very computationally expensive, and if things are working
+# properly it should never be necessary.
+def recalculate_dependees
+  return if researched?
+
+  direct_dependee_metrics.each(&:recalculate_dependees)
+  calculate_answers
+end
+
 # DEPENDERS = metrics that depend on me
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

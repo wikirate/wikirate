@@ -24,7 +24,7 @@ format do
   end
 
   view :att_license do
-    "licensed under #{license_text} (#{license_url})"
+    "licensed under #{license_text} <#{license_url}>"
   end
 
   private
