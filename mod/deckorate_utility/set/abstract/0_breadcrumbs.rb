@@ -8,17 +8,26 @@ format :html do
 
   def breadcrumb_items
     type = card.type_card
+    dataset = Card[card.name]
+
     breadcrumb_array = [
       link_to("Home", href: "/"),
       link_to_card(type, type.name.vary(:plural)),
       render_name
     ]
 
-    breadcrumb_item = Card[card.name]
-
-    breadcrumb_array.insert(-2, link_to_card(Card["#{breadcrumb_item.name}+Parent"].content)) \
-      if breadcrumb_item.parent != "" && card == breadcrumb_item
+    insert_parent_link(breadcrumb_array, dataset) if should_insert_parent_link?(dataset)
 
     breadcrumb_array
+  end
+
+  private
+
+  def should_insert_parent_link?(dataset)
+    dataset.parent != "" && card == dataset
+  end
+
+  def insert_parent_link(breadcrumb_array, dataset)
+    breadcrumb_array.insert(-2, link_to_card(Card["#{dataset.name}+Parent"].content))
   end
 end
