@@ -23,11 +23,11 @@ format :html do
 
   private
 
-  def should_insert_parent_link?(dataset)
+  def should_insert_parent_link? dataset
     dataset.parent != "" && card == dataset
   end
 
-  def insert_parent_link(breadcrumb_array, dataset)
+  def insert_parent_link breadcrumb_array, dataset
     breadcrumb_array.insert(-2, link_to_card(Card["#{dataset.name}+Parent"].content))
   end
 end
