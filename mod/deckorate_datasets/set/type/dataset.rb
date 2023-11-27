@@ -18,18 +18,18 @@ format :html do
       render_name
     ]
 
-    insert_parent_link(breadcrumb_array, card) if should_insert_parent_link?(card)
+    insert_parent_link(breadcrumb_array) if should_insert_parent_link?
 
     breadcrumb_array
   end
 
   private
 
-  def should_insert_parent_link? breadcrumb_card
+  def should_insert_parent_link?
     card.parent != "" && card
   end
 
-  def insert_parent_link breadcrumb_array, breadcrumb_card
+  def insert_parent_link breadcrumb_array
     breadcrumb_array.insert(-2, link_to_card(card.parent))
   end
 end
