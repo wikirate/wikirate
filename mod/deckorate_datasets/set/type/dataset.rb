@@ -1,6 +1,7 @@
 include_set Abstract::Thumbnail
 include_set Abstract::DeckorateTabbed
 include_set Abstract::Bookmarkable
+include_set Abstract::Breadcrumbs
 
 card_reader :wikirate_company, type: :list
 card_reader :metric, type: :list
@@ -9,12 +10,36 @@ card_reader :parent, type: :pointer
 card_reader :data_subset, type: :search_type
 card_reader :wikirate_topic, type: :list
 
-def parent_dataset_card
-  Card[parent_dataset]
+format :html do
+  def breadcrumb_items
+    breadcrumb_array = [
+      link_to("Home", href: "/"),
+      link_to_card(:dataset, "Datasets"),
+      render_name
+    ]
+
+    insert_parent_link(breadcrumb_array) if should_insert_parent_link?
+
+    breadcrumb_array
+  end
+
+  private
+
+  def should_insert_parent_link?
+    card.parent != "" && card
+  end
+
+  def insert_parent_link breadcrumb_array
+    breadcrumb_array.insert(-2, link_to_card(card.parent))
+  end
 end
 
 def parent_dataset
   parent_card.first_name
+end
+
+def parent_dataset_card
+  Card[parent_dataset]
 end
 
 def answers
