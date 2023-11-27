@@ -1,7 +1,6 @@
 include_set Abstract::Thumbnail
 include_set Abstract::DeckorateTabbed
 include_set Abstract::Bookmarkable
-include_set Abstract::Breadcrumbs
 
 card_reader :wikirate_company, type: :list
 card_reader :metric, type: :list
@@ -12,21 +11,17 @@ card_reader :wikirate_topic, type: :list
 
 format :html do
   def breadcrumb_items
-    breadcrumb_array = [
-      link_to("Home", href: "/"),
-      link_to_card(:dataset, "Datasets"),
-      render_name
-    ]
+    breadcrumb_array = super
 
-    insert_parent_link(breadcrumb_array) if should_insert_parent_link?
+    insert_parent_link(breadcrumb_array) if insert_parent_link?
 
     breadcrumb_array
   end
 
   private
 
-  def should_insert_parent_link?
-    card.parent != "" && card
+  def insert_parent_link?
+    card.parent.present?
   end
 
   def insert_parent_link breadcrumb_array
