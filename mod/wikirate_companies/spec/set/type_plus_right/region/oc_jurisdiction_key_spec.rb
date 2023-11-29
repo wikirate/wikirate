@@ -1,7 +1,11 @@
 RSpec.describe Card::Set::TypePlusRight::Region::OcJurisdictionKey do
-  context "when validation of oc keys" do
-    let(:oc_key) { Card["Argentina+OpenCorporates Jurisdiction key"] }
+  def card_subject
+    Card["Argentina+OpenCorporates Jurisdiction key"]
+  end
 
+  let(:oc_key) { card_subject }
+  
+  context "when validation of oc keys" do
     it "fetches the right oc key." do
       expect(oc_key.content).to eq("ar")
     end
