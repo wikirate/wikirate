@@ -11,5 +11,5 @@ end
 
 # Converts the OC Jurisdiction key into a symbol, if it is not nil
 def oc_code
-  oc_jurisdiction_key&.oc_code
+  fetch(:oc_jurisdiction_key)&.oc_code
 end
