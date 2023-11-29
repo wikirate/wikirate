@@ -26,7 +26,7 @@ Decko::RestSpecHelper.describe_api do
 
     context "without confirmed=true" do
       it "requires confirmation" do
-        get :create, params: params.merge
+        get :create, params: params
         assert_response 200
       end
     end
