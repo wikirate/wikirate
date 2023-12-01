@@ -73,7 +73,7 @@ basket[:icons][:font_awesome].merge!(
   less_than: "chevron-left",
   board: :wrench,
   clipboard: "copy",
-  close: "xmark"
+  save: "download"
 )
 
 format :html do
