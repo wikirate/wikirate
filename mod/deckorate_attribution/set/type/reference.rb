@@ -87,7 +87,7 @@ format :html do
   def edit_fields
     [
       :subject,
-      [:adaptation, title: "Adaptation"],
+      [:adaptation, title: "Adaptation <span style='color: red;'>*</span>"],
       [:party, title: "Person or Organization"],
       [:wikirate_title, title: "Title"],
       [:url, title: "URL"]
