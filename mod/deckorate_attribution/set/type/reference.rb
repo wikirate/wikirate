@@ -48,7 +48,7 @@ format :html do
   end
 
   view :new_buttons do
-    wrap { standard_save_button }
+    haml :tabs_placeholder
   end
 
   view :edit_buttons do
