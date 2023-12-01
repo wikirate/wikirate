@@ -12,7 +12,7 @@ RSpec.describe Card::Set::TypePlusRight::Region::OcJurisdictionKey do
 
     it "does not allow duplicate oc keys" do
       expect { oc_key.update! content: "zw" }
-        .to raise_error /OC key already exists/
+        .to raise_error /Open Corporates key already exists/
     end
 
     it "updates the oc key if it doesn't already exist" do
