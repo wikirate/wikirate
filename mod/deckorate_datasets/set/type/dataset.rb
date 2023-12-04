@@ -9,12 +9,32 @@ card_reader :parent, type: :pointer
 card_reader :data_subset, type: :search_type
 card_reader :wikirate_topic, type: :list
 
-def parent_dataset_card
-  Card[parent_dataset]
+format :html do
+  def breadcrumb_items
+    breadcrumb_array = super
+
+    insert_parent_link(breadcrumb_array) if insert_parent_link?
+
+    breadcrumb_array
+  end
+
+  private
+
+  def insert_parent_link?
+    card.parent.present?
+  end
+
+  def insert_parent_link breadcrumb_array
+    breadcrumb_array.insert(-2, link_to_card(card.parent))
+  end
 end
 
 def parent_dataset
   parent_card.first_name
+end
+
+def parent_dataset_card
+  Card[parent_dataset]
 end
 
 def answers
