@@ -101,7 +101,6 @@ class Card
         "answer_id IS #{'NOT ' if negate}NULL"
       end
 
-
       def filter_by_updated_from_date value
         date_from_value value.is_a?(Hash) ? value[:from] : value
       end
@@ -111,13 +110,17 @@ class Card
       end
 
       def date_from_value value
-        return unless value.present?
-
-        if (since = TIMEPERIODS[value.to_sym])
-          Time.now - since
-        else
-          Time.parse value
+        rescuing_bad_dates value do
+          if (since = TIMEPERIODS[value.to_sym])
+            Time.now - since
+          else
+            Time.parse value
+          end
         end
+      end
+
+      def rescuing_bad_dates value
+        yield if value.present?
       rescue ArgumentError
         nil
       end
