@@ -74,3 +74,29 @@
 .copy-button {
   border-radius: 0rem 0.25rem 0.25rem 0rem;
 }
+
+button.submit-button.btn.btn-primary {
+  align-items: center;
+  border-radius: 0rem 0.25rem 0.25rem 0rem;
+  display: flex; 
+  font-weight: bold;
+  margin-right: 0 !important
+}
+
+ul.tabs {
+  border-bottom: 4px solid #e9ecef;
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding-left: 0
+}
+
+.tab-placeholder {
+  margin: 3px 1px 3px;
+  padding: 18px 20px;
+}
+
+ul.nav.nav-tabs {
+  display: flex;
+  justify-content: space-around;
+}
