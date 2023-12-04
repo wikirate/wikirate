@@ -61,6 +61,7 @@ format :html do
     "Value"
   end
 
+  # the "closer" is the ui badge that closes a filter
   def filter_value_closer_value value
     case value
     when Array
@@ -70,6 +71,10 @@ format :html do
     else
       value
     end
+  end
+
+  def filter_updated_closer_value value
+    filter_value_closer_value value
   end
 
   private
