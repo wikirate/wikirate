@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::Region::OcJurisdictionKey do
+RSpec.describe Card::Set::TypePlusRight::Region::CountryCode do
   def card_subject
     Card["Argentina+Country Code"]
   end
