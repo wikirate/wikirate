@@ -3,10 +3,21 @@ class Card
     # filters based on year and children of the answer card
     # (as opposed to metric and company)
     module AnswerFilters
-      def filter_by_updated value
-        return unless (period = timeperiod value)
+      TIMEPERIODS = {
+        today: 1.day,
+        week: 1.week,
+        month: 1.month
+      }.freeze
 
-        filter :updated_at, Time.now - period, ">"
+      def filter_by_updated value
+        value.symbolize_keys! if value.is_a? Hash
+        if (from_date = filter_by_updated_from_date value)
+          filter :updated_at, from_date, ">="
+        end
+
+        if (to_date = filter_by_updated_to_date value)
+          filter :updated_at, to_date, "<"
+        end
       end
 
       def filter_by_year value
@@ -90,15 +101,28 @@ class Card
         "answer_id IS #{'NOT ' if negate}NULL"
       end
 
-      def timeperiod value
-        case value.to_sym
-        when :today then
-          1.day
-        when :week then
-          1.week
-        when :month then
-          1.month
+      def filter_by_updated_from_date value
+        date_from_value value.is_a?(Hash) ? value[:from] : value
+      end
+
+      def filter_by_updated_to_date value
+        value.is_a?(Hash) && date_from_value(value[:to])
+      end
+
+      def date_from_value value
+        rescuing_bad_dates value do
+          if (since = TIMEPERIODS[value.to_sym])
+            Time.now - since
+          else
+            Time.parse value
+          end
         end
+      end
+
+      def rescuing_bad_dates value
+        yield if value.present?
+      rescue ArgumentError
+        nil
       end
     end
   end
