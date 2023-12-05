@@ -51,14 +51,15 @@ format :html do
     :history_and_references
   end
 
-  def attribution_link text: ""
+  def attribution_link text: "", title: "Attribution"
     # , button: false
     modal_link "#{icon_tag :attribution} #{text}",
                size: :large,
                # class: ("btn btn-primary" if button),
                path: { mark: :reference,
                        action: :new,
-                       card: { fields: { ":subject": card.name } } }
+                       card: { fields: { ":subject": card.name } } },
+               title: title
   end
 
   view(:bar_menu, cache: :never) { super() }
