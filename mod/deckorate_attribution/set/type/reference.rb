@@ -60,6 +60,12 @@ format :html do
          "Plain Text" => { content:  render_plain_text_attrib },
          "HTML" => { content: render_html_attrib }
   end
+  # unknown means new card
+  view :attributions_placeholder, unknown: true do
+    tabs "Rich Text" => {},
+         "Plain Text" => {},
+         "HTML" => {}
+  end
 
   view :rich_text_attrib do
     attribution_box { render_attribute }
@@ -87,7 +93,7 @@ format :html do
   def edit_fields
     [
       :subject,
-      [:adaptation, title: "Adaptation <span style='color: red;'>*</span>"],
+      [:adaptation, title: "Adaptation"],
       [:party, title: "Person or Organization"],
       [:wikirate_title, title: "Title"],
       [:url, title: "URL"]
