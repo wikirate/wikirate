@@ -15,7 +15,7 @@
   - Death Star
   - '1991'
   :type: :metric_answer
-  :time: 2054203200 # HAPPY_BIRTHDAY - 1.day
+  :time: 2054116800 # HAPPY_BIRTHDAY - 2.day
   :fields:
     :value: 'yes'
     :source: Source-000000001

@@ -44,9 +44,19 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
         expect(search(updated: :today)).to eq ["disturbances in the Force"]
       end
 
+      it "finds today's edits (hash syntax)" do
+        expect(search(updated: { from: :today })).to eq ["disturbances in the Force"]
+      end
+
       it "finds this week's edits" do
         expect(search(updated: :week))
           .to eq ["disturbances in the Force", "disturbances in the Force"]
+      end
+
+      # note: "today" means 1 day ago. terminology is a little confusing here..
+      it "finds edits with a time range" do
+        expect(search(updated: { from: :week, to: :today }))
+          .to eq ["disturbances in the Force"]
       end
 
       it "finds this months's edits" do
