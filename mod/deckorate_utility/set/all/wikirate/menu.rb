@@ -13,10 +13,11 @@ format :html do
     [history_link, menu_edit_link, menu_board_link]
   end
 
-  def history_link text: ""
+  def history_link text: "", title: "History"
     modal_link "#{icon_tag :history} #{text}",
                size: :large,
-               path: { view: history_view, slot: { hide: :title } }
+               path: { view: history_view, slot: { hide: :title } },
+               title: title
   end
 
   def history_view
