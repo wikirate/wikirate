@@ -27,7 +27,7 @@ format :html do
 #        data-bs-placement='bottom' data-bs-target='#modal-view-history'
 #        class='modal-link' data-bs-size='large'>
 #        <i class='icon-history'></i> Timeline</a>"
-  def history_link text: "", title: "History"
+  def history_link text: "", title: "View History"
     modal_link "#{icon_tag :history} #{text}",
                size: :large,
                path: { view: history_view, slot: { hide: :title } },
