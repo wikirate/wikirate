@@ -61,9 +61,9 @@ format :html do
 # @example
 #   attribution_link(text: "Details", title: "View Attribution Details")
 #   #=> "<a href='/modal/mark/reference/new?card[fields][:subject]=#{card.name}'
-#        title='View Attribution Details' data-bs-toggle='modal'
-#        data-bs-target='#modal-mark-reference-new' class='modal-link'
-#        data-bs-size='large'><i class='icon-attribution'></i> Details</a>"
+#       title='View Attribution Details' data-bs-toggle='modal'
+#       data-bs-target='#modal-mark-reference-new' class='modal-link'
+#       data-bs-size='large'><i class='icon-attribution'></i> Details</a>"
   def attribution_link text: "", title: "Attribution"
     # , button: false
     modal_link "#{icon_tag :attribution} #{text}",
