@@ -24,10 +24,6 @@
 
 .TYPE-reference {
   > .card-form > .tab-panel {
-    .nav-item {
-      width: 33%;
-      text-align: center;
-    }
     padding-bottom: 2.5em;
   }
 
@@ -73,4 +69,29 @@
 
 .copy-button {
   border-radius: 0rem 0.25rem 0.25rem 0rem;
+}
+
+.submit-button.btn.btn-primary {
+  align-items: center;
+  border-radius: 0rem 0.25rem 0.25rem 0rem;
+  display: flex; 
+  font-weight: bold;
+  margin-right: 0 !important
+}
+
+.nav-tabs {
+  display: flex;
+}
+
+.nav-item {
+  flex-grow: 1
+}
+
+.nav-link {
+  text-align: center
+}
+
+.nav-link:focus,
+.nav-link:hover {
+  background-color: #fff;
 }
