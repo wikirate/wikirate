@@ -13,10 +13,27 @@ format :html do
     [history_link, menu_edit_link, menu_board_link]
   end
 
-  def history_link text: ""
+# Generates a history link with optional parameters.
+#
+# @param [String] text The text displayed on the link.
+# @param [String] title ("History") The title of the linked content.
+#
+# @return [String] The HTML code for the history link.
+#
+# @example
+#   history_link(text: "Timeline", title: "View Timeline History")
+#   #=> "<a href='/modal/view/history?slot[hide]=title'
+#       title='View Timeline History' data-bs-toggle='tooltip'
+#       data-bs-placement='bottom' data-bs-target='#modal-view-history'
+#       class='modal-link' data-bs-size='large'>
+#       <i class='icon-history'></i> Timeline</a>"
+  def history_link text: "", title: "View History"
     modal_link "#{icon_tag :history} #{text}",
                size: :large,
-               path: { view: history_view, slot: { hide: :title } }
+               path: { view: history_view, slot: { hide: :title } },
+               title: title,
+               "data-bs-toggle": "tooltip",
+               "data-bs-placement": "bottom"
   end
 
   def history_view
