@@ -60,6 +60,36 @@
   }
 }
 
+.TYPE-reference {
+  .submit-button {
+    align-items: center;
+    border-radius: 0rem 0.25rem 0.25rem 0rem;
+    display: flex; 
+    font-weight: bold;
+    margin-right: 0 !important
+  }
+}
+
+.TYPE-reference {
+  .card-form {
+    .tabbable {
+      .nav-tabs {
+        display: flex;
+      }
+      .nav-item {
+        flex-grow: 1;
+        .nav-link {
+          text-align: center;
+        }
+        .nav-link:focus,
+        .nav-link:hover {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}
+
 .clipboard {
   border: 1px solid $gray-400;
   a {
@@ -69,29 +99,4 @@
 
 .copy-button {
   border-radius: 0rem 0.25rem 0.25rem 0rem;
-}
-
-.submit-button.btn.btn-primary {
-  align-items: center;
-  border-radius: 0rem 0.25rem 0.25rem 0rem;
-  display: flex; 
-  font-weight: bold;
-  margin-right: 0 !important
-}
-
-.nav-tabs {
-  display: flex;
-}
-
-.nav-item {
-  flex-grow: 1
-}
-
-.nav-link {
-  text-align: center
-}
-
-.nav-link:focus,
-.nav-link:hover {
-  background-color: #fff;
 }
