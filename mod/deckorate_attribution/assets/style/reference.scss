@@ -61,16 +61,6 @@
 }
 
 .TYPE-reference {
-  .submit-button {
-    align-items: center;
-    border-radius: 0rem 0.25rem 0.25rem 0rem;
-    display: flex; 
-    font-weight: bold;
-    margin-right: 0 !important
-  }
-}
-
-.TYPE-reference {
   .card-form {
     .tabbable {
       .nav-tabs {
@@ -97,6 +87,10 @@
   }
 }
 
-.copy-button {
+.attribution-button {
+  align-items: center;
   border-radius: 0rem 0.25rem 0.25rem 0rem;
+  display: flex; 
+  font-weight: bold;
+  margin-right: 0 !important
 }
