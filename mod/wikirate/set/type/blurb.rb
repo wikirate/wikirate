@@ -29,7 +29,7 @@ format :html do
   private
 
   def action_link text, klass=nil
-    link_to "#{text}",
+    link_to text,
             href: card.uri,
             target: (card.uri.match?(/^http/) ? "_external" : ""),
             class: "action-link d-flex #{klass}"
