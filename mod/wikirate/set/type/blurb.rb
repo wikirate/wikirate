@@ -21,14 +21,15 @@ format :html do
     if (text = BUTTON_TEXT[card.codename])
       action_link text, "btn btn-outline-primary"
     else
-      action_link LINK_TEXT[card.codename] || "Learn more", "pb-1"
+      text = LINK_TEXT[card.codename]
+      action_link "#{text} #{material_symbol_tag :east}" || "Learn more", "pb-1"
     end
   end
 
   private
 
   def action_link text, klass=nil
-    link_to "#{text} #{material_symbol_tag :east}",
+    link_to text,
             href: card.uri,
             target: (card.uri.match?(/^http/) ? "_external" : ""),
             class: "action-link d-flex #{klass}"
