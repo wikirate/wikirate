@@ -18,6 +18,13 @@ def researched_dependee_answers
   dependee_answers.select(&:researched_value?)
 end
 
+def each_dependee_answer &block
+  direct_dependee_answers.each do |answer|
+    yield answer
+    answer.each_dependee_answer(&block)
+  end
+end
+
 # note: cannot do this in a single answer query, because it's important that we not skip
 # over direct dependencies.
 def each_depender_answer
