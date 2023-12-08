@@ -51,15 +51,15 @@ format :html do
     :history_and_references
   end
 
-# Generates an attribution link with optional parameters.
-#
-# @param [String] text The text displayed on the link.
-# @param [String] title ("Attribution") The title of the linked content.
-#
-# @return [String] The HTML code for the attribution link.
-#
-# @example
-#   attribution_link(text: "Details", title: "View Attribution Details")
+  # Generates an attribution link with optional parameters.
+  #
+  # @param [String] text The text displayed on the link.
+  # @param [String] title ("Attribution") The title of the linked content.
+  #
+  # @return [String] The HTML code for the attribution link.
+  #
+  # @example
+  #   attribution_link(text: "Details", title: "View Attribution Details")
   def attribution_link text: "", title: "Attribution"
     # , button: false
     modal_link "#{icon_tag :attribution} #{text}",
