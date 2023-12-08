@@ -60,4 +60,19 @@ RSpec.describe Card::Set::Type::Reference do
       expect_view(:html_attrib).to match(/(Death Star, 2001)/)
     end
   end
+
+  describe "event: store_attribution_snapshot" do
+    let :new_reference do
+      Card.create! type: :reference,
+                   fields: {
+                     subject: "Joe_User+researched_number_2",
+                     adaptation: "No, I use the original data"
+                   }
+    end
+
+    it "saves a snapshot of subject data when reference is stored" do
+      expect(CSV.parse(new_reference.file_card.file.read).length).to eq(8)
+      # 8 = 4 header rows + 1 title row + 3 answer rows
+    end
+  end
 end
