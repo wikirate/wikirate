@@ -60,7 +60,7 @@ format :html do
          "Plain Text" => { content:  render_plain_text_attrib },
          "HTML" => { content: render_html_attrib }
   end
-  # unknown means new card
+
   view :attributions_placeholder, unknown: true do
     tabs "Rich Text" => {},
          "Plain Text" => {},
