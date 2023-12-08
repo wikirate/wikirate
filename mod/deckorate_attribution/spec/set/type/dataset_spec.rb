@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::MetricAnswer do
+RSpec.describe Card::Set::Type::Dataset do
   describe "#each_reference_dump_row" do
     let :yielded_answers do
       [].tap { |rows| card_subject.each_reference_dump_row { |row| rows << row } }

@@ -6,5 +6,5 @@ end
 
 def each_reference_dump_row &block
   yield answer
-  each_dependee_answer &block
+  each_dependee_answer(&block)
 end

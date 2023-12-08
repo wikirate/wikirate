@@ -15,7 +15,7 @@ def each_reference_dump_row &block
   Answer.where(metric_id: id).in_batches do |answers|
     answers.each do |answer|
       yield answer
-      answer.each_dependee_answer &block if calc
+      answer.each_dependee_answer(&block) if calc
     end
   end
 end

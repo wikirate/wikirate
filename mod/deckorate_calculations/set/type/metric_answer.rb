@@ -21,7 +21,7 @@ end
 def each_dependee_answer &block
   direct_dependee_answers.each do |answer|
     yield answer
-    answer.each_dependee_answer &block
+    answer.each_dependee_answer(&block)
   end
 end
 
