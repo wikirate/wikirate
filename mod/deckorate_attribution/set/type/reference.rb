@@ -48,7 +48,7 @@ format :html do
   end
 
   view :new_buttons do
-    wrap { standard_save_button }
+    haml :tabs_placeholder
   end
 
   view :edit_buttons do
@@ -59,6 +59,12 @@ format :html do
     tabs "Rich Text" => { content: render_rich_text_attrib },
          "Plain Text" => { content:  render_plain_text_attrib },
          "HTML" => { content: render_html_attrib }
+  end
+
+  view :attributions_placeholder, unknown: true do
+    tabs "Rich Text" => {},
+         "Plain Text" => {},
+         "HTML" => {}
   end
 
   view :rich_text_attrib do
