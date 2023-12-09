@@ -8,6 +8,14 @@ def attribution_title
   name
 end
 
+def attribution_changes_link?
+  true
+end
+
+def attribution_changes_path created_at
+  { filter: { updated: created_at } }
+end
+
 format do
   delegate :attribution_title, :attribution_authors, to: :card
 

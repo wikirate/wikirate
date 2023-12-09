@@ -74,3 +74,14 @@
 .copy-button {
   border-radius: 0rem 0.25rem 0.25rem 0rem;
 }
+
+.reference-credit {
+  div {
+    display: inline-block;
+  }
+}
+
+.attribution-bar-left a, .attribution-bar-right a {
+  font-weight: normal !important;
+  color: $primary !important;
+}

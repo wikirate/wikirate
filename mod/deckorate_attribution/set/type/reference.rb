@@ -18,6 +18,10 @@ event :store_attribution_snapshot, :integrate_with_delay, on: :create do
   end
 end
 
+def subject_item_card
+  subject_card.first_card
+end
+
 def ok_to_update
   Auth.signed_in? && ((Auth.current_id == creator_id) || Auth.current.stewards_all?)
 end
@@ -50,9 +54,7 @@ format :html do
     attribution_message
   end
 
-  view :bar_right do
-    field_nest :url, view: :url_link, unknown: :blank
-  end
+  view :bar_right, template: :haml
 
   view :new_buttons do
     wrap { standard_save_button }
