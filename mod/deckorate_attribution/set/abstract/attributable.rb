@@ -8,6 +8,14 @@ def attribution_title
   name
 end
 
+def attribution_changes_link?
+  true
+end
+
+def attribution_changes_path created_at
+  { filter: { updated: created_at } }
+end
+
 format do
   delegate :attribution_title, :attribution_authors, to: :card
 
@@ -90,5 +98,13 @@ format :html do
 
   view :att_license do
     "licensed under #{link_to license_text, href: license_url, target: '_blank'}"
+  end
+end
+
+format :csv do
+  view :reference_dump_core do
+    [].tap do |rows|
+      card.each_reference_dump_row { |answer| rows << answer.csv_line(true) }
+    end
   end
 end
