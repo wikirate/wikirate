@@ -9,7 +9,7 @@ describe 'Formula editor', ->
   specify "adding and removing a variable", ->
     # open filtered list and choose new metric
     cy.contains("a", "Add Variable", timeout: 15000)
-      .click()
+      .click() force: true
     cy.get("._filter-container [name='filter[name]']")
       .type("disturb{enter}", force: true)
     cy.wait 500
@@ -58,7 +58,7 @@ describe 'Formula editor', ->
       .get("._edit-variable-options").should "be.hidden"
 
     # open Answers tab
-    cy.get(".tab-li-answer").click()
+    cy.get(".tab-li-answer").click() force: true
     cy.get "._answer-board ._ab-result-unknown-count"
       .should "have.text", "1"
       .should "not.be.hidden"
