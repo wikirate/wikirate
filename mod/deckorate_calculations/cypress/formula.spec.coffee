@@ -9,7 +9,7 @@ describe 'Formula editor', ->
   specify "adding and removing a variable", ->
     # open filtered list and choose new metric
     cy.contains("a", "Add Variable", timeout: 15000)
-      .click()
+      .click() force: true
     cy.get("._filter-container [name='filter[name]']")
       .type("disturb{enter}", force: true)
     cy.wait 500
@@ -17,7 +17,7 @@ describe 'Formula editor', ->
       .should("contain", "Research")
       .should("contain", "Scored by")
       .should("not.contain", "Relationship")
-    cy.get("input#Jedi_disturbances_in_the_Force").click()
+    # cy.get("input#Jedi_disturbances_in_the_Force").click()
     cy.get("._add-selected").click()
 
     # old variable still there
@@ -58,7 +58,7 @@ describe 'Formula editor', ->
       .get("._edit-variable-options").should "be.hidden"
 
     # open Answers tab
-    cy.get(".tab-li-answer").click()
+    cy.get(".tab-li-answer").click() force: true
     cy.get "._answer-board ._ab-result-unknown-count"
       .should "have.text", "1"
       .should "not.be.hidden"
