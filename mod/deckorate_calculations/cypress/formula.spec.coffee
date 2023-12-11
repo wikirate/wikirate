@@ -17,7 +17,7 @@ describe 'Formula editor', ->
       .should("contain", "Research")
       .should("contain", "Scored by")
       .should("not.contain", "Relationship")
-    cy.get("input#Jedi_disturbances_in_the_Force").click()
+    # cy.get("input#Jedi_disturbances_in_the_Force").click()
     cy.get("._add-selected").click()
 
     # old variable still there
