@@ -1,7 +1,12 @@
 .attribution-bar-left
   .pb-2
-    = field_nest :wikirate_title, unknown: :blank
-  .fw-normal.reference-creator.d-flex.align-items-center
-    .me-1
-      Created by
-    = field_nest :party, unknown: :blank, items: { view: :name }
+    = field_nest :wikirate_title, unknown: :blank, view: :core
+    %span._over-card-link.small
+      = link_to_card card.subject_item_card, "(#{card.subject_item_card.type_name})"
+  .attribution-links.fw-normal._over-card-link.small
+    - if card.url_card.real?
+      .attribution-url
+        = field_nest :url, view: :url_link, unknown: :blank
+    - if card.file_card.real?
+      .attribution-snapshot
+        = field_nest :file, view: :link, title: "snapshot"
