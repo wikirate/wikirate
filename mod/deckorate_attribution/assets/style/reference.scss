@@ -58,27 +58,6 @@
       width: 100%;
     }
   }
-}
-
-.modal-body {
-  .tabbable {
-    .nav-tabs {
-      display: flex;
-    }
-    .nav-item {
-      flex-grow: 1;
-      .nav-link {
-        text-align: center;
-      }
-      .nav-link:focus,
-      .nav-link:hover {
-        background-color: #fff;
-      }
-    }
-  }
-}
-
-.TYPE-reference {
   .nav-link {
     pointer-events: none;
   }
@@ -86,6 +65,24 @@
     border-bottom: 4px solid #e9ecef;
   }
 }
+
+//.modal-body {
+//  .tabbable {
+//    .nav-tabs {
+//      display: flex;
+//    }
+//    .nav-item {
+//      flex-grow: 1;
+//      .nav-link {
+//        text-align: center;
+//      }
+//      .nav-link:focus,
+//      .nav-link:hover {
+//        background-color: #fff;
+//      }
+//    }
+//  }
+//}
 
 .clipboard {
   border: 1px solid $gray-400;
