@@ -101,3 +101,14 @@
   font-weight: bold;
   margin-right: 0 !important
 }
+
+.reference-credit {
+  div {
+    display: inline-block;
+  }
+}
+
+.attribution-bar-left a, .attribution-bar-right a {
+  font-weight: normal !important;
+  color: $primary !important;
+}
