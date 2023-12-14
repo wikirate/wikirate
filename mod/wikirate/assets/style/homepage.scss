@@ -139,7 +139,9 @@ animation bg-pan-right
   padding-right: 0.5rem;
 }
 
-.homepage-involved-cards .action-link .material-symbols-rounded:hover {
-  -webkit-transform: translateX(8px);
-  transform: translateX(8px);
+.homepage-involved-cards {
+  .action-link:hover i {
+    -webkit-transform: translateX(8px);
+    transform: translateX(8px);
+  }
 }
