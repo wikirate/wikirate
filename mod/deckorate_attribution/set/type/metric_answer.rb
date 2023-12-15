@@ -13,6 +13,10 @@ def attribution_changes_link?
   researched?
 end
 
+def attribution_changes_text
+  "See changes"
+end
+
 def attribution_changes_path _created_at
   { view: :history }
 end
