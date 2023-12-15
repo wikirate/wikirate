@@ -1,6 +1,9 @@
 .attribution-bar-left
   .pb-2
-    = field_nest :wikirate_title, unknown: :blank, view: :core
+    - if card.wikirate_title.present?
+      = field_nest :wikirate_title, view: :core
+    - else
+      %em Untitled Reference
     %span._over-card-link.small
       = link_to_card card.subject_item_card, "(#{card.subject_item_card.type_name})"
   .attribution-links.fw-normal._over-card-link.small
