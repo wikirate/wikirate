@@ -146,10 +146,12 @@
     height: 85%;
     min-height: 300px;
     margin: 1em;
+    .btn.action-link {
+      border: 1.4px solid #7f73d5;
+    }
     &:hover {
-      box-shadow: $box-shadow;
       .btn.action-link {
-        border: 1.4px solid transparent;
+        border: 1.4px solid $border-blue;
       }
     }
   }
