@@ -146,15 +146,12 @@
     height: 85%;
     min-height: 300px;
     margin: 1em;
+    .btn.action-link {
+      border: 1.4px solid #7f73d5;
+    }
     &:hover {
-      h5, %i, a {
-        color: $white !important;
-      }
-      color: $white;
-      //cursor: pointer;
-      background-color: $purple-grad-1;
       .btn.action-link {
-        border: 1.4px solid transparent;
+        border: 1.4px solid $border-blue;
       }
     }
   }
@@ -355,5 +352,18 @@
       font-weight: 500;
       background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
     }
+  }
+}
+
+.slick-current {
+  .nodblclick {
+      background-color: #6B5CD8;
+      color: $white;
+  }
+  h5.card-title {
+    color: #fff;
+  }
+  a.action-link {
+    color: #fff;
   }
 }
