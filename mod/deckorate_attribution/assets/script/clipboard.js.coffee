@@ -33,7 +33,7 @@ copyRichOrPlainText = (html, text) ->
   $(document).off 'copy', listener
 
 $ ->
-  $("body").on "click", "._copy-button", ->
+  $("body").on "click", "._attribution-button", ->
     copyHtmlToClipboard.call(this)
     activeTab = $(this).closest(".tab-pane.active")
     content = activeTab.find("._clipboard").html()
