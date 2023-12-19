@@ -12,10 +12,6 @@ def attribution_changes_link?
   true
 end
 
-def attribution_changes_text
-  "Filter for changes"
-end
-
 def attribution_changes_path created_at
   { filter: { updated: created_at } }
 end
