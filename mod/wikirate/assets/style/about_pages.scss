@@ -118,7 +118,7 @@
   }
   .box-bottom {
     border: none;
-    background: white;
+    background: $white;
     .thumbnail {
       align-items: center
     }
@@ -147,7 +147,7 @@
     min-height: 300px;
     margin: 1em;
     .btn.action-link {
-      border: 1.4px solid #7f73d5;
+      border: 1.4px solid $purple-grad-2;
     }
     &:hover {
       .btn.action-link {
@@ -172,10 +172,6 @@
     h5, a {
       color: $orange;
     }
-
-    &:hover {
-      background-color: $orange;
-    }
   }
   .wr-arrow {
     color: $orange;
@@ -184,6 +180,25 @@
       background-color: $orange;
     }
   }
+}
+
+#community-actions .slick-current,
+.homepage-involved-cards .slick-current {
+  .action-card .card {
+    color: $white;
+  }
+  h5.card-title,
+  a.action-link {
+    color: #fff;
+  }
+}
+
+#community-actions .slick-current .action-card .card {
+  background-color: $orange;
+}
+
+.homepage-involved-cards .slick-current .action-card .card {
+  background-color: $purple-grad-1;
 }
 
 .wr-arrow {
@@ -350,20 +365,7 @@
       font-size: 1rem;
       letter-spacing: 0.3px;
       font-weight: 500;
-      background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
+      background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
     }
-  }
-}
-
-.slick-current {
-  .nodblclick {
-      background-color: #6B5CD8;
-      color: $white;
-  }
-  h5.card-title {
-    color: #fff;
-  }
-  a.action-link {
-    color: #fff;
   }
 }
