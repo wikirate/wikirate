@@ -189,16 +189,51 @@
   }
   h5.card-title,
   a.action-link {
-    color: #fff;
+    color: $white;
   }
 }
 
 #community-actions .slick-current .action-card .card {
-  background-color: $orange;
+  background: linear-gradient(18.98deg, #FF7035 7.04%, #FF8C5C 90.87%);
 }
 
 .homepage-involved-cards .slick-current .action-card .card {
-  background-color: $purple-grad-1;
+  background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
+}
+
+#community-actions:hover .slick-current .action-card .card,
+.homepage-involved-cards:hover .slick-current .action-card .card {
+  background: $white;
+  color: $gray-900;
+  h5.card-title,
+  a.action-link {
+    color: $purple-grad-1;
+  }
+}
+
+#community-actions:hover .slick-current .action-card .card {
+  h5.card-title,
+  a.action-link {
+    color: $orange;
+  }
+}
+
+#community-actions,
+.homepage-involved-cards {
+  .action-card .card:hover,
+  .slick-current .action-card .card:hover {
+    background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
+    color: $white;
+    
+    h5.card-title,
+    a.action-link {
+      color: $white;
+    }
+  }
+}
+
+#community-actions .action-card .card:hover {
+  background: linear-gradient(18.98deg, #FF7035 7.04%, #FF8C5C 90.87%) !important;
 }
 
 .wr-arrow {
