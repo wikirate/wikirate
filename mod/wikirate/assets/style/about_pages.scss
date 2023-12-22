@@ -194,7 +194,7 @@
 }
 
 #community-actions .slick-current .action-card .card {
-  background: linear-gradient(18.98deg, #FF7035 7.04%, #FF8C5C 90.87%);
+  background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%);
 }
 
 .homepage-involved-cards .slick-current .action-card .card {
@@ -233,7 +233,7 @@
 }
 
 #community-actions .action-card .card:hover {
-  background: linear-gradient(18.98deg, #FF7035 7.04%, #FF8C5C 90.87%) !important;
+  background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%) !important;
 }
 
 .wr-arrow {
