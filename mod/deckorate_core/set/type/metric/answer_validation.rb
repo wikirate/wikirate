@@ -16,10 +16,12 @@ def validate_all_numeric_values
   bad_answer = metric_card.answers.find do |answer|
     !valid_numeric_value? answer.value
   end
-  "ERROR: Unable to change answer type to Number.\
-  REASON: Non-numeric value: found in existing answers ('#{bad_answer.value}').\
-  Please update or delete all answers containing '#{bad_answer.value}'\
-  before changing the answer type to Number." if bad_answer.present?
+  if bad_answer.present?
+    error_message = "ERROR: Unable to change answer type to Number."\
+    " REASON: Non-numeric value: found in existing answers"\
+    " ('#{bad_answer.value}'). Please update or delete all answers containing"\
+    " '#{bad_answer.value}' before changing the answer type to Number."
+  end
 end
 
 def valid_numeric_value? value
