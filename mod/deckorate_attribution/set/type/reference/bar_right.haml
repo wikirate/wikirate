@@ -1,0 +1,18 @@
+.attribution-bar-left.text-end.small
+  .reference-creation
+    Created on
+    = render_created_at variant: "%Y-%m-%d"
+    - subj = card.subject_item_card
+    - if subj.attribution_changes_link?
+      %span._over-card-link
+        = link_to_card subj, "(#{subj.attribution_changes_text})",
+                       path: subj.attribution_changes_path(card.created_at)
+
+  .reference-credit
+    Created by
+    = nest card.creator, view: :link
+  - if card.party.present?
+    .reference-credit
+      Attributed by
+      = field_nest :party,
+                   view: :one_line_content, unknown: :blank, items: { view: :link }

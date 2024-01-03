@@ -1,0 +1,6 @@
+= render_attributions_placeholder
+.d-flex.mb-3.align-items-stretch.pt-3
+  .p.clipboard.ps-3.p-2.rounded-start.flex-fill
+    Get the Wikirate.org Attribution Notice
+  - save_icon = icon_tag :save
+  = standard_save_button({ "text": "Save #{save_icon}".html_safe, class: "attribution-button" })
