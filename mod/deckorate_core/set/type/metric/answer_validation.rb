@@ -17,11 +17,8 @@ def validate_all_numeric_values
     !valid_numeric_value? answer.value
   end
   if bad_answer.present?
-    return "ERROR: Unable to change answer type to Number."\
-           " REASON: Non-numeric value: found in existing answers"\
-           " ('#{bad_answer.value}'). Please update or delete all"\
-           " answers containing '#{bad_answer.value}' before changing"\
-           " the answer type to Number."
+    return t(:answer_validation_error_message, bad_answer: bad_answer.value)
+  end
 end
 
 def valid_numeric_value? value
