@@ -4,6 +4,7 @@ module GraphQL
     class Company < DeckorateCard
       field :headquarters, String, null: true
       field :wikipedia, String, null: true
+      field :official_company_website, String, null: true
       field :open_corporates, String, null: true
       field :sec_cik, String, null: true
       field :os_id, String, null: true

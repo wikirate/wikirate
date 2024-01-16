@@ -32,6 +32,8 @@
   :codename: ilo_region
 - :name: Headquarters
   :codename: headquarters
+- :name: Official Company Website
+  :codename: official_company_website
 - :name:
     - Core
     - :country
