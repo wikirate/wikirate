@@ -74,8 +74,6 @@ gem "statistics2"                    # required by savanna-outliers
 
 # MISCELLANEOUS
 gem "company-mapping"                # Vasso's gem, written for WikiRate
-gem "net-imap", "0.3.7",             # can take this away once ruby version is higher
-    require: false
 gem "rack-attack"                    # protection from bad clients
 gem "rack-cors"                      # support for Cross-Origin Resource Sharing (CORS)
 
@@ -107,8 +105,3 @@ group :profile do
   gem "ruby-jmeter"                  # connected to Flood.io, used in load testing
   gem "wbench"                       # Benchmarking web requests
 end
-
-# remove me soon
-gem "mail", "!=2.8.0"       # broke staging
-gem "rack-test", "!=2.0.0"  # (2.0.0 breaks things on semaphore)
-gem "simplecov", "!=0.22.0" # broke semaphore

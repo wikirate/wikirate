@@ -108,9 +108,9 @@ PATH
       card (= 1.106.0)
       card-mod-history (= 0.16.0)
       card-mod-permissions (= 0.16.0)
-      carrierwave (~> 2.2)
-      mini_magick (~> 4.2)
-      ssrf_filter (~> 1.0.7)
+      carrierwave (~> 3.0)
+      mini_magick (~> 4.12)
+      ssrf_filter (~> 1.1)
     card-mod-collection (0.16.0)
       card (= 1.106.0)
     card-mod-comment (0.16.0)
@@ -415,13 +415,12 @@ GEM
     capybara-puma (1.0.1)
       capybara
       puma
-    carrierwave (2.2.5)
-      activemodel (>= 5.0.0)
-      activesupport (>= 5.0.0)
+    carrierwave (3.0.5)
+      activemodel (>= 6.0.0)
+      activesupport (>= 6.0.0)
       addressable (~> 2.6)
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
-      mini_mime (>= 0.1.3)
       ssrf_filter (~> 1.0)
     coderay (1.1.3)
     coffee-script (2.4.1)
@@ -633,7 +632,7 @@ GEM
       uri
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
-    net-imap (0.3.7)
+    net-imap (0.4.9.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -836,7 +835,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sexp_processor (4.17.1)
-    simplecov (0.21.2)
+    simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -865,7 +864,7 @@ GEM
       net-scp (>= 1.1.2)
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
-    ssrf_filter (1.0.8)
+    ssrf_filter (1.1.2)
     staccato (0.5.3)
     statistics2 (0.54)
     sys-uname (1.2.3)
@@ -952,9 +951,7 @@ DEPENDENCIES
   descriptive_statistics
   fog-aws
   link_thumbnailer
-  mail (!= 2.8.0)
   mysql2 (> 0.4)
-  net-imap (= 0.3.7)
   open_uri_redirections
   pdfkit
   pivotal-tracker
@@ -962,11 +959,9 @@ DEPENDENCIES
   puma (~> 5.6)
   rack-attack
   rack-cors
-  rack-test (!= 2.0.0)
   roo
   ruby-jmeter
   savanna-outliers
-  simplecov (!= 0.22.0)
   statistics2
   timecop
   wbench
