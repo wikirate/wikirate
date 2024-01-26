@@ -68,9 +68,9 @@ gem "pdfkit"                         # PDF-related tasks
 gem "wkhtmltopdf-binary"             # converting HTML to PDF
 
 # MATH
-gem "descriptive_statistics"         # adds stats methods to enumerables
-gem "savanna-outliers"               # calculates outliers
-gem "statistics2"                    # required by savanna-outliers
+# gem "descriptive_statistics"         # adds stats methods to enumerables
+# gem "savanna-outliers"               # calculates outliers
+# gem "statistics2"                    # required by savanna-outliers
 
 # MISCELLANEOUS
 gem "company-mapping"                # Vasso's gem, written for WikiRate
