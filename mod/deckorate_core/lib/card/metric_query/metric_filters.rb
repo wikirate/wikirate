@@ -28,6 +28,7 @@ class Card
           when "false"
             unpublished_condition
           when "all"
+            # Is this right?? Seems like we want _no_ conditions... Explain?
             "(#{published_condition} OR (#{unpublished_condition}))"
           end
       end
