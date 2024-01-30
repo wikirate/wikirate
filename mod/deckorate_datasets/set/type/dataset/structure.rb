@@ -12,6 +12,10 @@ format :html do
     %i[metric_answer wikirate_company metric data_subset details]
   end
 
+  def tab_options
+    { metric_answer: { count: card.answers.count } }
+  end
+
   view :wikirate_company_tab do
     field_nest :wikirate_company, view: :menued
   end
