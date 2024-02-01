@@ -1,0 +1,3 @@
+en:
+  answer_validation_error_message: >
+    ERROR: Unable to change answer type to Number. REASON: Non-numeric value: found in existing answers ('%{bad_answer}'). Please update or delete all answers containing '%{bad_answer}' before changing the answer type to Number.
