@@ -17,7 +17,7 @@ def validate_all_numeric_values
     !valid_numeric_value? answer.value
   end
   return  unless bad_answer.present?
-    t(:answer_validation_error_message, bad_answer: bad_answer.value)
+  t(:answer_validation_error_message, bad_answer: bad_answer.value)
 end
 
 def valid_numeric_value? value
