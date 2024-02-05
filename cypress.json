@@ -4,6 +4,6 @@
   "defaultCommandTimeout": 10000,
   "integrationFolder": "mod",
   "testFiles": "*/cypress/**/*spec.coffee",
-  "supportFile": "vendor/decko/decko/spec/cypress/support/index.js",
+  "supportFile": "vendor/decko/decko/spec/cypress/support/e2e.js",
   "watchForFileChanges": false
 }
