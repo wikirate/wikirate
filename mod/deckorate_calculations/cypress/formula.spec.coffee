@@ -1,5 +1,5 @@
 describe 'Formula editor', ->
-  before ->
+  beforeEach ->
     cy.login()
     cy.visit "Jedi+friendliness+formula"
     cy.slot "jedi+friendliness+formula"

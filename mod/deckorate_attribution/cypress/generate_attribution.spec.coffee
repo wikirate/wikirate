@@ -1,5 +1,5 @@
 describe "Attribution Generator - Dataset", ->
-  before ->
+  beforeEach ->
     cy.login()
     cy.visit("/Evil_Dataset")
     cy.contains("Evil Dataset")
@@ -20,7 +20,7 @@ describe "Attribution Generator - Dataset", ->
     cy.contains("div", /<a\s+href="((?!localhost|ids).+?)"\s+target="_blank">(.+?)<\/a>/)
 
 describe "Attribution Generator - Metric", ->
-  before ->
+  beforeEach ->
     cy.login()
     cy.visit("/Jedi+disturbances_in_the_Force")
     cy.contains("disturbances in the Force")
@@ -41,7 +41,7 @@ describe "Attribution Generator - Metric", ->
     cy.contains("Wikirate's community")
 
 describe "Attribution Generator - Answer Dashboard", ->
-  before ->
+  beforeEach ->
     cy.login()
     cy.visit("http://localhost:5002/Answers")
   it "finds the attribution generator icon.", ->
