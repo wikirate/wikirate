@@ -1,4 +1,4 @@
-require "savanna-outliers"
+# require "savanna-outliers"
 
 include_set Abstract::Thumbnail
 include_set Abstract::DeckorateTabbed
