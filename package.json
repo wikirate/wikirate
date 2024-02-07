@@ -29,6 +29,8 @@
   "name": "wikirate",
   "repository": "https://github.com/wikirate/wikirate",
   "devDependencies": {
-    "cypress": "^4.10.0"
+    "@cypress/webpack-preprocessor": "^6.0.0",
+    "cypress": "^13.4.0",
+    "cypress-cucumber-preprocessor": "^4.3.1"
   }
 }

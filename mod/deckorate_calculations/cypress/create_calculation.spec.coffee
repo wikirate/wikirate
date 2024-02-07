@@ -76,7 +76,7 @@ describe "metric creation", ->
       cy.contains("Details").click()
 
       # check that formula looks right
-      cy.get(".RIGHT-formula").within ->
+      cy.get(".RIGHT-formula.titled-view").within ->
         cy.get("td").should "contain", "friendliness"
         cy.get(".code").should "contain", "friendliness + 1"
 
@@ -105,7 +105,7 @@ describe "metric creation", ->
       cy.contains("Details").click()
 
       # check that formula looks right
-      cy.get(".RIGHT-formula").within ->
+      cy.get(".RIGHT-formula.titled-view").within ->
         cy.get(".code").should "contain", "answer + 1"
 
   describe "from variable score metric page", ->
