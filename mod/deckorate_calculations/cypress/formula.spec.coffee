@@ -6,6 +6,17 @@ describe 'Formula editor', ->
       .find ".card-menu > a.edit-link"
       .click force: true
 
+  setValue = (value) ->
+    cy.window().then (win) ->
+      el = Cypress.$ ".codemirror-editor-textarea"
+      (new win.decko.FormulaEditor el).area.setValue value
+
+  testFormula = (formula, result, disabled) ->
+    setValue formula
+    cy.get("._sample-result-value").should "have.text", result
+    op = disabled && "have.attr" || "not.have.attr"
+    cy.get(".submit-button").should op, "disabled"
+
   specify "adding and removing a variable", ->
     # open filtered list and choose new metric
     cy.contains("a", "Add Variable", timeout: 15000)
@@ -99,17 +110,7 @@ describe 'Formula editor', ->
       .get("._edit-variable-options").should "be.hidden"
 
   specify "edit formula", ->
-    setValue = (value) ->
-      cy.window().then (win) ->
-        el = Cypress.$ ".codemirror-editor-textarea"
-        (new win.decko.FormulaEditor el).area.setValue value
-
-    testFormula = (formula, result, disabled) ->
-      setValue formula
-      cy.get("._sample-result-value").should "have.text", result
-      op = disabled && "have.attr" || "not.have.attr"
-      cy.get(".submit-button").should op, "disabled"
-
+    cy.wait 500
     testFormula "m1 * 20", "2000", false
 
     # form submission is disabled when there are errors
