@@ -1,5 +1,5 @@
 describe 'Formula editor', ->
-  before ->
+  beforeEach ->
     cy.login()
     cy.visit "Jedi+friendliness+formula"
     cy.slot "jedi+friendliness+formula"
@@ -9,7 +9,7 @@ describe 'Formula editor', ->
   specify "adding and removing a variable", ->
     # open filtered list and choose new metric
     cy.contains("a", "Add Variable", timeout: 15000)
-      .click() force: true
+      .click force: true
     cy.get("._filter-container [name='filter[name]']")
       .type("disturb{enter}", force: true)
     cy.wait 500
@@ -17,7 +17,7 @@ describe 'Formula editor', ->
       .should("contain", "Research")
       .should("contain", "Scored by")
       .should("not.contain", "Relationship")
-    # cy.get("input#Jedi_disturbances_in_the_Force").click()
+    cy.get("input#Jedi_disturbances_in_the_Force").click()
     cy.get("._add-selected").click()
 
     # old variable still there
@@ -50,6 +50,14 @@ describe 'Formula editor', ->
     cy.get("._formula_options").should "contain", "(default)"
       .get("._edit-variable-options").should "be.hidden"
 
+    # open Answers tab
+    cy.get(".tab-li-answer a").click force: true
+    # There is one answer that is "unknown via options", meaning it's unknown based on
+    # the formula option configuration alone (not the formula processing)
+    cy.get "._answer-board ._ab-result-unknown-count"
+      .should "have.text", "1"
+      .should "not.be.hidden"
+
     # choose "Any Researched"
     cy.get("._options-scheme").select2("Any Researched")
 
@@ -58,10 +66,10 @@ describe 'Formula editor', ->
       .get("._edit-variable-options").should "be.hidden"
 
     # open Answers tab
-    cy.get(".tab-li-answer").click() force: true
+    cy.get(".tab-li-answer a").click force: true
     cy.get "._answer-board ._ab-result-unknown-count"
-      .should "have.text", "1"
-      .should "not.be.hidden"
+      .should "have.text", "0"
+      .should "be.hidden"
 
     # choose "Custom"
     cy.get("._options-scheme").select2("Custom")
@@ -111,7 +119,6 @@ describe 'Formula editor', ->
 
     # ...and re-enabled when there are not
     testFormula "1 / m1", "0.01", false
-
 
   specify "edit variable value", ->
     cy.get "._sample-result-value"
