@@ -2230,3 +2230,1233 @@ card_changes_236:
     mod: tasks+*style
     mod: vega+*style
     mod: ticket+*style
+card_changes_237:
+  id: 237
+  card_action_id: 9442
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_238:
+  id: 238
+  card_action_id: 9510
+  field: 0
+  value: parent
+card_changes_239:
+  id: 239
+  card_action_id: 9557
+  field: 1
+  value: '4'
+card_changes_240:
+  id: 240
+  card_action_id: 9557
+  field: 2
+  value: yeti skin
+card_changes_241:
+  id: 241
+  card_action_id: 9660
+  field: 2
+  value: Default Layout
+card_changes_242:
+  id: 242
+  card_action_id: 9668
+  field: 2
+  value: "[[:recent|Recent Changes]]"
+card_changes_243:
+  id: 243
+  card_action_id: 9699
+  field: 2
+  value: |-
+    [[:getting_started_links|Getting started]]
+    [[:recent|Recent Changes]]
+card_changes_244:
+  id: 244
+  card_action_id: 793
+  field: 0
+  value:
+card_changes_245:
+  id: 245
+  card_action_id: 793
+  field: 1
+  value: '64'
+card_changes_246:
+  id: 246
+  card_action_id: 793
+  field: 2
+  value: |
+    ##Basic configuration
+    {{:title|closed_bar}}
+    {{:home|closed_bar}}
+    {{:logo|closed_bar}}
+    {{:main_menu|closed_bar}}
+    {{:header|closed_bar}}
+    {{:footer|closed_bar}}
+
+    ##Integrations
+    {{:recaptcha_settings|closed_bar}}
+
+    ##Editor configuration
+    {{:tiny_mce|closed_bar}}
+    {{:ace|closed_bar}}
+card_changes_247:
+  id: 247
+  card_action_id: 793
+  field: 3
+  value: f
+card_changes_248:
+  id: 248
+  card_action_id: 793
+  field: 4
+  value: '184'
+card_changes_249:
+  id: 249
+  card_action_id: 793
+  field: 5
+  value: '525'
+card_changes_250:
+  id: 250
+  card_action_id: 9702
+  field: 2
+  value: "{{_L|configs}}\n"
+card_changes_251:
+  id: 251
+  card_action_id: 795
+  field: 0
+  value:
+card_changes_252:
+  id: 252
+  card_action_id: 795
+  field: 1
+  value: '2'
+card_changes_253:
+  id: 253
+  card_action_id: 795
+  field: 2
+  value: |
+    <h3>Cardtypes </h3>
+    <p> [[/new/cardtype|Add new Type]]</p>
+    <p>{{Cardtype+:type+:by_name|bar; title: all cardtypes}}</p>
+    <h3>Rules</h3>
+    <div>Cards are configured by creating <em>rules</em>.  </div>
+    <div> </div>
+    <h5>Webpage rules</h5>
+    <div>
+    <blockquote>{{:all|bar_setting_list; filter:webpage}}</blockquote>
+    <h5>Permission rules</h5>
+    <blockquote>{{:all|bar_setting_list; filter:permission}}</blockquote>
+    </div>
+    <div><em>[[http://decko.org/rules | More about rules.]]</em></div>
+    <div> </div>
+    <div>
+    <h3>Views</h3>
+    <p>You can try out different views below</p>
+    <p>{{:getting_started|demo}}</p>
+    </div>
+card_changes_254:
+  id: 254
+  card_action_id: 795
+  field: 3
+  value: f
+card_changes_255:
+  id: 255
+  card_action_id: 795
+  field: 4
+  value: '191'
+card_changes_256:
+  id: 256
+  card_action_id: 795
+  field: 5
+  value: '525'
+card_changes_257:
+  id: 257
+  card_action_id: 9705
+  field: 2
+  value: |
+    {{_L|configs}}
+
+    <h3>Rules</h3>
+    <div>Cards are configured by creating <em>rules</em>.  </div>
+    <div> </div>
+    <h5>Webpage rules</h5>
+    <div>
+    <blockquote>{{:all|bar_setting_list; filter:webpage}}</blockquote>
+    <h5>Permission rules</h5>
+    <blockquote>{{:all|bar_setting_list; filter:permission}}</blockquote>
+    </div>
+    <div><em>[[http://decko.org/rules | More about rules.]]</em></div>
+    <div> </div>
+    <div>
+    <h3>Views</h3>
+    <p>You can try out different views below</p>
+    <p>{{:getting_started|demo}}</p>
+    </div>
+card_changes_258:
+  id: 258
+  card_action_id: 797
+  field: 0
+  value:
+card_changes_259:
+  id: 259
+  card_action_id: 797
+  field: 1
+  value: '2'
+card_changes_260:
+  id: 260
+  card_action_id: 797
+  field: 2
+  value: |
+    <h3>Accounts</h3>
+    <p>{{:account|content}}</p>
+    <h3>Help Texts</h3>
+    <p>{{:help|bar}}</p>
+    <h3>Emails </h3>
+    <p>Here are the current [[Email Templates|Email templates]] for your site.</p>
+    <p>{{Email Templates+*type+by update|content}} </p>
+card_changes_261:
+  id: 261
+  card_action_id: 797
+  field: 3
+  value: f
+card_changes_262:
+  id: 262
+  card_action_id: 797
+  field: 4
+  value: '196'
+card_changes_263:
+  id: 263
+  card_action_id: 797
+  field: 5
+  value: '525'
+card_changes_264:
+  id: 264
+  card_action_id: 9708
+  field: 2
+  value: |
+    {{_L|configs}}
+    <h3>Accounts</h3>
+    <p>{{:account|content}}</p>
+    <h3>Help Texts</h3>
+    <p>{{:help|bar}}</p>
+    <h3>Emails </h3>
+    <p>Here are the current [[Email Templates|Email templates]] for your site.</p>
+    <p>{{Email Templates+*type+by update|content}} </p>
+card_changes_265:
+  id: 265
+  card_action_id: 5226
+  field: 0
+  value:
+card_changes_266:
+  id: 266
+  card_action_id: 5226
+  field: 1
+  value: '284'
+card_changes_267:
+  id: 267
+  card_action_id: 5226
+  field: 2
+  value: "~1291/5226.png"
+card_changes_268:
+  id: 268
+  card_action_id: 5226
+  field: 3
+  value: f
+card_changes_269:
+  id: 269
+  card_action_id: 5226
+  field: 4
+  value: '1288'
+card_changes_270:
+  id: 270
+  card_action_id: 5226
+  field: 5
+  value: '284'
+card_changes_271:
+  id: 271
+  card_action_id: 9735
+  field: 2
+  value: "~1291/9735.png"
+card_changes_272:
+  id: 272
+  card_action_id: 9741
+  field: 2
+  value: deckorate_layout
+card_changes_273:
+  id: 273
+  card_action_id: 12077
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_274:
+  id: 274
+  card_action_id: 12093
+  field: 0
+  value: Parent
+card_changes_275:
+  id: 275
+  card_action_id: 12159
+  field: 0
+  value: Policy
+card_changes_276:
+  id: 276
+  card_action_id: 12175
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_277:
+  id: 277
+  card_action_id: 12193
+  field: 2
+  value: |-
+    GRI
+    Fashion Transparency Index 2022
+    S&P500
+    Climate 100 GHG Emissions
+    Research: B Corp Certified Companies performance
+    Research: Gender Equality Policies in the Delivery Service Industry
+card_changes_278:
+  id: 278
+  card_action_id: 12195
+  field: 2
+  value: |-
+    Global Reporting Initiative
+    Clean Clothes Campaign
+    Fashion Revolution
+    Organisation for Economic Cooperation & Development (OECD)
+    Alliance for Corporate Transparency
+    Walk Free
+    CDP
+card_changes_279:
+  id: 279
+  card_action_id: 12201
+  field: 1
+  value: '55'
+card_changes_280:
+  id: 280
+  card_action_id: 12201
+  field: 2
+  value: wikirate skin
+card_changes_281:
+  id: 281
+  card_action_id: 1781
+  field: 0
+  value:
+card_changes_282:
+  id: 282
+  card_action_id: 1781
+  field: 1
+  value: '4'
+card_changes_283:
+  id: 283
+  card_action_id: 1781
+  field: 2
+  value: |-
+    values_blurb1
+    values_blurb2
+    values_blurb3
+card_changes_284:
+  id: 284
+  card_action_id: 1781
+  field: 3
+  value: f
+card_changes_285:
+  id: 285
+  card_action_id: 1781
+  field: 4
+  value: '696'
+card_changes_286:
+  id: 286
+  card_action_id: 1781
+  field: 5
+  value: '832'
+card_changes_287:
+  id: 287
+  card_action_id: 12210
+  field: 2
+  value: |-
+    Blurb 0015
+    Blurb 0016
+    Blurb 0017
+card_changes_288:
+  id: 288
+  card_action_id: 1783
+  field: 0
+  value:
+card_changes_289:
+  id: 289
+  card_action_id: 1783
+  field: 1
+  value: '4'
+card_changes_290:
+  id: 290
+  card_action_id: 1783
+  field: 2
+  value: |-
+    collect_blurb
+    collaborate_blurb
+    analyze_blurb
+    map_blurb
+    share_blurb
+    extract_blurb
+card_changes_291:
+  id: 291
+  card_action_id: 1783
+  field: 3
+  value: f
+card_changes_292:
+  id: 292
+  card_action_id: 1783
+  field: 4
+  value: '734'
+card_changes_293:
+  id: 293
+  card_action_id: 1783
+  field: 5
+  value: '832'
+card_changes_294:
+  id: 294
+  card_action_id: 12212
+  field: 2
+  value: |-
+    Blurb 0009
+    Blurb 0010
+    Blurb 0011
+    Blurb 0012
+    Blurb 0013
+    Blurb 0014
+card_changes_295:
+  id: 295
+  card_action_id: 1785
+  field: 0
+  value:
+card_changes_296:
+  id: 296
+  card_action_id: 1785
+  field: 1
+  value: '4'
+card_changes_297:
+  id: 297
+  card_action_id: 1785
+  field: 2
+  value: |-
+    data_special1
+    data_special2
+    data_special3
+card_changes_298:
+  id: 298
+  card_action_id: 1785
+  field: 3
+  value: f
+card_changes_299:
+  id: 299
+  card_action_id: 1785
+  field: 4
+  value: '837'
+card_changes_300:
+  id: 300
+  card_action_id: 1785
+  field: 5
+  value: '832'
+card_changes_301:
+  id: 301
+  card_action_id: 12214
+  field: 2
+  value: |-
+    Blurb 0022
+    Blurb 0023
+    Blurb 0024
+card_changes_302:
+  id: 302
+  card_action_id: 1787
+  field: 0
+  value:
+card_changes_303:
+  id: 303
+  card_action_id: 1787
+  field: 1
+  value: '4'
+card_changes_304:
+  id: 304
+  card_action_id: 1787
+  field: 2
+  value: |-
+    data_reliable1
+    data_reliable2
+    data_reliable3
+    data_reliable4
+card_changes_305:
+  id: 305
+  card_action_id: 1787
+  field: 3
+  value: f
+card_changes_306:
+  id: 306
+  card_action_id: 1787
+  field: 4
+  value: '837'
+card_changes_307:
+  id: 307
+  card_action_id: 1787
+  field: 5
+  value: '4'
+card_changes_308:
+  id: 308
+  card_action_id: 12216
+  field: 2
+  value: |-
+    Blurb 0025
+    Blurb 0026
+    Blurb 0027
+    Blurb 0028
+card_changes_309:
+  id: 309
+  card_action_id: 1789
+  field: 0
+  value:
+card_changes_310:
+  id: 310
+  card_action_id: 1789
+  field: 1
+  value: '4'
+card_changes_311:
+  id: 311
+  card_action_id: 1789
+  field: 2
+  value: |-
+    community_action1
+    community_action2
+    community_action3
+    community_action4
+    community_action5
+    community_action6
+card_changes_312:
+  id: 312
+  card_action_id: 1789
+  field: 3
+  value: f
+card_changes_313:
+  id: 313
+  card_action_id: 1789
+  field: 4
+  value: '836'
+card_changes_314:
+  id: 314
+  card_action_id: 1789
+  field: 5
+  value: '832'
+card_changes_315:
+  id: 315
+  card_action_id: 12218
+  field: 2
+  value: |-
+    Blurb 0034
+    Blurb 0035
+    Blurb 0036
+    Blurb 0037
+    Blurb 0049
+    Blurb 0050
+card_changes_316:
+  id: 316
+  card_action_id: 1791
+  field: 0
+  value:
+card_changes_317:
+  id: 317
+  card_action_id: 1791
+  field: 1
+  value: '4'
+card_changes_318:
+  id: 318
+  card_action_id: 1791
+  field: 2
+  value: |-
+    homepage_action1
+    homepage_action2
+    homepage_action3
+    homepage_action4
+    homepage_action5
+    homepage_action6
+card_changes_319:
+  id: 319
+  card_action_id: 1791
+  field: 3
+  value: f
+card_changes_320:
+  id: 320
+  card_action_id: 1791
+  field: 4
+  value: '519'
+card_changes_321:
+  id: 321
+  card_action_id: 1791
+  field: 5
+  value: '832'
+card_changes_322:
+  id: 322
+  card_action_id: 12220
+  field: 2
+  value: |-
+    Blurb 0038
+    Blurb 0039
+    Blurb 0040
+    Blurb 0041
+    Blurb 0042
+    Blurb 0043
+card_changes_323:
+  id: 323
+  card_action_id: 12227
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_324:
+  id: 324
+  card_action_id: 12240
+  field: 2
+  value: |-
+    Walk Free
+    University of Connecticut
+    MANA
+    AMD Akademie Mode & Design Berlin
+    Oxfam India
+    Columbia University - School of International & Public Affairs
+card_changes_325:
+  id: 325
+  card_action_id: 12255
+  field: 0
+  value: Wikirate Policies
+card_changes_326:
+  id: 326
+  card_action_id: 12283
+  field: 2
+  value: "<p>Fashion Checker is a data tool that connects the dots between brand commitments
+    on living wages and the reality for workers on the ground.</p>\r\n<p>The project
+    is coordinated by <a href=\"https://cleanclothes.org/\">Clean Clothes Campaign</a>
+    in partnership with <a href=\"https://semcon.com/\">Semcon</a>, <a href=\"https://wageindicator.org/\">WageIndicator</a>
+    and <a href=\"/\">WikiRate</a>. The campaign seeks to make brands accountable
+    for their promises on living wages and invites the public in to explore the data.</p>\r\n<p>Through
+    the tool you can explore how companies score on currently paying their workers
+    a living wage, the transparency of their supply chain and their commitments to
+    paying workers a living wage in the future.</p>\r\n<p>The tool also pulls in data
+    on the company’s supply chain including gender breakdowns of workers, the actual
+    to minimum wage pay gap and collective bargaining agreements.</p>"
+card_changes_327:
+  id: 327
+  card_action_id: 12286
+  field: 2
+  value: '2021-09-20'
+card_changes_328:
+  id: 328
+  card_action_id: 12287
+  field: 2
+  value: Clean Clothes Campaign
+card_changes_329:
+  id: 329
+  card_action_id: 12621
+  field: 2
+  value: |-
+    Jedi
+    Joe User
+    Global Reporting Initiative
+    Core
+    ISIC
+    Clean Clothes Campaign
+card_changes_330:
+  id: 330
+  card_action_id: 12623
+  field: 2
+  value: |-
+    Jedi
+    Joe User
+card_changes_331:
+  id: 331
+  card_action_id: 12631
+  field: 2
+  value: |-
+    Death
+    friendliness
+    Hermanos
+card_changes_332:
+  id: 332
+  card_action_id: 12636
+  field: 2
+  value: '2020'
+card_changes_333:
+  id: 333
+  card_action_id: 12638
+  field: 2
+  value: Death Star
+card_changes_334:
+  id: 334
+  card_action_id: 12639
+  field: 2
+  value: |
+    <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
+    <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">WikiRate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+    <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
+    <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>
+card_changes_335:
+  id: 335
+  card_action_id: 12649
+  field: 2
+  value: |-
+    mod: format+*script
+    mod: list+*script
+    mod: search+*script
+    mod: rules+*script
+    mod: edit+*script
+    mod: account+*script
+    mod: carrierwave+*script
+    mod: ace editor+*script
+    mod: bar and box+*script
+    mod: bootstrap+*script
+    mod: filter+*script
+    mod: tabs+*script
+    mod: csv import+*script
+    mod: deckorate search+*script
+    mod: follow+*script
+    mod: layout+*script
+    mod: recaptcha+*script
+    mod: tinymce editor+*script
+    mod: deckorate utility+*script
+    mod: deckorate core+*script
+    mod: deckorate research+*script
+    mod: deckorate calculations+*script
+    mod: deckorate attribution+*script
+    mod: wikirate shared+*script
+    mod: wikirate companies+*script
+    mod: wikirate+*script
+    mod: tasks+*script
+    mod: vega+*script
+card_changes_336:
+  id: 336
+  card_action_id: 12650
+  field: 2
+  value: |-
+    mod: format+*style
+    mod: list+*style
+    mod: permissions+*style
+    mod: help+*style
+    mod: search+*style
+    mod: rules+*style
+    mod: edit+*style
+    mod: account+*style
+    mod: history+*style
+    mod: carrierwave+*style
+    mod: api key+*style
+    mod: style+*style
+    mod: bar and box+*style
+    mod: bootstrap+*style
+    mod: filter+*style
+    mod: bookmarks+*style
+    mod: comment+*style
+    mod: csv import+*style
+    mod: deckorate search+*style
+    mod: follow+*style
+    mod: layout+*style
+    mod: tinymce editor+*style
+    mod: thumbnail+*style
+    mod: guides+*style
+    mod: deckorate utility+*style
+    mod: deckorate layout+*style
+    mod: topics+*style
+    mod: deckorate core+*style
+    mod: deckorate research+*style
+    mod: deckorate calculations+*style
+    mod: deckorate datasets+*style
+    mod: deckorate attribution+*style
+    mod: deckorate profiles+*style
+    mod: wikirate shared+*style
+    mod: wikirate companies+*style
+    mod: wikirate+*style
+    mod: badges+*style
+    mod: tasks+*style
+    mod: vega+*style
