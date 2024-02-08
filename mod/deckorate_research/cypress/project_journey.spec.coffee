@@ -33,13 +33,9 @@ describe "research page", ->
 
     # choose year
     cy.get(".research-years").within ->
-      cy.get(".research-year-list").should "not.contain", "2015"
-      # cy.scrollTo(0, 500)
-      #      cy.wait 1000
-      #      cy.get(".page-link").contains("2").closest(".page-link").click()
-      #      cy.get(".research-year-list").should "contain", "2015"
-      #      cy.get(".page-link").contains("1").closest(".page-link").click()
-      cy.get("#year_2020").check()
+      cy.get("#research-year-list").within ->
+        cy.get("#year_2015").should "not.be.visible"
+        cy.get("#year_2020").check()
       cy.get("#_select_year").click()
 
 

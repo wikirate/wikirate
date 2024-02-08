@@ -20,7 +20,10 @@ class Card
     end
 
     def normalize_filter_args
-      # NOOP - overrides unpublished handling
+      # NOTE: without this filtering for published answers can break things.
+      # Almost certainly need more sophisticated solution. (As is it probably will export
+      # relationships associated with unpublished answers.)
+      @filter_args.delete :published
     end
 
     def filter_by_subject_company_name value
