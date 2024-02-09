@@ -1,0 +1,6 @@
+de:
+  answer_validation_error_message: >
+    FEHLER: Der Antworttyp konnte nicht in 'Nummer' geändert werden. GRUND: Nicht
+    numerischer Wert in vorhandenen Antworten gefunden ('%{bad_answer}').
+    Bitte aktualisieren oder löschen Sie alle Antworten, die vor der 
+    Änderung '%{bad_answer}' enthielten zum Antworttyp Nummer.
