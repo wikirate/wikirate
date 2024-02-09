@@ -36,8 +36,6 @@
   }
 }
 
-
-
 #wikirate-data-today {
   background: $light-teal;
 }
@@ -118,7 +116,7 @@
   }
   .box-bottom {
     border: none;
-    background: white;
+    background: $white;
     .thumbnail {
       align-items: center
     }
@@ -146,15 +144,12 @@
     height: 85%;
     min-height: 300px;
     margin: 1em;
+    .btn.action-link {
+      border: 1.4px solid $purple-grad-2;
+    }
     &:hover {
-      h5, %i, a {
-        color: $white !important;
-      }
-      color: $white;
-      //cursor: pointer;
-      background-color: $purple-grad-1;
       .btn.action-link {
-        border: 1.4px solid transparent;
+        border: 1.4px solid $border-blue;
       }
     }
   }
@@ -175,10 +170,6 @@
     h5, a {
       color: $orange;
     }
-
-    &:hover {
-      background-color: $orange;
-    }
   }
   .wr-arrow {
     color: $orange;
@@ -187,6 +178,53 @@
       background-color: $orange;
     }
   }
+  .slick-current .action-card .card {
+    background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%);
+  }
+  &:hover .slick-current .action-card .card {
+    h5.card-title,
+    a.action-link {
+      color: $orange;
+    }
+  }
+  .action-card .card:hover {
+    background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%) !important;
+  }
+}
+
+#community-actions, .homepage-involved-cards {
+  .action-card .card:hover,
+  .slick-current .action-card .card:hover {
+    background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
+    color: $white;
+
+    h5.card-title,
+    a.action-link {
+      color: $white;
+    }
+  }
+  .slick-current {
+    .action-card .card {
+      color: $white;
+    }
+
+    h5.card-title,
+    a.action-link {
+      color: $white;
+    }
+  }
+  &:hover .slick-current .action-card .card {
+    background: $white;
+    color: $gray-900;
+    h5.card-title,
+    a.action-link {
+      color: $purple-grad-1;
+    }
+  }
+}
+
+.homepage-involved-cards .slick-current .action-card .card {
+  background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
 }
 
 .wr-arrow {
@@ -353,7 +391,7 @@
       font-size: 1rem;
       letter-spacing: 0.3px;
       font-weight: 500;
-      background: linear-gradient(18.98deg, #6B5CD8 7.04%, #7f73d5 90.87%);
+      background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
     }
   }
 }
