@@ -36,8 +36,6 @@
   }
 }
 
-
-
 #wikirate-data-today {
   background: $light-teal;
 }
@@ -180,60 +178,53 @@
       background-color: $orange;
     }
   }
-}
-
-#community-actions .slick-current,
-.homepage-involved-cards .slick-current {
-  .action-card .card {
-    color: $white;
+  .slick-current .action-card .card {
+    background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%);
   }
-  h5.card-title,
-  a.action-link {
-    color: $white;
+  &:hover .slick-current .action-card .card {
+    h5.card-title,
+    a.action-link {
+      color: $orange;
+    }
   }
-}
-
-#community-actions .slick-current .action-card .card {
-  background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%);
-}
-
-.homepage-involved-cards .slick-current .action-card .card {
-  background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
-}
-
-#community-actions:hover .slick-current .action-card .card,
-.homepage-involved-cards:hover .slick-current .action-card .card {
-  background: $white;
-  color: $gray-900;
-  h5.card-title,
-  a.action-link {
-    color: $purple-grad-1;
+  .action-card .card:hover {
+    background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%) !important;
   }
 }
 
-#community-actions:hover .slick-current .action-card .card {
-  h5.card-title,
-  a.action-link {
-    color: $orange;
-  }
-}
-
-#community-actions,
-.homepage-involved-cards {
+#community-actions, .homepage-involved-cards {
   .action-card .card:hover,
   .slick-current .action-card .card:hover {
     background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
     color: $white;
-    
+
     h5.card-title,
     a.action-link {
       color: $white;
     }
   }
+  .slick-current {
+    .action-card .card {
+      color: $white;
+    }
+
+    h5.card-title,
+    a.action-link {
+      color: $white;
+    }
+  }
+  &:hover .slick-current .action-card .card {
+    background: $white;
+    color: $gray-900;
+    h5.card-title,
+    a.action-link {
+      color: $purple-grad-1;
+    }
+  }
 }
 
-#community-actions .action-card .card:hover {
-  background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%) !important;
+.homepage-involved-cards .slick-current .action-card .card {
+  background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
 }
 
 .wr-arrow {
