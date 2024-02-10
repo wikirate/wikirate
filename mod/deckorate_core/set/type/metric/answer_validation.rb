@@ -16,7 +16,7 @@ def validate_all_numeric_values
   bad_answer = metric_card.answers.find do |answer|
     !valid_numeric_value? answer.value
   end
-  "Non-numeric value: '#{bad_answer.value}'" if bad_answer.present?
+  t :answer_validation_error_message, bad_answer: bad_answer.value if bad_answer.present?
 end
 
 def valid_numeric_value? value
