@@ -82,6 +82,9 @@
       $purple-grad-1: #6B5CD8;
       $purple-grad-2: #7F73D5;
 
+      $orange-grad-1: #FF7035;
+      $orange-grad-2: #FF8C5C;
+
       $light-teal: #e4f6f3;
       $light-red: #FAEFEA;
 

@@ -5,7 +5,7 @@ describe "researched metric creation", ->
 
 
   specify "metric type: Research", ->
-    cy.get(".box").within -> cy.contains("Researched").click()
+    cy.get(".SELF-researched.box").within -> cy.contains("Researched").click()
     cy.get(".RIGHT-Xtitle .d0-card-content").type("MyResearch")
 
     cy.contains("Submit").scrollIntoView().click()
@@ -16,7 +16,7 @@ describe "researched metric creation", ->
 
 
   specify "metric type: Relationship", ->
-    cy.get(".box").within ->
+    cy.get(".SELF-relationship.box").within ->
       cy.contains("Relationship").click()
 
     cy.get(".RIGHT-Xtitle .d0-card-content").type("owner of")

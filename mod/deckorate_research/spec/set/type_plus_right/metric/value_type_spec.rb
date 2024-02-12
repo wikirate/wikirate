@@ -17,7 +17,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
       it "blocks type changing" do
         # key = "#{metric.name}+#{sample_company.name}+2015".to_sym
         expect(type_change_for_value("wow", new_type, metric))
-          .to be_invalid.because_of(answers: include("Non-numeric value: 'wow'"))
+          .to be_invalid.because_of(
+            answers: /Cannot change to #{new_type}.*delete all answers containing 'wow'/
+          )
       end
     end
 
