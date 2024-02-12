@@ -20,6 +20,10 @@ format :html do
       if (hq = card.headquarters).present?
         h[:Headquarters] = hq
       end
+      website = Card.search right: "website", left: card.name
+    super.merge(
+      "Website": "#{website}"
+    )
     end
   end
 
