@@ -8,7 +8,7 @@ format :html do
                                                           calculated: :radio,
                                                           status: :radio,
                                                           updated: :radio,
-                                                          outliers: :radio,
+                                                          # outliers: :radio,
                                                           source: :autocomplete
 
   def filter_status_default
