@@ -2,16 +2,19 @@
 include_set Abstract::SearchCachedCount
 include_set Abstract::TopicSearch
 
-# when metric value is edited
+# recount num of topics for a given company when answer is created/deleted
 recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
   changed_card.company_card&.fetch :wikirate_topic
 end
 
+# ...or when metric is (un)published
+field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
+  changed_card.left.fetch :wikirate_topic
+end
+
 # ...or when answer is (un)published
-recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  field_recount changed_card do
-    changed_card.left.company_card&.fetch :wikirate_topic
-  end
+field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  changed_card.left.company_card&.fetch :wikirate_topic
 end
 
 # ... when <metric>+topic is edited
