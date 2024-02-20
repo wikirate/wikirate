@@ -12,9 +12,15 @@ recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
   changed_card.company_card&.fetch :metric
 end
 
-# ...or when answer is (un)published
-recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  field_recount changed_card do
-    changed_card.left.company_card&.fetch :metric
+# # ...or when metric is (un)published
+field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
+  changed_card.left.fetch(:wikirate_company).answer_query
+              .pluck(:company_id).map do |company_id|
+    company_id.card.fetch :metric
   end
+end
+
+# ...or when answer is (un)published
+field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  changed_card.left.company_card&.fetch :metric
 end
