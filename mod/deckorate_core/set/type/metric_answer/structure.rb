@@ -89,14 +89,14 @@ format :html do
   end
 
   def calculated_read_field_configs
-    title =
-      if card.overridden?
-        return [] unless overridden_value?
-        "Overridden Answer"
+    [].tap do |configs|
+      if overridden?
+        configs << source_field_configs
+        configs << [card.name, title: "Overridden Formula"] if overridden_value?
       else
-        "Formula"
+        configs << [card.name, title: "Formula"]
       end
-    [[card.name, title: title]]
+    end
   end
 
   def header_list_items

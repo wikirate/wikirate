@@ -32,7 +32,7 @@ def researchable?
 end
 
 format do
-  delegate :overridden_value?, :researched_value?,
+  delegate :overridden?, :overridden_value?, :researched_value?,
            :uncalculated?, :inverse?,
            to: :card
 end
