@@ -20,6 +20,7 @@ format :html do
       if (hq = card.headquarters).present?
         h[:Headquarters] = hq
       end
+      h["Website"] = card.fetch(:wikirate_website)
     end
   end
 
