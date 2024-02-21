@@ -97,18 +97,22 @@ format :html do
   end
 
   private
-  
+
   def calculated_read_field_configs
-    overridden_read_field_configs || [[card.name, title: "Formula"]]
+    overridden_read_field_configs || [self_core_as_field_config("Formula")]
   end
 
   def overridden_read_field_configs
     return unless overridden?
 
     if overridden_value?
-      [source_field_config, [card.name, title: "Overridden Formula"]]
+      [source_field_config, self_core_as_field_config("Overridden Formula")]
     else
       [source_field_config]
     end
+  end
+
+  def self_core_as_field_config title
+    [card.name, title: title]
   end
 end
