@@ -99,13 +99,15 @@ format :html do
   private
 
   def calculated_read_field_configs
-    overridden_read_field_configs || [self_core_as_field_config("Formula")]
+    if overridden? # meaning answer is researched
+      overridden_read_field_configs
+    else
+      [self_core_as_field_config("Formula")]
+    end
   end
 
   def overridden_read_field_configs
-    return unless overridden?
-
-    if overridden_value?
+    if overridden_value? # meaning there is a calculated value that has been overridden
       [source_field_config, self_core_as_field_config("Overridden Formula")]
     else
       [source_field_config]
