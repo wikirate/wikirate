@@ -106,12 +106,16 @@ format :html do
     formula_wrapper { table.score_links.join " + " }
   end
 
-  def handling_hybrids
+  def handling_hybrids &block
     if card.overridden?
-      output [overridden_answer, yield].compact if overridden_value?
+      overridden_answer_with_formula &block
     else
       yield
     end
+  end
+
+  def overridden_answer_with_formula
+    output [overridden_answer, yield].compact if overridden_value?
   end
 
   def overridden_answer
