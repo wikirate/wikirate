@@ -88,16 +88,31 @@ format :html do
     [[flag_card, title: "Flags", items:  { view: :accordion_bar }]]
   end
 
-  def calculated_read_field_configs
-    title = calculation_overridden? ? "Overridden Answer" : "Formula"
-    [[card.name, title: title]]
-  end
-
   def header_list_items
     super.merge(
       "Company": link_to_card(card.company_card),
       "Year": card.year,
       "Status": render_verification
     )
+  end
+
+  private
+
+  def calculated_read_field_configs
+    overridden_read_field_configs || [self_core_as_field_config("Formula")]
+  end
+
+  def overridden_read_field_configs
+    return unless overridden?
+
+    if overridden_value?
+      [source_field_config, self_core_as_field_config("Overridden Formula")]
+    else
+      [source_field_config]
+    end
+  end
+
+  def self_core_as_field_config title
+    [card.name, title: title]
   end
 end
