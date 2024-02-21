@@ -14,8 +14,8 @@ def blank_overridden?
   overridden? && !answer.overridden_value.present?
 end
 
-def calculation_overridden?
-  overridden? && answer.overridden_value.present?
+def overridden_value?
+  answer.overridden_value.present?
 end
 
 # Metric is calculated but this answer can't yet be calculated
@@ -32,7 +32,7 @@ def researchable?
 end
 
 format do
-  delegate :calculation_overridden?, :researched_value?,
+  delegate :overridden?, :overridden_value?, :researched_value?,
            :uncalculated?, :inverse?,
            to: :card
 end
