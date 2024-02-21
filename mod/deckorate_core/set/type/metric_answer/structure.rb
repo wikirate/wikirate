@@ -77,7 +77,7 @@ format :html do
     elsif card.researched?
       [source_field_config]
     else
-      calculated_read_field
+      calculated_read_field_configs
     end
   end
 
@@ -88,15 +88,18 @@ format :html do
     [[flag_card, title: "Flags", items:  { view: :accordion_bar }]]
   end
 
-  def calculated_read_field_configs configs
-    configs = []
-    if overridden?
-      configs << source_field_config
-      configs << [card.name, title: "Overridden Formula"] if overridden_value?
+  def calculated_read_field_configs
+    overridden_read_field_configs || [[card.name, title: "Formula"]]
+  end
+
+  def overridden_read_field_configs
+    return unless overridden?
+
+    if overridden_value?
+      [source_field_config, [card.name, title: "Overridden Formula"]]
     else
-      configs << [card.name, title: "Formula"]
+      [source_field_config]
     end
-    configs
   end
 
   def header_list_items
