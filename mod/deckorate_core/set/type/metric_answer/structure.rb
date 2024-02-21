@@ -89,8 +89,17 @@ format :html do
   end
 
   def calculated_read_field_configs
-    title = calculation_overridden? ? "Overridden Answer" : "Formula"
-    [[card.name, title: title]]
+    overridden_read_field_configs || [[card.name, title: "Formula"]]
+  end
+
+  def overridden_read_field_configs
+    return unless overridden?
+
+    if overridden_value?
+      [source_field_config, [card.name, title: "Overridden Formula"]]
+    else
+      [source_field_config]
+    end
   end
 
   def header_list_items
