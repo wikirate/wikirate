@@ -91,7 +91,7 @@ format :html do
   def calculated_read_field_configs
     [].tap do |configs|
       if overridden?
-        configs << source_field_configs
+        configs << source_field_config
         configs << [card.name, title: "Overridden Formula"] if overridden_value?
       else
         configs << [card.name, title: "Formula"]
