@@ -19,7 +19,7 @@ format :html do
   end
 
   view :bar_middle do
-    result_middle { count_badges :wikirate_topic, :source, :dataset }
+    result_middle { count_badges :source, :dataset }
   end
 
   view :bar_bottom do
