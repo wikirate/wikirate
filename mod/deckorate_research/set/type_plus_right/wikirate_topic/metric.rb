@@ -6,10 +6,18 @@ def query_hash
   { topic: left_id }
 end
 
+# trigger recount when metric's topic list is edited
 recount_trigger :type_plus_right, :metric, :wikirate_topic do |topic_list|
-  topic_list.changed_item_names.map do |item_name|
-    Card.fetch item_name.to_name.field(:metric)
-  end
+  metric_fields_for_topics topic_list.changed_item_names
+end
+
+# ...or when metric is (un)published
+field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
+  metric_fields_for_topics changed_card.left.wikirate_topic_card.item_names
+end
+
+def self.metric_fields_for_topics topic_list
+  topic_list.map { |item_name| Card.fetch item_name.to_name.field(:metric) }
 end
 
 format :html do
