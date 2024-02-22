@@ -108,7 +108,7 @@ format :html do
 
   def handling_hybrids &block
     if card.overridden?
-      overridden_answer_with_formula &block
+      overridden_answer_with_formula(&block)
     else
       yield
     end

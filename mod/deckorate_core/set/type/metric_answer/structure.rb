@@ -77,7 +77,7 @@ format :html do
     elsif card.researched?
       [source_field_config]
     else
-      calculated_read_field
+      calculated_read_field_configs
     end
   end
 
@@ -88,22 +88,33 @@ format :html do
     [[flag_card, title: "Flags", items:  { view: :accordion_bar }]]
   end
 
-  def calculated_read_field_configs configs
-    configs = []
-    if overridden?
-      configs << source_field_config
-      configs << [card.name, title: "Overridden Formula"] if overridden_value?
-    else
-      configs << [card.name, title: "Formula"]
-    end
-    configs
-  end
-
   def header_list_items
     super.merge(
       "Company": link_to_card(card.company_card),
       "Year": card.year,
       "Status": render_verification
     )
+  end
+
+  private
+
+  def calculated_read_field_configs
+    if overridden? # meaning answer is researched
+      overridden_read_field_configs
+    else
+      [self_core_as_field_config("Formula")]
+    end
+  end
+
+  def overridden_read_field_configs
+    if overridden_value? # meaning there is a calculated value that has been overridden
+      [source_field_config, self_core_as_field_config("Overridden Formula")]
+    else
+      [source_field_config]
+    end
+  end
+
+  def self_core_as_field_config title
+    [card.name, title: title]
   end
 end
