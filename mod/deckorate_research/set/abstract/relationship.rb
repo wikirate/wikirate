@@ -8,9 +8,9 @@ def researched?
   true
 end
 
-def researchable?
-  false
-end
+# def researchable?
+#   false
+# end
 
 def simple_value_type_code
   :number
