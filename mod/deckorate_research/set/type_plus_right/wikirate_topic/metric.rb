@@ -16,7 +16,7 @@ field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
   metric_fields_for_topics changed_card.left.wikirate_topic_card.item_names
 end
 
-def metric_fields_for_topics topic_list
+def self.metric_fields_for_topics topic_list
   topic_list.map { |item_name| Card.fetch item_name.to_name.field(:metric) }
 end
 
