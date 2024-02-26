@@ -534,9 +534,8 @@ GEM
     formatador (1.1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    graphiql-rails (1.9.0)
+    graphiql-rails (1.10.0)
       railties
-      sprockets-rails
     graphql (1.12.24)
     haml (5.2.2)
       temple (>= 0.8.0)
@@ -604,7 +603,7 @@ GEM
       nokogiri (>= 1.6)
       rake (>= 0.9)
       video_info (>= 2.6)
-    listen (3.8.0)
+    listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.22.0)
@@ -652,7 +651,13 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (9.7.1)
     nio4r (2.7.0)
+    nokogiri (1.16.2-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.16.2-arm-linux)
+      racc (~> 1.4)
     nokogiri (1.16.2-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.2-x86-linux)
       racc (~> 1.4)
     nokogiri (1.16.2-x86_64-darwin)
       racc (~> 1.4)
@@ -785,7 +790,7 @@ GEM
       rspec-expectations (~> 3.12)
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
-    rspec-support (3.13.0)
+    rspec-support (3.13.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (1.60.2)
@@ -908,11 +913,11 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  arm64-darwin-21
-  arm64-darwin-22
-  x86_64-darwin-20
-  x86_64-darwin-21
-  x86_64-darwin-22
+  aarch64-linux
+  arm-linux
+  arm64-darwin
+  x86-linux
+  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
