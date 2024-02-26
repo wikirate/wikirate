@@ -18,10 +18,8 @@
 # end
 #
 # # ...or when answer is (un)published
-# recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-#   field_recount changed_card do
-#     company_cache_cards_for_answer changed_card.left
-#   end
+# field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+#   company_cache_cards_for_answer changed_card.left
 # end
 #
 # # ... when <metric>+topic is edited

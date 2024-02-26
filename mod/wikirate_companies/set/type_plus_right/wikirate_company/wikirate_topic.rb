@@ -1,26 +1,29 @@
 # order of the following two matters for filtering, but I don't really know why
-include_set Abstract::SearchCachedCount
+# include_set Abstract::SearchCachedCount
 include_set Abstract::TopicSearch
 
-# when metric value is edited
-recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
-  changed_card.company_card&.fetch :wikirate_topic
-end
-
-# ...or when answer is (un)published
-recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  field_recount changed_card do
-    changed_card.left.company_card&.fetch :wikirate_topic
-  end
-end
-
-# ... when <metric>+topic is edited
-recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
-  metric = changed_card.left
-  metric.fetch(:wikirate_company).answer_query.pluck(:company_id).map do |company_id|
-    company_id.card&.fetch :wikirate_topic
-  end
-end
+# # recount num of topics for a given company when answer is created/deleted
+# recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
+#   changed_card.company_card&.fetch :wikirate_topic
+# end
+#
+# # ...or when metric is (un)published
+# field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
+#   changed_card.left.fetch :wikirate_topic
+# end
+#
+# # ...or when answer is (un)published
+# field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+#   changed_card.left.company_card&.fetch :wikirate_topic
+# end
+#
+# # ... when <metric>+topic is edited
+# recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
+#   metric = changed_card.left
+#   metric.fetch(:wikirate_company).answer_query.pluck(:company_id).map do |company_id|
+#     company_id.card&.fetch :wikirate_topic
+#   end
+# end
 
 def company_name
   name.left_name

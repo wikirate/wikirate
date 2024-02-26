@@ -7,18 +7,19 @@ end
 
 # recount no. of sources on metric when citation is changed
 recount_trigger :type_plus_right, :metric_answer, :source do |citation|
-  metric_searches_for_sources citation
+  metric_searches_for_sources citation.changed_item_cards
+end
+
+# ...or when metric is (un)published
+field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
+  metric_searches_for_sources changed_card.left&.source_card&.item_cards
 end
 
 # ...or when answer is (un)published
-recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  field_recount changed_card do
-    metric_searches_for_sources changed_card.left&.source_card
-  end
+field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  metric_searches_for_sources changed_card.left&.source_card&.item_cards
 end
 
-def self.metric_searches_for_sources citation
-  citation.changed_item_cards.map do |source_card|
-    source_card.fetch :metric
-  end.compact
+def self.metric_searches_for_sources sources
+  sources.map { |source_card| source_card.fetch :metric }.compact
 end

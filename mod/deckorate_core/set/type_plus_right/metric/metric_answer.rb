@@ -11,11 +11,14 @@ recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
   changed_card.metric_card.fetch :metric_answer
 end
 
+# ...or when metric is (un)published
+field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
+  changed_card.left.fetch :metric_answer
+end
+
 # ...or when answer is (un)published
-recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  field_recount changed_card do
-    changed_card.left.metric_card.fetch :metric_answer
-  end
+field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  changed_card.left.metric_card.fetch :metric_answer
 end
 
 # TODO: trigger recount from virtual answer batches

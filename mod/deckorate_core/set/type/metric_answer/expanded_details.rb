@@ -9,7 +9,7 @@ include_set Abstract::Paging
 
 format :html do
   view :expanded_details do
-    with_overrides do
+    handling_hybrids do
       wrap_with :div, class: "details-content" do
         send :"expanded_#{card.metric_type}_details"
       end
@@ -106,8 +106,16 @@ format :html do
     formula_wrapper { table.score_links.join " + " }
   end
 
-  def with_overrides
-    output [(overridden_answer if calculation_overridden?), yield].compact
+  def handling_hybrids &block
+    if card.overridden?
+      overridden_answer_with_formula(&block)
+    else
+      yield
+    end
+  end
+
+  def overridden_answer_with_formula
+    output [overridden_answer, yield].compact if overridden_value?
   end
 
   def overridden_answer

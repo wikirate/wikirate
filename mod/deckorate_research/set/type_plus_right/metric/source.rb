@@ -17,11 +17,14 @@ recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
   changed_card.left.metric_card.fetch :source
 end
 
+# ...or when metric is (un)published
+field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
+  changed_card.left.fetch :source
+end
+
 # ...or when answer is (un)published
-recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  field_recount changed_card do
-    changed_card.left.metric_card.fetch :source
-  end
+field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+  changed_card.left.metric_card.fetch :source
 end
 
 format do
