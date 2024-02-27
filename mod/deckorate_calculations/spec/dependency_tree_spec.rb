@@ -5,19 +5,29 @@ RSpec.describe Card::DependencyTree do
     end
   end
 
-  it "iterates in correct order" do
-    c1, c2, c3, c4, c5 = sample_metrics(5)
-    formula_tree c1 => [c2, c3], c2 => [c3, c4], c3 => [c5], c4 => [], c5 => [c4]
+  context "when depender tree" do
+    let(:researched_metric) { "Jedi+deadliness".card }
+    let(:depender_tree) { Card::DependencyTree.new :depender, researched_metric }
 
-    expect { |probe| described_class.new(:depender, c1).each_metric(&probe) }
-      .to yield_successive_args(c2, c3, c5, c4)
-  end
+    it "produces tree" do
+      puts depender_tree.tree
+    end
 
-  it "detects loop" do
-    c1, c2, c3, c4, c5 = sample_metrics(5)
-    formula_tree c1 => [c2, c3], c2 => [c3, c4], c3 => [c5], c4 => [c2], c5 => [c4]
+    it "iterates in correct order" do
+      c1, c2, c3, c4, c5 = sample_metrics(5)
+      formula_tree c1 => [c2, c3], c2 => [c3, c4], c3 => [c5], c4 => [], c5 => [c4]
 
-    expect { described_class.new(:depender, c1).each_metric {} }
-      .to raise_error /calculation loop/
+      expect { |probe| described_class.new(:depender, c1).each_metric(&probe) }
+        .to yield_successive_args(c2, c3, c5, c4)
+    end
+
+    it "detects loop" do
+      # c2 depends on c4 and c4 depends on c2
+      c1, c2, c3, c4, c5 = sample_metrics(5)
+      formula_tree c1 => [c2, c3], c2 => [c3, c4], c3 => [c5], c4 => [c2], c5 => [c4]
+
+      expect { described_class.new(:depender, c1).each_metric {} }
+        .to raise_error /calculation loop/
+    end
   end
 end
