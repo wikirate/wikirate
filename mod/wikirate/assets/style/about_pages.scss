@@ -216,15 +216,18 @@
   &:hover .slick-current .action-card .card {
     background: $white;
     color: $gray-900;
-    h5.card-title,
-    a.action-link {
-      color: $purple-grad-1;
-    }
   }
 }
 
 .homepage-involved-cards .slick-current .action-card .card {
   background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
+
+  &:hover .slick-current .action-card .card {
+    h5.card-title,
+    a.action-link {
+      color: $purple-grad-1;
+    }
+  }
 }
 
 .wr-arrow {
