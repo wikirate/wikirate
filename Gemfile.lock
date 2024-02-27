@@ -534,9 +534,8 @@ GEM
     formatador (1.1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    graphiql-rails (1.9.0)
+    graphiql-rails (1.10.0)
       railties
-      sprockets-rails
     graphql (1.12.24)
     haml (5.2.2)
       temple (>= 0.8.0)
@@ -785,7 +784,7 @@ GEM
       rspec-expectations (~> 3.12)
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
-    rspec-support (3.13.0)
+    rspec-support (3.13.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (1.60.2)
@@ -965,4 +964,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   2.5.5
+   2.5.6
