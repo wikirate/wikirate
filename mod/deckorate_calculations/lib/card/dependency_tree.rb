@@ -1,10 +1,14 @@
 class Card
-  # Build a tree of metrics that depend on metrics in a given list.
-  class DependerTree
+  # Build a tree of metrics that depend on a given calculated metric (when dependency
+  # type is :dependee) or that the metrics depends on or
+  class DependencyTree
     Node = Struct.new :metric, :children, :parent_cnt
 
-    def initialize root_metrics
-      @roots = root_metrics.uniq.map { |metric| Node.new(metric, [], 0) }
+    # @param root_metrics [Array] list of first level dependencies
+    # @param dependency_type [Symbol] either :depender or :dependee
+    def initialize dependency_type, metric
+      @dependency_type = dependency_type
+      @roots = children_for_metric(metric).uniq.map { |metric| Node.new(metric, [], 0) }
     end
 
     def each_metric &block
@@ -13,6 +17,10 @@ class Card
 
     def metrics
       @metrics ||= pluck_metrics
+    end
+
+    def tree
+      @tree ||= build_tree
     end
 
     private
@@ -40,8 +48,11 @@ class Card
 
     # each node has
     # - metric
-    # - children (dependers: nodes for metrics that depend on this node
-    # - parent_cnt (dependee: number of nodes that this metric depends on)
+    # - children (for depender tree: children nodes are dependers for metrics.
+    #   for dependee trees, children are dependees)
+    # - parent_cnt (for depender tree, number of dependees. for dependee tree, number of
+    #   dependers)
+    #
     #
     # @roots is a fixed list of nodes with no child/parent info
     #
@@ -50,6 +61,7 @@ class Card
     def build_tree
       @tree = @roots.clone
       @roots.each { |node| add_children node }
+      @tree
     end
 
     def node metric
@@ -57,9 +69,11 @@ class Card
     end
 
     def add_children node
-      node.metric.direct_depender_metrics.each do |metric|
-        add_child node, metric
-      end
+      children_for_metric(node.metric).each { |metric| add_child node, metric }
+    end
+
+    def children_for_metric metric
+      metric.send "direct_#{@dependency_type}_metrics"
     end
 
     def add_child parent_node, child_metric
@@ -86,7 +100,7 @@ class Card
 
     def raise_loop_error n1, n2
       raise "calculation loop: #{n1.metric.name} and #{n2.metric.name} " \
-            "depend on each other"
+              "depend on each other"
     end
   end
 end
