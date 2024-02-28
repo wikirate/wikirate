@@ -69,7 +69,8 @@ class Card
 
     def add_ancestry child, parent
       child.ancestors += parent.ancestors + [parent.metric.id]
-      child.children.each { |child| add_ancestry child, parent }
+      child.ancestors.uniq!
+      child.children.each { |descendant| add_ancestry descendant, parent }
     end
 
     def raise_loop_error n1, n2

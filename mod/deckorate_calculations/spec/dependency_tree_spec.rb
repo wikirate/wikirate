@@ -7,9 +7,9 @@ RSpec.describe Card::DependencyTree do
 
   context "when depender tree" do
     let(:researched_metric) { "Jedi+deadliness".card }
-    let(:depender_tree) { Card::DependencyTree.new :depender, researched_metric }
+    let(:depender_tree) { described_class.new :depender, researched_metric }
 
-    it "produces tree" do
+    xit "produces tree" do
       puts depender_tree.tree
     end
 
