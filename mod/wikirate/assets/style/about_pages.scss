@@ -205,7 +205,7 @@ $orange-grad-2: orange !default;
 }
 
 .homepage-involved-cards, #community-actions {
-  &:not(:hover) .slick-current .action-card .card,
+  .slick-slider:not(:hover) .slick-current .action-card .card,
   .action-card .card:hover {
     color: $white;
 
