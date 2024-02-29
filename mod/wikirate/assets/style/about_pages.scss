@@ -180,7 +180,7 @@ $orange-grad-2: orange !default;
       background-color: $orange;
     }
   }
-  .slick-slider(:not(:hover)) .slick-current .action-card .card,
+  .slick-slider:not(:hover) .slick-current .action-card .card,
   .action-card .card:hover {
     background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%);
   }
@@ -198,7 +198,7 @@ $orange-grad-2: orange !default;
       background-color: $purple-grad-1;
     }
   }
-  .slick-slider(:not(:hover)) .slick-current .action-card .card,
+  .slick-slider:not(:hover) .slick-current .action-card .card,
   .action-card .card:hover {
     background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
   }
