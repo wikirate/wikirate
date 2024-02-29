@@ -1,3 +1,6 @@
+$orange-grad-1: orange !default;
+$orange-grad-2: orange !default;
+
 .header-with-bg {
   height: 360px;
   .wikirate-section-header {
@@ -174,28 +177,36 @@
   .wr-arrow {
     color: $orange;
     &:hover {
-      color: $white;
       background-color: $orange;
     }
   }
-  .slick-current .action-card .card {
-    background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%);
-  }
-  &:hover .slick-current .action-card .card {
-    h5.card-title,
-    a.action-link {
-      color: $orange;
-    }
-  }
+  .slick-slider:not(:hover) .slick-current .action-card .card,
   .action-card .card:hover {
-    background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%) !important;
+    background: linear-gradient(18.98deg, $orange-grad-1 7.04%, $orange-grad-2 90.87%);
   }
 }
 
-#community-actions, .homepage-involved-cards {
-  .action-card .card:hover,
-  .slick-current .action-card .card:hover {
+.homepage-involved-cards {
+  .action-card .card {
+    h5, a {
+      color: $purple-grad-1;
+    }
+  }
+  .wr-arrow {
+    color: $purple-grad-1;
+    &:hover {
+      background-color: $purple-grad-1;
+    }
+  }
+  .slick-slider:not(:hover) .slick-current .action-card .card,
+  .action-card .card:hover {
     background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
+  }
+}
+
+.homepage-involved-cards, #community-actions {
+  &:not(:hover) .slick-current .action-card .card,
+  .action-card .card:hover {
     color: $white;
 
     h5.card-title,
@@ -203,28 +214,13 @@
       color: $white;
     }
   }
-  .slick-current {
-    .action-card .card {
-      color: $white;
-    }
-
-    h5.card-title,
-    a.action-link {
-      color: $white;
-    }
+  .wr-arrow:hover {
+    color: $white;
   }
-  &:hover .slick-current .action-card .card {
-    background: $white;
-    color: $gray-900;
-    h5.card-title,
-    a.action-link {
-      color: $purple-grad-1;
-    }
+  .action-link:hover i {
+    -webkit-transform: translateX(8px);
+    transform: translateX(8px);
   }
-}
-
-.homepage-involved-cards .slick-current .action-card .card {
-  background: linear-gradient(18.98deg, $purple-grad-1 7.04%, $purple-grad-2 90.87%);
 }
 
 .wr-arrow {
