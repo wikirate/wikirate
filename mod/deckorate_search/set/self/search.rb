@@ -29,6 +29,10 @@ format :html do
     voo.title = "Search within #{scope}"
   end
 
+  view :title, cache: :never do
+    super()
+  end
+
   view :page, template: :haml
   view :search_types, template: :haml, cache: :never
   view :titled_content, template: :haml
@@ -108,7 +112,7 @@ format :json do
   def cardnames_from_os_results results
     return [] unless search_keyword.present?
 
-    results.map { |result| result["_id"]&.to_i&.cardname }
+    results.map { |result| os_result_card(result)&.cardname }.compact
   end
 
   def autocomplete_options
