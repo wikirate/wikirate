@@ -17,10 +17,10 @@ format :html do
 
   def header_list_items
     super.tap do |h|
-      if (hq = card.headquarters).present?
-        h[:Headquarters] = hq
+      %i[headquarters wikirate_website].each do |field_code|
+        next unless (content = card.fetch(field_code)&.content&.present?)
+        h[field_code.cardname] = content
       end
-      h["Website"] = card.fetch(:wikirate_website)
     end
   end
 
