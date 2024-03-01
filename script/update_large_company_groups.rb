@@ -6,7 +6,7 @@
 require File.dirname(__FILE__) + "/../config/environment"
 Card::Auth.signin "Ethan McCutchen"
 
-MINIMUM_COMPANY_COUNT = 10_000.freeze
+MINIMUM_COMPANY_COUNT = 10_000
 
 def company_group_sql
   "select c.id as group_id from counts ct " \
@@ -26,7 +26,9 @@ def update_group? group
   m_ids = metric_ids_for_group group
   return false unless m_ids.present?
 
-  Answer.where(metric_id: m_ids).where("updated_at > now() - interval 1 day").count > 0
+  Answer.where(metric_id: m_ids)
+        .where("updated_at > now() - interval 1 day")
+        .positive?
 end
 
 def metric_ids_for_group group
