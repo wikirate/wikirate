@@ -12,7 +12,7 @@ format :html do
 
   view :type_badge do
     type = card.type_name
-    link_to_card type, nil, class: "badge bg-#{type.key} _over-card-link"
+    link_to_card type, nil, class: "badge bg-#{type.key}" # " _over-card-link"
   end
 
   def result_middle
