@@ -16,12 +16,7 @@ format :html do
   end
 
   def header_list_items
-    super.tap do |h|
-      if (hq = card.headquarters).present?
-        h[:Headquarters] = hq
-      end
-      h["Website"] = card.fetch(:wikirate_website)
-    end
+    super.tap { |hash| add_header_items hash, %i[headquarters wikirate_website] }
   end
 
   def header_text
@@ -74,6 +69,15 @@ format :html do
       next unless card.fetch fieldcode
 
       field_nest fieldcode, view: :titled, title: fieldcode.cardname
+    end
+  end
+
+  private
+
+  def add_header_items hash, field_codes
+    field_codes.each do |field_code|
+      next unless (content = card.fetch(field_code)&.content)&.present?
+      hash[field_code.cardname] = content
     end
   end
 end
