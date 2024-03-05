@@ -138,10 +138,3 @@ animation bg-pan-right
   cursor: pointer;
   padding-right: 0.5rem;
 }
-
-.homepage-involved-cards, #community-actions {
-  .action-link:hover i {
-    -webkit-transform: translateX(8px);
-    transform: translateX(8px);
-  }
-}
