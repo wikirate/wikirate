@@ -17,7 +17,7 @@ class Calculate
       include Defaults
       include Options
 
-      INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification].freeze
+      INPUT_ANSWER_FIELDS = %i[company_id year id value unpublished verification].freeze
 
       attr_reader :input_card, :options, :input_index, :input_count, :result_space
       delegate :answer_candidates, to: :result_space
@@ -58,7 +58,11 @@ class Calculate
 
       def answers_for company_id, year
         @search_space = SearchSpace.new company_id, year
-        answers
+        answers = []
+        full_search do |_company_id, _year, input_answer|
+          answers << input_answer.lookup_ids
+        end
+        answers.flatten.uniq.map { |id| Answer.find id}
       end
 
       # @return a hash { year => value } if year is nil otherwise only value.

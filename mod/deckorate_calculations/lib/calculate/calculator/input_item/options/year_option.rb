@@ -49,12 +49,12 @@ class Calculate
           # @param answer_hash [Hash] for every input item a hash with values
           #   for every year
           # @param year [Integer]the year we want the input data for
-          def apply_year_option answer_hash, year
+          def apply_year_option input_answer_hash, year
             ip = processed_year_option
             method = "apply_#{ip.class.to_s.downcase}_year_option"
             illegal_input_processor! ip unless respond_to? method
 
-            send method, answer_hash, ip, year.to_i
+            send method, input_answer_hash, ip, year.to_i
           end
 
           def illegal_input_processor! ip
