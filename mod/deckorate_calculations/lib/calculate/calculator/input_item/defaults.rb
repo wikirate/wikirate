@@ -24,14 +24,14 @@ class Calculate
           years
         end
 
-        def apply_year_option year_value_hash, year
-          year_value_hash[year]
+        def apply_year_option input_answer_hash, year
+          input_answer_hash[year]
         end
 
         # @return Hash
         # keys are company ids, values are Hashes, each of which has
         # year as a key and InputAnswer object as a value
-        def year_value_pairs_by_company
+        def input_answers_by_company_and_year
           each_input_answer answers, {} do |input_answer, hash|
             company_hash = hash[input_answer.company_id] ||= {}
             company_hash[input_answer.year] = input_answer

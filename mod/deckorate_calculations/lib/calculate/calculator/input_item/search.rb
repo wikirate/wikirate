@@ -6,16 +6,18 @@ class Calculate
         def search result_space=nil
           @result_space = result_space || ResultSpace.new(false)
           @result_slice = ResultSlice.new
-          full_search
+          full_search do |company_id, year, input_answer|
+            store_value company_id, year, input_answer
+          end
           after_search
         end
 
         # Find answer for the given input card and cache the result.
         # If year is given look only for that year
         def full_search
-          year_value_pairs_by_company.each do |company_id, year_value_hash|
-            translate_years(year_value_hash.keys).each do |year|
-              store_value company_id, year, apply_year_option(year_value_hash, year)
+          input_answers_by_company_and_year.each do |company_id, input_answer_hash|
+            translate_years(input_answer_hash.keys).each do |year|
+              yield company_id, year, apply_year_option(input_answer_hash, year)
             end
           end
         end
@@ -65,11 +67,17 @@ class Calculate
           @search_space = nil
         end
 
-        def consolidated_input_answer input_answers, year
-          value = input_answers.map(&:value)
-          unpublished = input_answers.find(&:unpublished)
-          verification = input_answers.map(&:verification).compact.min || 1
-          InputAnswer.new(self, nil, year).assign value, unpublished, verification
+        def consolidated_input_answer answers, year
+          lookup_ids = consolidate_lookup_ids answers
+          value = answers.map(&:value)
+          unpublished = answers.find(&:unpublished)
+          verification = answers.map(&:verification).compact.min || 1
+          InputAnswer.new(self, nil, year)
+                     .assign lookup_ids, value, unpublished, verification
+        end
+
+        def consolidate_lookup_ids answers
+          answers.map { |a| a.try(:lookup_ids) || a.id }.flatten.uniq
         end
       end
     end
