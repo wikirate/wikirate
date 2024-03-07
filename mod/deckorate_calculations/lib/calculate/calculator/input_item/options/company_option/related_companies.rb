@@ -12,7 +12,7 @@ class Calculate
             # @return Hash
             # keys are company ids, values are Hashes, each of which has
             # year as a key and InputAnswer object as a value
-            def year_value_pairs_by_company
+            def input_answers_by_company_and_year
               object_answers = super
               # answers for object companies (same hash representation as result)
 
