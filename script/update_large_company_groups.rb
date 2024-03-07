@@ -28,7 +28,7 @@ def update_group? group
 
   Answer.where(metric_id: m_ids)
         .where("updated_at > now() - interval 1 day")
-        .positive?
+        .count.positive?
 end
 
 def metric_ids_for_group group
