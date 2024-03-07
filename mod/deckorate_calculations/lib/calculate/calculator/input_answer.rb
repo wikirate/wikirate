@@ -2,7 +2,9 @@ class Calculate
   class Calculator
     # Holds key answer fields for one input metric / company / year
     class InputAnswer
-      attr_accessor :input_item, :company_id, :year, :value, :unpublished, :verification
+      attr_accessor :lookup_ids, :input_item,
+                    :company_id, :year, :value,
+                    :unpublished, :verification
 
       def initialize input_item, company_id, year
         @input_item = input_item
@@ -10,7 +12,8 @@ class Calculate
         @year = year
       end
 
-      def assign value, unpublished, verification
+      def assign lookup_ids, value, unpublished, verification
+        @lookup_ids = Array.wrap lookup_ids
         @value = Answer.value_from_lookup value, @input_item.type
         @unpublished = unpublished
         @verification = verification

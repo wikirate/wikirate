@@ -117,6 +117,16 @@ RSpec.describe Calculate::Calculator::Input do
       example "year specified" do
         expect(answers_for(death_star, 1977).first.value).to eq("0.31")
       end
+
+      context "with relative year" do
+        let(:input_array) { [{ metric: "Jedi+Disturbances in the Force", year: "-1" }] }
+
+        example "year specified" do
+          answers = answers_for death_star, 1993
+          expect(answers.size).to eq(1)
+          expect(answers.first.value).to eq("yes")
+        end
+      end
     end
 
     context "with two metrics" do
