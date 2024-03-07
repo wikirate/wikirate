@@ -24,8 +24,10 @@ class Calculate
 
         def each_applicable_year raw_years, &block
           years = translate_years raw_years
-          years = years & search_space.years if !restrict_years_in_query?
-          years.each &block
+          if search_space.years.present? && !restrict_years_in_query?
+            years = years.intersection search_space.years
+          end
+          years.each(&block)
         end
 
         def search_space

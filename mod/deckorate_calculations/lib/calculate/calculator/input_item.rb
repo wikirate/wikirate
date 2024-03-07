@@ -66,7 +66,6 @@ class Calculate
         end
       end
 
-
       # @return a hash { year => value } if year is nil otherwise only value.
       #   Value is usually a string, but it can be an array of strings if the input item
       #   uses an option that generates multiple values for one year like a
