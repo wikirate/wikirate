@@ -1,8 +1,6 @@
 class Calculate
   class Calculator
-    # Keeps track of companies that have values for all input metrics which means
-    # it's possible to calculate answers for them.
-    # It's a Set of company ids for every year
+    # Keeps track of which companies can calculate answers for which years
     class ResultSpace < Hash
       attr_reader :answer_candidates
 

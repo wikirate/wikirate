@@ -1,7 +1,7 @@
 class Calculate
   class Calculator
     class ResultSpace
-      # SearchSpace for formulas where all or at least one of the input items needs to
+      # ResultSpace for formulas where all or at least one of the input items needs to
       # have a value.
       # Answer candidates for each input are intersected with the existing candidates.
       module IntersectSlices
