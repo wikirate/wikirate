@@ -58,12 +58,14 @@ class Calculate
 
       def answers_for company_id, year
         @search_space = SearchSpace.new company_id, year
-        answers = []
-        full_search do |_company_id, year, input_answer|
-          answers << input_answer.lookup_ids
+        if option?(:company) || year_option?
+          # cannot do simple query
+          nonstandard_answers
+        else
+          answers
         end
-        answers.flatten.uniq.map { |id| Answer.find id }
       end
+
 
       # @return a hash { year => value } if year is nil otherwise only value.
       #   Value is usually a string, but it can be an array of strings if the input item
@@ -78,6 +80,16 @@ class Calculate
       end
 
       private
+
+      # don't need to pass company_id and year because it's
+      # captured in the searchspace
+      def nonstandard_answers
+        answer_ids = []
+        full_search do |_company_id, _year, input_answer|
+          answer_ids << input_answer.lookup_ids
+        end
+        Answer.where id: answer_ids.flatten.uniq
+      end
 
       def unknown! answer
         answer.value = :unknown
