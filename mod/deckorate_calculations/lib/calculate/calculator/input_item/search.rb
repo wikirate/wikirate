@@ -16,10 +16,16 @@ class Calculate
         # If year is given look only for that year
         def full_search
           input_answers_by_company_and_year.each do |company_id, input_answer_hash|
-            translate_years(input_answer_hash.keys).each do |year|
+            each_applicable_year(input_answer_hash.keys) do |year|
               yield company_id, year, apply_year_option(input_answer_hash, year)
             end
           end
+        end
+
+        def each_applicable_year raw_years, &block
+          years = translate_years raw_years
+          years = years & search_space.years if search_space.years.present?
+          years.each &block
         end
 
         def search_space

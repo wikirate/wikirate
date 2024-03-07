@@ -59,10 +59,10 @@ class Calculate
       def answers_for company_id, year
         @search_space = SearchSpace.new company_id, year
         answers = []
-        full_search do |_company_id, _year, input_answer|
+        full_search do |_company_id, year, input_answer|
           answers << input_answer.lookup_ids
         end
-        answers.flatten.uniq.map { |id| Answer.find id}
+        answers.flatten.uniq.map { |id| Answer.find id }
       end
 
       # @return a hash { year => value } if year is nil otherwise only value.
