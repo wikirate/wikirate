@@ -17,7 +17,7 @@ class Calculate
       include Defaults
       include Options
 
-      INPUT_ANSWER_FIELDS = %i[company_id year value unpublished verification].freeze
+      INPUT_ANSWER_FIELDS = %i[company_id year id value unpublished verification].freeze
 
       attr_reader :input_card, :options, :input_index, :input_count, :result_space
       delegate :answer_candidates, to: :result_space
@@ -58,7 +58,12 @@ class Calculate
 
       def answers_for company_id, year
         @search_space = SearchSpace.new company_id, year
-        answers
+        if option?(:company) || year_option?
+          # cannot do simple query
+          nonstandard_answers
+        else
+          answers
+        end
       end
 
       # @return a hash { year => value } if year is nil otherwise only value.
@@ -74,6 +79,16 @@ class Calculate
       end
 
       private
+
+      # don't need to pass company_id and year because it's
+      # captured in the searchspace
+      def nonstandard_answers
+        answer_ids = []
+        full_search do |_company_id, _year, input_answer|
+          answer_ids << input_answer.lookup_ids
+        end
+        Answer.where id: answer_ids.flatten.uniq
+      end
 
       def unknown! answer
         answer.value = :unknown
