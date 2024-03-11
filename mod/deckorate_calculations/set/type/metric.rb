@@ -65,11 +65,15 @@ def direct_depender_metrics
 end
 
 def depender_tree
-  DependencyTree.new :depender, self
+  @depender_tree ||= DependencyTree.new :depender, self
+end
+
+def dependee_metrics
+  dependee_tree.metrics
 end
 
 def dependee_tree
-  DependencyTree.new :dependee, self
+  @dependee_tree ||= DependencyTree.new :dependee, self
 end
 
 def score_metrics

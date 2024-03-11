@@ -59,7 +59,17 @@ def formula_field?
   field? formula_field
 end
 
+# calculated metrics for which a given answer depends ONLY on other
+# answers for the same company and year
+def orthodox?
+  !dependee_tree.metrics.find { |m| m.year_option? || m.company_option? }
+end
+
 format :html do
+  def tab_list
+    super.insert 2, :inputs
+  end
+
   view :new do
     params[:button] == "formulated" ? super() : render_new_formula
   end
@@ -81,6 +91,16 @@ format :html do
       end
     end
   end
+
+  view :inputs_tab do
+    "Coming soon: inputs"
+  end
+
+  view :sources_tab do
+    "Coming soon: sources"
+  end
+
+  private
 
   def new_formula_hidden_tags
     hidden_tags card: { fields: { ":metric_type": card.metric_type },
