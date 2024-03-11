@@ -62,7 +62,12 @@ end
 # calculated metrics for which a given answer depends ONLY on other
 # answers for the same company and year
 def orthodox?
-  !dependee_tree.metrics.find { |m| m.year_option? || m.company_option? }
+  !dependee_tree.metrics.find do |dependee|
+    next unless dependee.calculated?
+    
+    var = dependee.variables_card
+    var.year_option? || var.company_option?
+  end
 end
 
 format :html do

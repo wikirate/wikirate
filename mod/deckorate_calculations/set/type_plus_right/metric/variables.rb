@@ -74,7 +74,6 @@ def company_option?
   hash_list.find { |h| h.key? :company }
 end
 
-
 private
 
 def content_to_hash_list content
