@@ -63,8 +63,8 @@ end
 # answers for the same company and year
 def orthodox?
   !dependee_tree.metrics.find do |dependee|
-    next unless dependee.calculated?
-    
+    next unless dependee.calculated? && !dependee.score?
+
     var = dependee.variables_card
     var.year_option? || var.company_option?
   end
