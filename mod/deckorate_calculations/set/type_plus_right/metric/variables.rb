@@ -75,7 +75,7 @@ end
 # end
 
 def unorthodox?
-  hash_list.find { |h| h.key?(:year) || h.key?(:company) }
+  hash_list.any? { |h| h.key?(:year) || h.key?(:company) }
 end
 
 private

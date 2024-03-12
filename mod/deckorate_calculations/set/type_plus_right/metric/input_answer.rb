@@ -39,55 +39,45 @@ format do
 end
 
 format :html do
-  view :export_links, cache: :never do
-    if metric_card.relationship?
-      wrap_with :div, class: "export-links py-2" do
-        [wrap_export_links("Answer", export_format_links),
-         wrap_export_links("Relationship", relationship_export_links)]
-      end
-    else
-      super()
-    end
-  end
+  # view :export_links, cache: :never do
+  #   if metric_card.relationship?
+  #     wrap_with :div, class: "export-links py-2" do
+  #       [wrap_export_links("Answer", export_format_links),
+  #        wrap_export_links("Relationship", relationship_export_links)]
+  #     end
+  #   else
+  #     super()
+  #   end
+  # end
 
-  before :core do
-    voo.items[:hide] = :metric_thumbnail
-  end
+  # def show_metric_count?
+  #   false
+  # end
 
-  def export_mark
-    return super unless metric_card.relationship?
-
-    { Relationships: metric_card.relationship_answer_card.name, Answers: super }
-  end
-
-  def show_metric_count?
-    false
-  end
-
-  def quick_filter_list
-    @quick_filter_list ||= :wikirate_company.card.format.quick_filter_list
-  end
-
-  def filter_value_type
-    case metric_card.simple_value_type_code
-    when :category, :multi_category
-      :check
-    when :number, :money
-      :range
-    else
-      :text
-    end
-  end
-
-  def filter_related_company_group_type
-    :radio
-  end
-
-  def filter_related_company_group_options
-    type_options :company_group
-  end
-
-  def filter_value_options
-    metric_card.value_options_card&.options_hash&.reverse_merge "Unknown" => "Unknown"
-  end
+  # def quick_filter_list
+  #   @quick_filter_list ||= :wikirate_company.card.format.quick_filter_list
+  # end
+  #
+  # def filter_value_type
+  #   case metric_card.simple_value_type_code
+  #   when :category, :multi_category
+  #     :check
+  #   when :number, :money
+  #     :range
+  #   else
+  #     :text
+  #   end
+  # end
+  #
+  # def filter_related_company_group_type
+  #   :radio
+  # end
+  #
+  # def filter_related_company_group_options
+  #   type_options :company_group
+  # end
+  #
+  # def filter_value_options
+  #   metric_card.value_options_card&.options_hash&.reverse_merge "Unknown" => "Unknown"
+  # end
 end
