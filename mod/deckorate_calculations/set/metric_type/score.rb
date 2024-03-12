@@ -36,6 +36,10 @@ def needs_name?
   false
 end
 
+def unorthodox?
+  false
+end
+
 def base_input_array
   input = { metric: left_id, name: "answer" }
   input[:unknown] = "Unknown" if categorical?
