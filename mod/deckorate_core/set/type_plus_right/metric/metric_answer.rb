@@ -8,17 +8,25 @@ include_set Abstract::FixedAnswerSearch
 # recount number of answers for a given metric when an Answer card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
-  changed_card.metric_card.fetch :metric_answer
+  answer_fields changed_card.metric_card
 end
 
 # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
-  changed_card.left.fetch :metric_answer
+  answer_fields changed_card.left
 end
 
 # ...or when answer is (un)published
 field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  changed_card.left.metric_card.fetch :metric_answer
+  answer_fields changed_card.left.metric_card
+end
+
+recount_trigger :type_plus_right, :metric, :formula do |changed_card|
+  answer_fields changed_card.left
+end
+
+def answer_fields metric
+  ([metric] + metric.depender_metrics).map { |m| m.fetch :metric_answer }
 end
 
 # TODO: trigger recount from virtual answer batches

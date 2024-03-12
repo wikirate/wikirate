@@ -82,11 +82,9 @@ class Card
 
       def validate_depender_metric value
         metric = value.card
-        if metric&.calculated?
-          metric
-        else
-          raise(Error::UserError, "not a calculated metric: #{value}")
-        end
+        return metric if metric&.calculated?
+
+        raise Error::UserError, "not a calculated metric: #{value}"
       end
 
       def company_answer_join table

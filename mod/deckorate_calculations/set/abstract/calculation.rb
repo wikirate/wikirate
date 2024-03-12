@@ -105,9 +105,6 @@ format :html do
     field_nest :input_answer, view: :filtered_content
   end
 
-  view :sources_tab do
-    "Coming soon: sources"
-  end
 
   private
 

@@ -74,6 +74,9 @@ describe "metric creation", ->
         cy.get("td").should "contain", "friendliness"
         cy.get(".code").should "contain", "friendliness + 1"
 
+      # go to answers tab
+      cy.contains("Answers").click()
+
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "1.1"
 
