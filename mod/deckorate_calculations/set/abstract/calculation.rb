@@ -67,7 +67,7 @@ def orthodox_tree?
 end
 
 def unorthodox_tree?
-  dependee_tree.metrics.find { |dependee| dependee.unorthodox? }
+  dependee_tree.metrics.find(&:unorthodox?)
 end
 
 format :html do
