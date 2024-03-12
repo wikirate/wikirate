@@ -72,7 +72,11 @@ end
 
 format :html do
   def tab_list
-    super.insert 2, :inputs
+    super.insert 2, :input_answer
+  end
+
+  def tab_options
+    { input_answer: { label: "Inputs" } }
   end
 
   view :new do
@@ -97,7 +101,7 @@ format :html do
     end
   end
 
-  view :inputs_tab do
+  view :input_answer_tab do
     field_nest :input_answer, view: :filtered_content
   end
 

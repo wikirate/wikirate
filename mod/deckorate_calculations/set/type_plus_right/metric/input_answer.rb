@@ -32,10 +32,6 @@ format do
   def default_filter_hash
     { company_name: "" }
   end
-
-  def sort_options
-    super.reject { |_k, v| v == :metric_title }
-  end
 end
 
 format :html do
