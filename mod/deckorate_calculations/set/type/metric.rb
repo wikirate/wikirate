@@ -9,6 +9,12 @@ event :recalculate_answers, delay: true, priority: 5 do
   deep_answer_update
 end
 
+# an unorthodox metric is a calculated metric that directly depends on an answer
+# that is not for the same company and year
+def unorthodox?
+  false
+end
+
 # DEPENDEES = metrics that I depend on
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -1,3 +1,5 @@
+delegate :unorthodox?, to: :variables_card
+
 def calculator variant=:standard
   calculator_class.new input_array(variant),
                        formula: formula,
@@ -59,15 +61,13 @@ def formula_field?
   field? formula_field
 end
 
-# calculated metrics for which a given answer depends ONLY on other
-# answers for the same company and year
-def orthodox?
-  !dependee_tree.metrics.find do |dependee|
-    next unless dependee.calculated? && !dependee.score?
+# metric's answers depends ONLY on other answers for the same company and year
+def orthodox_tree?
+  !unorthodox_tree?
+end
 
-    var = dependee.variables_card
-    var.year_option? || var.company_option?
-  end
+def unorthodox_tree?
+  dependee_tree.metrics.find { |dependee| dependee.unorthodox? }
 end
 
 format :html do
@@ -98,7 +98,7 @@ format :html do
   end
 
   view :inputs_tab do
-    "Coming soon: inputs"
+    field_nest :input_answer, view: :filtered_content
   end
 
   view :sources_tab do

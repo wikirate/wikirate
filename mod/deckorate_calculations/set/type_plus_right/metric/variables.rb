@@ -66,12 +66,16 @@ def unique_items?
   metric_type_codename != :formula
 end
 
-def year_option?
-  hash_list.find { |h| h.key? :year }
-end
+# def year_option?
+#   hash_list.find { |h| h.key? :year }
+# end
+#
+# def company_option?
+#   hash_list.find { |h| h.key? :company }
+# end
 
-def company_option?
-  hash_list.find { |h| h.key? :company }
+def unorthodox?
+  hash_list.find { |h| h.key?(:year) || h.key?(:company) }
 end
 
 private
