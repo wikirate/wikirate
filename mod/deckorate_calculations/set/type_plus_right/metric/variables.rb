@@ -61,8 +61,21 @@ def input_array
   (content.present? ? parse_content : [])
 end
 
+# formulae can use the same metric for more than one variable
 def unique_items?
   metric_type_codename != :formula
+end
+
+# def year_option?
+#   hash_list.find { |h| h.key? :year }
+# end
+#
+# def company_option?
+#   hash_list.find { |h| h.key? :company }
+# end
+
+def unorthodox?
+  hash_list.any? { |h| h.key?(:year) || h.key?(:company) }
 end
 
 private

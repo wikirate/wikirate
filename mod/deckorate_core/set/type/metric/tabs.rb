@@ -1,7 +1,7 @@
 format :html do
   # default tab list (several metric types override)
   def tab_list
-    %i[metric_answer calculation dataset details]
+    %i[details metric_answer sources dataset calculation]
   end
 
   view :wikirate_topic_tab do
