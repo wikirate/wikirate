@@ -9,6 +9,12 @@ event :recalculate_answers, delay: true, priority: 5 do
   deep_answer_update
 end
 
+# an unorthodox metric is a calculated metric that directly depends on an answer
+# that is not for the same company and year
+def unorthodox?
+  false
+end
+
 # DEPENDEES = metrics that I depend on
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -65,11 +71,15 @@ def direct_depender_metrics
 end
 
 def depender_tree
-  DependencyTree.new :depender, self
+  @depender_tree ||= DependencyTree.new :depender, self
+end
+
+def dependee_metrics
+  dependee_tree.metrics
 end
 
 def dependee_tree
-  DependencyTree.new :dependee, self
+  @dependee_tree ||= DependencyTree.new :dependee, self
 end
 
 def score_metrics

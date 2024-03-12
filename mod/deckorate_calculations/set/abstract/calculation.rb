@@ -1,3 +1,5 @@
+delegate :unorthodox?, to: :variables_card
+
 def calculator variant=:standard
   calculator_class.new input_array(variant),
                        formula: formula,
@@ -59,7 +61,24 @@ def formula_field?
   field? formula_field
 end
 
+# metric's answers depends ONLY on other answers for the same company and year
+def orthodox_tree?
+  !unorthodox_tree?
+end
+
+def unorthodox_tree?
+  dependee_tree.metrics.find(&:unorthodox?)
+end
+
 format :html do
+  def tab_list
+    super.insert 2, :input_answer
+  end
+
+  def tab_options
+    { input_answer: { label: "Inputs" } }
+  end
+
   view :new do
     params[:button] == "formulated" ? super() : render_new_formula
   end
@@ -81,6 +100,16 @@ format :html do
       end
     end
   end
+
+  view :input_answer_tab do
+    field_nest :input_answer, view: :filtered_content
+  end
+
+  view :sources_tab do
+    "Coming soon: sources"
+  end
+
+  private
 
   def new_formula_hidden_tags
     hidden_tags card: { fields: { ":metric_type": card.metric_type },

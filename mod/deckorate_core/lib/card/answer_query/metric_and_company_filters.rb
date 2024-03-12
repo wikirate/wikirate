@@ -66,7 +66,28 @@ class Card
         single_metric? ? (@metric_card ||= Card[@filter_args[:metric_id]]) : return
       end
 
+      def filter_by_depender_metric value
+        metric = validate_depender_metric value
+        if metric.orthodox_tree?
+          company_answer_join :dependee
+          @conditions <<
+            "dependee.metric_id = #{metric.id} and dependee.year = answers.year"
+        else
+          dependees = metric.dependee_metrics
+          filter :metric_id, dependees.map(&:id) if dependees.present?
+        end
+      end
+
       private
+
+      def validate_depender_metric value
+        metric = value.card
+        if metric&.calculated?
+          metric
+        else
+          raise(Error::UserError, "not a calculated metric: #{value}")
+        end
+      end
 
       def company_answer_join table
         @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
