@@ -36,7 +36,7 @@ def bookmark_type
 end
 
 def metric_card
-  @metric_card ||= left&.metric_card
+  @metric_card ||= left
 end
 
 format do
