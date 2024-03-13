@@ -56,7 +56,7 @@ format :html do
         card.metric_card = metric
         haml :value_formgroup, metric: metric, value: value, group: group
       else
-        "woot"
+        ""
       end
     end
   end
