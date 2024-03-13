@@ -5,7 +5,6 @@ include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CachedCount
 include_set Abstract::FullAnswerSearch
 
-
 # recount number of answers for a given metric when an Answer card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|

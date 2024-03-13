@@ -105,7 +105,6 @@ format :html do
     field_nest :input_answer, view: :filtered_content
   end
 
-
   private
 
   def new_formula_hidden_tags
