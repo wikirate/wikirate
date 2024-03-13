@@ -9,22 +9,29 @@ def cql_content
 end
 
 def answer_relation
-  AnswerQuery.new(metric_id: left.id).lookup_relation
+  query_key = left.calculated? ? :depender_metric : :metric_id
+  AnswerQuery.new(query_key => left.id).lookup_relation
 end
 
 # recount no. of sources on metric when citation is edited
 recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
-  changed_card.left.metric_card.fetch :source
+  source_fields changed_card.left.metric_card
 end
 
 # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
-  changed_card.left.fetch :source
+  source_fields changed_card.left
 end
 
 # ...or when answer is (un)published
 field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  changed_card.left.metric_card.fetch :source
+  source_fields changed_card.left.metric_card
+end
+
+private
+
+def self.source_fields metric
+  ([metric] + metric.depender_metrics).map { |metric| metric.fetch :source }
 end
 
 format do

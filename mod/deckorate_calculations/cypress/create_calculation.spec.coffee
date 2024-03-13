@@ -69,16 +69,16 @@ describe "metric creation", ->
       cy.get(".RIGHT-Xtitle .d0-card-content").type "MyFormula"
       cy.contains("Submit").click()
 
-      # check that an answer exists
-      cy.get("span.metric-value").should "contain", "1.1"
-
-      # go to details tab
-      cy.contains("Details").click()
-
       # check that formula looks right
       cy.get(".RIGHT-formula.titled-view").within ->
         cy.get("td").should "contain", "friendliness"
         cy.get(".code").should "contain", "friendliness + 1"
+
+      # go to answers tab
+      cy.contains("Answers").click()
+
+      # check that an answer exists
+      cy.get("span.metric-value").should "contain", "1.1"
 
 
     specify "metric type: Score", ->
@@ -98,15 +98,15 @@ describe "metric creation", ->
       # save as metric
       cy.contains("Submit").click()
 
-      # check that an answer exists
-      cy.get("span.metric-value").should "contain", "1.1"
-
-      # go to details tab
-      cy.contains("Details").click()
-
       # check that formula looks right
       cy.get(".RIGHT-formula.titled-view").within ->
         cy.get(".code").should "contain", "answer + 1"
+
+      # go to answers tab
+      cy.contains("Answers").click()
+
+      # check that an answer exists
+      cy.get("span.metric-value").should "contain", "1.1"
 
   describe "from variable score metric page", ->
     beforeEach ->
@@ -130,11 +130,11 @@ describe "metric creation", ->
       cy.get(".RIGHT-Xtitle .d0-card-content").type "MyWikiRating"
       cy.contains("Submit").click()
 
-      # check that an answer exists
-      cy.get("span.metric-value").should "contain", "10"
-
-      # go to details tab
-      cy.contains("Details").click()
-
       # check that formula looks right
       cy.get(".RIGHT-Xvariable").should "contain", "disturbance"
+
+      # go to answers tab
+      cy.contains("Answers").click()
+
+      # check that an answer exists
+      cy.get("span.metric-value").should "contain", "10"

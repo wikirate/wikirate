@@ -12,10 +12,6 @@ def query_hash
   { fixed_field => left.id }
 end
 
-def query paging={}
-  AnswerQuery.new query_hash, {}, paging
-end
-
 format do
   delegate :partner, to: :card
 
