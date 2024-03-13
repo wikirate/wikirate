@@ -25,7 +25,7 @@ recount_trigger :type_plus_right, :metric, :formula do |changed_card|
   answer_fields changed_card.left
 end
 
-def answer_fields metric
+def self.answer_fields metric
   ([metric] + metric.depender_metrics).map { |m| m.fetch :metric_answer }
 end
 

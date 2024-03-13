@@ -30,8 +30,8 @@ end
 
 private
 
-def source_fields metric
-  ([metric] + depender_metrics).each { |metric| metric.fetch :source }
+def self.source_fields metric
+  ([metric] + metric.depender_metrics).map { |metric| metric.fetch :source }
 end
 
 format do

@@ -22,7 +22,7 @@ field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed
   input_answer_and_source_fields changed_card.left.metric_card
 end
 
-def input_answer_and_source_fields metric
+def self.input_answer_and_source_fields metric
   metric.depender_metrics.map do |depender|
     %i[input_answer source].map { |fld| depender.fetch fld }
   end.flatten
