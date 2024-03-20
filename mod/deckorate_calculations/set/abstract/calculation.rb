@@ -105,6 +105,10 @@ format :html do
     field_nest :input_answer, view: :filtered_content
   end
 
+  def accordionize
+    accordion_item yield, body: card.name
+  end
+
   private
 
   def new_formula_hidden_tags

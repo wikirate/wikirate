@@ -158,4 +158,8 @@ format :html do
     name = hash.delete :name
     haml :formula_variable_row, name: name, options: hash
   end
+
+  def accordionize
+    yield
+  end
 end
