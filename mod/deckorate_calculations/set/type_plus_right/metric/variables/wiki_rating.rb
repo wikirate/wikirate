@@ -13,12 +13,6 @@ format :html do
     end
   end
 
-  def wiki_rating_accordion_item metric, weight
-    metric.card.format.accordionize do
-      haml :wiki_rating_accordion_item, metric: metric, weight: weight
-    end
-  end
-
   def wiki_rating_input
     custom_variable_input :wiki_rating_input
   end
@@ -29,5 +23,13 @@ format :html do
 
   def wiki_rating_filtered_item_wrap
     :none
+  end
+  
+  private
+
+  def wiki_rating_accordion_item metric, weight
+    metric_accordion_item metric do
+      haml :wiki_rating_accordion_item, metric: metric, weight: weight
+    end
   end
 end

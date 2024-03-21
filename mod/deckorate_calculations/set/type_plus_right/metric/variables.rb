@@ -156,4 +156,8 @@ format :html do
   def edit_in_form_prefix
     card.new? ? "card[fields][:variables]" : super
   end
+
+  def metric_accordion_item metric, &block
+    metric.card.metric_accordion_item_card.format.metric_accordion_item &block
+  end
 end

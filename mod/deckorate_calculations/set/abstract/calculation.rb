@@ -70,6 +70,7 @@ def unorthodox_tree?
   dependee_tree.metrics.find(&:unorthodox?)
 end
 
+
 format :html do
   def tab_list
     super.insert 2, :input_answer
@@ -105,8 +106,12 @@ format :html do
     field_nest :input_answer, view: :filtered_content
   end
 
-  def accordionize
-    accordion_item yield, body: card.name
+  def metric_accordion_item
+    accordion_item yield, body: render_accordion_body
+  end
+
+  view :accordion_body do
+    field_nest :variables, view: :core
   end
 
   private
