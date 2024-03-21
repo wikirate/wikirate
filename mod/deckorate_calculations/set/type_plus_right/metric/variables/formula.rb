@@ -1,6 +1,12 @@
 format :html do
   view :formula_core do
-    table formula_core_table_rows, header: %w[Variable Metric Options]
+    accordion do
+      card.hash_list.clone.map do |hash|
+        metric = hash.delete :metric
+        variable = hash.delete :name
+        formula_accordion_item metric, variable, hash
+      end
+    end
   end
 
   def formula_input
@@ -26,6 +32,12 @@ format :html do
   private
 
   view :options_editor, template: :haml, unknown: true #, wrap: :modal
+
+  def formula_accordion_item metric, variable, options
+    metric_accordion_item metric do
+      haml :formula_accordion_item, metric: metric, variable: variable, options: options
+    end
+  end
 
   def formula_core_table_rows
     card.hash_list.clone.map do |hash|
