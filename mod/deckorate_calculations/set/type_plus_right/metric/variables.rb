@@ -158,6 +158,6 @@ format :html do
   end
 
   def metric_accordion_item metric, &block
-    metric.card.metric_accordion_item_card.format.metric_accordion_item &block
+    metric.card.metric_accordion_item_card.format.metric_accordion_item(&block)
   end
 end

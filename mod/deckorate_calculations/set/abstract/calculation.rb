@@ -105,10 +105,6 @@ format :html do
     field_nest :input_answer, view: :filtered_content
   end
 
-  def metric_accordion
-
-  end
-
   def metric_accordion_item
     accordion_item yield, body: render_accordion_body # stub_view(:accordion_body)
   end

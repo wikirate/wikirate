@@ -24,7 +24,7 @@ format :html do
   def wiki_rating_filtered_item_wrap
     :none
   end
-  
+
   private
 
   def wiki_rating_accordion_item metric, weight
