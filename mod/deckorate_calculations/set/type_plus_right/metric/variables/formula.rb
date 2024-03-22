@@ -1,13 +1,5 @@
 format :html do
-  view :formula_core do
-    accordion do
-      card.hash_list.clone.map do |hash|
-        metric = hash.delete :metric
-        variable = hash.delete :name
-        formula_accordion_item metric, variable, hash
-      end
-    end
-  end
+  view :formula_core, template: :haml
 
   def formula_input
     custom_variable_input :formula_input
@@ -27,6 +19,16 @@ format :html do
       "Any Researched": :any_researched,
       "Custom": :custom
     }
+  end
+
+  def formula_accordion
+    accordion do
+      card.hash_list.clone.map do |hash|
+        metric = hash.delete :metric
+        variable = hash.delete :name
+        formula_accordion_item metric, variable, hash
+      end
+    end
   end
 
   private
