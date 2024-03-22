@@ -101,6 +101,10 @@ def update_latest company_id=nil
   end
 end
 
+def metric_accordion_item_card
+  card
+end
+
 private
 
 def latest_rel rel
@@ -157,5 +161,9 @@ format :html do
     hash.delete :metric
     name = hash.delete :name
     haml :formula_variable_row, name: name, options: hash
+  end
+
+  def metric_accordion_item &block
+    wrap_with :div, class: "list-group-item", &block
   end
 end

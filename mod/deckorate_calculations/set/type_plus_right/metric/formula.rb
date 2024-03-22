@@ -25,7 +25,7 @@ format :html do
   view :titled_content do
     return super() if score?
 
-    [nest(card.variables_card, view: :core, title: "Variables"), render_content]
+    nest card.variables_card, view: :core
   end
 
   def input_type

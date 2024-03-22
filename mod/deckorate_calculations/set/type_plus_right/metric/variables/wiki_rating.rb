@@ -6,12 +6,10 @@ end
 
 format :html do
   view :wiki_rating_core do
-    table(rating_core_table_content, header: %w[Metric Weight])
-  end
-
-  def rating_core_table_content
-    card.weight_hash.map do |metric, weight|
-      [nest(metric, view: :thumbnail), "#{weight}%"]
+    accordion do
+      card.weight_hash.map do |metric, weight|
+        wiki_rating_accordion_item metric, weight
+      end
     end
   end
 
@@ -25,5 +23,13 @@ format :html do
 
   def wiki_rating_filtered_item_wrap
     :none
+  end
+  
+  private
+
+  def wiki_rating_accordion_item metric, weight
+    metric_accordion_item metric do
+      haml :wiki_rating_accordion_item, metric: metric, weight: weight
+    end
   end
 end
