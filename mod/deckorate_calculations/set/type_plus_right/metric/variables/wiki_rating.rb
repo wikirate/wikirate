@@ -4,17 +4,11 @@ def weight_hash
   end
 end
 
+def map_wiki_rating_metric_and_context
+  weight_hash.map { |metric, weight| yield metric, "#{weight}%" }
+end
+
 format :html do
-  view :wiki_rating_core do
-    table(rating_core_table_content, header: %w[Metric Weight])
-  end
-
-  def rating_core_table_content
-    card.weight_hash.map do |metric, weight|
-      [nest(metric, view: :thumbnail), "#{weight}%"]
-    end
-  end
-
   def wiki_rating_input
     custom_variable_input :wiki_rating_input
   end

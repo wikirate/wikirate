@@ -9,7 +9,7 @@ include_set Abstract::Paging
 
 format :html do
   view :expanded_details do
-    handling_hybrids do
+    handling_researched do
       wrap_with :div, class: "details-content" do
         send :"expanded_#{card.metric_type}_details"
       end
@@ -17,18 +17,6 @@ format :html do
   end
 
   view :core, :expanded_details
-
-  def expanded_researched_details
-    "" # placeholder so core view won't break
-  end
-
-  def expanded_relationship_details
-    "" # placeholder so core view won't break
-  end
-
-  def expanded_inverse_relationship_details
-    "" # placeholder so core view won't break
-  end
 
   # ~~~~~ FORMULA DETAILS
 
@@ -106,8 +94,10 @@ format :html do
     formula_wrapper { table.score_links.join " + " }
   end
 
-  def handling_hybrids &block
-    if card.overridden?
+  def handling_researched &block
+    if card.metric_card.researched?
+      ""
+    elsif card.overridden?
       overridden_answer_with_formula(&block)
     else
       yield

@@ -21,11 +21,6 @@ format do
     }
   end
 
-  def sort_hash
-    primary = { sort_by.to_sym => sort_dir }
-    secondary_sort ? primary.merge(secondary_sort) : primary
-  end
-
   def default_sort_dir sort_by
     return super unless sort_by == :value
 
@@ -34,10 +29,6 @@ format do
 
   def default_desc_sort_dir
     ::Set.new %i[updated_at metric_bookmarkers value year]
-  end
-
-  def secondary_sort
-    @secondary_sort ||= secondary_sort_hash[sort_by]
   end
 
   # for override
