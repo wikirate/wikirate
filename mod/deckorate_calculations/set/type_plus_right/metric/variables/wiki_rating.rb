@@ -4,15 +4,11 @@ def weight_hash
   end
 end
 
-format :html do
-  view :wiki_rating_core do
-    accordion do
-      card.weight_hash.map do |metric, weight|
-        wiki_rating_accordion_item metric, weight
-      end
-    end
-  end
+def map_wiki_rating_metric_and_context
+  weight_hash.map { |metric, weight| yield metric, "#{weight}%" }
+end
 
+format :html do
   def wiki_rating_input
     custom_variable_input :wiki_rating_input
   end
@@ -23,13 +19,5 @@ format :html do
 
   def wiki_rating_filtered_item_wrap
     :none
-  end
-
-  private
-
-  def wiki_rating_accordion_item metric, weight
-    metric_accordion_item metric do
-      haml :wiki_rating_accordion_item, metric: metric, weight: weight
-    end
   end
 end

@@ -1,5 +1,15 @@
+def map_formula_metric_and_context
+  card.hash_list.clone.map do |hash|
+    metric = hash.delete :metric
+    variable = hash.delete :name
+    yield metric, variable # hash
+  end
+end
+
 format :html do
-  view :formula_core, template: :haml
+  def formula_preface
+    nest metric_card.formula_card, view: :content
+  end
 
   def formula_input
     custom_variable_input :formula_input
@@ -21,33 +31,9 @@ format :html do
     }
   end
 
-  def formula_accordion
-    accordion do
-      card.hash_list.clone.map do |hash|
-        metric = hash.delete :metric
-        variable = hash.delete :name
-        formula_accordion_item metric, variable, hash
-      end
-    end
-  end
-
   private
 
   view :options_editor, template: :haml, unknown: true #, wrap: :modal
-
-  def formula_accordion_item metric, variable, options
-    metric_accordion_item metric do
-      haml :formula_accordion_item, metric: metric, variable: variable, options: options
-    end
-  end
-
-  def formula_core_table_rows
-    card.hash_list.clone.map do |hash|
-      [hash.delete(:name),
-       nest(hash.delete(:metric), view: :thumbnail),
-       formula_options_cell(hash)]
-    end
-  end
 
   def formula_options_cell options
     haml :options_cell, options: options

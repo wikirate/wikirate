@@ -78,6 +78,10 @@ def unorthodox?
   hash_list.any? { |h| h.key?(:year) || h.key?(:company) }
 end
 
+def map_metric_and_context &block
+  send "map_#{metric_type_codename}_metric_and_context", &block
+end
+
 private
 
 def content_to_hash_list content
@@ -105,7 +109,7 @@ format :html do
   delegate :metric_type_codename, :score?, :rating?, to: :card
 
   view :core do
-    render :"#{metric_type_codename}_core"
+    haml :core, preface: try("#{metric_type_codename}_preface")
   end
 
   view :input do
@@ -157,7 +161,17 @@ format :html do
     card.new? ? "card[fields][:variables]" : super
   end
 
-  def metric_accordion_item metric, &block
-    metric.card.metric_accordion_item_card.format.metric_accordion_item(&block)
+  private
+
+  def metric_accordion
+    accordion do
+      card.map_metric_and_context do |metric, detail|
+        metric_accordion_item metric, detail
+      end
+    end
+  end
+
+  def metric_accordion_item metric, detail
+    metric.card.format.metric_accordion_item detail
   end
 end

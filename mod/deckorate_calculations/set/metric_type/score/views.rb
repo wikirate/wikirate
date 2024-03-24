@@ -19,9 +19,7 @@ format :html do
     alert(:warning) { "You have already scored this metric: #{link_to_card card}." }
   end
 
-  view :accordion_body do
-    render_bar
-  end
+  view :accordion_body, template: :haml
 
   view :select do
     options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }

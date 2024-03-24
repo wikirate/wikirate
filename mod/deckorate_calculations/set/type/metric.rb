@@ -101,10 +101,6 @@ def update_latest company_id=nil
   end
 end
 
-def metric_accordion_item_card
-  card
-end
-
 private
 
 def latest_rel rel
@@ -163,7 +159,9 @@ format :html do
     haml :formula_variable_row, name: name, options: hash
   end
 
-  def metric_accordion_item &block
-    wrap_with :div, class: "list-group-item", &block
+  def metric_accordion_item _detail=nil
+    wrap_with :div, class: "list-group-item" do
+      render_thumbnail
+    end
   end
 end

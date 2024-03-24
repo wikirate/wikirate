@@ -101,7 +101,3 @@ end
 def calculation_types
   %i[wiki_rating formula descendant]
 end
-
-def metric_accordion_item_card
-  scoree_card
-end
