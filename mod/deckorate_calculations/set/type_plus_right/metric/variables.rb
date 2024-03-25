@@ -49,8 +49,10 @@ def item_strings _args={}
 end
 
 def hash_list
-  # @hash_list ||=
-  parse_content.map(&:symbolize_keys!)
+  parsed = parse_content
+  parsed.present? ? parsed.map(&:symbolize_keys!) : []
+  # above is needed for special cases like headquarters location that have no input
+  # metrics
 end
 
 def pod_content
