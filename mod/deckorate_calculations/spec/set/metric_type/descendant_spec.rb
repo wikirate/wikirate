@@ -48,7 +48,7 @@ RSpec.describe Card::Set::MetricType::Descendant do
 
       it "renders ancestors in formula view" do
         expect(metric.format.render_formula)
-          .to have_tag("h6", text: /Inherit from ancestor/)
+          .to have_tag("div", class: "formula-preface", text: /Inherit from ancestor/)
       end
     end
   end

@@ -14,14 +14,12 @@ format :html do
   end
 
   view :new do
-    if card.name.card_id
-      alert(:warning) do
-        "You have already scored this metric: #{link_to_card card}."
-      end
-    else
-      super()
-    end
+    return super() unless card.name.card_id
+
+    alert(:warning) { "You have already scored this metric: #{link_to_card card}." }
   end
+
+  view :accordion_body, template: :haml
 
   view :select do
     options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }

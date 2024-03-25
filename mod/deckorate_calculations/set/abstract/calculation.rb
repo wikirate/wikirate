@@ -105,7 +105,20 @@ format :html do
     field_nest :input_answer, view: :filtered_content
   end
 
+  def metric_accordion_item detail=nil
+    accordion_item metric_accordion_item_title(detail),
+                   body: render_accordion_body # stub_view(:accordion_body)
+  end
+
+  view :accordion_body, cache: :never do
+    field_nest :variables, view: :core
+  end
+
   private
+
+  # def stub_view view
+  #   wrap_with(:div, class: "card-slot", data: { "stub-url": path(view: view) }) { "" }
+  # end
 
   def new_formula_hidden_tags
     hidden_tags card: { fields: { ":metric_type": card.metric_type },

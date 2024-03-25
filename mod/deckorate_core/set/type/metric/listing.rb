@@ -37,11 +37,6 @@ format :html do
                                    title: "Designed by #{card.metric_designer}"
   end
 
-  # not hacky??  inline-block doesn't achieve this?
-  view :formula_thumbnail do
-    "</span>#{_render_thumbnail}<span>"
-  end
-
   def thumbnail_subtitle
     [fixed_thumbnail_subtitle, formula_options].flatten.compact.join(" | ")
   end

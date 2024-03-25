@@ -158,4 +158,14 @@ format :html do
     name = hash.delete :name
     haml :formula_variable_row, name: name, options: hash
   end
+
+  def metric_accordion_item detail=nil
+    wrap_with :div, class: "list-group-item" do
+      metric_accordion_item_title detail
+    end
+  end
+
+  def metric_accordion_item_title detail
+    haml :metric_accordion_item_title, detail: detail
+  end
 end
