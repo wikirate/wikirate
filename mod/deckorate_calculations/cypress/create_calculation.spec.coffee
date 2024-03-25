@@ -71,8 +71,8 @@ describe "metric creation", ->
 
       # check that formula looks right
       cy.get(".RIGHT-formula.titled-view").within ->
-        cy.get("td").should "contain", "friendliness"
-        cy.get(".code").should "contain", "friendliness + 1"
+        cy.get(".formula-preface").should "contain", "friendliness + 1"
+        cy.get(".metric-accordion-item-title").should "contain", "friendliness"
 
       # go to answers tab
       cy.contains("Answers").click()
