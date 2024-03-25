@@ -174,7 +174,7 @@ format :html do
   end
 
   def variable_detail detail
-    return unless detail.is_a? Hash
+    return detail unless detail.is_a? Hash
 
     variable = detail.delete :name
     return variable if detail.blank?
