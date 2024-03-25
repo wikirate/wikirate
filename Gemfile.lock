@@ -417,7 +417,7 @@ GEM
     capybara-puma (1.0.1)
       capybara
       puma
-    carrierwave (3.0.6)
+    carrierwave (3.0.7)
       activemodel (>= 6.0.0)
       activesupport (>= 6.0.0)
       addressable (~> 2.6)
@@ -623,7 +623,7 @@ GEM
     mime-types-data (3.2024.0305)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    minitest (5.22.2)
+    minitest (5.22.3)
     multi_json (1.15.0)
     multi_test (0.1.2)
     mustermann (3.0.0)
