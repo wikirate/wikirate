@@ -1,4 +1,4 @@
-def map_descendant_metric_and_context
+def map_descendant_metric_and_detail
   item_cards.map { |metric| yield metric, nil }
 end
 

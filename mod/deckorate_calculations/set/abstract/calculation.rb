@@ -106,7 +106,7 @@ format :html do
   end
 
   def metric_accordion_item detail=nil
-    accordion_item haml(:metric_accordion_item, detail: detail),
+    accordion_item metric_accordion_item_title(detail),
                    body: render_accordion_body # stub_view(:accordion_body)
   end
 

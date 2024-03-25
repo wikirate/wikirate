@@ -4,7 +4,7 @@ def weight_hash
   end
 end
 
-def map_wiki_rating_metric_and_context
+def map_wiki_rating_metric_and_detail
   weight_hash.map { |metric, weight| yield metric, "#{weight}%" }
 end
 

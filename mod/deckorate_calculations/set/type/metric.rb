@@ -159,9 +159,13 @@ format :html do
     haml :formula_variable_row, name: name, options: hash
   end
 
-  def metric_accordion_item _detail=nil
+  def metric_accordion_item detail=nil
     wrap_with :div, class: "list-group-item" do
-      render_thumbnail
+      metric_accordion_item_title detail
     end
+  end
+
+  def metric_accordion_item_title detail
+    haml :metric_accordion_item_title, detail: detail
   end
 end

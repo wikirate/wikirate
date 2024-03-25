@@ -80,8 +80,8 @@ def unorthodox?
   hash_list.any? { |h| h.key?(:year) || h.key?(:company) }
 end
 
-def map_metric_and_context &block
-  send "map_#{metric_type_codename}_metric_and_context", &block
+def map_metric_and_detail &block
+  send "map_#{metric_type_codename}_metric_and_detail", &block
 end
 
 private
@@ -167,10 +167,19 @@ format :html do
 
   def metric_accordion
     accordion do
-      card.map_metric_and_context do |metric, detail|
-        metric_accordion_item metric, detail
+      card.map_metric_and_detail do |metric, detail|
+        metric_accordion_item metric, variable_detail(detail)
       end
     end
+  end
+
+  def variable_detail detail
+    return unless detail.is_a? Hash
+
+    variable = detail.delete :name
+    return variable if detail.blank?
+
+    haml :variable_detail, variable: variable, options: detail
   end
 
   def metric_accordion_item metric, detail

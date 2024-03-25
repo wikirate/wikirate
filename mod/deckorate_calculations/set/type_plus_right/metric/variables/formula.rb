@@ -1,8 +1,7 @@
-def map_formula_metric_and_context
+def map_formula_metric_and_detail
   card.hash_list.clone.map do |hash|
     metric = hash.delete :metric
-    variable = hash.delete :name
-    yield metric, variable # hash
+    yield metric, hash
   end
 end
 
