@@ -15,6 +15,10 @@ def unorthodox?
   false
 end
 
+def orthodox?
+  !unorthodox?
+end
+
 # DEPENDEES = metrics that I depend on
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

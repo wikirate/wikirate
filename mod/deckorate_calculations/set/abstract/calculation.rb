@@ -67,7 +67,7 @@ def orthodox_tree?
 end
 
 def unorthodox_tree?
-  dependee_tree.metrics.find(&:unorthodox?)
+  unorthodox? || dependee_tree.metrics.find(&:unorthodox?)
 end
 
 format :html do
@@ -101,9 +101,7 @@ format :html do
     end
   end
 
-  view :input_answer_tab do
-    field_nest :input_answer, view: :filtered_content
-  end
+  view :input_answer_tab, template: :haml
 
   def metric_accordion_item detail=nil
     accordion_item metric_accordion_item_title(detail),

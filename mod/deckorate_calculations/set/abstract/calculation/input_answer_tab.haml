@@ -1,0 +1,12 @@
+- if card.unorthodox_tree?
+  .alert.alert-info
+    %strong
+      Warning: there may be inaccuracies in this list.
+
+    This metric is
+    %em unorthodox,
+    meaning it depends on formulas with special option settings that preclude
+    directly querying for all inputs en masse. Exact inputs are correctly listed on
+    individual answers.
+
+= field_nest :input_answer, view: :filtered_content
