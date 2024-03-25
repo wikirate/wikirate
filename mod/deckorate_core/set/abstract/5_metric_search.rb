@@ -54,6 +54,13 @@ format do
   def default_desc_sort_dir
     ::Set.new %i[bookmarkers company answer reference]
   end
+
+  def secondary_sort_hash
+    {
+      metric_bookmarkers: { metric_title: :asc },
+      metric_designer: { metric_title: :asc }
+    }
+  end
 end
 
 format :html do

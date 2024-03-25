@@ -1,0 +1,5 @@
+.input-variable.text-end
+  .input-variable-name
+    = variable
+  .input-variable-options.small.text-secondary
+    = options.map { |key, value| "#{key}: #{value}"}.join ", "

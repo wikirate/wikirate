@@ -9,9 +9,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
 
   it "show input options in table" do
     expect_view(:titled, card: "Jedi+deadliness average+formula")
-      .to have_tag("table") do
+      .to have_tag("div.metric-accordion-item-title") do
         with_tag "div.thumbnail", with: { "data-card-name": "Jedi+deadliness" }
-        with_tag "div.formula-option", /year.*-2..0/m
+        with_tag "div.input-variable-options", /year.*-2..0/m
       end
   end
 
