@@ -49,8 +49,10 @@ def item_strings _args={}
 end
 
 def hash_list
-  # @hash_list ||=
-  parse_content.map(&:symbolize_keys!)
+  parsed = parse_content
+  parsed.present? ? parsed.map(&:symbolize_keys!) : []
+  # above is needed for special cases like headquarters location that have no input
+  # metrics
 end
 
 def pod_content
@@ -76,6 +78,10 @@ end
 
 def unorthodox?
   hash_list.any? { |h| h.key?(:year) || h.key?(:company) }
+end
+
+def map_metric_and_detail &block
+  send "map_#{metric_type_codename}_metric_and_detail", &block
 end
 
 private
@@ -105,7 +111,7 @@ format :html do
   delegate :metric_type_codename, :score?, :rating?, to: :card
 
   view :core do
-    render :"#{metric_type_codename}_core"
+    haml :core, preface: try("#{metric_type_codename}_preface")
   end
 
   view :input do
@@ -155,5 +161,28 @@ format :html do
   # hacky. prevents new form from treating +variables as a subcard of +formula
   def edit_in_form_prefix
     card.new? ? "card[fields][:variables]" : super
+  end
+
+  private
+
+  def metric_accordion
+    accordion do
+      card.map_metric_and_detail do |metric, detail|
+        metric_accordion_item metric, variable_detail(detail)
+      end
+    end
+  end
+
+  def variable_detail detail
+    return detail unless detail.is_a? Hash
+
+    variable = detail.delete :name
+    return variable if detail.blank?
+
+    haml :variable_detail, variable: variable, options: detail
+  end
+
+  def metric_accordion_item metric, detail
+    metric.card.format.metric_accordion_item detail
   end
 end
