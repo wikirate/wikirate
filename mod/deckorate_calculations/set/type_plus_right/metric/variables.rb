@@ -175,6 +175,7 @@ format :html do
   private
 
   def metric_accordion
+    class_up "accordion", "metric-accordion"
     accordion do
       card.metric_and_detail.map do |metric, detail|
         metric.card.format.metric_accordion_item detail

@@ -21,7 +21,7 @@ format :html do
     if metric_card.researched?
       ""
     elsif card.overridden?
-      overridden_answer_with_formula(&block)
+      overridden_answer_with_formula
     else
       render_calculation_details
     end
@@ -38,21 +38,30 @@ format :html do
   end
 
   view :calculation_details do
-    [metric_card.format.preface, render_answer_accordion]
+    class_up "accordion", "answer-accordion"
+    calculation_only do
+      [metric_card.format.preface, render_answer_accordion]
+    end
   end
 
   view :answer_accordion do
-    accordion do
-      card.map_input_answer_and_detail do |answer, metric, detail|
-        answer.card.format.answer_accordion_item metric, detail
+    calculation_only do
+      accordion do
+        card.map_input_answer_and_detail do |answer, metric, detail|
+          answer.card.format.answer_accordion_item metric, detail
+        end
       end
     end
   end
 
   view :core, :expanded_details
 
+  def calculation_only
+    card.researched? ? "" : yield
+  end
+
   def overridden_answer_with_formula
-    output [overridden_answer, yield].compact if overridden_value?
+    overridden_answer if overridden_value?
   end
 
   def overridden_answer
