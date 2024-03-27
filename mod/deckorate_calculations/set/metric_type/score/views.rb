@@ -19,7 +19,9 @@ format :html do
     alert(:warning) { "You have already scored this metric: #{link_to_card card}." }
   end
 
-  view :accordion_body, template: :haml
+  view :accordion_body do
+    [preface, scoree_card.format.metric_accordion_item]
+  end
 
   view :select do
     options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
@@ -32,6 +34,14 @@ format :html do
     nest scorer_image_card, view: thumbnail_image_view,
                             title: card.scorer,
                             size: thumbnail_image_size
+  end
+
+  def preface
+    format_preface preface_content
+  end
+
+  def preface_content
+    field_nest card.formula_field, view: :core
   end
 
   def scorer_image_card
