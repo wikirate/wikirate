@@ -70,6 +70,10 @@ def unorthodox_tree?
   unorthodox? || dependee_tree.metrics.find(&:unorthodox?)
 end
 
+def input_metrics_and_detail
+  variables_card.metric_and_detail
+end
+
 format :html do
   def tab_list
     super.insert 2, :input_answer
@@ -104,12 +108,20 @@ format :html do
   view :input_answer_tab, template: :haml
 
   def metric_accordion_item detail=nil
-    accordion_item metric_accordion_item_title(detail),
+    accordion_item metric_accordion_item_title(detail: detail),
                    body: render_accordion_body # stub_view(:accordion_body)
   end
 
   view :accordion_body, cache: :never do
     field_nest :variables, view: :core
+  end
+
+  def preface
+    field_nest :variables, view: :preface
+  end
+
+  def format_preface preface
+    haml :preface, preface: preface
   end
 
   private

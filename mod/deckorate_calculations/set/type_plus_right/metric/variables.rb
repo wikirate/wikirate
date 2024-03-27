@@ -80,8 +80,8 @@ def unorthodox?
   hash_list.any? { |h| h.key?(:year) || h.key?(:company) }
 end
 
-def map_metric_and_detail &block
-  send "map_#{metric_type_codename}_metric_and_detail", &block
+def metric_and_detail
+  send "#{metric_type_codename}_metric_and_detail"
 end
 
 private
@@ -111,7 +111,7 @@ format :html do
   delegate :metric_type_codename, :score?, :rating?, to: :card
 
   view :core do
-    haml :core, preface: try("#{metric_type_codename}_preface")
+    [render_preface, metric_accordion].compact
   end
 
   view :input do
@@ -121,6 +121,15 @@ format :html do
       card.content = card.content # trigger standardization
       super()
     end
+  end
+
+  view :preface do
+    return unless (cont = preface_content).present?
+    card.metric_card.format.format_preface cont if cont
+  end
+
+  def preface_content
+    try "#{metric_type_codename}_preface"
   end
 
   def input_type
@@ -167,22 +176,9 @@ format :html do
 
   def metric_accordion
     accordion do
-      card.map_metric_and_detail do |metric, detail|
-        metric_accordion_item metric, variable_detail(detail)
+      card.metric_and_detail.map do |metric, detail|
+        metric.card.format.metric_accordion_item detail
       end
     end
-  end
-
-  def variable_detail detail
-    return detail unless detail.is_a? Hash
-
-    variable = detail.delete :name
-    return variable if detail.blank?
-
-    haml :variable_detail, variable: variable, options: detail
-  end
-
-  def metric_accordion_item metric, detail
-    metric.card.format.metric_accordion_item detail
   end
 end
