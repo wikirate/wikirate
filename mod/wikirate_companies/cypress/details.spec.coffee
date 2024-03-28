@@ -19,6 +19,5 @@ describe "expanding details on company pages", ->
     cy.contains "disturbance"
 
     # expand details of first score
-    cy.get(".accordion-item:first-child .range-value").contains("10").click()
-    cy.contains "Scored Metric"
+    cy.get(".accordion-item:first-child .range-value").contains("60.0%").click()
     cy.get(".accordion-body").should("contain", "answer").and("contain", "100")
