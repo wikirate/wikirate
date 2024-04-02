@@ -7,105 +7,61 @@ include_set Abstract::Paging
 # We can't distinguish with sets between metric answers of metrics
 # of different metric types so we have different views for every metric type here.
 
+def map_input_answer_and_detail
+  input_answers = direct_dependee_answers
+  metric_card.input_metrics_and_detail.map.with_index do |(metric, detail), index|
+    yield input_answers[index], metric, detail
+  end
+end
+
 format :html do
+  delegate :metric_card, to: :card
+
   view :expanded_details do
-    handling_researched do
-      wrap_with :div, class: "details-content" do
-        send :"expanded_#{card.metric_type}_details"
+    if metric_card.researched?
+      ""
+    elsif card.overridden?
+      overridden_answer_with_formula
+    else
+      render_calculation_details
+    end
+  end
+
+  def answer_accordion_item metric, detail
+    title = metric.card.format.metric_accordion_item_title detail: detail,
+                                                           answer: render_bar_right
+    if card.researched?
+      wrap_with(:div, class: "list-group-item") { title }
+    else
+      accordion_item title, body: render_calculation_details
+    end
+  end
+
+  view :calculation_details do
+    class_up "accordion", "answer-accordion"
+    calculation_only do
+      [metric_card.format.preface, render_answer_accordion]
+    end
+  end
+
+  view :answer_accordion do
+    calculation_only do
+      accordion do
+        card.map_input_answer_and_detail do |answer, metric, detail|
+          answer.card.format.answer_accordion_item metric, detail
+        end
       end
     end
   end
 
   view :core, :expanded_details
 
-  # ~~~~~ FORMULA DETAILS
-
-  def expanded_formula_details
-    wrap_with :div, [answer_details_table, calculation_details]
-  end
-
-  # ~~~~~~~~~ DESCENDANT DETAILS
-
-  def expanded_descendant_details
-    answer_details_table
-  end
-
-  def expanded_score_details
-    if metric_card.categorical?
-      category_score_table_and_formula
-    else
-      output [answer_details_table("FormulaScore"), calculation_details]
-    end
-  end
-
-  def expanded_wiki_rating_details
-    wrap_with :div do
-      [
-        answer_details_table,
-        wrap_with(:div, class: "col-md-12") do
-          wrap_with(:div, class: "float-end") do
-            "= #{nest card.value_card, view: :pretty}"
-          end
-        end
-      ]
-    end
-  end
-
-  def answer_details_table class_base=nil
-    AnswerDetailsTable.new(self, class_base).render
-  end
-
-  def calculation_details
-    formula_wrapper { formula_details }
-  end
-
-  # TODO: move to haml
-  def formula_wrapper
-    [wrap_with(:h5, "Formula"),
-     wrap_with(:div, "= #{yield}", class: "formula-content")]
-  end
-
-  def formula_calculator
-    card.metric_card.calculator :processed
-  end
-
-  def formula_details
-    card.metric_card.formula
-  end
-
-  def input_value_link value, input_card, year_option
-    answer = [input_card, card.company, input_value_link_year(value, year_option)].compact
-    modal_link Array.wrap(value).join(", "),
-               path: { mark: answer },
-               class: "metric-value"
-  end
-
-  def input_value_link_year value, year_option
-    value.is_a?(Array) && year_option ? nil : card.year
-  end
-
-  def category_score_table_and_formula
-    details_object = AnswerDetailsTable.new self, "CategoryScore"
-    [details_object.render, score_formula(details_object.table)]
-  end
-
-  def score_formula table
-    return unless table.checked_options.size > 1
-    formula_wrapper { table.score_links.join " + " }
-  end
-
-  def handling_researched &block
-    if card.metric_card.researched?
-      ""
-    elsif card.overridden?
-      overridden_answer_with_formula(&block)
-    else
-      yield
-    end
+  def calculation_only
+    card.researched? ? "" : yield
   end
 
   def overridden_answer_with_formula
-    output [overridden_answer, yield].compact if overridden_value?
+    overridden_answer if overridden_value?
   end
 
   def overridden_answer
