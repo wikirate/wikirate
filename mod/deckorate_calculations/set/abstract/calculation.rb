@@ -109,8 +109,8 @@ format :html do
 
   def metric_accordion_item detail=nil
     accordion_item metric_accordion_item_title(detail: detail),
-                   # body: render_accordion_body
-                   body: stub_view(:accordion_body)
+                   body: render_accordion_body
+                   # body: stub_view(:accordion_body)
   end
 
   view :accordion_body, cache: :never do
