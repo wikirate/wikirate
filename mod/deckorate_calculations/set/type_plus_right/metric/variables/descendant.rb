@@ -1,5 +1,5 @@
-def map_descendant_metric_and_detail
-  item_cards.map { |metric| yield metric, nil }
+def descendant_metric_and_detail
+  item_cards.map { |metric| [metric, nil] }
 end
 
 format :html do

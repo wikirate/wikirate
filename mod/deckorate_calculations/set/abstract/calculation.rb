@@ -70,6 +70,10 @@ def unorthodox_tree?
   unorthodox? || dependee_tree.metrics.find(&:unorthodox?)
 end
 
+def input_metrics_and_detail
+  variables_card.metric_and_detail
+end
+
 format :html do
   def tab_list
     super.insert 2, :input_answer
@@ -104,19 +108,32 @@ format :html do
   view :input_answer_tab, template: :haml
 
   def metric_accordion_item detail=nil
-    accordion_item metric_accordion_item_title(detail),
-                   body: render_accordion_body # stub_view(:accordion_body)
+    accordion_item metric_accordion_item_title(detail: detail),
+                   # body: render_accordion_body
+                   body: stub_view(:accordion_body)
   end
 
   view :accordion_body, cache: :never do
     field_nest :variables, view: :core
   end
 
+  def preface
+    field_nest :variables, view: :preface
+  end
+
+  def format_preface preface
+    haml :preface, preface: preface
+  end
+
   private
 
-  # def stub_view view
-  #   wrap_with(:div, class: "card-slot", data: { "stub-url": path(view: view) }) { "" }
-  # end
+  def stub_view view
+    wrap_with :div,
+              class: "card-slot card-slot-stub",
+              data: { "stub-url": path(view: view) } do
+      ""
+    end
+  end
 
   def new_formula_hidden_tags
     hidden_tags card: { fields: { ":metric_type": card.metric_type },
