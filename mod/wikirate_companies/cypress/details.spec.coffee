@@ -19,29 +19,5 @@ describe "expanding details on company pages", ->
     cy.contains "disturbance"
 
     # expand details of first score
-    cy.get("tbody tr:first-child .range-value").contains("10").click()
-    cy.contains "Scored Metric"
-    cy.get("._modal-slot").should "not.contain", "disturbance"
-    cy.get("._modal-slot").should "not.contain", "Sources"
-
-    # expand details of raw value
-    cy.get("._modal-slot:visible").within () ->
-      cy.contains("100").click()
-    cy.get("._modal-slot").should "not.contain", "Scored Metric"
-    cy.contains "Sources"
-    cy.contains "thereaderwiki.com"
-
-    # close raw value
-    cy.wait 400 # let modal transition finish
-    cy.get("._close-modal:visible").first().click()
-    cy.contains "Scored Metric"
-    cy.get("._modal-slot").should "not.contain", "disturbance"
-    cy.get("._modal-slot").should "not.contain", "Sources"
-
-    # close score
-    cy.wait 400 # let modal transition finish
-
-    cy.get("._close-modal").first().click()
-    cy.get("._modal-slot").should "not.contain", "Scored Metric"
-    cy.contains "deadliness"
-    cy.contains "disturbance"
+    cy.get(".accordion-item .range-value").contains("40.0%").click()
+    cy.get(".accordion-body").should("contain", "yes")
