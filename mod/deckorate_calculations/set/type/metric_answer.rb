@@ -3,9 +3,11 @@ include_set Abstract::LazyAccordion
 # The answers that a calculated answer depends on
 # @return [Array] array of Answer objects
 def direct_dependee_answers
-  return [] if researched_value? || !metric_card
+  direct_dependee_answer_map.flatten.uniq
+end
 
-  metric_card.calculator.answers_for(company_id, year).uniq
+def direct_dependee_map
+  when_dependee_applicable { metric_card.calculator.answers_for company, year }
 end
 
 def dependee_answers
@@ -43,8 +45,12 @@ def depender_answers
   end
 end
 
+def when_dependee_applicable
+  researched_value? || !metric_card ? [] : yield
+end
+
 def map_input_answer_and_detail
-  input_answers = direct_dependee_answers
+  input_answers = direct_dependee_map
   metric_card.input_metrics_and_detail.map.with_index do |(metric, detail), index|
     yield input_answers[index], metric, detail
   end
@@ -83,8 +89,8 @@ format :html do
   view :answer_accordion do
     calculation_only do
       accordion do
-        card.map_input_answer_and_detail do |answer, metric, detail|
-          answer.card.format.answer_accordion_item metric, detail
+        card.map_input_answer_and_detail do |answers, metric, detail|
+          input_accordion_items answers, metric, detail
         end
       end
     end
@@ -94,6 +100,17 @@ format :html do
 
   def calculation_only
     card.researched? ? "" : yield
+  end
+
+  private
+
+  # usually only one, but can be many
+  def input_accordion_items answers, metric, detail
+    output do
+      answers.flatten.map do |answer|
+        answer.card.format.answer_accordion_item metric, detail
+      end
+    end
   end
 
   def overridden_answer_with_formula
