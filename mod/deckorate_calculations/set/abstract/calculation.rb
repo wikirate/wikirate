@@ -1,3 +1,5 @@
+include_set Abstract::LazyAccordion
+
 delegate :unorthodox?, to: :variables_card
 
 def calculator variant=:standard
@@ -109,8 +111,8 @@ format :html do
 
   def metric_accordion_item detail=nil
     accordion_item metric_accordion_item_title(detail: detail),
-                   body: render_accordion_body
-                   # body: stub_view(:accordion_body)
+                   body: stub_view(:accordion_body)
+    # body: render_accordion_body
   end
 
   view :accordion_body, cache: :never do
@@ -126,14 +128,6 @@ format :html do
   end
 
   private
-
-  def stub_view view
-    wrap_with :div,
-              class: "card-slot card-slot-stub",
-              data: { "stub-url": path(view: view) } do
-      ""
-    end
-  end
 
   def new_formula_hidden_tags
     hidden_tags card: { fields: { ":metric_type": card.metric_type },
