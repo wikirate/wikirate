@@ -36,12 +36,12 @@ class Calculate
         end
       end
 
-      # @return [Array<Answer>]
+      # @return [Array<[Array<Answer>]>]
       def answers_for company_id, year
         with_integers company_id, year do |c, y|
-          input_list.each_with_object([]) do |input_item, array|
-            input_item.answers_for(c, y).each { |a| array << a }
-          end.uniq
+          input_list.map do |input_item|
+            input_item.answers_for(c, y).to_a
+          end
         end
       end
 
