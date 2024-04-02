@@ -3,7 +3,7 @@ include_set Abstract::LazyAccordion
 # The answers that a calculated answer depends on
 # @return [Array] array of Answer objects
 def direct_dependee_answers
-  direct_dependee_answer_map.flatten.uniq
+  direct_dependee_map.flatten.uniq
 end
 
 def direct_dependee_map
