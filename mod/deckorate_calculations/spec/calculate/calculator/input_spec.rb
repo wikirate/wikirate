@@ -111,11 +111,11 @@ RSpec.describe Calculate::Calculator::Input do
       let(:input_array) { [{ metric: "Jedi+Victims by Employees" }] }
 
       example "no year specified" do
-        expect(answers_for(death_star, nil).first.value).to eq("0.31")
+        expect(answers_for(death_star, nil).first.first.value).to eq("0.31")
       end
 
       example "year specified" do
-        expect(answers_for(death_star, 1977).first.value).to eq("0.31")
+        expect(answers_for(death_star, 1977).first.first.value).to eq("0.31")
       end
 
       context "with relative year" do
@@ -124,7 +124,7 @@ RSpec.describe Calculate::Calculator::Input do
         example "year specified" do
           answers = answers_for death_star, 1993
           expect(answers.size).to eq(1)
-          expect(answers.first.value).to eq("yes")
+          expect(answers.first.first.value).to eq("yes")
         end
       end
     end
@@ -135,11 +135,11 @@ RSpec.describe Calculate::Calculator::Input do
       end
 
       example "no year specified" do
-        expect(answers_for(death_star, nil).map(&:value)).to eq(["0.31", "100"])
+        expect(answers_for(death_star, nil).map { |list| list.first.value }).to eq(["0.31", "100"])
       end
 
       example "year specified" do
-        expect(answers_for(death_star, 1977).map(&:value)).to eq(["0.31", "100"])
+        expect(answers_for(death_star, 1977).map { |list| list.first.value }).to eq(["0.31", "100"])
       end
     end
   end
