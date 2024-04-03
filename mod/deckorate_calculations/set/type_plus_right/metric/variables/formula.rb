@@ -6,7 +6,7 @@ def formula_metric_and_detail
 end
 
 format :html do
-  def formula_preface
+  def formula_algorithm
     nest metric_card.formula_card, view: :content
   end
 
