@@ -150,3 +150,13 @@ $tree-border-color: $gray-200 !default;
   }
 }
 
+.static-tree-item,.tree-item {
+  .row {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    border-bottom: 1px solid $gray-100;
+  }
+}
+.tree-button {
+  padding-right: 0;
+}

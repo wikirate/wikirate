@@ -88,7 +88,6 @@ format :html do
   end
 
   view :calculation_details do
-    class_up "accordion", "answer-tree"
     calculation_only do
       [metric_card.format.algorithm, render_answer_tree]
     end
