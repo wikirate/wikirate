@@ -97,10 +97,6 @@ $tree-border-color: $gray-200 !default;
   }
 }
 
-.static-tree-item {
-  padding-left: 2rem;
-}
-
 .tree-body {
   padding: $tree-body-padding;
 }
@@ -148,6 +144,10 @@ $tree-border-color: $gray-200 !default;
   td {
     background: white;
   }
+}
+
+.static-tree-item {
+  padding-left: 1.75rem;
 }
 
 .static-tree-item,.tree-item {
