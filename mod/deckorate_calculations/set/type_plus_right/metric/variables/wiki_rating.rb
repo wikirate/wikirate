@@ -5,7 +5,7 @@ def weight_hash
 end
 
 def wiki_rating_metric_and_detail
-  weight_hash.map { |metric, weight| [metric, "#{weight}%"] }
+  weight_hash.map { |metric, weight| [metric, "#{format.humanized_number weight}%"] }
 end
 
 format :html do

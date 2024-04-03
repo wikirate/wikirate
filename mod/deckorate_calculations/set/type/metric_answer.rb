@@ -69,13 +69,21 @@ format :html do
     end
   end
 
-  def answer_accordion_item metric, detail
-    title = metric.card.format.metric_accordion_item_title detail: detail,
-                                                           answer: render_bar_right
-    if card.researched?
-      wrap_with(:div, class: "list-group-item") { title }
+  def answer_accordion_item metric, detail, other_answers=[]
+    expandable = card.calculated? && other_answers.empty?
+    value = render_bar_right +
+      output { other_answers.map { |a| nest a.card, view: :bar_right } }
+
+    wrap_answer_accordion_item expandable do
+      metric.card.format.metric_accordion_item_title detail: detail, answer: value
+    end
+  end
+
+  def wrap_answer_accordion_item expandable, &block
+    if expandable
+      accordion_item yield, body: stub_view(:calculation_details)
     else
-      accordion_item title, body: stub_view(:calculation_details)
+      wrap_with :div, class: "list-group-item", &block
     end
   end
 
@@ -90,7 +98,7 @@ format :html do
     calculation_only do
       accordion do
         card.map_input_answer_and_detail do |answers, metric, detail|
-          input_accordion_items answers, metric, detail
+          input_accordion_item answers, metric, detail
         end
       end
     end
@@ -104,13 +112,9 @@ format :html do
 
   private
 
-  # usually only one, but can be many
-  def input_accordion_items answers, metric, detail
-    output do
-      answers.flatten.map do |answer|
-        answer.card.format.answer_accordion_item metric, detail
-      end
-    end
+  def input_accordion_item answers, metric, detail
+    first_answer = answers.shift
+    first_answer.answer.card.format.answer_accordion_item metric, detail, answers
   end
 
   def overridden_answer_with_formula

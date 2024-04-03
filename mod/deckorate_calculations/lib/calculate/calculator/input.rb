@@ -36,7 +36,10 @@ class Calculate
         end
       end
 
-      # @return [Array<[Array<Answer>]>]
+      # @return [Array<Array>] for the given company and year returns a list of lists of
+      # Answer objects. Each item in the outer list corresponds to an input.
+      # Most inputs have only one item, but some have more, so we return an Array of
+      # answers for each input
       def answers_for company_id, year
         with_integers company_id, year do |c, y|
           input_list.map do |input_item|

@@ -135,11 +135,13 @@ RSpec.describe Calculate::Calculator::Input do
       end
 
       example "no year specified" do
-        expect(answers_for(death_star, nil).map { |list| list.first.value }).to eq(["0.31", "100"])
+        expect(answers_for(death_star, nil).map(&:first).map(&:value))
+          .to eq(["0.31", "100"])
       end
 
       example "year specified" do
-        expect(answers_for(death_star, 1977).map { |list| list.first.value }).to eq(["0.31", "100"])
+        expect(answers_for(death_star, 1977).map(&:first).map(&:value))
+          .to eq(["0.31", "100"])
       end
     end
   end
