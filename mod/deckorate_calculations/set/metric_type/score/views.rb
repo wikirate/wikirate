@@ -20,7 +20,7 @@ format :html do
   end
 
   view :metric_tree_branch do
-    [scoree_card.format.metric_tree_item, algorithm]
+    [algorithm, scoree_card.format.metric_tree_item]
   end
 
   view :select do

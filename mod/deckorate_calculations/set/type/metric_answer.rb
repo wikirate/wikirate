@@ -90,7 +90,7 @@ format :html do
   view :calculation_details do
     class_up "accordion", "answer-tree"
     calculation_only do
-      [render_answer_tree, metric_card.format.algorithm]
+      [metric_card.format.algorithm, render_answer_tree]
     end
   end
 

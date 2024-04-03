@@ -2,17 +2,15 @@
 // Base styles
 //
 
-$tree-button-padding-y: .3rem !default;
-$tree-button-padding-x: $accordion-button-padding-x !default;
-
-$tree-body-padding: 0.5rem 0.75rem 0.5rem 3rem !default
+$tree-button-padding: .3rem !default;
+$tree-body-padding: 0.5rem 0rem 0.5rem 2rem !default
 
 .tree-button {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  padding: $tree-button-padding-y $tree-button-padding-x;
+  padding: $tree-button-padding;
   @include font-size($font-size-base);
   color: $accordion-button-color;
   text-align: left; // Reset button style
@@ -127,3 +125,25 @@ $tree-body-padding: 0.5rem 0.75rem 0.5rem 3rem !default
     }
   }
 }
+
+
+
+// Wikirate-specific
+
+.tree-body {
+  .alert {
+    padding: 0.3rem 1em;
+  }
+  table {
+    padding: 0;
+    margin: 0
+  }
+  td, th {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  td {
+    background: white;
+  }
+}
+
