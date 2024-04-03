@@ -165,11 +165,23 @@ format :html do
 
   def metric_accordion_item detail=nil
     wrap_with :div, class: "list-group-item" do
-      metric_accordion_item_title detail
+      metric_accordion_item_title detail: detail
     end
   end
 
-  def metric_accordion_item_title detail
-    haml :metric_accordion_item_title, detail: detail
+  def metric_accordion_item_title detail:, answer: nil
+    haml :metric_accordion_item_title, detail: variable_detail(detail), answer: answer
+  end
+
+  private
+
+  def variable_detail detail
+    return detail unless detail.is_a? Hash
+    detail = detail.clone
+
+    variable = detail.delete :name
+    return variable if detail.blank?
+
+    haml :variable_detail, variable: variable, options: detail
   end
 end
