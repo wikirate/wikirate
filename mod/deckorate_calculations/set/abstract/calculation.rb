@@ -1,4 +1,4 @@
-include_set Abstract::LazyAccordion
+include_set Abstract::LazyTree
 
 delegate :unorthodox?, to: :variables_card
 
@@ -109,22 +109,22 @@ format :html do
 
   view :input_answer_tab, template: :haml
 
-  def metric_accordion_item detail=nil
-    accordion_item metric_accordion_item_title(detail: detail),
-                   body: stub_view(:accordion_body)
-    # body: render_accordion_body
+  def metric_tree_item detail=nil
+    tree_item metric_tree_item_title(detail: detail),
+                   body: stub_view(:metric_tree_branch)
+    # body: render_metric_tree_branch
   end
 
-  view :accordion_body, cache: :never do
+  view :metric_tree_branch, cache: :never do
     field_nest :variables, view: :core
   end
 
-  def preface
-    field_nest :variables, view: :preface
+  def algorithm
+    field_nest :variables, view: :algorithm
   end
 
-  def format_preface preface
-    haml :preface, preface: preface
+  def format_algorithm algorithm
+    haml :algorithm, algorithm: algorithm
   end
 
   private

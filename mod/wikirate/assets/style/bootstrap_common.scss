@@ -23,6 +23,10 @@
 
 $border-blue: #5646c7 !default;
 
+.thumbnail-subtitle .material-icons {
+  font-size: inherit;
+}
+
 .btn-sm i.material-icons {
   font-size: medium;
 }
