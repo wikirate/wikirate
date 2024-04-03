@@ -19,4 +19,4 @@ var r=arguments[0],t=arguments.length-1,e=Math.floor(t/2),o=!1,u=t%2!=0,i=t%2==0
 // dr_codemirror.js.coffee
 (function(){var r,e;decko.editors.add(".codemirror-editor-textarea",function(){return e($(this))},function(){return r($(this))}),e=function(r){var e;return e=CodeMirror.fromTextArea(r[0],{mode:"coffeescript",theme:"midnight"}),r.data("codeMirror",e),setTimeout(function(){return e.refresh()},200)},r=function(r){return r.data("codeMirror").getValue()}}).call(this);
 // variables_accordion.js.coffee
-(function(){}).call(this);
+(function(){var o;$(function(){return $("body").on("shown.bs.collapse",".accordion-collapse",function(t){return o($(t.target))})}),decko.slot.ready(function(t){return o(t)}),o=function(o){return o.find(".card-slot-stub").each(function(){var o;if((o=$(this)).closest(".accordion-item").children(".accordion-header").is(":visible"))return console.log("loading "+o.data("stubUrl")),o.slotReload(o.data("stubUrl")),o.removeClass("card-slot-stub")})}}).call(this);

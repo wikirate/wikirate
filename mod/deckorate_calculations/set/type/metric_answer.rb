@@ -72,7 +72,7 @@ format :html do
   def answer_accordion_item metric, detail, other_answers=[]
     expandable = card.calculated? && other_answers.empty?
     value = render_bar_right +
-      output { other_answers.map { |a| nest a.card, view: :bar_right } }
+            output { other_answers.map { |a| nest a.card, view: :bar_right } }
 
     wrap_answer_accordion_item expandable do
       metric.card.format.metric_accordion_item_title detail: detail, answer: value
