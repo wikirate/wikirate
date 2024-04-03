@@ -101,3 +101,7 @@ end
 def calculation_types
   %i[wiki_rating formula descendant]
 end
+
+def input_metrics_and_detail
+  [[scoree_card, nil]]
+end

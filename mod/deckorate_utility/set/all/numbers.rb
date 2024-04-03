@@ -28,6 +28,8 @@ format do
     humanized == "0" && number.positive? ? "~0" : humanized
   end
 
+  private
+
   def small_number_with_precision number, less_than_one
     number_with_precision number, delimiter: ",",
                                   strip_insignificant_zeros: true,

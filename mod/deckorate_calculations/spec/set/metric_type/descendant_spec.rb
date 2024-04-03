@@ -54,15 +54,11 @@ RSpec.describe Card::Set::MetricType::Descendant do
   end
 
   it "can handle unknown value" do
-    expect_view(:expanded_details, card: "Joe User+descendant 2+Apple Inc+2002")
-      .to have_tag :table do
-      with_tag :a, text: "Unknown", with: {
-        href: "/Joe_User+RM+Apple_Inc+2002?layout=modal"
-      }
-
-      with_tag :a, text: "100", with: {
-        href: "/Joe_User+researched_number_1+Apple_Inc+2002?layout=modal"
-      }
+    expect_view(
+      :expanded_details,
+      card: "Joe User+descendant 2+Apple Inc+2002"
+    ).to have_tag "div.answer-accordion" do
+      with_tag "span.metric-value", text: "Unknown"
     end
   end
 end
