@@ -1,0 +1,8 @@
+.metric-tree-item-title.row.w-100.align-items-center
+  .metric-tree-thumbnail{ class: answer ? "col-6" : "col-9" }
+    = render_thumbnail
+  .metric-tree-detail.col-3.d-flex{ class: "justify-content-#{answer ? 'center' : 'end'}" }
+    = detail
+  - if answer
+    .col-3
+      = answer

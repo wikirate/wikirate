@@ -6,7 +6,7 @@ end
 
 format do
   def humanized_number value
-    number = BigDecimal(value)
+    number = BigDecimal(value, 9)
     send number_method(number), number
   rescue
     Rails.logger.info "#{card.name} has bad number: #{value}"

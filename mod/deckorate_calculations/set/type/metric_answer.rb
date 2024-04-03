@@ -1,4 +1,4 @@
-include_set Abstract::LazyAccordion
+include_set Abstract::LazyTree
 
 # The answers that a calculated answer depends on
 # @return [Array] array of Answer objects
@@ -65,41 +65,39 @@ format :html do
     elsif card.overridden?
       overridden_answer_with_formula
     else
-      render_calculation_details
+      wrap_with(:div, class: "tree-top _tree-top") { render_calculation_details }
     end
   end
 
-  def answer_accordion_item metric, detail, other_answers=[]
+  def answer_tree_item metric, detail, other_answers=[]
     expandable = card.calculated? && other_answers.empty?
     value = render_bar_right +
             output { other_answers.map { |a| nest a.card, view: :bar_right } }
 
-    wrap_answer_accordion_item expandable do
-      metric.card.format.metric_accordion_item_title detail: detail, answer: value
+    wrap_answer_tree_item expandable do
+      metric.card.format.metric_tree_item_title detail: detail, answer: value
     end
   end
 
-  def wrap_answer_accordion_item expandable, &block
+  def wrap_answer_tree_item expandable, &block
     if expandable
-      accordion_item yield, body: stub_view(:calculation_details)
+      tree_item yield, body: stub_view(:calculation_details)
     else
-      wrap_with :div, class: "list-group-item", &block
+      wrap_with :div, class: "static-tree-item", &block
     end
   end
 
   view :calculation_details do
-    class_up "accordion", "answer-accordion"
+    class_up "accordion", "answer-tree"
     calculation_only do
-      [metric_card.format.preface, render_answer_accordion]
+      [metric_card.format.algorithm, render_answer_tree]
     end
   end
 
-  view :answer_accordion do
+  view :answer_tree do
     calculation_only do
-      accordion do
-        card.map_input_answer_and_detail do |answers, metric, detail|
-          input_accordion_item answers, metric, detail
-        end
+      card.map_input_answer_and_detail do |answers, metric, detail|
+        input_tree_item answers, metric, detail
       end
     end
   end
@@ -112,9 +110,9 @@ format :html do
 
   private
 
-  def input_accordion_item answers, metric, detail
+  def input_tree_item answers, metric, detail
     first_answer = answers.shift
-    first_answer.answer.card.format.answer_accordion_item metric, detail, answers
+    first_answer.answer.card.format.answer_tree_item metric, detail, answers
   end
 
   def overridden_answer_with_formula
