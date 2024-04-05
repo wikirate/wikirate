@@ -1,5 +1,4 @@
-.input-variable.text-end
-  .input-variable-name
+.input-variable.text-end.w-100
+  - options_list = options.map { |key, value| "#{key}: #{value}"}.join ", "
+  .input-variable-name{ title: options_list }
     = variable
-  .input-variable-options.small.text-secondary
-    = options.map { |key, value| "#{key}: #{value}"}.join ", "

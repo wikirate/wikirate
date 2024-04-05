@@ -19,5 +19,5 @@ describe "expanding details on company pages", ->
     cy.contains "disturbance"
 
     # expand details of first score
-    cy.get(".metric-accordion-detail").contains("40.0%").click()
+    cy.get(".metric-tree-detail").contains("40.0%").click()
     cy.get(".accordion-body").should("contain", "yes")
