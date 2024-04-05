@@ -111,7 +111,7 @@ format :html do
   delegate :metric_type_codename, :score?, :rating?, to: :card
 
   view :core do
-    [render_preface, metric_accordion].compact
+    [render_algorithm, metric_tree].compact
   end
 
   view :input do
@@ -123,13 +123,13 @@ format :html do
     end
   end
 
-  view :preface do
-    return unless (cont = preface_content).present?
-    card.metric_card.format.format_preface cont if cont
+  view :algorithm do
+    return unless (cont = algorithm_content).present?
+    card.metric_card.format.format_algorithm cont if cont
   end
 
-  def preface_content
-    try "#{metric_type_codename}_preface"
+  def algorithm_content
+    try "#{metric_type_codename}_algorithm"
   end
 
   def input_type
@@ -174,12 +174,9 @@ format :html do
 
   private
 
-  def metric_accordion
-    class_up "accordion", "metric-accordion"
-    accordion do
-      card.metric_and_detail.map do |metric, detail|
-        metric.card.format.metric_accordion_item detail
-      end
+  def metric_tree
+    card.metric_and_detail.map do |metric, detail|
+      metric.card.format.metric_tree_item detail
     end
   end
 end

@@ -19,8 +19,8 @@ format :html do
     alert(:warning) { "You have already scored this metric: #{link_to_card card}." }
   end
 
-  view :accordion_body do
-    [preface, scoree_card.format.metric_accordion_item]
+  view :metric_tree_branch do
+    [algorithm, scoree_card.format.metric_tree_item]
   end
 
   view :select do
@@ -36,11 +36,11 @@ format :html do
                             size: thumbnail_image_size
   end
 
-  def preface
-    format_preface preface_content
+  def algorithm
+    format_algorithm algorithm_content
   end
 
-  def preface_content
+  def algorithm_content
     field_nest card.formula_field, view: :core
   end
 

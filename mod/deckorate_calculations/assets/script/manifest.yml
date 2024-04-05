@@ -22,4 +22,4 @@ calculations:
     - wikirating.js.coffee
     - vendor/formula.js
     - dr_codemirror.js.coffee
-    - variables_accordion.js.coffee
+    - tree.js.coffee
