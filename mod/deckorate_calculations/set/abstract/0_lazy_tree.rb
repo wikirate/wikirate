@@ -1,5 +1,4 @@
 format do
-
   def tree_item title, **args
     args.reverse_merge!(
       title: title,

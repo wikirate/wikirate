@@ -175,11 +175,8 @@ format :html do
   private
 
   def metric_tree
-    class_up "accordion", "metric-tree"
-    #    accordion do
-      card.metric_and_detail.map do |metric, detail|
-        metric.card.format.metric_tree_item detail
-      end
-    # end
+    card.metric_and_detail.map do |metric, detail|
+      metric.card.format.metric_tree_item detail
+    end
   end
 end
