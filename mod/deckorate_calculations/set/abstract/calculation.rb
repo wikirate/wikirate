@@ -123,7 +123,10 @@ format :html do
   end
 
   def format_algorithm algorithm
-    haml :algorithm, algorithm: algorithm
+    # class_up "accordion"
+    body = haml :algorithm, algorithm: algorithm
+    tree_item "<em class='me-2'>How it works</em>",
+              body: body, context: "algorithm"
   end
 
   private
