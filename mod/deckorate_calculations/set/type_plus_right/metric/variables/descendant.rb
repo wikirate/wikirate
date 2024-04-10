@@ -3,7 +3,7 @@ def descendant_metric_and_detail
 end
 
 format :html do
-  def descendant_preface
+  def descendant_algorithm
     "Inherit from ancestor (in order of precedence)"
   end
 
