@@ -50,9 +50,10 @@ def when_dependee_applicable
 end
 
 def map_input_answer_and_detail
-  input_answers = direct_dependee_map
+  input_answers_map = direct_dependee_map
   metric_card.input_metrics_and_detail.map.with_index do |(metric, detail), index|
-    yield input_answers[index], metric, detail
+    input_answers = input_answers_map[index]
+    yield input_answers, metric, detail if input_answers.present?
   end
 end
 

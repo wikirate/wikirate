@@ -1,8 +1,8 @@
-format do
-  def value_legend
-    "0-10"
-  end
-end
+# format do
+#   def value_legend
+#     "0-10"
+#   end
+# end
 
 format :html do
   delegate :scorer_card, :scoree_card, to: :card
