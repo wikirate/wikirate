@@ -18,19 +18,6 @@ format :html do
 
   view :details_tab, template: :haml
 
-  view :main_details do
-    nest_methodology
-  end
-
-  def nest_about
-    field_nest :about, view: :titled
-  end
-
-  def nest_methodology
-    return unless card.researchable?
-    field_nest :methodology, view: :titled
-  end
-
   # def answer_filtering
   #   filtering(".RIGHT-answer ._compact-filter") do
   #     yield view: :bar, show: :full_page_link, hide: %i[metric_header edit_link]

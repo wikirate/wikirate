@@ -26,7 +26,7 @@ describe 'Formula editor', ->
     cy.wait 500
     cy.get("._search-checkbox-list")
       .should("contain", "Research")
-      .should("contain", "Scored by")
+      .should("contain", "Scored")
       .should("not.contain", "Relationship")
     cy.get("input#Jedi_disturbances_in_the_Force").click()
     cy.get("._add-selected").click()
