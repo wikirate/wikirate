@@ -16,12 +16,10 @@ format :html do
     field_nest :source, view: :filtered_content
   end
 
-  view :details_tab do
-    [render_metric_properties, render_main_details]
-  end
+  view :details_tab, template: :haml
 
   view :main_details do
-    [nest_about, nest_methodology]
+    nest_methodology
   end
 
   def nest_about

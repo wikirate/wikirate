@@ -25,4 +25,16 @@
     padding-left: 15px;
     text-indent: -15px;
   }
+
+  .labeled-view {
+    flex-direction: column;
+    .label {
+      width: 100% !important;
+      text-align: left !important;
+    }
+    .labeled-content {
+      width: 100% !important;
+      margin-bottom: 1.2rem;
+    }
+  }
 }
