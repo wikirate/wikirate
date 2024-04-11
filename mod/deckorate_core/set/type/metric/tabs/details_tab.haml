@@ -1,0 +1,7 @@
+.row.my-3
+  .col-8.pe-2
+    = field_nest :about, view: :titled, title: "About the data"
+  .col-4.ps-2
+    = render_metric_properties
+.my-3
+  = render_main_details
