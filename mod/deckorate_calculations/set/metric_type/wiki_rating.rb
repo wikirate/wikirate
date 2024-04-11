@@ -20,8 +20,8 @@ def calculation_types
 end
 # </OVERRIDES>
 
-format do
-  def value_legend
-    "0-10"
-  end
-end
+# format do
+#   def value_legend
+#     "0-10"
+#   end
+# end
