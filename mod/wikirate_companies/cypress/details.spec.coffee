@@ -20,4 +20,4 @@ describe "expanding details on company pages", ->
 
     # expand details of score
     cy.get(".metric-tree-detail").contains("40%").click()
-    cy.get(".accordion-body").should("contain", "yes")
+    cy.get(".tree-body").should("contain", "yes")
