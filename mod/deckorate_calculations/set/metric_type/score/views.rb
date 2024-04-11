@@ -88,11 +88,11 @@ format :html do
     "full metric name = [scored metric]+[your username]"
   end
 
-  def fixed_thumbnail_subtitle
-    wrap_with :div, class: "scored-by-subtitle" do
-      "Scored by #{link_to_card card.scorer}"
-    end
-  end
+  # def fixed_thumbnail_subtitle
+  #   wrap_with :div, class: "scored-by-subtitle" do
+  #     "Scored by #{link_to_card card.scorer}"
+  #   end
+  # end
 
   def scored_metric_property title
     wrap_with :div, class: "row scored-metric-property" do
