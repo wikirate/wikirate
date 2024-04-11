@@ -94,7 +94,7 @@ format :html do
   end
 
   view :main_details do
-    [nest_about, render_formula, nest_methodology]
+    [render_formula, nest_methodology]
   end
 
   view :new_formula, unknown: true, cache: :never do
