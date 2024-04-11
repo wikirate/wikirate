@@ -48,17 +48,13 @@ RSpec.describe Card::Set::MetricType::Descendant do
 
       it "renders ancestors in formula view" do
         expect(metric.format.render_formula)
-          .to have_tag("div", class: "formula-preface", text: /Inherit from ancestor/)
+          .to have_tag("div", class: "formula-algorithm", text: /Inherit from ancestor/)
       end
     end
   end
 
   it "can handle unknown value" do
-    expect_view(
-      :expanded_details,
-      card: "Joe User+descendant 2+Apple Inc+2002"
-    ).to have_tag "div.answer-accordion" do
-      with_tag "span.metric-value", text: "Unknown"
-    end
+    expect_view(:expanded_details, card: "Joe User+descendant 2+Apple Inc+2002")
+      .to have_tag "span.metric-value", text: "Unknown"
   end
 end

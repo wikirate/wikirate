@@ -163,14 +163,14 @@ format :html do
     haml :formula_variable_row, name: name, options: hash
   end
 
-  def metric_accordion_item detail=nil
-    wrap_with :div, class: "list-group-item" do
-      metric_accordion_item_title detail: detail
+  def metric_tree_item detail=nil
+    wrap_with :div, class: "static-tree-item" do
+      metric_tree_item_title detail: detail
     end
   end
 
-  def metric_accordion_item_title detail:, answer: nil
-    haml :metric_accordion_item_title, detail: variable_detail(detail), answer: answer
+  def metric_tree_item_title detail:, answer: nil
+    haml :metric_tree_item_title, detail: variable_detail(detail), answer: answer
   end
 
   private
