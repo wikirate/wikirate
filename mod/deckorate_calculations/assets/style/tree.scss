@@ -162,3 +162,7 @@ $tree-border-color: $gray-200 !default;
   background: none !important;
   //display: none;
 }
+.input-variable-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
