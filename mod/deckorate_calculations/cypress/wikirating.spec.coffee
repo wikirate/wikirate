@@ -10,7 +10,7 @@ describe 'edit WikiRating', ->
     cy.get("input#weight_sum").should "have.value", weight
 
   beforeEach -> cy.login()
-be
+
   specify "WikiRating formula", ->
     cy.visit "Jedi+darkness rating"
 
