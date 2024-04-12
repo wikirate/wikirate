@@ -42,7 +42,7 @@ format :html do
   end
 
   def fixed_thumbnail_subtitle
-    card.metric_type
+    card.metric_type_name
   end
 
   def formula_options

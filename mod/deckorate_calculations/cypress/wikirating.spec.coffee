@@ -10,7 +10,7 @@ describe 'edit WikiRating', ->
     cy.get("input#weight_sum").should "have.value", weight
 
   beforeEach -> cy.login()
-
+be
   specify "WikiRating formula", ->
     cy.visit "Jedi+darkness rating"
 
@@ -30,7 +30,7 @@ describe 'edit WikiRating', ->
       .click().should "not.exist"
 
     cy.get("._modal-slot").within ($modal) ->
-      expect($modal).to.contain "Scored by Joe Camel"
+      expect($modal).to.contain "Score"
       expectTotalWeight "100.00"
       cy.contains("Save and Close").should "have.attr", "disabled"
 

@@ -54,11 +54,15 @@ def metric_type
 end
 
 def metric_type_codename
-  Card[metric_type].codename.to_sym
+  metric_type.codename
 end
 
 def metric_type_id
-  Card[metric_type].id
+  metric_type.card_id
+end
+
+def metric_type_name
+  metric_type_id.cardname
 end
 
 def value_options

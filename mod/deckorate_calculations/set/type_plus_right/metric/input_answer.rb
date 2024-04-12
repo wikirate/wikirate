@@ -47,6 +47,6 @@ format do
   end
 
   def default_filter_hash
-    { company_name: "" }
+    { company_name: "", metric_type: "Researched" }
   end
 end
