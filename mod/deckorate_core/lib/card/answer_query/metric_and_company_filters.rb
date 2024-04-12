@@ -68,14 +68,11 @@ class Card
 
       def filter_by_depender_metric value
         metric = validate_depender_metric value
-        if metric.orthodox_tree?
-          company_answer_join :dependee
-          @conditions <<
-            "dependee.metric_id = #{metric.id} and dependee.year = answers.year"
-        else
-          dependees = metric.dependee_metrics
-          filter :metric_id, dependees.map(&:id) if dependees.present?
-        end
+        return unless (dependees = metric.dependee_metrics).present?
+        filter :metric_id, dependees.map(&:id)
+        company_answer_join :dependee
+        @conditions <<
+          "dependee.metric_id = #{metric.id} and dependee.year = answers.year"
       end
 
       private

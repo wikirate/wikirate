@@ -180,7 +180,6 @@ format :html do
     detail = detail.clone
 
     variable = detail.delete :name
-    return variable if detail.blank?
 
     haml :variable_detail, variable: variable, options: detail
   end
