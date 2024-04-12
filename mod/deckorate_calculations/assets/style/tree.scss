@@ -125,8 +125,6 @@ $tree-border-color: $gray-200 !default;
   }
 }
 
-
-
 // Wikirate-specific
 
 .tree-body {
@@ -150,13 +148,21 @@ $tree-border-color: $gray-200 !default;
   padding-left: 1.75rem;
 }
 
-.static-tree-item,.tree-item {
-  .row {
-    margin-right: auto !important;
-    margin-left: auto !important;
-    border-bottom: 1px solid $gray-100;
-  }
+.metric-tree-item-title.row {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid $gray-200;
 }
+
 .tree-button {
   padding-right: 0;
+}
+.formula-algorithm .tree-button::before {
+  background: none !important;
+  //display: none;
+}
+.input-variable-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

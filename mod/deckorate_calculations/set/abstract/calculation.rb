@@ -93,10 +93,6 @@ format :html do
     field_nest card.formula_field, view: :titled, title: "Formula"
   end
 
-  view :main_details do
-    [render_formula, nest_methodology]
-  end
-
   view :new_formula, unknown: true, cache: :never do
     wrap do
       card_form({ action: :new, mark: :metric }, method: :get, redirect: true) do
@@ -123,10 +119,7 @@ format :html do
   end
 
   def format_algorithm algorithm
-    # class_up "accordion"
-    body = haml :algorithm, algorithm: algorithm
-    tree_item "<em class='me-2'>How it works</em>",
-              body: body, context: "algorithm"
+    haml :algorithm, algorithm: algorithm
   end
 
   private
