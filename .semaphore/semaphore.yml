@@ -118,6 +118,25 @@ blocks:
             - ./cc-test-reporter sum-coverage --output - --parts $(ls -1 coverage/ | wc -l) coverage/codeclimate.*.json > coverage/codeclimate.json
             - ./cc-test-reporter upload-coverage
 
+  - name: Build and Push Docker Image
+    task:
+      env_vars:
+        - name: REGISTRY
+          value: registry.digitalocean.com/wikirate
+      secrets:
+        - name: wikirate-digitalocean
+      prologue:
+        commands:
+          - doctl auth init --access-token $DIGITALOCEAN_TOKEN
+          - doctl registry login --expiry-seconds 3600
+      jobs:
+        - name: Build and Push Docker Image
+          commands:
+            - checkout
+            - TAG="$REGISTRY/wikirate:${SEMAPHORE_GIT_SHA:0:7}"
+            - docker build -t $TAG .
+            - docker push $TAG
+
 after_pipeline:
   task:
     jobs:
