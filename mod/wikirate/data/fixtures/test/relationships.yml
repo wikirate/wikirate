@@ -10,7 +10,7 @@ relationships_001:
   year: 2000
   value: Tier 2 Supplier
   numeric_value:
-  updated_at: 2024-04-12 17:21:25.000000000 Z
+  updated_at: 2024-04-16 18:54:58.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3276
@@ -26,7 +26,7 @@ relationships_002:
   year: 1977
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-04-12 17:21:27.000000000 Z
+  updated_at: 2024-04-16 18:55:00.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3276
@@ -42,7 +42,7 @@ relationships_003:
   year: 1977
   value: '1'
   numeric_value:
-  updated_at: 2024-04-12 17:21:29.000000000 Z
+  updated_at: 2024-04-16 18:55:02.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3265
@@ -58,7 +58,7 @@ relationships_004:
   year: 1977
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-04-12 17:21:31.000000000 Z
+  updated_at: 2024-04-16 18:55:04.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3276
@@ -74,7 +74,7 @@ relationships_005:
   year: 2000
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-04-12 17:21:33.000000000 Z
+  updated_at: 2024-04-16 18:55:05.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3276
@@ -90,7 +90,7 @@ relationships_006:
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-04-12 17:21:34.000000000 Z
+  updated_at: 2024-04-16 18:55:07.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3175
@@ -106,7 +106,7 @@ relationships_007:
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-04-12 17:21:36.000000000 Z
+  updated_at: 2024-04-16 18:55:09.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3175
@@ -122,7 +122,7 @@ relationships_008:
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-04-12 17:21:38.000000000 Z
+  updated_at: 2024-04-16 18:55:11.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3175
