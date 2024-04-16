@@ -28,7 +28,7 @@ format :html do
   end
 
   def companies_for_slider
-    %i[organizer featured].card.item_cards
+    %i[organizer featured].card&.item_cards || []
   end
 
   def company_detail organizer
