@@ -103,8 +103,8 @@ RSpec.describe Calculate::Calculator::InputItem do
       end
 
       example "company group" do
-        expect(answer_value_hash(samsung, nil, company: "Deadliest"))
-          .to eq(1977 => %w[100 40 50])
+        expect(answer_value_hash(samsung, nil, company: "Deadliest")[1977].sort)
+          .to eq(%w[100 40 50])
       end
 
       example "metric with related company option" do

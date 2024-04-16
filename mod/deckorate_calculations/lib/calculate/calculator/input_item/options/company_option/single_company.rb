@@ -10,13 +10,13 @@ class Calculate
             include CompanyIndependentInput
 
             def year_answer_pairs
-              each_input_answer answer_query_relation, {} do |input_answer, hash|
+              each_input_answer answers, {} do |input_answer, hash|
                 hash[input_answer.year] = input_answer
               end
             end
 
-            def answer_query_relation
-              Answer.where metric_id: input_card.id, company_id: requested_company_id
+            def restrict_companies query
+              query[:company_id] = requested_company_id
             end
 
             private
