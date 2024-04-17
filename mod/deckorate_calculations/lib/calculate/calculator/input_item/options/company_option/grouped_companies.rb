@@ -27,11 +27,10 @@ class Calculate
             end
 
             def answer_relation
-              query = {
-                metric_id: input_card.id,
-                company_group: company_group.id,
-                published: :all
-              }
+              query = { metric_id: input_card.id,
+                        company_group: company_group.id,
+                        published: :all }
+              restrict_years query
               Card::AnswerQuery.new(query).lookup_relation
             end
 
