@@ -24,7 +24,6 @@ class Calculate
             end
 
             # must be overwritten, because "answers" does not filter by company
-            # (see #answer_query)
             def answers_for company_id, year
               @search_space = SearchSpace.new company_id, year
               Answer.where answer_query.merge(company_id: relationship_hash[company_id])

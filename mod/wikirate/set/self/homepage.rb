@@ -72,7 +72,7 @@ format :html do
   end
 
   def companies_for_slider
-    %i[designer featured].card.item_cards
+    %i[designer featured].card&.item_cards || []
   end
 
   def company_detail company
