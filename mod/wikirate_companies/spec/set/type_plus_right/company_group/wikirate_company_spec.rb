@@ -19,7 +19,7 @@ RSpec.describe Card::Set::TypePlusRight::CompanyGroup::WikirateCompany do
   describe "#update_content_from_spec" do
     it "finds companies when there is one constraint" do
       # this is really testing whether the method is called correctly at seed time
-      expect(card_subject.item_names)
+      expect(card_subject.item_names.sort)
         .to eq(["Death Star", "Los Pollos Hermanos", "SPECTRE"])
     end
 

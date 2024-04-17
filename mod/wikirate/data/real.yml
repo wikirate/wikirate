@@ -22,6 +22,7 @@
 - :name: Data
   :codename: wikirate_data
 
+- blurbs # be rake card:sow -- -o -c '{"type":"Blurb"}' -t :title,uri,body,icon
 - blurblists
 
 - :name: Publication
@@ -84,17 +85,17 @@
   :type: :html
   :codename: homepage
 
-- :name:
-    - :organizer
-    - :featured
-  :type: :list
-  :content: |-
-    Walk Free
-    University of Connecticut
-    MANA
-    AMD Akademie Mode & Design Berlin
-    Oxfam India
-    Columbia University - School of International & Public Affairs
+#- :name:
+#    - :organizer
+#    - :featured
+#  :type: :list
+#  :content: |-
+#    Walk Free
+#    University of Connecticut
+#    MANA
+#    AMD Akademie Mode & Design Berlin
+#    Oxfam India
+#    Columbia University - School of International & Public Affairs
 
 - :name:
     - :account
