@@ -58,7 +58,7 @@ format do
 
   def os_result_card result
     card = result["_id"]&.to_i&.card
-    card if card.ok? :read
+    card if card&.ok? :read
   end
 
   def rescuing_open_search failure_result
