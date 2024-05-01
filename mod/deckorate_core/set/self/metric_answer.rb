@@ -42,11 +42,6 @@ format :html do
     :year
   end
 
-  before :header do
-    voo.title = "Answer Dashboard #{icon_tag :dashboard}"
-    voo.variant = nil
-  end
-
   view :titled_content do
     [field_nest(:description), render_filtered_content]
   end
