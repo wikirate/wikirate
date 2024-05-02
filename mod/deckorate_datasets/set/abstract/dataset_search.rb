@@ -24,7 +24,7 @@ format do
   end
 
   def filter_map
-    %i[name bookmark topic]
+    %i[name bookmark wikirate_topic]
   end
 
   def default_filter_hash

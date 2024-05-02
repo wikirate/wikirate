@@ -31,7 +31,7 @@ format do
   end
 
   def shared_metric_filter_map
-    %i[bookmark topic designer metric_type value_type research_policy]
+    %i[wikirate_topic designer metric_type value_type research_policy bookmark]
   end
 
   def filter_map

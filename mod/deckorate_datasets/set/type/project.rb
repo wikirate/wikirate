@@ -41,7 +41,7 @@ format :html do
   end
 
   def tab_list
-    %i[wikirate_company metric details]
+    %i[details wikirate_company metric]
   end
 
   view :wikirate_company_tab do
