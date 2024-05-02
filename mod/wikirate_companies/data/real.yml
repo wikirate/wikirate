@@ -8,10 +8,21 @@
 - :name: Jurisdiction
   :type: :cardtype
   :codename: jurisdiction
+
+- :name: Corporate Identifier
+  :codename: corporate_identifier
+  :type: cardtype
+
 - :name: OAR id
   :codename: oar_id
+  :type: corporate_identifier
+
 - :name: SEC CIK
   :codename: sec_cik
+  :type: corporate_identifier
+
+
+
 - :name: OpenCorporates
   :type: :research_group
   :codename: open_corporates

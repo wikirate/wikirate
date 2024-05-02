@@ -9,7 +9,7 @@ format :html do
                                                           status: :radio,
                                                           updated: :radio,
                                                           # outliers: :radio,
-                                                          source: :autocomplete
+                                                          source: :multiselect
 
   def filter_status_default
     "exists"
@@ -51,6 +51,10 @@ format :html do
 
   def filter_calculated_options
     { "Yes" => :calculated, "No" => :not_calculated }
+  end
+
+  def filter_source_options
+    :remote_type
   end
 
   def filter_status_label
