@@ -76,6 +76,7 @@ gem "wkhtmltopdf-binary"             # converting HTML to PDF
 gem "company-mapping"                # Vasso's gem, written for WikiRate
 gem "rack-attack"                    # protection from bad clients
 gem "rack-cors"                      # support for Cross-Origin Resource Sharing (CORS)
+gem "puma", "~>5.6"                  # local webserver (6.x broke semaphore )
 
 group :live do
   gem "dalli"                        # Memcache
@@ -96,7 +97,6 @@ gem "timecop", group: %i[test cucumber] # date/time manipulation in tests
 group :test, :development do
   # gem "debase"
   gem "decko-spring", path: "./vendor/decko/support"
-  gem "puma", "~>5.6"                   # local webserver (6.x broke semaphore )
   # gem "ruby-debug-ide"
 end
 
