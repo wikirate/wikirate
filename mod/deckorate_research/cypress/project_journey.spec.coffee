@@ -5,6 +5,7 @@ describe "research page", ->
   specify "project journey", ->
     cy.login "sample@user.com", "sample_pass"
     cy.visit "Evil Project"
+    cy.get(".tab-li-wikirate_company").click()
     cy.get(".tab-pane-wikirate_company").within ->
       cy.bar("Death Star").within ->
         cy.get(".research-answer-button").click()
