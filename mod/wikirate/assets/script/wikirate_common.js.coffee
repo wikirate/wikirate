@@ -23,8 +23,6 @@ decko.slot.ready (slot) ->
 
   slot.find("[data-slick]").each -> loadSlick($(this))
 
-
-
 # ~~~~~~~~~~~~~~ slick carousel config
 
 # data-slick should contain json slick config object
