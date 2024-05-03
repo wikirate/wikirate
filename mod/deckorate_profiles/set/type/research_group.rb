@@ -54,7 +54,7 @@ format :html do
   end
 
   def tab_list
-    %i[researcher project metric details]
+    %i[details researcher project metric]
   end
 
   view :metric_tab do

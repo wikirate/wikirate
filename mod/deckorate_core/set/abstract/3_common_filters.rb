@@ -9,9 +9,9 @@ format :html do
                       year: :check,
                       wikirate_topic: :multiselect,
                       company_category: :check,
-                      company_group: :check,
+                      company_group: :multiselect,
                       company_name: :text,
-                      country: :check,
+                      country: :multiselect,
                       published: :radio
 
   def filter_company_category_options
