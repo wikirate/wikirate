@@ -29,13 +29,11 @@ end
 
 event :join_group, :validate, trigger: :required do
   abort :failure, "cannot join this group" unless ok_to_join?
-  add_item! Auth.current.name
-  abort :success
+  add_item Auth.current.name
 end
 
 event :leave_group, :validate, trigger: :required do
-  drop_item! Auth.current.name
-  abort :success
+  drop_item Auth.current.name
 end
 
 format do
