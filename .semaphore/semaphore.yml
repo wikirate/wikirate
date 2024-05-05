@@ -119,6 +119,8 @@ blocks:
             - ./cc-test-reporter upload-coverage
 
   - name: Build and Push Docker Image
+    run:
+      when: "branch = 'staging' OR branch = 'main' OR branch = 'production'"
     task:
       env_vars:
         - name: REGISTRY
