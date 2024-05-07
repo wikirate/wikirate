@@ -5691,7 +5691,7 @@ cards_288:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:08:32.000000000 Z
-  updated_at: 2024-04-16 18:56:15.000000000 Z
+  updated_at: 2024-05-07 14:28:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -6076,7 +6076,7 @@ cards_305:
   right_id: 301
   current_revision_id:
   created_at: 2023-06-12 22:08:34.000000000 Z
-  updated_at: 2024-04-12 17:11:09.000000000 Z
+  updated_at: 2024-05-07 14:28:35.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -6113,7 +6113,6 @@ cards_305:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
-    mod: ticket+*script
   search_content: |-
     mod: format+*script
     mod: list+*script
@@ -6143,7 +6142,6 @@ cards_305:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
-    mod: ticket+*script
 cards_306:
   id: 306
   name: JavaScript
@@ -6563,7 +6561,7 @@ cards_326:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:08:35.000000000 Z
-  updated_at: 2024-04-12 17:11:09.000000000 Z
+  updated_at: 2024-05-07 14:28:35.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -6594,6 +6592,7 @@ cards_326:
     mod: follow+*style
     mod: layout+*style
     mod: tinymce editor+*style
+    mod: flag+*style
     mod: thumbnail+*style
     mod: guides+*style
     mod: deckorate utility+*style
@@ -6611,7 +6610,6 @@ cards_326:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
-    mod: ticket+*style
   search_content: |-
     mod: format+*style
     mod: list+*style
@@ -6635,6 +6633,7 @@ cards_326:
     mod: follow+*style
     mod: layout+*style
     mod: tinymce editor+*style
+    mod: flag+*style
     mod: thumbnail+*style
     mod: guides+*style
     mod: deckorate utility+*style
@@ -6652,7 +6651,6 @@ cards_326:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
-    mod: ticket+*style
 cards_327:
   id: 327
   name: Local style folder group
@@ -7232,7 +7230,7 @@ cards_356:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:08:36.000000000 Z
-  updated_at: 2024-04-16 18:55:47.000000000 Z
+  updated_at: 2024-05-07 14:28:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -8907,7 +8905,7 @@ cards_444:
   right_id: 347
   current_revision_id:
   created_at: 2023-06-12 22:09:22.000000000 Z
-  updated_at: 2024-04-16 18:56:07.000000000 Z
+  updated_at: 2024-05-07 14:28:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8926,7 +8924,7 @@ cards_445:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:22.000000000 Z
-  updated_at: 2024-04-16 18:57:10.000000000 Z
+  updated_at: 2024-05-07 14:30:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8935,7 +8933,7 @@ cards_445:
   trash: 0
   type_id: 282
   db_content: ":all_style_asset_output/wikirate.css"
-  search_content: "~445/1713293828.css"
+  search_content: "(s3_staging_bucket)/445/1715092197.css"
 cards_446:
   id: 446
   name: discussion
@@ -9642,7 +9640,7 @@ cards_481:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:09:23.000000000 Z
-  updated_at: 2024-04-16 18:56:12.000000000 Z
+  updated_at: 2024-05-07 14:28:35.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -9651,9 +9649,10 @@ cards_481:
   trash: 0
   type_id: 2
   db_content: |-
-    *autoname
+    *script
     *style
     *layout
+    *autoname
     *read
     *follow
     *follow fields
@@ -9662,14 +9661,14 @@ cards_481:
     *create
     *content options
     *structure
-    *script
     *input type
     *delete
     *captcha
   search_content: |-
-    *autoname
+    *script
     *style
     *layout
+    *autoname
     *read
     *follow
     *follow fields
@@ -9678,7 +9677,6 @@ cards_481:
     *create
     *content options
     *structure
-    *script
     *input type
     *delete
     *captcha
@@ -9941,7 +9939,7 @@ cards_495:
   right_id: 492
   current_revision_id:
   created_at: 2023-06-12 22:09:23.000000000 Z
-  updated_at: 2024-04-16 18:52:42.000000000 Z
+  updated_at: 2024-05-07 14:27:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -9960,7 +9958,7 @@ cards_496:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:09:23.000000000 Z
-  updated_at: 2024-04-16 18:52:39.000000000 Z
+  updated_at: 2024-05-07 14:27:42.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -9983,7 +9981,7 @@ cards_497:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:09:23.000000000 Z
-  updated_at: 2024-04-16 18:56:15.000000000 Z
+  updated_at: 2024-05-07 14:28:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -10200,7 +10198,7 @@ cards_507:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:09:24.000000000 Z
-  updated_at: 2024-04-16 18:56:15.000000000 Z
+  updated_at: 2024-05-07 14:28:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10224,7 +10222,7 @@ cards_508:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:09:24.000000000 Z
-  updated_at: 2024-04-16 18:56:15.000000000 Z
+  updated_at: 2024-05-07 14:28:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10248,7 +10246,7 @@ cards_509:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:09:24.000000000 Z
-  updated_at: 2024-04-16 18:56:15.000000000 Z
+  updated_at: 2024-05-07 14:28:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10272,7 +10270,7 @@ cards_510:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:09:24.000000000 Z
-  updated_at: 2024-04-16 18:56:15.000000000 Z
+  updated_at: 2024-05-07 14:28:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10297,7 +10295,7 @@ cards_511:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:09:24.000000000 Z
-  updated_at: 2024-04-16 18:56:15.000000000 Z
+  updated_at: 2024-05-07 14:28:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10466,7 +10464,7 @@ cards_519:
   right_id:
   current_revision_id:
   created_at: 2023-06-12 22:09:24.000000000 Z
-  updated_at: 2024-04-16 18:52:42.000000000 Z
+  updated_at: 2024-05-07 14:27:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10978,7 +10976,7 @@ cards_539:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:26.000000000 Z
-  updated_at: 2024-04-16 18:57:08.000000000 Z
+  updated_at: 2024-05-07 14:30:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -10987,7 +10985,7 @@ cards_539:
   trash: 0
   type_id: 282
   db_content: ":mod_format_script_asset_output/format.js"
-  search_content: "~539/format.js"
+  search_content: "(s3_staging_bucket)/539/format.js"
 cards_540:
   id: 540
   name:
@@ -11054,7 +11052,7 @@ cards_543:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:26.000000000 Z
-  updated_at: 2024-04-16 18:57:08.000000000 Z
+  updated_at: 2024-05-07 14:30:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11063,7 +11061,7 @@ cards_543:
   trash: 0
   type_id: 282
   db_content: ":mod_list_script_asset_output/list.js"
-  search_content: "~543/list.js"
+  search_content: "(s3_staging_bucket)/543/list.js"
 cards_544:
   id: 544
   name:
@@ -11225,7 +11223,7 @@ cards_552:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:27.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11234,7 +11232,7 @@ cards_552:
   trash: 0
   type_id: 282
   db_content: ":mod_search_script_asset_output/search.js"
-  search_content: "~552/search.js"
+  search_content: "(s3_staging_bucket)/552/1715092143.js"
 cards_553:
   id: 553
   name:
@@ -11301,7 +11299,7 @@ cards_556:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:27.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11310,7 +11308,7 @@ cards_556:
   trash: 0
   type_id: 282
   db_content: ":mod_rules_script_asset_output/rules.js"
-  search_content: "~556/rules.js"
+  search_content: "(s3_staging_bucket)/556/rules.js"
 cards_557:
   id: 557
   name:
@@ -11377,7 +11375,7 @@ cards_560:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:27.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11386,7 +11384,7 @@ cards_560:
   trash: 0
   type_id: 282
   db_content: ":mod_edit_script_asset_output/edit.js"
-  search_content: "~560/edit.js"
+  search_content: "(s3_staging_bucket)/560/edit.js"
 cards_561:
   id: 561
   name:
@@ -11567,7 +11565,7 @@ cards_570:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:28.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11576,7 +11574,7 @@ cards_570:
   trash: 0
   type_id: 282
   db_content: ":mod_carrierwave_script_asset_output/carrierwave.js"
-  search_content: "~570/carrierwave.js"
+  search_content: "(s3_staging_bucket)/570/carrierwave.js"
 cards_571:
   id: 571
   name:
@@ -11700,7 +11698,7 @@ cards_577:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:28.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11709,7 +11707,7 @@ cards_577:
   trash: 0
   type_id: 282
   db_content: ":mod_ace_editor_script_asset_output/ace_editor.js"
-  search_content: "~577/ace_editor.js"
+  search_content: "(s3_staging_bucket)/577/ace_editor.js"
 cards_578:
   id: 578
   name: 'mod: api key'
@@ -11833,7 +11831,7 @@ cards_584:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:28.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11842,7 +11840,7 @@ cards_584:
   trash: 0
   type_id: 282
   db_content: ":mod_bar_and_box_script_asset_output/bar_and_box.js"
-  search_content: "~584/bar_and_box.js"
+  search_content: "(s3_staging_bucket)/584/bar_and_box.js"
 cards_585:
   id: 585
   name:
@@ -11909,7 +11907,7 @@ cards_588:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:29.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:09.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11918,7 +11916,7 @@ cards_588:
   trash: 0
   type_id: 282
   db_content: ":mod_bootstrap_script_asset_output/bootstrap.js"
-  search_content: "~588/bootstrap.js"
+  search_content: "(s3_staging_bucket)/588/1715092154.js"
 cards_589:
   id: 589
   name:
@@ -12061,7 +12059,7 @@ cards_596:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:29.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12070,7 +12068,7 @@ cards_596:
   trash: 0
   type_id: 282
   db_content: ":mod_follow_script_asset_output/follow.js"
-  search_content: "~596/follow.js"
+  search_content: "(s3_staging_bucket)/596/follow.js"
 cards_597:
   id: 597
   name:
@@ -12156,7 +12154,7 @@ cards_601:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:30.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12165,7 +12163,7 @@ cards_601:
   trash: 0
   type_id: 282
   db_content: ":mod_tabs_script_asset_output/tabs.js"
-  search_content: "~601/tabs.js"
+  search_content: "(s3_staging_bucket)/601/1715092157.js"
 cards_602:
   id: 602
   name: 'mod: layout'
@@ -12213,7 +12211,7 @@ cards_604:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:30.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:13.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12222,7 +12220,7 @@ cards_604:
   trash: 0
   type_id: 282
   db_content: ":mod_layout_script_asset_output/layout.js"
-  search_content: "~604/layout.js"
+  search_content: "(s3_staging_bucket)/604/layout.js"
 cards_605:
   id: 605
   name:
@@ -12289,7 +12287,7 @@ cards_608:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:30.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:14.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12298,7 +12296,7 @@ cards_608:
   trash: 0
   type_id: 282
   db_content: ":mod_recaptcha_script_asset_output/recaptcha.js"
-  search_content: "~608/recaptcha.js"
+  search_content: "(s3_staging_bucket)/608/recaptcha.js"
 cards_609:
   id: 609
   name: 'mod: tinymce editor'
@@ -12346,7 +12344,7 @@ cards_611:
   right_id: 299
   current_revision_id:
   created_at: 2023-06-12 22:09:31.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12355,7 +12353,7 @@ cards_611:
   trash: 0
   type_id: 282
   db_content: ":mod_tinymce_editor_script_asset_output/tinymce_editor.js"
-  search_content: "~611/tinymce_editor.js"
+  search_content: "(s3_staging_bucket)/611/tinymce_editor.js"
 cards_612:
   id: 612
   name:
@@ -12441,7 +12439,7 @@ cards_616:
   right_id: 299
   current_revision_id:
   created_at: 2024-01-23 22:21:44.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -12450,7 +12448,7 @@ cards_616:
   trash: 0
   type_id: 282
   db_content: ":mod_account_script_asset_output/account.js"
-  search_content: "~617/account.js"
+  search_content: "(s3_staging_bucket)/617/account.js"
 cards_617:
   id: 618
   name: Alias
@@ -16755,7 +16753,7 @@ cards_818:
   right_id:
   current_revision_id:
   created_at: 2024-04-12 17:10:26.000000000 Z
-  updated_at: 2024-04-16 18:56:15.000000000 Z
+  updated_at: 2024-05-07 14:28:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16853,14 +16851,14 @@ cards_822:
   right_id:
   current_revision_id:
   created_at: 2024-04-12 17:10:26.000000000 Z
-  updated_at: 2024-04-12 17:10:26.000000000 Z
+  updated_at: 2024-05-07 14:28:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
   read_rule_id: 10
   references_expired:
   trash: 0
-  type_id: 2
+  type_id: 4136
   db_content: ''
   search_content: ''
 cards_823:
@@ -16872,14 +16870,14 @@ cards_823:
   right_id:
   current_revision_id:
   created_at: 2024-04-12 17:10:26.000000000 Z
-  updated_at: 2024-04-12 17:10:26.000000000 Z
+  updated_at: 2024-05-07 14:28:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
   read_rule_id: 10
   references_expired:
   trash: 0
-  type_id: 2
+  type_id: 4136
   db_content: ''
   search_content: ''
 cards_824:
@@ -16986,7 +16984,7 @@ cards_829:
   right_id: 731
   current_revision_id:
   created_at: 2024-04-12 17:10:27.000000000 Z
-  updated_at: 2024-04-16 18:56:04.000000000 Z
+  updated_at: 2024-05-07 14:28:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17542,7 +17540,7 @@ cards_831:
   right_id: 790
   current_revision_id:
   created_at: 2024-04-12 17:10:29.000000000 Z
-  updated_at: 2024-04-16 18:56:23.000000000 Z
+  updated_at: 2024-05-07 14:28:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -22812,7 +22810,7 @@ cards_1077:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:10:58.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -22821,7 +22819,7 @@ cards_1077:
   trash: 0
   type_id: 282
   db_content: ":mod_filter_script_asset_output/filter.js"
-  search_content: "~1078/filter.js"
+  search_content: "(s3_staging_bucket)/1078/1715092173.js"
 cards_1078:
   id: 1079
   name:
@@ -22964,7 +22962,7 @@ cards_1085:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:10:59.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -22973,7 +22971,7 @@ cards_1085:
   trash: 0
   type_id: 282
   db_content: ":mod_csv_import_script_asset_output/csv_import.js"
-  search_content: "~1086/csv_import.js"
+  search_content: "(s3_staging_bucket)/1086/csv_import.js"
 cards_1086:
   id: 1087
   name:
@@ -23040,7 +23038,7 @@ cards_1089:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:10:59.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:19.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -23049,7 +23047,7 @@ cards_1089:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_search_script_asset_output/deckorate_search.js"
-  search_content: "~1090/deckorate_search.js"
+  search_content: "(s3_staging_bucket)/1090/deckorate_search.js"
 cards_1090:
   id: 1091
   name:
@@ -23401,7 +23399,7 @@ cards_1108:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:01.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -23410,7 +23408,7 @@ cards_1108:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_utility_script_asset_output/deckorate_utility.js"
-  search_content: "~1109/deckorate_utility.js"
+  search_content: "(s3_staging_bucket)/1109/deckorate_utility.js"
 cards_1109:
   id: 1110
   name:
@@ -23553,7 +23551,7 @@ cards_1116:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:02.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -23562,7 +23560,7 @@ cards_1116:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_core_script_asset_output/deckorate_core.js"
-  search_content: "~1117/deckorate_core.js"
+  search_content: "(s3_staging_bucket)/1117/1715092178.js"
 cards_1117:
   id: 1118
   name:
@@ -23629,7 +23627,7 @@ cards_1120:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:03.000000000 Z
-  updated_at: 2024-04-16 18:57:09.000000000 Z
+  updated_at: 2024-05-07 14:30:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -23638,7 +23636,7 @@ cards_1120:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_research_script_asset_output/deckorate_research.js"
-  search_content: "~1121/deckorate_research.js"
+  search_content: "(s3_staging_bucket)/1121/deckorate_research.js"
 cards_1121:
   id: 1122
   name:
@@ -23724,7 +23722,7 @@ cards_1125:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:05.000000000 Z
-  updated_at: 2024-04-16 18:57:10.000000000 Z
+  updated_at: 2024-05-07 14:30:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -23733,7 +23731,7 @@ cards_1125:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_calculations_script_asset_output/deckorate_calculations.js"
-  search_content: "~1126/deckorate_calculations.js"
+  search_content: "(s3_staging_bucket)/1126/deckorate_calculations.js"
 cards_1126:
   id: 1127
   name:
@@ -23857,7 +23855,7 @@ cards_1132:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:06.000000000 Z
-  updated_at: 2024-04-16 18:57:10.000000000 Z
+  updated_at: 2024-05-07 14:30:25.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -23866,7 +23864,7 @@ cards_1132:
   trash: 0
   type_id: 282
   db_content: ":mod_deckorate_attribution_script_asset_output/deckorate_attribution.js"
-  search_content: "~1133/deckorate_attribution.js"
+  search_content: "(s3_staging_bucket)/1133/deckorate_attribution.js"
 cards_1133:
   id: 1134
   name:
@@ -23971,7 +23969,7 @@ cards_1138:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:06.000000000 Z
-  updated_at: 2024-04-16 18:57:10.000000000 Z
+  updated_at: 2024-05-07 14:30:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -23980,7 +23978,7 @@ cards_1138:
   trash: 0
   type_id: 282
   db_content: ":mod_wikirate_shared_script_asset_output/wikirate_shared.js"
-  search_content: "~1139/wikirate_shared.js"
+  search_content: "(s3_staging_bucket)/1139/wikirate_shared.js"
 cards_1139:
   id: 1140
   name:
@@ -24047,7 +24045,7 @@ cards_1142:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:07.000000000 Z
-  updated_at: 2024-04-16 18:57:10.000000000 Z
+  updated_at: 2024-05-07 14:30:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -24056,7 +24054,7 @@ cards_1142:
   trash: 0
   type_id: 282
   db_content: ":mod_wikirate_companies_script_asset_output/wikirate_companies.js"
-  search_content: "~1143/wikirate_companies.js"
+  search_content: "(s3_staging_bucket)/1143/wikirate_companies.js"
 cards_1143:
   id: 1144
   name:
@@ -24123,7 +24121,7 @@ cards_1146:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:08.000000000 Z
-  updated_at: 2024-04-16 18:57:10.000000000 Z
+  updated_at: 2024-05-07 14:30:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -24132,7 +24130,7 @@ cards_1146:
   trash: 0
   type_id: 282
   db_content: ":mod_wikirate_script_asset_output/wikirate.js"
-  search_content: "~1147/wikirate.js"
+  search_content: "(s3_staging_bucket)/1147/1715092194.js"
 cards_1147:
   id: 1148
   name:
@@ -24237,7 +24235,7 @@ cards_1152:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:08.000000000 Z
-  updated_at: 2024-04-16 18:57:10.000000000 Z
+  updated_at: 2024-05-07 14:30:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -24246,7 +24244,7 @@ cards_1152:
   trash: 0
   type_id: 282
   db_content: ":mod_tasks_script_asset_output/tasks.js"
-  search_content: "~1153/tasks.js"
+  search_content: "(s3_staging_bucket)/1153/tasks.js"
 cards_1153:
   id: 1154
   name:
@@ -24313,7 +24311,7 @@ cards_1156:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:09.000000000 Z
-  updated_at: 2024-04-16 18:57:10.000000000 Z
+  updated_at: 2024-05-07 14:30:33.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -24322,7 +24320,7 @@ cards_1156:
   trash: 0
   type_id: 282
   db_content: ":mod_vega_script_asset_output/vega.js"
-  search_content: "~1157/vega.js"
+  search_content: "(s3_staging_bucket)/1157/vega.js"
 cards_1157:
   id: 1158
   name:
@@ -24389,7 +24387,7 @@ cards_1160:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-12 17:11:09.000000000 Z
-  updated_at: 2024-04-16 18:57:10.000000000 Z
+  updated_at: 2024-05-07 14:30:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -24397,8 +24395,8 @@ cards_1160:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: ":mod_ticket_script_asset_output/ticket.js"
-  search_content: "~1161/ticket.js"
+  db_content: ''
+  search_content: "(s3_staging_bucket)/1161/ticket.js"
 cards_1161:
   id: 1162
   name:
@@ -27696,7 +27694,7 @@ cards_1324:
   right_id: 299
   current_revision_id:
   created_at: 2024-04-16 18:52:29.000000000 Z
-  updated_at: 2024-04-16 18:52:29.000000000 Z
+  updated_at: 2024-05-07 14:28:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -27704,8 +27702,8 @@ cards_1324:
   references_expired:
   trash: 0
   type_id: 282
-  db_content: "~1325/1713293549.css"
-  search_content: "~295/1713293549.css"
+  db_content: "~1325/1715092126.css"
+  search_content: "~1325/1715092126.css"
 cards_1325:
   id: 1326
   name: old custom css
@@ -30474,7 +30472,7 @@ cards_1468:
   right_id: 645
   current_revision_id:
   created_at: 2024-04-16 18:52:40.000000000 Z
-  updated_at: 2024-04-16 18:52:41.000000000 Z
+  updated_at: 2024-05-07 14:27:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -30493,7 +30491,7 @@ cards_1469:
   right_id: 284
   current_revision_id:
   created_at: 2024-04-16 18:52:40.000000000 Z
-  updated_at: 2024-04-16 18:52:40.000000000 Z
+  updated_at: 2024-05-07 14:27:43.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -30501,8 +30499,8 @@ cards_1469:
   references_expired:
   trash: 0
   type_id: 284
-  db_content: "~1470/3641.png"
-  search_content: "~296/3641.png"
+  db_content: "~1470/8097.png"
+  search_content: "~1470/8097.png"
 cards_1470:
   id: 1471
   name: Force
@@ -81275,7 +81273,7 @@ cards_3958:
   right_id: 12
   current_revision_id:
   created_at: 2024-04-16 18:56:16.000000000 Z
-  updated_at: 2024-04-16 18:56:23.000000000 Z
+  updated_at: 2024-05-07 14:28:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81340,7 +81338,7 @@ cards_3961:
   right_id: 447
   current_revision_id:
   created_at: 2024-04-16 18:56:16.000000000 Z
-  updated_at: 2024-04-16 18:56:23.000000000 Z
+  updated_at: 2024-05-07 14:28:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -81359,7 +81357,7 @@ cards_3962:
   right_id: 695
   current_revision_id:
   created_at: 2024-04-16 18:56:16.000000000 Z
-  updated_at: 2024-04-16 18:56:23.000000000 Z
+  updated_at: 2024-05-07 14:28:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -87570,3 +87568,53 @@ cards_4134:
       },
       "dir": "desc"
     }
+cards_4135:
+  id: 4136
+  name: Corporate Identifier
+  key: corporate_identifier
+  codename: corporate_identifier
+  left_id:
+  right_id:
+  current_revision_id:
+  created_at: 2024-05-07 14:28:18.000000000 Z
+  updated_at: 2024-05-07 14:28:18.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 3
+  db_content: |
+    {{+:description|content}}
+    {{_|add_button}}{{_|configure_button}}
+    {{+:type+:by_name|content}}
+  search_content: |+
+    {{+:description|content}}
+    {{_|add_button}}{{_|configure_button}}
+    {{+:type+:by_name|content}}
+
+    {{+:description|content}}
+    {{_|add_button}}{{_|configure_button}}
+    {{+:type+:by_name|content}}
+
+cards_4136:
+  id: 4137
+  name:
+  key:
+  codename:
+  left_id: 1092
+  right_id: 347
+  current_revision_id:
+  created_at: 2024-05-07 14:28:34.000000000 Z
+  updated_at: 2024-05-07 14:28:34.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+...
