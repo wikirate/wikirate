@@ -1,5 +1,5 @@
-IDENTIFIERS = %i[sec_cik].freeze
-INTEGRATIONS = %i[wikipedia oar_id open_corporates].freeze
+# IDENTIFIERS = %i[sec_cik].freeze
+# INTEGRATIONS = %i[wikipedia oar_id open_corporates].freeze
 
 card_accessor :headquarters, type: :pointer
 (IDENTIFIERS + INTEGRATIONS).each { |field| card_accessor field, type: :phrase }
