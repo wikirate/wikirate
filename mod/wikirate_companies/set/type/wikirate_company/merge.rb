@@ -104,7 +104,7 @@ def move_source_listings_to target_company
 end
 
 def move_field_cards_to target_company
-  field_cards.each do |field_card|
+  moveable_field_cards.each do |field_card|
     new_name = field_card.name.swap name, target_company
     next if Card.exists? new_name
     field_card.update! name: new_name
