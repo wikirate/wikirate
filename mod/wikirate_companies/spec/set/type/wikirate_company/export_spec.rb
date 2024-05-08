@@ -29,7 +29,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Export do
           url: "http://wikirate.org/Samsung.json",
           type: a_hash_including(name: "Company"),
           "Wikipedia" => a_hash_including(name: "Samsung+Wikipedia"),
-          #"OpenCorporates" => a_hash_including(id: nil),
+          # "OpenCorporates" => a_hash_including(id: nil),
           alias: a_hash_including(id: nil),
           headquarters: a_hash_including(id: nil),
           answers_url: "http://wikirate.org/Samsung+Answer.json"
