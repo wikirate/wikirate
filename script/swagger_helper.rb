@@ -39,7 +39,7 @@ end
 
 def fetch_optional_subcards
   {
-    wikirate_company: Card.new(type: :wikirate_company).key_field_cards,
+    wikirate_company: Card.new(type: :wikirate_company).key_field_names,
     metric: %w[question about methodology unit topics value_options research_policy
                report_type],
     metric_answer: %w[comment unpublished],

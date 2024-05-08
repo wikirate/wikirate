@@ -20,8 +20,8 @@ def key_field_names
   %i[headquarters alias].map(&:cardname) + corporate_identifiers
 end
 
-def key_field_cards
-  key_field_names.map { |field| fetch field }.compact
+def moveable_field_cards
+  ([:image] + key_field_names).map { |field| fetch field }.compact
 end
 
 format :html do

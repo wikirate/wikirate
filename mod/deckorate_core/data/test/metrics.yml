@@ -4,6 +4,7 @@
   :codename: research_group
 - :name: Jedi
   :type: :research_group
+
 - :name: OpenCorporates
   :type: :research_group
   :codename: open_corporates

@@ -25,8 +25,8 @@
   :codename: wikipedia
   :type: corporate_identifier
 
-- :name: OpenCorporates
-  :type: :research_group
+- :name: OpenCorporates id
+  :type: :corporate_identifier
   :codename: open_corporates
 
 - :name: Incorporation

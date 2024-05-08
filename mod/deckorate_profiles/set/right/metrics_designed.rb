@@ -1,3 +1,2 @@
-def cql_content
-  { type: :metric, left: "_left" }
-end
+include_set Abstract::VirtualSearch,
+            cql_content: { type: :metric, left: "_left" }
