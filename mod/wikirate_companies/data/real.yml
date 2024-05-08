@@ -21,16 +21,16 @@
   :codename: sec_cik
   :type: corporate_identifier
 
-
+- :name: Wikipedia
+  :codename: wikipedia
+  :type: corporate_identifier
 
 - :name: OpenCorporates
   :type: :research_group
   :codename: open_corporates
+
 - :name: Incorporation
   :codename: incorporation
-- :name: Wikipedia
-  :type: :wikirate_company
-  :codename: wikipedia
 - :name: company search
   :codename: company_search
 - :name: Country

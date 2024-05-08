@@ -15,8 +15,6 @@
 - :name: designer badge
   :codename: designer_badge
 
-
-
 - :name: Details
   :codename: details
 - :name: Organizer
@@ -58,11 +56,7 @@
 - :name: unpublished
   :codename: unpublished
 
-
 # (duplicate)
-- :name: Wikipedia
-  :codename: wikipedia
-# can't create company without wikipedia, so this can't be a company yet
 - :name: hybrid
   :codename: hybrid
 - :name: Company Group

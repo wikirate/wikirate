@@ -10,7 +10,7 @@ format :csv do
       "USERS", "COMMUNITY-ASSESSED", "DESIGNER-ASSESSED", "CREATED AT"]]
   end
 
-  view :core do
+  view :body do
     total = [0, 0, 0, 0, 0, 0]
     Card.search(type_id: card.id).map do |pc|
       ([pc.name, pc.num_metrics, pc.num_companies, pc.num_answers, pc.num_users] +
