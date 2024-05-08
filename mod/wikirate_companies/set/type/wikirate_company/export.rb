@@ -91,7 +91,17 @@ end
 
 format :csv do
   view :row do
-    super() << card.headquarters
+    super() + [card.headquarters, aliases] + identifiers
+  end
+
+  def aliases
+    card.alias_card&.item_names&.join ";"
+  end
+
+  def identifiers
+    card.corporate_identifiers.map do |field_name|
+      field_nest field_name, view: :content
+    end
   end
 
   # DEPRECATED.  +answer csv replaces following:

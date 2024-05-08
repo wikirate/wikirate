@@ -173,7 +173,7 @@ format :csv do
     Answer.csv_titles true
   end
 
-  view :core do
+  view :body do
     nest card.subject, view: :reference_dump_core
   end
 end

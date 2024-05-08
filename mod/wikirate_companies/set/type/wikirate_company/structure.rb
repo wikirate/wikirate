@@ -17,7 +17,7 @@ def corporate_identifiers_without_excerpts
 end
 
 def key_field_names
-  %i[alias headquarters] + corporate_identifiers
+  %i[headquarters alias].map(&:cardname) + corporate_identifiers
 end
 
 def key_field_cards

@@ -49,7 +49,7 @@ format :html do
 end
 
 format :csv do
-  view :core do
+  view :body do
     answers.each_with_object("") do |a, res|
       res << CSV.generate_line([a.company, a.year, a.value])
     end

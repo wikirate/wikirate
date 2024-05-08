@@ -16,7 +16,7 @@ format :csv do
       CONTRIBUTION_CATEGORY_HEADER[1..-1].map { |action| "Answers #{action}" }
   end
 
-  view :core do
+  view :body do
     card.item_cards.map do |member|
       [member.name] + contribution_counts(member)
     end
