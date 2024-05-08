@@ -9,12 +9,12 @@ RSpec.describe Card::Set::Type::WikirateCompany::Export do
                              id: company.id,
                              url: "http://wikirate.org/Samsung.json",
                              type: "Company",
-                             wikipedia: "Samsung",
-                             open_corporates: nil,
-                             sec_cik: nil,
-                             oar_id: nil,
                              alias: [],
-                             headquarters: nil)
+                             headquarters: nil,
+                             # "OpenCorporates" => nil,
+                             "SEC CIK" => nil,
+                             "OAR id" => nil,
+                             "Wikipedia" => "Samsung")
     end
   end
 
@@ -28,8 +28,8 @@ RSpec.describe Card::Set::Type::WikirateCompany::Export do
           id: company.id,
           url: "http://wikirate.org/Samsung.json",
           type: a_hash_including(name: "Company"),
-          wikipedia: a_hash_including(name: "Samsung+Wikipedia"),
-          open_corporates: a_hash_including(id: nil),
+          "Wikipedia" => a_hash_including(name: "Samsung+Wikipedia"),
+          # "OpenCorporates" => a_hash_including(id: nil),
           alias: a_hash_including(id: nil),
           headquarters: a_hash_including(id: nil),
           answers_url: "http://wikirate.org/Samsung+Answer.json"
