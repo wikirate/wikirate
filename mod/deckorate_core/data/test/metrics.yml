@@ -7,7 +7,6 @@
 
 - :name: OpenCorporates
   :type: :research_group
-  :codename: open_corporates
 - :name: Commons
   :type: :research_group
 - :name: Core
@@ -218,7 +217,7 @@
       Textiles and Apparel
       Financial Services
 - :name:
-    - :open_corporates
+    - OpenCorporates
     - Industry Class
   :type: :metric
   :fields:

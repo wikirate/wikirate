@@ -1,129 +1,129 @@
 ---
 relationships_001:
   id: 1
-  relationship_id: 3626
+  relationship_id: 3624
   metric_id: 3272
-  record_id: 3623
-  answer_id: 3624
-  object_company_id: 3151
-  subject_company_id: 3148
+  record_id: 3621
+  answer_id: 3622
+  object_company_id: 3150
+  subject_company_id: 3147
   year: 2000
   value: Tier 2 Supplier
   numeric_value:
-  updated_at: 2024-04-16 18:54:58.000000000 Z
+  updated_at: 2024-05-08 23:41:15.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3276
-  inverse_answer_id: 3630
+  inverse_answer_id: 3628
 relationships_002:
   id: 2
-  relationship_id: 3635
+  relationship_id: 3633
   metric_id: 3272
-  record_id: 3632
-  answer_id: 3633
-  object_company_id: 3145
-  subject_company_id: 3141
+  record_id: 3630
+  answer_id: 3631
+  object_company_id: 3144
+  subject_company_id: 3140
   year: 1977
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-04-16 18:55:00.000000000 Z
+  updated_at: 2024-05-08 23:41:17.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3276
-  inverse_answer_id: 3639
+  inverse_answer_id: 3637
 relationships_003:
   id: 3
-  relationship_id: 3644
+  relationship_id: 3642
   metric_id: 3261
-  record_id: 3641
-  answer_id: 3642
-  object_company_id: 3145
-  subject_company_id: 3148
+  record_id: 3639
+  answer_id: 3640
+  object_company_id: 3144
+  subject_company_id: 3147
   year: 1977
   value: '1'
   numeric_value:
-  updated_at: 2024-04-16 18:55:02.000000000 Z
+  updated_at: 2024-05-08 23:41:18.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3265
-  inverse_answer_id: 3648
+  inverse_answer_id: 3646
 relationships_004:
   id: 4
-  relationship_id: 3652
+  relationship_id: 3650
   metric_id: 3272
-  record_id: 3623
-  answer_id: 3650
-  object_company_id: 3145
-  subject_company_id: 3148
+  record_id: 3621
+  answer_id: 3648
+  object_company_id: 3144
+  subject_company_id: 3147
   year: 1977
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-04-16 18:55:04.000000000 Z
+  updated_at: 2024-05-08 23:41:19.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3276
-  inverse_answer_id: 3639
+  inverse_answer_id: 3637
 relationships_005:
   id: 5
-  relationship_id: 3655
+  relationship_id: 3653
   metric_id: 3272
-  record_id: 3623
-  answer_id: 3624
-  object_company_id: 3145
-  subject_company_id: 3148
+  record_id: 3621
+  answer_id: 3622
+  object_company_id: 3144
+  subject_company_id: 3147
   year: 2000
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-04-16 18:55:05.000000000 Z
+  updated_at: 2024-05-08 23:41:20.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3276
-  inverse_answer_id: 3658
+  inverse_answer_id: 3656
 relationships_006:
   id: 6
-  relationship_id: 3663
+  relationship_id: 3661
   metric_id: 3169
-  record_id: 3660
-  answer_id: 3661
-  object_company_id: 3145
-  subject_company_id: 3138
+  record_id: 3658
+  answer_id: 3659
+  object_company_id: 3144
+  subject_company_id: 3137
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-04-16 18:55:07.000000000 Z
+  updated_at: 2024-05-08 23:41:22.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3175
-  inverse_answer_id: 3667
+  inverse_answer_id: 3665
 relationships_007:
   id: 7
-  relationship_id: 3669
+  relationship_id: 3667
   metric_id: 3169
-  record_id: 3660
-  answer_id: 3661
-  object_company_id: 3148
-  subject_company_id: 3138
+  record_id: 3658
+  answer_id: 3659
+  object_company_id: 3147
+  subject_company_id: 3137
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-04-16 18:55:09.000000000 Z
+  updated_at: 2024-05-08 23:41:23.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3175
-  inverse_answer_id: 3673
+  inverse_answer_id: 3671
 relationships_008:
   id: 8
-  relationship_id: 3678
+  relationship_id: 3676
   metric_id: 3169
-  record_id: 3675
-  answer_id: 3676
-  object_company_id: 3145
-  subject_company_id: 3148
+  record_id: 3673
+  answer_id: 3674
+  object_company_id: 3144
+  subject_company_id: 3147
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-04-16 18:55:11.000000000 Z
+  updated_at: 2024-05-08 23:41:24.000000000 Z
   imported: 0
   latest: 1
   inverse_metric_id: 3175
-  inverse_answer_id: 3667
+  inverse_answer_id: 3665

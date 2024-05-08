@@ -12,9 +12,9 @@ RSpec.describe Card::Set::Type::WikirateCompany::Export do
                                type: "Company",
                                "Alias" => [],
                                "Headquarters" => nil,
-                               "OpenCorporates" => nil,
+                               "OpenCorporates ID" => nil,
                                "SEC CIK" => nil,
-                               "OAR id" => nil,
+                               "OAR ID" => nil,
                                "Wikipedia" => "Samsung")
       end
     end
