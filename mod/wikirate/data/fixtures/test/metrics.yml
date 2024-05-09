@@ -295,7 +295,7 @@ metrics_025:
   scorer_id:
   metric_type_id: 700
   value_type_id: 722
-  policy_id: 707
+  policy_id: 706
   unit: ''
   hybrid: 0
   unpublished: 0
