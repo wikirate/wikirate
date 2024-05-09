@@ -31,7 +31,7 @@ format :csv do
     render_titled
   end
 
-  view :core do
+  view :body do
     args = detailed? ? { show: :detailed_export } : {}
     item_cards.map { |item_card| nest item_card, args }
   end
