@@ -38,7 +38,7 @@ format :json do
   private
 
   def add_fields_to_hash hash, view=:atom
-    card.key_field_names.each do |fld|
+    card.simple_field_names.each do |fld|
       hash[fld] = field_nest fld, view: view
     end
   end

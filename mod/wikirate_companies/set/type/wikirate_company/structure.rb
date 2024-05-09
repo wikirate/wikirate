@@ -16,20 +16,20 @@ def corporate_identifiers_without_excerpts
   @corporate_identifiers_without_excerpts ||= CorporateIdentifier.non_excerpts
 end
 
-def key_field_names
-  %i[headquarters alias].map(&:cardname) + corporate_identifiers
+# as in, NOT records (company+metric)
+def simple_field_names
+  %i[image headquarters wikirate_website alias].map(&:cardname) + corporate_identifiers
 end
 
-# moving alias causes weird problems
-def moveable_field_cards
-  (%i[image headquarters] + corporate_identifiers).map { |field| fetch field }.compact
+def simple_field_cards
+  simple_field_names.map { |field| fetch field }.compact
 end
 
 format :html do
   # EDITING
 
   before :content_formgroups do
-    voo.edit_structure = %i[image headquarters] + card.corporate_identifiers
+    voo.edit_structure = simple_field_names
   end
 
   def header_list_items
