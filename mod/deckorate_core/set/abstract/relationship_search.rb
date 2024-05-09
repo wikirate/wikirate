@@ -51,7 +51,7 @@ format :csv do
     ::Relationship.csv_titles detailed?
   end
 
-  view :core do
+  view :body do
     detailed = detailed?
     query.lookup_relation.map { |row| row.csv_line detailed }
   end

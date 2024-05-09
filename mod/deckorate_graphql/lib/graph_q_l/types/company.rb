@@ -3,15 +3,15 @@ module GraphQL
     # Company type for GraphQL
     class Company < DeckorateCard
       field :headquarters, String, null: true
-      field :wikipedia, String, null: true
-      field :open_corporates, String, null: true
-      field :sec_cik, String, null: true
-      field :os_id, String, null: true
       lookup_field :answer, Answer, :metric_answer, true
       field :relationships, [Relationship],
             "relationships of which company is either subject or object", null: true
       field :datasets, [Dataset], null: false
       field :logo_url, String, "url for company logo image", null: true
+
+      ::Card::Set::Type::CorporateIdentifier.names.each do |identifier|
+        field identifier.parameterize(separator: "_").to_sym, String, null: true
+      end
 
       def os_id
         object.card.oar_id
