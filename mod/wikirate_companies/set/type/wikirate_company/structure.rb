@@ -20,8 +20,9 @@ def key_field_names
   %i[headquarters alias].map(&:cardname) + corporate_identifiers
 end
 
+# moving alias causes weird problems
 def moveable_field_cards
-  ([:image] + key_field_names).map { |field| fetch field }.compact
+  (%i[image headquarters] + corporate_identifiers).map { |field| fetch field }.compact
 end
 
 format :html do
