@@ -11,7 +11,7 @@ format :html do
   end
 
   def tab_list
-    %i[metric dataset research_group details]
+    %i[details metric dataset research_group]
   end
 
   def tab_options
