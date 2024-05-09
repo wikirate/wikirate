@@ -1,5 +1,9 @@
 include_set Abstract::Researched
 
+event :sustain_inverse_relationship, :prepare_to_store, on: :update do
+  inverse_card.fetch(:inverse)&.update content: name
+end
+
 def relationship?
   true
 end

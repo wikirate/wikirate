@@ -14,7 +14,7 @@ company = Card.create! name: company_name, type: :wikirate_company
 idcard.merge_into company
 
 Card.search type: :metric, left: codename do |metric|
-  metric.update! name: [company_name, metric.name.right]
+  metric.update! name: [company_name, metric.name.right], skip: :update_referer_content
 end
 
 idcard.update! type: :corporate_identifier
