@@ -29,6 +29,9 @@
   :type: corporate_identifier
   :codename: open_corporates
 
+- :name: Multiple
+  :codename: multiple
+
 - :name: Incorporation
   :codename: incorporation
 - :name: company search
