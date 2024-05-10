@@ -24,7 +24,7 @@ format :html do
   end
 
   def tab_list
-    %i[preview metric metric_answer details]
+    %i[details preview metric metric_answer]
   end
 
   def tab_options
