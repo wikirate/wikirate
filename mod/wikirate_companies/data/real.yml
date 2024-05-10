@@ -13,7 +13,7 @@
   :codename: corporate_identifier
   :type: cardtype
 
-- :name: OAR id
+- :name: OAR ID
   :codename: oar_id
   :type: corporate_identifier
 
@@ -21,16 +21,16 @@
   :codename: sec_cik
   :type: corporate_identifier
 
+- :name: Wikipedia
+  :codename: wikipedia
+  :type: corporate_identifier
 
-
-- :name: OpenCorporates
-  :type: :research_group
+- :name: OpenCorporates ID
+  :type: corporate_identifier
   :codename: open_corporates
+
 - :name: Incorporation
   :codename: incorporation
-- :name: Wikipedia
-  :type: :wikirate_company
-  :codename: wikipedia
 - :name: company search
   :codename: company_search
 - :name: Country
