@@ -1,18 +1,35 @@
-IDENTIFIERS = %i[sec_cik].freeze
-INTEGRATIONS = %i[wikipedia oar_id open_corporates].freeze
-
 card_accessor :headquarters, type: :pointer
-(IDENTIFIERS + INTEGRATIONS).each { |field| card_accessor field, type: :phrase }
 
-def field_cards
-  ([:headquarters] + IDENTIFIERS + INTEGRATIONS).map { |field| fetch field }.compact
+def self.corporate_identifier_accessor codename
+  card_accessor codename, type: :phrase if codename.present? && !method_defined?(codename)
+end
+
+def corporate_identifiers
+  @corporate_identifiers ||= CorporateIdentifier.names
+end
+
+def corporate_identifiers_with_excerpts
+  @corporate_identifiers_with_excerpts ||= CorporateIdentifier.excerpts
+end
+
+def corporate_identifiers_without_excerpts
+  @corporate_identifiers_without_excerpts ||= CorporateIdentifier.non_excerpts
+end
+
+# as in, NOT records (company+metric)
+def simple_field_names
+  %i[image headquarters wikirate_website alias].map(&:cardname) + corporate_identifiers
+end
+
+def simple_field_cards
+  simple_field_names.map { |field| fetch field }.compact
 end
 
 format :html do
   # EDITING
 
   before :content_formgroups do
-    voo.edit_structure = %i[image headquarters] + IDENTIFIERS + INTEGRATIONS
+    voo.edit_structure = simple_field_names
   end
 
   def header_list_items
@@ -25,9 +42,9 @@ format :html do
 
   def tab_list
     if contrib_page?
-      %i[metrics_designed research_group projects_organized details]
+      %i[details metrics_designed research_group projects_organized]
     else
-      %i[metric_answer source company_group dataset details]
+      %i[details metric_answer source company_group dataset]
     end
   end
 
@@ -59,13 +76,13 @@ format :html do
   end
 
   def identifiers
-    IDENTIFIERS.map do |code|
+    card.corporate_identifiers_without_excerpts.map do |code|
       labeled_field code, :name if card.fetch(code)
     end
   end
 
   def integrations
-    INTEGRATIONS.map do |fieldcode|
+    card.corporate_identifiers_with_excerpts.map do |fieldcode|
       next unless card.fetch fieldcode
 
       field_nest fieldcode, view: :titled, title: fieldcode.cardname

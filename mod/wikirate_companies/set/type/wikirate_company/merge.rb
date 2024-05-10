@@ -10,7 +10,7 @@ format :html do
     wrap do
       card_form :update, success: { view: :merge_success } do
         [
-          hidden_tags(card: { trigger: :merge_companies }),
+          hidden_tags(card: { trigger_in_action: :merge_companies }),
           render_target_company_select,
           render_merge_button
         ]
@@ -104,7 +104,7 @@ def move_source_listings_to target_company
 end
 
 def move_field_cards_to target_company
-  field_cards.each do |field_card|
+  simple_field_cards.each do |field_card|
     new_name = field_card.name.swap name, target_company
     next if Card.exists? new_name
     field_card.update! name: new_name

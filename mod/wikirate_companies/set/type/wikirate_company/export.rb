@@ -1,7 +1,4 @@
 format :json do
-  NESTED_FIELD_CODENAMES =
-    %i[wikipedia open_corporates alias headquarters oar_id sec_cik].freeze
-
   view :links do
     []
   end
@@ -41,8 +38,8 @@ format :json do
   private
 
   def add_fields_to_hash hash, view=:atom
-    NESTED_FIELD_CODENAMES.each do |fieldcode|
-      hash[fieldcode] = field_nest fieldcode, view: view
+    card.simple_field_names.each do |fld|
+      hash[fld] = field_nest fld, view: view
     end
   end
 
@@ -94,7 +91,17 @@ end
 
 format :csv do
   view :row do
-    super() << card.headquarters
+    super() + [card.headquarters, aliases] + identifiers
+  end
+
+  def aliases
+    card.alias_card&.item_names&.join ";"
+  end
+
+  def identifiers
+    card.corporate_identifiers.map do |field_name|
+      field_nest field_name, view: :content
+    end
   end
 
   # DEPRECATED.  +answer csv replaces following:

@@ -78,7 +78,7 @@ format :csv do
     Answer.csv_titles detailed?
   end
 
-  view :core do
+  view :body do
     detailed = detailed?
     lookup_relation.map { |row| row.csv_line detailed }
   end

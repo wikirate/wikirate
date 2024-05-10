@@ -33,7 +33,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Merge do
       Card::Env.params[:target_company] = target.name
 
       expect_answers_to_move 14 do
-        company.update! trigger: :merge_companies
+        company.update! trigger_in_action: :merge_companies
       end
     end
   end

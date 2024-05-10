@@ -44,7 +44,7 @@ end
 
 format :csv do
   view :titles do
-    super() << "Headquarters"
+    super() + Card.new(type: :wikirate_company).simple_field_names
   end
 end
 
