@@ -1,3 +1,12 @@
+card_accessor :description
+
+def edit_fields
+  %i[description ]
+end
+
+view :core do
+  render_read_form
+end
 
 event :clear_corporate_identifier_caches, :integrate do
   %w[NAMES EXCERPTS].each do |suffix|
