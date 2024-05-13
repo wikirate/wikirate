@@ -11,7 +11,7 @@ def check_designer_permissions action
   deny_because "Only metric stewards can #{action} this on designer-assessed metrics"
 end
 
-def ok_to_create
+def ok_to_create?
   super && check_designer_permissions(:create)
 end
 

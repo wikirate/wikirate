@@ -19,7 +19,7 @@ def subtopic_referers subtopic, query={}
   Card.search query.merge(right: :wikirate_topic, refer_to: subtopic)
 end
 
-def ok_to_create
+def ok_to_create?
   super && check_subtopic_permissions
 end
 

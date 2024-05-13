@@ -1,285 +1,297 @@
 ---
 metrics_001:
   id: 1
-  metric_id: 831
+  metric_id: 829
   designer_id:
-  title_id: 711
+  title_id: 712
   scorer_id:
-  metric_type_id: 772
-  value_type_id: 721
-  policy_id: 707
+  metric_type_id: 773
+  value_type_id: 722
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_002:
   id: 2
-  metric_id: 3166
-  designer_id: 3164
-  title_id: 3165
+  metric_id: 3165
+  designer_id: 3163
+  title_id: 3164
   scorer_id:
   metric_type_id: 700
-  value_type_id: 723
-  policy_id: 707
+  value_type_id: 724
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_003:
   id: 3
-  metric_id: 3170
+  metric_id: 3169
   designer_id: 3161
-  title_id: 3169
+  title_id: 3168
   scorer_id:
-  metric_type_id: 743
-  value_type_id: 721
-  policy_id: 707
+  metric_type_id: 744
+  value_type_id: 722
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_004:
   id: 4
-  metric_id: 3176
+  metric_id: 3175
   designer_id: 3161
-  title_id: 3175
+  title_id: 3174
   scorer_id:
-  metric_type_id: 741
-  value_type_id: 721
-  policy_id: 707
+  metric_type_id: 742
+  value_type_id: 722
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_005:
   id: 5
-  metric_id: 3183
+  metric_id: 3182
   designer_id: 1169
-  title_id: 3182
+  title_id: 3181
   scorer_id:
   metric_type_id: 700
-  value_type_id: 721
-  policy_id: 707
+  value_type_id: 722
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_006:
   id: 6
-  metric_id: 3190
+  metric_id: 3189
   designer_id: 1169
-  title_id: 3189
+  title_id: 3188
   scorer_id:
   metric_type_id: 700
-  value_type_id: 721
-  policy_id: 707
+  value_type_id: 722
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_007:
   id: 7
-  metric_id: 3196
+  metric_id: 3195
   designer_id: 1169
-  title_id: 3195
+  title_id: 3194
   scorer_id:
   metric_type_id: 700
-  value_type_id: 722
-  policy_id: 707
+  value_type_id: 723
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_008:
   id: 8
-  metric_id: 3201
+  metric_id: 3200
   designer_id: 1169
-  title_id: 3200
+  title_id: 3199
   scorer_id:
   metric_type_id: 700
-  value_type_id: 722
-  policy_id: 707
+  value_type_id: 723
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_009:
   id: 9
-  metric_id: 3206
+  metric_id: 3205
   designer_id: 1169
-  title_id: 3205
+  title_id: 3204
   scorer_id:
   metric_type_id: 700
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_010:
   id: 10
-  metric_id: 3210
+  metric_id: 3209
   designer_id: 1169
-  title_id: 3209
+  title_id: 3208
   scorer_id:
   metric_type_id: 700
   value_type_id: 35
-  policy_id: 706
+  policy_id: 707
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_011:
   id: 11
-  metric_id: 3216
+  metric_id: 3215
   designer_id: 1169
-  title_id: 3215
+  title_id: 3214
   scorer_id:
   metric_type_id: 700
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_012:
   id: 12
-  metric_id: 3220
+  metric_id: 3219
   designer_id: 1169
-  title_id: 3219
+  title_id: 3218
   scorer_id:
   metric_type_id: 700
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_013:
   id: 13
-  metric_id: 3224
+  metric_id: 3223
   designer_id: 3161
-  title_id: 3223
+  title_id: 3222
   scorer_id:
   metric_type_id: 700
-  value_type_id: 723
-  policy_id: 707
+  value_type_id: 724
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_014:
   id: 14
-  metric_id: 3228
+  metric_id: 3227
   designer_id: 3161
-  title_id: 3227
+  title_id: 3226
   scorer_id:
   metric_type_id: 700
-  value_type_id: 723
-  policy_id: 707
+  value_type_id: 724
+  policy_id: 708
   unit: Imperial military units
   hybrid: 0
   unpublished: 0
 metrics_015:
   id: 15
-  metric_id: 3234
+  metric_id: 3233
   designer_id: 3161
-  title_id: 3233
+  title_id: 3232
   scorer_id:
   metric_type_id: 700
-  value_type_id: 720
-  policy_id: 707
+  value_type_id: 721
+  policy_id: 708
   unit: USD
   hybrid: 0
   unpublished: 0
 metrics_016:
   id: 16
-  metric_id: 3239
+  metric_id: 3238
   designer_id: 3161
-  title_id: 3238
+  title_id: 3237
   scorer_id:
   metric_type_id: 700
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_017:
   id: 17
-  metric_id: 3243
+  metric_id: 3242
   designer_id: 3161
-  title_id: 3242
+  title_id: 3241
   scorer_id:
   metric_type_id: 700
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_018:
   id: 18
-  metric_id: 3248
-  designer_id: 3246
-  title_id: 3247
+  metric_id: 3247
+  designer_id: 3245
+  title_id: 3246
   scorer_id:
   metric_type_id: 700
-  value_type_id: 721
-  policy_id: 706
+  value_type_id: 722
+  policy_id: 707
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_019:
   id: 19
-  metric_id: 3255
+  metric_id: 3254
   designer_id: 3161
-  title_id: 3254
+  title_id: 3253
   scorer_id:
   metric_type_id: 700
-  value_type_id: 721
-  policy_id: 707
+  value_type_id: 722
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_020:
   id: 20
-  metric_id: 3262
-  designer_id: 3163
-  title_id: 3261
+  metric_id: 3261
+  designer_id: 3162
+  title_id: 3260
   scorer_id:
-  metric_type_id: 743
-  value_type_id: 723
-  policy_id: 707
+  metric_type_id: 744
+  value_type_id: 724
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_021:
   id: 21
-  metric_id: 3266
-  designer_id: 3163
-  title_id: 3265
+  metric_id: 3265
+  designer_id: 3162
+  title_id: 3264
   scorer_id:
-  metric_type_id: 741
-  value_type_id: 723
-  policy_id: 707
+  metric_type_id: 742
+  value_type_id: 724
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_022:
   id: 22
-  metric_id: 3273
-  designer_id: 3163
-  title_id: 3272
+  metric_id: 3272
+  designer_id: 3162
+  title_id: 3271
   scorer_id:
-  metric_type_id: 743
-  value_type_id: 723
-  policy_id: 707
+  metric_type_id: 744
+  value_type_id: 724
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_023:
   id: 23
-  metric_id: 3277
-  designer_id: 3163
-  title_id: 3276
+  metric_id: 3276
+  designer_id: 3162
+  title_id: 3275
   scorer_id:
-  metric_type_id: 741
-  value_type_id: 723
-  policy_id: 707
+  metric_type_id: 742
+  value_type_id: 724
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_024:
   id: 24
-  metric_id: 3285
-  designer_id: 3283
-  title_id: 3284
+  metric_id: 3284
+  designer_id: 3282
+  title_id: 3283
+  scorer_id:
+  metric_type_id: 700
+  value_type_id: 724
+  policy_id: 708
+  unit: ''
+  hybrid: 0
+  unpublished: 0
+metrics_025:
+  id: 25
+  metric_id: 3288
+  designer_id: 825
+  title_id: 3287
   scorer_id:
   metric_type_id: 700
   value_type_id: 723
@@ -287,267 +299,255 @@ metrics_024:
   unit: ''
   hybrid: 0
   unpublished: 0
-metrics_025:
-  id: 25
-  metric_id: 3289
-  designer_id: 3162
-  title_id: 3288
-  scorer_id:
-  metric_type_id: 700
-  value_type_id: 722
-  policy_id: 706
-  unit: ''
-  hybrid: 0
-  unpublished: 0
 metrics_026:
   id: 26
-  metric_id: 3698
-  designer_id: 3697
-  title_id: 3288
+  metric_id: 3696
+  designer_id: 3695
+  title_id: 3287
   scorer_id:
-  metric_type_id: 775
-  value_type_id: 722
-  policy_id: 707
+  metric_type_id: 776
+  value_type_id: 723
+  policy_id: 708
   unit: ''
   hybrid: 1
   unpublished: 0
 metrics_027:
   id: 27
-  metric_id: 3708
-  designer_id: 3697
-  title_id: 3707
+  metric_id: 3706
+  designer_id: 3695
+  title_id: 3705
   scorer_id:
-  metric_type_id: 772
-  value_type_id: 722
-  policy_id: 707
+  metric_type_id: 773
+  value_type_id: 723
+  policy_id: 708
   unit: ''
   hybrid: 1
   unpublished: 0
 metrics_028:
   id: 28
-  metric_id: 3719
-  designer_id: 3697
-  title_id: 3718
+  metric_id: 3717
+  designer_id: 3695
+  title_id: 3716
   scorer_id:
-  metric_type_id: 772
-  value_type_id: 722
-  policy_id: 707
+  metric_type_id: 773
+  value_type_id: 723
+  policy_id: 708
   unit: ''
   hybrid: 1
   unpublished: 0
 metrics_029:
   id: 29
-  metric_id: 3730
-  designer_id: 3697
-  title_id: 3729
+  metric_id: 3728
+  designer_id: 3695
+  title_id: 3727
   scorer_id:
-  metric_type_id: 772
-  value_type_id: 722
-  policy_id: 707
+  metric_type_id: 773
+  value_type_id: 723
+  policy_id: 708
   unit: ''
   hybrid: 1
   unpublished: 0
 metrics_030:
   id: 30
-  metric_id: 3741
+  metric_id: 3739
   designer_id: 1169
-  title_id: 3740
+  title_id: 3738
   scorer_id:
-  metric_type_id: 775
+  metric_type_id: 776
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_031:
   id: 31
-  metric_id: 3746
+  metric_id: 3744
   designer_id: 1169
-  title_id: 3745
+  title_id: 3743
   scorer_id:
-  metric_type_id: 775
+  metric_type_id: 776
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_032:
   id: 32
-  metric_id: 3751
+  metric_id: 3749
   designer_id: 1169
-  title_id: 3750
+  title_id: 3748
   scorer_id:
-  metric_type_id: 775
+  metric_type_id: 776
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 1
   unpublished: 0
 metrics_033:
   id: 33
-  metric_id: 3756
+  metric_id: 3754
   designer_id: 3161
-  title_id: 3254
+  title_id: 3253
   scorer_id: 1169
-  metric_type_id: 774
+  metric_type_id: 775
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_034:
   id: 34
-  metric_id: 3759
+  metric_id: 3757
   designer_id: 3161
-  title_id: 3242
+  title_id: 3241
   scorer_id: 1175
-  metric_type_id: 774
+  metric_type_id: 775
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_035:
   id: 35
-  metric_id: 3763
+  metric_id: 3761
   designer_id: 3161
-  title_id: 3242
+  title_id: 3241
   scorer_id: 1169
-  metric_type_id: 774
+  metric_type_id: 775
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_036:
   id: 36
-  metric_id: 3768
+  metric_id: 3766
   designer_id: 3161
-  title_id: 3767
+  title_id: 3765
   scorer_id:
-  metric_type_id: 773
+  metric_type_id: 774
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_037:
   id: 37
-  metric_id: 3773
+  metric_id: 3771
   designer_id: 3161
-  title_id: 3772
+  title_id: 3770
   scorer_id:
-  metric_type_id: 772
+  metric_type_id: 773
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_038:
   id: 38
-  metric_id: 3779
+  metric_id: 3777
   designer_id: 3161
-  title_id: 3778
+  title_id: 3776
   scorer_id:
-  metric_type_id: 772
+  metric_type_id: 773
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 1
   unpublished: 0
 metrics_039:
   id: 39
-  metric_id: 3786
+  metric_id: 3784
   designer_id: 3161
-  title_id: 3785
+  title_id: 3783
   scorer_id:
-  metric_type_id: 772
+  metric_type_id: 773
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_040:
   id: 40
-  metric_id: 3792
+  metric_id: 3790
   designer_id: 3161
-  title_id: 3791
+  title_id: 3789
   scorer_id:
-  metric_type_id: 772
+  metric_type_id: 773
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 1
   unpublished: 0
 metrics_041:
   id: 41
-  metric_id: 3799
+  metric_id: 3797
   designer_id: 3161
-  title_id: 3798
+  title_id: 3796
   scorer_id:
-  metric_type_id: 772
+  metric_type_id: 773
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_042:
   id: 42
-  metric_id: 3805
-  designer_id: 3163
-  title_id: 3804
+  metric_id: 3803
+  designer_id: 3162
+  title_id: 3802
   scorer_id:
-  metric_type_id: 772
-  value_type_id: 722
-  policy_id: 707
+  metric_type_id: 773
+  value_type_id: 723
+  policy_id: 708
   unit: ''
   hybrid: 1
   unpublished: 0
 metrics_043:
   id: 43
-  metric_id: 3812
-  designer_id: 830
-  title_id: 3811
+  metric_id: 3810
+  designer_id: 828
+  title_id: 3809
   scorer_id:
-  metric_type_id: 772
-  value_type_id: 721
-  policy_id: 707
+  metric_type_id: 773
+  value_type_id: 722
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_044:
   id: 44
-  metric_id: 3817
-  designer_id: 3163
-  title_id: 3816
+  metric_id: 3815
+  designer_id: 3162
+  title_id: 3814
   scorer_id:
-  metric_type_id: 772
-  value_type_id: 722
-  policy_id: 707
+  metric_type_id: 773
+  value_type_id: 723
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_045:
   id: 45
-  metric_id: 3822
-  designer_id: 830
-  title_id: 713
+  metric_id: 3820
+  designer_id: 828
+  title_id: 714
   scorer_id:
-  metric_type_id: 772
-  value_type_id: 721
-  policy_id: 707
+  metric_type_id: 773
+  value_type_id: 722
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0
 metrics_046:
   id: 46
-  metric_id: 4115
+  metric_id: 4113
   designer_id: 3161
-  title_id: 4114
+  title_id: 4112
   scorer_id:
-  metric_type_id: 772
+  metric_type_id: 773
   value_type_id: 35
-  policy_id: 707
+  policy_id: 708
   unit: ''
   hybrid: 0
   unpublished: 0

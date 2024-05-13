@@ -17,7 +17,7 @@ def ok_to_update?
   auto_content || super
 end
 
-def ok_to_create
+def ok_to_create?
   auto_content || super
 end
 
