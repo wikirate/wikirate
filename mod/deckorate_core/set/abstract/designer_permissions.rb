@@ -15,11 +15,11 @@ def ok_to_create
   super && check_designer_permissions(:create)
 end
 
-def ok_to_update
+def ok_to_update?
   super && check_designer_permissions(:update)
 end
 
 # delete logic is different, because most users don't have permission by default
-def ok_to_delete
+def ok_to_delete?
   (metric_card&.designer_assessed? && metric_card.designer?) || super
 end

@@ -23,7 +23,7 @@ def ok_to_create
   super && check_subtopic_permissions
 end
 
-def ok_to_update
+def ok_to_update?
   super && check_subtopic_permissions
 end
 
