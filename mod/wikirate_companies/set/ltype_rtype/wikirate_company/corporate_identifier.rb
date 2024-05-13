@@ -12,12 +12,6 @@ end
 
 format :html do
   def input_type
-    multiple ? :list : :text_field
-  end
-end
-
-format :data do
-  view :core do
-
+    multiple? ? :list : :text_field
   end
 end
