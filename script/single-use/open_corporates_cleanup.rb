@@ -4,8 +4,10 @@ Card::Auth.signin "Ethan McCutchen"
 Card::Auth.as_bot # needed in test env where Ethan is not a user
 
 puts "updating inverse storage"
-Card.search(right: :inverse).each &:save
-Card.search(right: :inverse_title).each &:save
+Card.search(right: :inverse).each &:save!
+Card.search(right: :inverse_title).each do |c|
+  c.update! content: c.standardize_content(c.item_names)
+end
 
 codename = :open_corporates
 company_name = "OpenCorporates"
