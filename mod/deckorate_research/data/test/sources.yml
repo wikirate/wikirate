@@ -3,7 +3,7 @@
   :skip: requirements
   :type: :source
   :codename: opera_source
-#  :time: "+172800"
+  :time: "+172800"
   :conflict: defer
   :fields:
     :wikirate_company: |-
@@ -46,7 +46,7 @@
   :skip: requirements
   :type: :source
   :codename: space_opera_source
-#  :time: "+86400"
+  :time: "+86400"
   :conflict: defer
   :fields:
     :wikirate_topic: Force
