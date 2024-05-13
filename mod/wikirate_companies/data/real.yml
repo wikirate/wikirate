@@ -12,6 +12,13 @@
 - :name: Corporate Identifier
   :codename: corporate_identifier
   :type: cardtype
+  :fields:
+    :type:
+      :fields:
+        :create:
+          :wikirate_team
+        :delete:
+          :wikirate_team
 
 - :name: OAR ID
   :codename: oar_id
