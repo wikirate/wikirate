@@ -13,7 +13,7 @@ def history?
   false
 end
 
-def ok_to_update
+def ok_to_update?
   auto_content || super
 end
 

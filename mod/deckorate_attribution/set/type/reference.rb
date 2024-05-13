@@ -22,12 +22,12 @@ def subject_item_card
   subject_card.first_card
 end
 
-def ok_to_update
+def ok_to_update?
   Auth.signed_in? && ((Auth.current_id == creator_id) || Auth.current.stewards_all?)
 end
 
-def ok_to_delete
-  ok_to_update
+def ok_to_delete?
+  ok_to_update?
 end
 
 private

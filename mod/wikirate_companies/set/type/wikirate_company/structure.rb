@@ -29,7 +29,7 @@ format :html do
   # EDITING
 
   before :content_formgroups do
-    voo.edit_structure = simple_field_names
+    voo.edit_structure = card.simple_field_names
   end
 
   def header_list_items
