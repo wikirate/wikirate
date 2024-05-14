@@ -5,7 +5,7 @@ card_accessor :country_code, type: :pointer
 card_accessor :ilo_region, type: :pointer
 card_accessor :oc_jurisdiction_key, type: :phrase
 
-def ok_to_update
+def ok_to_update?
   Auth.always_ok?
 end
 

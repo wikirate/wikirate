@@ -1,7 +1,23 @@
+card_accessor :description
+card_accessor :multiple, type: :toggle
 
 event :clear_corporate_identifier_caches, :integrate do
   %w[NAMES EXCERPTS].each do |suffix|
     Card.cache.delete "CORPORATE-IDENTIFIER-#{suffix}"
+  end
+end
+
+def multiple?
+  multiple_card.checked?
+end
+
+format :html do
+  def edit_fields
+    %i[description multiple]
+  end
+
+  view :core do
+    render_read_form
   end
 end
 
