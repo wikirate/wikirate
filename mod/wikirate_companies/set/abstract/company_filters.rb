@@ -13,6 +13,10 @@ format :html do
     super.select { |hash| hash[:key] != :company_answer }
   end
 
+  # def corporate_identifier_filter
+  #
+  # end
+
   # The following all help support the "advanced" filter for companies based on answers
   # (a list of constraints; the same ui used for specifying company groups)
   def filter_company_answer_type
