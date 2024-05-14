@@ -16,9 +16,9 @@
     :type:
       :fields:
         :create:
-          :wikirate_team
+          - :wikirate_team
         :delete:
-          :wikirate_team
+          - :wikirate_team
 
 - :name: OAR ID
   :codename: oar_id
