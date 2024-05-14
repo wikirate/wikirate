@@ -3,7 +3,7 @@
 
 format do
   def shared_company_filter_map
-    %i[company_category company_group country company_answer]
+    %i[corporate_identifier company_category company_group country company_answer]
   end
 end
 
@@ -13,14 +13,18 @@ format :html do
     super.select { |hash| hash[:key] != :company_answer }
   end
 
-  # def corporate_identifier_filter
-  #
-  # end
+  def filter_corporate_identifier_type
+    :identifier_custom
+  end
 
   # The following all help support the "advanced" filter for companies based on answers
   # (a list of constraints; the same ui used for specifying company groups)
   def filter_company_answer_type
     :company_answer_custom
+  end
+
+  def identifier_custom_filter _field, _default, _opts
+    haml :identifier_custom_filter
   end
 
   def filter_company_answer_label
