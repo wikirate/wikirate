@@ -12,10 +12,9 @@ end
 
 format :json do
   view :core do
-    case
-    when multiple?
+    if multiple?
       super
-    when card.real?
+    elsif card.real?
       render_raw
     end
   end
