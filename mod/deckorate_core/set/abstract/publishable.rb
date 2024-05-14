@@ -21,6 +21,6 @@ def check_published
   deny_because "not yet published"
 end
 
-def ok_to_read
+def ok_to_read?
   super && check_published
 end
