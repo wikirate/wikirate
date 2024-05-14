@@ -64,7 +64,7 @@ format :html do
   end
 
   def simple_account_tab?
-    card.current_account? || card.account.ok?(:read)
+    card.current_account? || card.account&.ok?(:read)
   end
 
   def tab_options

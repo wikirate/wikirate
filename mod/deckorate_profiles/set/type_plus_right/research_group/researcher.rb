@@ -15,11 +15,11 @@ def current_organizer?
   Auth.current_id.in?(left.organizer_card.item_ids)
 end
 
-def ok_to_read
+def ok_to_read?
   super || current_member? || current_organizer?
 end
 
-def ok_to_update
+def ok_to_update?
   super || current_organizer?
 end
 
