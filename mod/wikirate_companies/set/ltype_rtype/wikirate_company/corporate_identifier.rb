@@ -10,6 +10,17 @@ format do
   end
 end
 
+format :json do
+  view :core do
+    case
+    when multiple?
+      super
+    when card.real?
+      render_raw
+    end
+  end
+end
+
 format :html do
   def input_type
     multiple? ? :list : :text_field

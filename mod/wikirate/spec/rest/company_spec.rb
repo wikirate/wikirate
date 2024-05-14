@@ -9,7 +9,7 @@ Decko::RestSpecHelper.describe_api do
     with_api_key_for "Joe User" do |api_key|
       { card: { name: "My Company",
                 type: "Company",
-                subcards: { "+:open_corporates" => "1234567",
+                subcards: { "+:open_corporates_id" => "1234567",
                             "+:headquarters" => "oc_qa" } },
         success: { format: "json" },
         api_key: api_key }
