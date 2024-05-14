@@ -18,7 +18,7 @@ include ::NewRelic::Agent::MethodTracer
 add_method_tracer :award_badge_if_earned, "award_badge_if_earned"
 
 def awardable?
-  awardable_act? && !Card::Auth.has_role?(:no_badges)
+  awardable_act? && !Card::Auth.current_card.role?(:no_badges)
 end
 
 # don't award badges during imports or API calls
