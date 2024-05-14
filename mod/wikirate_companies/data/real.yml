@@ -12,6 +12,13 @@
 - :name: Corporate Identifier
   :codename: corporate_identifier
   :type: cardtype
+  :fields:
+    :type:
+      :fields:
+        :create:
+          - :wikirate_team
+        :delete:
+          - :wikirate_team
 
 - :name: OAR ID
   :codename: oar_id
@@ -27,7 +34,10 @@
 
 - :name: OpenCorporates ID
   :type: corporate_identifier
-  :codename: open_corporates
+  :codename: open_corporates_id
+
+- :name: Multiple
+  :codename: multiple
 
 - :name: Incorporation
   :codename: incorporation

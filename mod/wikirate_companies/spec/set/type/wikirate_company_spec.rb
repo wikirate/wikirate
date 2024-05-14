@@ -36,14 +36,14 @@ RSpec.describe Card::Set::Type::WikirateCompany do
     it "creates company" do
       post :create, params: { card: { name: "new company",
                                       type: "Company",
-                                      subcards: { "+:open_corporates" => "C0806592",
+                                      subcards: { "+:open_corporates_id" => "C0806592",
                                                   "+:headquarters" => "us_ca" } },
                               success: { format: :json },
                               confirmed: true,
                               api_key: api_key }
       expect_card("new company")
         .to exist
-        .and have_a_field(:open_corporates).with_content("C0806592")
+        .and have_a_field(:open_corporates_id).with_content("C0806592")
         .and have_a_field(:headquarters).with_content("California (United States)")
     end
   end
