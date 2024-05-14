@@ -17,14 +17,21 @@ format :html do
     :identifier_custom
   end
 
+  def identifier_custom_filter *_args
+    haml :identifier_custom_filter
+  end
+
+  def filter_corporate_identifier_closer_value cid
+    vals = [cid[:value]]
+    vals.unshift "(#{cid[:type]})" if cid[:type].present?
+    vals.join " "
+  end
+
+
   # The following all help support the "advanced" filter for companies based on answers
   # (a list of constraints; the same ui used for specifying company groups)
   def filter_company_answer_type
     :company_answer_custom
-  end
-
-  def identifier_custom_filter _field, _default, _opts
-    haml :identifier_custom_filter
   end
 
   def filter_company_answer_label

@@ -126,6 +126,13 @@ class Card
       referred_to_by_company_list dataset
     end
 
+    def corporate_identifier_cql cid
+      type_clause = cid[:type].present? ? cid[:type] : { type: :corporate_identifier }
+      value_clause = cid[:value].present? ? { match: cid[:value] } : {}
+      add_to_cql :right_plus, [type_clause, value_clause]
+
+    end
+
     def referred_to_by_company_list trunk
       return unless trunk.present?
       # this "and" is a hack to prevent collision between the referred_to_by's

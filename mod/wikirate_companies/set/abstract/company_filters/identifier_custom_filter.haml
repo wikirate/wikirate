@@ -1,0 +1,4 @@
+.pb-2
+  = select_filter "corporate_identifier[type]", nil, type_options(:corporate_identifier)
+.pt-2
+  = text_filter "corporate_identifier[value]", "", nil
