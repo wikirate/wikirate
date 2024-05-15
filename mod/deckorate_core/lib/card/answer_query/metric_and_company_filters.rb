@@ -37,6 +37,14 @@ class Card
                         name: [:match, value], type: :wikirate_company
       end
 
+      def filter_by_corporate_identifier value
+        type_clause, value_clause = CompanyFilterCql.corporate_identifier_clauses value
+        multi_company do
+          restrict_by_cql :ident, :company_id,
+                          value_clause.merge(return: :left_id, right: type_clause)
+        end
+      end
+
       def filter_by_country value
         filter_by_company_filter :countries, :country_condition, value
       end
