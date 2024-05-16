@@ -27,6 +27,18 @@ RSpec.describe Card::AnswerQuery::CompanyFilters do
       end
     end
 
-    describe
+    describe "#filter_by_corporate_identifier" do
+      let(:answer_parts) { [-2] }
+
+      it "filters by type" do
+        expect(search(corporate_identifier: { type: "Wikipedia" }))
+          .to eq(["Death Star", "SPECTRE"])
+      end
+
+      it "filters by matching value" do
+        expect(search(corporate_identifier: { value: "death" }))
+          .to eq(["Death Star"])
+      end
+    end
   end
 end

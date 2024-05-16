@@ -1,6 +1,6 @@
 class Card
   class AnswerQuery
-    # conditions and condition support methods for non-standard fields.
+    # conditions and condition support methods for metric-related fields.
     module MetricFilters
       include MetricQuery::MetricFilters
 

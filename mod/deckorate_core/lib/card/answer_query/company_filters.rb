@@ -7,51 +7,52 @@ class Card
           group_lists = Array.wrap(value).map { |v| [v, :wikirate_company].cardname }
           restrict_by_cql :groups, :company_id, referred_to_by: group_lists
         end
+      end
 
-        def filter_by_company_name value
-          restrict_by_cql :company_name, :company_id,
-                          name: [:match, value], type: :wikirate_company
+
+      def filter_by_company_name value
+        restrict_by_cql :company_name, :company_id,
+                        name: [:match, value], type: :wikirate_company
+      end
+
+      def filter_by_country value
+        filter_by_company_filter :countries, :country_condition, value
+      end
+
+      def filter_by_company_category value
+        filter_by_company_filter :categories, :category_condition, value
+      end
+
+      def filter_by_corporate_identifier value
+        type_clause, value_clause = CompanyFilterCql.corporate_identifier_clauses value
+        multi_company do
+          restrict_by_cql :ident, :company_id,
+                          value_clause.merge(return: :left_id, right: type_clause)
         end
+      end
 
-        def filter_by_country value
-          filter_by_company_filter :countries, :country_condition, value
-        end
+      private
 
-        def filter_by_company_category value
-          filter_by_company_filter :categories, :category_condition, value
-        end
+      def filter_by_company_filter table, condition_method, value
+        company_answer_join table
+        @conditions << CompanyFilterCql.send(condition_method)
+        @values << Array.wrap(value)
+      end
 
-        def filter_by_corporate_identifier value
-          type_clause, value_clause = CompanyFilterCql.corporate_identifier_clauses value
-          multi_company do
-            restrict_by_cql :ident, :company_id,
-                            value_clause.merge(return: :left_id, right: type_clause)
-          end
-        end
+      def single_company?
+        @filter_args[:company_id].is_a? Integer
+      end
 
-        private
+      def multi_company
+        single_company? ? return : yield
+      end
 
-        def filter_by_company_filter table, condition_method, value
-          company_answer_join table
-          @conditions << CompanyFilterCql.send(condition_method)
-          @values << Array.wrap(value)
-        end
+      def company_card
+        single_company? ? (@company_card ||= Card[@filter_args[:company_id]]) : return
+      end
 
-        def single_company?
-          @filter_args[:company_id].is_a? Integer
-        end
-
-        def multi_company
-          single_company? ? return : yield
-        end
-
-        def company_card
-          single_company? ? (@company_card ||= Card[@filter_args[:company_id]]) : return
-        end
-
-        def company_answer_join table
-          @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
-        end
+      def company_answer_join table
+        @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
       end
     end
   end
