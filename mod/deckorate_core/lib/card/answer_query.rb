@@ -6,7 +6,8 @@ class Card
     include AnswerFilters
     include AdvancedFilters
     include ValueFilters
-    include MetricAndCompanyFilters
+    include MetricFilters
+    include CompanyFilters
     include OutlierFilter
 
     self.card_id_map = {
