@@ -9,7 +9,6 @@ class Card
         end
       end
 
-
       def filter_by_company_name value
         restrict_by_cql :company_name, :company_id,
                         name: [:match, value], type: :wikirate_company

@@ -1,11 +1,6 @@
 RSpec.describe Card::AnswerQuery::CompanyFilters do
   include_context "answer query"
 
-  specify "#company_category_query" do
-    expect(search(company_category: "A").sort)
-      .to eq ["Death Star+2001", "SPECTRE+2000"]
-  end
-
   context "with fixed metric" do
     let(:metric_name) { "Jedi+disturbances in the Force" }
     let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
@@ -25,6 +20,11 @@ RSpec.describe Card::AnswerQuery::CompanyFilters do
       it "ignores case" do
         expect(search(company_name: "death")).to eq ["Death Star+2001"]
       end
+    end
+
+    specify "#filter_by_company_category" do
+      expect(search(company_category: "A").sort)
+        .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
 
     describe "#filter_by_corporate_identifier" do
