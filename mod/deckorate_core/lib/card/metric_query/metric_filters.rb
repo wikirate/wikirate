@@ -60,7 +60,7 @@ class Card
         @filter_args[:published] = true unless @filter_args.key? :published
       end
 
-      # also used by metric_and_company_filters.rb
+      # also used by metric_filters.rb
       def dataset_restriction field, codename, dataset
         restrict_by_cql "metric_#{field}", field,
                         referred_to_by: "#{dataset}+#{codename.cardname}"
@@ -71,7 +71,7 @@ class Card
         filter :year, years if years.present?
       end
 
-      # also used by metric_and_company_filters.rb
+      # also used by metric_filters.rb
       def bookmark_restriction field, value
         Card::Bookmark.id_restriction(value.to_sym == :bookmark) do |restriction|
           operator = restriction.shift # restriction looks like cql, eg ["in", 1, 2]
