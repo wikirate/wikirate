@@ -28,4 +28,4 @@ Card.search type: :metric, left: codename do |metric|
 end
 
 puts "changing id card type"
-idcard.update! type: :corporate_identifier
+idcard.update! type: :company_identifier
