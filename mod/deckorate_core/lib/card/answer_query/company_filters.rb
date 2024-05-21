@@ -22,8 +22,8 @@ class Card
         filter_by_company_filter :categories, :category_condition, value
       end
 
-      def filter_by_corporate_identifier value
-        type_clause, value_clause = CompanyFilterCql.corporate_identifier_clauses value
+      def filter_by_company_identifier value
+        type_clause, value_clause = CompanyFilterCql.company_identifier_clauses value
         multi_company do
           restrict_by_cql :ident, :company_id,
                           value_clause.merge(return: :left_id, right: type_clause)

@@ -1,7 +1,7 @@
 .pb-2
-  = select_filter "corporate_identifier[type]",
+  = select_filter "company_identifier[type]",
                   defaults[:type],
-                  type_options(:corporate_identifier)
+                  type_options(:company_identifier)
 .pt-2
-  = text_filter "corporate_identifier[value]",
+  = text_filter "company_identifier[value]",
                 defaults[:value], nil

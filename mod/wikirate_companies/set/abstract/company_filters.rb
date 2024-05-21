@@ -3,7 +3,7 @@
 
 format do
   def shared_company_filter_map
-    %i[corporate_identifier company_category company_group country company_answer]
+    %i[company_identifier company_category company_group country company_answer]
   end
 end
 
@@ -13,7 +13,7 @@ format :html do
     super.select { |hash| hash[:key] != :company_answer }
   end
 
-  def filter_corporate_identifier_type
+  def filter_company_identifier_type
     :identifier_custom
   end
 
@@ -21,7 +21,7 @@ format :html do
     haml :identifier_custom_filter, defaults: (filter_param(field) || {})
   end
 
-  def filter_corporate_identifier_closer_value cid
+  def filter_company_identifier_closer_value cid
     vals = [cid[:value]]
     vals.unshift "(#{cid[:type]})" if cid[:type].present?
     vals.join " "
