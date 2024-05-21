@@ -1,7 +1,7 @@
 card_accessor :description
 card_accessor :multiple, type: :toggle
 
-event :clear_corporate_identifier_caches, :integrate do
+event :clear_company_identifier_caches, :integrate do
   %w[NAMES EXCERPTS].each do |suffix|
     Card.cache.delete "CORPORATE-IDENTIFIER-#{suffix}"
   end
@@ -23,13 +23,13 @@ end
 
 class << self
   def cards
-    Card.search type: :corporate_identifier, sort: :name
+    Card.search type: :company_identifier, sort: :name
   end
 
   def names
     Card.cache.fetch "CORPORATE-IDENTIFIER-NAMES" do
       cards.map do |ident|
-        Type::WikirateCompany::Structure.corporate_identifier_accessor ident.codename
+        Type::WikirateCompany::Structure.company_identifier_accessor ident.codename
         ident.name
       end
     end

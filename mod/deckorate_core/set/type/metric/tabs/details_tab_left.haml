@@ -1,0 +1,8 @@
+.mb-4
+  = field_nest :about, view: :titled, title: "About the data"
+  - if card.calculated?
+    .mb-4
+      = render_formula
+  - if card.researchable?
+    .mb-4
+    = field_nest :methodology, view: :titled

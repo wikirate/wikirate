@@ -27,8 +27,8 @@ RSpec.describe Card::Set::Abstract::CompanySearch do
       it { is_expected.to eq cql(company_category: "myIndustry") }
     end
 
-    context "with corporate_identifier argument" do
-      before { filter_args corporate_identifier: { type: "Wikipedia" } }
+    context "with company_identifier argument" do
+      before { filter_args company_identifier: { type: "Wikipedia" } }
       it { is_expected.to eq cql(right_plus: ["Wikipedia", {}]) }
     end
 

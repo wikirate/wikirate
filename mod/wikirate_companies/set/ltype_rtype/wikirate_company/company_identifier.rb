@@ -1,12 +1,12 @@
 include_set Abstract::List
 
-def corporate_identifier
+def company_identifier
   right
 end
 
 format do
   def multiple?
-    card.corporate_identifier.multiple?
+    card.company_identifier.multiple?
   end
 end
 
