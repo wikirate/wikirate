@@ -16,15 +16,13 @@ format :html do
     field_nest :source, view: :filtered_content
   end
 
-  view :details_tab, template: :haml
-
-  # def answer_filtering
-  #   filtering(".RIGHT-answer ._compact-filter") do
-  #     yield view: :bar, show: :full_page_link, hide: %i[metric_header edit_link]
-  #   end
-  # end
-
   view :dataset_tab do
     field_nest :dataset, view: :content
+  end
+
+  view :details_tab_left, template: :haml
+
+  view :details_tab_right do
+    render_metric_properties
   end
 end

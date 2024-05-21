@@ -1,24 +1,24 @@
 card_accessor :headquarters, type: :pointer
 
-def self.corporate_identifier_accessor codename
+def self.company_identifier_accessor codename
   card_accessor codename, type: :phrase if codename.present? && !method_defined?(codename)
 end
 
-def corporate_identifiers
-  @corporate_identifiers ||= CorporateIdentifier.names
+def company_identifiers
+  @company_identifiers ||= CompanyIdentifier.names
 end
 
-def corporate_identifiers_with_excerpts
-  @corporate_identifiers_with_excerpts ||= CorporateIdentifier.excerpts
+def company_identifiers_with_excerpts
+  @company_identifiers_with_excerpts ||= CompanyIdentifier.excerpts
 end
 
-def corporate_identifiers_without_excerpts
-  @corporate_identifiers_without_excerpts ||= CorporateIdentifier.non_excerpts
+def company_identifiers_without_excerpts
+  @company_identifiers_without_excerpts ||= CompanyIdentifier.non_excerpts
 end
 
 # as in, NOT records (company+metric)
 def simple_field_names
-  %i[image headquarters wikirate_website alias].map(&:cardname) + corporate_identifiers
+  %i[image headquarters wikirate_website alias].map(&:cardname) + company_identifiers
 end
 
 def simple_field_cards
@@ -71,21 +71,17 @@ format :html do
                                items: { view: :bar, show: :full_page_link }
   end
 
-  view :details_tab do
-    [identifiers, integrations]
-  end
-
-  def identifiers
-    card.corporate_identifiers_without_excerpts.map do |code|
-      labeled_field code, :name if card.fetch(code)
-    end
-  end
-
-  def integrations
-    card.corporate_identifiers_with_excerpts.map do |fieldcode|
+  view :details_tab_left do
+    card.company_identifiers_with_excerpts.map do |fieldcode|
       next unless card.fetch fieldcode
 
       field_nest fieldcode, view: :titled, title: fieldcode.cardname
+    end
+  end
+
+  view :details_tab_right do
+    card.company_identifiers_without_excerpts.map do |code|
+      labeled_field code, :name if card.fetch(code)
     end
   end
 

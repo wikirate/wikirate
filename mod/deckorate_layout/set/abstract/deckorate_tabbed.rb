@@ -20,4 +20,6 @@ format :html do
   view :content do
     render_page
   end
+
+  view :details_tab, template: :haml
 end

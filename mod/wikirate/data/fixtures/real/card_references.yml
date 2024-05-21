@@ -4546,7 +4546,7 @@ card_references_650:
   id: 802
   referer_id: 697
   referee_key: metric+*type
-  referee_id: 1041
+  referee_id: 1038
   ref_type: P
   is_present:
 card_references_651:
@@ -5819,7 +5819,7 @@ card_references_831:
 card_references_832:
   id: 1099
   referer_id: 822
-  referee_key: corporate_identifier+description
+  referee_key: company_identifier+description
   referee_id:
   ref_type: I
   is_present:
@@ -5833,14 +5833,14 @@ card_references_833:
 card_references_834:
   id: 1101
   referer_id: 822
-  referee_key: corporate_identifier+*type+by_name
+  referee_key: company_identifier+*type+by_name
   referee_id:
   ref_type: I
   is_present:
 card_references_835:
   id: 1102
   referer_id: 822
-  referee_key: corporate_identifier+*type
+  referee_key: company_identifier+*type
   referee_id: 823
   ref_type: P
   is_present:
@@ -5867,3501 +5867,1786 @@ card_references_838:
   is_present:
 card_references_839:
   id: 1117
-  referer_id: 835
-  referee_key: afghanistan
-  referee_id:
+  referer_id: 833
+  referee_key: company
+  referee_id: 695
   ref_type: L
   is_present:
 card_references_840:
   id: 1118
-  referer_id: 835
-  referee_key: albanium
-  referee_id:
+  referer_id: 833
+  referee_key: metric
+  referee_id: 697
   ref_type: L
   is_present:
 card_references_841:
   id: 1119
-  referer_id: 835
-  referee_key: algerium
-  referee_id:
+  referer_id: 833
+  referee_key: source
+  referee_id: 747
   ref_type: L
   is_present:
 card_references_842:
   id: 1120
-  referer_id: 835
-  referee_key: american_samoa
-  referee_id:
+  referer_id: 833
+  referee_key: topic
+  referee_id: 650
   ref_type: L
   is_present:
 card_references_843:
   id: 1121
-  referer_id: 835
-  referee_key: andorra
-  referee_id:
+  referer_id: 833
+  referee_key: datum_set
+  referee_id: 784
   ref_type: L
   is_present:
 card_references_844:
   id: 1122
-  referer_id: 835
-  referee_key: angola
-  referee_id:
+  referer_id: 833
+  referee_key: project
+  referee_id: 786
   ref_type: L
   is_present:
 card_references_845:
   id: 1123
-  referer_id: 835
-  referee_key: anguilla
-  referee_id:
+  referer_id: 833
+  referee_key: research_group
+  referee_id: 805
   ref_type: L
   is_present:
 card_references_846:
   id: 1124
-  referer_id: 835
-  referee_key: antarctica
-  referee_id:
+  referer_id: 833
+  referee_key: company_group
+  referee_id: 703
   ref_type: L
   is_present:
 card_references_847:
   id: 1125
-  referer_id: 835
-  referee_key: antigua_and_barbuda
+  referer_id: 834
+  referee_key: gri
   referee_id:
   ref_type: L
   is_present:
 card_references_848:
   id: 1126
-  referer_id: 835
-  referee_key: argentina
+  referer_id: 834
+  referee_key: fashion_transparency_index_2022
   referee_id:
   ref_type: L
   is_present:
 card_references_849:
   id: 1127
-  referer_id: 835
-  referee_key: armenium
+  referer_id: 834
+  referee_key: s_p500
   referee_id:
   ref_type: L
   is_present:
 card_references_850:
   id: 1128
-  referer_id: 835
-  referee_key: aruba
+  referer_id: 834
+  referee_key: climate_100_ghg_emission
   referee_id:
   ref_type: L
   is_present:
 card_references_851:
   id: 1129
-  referer_id: 835
-  referee_key: australium
+  referer_id: 834
+  referee_key: research_b_corp_certified_company_performance
   referee_id:
   ref_type: L
   is_present:
 card_references_852:
   id: 1130
-  referer_id: 835
-  referee_key: austrium
+  referer_id: 834
+  referee_key: research_gender_equality_policy_in_the_delivery_service_industry
   referee_id:
   ref_type: L
   is_present:
 card_references_853:
   id: 1131
-  referer_id: 835
-  referee_key: azerbaijan
-  referee_id:
+  referer_id: 444
+  referee_key: wikirate_skin
+  referee_id: 835
   ref_type: L
   is_present:
 card_references_854:
-  id: 1132
-  referer_id: 835
-  referee_key: bahama
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_855:
-  id: 1133
-  referer_id: 835
-  referee_key: bahrain
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_856:
-  id: 1134
-  referer_id: 835
-  referee_key: bangladesh
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_857:
-  id: 1135
-  referer_id: 835
-  referee_key: barbado
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_858:
-  id: 1136
-  referer_id: 835
-  referee_key: belaru
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_859:
-  id: 1137
-  referer_id: 835
-  referee_key: belgium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_860:
-  id: 1138
-  referer_id: 835
-  referee_key: belize
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_861:
-  id: 1139
-  referer_id: 835
-  referee_key: benin
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_862:
-  id: 1140
-  referer_id: 835
-  referee_key: bermuda
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_863:
-  id: 1141
-  referer_id: 835
-  referee_key: bhutan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_864:
-  id: 1142
-  referer_id: 835
-  referee_key: bolivium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_865:
-  id: 1143
-  referer_id: 835
-  referee_key: bonaire_sint_eustatiu_and_saba
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_866:
   id: 1144
-  referer_id: 835
-  referee_key: bosnium_and_herzegovina
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_867:
-  id: 1145
-  referer_id: 835
-  referee_key: botswana
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_868:
-  id: 1146
-  referer_id: 835
-  referee_key: bouvet_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_869:
-  id: 1147
-  referer_id: 835
-  referee_key: brazil
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_870:
-  id: 1148
-  referer_id: 835
-  referee_key: british_indian_ocean_territory
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_871:
-  id: 1149
-  referer_id: 835
-  referee_key: british_virgin_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_872:
-  id: 1150
-  referer_id: 835
-  referee_key: brunei_darussalam
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_873:
-  id: 1151
-  referer_id: 835
-  referee_key: bulgarium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_874:
-  id: 1152
-  referer_id: 835
-  referee_key: burkina_faso
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_875:
-  id: 1153
-  referer_id: 835
-  referee_key: burundi
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_876:
-  id: 1154
-  referer_id: 835
-  referee_key: cambodium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_877:
-  id: 1155
-  referer_id: 835
-  referee_key: cameroon
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_878:
-  id: 1156
-  referer_id: 835
-  referee_key: canada
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_879:
-  id: 1157
-  referer_id: 835
-  referee_key: cape_verde
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_880:
-  id: 1158
-  referer_id: 835
-  referee_key: cayman_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_881:
-  id: 1159
-  referer_id: 835
-  referee_key: central_african_republic
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_882:
-  id: 1160
-  referer_id: 835
-  referee_key: chad
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_883:
-  id: 1161
-  referer_id: 835
-  referee_key: chile
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_884:
-  id: 1162
-  referer_id: 835
-  referee_key: china
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_885:
-  id: 1163
-  referer_id: 835
-  referee_key: christma_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_886:
-  id: 1164
-  referer_id: 835
-  referee_key: coco_keeling_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_887:
-  id: 1165
-  referer_id: 835
-  referee_key: colombium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_888:
-  id: 1166
-  referer_id: 835
-  referee_key: comoro
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_889:
-  id: 1167
-  referer_id: 835
-  referee_key: congo
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_890:
-  id: 1168
-  referer_id: 835
-  referee_key: cook_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_891:
-  id: 1169
-  referer_id: 835
-  referee_key: costum_rica
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_892:
-  id: 1170
-  referer_id: 835
-  referee_key: croatium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_893:
-  id: 1171
-  referer_id: 835
-  referee_key: cuba
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_894:
-  id: 1172
-  referer_id: 835
-  referee_key: curaçao
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_895:
-  id: 1173
-  referer_id: 835
-  referee_key: cypru
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_896:
-  id: 1174
-  referer_id: 835
-  referee_key: czech_republic
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_897:
-  id: 1175
-  referer_id: 835
-  referee_key: côte_d_ivoire
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_898:
-  id: 1176
-  referer_id: 835
-  referee_key: democratic_republic_of_the_congo
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_899:
-  id: 1177
-  referer_id: 835
-  referee_key: denmark
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_900:
-  id: 1178
-  referer_id: 835
-  referee_key: djibouti
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_901:
-  id: 1179
-  referer_id: 835
-  referee_key: dominica
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_902:
-  id: 1180
-  referer_id: 835
-  referee_key: dominican_republic
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_903:
-  id: 1181
-  referer_id: 835
-  referee_key: ecuador
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_904:
-  id: 1182
-  referer_id: 835
-  referee_key: egypt
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_905:
-  id: 1183
-  referer_id: 835
-  referee_key: el_salvador
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_906:
-  id: 1184
-  referer_id: 835
-  referee_key: equatorial_guinea
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_907:
-  id: 1185
-  referer_id: 835
-  referee_key: eritrea
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_908:
-  id: 1186
-  referer_id: 835
-  referee_key: estonium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_909:
-  id: 1187
-  referer_id: 835
-  referee_key: ethiopium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_910:
-  id: 1188
-  referer_id: 835
-  referee_key: falkland_island_malvina
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_911:
-  id: 1189
-  referer_id: 835
-  referee_key: faroe_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_912:
-  id: 1190
-  referer_id: 835
-  referee_key: fiji
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_913:
-  id: 1191
-  referer_id: 835
-  referee_key: finland
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_914:
-  id: 1192
-  referer_id: 835
-  referee_key: france
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_915:
-  id: 1193
-  referer_id: 835
-  referee_key: french_guiana
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_916:
-  id: 1194
-  referer_id: 835
-  referee_key: french_polynesium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_917:
-  id: 1195
-  referer_id: 835
-  referee_key: french_southern_territory
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_918:
-  id: 1196
-  referer_id: 835
-  referee_key: gabon
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_919:
-  id: 1197
-  referer_id: 835
-  referee_key: gambium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_920:
-  id: 1198
-  referer_id: 835
-  referee_key: georgium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_921:
-  id: 1199
-  referer_id: 835
-  referee_key: germany
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_922:
-  id: 1200
-  referer_id: 835
-  referee_key: ghana
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_923:
-  id: 1201
-  referer_id: 835
-  referee_key: gibraltar
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_924:
-  id: 1202
-  referer_id: 835
-  referee_key: greece
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_925:
-  id: 1203
-  referer_id: 835
-  referee_key: greenland
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_926:
-  id: 1204
-  referer_id: 835
-  referee_key: grenada
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_927:
-  id: 1205
-  referer_id: 835
-  referee_key: guadeloupe
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_928:
-  id: 1206
-  referer_id: 835
-  referee_key: guam
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_929:
-  id: 1207
-  referer_id: 835
-  referee_key: guatemala
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_930:
-  id: 1208
-  referer_id: 835
-  referee_key: guernsey
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_931:
-  id: 1209
-  referer_id: 835
-  referee_key: guinea
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_932:
-  id: 1210
-  referer_id: 835
-  referee_key: guinea_bissau
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_933:
-  id: 1211
-  referer_id: 835
-  referee_key: guyana
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_934:
-  id: 1212
-  referer_id: 835
-  referee_key: haiti
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_935:
-  id: 1213
-  referer_id: 835
-  referee_key: heard_island_and_mc_donald_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_936:
-  id: 1214
-  referer_id: 835
-  referee_key: holy_see_vatican_city_state
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_937:
-  id: 1215
-  referer_id: 835
-  referee_key: hondura
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_938:
-  id: 1216
-  referer_id: 835
-  referee_key: hong_kong
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_939:
-  id: 1217
-  referer_id: 835
-  referee_key: hungary
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_940:
-  id: 1218
-  referer_id: 835
-  referee_key: iceland
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_941:
-  id: 1219
-  referer_id: 835
-  referee_key: indium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_942:
-  id: 1220
-  referer_id: 835
-  referee_key: indonesium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_943:
-  id: 1221
-  referer_id: 835
-  referee_key: iran
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_944:
-  id: 1222
-  referer_id: 835
-  referee_key: iraq
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_945:
-  id: 1223
-  referer_id: 835
-  referee_key: ireland
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_946:
-  id: 1224
-  referer_id: 835
-  referee_key: isle_of_man
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_947:
-  id: 1225
-  referer_id: 835
-  referee_key: israel
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_948:
-  id: 1226
-  referer_id: 835
-  referee_key: italy
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_949:
-  id: 1227
-  referer_id: 835
-  referee_key: jamaica
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_950:
-  id: 1228
-  referer_id: 835
-  referee_key: japan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_951:
-  id: 1229
-  referer_id: 835
-  referee_key: jersey
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_952:
-  id: 1230
-  referer_id: 835
-  referee_key: jordan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_953:
-  id: 1231
-  referer_id: 835
-  referee_key: kazakhstan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_954:
-  id: 1232
-  referer_id: 835
-  referee_key: kenya
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_955:
-  id: 1233
-  referer_id: 835
-  referee_key: kiribati
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_956:
-  id: 1234
-  referer_id: 835
-  referee_key: korea_democratic_person_s_republic_of
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_957:
-  id: 1235
-  referer_id: 835
-  referee_key: korea_republic_of
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_958:
-  id: 1236
-  referer_id: 835
-  referee_key: kosovo
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_959:
-  id: 1237
-  referer_id: 835
-  referee_key: kuwait
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_960:
-  id: 1238
-  referer_id: 835
-  referee_key: kyrgyzstan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_961:
-  id: 1239
-  referer_id: 835
-  referee_key: lao_person_s_democratic_republic
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_962:
-  id: 1240
-  referer_id: 835
-  referee_key: lao
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_963:
-  id: 1241
-  referer_id: 835
-  referee_key: latvium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_964:
-  id: 1242
-  referer_id: 835
-  referee_key: lebanon
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_965:
-  id: 1243
-  referer_id: 835
-  referee_key: lesotho
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_966:
-  id: 1244
-  referer_id: 835
-  referee_key: liberium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_967:
-  id: 1245
-  referer_id: 835
-  referee_key: libya
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_968:
-  id: 1246
-  referer_id: 835
-  referee_key: liechtenstein
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_969:
-  id: 1247
-  referer_id: 835
-  referee_key: lithuanium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_970:
-  id: 1248
-  referer_id: 835
-  referee_key: luxembourg
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_971:
-  id: 1249
-  referer_id: 835
-  referee_key: macao
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_972:
-  id: 1250
-  referer_id: 835
-  referee_key: madagascar
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_973:
-  id: 1251
-  referer_id: 835
-  referee_key: malawi
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_974:
-  id: 1252
-  referer_id: 835
-  referee_key: malaysium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_975:
-  id: 1253
-  referer_id: 835
-  referee_key: maldife
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_976:
-  id: 1254
-  referer_id: 835
-  referee_key: mali
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_977:
-  id: 1255
-  referer_id: 835
-  referee_key: maltum
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_978:
-  id: 1256
-  referer_id: 835
-  referee_key: marshall_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_979:
-  id: 1257
-  referer_id: 835
-  referee_key: martinique
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_980:
-  id: 1258
-  referer_id: 835
-  referee_key: mauritanium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_981:
-  id: 1259
-  referer_id: 835
-  referee_key: mauritiu
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_982:
-  id: 1260
-  referer_id: 835
-  referee_key: mayotte
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_983:
-  id: 1261
-  referer_id: 835
-  referee_key: mexico
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_984:
-  id: 1262
-  referer_id: 835
-  referee_key: micronesium_federated_state_of
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_985:
-  id: 1263
-  referer_id: 835
-  referee_key: moldova
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_986:
-  id: 1264
-  referer_id: 835
-  referee_key: monaco
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_987:
-  id: 1265
-  referer_id: 835
-  referee_key: mongolium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_988:
-  id: 1266
-  referer_id: 835
-  referee_key: montenegro
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_989:
-  id: 1267
-  referer_id: 835
-  referee_key: montserrat
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_990:
-  id: 1268
-  referer_id: 835
-  referee_key: morocco
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_991:
-  id: 1269
-  referer_id: 835
-  referee_key: mozambique
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_992:
-  id: 1270
-  referer_id: 835
-  referee_key: myanmar
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_993:
-  id: 1271
-  referer_id: 835
-  referee_key: namibium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_994:
-  id: 1272
-  referer_id: 835
-  referee_key: nauru
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_995:
-  id: 1273
-  referer_id: 835
-  referee_key: nepal
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_996:
-  id: 1274
-  referer_id: 835
-  referee_key: netherland
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_997:
-  id: 1275
-  referer_id: 835
-  referee_key: new_caledonium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_998:
-  id: 1276
-  referer_id: 835
-  referee_key: new_zealand
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_999:
-  id: 1277
-  referer_id: 835
-  referee_key: nicaragua
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1000:
-  id: 1278
-  referer_id: 835
-  referee_key: niger
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1001:
-  id: 1279
-  referer_id: 835
-  referee_key: nigerium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1002:
-  id: 1280
-  referer_id: 835
-  referee_key: niue
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1003:
-  id: 1281
-  referer_id: 835
-  referee_key: norfolk_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1004:
-  id: 1282
-  referer_id: 835
-  referee_key: north_macedonium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1005:
-  id: 1283
-  referer_id: 835
-  referee_key: northern_mariana_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1006:
-  id: 1284
-  referer_id: 835
-  referee_key: norway
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1007:
-  id: 1285
-  referer_id: 835
-  referee_key: oman
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1008:
-  id: 1286
-  referer_id: 835
-  referee_key: pakistan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1009:
-  id: 1287
-  referer_id: 835
-  referee_key: palau
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1010:
-  id: 1288
-  referer_id: 835
-  referee_key: palestinian_territory
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1011:
-  id: 1289
-  referer_id: 835
-  referee_key: panama
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1012:
-  id: 1290
-  referer_id: 835
-  referee_key: papua_new_guinea
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1013:
-  id: 1291
-  referer_id: 835
-  referee_key: paraguay
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1014:
-  id: 1292
-  referer_id: 835
-  referee_key: peru
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1015:
-  id: 1293
-  referer_id: 835
-  referee_key: philippine
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1016:
-  id: 1294
-  referer_id: 835
-  referee_key: pitcairn
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1017:
-  id: 1295
-  referer_id: 835
-  referee_key: poland
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1018:
-  id: 1296
-  referer_id: 835
-  referee_key: portugal
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1019:
-  id: 1297
-  referer_id: 835
-  referee_key: puerto_rico
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1020:
-  id: 1298
-  referer_id: 835
-  referee_key: qatar
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1021:
-  id: 1299
-  referer_id: 835
-  referee_key: romanium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1022:
-  id: 1300
-  referer_id: 835
-  referee_key: russium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1023:
-  id: 1301
-  referer_id: 835
-  referee_key: rwanda
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1024:
-  id: 1302
-  referer_id: 835
-  referee_key: réunion
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1025:
-  id: 1303
-  referer_id: 835
-  referee_key: saint_barthélemy
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1026:
-  id: 1304
-  referer_id: 835
-  referee_key: saint_helena_ascension_and_tristan_da_cunha
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1027:
-  id: 1305
-  referer_id: 835
-  referee_key: saint_kitt_and_nevi
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1028:
-  id: 1306
-  referer_id: 835
-  referee_key: saint_lucium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1029:
-  id: 1307
-  referer_id: 835
-  referee_key: saint_martin_french_part
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1030:
-  id: 1308
-  referer_id: 835
-  referee_key: saint_pierre_and_miquelon
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1031:
-  id: 1309
-  referer_id: 835
-  referee_key: saint_vincent_and_the_grenadine
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1032:
-  id: 1310
-  referer_id: 835
-  referee_key: samoa
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1033:
-  id: 1311
-  referer_id: 835
-  referee_key: san_marino
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1034:
-  id: 1312
-  referer_id: 835
-  referee_key: sao_tome_and_principe
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1035:
-  id: 1313
-  referer_id: 835
-  referee_key: saudi_arabium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1036:
-  id: 1314
-  referer_id: 835
-  referee_key: senegal
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1037:
-  id: 1315
-  referer_id: 835
-  referee_key: serbium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1038:
-  id: 1316
-  referer_id: 835
-  referee_key: seychelle
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1039:
-  id: 1317
-  referer_id: 835
-  referee_key: sierra_leone
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1040:
-  id: 1318
-  referer_id: 835
-  referee_key: singapore
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1041:
-  id: 1319
-  referer_id: 835
-  referee_key: sint_maarten_dutch_part
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1042:
-  id: 1320
-  referer_id: 835
-  referee_key: slovakium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1043:
-  id: 1321
-  referer_id: 835
-  referee_key: slovenium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1044:
-  id: 1322
-  referer_id: 835
-  referee_key: solomon_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1045:
-  id: 1323
-  referer_id: 835
-  referee_key: somalium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1046:
-  id: 1324
-  referer_id: 835
-  referee_key: south_africa
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1047:
-  id: 1325
-  referer_id: 835
-  referee_key: south_georgium_and_the_south_sandwich_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1048:
-  id: 1326
-  referer_id: 835
-  referee_key: south_sudan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1049:
-  id: 1327
-  referer_id: 835
-  referee_key: spain
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1050:
-  id: 1328
-  referer_id: 835
-  referee_key: sri_lanka
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1051:
-  id: 1329
-  referer_id: 835
-  referee_key: sudan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1052:
-  id: 1330
-  referer_id: 835
-  referee_key: suriname
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1053:
-  id: 1331
-  referer_id: 835
-  referee_key: svalbard_and_jan_mayen
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1054:
-  id: 1332
-  referer_id: 835
-  referee_key: swaziland
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1055:
-  id: 1333
-  referer_id: 835
-  referee_key: sweden
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1056:
-  id: 1334
-  referer_id: 835
-  referee_key: switzerland
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1057:
-  id: 1335
-  referer_id: 835
-  referee_key: syrian_arab_republic
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1058:
-  id: 1336
-  referer_id: 835
-  referee_key: taiwan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1059:
-  id: 1337
-  referer_id: 835
-  referee_key: tajikistan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1060:
-  id: 1338
-  referer_id: 835
-  referee_key: tanzanium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1061:
-  id: 1339
-  referer_id: 835
-  referee_key: thailand
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1062:
-  id: 1340
-  referer_id: 835
-  referee_key: timor_leste
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1063:
-  id: 1341
-  referer_id: 835
-  referee_key: togo
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1064:
-  id: 1342
-  referer_id: 835
-  referee_key: tokelau
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1065:
-  id: 1343
-  referer_id: 835
-  referee_key: tonga
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1066:
-  id: 1344
-  referer_id: 835
-  referee_key: trinidad_and_tobago
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1067:
-  id: 1345
-  referer_id: 835
-  referee_key: tunisium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1068:
-  id: 1346
-  referer_id: 835
-  referee_key: turkey
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1069:
-  id: 1347
-  referer_id: 835
-  referee_key: turkmenistan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1070:
-  id: 1348
-  referer_id: 835
-  referee_key: turk_and_caico_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1071:
-  id: 1349
-  referer_id: 835
-  referee_key: tuvalu
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1072:
-  id: 1350
-  referer_id: 835
-  referee_key: u_s_virgin_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1073:
-  id: 1351
-  referer_id: 835
-  referee_key: uganda
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1074:
-  id: 1352
-  referer_id: 835
-  referee_key: ukraine
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1075:
-  id: 1353
-  referer_id: 835
-  referee_key: united_arab_emirate
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1076:
-  id: 1354
-  referer_id: 835
-  referee_key: united_kingdom
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1077:
-  id: 1355
-  referer_id: 835
-  referee_key: united_state
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1078:
-  id: 1356
-  referer_id: 835
-  referee_key: united_state_minor_outlying_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1079:
-  id: 1357
-  referer_id: 835
-  referee_key: uruguay
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1080:
-  id: 1358
-  referer_id: 835
-  referee_key: uzbekistan
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1081:
-  id: 1359
-  referer_id: 835
-  referee_key: vanuatu
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1082:
-  id: 1360
-  referer_id: 835
-  referee_key: venezuela
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1083:
-  id: 1361
-  referer_id: 835
-  referee_key: vietnam
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1084:
-  id: 1362
-  referer_id: 835
-  referee_key: walli_and_futuna
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1085:
-  id: 1363
-  referer_id: 835
-  referee_key: western_sahara
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1086:
-  id: 1364
-  referer_id: 835
-  referee_key: yeman
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1087:
-  id: 1365
-  referer_id: 835
-  referee_key: zambium
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1088:
-  id: 1366
-  referer_id: 835
-  referee_key: zimbabwe
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1089:
-  id: 1367
-  referer_id: 835
-  referee_key: åland_island
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1090:
-  id: 1368
-  referer_id: 836
-  referee_key: company
-  referee_id: 695
-  ref_type: L
-  is_present:
-card_references_1091:
-  id: 1369
-  referer_id: 836
-  referee_key: metric
-  referee_id: 697
-  ref_type: L
-  is_present:
-card_references_1092:
-  id: 1370
-  referer_id: 836
-  referee_key: source
-  referee_id: 747
-  ref_type: L
-  is_present:
-card_references_1093:
-  id: 1371
-  referer_id: 836
-  referee_key: topic
-  referee_id: 650
-  ref_type: L
-  is_present:
-card_references_1094:
-  id: 1372
-  referer_id: 836
-  referee_key: datum_set
-  referee_id: 784
-  ref_type: L
-  is_present:
-card_references_1095:
-  id: 1373
-  referer_id: 836
-  referee_key: project
-  referee_id: 786
-  ref_type: L
-  is_present:
-card_references_1096:
-  id: 1374
-  referer_id: 836
-  referee_key: research_group
-  referee_id: 805
-  ref_type: L
-  is_present:
-card_references_1097:
-  id: 1375
-  referer_id: 836
-  referee_key: company_group
-  referee_id: 703
-  ref_type: L
-  is_present:
-card_references_1098:
-  id: 1376
-  referer_id: 837
-  referee_key: gri
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1099:
-  id: 1377
-  referer_id: 837
-  referee_key: fashion_transparency_index_2022
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1100:
-  id: 1378
-  referer_id: 837
-  referee_key: s_p500
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1101:
-  id: 1379
-  referer_id: 837
-  referee_key: climate_100_ghg_emission
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1102:
-  id: 1380
-  referer_id: 837
-  referee_key: research_b_corp_certified_company_performance
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1103:
-  id: 1381
-  referer_id: 837
-  referee_key: research_gender_equality_policy_in_the_delivery_service_industry
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1104:
-  id: 1382
-  referer_id: 444
-  referee_key: wikirate_skin
-  referee_id: 838
-  ref_type: L
-  is_present:
-card_references_1105:
-  id: 1395
-  referer_id: 841
+  referer_id: 838
   referee_key: blurb+description
   referee_id:
   ref_type: I
   is_present:
-card_references_1106:
-  id: 1396
-  referer_id: 841
+card_references_855:
+  id: 1145
+  referer_id: 838
   referee_key: description
   referee_id: 12
   ref_type: P
   is_present:
-card_references_1107:
-  id: 1397
-  referer_id: 841
+card_references_856:
+  id: 1146
+  referer_id: 838
   referee_key: blurb+*type+by_name
   referee_id:
   ref_type: I
   is_present:
-card_references_1108:
-  id: 1398
-  referer_id: 841
+card_references_857:
+  id: 1147
+  referer_id: 838
   referee_key: blurb+*type
-  referee_id: 842
+  referee_id: 839
   ref_type: P
   is_present:
-card_references_1109:
-  id: 1399
-  referer_id: 841
+card_references_858:
+  id: 1148
+  referer_id: 838
   referee_key: by_name
   referee_id: 104
   ref_type: P
   is_present:
-card_references_1110:
-  id: 1412
-  referer_id: 1030
+card_references_859:
+  id: 1161
+  referer_id: 1027
   referee_key: blurb_0014
-  referee_id: 894
+  referee_id: 891
   ref_type: L
   is_present:
-card_references_1111:
-  id: 1413
-  referer_id: 1030
+card_references_860:
+  id: 1162
+  referer_id: 1027
   referee_key: blurb_0015
-  referee_id: 898
+  referee_id: 895
   ref_type: L
   is_present:
-card_references_1112:
-  id: 1414
-  referer_id: 1030
+card_references_861:
+  id: 1163
+  referer_id: 1027
   referee_key: blurb_0016
-  referee_id: 902
+  referee_id: 899
   ref_type: L
   is_present:
-card_references_1113:
-  id: 1415
-  referer_id: 1031
+card_references_862:
+  id: 1164
+  referer_id: 1028
   referee_key: blurb_0008
-  referee_id: 870
+  referee_id: 867
   ref_type: L
   is_present:
-card_references_1114:
-  id: 1416
-  referer_id: 1031
+card_references_863:
+  id: 1165
+  referer_id: 1028
   referee_key: blurb_0009
-  referee_id: 874
+  referee_id: 871
   ref_type: L
   is_present:
-card_references_1115:
-  id: 1417
-  referer_id: 1031
+card_references_864:
+  id: 1166
+  referer_id: 1028
   referee_key: blurb_0010
-  referee_id: 878
+  referee_id: 875
   ref_type: L
   is_present:
-card_references_1116:
-  id: 1418
-  referer_id: 1031
+card_references_865:
+  id: 1167
+  referer_id: 1028
   referee_key: blurb_0011
-  referee_id: 882
+  referee_id: 879
   ref_type: L
   is_present:
-card_references_1117:
-  id: 1419
-  referer_id: 1031
+card_references_866:
+  id: 1168
+  referer_id: 1028
   referee_key: blurb_0012
-  referee_id: 886
+  referee_id: 883
   ref_type: L
   is_present:
-card_references_1118:
-  id: 1420
-  referer_id: 1031
+card_references_867:
+  id: 1169
+  referer_id: 1028
   referee_key: blurb_0013
-  referee_id: 890
+  referee_id: 887
   ref_type: L
   is_present:
-card_references_1119:
-  id: 1421
-  referer_id: 1032
+card_references_868:
+  id: 1170
+  referer_id: 1029
   referee_key: blurb_0021
-  referee_id: 918
+  referee_id: 915
   ref_type: L
   is_present:
-card_references_1120:
-  id: 1422
-  referer_id: 1032
+card_references_869:
+  id: 1171
+  referer_id: 1029
   referee_key: blurb_0022
-  referee_id: 922
+  referee_id: 919
   ref_type: L
   is_present:
-card_references_1121:
-  id: 1423
-  referer_id: 1032
+card_references_870:
+  id: 1172
+  referer_id: 1029
   referee_key: blurb_0023
-  referee_id: 926
+  referee_id: 923
   ref_type: L
   is_present:
-card_references_1122:
-  id: 1424
-  referer_id: 1033
+card_references_871:
+  id: 1173
+  referer_id: 1030
   referee_key: blurb_0024
-  referee_id: 930
+  referee_id: 927
   ref_type: L
   is_present:
-card_references_1123:
-  id: 1425
-  referer_id: 1033
+card_references_872:
+  id: 1174
+  referer_id: 1030
   referee_key: blurb_0025
-  referee_id: 934
+  referee_id: 931
   ref_type: L
   is_present:
-card_references_1124:
-  id: 1426
-  referer_id: 1033
+card_references_873:
+  id: 1175
+  referer_id: 1030
   referee_key: blurb_0026
-  referee_id: 938
+  referee_id: 935
   ref_type: L
   is_present:
-card_references_1125:
-  id: 1427
-  referer_id: 1033
+card_references_874:
+  id: 1176
+  referer_id: 1030
   referee_key: blurb_0027
-  referee_id: 942
+  referee_id: 939
   ref_type: L
   is_present:
-card_references_1126:
-  id: 1428
-  referer_id: 1034
+card_references_875:
+  id: 1177
+  referer_id: 1031
   referee_key: blurb_0033
-  referee_id: 961
+  referee_id: 958
   ref_type: L
   is_present:
-card_references_1127:
-  id: 1429
-  referer_id: 1034
+card_references_876:
+  id: 1178
+  referer_id: 1031
   referee_key: blurb_0034
-  referee_id: 965
+  referee_id: 962
   ref_type: L
   is_present:
-card_references_1128:
-  id: 1430
-  referer_id: 1034
+card_references_877:
+  id: 1179
+  referer_id: 1031
   referee_key: blurb_0035
-  referee_id: 969
+  referee_id: 966
   ref_type: L
   is_present:
-card_references_1129:
-  id: 1431
-  referer_id: 1034
+card_references_878:
+  id: 1180
+  referer_id: 1031
   referee_key: blurb_0036
-  referee_id: 973
+  referee_id: 970
   ref_type: L
   is_present:
-card_references_1130:
-  id: 1432
-  referer_id: 1034
+card_references_879:
+  id: 1181
+  referer_id: 1031
   referee_key: blurb_0048
-  referee_id: 1022
+  referee_id: 1019
   ref_type: L
   is_present:
-card_references_1131:
-  id: 1433
-  referer_id: 1034
+card_references_880:
+  id: 1182
+  referer_id: 1031
   referee_key: blurb_0049
-  referee_id: 1026
+  referee_id: 1023
   ref_type: L
   is_present:
-card_references_1132:
-  id: 1434
-  referer_id: 1035
+card_references_881:
+  id: 1183
+  referer_id: 1032
   referee_key: blurb_0037
-  referee_id: 977
+  referee_id: 974
   ref_type: L
   is_present:
-card_references_1133:
-  id: 1435
-  referer_id: 1035
+card_references_882:
+  id: 1184
+  referer_id: 1032
   referee_key: blurb_0038
-  referee_id: 981
+  referee_id: 978
   ref_type: L
   is_present:
-card_references_1134:
-  id: 1436
-  referer_id: 1035
+card_references_883:
+  id: 1185
+  referer_id: 1032
   referee_key: blurb_0039
-  referee_id: 985
+  referee_id: 982
   ref_type: L
   is_present:
-card_references_1135:
-  id: 1437
-  referer_id: 1035
+card_references_884:
+  id: 1186
+  referer_id: 1032
   referee_key: blurb_0040
-  referee_id: 989
+  referee_id: 986
   ref_type: L
   is_present:
-card_references_1136:
-  id: 1438
-  referer_id: 1035
+card_references_885:
+  id: 1187
+  referer_id: 1032
   referee_key: blurb_0041
-  referee_id: 993
+  referee_id: 990
   ref_type: L
   is_present:
-card_references_1137:
-  id: 1439
-  referer_id: 1035
+card_references_886:
+  id: 1188
+  referer_id: 1032
   referee_key: blurb_0042
-  referee_id: 997
+  referee_id: 994
   ref_type: L
   is_present:
-card_references_1138:
-  id: 1440
-  referer_id: 1042
+card_references_887:
+  id: 1189
+  referer_id: 1039
   referee_key: wikirate_team
   referee_id:
   ref_type: L
   is_present:
-card_references_1139:
-  id: 1454
-  referer_id: 1048
+card_references_888:
+  id: 1203
+  referer_id: 1045
   referee_key: output+description
   referee_id:
   ref_type: I
   is_present:
-card_references_1140:
-  id: 1455
-  referer_id: 1048
+card_references_889:
+  id: 1204
+  referer_id: 1045
   referee_key: description
   referee_id: 12
   ref_type: P
   is_present:
-card_references_1141:
-  id: 1456
-  referer_id: 1048
+card_references_890:
+  id: 1205
+  referer_id: 1045
   referee_key: output+*type+by_name
   referee_id:
   ref_type: I
   is_present:
-card_references_1142:
-  id: 1457
-  referer_id: 1048
+card_references_891:
+  id: 1206
+  referer_id: 1045
   referee_key: output+*type
   referee_id:
   ref_type: P
   is_present:
-card_references_1143:
-  id: 1458
-  referer_id: 1048
+card_references_892:
+  id: 1207
+  referer_id: 1045
   referee_key: "*type"
   referee_id: 21
   ref_type: P
   is_present:
-card_references_1144:
-  id: 1459
-  referer_id: 1048
+card_references_893:
+  id: 1208
+  referer_id: 1045
   referee_key: by_name
   referee_id: 104
   ref_type: P
   is_present:
-card_references_1145:
-  id: 1460
-  referer_id: 1050
+card_references_894:
+  id: 1209
+  referer_id: 1047
   referee_key: testimonial+description
   referee_id:
   ref_type: I
   is_present:
-card_references_1146:
-  id: 1461
-  referer_id: 1050
+card_references_895:
+  id: 1210
+  referer_id: 1047
   referee_key: description
   referee_id: 12
   ref_type: P
   is_present:
-card_references_1147:
-  id: 1462
-  referer_id: 1050
+card_references_896:
+  id: 1211
+  referer_id: 1047
   referee_key: testimonial+*type+by_name
   referee_id:
   ref_type: I
   is_present:
-card_references_1148:
-  id: 1463
-  referer_id: 1050
+card_references_897:
+  id: 1212
+  referer_id: 1047
   referee_key: testimonial+*type
   referee_id:
   ref_type: P
   is_present:
-card_references_1149:
-  id: 1464
-  referer_id: 1050
+card_references_898:
+  id: 1213
+  referer_id: 1047
   referee_key: "*type"
   referee_id: 21
   ref_type: P
   is_present:
-card_references_1150:
-  id: 1465
-  referer_id: 1050
+card_references_899:
+  id: 1214
+  referer_id: 1047
   referee_key: by_name
   referee_id: 104
   ref_type: P
   is_present:
-card_references_1151:
-  id: 1466
-  referer_id: 1054
+card_references_900:
+  id: 1215
+  referer_id: 1051
   referee_key: ye
   referee_id:
   ref_type: L
   is_present:
-card_references_1152:
-  id: 1467
-  referer_id: 1055
+card_references_901:
+  id: 1216
+  referer_id: 1052
   referee_key: ye
   referee_id:
   ref_type: L
   is_present:
-card_references_1153:
-  id: 1468
-  referer_id: 1055
+card_references_902:
+  id: 1217
+  referer_id: 1052
   referee_key: 'no'
   referee_id:
   ref_type: L
   is_present:
-card_references_1154:
-  id: 1469
-  referer_id: 1056
+card_references_903:
+  id: 1218
+  referer_id: 1053
   referee_key: radio
   referee_id:
   ref_type: L
   is_present:
-card_references_1155:
-  id: 1483
-  referer_id: 1060
+card_references_904:
+  id: 1232
+  referer_id: 1057
   referee_key: select
   referee_id:
   ref_type: L
   is_present:
-card_references_1156:
-  id: 1484
-  referer_id: 1062
+card_references_905:
+  id: 1233
+  referer_id: 1059
   referee_key: academic
   referee_id:
   ref_type: L
   is_present:
-card_references_1157:
-  id: 1485
-  referer_id: 1062
+card_references_906:
+  id: 1234
+  referer_id: 1059
   referee_key: civil_society_ngo
   referee_id:
   ref_type: L
   is_present:
-card_references_1158:
-  id: 1486
-  referer_id: 1062
+card_references_907:
+  id: 1235
+  referer_id: 1059
   referee_key: company
   referee_id: 695
   ref_type: L
   is_present:
-card_references_1159:
-  id: 1487
-  referer_id: 1062
+card_references_908:
+  id: 1236
+  referer_id: 1059
   referee_key: foundation
   referee_id:
   ref_type: L
   is_present:
-card_references_1160:
-  id: 1488
-  referer_id: 1062
+card_references_909:
+  id: 1237
+  referer_id: 1059
   referee_key: government
   referee_id:
   ref_type: L
   is_present:
-card_references_1161:
-  id: 1489
-  referer_id: 1062
+card_references_910:
+  id: 1238
+  referer_id: 1059
   referee_key: independent
   referee_id:
   ref_type: L
   is_present:
-card_references_1162:
-  id: 1490
-  referer_id: 1062
+card_references_911:
+  id: 1239
+  referer_id: 1059
   referee_key: investor_ab
   referee_id:
   ref_type: L
   is_present:
-card_references_1163:
-  id: 1491
-  referer_id: 1062
+card_references_912:
+  id: 1240
+  referer_id: 1059
   referee_key: medium
   referee_id:
   ref_type: L
   is_present:
-card_references_1164:
-  id: 1492
-  referer_id: 1062
+card_references_913:
+  id: 1241
+  referer_id: 1059
   referee_key: student
   referee_id:
   ref_type: L
   is_present:
-card_references_1165:
-  id: 1493
-  referer_id: 1062
+card_references_914:
+  id: 1242
+  referer_id: 1059
   referee_key: trade_union
   referee_id:
   ref_type: L
   is_present:
-card_references_1166:
-  id: 1507
-  referer_id: 1071
+card_references_915:
+  id: 1256
+  referer_id: 1068
   referee_key: endorsement_by_paul_roeland_ccc
   referee_id:
   ref_type: L
   is_present:
-card_references_1167:
-  id: 1508
-  referer_id: 1071
+card_references_916:
+  id: 1257
+  referer_id: 1068
   referee_key: endorsement_by_amd_berlin_student
   referee_id:
   ref_type: L
   is_present:
-card_references_1168:
-  id: 1509
-  referer_id: 1071
+card_references_917:
+  id: 1258
+  referer_id: 1068
   referee_key: endorsement_by_hannah_jun_ewha_woman_university
   referee_id:
   ref_type: L
   is_present:
-card_references_1169:
-  id: 1510
-  referer_id: 1071
+card_references_918:
+  id: 1259
+  referer_id: 1068
   referee_key: endorsement_by_hannah_robert_volunteer
   referee_id:
   ref_type: L
   is_present:
-card_references_1170:
-  id: 1511
-  referer_id: 1074
+card_references_919:
+  id: 1260
+  referer_id: 1071
   referee_key: no_badge+description
   referee_id:
   ref_type: I
   is_present:
-card_references_1171:
-  id: 1512
-  referer_id: 1074
+card_references_920:
+  id: 1261
+  referer_id: 1071
   referee_key: description
   referee_id: 12
   ref_type: P
   is_present:
-card_references_1172:
-  id: 1513
-  referer_id: 1074
+card_references_921:
+  id: 1262
+  referer_id: 1071
   referee_key: no_badge+dashboard
   referee_id:
   ref_type: I
   is_present:
-card_references_1173:
-  id: 1514
-  referer_id: 1074
+card_references_922:
+  id: 1263
+  referer_id: 1071
   referee_key: dashboard
   referee_id: 525
   ref_type: P
   is_present:
-card_references_1174:
-  id: 1515
-  referer_id: 1074
+card_references_923:
+  id: 1264
+  referer_id: 1071
   referee_key: no_badge+*member
   referee_id:
   ref_type: I
   is_present:
-card_references_1175:
-  id: 1516
-  referer_id: 1074
+card_references_924:
+  id: 1265
+  referer_id: 1071
   referee_key: "*member"
   referee_id: 179
   ref_type: P
   is_present:
-card_references_1176:
-  id: 1517
-  referer_id: 1075
+card_references_925:
+  id: 1266
+  referer_id: 1072
   referee_key: task+description
   referee_id:
   ref_type: I
   is_present:
-card_references_1177:
-  id: 1518
-  referer_id: 1075
+card_references_926:
+  id: 1267
+  referer_id: 1072
   referee_key: description
   referee_id: 12
   ref_type: P
   is_present:
-card_references_1178:
-  id: 1519
-  referer_id: 1075
+card_references_927:
+  id: 1268
+  referer_id: 1072
   referee_key: task+*type+by_name
   referee_id:
   ref_type: I
   is_present:
-card_references_1179:
-  id: 1520
-  referer_id: 1075
+card_references_928:
+  id: 1269
+  referer_id: 1072
   referee_key: task+*type
   referee_id:
   ref_type: P
   is_present:
-card_references_1180:
-  id: 1521
-  referer_id: 1075
+card_references_929:
+  id: 1270
+  referer_id: 1072
   referee_key: "*type"
   referee_id: 21
   ref_type: P
   is_present:
-card_references_1181:
-  id: 1522
-  referer_id: 1075
+card_references_930:
+  id: 1271
+  referer_id: 1072
   referee_key: by_name
   referee_id: 104
   ref_type: P
   is_present:
-card_references_1182:
-  id: 1523
-  referer_id: 1078
+card_references_931:
+  id: 1272
+  referer_id: 1075
   referee_key: ticket+description
   referee_id:
   ref_type: I
   is_present:
-card_references_1183:
-  id: 1524
-  referer_id: 1078
+card_references_932:
+  id: 1273
+  referer_id: 1075
   referee_key: description
   referee_id: 12
   ref_type: P
   is_present:
-card_references_1184:
-  id: 1525
-  referer_id: 1078
+card_references_933:
+  id: 1274
+  referer_id: 1075
   referee_key: ticket+*type+by_name
   referee_id:
   ref_type: I
   is_present:
-card_references_1185:
-  id: 1526
-  referer_id: 1078
+card_references_934:
+  id: 1275
+  referer_id: 1075
   referee_key: ticket+*type
   referee_id:
   ref_type: P
   is_present:
-card_references_1186:
-  id: 1527
-  referer_id: 1078
+card_references_935:
+  id: 1276
+  referer_id: 1075
   referee_key: "*type"
   referee_id: 21
   ref_type: P
   is_present:
-card_references_1187:
-  id: 1528
-  referer_id: 1078
+card_references_936:
+  id: 1277
+  referer_id: 1075
   referee_key: by_name
   referee_id: 104
   ref_type: P
   is_present:
-card_references_1188:
-  id: 1529
-  referer_id: 1082
+card_references_937:
+  id: 1278
+  referer_id: 1079
   referee_key: mod_filter+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1189:
-  id: 1530
-  referer_id: 1082
+card_references_938:
+  id: 1279
+  referer_id: 1079
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1190:
-  id: 1531
-  referer_id: 1084
+card_references_939:
+  id: 1280
+  referer_id: 1081
   referee_key: mod_filter+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1191:
-  id: 1532
+card_references_940:
+  id: 1281
+  referer_id: 1081
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_941:
+  id: 1282
+  referer_id: 1084
+  referee_key: mod_bookmark+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_942:
+  id: 1283
   referer_id: 1084
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1192:
-  id: 1533
+card_references_943:
+  id: 1284
   referer_id: 1087
-  referee_key: mod_bookmark+*style+group_local
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1193:
-  id: 1534
-  referer_id: 1087
-  referee_key: group_local
-  referee_id:
-  ref_type: P
-  is_present:
-card_references_1194:
-  id: 1535
-  referer_id: 1090
   referee_key: mod_csv_import+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1195:
-  id: 1536
-  referer_id: 1090
+card_references_944:
+  id: 1285
+  referer_id: 1087
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1196:
-  id: 1537
-  referer_id: 1092
+card_references_945:
+  id: 1286
+  referer_id: 1089
   referee_key: mod_csv_import+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1197:
-  id: 1538
-  referer_id: 1092
+card_references_946:
+  id: 1287
+  referer_id: 1089
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1198:
-  id: 1539
-  referer_id: 1094
+card_references_947:
+  id: 1288
+  referer_id: 1091
   referee_key: mod_deckorate_search+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1199:
-  id: 1540
-  referer_id: 1094
+card_references_948:
+  id: 1289
+  referer_id: 1091
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1200:
-  id: 1541
-  referer_id: 1096
+card_references_949:
+  id: 1290
+  referer_id: 1093
   referee_key: mod_deckorate_search+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1201:
-  id: 1542
-  referer_id: 1096
+card_references_950:
+  id: 1291
+  referer_id: 1093
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1202:
-  id: 1543
-  referer_id: 1098
+card_references_951:
+  id: 1292
+  referer_id: 1095
   referee_key: mod_flag+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1203:
-  id: 1544
-  referer_id: 1098
+card_references_952:
+  id: 1293
+  referer_id: 1095
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1204:
-  id: 1545
-  referer_id: 1108
+card_references_953:
+  id: 1294
+  referer_id: 1105
   referee_key: mod_thumbnail+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1205:
-  id: 1546
+card_references_954:
+  id: 1295
+  referer_id: 1105
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_955:
+  id: 1296
+  referer_id: 1108
+  referee_key: mod_guide+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_956:
+  id: 1297
   referer_id: 1108
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1206:
-  id: 1547
+card_references_957:
+  id: 1298
   referer_id: 1111
-  referee_key: mod_guide+*style+group_local
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1207:
-  id: 1548
-  referer_id: 1111
-  referee_key: group_local
-  referee_id:
-  ref_type: P
-  is_present:
-card_references_1208:
-  id: 1549
-  referer_id: 1114
   referee_key: mod_deckorate_utility+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1209:
-  id: 1550
-  referer_id: 1114
+card_references_958:
+  id: 1299
+  referer_id: 1111
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1210:
-  id: 1551
-  referer_id: 1116
+card_references_959:
+  id: 1300
+  referer_id: 1113
   referee_key: mod_deckorate_utility+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1211:
-  id: 1552
-  referer_id: 1116
+card_references_960:
+  id: 1301
+  referer_id: 1113
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1212:
-  id: 1553
-  referer_id: 1118
+card_references_961:
+  id: 1302
+  referer_id: 1115
   referee_key: mod_deckorate_layout+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1213:
-  id: 1554
-  referer_id: 1118
+card_references_962:
+  id: 1303
+  referer_id: 1115
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1214:
-  id: 1555
-  referer_id: 1120
+card_references_963:
+  id: 1304
+  referer_id: 1117
   referee_key: mod_topic+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1215:
-  id: 1556
-  referer_id: 1120
+card_references_964:
+  id: 1305
+  referer_id: 1117
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1216:
-  id: 1557
-  referer_id: 1122
+card_references_965:
+  id: 1306
+  referer_id: 1119
   referee_key: mod_deckorate_core+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1217:
-  id: 1558
-  referer_id: 1122
+card_references_966:
+  id: 1307
+  referer_id: 1119
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1218:
-  id: 1559
-  referer_id: 1124
+card_references_967:
+  id: 1308
+  referer_id: 1121
   referee_key: mod_deckorate_core+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1219:
-  id: 1560
-  referer_id: 1124
+card_references_968:
+  id: 1309
+  referer_id: 1121
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1220:
-  id: 1561
-  referer_id: 1126
+card_references_969:
+  id: 1310
+  referer_id: 1123
   referee_key: mod_deckorate_research+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1221:
-  id: 1562
-  referer_id: 1126
+card_references_970:
+  id: 1311
+  referer_id: 1123
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1222:
-  id: 1563
-  referer_id: 1128
+card_references_971:
+  id: 1312
+  referer_id: 1125
   referee_key: mod_deckorate_research+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1223:
-  id: 1564
-  referer_id: 1128
+card_references_972:
+  id: 1313
+  referer_id: 1125
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1224:
-  id: 1565
-  referer_id: 1131
+card_references_973:
+  id: 1314
+  referer_id: 1128
   referee_key: mod_deckorate_calculation+*script+group_calculation
   referee_id:
   ref_type: L
   is_present:
-card_references_1225:
-  id: 1566
-  referer_id: 1131
+card_references_974:
+  id: 1315
+  referer_id: 1128
   referee_key: group_calculation
   referee_id:
   ref_type: P
   is_present:
-card_references_1226:
-  id: 1567
-  referer_id: 1133
+card_references_975:
+  id: 1316
+  referer_id: 1130
   referee_key: mod_deckorate_calculation+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1227:
-  id: 1568
-  referer_id: 1133
+card_references_976:
+  id: 1317
+  referer_id: 1130
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1228:
-  id: 1569
-  referer_id: 1135
+card_references_977:
+  id: 1318
+  referer_id: 1132
   referee_key: mod_deckorate_dataset+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1229:
-  id: 1570
+card_references_978:
+  id: 1319
+  referer_id: 1132
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_979:
+  id: 1320
+  referer_id: 1135
+  referee_key: mod_deckorate_attribution+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_980:
+  id: 1321
   referer_id: 1135
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1230:
-  id: 1571
-  referer_id: 1138
-  referee_key: mod_deckorate_attribution+*script+group_local
-  referee_id:
-  ref_type: L
-  is_present:
-card_references_1231:
-  id: 1572
-  referer_id: 1138
-  referee_key: group_local
-  referee_id:
-  ref_type: P
-  is_present:
-card_references_1232:
-  id: 1573
-  referer_id: 1140
+card_references_981:
+  id: 1322
+  referer_id: 1137
   referee_key: mod_deckorate_attribution+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1233:
-  id: 1574
-  referer_id: 1140
+card_references_982:
+  id: 1323
+  referer_id: 1137
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1234:
-  id: 1575
-  referer_id: 1142
+card_references_983:
+  id: 1324
+  referer_id: 1139
   referee_key: mod_deckorate_profile+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1235:
-  id: 1576
-  referer_id: 1142
+card_references_984:
+  id: 1325
+  referer_id: 1139
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1236:
-  id: 1577
-  referer_id: 1144
+card_references_985:
+  id: 1326
+  referer_id: 1141
   referee_key: mod_wikirate_shared+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1237:
-  id: 1578
-  referer_id: 1144
+card_references_986:
+  id: 1327
+  referer_id: 1141
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1238:
-  id: 1579
-  referer_id: 1146
+card_references_987:
+  id: 1328
+  referer_id: 1143
   referee_key: mod_wikirate_shared+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1239:
-  id: 1580
-  referer_id: 1146
+card_references_988:
+  id: 1329
+  referer_id: 1143
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1240:
-  id: 1581
-  referer_id: 1148
+card_references_989:
+  id: 1330
+  referer_id: 1145
   referee_key: mod_wikirate_company+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1241:
-  id: 1582
-  referer_id: 1148
+card_references_990:
+  id: 1331
+  referer_id: 1145
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1242:
-  id: 1583
-  referer_id: 1150
+card_references_991:
+  id: 1332
+  referer_id: 1147
   referee_key: mod_wikirate_company+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1243:
-  id: 1584
-  referer_id: 1150
+card_references_992:
+  id: 1333
+  referer_id: 1147
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1244:
-  id: 1585
-  referer_id: 1152
+card_references_993:
+  id: 1334
+  referer_id: 1149
   referee_key: mod_wikirate+*script+group_wikirate
   referee_id:
   ref_type: L
   is_present:
-card_references_1245:
-  id: 1586
-  referer_id: 1152
+card_references_994:
+  id: 1335
+  referer_id: 1149
   referee_key: group_wikirate
   referee_id:
   ref_type: P
   is_present:
-card_references_1246:
-  id: 1587
-  referer_id: 1154
+card_references_995:
+  id: 1336
+  referer_id: 1151
   referee_key: mod_wikirate+*style+group_wikirate
   referee_id:
   ref_type: L
   is_present:
-card_references_1247:
-  id: 1588
-  referer_id: 1154
+card_references_996:
+  id: 1337
+  referer_id: 1151
   referee_key: group_wikirate
   referee_id:
   ref_type: P
   is_present:
-card_references_1248:
-  id: 1589
-  referer_id: 1156
+card_references_997:
+  id: 1338
+  referer_id: 1153
   referee_key: mod_badge+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1249:
-  id: 1590
-  referer_id: 1156
+card_references_998:
+  id: 1339
+  referer_id: 1153
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1250:
-  id: 1591
-  referer_id: 1158
+card_references_999:
+  id: 1340
+  referer_id: 1155
   referee_key: mod_task+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1251:
-  id: 1592
-  referer_id: 1158
+card_references_1000:
+  id: 1341
+  referer_id: 1155
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1252:
-  id: 1593
-  referer_id: 1160
+card_references_1001:
+  id: 1342
+  referer_id: 1157
   referee_key: mod_task+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1253:
-  id: 1594
-  referer_id: 1160
+card_references_1002:
+  id: 1343
+  referer_id: 1157
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1254:
-  id: 1595
-  referer_id: 1162
+card_references_1003:
+  id: 1344
+  referer_id: 1159
   referee_key: mod_vega+*script+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1255:
-  id: 1596
-  referer_id: 1162
+card_references_1004:
+  id: 1345
+  referer_id: 1159
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1256:
-  id: 1597
-  referer_id: 1164
+card_references_1005:
+  id: 1346
+  referer_id: 1161
   referee_key: mod_vega+*style+group_local
   referee_id:
   ref_type: L
   is_present:
-card_references_1257:
-  id: 1598
-  referer_id: 1164
+card_references_1006:
+  id: 1347
+  referer_id: 1161
   referee_key: group_local
   referee_id:
   ref_type: P
   is_present:
-card_references_1258:
-  id: 1599
+card_references_1007:
+  id: 1348
+  referer_id: 1163
+  referee_key: mod_ticket+*script+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1008:
+  id: 1349
+  referer_id: 1163
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1009:
+  id: 1350
+  referer_id: 1165
+  referee_key: mod_ticket+*style+group_local
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_1010:
+  id: 1351
+  referer_id: 1165
+  referee_key: group_local
+  referee_id:
+  ref_type: P
+  is_present:
+card_references_1011:
+  id: 1352
   referer_id: 305
   referee_key: mod_format+*script
   referee_id: 538
   ref_type: L
   is_present:
-card_references_1259:
-  id: 1600
+card_references_1012:
+  id: 1353
   referer_id: 305
   referee_key: mod_list+*script
   referee_id: 542
   ref_type: L
   is_present:
-card_references_1260:
-  id: 1601
+card_references_1013:
+  id: 1354
   referer_id: 305
   referee_key: mod_search+*script
   referee_id: 551
   ref_type: L
   is_present:
-card_references_1261:
-  id: 1602
+card_references_1014:
+  id: 1355
   referer_id: 305
   referee_key: mod_rule+*script
   referee_id: 555
   ref_type: L
   is_present:
-card_references_1262:
-  id: 1603
+card_references_1015:
+  id: 1356
   referer_id: 305
   referee_key: mod_edit+*script
   referee_id: 559
   ref_type: L
   is_present:
-card_references_1263:
-  id: 1604
+card_references_1016:
+  id: 1357
   referer_id: 305
   referee_key: mod_account+*script
   referee_id: 616
   ref_type: L
   is_present:
-card_references_1264:
-  id: 1605
+card_references_1017:
+  id: 1358
   referer_id: 305
   referee_key: mod_carrierwave+*script
   referee_id: 569
   ref_type: L
   is_present:
-card_references_1265:
-  id: 1606
+card_references_1018:
+  id: 1359
   referer_id: 305
   referee_key: mod_ace_editor+*script
   referee_id: 576
   ref_type: L
   is_present:
-card_references_1266:
-  id: 1607
+card_references_1019:
+  id: 1360
   referer_id: 305
   referee_key: mod_bar_and_box+*script
   referee_id: 583
   ref_type: L
   is_present:
-card_references_1267:
-  id: 1608
+card_references_1020:
+  id: 1361
   referer_id: 305
   referee_key: mod_bootstrap+*script
   referee_id: 587
   ref_type: L
   is_present:
-card_references_1268:
-  id: 1609
+card_references_1021:
+  id: 1362
   referer_id: 305
   referee_key: mod_filter+*script
-  referee_id: 1082
+  referee_id: 1079
   ref_type: L
   is_present:
-card_references_1269:
-  id: 1610
+card_references_1022:
+  id: 1363
   referer_id: 305
   referee_key: mod_tab+*script
   referee_id: 600
   ref_type: L
   is_present:
-card_references_1270:
-  id: 1611
+card_references_1023:
+  id: 1364
   referer_id: 305
   referee_key: mod_csv_import+*script
-  referee_id: 1090
+  referee_id: 1087
   ref_type: L
   is_present:
-card_references_1271:
-  id: 1612
+card_references_1024:
+  id: 1365
   referer_id: 305
   referee_key: mod_deckorate_search+*script
-  referee_id: 1094
+  referee_id: 1091
   ref_type: L
   is_present:
-card_references_1272:
-  id: 1613
+card_references_1025:
+  id: 1366
   referer_id: 305
   referee_key: mod_follow+*script
   referee_id: 595
   ref_type: L
   is_present:
-card_references_1273:
-  id: 1614
+card_references_1026:
+  id: 1367
   referer_id: 305
   referee_key: mod_layout+*script
   referee_id: 603
   ref_type: L
   is_present:
-card_references_1274:
-  id: 1615
+card_references_1027:
+  id: 1368
   referer_id: 305
   referee_key: mod_recaptcha+*script
   referee_id: 607
   ref_type: L
   is_present:
-card_references_1275:
-  id: 1616
+card_references_1028:
+  id: 1369
   referer_id: 305
   referee_key: mod_tinymce_editor+*script
   referee_id: 610
   ref_type: L
   is_present:
-card_references_1276:
-  id: 1617
+card_references_1029:
+  id: 1370
   referer_id: 305
   referee_key: mod_deckorate_utility+*script
-  referee_id: 1114
+  referee_id: 1111
   ref_type: L
   is_present:
-card_references_1277:
-  id: 1618
+card_references_1030:
+  id: 1371
   referer_id: 305
   referee_key: mod_deckorate_core+*script
-  referee_id: 1122
+  referee_id: 1119
   ref_type: L
   is_present:
-card_references_1278:
-  id: 1619
+card_references_1031:
+  id: 1372
   referer_id: 305
   referee_key: mod_deckorate_research+*script
-  referee_id: 1126
+  referee_id: 1123
   ref_type: L
   is_present:
-card_references_1279:
-  id: 1620
+card_references_1032:
+  id: 1373
   referer_id: 305
   referee_key: mod_deckorate_calculation+*script
-  referee_id: 1131
+  referee_id: 1128
   ref_type: L
   is_present:
-card_references_1280:
-  id: 1621
+card_references_1033:
+  id: 1374
   referer_id: 305
   referee_key: mod_deckorate_attribution+*script
-  referee_id: 1138
+  referee_id: 1135
   ref_type: L
   is_present:
-card_references_1281:
-  id: 1622
+card_references_1034:
+  id: 1375
   referer_id: 305
   referee_key: mod_wikirate_shared+*script
-  referee_id: 1144
+  referee_id: 1141
   ref_type: L
   is_present:
-card_references_1282:
-  id: 1623
+card_references_1035:
+  id: 1376
   referer_id: 305
   referee_key: mod_wikirate_company+*script
-  referee_id: 1148
+  referee_id: 1145
   ref_type: L
   is_present:
-card_references_1283:
-  id: 1624
+card_references_1036:
+  id: 1377
   referer_id: 305
   referee_key: mod_wikirate+*script
-  referee_id: 1152
+  referee_id: 1149
   ref_type: L
   is_present:
-card_references_1284:
-  id: 1625
+card_references_1037:
+  id: 1378
   referer_id: 305
   referee_key: mod_task+*script
-  referee_id: 1158
+  referee_id: 1155
   ref_type: L
   is_present:
-card_references_1285:
-  id: 1626
+card_references_1038:
+  id: 1379
   referer_id: 305
   referee_key: mod_vega+*script
-  referee_id: 1162
+  referee_id: 1159
   ref_type: L
   is_present:
-card_references_1286:
-  id: 1627
+card_references_1039:
+  id: 1380
+  referer_id: 305
+  referee_key: mod_ticket+*script
+  referee_id: 1163
+  ref_type: L
+  is_present:
+card_references_1040:
+  id: 1381
   referer_id: 481
   referee_key: "*script"
   referee_id: 301
   ref_type: L
   is_present:
-card_references_1287:
-  id: 1628
+card_references_1041:
+  id: 1382
   referer_id: 481
   referee_key: "*input_type"
   referee_id: 148
   ref_type: L
   is_present:
-card_references_1288:
-  id: 1629
+card_references_1042:
+  id: 1383
   referer_id: 481
   referee_key: "*default"
   referee_id: 8
   ref_type: L
   is_present:
-card_references_1289:
-  id: 1630
+card_references_1043:
+  id: 1384
   referer_id: 481
   referee_key: "*delete"
   referee_id: 67
   ref_type: L
   is_present:
-card_references_1290:
-  id: 1631
+card_references_1044:
+  id: 1385
   referer_id: 481
   referee_key: "*autoname"
   referee_id: 17
   ref_type: L
   is_present:
-card_references_1291:
-  id: 1632
+card_references_1045:
+  id: 1386
   referer_id: 481
   referee_key: "*style"
   referee_id: 347
   ref_type: L
   is_present:
-card_references_1292:
-  id: 1633
+card_references_1046:
+  id: 1387
   referer_id: 481
   referee_key: "*create"
   referee_id: 65
   ref_type: L
   is_present:
-card_references_1293:
-  id: 1634
+card_references_1047:
+  id: 1388
   referer_id: 481
   referee_key: "*update"
   referee_id: 66
   ref_type: L
   is_present:
-card_references_1294:
-  id: 1635
+card_references_1048:
+  id: 1389
   referer_id: 481
   referee_key: "*read"
   referee_id: 9
   ref_type: L
   is_present:
-card_references_1295:
-  id: 1636
+card_references_1049:
+  id: 1390
   referer_id: 481
   referee_key: "*content_option"
   referee_id: 59
   ref_type: L
   is_present:
-card_references_1296:
-  id: 1637
+card_references_1050:
+  id: 1391
   referer_id: 481
   referee_key: "*layout"
   referee_id: 492
   ref_type: L
   is_present:
-card_references_1297:
-  id: 1638
+card_references_1051:
+  id: 1392
   referer_id: 481
   referee_key: "*structure"
   referee_id: 28
   ref_type: L
   is_present:
-card_references_1298:
-  id: 1639
+card_references_1052:
+  id: 1393
   referer_id: 481
   referee_key: "*captcha"
   referee_id: 512
   ref_type: L
   is_present:
-card_references_1299:
-  id: 1640
+card_references_1053:
+  id: 1394
   referer_id: 326
   referee_key: mod_format+*style
   referee_id: 540
   ref_type: L
   is_present:
-card_references_1300:
-  id: 1641
+card_references_1054:
+  id: 1395
   referer_id: 326
   referee_key: mod_list+*style
   referee_id: 544
   ref_type: L
   is_present:
-card_references_1301:
-  id: 1642
+card_references_1055:
+  id: 1396
   referer_id: 326
   referee_key: mod_permission+*style
   referee_id: 547
   ref_type: L
   is_present:
-card_references_1302:
-  id: 1643
+card_references_1056:
+  id: 1397
   referer_id: 326
   referee_key: mod_help+*style
   referee_id: 549
   ref_type: L
   is_present:
-card_references_1303:
-  id: 1644
+card_references_1057:
+  id: 1398
   referer_id: 326
   referee_key: mod_search+*style
   referee_id: 553
   ref_type: L
   is_present:
-card_references_1304:
-  id: 1645
+card_references_1058:
+  id: 1399
   referer_id: 326
   referee_key: mod_rule+*style
   referee_id: 557
   ref_type: L
   is_present:
-card_references_1305:
-  id: 1646
+card_references_1059:
+  id: 1400
   referer_id: 326
   referee_key: mod_edit+*style
   referee_id: 561
   ref_type: L
   is_present:
-card_references_1306:
-  id: 1647
+card_references_1060:
+  id: 1401
   referer_id: 326
   referee_key: mod_account+*style
   referee_id: 565
   ref_type: L
   is_present:
-card_references_1307:
-  id: 1648
+card_references_1061:
+  id: 1402
   referer_id: 326
   referee_key: mod_history+*style
   referee_id: 567
   ref_type: L
   is_present:
-card_references_1308:
-  id: 1649
+card_references_1062:
+  id: 1403
   referer_id: 326
   referee_key: mod_carrierwave+*style
   referee_id: 571
   ref_type: L
   is_present:
-card_references_1309:
-  id: 1650
+card_references_1063:
+  id: 1404
   referer_id: 326
   referee_key: mod_api_key+*style
   referee_id: 579
   ref_type: L
   is_present:
-card_references_1310:
-  id: 1651
+card_references_1064:
+  id: 1405
   referer_id: 326
   referee_key: mod_style+*style
   referee_id: 581
   ref_type: L
   is_present:
-card_references_1311:
-  id: 1652
+card_references_1065:
+  id: 1406
   referer_id: 326
   referee_key: mod_bar_and_box+*style
   referee_id: 585
   ref_type: L
   is_present:
-card_references_1312:
-  id: 1653
+card_references_1066:
+  id: 1407
   referer_id: 326
   referee_key: mod_bootstrap+*style
   referee_id: 589
   ref_type: L
   is_present:
-card_references_1313:
-  id: 1654
+card_references_1067:
+  id: 1408
   referer_id: 326
   referee_key: mod_filter+*style
+  referee_id: 1081
+  ref_type: L
+  is_present:
+card_references_1068:
+  id: 1409
+  referer_id: 326
+  referee_key: mod_bookmark+*style
   referee_id: 1084
   ref_type: L
   is_present:
-card_references_1314:
-  id: 1655
-  referer_id: 326
-  referee_key: mod_bookmark+*style
-  referee_id: 1087
-  ref_type: L
-  is_present:
-card_references_1315:
-  id: 1656
+card_references_1069:
+  id: 1410
   referer_id: 326
   referee_key: mod_comment+*style
   referee_id: 591
   ref_type: L
   is_present:
-card_references_1316:
-  id: 1657
+card_references_1070:
+  id: 1411
   referer_id: 326
   referee_key: mod_csv_import+*style
-  referee_id: 1092
+  referee_id: 1089
   ref_type: L
   is_present:
-card_references_1317:
-  id: 1658
+card_references_1071:
+  id: 1412
   referer_id: 326
   referee_key: mod_deckorate_search+*style
-  referee_id: 1096
+  referee_id: 1093
   ref_type: L
   is_present:
-card_references_1318:
-  id: 1659
+card_references_1072:
+  id: 1413
   referer_id: 326
   referee_key: mod_follow+*style
   referee_id: 597
   ref_type: L
   is_present:
-card_references_1319:
-  id: 1660
+card_references_1073:
+  id: 1414
   referer_id: 326
   referee_key: mod_layout+*style
   referee_id: 605
   ref_type: L
   is_present:
-card_references_1320:
-  id: 1661
+card_references_1074:
+  id: 1415
   referer_id: 326
   referee_key: mod_tinymce_editor+*style
   referee_id: 612
   ref_type: L
   is_present:
-card_references_1321:
-  id: 1662
+card_references_1075:
+  id: 1416
   referer_id: 326
   referee_key: mod_flag+*style
-  referee_id: 1098
+  referee_id: 1095
   ref_type: L
   is_present:
-card_references_1322:
-  id: 1663
+card_references_1076:
+  id: 1417
   referer_id: 326
   referee_key: mod_thumbnail+*style
+  referee_id: 1105
+  ref_type: L
+  is_present:
+card_references_1077:
+  id: 1418
+  referer_id: 326
+  referee_key: mod_guide+*style
   referee_id: 1108
   ref_type: L
   is_present:
-card_references_1323:
-  id: 1664
-  referer_id: 326
-  referee_key: mod_guide+*style
-  referee_id: 1111
-  ref_type: L
-  is_present:
-card_references_1324:
-  id: 1665
+card_references_1078:
+  id: 1419
   referer_id: 326
   referee_key: mod_deckorate_utility+*style
-  referee_id: 1116
+  referee_id: 1113
   ref_type: L
   is_present:
-card_references_1325:
-  id: 1666
+card_references_1079:
+  id: 1420
   referer_id: 326
   referee_key: mod_deckorate_layout+*style
-  referee_id: 1118
+  referee_id: 1115
   ref_type: L
   is_present:
-card_references_1326:
-  id: 1667
+card_references_1080:
+  id: 1421
   referer_id: 326
   referee_key: mod_topic+*style
-  referee_id: 1120
+  referee_id: 1117
   ref_type: L
   is_present:
-card_references_1327:
-  id: 1668
+card_references_1081:
+  id: 1422
   referer_id: 326
   referee_key: mod_deckorate_core+*style
-  referee_id: 1124
+  referee_id: 1121
   ref_type: L
   is_present:
-card_references_1328:
-  id: 1669
+card_references_1082:
+  id: 1423
   referer_id: 326
   referee_key: mod_deckorate_research+*style
-  referee_id: 1128
+  referee_id: 1125
   ref_type: L
   is_present:
-card_references_1329:
-  id: 1670
+card_references_1083:
+  id: 1424
   referer_id: 326
   referee_key: mod_deckorate_calculation+*style
-  referee_id: 1133
+  referee_id: 1130
   ref_type: L
   is_present:
-card_references_1330:
-  id: 1671
+card_references_1084:
+  id: 1425
   referer_id: 326
   referee_key: mod_deckorate_dataset+*style
-  referee_id: 1135
+  referee_id: 1132
   ref_type: L
   is_present:
-card_references_1331:
-  id: 1672
+card_references_1085:
+  id: 1426
   referer_id: 326
   referee_key: mod_deckorate_attribution+*style
-  referee_id: 1140
+  referee_id: 1137
   ref_type: L
   is_present:
-card_references_1332:
-  id: 1673
+card_references_1086:
+  id: 1427
   referer_id: 326
   referee_key: mod_deckorate_profile+*style
-  referee_id: 1142
+  referee_id: 1139
   ref_type: L
   is_present:
-card_references_1333:
-  id: 1674
+card_references_1087:
+  id: 1428
   referer_id: 326
   referee_key: mod_wikirate_shared+*style
-  referee_id: 1146
+  referee_id: 1143
   ref_type: L
   is_present:
-card_references_1334:
-  id: 1675
+card_references_1088:
+  id: 1429
   referer_id: 326
   referee_key: mod_wikirate_company+*style
-  referee_id: 1150
+  referee_id: 1147
   ref_type: L
   is_present:
-card_references_1335:
-  id: 1676
+card_references_1089:
+  id: 1430
   referer_id: 326
   referee_key: mod_wikirate+*style
-  referee_id: 1154
+  referee_id: 1151
   ref_type: L
   is_present:
-card_references_1336:
-  id: 1677
+card_references_1090:
+  id: 1431
   referer_id: 326
   referee_key: mod_badge+*style
-  referee_id: 1156
+  referee_id: 1153
   ref_type: L
   is_present:
-card_references_1337:
-  id: 1678
+card_references_1091:
+  id: 1432
   referer_id: 326
   referee_key: mod_task+*style
-  referee_id: 1160
+  referee_id: 1157
   ref_type: L
   is_present:
-card_references_1338:
-  id: 1679
+card_references_1092:
+  id: 1433
   referer_id: 326
   referee_key: mod_vega+*style
-  referee_id: 1164
+  referee_id: 1161
+  ref_type: L
+  is_present:
+card_references_1093:
+  id: 1434
+  referer_id: 326
+  referee_key: mod_ticket+*style
+  referee_id: 1165
   ref_type: L
   is_present:
