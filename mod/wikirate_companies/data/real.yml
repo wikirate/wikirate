@@ -20,7 +20,7 @@
         :delete:
           - :wikirate_team
 
-- :name: OAR ID
+- :name: OS ID
   :codename: oar_id
   :type: company_identifier
 

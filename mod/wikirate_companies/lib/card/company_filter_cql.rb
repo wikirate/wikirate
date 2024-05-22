@@ -15,7 +15,11 @@ class Card
       end
 
       def company_identifier_clauses hash
-        type_clause = hash[:type].present? ? hash[:type] : { type: :company_identifier }
+        type_clause = if hash[:type].present?
+                        { name: hash[:type].clone.unshift("in") }
+                      else
+                        { type: :company_identifier }
+                      end
         value_clause = hash[:value].present? ? { match: hash[:value] } : {}
         [type_clause, value_clause]
       end
