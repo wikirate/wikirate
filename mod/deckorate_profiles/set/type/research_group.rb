@@ -69,10 +69,6 @@ format :html do
     field_nest :researcher, view: :overview
   end
 
-  view :details_tab do
-    render_details
-  end
-
   view :bar_left do
     render_thumbnail
   end
@@ -86,16 +82,21 @@ format :html do
   end
 
   view :bar_bottom do
-    render_details
+    [render_details_tab_right, render_details_tab_left]
   end
 
   view :one_line_content do
     ""
   end
 
-  view :details do
-    [labeled_fields { [organizer_detail, topic_detail] },
-     field_nest(:description, view: :titled),
-     field_nest(:conversation, items: { view: :link })]
+  view :details_tab_left do
+    [
+      field_nest(:description, view: :titled),
+      field_nest(:conversation, items: { view: :link })
+    ]
+  end
+
+  view :details_tab_right do
+    labeled_fields { [organizer_detail, topic_detail] }
   end
 end

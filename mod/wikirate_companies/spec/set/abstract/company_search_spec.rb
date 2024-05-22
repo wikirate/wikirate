@@ -29,7 +29,7 @@ RSpec.describe Card::Set::Abstract::CompanySearch do
 
     context "with company_identifier argument" do
       before { filter_args company_identifier: { type: "Wikipedia" } }
-      it { is_expected.to eq cql(right_plus: ["Wikipedia", {}]) }
+      it { is_expected.to eq cql(right_plus: [{ name: %w[in Wikipedia] }, {}]) }
     end
 
     context "with dataset argument" do

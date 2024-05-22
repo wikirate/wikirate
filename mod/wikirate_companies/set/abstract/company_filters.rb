@@ -23,7 +23,10 @@ format :html do
 
   def filter_company_identifier_closer_value cid
     vals = [cid[:value]]
-    vals.unshift "(#{cid[:type]})" if cid[:type].present?
+    if cid[:type].present?
+      type_list = Array.wrap(cid[:type]).join ", "
+      vals.unshift "(#{type_list})"
+    end
     vals.join " "
   end
 
