@@ -1,4 +1,4 @@
-RSpec.describe Card::AnswerQuery::MetricAndCompanyFilters do
+RSpec.describe Card::AnswerQuery::MetricFilters do
   include_context "answer query"
 
   context "with fixed company" do
@@ -6,7 +6,7 @@ RSpec.describe Card::AnswerQuery::MetricAndCompanyFilters do
     let(:answer_parts) { [1, -1] } # metric and year
     let(:company_name) { "Death_Star" }
 
-    describe "#metric_name_query" do
+    describe "#filter_by_metric_name" do
       it "finds exact match" do
         expect(search(metric_name: "disturbances in the Force"))
           .to eq with_year(["disturbances in the Force",
@@ -74,11 +74,11 @@ RSpec.describe Card::AnswerQuery::MetricAndCompanyFilters do
       end
     end
 
-    specify "#topic_query" do
+    specify "#filter_by_topic" do
       expect(search(topic: "Force")).to eq ["disturbances in the Force+2001"]
     end
 
-    describe "#bookmark_query" do
+    describe "#filter_by_bookmarkht6" do
       it "finds bookmarked" do
         expect(search(bookmark: :bookmark))
           .to eq ["disturbances in the Force+2001"]
@@ -112,28 +112,8 @@ RSpec.describe Card::AnswerQuery::MetricAndCompanyFilters do
     let(:answer_parts) { [-2, -1] }
     let(:default_sort) { {} }
 
-    describe "#company_name_query" do
-      it "finds exact match" do
-        expect(search(company_name: "Death")).to eq ["Death Star+2001"]
-      end
-
-      it "finds partial match" do
-        expect(search(company_name: "at").sort)
-          .to eq ["Death Star+2001", "Slate Rock and Gravel Company+2006"]
-      end
-
-      it "ignores case" do
-        expect(search(company_name: "death")).to eq ["Death Star+2001"]
-      end
-    end
-
     specify "#dataset_query" do
       expect(search(dataset: "Evil Dataset").sort)
-        .to eq ["Death Star+2001", "SPECTRE+2000"]
-    end
-
-    specify "#company_category_query" do
-      expect(search(company_category: "A").sort)
         .to eq ["Death Star+2001", "SPECTRE+2000"]
     end
   end

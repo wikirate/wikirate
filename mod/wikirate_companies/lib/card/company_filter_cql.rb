@@ -14,8 +14,8 @@ class Card
         AnswerCondition.new(table, constraint).sql
       end
 
-      def corporate_identifier_clauses hash
-        type_clause = hash[:type].present? ? hash[:type] : { type: :corporate_identifier }
+      def company_identifier_clauses hash
+        type_clause = hash[:type].present? ? hash[:type] : { type: :company_identifier }
         value_clause = hash[:value].present? ? { match: hash[:value] } : {}
         [type_clause, value_clause]
       end
@@ -132,8 +132,8 @@ class Card
       referred_to_by_company_list dataset
     end
 
-    def corporate_identifier_cql value_hash
-      add_to_cql :right_plus, self.class.corporate_identifier_clauses(value_hash)
+    def company_identifier_cql value_hash
+      add_to_cql :right_plus, self.class.company_identifier_clauses(value_hash)
     end
 
     def referred_to_by_company_list trunk

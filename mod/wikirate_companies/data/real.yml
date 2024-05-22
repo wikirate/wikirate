@@ -9,8 +9,8 @@
   :type: :cardtype
   :codename: jurisdiction
 
-- :name: Corporate Identifier
-  :codename: corporate_identifier
+- :name: Company Identifier
+  :codename: company_identifier
   :type: cardtype
   :fields:
     :type:
@@ -22,18 +22,18 @@
 
 - :name: OS ID
   :codename: oar_id
-  :type: corporate_identifier
+  :type: company_identifier
 
 - :name: SEC CIK
   :codename: sec_cik
-  :type: corporate_identifier
+  :type: company_identifier
 
 - :name: Wikipedia
   :codename: wikipedia
-  :type: corporate_identifier
+  :type: company_identifier
 
 - :name: OpenCorporates ID
-  :type: corporate_identifier
+  :type: company_identifier
   :codename: open_corporates_id
 
 - :name: Multiple

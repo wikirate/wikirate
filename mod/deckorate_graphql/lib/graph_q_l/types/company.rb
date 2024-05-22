@@ -9,7 +9,7 @@ module GraphQL
       field :datasets, [Dataset], null: false
       field :logo_url, String, "url for company logo image", null: true
 
-      ::Card::Set::Type::CorporateIdentifier.names.each do |identifier|
+      ::Card::Set::Type::CompanyIdentifier.names.each do |identifier|
         field identifier.parameterize(separator: "_").to_sym, String, null: true
       end
 
