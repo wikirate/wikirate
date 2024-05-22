@@ -34,10 +34,11 @@ format :html do
     field_nest :dataset, items: { view: :bar }
   end
 
-  view :details do
-    [
-      field_nest(:subtopic, view: :titled, title: "Subtopics", items: { view: :bar }),
-      field_nest(:general_overview, view: :titled)
-    ]
+  view :details_tab_left do
+    field_nest :general_overview, view: :titled
+  end
+
+  view :details_tab_right do
+    field_nest :subtopic, view: :titled, title: "Subtopics", items: { view: :bar }
   end
 end
