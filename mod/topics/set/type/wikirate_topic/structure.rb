@@ -18,10 +18,6 @@ format :html do
     { research_group: { label: "Research Groups" } }
   end
 
-  view :details_tab do
-    render_details
-  end
-
   view :metric_tab do
     field_nest :metric, view: :filtered_content, items: { view: :bar }
   end
