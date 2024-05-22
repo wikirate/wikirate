@@ -43,7 +43,14 @@ format :html do
     field_nest :metric_answer, view: :filtered_content
   end
 
-  view :details_tab, template: :haml
+  view :details_tab_right, template: :haml
+
+  view :details_tab_left do
+    [
+      field_nest(:description, view: :titled),
+      field_nest(:discussion, view: :titled, show: :comment_box)
+    ]
+  end
 
   def original_link
     return unless card.link_url.present?
