@@ -10,7 +10,7 @@ format :html do
   end
 
   view :metrics_designed_tab do
-    field_nest :metrics_designed, view: :titled
+    field_nest :metrics_designed, view: :filtered_content
   end
 
   view :research_group_tab do

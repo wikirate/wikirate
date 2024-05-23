@@ -1,7 +1,6 @@
-def virtual?
-  new?
+include_set Abstract::MetricSearch
+
+def query_hash
+  { designer_id: left_id }
 end
 
-def cql_content
-  { type_id: Card::MetricID, left: "_left" }
-end
