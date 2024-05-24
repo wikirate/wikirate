@@ -58,7 +58,7 @@ format :html do
   end
 
   view :metric_tab do
-    field_nest :metric, items: { view: :bar }
+    field_nest :metric, view: :filtered_content
   end
 
   view :project_tab do
