@@ -49,10 +49,14 @@ format :html do
     params[:tab].present? ? params[:tab].to_sym : :question_phase
   end
 
-  view :research, cache: :never do
+  view :research, cache: :never, perms: :can_research? do
     tabs research_tab_map, default_research_tab,
          load: :lazy, tab_type: "pills container justify-content-around" do
       render default_research_tab
     end
+  end
+
+  def can_research?
+    Card.new(type: :metric_answer).ok? :create
   end
 end
