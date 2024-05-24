@@ -10,6 +10,10 @@ card_accessor :date, type: :date
 card_accessor :wikirate_company, type: :pointer
 
 format :html do
+  def breadcrumb_type_item
+    link_to_card :wikirate_impact
+  end
+
   view :page do
     wrap { [naming { render_rich_header }, render_flash, render_body] }
   end
@@ -31,7 +35,6 @@ format :html do
     field_nest :image, view: :content, size: :large
   end
 
-
   view :body do
     wrap_with :div, class: "py-5" do
       render_details_tab
@@ -41,13 +44,14 @@ format :html do
   view :details_tab_left do
     field_nest :description, title: "Description"
   end
-  
+
   view :details_tab_right do
     [
       field_nest(:output_type, view: :labeled, title: "type", items: { view: :name }),
       field_nest(:uri, view: :labeled, title: "URI", unknown: :blank),
       field_nest(:file, view: :labeled, title: "file", unknown: :blank),
-      field_nest(:date, view: :labeled, title: "date", unknown: :blank), # , items: { view: :name }
+      field_nest(:date, view: :labeled, title: "date", unknown: :blank),
+      # , items: { view: :name }
       field_nest(:wikirate_company, view: :labeled, unknown: :blank,
                                     title: "organization",
                                     items: { view: :thumbnail_no_subtitle })
