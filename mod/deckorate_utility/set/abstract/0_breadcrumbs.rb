@@ -7,11 +7,15 @@ format :html do
   end
 
   def breadcrumb_items
-    type = card.type_card
     [
       link_to("Home", href: "/"),
-      link_to_card(type, type.name.vary(:plural)),
+      breadcrumb_type_item,
       render_name
     ]
+  end
+
+  def breadcrumb_type_item
+    type = card.type_card
+    link_to_card type, type.name.vary(:plural)
   end
 end
