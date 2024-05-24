@@ -29,6 +29,9 @@
   :conflict: :override
   :codename: publication
 
+- :name: Use Case
+  :codename: use_case
+
 - :type: :blurb
   :codename: :policy_cta
   :fields:
