@@ -4,7 +4,7 @@ describe "expanding details on company pages", ->
 
     # use filter to find darkness rating
     cy.get(".tab-li-metric_answer").click()
-    cy.get("._filters-button a").click()
+    cy.get("._open-filters-button a").click()
     cy.get(".offcanvas").within () ->
       cy.contains("Metric Name").click()
       cy.get("[name='filter[metric_name]']").type("darkness{enter}")

@@ -14,5 +14,5 @@ def count
 end
 
 recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
-  changed_card
+  changed_card unless changed_card&.left&.trash
 end
