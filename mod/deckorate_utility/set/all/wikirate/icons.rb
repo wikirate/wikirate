@@ -42,7 +42,8 @@ basket[:icons][:material].merge!(
   save: :download,
   customize: :visibility,
   bars: :list_alt,
-  boxes: :grid_view
+  boxes: :grid_view,
+  graph: :insights
 )
 
 basket[:icons][:font_awesome].merge!(
