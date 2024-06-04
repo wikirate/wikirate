@@ -39,7 +39,8 @@ basket[:icons][:material].merge!(
   reference: :attribution,
   history: :history,
   clipboard: :content_copy,
-  save: :download
+  save: :download,
+  customize: :visibility
 )
 
 basket[:icons][:font_awesome].merge!(
