@@ -14,7 +14,7 @@ format :html do
   end
 
   view :new do
-    return super() unless card.name.card_id
+    return super() if card.new?
 
     alert(:warning) { "You have already scored this metric: #{link_to_card card}." }
   end
