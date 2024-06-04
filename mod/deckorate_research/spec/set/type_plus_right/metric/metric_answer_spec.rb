@@ -66,7 +66,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
 
       it "has filter button" do
         is_expected.to have_tag ".filtered-results-header" do
-          with_tag "._filters-button"
+          with_tag "._open-filters-button"
         end
       end
       it "has chart" do
