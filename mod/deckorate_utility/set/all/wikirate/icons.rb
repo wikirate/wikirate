@@ -40,7 +40,9 @@ basket[:icons][:material].merge!(
   history: :history,
   clipboard: :content_copy,
   save: :download,
-  customize: :visibility
+  customize: :visibility,
+  bars: :list_alt,
+  boxes: :grid_view
 )
 
 basket[:icons][:font_awesome].merge!(

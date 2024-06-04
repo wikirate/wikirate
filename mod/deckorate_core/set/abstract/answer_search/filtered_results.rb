@@ -1,6 +1,14 @@
 format :html do
   # before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
 
+  view :filtered_results_nav do
+    [render_filter_sort_dropdown, render_filtered_body_toggle]
+  end
+
+  view :filtered_body_toggle do
+    "(view toggle)"
+  end
+
   view :filtered_results_visualization do
     return "" unless show_chart?
 
