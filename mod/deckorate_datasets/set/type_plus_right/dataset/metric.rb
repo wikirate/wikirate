@@ -15,9 +15,3 @@ end
 def item_cards *args
   standard_item_cards(*args)
 end
-
-format :html do
-  view :titled_content do
-    render_filtered_content
-  end
-end

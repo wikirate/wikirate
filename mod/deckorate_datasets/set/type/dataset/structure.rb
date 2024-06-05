@@ -17,11 +17,11 @@ format :html do
   end
 
   view :wikirate_company_tab do
-    field_nest :wikirate_company, view: :menued
+    field_nest :wikirate_company, view: :filtered_content, show: :menu_block
   end
 
   view :metric_tab do
-    field_nest :metric, view: :menued
+    field_nest :metric, view: :filtered_content, show: :menu_block
   end
 
   view :metric_answer_tab do
