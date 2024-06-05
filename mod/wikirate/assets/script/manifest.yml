@@ -8,4 +8,5 @@ wikirate:
     - anime.min.js
     - output.js.coffee
     - wikirate_common.js.coffee
+    - ajax_loader.js.coffee
     - ../../vendor/slick/slick/slick.min.js
