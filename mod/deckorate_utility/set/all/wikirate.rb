@@ -60,11 +60,6 @@ format :html do
     ""
   end
 
-  # TODO: refactor away
-  view :menued do
-    render_titled hide: [:title, :toggle], show: :menu
-  end
-
   view :type_link, template: :haml do
     @type_card = card.type_card
   end

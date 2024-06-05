@@ -7,6 +7,10 @@ format :html do
     show_chart? ? { core: :bars, filtered_results_chart: :graph } : {}
   end
 
+  def default_filtered_body
+    :core
+  end
+
   view :filtered_results_stats, cache: :never, template: :haml
   view :filtered_results_chart, cache: :never, template: :haml
 

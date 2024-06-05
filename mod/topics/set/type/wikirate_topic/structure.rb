@@ -23,11 +23,11 @@ format :html do
   end
 
   view :research_group_tab do
-    field_nest :research_group, items: { view: :bar }
+    field_nest :research_group, view: :filtered_content, items: { view: :bar }
   end
 
   view :dataset_tab do
-    field_nest :dataset, items: { view: :bar }
+    field_nest :dataset, view: :filtered_content, items: { view: :bar }
   end
 
   view :details_tab_left do

@@ -87,7 +87,6 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
           end
         end
       end
-
     end
   end
 end

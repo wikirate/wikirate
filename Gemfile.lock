@@ -514,13 +514,13 @@ GEM
       ffi (>= 1.15.0)
     excon (0.110.0)
     execjs (2.9.1)
-    faraday (2.9.0)
+    faraday (2.9.1)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
-    ffi (1.17.0)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     fog-aws (3.22.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
@@ -976,4 +976,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   2.5.10
+   2.5.11
