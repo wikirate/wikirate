@@ -61,19 +61,33 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
       end
     end
 
-    describe ":core view" do
-      subject { metric_answer.format._render_filtered_content }
+    describe ":filtered_content view" do
+      subject do
+        metric_answer.format.render_filtered_content
+      end
 
-      it "has filter button" do
-        is_expected.to have_tag ".filtered-results-header" do
-          with_tag "._open-filters-button"
+      context "without filtered_body param" do
+        it "has filter button, lists cards in bar view, and does not have chart " do
+          is_expected.to have_tag ".filtered-results-header" do
+            with_tag "._open-filters-button"
+          end
+          is_expected.to have_tag ".card-list-bar.search-result-list"
+          is_expected.not_to have_tag ".answer-search-chart"
         end
       end
-      it "has chart" do
-        is_expected.to have_tag ".answer-search-chart" do
-          with_tag ".vis"
+
+      context "without filtered_body params set to filtered_results_chart" do
+        it "has filter button, has_chart, and does not list cards in bar view" do
+          Card::Env.with_params filtered_body: "filtered_results_chart" do
+            is_expected.to have_tag ".filtered-results-header"
+            is_expected.to have_tag ".answer-search-chart" do
+              with_tag ".vis"
+            end
+            is_expected.not_to have_tag ".card-list-bar.search-result-list"
+          end
         end
       end
+
     end
   end
 end
