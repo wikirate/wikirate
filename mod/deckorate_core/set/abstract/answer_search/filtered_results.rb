@@ -1,10 +1,10 @@
+include_set Abstract::FilteredBodyToggle
+
 format :html do
   # before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
 
-  view :filtered_results_visualization do
-    return "" unless show_chart?
-
-    render_filtered_results_chart
+  def filtered_body_views
+    show_chart? ? { core: :bars, filtered_results_chart: :graph } : {}
   end
 
   view :filtered_results_stats, cache: :never, template: :haml
