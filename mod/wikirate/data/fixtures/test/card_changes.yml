@@ -3851,3 +3851,648 @@ card_changes_302:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
+card_changes_303:
+  id: 303
+  card_action_id: 19011
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_304:
+  id: 304
+  card_action_id: 19079
+  field: 0
+  value: parent
+card_changes_305:
+  id: 305
+  card_action_id: 19126
+  field: 1
+  value: '4'
+card_changes_306:
+  id: 306
+  card_action_id: 19126
+  field: 2
+  value: yeti skin
+card_changes_307:
+  id: 307
+  card_action_id: 19229
+  field: 2
+  value: Default Layout
+card_changes_308:
+  id: 308
+  card_action_id: 19237
+  field: 2
+  value: "[[:recent|Recent Changes]]"
+card_changes_309:
+  id: 309
+  card_action_id: 19268
+  field: 2
+  value: |-
+    [[:getting_started_links|Getting started]]
+    [[:recent|Recent Changes]]
+card_changes_310:
+  id: 310
+  card_action_id: 19298
+  field: 2
+  value: "~1473/19298.png"
+card_changes_311:
+  id: 311
+  card_action_id: 19304
+  field: 2
+  value: deckorate_layout
+card_changes_312:
+  id: 312
+  card_action_id: 21639
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_313:
+  id: 313
+  card_action_id: 21655
+  field: 0
+  value: Parent
+card_changes_314:
+  id: 314
+  card_action_id: 21721
+  field: 0
+  value: Policy
+card_changes_315:
+  id: 315
+  card_action_id: 21742
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_316:
+  id: 316
+  card_action_id: 21760
+  field: 2
+  value: |-
+    GRI
+    Fashion Transparency Index 2022
+    S&P500
+    Climate 100 GHG Emissions
+    Research: B Corp Certified Companies performance
+    Research: Gender Equality Policies in the Delivery Service Industry
+card_changes_317:
+  id: 317
+  card_action_id: 21766
+  field: 1
+  value: '55'
+card_changes_318:
+  id: 318
+  card_action_id: 21766
+  field: 2
+  value: wikirate skin
+card_changes_319:
+  id: 319
+  card_action_id: 21968
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_320:
+  id: 320
+  card_action_id: 21994
+  field: 0
+  value: Wikirate Policies
+card_changes_321:
+  id: 321
+  card_action_id: 22022
+  field: 2
+  value: "<p>Fashion Checker is a data tool that connects the dots between brand commitments
+    on living wages and the reality for workers on the ground.</p>\r\n<p>The project
+    is coordinated by <a href=\"https://cleanclothes.org/\">Clean Clothes Campaign</a>
+    in partnership with <a href=\"https://semcon.com/\">Semcon</a>, <a href=\"https://wageindicator.org/\">WageIndicator</a>
+    and <a href=\"/\">WikiRate</a>. The campaign seeks to make brands accountable
+    for their promises on living wages and invites the public in to explore the data.</p>\r\n<p>Through
+    the tool you can explore how companies score on currently paying their workers
+    a living wage, the transparency of their supply chain and their commitments to
+    paying workers a living wage in the future.</p>\r\n<p>The tool also pulls in data
+    on the company’s supply chain including gender breakdowns of workers, the actual
+    to minimum wage pay gap and collective bargaining agreements.</p>"
+card_changes_322:
+  id: 322
+  card_action_id: 22025
+  field: 2
+  value: '2021-09-20'
+card_changes_323:
+  id: 323
+  card_action_id: 22026
+  field: 2
+  value: Clean Clothes Campaign
+card_changes_324:
+  id: 324
+  card_action_id: 22186
+  field: 2
+  value: |-
+    Death
+    friendliness
+    Hermanos
+card_changes_325:
+  id: 325
+  card_action_id: 22191
+  field: 2
+  value: '2020'
+card_changes_326:
+  id: 326
+  card_action_id: 22193
+  field: 2
+  value: Death Star
+card_changes_327:
+  id: 327
+  card_action_id: 22194
+  field: 2
+  value: |
+    <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
+    <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">WikiRate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+    <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
+    <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>

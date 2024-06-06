@@ -520,7 +520,7 @@ GEM
       net-http
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
-    ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.0-x86_64-linux)
     fog-aws (3.22.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
