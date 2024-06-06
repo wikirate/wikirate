@@ -6,9 +6,9 @@ RSpec.describe Card::AnswerQuery::MetricFilters do
     let(:answer_parts) { [1, -1] } # metric and year
     let(:company_name) { "Death_Star" }
 
-    describe "#filter_by_metric_name" do
+    describe "#filter_by_metric_keyword" do
       it "finds exact match" do
-        expect(search(metric_name: "disturbances in the Force"))
+        expect(search(metric_keyword: "Force"))
           .to eq with_year(["disturbances in the Force",
                             "disturbances in the Force"], 2001)
       end

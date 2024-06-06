@@ -32,7 +32,7 @@ format do
       { key: :metric,
         type: :group,
         open: true,
-        filters: shared_metric_filter_map.unshift(:metric_name) },
+        filters: shared_metric_filter_map },
       { key: :metric_answer,
         type: :group,
         filters: [{ key: :value, open: true }, :updated] }
