@@ -21,6 +21,14 @@ format :html do
     [render_details_tab_left, render_details_tab_right]
   end
 
+  view :box_middle do
+    field_nest :image, view: :core, size: :medium
+  end
+
+  view :box_bottom do
+    render_bar_right
+  end
+
   def thumbnail_subtitle
     field_nest :year, view: :one_line_content, items: { view: :name }, unknown: :blank
   end
