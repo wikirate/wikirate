@@ -78,6 +78,9 @@ gem "puma", "~>5.6"                  # local webserver (6.x broke semaphore )
 gem "rack-attack"                    # protection from bad clients
 gem "rack-cors"                      # support for Cross-Origin Resource Sharing (CORS)
 
+# VERSIONING ISSUES
+gem "ffi", "1.16.3"                  # 1.17 requires rubygems version >= 3.3.22
+
 group :live do
   gem "dalli"                        # Memcache
   # gem "therubyracer"                 # JS runtime

@@ -4,6 +4,7 @@ include_set Abstract::BookmarkFiltering
 include_set Abstract::LookupSearch
 include_set Abstract::SearchViews
 include_set Abstract::DetailedExport
+include_set Abstract::BarBoxToggle
 
 def bookmark_type
   :metric

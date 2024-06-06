@@ -1,4 +1,6 @@
 # data_subsets tagged with this dataset (=left) via <dataset>+parent
+
+include_set Abstract::DatasetSearch
 include_set Abstract::SearchCachedCount
 
 # does not quite fit the Abstract::ListRefCachedCount pattern, because the cached

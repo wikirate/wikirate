@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Self::Project do
 
     it "has a featured project section" do
       expect_view(:titled_content).to have_tag("div.SELF-project-featured") do
-        with_tag "div.item-bar"
+        with_tag "div.item-box"
       end
     end
 
