@@ -4,6 +4,7 @@ include_set Abstract::CqlSearch
 include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::CommonFilters
+include_set Abstract::BarBoxToggle
 
 def item_type_id
   SourceID
