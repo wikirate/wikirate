@@ -5,6 +5,7 @@ include_set Abstract::SearchViews
 include_set CommonFilters
 include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
+include_set Abstract::BarBoxToggle
 
 def item_type_id
   DatasetID

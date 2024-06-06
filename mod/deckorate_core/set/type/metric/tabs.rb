@@ -17,7 +17,7 @@ format :html do
   end
 
   view :dataset_tab do
-    field_nest :dataset, view: :content
+    field_nest :dataset, view: :filtered_content
   end
 
   view :details_tab_left, template: :haml
