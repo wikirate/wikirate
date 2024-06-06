@@ -6,4 +6,4 @@
   = link_to "Add Data Subset", path: path_args.merge(copied_dataset_fields),
                                class: "btn btn-primary"
 .data_subset-list
-  = field_nest :data_subset, view: :menued, items: { view: :bar }
+  = field_nest :data_subset, view: :filtered_content, show: :menu_block

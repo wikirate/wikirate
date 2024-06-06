@@ -5,6 +5,6 @@
     = render_add_button
 %h2.py-5.fw-normal Featured
 .pb-5
-  = nest [card, :featured], view: :content
+  = nest [card, :featured], view: :content, items: { view: :box }
 %h2.fw-normal All
 = render_filtered_content

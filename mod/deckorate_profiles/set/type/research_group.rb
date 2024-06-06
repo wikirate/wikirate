@@ -85,6 +85,14 @@ format :html do
     [render_details_tab_right, render_details_tab_left]
   end
 
+  view :box_middle do
+    field_nest :image, view: :core, size: :medium
+  end
+
+  view :box_bottom do
+    render_bar_right
+  end
+
   view :one_line_content do
     ""
   end
