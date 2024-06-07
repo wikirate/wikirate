@@ -15,14 +15,14 @@ class Card
       }.freeze
 
       # TEMPORARY HACK.  replace with metric lookup
-      def filter_by_metric_name value
+      def filter_by_metric_keyword value
         restrict_partner_ids matching_metric_ids(value)
       end
 
       private
 
       def matching_metric_ids value
-        Card.search type_id: Card::MetricID,
+        Card.search type: :metric,
                     right: { name: [:match, value] },
                     return: :id
       end
