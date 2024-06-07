@@ -41,7 +41,7 @@ basket[:icons][:material].merge!(
   clipboard: :content_copy,
   save: :download,
   customize: :visibility,
-  bars: :list_alt,
+  bars: :list,
   boxes: :grid_view,
   graph: :insights
 )

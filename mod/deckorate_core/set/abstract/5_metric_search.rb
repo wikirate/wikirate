@@ -32,13 +32,13 @@ format do
   end
 
   def shared_metric_filter_map
-    %i[wikirate_topic designer metric_type value_type research_policy bookmark]
+    [{ key: :metric, label: "Metric Name", open: true }] +
+      %i[metric_keyword wikirate_topic designer metric_type value_type
+         research_policy bookmark]
   end
 
   def filter_map
-    filtering_by_published do
-      shared_metric_filter_map.unshift key: :name, label: "Metric Name", open: true
-    end << :dataset
+    filtering_by_published { shared_metric_filter_map } << :dataset
   end
 
   def sort_options
@@ -66,7 +66,8 @@ end
 
 format :html do
   METRIC_FILTER_TYPES = {
-    metric_name: :text,
+    metric: :multiselect,
+    metric_keyword: :text,
     research_policy: :radio,
     metric_type: :check,
     designer: :multiselect,
@@ -86,6 +87,10 @@ format :html do
         names.length == 3 ? names[2] : names[0]
       end.uniq(&:downcase).sort_by(&:downcase)
     end
+  end
+
+  def filter_metric_options
+    :metric.cardname
   end
 
   def filter_metric_type_options

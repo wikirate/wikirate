@@ -25,11 +25,11 @@ class Card
         bookmark_restriction field, value
       end
 
-      def filter_by_metric_name value
+      def filter_by_metric_keyword value
         @joins << :metric
         restrict_by_cql :title, :title_id,
                         name: [:match, value],
-                        left_plus: [{}, { type_id: Card::MetricID }]
+                        left_plus: [{}, { type: :metric }]
       end
 
       def metric_card
