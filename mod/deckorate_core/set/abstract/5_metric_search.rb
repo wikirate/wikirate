@@ -90,7 +90,7 @@ format :html do
   end
 
   def filter_metric_options
-    :remote_type
+    :metric.cardname
   end
 
   def filter_metric_type_options

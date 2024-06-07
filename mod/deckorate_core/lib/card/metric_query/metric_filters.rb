@@ -19,11 +19,12 @@ class Card
       end
 
       def filter_by_metric_keyword value
-        restrict_metric_title [:match, value]
+        restrict_by_cql :title, "title_id",
+                        name: [:match, value], left_plus: [{}, { type: :metric }]
       end
 
       def filter_by_metric value
-        restrict_metric_title Array.wrap(value).clone.unshift(:in)
+        filter :metric_id, Array.wrap(value).map(&:card_id)
       end
 
       # note: :false and "false" work; false doesn't (can't survive #process_filter)
@@ -42,11 +43,6 @@ class Card
       end
 
       private
-
-      def restrict_metric_title operation
-        restrict_by_cql :title, "title_id",
-                        name: operation, left_plus: [{}, { type: :metric }]
-      end
 
       # WikiRate team members are stewards of all metrics
       def stewards_all?
