@@ -157,7 +157,7 @@ RSpec.describe Card::AllAnswerQuery do
       end
 
       specify "and keyword" do
-        expect(search(status: :none, company_name: "Inc").sort)
+        expect(search(status: :none, company_keyword: "Inc").sort)
           .to eq(with_year(["Apple Inc.", "Google Inc."]))
       end
 
