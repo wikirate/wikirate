@@ -31,11 +31,6 @@ class Card
       "metrics"
     end
 
-    def filter_by_name value
-      restrict_by_cql :title, "title_id",
-                      name: [:match, value], left_plus: [{}, { type: :metric }]
-    end
-
     def simple_sort_by value
       value == :bookmarkers ? :metric_bookmarkers : value
     end
