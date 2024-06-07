@@ -14,12 +14,12 @@ RSpec.describe Card::AnswerQuery::MetricFilters do
       end
 
       it "finds partial match" do
-        expect(search(metric_name: "dead"))
+        expect(search(metric_keyword: "dead"))
           .to eq with_year(%w[deadliness deadliness deadliness], 1977)
       end
 
       it "ignores case" do
-        expect(search(metric_name: "DeAd"))
+        expect(search(metric_keyword: "DeAd"))
           .to eq with_year(%w[deadliness deadliness deadliness], 1977)
       end
     end

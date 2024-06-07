@@ -32,7 +32,7 @@ format do
   end
 
   def shared_metric_filter_map
-    [{ key: :metric , label: "Metric Name", open: true }] +
+    [{ key: :metric, label: "Metric Name", open: true }] +
       %i[metric_keyword wikirate_topic designer metric_type value_type
          research_policy bookmark]
   end
