@@ -23,8 +23,8 @@ RSpec.describe Card::MetricQuery do
       .to eq(["Jedi+disturbances in the Force", "Joe User+researched number 2"])
   end
 
-  example "name filter" do
-    expect(run(name: "quart").map(&:metric_title))
+  example "keyword filter" do
+    expect(run(metric_keyword: "quart").map(&:metric_title))
       .to eq(["Headquarters Location"])
   end
 

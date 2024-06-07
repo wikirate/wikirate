@@ -18,6 +18,14 @@ class Card
         bookmark_restriction :metric_id, value
       end
 
+      def filter_by_metric_keyword value
+        restrict_metric_title [:match, value]
+      end
+
+      def filter_by_metric value
+        restrict_metric_title Array.wrap(value).clone.unshift(:in)
+      end
+
       # note: :false and "false" work; false doesn't (can't survive #process_filter)
       def filter_by_published value
         return if value.to_s == "all" && stewards_all?
@@ -34,6 +42,11 @@ class Card
       end
 
       private
+
+      def restrict_metric_title operation
+        restrict_by_cql :title, "title_id",
+                        name: operation, left_plus: [{}, { type: :metric }]
+      end
 
       # WikiRate team members are stewards of all metrics
       def stewards_all?
