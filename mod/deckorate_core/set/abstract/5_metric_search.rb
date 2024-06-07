@@ -32,13 +32,14 @@ format do
   end
 
   def shared_metric_filter_map
-    [{ key: :metric, label: "Metric Name", open: true }] +
-      %i[metric_keyword wikirate_topic designer metric_type value_type
-         research_policy bookmark]
+    %i[wikirate_topic designer metric_type value_type research_policy bookmark]
   end
 
+  # answer searches have different handling of published and dataset filters
   def filter_map
-    filtering_by_published { shared_metric_filter_map } << :dataset
+    filtering_by_published do
+      shared_metric_filter_map.unshift key: :name, label: "Metric Name", open: true
+    end << :dataset
   end
 
   def sort_options

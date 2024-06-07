@@ -21,11 +21,11 @@ format do
       [:year,
        { key: :wikirate_company,
          type: :group,
-         filters: shared_company_filter_map.unshift(:company_name) },
+         filters: company_filters },
        { key: :metric,
          type: :group,
          open: true,
-         filters: shared_metric_filter_map },
+         filters: metric_filters },
        { key: :metric_answer,
          type: :group,
          filters: [{ key: :value, open: true }] +
@@ -49,6 +49,20 @@ format do
   # end
 
   private
+
+  def metric_filters
+    [
+      { key: :metric, label: "Metric Name", open: true },
+      :metric_keyword
+    ] + shared_metric_filter_map
+  end
+
+  def company_filters
+    [
+      { key: :company, label: "Company Name", open: true },
+      :company_keyword
+    ] + shared_company_filter_map
+  end
 
   def normalize_filter_hash hash
     %i[metric company].each do |type|
