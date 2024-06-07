@@ -6,8 +6,12 @@
 #  $('body').on "submit", "._filter-form, .filtered-results-form", ->
 #    $(this).slot().loading()
 
-jQuery.fn.slotReloading = ()->
-  loader(this).prepend()
+jQuery.fn.extend
+  slotReloading: ()->
+    loader(this).prepend()
+
+  slotLoadingComplete: ()->
+    loader(this).remove()
 
 loader = (target, relative = false) ->
   target = jObj target
@@ -22,7 +26,8 @@ loader = (target, relative = false) ->
     target.prepend($(aloader.head).html())
     @child().addClass("relative") if relative
   remove: ->
-    @child().remove()
+    target.children(".loader-anime").remove()
+    @child().removeClass("relative") if relative
   child: ->
     target.find(aloader.child)
 

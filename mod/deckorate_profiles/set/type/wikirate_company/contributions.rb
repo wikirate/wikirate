@@ -14,7 +14,7 @@ format :html do
   end
 
   view :research_group_tab do
-    field_nest :research_group, view: :content
+    field_nest :research_group, view: :filtered_content
   end
 
   view :projects_organized_tab do
