@@ -50,7 +50,7 @@ format do
   end
 
   def default_filter_hash
-    { metric_name: "" }
+    { metric_keyword: "" }
   end
 
   def sort_options

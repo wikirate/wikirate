@@ -7,7 +7,7 @@ describe "expanding details on company pages", ->
     cy.get("._open-filters-button a").click()
     cy.get(".offcanvas").within () ->
       cy.contains("Metric Name").click()
-      cy.get("[name='filter[metric_name]']").type("darkness{enter}")
+      cy.get("[name='filter[metric_keyword]']").type("darkness{enter}")
     cy.get(".offcanvas-header .btn-close").click()
 
     # filter works
