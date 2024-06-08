@@ -89,7 +89,7 @@ RSpec.describe Card::AllAnswerQuery do
       end
 
       specify "and keyword" do
-        expect(search(status: :none, metric_name: "number 2"))
+        expect(search(status: :none, metric_keyword: "number 2"))
           .to contain_exactly(*with_year(["researched number 2"]))
       end
 
@@ -157,7 +157,7 @@ RSpec.describe Card::AllAnswerQuery do
       end
 
       specify "and keyword" do
-        expect(search(status: :none, company_name: "Inc").sort)
+        expect(search(status: :none, company_keyword: "Inc").sort)
           .to eq(with_year(["Apple Inc.", "Google Inc."]))
       end
 

@@ -7,18 +7,18 @@ RSpec.describe Card::AnswerQuery::CompanyFilters do
     let(:answer_parts) { [-2, -1] }
     let(:default_sort) { {} }
 
-    describe "#filter_by_company_name" do
+    describe "#filter_by_company_keyword" do
       it "finds exact match" do
-        expect(search(company_name: "Death")).to eq ["Death Star+2001"]
+        expect(search(company_keyword: "Death Star")).to eq ["Death Star+2001"]
       end
 
       it "finds partial match" do
-        expect(search(company_name: "at").sort)
+        expect(search(company_keyword: "at").sort)
           .to eq ["Death Star+2001", "Slate Rock and Gravel Company+2006"]
       end
 
       it "ignores case" do
-        expect(search(company_name: "death")).to eq ["Death Star+2001"]
+        expect(search(company_keyword: "death")).to eq ["Death Star+2001"]
       end
     end
 

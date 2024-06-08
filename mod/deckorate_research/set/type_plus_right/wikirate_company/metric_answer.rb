@@ -3,10 +3,6 @@ include_set Abstract::BookmarkFiltering
 include_set Abstract::CachedCount
 include_set Abstract::FixedAnswerSearch
 
-# TODO: move this elsewhere. sdg is wikirate-specific
-include_set Abstract::SdgFiltering
-
-
 # recount number of answers for a given metric when an answer card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
@@ -50,7 +46,7 @@ format do
   end
 
   def default_filter_hash
-    { metric_name: "" }
+    { metric_keyword: "" }
   end
 
   def sort_options
