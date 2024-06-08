@@ -32,12 +32,3 @@ format :html do
     'conceived as a "blueprint to achieve a better and more sustainable future".'
   end
 end
-
-[
-  FullAnswerSearch,
-  MetricSearch,
-  DatasetSearch,
-  ResearchGroupSearch
-].each do |set|
-  set.include_set self
-end

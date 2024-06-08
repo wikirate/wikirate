@@ -18,6 +18,15 @@ class Card
         bookmark_restriction :metric_id, value
       end
 
+      def filter_by_metric_keyword value
+        restrict_by_cql :title, "title_id",
+                        name: [:match, value], left_plus: [{}, { type: :metric }]
+      end
+
+      def filter_by_metric value
+        filter :metric_id, Array.wrap(value).map(&:card_id)
+      end
+
       # note: :false and "false" work; false doesn't (can't survive #process_filter)
       def filter_by_published value
         return if value.to_s == "all" && stewards_all?
