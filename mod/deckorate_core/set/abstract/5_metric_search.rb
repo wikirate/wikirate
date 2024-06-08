@@ -38,7 +38,9 @@ format do
   # answer searches have different handling of published and dataset filters
   def filter_map
     filtering_by_published do
-      shared_metric_filter_map.unshift key: :name, label: "Metric Name", open: true
+      shared_metric_filter_map.unshift key: :metric_keyword,
+                                       label: "Metric Keyword",
+                                       open: true
     end << :dataset
   end
 
