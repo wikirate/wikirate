@@ -21,7 +21,7 @@ describe 'Formula editor', ->
     # open filtered list and choose new metric
     cy.contains("a", "Add Variable", timeout: 15000)
       .click force: true
-    cy.get("._filter-container [name='filter[name]']")
+    cy.get("._filter-container [name='filter[metric_keyword]']")
       .type("disturb{enter}", force: true)
     cy.wait 500
     cy.get("._search-checkbox-list")

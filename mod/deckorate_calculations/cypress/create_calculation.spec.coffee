@@ -20,7 +20,7 @@ describe "metric creation", ->
 
       cy.contains("a", "Add Item").click()
 
-      cy.get("._filter-container [name='filter[name]']").type "disturb{enter}"
+      cy.get("._filter-container [name='filter[metric_keyword]']").type "disturb{enter}"
       cy.wait 200
       cy.get("._filter-items").should "not.contain", "less evil"
       cy.get("input#Jedi_disturbances_in_the_Force").click()
