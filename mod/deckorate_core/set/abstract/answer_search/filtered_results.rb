@@ -1,32 +1,82 @@
 include_set Abstract::FilteredBodyToggle
 
+GROUPED = { answer_count: "count(*)",
+            year_count: "count(distinct(year))" }
+
 format :html do
   # before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
 
   view :filtered_results_stats, cache: :never, template: :haml
   view :filtered_results_chart, cache: :never, template: :haml
+  view :customize_filtered_panel, template: :haml
 
-  view :grouped_by_company do
-    each_grouped_company do |company_result|
-      haml :grouped_company, company_result
+  view :customize_filtered_button do
+    modal_link "#{icon_tag :customize} Customize",
+               class: "_customize-btn btn btn-outline-secondary",
+               title: "Customize",
+               path: { view: :customize_filtered_panel,
+                       slot: { hide: :modal_header } }
+  end
+
+  view :filtered_results_nav do
+    [render_filtered_body_toggle]
+  end
+
+  view :core do
+    if current_group == :none
+      super
+    else
+      grouped_result
     end
   end
 
-  def each_grouped_company
-    Answer.connection.exec_query(group_by_query.to_sql).map do |hash|
-      yield hash
+  def search_with_params
+    return super if current_group == :none
+
+    @search_results ||= {}
+    @search_results[current_group] ||=
+      Answer.connection.exec_query(
+        group_by_query(:"#{current_group}_id").to_sql
+      )
+  end
+
+  def current_group
+    item_view = implicit_item_view.to_s
+    @current_group ||=
+      if item_view.blank? || item_view.match?(/company/)
+        :company
+      elsif item_view.match?(/metric/)
+        :metric
+      else
+        :none
+      end
+  end
+
+  def count_with_params
+    return super if current_group == :none
+
+    count_query
+      .lookup_relation
+      .except(:select)
+      .select("distinct(#{current_group}_id)").count
+  end
+
+  def grouped_result
+    with_paging do
+      search_with_params.map do |result|
+        haml :"grouped_#{current_group}", result
+      end
     end
+  end
+
+  def group_by_query group_by_field
+    select_fields = group_by_field.to_s
+    GROUPED.each { |k, v| select_fields += ", #{v} AS #{k}" }
+    query.lookup_relation.except(:select).select(select_fields).group(group_by_field)
   end
 
   def default_sort_option
-    :company_name
-  end
-
-  def group_by_query
-    query.lookup_relation
-         .except(:select)
-         .select("company_id, count(*) as answer_count, count(distinct(year)) as year_count")
-         .group(:company_id)
+    :answer_count
   end
 
   def filtered_body_views
@@ -34,11 +84,19 @@ format :html do
   end
 
   def default_filtered_body
-    :grouped_by_company
+    :core
+  end
+
+  def default_item_view
+    :grouped_company
   end
 
   before :filtered_results do
     class_up "card-slot", "_card-link-modal"
+  end
+
+  def filter_buttons
+    super.insert 1, :customize_filtered_button
   end
 
   def show_company_count?
