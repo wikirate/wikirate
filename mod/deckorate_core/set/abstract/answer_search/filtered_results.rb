@@ -9,14 +9,7 @@ format :html do
   view :filtered_results_stats, cache: :never, template: :haml
   view :filtered_results_chart, cache: :never, template: :haml
   view :customize_filtered_panel, template: :haml
-
-  view :customize_filtered_button do
-    modal_link "#{icon_tag :customize} Customize",
-               class: "_customize-btn btn btn-outline-secondary",
-               title: "Customize",
-               path: { view: :customize_filtered_panel,
-                       slot: { hide: :modal_header } }
-  end
+  view :customize_filtered_button, template: :haml
 
   view :filtered_results_nav do
     [render_filtered_body_toggle]

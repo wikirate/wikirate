@@ -1,1 +1,15 @@
-hello world
+.custom-filtered-panel
+  %h6
+    %strong Custom view
+
+  ._custom-item-view-radios
+    - { company: "Grouped by Company",
+        metric: "Grouped by Metric",
+        none: "Individual Answers (No Grouping)" }.each do |key, label|
+      - id = "answer-group-#{key}-radio"
+      - value = key == :none ? "bar" : "grouped_#{key}"
+      .form-check
+        = radio_button_tag "slot[items][view]", value, (current_group==key),
+                           class: "form-check-input", id: id
+        %label.form-check-label{ for: id }
+          = label
