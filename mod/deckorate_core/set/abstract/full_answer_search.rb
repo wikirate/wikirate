@@ -25,13 +25,13 @@ format :html do
       bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
   end
 
-  def default_sort_option
-    :metric_title
-  end
+  # def default_sort_option
+  #   :metric_title
+  # end
 
-  def secondary_sort
-    @secondary_sort ||= FULL_ANSWER_SECONDARY_SORT[sort_by] || super
-  end
+  # def secondary_sort
+  #   @secondary_sort ||= FULL_ANSWER_SECONDARY_SORT[sort_by] || super
+  # end
 
   def bookmark_type
     :todo
