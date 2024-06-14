@@ -1,19 +1,3 @@
-// custom_filter_panel.js.coffee
-(function() {
-  $(function() {
-    return $("body").on("click", "._custom-item-view-radios input", function(e) {
-      var button, value;
-      value = $(this).val();
-      button = $("._customize_filtered");
-      button.slot().data("slot").items = {
-        view: value
-      };
-      return decko.filter.refilter(button);
-    });
-  });
-
-}).call(this);
-
 // deckorate.js.coffee
 (function() {
   window.deckorate = {};
@@ -43,6 +27,31 @@
       } else {
         return siblings.find("input[value='latest']").prop("checked", false);
       }
+    });
+  });
+
+}).call(this);
+
+// filter_enhancements.js.coffee
+(function() {
+  $(function() {
+    $("body").on("click", "._custom-item-view-radios input", function(e) {
+      var button, value;
+      value = $(this).val();
+      button = $("._customize_filtered");
+      button.slot().data("slot").items = {
+        view: value
+      };
+      return decko.filter.refilter(button);
+    });
+    return $("body").on("click", "._sort-buttons a", function(e) {
+      var link, query;
+      link = $(this);
+      query = decko.filter.query(link);
+      query.sort_by = link.data("sortBy");
+      query.sort_dir = link.data("sortDir");
+      decko.filter.refilter(link);
+      return e.preventDefault();
     });
   });
 

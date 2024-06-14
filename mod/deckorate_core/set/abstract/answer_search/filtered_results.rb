@@ -10,10 +10,11 @@ format :html do
   view :filtered_results_chart, cache: :never, template: :haml
   view :customize_filtered_panel, template: :haml
   view :customize_filtered_button, template: :haml
+  view :sorting_header, template: :haml, cache: :never
 
-  # view :filtered_results_nav do
-  #   [render_filtered_body_toggle]
-  # end
+  view :filtered_results_nav do
+    [render_filtered_body_toggle]
+  end
 
   view :core do
     if current_group == :none
@@ -21,6 +22,10 @@ format :html do
     else
       grouped_result
     end
+  end
+
+  def sorting_fields
+    { company_name: 5, answer_count: 5, year_count: 2 }
   end
 
   def search_with_params
@@ -55,11 +60,17 @@ format :html do
   end
 
   def grouped_result
-    with_paging do
-      search_with_params.map do |result|
-        haml :"grouped_#{current_group}", result
+    with_sorting do
+      with_paging do
+        search_with_params.map do |result|
+          haml :"grouped_#{current_group}", result
+        end
       end
     end
+  end
+
+  def with_sorting
+    output [render_sorting_header, yield]
   end
 
   def group_by_query group_by_field

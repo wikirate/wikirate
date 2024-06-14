@@ -139,8 +139,8 @@ format :html do
     Codename.exists?(codename) ? codename.cardname : codename.to_s.to_name
   end
 
-  def answer_count_badge codename
-    count = counts[codename]
+  def answer_count_badge codename, count=nil
+    count ||= counts[codename]
     labeled_badge number_with_delimiter(count),
                   answer_count_badge_label(codename, count),
                   color: "#{badge_label(codename).downcase} bg-secondary"

@@ -1,0 +1,9 @@
+.bg-light.row.p-4.my-2
+  - sorting_fields.each do |field, cols|
+    ._sorting-header-section.d-flex{ class: "col-#{cols}" }
+      .sort-title
+        = field
+      ._sort-buttons.d-flex.flex-column
+        - %w[asc desc].each do |dir|
+          %a{ data: { sort_by: field, sort_dir: dir }, href: "#" }
+            = icon_tag :"sort_#{dir}ending"
