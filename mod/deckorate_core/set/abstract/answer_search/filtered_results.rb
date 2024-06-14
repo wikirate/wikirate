@@ -11,13 +11,13 @@ format :html do
   view :customize_filtered_panel, template: :haml
   view :customize_filtered_button, template: :haml
 
-  view :filtered_results_nav do
-    [render_filtered_body_toggle]
-  end
+  # view :filtered_results_nav do
+  #   [render_filtered_body_toggle]
+  # end
 
   view :core do
     if current_group == :none
-      super
+      super()
     else
       grouped_result
     end
@@ -69,7 +69,7 @@ format :html do
   end
 
   def default_sort_option
-    :answer_count
+    current_group == :none ? :year : :answer_count
   end
 
   def filtered_body_views
