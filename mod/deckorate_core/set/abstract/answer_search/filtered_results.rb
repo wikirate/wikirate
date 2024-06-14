@@ -1,7 +1,7 @@
 include_set Abstract::FilteredBodyToggle
 
 GROUPED = { answer_count: "count(*)",
-            year_count: "count(distinct(year))" }
+            year_count: "count(distinct(year))" }.freeze
 
 format :html do
   # before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
