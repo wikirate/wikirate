@@ -2,7 +2,7 @@ format do
   SORT_OPTIONS = ::Set.new(
     %i[metric_bookmarkers metric_designer metric_title
        company_bookmarkers company_name name
-       year
+       year answer_count
        value numeric_value ]
   )
 
@@ -28,7 +28,7 @@ format do
   end
 
   def default_desc_sort_dir
-    ::Set.new %i[updated_at metric_bookmarkers value year]
+    ::Set.new %i[updated_at metric_bookmarkers value year answer_count]
   end
 
   # for override

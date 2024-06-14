@@ -38,9 +38,9 @@ format do
 end
 
 format :html do
-  def default_sort_option
-    :year
-  end
+  # def default_sort_option
+  #   :year
+  # end
 
   view :titled_content do
     [field_nest(:description), render_filtered_content]
