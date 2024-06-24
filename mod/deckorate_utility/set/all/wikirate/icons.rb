@@ -43,7 +43,9 @@ basket[:icons][:material].merge!(
   customize: :visibility,
   bars: :list,
   boxes: :grid_view,
-  graph: :insights
+  graph: :insights,
+  sort_ascending: :keyboard_arrow_up,
+  sort_descending: :keyboard_arrow_down
 )
 
 basket[:icons][:font_awesome].merge!(

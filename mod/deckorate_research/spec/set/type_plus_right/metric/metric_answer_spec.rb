@@ -71,7 +71,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
           is_expected.to have_tag ".filtered-results-header" do
             with_tag "._open-filters-button"
           end
-          is_expected.to have_tag ".card-list-bar.search-result-list"
+          is_expected.to have_tag ".grouped-company-list"
           is_expected.not_to have_tag ".answer-search-chart"
         end
       end
@@ -83,7 +83,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
             is_expected.to have_tag ".answer-search-chart" do
               with_tag ".vis"
             end
-            is_expected.not_to have_tag ".card-list-bar.search-result-list"
+            is_expected.not_to have_tag ".grouped-company-list"
           end
         end
       end
