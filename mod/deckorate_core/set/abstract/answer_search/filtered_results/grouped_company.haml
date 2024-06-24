@@ -1,0 +1,7 @@
+.row.grouped-company-list.w-100
+  .col-5
+    = nest company_id.card, view: :thumbnail
+  .col-5
+    = answer_count_badge :metric_answer, answer_count
+  .col-2
+    = answer_count_badge :year, year_count
