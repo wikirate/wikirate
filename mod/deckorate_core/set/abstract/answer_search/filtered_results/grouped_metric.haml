@@ -1,0 +1,7 @@
+.row.grouped-metric-list
+  .col-5
+    = nest metric_id.card, view: :thumbnail
+  .col-5
+    = answer_count_badge :metric_answer, answer_count
+  .col-2
+    = answer_count_badge :year, year_count
