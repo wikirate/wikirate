@@ -1,4 +1,5 @@
 include_set Abstract::FilteredBodyToggle
+include_set Abstract::LazyTree
 
 GROUPED = { answer_count: "count(*)",
             year_count: "count(distinct(year))" }.freeze
@@ -60,9 +61,17 @@ format :html do
   def grouped_result
     with_paging do
       search_with_params.map do |result|
-        haml :"grouped_#{current_group}", result
+        result_id = result["#{current_group}_id"]
+        tree_item haml(:"grouped_#{current_group}", result),
+                  body: grouped_card_stub(result_id),
+                  context: result_id
       end
     end
+  end
+
+  def grouped_card_stub base_id
+    card_stub mark: [base_id, :metric_answer],
+              filter: params[:filter]&.to_unsafe_h || {}
   end
 
   def with_sorting
