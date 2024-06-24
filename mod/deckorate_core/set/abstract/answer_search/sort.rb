@@ -12,13 +12,41 @@ format do
     company_bookmarkers: { company_name: :asc }
   }.freeze
 
-  def sort_options
+  SORT_TITLES = {
+    company_name: "Company",
+    metric_title: "Metric",
+    answer_count: "Answers",
+    value: "Answer",
+    year_count: "Years",
+    year: "Year"
+  }.freeze
+
+  def sort_columns
+    case current_group
+    when :company
+      group_sort :company_name
+    when :metric
+      group_sort :metric_title
+    else
+      simple_sort
+    end
+  end
+
+  def sort_title key
+    SORT_TITLES[key]
+  end
+
+  def simple_sort
     {
-      "Year": :year,
-      "Company": :company_name,
-      "Metric": :metric_title,
-      "Answer": :value
+      company_name: 4,
+      metric_title: 4,
+      value: 3,
+      year: 1
     }
+  end
+
+  def group_sort grouping
+    { grouping => 5, answer_count: 5, year_count: 2 }
   end
 
   def default_sort_dir sort_by
