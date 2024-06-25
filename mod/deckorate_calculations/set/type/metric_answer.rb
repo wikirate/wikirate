@@ -82,7 +82,7 @@ format :html do
 
   def wrap_answer_tree_item expandable, &block
     if expandable
-      tree_item yield, body: stub_view(:calculation_details)
+      tree_item yield, body: card_stub(view: :calculation_details)
     else
       wrap_with :div, class: "static-tree-item", &block
     end

@@ -15,16 +15,28 @@ class Card
       end
 
       def company_identifier_clauses hash
-        type_clause = if (id_type = hash[:type]).present?
-                        { name: Array.wrap(id_type.clone).unshift("in") }
-                      else
-                        { type: :company_identifier }
-                      end
-        value_clause = hash[:value].present? ? { match: hash[:value] } : {}
-        [type_clause, value_clause]
+        id_type = hash[:type]
+        id_value = hash[:value]
+
+        return unless id_type.present? || id_value.present?
+
+        yield company_identifier_type_clause(id_type),
+              company_identifier_value_clause(id_value)
       end
 
       private
+
+      def company_identifier_type_clause id_type
+        if id_type.present?
+          { name: Array.wrap(id_type.clone).unshift("in") }
+        else
+          { type: :company_identifier }
+        end
+      end
+
+      def company_identifier_value_clause id_value
+        id_value.present? ? { match: id_value } : {}
+      end
 
       def answer_condition table, codename
         "#{table}.metric_id = #{codename.card_id} AND #{table}.value IN (?)"
@@ -137,7 +149,9 @@ class Card
     end
 
     def company_identifier_cql value_hash
-      add_to_cql :right_plus, self.class.company_identifier_clauses(value_hash)
+      self.class.company_identifier_clauses(value_hash) do |type_clause, value_clause|
+        add_to_cql :right_plus, [type_clause, value_clause]
+      end
     end
 
     def referred_to_by_company_list trunk
