@@ -71,11 +71,12 @@ format :html do
 
   def grouped_card_stub base_id
     card_stub mark: [base_id, :metric_answer],
-              filter: params[:filter]&.to_unsafe_h || {}
+              filter: params[:filter]&.to_unsafe_h || {},
+              slot: { hide: :sorting_header }
   end
 
   def with_sorting
-    output [render_sorting_header, yield]
+    output [render_sorting_header(optional: :show), yield]
   end
 
   def group_by_query group_by_field
