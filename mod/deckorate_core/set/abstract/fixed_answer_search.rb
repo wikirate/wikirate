@@ -31,4 +31,8 @@ format :html do
   def filter_status_options
     super.merge "Not Researched" => "none", "Researched and Not" => "all"
   end
+
+  def default_item_view
+    :bar
+  end
 end

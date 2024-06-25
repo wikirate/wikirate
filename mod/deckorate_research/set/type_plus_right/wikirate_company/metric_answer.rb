@@ -52,6 +52,14 @@ format do
   def sort_options
     super.reject { |_k, v| v == :company_name }
   end
+
+  def simple_sort
+    {
+      metric_title: 8,
+      value: 3,
+      year: 1
+    }
+  end
 end
 
 format :html do
