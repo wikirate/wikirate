@@ -394,7 +394,7 @@ GEM
       rails (>= 3.1)
     break (0.40.0)
     builder (3.3.0)
-    capistrano (3.18.1)
+    capistrano (3.19.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -757,7 +757,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rexml (3.3.0)
+    rexml (3.3.1)
       strscan
     roo (2.10.1)
       nokogiri (~> 1)

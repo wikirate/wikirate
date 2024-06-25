@@ -71,7 +71,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::MetricAnswer do
           is_expected.to have_tag ".filtered-results-header" do
             with_tag "._open-filters-button"
           end
-          is_expected.to have_tag ".grouped-company-list"
+          is_expected.to have_tag ".sorting-header"
+          is_expected.to have_tag ".search-result-list.card-list-bar"
           is_expected.not_to have_tag ".answer-search-chart"
         end
       end
