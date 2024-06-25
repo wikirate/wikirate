@@ -1,0 +1,6 @@
+._customize_filtered
+  = modal_link "#{icon_tag :customize} Customize",
+               class: "_customize-btn btn btn-outline-secondary",
+               title: "Customize",
+               path: { view: :customize_filtered_panel,
+                 slot: { hide: :pop_out_modal_link } }

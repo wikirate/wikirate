@@ -128,6 +128,9 @@ format :html do
     card.metric_card.format.format_algorithm cont if cont
   end
 
+  # don't cache filter items view
+  view(:filter_items, cache: :never) { super() }
+
   def algorithm_content
     try "#{metric_type_codename}_algorithm"
   end

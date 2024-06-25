@@ -44,8 +44,8 @@ describe "Attribution Generator - Answer Dashboard", ->
   beforeEach ->
     cy.login()
     cy.visit("http://localhost:5002/Answers")
-  it "finds the attribution generator icon.", ->
-    deathStar = cy.get("span.card-title[title='Death Star']")
+  it "finds the attribution generator ic\"span.card-title[title='Death Star']\"on.", ->
+    cy.get(".tree-button").first().click()
     dropdown = cy.get("div.bar-menu-button[data-bs-toggle='dropdown']").first().invoke("show")
     dropdown.click()
             .get('a.slotter[data-slotter-mode="modal"][size="large"][data-remote="true"]').eq(3)
