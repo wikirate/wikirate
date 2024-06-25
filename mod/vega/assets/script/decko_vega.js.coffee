@@ -36,8 +36,8 @@ handleChartClicks = (vega, el) ->
 
 updateFilter = (el, filterVals) ->
   form = el.closest("form")
-  filterVals = $.extend form.data("filter"), filterVals
-  decko.filter.refilter form, { filter: filterVals }
+  filterVals = $.extend form.data("query").filter, filterVals
+  decko.filter.refilter form
 
 updateDetails = (detailsAnswer) ->
   $(".bar[data-card-link-name=\"#{detailsAnswer}\"]").trigger "click"

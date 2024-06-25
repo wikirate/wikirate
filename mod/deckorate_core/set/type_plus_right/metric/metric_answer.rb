@@ -54,9 +54,9 @@ format do
     "#{metric_card.metric_title.to_name.url_key}+Answer"
   end
 
-  def secondary_sort_hash
-    super.merge year: { value: :desc }
-  end
+  # def secondary_sort_hash
+  #   super.merge year: { value: :desc }
+  # end
 
   def filter_map
     filter_map_without_keys(super, :metric)
@@ -67,8 +67,12 @@ format do
     { company_name: "" }
   end
 
-  def sort_options
-    super.reject { |_k, v| v == :metric_title }
+  def simple_sort
+    {
+      company_name: 8,
+      value: 3,
+      year: 1
+    }
   end
 end
 

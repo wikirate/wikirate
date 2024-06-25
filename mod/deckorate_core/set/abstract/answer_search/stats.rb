@@ -9,7 +9,7 @@ COUNT_FIELDS = {
   "metrics.metric_type_id": :metric_type,
   "metrics.value_type_id": :value_type,
   "answers.year": :year,
-  "*": :metric_answer
+  "answers.id": :metric_answer
 }.freeze
 
 format do
@@ -53,8 +53,7 @@ format do
 
   def count_fields
     COUNT_FIELDS.map do |field, key|
-      field = "DISTINCT(#{field})" unless field.to_s == "*"
-      "COUNT(#{field}) AS #{key}"
+      "COUNT(DISTINCT(#{field})) AS #{key}"
     end
   end
 
@@ -139,8 +138,8 @@ format :html do
     Codename.exists?(codename) ? codename.cardname : codename.to_s.to_name
   end
 
-  def answer_count_badge codename
-    count = counts[codename]
+  def answer_count_badge codename, count=nil
+    count ||= counts[codename]
     labeled_badge number_with_delimiter(count),
                   answer_count_badge_label(codename, count),
                   color: "#{badge_label(codename).downcase} bg-secondary"
