@@ -11,10 +11,11 @@ format do
     haml :tree_item, **args
   end
 
-  def stub_view view
+  # TODO: move to a more general accessible place (or its own abstract module)
+  def card_stub path_args
     wrap_with :div,
               class: "card-slot card-slot-stub",
-              data: { "stub-url": path(view: view) } do
+              data: { "stub-url": path(path_args) } do
       ""
     end
   end
