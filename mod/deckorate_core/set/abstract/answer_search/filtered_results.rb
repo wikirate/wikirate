@@ -80,7 +80,7 @@ format :html do
   end
 
   def group_by_query group_by_field
-    select_fields = "answers.#{group_by_field.to_s}"
+    select_fields = "answers.#{group_by_field}"
     GROUPED.each { |k, v| select_fields += ", #{v} AS #{k}" }
     query.lookup_relation.except(:select).select(select_fields).group(group_by_field)
   end
