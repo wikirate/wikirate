@@ -106,8 +106,8 @@ format :html do
   view :input_answer_tab, template: :haml
 
   def metric_tree_item detail=nil
-    tree_item metric_tree_item_title(detail: detail), body: stub_view(:metric_tree_branch)
-    # body: render_metric_tree_branch
+    tree_item metric_tree_item_title(detail: detail),
+              body: card_stub(view: :metric_tree_branch)
   end
 
   view :metric_tree_branch, cache: :never do
