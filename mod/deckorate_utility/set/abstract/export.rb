@@ -45,6 +45,10 @@ format :html do
   view :export_panel, cache: :never, template: :haml, wrap: :slot
   view :export_button, cache: :never, template: :haml, denial: :blank
 
+  view :filtered_results_footer do
+    form_tag "/", id: "export-form", method: :get
+  end
+
   def export_mark
     card.name
   end

@@ -9,7 +9,7 @@ COUNT_FIELDS = {
   "metrics.metric_type_id": :metric_type,
   "metrics.value_type_id": :value_type,
   "answers.year": :year,
-  "*": :metric_answer
+  "answers.id": :metric_answer
 }.freeze
 
 format do
@@ -53,8 +53,7 @@ format do
 
   def count_fields
     COUNT_FIELDS.map do |field, key|
-      field = "DISTINCT(#{field})" unless field.to_s == "*"
-      "COUNT(#{field}) AS #{key}"
+      "COUNT(DISTINCT(#{field})) AS #{key}"
     end
   end
 
