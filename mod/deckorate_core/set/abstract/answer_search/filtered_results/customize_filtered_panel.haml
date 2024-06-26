@@ -5,6 +5,7 @@
   ._custom-item-view-radios
     - { company: "Grouped by Company",
         metric: "Grouped by Metric",
+        record: "Grouped by Company/Metric",
         none: "Individual Answers (No Grouping)" }.each do |key, label|
       - id = "answer-group-#{key}-radio"
       - value = key == :none ? "bar" : "grouped_#{key}"
