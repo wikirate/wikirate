@@ -18,6 +18,14 @@ format do
 end
 
 format :html do
+  before :core do
+    voo.items[:hide] = %i[company_thumbnail metric_thumbnail]
+  end
+
+  def default_item_view
+    :bar
+  end
+
   def cell_views
     [:concise]
   end

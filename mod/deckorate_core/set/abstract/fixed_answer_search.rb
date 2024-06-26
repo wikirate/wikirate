@@ -33,6 +33,6 @@ format :html do
   end
 
   def default_item_view
-    :bar
+    :grouped_record
   end
 end
