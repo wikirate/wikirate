@@ -85,7 +85,7 @@ format :html do
     return yield if current_group == :record && result["year_count"] == 1
 
     tree_item yield, body: grouped_card_stub(result[:name]),
-              context: result[:name].safe_key
+                     context: result[:name].safe_key
   end
 
   def grouped_result_name result
