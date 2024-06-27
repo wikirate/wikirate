@@ -45,6 +45,10 @@ format :html do
   view :titled_content do
     [field_nest(:description), render_filtered_content]
   end
+
+  view :filtered_results_footer do
+    export_form
+  end
 end
 
 format :json do
