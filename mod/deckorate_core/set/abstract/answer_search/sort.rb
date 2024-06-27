@@ -27,6 +27,8 @@ format do
       group_sort :company_name
     when :metric
       group_sort :metric_title
+    when :record
+      record_sort
     else
       simple_sort
     end
@@ -34,6 +36,15 @@ format do
 
   def sort_title key
     SORT_TITLES[key]
+  end
+
+  def record_sort
+    {
+      company_name: 4,
+      metric_title: 4,
+      answer_count: 2,
+      year_count: 2
+    }
   end
 
   def simple_sort
@@ -46,7 +57,7 @@ format do
   end
 
   def group_sort grouping
-    { grouping => 5, answer_count: 5, year_count: 2 }
+    { grouping => 7, answer_count: 3, year_count: 2 }
   end
 
   def default_sort_dir sort_by

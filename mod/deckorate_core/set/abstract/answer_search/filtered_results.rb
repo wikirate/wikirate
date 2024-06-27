@@ -1,8 +1,9 @@
 include_set Abstract::FilteredBodyToggle
 include_set Abstract::LazyTree
 
-GROUPED = { answer_count: "count(*)",
-            year_count: "count(distinct(year))" }.freeze
+GROUPED = { answer_count: "count(distinct(answers.id))",
+            latest_year: "max(year)",
+            year_count: "count(distinct(answers.year))" }.freeze
 
 format :html do
   # before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
@@ -31,22 +32,7 @@ format :html do
     return super if current_group == :none
 
     @search_results ||= {}
-    @search_results[current_group] ||=
-      Answer.connection.exec_query(
-        group_by_query(:"#{current_group}_id").to_sql
-      )
-  end
-
-  def current_group
-    item_view = implicit_item_view.to_s
-    @current_group ||=
-      if item_view.blank? || item_view.match?(/company/)
-        :company
-      elsif item_view.match?(/metric/)
-        :metric
-      else
-        :none
-      end
+    @search_results[current_group] ||= Answer.connection.exec_query(group_by_query.to_sql)
   end
 
   def count_with_params
@@ -55,42 +41,11 @@ format :html do
     count_query
       .lookup_relation
       .except(:select)
-      .select("distinct(#{current_group}_id)").count
-  end
-
-  def grouped_result
-    with_paging do
-      search_with_params.map do |result|
-        result_id = result["#{current_group}_id"]
-        tree_item haml(:"grouped_#{current_group}", result),
-                  body: grouped_card_stub(result_id),
-                  context: result_id
-      end
-    end
-  end
-
-  def grouped_card_stub base_id
-    card_stub mark: [base_id, :metric_answer],
-              filter: params[:filter]&.to_unsafe_h || {},
-              slot: { hide: :sorting_header }
-  end
-
-  def with_sorting
-    output [render_sorting_header(optional: :show), yield]
-  end
-
-  def group_by_query group_by_field
-    select_fields = "answers.#{group_by_field}"
-    GROUPED.each { |k, v| select_fields += ", #{v} AS #{k}" }
-    query.lookup_relation.except(:select).select(select_fields).group(group_by_field)
+      .select(group_by_fields).distinct.count
   end
 
   def default_sort_option
     current_group == :none ? :year : :answer_count
-  end
-
-  def filtered_body_views
-    show_chart? ? { core: :bars, filtered_results_chart: :graph } : {}
   end
 
   def default_filtered_body
@@ -99,6 +54,82 @@ format :html do
 
   def default_item_view
     :grouped_company
+  end
+
+  private
+
+  def current_group
+    item_view = implicit_item_view.to_s
+    @current_group ||=
+      if item_view.blank? || item_view.match?(/company/)
+        :company
+      elsif item_view.match?(/metric/)
+        :metric
+      elsif item_view.match?(/record/)
+        :record
+      else
+        :none
+      end
+  end
+
+  def grouped_result
+    with_paging do
+      search_with_params.map do |result|
+        result[:name] = grouped_result_name result
+        branching_results(result) { haml(:"grouped_#{current_group}", result) }
+      end
+    end
+  end
+
+  def branching_results result
+    return yield if current_group == :record && result["year_count"] == 1
+
+    tree_item yield, body: grouped_card_stub(result[:name]),
+                     context: result[:name].safe_key
+  end
+
+  def grouped_result_name result
+    group_by_fields.map { |fld| result[fld] }.cardname
+  end
+
+  # def record_result result
+  #   Card.fetch
+  # end
+
+  def group_by_fields
+    if current_group == :record
+      %w[metric_id company_id]
+    else
+      ["#{current_group}_id"]
+    end
+  end
+
+  def grouped_card_stub base_name
+    card_stub mark: [base_name, :metric_answer],
+              filter: params[:filter]&.to_unsafe_h || {},
+              slot: grouped_card_stub_slot_options
+  end
+
+  def grouped_card_stub_slot_options
+    { hide: :sorting_header }
+  end
+
+  def with_sorting
+    output [render_sorting_header(optional: :show), yield]
+  end
+
+  def group_by_fields_string
+    group_by_fields.map { |fld| "answers.#{fld}" }.join ", "
+  end
+
+  def group_by_query
+    group_by = select_fields = group_by_fields_string
+    GROUPED.each { |k, v| select_fields += ", #{v} AS #{k}" }
+    query.lookup_relation.except(:select).select(select_fields).group group_by
+  end
+
+  def filtered_body_views
+    show_chart? ? { core: :bars, filtered_results_chart: :graph } : {}
   end
 
   before :filtered_results do
