@@ -5,6 +5,16 @@ GROUPED = { answer_count: "count(distinct(answers.id))",
             latest_year: "max(year)",
             year_count: "count(distinct(answers.year))" }.freeze
 
+format do
+  def answer_page_fixed_filters
+    card.query_hash
+  end
+
+  def answer_page_filters
+    filter_hash.merge answer_page_fixed_filters
+  end
+end
+
 format :html do
   # before(:compact_filter_form) { voo.hide :filter_sort_dropdown }
 
@@ -18,6 +28,10 @@ format :html do
     [render_filtered_body_toggle]
   end
 
+  view :filtered_results_footer do
+    super() + wrap_with("div", class: "text-end py-3") { answer_page_link }
+  end
+
   view :core do
     with_sorting do
       if current_group == :none
@@ -26,6 +40,12 @@ format :html do
         grouped_result
       end
     end
+  end
+
+  def answer_page_link
+    link_to_card :metric_answer,
+                 "View all answers #{icon_tag :east}",
+                 path: { filter: answer_page_filters }
   end
 
   def search_with_params
@@ -57,6 +77,13 @@ format :html do
   end
 
   private
+
+  def customize_item_options
+    { company: "Grouped by Company",
+      metric: "Grouped by Metric",
+      record: "Grouped by Company/Metric",
+      none: "Individual Answers (No Grouping)" }
+  end
 
   def current_group
     item_view = implicit_item_view.to_s

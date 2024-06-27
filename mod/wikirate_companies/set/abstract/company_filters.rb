@@ -5,6 +5,16 @@ format do
   def shared_company_filter_map
     %i[company_identifier company_category company_group country company_answer]
   end
+
+  # fixes handling of certain requests that use $.params(json) and send the company
+  # answer filter as { "0" => constraint1, "1" => constraint2... ...}
+  def filter_hash
+    super.tap do |hash|
+      if hash[:company_answer].is_a? Hash
+        hash[:company_answer] = hash[:company_answer].values
+      end
+    end
+  end
 end
 
 format :html do
@@ -53,16 +63,6 @@ format :html do
                                     c[:related_company_group], c[:year]
       bits.compact.reject { |i| i == false }.join " "
     end.compact.join ", "
-  end
-
-  # fixes handling of certain requests that use $.params(json) and send the company
-  # answer filter as { "0" => constraint1, "1" => constraint2... ...}
-  def filter_hash
-    super.tap do |hash|
-      if hash[:company_answer].is_a? Hash
-        hash[:company_answer] = hash[:company_answer].values
-      end
-    end
   end
 
   private

@@ -15,6 +15,10 @@ format do
   def default_sort_option
     :year
   end
+
+  def answer_page_fixed_filters
+    { company: card.company_id.cardname, metric: card.metric_id.cardname }
+  end
 end
 
 format :html do

@@ -46,6 +46,10 @@ format :html do
   view :export_button, cache: :never, template: :haml, denial: :blank
 
   view :filtered_results_footer do
+    super() + export_form
+  end
+
+  def export_form
     form_tag "/", id: "export-form", method: :get
   end
 

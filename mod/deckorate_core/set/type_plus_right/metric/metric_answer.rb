@@ -74,6 +74,10 @@ format do
       year: 1
     }
   end
+
+  def fixed_filter_field
+    :metric
+  end
 end
 
 format :html do
@@ -127,5 +131,9 @@ format :html do
 
   def filter_value_options
     metric_card.value_options_card&.options_hash&.reverse_merge "Unknown" => "Unknown"
+  end
+
+  def customize_item_options
+    super.tap { |hash| hash.delete :metric }
   end
 end
