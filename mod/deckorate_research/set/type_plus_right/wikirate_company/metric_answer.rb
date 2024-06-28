@@ -60,6 +60,10 @@ format do
       year: 1
     }
   end
+
+  def fixed_filter_field
+    :company
+  end
 end
 
 format :html do
@@ -73,5 +77,9 @@ format :html do
 
   def show_company_count?
     false
+  end
+
+  def customize_item_options
+    super.tap { |hash| hash.delete :company }
   end
 end

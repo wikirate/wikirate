@@ -18,6 +18,10 @@ format do
   def record?
     filter_hash[:"#{partner}_name"]&.match?(/^\=/)
   end
+
+  def answer_page_fixed_filters
+    { fixed_filter_field => ["~#{card.left_id}"] }
+  end
 end
 
 format :json do
