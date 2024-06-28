@@ -30,7 +30,7 @@ event :publish_inputs, :finalize, changed: :content, when: :publish_inputs? do
 end
 
 def publish_inputs?
-  published? && calculated?
+  published? && calculated? && !metric_card.trash
 end
 
 def answers

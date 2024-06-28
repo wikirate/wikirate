@@ -39,4 +39,9 @@ format :html do
   def default_item_view
     :grouped_record
   end
+
+  def customize_item_options
+    { record: "Grouped by #{partner.to_s.capitalize}",
+      none: "Individual Answers (No Grouping)" }
+  end
 end
