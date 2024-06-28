@@ -9,6 +9,12 @@ event :recalculate_answers, delay: true, priority: 5 do
   deep_answer_update
 end
 
+event :disallow_input_deletion, :validate, on: :delete do
+  return unless formula_metrics.present?
+
+  errors.add "Cannot delete a metric that other metrics depend on"
+end
+
 # an unorthodox metric is a calculated metric that directly depends on an answer
 # that is not for the same company and year
 def unorthodox?

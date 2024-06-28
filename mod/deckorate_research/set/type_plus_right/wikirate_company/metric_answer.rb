@@ -34,11 +34,11 @@ end
 
 format do
   def default_sort_option
-    record? || !single?(:year) ? :year : :metric_bookmarkers
+    record? || !single?(:year) ? :year : :metric_title
   end
 
   def secondary_sort_hash
-    super.merge year: { metric_bookmarkers: :desc, metric_title: :asc }
+    super.merge year: { metric_title: :asc }
   end
 
   def filter_map
@@ -61,6 +61,14 @@ format do
     }
   end
 
+  def record_sort
+    {
+      metric_title: 8,
+      answer_count: 3,
+      year: 1
+    }
+  end
+
   def fixed_filter_field
     :company
   end
@@ -77,9 +85,5 @@ format :html do
 
   def show_company_count?
     false
-  end
-
-  def customize_item_options
-    super.tap { |hash| hash.delete :company }
   end
 end
