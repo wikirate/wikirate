@@ -1,5 +1,5 @@
 .w-100.grouped-record-list
-  - latest_answer = Card.fetch [name, latest_year.to_s], new: {}
+  - latest_answer = Card.fetch [name, year.to_s], new: {}
   - if year_count > 1
     .float-end
       = answer_count_badge :year, year_count

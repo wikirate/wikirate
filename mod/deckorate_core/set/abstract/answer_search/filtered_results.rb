@@ -2,7 +2,7 @@ include_set Abstract::FilteredBodyToggle
 include_set Abstract::LazyTree
 
 GROUPED = { answer_count: "count(distinct(answers.id))",
-            latest_year: "max(year)",
+            year: "max(year)",
             year_count: "count(distinct(answers.year))" }.freeze
 
 format do
