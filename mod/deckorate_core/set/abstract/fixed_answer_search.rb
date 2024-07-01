@@ -40,6 +40,11 @@ format :html do
     :grouped_record
   end
 
+  # because when opening record-grouped items, the latest is already showing
+  def grouped_card_filter
+    super.merge latest: 0
+  end
+
   def customize_item_options
     { record: "Grouped by #{partner.to_s.capitalize}",
       none: "Individual Answers (No Grouping)" }
