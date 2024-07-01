@@ -1,9 +1,15 @@
 include_set Abstract::FilteredBodyToggle
 include_set Abstract::LazyTree
 
-GROUPED = { answer_count: "count(distinct(answers.id))",
-            latest_year: "max(year)",
-            year_count: "count(distinct(answers.year))" }.freeze
+GROUP_SELECT = { answer_count: "count(distinct(answers.id))",
+                 year: "max(year)",
+                 year_count: "count(distinct(answers.year))" }.freeze
+
+GROUP_SELECT_KEYS = {
+  company: %i[answer_count year_count],
+  metric: %i[answer_count year_count],
+  record: %i[answer_count year]
+}.freeze
 
 format do
   def answer_page_fixed_filters
@@ -109,7 +115,7 @@ format :html do
   end
 
   def branching_results result
-    return yield if current_group == :record && result["year_count"] == 1
+    return yield if current_group == :record && result["answer_count"] == 1
 
     tree_item yield, body: grouped_card_stub(result[:name]),
                      context: result[:name].safe_key
@@ -151,7 +157,9 @@ format :html do
 
   def group_by_query
     group_by = select_fields = group_by_fields_string
-    GROUPED.each { |k, v| select_fields += ", #{v} AS #{k}" }
+    GROUP_SELECT_KEYS[current_group].each do |key|
+      select_fields += ", #{GROUP_SELECT[key]} AS #{key}"
+    end
     query.lookup_relation.except(:select).select(select_fields).group group_by
   end
 
