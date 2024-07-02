@@ -84,11 +84,15 @@ format do
   end
 
   def default_sort_option
-    lookup? ? default_lookup_sort_option : :name
+    if current_group == :none
+      lookup? ? default_lookup_sort_option : :name
+    else
+      :answer_count
+    end
   end
 
   def default_lookup_sort_option
-    single?(:year) ? :value : :year
+    :company_name
   end
 
   def toggle_sort_dir field

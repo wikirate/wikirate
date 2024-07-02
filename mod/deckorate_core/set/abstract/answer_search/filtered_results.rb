@@ -19,6 +19,36 @@ format do
   def answer_page_filters
     filter_hash.merge answer_page_fixed_filters
   end
+
+  def default_grouping
+    :none
+  end
+
+  def search_with_params
+    return super if current_group == :none
+
+    @search_results ||= {}
+    @search_results[current_group] ||= Answer.connection.exec_query(group_by_query.to_sql)
+  end
+
+  def count_with_params
+    return super if current_group == :none
+
+    @count_with_params ||=
+      count_query.lookup_relation.except(:select).select(group_by_fields).distinct.count
+  end
+
+  def current_group
+    item_view = implicit_item_view.to_s
+    @current_group ||=
+      if item_view.blank?
+        default_grouping
+      elsif (match = item_view.match(/(company|metric|record)/))
+        match[1].to_sym
+      else
+        :none
+      end
+  end
 end
 
 format :html do
@@ -54,24 +84,6 @@ format :html do
                  path: { filter: answer_page_filters }
   end
 
-  def search_with_params
-    return super if current_group == :none
-
-    @search_results ||= {}
-    @search_results[current_group] ||= Answer.connection.exec_query(group_by_query.to_sql)
-  end
-
-  def count_with_params
-    return super if current_group == :none
-
-    @count_with_params ||=
-      count_query.lookup_relation.except(:select).select(group_by_fields).distinct.count
-  end
-
-  def default_sort_option
-    current_group == :none ? :year : :answer_count
-  end
-
   def default_filtered_body
     :core
   end
@@ -82,25 +94,15 @@ format :html do
 
   private
 
+  def default_grouping
+    :company
+  end
+
   def customize_item_options
     { company: "Grouped by Company",
       metric: "Grouped by Metric",
       record: "Grouped by Company/Metric",
       none: "Individual Answers (No Grouping)" }
-  end
-
-  def current_group
-    item_view = implicit_item_view.to_s
-    @current_group ||=
-      if item_view.blank? || item_view.match?(/company/)
-        :company
-      elsif item_view.match?(/metric/)
-        :metric
-      elsif item_view.match?(/record/)
-        :record
-      else
-        :none
-      end
   end
 
   def grouped_result
