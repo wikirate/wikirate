@@ -64,10 +64,8 @@ format :html do
   def count_with_params
     return super if current_group == :none
 
-    @count_with_params ||= count_query
-      .lookup_relation
-      .except(:select)
-      .select(group_by_fields).distinct.count
+    @count_with_params ||=
+      count_query.lookup_relation.except(:select).select(group_by_fields).distinct.count
   end
 
   def default_sort_option
@@ -144,7 +142,7 @@ format :html do
   end
 
   def grouped_card_filter
-    filter_hash_from_params
+    filter_hash_from_params || {}
   end
 
   def grouped_card_stub_slot_options
