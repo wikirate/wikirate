@@ -59,6 +59,6 @@ format :json do
   end
 
   def default_vega_options
-    { layout: { width: 700 } }
+    { layout: { width: 1000 } }
   end
 end

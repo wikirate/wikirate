@@ -85,7 +85,8 @@ format :json do
 
   def chart_grouping
     group = params[:subgroup].to_sym if params[:subgroup].present?
-    group ||= first_interesting_group %i[verification value_type], :metric_type
+    # group ||= first_interesting_group %i[verification value_type], :metric_type
+    group ||= first_interesting_group %i[value_type], :metric_type
     { group: group }
   end
 
