@@ -80,7 +80,4 @@ format :json do
       yield result
     end
   end
-
-
-
 end

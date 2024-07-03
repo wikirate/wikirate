@@ -85,10 +85,14 @@ format do
 
   def default_sort_option
     if current_group == :none
-      lookup? ? default_lookup_sort_option : :name
+      default_ungrouped_sort_option
     else
       :answer_count
     end
+  end
+
+  def default_ungrouped_sort_option
+    lookup? ? default_lookup_sort_option : :name
   end
 
   def default_lookup_sort_option
