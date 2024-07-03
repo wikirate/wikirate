@@ -2,8 +2,10 @@
 
 include_set BookmarkFilters
 
-def default_sort_option
-  :bookmarkers
+format do
+  def default_sort_option
+    :bookmarkers
+  end
 end
 
 def bookmark_type
