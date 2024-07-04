@@ -33,8 +33,8 @@ def bookmark_type
 end
 
 format do
-  def default_sort_option
-    record? || !single?(:year) ? :year : :metric_title
+  def default_lookup_sort_option
+    :metric_title
   end
 
   def secondary_sort_hash

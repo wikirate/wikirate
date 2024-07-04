@@ -31,6 +31,10 @@ format do
     :bookmarkers
   end
 
+  def filter_metric_item_view
+    :thumbnail
+  end
+
   def shared_metric_filter_map
     %i[wikirate_topic designer metric_type value_type research_policy bookmark]
   end

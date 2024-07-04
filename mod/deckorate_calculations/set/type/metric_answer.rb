@@ -72,8 +72,8 @@ format :html do
 
   def answer_tree_item metric, detail, other_answers=[]
     expandable = card.calculated? && other_answers.empty?
-    value = render_bar_right +
-            output { other_answers.map { |a| nest a.card, view: :bar_right } }
+    value = render_concise +
+            output { other_answers.map { |a| nest a.card, view: :concise } }
 
     wrap_answer_tree_item expandable do
       metric.card.format.metric_tree_item_title detail: detail, answer: value

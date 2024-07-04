@@ -1,0 +1,7 @@
+- one_thumb = voo.hide?(:company_thumbnail) || voo.hide?(:metric_thumbnail)
+- if voo.show? :company_thumbnail
+  %div{ class: (one_thumb ? "one-thumb-answer w-100" : "w-50") }
+    = render_company_thumbnail
+- if voo.show? :metric_thumbnail
+  %div{ class: (one_thumb ? "one-thumb-answer w-100" : "w-50") }
+    = render_metric_thumbnail

@@ -21,9 +21,7 @@ format do
   def with_dataset
     card.dataset_name.present? ? yield : []
   end
-end
 
-format :html do
   def search_with_params
     @search_with_params ||= with_dataset do
       name_search.map do |metric_name|
@@ -31,7 +29,9 @@ format :html do
       end
     end
   end
+end
 
+format :html do
   # don't add quick filters for other datasets
   def dataset_quick_filters
     []
