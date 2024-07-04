@@ -1,7 +1,10 @@
-.row.grouped-company-list.w-100
-  .col-5
-    = nest company_id.card, view: :thumbnail
-  .col-5
-    = answer_count_badge :metric_answer, answer_count
-  .col-2
-    = answer_count_badge :year, year_count
+.bar.w-100.d-flex
+  .answer-group.grouped-company-list.row.w-100.bar-body
+    .col-8.bar-left
+      = nest company_id.card, view: :thumbnail
+    .col-3.bar-middle
+      = answer_count_badge :metric_answer, answer_count
+    .col-1.bar-right
+      = answer_count_badge :year, year_count
+  .bar-menu
+    &nbsp;
