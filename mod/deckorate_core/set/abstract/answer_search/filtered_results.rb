@@ -32,10 +32,17 @@ format do
   end
 
   def count_with_params
-    return super if current_group == :none
-
     @count_with_params ||=
-      count_query.lookup_relation.except(:select).select(group_by_fields).distinct.count
+      case current_group
+      when :none
+        counts[:metric_answer]
+      when :company
+        counts[:wikirate_company]
+      when :metric
+        counts[:metric]
+      when :record
+        count_query.lookup_relation.except(:select).select(group_by_fields).distinct.count
+      end
   end
 
   def current_group
@@ -69,7 +76,7 @@ format :html do
   end
 
   view :core do
-    with_sorting do
+    with_sorting_and_wrapper do
       if current_group == :none
         super()
       else
@@ -151,8 +158,8 @@ format :html do
     { hide: :sorting_header }
   end
 
-  def with_sorting
-    output [render_sorting_header(optional: :show), yield]
+  def with_sorting_and_wrapper
+    haml :sorting_and_wrapper, results: yield
   end
 
   def group_by_fields_string

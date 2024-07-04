@@ -1,6 +1,16 @@
-.w-100.grouped-record-list
-  - latest_answer = Card.fetch [name, year.to_s], new: {}
-  - if answer_count > 1
-    .float-end
-      = answer_count_badge :year, answer_count
-  = nest_item latest_answer, view: :bar
+- latest_answer = Card.fetch [name, year.to_s], new: {}
+- if answer_count == 1
+  = nest_item latest_answer, view: :full_bar
+- else
+  - class_up "bar", "with-bar-menu" if voo.show? :bar_menu
+  .grouped-record-list.w-100.nodblclick.d-flex._card-link{ class: classy("bar"), data: latest_answer.format.bar_wrap_data }
+    .row.g-0.bar-body
+      .bar-left.col-8
+        = nest_item latest_answer, view: :bar_left
+      .bar-middle.col-3
+        = nest_item latest_answer, view: :bar_middle
+      .bar-right.col-1
+        = nest_item latest_answer, view: :markers
+        .TYPE-year.color-on-hover
+          = latest_answer.year
+        = answer_count_badge :year, answer_count
