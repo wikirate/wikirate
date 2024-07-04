@@ -27,7 +27,7 @@ format :html do
   end
 
   def default_item_view
-    :bar
+    :full_bar
   end
 
   def cell_views

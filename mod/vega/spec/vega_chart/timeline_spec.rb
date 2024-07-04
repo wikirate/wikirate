@@ -8,7 +8,7 @@ RSpec.describe Card::VegaChart::Timeline do
           a_hash_including(
             name: "counts",
             transform: a_collection_including(
-              a_hash_including(expr: "{ verification: datum.group }")
+              a_hash_including(expr: "{ value_type: datum.group }")
             )
           )
         )

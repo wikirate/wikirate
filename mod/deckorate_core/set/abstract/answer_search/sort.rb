@@ -57,7 +57,7 @@ format do
   end
 
   def group_sort grouping
-    { grouping => 7, answer_count: 3, year_count: 2 }
+    { grouping => 8, answer_count: 3, year_count: 1 }
   end
 
   def default_sort_dir sort_by
@@ -84,11 +84,19 @@ format do
   end
 
   def default_sort_option
+    if current_group == :none
+      default_ungrouped_sort_option
+    else
+      :answer_count
+    end
+  end
+
+  def default_ungrouped_sort_option
     lookup? ? default_lookup_sort_option : :name
   end
 
   def default_lookup_sort_option
-    single?(:year) ? :value : :year
+    :company_name
   end
 
   def toggle_sort_dir field

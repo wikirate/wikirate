@@ -27,7 +27,7 @@ format :html do
     :identifier_custom
   end
 
-  def identifier_custom_filter field, _default, _opts
+  def identifier_custom_filter field, _config
     haml :identifier_custom_filter, defaults: (filter_param(field) || {})
   end
 
@@ -50,7 +50,7 @@ format :html do
     "Advanced"
   end
 
-  def company_answer_custom_filter _field, _default, _opts
+  def company_answer_custom_filter _field, _config
     editor_wrap :content do
       subformat(card.field(:specification)).constraint_list_input
     end

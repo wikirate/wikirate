@@ -21,3 +21,6 @@ $(window).ready ->
       siblings.find("input").prop "checked", false if box.is(":checked")
     else
       siblings.find("input[value='latest']").prop "checked", false
+
+#  $("body").on "click", ".answer-result-items a", (e) ->
+#    e.stopPropagation()
