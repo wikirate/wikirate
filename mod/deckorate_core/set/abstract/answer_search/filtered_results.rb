@@ -67,6 +67,12 @@ format :html do
   view :customize_filtered_button, template: :haml
   view :sorting_header, template: :haml, cache: :never
 
+  # before :filtered_results wasn't working...
+  view :filtered_results do
+    voo.items = params[:filter_items].to_unsafe_h.symbolize_keys if params[:filter_items]
+    super()
+  end
+
   view :filtered_results_nav do
     [render_filtered_body_toggle]
   end
@@ -147,7 +153,8 @@ format :html do
   def grouped_card_stub base_name
     card_stub mark: [base_name, :metric_answer],
               filter: grouped_card_filter,
-              slot: grouped_card_stub_slot_options
+              slot: grouped_card_stub_slot_options,
+              limit: 5
   end
 
   def grouped_card_filter
