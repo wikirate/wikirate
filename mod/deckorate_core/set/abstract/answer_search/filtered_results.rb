@@ -19,6 +19,43 @@ format do
   def answer_page_filters
     filter_hash.merge answer_page_fixed_filters
   end
+
+  def default_grouping
+    :none
+  end
+
+  def search_with_params
+    return super if current_group == :none
+
+    @search_results ||= {}
+    @search_results[current_group] ||= Answer.connection.exec_query(group_by_query.to_sql)
+  end
+
+  def count_with_params
+    @count_with_params ||=
+      case current_group
+      when :none
+        counts[:metric_answer]
+      when :company
+        counts[:wikirate_company]
+      when :metric
+        counts[:metric]
+      when :record
+        count_query.lookup_relation.except(:select).select(group_by_fields).distinct.count
+      end
+  end
+
+  def current_group
+    item_view = implicit_item_view.to_s
+    @current_group ||=
+      if item_view.blank?
+        default_grouping
+      elsif (match = item_view.match(/(company|metric|record)/))
+        match[1].to_sym
+      else
+        :none
+      end
+  end
 end
 
 format :html do
@@ -39,7 +76,7 @@ format :html do
   end
 
   view :core do
-    with_sorting do
+    with_sorting_and_wrapper do
       if current_group == :none
         super()
       else
@@ -54,26 +91,6 @@ format :html do
                  path: { filter: answer_page_filters }
   end
 
-  def search_with_params
-    return super if current_group == :none
-
-    @search_results ||= {}
-    @search_results[current_group] ||= Answer.connection.exec_query(group_by_query.to_sql)
-  end
-
-  def count_with_params
-    return super if current_group == :none
-
-    count_query
-      .lookup_relation
-      .except(:select)
-      .select(group_by_fields).distinct.count
-  end
-
-  def default_sort_option
-    current_group == :none ? :year : :answer_count
-  end
-
   def default_filtered_body
     :core
   end
@@ -84,25 +101,15 @@ format :html do
 
   private
 
+  def default_grouping
+    :company
+  end
+
   def customize_item_options
     { company: "Grouped by Company",
       metric: "Grouped by Metric",
       record: "Grouped by Company/Metric",
       none: "Individual Answers (No Grouping)" }
-  end
-
-  def current_group
-    item_view = implicit_item_view.to_s
-    @current_group ||=
-      if item_view.blank? || item_view.match?(/company/)
-        :company
-      elsif item_view.match?(/metric/)
-        :metric
-      elsif item_view.match?(/record/)
-        :record
-      else
-        :none
-      end
   end
 
   def grouped_result
@@ -139,16 +146,20 @@ format :html do
 
   def grouped_card_stub base_name
     card_stub mark: [base_name, :metric_answer],
-              filter: params[:filter]&.to_unsafe_h || {},
+              filter: grouped_card_filter,
               slot: grouped_card_stub_slot_options
+  end
+
+  def grouped_card_filter
+    filter_hash_from_params || {}
   end
 
   def grouped_card_stub_slot_options
     { hide: :sorting_header }
   end
 
-  def with_sorting
-    output [render_sorting_header(optional: :show), yield]
+  def with_sorting_and_wrapper
+    haml :sorting_and_wrapper, results: yield
   end
 
   def group_by_fields_string

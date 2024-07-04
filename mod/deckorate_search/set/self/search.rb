@@ -21,6 +21,10 @@ format do
   def featured_type_names
     featured_type_list.item_names.map { |n| n.vary :plural }
   end
+
+  def search_with_params
+    os_search? ? os_search_returning_cards : super
+  end
 end
 
 format :html do
@@ -47,10 +51,6 @@ format :html do
 
   def breadcrumb_items
     [link_to("Home", href: "/"), "Search Results"]
-  end
-
-  def search_with_params
-    os_search? ? os_search_returning_cards : super
   end
 
   # @return [Integer]
