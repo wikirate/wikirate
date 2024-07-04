@@ -23,8 +23,6 @@ format :html do
     handle_unknowns { haml :bar_right }
   end
 
-  view :year_and_value_pretty, unknown: true, template: :haml
-
   view :bar_middle, template: :haml
 
   view :metric_thumbnail, unknown: true do
