@@ -57,7 +57,7 @@ format do
   end
 
   def group_sort grouping
-    { grouping => 7, answer_count: 3, year_count: 2 }
+    { grouping => 8, answer_count: 3, year_count: 1 }
   end
 
   def default_sort_dir sort_by

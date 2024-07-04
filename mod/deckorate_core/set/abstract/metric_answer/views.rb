@@ -17,7 +17,7 @@ format :html do
     haml :header_text
   end
 
-  bar_cols 8, 3, 1
+  bar_cols 8, 2, 2
 
   view :bar_right, unknown: true do
     handle_unknowns { haml :bar_right }

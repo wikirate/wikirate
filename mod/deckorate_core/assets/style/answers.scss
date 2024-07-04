@@ -62,9 +62,12 @@
     > div {
       margin-left: 1rem;
     }
+    &:not(.collapsed) {
+      background-color: inherit;
+    }
   }
   .tree-body {
-    padding-left: 2.5rem
+    padding: 0 0 0 2.5rem
   }
   .paging {
     padding: 0.5rem 0;
@@ -75,5 +78,30 @@
   .bar {
     border-left: 0 !important;
     border-right: 0 !important;
+    border-top: 0 !important;
+  }
+  .bar-body {
+    min-height: 5rem;
+  }
+  .bar-left {
+    align-items: center;
+  }
+  .answer-group {
+    padding: 0.5rem 0;
+    // border-bottom: 1px solid $gray-200
+  }
+  .thumbnail {
+    align-items: center;
+  }
+  .bar-middle {
+    justify-content: left;
+  }
+  .latest-and-count {
+    .labeled-badge {
+      margin-left: 0;
+    }
+  }
+  .search-result-list {
+    padding: 0;
   }
 }
