@@ -1,4 +1,5 @@
 - one_thumb = voo.hide?(:company_thumbnail) || voo.hide?(:metric_thumbnail)
-.d-flex.align-items-center.w-100{ class: ("one-thumb-answer" if one_thumb) }
+%div{ class: (one_thumb ? "one-thumb-answer w-100" : "w-50") }
   = render_company_thumbnail
+%div{ class: (one_thumb ? "one-thumb-answer w-100" : "w-50") }
   = render_metric_thumbnail

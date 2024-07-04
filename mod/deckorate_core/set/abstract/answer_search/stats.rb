@@ -31,10 +31,6 @@ format do
     @counts ||= tally_counts
   end
 
-  def count_with_params
-    counts[:metric_answer]
-  end
-
   def tally_counts
     counts = answer_table_counts
     researched = counts[:metric_answer].to_i
