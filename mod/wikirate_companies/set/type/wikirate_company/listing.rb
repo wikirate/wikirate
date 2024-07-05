@@ -2,6 +2,10 @@ include_set Abstract::Thumbnail
 
 format :html do
   def thumbnail_subtitle
+    [render(:headquarters, optional: :hide), render(:identifiers_list, optional: :hide)]
+  end
+
+  view :headquarters do
     field_nest :headquarters, view: :content, unknown: :blank, items: { view: :name }
   end
 
