@@ -12,7 +12,7 @@ format :html do
   def wiki_rating_algorithm
     "Answers are calculated as a weighted average. To find a weighted average of " \
     "a group of numbers that have been normalized to the same 0-10 scale, you simply " \
-    "multiply each number by its weight (percentage) and add them up"
+    "multiply each number by its weight (percentage) and add them up."
   end
 
   def wiki_rating_input
