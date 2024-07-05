@@ -7,4 +7,10 @@ format :html do
   view :company_thumbnail, unknown: true do
     company_thumbnail card.company, hide: :thumbnail_link
   end
+
+  view :credit do
+    wrap_with :small do
+      nest card.value_card, view: :credit
+    end
+  end
 end
