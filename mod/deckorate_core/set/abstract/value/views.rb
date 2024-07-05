@@ -32,7 +32,7 @@ format :html do
   end
 
   view :credit, unknown: true do
-    wrap_with :div, class: "credit text-muted text-end" do
+    wrap_with :div, class: "credit text-muted" do
       card.new? ? "" : [credit_verb, credit_date, credit_whom].join(" ")
     end
   end
