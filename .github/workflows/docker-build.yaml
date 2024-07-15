@@ -32,7 +32,7 @@ jobs:
             type=raw,value={{sha}}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6.2.0
+        uses: docker/build-push-action@v6.4.0
         with:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
