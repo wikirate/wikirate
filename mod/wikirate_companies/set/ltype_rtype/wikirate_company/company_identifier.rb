@@ -24,4 +24,6 @@ format :html do
   def input_type
     multiple? ? :list : :text_field
   end
+
+  view :hover_field, template: :haml
 end
