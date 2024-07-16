@@ -1,2 +1,4 @@
-%span.hover-field{ title: card.name.right }<
+%span.hover-field{ title: "#{card.company_identifier.name}: #{render_raw}" }<
+  %label
+    = card.company_identifier.abbreviation + ": "
   = render_raw

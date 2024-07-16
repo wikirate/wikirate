@@ -2,7 +2,7 @@
   height: 320px;
   .box-top {
     min-height: 80px;
-    .thumbnail-title {
+    > .thumbnail-title {
       padding-bottom: 0.5rem;
       margin-bottom: 0.5rem;
       border-bottom: 1px solid #eee;

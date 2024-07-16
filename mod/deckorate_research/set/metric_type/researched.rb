@@ -16,7 +16,7 @@ end
 format :html do
   delegate :research_policy, to: :card
 
-  def fixed_thumbnail_subtitle
+  def metric_type_details
     "Research #{research_policy_icon_link}"
   end
 
