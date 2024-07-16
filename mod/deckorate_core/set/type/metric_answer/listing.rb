@@ -7,11 +7,10 @@ format :html do
   # TODO: make an Abstract Library for handling these fancy company and metric thumbnails
   # (Eg we need them on Answer searches)
   view :company_thumbnail, unknown: true do
-    args = { view: :thumbnail, hide: :thumbnail_link, show: [] }
-    %i[headquarters identifiers_list].each do |view|
-      args[:show] << view if voo.explicit_show? view
-    end
-    nest card.company, args
+    # %i[headquarters identifiers_list].each do |view|
+    #   args[:show] << view if voo.explicit_show? view
+    # end
+    nest card.company, view: :thumbnail_no_link
   end
 
   view :credit do
