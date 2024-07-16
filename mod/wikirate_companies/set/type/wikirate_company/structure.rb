@@ -85,6 +85,13 @@ format :html do
     end
   end
 
+  view :identifiers_list do
+    card.company_identifiers.map do |fieldcode|
+      field = card.fetch fieldcode
+      nest field, view: :hover_field if field.present?
+    end.compact
+  end
+
   private
 
   def add_header_items hash, field_codes

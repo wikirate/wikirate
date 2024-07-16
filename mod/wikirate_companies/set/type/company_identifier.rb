@@ -1,4 +1,4 @@
-card_accessor :description
+card_accessor :description, :abbreviation
 card_accessor :multiple, type: :toggle
 
 event :clear_company_identifier_caches, :integrate do

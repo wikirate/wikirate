@@ -63,9 +63,9 @@ format :html do
 
   # SHARED
 
-  def designer_property title
+  def designer_property title, size=nil
     wrap :div, class: "row designer-property" do
-      labeled title, nest(card.metric_designer_card, view: :thumbnail)
+      labeled title, nest(card.metric_designer_card, view: :thumbnail, size: size)
     end
   end
 
