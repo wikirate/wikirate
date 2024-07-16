@@ -2,21 +2,6 @@
   &.rich-header .media-body {
     width: 100%;
   }
-
-  &.bar {
-    .bar-left > {
-      div > div {
-        padding: 0 0.5em;
-
-        &.thumbnail {
-          width: 42%;
-        }
-      }
-      .one-thumb-answer > .thumbnail {
-        width: 84%;
-      }
-    }
-  }
 }
 
 .flag-details i {
