@@ -8,8 +8,8 @@ RSpec.describe Card::Set::Type::Metric::Structure do
   describe "view: bar_left" do
     it "has metric title" do
       expect_view(:bar_left).to have_tag "div.thumbnail" do
+        with_tag "div.thumbnail-title", text: /disturbances in the Force/
         with_tag "div.image-box"
-        with_tag "div.thumbnail-text", text: /disturbances in the Force/
       end
     end
   end
