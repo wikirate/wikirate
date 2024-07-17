@@ -20,21 +20,32 @@
         :delete:
           - :wikirate_team
 
+- :name: Abbreviation
+  :codename: abbreviation
+
 - :name: OS ID
   :codename: oar_id
   :type: company_identifier
+  :fields:
+    :abbreviation: OS
 
 - :name: SEC CIK
   :codename: sec_cik
   :type: company_identifier
+  :fields:
+    :abbreviation: SEC
 
 - :name: Wikipedia
   :codename: wikipedia
   :type: company_identifier
+  :fields:
+    :abbreviation: WP
 
 - :name: OpenCorporates ID
   :type: company_identifier
   :codename: open_corporates_id
+  :fields:
+    :abbreviation: OC
 
 - :name: Multiple
   :codename: multiple

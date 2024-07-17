@@ -63,7 +63,7 @@ format :html do
 
   view :filtered_results_stats, cache: :never, template: :haml
   view :filtered_results_chart, cache: :never, template: :haml
-  view :customize_filtered_panel, template: :haml
+  view :customize_filtered_panel, template: :haml, wrap: :slot
   view :customize_filtered_button, template: :haml
   view :sorting_header, template: :haml, cache: :never
 
@@ -116,6 +116,16 @@ format :html do
       metric: "Grouped by Metric",
       record: "Grouped by Company/Metric",
       none: "Individual Answers (No Grouping)" }
+  end
+
+  def show_hide_fields
+    {
+      headquarters: "Company Headquarters",
+      identifiers: "Company Identifiers",
+      metric_type: "Metric Type",
+      metric_designer: "Metric Designer",
+      contributor: "Contributor"
+    }
   end
 
   def grouped_result
