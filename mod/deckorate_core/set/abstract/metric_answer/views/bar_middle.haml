@@ -3,4 +3,4 @@
     = link_to_card card, nest(card.value_card, view: :pretty)
     %span.text-muted.small{ title: card.format(:text).render_legend }
       = render_legend
-= render_credit optional: :hide
+= render_credit optional: :show

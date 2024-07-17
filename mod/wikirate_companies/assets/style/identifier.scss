@@ -1,0 +1,9 @@
+.hover-field {
+  &:after {
+    content: ", ";
+  }
+
+  &:last-child:after {
+    content: "";
+  }
+}
