@@ -12,10 +12,4 @@ format :html do
     # end
     nest card.company, view: :thumbnail_no_link
   end
-
-  view :credit do
-    wrap_with :small do
-      nest card.value_card, view: :credit
-    end
-  end
 end

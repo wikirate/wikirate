@@ -59,6 +59,12 @@ format :html do
     end
   end
 
+  view :credit do
+    wrap_with :small do
+      nest card.value_card, view: :credit
+    end
+  end
+
   def edit_fields
     [
       [card.value_card, title: "Answer"],
