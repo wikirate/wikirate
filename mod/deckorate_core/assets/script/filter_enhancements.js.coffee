@@ -2,7 +2,9 @@ $ ->
   $("body").on "click", "._custom-item-view-radios input", (e) ->
     value = $(this).val()
     button = $("._customize_filtered")
-    button.slot().data("slot").items = { view: value }
+    slotData = button.slot().data("slot")
+    slotData.items ||= {}
+    slotData.items.view = value
     decko.filter.refilter button
 
 #  decko.filter.formatters["customItem"] = (form, data)->

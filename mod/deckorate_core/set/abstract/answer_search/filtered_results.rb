@@ -91,6 +91,14 @@ format :html do
     end
   end
 
+  def slot_options
+    super.tap do |options|
+      if voo.items.present?
+        options[:items] = voo.items
+      end
+    end
+  end
+
   def answer_page_link
     link_to_card :metric_answer,
                  "View all answers #{icon_tag :east}",
