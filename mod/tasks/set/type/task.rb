@@ -32,10 +32,6 @@ format :html do
     "#{link_to_card card.type_id}: #{render_title_link}"
   end
 
-  # def thumbnail_title
-  #   bar_title
-  # end
-
   def thumbnail_subtitle
     field_nest :description
   end

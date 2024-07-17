@@ -31,6 +31,8 @@ format :html do
     class_up "thumbnail", "metric-thumbnail"
   end
 
+  view :thumbnail, template: :haml
+
   view :thumbnail_image do
     nest card.designer_image_card, view: thumbnail_image_view,
                                    size: thumbnail_image_size,
@@ -38,19 +40,11 @@ format :html do
   end
 
   def thumbnail_subtitle
-    [fixed_thumbnail_subtitle, formula_options].flatten.compact.join(" | ")
+    nest card.metric_designer_card, view: :thumbnail, size: :icon
   end
 
-  def fixed_thumbnail_subtitle
+  def metric_type_details
     card.metric_type_name
-  end
-
-  def formula_options
-    # FIXME: handle options from json
-    # %i[year company unknown not_researched].map do |key|
-    #   next unless (value = voo.send key)
-    #   "#{key}: #{value}"
-    # end.compact
   end
 
   def goto_autocomplete_icon

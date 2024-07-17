@@ -11,3 +11,15 @@
                            class: "form-check-input", id: id
         %label.form-check-label{ for: id }
           = label
+
+  %hr
+  .form-check
+    %input#_all-custom-fields.form-check-input{ type: "checkbox" }
+    %label.form-check-label{ for: "_all-custom-fields"}
+      %h6
+        %strong Custom fields
+  ._custom-field-checkboxes.ps-4
+    ._custom-field-template.d-none
+      .custom-field.form-check
+        %input.form-check-input{ type: "checkbox" }
+        %label.form-check-label
