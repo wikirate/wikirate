@@ -31,7 +31,9 @@ format :html do
     class_up "thumbnail", "metric-thumbnail"
   end
 
-  view :thumbnail, template: :haml
+  def thumbnail
+    haml :thumbnail
+  end
 
   view :thumbnail_image do
     nest card.designer_image_card, view: thumbnail_image_view,
@@ -40,7 +42,7 @@ format :html do
   end
 
   def thumbnail_subtitle
-    nest card.metric_designer_card, view: :thumbnail, size: :icon
+    nest card.metric_designer_card, view: :thumbnail_minimal, size: :icon
   end
 
   def metric_type_details
