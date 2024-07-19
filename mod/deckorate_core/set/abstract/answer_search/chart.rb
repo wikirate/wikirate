@@ -91,6 +91,6 @@ format :json do
   end
 
   def first_interesting_group groups, fallback
-    groups.find { |g| counts[g].to_i > 1 && params[g].blank? } || fallback
+    groups.find { |g| deep_counts[g].to_i > 1 && params[g].blank? } || fallback
   end
 end

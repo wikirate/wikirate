@@ -81,12 +81,20 @@ format :html do
     super() + wrap_with("div", class: "text-end py-3") { answer_page_link }
   end
 
-  view :core do
+  view :core, cache: :never do
     with_sorting_and_wrapper do
       if current_group == :none
         super()
       else
         grouped_result
+      end
+    end
+  end
+
+  def slot_options
+    super.tap do |options|
+      if voo.items.present?
+        options[:items] = voo.items
       end
     end
   end
