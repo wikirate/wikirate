@@ -4,10 +4,10 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
 COUNT_FIELDS = {
   "answers.company_id": :wikirate_company,
   "answers.metric_id": :metric,
-  "designer_id": :designer,
-  "answers.verification": :verification,
-  "metrics.metric_type_id": :metric_type,
-  "metrics.value_type_id": :value_type,
+  # "designer_id": :designer,
+  # "metrics.metric_type_id": :metric_type,
+  # "metrics.value_type_id": :value_type,
+  # "answers.verification": :verification,
   "answers.year": :year,
   "answers.id": :metric_answer
 }.freeze
@@ -44,7 +44,8 @@ format do
   def answer_table_counts
     return {} if not_researched?
 
-    research_count_query.joins(:metric).pluck_all(*count_fields).first.symbolize_keys
+    # research_count_query.joins(:metric).pluck_all(*count_fields).first.symbolize_keys
+    research_count_query.pluck_all(*count_fields).first.symbolize_keys
   end
 
   def count_fields
