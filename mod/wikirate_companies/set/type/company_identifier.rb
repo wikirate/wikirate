@@ -1,5 +1,6 @@
-card_accessor :description, :abbreviation
+card_accessor :description
 card_accessor :multiple, type: :toggle
+card_accessor :abbreviation, type: :phrase
 
 event :clear_company_identifier_caches, :integrate do
   %w[NAMES EXCERPTS].each do |suffix|
@@ -13,7 +14,7 @@ end
 
 format :html do
   def edit_fields
-    %i[description multiple]
+    %i[abbreviation description multiple]
   end
 
   view :core do
