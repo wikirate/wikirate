@@ -42,7 +42,7 @@ format :html do
   end
 
   def thumbnail_subtitle
-    nest card.metric_designer_card, view: :thumbnail, size: :icon
+    nest card.metric_designer_card, view: :thumbnail_minimal, size: :icon
   end
 
   def metric_type_details
