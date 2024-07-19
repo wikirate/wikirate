@@ -96,7 +96,7 @@ format do
   end
 
   def default_lookup_sort_option
-    :company_name
+    :year
   end
 
   def toggle_sort_dir field

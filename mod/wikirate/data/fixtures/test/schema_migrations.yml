@@ -119,3 +119,5 @@ schema_migrations_059:
   version: '20240628212556'
 schema_migrations_060:
   version: '20240628212913'
+schema_migrations_061:
+  version: '20240718153756'

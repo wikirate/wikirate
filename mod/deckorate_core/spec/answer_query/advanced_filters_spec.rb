@@ -33,8 +33,8 @@ RSpec.describe Card::AnswerQuery::AdvancedFilters do
       let(:metric_name) { "Commons+Supplier of" }
 
       it "finds subject companies" do
-        expect(search(related_company_group: "Deadliest"))
-          .to eq(["Los Pollos Hermanos", "Google LLC"])
+        expect(search(related_company_group: "Deadliest").sort)
+          .to eq(["Google LLC", "Los Pollos Hermanos"])
       end
     end
   end
