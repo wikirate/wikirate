@@ -81,7 +81,7 @@ format :html do
     super() + wrap_with("div", class: "text-end py-3") { answer_page_link }
   end
 
-  view :core do
+  view :core, cache: :never do
     with_sorting_and_wrapper do
       if current_group == :none
         super()

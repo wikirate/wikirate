@@ -4,12 +4,15 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
 COUNT_FIELDS = {
   "answers.company_id": :wikirate_company,
   "answers.metric_id": :metric,
-  # "designer_id": :designer,
-  # "metrics.metric_type_id": :metric_type,
-  # "metrics.value_type_id": :value_type,
-  # "answers.verification": :verification,
   "answers.year": :year,
   "answers.id": :metric_answer
+}.freeze
+
+DEEP_COUNT_FIELDS = {
+  "designer_id": :designer,
+  "metrics.metric_type_id": :metric_type,
+  "metrics.value_type_id": :value_type,
+  "answers.verification": :verification
 }.freeze
 
 format do
@@ -41,15 +44,26 @@ format do
     )
   end
 
+  def deep_counts
+    @deep_counts ||= tally_deep_counts
+  end
+
+  def tally_deep_counts
+    fields = COUNT_FIELDS.merge DEEP_COUNT_FIELDS
+    research_count_query.joins(:metric)
+                        .pluck_all(*count_fields(fields))
+                        .first
+                        .symbolize_keys
+  end
+
   def answer_table_counts
     return {} if not_researched?
 
-    # research_count_query.joins(:metric).pluck_all(*count_fields).first.symbolize_keys
-    research_count_query.pluck_all(*count_fields).first.symbolize_keys
+    research_count_query.pluck_all(*count_fields(COUNT_FIELDS)).first.symbolize_keys
   end
 
-  def count_fields
-    COUNT_FIELDS.map do |field, key|
+  def count_fields fields
+    fields.map do |field, key|
       "COUNT(DISTINCT(#{field})) AS #{key}"
     end
   end
