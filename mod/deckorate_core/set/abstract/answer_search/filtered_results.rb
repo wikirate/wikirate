@@ -47,7 +47,9 @@ format do
 
   def current_group
     item_view = implicit_item_view.to_s
-    @current_group ||=
+
+    @current_group ||= {}
+    @current_group[item_view] ||=
       if item_view.blank?
         default_grouping
       elsif (match = item_view.match(/(company|metric|record)/))

@@ -34,5 +34,9 @@
 }
 
 .credit .RIGHT-headquarter.content-view {
-  display: none;
+  display: none !important;
+}
+
+.TYPE-answer.bar .TYPE-company.thumbnail .thumbnail-title {
+  padding-right: 1.5em;
 }
