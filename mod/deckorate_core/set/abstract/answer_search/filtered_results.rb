@@ -41,7 +41,7 @@ format do
       when :metric
         counts[:metric]
       when :record
-        count_query.lookup_relation.except(:select).select(group_by_fields).distinct.count
+        clean_relation(count_query).select(group_by_fields_string).distinct.count
       end
   end
 
@@ -57,6 +57,10 @@ format do
       else
         :none
       end
+  end
+
+  def clean_relation qry = nil
+    (qry || query).lookup_relation.except :select
   end
 end
 
@@ -95,9 +99,7 @@ format :html do
 
   def slot_options
     super.tap do |options|
-      if voo.items.present?
-        options[:items] = voo.items
-      end
+      options[:items] = voo.items if voo.items.present?
     end
   end
 
@@ -198,7 +200,7 @@ format :html do
     GROUP_SELECT_KEYS[current_group].each do |key|
       select_fields += ", #{GROUP_SELECT[key]} AS #{key}"
     end
-    query.lookup_relation.except(:select).select(select_fields).group group_by
+    clean_relation.select(select_fields).group group_by
   end
 
   def filtered_body_views
