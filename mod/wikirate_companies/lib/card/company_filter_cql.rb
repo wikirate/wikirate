@@ -35,7 +35,9 @@ class Card
       end
 
       def company_identifier_value_clause id_value
+        # if selected single (non-multiple) identifier type do exact, otherwise do match
         id_value.present? ? { match: id_value } : {}
+        # id_value.present? ? { eq: id_value } : {}
       end
 
       def answer_condition table, codename
