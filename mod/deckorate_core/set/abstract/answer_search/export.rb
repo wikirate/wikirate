@@ -1,13 +1,53 @@
 include_set Abstract::Export
 include_set Abstract::DetailedExport
 
-# format :html do
-#   def export_link_path_args format
-#     super.merge filter_and_sort_hash
-#   end
-# end
+EXPORT_TYPES = {
+  Answers: :metric_answer,
+  Companies: :wikirate_company,
+  Metrics: :metric
+}.freeze
+
+# supplementary search methods to be used in export formats
+# (filtered search has different changes for html format...)
+module ExportSearch
+  def search_with_params
+    if export_type == :metric_answer
+      super
+    else
+      export_relation.pluck(export_id_field).map(&:card)
+    end
+  end
+
+  def export_type
+    @export_type ||= params[:type]&.to_sym || :metric_answer
+  end
+
+  def count_with_params
+    if export_type == :metric_answer
+      super
+    else
+      export_relation(count_query).count
+    end
+  end
+
+  private
+
+  def export_relation query=nil
+    if export_type == :metric_answer
+      lookup_relation
+    else
+      clean_relation(query).select(export_id_field).distinct.reorder export_id_field
+    end
+  end
+
+  def export_id_field
+    @export_id_field ||= export_type == :metric ? :metric_id : :company_id
+  end
+end
 
 format :json do
+  include ExportSearch
+
   view :compact, cache: :never do
     each_answer_with_hash do |answer, hash|
       hash[:companies][answer.company_id] ||= answer.company_name
@@ -79,5 +119,37 @@ format :json do
     lookup_query.joins(:metric).distinct.limit(1000).pluck(*fields).map do |result|
       yield result
     end
+  end
+end
+
+format :csv do
+  include ExportSearch
+
+  view :titles do
+    case export_type
+    when :metric_answer
+      Answer.csv_titles detailed?
+    else
+      nest export_type, view: :titles
+    end
+  end
+
+  view :body do
+    if export_type == :metric_answer
+      detailed = detailed?
+      lookup_relation.map { |row| row.csv_line detailed }
+    else
+      super()
+    end
+  end
+end
+
+format :html do
+  def export_types
+    EXPORT_TYPES
+  end
+
+  def export_item_limit_label
+    "Items"
   end
 end

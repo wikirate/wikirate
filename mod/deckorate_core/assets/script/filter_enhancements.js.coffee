@@ -1,10 +1,12 @@
 $ ->
   $("body").on "click", "._custom-item-view-radios input", (e) ->
-    value = $(this).val()
+    input = $(this)
     button = $("._customize_filtered")
     slotData = button.slot().data("slot")
     slotData.items ||= {}
-    slotData.items.view = value
+    slotData.items.view = input.val()
+    #    checkboxContainer = input.closest(".custom-filtered-panel").find "._custom-field-checkboxes"
+    #    deckorate.updateCustomFieldOptions checkboxContainer
     decko.filter.refilter button
 
 #  decko.filter.formatters["customItem"] = (form, data)->
