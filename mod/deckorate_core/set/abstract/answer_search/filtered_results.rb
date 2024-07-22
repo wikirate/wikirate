@@ -41,7 +41,10 @@ format do
       when :metric
         counts[:metric]
       when :record
-        count_query.lookup_relation.except(:select).select(group_by_fields).distinct.count
+        count_query.lookup_relation
+                   .except(:select)
+                   .select(group_by_fields_string)
+                   .distinct.count
       end
   end
 
@@ -95,9 +98,7 @@ format :html do
 
   def slot_options
     super.tap do |options|
-      if voo.items.present?
-        options[:items] = voo.items
-      end
+      options[:items] = voo.items if voo.items.present?
     end
   end
 
