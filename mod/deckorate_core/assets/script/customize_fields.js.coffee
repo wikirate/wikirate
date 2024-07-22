@@ -18,6 +18,7 @@ $ ->
 
 
   deckorate.updateCustomFieldOptions = (container) ->
+    container.html ""
     for field, config of deckorate.customFields
       sampleField = fields(config["selector"])[0]
       if sampleField
@@ -42,6 +43,7 @@ decko.slot.ready (slot) ->
     updateCheckAll()
 
   if slot.find(".answer-result-items")[0]
+    deckorate.updateCustomFieldOptions $("._custom-field-checkboxes")
     for field, config of deckorate.customFields
       updateField config["selector"], defaultChecked(field)
 

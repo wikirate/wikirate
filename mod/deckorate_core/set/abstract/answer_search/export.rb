@@ -26,17 +26,17 @@ module ExportSearch
     if export_type == :metric_answer
       super
     else
-      export_relation.limit(nil).offset(nil).count
+      export_relation(count_query).count
     end
   end
 
   private
 
-  def export_relation
+  def export_relation query=nil
     if export_type == :metric_answer
       lookup_relation
     else
-      clean_relation.select(export_id_field).distinct.reorder export_id_field
+      clean_relation(query).select(export_id_field).distinct.reorder export_id_field
     end
   end
 

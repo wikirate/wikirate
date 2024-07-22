@@ -41,7 +41,7 @@ format do
       when :metric
         counts[:metric]
       when :record
-        clean_relation.select(group_by_fields_string).distinct.count
+        clean_relation(count_query).select(group_by_fields_string).distinct.count
       end
   end
 
@@ -59,8 +59,8 @@ format do
       end
   end
 
-  def clean_relation
-    query.lookup_relation.except :select
+  def clean_relation qry = nil
+    (qry || query).lookup_relation.except :select
   end
 end
 

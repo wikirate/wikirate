@@ -5,7 +5,8 @@ $ ->
     slotData = button.slot().data("slot")
     slotData.items ||= {}
     slotData.items.view = input.val()
-    deckorate.updateCustomFieldOptions input.closest(".custom-filtered-panel")
+    #    checkboxContainer = input.closest(".custom-filtered-panel").find "._custom-field-checkboxes"
+    #    deckorate.updateCustomFieldOptions checkboxContainer
     decko.filter.refilter button
 
 #  decko.filter.formatters["customItem"] = (form, data)->
