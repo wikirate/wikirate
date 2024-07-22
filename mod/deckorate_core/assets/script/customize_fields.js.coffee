@@ -16,6 +16,14 @@ $ ->
       title: "Contributor"
       selector: ".bar-middle .credit"
 
+
+  deckorate.updateCustomFieldOptions = (container) ->
+    for field, config of deckorate.customFields
+      sampleField = fields(config["selector"])[0]
+      if sampleField
+        checked = defaultChecked field
+        addInput container, field, config, checked
+
   $("body").on "change", "._custom-field-checkboxes input", (_e) ->
     box = $(this)
     updateField box.data("fieldSelector"), box.is(":checked")
@@ -30,16 +38,14 @@ $ ->
 decko.slot.ready (slot) ->
   container = slot.find "._custom-field-checkboxes"
   if container[0]
-    for field, config of deckorate.customFields
-      sampleField = fields(config["selector"])[0]
-      if sampleField
-        checked = defaultChecked field
-        addInput container, field, config, checked
+    deckorate.updateCustomFieldOptions container
     updateCheckAll()
 
   if slot.find(".answer-result-items")[0]
     for field, config of deckorate.customFields
       updateField config["selector"], defaultChecked(field)
+
+
 
 updateSlotItems = () ->
   sdata = answerSlotData()

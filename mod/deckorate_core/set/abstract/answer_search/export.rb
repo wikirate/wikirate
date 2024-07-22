@@ -7,12 +7,14 @@ EXPORT_TYPES = {
   Metrics: :metric
 }.freeze
 
+# supplementary search methods to be used in export formats
+# (filtered search has different changes for html format...)
 module ExportSearch
   def search_with_params
     if export_type == :metric_answer
       super
     else
-      export_relation.pluck(export_id_field).map &:card
+      export_relation.pluck(export_id_field).map(&:card)
     end
   end
 
