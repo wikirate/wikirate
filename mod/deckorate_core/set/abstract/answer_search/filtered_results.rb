@@ -59,7 +59,7 @@ format do
       end
   end
 
-  def clean_relation qry = nil
+  def clean_relation qry=nil
     (qry || query).lookup_relation.except :select
   end
 end

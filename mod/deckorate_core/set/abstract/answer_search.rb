@@ -86,4 +86,3 @@ format do
     hash[:dataset] ||= dataset
   end
 end
-
