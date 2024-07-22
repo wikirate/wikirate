@@ -41,7 +41,10 @@ format do
       when :metric
         counts[:metric]
       when :record
-        count_query.lookup_relation.except(:select).select(group_by_fields).distinct.count
+        count_query.lookup_relation
+                   .except(:select)
+                   .select(group_by_fields_string)
+                   .distinct.count
       end
   end
 
