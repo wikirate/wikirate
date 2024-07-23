@@ -19,8 +19,8 @@ class Card
       end
 
       def filter_by_metric_keyword value
-        restrict_by_cql :title, "title_id",
-                        name: [:match, value], left_plus: [{}, { type: :metric }]
+        restrict_by_cql :title, "title_id", { name: [:match, value] },
+                        name_restriction: true
       end
 
       def filter_by_metric value
