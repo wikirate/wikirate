@@ -18,4 +18,4 @@
             +
           = answer_count_badge :year, (answer_count - 1)
     .bar-menu
-      = render :bar_menu
+      = nest latest_answer, view: :bar_menu
