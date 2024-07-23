@@ -2,7 +2,7 @@ include_set Abstract::FilteredBodyToggle
 include_set Abstract::LazyTree
 
 GROUP_SELECT = { answer_count: "count(distinct(answers.id))",
-                 year: "max(year)",
+                 year: "max(answers.year)",
                  year_count: "count(distinct(answers.year))" }.freeze
 
 GROUP_SELECT_KEYS = {
