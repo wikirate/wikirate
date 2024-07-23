@@ -1,8 +1,9 @@
 .pb-2
   = select_filter "company_identifier[type]",
-                  default: defaults[:type],
-                  options: type_options(:company_identifier),
-                  multiple: true
+                  default: defaults[:type] || "",
+                  options: [["", ""]] + type_options(:company_identifier),
+                  data: { placeholder: "Company ID Type" }
 .pt-2
   = text_filter "company_identifier[value]",
-                default: defaults[:value]
+                default: defaults[:value],
+                options: { placeholder: "Company ID Value" }
