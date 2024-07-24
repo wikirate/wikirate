@@ -6,7 +6,7 @@ describe "expanding details on company pages", ->
     cy.get(".tab-li-metric_answer").click()
     cy.get("._open-filters-button a").click()
     cy.get(".offcanvas").within () ->
-      cy.contains("Metric").click()
+      cy.get(".accordion-header").contains("Metric").click()
       cy.contains("Metric Keyword").click()
       cy.get("[name='filter[metric_keyword]']").type("darkness{enter}")
     cy.get(".offcanvas-header .btn-close").click()
