@@ -2,6 +2,15 @@
 // Base styles
 //
 
+.tree-button:before,
+.accordion-button::after {
+  content: "\E5CF"; // expand more
+  font-family: "Material Icons";
+  background-image: none !important;
+  font-size: 1.5em;
+  height: 1em;
+}
+
 $tree-button-padding: .3rem !default;
 $tree-body-padding: 0.5rem 0rem 0.5rem 2rem !default
 $tree-button-active-bg: $gray-100 !default;
@@ -40,7 +49,8 @@ $tree-border-color: $gray-200 !default;
     width: $accordion-icon-width;
     height: $accordion-icon-width;
     margin-right: auto;
-    content: "";
+    // content: "\E5CC"; // chevron-right
+
     background-image: escape-svg($accordion-button-icon);
     background-repeat: no-repeat;
     background-size: $accordion-icon-width;

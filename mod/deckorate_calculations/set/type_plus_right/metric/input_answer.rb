@@ -8,7 +8,12 @@ include_set Abstract::FullAnswerSearch
 # recount number of answers for a given metric when an Answer card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
-  input_answer_and_source_fields changed_card.metric_card
+  return if changed_card.unpublished?
+
+  metric = changed_card.metric_card
+  return if metric.unpublished?
+
+  input_answer_and_source_fields metric
 end
 
 # ...or when metric is (un)published
