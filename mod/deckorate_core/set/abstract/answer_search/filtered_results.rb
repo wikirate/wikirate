@@ -2,7 +2,7 @@ include_set Abstract::FilteredBodyToggle
 include_set Abstract::LazyTree
 
 GROUP_SELECT = { answer_count: "count(distinct(answers.id))",
-                 year: "max(year)",
+                 year: "max(answers.year)",
                  year_count: "count(distinct(answers.year))" }.freeze
 
 GROUP_SELECT_KEYS = {
@@ -204,7 +204,10 @@ format :html do
   end
 
   def filtered_body_views
-    show_chart? ? { core: :bars, filtered_results_chart: :graph } : {}
+    return {} unless show_chart?
+
+    { core: { icon: :bars, title: "List" },
+      filtered_results_chart: { icon: :graph, title: "Graph" } }
   end
 
   before :filtered_results do
