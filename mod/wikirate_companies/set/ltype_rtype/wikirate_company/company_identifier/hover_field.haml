@@ -1,4 +1,7 @@
-%span.hover-field{ title: "#{card.company_identifier.name}: #{render_raw}" }<
+- ident = card.company_identifier
+%span._ident-field.hover-field{ title: "#{card.company_identifier.name}: #{render_raw}",
+                                class: "_ident-field-#{ident.abbreviation}",
+                                data: { ci: [ident.name, ident.abbreviation] } }<
   %label
-    = card.company_identifier.abbreviation + ": "
+    = ident.abbreviation + ": "
   = render_raw
