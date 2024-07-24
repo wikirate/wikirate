@@ -18,19 +18,12 @@ format do
   def filter_map
     filtering_by_published do
       [:year,
-       { key: :company_filters,
-         type: :group,
-         label: :wikirate_company.cardname,
+       { key: :company_filters, type: :group, label: :wikirate_company.cardname,
          filters: company_filters },
-       { key: :metric_filters,
-         type: :group,
-         label: :metric.cardname,
-         # open: true,
+       { key: :metric_filters, type: :group, label: :metric.cardname,
          filters: metric_filters },
-       { key: :metric_answer,
-         type: :group,
-         filters: [{ key: :value, open: true }] +
-           %i[verification calculated status updated updater source] },
+       { key: :metric_answer, type: :group,
+         filters: answer_filters },
        :dataset]
     end
   end
@@ -50,6 +43,11 @@ format do
   # end
 
   private
+
+  def answer_filters
+    [{ key: :value, open: true }] +
+      %i[verification calculated status updated updater source]
+  end
 
   def metric_filters
     [
