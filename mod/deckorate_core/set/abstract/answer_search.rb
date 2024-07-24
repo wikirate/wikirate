@@ -18,12 +18,14 @@ format do
   def filter_map
     filtering_by_published do
       [:year,
-       { key: :wikirate_company,
+       { key: :company_filters,
          type: :group,
+         label: :wikirate_company.cardname,
          filters: company_filters },
-       { key: :metric,
+       { key: :metric_filters,
          type: :group,
-         open: true,
+         label: :metric.cardname,
+         # open: true,
          filters: metric_filters },
        { key: :metric_answer,
          type: :group,
