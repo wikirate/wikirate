@@ -71,7 +71,25 @@ addInput = (container, field, config, checked) ->
   label = input.find "label"
   label.html config["title"]
   label.attr "for", id
+  addIdentifierInputs input if field == "identifiers"
   container.append input
+
+addIdentifierInputs = (allIdInput) ->
+  idInputList = $('<div class="company-id-input-list ps-4 py-2">')
+  for idName, idAbbrev of companyIdentifiers()
+    addInput idInputList,
+      "ID-#{idAbbrev}",
+      { title: "#{idName} (#{idAbbrev})", selector: "._ident-field-#{idAbbrev}" },
+      defaultChecked("ID-#{idAbbrev}")
+  allIdInput.append idInputList
+
+# all the identifiers found in the page
+companyIdentifiers = () ->
+  map = {}
+  fields("._ident-field").each ->
+    fld = $(this).data "ci"
+    map[fld[0]] ||= fld[1]
+  map
 
 defaultChecked = (field) ->
   sdata = answerSlotData()
