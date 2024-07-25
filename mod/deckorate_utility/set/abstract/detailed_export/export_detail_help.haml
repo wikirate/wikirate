@@ -1,0 +1,9 @@
+- basics = basic_fields
+%p
+  Basic exports include the following fields:
+  %em
+    = basics.to_sentence + "."
+%p
+  Extended exports include all basic fields and add the following:
+  %em
+    = (detailed_fields - basics).to_sentence + "."
