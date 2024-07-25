@@ -41,17 +41,8 @@
                      form: "export-form"
   - else
     = hidden_field_tag "view", export_views, form: "export-form"
-  .row.mb-3
-    .col-4
-      %label.form-label
-        = export_item_limit_label
-        - unless Card::Auth.signed_in?
-          = popover_link sign_in_or_up_links("to export more data.")
 
-    .col-8
-      = select_tag :limit, options_for_select(export_limit_options),
-                   class: "_no-select2 form-select",
-                   form: "export-form"
+  = render_export_limit
 
   .d-flex.justify-content-between
     .btn.btn-outline-secondary{ "data-bs-toggle": "collapse",

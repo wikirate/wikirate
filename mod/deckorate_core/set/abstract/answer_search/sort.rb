@@ -51,13 +51,13 @@ format do
     {
       company_name: 4,
       metric_title: 4,
-      value: 3,
-      year: 1
+      value: 2,
+      year: 2
     }
   end
 
   def group_sort grouping
-    { grouping => 8, answer_count: 3, year_count: 1 }
+    { grouping => 8, answer_count: 2, year_count: 2 }
   end
 
   def default_sort_dir sort_by

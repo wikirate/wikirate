@@ -70,16 +70,16 @@ format do
   def simple_sort
     {
       company_name: 8,
-      value: 3,
-      year: 1
+      value: 2,
+      year: 2
     }
   end
 
   def record_sort
     {
       company_name: 8,
-      answer_count: 3,
-      year: 1
+      answer_count: 2,
+      year: 2
     }
   end
 

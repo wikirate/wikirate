@@ -42,8 +42,9 @@ format :json do
 end
 
 format :html do
-  view :export_panel, cache: :never, template: :haml, wrap: :slot
+  view :export_panel, template: :haml, wrap: :slot
   view :export_button, cache: :never, template: :haml, denial: :blank
+  view :export_limit, cache: :never, template: :haml
 
   view :filtered_results_footer do
     super() + export_form
