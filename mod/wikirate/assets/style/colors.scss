@@ -423,3 +423,14 @@ $lightMap: (
 .light-grey-color-2 {
   color: $gray-500;
 }
+
+// TODO move variables at top to variables file and change
+// $accordion-button-active-bg to $light-purple
+// and get rid of this
+.filter-form {
+  .accordion-button {
+    &:not(.collapsed) {
+      background-color: $light-purple;
+    }
+  }
+}
