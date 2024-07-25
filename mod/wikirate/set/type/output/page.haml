@@ -1,0 +1,12 @@
+.container
+  %header.pt-3
+    .card-menu-hoverspace.position-relative
+      = render_breadcrumbs
+      = render_menu
+  %main.row
+    .col-2.d-none.d-lg-block
+      &nbsp;
+    .col-12.col-lg-8
+      = render_titled_content
+    .col-2.d-none.d-lg-block
+      &nbsp;

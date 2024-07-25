@@ -1,0 +1,35 @@
+
+%section.d-flex.py-3.align-items-center
+  .me-3.badge.badge-purple
+    = field_nest :output_type, view: :core, items: { view: :name }
+  = field_nest :date, view: :core, unknown: :blank
+
+%h1
+  = render_title
+
+.py-2
+  = field_nest :wikirate_company,
+                unknown: :blank,
+                items: { view: :thumbnail_no_subtitle }
+
+%section.py-3
+  = field_nest :image, view: :content, size: :original
+
+%hr.my-3
+
+%section
+
+  - if card.uri.present?
+    %a.btn.btn-outline-primary.me-3{ href: card.uri }
+      Visit
+      = card.output_type
+
+  - if card.file.present?
+    %a.btn.btn-outline-primary{ href: field_nest(:file, view: :source) }
+      Download
+      = card.output_type
+
+%hr.my-3
+
+%section.py-5
+  = field_nest :description
