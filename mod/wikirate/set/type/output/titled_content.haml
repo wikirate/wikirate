@@ -25,7 +25,7 @@
       = card.output_type
 
   - if card.file.present?
-    %a.btn.btn-outline-primary{ href: field_nest(:file, view: :source) }
+    %a.btn.btn-outline-primary{ href: card.file_card.source }
       Download
       = card.output_type
 
