@@ -47,6 +47,12 @@
   :fields:
     :abbreviation: OC
 
+- :name: ISIN
+  :type: company_identifier
+  :codename: isin
+  :fields:
+    :abbreviation: ISIN
+
 - :name: Multiple
   :codename: multiple
 
