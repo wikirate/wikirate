@@ -48,6 +48,7 @@
     :abbreviation: OC
 
 - :name: ISIN
+  :conflict: override
   :type: company_identifier
   :codename: isin
   :fields:

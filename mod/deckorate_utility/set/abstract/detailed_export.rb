@@ -11,6 +11,20 @@ format :html do
   def export_views
     { Basic: :titled, Extended: :detailed }
   end
+
+  view :export_detail_help, template: :haml
+
+  def detail_popover
+    popover_link render_export_detail_help
+  end
+
+  def basic_fields
+    card.format(:csv).render_titles
+  end
+
+  def detailed_fields
+    card.format(:csv).render_titles show: :detailed_export
+  end
 end
 
 format do
