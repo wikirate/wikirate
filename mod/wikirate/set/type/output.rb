@@ -1,4 +1,4 @@
-include_set Abstract::DeckorateTabbed
+include_set Abstract::Breadcrumbs
 
 card_accessor :image
 card_accessor :description
