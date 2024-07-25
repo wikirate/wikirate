@@ -13,7 +13,7 @@
 
 $tree-button-padding: .3rem !default;
 $tree-body-padding: 0.5rem 0rem 0.5rem 2rem !default
-$tree-button-active-bg: $gray-100 !default;
+$tree-button-active-bg: $bar-body-hover-color !default;
 $tree-border-color: $gray-200 !default;
 
 .tree-button {
@@ -33,8 +33,9 @@ $tree-border-color: $gray-200 !default;
 
   &:not(.collapsed) {
     color: $accordion-button-active-color;
-    background-color: $tree-button-active-bg;
-    box-shadow: inset 0 ($accordion-border-width * -1) 0 $tree-border-color;
+    // background-color: $tree-button-active-bg;
+    // border: 1px solid $tree-border-color;
+    // box-shadow: inset 0 ($accordion-border-width * -1) 0 $tree-border-color;
 
     &::before {
       background-image: escape-svg($accordion-button-active-icon);
@@ -60,6 +61,7 @@ $tree-border-color: $gray-200 !default;
 
   &:hover {
     z-index: 2;
+    background-color: $bar-body-hover-color;
   }
 
   &:focus {
