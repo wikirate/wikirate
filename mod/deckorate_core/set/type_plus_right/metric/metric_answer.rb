@@ -78,7 +78,7 @@ format do
   def record_sort
     {
       company_name: 8,
-      answer_count: 2,
+      value: 2,
       year: 2
     }
   end
