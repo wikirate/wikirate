@@ -1,16 +1,6 @@
 include_set Abstract::FilteredBodyToggle
 include_set Abstract::LazyTree
 
-GROUP_SELECT = { answer_count: "count(distinct(answers.id))",
-                 year: "max(answers.year)",
-                 year_count: "count(distinct(answers.year))" }.freeze
-
-GROUP_SELECT_KEYS = {
-  company: %i[answer_count year_count],
-  metric: %i[answer_count year_count],
-  record: %i[answer_count year]
-}.freeze
-
 format do
   def answer_page_fixed_filters
     card.query_hash
@@ -18,10 +8,6 @@ format do
 
   def answer_page_filters
     filter_hash.merge answer_page_fixed_filters
-  end
-
-  def default_grouping
-    :none
   end
 
   def search_with_params
@@ -42,20 +28,6 @@ format do
         counts[:metric]
       when :record
         clean_relation(count_query).select(group_by_fields_string).distinct.count
-      end
-  end
-
-  def current_group
-    item_view = implicit_item_view.to_s
-
-    @current_group ||= {}
-    @current_group[item_view] ||=
-      if item_view.blank?
-        default_grouping
-      elsif (match = item_view.match(/(company|metric|record)/))
-        match[1].to_sym
-      else
-        :none
       end
   end
 
@@ -119,8 +91,8 @@ format :html do
 
   private
 
-  def default_grouping
-    :company
+  def with_sorting_and_wrapper
+    haml :sorting_and_wrapper, results: yield
   end
 
   def customize_item_options
@@ -138,69 +110,6 @@ format :html do
       metric_designer: "Metric Designer",
       contributor: "Contributor"
     }
-  end
-
-  def grouped_result
-    with_paging do
-      search_with_params.map do |result|
-        result[:name] = grouped_result_name result
-        branching_results(result) { haml(:"grouped_#{current_group}", result) }
-      end
-    end
-  end
-
-  def branching_results result
-    return yield if current_group == :record && result["answer_count"] == 1
-
-    tree_item yield, body: grouped_card_stub(result[:name]),
-                     context: result[:name].safe_key
-  end
-
-  def grouped_result_name result
-    group_by_fields.map { |fld| result[fld] }.cardname
-  end
-
-  # def record_result result
-  #   Card.fetch
-  # end
-
-  def group_by_fields
-    if current_group == :record
-      %w[metric_id company_id]
-    else
-      ["#{current_group}_id"]
-    end
-  end
-
-  def grouped_card_stub base_name
-    card_stub mark: [base_name, :metric_answer],
-              filter: grouped_card_filter,
-              slot: grouped_card_stub_slot_options,
-              limit: 5
-  end
-
-  def grouped_card_filter
-    filter_hash_from_params || {}
-  end
-
-  def grouped_card_stub_slot_options
-    { hide: :sorting_header }
-  end
-
-  def with_sorting_and_wrapper
-    haml :sorting_and_wrapper, results: yield
-  end
-
-  def group_by_fields_string
-    group_by_fields.map { |fld| "answers.#{fld}" }.join ", "
-  end
-
-  def group_by_query
-    group_by = select_fields = group_by_fields_string
-    GROUP_SELECT_KEYS[current_group].each do |key|
-      select_fields += ", #{GROUP_SELECT[key]} AS #{key}"
-    end
-    clean_relation.select(select_fields).group group_by
   end
 
   def filtered_body_views

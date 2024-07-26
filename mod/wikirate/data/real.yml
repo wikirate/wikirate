@@ -29,6 +29,10 @@
   :conflict: :override
   :codename: publication
 
+- :name: Case Study
+  :conflict: :override
+  :codename: case_study
+
 - :name: Use Case
   :codename: use_case
 
