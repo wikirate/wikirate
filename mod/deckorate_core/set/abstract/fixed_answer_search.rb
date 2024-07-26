@@ -31,6 +31,10 @@ format :json do
 end
 
 format :html do
+  def scrollable?
+    current_group == :none
+  end
+
   # none and all not available on answer dashboard yet.
   def filter_status_options
     super.merge "Not Researched" => "none", "Researched and Not" => "all"

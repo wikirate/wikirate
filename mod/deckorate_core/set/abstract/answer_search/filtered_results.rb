@@ -89,6 +89,10 @@ format :html do
     :grouped_company
   end
 
+  def scrollable?
+    current_group.in? %i[none record]
+  end
+
   private
 
   def with_sorting_and_wrapper
