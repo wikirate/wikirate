@@ -46,6 +46,10 @@ format :html do
   view :export_button, cache: :never, template: :haml, denial: :blank
   view :export_limit, cache: :never, template: :haml
 
+  view :export_hidden_tags, cache: :never do
+    hidden_tags filter_and_sort_hash, nil, form: "export-form"
+  end
+
   view :filtered_results_footer do
     super() + export_form
   end

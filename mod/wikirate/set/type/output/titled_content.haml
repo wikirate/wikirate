@@ -18,16 +18,16 @@
 %hr.my-3
 
 %section
-
+  - output_type_name = Card.fetch_name card.output_type
   - if card.uri.present?
     %a.btn.btn-outline-primary.me-3{ href: card.uri }
       Visit
-      = card.output_type
+      = output_type_name
 
   - if card.file.present?
     %a.btn.btn-outline-primary{ href: card.file_card.format.source }
       Download
-      = card.output_type
+      = output_type_name
 
 %hr.my-3
 
