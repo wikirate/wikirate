@@ -29,7 +29,14 @@
     //font-size: 0.8em;
   }
   .hover-field {
-    label { margin-right: 0.2em }
+    label {
+      margin-right: 0.2em
+    }
+    max-width: 200px;
+    text-overflow: ellipsis;
+    display: inline-block;
+    text-wrap: nowrap;
+    overflow: hidden;
   }
 }
 

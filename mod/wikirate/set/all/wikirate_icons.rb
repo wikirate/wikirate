@@ -7,7 +7,7 @@ icon_basket[:data_subset] = :dataset
 
 format :html do
   def wikirate_icon_tag icon, _opts={}
-    %(<i class="wr-icon wr-icon-#{icon}"></i>)
+    %(<i class="wr-icon wr-icon-#{icon} notranslate"></i>)
   end
 
   view :favicon_tag, unknown: true, perms: :none do

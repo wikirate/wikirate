@@ -14,7 +14,7 @@ RSpec.describe Card::Set::All::Wikirate do
 
     it "shows correct html for the menu_link view" do
       html = render_card :menu, name: "A"
-      expect(html).to include('<i class="material-icons">edit</i>')
+      expect(html).to have_tag("i.material-icons", with_text: "yomama")
     end
   end
 
