@@ -110,3 +110,11 @@
     }
   }
 }
+
+.hscroll-answer-results {
+  display: flex;
+  overflow-x: auto;
+  > div {
+    min-width: 975px;
+  }
+}

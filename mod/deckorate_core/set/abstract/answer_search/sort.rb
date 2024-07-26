@@ -15,7 +15,7 @@ format do
   SORT_TITLES = {
     company_name: "Company",
     metric_title: "Metric",
-    answer_count: "Answers",
+    answer_count: "Answer",
     value: "Answer",
     year_count: "Years",
     year: "Year"
@@ -42,8 +42,8 @@ format do
     {
       company_name: 4,
       metric_title: 4,
-      answer_count: 2,
-      year_count: 2
+      value: 2,
+      year: 2
     }
   end
 

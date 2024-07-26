@@ -1,3 +1,5 @@
-= render_sorting_header optional: :show
-.answer-result-items
-  = results
+.answer-results-container{ class: (scrollable? ? "hscroll-answer-results" : "") }
+  .answer-results-inner-container
+    = render_sorting_header optional: :show
+    .answer-result-items
+      = results
