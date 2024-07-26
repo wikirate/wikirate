@@ -56,16 +56,16 @@ format do
   def simple_sort
     {
       metric_title: 8,
-      value: 3,
-      year: 1
+      value: 2,
+      year: 2
     }
   end
 
   def record_sort
     {
       metric_title: 8,
-      answer_count: 3,
-      year: 1
+      value: 2,
+      year: 2
     }
   end
 
