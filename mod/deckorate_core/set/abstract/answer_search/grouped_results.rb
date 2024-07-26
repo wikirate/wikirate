@@ -86,8 +86,8 @@ format :html do
   def branching_results result
     return yield if current_group == :record && result["answer_count"] == 1
 
-    tree_item yield, body: grouped_card_stub(result[:name]),
-              context: result[:name].safe_key
+    name = result[:name]
+    tree_item yield, body: grouped_card_stub(name), context: name.safe_key
   end
 
   def record_sample_answer metric_id, company_id, year, value
