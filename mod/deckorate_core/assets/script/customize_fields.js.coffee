@@ -29,6 +29,7 @@ $ ->
     box = $(this)
     updateField box.data("fieldSelector"), box.is(":checked")
     updateCheckAll()
+    updateIdentCommas()
     updateSlotItems()
 
   $("body").on "change", "input#_all-custom-fields", (_e) ->
@@ -47,7 +48,13 @@ decko.slot.ready (slot) ->
     for field, config of deckorate.customFields
       updateField config["selector"], defaultChecked(field)
 
+  if slot.find("._ident-field")[0]
+    updateIdentCommas()
 
+updateIdentCommas = () ->
+  $("._ident-field:not(:contains(','))").append $("<span class='ident-comma'>, </span>")
+  $(".ident-comma").show()
+  $(".thumbnail-subtitle").find(".ident-comma:visible:last").hide()
 
 updateSlotItems = () ->
   sdata = answerSlotData()
