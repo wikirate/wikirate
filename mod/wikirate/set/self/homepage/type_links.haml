@@ -1,9 +1,9 @@
 
-._type-link-list.type-link-list.d-flex
-  .d-xl-none.d-flex.align-center.p-3
+._type-link-list.type-link-list.d-flex.row
+  .d-xl-none.d-flex.align-center.p-3.col-2.col-md-1.justify-content-center
     %a.wr-prev.wr-arrow
       = material_symbol_tag :arrow_back_ios
-  .col-10.col-xl-12
+  .col-8.col-md-10.col-xl-12
     .px-3{ data: {
         "slick-selector": ".card-list-thumbnail",
         slick: { infinite: false,
@@ -23,6 +23,6 @@
       = nest %i[cardtype featured],
                view: :core,
                items: { view: :thumbnail, variant: :plural, size: :medium }
-  .d-xl-none.d-flex.align-center.p-3
+  .d-xl-none.d-flex.align-center.p-3.col-2.col-md-1.justify-content-center
     %a.wr-next.wr-arrow
       = material_symbol_tag :arrow_forward_ios
