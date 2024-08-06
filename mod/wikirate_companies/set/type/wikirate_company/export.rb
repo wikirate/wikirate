@@ -39,7 +39,9 @@ format :json do
 
   def add_fields_to_hash hash, view=:atom
     card.simple_field_names.each do |fld|
-      hash[fld] = field_nest fld, view: view
+      key = fld.underscore.parameterize.underscore
+      # first underscore addresses camelcase. parameterize addresses spaces
+      hash[key] = field_nest fld, view: view
     end
   end
 
