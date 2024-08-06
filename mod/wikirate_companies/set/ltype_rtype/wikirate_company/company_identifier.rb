@@ -13,7 +13,7 @@ end
 format :json do
   view :core do
     if multiple?
-      super
+      super()
     elsif card.real?
       render_raw
     end
