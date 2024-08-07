@@ -40,7 +40,7 @@ class Card
         elsif id_type.present? && !id_type.card.multiple?
           { eq: id_value }
         else
-          { content: [:match, id_value] }
+          { content: [:match, ":#{id_value}] }
         end
       end
 
