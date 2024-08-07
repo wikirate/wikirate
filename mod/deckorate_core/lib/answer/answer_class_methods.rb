@@ -54,6 +54,10 @@ class Answer
       VERIFICATION_LEVELS.index { |v| v[:name] == name }
     end
 
+    def verification_title name
+      VERIFICATION_LEVELS[verification_index(name)][:title]
+    end
+
     private
 
     def value_joint
