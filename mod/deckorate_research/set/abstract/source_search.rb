@@ -85,6 +85,7 @@ class SourceFilterCql < WikirateFilterCql
   private
 
   def matching_field field_id, value
-    add_to_cql :right_plus, [field_id, { content: [:match, value] }] if value.present?
+    return unless value.present?
+    add_to_cql :right_plus, [field_id, { content: [:match, ":#{value}"] }]
   end
 end
