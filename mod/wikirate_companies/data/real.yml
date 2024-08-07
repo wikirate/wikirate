@@ -47,7 +47,7 @@
   :fields:
     :abbreviation: OC
 
-- :name: ISIN
+- :name: International Securities Identification Number
   :conflict: override
   :type: company_identifier
   :codename: isin

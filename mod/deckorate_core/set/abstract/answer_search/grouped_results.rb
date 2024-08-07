@@ -64,7 +64,7 @@ format :html do
   end
 
   def grouped_card_filter
-    filter_hash_from_params || {}
+    answer_page_filters
   end
 
   def grouped_card_stub_slot_options

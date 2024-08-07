@@ -2,7 +2,7 @@ include_set Abstract::CommonFilters
 include_set Abstract::BookmarkFiltering
 
 format :html do
-  Abstract::CommonFilters::HtmlFormat.define_filter_types verification: :radio,
+  Abstract::CommonFilters::HtmlFormat.define_filter_types verification: :check,
                                                           updater: :radio,
                                                           value: :text,
                                                           calculated: :radio,
@@ -40,6 +40,10 @@ format :html do
       verified_by_me_option opts
       verified_by_wikirate_team opts
     end
+  end
+
+  def filter_verification_closer_value value
+    Answer.verification_title value
   end
 
   def filter_updater_options

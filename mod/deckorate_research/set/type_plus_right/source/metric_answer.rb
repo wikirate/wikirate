@@ -7,6 +7,10 @@ def query_hash
   { source: left_id }
 end
 
+def answer_page_fixed_filter
+  { source: "~#{left_id}" }
+end
+
 # recount answers for a given source when a citation is updated
 recount_trigger :type_plus_right, :metric_answer, :source do |citation|
   answer_searches_for_sources citation.item_cards
