@@ -27,11 +27,7 @@ class Card
       private
 
       def company_identifier_type_clause id_type
-        if id_type.present?
-          { name: Array.wrap(id_type.clone).unshift("in") }
-        else
-          { type: :company_identifier }
-        end
+        id_type.present? ? id_type : { type: :company_identifier }
       end
 
       def company_identifier_value_clause id_type, id_value
@@ -40,7 +36,7 @@ class Card
         elsif id_type.present? && !id_type.card.multiple?
           { eq: id_value }
         else
-          { content: [:match, ":#{id_value}] }
+          { content: [:match, ":#{id_value}"] }
         end
       end
 
