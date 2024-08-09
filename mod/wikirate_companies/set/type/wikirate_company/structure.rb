@@ -1,5 +1,3 @@
-card_accessor :headquarters, type: :pointer
-
 def self.company_identifier_accessor codename
   card_accessor codename, type: :phrase if codename.present? && !method_defined?(codename)
 end
