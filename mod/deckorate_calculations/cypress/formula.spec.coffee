@@ -21,12 +21,12 @@ describe 'Formula editor', ->
     # open filtered list and choose new metric
     cy.contains("a", "Add Variable", timeout: 15000)
       .click force: true
-    cy.get("._filter-container [name='filter[name]']")
+    cy.get("._filter-container [name='filter[metric_keyword]']")
       .type("disturb{enter}", force: true)
     cy.wait 500
     cy.get("._search-checkbox-list")
       .should("contain", "Research")
-      .should("contain", "Scored by")
+      .should("contain", "Score")
       .should("not.contain", "Relationship")
     cy.get("input#Jedi_disturbances_in_the_Force").click()
     cy.get("._add-selected").click()

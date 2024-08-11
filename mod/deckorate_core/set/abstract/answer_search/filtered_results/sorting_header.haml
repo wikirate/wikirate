@@ -1,0 +1,14 @@
+.d-flex.sorting-header.bg-light.p-2.mt-2
+  .row.w-100
+    - sort_columns.each do |field, cols|
+      - title = sort_title field
+      .sorting-header-section.d-flex.align-items-center.fw-bold{ class: "col-#{cols}" }
+        .sort-title.me-2
+          = title
+        ._sort-buttons.sort-buttons.d-flex.flex-column
+          - %w[asc desc].each do |dir|
+            %a{ data: { sort_by: field, sort_dir: dir }, href: "#",
+                title: "Sort by #{title} #{dir.capitalize}ending" }
+              = icon_tag :"sort_#{dir}ending"
+  .bar-menu
+    &nbsp;

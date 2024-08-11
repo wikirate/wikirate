@@ -1,0 +1,4 @@
+.input-variable.text-end.w-100
+  - options_list = options.map { |key, value| "#{key}: #{value}"}.join ", "
+  .input-variable-name{ title: "variable name: #{variable}\n#{options_list}" }
+    = variable

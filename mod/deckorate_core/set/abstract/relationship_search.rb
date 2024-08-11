@@ -32,7 +32,7 @@ format do
       { key: :metric,
         type: :group,
         open: true,
-        filters: shared_metric_filter_map.unshift(:metric_name) },
+        filters: super },
       { key: :metric_answer,
         type: :group,
         filters: [{ key: :value, open: true }, :updated] }
@@ -51,7 +51,7 @@ format :csv do
     ::Relationship.csv_titles detailed?
   end
 
-  view :core do
+  view :body do
     detailed = detailed?
     query.lookup_relation.map { |row| row.csv_line detailed }
   end

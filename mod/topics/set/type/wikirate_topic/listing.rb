@@ -12,7 +12,7 @@ format :html do
   end
 
   view :bar_bottom do
-    [render_bar_middle, render_details]
+    [render_bar_middle, render_details_tab_right, render_details_tab_left]
   end
 
   view :box_middle do

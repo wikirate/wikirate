@@ -7,7 +7,7 @@ def user_acts
 end
 
 def accounted?
-  left&.account
+  left&.account?
 end
 
 format :html do

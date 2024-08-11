@@ -32,8 +32,10 @@ format :html do
   end
 
   view :credit, unknown: true do
-    wrap_with :div, class: "credit text-muted text-end" do
-      card.new? ? "" : [credit_verb, credit_date, credit_whom].join(" ")
+    return "" if card.new?
+    title = [credit_verb, credit_date, credit_whom].join(" ")
+    wrap_with :div, class: "credit text-muted", title: title do
+      nest card.content_updater, view: :thumbnail_no_subtitle, size: :icon
     end
   end
 
@@ -63,7 +65,8 @@ format :html do
 
   # link to full action history (includes value history)
   def credit_verb
-    link_to_card card.left, "updated", path: { view: :history }, rel: "nofollow"
+    "updated"
+    # link_to_card card.left, "updated", path: { view: :history }, rel: "nofollow"
   end
 
   def credit_date
@@ -71,6 +74,6 @@ format :html do
   end
 
   def credit_whom
-    "by #{link_to_card card.content_updater}"
+    "by #{card.content_updater}"
   end
 end

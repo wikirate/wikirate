@@ -1,0 +1,180 @@
+//
+// Base styles
+//
+
+.tree-button:before,
+.accordion-button::after {
+  content: "\E5CF"; // expand more
+  font-family: "Material Icons";
+  background-image: none !important;
+  font-size: 1.5em;
+  height: 1em;
+}
+
+$tree-button-padding: .3rem !default;
+$tree-body-padding: 0.5rem 0rem 0.5rem 2rem !default
+$tree-button-active-bg: $bar-body-hover-color !default;
+$tree-border-color: $gray-200 !default;
+
+.tree-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: $tree-button-padding;
+  @include font-size($font-size-base);
+  color: $accordion-button-color;
+  text-align: left; // Reset button style
+  background-color: $accordion-button-bg;
+  border: 0;
+  @include border-radius(0);
+  overflow-anchor: none;
+  @include transition($accordion-transition);
+
+  &:not(.collapsed) {
+    color: $accordion-button-active-color;
+    // background-color: $tree-button-active-bg;
+    // border: 1px solid $tree-border-color;
+    // box-shadow: inset 0 ($accordion-border-width * -1) 0 $tree-border-color;
+
+    &::before {
+      background-image: escape-svg($accordion-button-active-icon);
+      transform: rotate(0deg);
+      //transform: $accordion-icon-transform;
+    }
+  }
+
+  // Accordion icon
+  &::before {
+    flex-shrink: 0;
+    width: $accordion-icon-width;
+    height: $accordion-icon-width;
+    margin-right: auto;
+    // content: "\E5CC"; // chevron-right
+
+    background-image: escape-svg($accordion-button-icon);
+    background-repeat: no-repeat;
+    background-size: $accordion-icon-width;
+    @include transition($accordion-icon-transition);
+    transform: rotate(-90deg);
+  }
+
+  &:hover {
+    z-index: 2;
+    background-color: $bar-body-hover-color;
+  }
+
+  &:focus {
+    z-index: 3;
+    // border-color: $accordion-button-focus-border-color;
+    border-color: $tree-border-color;
+    outline: 0;
+    box-shadow: $accordion-button-focus-box-shadow;
+  }
+}
+
+.tree-header {
+  margin-bottom: 0;
+}
+
+.tree-item {
+  background-color: $accordion-bg;
+  // border: $accordion-border-width solid $accordion-border-color;
+
+  &:first-of-type {
+    @include border-top-radius($accordion-border-radius);
+
+    .tree-button {
+      @include border-top-radius($accordion-inner-border-radius);
+    }
+  }
+
+  &:not(:first-of-type) {
+    border-top: 0;
+  }
+
+  // Only set a border-radius on the last item if the tree is collapsed
+  &:last-of-type {
+    @include border-bottom-radius($accordion-border-radius);
+
+    .tree-button {
+      &.collapsed {
+        @include border-bottom-radius($accordion-inner-border-radius);
+      }
+    }
+
+    .tree-collapse {
+      @include border-bottom-radius($accordion-border-radius);
+    }
+  }
+}
+
+.tree-body {
+  padding: $tree-body-padding;
+}
+
+
+// Flush tree items
+//
+// Remove borders and border-radius to keep tree items edge-to-edge.
+
+.tree-flush {
+  .tree-collapse {
+    border-width: 0;
+  }
+
+  .tree-item {
+    border-right: 0;
+    border-left: 0;
+    @include border-radius(0);
+
+    &:first-child { border-top: 0; }
+    &:last-child { border-bottom: 0; }
+
+    .tree-button {
+      @include border-radius(0);
+    }
+  }
+}
+
+// Wikirate-specific
+
+.tree-body {
+  .alert {
+    padding: 0.3rem 1em;
+  }
+  table {
+    padding: 0;
+    margin: 0
+  }
+  td, th {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  td {
+    background: white;
+  }
+}
+
+.static-tree-item {
+  padding-left: 1.75rem;
+}
+
+.metric-tree-item-title.row {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid $gray-200;
+}
+
+.tree-button {
+  padding-right: 0;
+}
+.formula-algorithm .tree-button::before {
+  background: none !important;
+  //display: none;
+}
+.input-variable-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

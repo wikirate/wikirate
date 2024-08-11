@@ -4,12 +4,15 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
 COUNT_FIELDS = {
   "answers.company_id": :wikirate_company,
   "answers.metric_id": :metric,
+  "answers.year": :year,
+  "answers.id": :metric_answer
+}.freeze
+
+DEEP_COUNT_FIELDS = {
   "designer_id": :designer,
-  "answers.verification": :verification,
   "metrics.metric_type_id": :metric_type,
   "metrics.value_type_id": :value_type,
-  "answers.year": :year,
-  "*": :metric_answer
+  "answers.verification": :verification
 }.freeze
 
 format do
@@ -31,10 +34,6 @@ format do
     @counts ||= tally_counts
   end
 
-  def count_with_params
-    counts[:metric_answer]
-  end
-
   def tally_counts
     counts = answer_table_counts
     researched = counts[:metric_answer].to_i
@@ -45,16 +44,27 @@ format do
     )
   end
 
+  def deep_counts
+    @deep_counts ||= tally_deep_counts
+  end
+
+  def tally_deep_counts
+    fields = COUNT_FIELDS.merge DEEP_COUNT_FIELDS
+    research_count_query.joins(:metric)
+                        .pluck_all(*count_fields(fields))
+                        .first
+                        .symbolize_keys
+  end
+
   def answer_table_counts
     return {} if not_researched?
 
-    research_count_query.joins(:metric).pluck_all(*count_fields).first.symbolize_keys
+    research_count_query.pluck_all(*count_fields(COUNT_FIELDS)).first.symbolize_keys
   end
 
-  def count_fields
-    COUNT_FIELDS.map do |field, key|
-      field = "DISTINCT(#{field})" unless field.to_s == "*"
-      "COUNT(#{field}) AS #{key}"
+  def count_fields fields
+    fields.map do |field, key|
+      "COUNT(DISTINCT(#{field})) AS #{key}"
     end
   end
 
@@ -139,8 +149,8 @@ format :html do
     Codename.exists?(codename) ? codename.cardname : codename.to_s.to_name
   end
 
-  def answer_count_badge codename
-    count = counts[codename]
+  def answer_count_badge codename, count=nil
+    count ||= counts[codename]
     labeled_badge number_with_delimiter(count),
                   answer_count_badge_label(codename, count),
                   color: "#{badge_label(codename).downcase} bg-secondary"

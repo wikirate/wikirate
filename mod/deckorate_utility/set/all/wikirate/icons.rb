@@ -39,7 +39,14 @@ basket[:icons][:material].merge!(
   reference: :attribution,
   history: :history,
   clipboard: :content_copy,
-  save: :download
+  save: :download,
+  customize: :visibility,
+  bars: :list,
+  boxes: :grid_view,
+  graph: :insights,
+  sort_ascending: :keyboard_arrow_up,
+  sort_descending: :keyboard_arrow_down,
+  help: :help
 )
 
 basket[:icons][:font_awesome].merge!(

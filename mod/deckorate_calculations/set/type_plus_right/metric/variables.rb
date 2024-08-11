@@ -49,8 +49,10 @@ def item_strings _args={}
 end
 
 def hash_list
-  # @hash_list ||=
-  parse_content.map(&:symbolize_keys!)
+  parsed = parse_content
+  parsed.present? ? parsed.map(&:symbolize_keys!) : []
+  # above is needed for special cases like headquarters location that have no input
+  # metrics
 end
 
 def pod_content
@@ -61,8 +63,25 @@ def input_array
   (content.present? ? parse_content : [])
 end
 
+# formulae can use the same metric for more than one variable
 def unique_items?
   metric_type_codename != :formula
+end
+
+# def year_option?
+#   hash_list.find { |h| h.key? :year }
+# end
+#
+# def company_option?
+#   hash_list.find { |h| h.key? :company }
+# end
+
+def unorthodox?
+  hash_list.any? { |h| h.key?(:year) || h.key?(:company) }
+end
+
+def metric_and_detail
+  send "#{metric_type_codename}_metric_and_detail"
 end
 
 private
@@ -92,7 +111,7 @@ format :html do
   delegate :metric_type_codename, :score?, :rating?, to: :card
 
   view :core do
-    render :"#{metric_type_codename}_core"
+    [render_algorithm, metric_tree].compact
   end
 
   view :input do
@@ -102,6 +121,18 @@ format :html do
       card.content = card.content # trigger standardization
       super()
     end
+  end
+
+  view :algorithm do
+    return unless (cont = algorithm_content).present?
+    card.metric_card.format.format_algorithm cont if cont
+  end
+
+  # don't cache filter items view
+  view(:filter_items, cache: :never) { super() }
+
+  def algorithm_content
+    try "#{metric_type_codename}_algorithm"
   end
 
   def input_type
@@ -142,5 +173,13 @@ format :html do
   # hacky. prevents new form from treating +variables as a subcard of +formula
   def edit_in_form_prefix
     card.new? ? "card[fields][:variables]" : super
+  end
+
+  private
+
+  def metric_tree
+    card.metric_and_detail.map do |metric, detail|
+      metric.card.format.metric_tree_item detail
+    end
   end
 end

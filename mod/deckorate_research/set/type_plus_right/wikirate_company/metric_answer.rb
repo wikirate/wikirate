@@ -3,10 +3,6 @@ include_set Abstract::BookmarkFiltering
 include_set Abstract::CachedCount
 include_set Abstract::FixedAnswerSearch
 
-# TODO: move this elsewhere. sdg is wikirate-specific
-include_set Abstract::SdgFiltering
-
-
 # recount number of answers for a given metric when an answer card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
@@ -37,12 +33,12 @@ def bookmark_type
 end
 
 format do
-  def default_sort_option
-    record? || !single?(:year) ? :year : :metric_bookmarkers
+  def default_lookup_sort_option
+    :metric_title
   end
 
   def secondary_sort_hash
-    super.merge year: { metric_bookmarkers: :desc, metric_title: :asc }
+    super.merge year: { metric_title: :asc }
   end
 
   def filter_map
@@ -50,11 +46,31 @@ format do
   end
 
   def default_filter_hash
-    { metric_name: "" }
+    { metric_keyword: "" }
   end
 
   def sort_options
     super.reject { |_k, v| v == :company_name }
+  end
+
+  def simple_sort
+    {
+      metric_title: 8,
+      value: 2,
+      year: 2
+    }
+  end
+
+  def record_sort
+    {
+      metric_title: 8,
+      value: 2,
+      year: 2
+    }
+  end
+
+  def fixed_filter_field
+    :company
   end
 end
 

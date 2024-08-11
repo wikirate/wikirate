@@ -18,7 +18,7 @@
   &.thumbnail, &.box .box-top {
     .thumbnail-subtitle a {
       color: inherit !important;
-      margin-left: 0.2em;
+      // margin-left: 0.2em;
     }
   }
 }
@@ -45,30 +45,30 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 
 
-.metric-thumbnail {
-  font-size: 0.66em;
-  font-weight: normal;
-  white-space: nowrap;
-  border: solid 1px $border-color;
-  display: inline-block;
-  padding: 7px;
-  margin-bottom: 8px;
-  img {
-    max-width: 35px;
-    max-height: 35px;
-  }
-  .thumbnail-image,
-  .thumbnail-text {
-    display: inline-block;
-    vertical-align: middle;
-    > a {
-      color: $gray-600;
-    }
-    a > div {
-      max-width: 225px;
-    }
-  }
-}
+//.metric-thumbnail {
+//  font-size: 0.66em;
+//  font-weight: normal;
+//  white-space: nowrap;
+//  border: solid 1px $border-color;
+//  display: inline-block;
+//  padding: 7px;
+//  margin-bottom: 8px;
+//  img {
+//    max-width: 35px;
+//    max-height: 35px;
+//  }
+//  .thumbnail-image,
+//  .thumbnail-text {
+//    display: inline-block;
+//    vertical-align: middle;
+//    > a {
+//      color: $gray-600;
+//    }
+//    a > div {
+//      max-width: 225px;
+//    }
+//  }
+//}
 
 .table > tbody > tr > td > .metric-thumbnail {
   float: left;

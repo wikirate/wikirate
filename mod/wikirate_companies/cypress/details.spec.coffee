@@ -3,10 +3,12 @@ describe "expanding details on company pages", ->
     cy.visit "Death Star"
 
     # use filter to find darkness rating
-    cy.get("._filters-button a").click()
+    cy.get(".tab-li-metric_answer").click()
+    cy.get("._open-filters-button a").click()
     cy.get(".offcanvas").within () ->
-      cy.contains("Metric Name").click()
-      cy.get("[name='filter[metric_name]']").type("darkness{enter}")
+      cy.get(".accordion-header").contains("Metric").click()
+      cy.contains("Metric Keyword").click()
+      cy.get("[name='filter[metric_keyword]']").type("darkness{enter}")
     cy.get(".offcanvas-header .btn-close").click()
 
     # filter works
@@ -18,30 +20,6 @@ describe "expanding details on company pages", ->
     cy.contains "deadliness"
     cy.contains "disturbance"
 
-    # expand details of first score
-    cy.get("tbody tr:first-child .range-value").contains("10").click()
-    cy.contains "Scored Metric"
-    cy.get("._modal-slot").should "not.contain", "disturbance"
-    cy.get("._modal-slot").should "not.contain", "Sources"
-
-    # expand details of raw value
-    cy.get("._modal-slot:visible").within () ->
-      cy.contains("100").click()
-    cy.get("._modal-slot").should "not.contain", "Scored Metric"
-    cy.contains "Sources"
-    cy.contains "thereaderwiki.com"
-
-    # close raw value
-    cy.wait 400 # let modal transition finish
-    cy.get("._close-modal:visible").first().click()
-    cy.contains "Scored Metric"
-    cy.get("._modal-slot").should "not.contain", "disturbance"
-    cy.get("._modal-slot").should "not.contain", "Sources"
-
-    # close score
-    cy.wait 400 # let modal transition finish
-
-    cy.get("._close-modal").first().click()
-    cy.get("._modal-slot").should "not.contain", "Scored Metric"
-    cy.contains "deadliness"
-    cy.contains "disturbance"
+    # expand details of score
+    cy.get(".metric-tree-detail").contains("40%").click()
+    cy.get(".tree-body").should("contain", "yes")

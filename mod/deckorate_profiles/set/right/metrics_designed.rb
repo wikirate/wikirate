@@ -1,3 +1,5 @@
-def cql_content
-  { type: :metric, left: "_left" }
+include_set Abstract::MetricSearch
+
+def query_hash
+  { designer_id: left_id }
 end

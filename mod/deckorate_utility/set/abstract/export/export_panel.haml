@@ -1,43 +1,53 @@
-%form.export-panel.p-3{ action: "/" }
-  = hidden_tags filter_and_sort_hash
+//%form
+
+.export-panel.p-3{ action: "/" }
+  = render_export_hidden_tags
   %h2.mb-3 Export Data
   - if export_mark.is_a? Hash
     .row.mb-3
       .col-4
         %label.form-label Type
       .col-8
-        = select_tag :mark, options_for_select(export_mark), class: "_no-select2 form-select"
+        = select_tag :mark, options_for_select(export_mark),
+                     class: "_no-select2 form-select",
+                     form: "export-form"
   - else
-    = hidden_field_tag "mark", export_mark
+    = hidden_field_tag "mark", export_mark, form: "export-form"
+
+  - if respond_to? :export_types
+    .row.mb-3
+      .col-4
+        %label.form-label Type
+      .col-8
+        = select_tag :type, options_for_select(export_types),
+                     class: "_no-select2 form-select",
+                     form: "export-form"
   .row.mb-3
     .col-4
       %label.form-label Format
     .col-8
-      = select_tag :format, options_for_select(export_formats), class: "_no-select2 form-select"
+      = select_tag :format, options_for_select(export_formats),
+                            class: "_no-select2 form-select",
+                            form: "export-form"
   - if export_views.is_a? Hash
     .row.mb-3
       .col-4
-        %label.form-label Detail
+        %label.form-label
+          Detail
+          = detail_popover
       .col-8
-        = select_tag :view, options_for_select(export_views), class: "_no-select2 form-select"
+        = select_tag :view, options_for_select(export_views),
+                     class: "_no-select2 form-select",
+                     form: "export-form"
   - else
-    = hidden_field_tag "view", export_views
-  .row.mb-3
-    .col-4
-      %label.form-label
-        = export_item_limit_label
-        - unless Card::Auth.signed_in?
-          - popover_content = capture_haml do
-            = sign_in_or_up_links "to export more data."
-          = popover_link popover_content
+    = hidden_field_tag "view", export_views, form: "export-form"
 
-    .col-8
-      = select_tag :limit, options_for_select(export_limit_options), class: "_no-select2 form-select"
+  = render_export_limit
 
   .d-flex.justify-content-between
     .btn.btn-outline-secondary{ "data-bs-toggle": "collapse",
                                 "data-bs-target": ".export_panel-view"}
       Cancel
-    %button._export-button.btn.btn-primary{ type: :submit }
+    %button._export-button.btn.btn-primary{ type: :submit, form: "export-form" }
       Export
 

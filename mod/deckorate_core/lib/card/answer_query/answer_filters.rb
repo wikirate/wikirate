@@ -32,9 +32,9 @@ class Card
       end
 
       def filter_by_verification value
-        index = Answer.verification_index value
-        if index
-          filter :verification, index
+        indeces = Array.wrap(value).map { |v| Answer.verification_index v }
+        if indeces.present?
+          filter :verification, indeces
         else
           filter_by_non_standard_verification value
         end

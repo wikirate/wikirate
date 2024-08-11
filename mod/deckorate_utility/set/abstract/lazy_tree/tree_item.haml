@@ -1,0 +1,13 @@
+.tree-item{ class: classy("tree-item"), data: data }
+  %h2.tree-header.nodblclick.w-100
+    %button.tree-button{ type: "button",
+                         class: ("collapsed" unless open),
+                         "data-bs-toggle": "collapse",
+                         "data-bs-target": "##{collapse_id}" }
+      = title
+  .tree-collapse.collapse{ id: collapse_id, class: ("show" if open ) }
+    - if subheader
+      .tree-subheader.bg-light.p-2.text-end
+        = subheader
+    .d0-card-body{ class: classy("tree-body") }
+      = body

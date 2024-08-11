@@ -54,11 +54,11 @@ format :html do
   end
 
   def tab_list
-    %i[researcher project metric details]
+    %i[details researcher project metric]
   end
 
   view :metric_tab do
-    field_nest :metric, items: { view: :bar }
+    field_nest :metric, view: :filtered_content
   end
 
   view :project_tab do
@@ -67,10 +67,6 @@ format :html do
 
   view :researcher_tab do
     field_nest :researcher, view: :overview
-  end
-
-  view :details_tab do
-    render_details
   end
 
   view :bar_left do
@@ -86,16 +82,29 @@ format :html do
   end
 
   view :bar_bottom do
-    render_details
+    [render_details_tab_right, render_details_tab_left]
+  end
+
+  view :box_middle do
+    field_nest :image, view: :core, size: :medium
+  end
+
+  view :box_bottom do
+    render_bar_right
   end
 
   view :one_line_content do
     ""
   end
 
-  view :details do
-    [labeled_fields { [organizer_detail, topic_detail] },
-     field_nest(:description, view: :titled),
-     field_nest(:conversation, items: { view: :link })]
+  view :details_tab_left do
+    [
+      field_nest(:description, view: :titled),
+      field_nest(:conversation, items: { view: :link })
+    ]
+  end
+
+  view :details_tab_right do
+    labeled_fields { [organizer_detail, topic_detail] }
   end
 end

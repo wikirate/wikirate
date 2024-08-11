@@ -8,17 +8,25 @@ include_set Abstract::FixedAnswerSearch
 # recount number of answers for a given metric when an Answer card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
-  changed_card.metric_card.fetch :metric_answer
+  answer_fields changed_card.metric_card
 end
 
 # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
-  changed_card.left.fetch :metric_answer
+  answer_fields changed_card.left
 end
 
 # ...or when answer is (un)published
 field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  changed_card.left.metric_card.fetch :metric_answer
+  answer_fields changed_card.left.metric_card
+end
+
+recount_trigger :type_plus_right, :metric, :formula do |changed_card|
+  answer_fields changed_card.left
+end
+
+def self.answer_fields metric
+  ([metric] + metric.depender_metrics).map { |m| m.fetch :metric_answer }
 end
 
 # TODO: trigger recount from virtual answer batches
@@ -36,7 +44,7 @@ def bookmark_type
 end
 
 def metric_card
-  @metric_card ||= left&.metric_card
+  @metric_card ||= left
 end
 
 format do
@@ -46,9 +54,9 @@ format do
     "#{metric_card.metric_title.to_name.url_key}+Answer"
   end
 
-  def secondary_sort_hash
-    super.merge year: { value: :desc }
-  end
+  # def secondary_sort_hash
+  #   super.merge year: { value: :desc }
+  # end
 
   def filter_map
     filter_map_without_keys(super, :metric)
@@ -59,8 +67,24 @@ format do
     { company_name: "" }
   end
 
-  def sort_options
-    super.reject { |_k, v| v == :metric_title }
+  def simple_sort
+    {
+      company_name: 8,
+      value: 2,
+      year: 2
+    }
+  end
+
+  def record_sort
+    {
+      company_name: 8,
+      value: 2,
+      year: 2
+    }
+  end
+
+  def fixed_filter_field
+    :metric
   end
 end
 

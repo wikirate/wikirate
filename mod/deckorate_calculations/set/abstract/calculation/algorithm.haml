@@ -1,0 +1,12 @@
+- body = capture_haml do
+  .formula-algorithm.alert.alert-info.mb-2
+    = algorithm
+
+- title = capture_haml do
+  %em.p-2.d-flex.align-items-center
+    .pe-2
+      How it works
+    = icon_tag :details
+
+.formula-algorithm
+  = tree_item title, body: body, context: "algorithm"

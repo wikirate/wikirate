@@ -1,0 +1,8 @@
+- cid = card.company_identifier
+- title = "#{cid.name}: #{render_raw}"
+%span._ident-field.hover-field.nodblclick{ title: title,
+                                           class: "_ident-field-#{cid.abbreviation}",
+                                           data: { ci: [cid.name, cid.abbreviation] } }<
+  %label
+    = cid.abbreviation + ": "
+  = render_raw

@@ -4,6 +4,7 @@ include_set Abstract::CqlSearch
 include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::CommonFilters
+include_set Abstract::BarBoxToggle
 
 def item_type_id
   SourceID
@@ -84,6 +85,7 @@ class SourceFilterCql < WikirateFilterCql
   private
 
   def matching_field field_id, value
-    add_to_cql :right_plus, [field_id, { content: [:match, value] }] if value.present?
+    return unless value.present?
+    add_to_cql :right_plus, [field_id, { content: [:match, ":#{value}"] }]
   end
 end

@@ -15,9 +15,21 @@ format do
   def default_sort_option
     :year
   end
+
+  def answer_page_fixed_filters
+    { company: card.company_id.cardname, metric: card.metric_id.cardname }
+  end
 end
 
 format :html do
+  before :core do
+    voo.items[:hide] = %i[company_thumbnail metric_thumbnail]
+  end
+
+  def default_item_view
+    :full_bar
+  end
+
   def cell_views
     [:concise]
   end

@@ -2,7 +2,8 @@
 
 include_set Abstract::Media
 include_set Abstract::Delist
-include_set Abstract::Accountable
+include_set Abstract::AccountHolder
+include_set Abstract::Bookmarker
 include_set Abstract::Stewardable
 include_set Abstract::DeckorateTabbed
 
@@ -14,6 +15,8 @@ card_accessor :metric_answer, type: :search_type
 card_accessor :image
 card_accessor :incorporation
 card_accessor :headquarters, type: :pointer
+card_accessor :isin
+card_accessor :wikirate_website, type: :phrase
 
 event :validate_company_name, :validate, changed: :name, on: :save do
   errors.add :name, "Use ＋ instead of + in company name" if name.compound?

@@ -4,6 +4,7 @@ include_set Abstract::BookmarkFiltering
 include_set Abstract::LookupSearch
 include_set Abstract::SearchViews
 include_set Abstract::DetailedExport
+include_set Abstract::BarBoxToggle
 
 def bookmark_type
   :metric
@@ -19,7 +20,7 @@ end
 
 format do
   def default_filter_hash
-    { name: "" }
+    { metric_keyword: "" }
   end
 
   # def default_limit
@@ -30,13 +31,20 @@ format do
     :bookmarkers
   end
 
-  def shared_metric_filter_map
-    %i[bookmark topic designer metric_type value_type research_policy]
+  def filter_metric_item_view
+    :thumbnail
   end
 
+  def shared_metric_filter_map
+    %i[wikirate_topic designer metric_type value_type research_policy bookmark]
+  end
+
+  # answer searches have different handling of published and dataset filters
   def filter_map
     filtering_by_published do
-      shared_metric_filter_map.unshift key: :name, label: "Metric Name", open: true
+      shared_metric_filter_map.unshift key: :metric_keyword,
+                                       label: "Metric Keyword",
+                                       open: true
     end << :dataset
   end
 
@@ -54,11 +62,19 @@ format do
   def default_desc_sort_dir
     ::Set.new %i[bookmarkers company answer reference]
   end
+
+  def secondary_sort_hash
+    {
+      metric_bookmarkers: { metric_title: :asc },
+      metric_designer: { metric_title: :asc }
+    }
+  end
 end
 
 format :html do
   METRIC_FILTER_TYPES = {
-    metric_name: :text,
+    metric: :multiselect,
+    metric_keyword: :text,
     research_policy: :radio,
     metric_type: :check,
     designer: :multiselect,
@@ -78,6 +94,10 @@ format :html do
         names.length == 3 ? names[2] : names[0]
       end.uniq(&:downcase).sort_by(&:downcase)
     end
+  end
+
+  def filter_metric_options
+    :metric.cardname
   end
 
   def filter_metric_type_options

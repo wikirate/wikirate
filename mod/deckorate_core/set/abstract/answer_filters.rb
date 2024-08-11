@@ -2,14 +2,14 @@ include_set Abstract::CommonFilters
 include_set Abstract::BookmarkFiltering
 
 format :html do
-  Abstract::CommonFilters::HtmlFormat.define_filter_types verification: :radio,
+  Abstract::CommonFilters::HtmlFormat.define_filter_types verification: :check,
                                                           updater: :radio,
                                                           value: :text,
                                                           calculated: :radio,
                                                           status: :radio,
                                                           updated: :radio,
                                                           # outliers: :radio,
-                                                          source: :autocomplete
+                                                          source: :multiselect
 
   def filter_status_default
     "exists"
@@ -42,6 +42,10 @@ format :html do
     end
   end
 
+  def filter_verification_closer_value value
+    Answer.verification_title value
+  end
+
   def filter_updater_options
     o = {}
     o["by Me"] = "current_user" if Card::Auth.signed_in?
@@ -51,6 +55,10 @@ format :html do
 
   def filter_calculated_options
     { "Yes" => :calculated, "No" => :not_calculated }
+  end
+
+  def filter_source_options
+    :remote_type
   end
 
   def filter_status_label

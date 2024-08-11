@@ -1,7 +1,16 @@
 include_set Abstract::Thumbnail
 
 format :html do
+  def thumbnail_title
+    voo.show :title_link if voo.show? :thumbnail_link
+    output [render_title, render_headquarters]
+  end
+
   def thumbnail_subtitle
+    render :identifiers_list, optional: :show
+  end
+
+  view :headquarters do
     field_nest :headquarters, view: :content, unknown: :blank, items: { view: :name }
   end
 

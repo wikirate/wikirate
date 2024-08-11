@@ -1,5 +1,49 @@
+.thumbnail {
+  .thumbnail-title, .thumbnail-title a {
+    font-weight: normal;
+  }
+}
+
 .thumbnail-with-bookmark {
   display: flex;
   align-items: center;
 }
 
+.TYPE-company.thumbnail, .TYPE-metric.thumbnail {
+  .thumbnail-title {
+    display: flex;
+  }
+  .pointer-list {
+    padding: 0;
+  }
+  .card-title {
+    margin-bottom: 0;
+    margin-right: 0.5em;
+  }
+  .RIGHT-headquarter.content-view, .thumbnail-title-right {
+    color: $gray-600;
+    .material-icons {
+      font-size: 0.8em;
+      vertical-align: middle;
+    }
+    //font-size: 0.8em;
+  }
+  .hover-field {
+    label {
+      margin-right: 0.2em
+    }
+    max-width: 200px;
+    text-overflow: ellipsis;
+    display: inline-block;
+    text-wrap: nowrap;
+    overflow: hidden;
+  }
+}
+
+.credit .RIGHT-headquarter.content-view {
+  display: none !important;
+}
+
+.TYPE-answer.bar .bar-left > .w-50 {
+  padding-right: 1.5em;
+}

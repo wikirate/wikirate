@@ -14,7 +14,31 @@ class Card
         AnswerCondition.new(table, constraint).sql
       end
 
+      def company_identifier_clauses hash
+        id_type = hash[:type]
+        id_value = hash[:value]
+
+        return unless id_type.present? || id_value.present?
+
+        yield company_identifier_type_clause(id_type),
+              company_identifier_value_clause(id_type, id_value)
+      end
+
       private
+
+      def company_identifier_type_clause id_type
+        id_type.present? ? id_type : { type: :company_identifier }
+      end
+
+      def company_identifier_value_clause id_type, id_value
+        if id_value.blank?
+          {}
+        elsif id_type.present? && !id_type.card.multiple?
+          { eq: id_value }
+        else
+          { content: [:match, ":#{id_value}"] }
+        end
+      end
 
       def answer_condition table, codename
         "#{table}.metric_id = #{codename.card_id} AND #{table}.value IN (?)"
@@ -124,6 +148,12 @@ class Card
 
     def dataset_cql dataset
       referred_to_by_company_list dataset
+    end
+
+    def company_identifier_cql value_hash
+      self.class.company_identifier_clauses(value_hash) do |type_clause, value_clause|
+        add_to_cql :right_plus, [type_clause, value_clause]
+      end
     end
 
     def referred_to_by_company_list trunk

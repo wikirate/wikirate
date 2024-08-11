@@ -15,11 +15,11 @@ def current_organizer?
   Auth.current_id.in?(left.organizer_card.item_ids)
 end
 
-def ok_to_read
+def ok_to_read?
   super || current_member? || current_organizer?
 end
 
-def ok_to_update
+def ok_to_update?
   super || current_organizer?
 end
 
@@ -29,13 +29,11 @@ end
 
 event :join_group, :validate, trigger: :required do
   abort :failure, "cannot join this group" unless ok_to_join?
-  add_item! Auth.current.name
-  abort :success
+  add_item Auth.current.name
 end
 
 event :leave_group, :validate, trigger: :required do
-  drop_item! Auth.current.name
-  abort :success
+  drop_item Auth.current.name
 end
 
 format do

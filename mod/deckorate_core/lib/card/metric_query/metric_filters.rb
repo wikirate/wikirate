@@ -18,6 +18,14 @@ class Card
         bookmark_restriction :metric_id, value
       end
 
+      def filter_by_metric_keyword value
+        restrict_by_cql :title, "title_id", name: [:match, value]
+      end
+
+      def filter_by_metric value
+        filter :metric_id, Array.wrap(value).map(&:card_id)
+      end
+
       # note: :false and "false" work; false doesn't (can't survive #process_filter)
       def filter_by_published value
         return if value.to_s == "all" && stewards_all?
@@ -60,7 +68,7 @@ class Card
         @filter_args[:published] = true unless @filter_args.key? :published
       end
 
-      # also used by metric_and_company_filters.rb
+      # also used by metric_filters.rb
       def dataset_restriction field, codename, dataset
         restrict_by_cql "metric_#{field}", field,
                         referred_to_by: "#{dataset}+#{codename.cardname}"
@@ -71,7 +79,7 @@ class Card
         filter :year, years if years.present?
       end
 
-      # also used by metric_and_company_filters.rb
+      # also used by metric_filters.rb
       def bookmark_restriction field, value
         Card::Bookmark.id_restriction(value.to_sym == :bookmark) do |restriction|
           operator = restriction.shift # restriction looks like cql, eg ["in", 1, 2]

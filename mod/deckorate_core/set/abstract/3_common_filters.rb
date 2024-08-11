@@ -9,9 +9,10 @@ format :html do
                       year: :check,
                       wikirate_topic: :multiselect,
                       company_category: :check,
-                      company_group: :check,
-                      company_name: :text,
-                      country: :check,
+                      company_group: :multiselect,
+                      company_keyword: :text,
+                      country: :multiselect,
+                      company: :multiselect,
                       published: :radio
 
   def filter_company_category_options
@@ -42,6 +43,10 @@ format :html do
 
   def filter_country_options
     :core_country.card.value_options_card.item_names
+  end
+
+  def filter_company_options
+    :wikirate_company.cardname
   end
 
   def filter_published_options

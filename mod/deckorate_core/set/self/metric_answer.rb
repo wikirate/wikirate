@@ -38,17 +38,16 @@ format do
 end
 
 format :html do
-  def default_sort_option
-    :year
-  end
-
-  before :header do
-    voo.title = "Answer Dashboard #{icon_tag :dashboard}"
-    voo.variant = nil
-  end
+  # def default_sort_option
+  #   :year
+  # end
 
   view :titled_content do
     [field_nest(:description), render_filtered_content]
+  end
+
+  view :filtered_results_footer do
+    export_form
   end
 end
 
@@ -60,6 +59,6 @@ format :json do
   end
 
   def default_vega_options
-    { layout: { width: 700 } }
+    { layout: { width: 1000 } }
   end
 end

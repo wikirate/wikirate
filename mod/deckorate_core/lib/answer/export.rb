@@ -11,7 +11,7 @@ class Answer
       def csv_titles detailed=false
         basic = ["Answer Page", "Metric", "Company", "Year", "Value", "Source Page"]
         with_detailed basic, detailed do
-          ["Answer ID", "Original Source", "Source Count", "Comments"]
+          ["Answer ID", "Original Source", "Source Count", "Comments", "ISIN"]
         end
       end
     end
@@ -19,7 +19,7 @@ class Answer
     def csv_line detailed=false
       basic = [answer_link, metric_name, company_name, year, value, source_page_url]
       with_detailed basic, detailed do
-        [answer_id, source_url, source_count, comments]
+        [answer_id, source_url, source_count, comments, isin]
       end
     end
 
@@ -62,6 +62,10 @@ class Answer
 
     def record_name
       "#{metric_name}+#{company_name}"
+    end
+
+    def isin
+      company_id&.card&.isin_card&.item_names&.join ";"
     end
   end
 end

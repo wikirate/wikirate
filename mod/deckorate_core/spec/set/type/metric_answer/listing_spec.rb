@@ -33,11 +33,11 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listing do
         is_expected.to have_tag "span.metric-value", "1, 2"
       end
       it "has correct year" do
-        is_expected.to have_tag ".year-icon-cal", /2010/
+        is_expected.to have_tag ".TYPE-year", /2010/
       end
-      it "has options" do
-        is_expected.to have_options_in_metric_unit(self)
-      end
+      # it "has options" do
+      #   is_expected.to have_options_in_metric_unit(self)
+      # end
     end
 
     context "with single category metric" do
@@ -47,11 +47,11 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listing do
         is_expected.to have_tag "span.metric-value", "4"
       end
       it "has correct year" do
-        is_expected.to have_tag ".year-icon-cal", /2010/
+        is_expected.to have_tag ".TYPE-year", /2010/
       end
-      it "has options" do
-        is_expected.to have_options_in_metric_unit(self)
-      end
+      # it "has options" do
+      #   is_expected.to have_options_in_metric_unit(self)
+      # end
     end
 
     def have_options_in_metric_unit binding

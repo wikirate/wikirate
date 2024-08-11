@@ -1,7 +1,7 @@
 format :html do
   # default tab list (several metric types override)
   def tab_list
-    %i[metric_answer calculation dataset details]
+    %i[details metric_answer source dataset calculation]
   end
 
   view :wikirate_topic_tab do
@@ -12,30 +12,17 @@ format :html do
     field_nest :metric_answer, view: :filtered_content
   end
 
-  view :details_tab do
-    [render_metric_properties, render_main_details]
+  view :source_tab do
+    field_nest :source, view: :filtered_content
   end
-
-  view :main_details do
-    [nest_about, nest_methodology]
-  end
-
-  def nest_about
-    field_nest :about, view: :titled
-  end
-
-  def nest_methodology
-    return unless card.researchable?
-    field_nest :methodology, view: :titled
-  end
-
-  # def answer_filtering
-  #   filtering(".RIGHT-answer ._compact-filter") do
-  #     yield view: :bar, show: :full_page_link, hide: %i[metric_header edit_link]
-  #   end
-  # end
 
   view :dataset_tab do
-    field_nest :dataset, view: :content
+    field_nest :dataset, view: :filtered_content
+  end
+
+  view :details_tab_left, template: :haml
+
+  view :details_tab_right do
+    render_metric_properties
   end
 end

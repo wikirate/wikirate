@@ -1,6 +1,13 @@
+def formula_metric_and_detail
+  card.hash_list.clone.map do |hash|
+    metric = hash.delete :metric
+    [metric, hash]
+  end
+end
+
 format :html do
-  view :formula_core do
-    table formula_core_table_rows, header: %w[Variable Metric Options]
+  def formula_algorithm
+    nest metric_card.formula_card, view: :content
   end
 
   def formula_input
@@ -26,14 +33,6 @@ format :html do
   private
 
   view :options_editor, template: :haml, unknown: true #, wrap: :modal
-
-  def formula_core_table_rows
-    card.hash_list.clone.map do |hash|
-      [hash.delete(:name),
-       nest(hash.delete(:metric), view: :thumbnail),
-       formula_options_cell(hash)]
-    end
-  end
 
   def formula_options_cell options
     haml :options_cell, options: options

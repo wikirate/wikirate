@@ -21,12 +21,20 @@ format do
   def featured_type_names
     featured_type_list.item_names.map { |n| n.vary :plural }
   end
+
+  def search_with_params
+    os_search? ? os_search_returning_cards : super
+  end
 end
 
 format :html do
   before :title do
     scope = type_param.present? ? h(type_param) : "all data"
     voo.title = "Search within #{scope}"
+  end
+
+  view :title, cache: :never do
+    super()
   end
 
   view :page, template: :haml
@@ -43,10 +51,6 @@ format :html do
 
   def breadcrumb_items
     [link_to("Home", href: "/"), "Search Results"]
-  end
-
-  def search_with_params
-    os_search? ? os_search_returning_cards : super
   end
 
   # @return [Integer]
@@ -108,7 +112,7 @@ format :json do
   def cardnames_from_os_results results
     return [] unless search_keyword.present?
 
-    results.map { |result| result["_id"]&.to_i&.cardname }
+    results.map { |result| os_result_card(result)&.cardname }.compact
   end
 
   def autocomplete_options

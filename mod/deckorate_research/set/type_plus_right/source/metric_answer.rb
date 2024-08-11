@@ -27,3 +27,9 @@ def self.answer_searches_for_sources sources
     source_card.fetch :metric_answer
   end.compact
 end
+
+format do
+  def answer_page_fixed_filter
+    { source: "~#{left_id}" }
+  end
+end

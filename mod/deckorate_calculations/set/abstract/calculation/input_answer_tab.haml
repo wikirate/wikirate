@@ -1,0 +1,18 @@
+- if card.unorthodox_tree?
+  .alert.alert-info
+    %strong
+      Warning: there may be inaccuracies in this list.
+
+    %p
+      This metric is
+      %em unorthodox,
+      meaning it depends on formulas with special option settings.
+
+    %p
+      This search finds all answers to dependee metrics that match a final answer's
+      company and year. But because of the unorthodox options, there may be inputs
+      involved that do not fit that pattern.
+
+    %p Exact inputs are correctly listed on individual answers.
+
+= field_nest :input_answer, view: :filtered_content

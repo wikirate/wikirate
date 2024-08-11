@@ -18,17 +18,12 @@ format do
   def filter_map
     filtering_by_published do
       [:year,
-       { key: :wikirate_company,
-         type: :group,
-         filters: shared_company_filter_map.unshift(:company_name) },
-       { key: :metric,
-         type: :group,
-         open: true,
-         filters: shared_metric_filter_map.unshift(:metric_name) },
-       { key: :metric_answer,
-         type: :group,
-         filters: [{ key: :value, open: true }] +
-           %i[verification calculated status updated updater source] },
+       { key: :company_filters, type: :group, label: :wikirate_company.cardname,
+         filters: company_filters },
+       { key: :metric_filters, type: :group, label: :metric.cardname,
+         filters: metric_filters },
+       { key: :metric_answer, type: :group,
+         filters: answer_filters },
        :dataset]
     end
   end
@@ -48,6 +43,25 @@ format do
   # end
 
   private
+
+  def answer_filters
+    [{ key: :value, open: true }] +
+      %i[verification calculated status updated updater source]
+  end
+
+  def metric_filters
+    [
+      { key: :metric, label: "Metric Name", open: true },
+      :metric_keyword
+    ] + shared_metric_filter_map
+  end
+
+  def company_filters
+    [
+      { key: :company, label: "Company Name", open: true },
+      :company_keyword
+    ] + shared_company_filter_map
+  end
 
   def normalize_filter_hash hash
     %i[metric company].each do |type|
@@ -70,16 +84,5 @@ format do
     return unless (dataset = hash.delete :project)
 
     hash[:dataset] ||= dataset
-  end
-end
-
-format :csv do
-  view :titles do
-    Answer.csv_titles detailed?
-  end
-
-  view :core do
-    detailed = detailed?
-    lookup_relation.map { |row| row.csv_line detailed }
   end
 end

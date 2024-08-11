@@ -36,8 +36,8 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
 
   describe "csv export" do
     it "filters" do
-      Card::Env.with_params filter: { metric_name: "dark" } do
-        csv_array = format_subject(:csv).render_core.first
+      Card::Env.with_params filter: { metric_keyword: "dark" } do
+        csv_array = format_subject(:csv).render_body.first
         expect(csv_array)
           .to include("Jedi+darkness rating").and not_include("Jedi+deadliness")
       end

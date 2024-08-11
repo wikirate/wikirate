@@ -4,15 +4,15 @@ def weight_hash
   end
 end
 
-format :html do
-  view :wiki_rating_core do
-    table(rating_core_table_content, header: %w[Metric Weight])
-  end
+def wiki_rating_metric_and_detail
+  weight_hash.map { |metric, weight| [metric, "#{format.humanized_number weight}%"] }
+end
 
-  def rating_core_table_content
-    card.weight_hash.map do |metric, weight|
-      [nest(metric, view: :thumbnail), "#{weight}%"]
-    end
+format :html do
+  def wiki_rating_algorithm
+    "Answers are calculated as a weighted average. To find a weighted average of " \
+    "a group of numbers that have been normalized to the same 0-10 scale, you simply " \
+    "multiply each number by its weight (percentage) and add them up."
   end
 
   def wiki_rating_input

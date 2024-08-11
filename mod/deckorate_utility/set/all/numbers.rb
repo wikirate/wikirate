@@ -6,7 +6,7 @@ end
 
 format do
   def humanized_number value
-    number = BigDecimal(value)
+    number = BigDecimal(value, 9)
     send number_method(number), number
   rescue
     Rails.logger.info "#{card.name} has bad number: #{value}"
@@ -27,6 +27,8 @@ format do
     humanized = small_number_with_precision number, (number.abs < 1)
     humanized == "0" && number.positive? ? "~0" : humanized
   end
+
+  private
 
   def small_number_with_precision number, less_than_one
     number_with_precision number, delimiter: ",",

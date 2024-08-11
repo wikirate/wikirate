@@ -16,8 +16,14 @@
   label {
     margin: 0;
     padding: 0 0.33rem;
-    .count-badge-label-icon {
+    .count-badge-label-text {
       display: none;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    flex-direction: column-reverse;
+    .badge {
+      margin-bottom: 0.8em;
     }
   }
 }
@@ -29,6 +35,11 @@
   max-height: 1.8em;
   .labeled-badge {
     padding-left: 1em;
+    @include media-breakpoint-down(md) {
+      .count-badge-label-icon {
+        display: none !important;
+      }
+    }
   }
 }
 
@@ -60,10 +71,10 @@
     align-items: center;
   }
 
-  .labeled-badge, .bookmark-toggle {
-    margin-left: 1em;
-  }
   .labeled-badge {
+    .bookmark-toggle {
+      margin-left: 1em;
+    }
     span {
       font-size: 0.6em;
     }

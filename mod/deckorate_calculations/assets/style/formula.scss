@@ -18,8 +18,8 @@
 
 .RIGHT-formula.d0-card-body {
   white-space: normal;
+  margin-bottom: 2em;
 }
-
 
 .options-scheme-cell {
   padding: 0 !important;
@@ -139,4 +139,8 @@ code._formula-as-javascript {
       }
     }
   }
+}
+
+.RIGHT-formula.d0-card-content .accordion-body {
+  margin-left: 1em;
 }

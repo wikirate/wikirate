@@ -37,9 +37,7 @@ format do
   # (overrides default Decko method)
   def os_search_returning_cards
     rescuing_open_search [] do
-      os_search_with_params.dig("hits", "hits").map do |result|
-        result["_id"]&.to_i&.card
-      end.compact
+      os_search_with_params.dig("hits", "hits").map { |res| os_result_card res }.compact
     end
   end
 
@@ -57,6 +55,11 @@ format do
   end
 
   private
+
+  def os_result_card result
+    card = result["_id"]&.to_i&.card
+    card if card&.ok? :read
+  end
 
   def rescuing_open_search failure_result
     yield

@@ -1,4 +1,4 @@
-# NOTE: this can probably be added into Accountable once all abstract sets are preloaded
+# NOTE: this can probably be added into AccountHolder once all abstract sets are preloaded
 
 def stewards_any?
   stewards_all? || designed_metric_ids.any? || assigned_steward_metric_ids.any?

@@ -1,13 +1,6 @@
 window.deckorate = {}
 
-
 $(window).ready ->
-  $("body").on "click", "a.card-paging-link", ->
-    id = $(this).slot().attr("id")
-    #unless history.state?
-    #  history.replaceState(slot_id: id, "")
-    history.pushState(slot_id: id, url: this.href, "", location.href);
-
   # TODO: consider moving above to decko
 
   $(".new-metric").on "click", ".metric-type-list .box", (e) ->
@@ -26,3 +19,8 @@ $(window).ready ->
       siblings.find("input").prop "checked", false if box.is(":checked")
     else
       siblings.find("input[value='latest']").prop "checked", false
+
+  $("body").on "click", ".tree-button ._answer-group-modal-link .metric-value", (e) ->
+    $(this).closest(".bar").find("._modal-page-link").trigger "click"
+    e.stopPropagation()
+    e.preventDefault()

@@ -5,6 +5,7 @@ include_set Abstract::SearchViews
 include_set CommonFilters
 include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
+include_set Abstract::BarBoxToggle
 
 def item_type_id
   DatasetID
@@ -24,7 +25,7 @@ format do
   end
 
   def filter_map
-    %i[name bookmark topic]
+    %i[name wikirate_topic bookmark]
   end
 
   def default_filter_hash

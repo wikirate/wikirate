@@ -3,6 +3,7 @@ describe "filtering on company pages", ->
     cy.visit "Death Star"
 
     # shows lots of answers before filtering
+    cy.get(".tab-li-metric_answer").click()
     cy.contains "Category"
     cy.contains "disturbances"
 

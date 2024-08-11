@@ -5,4 +5,7 @@
       = render_research_button
     .ps-5
       = render_flag_button
-= render_read_form
+- read_field_configs.map do |field, args|
+  - args[:view] = :titled
+  .mb-5
+    = nest field, args

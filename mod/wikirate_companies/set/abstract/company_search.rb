@@ -5,6 +5,7 @@ include_set Abstract::BookmarkFiltering
 include_set Abstract::CommonFilters
 include_set Abstract::AnswerFilters
 include_set Abstract::CompanyFilters
+include_set Abstract::BarBoxToggle
 
 def bookmark_type
   :wikirate_company
@@ -36,15 +37,11 @@ format do
   def filter_map
     shared_company_filter_map.unshift key: :name, label: "Company Name", open: true
   end
-
-  # def default_limit
-  #   Auth.signed_in? ? 5000 : 500
-  # end
 end
 
 format :csv do
   view :titles do
-    super() << "Headquarters"
+    super() + Card.new(type: :wikirate_company).simple_field_names
   end
 end
 

@@ -23,9 +23,10 @@ decko.slot.ready (slot) ->
 
   slot.find("[data-slick]").each -> loadSlick($(this))
 
-
-
 # ~~~~~~~~~~~~~~ slick carousel config
+
+$ ->
+  $("[data-slick]").each -> loadSlick($(this))
 
 # data-slick should contain json slick config object
 # will look for data-slick-selector, if present, within element
@@ -35,39 +36,6 @@ loadSlick = (el)->
   selector = el.data "slick-selector"
   slickEl = selector && el.find(selector) || el
   slickEl.slick config
-# ~~~~~~~~~~~~~~ AJAX Loader anime
-
-# show loader after submitting filter form
-$(document).ready ->
-  $('body').on "submit", "._filter-form", ->
-    loader($(this).slot(), false).prepend()
-
-  $("[data-slick]").each -> loadSlick($(this))
-
-ajaxLoader =
-  head: '#ajax_loader'
-  child: '.loader- anime'
-
-loader = (target, relative = false) ->
-  target = jObj target
-  aloader = ajaxLoader
-  isLoading: -> @child().exists()
-  add: ->
-    return if @isLoading()
-    target.append($(aloader.head).html())
-    @child().addClass("relative") if relative
-  prepend: ->
-    return if @isLoading()
-    target.prepend($(aloader.head).html())
-    @child().addClass("relative") if relative
-  remove: ->
-    @child().remove()
-  child: ->
-    target.find(aloader.child)
-
-jObj = (ele) ->
-  if typeof val == 'string' then $(ele) else ele
-
 
 
 

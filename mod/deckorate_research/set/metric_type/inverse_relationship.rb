@@ -53,7 +53,11 @@ format :html do
     []
   end
 
-  view :main_details do
-    ["<hr/>", nest(card.inverse, view: :details_tab, hide: :relationship_properties)]
+  view :details_tab do
+    [
+      "Inverse of #{link_to_card card.inverse_card}",
+      "<hr/>",
+      nest(card.inverse, view: :details_tab, hide: :relationship_properties)
+    ]
   end
 end
