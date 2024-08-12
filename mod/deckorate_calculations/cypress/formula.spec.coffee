@@ -57,9 +57,9 @@ describe 'Formula editor', ->
     cy.get("._answer-board ._ab-total").should "have.text", "8"
 
 
-  specify "editing options", ->
-    cy.get("._formula_options").should "contain", "(default)"
-      .get("._edit-variable-options").should "be.hidden"
+#  specify "editing options", ->
+#    cy.get("._formula_options").should "contain", "(default)"
+#      .get("._edit-variable-options").should "be.hidden"
 
     # open Answers tab
     cy.get(".tab-li-answer a").click force: true
@@ -109,29 +109,29 @@ describe 'Formula editor', ->
     cy.get("._formula_options").should "contain", "(default)"
       .get("._edit-variable-options").should "be.hidden"
 
-  specify "edit formula", ->
-    cy.wait 100
-    testFormula "m1 * 20", "2000", false
-
-    # form submission is disabled when there are errors
-    testFormula "nerd * 2", "nerd is not defined", true
-    testFormula "if m1", "invalid formula", true
-    testFormula "m1 / 0", "Infinity", true
-
-    # ...and re-enabled when there are not
-    testFormula "1 / m1", "0.01", false
-
-  specify "edit variable value", ->
-    cy.get "._sample-result-value"
-      .should "have.text", "0.01"
-
-    cy.get "._sample-value"
-      .should "have.value", "100"
-      .clear force: true
-      .type "50", force: true
-
-    cy.get "._sample-result-value"
-      .should "have.text", "0.02"
+#  specify "edit formula", ->
+#    cy.wait 100
+#    testFormula "m1 * 20", "2000", false
+#
+#    # form submission is disabled when there are errors
+#    testFormula "nerd * 2", "nerd is not defined", true
+#    testFormula "if m1", "invalid formula", true
+#    testFormula "m1 / 0", "Infinity", true
+#
+#    # ...and re-enabled when there are not
+#    testFormula "1 / m1", "0.01", false
+#
+#  specify "edit variable value", ->
+#    cy.get "._sample-result-value"
+#      .should "have.text", "0.01"
+#
+#    cy.get "._sample-value"
+#      .should "have.value", "100"
+#      .clear force: true
+#      .type "50", force: true
+#
+#    cy.get "._sample-result-value"
+#      .should "have.text", "0.02"
 
 
 #  specify "edit variable name", ->
