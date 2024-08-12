@@ -110,7 +110,7 @@ describe 'Formula editor', ->
 #      .get("._edit-variable-options").should "be.hidden"
 
   specify "edit formula", ->
-    cy.wait 1000
+    cy.wait 100
     testFormula "m1 * 20", "2000", false
 
     # form submission is disabled when there are errors
@@ -132,8 +132,8 @@ describe 'Formula editor', ->
 #
 #    cy.get "._sample-result-value"
 #      .should "have.text", "0.02"
-#
-#
+
+
 #  specify "edit variable name", ->
 #
 #    cy.get "input._variable-name"
