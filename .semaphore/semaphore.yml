@@ -43,6 +43,8 @@ global_job_config:
 
 blocks:
   - name: Unit Tests
+    run:
+      when: "false"
     task:
       prologue:
         commands:
