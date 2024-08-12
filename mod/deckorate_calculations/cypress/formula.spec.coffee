@@ -140,4 +140,5 @@ describe 'Formula editor', ->
       .should "have.value", "m1"
       .type "{backspace}agic", force: true
 
+    cy.wait 1000
     cy.get("._formula-editor").should "contain", "magic"
