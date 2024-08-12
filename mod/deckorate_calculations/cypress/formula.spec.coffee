@@ -60,67 +60,67 @@ describe 'Formula editor', ->
 #  specify "editing options", ->
 #    cy.get("._formula_options").should "contain", "(default)"
 #      .get("._edit-variable-options").should "be.hidden"
-
-    # open Answers tab
-    cy.get(".tab-li-answer a").click force: true
-    # There is one answer that is "unknown via options", meaning it's unknown based on
-    # the formula option configuration alone (not the formula processing)
-    cy.get "._answer-board ._ab-result-unknown-count"
-      .should "have.text", "1"
-      .should "not.be.hidden"
-
-    # choose "Any Researched"
-    cy.get("._options-scheme").select2("Any Researched")
-
-    # show options
-    cy.get("._formula_options").should "include.text", "unknown: Unknown"
-      .get("._edit-variable-options").should "be.hidden"
-
-    # open Answers tab
-    cy.get(".tab-li-answer a").click force: true
-    cy.get "._answer-board ._ab-result-unknown-count"
-      .should "have.text", "0"
-      .should "be.hidden"
-
-    # choose "Custom"
-    cy.get("._options-scheme").select2("Custom")
-
-    # retains previous settings
-    cy.get("._formula_options").should "include.text", "unknown: Unknown"
-      .get("._edit-variable-options").should "not.be.hidden"
-      .click force: true
-
-    # choose "no result" for Unknown
-    cy.get("[name=vo-unknown]:visible").check("no_result")
-
-    # update / close modal
-    cy.wait 300
-    cy.contains("Update Options").click()
-
-    # make sure changes show
-    cy.get("._formula_options").should "include.text", "unknown: no_result"
-
-    # make sure changes take effect in answers
-    cy.get "._answer-board ._ab-result-unknown-count"
-      .should "be.hidden"
-
-    # choose "All Researched"
-    cy.get("._options-scheme").select2("All Researched (default)")
-    cy.get("._formula_options").should "contain", "(default)"
-      .get("._edit-variable-options").should "be.hidden"
-
-#  specify "edit formula", ->
-#    cy.wait 100
-#    testFormula "m1 * 20", "2000", false
 #
-#    # form submission is disabled when there are errors
-#    testFormula "nerd * 2", "nerd is not defined", true
-#    testFormula "if m1", "invalid formula", true
-#    testFormula "m1 / 0", "Infinity", true
+#    # open Answers tab
+#    cy.get(".tab-li-answer a").click force: true
+#    # There is one answer that is "unknown via options", meaning it's unknown based on
+#    # the formula option configuration alone (not the formula processing)
+#    cy.get "._answer-board ._ab-result-unknown-count"
+#      .should "have.text", "1"
+#      .should "not.be.hidden"
 #
-#    # ...and re-enabled when there are not
-#    testFormula "1 / m1", "0.01", false
+#    # choose "Any Researched"
+#    cy.get("._options-scheme").select2("Any Researched")
 #
+#    # show options
+#    cy.get("._formula_options").should "include.text", "unknown: Unknown"
+#      .get("._edit-variable-options").should "be.hidden"
+#
+#    # open Answers tab
+#    cy.get(".tab-li-answer a").click force: true
+#    cy.get "._answer-board ._ab-result-unknown-count"
+#      .should "have.text", "0"
+#      .should "be.hidden"
+#
+#    # choose "Custom"
+#    cy.get("._options-scheme").select2("Custom")
+#
+#    # retains previous settings
+#    cy.get("._formula_options").should "include.text", "unknown: Unknown"
+#      .get("._edit-variable-options").should "not.be.hidden"
+#      .click force: true
+#
+#    # choose "no result" for Unknown
+#    cy.get("[name=vo-unknown]:visible").check("no_result")
+#
+#    # update / close modal
+#    cy.wait 300
+#    cy.contains("Update Options").click()
+#
+#    # make sure changes show
+#    cy.get("._formula_options").should "include.text", "unknown: no_result"
+#
+#    # make sure changes take effect in answers
+#    cy.get "._answer-board ._ab-result-unknown-count"
+#      .should "be.hidden"
+#
+#    # choose "All Researched"
+#    cy.get("._options-scheme").select2("All Researched (default)")
+#    cy.get("._formula_options").should "contain", "(default)"
+#      .get("._edit-variable-options").should "be.hidden"
+
+  specify "edit formula", ->
+    cy.wait 100
+    testFormula "m1 * 20", "2000", false
+
+    # form submission is disabled when there are errors
+    testFormula "nerd * 2", "nerd is not defined", true
+    testFormula "if m1", "invalid formula", true
+    testFormula "m1 / 0", "Infinity", true
+
+    # ...and re-enabled when there are not
+    testFormula "1 / m1", "0.01", false
+
 #  specify "edit variable value", ->
 #    cy.get "._sample-result-value"
 #      .should "have.text", "0.01"
