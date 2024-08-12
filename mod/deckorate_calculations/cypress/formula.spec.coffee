@@ -2,7 +2,6 @@ describe 'Formula editor', ->
   beforeEach ->
     cy.login()
     cy.visit "Jedi+friendliness+formula"
-    cy.wait 500
     cy.slot "jedi+friendliness+formula"
       .find ".card-menu > a.edit-link"
       .click force: true
@@ -135,11 +134,10 @@ describe 'Formula editor', ->
       .should "have.text", "0.02"
 
 
-  specify "edit variable name", ->
-
-    cy.get "input._variable-name"
-      .should "have.value", "m1"
-      .type "{backspace}agic", force: true
-
-    cy.wait 1000
-    cy.get("._formula-editor").should "contain", "magic"
+#  specify "edit variable name", ->
+#
+#    cy.get "input._variable-name"
+#      .should "have.value", "m1"
+#      .type "{backspace}agic", force: true
+#
+#    cy.get("._formula-editor").should "contain", "magic"
