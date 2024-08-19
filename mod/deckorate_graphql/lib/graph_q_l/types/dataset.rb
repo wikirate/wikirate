@@ -1,6 +1,6 @@
 module GraphQL
   module Types
-    # Data Set type for GraphQL
+    # Dataset type for GraphQL
     class Dataset < DeckorateCard
       field :years, [Integer], null: false
       field :description, String, null: false

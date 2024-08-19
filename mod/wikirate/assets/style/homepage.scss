@@ -32,23 +32,10 @@ animation bg-pan-right
 }
 
 #homepage {
-  #homepage-search-section {
+  #homepage-banner-section {
     .homepage-background {
       background-image: linear-gradient(270deg, $light-purple, $light-teal, $light-red);
       background-size: 600% 100%;
-    }
-
-    .search-box-input-group {
-      height: 60px;
-      select {
-        color: $blue;
-        font-weight: 600;
-        padding-left: 2em;
-      }
-    }
-
-    .homepage-search-box {
-      padding: 1.5em 0 2em 0;
     }
   }
 }

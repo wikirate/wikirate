@@ -253,16 +253,16 @@ $lightMap: (
   //  color: $color;
   //}
 
-  #homepage {
-    .SELF-#{$type} { // , .TYPE-#{$type} {
-      &.thumbnail .image-box {
-        background-color: map-get($lightMap, $color);
-        i {
-          color: $color;
-        }
-      }
-    }
-  }
+  //#homepage {
+  //  .SELF-#{$type} { // , .TYPE-#{$type} {
+  //    &.thumbnail .image-box {
+  //      background-color: map-get($lightMap, $color);
+  //      i {
+  //        color: $color;
+  //      }
+  //    }
+  //  }
+  //}
 }
 
 .LTYPE_RTYPE-topic-company {

@@ -76,6 +76,7 @@ format :html do
     # , button: false
     modal_link "#{icon_tag :attribution} #{text}",
                size: :large,
+               rel: "nofollow",
                # class: ("btn btn-primary" if button),
                path: { mark: :reference,
                        action: :new,
