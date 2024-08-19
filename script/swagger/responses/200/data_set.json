@@ -3,7 +3,7 @@
   "name": "Apparel 100 Analysis",
   "type": {
     "id": 7926098,
-    "name": "Data Set",
+    "name": "Dataset",
     "type": "Cardtype",
     "url": "https://wikirate.org/Data_Set.json",
     "codename": "dataset"

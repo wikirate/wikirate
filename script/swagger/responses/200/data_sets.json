@@ -1,6 +1,6 @@
 {
   "id":  7926098,
-  "name": "Data Set",
+  "name": "Dataset",
   "type": {
     "id": 5,
     "name": "Cardtype",
@@ -14,140 +14,140 @@
     {
       "id": 15542603,
       "name": "Coles's Engagement in SDG 12",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Coles_s_Engagement_in_SDG_12.json",
       "content": ""
     },
     {
       "id": 15542602,
       "name": "hi",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/hi.json",
       "content": ""
     },
     {
       "id": 15540185,
       "name": "Food & Beverage firms advancing the SDGs",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Food_Beverage_firms_advancing_the_SDGs.json",
       "content": ""
     },
     {
       "id": 15540170,
       "name": "US oil & gas firms advancing SDGs",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/US_oil_gas_firms_advancing_SDGs.json",
       "content": ""
     },
     {
       "id": 15539053,
       "name": "Decarbonisation in the Fashion Sector",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Decarbonisation_in_the_Fashion_Sector.json",
       "content": ""
     },
     {
       "id": 15537642,
       "name": "ESG Metrics (update)",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/ESG_Metrics_update.json",
       "content": ""
     },
     {
       "id": 15537416,
       "name": "Modern Slavery Research - BSP Business & Law School",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Modern_Slavery_Research_BSP_Business_Law_School.json",
       "content": ""
     },
     {
       "id": 15533744,
       "name": "Pension Funds MSA dataset",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Pension_Funds_MSA_dataset.json",
       "content": ""
     },
     {
       "id": 15533724,
       "name": "Tech companies environmental disclosure",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Tech_companies_environmental_disclosure.json",
       "content": ""
     },
     {
       "id": 15532261,
       "name": "Sample ESG Performance - Top Supermarkets",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Sample_ESG_Performance_Top_Supermarkets.json",
       "content": ""
     },
     {
       "id": 15521968,
       "name": "ABBvie pharmaceutical",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/ABBvie_pharmaceutical.json",
       "content": ""
     },
     {
       "id": 15521964,
       "name": "Climate related initiatives in Telstra",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Climate_related_initiatives_in_Telstra.json",
       "content": ""
     },
     {
       "id": 15521518,
       "name": "Fashion Transparency Index 2023 (full dataset)",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Fashion_Transparency_Index_2023_full_dataset.json",
       "content": ""
     },
     {
       "id": 15519787,
       "name": "LW Research",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/LW_Research.json",
       "content": ""
     },
     {
       "id": 15358204,
       "name": "Company Brands & Subsidiary Relationships",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Company_Brands_Subsidiary_Relationships.json",
       "content": ""
     },
     {
       "id": 15358088,
-      "name": "Companies Data Set (MC-2023-02)",
-      "type": "Data Set",
+      "name": "Companies Dataset (MC-2023-02)",
+      "type": "Dataset",
       "url": "https://wikirate.org/Companies_Data_Set_MC_2023_02.json",
       "content": ""
     },
     {
       "id": 15041526,
       "name": "Wikirate research project - practice exercise dataset",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Wikirate_research_project_practice_exercise_dataset.json",
       "content": ""
     },
     {
       "id": 15041486,
       "name": "TestDataSetPat01",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/TestDataSetPat01.json",
       "content": ""
     },
     {
       "id": 15000745,
       "name": "Air Transport",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/Air_Transport.json",
       "content": ""
     },
     {
       "id": 14996105,
       "name": "TestSiemens",
-      "type": "Data Set",
+      "type": "Dataset",
       "url": "https://wikirate.org/TestSiemens.json",
       "content": ""
     }
