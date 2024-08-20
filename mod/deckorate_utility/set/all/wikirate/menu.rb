@@ -25,6 +25,7 @@ format :html do
   def history_link text: "", title: "View History"
     modal_link "#{icon_tag :history} #{text}",
                size: :large,
+               rel: "nofollow",
                path: { view: history_view, slot: { hide: :title } },
                title: title,
                "data-bs-toggle": "tooltip",

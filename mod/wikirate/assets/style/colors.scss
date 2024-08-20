@@ -162,7 +162,7 @@ $colorMap: (
   research_group: $research-group-color,
   company_group: $company-group-color,
   year: $year-color,
-  datum_set: $dataset-color,
+  dataset: $dataset-color,
   datum_subset: $dataset-color,
   user: $user-color
 ); // border color for bars and boxes
@@ -253,16 +253,16 @@ $lightMap: (
   //  color: $color;
   //}
 
-  #homepage {
-    .SELF-#{$type} { // , .TYPE-#{$type} {
-      &.thumbnail .image-box {
-        background-color: map-get($lightMap, $color);
-        i {
-          color: $color;
-        }
-      }
-    }
-  }
+  //#homepage {
+  //  .SELF-#{$type} { // , .TYPE-#{$type} {
+  //    &.thumbnail .image-box {
+  //      background-color: map-get($lightMap, $color);
+  //      i {
+  //        color: $color;
+  //      }
+  //    }
+  //  }
+  //}
 }
 
 .LTYPE_RTYPE-topic-company {
