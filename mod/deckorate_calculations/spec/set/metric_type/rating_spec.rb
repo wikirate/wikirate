@@ -17,15 +17,15 @@
 #    Apple_Inc       2010 => 10, '2013' => 13, '2011' => 11,
 #                    2012 => 12, '2014' => 14
 #    Death_Star      1977 => 77
-RSpec.describe Card::Set::MetricType::WikiRating do
-  let(:metric_type) { :wiki_rating }
+RSpec.describe Card::Set::MetricType::Rating do
+  let(:metric_type) { :rating }
 
   describe "formula card" do
-    let(:wikirating_card) { Card[:wiki_rating] }
+    let(:wikirating_card) { Card[:rating] }
 
     it { is_expected.to be_truthy }
     it "has codename" do
-      expect(wikirating_card.codename).to eq :wiki_rating
+      expect(wikirating_card.codename).to eq :rating
     end
     it 'has type "metric type"' do
       expect(wikirating_card.type_id).to eq Card["metric type"].id
@@ -46,7 +46,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
     before do
       @metric_title = "rating1"
       @metric = create_metric(
-        name: @metric_title, type: :wiki_rating,
+        name: @metric_title, type: :rating,
         variables: [{ metric: "Joe User+researched number 1", weight: "60" },
                     { metric: "Joe User+researched number 2", weight: "40" }].to_json
       )
@@ -126,7 +126,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
   context "when created without formula" do
     before do
       @metric_title = "rating2"
-      @metric = create_metric name: @metric_title, type: :wiki_rating
+      @metric = create_metric name: @metric_title, type: :rating
     end
 
     it "creates rating values if formula updated" do

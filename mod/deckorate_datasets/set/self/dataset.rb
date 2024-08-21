@@ -1,4 +1,5 @@
 include_set Abstract::DatasetSearch
+include_set Abstract::FeaturedBoxes
 
 format :html do
   view :titled_content, template: :haml

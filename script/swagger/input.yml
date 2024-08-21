@@ -417,7 +417,7 @@ components:
         - **metric_name:** string to match (or exact name in quotes)
         - **metric_id:** numerical_id
         - **metric_type:** name of "metric type" card (Researched, Relationship, Formula,
-          WikiRating, Score, or Descendant)
+          Rating, Score, or Descendant)
         - **topic:** topic card name(s). restrict to metrics with topic
         - **research policy:** name of research policy card
 

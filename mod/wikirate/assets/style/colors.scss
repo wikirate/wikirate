@@ -350,7 +350,7 @@ $lightMap: (
   }
 }
 
-// Score / WikiRating colors
+// Score / Rating colors
 
 @each $score, $color in $score-colors {
   .score-color-#{$score} {
