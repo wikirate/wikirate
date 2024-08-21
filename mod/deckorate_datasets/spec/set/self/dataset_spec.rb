@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Self::Dataset do
     end
 
     it "has a featured dataset section" do
-      expect_view(:titled_content).to have_tag("div.SELF-datum_set-featured") do
+      expect_view(:titled_content).to have_tag("div.SELF-dataset-featured") do
         with_tag "div.item-box"
       end
     end

@@ -36,6 +36,7 @@
     text-overflow: ellipsis;
     display: inline-block;
     text-wrap: nowrap;
+    white-space: nowrap;
     overflow: hidden;
   }
 }
@@ -46,4 +47,12 @@
 
 .TYPE-answer.bar .bar-left > .w-50 {
   padding-right: 1.5em;
+}
+
+.feature-box-arrows {
+  display: flex;
+  align-items: center;
+  .btn {
+    border-radius: 49.9rem;
+  }
 }

@@ -1,7 +1,7 @@
 # NOTE: it would be nice to have these accessors in Abstract::Calculation, but
 # if there they don't properly set the default cardtype for the fields
 
-card_accessor :variables, type: :json # Formula, WikiRatings, and Descendants (not Scores)
+card_accessor :variables, type: :json # Formula, Ratings, and Descendants (not Scores)
 card_accessor :rubric, type: :json # Scores (of categorical metrics)
 card_accessor :formula, type: :coffee_script # Formula and non-categorical Scores
 
@@ -97,7 +97,7 @@ def score_metrics
     Card.search type: :metric, left_id: id
 end
 
-# note: includes Formula, WikiRating, and Descendants but not Score metrics
+# note: includes Formula, Rating, and Descendants but not Score metrics
 def formula_metrics
   @formula_metrics ||=
     Card.search type: :metric, right_plus: [:variables, { refer_to: id }]
@@ -153,7 +153,7 @@ format :html do
     weight_row 0
   end
 
-  # used when metric is a variable in a WikiRating
+  # used when metric is a variable in a Rating
   def weight_row weight=0
     haml :weight_row, weight: weight
   end

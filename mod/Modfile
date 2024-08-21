@@ -4,11 +4,14 @@
 mod "posts"
 mod "guides"
 
-#refactor away
+# TODO: refactor away
 mod "conversation" # upgrade discussions/comments
 
+# TODO: move out wikirate-specific code
+mod "wikirate_shared", path: "./vendor/wikirateproject/mod/wikirate_shared"
+mod "deckorate_utility"
+
 ## DeckoRate mods
-mod "deckorate_utility" # TODO: move out wikirate-specific code
 mod "deckorate_layout"
 
 mod "topics" # TODO: extract generalizable stuff. distribute remainder in dr mods
@@ -27,7 +30,6 @@ mod "deckorate_profiles"
 # mod "deckorate" # (wrapper) # TODO
 
 ## WikiRate mods
-mod "wikirate_shared", path: "./vendor/wikirateproject/mod/wikirate_shared"
 mod "wikirate_companies"
 mod "wikirate"
 

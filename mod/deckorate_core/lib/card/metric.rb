@@ -79,7 +79,7 @@ class Card::Metric
     # @option opts [String] :name the name of the metric. Use the common
     #   pattern Designer+Title(+Scorer)
     # @option opts [Symbol] :type (:researched) one of the four metric types
-    #   :researched, :score, :formula, or :wiki_rating
+    #   :researched, :score, :formula, or :rating
     # @option opts [String, Hash] :formula the formula for a calculated
     #   metric. Use a hash for a metric of 'categorical' value type to translate
     #   value options
