@@ -2,7 +2,7 @@
 
 class RemoveRealNonResearchedAnswers < Cardio::Migration::Transform
   def up
-    calculated_ids = [Card::WikiRatingID, Card::FormulaID, Card::ScoreID,
+    calculated_ids = [Card::RatingID, Card::FormulaID, Card::ScoreID,
                       Card::DescendantID]
 
     Answer.where(answer_id: nil, metric_type_id: calculated_ids, overridden_value: nil)

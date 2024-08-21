@@ -2,22 +2,20 @@ RSpec.describe Card::Set::Self::Dataset do
   check_views_for_errors
   check_views_for_errors format: :csv, views: views(:csv).push(:titled)
 
-  describe "view core" do
-    it "has a description card" do
-      expect_view(:titled_content).to have_tag("div.RIGHT-description")
-    end
+  specify "titled_content view" do
+    expect_view(:titled_content).to have_tag("div.RIGHT-description")
+  end
 
-    it "has a featured dataset section" do
-      expect_view(:titled_content).to have_tag("div.SELF-datum_set-featured") do
-        with_tag "div.item-box"
-      end
+  specify "featured_boxes view" do
+    expect_view(:featured_boxes).to have_tag(".feature-boxes") do
+      with_tag ".box", with: { "data-card-name": "Evil Dataset" }
     end
+  end
 
-    it "filters datasets" do
-      expect_view(:filtered_content).to have_tag("div._filtered-content") do
-        with_tag "div._filtered-content" do
-          with_tag "div.bar-view", with: { "data-card-name": "Evil Dataset" }
-        end
+  specify "filtered_content view" do
+    expect_view(:filtered_content).to have_tag("div._filtered-content") do
+      with_tag "div._filtered-content" do
+        with_tag "div.bar-view", with: { "data-card-name": "Evil Dataset" }
       end
     end
   end
