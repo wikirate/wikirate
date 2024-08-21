@@ -1,4 +1,4 @@
-describe 'edit WikiRating', ->
+describe 'edit Rating', ->
   setWeight = (name, weight) ->
     cy.get("[data-card-name='#{name}']")
       .closest('.row')
@@ -11,7 +11,7 @@ describe 'edit WikiRating', ->
 
   beforeEach -> cy.login()
 
-  specify "WikiRating formula", ->
+  specify "Rating formula", ->
     cy.visit "Jedi+darkness rating"
 
     # go to details tab
@@ -46,7 +46,7 @@ describe 'edit WikiRating', ->
       .and "contain", "40"
       .and "not.contain", "100.00"
 
-    cy.main_slot().should "contain", "WikiRating"
+    cy.main_slot().should "contain", "Rating"
 
 
 

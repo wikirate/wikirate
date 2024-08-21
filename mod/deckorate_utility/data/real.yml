@@ -1,6 +1,10 @@
 ---
+- :name: Featured
+  :codename: featured
+
 - :name: WikiRate Team
   :codename: wikirate_team
+
 - :name: WikiRat
   :codename: wikirat
   :type: :image

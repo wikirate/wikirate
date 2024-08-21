@@ -1,5 +1,5 @@
 class Calculate
-  class WikiRating < Calculator
+  class Rating < Calculator
     def compute input_vals, _company, _year
       result = 0.0
       total_weight = 0

@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::Type::MetricAnswer do
-  context "with WikiRating" do
+  context "with Rating" do
     let(:answer) { Card.fetch "Jedi+darkness_rating+Death_Star+1977" }
 
     example "#direct_dependee_answers" do
