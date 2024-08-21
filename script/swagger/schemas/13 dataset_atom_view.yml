@@ -15,7 +15,7 @@ data_set_atom_view:
       example: ""
     type:
       type: string
-      example: Data Set
+      example: Dataset
     requested_at:
       type: string
       example: "2023-09-21 10:27:16 UTC"

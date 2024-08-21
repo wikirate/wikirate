@@ -1,9 +1,11 @@
 ---
 - :type: :blurb
-  :codename: :homepage_search_heading
+  :codename: :homepage_banner
   :fields:
     :title: Empowering people with open ESG data
-    :body: "4 million+ sustainability data points across 100,000+ companies"
+    :body: "Access over 6 million data points across more than 145,000 companies
+      and find answers to important questions about Environmental, Social, and 
+      Governance (ESG) impacts."
 - :type: :blurb
   :codename: :homepage_involved_heading
   :fields:
@@ -76,7 +78,7 @@
   :codename: :share_blurb
   :fields:
     :title: Share
-    :body: "Already have a pristine Data Set? Use the import tool or API to add
+    :body: "Already have a pristine Dataset? Use the import tool or API to add
       your data in bulk to the platform. From there, it can be combined with other
       datasets or feed into live dashboards and tools that visualize your findings."
     :icon: share
@@ -85,7 +87,7 @@
   :fields:
     :title: Extract
     :body: "Explore the data made available by WikiRate’s community. Find what
-      you are looking for? Download unlimited Data Sets or connect via the API for
+      you are looking for? Download unlimited Datasets or connect via the API for
       regular automated queries to make sure you always have the latest."
     :icon: grade
 - :type: :blurb

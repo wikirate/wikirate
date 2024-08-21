@@ -18,7 +18,7 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[menu core search type_links involved].each do |view|
+  %i[core alert banner involved].each do |view|
     view view, template: :haml
   end
 
@@ -26,6 +26,10 @@ format :html do
 
   view :shuffle_button do
     link_to_view :delta, material_symbol_tag(:shuffle), class: "btn wr-arrow"
+  end
+
+  def alert?
+    :alert_banner.card.content.strip.present?
   end
 
   def involved_links
@@ -40,10 +44,10 @@ format :html do
   def edit_fields
     absolutize_edit_fields [
       :alert_banner,
-      :homepage_search_heading,
-      %i[search featured],
       %i[cardtype featured],
       %i[homepage blurb],
+      %i[metric featured],
+      %i[dataset featured],
       # ] + count_categories.map { |c| [c, :header] } + [
       :homepage_involved_heading,
       :homepage_delta_heading,

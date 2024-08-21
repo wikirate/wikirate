@@ -1,4 +1,4 @@
-# filter interface for Data Sets
+# filter interface for Datasets
 
 include_set Abstract::CqlSearch
 include_set Abstract::SearchViews

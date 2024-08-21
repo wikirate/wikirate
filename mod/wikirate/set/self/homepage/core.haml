@@ -1,23 +1,16 @@
 #homepage.nodblclick
-  - if :alert_banner.card.content.strip.present?
+  - if alert?
     %section.homepage-alert._homepage-alert.container-fluid.bg-dark
-      .d-flex.container.text-white.justify-content-between.align-items-center.px-5
-        .container.text-center.p-2
-          = nest :alert_banner, view: :core
-        .button._close-alert-button.close-alert-button
-          = icon_tag :close
+      = render_alert
 
-  %section#homepage-menu.container.px-5.py-2
-    = render_menu
+  = nest :nav_bar, view: :core
 
-  // SEARCH SECTION
+  %section#homepage-banner-section
+    = render_banner
 
-  = render_search
-
-  // TYPE LINK SECTION
-
-  %section#homepage-type-links-section.container.vertical-thumbnails.py-5
-    = render_type_links
+  %section#homepage-ratings-section
+    .container
+      = nest :metric, view: :featured_boxes, show: :featured_link
 
   %section#homepage-involved-section.container-fluid.bg-light
     .container.py-5
@@ -29,6 +22,10 @@
   %section#homepage-delta-section.vertical-thumbnails.container-fluid.bg-light.pt-5.pb-3
     .container.py-5
       = render_delta
+
+  %section#homepage-dataset-section.container-fluid.bg-light-purple
+    .container.py-5
+      = nest :dataset, view: :featured_boxes, show: :featured_link
 
   %section#homepage-designer-section.container.py-5
     .d-flex.justify-content-center.py-5

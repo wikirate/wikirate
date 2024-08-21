@@ -1,6 +1,6 @@
-# WikiRatings
+# Ratings
 
-# WikiRating variables are stored as a simple JSON hash:
+# Rating variables are stored as a simple JSON hash:
 #
 # { metric: metric_name, weight: metric_weight }
 decko.editors.content['.wikiRating-editor'] = ->

@@ -99,7 +99,7 @@ def normalize_value value
 end
 
 def calculation_types
-  %i[wiki_rating formula descendant]
+  %i[rating formula descendant]
 end
 
 def input_metrics_and_detail

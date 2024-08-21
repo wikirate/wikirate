@@ -1,5 +1,5 @@
 describe "expanding details on company pages", ->
-  specify "WikiRating", ->
+  specify "Rating", ->
     cy.visit "Death Star"
 
     # use filter to find darkness rating

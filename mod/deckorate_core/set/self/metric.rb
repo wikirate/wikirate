@@ -1,5 +1,6 @@
 include_set Abstract::CachedCount
 include_set Abstract::MetricSearch
+include_set Abstract::FeaturedBoxes
 
 recount_trigger :type, :metric, on: [:create, :delete] do |_changed_card|
   Card[:metric]
@@ -11,6 +12,14 @@ end
 
 format :html do
   before(:filtered_content) { voo.items[:view] = :box }
+
+  def featured_label
+    @featured_label ||= :rating.cardname.vary(:plural).downcase
+  end
+
+  def featured_link_path
+    path filter: { metric_type: :rating.cardname }
+  end
 end
 
 format :json do
