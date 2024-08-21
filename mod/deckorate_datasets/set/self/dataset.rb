@@ -4,6 +4,10 @@ include_set Abstract::FluidLayout
 
 format :html do
   view :page, template: :haml, wrap: :slot
+
+  def edit_fields
+    %i[description featured]
+  end
 end
 
 format :csv do

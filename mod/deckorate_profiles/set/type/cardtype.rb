@@ -6,7 +6,17 @@ end
 
 format do
   before :header do
-    voo.variant = :plural
+    title = standard_title.to_name.vary :plural
+    title = "#{icon_tag card.codename} #{title}" if wr_icon?
+    voo.title = title
+  end
+
+  private
+
+  def wr_icon?
+    return false unless card.codename
+
+    basket[:icons][:wikirate].key? card.codename
   end
 end
 

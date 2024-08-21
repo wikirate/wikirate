@@ -42,6 +42,21 @@
   text-align: center;
 }
 
+
+.TYPE-cardtype > .d0-card-header,
+.feature-page-header .d0-card-header {
+  .d0-card-header-title {
+    .card-title {
+      display: flex;
+      align-items: center;
+      i.wr-icon {
+        margin-right: 0.7em
+      }
+    }
+  }
+}
+
+
 /*----------- Media queries ---------*/
 
 
