@@ -1,11 +1,20 @@
 - klass = "#{card.name.safe_key}-featured-boxes"
-.feature-boxes{ class: klass }
-  %h2.py-5.fw-normal
-    = voo.title || featured_header
+%section.feature-boxes.nodblclick{ class: klass }
+  .feature-boxes-header.py-5.d-flex.justify-content-between
+    %h2.fw-normal
+      = material_symbol_tag :trending_up
+      = voo.title || featured_header
+    .feature-boxes-header-right.d-flex.justify-content-end.align-items-center
+      .feature-box-arrows
+        = render_nav_arrows
+      - if voo.explicit_show? :featured_link
+        .feature-box-view-all.ps-4
+          %a.d-flex.align-items-center{ href: featured_link_path }
+            = featured_link_text
+            = material_symbol_tag :east
   .pb-5
     .feature-boxes-slider{ data: {
-          slick: { #infinite: false,
-                   centerMode: true,
+          slick: { infinite: false,
                    slidesToShow: 3,
                    prevArrow: ".#{klass} .wr-prev",
                    nextArrow: ".#{klass} .wr-next",
@@ -15,5 +24,6 @@
                    ] }.to_json
         } }
       - card.featured_card.item_cards.each do |item|
-        = nest item, view: :box
+        .p-3.d-flex.justify-content-center
+          = nest item, view: :box
 

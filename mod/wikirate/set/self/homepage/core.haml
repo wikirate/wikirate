@@ -8,6 +8,10 @@
   %section#homepage-banner-section
     = render_banner
 
+  %section#homepage-ratings-section
+    .container
+      = nest :metric, view: :featured_boxes, show: :featured_link
+
   %section#homepage-involved-section.container-fluid.bg-light
     .container.py-5
       = render_involved
@@ -18,6 +22,10 @@
   %section#homepage-delta-section.vertical-thumbnails.container-fluid.bg-light.pt-5.pb-3
     .container.py-5
       = render_delta
+
+  %section#homepage-dataset-section.container-fluid.bg-light-purple
+    .container.py-5
+      = nest :dataset, view: :featured_boxes, show: :featured_link
 
   %section#homepage-designer-section.container.py-5
     .d-flex.justify-content-center.py-5

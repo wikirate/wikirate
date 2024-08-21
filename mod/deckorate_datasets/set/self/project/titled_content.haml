@@ -3,6 +3,8 @@
     = field_nest :description
   .text-end
     = render_add_button
-= render_featured_boxes
+%h2.py-5.fw-normal Featured
+.pb-5
+  = nest [card, :featured], view: :content, items: { view: :box }
 %h2.fw-normal All
 = render_filtered_content
