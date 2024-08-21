@@ -5,6 +5,7 @@
         .homepage-banner-content
           = section_header :homepage_banner, header_size: :h1
       .col-3.d-flex.align-items-center.justify-content-end
-        %a.btn.btn-primary{ href: "/new/:signup"}
+        %a.btn.btn-primary.d-flex.align-items-center{ href: "/new/:signup"}
           = icon_tag :signup
-          Sign up now
+          %span.ps-2
+            Sign up now

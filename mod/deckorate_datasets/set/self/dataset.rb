@@ -3,7 +3,7 @@ include_set Abstract::FeaturedBoxes
 include_set Abstract::FluidLayout
 
 format :html do
-  view :page, template: :haml
+  view :page, template: :haml, wrap: :slot
 end
 
 format :csv do

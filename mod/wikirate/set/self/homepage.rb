@@ -46,6 +46,8 @@ format :html do
       :alert_banner,
       %i[cardtype featured],
       %i[homepage blurb],
+      %i[metric featured],
+      %i[dataset featured],
       # ] + count_categories.map { |c| [c, :header] } + [
       :homepage_involved_heading,
       :homepage_delta_heading,

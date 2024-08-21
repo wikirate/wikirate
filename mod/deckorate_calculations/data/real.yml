@@ -26,6 +26,7 @@
 - :name: Rating
   :type: :metric_type_type
   :codename: rating
+  :conflict: override
 - :name: Score
   :type: :metric_type_type
   :codename: score

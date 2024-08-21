@@ -2,6 +2,7 @@
 - :name: Dataset
   :codename: dataset
   :type: :cardtype
+  :conflict: override
   :fields:
     :description: |
       <p>

@@ -10,7 +10,8 @@
       - if voo.explicit_show? :featured_link
         .feature-box-view-all.ps-4
           %a.d-flex.align-items-center{ href: featured_link_path }
-            = featured_link_text
+            %span.pe-2
+              = featured_link_text
             = material_symbol_tag :east
   .pb-5
     .feature-boxes-slider{ data: {

@@ -1,4 +1,5 @@
 class Calculate
+  # methods for computing Ratings (metric type for weighted averages)
   class Rating < Calculator
     def compute input_vals, _company, _year
       result = 0.0
