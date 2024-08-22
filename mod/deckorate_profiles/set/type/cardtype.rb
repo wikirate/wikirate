@@ -34,5 +34,4 @@ format :html do
 
     basket[:icons][:wikirate].key? card.codename
   end
-
 end
