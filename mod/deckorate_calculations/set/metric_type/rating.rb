@@ -12,11 +12,11 @@ def ten_scale?
 end
 
 def calculator_class
-  ::Calculate::WikiRating
+  ::Calculate::Rating
 end
 
 def calculation_types
-  %i[wiki_rating formula descendant]
+  %i[rating formula descendant]
 end
 # </OVERRIDES>
 

@@ -1,6 +1,6 @@
 format :html do
   # needed for ten-scale display of values of non-ten-scale metrics
-  # (eg Formulae used in WikiRating)
+  # (eg Formulae used in Rating)
   view :ten_scale, unknown: true do
     wrap_with :span, class: "metric-value" do
       beautify_ten_scale(card.value).html_safe

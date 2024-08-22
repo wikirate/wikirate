@@ -46,7 +46,8 @@ basket[:icons][:material].merge!(
   graph: :insights,
   sort_ascending: :keyboard_arrow_up,
   sort_descending: :keyboard_arrow_down,
-  help: :help
+  help: :help,
+  signup: :rocket
 )
 
 basket[:icons][:font_awesome].merge!(

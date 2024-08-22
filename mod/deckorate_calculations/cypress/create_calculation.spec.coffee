@@ -75,7 +75,7 @@ describe "metric creation", ->
         cy.get(".metric-tree-item-title").should "contain", "friendliness"
 
       # go to answers tab
-      cy.contains("Answers").click()
+      cy.get("#main .nav-tabs").within -> cy.contains("Answers").click()
 
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "1.1"
@@ -103,7 +103,7 @@ describe "metric creation", ->
         cy.get(".code").should "contain", "answer + 1"
 
       # go to answers tab
-      cy.contains("Answers").click()
+      cy.get("#main .nav-tabs").within -> cy.contains("Answers").click()
 
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "1.1"
@@ -116,10 +116,10 @@ describe "metric creation", ->
       # calculations tab
       cy.contains("Calculations").click()
 
-    specify "metric type: WikiRating", ->
+    specify "metric type: Rating", ->
 
       # new formula button
-      cy.contains("Add new WikiRating").click()
+      cy.contains("Add new Rating").click()
 
       cy.get("#pair_value").clear().type("100")
 
@@ -127,14 +127,14 @@ describe "metric creation", ->
       cy.contains("Save as Metric").click()
 
       # add a name and save
-      cy.get(".RIGHT-Xtitle .d0-card-content").type "MyWikiRating"
+      cy.get(".RIGHT-Xtitle .d0-card-content").type "MyRating"
       cy.contains("Submit").click()
 
       # check that formula looks right
       cy.get(".RIGHT-Xvariable").should "contain", "disturbance"
 
       # go to answers tab
-      cy.contains("Answers").click()
+      cy.get("#main .nav-tabs").within -> cy.contains("Answers").click()
 
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "10"

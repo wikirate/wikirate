@@ -1,5 +1,6 @@
 class Calculate
-  class WikiRating < Calculator
+  # methods for computing Ratings (metric type for weighted averages)
+  class Rating < Calculator
     def compute input_vals, _company, _year
       result = 0.0
       total_weight = 0

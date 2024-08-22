@@ -32,23 +32,10 @@ animation bg-pan-right
 }
 
 #homepage {
-  #homepage-search-section {
+  #homepage-banner-section {
     .homepage-background {
       background-image: linear-gradient(270deg, $light-purple, $light-teal, $light-red);
       background-size: 600% 100%;
-    }
-
-    .search-box-input-group {
-      height: 60px;
-      select {
-        color: $blue;
-        font-weight: 600;
-        padding-left: 2em;
-      }
-    }
-
-    .homepage-search-box {
-      padding: 1.5em 0 2em 0;
     }
   }
 }
@@ -103,36 +90,6 @@ animation bg-pan-right
   }
 }
 
-
-#homepage-search-container > div {
-  width: 75%
-}
-
-@media screen and (max-width: 576px){
-  #homepage-search-section {
-    #homepage-search-container > div {
-      width: 90%
-    }
-
-    .search-box-input-group {
-      height: 56px;
-
-      select {
-        padding-left: 1.5em;
-        font-size: 0.875rem;
-      }
-
-      .form-select {
-        padding: 0.375rem 1.5rem 0.375rem 1rem;
-      }
-
-      .form-control {
-        font-size: .875rem;
-        border-right-style: none;
-      }
-    }
-  }
-}
 
 .close-alert-button {
   cursor: pointer;
