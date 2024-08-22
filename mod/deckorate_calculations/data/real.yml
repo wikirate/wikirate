@@ -23,9 +23,10 @@
 - :name: Formula
   :type: :metric_type_type
   :codename: formula
-- :name: WikiRating
+- :name: Rating
   :type: :metric_type_type
-  :codename: wiki_rating
+  :codename: rating
+  :conflict: override
 - :name: Score
   :type: :metric_type_type
   :codename: score

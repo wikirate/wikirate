@@ -1,5 +1,5 @@
 ---
-- homepage
+- featured
 - style
 
 - :name: Blurb
@@ -91,23 +91,6 @@
 - :name: Home
   :type: :html
   :codename: homepage
-
-#- :name:
-#    - :organizer
-#    - :featured
-#  :type: :list
-#  :content: |-
-#    Walk Free
-#    University of Connecticut
-#    MANA
-#    AMD Akademie Mode & Design Berlin
-#    Oxfam India
-#    Columbia University - School of International & Public Affairs
-
-- :name:
-    - :account
-    - :featured
-  :type: :list
 
 - :name: newsletter
   :codename: newsletter

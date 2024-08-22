@@ -124,10 +124,10 @@ RSpec.describe Card::Set::Type::MetricAnswer do
   #   end
   # end
   #
-  # describe "#expanded_wiki_rating_details" do
+  # describe "#expanded_rating_details" do
   #   subject do
   #     fetch_answer("Jedi+darkness rating+Death Star+1977")
-  #       .format.expanded_wiki_rating_details
+  #       .format.expanded_rating_details
   #   end
   #
   #   specify do

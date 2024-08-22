@@ -1,7 +1,13 @@
 include_set Abstract::DatasetSearch
+include_set Abstract::FeaturedBoxes
+include_set Abstract::FluidLayout
 
 format :html do
-  view :titled_content, template: :haml
+  view :page, template: :haml, wrap: :slot
+
+  def edit_fields
+    %i[description featured]
+  end
 end
 
 format :csv do

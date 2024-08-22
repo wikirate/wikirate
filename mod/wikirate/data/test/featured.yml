@@ -1,0 +1,32 @@
+---
+- :name:
+    - :designer
+    - :featured
+  :content:
+    - Jedi
+    - Joe User
+    - Global Reporting Initiative
+    - Core
+    - ISIC
+    - Clean Clothes Campaign
+
+- :name:
+    - :organizer
+    - :featured
+  :content:
+    - Jedi
+    - Joe User
+
+- :name:
+    - :account
+    - :featured
+  :content:
+    - Joe User
+    - Joe Camel
+
+- :name:
+    - :metric
+    - :featured
+  :content:
+    - Jedi+deadliness
+    - Jedi+friendliness

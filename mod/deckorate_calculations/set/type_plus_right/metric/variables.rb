@@ -5,7 +5,7 @@
 #  # All metric types
 #  - metric:         # required. stored as id prefixed by tilde
 #
-#  # WikiRatings only
+#  # Ratings only
 #  - weight          # used as item's weight in weighted average
 #
 #  # Formula only
@@ -150,7 +150,7 @@ format :html do
 
   def filter_items_default_filter
     super.tap do |hash|
-      hash.merge! metric_type: %w[Score WikiRating], name: "" if rating?
+      hash.merge! metric_type: %w[Score Rating], name: "" if rating?
     end
   end
 
