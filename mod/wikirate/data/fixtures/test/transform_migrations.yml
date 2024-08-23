@@ -441,3 +441,5 @@ transform_migrations_220:
   version: '20230502094848'
 transform_migrations_221:
   version: '20240510141851'
+transform_migrations_222:
+  version: '20240823181642'

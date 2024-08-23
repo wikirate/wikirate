@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Type::Flag do
 
         answer.open_flag_cards.first.delete!
 
-        expect(answer.lookup.verification).to eq(2)
+        expect(answer.lookup.verification).to eq(3)
         expect(answer.lookup.open_flags).to eq(0)
       end
     end

@@ -14,7 +14,7 @@ end
 
 event :enforce_applicability_to_calculations, :integrate_with_delay,
       skip: :allowed, priority: 5, when: :calculated? do
-  metric_card.deep_answer_update unless metric_card.action.in? %i[create delete]
+  metric_card.calculate_answers unless metric_card.action.in? %i[create delete]
 end
 
 def researched_answers
