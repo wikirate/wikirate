@@ -10,21 +10,21 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Steward do
 
   describe "updating stewards" do
     it "starts with community added metrics" do
-      expect(researched_card.answer.verification).to eq(level(:community_added))
-      expect(wikirating_card.answer.verification).to eq(level(:community_added))
+      expect(researched_card.answer.verification).to eq(level(:unverified))
+      expect(wikirating_card.answer.verification).to eq(level(:unverified))
     end
 
     it "updates researched (not wikirating) when one metric steward updated" do
       metric.steward_card.update! content: "Decko Bot"
-      expect(researched_card.answer.verification).to eq(level(:steward_added))
-      expect(wikirating_card.answer.verification).to eq(level(:community_added))
+      expect(researched_card.answer.verification).to eq(level(:steward_verified))
+      expect(wikirating_card.answer.verification).to eq(level(:unverified))
     end
 
     it "updates researched and wikirating when all metric stewards updated" do
       metric.steward_card.update! content: "Decko Bot"
       metric_2.steward_card.update! content: "Decko Bot"
-      expect(researched_card.answer.verification).to eq(level(:steward_added))
-      expect(wikirating_card.answer.verification).to eq(level(:steward_added))
+      expect(researched_card.answer.verification).to eq(level(:steward_verified))
+      expect(wikirating_card.answer.verification).to eq(level(:steward_verified))
     end
   end
 end

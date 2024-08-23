@@ -11,7 +11,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::CheckedBy do
 
   describe "wikirating verification" do
     it "starts as a 1 (unverified)" do
-      expect(wikirating_card.answer.verification).to eq(level(:community_added))
+      expect(wikirating_card.answer.verification).to eq(level(:unverified))
     end
 
     context "when a dependee researched card's verification changes" do
@@ -24,7 +24,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::CheckedBy do
       it "stays 1 (unverified) if verified" do
         check_answer researched_card
         expect(researched_card.answer.verification).to eq(level(:community_verified))
-        expect(wikirating_card.answer.verification).to eq(level(:community_added))
+        expect(wikirating_card.answer.verification).to eq(level(:unverified))
       end
     end
 
