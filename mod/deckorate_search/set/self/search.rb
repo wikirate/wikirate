@@ -15,11 +15,13 @@ format do
   end
 
   def filter_type_ids
-    type_param ? [type_param.card_id] : featured_type_list.item_ids
+    return [type_param.card_id] if type_param
+
+    featured_type_list.item_ids - [MetricAnswerID]
   end
 
   def featured_type_names
-    featured_type_list.item_names.map { |n| n.vary :plural }
+    filter_type_ids.map { |id| id.cardname.vary :plural }
   end
 
   def search_with_params

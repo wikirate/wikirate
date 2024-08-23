@@ -110,7 +110,6 @@
 
 - :name: Profile Type
   :codename: profile_type
-  :conflict: override
   :fields:
     :right:
       :fields:
@@ -137,27 +136,21 @@
 
 - :name: Community Guidelines
   :codename: community_guidelines
-  :conflict: override
 
 - :name: Privacy Policy
   :codename: privacy_policy
-  :conflict: override
 
 - :name: Terms of Use
   :codename: terms_of_use
-  :conflict: override
 
 - :name: Disclaimers
   :codename: disclaimers
-  :conflict: override
 
 - :name: Notice and Take Down Procedure
   :codename: notice_and_take_down
-  :conflict: override
 
 - :name: Licensing
   :codename: licensing
-  :conflict: override
 
 - :name:
     - :policy
