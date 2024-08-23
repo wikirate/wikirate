@@ -118,19 +118,31 @@
         :input_type: select
         :help: Which profile type fits you best?
         :content_options:
-          :type: :list
-          :content:
-            - Academic
-            - Civil Society / NGO
-            - Company
-            - Foundation
-            - Government
-            - Independent
-            - Investor AB
-            - Media
-            - Student
-            - Trade Union
-
+          :type: :json
+          :content: |
+            {
+              "Academia": [
+                "Researcher",
+                "Student",
+                "Teacher"
+              ],
+              "Non-Profit": [
+                "Civil Society Organization",
+                "Foundation",
+                "Government",
+                "Trade Union"
+              ],
+              "For-Profit": [
+                "Business Representative",
+                "Investor",
+                "Manager"
+              ],
+              "Other": [
+                "Sustainability Expert",
+                "Journalist",
+                "Independent User"
+              ]
+            }
 - :name: Wikirate Policies
   :codename: policy
 

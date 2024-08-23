@@ -4,7 +4,7 @@ include_set Abstract::PublishableField
 include_set Abstract::LookupField
 
 def lookup_columns
-  %i[value numeric_value imported updated_at editor_id]
+  %i[value numeric_value imported updated_at editor_id verification]
 end
 
 def answer_id
