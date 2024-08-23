@@ -17,7 +17,7 @@ def researched_verification
 end
 
 def researched_verification_symbol
-  steward_added? ? :steward_added : :community_added
+  steward_added? ? :steward_verified : :unverified
 end
 
 def calculated_verification

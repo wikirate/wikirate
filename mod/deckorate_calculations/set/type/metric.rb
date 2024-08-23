@@ -6,7 +6,7 @@ card_accessor :rubric, type: :json # Scores (of categorical metrics)
 card_accessor :formula, type: :coffee_script # Formula and non-categorical Scores
 
 event :recalculate_answers, delay: true, priority: 5 do
-  deep_answer_update
+  calculate_answers
 end
 
 event :disallow_input_deletion, :validate, on: :delete do
@@ -33,24 +33,12 @@ def direct_dependee_metrics
   []
 end
 
-# USE WITH CAUTION
-# This method works DOWN the dependency tree and recalculates answers. It's not a
-# typical pattern and was written as a bit of hail mary attempt to fix some confusing
-# results. But it can be very computationally expensive, and if things are working
-# properly it should never be necessary.
-def recalculate_dependees
-  return if researched?
-
-  direct_dependee_metrics.each(&:recalculate_dependees)
-  calculate_answers
-end
-
 # DEPENDERS = metrics that depend on me
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def update_depender_values_for! company_id
   each_depender_metric do |metric|
-    metric.calculate_answers company_id: company_id
+    metric.calculate_direct_answers company_id: company_id
   end
 end
 

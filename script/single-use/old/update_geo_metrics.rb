@@ -49,4 +49,4 @@ metrics.each do |h|
 end
 
 puts "starting deep answer update"
-Card["Core+#{hq}"].deep_answer_update
+Card["Core+#{hq}"].calculate_answers

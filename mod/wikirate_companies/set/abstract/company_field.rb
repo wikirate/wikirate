@@ -3,7 +3,7 @@
 # includer must define #metric code
 
 event :update_company_field_answer_lookup, :finalize do
-  metric_card&.deep_answer_update company_id: answer_company_id, year: answer_year
+  metric_card&.calculate_answers company_id: answer_company_id, year: answer_year
 end
 
 def metric_code
