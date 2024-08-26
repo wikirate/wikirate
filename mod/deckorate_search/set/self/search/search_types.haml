@@ -20,7 +20,7 @@
       -#              { breakpoint: "576",  settings: { slidesToShow: 2, arrows: true } }
       -#            ]}.to_json
       -#   } }
-      - featured_type_list.item_ids.each do |type|
+      - featured_type_ids.each do |type|
         = link_to_type type.codename
 
   - if type_param
