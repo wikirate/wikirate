@@ -3,7 +3,7 @@ include_set Abstract::Thumbnail
 format :html do
   def thumbnail_title
     voo.show :title_link if voo.show? :thumbnail_link
-    output [render_title, render_headquarters]
+    output [render_title, render_headquarters(optional: :hide)]
   end
 
   def thumbnail_subtitle
@@ -20,7 +20,7 @@ format :html do
   end
 
   view :bar_left do
-    render_thumbnail
+    render_thumbnail show: :headquarters
   end
 
   view :bar_right do
