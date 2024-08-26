@@ -25,7 +25,7 @@ event :reset_double_check, :validate, on: :update, changed: :content do
 end
 
 event :monitor_hybridness, :integrate, on: %i[create delete], when: :calculated? do
-  metric_card.deep_answer_update company_id: company_id, year: year
+  metric_card.calculate_answers company_id: company_id, year: year
 end
 
 event :mark_as_imported, before: :finalize_action, when: :import_act? do
