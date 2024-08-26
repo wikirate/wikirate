@@ -12,7 +12,7 @@
     } }
     - companies_for_slider.each do |company|
       .d-flex.flex-column
-        = nest company, view: :thumbnail, size: :medium
+        = nest company, view: :thumbnail_minimal, size: :medium
         .company-slide-detail.py-3.small
           = company_detail company
   .d-flex.justify-content-center.pt-4
