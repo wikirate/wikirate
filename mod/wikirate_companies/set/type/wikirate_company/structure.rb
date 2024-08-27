@@ -2,21 +2,9 @@ def self.company_identifier_accessor codename
   card_accessor codename, type: :phrase if codename.present? && !method_defined?(codename)
 end
 
-def company_identifiers
-  @company_identifiers ||= CompanyIdentifier.names
-end
-
-def company_identifiers_with_excerpts
-  @company_identifiers_with_excerpts ||= CompanyIdentifier.excerpts
-end
-
-def company_identifiers_without_excerpts
-  @company_identifiers_without_excerpts ||= CompanyIdentifier.non_excerpts
-end
-
 # as in, NOT records (company+metric)
 def simple_field_names
-  %i[image headquarters wikirate_website alias].map(&:cardname) + company_identifiers
+  %i[image headquarters wikirate_website alias].map(&:cardname) + CompanyIdentifier.names
 end
 
 def simple_field_cards
@@ -70,7 +58,7 @@ format :html do
   end
 
   view :details_tab_left do
-    card.company_identifiers_with_excerpts.map do |fieldcode|
+    CompanyIdentifier.excerpts.map do |fieldcode|
       next unless card.fetch fieldcode
 
       field_nest fieldcode, view: :titled, title: fieldcode.cardname
@@ -78,13 +66,13 @@ format :html do
   end
 
   view :details_tab_right do
-    card.company_identifiers_without_excerpts.map do |code|
+    CompanyIdentifier.non_excerpts.map do |code|
       labeled_field code, :name if card.fetch(code)
     end
   end
 
   view :identifiers_list do
-    card.company_identifiers.map do |fieldcode|
+    CompanyIdentifier.names.map do |fieldcode|
       field = card.fetch fieldcode
       nest field, view: :hover_field if field.present?
     end.compact
