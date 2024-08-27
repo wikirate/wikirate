@@ -20,6 +20,12 @@ format :json do
   end
 end
 
+format :csv do
+  view :content do
+    card.item_names(context: :raw).join ";"
+  end
+end
+
 format :html do
   def input_type
     multiple? ? :list : :text_field

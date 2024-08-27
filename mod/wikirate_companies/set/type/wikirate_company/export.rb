@@ -101,7 +101,7 @@ format :csv do
   end
 
   def identifiers
-    card.company_identifiers.map do |field_name|
+    CompanyIdentifier.names.map do |field_name|
       field_nest field_name, view: :content
     end
   end
