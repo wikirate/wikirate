@@ -90,7 +90,7 @@ format :html do
   end
 
   view :box_bottom do
-    render_bar_right
+    count_badges(:researcher, :project, :metric)
   end
 
   view :one_line_content do
