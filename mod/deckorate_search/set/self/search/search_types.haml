@@ -7,20 +7,7 @@
         = link_without_type icon_tag(:remove), class: "remove-filter-link ms-1"
       = link_without_type "Clear category filter"
     - else
-      -# .py-1{ data: {
-      -#   slick: { infinite: false,
-      -#            slidesToShow: 8,
-      -#            arrows: false,
-      -#            slidesToScroll: 1,
-      -#            variableWidth: true,
-      -#            responsive: [
-      -#              { breakpoint: "1200", settings: { slidesToShow: 7, arrows: true } },
-      -#              { breakpoint: "992",  settings: { slidesToShow: 5, arrows: true } },
-      -#              { breakpoint: "768",  settings: { slidesToShow: 4, arrows: true } },
-      -#              { breakpoint: "576",  settings: { slidesToShow: 2, arrows: true } }
-      -#            ]}.to_json
-      -#   } }
-      - featured_type_list.item_ids.each do |type|
+      - featured_type_ids.each do |type|
         = link_to_type type.codename
 
   - if type_param
