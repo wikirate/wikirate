@@ -28,20 +28,22 @@ class << self
   end
 
   def names
-    Card.cache.fetch "CORPORATE-IDENTIFIER-NAMES" do
-      cards.map do |ident|
-        Type::WikirateCompany::Structure.company_identifier_accessor ident.codename
-        ident.name
+    @names ||=
+      Card.cache.fetch "CORPORATE-IDENTIFIER-NAMES" do
+        cards.map do |ident|
+          Type::WikirateCompany::Structure.company_identifier_accessor ident.codename
+          ident.name
+        end
       end
-    end
   end
 
   def excerpts
-    Card.cache.fetch "CORPORATE-IDENTIFIER-EXCERPTS" do
-      names.select do |name|
-        excerpt? name.card.codename
+    @excerpts ||=
+      Card.cache.fetch "CORPORATE-IDENTIFIER-EXCERPTS" do
+        names.select do |name|
+          excerpt? name.card.codename
+        end
       end
-    end
   end
 
   def non_excerpts
