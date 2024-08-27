@@ -236,18 +236,18 @@ $lightMap: (
     }
   }
 
-  .bar, .box {
-    &:hover .RIGHT-#{$type} {
-      &.labeled-badge {
-        label {
-          color: $color
-        }
-        .badge {
-          background-color: $color !important;
-        }
-      }
-    }
-  }
+  //.bar, .box {
+  //  &:hover .RIGHT-#{$type} {
+  //    &.labeled-badge {
+  //      label {
+  //        color: $color
+  //      }
+  //      .badge {
+  //        background-color: $color !important;
+  //      }
+  //    }
+  //  }
+  //}
 
   //#main > .SELF-#{$type}.titled-view > .d0-card-header > h1 {
   //  color: $color;

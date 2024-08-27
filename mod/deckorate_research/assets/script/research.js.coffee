@@ -172,7 +172,7 @@ selectedYear = ()->
   selectedYearInput().val() || $(".answer-breadcrumb .year").html()
 
 selectedYearNotResearched = ->
-  selectedYearInput().closest("._research-year-option").find(".not-researched")[0]
+  selectedYearInput().closest("._research-year-option").find("._not-researched")[0]
 
 selectedYearInput = ->
   $("input[name='year']:checked")
