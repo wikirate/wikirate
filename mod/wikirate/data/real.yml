@@ -108,41 +108,41 @@
         :input_type: radio
         :help: Do you want to receive our monthly community newsletter?
 
-- :name: Profile Type
-  :codename: profile_type
-  :fields:
-    :right:
-      :fields:
-        :default:
-          :type: :pointer
-        :input_type: select
-        :help: Which profile type fits you best?
-        :content_options:
-          :type: :json
-          :content: |
-            {
-              "Academia": [
-                "Researcher",
-                "Student",
-                "Teacher"
-              ],
-              "Non-Profit": [
-                "Civil Society Organization",
-                "Foundation",
-                "Government",
-                "Trade Union"
-              ],
-              "For-Profit": [
-                "Business Representative",
-                "Investor",
-                "Manager"
-              ],
-              "Other": [
-                "Sustainability Expert",
-                "Journalist",
-                "Independent User"
-              ]
-            }
+#- :name: Profile Type
+#  :codename: profile_type
+#  :fields:
+#    :right:
+#      :fields:
+#        :default:
+#          :type: :pointer
+#        :input_type: select
+#        :help: Which profile type fits you best?
+#        :content_options:
+#          :type: :json
+#          :content: |
+#            {
+#              "Academia": [
+#                "Researcher",
+#                "Student",
+#                "Teacher"
+#              ],
+#              "Non-Profit": [
+#                "Civil Society Organization",
+#                "Foundation",
+#                "Government",
+#                "Trade Union"
+#              ],
+#              "For-Profit": [
+#                "Business Representative",
+#                "Investor",
+#                "Manager"
+#              ],
+#              "Other": [
+#                "Sustainability Expert",
+#                "Journalist",
+#                "Independent User"
+#              ]
+#            }
 - :name: Wikirate Policies
   :codename: policy
 
