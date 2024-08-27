@@ -153,7 +153,7 @@ format :html do
     count ||= counts[codename]
     labeled_badge number_with_delimiter(count),
                   answer_count_badge_label(codename, count),
-                  color: "#{badge_label(codename).downcase} bg-secondary"
+                  color: "light"
   end
 
   def answer_count_badge_label codename, count
