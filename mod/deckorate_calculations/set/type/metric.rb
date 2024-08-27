@@ -12,7 +12,7 @@ end
 event :disallow_input_deletion, :validate, on: :delete do
   return unless formula_metrics.present?
 
-  errors.add "Cannot delete a metric that other metrics depend on"
+  errors.add :content, "Cannot delete a metric that other metrics depend on"
 end
 
 # an unorthodox metric is a calculated metric that directly depends on an answer
