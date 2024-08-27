@@ -24,7 +24,5 @@
                      { breakpoint: "768",  settings: { slidesToShow: 1 } }
                    ] }.to_json
         } }
-      - card.featured_card.item_cards.each do |item|
-        .p-3.d-flex.justify-content-center
-          = nest item, view: :box
+      = nest card.featured_card, view: :flex_centered_boxes
 

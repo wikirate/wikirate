@@ -10,18 +10,16 @@ def search parameters={}
 end
 
 format do
-  def featured_type_list
-    %i[cardtype featured].card
+  def featured_type_ids
+    %i[cardtype featured].card.item_ids - [MetricAnswerID]
   end
 
   def filter_type_ids
-    return [type_param.card_id] if type_param
-
-    featured_type_list.item_ids - [MetricAnswerID]
+    type_param ? [type_param.card_id] : featured_type_ids
   end
 
   def featured_type_names
-    filter_type_ids.map { |id| id.cardname.vary :plural }
+    featured_type_ids.map { |id| id.cardname.vary :plural }
   end
 
   def search_with_params
