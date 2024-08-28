@@ -243,20 +243,20 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   max-height: 206px !important;
 }
 
-.badge {
-  &.known {
-    color: $white;
-    background-color: $answer-color;
-  }
-  &.total {
-    color: $white;
-    background-color: $black;
-  }
-  &.unknown, &.none {
-    color: $white;
-    background-color: $gray-600;
-  }
-}
+//.badge {
+//  &.known {
+//    color: $white;
+//    background-color: $answer-color;
+//  }
+//  &.total {
+//    color: $white;
+//    background-color: $black;
+//  }
+//  &.unknown, &.none {
+//    color: $white;
+//    background-color: $gray-600;
+//  }
+//}
 
 .score-option {
   &.score-option-checked {
