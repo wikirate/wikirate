@@ -1,6 +1,7 @@
 include_set Abstract::CachedCount
 include_set Abstract::MetricSearch
 include_set Abstract::FeaturedBoxes
+include_set Abstract::OpenSearch
 
 recount_trigger :type, :metric, on: [:create, :delete] do |_changed_card|
   Card[:metric]
@@ -24,6 +25,8 @@ end
 
 format :json do
   def complete_or_match_search limit: 10
+    return super if os_search?
+
     paging = { limit: limit }
     sort = { metric_title: :asc }
     query = term_param ? { metric_keyword: term_param } : {}
