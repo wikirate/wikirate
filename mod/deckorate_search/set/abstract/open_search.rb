@@ -7,7 +7,7 @@ require "colorize"
 # note: options configured in config/application.rb
 # (overrides default Decko method)
 def os_search parameters={}
-  puts parameters
+  # puts parameters
   open_search_client.search parameters
 end
 
@@ -28,7 +28,6 @@ def os_options
   Cardio.config.open_search_options
 end
 
-
 format do
   delegate :os_search?, to: :card
 
@@ -42,7 +41,10 @@ format do
   # (overrides default Decko method)
   def os_search_returning_cards
     rescuing_open_search [] do
-      os_search_with_params.dig("hits", "hits").map { |res| os_result_card res }.compact
+      hits = os_search_with_params.dig "hits", "hits"
+      hits.map { |res| os_result_card res }.compact.tap do |cardlist|
+        ensure_exact_match cardlist
+      end
     end
   end
 
@@ -105,5 +107,16 @@ format do
     return unless os_type_param.present?
 
     yield[:filter] = { term: { type_id: os_type_param.card_id } }
+  end
+
+  def ensure_exact_match cardlist
+    return unless (exact_match = search_keyword&.card)
+    return unless !cardlist.include? exact_match
+
+    if os_type_param.present?
+      return unless exact_match.type_code == os_type_param.codename
+    end
+
+    cardlist.unshift exact_match
   end
 end

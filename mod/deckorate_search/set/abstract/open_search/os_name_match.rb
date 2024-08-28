@@ -16,25 +16,6 @@ format do
   def all_regions
     Card.search type: :region, limit: 0, return: :name, sort: :name
   end
-
-  def os_search_returning_cards
-    super.tap do |cardlist|
-      ensure_exact_match cardlist
-    end
-  end
-
-  private
-
-  def ensure_exact_match cardlist
-    return unless (exact_match = search_keyword&.card)
-    return unless !cardlist.include? exact_match
-
-    if os_type_param.present?
-      return unless exact_match.type_code == os_type_param.codename
-    end
-
-    cardlist.unshift exact_match
-  end
 end
 
 format :json do
@@ -43,7 +24,7 @@ format :json do
     limit ||= Abstract::Search::AUTOCOMPLETE_LIMIT
     return super unless os_search?
 
-    voo.cql.limit = limit
+    voo.cql = { limit: limit }
     os_search_returning_cards
   end
 end
