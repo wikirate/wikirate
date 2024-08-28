@@ -5,7 +5,7 @@ format do
 
   def os_term_match
     yield.tap do |bool|
-      bool[:minimum_should_match] =  1
+      bool[:minimum_should_match] = 1
       if search_keyword.present?
         bool[:should] = [{ match: { name: search_keyword } },
                          { match_phrase_prefix: { name: search_keyword } }]
