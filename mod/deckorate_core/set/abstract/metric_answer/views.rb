@@ -95,4 +95,3 @@ format :html do
     :full
   end
 end
-
