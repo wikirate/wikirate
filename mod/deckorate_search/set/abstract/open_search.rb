@@ -1,34 +1,39 @@
 require "opensearch"
 require "colorize"
 
-# Open Search client object
-# note: options configured in config/application.rb
-def open_search_client
-  ::OpenSearch::Client.new os_options
-end
-
 # Perform Open Search query
 # @param parameters [Hash] query hash
 # @result [Hash] ruby translation of JSON results
 # note: options configured in config/application.rb
 # (overrides default Decko method)
 def os_search parameters={}
+  puts parameters
   open_search_client.search parameters
 end
 
-def os_options
-  Cardio.config.open_search_options
-end
-
+# is Open Search configured?
 def os_search?
   os_options.present?
 end
 
+private
+
+# Open Search client object
+def open_search_client
+  ::OpenSearch::Client.new os_options
+end
+
+# note: options configured in config/application.rb
+def os_options
+  Cardio.config.open_search_options
+end
+
+
 format do
   delegate :os_search?, to: :card
 
-  def type_param
-    query_params[:type].present? && query_params[:type]
+  def os_type_param
+    type_param
   end
 
   # Retrieves results for main search results page
@@ -82,10 +87,10 @@ format do
     end
   end
 
-  # interprets Open Search results, finding ids and fetching cards with those ids
-  def os_results_to_cards
-    yield.dig("hits", "hits").map { |result| result["_id"]&.to_i&.card }.compact
-  end
+  # # interprets Open Search results, finding ids and fetching cards with those ids
+  # def os_results_to_cards
+  #   yield.dig("hits", "hits").map { |result| result["_id"]&.to_i&.card }.compact
+  # end
 
   # constructs the keyword matching "should" clause for the os_query
   def os_term_match
@@ -97,8 +102,8 @@ format do
 
   # constructs the type filtering clause for the os_query
   def os_type_filter
-    return unless type_param.present?
+    return unless os_type_param.present?
 
-    yield[:filter] = { term: { type_id: type_param.card_id } }
+    yield[:filter] = { term: { type_id: os_type_param.card_id } }
   end
 end
