@@ -10,7 +10,7 @@ format do
   include Card::CompanyImportHelper
 
   def os_search_index
-    "companies"
+    filtered_headquarters.present? ? "companies" : super
   end
 
   def os_type_param
@@ -24,6 +24,7 @@ format do
   def os_term_match
     super.tap do |bool|
       if filtered_headquarters.present?
+        bool ||= yield
         bool[:filter] = {
           "match_phrase_prefix": { "headquarters": filtered_headquarters }
         }

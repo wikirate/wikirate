@@ -91,8 +91,8 @@ format do
   # and #complete_or_match_search
   def os_query
     { minimum_should_match: 1 }.tap do |bool|
-      os_term_match { bool }
       os_type_filter { bool }
+      os_term_match { bool }
     end
   end
 

@@ -24,6 +24,10 @@ format :html do
 end
 
 format :json do
+  def os_type_param
+    :metric
+  end
+
   def complete_or_match_search limit: 10
     return super if os_search?
 
