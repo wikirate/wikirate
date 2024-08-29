@@ -25,8 +25,11 @@ format :html do
   end
 
   view :target_company_select do
-    text_field_tag :target_company, "",
-               class: "wikirate_company_autocomplete form-control"
+    select_tag :target_company, "",
+               class: "form-control",
+               data: { "options-card": :wikirate_company.cardname }
+
+
   end
 
   view :engage_tab do

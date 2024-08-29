@@ -1,6 +1,8 @@
 include_set Abstract::Thumbnail
 
 format :html do
+  mini_bar_cols 7, 5
+
   def thumbnail_title
     voo.show :title_link if voo.show? :thumbnail_link
     output [render_title, render_headquarters(optional: :hide)]
@@ -42,6 +44,4 @@ format :html do
   view :box_bottom do
     count_badges :metric_answer, :metric
   end
-
-  mini_bar_cols 7, 5
 end
