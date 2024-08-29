@@ -77,11 +77,11 @@
   border-left-color: $primary;
 }
 
-.bar-left a {
-  &, .bar-left {
-    font-weight: 600;
+.bar-left {
+  font-weight: normal;
+  a {
+    color: inherit;
   }
-  color: inherit;
 }
 
 .box-bottom {

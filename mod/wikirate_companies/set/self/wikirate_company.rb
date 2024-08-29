@@ -10,11 +10,11 @@ format do
   include Card::CompanyImportHelper
 
   def os_search_index
-    "companies"
+    filtered_headquarters.present? ? "companies" : super
   end
 
-  def filtered_name
-    @filtered_name ||= params.dig :filter, :name
+  def os_type_param
+    :wikirate_company
   end
 
   def filtered_headquarters
@@ -22,31 +22,12 @@ format do
   end
 
   def os_term_match
-    bool = yield
-    bool[:minimum_should_match] =  1
-    os_company_name_match bool if filtered_name.present?
-    os_hq_match bool if filtered_headquarters.present?
-  end
-
-  def os_company_name_match bool
-    bool[:should] = [{ match: { name: filtered_name } },
-                     { match_phrase_prefix: { name: filtered_name } }]
-  end
-
-  def os_hq_match bool
-    bool[:filter] = { "match_phrase_prefix": { "headquarters": filtered_headquarters } }
-  end
-
-  def all_regions
-    Card.search type: :region, limit: 0, return: :name, sort: :name
-  end
-
-  def os_search_returning_cards
-    super.tap do |cardlist|
-      if (exact_match = filtered_name&.card) &&
-         !cardlist.include?(exact_match) &&
-         (exact_match.type_code == :wikirate_company)
-        cardlist.unshift exact_match
+    super.tap do |bool|
+      if filtered_headquarters.present?
+        bool ||= yield
+        bool[:filter] = {
+          "match_phrase_prefix": { "headquarters": filtered_headquarters }
+        }
       end
     end
   end
