@@ -44,7 +44,7 @@ format do
       hits = os_search_with_params.dig "hits", "hits"
       puts "hits: #{hits}"
       hits.map { |res| os_result_card res }.compact.tap do |cardlist|
-        ensure_exact_match cardlist
+        os_ensure_exact_match cardlist
       end
     end
   end
@@ -56,13 +56,19 @@ format do
   end
 
   def os_search_with_params
-    @os_search ||= card.os_search body: { query: { bool: os_query } },
-                                  from: offset,
-                                  size: limit,
-                                  index: os_search_index
+    @os_search ||= card.os_search os_search_parameters
   end
 
   private
+
+  def os_search_parameters
+    {
+      body: { query: { bool: os_query } },
+      from: offset,
+      size: limit,
+      index: os_search_index
+    }
+  end
 
   def os_result_card result
     card = result["_id"]&.to_i&.card
@@ -110,16 +116,20 @@ format do
     yield[:filter] = { term: { type_id: os_type_param.card_id } }
   end
 
-  def ensure_exact_match cardlist
-    return unless (exact_match = search_keyword&.card)
-    return if cardlist.include? exact_match
-    return if os_wrong_type? exact_match
+  def os_ensure_exact_match cardlist
+    exact_match = search_keyword&.card
+    return unless os_add_exact_match? cardlist, exact_match
 
     cardlist.unshift exact_match
   end
 
-  def os_wrong_type? exact_match
-    return false unless os_type_param.present?
+  def os_add_exact_match? cardlist, exact_match
+    exact_match && !cardlist.include(exact_match) && os_right_type?(exact_match)
+  end
+
+  def os_right_type? exact_match
+    return true unless os_type_param.present?
+
     exact_match.type_code == os_type_param.codename
   end
 end
