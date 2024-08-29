@@ -379,8 +379,6 @@ GEM
     ansi (1.5.0)
     ast (2.4.2)
     base64 (0.2.0)
-    bcrypt_pbkdf (1.1.1)
-    bcrypt_pbkdf (1.1.1-arm64-darwin)
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
@@ -544,7 +542,7 @@ GEM
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
-    highline (3.1.0)
+    highline (3.1.1)
       reline
     html2haml (2.3.0)
       erubis (~> 2.7.0)
@@ -639,7 +637,7 @@ GEM
       uri
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
-    net-imap (0.4.14)
+    net-imap (0.4.15)
       date
       net-protocol
     net-pop (0.1.2)
