@@ -28,8 +28,6 @@ format :html do
     select_tag :target_company, "",
                class: "form-control",
                data: { "options-card": :wikirate_company.cardname }
-
-
   end
 
   view :engage_tab do
