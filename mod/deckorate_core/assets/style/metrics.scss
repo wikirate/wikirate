@@ -14,6 +14,7 @@
 .scored-by-subtitle .image-box {
   margin-left: 0.3em;
 }
+
 .TYPE-metric {
   &.thumbnail, &.box .box-top {
     .thumbnail-subtitle a {
@@ -43,6 +44,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   padding: 10px;
 }
 
+.select2-dropdown a {
+  text-decoration: none !important;
+}
 
 
 //.metric-thumbnail {
@@ -70,20 +74,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 //  }
 //}
 
-.table > tbody > tr > td > .metric-thumbnail {
-  float: left;
-  width: 100%;
-  border: 0;
-  font-size: 12px;
-  padding: 0;
-  // white-space: normal;
-  > .thumbnail-text {
-    padding-top: 0;
-    > div {
-      max-width: 100%;
-    }
-  }
-}
 
 
 .TYPE-metric.new-view {
