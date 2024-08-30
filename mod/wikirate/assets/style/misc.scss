@@ -225,3 +225,11 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   font-size: 1rem;
   padding: 0.2em 1.2em;
 }
+
+.nav-fill .nav-item .nav-link {
+  height: 100%;
+}
+
+.select2-dropdown .thumbnail-title {
+  flex-direction: column
+}

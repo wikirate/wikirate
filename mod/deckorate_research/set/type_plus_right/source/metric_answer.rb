@@ -29,7 +29,7 @@ def self.answer_searches_for_sources sources
 end
 
 format do
-  def answer_page_fixed_filter
-    { source: "~#{left_id}" }
+  def answer_page_fixed_filters
+    { source: "~#{card.left_id}" }
   end
 end
