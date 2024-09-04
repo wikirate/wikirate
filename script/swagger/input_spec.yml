@@ -2,18 +2,18 @@
 openapi: 3.0.3
 info:
   description: |-
-    This API provides access to WikiRate's data. To receive responses in JSON format, 
+    This API provides access to Wikirate's data. To receive responses in JSON format, 
     you have three options:
     1. Set the HTTP access header to `application/json` in your request
     2. Append `.json` to the request URLs.
     3. Add `format=json` to the query parameters.
     
-    WikiRate is built using Decko, where everything is represented as `card`. This 
+    Wikirate is built using Decko, where everything is represented as `card`. This 
     includes images, accounts, searches, fields, and more. Therefore, every request for 
-    a webpage on WikiRate.org or through its REST API corresponds to a `card`.
+    a webpage on Wikirate.org or through its REST API corresponds to a `card`.
     
     The documentation is divided into two sections: generic Decko card documentation 
-    (under **Decko**) and more WikiRate-specific card types (under **WikiRate**).
+    (under **Decko**) and more Wikirate-specific card types (under **Wikirate**).
 
   version: 1.0.0
   title: Wikirate RESTful API
