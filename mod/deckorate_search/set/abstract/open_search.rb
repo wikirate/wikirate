@@ -124,7 +124,7 @@ format do
   end
 
   def os_add_exact_match? cardlist, exact_match
-    exact_match && !cardlist.include(exact_match) && os_right_type?(exact_match)
+    exact_match && !cardlist.include?(exact_match) && os_right_type?(exact_match)
   end
 
   def os_right_type? exact_match
