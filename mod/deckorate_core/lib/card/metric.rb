@@ -53,7 +53,7 @@ class Card::Metric
     end
 
     def method_missing company, *args
-      # return super unless Card[company]&.type_id == WikiRateCompanyID
+      # return super unless Card[company]&.type_id == WikirateCompanyID
       args.first.each_pair do |year, value|
         create_answer company, year, value
       end
