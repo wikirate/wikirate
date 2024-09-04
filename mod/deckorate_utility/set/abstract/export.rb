@@ -2,7 +2,7 @@ EXPORT_LIMIT_OPTIONS = [50, 100, 500, 1000, 5000].freeze
 
 format do
   def export_filename
-    "WikiRate-#{export_timestamp}-#{export_title}"
+    "Wikirate-#{export_timestamp}-#{export_title}"
   end
 
   def default_limit

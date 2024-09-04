@@ -1,5 +1,5 @@
 version: v1.0
-name: WikiRate Standard Pipeline
+name: Wikirate Standard Pipeline
 agent:
   machine:
     type: e1-standard-2

@@ -17,7 +17,7 @@ NO_VALUE_NO_SOURCE = %w[
   Global_Reporting_Initiative+Environmental_fines_G4_EN29a+Grupoéxito+2017
   Business_Human_Rights_Resource_Centre+MSA_Statement_Approval+Huntapac_Produce_Ltd+2017
   Business_Human_Rights_Resource_Centre+MSA_Statement_Approval+Mitsubishi_Corporation+2016
-  WikiRate_SDG_Metric_design+SDG13_Climate_Action_Actions+ArcelorMittal+2014
+  Wikirate_SDG_Metric_design+SDG13_Climate_Action_Actions+ArcelorMittal+2014
   Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_G4_EN15_a+Wilmar_International+2014
   Global_Reporting_Initiative+Female_injury_rate_G4_LA6_a+Wilmar_International+2014
   Global_Reporting_Initiative+Environmental_fines_G4_EN29_a+Nedbank_Group+2014
