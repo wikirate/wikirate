@@ -8,7 +8,7 @@ def stewards_all?
   Auth.always_ok? || id&.in?(Set::Self::WikirateTeam.member_ids)
 end
 
-# note: does NOT return all metrics for WikiRate team members
+# note: does NOT return all metrics for Wikirate team members
 def stewarded_metric_ids
   return unless real?
 

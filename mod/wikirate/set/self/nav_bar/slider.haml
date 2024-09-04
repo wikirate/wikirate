@@ -1,5 +1,5 @@
 .row
-  .d-flex.align-center.px-3.col-2.col-md-1.justify-content-center
+  .d-flex.align-items-center.pe-3.col-2.col-md-1
     %a.wr-prev.wr-arrow
       = material_symbol_tag :arrow_back_ios
 
@@ -22,6 +22,6 @@
       } }
       = nest %i[cardtype featured], items: { view: :thumbnail, variant: :plural }
 
-  .d-flex.align-center.px-3.col-2.col-md-1.justify-content-center
+  .d-flex.align-items-center.ps-3.col-2.col-md-1.justify-content-end
     %a.wr-next.wr-arrow
       = material_symbol_tag :arrow_forward_ios
