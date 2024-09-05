@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       sample_answer value_type
     end
 
-    Wikirate::Samples::METRIC_NAMES.each_key do |value_type|
+    Deckorate::Samples::METRIC_NAMES.each_key do |value_type|
       context "with #{value_type} answer" do
         let(:value_type) { value_type }
 

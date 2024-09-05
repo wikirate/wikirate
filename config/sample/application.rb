@@ -3,7 +3,7 @@ require File.expand_path("../boot", __FILE__)
 require "decko/application"
 
 module Wikirate
-  # WikiRate application object. holds config options
+  # Wikirate application object. holds config options
   class Application < Decko::Application
     # Decko inherits Rails configuration options.
     # See http://guides.rubyonrails.org/configuring.html

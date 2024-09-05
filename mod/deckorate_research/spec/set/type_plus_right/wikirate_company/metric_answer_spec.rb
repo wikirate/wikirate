@@ -2,7 +2,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::MetricAnswer do
   it_behaves_like "cached count", "Death Star+answer", 35, 3 do
     # increment = 2, because one researched answer + one calculated answer
     let :add_one do
-      Card["Jedi+disturbances in the force"].create_answers true do
+      create_answers "Jedi+disturbances in the force", true do
         Death_Star "1999" => "yes"
       end
     end

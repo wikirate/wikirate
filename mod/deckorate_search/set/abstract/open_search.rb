@@ -7,7 +7,7 @@ require "colorize"
 # note: options configured in config/application.rb
 # (overrides default Decko method)
 def os_search parameters={}
-  puts parameters
+  # puts parameters
   open_search_client.search parameters
 end
 
@@ -42,7 +42,7 @@ format do
   def os_search_returning_cards
     rescuing_open_search [] do
       hits = os_search_with_params.dig "hits", "hits"
-      puts "hits: #{hits}"
+      # puts "hits: #{hits}"
       hits.map { |res| os_result_card res }.compact.tap do |cardlist|
         os_ensure_exact_match cardlist
       end
@@ -124,7 +124,7 @@ format do
   end
 
   def os_add_exact_match? cardlist, exact_match
-    exact_match && !cardlist.include(exact_match) && os_right_type?(exact_match)
+    exact_match && !cardlist.include?(exact_match) && os_right_type?(exact_match)
   end
 
   def os_right_type? exact_match

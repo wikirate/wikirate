@@ -49,7 +49,7 @@ format :html do
   def filter_updater_options
     o = {}
     o["by Me"] = "current_user" if Card::Auth.signed_in?
-    o["by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
+    o["by Wikirate Team"] = "wikirate_team" if Self::WikirateTeam.member?
     o
   end
 
@@ -105,6 +105,6 @@ format :html do
   end
 
   def verified_by_wikirate_team opts
-    opts["Verified by WikiRate Team"] = "wikirate_team" if Self::WikirateTeam.member?
+    opts["Verified by Wikirate Team"] = "wikirate_team" if Self::WikirateTeam.member?
   end
 end

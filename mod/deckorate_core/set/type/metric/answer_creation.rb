@@ -1,12 +1,3 @@
-# @example
-# create_answers do
-#   Siemens 2015 => 4, 2014 => 3
-#   Apple   2105 => 7
-# end
-def create_answers test_source=false, &block
-  Card::Metric::AnswerCreator.new(self, test_source, &block).add_answers
-end
-
 # @param args [Hash]
 # @option args [String] :company
 # @option args [String] :year
