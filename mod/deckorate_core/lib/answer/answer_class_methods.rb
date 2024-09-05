@@ -12,9 +12,12 @@ class Answer
 
   UNKNOWN = "Unknown".freeze
 
+  ROUTES = %i[direct import api calculation].freeze
+
   # class methods for the Answer (lookup) constant
   module AnswerClassMethods
     include Export::ClassMethods
+
 
     # @return [Answer]
     def fetch cardish
