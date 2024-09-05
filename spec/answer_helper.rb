@@ -59,7 +59,7 @@ module Deckorate
 
     private
 
-    def create_metric_name opts
+    def create_metric_opts opts
       if opts[:name]&.to_name&.simple?
         opts[:name] = "#{Card::Auth.current.name}+#{opts[:name]}"
       end
