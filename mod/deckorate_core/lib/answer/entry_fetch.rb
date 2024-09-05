@@ -1,10 +1,6 @@
 class Answer
   # Methods to fetch the data needed to initialize a new answer lookup table entry.
   module EntryFetch
-    def fetch_year
-      card.year.to_i
-    end
-
     # NOTE: the created and updated fields have a logic that differs slightly
     # from the answer card
 
@@ -42,6 +38,7 @@ class Answer
 
     def value_updated?
       return unless (vc = card.value_card)&.real?
+
       vc.updated_at && vc.updated_at > vc.created_at
     end
   end
