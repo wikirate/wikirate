@@ -10,7 +10,7 @@ class Relationship < Cardio::Record
   extend FilterHelper
 
   delegate :company_id, :designer_id, :title_id, to: :answer
-  fetcher :answer_id, :value, :numeric_value, :imported
+  fetcher :answer_id, :value, :numeric_value
 
   belongs_to :metric, primary_key: :metric_id
 
