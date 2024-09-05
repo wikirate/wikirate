@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 
 # the metric in the test database:
-# Card::Metric.create name: 'Jedi+deadliness+Joe User',
-#                     type: :score,
-#                     formula: '{{Jedi+deadliness}}/10'
+# create_metric name: 'Jedi+deadliness+Joe User',
+#               type: :score,
+#               formula: '{{Jedi+deadliness}}/10'
 RSpec.describe Card::Set::MetricType::Score, "basic properties" do
   let(:metric) { Card[@name] }
 

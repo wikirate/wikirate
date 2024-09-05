@@ -1,4 +1,4 @@
-module Wikirate
+module Deckorate
   # Answer-related helper methods for specs
   module AnswerHelper
     def create_answer args
@@ -17,7 +17,7 @@ module Wikirate
                     value: "sample value",
                     source: sample_source.name
       {
-        type_id: Card::MetricAnswerID,
+        type: :metric_answer,
         "+metric" => metric,
         "+company" => company,
         "+value" => value,
@@ -31,13 +31,17 @@ module Wikirate
     #   Siemens 2015: 4, 2014: 3
     #   Apple   2105: 7
     # end
+    # @option opts [Boolean] :test_source (false) pick a random source for each answer
     def create_metric opts={}, &block
+      test_source = opts.delete :test_source
       Card::Auth.as_bot do
         if opts[:name]&.to_name&.simple?
           opts[:name] = "#{Card::Auth.current.name}+#{opts[:name]}"
         end
         opts[:name] ||= "TestDesigner+TestMetric"
-        Card::Metric.create opts, &block
+        Deckorate::MetricCreator.create(opts).tap do |metric|
+          create_answers metric, test_source, &block if block_given? &block
+        end
       end
     end
 
@@ -58,6 +62,10 @@ module Wikirate
 
     def check_answer answer_card
       answer_card.checked_by_card.update! trigger: :add_check
+    end
+
+    def create_answers metric, test_source, &block
+      Deckorate::AnswerCreator.new(metric.card, test_source, &block).add_answers
     end
   end
 end

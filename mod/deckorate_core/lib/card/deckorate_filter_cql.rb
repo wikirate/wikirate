@@ -1,6 +1,6 @@
 class Card
   # method shared in many queries.
-  class WikirateFilterCql < FilterCql
+  class DeckorateFilterCql < FilterCql
     def topic_cql topic
       topic = [:in] + Array.wrap(topic)
       add_to_cql :right_plus, [:wikirate_topic, { refer_to: topic }]

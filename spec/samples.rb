@@ -1,5 +1,5 @@
 
-module Wikirate
+module Deckorate
   # sample data for use in tests
   module Samples
     METRIC_COUNT = 21
