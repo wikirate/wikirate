@@ -12,7 +12,7 @@
 #
 #   it_behaves_like "cached count", "SPECTRE+topics", 1, 1 do
 #     let :add_one do
-#       Card["Fred+dinosaurlabor"].create_answers true do
+#       create_answers "Fred+dinosaur labor", true do
 #         SPECTRE "1977" => "no"
 #       end
 #     end

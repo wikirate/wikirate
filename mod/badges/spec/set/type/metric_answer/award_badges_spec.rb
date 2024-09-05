@@ -5,11 +5,11 @@ RSpec.describe Card::Set::Type::MetricAnswer do
 
   describe "create badges" do
     let(:start_year) { 1990 }
-    let(:metric_card) { Card["Joe User+researched number 2"] }
+    let(:metric) { "Joe User+researched number 2" }
 
     def execute_awarded_action count
       year = start_year + count
-      metric_card.create_answers true do
+      create_answers metric, true do
         Death_Star year => count
       end
     end

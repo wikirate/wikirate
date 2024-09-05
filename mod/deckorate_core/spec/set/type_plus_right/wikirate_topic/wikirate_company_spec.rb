@@ -12,7 +12,7 @@
 #
 #   it_behaves_like "cached count", ["Force", :wikirate_company], 4, 1 do
 #     let :add_one do
-#       Card["Jedi+disturbances in the Force"].create_answers true do
+#       create_answers "Jedi+disturbances in the Force", true do
 #         Samsung "1977" => "no"
 #       end
 #     end
