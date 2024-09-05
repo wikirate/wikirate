@@ -12,7 +12,7 @@ RSpec.describe Card::AnswerQuery do
       end
 
       specify "year, topic, bookmark, and updated" do
-        Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
+        Timecop.freeze(Deckorate::HAPPY_BIRTHDAY) do
           expect(
             search(year: "1991", topic: "Force", bookmark: :bookmark, updated: :week)
           ).to eq(with_year("disturbances in the Force", 1991))
@@ -20,7 +20,7 @@ RSpec.describe Card::AnswerQuery do
       end
 
       specify "all in" do
-        Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
+        Timecop.freeze(Deckorate::HAPPY_BIRTHDAY) do
           expect(
             search(year: "1992", topic: "Force", bookmark: :bookmark, updated: :month,
                    dataset: "Evil Dataset", research_policy: "Community Assessed",
@@ -47,7 +47,7 @@ RSpec.describe Card::AnswerQuery do
       end
 
       specify "all in" do
-        Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) do
+        Timecop.freeze(Deckorate::HAPPY_BIRTHDAY) do
           expect(search(year: "1990",
                         company_category: "A",
                         dataset: "Evil Dataset",

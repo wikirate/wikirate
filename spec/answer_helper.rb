@@ -37,7 +37,7 @@ module Deckorate
       Card::Auth.as_bot do
         create_metric_opts opts
         Deckorate::MetricCreator.create(opts).tap do |metric|
-          create_answers(metric, test_source, &block) if block_given? &block
+          create_answers(metric, test_source, &block) if block_given?(&block)
         end
       end
     end
