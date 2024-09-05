@@ -33,7 +33,7 @@ format do
 end
 
 # FilterCql class for topic filtering
-class TopicFilterCql < WikirateFilterCql
+class TopicFilterCql < DeckorateFilterCql
   def metric_cql metric
     add_to_cql :referred_to_by, left: { name: metric }, right: "topic"
   end

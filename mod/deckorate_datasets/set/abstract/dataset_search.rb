@@ -17,7 +17,7 @@ end
 
 format do
   def filter_cql_class
-    WikirateFilterCql
+    DeckorateFilterCql
   end
 
   def default_sort_option

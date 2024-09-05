@@ -3,7 +3,7 @@
 RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Metric do
   it_behaves_like "cached count", "Death Star+metric", metric_count, 1 do
     let :add_one do
-      Card["Joe User+researched number 2"].create_answers true do
+      create_answers "Joe User+researched number 2", true do
         Death_Star "1977" => 5
       end
     end
