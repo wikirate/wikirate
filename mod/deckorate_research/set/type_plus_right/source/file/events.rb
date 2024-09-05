@@ -2,7 +2,7 @@ require "timeout"
 
 DOWNLOAD_MAX_SECONDS = 10
 CONVERSION_MAX_SECONDS = 30
-PDF_REQUEST_AGENT = "The WikiRate Project e.V. (info@wikirate.org)".freeze
+PDF_REQUEST_AGENT = "The Wikirate Project e.V. (info@wikirate.org)".freeze
 
 event :add_source_link, :prepare_to_validate, on: :save, when: :remote_file_url do
   left.field :wikirate_link, content: remote_file_url

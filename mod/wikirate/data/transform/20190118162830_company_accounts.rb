@@ -10,7 +10,7 @@ class CompanyAccounts < Cardio::Migration::Transform
 
   def only_wikirate_team_can action
     ensure_card [:wikirate_company, :account, :type_plus_right, action],
-                content: "WikiRate Team"
+                content: "Wikirate Team"
   end
 
   # this is a hack to avoid the +*account creation validations.

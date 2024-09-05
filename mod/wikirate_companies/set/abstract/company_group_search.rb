@@ -14,7 +14,7 @@ end
 
 format do
   def filter_cql_class
-    WikirateFilterCql
+    DeckorateFilterCql
   end
 
   def filter_map
