@@ -37,7 +37,7 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
       let(:answer_parts) { [1] }
       let(:default_filters) { { company_id: company_name.card_id } }
 
-      before { Timecop.freeze Wikirate::HAPPY_BIRTHDAY }
+      before { Timecop.freeze Deckorate::HAPPY_BIRTHDAY }
       after { Timecop.return }
 
       it "finds today's edits" do
@@ -83,7 +83,7 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
     end
 
     describe "#updated_query" do
-      before { Timecop.freeze(Wikirate::HAPPY_BIRTHDAY) }
+      before { Timecop.freeze(Deckorate::HAPPY_BIRTHDAY) }
       after { Timecop.return }
 
       it "finds today's edits" do

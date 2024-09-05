@@ -2,7 +2,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Source do
   it_behaves_like "cached count", "Jedi+disturbances in the force+source", 2, 1 do
     let :add_one do
       apple_source = sample_source :apple
-      Card["Jedi+disturbances in the force"].create_answers do
+      create_answers "Jedi+disturbances in the force" do
         Samsung "1977" => { value: "yes", source: apple_source }
       end
     end

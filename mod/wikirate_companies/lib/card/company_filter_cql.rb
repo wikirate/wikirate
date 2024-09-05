@@ -1,6 +1,6 @@
 class Card
   # CQL for filtering companies
-  class CompanyFilterCql < WikirateFilterCql
+  class CompanyFilterCql < DeckorateFilterCql
     class << self
       def country_condition
         answer_condition :countries, :core_country

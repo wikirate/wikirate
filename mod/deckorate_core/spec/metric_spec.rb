@@ -1,13 +1,15 @@
-RSpec.describe Card::Metric do
+# This is really a test of the MetricCreator and AnswerCreator APIs
+
+RSpec.describe Metric do
   let :researched_metrics do
     sample_source_name = sample_source.name
-    described_class.create name: "Jedi+strength in the Force",
-                           value_type: "Category",
-                           value_options: %w[yes no] do
+    create_metric name: "Jedi+strength in the Force",
+                  value_type: "Category",
+                  value_options: %w[yes no] do
       Death_Star "1977" => { value: "yes",
                              source: sample_source_name }
     end
-    described_class.create name: "Jedi+darksidiness" do
+    create_metric name: "Jedi+darksidiness" do
       Death_Star "1977" => { value: 100, source: sample_source_name }
     end
   end
@@ -19,10 +21,10 @@ RSpec.describe Card::Metric do
       Card["MD+MT+Death Star+2000+source"].first_card.fetch("link")
     end
 
-    def create_metric
+    def create_test_metric
       Card::Auth.as_bot do
         source = create_source "http://example.com"
-        described_class.create name: "MD+MT", type: :researched, test_source: true do
+        create_metric name: "MD+MT", type: :researched, test_source: true do
           SPECTRE 2000 => 50, 2001 => 100
           Death_Star 2000 => { value: 50, source: "[[#{source.name}]]" }
         end
@@ -30,7 +32,7 @@ RSpec.describe Card::Metric do
     end
 
     it "small API test" do
-      create_metric
+      create_test_metric
 
       expect(metric).to be_truthy
       expect(metric.type_id).to eq Card::MetricID
@@ -61,18 +63,18 @@ RSpec.describe Card::Metric do
         # based on a categorical metric as we are now checking if all value
         # options are filled with a score
         researched_metrics
-        described_class.create name: "Jedi+strength in the Force+Joe Camel",
-                               type: :score,
-                               rubric: { yes: 10, no: 0 }.to_json
+        create_metric name: "Jedi+strength in the Force+Joe Camel",
+                      type: :score,
+                      rubric: { yes: 10, no: 0 }.to_json
       end
     end
 
     def create_relationship_metric
       Card::Auth.as_bot do
-        described_class.create name: "Jedi+owns",
-                               type: :relationship,
-                               inverse_title: "owned by",
-                               test_source: true do
+        create_metric name: "Jedi+owns",
+                      type: :relationship,
+                      inverse_title: "owned by",
+                      test_source: true do
           SPECTRE 2000 => { "Los Pollos Hermanos" => "10",
                             "Death_Star" => "5" }
         end

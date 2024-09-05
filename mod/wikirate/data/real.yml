@@ -49,7 +49,7 @@
   :image: logo.png
   :storage_type: :coded
 
-- :name: WikiRate Team
+- :name: Wikirate Team
   :codename: wikirate_team
   :type: :role
 
@@ -176,7 +176,7 @@
   :codename: our_story
   :content: |
     <p>
-      WikiRate is an open data platform powered by a diverse community that
+      Wikirate is an open data platform powered by a diverse community that
       collects, analyzes and shares data on company commitments, actions and impacts on
       people and the planet.
     </p>
@@ -189,8 +189,8 @@
     </p>
     <p>
       Learn more about 
-      [[https://wikirate-intl.org/About_Us|WikiRate International e.V.]],
-      the organization behind WikiRate.
+      [[https://wikirate-intl.org/About_Us|Wikirate International e.V.]],
+      the organization behind Wikirate.
     </p>
     
 - :name:

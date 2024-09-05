@@ -7,8 +7,8 @@ RSpec.describe Card::Set::Type::Metric::AwardBadges do
 
   describe "create badges" do
     def execute_awarded_action number
-      Card::Metric.create name: "Jedi+Metric #{number}",
-                          type: :researched
+      create_metric name: "Jedi+Metric #{number}",
+                    type: :researched
     end
 
     context "when reached bronze threshold" do
