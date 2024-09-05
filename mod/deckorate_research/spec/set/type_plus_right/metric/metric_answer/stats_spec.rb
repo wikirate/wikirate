@@ -16,7 +16,7 @@ RSpec.xdescribe Card::Set::TypePlusRight::Metric::MetricAnswer::Stats do
     end
 
     example "restricted to a year" do
-      create_answers"Jedi+disturbances in the Force", true do
+      create_answers "Jedi+disturbances in the Force", true do
         SPECTRE "1977" => "Unknown"
       end
       html = stats(year: "1977", status: :all)

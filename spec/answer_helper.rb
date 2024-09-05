@@ -35,12 +35,9 @@ module Deckorate
     def create_metric opts={}, &block
       test_source = opts.delete :test_source
       Card::Auth.as_bot do
-        if opts[:name]&.to_name&.simple?
-          opts[:name] = "#{Card::Auth.current.name}+#{opts[:name]}"
-        end
-        opts[:name] ||= "TestDesigner+TestMetric"
+        create_metric_opts opts
         Deckorate::MetricCreator.create(opts).tap do |metric|
-          create_answers metric, test_source, &block if block_given? &block
+          create_answers(metric, test_source, &block) if block_given? &block
         end
       end
     end
@@ -52,20 +49,21 @@ module Deckorate
       end
     end
 
-    def html_trim str
-      s = str.dup
-      s.delete!("\r\n")
-      s.delete!("\n")
-      s.delete!("  ")
-      s
-    end
-
     def check_answer answer_card
       answer_card.checked_by_card.update! trigger: :add_check
     end
 
-    def create_answers metric, test_source, &block
+    def create_answers metric, test_source=false, &block
       Deckorate::AnswerCreator.new(metric.card, test_source, &block).add_answers
+    end
+
+    private
+
+    def create_metric_name opts
+      if opts[:name]&.to_name&.simple?
+        opts[:name] = "#{Card::Auth.current.name}+#{opts[:name]}"
+      end
+      opts[:name] ||= "TestDesigner+TestMetric"
     end
   end
 end

@@ -1,10 +1,13 @@
 module Deckorate
+  # test-only API for creating metrics
   class MetricCreator
     class << self
       # type is an alias for metric_type
       VALID_FIELDS =
-        ::Set.new(%i[metric_type formula value_type hybrid variables value_options rubric
-                   research_policy wikirate_topic unit report_type inverse_title]).freeze
+        ::Set.new(
+          %i[metric_type formula value_type hybrid variables value_options rubric
+             research_policy wikirate_topic unit report_type inverse_title]
+        ).freeze
       ALIAS_FIELDS = {
         type: :metric_type, topic: :wikirate_topic, inverse: :inverse_title
       }.freeze

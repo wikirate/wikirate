@@ -27,12 +27,12 @@ RSpec.describe Card::Set::Abstract::MetricAnswer::Applicability do
     end
 
     it "does not allow answers to inapplicable years" do
-      expect { create_answers(metric,true) { Death_Star "1977" => "2" } }
+      expect { create_answers(metric, true) { Death_Star "1977" => "2" } }
         .to raise_error /Inapplicable Company: Death_Star/
     end
 
     it "does allows answers to applicable years" do
-      expect { create_answers(metric,true) { Samsung "1977" => "2" } }
+      expect { create_answers(metric, true) { Samsung "1977" => "2" } }
         .not_to raise_error
     end
   end

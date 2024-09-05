@@ -1,4 +1,5 @@
 module Deckorate
+  # test-only API for creating answers
   class AnswerCreator
     def initialize metric=nil, test_source=false, &answers_block
       @metric = metric
