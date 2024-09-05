@@ -1,18 +1,6 @@
 class Relationship
   # Methods to fetch the data needed to initialize a new answer lookup table entry.
   module EntryFetch
-    def fetch_year
-      card.year.to_i
-    end
-
-    def fetch_record_id
-      card.name.left_name.left_name.card_id
-    end
-
-    def fetch_metric_id
-      card.name.left_name.left_name.left_name.card_id
-    end
-
     def fetch_inverse_metric_id
       metric_card.inverse_card.id
     end

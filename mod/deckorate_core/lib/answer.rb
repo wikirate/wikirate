@@ -1,7 +1,6 @@
 # lookup table for metric answers
 class Answer < Cardio::Record
   @card_column = :answer_id
-  @no_refresh = %w[id route imported] # imported is deprecated
 
   include LookupTable
   extend AnswerClassMethods
@@ -11,6 +10,7 @@ class Answer < Cardio::Record
   include EntryFetch
   include Export
   include Latest
+  include AndRelationship
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?

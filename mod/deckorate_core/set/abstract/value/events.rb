@@ -28,17 +28,14 @@ event :monitor_hybridness, :integrate, on: %i[create delete], when: :calculated?
   metric_card.calculate_answers company_id: company_id, year: year
 end
 
-event :determine_route, :store, changed: :content do
-  route_symbol =
+event :mark_action, before: :finalize_action, changed: :content do
+  action_mark =
     if import_act?
       @current_action.comment = "imported"
-      :import
     elsif Card::Auth.api_act?
-      :api
-    else
-      :direct
+      @current_action.comment = "api"
     end
-  lookup.route = Answer::ROUTES.index(route_symbol)
+  @current_action.comment = action_mark if action_mark
 end
 
 private
