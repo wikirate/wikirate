@@ -18,7 +18,6 @@ class Answer
   module AnswerClassMethods
     include Export::ClassMethods
 
-
     # @return [Answer]
     def fetch cardish
       for_card(cardish) || new_researched(cardish) || virtual(cardish) || new

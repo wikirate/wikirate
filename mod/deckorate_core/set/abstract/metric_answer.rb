@@ -70,4 +70,3 @@ def field_card_ids
     fetch(field, skip_virtual: true, skip_modules: true)&.id
   end.compact
 end
-
