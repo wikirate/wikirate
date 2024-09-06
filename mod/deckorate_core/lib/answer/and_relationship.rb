@@ -17,5 +17,17 @@ class Answer
     def route_symbol
       ROUTES[route]
     end
+
+    def fetch_editor_id
+      card.value_card.updater_id if value_updated?
+    end
+
+    private
+
+    def value_updated?
+      return unless (vc = card.value_card)&.real?
+
+      vc.updated_at && vc.updated_at > vc.created_at
+    end
   end
 end
