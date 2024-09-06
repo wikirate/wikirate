@@ -28,8 +28,14 @@ event :monitor_hybridness, :integrate, on: %i[create delete], when: :calculated?
   metric_card.calculate_answers company_id: company_id, year: year
 end
 
-event :mark_as_imported, before: :finalize_action, when: :import_act? do
-  @current_action.comment = "imported"
+event :mark_action, before: :finalize_action, changed: :content do
+  action_mark =
+    if import_act?
+      @current_action.comment = "imported"
+    elsif Card::Auth.api_act?
+      @current_action.comment = "api"
+    end
+  @current_action.comment = action_mark if action_mark
 end
 
 private

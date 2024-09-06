@@ -3,7 +3,6 @@ class Answer < Cardio::Record
   @card_column = :answer_id
 
   include LookupTable
-
   extend AnswerClassMethods
 
   include CardlessAnswers
@@ -11,6 +10,7 @@ class Answer < Cardio::Record
   include EntryFetch
   include Export
   include Latest
+  include AndRelationship
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
@@ -23,7 +23,7 @@ class Answer < Cardio::Record
 
   attr_writer :card
 
-  fetcher :metric_id, :company_id, :record_id, :source_count, :source_url, :imported,
+  fetcher :metric_id, :company_id, :record_id, :source_count, :source_url,
           :value, :numeric_value, :checkers, :comments, :verification, :unpublished
 
   define_fetch_method :open_flags, :count_open_flags
@@ -53,6 +53,10 @@ class Answer < Cardio::Record
 
   def updater_id
     editor_id || creator_id
+  end
+
+  def route_symbol
+    ROUTES[route]
   end
 
   private

@@ -10,11 +10,12 @@ relationships_001:
   year: 2000
   value: Tier 2 Supplier
   numeric_value:
-  updated_at: 2024-09-04 15:54:33.000000000 Z
-  imported: 0
+  updated_at: 2024-09-05 23:27:04.000000000 Z
+  imported:
   latest: 1
   inverse_metric_id: 3299
   inverse_answer_id: 3652
+  route: 0
 relationships_002:
   id: 2
   relationship_id: 3657
@@ -26,11 +27,12 @@ relationships_002:
   year: 1977
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-09-04 15:54:35.000000000 Z
-  imported: 0
+  updated_at: 2024-09-05 23:27:05.000000000 Z
+  imported:
   latest: 1
   inverse_metric_id: 3299
   inverse_answer_id: 3661
+  route: 0
 relationships_003:
   id: 3
   relationship_id: 3666
@@ -42,11 +44,12 @@ relationships_003:
   year: 1977
   value: '1'
   numeric_value:
-  updated_at: 2024-09-04 15:54:38.000000000 Z
-  imported: 0
+  updated_at: 2024-09-05 23:27:07.000000000 Z
+  imported:
   latest: 1
   inverse_metric_id: 3288
   inverse_answer_id: 3670
+  route: 0
 relationships_004:
   id: 4
   relationship_id: 3674
@@ -58,11 +61,12 @@ relationships_004:
   year: 1977
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-09-04 15:54:40.000000000 Z
-  imported: 0
+  updated_at: 2024-09-05 23:27:08.000000000 Z
+  imported:
   latest: 1
   inverse_metric_id: 3299
   inverse_answer_id: 3661
+  route: 0
 relationships_005:
   id: 5
   relationship_id: 3677
@@ -74,11 +78,12 @@ relationships_005:
   year: 2000
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-09-04 15:54:42.000000000 Z
-  imported: 0
+  updated_at: 2024-09-05 23:27:09.000000000 Z
+  imported:
   latest: 1
   inverse_metric_id: 3299
   inverse_answer_id: 3680
+  route: 0
 relationships_006:
   id: 6
   relationship_id: 3685
@@ -90,11 +95,12 @@ relationships_006:
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-09-04 15:54:44.000000000 Z
-  imported: 0
+  updated_at: 2024-09-05 23:27:10.000000000 Z
+  imported:
   latest: 1
   inverse_metric_id: 3198
   inverse_answer_id: 3689
+  route: 0
 relationships_007:
   id: 7
   relationship_id: 3691
@@ -106,11 +112,12 @@ relationships_007:
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-09-04 15:54:46.000000000 Z
-  imported: 0
+  updated_at: 2024-09-05 23:27:11.000000000 Z
+  imported:
   latest: 1
   inverse_metric_id: 3198
   inverse_answer_id: 3695
+  route: 0
 relationships_008:
   id: 8
   relationship_id: 3700
@@ -122,8 +129,9 @@ relationships_008:
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-09-04 15:54:48.000000000 Z
-  imported: 0
+  updated_at: 2024-09-05 23:27:12.000000000 Z
+  imported:
   latest: 1
   inverse_metric_id: 3198
   inverse_answer_id: 3689
+  route: 0
