@@ -55,10 +55,6 @@ class Answer < Cardio::Record
     editor_id || creator_id
   end
 
-  def route_symbol
-    ROUTES[route]
-  end
-
   private
 
   def metric_card

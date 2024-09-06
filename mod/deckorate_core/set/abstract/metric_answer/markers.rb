@@ -20,8 +20,8 @@ format :html do
   end
 
   def route_marker
-    route = lookup.route
-    return "" unless route > 0
+    route = card.lookup.route_symbol
+    return "" if route == :direct
 
     icon_tag route, title: route
   end
