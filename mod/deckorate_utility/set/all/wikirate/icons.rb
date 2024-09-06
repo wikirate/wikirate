@@ -1,6 +1,7 @@
 basket[:icons][:material].merge!(
   post: :insert_comment,
   score: :adjust,
+  import: :input,
   answer_import: :input,
   metric_import: :input,
   activity: :directions_run,
