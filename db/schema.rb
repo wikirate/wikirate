@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_21_233933) do
+ActiveRecord::Schema.define(version: 2024_09_06_202557) do
 
   create_table "answers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "answer_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2023_03_21_233933) do
     t.integer "verification"
     t.boolean "unpublished"
     t.integer "open_flags"
+    t.integer "route", limit: 1
     t.index ["answer_id"], name: "answer_id_index", unique: true
     t.index ["company_id"], name: "company_id_index"
     t.index ["metric_id", "company_id", "year"], name: "index_answers_on_metric_id_and_company_id_and_year", unique: true
@@ -191,6 +192,8 @@ ActiveRecord::Schema.define(version: 2023_03_21_233933) do
     t.boolean "latest"
     t.integer "inverse_metric_id", null: false
     t.integer "inverse_answer_id", null: false
+    t.integer "route", limit: 1
+    t.integer "editor_id"
     t.index ["answer_id"], name: "answer_id_index"
     t.index ["metric_id", "subject_company_id", "object_company_id", "year"], name: "relationship_component_cards_index", unique: true
     t.index ["metric_id"], name: "metric_id_index"

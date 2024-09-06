@@ -10,7 +10,8 @@ def calculator variant=:standard
                        companies: company_group_card.company_ids
 end
 
-# update all answers of this metric and the answers of all dependent metrics
+# update all answers of this metric and the answers of all metrics that
+# depend on this one
 def calculate_answers args={}
   calculate_direct_answers args
   each_depender_metric { |m| m.calculate_direct_answers args }

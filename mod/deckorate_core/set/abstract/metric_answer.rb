@@ -49,10 +49,6 @@ end
 
 # MISCELLANEOUS METHODS
 
-def imported
-  value_card&.actions&.last&.comment == "imported"
-end
-
 def scored_answer_card
   return self unless metric_type == :score
 
