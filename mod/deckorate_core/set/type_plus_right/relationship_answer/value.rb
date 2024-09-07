@@ -2,7 +2,7 @@ include_set Abstract::MetricChild, generation: 4
 include_set Abstract::LookupField
 
 def lookup_columns
-  %i[value numeric_value imported updated_at]
+  %i[value numeric_value route updated_at]
 end
 
 event :validate_relationship_answer_value_type, :validate, on: :save do
