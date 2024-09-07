@@ -113,17 +113,17 @@ counts_023:
   id: 23
   left_id: 3160
   right_id: 697
-  value: 21
+  value: 11
 counts_024:
   id: 24
   left_id: 691
   right_id: -1
-  value: 169
+  value: 87
 counts_025:
   id: 25
   left_id: 3160
   right_id: 691
-  value: 35
+  value: 18
 counts_026:
   id: 26
   left_id: 3277
@@ -193,22 +193,22 @@ counts_039:
   id: 39
   left_id: 3163
   right_id: 697
-  value: 6
+  value: 5
 counts_040:
   id: 40
   left_id: 3163
   right_id: 691
-  value: 9
+  value: 7
 counts_041:
   id: 41
   left_id: 3170
   right_id: 697
-  value: 14
+  value: 9
 counts_042:
   id: 42
   left_id: 3170
   right_id: 691
-  value: 15
+  value: 10
 counts_043:
   id: 43
   left_id: 3205
@@ -223,12 +223,12 @@ counts_045:
   id: 45
   left_id: 3175
   right_id: 697
-  value: 9
+  value: 6
 counts_046:
   id: 46
   left_id: 3175
   right_id: 691
-  value: 16
+  value: 13
 counts_047:
   id: 47
   left_id: 3205
@@ -298,12 +298,12 @@ counts_060:
   id: 60
   left_id: 3179
   right_id: 697
-  value: 6
+  value: 2
 counts_061:
   id: 61
   left_id: 3179
   right_id: 691
-  value: 33
+  value: 11
 counts_062:
   id: 62
   left_id: 3232
@@ -318,12 +318,12 @@ counts_064:
   id: 64
   left_id: 3177
   right_id: 697
-  value: 12
+  value: 5
 counts_065:
   id: 65
   left_id: 3177
   right_id: 691
-  value: 18
+  value: 8
 counts_066:
   id: 66
   left_id: 3232
@@ -378,22 +378,22 @@ counts_076:
   id: 76
   left_id: 3165
   right_id: 697
-  value: 13
+  value: 6
 counts_077:
   id: 77
   left_id: 3165
   right_id: 691
-  value: 35
+  value: 12
 counts_078:
   id: 78
   left_id: 3167
   right_id: 697
-  value: 9
+  value: 5
 counts_079:
   id: 79
   left_id: 3167
   right_id: 691
-  value: 10
+  value: 6
 counts_080:
   id: 80
   left_id: 3265
@@ -501,356 +501,216 @@ counts_100:
   value: 2
 counts_101:
   id: 101
-  left_id: 3718
+  left_id: 3812
   right_id: 691
-  value: 0
+  value: 1
 counts_102:
   id: 102
-  left_id: 3718
+  left_id: 3812
   right_id: 695
-  value: 0
+  value: 1
 counts_103:
   id: 103
-  left_id: 3728
+  left_id: 3819
   right_id: 691
-  value: 0
+  value: 1
 counts_104:
   id: 104
-  left_id: 3728
+  left_id: 3819
   right_id: 695
-  value: 0
+  value: 1
 counts_105:
   id: 105
-  left_id: 3739
-  right_id: 691
-  value: 0
-counts_106:
-  id: 106
-  left_id: 3739
-  right_id: 695
-  value: 0
-counts_107:
-  id: 107
-  left_id: 3750
-  right_id: 691
-  value: 0
-counts_108:
-  id: 108
-  left_id: 3750
-  right_id: 695
-  value: 0
-counts_109:
-  id: 109
-  left_id: 3761
-  right_id: 691
-  value: 6
-counts_110:
-  id: 110
-  left_id: 3761
-  right_id: 695
-  value: 4
-counts_111:
-  id: 111
-  left_id: 3766
-  right_id: 691
-  value: 13
-counts_112:
-  id: 112
-  left_id: 3766
-  right_id: 695
-  value: 4
-counts_113:
-  id: 113
-  left_id: 3771
-  right_id: 691
-  value: 6
-counts_114:
-  id: 114
-  left_id: 3771
-  right_id: 695
-  value: 4
-counts_115:
-  id: 115
-  left_id: 3776
-  right_id: 691
-  value: 12
-counts_116:
-  id: 116
-  left_id: 3776
-  right_id: 695
-  value: 4
-counts_117:
-  id: 117
-  left_id: 3779
-  right_id: 691
-  value: 8
-counts_118:
-  id: 118
-  left_id: 3779
-  right_id: 695
-  value: 5
-counts_119:
-  id: 119
-  left_id: 3783
-  right_id: 691
-  value: 8
-counts_120:
-  id: 120
-  left_id: 3783
-  right_id: 695
-  value: 5
-counts_121:
-  id: 121
-  left_id: 3788
-  right_id: 691
-  value: 3
-counts_122:
-  id: 122
-  left_id: 3788
-  right_id: 695
-  value: 2
-counts_123:
-  id: 123
-  left_id: 3793
-  right_id: 691
-  value: 10
-counts_124:
-  id: 124
-  left_id: 3793
-  right_id: 695
-  value: 2
-counts_125:
-  id: 125
-  left_id: 3799
-  right_id: 691
-  value: 2
-counts_126:
-  id: 126
-  left_id: 3799
-  right_id: 695
-  value: 1
-counts_127:
-  id: 127
-  left_id: 3806
-  right_id: 691
-  value: 1
-counts_128:
-  id: 128
-  left_id: 3806
-  right_id: 695
-  value: 1
-counts_129:
-  id: 129
-  left_id: 3812
-  right_id: 691
-  value: 8
-counts_130:
-  id: 130
-  left_id: 3812
-  right_id: 695
-  value: 5
-counts_131:
-  id: 131
-  left_id: 3819
-  right_id: 691
-  value: 8
-counts_132:
-  id: 132
-  left_id: 3819
-  right_id: 695
-  value: 5
-counts_133:
-  id: 133
-  left_id: 3837
-  right_id: 691
-  value: 2
-counts_134:
-  id: 134
-  left_id: 3837
-  right_id: 695
-  value: 2
-counts_135:
-  id: 135
-  left_id: 3842
-  right_id: 691
-  value: 1
-counts_136:
-  id: 136
-  left_id: 3842
-  right_id: 695
-  value: 1
-counts_137:
-  id: 137
-  left_id: 1167
-  right_id: 691
-  value: 1
-counts_138:
-  id: 138
-  left_id: 1167
-  right_id: 695
-  value: 1
-counts_139:
-  id: 139
   left_id: 3819
   right_id: 771
-  value: 16
-counts_140:
-  id: 140
+  value: 2
+counts_106:
+  id: 106
   left_id: 3819
   right_id: 747
   value: 2
-counts_141:
-  id: 141
+counts_107:
+  id: 107
   left_id: 3812
   right_id: 747
   value: 1
-counts_142:
-  id: 142
+counts_108:
+  id: 108
+  left_id: 3771
+  right_id: 691
+  value: 1
+counts_109:
+  id: 109
+  left_id: 3771
+  right_id: 695
+  value: 1
+counts_110:
+  id: 110
   left_id: 3771
   right_id: 747
   value: 1
-counts_143:
-  id: 143
+counts_111:
+  id: 111
   left_id: 3860
   right_id: 697
   value: 2
-counts_144:
-  id: 144
+counts_112:
+  id: 112
   left_id: 3277
   right_id: 784
   value: 1
-counts_145:
-  id: 145
+counts_113:
+  id: 113
   left_id: 3238
   right_id: 784
   value: 1
-counts_146:
-  id: 146
+counts_114:
+  id: 114
   left_id: 3860
   right_id: 695
   value: 3
-counts_147:
-  id: 147
+counts_115:
+  id: 115
   left_id: 3160
   right_id: 784
   value: 1
-counts_148:
-  id: 148
+counts_116:
+  id: 116
   left_id: 3170
   right_id: 784
   value: 1
-counts_149:
-  id: 149
+counts_117:
+  id: 117
   left_id: 3167
   right_id: 784
   value: 1
-counts_150:
-  id: 150
+counts_118:
+  id: 118
   left_id: 1494
   right_id: 784
   value: 1
-counts_151:
-  id: 151
+counts_119:
+  id: 119
   left_id: 3860
   right_id: 788
   value: 1
-counts_152:
-  id: 152
+counts_120:
+  id: 120
   left_id: 3183
   right_id: 786
   value: 1
-counts_153:
-  id: 153
+counts_121:
+  id: 121
   left_id: 3860
   right_id: 790
   value: 1
-counts_154:
-  id: 154
+counts_122:
+  id: 122
   left_id: 3277
   right_id: 790
   value: 1
-counts_155:
-  id: 155
+counts_123:
+  id: 123
   left_id: 3467
   right_id: 790
   value: 1
-counts_156:
-  id: 156
+counts_124:
+  id: 124
   left_id: 3636
   right_id: 790
   value: 1
-counts_157:
-  id: 157
+counts_125:
+  id: 125
   left_id: 3183
   right_id: 667
   value: 2
-counts_158:
-  id: 158
+counts_126:
+  id: 126
   left_id: 1192
   right_id: 805
   value: 1
-counts_159:
-  id: 159
+counts_127:
+  id: 127
   left_id: 1198
   right_id: 805
   value: 1
-counts_160:
-  id: 160
+counts_128:
+  id: 128
   left_id: 3912
   right_id: 620
   value: 1
-counts_161:
-  id: 161
+counts_129:
+  id: 129
   left_id: 3950
   right_id: 695
   value: 3
-counts_162:
-  id: 162
+counts_130:
+  id: 130
   left_id: 3160
   right_id: 703
   value: 1
-counts_163:
-  id: 163
+counts_131:
+  id: 131
   left_id: 3167
   right_id: 703
   value: 1
-counts_164:
-  id: 164
+counts_132:
+  id: 132
   left_id: 3170
   right_id: 703
   value: 1
-counts_165:
-  id: 165
+counts_133:
+  id: 133
   left_id: 3953
   right_id: 695
   value: 1
-counts_166:
-  id: 166
+counts_134:
+  id: 134
   left_id: 3173
   right_id: 703
   value: 1
-counts_167:
-  id: 167
+counts_135:
+  id: 135
+  left_id: 3837
+  right_id: 691
+  value: 2
+counts_136:
+  id: 136
+  left_id: 3837
+  right_id: 695
+  value: 2
+counts_137:
+  id: 137
   left_id: 3837
   right_id: 747
   value: 2
-counts_168:
-  id: 168
+counts_138:
+  id: 138
   left_id: 3832
   right_id: 691
   value: 1
-counts_169:
-  id: 169
+counts_139:
+  id: 139
   left_id: 3832
   right_id: 695
   value: 1
-counts_170:
-  id: 170
-  left_id: 4122
+counts_140:
+  id: 140
+  left_id: 3842
   right_id: 691
-  value: 4
-counts_171:
-  id: 171
-  left_id: 4122
+  value: 1
+counts_141:
+  id: 141
+  left_id: 3842
   right_id: 695
-  value: 2
+  value: 1
+counts_142:
+  id: 142
+  left_id: 1167
+  right_id: 691
+  value: 1
+counts_143:
+  id: 143
+  left_id: 1167
+  right_id: 695
+  value: 1
