@@ -19,13 +19,7 @@ class Relationship
       card.right_id
     end
 
-    def fetch_updated_at
-      return card.updated_at unless (vc = card.value_card)
-
-      [card.updated_at, vc.updated_at].compact.max
-    end
-
-    # note: latest flag indicates that relationship is part of latest answer,
+    # note: latest flag indicates that relationship is part of latest direct answer,
     # NOT that relationship is the latest response for a given subject/object pair
     def fetch_latest
       l = answer.latest

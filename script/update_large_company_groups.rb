@@ -9,7 +9,7 @@ Card::Auth.signin "Ethan McCutchen"
 MINIMUM_COMPANY_COUNT = 10_000
 
 def company_group_sql
-  "select c.id as group_id from counts ct " \
+  "select c.id as group_id from card_counts ct " \
     "join cards c on ct.left_id = c.id " \
     "where c.type_id = #{:company_group.card_id} " \
     "and ct.right_id = #{:wikirate_company.card_id} " \
