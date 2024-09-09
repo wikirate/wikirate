@@ -39,8 +39,8 @@ class Card
       return super unless (field_id = SORT_BY_COUNT[value]&.card_id)
 
       @sort_joins <<
-        "LEFT JOIN counts ON counts.left_id = metric_id and counts.right_id = #{field_id}"
-      "counts.value"
+        "LEFT JOIN card_counts cc ON cc.left_id = metric_id and cc.right_id = #{field_id}"
+      "cc.value"
     end
 
     def sort_by_cardname

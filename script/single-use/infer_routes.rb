@@ -8,6 +8,8 @@ Card::Auth.signin user
 
 API_USERS = [
   "Vasiliki Gkatziaki",
+  "Ethan McCutchen",
+  "Philipp Kuehl",
   "Wikirate International e.V.",
   "World Benchmarking Alliance",
   "Fashion Revolution",
@@ -30,7 +32,12 @@ def infer_routes
 end
 
 def api_user_condition
-  "route is null and editor_id in (#{api_user_ids.join ', '})"
+  id_list = api_user_ids.join ", "
+  "route is null AND (" \
+    "editor_id in (#{id_list} "\
+    ") OR (" \
+    "editor_id is null and creator_id in (#{id_list})" \
+    ")"
 end
 
 def api_user_ids
@@ -46,7 +53,7 @@ def populate_relationship_editors
     "UPDATE relationships r " \
       "JOIN card_actions cn ON r.relationship_id = cn.card_id " \
       "JOIN card_acts ca ON ca.id = cn.card_act_id " \
-      "SET editor_id = ca.actor_id"
+      "SET editor_id = ca.actor_id, creator_id = ca.creator_id"
   )
 end
 
