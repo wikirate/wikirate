@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_06_202557) do
+ActiveRecord::Schema.define(version: 2024_09_09_164452) do
 
   create_table "answers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "answer_id"
@@ -74,6 +74,14 @@ ActiveRecord::Schema.define(version: 2024_09_06_202557) do
     t.index ["card_action_id"], name: "card_changes_card_action_id_index"
   end
 
+  create_table "card_counts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.integer "left_id"
+    t.integer "right_id"
+    t.integer "value"
+    t.boolean "flag", default: false
+    t.index ["left_id", "right_id"], name: "index_card_counts_on_left_id_and_right_id", unique: true
+  end
+
   create_table "card_references", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "referer_id", default: 0, null: false
     t.string "referee_key", default: ""
@@ -135,13 +143,6 @@ ActiveRecord::Schema.define(version: 2024_09_06_202557) do
     t.index ["updated_at"], name: "cards_updated_at_index"
   end
 
-  create_table "counts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "left_id"
-    t.integer "right_id"
-    t.integer "value"
-    t.index ["left_id", "right_id"], name: "index_counts_on_left_id_and_right_id", unique: true
-  end
-
   create_table "delayed_jobs", charset: "utf8mb3", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -194,6 +195,8 @@ ActiveRecord::Schema.define(version: 2024_09_06_202557) do
     t.integer "inverse_answer_id", null: false
     t.integer "route", limit: 1
     t.integer "editor_id"
+    t.datetime "created_at"
+    t.integer "creator_id"
     t.index ["answer_id"], name: "answer_id_index"
     t.index ["metric_id", "subject_company_id", "object_company_id", "year"], name: "relationship_component_cards_index", unique: true
     t.index ["metric_id"], name: "metric_id_index"

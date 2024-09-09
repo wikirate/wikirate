@@ -26,7 +26,7 @@ module Wikirate
 
     # Use seed data from wikirate mod
     config.seed_mods.unshift :wikirate
-    config.extra_seed_tables = %w[answers counts metrics relationships]
+    config.extra_seed_tables = %w[answers card_counts metrics relationships]
 
     # TODO: obviate this (needed so setup finds wr schema)
     config.paths.add "db", with: "db"
