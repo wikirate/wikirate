@@ -32,10 +32,10 @@ end
 # typical pattern and was written as a bit of hail mary attempt to fix some confusing
 # results. But it can be very computationally expensive, and if things are working
 # properly it should never be necessary.
-def recalculate_answers dependers: true
+def recalculate_all_answers dependers: true
   return if researched?
 
-  direct_dependee_metrics.each { |m| m.recalculate_answers dependers: false }
+  direct_dependee_metrics.each { |m| m.recalculate_all_answers dependers: false }
   dependers ? calculate_answers : calculate_direct_answers
 end
 

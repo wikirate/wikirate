@@ -46,7 +46,7 @@ format do
 
   def answer_filters
     [{ key: :value, open: true }] +
-      %i[verification calculated status updated updater source]
+      %i[verification calculated status route updated updater source]
   end
 
   def metric_filters
