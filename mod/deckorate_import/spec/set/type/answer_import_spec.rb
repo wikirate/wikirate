@@ -24,7 +24,7 @@ RSpec.describe Card::Set::Type::AnswerImport do
       import_ready_items
       answer_id = status.item_hash(status.status_indices(:imported).first)[:id]
       answer = Answer.for_card(answer_id)
-      expect(answer.route).to eq(Answer::ROUTES.index(:import))
+      expect(answer.route).to eq(Answer.route_index(:import))
     end
   end
 end

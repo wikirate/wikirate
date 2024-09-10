@@ -45,7 +45,7 @@ def api_user_ids
 end
 
 def route_index symbol
-  Answer::ROUTES.index symbol
+  Answer.route_index symbol
 end
 
 def populate_relationship_editors
