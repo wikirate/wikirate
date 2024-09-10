@@ -95,6 +95,10 @@ format :json do
     grouped_counts :verification
   end
 
+  view :route_counts, cache: :never do
+    grouped_counts :route
+  end
+
   def grouped_counts subgroup
     lookup_query.joins(:metric).group(:year, subgroup).count.map do |array, count|
       { count: count, year: array.first, subgroup: array.last }
