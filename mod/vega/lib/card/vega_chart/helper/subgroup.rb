@@ -57,13 +57,31 @@ class Card
         end
 
         def add_data_values data_hash
-          data_hash[:values] = Answer::VERIFICATION_LEVELS.map.with_index do |h, i|
-            h.merge id: i
-          end
+          data_hash[:values] =
+            case @group
+            when :verification
+              verification_values
+            when :route
+              route_values
+            end
         end
 
         def filter_transform
           { type: "formula", as: "filter", expr: "{ #{@group}: datum.group }" }
+        end
+
+        private
+
+        def verification_values
+          Answer::VERIFICATION_LEVELS.map.with_index do |h, i|
+            h.merge id: i
+          end
+        end
+
+        def route_values
+          Answer::ROUTES.map.with_index do |(k, v), i|
+            { title: v, id: i, name: k }
+          end
         end
       end
     end
