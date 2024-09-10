@@ -11,11 +11,11 @@ class Answer
 
     def fetch_route
       current_symbol = card.value_card&.current_route_symbol
-      current_symbol ? ROUTES.index(current_symbol) : route
+      current_symbol ? routes.keys.index(current_symbol) : route
     end
 
     def route_symbol
-      ROUTES[route]
+      routes.keys[route]
     end
 
     def fetch_editor_id
@@ -42,6 +42,10 @@ class Answer
     end
 
     private
+
+    def routes
+      ROUTES
+    end
 
     def value_updated?
       return unless (vc = card.value_card)&.real?

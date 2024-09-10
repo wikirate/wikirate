@@ -12,7 +12,8 @@ DEEP_COUNT_FIELDS = {
   "designer_id": :designer,
   "metrics.metric_type_id": :metric_type,
   "metrics.value_type_id": :value_type,
-  "answers.verification": :verification
+  "answers.verification": :verification,
+  "answers.route": :route
 }.freeze
 
 format do

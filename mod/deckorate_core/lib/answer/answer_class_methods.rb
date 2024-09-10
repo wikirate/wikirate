@@ -12,7 +12,12 @@ class Answer
 
   UNKNOWN = "Unknown".freeze
 
-  ROUTES = %i[direct import api calculation].freeze
+  ROUTES = {
+    direct: "Research Interface",
+    import: "Import Interface",
+    api: "Application Programmer Interface (API)",
+    calculation: "Calculated (Derived)"
+  }.freeze
 
   # class methods for the Answer (lookup) constant
   module AnswerClassMethods
@@ -56,6 +61,10 @@ class Answer
 
     def verification_title name
       VERIFICATION_LEVELS[verification_index(name)][:title]
+    end
+
+    def route_index symbol
+      ROUTES.keys.index symbol
     end
 
     private

@@ -17,7 +17,9 @@ class Card
       value_type: :value_type_id
     }.freeze
     self.card_id_filters = ::Set.new(card_id_map.keys).freeze
-    self.simple_filters = ::Set.new(%i[company_id metric_id latest numeric_value]).freeze
+    self.simple_filters = ::Set.new(
+      %i[company_id metric_id latest numeric_value route]
+    ).freeze
 
     STATUS_GROUPS = { 0 => :unknown, 1 => :known, nil => :none }.freeze
 
