@@ -20,6 +20,12 @@
   }
 }
 
+.box, .item-box {
+  min-width: 320px;
+  max-width: 400px;
+  width: 100%
+}
+
 .box-bottom .labeled-badge .badge {
   background-color: $gray-200 !important;
 }
