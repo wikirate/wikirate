@@ -1,5 +1,5 @@
 describe Card::Set::Abstract::AnswerFilters do
-  let(:filter_card) { :wikirate_topic.card }
+  let(:filter_card) { :topic.card }
 
   context "with topic filter card" do
     describe "filter_sort_dropdown" do

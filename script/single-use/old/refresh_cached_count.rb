@@ -35,8 +35,8 @@ options:
 all\nmetric+wikirate_company_type\nmetric+value\nmetric+source
 wikirate_company+metric\nwikirate_company+topic
 wikirate_company+source\nwikirate_company+note
-wikirate_topic+note\nwikirate_topic+metric
-wikirate_topic+source\nwikirate_topic+company\n
+topic+note\ntopic+metric
+topic+source\ntopic+company\n
 wikirate_analysis+metric\nwikirate_analysis+source\n
 wikirate_analysis+note)
     puts msg
@@ -53,7 +53,7 @@ def refresh_all
     results += find_left_right_cached_count "wikirate_company", r
   end
   %w[metric company source note].each do |r|
-    results += find_left_right_cached_count "wikirate_topic", r
+    results += find_left_right_cached_count "topic", r
   end
   results
 end

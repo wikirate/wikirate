@@ -117,7 +117,7 @@ wikirate_cardtypes.each do |cardtype|
     metric_answers_params.unshift("$ref" => "#/components/parameters/metric")
     mfieldpaths =
       paths["/{metric}+#{plural_cardname}"] =
-        deep_copy paths["/#{plural_cardname}"]
+        deep_copy(paths["/#{plural_cardname}"])
 
     mfieldget = mfieldpaths["get"]
     mfieldget["parameters"] = metric_answers_params
@@ -128,7 +128,7 @@ wikirate_cardtypes.each do |cardtype|
     company_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
     company_answers_params.unshift("$ref" => "#/components/parameters/company")
     company_answers_path = "/{company}+#{plural_cardname}"
-    cfieldpaths = paths[company_answers_path] = deep_copy paths["/#{plural_cardname}"]
+    cfieldpaths = paths[company_answers_path] = deep_copy(paths["/#{plural_cardname}"])
     cfieldget = cfieldpaths["get"]
     cfieldget["parameters"] = company_answers_params
     cfieldget["description"] = "Returns the answers of the specified company."

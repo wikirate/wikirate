@@ -6,7 +6,7 @@
     "name": "Topic",
     "type": "Cardtype",
     "url": "https://wikirate.org/Topic.json",
-    "codename": "wikirate_topic"
+    "codename": "topic"
   },
   "url": "https://wikirate.org/Environment.json",
   "content": "",
