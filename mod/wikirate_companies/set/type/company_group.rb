@@ -6,7 +6,7 @@ include_set Abstract::CachedTypeOptions
 card_accessor :image, type: :image
 card_accessor :wikirate_company, type: :list
 card_accessor :specification
-card_accessor :wikirate_topic, type: :list
+card_accessor :topic, type: :list
 
 format :html do
   view :bar_left do
@@ -33,7 +33,7 @@ format :html do
 
   before :content_formgroups do
     voo.edit_structure =
-      %i[image wikirate_topic specification wikirate_company about discussion]
+      %i[image topic specification wikirate_company about discussion]
   end
 
   def tab_list
@@ -54,7 +54,7 @@ format :html do
 
   view :details_tab_right do
     labeled_fields do
-      labeled_field :wikirate_topic, :link, title: "Topics", unknown: :blank
+      labeled_field :topic, :link, title: "Topics", unknown: :blank
     end
   end
 end

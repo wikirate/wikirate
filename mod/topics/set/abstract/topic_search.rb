@@ -3,11 +3,11 @@ include_set Abstract::SearchViews
 include_set Abstract::BookmarkFiltering
 
 def item_type_id
-  WikirateTopicID
+  TopicID
 end
 
 def bookmark_type
-  :wikirate_topic
+  :topic
 end
 
 format do

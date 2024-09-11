@@ -14,7 +14,7 @@ class Card
       variables: { optional: true },
       rubric: { optional: true },
 
-      wikirate_topic: { optional: true, map: true, separator: ";" },
+      topic: { optional: true, map: true, separator: ";" },
       unpublished: { optional: true },
 
       # Rich-Text fields
@@ -44,7 +44,7 @@ class Card
     # FIXME: this currently drops unknown topics.
     # def normalize_topic value
     #   topics = value.split(";").map(&:strip)
-    #   topics = topics.select { |t| Card[t]&.type_id == Card::WikirateTopicID }
+    #   topics = topics.select { |t| Card[t]&.type_id == Card::TopicID }
     #   topics.to_pointer_content
     # end
 

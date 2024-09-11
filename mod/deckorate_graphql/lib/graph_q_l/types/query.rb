@@ -17,8 +17,8 @@ module GraphQL
       lookup_field :answer, Answer, :metric_answer
       card_field :relationship, Relationship, :relationship_answer
       lookup_field :relationship, Relationship, :relationship_answer
-      card_field :topic, Topic, :wikirate_topic
-      cardtype_field :topic, Topic, :wikirate_topic
+      card_field :topic, Topic, :topic
+      cardtype_field :topic, Topic, :topic
       card_field :dataset, Dataset
       cardtype_field :dataset, Dataset
       card_field :source, Source
