@@ -4,7 +4,7 @@ RSpec.describe Card::Set::TypePlusRight::Topic::Subtopic do
     let(:subtopic_pointer) { topic.subtopic_card }
 
     it "is restricted to moderators" do
-      expect(subtopic_pointer.ok?(:create)).to be_falsey
+      expect(subtopic_pointer).not.to be_ok
     end
 
     it "does not allow non-topics as items", as_bot: true do

@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Self::Topic, "topic report queries" do
+RSpec.describe Card::Set::Self::Topic do
   describe "created query" do
     include_context "report query", :topic, :created
     variants all: ["created topic"]

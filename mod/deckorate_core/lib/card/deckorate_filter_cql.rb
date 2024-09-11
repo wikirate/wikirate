@@ -5,7 +5,6 @@ class Card
       topic = [:in] + Array.wrap(topic)
       add_to_cql :right_plus, [:topic, { refer_to: topic }]
     end
-    alias topic_cql topic_cql
 
     # @param value [Symbol] :bookmark or :nobookmark
     # @return cql to find cards that the signed in user has (or has not) bookmarked

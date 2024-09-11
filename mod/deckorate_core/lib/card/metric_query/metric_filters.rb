@@ -8,7 +8,6 @@ class Card
           right: :topic, refer_to: ["in", value].flatten, return: :left_id
         )
       end
-      alias_method :filter_by_topic, :filter_by_topic
 
       def filter_by_dataset value
         dataset_restriction :metric_id, :metric, value
