@@ -1,6 +1,6 @@
 describe Card::Set::Abstract::DeckorateFiltering do
   # define the sample card to use that includes the DeckorateFiltering
-  let(:card) { :wikirate_topic.card }
+  let(:card) { :topic.card }
 
   describe "view :filter_form" do
     subject { card.format.render_compact_filter_form }

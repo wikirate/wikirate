@@ -46,8 +46,8 @@ class Calculate
     end
 
     # def topic_cache_count_cards
-    #   Card::Set::TypePlusRight::WikirateTopic::WikirateCompany
-    #     .company_cache_cards_for_topics metric.wikirate_topic_card&.item_names
+    #   Card::Set::TypePlusRight::Topic::WikirateCompany
+    #     .company_cache_cards_for_topics metric.topic_card&.item_names
     # end
   end
 end

@@ -36,7 +36,7 @@ format do
   end
 
   def shared_metric_filter_map
-    %i[wikirate_topic designer metric_type value_type research_policy bookmark]
+    %i[topic designer metric_type value_type research_policy bookmark]
   end
 
   # answer searches have different handling of published and dataset filters
@@ -132,7 +132,7 @@ end
 BASIC_COLUMNS = %i[question metric_type metric_designer metric_title
                    value_type value_options unit research_policy].freeze
 
-DETAILED_COLUMNS = %i[about methodology wikirate_topic unpublished scorer formula
+DETAILED_COLUMNS = %i[about methodology topic unpublished scorer formula
                       range hybrid inverse_title report_type year company_group].freeze
 
 format :csv do

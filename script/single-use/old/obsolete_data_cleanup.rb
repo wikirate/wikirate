@@ -87,7 +87,7 @@ RELATIONSHIP_VALUE_ACTION_SQL = %{
   )
 }
 
-Card.search(left: { type: :wikirate_topic }, right: :subtopic).each(&:delete!)
+Card.search(left: { type: :topic }, right: :subtopic).each(&:delete!)
 
 Card.where(
   "type_id = #{Card::SourceID} and year(created_at) < 2017 and trash is false " \

@@ -36,7 +36,7 @@ module GraphQL
       end
 
       def topics
-        object.wikirate_topic_card.item_cards
+        object.topic_card.item_cards
       end
 
       def datasets

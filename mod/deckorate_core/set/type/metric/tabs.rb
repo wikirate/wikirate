@@ -4,8 +4,8 @@ format :html do
     %i[details metric_answer source dataset calculation]
   end
 
-  view :wikirate_topic_tab do
-    field_nest :wikirate_topic
+  view :topic_tab do
+    field_nest :topic
   end
 
   view :metric_answer_tab do

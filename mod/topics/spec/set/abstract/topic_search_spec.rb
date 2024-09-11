@@ -9,7 +9,7 @@ RSpec.describe Card::Set::Abstract::TopicSearch do
     subject { format.filter_cql_from_params }
 
     def cql args
-      args # merge type_id: Card::WikirateTopicID
+      args # merge type_id: Card::TopicID
     end
 
     context "with name argument" do
