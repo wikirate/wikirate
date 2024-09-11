@@ -7,7 +7,6 @@ class Card
       def filter_by_topic value
         multi_metric { super }
       end
-      alias_method :filter_by_wikirate_topic, :filter_by_topic
 
       def filter_by_dataset value
         multi_metric { dataset_restriction :metric_id, :metric, value }

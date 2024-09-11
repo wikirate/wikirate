@@ -137,7 +137,7 @@ RSpec.describe Card::Set::MetricType::Formula do
       answer_value company: "Apple Inc", year: 2001
     end
 
-    def formula unknown:
+    def formula(unknown:)
       var = variables.first.merge year: "2000..0", unknown: unknown
       create_formula "numKnown [m1].flat()", [var]
     end

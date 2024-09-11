@@ -5201,3 +5201,1377 @@ card_changes_465:
     <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">Wikirate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
     <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
     <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>
+card_changes_466:
+  id: 466
+  card_action_id: 22854
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_467:
+  id: 467
+  card_action_id: 22922
+  field: 0
+  value: parent
+card_changes_468:
+  id: 468
+  card_action_id: 22969
+  field: 1
+  value: '4'
+card_changes_469:
+  id: 469
+  card_action_id: 22969
+  field: 2
+  value: yeti skin
+card_changes_470:
+  id: 470
+  card_action_id: 23072
+  field: 2
+  value: Default Layout
+card_changes_471:
+  id: 471
+  card_action_id: 23080
+  field: 2
+  value: "[[:recent|Recent Changes]]"
+card_changes_472:
+  id: 472
+  card_action_id: 23111
+  field: 2
+  value: |-
+    [[:getting_started_links|Getting started]]
+    [[:recent|Recent Changes]]
+card_changes_473:
+  id: 473
+  card_action_id: 23141
+  field: 2
+  value: "~1493/23141.png"
+card_changes_474:
+  id: 474
+  card_action_id: 23149
+  field: 0
+  value: Policy
+card_changes_475:
+  id: 475
+  card_action_id: 23155
+  field: 2
+  value: deckorate_layout
+card_changes_476:
+  id: 476
+  card_action_id: 11020
+  field: 0
+  value:
+card_changes_477:
+  id: 477
+  card_action_id: 11020
+  field: 1
+  value: '4'
+card_changes_478:
+  id: 478
+  card_action_id: 11020
+  field: 2
+  value: |-
+    Abu Dhabi (United Arab Emirates)
+    Afghanistan
+    Ajman (United Arab Emirates)
+    Alabama (United States)
+    Åland Islands
+    Alaska (United States)
+    Albania
+    Alberta (Canada)
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Anhui (China)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Arizona (United States)
+    Arkansas (United States)
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Beijing (China)
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Columbia (Canada)
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    California (United States)
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Chongqing (China)
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Colorado (United States)
+    Comoros
+    Congo
+    Connecticut (United States)
+    Cook Islands
+    Costa Rica
+    Côte d'Ivoire
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Delaware (United States)
+    Democratic Republic of the Congo
+    Denmark
+    District of Columbia (United States)
+    Djibouti
+    Dominica
+    Dominican Republic
+    Dubai (United Arab Emirates)
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    Florida (United States)
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Fujairah (United Arab Emirates)
+    Fujian (China)
+    Gabon
+    Gambia
+    Gansu (China)
+    Georgia
+    Georgia (United States)
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guangdong (China)
+    Guangxi (China)
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guizhou (China)
+    Guyana
+    Hainan (China)
+    Haiti
+    Hawaii (United States)
+    Headquarters value (jurisdiction)
+    Heard Island and McDonald Islands
+    Hebei (China)
+    Heilongjiang (China)
+    Henan (China)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hubei (China)
+    Hunan (China)
+    Hungary
+    Iceland
+    Idaho (United States)
+    Illinois (United States)
+    Indiana (United States)
+    India
+    Indonesia
+    Inner Mongolia (China)
+    Iowa (United States)
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jiangsu (China)
+    Jiangxi (China)
+    Jilin (China)
+    Jordan
+    Kansas (United States)
+    Kazakhstan
+    Kentucky (United States)
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Lao People's Democratic Republic
+    Latvia
+    Lebanon
+    Lesotho
+    Liaoning (China)
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Louisiana (United States)
+    Luxembourg
+    Macao
+    Macau (China)
+    Macedonia
+    Madagascar
+    Maine (United States)
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Manitoba (Canada)
+    Marshall Islands
+    Martinique
+    Maryland (United States)
+    Massachusetts (United States)
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Michigan (United States)
+    Micronesia, Federated States of
+    Minnesota (United States)
+    Mississippi (United States)
+    Missouri (United States)
+    Moldova
+    Monaco
+    Mongolia
+    Montana (United States)
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nebraska (United States)
+    Nepal
+    Netherlands
+    Nevada (United States)
+    New Brunswick (Canada)
+    New Caledonia
+    New Hampshire (United States)
+    New Jersey (United States)
+    New Mexico (United States)
+    New York (United States)
+    New Zealand
+    Newfoundland and Labrador (Canada)
+    Nicaragua
+    Niger
+    Nigeria
+    Ningxia (China)
+    Niue
+    Norfolk Island
+    North Carolina (United States)
+    North Dakota (United States)
+    North Macedonia
+    Northern Mariana Islands
+    Northwest Territories (Canada)
+    Norway
+    Nova Scotia (Canada)
+    Nunavut (Canada)
+    Ohio (United States)
+    Oklahoma (United States)
+    Oman
+    Ontario, Canada
+    Oregon (United States)
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Pennsylvania (United States)
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Prince Edward Island (Canada)
+    Puerto Rico
+    Qatar
+    Qinghai (China)
+    Quebec (Canada)
+    Ras Al-khaimah (United Arab Emirates)
+    Réunion
+    Rhode Island (United States)
+    Romania
+    Russia
+    Rwanda
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saskatchewan (Canada)
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Shaanxi (China)
+    Shandong (China)
+    Shanghai (China)
+    Shanxi (China)
+    Sharjah (United Arab Emirates)
+    Sichuan (China)
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Carolina (United States)
+    South Dakota (United States)
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Tennessee (United States)
+    Texas (United States)
+    Thailand
+    Tianjin (China)
+    Tibet (China)
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turks and Caicos Islands
+    Turkey
+    Turkmenistan
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    Umm Al-quwain (United Arab Emirates)
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Utah (United States)
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vermont (United States)
+    Vietnam
+    Vietnam
+    Virginia (United States)
+    Wallis and Futuna
+    Washington (United States)
+    West Virginia (United States)
+    Western Sahara
+    Wisconsin (United States)
+    Wyoming (United States)
+    Xinjiang (China)
+    Yemen
+    Yukon (Canada)
+    Yunnan (China)
+    Zambia
+    Zhejiang (China)
+    Zimbabwe
+card_changes_479:
+  id: 479
+  card_action_id: 11020
+  field: 3
+  value: f
+card_changes_480:
+  id: 480
+  card_action_id: 11020
+  field: 4
+  value: '3832'
+card_changes_481:
+  id: 481
+  card_action_id: 11020
+  field: 5
+  value: '730'
+card_changes_482:
+  id: 482
+  card_action_id: 25478
+  field: 2
+  value: |-
+    Abu Dhabi (United Arab Emirates)
+    Afghanistan
+    Ajman (United Arab Emirates)
+    Alabama (United States)
+    Åland Islands
+    Alaska (United States)
+    Albania
+    Alberta (Canada)
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Anhui (China)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Arizona (United States)
+    Arkansas (United States)
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Beijing (China)
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Columbia (Canada)
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    California (United States)
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Chongqing (China)
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Colorado (United States)
+    Comoros
+    Congo
+    Connecticut (United States)
+    Cook Islands
+    Costa Rica
+    Côte d'Ivoire
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Delaware (United States)
+    Democratic Republic of the Congo
+    Denmark
+    District of Columbia (United States)
+    Djibouti
+    Dominica
+    Dominican Republic
+    Dubai (United Arab Emirates)
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    Florida (United States)
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Fujairah (United Arab Emirates)
+    Fujian (China)
+    Gabon
+    Gambia
+    Gansu (China)
+    Georgia
+    Georgia (United States)
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guangdong (China)
+    Guangxi (China)
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guizhou (China)
+    Guyana
+    Hainan (China)
+    Haiti
+    Hawaii (United States)
+    Headquarters value (jurisdiction)
+    Heard Island and McDonald Islands
+    Hebei (China)
+    Heilongjiang (China)
+    Henan (China)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hubei (China)
+    Hunan (China)
+    Hungary
+    Iceland
+    Idaho (United States)
+    Illinois (United States)
+    Indiana (United States)
+    India
+    Indonesia
+    Inner Mongolia (China)
+    Iowa (United States)
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jiangsu (China)
+    Jiangxi (China)
+    Jilin (China)
+    Jordan
+    Kansas (United States)
+    Kazakhstan
+    Kentucky (United States)
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Lao People's Democratic Republic
+    Latvia
+    Lebanon
+    Lesotho
+    Liaoning (China)
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Louisiana (United States)
+    Luxembourg
+    Macao
+    Macau (China)
+    Macedonia
+    Madagascar
+    Maine (United States)
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Manitoba (Canada)
+    Marshall Islands
+    Martinique
+    Maryland (United States)
+    Massachusetts (United States)
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Michigan (United States)
+    Micronesia, Federated States of
+    Minnesota (United States)
+    Mississippi (United States)
+    Missouri (United States)
+    Moldova
+    Monaco
+    Mongolia
+    Montana (United States)
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nebraska (United States)
+    Nepal
+    Netherlands
+    Nevada (United States)
+    New Brunswick (Canada)
+    New Caledonia
+    New Hampshire (United States)
+    New Jersey (United States)
+    New Mexico (United States)
+    New York (United States)
+    New Zealand
+    Newfoundland and Labrador (Canada)
+    Nicaragua
+    Niger
+    Nigeria
+    Ningxia (China)
+    Niue
+    Norfolk Island
+    North Carolina (United States)
+    North Dakota (United States)
+    North Macedonia
+    Northern Mariana Islands
+    Northwest Territories (Canada)
+    Norway
+    Nova Scotia (Canada)
+    Nunavut (Canada)
+    Ohio (United States)
+    Oklahoma (United States)
+    Oman
+    Ontario, Canada
+    Oregon (United States)
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Pennsylvania (United States)
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Prince Edward Island (Canada)
+    Puerto Rico
+    Qatar
+    Qinghai (China)
+    Quebec (Canada)
+    Ras Al-khaimah (United Arab Emirates)
+    Réunion
+    Rhode Island (United States)
+    Romania
+    Russia
+    Rwanda
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saskatchewan (Canada)
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Shaanxi (China)
+    Shandong (China)
+    Shanghai (China)
+    Shanxi (China)
+    Sharjah (United Arab Emirates)
+    Sichuan (China)
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Carolina (United States)
+    South Dakota (United States)
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Tennessee (United States)
+    Texas (United States)
+    Thailand
+    Tianjin (China)
+    Tibet (China)
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turks and Caicos Islands
+    Turkey
+    Turkmenistan
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    Umm Al-quwain (United Arab Emirates)
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Utah (United States)
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vermont (United States)
+    Vietnam
+    Virginia (United States)
+    Wallis and Futuna
+    Washington (United States)
+    West Virginia (United States)
+    Western Sahara
+    Wisconsin (United States)
+    Wyoming (United States)
+    Xinjiang (China)
+    Yemen
+    Yukon (Canada)
+    Yunnan (China)
+    Zambia
+    Zhejiang (China)
+    Zimbabwe
+card_changes_483:
+  id: 483
+  card_action_id: 25497
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_484:
+  id: 484
+  card_action_id: 25513
+  field: 0
+  value: Parent
+card_changes_485:
+  id: 485
+  card_action_id: 25599
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_486:
+  id: 486
+  card_action_id: 25626
+  field: 1
+  value: '55'
+card_changes_487:
+  id: 487
+  card_action_id: 25626
+  field: 2
+  value: wikirate skin
+card_changes_488:
+  id: 488
+  card_action_id: 25829
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_489:
+  id: 489
+  card_action_id: 25848
+  field: 0
+  value: Wikirate Policies
+card_changes_490:
+  id: 490
+  card_action_id: 25876
+  field: 2
+  value: "<p>Fashion Checker is a data tool that connects the dots between brand commitments
+    on living wages and the reality for workers on the ground.</p>\r\n<p>The project
+    is coordinated by <a href=\"https://cleanclothes.org/\">Clean Clothes Campaign</a>
+    in partnership with <a href=\"https://semcon.com/\">Semcon</a>, <a href=\"https://wageindicator.org/\">WageIndicator</a>
+    and <a href=\"/\">Wikirate</a>. The campaign seeks to make brands accountable
+    for their promises on living wages and invites the public in to explore the data.</p>\r\n<p>Through
+    the tool you can explore how companies score on currently paying their workers
+    a living wage, the transparency of their supply chain and their commitments to
+    paying workers a living wage in the future.</p>\r\n<p>The tool also pulls in data
+    on the company’s supply chain including gender breakdowns of workers, the actual
+    to minimum wage pay gap and collective bargaining agreements.</p>"
+card_changes_491:
+  id: 491
+  card_action_id: 25879
+  field: 2
+  value: '2021-09-20'
+card_changes_492:
+  id: 492
+  card_action_id: 25880
+  field: 2
+  value: Clean Clothes Campaign
+card_changes_493:
+  id: 493
+  card_action_id: 26033
+  field: 2
+  value: '2020'
+card_changes_494:
+  id: 494
+  card_action_id: 26035
+  field: 2
+  value: Death Star
+card_changes_495:
+  id: 495
+  card_action_id: 26036
+  field: 2
+  value: |
+    <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
+    <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">Wikirate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+    <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
+    <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>

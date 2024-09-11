@@ -13,7 +13,7 @@ end
 
 # get rid of structured content in structured cards (because most of it is old or
 # nonsense, and it includes a lot of errors)
-types = %i[wikirate_company metric_title wikirate_topic metric metric_answer project]
+types = %i[wikirate_company metric_title topic metric metric_answer project]
 types << "Ticket"
 type_ids = types.map(&:code_id)
 

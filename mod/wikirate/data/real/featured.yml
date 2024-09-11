@@ -34,6 +34,6 @@
   :type: :list
 
 - :name:
-    - :wikirate_topic
+    - :topic
     - :featured
   :type: :list
