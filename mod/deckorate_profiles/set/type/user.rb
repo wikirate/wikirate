@@ -6,7 +6,7 @@ include_set Abstract::ProfileType
 # include_set Abstract::Bookmarker
 
 CONTRIBUTION_TYPES = %i[metric_answer metric wikirate_company project
-                        source wikirate_topic research_group].freeze
+                        source topic research_group].freeze
 
 card_reader :projects_organized, type: :search_type
 card_reader :metrics_designed, type: :search_type

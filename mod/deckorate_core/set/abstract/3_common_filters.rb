@@ -7,7 +7,7 @@ format :html do
 
   define_filter_types dataset: :multiselect,
                       year: :check,
-                      wikirate_topic: :multiselect,
+                      topic: :multiselect,
                       company_category: :check,
                       company_group: :multiselect,
                       company_keyword: :text,
@@ -33,8 +33,8 @@ format :html do
     type_options :dataset
   end
 
-  def filter_wikirate_topic_options
-    type_options :wikirate_topic
+  def filter_topic_options
+    type_options :topic
   end
 
   def filter_company_group_options

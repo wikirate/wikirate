@@ -6,10 +6,10 @@ module Deckorate
       VALID_FIELDS =
         ::Set.new(
           %i[metric_type formula value_type hybrid variables value_options rubric
-             research_policy wikirate_topic unit report_type inverse_title]
+             research_policy topic unit report_type inverse_title]
         ).freeze
       ALIAS_FIELDS = {
-        type: :metric_type, topic: :wikirate_topic, inverse: :inverse_title
+        type: :metric_type, topic: :topic, inverse: :inverse_title
       }.freeze
 
       # Creates a metric card.

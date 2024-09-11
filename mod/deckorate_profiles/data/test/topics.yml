@@ -1,16 +1,16 @@
 ---
 - :name: updated topic
-  :type: :wikirate_topic
+  :type: :topic
   :user: Joe Admin
 - :name: discussed topic
-  :type: :wikirate_topic
+  :type: :topic
   :user: Joe Admin
 - :name: bookmarked topic
-  :type: :wikirate_topic
+  :type: :topic
   :user: Joe Admin
 
 - :name: created topic
-  :type: :wikirate_topic
+  :type: :topic
   :content: updated
   :user: Joe User
 - :name: updated topic

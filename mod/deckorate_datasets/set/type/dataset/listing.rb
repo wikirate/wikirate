@@ -10,7 +10,7 @@ format :html do
   end
 
   # view :bar_middle do
-  #   field_nest :wikirate_topic
+  #   field_nest :topic
   # end
 
   view :bar_right do

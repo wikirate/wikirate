@@ -1,14 +1,14 @@
 format :json do
   NESTED_FIELD_CODENAMES = %i[
     question metric_type about methodology value_type value_options report_type
-    research_policy unit range hybrid wikirate_topic score formula rubric variables
+    research_policy unit range hybrid topic score formula rubric variables
   ].freeze
 
   COUNT_FIELD_CODENAMES =
     %i[metric_answer bookmarkers dataset wikirate_company].freeze
 
   FIELD_LABELS = {
-    wikirate_topic: :topics,
+    topic: :topics,
     score: :scores,
     metric_answer: :answers,
     dataset: :datasets,
@@ -71,7 +71,7 @@ end
 
 format :csv do
   COLUMN_METHODS = {
-    wikirate_topic: :semicolon_separated_values,
+    topic: :semicolon_separated_values,
     report_type: :semicolon_separated_values,
     research_policy: :semicolon_separated_values,
     value_options: :semicolon_separated_values
