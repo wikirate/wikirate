@@ -28,7 +28,7 @@ RSpec.describe Relationship do
         end
         expect(relation.year).to eq 2000
         expect(relation.value).to eq "no"
-        expect(relation.route).to eq Answer::ROUTES.index(:direct)
+        expect(relation.route).to eq Answer.route_index(:direct)
         expect(relation.latest).to eq true
         expect(relation.subject_company_id.cardname).to eq("Monster Inc")
         expect(relation.object_company_id.cardname).to eq("Los Pollos Hermanos")

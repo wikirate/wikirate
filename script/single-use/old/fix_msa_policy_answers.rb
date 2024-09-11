@@ -30,7 +30,7 @@ def rename_options
   RENAMED.each do |from, to|
     puts "from: #{from}, to: #{to}"
     options_card.drop_item from
-    options_card.add_item to, true
+    options_card.add_item to
     options_card.skip = %i[validate_no_commas_in_value_options
                            validate_value_options_match_values]
     options_card.update!({})

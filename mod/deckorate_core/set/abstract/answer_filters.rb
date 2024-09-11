@@ -65,6 +65,20 @@ format :html do
     "Status"
   end
 
+  def filter_route_type
+    "check"
+  end
+
+  def filter_route_options
+    Answer::ROUTES.values.each_with_object({}).with_index do |(v, h), i|
+      h[v] = i
+    end
+  end
+
+  def filter_route_closer_value value
+    Answer::ROUTES.values[value.to_i]
+  end
+
   def filter_value_label
     "Value"
   end

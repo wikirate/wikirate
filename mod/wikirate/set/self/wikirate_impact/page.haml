@@ -1,17 +1,17 @@
 %section#about-impact-header.container-fluid.header-with-bg
-  .container.p-5.py-3
+  .container.pb-5.pt-3
     = render_breadcrumbs
     = section_header :main_impact_heading,
                      header_size: :h1,
                      button: { url: "https://wikirate-intl.org/Contact_us",
                                text: "Add your work", target: "_intl" }
 
-%section.p-5.container
+%section.py-5.container
   .py-3
     = nest :output, view: :filtered_content, hide: :menu, items: { view: :box }
 
-%section.container-fluid.p-5
-  .container.p-5
+%section.container-fluid.py-5
+  .container.py-5
     #impact-card.card.p-5
       = section_header :contribute_heading,
                        button: { url: "https://wikirate-intl.org/Contact_us",

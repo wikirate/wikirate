@@ -34,9 +34,8 @@ end
 def api_user_condition
   id_list = api_user_ids.join ", "
   "route is null AND (" \
-    "editor_id in (#{id_list} "\
-    ") OR (" \
-    "editor_id is null and creator_id in (#{id_list})" \
+    "editor_id in (#{id_list}) OR " \
+    "(editor_id is null and creator_id in (#{id_list}))" \
     ")"
 end
 
@@ -45,7 +44,7 @@ def api_user_ids
 end
 
 def route_index symbol
-  Answer::ROUTES.index symbol
+  Answer.route_index symbol
 end
 
 def populate_relationship_editors
@@ -53,7 +52,7 @@ def populate_relationship_editors
     "UPDATE relationships r " \
       "JOIN card_actions cn ON r.relationship_id = cn.card_id " \
       "JOIN card_acts ca ON ca.id = cn.card_act_id " \
-      "SET editor_id = ca.actor_id, creator_id = ca.creator_id"
+      "SET editor_id = ca.actor_id, creator_id = ca.actor_id, created_at = ca.acted_at"
   )
 end
 
