@@ -6,7 +6,18 @@
   :codename: subtopic
 - :name: supertopic
   :codename: supertopic
-- :name: Overview
-  :codename: general_overview
 - :name: Topic Framework
   :codename: topic_framework
+
+- :name: Environment
+  :type: :topic
+  :codename: environment
+  :conflict: override
+- :name: Social
+  :type: :topic
+  :codename: social
+  :conflict: override
+- :name: Governance
+  :type: :topic
+  :codename: governance
+  :conflict: override

@@ -6,7 +6,6 @@ format :html do
   mini_bar_cols 7, 5
 
   before :content_formgroups do
-    # voo.edit_structure = %i[image subtopic general_overview]
     voo.edit_structure = %i[image general_overview]
   end
 
