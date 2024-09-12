@@ -38,7 +38,7 @@ end
 
 def add_topics_to_framework prefix, framework
   Card.search type: :topic, complete: prefix do |topic|
-    next if topic.name.in? FALSES || topic.topic_framework.present?
+    next if topic.name.in?(FALSES) || topic.topic_framework.present?
     puts "adding #{topic.name} to #{framework}"
     topic.topic_framework_card.update! content: framework
   end
