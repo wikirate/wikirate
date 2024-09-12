@@ -1,4 +1,4 @@
-TYPES = %i[wikirate_company wikirate_topic metric dataset project
+TYPES = %i[wikirate_company topic metric dataset project
            source research_group company_group].freeze
 
 include_set Abstract::OpenSearch

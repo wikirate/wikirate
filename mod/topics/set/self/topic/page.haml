@@ -1,0 +1,13 @@
+%section.container.py-5
+  .feature-page-header.mb-4.position-relative
+    = render_header
+  .d-flex.flex-wrap.justify-content-between.align-items-center.pb-3
+    .w-lg-75.lead
+      = field_nest :description
+%section.featured-container-container-fluid.bg-light
+  .container.d-flex.py-5
+    - %i[environment social governance].each do |topic|
+      .p-3.d-flex.justify-content-center
+        = nest topic, view: :box
+.container.py-5
+  = render_filtered_content

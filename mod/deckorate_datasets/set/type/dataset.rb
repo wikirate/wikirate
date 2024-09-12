@@ -7,7 +7,7 @@ card_reader :metric, type: :list
 card_reader :year, type: :list
 card_reader :parent, type: :pointer
 card_reader :data_subset, type: :search_type
-card_reader :wikirate_topic, type: :list
+card_reader :topic, type: :list
 
 format :html do
   def breadcrumb_items

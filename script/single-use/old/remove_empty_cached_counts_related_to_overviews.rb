@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + "/../config/environment"
 Card::Auth.current_id = Card::WagnBotID
 
-[Card::WikirateAnalysisID, Card::WikirateTopicID,
+[Card::WikirateAnalysisID, Card::TopicID,
  Card::WikirateCompanyID].each do |type|
   puts "clean cached counts for cardtype id #{type}"
   cc_ids = Card.search right: { codename: "cached_count" },

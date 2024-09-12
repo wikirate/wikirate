@@ -3,9 +3,8 @@ class Card
   class DeckorateFilterCql < FilterCql
     def topic_cql topic
       topic = [:in] + Array.wrap(topic)
-      add_to_cql :right_plus, [:wikirate_topic, { refer_to: topic }]
+      add_to_cql :right_plus, [:topic, { refer_to: topic }]
     end
-    alias wikirate_topic_cql topic_cql
 
     # @param value [Symbol] :bookmark or :nobookmark
     # @return cql to find cards that the signed in user has (or has not) bookmarked
