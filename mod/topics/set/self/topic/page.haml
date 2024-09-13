@@ -5,9 +5,9 @@
     .w-lg-75.lead
       = field_nest :description
 %section.featured-container-container-fluid.bg-light
-  .container.d-flex.py-5
-    - %i[environment social governance].each do |topic|
-      .p-3.d-flex.justify-content-center
+  .container.py-5.card-list-box
+    - card.esg_codenames.each do |topic|
+      .item-box
         = nest topic, view: :box
 .container.py-5
   = render_filtered_content
