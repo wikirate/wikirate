@@ -7,4 +7,8 @@ format :html do
       field_nest(:topic, view: :filtered_content)
     ]
   end
+
+  view :bar_right do
+    count_badges :topic
+  end
 end
