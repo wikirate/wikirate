@@ -6,7 +6,7 @@
       = field_nest :description
 %section.featured-container-container-fluid.bg-light
   .container.py-5.card-list-box
-    - %i[environment social governance].each do |topic|
+    - card.esg_codenames.each do |topic|
       .item-box
         = nest topic, view: :box
 .container.py-5
