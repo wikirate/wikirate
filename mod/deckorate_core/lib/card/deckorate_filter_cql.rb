@@ -2,8 +2,7 @@ class Card
   # method shared in many queries.
   class DeckorateFilterCql < FilterCql
     def topic_cql topic
-      topic = [:in] + Array.wrap(topic)
-      add_to_cql :right_plus, [:topic, { refer_to: topic }]
+      add_to_cql :right_plus, refer_to(:topic, topic)
     end
 
     # @param value [Symbol] :bookmark or :nobookmark
@@ -14,6 +13,11 @@ class Card
         # need a way to force cql to return empty result without query
         add_to_cql :id, restriction
       end
+    end
+
+    def refer_to codename, value
+      value = [:in] + value if value.is_a? Array
+      [Codename.id(codename), { refer_to: value }]
     end
   end
 end
