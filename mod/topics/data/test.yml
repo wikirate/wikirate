@@ -6,7 +6,9 @@
   :type: :topic
   :fields:
     :about: A Jedi uses the Force for knowledge and defense, never for attack.
-    :topic_framework: Star Wars Topics
+    :topic_framework:
+      :type: :pointer
+      :content: Star Wars Topics
 
 - :name: Taming
   :type: :topic

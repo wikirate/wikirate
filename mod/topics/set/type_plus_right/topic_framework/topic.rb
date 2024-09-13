@@ -2,6 +2,11 @@ include_set Abstract::TopicSearch
 
 def cql_content
   { type: :topic,
-    rrigh: { left_id: answer_relation, right: :topic },
-    append: company_name }
+    right_plus: [:topic_framework, { refer_to: left_id }] }
+end
+
+format :html do
+  def default_item_view
+    :box
+  end
 end
