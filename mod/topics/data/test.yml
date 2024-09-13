@@ -13,11 +13,16 @@
   :fields:
     :about: What a cute animal
 
+
 - :name: Animal Welfare
   :type: :topic
+  :fields:
+    :topic_framework: Wikirate ESG Topics
 
 - :name: Energy
   :type: :topic
+  :fields:
+    :topic_framework: Wikirate ESG Topics
 
 - :name: Featured
   :codename: featured
