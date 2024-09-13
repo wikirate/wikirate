@@ -19,7 +19,7 @@ FRAMEWORKS = {
   "Minerals Guidance": "OECD Minerals Guidance Steps",
   OECD: "Organization for Economic Cooperation and Development",
   PF: "PF",
-  UNGC: "UN Global Compact",
+  UNGC: "UN Global Compact Topics",
   PRI: "PRI",
   SDG: "UN Sustainable Development Goals Topics",
   UNDHR: "Universal Declaration of Human Rights",
