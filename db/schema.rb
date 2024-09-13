@@ -143,13 +143,6 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
     t.index ["updated_at"], name: "cards_updated_at_index"
   end
 
-  create_table "counts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "left_id"
-    t.integer "right_id"
-    t.integer "value"
-    t.index ["left_id", "right_id"], name: "index_counts_on_left_id_and_right_id", unique: true
-  end
-
   create_table "delayed_jobs", charset: "utf8mb3", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false

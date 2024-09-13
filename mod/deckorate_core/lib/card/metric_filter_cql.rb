@@ -33,10 +33,5 @@ class Card
     def research_policy_cql policy
       add_to_cql :right_plus, refer_to(:research_policy, policy)
     end
-
-    def refer_to codename, value
-      value = [:in] + value if value.is_a? Array
-      [Codename.id(codename), { refer_to: value }]
-    end
   end
 end
