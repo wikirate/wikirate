@@ -54,7 +54,6 @@ end
 
 def add_default_framework
   name = "Wikirate ESG Topics"
-  Card.create! name: name, type: :topic_framework
   Card.search type: :topic, not: { right_plus: :topic_framework } do |topic|
     topic.topic_framework_card.update! content: name
   end
