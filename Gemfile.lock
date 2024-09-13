@@ -379,6 +379,8 @@ GEM
     ansi (1.5.0)
     ast (2.4.2)
     base64 (0.2.0)
+    bcrypt_pbkdf (1.1.1)
+    bcrypt_pbkdf (1.1.1-arm64-darwin)
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
@@ -518,7 +520,7 @@ GEM
     faraday-net_http (3.3.0)
       net-http
     ffi (1.16.3)
-    fog-aws (3.25.0)
+    fog-aws (3.26.0)
       base64 (~> 0.2.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
@@ -636,7 +638,7 @@ GEM
     mysql2 (0.5.6)
     net-http (0.4.1)
       uri
-    net-http-persistent (4.0.2)
+    net-http-persistent (4.0.4)
       connection_pool (~> 2.2)
     net-imap (0.4.16)
       date
@@ -900,7 +902,7 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (2.5.0)
+    unicode-display_width (2.6.0)
     uri (0.13.1)
     video_info (4.2.0)
       iso8601 (~> 0.13.0)
