@@ -8,6 +8,7 @@
   :codename: supertopic
 - :name: Topic Framework
   :codename: topic_framework
+  :type: :cardtype
 
 - :name: Environment
   :type: :topic
