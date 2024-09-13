@@ -5,8 +5,8 @@
 - :name: Force
   :type: :topic
   :fields:
-    :about: A Jedi uses the Force for knowledge and defense, never for attack.
     :topic_framework: Star Wars Topics
+    :about: A Jedi uses the Force for knowledge and defense, never for attack.
 
 - :name: Taming
   :type: :topic
@@ -15,9 +15,13 @@
 
 - :name: Animal Welfare
   :type: :topic
+  :fields:
+    :topic_framework: Wikirate ESG Topics
 
 - :name: Energy
   :type: :topic
+  :fields:
+    :topic_framework: Wikirate ESG Topics
 
 - :name: Featured
   :codename: featured
