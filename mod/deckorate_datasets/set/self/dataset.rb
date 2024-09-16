@@ -23,7 +23,7 @@ format :csv do
       end
     end
   end
-  
+
   def dataset_row dataset
     [
       dataset.name,

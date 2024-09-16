@@ -67,9 +67,6 @@ class Card
       super
     end
 
-    def with_results
-    end
-
     private
 
     def main_results
