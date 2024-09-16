@@ -39,14 +39,16 @@ class Calculate
         new_company_ids.each_slice(1000) do |slice|
           exist = Card::Count.where(left_id: slice, right_id: field_id).pluck :left_id
           missing = slice - exist
-          next unless missing.present?
-
-          new_counts = missing.map do |company_id|
-            { left_id: company_id, right_id: field_id, value: 1, flag: true }
-          end
-          Card::Count.insert_all new_counts
+          insert_missing_counts missing, field_id if missing.present?
         end
       end
+    end
+
+    def insert_missing_counts missing_companies, field_id
+      new_counts = missing_companies.map do |company_id|
+        { left_id: company_id, right_id: field_id, value: 1, flag: true }
+      end
+      Card::Count.insert_all new_counts
     end
 
     # This is a fast but flawed update that leaves numbers incorrect whenever
@@ -58,7 +60,7 @@ class Calculate
     end
 
     def company_field_ids
-      @company_field_ids ||= %i[metric metric_answer].map &:card_id
+      @company_field_ids ||= %i[metric metric_answer].map(&:card_id)
     end
 
     def update_metric_cache_count_cards
