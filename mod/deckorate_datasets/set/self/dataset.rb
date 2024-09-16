@@ -17,12 +17,29 @@ format :csv do
   end
 
   view :body do
-    total = [0, 0, 0, 0, 0, 0]
-    Card.search(type_id: card.id).map do |pc|
-      ([pc.name, pc.num_metrics, pc.num_companies, pc.num_answers, pc.num_users] +
-        pc.num_policies + [pc.created_at]).tap do |counts|
-        6.times { |i| total[i] += counts[i + 1] }
+    [].tap do |rows|
+      each_dataset do |dataset|
+        rows << dataset_row(dataset)
       end
-    end.push(["TOTAL"] + total)
+    end
+  end
+
+  def dataset_row dataset
+    [
+      dataset.name,
+      dataset.num_metrics,
+      dataset.num_companies,
+      dataset.num_answers,
+      dataset.num_users
+    ] + dataset.num_policies + [
+      dataset.created_at
+    ]
+  end
+
+  def each_dataset
+    Card.where(type_id: card.id).find_each do |dataset_card|
+      dataset_card.include_set_modules
+      yield dataset_card
+    end
   end
 end
