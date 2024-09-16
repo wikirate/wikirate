@@ -37,8 +37,10 @@ class Calculate
     def add_missing_counts new_company_ids
       company_field_ids.each do |field_id|
         new_company_ids.each_slice(1000) do |slice|
-          exist = Card.count.where(left_id: slice, right_id: field_id).pluck :left_id
+          exist = Card::Count.where(left_id: slice, right_id: field_id).pluck :left_id
           missing = slice - exist
+          next unless missing.present?
+
           new_counts = missing.map do |company_id|
             { left_id: company_id, right_id: field_id, value: 1, flag: true }
           end
