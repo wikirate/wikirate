@@ -3,6 +3,7 @@ shared_examples "check count" do |count|
     expect(card.count).to eq count
   end
   it "has correct cached count" do
+    Card::Count.refresh_flagged
     expect(card.cached_count).to eq count
   end
 end
