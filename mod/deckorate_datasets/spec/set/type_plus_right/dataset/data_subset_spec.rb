@@ -5,7 +5,7 @@ RSpec.describe Card::Set::TypePlusRight::Dataset::DataSubset do
     def create_data_subset fields={}
       fields.reverse_merge! parent: "Evil Dataset"
       Card.create! name: "Daughter of Evil Dataset",
-                   type_id: Card::DatasetID,
+                   type: :dataset,
                    fields: fields
     end
 

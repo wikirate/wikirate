@@ -6,7 +6,7 @@ include_set Abstract::Breadcrumbs
 include_set Abstract::FluidLayout
 
 def search parameters={}
-  puts parameters
+  # puts parameters
   os_search? ? os_search(parameters) : super
 end
 
