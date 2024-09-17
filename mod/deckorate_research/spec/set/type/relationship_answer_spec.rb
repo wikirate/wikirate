@@ -27,6 +27,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
     it "increases cached answer count" do
       expect(Card.fetch("Monster Inc+metric").cached_count).to eq(6)
       add_first_relationship_answer
+      Card::Count.refresh_flagged
       expect(Card.fetch("Monster Inc+metric").cached_count).to eq(7)
     end
 
