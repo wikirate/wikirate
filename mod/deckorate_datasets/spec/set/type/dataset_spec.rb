@@ -32,6 +32,7 @@ RSpec.describe Card::Set::Type::Dataset do
   context "with years" do
     let :dataset do
       card_subject.year_card.update! content: "1999\n2000\n2001"
+      Card::Count.refresh_flagged
       card_subject
     end
 
