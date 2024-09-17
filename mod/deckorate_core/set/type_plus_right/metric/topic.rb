@@ -5,14 +5,6 @@ def ok_item_types
   :topic
 end
 
-def recount
-  item_names.size
-end
-
-def count
-  cached_count
-end
-
 recount_trigger :type_plus_right, :metric, :topic do |changed_card|
   changed_card unless changed_card&.left&.trash
 end
