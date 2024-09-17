@@ -3,7 +3,8 @@ class Calculate
   module Clean
     def clean
       expire_old_answers
-      update_cached_counts
+      refresh_metric_cache_counts
+      flag_company_cache_counts
     end
 
     private
@@ -22,12 +23,13 @@ class Calculate
 
     # CACHED COUNTS
 
-    def update_cached_counts
-      update_metric_cache_count_cards
-      update_company_cache_count_cards
+    def refresh_metric_cache_counts
+      %i[metric_answer wikirate_company].each do |fld|
+        Card.fetch([metric.name, fld]).refresh_cached_count
+      end
     end
 
-    def update_company_cache_count_cards
+    def flag_company_cache_counts
       new_company_ids = unique_company_ids
       update_and_flag_company_counts old_company_ids, "-"
       update_and_flag_company_counts new_company_ids, "-"
@@ -61,12 +63,6 @@ class Calculate
 
     def company_field_ids
       @company_field_ids ||= %i[metric metric_answer].map(&:card_id)
-    end
-
-    def update_metric_cache_count_cards
-      %i[metric_answer wikirate_company].each do |fld|
-        Card.fetch([metric.name, fld]).update_cached_count_when_ready
-      end
     end
 
     # def topic_cache_count_cards
