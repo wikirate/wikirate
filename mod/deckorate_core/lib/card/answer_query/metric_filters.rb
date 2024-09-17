@@ -37,7 +37,7 @@ class Card
 
       def filter_by_depender_metric value
         metric = validate_depender_metric value
-        return unless (dependees = metric.dependee_metrics).present?
+        return @empty_result = true unless (dependees = metric.dependee_metrics).present?
         filter :metric_id, dependees.map(&:id)
         company_answer_join :dependee
         @conditions <<
