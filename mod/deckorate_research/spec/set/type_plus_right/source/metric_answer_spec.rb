@@ -28,6 +28,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::MetricAnswer do
   it "lowers count if answer is unpublished" do
     original_count = current_count
     unpublish!
+    Card::Count.refresh_flagged
     expect(current_count).to eq(original_count - 1)
   end
 end
