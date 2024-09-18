@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::WikirateCompany do
+RSpec.describe Card::Set::Type::Company do
   let(:company_card) { Card["Death Star"] }
 
   def card_subject
@@ -6,9 +6,9 @@ RSpec.describe Card::Set::Type::WikirateCompany do
   end
 
   it "shows the link for view \"missing\"" do
-    html = render_card :unknown, type_id: Card::WikirateCompanyID,
+    html = render_card :unknown, type_id: Card::CompanyID,
                                  name: "non-existing-card"
-    expect(html).to eq(render_card(:link, type_id: Card::WikirateCompanyID,
+    expect(html).to eq(render_card(:link, type_id: Card::CompanyID,
                                           name: "non-existing-card"))
   end
 
@@ -16,7 +16,7 @@ RSpec.describe Card::Set::Type::WikirateCompany do
     expect_view(:thumbnail).to have_tag("div.image-box") do
       with_tag "div.image-box.small" do
         with_tag "a.known-card" do
-          with_tag ".wr-icon.wr-icon-wikirate_company"
+          with_tag ".wr-icon.wr-icon-company"
         end
       end
     end

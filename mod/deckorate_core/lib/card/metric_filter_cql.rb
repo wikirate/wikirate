@@ -15,7 +15,7 @@ class Card
 
     def year_cql year
       return if year == "latest"
-      add_to_cql :right_plus, type_id: WikirateCompanyID, right_plus: year
+      add_to_cql :right_plus, type_id: CompanyID, right_plus: year
     end
 
     def designer_cql designer

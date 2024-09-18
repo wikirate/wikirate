@@ -1,13 +1,13 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::Type::WikirateCompany::AwardBadges do
+describe Card::Set::Type::Company::AwardBadges do
   let(:badge_action) { :create }
-  let(:badge_type) { :wikirate_company }
+  let(:badge_type) { :company }
   let(:sample_acting_card) { sample_company }
 
   describe "create badges" do
     def execute_awarded_action number
-      Card.create! type_id: Card::WikirateCompanyID,
+      Card.create! type_id: Card::CompanyID,
                    name: "Company #{number}"
     end
 

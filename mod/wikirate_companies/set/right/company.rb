@@ -2,6 +2,6 @@
 #   return unless type_id.in? [Card::PointerID, Card::ListID]
 #   companies = item_names
 #   companies.each do |company|
-#     subcard company, type_id: Card::WikirateCompanyID unless Card.exists? company
+#     subcard company, type_id: Card::CompanyID unless Card.exists? company
 #   end
 # end

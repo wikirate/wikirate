@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-# RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Topic do
+# RSpec.describe Card::Set::TypePlusRight::Company::Topic do
 #   it_behaves_like "cached count", "Death Star+topics", 2, 1 do
 #     let :add_one do
 #       Card["Jedi+disturbances in the force+topics"].add_item! "Animal Welfare"

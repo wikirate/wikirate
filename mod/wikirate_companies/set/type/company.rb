@@ -113,7 +113,7 @@ def company_group_ids
     type: :company_group,
     return: :id,
     right_plus: [
-      :wikirate_company,
+      :company,
       { refer_to: id }
     ]
   )

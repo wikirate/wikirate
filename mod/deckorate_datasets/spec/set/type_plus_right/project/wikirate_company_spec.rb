@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::TypePlusRight::Project::WikirateCompany do
+RSpec.describe Card::Set::TypePlusRight::Project::Company do
   context "when dataset has research metrics" do
-    let(:project_companies) { Card.fetch("Evil Project", :wikirate_company) }
+    let(:project_companies) { Card.fetch("Evil Project", :company) }
 
     it "has researchable metrics" do
       expect(project_companies).to be_researchable_metrics
@@ -32,7 +32,7 @@ RSpec.describe Card::Set::TypePlusRight::Project::WikirateCompany do
   context "when dataset only has calculated metrics" do
     let :project_companies do
       @project_companies ||=
-        Card.fetch(project_with_only_calculated_metrics, :wikirate_company)
+        Card.fetch(project_with_only_calculated_metrics, :company)
     end
 
     def project_with_only_calculated_metrics

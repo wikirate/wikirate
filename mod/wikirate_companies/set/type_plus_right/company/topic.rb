@@ -20,7 +20,7 @@ include_set Abstract::TopicSearch
 # # ... when <metric>+topic is edited
 # recount_trigger :type_plus_right, :metric, :topic do |changed_card|
 #   metric = changed_card.left
-#   metric.fetch(:wikirate_company).answer_query.pluck(:company_id).map do |company_id|
+#   metric.fetch(:company).answer_query.pluck(:company_id).map do |company_id|
 #     company_id.card&.fetch :topic
 #   end
 # end

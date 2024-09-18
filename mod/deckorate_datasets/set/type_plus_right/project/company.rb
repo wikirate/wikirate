@@ -4,8 +4,8 @@ include_set Abstract::CompanySearch
 
 def cql_content
   {
-    type: :wikirate_company,
-    referred_to_by: dataset_name&.field(:wikirate_company)
+    type: :company,
+    referred_to_by: dataset_name&.field(:company)
   }
 end
 

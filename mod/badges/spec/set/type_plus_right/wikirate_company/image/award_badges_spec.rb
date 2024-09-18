@@ -1,15 +1,15 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Image::AwardBadges do
+RSpec.describe Card::Set::TypePlusRight::Company::Image::AwardBadges do
   describe "logo badges" do
     let(:badge_action) { :logo }
-    let(:badge_type) { :wikirate_company }
+    let(:badge_type) { :company }
     let(:sample_acting_card) { sample_company.field :image }
 
     def execute_awarded_action number
       company = nil
       Card::Auth.as_bot do
-        company = Card.create! type_id: Card::WikirateCompanyID,
+        company = Card.create! type_id: Card::CompanyID,
                                name: "Company #{number}"
       end
       Card::Auth.as_bot do

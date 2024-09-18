@@ -8,15 +8,15 @@ end
 # recount number of companies for a given metric when a Metric Value card is
 # created or deleted
 recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
-  changed_card.metric_card.fetch :wikirate_company
+  changed_card.metric_card.fetch :company
 end
 
 # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
-  changed_card.left.fetch :wikirate_company
+  changed_card.left.fetch :company
 end
 
 # ...or when answer is (un)published
 field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  changed_card.left.metric_card.fetch :wikirate_company
+  changed_card.left.metric_card.fetch :company
 end

@@ -57,7 +57,7 @@ format :json do
   def molecule
     super().merge answers_url: json_field_link(:metric_answer),
                   metrics_url: json_field_link(:metric),
-                  companies_url: json_field_link(:wikirate_company)
+                  companies_url: json_field_link(:company)
   end
 
   def json_field_link fieldcode

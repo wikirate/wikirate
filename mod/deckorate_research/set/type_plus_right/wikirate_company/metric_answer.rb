@@ -42,7 +42,7 @@ format do
   end
 
   def filter_map
-    filter_map_without_keys super, :wikirate_company
+    filter_map_without_keys super, :company
   end
 
   def default_filter_hash

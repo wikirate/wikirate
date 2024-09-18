@@ -2,8 +2,8 @@ include_set Abstract::CachedCount
 include_set Abstract::CompanySearch
 include_set Abstract::OpenSearch
 
-recount_trigger :type, :wikirate_company, on: [:create, :delete] do |_changed_card|
-  Card[:wikirate_company]
+recount_trigger :type, :company, on: [:create, :delete] do |_changed_card|
+  Card[:company]
 end
 
 format do
@@ -14,7 +14,7 @@ format do
   end
 
   def os_type_param
-    :wikirate_company
+    :company
   end
 
   def filtered_headquarters

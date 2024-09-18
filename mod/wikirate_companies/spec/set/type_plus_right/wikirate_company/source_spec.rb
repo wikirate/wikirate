@@ -1,14 +1,14 @@
-RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
+RSpec.describe Card::Set::TypePlusRight::Company::Source do
   include FilterSpecHelper
 
   it_behaves_like "cached count", ["Death Star", :source], 4, 1 do
     let :add_one do
-      card = Card.fetch sample_source(:apple), :wikirate_company, new: {}
+      card = Card.fetch sample_source(:apple), :company, new: {}
       card.add_item! "Death Star"
     end
 
     let :delete_one do
-      Card[sample_source(:star_wars), :wikirate_company].drop_item! "Death Star"
+      Card[sample_source(:star_wars), :company].drop_item! "Death Star"
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
     subject { card_subject.cql_hash }
 
     let :right_plus_val do
-      [Card::WikirateCompanyID, { refer_to: "Death Star".card_id }]
+      [Card::CompanyID, { refer_to: "Death Star".card_id }]
     end
 
     it "finds sources with +company cards that refer to Death Star by default" do

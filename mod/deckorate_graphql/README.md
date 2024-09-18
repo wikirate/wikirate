@@ -27,7 +27,7 @@ module GraphQL
     class Benchmark < WikirateCard
       field :designer, Card, null: false
       field :years, [Integer], null: false
-      cardtype_field :company, Company, :wikirate_company, true
+      cardtype_field :company, Company, :company, true
       lookup_field :metric, Metric, nil, true
       lookup_field :answer, Answer, :metric_answer, true
     end

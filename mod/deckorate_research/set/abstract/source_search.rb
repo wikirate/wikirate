@@ -70,7 +70,7 @@ class SourceFilterCql < DeckorateFilterCql
   end
 
   def company_name_cql value
-    matching_field WikirateCompanyID, value
+    matching_field CompanyID, value
   end
 
   def report_type_cql value

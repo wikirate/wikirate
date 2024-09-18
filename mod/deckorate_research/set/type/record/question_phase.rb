@@ -12,7 +12,7 @@ format :html do
   end
 
   def project_companies_mark
-    project_name&.field :wikirate_company
+    project_name&.field :company
   end
 
   def project_metrics_mark

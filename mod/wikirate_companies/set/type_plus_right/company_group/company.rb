@@ -14,7 +14,7 @@ def update_content_from_spec
 end
 
 def bookmark_type
-  :wikirate_company
+  :company
 end
 
 format :html do
@@ -39,6 +39,6 @@ format :html do
   end
 
   def filter_card
-    :wikirate_company.card
+    :company.card
   end
 end

@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Headquarters do
+RSpec.describe Card::Set::TypePlusRight::Company::Headquarters do
   let(:company_name) { "Death Star" }
 
   let(:hq_card) { Card.fetch "#{company_name}+headquarters", new: {} }

@@ -3,7 +3,7 @@ class Card
   class SourceImportItem < ImportItem
     extend CompanyImportHelper
 
-    @columns = { wikirate_company: { map: true, separator: ";",
+    @columns = { company: { map: true, separator: ";",
                                      auto_add: true, suggest: true },
                  year: { map: true },
                  report_type: { optional: true }, # FIXME: map after FTI imports finished

@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Wikipedia do
+RSpec.describe Card::Set::TypePlusRight::Company::Wikipedia do
   def wikipedia_field company=nil, new={}
     company ||= "created_company"
     Card.fetch "#{company}+#{:wikipedia.cardname}", new: new

@@ -23,7 +23,7 @@ format do
       when :none
         counts[:metric_answer]
       when :company
-        counts[:wikirate_company]
+        counts[:company]
       when :metric
         counts[:metric]
       when :record

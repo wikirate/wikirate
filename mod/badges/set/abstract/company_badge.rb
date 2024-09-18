@@ -15,5 +15,5 @@ def badge_action
 end
 
 def badge_type
-  :wikirate_company
+  :company
 end

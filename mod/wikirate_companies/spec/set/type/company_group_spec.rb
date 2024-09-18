@@ -20,6 +20,6 @@ RSpec.describe Card::Set::Type::CompanyGroup do
                      ]
                    }
 
-    expect(supgoog.wikirate_company_card.item_names).to eq(["SPECTRE"])
+    expect(supgoog.company_card.item_names).to eq(["SPECTRE"])
   end
 end

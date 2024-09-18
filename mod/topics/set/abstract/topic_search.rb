@@ -56,7 +56,7 @@ class TopicFilterCql < DeckorateFilterCql
   #   add_to_cql :referred_to_by, left: { name: dataset }, right: "topic"
   # end
   #
-  # def wikirate_company_cql company
+  # def company_cql company
   #   add_to_cql :found_by, "#{company}+topic"
   # end
 end

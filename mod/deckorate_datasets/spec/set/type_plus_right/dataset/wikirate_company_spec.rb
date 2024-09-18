@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::Dataset::WikirateCompany do
+RSpec.describe Card::Set::TypePlusRight::Dataset::Company do
   def card_subject
     "Evil Dataset+Company".card
   end

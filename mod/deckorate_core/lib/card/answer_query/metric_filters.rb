@@ -10,7 +10,7 @@ class Card
 
       def filter_by_dataset value
         multi_metric { dataset_restriction :metric_id, :metric, value }
-        multi_company { dataset_restriction :company_id, :wikirate_company, value }
+        multi_company { dataset_restriction :company_id, :company, value }
         dataset_year_restriction value
       end
 

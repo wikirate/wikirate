@@ -27,7 +27,7 @@ format do
 
   def potential_duplicates
     Env.with_params filter: { name: card.name } do
-      :wikirate_company.card.format.os_search_returning_cards
+      :company.card.format.os_search_returning_cards
     end
   end
 end

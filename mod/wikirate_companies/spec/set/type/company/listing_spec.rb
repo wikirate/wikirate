@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::WikirateCompany::Listing do
+RSpec.describe Card::Set::Type::Company::Listing do
   def card_subject
     Card["Death Star"]
   end

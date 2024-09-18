@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::WikirateCompany::Structure do
+RSpec.describe Card::Set::Type::Company::Structure do
   def card_subject
     Card["Google Inc"]
   end

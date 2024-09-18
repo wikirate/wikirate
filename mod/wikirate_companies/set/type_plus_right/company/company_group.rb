@@ -1,4 +1,4 @@
 include_set Abstract::CompanyGroupSearch
 include_set Abstract::ListRefCachedCount,
             type_to_count: :company_group,
-            list_field: :wikirate_company
+            list_field: :company

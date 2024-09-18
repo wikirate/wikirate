@@ -2,7 +2,7 @@ include_set Abstract::Thumbnail
 include_set Abstract::DeckorateTabbed
 include_set Abstract::Bookmarkable
 
-card_reader :wikirate_company, type: :list
+card_reader :company, type: :list
 card_reader :metric, type: :list
 card_reader :year, type: :list
 card_reader :parent, type: :pointer
@@ -54,7 +54,7 @@ def where_record
 end
 
 def company_ids
-  @company_ids ||= wikirate_company_card.item_ids
+  @company_ids ||= company_card.item_ids
 end
 
 def metric_ids
@@ -70,7 +70,7 @@ def metrics
 end
 
 def companies
-  @companies ||= wikirate_company_card.item_names
+  @companies ||= company_card.item_names
 end
 
 def years

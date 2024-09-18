@@ -14,7 +14,7 @@ end
 
 # # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
-  changed_card.left.fetch(:wikirate_company).answer_query
+  changed_card.left.fetch(:company).answer_query
               .pluck(:company_id).map do |company_id|
     company_id.card.fetch :metric
   end

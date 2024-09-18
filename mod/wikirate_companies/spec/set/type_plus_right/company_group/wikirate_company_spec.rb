@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::TypePlusRight::CompanyGroup::WikirateCompany do
+RSpec.describe Card::Set::TypePlusRight::CompanyGroup::Company do
   def card_subject
     Card.fetch "Deadliest+companies", new: {}
   end

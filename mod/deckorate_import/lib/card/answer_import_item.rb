@@ -4,7 +4,7 @@ class Card
     extend CompanyImportHelper
 
     @columns = { metric: { map: true, suggest: true },
-                 wikirate_company: { map: true, auto_add: true, suggest: true },
+                 company: { map: true, auto_add: true, suggest: true },
                  year: { map: true },
                  value: {},
                  source: { map: true, separator: "; ", auto_add: true, suggest: true },
@@ -12,7 +12,7 @@ class Card
                  comment: { optional: true },
                  headquarters: { optional: true } }
 
-    CSV_KEYS = %i[answer_link metric wikirate_company year value
+    CSV_KEYS = %i[answer_link metric company year value
                   source_page_url].freeze
 
     def import_hash
@@ -54,7 +54,7 @@ class Card
     end
 
     def translate_company_args r
-      r[:company] = r[:wikirate_company]
+      r[:company] = r[:company]
     end
 
     def export_csv_line status

@@ -16,7 +16,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Source do
 
     it "updates source's company" do
       new_answer
-      source_company = source.fetch :wikirate_company
+      source_company = source.fetch :company
       expect(source_company.item_cards).to include(company)
     end
 

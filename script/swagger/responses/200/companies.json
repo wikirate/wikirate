@@ -9,7 +9,7 @@
     "codename": "cardtype"
   },
   "url": "https://wikirate.org/companies.json",
-  "codename": "wikirate_company",
+  "codename": "company",
   "items": [
     {
       "id": 637,

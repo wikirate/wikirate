@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-# describe Card::Set::Right::WikirateCompany do
+# describe Card::Set::Right::Company do
 #   before do
 #     login_as "joe_user"
 #   end
@@ -10,7 +10,7 @@
 #                                              type: "pointer" } }
 #     expect(Card.exists?("zzz")).to be true
 #     expect(Card.exists?("xxx")).to be true
-#     expect(Card["zzz"].type_id).to eq Card::WikirateCompanyID
-#     expect(Card["xxx"].type_id).to eq Card::WikirateCompanyID
+#     expect(Card["zzz"].type_id).to eq Card::CompanyID
+#     expect(Card["xxx"].type_id).to eq Card::CompanyID
 #   end
 # end

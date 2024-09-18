@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::WikirateCompany::Export do
+RSpec.describe Card::Set::Type::Company::Export do
   let(:company) { Card["Samsung"] }
 
   context "with JSON Format" do

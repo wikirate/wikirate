@@ -30,7 +30,7 @@ RSpec.shared_context "answer query" do
     ]
   end
 
-  let(:all_companies) { Card.search type: :wikirate_company, return: :name }
+  let(:all_companies) { Card.search type: :company, return: :name }
   let :missing_disturbance_companies do
     latest_answer_keys =
       ::Set.new(latest_disturbance_answers.map { |n| n.to_name.left_name.key })

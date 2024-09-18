@@ -3,7 +3,7 @@ include_set Abstract::SourceSearch
 # cache # of sources tagged with this company (=left) via <source>+company
 include_set Abstract::ListRefCachedCount,
             type_to_count: :source,
-            list_field: :wikirate_company
+            list_field: :company
 
 format do
   # don't show answer sort option, because that means "total answers"

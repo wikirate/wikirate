@@ -2,4 +2,4 @@
 include_set Abstract::DatasetSearch
 include_set Abstract::ListRefCachedCount,
             type_to_count: :dataset,
-            list_field: :wikirate_company
+            list_field: :company

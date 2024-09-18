@@ -41,7 +41,7 @@ format :html do
   end
 
   def type_link_icon
-    icon_tag(contrib_page? ? :user : :wikirate_company)
+    icon_tag(contrib_page? ? :user : :company)
   end
 
   def contribs_made?
