@@ -12,7 +12,7 @@ class HeadquartersImportItem < ImportItem
 
   def validate_wikirate_number value
     value.number? && (@company = Card[value.to_i]) &&
-      @company.type_id == Card::WikirateCompanyID
+      @company.type_id == Card::CompanyID
   end
 
   def validate_oc_jurisdiction_code value

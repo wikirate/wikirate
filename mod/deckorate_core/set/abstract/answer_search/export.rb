@@ -3,7 +3,7 @@ include_set Abstract::DetailedExport
 
 EXPORT_TYPES = {
   Answers: :metric_answer,
-  Companies: :wikirate_company,
+  Companies: :company,
   Metrics: :metric
 }.freeze
 

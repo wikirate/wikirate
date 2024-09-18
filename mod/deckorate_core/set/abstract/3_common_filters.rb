@@ -46,7 +46,7 @@ format :html do
   end
 
   def filter_company_options
-    :wikirate_company.cardname
+    :company.cardname
   end
 
   def filter_published_options

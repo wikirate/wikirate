@@ -6,7 +6,7 @@ format :html do
   view :input do
     select_tag :content,
                class: "form-control",
-               data: { "options-card": :wikirate_company.cardname },
+               data: { "options-card": :company.cardname },
                placeholder: rate_subject
   end
 end

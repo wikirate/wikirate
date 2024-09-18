@@ -38,7 +38,7 @@
   :codename: year
 - :name: Company
   :type: :cardtype
-  :codename: wikirate_company
+  :codename: company
 - :name: Record
   :type: :cardtype
   :codename: record

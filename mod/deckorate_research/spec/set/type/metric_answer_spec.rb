@@ -91,7 +91,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
     it "adds company when triggered" do
       Card.create answer_args.merge("+company" => new_company,
                                     trigger: :auto_add_company)
-      expect(Card[new_company].type_id).to eq(Card::WikirateCompanyID)
+      expect(Card[new_company].type_id).to eq(Card::CompanyID)
     end
 
     it "fails when not triggered with unknown company" do

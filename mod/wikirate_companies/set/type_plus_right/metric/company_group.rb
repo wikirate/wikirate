@@ -12,5 +12,5 @@ def company_ids
   groups = item_cards
   return [] unless groups.present?
 
-  groups.map { |g| g.wikirate_company_card&.item_ids }.flatten.compact
+  groups.map { |g| g.company_card&.item_ids }.flatten.compact
 end

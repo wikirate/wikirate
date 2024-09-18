@@ -5,7 +5,7 @@ def pointer_mark
 end
 
 def cql_content
-  { type: :wikirate_company, referred_to_by: pointer_mark }
+  { type: :company, referred_to_by: pointer_mark }
 end
 
 format do
