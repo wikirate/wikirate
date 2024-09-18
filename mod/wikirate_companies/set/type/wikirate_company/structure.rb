@@ -35,9 +35,13 @@ format :html do
   end
 
   def tab_options
-    { projects_organized: { label: "Projects Organized" },
-      metrics_designed: { label: "Metrics Designed" },
-      company_group: { label: "Groups" } }
+    if contrib_page?
+      { projects_organized: { label: "Projects Organized" },
+        metrics_designed: { label: "Metrics Designed" },
+        company_group: { label: "Groups" } }
+    else
+      { metric_answer: { label: "Metrics", count: card.metric_card.cached_count } }
+    end
   end
 
   view :metric_answer_tab do
