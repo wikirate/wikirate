@@ -25,6 +25,7 @@ card_accessor :steward, type: :pointer
 card_accessor :topic, type: :list
 card_accessor :research_policy, type: :pointer, default_content: "Community Assessed"
 card_accessor :relationship_answer, type: :search_type
+card_accessor :wikirate_company, type: :search_type
 
 # applicability
 card_accessor :year, type: :list

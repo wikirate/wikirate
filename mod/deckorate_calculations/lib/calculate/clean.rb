@@ -34,10 +34,5 @@ class Calculate
       Card::Count.flag_all old_company_ids, field_ids, increment: -1
       Card::Count.flag_all unique_company_ids, field_ids, increment: 1
     end
-
-    # def topic_cache_count_cards
-    #   Card::Set::TypePlusRight::Topic::WikirateCompany
-    #     .company_cache_cards_for_topics metric.topic_card&.item_names
-    # end
   end
 end
