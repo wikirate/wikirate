@@ -9,8 +9,8 @@ module GraphQL
       cardtype_field :research_group, ResearchGroup
       card_field :company_group, CompanyGroup
       cardtype_field :company_group, CompanyGroup
-      card_field :company, Company, :wikirate_company
-      cardtype_field :company, Company, :wikirate_company
+      card_field :company, Company, :company
+      cardtype_field :company, Company, :company
       card_field :metric, Metric, :metric
       lookup_field :metric, Metric, :metric
       card_field :answer, Answer, :metric_answer

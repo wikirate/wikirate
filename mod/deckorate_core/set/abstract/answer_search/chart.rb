@@ -34,7 +34,7 @@ format :json do
   end
 
   def company_count
-    counts[:wikirate_company]
+    counts[:company]
   end
 
   def max_grid_cells

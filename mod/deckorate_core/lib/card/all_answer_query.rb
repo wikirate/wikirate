@@ -6,7 +6,7 @@ class Card
     include Applicability
     include NotResearched
 
-    PARTNER_TYPE_ID = { company: Card::WikirateCompanyID, metric: Card::MetricID }.freeze
+    PARTNER_TYPE_ID = { company: Card::CompanyID, metric: Card::MetricID }.freeze
 
     def initialize filter, sorting={}, paging={}
       @card_conditions = []

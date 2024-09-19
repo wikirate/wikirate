@@ -4,7 +4,7 @@ RSpec.describe Card::AnswerImportItem do
   let :default_item_hash do
     {
       metric: "Jedi+disturbances in the Force",
-      wikirate_company: "Google Inc",
+      company: "Google Inc",
       year: "2017",
       value: "yes",
       source: :opera_source.cardname,
@@ -13,7 +13,7 @@ RSpec.describe Card::AnswerImportItem do
     }
   end
 
-  let(:item_name_parts) { %i[metric wikirate_company year] }
+  let(:item_name_parts) { %i[metric company year] }
 
   specify "answer doesn't exist" do
     expect(Card[item_name]).not_to be_a Card
@@ -22,7 +22,7 @@ RSpec.describe Card::AnswerImportItem do
   describe "#default_header_map" do
     it "uses order specified in @columns hash" do
       expect(described_class.default_header_map).to(
-        eq(metric: 0, wikirate_company: 1, year: 2, value: 3,
+        eq(metric: 0, company: 1, year: 2, value: 3,
            source: 4, unpublished: 5, comment: 6, headquarters: 7)
       )
     end
@@ -30,7 +30,7 @@ RSpec.describe Card::AnswerImportItem do
 
   describe "#map_headers" do
     let :header_map do
-      { metric: 5, wikirate_company: 1, year: 3, value: 0,
+      { metric: 5, company: 1, year: 3, value: 0,
         source: 2, comment: 4, unpublished: nil, headquarters: nil }
     end
 
@@ -59,7 +59,7 @@ RSpec.describe Card::AnswerImportItem do
     it "ignores extra columns" do
       array = %w[Value Mama Company Why Source No Year Cookie Comment Today Metric]
       expect(described_class.map_headers(array)).to(
-        eq(metric: 10, wikirate_company: 2, year: 6, value: 0,
+        eq(metric: 10, company: 2, year: 6, value: 0,
            source: 4, comment: 8, unpublished: nil, headquarters: nil)
       )
     end
@@ -70,8 +70,8 @@ RSpec.describe Card::AnswerImportItem do
     let(:unknown_url) { "http://xkcd.com" }
 
     it "handles auto adding company" do
-      described_class.auto_add :wikirate_company, unknown_co
-      expect(Card[unknown_co].type_id).to eq(Card::WikirateCompanyID)
+      described_class.auto_add :company, unknown_co
+      expect(Card[unknown_co].type_id).to eq(Card::CompanyID)
     end
 
     it "handles auto adding source", as_bot: true do
@@ -97,7 +97,7 @@ RSpec.describe Card::AnswerImportItem do
     end
 
     example "updates existing answer" do
-      args = { wikirate_company: "Death Star", year: "2000" } # existing answer
+      args = { company: "Death Star", year: "2000" } # existing answer
       import args
       expect(Card[item_name(args)]).to be_real
     end
@@ -133,7 +133,7 @@ RSpec.describe Card::AnswerImportItem do
 
     context "with conflicts" do
       it "leaves existing values when skipping" do
-        item = item_object(wikirate_company: "Monster Inc", year: "1977")
+        item = item_object(company: "Monster Inc", year: "1977")
         expect(item.conflict_strategy).to eq(:skip)
         item.import
         answer = Card["Jedi+disturbances in the Force+Monster Inc+1977"]
@@ -142,7 +142,7 @@ RSpec.describe Card::AnswerImportItem do
 
       it "overrides existing values when overriding" do
         overriding do
-          import wikirate_company: "Monster Inc", year: "1977"
+          import company: "Monster Inc", year: "1977"
           answer = Card["Jedi+disturbances in the Force+Monster Inc+1977"]
           expect(answer.value).to eq("yes") # existing value is "no"
         end

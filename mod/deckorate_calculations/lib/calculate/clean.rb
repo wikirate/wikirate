@@ -24,7 +24,7 @@ class Calculate
     # CACHED COUNTS
 
     def refresh_metric_counts
-      %i[metric_answer wikirate_company].each do |fld|
+      %i[metric_answer company].each do |fld|
         Card.fetch([metric.name, fld]).refresh_cached_count
       end
     end

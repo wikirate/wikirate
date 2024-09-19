@@ -308,7 +308,7 @@ $lightMap: (
 @include hoverTag(topic, $topic-color);
 @include hoverTag(company, $company-color);
 @include hoverTag(topic, $topic-color);
-@include hoverTag(wikirate_company, $company-color);
+@include hoverTag(company, $company-color);
 @include hoverTag(company_group, $company-group-color);
 @include hoverTag(metric, $metric-color);
 @include hoverTag(project, $project-color);

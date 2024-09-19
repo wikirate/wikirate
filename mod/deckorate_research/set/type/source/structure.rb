@@ -14,7 +14,7 @@ format :html do
   end
 
   def form_fields
-    flds = %i[wikirate_title report_type wikirate_company year description]
+    flds = %i[wikirate_title report_type company year description]
     if card.new?
       flds.unshift :file
     elsif card.wikirate_link_card.new?

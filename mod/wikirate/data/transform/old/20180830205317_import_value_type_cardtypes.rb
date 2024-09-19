@@ -14,7 +14,7 @@ class ImportValueTypeCardtypes < Cardio::Migration::Transform
     ensure_type_id_if_exists "Global Reporting Initiative+" \
                              "Fuel consumption from non-renewable sources (G4-EN3-a)",
                              Card::MetricID
-    ensure_type_id_if_exists "AT&T Inc.", Card::WikirateCompanyID
+    ensure_type_id_if_exists "AT&T Inc.", Card::CompanyID
   end
 
   def ensure_type_id_if_exists name, type_id
@@ -23,7 +23,7 @@ class ImportValueTypeCardtypes < Cardio::Migration::Transform
   end
 
   def fix_record_types
-    ensure_type Card::RecordID, Card::MetricID, Card::WikirateCompanyID
+    ensure_type Card::RecordID, Card::MetricID, Card::CompanyID
   end
 
   def fix_answer_types

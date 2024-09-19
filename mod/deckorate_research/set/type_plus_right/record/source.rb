@@ -25,7 +25,7 @@ format :html do
 
   def new_source_defaults
     {
-      wikirate_company: company_name,
+      company: company_name,
       report_type: report_type,
       year: current_year
     }.each_with_object({}) do |(key, value), hash|

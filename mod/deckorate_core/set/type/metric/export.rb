@@ -5,14 +5,14 @@ format :json do
   ].freeze
 
   COUNT_FIELD_CODENAMES =
-    %i[metric_answer bookmarkers dataset wikirate_company].freeze
+    %i[metric_answer bookmarkers dataset company].freeze
 
   FIELD_LABELS = {
     topic: :topics,
     score: :scores,
     metric_answer: :answers,
     dataset: :datasets,
-    wikirate_company: :companies
+    company: :companies
   }.freeze
 
   view :links do

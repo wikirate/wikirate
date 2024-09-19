@@ -26,7 +26,7 @@ format do
   def filter_map
     [
       :year,
-      { key: :wikirate_company,
+      { key: :company,
         type: :group,
         filters: [:subject_company_name, :object_company_name] },
       { key: :metric,

@@ -29,12 +29,12 @@ class Card
 
     def filter_by_subject_company_name value
       restrict_by_cql :subject_company_name, :subject_company_id,
-                      name: [:match, value], type: :wikirate_company
+                      name: [:match, value], type: :company
     end
 
     def filter_by_object_company_name value
       restrict_by_cql :object_company_name, :object_company_id,
-                      name: [:match, value], type: :wikirate_company
+                      name: [:match, value], type: :company
     end
   end
 end

@@ -2,7 +2,7 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
            total: "Total" }.freeze
 
 COUNT_FIELDS = {
-  "answers.company_id": :wikirate_company,
+  "answers.company_id": :company,
   "answers.metric_id": :metric,
   "answers.year": :year,
   "answers.id": :metric_answer
@@ -103,7 +103,7 @@ format do
   end
 
   def record?
-    single?(:metric) && single?(:wikirate_company)
+    single?(:metric) && single?(:company)
   end
 
   private

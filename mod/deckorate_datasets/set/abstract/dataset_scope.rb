@@ -42,7 +42,7 @@ def parent_field
   @parent_field ||= relative_dataset_field(parent_dataset)
 end
 
-# eg return :wikirate_company on +Company cards
+# eg return :company on +Company cards
 def scope_code
   name.right_name&.codename
 end

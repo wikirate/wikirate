@@ -48,8 +48,8 @@ RSpec.describe Card::RelationshipImportItem do
     end
 
     it "handles auto adding company" do
-      described_class.auto_add :wikirate_company, unknown_co
-      expect(Card[unknown_co].type_id).to eq(Card::WikirateCompanyID)
+      described_class.auto_add :company, unknown_co
+      expect(Card[unknown_co].type_id).to eq(Card::CompanyID)
     end
   end
 end
