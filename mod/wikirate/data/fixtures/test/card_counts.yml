@@ -820,7 +820,7 @@ card_counts_137:
   left_id: 1167
   right_id: 691
   value: 1
-  flag: 0
+  flag: 1
 card_counts_138:
   id: 138
   left_id: 1167
