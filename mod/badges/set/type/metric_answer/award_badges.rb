@@ -77,7 +77,7 @@ def project_cards
   Card.search type_id: Card::ProjectID,
               right_plus: [Card::MetricID, { refer_to: { id: metric_card.id } }],
               and: {
-                right_plus: [Card::WikirateCompanyID,
+                right_plus: [Card::CompanyID,
                              { refer_to: { id: company_card.id } }]
               }
 end

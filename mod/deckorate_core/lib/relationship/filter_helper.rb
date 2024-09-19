@@ -5,7 +5,7 @@ class Relationship
       relationship_prefix = metric.inverse? ? "inverse_" : ""
       company_field = "#{metric&.inverse? ? :subject : :object}_company_id"
       metric_field = "#{relationship_prefix}metric_id"
-      company_list_id = company_group&.card&.wikirate_company_card&.id
+      company_list_id = company_group&.card&.company_card&.id
 
       rel = company_group_relation metric, company_field, metric_field, company_list_id
       rel.distinct.pluck :"#{relationship_prefix}answer_id"

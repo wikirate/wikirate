@@ -28,7 +28,7 @@ format do
 
   def normalize_filter_hash h
     group = h.delete :company_group
-    company_ids = [group, :wikirate_company].card&.item_ids
+    company_ids = [group, :company].card&.item_ids
     h[company_field] = company_ids if company_ids.present?
   end
 

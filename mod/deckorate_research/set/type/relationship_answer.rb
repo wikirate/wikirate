@@ -59,7 +59,7 @@ def name_part_types
 end
 
 def valid_related_company?
-  (related_company_card&.type_id == Card::WikirateCompanyID) ||
+  (related_company_card&.type_id == Card::CompanyID) ||
     Director.include?(related_company)
 end
 
