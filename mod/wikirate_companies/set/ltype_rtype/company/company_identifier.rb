@@ -4,6 +4,10 @@ def item_references?
   false
 end
 
+def company_identifier
+  right
+end
+
 format do
   def multiple?
     card.company_identifier.multiple?

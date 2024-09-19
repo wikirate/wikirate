@@ -11,7 +11,7 @@ event :validate_valid_categories, :validate, on: :save do
 end
 
 def item_references?
-  true
+  false
 end
 
 def illegal_items
