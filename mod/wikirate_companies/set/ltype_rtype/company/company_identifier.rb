@@ -1,7 +1,7 @@
 include_set Abstract::List
 
-def company_identifier
-  right
+def item_references?
+  false
 end
 
 format do

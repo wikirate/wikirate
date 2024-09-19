@@ -10,6 +10,10 @@ event :validate_valid_categories, :validate, on: :save do
                        "Please #{anchor} before adding this metric value."
 end
 
+def item_references?
+  true
+end
+
 def illegal_items
   option_keys = standard_option_names.map(&:key)
   raw_value.reject { |item| option_keys.member? item.key }
