@@ -12,7 +12,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::CompanyGroup do
     end
 
     it "does not disallow valid restrictions", as_bot: true do
-      Card["Googliest"].wikirate_company_card.update! content: "Samsung"
+      Card["Googliest"].company_card.update! content: "Samsung"
       expect { metric.company_group_card.update! content: "Googliest" }
         .not_to raise_error
     end

@@ -12,9 +12,9 @@ module GraphQL
       lookup_field :answer, Answer, :metric_answer, true
 
       # TODO: make companies filterable on sources
-      # (see mod/deckorate_research/set/type_plus_right/source/wikirate_company.rb)
+      # (see mod/deckorate_research/set/type_plus_right/source/company.rb)
 
-      # cardtype_field :company, Company, :wikirate_company, true
+      # cardtype_field :company, Company, :company, true
 
       def title
         object.card.wikirate_title

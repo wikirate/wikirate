@@ -57,7 +57,7 @@ format :html do
   end
 
   def count_categories
-    %i[wikirate_company metric metric_answer source]
+    %i[company metric metric_answer source]
   end
 
   def delta_metric_card

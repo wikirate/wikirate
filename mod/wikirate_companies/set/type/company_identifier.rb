@@ -31,7 +31,7 @@ class << self
     @names ||=
       Card.cache.fetch "CORPORATE-IDENTIFIER-NAMES" do
         cards.map do |ident|
-          Type::WikirateCompany::Structure.company_identifier_accessor ident.codename
+          Type::Company::Structure.company_identifier_accessor ident.codename
           ident.name
         end
       end
@@ -55,7 +55,7 @@ class << self
   def excerpt? codename
     return unless codename
 
-    fldmod = TypePlusRight::WikirateCompany.const_get_if_defined codename.to_s.camelcase
+    fldmod = TypePlusRight::Company.const_get_if_defined codename.to_s.camelcase
     fldmod&.include? Abstract::CompanyExcerpt
   end
 end

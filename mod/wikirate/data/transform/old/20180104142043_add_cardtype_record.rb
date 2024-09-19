@@ -3,7 +3,7 @@
 class AddCardtypeRecord < Cardio::Migration::Transform
   def up
     type_to_record left: { type_id: Card::MetricID },
-                   right: { type_id: Card::WikirateCompanyID }
+                   right: { type_id: Card::CompanyID }
     type_to_record left: { type_id: Card::RecordID }, right: { type_id: Card::UserID }
   end
 

@@ -43,7 +43,7 @@ class Calculate
               extend RelatedCompanies
             when :company_group
               extend GroupedCompanies
-            when :wikirate_company
+            when :company
               extend SingleCompany
             else
               @value_type_error = "invalid company option: #{company_option}. " \

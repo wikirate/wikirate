@@ -17,7 +17,7 @@
     :uri: https://fashionchecker.org/
     :output_type: dashboard
     :date: '2021-09-20'
-    :wikirate_company: Clean Clothes Campaign
+    :company: Clean Clothes Campaign
 
 
 - :name: Apparel 100
@@ -42,7 +42,7 @@
     :uri: https://showcase.wikirate.org/apparel_top_100/home
     :output_type: dashboard
     :date: '2021-11-03'
-    :wikirate_company: The Wikirate Project e.V.
+    :company: The Wikirate Project e.V.
 
 
 - :name: Beyond Compliance in the Garment Industry
@@ -71,7 +71,7 @@
     :uri: https://cdn.walkfree.org/content/uploads/2022/02/22150956/Walk-Free-Beyond-Compliance-Garment-Industry.pdf
     :output_type: publication
     :date: '2022-02-22'
-    :wikirate_company: Walk Free
+    :company: Walk Free
 
 
 
@@ -101,7 +101,7 @@
     :uri: https://mneguidelines.oecd.org/monitoring-corporate-disclosure-assessing-company-reporting-on-mineral-supply-chain-due-diligence.pdf
     :output_type: publication
     :date: '2022-07-04'
-    :wikirate_company: Organisation for Economic Cooperation & Development (OECD)
+    :company: Organisation for Economic Cooperation & Development (OECD)
 
 
 
@@ -122,7 +122,7 @@
     :uri: https://fra1.digitaloceanspaces.com/wikirateproject/files/7529/22247.pdf
     :output_type: publication
     :date: '2021-09-07'
-    :wikirate_company: The Wikirate Project e.V.
+    :company: The Wikirate Project e.V.
 
 
 
@@ -146,7 +146,7 @@
     :uri: https://cdn.walkfree.org/content/uploads/2021/05/05173207/20210428-digital-insights-into-modern-slavery.pdf
     :output_type: publication
     :date: '2021-06-22'
-    :wikirate_company: Walk Free
+    :company: Walk Free
 
 
 
@@ -172,7 +172,7 @@
     :uri: https://fra1.digitaloceanspaces.com/wikirateproject/files/6990/22239.pdf
     :output_type: publication
     :date: '2018-11-01'
-    :wikirate_company: Principles for Responsible Management Education (PRME)
+    :company: Principles for Responsible Management Education (PRME)
 
 
 - :name: 'Beyond Compliance: The Modern Slavery Act Research Project'
@@ -192,7 +192,7 @@
     :uri: https://cdn.minderoo.com.au/content/uploads/2019/05/27154005/Wikirates_WFF_MSA-Analysis_180917_Digital.pdf
     :output_type: publication
     :date: '2018-08-17'
-    :wikirate_company: Walk Free
+    :company: Walk Free
 
 
 
@@ -224,7 +224,7 @@
     :uri: https://publicaciones.eafit.edu.co/index.php/administer/article/view/7123
     :output_type: publication
     :date: '2021-06-30'
-    :wikirate_company: Universidad EAFIT
+    :company: Universidad EAFIT
 
 
 
@@ -254,7 +254,7 @@
     :uri: https://cdn.walkfree.org/content/uploads/2021/03/18184928/WalkFree_BeyondComplianceInTheFinanceSector_210318.pdf
     :output_type: publication
     :date: '2021-03-18'
-    :wikirate_company: Walk Free
+    :company: Walk Free
 
 
 
@@ -283,7 +283,7 @@
     :uri: https://www.tandfonline.com/eprint/cqWxN5gffwrbgvQXzzAe/full?target=10.1080/0969160X.2019.1591292
     :output_type: publication
     :date: '2019-03-14'
-    :wikirate_company: University of Wollongong
+    :company: University of Wollongong
 
 
 
@@ -332,7 +332,7 @@
     :uri: https://cdn.minderoo.com.au/content/uploads/2019/11/20161202/2632_MSA-statements.V8_FNL.pdf
     :output_type: publication
     :date: '2019-11-21'
-    :wikirate_company: Walk Free
+    :company: Walk Free
 
 
 - :name: Responsible Management Education. The PRME Global Movement
@@ -355,7 +355,7 @@
     :uri: https://library.oapen.org/bitstream/handle/20.500.12657/52015/9781000533125.pdf?sequence=1#page=114
     :output_type: publication
     :date: '2021-12-17'
-    :wikirate_company: Principles for Responsible Management Education (PRME)
+    :company: Principles for Responsible Management Education (PRME)
 
 
 
@@ -377,7 +377,7 @@
     :uri: https://ro.uow.edu.au/cgi/viewcontent.cgi?article=2521&context=buspapers
     :output_type: publication
     :date: '2018-11-01'
-    :wikirate_company: University of Wollongong
+    :company: University of Wollongong
 
 
 
@@ -406,7 +406,7 @@
       reports (COPs), and added it to the Wikirate platform.</p>\r\n</div>"
     :output_type: publication
     :date: '2017-11-01'
-    :wikirate_company: Principles for Responsible Management Education (PRME)
+    :company: Principles for Responsible Management Education (PRME)
 
 
 
@@ -427,7 +427,7 @@
     :uri: https://www.globalslaveryindex.org/2018/findings/country-studies/overview/
     :output_type: publication
     :date: '2018-07-19'
-    :wikirate_company: Walk Free
+    :company: Walk Free
 
 
 - :name: Beyond Compliance Data Dashboard
@@ -442,7 +442,7 @@
     :uri: https://beyondcompliance.wikirate.org/
     :output_type: dashboard
     :date: '2023-02-01'
-    :wikirate_company: Walk Free
+    :company: Walk Free
 
 
 - :name: Facility Checker
@@ -465,7 +465,7 @@
     :uri: https://facilitychecker.wikirate.org/
     :output_type: dashboard
     :date: '2022-07-05'
-    :wikirate_company: Clean Clothes Campaign
+    :company: Clean Clothes Campaign
 
 
 - :name: Tea Supply Chain Tracker
@@ -489,7 +489,7 @@
     :uri: https://www.business-humanrights.org/en/from-us/tea-transparency-tracker/
     :output_type: dashboard
     :date: '2021-12-07'
-    :wikirate_company: Business & Human Rights Resource Centre
+    :company: Business & Human Rights Resource Centre
 
 
 - :name: Wikirate.org – Leveraging collective awareness to understand companies’ environmental,
@@ -506,7 +506,7 @@
       the quantitative Metrics system that has been designed to meet those objectives
       and some early examples of its use.</p>"
     :output_type: publication
-    :wikirate_company: University of Cambridge
+    :company: University of Cambridge
 
 
 
@@ -529,5 +529,5 @@
       Journal of Management Education. 17. 100313. 10.1016/j.ijme.2019.100313.</p>\r\n</div>"
     :uri: https://www.researchgate.net/publication/336960581_An_exploration_of_student_learning_for_sustainability_through_the_Wikirate_student_engagement_project
     :output_type: publication
-    :wikirate_company: Glasgow Caledonian University
+    :company: Glasgow Caledonian University
 

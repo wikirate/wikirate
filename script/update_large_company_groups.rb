@@ -12,7 +12,7 @@ def company_group_sql
   "select c.id as group_id from card_counts ct " \
     "join cards c on ct.left_id = c.id " \
     "where c.type_id = #{:company_group.card_id} " \
-    "and ct.right_id = #{:wikirate_company.card_id} " \
+    "and ct.right_id = #{:company.card_id} " \
     "and value > #{MINIMUM_COMPANY_COUNT};"
 end
 
@@ -39,7 +39,7 @@ end
 
 each_large_company_group do |group|
   update_group? group
-  list = group.wikirate_company_card
+  list = group.company_card
   list.update_content_from_spec
   list.save!
 end

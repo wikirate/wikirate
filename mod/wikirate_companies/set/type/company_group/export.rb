@@ -1,5 +1,5 @@
 format :json do
-  KEYMAP = { wikirate_company: :companies, specification: :specification }.freeze
+  KEYMAP = { company: :companies, specification: :specification }.freeze
 
   def atom
     super.merge fields_with_view(:content)
@@ -10,7 +10,7 @@ format :json do
   end
 
   def fields_with_view view
-    %i[specification wikirate_company].each_with_object({}) do |codename, hash|
+    %i[specification company].each_with_object({}) do |codename, hash|
       hash[KEYMAP[codename]] = field_nest codename, view: view
     end
   end
