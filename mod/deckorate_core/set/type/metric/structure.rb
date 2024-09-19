@@ -28,7 +28,7 @@ format :html do
   end
 
   def tab_options
-    { metric_answer: { label: "Companies", count: card.wikirate_company_card.cached_count } }
+    { metric_answer: { label: "Companies", count: card.company_card.cached_count } }
   end
 
   view :topic_tab do

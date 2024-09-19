@@ -18,7 +18,7 @@ puts "renaming id card"
 idcard.update! name: identifier_name, skip: :update_referer_content
 
 puts "creating new company"
-company = Card.create! name: company_name, type: :wikirate_company
+company = Card.create! name: company_name, type: :company
 puts "merging into #{company.name}"
 idcard.merge_into company
 

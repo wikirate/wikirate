@@ -62,7 +62,7 @@ module Deckorate
     end
 
     def respond_to_missing? method_name
-      method_name.to_s.card&.type_id == Card::WikirateCompanyID
+      method_name.to_s.card&.type_id == Card::CompanyID
     end
   end
 end

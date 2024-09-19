@@ -4,7 +4,7 @@ class Card
     module CompanyFilters
       def filter_by_company_group value
         multi_company do
-          group_lists = Array.wrap(value).map { |v| [v, :wikirate_company].cardname }
+          group_lists = Array.wrap(value).map { |v| [v, :company].cardname }
           restrict_by_cql :groups, :company_id, referred_to_by: group_lists
         end
       end
@@ -15,7 +15,7 @@ class Card
 
       def filter_by_company_keyword value
         restrict_by_cql :company_name, :company_id,
-                        name: [:match, value], type: :wikirate_company
+                        name: [:match, value], type: :company
       end
 
       def filter_by_country value

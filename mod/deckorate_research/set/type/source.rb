@@ -7,7 +7,7 @@ card_accessor :metric, type: :list
 card_accessor :metric_answer, type: :search_type
 card_accessor :year, type: :list
 card_accessor :topic, type: :list
-card_accessor :wikirate_company, type: :list
+card_accessor :company, type: :list
 card_accessor :wikirate_title, type: :phrase
 card_accessor :wikirate_website, type: :phrase
 card_accessor :wikirate_link, type: :phrase
@@ -38,7 +38,7 @@ end
 
 format :csv do
   view :row do
-    methods = %i[wikirate_title wikirate_company year report_type wikirate_link]
+    methods = %i[wikirate_title company year report_type wikirate_link]
     super() + (methods.map { |m| card.send m })
   end
 end

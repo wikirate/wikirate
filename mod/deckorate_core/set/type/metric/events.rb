@@ -1,6 +1,6 @@
 include_set Abstract::LookupEvents
 
-DESIGNER_TYPES = [:research_group, :user, :wikirate_company].freeze
+DESIGNER_TYPES = [:research_group, :user, :company].freeze
 
 # The new metric form has a title and a designer field instead of a name field
 # We compose the card's name here

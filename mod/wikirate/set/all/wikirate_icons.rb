@@ -1,5 +1,5 @@
 icon_basket = basket[:icons][:wikirate] = %i[
-  wikirate_company topic company_group project dataset research_group
+  company topic company_group project dataset research_group
   metric metric_answer source
 ].each_with_object({}) { |key, hash| hash[key] = key }
 

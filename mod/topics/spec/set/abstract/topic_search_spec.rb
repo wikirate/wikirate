@@ -27,7 +27,7 @@ RSpec.describe Card::Set::Abstract::TopicSearch do
     end
 
     # context "with company argument" do
-    #   before { filter_args wikirate_company: "Apple Inc" }
+    #   before { filter_args company: "Apple Inc" }
     #   it { is_expected.to eq cql(found_by: "Apple Inc+topic") }
     # end
     #
@@ -52,7 +52,7 @@ RSpec.describe Card::Set::Abstract::TopicSearch do
     # context "with multiple filter conditions" do
     #   before do
     #     filter_args name: "Animal Rights",
-    #                 wikirate_company: "Apple Inc",
+    #                 company: "Apple Inc",
     #                 metric: "myMetric",
     #                 dataset: "myDataset"
     #   end

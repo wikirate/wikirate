@@ -4,9 +4,9 @@ class Card
     extend CompanyImportHelper
 
     @columns = { metric: { map: true, suggest: true },
-                 subject_company: { map: true, type: :wikirate_company, suggest: true,
+                 subject_company: { map: true, type: :company, suggest: true,
                                     auto_add: true, alias: "Company" },
-                 object_company: { map: true, type: :wikirate_company, suggest: true,
+                 object_company: { map: true, type: :company, suggest: true,
                                    auto_add: true, alias: "Related Company" },
                  year: { map: true },
                  value: {},

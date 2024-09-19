@@ -22,12 +22,12 @@ namespace :wikirate do
     _task, subject = ARGV
     Card::Cache.reset_all
     Card::Auth.as_bot do
-      Card[:wikirate_company].update! name: subject, update_referers: true
+      Card[:company].update! name: subject, update_referers: true
       Card.search(type_id: Card::MetricID) do |card|
         card.update! codename: nil if card.codename.present?
         card.delete!
       end
-      Card.search(type_id: Card::WikirateCompanyID) do |card|
+      Card.search(type_id: Card::CompanyID) do |card|
         card.delete! unless card.codename.present?
       end
 

@@ -6,7 +6,7 @@ class AddCompanySearch < Cardio::Migration::Transform
     ensure_card %i[company_search right default],
                 type_id: Card::SearchTypeID
 
-    group_company_set = %i[company_group wikirate_company type_plus_right]
+    group_company_set = %i[company_group company type_plus_right]
     ensure_card (group_company_set + [:default]),
                 type_id: Card::PointerID
     ensure_card (group_company_set + [:content_options]),

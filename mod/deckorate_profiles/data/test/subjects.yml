@@ -1,16 +1,16 @@
 ---
 - :name: updated company
-  :type: :wikirate_company
+  :type: :company
   :user: Joe Admin
 - :name: discussed company
-  :type: :wikirate_company
+  :type: :company
   :user: Joe Admin
 - :name: bookmarked company
-  :type: :wikirate_company
+  :type: :company
   :user: Joe Admin
 
 - :name: created company
-  :type: :wikirate_company
+  :type: :company
   :content: updated
   :user: Joe User
 - :name: updated company
