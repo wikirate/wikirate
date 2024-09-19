@@ -874,7 +874,7 @@ card_counts_146:
   left_id: 3860
   right_id: 695
   value: 3
-  flag: 0
+  flag: 1
 card_counts_147:
   id: 147
   left_id: 3160
