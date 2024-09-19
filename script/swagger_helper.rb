@@ -33,13 +33,13 @@ def filter_option_values base_codename, filter_name
 end
 
 def fetch_wikirate_cardtypes
-  %i[wikirate_company metric metric_answer relationship_answer source
+  %i[company metric metric_answer relationship_answer source
      dataset topic research_group company_group record]
 end
 
 def fetch_optional_subcards
   {
-    wikirate_company: Card.new(type: :wikirate_company).simple_field_names,
+    company: Card.new(type: :company).simple_field_names,
     metric: %w[question about methodology unit topics value_options research_policy
                report_type],
     metric_answer: %w[comment unpublished],
@@ -54,7 +54,7 @@ end
 
 def fetch_required_subcards
   {
-    wikirate_company: [],
+    company: [],
     metric_answer: %w[value source],
     metric: %w[metric_type value_type],
     relationship_answer: %w[value source],

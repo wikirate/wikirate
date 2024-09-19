@@ -1,161 +1,161 @@
 ---
 relationships_001:
   id: 1
-  relationship_id: 3648
-  metric_id: 3295
-  record_id: 3645
-  answer_id: 3646
-  object_company_id: 3173
-  subject_company_id: 3170
+  relationship_id: 3660
+  metric_id: 3307
+  record_id: 3657
+  answer_id: 3658
+  object_company_id: 3185
+  subject_company_id: 3182
   year: 2000
   value: Tier 2 Supplier
   numeric_value:
-  updated_at: 2024-09-07 13:15:30.000000000 Z
+  updated_at: 2024-09-19 16:00:19.000000000 Z
   imported:
   latest: 1
-  inverse_metric_id: 3299
-  inverse_answer_id: 3652
+  inverse_metric_id: 3311
+  inverse_answer_id: 3664
   route: 0
   editor_id:
-  created_at: 2024-09-09 17:20:14.000000000 Z
-  creator_id:
+  created_at: 2024-09-19 16:00:19.000000000 Z
+  creator_id: 1
 relationships_002:
   id: 2
-  relationship_id: 3657
-  metric_id: 3295
-  record_id: 3654
-  answer_id: 3655
-  object_company_id: 3167
-  subject_company_id: 3163
+  relationship_id: 3669
+  metric_id: 3307
+  record_id: 3666
+  answer_id: 3667
+  object_company_id: 3179
+  subject_company_id: 3175
   year: 1977
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-09-07 13:15:31.000000000 Z
+  updated_at: 2024-09-19 16:00:20.000000000 Z
   imported:
   latest: 1
-  inverse_metric_id: 3299
-  inverse_answer_id: 3661
+  inverse_metric_id: 3311
+  inverse_answer_id: 3673
   route: 0
   editor_id:
-  created_at: 2024-09-09 17:20:14.000000000 Z
-  creator_id:
+  created_at: 2024-09-19 16:00:20.000000000 Z
+  creator_id: 1
 relationships_003:
   id: 3
-  relationship_id: 3666
-  metric_id: 3284
-  record_id: 3663
-  answer_id: 3664
-  object_company_id: 3167
-  subject_company_id: 3170
+  relationship_id: 3678
+  metric_id: 3296
+  record_id: 3675
+  answer_id: 3676
+  object_company_id: 3179
+  subject_company_id: 3182
   year: 1977
   value: '1'
   numeric_value:
-  updated_at: 2024-09-07 13:15:33.000000000 Z
+  updated_at: 2024-09-19 16:00:21.000000000 Z
   imported:
   latest: 1
-  inverse_metric_id: 3288
-  inverse_answer_id: 3670
+  inverse_metric_id: 3300
+  inverse_answer_id: 3682
   route: 0
   editor_id:
-  created_at: 2024-09-09 17:20:14.000000000 Z
-  creator_id:
+  created_at: 2024-09-19 16:00:21.000000000 Z
+  creator_id: 1
 relationships_004:
   id: 4
-  relationship_id: 3674
-  metric_id: 3295
-  record_id: 3645
-  answer_id: 3672
-  object_company_id: 3167
-  subject_company_id: 3170
+  relationship_id: 3686
+  metric_id: 3307
+  record_id: 3657
+  answer_id: 3684
+  object_company_id: 3179
+  subject_company_id: 3182
   year: 1977
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-09-07 13:15:34.000000000 Z
+  updated_at: 2024-09-19 16:00:23.000000000 Z
   imported:
   latest: 1
-  inverse_metric_id: 3299
-  inverse_answer_id: 3661
+  inverse_metric_id: 3311
+  inverse_answer_id: 3673
   route: 0
   editor_id:
-  created_at: 2024-09-09 17:20:14.000000000 Z
-  creator_id:
+  created_at: 2024-09-19 16:00:23.000000000 Z
+  creator_id: 1
 relationships_005:
   id: 5
-  relationship_id: 3677
-  metric_id: 3295
-  record_id: 3645
-  answer_id: 3646
-  object_company_id: 3167
-  subject_company_id: 3170
+  relationship_id: 3689
+  metric_id: 3307
+  record_id: 3657
+  answer_id: 3658
+  object_company_id: 3179
+  subject_company_id: 3182
   year: 2000
   value: Tier 1 Supplier
   numeric_value:
-  updated_at: 2024-09-07 13:15:34.000000000 Z
+  updated_at: 2024-09-19 16:00:24.000000000 Z
   imported:
   latest: 1
-  inverse_metric_id: 3299
-  inverse_answer_id: 3680
+  inverse_metric_id: 3311
+  inverse_answer_id: 3692
   route: 0
   editor_id:
-  created_at: 2024-09-09 17:20:14.000000000 Z
-  creator_id:
+  created_at: 2024-09-19 16:00:24.000000000 Z
+  creator_id: 1
 relationships_006:
   id: 6
-  relationship_id: 3685
-  metric_id: 3192
-  record_id: 3682
-  answer_id: 3683
-  object_company_id: 3167
-  subject_company_id: 3160
+  relationship_id: 3697
+  metric_id: 3204
+  record_id: 3694
+  answer_id: 3695
+  object_company_id: 3179
+  subject_company_id: 3172
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-09-07 13:15:35.000000000 Z
+  updated_at: 2024-09-19 16:00:25.000000000 Z
   imported:
   latest: 1
-  inverse_metric_id: 3198
-  inverse_answer_id: 3689
+  inverse_metric_id: 3210
+  inverse_answer_id: 3701
   route: 0
   editor_id:
-  created_at: 2024-09-09 17:20:14.000000000 Z
-  creator_id:
+  created_at: 2024-09-19 16:00:25.000000000 Z
+  creator_id: 1
 relationships_007:
   id: 7
-  relationship_id: 3691
-  metric_id: 3192
-  record_id: 3682
-  answer_id: 3683
-  object_company_id: 3170
-  subject_company_id: 3160
+  relationship_id: 3703
+  metric_id: 3204
+  record_id: 3694
+  answer_id: 3695
+  object_company_id: 3182
+  subject_company_id: 3172
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-09-07 13:15:36.000000000 Z
+  updated_at: 2024-09-19 16:00:26.000000000 Z
   imported:
   latest: 1
-  inverse_metric_id: 3198
-  inverse_answer_id: 3695
+  inverse_metric_id: 3210
+  inverse_answer_id: 3707
   route: 0
   editor_id:
-  created_at: 2024-09-09 17:20:14.000000000 Z
-  creator_id:
+  created_at: 2024-09-19 16:00:26.000000000 Z
+  creator_id: 1
 relationships_008:
   id: 8
-  relationship_id: 3700
-  metric_id: 3192
-  record_id: 3697
-  answer_id: 3698
-  object_company_id: 3167
-  subject_company_id: 3170
+  relationship_id: 3712
+  metric_id: 3204
+  record_id: 3709
+  answer_id: 3710
+  object_company_id: 3179
+  subject_company_id: 3182
   year: 1977
   value: 'yes'
   numeric_value:
-  updated_at: 2024-09-07 13:15:37.000000000 Z
+  updated_at: 2024-09-19 16:00:27.000000000 Z
   imported:
   latest: 1
-  inverse_metric_id: 3198
-  inverse_answer_id: 3689
+  inverse_metric_id: 3210
+  inverse_answer_id: 3701
   route: 0
   editor_id:
-  created_at: 2024-09-09 17:20:14.000000000 Z
-  creator_id:
+  created_at: 2024-09-19 16:00:27.000000000 Z
+  creator_id: 1

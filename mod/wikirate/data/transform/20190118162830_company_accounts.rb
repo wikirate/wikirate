@@ -2,14 +2,14 @@
 
 class CompanyAccounts < Cardio::Migration::Transform
   def up
-    ensure_card %i[wikirate_company type accountable], content: "1"
+    ensure_card %i[company type accountable], content: "1"
     create_account_card
     only_wikirate_team_can :create
     only_wikirate_team_can :update
   end
 
   def only_wikirate_team_can action
-    ensure_card [:wikirate_company, :account, :type_plus_right, action],
+    ensure_card [:company, :account, :type_plus_right, action],
                 content: "Wikirate Team"
   end
 

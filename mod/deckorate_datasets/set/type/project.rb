@@ -41,11 +41,11 @@ format :html do
   end
 
   def tab_list
-    %i[details wikirate_company metric]
+    %i[details company metric]
   end
 
-  view :wikirate_company_tab do
-    field_nest :wikirate_company, view: :filtered_content
+  view :company_tab do
+    field_nest :company, view: :filtered_content
   end
 
   view :metric_tab do

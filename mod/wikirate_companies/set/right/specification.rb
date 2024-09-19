@@ -97,7 +97,7 @@ def standardize_content_array content
 end
 
 def company_list
-  left&.field :wikirate_company
+  left&.field :company
 end
 
 def validate_constraint_metric metric

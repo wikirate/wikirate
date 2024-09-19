@@ -6,7 +6,7 @@
     "name": "Company",
     "type": "Cardtype",
     "url": "https://wikirate.org/Company.json",
-    "codename": "wikirate_company"
+    "codename": "company"
   },
   "url": "https://wikirate.org/Apple_Inc.json",
   "wikipedia": {

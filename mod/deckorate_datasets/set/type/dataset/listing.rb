@@ -14,7 +14,7 @@ format :html do
   # end
 
   view :bar_right do
-    [count_badges(:metric, :wikirate_company), render_bookmark]
+    [count_badges(:metric, :company), render_bookmark]
   end
 
   view :bar_bottom do
@@ -26,7 +26,7 @@ format :html do
   end
 
   view :box_bottom do
-    count_badges :metric, :wikirate_company
+    count_badges :metric, :company
   end
 
   def thumbnail_subtitle

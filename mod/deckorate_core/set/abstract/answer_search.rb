@@ -18,7 +18,7 @@ format do
   def filter_map
     filtering_by_published do
       [:year,
-       { key: :company_filters, type: :group, label: :wikirate_company.cardname,
+       { key: :company_filters, type: :group, label: :company.cardname,
          filters: company_filters },
        { key: :metric_filters, type: :group, label: :metric.cardname,
          filters: metric_filters },

@@ -25,7 +25,7 @@ end
 
 require_field :file, when: :check_required?
 require_field :report_type, when: :report_type_check_required?
-require_fields %i[wikirate_title wikirate_company year], when: :check_required?
+require_fields %i[wikirate_title company year], when: :check_required?
 
 def check_required?
   !(import_act? || skip_requirements?)

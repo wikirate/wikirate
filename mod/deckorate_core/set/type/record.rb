@@ -21,7 +21,7 @@ end
 
 format :html do
   def tab_list
-    %i[metric_answer metric wikirate_company]
+    %i[metric_answer metric company]
   end
 
   def tab_options
@@ -43,7 +43,7 @@ format :html do
     nest card.metric_card, view: :details_tab
   end
 
-  view :wikirate_company_tab do
+  view :company_tab do
     nest card.company_card, view: :details_tab
   end
 end

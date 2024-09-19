@@ -22,7 +22,7 @@ RSpec.describe Card::Set::Abstract::MetricAnswer::Applicability do
 
   describe "event: validate_applicable_company" do
     before do
-      Card["Googliest"].wikirate_company_card.update! content: "Samsung"
+      Card["Googliest"].company_card.update! content: "Samsung"
       metric.company_group_card.update! content: "Googliest"
     end
 

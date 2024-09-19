@@ -5,7 +5,7 @@ RSpec.describe Card::SourceImportItem do
 
   let :default_item_hash do
     {
-      wikirate_company: "Death Star",
+      company: "Death Star",
       year: "1977",
       report_type: "Dark Report",
       wikirate_link: TEST_URL,
@@ -20,7 +20,7 @@ RSpec.describe Card::SourceImportItem do
         .to include(
           type_id: Card::SourceID,
           fields: a_hash_including(
-            wikirate_company: { content: ["Death Star"] },
+            company: { content: ["Death Star"] },
             wikirate_link: TEST_URL
           )
         )

@@ -24,7 +24,7 @@ module GraphQL
       end
 
       def datasets
-        referers :dataset, :wikirate_company
+        referers :dataset, :company
       end
 
       def logo_url
