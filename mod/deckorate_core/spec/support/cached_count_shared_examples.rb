@@ -9,6 +9,15 @@ shared_examples "check count" do |count|
 end
 
 shared_examples "cached count" do |name, count, increment|
+  before do
+    @original_card_count_config = Cardio.config.card_count
+    Cardio.config.card_count = :flag
+  end
+
+  after do
+    Cardio.config.card_count = @original_card_count_config
+  end
+
   let(:card) { Card.fetch name }
 
   include_examples "check count", count

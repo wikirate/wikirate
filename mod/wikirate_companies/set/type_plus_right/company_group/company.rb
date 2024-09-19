@@ -20,7 +20,7 @@ end
 format :html do
   view :filtered_content, cache: :never do
     if card.explicit?
-      wrap { [%{<div class="py-3">#{render_menu}</div>}, nest_search_card] }
+      wrap { [%(<div class="py-3">#{render_menu}</div>), nest_search_card] }
     else
       nest_search_card
     end

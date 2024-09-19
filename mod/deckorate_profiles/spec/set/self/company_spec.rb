@@ -1,7 +1,4 @@
-RSpec.describe Card::Set::Self::Company, "company report queries" do
-  def answer year, title="big single"
-    ["Joe User+#{title}+Sony Corporation+#{year}"]
-  end
+RSpec.describe Card::Set::Self::Company do
   describe "created query" do
     include_context "report query", :company, :created
     variants all: "created company"
