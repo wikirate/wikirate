@@ -1,7 +1,9 @@
 module Wikirate
+  # methods in support of tracking details for
+  # Monitoring, Evaluation, and Learning
   module MEL
     class << self
-      PERIOD = "1 month"
+      PERIOD = "1 month".freeze
 
       COLUMNS = {
         answers: "Answers Total",
@@ -33,13 +35,13 @@ module Wikirate
         metrics_researched_created: "Research metrics created",
         metrics_calculated_created: "Calculated metrics created",
         metrics_relationship_created: "Relationship metrics created",
-      # Metric designers new
-      # Metrics mixed designers
+        # Metric designers new
+        # Metrics mixed designers
         datasets_created: "Datasets created",
-      # Datasets complete
-      # Datasets almost complete
-      # Datasets majority complete
-      # Datasets majority incomplete
+        # Datasets complete
+        # Datasets almost complete
+        # Datasets majority complete
+        # Datasets majority incomplete
       }.freeze
 
       NO_COUNT_REGEX = /^flag/
@@ -51,7 +53,7 @@ module Wikirate
       def measure
         COLUMNS.each_with_object({}) do |(key, column), hash|
           response = send key
-          response = response.count unless key.match NO_COUNT_REGEX
+          response = response.count unless key.match? NO_COUNT_REGEX
           hash[column] = response
         end
       end
@@ -118,7 +120,7 @@ module Wikirate
 
       def answers_checked
         verification_indexes = %i[community_verified steward_verified].map do |symbol|
-          Answer.verification_index symboloō00[o]
+          Answer.verification_index symbol
         end
 
         answers.joins("join cards on left_id = answer_id")
@@ -137,10 +139,6 @@ module Wikirate
 
       def contributors_api
         contributors { api }
-      end
-
-      def flags_created
-        created { flags }
       end
 
       def metrics_created

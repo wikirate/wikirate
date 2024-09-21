@@ -31,10 +31,8 @@ end
 
 private
 
-def dataset_answer_cards base
-  base.dataset_card.item_cards.each do |dataset_card|
-    dataset_card.metric_answer_card
-  end
+def self.dataset_answer_cards base
+  base.dataset_card.item_cards.each(&:metric_answer_card)
 end
 
 format do
@@ -50,4 +48,3 @@ format :html do
     []
   end
 end
-
