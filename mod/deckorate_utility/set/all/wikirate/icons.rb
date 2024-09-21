@@ -1,6 +1,7 @@
 basket[:icons][:material].merge!(
   post: :insert_comment,
   score: :adjust,
+  import: :input,
   answer_import: :input,
   metric_import: :input,
   activity: :directions_run,
@@ -46,7 +47,8 @@ basket[:icons][:material].merge!(
   graph: :insights,
   sort_ascending: :keyboard_arrow_up,
   sort_descending: :keyboard_arrow_down,
-  help: :help
+  help: :help,
+  signup: :rocket
 )
 
 basket[:icons][:font_awesome].merge!(

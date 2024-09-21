@@ -1,0 +1,11 @@
+.homepage-background.bg-pan-right.py-5
+  .container.py-5
+    .row.py-3
+      .col-12.col-sm-8.py-3.d-flex.align-items-center
+        .homepage-banner-content
+          = section_header :homepage_banner, header_size: :h1
+      .col-12.col-sm-4.py-4.d-flex.align-items-center.justify-content-center.justify-content-sm-end
+        %a.btn.btn-primary.d-flex.align-items-center{ href: "/new/:signup"}
+          = icon_tag :signup
+          %span.ps-2.text-nowrap
+            Sign up now

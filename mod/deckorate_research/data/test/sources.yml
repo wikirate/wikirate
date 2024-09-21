@@ -6,7 +6,7 @@
   :time: "+172800"
   :conflict: defer
   :fields:
-    :wikirate_company: |-
+    :company: |-
       Slate_Rock_and_Gravel_Company
       Monster_Inc
       Death_Star
@@ -49,8 +49,8 @@
   :time: "+86400"
   :conflict: defer
   :fields:
-    :wikirate_topic: Force
-    :wikirate_company: Death Star
+    :topic: Force
+    :company: Death Star
     :wikirate_title: Space Opera
     :description: Space Opera Wikipedia article
     :wikirate_link: https://thereaderwiki.com/en/Space_opera
@@ -73,8 +73,8 @@
   :codename: star_wars_source
   :conflict: defer
   :fields:
-    :wikirate_topic: Force
-    :wikirate_company: |-
+    :topic: Force
+    :company: |-
       Death Star
       Monster_Inc
       Slate_Rock_and_Gravel_Company
@@ -104,8 +104,8 @@
   :codename: darth_vader_source
   :conflict: defer
   :fields:
-    :wikirate_topic: Force
-    :wikirate_company: Death Star
+    :topic: Force
+    :company: Death Star
     :description: Darth Vader Wikipedia article
     :wikirate_link: https://thereaderwiki.com/en/Darth_Vader
     :file:

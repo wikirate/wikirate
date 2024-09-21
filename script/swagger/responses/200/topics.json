@@ -9,7 +9,7 @@
     "codename": "cardtype"
   },
   "url": "https://wikirate.org/topics.json",
-  "codename": "wikirate_topic",
+  "codename": "topic",
   "items": [
     {
       "id": 39152,

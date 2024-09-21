@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::TypePlusRight::Source::MetricAnswer do
   it_behaves_like "cached count", "#{Card::Name[:star_wars_source]}+answer", 20, 1 do
     let :add_one do
-      Card["Jedi+Weapons"].create_answers do
+      create_answers "Jedi+Weapons" do
         Samsung "1977" => { value: "hand", source: Card[:star_wars_source] }
       end
     end
@@ -28,6 +28,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::MetricAnswer do
   it "lowers count if answer is unpublished" do
     original_count = current_count
     unpublish!
+    # Card::Count.refresh_flagged
     expect(current_count).to eq(original_count - 1)
   end
 end

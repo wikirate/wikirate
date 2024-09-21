@@ -3,7 +3,7 @@ require File.expand_path("../boot", __FILE__)
 require "decko/application"
 
 module Wikirate
-  # WikiRate application object. holds config options
+  # Wikirate application object. holds config options
   class Application < Decko::Application
     # Decko inherits Rails configuration options.
     # See http://guides.rubyonrails.org/configuring.html
@@ -23,13 +23,6 @@ module Wikirate
     # config.google_analytics_key = ENV["WIKIRATE_GOOGLE_ANALYTICS_KEY"].split(" ")
 
     # PAGING   # config.paging_limit = 10
-
-    # Use seed data from wikirate mod
-    config.seed_mods.unshift :wikirate
-    config.extra_seed_tables = %w[answers counts metrics relationships]
-
-    # TODO: obviate this (needed so setup finds wr schema)
-    config.paths.add "db", with: "db"
 
     config.recaptcha_public_key =
       ENV["WIKIRATE_RECAPTCHA_PUBLIC_KEY"] || "6LdhRssSAAAAAFfLt1Wkw43hoaA8RTIgso9-tvtc"

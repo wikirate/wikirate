@@ -33,19 +33,19 @@ def filter_option_values base_codename, filter_name
 end
 
 def fetch_wikirate_cardtypes
-  %i[wikirate_company metric metric_answer relationship_answer source
-     dataset wikirate_topic research_group company_group record]
+  %i[company metric metric_answer relationship_answer source
+     dataset topic research_group company_group record]
 end
 
 def fetch_optional_subcards
   {
-    wikirate_company: Card.new(type: :wikirate_company).simple_field_names,
+    company: Card.new(type: :company).simple_field_names,
     metric: %w[question about methodology unit topics value_options research_policy
                report_type],
     metric_answer: %w[comment unpublished],
     relationship_answer: %w[comment unpublished],
     source: %w[company report_type year file],
-    wikirate_topic: %w[overview],
+    topic: %w[overview],
     research_group: %w[topics description organizer],
     dataset: %w[description topics year company metric parent],
     company_group: %w[topics about]
@@ -54,13 +54,13 @@ end
 
 def fetch_required_subcards
   {
-    wikirate_company: [],
+    company: [],
     metric_answer: %w[value source],
     metric: %w[metric_type value_type],
     relationship_answer: %w[value source],
     source: %w[title link],
     dataset: [],
-    wikirate_topic: [],
+    topic: [],
     research_group: [],
     company_group: []
   }
@@ -119,7 +119,7 @@ end
 
 def fetch_filter_param_schema cardtype, filter
   excluded_option_filters = %i[year designer updated status dataset
-                               company_group wikirate_topic country]
+                               company_group topic country]
   begin
     enumerated_values = filter_option_values(cardtype, filter)
     schema = { "type" => "string", "enum" => enumerated_values }

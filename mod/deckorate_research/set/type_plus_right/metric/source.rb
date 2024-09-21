@@ -5,7 +5,7 @@ include_set Abstract::SearchCachedCount
 include_set Abstract::SourceSearch
 
 def cql_content
-  { referred_to_by: { right_id: SourceID, left_id: answer_relation.select(:answer_id) } }
+  { referred_to_by: { right: :source, left_id: answer_relation.select(:answer_id) } }
 end
 
 def answer_relation
@@ -13,26 +13,24 @@ def answer_relation
   AnswerQuery.new(query_key => left.id).lookup_relation
 end
 
+# NOTE: (indirect) sources of calculated metrics are handled in Metric+Input Answer
+
 # recount no. of sources on metric when citation is edited
 recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
-  source_fields changed_card.left.metric_card
+  changed_card.left.metric_card.fetch :source
 end
 
 # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
-  source_fields changed_card.left
+  changed_card.left.fetch :source
 end
 
 # ...or when answer is (un)published
 field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
-  source_fields changed_card.left.metric_card
+  changed_card.left.metric_card.fetch :source
 end
 
 private
-
-def self.source_fields metric
-  ([metric] + metric.depender_metrics).map { |m| m.fetch :source }
-end
 
 format do
   # don't show answer sort option, because that means "total answers"

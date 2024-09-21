@@ -25,7 +25,7 @@ def type_count type
 end
 
 def num_companies
-  type_count :wikirate_company
+  type_count :company
 end
 
 def num_metrics
@@ -36,12 +36,12 @@ def num_years
   type_count :year
 end
 
-def num_users
-  @num_users ||= answers.select(:creator_id).uniq.count
-end
+# def num_users
+#   @num_users ||= answers.select(:creator_id).uniq.count
+# end
 
 def num_answers
-  @num_answers ||= answers.count
+  @num_answers ||= type_count :metric_answer
 end
 
 def num_data_subsets
@@ -100,7 +100,7 @@ format :html do
   end
 
   def formula
-    vars = %i[wikirate_company metric]
+    vars = %i[company metric]
     vars << :year if card.years?
     vars.compact.map do |codename|
       "#{type_count codename} #{codename.cardname.vary :plural}"

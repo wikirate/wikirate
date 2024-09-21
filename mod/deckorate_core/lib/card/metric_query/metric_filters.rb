@@ -5,10 +5,9 @@ class Card
       def filter_by_topic value
         restrict_by_cql(
           :topic, :metric_id,
-          right: :wikirate_topic, refer_to: ["in", value].flatten, return: :left_id
+          right: :topic, refer_to: ["in", value].flatten, return: :left_id
         )
       end
-      alias_method :filter_by_wikirate_topic, :filter_by_topic
 
       def filter_by_dataset value
         dataset_restriction :metric_id, :metric, value
@@ -43,7 +42,7 @@ class Card
 
       private
 
-      # WikiRate team members are stewards of all metrics
+      # Wikirate team members are stewards of all metrics
       def stewards_all?
         Auth.always_ok? || Auth.current.stewards_all?
       end

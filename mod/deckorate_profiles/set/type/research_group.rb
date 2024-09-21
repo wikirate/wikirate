@@ -7,7 +7,7 @@ card_accessor :organizer, type: :list
 card_accessor :researcher, type: :list
 card_accessor :project, type: :search_type
 card_accessor :metric, type: :search_type
-card_accessor :wikirate_topic, type: :list
+card_accessor :topic, type: :list
 card_reader :metrics_designed, type: :search_type
 card_reader :projects_organized, type: :search_type
 
@@ -34,7 +34,7 @@ format :html do
     voo.edit_structure = [
       :image,
       :organizer,
-      :wikirate_topic,
+      :topic,
       :description
     ]
   end
@@ -46,7 +46,7 @@ format :html do
   end
 
   def topic_detail
-    labeled_field :wikirate_topic, :link, title: "Topics"
+    labeled_field :topic, :link, title: "Topics"
   end
 
   def thumbnail_subtitle
@@ -74,7 +74,7 @@ format :html do
   end
 
   view :bar_middle do
-    result_middle { field_nest :wikirate_topic, items: { view: :link } }
+    result_middle { field_nest :topic, items: { view: :link } }
   end
 
   view :bar_right do
@@ -90,7 +90,7 @@ format :html do
   end
 
   view :box_bottom do
-    render_bar_right
+    count_badges(:researcher, :project, :metric)
   end
 
   view :one_line_content do

@@ -57,7 +57,7 @@ class Calculate
         company_id = company.card_id
         Card.search left_id: company_id, right_id: field_id
       else
-        Card.search left: { type_id: Card::WikirateCompanyID }, right_id: field_id
+        Card.search left: { type_id: Card::CompanyID }, right_id: field_id
       end
     end
 

@@ -44,7 +44,7 @@ def each_reference_out
   end
 end
 
-def implicit_item_names
+def implicit_item_ids
   return [] unless implicit? && constraints.present?
 
   CompanyFilterCql # make sure company_answer attribute is loaded
@@ -97,7 +97,7 @@ def standardize_content_array content
 end
 
 def company_list
-  left&.field :wikirate_company
+  left&.field :company
 end
 
 def validate_constraint_metric metric

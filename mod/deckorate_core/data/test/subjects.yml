@@ -1,37 +1,37 @@
 - :name: Death Star
-  :type: :wikirate_company
+  :type: :company
   :fields:
     :about: Kuuuhhh Shhhhhh Kuuuhhhh Shhhhh
 
 - :name: Monster Inc
-  :type: :wikirate_company
+  :type: :company
   :fields:
     :about: We scare because we care.
 
 - :name: Slate Rock and Gravel Company
-  :type: :wikirate_company
+  :type: :company
   :fields:
     :about: Yabba Dabba Doo!
 
 - :name: Los Pollos Hermanos
-  :type: :wikirate_company
+  :type: :company
   :fields:
     :about: I'm the one who knocks
 
 - :name: SPECTRE
-  :type: :wikirate_company
+  :type: :company
   :fields:
     :about: shaken not stirred
 
 - :name: Google LLC
-  :type: :wikirate_company
+  :type: :company
 - :name: Sony Corporation
-  :type: :wikirate_company
+  :type: :company
 - :name: Samsung
-  :type: :wikirate_company
+  :type: :company
   :fields:
     :wikipedia: Samsung
 - :name: Apple Inc.
-  :type: :wikirate_company
+  :type: :company
 - :name: Google Inc.
-  :type: :wikirate_company
+  :type: :company

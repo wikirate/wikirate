@@ -8,7 +8,7 @@ RSpec.describe Relationship do
 
   describe "create" do
     it "creates relationship entry" do
-      Card["Jedi+more evil"].create_answers true do
+      create_answers "Jedi+more evil", true do
         Monster_Inc "2000" => { "Los_Pollos_Hermanos" => "no" }
       end
 
@@ -28,7 +28,7 @@ RSpec.describe Relationship do
         end
         expect(relation.year).to eq 2000
         expect(relation.value).to eq "no"
-        expect(relation.imported).to eq false
+        expect(relation.route).to eq Answer.route_index(:direct)
         expect(relation.latest).to eq true
         expect(relation.subject_company_id.cardname).to eq("Monster Inc")
         expect(relation.object_company_id.cardname).to eq("Los Pollos Hermanos")

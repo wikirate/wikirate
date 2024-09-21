@@ -36,11 +36,12 @@
       $dark: $blue !default;
       $body-bg: $white !default;
       $body-color: $gray-900 !default;
+
     :variables: |
       // NOTE: standard bootstrap color variables should be changed not
       // here but in the +:color card
 
-      /*----------- WikiRate Categories ---------*/
+      /*----------- Wikirate Categories ---------*/
 
       $yellow-orange: #F7B13D;
 
@@ -55,9 +56,9 @@
       $research-group-color: $red;
       $project-color: $topic-color;
       $dataset-color: $topic-color;
-      $year-color: $yellow;
+      $year-color: $purple;
 
-      /*----------- WikiRate Scores ---------*/
+      /*----------- Wikirate Scores ---------*/
 
       $score-colors: (
         "0": $red,
@@ -72,7 +73,7 @@
         "9": $teal
       );
 
-      /*----------- Other WikiRate-specific variables ---------*/
+      /*----------- Other Wikirate-specific variables ---------*/
 
       $light-purple:  #EDEBF9;
       $light-purple-1: #fbfafe;
@@ -122,11 +123,19 @@
       $box-shadow: 0 5px 10px 0 rgba($dark, .2);
       $box-shadow-lg: 0 10px 20px 0 rgba($dark, .3);
 
-      // $btn-border-radius: 49.9rem;
-      // $btn-border-radius-lg: 50.1rem;
+      $btn-border-radius: 49.9rem;
+      $btn-border-radius-sm: 48rem;
+      $btn-border-radius-lg: 50.1rem;
       // $form-select-border-radius: 50.2rem;
       // $form-select-border-radius-lg: 50.3rem;
       // $input-border-radius: 50.4rem;
+
+      $badge-color: $gray-800 !default;
+      $badge-font-weight: 400 !default;
+      $badge-padding-y: 0.5em !default;
+      $badge-padding-x: 0.8em !default;
+      $badge-font-size: 0.8em !default;
+      $badge-border-radius: 49.9rem !default;
 
       // NOTE: s2b5 = select2 bootstrap 5
       $s2bs5-border-radius: .25rem;

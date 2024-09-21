@@ -1,18 +1,10 @@
 /*------ Badges ---------*/
 
-.badge {
-  display: inline-block;
-  //align-items: center;
-  padding: 0.1rem 0.4rem;
-  line-height: inherit;
-}
-
 .labeled-badge {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.1em;
-  color: $text-muted;
   label {
     margin: 0;
     padding: 0 0.33rem;
@@ -28,6 +20,15 @@
   }
 }
 
+.box, .item-box {
+  min-width: 320px;
+  max-width: 400px;
+  width: 100%
+}
+
+.box-bottom .labeled-badge .badge {
+  background-color: $gray-200 !important;
+}
 
 .filter-result-badges {
   display: flex;
@@ -75,9 +76,6 @@
     .bookmark-toggle {
       margin-left: 1em;
     }
-    span {
-      font-size: 0.6em;
-    }
   }
 }
 
@@ -85,11 +83,11 @@
   border-left-color: $primary;
 }
 
-.bar-left a {
-  &, .bar-left {
-    font-weight: 600;
+.bar-left {
+  font-weight: normal;
+  a {
+    color: inherit;
   }
-  color: inherit;
 }
 
 .box-bottom {

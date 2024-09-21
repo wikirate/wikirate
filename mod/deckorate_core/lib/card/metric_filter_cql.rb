@@ -1,6 +1,6 @@
 class Card
   # Filter metrics (e.g. on company pages)
-  class MetricFilterCql < WikirateFilterCql
+  class MetricFilterCql < DeckorateFilterCql
     def name_cql title
       add_to_cql :right, name: [:match, title]
     end
@@ -15,7 +15,7 @@ class Card
 
     def year_cql year
       return if year == "latest"
-      add_to_cql :right_plus, type_id: WikirateCompanyID, right_plus: year
+      add_to_cql :right_plus, type_id: CompanyID, right_plus: year
     end
 
     def designer_cql designer
@@ -32,11 +32,6 @@ class Card
 
     def research_policy_cql policy
       add_to_cql :right_plus, refer_to(:research_policy, policy)
-    end
-
-    def refer_to codename, value
-      value = [:in] + value if value.is_a? Array
-      [Codename.id(codename), { refer_to: value }]
     end
   end
 end

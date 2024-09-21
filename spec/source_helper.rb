@@ -1,4 +1,4 @@
-module Wikirate
+module Deckorate
   # Source-related helper methods for specs
   module SourceHelper
     DEFAULT_SOURCE_URL = "http://www.google.com/?q=wikirate".freeze

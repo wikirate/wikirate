@@ -1,11 +1,11 @@
 ---
-- :name: Data Set
+- :name: Dataset
   :codename: dataset
   :type: :cardtype
   :fields:
     :description: |
       <p>
-      <strong>Data Sets</strong> help you structure information on WikiRate by combining
+      <strong>Datasets</strong> help you structure information on Wikirate by combining
       Companies and Metrics associated with a particular Topic or theme.
       </p>
 - :name: Project
@@ -18,6 +18,3 @@
   :codename: data_subset
 - :name: Parent
   :codename: parent
-
-- :name: Featured
-  :codename: featured

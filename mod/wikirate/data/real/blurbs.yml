@@ -1,14 +1,16 @@
 ---
 - :type: :blurb
-  :codename: :homepage_search_heading
+  :codename: :homepage_banner
   :fields:
     :title: Empowering people with open ESG data
-    :body: "4 million+ sustainability data points across 100,000+ companies"
+    :body: "Access over 6 million data points across more than 145,000 companies
+      and find answers to important questions about Environmental, Social, and 
+      Governance (ESG) impacts."
 - :type: :blurb
   :codename: :homepage_involved_heading
   :fields:
     :title: Get involved
-    :body: "WikiRate is powered by a passionate community of individuals and organizations
+    :body: "Wikirate is powered by a passionate community of individuals and organizations
       who are using open data to build a more sustainable future. Join us today!"
 - :type: :blurb
   :codename: :homepage_delta_heading
@@ -53,7 +55,7 @@
   :codename: :collaborate_blurb
   :fields:
     :title: Collaborate
-    :body: "Join or start research projects with like-minded people from the WikiRate
+    :body: "Join or start research projects with like-minded people from the Wikirate
       community. Measure your collective progress, seek advice or simply stay in contact
       about what’s important to you."
     :icon: people
@@ -76,7 +78,7 @@
   :codename: :share_blurb
   :fields:
     :title: Share
-    :body: "Already have a pristine Data Set? Use the import tool or API to add
+    :body: "Already have a pristine Dataset? Use the import tool or API to add
       your data in bulk to the platform. From there, it can be combined with other
       datasets or feed into live dashboards and tools that visualize your findings."
     :icon: share
@@ -84,15 +86,15 @@
   :codename: :extract_blurb
   :fields:
     :title: Extract
-    :body: "Explore the data made available by WikiRate’s community. Find what
-      you are looking for? Download unlimited Data Sets or connect via the API for
+    :body: "Explore the data made available by Wikirate’s community. Find what
+      you are looking for? Download unlimited Datasets or connect via the API for
       regular automated queries to make sure you always have the latest."
     :icon: grade
 - :type: :blurb
   :codename: :values_blurb1
   :fields:
     :title: People-powered
-    :body: "Democratizing the ESG space, WikiRate is a tool for everyone. Get involved
+    :body: "Democratizing the ESG space, Wikirate is a tool for everyone. Get involved
       and help shape the future."
     :icon: group
 - :type: :blurb
@@ -112,13 +114,13 @@
   :codename: :data_main_heading
   :fields:
     :title: The largest open registry of corporate sustainability data in the world
-    :body: "WikiRate has public data on companies from all sectors, covering their
+    :body: "Wikirate has public data on companies from all sectors, covering their
       environmental, social, and governance performance."
 - :type: :blurb
   :codename: :data_special
   :fields:
     :title: What makes our data so special?
-    :body: "The data on WikiRate is open and free for all, because we believe sharing
+    :body: "The data on Wikirate is open and free for all, because we believe sharing
       knowledge is the only way to improve decision-making at a global scale."
 - :type: :blurb
   :codename: :data_reliable
@@ -131,7 +133,7 @@
   :codename: :data_usage
   :fields:
     :title: Start using our data today
-    :body: "You can download data from any page on WikiRate or use our API to extract
+    :body: "You can download data from any page on Wikirate or use our API to extract
       data in bulk."
 - :type: :blurb
   :codename: :data_special1
@@ -180,7 +182,7 @@
   :codename: :data_reliable4
   :fields:
     :title: Identifiers
-    :body: "Every company, metric, and answer is stored under a unique WikiRate
+    :body: "Every company, metric, and answer is stored under a unique Wikirate
       ID. This means data quality can be improved without losing track of an evolving
       data point."
     :icon: storage
@@ -188,13 +190,13 @@
   :codename: :main_impact_heading
   :fields:
     :title: Open data is not the ultimate goal. It is a means to an end.
-    :body: "Explore how WikiRate data and tools are used to help address
+    :body: "Explore how Wikirate data and tools are used to help address
       the world’s social and environmental challenges."
 - :type: :blurb
   :codename: :contribute_heading
   :fields:
     :title: Share your impact
-    :body: "Are you using WikiRate data and want to share your work
+    :body: "Are you using Wikirate data and want to share your work
       with the community? Let us help you showcase your work."
 - :type: :blurb
   :codename: :main_community_heading
@@ -227,20 +229,20 @@
   :fields:
     :title: Let’s set up a project together
     :uri: https://wikirate-intl.org/Contact_Us
-    :body: "Get in touch with the WikiRate team to set up a project."
+    :body: "Get in touch with the Wikirate team to set up a project."
 - :type: :blurb
   :codename: :community_action3
   :fields:
     :title: Teach students about sustainability reporting
     :uri: https://mailchi.mp/wikirate/academic-open-call-engagement
-    :body: "Learn how you can use WikiRate’s tools to teach students about corporate
+    :body: "Learn how you can use Wikirate’s tools to teach students about corporate
       sustainability reporting with hands-on research projects."
 - :type: :blurb
   :codename: :community_action4
   :fields:
     :title: Join the conversation
     :uri: https://docs.google.com/forms/d/e/1FAIpQLSfbFvu_2hXWc8kouNz8ZCkwnfBrVNKP7p7HJuc8YHL_6oXNgQ/viewform
-    :body: "Stay connected, learn and troubleshoot on WikiRate’s community Slack
+    :body: "Stay connected, learn and troubleshoot on Wikirate’s community Slack
       channel."
 - :type: :blurb
   :codename: :homepage_action1
@@ -281,7 +283,7 @@
   :fields:
     :title: Use our API
     :uri: https://wikirate.org/Use_the_API
-    :body: Check out how you can access WikiRate data programmatically using our powerful
+    :body: Check out how you can access Wikirate data programmatically using our powerful
       REST API.
 - :type: :blurb
   :codename: :community_cta
@@ -294,16 +296,16 @@
 - :type: :blurb
   :codename: :about_cta
   :fields:
-    :title: Partner with WikiRate International
+    :title: Partner with Wikirate International
     :uri: https://wikirate-intl.org/Our_work
-    :body: "Check out the ways in which the WikiRate team can help you"
+    :body: "Check out the ways in which the Wikirate team can help you"
     :icon: handshake
 - :type: :blurb
   :codename: :contact_cta1
   :fields:
     :title: Talk to a human
     :uri: https://wikirate-intl.org/Contact_Us
-    :body: "Contact us at WikiRate International"
+    :body: "Contact us at Wikirate International"
 - :type: :blurb
   :codename: :contact_cta2
   :fields:
@@ -322,7 +324,7 @@
     :title: Become a steward
     :uri: https://wikirate-intl.org/Contact_Us
     :body: "Learn how you can set up and coordinate your own research projects
-      on WikiRate. Get in touch with the WikiRate team to find out about the next
+      on Wikirate. Get in touch with the Wikirate team to find out about the next
       steward training."
 - :type: :blurb
   :codename: :community_action6

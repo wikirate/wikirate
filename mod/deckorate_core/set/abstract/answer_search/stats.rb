@@ -2,7 +2,7 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
            total: "Total" }.freeze
 
 COUNT_FIELDS = {
-  "answers.company_id": :wikirate_company,
+  "answers.company_id": :company,
   "answers.metric_id": :metric,
   "answers.year": :year,
   "answers.id": :metric_answer
@@ -12,7 +12,8 @@ DEEP_COUNT_FIELDS = {
   "designer_id": :designer,
   "metrics.metric_type_id": :metric_type,
   "metrics.value_type_id": :value_type,
-  "answers.verification": :verification
+  "answers.verification": :verification,
+  "answers.route": :route
 }.freeze
 
 format do
@@ -102,7 +103,7 @@ format do
   end
 
   def record?
-    single?(:metric) && single?(:wikirate_company)
+    single?(:metric) && single?(:company)
   end
 
   private
@@ -153,7 +154,7 @@ format :html do
     count ||= counts[codename]
     labeled_badge number_with_delimiter(count),
                   answer_count_badge_label(codename, count),
-                  color: "#{badge_label(codename).downcase} bg-secondary"
+                  color: "light"
   end
 
   def answer_count_badge_label codename, count

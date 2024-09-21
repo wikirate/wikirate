@@ -47,7 +47,7 @@ RSpec.describe Card::AnswerQuery::MetricFilters do
         end
 
         it "finds wikiratings" do
-          expect(search(metric_type: "WikiRating")).to eq ["darkness rating+1977"]
+          expect(search(metric_type: "Rating")).to eq ["darkness rating+1977"]
         end
 
         it "finds researched" do

@@ -73,7 +73,7 @@ def update_descendant metric
   end
 end
 
-def update_wiki_rating metric
+def update_rating metric
   variables_only metric do
     JSON.parse(metric.formula).each_with_object([]) do |(metric, weight), arr|
       arr << { metric: metric, weight: weight }

@@ -1,5 +1,5 @@
 describe Card::Set::Abstract::AnswerFilters do
-  let(:filter_card) { :wikirate_topic.card }
+  let(:filter_card) { :topic.card }
 
   context "with topic filter card" do
     describe "filter_sort_dropdown" do
@@ -86,7 +86,7 @@ describe Card::Set::Abstract::AnswerFilters do
           is_expected.to have_tag :select, with: { multiple: "multiple" } do
             with_option "Researched"
             with_option "Formula"
-            with_option "WikiRating"
+            with_option "Rating"
           end
         end
       end

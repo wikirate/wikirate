@@ -7,7 +7,7 @@ Feature: company feature
 
   Scenario: Browse through tabs
     Then I should see "disturbances in the Force"
-    Then I click "Data Sets" within ".nav-tabs"
+    Then I click "Datasets" within ".nav-tabs"
     And I should see "Evil Dataset"
     Then I click "Sources" within ".nav-tabs"
     And I should see "thereaderwiki.com"
@@ -32,7 +32,7 @@ Feature: company feature
 
     # When I click on "Metric" in the offcanvas
     And I click on "Topic"
-    And I select2 "Force" from "filter[wikirate_topic][]"
+    And I select2 "Force" from "filter[topic][]"
     And I close the offcanvas
     And I wait for ajax response
     Then I should not see "dinosaurlabor"

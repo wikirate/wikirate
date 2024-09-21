@@ -28,7 +28,7 @@ class Calculate
         updated_at: Time.now,
         creator_id: Card::Auth.current_id,
         editor_id: Card::Auth.current_id,
-        imported: false,
+        route: 3, # calculation
         calculating: false,
         latest: false,
         unpublished: unpublished,

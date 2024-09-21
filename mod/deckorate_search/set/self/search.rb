@@ -1,4 +1,4 @@
-TYPES = %i[wikirate_company wikirate_topic metric dataset project
+TYPES = %i[company topic metric dataset project
            source research_group company_group].freeze
 
 include_set Abstract::OpenSearch
@@ -6,20 +6,21 @@ include_set Abstract::Breadcrumbs
 include_set Abstract::FluidLayout
 
 def search parameters={}
+  # puts parameters
   os_search? ? os_search(parameters) : super
 end
 
 format do
-  def featured_type_list
-    %i[cardtype featured].card
+  def featured_type_ids
+    %i[cardtype featured].card.item_ids - [MetricAnswerID]
   end
 
   def filter_type_ids
-    type_param ? [type_param.card_id] : featured_type_list.item_ids
+    type_param ? [type_param.card_id] : featured_type_ids
   end
 
   def featured_type_names
-    featured_type_list.item_names.map { |n| n.vary :plural }
+    featured_type_ids.map { |id| id.cardname.vary :plural }
   end
 
   def search_with_params

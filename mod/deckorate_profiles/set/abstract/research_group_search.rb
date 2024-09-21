@@ -14,7 +14,7 @@ end
 
 format do
   def filter_cql_class
-    WikirateFilterCql
+    DeckorateFilterCql
   end
 
   def sort_options
@@ -26,7 +26,7 @@ format do
   end
 
   def filter_map
-    %i[name wikirate_topic bookmark]
+    %i[name topic bookmark]
   end
 
   def default_filter_hash

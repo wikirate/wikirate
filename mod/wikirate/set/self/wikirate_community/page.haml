@@ -1,11 +1,11 @@
 %section#about-community-header.container-fluid.header-with-bg
-  .container.p-5.py-3
+  .container.pt-3.pb-5
     = render_breadcrumbs
     = section_header :main_community_heading, button: { url: "/new/:signup",
                                                         text: "Join Us" },
                                               header_size: :h1
 
-%section.container.p-5
+%section.container.py-5
   = render_fancy_counts
 
 %section#community-actions.container-fluid.bg-light.py-5
@@ -27,7 +27,7 @@
         - %i[wikirate_community blurb].card.item_cards.each do |blurb|
           = nest blurb, view: :action_card
 
-%section#project-organizers.container.p-5.text-center
+%section#project-organizers.container.py-5.text-center
   .pt-5.pb-3.d-flex.d-flex.justify-content-center
     .w-50
       = section_header :project_organizer_heading

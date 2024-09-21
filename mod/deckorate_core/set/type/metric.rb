@@ -22,9 +22,10 @@ card_accessor :question, type: :plain_text
 card_accessor :report_type, type: :list
 card_accessor :score, type: :search_type
 card_accessor :steward, type: :pointer
-card_accessor :wikirate_topic, type: :list
+card_accessor :topic, type: :list
 card_accessor :research_policy, type: :pointer, default_content: "Community Assessed"
 card_accessor :relationship_answer, type: :search_type
+card_accessor :company, type: :search_type
 
 # applicability
 card_accessor :year, type: :list

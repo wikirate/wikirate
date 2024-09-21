@@ -3,7 +3,7 @@ include_set Abstract::DetailedExport
 
 EXPORT_TYPES = {
   Answers: :metric_answer,
-  Companies: :wikirate_company,
+  Companies: :company,
   Metrics: :metric
 }.freeze
 
@@ -93,6 +93,10 @@ format :json do
 
   view :verification_counts, cache: :never do
     grouped_counts :verification
+  end
+
+  view :route_counts, cache: :never do
+    grouped_counts :route
   end
 
   def grouped_counts subgroup

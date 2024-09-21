@@ -34,21 +34,11 @@ format :html do
     handle_unknowns { haml :concise }
   end
 
-  view :year_and_icon do
-    wrap_with :span, class: "answer-year" do
-      "#{icon_tag :year} #{card.year}"
-    end
-  end
-
   view :not_researched, perms: :none, wrap: :em do
     "Not Researched"
   end
 
-  view :research_option, perms: :none do
-    card.known? ? render_concise : render_year_not_researched
-  end
-
-  view :year_not_researched, perms: :none, template: :haml
+  view :research_option, perms: :none, template: :haml
 
   view :breadcrumb, unknown: true, template: :haml
 

@@ -1,5 +1,5 @@
 %section#about-data-header.container-fluid.bg-light.header-with-bg
-  .container.p-5.py-3
+  .container.pb-5.pt-3
     = render_breadcrumbs
     = section_header :data_main_heading, button: { url: "/Use_our_Api",
                                                    text: "Use our API" },
@@ -28,7 +28,7 @@
 
         -# = field_nest :list, view: :core, items: { view: :flipper }
 
-%section.container.p-5
+%section.container.py-5
   #wikirate-data-today.my-5.p-4
     .p-5
       = section_header :data_usage, button: { url: "/Exporting_Answers",

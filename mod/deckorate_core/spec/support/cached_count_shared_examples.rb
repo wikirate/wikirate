@@ -3,11 +3,21 @@ shared_examples "check count" do |count|
     expect(card.count).to eq count
   end
   it "has correct cached count" do
+    Card::Count.refresh_flagged
     expect(card.cached_count).to eq count
   end
 end
 
 shared_examples "cached count" do |name, count, increment|
+  before do
+    @original_card_count_config = Cardio.config.card_count
+    Cardio.config.card_count = :flag
+  end
+
+  after do
+    Cardio.config.card_count = @original_card_count_config
+  end
+
   let(:card) { Card.fetch name }
 
   include_examples "check count", count

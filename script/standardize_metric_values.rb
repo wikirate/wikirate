@@ -3,7 +3,7 @@ require File.expand_path("../config/environment", __FILE__)
 def potential_numeric_metrics_cql
   { type_id: Card::MetricID,
     right_plus: [
-      { type_id: Card::WikirateCompanyID },
+      { type_id: Card::CompanyID },
       right_plus: [
         { type: "year" },
         right_plus: ["value", { content: ["match", "[[:digit:]]+"] }],

@@ -17,7 +17,7 @@ def researched_verification
 end
 
 def researched_verification_symbol
-  steward_added? ? :steward_added : :community_added
+  steward_added? ? :steward_verified : :unverified
 end
 
 def calculated_verification
@@ -44,7 +44,7 @@ end
 
 format :html do
   def marker_names
-    super + %i[imported verification]
+    super + %i[verification]
   end
 
   def verification_hash
@@ -58,9 +58,5 @@ format :html do
 
     icon_tag verification, title: h[:title],
                            class: "verification-#{h[:klass] || verification}"
-  end
-
-  def imported_marker
-    card.imported? ? icon_tag(:upload, title: "imported") : ""
   end
 end

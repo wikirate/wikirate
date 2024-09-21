@@ -1,0 +1,28 @@
+- klass = "#{card.name.safe_key}-featured-boxes"
+%section.feature-boxes.nodblclick{ class: klass }
+  .feature-boxes-header.py-5.d-flex.justify-content-between
+    %h2.fw-normal
+      = material_symbol_tag :trending_up
+      = voo.title || featured_header
+    .feature-boxes-header-right.d-flex.justify-content-end.align-items-center
+      .feature-box-arrows
+        = render_nav_arrows
+      - if voo.explicit_show? :featured_link
+        .feature-box-view-all.ps-4
+          %a.d-flex.align-items-center{ href: featured_link_path }
+            %span.pe-2
+              = featured_link_text
+            = material_symbol_tag :east
+  .pb-5
+    .feature-boxes-slider{ data: {
+          slick: { infinite: false,
+                   slidesToShow: 3,
+                   prevArrow: ".#{klass} .wr-prev",
+                   nextArrow: ".#{klass} .wr-next",
+                   responsive: [
+                     { breakpoint: "992", settings: { slidesToShow: 2 } },
+                     { breakpoint: "768",  settings: { slidesToShow: 1 } }
+                   ] }.to_json
+        } }
+      = nest card.featured_card, view: :flex_centered_boxes
+

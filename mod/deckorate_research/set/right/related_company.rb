@@ -4,10 +4,9 @@ end
 
 format :html do
   view :input do
-    options_card ||= Card::Name[:wikirate_company, :type, :by_name]
-    text_field :content,
-               class: "wikirate_company_autocomplete form-control",
-               "data-options-card": options_card,
+    select_tag :content,
+               class: "form-control",
+               data: { "options-card": :company.cardname },
                placeholder: rate_subject
   end
 end

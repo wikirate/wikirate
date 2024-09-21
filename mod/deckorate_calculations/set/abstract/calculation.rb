@@ -10,20 +10,33 @@ def calculator variant=:standard
                        companies: company_group_card.company_ids
 end
 
-# update all answers of this metric and the answers of all dependent metrics
-def deep_answer_update args={}
-  calculate_answers args
-  each_depender_metric { |m| m.send :calculate_answers, args }
+# update all answers of this metric and the answers of all metrics that
+# depend on this one
+def calculate_answers args={}
+  calculate_direct_answers args
+  each_depender_metric { |m| m.calculate_direct_answers args }
 end
 
 # param @args [Hash] :company_id, :year, both, or neither.
 # TODO: convert to :companies and :years as named arguments to be consistent with
 # calculator#result
-def calculate_answers args={}
+def calculate_direct_answers args={}
   c = ::Calculate.new self, args
   c.prepare
   c.transact
   c.clean
+end
+
+# USE WITH CAUTION
+# This method works DOWN the dependency tree and recalculates answers. It's not a
+# typical pattern and was written as a bit of hail mary attempt to fix some confusing
+# results. But it can be very computationally expensive, and if things are working
+# properly it should never be necessary.
+def recalculate_all_answers dependers: true
+  return if researched?
+
+  direct_dependee_metrics.each { |m| m.recalculate_all_answers dependers: false }
+  dependers ? calculate_answers : calculate_direct_answers
 end
 
 def input_array variant

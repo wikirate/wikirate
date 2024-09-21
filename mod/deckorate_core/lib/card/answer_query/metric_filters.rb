@@ -7,11 +7,10 @@ class Card
       def filter_by_topic value
         multi_metric { super }
       end
-      alias_method :filter_by_wikirate_topic, :filter_by_topic
 
       def filter_by_dataset value
         multi_metric { dataset_restriction :metric_id, :metric, value }
-        multi_company { dataset_restriction :company_id, :wikirate_company, value }
+        multi_company { dataset_restriction :company_id, :company, value }
         dataset_year_restriction value
       end
 
@@ -38,7 +37,7 @@ class Card
 
       def filter_by_depender_metric value
         metric = validate_depender_metric value
-        return unless (dependees = metric.dependee_metrics).present?
+        return @empty_result = true unless (dependees = metric.dependee_metrics).present?
         filter :metric_id, dependees.map(&:id)
         company_answer_join :dependee
         @conditions <<

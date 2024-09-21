@@ -4,7 +4,7 @@
   = help_link sdg_help_text
   - sdg_topic_names.each_with_index do |topic_name, index|
     - sdg_num = index + 1
-    %a{ "data-filter": JSON(wikirate_topic: topic_name),
+    %a{ "data-filter": JSON(topic: topic_name),
         href: "#",
         class: "_compact-filter-link quick-filter-by-sdg#{sdg_num}",
         title: "Quick Filter: #{topic_name}" }

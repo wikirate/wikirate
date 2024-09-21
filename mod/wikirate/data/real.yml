@@ -1,5 +1,5 @@
 ---
-- homepage
+- featured
 - style
 
 - :name: Blurb
@@ -49,7 +49,7 @@
   :image: logo.png
   :storage_type: :coded
 
-- :name: WikiRate Team
+- :name: Wikirate Team
   :codename: wikirate_team
   :type: :role
 
@@ -92,23 +92,6 @@
   :type: :html
   :codename: homepage
 
-#- :name:
-#    - :organizer
-#    - :featured
-#  :type: :list
-#  :content: |-
-#    Walk Free
-#    University of Connecticut
-#    MANA
-#    AMD Akademie Mode & Design Berlin
-#    Oxfam India
-#    Columbia University - School of International & Public Affairs
-
-- :name:
-    - :account
-    - :featured
-  :type: :list
-
 - :name: newsletter
   :codename: newsletter
   :fields:
@@ -125,56 +108,61 @@
         :input_type: radio
         :help: Do you want to receive our monthly community newsletter?
 
-- :name: Profile Type
-  :codename: profile_type
-  :conflict: override
-  :fields:
-    :right:
-      :fields:
-        :default:
-          :type: :pointer
-        :input_type: select
-        :help: Which profile type fits you best?
-        :content_options:
-          :type: :list
-          :content:
-            - Academic
-            - Civil Society / NGO
-            - Company
-            - Foundation
-            - Government
-            - Independent
-            - Investor AB
-            - Media
-            - Student
-            - Trade Union
-
+#- :name: Profile Type
+#  :codename: profile_type
+#  :fields:
+#    :right:
+#      :fields:
+#        :default:
+#          :type: :pointer
+#        :input_type: select
+#        :help: Which profile type fits you best?
+#        :content_options:
+#          :type: :json
+#          :content: |
+#            {
+#              "Academia": [
+#                "Researcher",
+#                "Student",
+#                "Teacher"
+#              ],
+#              "Non-Profit": [
+#                "Civil Society Organization",
+#                "Foundation",
+#                "Government",
+#                "Trade Union"
+#              ],
+#              "For-Profit": [
+#                "Business Representative",
+#                "Investor",
+#                "Manager"
+#              ],
+#              "Other": [
+#                "Sustainability Expert",
+#                "Journalist",
+#                "Independent User"
+#              ]
+#            }
 - :name: Wikirate Policies
   :codename: policy
 
 - :name: Community Guidelines
   :codename: community_guidelines
-  :conflict: override
 
 - :name: Privacy Policy
   :codename: privacy_policy
-  :conflict: override
 
 - :name: Terms of Use
   :codename: terms_of_use
-  :conflict: override
 
 - :name: Disclaimers
   :codename: disclaimers
-  :conflict: override
 
 - :name: Notice and Take Down Procedure
   :codename: notice_and_take_down
-  :conflict: override
 
 - :name: Licensing
   :codename: licensing
-  :conflict: override
 
 - :name:
     - :policy
@@ -188,7 +176,7 @@
   :codename: our_story
   :content: |
     <p>
-      WikiRate is an open data platform powered by a diverse community that
+      Wikirate is an open data platform powered by a diverse community that
       collects, analyzes and shares data on company commitments, actions and impacts on
       people and the planet.
     </p>
@@ -201,8 +189,8 @@
     </p>
     <p>
       Learn more about 
-      [[https://wikirate-intl.org/About_Us|WikiRate International e.V.]],
-      the organization behind WikiRate.
+      [[https://wikirate-intl.org/About_Us|Wikirate International e.V.]],
+      the organization behind Wikirate.
     </p>
     
 - :name:

@@ -1,11 +1,12 @@
 ---
 - quotes # be rake card:sow -- -o -c '{"type":":quote"}' -t :image,:quote,:job_title,:quotee,:detailed_quote
-- outputs # be rake card:sow -- -o -c '{"type":"Output"}' -t :description,:uri,:output_type,:date,:wikirate_company,:file,:image
+- outputs # be rake card:sow -- -o -c '{"type":"Output"}' -t :description,:uri,:output_type,:date,:company,:file,:image
 - policies # be rake card:sow -- -o -c '{"type":":policy"}' -t :description,:fulltext > /tmp/policies.yml
+- featured
 
 # updating with fields here to trigger geography calculations
 - :name: Google LLC
-  :type: :wikirate_company
+  :type: :company
   :fields:
     :about: don't be evil
     :headquarters: California (United States)
@@ -14,24 +15,6 @@
     :alias:
       - Google
       - Alphabet
-
-- :name:
-    - :designer
-    - :featured
-  :content:
-    - Jedi
-    - Joe User
-    - Global Reporting Initiative
-    - Core
-    - ISIC
-    - Clean Clothes Campaign
-
-- :name:
-    - :organizer
-    - :featured
-  :content:
-    - Jedi
-    - Joe User
 
 - :name:
     - Jedi
@@ -59,20 +42,6 @@
     - :metric
   :content: Jedi+disturbance delta
 
-- :name:
-    - :search
-    - :featured
-  :content:
-    - Death
-    - friendliness
-    - Hermanos
-
-- :name:
-    - :account
-    - :featured
-  :content:
-    - Joe User
-    - Joe Camel
 
 - :name: Fashion Checker
   :type: :output
@@ -84,10 +53,10 @@
 #    :image:
 #      :image: fashion_checker.png
     :title: Fashion Checker Title
-    :wikirate_company: Death Star
+    :company: Death Star
     :description: |
       <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
-      <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">WikiRate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+      <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">Wikirate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
       <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
       <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>
       

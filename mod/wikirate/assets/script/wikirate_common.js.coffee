@@ -16,11 +16,6 @@ if PdfjsViewer?
 # ~~~~~~~~~~~~~~ old-style company autocomplete
 
 decko.slot.ready (slot) ->
-   # TODO: replace this autocomplete with filtered list ui
-  slot.find('.wikirate_company_autocomplete').autocomplete
-    source: '/Companies+*right+*content_options.json?view=name_match'
-    minLength: 2
-
   slot.find("[data-slick]").each -> loadSlick($(this))
 
 # ~~~~~~~~~~~~~~ slick carousel config

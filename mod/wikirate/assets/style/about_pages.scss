@@ -97,7 +97,7 @@ $orange-grad-2: orange !default;
 }
 
 .bg-light-purple {
-  background: $purple-100;
+  background: $light-purple;
 }
 
 .wikirate-section-header-right {
@@ -106,11 +106,9 @@ $orange-grad-2: orange !default;
 }
 
 .TYPE-output.box {
-  width: 360px;
   height: 450px;
   .box-top {
     padding: 0;
-    max-width: 360px;
     max-height: 202px;
   }
   .box-middle {
@@ -227,8 +225,6 @@ $orange-grad-2: orange !default;
   color: $blue;
   //background-color: $white;
   font-size: x-large;
-  margin-left: 0.8em;
-  padding: 0.2em;
   &:hover {
     cursor: pointer;
   }
@@ -383,7 +379,7 @@ $orange-grad-2: orange !default;
     }
 
     .btn-primary {
-      padding: 0.8rem 2rem !important;
+      padding: 0.8rem !important;
       font-size: 1rem;
       letter-spacing: 0.3px;
       font-weight: 500;

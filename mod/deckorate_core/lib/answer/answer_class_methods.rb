@@ -2,10 +2,8 @@ class Answer
   VERIFICATION_LEVELS = [
     { name: :flagged, icon: :flag,
       title: "Flagged" },
-    { name: :community_added, klass: :community,
-      title: "Unverified - Added by Community" },
-    { name: :steward_added, klass: :steward,
-      title: "Unverified - Added by Steward" },
+    { name: :unverified, klass: :community,
+      title: "Unverified" },
     { name: :community_verified, klass: :community, icon: "check-circle",
       title: "Verified by Community" },
     { name: :steward_verified, klass: :steward, icon: "check-circle",
@@ -13,6 +11,13 @@ class Answer
   ].freeze
 
   UNKNOWN = "Unknown".freeze
+
+  ROUTES = {
+    direct: "Research Interface",
+    import: "Import Interface",
+    api: "Application Programmer Interface (API)",
+    calculation: "Calculated (Derived)"
+  }.freeze
 
   # class methods for the Answer (lookup) constant
   module AnswerClassMethods
@@ -56,6 +61,10 @@ class Answer
 
     def verification_title name
       VERIFICATION_LEVELS[verification_index(name)][:title]
+    end
+
+    def route_index symbol
+      ROUTES.keys.index symbol
     end
 
     private

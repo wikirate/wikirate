@@ -95,7 +95,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
   it "calculates values if formula is added after creation" do
     name = "Jedi+formula test"
     updates_answer_with_delay to: /^322/ do
-      Card::Metric.create name: name, type: :formula
+      create_metric name: name, type: :formula
       name.card.update! fields: {
         variables: [
           { metric: "Jedi+deadliness", name: "m1" },
@@ -107,10 +107,10 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
   end
 
   example "formula with formula input" do
-    Card::Metric.create name: "Jedi+triple friendliness",
-                        type: :formula,
-                        formula: "m1 * 3",
-                        variables: [{ metric: "Jedi+friendliness", name: "m1" }].to_json
+    create_metric name: "Jedi+triple friendliness",
+                  type: :formula,
+                  formula: "m1 * 3",
+                  variables: [{ metric: "Jedi+friendliness", name: "m1" }].to_json
     expect(answer_value("triple friendliness")).to match /0.03/
   end
 

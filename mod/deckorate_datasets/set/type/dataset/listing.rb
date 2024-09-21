@@ -10,11 +10,11 @@ format :html do
   end
 
   # view :bar_middle do
-  #   field_nest :wikirate_topic
+  #   field_nest :topic
   # end
 
   view :bar_right do
-    [count_badges(:metric, :wikirate_company, :data_subset, :reference), render_bookmark]
+    [count_badges(:metric, :company), render_bookmark]
   end
 
   view :bar_bottom do
@@ -26,7 +26,7 @@ format :html do
   end
 
   view :box_bottom do
-    render_bar_right
+    count_badges :metric, :company
   end
 
   def thumbnail_subtitle

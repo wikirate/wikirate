@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
       sample_answer value_type
     end
 
-    Wikirate::Samples::METRIC_NAMES.each_key do |value_type|
+    Deckorate::Samples::METRIC_NAMES.each_key do |value_type|
       context "with #{value_type} answer" do
         let(:value_type) { value_type }
 
@@ -124,10 +124,10 @@ RSpec.describe Card::Set::Type::MetricAnswer do
   #   end
   # end
   #
-  # describe "#expanded_wiki_rating_details" do
+  # describe "#expanded_rating_details" do
   #   subject do
   #     fetch_answer("Jedi+darkness rating+Death Star+1977")
-  #       .format.expanded_wiki_rating_details
+  #       .format.expanded_rating_details
   #   end
   #
   #   specify do

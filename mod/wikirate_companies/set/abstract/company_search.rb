@@ -8,11 +8,11 @@ include_set Abstract::CompanyFilters
 include_set Abstract::BarBoxToggle
 
 def bookmark_type
-  :wikirate_company
+  :company
 end
 
 def item_type_id
-  WikirateCompanyID
+  CompanyID
 end
 
 def filter_cql_class
@@ -41,7 +41,7 @@ end
 
 format :csv do
   view :titles do
-    super() + Card.new(type: :wikirate_company).simple_field_names
+    super() + Card.new(type: :company).simple_field_names
   end
 end
 

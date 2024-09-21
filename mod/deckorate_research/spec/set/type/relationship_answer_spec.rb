@@ -19,7 +19,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
 
   context "when adding first relationship answer" do
     def add_first_relationship_answer
-      Card[metric].create_answers true do
+      create_answers metric, true do
         Monster_Inc "1977" => { "Slate_Rock_and_Gravel_Company" => "yes" }
       end
     end
@@ -27,6 +27,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
     it "increases cached answer count" do
       expect(Card.fetch("Monster Inc+metric").cached_count).to eq(6)
       add_first_relationship_answer
+      # Card::Count.refresh_flagged
       expect(Card.fetch("Monster Inc+metric").cached_count).to eq(7)
     end
 
@@ -40,7 +41,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswer do
 
   context "when adding another relationship answer" do
     def add_relationship_answer
-      Card[metric].create_answers true do
+      create_answers metric, true do
         Death_Star "1977" => { "Monster Inc" => "yes" }
       end
     end

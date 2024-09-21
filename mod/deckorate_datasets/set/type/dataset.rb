@@ -2,12 +2,13 @@ include_set Abstract::Thumbnail
 include_set Abstract::DeckorateTabbed
 include_set Abstract::Bookmarkable
 
-card_reader :wikirate_company, type: :list
+card_reader :company, type: :list
 card_reader :metric, type: :list
 card_reader :year, type: :list
 card_reader :parent, type: :pointer
 card_reader :data_subset, type: :search_type
-card_reader :wikirate_topic, type: :list
+card_reader :topic, type: :list
+card_reader :metric_answer, type: :search
 
 format :html do
   def breadcrumb_items
@@ -40,10 +41,10 @@ end
 def answers
   @answers ||= Answer.where where_answer
 end
-
-def answers_since_start
-  Answer.where(where_answer).where "updated_at > ?", created_at
-end
+#
+# def answers_since_start
+#   Answer.where(where_answer).where "updated_at > ?", created_at
+# end
 
 def where_answer
   where_year { where_record }
@@ -54,7 +55,7 @@ def where_record
 end
 
 def company_ids
-  @company_ids ||= wikirate_company_card.item_ids
+  @company_ids ||= company_card.item_ids
 end
 
 def metric_ids
@@ -70,7 +71,7 @@ def metrics
 end
 
 def companies
-  @companies ||= wikirate_company_card.item_names
+  @companies ||= company_card.item_names
 end
 
 def years

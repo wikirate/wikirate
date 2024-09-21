@@ -40,7 +40,7 @@ def add_company company
   if company_card&.real?
     errors.add "#{company} is not a Company; it's a #{company_card.type_name}"
   else
-    Card.create type: WikirateCompanyID, name: company
+    Card.create type: CompanyID, name: company
   end
 end
 
@@ -73,7 +73,7 @@ end
 def valid_company?
   return false unless company
 
-  (company_card&.type_id == Card::WikirateCompanyID) || Director.include?(company)
+  (company_card&.type_id == Card::CompanyID) || Director.include?(company)
 end
 
 def valid_year?

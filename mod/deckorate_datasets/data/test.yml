@@ -1,5 +1,5 @@
 ---
-# Data Sets
+# Datasets
 
 - :name: Evil Dataset
   :type: :dataset
@@ -7,11 +7,11 @@
     :metric:
       - Jedi+disturbances in the Force
       - Joe User+researched number 2
-    :wikirate_company:
+    :company:
       - Death Star
       - SPECTRE
       - Los Pollos Hermanos
-    :wikirate_topic:
+    :topic:
       - Force
 
 - :name: Son of Evil Dataset

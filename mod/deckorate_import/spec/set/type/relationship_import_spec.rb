@@ -58,14 +58,14 @@ RSpec.describe Card::Set::Type::RelationshipImport do
     end
 
     it "autoadds" do
-      mapping :wikirate_company, "New Company" => "AutoAdd", "Sony" => "AutoAdd" do
+      mapping :company, "New Company" => "AutoAdd", "Sony" => "AutoAdd" do
         card_subject.import_map_card.update!({})
       end
       expect(card_subject.status.count(:ready)).to eq(5)
     end
 
     example "it correctly updates counts for answers with multiple relationships" do
-      mapping :wikirate_company, "New Company" => "AutoAdd", "Sony" => "AutoAdd" do
+      mapping :company, "New Company" => "AutoAdd", "Sony" => "AutoAdd" do
         card_subject.import_map_card.update!({})
       end
 

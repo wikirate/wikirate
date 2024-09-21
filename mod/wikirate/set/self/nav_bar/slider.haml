@@ -1,0 +1,27 @@
+.row
+  .d-flex.align-items-center.pe-3.col-2.col-md-1
+    %a.wr-prev.wr-arrow
+      = material_symbol_tag :arrow_back_ios
+
+  .col-8.col-md-10
+    .px-3{ data: {
+      "slick-selector": ".card-list-thumbnail",
+      slick: { infinite: false,
+               slidesToShow: 7,
+               # arrows: true,
+               prevArrow: ".sub-navbar .wr-prev",
+               nextArrow: ".sub-navbar .wr-next",
+               variableWidth: true,
+               slidesToScroll: 1,
+               responsive: [
+                 { breakpoint: "1400", settings: { slidesToShow: 6 } },
+                 { breakpoint: "1200", settings: { slidesToShow: 4 } },
+                 { breakpoint: "768",  settings: { slidesToShow: 2 } },
+                 { breakpoint: "576",  settings: { slidesToShow: 1 } }
+               ]}.to_json
+      } }
+      = nest %i[cardtype featured], items: { view: :thumbnail, variant: :plural }
+
+  .d-flex.align-items-center.ps-3.col-2.col-md-1.justify-content-end
+    %a.wr-next.wr-arrow
+      = material_symbol_tag :arrow_forward_ios

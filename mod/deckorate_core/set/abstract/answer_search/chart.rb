@@ -34,7 +34,7 @@ format :json do
   end
 
   def company_count
-    counts[:wikirate_company]
+    counts[:company]
   end
 
   def max_grid_cells
@@ -85,8 +85,7 @@ format :json do
 
   def chart_grouping
     group = params[:subgroup].to_sym if params[:subgroup].present?
-    # group ||= first_interesting_group %i[verification value_type], :metric_type
-    group ||= first_interesting_group %i[value_type], :metric_type
+    group ||= first_interesting_group %i[route value_type metric_type], :verification
     { group: group }
   end
 

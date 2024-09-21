@@ -11,6 +11,7 @@ card_accessor :source, type: :list
 
 require_field :value
 require_field :source, when: :source_required?
+
 delegate :inverse_metric_id, :subject_company_id, :object_company_id, to: :lookup
 delegate :relationship_id, to: :lookup
 
@@ -58,7 +59,7 @@ def name_part_types
 end
 
 def valid_related_company?
-  (related_company_card&.type_id == Card::WikirateCompanyID) ||
+  (related_company_card&.type_id == Card::CompanyID) ||
     Director.include?(related_company)
 end
 

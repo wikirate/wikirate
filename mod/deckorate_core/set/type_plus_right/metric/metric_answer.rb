@@ -40,7 +40,7 @@ def partner
 end
 
 def bookmark_type
-  :wikirate_company
+  :company
 end
 
 def metric_card
@@ -115,7 +115,7 @@ format :html do
   end
 
   def quick_filter_list
-    @quick_filter_list ||= :wikirate_company.card.format.quick_filter_list
+    @quick_filter_list ||= :company.card.format.quick_filter_list
   end
 
   def filter_value_type

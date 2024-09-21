@@ -1,0 +1,39 @@
+- :name:
+    - :cardtype
+    - :featured
+  :type: :list
+  :content: |
+    Company
+    Metric
+    Answer
+    Source
+    Topic
+    Dataset
+    Project
+    Research Group
+    Company Group
+
+- :name:
+    - :account
+    - :featured
+  :type: :list
+
+- :name:
+    - :designer
+    - :featured
+  :type: :list
+
+- :name:
+    - :organizer
+    - :featured
+  :type: :list
+
+- :name:
+    - :metric
+    - :featured
+  :type: :list
+
+- :name:
+    - :topic
+    - :featured
+  :type: :list

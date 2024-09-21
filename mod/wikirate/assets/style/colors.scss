@@ -20,7 +20,7 @@ a:visited:not(.btn), a:hover:not(.btn) {
 }
 
 
-/*----------- WikiRate Scores ---------*/
+/*----------- Wikirate Scores ---------*/
 // Note: to change these colors you will typically want to edit the +:variables
 // card on the active skin.  See note in 01_variables.scss in deckorate_core mod
 
@@ -162,7 +162,7 @@ $colorMap: (
   research_group: $research-group-color,
   company_group: $company-group-color,
   year: $year-color,
-  datum_set: $dataset-color,
+  dataset: $dataset-color,
   datum_subset: $dataset-color,
   user: $user-color
 ); // border color for bars and boxes
@@ -236,33 +236,33 @@ $lightMap: (
     }
   }
 
-  .bar, .box {
-    &:hover .RIGHT-#{$type} {
-      &.labeled-badge {
-        label {
-          color: $color
-        }
-        .badge {
-          background-color: $color !important;
-        }
-      }
-    }
-  }
+  //.bar, .box {
+  //  &:hover .RIGHT-#{$type} {
+  //    &.labeled-badge {
+  //      label {
+  //        color: $color
+  //      }
+  //      .badge {
+  //        background-color: $color !important;
+  //      }
+  //    }
+  //  }
+  //}
 
   //#main > .SELF-#{$type}.titled-view > .d0-card-header > h1 {
   //  color: $color;
   //}
 
-  #homepage {
-    .SELF-#{$type} { // , .TYPE-#{$type} {
-      &.thumbnail .image-box {
-        background-color: map-get($lightMap, $color);
-        i {
-          color: $color;
-        }
-      }
-    }
-  }
+  //#homepage {
+  //  .SELF-#{$type} { // , .TYPE-#{$type} {
+  //    &.thumbnail .image-box {
+  //      background-color: map-get($lightMap, $color);
+  //      i {
+  //        color: $color;
+  //      }
+  //    }
+  //  }
+  //}
 }
 
 .LTYPE_RTYPE-topic-company {
@@ -307,8 +307,8 @@ $lightMap: (
 
 @include hoverTag(topic, $topic-color);
 @include hoverTag(company, $company-color);
-@include hoverTag(wikirate_topic, $topic-color);
-@include hoverTag(wikirate_company, $company-color);
+@include hoverTag(topic, $topic-color);
+@include hoverTag(company, $company-color);
 @include hoverTag(company_group, $company-group-color);
 @include hoverTag(metric, $metric-color);
 @include hoverTag(project, $project-color);
@@ -350,7 +350,7 @@ $lightMap: (
   }
 }
 
-// Score / WikiRating colors
+// Score / Rating colors
 
 @each $score, $color in $score-colors {
   .score-color-#{$score} {
