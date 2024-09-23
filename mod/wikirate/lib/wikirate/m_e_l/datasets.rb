@@ -8,13 +8,13 @@ module Wikirate
         almost: 90,
         majority: 50,
         incomplete: 0
-      }
+      }.freeze
 
       def datasets_created
         created { datasets }.count
       end
 
-      COMPLETION_CATEGORY.keys.each do |category|
+      COMPLETION_CATEGORY.each_key do |category|
         define_method "datasets_#{category}" do
           dataset_completion[category].to_i
         end
@@ -42,7 +42,6 @@ module Wikirate
         end
         :error
       end
-
     end
   end
 end
