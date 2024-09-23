@@ -8,6 +8,7 @@ card_reader :year, type: :list
 card_reader :parent, type: :pointer
 card_reader :data_subset, type: :search_type
 card_reader :topic, type: :list
+card_reader :metric_answer, type: :search
 
 format :html do
   def breadcrumb_items
@@ -40,10 +41,10 @@ end
 def answers
   @answers ||= Answer.where where_answer
 end
-
-def answers_since_start
-  Answer.where(where_answer).where "updated_at > ?", created_at
-end
+#
+# def answers_since_start
+#   Answer.where(where_answer).where "updated_at > ?", created_at
+# end
 
 def where_answer
   where_year { where_record }
