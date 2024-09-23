@@ -36,12 +36,12 @@ def num_years
   type_count :year
 end
 
-def num_users
-  @num_users ||= answers.select(:creator_id).uniq.count
-end
+# def num_users
+#   @num_users ||= answers.select(:creator_id).uniq.count
+# end
 
 def num_answers
-  @num_answers ||= answers.count
+  @num_answers ||= type_count :metric_answer
 end
 
 def num_data_subsets

@@ -10,7 +10,7 @@ def history?
 end
 
 def update_content_from_spec
-  self.content = specification_card.implicit_item_names if implicit?
+  self.content = specification_card.implicit_item_ids if implicit?
 end
 
 def bookmark_type
