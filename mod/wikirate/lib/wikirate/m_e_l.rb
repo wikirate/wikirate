@@ -2,6 +2,10 @@ module Wikirate
   # methods in support of tracking details for
   # Monitoring, Evaluation, and Learning
   module MEL
+    extend Metrics
+    extend Answers
+    extend Datasets
+
     class << self
       PERIOD = "1 month".freeze
 
@@ -38,13 +42,13 @@ module Wikirate
         # Metric designers new
         # Metrics mixed designers
         datasets_created: "Datasets created",
-        # Datasets complete
-        # Datasets almost complete
-        # Datasets majority complete
-        # Datasets majority incomplete
+        datasets_complete: "Datasets complete",
+        datasets_almost: "Datasets almost complete",
+        datasets_majority: "Datasets majority complete",
+        datasets_incomplete: "Datasets majority incomplete"
       }.freeze
 
-      NO_COUNT_REGEX = /^flag/
+      NO_COUNT_REGEX = /^flag|dataset/
 
       def dump
         puts measure
@@ -58,46 +62,6 @@ module Wikirate
         end
       end
 
-      def answers
-        Answer
-      end
-
-      def calculations
-        answers_by_route :calculation
-      end
-
-      def import
-        answers_by_route :import
-      end
-
-      def direct
-        answers_by_route :direct
-      end
-
-      def api
-        answers_by_route :api
-      end
-
-      def answers_created
-        created { answers }
-      end
-
-      def calculations_created
-        created { answers_by_route :calculation }
-      end
-
-      def import_created
-        created { answers_by_route :import }
-      end
-
-      def direct_created
-        created { answers_by_route :direct }
-      end
-
-      def api_created
-        created { answers_by_route :api }
-      end
-
       def relationships
         Relationship
       end
@@ -106,89 +70,14 @@ module Wikirate
         created { relationships }
       end
 
-      def answers_updated
-        updated { answers }
-      end
-
-      def answers_community_verified
-        answers_by_verification :community_verified
-      end
-
-      def answers_steward_verified
-        answers_by_verification :steward_verified
-      end
-
-      def answers_checked
-        verification_indexes = %i[community_verified steward_verified].map do |symbol|
-          Answer.verification_index symbol
-        end
-
-        answers.joins("join cards on left_id = answer_id")
-               .where("right_id = #{:checked_by.card_id}")
-               .where("cards.updated_at > #{period_ago}")
-               .where(verification: verification_indexes)
-      end
-
-      def contributors_direct
-        contributors { direct }
-      end
-
-      def contributors_import
-        contributors { import }
-      end
-
-      def contributors_api
-        contributors { api }
-      end
-
-      def metrics_created
-        created { metrics }
-      end
-
-      def metrics_researched_created
-        created { metrics_by_type :researched }
-      end
-
-      def metrics_calculated_created
-        created { metrics_by_type :formula, :rating, :score, :descendant }
-      end
-
-      def metrics_relationship_created
-        created { metrics_by_type :inverse_relationship, :relationship }
-      end
-
-      def datasets_created
-        created { datasets }
-      end
-
       def flags_created
         created { cards.where type_id: :flag.card_id }.count
       end
 
       private
 
-      def datasets
-        cards.where type_id: :dataset.card_id
-      end
-
       def cards
         Card.where trash: false
-      end
-
-      def answers_by_route symbol
-        answers.where route: Answer.route_index(symbol)
-      end
-
-      def answers_by_verification symbol
-        answers.where verification: Answer.verification_index(symbol)
-      end
-
-      def metrics
-        Metric.joins "join cards on cards.id = metric_id"
-      end
-
-      def metrics_by_type *type_codes
-        metrics.where metric_type_id: type_codes.map(&:card_id)
       end
 
       def created
@@ -201,10 +90,6 @@ module Wikirate
 
       def period_ago
         "now() - INTERVAL #{PERIOD}"
-      end
-
-      def contributors
-        yield.select("creator_id").distinct
       end
 
       def flag_cql
