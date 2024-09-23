@@ -2,9 +2,8 @@
 
 namespace :wikirate do
   namespace :flood do
-    def jmeter_flood name, count: 100, host: "http://staging.wikirate.org", duration: 300,
-                     rampup: 10,
-                     &block
+    def jmeter_flood name, count: 100, duration: 300, rampup: 10, &block
+      host = ENV["TEST_HOST"] || "https://staging.wikirate.org"
       uri = URI host
       test do
         defaults domain: uri.host, duration: duration, rampup: rampup
