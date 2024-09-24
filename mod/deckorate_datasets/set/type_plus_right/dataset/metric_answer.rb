@@ -1,5 +1,6 @@
 include_set Abstract::FullAnswerSearch
 include_set Abstract::Chart
+include_set Abstract::CachedCount
 
 def dataset_name
   name.left_name
@@ -7,6 +8,31 @@ end
 
 def query_hash
   { dataset: dataset_name }
+end
+
+# recount datasets when companies/metrics associated with dataset are changed
+%i[metric company].each do |field|
+  recount_trigger :type_plus_right, :dataset, field, on: :save do |changed_card|
+    changed_card.left.metric_answer_card
+  end
+end
+
+# ...or when answer is changed (created, deleted, renamed)
+recount_trigger :type, :metric_answer do |changed_card|
+  dataset_answer_cards changed_card
+end
+
+# ...or when metric or answer is (un)published
+%i[metric metric_answer].each do |type|
+  field_recount_trigger :type_plus_right, type, :unpublished do |changed_card|
+    dataset_answer_cards changed_card.left
+  end
+end
+
+private
+
+def self.dataset_answer_cards base
+  base.dataset_card.item_cards.each(&:metric_answer_card)
 end
 
 format do

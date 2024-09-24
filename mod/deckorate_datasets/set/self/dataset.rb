@@ -13,7 +13,8 @@ end
 format :csv do
   view :header do
     [["DATA SET", "METRICS", "COMPANIES", "ANSWERS",
-      "USERS", "COMMUNITY-ASSESSED", "DESIGNER-ASSESSED", "CREATED AT"]]
+      # "USERS",
+      "COMMUNITY-ASSESSED", "DESIGNER-ASSESSED", "CREATED AT"]]
   end
 
   view :body do
@@ -30,7 +31,7 @@ format :csv do
       dataset.num_metrics,
       dataset.num_companies,
       dataset.num_answers,
-      dataset.num_users
+      # dataset.num_users
     ] + dataset.num_policies + [
       dataset.created_at
     ]
