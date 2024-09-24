@@ -35,7 +35,7 @@ module Wikirate
         flags_wrong_company: "Flagged wrong company",
         flags_wrong_year: "Flagged wrong year",
         flags_other_subject: "Flagged other",
-        # flags_closed: "Flagged closed",
+        flags_closed: "Flagged closed",
         metrics_created: "Metrics created",
         metrics_researched_created: "Research metrics created",
         metrics_calculated_created: "Calculated metrics created",
