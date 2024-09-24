@@ -12,12 +12,15 @@ namespace :wikirate do
     test_pages.each do |page|
       puts page
 
-      log_args = { performance_log: {
-          output: :card, output_card: page,
-          methods: %i(
-          execute rule fetch view
-        ), details: true, min_time: 1
-      } }
+      log_args = {
+        performance_log: {
+          output: :card,
+          output_card: page,
+          methods: %i[execute rule fetch view],
+          details: true,
+          min_time: 1
+        }
+      }
       url = "#{host}/#{page}"
       open "#{url}?#{log_args.to_param}"
       benchmark = WBench::Benchmark.new(url) { "" }
