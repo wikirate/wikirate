@@ -7,6 +7,14 @@ module Wikirate
         created { cards.where type_id: :flag.card_id }
       end
 
+      def flags_closed
+        cards.joins("join cards flag on flag.id = cards.left_id")
+             .where(right_id: :status.card_id,
+                    db_content: :closed)
+             .where("flag.type_id = #{:flag.card_id}")
+             .where("cards.updated_at > #{period_ago}")
+      end
+
       %w[wrong_value wrong_company wrong_year other_subject].each do |flag_type|
         define_method "flags_#{flag_type}" do
           flag_types[flag_type].to_i
@@ -14,10 +22,6 @@ module Wikirate
       end
 
       private
-
-      def flag_cql
-        { type: :flag }
-      end
 
       def flag_types
         @flag_types ||=
