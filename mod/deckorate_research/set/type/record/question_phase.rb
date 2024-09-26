@@ -72,7 +72,7 @@ format :html do
     text ||= label
     record_name = metric_id_for_index(index).cardname.field card.company_name
     link_to_card record_name, text,
-                 class: classy("_research-metric-link"),
+                 class: "_metric_arrow_button #{classy '_research-metric-link'}",
                  rel: rel,
                  title: label,
                  "aria-label": label,

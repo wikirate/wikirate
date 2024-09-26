@@ -19,7 +19,23 @@ module Wikirate
         created { metrics_by_type :inverse_relationship, :relationship }
       end
 
+      def metric_designers_new
+        new_designer_ids = designer_ids { created { metrics } }
+        old_designer_ids = designer_ids { metrics.where("created_at <= #{period_ago}") }
+        new_designer_ids - old_designer_ids
+      end
+
+      def metric_designers_mixed
+        metrics_by_type(:formula, :rating, :score, :descendant).select do |metric|
+          metric.dependee_metrics.find { |m| m.metric_designer_id != metric.designer_id }
+        end
+      end
+
       private
+
+      def designer_ids
+        yield.select(:designer_id).distinct.pluck(:designer_id)
+      end
 
       # need the cards join for the created data
       def metrics

@@ -6,7 +6,7 @@ format :html do
   mini_bar_cols 7, 5
 
   before :content_formgroups do
-    voo.edit_structure = %i[topic_framework image general_overview]
+    voo.edit_structure = %i[topic_framework category image general_overview]
   end
 
   def tab_list

@@ -5,6 +5,7 @@ module Wikirate
     extend Metrics
     extend Answers
     extend Datasets
+    extend Flags
 
     class << self
       PERIOD = "1 month".freeze
@@ -30,17 +31,17 @@ module Wikirate
         contributors_import: "Contributors import",
         contributors_api: "Contributors API",
         flags_created: "Flags created",
-        # flags_wrong_value: "Flagged wrong value",
-        # flags_wrong_company: "Flagged wrong company",
-        # flags_wrong_year: "Flagged wrong year",
-        # flags_other: "Flagged other",
-        # flags_closed: "Flagged closed",
+        flags_wrong_value: "Flagged wrong value",
+        flags_wrong_company: "Flagged wrong company",
+        flags_wrong_year: "Flagged wrong year",
+        flags_other_subject: "Flagged other",
+        flags_closed: "Flagged closed",
         metrics_created: "Metrics created",
         metrics_researched_created: "Research metrics created",
         metrics_calculated_created: "Calculated metrics created",
         metrics_relationship_created: "Relationship metrics created",
-        # Metric designers new
-        # Metrics mixed designers
+        metric_designers_new: "Metric designers new",
+        metric_designers_mixed: "Metrics mixed designers",
         datasets_created: "Datasets created",
         datasets_complete: "Datasets complete",
         datasets_almost: "Datasets almost complete",
@@ -48,7 +49,7 @@ module Wikirate
         datasets_incomplete: "Datasets majority incomplete"
       }.freeze
 
-      NO_COUNT_REGEX = /^flag|dataset/
+      NO_COUNT_REGEX = /^flags_(wrong|other)|dataset/
 
       def dump
         puts measure
@@ -56,6 +57,7 @@ module Wikirate
 
       def measure
         COLUMNS.each_with_object({}) do |(key, column), hash|
+          Card::Cache.reset_soft
           response = send key
           response = response.count unless key.match? NO_COUNT_REGEX
           hash[column] = response
@@ -68,10 +70,6 @@ module Wikirate
 
       def relationships_created
         created { relationships }
-      end
-
-      def flags_created
-        created { cards.where type_id: :flag.card_id }.count
       end
 
       private
@@ -90,10 +88,6 @@ module Wikirate
 
       def period_ago
         "now() - INTERVAL #{PERIOD}"
-      end
-
-      def flag_cql
-        { type: :flag }
       end
 
       def cql_count cql
