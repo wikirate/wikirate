@@ -1,21 +1,14 @@
 
-# FIXME: should be on save, but this was breaking
-# renames of +topic cards.  Should be fixed when references are
-# represented with ids.
-event :validate_topic_items, :validate, on: :create do
-  return unless is_a? Abstract::List
-  added_item_cards.each do |item_card|
-    next if item_card.real? && item_card.type_id == TopicID
-    errors.add :content, "invalid topic: #{item_card.name}"
-  end
+def ok_item_types
+  [:topic]
 end
 
-event :add_supertopics, :prepare_to_store do
+# when you add a topic to something, automatically also add the topic's categories
+# NOTE: deleting does not delete
+event :add_categories, :prepare_to_store, changed: :content do
   return unless is_a? Abstract::List
   added_item_cards.each do |item_topic|
-    item_topic.supertopic_card.item_names.each do |supertopic|
-      add_item supertopic
-    end
+    add_item item_topic.recursive_categories
   end
 end
 
