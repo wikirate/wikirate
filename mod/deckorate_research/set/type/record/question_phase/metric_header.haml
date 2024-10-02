@@ -14,9 +14,9 @@
       = link_to_metric :next, "Next Question", metric_index + 1, icon_tag(:next)
 
   .d-flex.justify-content-end
-    = modal_link "View all metric questions",
+    = modal_link "View all metric questions #{icon_tag :east}",
                  path: { mark: company_project_mark, view: :metrics_overview },
-                 class: "btn btn-lg btn-outline-primary _all_metrics_button",
+                 class: "_all_metrics_button",
                  size: :large
 
 - else
