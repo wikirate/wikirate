@@ -95,7 +95,7 @@ format :html do
   end
 
   def tab_options
-    { input_answer: { label: "Inputs" } }
+    super.merge input_answer: { label: "Inputs" }
   end
 
   view :new do
