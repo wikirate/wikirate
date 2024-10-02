@@ -75,7 +75,7 @@ describe "metric creation", ->
         cy.get(".metric-tree-item-title").should "contain", "friendliness"
 
       # go to answers tab
-      cy.get("#main .nav-tabs").within -> cy.contains("Answers").click()
+      cy.get("#main .nav-tabs").within -> cy.contains("Companies").click()
 
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "1.1"
@@ -103,7 +103,7 @@ describe "metric creation", ->
         cy.get(".code").should "contain", "answer + 1"
 
       # go to answers tab
-      cy.get("#main .nav-tabs").within -> cy.contains("Answers").click()
+      cy.get("#main .nav-tabs").within -> cy.contains("Companies").click()
 
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "1.1"
@@ -134,7 +134,7 @@ describe "metric creation", ->
       cy.get(".RIGHT-Xvariable").should "contain", "disturbance"
 
       # go to answers tab
-      cy.get("#main .nav-tabs").within -> cy.contains("Answers").click()
+      cy.get("#main .nav-tabs").within -> cy.contains("Companies").click()
 
       # check that an answer exists
       cy.get("span.metric-value").should "contain", "10"
