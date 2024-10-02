@@ -15,8 +15,13 @@
     }
   }
 
-  .tab-badge .badge {
-    margin-left: 0.6em;
+  .tab-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    .badge {
+      margin-left: 0.6em;
+    }
   }
 
   .tab-title {

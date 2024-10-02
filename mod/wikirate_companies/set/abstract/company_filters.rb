@@ -10,10 +10,8 @@ format do
   # answer filter as { "0" => constraint1, "1" => constraint2... ...}
   def filter_hash
     super.tap do |hash|
-      ans =  hash[:company_answer]
-      if ans.is_a?(Hash) && ans.keys.first == "0"
-        hash[:company_answer] = ans.values
-      end
+      ans = hash[:company_answer]
+      hash[:company_answer] = ans.values if ans.is_a?(Hash) && ans.keys.first == "0"
     end
   end
 end
