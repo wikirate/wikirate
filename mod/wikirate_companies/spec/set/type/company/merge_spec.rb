@@ -12,17 +12,20 @@ RSpec.describe Card::Set::Type::Company::Merge do
     end
   end
 
-  def expect_answers_to_move target_num
-    expect(company.answers.count).to eq(5)
-    expect(target.answers.count).to eq(10)
-    yield
-    expect(company.answers.count).to eq(1) # there is one conflicting answer
-    expect(target.answers.count).to eq(target_num)
-    # Note: move_answers_to alone does not move the hq field, so the hq answer and
-    # the answers that depend on it don't move
-  end
-
   describe "#move_answers_to" do
+    def expect_answers_to_move target_num
+      expect_company_and_target_answers 5, 10
+      yield
+      expect_company_and_target_answers 1, target_num
+      # Note: move_answers_to alone does not move the hq field, so the hq answer and
+      # the answers that depend on it don't move
+    end
+
+    def expect_company_and_target_answers company_count, target_count
+      expect(company.answers.count).to eq(company_count)
+      expect(target.answers.count).to eq(target_count)
+    end
+
     it "moves non-conflicting answers from source to target company" do
       expect_answers_to_move 11 do
         company.move_answers_to target.name
@@ -70,7 +73,7 @@ RSpec.describe Card::Set::Type::Company::Merge do
     end
   end
 
-  describe "#move_source_listings_to" do
+  xdescribe "#move_source_listings_to" do
     "TODO"
   end
 end

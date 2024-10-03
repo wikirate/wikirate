@@ -109,6 +109,9 @@ $(document).ready ->
     toPhase "question", e
     $("._methodology-button").click()
 
+  $("body").on "click", "._metric_arrow_button", (e) ->
+    $(this).slot().slotReloading()
+
 closeSourceModal = (el)->
   bootstrap.Modal.getInstance(el.closest("._modal-slot")).hide()
 

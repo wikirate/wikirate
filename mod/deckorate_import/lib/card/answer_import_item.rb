@@ -46,15 +46,10 @@ class Card
 
     def translate_row_hash_to_create_answer_hash
       r = input.clone
-      translate_company_args r
       r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
       r[:ok_to_exist] = true
       r = prep_fields r
       r
-    end
-
-    def translate_company_args r
-      r[:company] = r[:company]
     end
 
     def export_csv_line status

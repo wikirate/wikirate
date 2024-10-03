@@ -140,7 +140,6 @@ class Card
     def company_cql company
       name_cql company
     end
-    alias company_cql company_cql
 
     def company_group_cql group
       referred_to_by_company_list group

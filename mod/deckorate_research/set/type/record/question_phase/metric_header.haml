@@ -1,24 +1,23 @@
 %a#metric-header
 - if multi_metric?
-  .row
-    .col-10.metric-project-research.row.align-items-center
-      .col-2.h2
-        = link_to_metric :prev, "Previous Question", metric_index - 1, icon_tag(:previous)
-      .col-8
-        = render_metric_option
-        %label.text-secondary.py-3
-          Question
-          = metric_index + 1
-          \/
-          = metric_ids.size
-      .col-2.h2
-        = link_to_metric :next, "Next Question", metric_index + 1, icon_tag(:next)
+  .metric-project-research.row.align-items-center
+    .col-2.h2
+      = link_to_metric :prev, "Previous Question", metric_index - 1, icon_tag(:previous)
+    .col-8
+      = render_metric_option
+      %label.text-secondary.py-3
+        Metric question
+        = metric_index + 1
+        \/
+        = metric_ids.size
+    .col-2.h2.d-flex.justify-content-end
+      = link_to_metric :next, "Next Question", metric_index + 1, icon_tag(:next)
 
-    .col-2.p-2
-      = modal_link "All metrics",
-                   path: { mark: company_project_mark, view: :metrics_overview },
-                   class: "_ btn btn-lg btn-outline-secondary _all_metrics_button",
-                   size: :large
+  .d-flex.justify-content-end
+    = modal_link "View all metric questions #{icon_tag :east}",
+                 path: { mark: company_project_mark, view: :metrics_overview },
+                 class: "_all_metrics_button",
+                 size: :large
 
 - else
   = render_metric_option
