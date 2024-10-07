@@ -13,10 +13,6 @@ namespace :wikirate do
     )
   end
 
-  # task :mel_counts do
-  #
-  # end
-
   def wikirate_version
     File.open(File.expand_path("../../../../../VERSION", __FILE__)).read.chomp
   end
