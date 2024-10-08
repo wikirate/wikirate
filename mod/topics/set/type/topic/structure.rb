@@ -1,8 +1,4 @@
 format :html do
-  view :unknown do
-    _render_link
-  end
-
   mini_bar_cols 7, 5
 
   before :content_formgroups do
@@ -35,5 +31,13 @@ format :html do
 
   view :details_tab_right do
     field_nest :subtopic, view: :titled, title: "Subtopics", items: { view: :bar }
+  end
+
+  view :unknown do
+    _render_link
+  end
+
+  def default_item_view
+    :bar
   end
 end
