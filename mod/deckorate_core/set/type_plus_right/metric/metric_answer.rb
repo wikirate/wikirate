@@ -104,12 +104,6 @@ format :html do
     voo.items[:hide] = :metric_thumbnail
   end
 
-  def export_mark
-    return super unless metric_card.relationship?
-
-    { Relationships: metric_card.relationship_answer_card.name, Answers: super }
-  end
-
   def show_metric_count?
     false
   end
