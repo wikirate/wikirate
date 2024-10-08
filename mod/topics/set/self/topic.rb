@@ -18,7 +18,5 @@ format do
 end
 
 format :html do
-  before(:filtered_content) { voo.items[:view] = :box }
-
   view :page, template: :haml
 end
