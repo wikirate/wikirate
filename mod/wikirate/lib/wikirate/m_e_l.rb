@@ -51,8 +51,20 @@ module Wikirate
 
       NO_COUNT_REGEX = /^flags_(wrong|other)|dataset/
 
+      def titles
+        COLUMNS.values
+      end
+
       def dump
-        puts measure
+        puts csv_content
+      end
+
+      def csv_content
+        m = measure
+        CSV.generate do |csv|
+          csv << m.keys
+          csv << m.values
+        end
       end
 
       def measure
