@@ -58,10 +58,6 @@ format :html do
     form_tag "/", id: "export-form", method: :get
   end
 
-  def export_mark
-    card.name
-  end
-
   def default_export_limit
     card.format(:base).default_limit
   end
