@@ -1,19 +1,8 @@
 //%form
 
-.export-panel.p-3{ action: "/" }
+.export-panel.p-3{ action: "/#{card.name.url_key}" }
   = render_export_hidden_tags
   %h2.mb-3 Export Data
-  - if export_mark.is_a? Hash
-    .row.mb-3
-      .col-4
-        %label.form-label Type
-      .col-8
-        = select_tag :mark, options_for_select(export_mark),
-                     class: "_no-select2 form-select",
-                     form: "export-form"
-  - else
-    = hidden_field_tag "mark", export_mark, form: "export-form"
-
   - if respond_to? :export_types
     .row.mb-3
       .col-4
