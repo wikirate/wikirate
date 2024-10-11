@@ -42,11 +42,11 @@ class OpenCorporatesImportItem < ImportItem
                 content: oc_company_number,
                 type: :phrase
     ensure_card [@company, :headquarters],
-                content: Card[oc_jurisdiction_code].name,
+                content: oc_jurisdiction_code.cardname,
                 type: :pointer
     return unless inc_jurisdiction_code.present?
     ensure_card [@company, :incorporation],
-                content: Card[inc_jurisdiction_code].name,
+                content: inc_jurisdiction_code.cardname,
                 type: :pointer
   end
 end

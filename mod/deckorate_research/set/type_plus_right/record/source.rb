@@ -19,8 +19,7 @@ format :html do
   end
 
   def company_name
-    # need fetch_name to standardize
-    Card.fetch_name card.company_name
+    card.company_name.standard
   end
 
   def new_source_defaults

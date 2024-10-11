@@ -25,7 +25,7 @@ class HeadquartersImportItem < ImportItem
 
   def import_headquarters
     ensure_card [@company, :headquarters],
-                content: Card[oc_jurisdiction_code].name,
+                content: oc_jurisdiction_code.cardname,
                 type: :pointer,
                 skip: :update_oc_mapping_due_to_headquarters_entry
   end
