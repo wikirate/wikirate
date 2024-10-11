@@ -59,7 +59,7 @@ def ok_to_merge?
 end
 
 def merge_into target_company
-  target_company = Card.fetch_name target_company
+  target_company = target_company.cardname
   move_relationships_to target_company
   move_answers_to target_company
   move_dataset_listings_to target_company

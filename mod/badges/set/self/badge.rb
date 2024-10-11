@@ -8,7 +8,7 @@ format :html do
   def badge_tables
     [:metric_answer, :metric, :company, :project, :source].map do |type|
       <<-HTML
-           <h4>#{Card.fetch_name type}</h4>
+           <h4>#{type.cardname}</h4>
            #{squad_overview type}
       HTML
     end.join

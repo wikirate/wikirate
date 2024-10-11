@@ -14,7 +14,7 @@ RSpec.describe OpenCorporates::MappingApi do
   xit "new company with headquarters entry" do
     company = create "Wilmar International",
                      type: :company,
-                     fields: { headquarters: Card.fetch_name(:oc_sg) }
+                     fields: { headquarters: :oc_sg.cardname }
     expect(company.open_corporates).to eq "199904785Z"
   end
 end
