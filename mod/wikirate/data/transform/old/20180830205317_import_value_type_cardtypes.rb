@@ -34,7 +34,7 @@ class ImportValueTypeCardtypes < Cardio::Migration::Transform
     Card.search left: { type_id: left_type_id },
                 right: { type_id: right_type_id },
                 type_id: [:ne, type_id] do |broken|
-      puts "fixing #{Card.fetch_name(type_id)} #{broken.name}"
+      puts "fixing #{type_id.cardname} #{broken.name}"
       broken.update_column :type_id, type_id
     end
   end

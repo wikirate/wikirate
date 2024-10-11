@@ -16,7 +16,7 @@ end
 
 format do
   def rate_subject
-    @wikirate_subject ||= Card.fetch_name(:company)
+    @wikirate_subject ||= :company.cardname
   end
 
   def rate_subjects

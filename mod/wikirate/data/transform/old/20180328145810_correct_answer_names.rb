@@ -6,8 +6,8 @@ class CorrectAnswerNames < Cardio::Migration::Transform
   def up
     Answer.in_batches do |answers|
       answers.each do |a|
-        company = Card.fetch_name(a.company_id).to_s
-        metric =  Card.fetch_name(a.metric_id).to_s
+        company = a.company_id.cardname.to_s
+        metric = a.metric_id.cardname.to_s
         if company != a.company_name || metric != a.metric_name
           begin
             a.update! company_name: company, metric_name: metric
