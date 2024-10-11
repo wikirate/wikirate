@@ -25,8 +25,7 @@ namespace :wikirate do
       open "#{url}?#{log_args.to_param}"
       benchmark = WBench::Benchmark.new(url) { "" }
       results   = benchmark.run(runs) # => WBench::Results
-      card = Card.fetch "#{page}+#{Card[:performance_log].name}",
-                        new: { type_id: Card::PointerID }
+      card = page.fetch :performance_log, new: { type: :pointer }
       card.add_csv_entry page, results, runs
     end
 
