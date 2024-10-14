@@ -25,7 +25,7 @@ end
 
 def milestones seq
   puts "TRACK SEQ: #{seq}" if (seq % 1000).zero?
-  Card::Cache.reset_soft
+  Card::Cache.reset_temp
 end
 
 def record_invalid answer_id, type, msg
