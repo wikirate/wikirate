@@ -69,7 +69,7 @@ module Wikirate
 
       def measure
         COLUMNS.each_with_object({}) do |(key, column), hash|
-          Card::Cache.reset_soft
+          Card::Cache.reset_temp
           response = send key
           response = response.count unless key.match? NO_COUNT_REGEX
           hash[column] = response
