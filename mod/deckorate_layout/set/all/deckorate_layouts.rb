@@ -34,14 +34,12 @@ format :html do
     end
   end
 
-  # FIXME: codify conversion snippet handling
   def deckorate_layout klass, navbar: true, extra_class: ""
     body_tag "deckorate-layout deckorate-#{klass}-layout #{extra_class}" do
       output [(nest(:nav_bar, view: :core) if navbar),
               yield,
               nest(:wikirate_footer, view: :core),
-              haml(:ajax_loader_anime),
-              nest("_main+google analytics conversion snippet", view: :core)]
+              haml(:ajax_loader_anime)]
     end
   end
 end
