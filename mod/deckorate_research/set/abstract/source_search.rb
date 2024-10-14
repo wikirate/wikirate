@@ -30,7 +30,7 @@ format do
   end
 
   def filter_map
-    %i[report_type year wikirate_link company_name]
+    %i[report_type year wikirate_link company]
       .unshift key: :wikirate_title, open: true
   end
 end
@@ -69,8 +69,13 @@ class SourceFilterCql < DeckorateFilterCql
     matching_field WikirateTitleID, value
   end
 
-  def company_name_cql value
-    matching_field CompanyID, value
+  # def company_name_cql value
+  #   matching_field CompanyID, value
+  # end
+
+  def company_cql value
+    value = [:in] + Array.wrap(value)
+    add_to_cql :right_plus, [:company, { refer_to: value }]
   end
 
   def report_type_cql value
