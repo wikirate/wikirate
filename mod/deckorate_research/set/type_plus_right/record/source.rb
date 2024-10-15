@@ -35,7 +35,7 @@ format :html do
   def default_filter_hash
     {
       wikirate_link: "",
-      company_name: company_name,
+      company: company_name,
       report_type: report_type,
       year: current_year
     }
