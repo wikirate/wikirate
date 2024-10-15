@@ -114,12 +114,12 @@ end
 
 def delete_subject_answer_for_company company
   return unless (answer_card = Card.fetch(self, company))
-  delete_as_subcard answer_card
+  answer_card.delete!
 end
 
 def delete_object_answers_for_company company
   object_answers_for_company(company).each do |answer_card|
-    delete_as_subcard answer_card
+    answer_card.delete!
   end
 end
 

@@ -7,6 +7,10 @@ event :update_lookups_on_record_rename, :finalize, changed: :name, on: :update d
   metric_answer_card.search.each(&:refresh)
 end
 
+event :update_related_calculations, :integrate_with_delay, priority: 50 do
+  metric_card&.update_depender_values_for! company_id
+end
+
 def virtual?
   new?
 end
