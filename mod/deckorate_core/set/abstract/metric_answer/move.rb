@@ -14,7 +14,7 @@ end
 
 def without_move_conflict name_parts
   new_name = move_name name_parts
-  return if Card.exists? new_name
+  return if Card.exist? new_name
 
   yield move_attributes(new_name)
 end
