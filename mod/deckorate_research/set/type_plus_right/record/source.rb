@@ -19,8 +19,7 @@ format :html do
   end
 
   def company_name
-    # need fetch_name to standardize
-    Card.fetch_name card.company_name
+    card.company_name.standard
   end
 
   def new_source_defaults
@@ -36,7 +35,7 @@ format :html do
   def default_filter_hash
     {
       wikirate_link: "",
-      company_name: company_name,
+      company: company_name,
       report_type: report_type,
       year: current_year
     }

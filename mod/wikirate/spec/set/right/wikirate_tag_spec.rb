@@ -7,7 +7,7 @@ describe Card::Set::Right::WikirateTag do
   it "creates tag card(s) while creating +tag card(s)" do
     # create the webpage first
     Card.create! name: "Tagged+tag", content: "[[zzz]]\n[[xxx]]", type: :pointer
-    expect(Card.exists?("zzz")).to be true
-    expect(Card.exists?("xxx")).to be true
+    expect(Card.exist?("zzz")).to be true
+    expect(Card.exist?("xxx")).to be true
   end
 end

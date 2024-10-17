@@ -53,8 +53,8 @@ RSpec.describe Card::Set::Type::Source do
           source_file = sourcepage.fetch(:file)
           expect(source_file).not_to be_nil
           # expect(sourcepage.fetch(:wikirate_link)).to be_nil
-          expect(Card.exists?("#{sourcepage.name}+title")).to eq(false)
-          expect(Card.exists?("#{sourcepage.name}+description")).to eq(false)
+          expect(Card.exist?("#{sourcepage.name}+title")).to eq(false)
+          expect(Card.exist?("#{sourcepage.name}+description")).to eq(false)
           expect(File.exist?(source_file.file.path)).to be true
         end
 

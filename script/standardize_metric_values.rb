@@ -47,7 +47,7 @@ end
 
 def skip_metric m
   puts "Skip the #{m.name} because unknown inside".red
-  return if Card.exists? "#{m.name}+pending_normalize"
+  return if Card.exist? "#{m.name}+pending_normalize"
   Card.create! name: "#{m.name}+pending_normalize", type_id: Card::PhraseID,
                content: "true"
 end

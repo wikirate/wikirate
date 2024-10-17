@@ -46,7 +46,7 @@ def related_companies_hash args={}
   end
 end
 
-# @return [Array] of Integers
+# @return [Array<Integer>]
 def inverse_company_ids args={}
   normalize_company_arg company_id_field, args
   relationships(args).distinct.pluck inverse_company_id_field

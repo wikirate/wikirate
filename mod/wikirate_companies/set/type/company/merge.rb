@@ -59,7 +59,7 @@ def ok_to_merge?
 end
 
 def merge_into target_company
-  target_company = Card.fetch_name target_company
+  target_company = target_company.cardname
   move_relationships_to target_company
   move_answers_to target_company
   move_dataset_listings_to target_company
@@ -107,7 +107,7 @@ end
 def move_field_cards_to target_company
   simple_field_cards.each do |field_card|
     new_name = field_card.name.swap name, target_company
-    next if Card.exists? new_name
+    next if Card.exist? new_name
     field_card.update! name: new_name
   end
 end

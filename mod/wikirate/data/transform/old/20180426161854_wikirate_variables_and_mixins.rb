@@ -10,7 +10,7 @@ class WikirateVariablesAndMixins < Cardio::Migration::Transform
       ensure_card "coded stylesheets", codename: "coded_stylesheets",
                                        type_id: Card::SkinIDå
     end
-    item_name = Card.fetch_name(:style_mixins_and_variables)
+    item_name = :style_mixins_and_variables.cardname
     card = Card["wikirate skin", :stylesheets]
     card.insert_item! 0, item_name
 
