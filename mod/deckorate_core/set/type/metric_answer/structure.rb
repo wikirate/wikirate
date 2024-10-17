@@ -44,11 +44,11 @@ format :html do
   end
 
   view :calculations_tab do
-    card.depender_answers.map { |a| nest a, view: :bar }
+    card.depender_answers.map { |a| nest a.card, view: :bar }
   end
 
   view :inputs_tab do
-    card.dependee_answers.map { |a| nest a, view: :bar }
+    card.dependee_answers.map { |a| nest a.card, view: :bar }
   end
 
   view :relationship_answer_tab do
