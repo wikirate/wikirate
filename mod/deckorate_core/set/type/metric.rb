@@ -140,6 +140,14 @@ def ok_as_steward?
   designer_assessed? ? steward? : true
 end
 
+def ok_to_update?
+  steward?
+end
+
+def ok_to_delete?
+  steward?
+end
+
 def user_can_answer?
   Auth.signed_in? && researchable? && ok_as_steward?
 end
