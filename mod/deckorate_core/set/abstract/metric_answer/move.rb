@@ -14,14 +14,14 @@ end
 
 def without_move_conflict name_parts
   new_name = move_name name_parts
-  return if Card.exists? new_name
+  return if Card.exist? new_name
 
   yield move_attributes(new_name)
 end
 
 def move_name name_parts
   cleaned_parts = name_part_types.map do |key|
-    Card.fetch_name(name_parts[key.to_sym] || send(key).to_s)
+    (name_parts[key.to_sym] || send(key).to_s).cardname
   end
   Card::Name[*cleaned_parts]
 end

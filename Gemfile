@@ -80,6 +80,8 @@ gem "rack-cors"                      # support for Cross-Origin Resource Sharing
 
 # VERSIONING ISSUES
 gem "ffi", "1.16.3"                  # 1.17 requires rubygems version >= 3.3.22
+gem "net-imap", "0.4.17"             # 0.5.0 requires ruby version >= 3.1.0
+gem "zeitwerk", "~>2.6.18"           # 2.7 requires rubygems v > 3.2
 
 group :live do
   gem "dalli"                        # Memcache

@@ -54,8 +54,8 @@ class Card
 
     def normalize_value_type value
       value = value.to_name
-      if validate_value_type value
-        Card.fetch_name value
+      if valid_value_type? value
+        value.standard
       elsif (correction = VALUE_TYPE_CORRECTIONS[value.key])
         correction
       else
@@ -67,7 +67,7 @@ class Card
       Card.fetch_type_id(value) == Card::MetricTypeTypeID
     end
 
-    def validate_value_type value
+    def valid_value_type? value
       value_type_codes.include? value&.to_name&.codename
     end
 

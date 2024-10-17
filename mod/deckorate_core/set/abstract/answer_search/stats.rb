@@ -147,7 +147,7 @@ format :html do
   end
 
   def badge_label codename
-    Codename.exists?(codename) ? codename.cardname : codename.to_s.to_name
+    Codename.exist?(codename) ? codename.cardname : codename.to_s.to_name
   end
 
   def answer_count_badge codename, count=nil
