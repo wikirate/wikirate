@@ -859,168 +859,174 @@ card_counts_143:
   flag: 0
 card_counts_144:
   id: 144
-  left_id: 3289
-  right_id: 784
-  value: 1
+  left_id: 3872
+  right_id: 691
+  value: 7
   flag: 0
 card_counts_145:
   id: 145
-  left_id: 3250
+  left_id: 3289
   right_id: 784
   value: 1
   flag: 0
 card_counts_146:
   id: 146
+  left_id: 3250
+  right_id: 784
+  value: 1
+  flag: 0
+card_counts_147:
+  id: 147
   left_id: 3872
   right_id: 695
   value: 3
   flag: 0
-card_counts_147:
-  id: 147
-  left_id: 3172
-  right_id: 784
-  value: 1
-  flag: 0
 card_counts_148:
   id: 148
-  left_id: 3182
+  left_id: 3172
   right_id: 784
   value: 1
   flag: 0
 card_counts_149:
   id: 149
-  left_id: 3179
+  left_id: 3182
   right_id: 784
   value: 1
   flag: 0
 card_counts_150:
   id: 150
-  left_id: 1503
+  left_id: 3179
   right_id: 784
   value: 1
   flag: 0
 card_counts_151:
   id: 151
-  left_id: 3872
-  right_id: 788
+  left_id: 1503
+  right_id: 784
   value: 1
   flag: 0
 card_counts_152:
   id: 152
-  left_id: 3195
-  right_id: 786
+  left_id: 3872
+  right_id: 788
   value: 1
   flag: 0
 card_counts_153:
   id: 153
-  left_id: 3872
-  right_id: 790
+  left_id: 3195
+  right_id: 786
   value: 1
   flag: 0
 card_counts_154:
   id: 154
-  left_id: 3289
+  left_id: 3872
   right_id: 790
   value: 1
   flag: 0
 card_counts_155:
   id: 155
-  left_id: 3479
+  left_id: 3289
   right_id: 790
   value: 1
   flag: 0
 card_counts_156:
   id: 156
-  left_id: 3648
+  left_id: 3479
   right_id: 790
   value: 1
   flag: 0
 card_counts_157:
   id: 157
+  left_id: 3648
+  right_id: 790
+  value: 1
+  flag: 0
+card_counts_158:
+  id: 158
   left_id: 3195
   right_id: 667
   value: 2
   flag: 0
-card_counts_158:
-  id: 158
-  left_id: 1192
-  right_id: 805
-  value: 1
-  flag: 0
 card_counts_159:
   id: 159
-  left_id: 1198
+  left_id: 1192
   right_id: 805
   value: 1
   flag: 0
 card_counts_160:
   id: 160
-  left_id: 3924
-  right_id: 620
+  left_id: 1198
+  right_id: 805
   value: 1
   flag: 0
 card_counts_161:
   id: 161
-  left_id: 3172
-  right_id: 703
+  left_id: 3924
+  right_id: 620
   value: 1
   flag: 0
 card_counts_162:
   id: 162
-  left_id: 3179
+  left_id: 3172
   right_id: 703
   value: 1
   flag: 0
 card_counts_163:
   id: 163
-  left_id: 3182
+  left_id: 3179
   right_id: 703
   value: 1
   flag: 0
 card_counts_164:
   id: 164
+  left_id: 3182
+  right_id: 703
+  value: 1
+  flag: 0
+card_counts_165:
+  id: 165
   left_id: 3962
   right_id: 695
   value: 3
   flag: 0
-card_counts_165:
-  id: 165
+card_counts_166:
+  id: 166
   left_id: 3185
   right_id: 703
   value: 1
   flag: 0
-card_counts_166:
-  id: 166
+card_counts_167:
+  id: 167
   left_id: 3965
   right_id: 695
   value: 1
   flag: 0
-card_counts_167:
-  id: 167
+card_counts_168:
+  id: 168
   left_id: 3849
   right_id: 747
   value: 0
   flag: 0
-card_counts_168:
-  id: 168
-  left_id: 3844
-  right_id: 691
-  value: 1
-  flag: 0
 card_counts_169:
   id: 169
   left_id: 3844
-  right_id: 695
+  right_id: 691
   value: 1
   flag: 0
 card_counts_170:
   id: 170
+  left_id: 3844
+  right_id: 695
+  value: 1
+  flag: 0
+card_counts_171:
+  id: 171
   left_id: 4134
   right_id: 691
   value: 4
   flag: 0
-card_counts_171:
-  id: 171
+card_counts_172:
+  id: 172
   left_id: 4134
   right_id: 695
   value: 2

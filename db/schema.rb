@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_09_164452) do
-
+ActiveRecord::Schema[7.2].define(version: 2024_09_09_164452) do
   create_table "answers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "answer_id"
     t.integer "metric_id", null: false
@@ -20,13 +19,13 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
     t.integer "year", null: false
     t.string "value", limit: 1024
     t.decimal "numeric_value", precision: 30, scale: 5
-    t.datetime "updated_at"
+    t.datetime "updated_at", precision: nil
     t.boolean "imported"
     t.boolean "latest"
     t.string "checkers"
     t.integer "creator_id", null: false
     t.integer "editor_id"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.string "overridden_value"
     t.boolean "calculating"
     t.integer "source_count"
@@ -60,7 +59,7 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
   create_table "card_acts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "card_id"
     t.integer "actor_id"
-    t.datetime "acted_at"
+    t.datetime "acted_at", precision: nil
     t.string "ip_address"
     t.index ["acted_at"], name: "acts_acted_at_index"
     t.index ["actor_id"], name: "card_acts_actor_id_index"
@@ -95,7 +94,7 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
   end
 
   create_table "card_revisions", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.integer "card_id", null: false
     t.integer "creator_id", null: false
     t.text "content", null: false
@@ -108,7 +107,7 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
     t.integer "right_id"
     t.string "left_key"
     t.text "content", size: :medium
-    t.datetime "updated_at"
+    t.datetime "updated_at", precision: nil
     t.index ["left_id"], name: "right_id_index"
     t.index ["right_id"], name: "left_id_index"
   end
@@ -120,8 +119,8 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
     t.integer "left_id"
     t.integer "right_id"
     t.integer "current_revision_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "creator_id", null: false
     t.integer "updater_id", null: false
     t.string "read_rule_class"
@@ -148,13 +147,13 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
     t.integer "attempts", default: 0, null: false
     t.text "handler", size: :medium, null: false
     t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
+    t.datetime "run_at", precision: nil
+    t.datetime "locked_at", precision: nil
+    t.datetime "failed_at", precision: nil
     t.string "locked_by"
     t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
@@ -188,14 +187,14 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
     t.integer "year", null: false
     t.string "value"
     t.decimal "numeric_value", precision: 30, scale: 5
-    t.datetime "updated_at"
+    t.datetime "updated_at", precision: nil
     t.boolean "imported"
     t.boolean "latest"
     t.integer "inverse_metric_id", null: false
     t.integer "inverse_answer_id", null: false
     t.integer "route", limit: 1
     t.integer "editor_id"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.integer "creator_id"
     t.index ["answer_id"], name: "answer_id_index"
     t.index ["metric_id", "subject_company_id", "object_company_id", "year"], name: "relationship_component_cards_index", unique: true
@@ -210,7 +209,7 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
   create_table "sessions", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "session_id"
     t.text "data"
-    t.datetime "updated_at"
+    t.datetime "updated_at", precision: nil
     t.index ["session_id"], name: "sessions_session_id_index"
   end
 
@@ -224,8 +223,8 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
     t.string "email", limit: 100
     t.string "crypted_password", limit: 40
     t.string "salt", limit: 42
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "password_reset_code", limit: 40
     t.string "status", default: "request"
     t.integer "invite_sender_id"
@@ -233,5 +232,4 @@ ActiveRecord::Schema.define(version: 2024_09_09_164452) do
     t.integer "card_id", null: false
     t.integer "account_id", null: false
   end
-
 end
