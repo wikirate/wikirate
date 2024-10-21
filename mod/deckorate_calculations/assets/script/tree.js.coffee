@@ -1,6 +1,6 @@
 $ ->
-  $("body").on "shown.bs.collapse", ".tree-collapse", (el) ->
-    expandNextStubs $(el.target)
+  $("body").on "shown.bs.collapse", ".tree-collapse", (event) ->
+    expandNextStubs $(event.target)
 
 decko.slot.ready (slot)->
   # expandNextStubs slot
