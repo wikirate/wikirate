@@ -108,41 +108,45 @@
         :input_type: radio
         :help: Do you want to receive our monthly community newsletter?
 
-#- :name: Profile Type
-#  :codename: profile_type
-#  :fields:
-#    :right:
-#      :fields:
-#        :default:
-#          :type: :pointer
-#        :input_type: select
-#        :help: Which profile type fits you best?
-#        :content_options:
-#          :type: :json
-#          :content: |
-#            {
-#              "Academia": [
-#                "Researcher",
-#                "Student",
-#                "Teacher"
-#              ],
-#              "Non-Profit": [
-#                "Civil Society Organization",
-#                "Foundation",
-#                "Government",
-#                "Trade Union"
-#              ],
-#              "For-Profit": [
-#                "Business Representative",
-#                "Investor",
-#                "Manager"
-#              ],
-#              "Other": [
-#                "Sustainability Expert",
-#                "Journalist",
-#                "Independent User"
-#              ]
-#            }
+- :name: Profile Type
+  :codename: profile_type
+  :conflict: override
+  :fields:
+    :right:
+      :fields:
+        :default:
+          :type: :pointer
+        :input_type: select
+        :help: Which profile type fits you best?
+        :content_options:
+          :type: :json
+          :content: |
+            {
+              "Academia": [
+                "Research",
+                "Studies",
+                "Teacher"
+              ],
+              "Civil Society": [
+                "Association",
+                "Civil Society Organization (CSO)",
+                "Foundation",
+                "Labor union",
+                "Local group or Community",
+                "Media or Journalism",
+                "Networks or Alliances"],
+              "Individual Participation": [
+                "Data enthusiast",
+                "Data expert",
+                "Sustainability enthusiast",
+                "Sustainability expert"],
+              "Private and Public sector": [
+                "Company",
+                "Government",
+                "Investment"
+              ]
+            }
+
 - :name: Wikirate Policies
   :codename: policy
 
