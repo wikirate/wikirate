@@ -28,7 +28,7 @@ format :html do
   end
 
   view :stack, template: :haml, wrap: :slot
-  view :head_and_lead, template: :haml
+  view :head_and_lead, cache: :yes, template: :haml
   view :icon_left_text_right, template: :haml
 
   view :flipper_title, template: :haml
