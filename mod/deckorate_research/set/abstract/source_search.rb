@@ -62,11 +62,11 @@ end
 # cql for filtering sources
 class SourceFilterCql < DeckorateFilterCql
   def wikirate_link_cql value
-    matching_field WikirateLinkID, value
+    matching_field WikirateLinkID, :eq, value
   end
 
   def wikirate_title_cql value
-    matching_field WikirateTitleID, value
+    matching_field WikirateTitleID, :match, value
   end
 
   # def company_name_cql value
@@ -89,8 +89,8 @@ class SourceFilterCql < DeckorateFilterCql
 
   private
 
-  def matching_field field_id, value
+  def matching_field field_id, operator, value
     return unless value.present?
-    add_to_cql :right_plus, [field_id, { content: [:match, ":#{value}"] }]
+    add_to_cql :right_plus, [field_id, { content: [operator, ":#{value}"] }]
   end
 end
