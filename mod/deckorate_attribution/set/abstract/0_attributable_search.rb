@@ -10,5 +10,5 @@ format :html do
     end
   end
 
-  view :attribution_alert, template: :haml
+  view :attribution_alert, template: :haml, cache: :yes
 end
