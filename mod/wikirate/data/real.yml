@@ -110,6 +110,7 @@
 
 - :name: Profile Type
   :codename: profile_type
+  :conflict: override
   :fields:
     :right:
       :fields:
