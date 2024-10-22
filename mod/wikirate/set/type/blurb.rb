@@ -13,9 +13,9 @@ format :html do
     community_action6: "Subscribe"
   }.freeze
 
-  view :action_card, template: :haml
-  view :cta, template: :haml
-  view :cta_section, template: :haml
+  view :action_card, template: :haml, cache: :yes
+  view :cta, template: :haml, cache: :yes
+  view :cta_section, template: :haml, cache: :yes
 
   def button_or_link
     if (text = BUTTON_TEXT[card.codename])

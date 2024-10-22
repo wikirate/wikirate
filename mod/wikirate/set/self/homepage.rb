@@ -19,7 +19,7 @@ format :html do
   end
 
   %i[core alert banner involved].each do |view|
-    view view, template: :haml
+    view view, template: :haml, cache: :yes
   end
 
   view :delta, template: :haml, wrap: :slot, cache: :never

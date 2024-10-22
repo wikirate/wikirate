@@ -1,5 +1,9 @@
 card_accessor :discussion
 
+def expire_left?
+  false
+end
+
 # for speed, virtual card's _values_ are held both in the content of the _answer_ card
 # and in the value_card itself (using content is much faster)
 def value

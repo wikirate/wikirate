@@ -25,7 +25,7 @@ format :html do
     date_view card.content_updated_at
   end
 
-  view :core, unknown: true do
+  view :core, unknown: true, cache: :yes do
     wrap_with :span, pretty_span_args do
       beautify(pretty_value).html_safe
     end
