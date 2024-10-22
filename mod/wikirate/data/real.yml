@@ -110,6 +110,7 @@
 
 - :name: Profile Type
   :codename: profile_type
+  :conflict: override
   :fields:
     :right:
       :fields:
@@ -133,21 +134,18 @@
                 "Labor union",
                 "Local group or Community",
                 "Media or Journalism",
-                "Networks or Alliances"
-              ],
+                "Networks or Alliances"],
               "Individual Participation": [
                 "Data enthusiast",
                 "Data expert",
                 "Sustainability enthusiast",
-                "Sustainability expert"
-              ],
+                "Sustainability expert"],
               "Private and Public sector": [
                 "Company",
                 "Government",
                 "Investment"
               ]
             }
-
 
 - :name: Wikirate Policies
   :codename: policy
