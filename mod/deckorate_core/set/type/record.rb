@@ -15,6 +15,12 @@ def answers
   metric_answer_card.search
 end
 
+private
+
+def expire_left?
+  false
+end
+
 format do
   delegate :answers, to: :card
 end
