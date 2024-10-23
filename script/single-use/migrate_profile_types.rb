@@ -6,9 +6,6 @@ Card::Auth.signin user
 
 MAP = {
   "Civil Society / NGO" => "Civil Society Organization (CSO)",
-  "Company" =>  "Company",
-  "Foundation" => "Foundation",
-  "Government" =>  "Government",
   "Independent" => "Data enthusiast",
   "Investor AB" =>  "Investment",
   "Media" => "Media or Journalism",
@@ -22,18 +19,13 @@ end
 
 def researcher_ids
   @researcher_ids ||= ::Set.new(
-    Card.search type: :user,
-                referred_to_by: { left: { type: :research_group }, right: :researcher },
+    Card.search referred_to_by: { left: { type: :research_group }, right: :researcher },
                 return: :id
   )
 end
 
-Card.search left: { type: :user }, right: :profile_type do |pt|
+Card.search right: :profile_type do |pt|
   new_type = pt.content == "Academic" ? academic(pt.left) : MAP[pt.content]
-  next unless new_type.present?
-end
-
-Card.search left: { type: :user }, right: :profile_type do |pt|
-  new_type = pt.content == "Academic" ? academic(pt.left) : MAP[pt.content]
+  puts "#{pt.content} --> #{new_type}"
   pt.update! content: new_type if new_type.present?
 end
