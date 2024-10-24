@@ -55,7 +55,7 @@ format :html do
   end
 
   def export_form
-    form_tag "/", id: "export-form", method: :get
+    form_tag "/#{card.name.url_key}", id: "export-form", method: :get
   end
 
   def default_export_limit
