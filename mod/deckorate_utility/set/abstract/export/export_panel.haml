@@ -1,6 +1,6 @@
 //%form
 
-.export-panel.p-3{ action: "/#{card.name.url_key}" }
+.export-panel.p-3
   = render_export_hidden_tags
   %h2.mb-3 Export Data
   - if respond_to? :export_types
