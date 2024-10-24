@@ -43,7 +43,7 @@ end
 
 format :html do
   view :export_panel, template: :haml, wrap: :slot
-  view :export_button, cache: :never, template: :haml, denial: :blank
+  view :export_button, cache: :yes, template: :haml, denial: :blank
   view :export_limit, cache: :never, template: :haml
 
   view :export_hidden_tags, cache: :never do
@@ -55,7 +55,7 @@ format :html do
   end
 
   def export_form
-    form_tag "/", id: "export-form", method: :get
+    form_tag "/#{card.name.url_key}", id: "export-form", method: :get
   end
 
   def default_export_limit

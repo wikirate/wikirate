@@ -4,7 +4,7 @@ LEGAL_CODENAMES = %i[policy privacy_policy terms_of_use].freeze
 # community_guidelines disclaimers notice_and_take_down
 
 format :html do
-  view :core, template: :haml
+  view :core, template: :haml, cache: :deep
 
   def footer_legal_link_list
     LEGAL_CODENAMES.map do |codename|

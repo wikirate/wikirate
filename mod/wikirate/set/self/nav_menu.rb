@@ -1,5 +1,5 @@
 format :html do
-  view :core do
+  view :core, cache: :yes do
     dropdown_button icon_tag(:nav_menu), title: "Navigation Menu" do
       dropdown_items.compact
     end
