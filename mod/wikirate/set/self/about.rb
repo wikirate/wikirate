@@ -13,5 +13,5 @@ format :html do
     "About Wikirate"
   end
 
-  view :page, template: :haml
+  view :page, template: :haml, cache: :deep
 end

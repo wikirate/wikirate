@@ -18,10 +18,11 @@ format :html do
     :deckorate_minimal_layout
   end
 
-  %i[core alert banner involved].each do |view|
-    view view, template: :haml, cache: :yes
+  %i[alert banner involved].each do |view|
+    view view, template: :haml, cache: :always
   end
 
+  view :core, template: :haml, cache: :deep, expire: :hour
   view :delta, template: :haml, wrap: :slot, cache: :never
 
   view :shuffle_button do
