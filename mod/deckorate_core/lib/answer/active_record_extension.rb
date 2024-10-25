@@ -3,10 +3,6 @@ class Answer
   module ActiveRecordExtension
     include Card::LookupQuery::ActiveRecordExtension
 
-    def answer_cards
-      map(&:card).compact
-    end
-
     def answer_names
       pluck(:metric_id, :company_id, :year).map { |m, c, y| Card::Name[m, c, y.to_s] }
     end
