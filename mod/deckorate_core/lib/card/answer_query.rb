@@ -70,7 +70,7 @@ class Card
     private
 
     def main_results
-      super.compact
+      lookup_relation.map(&:card).compact
     end
 
     def status_filter
