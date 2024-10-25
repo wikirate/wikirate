@@ -4,7 +4,7 @@ include_set Abstract::AboutPages
 include_set Abstract::CompanySlider
 
 format :html do
-  view :page, template: :haml
+  view :page, template: :haml, cache: :deep
 
   def edit_fields
     absolutize_edit_fields %i[main_community_heading community_action_heading] +
