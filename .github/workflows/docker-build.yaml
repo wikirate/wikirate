@@ -1,8 +1,7 @@
 name: Build and publish Docker image
 
 on:
-  push:
-    branches: [ main, staging, production ]
+  push
 
 jobs:
   build-and-push-image:
