@@ -70,8 +70,7 @@ class Card
     private
 
     def main_results
-      # puts "SQL: #{lookup_relation.to_sql}"
-      lookup_relation.answer_cards
+      lookup_relation.map(&:card).compact
     end
 
     def status_filter
