@@ -21,5 +21,5 @@ end
 
 # delete logic is different, because most users don't have permission by default
 def ok_to_delete?
-  metric_card.steward?
+  metric_card&.steward?
 end
