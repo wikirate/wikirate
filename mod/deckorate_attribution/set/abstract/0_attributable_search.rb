@@ -4,11 +4,11 @@ format :html do
     nil
   end
 
-  view :export_button do
+  view :export_button, cache: :deep do
     wrap_with :div, class: "_attributable-export" do
       [super(), render_attribution_alert]
     end
   end
 
-  view :attribution_alert, template: :haml
+  view :attribution_alert, template: :haml, cache: :yes
 end

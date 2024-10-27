@@ -13,7 +13,7 @@ format :html do
     :deckorate_tabbed_layout
   end
 
-  view :page do
+  view :page, cache: :yes do
     wrap { [naming { render_rich_header }, render_flash, render_tabs] }
   end
 

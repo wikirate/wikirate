@@ -9,7 +9,7 @@ format :html do
                            [:data_usage]
   end
 
-  view :page, template: :haml
+  view :page, template: :haml, cache: :deep
 
   def breadcrumb_title
     "Data"

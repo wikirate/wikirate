@@ -10,5 +10,5 @@ format :html do
     "Impact"
   end
 
-  view :page, template: :haml
+  view :page, template: :haml, cache: :yes
 end
