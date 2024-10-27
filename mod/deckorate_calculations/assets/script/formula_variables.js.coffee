@@ -26,6 +26,7 @@ $(window).ready ->
   $('body').on "keyup", "._variable-name", ->
     previous = @previousValue
     newval = $(this).val()
+    console.log "updating value from #{previous} to #{newval}"
     variabler(this).updateVariableNameInFormula previous, newval
     @previousValue = newval
 
