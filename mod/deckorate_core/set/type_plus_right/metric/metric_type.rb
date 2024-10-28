@@ -4,12 +4,10 @@ include_set Abstract::LookupField
 # include_set Abstract::DesignerPermissions
 # Currently governed by *rstar rules
 
+delegate :ok_to_delete?, to: :metric_card
+
 def lookup_columns
   :metric_type_id
-end
-
-def ok_to_delete?
-  metric_card.steward?
 end
 
 event :reset_metrics_set_pattern_for_metric_type, :finalize,

@@ -5,16 +5,14 @@ delegate :metric_type_codename, :metric_type_card, :variables_card,
          :calculator_class, :calculator, :normalize_value,
          :researched?, :calculated?, :rating?, :score?, to: :metric_card
 
+delegate :ok_to_delete?, to: :metric_card
+
 event :validate_formula, :validate, changed: :content do
   formula_errors = calculator.detect_errors
   return if formula_errors.empty?
   formula_errors.each do |msg|
     errors.add :formula, msg
   end
-end
-
-def asset_inputter?
-  false
 end
 
 format :html do
@@ -62,4 +60,10 @@ format :html do
   def default_nest_view
     :bar
   end
+end
+
+# TODO: explain!?!
+# what was the situation where a metric formula was seen as a possible asset inputter?
+def asset_inputter?
+  false
 end
