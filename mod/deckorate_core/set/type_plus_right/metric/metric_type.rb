@@ -8,6 +8,10 @@ def lookup_columns
   :metric_type_id
 end
 
+def ok_to_delete?
+  metric_card.steward?
+end
+
 event :reset_metrics_set_pattern_for_metric_type, :finalize,
       on: :save, changed: :content do
   left.reset_patterns
