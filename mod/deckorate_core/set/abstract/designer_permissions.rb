@@ -14,7 +14,7 @@ def ok_to_update?
 end
 
 def ok_to_delete?
-  metric_card&.steward
+  metric_card&.steward?
 end
 
 private
