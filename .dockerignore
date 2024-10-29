@@ -1,5 +1,6 @@
-Dockerfile
-docker-compose.yml
+/**/Dockerfile
+/**/docker-compose.yml
+.github
 .semaphore
 .gitignore
 .gitmodules
