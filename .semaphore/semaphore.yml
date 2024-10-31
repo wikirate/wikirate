@@ -19,7 +19,7 @@ global_job_config:
     commands:
       # INSTALL WIKIRATE CODE AND DEPENDENCIES
       - checkout
-      - sem-version ruby 3.0.2
+      - sem-version ruby 3.3.0
       - gem update --system
       - git submodule update --init --recursive --depth=1
       - sem-service start mysql 8.0
@@ -43,10 +43,12 @@ global_job_config:
 
 blocks:
   - name: Unit Tests
+#    run:
+#      when: "false"
     task:
       prologue:
         commands:
-          # - cache delete gems-baseline # occasionally clear
+          - cache delete gems-baseline # occasionally clear
           - cache restore gems-baseline
           - GLCHECK=`checksum Gemfile.lock`
           - cache restore gems-$GLCHECK
