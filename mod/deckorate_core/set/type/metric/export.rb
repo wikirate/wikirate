@@ -1,10 +1,9 @@
 NESTED_FIELD_CODENAMES = %i[
-    question metric_type about methodology value_type value_options report_type
-    research_policy unit range hybrid topic score formula rubric variables
-  ].freeze
+  question metric_type about methodology value_type value_options report_type
+  research_policy unit range hybrid topic score formula rubric variables
+].freeze
 
-COUNT_FIELD_CODENAMES =
-  %i[metric_answer bookmarkers dataset company].freeze
+COUNT_FIELD_CODENAMES = %i[metric_answer bookmarkers dataset company].freeze
 
 FIELD_LABELS = {
   topic: :topics,
