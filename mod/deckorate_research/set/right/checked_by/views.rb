@@ -3,7 +3,8 @@ format :html do
            :checkers, :check_requester, :user, :checker_count, to: :card
 
   view(:core) { card_form(:update) { haml :core } }
-  view :check_interaction, cache: :never, template: :haml
+  view :check_interaction, template: :haml, cache: :never,
+                           perms: :allowed_to_check?, denial: :blank
 
   def input_type
     :checkbox
