@@ -6,7 +6,7 @@
 - count = checker_count
 
 .checked-by-core.d-flex.flex-column.align-items-end
-  = render_check_interaction if allowed_to_check?
+  = render_check_interaction
   .checked-by-status.pt-3
     .checkers-list.d-flex.align-items-center
       = labeled_badge count, "Verification".pluralize(count)
