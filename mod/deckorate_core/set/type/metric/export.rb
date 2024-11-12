@@ -1,20 +1,20 @@
-format :json do
-  NESTED_FIELD_CODENAMES = %i[
+NESTED_FIELD_CODENAMES = %i[
     question metric_type about methodology value_type value_options report_type
     research_policy unit range hybrid topic score formula rubric variables
   ].freeze
 
-  COUNT_FIELD_CODENAMES =
-    %i[metric_answer bookmarkers dataset company].freeze
+COUNT_FIELD_CODENAMES =
+  %i[metric_answer bookmarkers dataset company].freeze
 
-  FIELD_LABELS = {
-    topic: :topics,
-    score: :scores,
-    metric_answer: :answers,
-    dataset: :datasets,
-    company: :companies
-  }.freeze
+FIELD_LABELS = {
+  topic: :topics,
+  score: :scores,
+  metric_answer: :answers,
+  dataset: :datasets,
+  company: :companies
+}.freeze
 
+format :json do
   view :links do
     []
   end
