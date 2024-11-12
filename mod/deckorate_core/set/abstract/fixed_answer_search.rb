@@ -35,10 +35,10 @@ format :html do
     current_group == :none
   end
 
-  # none and all not available on answer dashboard yet.
-  def filter_status_options
-    super.merge "Not Researched" => "none", "Researched and Not" => "all"
-  end
+  # none and all not available on answer dashboard or datasets
+  # def filter_status_options
+  #   super.merge "Not Researched" => "none", "Researched and Not" => "all"
+  # end
 
   def default_item_view
     :grouped_record
