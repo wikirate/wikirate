@@ -1,7 +1,7 @@
 # cache # of metrics with answers for this company (=left)
 include_set Abstract::AnswerLookupCachedCount, target_type: :metric
 
-assign_type :record
+assign_type :record_log
 
 def query_hash
   { company_id: left_id }

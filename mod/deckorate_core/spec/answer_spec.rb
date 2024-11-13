@@ -70,10 +70,10 @@ RSpec.describe Answer do
     end
 
     it "updates latest" do
-      record = "#{metric}+Apple_Inc"
-      new_latest = described_class.for_card "#{record}+2014".card_id
+      record_log = "#{metric}+Apple_Inc"
+      new_latest = described_class.for_card "#{record_log}+2014".card_id
       expect(new_latest.latest).to be_falsey
-      delete "#{record}+2015"
+      delete "#{record_log}+2015"
       new_latest.refresh
       expect(new_latest.latest).to be_truthy
     end
@@ -110,8 +110,8 @@ RSpec.describe Answer do
     end
 
     context "when year changes" do
-      # record has answers for 2002 and 2015
-      let(:record_name) { "Joe User+researched number 1+Apple Inc" }
+      # record_log has answers for 2002 and 2015
+      let(:record_log_name) { "Joe User+researched number 1+Apple Inc" }
 
       it "updates year" do
         update answer_name, name: "Joe User+RM+Apple_Inc+1999"
@@ -119,14 +119,14 @@ RSpec.describe Answer do
       end
 
       def new_latest old_year, new_year
-        old_name = [record_name, old_year.to_s].cardname
-        new_name = [record_name, new_year.to_s].cardname
+        old_name = [record_log_name, old_year.to_s].cardname
+        new_name = [record_log_name, new_year.to_s].cardname
         update old_name, name: new_name
         described_class.for_card(new_name.card_id).latest
       end
 
       def latest_for_year year
-        described_class.for_card([record_name, year.to_s].card_id).latest
+        described_class.for_card([record_log_name, year.to_s].card_id).latest
       end
 
       it "doesn't change latest if still latest" do

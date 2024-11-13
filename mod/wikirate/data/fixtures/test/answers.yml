@@ -4,7 +4,7 @@ answers_001:
   answer_id: 3408
   metric_id: 3289
   company_id: 3172
-  record_id: 3407
+  record_log_id: 3407
   year: 1990
   value: 'yes'
   numeric_value:
@@ -29,7 +29,7 @@ answers_002:
   answer_id: 3413
   metric_id: 3289
   company_id: 3172
-  record_id: 3407
+  record_log_id: 3407
   year: 1991
   value: 'yes'
   numeric_value:
@@ -54,7 +54,7 @@ answers_003:
   answer_id: 3416
   metric_id: 3289
   company_id: 3172
-  record_id: 3407
+  record_log_id: 3407
   year: 1992
   value: 'yes'
   numeric_value:
@@ -79,7 +79,7 @@ answers_004:
   answer_id: 3420
   metric_id: 3282
   company_id: 3172
-  record_id: 3419
+  record_log_id: 3419
   year: 2010
   value: 'yes'
   numeric_value:
@@ -104,7 +104,7 @@ answers_005:
   answer_id: 3424
   metric_id: 3200
   company_id: 3185
-  record_id: 3423
+  record_log_id: 3423
   year: 2000
   value: Mountain View
   numeric_value:
@@ -129,7 +129,7 @@ answers_006:
   answer_id: 3428
   metric_id: 3200
   company_id: 3175
-  record_id: 3427
+  record_log_id: 3427
   year: 1977
   value: Alderaan
   numeric_value:
@@ -154,7 +154,7 @@ answers_007:
   answer_id: 3432
   metric_id: 3200
   company_id: 3182
-  record_id: 3431
+  record_log_id: 3431
   year: 1977
   value: Baker Street, London
   numeric_value:
@@ -179,7 +179,7 @@ answers_008:
   answer_id: 3436
   metric_id: 3217
   company_id: 3187
-  record_id: 3435
+  record_log_id: 3435
   year: 2003
   value: '3'
   numeric_value:
@@ -204,7 +204,7 @@ answers_009:
   answer_id: 3441
   metric_id: 3217
   company_id: 3187
-  record_id: 3435
+  record_log_id: 3435
   year: 2004
   value: '4'
   numeric_value:
@@ -229,7 +229,7 @@ answers_010:
   answer_id: 3444
   metric_id: 3217
   company_id: 3187
-  record_id: 3435
+  record_log_id: 3435
   year: 2005
   value: '5'
   numeric_value:
@@ -254,7 +254,7 @@ answers_011:
   answer_id: 3447
   metric_id: 3217
   company_id: 3187
-  record_id: 3435
+  record_log_id: 3435
   year: 2006
   value: '6'
   numeric_value:
@@ -279,7 +279,7 @@ answers_012:
   answer_id: 3450
   metric_id: 3217
   company_id: 3187
-  record_id: 3435
+  record_log_id: 3435
   year: 2007
   value: '7'
   numeric_value:
@@ -304,7 +304,7 @@ answers_013:
   answer_id: 3453
   metric_id: 3217
   company_id: 3187
-  record_id: 3435
+  record_log_id: 3435
   year: 2008
   value: '6'
   numeric_value:
@@ -329,7 +329,7 @@ answers_014:
   answer_id: 3456
   metric_id: 3217
   company_id: 3187
-  record_id: 3435
+  record_log_id: 3435
   year: 2009
   value: '5'
   numeric_value:
@@ -354,7 +354,7 @@ answers_015:
   answer_id: 3459
   metric_id: 3217
   company_id: 3187
-  record_id: 3435
+  record_log_id: 3435
   year: 2010
   value: '4'
   numeric_value:
@@ -379,7 +379,7 @@ answers_016:
   answer_id: 3463
   metric_id: 3224
   company_id: 3187
-  record_id: 3462
+  record_log_id: 3462
   year: 2010
   value: '1'
   numeric_value:
@@ -404,7 +404,7 @@ answers_017:
   answer_id: 3467
   metric_id: 3230
   company_id: 3187
-  record_id: 3466
+  record_log_id: 3466
   year: 2010
   value: 1, 2
   numeric_value:
@@ -429,7 +429,7 @@ answers_018:
   answer_id: 3471
   metric_id: 3235
   company_id: 3187
-  record_id: 3470
+  record_log_id: 3470
   year: 2010
   value: 1, 2
   numeric_value:
@@ -454,7 +454,7 @@ answers_019:
   answer_id: 3475
   metric_id: 3240
   company_id: 3172
-  record_id: 3474
+  record_log_id: 3474
   year: 1977
   value: '77'
   numeric_value: !ruby/object:BigDecimal 18:0.77e2
@@ -479,7 +479,7 @@ answers_020:
   answer_id: 3479
   metric_id: 3240
   company_id: 3191
-  record_id: 3478
+  record_log_id: 3478
   year: 2015
   value: '15'
   numeric_value: !ruby/object:BigDecimal 18:0.15e2
@@ -504,7 +504,7 @@ answers_021:
   answer_id: 3482
   metric_id: 3240
   company_id: 3191
-  record_id: 3478
+  record_log_id: 3478
   year: 2014
   value: '14'
   numeric_value: !ruby/object:BigDecimal 18:0.14e2
@@ -529,7 +529,7 @@ answers_022:
   answer_id: 3485
   metric_id: 3240
   company_id: 3191
-  record_id: 3478
+  record_log_id: 3478
   year: 2013
   value: '13'
   numeric_value: !ruby/object:BigDecimal 18:0.13e2
@@ -554,7 +554,7 @@ answers_023:
   answer_id: 3488
   metric_id: 3240
   company_id: 3191
-  record_id: 3478
+  record_log_id: 3478
   year: 2012
   value: '12'
   numeric_value: !ruby/object:BigDecimal 18:0.12e2
@@ -579,7 +579,7 @@ answers_024:
   answer_id: 3491
   metric_id: 3240
   company_id: 3191
-  record_id: 3478
+  record_log_id: 3478
   year: 2011
   value: '11'
   numeric_value: !ruby/object:BigDecimal 18:0.11e2
@@ -604,7 +604,7 @@ answers_025:
   answer_id: 3494
   metric_id: 3240
   company_id: 3191
-  record_id: 3478
+  record_log_id: 3478
   year: 2010
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -629,7 +629,7 @@ answers_026:
   answer_id: 3497
   metric_id: 3240
   company_id: 3191
-  record_id: 3478
+  record_log_id: 3478
   year: 2002
   value: Unknown
   numeric_value:
@@ -654,7 +654,7 @@ answers_027:
   answer_id: 3500
   metric_id: 3240
   company_id: 3191
-  record_id: 3478
+  record_log_id: 3478
   year: 2001
   value: Unknown
   numeric_value:
@@ -679,7 +679,7 @@ answers_028:
   answer_id: 3503
   metric_id: 3240
   company_id: 3191
-  record_id: 3478
+  record_log_id: 3478
   year: 2000
   value: '0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -704,7 +704,7 @@ answers_029:
   answer_id: 3507
   metric_id: 3244
   company_id: 3189
-  record_id: 3506
+  record_log_id: 3506
   year: 2014
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -729,7 +729,7 @@ answers_030:
   answer_id: 3510
   metric_id: 3244
   company_id: 3189
-  record_id: 3506
+  record_log_id: 3506
   year: 2015
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -754,7 +754,7 @@ answers_031:
   answer_id: 3514
   metric_id: 3250
   company_id: 3187
-  record_id: 3513
+  record_log_id: 3513
   year: 2014
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -779,7 +779,7 @@ answers_032:
   answer_id: 3518
   metric_id: 3250
   company_id: 3189
-  record_id: 3517
+  record_log_id: 3517
   year: 2015
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -804,7 +804,7 @@ answers_033:
   answer_id: 3521
   metric_id: 3250
   company_id: 3189
-  record_id: 3517
+  record_log_id: 3517
   year: 2014
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
@@ -829,7 +829,7 @@ answers_034:
   answer_id: 3525
   metric_id: 3254
   company_id: 3191
-  record_id: 3524
+  record_log_id: 3524
   year: 2002
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
@@ -854,7 +854,7 @@ answers_035:
   answer_id: 3528
   metric_id: 3254
   company_id: 3191
-  record_id: 3524
+  record_log_id: 3524
   year: 2015
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
@@ -879,7 +879,7 @@ answers_036:
   answer_id: 3532
   metric_id: 3254
   company_id: 3172
-  record_id: 3531
+  record_log_id: 3531
   year: 1977
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
@@ -904,7 +904,7 @@ answers_037:
   answer_id: 3536
   metric_id: 3254
   company_id: 3187
-  record_id: 3535
+  record_log_id: 3535
   year: 2014
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -929,7 +929,7 @@ answers_038:
   answer_id: 3540
   metric_id: 3254
   company_id: 3189
-  record_id: 3539
+  record_log_id: 3539
   year: 2015
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
@@ -954,7 +954,7 @@ answers_039:
   answer_id: 3543
   metric_id: 3254
   company_id: 3189
-  record_id: 3539
+  record_log_id: 3539
   year: 2014
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -979,7 +979,7 @@ answers_040:
   answer_id: 3547
   metric_id: 3273
   company_id: 3189
-  record_id: 3546
+  record_log_id: 3546
   year: 1977
   value: Unknown
   numeric_value:
@@ -1004,7 +1004,7 @@ answers_041:
   answer_id: 3551
   metric_id: 3273
   company_id: 3177
-  record_id: 3550
+  record_log_id: 3550
   year: 1977
   value: "-0.01"
   numeric_value: !ruby/object:BigDecimal 18:-0.1e-1
@@ -1029,7 +1029,7 @@ answers_042:
   answer_id: 3555
   metric_id: 3273
   company_id: 3175
-  record_id: 3554
+  record_log_id: 3554
   year: 1977
   value: '0.001'
   numeric_value: !ruby/object:BigDecimal 18:0.1e-2
@@ -1054,7 +1054,7 @@ answers_043:
   answer_id: 3559
   metric_id: 3273
   company_id: 3179
-  record_id: 3558
+  record_log_id: 3558
   year: 1977
   value: '0.002'
   numeric_value: !ruby/object:BigDecimal 18:0.2e-2
@@ -1079,7 +1079,7 @@ answers_044:
   answer_id: 3563
   metric_id: 3273
   company_id: 3172
-  record_id: 3562
+  record_log_id: 3562
   year: 1977
   value: '0.31'
   numeric_value: !ruby/object:BigDecimal 18:0.31e0
@@ -1104,7 +1104,7 @@ answers_045:
   answer_id: 3567
   metric_id: 3273
   company_id: 3182
-  record_id: 3566
+  record_log_id: 3566
   year: 1977
   value: '5.3'
   numeric_value: !ruby/object:BigDecimal 18:0.53e1
@@ -1129,7 +1129,7 @@ answers_046:
   answer_id: 3571
   metric_id: 3277
   company_id: 3189
-  record_id: 3570
+  record_log_id: 3570
   year: 1977
   value: Unknown
   numeric_value:
@@ -1154,7 +1154,7 @@ answers_047:
   answer_id: 3575
   metric_id: 3277
   company_id: 3177
-  record_id: 3574
+  record_log_id: 3574
   year: 2005
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -1179,7 +1179,7 @@ answers_048:
   answer_id: 3578
   metric_id: 3277
   company_id: 3177
-  record_id: 3574
+  record_log_id: 3574
   year: 2004
   value: '9'
   numeric_value: !ruby/object:BigDecimal 18:0.9e1
@@ -1204,7 +1204,7 @@ answers_049:
   answer_id: 3581
   metric_id: 3277
   company_id: 3177
-  record_id: 3574
+  record_log_id: 3574
   year: 2003
   value: '8'
   numeric_value: !ruby/object:BigDecimal 18:0.8e1
@@ -1229,7 +1229,7 @@ answers_050:
   answer_id: 3584
   metric_id: 3277
   company_id: 3177
-  record_id: 3574
+  record_log_id: 3574
   year: 1977
   value: '20'
   numeric_value: !ruby/object:BigDecimal 18:0.2e2
@@ -1254,7 +1254,7 @@ answers_051:
   answer_id: 3588
   metric_id: 3277
   company_id: 3179
-  record_id: 3587
+  record_log_id: 3587
   year: 1977
   value: '40'
   numeric_value: !ruby/object:BigDecimal 18:0.4e2
@@ -1279,7 +1279,7 @@ answers_052:
   answer_id: 3592
   metric_id: 3277
   company_id: 3182
-  record_id: 3591
+  record_log_id: 3591
   year: 1977
   value: '50'
   numeric_value: !ruby/object:BigDecimal 18:0.5e2
@@ -1304,7 +1304,7 @@ answers_053:
   answer_id: 3596
   metric_id: 3277
   company_id: 3172
-  record_id: 3595
+  record_log_id: 3595
   year: 1977
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
@@ -1329,7 +1329,7 @@ answers_054:
   answer_id: 3600
   metric_id: 3268
   company_id: 3172
-  record_id: 3599
+  record_log_id: 3599
   year: 1977
   value: '200'
   numeric_value: !ruby/object:BigDecimal 18:0.2e3
@@ -1354,7 +1354,7 @@ answers_055:
   answer_id: 3604
   metric_id: 3262
   company_id: 3172
-  record_id: 3603
+  record_log_id: 3603
   year: 1977
   value: Darth Sidious
   numeric_value:
@@ -1379,7 +1379,7 @@ answers_056:
   answer_id: 3607
   metric_id: 3282
   company_id: 3172
-  record_id: 3419
+  record_log_id: 3419
   year: 2000
   value: 'yes'
   numeric_value:
@@ -1404,7 +1404,7 @@ answers_057:
   answer_id: 3610
   metric_id: 3282
   company_id: 3172
-  record_id: 3419
+  record_log_id: 3419
   year: 1977
   value: 'no'
   numeric_value:
@@ -1429,7 +1429,7 @@ answers_058:
   answer_id: 3614
   metric_id: 3282
   company_id: 3175
-  record_id: 3613
+  record_log_id: 3613
   year: 2000
   value: 'no'
   numeric_value:
@@ -1454,7 +1454,7 @@ answers_059:
   answer_id: 3617
   metric_id: 3282
   company_id: 3175
-  record_id: 3613
+  record_log_id: 3613
   year: 1977
   value: 'no'
   numeric_value:
@@ -1479,7 +1479,7 @@ answers_060:
   answer_id: 3621
   metric_id: 3282
   company_id: 3177
-  record_id: 3620
+  record_log_id: 3620
   year: 2000
   value: 'yes'
   numeric_value:
@@ -1504,7 +1504,7 @@ answers_061:
   answer_id: 3624
   metric_id: 3282
   company_id: 3177
-  record_id: 3620
+  record_log_id: 3620
   year: 1977
   value: 'yes'
   numeric_value:
@@ -1529,7 +1529,7 @@ answers_062:
   answer_id: 3628
   metric_id: 3289
   company_id: 3182
-  record_id: 3627
+  record_log_id: 3627
   year: 2000
   value: 'no'
   numeric_value:
@@ -1554,7 +1554,7 @@ answers_063:
   answer_id: 3632
   metric_id: 3289
   company_id: 3177
-  record_id: 3631
+  record_log_id: 3631
   year: 2005
   value: 'no'
   numeric_value:
@@ -1579,7 +1579,7 @@ answers_064:
   answer_id: 3635
   metric_id: 3289
   company_id: 3177
-  record_id: 3631
+  record_log_id: 3631
   year: 1977
   value: 'no'
   numeric_value:
@@ -1604,7 +1604,7 @@ answers_065:
   answer_id: 3638
   metric_id: 3289
   company_id: 3177
-  record_id: 3631
+  record_log_id: 3631
   year: 2006
   value: Unknown
   numeric_value:
@@ -1629,7 +1629,7 @@ answers_066:
   answer_id: 3642
   metric_id: 3289
   company_id: 3175
-  record_id: 3641
+  record_log_id: 3641
   year: 2000
   value: 'yes'
   numeric_value:
@@ -1654,7 +1654,7 @@ answers_067:
   answer_id: 3645
   metric_id: 3289
   company_id: 3175
-  record_id: 3641
+  record_log_id: 3641
   year: 1977
   value: 'no'
   numeric_value:
@@ -1679,7 +1679,7 @@ answers_068:
   answer_id: 3648
   metric_id: 3289
   company_id: 3172
-  record_id: 3407
+  record_log_id: 3407
   year: 2001
   value: 'yes'
   numeric_value:
@@ -1704,7 +1704,7 @@ answers_069:
   answer_id: 3651
   metric_id: 3289
   company_id: 3172
-  record_id: 3407
+  record_log_id: 3407
   year: 2000
   value: 'yes'
   numeric_value:
@@ -1729,7 +1729,7 @@ answers_070:
   answer_id: 3654
   metric_id: 3289
   company_id: 3172
-  record_id: 3407
+  record_log_id: 3407
   year: 1977
   value: 'yes'
   numeric_value:
@@ -1754,7 +1754,7 @@ answers_071:
   answer_id: 3658
   metric_id: 3307
   company_id: 3182
-  record_id: 3657
+  record_log_id: 3657
   year: 2000
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -1779,7 +1779,7 @@ answers_072:
   answer_id: 3664
   metric_id: 3311
   company_id: 3185
-  record_id: 3663
+  record_log_id: 3663
   year: 2000
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -1804,7 +1804,7 @@ answers_073:
   answer_id: 3667
   metric_id: 3307
   company_id: 3175
-  record_id: 3666
+  record_log_id: 3666
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -1829,7 +1829,7 @@ answers_074:
   answer_id: 3673
   metric_id: 3311
   company_id: 3179
-  record_id: 3672
+  record_log_id: 3672
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -1854,7 +1854,7 @@ answers_075:
   answer_id: 3676
   metric_id: 3296
   company_id: 3182
-  record_id: 3675
+  record_log_id: 3675
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -1879,7 +1879,7 @@ answers_076:
   answer_id: 3682
   metric_id: 3300
   company_id: 3179
-  record_id: 3681
+  record_log_id: 3681
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -1904,7 +1904,7 @@ answers_077:
   answer_id: 3684
   metric_id: 3307
   company_id: 3182
-  record_id: 3657
+  record_log_id: 3657
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -1929,7 +1929,7 @@ answers_078:
   answer_id: 3692
   metric_id: 3311
   company_id: 3179
-  record_id: 3672
+  record_log_id: 3672
   year: 2000
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -1954,7 +1954,7 @@ answers_079:
   answer_id: 3695
   metric_id: 3204
   company_id: 3172
-  record_id: 3694
+  record_log_id: 3694
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -1979,7 +1979,7 @@ answers_080:
   answer_id: 3701
   metric_id: 3210
   company_id: 3179
-  record_id: 3700
+  record_log_id: 3700
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -2004,7 +2004,7 @@ answers_081:
   answer_id: 3707
   metric_id: 3210
   company_id: 3182
-  record_id: 3706
+  record_log_id: 3706
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -2029,7 +2029,7 @@ answers_082:
   answer_id: 3710
   metric_id: 3204
   company_id: 3182
-  record_id: 3709
+  record_log_id: 3709
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -2054,7 +2054,7 @@ answers_083:
   answer_id:
   metric_id: 3773
   company_id: 3187
-  record_id:
+  record_log_id:
   year: 2014
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -2079,7 +2079,7 @@ answers_084:
   answer_id:
   metric_id: 3773
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 2014
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
@@ -2104,7 +2104,7 @@ answers_085:
   answer_id:
   metric_id: 3773
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 2015
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -2129,7 +2129,7 @@ answers_086:
   answer_id:
   metric_id: 3773
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2015
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
@@ -2154,7 +2154,7 @@ answers_087:
   answer_id:
   metric_id: 3773
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1977
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
@@ -2179,7 +2179,7 @@ answers_088:
   answer_id:
   metric_id: 3773
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2002
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
@@ -2204,7 +2204,7 @@ answers_089:
   answer_id:
   metric_id: 3778
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1977
   value: '77'
   numeric_value: !ruby/object:BigDecimal 18:0.77e2
@@ -2229,7 +2229,7 @@ answers_090:
   answer_id:
   metric_id: 3778
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2000
   value: '0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -2254,7 +2254,7 @@ answers_091:
   answer_id:
   metric_id: 3778
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2001
   value: Unknown
   numeric_value:
@@ -2279,7 +2279,7 @@ answers_092:
   answer_id:
   metric_id: 3778
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2002
   value: Unknown
   numeric_value:
@@ -2304,7 +2304,7 @@ answers_093:
   answer_id:
   metric_id: 3778
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2010
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -2329,7 +2329,7 @@ answers_094:
   answer_id:
   metric_id: 3778
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2011
   value: '11'
   numeric_value: !ruby/object:BigDecimal 18:0.11e2
@@ -2354,7 +2354,7 @@ answers_095:
   answer_id:
   metric_id: 3778
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2012
   value: '12'
   numeric_value: !ruby/object:BigDecimal 18:0.12e2
@@ -2379,7 +2379,7 @@ answers_096:
   answer_id:
   metric_id: 3778
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2013
   value: '13'
   numeric_value: !ruby/object:BigDecimal 18:0.13e2
@@ -2404,7 +2404,7 @@ answers_097:
   answer_id:
   metric_id: 3778
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2014
   value: '14'
   numeric_value: !ruby/object:BigDecimal 18:0.14e2
@@ -2429,7 +2429,7 @@ answers_098:
   answer_id:
   metric_id: 3778
   company_id: 3187
-  record_id:
+  record_log_id:
   year: 2014
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -2454,7 +2454,7 @@ answers_099:
   answer_id:
   metric_id: 3778
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 2014
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -2479,7 +2479,7 @@ answers_100:
   answer_id:
   metric_id: 3778
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2015
   value: '15'
   numeric_value: !ruby/object:BigDecimal 18:0.15e2
@@ -2504,7 +2504,7 @@ answers_101:
   answer_id:
   metric_id: 3778
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 2015
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
@@ -2529,7 +2529,7 @@ answers_102:
   answer_id:
   metric_id: 3783
   company_id: 3187
-  record_id:
+  record_log_id:
   year: 2014
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -2554,7 +2554,7 @@ answers_103:
   answer_id:
   metric_id: 3783
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 2014
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
@@ -2579,7 +2579,7 @@ answers_104:
   answer_id:
   metric_id: 3783
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 2015
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -2604,7 +2604,7 @@ answers_105:
   answer_id:
   metric_id: 3783
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2015
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
@@ -2629,7 +2629,7 @@ answers_106:
   answer_id: 3869
   metric_id: 3783
   company_id: 3172
-  record_id: 3868
+  record_log_id: 3868
   year: 1977
   value: '1000'
   numeric_value: !ruby/object:BigDecimal 18:0.1e4
@@ -2654,7 +2654,7 @@ answers_107:
   answer_id:
   metric_id: 3783
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2002
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
@@ -2679,7 +2679,7 @@ answers_108:
   answer_id:
   metric_id: 3788
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1977
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -2704,7 +2704,7 @@ answers_109:
   answer_id:
   metric_id: 3788
   company_id: 3175
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -2729,7 +2729,7 @@ answers_110:
   answer_id:
   metric_id: 3788
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -2754,7 +2754,7 @@ answers_111:
   answer_id:
   metric_id: 3788
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1990
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -2779,7 +2779,7 @@ answers_112:
   answer_id:
   metric_id: 3788
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1991
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -2804,7 +2804,7 @@ answers_113:
   answer_id:
   metric_id: 3788
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1992
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -2829,7 +2829,7 @@ answers_114:
   answer_id:
   metric_id: 3788
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 2000
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -2854,7 +2854,7 @@ answers_115:
   answer_id:
   metric_id: 3788
   company_id: 3175
-  record_id:
+  record_log_id:
   year: 2000
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -2879,7 +2879,7 @@ answers_116:
   answer_id:
   metric_id: 3788
   company_id: 3182
-  record_id:
+  record_log_id:
   year: 2000
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -2904,7 +2904,7 @@ answers_117:
   answer_id:
   metric_id: 3788
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 2001
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -2929,7 +2929,7 @@ answers_118:
   answer_id:
   metric_id: 3788
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2005
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -2954,7 +2954,7 @@ answers_119:
   answer_id:
   metric_id: 3788
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2006
   value: '0.0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -2979,7 +2979,7 @@ answers_120:
   answer_id:
   metric_id: 3791
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1977
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
@@ -3004,7 +3004,7 @@ answers_121:
   answer_id:
   metric_id: 3791
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 1977
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -3029,7 +3029,7 @@ answers_122:
   answer_id:
   metric_id: 3791
   company_id: 3179
-  record_id:
+  record_log_id:
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -3054,7 +3054,7 @@ answers_123:
   answer_id:
   metric_id: 3791
   company_id: 3182
-  record_id:
+  record_log_id:
   year: 1977
   value: '2.5'
   numeric_value: !ruby/object:BigDecimal 18:0.25e1
@@ -3079,7 +3079,7 @@ answers_124:
   answer_id:
   metric_id: 3791
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 1977
   value: Unknown
   numeric_value:
@@ -3104,7 +3104,7 @@ answers_125:
   answer_id:
   metric_id: 3791
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2003
   value: '0.4'
   numeric_value: !ruby/object:BigDecimal 18:0.4e0
@@ -3129,7 +3129,7 @@ answers_126:
   answer_id:
   metric_id: 3791
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2004
   value: '0.45'
   numeric_value: !ruby/object:BigDecimal 18:0.45e0
@@ -3154,7 +3154,7 @@ answers_127:
   answer_id:
   metric_id: 3791
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2005
   value: '0.5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e0
@@ -3179,7 +3179,7 @@ answers_128:
   answer_id:
   metric_id: 3795
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1977
   value: '10'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -3204,7 +3204,7 @@ answers_129:
   answer_id:
   metric_id: 3795
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 1977
   value: '2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e1
@@ -3229,7 +3229,7 @@ answers_130:
   answer_id:
   metric_id: 3795
   company_id: 3179
-  record_id:
+  record_log_id:
   year: 1977
   value: '4'
   numeric_value: !ruby/object:BigDecimal 18:0.4e1
@@ -3254,7 +3254,7 @@ answers_131:
   answer_id:
   metric_id: 3795
   company_id: 3182
-  record_id:
+  record_log_id:
   year: 1977
   value: '5'
   numeric_value: !ruby/object:BigDecimal 18:0.5e1
@@ -3279,7 +3279,7 @@ answers_132:
   answer_id:
   metric_id: 3795
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 1977
   value: Unknown
   numeric_value:
@@ -3304,7 +3304,7 @@ answers_133:
   answer_id:
   metric_id: 3795
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2003
   value: '0.8'
   numeric_value: !ruby/object:BigDecimal 18:0.8e0
@@ -3329,7 +3329,7 @@ answers_134:
   answer_id:
   metric_id: 3795
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2004
   value: '0.9'
   numeric_value: !ruby/object:BigDecimal 18:0.9e0
@@ -3354,7 +3354,7 @@ answers_135:
   answer_id:
   metric_id: 3795
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2005
   value: '1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e1
@@ -3379,7 +3379,7 @@ answers_136:
   answer_id:
   metric_id: 3800
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1977
   value: '10.0'
   numeric_value: !ruby/object:BigDecimal 18:0.1e2
@@ -3404,7 +3404,7 @@ answers_137:
   answer_id:
   metric_id: 3800
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 1977
   value: '1.2'
   numeric_value: !ruby/object:BigDecimal 18:0.12e1
@@ -3429,7 +3429,7 @@ answers_138:
   answer_id:
   metric_id: 3800
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2005
   value: '0.6'
   numeric_value: !ruby/object:BigDecimal 18:0.6e0
@@ -3454,7 +3454,7 @@ answers_139:
   answer_id:
   metric_id: 3805
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1977
   value: '97'
   numeric_value: !ruby/object:BigDecimal 18:0.97e2
@@ -3479,7 +3479,7 @@ answers_140:
   answer_id:
   metric_id: 3805
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2000
   value: '20'
   numeric_value: !ruby/object:BigDecimal 18:0.2e2
@@ -3504,7 +3504,7 @@ answers_141:
   answer_id:
   metric_id: 3805
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2001
   value: '30'
   numeric_value: !ruby/object:BigDecimal 18:0.3e2
@@ -3529,7 +3529,7 @@ answers_142:
   answer_id:
   metric_id: 3805
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2002
   value: '30'
   numeric_value: !ruby/object:BigDecimal 18:0.3e2
@@ -3554,7 +3554,7 @@ answers_143:
   answer_id:
   metric_id: 3805
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2010
   value: '30'
   numeric_value: !ruby/object:BigDecimal 18:0.3e2
@@ -3579,7 +3579,7 @@ answers_144:
   answer_id:
   metric_id: 3805
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2011
   value: '31'
   numeric_value: !ruby/object:BigDecimal 18:0.31e2
@@ -3604,7 +3604,7 @@ answers_145:
   answer_id:
   metric_id: 3805
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2012
   value: '32'
   numeric_value: !ruby/object:BigDecimal 18:0.32e2
@@ -3629,7 +3629,7 @@ answers_146:
   answer_id:
   metric_id: 3805
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2013
   value: '33'
   numeric_value: !ruby/object:BigDecimal 18:0.33e2
@@ -3654,7 +3654,7 @@ answers_147:
   answer_id:
   metric_id: 3805
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2014
   value: '34'
   numeric_value: !ruby/object:BigDecimal 18:0.34e2
@@ -3679,7 +3679,7 @@ answers_148:
   answer_id:
   metric_id: 3805
   company_id: 3191
-  record_id:
+  record_log_id:
   year: 2015
   value: '35'
   numeric_value: !ruby/object:BigDecimal 18:0.35e2
@@ -3704,7 +3704,7 @@ answers_149:
   answer_id:
   metric_id: 3811
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2005
   value: '19'
   numeric_value: !ruby/object:BigDecimal 18:0.19e2
@@ -3729,7 +3729,7 @@ answers_150:
   answer_id:
   metric_id: 3811
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2004
   value: '17'
   numeric_value: !ruby/object:BigDecimal 18:0.17e2
@@ -3754,7 +3754,7 @@ answers_151:
   answer_id:
   metric_id: 3818
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2005
   value: '27'
   numeric_value: !ruby/object:BigDecimal 18:0.27e2
@@ -3779,7 +3779,7 @@ answers_152:
   answer_id:
   metric_id: 3824
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.01'
   numeric_value: !ruby/object:BigDecimal 18:0.1e-1
@@ -3804,7 +3804,7 @@ answers_153:
   answer_id:
   metric_id: 3824
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.05'
   numeric_value: !ruby/object:BigDecimal 18:0.5e-1
@@ -3829,7 +3829,7 @@ answers_154:
   answer_id:
   metric_id: 3824
   company_id: 3179
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.025'
   numeric_value: !ruby/object:BigDecimal 18:0.25e-1
@@ -3854,7 +3854,7 @@ answers_155:
   answer_id:
   metric_id: 3824
   company_id: 3182
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.02'
   numeric_value: !ruby/object:BigDecimal 18:0.2e-1
@@ -3879,7 +3879,7 @@ answers_156:
   answer_id:
   metric_id: 3824
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 1977
   value: Unknown
   numeric_value:
@@ -3904,7 +3904,7 @@ answers_157:
   answer_id: 3865
   metric_id: 3824
   company_id: 3177
-  record_id: 3864
+  record_log_id: 3864
   year: 2003
   value: '100'
   numeric_value: !ruby/object:BigDecimal 18:0.1e3
@@ -3929,7 +3929,7 @@ answers_158:
   answer_id:
   metric_id: 3824
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2004
   value: '0.1111111111111111'
   numeric_value: !ruby/object:BigDecimal 18:0.11111e0
@@ -3954,7 +3954,7 @@ answers_159:
   answer_id:
   metric_id: 3824
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2005
   value: '0.1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e0
@@ -3979,7 +3979,7 @@ answers_160:
   answer_id:
   metric_id: 3831
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.02'
   numeric_value: !ruby/object:BigDecimal 18:0.2e-1
@@ -4004,7 +4004,7 @@ answers_161:
   answer_id:
   metric_id: 3831
   company_id: 3179
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.05'
   numeric_value: !ruby/object:BigDecimal 18:0.5e-1
@@ -4029,7 +4029,7 @@ answers_162:
   answer_id:
   metric_id: 3831
   company_id: 3182
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.04'
   numeric_value: !ruby/object:BigDecimal 18:0.4e-1
@@ -4054,7 +4054,7 @@ answers_163:
   answer_id:
   metric_id: 3831
   company_id: 3189
-  record_id:
+  record_log_id:
   year: 1977
   value: Unknown
   numeric_value:
@@ -4079,7 +4079,7 @@ answers_164:
   answer_id:
   metric_id: 3831
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 1977
   value: '0.1'
   numeric_value: !ruby/object:BigDecimal 18:0.1e0
@@ -4104,7 +4104,7 @@ answers_165:
   answer_id:
   metric_id: 3831
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2003
   value: '200'
   numeric_value: !ruby/object:BigDecimal 18:0.2e3
@@ -4129,7 +4129,7 @@ answers_166:
   answer_id:
   metric_id: 3831
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2004
   value: '0.2222222222222222'
   numeric_value: !ruby/object:BigDecimal 18:0.22222e0
@@ -4154,7 +4154,7 @@ answers_167:
   answer_id:
   metric_id: 3831
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2005
   value: '0.2'
   numeric_value: !ruby/object:BigDecimal 18:0.2e0
@@ -4179,7 +4179,7 @@ answers_168:
   answer_id: 3969
   metric_id: 3849
   company_id: 3182
-  record_id: 3968
+  record_log_id: 3968
   year: 2019
   value: A
   numeric_value:
@@ -4204,7 +4204,7 @@ answers_169:
   answer_id: 3973
   metric_id: 3849
   company_id: 3172
-  record_id: 3972
+  record_log_id: 3972
   year: 2019
   value: A
   numeric_value:
@@ -4229,7 +4229,7 @@ answers_170:
   answer_id:
   metric_id: 3844
   company_id: 3185
-  record_id:
+  record_log_id:
   year: 2019
   value: California (United States)
   numeric_value:
@@ -4254,7 +4254,7 @@ answers_171:
   answer_id:
   metric_id: 3854
   company_id: 3185
-  record_id:
+  record_log_id:
   year: 2019
   value: Americas
   numeric_value:
@@ -4279,7 +4279,7 @@ answers_172:
   answer_id:
   metric_id: 1167
   company_id: 3185
-  record_id:
+  record_log_id:
   year: 2019
   value: United States
   numeric_value:
@@ -4304,7 +4304,7 @@ answers_173:
   answer_id:
   metric_id: 4134
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1991
   value: '0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -4329,7 +4329,7 @@ answers_174:
   answer_id:
   metric_id: 4134
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 1992
   value: '0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -4354,7 +4354,7 @@ answers_175:
   answer_id:
   metric_id: 4134
   company_id: 3172
-  record_id:
+  record_log_id:
   year: 2001
   value: '0'
   numeric_value: !ruby/object:BigDecimal 18:0.0
@@ -4379,7 +4379,7 @@ answers_176:
   answer_id:
   metric_id: 4134
   company_id: 3177
-  record_id:
+  record_log_id:
   year: 2006
   value: '0'
   numeric_value: !ruby/object:BigDecimal 18:0.0

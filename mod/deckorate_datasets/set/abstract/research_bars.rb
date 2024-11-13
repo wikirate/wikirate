@@ -19,7 +19,7 @@ format :html do
     link_to "Research",
             class: "btn btn-outline-secondary btn-sm " \
                    "research-answer-button _over-card-link",
-            path: { mark: record_name, project: project_name, view: :research }
+            path: { mark: record_log_name, project: project_name, view: :research }
   end
 
   view :bar_bottom do

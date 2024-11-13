@@ -24,12 +24,12 @@ def company_id
   company_key.card_id
 end
 
-def record
+def record_log
   name.parts[0..-3].join "+"
 end
 
-def record_card
-  Card.fetch record
+def record_log_card
+  Card.fetch record_log
 end
 
 def view_cache_clean?

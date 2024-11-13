@@ -3,10 +3,10 @@
   "name": "US Securities and Exchange Commission+Assets+Apple Inc.",
   "type": {
     "id": 3318057,
-    "name": "Record",
+    "name": "Record Log",
     "type": "Cardtype",
-    "url": "https://wikirate.org/Record.json",
-    "codename": "record"
+    "url": "https://wikirate.org/Record_Log.json",
+    "codename": "record_log"
   },
   "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json",
   "items": [

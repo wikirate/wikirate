@@ -75,7 +75,7 @@ format do
     }
   end
 
-  def record_sort
+  def record_log_sort
     {
       company_name: 8,
       value: 2,

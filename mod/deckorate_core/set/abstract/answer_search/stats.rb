@@ -102,9 +102,9 @@ format do
     counts[field] == 1
   end
 
-  def record?
-    single?(:metric) && single?(:company)
-  end
+  # def record_log?
+  #   single?(:metric) && single?(:company)
+  # end
 
   private
 

@@ -26,7 +26,7 @@ format do
         counts[:company]
       when :metric
         counts[:metric]
-      when :record
+      when :record_log
         clean_relation(count_query).select(group_by_fields_string).distinct.count
       end
   end
@@ -90,7 +90,7 @@ format :html do
   end
 
   def scrollable?
-    current_group.in? %i[none record]
+    current_group.in? %i[none record_log]
   end
 
   private
@@ -102,7 +102,7 @@ format :html do
   def customize_item_options
     { company: "Grouped by Company",
       metric: "Grouped by Metric",
-      record: "Grouped by Company/Metric",
+      record_log: "Grouped by Company/Metric",
       none: "Individual Answers (No Grouping)" }
   end
 

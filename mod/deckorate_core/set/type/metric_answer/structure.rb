@@ -1,10 +1,10 @@
-def record_answers_card
-  record_card.metric_answer_card
+def record_log_answers_card
+  record_log_card.metric_answer_card
 end
 
 format :html do
   def tab_list
-    list = %i[details record calculations]
+    list = %i[details record_log calculations]
     list << (card.calculated? ? :inputs : :contributions)
     list.insert 1, :relationship_answer if card.relationship?
     list
@@ -13,7 +13,7 @@ format :html do
   def tab_options
     {
       contributions: { label: "Contributions" },
-      record: { count: card.record_answers_card.count, label: "Years" },
+      record_log: { count: card.record_log_answers_card.count, label: "Years" },
       calculations: { count: card.depender_answers.count },
       # inputs: { count: card.dependee_answers.count },
       # NOTE: the inputs count is super slow on complicated answers, like
@@ -40,7 +40,7 @@ format :html do
   end
 
   view :record_tab do
-    nest record_card.metric_answer_card, view: :filtered_content
+    nest record_log_card.metric_answer_card, view: :filtered_content
   end
 
   view :calculations_tab do
