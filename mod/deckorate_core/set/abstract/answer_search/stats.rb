@@ -129,6 +129,10 @@ format do
 end
 
 format :html do
+  def count_badge_label
+    badge_label :metric_answer
+  end
+
   def each_progress_bar_status
     %i[known unknown none].map do |status|
       yield status, counts[status] if counts[status].to_i.positive?
@@ -147,6 +151,8 @@ format :html do
   end
 
   def badge_label codename
+    return "Data points".to_name if codename == :metric_answer
+
     Codename.exist?(codename) ? codename.cardname : codename.to_s.to_name
   end
 

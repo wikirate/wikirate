@@ -100,9 +100,9 @@ format :html do
   end
 
   def answers
-    @answers ||=
-      card.record_log_card.metric_answer_card.search.each_with_object({}) do |answer, hash|
-        hash[answer.year.to_i] = answer
-      end
+    @answers ||= card.record_log_card.metric_answer_card.search
+                     .each_with_object({}) do |answer, hash|
+      hash[answer.year.to_i] = answer
+    end
   end
 end
