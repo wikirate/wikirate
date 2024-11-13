@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::Record do
+RSpec.describe Card::Set::Type::RecordLog do
   def card_subject
     sample_answer.left
   end

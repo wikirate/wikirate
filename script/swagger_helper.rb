@@ -34,7 +34,7 @@ end
 
 def fetch_wikirate_cardtypes
   %i[company metric metric_answer relationship_answer source
-     dataset topic research_group company_group record]
+     dataset topic research_group company_group record_log]
 end
 
 def fetch_optional_subcards
