@@ -16,7 +16,7 @@ RSpec.describe Relationship do
       relation = described_class.find_by_relationship_id r_id
       expect(relation).to be_instance_of(described_class)
       aggregate_failures "relationship id attributes" do
-        { record_id: "Jedi+more evil+Monster Inc",
+        { record_log_id: "Jedi+more evil+Monster Inc",
           subject_company_id: "Monster Inc",
           object_company_id: "Los Pollos Hermanos",
           answer_id: "Jedi+more evil+Monster Inc+2000",
@@ -72,11 +72,11 @@ RSpec.describe Relationship do
     end
 
     xit "updates latest" do
-      record = "Commons+Supplied by+SPECTRE"
-      new_latest = described_class.find_by_answer_id "#{record}+1977".card_id
+      record_log = "Commons+Supplied by+SPECTRE"
+      new_latest = described_class.find_by_answer_id "#{record_log}+1977".card_id
       new_latest.refresh # FIXME: shouldn't be needed; if needed, data was wrong
       expect(new_latest.latest).to be_falsey
-      delete "#{record}+2000" # "+Los Pollos Hermanos"
+      delete "#{record_log}+2000" # "+Los Pollos Hermanos"
       new_latest.refresh
       expect(new_latest.latest).to be_truthy
     end
