@@ -6,6 +6,10 @@ def count
   Card::AnswerQuery.new({}).count
 end
 
+def count_label
+  "Data points"
+end
+
 # recount answers when answer is created or deleted
 recount_trigger :type, :metric_answer, on: %i[create delete] do |_changed_card|
   :metric_answer.card
@@ -22,6 +26,10 @@ field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |_change
 end
 
 format do
+  def standard_title
+    "Data points"
+  end
+
   def counts
     return super unless @counts.blank? && default_filter?
 
@@ -38,10 +46,6 @@ format do
 end
 
 format :html do
-  # def default_sort_option
-  #   :year
-  # end
-
   view :titled_content do
     [field_nest(:description), render_filtered_content]
   end

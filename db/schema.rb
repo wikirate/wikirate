@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_09_164452) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_13_194401) do
   create_table "answers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "answer_id"
     t.integer "metric_id", null: false
     t.integer "company_id", null: false
-    t.integer "record_id"
+    t.integer "record_log_id"
     t.integer "year", null: false
     t.string "value", limit: 1024
     t.decimal "numeric_value", precision: 30, scale: 5
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_09_164452) do
     t.index ["metric_id", "company_id"], name: "index_answers_on_metric_id_and_company_id"
     t.index ["metric_id"], name: "metric_id_index"
     t.index ["numeric_value"], name: "numeric_value_index"
-    t.index ["record_id"], name: "record_id_index"
+    t.index ["record_log_id"], name: "record_id_index"
     t.index ["value"], name: "value_index", length: 100
   end
 
@@ -130,7 +130,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_09_164452) do
     t.integer "type_id", null: false
     t.text "db_content", size: :medium
     t.text "search_content", size: :medium
-    t.index ["codename"], name: "cards_codename_index"
+    t.index ["codename"], name: "cards_codename_index", unique: true
     t.index ["created_at"], name: "cards_created_at_index"
     t.index ["key"], name: "cards_key_index", unique: true
     t.index ["left_id"], name: "cards_left_id_index"
