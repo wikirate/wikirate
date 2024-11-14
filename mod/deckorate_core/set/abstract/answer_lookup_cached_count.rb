@@ -23,7 +23,7 @@ def count
 end
 
 def answer_query
-  AnswerQuery.new(query_hash).lookup_relation.select(target_id_field).distinct
+  RecordQuery.new(query_hash).lookup_relation.select(target_id_field).distinct
 end
 
 def target_id_field

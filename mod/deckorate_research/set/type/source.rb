@@ -4,7 +4,7 @@ require "link_thumbnailer"
 include_set Abstract::Delist
 
 card_accessor :metric, type: :list
-card_accessor :metric_answer, type: :search_type
+card_accessor :record, type: :search_type
 card_accessor :year, type: :list
 card_accessor :topic, type: :list
 card_accessor :company, type: :list

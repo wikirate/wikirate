@@ -1,5 +1,5 @@
 # This module is separated from CompanySearch so that it can be included in
-# AnswerSearch without overriding key methods.
+# RecordSearch without overriding key methods.
 
 format do
   def shared_company_filter_map
@@ -78,6 +78,6 @@ end
 
 # note, ruby 3 handles things with just the first include_set.
 # earlier rubies don't.
-Abstract::AnswerSearch.include_set CompanyFilters
-Abstract::FixedAnswerSearch.include_set CompanyFilters
-Abstract::FullAnswerSearch.include_set CompanyFilters
+Abstract::RecordSearch.include_set CompanyFilters
+Abstract::FixedRecordSearch.include_set CompanyFilters
+Abstract::FullRecordSearch.include_set CompanyFilters

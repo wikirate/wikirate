@@ -20,7 +20,7 @@ end
 
 format :csv do
   view :titled do
-    field_nest :metric_answer, view: :titled
+    field_nest :record, view: :titled
   end
 
   view :import_template do
@@ -55,7 +55,7 @@ format :json do
   # end
 
   def molecule
-    super().merge answers_url: json_field_link(:metric_answer),
+    super().merge records_url: json_field_link(:record),
                   metrics_url: json_field_link(:metric),
                   companies_url: json_field_link(:company)
   end

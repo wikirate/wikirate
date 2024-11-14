@@ -40,7 +40,7 @@ end
 
 def metric_values metric_name
   Card.search left: {
-    type_id: Card::MetricAnswerID,
+    type_id: Card::RecordID,
     left: { left: metric_name }
   }, right: "value"
 end
@@ -152,7 +152,7 @@ end
 
 def handle_ratio_metric
   ratio_mv = Card.search left: { left: "PayScale+CEO to Worker pay" },
-                         type_id: Card::MetricAnswerID, append: "value"
+                         type_id: Card::RecordID, append: "value"
   ratio_mv.each do |mv|
     mv_content = mv.content.clone
     if mv.content.gsub!(":01", "")

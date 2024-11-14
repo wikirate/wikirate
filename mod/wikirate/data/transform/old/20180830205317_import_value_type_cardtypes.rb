@@ -27,7 +27,7 @@ class ImportValueTypeCardtypes < Cardio::Migration::Transform
   end
 
   def fix_answer_types
-    ensure_type Card::MetricAnswerID, Card::RecordID, Card::YearID
+    ensure_type Card::RecordID, Card::RecordID, Card::YearID
   end
 
   def ensure_type type_id, left_type_id, right_type_id
@@ -59,12 +59,12 @@ class ImportValueTypeCardtypes < Cardio::Migration::Transform
 
   def score_value_ids metric_card
     value_ids_for_answers_where left: { left: { left_id: metric_card.id} },
-                                type_id: Card::MetricAnswerID
+                                type_id: Card::RecordID
   end
 
   def standard_value_ids metric_card
     value_ids_for_answers_where left: { left_id: metric_card.id },
-                                type_id: Card::MetricAnswerID
+                                type_id: Card::RecordID
   end
 
   def relationship_value_ids metric_card

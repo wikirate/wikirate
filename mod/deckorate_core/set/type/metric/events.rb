@@ -55,7 +55,7 @@ event :delete_answers, :prepare_to_validate, on: :update, trigger: :required do
   end
 end
 
-event :delete_all_metric_answers, :store, on: :delete do
+event :delete_all_records, :store, on: :delete do
   answers.delete_all
   skip_event! :update_related_calculations,
               :update_related_scores,
