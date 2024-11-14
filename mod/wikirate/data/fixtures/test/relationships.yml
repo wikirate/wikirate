@@ -3,7 +3,7 @@ relationships_001:
   id: 1
   relationship_id: 3660
   metric_id: 3307
-  record_id: 3657
+  record_log_id: 3657
   answer_id: 3658
   object_company_id: 3185
   subject_company_id: 3182
@@ -23,7 +23,7 @@ relationships_002:
   id: 2
   relationship_id: 3669
   metric_id: 3307
-  record_id: 3666
+  record_log_id: 3666
   answer_id: 3667
   object_company_id: 3179
   subject_company_id: 3175
@@ -43,7 +43,7 @@ relationships_003:
   id: 3
   relationship_id: 3678
   metric_id: 3296
-  record_id: 3675
+  record_log_id: 3675
   answer_id: 3676
   object_company_id: 3179
   subject_company_id: 3182
@@ -63,7 +63,7 @@ relationships_004:
   id: 4
   relationship_id: 3686
   metric_id: 3307
-  record_id: 3657
+  record_log_id: 3657
   answer_id: 3684
   object_company_id: 3179
   subject_company_id: 3182
@@ -83,7 +83,7 @@ relationships_005:
   id: 5
   relationship_id: 3689
   metric_id: 3307
-  record_id: 3657
+  record_log_id: 3657
   answer_id: 3658
   object_company_id: 3179
   subject_company_id: 3182
@@ -103,7 +103,7 @@ relationships_006:
   id: 6
   relationship_id: 3697
   metric_id: 3204
-  record_id: 3694
+  record_log_id: 3694
   answer_id: 3695
   object_company_id: 3179
   subject_company_id: 3172
@@ -123,7 +123,7 @@ relationships_007:
   id: 7
   relationship_id: 3703
   metric_id: 3204
-  record_id: 3694
+  record_log_id: 3694
   answer_id: 3695
   object_company_id: 3182
   subject_company_id: 3172
@@ -143,7 +143,7 @@ relationships_008:
   id: 8
   relationship_id: 3712
   metric_id: 3204
-  record_id: 3709
+  record_log_id: 3709
   answer_id: 3710
   object_company_id: 3179
   subject_company_id: 3182

@@ -23,7 +23,7 @@ RSpec.describe Card::Set::Type::Metric::Events do
         expect(newcard.lookup.designer_id.cardname).to eq(newname.left)
       end
 
-      it "translates record_id in lookup table to current record log name" do
+      it "translates record_log_id in lookup table to current record log name" do
         expect(newcard.answers.first.record_log_name)
           .to match(Regexp.new(Regexp.quote(newname)))
       end
