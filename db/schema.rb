@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_13_194401) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_13_194402) do
   create_table "answers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "answer_id"
     t.integer "metric_id", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_194401) do
     t.index ["metric_id", "company_id"], name: "index_answers_on_metric_id_and_company_id"
     t.index ["metric_id"], name: "metric_id_index"
     t.index ["numeric_value"], name: "numeric_value_index"
-    t.index ["record_log_id"], name: "record_id_index"
+    t.index ["record_log_id"], name: "record_log_id_index"
     t.index ["value"], name: "value_index", length: 100
   end
 
@@ -180,7 +180,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_194401) do
   create_table "relationships", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "relationship_id"
     t.integer "metric_id", null: false
-    t.integer "record_id"
+    t.integer "record_log_id"
     t.integer "answer_id", null: false
     t.integer "object_company_id", null: false
     t.integer "subject_company_id", null: false
@@ -200,7 +200,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_194401) do
     t.index ["metric_id", "subject_company_id", "object_company_id", "year"], name: "relationship_component_cards_index", unique: true
     t.index ["metric_id"], name: "metric_id_index"
     t.index ["object_company_id"], name: "object_company_id_index"
-    t.index ["record_id"], name: "record_id_index"
+    t.index ["record_log_id"], name: "record_log_id_index"
     t.index ["relationship_id"], name: "relationship_id_index", unique: true
     t.index ["subject_company_id"], name: "subject_company_id_index"
     t.index ["value"], name: "value_index"
