@@ -17,7 +17,7 @@ RSpec.describe Card::Set::Type::Record::Json do
     wr_url "/#{name.to_name.url_key}.json"
   end
 
-  describe "exported json researched metric answer" do
+  describe "exported json researched record" do
     let(:metric) { Card["Jedi+Sith Lord in Charge"] }
     let(:source) { sample_source(:star_wars) }
 
@@ -46,10 +46,10 @@ RSpec.describe Card::Set::Type::Record::Json do
     end
     let(:atom_fields) do
       {
-        id: answer.id,
-        name: answer.name,
-        type: "Answer",
-        url: name_url(answer.name),
+        id: record.id,
+        name: record.name,
+        type: "Record",
+        url: name_url(record.name),
         metric: metric.name,
         company: COMPANY_NAME,
         year: YEAR,
@@ -84,7 +84,7 @@ RSpec.describe Card::Set::Type::Record::Json do
     end
   end
 
-  describe "exported json relationship metric answer" do
+  describe "exported json relationship metric record" do
     let(:metric) { Card["Jedi+more evil"] }
 
     xspecify "atom view" do
@@ -96,7 +96,7 @@ RSpec.describe Card::Set::Type::Record::Json do
     end
   end
 
-  describe "exported calculated answer" do
+  describe "exported calculated record" do
     let(:metric) { Card["Jedi+deadliness+Joe Camel"] }
 
     it "atom view has calculated value" do

@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::TypePlusRight::Company::Record do
-  it_behaves_like "cached count", "Death Star+answer", 35, 3 do
+  it_behaves_like "cached count", ["Death Star", :record], 35, 3 do
     # increment = 2, because one researched answer + one calculated answer
     let :add_one do
       create_answers "Jedi+disturbances in the force", true do

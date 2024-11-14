@@ -26,7 +26,7 @@ RSpec.describe Card::Set::Type::Metric::Export do
           id: metric.id,
           url: "http://wikirate.org/Joe_User+researched_number_2.json",
           type: a_hash_including(name: "Metric"),
-          answers_url: "http://wikirate.org/Joe_User+researched_number_2+Answer.json",
+          records_url: "http://wikirate.org/Joe_User+researched_number_2+Records.json",
           ancestors: [
             a_hash_including(name: "Joe User"),
             a_hash_including(name: "researched number 2")

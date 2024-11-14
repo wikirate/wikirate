@@ -39,7 +39,7 @@ format :json do
   end
 
   def add_answers_to_hash hash
-    hash[:answers_url] = path mark: card.record_card, format: :json
+    hash[:records_url] = path mark: card.record_card, format: :json
   end
 
   def add_calculations_to_hash hash

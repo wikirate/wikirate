@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::TypePlusRight::Source::Record do
-  it_behaves_like "cached count", "#{Card::Name[:star_wars_source]}+answer", 20, 1 do
+  it_behaves_like "cached count", %i[star_wars_source record], 20, 1 do
     let :add_one do
       create_answers "Jedi+Weapons" do
         Samsung "1977" => { value: "hand", source: Card[:star_wars_source] }
@@ -14,11 +14,11 @@ RSpec.describe Card::Set::TypePlusRight::Source::Record do
   # pattern in shared examples.  (could add one by adding answer rather than publishing
   # it...)
 
-  let(:source_answers) { "#{Card::Name[:star_wars_source]}+answer" }
+  let(:source_records) { %i[star_wars_source record] }
   let(:answer) { Card["Jedi+cost of planets destroyed+Death Star+1977"] }
 
   def current_count
-    Card.fetch(source_answers).cached_count
+    Card.fetch(source_records).cached_count
   end
 
   def unpublish!
