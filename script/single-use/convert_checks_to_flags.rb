@@ -57,7 +57,7 @@ module ChecksToFlags
       Card.where(right_id: Card::CheckedByID).find_each do |checked_by|
         checked_by.include_set_modules
         answer = checked_by.left
-        next unless answer.type_code == :metric_answer
+        next unless answer.type_code == :record
 
         yield answer, checked_by
       end

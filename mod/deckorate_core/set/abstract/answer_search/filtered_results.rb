@@ -21,7 +21,7 @@ format do
     @count_with_params ||=
       case current_group
       when :none
-        counts[:metric_answer]
+        counts[:record]
       when :company
         counts[:company]
       when :metric
@@ -76,7 +76,7 @@ format :html do
   end
 
   def answer_page_link
-    link_to_card :metric_answer,
+    link_to_card :record,
                  "View all answers #{icon_tag :east}",
                  path: { filter: answer_page_filters }
   end
@@ -103,7 +103,7 @@ format :html do
     { company: "Grouped by Company",
       metric: "Grouped by Metric",
       record_log: "Grouped by Company/Metric",
-      none: "Individual Answers (No Grouping)" }
+      none: "Data Points (No Grouping)" }
   end
 
   def show_hide_fields

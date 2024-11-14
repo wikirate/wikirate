@@ -13,8 +13,8 @@ module GraphQL
       cardtype_field :company, Company, :company
       card_field :metric, Metric, :metric
       lookup_field :metric, Metric, :metric
-      card_field :answer, Answer, :metric_answer
-      lookup_field :answer, Answer, :metric_answer
+      card_field :answer, Answer, :record
+      lookup_field :answer, Answer, :record
       card_field :relationship, Relationship, :relationship_answer
       lookup_field :relationship, Relationship, :relationship_answer
       card_field :topic, Topic, :topic

@@ -113,14 +113,14 @@ wikirate_cardtypes.each do |cardtype|
   if plural_cardname == "Answers"
     puts "working on special Answer paths"
 
-    metric_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
-    metric_answers_params.unshift("$ref" => "#/components/parameters/metric")
+    records_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
+    records_params.unshift("$ref" => "#/components/parameters/metric")
     mfieldpaths =
       paths["/{metric}+#{plural_cardname}"] =
         deep_copy(paths["/#{plural_cardname}"])
 
     mfieldget = mfieldpaths["get"]
-    mfieldget["parameters"] = metric_answers_params
+    mfieldget["parameters"] = records_params
     mfieldget["description"] = "Returns the answers of the specified metric."
     mfieldget["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
       JSON.parse(File.read("./script/swagger/responses/200/Metric+Answers.json"))

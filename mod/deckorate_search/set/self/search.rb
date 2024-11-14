@@ -12,7 +12,7 @@ end
 
 format do
   def featured_type_ids
-    %i[cardtype featured].card.item_ids - [MetricAnswerID]
+    %i[cardtype featured].card.item_ids - [RecordID]
   end
 
   def filter_type_ids

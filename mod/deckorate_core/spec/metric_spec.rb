@@ -39,7 +39,7 @@ RSpec.describe Metric do
       expect(metric.metric_type).to eq "Researched"
 
       expect(value).to be_truthy
-      expect(value.type_id).to eq Card::MetricAnswerID
+      expect(value.type_id).to eq Card::RecordID
       expect(value.fetch("value").content).to eq "50"
       expect(Card["MD+MT+SPECTRE+2001+value"].content).to eq "100"
 

@@ -21,7 +21,7 @@ class Answer
 
     def fetch_answer_card name=nil
       name ||= answer_name_from_parts
-      Card.fetch name, eager_cache: true, new: { type_id: Card::MetricAnswerID }
+      Card.fetch name, eager_cache: true, new: { type_id: Card::RecordID }
     end
 
     def answer_name_from_parts

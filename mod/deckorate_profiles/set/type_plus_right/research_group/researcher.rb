@@ -42,7 +42,7 @@ format do
   def contribution_counts member
     Error.rescue_card member do
       CONTRIBUTION_CATEGORIES.map do |category|
-        card.left.contribution_count member.name, :metric_answer, category
+        card.left.contribution_count member.name, :record, category
       end
     end
   end
