@@ -6,7 +6,7 @@ GROUP_SELECT = { answer_count: "count(distinct(answers.id))",
 GROUP_SELECT_KEYS = {
   company: %i[answer_count year_count],
   metric: %i[answer_count year_count],
-  record: %i[answer_count value year]
+  record_log: %i[answer_count value year]
 }.freeze
 
 format do
@@ -20,7 +20,7 @@ format do
     @current_group[item_view] ||=
       if item_view.blank?
         default_grouping
-      elsif (match = item_view.match(/(company|metric|record)/))
+      elsif (match = item_view.match(/(company|metric|record_log)/))
         match[1].to_sym
       else
         :none
@@ -49,7 +49,7 @@ format :html do
   end
 
   def group_by_fields
-    if current_group == :record
+    if current_group == :record_log
       %w[metric_id company_id]
     else
       ["#{current_group}_id"]
@@ -84,13 +84,13 @@ format :html do
   end
 
   def branching_results result
-    return yield if current_group == :record && result["answer_count"] == 1
+    return yield if current_group == :record_log && result["answer_count"] == 1
 
     name = result[:name]
     tree_item yield, body: grouped_card_stub(name), context: name.safe_key
   end
 
-  def record_sample_answer metric_id, company_id, year, value
+  def record_log_sample_answer metric_id, company_id, year, value
     if sort_param == "value"
       latest_answer_with_value metric_id, company_id, value
     else

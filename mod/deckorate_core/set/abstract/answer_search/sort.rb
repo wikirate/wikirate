@@ -27,8 +27,8 @@ format do
       group_sort :company_name
     when :metric
       group_sort :metric_title
-    when :record
-      record_sort
+    when :record_log
+      record_log_sort
     else
       simple_sort
     end
@@ -38,7 +38,7 @@ format do
     SORT_TITLES[key]
   end
 
-  def record_sort
+  def record_log_sort
     {
       company_name: 4,
       metric_title: 4,

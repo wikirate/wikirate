@@ -63,7 +63,7 @@ format :html do
   end
 
   def research_button tab: nil, text: "Research Page"
-    record_card.format.research_button year: year_name, tab: tab, text: text
+    record_log_card.format.research_button year: year_name, tab: tab, text: text
   end
 
   def cancel_answer_button

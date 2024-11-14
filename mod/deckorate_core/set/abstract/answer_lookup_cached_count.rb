@@ -3,7 +3,7 @@
 # in the cache count table.
 # You have to include it with a :target_type option.
 # Valid values have an id and a name column in the lookup table like
-# :metric, :company, :record, or :designer. :answer works too although it has
+# :metric, :company, :record_log, or :designer. :answer works too although it has
 # no name column.
 
 include_set Abstract::SearchCachedCount
