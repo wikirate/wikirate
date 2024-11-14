@@ -2,7 +2,7 @@
 
 describe Card::Set::Right::BadgesEarned do
   let(:card) do
-    Card.fetch "Joe Camel", :metric_answer, :badges_earned, new: {}
+    Card.fetch "Joe Camel", :record, :badges_earned, new: {}
   end
 
   let(:badges) do

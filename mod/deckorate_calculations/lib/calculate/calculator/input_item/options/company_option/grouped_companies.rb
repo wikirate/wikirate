@@ -31,7 +31,7 @@ class Calculate
                         company_group: company_group.id,
                         published: :all }
               restrict_years query
-              Card::AnswerQuery.new(query).lookup_relation
+              Card::RecordQuery.new(query).lookup_relation
             end
 
             def company_group
