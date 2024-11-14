@@ -3,10 +3,10 @@ RSpec.describe Card::Set::Type::Record::Json do
   COMPANY_NAME = "Death Star".freeze
 
   let(:company) { Card[COMPANY_NAME] }
-  let(:answer) { Card.fetch metric.name, COMPANY_NAME, YEAR.to_s }
+  let(:record) { Card.fetch metric.name, COMPANY_NAME, YEAR.to_s }
 
   def json_view view
-    render_view view, answer, format: :json
+    render_view view, record, format: :json
   end
 
   def wr_url path

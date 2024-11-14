@@ -34,11 +34,11 @@ format :json do
     add_nested_fields_to_hash hash, view
     add_count_fields_to_hash hash
     add_calculations_to_hash hash
-    add_answers_to_hash hash
+    add_records_to_hash hash
     hash
   end
 
-  def add_answers_to_hash hash
+  def add_records_to_hash hash
     hash[:records_url] = path mark: card.record_card, format: :json
   end
 
