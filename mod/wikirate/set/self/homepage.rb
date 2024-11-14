@@ -58,7 +58,7 @@ format :html do
   end
 
   def count_categories
-    %i[company metric metric_answer source]
+    %i[company metric record source]
   end
 
   def delta_metric_card
@@ -87,7 +87,7 @@ format :html do
   def delta_answers
     return [] unless (metric = delta_metric_card)
 
-    ma = metric.metric_answer_card
+    ma = metric.record_card
     AnswerQuery.new(ma.query_hash.merge(latest: true), { random: "" }, limit: 10).run
   end
 end

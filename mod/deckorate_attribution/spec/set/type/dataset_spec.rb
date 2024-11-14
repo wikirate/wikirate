@@ -11,7 +11,7 @@ RSpec.describe Card::Set::Type::Dataset do
 
       it "finds all cards in dataset" do
         expect(yielded_answers.size)
-          .to eq(card_subject.fetch(:metric_answer).count)
+          .to eq(card_subject.fetch(:record).count)
       end
     end
   end

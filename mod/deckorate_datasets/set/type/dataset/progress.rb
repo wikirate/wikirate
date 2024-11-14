@@ -41,7 +41,7 @@ end
 # end
 
 def num_answers
-  @num_answers ||= type_count :metric_answer
+  @num_answers ||= type_count :record
 end
 
 def num_data_subsets
@@ -49,7 +49,7 @@ def num_data_subsets
 end
 
 def units
-  years ? "answers" : "records"
+  years.present? ? "data points" : "record logs"
 end
 
 format :html do

@@ -31,7 +31,7 @@ format do
   end
 
   def sort_options
-    { "Most Answers": :answer, "Most Metrics": :metric }.merge super
+    { "Most Data Points": :answer, "Most Metrics": :metric }.merge super
   end
 
   def filter_map

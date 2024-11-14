@@ -8,7 +8,7 @@ format :html do
   # view(:bar_left) { filterable(source: card.name) { render_compact } }
   view(:bar_left) { render_compact }
   view(:bar_middle) { result_middle { render_years } }
-  view(:bar_right) { count_badge(:metric_answer) }
+  view(:bar_right) { count_badge(:record) }
   view :bar_bottom, template: :haml
 
   mini_bar_cols 7, 5

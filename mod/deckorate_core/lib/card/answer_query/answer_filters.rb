@@ -42,7 +42,7 @@ class Card
 
       def checked_by whom
         restrict_by_cql :checked_by, :answer_id,
-                        type_id: MetricAnswerID,
+                        type_id: RecordID,
                         right_plus: [CheckedByID, { refer_to: whom }]
       end
 

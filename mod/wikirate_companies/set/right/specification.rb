@@ -8,7 +8,7 @@
 # Each item is a constraint
 
 # we reuse metric and value interface from this set in the constraint editor:
-include_set Card::Set::TypePlusRight::Metric::MetricAnswer
+include_set Card::Set::TypePlusRight::Metric::Record
 
 attr_accessor :metric_card
 
