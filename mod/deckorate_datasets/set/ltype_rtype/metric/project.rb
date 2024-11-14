@@ -51,7 +51,7 @@ format :html do
     research_progress_bar :metric_link
   end
 
-  def record_name
+  def record_log_name
     company_name = (params[:company] || company_ids.first).cardname
     metric_card.name.field company_name
   end

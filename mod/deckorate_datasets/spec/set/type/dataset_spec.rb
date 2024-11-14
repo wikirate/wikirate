@@ -46,7 +46,7 @@ RSpec.describe Card::Set::Type::Dataset do
 
     it "counts all answers" do
       expect_stat :num, possible: 18, researched: 3, unknown: 0, not_researched: 15
-      # note: 2 researched for same record
+      # note: 2 researched for same record_log
     end
 
     it "calculates progress percentages based on answers" do

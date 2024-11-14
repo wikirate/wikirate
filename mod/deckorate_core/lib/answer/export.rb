@@ -28,7 +28,7 @@ class Answer
     end
 
     def answer_name
-      "#{record_name}+#{year}".to_name
+      "#{record_log_name}+#{year}".to_name
     end
 
     # TODO: store first_source_id as lookup field
@@ -60,7 +60,7 @@ class Answer
       company_id&.cardname
     end
 
-    def record_name
+    def record_log_name
       "#{metric_name}+#{company_name}"
     end
 

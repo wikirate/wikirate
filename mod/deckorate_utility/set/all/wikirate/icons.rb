@@ -5,7 +5,7 @@ basket[:icons][:material].merge!(
   answer_import: :input,
   metric_import: :input,
   activity: :directions_run,
-  record: :bar_chart,
+  record_log: :bar_chart,
   metric_answer: :inventory,
   researcher: :person,
   user: :person,
