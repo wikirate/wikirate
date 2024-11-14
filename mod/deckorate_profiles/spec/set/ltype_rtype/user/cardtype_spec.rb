@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::LtypeRtype::User::Cardtype do
   describe "view :contribution_report" do
     def card_subject
-      Card.fetch "Joe User", :metric_answer
+      Card.fetch "Joe User", :record
     end
 
     def report_url report
@@ -11,7 +11,7 @@ RSpec.describe Card::Set::LtypeRtype::User::Cardtype do
     describe "view: contribution_report" do
       example "without current_tab" do
         expect_view(:contribution_report)
-          .to have_tag "div.card-slot.metric_answer-contribution-report" do
+          .to have_tag "div.card-slot.record-contribution-report" do
           with_tag ".contribution-report-header" do
             with_tag "ul.nav.nav-tabs" do
               with_tag "li.contribution-report-title-box" do

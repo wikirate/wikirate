@@ -17,7 +17,7 @@ module Deckorate
                     value: "sample value",
                     source: sample_source.name
       {
-        type: :metric_answer,
+        type: :record,
         "+metric" => metric,
         "+company" => company,
         "+value" => value,

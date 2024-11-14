@@ -33,7 +33,7 @@ format do
         type: :group,
         open: true,
         filters: super },
-      { key: :metric_answer,
+      { key: :record,
         type: :group,
         filters: [{ key: :value, open: true }, :updated] }
     ]

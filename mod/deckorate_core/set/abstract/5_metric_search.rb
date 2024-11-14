@@ -52,7 +52,7 @@ format do
     {
       "Most Bookmarked": :bookmarkers,
       "Most Companies": :company,
-      "Most Answers": :answer,
+      "Most Data Points": :answer,
       "Most References": :reference,
       "Designer": :metric_designer,
       "Title": :metric_title

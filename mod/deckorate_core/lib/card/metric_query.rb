@@ -13,7 +13,7 @@ class Card
     self.simple_filters = ::Set.new(card_id_map.values << :metric_id).freeze
 
     SORT_BY_COUNT = { company: :company,
-                      answer: :metric_answer,
+                      answer: :record,
                       reference: :reference }.freeze
 
     include MetricFilters

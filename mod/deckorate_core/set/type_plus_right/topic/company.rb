@@ -13,12 +13,12 @@
 # end
 #
 # # when answer is created/deleted
-# recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
+# recount_trigger :type, :record, on: %i[create delete] do |changed_card|
 #   company_cache_cards_for_answer changed_card
 # end
 #
 # # ...or when answer is (un)published
-# field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+# field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
 #   company_cache_cards_for_answer changed_card.left
 # end
 #

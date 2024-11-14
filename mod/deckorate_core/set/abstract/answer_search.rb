@@ -7,7 +7,7 @@ include_set Abstract::AnswerFilters
 include_set Abstract::ProgressBar
 
 def item_type_id
-  MetricAnswerID
+  RecordID
 end
 
 def query_class
@@ -22,7 +22,7 @@ format do
          filters: company_filters },
        { key: :metric_filters, type: :group, label: :metric.cardname,
          filters: metric_filters },
-       { key: :metric_answer, type: :group,
+       { key: :record, type: :group, label: "Data point",
          filters: answer_filters },
        :dataset]
     end
