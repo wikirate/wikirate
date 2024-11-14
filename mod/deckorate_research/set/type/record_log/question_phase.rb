@@ -70,8 +70,8 @@ format :html do
 
   def link_to_metric rel, label, index, text=nil
     text ||= label
-    record_name = metric_id_for_index(index).cardname.field card.company_name
-    link_to_card record_name, text,
+    record_log_name = metric_id_for_index(index).cardname.field card.company_name
+    link_to_card record_log_name, text,
                  class: "_metric_arrow_button #{classy '_research-metric-link'}",
                  rel: rel,
                  title: label,
@@ -96,13 +96,13 @@ format :html do
   end
 
   def new_answer year
-    Card.new type: :metric_answer, name: [card.record_name, year.to_s]
+    Card.new type: :metric_answer, name: [card.record_log_name, year.to_s]
   end
 
   def answers
-    @answers ||=
-      card.record_card.metric_answer_card.search.each_with_object({}) do |answer, hash|
-        hash[answer.year.to_i] = answer
-      end
+    @answers ||= card.record_log_card.metric_answer_card.search
+                     .each_with_object({}) do |answer, hash|
+      hash[answer.year.to_i] = answer
+    end
   end
 end

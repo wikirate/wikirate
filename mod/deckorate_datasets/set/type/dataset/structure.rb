@@ -13,7 +13,7 @@ format :html do
   end
 
   def tab_options
-    { metric_answer: { count: card.answers.count } }
+    { metric_answer: { count: card.answers.count, label: "Data points" } }
   end
 
   view :company_tab do

@@ -28,7 +28,8 @@ format :html do
   end
 
   def tab_options
-    { preview: { count: nil, label: "Preview" } }
+    { preview: { count: nil, label: "Preview" },
+      metric_answer: { label: "Data points" } }
   end
 
   view :preview_tab do
