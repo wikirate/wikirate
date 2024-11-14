@@ -9,7 +9,7 @@ format :json do
 
   view :odyssey do
     options = { filter: { year: "latest", metric_type: "Researched" }, limit: 5 }
-    data = format_odyssey_answer(odyssey_lookup_search(:metric_answer, options))
+    data = format_odyssey_answer(odyssey_lookup_search(:record, options))
     {
       name: card.name,
       os_id: card.oar_id,
@@ -31,7 +31,7 @@ format :json do
   def molecule
     super.tap do |h|
       add_fields_to_hash(h)
-      h[:answers_url] = path mark: card.name.field(:metric_answer), format: :json
+      h[:records_url] = path mark: card.name.field(:record), format: :json
     end
   end
 
@@ -108,6 +108,6 @@ format :csv do
 
   # DEPRECATED.  +answer csv replaces following:
   view :titled do
-    field_nest :metric_answer, view: :titled
+    field_nest :record, view: :titled
   end
 end

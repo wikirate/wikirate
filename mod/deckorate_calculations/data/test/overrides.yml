@@ -4,7 +4,7 @@
     - friendliness
     - Slate Rock and Gravel Company
     - '2003'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '100'
     :source: Source-000000001
@@ -13,7 +13,7 @@
     - descendant hybrid
     - Death Star
     - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '1000'
     :source: Source-000000001

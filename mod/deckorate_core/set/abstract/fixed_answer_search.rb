@@ -51,6 +51,6 @@ format :html do
 
   def customize_item_options
     { record_log: "Grouped by #{partner.to_s.capitalize}",
-      none: "Individual Answers (No Grouping)" }
+      none: "Data Points (No Grouping)" }
   end
 end

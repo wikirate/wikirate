@@ -74,7 +74,7 @@ format :html do
     if dataset_card.years?
       dataset_card.years.map { |y| [record_log, y].cardname }
     else
-      record_log.card.metric_answer_card.format.search_with_params
+      record_log.card.record_card.format.search_with_params
     end
   end
 end

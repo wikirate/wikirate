@@ -96,11 +96,11 @@ format :html do
   end
 
   def new_answer year
-    Card.new type: :metric_answer, name: [card.record_log_name, year.to_s]
+    Card.new type: :record, name: [card.record_log_name, year.to_s]
   end
 
   def answers
-    @answers ||= card.record_log_card.metric_answer_card.search
+    @answers ||= card.record_log_card.record_card.search
                      .each_with_object({}) do |answer, hash|
       hash[answer.year.to_i] = answer
     end

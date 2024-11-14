@@ -2,7 +2,7 @@ include_set Abstract::Export
 include_set Abstract::DetailedExport
 
 EXPORT_TYPES = {
-  Answers: :metric_answer,
+  Answers: :record,
   Companies: :company,
   Metrics: :metric
 }.freeze
@@ -11,7 +11,7 @@ EXPORT_TYPES = {
 # (filtered search has different changes for html format...)
 module ExportSearch
   def search_with_params
-    if export_type == :metric_answer
+    if export_type == :record
       super
     else
       export_relation.pluck(export_id_field).map(&:card)
@@ -19,11 +19,11 @@ module ExportSearch
   end
 
   def export_type
-    @export_type ||= params[:type]&.to_sym || :metric_answer
+    @export_type ||= params[:type]&.to_sym || :record
   end
 
   def count_with_params
-    if export_type == :metric_answer
+    if export_type == :record
       super
     else
       export_relation(count_query).count
@@ -33,7 +33,7 @@ module ExportSearch
   private
 
   def export_relation query=nil
-    if export_type == :metric_answer
+    if export_type == :record
       lookup_relation
     else
       clean_relation(query).select(export_id_field).distinct.reorder export_id_field
@@ -131,7 +131,7 @@ format :csv do
 
   view :titles do
     case export_type
-    when :metric_answer
+    when :record
       Answer.csv_titles detailed?
     else
       nest export_type, view: :titles
@@ -139,7 +139,7 @@ format :csv do
   end
 
   view :body do
-    if export_type == :metric_answer
+    if export_type == :record
       detailed = detailed?
       lookup_relation.map { |row| row.csv_line detailed }
     else

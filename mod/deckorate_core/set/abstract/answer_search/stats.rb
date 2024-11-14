@@ -5,7 +5,7 @@ COUNT_FIELDS = {
   "answers.company_id": :company,
   "answers.metric_id": :metric,
   "answers.year": :year,
-  "answers.id": :metric_answer
+  "answers.id": :record
 }.freeze
 
 DEEP_COUNT_FIELDS = {
@@ -37,11 +37,11 @@ format do
 
   def tally_counts
     counts = answer_table_counts
-    researched = counts[:metric_answer].to_i
+    researched = counts[:record].to_i
     total = all_answer? ? count_query.count : researched
 
     counts.merge(knowns_and_unknowns(researched)).merge(
-      metric_answer: total, researched: researched, none: (total - researched)
+      record: total, researched: researched, none: (total - researched)
     )
   end
 
@@ -91,7 +91,7 @@ format do
   end
 
   def total_results
-    counts[:metric_answer]
+    counts[:record]
   end
 
   def no_results?
@@ -130,7 +130,7 @@ end
 
 format :html do
   def count_badge_label
-    badge_label :metric_answer
+    badge_label :record
   end
 
   def each_progress_bar_status
@@ -151,7 +151,7 @@ format :html do
   end
 
   def badge_label codename
-    return "Data points".to_name if codename == :metric_answer
+    return "Data points".to_name if codename == :record
 
     Codename.exist?(codename) ? codename.cardname : codename.to_s.to_name
   end

@@ -57,7 +57,7 @@ format :html do
   end
 
   def grouped_card_stub base_name
-    card_stub mark: [base_name, :metric_answer],
+    card_stub mark: [base_name, :record],
               filter: grouped_card_filter,
               slot: grouped_card_stub_slot_options,
               limit: 5

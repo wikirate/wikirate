@@ -24,13 +24,13 @@ class Calculate
     # CACHED COUNTS
 
     def refresh_metric_counts
-      %i[metric_answer company].each do |fld|
+      %i[record company].each do |fld|
         Card.fetch([metric.name, fld]).refresh_cached_count
       end
     end
 
     def flag_company_counts
-      field_ids = %i[metric metric_answer].map(&:card_id)
+      field_ids = %i[metric record].map(&:card_id)
       Card::Count.flag_all old_company_ids, field_ids, increment: -1
       Card::Count.flag_all unique_company_ids, field_ids, increment: 1
     end

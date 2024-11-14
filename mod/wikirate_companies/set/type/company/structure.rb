@@ -30,7 +30,7 @@ format :html do
     if contrib_page?
       %i[details metrics_designed research_group projects_organized]
     else
-      %i[details metric_answer source company_group dataset]
+      %i[details record source company_group dataset]
     end
   end
 
@@ -40,12 +40,12 @@ format :html do
         metrics_designed: { label: "Metrics Designed" },
         company_group: { label: "Groups" } }
     else
-      { metric_answer: { label: "Metrics", count: card.metric_card.cached_count } }
+      { record: { label: "Metrics", count: card.metric_card.cached_count } }
     end
   end
 
-  view :metric_answer_tab do
-    field_nest :metric_answer, view: :filtered_content
+  view :record_tab do
+    field_nest :record, view: :filtered_content
   end
 
   view :source_tab do

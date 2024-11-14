@@ -15,8 +15,8 @@ format do
   SORT_TITLES = {
     company_name: "Company",
     metric_title: "Metric",
-    answer_count: "Answer",
-    value: "Answer",
+    answer_count: "Data points",
+    value: "Data point",
     year_count: "Years",
     year: "Year"
   }.freeze

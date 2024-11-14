@@ -24,12 +24,12 @@ format :html do
   end
 
   def tab_list
-    %i[details preview metric metric_answer]
+    %i[details preview metric record]
   end
 
   def tab_options
     { preview: { count: nil, label: "Preview" },
-      metric_answer: { label: "Data points" } }
+      record: { label: "Data points" } }
   end
 
   view :preview_tab do
@@ -40,8 +40,8 @@ format :html do
     field_nest :metric, view: :filtered_content
   end
 
-  view :metric_answer_tab do
-    field_nest :metric_answer, view: :filtered_content
+  view :record_tab do
+    field_nest :record, view: :filtered_content
   end
 
   view :details_tab_right, template: :haml
