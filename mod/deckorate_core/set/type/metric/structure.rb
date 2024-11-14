@@ -28,8 +28,7 @@ format :html do
   end
 
   def tab_options
-    super.merge record: { label: "Companies",
-                                 count: card.company_card.cached_count }
+    super.merge record: { label: "Companies", count: card.company_card.cached_count }
   end
 
   view :topic_tab do

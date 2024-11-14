@@ -1,5 +1,5 @@
 def count
-  AnswerQuery.new(metric_type: left_id).count
+  RecordQuery.new(metric_type: left_id).count
 end
 
 format do

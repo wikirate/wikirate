@@ -3,7 +3,7 @@ include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
 include_set Abstract::CommonFilters
-include_set Abstract::AnswerFilters
+include_set Abstract::RecordFilters
 include_set Abstract::CompanyFilters
 include_set Abstract::BarBoxToggle
 

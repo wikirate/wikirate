@@ -49,7 +49,7 @@ class Card
     end
 
     def filter_by_source value
-      subsql = AnswerQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
+      subsql = RecordQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
       @conditions << "metrics.metric_id in (#{subsql})"
     end
   end

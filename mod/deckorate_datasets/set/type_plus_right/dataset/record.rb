@@ -1,4 +1,4 @@
-include_set Abstract::FullAnswerSearch
+include_set Abstract::FullRecordSearch
 include_set Abstract::Chart
 include_set Abstract::CachedCount
 

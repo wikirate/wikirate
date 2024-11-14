@@ -73,7 +73,8 @@ RSpec.describe Card::Set::Type::Record do
         .to eq "#{metric.name}+#{company.name}+2015"
       new_name = "#{metric.name}+#{company.name}+2014"
       newer_answer = new_answer.refresh true
-      # FIXME: this refresh prevents a log error (exception in integrate phase: undefined method `metric_card`)
+      # FIXME: this refresh prevents a log error
+      # (exception in integrate phase: undefined method `metric_card`)
       # that error is happening because the director on new_answer is not getting cleared.
       newer_answer.update! name: new_name
       expect(newer_answer.name).to eq(new_name)

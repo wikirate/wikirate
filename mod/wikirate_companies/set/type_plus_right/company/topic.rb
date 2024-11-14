@@ -40,5 +40,5 @@ def cql_content
 end
 
 def answer_relation
-  AnswerQuery.new(company_id: left_id).lookup_relation.select(:metric_id).distinct
+  RecordQuery.new(company_id: left_id).lookup_relation.select(:metric_id).distinct
 end

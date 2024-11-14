@@ -88,6 +88,6 @@ format :html do
     return [] unless (metric = delta_metric_card)
 
     ma = metric.record_card
-    AnswerQuery.new(ma.query_hash.merge(latest: true), { random: "" }, limit: 10).run
+    RecordQuery.new(ma.query_hash.merge(latest: true), { random: "" }, limit: 10).run
   end
 end

@@ -10,7 +10,7 @@ end
 
 def answer_relation
   query_key = left.calculated? ? :depender_metric : :metric_id
-  AnswerQuery.new(query_key => left.id).lookup_relation
+  RecordQuery.new(query_key => left.id).lookup_relation
 end
 
 # NOTE: (indirect) sources of calculated metrics are handled in Metric+Input Answer

@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::Record do
     end
 
     Deckorate::Samples::METRIC_NAMES.each_key do |value_type|
-      context "with #{value_type} answer" do
+      context "with #{value_type} record" do
         let(:value_type) { value_type }
 
         check_views_for_errors
@@ -24,9 +24,9 @@ RSpec.describe Card::Set::Type::Record do
       wikirating: "Jedi+deadliness+Death_Star+1977",
       formula: "Jedi+friendliness+Death Star+1977",
       relationship: "Jedi+more evil+Death Star+1977"
-    }.each do |metric_type, answer_name|
-      context "with #{metric_type} answer" do
-        let(:subject_with_metric_type) { Card.fetch answer_name }
+    }.each do |metric_type, record_name|
+      context "with #{metric_type} record" do
+        let(:subject_with_metric_type) { Card.fetch record_name }
 
         check_views_for_errors
         check_views_for_errors views: [:page]

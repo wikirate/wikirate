@@ -1,6 +1,6 @@
 # answers that cite this source
 include_set Abstract::SearchCachedCount
-include_set Abstract::FullAnswerSearch
+include_set Abstract::FullRecordSearch
 include_set Abstract::Chart
 
 def query_hash

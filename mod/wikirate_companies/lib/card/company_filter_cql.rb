@@ -169,6 +169,6 @@ class Card
                       company_answer: :conjunction
     # FIXME: conjunction is weird here, but unlike :relational it passes on arrays
 
-    CardQuery.include CompanyAnswerQuery
+    CardQuery.include CompanyRecordQuery
   end
 end

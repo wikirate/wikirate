@@ -20,6 +20,6 @@ format :json do
   end
 
   def chart_query
-    AnswerQuery.new metric_id: card.metric_id, year: card.year
+    RecordQuery.new metric_id: card.metric_id, year: card.year
   end
 end

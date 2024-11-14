@@ -1,6 +1,6 @@
 include_set Abstract::MetricChild, generation: 2
 
-include_set Abstract::AnswerSearch
+include_set Abstract::RecordSearch
 include_set Abstract::Chart
 
 def query_hash

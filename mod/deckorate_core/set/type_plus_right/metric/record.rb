@@ -3,7 +3,7 @@
 include_set Abstract::BookmarkFiltering
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CachedCount
-include_set Abstract::FixedAnswerSearch
+include_set Abstract::FixedRecordSearch
 
 # recount number of answers for a given metric when an Answer card is
 # created or deleted

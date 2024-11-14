@@ -4,7 +4,7 @@ include_set Abstract::LookupSearch
 include_set Abstract::SearchViews
 include_set Abstract::DetailedExport
 include_set Abstract::MetricSearch
-include_set Abstract::AnswerFilters
+include_set Abstract::RecordFilters
 
 delegate :inverse?, to: :metric_card
 

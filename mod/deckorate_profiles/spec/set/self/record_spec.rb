@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Self::Record, "metric answer report queries" do
+RSpec.describe Card::Set::Self::Record do
   def self.answer year
     "Joe User+big single+Sony_Corporation+#{year}"
   end

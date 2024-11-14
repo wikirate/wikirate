@@ -1,9 +1,9 @@
-include_set Abstract::FullAnswerSearch
+include_set Abstract::FullRecordSearch
 include_set Abstract::Chart
 include_set Abstract::CachedCount
 
 def count
-  Card::AnswerQuery.new({}).count
+  Card::RecordQuery.new({}).count
 end
 
 def count_label

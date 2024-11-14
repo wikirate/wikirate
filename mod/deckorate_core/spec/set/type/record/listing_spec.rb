@@ -54,13 +54,13 @@ RSpec.describe Card::Set::Type::Record::Listing do
       # end
     end
 
-    def have_options_in_metric_unit binding
-      binding.have_tag "span.metric-legend" do
-        with_tag "span.small" do
-          with_tag "i.material-icons", text: "list"
-          with_text /1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11/
-        end
-      end
-    end
+    # def have_options_in_metric_unit binding
+    #   binding.have_tag "span.metric-legend" do
+    #     with_tag "span.small" do
+    #       with_tag "i.material-icons", text: "list"
+    #       with_text /1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11/
+    #     end
+    #   end
+    # end
   end
 end
