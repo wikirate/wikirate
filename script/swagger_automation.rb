@@ -178,7 +178,7 @@ wikirate_cardtypes.each do |cardtype|
     }
   }
 
-  next if cardtype == :record
+  next if cardtype == :record_log
 
   p = []
   if cardtype_name != "Source"

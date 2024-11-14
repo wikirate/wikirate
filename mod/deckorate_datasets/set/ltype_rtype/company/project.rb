@@ -50,7 +50,7 @@ format :html do
 
   view :research_header_progress, template: :haml
 
-  def record_name
+  def record_log_name
     metric_name = (params[:metric] || card.metric_ids.first).cardname
     metric_name.field card.company_card.name
   end
@@ -64,17 +64,17 @@ format :html do
     link_to_card card.company_card, yield, path: path_args, class: "company-color"
   end
 
-  def record_names
-    @record_names ||= metric_ids.map do |metric_id|
+  def record_log_names
+    @record_log_names ||= metric_ids.map do |metric_id|
       [metric_id, company_card].cardname
     end
   end
 
-  def record_answers record
+  def record_log_answers record_log
     if dataset_card.years?
-      dataset_card.years.map { |y| [record, y].cardname }
+      dataset_card.years.map { |y| [record_log, y].cardname }
     else
-      record.card.metric_answer_card.format.search_with_params
+      record_log.card.metric_answer_card.format.search_with_params
     end
   end
 end

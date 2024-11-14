@@ -61,7 +61,7 @@ end
 # FOR LOOKUP
 # ~~~~~~~~~~
 
-def record_id
+def record_log_id
   left_id.positive? ? left_id : super
 end
 

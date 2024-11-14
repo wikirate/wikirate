@@ -39,9 +39,9 @@
 - :name: Company
   :type: :cardtype
   :codename: company
-- :name: Record
+- :name: Record Log
   :type: :cardtype
-  :codename: record
+  :codename: record_log
 - :name: Metric
   :type: :cardtype
   :codename: metric

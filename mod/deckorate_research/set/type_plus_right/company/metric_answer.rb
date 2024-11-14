@@ -61,7 +61,7 @@ format do
     }
   end
 
-  def record_sort
+  def record_log_sort
     {
       metric_title: 8,
       value: 2,
