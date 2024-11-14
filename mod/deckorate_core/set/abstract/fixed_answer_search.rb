@@ -41,7 +41,7 @@ format :html do
   # end
 
   def default_item_view
-    :grouped_record
+    :grouped_record_log
   end
 
   # because when opening record_log-grouped items, the latest is already showing
@@ -50,7 +50,7 @@ format :html do
   end
 
   def customize_item_options
-    { recordlog: "Grouped by #{partner.to_s.capitalize}",
+    { record_log: "Grouped by #{partner.to_s.capitalize}",
       none: "Individual Answers (No Grouping)" }
   end
 end
