@@ -101,7 +101,7 @@ format :html do
   end
 
   def filter_metric_type_options
-    %i[researched relationship inverse_relationship formula rating score descendant]
+    %i[researched relation inverse_relation formula rating score descendant]
       .map(&:cardname)
   end
 

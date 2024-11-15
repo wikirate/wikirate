@@ -9,9 +9,9 @@ class Answer
       include LookupTable::Export
 
       def csv_titles detailed=false
-        basic = ["Answer Page", "Metric", "Company", "Year", "Value", "Source Page"]
+        basic = ["Record Page", "Metric", "Company", "Year", "Value", "Source Page"]
         with_detailed basic, detailed do
-          ["Answer ID", "Original Source", "Source Count", "Comments", "ISIN"]
+          ["Record ID", "Original Source", "Source Count", "Comments", "ISIN"]
         end
       end
     end

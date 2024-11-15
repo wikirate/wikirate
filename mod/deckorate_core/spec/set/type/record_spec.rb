@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::Type::Record do
   describe "answers by value type" do
     def card_subject
-      sample_answer value_type
+      sample_record value_type
     end
 
     Deckorate::Samples::METRIC_NAMES.each_key do |value_type|
@@ -23,7 +23,7 @@ RSpec.describe Card::Set::Type::Record do
       score: "Jedi+disturbances in the Force+Joe User+Death Star+1977",
       wikirating: "Jedi+deadliness+Death_Star+1977",
       formula: "Jedi+friendliness+Death Star+1977",
-      relationship: "Jedi+more evil+Death Star+1977"
+      relation: "Jedi+more evil+Death Star+1977"
     }.each do |metric_type, record_name|
       context "with #{metric_type} record" do
         let(:subject_with_metric_type) { Card.fetch record_name }

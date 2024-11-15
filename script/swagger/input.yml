@@ -254,7 +254,7 @@ paths:
       tags:
       - "Wikirate"
       summary: "A record for a metric/company/year"
-      description: "A record includes a value and various bits of metadata, including sources, discussions, and verification. For relationship metrics, it also includes details about related companies under `items`"
+      description: "A record includes a value and various bits of metadata, including sources, discussions, and verification. For relation metrics, it also includes details about related companies under `items`"
       operationId: read14
       parameters:
       - $ref: '#/components/parameters/metric'
@@ -271,8 +271,8 @@ paths:
     get:
       tags:
       - Wikirate
-      summary: "company-to-company relationship answer"
-      description: "Relationship metrics ask questions about relationships between companies. Each record to these metrics is comprised of one or more relationship answers, each describing the relationship of two specific companies"
+      summary: "company-to-company relationship"
+      description: "Relationship metrics ask questions about relationships between companies. Each record for these metrics is comprised of one or more relationships, each describing how two specific companies relate"
       operationId: read15
       parameters:
       - $ref: '#/components/parameters/metric'
@@ -284,7 +284,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/relationship_answer'
+                $ref: '#/components/schemas/relationship'
   "/ #card[type]=Company":
     post:
       tags:
@@ -416,7 +416,7 @@ components:
         {company}+Record only:
         - **metric_name:** string to match (or exact name in quotes)
         - **metric_id:** numerical_id
-        - **metric_type:** name of "metric type" card (Researched, Relationship, Formula,
+        - **metric_type:** name of "metric type" card (Researched, Relation, Formula,
           Rating, Score, or Descendant)
         - **topic:** topic card name(s). restrict to metrics with topic
         - **research policy:** name of research policy card
@@ -648,16 +648,16 @@ components:
           type: string
           example:  "https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json"
         items:
-          description: "If the metric is a relationship metric then all relationships to other companies for the given company are listed here."
+          description: "If the metric is a relation metric then all relationships to other companies for the given company are listed here."
           type: array
           items:
-            $ref: '#/components/schemas/relationship_answer'
+            $ref: '#/components/schemas/relationship'
         ancestors:
           type: array
           items:
             $ref: '#/components/schemas/atom%20view'
 
-    "relationship_answer":
+    "relationship":
       type: object
       properties:
         id:
@@ -674,7 +674,7 @@ components:
           example: "https://Wikirate.org/Commons+Supplied_By+The_Walt_Disney_Company+2016+Fastmaker_LLC"
         type:
           type: string
-          example: "Relationship Answer"
+          example: "Relationship"
         content:
           type: string
           example: ""

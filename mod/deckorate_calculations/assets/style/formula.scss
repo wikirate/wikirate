@@ -24,7 +24,7 @@
 .options-scheme-cell {
   padding: 0 !important;
 }
-.variable-editor-table, .wikiRating-editor-table, .answer-board {
+.variable-editor-table, .wikiRating-editor-table, .record-board {
   .row > div {
     padding: 0.5em 1em;
     border: 1px solid $gray-200;
@@ -67,7 +67,7 @@
 code._formula-as-javascript {
   white-space: pre-wrap;
 }
-.answer-board {
+.record-board {
   .ab-total {
     border-bottom: 2px solid $gray-500;
   }
@@ -102,7 +102,7 @@ code._formula-as-javascript {
   }
 
 }
-.answer-board-help-text {
+.record-board-help-text {
   padding: 1em;
 }
 

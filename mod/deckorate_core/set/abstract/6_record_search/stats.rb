@@ -38,7 +38,7 @@ format do
   def tally_counts
     counts = answer_table_counts
     researched = counts[:record].to_i
-    total = all_answer? ? count_query.count : researched
+    total = all_record? ? count_query.count : researched
 
     counts.merge(knowns_and_unknowns(researched)).merge(
       record: total, researched: researched, none: (total - researched)
@@ -78,7 +78,7 @@ format do
     research_count_query.where("answers.value = 'Unknown'").count
   end
 
-  def all_answer?
+  def all_record?
     status_filter.in? %i[all none]
   end
 

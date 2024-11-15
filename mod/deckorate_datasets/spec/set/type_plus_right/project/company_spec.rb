@@ -18,7 +18,7 @@ RSpec.describe Card::Set::TypePlusRight::Project::Company do
       end
 
       it "includes research buttons" do
-        is_expected.to have_tag("a.research-answer-button")
+        is_expected.to have_tag("a.research-record-button")
       end
 
       it "includes progress bars" do
@@ -65,7 +65,7 @@ RSpec.describe Card::Set::TypePlusRight::Project::Company do
       end
 
       it "does not include research buttons" do
-        is_expected.not_to have_tag("a.research-answer-button")
+        is_expected.not_to have_tag("a.research-record-button")
       end
 
       it "does include progress bars" do

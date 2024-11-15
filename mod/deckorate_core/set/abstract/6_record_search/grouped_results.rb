@@ -90,7 +90,7 @@ format :html do
     tree_item yield, body: grouped_card_stub(name), context: name.safe_key
   end
 
-  def record_log_sample_answer metric_id, company_id, year, value
+  def record_log_sample_record metric_id, company_id, year, value
     if sort_param == "value"
       latest_answer_with_value metric_id, company_id, value
     else

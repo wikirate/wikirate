@@ -20,7 +20,7 @@ $(window).ready ->
     else
       siblings.find("input[value='latest']").prop "checked", false
 
-  $("body").on "click", ".tree-button ._answer-group-modal-link .metric-value", (e) ->
+  $("body").on "click", ".tree-button ._record-group-modal-link .metric-value", (e) ->
     $(this).closest(".bar").find("._modal-page-link").trigger "click"
     e.stopPropagation()
     e.preventDefault()

@@ -6,7 +6,7 @@ RSpec.describe Card::Set::TypePlusRight::Record::Source do
 
   def new_answer args={}
     args.reverse_merge! value: "1234", year: "2015", source: source.name
-    create_answer args
+    create_record args
   end
 
   describe "answer creation" do

@@ -43,7 +43,7 @@ decko.slot.ready (slot) ->
     deckorate.updateCustomFieldOptions container
     updateCheckAll()
 
-  if slot.find(".answer-result-items")[0]
+  if slot.find(".record-result-items")[0]
     deckorate.updateCustomFieldOptions $("._custom-field-checkboxes")
     for field, config of deckorate.customFields
       updateField config["selector"], defaultChecked(field)
@@ -62,7 +62,7 @@ updateSlotItems = () ->
     $(this).data "fieldKey"
   sdata["items"] = {} unless sdata["items"]
   sdata["items"]["hide"] = hidden.get()
-  decko.filter.updateUrl $(".answer-result-items")
+  decko.filter.updateUrl $(".record-result-items")
 
 updateField = (selector, checked) ->
   fields(selector).toggle checked
@@ -104,12 +104,12 @@ defaultChecked = (field) ->
   !hide.includes field
 
 answerSlotData = () ->
-  slot = $(".answer-result-items").slot()
+  slot = $(".record-result-items").slot()
   slot.data "slot", {} unless slot.data "slot"
   slot.data "slot"
 
 fields = (selector) ->
-  $(".answer-result-items").find selector
+  $(".record-result-items").find selector
 
 fieldCheckboxes = () ->
   $("._custom-field-checkboxes ._custom-field input")
