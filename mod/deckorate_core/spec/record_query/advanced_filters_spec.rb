@@ -1,5 +1,5 @@
 RSpec.describe Card::RecordQuery::AdvancedFilters do
-  include_context "answer query"
+  include_context "record query"
 
   let(:answer_parts) { [-2] } # return company names
   let(:metric_name) { "Jedi+disturbances in the Force" }

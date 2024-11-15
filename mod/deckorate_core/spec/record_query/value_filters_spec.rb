@@ -1,5 +1,5 @@
 RSpec.describe Card::RecordQuery::ValueFilters do
-  include_context "answer query"
+  include_context "record query"
 
   let(:default_filters) { { company_id: "Samsung".card_id, year: :latest } }
   let(:answer_parts) { [1, -1] } # metric and year

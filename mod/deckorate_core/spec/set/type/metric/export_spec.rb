@@ -20,7 +20,6 @@ RSpec.describe Card::Set::Type::Metric::Export do
     subject { render_view :molecule, { name: metric.name }, format: :json }
 
     specify do
-      puts subject
       is_expected
         .to include(
           name: "Joe User+researched number 2",
