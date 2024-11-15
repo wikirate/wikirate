@@ -48,7 +48,7 @@ blocks:
     task:
       prologue:
         commands:
-          - cache delete gems-baseline # occasionally clear
+          # - cache delete gems-baseline # occasionally clear
           - cache restore gems-baseline
           - GLCHECK=`checksum Gemfile.lock`
           - cache restore gems-$GLCHECK

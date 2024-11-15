@@ -20,13 +20,14 @@ RSpec.describe Card::Set::Type::Metric::Export do
     subject { render_view :molecule, { name: metric.name }, format: :json }
 
     specify do
+      puts subject
       is_expected
         .to include(
           name: "Joe User+researched number 2",
           id: metric.id,
           url: "http://wikirate.org/Joe_User+researched_number_2.json",
           type: a_hash_including(name: "Metric"),
-          answers_url: "http://wikirate.org/Joe_User+researched_number_2+Answer.json",
+          records_url: "http://wikirate.org/Joe_User+researched_number_2+Record.json",
           ancestors: [
             a_hash_including(name: "Joe User"),
             a_hash_including(name: "researched number 2")

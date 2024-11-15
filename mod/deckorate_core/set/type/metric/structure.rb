@@ -24,20 +24,19 @@ format :html do
 
   # default tab list (several metric types override)
   def tab_list
-    %i[details metric_answer source dataset calculation]
+    %i[details record source dataset calculation]
   end
 
   def tab_options
-    super.merge metric_answer: { label: "Companies",
-                                 count: card.company_card.cached_count }
+    super.merge record: { label: "Companies", count: card.company_card.cached_count }
   end
 
   view :topic_tab do
     field_nest :topic
   end
 
-  view :metric_answer_tab do
-    field_nest :metric_answer, view: :filtered_content
+  view :record_tab do
+    field_nest :record, view: :filtered_content
   end
 
   view :source_tab do

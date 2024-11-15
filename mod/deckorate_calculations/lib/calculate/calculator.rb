@@ -43,9 +43,9 @@ class Calculate
     def result **restraints
       restrain_to(**restraints)
       result_array do |result|
-        each_answer do |input_answers, company, year|
+        each_answer do |input_records, company, year|
           result << Calculation.new(company, year, calculator: self,
-                                                   input_answers: input_answers)
+                                                   input_records: input_records)
         end
       end
     end
@@ -87,8 +87,8 @@ class Calculate
     end
 
     def input_values
-      each_answer do |input_answers, company, year|
-        values = input_answers&.map { |a| a&.value }
+      each_answer do |input_records, company, year|
+        values = input_records&.map { |a| a&.value }
         next if result_is_unknown? values
         yield values, company, year
       end
@@ -96,8 +96,8 @@ class Calculate
 
     def raw_input_values
       [].tap do |list|
-        each_answer do |input_answers, _company, _year|
-          list << input_answers&.map { |a| a&.value }
+        each_answer do |input_records, _company, _year|
+          list << input_records&.map { |a| a&.value }
         end
       end
     end
@@ -131,8 +131,8 @@ class Calculate
     # @param :years [String, Integer, Array] :year only yield input for given years
     def each_answer
       with_restraints do |c, y|
-        input.each(companies: c, years: y) do |input_answers, company, year|
-          yield input_answers, company, year
+        input.each(companies: c, years: y) do |input_records, company, year|
+          yield input_records, company, year
         end
       end
     end

@@ -4,7 +4,7 @@
   - disturbances in the Force
   - Death Star
   - '1990'
-  :type: :metric_answer
+  :type: :record
   :time: 2054289600 # HAPPY_BIRTHDAY
   :fields:
     :value: 'yes'
@@ -14,7 +14,7 @@
   - disturbances in the Force
   - Death Star
   - '1991'
-  :type: :metric_answer
+  :type: :record
   :time: 2054116800 # HAPPY_BIRTHDAY - 2.day
   :fields:
     :value: 'yes'
@@ -24,7 +24,7 @@
   - disturbances in the Force
   - Death Star
   - '1992'
-  :type: :metric_answer
+  :type: :record
   :time: 2053080000 # HAPPY_BIRTHDAY - 2.weeks
   :fields:
     :value: 'yes'
@@ -34,7 +34,7 @@
   - dinosaurlabor
   - Death Star
   - '2010'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'yes'
     :source: Source-000000001
@@ -43,7 +43,7 @@
   - Address
   - Google LLC
   - '2000'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: Mountain View
     :source: Source-000000001
@@ -52,7 +52,7 @@
   - Address
   - Monster Inc
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: Alderaan
     :source: Source-000000001
@@ -61,7 +61,7 @@
   - Address
   - SPECTRE
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: Baker Street, London
     :source: Source-000000001
@@ -70,7 +70,7 @@
   - big single
   - Sony Corporation
   - '2003'
-  :type: :metric_answer
+  :type: :record
   :user: Joe User
   :fields:
     :value: '3'
@@ -80,7 +80,7 @@
   - big single
   - Sony Corporation
   - '2004'
-  :type: :metric_answer
+  :type: :record
   :user: Joe User
   :fields:
     :value: '4'
@@ -90,7 +90,7 @@
   - big single
   - Sony Corporation
   - '2005'
-  :type: :metric_answer
+  :type: :record
   :user: Joe User
   :fields:
     :value: '5'
@@ -100,7 +100,7 @@
   - big single
   - Sony Corporation
   - '2006'
-  :type: :metric_answer
+  :type: :record
   :user: Joe User
   :fields:
     :value: '6'
@@ -110,7 +110,7 @@
   - big single
   - Sony Corporation
   - '2007'
-  :type: :metric_answer
+  :type: :record
   :user: Joe User
   :fields:
     :value: '7'
@@ -120,7 +120,7 @@
   - big single
   - Sony Corporation
   - '2008'
-  :type: :metric_answer
+  :type: :record
   # :user: Joe User
   :fields:
     :value: '8'
@@ -130,7 +130,7 @@
   - big single
   - Sony Corporation
   - '2009'
-  :type: :metric_answer
+  :type: :record
   :user: Joe User
   :fields:
     :value: '9'
@@ -140,7 +140,7 @@
   - big single
   - Sony Corporation
   - '2010'
-  :type: :metric_answer
+  :type: :record
   :user: Joe User
   :fields:
     :value: '1'
@@ -150,7 +150,7 @@
   - small single
   - Sony Corporation
   - '2010'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '1'
     :source: Source-000000001
@@ -159,7 +159,7 @@
   - big multi
   - Sony Corporation
   - '2010'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: |-
       1
@@ -170,7 +170,7 @@
   - small multi
   - Sony Corporation
   - '2010'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: |-
       1
@@ -181,7 +181,7 @@
   - RM
   - Death Star
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '77'
     :source: Source-000000001
@@ -190,7 +190,7 @@
   - RM
   - Apple Inc.
   - '2015'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '15'
     :source: Source-000000001
@@ -199,7 +199,7 @@
   - RM
   - Apple Inc.
   - '2014'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '14'
     :source: Source-000000001
@@ -208,7 +208,7 @@
   - RM
   - Apple Inc.
   - '2013'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '13'
     :source: Source-000000001
@@ -217,7 +217,7 @@
   - RM
   - Apple Inc.
   - '2012'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '12'
     :source: Source-000000001
@@ -226,7 +226,7 @@
   - RM
   - Apple Inc.
   - '2011'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '11'
     :source: Source-000000001
@@ -235,7 +235,7 @@
   - RM
   - Apple Inc.
   - '2010'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '10'
     :source: Source-000000001
@@ -244,7 +244,7 @@
   - RM
   - Apple Inc.
   - '2002'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: Unknown
     :source: Source-000000001
@@ -253,7 +253,7 @@
   - RM
   - Apple Inc.
   - '2001'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: Unknown
     :source: Source-000000001
@@ -262,7 +262,7 @@
   - RM
   - Apple Inc.
   - '2000'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '0'
     :source: Source-000000001
@@ -271,7 +271,7 @@
   - researched number 3
   - Samsung
   - '2014'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '1'
     :source: Source-000000001
@@ -280,7 +280,7 @@
   - researched number 3
   - Samsung
   - '2015'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '1'
     :source: Source-000000001
@@ -289,7 +289,7 @@
   - researched number 2
   - Sony Corporation
   - '2014'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '2'
     :source: Source-000000001
@@ -298,7 +298,7 @@
   - researched number 2
   - Samsung
   - '2015'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '2'
     :source: Source-000000001
@@ -307,7 +307,7 @@
   - researched number 2
   - Samsung
   - '2014'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '5'
     :source: Source-000000001

@@ -3,7 +3,7 @@ describe "expanding details on company pages", ->
     cy.visit "Death Star"
 
     # use filter to find darkness rating
-    cy.get(".tab-li-metric_answer").click()
+    cy.get(".tab-li-record").click()
     cy.get("._open-filters-button a").click()
     cy.get(".offcanvas").within () ->
       cy.get(".accordion-header").contains("Metric").click()

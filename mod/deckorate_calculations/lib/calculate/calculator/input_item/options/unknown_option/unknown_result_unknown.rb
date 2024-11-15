@@ -7,7 +7,7 @@ class Calculate
           # which means that the calculated value becomes "Unknown".
           module UnknownResultUnknown
             def answer_for company_id, year
-              super.tap { |a| unknown! a if input_answer_unknown? a }
+              super.tap { |a| unknown! a if input_record_unknown? a }
             end
           end
         end

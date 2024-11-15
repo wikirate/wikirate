@@ -54,7 +54,7 @@ def bookmarked_applies?
 end
 
 def double_checked_applies?
-  cardtype_card.id == Card::MetricAnswerID
+  cardtype_card.id == Card::RecordID
 end
 
 format :html do

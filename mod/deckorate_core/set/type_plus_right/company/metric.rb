@@ -8,7 +8,7 @@ def query_hash
 end
 
 # recount metrics related to company whenever a value is created or deleted
-recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
+recount_trigger :type, :record, on: %i[create delete] do |changed_card|
   changed_card.company_card&.fetch :metric
 end
 
@@ -21,6 +21,6 @@ field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
 end
 
 # ...or when answer is (un)published
-field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
   changed_card.left.company_card&.fetch :metric
 end

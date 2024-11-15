@@ -8,7 +8,7 @@ shared_examples "check count" do |count|
   end
 end
 
-shared_examples "cached count" do |name, count, increment|
+shared_examples "cached count" do |mark, count, increment|
   before do
     @original_card_count_config = Cardio.config.card_count
     Cardio.config.card_count = :flag
@@ -18,7 +18,7 @@ shared_examples "cached count" do |name, count, increment|
     Cardio.config.card_count = @original_card_count_config
   end
 
-  let(:card) { Card.fetch name }
+  let(:card) { Card.fetch mark }
 
   include_examples "check count", count
 
