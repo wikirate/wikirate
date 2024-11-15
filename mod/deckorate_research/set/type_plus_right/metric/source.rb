@@ -10,13 +10,13 @@ end
 
 def answer_relation
   query_key = left.calculated? ? :depender_metric : :metric_id
-  AnswerQuery.new(query_key => left.id).lookup_relation
+  RecordQuery.new(query_key => left.id).lookup_relation
 end
 
 # NOTE: (indirect) sources of calculated metrics are handled in Metric+Input Answer
 
 # recount no. of sources on metric when citation is edited
-recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
+recount_trigger :type_plus_right, :record, :source do |changed_card|
   changed_card.left.metric_card.fetch :source
 end
 
@@ -26,7 +26,7 @@ field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
 end
 
 # ...or when answer is (un)published
-field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
   changed_card.left.metric_card.fetch :source
 end
 

@@ -11,8 +11,8 @@ class Calculate
 
             # @return Hash
             # keys are company ids, values are Hashes, each of which has
-            # year as a key and InputAnswer object as a value
-            def input_answers_by_company_and_year
+            # year as a key and InputRecord object as a value
+            def input_records_by_company_and_year
               object_answers = super
               # answers for object companies (same hash representation as result)
 
@@ -54,20 +54,20 @@ class Calculate
             end
 
             # for each list of
-            # @return [Hash] keys are years, values are consolidated InputAnswer objects
+            # @return [Hash] keys are years, values are consolidated InputRecord objects
             #   that represent answers for object companies
             def consolidate_object_answers obj_answers
               consolidate_object_hash(obj_answers).tap do |hash|
                 hash.each do |year, answer_list|
-                  hash[year] = consolidated_input_answer answer_list, year
+                  hash[year] = consolidated_input_record answer_list, year
                 end
               end
             end
 
             # consolidates a list of object hashes (for each hash, keys are years and
-            # values are InputAnswer objects) to a subject hash
+            # values are InputRecord objects) to a subject hash
             #
-            # @return [Hash] keys are years, values are arrays of InputAnswer objects
+            # @return [Hash] keys are years, values are arrays of InputRecord objects
             def consolidate_object_hash obj_answers
               obj_answers.each_with_object({}) do |obj_hash, subj_hash|
                 obj_hash.each do |year, answer|

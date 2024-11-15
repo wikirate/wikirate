@@ -18,7 +18,7 @@ format :html do
   end
 
   def simple_answer
-    Card.fetch card.name.field_name(current_year), new: { type: :metric_answer }
+    Card.fetch card.name.field_name(current_year), new: { type: :record }
   end
 
   def construct_source answer

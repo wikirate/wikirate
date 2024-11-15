@@ -1,5 +1,5 @@
 shared_context "answer badges" do |threshold, badge_name|
-  let(:badge_type) { :metric_answer }
+  let(:badge_type) { :record }
   let(:start_year) { 2003 }
   let(:metric_card) { Card["Joe User+big single"] }
 

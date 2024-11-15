@@ -5,7 +5,7 @@
 # easy way to do it in code.
 #
 # The reason this is done in the vega mod is that this mod alters Type::Metric answer.
-# If you call `include_set Type::MetricAnswer` in a mod that is loaded earlier, you
+# If you call `include_set Type::Record` in a mod that is loaded earlier, you
 # will not get the vega alterations.  sigh.
 #
 # So this is actually TWO todos:
@@ -17,11 +17,11 @@
 #    Card::Rule)
 
 def default_type_id
-  MetricAnswerID
+  RecordID
 end
 
-include_set Type::MetricAnswer
+include_set Type::Record
 
 def type_id
-  MetricAnswerID
+  RecordID
 end

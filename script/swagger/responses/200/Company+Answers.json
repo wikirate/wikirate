@@ -286,7 +286,7 @@
       "name": "Answer",
       "type": "Cardtype",
       "url": "https://wikirate.org/Answer.json",
-      "codename": "metric_answer"
+      "codename": "record"
     }
   ],
   "html_url": "https://wikirate.org/Microsoft_Corporation+Answers",
