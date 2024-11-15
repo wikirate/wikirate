@@ -40,7 +40,7 @@ class Answer < Cardio::Record
   end
 
   def card_query
-    { type: Card::MetricAnswerID, trash: false }
+    { type: Card::RecordID, trash: false }
   end
 
   def company_key

@@ -1,10 +1,10 @@
 class Card
   # Query lookup table for relationship answers
   class RelationshipQuery < LookupQuery
-    include AnswerQuery::AnswerFilters
-    include AnswerQuery::ValueFilters
-    include AnswerQuery::MetricFilters
-    include AnswerQuery::CompanyFilters
+    include RecordQuery::RecordFilters
+    include RecordQuery::ValueFilters
+    include RecordQuery::MetricFilters
+    include RecordQuery::CompanyFilters
 
     self.simple_filters = ::Set.new(
       %i[subject_company_id object_company_id

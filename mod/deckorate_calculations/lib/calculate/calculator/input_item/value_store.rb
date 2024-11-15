@@ -10,7 +10,7 @@ class Calculate
           @values = Hash.new_nested(Hash, Hash)
         end
 
-        # @return [InputAnswer]
+        # @return [InputRecord]
         def get company, year
           dig_args = [company, year].compact
           ret = dig_args.present? ? values.dig(*dig_args) : values

@@ -3,7 +3,7 @@
 include_set Abstract::TopicSearch
 
 # # recount num of topics for a given company when answer is created/deleted
-# recount_trigger :type, :metric_answer, on: %i[create delete] do |changed_card|
+# recount_trigger :type, :record, on: %i[create delete] do |changed_card|
 #   changed_card.company_card&.fetch :topic
 # end
 #
@@ -13,7 +13,7 @@ include_set Abstract::TopicSearch
 # end
 #
 # # ...or when answer is (un)published
-# field_recount_trigger :type_plus_right, :metric_answer, :unpublished do |changed_card|
+# field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
 #   changed_card.left.company_card&.fetch :topic
 # end
 #
@@ -40,5 +40,5 @@ def cql_content
 end
 
 def answer_relation
-  AnswerQuery.new(company_id: left_id).lookup_relation.select(:metric_id).distinct
+  RecordQuery.new(company_id: left_id).lookup_relation.select(:metric_id).distinct
 end

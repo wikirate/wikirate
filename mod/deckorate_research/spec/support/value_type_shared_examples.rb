@@ -12,7 +12,7 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
   end
 
   describe "create a new answer" do
-    def metric_answer value
+    def record value
       create_answer metric: metric.name, company: company.name, value: value
     end
 
@@ -20,21 +20,21 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
       next unless invalid_content
 
       xit "fails" do
-        expect(metric_answer(invalid_content))
+        expect(record(invalid_content))
           .to be_invalid.because_of("+values" => include(error_msg))
       end
     end
 
     context "when value fits the value type" do
       it "saves correct value" do
-        answer = metric_answer valid_content
+        answer = record valid_content
         expect(Card[answer, :value].content).to eq valid_content
       end
     end
 
     context 'when value is "unknown"' do
       xit "passes the validation" do
-        expect(metric_answer("unknown")).to be_valid
+        expect(record("unknown")).to be_valid
       end
     end
   end

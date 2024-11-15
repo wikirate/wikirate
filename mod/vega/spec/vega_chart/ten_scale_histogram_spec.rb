@@ -1,6 +1,6 @@
 RSpec.describe Card::VegaChart::TenScaleHistogram do
   let(:metric) { Card["Jedi+darkness rating"] }
-  let(:format) { metric.metric_answer_card.format :json }
+  let(:format) { metric.record_card.format :json }
   let(:chart_class) { metric.chart_class }
   let(:chart_hash) { format.vega.hash }
 
