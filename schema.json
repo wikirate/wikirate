@@ -11,7 +11,7 @@
       "types": [
         {
           "kind": "OBJECT",
-          "name": "Answer",
+          "name": "Record",
           "description": null,
           "fields": [
             {
@@ -521,8 +521,8 @@
           "description": null,
           "fields": [
             {
-              "name": "answers",
-              "description": "answers to questions about company",
+              "name": "records",
+              "description": "records that answer questions about company",
               "args": [
 
               ],
@@ -537,7 +537,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "OBJECT",
-                      "name": "Answer",
+                      "name": "Record",
                       "ofType": null
                     }
                   }
@@ -766,7 +766,7 @@
           "description": null,
           "fields": [
             {
-              "name": "answers",
+              "name": "records",
               "description": null,
               "args": [
 
@@ -782,7 +782,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "OBJECT",
-                      "name": "Answer",
+                      "name": "Record",
                       "ofType": null
                     }
                   }
@@ -1101,7 +1101,7 @@
               "deprecationReason": null
             },
             {
-              "name": "answers",
+              "name": "records",
               "description": null,
               "args": [
 
@@ -1117,7 +1117,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "OBJECT",
-                      "name": "Answer",
+                      "name": "Record",
                       "ofType": null
                     }
                   }
@@ -1541,7 +1541,7 @@
           "description": null,
           "fields": [
             {
-              "name": "answer",
+              "name": "record",
               "description": null,
               "args": [
                 {
@@ -1559,14 +1559,14 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Answer",
+                "name": "Record",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "answers",
+              "name": "records",
               "description": null,
               "args": [
 
@@ -1582,7 +1582,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "OBJECT",
-                      "name": "Answer",
+                      "name": "Record",
                       "ofType": null
                     }
                   }
@@ -2414,7 +2414,7 @@
           "description": null,
           "fields": [
             {
-              "name": "answers",
+              "name": "records",
               "description": null,
               "args": [
 
@@ -2430,7 +2430,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "OBJECT",
-                      "name": "Answer",
+                      "name": "Record",
                       "ofType": null
                     }
                   }

@@ -15,7 +15,6 @@ module GraphQL
 
         def filter_option_values base_codename, filter_name
           options = base_codename.card.filter_option_values filter_name
-          puts "#{base_codename} filtering by #{filter_name}: #{options}"
           card_name_values options.is_a?(Hash) ? options.values : options
         end
       end

@@ -173,7 +173,7 @@
       ]
     },
     {
-      "name": "answers",
+      "name": "records",
       "transform": [
         {
           "type": "lookup",

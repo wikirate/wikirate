@@ -10,7 +10,7 @@ RSpec.describe Card::Set::MetricType::Relation do
       create "Joe User+bigger than",
              type_id: Card::MetricID,
              fields: {
-               metric_type: "Relationship",
+               metric_type: "Relation",
                inverse_title: "smaller than"
              }
     end
@@ -22,7 +22,7 @@ RSpec.describe Card::Set::MetricType::Relation do
       expect(metric).to be_instance_of Card
       expect(metric.type_name).to eq "Metric"
       expect(metric.relation?).to be true
-      expect(metric.metric_type).to eq "Relationship"
+      expect(metric.metric_type).to eq "Relation"
     end
 
     it "creates inverse metric" do
@@ -32,11 +32,11 @@ RSpec.describe Card::Set::MetricType::Relation do
       expect(inverse_metric.metric_type).to eq "Inverse Relation"
     end
 
-    it "links relationship metric to inverse" do
+    it "links relation metric to inverse" do
       expect(metric.inverse_card).to eq inverse_metric
     end
 
-    it "links inverse relationship metric to relationship metric" do
+    it "links inverse relation metric to relation metric" do
       expect(inverse_metric.inverse_card).to eq metric
     end
 

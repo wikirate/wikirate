@@ -41,7 +41,7 @@ format do
 end
 
 format :json do
-  view :answer_list, cache: :never do
+  view :record_list, cache: :never do
     query.lookup_relation.map(&:compact_json)
   end
 end

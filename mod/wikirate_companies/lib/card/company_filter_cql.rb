@@ -10,7 +10,7 @@ class Card
         answer_condition :categories, :commons_company_category
       end
 
-      def company_answer_condition table, constraint
+      def company_record_condition table, constraint
         AnswerCondition.new(table, constraint).sql
       end
 
@@ -133,8 +133,8 @@ class Card
       add_to_cql :company_category, company_category
     end
 
-    def company_answer_cql company_answer
-      add_to_cql :company_answer, company_answer
+    def company_record_cql company_record
+      add_to_cql :company_record, company_record
     end
 
     def company_cql company
@@ -162,11 +162,11 @@ class Card
     end
   end
 
-  # add :company_country, company_category, and company_answer attribute to Card::Query
+  # add :company_country, company_category, and company_record attribute to Card::Query
   module Query
     attributes.merge! company_country: :conjunction,
                       company_category: :conjunction,
-                      company_answer: :conjunction
+                      company_record: :conjunction
     # FIXME: conjunction is weird here, but unlike :relational it passes on arrays
 
     CardQuery.include CompanyRecordQuery

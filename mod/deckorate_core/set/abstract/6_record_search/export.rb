@@ -67,11 +67,11 @@ format :json do
     end
   end
 
-  view :answer_list, cache: :never do
+  view :record_list, cache: :never do
     lookup_relation.map(&:compact_json)
   end
 
-  view :keyed_answer_list, cache: :never do
+  view :keyed_record_list, cache: :never do
     lookup_relation.map { |a| a.compact_json.merge key: a.name.url_key }
   end
 
@@ -79,7 +79,7 @@ format :json do
     {
       companies: render_company_list,
       metrics: render_metric_list,
-      answers: render_answer_list
+      records: render_record_list
     }
   end
 
@@ -113,9 +113,9 @@ format :json do
 
   def each_answer_with_hash
     search_with_params.each_with_object(
-      companies: {}, metrics: {}, answers: {}
-    ) do |answer, hash|
-      yield answer, hash
+      companies: {}, metrics: {}, records: {}
+    ) do |record, hash|
+      yield record, hash
     end
   end
 
