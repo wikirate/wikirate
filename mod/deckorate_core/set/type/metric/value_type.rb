@@ -39,7 +39,7 @@ end
 
 # Overwritten in Abstract::Relation
 # In relation metrics, the value_type setting configures the value type of
-# relationship answer value (M+C+Y+C+v), *not* the value type of the simple answer
+# relation record value (M+C+Y+C+v), *not* the value type of the simple answer
 # (M+C+Y+v). This method is specifically for simple answers.
 # @return Symbol
 def simple_value_type_code

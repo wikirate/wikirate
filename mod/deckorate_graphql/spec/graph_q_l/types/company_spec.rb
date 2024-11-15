@@ -35,7 +35,7 @@ RSpec.describe GraphQL::Types::Company do
   end
 
   describe "company: relationships field" do
-    it "returns relationship answers pertaining to the company" do
+    it "returns relationships pertaining to the company" do
       field = "relationships { objectCompany { name }, subjectCompany { name } }"
       query = query_string "Death Star", field
       results = result(query)

@@ -28,7 +28,7 @@ RSpec.describe Card::AllRecordQuery do
     end
 
     context "with status :all" do
-      let :all_answers do
+      let :all_records do
         latest_answers + with_year(["researched number 2", "researched number 3",
                                     "small multi", "small single"])
       end

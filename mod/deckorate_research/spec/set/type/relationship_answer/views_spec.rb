@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::RelationshipAnswer::Views do
+RSpec.describe Card::Set::Type::Relationship::Views do
   let(:name) { "Commons+Supplied by+Monster_Inc+1977+Los_Pollos_Hermanos" }
 
   def card_subject

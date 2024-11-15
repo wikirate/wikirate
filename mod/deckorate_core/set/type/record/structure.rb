@@ -6,7 +6,7 @@ format :html do
   def tab_list
     list = %i[details record_log calculations]
     list << (card.calculated? ? :inputs : :contributions)
-    list.insert 1, :relationship_answer if card.relation?
+    list.insert 1, :relationship if card.relation?
     list
   end
 
@@ -21,7 +21,7 @@ format :html do
       # The problem is that it has to traverse the answers via the calculators in
       # order to make sure it handles funky formulas correctly, and that takes a long
       # time when there are thousands of inputs.
-      relationship_answer: { count: relationship_count, label: "Relationships" }
+      relationship: { count: relationship_count, label: "Relationships" }
     }
   end
 
@@ -51,10 +51,10 @@ format :html do
     card.dependee_answers.map { |a| nest a.card, view: :bar }
   end
 
-  view :relationship_answer_tab do
+  view :relationship_tab do
     return "" unless card.relation?
 
-    field_nest :relationship_answer, view: :filtered_content
+    field_nest :relationship, view: :filtered_content
   end
 
   view :read_form, cache: :never do
@@ -64,7 +64,7 @@ format :html do
   def relationship_count
     return 0 unless card.relation?
 
-    card.fetch(:relationship_answer).count
+    card.fetch(:relationship).count
   end
 
   def read_field_configs

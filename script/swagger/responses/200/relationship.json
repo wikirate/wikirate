@@ -3,10 +3,10 @@
   "name": "Commons+Supplied By+TOD'S+2022+Falc East",
   "type": {
     "id": 2534606,
-    "name": "Relationship Answer",
+    "name": "Relationship",
     "type": "Cardtype",
-    "url": "https://wikirate.org/Relationship_Answer.json",
-    "codename": "relationship_answer"
+    "url": "https://wikirate.org/Relationship.json",
+    "codename": "relationship"
   },
   "url": "https://wikirate.org/Commons+Supplied_By+TOD_S+2022+Falc_East.json",
   "content": "",

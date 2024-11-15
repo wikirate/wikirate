@@ -5,7 +5,7 @@
   - SPECTRE
   - '2000'
   - Google LLC
-  :type: :relationship_answer
+  :type: :relationship
   :fields:
     :value: Tier 2 Supplier
     :source: Source-000000001
@@ -15,7 +15,7 @@
   - Monster Inc
   - '1977'
   - Los Pollos Hermanos
-  :type: :relationship_answer
+  :type: :relationship
   :fields:
     :value: Tier 1 Supplier
     :source: Source-000000001
@@ -25,7 +25,7 @@
   - SPECTRE
   - '1977'
   - Los Pollos Hermanos
-  :type: :relationship_answer
+  :type: :relationship
   :fields:
     :value: '1'
     :source: Source-000000001
@@ -35,7 +35,7 @@
   - SPECTRE
   - '1977'
   - Los Pollos Hermanos
-  :type: :relationship_answer
+  :type: :relationship
   :fields:
     :value: Tier 1 Supplier
     :source: Source-000000001
@@ -45,7 +45,7 @@
   - SPECTRE
   - '2000'
   - Los Pollos Hermanos
-  :type: :relationship_answer
+  :type: :relationship
   :fields:
     :value: Tier 1 Supplier
     :source: Source-000000001
@@ -55,7 +55,7 @@
   - Death Star
   - '1977'
   - Los Pollos Hermanos
-  :type: :relationship_answer
+  :type: :relationship
   :fields:
     :value: 'yes'
     :source: Source-000000001
@@ -65,7 +65,7 @@
   - Death Star
   - '1977'
   - SPECTRE
-  :type: :relationship_answer
+  :type: :relationship
   :fields:
     :value: 'yes'
     :source: Source-000000001
@@ -75,7 +75,7 @@
   - SPECTRE
   - '1977'
   - Los Pollos Hermanos
-  :type: :relationship_answer
+  :type: :relationship
   :fields:
     :value: 'yes'
     :source: Source-000000001

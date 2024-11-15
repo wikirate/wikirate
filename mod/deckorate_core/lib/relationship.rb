@@ -1,4 +1,4 @@
-# Lookup table for relationship answers to relationship metrics
+# Lookup table for relationships structured by relation metrics
 class Relationship < Cardio::Record
   @card_column = :relationship_id
 
@@ -16,7 +16,7 @@ class Relationship < Cardio::Record
   belongs_to :metric, primary_key: :metric_id
 
   def card_query
-    { type_id: Card::RelationshipAnswerID, trash: false }
+    { type_id: Card::RelationshipID, trash: false }
   end
 
   def company_key

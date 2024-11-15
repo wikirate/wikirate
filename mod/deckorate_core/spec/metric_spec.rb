@@ -89,7 +89,7 @@ RSpec.describe Metric do
       expect(Card["Jedi+owns+SPECTRE+2000"].type_code)
         .to eq :record
       expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos"].type_name)
-        .to eq "Relationship Answer"
+        .to eq "Relationship"
       expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos+value"].content)
         .to eq "10"
       expect(Card["Jedi+owns+SPECTRE+2000+Death Star+value"].content)

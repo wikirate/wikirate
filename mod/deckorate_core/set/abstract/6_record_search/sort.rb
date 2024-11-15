@@ -114,6 +114,6 @@ format do
   def lookup?
     return true if @answer_table_only
 
-    !RecordQuery.all_answer_query?(filter_hash.symbolize_keys)
+    !RecordQuery.all_record_query?(filter_hash.symbolize_keys)
   end
 end

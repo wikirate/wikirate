@@ -37,9 +37,9 @@ RSpec.describe Relationship do
   end
 
   describe "seeded relationships table" do
-    it "one for each relationship answer" do
+    it "one for each relationship" do
       expect(described_class.count)
-        .to eq Card.search(type_id: Card::RelationshipAnswerID, return: :count)
+        .to eq Card.search(type_id: Card::RelationshipID, return: :count)
     end
 
     describe "random example" do

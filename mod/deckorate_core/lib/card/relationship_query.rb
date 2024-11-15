@@ -1,5 +1,5 @@
 class Card
-  # Query lookup table for relationship answers
+  # Query lookup table for relationships
   class RelationshipQuery < LookupQuery
     include RecordQuery::RecordFilters
     include RecordQuery::ValueFilters

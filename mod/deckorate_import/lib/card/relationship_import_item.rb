@@ -1,5 +1,5 @@
 class Card
-  # This class provides an interface to import relationship answers
+  # This class provides an interface to import relationships
   class RelationshipImportItem < RecordImportItem
     extend CompanyImportHelper
 

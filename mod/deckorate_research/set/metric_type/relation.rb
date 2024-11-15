@@ -46,7 +46,7 @@ event :create_inverse, :prepare_to_store, on: :save do
   add_title_inverse_pointer metric_title, inverse
 end
 
-event :delete_relationship_answers,
+event :delete_relationships,
       :prepare_to_validate, on: :update, trigger: :required do
   if !Card::Auth.always_ok?
     # TODO: come up with better permissions scheme for this!
@@ -125,7 +125,7 @@ end
 
 def object_answers_for_company company
   Card.search left: { left: { left_id: id } },
-              type_id: Card::RelationshipAnswerID,
+              type_id: Card::RelationshipID,
               right: company
 end
 

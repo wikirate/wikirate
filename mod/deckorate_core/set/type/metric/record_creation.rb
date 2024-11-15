@@ -52,7 +52,7 @@ def answer_name_from_args args
 end
 
 def answer_type_id related_company
-  related_company ? RelationshipAnswerID : RecordID
+  related_company ? RelationshipID : RecordID
 end
 
 def add_record_discussion_args hash, comment

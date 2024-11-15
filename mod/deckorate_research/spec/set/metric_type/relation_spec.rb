@@ -49,14 +49,14 @@ RSpec.describe Card::Set::MetricType::Relation do
     end
   end
 
-  describe "event: delete_relationship_answers" do
+  describe "event: delete_relationships" do
     let(:metric) { "Jedi+more evil" }
     let(:metric_card) { Card[metric] }
     let(:company) { "SPECTRE" }
 
     def delete_answers
       Card::Env.with_params company: company do
-        metric_card.update trigger: :delete_relationship_answers
+        metric_card.update trigger: :delete_relationships
       end
     end
 

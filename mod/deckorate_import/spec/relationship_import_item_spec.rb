@@ -20,7 +20,7 @@ RSpec.describe Card::RelationshipImportItem do
   end
 
   describe "#import" do
-    example "creates relationship answer card with valid data", as_bot: true do
+    example "creates relationship card with valid data", as_bot: true do
       import
       expect_card(item_name).to exist
       answer = Card[item_name.left]

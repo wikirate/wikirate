@@ -9,9 +9,9 @@
 - :name: Relation
   :type: :metric_type_type
   :codename: relation
-- :name: Relationship Answer
+- :name: Relationship
   :type: :cardtype
-  :codename: relationship_answer
+  :codename: relationship
 - :name: related company
   :codename: related_company
 

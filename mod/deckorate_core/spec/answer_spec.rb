@@ -46,12 +46,12 @@ RSpec.describe Answer do
 
   describe "#relation?" do
     context "when metric is a relation metric" do
-      let(:relationship_answer) do
+      let(:relationship) do
         answer "Jedi+more evil+Death Star+1977".card_id
       end
 
       it "returns true" do
-        expect(relationship_answer).to be_relation
+        expect(relationship).to be_relation
       end
     end
 
