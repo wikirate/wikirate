@@ -5,7 +5,7 @@ delegate :unorthodox?, to: :variables_card
 def calculator variant=:standard
   calculator_class.new input_array(variant),
                        formula: formula,
-                       normalizer: Record.method(:value_to_lookup),
+                       normalizer: ::Record.method(:value_to_lookup),
                        years: year_card.item_names,
                        companies: company_group_card.company_ids
 end
