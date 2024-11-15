@@ -8,7 +8,7 @@ card_reader :year, type: :list
 card_reader :parent, type: :pointer
 card_reader :data_subset, type: :search_type
 card_reader :topic, type: :list
-card_reader :metric_answer, type: :search
+card_reader :record, type: :search
 
 format :html do
   def breadcrumb_items

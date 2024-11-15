@@ -91,11 +91,11 @@ end
 
 format :html do
   def tab_list
-    super.insert 2, :input_answer
+    super.insert 2, :input_record
   end
 
   def tab_options
-    super.merge input_answer: { label: "Inputs" }
+    super.merge input_record: { label: "Inputs" }
   end
 
   view :new do
@@ -116,7 +116,7 @@ format :html do
     end
   end
 
-  view :input_answer_tab, template: :haml
+  view :input_record_tab, template: :haml
 
   def metric_tree_item detail=nil
     tree_item metric_tree_item_title(detail: detail),

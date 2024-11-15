@@ -1,4 +1,4 @@
-include_set Abstract::AnswerFilters
+include_set Abstract::RecordFilters
 
 assign_type :search_type
 

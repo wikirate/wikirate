@@ -24,9 +24,12 @@
 - :name: Metric Title
   :type: :cardtype
   :codename: metric_title
-- :name: Answer
+- :name: Record
   :type: :cardtype
-  :codename: metric_answer
+  :codename: record
+- :name: Answer
+  :type: :alias
+  :content: Record
 - :name: Metric type
   :type: :cardtype
   :codename: metric_type_type

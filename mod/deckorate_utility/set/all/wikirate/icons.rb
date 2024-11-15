@@ -2,11 +2,11 @@ basket[:icons][:material].merge!(
   post: :insert_comment,
   score: :adjust,
   import: :input,
-  answer_import: :input,
+  record_import: :input,
   metric_import: :input,
   activity: :directions_run,
   record_log: :bar_chart,
-  metric_answer: :inventory,
+  record: :inventory,
   researcher: :person,
   user: :person,
   simple_account: :person,
@@ -52,7 +52,7 @@ basket[:icons][:material].merge!(
 )
 
 basket[:icons][:font_awesome].merge!(
-  metric_answer: "clipboard-check",
+  record: "clipboard-check",
   researcher: :user,
   user: :user,
   simple_account: :user,

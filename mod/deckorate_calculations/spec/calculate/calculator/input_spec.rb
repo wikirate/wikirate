@@ -8,8 +8,8 @@ RSpec.describe Calculate::Calculator::Input do
   describe "#each" do
     def input_each metrics, years, companies=nil
       input_yields metrics do |input, yields|
-        input.each years: years, companies: companies do |input_answers, company, year|
-          input_values = input_answers.map { |a| a&.value }
+        input.each years: years, companies: companies do |input_records, company, year|
+          input_values = input_records.map { |a| a&.value }
           yields << [input_values, company, year]
         end
       end
@@ -75,7 +75,7 @@ RSpec.describe Calculate::Calculator::Input do
       example "related" do
         # @input ||= ["Jedi+deadliness"]
         # @company_options = []
-        # input_answers(
+        # input_records(
 
         expect(
           input_each(
