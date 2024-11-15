@@ -38,7 +38,7 @@ class Card
       private
 
       def filter_by_company_filter table, condition_method, value
-        company_answer_join table
+        company_record_join table
         @conditions << CompanyFilterCql.send(condition_method)
         @values << Array.wrap(value)
       end
@@ -55,7 +55,7 @@ class Card
         single_company? ? (@company_card ||= Card[@filter_args[:company_id]]) : return
       end
 
-      def company_answer_join table
+      def company_record_join table
         @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
       end
     end

@@ -12,7 +12,7 @@ class Relationship
                  "Subject Company", "Object Company",
                  "Year", "Value"]
         with_detailed basic, detailed do
-          ["Relationship ID", "Answer ID"]
+          ["Relationship ID", "Record ID"]
         end
       end
     end

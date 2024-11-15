@@ -5,7 +5,7 @@ def unpublished
     true
   elsif researched_value?
     super
-  elsif relationship?
+  elsif relation?
     false
   else
     calculated_unpublished

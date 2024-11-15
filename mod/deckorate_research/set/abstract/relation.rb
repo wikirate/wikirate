@@ -1,6 +1,6 @@
 include_set Abstract::Researched
 
-def relationship?
+def relation?
   true
 end
 

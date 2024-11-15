@@ -8,7 +8,7 @@ RSpec.describe Relationship do
 
   describe "create" do
     it "creates relationship entry" do
-      create_answers "Jedi+more evil", true do
+      create_records "Jedi+more evil", true do
         Monster_Inc "2000" => { "Los_Pollos_Hermanos" => "no" }
       end
 
@@ -36,7 +36,7 @@ RSpec.describe Relationship do
     end
   end
 
-  describe "seeded relationship table" do
+  describe "seeded relationships table" do
     it "one for each relationship answer" do
       expect(described_class.count)
         .to eq Card.search(type_id: Card::RelationshipAnswerID, return: :count)
@@ -104,8 +104,8 @@ RSpec.describe Relationship do
         name = "Commons+Supplied by+SPECTRE+2000"
         new_name = "Commons+Supplied by+SPECTRE+1999"
         update name, name: new_name
-        relation_id = "#{new_name}+Los_Pollos_Hermanos".card_id
-        relation = described_class.find_by_relationship_id relation_id
+        relationship_id = "#{new_name}+Los_Pollos_Hermanos".card_id
+        relation = described_class.find_by_relationship_id relationship_id
         expect(relation.latest).to eq true
       end
     end

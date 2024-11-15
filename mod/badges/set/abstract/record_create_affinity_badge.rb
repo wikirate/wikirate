@@ -2,7 +2,7 @@
 # [Designer]+Researcher+designer_badge or
 # [Company]+Research Pro+company_badge
 
-include_set Abstract::AnswerCreateBadge
+include_set Abstract::RecordCreateBadge
 
 def virtual?
   new?

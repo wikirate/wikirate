@@ -5,3 +5,5 @@ yearly_answer: yearly_record
 input_answer: input_record
 answer_import: record_import
 answer_import_test: record_import_test
+relationship: relation
+inverse_relationship: inverse_relation

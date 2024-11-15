@@ -416,7 +416,7 @@ components:
         {company}+Record only:
         - **metric_name:** string to match (or exact name in quotes)
         - **metric_id:** numerical_id
-        - **metric_type:** name of "metric type" card (Researched, Relationship, Formula,
+        - **metric_type:** name of "metric type" card (Researched, Relation, Formula,
           Rating, Score, or Descendant)
         - **topic:** topic card name(s). restrict to metrics with topic
         - **research policy:** name of research policy card

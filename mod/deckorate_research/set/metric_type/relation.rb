@@ -1,4 +1,4 @@
-include_set Abstract::Relationship
+include_set Abstract::Relation
 
 # value is calculated later...
 def value_required?

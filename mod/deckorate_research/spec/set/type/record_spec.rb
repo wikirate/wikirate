@@ -63,7 +63,7 @@ RSpec.describe Card::Set::Type::Record do
   context "when value type is Free Text" do
     let(:source) { sample_source }
     let(:new_answer) do
-      create_answer value: "1234", year: "2015", source: source.name
+      create_record value: "1234", year: "2015", source: source.name
     end
 
     include_examples "create answer", :free_text, "yes", nil
@@ -96,7 +96,7 @@ RSpec.describe Card::Set::Type::Record do
     end
 
     it "fails when not triggered with unknown company" do
-      expect(create_answer(company: new_company).errors[:company])
+      expect(create_record(company: new_company).errors[:company])
         .to include(/valid company required/)
     end
   end

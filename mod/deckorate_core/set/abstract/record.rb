@@ -34,7 +34,7 @@ def new_value_card_args
 end
 
 def numeric_value
-  if metric_card.relationship?
+  if metric_card.relation?
     value.to_i
   elsif metric_card.numeric?
     Answer.to_numeric value

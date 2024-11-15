@@ -2,7 +2,7 @@ include_set Abstract::Badge
 
 format :html do
   def valued_object
-    "answer"
+    "record"
   end
 end
 

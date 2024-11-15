@@ -29,7 +29,7 @@ metrics_003:
   designer_id: 3195
   title_id: 3203
   scorer_id:
-  metric_type_id: 743
+  metric_type_id:
   value_type_id: 721
   policy_id: 707
   unit: ''
@@ -41,7 +41,7 @@ metrics_004:
   designer_id: 3195
   title_id: 3209
   scorer_id:
-  metric_type_id: 741
+  metric_type_id:
   value_type_id: 721
   policy_id: 707
   unit: ''
@@ -233,7 +233,7 @@ metrics_020:
   designer_id: 3197
   title_id: 3295
   scorer_id:
-  metric_type_id: 743
+  metric_type_id:
   value_type_id: 723
   policy_id: 707
   unit: ''
@@ -245,7 +245,7 @@ metrics_021:
   designer_id: 3197
   title_id: 3299
   scorer_id:
-  metric_type_id: 741
+  metric_type_id:
   value_type_id: 723
   policy_id: 707
   unit: ''
@@ -257,7 +257,7 @@ metrics_022:
   designer_id: 3197
   title_id: 3306
   scorer_id:
-  metric_type_id: 743
+  metric_type_id:
   value_type_id: 723
   policy_id: 707
   unit: ''
@@ -269,7 +269,7 @@ metrics_023:
   designer_id: 3197
   title_id: 3310
   scorer_id:
-  metric_type_id: 741
+  metric_type_id:
   value_type_id: 723
   policy_id: 707
   unit: ''

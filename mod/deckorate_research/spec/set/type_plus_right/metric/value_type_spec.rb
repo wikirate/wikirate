@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admin" do
   def type_change_for_value value, value_type, metric
-    create_answer metric: metric.name,
+    create_record metric: metric.name,
                   company: sample_company.name, value: value
     card = metric.value_type_card
     Card::Auth.as_bot do

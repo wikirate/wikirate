@@ -34,7 +34,7 @@ class Card
       end
 
       def numeric_sort?
-        single_metric? && (metric_card.numeric? || metric_card.relationship?)
+        single_metric? && (metric_card.numeric? || metric_card.relation?)
       end
     end
   end

@@ -1,7 +1,7 @@
 module Deckorate
   # Answer-related helper methods for specs
-  module AnswerHelper
-    def create_answer args
+  module RecordHelper
+    def create_record args
       with_user(args.delete(:user) || "Joe User") do
         Card.create answer_args(**args)
       end
@@ -37,7 +37,7 @@ module Deckorate
       Card::Auth.as_bot do
         create_metric_opts opts
         Deckorate::MetricCreator.create(opts).tap do |metric|
-          create_answers(metric, test_source, &block) if block_given?(&block)
+          create_records(metric, test_source, &block) if block_given?(&block)
         end
       end
     end
@@ -53,8 +53,8 @@ module Deckorate
       answer_card.checked_by_card.update! trigger: :add_check
     end
 
-    def create_answers metric, test_source=false, &block
-      Deckorate::AnswerCreator.new(metric.card, test_source, &block).add_answers
+    def create_records metric, test_source=false, &block
+      Deckorate::RecordCreator.new(metric.card, test_source, &block).add_records
     end
 
     private

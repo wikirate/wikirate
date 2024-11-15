@@ -1,4 +1,4 @@
-include_set Abstract::AnswerBadge
+include_set Abstract::RecordBadge
 
 format :html do
   view :level do

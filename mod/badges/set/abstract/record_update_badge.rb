@@ -1,11 +1,11 @@
-include_set Abstract::AnswerBadge
+include_set Abstract::RecordBadge
 
 format :html do
   def valued_action
-    "double-checking"
+    "editing"
   end
 end
 
 def badge_action
-  :check
+  :update
 end
