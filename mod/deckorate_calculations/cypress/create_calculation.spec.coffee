@@ -74,7 +74,7 @@ describe "metric creation", ->
         cy.get(".formula-algorithm").should "contain", "friendliness + 1"
         cy.get(".metric-tree-item-title").should "contain", "friendliness"
 
-      # go to answers tab
+      # go to records tab
       cy.get("#main .nav-tabs").within -> cy.contains("Companies").click()
 
       # check that an answer exists
@@ -102,7 +102,7 @@ describe "metric creation", ->
       cy.get(".RIGHT-formula.titled-view").within ->
         cy.get(".code").should "contain", "answer + 1"
 
-      # go to answers tab
+      # go to records tab
       cy.get("#main .nav-tabs").within -> cy.contains("Companies").click()
 
       # check that an answer exists
@@ -133,7 +133,7 @@ describe "metric creation", ->
       # check that formula looks right
       cy.get(".RIGHT-Xvariable").should "contain", "disturbance"
 
-      # go to answers tab
+      # go to records tab
       cy.get("#main .nav-tabs").within -> cy.contains("Companies").click()
 
       # check that an answer exists

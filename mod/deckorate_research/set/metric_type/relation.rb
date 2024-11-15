@@ -40,7 +40,7 @@ event :create_inverse, :prepare_to_store, on: :save do
   inverse = new_inverse_title || inverse_title
   inverse_name = "#{metric_designer}+#{inverse}"
   subcard inverse_name, type: :metric,
-                        fields: { metric_type: "Inverse Relationship",
+                        fields: { metric_type: :inverse_relation.cardname,
                                   inverse: name }
   field :inverse, content: inverse_name, type: :pointer
   add_title_inverse_pointer metric_title, inverse

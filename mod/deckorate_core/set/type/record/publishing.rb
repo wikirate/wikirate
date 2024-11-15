@@ -18,5 +18,5 @@ end
 
 # this answer is calculated
 def calculated_unpublished
-  direct_dependee_answers.find(&:unpublished).present?
+  direct_dependee_records.find(&:unpublished).present?
 end

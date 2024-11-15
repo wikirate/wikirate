@@ -29,7 +29,7 @@ RSpec.describe Card::Set::MetricType::Relation do
       expect(inverse_metric).to be_instance_of Card
       expect(inverse_metric.type_name).to eq "Metric"
       expect(inverse_metric.relation?).to be true
-      expect(inverse_metric.metric_type).to eq "Inverse Relationship"
+      expect(inverse_metric.metric_type).to eq "Inverse Relation"
     end
 
     it "links relationship metric to inverse" do

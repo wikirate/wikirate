@@ -21,7 +21,7 @@ def researched_verification_symbol
 end
 
 def calculated_verification
-  direct_dependee_answers.map(&:verification).compact.min || 1
+  direct_dependee_records.map(&:verification).compact.min || 1
 end
 
 def steward_added?

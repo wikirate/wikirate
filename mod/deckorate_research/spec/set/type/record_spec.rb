@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::Type::Record do
-  let(:answer) { sample_answer }
+  let(:answer) { sample_record }
   let(:metric) { sample_metric }
   let(:company) { sample_company }
 
@@ -34,7 +34,7 @@ RSpec.describe Card::Set::Type::Record do
     include_examples "create answer", :money, "33", "invalid"
 
     describe "view :concise" do
-      subject { sample_answer(:money).format.render_concise }
+      subject { sample_record(:money).format.render_concise }
 
       it "shows currency sign" do
         is_expected.to have_tag "span.metric-legend" do

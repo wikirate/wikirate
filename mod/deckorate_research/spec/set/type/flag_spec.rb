@@ -3,7 +3,7 @@
 RSpec.describe Card::Set::Type::Flag do
   include Cardio::FlagSpecHelper
 
-  let(:answer) { sample_answer }
+  let(:answer) { sample_record }
 
   describe "lookup for flagged answer" do
     # note, much of the relevant lookup code is in card-mod-flag, which is appropriate,

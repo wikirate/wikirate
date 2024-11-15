@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::Type::Record do
   describe "answers by value type" do
     def card_subject
-      sample_answer value_type
+      sample_record value_type
     end
 
     Deckorate::Samples::METRIC_NAMES.each_key do |value_type|
