@@ -1,9 +1,9 @@
 
 .metric-value {
   a {
-    color: $answer-color;
+    color: $record-color;
   }
-  color: $answer-color;
+  color: $record-color;
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -236,7 +236,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 //.badge {
 //  &.known {
 //    color: $white;
-//    background-color: $answer-color;
+//    background-color: $record-color;
 //  }
 //  &.total {
 //    color: $white;

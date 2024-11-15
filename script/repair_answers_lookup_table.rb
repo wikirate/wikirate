@@ -4,7 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 
 puts "metric: answer lookup table count/answer db count"
 Card.search(type_id: Card::MetricID, return: :id).each do |m_id|
-  db_ids = Card.search type_id: Card::MetricAnswerID,
+  db_ids = Card.search type_id: Card::RecordID,
                        left: { left_id: m_id },
                        return: :id
   cached_ids = Answer.where(metric_id: m_id).pluck :answer_id

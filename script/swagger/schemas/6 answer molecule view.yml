@@ -12,7 +12,7 @@ answer_molecule_view:
       example: https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc+2013.json
     type:
       type: string
-      example: Answer
+      example: Record
     metric:
       type: string
       example: PayScale+CEO to Worker pay

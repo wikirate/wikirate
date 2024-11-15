@@ -17,7 +17,7 @@ class Calculate
       include Defaults
       include Options
 
-      INPUT_ANSWER_FIELDS = %i[company_id year id value unpublished verification].freeze
+      INPUT_RECORD_FIELDS = %i[company_id year id value unpublished verification].freeze
 
       attr_reader :input_card, :options, :input_index, :input_count, :result_space
       delegate :answer_candidates, to: :result_space
@@ -84,8 +84,8 @@ class Calculate
       # captured in the searchspace
       def nonstandard_answers
         answer_ids = []
-        full_search do |_company_id, _year, input_answer|
-          answer_ids << input_answer.lookup_ids
+        full_search do |_company_id, _year, input_record|
+          answer_ids << input_record.lookup_ids
         end
         Answer.where id: answer_ids.flatten.uniq
       end

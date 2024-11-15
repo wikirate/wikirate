@@ -5,17 +5,17 @@ class Calculate
   class Calculation
     attr_reader :company_id, :year, :value, :verification, :unpublished
 
-    def initialize company_id, year, calculator: nil, input_answers: nil, value: nil
+    def initialize company_id, year, calculator: nil, input_records: nil, value: nil
       @company_id = company_id
       @year = year
-      @input_answers = input_answers
+      @input_records = input_records
 
       @value = value || calculator.result_value(map(:value), company_id, year)
 
       determine_verification
       determine_unpublished
 
-      @input_answers = nil # don't keep input_answers (or calculator) in memory
+      @input_records = nil # don't keep input_records (or calculator) in memory
     end
 
     def answer_attributes
@@ -48,7 +48,7 @@ class Calculate
 
     def map field
       # note the ampersand
-      @input_answers&.map { |a| a&.send field }
+      @input_records&.map { |a| a&.send field }
     end
   end
 end

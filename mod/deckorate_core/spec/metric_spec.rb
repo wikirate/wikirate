@@ -39,7 +39,7 @@ RSpec.describe Metric do
       expect(metric.metric_type).to eq "Researched"
 
       expect(value).to be_truthy
-      expect(value.type_id).to eq Card::MetricAnswerID
+      expect(value.type_id).to eq Card::RecordID
       expect(value.fetch("value").content).to eq "50"
       expect(Card["MD+MT+SPECTRE+2001+value"].content).to eq "100"
 
@@ -86,8 +86,8 @@ RSpec.describe Metric do
 
       expect(Card["Jedi+owns"].type_id)
         .to eq Card::MetricID
-      expect(Card["Jedi+owns+SPECTRE+2000"].type_name)
-        .to eq "Answer"
+      expect(Card["Jedi+owns+SPECTRE+2000"].type_code)
+        .to eq :record
       expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos"].type_name)
         .to eq "Relationship Answer"
       expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos+value"].content)

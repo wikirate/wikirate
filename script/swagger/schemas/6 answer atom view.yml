@@ -15,7 +15,7 @@ answer_atom_view:
       example: ""
     type:
       type: string
-      example: Answer
+      example: Record
     metric:
       type: string
       example: US Securities and Exchange Commission+Assets

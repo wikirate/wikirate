@@ -49,12 +49,12 @@ class Calculate
           # @param answer_hash [Hash] for every input item a hash with values
           #   for every year
           # @param year [Integer]the year we want the input data for
-          def apply_year_option input_answer_hash, year
+          def apply_year_option input_record_hash, year
             ip = processed_year_option
             method = "apply_#{ip.class.to_s.downcase}_year_option"
             illegal_input_processor! ip unless respond_to? method
 
-            send method, input_answer_hash, ip, year.to_i
+            send method, input_record_hash, ip, year.to_i
           end
 
           def illegal_input_processor! ip
@@ -66,8 +66,8 @@ class Calculate
           end
 
           def apply_array_year_option answer_hash, ip, year
-            input_answers = ip.map { |y| answer_hash[y] }
-            consolidated_input_answer input_answers, year
+            input_records = ip.map { |y| answer_hash[y] }
+            consolidated_input_record input_records, year
           end
 
           def apply_proc_year_option answer_hash, ip, year
@@ -85,7 +85,7 @@ class Calculate
           private
 
           def apply_symbol_year_option_all answer_hash, year
-            consolidated_input_answer answer_hash.values, year
+            consolidated_input_record answer_hash.values, year
           end
 
           def apply_symbol_year_option_latest answer_hash, _year

@@ -6,8 +6,8 @@ class Calculate
         def search result_space=nil
           @result_space = result_space || ResultSpace.new(false)
           @result_slice = ResultSlice.new
-          full_search do |company_id, year, input_answer|
-            store_value company_id, year, input_answer
+          full_search do |company_id, year, input_record|
+            store_value company_id, year, input_record
           end
           after_search
         end
@@ -15,9 +15,9 @@ class Calculate
         # Find answer for the given input card and cache the result.
         # If year is given look only for that year
         def full_search
-          input_answers_by_company_and_year.each do |company_id, input_answer_hash|
-            each_applicable_year(input_answer_hash.keys) do |year|
-              yield company_id, year, apply_year_option(input_answer_hash, year)
+          input_records_by_company_and_year.each do |company_id, input_record_hash|
+            each_applicable_year(input_record_hash.keys) do |year|
+              yield company_id, year, apply_year_option(input_record_hash, year)
             end
           end
         end
@@ -43,13 +43,13 @@ class Calculate
           Answer.where answer_query
         end
 
-        def each_input_answer rel, object
-          rel.pluck(*INPUT_ANSWER_FIELDS).each_with_object(object) do |fields, obj|
+        def each_input_record rel, object
+          rel.pluck(*INPUT_RECORD_FIELDS).each_with_object(object) do |fields, obj|
             company_id = fields.shift
             year = fields.shift
-            input_answer = InputAnswer.new self, company_id, year
-            input_answer.assign(*fields)
-            yield input_answer, obj
+            input_record = InputRecord.new self, company_id, year
+            input_record.assign(*fields)
+            yield input_record, obj
           end
         end
 
@@ -75,12 +75,12 @@ class Calculate
           @search_space = nil
         end
 
-        def consolidated_input_answer answers, year
+        def consolidated_input_record answers, year
           lookup_ids = consolidate_lookup_ids answers
           value = answers.map(&:value)
           unpublished = answers.find(&:unpublished)
           verification = answers.map(&:verification).compact.min || 1
-          InputAnswer.new(self, nil, year)
+          InputRecord.new(self, nil, year)
                      .assign lookup_ids, value, unpublished, verification
         end
 

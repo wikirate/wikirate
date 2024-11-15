@@ -9,10 +9,10 @@ class Calculate
           module GroupedCompanies
             include CompanyIndependentInput
 
-            # year => InputAnswer
+            # year => InputRecord
             def year_answer_pairs
               answer_lists.each_with_object({}) do |(year, array), hash|
-                hash[year] = consolidated_input_answer array, year
+                hash[year] = consolidated_input_record array, year
               end
             end
 
@@ -31,7 +31,7 @@ class Calculate
                         company_group: company_group.id,
                         published: :all }
               restrict_years query
-              Card::AnswerQuery.new(query).lookup_relation
+              Card::RecordQuery.new(query).lookup_relation
             end
 
             def company_group
