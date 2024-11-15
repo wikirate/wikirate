@@ -21,7 +21,7 @@ class Card
       end
 
       def all_numeric_values
-        Record.where(metric_id: @filter_args[:metric_id])
+        ::Record.where(metric_id: @filter_args[:metric_id])
               .where.not(numeric_value: nil)
               .pluck :id, :numeric_value
       end

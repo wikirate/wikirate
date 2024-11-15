@@ -51,7 +51,7 @@ def all_depender_record_ids
 end
 
 def all_depender_relation
-  @all_depender_relation ||= Record.where id: all_depender_record_ids
+  @all_depender_relation ||= ::Record.where id: all_depender_record_ids
 end
 
 # all metrics that depend on this metric
@@ -95,7 +95,7 @@ def update_latest company_id=nil
   rel = company_id ? records.where(company_id: company_id) : records
   rel.update_all latest: false
   latest_rel(rel).pluck(:id).each_slice(25_000) do |ids|
-    Record.where("id in (#{ids.join ', '})").update_all latest: true
+    ::Record.where("id in (#{ids.join ', '})").update_all latest: true
   end
 end
 

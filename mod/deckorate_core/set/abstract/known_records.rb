@@ -74,7 +74,7 @@ def count_known
 end
 
 def records
-  Record.where where_record
+  ::Record.where where_record
 end
 
 def records

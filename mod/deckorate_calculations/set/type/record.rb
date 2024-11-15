@@ -32,7 +32,7 @@ end
 # over direct dependencies.
 def each_depender_record
   metric_card.each_depender_metric do |metric|
-    record = Record.where(metric_id: metric, company_id: company_id, year: year).take
+    record = ::Record.where(metric_id: metric, company_id: company_id, year: year).take
     yield record if record.present?
   end
 end

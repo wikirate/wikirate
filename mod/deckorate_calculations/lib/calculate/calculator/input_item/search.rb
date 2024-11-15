@@ -40,7 +40,7 @@ class Calculate
 
         # Searches for all metric records for this metric input.
         def records
-          Record.where record_query
+          ::Record.where record_query
         end
 
         def each_input_record rel, object

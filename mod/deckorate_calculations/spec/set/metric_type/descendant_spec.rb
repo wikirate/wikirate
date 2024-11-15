@@ -18,7 +18,7 @@ RSpec.describe Card::Set::MetricType::Descendant do
   end
 
   def inherited_record company, year
-    Record.where(metric_id: metric_name.card_id,
+    ::Record.where(metric_id: metric_name.card_id,
                  company_id: company.card_id, year: year.to_i).take
   end
 

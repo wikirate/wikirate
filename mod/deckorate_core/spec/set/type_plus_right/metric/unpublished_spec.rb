@@ -4,7 +4,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Unpublished do
   let(:wikirating) { Card["Jedi+darkness rating"] }
 
   let(:unpublished_vals) do
-    Record.where(metric_id: metric.id).pluck(:unpublished).uniq
+    ::Record.where(metric_id: metric.id).pluck(:unpublished).uniq
   end
 
   describe "event: toggle record publication" do

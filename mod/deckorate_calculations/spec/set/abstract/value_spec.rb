@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Abstract::Value do
   end
 
   def record_for metric
-    Record.where(company_id: "Death Star".card_id,
+    ::Record.where(company_id: "Death Star".card_id,
                  metric_id: metric.card_id,
                  year: 1977).take
   end

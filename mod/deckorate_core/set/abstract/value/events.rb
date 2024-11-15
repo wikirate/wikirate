@@ -1,5 +1,5 @@
 event :standardize_unknown_value, :prepare_to_validate do
-  self.content = Record::UNKNOWN if Record.unknown? content
+  self.content = ::Record::UNKNOWN if ::Record.unknown? content
 end
 
 event :no_empty_value, :validate, on: :save do

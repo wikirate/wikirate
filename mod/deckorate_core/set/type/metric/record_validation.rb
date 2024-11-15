@@ -20,5 +20,5 @@ def validate_all_numeric_values
 end
 
 def valid_numeric_value? value
-  value.to_s.number? || Record.unknown?(value)
+  value.to_s.number? || ::Record.unknown?(value)
 end

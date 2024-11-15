@@ -6,7 +6,7 @@ end
 
 # def report_query action, user_id, subvariant
 #   record_query = send("#{action}_query", user_id, subvariant)
-#   #record_ids = Record.where(record_query).pluck(:record_id)
+#   #record_ids = ::Record.where(record_query).pluck(:record_id)
 #   #{ id: ["in"] + record_ids, limit: 5 }
 # end
 

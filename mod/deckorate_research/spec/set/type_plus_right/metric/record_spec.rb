@@ -30,7 +30,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Record do
     end
 
     specify "#count counts all" do
-      expect(record.count).to eq(Record.where(metric_id: metric.id).count)
+      expect(record.count).to eq(::Record.where(metric_id: metric.id).count)
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Record do
     specify "#count counts only latest years" do
       with_latest_filter_params do
         expect(record.count)
-          .to eq(Record.where(metric_id: metric.id, latest: true).count)
+          .to eq(::Record.where(metric_id: metric.id, latest: true).count)
       end
     end
   end

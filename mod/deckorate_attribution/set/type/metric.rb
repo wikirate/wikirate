@@ -12,7 +12,7 @@ end
 
 def each_reference_dump_row &block
   calc = calculated?
-  Record.where(metric_id: id).in_batches do |records|
+  ::Record.where(metric_id: id).in_batches do |records|
     records.each do |record|
       yield record
       record.each_dependee_record(&block) if calc

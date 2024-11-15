@@ -87,7 +87,7 @@ class Calculate
         full_search do |_company_id, _year, input_record|
           record_ids << input_record.lookup_ids
         end
-        Record.where id: record_ids.flatten.uniq
+        ::Record.where id: record_ids.flatten.uniq
       end
 
       def unknown! record

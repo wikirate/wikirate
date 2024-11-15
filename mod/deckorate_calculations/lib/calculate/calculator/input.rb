@@ -106,7 +106,7 @@ class Calculate
       # optimization idea, never fully implemented:
       #
       # def cached_lookup
-      #   @cached_lookup ||= Record.where(metric_id: input_ids) # .sort(year: :desc)
+      #   @cached_lookup ||= ::Record.where(metric_id: input_ids) # .sort(year: :desc)
       #                            .pluck(:metric_id, :company_id, :year, :value)
       #                            .each_with_object({}) do |(m, c, y, v), h|
       #     h[m] ||= {}

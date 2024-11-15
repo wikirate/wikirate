@@ -18,7 +18,7 @@ API_USERS = [
 
 def infer_routes
   puts "infer calculated records"
-  Record.where(record_id: nil).update_all route: route_index(:calculation)
+  ::Record.where(record_id: nil).update_all route: route_index(:calculation)
   [Record, Relationship].each do | klass|
     puts "infer imported (#{klass})"
     klass.where(imported: true).update_all route: route_index(:import)

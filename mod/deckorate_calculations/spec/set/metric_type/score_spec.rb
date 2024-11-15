@@ -20,7 +20,7 @@ RSpec.describe Card::Set::MetricType::Score do
   end
 
   def score_record company="Samsung", year="2014"
-    Record.where(
+    ::Record.where(
       metric_id: score.id,
       company_id: company.card_id,
       year: year
@@ -110,7 +110,7 @@ RSpec.describe Card::Set::MetricType::Score do
 
   context "when original value changed" do
     def record metric
-      Record.where(
+      ::Record.where(
         metric_id: metric.card_id,
         company_id: "Death Star".card_id,
         year: 1977

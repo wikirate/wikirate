@@ -2,7 +2,7 @@
 def records args={}
   args[:metric_id] = id
   normalize_company_arg :company_id, args
-  Record.where args
+  ::Record.where args
 end
 
 # @return [Record]
@@ -26,7 +26,7 @@ def record_ids args={}
 end
 
 def record_for company, year
-  Record.where(metric_id: id, company_id: company.card_id, year: year.to_i).take
+  ::Record.where(metric_id: id, company_id: company.card_id, year: year.to_i).take
 end
 
 private

@@ -7,7 +7,7 @@ Card.search(type_id: Card::MetricID, return: :id).each do |m_id|
   db_ids = Card.search type_id: Card::RecordID,
                        left: { left_id: m_id },
                        return: :id
-  cached_ids = Record.where(metric_id: m_id).pluck :record_id
+  cached_ids = ::Record.where(metric_id: m_id).pluck :record_id
 
   # assuming that if the count is correct the ids are correct
   next if db_ids.size == cached_ids.size

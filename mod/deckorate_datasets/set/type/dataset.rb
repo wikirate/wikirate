@@ -39,11 +39,11 @@ def parent_dataset_card
 end
 
 def records
-  @records ||= Record.where where_record
+  @records ||= ::Record.where where_record
 end
 #
 # def records_since_start
-#   Record.where(where_record).where "updated_at > ?", created_at
+#   ::Record.where(where_record).where "updated_at > ?", created_at
 # end
 
 def where_record

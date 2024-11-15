@@ -14,7 +14,7 @@ class Record
     def latest_context
       self.company_id ||= fetch_company_id
       self.metric_id ||= fetch_metric_id
-      Record.where(company_id: company_id, metric_id: metric_id).where.not(id: id)
+      ::Record.where(company_id: company_id, metric_id: metric_id).where.not(id: id)
     end
 
     def handle_latest_in_record latest_year, new_latest

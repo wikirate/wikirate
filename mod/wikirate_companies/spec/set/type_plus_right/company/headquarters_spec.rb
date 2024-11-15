@@ -4,7 +4,7 @@ RSpec.describe Card::Set::TypePlusRight::Company::Headquarters do
   let(:hq_card) { Card.fetch "#{company_name}+headquarters", new: {} }
 
   def company_hq_lookup metric
-    Record.where(
+    ::Record.where(
       company_id: company_name.card_id,
       metric_id: metric.card_id,
       year: "2019"

@@ -9,7 +9,7 @@ def value
 end
 
 def unknown_value?
-  Record.unknown? content
+  ::Record.unknown? content
 end
 
 def metric_key

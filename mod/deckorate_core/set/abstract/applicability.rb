@@ -18,5 +18,5 @@ event :enforce_applicability_to_calculations, :integrate_with_delay,
 end
 
 def researched_records
-  Record.where "metric_id = #{metric_id} AND record_id IS NOT NULL"
+  ::Record.where "metric_id = #{metric_id} AND record_id IS NOT NULL"
 end

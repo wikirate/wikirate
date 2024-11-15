@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Abstract::CompanyFieldMetric do
   end
 
   def google_llc_hq_lookup
-    Record.where(
+    ::Record.where(
       company_id: "Google LLC".card_id,
       metric_id: card_subject.id
     ).first

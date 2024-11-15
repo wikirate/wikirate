@@ -26,7 +26,7 @@ class Calculate
             # must be overwritten, because "records" does not filter by company
             def records_for company_id, year
               @search_space = SearchSpace.new company_id, year
-              Record.where record_query.merge(company_id: relationship_hash[company_id])
+              ::Record.where record_query.merge(company_id: relationship_hash[company_id])
             end
 
             private

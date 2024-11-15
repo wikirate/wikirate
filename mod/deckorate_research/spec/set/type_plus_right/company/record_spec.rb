@@ -21,7 +21,7 @@ RSpec.describe Card::Set::TypePlusRight::Company::Record do
 
   describe "#count" do
     it "counts all records (regardless of year)" do
-      expect(card_subject.count).to eq(Record.where(company_id: company.id).count)
+      expect(card_subject.count).to eq(::Record.where(company_id: company.id).count)
     end
   end
 

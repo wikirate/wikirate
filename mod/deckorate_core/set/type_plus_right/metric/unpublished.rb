@@ -34,7 +34,7 @@ def publish_inputs?
 end
 
 def records
-  Record.where metric_id: left_id
+  ::Record.where metric_id: left_id
 end
 
 def unpublish_all_records
