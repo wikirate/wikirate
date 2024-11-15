@@ -1,5 +1,5 @@
 RSpec.describe Card::AllRecordQuery do
-  include_context "answer query"
+  include_context "record query"
 
   context "with fixed company" do
     let(:default_filters) { { company_id: company_name.card_id, year: :latest } }

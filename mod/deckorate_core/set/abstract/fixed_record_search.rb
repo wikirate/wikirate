@@ -1,7 +1,7 @@
 include_set Abstract::RecordSearch
 
 # including module must respond to
-# `fixed_field`, returning a Symbol representing an RecordQuery id filter, and
+# `fixed_field`, returning a Symbol representing a RecordQuery id filter, and
 # `partner`, returning a Symbol
 
 def table_type

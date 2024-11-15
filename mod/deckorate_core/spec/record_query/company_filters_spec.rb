@@ -1,5 +1,5 @@
 RSpec.describe Card::RecordQuery::CompanyFilters do
-  include_context "answer query"
+  include_context "record query"
 
   context "with fixed metric" do
     let(:metric_name) { "Jedi+disturbances in the Force" }

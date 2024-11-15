@@ -1,5 +1,5 @@
 class Card
-  # Specifies the structure of a import item for an answer import.
+  # Specifies the structure of a import item for a record import.
   class RecordImportItem < ImportItem
     extend CompanyImportHelper
 
