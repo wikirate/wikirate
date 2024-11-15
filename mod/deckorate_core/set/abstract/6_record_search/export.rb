@@ -52,7 +52,7 @@ format :json do
     each_answer_with_hash do |answer, hash|
       hash[:companies][answer.company_id] ||= answer.company_name
       hash[:metrics][answer.metric_id] ||= answer.metric_name
-      hash[:answers][answer.answer.flex_id] ||= answer.answer.compact_json
+      hash[:records][answer.answer.flex_id] ||= answer.answer.compact_json
     end
   end
 
